@@ -6,19 +6,19 @@
   "sources": {
     "contact_materialization": {
       "path": "hardware/ecad/generated/H2-R2-contact-materialization.json",
-      "sha256": "6f6a8da2a53489ec01fd1a12bb809d9b5f1790ef1ba0b19eb3f200982ab584bb"
+      "sha256": "63434a3a490f659a88f898baa7a3e4deaed56993db035e96ab62a5a7a50df47a"
     },
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "6d0a46781b50e3037c17652a25fc6bcfc669fb3fbcdbaac251d73a38c263bddd"
+      "sha256": "8fd2b01932325583edb6874e9d12ab5d3f092dcf1ffc714b23dff8c8a95f2fd4"
     }
   },
   "library": {
     "id": "Leshy2_R2",
     "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-    "sha256": "ee1e0bb0e52c953bcece6ac533a3c5216eed4a2b00443c42d630c36d5a462c7b",
-    "symbol_count": 237,
-    "pin_count": 1618,
+    "sha256": "807f606a64a141e1d962858981082b7ec9bfc3b4b649c4c59bad0eba45427435",
+    "symbol_count": 233,
+    "pin_count": 1610,
     "external_interface_metadata_count": 3
   },
   "symbols": [
@@ -1196,40 +1196,6 @@
           ],
           "roles": [
             "power"
-          ],
-          "type": "passive"
-        }
-      ]
-    },
-    {
-      "device_id": "chilisin_cs0805_r27j_s",
-      "symbol_id": "Leshy2_R2:chilisin_cs0805_r27j_s",
-      "reference_prefix": "L",
-      "value": "CS0805-R27J-S",
-      "footprint": "Inductor_SMD:L_0805_2012Metric",
-      "pin_count": 2,
-      "no_connect_pin_count": 0,
-      "external_interfaces": [],
-      "pin_map": [
-        {
-          "number": "1",
-          "name": "END_1",
-          "contacts": [
-            "END_1"
-          ],
-          "roles": [
-            "rf"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "2",
-          "name": "END_2",
-          "contacts": [
-            "END_2"
-          ],
-          "roles": [
-            "rf"
           ],
           "type": "passive"
         }
@@ -7461,10 +7427,44 @@
       ]
     },
     {
-      "device_id": "murata_gcm1555c1h181fa16d",
-      "symbol_id": "Leshy2_R2:murata_gcm1555c1h181fa16d",
+      "device_id": "murata_gcm1555c1h121fa16d",
+      "symbol_id": "Leshy2_R2:murata_gcm1555c1h121fa16d",
       "reference_prefix": "C",
-      "value": "GCM1555C1H181FA16D",
+      "value": "GCM1555C1H121FA16D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "murata_gcm1555c1h200fa16d",
+      "symbol_id": "Leshy2_R2:murata_gcm1555c1h200fa16d",
+      "reference_prefix": "C",
+      "value": "GCM1555C1H200FA16D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "no_connect_pin_count": 0,
@@ -7597,40 +7597,6 @@
       ]
     },
     {
-      "device_id": "murata_gjm1555c1h1r0wb01d",
-      "symbol_id": "Leshy2_R2:murata_gjm1555c1h1r0wb01d",
-      "reference_prefix": "C",
-      "value": "GJM1555C1H1R0WB01D",
-      "footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "pin_count": 2,
-      "no_connect_pin_count": 0,
-      "external_interfaces": [],
-      "pin_map": [
-        {
-          "number": "1",
-          "name": "END_1",
-          "contacts": [
-            "END_1"
-          ],
-          "roles": [
-            "rf"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "2",
-          "name": "END_2",
-          "contacts": [
-            "END_2"
-          ],
-          "roles": [
-            "rf"
-          ],
-          "type": "passive"
-        }
-      ]
-    },
-    {
       "device_id": "murata_gjm1555c1h1r2bb01d",
       "symbol_id": "Leshy2_R2:murata_gjm1555c1h1r2bb01d",
       "reference_prefix": "C",
@@ -7699,74 +7665,6 @@
       ]
     },
     {
-      "device_id": "murata_gjm1555c1h1r9wb01d",
-      "symbol_id": "Leshy2_R2:murata_gjm1555c1h1r9wb01d",
-      "reference_prefix": "C",
-      "value": "GJM1555C1H1R9WB01D",
-      "footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "pin_count": 2,
-      "no_connect_pin_count": 0,
-      "external_interfaces": [],
-      "pin_map": [
-        {
-          "number": "1",
-          "name": "END_1",
-          "contacts": [
-            "END_1"
-          ],
-          "roles": [
-            "rf"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "2",
-          "name": "END_2",
-          "contacts": [
-            "END_2"
-          ],
-          "roles": [
-            "rf"
-          ],
-          "type": "passive"
-        }
-      ]
-    },
-    {
-      "device_id": "murata_gjm1555c1h2r4wb01d",
-      "symbol_id": "Leshy2_R2:murata_gjm1555c1h2r4wb01d",
-      "reference_prefix": "C",
-      "value": "GJM1555C1H2R4WB01D",
-      "footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "pin_count": 2,
-      "no_connect_pin_count": 0,
-      "external_interfaces": [],
-      "pin_map": [
-        {
-          "number": "1",
-          "name": "END_1",
-          "contacts": [
-            "END_1"
-          ],
-          "roles": [
-            "rf"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "2",
-          "name": "END_2",
-          "contacts": [
-            "END_2"
-          ],
-          "roles": [
-            "rf"
-          ],
-          "type": "passive"
-        }
-      ]
-    },
-    {
       "device_id": "murata_gjm1555c1h4r7bb01d",
       "symbol_id": "Leshy2_R2:murata_gjm1555c1h4r7bb01d",
       "reference_prefix": "C",
@@ -7801,10 +7699,44 @@
       ]
     },
     {
-      "device_id": "murata_gjm1555c1h5r6bb01d",
-      "symbol_id": "Leshy2_R2:murata_gjm1555c1h5r6bb01d",
+      "device_id": "murata_gjm1555c1h5r7wb01d",
+      "symbol_id": "Leshy2_R2:murata_gjm1555c1h5r7wb01d",
       "reference_prefix": "C",
-      "value": "GJM1555C1H5R6BB01D",
+      "value": "GJM1555C1H5R7WB01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "murata_gjm1555c1h5r8wb01d",
+      "symbol_id": "Leshy2_R2:murata_gjm1555c1h5r8wb01d",
+      "reference_prefix": "C",
+      "value": "GJM1555C1H5R8WB01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "no_connect_pin_count": 0,
@@ -7873,40 +7805,6 @@
       "symbol_id": "Leshy2_R2:murata_gjm1555c1h8r0db01d",
       "reference_prefix": "C",
       "value": "Murata GJM1555C1H8R0DB01D",
-      "footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "pin_count": 2,
-      "no_connect_pin_count": 0,
-      "external_interfaces": [],
-      "pin_map": [
-        {
-          "number": "1",
-          "name": "END_1",
-          "contacts": [
-            "END_1"
-          ],
-          "roles": [
-            "rf"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "2",
-          "name": "END_2",
-          "contacts": [
-            "END_2"
-          ],
-          "roles": [
-            "rf"
-          ],
-          "type": "passive"
-        }
-      ]
-    },
-    {
-      "device_id": "murata_gjm1555c1h8r2bb01d",
-      "symbol_id": "Leshy2_R2:murata_gjm1555c1h8r2bb01d",
-      "reference_prefix": "C",
-      "value": "GJM1555C1H8R2BB01D",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "pin_count": 2,
       "no_connect_pin_count": 0,
@@ -8957,11 +8855,45 @@
       ]
     },
     {
-      "device_id": "murata_lqw15an8n2g80d",
-      "symbol_id": "Leshy2_R2:murata_lqw15an8n2g80d",
+      "device_id": "murata_lqw2bas22ng00l",
+      "symbol_id": "Leshy2_R2:murata_lqw2bas22ng00l",
       "reference_prefix": "L",
-      "value": "LQW15AN8N2G80D",
-      "footprint": "Inductor_SMD:L_0402_1005Metric",
+      "value": "LQW2BAS22NG00L",
+      "footprint": "Inductor_SMD:L_0805_2012Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
+      "device_id": "murata_lqw2bas47ng00l",
+      "symbol_id": "Leshy2_R2:murata_lqw2bas47ng00l",
+      "reference_prefix": "L",
+      "value": "LQW2BAS47NG00L",
+      "footprint": "Inductor_SMD:L_0805_2012Metric",
       "pin_count": 2,
       "no_connect_pin_count": 0,
       "external_interfaces": [],
@@ -9030,40 +8962,6 @@
       "reference_prefix": "L",
       "value": "LQW2BASR33G00L",
       "footprint": "Inductor_SMD:L_0805_2012Metric",
-      "pin_count": 2,
-      "no_connect_pin_count": 0,
-      "external_interfaces": [],
-      "pin_map": [
-        {
-          "number": "1",
-          "name": "END_1",
-          "contacts": [
-            "END_1"
-          ],
-          "roles": [
-            "rf"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "2",
-          "name": "END_2",
-          "contacts": [
-            "END_2"
-          ],
-          "roles": [
-            "rf"
-          ],
-          "type": "passive"
-        }
-      ]
-    },
-    {
-      "device_id": "murata_lqw2uas1r0g00l",
-      "symbol_id": "Leshy2_R2:murata_lqw2uas1r0g00l",
-      "reference_prefix": "L",
-      "value": "LQW2UAS1R0G00L",
-      "footprint": "Inductor_SMD:L_1008_2520Metric",
       "pin_count": 2,
       "no_connect_pin_count": 0,
       "external_interfaces": [],
@@ -19313,6 +19211,40 @@
       ]
     },
     {
+      "device_id": "yageo_cc0402brnpo9bn2r8",
+      "symbol_id": "Leshy2_R2:yageo_cc0402brnpo9bn2r8",
+      "reference_prefix": "C",
+      "value": "CC0402BRNPO9BN2R8",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ]
+    },
+    {
       "device_id": "yageo_cc0402krx7r9bb104",
       "symbol_id": "Leshy2_R2:yageo_cc0402krx7r9bb104",
       "reference_prefix": "C",
@@ -19375,74 +19307,6 @@
           ],
           "roles": [
             "power"
-          ],
-          "type": "passive"
-        }
-      ]
-    },
-    {
-      "device_id": "yageo_cq0402brnpo9bn3r2",
-      "symbol_id": "Leshy2_R2:yageo_cq0402brnpo9bn3r2",
-      "reference_prefix": "C",
-      "value": "CQ0402BRNPO9BN3R2",
-      "footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "pin_count": 2,
-      "no_connect_pin_count": 0,
-      "external_interfaces": [],
-      "pin_map": [
-        {
-          "number": "1",
-          "name": "END_1",
-          "contacts": [
-            "END_1"
-          ],
-          "roles": [
-            "rf"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "2",
-          "name": "END_2",
-          "contacts": [
-            "END_2"
-          ],
-          "roles": [
-            "rf"
-          ],
-          "type": "passive"
-        }
-      ]
-    },
-    {
-      "device_id": "yageo_cq0402brnpo9bn6r2",
-      "symbol_id": "Leshy2_R2:yageo_cq0402brnpo9bn6r2",
-      "reference_prefix": "C",
-      "value": "CQ0402BRNPO9BN6R2",
-      "footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "pin_count": 2,
-      "no_connect_pin_count": 0,
-      "external_interfaces": [],
-      "pin_map": [
-        {
-          "number": "1",
-          "name": "END_1",
-          "contacts": [
-            "END_1"
-          ],
-          "roles": [
-            "rf"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "2",
-          "name": "END_2",
-          "contacts": [
-            "END_2"
-          ],
-          "roles": [
-            "rf"
           ],
           "type": "passive"
         }

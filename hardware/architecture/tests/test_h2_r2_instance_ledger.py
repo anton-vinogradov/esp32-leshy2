@@ -22,14 +22,14 @@ class H2R2InstanceLedgerTests(unittest.TestCase):
             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("1187 exact fitted R2 instances", result.stdout)
+        self.assertIn("1185 exact fitted R2 instances", result.stdout)
 
     def test_all_groups_quantities_projects_and_sheets_close(self):
         self.assertEqual("pass", self.ledger["status"])
         self.assertEqual([], self.ledger["errors"])
         summary = self.ledger["summary"]
-        self.assertEqual(1187, summary["fitted_board_instance_count"])
-        self.assertEqual(237, summary["component_group_count"])
+        self.assertEqual(1185, summary["fitted_board_instance_count"])
+        self.assertEqual(233, summary["component_group_count"])
         self.assertEqual(23, summary["project_graph_sheet_count"])
         self.assertEqual(len(summary["sheet_counts"]), summary["populated_sheet_count"])
         self.assertEqual(

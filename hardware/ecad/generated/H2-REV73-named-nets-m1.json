@@ -7,9 +7,9 @@
     "hardware/architecture/candidates/G2F-3I.json": "2673a4d23435effe9ec592e6060a3b1bc525598944d932f0a502d0fd4636ce8f",
     "hardware/ecad/generated/H2-UI-root-interface.json": "48da1d707e5f62bad32deb6808a82fc99eddf8fc374f90fd31d3c0347dbd3fe8",
     "hardware/ecad/generated/H2-RF-root-interface.json": "0e68fd755d6f0840d4a68dbf6c47f8dea0aa2e0669a59d5b7f44457f11fff871",
-    "hardware/ecad/generated/H2-CAP00-root-interface.json": "611fd0a5bee6267c3e18d052dc838b9f9ccf0002b2e9833f66e6eb206a3a4f6e",
-    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "c853fe72d82c4197874fc5c37c59939bf05f2f4f0d6e9366b16e4821929f2a60",
-    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "fa256d1766b709e9f345153a8430097c459d25d52e498534540dcd1caa49d87b",
+    "hardware/ecad/generated/H2-CAP00-root-interface.json": "4310b4f8ea8215caf6438d8f0cfc234c8a079e598410439a4a2999c7bb238945",
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "03819d85cfad2c6434ffe0b64258265b3be7d1921c9b002f40002e0d3125fead",
+    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "fbcc59e1eb5fd77e268590957f5cd3f1f5bd2d2787af0a3a6698f4d67d2d525c",
     "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "ab4e73fe576c5e1557e6695b89fd3ce182c4533a61e984bd755d3c25b287ce97",
     "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "62036d985924f988257859617422a4eedbdab3d0d8f940cb485d32b7b97f23bc",
     "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch": "22e2a86e866ae34846d8e526e21fe4029a0891dbc1c85ea6a266a353e4fe307c"

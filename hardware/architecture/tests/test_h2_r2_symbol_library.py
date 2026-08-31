@@ -27,15 +27,15 @@ class H2R2SymbolLibraryTests(unittest.TestCase):
             stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("237 controlled R2 symbols", result.stdout)
+        self.assertIn("233 controlled R2 symbols", result.stdout)
 
     def test_library_boundary_is_complete_and_pre_net(self):
         self.assertEqual("pass", self.manifest["status"])
         self.assertEqual([], self.manifest["errors"])
         library = self.manifest["library"]
         self.assertEqual("Leshy2_R2", library["id"])
-        self.assertEqual(237, library["symbol_count"])
-        self.assertEqual(1618, library["pin_count"])
+        self.assertEqual(233, library["symbol_count"])
+        self.assertEqual(1610, library["pin_count"])
         self.assertEqual(3, library["external_interface_metadata_count"])
         self.assertTrue(self.manifest["authorization"]["controlled_symbol_library"])
         self.assertFalse(self.manifest["authorization"]["native_schematic_nets"])

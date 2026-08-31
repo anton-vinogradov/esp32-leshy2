@@ -1,30 +1,31 @@
-# H1-R2.3 · Airband input filter
+# H3-R2.3 · Airband input filter
 
-A compact low-cost replacement for the large `BPF-A127+` has been tested. H2 now carries its exact nominal BOM into the native schematic, but the production fitted state is not frozen.
+The large purchased `BPF-A127+` has been replaced by an exact factory-placeable LC network without weakening the accepted mask.
 
-![Airband filter feasibility](images/h1-airband-filter.svg)
+![Airband filter verification](images/h1-airband-filter.svg)
 
 ## Result
 
-- The nominal finite-Q model passes: worst 118–137 MHz loss is `3.10 dB` against `4.5 dB`, and every named nominal stop point passes.
-- A `16386`-state value stress sweep keeps the passband within limit (`4.67 dB` against `4.5 dB`), but worst 155-MHz rejection is `17.85 dB` against `20 dB`. The exact stocked H2 MPNs are therefore accepted only as the nominal ECAD state; the production fitted state is **not accepted**.
-- The serial LC route is retained, but its physical cell grows to `24 × 11 mm` and gains a via fence plus alternate-value/DNP tuning pads.
-- A lumped model cannot prove 180–2200 MHz above component SRF: H3 uses a bounded pre-layout model, H6 reruns with routed/extracted parasitics before the H7 order, and H8 closes the production state by VNA.
+- All `1024` effective tolerance endpoints pass; the minimum calculated margin is `0.187 dB`.
+- The filter has `18` fitted parts and `10` exact MPNs; all were live JLCPCB SMT routes for Standard PCBA with MOQ 1 on 2026-08-31.
+- One device uses `$1.6736` of filter material instead of the costly purchased filter.
+- This is not yet a production freeze: the small margin requires the same H6 mask with routed parasitics, followed by the H8 assembled-board VNA check.
 
-## Factory feasibility witnesses
+## Exact fitted group
 
-These are checked stocked MPNs for the nominal H2 ECAD state, not yet the production filter BOM. H3 retunes against manufacturer models, H6 fixes the pre-order fitted/DNP state after extraction, and H8 checks the production state by VNA.
-
-| Exact MPN | JLCPCB | Value | Current route |
-|---|---|---|---|
-| `LQW2UASR56F00L` | [`C907989`](https://jlcpcb.com/partdetail/MurataElectronics-LQW2UASR56F00L/C907989) | 560 nH +/-1%, 1008 | 155 stock / 152 available, MOQ 1, USD 0.272 at quantity 1 |
-| `LQW2BASR22G00L` | [`C527968`](https://jlcpcb.com/partdetail/MurataElectronics-LQW2BASR22G00L/C527968) | 220 nH +/-2%, 0805 | 28 stock / 25 available, MOQ 1, USD 0.1324 at quantity 1 |
-| `LQW2BASR33G00L` | [`C703717`](https://jlcpcb.com/partdetail/MurataElectronics-LQW2BASR33G00L/C703717) | 330 nH +/-2%, 0805 | 4573 stock / 4548 available, MOQ 1, USD 0.1158 at quantity 1 |
-| `LQW15AN8N2G80D` | [`C307610`](https://jlcpcb.com/partdetail/MurataElectronics-LQW15AN8N2G80D/C307610) | 8.2 nH +/-2%, 0402 | 8484 stock / 8343 available, MOQ 1, USD 0.0975 at quantity 1 |
-| `CS0805-R27J-S` | [`C108271`](https://jlcpcb.com/partdetail/ChilisinElec-CS0805R27JS/C108271) | 270 nH +/-5%, Q 48 witness, 0805 | 1972 stock, MOQ 1, USD 0.0549 at quantity 1 |
+| Exact MPN | JLCPCB | Quantity | Role |
+|---|---|---:|---|
+| `LQW2BASR22G00L` | `C527968` | 2 | S1/S3 220-nH series arms |
+| `LQW2BAS47NG00L` | `C162657` | 2 | S1/S3 47-nH series arms |
+| `LQW2BAS22NG00L` | `C2042201` | 4 | P1/P2 equal 22-nH parallel pairs |
+| `LQW2UASR56F00L` | `C907989` | 1 | S2 560-nH arm |
+| `GJM1555C1H5R7WB01D` | `C2220921` | 1 | S1 5.7-pF arm |
+| `GCM1555C1H121FA16D` | `C126496` | 2 | P1/P2 120-pF branches |
+| `GCM1555C1H200FA16D` | `C437436` | 2 | P1/P2 20-pF branches |
+| `GJM1555C1H1R4WB01D` | `C2181496` | 2 | P1/P2 1.4-pF fine branches |
+| `CC0402BRNPO9BN2R8` | `C1853353` | 1 | S2 2.8-pF arm |
+| `GJM1555C1H5R8WB01D` | `C2177031` | 1 | S3 5.8-pF arm |
 
 ## Next gate
 
-H2 carries the complete tuning network into ECAD. H3 checks it with bounded pre-layout parasitics; H6 repeats the proof with routed/extracted parasitics before the H7 order; H8 selects the production fitted/DNP state by VNA. A failed mask returns the design to an exact purchased filter or different receiver boundary.
-
-> Result marker: **H1-R2.3**. The current H1 marker is published on the roadmap.
+H6 uses the reserved compact tuning island and fitted/DNP trim footprints, extracts routed pads, traces, vias, coupling, shield and enclosure parasitics, and reruns the same mask before the exact-one order. H8 VNA measurement confirms or retunes the fitted/DNP state on the assembled prototype.

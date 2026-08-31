@@ -6,35 +6,35 @@
   "sources": {
     "inventory": {
       "path": "hardware/ecad/h2-r2-native-inventory-contract.json",
-      "sha256": "51495b3857da426d3d3398f30a25209ef2ebe5d654319d834b54a02e7341f87e"
+      "sha256": "7d5b74a04da3c1a27040216d0200fe4581bbf4f55feac2d108f64c7f9675172f"
     },
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "3a4fdf2d85119cdf93cb03f14837813f981a83741885294088d7b2e1b1ee9b7d"
+      "sha256": "11e74bbc5eb62527b7fc9034b8145ffccfe266b82570c8c34f73f63dc757e842"
     },
     "nets": {
       "path": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "sha256": "ecda8751f7231c67a8a9dbdb8b98f47d8e1b4e4ce3de005fec25527cda64d7fa"
+      "sha256": "0e4a7d802b7bfe7ea9f8e375818ae5986c765cba530dd59b256183065c5257eb"
     },
     "symbols": {
       "path": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-      "sha256": "183b097d31109556717f85ddf816513315c183dfc526adc98e92fa72563ea051"
+      "sha256": "b25ceeb2f8d18a3789ba9f84e7aafbd20f2cde2d93b6cf86ef18298889983fd2"
     },
     "symbol_library": {
       "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-      "sha256": "ee1e0bb0e52c953bcece6ac533a3c5216eed4a2b00443c42d630c36d5a462c7b"
+      "sha256": "807f606a64a141e1d962858981082b7ec9bfc3b4b649c4c59bad0eba45427435"
     }
   },
   "summary": {
     "project_count": 3,
     "project_graph_sheet_count": 23,
     "populated_sheet_count": 19,
-    "fitted_symbol_instance_count": 1187,
-    "physical_symbol_pin_count": 4327,
-    "connected_physical_pin_count": 4071,
+    "fitted_symbol_instance_count": 1185,
+    "physical_symbol_pin_count": 4323,
+    "connected_physical_pin_count": 4067,
     "explicit_no_connect_physical_pin_count": 256,
     "external_module_interface_annotation_count": 5,
-    "canonical_net_count": 826,
+    "canonical_net_count": 823,
     "generated_file_count": 32,
     "pcb_file_count": 0
   },
@@ -55,10 +55,10 @@
       "root": "RF_00_ROOT",
       "sheet_count": 13,
       "populated_sheet_count": 11,
-      "instance_count": 757,
-      "physical_symbol_pin_count": 2649,
+      "instance_count": 755,
+      "physical_symbol_pin_count": 2645,
       "external_module_interface_count": 0,
-      "canonical_net_count": 525,
+      "canonical_net_count": 522,
       "cross_sheet_net_count": 127
     },
     {
@@ -261,9 +261,9 @@
     {
       "id": "RF_21_BROADCAST_AIRBAND_RX",
       "role": "FM/AM/SW/LW and mandatory receive-only 118-137-MHz Airband conversion",
-      "instance_count": 94,
-      "physical_symbol_pin_count": 264,
-      "connected_physical_pin_count": 253,
+      "instance_count": 92,
+      "physical_symbol_pin_count": 260,
+      "connected_physical_pin_count": 249,
       "explicit_no_connect_physical_pin_count": 11,
       "hierarchical_interface_count": 12,
       "external_module_interface_count": 0,
@@ -402,19 +402,19 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_21_BROADCAST_AIRBAND_RX.kicad_sch",
-      "sha256": "8fe354390ebd026006540ede04ee9a1f0936b0a7cc340b5f8a4cbf803372c971"
+      "sha256": "a54d8a9859d29f8722009b816d0a1275441bb91226867e378333c25be8609d3d"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_22_AUDIO_CODEC_IO.kicad_sch",
-      "sha256": "ae9add9ad3680f96109af6f8461229e88e5fbad8609192b62b77721a66b0a48b"
+      "sha256": "a8ab8b048219abdd521fd905983653f300d400e637a52d3ffda342afc431b980"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_30_U214_U219_M5_EXT.kicad_sch",
-      "sha256": "786f93bd9c104c9de755065286807113759671fe44c075c99d9b23ec3a2a9589"
+      "sha256": "a14423b6d9c38254b7df05231bb79f956dd592450cc4860833a0ed64e98715e0"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_31_REAR_CONTROLS.kicad_sch",
-      "sha256": "cefbeb11f89bc8be8ef8ddcf36d870a11c096a337acda7edf7b22f597b9cf4ac"
+      "sha256": "70d4330f72ea32c7bc482e3352c059c060d94d809002f0a013c3edd7ae5576b4"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_40_INTERBOARD_M1.kicad_sch",
@@ -422,7 +422,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_50_TX_SAFETY_EVIDENCE.kicad_sch",
-      "sha256": "45e6cc39db194e7d9d6336bd7ebd2fe5c686dec60a76ceda7cdd91a23b2dfffc"
+      "sha256": "421d90d6b048dc36da0ae1f8e7c0135acf4bbb777f4cb6b078efdaa45b084c22"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch",

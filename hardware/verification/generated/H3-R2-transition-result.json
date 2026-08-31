@@ -4,9 +4,9 @@
   "marker": "H3-R2.2.4",
   "status": "reviewed_h3_r2_2_power_transitions_complete",
   "source_sha256": {
-    "hardware/verification/generated/H3-R2-transition-sequences.json": "23f51d6b009ef132ca452af39dd9f13260e123c2da3bb45f0e857291f8126bd7",
-    "hardware/verification/generated/H3-R2-handover.json": "4a92bc64aa90ff9d42d8634dac5c360b9f23e9434cf29d06e63addf6a4e0350c",
-    "hardware/verification/generated/H3-R2-inrush-watchdog.json": "ee9e5c31bd4dd6026096e2ad47b2efd69dcc09377d012b2b6846ba0fb9b6ed63"
+    "hardware/verification/generated/H3-R2-transition-sequences.json": "6e1e5ba8f195c32dd96a30eb4e336764755accdd16b37ab77cdfe70f29cce579",
+    "hardware/verification/generated/H3-R2-handover.json": "e79432da13e033ec8a31a8d9afba65efbeacbd5ff0e0b4be440ac4a2e5c7e2c4",
+    "hardware/verification/generated/H3-R2-inrush-watchdog.json": "3d83ab504515c6f48cc76c936e095cf8f8149d6ea6e0fe1894dd6bde2ff472b4"
   },
   "checks": {
     "startup_sequences": true,

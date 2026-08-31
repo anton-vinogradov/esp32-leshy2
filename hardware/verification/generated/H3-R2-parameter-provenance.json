@@ -4,15 +4,15 @@
   "marker": "H3-R2.0.2",
   "status": "pass",
   "accepted_input": "H3-R2.0.1",
-  "input_freeze_sha256": "13587b2a5e62b3689a8335abc5340c67036c1faa3696ec4f69bd2bb0f1c14e06",
-  "register_sha256": "24e4be1a32e8e6b2288a825a14bf5fb8f89e06465742fd6a58f6a330e7237569",
+  "input_freeze_sha256": "85bfa19be35c6f56ca53d344dafd6296194bb24a419122442814e0e1d3838757",
+  "register_sha256": "5b49de9781f5d3a93ad640fb5ec5bd2fb7ad4c29d83d3bad356b5933bda0b522",
   "source_sha256": {
-    "hardware/verification/h3-r2-parameter-provenance-contract.json": "fd3a16540e49b3bc288203ebfe78b6eb06feeaf8c2e55bf34a22d84f63e49ca6",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "e743b1373f35f10b33c4c2892a7355625064a911f77b5a3bcaf5ccd0080378d9",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "783b2c1dbc675a8dc2a9e20e025b2592c7292bcda1644d796a66becf44f62cf1",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "3a4fdf2d85119cdf93cb03f14837813f981a83741885294088d7b2e1b1ee9b7d",
-    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "6d0a46781b50e3037c17652a25fc6bcfc669fb3fbcdbaac251d73a38c263bddd",
-    "hardware/architecture/devices.json": "a41ef2f1ad5cf24f8320a751c6cddf64cad420d29acd69d4feb57d447aafb7c8"
+    "hardware/verification/h3-r2-parameter-provenance-contract.json": "d7f6bdbd7f65500242cc7690e977af6e0e01a3d4c6732b732e19781079d46734",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "b89fe8fcd83f226e33e1e9f97578f084629a34438e86bc652cd66131f135417c",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "36aff71e3668d49c2e6d31e0949929ade916b217b57bd115b047db75c3bc0f08",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "11e74bbc5eb62527b7fc9034b8145ffccfe266b82570c8c34f73f63dc757e842",
+    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "8fd2b01932325583edb6874e9d12ab5d3f092dcf1ffc714b23dff8c8a95f2fd4",
+    "hardware/architecture/devices.json": "884fdffc548fa279e02f77daae84bdfc7702ad0a8a22164aec6d7ccee192dd6b"
   },
   "policy": {
     "accepted_h2_identity_is_immutable": true,
@@ -22,24 +22,24 @@
     "no_component_replacement_or_order_is_authorized": true
   },
   "summary": {
-    "component_groups": 242,
-    "board_component_groups": 237,
+    "component_groups": 238,
+    "board_component_groups": 233,
     "explicit_non_pcba_groups": 5,
-    "fitted_board_instances": 1187,
+    "fitted_board_instances": 1185,
     "source_missing": 0,
-    "factory_catalog_only_parameter_sources": 2,
+    "factory_catalog_only_parameter_sources": 1,
     "groups_with_structured_parameter_seeds": 70,
-    "groups_in_explicit_parameter_extraction_queue": 172,
-    "manufacturer_primary_sources": 240,
-    "model_method_candidates": 242,
-    "owned_component_groups": 242,
+    "groups_in_explicit_parameter_extraction_queue": 168,
+    "manufacturer_primary_sources": 237,
+    "model_method_candidates": 238,
+    "owned_component_groups": 238,
     "parameter_classes": {
       "analog_peripheral": 6,
       "connector_interconnect": 14,
       "digital_interface": 33,
       "electromechanical_or_load": 7,
-      "general_component": 38,
-      "passive_corner": 118,
+      "general_component": 36,
+      "passive_corner": 116,
       "power_safety_active": 11,
       "programmable_controller": 2,
       "radio_rf": 13
@@ -53,7 +53,7 @@
       "power_safety_active": 3,
       "radio_rf": 8
     },
-    "bounded_source_findings": 2,
+    "bounded_source_findings": 1,
     "open_decisions": 0,
     "errors": 0
   },
@@ -72,12 +72,6 @@
     }
   },
   "bounded_source_findings": [
-    {
-      "device_id": "chilisin_cs0805_r27j_s",
-      "owner": "H3-R2.3",
-      "known_identity_route": "JLCPCB C108271 exact manufacturer card",
-      "required_closure": "extract the complete CS0805-R27J-S RF inductor tolerance, Q, SRF, DCR, bias and temperature envelope from a manufacturer-controlled specification or retain it as an H5 measured residual"
-    },
     {
       "device_id": "suzhou_liming_3225_27_00_10_10_10_a",
       "owner": "H3-R2.3",
@@ -820,63 +814,6 @@
       ],
       "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "5afc76cb8202669a85e86f732ce194d391db05414c78e7b8e473adf504ada4b1",
-      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
-    },
-    {
-      "device_id": "chilisin_cs0805_r27j_s",
-      "mpn": "CS0805-R27J-S",
-      "manufacturer": "Chilisin Electronics",
-      "kind": "270nh_5pct_q48_0805_rf_inductor",
-      "role": "270-nH stock-backed H2 nominal series cell; H3 tuning open",
-      "scope": "base_product",
-      "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 1,
-      "fitted_board_instance_count": 1,
-      "projects": [
-        "LESHY2-RF-R2"
-      ],
-      "sheets": [
-        "RF_21_BROADCAST_AIRBAND_RX"
-      ],
-      "references": [
-        "L17"
-      ],
-      "lifecycle": "production_active_factory_stocked_standard_pcba",
-      "jlcpcb_part_number": "C108271",
-      "source": {
-        "document": "Chilisin CS series exact product data",
-        "url": "https://jlcpcb.com/partdetail/ChilisinElec-CS0805_R27JS/C108271",
-        "checked": "2026-08-31"
-      },
-      "source_tier": "exact_factory_catalog_identity_parameter_gap",
-      "accepted_h2_source_preserved": {
-        "document": "Chilisin CS series exact product data",
-        "url": "https://jlcpcb.com/partdetail/ChilisinElec-CS0805_R27JS/C108271",
-        "checked": "2026-08-31"
-      },
-      "source_host": "jlcpcb.com",
-      "parameter_class": "passive_corner",
-      "required_parameter_groups": [
-        "nominal",
-        "tolerance",
-        "derating",
-        "temperature",
-        "frequency_or_bias"
-      ],
-      "structured_parameters": {},
-      "structured_parameter_count": 0,
-      "parameter_state": "explicit_extraction_queue",
-      "model_method_candidate": "analytic_or_vendor_curve",
-      "model_method_state": "candidate_pending_H3-R2.0.3",
-      "owner_workstreams": [
-        "H3-R2.3"
-      ],
-      "factory_catalog_parameter_gap": {
-        "owner": "H3-R2.3",
-        "known_identity_route": "JLCPCB C108271 exact manufacturer card",
-        "required_closure": "extract the complete CS0805-R27J-S RF inductor tolerance, Q, SRF, DCR, bias and temperature envelope from a manufacturer-controlled specification or retain it as an H5 measured residual"
-      },
-      "symbol_contact_map_sha256": "b544afcce2e70e4a00b9170dfcd7eba2c1ee95703fc913360fbdb80218ded068",
       "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
@@ -3188,10 +3125,10 @@
         "RF_22_AUDIO_CODEC_IO"
       ],
       "references": [
+        "L29",
         "L30",
         "L31",
-        "L32",
-        "L33"
+        "L32"
       ],
       "lifecycle": "active_orderable",
       "jlcpcb_part_number": "C82850",
@@ -3234,15 +3171,15 @@
       "symbol_electrical_contract_sha256": "a5746fbe6c9a47d4792a9121458267d3c3352c090093828a22f7ee2d84eba3d5"
     },
     {
-      "device_id": "murata_gcm1555c1h181fa16d",
-      "mpn": "GCM1555C1H181FA16D",
+      "device_id": "murata_gcm1555c1h121fa16d",
+      "mpn": "GCM1555C1H121FA16D",
       "manufacturer": "Murata Electronics",
-      "kind": "180pf_1pct_c0g_0402_rf_capacitor",
-      "role": "180-pF H1 band-pass shunt capacitor",
+      "kind": "120pf_1pct_c0g_0402_rf_capacitor",
+      "role": "H3-R2 verified Airband shunt-resonator base capacitors",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 1,
-      "fitted_board_instance_count": 1,
+      "quantity_per_product": 2,
+      "fitted_board_instance_count": 2,
       "projects": [
         "LESHY2-RF-R2"
       ],
@@ -3250,19 +3187,74 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "C150"
+        "C150",
+        "C153"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
-      "jlcpcb_part_number": "C437435",
+      "jlcpcb_part_number": "C126496",
       "source": {
         "document": "Murata exact product data",
-        "url": "https://www.murata.com/en-us/products/productdetail?partno=GCM1555C1H181FA16D",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GCM1555C1H121FA16D",
         "checked": "2026-08-31"
       },
       "source_tier": "manufacturer_primary_accepted_h2",
       "accepted_h2_source_preserved": {
         "document": "Murata exact product data",
-        "url": "https://www.murata.com/en-us/products/productdetail?partno=GCM1555C1H181FA16D",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GCM1555C1H121FA16D",
+        "checked": "2026-08-31"
+      },
+      "source_host": "www.murata.com",
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "derating",
+        "temperature",
+        "frequency_or_bias"
+      ],
+      "structured_parameters": {},
+      "structured_parameter_count": 0,
+      "parameter_state": "explicit_extraction_queue",
+      "model_method_candidate": "analytic_or_vendor_curve",
+      "model_method_state": "candidate_pending_H3-R2.0.3",
+      "owner_workstreams": [
+        "H3-R2.3"
+      ],
+      "factory_catalog_parameter_gap": null,
+      "symbol_contact_map_sha256": "b544afcce2e70e4a00b9170dfcd7eba2c1ee95703fc913360fbdb80218ded068",
+      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "device_id": "murata_gcm1555c1h200fa16d",
+      "mpn": "GCM1555C1H200FA16D",
+      "manufacturer": "Murata Electronics",
+      "kind": "20pf_1pct_c0g_0402_rf_capacitor",
+      "role": "H3-R2 verified Airband shunt-resonator trim capacitors",
+      "scope": "base_product",
+      "ecad_disposition": "schematic_component_group",
+      "quantity_per_product": 2,
+      "fitted_board_instance_count": 2,
+      "projects": [
+        "LESHY2-RF-R2"
+      ],
+      "sheets": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ],
+      "references": [
+        "C152",
+        "C155"
+      ],
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "jlcpcb_part_number": "C437436",
+      "source": {
+        "document": "Murata exact product data",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GCM1555C1H200FA16D",
+        "checked": "2026-08-31"
+      },
+      "source_tier": "manufacturer_primary_accepted_h2",
+      "accepted_h2_source_preserved": {
+        "document": "Murata exact product data",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GCM1555C1H200FA16D",
         "checked": "2026-08-31"
       },
       "source_host": "www.murata.com",
@@ -3420,7 +3412,7 @@
       "references": [
         "C110",
         "C111",
-        "C169",
+        "C168",
         "C39",
         "C40",
         "C81",
@@ -3462,59 +3454,6 @@
       ],
       "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "69c5ecc86f3be2c14df3913847e0ae6c4b0861b60a7d337465b13c8f1683cc5e",
-      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
-    },
-    {
-      "device_id": "murata_gjm1555c1h1r0wb01d",
-      "mpn": "GJM1555C1H1R0WB01D",
-      "manufacturer": "Murata Electronics",
-      "kind": "1_0pf_0_05pf_c0g_0402_rf_capacitor",
-      "role": "1.0-pF H1 high-side notch capacitor",
-      "scope": "base_product",
-      "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 1,
-      "fitted_board_instance_count": 1,
-      "projects": [
-        "LESHY2-RF-R2"
-      ],
-      "sheets": [
-        "RF_21_BROADCAST_AIRBAND_RX"
-      ],
-      "references": [
-        "C155"
-      ],
-      "lifecycle": "production_active_factory_stocked_standard_pcba",
-      "jlcpcb_part_number": "C72134",
-      "source": {
-        "document": "Murata exact product data",
-        "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H1R0WB01D",
-        "checked": "2026-08-31"
-      },
-      "source_tier": "manufacturer_primary_accepted_h2",
-      "accepted_h2_source_preserved": {
-        "document": "Murata exact product data",
-        "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H1R0WB01D",
-        "checked": "2026-08-31"
-      },
-      "source_host": "www.murata.com",
-      "parameter_class": "passive_corner",
-      "required_parameter_groups": [
-        "nominal",
-        "tolerance",
-        "derating",
-        "temperature",
-        "frequency_or_bias"
-      ],
-      "structured_parameters": {},
-      "structured_parameter_count": 0,
-      "parameter_state": "explicit_extraction_queue",
-      "model_method_candidate": "analytic_or_vendor_curve",
-      "model_method_state": "candidate_pending_H3-R2.0.3",
-      "owner_workstreams": [
-        "H3-R2.3"
-      ],
-      "factory_catalog_parameter_gap": null,
-      "symbol_contact_map_sha256": "b544afcce2e70e4a00b9170dfcd7eba2c1ee95703fc913360fbdb80218ded068",
       "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
@@ -3577,11 +3516,11 @@
       "mpn": "GJM1555C1H1R4WB01D",
       "manufacturer": "Murata Electronics",
       "kind": "1_4pf_0_05pf_c0g_0402_rf_capacitor",
-      "role": "1.4-pF H1 high-side notch capacitor",
+      "role": "H3-R2 verified Airband shunt-resonator fine-trim capacitors",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 1,
-      "fitted_board_instance_count": 1,
+      "quantity_per_product": 2,
+      "fitted_board_instance_count": 2,
       "projects": [
         "LESHY2-RF-R2"
       ],
@@ -3589,7 +3528,8 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "C157"
+        "C151",
+        "C154"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C2181496",
@@ -3626,121 +3566,15 @@
       "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
-      "device_id": "murata_gjm1555c1h1r9wb01d",
-      "mpn": "GJM1555C1H1R9WB01D",
-      "manufacturer": "Murata Electronics",
-      "kind": "1_9pf_0_05pf_c0g_0402_rf_capacitor",
-      "role": "1.9-pF H1 high-side notch capacitor",
-      "scope": "base_product",
-      "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 1,
-      "fitted_board_instance_count": 1,
-      "projects": [
-        "LESHY2-RF-R2"
-      ],
-      "sheets": [
-        "RF_21_BROADCAST_AIRBAND_RX"
-      ],
-      "references": [
-        "C154"
-      ],
-      "lifecycle": "production_active_factory_stocked_standard_pcba",
-      "jlcpcb_part_number": "C524559",
-      "source": {
-        "document": "Murata exact product data",
-        "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H1R9WB01D",
-        "checked": "2026-08-31"
-      },
-      "source_tier": "manufacturer_primary_accepted_h2",
-      "accepted_h2_source_preserved": {
-        "document": "Murata exact product data",
-        "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H1R9WB01D",
-        "checked": "2026-08-31"
-      },
-      "source_host": "www.murata.com",
-      "parameter_class": "passive_corner",
-      "required_parameter_groups": [
-        "nominal",
-        "tolerance",
-        "derating",
-        "temperature",
-        "frequency_or_bias"
-      ],
-      "structured_parameters": {},
-      "structured_parameter_count": 0,
-      "parameter_state": "explicit_extraction_queue",
-      "model_method_candidate": "analytic_or_vendor_curve",
-      "model_method_state": "candidate_pending_H3-R2.0.3",
-      "owner_workstreams": [
-        "H3-R2.3"
-      ],
-      "factory_catalog_parameter_gap": null,
-      "symbol_contact_map_sha256": "b544afcce2e70e4a00b9170dfcd7eba2c1ee95703fc913360fbdb80218ded068",
-      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
-    },
-    {
-      "device_id": "murata_gjm1555c1h2r4wb01d",
-      "mpn": "GJM1555C1H2R4WB01D",
-      "manufacturer": "Murata Electronics",
-      "kind": "2_4pf_0_05pf_c0g_0402_rf_capacitor",
-      "role": "2.4-pF H1 high-side notch capacitor",
-      "scope": "base_product",
-      "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 1,
-      "fitted_board_instance_count": 1,
-      "projects": [
-        "LESHY2-RF-R2"
-      ],
-      "sheets": [
-        "RF_21_BROADCAST_AIRBAND_RX"
-      ],
-      "references": [
-        "C156"
-      ],
-      "lifecycle": "production_active_factory_stocked_standard_pcba",
-      "jlcpcb_part_number": "C88889",
-      "source": {
-        "document": "Murata exact product data",
-        "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H2R4WB01D",
-        "checked": "2026-08-31"
-      },
-      "source_tier": "manufacturer_primary_accepted_h2",
-      "accepted_h2_source_preserved": {
-        "document": "Murata exact product data",
-        "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H2R4WB01D",
-        "checked": "2026-08-31"
-      },
-      "source_host": "www.murata.com",
-      "parameter_class": "passive_corner",
-      "required_parameter_groups": [
-        "nominal",
-        "tolerance",
-        "derating",
-        "temperature",
-        "frequency_or_bias"
-      ],
-      "structured_parameters": {},
-      "structured_parameter_count": 0,
-      "parameter_state": "explicit_extraction_queue",
-      "model_method_candidate": "analytic_or_vendor_curve",
-      "model_method_state": "candidate_pending_H3-R2.0.3",
-      "owner_workstreams": [
-        "H3-R2.3"
-      ],
-      "factory_catalog_parameter_gap": null,
-      "symbol_contact_map_sha256": "b544afcce2e70e4a00b9170dfcd7eba2c1ee95703fc913360fbdb80218ded068",
-      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
-    },
-    {
       "device_id": "murata_gjm1555c1h4r7bb01d",
       "mpn": "GJM1555C1H4R7BB01D",
       "manufacturer": "Murata Electronics",
       "kind": "4_7pf_0_1pf_c0g_0402_rf_capacitor",
-      "role": "4.7-pF H1 notch and LT5560 LO match capacitors",
+      "role": "official-reference LT5560 LO match capacitor",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 2,
-      "fitted_board_instance_count": 2,
+      "quantity_per_product": 1,
+      "fitted_board_instance_count": 1,
       "projects": [
         "LESHY2-RF-R2"
       ],
@@ -3748,8 +3582,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "C159",
-        "C166"
+        "C165"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C161327",
@@ -3786,11 +3619,11 @@
       "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
-      "device_id": "murata_gjm1555c1h5r6bb01d",
-      "mpn": "GJM1555C1H5R6BB01D",
+      "device_id": "murata_gjm1555c1h5r7wb01d",
+      "mpn": "GJM1555C1H5R7WB01D",
       "manufacturer": "Murata Electronics",
-      "kind": "5_6pf_0_1pf_c0g_0402_rf_capacitor",
-      "role": "5.6-pF H1 band-pass series capacitor",
+      "kind": "5_7pf_0_05pf_c0g_0402_rf_capacitor",
+      "role": "H3-R2 verified Airband input series capacitor",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 1,
@@ -3802,19 +3635,72 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "C151"
+        "C156"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
-      "jlcpcb_part_number": "C161329",
+      "jlcpcb_part_number": "C2220921",
       "source": {
         "document": "Murata exact product data",
-        "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H5R6BB01D",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H5R7WB01D",
         "checked": "2026-08-31"
       },
       "source_tier": "manufacturer_primary_accepted_h2",
       "accepted_h2_source_preserved": {
         "document": "Murata exact product data",
-        "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H5R6BB01D",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H5R7WB01D",
+        "checked": "2026-08-31"
+      },
+      "source_host": "www.murata.com",
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "derating",
+        "temperature",
+        "frequency_or_bias"
+      ],
+      "structured_parameters": {},
+      "structured_parameter_count": 0,
+      "parameter_state": "explicit_extraction_queue",
+      "model_method_candidate": "analytic_or_vendor_curve",
+      "model_method_state": "candidate_pending_H3-R2.0.3",
+      "owner_workstreams": [
+        "H3-R2.3"
+      ],
+      "factory_catalog_parameter_gap": null,
+      "symbol_contact_map_sha256": "b544afcce2e70e4a00b9170dfcd7eba2c1ee95703fc913360fbdb80218ded068",
+      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "device_id": "murata_gjm1555c1h5r8wb01d",
+      "mpn": "GJM1555C1H5R8WB01D",
+      "manufacturer": "Murata Electronics",
+      "kind": "5_8pf_0_05pf_c0g_0402_rf_capacitor",
+      "role": "H3-R2 verified Airband output series capacitor",
+      "scope": "base_product",
+      "ecad_disposition": "schematic_component_group",
+      "quantity_per_product": 1,
+      "fitted_board_instance_count": 1,
+      "projects": [
+        "LESHY2-RF-R2"
+      ],
+      "sheets": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ],
+      "references": [
+        "C158"
+      ],
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "jlcpcb_part_number": "C2177031",
+      "source": {
+        "document": "Murata exact product data",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H5R8WB01D",
+        "checked": "2026-08-31"
+      },
+      "source_tier": "manufacturer_primary_accepted_h2",
+      "accepted_h2_source_preserved": {
+        "document": "Murata exact product data",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H5R8WB01D",
         "checked": "2026-08-31"
       },
       "source_host": "www.murata.com",
@@ -3949,59 +3835,6 @@
       "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
-      "device_id": "murata_gjm1555c1h8r2bb01d",
-      "mpn": "GJM1555C1H8R2BB01D",
-      "manufacturer": "Murata Electronics",
-      "kind": "8_2pf_0_1pf_c0g_0402_rf_capacitor",
-      "role": "8.2-pF H1 notch capacitor",
-      "scope": "base_product",
-      "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 1,
-      "fitted_board_instance_count": 1,
-      "projects": [
-        "LESHY2-RF-R2"
-      ],
-      "sheets": [
-        "RF_21_BROADCAST_AIRBAND_RX"
-      ],
-      "references": [
-        "C158"
-      ],
-      "lifecycle": "production_active_factory_stocked_standard_pcba",
-      "jlcpcb_part_number": "C161336",
-      "source": {
-        "document": "Murata exact product data",
-        "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H8R2BB01D",
-        "checked": "2026-08-31"
-      },
-      "source_tier": "manufacturer_primary_accepted_h2",
-      "accepted_h2_source_preserved": {
-        "document": "Murata exact product data",
-        "url": "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H8R2BB01D",
-        "checked": "2026-08-31"
-      },
-      "source_host": "www.murata.com",
-      "parameter_class": "passive_corner",
-      "required_parameter_groups": [
-        "nominal",
-        "tolerance",
-        "derating",
-        "temperature",
-        "frequency_or_bias"
-      ],
-      "structured_parameters": {},
-      "structured_parameter_count": 0,
-      "parameter_state": "explicit_extraction_queue",
-      "model_method_candidate": "analytic_or_vendor_curve",
-      "model_method_state": "candidate_pending_H3-R2.0.3",
-      "owner_workstreams": [
-        "H3-R2.3"
-      ],
-      "factory_catalog_parameter_gap": null,
-      "symbol_contact_map_sha256": "b544afcce2e70e4a00b9170dfcd7eba2c1ee95703fc913360fbdb80218ded068",
-      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
-    },
-    {
       "device_id": "murata_gjm1555c1hr47bb01d",
       "mpn": "Murata GJM1555C1HR47BB01D",
       "manufacturer": null,
@@ -4128,14 +3961,14 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
+        "C159",
         "C160",
-        "C161",
+        "C163",
         "C164",
-        "C165",
-        "C171",
+        "C170",
+        "C175",
         "C176",
-        "C177",
-        "C181"
+        "C180"
       ],
       "lifecycle": "active_orderable",
       "jlcpcb_part_number": "C76947",
@@ -4261,8 +4094,8 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "C179",
-        "C180"
+        "C178",
+        "C179"
       ],
       "lifecycle": "active_orderable",
       "jlcpcb_part_number": "C76960",
@@ -4320,8 +4153,8 @@
       "references": [
         "C20",
         "C21",
-        "C233",
-        "C234"
+        "C232",
+        "C233"
       ],
       "lifecycle": "active",
       "jlcpcb_part_number": "C71693",
@@ -4435,7 +4268,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "C178"
+        "C177"
       ],
       "lifecycle": "active_orderable",
       "jlcpcb_part_number": "C88946",
@@ -4556,10 +4389,10 @@
       ],
       "references": [
         "C146",
-        "C218",
-        "C241",
-        "C249",
-        "C273",
+        "C217",
+        "C240",
+        "C248",
+        "C272",
         "C39",
         "C50",
         "C53"
@@ -4623,7 +4456,7 @@
       ],
       "references": [
         "C132",
-        "C242",
+        "C241",
         "C64",
         "C70"
       ],
@@ -4693,14 +4526,14 @@
       "references": [
         "C10",
         "C134",
-        "C185",
-        "C214",
-        "C226",
+        "C184",
+        "C213",
+        "C225",
+        "C227",
         "C228",
-        "C229",
         "C23",
         "C24",
-        "C271",
+        "C270",
         "C30",
         "C35",
         "C37",
@@ -4770,7 +4603,7 @@
         "RF_30_U214_U219_M5_EXT"
       ],
       "references": [
-        "C244",
+        "C243",
         "C67"
       ],
       "lifecycle": "active",
@@ -4951,10 +4784,10 @@
       ],
       "references": [
         "C15",
+        "C219",
         "C220",
         "C221",
         "C222",
-        "C223",
         "C5"
       ],
       "lifecycle": "active",
@@ -5013,9 +4846,9 @@
         "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "references": [
-        "C243",
-        "C245",
-        "C267",
+        "C242",
+        "C244",
+        "C266",
         "C66",
         "C68"
       ],
@@ -5653,8 +5486,8 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "L27",
-        "L28"
+        "L26",
+        "L27"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C3223181",
@@ -5707,7 +5540,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "L26"
+        "L25"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C237556",
@@ -5760,7 +5593,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "L29"
+        "L28"
       ],
       "lifecycle": "active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C167482",
@@ -5806,15 +5639,15 @@
       "symbol_electrical_contract_sha256": "78b867bde4ba488148414482e034bbbcb18a1a891450705131c61ac4283d9e29"
     },
     {
-      "device_id": "murata_lqw15an8n2g80d",
-      "mpn": "LQW15AN8N2G80D",
+      "device_id": "murata_lqw2bas22ng00l",
+      "mpn": "LQW2BAS22NG00L",
       "manufacturer": "Murata Electronics",
-      "kind": "8_2nh_2pct_high_q_0402_rf_inductor",
-      "role": "8.2-nH H1 band-pass shunt cell",
+      "kind": "22nh_2pct_high_q_0805_rf_inductor",
+      "role": "two parallel inductor pairs in H3-R2 Airband shunt resonators",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 1,
-      "fitted_board_instance_count": 1,
+      "quantity_per_product": 4,
+      "fitted_board_instance_count": 4,
       "projects": [
         "LESHY2-RF-R2"
       ],
@@ -5822,19 +5655,76 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "L15"
+        "L15",
+        "L16",
+        "L17",
+        "L18"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
-      "jlcpcb_part_number": "C307610",
+      "jlcpcb_part_number": "C2042201",
       "source": {
-        "document": "Murata exact product data",
-        "url": "https://www.murata.com/en-us/products/productdetail?partno=LQW15AN8N2G80D",
+        "document": "Murata LQW2BA exact product data and JELF243A-0084 characteristic table",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=LQW2BAS22NG00L",
         "checked": "2026-08-31"
       },
       "source_tier": "manufacturer_primary_accepted_h2",
       "accepted_h2_source_preserved": {
-        "document": "Murata exact product data",
-        "url": "https://www.murata.com/en-us/products/productdetail?partno=LQW15AN8N2G80D",
+        "document": "Murata LQW2BA exact product data and JELF243A-0084 characteristic table",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=LQW2BAS22NG00L",
+        "checked": "2026-08-31"
+      },
+      "source_host": "www.murata.com",
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "derating",
+        "temperature",
+        "frequency_or_bias"
+      ],
+      "structured_parameters": {},
+      "structured_parameter_count": 0,
+      "parameter_state": "explicit_extraction_queue",
+      "model_method_candidate": "analytic_or_vendor_curve",
+      "model_method_state": "candidate_pending_H3-R2.0.3",
+      "owner_workstreams": [
+        "H3-R2.3"
+      ],
+      "factory_catalog_parameter_gap": null,
+      "symbol_contact_map_sha256": "b544afcce2e70e4a00b9170dfcd7eba2c1ee95703fc913360fbdb80218ded068",
+      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "device_id": "murata_lqw2bas47ng00l",
+      "mpn": "LQW2BAS47NG00L",
+      "manufacturer": "Murata Electronics",
+      "kind": "47nh_2pct_high_q_0805_rf_inductor",
+      "role": "H3-R2 verified Airband outer series resonator trims",
+      "scope": "base_product",
+      "ecad_disposition": "schematic_component_group",
+      "quantity_per_product": 2,
+      "fitted_board_instance_count": 2,
+      "projects": [
+        "LESHY2-RF-R2"
+      ],
+      "sheets": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ],
+      "references": [
+        "L20",
+        "L23"
+      ],
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "jlcpcb_part_number": "C162657",
+      "source": {
+        "document": "Murata LQW2BA exact product data and JELF243A-0084 characteristic table",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=LQW2BAS47NG00L",
+        "checked": "2026-08-31"
+      },
+      "source_tier": "manufacturer_primary_accepted_h2",
+      "accepted_h2_source_preserved": {
+        "document": "Murata LQW2BA exact product data and JELF243A-0084 characteristic table",
+        "url": "https://www.murata.com/en-us/products/productdetail?partno=LQW2BAS47NG00L",
         "checked": "2026-08-31"
       },
       "source_host": "www.murata.com",
@@ -5863,11 +5753,11 @@
       "mpn": "LQW2BASR22G00L",
       "manufacturer": "Murata Electronics",
       "kind": "220nh_2pct_high_q_0805_rf_inductor",
-      "role": "220-nH H1 band-pass series cell",
+      "role": "H3-R2 verified Airband outer series resonators",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 1,
-      "fitted_board_instance_count": 1,
+      "quantity_per_product": 2,
+      "fitted_board_instance_count": 2,
       "projects": [
         "LESHY2-RF-R2"
       ],
@@ -5875,7 +5765,8 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "L16"
+        "L19",
+        "L22"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C527968",
@@ -5916,11 +5807,11 @@
       "mpn": "LQW2BASR33G00L",
       "manufacturer": "Murata Electronics",
       "kind": "330nh_2pct_high_q_0805_rf_inductor",
-      "role": "330-nH H1 filter cells and PGA bias choke",
+      "role": "PGA-103+ bias choke",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 4,
-      "fitted_board_instance_count": 4,
+      "quantity_per_product": 1,
+      "fitted_board_instance_count": 1,
       "projects": [
         "LESHY2-RF-R2"
       ],
@@ -5928,10 +5819,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "L18",
-        "L21",
-        "L23",
-        "L25"
+        "L24"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C703717",
@@ -5968,11 +5856,11 @@
       "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
-      "device_id": "murata_lqw2uas1r0g00l",
-      "mpn": "LQW2UAS1R0G00L",
+      "device_id": "murata_lqw2uasr56f00l",
+      "mpn": "LQW2UASR56F00L",
       "manufacturer": "Murata Electronics",
-      "kind": "1uh_2pct_high_q_1008_rf_inductor",
-      "role": "1-uH H1 high-side notch cell",
+      "kind": "560nh_1pct_high_q_1008_rf_inductor",
+      "role": "H3-R2 verified Airband centre series resonator",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 1,
@@ -5984,62 +5872,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "L20"
-      ],
-      "lifecycle": "production_active_factory_stocked_standard_pcba",
-      "jlcpcb_part_number": "C337961",
-      "source": {
-        "document": "Murata exact product data",
-        "url": "https://www.murata.com/en-us/products/productdetail?partno=LQW2UAS1R0G00L",
-        "checked": "2026-08-31"
-      },
-      "source_tier": "manufacturer_primary_accepted_h2",
-      "accepted_h2_source_preserved": {
-        "document": "Murata exact product data",
-        "url": "https://www.murata.com/en-us/products/productdetail?partno=LQW2UAS1R0G00L",
-        "checked": "2026-08-31"
-      },
-      "source_host": "www.murata.com",
-      "parameter_class": "passive_corner",
-      "required_parameter_groups": [
-        "nominal",
-        "tolerance",
-        "derating",
-        "temperature",
-        "frequency_or_bias"
-      ],
-      "structured_parameters": {},
-      "structured_parameter_count": 0,
-      "parameter_state": "explicit_extraction_queue",
-      "model_method_candidate": "analytic_or_vendor_curve",
-      "model_method_state": "candidate_pending_H3-R2.0.3",
-      "owner_workstreams": [
-        "H3-R2.3"
-      ],
-      "factory_catalog_parameter_gap": null,
-      "symbol_contact_map_sha256": "b544afcce2e70e4a00b9170dfcd7eba2c1ee95703fc913360fbdb80218ded068",
-      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
-    },
-    {
-      "device_id": "murata_lqw2uasr56f00l",
-      "mpn": "LQW2UASR56F00L",
-      "manufacturer": "Murata Electronics",
-      "kind": "560nh_1pct_high_q_1008_rf_inductor",
-      "role": "560-nH H1 filter cells",
-      "scope": "base_product",
-      "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 3,
-      "fitted_board_instance_count": 3,
-      "projects": [
-        "LESHY2-RF-R2"
-      ],
-      "sheets": [
-        "RF_21_BROADCAST_AIRBAND_RX"
-      ],
-      "references": [
-        "L19",
-        "L22",
-        "L24"
+        "L21"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C907989",
@@ -7530,11 +7363,11 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "C162",
-        "C167",
-        "C170",
+        "C161",
+        "C166",
+        "C169",
+        "C172",
         "C173",
-        "C174",
         "C34",
         "C36"
       ],
@@ -8520,30 +8353,30 @@
         "C141",
         "C149",
         "C17",
-        "C184",
+        "C183",
+        "C187",
         "C188",
-        "C189",
+        "C190",
         "C191",
         "C192",
         "C193",
-        "C194",
+        "C199",
         "C200",
         "C201",
         "C202",
-        "C203",
-        "C205",
-        "C213",
-        "C217",
-        "C219",
-        "C227",
+        "C204",
+        "C212",
+        "C216",
+        "C218",
+        "C226",
+        "C229",
         "C230",
         "C231",
-        "C232",
-        "C235",
-        "C251",
-        "C254",
+        "C234",
+        "C250",
+        "C253",
+        "C278",
         "C279",
-        "C280",
         "C32",
         "C33",
         "C4",
@@ -12524,6 +12357,59 @@
       "symbol_electrical_contract_sha256": "c829fad311f6ad2728f92326847bac57afadc10933c07e8ae9ebd5525ed9bbdb"
     },
     {
+      "device_id": "yageo_cc0402brnpo9bn2r8",
+      "mpn": "CC0402BRNPO9BN2R8",
+      "manufacturer": "Yageo",
+      "kind": "2_8pf_0_1pf_c0g_0402_rf_capacitor",
+      "role": "H3-R2 verified Airband centre series capacitor",
+      "scope": "base_product",
+      "ecad_disposition": "schematic_component_group",
+      "quantity_per_product": 1,
+      "fitted_board_instance_count": 1,
+      "projects": [
+        "LESHY2-RF-R2"
+      ],
+      "sheets": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ],
+      "references": [
+        "C157"
+      ],
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "jlcpcb_part_number": "C1853353",
+      "source": {
+        "document": "Yageo CC exact specification",
+        "url": "https://www.yageogroup.com/component-documentation/download/specsheet/CC0402BRNPO9BN2R8",
+        "checked": "2026-08-31"
+      },
+      "source_tier": "manufacturer_primary_accepted_h2",
+      "accepted_h2_source_preserved": {
+        "document": "Yageo CC exact specification",
+        "url": "https://www.yageogroup.com/component-documentation/download/specsheet/CC0402BRNPO9BN2R8",
+        "checked": "2026-08-31"
+      },
+      "source_host": "www.yageogroup.com",
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "derating",
+        "temperature",
+        "frequency_or_bias"
+      ],
+      "structured_parameters": {},
+      "structured_parameter_count": 0,
+      "parameter_state": "explicit_extraction_queue",
+      "model_method_candidate": "analytic_or_vendor_curve",
+      "model_method_state": "candidate_pending_H3-R2.0.3",
+      "owner_workstreams": [
+        "H3-R2.3"
+      ],
+      "factory_catalog_parameter_gap": null,
+      "symbol_contact_map_sha256": "b544afcce2e70e4a00b9170dfcd7eba2c1ee95703fc913360fbdb80218ded068",
+      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
       "device_id": "yageo_cc0402krx7r9bb104",
       "mpn": "Yageo CC0402KRX7R9BB104",
       "manufacturer": null,
@@ -12585,25 +12471,26 @@
         "C147",
         "C16",
         "C16",
-        "C163",
-        "C168",
-        "C172",
-        "C175",
+        "C162",
+        "C167",
+        "C171",
+        "C174",
         "C18",
+        "C181",
         "C182",
-        "C183",
+        "C185",
         "C186",
-        "C187",
+        "C189",
         "C19",
         "C19",
-        "C190",
+        "C194",
         "C195",
         "C196",
         "C197",
         "C198",
-        "C199",
         "C20",
-        "C204",
+        "C203",
+        "C205",
         "C206",
         "C207",
         "C208",
@@ -12611,25 +12498,25 @@
         "C21",
         "C210",
         "C211",
-        "C212",
+        "C214",
         "C215",
-        "C216",
         "C22",
+        "C223",
         "C224",
-        "C225",
+        "C235",
         "C236",
         "C237",
         "C238",
         "C239",
         "C24",
-        "C240",
+        "C245",
         "C246",
         "C247",
-        "C248",
+        "C249",
         "C25",
-        "C250",
+        "C251",
         "C252",
-        "C253",
+        "C254",
         "C255",
         "C256",
         "C257",
@@ -12642,17 +12529,16 @@
         "C263",
         "C264",
         "C265",
-        "C266",
+        "C267",
         "C268",
         "C269",
         "C27",
-        "C270",
-        "C272",
+        "C271",
+        "C273",
         "C274",
         "C275",
         "C276",
         "C277",
-        "C278",
         "C28",
         "C31",
         "C32",
@@ -12831,112 +12717,6 @@
       "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "a2d9a43bd0f1fa83a9597adf50cc53d77808e54097e4d4232e88df983cfc91d9",
       "symbol_electrical_contract_sha256": "987e053b527dc4a82959c90d29edd32b799c95cec8fbd671193edf22467d3198"
-    },
-    {
-      "device_id": "yageo_cq0402brnpo9bn3r2",
-      "mpn": "CQ0402BRNPO9BN3R2",
-      "manufacturer": "Yageo",
-      "kind": "3_2pf_0_1pf_ultra_high_q_c0g_0402",
-      "role": "3.2-pF H1 high-side notch capacitor",
-      "scope": "base_product",
-      "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 1,
-      "fitted_board_instance_count": 1,
-      "projects": [
-        "LESHY2-RF-R2"
-      ],
-      "sheets": [
-        "RF_21_BROADCAST_AIRBAND_RX"
-      ],
-      "references": [
-        "C153"
-      ],
-      "lifecycle": "production_active_factory_stocked_standard_pcba",
-      "jlcpcb_part_number": "C1855281",
-      "source": {
-        "document": "Yageo CQ exact specification",
-        "url": "https://www.yageogroup.com/component-documentation/download/specsheet/CQ0402BRNPO9BN3R2",
-        "checked": "2026-08-31"
-      },
-      "source_tier": "manufacturer_primary_accepted_h2",
-      "accepted_h2_source_preserved": {
-        "document": "Yageo CQ exact specification",
-        "url": "https://www.yageogroup.com/component-documentation/download/specsheet/CQ0402BRNPO9BN3R2",
-        "checked": "2026-08-31"
-      },
-      "source_host": "www.yageogroup.com",
-      "parameter_class": "general_component",
-      "required_parameter_groups": [
-        "operating_limits",
-        "dc_behavior",
-        "timing_or_frequency",
-        "temperature",
-        "applicability"
-      ],
-      "structured_parameters": {},
-      "structured_parameter_count": 0,
-      "parameter_state": "explicit_extraction_queue",
-      "model_method_candidate": "datasheet_corner_model",
-      "model_method_state": "candidate_pending_H3-R2.0.3",
-      "owner_workstreams": [
-        "H3-R2.3"
-      ],
-      "factory_catalog_parameter_gap": null,
-      "symbol_contact_map_sha256": "b544afcce2e70e4a00b9170dfcd7eba2c1ee95703fc913360fbdb80218ded068",
-      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
-    },
-    {
-      "device_id": "yageo_cq0402brnpo9bn6r2",
-      "mpn": "CQ0402BRNPO9BN6R2",
-      "manufacturer": "Yageo",
-      "kind": "6_2pf_0_1pf_ultra_high_q_c0g_0402",
-      "role": "6.2-pF H1 band-pass series capacitor",
-      "scope": "base_product",
-      "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 1,
-      "fitted_board_instance_count": 1,
-      "projects": [
-        "LESHY2-RF-R2"
-      ],
-      "sheets": [
-        "RF_21_BROADCAST_AIRBAND_RX"
-      ],
-      "references": [
-        "C152"
-      ],
-      "lifecycle": "production_active_factory_stocked_standard_pcba",
-      "jlcpcb_part_number": "C577385",
-      "source": {
-        "document": "Yageo CQ exact specification",
-        "url": "https://www.yageogroup.com/download/specsheet/CQ0402BRNPO9BN6R2",
-        "checked": "2026-08-31"
-      },
-      "source_tier": "manufacturer_primary_accepted_h2",
-      "accepted_h2_source_preserved": {
-        "document": "Yageo CQ exact specification",
-        "url": "https://www.yageogroup.com/download/specsheet/CQ0402BRNPO9BN6R2",
-        "checked": "2026-08-31"
-      },
-      "source_host": "www.yageogroup.com",
-      "parameter_class": "general_component",
-      "required_parameter_groups": [
-        "operating_limits",
-        "dc_behavior",
-        "timing_or_frequency",
-        "temperature",
-        "applicability"
-      ],
-      "structured_parameters": {},
-      "structured_parameter_count": 0,
-      "parameter_state": "explicit_extraction_queue",
-      "model_method_candidate": "datasheet_corner_model",
-      "model_method_state": "candidate_pending_H3-R2.0.3",
-      "owner_workstreams": [
-        "H3-R2.3"
-      ],
-      "factory_catalog_parameter_gap": null,
-      "symbol_contact_map_sha256": "b544afcce2e70e4a00b9170dfcd7eba2c1ee95703fc913360fbdb80218ded068",
-      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
       "device_id": "yageo_rc0402fr_07100kl",

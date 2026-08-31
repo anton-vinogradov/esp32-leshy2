@@ -18,21 +18,20 @@ class H1AirbandFilterTest(unittest.TestCase):
         cls.model = MODULE.load()
         cls.audit = MODULE.audit(cls.model)
 
-    def test_nominal_candidate_passes_but_is_not_production_frozen(self):
-        self.assertLessEqual(self.audit["nominal_passband_maximum_loss_db"], 4.5)
-        self.assertTrue(all(row["nominal_pass"] for row in self.audit["stop_results"]))
-        self.assertEqual("nominal_pass_stress_fail", self.audit["status"])
+    def test_bounded_candidate_passes_but_is_not_production_frozen(self):
+        self.assertEqual("pass", self.audit["status"])
+        self.assertTrue(self.audit["lumped_topology_is_reviewed"])
+        self.assertEqual(1024, self.audit["corner_count"])
+        self.assertGreater(self.audit["nominal_and_corner_model"]["minimum_margin_db"], 0.0)
         self.assertFalse(self.audit["candidate_is_production_frozen"])
-        self.assertTrue(self.audit["failures"])
 
-    def test_factory_witnesses_are_exact_but_not_misrepresented_as_the_bom(self):
-        rows = self.model["factory_feasibility_witnesses"]
+    def test_factory_population_is_exact_and_not_misrepresented_as_frozen(self):
+        rows = self.model["candidate"]["physical_population"]
         self.assertTrue(all(row["mpn"] and row["jlcpcb_part"].startswith("C") for row in rows))
-        self.assertIn("not a production freeze", self.model["decision"]["rejected"])
-        self.assertIn("retuned in H3", self.model["decision"]["rejected"])
-        self.assertIn("24 x 11 mm", self.model["decision"]["accepted"])
-        self.assertIn("H6", self.model["decision"]["next_gate"])
-        self.assertIn("before the H7 order", self.model["decision"]["next_gate"])
+        self.assertEqual(18, sum(row["quantity"] for row in rows))
+        self.assertIn("not a routed-PCB production freeze", self.model["residual_boundary"]["not_claimed"])
+        self.assertIn("H6", self.model["residual_boundary"]["h6_gate"])
+        self.assertIn("H8", self.model["residual_boundary"]["h8_gate"])
 
     def test_generated_artifacts_are_current(self):
         expected = {

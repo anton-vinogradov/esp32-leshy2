@@ -6,12 +6,12 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "783b2c1dbc675a8dc2a9e20e025b2592c7292bcda1644d796a66becf44f62cf1",
+      "sha256": "36aff71e3668d49c2e6d31e0949929ade916b217b57bd115b047db75c3bc0f08",
       "authority": true
     },
     "exact_definition_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "6d0a46781b50e3037c17652a25fc6bcfc669fb3fbcdbaac251d73a38c263bddd",
+      "sha256": "8fd2b01932325583edb6874e9d12ab5d3f092dcf1ffc714b23dff8c8a95f2fd4",
       "authority": true
     },
     "physical_source_table": {
@@ -26,11 +26,11 @@
     }
   },
   "summary": {
-    "fitted_board_instance_count": 1187,
-    "component_group_count": 237,
+    "fitted_board_instance_count": 1185,
+    "component_group_count": 233,
     "project_counts": {
       "L2-DISP-ADP-001-B": 2,
-      "LESHY2-RF-R2": 757,
+      "LESHY2-RF-R2": 755,
       "LESHY2-UI-R2": 428
     },
     "project_graph_sheet_count": 23,
@@ -42,7 +42,7 @@
       "RF_03_MAIN_RAILS_DOMAIN_GATES": 69,
       "RF_10_RP2354_CORE_SERVICE": 48,
       "RF_20_CC1101_VOICE_TX": 146,
-      "RF_21_BROADCAST_AIRBAND_RX": 94,
+      "RF_21_BROADCAST_AIRBAND_RX": 92,
       "RF_22_AUDIO_CODEC_IO": 118,
       "RF_30_U214_U219_M5_EXT": 52,
       "RF_31_REAR_CONTROLS": 14,
@@ -59,7 +59,7 @@
     "allocation_origins": {
       "current_r2_allocation_with_explicit_additions": 530,
       "exact_current_role_list": 456,
-      "explicit_current_r2_allocation": 94,
+      "explicit_current_r2_allocation": 92,
       "reconciled_historical_instance_name_hint": 107
     },
     "former_sheet_hints_reconciled": 723,
@@ -5416,13 +5416,13 @@
       "reference": "R145"
     },
     {
-      "instance_uid": "LESHY2-RF-R2:air_bpf_bp1_c",
-      "instance": "air_bpf_bp1_c",
+      "instance_uid": "LESHY2-RF-R2:air_bpf_p1_c120",
+      "instance": "air_bpf_p1_c120",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_21_BROADCAST_AIRBAND_RX",
-      "device_id": "murata_gcm1555c1h181fa16d",
-      "mpn": "GCM1555C1H181FA16D",
-      "symbol_id": "Leshy2_R2:murata_gcm1555c1h181fa16d",
+      "device_id": "murata_gcm1555c1h121fa16d",
+      "mpn": "GCM1555C1H121FA16D",
+      "symbol_id": "Leshy2_R2:murata_gcm1555c1h121fa16d",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "reference_prefix": "C",
       "allocation_origin": "explicit_current_r2_allocation",
@@ -5430,190 +5430,8 @@
       "reference": "C150"
     },
     {
-      "instance_uid": "LESHY2-RF-R2:air_bpf_bp1_l",
-      "instance": "air_bpf_bp1_l",
-      "project": "LESHY2-RF-R2",
-      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
-      "device_id": "murata_lqw15an8n2g80d",
-      "mpn": "LQW15AN8N2G80D",
-      "symbol_id": "Leshy2_R2:murata_lqw15an8n2g80d",
-      "footprint": "Inductor_SMD:L_0402_1005Metric",
-      "reference_prefix": "L",
-      "allocation_origin": "explicit_current_r2_allocation",
-      "historical_topology_authority": false,
-      "reference": "L15"
-    },
-    {
-      "instance_uid": "LESHY2-RF-R2:air_bpf_bs1_c",
-      "instance": "air_bpf_bs1_c",
-      "project": "LESHY2-RF-R2",
-      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
-      "device_id": "murata_gjm1555c1h5r6bb01d",
-      "mpn": "GJM1555C1H5R6BB01D",
-      "symbol_id": "Leshy2_R2:murata_gjm1555c1h5r6bb01d",
-      "footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "reference_prefix": "C",
-      "allocation_origin": "explicit_current_r2_allocation",
-      "historical_topology_authority": false,
-      "reference": "C151"
-    },
-    {
-      "instance_uid": "LESHY2-RF-R2:air_bpf_bs1_l",
-      "instance": "air_bpf_bs1_l",
-      "project": "LESHY2-RF-R2",
-      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
-      "device_id": "murata_lqw2basr22g00l",
-      "mpn": "LQW2BASR22G00L",
-      "symbol_id": "Leshy2_R2:murata_lqw2basr22g00l",
-      "footprint": "Inductor_SMD:L_0805_2012Metric",
-      "reference_prefix": "L",
-      "allocation_origin": "explicit_current_r2_allocation",
-      "historical_topology_authority": false,
-      "reference": "L16"
-    },
-    {
-      "instance_uid": "LESHY2-RF-R2:air_bpf_bs2_c",
-      "instance": "air_bpf_bs2_c",
-      "project": "LESHY2-RF-R2",
-      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
-      "device_id": "yageo_cq0402brnpo9bn6r2",
-      "mpn": "CQ0402BRNPO9BN6R2",
-      "symbol_id": "Leshy2_R2:yageo_cq0402brnpo9bn6r2",
-      "footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "reference_prefix": "C",
-      "allocation_origin": "explicit_current_r2_allocation",
-      "historical_topology_authority": false,
-      "reference": "C152"
-    },
-    {
-      "instance_uid": "LESHY2-RF-R2:air_bpf_bs2_l",
-      "instance": "air_bpf_bs2_l",
-      "project": "LESHY2-RF-R2",
-      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
-      "device_id": "chilisin_cs0805_r27j_s",
-      "mpn": "CS0805-R27J-S",
-      "symbol_id": "Leshy2_R2:chilisin_cs0805_r27j_s",
-      "footprint": "Inductor_SMD:L_0805_2012Metric",
-      "reference_prefix": "L",
-      "allocation_origin": "explicit_current_r2_allocation",
-      "historical_topology_authority": false,
-      "reference": "L17"
-    },
-    {
-      "instance_uid": "LESHY2-RF-R2:air_bpf_nh1_c",
-      "instance": "air_bpf_nh1_c",
-      "project": "LESHY2-RF-R2",
-      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
-      "device_id": "yageo_cq0402brnpo9bn3r2",
-      "mpn": "CQ0402BRNPO9BN3R2",
-      "symbol_id": "Leshy2_R2:yageo_cq0402brnpo9bn3r2",
-      "footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "reference_prefix": "C",
-      "allocation_origin": "explicit_current_r2_allocation",
-      "historical_topology_authority": false,
-      "reference": "C153"
-    },
-    {
-      "instance_uid": "LESHY2-RF-R2:air_bpf_nh1_l",
-      "instance": "air_bpf_nh1_l",
-      "project": "LESHY2-RF-R2",
-      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
-      "device_id": "murata_lqw2basr33g00l",
-      "mpn": "LQW2BASR33G00L",
-      "symbol_id": "Leshy2_R2:murata_lqw2basr33g00l",
-      "footprint": "Inductor_SMD:L_0805_2012Metric",
-      "reference_prefix": "L",
-      "allocation_origin": "explicit_current_r2_allocation",
-      "historical_topology_authority": false,
-      "reference": "L18"
-    },
-    {
-      "instance_uid": "LESHY2-RF-R2:air_bpf_nh2_c",
-      "instance": "air_bpf_nh2_c",
-      "project": "LESHY2-RF-R2",
-      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
-      "device_id": "murata_gjm1555c1h1r9wb01d",
-      "mpn": "GJM1555C1H1R9WB01D",
-      "symbol_id": "Leshy2_R2:murata_gjm1555c1h1r9wb01d",
-      "footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "reference_prefix": "C",
-      "allocation_origin": "explicit_current_r2_allocation",
-      "historical_topology_authority": false,
-      "reference": "C154"
-    },
-    {
-      "instance_uid": "LESHY2-RF-R2:air_bpf_nh2_l",
-      "instance": "air_bpf_nh2_l",
-      "project": "LESHY2-RF-R2",
-      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
-      "device_id": "murata_lqw2uasr56f00l",
-      "mpn": "LQW2UASR56F00L",
-      "symbol_id": "Leshy2_R2:murata_lqw2uasr56f00l",
-      "footprint": "Inductor_SMD:L_1008_2520Metric",
-      "reference_prefix": "L",
-      "allocation_origin": "explicit_current_r2_allocation",
-      "historical_topology_authority": false,
-      "reference": "L19"
-    },
-    {
-      "instance_uid": "LESHY2-RF-R2:air_bpf_nh3_c",
-      "instance": "air_bpf_nh3_c",
-      "project": "LESHY2-RF-R2",
-      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
-      "device_id": "murata_gjm1555c1h1r0wb01d",
-      "mpn": "GJM1555C1H1R0WB01D",
-      "symbol_id": "Leshy2_R2:murata_gjm1555c1h1r0wb01d",
-      "footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "reference_prefix": "C",
-      "allocation_origin": "explicit_current_r2_allocation",
-      "historical_topology_authority": false,
-      "reference": "C155"
-    },
-    {
-      "instance_uid": "LESHY2-RF-R2:air_bpf_nh3_l",
-      "instance": "air_bpf_nh3_l",
-      "project": "LESHY2-RF-R2",
-      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
-      "device_id": "murata_lqw2uas1r0g00l",
-      "mpn": "LQW2UAS1R0G00L",
-      "symbol_id": "Leshy2_R2:murata_lqw2uas1r0g00l",
-      "footprint": "Inductor_SMD:L_1008_2520Metric",
-      "reference_prefix": "L",
-      "allocation_origin": "explicit_current_r2_allocation",
-      "historical_topology_authority": false,
-      "reference": "L20"
-    },
-    {
-      "instance_uid": "LESHY2-RF-R2:air_bpf_nh4_c",
-      "instance": "air_bpf_nh4_c",
-      "project": "LESHY2-RF-R2",
-      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
-      "device_id": "murata_gjm1555c1h2r4wb01d",
-      "mpn": "GJM1555C1H2R4WB01D",
-      "symbol_id": "Leshy2_R2:murata_gjm1555c1h2r4wb01d",
-      "footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "reference_prefix": "C",
-      "allocation_origin": "explicit_current_r2_allocation",
-      "historical_topology_authority": false,
-      "reference": "C156"
-    },
-    {
-      "instance_uid": "LESHY2-RF-R2:air_bpf_nh4_l",
-      "instance": "air_bpf_nh4_l",
-      "project": "LESHY2-RF-R2",
-      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
-      "device_id": "murata_lqw2basr33g00l",
-      "mpn": "LQW2BASR33G00L",
-      "symbol_id": "Leshy2_R2:murata_lqw2basr33g00l",
-      "footprint": "Inductor_SMD:L_0805_2012Metric",
-      "reference_prefix": "L",
-      "allocation_origin": "explicit_current_r2_allocation",
-      "historical_topology_authority": false,
-      "reference": "L21"
-    },
-    {
-      "instance_uid": "LESHY2-RF-R2:air_bpf_nh5_c",
-      "instance": "air_bpf_nh5_c",
+      "instance_uid": "LESHY2-RF-R2:air_bpf_p1_c1p4",
+      "instance": "air_bpf_p1_c1p4",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_21_BROADCAST_AIRBAND_RX",
       "device_id": "murata_gjm1555c1h1r4wb01d",
@@ -5623,11 +5441,179 @@
       "reference_prefix": "C",
       "allocation_origin": "explicit_current_r2_allocation",
       "historical_topology_authority": false,
+      "reference": "C151"
+    },
+    {
+      "instance_uid": "LESHY2-RF-R2:air_bpf_p1_c20",
+      "instance": "air_bpf_p1_c20",
+      "project": "LESHY2-RF-R2",
+      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
+      "device_id": "murata_gcm1555c1h200fa16d",
+      "mpn": "GCM1555C1H200FA16D",
+      "symbol_id": "Leshy2_R2:murata_gcm1555c1h200fa16d",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "reference_prefix": "C",
+      "allocation_origin": "explicit_current_r2_allocation",
+      "historical_topology_authority": false,
+      "reference": "C152"
+    },
+    {
+      "instance_uid": "LESHY2-RF-R2:air_bpf_p1_l_a",
+      "instance": "air_bpf_p1_l_a",
+      "project": "LESHY2-RF-R2",
+      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
+      "device_id": "murata_lqw2bas22ng00l",
+      "mpn": "LQW2BAS22NG00L",
+      "symbol_id": "Leshy2_R2:murata_lqw2bas22ng00l",
+      "footprint": "Inductor_SMD:L_0805_2012Metric",
+      "reference_prefix": "L",
+      "allocation_origin": "explicit_current_r2_allocation",
+      "historical_topology_authority": false,
+      "reference": "L15"
+    },
+    {
+      "instance_uid": "LESHY2-RF-R2:air_bpf_p1_l_b",
+      "instance": "air_bpf_p1_l_b",
+      "project": "LESHY2-RF-R2",
+      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
+      "device_id": "murata_lqw2bas22ng00l",
+      "mpn": "LQW2BAS22NG00L",
+      "symbol_id": "Leshy2_R2:murata_lqw2bas22ng00l",
+      "footprint": "Inductor_SMD:L_0805_2012Metric",
+      "reference_prefix": "L",
+      "allocation_origin": "explicit_current_r2_allocation",
+      "historical_topology_authority": false,
+      "reference": "L16"
+    },
+    {
+      "instance_uid": "LESHY2-RF-R2:air_bpf_p2_c120",
+      "instance": "air_bpf_p2_c120",
+      "project": "LESHY2-RF-R2",
+      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
+      "device_id": "murata_gcm1555c1h121fa16d",
+      "mpn": "GCM1555C1H121FA16D",
+      "symbol_id": "Leshy2_R2:murata_gcm1555c1h121fa16d",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "reference_prefix": "C",
+      "allocation_origin": "explicit_current_r2_allocation",
+      "historical_topology_authority": false,
+      "reference": "C153"
+    },
+    {
+      "instance_uid": "LESHY2-RF-R2:air_bpf_p2_c1p4",
+      "instance": "air_bpf_p2_c1p4",
+      "project": "LESHY2-RF-R2",
+      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
+      "device_id": "murata_gjm1555c1h1r4wb01d",
+      "mpn": "GJM1555C1H1R4WB01D",
+      "symbol_id": "Leshy2_R2:murata_gjm1555c1h1r4wb01d",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "reference_prefix": "C",
+      "allocation_origin": "explicit_current_r2_allocation",
+      "historical_topology_authority": false,
+      "reference": "C154"
+    },
+    {
+      "instance_uid": "LESHY2-RF-R2:air_bpf_p2_c20",
+      "instance": "air_bpf_p2_c20",
+      "project": "LESHY2-RF-R2",
+      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
+      "device_id": "murata_gcm1555c1h200fa16d",
+      "mpn": "GCM1555C1H200FA16D",
+      "symbol_id": "Leshy2_R2:murata_gcm1555c1h200fa16d",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "reference_prefix": "C",
+      "allocation_origin": "explicit_current_r2_allocation",
+      "historical_topology_authority": false,
+      "reference": "C155"
+    },
+    {
+      "instance_uid": "LESHY2-RF-R2:air_bpf_p2_l_a",
+      "instance": "air_bpf_p2_l_a",
+      "project": "LESHY2-RF-R2",
+      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
+      "device_id": "murata_lqw2bas22ng00l",
+      "mpn": "LQW2BAS22NG00L",
+      "symbol_id": "Leshy2_R2:murata_lqw2bas22ng00l",
+      "footprint": "Inductor_SMD:L_0805_2012Metric",
+      "reference_prefix": "L",
+      "allocation_origin": "explicit_current_r2_allocation",
+      "historical_topology_authority": false,
+      "reference": "L17"
+    },
+    {
+      "instance_uid": "LESHY2-RF-R2:air_bpf_p2_l_b",
+      "instance": "air_bpf_p2_l_b",
+      "project": "LESHY2-RF-R2",
+      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
+      "device_id": "murata_lqw2bas22ng00l",
+      "mpn": "LQW2BAS22NG00L",
+      "symbol_id": "Leshy2_R2:murata_lqw2bas22ng00l",
+      "footprint": "Inductor_SMD:L_0805_2012Metric",
+      "reference_prefix": "L",
+      "allocation_origin": "explicit_current_r2_allocation",
+      "historical_topology_authority": false,
+      "reference": "L18"
+    },
+    {
+      "instance_uid": "LESHY2-RF-R2:air_bpf_s1_c",
+      "instance": "air_bpf_s1_c",
+      "project": "LESHY2-RF-R2",
+      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
+      "device_id": "murata_gjm1555c1h5r7wb01d",
+      "mpn": "GJM1555C1H5R7WB01D",
+      "symbol_id": "Leshy2_R2:murata_gjm1555c1h5r7wb01d",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "reference_prefix": "C",
+      "allocation_origin": "explicit_current_r2_allocation",
+      "historical_topology_authority": false,
+      "reference": "C156"
+    },
+    {
+      "instance_uid": "LESHY2-RF-R2:air_bpf_s1_l220",
+      "instance": "air_bpf_s1_l220",
+      "project": "LESHY2-RF-R2",
+      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
+      "device_id": "murata_lqw2basr22g00l",
+      "mpn": "LQW2BASR22G00L",
+      "symbol_id": "Leshy2_R2:murata_lqw2basr22g00l",
+      "footprint": "Inductor_SMD:L_0805_2012Metric",
+      "reference_prefix": "L",
+      "allocation_origin": "explicit_current_r2_allocation",
+      "historical_topology_authority": false,
+      "reference": "L19"
+    },
+    {
+      "instance_uid": "LESHY2-RF-R2:air_bpf_s1_l47",
+      "instance": "air_bpf_s1_l47",
+      "project": "LESHY2-RF-R2",
+      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
+      "device_id": "murata_lqw2bas47ng00l",
+      "mpn": "LQW2BAS47NG00L",
+      "symbol_id": "Leshy2_R2:murata_lqw2bas47ng00l",
+      "footprint": "Inductor_SMD:L_0805_2012Metric",
+      "reference_prefix": "L",
+      "allocation_origin": "explicit_current_r2_allocation",
+      "historical_topology_authority": false,
+      "reference": "L20"
+    },
+    {
+      "instance_uid": "LESHY2-RF-R2:air_bpf_s2_c",
+      "instance": "air_bpf_s2_c",
+      "project": "LESHY2-RF-R2",
+      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
+      "device_id": "yageo_cc0402brnpo9bn2r8",
+      "mpn": "CC0402BRNPO9BN2R8",
+      "symbol_id": "Leshy2_R2:yageo_cc0402brnpo9bn2r8",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "reference_prefix": "C",
+      "allocation_origin": "explicit_current_r2_allocation",
+      "historical_topology_authority": false,
       "reference": "C157"
     },
     {
-      "instance_uid": "LESHY2-RF-R2:air_bpf_nh5_l",
-      "instance": "air_bpf_nh5_l",
+      "instance_uid": "LESHY2-RF-R2:air_bpf_s2_l",
+      "instance": "air_bpf_s2_l",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_21_BROADCAST_AIRBAND_RX",
       "device_id": "murata_lqw2uasr56f00l",
@@ -5637,16 +5623,16 @@
       "reference_prefix": "L",
       "allocation_origin": "explicit_current_r2_allocation",
       "historical_topology_authority": false,
-      "reference": "L22"
+      "reference": "L21"
     },
     {
-      "instance_uid": "LESHY2-RF-R2:air_bpf_nl1_c",
-      "instance": "air_bpf_nl1_c",
+      "instance_uid": "LESHY2-RF-R2:air_bpf_s3_c",
+      "instance": "air_bpf_s3_c",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_21_BROADCAST_AIRBAND_RX",
-      "device_id": "murata_gjm1555c1h8r2bb01d",
-      "mpn": "GJM1555C1H8R2BB01D",
-      "symbol_id": "Leshy2_R2:murata_gjm1555c1h8r2bb01d",
+      "device_id": "murata_gjm1555c1h5r8wb01d",
+      "mpn": "GJM1555C1H5R8WB01D",
+      "symbol_id": "Leshy2_R2:murata_gjm1555c1h5r8wb01d",
       "footprint": "Capacitor_SMD:C_0402_1005Metric",
       "reference_prefix": "C",
       "allocation_origin": "explicit_current_r2_allocation",
@@ -5654,46 +5640,32 @@
       "reference": "C158"
     },
     {
-      "instance_uid": "LESHY2-RF-R2:air_bpf_nl1_l",
-      "instance": "air_bpf_nl1_l",
+      "instance_uid": "LESHY2-RF-R2:air_bpf_s3_l220",
+      "instance": "air_bpf_s3_l220",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_21_BROADCAST_AIRBAND_RX",
-      "device_id": "murata_lqw2basr33g00l",
-      "mpn": "LQW2BASR33G00L",
-      "symbol_id": "Leshy2_R2:murata_lqw2basr33g00l",
+      "device_id": "murata_lqw2basr22g00l",
+      "mpn": "LQW2BASR22G00L",
+      "symbol_id": "Leshy2_R2:murata_lqw2basr22g00l",
+      "footprint": "Inductor_SMD:L_0805_2012Metric",
+      "reference_prefix": "L",
+      "allocation_origin": "explicit_current_r2_allocation",
+      "historical_topology_authority": false,
+      "reference": "L22"
+    },
+    {
+      "instance_uid": "LESHY2-RF-R2:air_bpf_s3_l47",
+      "instance": "air_bpf_s3_l47",
+      "project": "LESHY2-RF-R2",
+      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
+      "device_id": "murata_lqw2bas47ng00l",
+      "mpn": "LQW2BAS47NG00L",
+      "symbol_id": "Leshy2_R2:murata_lqw2bas47ng00l",
       "footprint": "Inductor_SMD:L_0805_2012Metric",
       "reference_prefix": "L",
       "allocation_origin": "explicit_current_r2_allocation",
       "historical_topology_authority": false,
       "reference": "L23"
-    },
-    {
-      "instance_uid": "LESHY2-RF-R2:air_bpf_nl2_c",
-      "instance": "air_bpf_nl2_c",
-      "project": "LESHY2-RF-R2",
-      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
-      "device_id": "murata_gjm1555c1h4r7bb01d",
-      "mpn": "GJM1555C1H4R7BB01D",
-      "symbol_id": "Leshy2_R2:murata_gjm1555c1h4r7bb01d",
-      "footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "reference_prefix": "C",
-      "allocation_origin": "explicit_current_r2_allocation",
-      "historical_topology_authority": false,
-      "reference": "C159"
-    },
-    {
-      "instance_uid": "LESHY2-RF-R2:air_bpf_nl2_l",
-      "instance": "air_bpf_nl2_l",
-      "project": "LESHY2-RF-R2",
-      "sheet": "RF_21_BROADCAST_AIRBAND_RX",
-      "device_id": "murata_lqw2uasr56f00l",
-      "mpn": "LQW2UASR56F00L",
-      "symbol_id": "Leshy2_R2:murata_lqw2uasr56f00l",
-      "footprint": "Inductor_SMD:L_1008_2520Metric",
-      "reference_prefix": "L",
-      "allocation_origin": "explicit_current_r2_allocation",
-      "historical_topology_authority": false,
-      "reference": "L24"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_direct_to_selector_dc_block",
@@ -5707,7 +5679,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C160"
+      "reference": "C159"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_filter_to_lna_dc_block",
@@ -5721,7 +5693,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C161"
+      "reference": "C160"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_input_selector",
@@ -5763,7 +5735,7 @@
       "reference_prefix": "L",
       "allocation_origin": "explicit_current_r2_allocation",
       "historical_topology_authority": false,
-      "reference": "L25"
+      "reference": "L24"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_lna_rail_bulk",
@@ -5777,7 +5749,7 @@
       "reference_prefix": "C",
       "allocation_origin": "explicit_current_r2_allocation",
       "historical_topology_authority": false,
-      "reference": "C162"
+      "reference": "C161"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_lna_rail_bypass",
@@ -5791,7 +5763,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C163"
+      "reference": "C162"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_lna_to_t1_dc_block",
@@ -5805,7 +5777,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C164"
+      "reference": "C163"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_lo",
@@ -5847,7 +5819,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C165"
+      "reference": "C164"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_lo_match_c",
@@ -5861,7 +5833,7 @@
       "reference_prefix": "C",
       "allocation_origin": "explicit_current_r2_allocation",
       "historical_topology_authority": false,
-      "reference": "C166"
+      "reference": "C165"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_lo_match_l",
@@ -5875,7 +5847,7 @@
       "reference_prefix": "L",
       "allocation_origin": "explicit_current_r2_allocation",
       "historical_topology_authority": false,
-      "reference": "L26"
+      "reference": "L25"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_lo_pad_series",
@@ -5959,7 +5931,7 @@
       "reference_prefix": "C",
       "allocation_origin": "explicit_current_r2_allocation",
       "historical_topology_authority": false,
-      "reference": "C167"
+      "reference": "C166"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_lo_vdd_bypass",
@@ -5973,7 +5945,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C168"
+      "reference": "C167"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_mixer",
@@ -6015,7 +5987,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C169"
+      "reference": "C168"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_mixer_input_match_n",
@@ -6029,7 +6001,7 @@
       "reference_prefix": "L",
       "allocation_origin": "explicit_current_r2_allocation",
       "historical_topology_authority": false,
-      "reference": "L27"
+      "reference": "L26"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_mixer_input_match_p",
@@ -6043,7 +6015,7 @@
       "reference_prefix": "L",
       "allocation_origin": "explicit_current_r2_allocation",
       "historical_topology_authority": false,
-      "reference": "L28"
+      "reference": "L27"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_mixer_input_transformer",
@@ -6113,7 +6085,7 @@
       "reference_prefix": "C",
       "allocation_origin": "explicit_current_r2_allocation",
       "historical_topology_authority": false,
-      "reference": "C170"
+      "reference": "C169"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_mixer_vcc_hf_bypass",
@@ -6127,7 +6099,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C171"
+      "reference": "C170"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_mode_inverter_bypass",
@@ -6141,7 +6113,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C172"
+      "reference": "C171"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_path_selector",
@@ -6169,7 +6141,7 @@
       "reference_prefix": "C",
       "allocation_origin": "explicit_current_r2_allocation",
       "historical_topology_authority": false,
-      "reference": "C173"
+      "reference": "C172"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_power_output_bulk",
@@ -6183,7 +6155,7 @@
       "reference_prefix": "C",
       "allocation_origin": "explicit_current_r2_allocation",
       "historical_topology_authority": false,
-      "reference": "C174"
+      "reference": "C173"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_power_switch_input_bypass",
@@ -6197,7 +6169,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C175"
+      "reference": "C174"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_rx_en_pulldown",
@@ -6239,7 +6211,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C176"
+      "reference": "C175"
     },
     {
       "instance_uid": "LESHY2-RF-R2:air_t2_to_selector_dc_block",
@@ -6253,7 +6225,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C177"
+      "reference": "C176"
     },
     {
       "instance_uid": "LESHY2-RF-R2:airband_mode_inverter",
@@ -6309,7 +6281,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C178"
+      "reference": "C177"
     },
     {
       "instance_uid": "LESHY2-RF-R2:receiver_ami_esd",
@@ -6365,7 +6337,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C179"
+      "reference": "C178"
     },
     {
       "instance_uid": "LESHY2-RF-R2:receiver_clock_cap_rclk",
@@ -6379,7 +6351,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C180"
+      "reference": "C179"
     },
     {
       "instance_uid": "LESHY2-RF-R2:receiver_fmi_coupling_cap",
@@ -6393,7 +6365,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C181"
+      "reference": "C180"
     },
     {
       "instance_uid": "LESHY2-RF-R2:receiver_fmi_esd",
@@ -6421,7 +6393,7 @@
       "reference_prefix": "L",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "L29"
+      "reference": "L28"
     },
     {
       "instance_uid": "LESHY2-RF-R2:receiver_fmsw_external_sma",
@@ -6463,7 +6435,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C182"
+      "reference": "C181"
     },
     {
       "instance_uid": "LESHY2-RF-R2:receiver_i2c_scl_pullup",
@@ -6519,7 +6491,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C183"
+      "reference": "C182"
     },
     {
       "instance_uid": "LESHY2-RF-R2:receiver_irq_pullup",
@@ -6547,7 +6519,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C184"
+      "reference": "C183"
     },
     {
       "instance_uid": "LESHY2-RF-R2:receiver_power_on_pulldown",
@@ -6575,7 +6547,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C185"
+      "reference": "C184"
     },
     {
       "instance_uid": "LESHY2-RF-R2:receiver_power_switch",
@@ -6645,7 +6617,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C186"
+      "reference": "C185"
     },
     {
       "instance_uid": "LESHY2-RF-R2:receiver_vdd_bypass",
@@ -6659,7 +6631,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C187"
+      "reference": "C186"
     },
     {
       "instance_uid": "LESHY2-RF-R2:si_audio_l_coupling",
@@ -6673,7 +6645,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C188"
+      "reference": "C187"
     },
     {
       "instance_uid": "LESHY2-RF-R2:si_audio_l_sum",
@@ -6701,7 +6673,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C189"
+      "reference": "C188"
     },
     {
       "instance_uid": "LESHY2-RF-R2:si_audio_r_sum",
@@ -6771,7 +6743,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C190"
+      "reference": "C189"
     },
     {
       "instance_uid": "LESHY2-RF-R2:audio_capture_input_coupling",
@@ -6785,7 +6757,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C191"
+      "reference": "C190"
     },
     {
       "instance_uid": "LESHY2-RF-R2:audio_capture_local_bias_bottom",
@@ -6813,7 +6785,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C192"
+      "reference": "C191"
     },
     {
       "instance_uid": "LESHY2-RF-R2:audio_capture_local_bias_top",
@@ -6855,7 +6827,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C193"
+      "reference": "C192"
     },
     {
       "instance_uid": "LESHY2-RF-R2:audio_capture_rx_bias",
@@ -6883,7 +6855,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C194"
+      "reference": "C193"
     },
     {
       "instance_uid": "LESHY2-RF-R2:audio_capture_sel_pulldown",
@@ -6925,7 +6897,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C195"
+      "reference": "C194"
     },
     {
       "instance_uid": "LESHY2-RF-R2:audio_ground_link",
@@ -6967,7 +6939,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C196"
+      "reference": "C195"
     },
     {
       "instance_uid": "LESHY2-RF-R2:audio_rx_sel_pulldown",
@@ -7009,7 +6981,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C197"
+      "reference": "C196"
     },
     {
       "instance_uid": "LESHY2-RF-R2:audio_speaker_req_pulldown",
@@ -7065,7 +7037,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C198"
+      "reference": "C197"
     },
     {
       "instance_uid": "LESHY2-RF-R2:audio_tx_req_pulldown",
@@ -7121,7 +7093,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C199"
+      "reference": "C198"
     },
     {
       "instance_uid": "LESHY2-RF-R2:audio_vmid_bottom",
@@ -7149,7 +7121,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C200"
+      "reference": "C199"
     },
     {
       "instance_uid": "LESHY2-RF-R2:audio_vmid_top",
@@ -7191,7 +7163,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C201"
+      "reference": "C200"
     },
     {
       "instance_uid": "LESHY2-RF-R2:codec_adc_n_series",
@@ -7219,7 +7191,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C202"
+      "reference": "C201"
     },
     {
       "instance_uid": "LESHY2-RF-R2:codec_adc_p_series",
@@ -7247,7 +7219,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C203"
+      "reference": "C202"
     },
     {
       "instance_uid": "LESHY2-RF-R2:codec_avdd_bead",
@@ -7261,7 +7233,7 @@
       "reference_prefix": "L",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "L30"
+      "reference": "L29"
     },
     {
       "instance_uid": "LESHY2-RF-R2:codec_avdd_bypass",
@@ -7275,7 +7247,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C204"
+      "reference": "C203"
     },
     {
       "instance_uid": "LESHY2-RF-R2:codec_ce_pullup",
@@ -7303,7 +7275,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C205"
+      "reference": "C204"
     },
     {
       "instance_uid": "LESHY2-RF-R2:codec_dvdd_bead",
@@ -7317,7 +7289,7 @@
       "reference_prefix": "L",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "L31"
+      "reference": "L30"
     },
     {
       "instance_uid": "LESHY2-RF-R2:codec_dvdd_bypass",
@@ -7331,7 +7303,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C206"
+      "reference": "C205"
     },
     {
       "instance_uid": "LESHY2-RF-R2:codec_i2c_iso",
@@ -7359,7 +7331,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C207"
+      "reference": "C206"
     },
     {
       "instance_uid": "LESHY2-RF-R2:codec_i2c_scl_pullup",
@@ -7415,7 +7387,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C208"
+      "reference": "C207"
     },
     {
       "instance_uid": "LESHY2-RF-R2:codec_i2s_din_boot_gate",
@@ -7443,7 +7415,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C209"
+      "reference": "C208"
     },
     {
       "instance_uid": "LESHY2-RF-R2:codec_i2s_din_iso",
@@ -7471,7 +7443,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C210"
+      "reference": "C209"
     },
     {
       "instance_uid": "LESHY2-RF-R2:codec_i2s_dout_iso",
@@ -7499,7 +7471,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C211"
+      "reference": "C210"
     },
     {
       "instance_uid": "LESHY2-RF-R2:codec_i2s_ws_iso",
@@ -7527,7 +7499,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C212"
+      "reference": "C211"
     },
     {
       "instance_uid": "LESHY2-RF-R2:codec_power_input_cap",
@@ -7541,7 +7513,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C213"
+      "reference": "C212"
     },
     {
       "instance_uid": "LESHY2-RF-R2:codec_power_on_pulldown",
@@ -7569,7 +7541,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C214"
+      "reference": "C213"
     },
     {
       "instance_uid": "LESHY2-RF-R2:codec_power_switch",
@@ -7597,7 +7569,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C215"
+      "reference": "C214"
     },
     {
       "instance_uid": "LESHY2-RF-R2:codec_ready_pulldown",
@@ -7639,7 +7611,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C216"
+      "reference": "C215"
     },
     {
       "instance_uid": "LESHY2-RF-R2:codec_tx_atten_bottom",
@@ -7681,7 +7653,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C217"
+      "reference": "C216"
     },
     {
       "instance_uid": "LESHY2-RF-R2:codec_tx_filter",
@@ -7695,7 +7667,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C218"
+      "reference": "C217"
     },
     {
       "instance_uid": "LESHY2-RF-R2:codec_vmid_cap",
@@ -7709,7 +7681,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C219"
+      "reference": "C218"
     },
     {
       "instance_uid": "LESHY2-RF-R2:headphone_esd",
@@ -7751,7 +7723,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C220"
+      "reference": "C219"
     },
     {
       "instance_uid": "LESHY2-RF-R2:headphone_l_coupling1",
@@ -7765,7 +7737,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C221"
+      "reference": "C220"
     },
     {
       "instance_uid": "LESHY2-RF-R2:headphone_l_series",
@@ -7793,7 +7765,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C222"
+      "reference": "C221"
     },
     {
       "instance_uid": "LESHY2-RF-R2:headphone_r_coupling1",
@@ -7807,7 +7779,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C223"
+      "reference": "C222"
     },
     {
       "instance_uid": "LESHY2-RF-R2:headphone_r_series",
@@ -7877,7 +7849,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C224"
+      "reference": "C223"
     },
     {
       "instance_uid": "LESHY2-RF-R2:headset_control_p1_pulldown",
@@ -8045,7 +8017,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C225"
+      "reference": "C224"
     },
     {
       "instance_uid": "LESHY2-RF-R2:headset_microphone_bias_filter_cap",
@@ -8059,7 +8031,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C226"
+      "reference": "C225"
     },
     {
       "instance_uid": "LESHY2-RF-R2:headset_microphone_bias_filter_res",
@@ -8101,7 +8073,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C227"
+      "reference": "C226"
     },
     {
       "instance_uid": "LESHY2-RF-R2:microphone",
@@ -8129,7 +8101,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C228"
+      "reference": "C227"
     },
     {
       "instance_uid": "LESHY2-RF-R2:microphone_bias_filter_res",
@@ -8199,7 +8171,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C229"
+      "reference": "C228"
     },
     {
       "instance_uid": "LESHY2-RF-R2:speaker_amp_enable_pulldown",
@@ -8227,7 +8199,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C230"
+      "reference": "C229"
     },
     {
       "instance_uid": "LESHY2-RF-R2:speaker_input_n_coupling",
@@ -8241,7 +8213,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C231"
+      "reference": "C230"
     },
     {
       "instance_uid": "LESHY2-RF-R2:speaker_input_n_gain",
@@ -8269,7 +8241,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C232"
+      "reference": "C231"
     },
     {
       "instance_uid": "LESHY2-RF-R2:speaker_input_p_gain",
@@ -8297,7 +8269,7 @@
       "reference_prefix": "L",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "L32"
+      "reference": "L31"
     },
     {
       "instance_uid": "LESHY2-RF-R2:speaker_output_bead_p",
@@ -8311,7 +8283,7 @@
       "reference_prefix": "L",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "L33"
+      "reference": "L32"
     },
     {
       "instance_uid": "LESHY2-RF-R2:speaker_output_cap_n",
@@ -8325,7 +8297,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C233"
+      "reference": "C232"
     },
     {
       "instance_uid": "LESHY2-RF-R2:speaker_output_cap_p",
@@ -8339,7 +8311,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C234"
+      "reference": "C233"
     },
     {
       "instance_uid": "LESHY2-RF-R2:voice_rx_bias",
@@ -8367,7 +8339,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C235"
+      "reference": "C234"
     },
     {
       "instance_uid": "LESHY2-RF-R2:voice_rx_series",
@@ -8465,7 +8437,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C236"
+      "reference": "C235"
     },
     {
       "instance_uid": "LESHY2-RF-R2:u214_host_buffer_b",
@@ -8493,7 +8465,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C237"
+      "reference": "C236"
     },
     {
       "instance_uid": "LESHY2-RF-R2:u214_i2c_host_scl_pullup",
@@ -8549,7 +8521,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C238"
+      "reference": "C237"
     },
     {
       "instance_uid": "LESHY2-RF-R2:u214_req_pulldown",
@@ -8591,7 +8563,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C239"
+      "reference": "C238"
     },
     {
       "instance_uid": "LESHY2-RF-R2:u214_series_busy",
@@ -8745,7 +8717,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C240"
+      "reference": "C239"
     },
     {
       "instance_uid": "LESHY2-RF-R2:u214_supervisor_ct",
@@ -8759,7 +8731,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C241"
+      "reference": "C240"
     },
     {
       "instance_uid": "LESHY2-RF-R2:u214_supervisor_pullup",
@@ -8843,7 +8815,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C242"
+      "reference": "C241"
     },
     {
       "instance_uid": "LESHY2-RF-R2:unit_efuse",
@@ -8885,7 +8857,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C243"
+      "reference": "C242"
     },
     {
       "instance_uid": "LESHY2-RF-R2:unit_itimer_cap",
@@ -8899,7 +8871,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C244"
+      "reference": "C243"
     },
     {
       "instance_uid": "LESHY2-RF-R2:unit_output_cap",
@@ -8913,7 +8885,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C245"
+      "reference": "C244"
     },
     {
       "instance_uid": "LESHY2-RF-R2:unit_ovlo_bottom",
@@ -9011,7 +8983,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C246"
+      "reference": "C245"
     },
     {
       "instance_uid": "LESHY2-RF-R2:unit_signal_iso_vccb_bypass",
@@ -9025,7 +8997,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C247"
+      "reference": "C246"
     },
     {
       "instance_uid": "LESHY2-RF-R2:unit_supervisor",
@@ -9053,7 +9025,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C248"
+      "reference": "C247"
     },
     {
       "instance_uid": "LESHY2-RF-R2:unit_supervisor_ct",
@@ -9067,7 +9039,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C249"
+      "reference": "C248"
     },
     {
       "instance_uid": "LESHY2-RF-R2:unit_supervisor_pullup",
@@ -9151,7 +9123,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C250"
+      "reference": "C249"
     },
     {
       "instance_uid": "LESHY2-RF-R2:ptt_pullup",
@@ -9263,7 +9235,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C251"
+      "reference": "C250"
     },
     {
       "instance_uid": "LESHY2-RF-R2:slow_io_reset_pullup",
@@ -9291,7 +9263,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C252"
+      "reference": "C251"
     },
     {
       "instance_uid": "LESHY2-RF-R2:slow_io_vccp_bypass",
@@ -9305,7 +9277,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C253"
+      "reference": "C252"
     },
     {
       "instance_uid": "LESHY2-RF-R2:m1_rf_receptacle",
@@ -9347,7 +9319,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C254"
+      "reference": "C253"
     },
     {
       "instance_uid": "LESHY2-RF-R2:cc_evidence_hold_diode",
@@ -9459,7 +9431,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C255"
+      "reference": "C254"
     },
     {
       "instance_uid": "LESHY2-RF-R2:evidence_cmp_voice",
@@ -9487,7 +9459,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C256"
+      "reference": "C255"
     },
     {
       "instance_uid": "LESHY2-RF-R2:evidence_cmp_voice_v",
@@ -9515,7 +9487,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C257"
+      "reference": "C256"
     },
     {
       "instance_uid": "LESHY2-RF-R2:evidence_mask",
@@ -9543,7 +9515,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C258"
+      "reference": "C257"
     },
     {
       "instance_uid": "LESHY2-RF-R2:evidence_mask_p12_pulldown",
@@ -9767,7 +9739,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C259"
+      "reference": "C258"
     },
     {
       "instance_uid": "LESHY2-RF-R2:power_command_pullup",
@@ -9823,7 +9795,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C260"
+      "reference": "C259"
     },
     {
       "instance_uid": "LESHY2-RF-R2:run_loop_pullup",
@@ -9865,7 +9837,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C261"
+      "reference": "C260"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safe_fault_reset_buffer",
@@ -9893,7 +9865,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C262"
+      "reference": "C261"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safe_gate_b",
@@ -9921,7 +9893,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C263"
+      "reference": "C262"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safe_latch",
@@ -9949,7 +9921,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C264"
+      "reference": "C263"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safe_latch_d_pullup",
@@ -10005,7 +9977,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C265"
+      "reference": "C264"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safe_rearm_buffer",
@@ -10033,7 +10005,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C266"
+      "reference": "C265"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safe_rearm_delay_cap",
@@ -10047,7 +10019,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C267"
+      "reference": "C266"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safe_rearm_delay_res",
@@ -10089,7 +10061,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C268"
+      "reference": "C267"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safe_reset_gate_pullup",
@@ -10145,7 +10117,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C269"
+      "reference": "C268"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safe_supervisor",
@@ -10173,7 +10145,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C270"
+      "reference": "C269"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safety_control_esd",
@@ -10215,7 +10187,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C271"
+      "reference": "C270"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safety_controller_bypass",
@@ -10229,7 +10201,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C272"
+      "reference": "C271"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safety_controller_reset_cap",
@@ -10243,7 +10215,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C273"
+      "reference": "C272"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safety_controller_reset_pullup",
@@ -10299,7 +10271,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C274"
+      "reference": "C273"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safety_fault_request_pulldown",
@@ -10341,7 +10313,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C275"
+      "reference": "C274"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safety_s3_reset_pulldown",
@@ -10383,7 +10355,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C276"
+      "reference": "C275"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safety_watchdog_mr_pullup",
@@ -10453,7 +10425,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C277"
+      "reference": "C276"
     },
     {
       "instance_uid": "LESHY2-RF-R2:slow_io_fault_sense_pullup",
@@ -10495,7 +10467,7 @@
       "reference_prefix": "C",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "C278"
+      "reference": "C277"
     },
     {
       "instance_uid": "LESHY2-RF-R2:slow_io_s3_evidence_pullup",
@@ -10523,7 +10495,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C279"
+      "reference": "C278"
     },
     {
       "instance_uid": "LESHY2-RF-R2:voice_evidence_hold_diode",
@@ -10621,7 +10593,7 @@
       "reference_prefix": "C",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "C280"
+      "reference": "C279"
     },
     {
       "instance_uid": "LESHY2-RF-R2:voice_v_evidence_hold_diode",

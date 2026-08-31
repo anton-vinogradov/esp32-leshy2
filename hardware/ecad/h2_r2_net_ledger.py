@@ -433,8 +433,8 @@ def build() -> dict:
             if disposition == "unresolved":
                 unresolved.append(row)
 
-    if len(rows) != 4323:
-        errors.append(f"current endpoint count changed: {len(rows)} != 4323")
+    if len(rows) != 4319:
+        errors.append(f"current endpoint count changed: {len(rows)} != 4319")
     current_endpoints = {row["endpoint"] for row in rows}
     stale_topology = sorted(set(current_sources.get("topology", {}).get("endpoint_overrides", {})) - current_endpoints)
     if stale_topology:
@@ -505,7 +505,7 @@ def main() -> int:
     if not OUTPUT.is_file() or OUTPUT.read_text(encoding="utf-8") != text:
         print(f"stale: {OUTPUT.relative_to(ROOT)}")
         return 1
-    print("ok: 4323 current R2 endpoints reconciled; zero unresolved; native projects not yet created")
+    print("ok: 4319 current R2 endpoints reconciled; zero unresolved; native projects not yet created")
     return 0
 
 

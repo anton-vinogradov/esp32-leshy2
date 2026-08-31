@@ -1442,91 +1442,6 @@
 		)
 		(embedded_fonts no)
 	)
-	(symbol "chilisin_cs0805_r27j_s"
-		(pin_names (offset 1.016))
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(duplicate_pin_numbers_are_jumpers no)
-		(property "Reference" "L"
-			(at 0.00 7.62 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Value" "CS0805-R27J-S"
-			(at 0.00 -7.62 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Footprint" "Inductor_SMD:L_0805_2012Metric"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" "https://jlcpcb.com/partdetail/ChilisinElec-CS0805_R27JS/C108271"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Description" "270-nH stock-backed H2 nominal series cell; H3 tuning open"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Leshy2DeviceID" "chilisin_cs0805_r27j_s"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "ManufacturerEvidenceChecked" "2026-08-31"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "ExternalInterfaces" "none"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(symbol "chilisin_cs0805_r27j_s_0_1"
-			(rectangle
-				(start -15.24 5.08)
-				(end 15.24 -5.08)
-				(stroke (width 0.254) (type default))
-				(fill (type background))
-			)
-		)
-		(symbol "chilisin_cs0805_r27j_s_1_1"
-			(pin passive line
-				(at -20.32 1.27 0)
-				(length 5.08)
-				(name "END_1" (effects (font (size 1.27 1.27))))
-				(number "1" (effects (font (size 1.27 1.27))))
-			)
-			(pin passive line
-				(at 20.32 1.27 180)
-				(length 5.08)
-				(name "END_2" (effects (font (size 1.27 1.27))))
-				(number "2" (effects (font (size 1.27 1.27))))
-			)
-		)
-		(embedded_fonts no)
-	)
 	(symbol "ck_js102011scqn"
 		(pin_names (offset 1.016))
 		(exclude_from_sim no)
@@ -7311,7 +7226,7 @@
 		)
 		(embedded_fonts no)
 	)
-	(symbol "murata_gcm1555c1h181fa16d"
+	(symbol "murata_gcm1555c1h121fa16d"
 		(pin_names (offset 1.016))
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7324,7 +7239,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "GCM1555C1H181FA16D"
+		(property "Value" "GCM1555C1H121FA16D"
 			(at 0.00 -7.62 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7337,21 +7252,21 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Datasheet" "https://www.murata.com/en-us/products/productdetail?partno=GCM1555C1H181FA16D"
+		(property "Datasheet" "https://www.murata.com/en-us/products/productdetail?partno=GCM1555C1H121FA16D"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "180-pF H1 band-pass shunt capacitor"
+		(property "Description" "H3-R2 verified Airband shunt-resonator base capacitors"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2DeviceID" "murata_gcm1555c1h181fa16d"
+		(property "Leshy2DeviceID" "murata_gcm1555c1h121fa16d"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7372,7 +7287,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(symbol "murata_gcm1555c1h181fa16d_0_1"
+		(symbol "murata_gcm1555c1h121fa16d_0_1"
 			(rectangle
 				(start -15.24 5.08)
 				(end 15.24 -5.08)
@@ -7380,7 +7295,92 @@
 				(fill (type background))
 			)
 		)
-		(symbol "murata_gcm1555c1h181fa16d_1_1"
+		(symbol "murata_gcm1555c1h121fa16d_1_1"
+			(pin passive line
+				(at -20.32 1.27 0)
+				(length 5.08)
+				(name "END_1" (effects (font (size 1.27 1.27))))
+				(number "1" (effects (font (size 1.27 1.27))))
+			)
+			(pin passive line
+				(at 20.32 1.27 180)
+				(length 5.08)
+				(name "END_2" (effects (font (size 1.27 1.27))))
+				(number "2" (effects (font (size 1.27 1.27))))
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "murata_gcm1555c1h200fa16d"
+		(pin_names (offset 1.016))
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "C"
+			(at 0.00 7.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "GCM1555C1H200FA16D"
+			(at 0.00 -7.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Datasheet" "https://www.murata.com/en-us/products/productdetail?partno=GCM1555C1H200FA16D"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Description" "H3-R2 verified Airband shunt-resonator trim capacitors"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Leshy2DeviceID" "murata_gcm1555c1h200fa16d"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "ManufacturerEvidenceChecked" "2026-08-31"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "ExternalInterfaces" "none"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(symbol "murata_gcm1555c1h200fa16d_0_1"
+			(rectangle
+				(start -15.24 5.08)
+				(end 15.24 -5.08)
+				(stroke (width 0.254) (type default))
+				(fill (type background))
+			)
+		)
+		(symbol "murata_gcm1555c1h200fa16d_1_1"
 			(pin passive line
 				(at -20.32 1.27 0)
 				(length 5.08)
@@ -7651,91 +7651,6 @@
 		)
 		(embedded_fonts no)
 	)
-	(symbol "murata_gjm1555c1h1r0wb01d"
-		(pin_names (offset 1.016))
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(duplicate_pin_numbers_are_jumpers no)
-		(property "Reference" "C"
-			(at 0.00 7.62 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Value" "GJM1555C1H1R0WB01D"
-			(at 0.00 -7.62 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H1R0WB01D"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Description" "1.0-pF H1 high-side notch capacitor"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Leshy2DeviceID" "murata_gjm1555c1h1r0wb01d"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "ManufacturerEvidenceChecked" "2026-08-31"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "ExternalInterfaces" "none"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(symbol "murata_gjm1555c1h1r0wb01d_0_1"
-			(rectangle
-				(start -15.24 5.08)
-				(end 15.24 -5.08)
-				(stroke (width 0.254) (type default))
-				(fill (type background))
-			)
-		)
-		(symbol "murata_gjm1555c1h1r0wb01d_1_1"
-			(pin passive line
-				(at -20.32 1.27 0)
-				(length 5.08)
-				(name "END_1" (effects (font (size 1.27 1.27))))
-				(number "1" (effects (font (size 1.27 1.27))))
-			)
-			(pin passive line
-				(at 20.32 1.27 180)
-				(length 5.08)
-				(name "END_2" (effects (font (size 1.27 1.27))))
-				(number "2" (effects (font (size 1.27 1.27))))
-			)
-		)
-		(embedded_fonts no)
-	)
 	(symbol "murata_gjm1555c1h1r2bb01d"
 		(pin_names (offset 1.016))
 		(exclude_from_sim no)
@@ -7854,7 +7769,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "1.4-pF H1 high-side notch capacitor"
+		(property "Description" "H3-R2 verified Airband shunt-resonator fine-trim capacitors"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7906,176 +7821,6 @@
 		)
 		(embedded_fonts no)
 	)
-	(symbol "murata_gjm1555c1h1r9wb01d"
-		(pin_names (offset 1.016))
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(duplicate_pin_numbers_are_jumpers no)
-		(property "Reference" "C"
-			(at 0.00 7.62 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Value" "GJM1555C1H1R9WB01D"
-			(at 0.00 -7.62 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H1R9WB01D"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Description" "1.9-pF H1 high-side notch capacitor"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Leshy2DeviceID" "murata_gjm1555c1h1r9wb01d"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "ManufacturerEvidenceChecked" "2026-08-31"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "ExternalInterfaces" "none"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(symbol "murata_gjm1555c1h1r9wb01d_0_1"
-			(rectangle
-				(start -15.24 5.08)
-				(end 15.24 -5.08)
-				(stroke (width 0.254) (type default))
-				(fill (type background))
-			)
-		)
-		(symbol "murata_gjm1555c1h1r9wb01d_1_1"
-			(pin passive line
-				(at -20.32 1.27 0)
-				(length 5.08)
-				(name "END_1" (effects (font (size 1.27 1.27))))
-				(number "1" (effects (font (size 1.27 1.27))))
-			)
-			(pin passive line
-				(at 20.32 1.27 180)
-				(length 5.08)
-				(name "END_2" (effects (font (size 1.27 1.27))))
-				(number "2" (effects (font (size 1.27 1.27))))
-			)
-		)
-		(embedded_fonts no)
-	)
-	(symbol "murata_gjm1555c1h2r4wb01d"
-		(pin_names (offset 1.016))
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(duplicate_pin_numbers_are_jumpers no)
-		(property "Reference" "C"
-			(at 0.00 7.62 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Value" "GJM1555C1H2R4WB01D"
-			(at 0.00 -7.62 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H2R4WB01D"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Description" "2.4-pF H1 high-side notch capacitor"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Leshy2DeviceID" "murata_gjm1555c1h2r4wb01d"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "ManufacturerEvidenceChecked" "2026-08-31"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "ExternalInterfaces" "none"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(symbol "murata_gjm1555c1h2r4wb01d_0_1"
-			(rectangle
-				(start -15.24 5.08)
-				(end 15.24 -5.08)
-				(stroke (width 0.254) (type default))
-				(fill (type background))
-			)
-		)
-		(symbol "murata_gjm1555c1h2r4wb01d_1_1"
-			(pin passive line
-				(at -20.32 1.27 0)
-				(length 5.08)
-				(name "END_1" (effects (font (size 1.27 1.27))))
-				(number "1" (effects (font (size 1.27 1.27))))
-			)
-			(pin passive line
-				(at 20.32 1.27 180)
-				(length 5.08)
-				(name "END_2" (effects (font (size 1.27 1.27))))
-				(number "2" (effects (font (size 1.27 1.27))))
-			)
-		)
-		(embedded_fonts no)
-	)
 	(symbol "murata_gjm1555c1h4r7bb01d"
 		(pin_names (offset 1.016))
 		(exclude_from_sim no)
@@ -8109,7 +7854,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "4.7-pF H1 notch and LT5560 LO match capacitors"
+		(property "Description" "official-reference LT5560 LO match capacitor"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8161,7 +7906,7 @@
 		)
 		(embedded_fonts no)
 	)
-	(symbol "murata_gjm1555c1h5r6bb01d"
+	(symbol "murata_gjm1555c1h5r7wb01d"
 		(pin_names (offset 1.016))
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8174,7 +7919,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "GJM1555C1H5R6BB01D"
+		(property "Value" "GJM1555C1H5R7WB01D"
 			(at 0.00 -7.62 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8187,21 +7932,21 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Datasheet" "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H5R6BB01D"
+		(property "Datasheet" "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H5R7WB01D"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "5.6-pF H1 band-pass series capacitor"
+		(property "Description" "H3-R2 verified Airband input series capacitor"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2DeviceID" "murata_gjm1555c1h5r6bb01d"
+		(property "Leshy2DeviceID" "murata_gjm1555c1h5r7wb01d"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8222,7 +7967,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(symbol "murata_gjm1555c1h5r6bb01d_0_1"
+		(symbol "murata_gjm1555c1h5r7wb01d_0_1"
 			(rectangle
 				(start -15.24 5.08)
 				(end 15.24 -5.08)
@@ -8230,7 +7975,92 @@
 				(fill (type background))
 			)
 		)
-		(symbol "murata_gjm1555c1h5r6bb01d_1_1"
+		(symbol "murata_gjm1555c1h5r7wb01d_1_1"
+			(pin passive line
+				(at -20.32 1.27 0)
+				(length 5.08)
+				(name "END_1" (effects (font (size 1.27 1.27))))
+				(number "1" (effects (font (size 1.27 1.27))))
+			)
+			(pin passive line
+				(at 20.32 1.27 180)
+				(length 5.08)
+				(name "END_2" (effects (font (size 1.27 1.27))))
+				(number "2" (effects (font (size 1.27 1.27))))
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "murata_gjm1555c1h5r8wb01d"
+		(pin_names (offset 1.016))
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "C"
+			(at 0.00 7.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "GJM1555C1H5R8WB01D"
+			(at 0.00 -7.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Datasheet" "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H5R8WB01D"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Description" "H3-R2 verified Airband output series capacitor"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Leshy2DeviceID" "murata_gjm1555c1h5r8wb01d"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "ManufacturerEvidenceChecked" "2026-08-31"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "ExternalInterfaces" "none"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(symbol "murata_gjm1555c1h5r8wb01d_0_1"
+			(rectangle
+				(start -15.24 5.08)
+				(end 15.24 -5.08)
+				(stroke (width 0.254) (type default))
+				(fill (type background))
+			)
+		)
+		(symbol "murata_gjm1555c1h5r8wb01d_1_1"
 			(pin passive line
 				(at -20.32 1.27 0)
 				(length 5.08)
@@ -8401,91 +8231,6 @@
 			)
 		)
 		(symbol "murata_gjm1555c1h8r0db01d_1_1"
-			(pin passive line
-				(at -20.32 1.27 0)
-				(length 5.08)
-				(name "END_1" (effects (font (size 1.27 1.27))))
-				(number "1" (effects (font (size 1.27 1.27))))
-			)
-			(pin passive line
-				(at 20.32 1.27 180)
-				(length 5.08)
-				(name "END_2" (effects (font (size 1.27 1.27))))
-				(number "2" (effects (font (size 1.27 1.27))))
-			)
-		)
-		(embedded_fonts no)
-	)
-	(symbol "murata_gjm1555c1h8r2bb01d"
-		(pin_names (offset 1.016))
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(duplicate_pin_numbers_are_jumpers no)
-		(property "Reference" "C"
-			(at 0.00 7.62 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Value" "GJM1555C1H8R2BB01D"
-			(at 0.00 -7.62 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" "https://www.murata.com/en-us/products/productdetail?partno=GJM1555C1H8R2BB01D"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Description" "8.2-pF H1 notch capacitor"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Leshy2DeviceID" "murata_gjm1555c1h8r2bb01d"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "ManufacturerEvidenceChecked" "2026-08-31"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "ExternalInterfaces" "none"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(symbol "murata_gjm1555c1h8r2bb01d_0_1"
-			(rectangle
-				(start -15.24 5.08)
-				(end 15.24 -5.08)
-				(stroke (width 0.254) (type default))
-				(fill (type background))
-			)
-		)
-		(symbol "murata_gjm1555c1h8r2bb01d_1_1"
 			(pin passive line
 				(at -20.32 1.27 0)
 				(length 5.08)
@@ -11051,7 +10796,7 @@
 		)
 		(embedded_fonts no)
 	)
-	(symbol "murata_lqw15an8n2g80d"
+	(symbol "murata_lqw2bas22ng00l"
 		(pin_names (offset 1.016))
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -11064,34 +10809,34 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "LQW15AN8N2G80D"
+		(property "Value" "LQW2BAS22NG00L"
 			(at 0.00 -7.62 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Inductor_SMD:L_0402_1005Metric"
+		(property "Footprint" "Inductor_SMD:L_0805_2012Metric"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Datasheet" "https://www.murata.com/en-us/products/productdetail?partno=LQW15AN8N2G80D"
+		(property "Datasheet" "https://www.murata.com/en-us/products/productdetail?partno=LQW2BAS22NG00L"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "8.2-nH H1 band-pass shunt cell"
+		(property "Description" "two parallel inductor pairs in H3-R2 Airband shunt resonators"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2DeviceID" "murata_lqw15an8n2g80d"
+		(property "Leshy2DeviceID" "murata_lqw2bas22ng00l"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11112,7 +10857,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(symbol "murata_lqw15an8n2g80d_0_1"
+		(symbol "murata_lqw2bas22ng00l_0_1"
 			(rectangle
 				(start -15.24 5.08)
 				(end 15.24 -5.08)
@@ -11120,7 +10865,92 @@
 				(fill (type background))
 			)
 		)
-		(symbol "murata_lqw15an8n2g80d_1_1"
+		(symbol "murata_lqw2bas22ng00l_1_1"
+			(pin passive line
+				(at -20.32 1.27 0)
+				(length 5.08)
+				(name "END_1" (effects (font (size 1.27 1.27))))
+				(number "1" (effects (font (size 1.27 1.27))))
+			)
+			(pin passive line
+				(at 20.32 1.27 180)
+				(length 5.08)
+				(name "END_2" (effects (font (size 1.27 1.27))))
+				(number "2" (effects (font (size 1.27 1.27))))
+			)
+		)
+		(embedded_fonts no)
+	)
+	(symbol "murata_lqw2bas47ng00l"
+		(pin_names (offset 1.016))
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "L"
+			(at 0.00 7.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "LQW2BAS47NG00L"
+			(at 0.00 -7.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Footprint" "Inductor_SMD:L_0805_2012Metric"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Datasheet" "https://www.murata.com/en-us/products/productdetail?partno=LQW2BAS47NG00L"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Description" "H3-R2 verified Airband outer series resonator trims"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Leshy2DeviceID" "murata_lqw2bas47ng00l"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "ManufacturerEvidenceChecked" "2026-08-31"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "ExternalInterfaces" "none"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(symbol "murata_lqw2bas47ng00l_0_1"
+			(rectangle
+				(start -15.24 5.08)
+				(end 15.24 -5.08)
+				(stroke (width 0.254) (type default))
+				(fill (type background))
+			)
+		)
+		(symbol "murata_lqw2bas47ng00l_1_1"
 			(pin passive line
 				(at -20.32 1.27 0)
 				(length 5.08)
@@ -11169,7 +10999,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "220-nH H1 band-pass series cell"
+		(property "Description" "H3-R2 verified Airband outer series resonators"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11254,7 +11084,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "330-nH H1 filter cells and PGA bias choke"
+		(property "Description" "PGA-103+ bias choke"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11306,91 +11136,6 @@
 		)
 		(embedded_fonts no)
 	)
-	(symbol "murata_lqw2uas1r0g00l"
-		(pin_names (offset 1.016))
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(duplicate_pin_numbers_are_jumpers no)
-		(property "Reference" "L"
-			(at 0.00 7.62 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Value" "LQW2UAS1R0G00L"
-			(at 0.00 -7.62 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Footprint" "Inductor_SMD:L_1008_2520Metric"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" "https://www.murata.com/en-us/products/productdetail?partno=LQW2UAS1R0G00L"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Description" "1-uH H1 high-side notch cell"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Leshy2DeviceID" "murata_lqw2uas1r0g00l"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "ManufacturerEvidenceChecked" "2026-08-31"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "ExternalInterfaces" "none"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(symbol "murata_lqw2uas1r0g00l_0_1"
-			(rectangle
-				(start -15.24 5.08)
-				(end 15.24 -5.08)
-				(stroke (width 0.254) (type default))
-				(fill (type background))
-			)
-		)
-		(symbol "murata_lqw2uas1r0g00l_1_1"
-			(pin passive line
-				(at -20.32 1.27 0)
-				(length 5.08)
-				(name "END_1" (effects (font (size 1.27 1.27))))
-				(number "1" (effects (font (size 1.27 1.27))))
-			)
-			(pin passive line
-				(at 20.32 1.27 180)
-				(length 5.08)
-				(name "END_2" (effects (font (size 1.27 1.27))))
-				(number "2" (effects (font (size 1.27 1.27))))
-			)
-		)
-		(embedded_fonts no)
-	)
 	(symbol "murata_lqw2uasr56f00l"
 		(pin_names (offset 1.016))
 		(exclude_from_sim no)
@@ -11424,7 +11169,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "560-nH H1 filter cells"
+		(property "Description" "H3-R2 verified Airband centre series resonator"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -23611,6 +23356,91 @@
 		)
 		(embedded_fonts no)
 	)
+	(symbol "yageo_cc0402brnpo9bn2r8"
+		(pin_names (offset 1.016))
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(duplicate_pin_numbers_are_jumpers no)
+		(property "Reference" "C"
+			(at 0.00 7.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "CC0402BRNPO9BN2R8"
+			(at 0.00 -7.62 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/CC0402BRNPO9BN2R8"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Description" "H3-R2 verified Airband centre series capacitor"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Leshy2DeviceID" "yageo_cc0402brnpo9bn2r8"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "ManufacturerEvidenceChecked" "2026-08-31"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "ExternalInterfaces" "none"
+			(at 0.00 0.00 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(hide yes)
+			(effects (font (size 1.27 1.27)))
+		)
+		(symbol "yageo_cc0402brnpo9bn2r8_0_1"
+			(rectangle
+				(start -15.24 5.08)
+				(end 15.24 -5.08)
+				(stroke (width 0.254) (type default))
+				(fill (type background))
+			)
+		)
+		(symbol "yageo_cc0402brnpo9bn2r8_1_1"
+			(pin passive line
+				(at -20.32 1.27 0)
+				(length 5.08)
+				(name "END_1" (effects (font (size 1.27 1.27))))
+				(number "1" (effects (font (size 1.27 1.27))))
+			)
+			(pin passive line
+				(at 20.32 1.27 180)
+				(length 5.08)
+				(name "END_2" (effects (font (size 1.27 1.27))))
+				(number "2" (effects (font (size 1.27 1.27))))
+			)
+		)
+		(embedded_fonts no)
+	)
 	(symbol "yageo_cc0402krx7r9bb104"
 		(pin_names (offset 1.016))
 		(exclude_from_sim no)
@@ -23766,176 +23596,6 @@
 			)
 		)
 		(symbol "yageo_cc0603krx7r0bb104_1_1"
-			(pin passive line
-				(at -20.32 1.27 0)
-				(length 5.08)
-				(name "END_1" (effects (font (size 1.27 1.27))))
-				(number "1" (effects (font (size 1.27 1.27))))
-			)
-			(pin passive line
-				(at 20.32 1.27 180)
-				(length 5.08)
-				(name "END_2" (effects (font (size 1.27 1.27))))
-				(number "2" (effects (font (size 1.27 1.27))))
-			)
-		)
-		(embedded_fonts no)
-	)
-	(symbol "yageo_cq0402brnpo9bn3r2"
-		(pin_names (offset 1.016))
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(duplicate_pin_numbers_are_jumpers no)
-		(property "Reference" "C"
-			(at 0.00 7.62 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Value" "CQ0402BRNPO9BN3R2"
-			(at 0.00 -7.62 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" "https://www.yageogroup.com/component-documentation/download/specsheet/CQ0402BRNPO9BN3R2"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Description" "3.2-pF H1 high-side notch capacitor"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Leshy2DeviceID" "yageo_cq0402brnpo9bn3r2"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "ManufacturerEvidenceChecked" "2026-08-31"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "ExternalInterfaces" "none"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(symbol "yageo_cq0402brnpo9bn3r2_0_1"
-			(rectangle
-				(start -15.24 5.08)
-				(end 15.24 -5.08)
-				(stroke (width 0.254) (type default))
-				(fill (type background))
-			)
-		)
-		(symbol "yageo_cq0402brnpo9bn3r2_1_1"
-			(pin passive line
-				(at -20.32 1.27 0)
-				(length 5.08)
-				(name "END_1" (effects (font (size 1.27 1.27))))
-				(number "1" (effects (font (size 1.27 1.27))))
-			)
-			(pin passive line
-				(at 20.32 1.27 180)
-				(length 5.08)
-				(name "END_2" (effects (font (size 1.27 1.27))))
-				(number "2" (effects (font (size 1.27 1.27))))
-			)
-		)
-		(embedded_fonts no)
-	)
-	(symbol "yageo_cq0402brnpo9bn6r2"
-		(pin_names (offset 1.016))
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(duplicate_pin_numbers_are_jumpers no)
-		(property "Reference" "C"
-			(at 0.00 7.62 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Value" "CQ0402BRNPO9BN6R2"
-			(at 0.00 -7.62 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Datasheet" "https://www.yageogroup.com/download/specsheet/CQ0402BRNPO9BN6R2"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Description" "6.2-pF H1 band-pass series capacitor"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "Leshy2DeviceID" "yageo_cq0402brnpo9bn6r2"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "ManufacturerEvidenceChecked" "2026-08-31"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(property "ExternalInterfaces" "none"
-			(at 0.00 0.00 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(hide yes)
-			(effects (font (size 1.27 1.27)))
-		)
-		(symbol "yageo_cq0402brnpo9bn6r2_0_1"
-			(rectangle
-				(start -15.24 5.08)
-				(end 15.24 -5.08)
-				(stroke (width 0.254) (type default))
-				(fill (type background))
-			)
-		)
-		(symbol "yageo_cq0402brnpo9bn6r2_1_1"
 			(pin passive line
 				(at -20.32 1.27 0)
 				(length 5.08)

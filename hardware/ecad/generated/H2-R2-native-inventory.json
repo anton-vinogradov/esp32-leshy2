@@ -18,7 +18,7 @@
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "a41ef2f1ad5cf24f8320a751c6cddf64cad420d29acd69d4feb57d447aafb7c8"
+      "sha256": "884fdffc548fa279e02f77daae84bdfc7702ad0a8a22164aec6d7ccee192dd6b"
     },
     "component_groups": {
       "path": "hardware/product-design/generated/H1-R2-cost-audit.json",
@@ -42,7 +42,7 @@
     },
     "airband": {
       "path": "hardware/product-design/h1-airband-filter.json",
-      "sha256": "e9b1364c569a9be6109f2e8b8f17cb9cfca120019618f67bfd2f05016ca38b03"
+      "sha256": "e98d4790ba5507f1c19405e0dec65941527b4baa85014d5c7b24c6bad4d5d549"
     },
     "antennas": {
       "path": "hardware/architecture/antenna-kit.json",
@@ -282,8 +282,8 @@
     "project_count": 3,
     "sheet_count": 23,
     "domain_count": 6,
-    "component_group_count": 242,
-    "component_quantity_per_product": 1197,
+    "component_group_count": 238,
+    "component_quantity_per_product": 1195,
     "external_antenna_group_count": 8,
     "external_antenna_count": 12,
     "unresolved_pre_ecad_prerequisites": 0,
@@ -464,23 +464,6 @@
       "jlcpcb_part_number": "C29953",
       "accepted_identity_source": "hardware/architecture/devices.json",
       "historical_cost_route_only": "in_stock"
-    },
-    {
-      "device_id": "chilisin_cs0805_r27j_s",
-      "mpn": "CS0805-R27J-S",
-      "quantity_per_product": 1,
-      "scope": "base_product",
-      "role": "270-nH stock-backed H2 nominal series cell; H3 tuning open",
-      "ecad_disposition": "schematic_component_group",
-      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
-      "lifecycle": "production_active_factory_stocked_standard_pcba",
-      "contact_evidence": true,
-      "jlcpcb_part_number": "C108271",
-      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
-      "historical_cost_route_only": null,
-      "r2_sheet_assignment": [
-        "RF_21_BROADCAST_AIRBAND_RX"
-      ]
     },
     {
       "device_id": "ck_js102011scqn",
@@ -1046,16 +1029,33 @@
       "historical_cost_route_only": "in_stock"
     },
     {
-      "device_id": "murata_gcm1555c1h181fa16d",
-      "mpn": "GCM1555C1H181FA16D",
-      "quantity_per_product": 1,
+      "device_id": "murata_gcm1555c1h121fa16d",
+      "mpn": "GCM1555C1H121FA16D",
+      "quantity_per_product": 2,
       "scope": "base_product",
-      "role": "180-pF H1 band-pass shunt capacitor",
+      "role": "H3-R2 verified Airband shunt-resonator base capacitors",
       "ecad_disposition": "schematic_component_group",
-      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "qualification": "h3_r2_airband_corner_verified",
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "contact_evidence": true,
-      "jlcpcb_part_number": "C437435",
+      "jlcpcb_part_number": "C126496",
+      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
+      "device_id": "murata_gcm1555c1h200fa16d",
+      "mpn": "GCM1555C1H200FA16D",
+      "quantity_per_product": 2,
+      "scope": "base_product",
+      "role": "H3-R2 verified Airband shunt-resonator trim capacitors",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "h3_r2_airband_corner_verified",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C437436",
       "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
       "historical_cost_route_only": null,
       "r2_sheet_assignment": [
@@ -1109,23 +1109,6 @@
       ]
     },
     {
-      "device_id": "murata_gjm1555c1h1r0wb01d",
-      "mpn": "GJM1555C1H1R0WB01D",
-      "quantity_per_product": 1,
-      "scope": "base_product",
-      "role": "1.0-pF H1 high-side notch capacitor",
-      "ecad_disposition": "schematic_component_group",
-      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
-      "lifecycle": "production_active_factory_stocked_standard_pcba",
-      "contact_evidence": true,
-      "jlcpcb_part_number": "C72134",
-      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
-      "historical_cost_route_only": null,
-      "r2_sheet_assignment": [
-        "RF_21_BROADCAST_AIRBAND_RX"
-      ]
-    },
-    {
       "device_id": "murata_gjm1555c1h1r2bb01d",
       "mpn": "Murata GJM1555C1H1R2BB01D",
       "quantity_per_product": 1,
@@ -1142,11 +1125,11 @@
     {
       "device_id": "murata_gjm1555c1h1r4wb01d",
       "mpn": "GJM1555C1H1R4WB01D",
-      "quantity_per_product": 1,
+      "quantity_per_product": 2,
       "scope": "base_product",
-      "role": "1.4-pF H1 high-side notch capacitor",
+      "role": "H3-R2 verified Airband shunt-resonator fine-trim capacitors",
       "ecad_disposition": "schematic_component_group",
-      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "qualification": "h3_r2_airband_corner_verified",
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "contact_evidence": true,
       "jlcpcb_part_number": "C2181496",
@@ -1157,50 +1140,33 @@
       ]
     },
     {
-      "device_id": "murata_gjm1555c1h1r9wb01d",
-      "mpn": "GJM1555C1H1R9WB01D",
-      "quantity_per_product": 1,
-      "scope": "base_product",
-      "role": "1.9-pF H1 high-side notch capacitor",
-      "ecad_disposition": "schematic_component_group",
-      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
-      "lifecycle": "production_active_factory_stocked_standard_pcba",
-      "contact_evidence": true,
-      "jlcpcb_part_number": "C524559",
-      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
-      "historical_cost_route_only": null,
-      "r2_sheet_assignment": [
-        "RF_21_BROADCAST_AIRBAND_RX"
-      ]
-    },
-    {
-      "device_id": "murata_gjm1555c1h2r4wb01d",
-      "mpn": "GJM1555C1H2R4WB01D",
-      "quantity_per_product": 1,
-      "scope": "base_product",
-      "role": "2.4-pF H1 high-side notch capacitor",
-      "ecad_disposition": "schematic_component_group",
-      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
-      "lifecycle": "production_active_factory_stocked_standard_pcba",
-      "contact_evidence": true,
-      "jlcpcb_part_number": "C88889",
-      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
-      "historical_cost_route_only": null,
-      "r2_sheet_assignment": [
-        "RF_21_BROADCAST_AIRBAND_RX"
-      ]
-    },
-    {
       "device_id": "murata_gjm1555c1h4r7bb01d",
       "mpn": "GJM1555C1H4R7BB01D",
-      "quantity_per_product": 2,
+      "quantity_per_product": 1,
       "scope": "base_product",
-      "role": "4.7-pF H1 notch and LT5560 LO match capacitors",
+      "role": "official-reference LT5560 LO match capacitor",
       "ecad_disposition": "schematic_component_group",
       "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "contact_evidence": true,
       "jlcpcb_part_number": "C161327",
+      "accepted_identity_source": "hardware/architecture/devices.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
+      "device_id": "murata_gjm1555c1h5r7wb01d",
+      "mpn": "GJM1555C1H5R7WB01D",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "H3-R2 verified Airband input series capacitor",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "h3_r2_airband_corner_verified",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C2220921",
       "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
       "historical_cost_route_only": null,
       "r2_sheet_assignment": [
@@ -1208,16 +1174,16 @@
       ]
     },
     {
-      "device_id": "murata_gjm1555c1h5r6bb01d",
-      "mpn": "GJM1555C1H5R6BB01D",
+      "device_id": "murata_gjm1555c1h5r8wb01d",
+      "mpn": "GJM1555C1H5R8WB01D",
       "quantity_per_product": 1,
       "scope": "base_product",
-      "role": "5.6-pF H1 band-pass series capacitor",
+      "role": "H3-R2 verified Airband output series capacitor",
       "ecad_disposition": "schematic_component_group",
-      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "qualification": "h3_r2_airband_corner_verified",
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "contact_evidence": true,
-      "jlcpcb_part_number": "C161329",
+      "jlcpcb_part_number": "C2177031",
       "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
       "historical_cost_route_only": null,
       "r2_sheet_assignment": [
@@ -1251,23 +1217,6 @@
       "jlcpcb_part_number": "C2191663",
       "accepted_identity_source": "hardware/architecture/devices.json",
       "historical_cost_route_only": "in_stock"
-    },
-    {
-      "device_id": "murata_gjm1555c1h8r2bb01d",
-      "mpn": "GJM1555C1H8R2BB01D",
-      "quantity_per_product": 1,
-      "scope": "base_product",
-      "role": "8.2-pF H1 notch capacitor",
-      "ecad_disposition": "schematic_component_group",
-      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
-      "lifecycle": "production_active_factory_stocked_standard_pcba",
-      "contact_evidence": true,
-      "jlcpcb_part_number": "C161336",
-      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
-      "historical_cost_route_only": null,
-      "r2_sheet_assignment": [
-        "RF_21_BROADCAST_AIRBAND_RX"
-      ]
     },
     {
       "device_id": "murata_gjm1555c1hr47bb01d",
@@ -1700,16 +1649,33 @@
       "historical_cost_route_only": "in stock; G tightens the inductance tolerance from +/-5% to +/-2% without changing the 0402 body or RF limits"
     },
     {
-      "device_id": "murata_lqw15an8n2g80d",
-      "mpn": "LQW15AN8N2G80D",
-      "quantity_per_product": 1,
+      "device_id": "murata_lqw2bas22ng00l",
+      "mpn": "LQW2BAS22NG00L",
+      "quantity_per_product": 4,
       "scope": "base_product",
-      "role": "8.2-nH H1 band-pass shunt cell",
+      "role": "two parallel inductor pairs in H3-R2 Airband shunt resonators",
       "ecad_disposition": "schematic_component_group",
-      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "qualification": "h3_r2_airband_corner_verified",
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "contact_evidence": true,
-      "jlcpcb_part_number": "C307610",
+      "jlcpcb_part_number": "C2042201",
+      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
+      "device_id": "murata_lqw2bas47ng00l",
+      "mpn": "LQW2BAS47NG00L",
+      "quantity_per_product": 2,
+      "scope": "base_product",
+      "role": "H3-R2 verified Airband outer series resonator trims",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "h3_r2_airband_corner_verified",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C162657",
       "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
       "historical_cost_route_only": null,
       "r2_sheet_assignment": [
@@ -1719,11 +1685,11 @@
     {
       "device_id": "murata_lqw2basr22g00l",
       "mpn": "LQW2BASR22G00L",
-      "quantity_per_product": 1,
+      "quantity_per_product": 2,
       "scope": "base_product",
-      "role": "220-nH H1 band-pass series cell",
+      "role": "H3-R2 verified Airband outer series resonators",
       "ecad_disposition": "schematic_component_group",
-      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "qualification": "h3_r2_airband_corner_verified",
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "contact_evidence": true,
       "jlcpcb_part_number": "C527968",
@@ -1736,32 +1702,15 @@
     {
       "device_id": "murata_lqw2basr33g00l",
       "mpn": "LQW2BASR33G00L",
-      "quantity_per_product": 4,
+      "quantity_per_product": 1,
       "scope": "base_product",
-      "role": "330-nH H1 filter cells and PGA bias choke",
+      "role": "PGA-103+ bias choke",
       "ecad_disposition": "schematic_component_group",
       "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "contact_evidence": true,
       "jlcpcb_part_number": "C703717",
-      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
-      "historical_cost_route_only": null,
-      "r2_sheet_assignment": [
-        "RF_21_BROADCAST_AIRBAND_RX"
-      ]
-    },
-    {
-      "device_id": "murata_lqw2uas1r0g00l",
-      "mpn": "LQW2UAS1R0G00L",
-      "quantity_per_product": 1,
-      "scope": "base_product",
-      "role": "1-uH H1 high-side notch cell",
-      "ecad_disposition": "schematic_component_group",
-      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
-      "lifecycle": "production_active_factory_stocked_standard_pcba",
-      "contact_evidence": true,
-      "jlcpcb_part_number": "C337961",
-      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
+      "accepted_identity_source": "hardware/architecture/devices.json",
       "historical_cost_route_only": null,
       "r2_sheet_assignment": [
         "RF_21_BROADCAST_AIRBAND_RX"
@@ -1770,11 +1719,11 @@
     {
       "device_id": "murata_lqw2uasr56f00l",
       "mpn": "LQW2UASR56F00L",
-      "quantity_per_product": 3,
+      "quantity_per_product": 1,
       "scope": "base_product",
-      "role": "560-nH H1 filter cells",
+      "role": "H3-R2 verified Airband centre series resonator",
       "ecad_disposition": "schematic_component_group",
-      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
+      "qualification": "h3_r2_airband_corner_verified",
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "contact_evidence": true,
       "jlcpcb_part_number": "C907989",
@@ -3251,6 +3200,23 @@
       "historical_cost_route_only": "not_matched"
     },
     {
+      "device_id": "yageo_cc0402brnpo9bn2r8",
+      "mpn": "CC0402BRNPO9BN2R8",
+      "quantity_per_product": 1,
+      "scope": "base_product",
+      "role": "H3-R2 verified Airband centre series capacitor",
+      "ecad_disposition": "schematic_component_group",
+      "qualification": "h3_r2_airband_corner_verified",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "contact_evidence": true,
+      "jlcpcb_part_number": "C1853353",
+      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
+      "historical_cost_route_only": null,
+      "r2_sheet_assignment": [
+        "RF_21_BROADCAST_AIRBAND_RX"
+      ]
+    },
+    {
       "device_id": "yageo_cc0402krx7r9bb104",
       "mpn": "Yageo CC0402KRX7R9BB104",
       "quantity_per_product": 170,
@@ -3283,40 +3249,6 @@
       "jlcpcb_part_number": "C113803",
       "accepted_identity_source": "hardware/architecture/devices.json",
       "historical_cost_route_only": "in stock"
-    },
-    {
-      "device_id": "yageo_cq0402brnpo9bn3r2",
-      "mpn": "CQ0402BRNPO9BN3R2",
-      "quantity_per_product": 1,
-      "scope": "base_product",
-      "role": "3.2-pF H1 high-side notch capacitor",
-      "ecad_disposition": "schematic_component_group",
-      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
-      "lifecycle": "production_active_factory_stocked_standard_pcba",
-      "contact_evidence": true,
-      "jlcpcb_part_number": "C1855281",
-      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
-      "historical_cost_route_only": null,
-      "r2_sheet_assignment": [
-        "RF_21_BROADCAST_AIRBAND_RX"
-      ]
-    },
-    {
-      "device_id": "yageo_cq0402brnpo9bn6r2",
-      "mpn": "CQ0402BRNPO9BN6R2",
-      "quantity_per_product": 1,
-      "scope": "base_product",
-      "role": "6.2-pF H1 band-pass series capacitor",
-      "ecad_disposition": "schematic_component_group",
-      "qualification": "h2_nominal_airband_candidate_h3_not_frozen",
-      "lifecycle": "production_active_factory_stocked_standard_pcba",
-      "contact_evidence": true,
-      "jlcpcb_part_number": "C577385",
-      "accepted_identity_source": "hardware/product-design/h1-airband-filter.json",
-      "historical_cost_route_only": null,
-      "r2_sheet_assignment": [
-        "RF_21_BROADCAST_AIRBAND_RX"
-      ]
     },
     {
       "device_id": "yageo_rc0402fr_07100kl",

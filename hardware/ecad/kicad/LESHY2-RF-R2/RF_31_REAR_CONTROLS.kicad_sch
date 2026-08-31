@@ -1054,7 +1054,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "25e278a1-a9ff-5828-b04e-a170ab4c6a7f")
-		(property "Reference" "C250"
+		(property "Reference" "C249"
 			(at 55.88 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1103,7 +1103,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/144a8f7c-debe-52f6-a7eb-eadc6d3faec6"
-					(reference "C250")
+					(reference "C249")
 					(unit 1)
 				)
 			)
@@ -1129,7 +1129,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b76176dc-10de-557e-84fa-c34d056d9143")
-		(property "Reference" "C251"
+		(property "Reference" "C250"
 			(at 147.32 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1178,7 +1178,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/144a8f7c-debe-52f6-a7eb-eadc6d3faec6"
-					(reference "C251")
+					(reference "C250")
 					(unit 1)
 				)
 			)
@@ -1204,7 +1204,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8a0cffff-e0c2-5aa2-97b8-3ee7d8ee6451")
-		(property "Reference" "C252"
+		(property "Reference" "C251"
 			(at 238.76 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1253,7 +1253,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/144a8f7c-debe-52f6-a7eb-eadc6d3faec6"
-					(reference "C252")
+					(reference "C251")
 					(unit 1)
 				)
 			)
@@ -1278,7 +1278,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2c714e46-7991-53a3-a055-a8be752e94d1")
-		(property "Reference" "C253"
+		(property "Reference" "C252"
 			(at 330.20 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1327,7 +1327,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/144a8f7c-debe-52f6-a7eb-eadc6d3faec6"
-					(reference "C253")
+					(reference "C252")
 					(unit 1)
 				)
 			)

@@ -185,7 +185,7 @@ def render_doc(result: dict, ru: bool) -> str:
         queue_h = "## Что ещё не является pass"
         queue = f"У `{summary['explicit_unresolved_until_extraction']}` групп параметры ещё извлекаются из точных источников. Контракт метода закрыт, но их расчёты обязаны вернуть `unresolved_fail`, пока нет min/max, unit и applicability."
         boundary = "Следующий шаг — H3-R2.1: power/DC/source/charge/state расчёты. Placement, routing, закупка и печать остаются запрещены."
-        machine = "[Машинный контракт методов и 242 назначения](../hardware/verification/generated/H3-R2-method-contract.json). Исторический `H3-VRF03` не является authority R2."
+        machine = "[Машинный контракт методов и 238 назначений](../hardware/verification/generated/H3-R2-method-contract.json). Исторический `H3-VRF03` не является authority R2."
     else:
         title = "# How R2 hardware is verified before fabrication"
         nav = "[Home](../README.md) · [Roadmap](roadmap.md) · [Parameters](parameter-model-register.md) · [Русский](verification-methods.ru.md)"
@@ -198,7 +198,7 @@ def render_doc(result: dict, ru: bool) -> str:
         queue_h = "## What is not yet a pass"
         queue = f"`{summary['explicit_unresolved_until_extraction']}` groups still require exact parameter extraction. The method contract is closed, but their calculations must return `unresolved_fail` until min/max, unit and applicability are bound."
         boundary = "The next step is H3-R2.1 power/DC/source/charge/state analysis. Placement, routing, purchasing and fabrication remain forbidden."
-        machine = "[Machine method contract and 242 assignments](../hardware/verification/generated/H3-R2-method-contract.json). Historical `H3-VRF03` is not R2 authority."
+        machine = "[Machine method contract and 238 assignments](../hardware/verification/generated/H3-R2-method-contract.json). Historical `H3-VRF03` is not R2 authority."
     method_rows = "\n".join(
         f"| `{row['id']}` | {', '.join(row['workstreams'])} | {row['method']} | {row['anti_shortcut']} |"
         for row in result["methods"]

@@ -259,8 +259,8 @@ def build() -> dict:
     for row in rows:
         counters[row["project"]][row["reference_prefix"]] += 1
         row["reference"] = f"{row['reference_prefix']}{counters[row['project']][row['reference_prefix']]}"
-    if len(rows) != 1187:
-        errors.append(f"expected 1187 fitted board instances, got {len(rows)}")
+    if len(rows) != 1185:
+        errors.append(f"expected 1185 fitted board instances, got {len(rows)}")
     project_counts = Counter(row["project"] for row in rows)
     project_graph_sheet_count = sum(
         len(project.get("sheets", [])) for project in inventory.get("projects", [])
@@ -322,7 +322,7 @@ def main() -> int:
     if not OUTPUT.is_file() or OUTPUT.read_text(encoding="utf-8") != text:
         print(f"stale: {OUTPUT.relative_to(ROOT)}")
         return 1
-    print("ok: 1187 exact fitted R2 instances across 3 native projects and 23 sheets; zero nets created")
+    print("ok: 1185 exact fitted R2 instances across 3 native projects and 23 sheets; zero nets created")
     return 0
 
 

@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "id": "LESHY2-H3-R2-AIRBAND-CORNERS",
+  "marker": "H3-R2.3",
+  "status": "pass",
+  "sources": {
+    "hardware/product-design/h1-airband-filter.json": "e98d4790ba5507f1c19405e0dec65941527b4baa85014d5c7b24c6bad4d5d549",
+    "hardware/architecture/devices.json": "884fdffc548fa279e02f77daae84bdfc7702ad0a8a22164aec6d7ccee192dd6b",
+    "hardware/ecad/h2-r2-instance-ledger-contract.json": "ff46cd92a942834ef72036d9ad125faec18cbbd1d17495a4418a7543aefe35ff",
+    "hardware/ecad/h2-r2-topology-overrides.json": "d899ab61188be2e5efb1cde05a2942d5a8bcc4638ee4158c44d5ef51040f7226"
+  },
+  "method": {
+    "corner_count": 1024,
+    "independent_effective_parameters": 10,
+    "passband_grid_step_mhz": 0.25,
+    "passband_grid_points": 77,
+    "capacitor_q": 1200.0,
+    "containment_rule": "Series equal-tolerance inductors are bounded by the summed interval; each equal 22-nH parallel pair remains inside +/-2%; parallel capacitor sums use the sum of absolute tolerances. Sweeping the effective interval therefore contains every physical part endpoint combination."
+  },
+  "factory_population": {
+    "fitted_parts": 18,
+    "distinct_mpns": 10,
+    "all_exact_mpns_stocked_standard_pcba_on_2026_08_31": true,
+    "material_cost_usd": 1.6736
+  },
+  "passband": {
+    "range_mhz": [
+      118.0,
+      137.0
+    ],
+    "maximum_allowed_loss_db": 4.5,
+    "worst_loss_db": 4.312649717557372,
+    "worst_frequency_mhz": 118.0,
+    "worst_corner": 780,
+    "margin_db": 0.18735028244262786
+  },
+  "stop_points": [
+    {
+      "frequency_mhz": 95.0,
+      "minimum_loss_db": 40.0,
+      "worst_loss_db": 42.18831399927762,
+      "margin_db": 2.188313999277618,
+      "corner": 1023
+    },
+    {
+      "frequency_mhz": 105.0,
+      "minimum_loss_db": 20.0,
+      "worst_loss_db": 20.197457758845424,
+      "margin_db": 0.19745775884542383,
+      "corner": 1023
+    },
+    {
+      "frequency_mhz": 155.0,
+      "minimum_loss_db": 20.0,
+      "worst_loss_db": 20.310011304035957,
+      "margin_db": 0.31001130403595667,
+      "corner": 0
+    },
+    {
+      "frequency_mhz": 180.0,
+      "minimum_loss_db": 40.0,
+      "worst_loss_db": 49.78613248807724,
+      "margin_db": 9.786132488077243,
+      "corner": 0
+    },
+    {
+      "frequency_mhz": 220.0,
+      "minimum_loss_db": 40.0,
+      "worst_loss_db": 72.50763244906456,
+      "margin_db": 32.50763244906456,
+      "corner": 0
+    }
+  ],
+  "minimum_margin_db": 0.18735028244262786,
+  "residual": {
+    "accepted_now": "The exact fitted topology, MPNs, component tolerances and conservative finite-Q lumped corner envelope are reviewed for schematic use.",
+    "not_claimed": "The approximately 0.19-dB minimum lumped margin is not a routed-PCB production freeze.",
+    "h6_gate": "H6 uses the reserved compact tuning island and fitted/DNP trim footprints, extracts routed pads, traces, vias, coupling, shield and enclosure parasitics, and reruns the same mask before the exact-one order.",
+    "h8_gate": "H8 VNA measurement confirms or retunes the fitted/DNP state on the assembled prototype."
+  },
+  "errors": []
+}

@@ -5,12 +5,12 @@
   "accepted_input": "H3-R2.0.1",
   "status": "reviewed",
   "expected": {
-    "component_groups": 242,
-    "board_component_groups": 237,
+    "component_groups": 238,
+    "board_component_groups": 233,
     "explicit_non_pcba_groups": 5,
-    "fitted_board_instances": 1187,
+    "fitted_board_instances": 1185,
     "source_missing": 0,
-    "factory_catalog_only_parameter_sources": 2
+    "factory_catalog_only_parameter_sources": 1
   },
   "manufacturer_source_overrides": {
     "jae_dx07s016ja1r1500": {
@@ -27,11 +27,6 @@
     }
   },
   "factory_catalog_only_parameter_sources": {
-    "chilisin_cs0805_r27j_s": {
-      "owner": "H3-R2.3",
-      "known_identity_route": "JLCPCB C108271 exact manufacturer card",
-      "required_closure": "extract the complete CS0805-R27J-S RF inductor tolerance, Q, SRF, DCR, bias and temperature envelope from a manufacturer-controlled specification or retain it as an H5 measured residual"
-    },
     "suzhou_liming_3225_27_00_10_10_10_a": {
       "owner": "H3-R2.3",
       "known_identity_route": "JLCPCB C518151 exact manufacturer card",

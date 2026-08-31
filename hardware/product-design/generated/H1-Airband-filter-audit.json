@@ -1,187 +1,180 @@
 {
-  "schema_version": 1,
-  "marker": "H1-R2.3",
-  "status": "nominal_pass_stress_fail",
+  "schema_version": 2,
+  "marker": "H3-R2.3",
+  "status": "pass",
   "candidate_is_production_frozen": false,
-  "nominal_passband_maximum_loss_db": 3.0953,
-  "stress_passband_maximum_loss_db": 4.6678,
-  "stress_scenario_count": 16386,
-  "stop_results": [
+  "lumped_topology_is_reviewed": true,
+  "corner_count": 1024,
+  "nominal_and_corner_model": {
+    "schema_version": 1,
+    "id": "LESHY2-H3-R2-AIRBAND-CORNERS",
+    "marker": "H3-R2.3",
+    "status": "pass",
+    "sources": {
+      "hardware/product-design/h1-airband-filter.json": "e98d4790ba5507f1c19405e0dec65941527b4baa85014d5c7b24c6bad4d5d549",
+      "hardware/architecture/devices.json": "884fdffc548fa279e02f77daae84bdfc7702ad0a8a22164aec6d7ccee192dd6b",
+      "hardware/ecad/h2-r2-instance-ledger-contract.json": "ff46cd92a942834ef72036d9ad125faec18cbbd1d17495a4418a7543aefe35ff",
+      "hardware/ecad/h2-r2-topology-overrides.json": "d899ab61188be2e5efb1cde05a2942d5a8bcc4638ee4158c44d5ef51040f7226"
+    },
+    "method": {
+      "corner_count": 1024,
+      "independent_effective_parameters": 10,
+      "passband_grid_step_mhz": 0.25,
+      "passband_grid_points": 77,
+      "capacitor_q": 1200.0,
+      "containment_rule": "Series equal-tolerance inductors are bounded by the summed interval; each equal 22-nH parallel pair remains inside +/-2%; parallel capacitor sums use the sum of absolute tolerances. Sweeping the effective interval therefore contains every physical part endpoint combination."
+    },
+    "factory_population": {
+      "fitted_parts": 18,
+      "distinct_mpns": 10,
+      "all_exact_mpns_stocked_standard_pcba_on_2026_08_31": true,
+      "material_cost_usd": 1.6736
+    },
+    "passband": {
+      "range_mhz": [
+        118.0,
+        137.0
+      ],
+      "maximum_allowed_loss_db": 4.5,
+      "worst_loss_db": 4.312649717557372,
+      "worst_frequency_mhz": 118.0,
+      "worst_corner": 780,
+      "margin_db": 0.18735028244262786
+    },
+    "stop_points": [
+      {
+        "frequency_mhz": 95.0,
+        "minimum_loss_db": 40.0,
+        "worst_loss_db": 42.18831399927762,
+        "margin_db": 2.188313999277618,
+        "corner": 1023
+      },
+      {
+        "frequency_mhz": 105.0,
+        "minimum_loss_db": 20.0,
+        "worst_loss_db": 20.197457758845424,
+        "margin_db": 0.19745775884542383,
+        "corner": 1023
+      },
+      {
+        "frequency_mhz": 155.0,
+        "minimum_loss_db": 20.0,
+        "worst_loss_db": 20.310011304035957,
+        "margin_db": 0.31001130403595667,
+        "corner": 0
+      },
+      {
+        "frequency_mhz": 180.0,
+        "minimum_loss_db": 40.0,
+        "worst_loss_db": 49.78613248807724,
+        "margin_db": 9.786132488077243,
+        "corner": 0
+      },
+      {
+        "frequency_mhz": 220.0,
+        "minimum_loss_db": 40.0,
+        "worst_loss_db": 72.50763244906456,
+        "margin_db": 32.50763244906456,
+        "corner": 0
+      }
+    ],
+    "minimum_margin_db": 0.18735028244262786,
+    "residual": {
+      "accepted_now": "The exact fitted topology, MPNs, component tolerances and conservative finite-Q lumped corner envelope are reviewed for schematic use.",
+      "not_claimed": "The approximately 0.19-dB minimum lumped margin is not a routed-PCB production freeze.",
+      "h6_gate": "H6 uses the reserved compact tuning island and fitted/DNP trim footprints, extracts routed pads, traces, vias, coupling, shield and enclosure parasitics, and reruns the same mask before the exact-one order.",
+      "h8_gate": "H8 VNA measurement confirms or retunes the fitted/DNP state on the assembled prototype."
+    },
+    "errors": []
+  },
+  "factory_population": [
     {
-      "frequency_mhz": 95.0,
-      "minimum_loss_db": 40.0,
-      "nominal_loss_db": 45.2265,
-      "stress_minimum_loss_db": 40.7791,
-      "nominal_pass": true,
-      "stress_pass": true
+      "device_id": "murata_lqw2basr22g00l",
+      "mpn": "LQW2BASR22G00L",
+      "jlcpcb_part": "C527968",
+      "quantity": 2,
+      "role": "S1/S3 220-nH series arms"
     },
     {
-      "frequency_mhz": 105.0,
-      "minimum_loss_db": 20.0,
-      "nominal_loss_db": 24.8191,
-      "stress_minimum_loss_db": 20.5632,
-      "nominal_pass": true,
-      "stress_pass": true
+      "device_id": "murata_lqw2bas47ng00l",
+      "mpn": "LQW2BAS47NG00L",
+      "jlcpcb_part": "C162657",
+      "quantity": 2,
+      "role": "S1/S3 47-nH series arms"
     },
     {
-      "frequency_mhz": 155.0,
-      "minimum_loss_db": 20.0,
-      "nominal_loss_db": 28.6414,
-      "stress_minimum_loss_db": 17.8506,
-      "nominal_pass": true,
-      "stress_pass": false
+      "device_id": "murata_lqw2bas22ng00l",
+      "mpn": "LQW2BAS22NG00L",
+      "jlcpcb_part": "C2042201",
+      "quantity": 4,
+      "role": "P1/P2 equal 22-nH parallel pairs"
     },
     {
-      "frequency_mhz": 180.0,
-      "minimum_loss_db": 40.0,
-      "nominal_loss_db": 44.1712,
-      "stress_minimum_loss_db": 34.1942,
-      "nominal_pass": true,
-      "stress_pass": false
+      "device_id": "murata_lqw2uasr56f00l",
+      "mpn": "LQW2UASR56F00L",
+      "jlcpcb_part": "C907989",
+      "quantity": 1,
+      "role": "S2 560-nH arm"
     },
     {
-      "frequency_mhz": 220.0,
-      "minimum_loss_db": 40.0,
-      "nominal_loss_db": 41.5904,
-      "stress_minimum_loss_db": 40.3769,
-      "nominal_pass": true,
-      "stress_pass": true
+      "device_id": "murata_gjm1555c1h5r7wb01d",
+      "mpn": "GJM1555C1H5R7WB01D",
+      "jlcpcb_part": "C2220921",
+      "quantity": 1,
+      "role": "S1 5.7-pF arm"
+    },
+    {
+      "device_id": "murata_gcm1555c1h121fa16d",
+      "mpn": "GCM1555C1H121FA16D",
+      "jlcpcb_part": "C126496",
+      "quantity": 2,
+      "role": "P1/P2 120-pF branches"
+    },
+    {
+      "device_id": "murata_gcm1555c1h200fa16d",
+      "mpn": "GCM1555C1H200FA16D",
+      "jlcpcb_part": "C437436",
+      "quantity": 2,
+      "role": "P1/P2 20-pF branches"
+    },
+    {
+      "device_id": "murata_gjm1555c1h1r4wb01d",
+      "mpn": "GJM1555C1H1R4WB01D",
+      "jlcpcb_part": "C2181496",
+      "quantity": 2,
+      "role": "P1/P2 1.4-pF fine branches"
+    },
+    {
+      "device_id": "yageo_cc0402brnpo9bn2r8",
+      "mpn": "CC0402BRNPO9BN2R8",
+      "jlcpcb_part": "C1853353",
+      "quantity": 1,
+      "role": "S2 2.8-pF arm"
+    },
+    {
+      "device_id": "murata_gjm1555c1h5r8wb01d",
+      "mpn": "GJM1555C1H5R8WB01D",
+      "jlcpcb_part": "C2177031",
+      "quantity": 1,
+      "role": "S3 5.8-pF arm"
     }
   ],
-  "nominal_loss_db": {
-    "95": 45.2265,
-    "105": 24.8191,
-    "118": 3.0622,
-    "119": 2.8501,
-    "120": 2.7914,
-    "121": 2.8055,
-    "122": 2.84,
-    "123": 2.8655,
-    "124": 2.8685,
-    "125": 2.8454,
-    "126": 2.7984,
-    "127": 2.7334,
-    "128": 2.6586,
-    "129": 2.584,
-    "130": 2.5201,
-    "131": 2.4777,
-    "132": 2.4668,
-    "133": 2.4958,
-    "134": 2.571,
-    "135": 2.6958,
-    "136": 2.8709,
-    "137": 3.0953,
-    "155": 28.6414,
-    "180": 44.1712,
-    "220": 41.5904
+  "factory_route": {
+    "assembly": "SMT Assembly",
+    "pcba_types": [
+      "Economic",
+      "Standard"
+    ],
+    "moq": 1,
+    "live_route_checked": "2026-08-31",
+    "all_exact_mpns_live_stocked": true,
+    "external_or_preorder_parts": 0,
+    "one_device_material_cost_usd": 1.6736
   },
-  "stress_envelope_db": {
-    "95": {
-      "minimum_loss_db": 40.7791,
-      "maximum_loss_db": 50.0215
-    },
-    "105": {
-      "minimum_loss_db": 20.5632,
-      "maximum_loss_db": 29.2935
-    },
-    "118": {
-      "minimum_loss_db": 2.6764,
-      "maximum_loss_db": 4.5209
-    },
-    "119": {
-      "minimum_loss_db": 2.5616,
-      "maximum_loss_db": 3.6501
-    },
-    "120": {
-      "minimum_loss_db": 2.4604,
-      "maximum_loss_db": 3.4974
-    },
-    "121": {
-      "minimum_loss_db": 2.4143,
-      "maximum_loss_db": 3.482
-    },
-    "122": {
-      "minimum_loss_db": 2.4032,
-      "maximum_loss_db": 3.5684
-    },
-    "123": {
-      "minimum_loss_db": 2.3881,
-      "maximum_loss_db": 3.7104
-    },
-    "124": {
-      "minimum_loss_db": 2.3703,
-      "maximum_loss_db": 3.8053
-    },
-    "125": {
-      "minimum_loss_db": 2.3339,
-      "maximum_loss_db": 3.8498
-    },
-    "126": {
-      "minimum_loss_db": 2.2836,
-      "maximum_loss_db": 3.8463
-    },
-    "127": {
-      "minimum_loss_db": 2.2467,
-      "maximum_loss_db": 3.8092
-    },
-    "128": {
-      "minimum_loss_db": 2.2133,
-      "maximum_loss_db": 3.7615
-    },
-    "129": {
-      "minimum_loss_db": 2.2066,
-      "maximum_loss_db": 3.6811
-    },
-    "130": {
-      "minimum_loss_db": 2.2011,
-      "maximum_loss_db": 3.576
-    },
-    "131": {
-      "minimum_loss_db": 2.212,
-      "maximum_loss_db": 3.4553
-    },
-    "132": {
-      "minimum_loss_db": 2.235,
-      "maximum_loss_db": 3.3292
-    },
-    "133": {
-      "minimum_loss_db": 2.2707,
-      "maximum_loss_db": 3.2092
-    },
-    "134": {
-      "minimum_loss_db": 2.2982,
-      "maximum_loss_db": 3.4686
-    },
-    "135": {
-      "minimum_loss_db": 2.3489,
-      "maximum_loss_db": 3.8206
-    },
-    "136": {
-      "minimum_loss_db": 2.4349,
-      "maximum_loss_db": 4.22
-    },
-    "137": {
-      "minimum_loss_db": 2.4963,
-      "maximum_loss_db": 4.6678
-    },
-    "155": {
-      "minimum_loss_db": 17.8506,
-      "maximum_loss_db": 32.6019
-    },
-    "180": {
-      "minimum_loss_db": 34.1942,
-      "maximum_loss_db": 46.0363
-    },
-    "220": {
-      "minimum_loss_db": 40.3769,
-      "maximum_loss_db": 42.7993
-    }
-  },
-  "failures": [
-    "tolerance/Q stress exceeds the 4.5-dB passband mask",
-    "stress rejection misses the mask at 155 MHz",
-    "stress rejection misses the mask at 180 MHz"
-  ],
-  "accepted_result": "H1 accepts the LC topology, 24 x 11 mm tuning envelope, alternate/DNP pad strategy and factory-placeable precision passive families as the physical boundary; this remains materially cheaper/smaller than BPF-A127+.",
-  "next_gate": "H2 carries the complete tuning network and nominal engineering values into ECAD. H3 proves the topology with manufacturer models and bounded pre-layout parasitics. H6 repeats the proof with routed/extracted PCB parasitics before the H7 order, and H8 selects the production fitted/DNP state by VNA; failure returns to an exact purchased filter or a different receiver boundary."
+  "residual_boundary": {
+    "accepted_now": "The exact fitted topology, MPNs, component tolerances and conservative finite-Q lumped corner envelope are reviewed for schematic use.",
+    "not_claimed": "The approximately 0.19-dB minimum lumped margin is not a routed-PCB production freeze.",
+    "h6_gate": "H6 uses the reserved compact tuning island and fitted/DNP trim footprints, extracts routed pads, traces, vias, coupling, shield and enclosure parasitics, and reruns the same mask before the exact-one order.",
+    "h8_gate": "H8 VNA measurement confirms or retunes the fitted/DNP state on the assembled prototype."
+  }
 }

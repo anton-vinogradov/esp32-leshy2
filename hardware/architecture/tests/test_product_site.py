@@ -154,6 +154,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/h1-r2-cost.ru.md",
         "docs/h1-airband-filter.md",
         "docs/h1-airband-filter.ru.md",
+        "docs/airband-electrical-verification.md",
+        "docs/airband-electrical-verification.ru.md",
         "docs/h1-r2-power-thermal.md",
         "docs/h1-r2-power-thermal.ru.md",
         "docs/h2-r2-electrical-prerequisites.md",

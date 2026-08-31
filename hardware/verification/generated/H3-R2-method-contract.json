@@ -4,13 +4,13 @@
   "marker": "H3-R2.0.3",
   "status": "pass",
   "accepted_input": "H3-R2.0.2",
-  "input_freeze_sha256": "13587b2a5e62b3689a8335abc5340c67036c1faa3696ec4f69bd2bb0f1c14e06",
-  "parameter_register_sha256": "24e4be1a32e8e6b2288a825a14bf5fb8f89e06465742fd6a58f6a330e7237569",
-  "method_contract_sha256": "95841fd757965da95792cd58ed8738fd9ad0078973d8e73bb3744746ff2e1e3c",
+  "input_freeze_sha256": "85bfa19be35c6f56ca53d344dafd6296194bb24a419122442814e0e1d3838757",
+  "parameter_register_sha256": "5b49de9781f5d3a93ad640fb5ec5bd2fb7ad4c29d83d3bad356b5933bda0b522",
+  "method_contract_sha256": "23265b0d0fd93f0251ddfbccc1b09707418c0210752546d365c3e43331263588",
   "source_sha256": {
-    "hardware/verification/h3-r2-method-contract.json": "c7a0de0068c5eefc55f4074bab8f8905a2f833bb326f458dd2aeb14455988d4e",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "e743b1373f35f10b33c4c2892a7355625064a911f77b5a3bcaf5ccd0080378d9",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "d6bc97f28ed4c3c292892f10310018e7502af45cb9e84c96c20d202a65eb85b8"
+    "hardware/verification/h3-r2-method-contract.json": "698cf8aa9b32afdc135608c401cfb9750b340acd3252bccae387d666f3bcc5cb",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "b89fe8fcd83f226e33e1e9f97578f084629a34438e86bc652cd66131f135417c",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "c1adf7bd89479ffcb54c45e31f104a84dd92acddf52f8559ed6d3402f712b6ca"
   },
   "toolchain": {
     "python": ">=3.12,<3.15",
@@ -367,21 +367,6 @@
         "M-INT",
         "M-RF",
         "M-STATE"
-      ],
-      "parameter_state": "explicit_extraction_queue",
-      "missing_parameter_disposition": "unresolved_fail"
-    },
-    {
-      "device_id": "chilisin_cs0805_r27j_s",
-      "parameter_class": "passive_corner",
-      "owner_workstreams": [
-        "H3-R2.3"
-      ],
-      "method_ids": [
-        "M-ANALOG",
-        "M-INT",
-        "M-THERMAL",
-        "M-TRANS"
       ],
       "parameter_state": "explicit_extraction_queue",
       "missing_parameter_disposition": "unresolved_fail"
@@ -987,7 +972,22 @@
       "missing_parameter_disposition": "evaluate_authoritative_corners"
     },
     {
-      "device_id": "murata_gcm1555c1h181fa16d",
+      "device_id": "murata_gcm1555c1h121fa16d",
+      "parameter_class": "passive_corner",
+      "owner_workstreams": [
+        "H3-R2.3"
+      ],
+      "method_ids": [
+        "M-ANALOG",
+        "M-INT",
+        "M-THERMAL",
+        "M-TRANS"
+      ],
+      "parameter_state": "explicit_extraction_queue",
+      "missing_parameter_disposition": "unresolved_fail"
+    },
+    {
+      "device_id": "murata_gcm1555c1h200fa16d",
       "parameter_class": "passive_corner",
       "owner_workstreams": [
         "H3-R2.3"
@@ -1050,21 +1050,6 @@
       "missing_parameter_disposition": "unresolved_fail"
     },
     {
-      "device_id": "murata_gjm1555c1h1r0wb01d",
-      "parameter_class": "passive_corner",
-      "owner_workstreams": [
-        "H3-R2.3"
-      ],
-      "method_ids": [
-        "M-ANALOG",
-        "M-INT",
-        "M-THERMAL",
-        "M-TRANS"
-      ],
-      "parameter_state": "explicit_extraction_queue",
-      "missing_parameter_disposition": "unresolved_fail"
-    },
-    {
       "device_id": "murata_gjm1555c1h1r2bb01d",
       "parameter_class": "passive_corner",
       "owner_workstreams": [
@@ -1094,36 +1079,6 @@
       "missing_parameter_disposition": "unresolved_fail"
     },
     {
-      "device_id": "murata_gjm1555c1h1r9wb01d",
-      "parameter_class": "passive_corner",
-      "owner_workstreams": [
-        "H3-R2.3"
-      ],
-      "method_ids": [
-        "M-ANALOG",
-        "M-INT",
-        "M-THERMAL",
-        "M-TRANS"
-      ],
-      "parameter_state": "explicit_extraction_queue",
-      "missing_parameter_disposition": "unresolved_fail"
-    },
-    {
-      "device_id": "murata_gjm1555c1h2r4wb01d",
-      "parameter_class": "passive_corner",
-      "owner_workstreams": [
-        "H3-R2.3"
-      ],
-      "method_ids": [
-        "M-ANALOG",
-        "M-INT",
-        "M-THERMAL",
-        "M-TRANS"
-      ],
-      "parameter_state": "explicit_extraction_queue",
-      "missing_parameter_disposition": "unresolved_fail"
-    },
-    {
       "device_id": "murata_gjm1555c1h4r7bb01d",
       "parameter_class": "passive_corner",
       "owner_workstreams": [
@@ -1139,7 +1094,22 @@
       "missing_parameter_disposition": "unresolved_fail"
     },
     {
-      "device_id": "murata_gjm1555c1h5r6bb01d",
+      "device_id": "murata_gjm1555c1h5r7wb01d",
+      "parameter_class": "passive_corner",
+      "owner_workstreams": [
+        "H3-R2.3"
+      ],
+      "method_ids": [
+        "M-ANALOG",
+        "M-INT",
+        "M-THERMAL",
+        "M-TRANS"
+      ],
+      "parameter_state": "explicit_extraction_queue",
+      "missing_parameter_disposition": "unresolved_fail"
+    },
+    {
+      "device_id": "murata_gjm1555c1h5r8wb01d",
       "parameter_class": "passive_corner",
       "owner_workstreams": [
         "H3-R2.3"
@@ -1177,21 +1147,6 @@
         "M-INT",
         "M-RF",
         "M-STATE"
-      ],
-      "parameter_state": "explicit_extraction_queue",
-      "missing_parameter_disposition": "unresolved_fail"
-    },
-    {
-      "device_id": "murata_gjm1555c1h8r2bb01d",
-      "parameter_class": "passive_corner",
-      "owner_workstreams": [
-        "H3-R2.3"
-      ],
-      "method_ids": [
-        "M-ANALOG",
-        "M-INT",
-        "M-THERMAL",
-        "M-TRANS"
       ],
       "parameter_state": "explicit_extraction_queue",
       "missing_parameter_disposition": "unresolved_fail"
@@ -1662,7 +1617,22 @@
       "missing_parameter_disposition": "evaluate_authoritative_corners"
     },
     {
-      "device_id": "murata_lqw15an8n2g80d",
+      "device_id": "murata_lqw2bas22ng00l",
+      "parameter_class": "passive_corner",
+      "owner_workstreams": [
+        "H3-R2.3"
+      ],
+      "method_ids": [
+        "M-ANALOG",
+        "M-INT",
+        "M-THERMAL",
+        "M-TRANS"
+      ],
+      "parameter_state": "explicit_extraction_queue",
+      "missing_parameter_disposition": "unresolved_fail"
+    },
+    {
+      "device_id": "murata_lqw2bas47ng00l",
       "parameter_class": "passive_corner",
       "owner_workstreams": [
         "H3-R2.3"
@@ -1693,21 +1663,6 @@
     },
     {
       "device_id": "murata_lqw2basr33g00l",
-      "parameter_class": "passive_corner",
-      "owner_workstreams": [
-        "H3-R2.3"
-      ],
-      "method_ids": [
-        "M-ANALOG",
-        "M-INT",
-        "M-THERMAL",
-        "M-TRANS"
-      ],
-      "parameter_state": "explicit_extraction_queue",
-      "missing_parameter_disposition": "unresolved_fail"
-    },
-    {
-      "device_id": "murata_lqw2uas1r0g00l",
       "parameter_class": "passive_corner",
       "owner_workstreams": [
         "H3-R2.3"
@@ -3318,6 +3273,21 @@
       "missing_parameter_disposition": "evaluate_authoritative_corners"
     },
     {
+      "device_id": "yageo_cc0402brnpo9bn2r8",
+      "parameter_class": "passive_corner",
+      "owner_workstreams": [
+        "H3-R2.3"
+      ],
+      "method_ids": [
+        "M-ANALOG",
+        "M-INT",
+        "M-THERMAL",
+        "M-TRANS"
+      ],
+      "parameter_state": "explicit_extraction_queue",
+      "missing_parameter_disposition": "unresolved_fail"
+    },
+    {
       "device_id": "yageo_cc0402krx7r9bb104",
       "parameter_class": "passive_corner",
       "owner_workstreams": [
@@ -3354,36 +3324,6 @@
       ],
       "parameter_state": "structured_seed_present",
       "missing_parameter_disposition": "evaluate_authoritative_corners"
-    },
-    {
-      "device_id": "yageo_cq0402brnpo9bn3r2",
-      "parameter_class": "general_component",
-      "owner_workstreams": [
-        "H3-R2.3"
-      ],
-      "method_ids": [
-        "M-ANALOG",
-        "M-INT",
-        "M-THERMAL",
-        "M-TRANS"
-      ],
-      "parameter_state": "explicit_extraction_queue",
-      "missing_parameter_disposition": "unresolved_fail"
-    },
-    {
-      "device_id": "yageo_cq0402brnpo9bn6r2",
-      "parameter_class": "general_component",
-      "owner_workstreams": [
-        "H3-R2.3"
-      ],
-      "method_ids": [
-        "M-ANALOG",
-        "M-INT",
-        "M-THERMAL",
-        "M-TRANS"
-      ],
-      "parameter_state": "explicit_extraction_queue",
-      "missing_parameter_disposition": "unresolved_fail"
     },
     {
       "device_id": "yageo_rc0402fr_07100kl",
@@ -3967,23 +3907,23 @@
     }
   ],
   "summary": {
-    "parameter_rows": 242,
+    "parameter_rows": 238,
     "parameter_classes": 9,
     "workstreams": 7,
     "methods": 9,
     "pass_fail_rules": 12,
-    "assigned_parameter_rows": 242,
+    "assigned_parameter_rows": 238,
     "method_usage": {
-      "M-ANALOG": 88,
+      "M-ANALOG": 84,
       "M-DC": 68,
       "M-DIGITAL": 87,
-      "M-INT": 242,
+      "M-INT": 238,
       "M-RF": 84,
       "M-STATE": 157,
-      "M-THERMAL": 116,
-      "M-TRANS": 129
+      "M-THERMAL": 112,
+      "M-TRANS": 125
     },
-    "explicit_unresolved_until_extraction": 172,
+    "explicit_unresolved_until_extraction": 168,
     "open_method_questions": 0,
     "errors": 0
   },
