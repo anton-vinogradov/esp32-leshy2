@@ -46,7 +46,7 @@ broadcast- или Airband-передатчика в Лешем2 нет. VHF/UHF,
 ### Передняя UI/radio-плата
 
 - `ESP32-S3-WROOM-1U-N16R8`: меню, touch, локальный для S3 клавишный тракт `TCA9539PWR`, прямой
-  display TX i8080-8 24 МГц и BLE/Wi-Fi.
+  display TX i8080-8 на точных 20 МГц и BLE/Wi-Fi.
 - `ESP32-C5-WROOM-1U-N8R8`: Wi-Fi 2,4/5 ГГц, 802.15.4 и IR.
 - Передний RP `SC1512-A4`: links S3/C5/задний RP, три локальных nRF24 и microSD.
 - Три полных острова nRF: radio, command/return buffers, safety-gate и своё
@@ -127,7 +127,7 @@ M1 не является силовым элементом: четыре compres
 
 ## Интерфейс и сервис
 
-- Портретный IPS 3,5″ 320×480 `ER-TFT035IPS-6` + `ER-TPC035-6`, `ILI9488` + `FT6236`, прямой i8080-8 24 МГц через пассивный адаптер `L2-DISP-ADP-001-B`.
+- Портретный IPS 3,5″ 320×480 `ER-TFT035IPS-6` + `ER-TPC035-6`, `ILI9488` + `FT6236`, прямой i8080-8 на точных 20 МГц через пассивный адаптер `L2-DISP-ADP-001-B`.
 - Пять серийных navigation-switches образуют D-pad; восемь боковых function
   keys, PTT и encoder.
 - Два выровненных ряда по пять пользовательских status-LED под экраном.

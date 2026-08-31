@@ -116,7 +116,7 @@ clearly labels retained R1 ECAD as non-current evidence.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** ▶️ current at **`H3-R2.4`**; H3-R2.3 is reviewed.
+**Status:** ▶️ current at **`H3-R2.5`**; H3-R2.4 is reviewed.
 
 [`H3-R2.0.1`](h3-r2-input-freeze.md) reviewed the hash-bound H2 input and complete R2
 verification matrix. [`H3-R2.0.2`](parameter-model-register.md) reviewed exact
@@ -140,8 +140,10 @@ admission or automatic restart. [`H3-R2.2.3/.4`](power-transition-result.md)
 reviews five protected-rail starts, four load-step envelopes and ten
 watchdog/fault-display cases with zero analytical failures or automatic restart.
 [`H3-R2.3`](analog-electrical-verification.md) reviews all calculable display,
-audio, IR, battery and Airband analog corners. Current H3-R2.4 work verifies
-digital levels, timing, loading and direct i8080-8. The expected result is complete power, digital, RF, audio,
+audio, IR, battery and Airband analog corners. [`H3-R2.4`](digital-electrical-verification.md)
+reviews logic levels, timing, schematic loading, USB/service ownership, M1 and
+the direct exact-20-MHz i8080-8 path. Current H3-R2.5 work verifies RF feeds,
+coexistence, quiet states and three-nRF24 concurrency. The expected result is complete power, digital, RF, audio,
 timing, thermal and fault verification. Every legal state and transition must
 pass before fabrication.
 

@@ -54,7 +54,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
         plan_normalized = " ".join(plan.split())
-        self.assertEqual("H3-R2.4", roadmap["current_substep"])
+        self.assertEqual("H3-R2.5", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
         self.assertEqual("H5.0.3-R1", h5["current_substep"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
@@ -304,7 +304,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
         self.assertEqual(1052, sum(line["quantity"] for line in lines))
-        self.assertEqual(210, len(lines))
+        self.assertEqual(211, len(lines))
         self.assertEqual(
             0,
             sum(line["orderable_evidence"] == "missing" for line in lines),
@@ -314,7 +314,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            201,
+            202,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
@@ -397,11 +397,11 @@ class ArchitectureValidationTests(unittest.TestCase):
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
         self.assertIn("**1053** architecture instances", rendered)
         self.assertIn("**1052** supplied/costed placements", rendered)
-        self.assertIn("**210/210** used lines", rendered)
-        self.assertIn("**210/210** lines", rendered)
-        self.assertIn("**201/210** lines", rendered)
+        self.assertIn("**211/211** used lines", rendered)
+        self.assertIn("**211/211** lines", rendered)
+        self.assertIn("**202/211** lines", rendered)
         self.assertIn("**1038/1052** supplied placements", rendered)
-        self.assertIn("USD 251.9207", rendered)
+        self.assertIn("USD 251.9243", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -2999,7 +2999,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
         self.assertEqual("ti_tps2553drvr_1", candidate["instances"]["backlight_efuse"])
         self.assertEqual(
-            "yageo_rc0402jr_070rl",
+            "fh_rs_06l2r70ft",
             candidate["instances"]["backlight_series_resistor"],
         )
 

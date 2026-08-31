@@ -12,8 +12,8 @@
     "status": "pass",
     "sources": {
       "hardware/product-design/h1-airband-filter.json": "e98d4790ba5507f1c19405e0dec65941527b4baa85014d5c7b24c6bad4d5d549",
-      "hardware/architecture/devices.json": "884fdffc548fa279e02f77daae84bdfc7702ad0a8a22164aec6d7ccee192dd6b",
-      "hardware/ecad/h2-r2-instance-ledger-contract.json": "ff46cd92a942834ef72036d9ad125faec18cbbd1d17495a4418a7543aefe35ff",
+      "hardware/architecture/devices.json": "bc933e01c50be1af4ff8ae75be7b143b206ddede6440d67889fa3a6793af650f",
+      "hardware/ecad/h2-r2-instance-ledger-contract.json": "31a334bdee69f927584b7cd7597f868126c2f5d45d740a06aca4549574591808",
       "hardware/ecad/h2-r2-topology-overrides.json": "d899ab61188be2e5efb1cde05a2942d5a8bcc4638ee4158c44d5ef51040f7226"
     },
     "method": {

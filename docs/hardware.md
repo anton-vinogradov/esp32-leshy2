@@ -47,7 +47,7 @@ safety gates.
 ### Front UI/radio PCB
 
 - `ESP32-S3-WROOM-1U-N16R8`: menus, touch, the S3-local `TCA9539PWR` key path,
-  direct 24-MHz i8080-8 display TX and BLE/Wi-Fi.
+  direct exact-20-MHz i8080-8 display TX and BLE/Wi-Fi.
 - `ESP32-C5-WROOM-1U-N8R8`: 2.4/5-GHz Wi-Fi, 802.15.4 and IR.
 - `SC1512-A4` front RP: C5/S3/rear-RP links, three local nRF24 paths and microSD.
 - Three complete nRF islands: radio, command/return buffers, safety gate and
@@ -130,7 +130,7 @@ the drawing is its pad span.
 
 ## User interface and service
 
-- 3.5-inch portrait 320×480 IPS `ER-TFT035IPS-6` + `ER-TPC035-6`, `ILI9488` + `FT6236`, direct 24-MHz i8080-8 through passive adapter `L2-DISP-ADP-001-B`.
+- 3.5-inch portrait 320×480 IPS `ER-TFT035IPS-6` + `ER-TPC035-6`, `ILI9488` + `FT6236`, direct exact-20-MHz i8080-8 through passive adapter `L2-DISP-ADP-001-B`.
 - Five serial navigation switches forming the D-pad, eight side function keys,
   PTT and encoder.
 - Two aligned rows of five user-facing status LEDs below the display.

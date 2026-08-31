@@ -5,13 +5,13 @@
   "status": "reviewed_inrush_load_steps_watchdog_and_retained_fault_display",
   "source_sha256": {
     "hardware/verification/h3-r2-inrush-watchdog-contract.json": "0658274da5110cd64dc6e8100501197f8b82a7287ef3195d8af29a12e29b4b90",
-    "hardware/verification/h3-r2-verification-plan.json": "bf78d159d0b4146cbf8f573abbf8775c23f9591d75282ce8d4c1759b13b43f0a",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "3104d2fbb0475529cb981b731cbc7db722e0483837eb897ed236ce3bad40c4eb",
-    "hardware/verification/generated/H3-R2-transition-sequences.json": "94080290b835b514bbc83a78fdeab9aaf4ebc4a4fb051a690bb8342e6706a85c",
-    "hardware/verification/generated/H3-R2-handover.json": "21b3701a5575738b0d95e4f84f9b72d345fd30e46a647331dacbd81eddb73a2d",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "9d9728cab32afec5851c2867c2bf87037ba1b02a9fee92c4106bb3efd5069e82",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "17748909716153678a2761773ff12c6e45997d7ed337514af295c745d4d5a2b7",
-    "hardware/architecture/devices.json": "d4a0fbb7b98115282faae47e131dd981639310790b39562f85ab083b144e50b7"
+    "hardware/verification/h3-r2-verification-plan.json": "ca52fa3ced0f59bb6f786cf0a299f34cbf51f5559a213a40da6ae126e777a0b4",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "29cd49f457011517e7cd4f50f66f8e8cf80e31f12ecb2e6b014946f2e96c43f0",
+    "hardware/verification/generated/H3-R2-transition-sequences.json": "9c016a8851667ebc5a657bcc1b3a07d434e53296490102095faa493baed9dd73",
+    "hardware/verification/generated/H3-R2-handover.json": "94c786a2ae0f385d031043955b87dafb570755a405252df8af74c0f0520a3a41",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "7e904d6d9d855bd5c297b6924a7d2d9b0d4b837fa118f46e0e8f0d68bd0c4fe7",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "dd28abcfd626ea7b2581fe22a2d4c02a91e45ec1c064304f33a51ebbbd26e1a0",
+    "hardware/architecture/devices.json": "bc933e01c50be1af4ff8ae75be7b143b206ddede6440d67889fa3a6793af650f"
   },
   "datasheet_sources": {
     "tps25961": {

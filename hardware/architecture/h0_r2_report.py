@@ -165,7 +165,7 @@ def render_report(data: dict, ru: bool) -> str:
             "на S3, высокоскоростные периферийные тракты разгружены через Hub RP, "
             "бортовой видеотракт удалён, а Airband AM 118–137 МГц теперь обязателен."
         )
-        current = "Текущий точный маркер — **H3-R2.4**. Физическая проекция H1-R2.37 с двумя независимыми RP2354B, точными GPIO0..47, M1 и 226 корпусами принята и прошла ревью 2026-08-30. Native R2 H2 материализует 1 185 экземпляров и 823 nets в трёх проектах KiCad без замечаний ERC. H3-R2.0 фиксирует входы, provenance и методы; H3-R2.1 и H3-R2.2 проведены ревью. H3-R2.3 проводит ревью всех рассчитываемых analog corners дисплея, аудио, IR, аккумуляторов и Airband. H3-R2.4 проверяет digital levels, timing, loading и прямой i8080-8."
+        current = "Текущий точный маркер — **H3-R2.5**. Физическая проекция H1-R2.37 с двумя независимыми RP2354B, точными GPIO0..47, M1 и 226 корпусами принята и прошла ревью 2026-08-30. Native R2 H2 материализует 1 185 экземпляров и 823 nets в трёх проектах KiCad без замечаний ERC. H3-R2.0 фиксирует входы, provenance и методы; H3-R2.1–R2.4 проведены ревью. H3-R2.4 подтверждает уровни, тайминги, USB/service ownership, M1 и прямой i8080-8 на точных 20 МГц. H3-R2.5 проверяет RF feeds, coexistence, quiet states и одновременное обслуживание трёх nRF24."
         sections = {
             "result": "Что зафиксировано",
             "air": "Airband RX",
@@ -204,7 +204,7 @@ def render_report(data: dict, ru: bool) -> str:
             "high-throughput peripheral work is offloaded through the Hub RP, the onboard "
             "video path is removed, and 118–137 MHz Airband AM is now mandatory."
         )
-        current = "The exact current marker is **H3-R2.4**. The H1-R2.37 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, M1 and 226 bodies was accepted and reviewed on 2026-08-30. Native R2 H2 materializes 1,185 instances and 823 nets in three KiCad projects with zero ERC findings. H3-R2.0 freezes inputs, provenance and methods; H3-R2.1 and H3-R2.2 are reviewed. H3-R2.3 reviews all calculable display, audio, IR, battery and Airband analog corners. H3-R2.4 verifies digital levels, timing, loading and direct i8080-8."
+        current = "The exact current marker is **H3-R2.5**. The H1-R2.37 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, M1 and 226 bodies was accepted and reviewed on 2026-08-30. Native R2 H2 materializes 1,185 instances and 823 nets in three KiCad projects with zero ERC findings. H3-R2.0 freezes inputs, provenance and methods; H3-R2.1 through R2.4 are reviewed. H3-R2.4 proves levels, timing, USB/service ownership, M1 and direct i8080-8 at an exact 20 MHz. H3-R2.5 verifies RF feeds, coexistence, quiet states and concurrent service of three nRF24 paths."
         sections = {
             "result": "Accepted result",
             "air": "Airband RX",
@@ -268,14 +268,14 @@ def render_report(data: dict, ru: bool) -> str:
     result_lines = (
         "- Один пользовательский порт `FM / SW / AIR RX`; новый внешний разъём не добавлен.\n"
         "- Airband — подрежим `BROADCAST_RX`, поэтому его RF-домен не включается одновременно с TX-группой.\n"
-        "- Кнопки остаются на локальном для S3 TCA9539PWR, энкодер и USB подключены к S3 напрямую; direct i8080-8 даёт 24 МБ/с при безопасных для ILI9488 24 МГц.\n"
+        "- Кнопки остаются на локальном для S3 TCA9539PWR, энкодер и USB подключены к S3 напрямую; direct i8080-8 даёт 20 МБ/с на точных 20 МГц от штатного делителя ESP-IDF.\n"
         "- Передний RP владеет тремя nRF24 и microSD; задний RP владеет Si4732/Airband, CC1101, voice, аудио, M5 и одним из U214/U219.\n"
         "- M1 переносит control/status, safety, USB и питание; контакт 35 — latched FAULT_KILL лицевого индикатора, контакт 36 — отдельный reset S3 fault-UI."
         if ru
         else
         "- One user port is labelled `FM / SW / AIR RX`; no new external connector is added.\n"
         "- Airband is a `BROADCAST_RX` submode, so its RF domain cannot run together with a TX group.\n"
-        "- Buttons stay on the S3-local TCA9539PWR path while encoder and USB remain direct; direct i8080-8 provides 24 MB/s at the ILI9488-safe 24 MHz.\n"
+        "- Buttons stay on the S3-local TCA9539PWR path while encoder and USB remain direct; direct i8080-8 provides 20 MB/s at an exact 20 MHz from the standard ESP-IDF divider.\n"
         "- The front RP owns three nRF24 paths and microSD; the rear RP owns Si4732/Airband, CC1101, voice, audio, M5 and exactly one U214/U219 profile.\n"
         "- M1 carries control/status, safety, USB and power; contact 35 carries latched FAULT_KILL to the front indicator and contact 36 is the independent S3 fault-UI reset."
     )

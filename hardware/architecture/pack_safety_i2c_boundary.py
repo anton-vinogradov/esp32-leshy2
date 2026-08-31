@@ -150,11 +150,20 @@ def render(result: dict[str, Any]) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--write", action="store_true")
+    parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
     result = build()
+    expected = render(result)
     if args.write:
-        OUTPUT.write_text(render(result), encoding="utf-8")
-    print(render(result), end="")
+        OUTPUT.write_text(expected, encoding="utf-8")
+        print(f"wrote {OUTPUT.relative_to(ROOT)}")
+    elif args.check:
+        if not OUTPUT.is_file() or OUTPUT.read_text(encoding="utf-8") != expected:
+            print(f"stale: {OUTPUT.relative_to(ROOT)}")
+            return 1
+        print(f"current: {OUTPUT.relative_to(ROOT)}")
+    else:
+        print(expected, end="")
     return 0 if not result["errors"] else 1
 
 

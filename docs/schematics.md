@@ -37,7 +37,7 @@ flowchart TD
   C5["ESP32-C5-WROOM-1U-N8R8<br/>2.4/5 GHz, 802.15.4, IR"]
   FRP["SC1512-A4 · front RP<br/>3× nRF24, microSD"]
   RRP["SC1512-A4 · rear RP<br/>RF, audio, expansion"]
-  LCD["ER-TFT035IPS-6 + ER-TPC035-6<br/>ILI9488/FT6236 · direct 8-bit i8080 · 24 MHz"]
+  LCD["ER-TFT035IPS-6 + ER-TPC035-6<br/>ILI9488/FT6236 · direct 8-bit i8080 · exact 20 MHz"]
   M1["Hirose FX8C-80<br/>31 signals · 14 main-power · 2 AON<br/>24 returns · 9 NC reserve"]
 
   S3 -->|"LCD_CAM TX + GDMA"| LCD

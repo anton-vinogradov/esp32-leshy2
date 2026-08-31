@@ -11,7 +11,7 @@
     "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_pro": "8d6db426a22f3adc2ab52b66429dbc5de928a3708e4b70212ab409a74b796fe3",
     "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "ab4e73fe576c5e1557e6695b89fd3ce182c4533a61e984bd755d3c25b287ce97",
     "hardware/ecad/kicad/LESHY2-UI/UI_10_S3_CORE_MEMORY_BOOT.kicad_sch": "c93c22c8c38edf6ba96e873a74fa367ce06c081c280e2b4c43be1d6bcda9b5d5",
-    "hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch": "aa33a0738e87e7f6686ebaa49ac566f5ffb484ae6347d6f9ac88c7801f7f6234",
+    "hardware/ecad/kicad/LESHY2-UI/UI_11_DISPLAY_TOUCH_STORAGE.kicad_sch": "235fc32fe46d6eb3368e6da2773a89c3b76ba77e981f573452333b8b83674f75",
     "hardware/ecad/kicad/LESHY2-UI/UI_12_CONTROLS_INDICATORS.kicad_sch": "5addad9d1f094b3af924445e877aca62703c25593bc782e6bb2b186ddd55b9f5",
     "hardware/ecad/kicad/LESHY2-UI/UI_13_AUDIO_CODEC_HEADSET.kicad_sch": "ec2d898b3ac74e46778a28871cbc6540e63980478605d6ab833545293655cc69",
     "hardware/ecad/kicad/LESHY2-UI/UI_20_C5_RADIO_IR_SERVICE.kicad_sch": "1043fe6979b1d18418e1ef4523f5d2a1847d7e925f4853e379c4defc3a54d197",
@@ -40,7 +40,7 @@
     "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch": "22e2a86e866ae34846d8e526e21fe4029a0891dbc1c85ea6a266a353e4fe307c",
     "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_pro": "a38d2ae6ec8a9459cc66d6ca17792208314efced730a29847c7e2011131a486a",
     "hardware/ecad/kicad/L2-DISP-ADP-001-A/L2-DISP-ADP-001-A.kicad_sch": "9dc3755f2e8b625b4bd68d28cbd153f50ebf12e567d8270598277a041d8187a3",
-    "hardware/ecad/libraries/leshy2.kicad_sym": "a6903e3f6ace0b76b74638e66a6362df0e6187ce8046841007eac01b49bee023"
+    "hardware/ecad/libraries/leshy2.kicad_sym": "574919cf73480d4d804d45573b7a3b0070bba5d9f99661555edf50b362d0902e"
   },
   "projects": [
     {

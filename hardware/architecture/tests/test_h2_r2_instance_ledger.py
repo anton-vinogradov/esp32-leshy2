@@ -29,7 +29,7 @@ class H2R2InstanceLedgerTests(unittest.TestCase):
         self.assertEqual([], self.ledger["errors"])
         summary = self.ledger["summary"]
         self.assertEqual(1185, summary["fitted_board_instance_count"])
-        self.assertEqual(233, summary["component_group_count"])
+        self.assertEqual(234, summary["component_group_count"])
         self.assertEqual(23, summary["project_graph_sheet_count"])
         self.assertEqual(len(summary["sheet_counts"]), summary["populated_sheet_count"])
         self.assertEqual(

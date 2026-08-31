@@ -58075,7 +58075,7 @@
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
+				(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -58089,7 +58089,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Description" "0ohm_0402_jumper_resistor"
+				(property "Description" "2r7ohm_1pct_1206_0_25w_backlight_current_softening_resistor"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)

@@ -6,12 +6,12 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "26a47056a531ad64d6276dc7a2f41512067725f85d417fb9cc19d6fd89e51922",
+      "sha256": "c53c6b6452923107d28ed7f87ab04b377fadffbb802e58a0749abef8c5c78323",
       "authority": true
     },
     "exact_definition_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "c1a813404ebaf164cc3147b4afbf8fade728fd4f37ead36965c52ce05ee685f1",
+      "sha256": "b3ca4e5a5d319fd99daa4399915bef23bb96e3ef80cc6645323a1cba8cd2d75c",
       "authority": true
     },
     "physical_source_table": {
@@ -21,7 +21,7 @@
     },
     "historical_instance_hints": {
       "path": "hardware/ecad/generated/H2-instance-ledger.json",
-      "sha256": "7a265f865aac48c9e8826ad296f49164ad514a7f576b9a76efb0f2684580508e",
+      "sha256": "0e54e6c0b5a16f34bbedb5a17e04d49fbe2c1ee25db17528ba5fad0479bf7a33",
       "authority": false
     }
   },
@@ -62,7 +62,7 @@
       "explicit_current_r2_allocation": 93,
       "reconciled_historical_instance_name_hint": 107
     },
-    "former_sheet_hints_reconciled": 722,
+    "former_sheet_hints_reconciled": 723,
     "native_schematic_nets_created": 0,
     "errors": 0
   },

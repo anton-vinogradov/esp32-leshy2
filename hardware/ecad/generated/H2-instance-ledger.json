@@ -9166,9 +9166,9 @@
       "instance_uid": "LESHY2-UI:backlight_series_resistor",
       "instance": "backlight_series_resistor",
       "project": "LESHY2-UI",
-      "device_key": "yageo_rc0402jr_070rl",
-      "mpn": "Yageo RC0402JR-070RL",
-      "role": "0ohm_0402_jumper_resistor",
+      "device_key": "fh_rs_06l2r70ft",
+      "mpn": "FH RS-06L2R70FT",
+      "role": "2r7ohm_1pct_1206_0_25w_backlight_current_softening_resistor",
       "board": "ui-control-pcb",
       "sheet": "UI_11_DISPLAY_TOUCH_STORAGE",
       "electrical_disposition": "board_fitted_component",
@@ -9180,10 +9180,10 @@
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
-        "document": "Yageo RC general-purpose chip resistor specification",
-        "version": "current exact order code checked 2026-08-18",
-        "url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_16.pdf",
-        "checked": "2026-08-18"
+        "document": "FH General Thick Film Chip Fixed Resistor official datasheet",
+        "version": "I 12.0 current official drawing checked 2026-08-31",
+        "url": "https://www.fhcomp.com/uploads/20260810/152605_1-R-%E5%B8%B8%E8%A7%84%E5%8E%9A%E8%86%9C%E7%89%87%E5%BC%8F%E5%9B%BA%E5%AE%9A%E7%94%B5%E9%98%BB%E5%99%A8-I%2012.0.pdf",
+        "checked": "2026-08-31"
       }
     },
     {

@@ -3,7 +3,7 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H3-R2.4`.** H0, H1, [H2-R2.1.5](h2-acceptance.md), [H3-R2.1 DC/source](power-dc-source-result.md), the complete [H3-R2.2 power-transition workstream](power-transition-result.md) and [H3-R2.3 analog verification](analog-electrical-verification.md) are reviewed. H3-R2.4 now verifies digital levels, timing, loading and direct i8080-8.
+> **▶ Current hardware boundary: `H3-R2.5`.** H0, H1, [H2-R2.1.5](h2-acceptance.md), [H3-R2.1 DC/source](power-dc-source-result.md), the complete [H3-R2.2 power-transition workstream](power-transition-result.md), [H3-R2.3 analog verification](analog-electrical-verification.md) and [H3-R2.4 digital verification](digital-electrical-verification.md) are reviewed. H3-R2.5 now verifies RF feeds, coexistence, quiet states and three-nRF24 concurrency.
 > No R2 KiCad routing, quote, reservation or order is authorized.
 
 Status reconciled: **31 August 2026**.
@@ -32,10 +32,10 @@ marker and current checklist; it is never presented as review of the whole phase
 
 ## Reviewed H1 · exact composition
 
-<!-- current-substep: H3-R2.4 -->
+<!-- current-substep: H3-R2.5 -->
 
 **Reviewed marker: `H1-R2.37`.** The placement package was accepted on
-2026-08-31. The current hardware marker is `H3-R2.4`.
+2026-08-31. The current hardware marker is `H3-R2.5`.
 
 ### 1. Functional-island placement
 
@@ -47,7 +47,7 @@ marker and current checklist; it is never presented as review of the whole phase
   R1 reference only. Exact GPIO0..47 maps for both RPs, the five Hub↔RF M1
   signals and the C5 SDIO/service-mux join are now machine-checked H1 authority.
 - ✅ Front RP GPIO: `47/48` with 1 free; rear RP GPIO: `43/48` with 5 free (GP32/33/34/37/38).
-- ✅ Exact `ER-TFT035IPS-6` + `ER-TPC035-6` is direct 24-MHz i8080-8 through passive `L2-DISP-ADP-001-B`; user keys stay on the S3-local `TCA9539PWR` path, while encoder and USB remain direct S3 interfaces. Six GPIO remain uncommitted after reset/service closure.
+- ✅ Exact `ER-TFT035IPS-6` + `ER-TPC035-6` is direct exact-20-MHz i8080-8 through passive `L2-DISP-ADP-001-B`; user keys stay on the S3-local `TCA9539PWR` path, while encoder and USB remain direct S3 interfaces. Six GPIO remain uncommitted after reset/service closure.
 
 ### 2. RF and antenna locality
 
@@ -193,7 +193,7 @@ routing have not started.
 | H0 · Requirements and functional architecture | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Product functions, owners, transports, safety and working pin budgets | Every function has one owner and all working budgets close |
 | H1 · Physical product design | ✅ [Reviewed · `H1-R2.37`](h1-r2-acceptance.md) | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
 | H2 · Production ECAD schematic | ✅ [Reviewed · `H2-R2.1.5`](h2-acceptance.md) | Exact R2 symbols, contacts, nets, values, protection and footprints | Native KiCad, zero-finding ERC and cross-sheet/HW↔FW reconciliation pass |
-| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.4`** | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
+| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.5`** | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
 | H4 · Joined pre-layout gate | ⏳ Waiting for H3 and firmware R2 evidence | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |
 | H5 · Component and factory evidence | ⏳ Waiting for H4 | Exact current factory map and controlled external routes | Every BOM line has a current factory route without silent substitution |
 | H6 · KiCad placement, routing and release candidate | 🔒 Waiting for H5 | Two routed boards, routed re-analysis and hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs and independent DFM/CPL review pass |
@@ -233,7 +233,8 @@ routing have not started.
     - ✅ [`H3-R2.2.3`](inrush-load-step.md): verify five protected-rail starts, four load-step envelopes, watchdog kill and retained fault display.
     - ✅ [`H3-R2.2.4`](power-transition-result.md): cross-check and publish the reviewed H3-R2.2 result.
 11. ✅ [`H3-R2.3`](analog-electrical-verification.md): verify display, audio, IR, battery and Airband analog corners.
-12. ▶ `H3-R2.4`: verify digital levels, timing, loading and the direct i8080-8 path.
+12. ✅ [`H3-R2.4`](digital-electrical-verification.md): verify digital levels, timing, schematic loading, USB/service ownership, M1 adjacency and the direct exact-20-MHz i8080-8 path.
+13. ▶ `H3-R2.5`: verify RF feeds, coexistence, quiet states and concurrent service of all three nRF24 paths.
 
-H3-R2.4 digital/timing verification is the next action. Placement, routing, quoting and
+H3-R2.5 RF/coexistence verification is the next action. Placement, routing, quoting and
 every order remain blocked.

@@ -45,6 +45,6 @@ Safety holds `SAFETY_FAULT_REQUEST` active after reset. Self-test must pass, phy
 - H8 measures the populated 100-kohm/2.2-uF RC under DC bias and temperature; startup safety does not depend solely on this number.
 - H8 captures POR assertion/release, direct C5/RF-RP reset and S3 fault-display retention at real rail corners.
 
-**Result:** `14/14` scenarios and `51` endpoint checks pass. [Complete H3-R2.2](power-transition-result.md) and [H3-R2.3 analog verification](analog-electrical-verification.md) are reviewed; the **current marker is `H3-R2.4`**. Ordering and routing remain forbidden.
+**Result:** `14/14` scenarios and `51` endpoint checks pass. H3-R2.3 and [H3-R2.4 digital verification](digital-electrical-verification.md) are reviewed; the **current marker is `H3-R2.5`**. Ordering and routing remain forbidden.
 
 [Machine report](../hardware/verification/generated/H3-R2-transition-sequences.json).

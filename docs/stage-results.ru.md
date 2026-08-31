@@ -114,7 +114,7 @@ R2, сверенная распиновка, ERC/NC-ревью и синхрон
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка
 
-**Статус:** ▶️ сейчас **`H3-R2.4`**; H3-R2.3 проведён ревью.
+**Статус:** ▶️ сейчас **`H3-R2.5`**; H3-R2.4 проведён ревью.
 
 [`H3-R2.0.1`](h3-r2-input-freeze.ru.md) провёл ревью hash-bound входа H2 и полной
 матрицы проверки R2. [`H3-R2.0.2`](parameter-model-register.ru.md) провёл ревью
@@ -140,7 +140,10 @@ USB/pack/DPM/brownout/source-loss без опасного допуска и ав
 watchdog/fault-display cases без аналитических failures или автоматического
 перезапуска. [`H3-R2.3`](analog-electrical-verification.ru.md) проводит ревью всех
 рассчитываемых analog corners дисплея, аудио, IR, аккумуляторов и Airband.
-Текущий H3-R2.4 проверяет digital levels, timing, loading и прямой i8080-8.
+[`H3-R2.4`](digital-electrical-verification.ru.md) проводит ревью уровней,
+таймингов, schematic loading, USB/service ownership, M1 и прямого i8080-8 на
+точных 20 МГц. Текущий H3-R2.5 проверяет RF feeds, coexistence, quiet states и
+одновременное обслуживание трёх nRF24.
 Ожидаемый результат — полная проверка power, digital, RF,
 audio, timing, thermal и faults. Все разрешённые состояния и переходы должны
 пройти до печати.

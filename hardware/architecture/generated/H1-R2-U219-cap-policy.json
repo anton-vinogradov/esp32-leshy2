@@ -4,7 +4,7 @@
   "source": "hardware/architecture/h1-r2-u219-cap.json",
   "source_sha256": "01f01f750ceedaa9818b59968962a3484f4660057137e6ef43431a54b71c98fa",
   "base_candidate": "hardware/architecture/candidates/G2F-3I.json",
-  "base_candidate_sha256": "2673a4d23435effe9ec592e6060a3b1bc525598944d932f0a502d0fd4636ce8f",
+  "base_candidate_sha256": "ce60d399d4133a68b3115753880108ce070ed905dbdbe58d1171a4bba0ca2cba",
   "evidence_date": "2026-08-29",
   "validation": {
     "passed": true,

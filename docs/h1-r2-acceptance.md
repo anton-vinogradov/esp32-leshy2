@@ -23,7 +23,7 @@
 | Accepted no-loss savings | USD 10.4192 |
 
 The front PCB owns the user interface, exact EastRising 3.5-inch touch display
-over direct 24-MHz i8080-8, S3, C5, three complete nRF24 islands, microSD and
+over direct exact-20-MHz i8080-8, S3, C5, three complete nRF24 islands, microSD and
 the front Hub RP. The rear PCB owns broadcast/Airband reception, CC1101,
 independent VHF/UHF voice, audio, power, safety, M5 Unit, the mutually exclusive
 U214/U219 Cap slot and the rear RF RP.

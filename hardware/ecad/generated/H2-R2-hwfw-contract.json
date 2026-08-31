@@ -10,17 +10,17 @@
     "pcb_placement_or_routing": false
   },
   "source_sha256": {
-    "hardware/architecture/h0-r2-rebaseline.json": "2d8acc3cb2e8b0831bfd0ceefbd55aa4798c2f08bf9d62620760082150baba6f",
+    "hardware/architecture/h0-r2-rebaseline.json": "95b9536cfeb8404b4ed74c1dd2bd5825f16a640c6c242765c1ff244c4f7ca891",
     "hardware/architecture/h1-r2-dual-rp-pinout.json": "45d7b02e86a626c5be841fef4d249fd304e98ce1715776e79d073ca9bc144753",
     "hardware/architecture/c5-sdio-service-mux-contract.json": "4bd88ffed2e8ac0b5f6e8856d6ebc21e7cc29aa38045d4a10e068b870e51c7f3",
     "hardware/architecture/pack-safety-i2c-boundary-contract.json": "5460c97ab81e9f58c41a042a5f024f5f83e5913099e11743b9ad72414eb5782c",
     "hardware/architecture/candidates/G2F-3I.json": "ce60d399d4133a68b3115753880108ce070ed905dbdbe58d1171a4bba0ca2cba",
     "hardware/architecture/h1-r2-u219-cap.json": "01f01f750ceedaa9818b59968962a3484f4660057137e6ef43431a54b71c98fa",
-    "hardware/product-design/h1-r2-placement.json": "5c87457efa793572df1ff699f499b58437590e0b5b4655492552015dac8ccadc",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "26a47056a531ad64d6276dc7a2f41512067725f85d417fb9cc19d6fd89e51922",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "17748909716153678a2761773ff12c6e45997d7ed337514af295c745d4d5a2b7",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "9d9728cab32afec5851c2867c2bf87037ba1b02a9fee92c4106bb3efd5069e82",
-    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "38d1854842c4210c404593e9a18a3315bedb0904c2e40542c0f650d85b4f70ef",
+    "hardware/product-design/h1-r2-placement.json": "39b90a45de93dcee614065bbc10fa5fba9604c224583a21eaa6d510c9e183787",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "c53c6b6452923107d28ed7f87ab04b377fadffbb802e58a0749abef8c5c78323",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "dd28abcfd626ea7b2581fe22a2d4c02a91e45ec1c064304f33a51ebbbd26e1a0",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "7e904d6d9d855bd5c297b6924a7d2d9b0d4b837fa118f46e0e8f0d68bd0c4fe7",
+    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "59a6f74c91533b47d879839896d5d14f9cf338d167ee914c573db7ce05f8a5d9",
     "hardware/ecad/h2-r2-hwfw-reconciliation-contract.json": "b4f6a6d79531b51d96656ae654a1a80be2cb1d672a4d8b3f519868c8ea966993"
   },
   "bsp": {
@@ -6266,13 +6266,13 @@
       }
     },
     "hardware_sources": {
-      "hardware/architecture/h0-r2-rebaseline.json": "2d8acc3cb2e8b0831bfd0ceefbd55aa4798c2f08bf9d62620760082150baba6f",
+      "hardware/architecture/h0-r2-rebaseline.json": "95b9536cfeb8404b4ed74c1dd2bd5825f16a640c6c242765c1ff244c4f7ca891",
       "hardware/architecture/h1-r2-dual-rp-pinout.json": "45d7b02e86a626c5be841fef4d249fd304e98ce1715776e79d073ca9bc144753",
       "hardware/architecture/c5-sdio-service-mux-contract.json": "4bd88ffed2e8ac0b5f6e8856d6ebc21e7cc29aa38045d4a10e068b870e51c7f3",
       "hardware/architecture/pack-safety-i2c-boundary-contract.json": "5460c97ab81e9f58c41a042a5f024f5f83e5913099e11743b9ad72414eb5782c",
       "hardware/architecture/candidates/G2F-3I.json": "ce60d399d4133a68b3115753880108ce070ed905dbdbe58d1171a4bba0ca2cba",
       "hardware/architecture/h1-r2-u219-cap.json": "01f01f750ceedaa9818b59968962a3484f4660057137e6ef43431a54b71c98fa",
-      "hardware/product-design/h1-r2-placement.json": "5c87457efa793572df1ff699f499b58437590e0b5b4655492552015dac8ccadc"
+      "hardware/product-design/h1-r2-placement.json": "39b90a45de93dcee614065bbc10fa5fba9604c224583a21eaa6d510c9e183787"
     },
     "interboard": {
       "connector": "FX8C-80P-SV1(92) / FX8C-80S-SV5(92), straight SMT, 80 contacts, 11-mm working gap",
@@ -6690,7 +6690,7 @@
     "pre_h2_gates": [],
     "physical_h1": {
       "source": "hardware/product-design/h1-r2-placement.json",
-      "sha256": "5c87457efa793572df1ff699f499b58437590e0b5b4655492552015dac8ccadc",
+      "sha256": "39b90a45de93dcee614065bbc10fa5fba9604c224583a21eaa6d510c9e183787",
       "marker": "H1-R2.37",
       "pin_authority_marker": "H1-R2.31",
       "status": "reviewed",

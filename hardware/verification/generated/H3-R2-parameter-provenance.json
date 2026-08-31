@@ -4,15 +4,15 @@
   "marker": "H3-R2.0.2",
   "status": "pass",
   "accepted_input": "H3-R2.0.1",
-  "input_freeze_sha256": "4aae696d023633d019df48341e23487d72a110f18a1c0507cd6a45b847887fcd",
-  "register_sha256": "4102242fb46b5124c0600bf6c0073569205b1246a24373ad7b33f089e17fb294",
+  "input_freeze_sha256": "a4db1b9989384f82e1a8fcbfed164249c3a1cc60b56988873780d2222c53a85a",
+  "register_sha256": "1b0628151dd2a466b2ad2c27d70f498556253be3231ccea793932cab8db4fd8d",
   "source_sha256": {
     "hardware/verification/h3-r2-parameter-provenance-contract.json": "fb108b2bfd06605beca446e85c8dc4a553ade3a736fff2b601326ed4bed60e20",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "dce9a06336b772ba4160200305d7ab8f1da5ef086184c4744ed2dee1b54bac90",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "26a47056a531ad64d6276dc7a2f41512067725f85d417fb9cc19d6fd89e51922",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "17748909716153678a2761773ff12c6e45997d7ed337514af295c745d4d5a2b7",
-    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "c1a813404ebaf164cc3147b4afbf8fade728fd4f37ead36965c52ce05ee685f1",
-    "hardware/architecture/devices.json": "d4a0fbb7b98115282faae47e131dd981639310790b39562f85ab083b144e50b7"
+    "hardware/verification/generated/H3-R2-input-freeze.json": "b5a18d45abc8a53a6d9b964a2c6d22c5d2f96fe5fc5430a751420c5241a9e056",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "c53c6b6452923107d28ed7f87ab04b377fadffbb802e58a0749abef8c5c78323",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "dd28abcfd626ea7b2581fe22a2d4c02a91e45ec1c064304f33a51ebbbd26e1a0",
+    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "b3ca4e5a5d319fd99daa4399915bef23bb96e3ef80cc6645323a1cba8cd2d75c",
+    "hardware/architecture/devices.json": "bc933e01c50be1af4ff8ae75be7b143b206ddede6440d67889fa3a6793af650f"
   },
   "policy": {
     "accepted_h2_identity_is_immutable": true,
@@ -1389,6 +1389,17 @@
         ],
         "logic_input_low_max_fraction_vddi": 0.3,
         "logic_input_high_min_fraction_vddi": 0.7,
+        "i8080_write_cycle_min_ns": 40.0,
+        "i8080_wr_high_min_ns": 15.0,
+        "i8080_wr_low_min_ns": 15.0,
+        "i8080_data_setup_min_ns": 10.0,
+        "i8080_data_hold_min_ns": 10.0,
+        "logic_input_rise_fall_max_ns": 15.0,
+        "timing_source": {
+          "document": "ILI9488 v1.00, section 17.4.1, DBI Type-B timing characteristics",
+          "url": "https://www.waveshare.com/w/upload/5/5b/ILI9488_Datasheet.pdf",
+          "checked": "2026-08-31"
+        },
         "backlight_parallel_led_count": 6,
         "backlight_forward_voltage_typ_v": 3.0,
         "backlight_forward_voltage_max_v_at_120ma": 3.2,
@@ -1396,7 +1407,7 @@
         "backlight_normal_current_max_ma": 120,
         "backlight_lifetime_test_current_ma": 90
       },
-      "structured_parameter_count": 10,
+      "structured_parameter_count": 17,
       "parameter_state": "structured_seed_present",
       "model_method_candidate": "datasheet_corner_model",
       "model_method_state": "candidate_pending_H3-R2.0.3",
@@ -1406,7 +1417,7 @@
       ],
       "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "f5cc653f71c5309298357f714b4c3e5d499e97900fba199374cdfc428dbe2f79",
-      "symbol_electrical_contract_sha256": "7ed892a49980c23cdf262ae1f8c323a06ab5fed5b6dde0380e5d3ddbc68d2428"
+      "symbol_electrical_contract_sha256": "c8d2b5b7d4318b9198fcf4b611a706fda5a01bb3cb7032440b8001a833c80a82"
     },
     {
       "device_id": "ebyte_e01_ml01sp4",

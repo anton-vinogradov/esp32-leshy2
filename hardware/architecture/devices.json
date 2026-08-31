@@ -2085,6 +2085,17 @@
         "vddi_operating_range_v": [1.65, 3.3],
         "logic_input_low_max_fraction_vddi": 0.3,
         "logic_input_high_min_fraction_vddi": 0.7,
+        "i8080_write_cycle_min_ns": 40.0,
+        "i8080_wr_high_min_ns": 15.0,
+        "i8080_wr_low_min_ns": 15.0,
+        "i8080_data_setup_min_ns": 10.0,
+        "i8080_data_hold_min_ns": 10.0,
+        "logic_input_rise_fall_max_ns": 15.0,
+        "timing_source": {
+          "document": "ILI9488 v1.00, section 17.4.1, DBI Type-B timing characteristics",
+          "url": "https://www.waveshare.com/w/upload/5/5b/ILI9488_Datasheet.pdf",
+          "checked": "2026-08-31"
+        },
         "backlight_parallel_led_count": 6,
         "backlight_forward_voltage_typ_v": 3.0,
         "backlight_forward_voltage_max_v_at_120ma": 3.2,

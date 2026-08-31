@@ -165,7 +165,7 @@
       "structural_role": "none; M1 is electrical/alignment only"
     },
     "transport": "rear audio at 48-kHz full duplex remains below 0.4 MB/s on the 1.5-MB/s qualified RP link; nRF payload is now front-local",
-    "display": "S3 drives the exact EastRising ER-TFT035IPS-6 + ER-TPC035-6 assembly directly over 8-bit i8080 at a panel-safe 24 MHz; the panel flex faces the antenna edge and firmware rotates display memory and touch coordinates by 180 degrees; buttons use the S3-local TCA9539PWR path while encoder and USB stay direct to S3; six GPIO remain uncommitted reserves after reset and service closure, and a deliberate adapter revision can expose ordinary 4-wire serial recovery"
+    "display": "S3 drives the exact EastRising ER-TFT035IPS-6 + ER-TPC035-6 assembly directly over 8-bit i8080 at an exact 20 MHz produced by the locked ESP-IDF integer divider; the panel flex faces the antenna edge and firmware rotates display memory and touch coordinates by 180 degrees; buttons use the S3-local TCA9539PWR path while encoder and USB stay direct to S3; six GPIO remain uncommitted reserves after reset and service closure, and a deliberate adapter revision can expose ordinary 4-wire serial recovery"
   },
   "mechanical_retention": {
     "m1_rule": "M1 is never a load-bearing member",

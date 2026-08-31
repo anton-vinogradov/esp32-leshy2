@@ -6,7 +6,7 @@
   "sources": {
     "functional": {
       "path": "hardware/architecture/h0-r2-rebaseline.json",
-      "sha256": "2d8acc3cb2e8b0831bfd0ceefbd55aa4798c2f08bf9d62620760082150baba6f"
+      "sha256": "95b9536cfeb8404b4ed74c1dd2bd5825f16a640c6c242765c1ff244c4f7ca891"
     },
     "pin_map": {
       "path": "hardware/architecture/h1-r2-dual-rp-pinout.json",
@@ -14,11 +14,11 @@
     },
     "physical": {
       "path": "hardware/product-design/h1-r2-placement.json",
-      "sha256": "5c87457efa793572df1ff699f499b58437590e0b5b4655492552015dac8ccadc"
+      "sha256": "39b90a45de93dcee614065bbc10fa5fba9604c224583a21eaa6d510c9e183787"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "d4a0fbb7b98115282faae47e131dd981639310790b39562f85ab083b144e50b7"
+      "sha256": "bc933e01c50be1af4ff8ae75be7b143b206ddede6440d67889fa3a6793af650f"
     },
     "component_groups": {
       "path": "hardware/product-design/generated/H1-R2-cost-audit.json",

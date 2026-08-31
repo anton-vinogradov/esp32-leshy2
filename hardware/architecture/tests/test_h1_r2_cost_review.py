@@ -26,7 +26,7 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertIn("TX2400-JW-5", ru)
 
     def test_complete_bom_is_ranked(self):
-        self.assertEqual(len(self.result["rows"]), 210)
+        self.assertEqual(len(self.result["rows"]), 211)
         mpns = [row["mpn"] for row in self.result["rows"]]
         self.assertEqual(len(mpns), len(set(mpns)))
         known = [
@@ -38,7 +38,7 @@ class H1R2CostReviewTest(unittest.TestCase):
 
     def test_cost_boundaries_are_explicit(self):
         summary = self.result["summary"]
-        self.assertEqual(summary["quantity_100_priced_lines"], 201)
+        self.assertEqual(summary["quantity_100_priced_lines"], 202)
         self.assertEqual(summary["remaining_unpriced_base_lines"], 5)
         self.assertGreater(summary["planning_base_plus_post_pcba_usd_per_device"], 270)
         self.assertAlmostEqual(

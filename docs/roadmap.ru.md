@@ -3,7 +3,7 @@
 [На главную](../README.ru.md) · [English](roadmap.md) ·
 [Роадмап прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md)
 
-> **▶ Текущая аппаратная граница: `H3-R2.4`.** H0, H1, [H2-R2.1.5](h2-acceptance.ru.md), [DC/source H3-R2.1](power-dc-source-result.ru.md), весь [workstream переходов питания H3-R2.2](power-transition-result.ru.md) и [аналоговая проверка H3-R2.3](analog-electrical-verification.ru.md) прошли ревью. H3-R2.4 теперь проверяет digital levels, timing, loading и прямой i8080-8.
+> **▶ Текущая аппаратная граница: `H3-R2.5`.** H0, H1, [H2-R2.1.5](h2-acceptance.ru.md), [DC/source H3-R2.1](power-dc-source-result.ru.md), весь [workstream переходов питания H3-R2.2](power-transition-result.ru.md), [аналоговая проверка H3-R2.3](analog-electrical-verification.ru.md) и [цифровая проверка H3-R2.4](digital-electrical-verification.ru.md) прошли ревью. H3-R2.5 теперь проверяет RF feeds, coexistence, quiet states и одновременное обслуживание трёх nRF24.
 > KiCad routing R2, quote, reservation и заказ не разрешены.
 
 Статус сверен: **31 августа 2026 года**.
@@ -32,10 +32,10 @@
 
 ## Проведённое ревью H1 · точный состав
 
-<!-- current-substep: H3-R2.4 -->
+<!-- current-substep: H3-R2.5 -->
 
 **Маркер ревью: `H1-R2.37`.** Пакет компоновки принят 2026-08-30. Текущий
-аппаратный маркер — `H3-R2.4`.
+аппаратный маркер — `H3-R2.5`.
 
 ### 1. Размещение функциональных островов
 
@@ -47,7 +47,7 @@
   только исторический R1 reference. Точные GPIO0..47 обоих RP, пять сигналов
   Hub↔RF через M1 и стык C5 SDIO/service-mux теперь machine-checked authority H1.
 - ✅ GPIO переднего RP: `47/48`, свободна 1 линия; заднего RP: `43/48`, свободны 5 (GP32/33/34/37/38).
-- ✅ Точный `ER-TFT035IPS-6` + `ER-TPC035-6` работает по прямому i8080-8 24 МГц через пассивный `L2-DISP-ADP-001-B`; клавиши остаются на локальном для S3 `TCA9539PWR`, а энкодер и USB — на прямых интерфейсах S3. После замыкания reset/service-трактов свободными остаются 6 GPIO.
+- ✅ Точный `ER-TFT035IPS-6` + `ER-TPC035-6` работает по прямому i8080-8 на точных 20 МГц через пассивный `L2-DISP-ADP-001-B`; клавиши остаются на локальном для S3 `TCA9539PWR`, а энкодер и USB — на прямых интерфейсах S3. После замыкания reset/service-трактов свободными остаются 6 GPIO.
 
 ### 2. Локальность RF и антенн
 
@@ -193,7 +193,7 @@
 | H0 · Требования и функциональная архитектура | ✅ [R2 проведено ревью](h0-r2-functional-architecture.ru.md) | Функции продукта, владельцы, transport, safety и рабочие pin-бюджеты | У каждой функции один владелец; все рабочие бюджеты сходятся |
 | H1 · Физический дизайн продукта | ✅ [Проведено ревью · `H1-R2.37`](h1-r2-acceptance.ru.md) | Внешний вид, отдельные внутренние стороны, разрезы, точные корпуса, RF-локальность, сервис и power-envelope | Нет коллизий bodies/fasteners/silkscreen/antennas/accessories/opposing sides; точный MPN или контролируемый reserve; мокап принят |
 | H2 · Production ECAD-схема | ✅ [Проведено ревью · `H2-R2.1.5`](h2-acceptance.ru.md) | Точные R2 symbols, contacts, nets, values, protection и footprints | Native KiCad, ERC без замечаний и сверка sheets/HW↔FW проходят |
-| **H3 · Виртуальная электрическая проверка** | **▶ Сейчас · `H3-R2.4`** | Полная симуляция power, digital, RF, audio, timing, thermal и faults | Все разрешённые состояния и переходы проходят до печати |
+| **H3 · Виртуальная электрическая проверка** | **▶ Сейчас · `H3-R2.5`** | Полная симуляция power, digital, RF, audio, timing, thermal и faults | Все разрешённые состояния и переходы проходят до печати |
 | H4 · Объединённый pre-layout gate | ⏳ Ожидает H3 и firmware R2 evidence | Одно текущее mechanics/ECAD/electrical/firmware review | Нет виртуального blocker; каждой физической неопределённости назначен тест |
 | H5 · Компоненты и фабричные evidence | ⏳ Ожидает H4 | Точная актуальная фабричная карта и контролируемые external routes | У каждой BOM-строки есть текущий фабричный маршрут без молчаливой замены |
 | H6 · KiCad placement, routing и release candidate | 🔒 Ожидает H5 | Две разведённые платы, routed re-analysis и hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs и независимый DFM/CPL review проходят |
@@ -233,7 +233,8 @@
     - ✅ [`H3-R2.2.3`](inrush-load-step.ru.md): проверить пять запусков защищённых шин, четыре load-step envelope, watchdog kill и сохранённое сообщение об ошибке.
     - ✅ [`H3-R2.2.4`](power-transition-result.ru.md): выполнить cross-check и опубликовать результат H3-R2.2.
 11. ✅ [`H3-R2.3`](analog-electrical-verification.ru.md): проверить analog corners дисплея, аудио, IR, аккумуляторов и Airband.
-12. ▶ `H3-R2.4`: проверить digital levels, timing, loading и прямой i8080-8.
+12. ✅ [`H3-R2.4`](digital-electrical-verification.ru.md): проверить digital levels, timing, schematic loading, USB/service ownership, M1 adjacency и прямой i8080-8 на точных 20 МГц.
+13. ▶ `H3-R2.5`: проверить RF feeds, coexistence, quiet states и одновременное обслуживание всех трёх nRF24.
 
-Следующее действие — digital/timing verification H3-R2.4. Placement, routing,
+Следующее действие — RF/coexistence verification H3-R2.5. Placement, routing,
 quote и любой заказ остаются заблокированы.

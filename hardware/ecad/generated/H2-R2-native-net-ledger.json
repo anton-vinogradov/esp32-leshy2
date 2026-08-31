@@ -6,17 +6,17 @@
   "sources": {
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "17748909716153678a2761773ff12c6e45997d7ed337514af295c745d4d5a2b7",
+      "sha256": "dd28abcfd626ea7b2581fe22a2d4c02a91e45ec1c064304f33a51ebbbd26e1a0",
       "authority": true
     },
     "definitions": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "c1a813404ebaf164cc3147b4afbf8fade728fd4f37ead36965c52ce05ee685f1",
+      "sha256": "b3ca4e5a5d319fd99daa4399915bef23bb96e3ef80cc6645323a1cba8cd2d75c",
       "authority": true
     },
     "h0": {
       "path": "hardware/architecture/h0-r2-rebaseline.json",
-      "sha256": "2d8acc3cb2e8b0831bfd0ceefbd55aa4798c2f08bf9d62620760082150baba6f",
+      "sha256": "95b9536cfeb8404b4ed74c1dd2bd5825f16a640c6c242765c1ff244c4f7ca891",
       "authority": true
     },
     "dual_rp": {
@@ -51,7 +51,7 @@
     },
     "historical_instance_ledger": {
       "path": "hardware/ecad/generated/H2-instance-ledger.json",
-      "sha256": "7a265f865aac48c9e8826ad296f49164ad514a7f576b9a76efb0f2684580508e",
+      "sha256": "0e54e6c0b5a16f34bbedb5a17e04d49fbe2c1ee25db17528ba5fad0479bf7a33",
       "authority": false
     },
     "historical_project_LESHY2-UI": {
