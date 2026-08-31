@@ -1047,8 +1047,11 @@
 	(no_connect (at 35.56 134.62)
 		(uuid "46c42a91-2223-5b01-bd7f-b5a5221eb62e")
 	)
-	(no_connect (at 35.56 137.16)
-		(uuid "1e364860-56a7-537f-b6b4-310609fdbf0d")
+	(hierarchical_label "S3_RESET_KILL_GATE"
+		(shape bidirectional)
+		(at 35.56 137.16 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "6d061810-e71b-5a37-b898-c75dc2c94e3c")
 	)
 	(hierarchical_label "RUN_PERMIT"
 		(shape bidirectional)

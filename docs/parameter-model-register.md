@@ -8,7 +8,7 @@
 
 - `242` component groups: `237` on-board and `5` explicitly external/final-installed.
 - `1187` fitted positions; all `242` groups have an H3 owner.
-- `68` groups already contain structured parameters; `174` are in an explicit extraction queue rather than receiving invented values.
+- `70` groups already contain structured parameters; `172` are in an explicit extraction queue rather than receiving invented values.
 - `242` method candidates are assigned; exact methods, tolerances and applicability are frozen next in `H3-R2.0.3`.
 
 ## Model classes
@@ -19,7 +19,7 @@
 | `connector_interconnect` | 14 | 6 | 8 |
 | `digital_interface` | 33 | 18 | 15 |
 | `electromechanical_or_load` | 7 | 0 | 7 |
-| `general_component` | 38 | 13 | 25 |
+| `general_component` | 38 | 15 | 23 |
 | `passive_corner` | 118 | 17 | 101 |
 | `power_safety_active` | 11 | 3 | 8 |
 | `programmable_controller` | 2 | 0 | 2 |

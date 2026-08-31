@@ -6,7 +6,7 @@
 
 ## Coverage
 
-The check reconciles `2266` states, `56` operating profiles, `224` rail corners, `618` loads and all `75` source/pack lines. No gap, duplicate or hidden miscellaneous line remains.
+The check reconciles `2266` states, `56` operating profiles, `224` rail corners, `619` loads and all `75` source/pack lines. No gap, duplicate or hidden miscellaneous line remains.
 
 ## What is proved
 

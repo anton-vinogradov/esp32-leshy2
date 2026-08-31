@@ -18,8 +18,8 @@
       "hub_rp"
     ],
     "m1_contacts": 80,
-    "m1_live_signals": 29,
-    "m1_reserve_contacts": 11
+    "m1_live_signals": 30,
+    "m1_reserve_contacts": 10
   },
   "current_h1_pin_authority": {
     "source": "hardware/architecture/h1-r2-dual-rp-pinout.json",
@@ -1577,7 +1577,7 @@
       "hub_rp"
     ],
     "m1_unique_nets": 44,
-    "m1_reserve_contacts": 11,
+    "m1_reserve_contacts": 10,
     "native_kicad_started": true
   },
   "r2_h2_compatibility": {

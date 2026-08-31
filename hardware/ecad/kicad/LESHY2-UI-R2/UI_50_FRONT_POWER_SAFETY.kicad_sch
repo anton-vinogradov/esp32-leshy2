@@ -2075,10 +2075,11 @@
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "23fbd378-71c6-5f99-8836-644bd2d997f1")
 	)
-	(label "C5_RESET_KILL_GATE"
+	(hierarchical_label "S3_RESET_KILL_GATE"
+		(shape bidirectional)
 		(at 624.84 52.07 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "a9e56ba4-b2dd-5b2f-8b41-6435c4d627d9")
+		(uuid "f6577dfe-1a85-52ba-8093-4823170d1110")
 	)
 	(hierarchical_label "C5_RESET_N"
 		(shape bidirectional)

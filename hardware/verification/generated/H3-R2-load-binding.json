@@ -4,15 +4,15 @@
   "marker": "H3-R2.1.2",
   "status": "pass",
   "accepted_input": "H3-R2.1.1",
-  "binding_sha256": "635327aa3d15b12936711373a14c46a01d9630d5de44c4f66a60ff99b264f074",
+  "binding_sha256": "92e3ef4e43e49305c1ae5e864825dd63f20dd32394896849faf522fb4a168912",
   "source_sha256": {
     "hardware/verification/h3-r2-load-binding-contract.json": "48d2575032bac09bd8ea276e814c16fbb1f76ca6afe0cea0dd36cee2e8c2a384",
-    "hardware/verification/generated/H3-R2-power-state-register.json": "3354763a4cfdc62b754314c47469fb4e3c3dc5bddd0dd45bd40b379bdedb2d89",
-    "hardware/verification/generated/H3-R2-method-contract.json": "da906d1f797fccb735fe738c1664bd4b8008d18affc9ddb219c3e3627fdfb009",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "bfaeb3cd167146a2a0ffbc2e3bd6a0d6f2f5d5107e70d052e607779422c332c1",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "6536747c134dff3f8911431cac416b4f6b8cc5787619598bda0a7345994f5843",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "343094e4900c10b8525783e56de830ddf55de0905809b4375f2a4bd0339b71ce",
-    "hardware/architecture/devices.json": "cc0b54ff05c8550905ff0d5ded05e10a69fa9d282594cd0ed7180ab577567c06"
+    "hardware/verification/generated/H3-R2-power-state-register.json": "41bd0f5d68dd21b9e80842da7ea93251e9ca1930a4045e182b56b65157cbaea9",
+    "hardware/verification/generated/H3-R2-method-contract.json": "869fb8b8337939cbdac6035a35217c00c75ac0b1cf5efe8a47af9daa55e4a2f7",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "44d3672b182d759ad2a943afa2f71af826a17d00acf26584d6ec479f3588aa16",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "5f3c52f7164df747df0e11a5e8bb405d060e26ad1b649c2f6275bd8675686626",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "a74ec13d3b2482226734436debecf360fffe3986ce0a6e9f06fe35d98b3745e7",
+    "hardware/architecture/devices.json": "96bd2cf3a4bfae0af34e249d6737a16a2763fea46b3892e06b465b84e1c18e2f"
   },
   "policy": {
     "one_line_per_fitted_power_connected_instance": true,
@@ -8144,9 +8144,9 @@
       "candidate_current_fields": [],
       "source": {
         "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
-        "version": "Rev. M",
+        "version": "Rev. N, revised August 2026",
         "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-31"
       },
       "parameter_owner": "H3-R2.1.3"
     },
@@ -12214,9 +12214,9 @@
       "candidate_current_fields": [],
       "source": {
         "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
-        "version": "Rev. M",
+        "version": "Rev. N, revised August 2026",
         "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-31"
       },
       "parameter_owner": "H3-R2.1.3"
     },
@@ -12333,9 +12333,9 @@
       "candidate_current_fields": [],
       "source": {
         "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
-        "version": "Rev. M",
+        "version": "Rev. N, revised August 2026",
         "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-31"
       },
       "parameter_owner": "H3-R2.1.3"
     },
@@ -13614,7 +13614,7 @@
       "instance_uid": "LESHY2-RF-R2:evidence_mask_scl_pullup",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
-      "reference": "R252",
+      "reference": "R251",
       "instance": "evidence_mask_scl_pullup",
       "device_id": "yageo_rc0402fr_0710kl",
       "mpn": "Yageo RC0402FR-0710KL",
@@ -13651,7 +13651,7 @@
       "instance_uid": "LESHY2-RF-R2:evidence_mask_sda_pullup",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
-      "reference": "R253",
+      "reference": "R252",
       "instance": "evidence_mask_sda_pullup",
       "device_id": "yageo_rc0402fr_0710kl",
       "mpn": "Yageo RC0402FR-0710KL",
@@ -13688,7 +13688,7 @@
       "instance_uid": "LESHY2-RF-R2:fault_assert_pullup",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
-      "reference": "R255",
+      "reference": "R254",
       "instance": "fault_assert_pullup",
       "device_id": "yageo_rc0402fr_0710kl",
       "mpn": "Yageo RC0402FR-0710KL",
@@ -13725,7 +13725,7 @@
       "instance_uid": "LESHY2-RF-R2:power_command_pullup",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
-      "reference": "R257",
+      "reference": "R256",
       "instance": "power_command_pullup",
       "device_id": "yageo_rc0402fr_0747kl",
       "mpn": "Yageo RC0402FR-0747KL",
@@ -13762,7 +13762,7 @@
       "instance_uid": "LESHY2-RF-R2:power_fault_pullup",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
-      "reference": "R258",
+      "reference": "R257",
       "instance": "power_fault_pullup",
       "device_id": "yageo_rc0402fr_0710kl",
       "mpn": "Yageo RC0402FR-0710KL",
@@ -13799,7 +13799,7 @@
       "instance_uid": "LESHY2-RF-R2:run_loop_pullup",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
-      "reference": "R259",
+      "reference": "R258",
       "instance": "run_loop_pullup",
       "device_id": "yageo_rc0402fr_0710kl",
       "mpn": "Yageo RC0402FR-0710KL",
@@ -13836,7 +13836,7 @@
       "instance_uid": "LESHY2-RF-R2:safe_latch_d_pullup",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
-      "reference": "R260",
+      "reference": "R259",
       "instance": "safe_latch_d_pullup",
       "device_id": "yageo_rc0402fr_0710kl",
       "mpn": "Yageo RC0402FR-0710KL",
@@ -13873,7 +13873,7 @@
       "instance_uid": "LESHY2-RF-R2:safe_por_pullup",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
-      "reference": "R261",
+      "reference": "R260",
       "instance": "safe_por_pullup",
       "device_id": "yageo_rc0402fr_0710kl",
       "mpn": "Yageo RC0402FR-0710KL",
@@ -13910,7 +13910,7 @@
       "instance_uid": "LESHY2-RF-R2:safe_reset_gate_pullup",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
-      "reference": "R263",
+      "reference": "R262",
       "instance": "safe_reset_gate_pullup",
       "device_id": "yageo_rc0402fr_0710kl",
       "mpn": "Yageo RC0402FR-0710KL",
@@ -13947,7 +13947,7 @@
       "instance_uid": "LESHY2-RF-R2:safety_controller_reset_pullup",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_50_TX_SAFETY_EVIDENCE",
-      "reference": "R264",
+      "reference": "R263",
       "instance": "safety_controller_reset_pullup",
       "device_id": "yageo_rc0402fr_0747kl",
       "mpn": "Yageo RC0402FR-0747KL",
@@ -14530,7 +14530,7 @@
         "document": "SN74LVC1G74 Single D-Type Flip-Flop With Clear and Preset datasheet",
         "version": "Rev. G",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-31"
       },
       "parameter_owner": "H3-R2.1.3"
     },
@@ -14602,9 +14602,9 @@
       "candidate_current_fields": [],
       "source": {
         "document": "SN74LVC1G17 Single Schmitt-Trigger Buffer datasheet",
-        "version": "Rev. Y",
+        "version": "Rev. Y, revised October 2025",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
-        "checked": "2026-08-24"
+        "checked": "2026-08-31"
       },
       "parameter_owner": "H3-R2.1.3"
     },
@@ -14713,9 +14713,9 @@
       "candidate_current_fields": [],
       "source": {
         "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
-        "version": "Rev. M",
+        "version": "Rev. N, revised August 2026",
         "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-31"
       },
       "parameter_owner": "H3-R2.1.3"
     },
@@ -14868,7 +14868,7 @@
         "document": "TPS3435 Nano IQ Precision Timeout Watchdog Timer datasheet",
         "version": "SNVSCF7A, revised August 2024",
         "url": "https://www.ti.com/lit/ds/symlink/tps3435.pdf",
-        "checked": "2026-08-20"
+        "checked": "2026-08-31"
       },
       "parameter_owner": "H3-R2.1.3"
     },
@@ -15133,6 +15133,43 @@
     },
     {
       "id": "LOAD-0397",
+      "instance_uid": "LESHY2-UI-R2:s3_reset_gate_pullup",
+      "project": "LESHY2-UI-R2",
+      "sheet": "UI_10_S3_DISPLAY_TOUCH",
+      "reference": "R15",
+      "instance": "s3_reset_gate_pullup",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "quantity": 1,
+      "rail_bindings": [
+        {
+          "net": "3V3_MAIN",
+          "rail": "3V3_MAIN",
+          "profile": "SUPPORT"
+        }
+      ],
+      "canonical_rails": [
+        "3V3_MAIN"
+      ],
+      "profiles": [
+        "SUPPORT"
+      ],
+      "accounting": [
+        "direct"
+      ],
+      "disposition": "resistive_dc_branch",
+      "parameter_state": "explicit_parameter_extraction_required",
+      "candidate_current_fields": [],
+      "source": {
+        "document": "Yageo RC0402FR-0710KL product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-0710KL",
+        "checked": "2026-08-18"
+      },
+      "parameter_owner": "H3-R2.1.3"
+    },
+    {
+      "id": "LOAD-0398",
       "instance_uid": "LESHY2-UI-R2:s3_reset_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_10_S3_DISPLAY_TOUCH",
@@ -15169,7 +15206,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0398",
+      "id": "LOAD-0399",
       "instance_uid": "LESHY2-UI-R2:sys_i2c_scl_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_10_S3_DISPLAY_TOUCH",
@@ -15206,7 +15243,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0399",
+      "id": "LOAD-0400",
       "instance_uid": "LESHY2-UI-R2:sys_i2c_sda_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_10_S3_DISPLAY_TOUCH",
@@ -15243,7 +15280,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0400",
+      "id": "LOAD-0401",
       "instance_uid": "LESHY2-UI-R2:sys_int_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_10_S3_DISPLAY_TOUCH",
@@ -15280,7 +15317,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0401",
+      "id": "LOAD-0402",
       "instance_uid": "LESHY2-UI-R2:s3_boot_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_10_S3_DISPLAY_TOUCH",
@@ -15317,7 +15354,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0402",
+      "id": "LOAD-0403",
       "instance_uid": "LESHY2-UI-R2:s3",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_10_S3_DISPLAY_TOUCH",
@@ -15354,7 +15391,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0403",
+      "id": "LOAD-0404",
       "instance_uid": "LESHY2-UI-R2:display_logic_bulk_cap",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -15391,7 +15428,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0404",
+      "id": "LOAD-0405",
       "instance_uid": "LESHY2-UI-R2:display_logic_hf_cap",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -15428,7 +15465,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0405",
+      "id": "LOAD-0406",
       "instance_uid": "LESHY2-UI-R2:sd_host_buffer_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -15465,7 +15502,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0406",
+      "id": "LOAD-0407",
       "instance_uid": "LESHY2-UI-R2:sd_miso_buffer_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -15502,7 +15539,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0407",
+      "id": "LOAD-0408",
       "instance_uid": "LESHY2-UI-R2:sd_power_bulk_cap",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -15539,7 +15576,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0408",
+      "id": "LOAD-0409",
       "instance_uid": "LESHY2-UI-R2:sd_power_hf_cap",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -15576,7 +15613,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0409",
+      "id": "LOAD-0410",
       "instance_uid": "LESHY2-UI-R2:sd_power_input_cap",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -15613,7 +15650,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0410",
+      "id": "LOAD-0411",
       "instance_uid": "LESHY2-UI-R2:touch_irq_buffer_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -15650,7 +15687,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0411",
+      "id": "LOAD-0412",
       "instance_uid": "LESHY2-UI-R2:ui_matrix_io_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -15687,7 +15724,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0412",
+      "id": "LOAD-0413",
       "instance_uid": "LESHY2-UI-R2:backlight_efuse_input_cap",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -15724,7 +15761,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0413",
+      "id": "LOAD-0414",
       "instance_uid": "LESHY2-UI-R2:backlight_efuse_output_bulk",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -15761,7 +15798,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0414",
+      "id": "LOAD-0415",
       "instance_uid": "LESHY2-UI-R2:backlight_efuse_output_hf",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -15798,7 +15835,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0415",
+      "id": "LOAD-0416",
       "instance_uid": "LESHY2-UI-R2:display_connector",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -15841,7 +15878,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0416",
+      "id": "LOAD-0417",
       "instance_uid": "LESHY2-UI-R2:sd",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -15878,7 +15915,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0417",
+      "id": "LOAD-0418",
       "instance_uid": "LESHY2-UI-R2:backlight_fault_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -15915,7 +15952,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0418",
+      "id": "LOAD-0419",
       "instance_uid": "LESHY2-UI-R2:c5_tx_led_series",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -15952,7 +15989,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0419",
+      "id": "LOAD-0420",
       "instance_uid": "LESHY2-UI-R2:cc_tx_led_series",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -15989,7 +16026,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0420",
+      "id": "LOAD-0421",
       "instance_uid": "LESHY2-UI-R2:encoder_a_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16026,7 +16063,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0421",
+      "id": "LOAD-0422",
       "instance_uid": "LESHY2-UI-R2:encoder_b_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16063,7 +16100,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0422",
+      "id": "LOAD-0423",
       "instance_uid": "LESHY2-UI-R2:ext_tx_led_series",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16100,7 +16137,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0423",
+      "id": "LOAD-0424",
       "instance_uid": "LESHY2-UI-R2:ir_tx_led_series",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16137,7 +16174,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0424",
+      "id": "LOAD-0425",
       "instance_uid": "LESHY2-UI-R2:lcd_host_cs_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16174,7 +16211,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0425",
+      "id": "LOAD-0426",
       "instance_uid": "LESHY2-UI-R2:nrf0_tx_led_series",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16211,7 +16248,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0426",
+      "id": "LOAD-0427",
       "instance_uid": "LESHY2-UI-R2:nrf1_tx_led_series",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16248,7 +16285,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0427",
+      "id": "LOAD-0428",
       "instance_uid": "LESHY2-UI-R2:nrf2_tx_led_series",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16285,7 +16322,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0428",
+      "id": "LOAD-0429",
       "instance_uid": "LESHY2-UI-R2:s3_tx_led_series",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16322,7 +16359,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0429",
+      "id": "LOAD-0430",
       "instance_uid": "LESHY2-UI-R2:sd_card_cmd_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16359,7 +16396,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0430",
+      "id": "LOAD-0431",
       "instance_uid": "LESHY2-UI-R2:sd_card_dat0_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16396,7 +16433,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0431",
+      "id": "LOAD-0432",
       "instance_uid": "LESHY2-UI-R2:sd_card_dat1_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16433,7 +16470,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0432",
+      "id": "LOAD-0433",
       "instance_uid": "LESHY2-UI-R2:sd_card_dat2_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16470,7 +16507,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0433",
+      "id": "LOAD-0434",
       "instance_uid": "LESHY2-UI-R2:sd_card_dat3_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16507,7 +16544,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0434",
+      "id": "LOAD-0435",
       "instance_uid": "LESHY2-UI-R2:sd_detect_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16544,7 +16581,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0435",
+      "id": "LOAD-0436",
       "instance_uid": "LESHY2-UI-R2:sd_host_cs_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16581,7 +16618,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0436",
+      "id": "LOAD-0437",
       "instance_uid": "LESHY2-UI-R2:sd_host_d1_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16618,7 +16655,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0437",
+      "id": "LOAD-0438",
       "instance_uid": "LESHY2-UI-R2:touch_irq_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16655,7 +16692,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0438",
+      "id": "LOAD-0439",
       "instance_uid": "LESHY2-UI-R2:ui_input_back_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16692,7 +16729,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0439",
+      "id": "LOAD-0440",
       "instance_uid": "LESHY2-UI-R2:ui_input_down_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16729,7 +16766,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0440",
+      "id": "LOAD-0441",
       "instance_uid": "LESHY2-UI-R2:ui_input_encoder_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16766,7 +16803,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0441",
+      "id": "LOAD-0442",
       "instance_uid": "LESHY2-UI-R2:ui_input_f1_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16803,7 +16840,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0442",
+      "id": "LOAD-0443",
       "instance_uid": "LESHY2-UI-R2:ui_input_f2_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16840,7 +16877,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0443",
+      "id": "LOAD-0444",
       "instance_uid": "LESHY2-UI-R2:ui_input_f3_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16877,7 +16914,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0444",
+      "id": "LOAD-0445",
       "instance_uid": "LESHY2-UI-R2:ui_input_f4_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16914,7 +16951,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0445",
+      "id": "LOAD-0446",
       "instance_uid": "LESHY2-UI-R2:ui_input_f5_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16951,7 +16988,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0446",
+      "id": "LOAD-0447",
       "instance_uid": "LESHY2-UI-R2:ui_input_f6_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -16988,7 +17025,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0447",
+      "id": "LOAD-0448",
       "instance_uid": "LESHY2-UI-R2:ui_input_f7_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -17025,7 +17062,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0448",
+      "id": "LOAD-0449",
       "instance_uid": "LESHY2-UI-R2:ui_input_f8_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -17062,7 +17099,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0449",
+      "id": "LOAD-0450",
       "instance_uid": "LESHY2-UI-R2:ui_input_left_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -17099,7 +17136,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0450",
+      "id": "LOAD-0451",
       "instance_uid": "LESHY2-UI-R2:ui_input_ok_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -17136,7 +17173,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0451",
+      "id": "LOAD-0452",
       "instance_uid": "LESHY2-UI-R2:ui_input_opt_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -17173,7 +17210,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0452",
+      "id": "LOAD-0453",
       "instance_uid": "LESHY2-UI-R2:ui_input_right_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -17210,7 +17247,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0453",
+      "id": "LOAD-0454",
       "instance_uid": "LESHY2-UI-R2:ui_input_up_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -17247,7 +17284,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0454",
+      "id": "LOAD-0455",
       "instance_uid": "LESHY2-UI-R2:ui_zone_temp_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -17284,7 +17321,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0455",
+      "id": "LOAD-0456",
       "instance_uid": "LESHY2-UI-R2:voice_tx_led_series",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -17321,7 +17358,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0456",
+      "id": "LOAD-0457",
       "instance_uid": "LESHY2-UI-R2:sd_power_switch",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -17364,7 +17401,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0457",
+      "id": "LOAD-0458",
       "instance_uid": "LESHY2-UI-R2:touch_irq_buffer",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -17401,7 +17438,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0458",
+      "id": "LOAD-0459",
       "instance_uid": "LESHY2-UI-R2:ui_matrix_io",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -17438,7 +17475,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0459",
+      "id": "LOAD-0460",
       "instance_uid": "LESHY2-UI-R2:backlight_efuse",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -17481,7 +17518,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0460",
+      "id": "LOAD-0461",
       "instance_uid": "LESHY2-UI-R2:sd_esd_b",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -17518,7 +17555,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0461",
+      "id": "LOAD-0462",
       "instance_uid": "LESHY2-UI-R2:sd_host_buffer",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -17555,7 +17592,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0462",
+      "id": "LOAD-0463",
       "instance_uid": "LESHY2-UI-R2:sd_miso_buffer",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -17592,7 +17629,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0463",
+      "id": "LOAD-0464",
       "instance_uid": "LESHY2-UI-R2:c5_detector_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -17629,7 +17666,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0464",
+      "id": "LOAD-0465",
       "instance_uid": "LESHY2-UI-R2:c5_service_mux_logic_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -17666,7 +17703,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0465",
+      "id": "LOAD-0466",
       "instance_uid": "LESHY2-UI-R2:c5_service_owner_latch_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -17703,7 +17740,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0466",
+      "id": "LOAD-0467",
       "instance_uid": "LESHY2-UI-R2:c5_service_release_logic_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -17740,7 +17777,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0467",
+      "id": "LOAD-0468",
       "instance_uid": "LESHY2-UI-R2:c5_service_reset_proof_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -17777,7 +17814,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0468",
+      "id": "LOAD-0469",
       "instance_uid": "LESHY2-UI-R2:c5_service_usb_switch_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -17814,7 +17851,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0469",
+      "id": "LOAD-0470",
       "instance_uid": "LESHY2-UI-R2:ir_evidence_amp_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -17851,7 +17888,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0470",
+      "id": "LOAD-0471",
       "instance_uid": "LESHY2-UI-R2:ir_power_input_cap",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -17888,7 +17925,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0471",
+      "id": "LOAD-0472",
       "instance_uid": "LESHY2-UI-R2:ir_power_output_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -17925,7 +17962,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0472",
+      "id": "LOAD-0473",
       "instance_uid": "LESHY2-UI-R2:ir_power_output_cap",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -17962,7 +17999,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0473",
+      "id": "LOAD-0474",
       "instance_uid": "LESHY2-UI-R2:ir_return_buffer_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -17999,7 +18036,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0474",
+      "id": "LOAD-0475",
       "instance_uid": "LESHY2-UI-R2:ir_safe_gate_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18036,7 +18073,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0475",
+      "id": "LOAD-0476",
       "instance_uid": "LESHY2-UI-R2:c5_sdio_d1_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18073,7 +18110,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0476",
+      "id": "LOAD-0477",
       "instance_uid": "LESHY2-UI-R2:c5_sdio_d2_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18110,7 +18147,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0477",
+      "id": "LOAD-0478",
       "instance_uid": "LESHY2-UI-R2:c5_sdio_d3_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18147,7 +18184,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0478",
+      "id": "LOAD-0479",
       "instance_uid": "LESHY2-UI-R2:c5_service_vbus_present_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18184,7 +18221,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0479",
+      "id": "LOAD-0480",
       "instance_uid": "LESHY2-UI-R2:ir_carrier_host_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18221,7 +18258,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0480",
+      "id": "LOAD-0481",
       "instance_uid": "LESHY2-UI-R2:ir_carrier_supply_res",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18258,7 +18295,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0481",
+      "id": "LOAD-0482",
       "instance_uid": "LESHY2-UI-R2:ir_demod_host_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18295,7 +18332,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0482",
+      "id": "LOAD-0483",
       "instance_uid": "LESHY2-UI-R2:ir_demod_supply_res",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18332,7 +18369,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0483",
+      "id": "LOAD-0484",
       "instance_uid": "LESHY2-UI-R2:ir_emitter_limit",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18369,7 +18406,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0484",
+      "id": "LOAD-0485",
       "instance_uid": "LESHY2-UI-R2:ir_evidence_output_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18406,7 +18443,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0485",
+      "id": "LOAD-0486",
       "instance_uid": "LESHY2-UI-R2:c5_boot_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18443,7 +18480,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0486",
+      "id": "LOAD-0487",
       "instance_uid": "LESHY2-UI-R2:c5_dbg_id0_strap",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18480,7 +18517,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0487",
+      "id": "LOAD-0488",
       "instance_uid": "LESHY2-UI-R2:c5_dbg_vtref_series",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18517,7 +18554,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0488",
+      "id": "LOAD-0489",
       "instance_uid": "LESHY2-UI-R2:c5_evidence_output_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18554,7 +18591,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0489",
+      "id": "LOAD-0490",
       "instance_uid": "LESHY2-UI-R2:c5_gpio27_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18591,7 +18628,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0490",
+      "id": "LOAD-0491",
       "instance_uid": "LESHY2-UI-R2:c5_reset_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18628,7 +18665,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0491",
+      "id": "LOAD-0492",
       "instance_uid": "LESHY2-UI-R2:c5_sdio_cmd_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18665,7 +18702,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0492",
+      "id": "LOAD-0493",
       "instance_uid": "LESHY2-UI-R2:c5_sdio_d0_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18702,7 +18739,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0493",
+      "id": "LOAD-0494",
       "instance_uid": "LESHY2-UI-R2:c5",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18739,7 +18776,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0494",
+      "id": "LOAD-0495",
       "instance_uid": "LESHY2-UI-R2:c5_service_mux_logic_inverters",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18776,7 +18813,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0495",
+      "id": "LOAD-0496",
       "instance_uid": "LESHY2-UI-R2:c5_service_owner_latch",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18808,12 +18845,12 @@
         "document": "SN74LVC1G74 Single D-Type Flip-Flop With Clear and Preset datasheet",
         "version": "Rev. G",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-31"
       },
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0496",
+      "id": "LOAD-0497",
       "instance_uid": "LESHY2-UI-R2:c5_service_release_logic",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18850,7 +18887,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0497",
+      "id": "LOAD-0498",
       "instance_uid": "LESHY2-UI-R2:c5_service_reset_proof_inverters",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18887,7 +18924,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0498",
+      "id": "LOAD-0499",
       "instance_uid": "LESHY2-UI-R2:c5_service_usb_switch",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18924,7 +18961,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0499",
+      "id": "LOAD-0500",
       "instance_uid": "LESHY2-UI-R2:ir_power_switch",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -18967,7 +19004,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0500",
+      "id": "LOAD-0501",
       "instance_uid": "LESHY2-UI-R2:ir_return_buffer",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -19004,7 +19041,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0501",
+      "id": "LOAD-0502",
       "instance_uid": "LESHY2-UI-R2:ir_safe_gate",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -19041,7 +19078,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0502",
+      "id": "LOAD-0503",
       "instance_uid": "LESHY2-UI-R2:hub_rp_adc_avdd_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19078,7 +19115,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0503",
+      "id": "LOAD-0504",
       "instance_uid": "LESHY2-UI-R2:hub_rp_dvdd10_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19116,7 +19153,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0504",
+      "id": "LOAD-0505",
       "instance_uid": "LESHY2-UI-R2:hub_rp_dvdd32_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19154,7 +19191,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0505",
+      "id": "LOAD-0506",
       "instance_uid": "LESHY2-UI-R2:hub_rp_dvdd51_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19192,7 +19229,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0506",
+      "id": "LOAD-0507",
       "instance_uid": "LESHY2-UI-R2:hub_rp_dvdd_remote_bulk",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19230,7 +19267,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0507",
+      "id": "LOAD-0508",
       "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd15_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19267,7 +19304,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0508",
+      "id": "LOAD-0509",
       "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd24_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19304,7 +19341,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0509",
+      "id": "LOAD-0510",
       "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd29_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19341,7 +19378,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0510",
+      "id": "LOAD-0511",
       "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd41_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19378,7 +19415,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0511",
+      "id": "LOAD-0512",
       "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd50_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19415,7 +19452,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0512",
+      "id": "LOAD-0513",
       "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd5_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19452,7 +19489,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0513",
+      "id": "LOAD-0514",
       "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd60_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19489,7 +19526,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0514",
+      "id": "LOAD-0515",
       "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd76_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19526,7 +19563,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0515",
+      "id": "LOAD-0516",
       "instance_uid": "LESHY2-UI-R2:hub_rp_qspi_iovdd_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19563,7 +19600,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0516",
+      "id": "LOAD-0517",
       "instance_uid": "LESHY2-UI-R2:hub_rp_service_usb_switch_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19600,7 +19637,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0517",
+      "id": "LOAD-0518",
       "instance_uid": "LESHY2-UI-R2:hub_rp_usb_otp_vdd_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19637,7 +19674,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0518",
+      "id": "LOAD-0519",
       "instance_uid": "LESHY2-UI-R2:hub_rp_vreg_avdd_filter_cap",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19675,7 +19712,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0519",
+      "id": "LOAD-0520",
       "instance_uid": "LESHY2-UI-R2:hub_rp_vreg_output_bulk",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19713,7 +19750,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0520",
+      "id": "LOAD-0521",
       "instance_uid": "LESHY2-UI-R2:hub_rp_vreg_vin_bulk",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19750,7 +19787,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0521",
+      "id": "LOAD-0522",
       "instance_uid": "LESHY2-UI-R2:hub_rp_vreg_inductor",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19797,7 +19834,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0522",
+      "id": "LOAD-0523",
       "instance_uid": "LESHY2-UI-R2:hub_rp_boot_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19834,7 +19871,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0523",
+      "id": "LOAD-0524",
       "instance_uid": "LESHY2-UI-R2:hub_rp_dbg_id1_strap",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19871,7 +19908,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0524",
+      "id": "LOAD-0525",
       "instance_uid": "LESHY2-UI-R2:hub_rp_dbg_vtref_series",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19908,7 +19945,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0525",
+      "id": "LOAD-0526",
       "instance_uid": "LESHY2-UI-R2:hub_rp_reset_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19945,7 +19982,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0526",
+      "id": "LOAD-0527",
       "instance_uid": "LESHY2-UI-R2:hub_rp_vreg_avdd_filter_res",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -19990,7 +20027,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0527",
+      "id": "LOAD-0528",
       "instance_uid": "LESHY2-UI-R2:hub_rp",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -20041,7 +20078,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0528",
+      "id": "LOAD-0529",
       "instance_uid": "LESHY2-UI-R2:hub_rp_service_usb_switch",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_30_HUB_RP_CORE_SERVICE",
@@ -20078,7 +20115,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0529",
+      "id": "LOAD-0530",
       "instance_uid": "LESHY2-UI-R2:nrf0_detector_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20115,7 +20152,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0530",
+      "id": "LOAD-0531",
       "instance_uid": "LESHY2-UI-R2:nrf0_host_buffer_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20152,7 +20189,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0531",
+      "id": "LOAD-0532",
       "instance_uid": "LESHY2-UI-R2:nrf0_module_bulk_cap",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20189,7 +20226,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0532",
+      "id": "LOAD-0533",
       "instance_uid": "LESHY2-UI-R2:nrf0_module_hf_cap",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20226,7 +20263,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0533",
+      "id": "LOAD-0534",
       "instance_uid": "LESHY2-UI-R2:nrf0_return_buffer_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20263,7 +20300,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0534",
+      "id": "LOAD-0535",
       "instance_uid": "LESHY2-UI-R2:nrf1_detector_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20300,7 +20337,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0535",
+      "id": "LOAD-0536",
       "instance_uid": "LESHY2-UI-R2:nrf1_host_buffer_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20337,7 +20374,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0536",
+      "id": "LOAD-0537",
       "instance_uid": "LESHY2-UI-R2:nrf1_module_bulk_cap",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20374,7 +20411,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0537",
+      "id": "LOAD-0538",
       "instance_uid": "LESHY2-UI-R2:nrf1_module_hf_cap",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20411,7 +20448,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0538",
+      "id": "LOAD-0539",
       "instance_uid": "LESHY2-UI-R2:nrf1_return_buffer_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20448,7 +20485,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0539",
+      "id": "LOAD-0540",
       "instance_uid": "LESHY2-UI-R2:nrf2_detector_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20485,7 +20522,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0540",
+      "id": "LOAD-0541",
       "instance_uid": "LESHY2-UI-R2:nrf2_host_buffer_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20522,7 +20559,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0541",
+      "id": "LOAD-0542",
       "instance_uid": "LESHY2-UI-R2:nrf2_module_bulk_cap",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20559,7 +20596,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0542",
+      "id": "LOAD-0543",
       "instance_uid": "LESHY2-UI-R2:nrf2_module_hf_cap",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20596,7 +20633,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0543",
+      "id": "LOAD-0544",
       "instance_uid": "LESHY2-UI-R2:nrf2_return_buffer_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20633,7 +20670,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0544",
+      "id": "LOAD-0545",
       "instance_uid": "LESHY2-UI-R2:nrf_backup_gate_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20670,7 +20707,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0545",
+      "id": "LOAD-0546",
       "instance_uid": "LESHY2-UI-R2:nrf_power_input_cap",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20707,7 +20744,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0546",
+      "id": "LOAD-0547",
       "instance_uid": "LESHY2-UI-R2:nrf0_host_csn_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20744,7 +20781,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0547",
+      "id": "LOAD-0548",
       "instance_uid": "LESHY2-UI-R2:nrf0_host_irq_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20781,7 +20818,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0548",
+      "id": "LOAD-0549",
       "instance_uid": "LESHY2-UI-R2:nrf0_module_csn_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20818,7 +20855,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0549",
+      "id": "LOAD-0550",
       "instance_uid": "LESHY2-UI-R2:nrf0_module_irq_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20855,7 +20892,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0550",
+      "id": "LOAD-0551",
       "instance_uid": "LESHY2-UI-R2:nrf1_host_csn_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20892,7 +20929,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0551",
+      "id": "LOAD-0552",
       "instance_uid": "LESHY2-UI-R2:nrf1_host_irq_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20929,7 +20966,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0552",
+      "id": "LOAD-0553",
       "instance_uid": "LESHY2-UI-R2:nrf1_module_csn_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -20966,7 +21003,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0553",
+      "id": "LOAD-0554",
       "instance_uid": "LESHY2-UI-R2:nrf1_module_irq_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -21003,7 +21040,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0554",
+      "id": "LOAD-0555",
       "instance_uid": "LESHY2-UI-R2:nrf2_host_csn_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -21040,7 +21077,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0555",
+      "id": "LOAD-0556",
       "instance_uid": "LESHY2-UI-R2:nrf2_host_irq_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -21077,7 +21114,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0556",
+      "id": "LOAD-0557",
       "instance_uid": "LESHY2-UI-R2:nrf2_module_csn_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -21114,7 +21151,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0557",
+      "id": "LOAD-0558",
       "instance_uid": "LESHY2-UI-R2:nrf2_module_irq_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -21151,7 +21188,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0558",
+      "id": "LOAD-0559",
       "instance_uid": "LESHY2-UI-R2:det_nrf0",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -21201,7 +21238,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0559",
+      "id": "LOAD-0560",
       "instance_uid": "LESHY2-UI-R2:det_nrf1",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -21251,7 +21288,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0560",
+      "id": "LOAD-0561",
       "instance_uid": "LESHY2-UI-R2:det_nrf2",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -21301,7 +21338,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0561",
+      "id": "LOAD-0562",
       "instance_uid": "LESHY2-UI-R2:nrf0",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -21338,7 +21375,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0562",
+      "id": "LOAD-0563",
       "instance_uid": "LESHY2-UI-R2:nrf0_host_buffer",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -21375,7 +21412,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0563",
+      "id": "LOAD-0564",
       "instance_uid": "LESHY2-UI-R2:nrf0_return_buffer",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -21412,7 +21449,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0564",
+      "id": "LOAD-0565",
       "instance_uid": "LESHY2-UI-R2:nrf1",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -21449,7 +21486,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0565",
+      "id": "LOAD-0566",
       "instance_uid": "LESHY2-UI-R2:nrf1_host_buffer",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -21486,7 +21523,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0566",
+      "id": "LOAD-0567",
       "instance_uid": "LESHY2-UI-R2:nrf1_return_buffer",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -21523,7 +21560,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0567",
+      "id": "LOAD-0568",
       "instance_uid": "LESHY2-UI-R2:nrf2",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -21560,7 +21597,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0568",
+      "id": "LOAD-0569",
       "instance_uid": "LESHY2-UI-R2:nrf2_host_buffer",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -21597,7 +21634,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0569",
+      "id": "LOAD-0570",
       "instance_uid": "LESHY2-UI-R2:nrf2_return_buffer",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -21634,7 +21671,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0570",
+      "id": "LOAD-0571",
       "instance_uid": "LESHY2-UI-R2:nrf_backup_gate",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -21671,7 +21708,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0571",
+      "id": "LOAD-0572",
       "instance_uid": "LESHY2-UI-R2:nrf_power_switch",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -21714,7 +21751,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0572",
+      "id": "LOAD-0573",
       "instance_uid": "LESHY2-UI-R2:m1_ui_plug",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_40_INTERBOARD_M1",
@@ -21763,7 +21800,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0573",
+      "id": "LOAD-0574",
       "instance_uid": "LESHY2-UI-R2:evidence_cmp_a_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -21800,7 +21837,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0574",
+      "id": "LOAD-0575",
       "instance_uid": "LESHY2-UI-R2:evidence_cmp_b_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -21837,7 +21874,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0575",
+      "id": "LOAD-0576",
       "instance_uid": "LESHY2-UI-R2:safe_c5_fault_reset_buffer_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -21874,7 +21911,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0576",
+      "id": "LOAD-0577",
       "instance_uid": "LESHY2-UI-R2:safe_c5_reset_buffer_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -21911,7 +21948,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0577",
+      "id": "LOAD-0578",
       "instance_uid": "LESHY2-UI-R2:safe_gate_a_bypass",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -21948,7 +21985,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0578",
+      "id": "LOAD-0579",
       "instance_uid": "LESHY2-UI-R2:c5_evidence_threshold_top",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -21985,7 +22022,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0579",
+      "id": "LOAD-0580",
       "instance_uid": "LESHY2-UI-R2:ir_evidence_threshold_top",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -22022,7 +22059,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0580",
+      "id": "LOAD-0581",
       "instance_uid": "LESHY2-UI-R2:ir_evidence_vref_top",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -22059,7 +22096,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0581",
+      "id": "LOAD-0582",
       "instance_uid": "LESHY2-UI-R2:nrf0_evidence_output_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -22096,7 +22133,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0582",
+      "id": "LOAD-0583",
       "instance_uid": "LESHY2-UI-R2:nrf0_evidence_threshold_top",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -22133,7 +22170,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0583",
+      "id": "LOAD-0584",
       "instance_uid": "LESHY2-UI-R2:nrf1_evidence_output_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -22170,7 +22207,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0584",
+      "id": "LOAD-0585",
       "instance_uid": "LESHY2-UI-R2:nrf1_evidence_threshold_top",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -22207,7 +22244,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0585",
+      "id": "LOAD-0586",
       "instance_uid": "LESHY2-UI-R2:nrf2_evidence_output_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -22244,7 +22281,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0586",
+      "id": "LOAD-0587",
       "instance_uid": "LESHY2-UI-R2:nrf2_evidence_threshold_top",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -22281,7 +22318,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0587",
+      "id": "LOAD-0588",
       "instance_uid": "LESHY2-UI-R2:s3_evidence_threshold_top",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -22318,7 +22355,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0588",
+      "id": "LOAD-0589",
       "instance_uid": "LESHY2-UI-R2:safe_c5_reset_gate_pullup",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -22355,7 +22392,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0589",
+      "id": "LOAD-0590",
       "instance_uid": "LESHY2-UI-R2:det_c5",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -22392,7 +22429,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0590",
+      "id": "LOAD-0591",
       "instance_uid": "LESHY2-UI-R2:det_s3",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -22429,7 +22466,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0591",
+      "id": "LOAD-0592",
       "instance_uid": "LESHY2-UI-R2:evidence_cmp_a",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -22466,7 +22503,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0592",
+      "id": "LOAD-0593",
       "instance_uid": "LESHY2-UI-R2:evidence_cmp_b",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -22503,7 +22540,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0593",
+      "id": "LOAD-0594",
       "instance_uid": "LESHY2-UI-R2:ir_evidence_amp",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -22540,7 +22577,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0594",
+      "id": "LOAD-0595",
       "instance_uid": "LESHY2-UI-R2:safe_c5_fault_reset_buffer",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -22577,7 +22614,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0595",
+      "id": "LOAD-0596",
       "instance_uid": "LESHY2-UI-R2:safe_c5_reset_buffer",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -22614,7 +22651,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0596",
+      "id": "LOAD-0597",
       "instance_uid": "LESHY2-UI-R2:safe_gate_a",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_50_FRONT_POWER_SAFETY",
@@ -22651,7 +22688,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0597",
+      "id": "LOAD-0598",
       "instance_uid": "LESHY2-RF-R2:air_lna",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_21_BROADCAST_AIRBAND_RX",
@@ -22688,7 +22725,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0598",
+      "id": "LOAD-0599",
       "instance_uid": "LESHY2-UI-R2:ir_carrier",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -22731,7 +22768,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0599",
+      "id": "LOAD-0600",
       "instance_uid": "LESHY2-UI-R2:ir_demod",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -22769,7 +22806,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0600",
+      "id": "LOAD-0601",
       "instance_uid": "LESHY2-UI-R2:ir_emitter",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
@@ -22812,7 +22849,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0601",
+      "id": "LOAD-0602",
       "instance_uid": "LESHY2-UI-R2:c5_tx_led",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -22850,7 +22887,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0602",
+      "id": "LOAD-0603",
       "instance_uid": "LESHY2-UI-R2:cc_tx_led",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -22888,7 +22925,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0603",
+      "id": "LOAD-0604",
       "instance_uid": "LESHY2-UI-R2:ext_tx_led",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -22926,7 +22963,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0604",
+      "id": "LOAD-0605",
       "instance_uid": "LESHY2-UI-R2:fault_led",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -22964,7 +23001,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0605",
+      "id": "LOAD-0606",
       "instance_uid": "LESHY2-UI-R2:ir_tx_led",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -23002,7 +23039,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0606",
+      "id": "LOAD-0607",
       "instance_uid": "LESHY2-UI-R2:nrf0_tx_led",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -23040,7 +23077,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0607",
+      "id": "LOAD-0608",
       "instance_uid": "LESHY2-UI-R2:nrf1_tx_led",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -23078,7 +23115,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0608",
+      "id": "LOAD-0609",
       "instance_uid": "LESHY2-UI-R2:nrf2_tx_led",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -23116,7 +23153,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0609",
+      "id": "LOAD-0610",
       "instance_uid": "LESHY2-UI-R2:s3_tx_led",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -23154,7 +23191,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0610",
+      "id": "LOAD-0611",
       "instance_uid": "LESHY2-UI-R2:voice_tx_led",
       "project": "LESHY2-UI-R2",
       "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
@@ -23192,7 +23229,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0611",
+      "id": "LOAD-0612",
       "instance_uid": "LESHY2-RF-R2:microphone",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_22_AUDIO_CODEC_IO",
@@ -23235,7 +23272,7 @@
       "parameter_owner": "H3-R2.1.3"
     },
     {
-      "id": "LOAD-0612",
+      "id": "LOAD-0613",
       "instance_uid": "LESHY2-RF-R2:speaker",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_22_AUDIO_CODEC_IO",
@@ -23336,10 +23373,10 @@
     }
   ],
   "summary": {
-    "power_connected_instances": 612,
-    "direct_power_connected_instances": 596,
+    "power_connected_instances": 613,
+    "direct_power_connected_instances": 597,
     "indirect_powered_instances": 16,
-    "bound_instance_lines": 612,
+    "bound_instance_lines": 613,
     "external_load_lines": 6,
     "unbound_power_connected_instances": 0,
     "duplicate_instance_lines": 0,
@@ -23350,12 +23387,12 @@
       "conversion_or_protection_path": 22,
       "effective_capacitance_and_dc_leakage": 241,
       "indirect_powered_consumer": 16,
-      "resistive_dc_branch": 190,
+      "resistive_dc_branch": 191,
       "series_dcr_and_saturation": 9,
       "series_protection": 2
     },
     "canonical_rail_bindings": {
-      "3V3_MAIN": 341,
+      "3V3_MAIN": 342,
       "5V_EXT_ACTIVE_BRANCH": 19,
       "AON_SAFE_3V3": 168,
       "PACK_DIRECT": 38,
@@ -23381,7 +23418,7 @@
       "RF_RP": 9,
       "SOURCE_OR_CHARGE": 18,
       "STORAGE": 14,
-      "SUPPORT": 206,
+      "SUPPORT": 207,
       "USB_ATTACH": 4,
       "USB_PD": 20,
       "VOICE": 23
@@ -23389,7 +23426,7 @@
     "parameter_states": {
       "candidate_current_seed_requires_applicability_review": 16,
       "exact_nonload_parameter_extraction_required": 250,
-      "explicit_parameter_extraction_required": 346
+      "explicit_parameter_extraction_required": 347
     },
     "hidden_miscellaneous_allowances": 0,
     "reviewed_power_nets_required": 17,

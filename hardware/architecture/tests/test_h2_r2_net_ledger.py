@@ -52,8 +52,8 @@ class H2R2NetLedgerTests(unittest.TestCase):
         self.assertEqual("pass", self.ledger["status"])
         self.assertEqual([], self.ledger["errors"])
         self.assertEqual(4323, summary["endpoint_count"])
-        self.assertEqual(4063, summary["connected_endpoint_count"])
-        self.assertEqual(260, summary["no_connect_endpoint_count"])
+        self.assertEqual(4065, summary["connected_endpoint_count"])
+        self.assertEqual(258, summary["no_connect_endpoint_count"])
         self.assertEqual(0, summary["external_interface_endpoint_count"])
         self.assertEqual(0, summary["unresolved_endpoint_count"])
         self.assertEqual(826, summary["unique_net_count"])
@@ -117,6 +117,21 @@ class H2R2NetLedgerTests(unittest.TestCase):
         for row in self.rows:
             self.assertNotIn("route_alias_conflict", row["origin"])
 
+    def test_every_safety_controller_fault_output_has_a_fail_low_bias(self):
+        self.assertEqual(
+            "S3_FAULT_RESET_REQUEST",
+            self.by_endpoint["safety_s3_reset_pulldown.END_1"]["net"],
+        )
+        self.assertEqual(
+            "SAFETY_GROUND",
+            self.by_endpoint["safety_s3_reset_pulldown.END_2"]["net"],
+        )
+        self.assertEqual(
+            "SAFETY_GROUND",
+            self.by_endpoint["evidence_mask.P17"]["net"],
+        )
+        self.assertNotIn("evidence_mask_p17_pulldown.END_1", self.by_endpoint)
+
     def test_airband_is_fail_direct_fail_off_and_power_coherent(self):
         expected = {
             "airband_power_switch.ON": "AIR_RX_EN",
@@ -149,7 +164,7 @@ class H2R2NetLedgerTests(unittest.TestCase):
             if name.startswith("historical_"):
                 self.assertFalse(source["authority"])
         historical = [row for row in self.rows if row["origin"].startswith("reconciled_historical")]
-        self.assertEqual(3315, len(historical))
+        self.assertEqual(3311, len(historical))
         self.assertTrue(all(row["historical_topology_authority"] is False for row in historical))
         self.assertFalse(self.ledger["authorization"]["kicad_project_creation"])
 

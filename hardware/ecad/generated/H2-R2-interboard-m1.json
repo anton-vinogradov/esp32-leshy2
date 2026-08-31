@@ -216,8 +216,8 @@
     },
     {
       "contact": 36,
-      "net": "NC_36",
-      "class": "reserve",
+      "net": "S3_RESET_KILL_GATE",
+      "class": "safety",
       "direction": null
     },
     {
@@ -488,8 +488,8 @@
   "summary": {
     "physical_contacts": 80,
     "unique_nets": 44,
-    "no_connect_reserve_contacts": 11,
-    "explicit_reserve_class_contacts": 11,
+    "no_connect_reserve_contacts": 10,
+    "explicit_reserve_class_contacts": 10,
     "errors": 0
   },
   "errors": []

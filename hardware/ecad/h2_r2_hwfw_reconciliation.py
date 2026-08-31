@@ -167,8 +167,8 @@ def build() -> tuple[dict, dict]:
         "project_graph_sheet_count": 23,
         "fitted_symbol_instance_count": 1187,
         "physical_symbol_pin_count": 4327,
-        "connected_physical_pin_count": 4067,
-        "explicit_no_connect_physical_pin_count": 260,
+        "connected_physical_pin_count": 4069,
+        "explicit_no_connect_physical_pin_count": 258,
         "canonical_net_count": 826,
     }
     for key, value in expected_native_summary.items():

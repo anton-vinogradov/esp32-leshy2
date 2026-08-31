@@ -23,7 +23,7 @@ class H3R2MethodContractTests(unittest.TestCase):
         self.assertEqual(7, summary["workstreams"])
         self.assertEqual(9, summary["methods"])
         self.assertEqual(12, summary["pass_fail_rules"])
-        self.assertEqual(174, summary["explicit_unresolved_until_extraction"])
+        self.assertEqual(172, summary["explicit_unresolved_until_extraction"])
         self.assertEqual(0, summary["open_method_questions"])
         self.assertEqual(0, summary["errors"])
 

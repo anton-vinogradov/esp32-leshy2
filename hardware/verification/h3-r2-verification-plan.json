@@ -4,7 +4,7 @@
   "baseline": "R2",
   "status": "current",
   "current_workstream": "H3-R2.2",
-  "current_substep": "H3-R2.2.1",
+  "current_substep": "H3-R2.2.2",
   "accepted_input": {
     "stage": "H2-R2.1.5",
     "status": "reviewed",
@@ -37,8 +37,8 @@
       {"id": "H3-R2.1.5", "title": "Cross-check and publish the reviewed H3-R2.1 result", "status": "reviewed"}
     ]},
     {"id": "H3-R2.2", "title": "Startup, shutdown, handover, brownout, inrush and watchdog verification", "status": "current", "details": [
-      {"id": "H3-R2.2.1", "title": "Verify ordered startup, shutdown, reset and recovery sequencing", "status": "current"},
-      {"id": "H3-R2.2.2", "title": "Verify USB-to-pack handover, DPM, brownout and source loss", "status": "waiting"},
+      {"id": "H3-R2.2.1", "title": "Verify ordered startup, shutdown, reset and recovery sequencing", "status": "reviewed"},
+      {"id": "H3-R2.2.2", "title": "Verify USB-to-pack handover, DPM, brownout and source loss", "status": "current"},
       {"id": "H3-R2.2.3", "title": "Verify inrush, load steps, watchdog kill and retained fault display", "status": "waiting"},
       {"id": "H3-R2.2.4", "title": "Cross-check and publish the reviewed H3-R2.2 result", "status": "waiting"}
     ]},

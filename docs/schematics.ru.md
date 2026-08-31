@@ -38,7 +38,7 @@ flowchart TD
   FRP["SC1512-A4 · передний RP<br/>3× nRF24, microSD"]
   RRP["SC1512-A4 · задний RP<br/>RF, audio, расширения"]
   LCD["ER-TFT035IPS-6 + ER-TPC035-6<br/>ILI9488/FT6236 · прямой 8-bit i8080 · 24 МГц"]
-  M1["Hirose FX8C-80<br/>29 сигналов · 14 main-power · 2 AON<br/>24 возврата · 11 NC"]
+  M1["Hirose FX8C-80<br/>30 сигналов · 14 main-power · 2 AON<br/>24 возврата · 10 NC"]
 
   S3 -->|"LCD_CAM TX + GDMA"| LCD
   S3 <-->|"quad data + clock"| FRP
@@ -84,7 +84,7 @@ Host-switch, AON gate, два bridge, comparator, вспомогательные
 историческое инженерное evidence. Это **не** production-схема R2, и печатать
 по ним нельзя. Текущий native R2 source — три проекта из
 [результа `H2-R2.1.3`](h2-r2-native-kicad.ru.md): 23 sheets, 1 187
-устанавливаемых позиций, 4 327 физических pins и 827 канонических nets. Он
+устанавливаемых позиций, 4 327 физических pins и 826 канонических nets. Он
 ERC-clean; [результат H2-R2.1.5](h2-acceptance.ru.md) также проходит six-domain
 cross-sheet/HW↔FW reconciliation. Placement, routing и последующие release-gates
 остаются обязательными до печати.

@@ -1,0 +1,2142 @@
+{
+  "schema_version": 1,
+  "artifact": "H3-R2-transition-sequences",
+  "marker": "H3-R2.2.1",
+  "status": "reviewed_startup_shutdown_reset_and_recovery",
+  "source_sha256": {
+    "hardware/verification/h3-r2-transition-sequence-contract.json": "201b7b47d8154b5b321e8ba951505f774e0100731585b996b3bea6db84ac9c41",
+    "hardware/verification/h3-r2-verification-plan.json": "014e32c35022f39f75f1ad13164c5440f78d7cd28cacf78c9950eabbe6e4b453",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "34dbdff89429c235072cac8126f2f70e01618929ff4889274e0e32fea66c792e",
+    "hardware/verification/generated/H3-R2-method-contract.json": "869fb8b8337939cbdac6035a35217c00c75ac0b1cf5efe8a47af9daa55e4a2f7",
+    "hardware/verification/generated/H3-R2-dc-source-crosscheck.json": "977e930c8c7c93db338ba9b645b2b6f43afa1deacf19be88295bc863e274f39f",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "a74ec13d3b2482226734436debecf360fffe3986ce0a6e9f06fe35d98b3745e7",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "5f3c52f7164df747df0e11a5e8bb405d060e26ad1b649c2f6275bd8675686626",
+    "hardware/ecad/generated/H2-R2-interboard-m1.json": "baf93ef396bada362de08057604e4413bad26e2bbd1f18e520fb4bc49e43ae39",
+    "hardware/architecture/devices.json": "96bd2cf3a4bfae0af34e249d6737a16a2763fea46b3892e06b465b84e1c18e2f"
+  },
+  "exact_devices": {
+    "supervisor": {
+      "device_id": "ti_tps3808g33_dbvr",
+      "mpn": "TPS3808G33DBVR",
+      "source": {
+        "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
+        "version": "Rev. N, revised August 2026",
+        "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
+        "checked": "2026-08-31"
+      }
+    },
+    "watchdog": {
+      "device_id": "ti_tps3435cakagddfr",
+      "mpn": "Texas Instruments TPS3435CAKAGDDFR",
+      "source": {
+        "document": "TPS3435 Nano IQ Precision Timeout Watchdog Timer datasheet",
+        "version": "SNVSCF7A, revised August 2024",
+        "url": "https://www.ti.com/lit/ds/symlink/tps3435.pdf",
+        "checked": "2026-08-31"
+      }
+    },
+    "schmitt": {
+      "device_id": "ti_sn74lvc1g17_dckr",
+      "mpn": "SN74LVC1G17DCKR",
+      "source": {
+        "document": "SN74LVC1G17 Single Schmitt-Trigger Buffer datasheet",
+        "version": "Rev. Y, revised October 2025",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
+        "checked": "2026-08-31"
+      }
+    },
+    "latch": {
+      "device_id": "ti_sn74lvc1g74_dcur",
+      "mpn": "SN74LVC1G74DCUR",
+      "source": {
+        "document": "SN74LVC1G74 Single D-Type Flip-Flop With Clear and Preset datasheet",
+        "version": "Rev. G",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf",
+        "checked": "2026-08-31"
+      }
+    },
+    "rearm_resistor": {
+      "device_id": "yageo_rc0402fr_07100kl",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "source": {
+        "document": "Yageo RC0402FR-07100KL product specification",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://yageogroup.com/component-documentation/download/specsheet/RC0402FR-07100KL",
+        "checked": "2026-08-18"
+      }
+    },
+    "rearm_capacitor": {
+      "device_id": "murata_grm21br71e225ke11l",
+      "mpn": "Murata GRM21BR71E225KE11L",
+      "source": {
+        "document": "Murata GRM21BR71E225KE11 product data",
+        "version": "current product data checked 2026-08-18",
+        "url": "https://www.murata.com/en-global/products/productdetail?partno=GRM21BR71E225KE11L",
+        "checked": "2026-08-18"
+      }
+    }
+  },
+  "topology_checks": {
+    "power_command_switch.THROW_A": true,
+    "power_command_switch.COMMON": true,
+    "power_command_switch.THROW_B": true,
+    "safe_conditioner.1A": true,
+    "safe_conditioner.1Y": true,
+    "safe_rearm_delay_res.END_1": true,
+    "safe_rearm_delay_res.END_2": true,
+    "safe_rearm_delay_cap.END_1": true,
+    "safe_rearm_delay_cap.END_2": true,
+    "safe_rearm_buffer.A": true,
+    "safe_rearm_buffer.Y": true,
+    "safe_latch.CLK": true,
+    "safe_latch.D": true,
+    "safe_latch.Q": true,
+    "safe_latch.Q_N": true,
+    "safe_latch.CLR_N": true,
+    "safe_latch.PRE_N": true,
+    "safe_latch_d_pullup.END_1": true,
+    "safe_latch_d_pullup.END_2": true,
+    "safe_gate_b.3A": true,
+    "safe_gate_b.3B": true,
+    "safe_gate_b.3Y": true,
+    "safe_supervisor.RESET_N": true,
+    "safe_supervisor.SENSE": true,
+    "safe_supervisor.CT": true,
+    "safety_watchdog.WDO_N": true,
+    "safety_controller.PA6": true,
+    "safety_controller.PA23": true,
+    "safety_controller.PA24": true,
+    "safety_controller.PA25": true,
+    "safety_fault_request_pulldown.END_1": true,
+    "safety_fault_request_pulldown.END_2": true,
+    "safety_fault_request_iso.A": true,
+    "safety_fault_request_iso.Y": true,
+    "safe_run_fault_iso.A": true,
+    "safe_run_fault_iso.Y": true,
+    "safety_s3_reset_pulldown.END_1": true,
+    "safety_s3_reset_pulldown.END_2": true,
+    "safety_s3_reset_iso.A": true,
+    "safety_s3_reset_iso.Y": true,
+    "m1_rf_receptacle.P36": true,
+    "m1_ui_plug.P36": true,
+    "s3_reset_gate_pullup.END_1": true,
+    "s3_reset_gate_pullup.END_2": true,
+    "safe_reset_sink_a.G1": true,
+    "safe_reset_sink_a.D1": true,
+    "safe_c5_fault_reset_buffer.A": true,
+    "safe_c5_fault_reset_buffer.Y": true,
+    "safe_fault_reset_buffer.1A": true,
+    "safe_fault_reset_buffer.1Y": true,
+    "safe_reset_sink_b.D1": true
+  },
+  "net_checks": {
+    "S3_RESET_KILL_GATE": true,
+    "FAULT_ASSERT_N": true,
+    "RUN_PERMIT": true,
+    "S3_RESET_KILL_GATE_exact": true
+  },
+  "timing": {
+    "supervisor_ct_open_reset_delay_ms": {
+      "min": 12,
+      "typ": 20,
+      "max": 28
+    },
+    "supervisor_assertion_max_us": 20,
+    "watchdog_timeout_s": {
+      "min": 1.44,
+      "typ": 1.6,
+      "max": 1.76
+    },
+    "watchdog_assert_time_ms": {
+      "min": 180,
+      "typ": 200,
+      "max": 220
+    },
+    "watchdog_service_period_ms": 500,
+    "rearm_rc": {
+      "resistor_ohm": {
+        "min": 99000,
+        "nom": 100000,
+        "max": 101000
+      },
+      "capacitor_uf_tolerance_only": {
+        "min": 1.98,
+        "nom": 2.2,
+        "max": 2.42
+      },
+      "rise_ms": {
+        "earliest": 96.888,
+        "latest": 283.86
+      },
+      "guaranteed_fall_below_vt_minus_min_ms": 484.525,
+      "qualified_kill_ms": 500,
+      "analytical_kill_margin_ms": 15.475,
+      "credit": "debounce and one-edge formation only; never the sole anti-auto-start barrier"
+    }
+  },
+  "firmware_contract": {
+    "states": [
+      "BOOT_HOLD_FAULT",
+      "WAIT_KILL",
+      "KILL_QUALIFY",
+      "ARMED_WAIT_RUN",
+      "RUNNING",
+      "FAULT_LATCHED"
+    ],
+    "reset_outputs": "PA25 and PA23 default low through external 10-kohm pulldowns: hazardous permit is held off while S3 reset remains released",
+    "boot_rule": "never release PA25 after self-test while RUN_EDGE is high; require 500 ms continuously low first",
+    "fault_rule": "assert PA25 low immediately, store the cause, and require a new qualified KILL-to-RUN cycle",
+    "s3_recovery": "PA23 may pulse high to reset only S3; release it low after reset so the fault-only UI can reboot"
+  },
+  "scenarios": [
+    {
+      "id": "SEQ-01",
+      "title": "Cold start with switch at KILL",
+      "events": [
+        "power_on_kill",
+        "por_valid",
+        "self_test_pass",
+        "hold_kill_500",
+        "switch_run",
+        "rc_clock"
+      ],
+      "expected_final": {
+        "permit": true,
+        "firmware_state": "RUNNING",
+        "hazardous_enabled": true
+      },
+      "actual_final": {
+        "permit": true,
+        "firmware_state": "RUNNING",
+        "hazardous_enabled": true,
+        "s3_available": true,
+        "s3_reset_asserted": false
+      },
+      "trace": [
+        {
+          "event": "power_on_kill",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": false,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "por_valid",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "self_test_pass",
+          "firmware_state": "KILL_QUALIFY",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "hold_kill_500",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "switch_run",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "rc_clock",
+          "firmware_state": "RUNNING",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": true,
+          "hazardous_enabled": true,
+          "c5_reset_asserted": false,
+          "rf_rp_reset_asserted": false,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        }
+      ],
+      "status": "pass",
+      "errors": []
+    },
+    {
+      "id": "SEQ-02",
+      "title": "Cold start with switch already at RUN",
+      "events": [
+        "power_on_run",
+        "por_valid",
+        "self_test_pass",
+        "rc_clock"
+      ],
+      "expected_final": {
+        "permit": false,
+        "firmware_state": "WAIT_KILL",
+        "hazardous_enabled": false
+      },
+      "actual_final": {
+        "permit": false,
+        "firmware_state": "WAIT_KILL",
+        "hazardous_enabled": false,
+        "s3_available": true,
+        "s3_reset_asserted": false
+      },
+      "trace": [
+        {
+          "event": "power_on_run",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "RUN",
+          "por_valid": false,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "por_valid",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "self_test_pass",
+          "firmware_state": "WAIT_KILL",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "rc_clock",
+          "firmware_state": "WAIT_KILL",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        }
+      ],
+      "status": "pass",
+      "errors": []
+    },
+    {
+      "id": "SEQ-03",
+      "title": "RUN-at-boot followed by explicit KILL and RUN",
+      "events": [
+        "power_on_run",
+        "por_valid",
+        "self_test_pass",
+        "rc_clock",
+        "switch_kill",
+        "hold_kill_500",
+        "switch_run",
+        "rc_clock"
+      ],
+      "expected_final": {
+        "permit": true,
+        "firmware_state": "RUNNING",
+        "hazardous_enabled": true
+      },
+      "actual_final": {
+        "permit": true,
+        "firmware_state": "RUNNING",
+        "hazardous_enabled": true,
+        "s3_available": true,
+        "s3_reset_asserted": false
+      },
+      "trace": [
+        {
+          "event": "power_on_run",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "RUN",
+          "por_valid": false,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "por_valid",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "self_test_pass",
+          "firmware_state": "WAIT_KILL",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "rc_clock",
+          "firmware_state": "WAIT_KILL",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "switch_kill",
+          "firmware_state": "WAIT_KILL",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "hold_kill_500",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "switch_run",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "rc_clock",
+          "firmware_state": "RUNNING",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": true,
+          "hazardous_enabled": true,
+          "c5_reset_asserted": false,
+          "rf_rp_reset_asserted": false,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        }
+      ],
+      "status": "pass",
+      "errors": []
+    },
+    {
+      "id": "SEQ-04",
+      "title": "Insufficient KILL dwell",
+      "events": [
+        "power_on_kill",
+        "por_valid",
+        "self_test_pass",
+        "hold_kill_short",
+        "switch_run",
+        "rc_clock"
+      ],
+      "expected_final": {
+        "permit": false,
+        "firmware_state": "WAIT_KILL",
+        "hazardous_enabled": false
+      },
+      "actual_final": {
+        "permit": false,
+        "firmware_state": "WAIT_KILL",
+        "hazardous_enabled": false,
+        "s3_available": true,
+        "s3_reset_asserted": false
+      },
+      "trace": [
+        {
+          "event": "power_on_kill",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": false,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "por_valid",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "self_test_pass",
+          "firmware_state": "KILL_QUALIFY",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "hold_kill_short",
+          "firmware_state": "WAIT_KILL",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "switch_run",
+          "firmware_state": "WAIT_KILL",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "rc_clock",
+          "firmware_state": "WAIT_KILL",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        }
+      ],
+      "status": "pass",
+      "errors": []
+    },
+    {
+      "id": "SEQ-05",
+      "title": "Switch bounce fails closed",
+      "events": [
+        "power_on_kill",
+        "por_valid",
+        "self_test_pass",
+        "hold_kill_500",
+        "switch_run",
+        "switch_kill",
+        "switch_run",
+        "rc_clock"
+      ],
+      "expected_final": {
+        "permit": false,
+        "firmware_state": "WAIT_KILL",
+        "hazardous_enabled": false
+      },
+      "actual_final": {
+        "permit": false,
+        "firmware_state": "WAIT_KILL",
+        "hazardous_enabled": false,
+        "s3_available": true,
+        "s3_reset_asserted": false
+      },
+      "trace": [
+        {
+          "event": "power_on_kill",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": false,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "por_valid",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "self_test_pass",
+          "firmware_state": "KILL_QUALIFY",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "hold_kill_500",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "switch_run",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "switch_kill",
+          "firmware_state": "WAIT_KILL",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "switch_run",
+          "firmware_state": "WAIT_KILL",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "rc_clock",
+          "firmware_state": "WAIT_KILL",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        }
+      ],
+      "status": "pass",
+      "errors": []
+    },
+    {
+      "id": "SEQ-06",
+      "title": "Physical KILL or open loop during RUN",
+      "events": [
+        "normal_start",
+        "switch_kill"
+      ],
+      "expected_final": {
+        "permit": false,
+        "firmware_state": "WAIT_KILL",
+        "hazardous_enabled": false
+      },
+      "actual_final": {
+        "permit": false,
+        "firmware_state": "WAIT_KILL",
+        "hazardous_enabled": false,
+        "s3_available": true,
+        "s3_reset_asserted": false
+      },
+      "trace": [
+        {
+          "event": "power_on_kill",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": false,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "por_valid",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "self_test_pass",
+          "firmware_state": "KILL_QUALIFY",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "hold_kill_500",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "switch_run",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "rc_clock",
+          "firmware_state": "RUNNING",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": true,
+          "hazardous_enabled": true,
+          "c5_reset_asserted": false,
+          "rf_rp_reset_asserted": false,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "switch_kill",
+          "firmware_state": "WAIT_KILL",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        }
+      ],
+      "status": "pass",
+      "errors": []
+    },
+    {
+      "id": "SEQ-07",
+      "title": "Watchdog timeout and automatic WDO recovery",
+      "events": [
+        "normal_start",
+        "watchdog_fault",
+        "fault_recovers"
+      ],
+      "expected_final": {
+        "permit": false,
+        "firmware_state": "FAULT_LATCHED",
+        "hazardous_enabled": false,
+        "s3_available": true
+      },
+      "actual_final": {
+        "permit": false,
+        "firmware_state": "FAULT_LATCHED",
+        "hazardous_enabled": false,
+        "s3_available": true,
+        "s3_reset_asserted": false
+      },
+      "trace": [
+        {
+          "event": "power_on_kill",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": false,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "por_valid",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "self_test_pass",
+          "firmware_state": "KILL_QUALIFY",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "hold_kill_500",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "switch_run",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "rc_clock",
+          "firmware_state": "RUNNING",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": true,
+          "hazardous_enabled": true,
+          "c5_reset_asserted": false,
+          "rf_rp_reset_asserted": false,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "watchdog_fault",
+          "firmware_state": "FAULT_LATCHED",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "fault_recovers",
+          "firmware_state": "FAULT_LATCHED",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        }
+      ],
+      "status": "pass",
+      "errors": []
+    },
+    {
+      "id": "SEQ-08",
+      "title": "Safety-controller reset during RUN",
+      "events": [
+        "normal_start",
+        "safety_controller_reset"
+      ],
+      "expected_final": {
+        "permit": false,
+        "firmware_state": "BOOT_HOLD_FAULT",
+        "hazardous_enabled": false,
+        "s3_available": true
+      },
+      "actual_final": {
+        "permit": false,
+        "firmware_state": "BOOT_HOLD_FAULT",
+        "hazardous_enabled": false,
+        "s3_available": true,
+        "s3_reset_asserted": false
+      },
+      "trace": [
+        {
+          "event": "power_on_kill",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": false,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "por_valid",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "self_test_pass",
+          "firmware_state": "KILL_QUALIFY",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "hold_kill_500",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "switch_run",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "rc_clock",
+          "firmware_state": "RUNNING",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": true,
+          "hazardous_enabled": true,
+          "c5_reset_asserted": false,
+          "rf_rp_reset_asserted": false,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "safety_controller_reset",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        }
+      ],
+      "status": "pass",
+      "errors": []
+    },
+    {
+      "id": "SEQ-09",
+      "title": "Fault recovery while switch remains RUN",
+      "events": [
+        "normal_start",
+        "hard_fault",
+        "fault_recovers",
+        "rc_clock",
+        "usb_attach"
+      ],
+      "expected_final": {
+        "permit": false,
+        "firmware_state": "FAULT_LATCHED",
+        "hazardous_enabled": false
+      },
+      "actual_final": {
+        "permit": false,
+        "firmware_state": "FAULT_LATCHED",
+        "hazardous_enabled": false,
+        "s3_available": true,
+        "s3_reset_asserted": false
+      },
+      "trace": [
+        {
+          "event": "power_on_kill",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": false,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "por_valid",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "self_test_pass",
+          "firmware_state": "KILL_QUALIFY",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "hold_kill_500",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "switch_run",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "rc_clock",
+          "firmware_state": "RUNNING",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": true,
+          "hazardous_enabled": true,
+          "c5_reset_asserted": false,
+          "rf_rp_reset_asserted": false,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "hard_fault",
+          "firmware_state": "FAULT_LATCHED",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "fault_recovers",
+          "firmware_state": "FAULT_LATCHED",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "rc_clock",
+          "firmware_state": "FAULT_LATCHED",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "usb_attach",
+          "firmware_state": "FAULT_LATCHED",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        }
+      ],
+      "status": "pass",
+      "errors": []
+    },
+    {
+      "id": "SEQ-10",
+      "title": "Independent S3 fault-UI reset",
+      "events": [
+        "normal_start",
+        "hard_fault",
+        "pulse_s3_reset",
+        "release_s3_reset"
+      ],
+      "expected_final": {
+        "permit": false,
+        "firmware_state": "FAULT_LATCHED",
+        "hazardous_enabled": false,
+        "s3_available": true,
+        "s3_reset_asserted": false
+      },
+      "actual_final": {
+        "permit": false,
+        "firmware_state": "FAULT_LATCHED",
+        "hazardous_enabled": false,
+        "s3_available": true,
+        "s3_reset_asserted": false
+      },
+      "trace": [
+        {
+          "event": "power_on_kill",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": false,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "por_valid",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "self_test_pass",
+          "firmware_state": "KILL_QUALIFY",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "hold_kill_500",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "switch_run",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "rc_clock",
+          "firmware_state": "RUNNING",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": true,
+          "hazardous_enabled": true,
+          "c5_reset_asserted": false,
+          "rf_rp_reset_asserted": false,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "hard_fault",
+          "firmware_state": "FAULT_LATCHED",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "pulse_s3_reset",
+          "firmware_state": "FAULT_LATCHED",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": true,
+          "s3_available": false
+        },
+        {
+          "event": "release_s3_reset",
+          "firmware_state": "FAULT_LATCHED",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        }
+      ],
+      "status": "pass",
+      "errors": []
+    },
+    {
+      "id": "SEQ-11",
+      "title": "AON undervoltage or POR assertion",
+      "events": [
+        "normal_start",
+        "aon_undervoltage",
+        "aon_recovers",
+        "rc_clock"
+      ],
+      "expected_final": {
+        "permit": false,
+        "firmware_state": "BOOT_HOLD_FAULT",
+        "hazardous_enabled": false
+      },
+      "actual_final": {
+        "permit": false,
+        "firmware_state": "BOOT_HOLD_FAULT",
+        "hazardous_enabled": false,
+        "s3_available": true,
+        "s3_reset_asserted": false
+      },
+      "trace": [
+        {
+          "event": "power_on_kill",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": false,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "por_valid",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "self_test_pass",
+          "firmware_state": "KILL_QUALIFY",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "hold_kill_500",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "switch_run",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "rc_clock",
+          "firmware_state": "RUNNING",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": true,
+          "hazardous_enabled": true,
+          "c5_reset_asserted": false,
+          "rf_rp_reset_asserted": false,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "aon_undervoltage",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "RUN",
+          "por_valid": false,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "aon_recovers",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "rc_clock",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        }
+      ],
+      "status": "pass",
+      "errors": []
+    },
+    {
+      "id": "SEQ-12",
+      "title": "Self-test failure",
+      "events": [
+        "power_on_kill",
+        "por_valid",
+        "self_test_fail",
+        "hold_kill_500",
+        "switch_run",
+        "rc_clock"
+      ],
+      "expected_final": {
+        "permit": false,
+        "firmware_state": "FAULT_LATCHED",
+        "hazardous_enabled": false
+      },
+      "actual_final": {
+        "permit": false,
+        "firmware_state": "FAULT_LATCHED",
+        "hazardous_enabled": false,
+        "s3_available": true,
+        "s3_reset_asserted": false
+      },
+      "trace": [
+        {
+          "event": "power_on_kill",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": false,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "por_valid",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "self_test_fail",
+          "firmware_state": "FAULT_LATCHED",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "hold_kill_500",
+          "firmware_state": "FAULT_LATCHED",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "switch_run",
+          "firmware_state": "FAULT_LATCHED",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "rc_clock",
+          "firmware_state": "FAULT_LATCHED",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        }
+      ],
+      "status": "pass",
+      "errors": []
+    },
+    {
+      "id": "SEQ-13",
+      "title": "USB attach cannot rearm a stopped product",
+      "events": [
+        "normal_start",
+        "hard_fault",
+        "usb_attach",
+        "fault_recovers"
+      ],
+      "expected_final": {
+        "permit": false,
+        "firmware_state": "FAULT_LATCHED",
+        "hazardous_enabled": false
+      },
+      "actual_final": {
+        "permit": false,
+        "firmware_state": "FAULT_LATCHED",
+        "hazardous_enabled": false,
+        "s3_available": true,
+        "s3_reset_asserted": false
+      },
+      "trace": [
+        {
+          "event": "power_on_kill",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": false,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "por_valid",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "self_test_pass",
+          "firmware_state": "KILL_QUALIFY",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "hold_kill_500",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "switch_run",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "rc_clock",
+          "firmware_state": "RUNNING",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": true,
+          "hazardous_enabled": true,
+          "c5_reset_asserted": false,
+          "rf_rp_reset_asserted": false,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "hard_fault",
+          "firmware_state": "FAULT_LATCHED",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "usb_attach",
+          "firmware_state": "FAULT_LATCHED",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "fault_recovers",
+          "firmware_state": "FAULT_LATCHED",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        }
+      ],
+      "status": "pass",
+      "errors": []
+    },
+    {
+      "id": "SEQ-14",
+      "title": "Complete qualified recovery after fault",
+      "events": [
+        "normal_start",
+        "hard_fault",
+        "fault_recovers",
+        "switch_kill",
+        "hold_kill_500",
+        "switch_run",
+        "rc_clock"
+      ],
+      "expected_final": {
+        "permit": true,
+        "firmware_state": "RUNNING",
+        "hazardous_enabled": true
+      },
+      "actual_final": {
+        "permit": true,
+        "firmware_state": "RUNNING",
+        "hazardous_enabled": true,
+        "s3_available": true,
+        "s3_reset_asserted": false
+      },
+      "trace": [
+        {
+          "event": "power_on_kill",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": false,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "por_valid",
+          "firmware_state": "BOOT_HOLD_FAULT",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "self_test_pass",
+          "firmware_state": "KILL_QUALIFY",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "hold_kill_500",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "switch_run",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "rc_clock",
+          "firmware_state": "RUNNING",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": true,
+          "hazardous_enabled": true,
+          "c5_reset_asserted": false,
+          "rf_rp_reset_asserted": false,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "hard_fault",
+          "firmware_state": "FAULT_LATCHED",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "fault_recovers",
+          "firmware_state": "FAULT_LATCHED",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "switch_kill",
+          "firmware_state": "WAIT_KILL",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": false,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "hold_kill_500",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "KILL",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": false,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "switch_run",
+          "firmware_state": "ARMED_WAIT_RUN",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": false,
+          "hazardous_enabled": false,
+          "c5_reset_asserted": true,
+          "rf_rp_reset_asserted": true,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        },
+        {
+          "event": "rc_clock",
+          "firmware_state": "RUNNING",
+          "switch": "RUN",
+          "por_valid": true,
+          "fault_request_released": true,
+          "fault_plane_high": true,
+          "run_permit": true,
+          "hazardous_enabled": true,
+          "c5_reset_asserted": false,
+          "rf_rp_reset_asserted": false,
+          "s3_reset_asserted": false,
+          "s3_available": true
+        }
+      ],
+      "status": "pass",
+      "errors": []
+    }
+  ],
+  "summary": {
+    "scenarios": 14,
+    "passed_scenarios": 14,
+    "topology_endpoints": 51,
+    "topology_failures": 0,
+    "net_checks": 4,
+    "errors": 0
+  },
+  "corrections": [
+    {
+      "finding": "The prior current-R2 map tied the S3 reset sink to the generic C5 kill gate, so a hard fault could remove the display that must explain the cause.",
+      "correction": "M1 contact 36 now carries a separate S3_RESET_KILL_GATE from Safety PA23; C5 and RF RP retain direct fault reset.",
+      "cost_effect": "no added fitted body or cost; one former M1 reserve is used"
+    },
+    {
+      "finding": "Safety PA23 had no external reset-state bias and could float during controller reset.",
+      "correction": "The unused evidence-mask P17 pulldown is reassigned as a 10-kohm PA23 pulldown; P17 is tied directly to ground.",
+      "cost_effect": "BOM-neutral instance reuse"
+    },
+    {
+      "finding": "Earlier wording credited RC delay alone with blocking auto-start, which is not a sufficient invariant for arbitrary firmware release timing.",
+      "correction": "The verified rule holds PA25 low until a continuous physical KILL qualification; RC provides a clean subsequent edge only.",
+      "cost_effect": "firmware policy only"
+    }
+  ],
+  "physical_residuals": [
+    "H8 measures real switch bounce and break-before-make interval.",
+    "H8 measures the populated 100-kohm/2.2-uF RC under DC bias and temperature; startup safety does not depend solely on this number.",
+    "H8 captures POR assertion/release, direct C5/RF-RP reset and S3 fault-display retention at real rail corners."
+  ],
+  "authorization": {
+    "analytical_verification": true,
+    "firmware_emulation_contract": true,
+    "pcb_placement_or_routing": false,
+    "purchasing": false,
+    "fabrication": false
+  },
+  "next": {
+    "marker": "H3-R2.2.2",
+    "action": "verify USB-to-pack handover, DPM, brownout and source loss"
+  },
+  "errors": []
+}

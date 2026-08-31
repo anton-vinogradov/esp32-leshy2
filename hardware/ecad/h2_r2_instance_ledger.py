@@ -125,6 +125,7 @@ def build() -> dict:
 
     exact_names = contract.get("exact_instance_names", {})
     additions = contract.get("additional_instance_names", {})
+    replacements = contract.get("replace_instance_names", {})
     removals = contract.get("remove_historical_instances", {})
     expand_groups = set(contract.get("expand_historical_rp_prefix_for", []))
     do_not_expand = set(contract.get("do_not_expand_historical_rp_instances", []))
@@ -154,9 +155,19 @@ def build() -> dict:
                 if device_id in expand_groups:
                     names = expand_rp_prefix(names, do_not_expand)
                 origin = "reconciled_historical_instance_name_hint"
+        device_replacements = replacements.get(device_id, {})
+        stale_replacements = sorted(set(device_replacements) - set(names))
+        if stale_replacements:
+            errors.append(
+                f"stale current-R2 instance replacements: {device_id}: "
+                f"{stale_replacements}"
+            )
+        names = [device_replacements.get(name, name) for name in names]
         names += additions.get(device_id, [])
         if additions.get(device_id):
             origin = "current_r2_allocation_with_explicit_additions"
+        elif device_replacements:
+            origin = "current_r2_allocation_with_explicit_replacement"
         if len(names) != quantity:
             errors.append(
                 f"instance allocation count mismatch: {device_id}: {len(names)} != {quantity}"

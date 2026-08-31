@@ -6,17 +6,17 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "ae48e1145603db59a05d87f326d2f708d5484c8fb4177d7c54e39aeb74d49f2f",
+      "sha256": "e42cb9eb9c9edd3011d482fe8e19d31aa73d14f8e0ca53b9ff2e230c164efbfc",
       "authority": true
     },
     "exact_definition_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "c891b92bc78ac00bc5f2e1cecf7980d40f9dcb41b4e5357ca87294f7329076c8",
+      "sha256": "b99b229f78c2a755a7283636942e46eb648095b678a0b9b11496359a18fde467",
       "authority": true
     },
     "controlled_symbol_library": {
       "path": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-      "sha256": "0d00d284bdfba509086c54ed919090db6c4e36272e5cf464ad3dafb911a11e45",
+      "sha256": "2081cbc34c39cf8aa1039d8876f7cccc6b3460d5e54fadc118d7282d0378214a",
       "authority": true
     },
     "physical_source_table": {
@@ -26,7 +26,7 @@
     },
     "historical_instance_hints": {
       "path": "hardware/ecad/generated/H2-instance-ledger.json",
-      "sha256": "1485ad0378b4d1dcfb13ab4aaeeb58ceb62e4814dbfb2895bef17e422949a172",
+      "sha256": "7a265f865aac48c9e8826ad296f49164ad514a7f576b9a76efb0f2684580508e",
       "authority": false
     }
   },
@@ -67,7 +67,7 @@
       "explicit_current_r2_allocation": 94,
       "reconciled_historical_instance_name_hint": 107
     },
-    "former_sheet_hints_reconciled": 724,
+    "former_sheet_hints_reconciled": 723,
     "native_schematic_nets_created": 0,
     "errors": 0
   },
@@ -9621,20 +9621,6 @@
       "reference": "R250"
     },
     {
-      "instance_uid": "LESHY2-RF-R2:evidence_mask_p17_pulldown",
-      "instance": "evidence_mask_p17_pulldown",
-      "project": "LESHY2-RF-R2",
-      "sheet": "RF_50_TX_SAFETY_EVIDENCE",
-      "device_id": "yageo_rc0402fr_0710kl",
-      "mpn": "Yageo RC0402FR-0710KL",
-      "symbol_id": "Leshy2_R2:yageo_rc0402fr_0710kl",
-      "footprint": "Resistor_SMD:R_0402_1005Metric",
-      "reference_prefix": "R",
-      "allocation_origin": "current_r2_allocation_with_explicit_additions",
-      "historical_topology_authority": false,
-      "reference": "R251"
-    },
-    {
       "instance_uid": "LESHY2-RF-R2:evidence_mask_scl_pullup",
       "instance": "evidence_mask_scl_pullup",
       "project": "LESHY2-RF-R2",
@@ -9646,7 +9632,7 @@
       "reference_prefix": "R",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "R252"
+      "reference": "R251"
     },
     {
       "instance_uid": "LESHY2-RF-R2:evidence_mask_sda_pullup",
@@ -9660,7 +9646,7 @@
       "reference_prefix": "R",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "R253"
+      "reference": "R252"
     },
     {
       "instance_uid": "LESHY2-RF-R2:evidence_or_0",
@@ -9744,7 +9730,7 @@
       "reference_prefix": "R",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "R254"
+      "reference": "R253"
     },
     {
       "instance_uid": "LESHY2-RF-R2:fault_assert_pullup",
@@ -9758,7 +9744,7 @@
       "reference_prefix": "R",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "R255"
+      "reference": "R254"
     },
     {
       "instance_uid": "LESHY2-RF-R2:fault_assert_sense_series",
@@ -9772,7 +9758,7 @@
       "reference_prefix": "R",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "R256"
+      "reference": "R255"
     },
     {
       "instance_uid": "LESHY2-RF-R2:power_command_filter",
@@ -9800,7 +9786,7 @@
       "reference_prefix": "R",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "R257"
+      "reference": "R256"
     },
     {
       "instance_uid": "LESHY2-RF-R2:power_command_switch",
@@ -9828,7 +9814,7 @@
       "reference_prefix": "R",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "R258"
+      "reference": "R257"
     },
     {
       "instance_uid": "LESHY2-RF-R2:run_loop_filter",
@@ -9856,7 +9842,7 @@
       "reference_prefix": "R",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "R259"
+      "reference": "R258"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safe_conditioner",
@@ -9982,7 +9968,7 @@
       "reference_prefix": "R",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "R260"
+      "reference": "R259"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safe_por_pullup",
@@ -9996,7 +9982,7 @@
       "reference_prefix": "R",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "R261"
+      "reference": "R260"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safe_ptt_or",
@@ -10080,7 +10066,7 @@
       "reference_prefix": "R",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "R262"
+      "reference": "R261"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safe_reset_buffer",
@@ -10122,7 +10108,7 @@
       "reference_prefix": "R",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "R263"
+      "reference": "R262"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safe_reset_sink_b",
@@ -10276,7 +10262,7 @@
       "reference_prefix": "R",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,
-      "reference": "R264"
+      "reference": "R263"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safety_dbg_header",
@@ -10332,7 +10318,7 @@
       "reference_prefix": "R",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "R265"
+      "reference": "R264"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safety_s3_reset_iso",
@@ -10361,6 +10347,20 @@
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
       "reference": "C275"
+    },
+    {
+      "instance_uid": "LESHY2-RF-R2:safety_s3_reset_pulldown",
+      "instance": "safety_s3_reset_pulldown",
+      "project": "LESHY2-RF-R2",
+      "sheet": "RF_50_TX_SAFETY_EVIDENCE",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "symbol_id": "Leshy2_R2:yageo_rc0402fr_0710kl",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "reference_prefix": "R",
+      "allocation_origin": "current_r2_allocation_with_explicit_additions",
+      "historical_topology_authority": false,
+      "reference": "R265"
     },
     {
       "instance_uid": "LESHY2-RF-R2:safety_watchdog",

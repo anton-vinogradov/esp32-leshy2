@@ -144,7 +144,7 @@
   },
   "interboard_rebaseline": {
     "connector": "FX8C-80P-SV1(92) / FX8C-80S-SV5(92), straight SMT, 80 contacts, 11-mm working gap",
-    "why_not_20_or_60": "The current 4.25-A step envelope receives fourteen parallel 3V3_MAIN contacts and fourteen primary return contacts, leaving 0.304 A per power contact versus the 0.4-A rating before H3/H5 thermal proof. After two AON contacts, signal-reference returns and 29 live signals, a 60-contact pair has no controlled reserve; 80 is the smallest current FX8C size that preserves both derating and eleven true NC contacts.",
+    "why_not_20_or_60": "The current 4.25-A step envelope receives fourteen parallel 3V3_MAIN contacts and fourteen primary return contacts, leaving 0.304 A per power contact versus the 0.4-A rating before H3/H5 thermal proof. After two AON contacts, signal-reference returns and 30 live signals, a 60-contact pair has no controlled reserve; 80 is the smallest current FX8C size that preserves both derating and ten true NC contacts.",
     "locality_contract": {
       "rule": "Every payload endpoint stays on the board that owns its controller. M1 carries no display bus, nRF/SPI payload, microSD payload, main RF trace or audio stream.",
       "intentional_crossings": {
@@ -156,8 +156,8 @@
       "forbidden_payload_prefixes": ["LCD_", "NRF", "MICROSD", "SD_SPI", "AUDIO_", "VOICE_AF", "SPEAKER_", "MIC_RAW"]
     },
     "released_legacy_nets": ["UNIT_5V_REQ", "UNIT_READY", "UNIT_HOST_SIG0", "UNIT_HOST_SIG1", "RX_VOICE_AFOUT_SELECTED", "VOICE_MIC_SELECTED_MAIN", "SPEAKER_SELECTED_P", "SPEAKER_SELECTED_N", "MIC_RAW"],
-    "retained_safety_crossings": ["EV_N2_NRF0", "EV_N3_NRF1", "EV_N4_NRF2", "RUN_PERMIT", "FAULT_ASSERT_N"],
-    "current_budget": {"positions": 80, "live_signals": 29, "main_power": 14, "aon_power": 2, "returns": 24, "no_connect_reserve": 11},
+    "retained_safety_crossings": ["EV_N2_NRF0", "EV_N3_NRF1", "EV_N4_NRF2", "RUN_PERMIT", "FAULT_ASSERT_N", "S3_RESET_KILL_GATE"],
+    "current_budget": {"positions": 80, "live_signals": 30, "main_power": 14, "aon_power": 2, "returns": 24, "no_connect_reserve": 10},
     "main_current": {"continuous_a": 3.75, "step_a": 4.25, "contacts": 14, "continuous_per_contact_a": 0.2679, "step_per_contact_a": 0.3036, "contact_rating_a": 0.4},
     "pin_map": [
       {"contact": 1, "net": "POWER_GROUND", "class": "main_return"}, {"contact": 2, "net": "3V3_MAIN", "class": "main_power"},
@@ -177,7 +177,7 @@
       {"contact": 29, "net": "S3_USB_DM", "class": "usb2"}, {"contact": 30, "net": "S3_USB_DP", "class": "usb2"},
       {"contact": 31, "net": "POWER_GROUND", "class": "usb_return"}, {"contact": 32, "net": "HUB_SAFE_I2C_SDA", "class": "control"},
       {"contact": 33, "net": "HUB_SAFE_I2C_SCL", "class": "control"}, {"contact": 34, "net": "POWER_GROUND", "class": "control_return"},
-      {"contact": 35, "net": "NC_35", "class": "reserve"}, {"contact": 36, "net": "NC_36", "class": "reserve"},
+      {"contact": 35, "net": "NC_35", "class": "reserve"}, {"contact": 36, "net": "S3_RESET_KILL_GATE", "class": "safety"},
       {"contact": 37, "net": "RUN_PERMIT", "class": "safety"}, {"contact": 38, "net": "FAULT_ASSERT_N", "class": "safety"},
       {"contact": 39, "net": "UI_ZONE_TEMP_ADC", "class": "safety_analog"}, {"contact": 40, "net": "SAFETY_GROUND", "class": "safety_return"},
       {"contact": 41, "net": "EV_N0_S3", "class": "tx_evidence"}, {"contact": 42, "net": "EV_N1_C5", "class": "tx_evidence"},
@@ -202,7 +202,7 @@
       {"contact": 79, "net": "NC_79", "class": "reserve"}, {"contact": 80, "net": "NC_80", "class": "reserve"}
     ],
     "mechanical_load_path": "M1 is electrical/alignment only. Four 11.00-mm compression stops, two anti-shear enclosure datums and independent front/rear PCB capture lips constrain the boards when one screw is loose; no drop, installation or enclosure-bending load is accepted through the SMT joints.",
-    "result": "R2 uses 29 live signals, fourteen 3V3_MAIN contacts, twenty-four defined returns, two AON contacts and eleven true NC reserve contacts; five former reserves now carry only low-speed AON service/alert state, and no obsolete audio, video or M5 signal remains assigned."
+    "result": "R2 uses 30 live signals, fourteen 3V3_MAIN contacts, twenty-four defined returns, two AON contacts and ten true NC reserve contacts; one reserve now carries the bounded S3 fault-UI reset crossing, five former reserves carry only low-speed AON service/alert state, and no obsolete audio, video or M5 signal remains assigned."
   },
   "transport_contracts": [
     {
@@ -345,7 +345,7 @@
     "s3_gpio": "27 used / 6 free",
     "hub_gpio": "47 used / 1 free",
     "rf_rp_gpio": "43 used / 5 free",
-    "interboard": "80 contacts: 29 live signals, 14 main-power, 2 AON, 24 defined returns and 11 true NC reserves; M1 carries no structural load",
+    "interboard": "80 contacts: 30 live signals, 14 main-power, 2 AON, 24 defined returns and 10 true NC reserves; M1 carries no structural load",
     "display": "direct 8-bit i8080 at an exact-panel-safe 24 MHz; 4-wire serial is adapter-revision recovery only",
     "ui": "local interrupt-driven S3 ownership, no IPC",
     "open_h1_gates": [

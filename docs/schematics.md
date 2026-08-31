@@ -38,7 +38,7 @@ flowchart TD
   FRP["SC1512-A4 · front RP<br/>3× nRF24, microSD"]
   RRP["SC1512-A4 · rear RP<br/>RF, audio, expansion"]
   LCD["ER-TFT035IPS-6 + ER-TPC035-6<br/>ILI9488/FT6236 · direct 8-bit i8080 · 24 MHz"]
-  M1["Hirose FX8C-80<br/>29 signals · 14 main-power · 2 AON<br/>24 returns · 11 NC reserve"]
+  M1["Hirose FX8C-80<br/>30 signals · 14 main-power · 2 AON<br/>24 returns · 10 NC reserve"]
 
   S3 -->|"LCD_CAM TX + GDMA"| LCD
   S3 <-->|"quad data + clock"| FRP

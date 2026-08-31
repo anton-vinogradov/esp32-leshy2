@@ -150,7 +150,7 @@
       "electrical_disposition": "board_fitted_component",
       "physical_registration": "h1_dimensioned_body",
       "contact_count": 41,
-      "logical_contact_count": 37,
+      "logical_contact_count": 40,
       "physical_pcb_contact_count": 41,
       "contact_evidence_status": "registered_exact_contact_map",
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
@@ -174,7 +174,7 @@
       "electrical_disposition": "board_fitted_component",
       "physical_registration": "h1_dimensioned_body",
       "contact_count": 32,
-      "logical_contact_count": 26,
+      "logical_contact_count": 29,
       "physical_pcb_contact_count": 32,
       "contact_evidence_status": "registered_exact_contact_map",
       "symbol_source_status": "exact_symbol_mapping_required_during_h2_2_to_h2_4",
@@ -1837,9 +1837,9 @@
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
         "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
-        "version": "Rev. M",
+        "version": "Rev. N, revised August 2026",
         "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-31"
       }
     },
     {
@@ -2197,9 +2197,9 @@
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
         "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
-        "version": "Rev. M",
+        "version": "Rev. N, revised August 2026",
         "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-31"
       }
     },
     {
@@ -14197,9 +14197,9 @@
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
         "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
-        "version": "Rev. M",
+        "version": "Rev. N, revised August 2026",
         "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-31"
       }
     },
     {
@@ -21437,9 +21437,9 @@
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
         "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
-        "version": "Rev. M",
+        "version": "Rev. N, revised August 2026",
         "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-31"
       }
     },
     {
@@ -21727,7 +21727,7 @@
         "document": "TPS3435 Nano IQ Precision Timeout Watchdog Timer datasheet",
         "version": "SNVSCF7A, revised August 2024",
         "url": "https://www.ti.com/lit/ds/symlink/tps3435.pdf",
-        "checked": "2026-08-20"
+        "checked": "2026-08-31"
       }
     },
     {
@@ -22277,9 +22277,9 @@
       "footprint_source_status": "exact_footprint_mapping_required_during_h2_2_to_h2_4",
       "manufacturer_evidence": {
         "document": "SN74LVC1G17 Single Schmitt-Trigger Buffer datasheet",
-        "version": "Rev. Y",
+        "version": "Rev. Y, revised October 2025",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
-        "checked": "2026-08-24"
+        "checked": "2026-08-31"
       }
     },
     {
@@ -22327,7 +22327,7 @@
         "document": "SN74LVC1G74 Single D-Type Flip-Flop With Clear and Preset datasheet",
         "version": "Rev. G",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-31"
       }
     },
     {

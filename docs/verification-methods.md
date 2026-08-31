@@ -39,7 +39,7 @@ All `242` groups have at least one method; the contract defines `9` methods and 
 
 ## What is not yet a pass
 
-`174` groups still require exact parameter extraction. The method contract is closed, but their calculations must return `unresolved_fail` until min/max, unit and applicability are bound.
+`172` groups still require exact parameter extraction. The method contract is closed, but their calculations must return `unresolved_fail` until min/max, unit and applicability are bound.
 
 > The next step is H3-R2.1 power/DC/source/charge/state analysis. Placement, routing, purchasing and fabrication remain forbidden.
 

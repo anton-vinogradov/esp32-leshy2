@@ -93,11 +93,11 @@ Exact current checklist:
 6. ✅ `H2-R2.1.3` definitions/instances: 237 controlled symbols, 1,618 PCB-pad
    pins and all 1,187 fitted instances pass the current three-project allocation;
 7. ✅ `H2-R2.1.3` nets: 4,323 fitted-instance contacts resolve to 826 canonical
-   nets or 260 explicit board no-connects with zero unresolved endpoints;
+   nets or 258 explicit board no-connects with zero unresolved endpoints;
 8. ✅ `H2-R2.1.3`: three native KiCad projects materialize 4,327 physical pins
    and pass ERC with zero errors and zero warnings;
-9. ✅ `H2-R2.1.4`: six domains, 173 controller pins, 50 cross-project nets and
-   234 cross-sheet nets reconcile with zero unresolved boundary;
+9. ✅ `H2-R2.1.4`: six domains, 173 controller pins, 51 cross-project nets and
+   236 cross-sheet nets reconcile with zero unresolved boundary;
 10. ✅ `H2-R2.1.5`: the bilingual result report is published and the synchronized
     firmware H2 gate is open.
 
@@ -116,7 +116,7 @@ clearly labels retained R1 ECAD as non-current evidence.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** ▶️ current at **`H3-R2.2.1`** inside H3-R2.2.
+**Status:** ▶️ current at **`H3-R2.2.2`** inside H3-R2.2.
 
 [`H3-R2.0.1`](h3-r2-input-freeze.md) reviewed the hash-bound H2 input and complete R2
 verification matrix. [`H3-R2.0.2`](parameter-model-register.md) reviewed exact
@@ -124,16 +124,18 @@ parameter/model provenance for 242 groups and 1,187 fitted positions. Current
 methods are frozen by [`H3-R2.0.3`](verification-methods.md): nine methods and
 twelve pass/fail rules cover all 242 groups. [`H3-R2.1.1`](power-state-register.md)
 reviews all 2,266 legal source, charge, fault and operating states.
-[`H3-R2.1.2`](power-load-binding.md) reviews explicit binding for 612 fitted powered
+[`H3-R2.1.2`](power-load-binding.md) reviews explicit binding for 613 fitted powered
 power-connected instances and six external loads. [`H3-R2.1.3`](power-rail-margins.md)
 reviews 224 passing profiles across all four rails, with 30.560% minimum current
 reserve and 24.706 °C minimum junction-temperature reserve. [`H3-R2.1.4`](power-source-margins.md)
 reviews all 75 source/pack lines and 2,266 legal states: maximum pack current is
 3.516 A, sustained admission is 1.549 A, and charging yields before system load.
-The [H3-R2.1 cross-check](power-dc-source-result.md) reconciles all 618 loads,
+The [H3-R2.1 cross-check](power-dc-source-result.md) reconciles all 619 loads,
 224 rail profiles and 2,266 states through 15 passing checks, so H3-R2.1 is
-reviewed. Current H3-R2.2.1 work verifies ordered startup, shutdown, reset and
-recovery. The expected result is complete power, digital, RF, audio,
+reviewed. [`H3-R2.2.1`](power-transition-sequences.md) reviews all 14 ordered
+startup, shutdown, reset and recovery scenarios without automatic restart;
+S3 retains the fault UI while C5/RF RP reset directly. Current H3-R2.2.2 work
+verifies USB↔pack handover, DPM, brownout and source loss. The expected result is complete power, digital, RF, audio,
 timing, thermal and fault verification. Every legal state and transition must
 pass before fabrication.
 

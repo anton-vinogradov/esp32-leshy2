@@ -6,17 +6,17 @@
   "sources": {
     "contact_materialization": {
       "path": "hardware/ecad/generated/H2-R2-contact-materialization.json",
-      "sha256": "e7969cf80221801bd42a863b85d500aa9909dfcf878af660ffac60d9b6b49ef3"
+      "sha256": "3526a3e66b96144150e3564899c273c760dab3e6309f08820c8fd20826f667a3"
     },
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "c891b92bc78ac00bc5f2e1cecf7980d40f9dcb41b4e5357ca87294f7329076c8"
+      "sha256": "b99b229f78c2a755a7283636942e46eb648095b678a0b9b11496359a18fde467"
     }
   },
   "library": {
     "id": "Leshy2_R2",
     "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-    "sha256": "834963054749406847d295d166d7a22b5be0c6d9fd2967bf5041b5e51f170c8b",
+    "sha256": "ee1e0bb0e52c953bcece6ac533a3c5216eed4a2b00443c42d630c36d5a462c7b",
     "symbol_count": 237,
     "pin_count": 1618,
     "external_interface_metadata_count": 3

@@ -77,6 +77,11 @@
     "murata_grm1555c1h102ja01d": ["air_filter_to_lna_dc_block", "air_lna_to_t1_dc_block", "air_lo_dc_block", "air_t2_to_selector_dc_block", "air_direct_to_selector_dc_block", "air_selector_to_receiver_dc_block", "air_mixer_vcc_hf_bypass"],
     "murata_gjm1555c1h150jb01d": ["air_mixer_input_match_c"]
   },
+  "replace_instance_names": {
+    "yageo_rc0402fr_0710kl": {
+      "evidence_mask_p17_pulldown": "safety_s3_reset_pulldown"
+    }
+  },
   "expand_historical_rp_prefix_for": [
     "abracon_abm8_272_t3",
     "abracon_aota_b201610s3r3_101_t",
@@ -118,6 +123,7 @@
     "evidence_cmp_cc_bypass": "RF_50_TX_SAFETY_EVIDENCE",
     "pack_dbg_header": "RF_02_PACK_SAFETY_AON",
     "safety_dbg_header": "RF_50_TX_SAFETY_EVIDENCE",
+    "safety_s3_reset_pulldown": "RF_50_TX_SAFETY_EVIDENCE",
     "c5_service_hub_reset_sink": "UI_20_C5_WIFI_IR_SERVICE",
     "c5_service_owner_latch": "UI_20_C5_WIFI_IR_SERVICE",
     "c5_mux_sel_pulldown": "UI_20_C5_WIFI_IR_SERVICE",

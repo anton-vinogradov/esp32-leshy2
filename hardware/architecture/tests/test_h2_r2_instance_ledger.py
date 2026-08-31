@@ -74,6 +74,15 @@ class H2R2InstanceLedgerTests(unittest.TestCase):
         self.assertEqual("hirose_fh34srj_50s_0_5sh_50", by_name["display_panel_connector"]["device_id"])
         self.assertEqual("ti_tca9803_dgkr", by_name["hub_safe_i2c_boundary"]["device_id"])
         self.assertEqual("RF_02_PACK_SAFETY_AON", by_name["hub_safe_i2c_boundary"]["sheet"])
+        self.assertNotIn("evidence_mask_p17_pulldown", by_name)
+        self.assertEqual(
+            "yageo_rc0402fr_0710kl",
+            by_name["safety_s3_reset_pulldown"]["device_id"],
+        )
+        self.assertEqual(
+            "RF_50_TX_SAFETY_EVIDENCE",
+            by_name["safety_s3_reset_pulldown"]["sheet"],
+        )
 
     def test_complete_airband_chain_is_allocated_to_one_rear_sheet(self):
         by_name = {row["instance"]: row for row in self.rows}

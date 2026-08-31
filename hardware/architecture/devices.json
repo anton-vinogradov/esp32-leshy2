@@ -4914,9 +4914,9 @@
       "dimensions_mm": [2.9, 1.6, 1.45],
       "source": {
         "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
-        "version": "Rev. M",
+        "version": "Rev. N, revised August 2026",
         "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-31"
       },
       "orderable_source": {
         "document": "TPS3808G33DBVR active authorized-distributor exact order-code page; Mouser stock independently observed in the dated check",
@@ -4929,6 +4929,17 @@
         "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/texas-instruments/TPS3808G33DBVR/666727", "checked": "2026-08-19"}
       },
       "programmable": false,
+      "electrical_contract": {
+        "fixed_threshold_nominal_v": 3.07,
+        "fixed_threshold_accuracy_percent_full_temperature": 1.5,
+        "fixed_threshold_hysteresis_percent": [1.0, 2.5],
+        "ct_configuration": "open",
+        "reset_delay_ms": {"min": 12, "typ": 20, "max": 28},
+        "sense_to_reset_assertion_max_us": 20,
+        "output": "active-low open-drain RESET; asserted while SENSE is below threshold or MR_N is low",
+        "recommended_supply_range_v": [1.7, 6.5],
+        "use": "holds the RUN_PERMIT latch asynchronously clear through AON startup and any supervised AON undervoltage"
+      },
       "contacts": {
         "RESET_N": {"physical": "1", "role": "reset"},
         "GND": {"physical": "2", "role": "power"},
@@ -5047,7 +5058,7 @@
         "document": "SN74LVC1G74 Single D-Type Flip-Flop With Clear and Preset datasheet",
         "version": "Rev. G",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-31"
       },
       "orderable_source": {
         "document": "JLCPCB exact TI SN74LVC1G74DCUR Standard-PCBA card C70285; live stock 5,518, available 5,247, MOQ 1",
@@ -5058,6 +5069,14 @@
         "currency": "USD", "target_quantity": 100, "unit_price_usd": 0.1901,
         "price_break": "JLCPCB 50-piece tier; exact-one price USD 0.2386",
         "source": {"document": "JLCPCB exact-MPN live price table C70285", "url": "https://jlcpcb.com/partdetail/TexasInstruments-SN74LVC1G74DCUR/C70285", "checked": "2026-08-30"}
+      },
+      "electrical_contract": {
+        "function": "positive-edge-triggered D flip-flop with asynchronous active-low preset and clear",
+        "clear_behavior": "CLR_N low forces Q low and Q_N high independent of CLK and D",
+        "clock_behavior": "with PRE_N and CLR_N high, a positive CLK edge transfers D to Q",
+        "forbidden_async_state": "PRE_N and CLR_N must not both be low",
+        "partial_power_down": "Ioff prevents output backflow while VCC is absent",
+        "use": "non-programmable RUN_PERMIT latch; PRE_N is fixed high, CLR_N is POR_N AND FAULT_ASSERT_N, and D is fixed high"
       },
       "programmable": false,
       "contacts": {
@@ -5155,9 +5174,9 @@
       "dimensions_mm": [2.0, 1.25, 1.1],
       "source": {
         "document": "SN74LVC1G17 Single Schmitt-Trigger Buffer datasheet",
-        "version": "Rev. Y",
+        "version": "Rev. Y, revised October 2025",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
-        "checked": "2026-08-24"
+        "checked": "2026-08-31"
       },
       "orderable_source": {
         "document": "SN74LVC1G17DCKR ACTIVE exact TI order page",
@@ -5174,8 +5193,9 @@
         "supply_range_v": [1.65, 5.5],
         "threshold_v_at_3v": {"positive_min": 1.48, "positive_max": 1.92, "negative_min": 0.89, "negative_max": 1.2},
         "input_leakage_max_ua": 5,
+        "power_off_leakage_max_ua": 10,
         "partial_power_down": "Ioff keeps the output high impedance and prevents back-drive while AON_SAFE_3V3 is absent",
-        "usage": "cleans the slow physical RUN RC edge and prevents a latch clock until after the fixed 12-to-28-ms AON POR window"
+        "usage": "cleans the slow physical RUN RC edge; the safety controller's qualified physical KILL state is the anti-auto-start barrier, so RC timing is not credited as the sole startup interlock"
       },
       "programmable": false,
       "contacts": {
@@ -7604,7 +7624,7 @@
         "document": "TPS3435 Nano IQ Precision Timeout Watchdog Timer datasheet",
         "version": "SNVSCF7A, revised August 2024",
         "url": "https://www.ti.com/lit/ds/symlink/tps3435.pdf",
-        "checked": "2026-08-20"
+        "checked": "2026-08-31"
       },
       "orderable_source": {
         "document": "TPS3435CAKAGDDFR exact authorized-distributor page; 6,604 shown in stock",
@@ -7623,9 +7643,10 @@
         }
       },
       "electrical_contract": {
-        "watchdog_base_timeout_s": 1.6,
-        "startup_delay": "zero-delay C variant",
-        "output": "active-low open-drain WDO, 200-ms nominal fault pulse",
+        "watchdog_timeout_s": {"min": 1.44, "typ": 1.6, "max": 1.76},
+        "startup_delay_ms": {"min": 0, "typ": 0, "max": 0},
+        "watchdog_assert_time_ms": {"min": 180, "typ": 200, "max": 220},
+        "output": "active-low open-drain WDO",
         "input_contract": "timeout WDI; the AON safety controller must continue making edges before the 1.6-s deadline",
         "quiescent_current_typ_na": 250,
         "use": "independent last-resort monitor; WDO directly presets the hardware FAULT_KILL latch"

@@ -1679,7 +1679,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "ManufacturerEvidenceChecked" "2026-08-24"
+			(property "ManufacturerEvidenceChecked" "2026-08-31"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1782,7 +1782,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "ManufacturerEvidenceChecked" "2026-08-17"
+			(property "ManufacturerEvidenceChecked" "2026-08-31"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2477,7 +2477,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "ManufacturerEvidenceChecked" "2026-08-20"
+			(property "ManufacturerEvidenceChecked" "2026-08-31"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2598,7 +2598,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "ManufacturerEvidenceChecked" "2026-08-17"
+			(property "ManufacturerEvidenceChecked" "2026-08-31"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -6160,7 +6160,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "e93b9315-59e3-54d4-94ab-a3da2941066d")
+		(uuid "36cdbfd5-ac09-541b-837c-1a1711bacbcf")
 		(property "Reference" "R251"
 			(at 513.08 151.13 0)
 			(show_name no)
@@ -6194,7 +6194,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2Instance" "evidence_mask_p17_pulldown"
+		(property "Leshy2Instance" "evidence_mask_scl_pullup"
 			(at 513.08 158.75 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6202,10 +6202,10 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "52ccba56-1b16-5c08-9ec9-fde528aaa1c7")
+			(uuid "ad008b0c-0cc8-5831-954b-50bfdce0c51b")
 		)
 		(pin "2"
-			(uuid "c503dc11-7fa0-52e4-8dbd-a6ebe88ef901")
+			(uuid "1603f265-b980-563f-bf66-e179ae9d5e43")
 		)
 		(instances
 			(project "LESHY2-RF-R2"
@@ -6216,15 +6216,15 @@
 			)
 		)
 	)
-	(label "EVIDENCE_MASK_UNUSED_P17"
+	(label "AON_SAFE_3V3"
 		(at 492.76 157.48 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "f0692f47-6ba6-5c8c-be0f-0c6b83582215")
+		(uuid "cd4de292-5991-5da6-883b-661eeb01bc9d")
 	)
-	(label "SAFETY_GROUND"
+	(label "SAFETY_EVIDENCE_I2C_SCL"
 		(at 533.40 157.48 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "62fb6d85-cfea-5352-823d-f71b77f8b4f2")
+		(uuid "7baa7e3d-59d4-5455-9d64-230aabb62878")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:yageo_rc0402fr_0710kl")
@@ -6234,7 +6234,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "36cdbfd5-ac09-541b-837c-1a1711bacbcf")
+		(uuid "a691cd8c-7d35-5089-8af9-e992793ff182")
 		(property "Reference" "R252"
 			(at 604.52 151.13 0)
 			(show_name no)
@@ -6268,7 +6268,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2Instance" "evidence_mask_scl_pullup"
+		(property "Leshy2Instance" "evidence_mask_sda_pullup"
 			(at 604.52 158.75 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6276,10 +6276,10 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "ad008b0c-0cc8-5831-954b-50bfdce0c51b")
+			(uuid "536737ee-0787-58bd-b966-1f249b0f4f96")
 		)
 		(pin "2"
-			(uuid "1603f265-b980-563f-bf66-e179ae9d5e43")
+			(uuid "ad34e3a8-69da-5f15-b8e2-88f1d81d5c60")
 		)
 		(instances
 			(project "LESHY2-RF-R2"
@@ -6293,29 +6293,29 @@
 	(label "AON_SAFE_3V3"
 		(at 584.20 157.48 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "cd4de292-5991-5da6-883b-661eeb01bc9d")
+		(uuid "b03cfbc4-0e73-5b71-9f22-57e86263f112")
 	)
-	(label "SAFETY_EVIDENCE_I2C_SCL"
+	(label "SAFETY_EVIDENCE_I2C_SDA"
 		(at 624.84 157.48 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "7baa7e3d-59d4-5455-9d64-230aabb62878")
+		(uuid "b119ebea-bc5d-57a0-aa12-4775990eb58b")
 	)
 	(symbol
-		(lib_id "Leshy2_R2:yageo_rc0402fr_0710kl")
+		(lib_id "Leshy2_R2:yageo_rc0402fr_071ml")
 		(at 695.96 158.75 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "a691cd8c-7d35-5089-8af9-e992793ff182")
+		(uuid "a1dab4ac-95f9-5112-8e09-2704b9db4df4")
 		(property "Reference" "R253"
 			(at 695.96 151.13 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-0710KL"
+		(property "Value" "Yageo RC0402FR-071ML"
 			(at 695.96 166.37 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6335,14 +6335,14 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "yageo_rc0402fr_0710kl"
+		(property "Description" "yageo_rc0402fr_071ml"
 			(at 695.96 158.75 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2Instance" "evidence_mask_sda_pullup"
+		(property "Leshy2Instance" "fault_assert_backup_pulldown"
 			(at 695.96 158.75 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6350,10 +6350,10 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "536737ee-0787-58bd-b966-1f249b0f4f96")
+			(uuid "9f55708a-2c44-5d1d-ae9c-95a0a315e950")
 		)
 		(pin "2"
-			(uuid "ad34e3a8-69da-5f15-b8e2-88f1d81d5c60")
+			(uuid "02eb8bd5-3024-5cc8-82dd-1cea87ee08f7")
 		)
 		(instances
 			(project "LESHY2-RF-R2"
@@ -6364,32 +6364,33 @@
 			)
 		)
 	)
-	(label "AON_SAFE_3V3"
+	(hierarchical_label "FAULT_ASSERT_N"
+		(shape bidirectional)
 		(at 675.64 157.48 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "b03cfbc4-0e73-5b71-9f22-57e86263f112")
+		(uuid "40eef2ff-e300-58a1-8445-6f02c70efcfa")
 	)
-	(label "SAFETY_EVIDENCE_I2C_SDA"
+	(label "SAFETY_GROUND"
 		(at 716.28 157.48 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "b119ebea-bc5d-57a0-aa12-4775990eb58b")
+		(uuid "5118a8c3-ad05-5efb-9e0e-ff2c1324a44c")
 	)
 	(symbol
-		(lib_id "Leshy2_R2:yageo_rc0402fr_071ml")
+		(lib_id "Leshy2_R2:yageo_rc0402fr_0710kl")
 		(at 787.40 158.75 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "a1dab4ac-95f9-5112-8e09-2704b9db4df4")
+		(uuid "8e11c31d-0fc0-5282-998b-99474c302d7e")
 		(property "Reference" "R254"
 			(at 787.40 151.13 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-071ML"
+		(property "Value" "Yageo RC0402FR-0710KL"
 			(at 787.40 166.37 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6409,14 +6410,14 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "yageo_rc0402fr_071ml"
+		(property "Description" "yageo_rc0402fr_0710kl"
 			(at 787.40 158.75 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2Instance" "fault_assert_backup_pulldown"
+		(property "Leshy2Instance" "fault_assert_pullup"
 			(at 787.40 158.75 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6424,10 +6425,10 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "9f55708a-2c44-5d1d-ae9c-95a0a315e950")
+			(uuid "f58040f4-7e52-5ade-bbd8-0184515cab33")
 		)
 		(pin "2"
-			(uuid "02eb8bd5-3024-5cc8-82dd-1cea87ee08f7")
+			(uuid "be2e3897-5fe5-5105-9e59-b7498c9fcbf9")
 		)
 		(instances
 			(project "LESHY2-RF-R2"
@@ -6438,33 +6439,32 @@
 			)
 		)
 	)
-	(hierarchical_label "FAULT_ASSERT_N"
-		(shape bidirectional)
+	(label "AON_SAFE_3V3"
 		(at 767.08 157.48 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "40eef2ff-e300-58a1-8445-6f02c70efcfa")
+		(uuid "574ff521-4f54-599c-bed7-1e5316bdab5d")
 	)
-	(label "SAFETY_GROUND"
+	(label "FAULT_ASSERT_N"
 		(at 807.72 157.48 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "5118a8c3-ad05-5efb-9e0e-ff2c1324a44c")
+		(uuid "f05f0988-de23-597b-bdca-3ff513c64d6e")
 	)
 	(symbol
-		(lib_id "Leshy2_R2:yageo_rc0402fr_0710kl")
+		(lib_id "Leshy2_R2:yageo_rc0402fr_07100kl")
 		(at 878.84 158.75 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "8e11c31d-0fc0-5282-998b-99474c302d7e")
+		(uuid "1b2b0d8c-037b-56ec-84cd-7d9cf60681da")
 		(property "Reference" "R255"
 			(at 878.84 151.13 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-0710KL"
+		(property "Value" "Yageo RC0402FR-07100KL"
 			(at 878.84 166.37 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6484,14 +6484,14 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "yageo_rc0402fr_0710kl"
+		(property "Description" "yageo_rc0402fr_07100kl"
 			(at 878.84 158.75 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2Instance" "fault_assert_pullup"
+		(property "Leshy2Instance" "fault_assert_sense_series"
 			(at 878.84 158.75 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6499,10 +6499,10 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "f58040f4-7e52-5ade-bbd8-0184515cab33")
+			(uuid "64b5ad1b-fbc7-52e9-9f1a-3967943dca46")
 		)
 		(pin "2"
-			(uuid "be2e3897-5fe5-5105-9e59-b7498c9fcbf9")
+			(uuid "64e19684-5b41-5cb4-a3ee-9cbd208ad15d")
 		)
 		(instances
 			(project "LESHY2-RF-R2"
@@ -6513,32 +6513,32 @@
 			)
 		)
 	)
-	(label "AON_SAFE_3V3"
+	(label "FAULT_ASSERT_N"
 		(at 858.52 157.48 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "574ff521-4f54-599c-bed7-1e5316bdab5d")
+		(uuid "ed01e311-34a2-51e6-9ca7-a7a744557444")
 	)
-	(label "FAULT_ASSERT_N"
+	(label "FAULT_ASSERT_SENSE"
 		(at 899.16 157.48 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "f05f0988-de23-597b-bdca-3ff513c64d6e")
+		(uuid "9c270306-0c21-5505-b8a3-8bb16087fe02")
 	)
 	(symbol
-		(lib_id "Leshy2_R2:yageo_rc0402fr_07100kl")
+		(lib_id "Leshy2_R2:yageo_rc0402fr_0747kl")
 		(at 970.28 158.75 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "1b2b0d8c-037b-56ec-84cd-7d9cf60681da")
+		(uuid "88a64674-0cd6-51be-b65e-7524a9d71abc")
 		(property "Reference" "R256"
 			(at 970.28 151.13 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-07100KL"
+		(property "Value" "Yageo RC0402FR-0747KL"
 			(at 970.28 166.37 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6558,14 +6558,14 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "yageo_rc0402fr_07100kl"
+		(property "Description" "yageo_rc0402fr_0747kl"
 			(at 970.28 158.75 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2Instance" "fault_assert_sense_series"
+		(property "Leshy2Instance" "power_command_pullup"
 			(at 970.28 158.75 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6573,10 +6573,10 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "64b5ad1b-fbc7-52e9-9f1a-3967943dca46")
+			(uuid "62e750c6-69b7-5882-ab92-e57f0db40962")
 		)
 		(pin "2"
-			(uuid "64e19684-5b41-5cb4-a3ee-9cbd208ad15d")
+			(uuid "e9af0895-1afd-59cf-b379-d64cf9ddd3b5")
 		)
 		(instances
 			(project "LESHY2-RF-R2"
@@ -6587,32 +6587,33 @@
 			)
 		)
 	)
-	(label "FAULT_ASSERT_N"
+	(hierarchical_label "PACK_ADMISSION_VDD"
+		(shape bidirectional)
 		(at 949.96 157.48 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "ed01e311-34a2-51e6-9ca7-a7a744557444")
+		(uuid "8532db44-474a-511e-8a82-e52dface0655")
 	)
-	(label "FAULT_ASSERT_SENSE"
+	(label "POWER_COMMAND_OFF_N"
 		(at 990.60 157.48 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "9c270306-0c21-5505-b8a3-8bb16087fe02")
+		(uuid "ed2f26e4-ba0a-5ac7-be59-1d8977b9adea")
 	)
 	(symbol
-		(lib_id "Leshy2_R2:yageo_rc0402fr_0747kl")
+		(lib_id "Leshy2_R2:yageo_rc0402fr_0710kl")
 		(at 1061.72 158.75 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "88a64674-0cd6-51be-b65e-7524a9d71abc")
+		(uuid "9972f6ce-f4ef-58e7-a665-abc86eba8e79")
 		(property "Reference" "R257"
 			(at 1061.72 151.13 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-0747KL"
+		(property "Value" "Yageo RC0402FR-0710KL"
 			(at 1061.72 166.37 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6632,14 +6633,14 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "yageo_rc0402fr_0747kl"
+		(property "Description" "yageo_rc0402fr_0710kl"
 			(at 1061.72 158.75 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2Instance" "power_command_pullup"
+		(property "Leshy2Instance" "power_fault_pullup"
 			(at 1061.72 158.75 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6647,10 +6648,10 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "62e750c6-69b7-5882-ab92-e57f0db40962")
+			(uuid "e66ad723-c6ef-5180-a7f7-77ac0d416be6")
 		)
 		(pin "2"
-			(uuid "e9af0895-1afd-59cf-b379-d64cf9ddd3b5")
+			(uuid "92336a5e-0998-5dcb-9ce1-4b302aab6440")
 		)
 		(instances
 			(project "LESHY2-RF-R2"
@@ -6661,16 +6662,17 @@
 			)
 		)
 	)
-	(hierarchical_label "PACK_ADMISSION_VDD"
+	(hierarchical_label "3V3_MAIN"
 		(shape bidirectional)
 		(at 1041.40 157.48 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "8532db44-474a-511e-8a82-e52dface0655")
+		(uuid "aa470a6e-b07a-59f3-bd7c-12e8496c3295")
 	)
-	(label "POWER_COMMAND_OFF_N"
+	(hierarchical_label "POWER_FAULT_N"
+		(shape bidirectional)
 		(at 1082.04 157.48 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "ed2f26e4-ba0a-5ac7-be59-1d8977b9adea")
+		(uuid "af7c6ff3-e5ad-5f50-8797-2a1125807ca7")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:yageo_rc0402fr_0710kl")
@@ -6680,7 +6682,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "9972f6ce-f4ef-58e7-a665-abc86eba8e79")
+		(uuid "43b48a82-b88e-54dc-b256-fcb3c6c228a9")
 		(property "Reference" "R258"
 			(at 330.20 153.67 0)
 			(show_name no)
@@ -6714,7 +6716,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2Instance" "power_fault_pullup"
+		(property "Leshy2Instance" "run_loop_pullup"
 			(at 330.20 161.29 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6722,10 +6724,10 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "e66ad723-c6ef-5180-a7f7-77ac0d416be6")
+			(uuid "069a4acd-e391-5974-a369-0caac23ce09e")
 		)
 		(pin "2"
-			(uuid "92336a5e-0998-5dcb-9ce1-4b302aab6440")
+			(uuid "21d7b532-c6b3-55d6-9545-d594cdb285ba")
 		)
 		(instances
 			(project "LESHY2-RF-R2"
@@ -6736,17 +6738,15 @@
 			)
 		)
 	)
-	(hierarchical_label "3V3_MAIN"
-		(shape bidirectional)
+	(label "AON_SAFE_3V3"
 		(at 309.88 160.02 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "aa470a6e-b07a-59f3-bd7c-12e8496c3295")
+		(uuid "0a582036-7ab5-5cdc-bf3e-971c65617245")
 	)
-	(hierarchical_label "POWER_FAULT_N"
-		(shape bidirectional)
+	(label "RUN_LOOP_RAW"
 		(at 350.52 160.02 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "af7c6ff3-e5ad-5f50-8797-2a1125807ca7")
+		(uuid "3338fc9d-d3bd-558d-98e2-4d0df075089c")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:yageo_rc0402fr_0710kl")
@@ -6756,7 +6756,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "43b48a82-b88e-54dc-b256-fcb3c6c228a9")
+		(uuid "385add45-7bf1-5354-9e9b-08f7e2e87954")
 		(property "Reference" "R259"
 			(at 55.88 186.69 0)
 			(show_name no)
@@ -6790,7 +6790,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2Instance" "run_loop_pullup"
+		(property "Leshy2Instance" "safe_latch_d_pullup"
 			(at 55.88 194.31 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6798,10 +6798,10 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "069a4acd-e391-5974-a369-0caac23ce09e")
+			(uuid "b21dc4c2-a24d-59ea-a9df-9760c7e661d9")
 		)
 		(pin "2"
-			(uuid "21d7b532-c6b3-55d6-9545-d594cdb285ba")
+			(uuid "641d7c26-a9d6-5586-ab7e-18fa06a4a8ff")
 		)
 		(instances
 			(project "LESHY2-RF-R2"
@@ -6815,12 +6815,12 @@
 	(label "AON_SAFE_3V3"
 		(at 35.56 193.04 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "0a582036-7ab5-5cdc-bf3e-971c65617245")
+		(uuid "551fc256-e6d1-51e0-bf6c-15b973aa0216")
 	)
-	(label "RUN_LOOP_RAW"
+	(label "SAFE_D_HIGH"
 		(at 76.20 193.04 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "3338fc9d-d3bd-558d-98e2-4d0df075089c")
+		(uuid "b63b91e3-afb6-5554-967e-ea7e3e81886e")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:yageo_rc0402fr_0710kl")
@@ -6830,7 +6830,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "385add45-7bf1-5354-9e9b-08f7e2e87954")
+		(uuid "35050c0d-1cf1-529e-9428-f200827e0bda")
 		(property "Reference" "R260"
 			(at 147.32 186.69 0)
 			(show_name no)
@@ -6864,7 +6864,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2Instance" "safe_latch_d_pullup"
+		(property "Leshy2Instance" "safe_por_pullup"
 			(at 147.32 194.31 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6872,10 +6872,10 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "b21dc4c2-a24d-59ea-a9df-9760c7e661d9")
+			(uuid "ff272043-e996-5700-9b46-83a7cba23212")
 		)
 		(pin "2"
-			(uuid "641d7c26-a9d6-5586-ab7e-18fa06a4a8ff")
+			(uuid "35f9e836-cd72-5ec3-8d8a-38ca2ae00944")
 		)
 		(instances
 			(project "LESHY2-RF-R2"
@@ -6889,29 +6889,30 @@
 	(label "AON_SAFE_3V3"
 		(at 127.00 193.04 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "551fc256-e6d1-51e0-bf6c-15b973aa0216")
+		(uuid "de5c6759-a237-5aac-bc78-5a6d934d94c7")
 	)
-	(label "SAFE_D_HIGH"
+	(hierarchical_label "POR_N"
+		(shape bidirectional)
 		(at 167.64 193.04 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "b63b91e3-afb6-5554-967e-ea7e3e81886e")
+		(uuid "89a14728-c1c5-5926-b310-046fdf864fc5")
 	)
 	(symbol
-		(lib_id "Leshy2_R2:yageo_rc0402fr_0710kl")
+		(lib_id "Leshy2_R2:yageo_rc0402fr_07100kl")
 		(at 238.76 194.31 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "35050c0d-1cf1-529e-9428-f200827e0bda")
+		(uuid "ec0ebada-6bbe-5ffd-837c-200b99239b54")
 		(property "Reference" "R261"
 			(at 238.76 186.69 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-0710KL"
+		(property "Value" "Yageo RC0402FR-07100KL"
 			(at 238.76 201.93 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6931,14 +6932,14 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "yageo_rc0402fr_0710kl"
+		(property "Description" "yageo_rc0402fr_07100kl"
 			(at 238.76 194.31 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2Instance" "safe_por_pullup"
+		(property "Leshy2Instance" "safe_rearm_delay_res"
 			(at 238.76 194.31 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6946,10 +6947,10 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "ff272043-e996-5700-9b46-83a7cba23212")
+			(uuid "f45ceb90-8ee0-566b-9a76-f689b9af93cc")
 		)
 		(pin "2"
-			(uuid "35f9e836-cd72-5ec3-8d8a-38ca2ae00944")
+			(uuid "c7f6dd83-8fa5-5fe1-ab60-319eda1b7e0d")
 		)
 		(instances
 			(project "LESHY2-RF-R2"
@@ -6960,33 +6961,32 @@
 			)
 		)
 	)
-	(label "AON_SAFE_3V3"
+	(label "RUN_EDGE"
 		(at 218.44 193.04 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "de5c6759-a237-5aac-bc78-5a6d934d94c7")
+		(uuid "f4708c5a-3dbe-50ac-8a76-764b2b79b849")
 	)
-	(hierarchical_label "POR_N"
-		(shape bidirectional)
+	(label "SAFE_REARM_DELAY"
 		(at 259.08 193.04 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "89a14728-c1c5-5926-b310-046fdf864fc5")
+		(uuid "006a5d33-6795-5c8b-b681-854ce72a1eea")
 	)
 	(symbol
-		(lib_id "Leshy2_R2:yageo_rc0402fr_07100kl")
+		(lib_id "Leshy2_R2:yageo_rc0402fr_0710kl")
 		(at 421.64 194.31 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "ec0ebada-6bbe-5ffd-837c-200b99239b54")
+		(uuid "5e11ae7a-4a39-50a4-9a6b-bf2cacccb810")
 		(property "Reference" "R262"
 			(at 421.64 186.69 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-07100KL"
+		(property "Value" "Yageo RC0402FR-0710KL"
 			(at 421.64 201.93 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7006,14 +7006,14 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "yageo_rc0402fr_07100kl"
+		(property "Description" "yageo_rc0402fr_0710kl"
 			(at 421.64 194.31 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2Instance" "safe_rearm_delay_res"
+		(property "Leshy2Instance" "safe_reset_gate_pullup"
 			(at 421.64 194.31 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7021,10 +7021,10 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "f45ceb90-8ee0-566b-9a76-f689b9af93cc")
+			(uuid "9c048e5f-f1ba-52bb-8044-39dc175b8869")
 		)
 		(pin "2"
-			(uuid "c7f6dd83-8fa5-5fe1-ab60-319eda1b7e0d")
+			(uuid "cf4c37f5-df1a-5759-8fb6-f0a89a883697")
 		)
 		(instances
 			(project "LESHY2-RF-R2"
@@ -7035,32 +7035,32 @@
 			)
 		)
 	)
-	(label "RUN_EDGE"
+	(label "3V3_MAIN"
 		(at 401.32 193.04 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "f4708c5a-3dbe-50ac-8a76-764b2b79b849")
+		(uuid "d18fb7c0-6e13-5daf-a601-d9e72d183e2b")
 	)
-	(label "SAFE_REARM_DELAY"
+	(label "RF_RESET_KILL_GATE"
 		(at 441.96 193.04 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "006a5d33-6795-5c8b-b681-854ce72a1eea")
+		(uuid "f7f4b946-1698-5583-b8c5-a57f739d5f8a")
 	)
 	(symbol
-		(lib_id "Leshy2_R2:yageo_rc0402fr_0710kl")
+		(lib_id "Leshy2_R2:yageo_rc0402fr_0747kl")
 		(at 513.08 194.31 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "5e11ae7a-4a39-50a4-9a6b-bf2cacccb810")
+		(uuid "9a2688a8-3d4c-552e-b0e3-7757ab1636e9")
 		(property "Reference" "R263"
 			(at 513.08 186.69 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-0710KL"
+		(property "Value" "Yageo RC0402FR-0747KL"
 			(at 513.08 201.93 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7080,14 +7080,14 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "yageo_rc0402fr_0710kl"
+		(property "Description" "yageo_rc0402fr_0747kl"
 			(at 513.08 194.31 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2Instance" "safe_reset_gate_pullup"
+		(property "Leshy2Instance" "safety_controller_reset_pullup"
 			(at 513.08 194.31 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7095,10 +7095,10 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "9c048e5f-f1ba-52bb-8044-39dc175b8869")
+			(uuid "8955858d-fcde-528b-a5f0-c5a5eec40b20")
 		)
 		(pin "2"
-			(uuid "cf4c37f5-df1a-5759-8fb6-f0a89a883697")
+			(uuid "2c35ecbb-94b8-5095-aab0-ef0d91edb4b5")
 		)
 		(instances
 			(project "LESHY2-RF-R2"
@@ -7109,32 +7109,32 @@
 			)
 		)
 	)
-	(label "3V3_MAIN"
+	(label "AON_SAFE_3V3"
 		(at 492.76 193.04 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "d18fb7c0-6e13-5daf-a601-d9e72d183e2b")
+		(uuid "fc7e75a9-9d6e-53ce-9162-49800199f0c1")
 	)
-	(label "RF_RESET_KILL_GATE"
+	(label "SAFETY_CONTROLLER_NRST_N"
 		(at 533.40 193.04 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "f7f4b946-1698-5583-b8c5-a57f739d5f8a")
+		(uuid "686cf9a3-fd34-513b-9931-ade4746b236d")
 	)
 	(symbol
-		(lib_id "Leshy2_R2:yageo_rc0402fr_0747kl")
+		(lib_id "Leshy2_R2:yageo_rc0402fr_0710kl")
 		(at 604.52 194.31 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "9a2688a8-3d4c-552e-b0e3-7757ab1636e9")
+		(uuid "fb7a4952-52cb-570e-82ae-5059b3ef507e")
 		(property "Reference" "R264"
 			(at 604.52 186.69 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Yageo RC0402FR-0747KL"
+		(property "Value" "Yageo RC0402FR-0710KL"
 			(at 604.52 201.93 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7154,14 +7154,14 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "yageo_rc0402fr_0747kl"
+		(property "Description" "yageo_rc0402fr_0710kl"
 			(at 604.52 194.31 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2Instance" "safety_controller_reset_pullup"
+		(property "Leshy2Instance" "safety_fault_request_pulldown"
 			(at 604.52 194.31 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7169,10 +7169,10 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "8955858d-fcde-528b-a5f0-c5a5eec40b20")
+			(uuid "7273151e-c893-5a68-8ee6-9cad24e019f7")
 		)
 		(pin "2"
-			(uuid "2c35ecbb-94b8-5095-aab0-ef0d91edb4b5")
+			(uuid "aaf40a7d-b1f4-5c58-b574-c410ed89748c")
 		)
 		(instances
 			(project "LESHY2-RF-R2"
@@ -7183,15 +7183,15 @@
 			)
 		)
 	)
-	(label "AON_SAFE_3V3"
+	(label "SAFETY_FAULT_REQUEST"
 		(at 584.20 193.04 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "fc7e75a9-9d6e-53ce-9162-49800199f0c1")
+		(uuid "3a39bdfa-3e14-5748-9cca-8d70dcf5eb2a")
 	)
-	(label "SAFETY_CONTROLLER_NRST_N"
+	(label "SAFETY_GROUND"
 		(at 624.84 193.04 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "686cf9a3-fd34-513b-9931-ade4746b236d")
+		(uuid "fd766ec2-d3d6-53dc-9cf9-7ca8d767cc03")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:yageo_rc0402fr_0710kl")
@@ -7201,7 +7201,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "fb7a4952-52cb-570e-82ae-5059b3ef507e")
+		(uuid "a19ae93c-a646-5cc0-a3ee-27c7072e76a1")
 		(property "Reference" "R265"
 			(at 695.96 186.69 0)
 			(show_name no)
@@ -7235,7 +7235,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2Instance" "safety_fault_request_pulldown"
+		(property "Leshy2Instance" "safety_s3_reset_pulldown"
 			(at 695.96 194.31 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7243,10 +7243,10 @@
 			(effects (font (size 1.27 1.27)))
 		)
 		(pin "1"
-			(uuid "7273151e-c893-5a68-8ee6-9cad24e019f7")
+			(uuid "12b3ff98-f1d6-58b1-aa20-dc10d77962ef")
 		)
 		(pin "2"
-			(uuid "aaf40a7d-b1f4-5c58-b574-c410ed89748c")
+			(uuid "4f153209-e091-57dc-8269-94811a75146a")
 		)
 		(instances
 			(project "LESHY2-RF-R2"
@@ -7257,15 +7257,15 @@
 			)
 		)
 	)
-	(label "SAFETY_FAULT_REQUEST"
+	(label "S3_FAULT_RESET_REQUEST"
 		(at 675.64 193.04 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "3a39bdfa-3e14-5748-9cca-8d70dcf5eb2a")
+		(uuid "4a24a123-471d-5b00-b267-94dfcf07331b")
 	)
 	(label "SAFETY_GROUND"
 		(at 716.28 193.04 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "fd766ec2-d3d6-53dc-9cf9-7ca8d767cc03")
+		(uuid "e3e39070-2fc2-5e88-9416-c54dd716bb1d")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:yageo_rc0402fr_0710kl")
@@ -8996,10 +8996,10 @@
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "dc992554-0a14-5567-9aa8-7a10f41d5be1")
 	)
-	(label "EVIDENCE_MASK_UNUSED_P17"
+	(label "SAFETY_GROUND"
 		(at 259.08 279.40 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "f28dce79-24e8-546f-a9d0-31ef771fa68f")
+		(uuid "d7495f9f-4733-5441-8501-72939faaf854")
 	)
 	(label "SAFETY_GROUND"
 		(at 259.08 281.94 180)
@@ -10980,10 +10980,11 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "d727447b-f188-59c5-9731-85945212ceb6")
 	)
-	(label "FAULT_ASSERT_N"
+	(hierarchical_label "S3_RESET_KILL_GATE"
+		(shape bidirectional)
 		(at 990.60 298.45 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "91401fee-a0d1-5c68-9ff8-44570dbc0fbf")
+		(uuid "ef1f50f9-dcb3-535e-9f4a-9ddafe250a8d")
 	)
 	(label "AON_SAFE_3V3"
 		(at 990.60 300.99 180)

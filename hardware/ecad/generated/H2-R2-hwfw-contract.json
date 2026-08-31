@@ -10,17 +10,17 @@
     "pcb_placement_or_routing": false
   },
   "source_sha256": {
-    "hardware/architecture/h0-r2-rebaseline.json": "f46b4a95d9e76b910c5df8e5141bfea782ae550e3d5ad4badec4f2af4178c06e",
+    "hardware/architecture/h0-r2-rebaseline.json": "f14f33a176eb6fac99365ad808cd8b99db26e672101f72dc4c02c5e5f51a2bed",
     "hardware/architecture/h1-r2-dual-rp-pinout.json": "45d7b02e86a626c5be841fef4d249fd304e98ce1715776e79d073ca9bc144753",
     "hardware/architecture/c5-sdio-service-mux-contract.json": "4bd88ffed2e8ac0b5f6e8856d6ebc21e7cc29aa38045d4a10e068b870e51c7f3",
     "hardware/architecture/pack-safety-i2c-boundary-contract.json": "5460c97ab81e9f58c41a042a5f024f5f83e5913099e11743b9ad72414eb5782c",
     "hardware/architecture/candidates/G2F-3I.json": "2673a4d23435effe9ec592e6060a3b1bc525598944d932f0a502d0fd4636ce8f",
     "hardware/architecture/h1-r2-u219-cap.json": "01f01f750ceedaa9818b59968962a3484f4660057137e6ef43431a54b71c98fa",
     "hardware/product-design/h1-r2-placement.json": "5c87457efa793572df1ff699f499b58437590e0b5b4655492552015dac8ccadc",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "ae48e1145603db59a05d87f326d2f708d5484c8fb4177d7c54e39aeb74d49f2f",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "6536747c134dff3f8911431cac416b4f6b8cc5787619598bda0a7345994f5843",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "343094e4900c10b8525783e56de830ddf55de0905809b4375f2a4bd0339b71ce",
-    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "57ba12fb654d00618eda166ef83e8a6291d6608e79ea0845897c84a1ee6d648f",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "e42cb9eb9c9edd3011d482fe8e19d31aa73d14f8e0ca53b9ff2e230c164efbfc",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "5f3c52f7164df747df0e11a5e8bb405d060e26ad1b649c2f6275bd8675686626",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "a74ec13d3b2482226734436debecf360fffe3986ce0a6e9f06fe35d98b3745e7",
+    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "410e091cf43d73162cbb8f0a5a3ede576671e5c762d8d7651206ec9df61ae96d",
     "hardware/ecad/h2-r2-hwfw-reconciliation-contract.json": "b4f6a6d79531b51d96656ae654a1a80be2cb1d672a4d8b3f519868c8ea966993"
   },
   "bsp": {
@@ -6266,7 +6266,7 @@
       }
     },
     "hardware_sources": {
-      "hardware/architecture/h0-r2-rebaseline.json": "f46b4a95d9e76b910c5df8e5141bfea782ae550e3d5ad4badec4f2af4178c06e",
+      "hardware/architecture/h0-r2-rebaseline.json": "f14f33a176eb6fac99365ad808cd8b99db26e672101f72dc4c02c5e5f51a2bed",
       "hardware/architecture/h1-r2-dual-rp-pinout.json": "45d7b02e86a626c5be841fef4d249fd304e98ce1715776e79d073ca9bc144753",
       "hardware/architecture/c5-sdio-service-mux-contract.json": "4bd88ffed2e8ac0b5f6e8856d6ebc21e7cc29aa38045d4a10e068b870e51c7f3",
       "hardware/architecture/pack-safety-i2c-boundary-contract.json": "5460c97ab81e9f58c41a042a5f024f5f83e5913099e11743b9ad72414eb5782c",
@@ -6278,11 +6278,11 @@
       "connector": "FX8C-80P-SV1(92) / FX8C-80S-SV5(92), straight SMT, 80 contacts, 11-mm working gap",
       "current_budget": {
         "positions": 80,
-        "live_signals": 29,
+        "live_signals": 30,
         "main_power": 14,
         "aon_power": 2,
         "returns": 24,
-        "no_connect_reserve": 11
+        "no_connect_reserve": 10
       },
       "pin_map": [
         {
@@ -6462,8 +6462,8 @@
         },
         {
           "contact": 36,
-          "net": "NC_36",
-          "class": "reserve"
+          "net": "S3_RESET_KILL_GATE",
+          "class": "safety"
         },
         {
           "contact": 37,
@@ -6705,16 +6705,16 @@
         "populated_sheet_count": 19,
         "fitted_symbol_instance_count": 1187,
         "physical_symbol_pin_count": 4327,
-        "connected_physical_pin_count": 4067,
-        "explicit_no_connect_physical_pin_count": 260,
+        "connected_physical_pin_count": 4069,
+        "explicit_no_connect_physical_pin_count": 258,
         "external_module_interface_annotation_count": 5,
         "canonical_net_count": 826,
         "generated_file_count": 32,
         "pcb_file_count": 0
       },
       "cross_sheet_net_counts": {
-        "LESHY2-UI-R2": 109,
-        "LESHY2-RF-R2": 125,
+        "LESHY2-UI-R2": 110,
+        "LESHY2-RF-R2": 126,
         "L2-DISP-ADP-001-B": 0
       }
     },
@@ -8786,6 +8786,22 @@
         ]
       },
       {
+        "net": "S3_RESET_KILL_GATE",
+        "projects": [
+          "LESHY2-RF-R2",
+          "LESHY2-UI-R2"
+        ],
+        "boundary_evidence": [
+          {
+            "role": "80-contact M1 interboard connector",
+            "endpoint_instances": [
+              "m1_rf_receptacle",
+              "m1_ui_plug"
+            ]
+          }
+        ]
+      },
+      {
         "net": "S3_USB_DM",
         "projects": [
           "LESHY2-RF-R2",
@@ -8921,8 +8937,8 @@
     "exact_pin_rows": 147,
     "conditioned_boundary_rows": 14,
     "explicit_reserve_no_connect_rows": 12,
-    "cross_project_net_count": 50,
-    "cross_sheet_net_count": 234,
+    "cross_project_net_count": 51,
+    "cross_sheet_net_count": 236,
     "errors": 0
   },
   "authorization": {

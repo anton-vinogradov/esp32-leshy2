@@ -4,15 +4,15 @@
   "marker": "H3-R2.0.2",
   "status": "pass",
   "accepted_input": "H3-R2.0.1",
-  "input_freeze_sha256": "2a524eb434ab2bea72569e71ffd2d441dc816e6f175706e20ae25782ac9dd1c7",
-  "register_sha256": "f8d442636ca07729226802c18eee53a906257c82e0959eed4971affcbca82a1f",
+  "input_freeze_sha256": "516c190dbae0f554eaa17b8f7b5ec032d3c6b01a356134a0e2110afb5d850c4c",
+  "register_sha256": "ec6b4ce028d2474f983d9a4e82a4e73f6c75d80c3bc69989be23725a07702ed5",
   "source_sha256": {
     "hardware/verification/h3-r2-parameter-provenance-contract.json": "fd3a16540e49b3bc288203ebfe78b6eb06feeaf8c2e55bf34a22d84f63e49ca6",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "019a74eac976980579821a0bcc62c5424e3d7f541ba1ba0b1c3233da7f59ade9",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "ae48e1145603db59a05d87f326d2f708d5484c8fb4177d7c54e39aeb74d49f2f",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "6536747c134dff3f8911431cac416b4f6b8cc5787619598bda0a7345994f5843",
-    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "c891b92bc78ac00bc5f2e1cecf7980d40f9dcb41b4e5357ca87294f7329076c8",
-    "hardware/architecture/devices.json": "cc0b54ff05c8550905ff0d5ded05e10a69fa9d282594cd0ed7180ab577567c06"
+    "hardware/verification/generated/H3-R2-input-freeze.json": "34dbdff89429c235072cac8126f2f70e01618929ff4889274e0e32fea66c792e",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "e42cb9eb9c9edd3011d482fe8e19d31aa73d14f8e0ca53b9ff2e230c164efbfc",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "5f3c52f7164df747df0e11a5e8bb405d060e26ad1b649c2f6275bd8675686626",
+    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "b99b229f78c2a755a7283636942e46eb648095b678a0b9b11496359a18fde467",
+    "hardware/architecture/devices.json": "96bd2cf3a4bfae0af34e249d6737a16a2763fea46b3892e06b465b84e1c18e2f"
   },
   "policy": {
     "accepted_h2_identity_is_immutable": true,
@@ -28,8 +28,8 @@
     "fitted_board_instances": 1187,
     "source_missing": 0,
     "factory_catalog_only_parameter_sources": 2,
-    "groups_with_structured_parameter_seeds": 68,
-    "groups_in_explicit_parameter_extraction_queue": 174,
+    "groups_with_structured_parameter_seeds": 70,
+    "groups_in_explicit_parameter_extraction_queue": 172,
     "manufacturer_primary_sources": 240,
     "model_method_candidates": 242,
     "owned_component_groups": 242,
@@ -48,7 +48,7 @@
       "analog_peripheral": 3,
       "connector_interconnect": 6,
       "digital_interface": 18,
-      "general_component": 13,
+      "general_component": 15,
       "passive_corner": 17,
       "power_safety_active": 3,
       "radio_rf": 8
@@ -9294,16 +9294,16 @@
       "jlcpcb_part_number": null,
       "source": {
         "document": "SN74LVC1G17 Single Schmitt-Trigger Buffer datasheet",
-        "version": "Rev. Y",
+        "version": "Rev. Y, revised October 2025",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
-        "checked": "2026-08-24"
+        "checked": "2026-08-31"
       },
       "source_tier": "manufacturer_primary_accepted_h2",
       "accepted_h2_source_preserved": {
         "document": "SN74LVC1G17 Single Schmitt-Trigger Buffer datasheet",
-        "version": "Rev. Y",
+        "version": "Rev. Y, revised October 2025",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
-        "checked": "2026-08-24"
+        "checked": "2026-08-31"
       },
       "source_host": "www.ti.com",
       "parameter_class": "digital_interface",
@@ -9327,10 +9327,11 @@
           "negative_max": 1.2
         },
         "input_leakage_max_ua": 5,
+        "power_off_leakage_max_ua": 10,
         "partial_power_down": "Ioff keeps the output high impedance and prevents back-drive while AON_SAFE_3V3 is absent",
-        "usage": "cleans the slow physical RUN RC edge and prevents a latch clock until after the fixed 12-to-28-ms AON POR window"
+        "usage": "cleans the slow physical RUN RC edge; the safety controller's qualified physical KILL state is the anti-auto-start barrier, so RC timing is not credited as the sole startup interlock"
       },
-      "structured_parameter_count": 6,
+      "structured_parameter_count": 7,
       "parameter_state": "structured_seed_present",
       "model_method_candidate": "datasheet_static_and_timing_model",
       "model_method_state": "candidate_pending_H3-R2.0.3",
@@ -9340,7 +9341,7 @@
       ],
       "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "24cdff00bc383f6279ef73bc3656b988d94e62b77e8aac658b5e90e65facedd4",
-      "symbol_electrical_contract_sha256": "a0b9ae387685f32d64a5816a08da2518ab2f9f244d1b0b6a59e47705449dc175"
+      "symbol_electrical_contract_sha256": "3dee205fec1cb0ebfc1f8ef548dba2ffe38292fd1f00eef67e673988203b260d"
     },
     {
       "device_id": "ti_sn74lvc1g3157_dbvr",
@@ -9425,14 +9426,14 @@
         "document": "SN74LVC1G74 Single D-Type Flip-Flop With Clear and Preset datasheet",
         "version": "Rev. G",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-31"
       },
       "source_tier": "manufacturer_primary_accepted_h2",
       "accepted_h2_source_preserved": {
         "document": "SN74LVC1G74 Single D-Type Flip-Flop With Clear and Preset datasheet",
         "version": "Rev. G",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-31"
       },
       "source_host": "www.ti.com",
       "parameter_class": "general_component",
@@ -9443,9 +9444,16 @@
         "temperature",
         "applicability"
       ],
-      "structured_parameters": {},
-      "structured_parameter_count": 0,
-      "parameter_state": "explicit_extraction_queue",
+      "structured_parameters": {
+        "function": "positive-edge-triggered D flip-flop with asynchronous active-low preset and clear",
+        "clear_behavior": "CLR_N low forces Q low and Q_N high independent of CLK and D",
+        "clock_behavior": "with PRE_N and CLR_N high, a positive CLK edge transfers D to Q",
+        "forbidden_async_state": "PRE_N and CLR_N must not both be low",
+        "partial_power_down": "Ioff prevents output backflow while VCC is absent",
+        "use": "non-programmable RUN_PERMIT latch; PRE_N is fixed high, CLR_N is POR_N AND FAULT_ASSERT_N, and D is fixed high"
+      },
+      "structured_parameter_count": 6,
+      "parameter_state": "structured_seed_present",
       "model_method_candidate": "datasheet_corner_model",
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
@@ -9455,7 +9463,7 @@
       ],
       "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "58650219b7f9d199fb93d8c65baad8f034b98118e7d4963dd64d4a3d98353338",
-      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      "symbol_electrical_contract_sha256": "0c0586298002f16d501bce6c55b42d19d424a576935847feaf7aa2bdae84e256"
     },
     {
       "device_id": "ti_sn74lvc2g08_dcur",
@@ -10869,14 +10877,14 @@
         "document": "TPS3435 Nano IQ Precision Timeout Watchdog Timer datasheet",
         "version": "SNVSCF7A, revised August 2024",
         "url": "https://www.ti.com/lit/ds/symlink/tps3435.pdf",
-        "checked": "2026-08-20"
+        "checked": "2026-08-31"
       },
       "source_tier": "manufacturer_primary_accepted_h2",
       "accepted_h2_source_preserved": {
         "document": "TPS3435 Nano IQ Precision Timeout Watchdog Timer datasheet",
         "version": "SNVSCF7A, revised August 2024",
         "url": "https://www.ti.com/lit/ds/symlink/tps3435.pdf",
-        "checked": "2026-08-20"
+        "checked": "2026-08-31"
       },
       "source_host": "www.ti.com",
       "parameter_class": "power_safety_active",
@@ -10888,14 +10896,27 @@
         "thermal"
       ],
       "structured_parameters": {
-        "watchdog_base_timeout_s": 1.6,
-        "startup_delay": "zero-delay C variant",
-        "output": "active-low open-drain WDO, 200-ms nominal fault pulse",
+        "watchdog_timeout_s": {
+          "min": 1.44,
+          "typ": 1.6,
+          "max": 1.76
+        },
+        "startup_delay_ms": {
+          "min": 0,
+          "typ": 0,
+          "max": 0
+        },
+        "watchdog_assert_time_ms": {
+          "min": 180,
+          "typ": 200,
+          "max": 220
+        },
+        "output": "active-low open-drain WDO",
         "input_contract": "timeout WDI; the AON safety controller must continue making edges before the 1.6-s deadline",
         "quiescent_current_typ_na": 250,
         "use": "independent last-resort monitor; WDO directly presets the hardware FAULT_KILL latch"
       },
-      "structured_parameter_count": 6,
+      "structured_parameter_count": 7,
       "parameter_state": "structured_seed_present",
       "model_method_candidate": "corner_equation_and_circuit_model",
       "model_method_state": "candidate_pending_H3-R2.0.3",
@@ -10905,7 +10926,7 @@
       ],
       "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "df77ed0db61ca2bbb8cffe72f2154509c530fc73b7b8de225891b65249c560d2",
-      "symbol_electrical_contract_sha256": "7e489686120321aa5899c3c0af372f4d465727d28a9c4ebf069c8fa42c6ef505"
+      "symbol_electrical_contract_sha256": "b3cf0cb8f9c67bea43dad566fa072d3a75e7f210b752504ae0475b9b0ff41cfb"
     },
     {
       "device_id": "ti_tps3808g33_dbvr",
@@ -10935,16 +10956,16 @@
       "jlcpcb_part_number": "C43698",
       "source": {
         "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
-        "version": "Rev. M",
+        "version": "Rev. N, revised August 2026",
         "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-31"
       },
       "source_tier": "manufacturer_primary_accepted_h2",
       "accepted_h2_source_preserved": {
         "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
-        "version": "Rev. M",
+        "version": "Rev. N, revised August 2026",
         "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-31"
       },
       "source_host": "www.ti.com",
       "parameter_class": "general_component",
@@ -10955,9 +10976,29 @@
         "temperature",
         "applicability"
       ],
-      "structured_parameters": {},
-      "structured_parameter_count": 0,
-      "parameter_state": "explicit_extraction_queue",
+      "structured_parameters": {
+        "fixed_threshold_nominal_v": 3.07,
+        "fixed_threshold_accuracy_percent_full_temperature": 1.5,
+        "fixed_threshold_hysteresis_percent": [
+          1.0,
+          2.5
+        ],
+        "ct_configuration": "open",
+        "reset_delay_ms": {
+          "min": 12,
+          "typ": 20,
+          "max": 28
+        },
+        "sense_to_reset_assertion_max_us": 20,
+        "output": "active-low open-drain RESET; asserted while SENSE is below threshold or MR_N is low",
+        "recommended_supply_range_v": [
+          1.7,
+          6.5
+        ],
+        "use": "holds the RUN_PERMIT latch asynchronously clear through AON startup and any supervised AON undervoltage"
+      },
+      "structured_parameter_count": 9,
+      "parameter_state": "structured_seed_present",
       "model_method_candidate": "datasheet_corner_model",
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
@@ -10967,7 +11008,7 @@
       ],
       "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "d95177220b74b775b90a8e956f06b58c4b7fc38f5d43447feaadf141c9cdd4ab",
-      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      "symbol_electrical_contract_sha256": "7efd739f0659f3529863e480e151aefa8c8a3e3fa0f48759fc4eb578109ba833"
     },
     {
       "device_id": "ti_tps3839k33_dbzr",
@@ -12955,8 +12996,8 @@
         "R224",
         "R226",
         "R245",
-        "R256",
-        "R262",
+        "R255",
+        "R261",
         "R275",
         "R279",
         "R3",
@@ -13245,14 +13286,14 @@
         "R250",
         "R251",
         "R252",
-        "R253",
-        "R255",
+        "R254",
+        "R257",
         "R258",
         "R259",
         "R26",
         "R260",
-        "R261",
-        "R263",
+        "R262",
+        "R264",
         "R265",
         "R266",
         "R267",
@@ -13764,7 +13805,7 @@
         "R221",
         "R225",
         "R242",
-        "R254",
+        "R253",
         "R272",
         "R277",
         "R86",
@@ -14550,8 +14591,8 @@
         "R208",
         "R209",
         "R227",
-        "R257",
-        "R264",
+        "R256",
+        "R263",
         "R48",
         "R57"
       ],

@@ -6,11 +6,11 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "ae48e1145603db59a05d87f326d2f708d5484c8fb4177d7c54e39aeb74d49f2f"
+      "sha256": "e42cb9eb9c9edd3011d482fe8e19d31aa73d14f8e0ca53b9ff2e230c164efbfc"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "cc0b54ff05c8550905ff0d5ded05e10a69fa9d282594cd0ed7180ab577567c06"
+      "sha256": "96bd2cf3a4bfae0af34e249d6737a16a2763fea46b3892e06b465b84e1c18e2f"
     }
   },
   "historical_hint_sources": [
@@ -22,139 +22,139 @@
     },
     {
       "path": "hardware/ecad/generated/H2-RF-root-interface.json",
-      "sha256": "fd7e569821ec06aab2bfeeddc6a423b3b023f5919482e30fd9d77d1ffb8d4857",
+      "sha256": "0e68fd755d6f0840d4a68dbf6c47f8dea0aa2e0669a59d5b7f44457f11fff871",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF01-usb-pd-charge.json",
-      "sha256": "3853cfcb0afaafed43fe755c75944453fbb57808c858dd90125ddc47e69b6627",
+      "sha256": "a80f0247788da3aa20c4b0ea82e9446677fda8894045de1e97843ae4651d933a",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF02-pack-safety-aon.json",
-      "sha256": "9ea637a8da84cbb03882af4eac764af16618f75b7a39305bbbc794baad5f5c91",
+      "sha256": "821017e7db634360a3ca5c4db7d0d4e2a32a319c90b01276faf27066392283c9",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json",
-      "sha256": "fd7c7ba28eeb1d4296e2e62f98bb57a37c1a51efab35442114b5d25d79921dfa",
+      "sha256": "efa92a6ff99b31d5432716033cc786a72d8dfc2d1397033192fb66509e4132a7",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF30-rp2354-core-service.json",
-      "sha256": "3a6b54beaf17a4bbcf06658988338a7ef500635c58a0086bdb1b5b7322a2f9e4",
+      "sha256": "98df0578ce42651f680f50497c1ea2e7b29bd373c674c060d01182aaf4906970",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF31-nrf24-x3.json",
-      "sha256": "162e780fc4b89d68ec56df9c92562d1f375ab1129e57ab4129e6ec3d3c6097f6",
+      "sha256": "98bf58d24c388789a667a4974834d68a67f8ea5ecb5d8066a68accbf4e6e61e7",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF32-subghz-voice.json",
-      "sha256": "56c8312f2120c3c43f139af3219670413346944e602cc2a3f66861630b91e560",
+      "sha256": "8fbe2388671f029aed77ab70cee5fa96f4503138af7c8d4b545564842a16fa40",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF34-u214-m5-ext.json",
-      "sha256": "26f03423799922ddae0e70296255f979b65489dcd16a28f08ea485b345f099d2",
+      "sha256": "30b4f22307a4ee1489579a7e6c3e6668b470ac95ee91b28ff77abbbbcb1d6719",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF35-rear-controls.json",
-      "sha256": "73536ac1649077c36bb560ab5dbed8394cc235afddfbfa9782d6e385aca1da7e",
+      "sha256": "c101d689da8e9ca3761eedca651680689209c747ce9167e64413468776ecc13e",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF36-audio-io-amp.json",
-      "sha256": "12c33c3c1f0625b89027c7806de1b948e7cef455563084090b4cca532226b152",
+      "sha256": "57115c80275224422824b4b48a7abc8ca9cd0b38cb9ecb41c16d5b3b21a0b12f",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF40-interboard-m1.json",
-      "sha256": "2360c742cb9918e34ccc01ba2a7b6b27599cb184748300d2b6d8094c3bf52048",
+      "sha256": "6988bccc407c7074a218f0c077afc147133447f22c56aa3d53b310f060680023",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF50-tx-safety-evidence.json",
-      "sha256": "00b6cad5238fa00628a50faace25f09ef2d9e897b22a1d7076b2b9f428b96bfc",
+      "sha256": "0d711dfd35b6cc01d33b601e4b91ee246acc401f9740f06a3ec4d037f3d71fb4",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF60-testpoints-manufacturing.json",
-      "sha256": "695dd3abc18313aba6a28ec9019928615496ee33323e9247ea64d145d728a7d4",
+      "sha256": "989ec58a9c23e56d9e19509d5a57ddf0b9d89839097c0b9bf2cf4b83ba5245ad",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI-root-interface.json",
-      "sha256": "3f9cbd769badeb336755c6e07cfa9ae2d12d92b70b60673fc654690664ccf8cc",
+      "sha256": "48da1d707e5f62bad32deb6808a82fc99eddf8fc374f90fd31d3c0347dbd3fe8",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI10-S3-core.json",
-      "sha256": "451c22063cde0309a9d9ad8c7c90774cdf3a72c747706523852b1a4e858b2ba4",
+      "sha256": "ca4473295745ed67ba75759217474bda54c35914b3ad9da4ff274194791b98d0",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI11-display-touch-storage.json",
-      "sha256": "9fba23b67d13ff7e45047855dd8c4e00952157b785330a3a9a7dbc6c0fe4cb53",
+      "sha256": "c28703690c9ac91b1d984128f3e9d63fe04717ba3c8a13d23a7a0ddf70876a71",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI12-controls-indicators.json",
-      "sha256": "fd4b25b9c4c22e2baf7d04290fe8b4ca558485589b88c8c9a91306f02f809e4c",
+      "sha256": "11a077111c541729f6b38913854b06da7cd0efff8f8510d2c558e0ee02450873",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI13-audio-codec-headset.json",
-      "sha256": "6bd2c68be2ce5b9a92dac0f8e9298051077b1d35e913ceb8ab87a052e84e6d9b",
+      "sha256": "356207f4e3b8f4a6cad3cf4d7efa2e60b3ac26ae5c589e3f044b411487999b20",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json",
-      "sha256": "9d68a1337c0cb282061d9ea75a89158a4874e1d63a81df5892a2d3e5699ab4d4",
+      "sha256": "e5d02bd54bab9ad0537bd3d7bcedfedc69b0b0426d043a8c92ed1e742d455486",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI21-fm-am-receiver.json",
-      "sha256": "a79dded12e278cd84d4af153e2a30b0665b19c63068e55eff7a9866e6b7175ac",
+      "sha256": "faee17ad723e8d4a5e49301ddc9dad01a60632762328dac4a22d005d2c6adc05",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI40-interboard-m1.json",
-      "sha256": "f0abf085cd78d0be86d08ff0b0e830b9498ddcf1b36305ec32126babe8544fae",
+      "sha256": "d0fc300461ccb86adbd531d0510223f0c963ce81edfbfa27b9eb7a453ab65247",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI50-tx-safety-evidence.json",
-      "sha256": "f1d0fc8ecd18eebae7c027f81751dce0491a225046b6b633f37dbb1e0fd27054",
+      "sha256": "591ba6b37dff6b60d8800a403554b4dd55a4a6316e4bd2ddba0254969f988d4f",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI60-testpoints-manufacturing.json",
-      "sha256": "4a3824742f6c8478c1e1f0b2f8908abfdfda146e8a39a025207f0730d665973d",
+      "sha256": "531173dccd74d65ce7c9e423523f71626fc40c761a79d8754c959d28db212d07",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     }
@@ -11377,12 +11377,12 @@
         }
       },
       "contact_map_sha256": "24cdff00bc383f6279ef73bc3656b988d94e62b77e8aac658b5e90e65facedd4",
-      "electrical_contract_sha256": "a0b9ae387685f32d64a5816a08da2518ab2f9f244d1b0b6a59e47705449dc175",
+      "electrical_contract_sha256": "3dee205fec1cb0ebfc1f8ef548dba2ffe38292fd1f00eef67e673988203b260d",
       "manufacturer_evidence": {
         "document": "SN74LVC1G17 Single Schmitt-Trigger Buffer datasheet",
-        "version": "Rev. Y",
+        "version": "Rev. Y, revised October 2025",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
-        "checked": "2026-08-24"
+        "checked": "2026-08-31"
       },
       "footprint": "Package_TO_SOT_SMD:SOT-353_SC-70-5",
       "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",
@@ -11521,12 +11521,12 @@
         }
       },
       "contact_map_sha256": "58650219b7f9d199fb93d8c65baad8f034b98118e7d4963dd64d4a3d98353338",
-      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "electrical_contract_sha256": "0c0586298002f16d501bce6c55b42d19d424a576935847feaf7aa2bdae84e256",
       "manufacturer_evidence": {
         "document": "SN74LVC1G74 Single D-Type Flip-Flop With Clear and Preset datasheet",
         "version": "Rev. G",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-31"
       },
       "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
       "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",
@@ -13606,12 +13606,12 @@
         }
       },
       "contact_map_sha256": "df77ed0db61ca2bbb8cffe72f2154509c530fc73b7b8de225891b65249c560d2",
-      "electrical_contract_sha256": "7e489686120321aa5899c3c0af372f4d465727d28a9c4ebf069c8fa42c6ef505",
+      "electrical_contract_sha256": "b3cf0cb8f9c67bea43dad566fa072d3a75e7f210b752504ae0475b9b0ff41cfb",
       "manufacturer_evidence": {
         "document": "TPS3435 Nano IQ Precision Timeout Watchdog Timer datasheet",
         "version": "SNVSCF7A, revised August 2024",
         "url": "https://www.ti.com/lit/ds/symlink/tps3435.pdf",
-        "checked": "2026-08-20"
+        "checked": "2026-08-31"
       },
       "footprint": "Package_TO_SOT_SMD:Texas_DDF0008A_SOT-8_1.6x2.9mm_P0.65mm",
       "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",
@@ -13676,12 +13676,12 @@
         }
       },
       "contact_map_sha256": "d95177220b74b775b90a8e956f06b58c4b7fc38f5d43447feaadf141c9cdd4ab",
-      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "electrical_contract_sha256": "7efd739f0659f3529863e480e151aefa8c8a3e3fa0f48759fc4eb578109ba833",
       "manufacturer_evidence": {
         "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
-        "version": "Rev. M",
+        "version": "Rev. N, revised August 2026",
         "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-08-31"
       },
       "footprint": "Package_TO_SOT_SMD:SOT-23-6",
       "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",

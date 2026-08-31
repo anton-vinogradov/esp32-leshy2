@@ -13,10 +13,10 @@ fabrication or ordering.
 | Item | Checked result |
 |---|---:|
 | Current fitted-instance contacts | 4,323 |
-| Contacts assigned to native nets | 4,063 |
-| Explicit board no-connects | 260 |
+| Contacts assigned to native nets | 4,065 |
+| Explicit board no-connects | 258 |
 | Unresolved or hidden external contacts | 0 |
-| Canonical native nets | 827 |
+| Canonical native nets | 826 |
 | Net-name aliases collapsed at a common physical node | 46 |
 | Reconciliation errors | 0 |
 
@@ -27,7 +27,7 @@ board no-connects. Functional names that meet on one physical pin are collapsed
 to one canonical copper net; for example `AON_EFUSE_EN` is the same node as
 `AON_RAW_3V3`, not a second trace.
 
-Migration of unchanged support circuits used 3,168 same-endpoint route hints
+Migration of unchanged support circuits used 3,162 same-endpoint route hints
 from the retained G2F R1 contract, plus 4 identical-device/same-pin hints from
 the retained R1 KiCad files. Another 143 historical rows only preserve explicit
 NC, reserved/free or non-product-controller allocation intent. Every such

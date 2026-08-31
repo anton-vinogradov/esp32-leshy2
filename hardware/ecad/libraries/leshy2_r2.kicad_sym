@@ -17686,7 +17686,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "ManufacturerEvidenceChecked" "2026-08-24"
+		(property "ManufacturerEvidenceChecked" "2026-08-31"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17898,7 +17898,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "ManufacturerEvidenceChecked" "2026-08-17"
+		(property "ManufacturerEvidenceChecked" "2026-08-31"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21155,7 +21155,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "ManufacturerEvidenceChecked" "2026-08-20"
+		(property "ManufacturerEvidenceChecked" "2026-08-31"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -21276,7 +21276,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "ManufacturerEvidenceChecked" "2026-08-17"
+		(property "ManufacturerEvidenceChecked" "2026-08-31"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)

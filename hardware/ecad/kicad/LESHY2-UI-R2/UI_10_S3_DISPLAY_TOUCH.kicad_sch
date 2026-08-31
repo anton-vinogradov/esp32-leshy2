@@ -3766,16 +3766,16 @@
 			)
 		)
 	)
-	(hierarchical_label "C5_SERVICE_PATH_ACK"
-		(shape bidirectional)
+	(label "3V3_MAIN"
 		(at 584.20 88.90 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "8b04ee8a-599f-5561-b8f3-57a70e634700")
+		(uuid "523985cf-1fd3-527d-8a1c-961c70560a9b")
 	)
-	(label "SAFETY_GROUND"
+	(hierarchical_label "S3_RESET_KILL_GATE"
+		(shape bidirectional)
 		(at 624.84 88.90 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "8c7c18d3-3ac5-5caf-890f-950fc012efbb")
+		(uuid "b7681133-4ba1-5cb2-8d37-6124e4d7412f")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:yageo_rc0402fr_0710kl")

@@ -17,7 +17,7 @@
 | Same-face collisions | 0 |
 | Minimum opposing-face clearance | 2.59 mm against a 0.70 mm rule |
 | Main antenna ports | 10, permanently assigned 5 + 5 |
-| Interboard M1 | 80 contacts: 29 signals, 14 main-power, 2 AON, 24 returns, 11 true NC |
+| Interboard M1 | 80 contacts: 30 signals, 14 main-power, 2 AON, 24 returns, 10 true NC; contact 36 is the bounded S3 fault-UI reset |
 | Base-BOM groups / fitted placements | 208 / 1,096 |
 | Current electronics planning floor | USD 273.42 before five unpriced lines, PCBs and assembly |
 | Accepted no-loss savings | USD 10.4192 |

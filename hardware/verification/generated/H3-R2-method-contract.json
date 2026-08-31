@@ -4,13 +4,13 @@
   "marker": "H3-R2.0.3",
   "status": "pass",
   "accepted_input": "H3-R2.0.2",
-  "input_freeze_sha256": "2a524eb434ab2bea72569e71ffd2d441dc816e6f175706e20ae25782ac9dd1c7",
-  "parameter_register_sha256": "f8d442636ca07729226802c18eee53a906257c82e0959eed4971affcbca82a1f",
-  "method_contract_sha256": "3834de442c0f207cdd36bdf72cda7529b2f1c368cff61f5bf26cb368dd04a6f4",
+  "input_freeze_sha256": "516c190dbae0f554eaa17b8f7b5ec032d3c6b01a356134a0e2110afb5d850c4c",
+  "parameter_register_sha256": "ec6b4ce028d2474f983d9a4e82a4e73f6c75d80c3bc69989be23725a07702ed5",
+  "method_contract_sha256": "9f4ddd36e67be3666aaba0574f636f4e37c583721370027e416eb3e1781054b6",
   "source_sha256": {
     "hardware/verification/h3-r2-method-contract.json": "c7a0de0068c5eefc55f4074bab8f8905a2f833bb326f458dd2aeb14455988d4e",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "019a74eac976980579821a0bcc62c5424e3d7f541ba1ba0b1c3233da7f59ade9",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "bfaeb3cd167146a2a0ffbc2e3bd6a0d6f2f5d5107e70d052e607779422c332c1"
+    "hardware/verification/generated/H3-R2-input-freeze.json": "34dbdff89429c235072cac8126f2f70e01618929ff4889274e0e32fea66c792e",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "44d3672b182d759ad2a943afa2f71af826a17d00acf26584d6ec479f3588aa16"
   },
   "toolchain": {
     "python": ">=3.12,<3.15",
@@ -2566,8 +2566,8 @@
         "M-THERMAL",
         "M-TRANS"
       ],
-      "parameter_state": "explicit_extraction_queue",
-      "missing_parameter_disposition": "unresolved_fail"
+      "parameter_state": "structured_seed_present",
+      "missing_parameter_disposition": "evaluate_authoritative_corners"
     },
     {
       "device_id": "ti_sn74lvc2g08_dcur",
@@ -2961,8 +2961,8 @@
         "M-THERMAL",
         "M-TRANS"
       ],
-      "parameter_state": "explicit_extraction_queue",
-      "missing_parameter_disposition": "unresolved_fail"
+      "parameter_state": "structured_seed_present",
+      "missing_parameter_disposition": "evaluate_authoritative_corners"
     },
     {
       "device_id": "ti_tps3839k33_dbzr",
@@ -3983,7 +3983,7 @@
       "M-THERMAL": 116,
       "M-TRANS": 129
     },
-    "explicit_unresolved_until_extraction": 174,
+    "explicit_unresolved_until_extraction": 172,
     "open_method_questions": 0,
     "errors": 0
   },

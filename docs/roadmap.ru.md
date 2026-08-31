@@ -3,7 +3,7 @@
 [На главную](../README.ru.md) · [English](roadmap.md) ·
 [Роадмап прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md)
 
-> **▶ Текущая аппаратная граница: `H3-R2.2.1`.** H0, H1, [H2-R2.1.5](h2-acceptance.ru.md) и весь [DC/source-workstream H3-R2.1](power-dc-source-result.ru.md) прошли ревью. H3-R2.2.1 теперь проверяет упорядоченные startup, shutdown, reset и recovery до проверок source-handover, inrush и watchdog.
+> **▶ Текущая аппаратная граница: `H3-R2.2.2`.** H0, H1, [H2-R2.1.5](h2-acceptance.ru.md), весь [DC/source-workstream H3-R2.1](power-dc-source-result.ru.md) и [sequencing H3-R2.2.1](power-transition-sequences.ru.md) прошли ревью. H3-R2.2.2 теперь проверяет USB↔pack handover, DPM, brownout и потерю источника.
 > KiCad routing R2, quote, reservation и заказ не разрешены.
 
 Статус сверен: **31 августа 2026 года**.
@@ -26,16 +26,16 @@
 | Функциональная архитектура | ✅ [H0-R2 проведено ревью](h0-r2-functional-architecture.ru.md): передний UI/radio и задний RF/power домены, явные владельцы, transport, quiet-state и safety-crossings |
 | Физический дизайн | ✅ [H1-R2.37 проведено ревью](h1-r2-acceptance.ru.md): полная модель двух плат, десять постоянных назначений антенн, точный EastRising-дисплей, слот U214/U219 и TX-evidence-острова физически согласованы; [все 208 MPN-групп базового BOM ранжированы](h1-r2-cost.ru.md) |
 | Принципиальные диаграммы | Опубликованы актуальные связи компонентов/шин, внешний мокап, отдельные читаемые внутренние стороны, service map и диаграммы питания/фильтра |
-| Production ECAD | ✅ [H2-R2.1.5 проведено ревью](h2-acceptance.ru.md): три native-проекта KiCad материализуют 1 187 экземпляров, 4 327 физических pins и 827 канонических nets без замечаний ERC; six-domain сверка sheets/HW↔FW проходит; G2F/H2/KiCad — только историческое evidence R1 |
+| Production ECAD | ✅ [H2-R2.1.5 проведено ревью](h2-acceptance.ru.md): три native-проекта KiCad материализуют 1 187 экземпляров, 4 327 физических pins и 826 канонических nets без замечаний ERC; six-domain сверка sheets/HW↔FW проходит; G2F/H2/KiCad — только историческое evidence R1 |
 | Пререквизит прошивки | ✅ firmware F1-R2 проведено ревью; F2-R2.4 квалифицировал все 12 target builds, 60 artifacts, 16 maps и 16 size gates, а F2-R2.5 reproducibility сейчас в отдельном [роадмапе F0–F11](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md); отдельный fail-closed `F-PO` требует диагностические образы, эмуляцию и recovery до заказа |
 | Заказ | 🔒 Ровно один собранный `R2-EVT1` — только после H6, `F-PO`, immutable release-package и явного одобрения exact-one quote; производство — только на H9 |
 
 ## Проведённое ревью H1 · точный состав
 
-<!-- current-substep: H3-R2.2.1 -->
+<!-- current-substep: H3-R2.2.2 -->
 
 **Маркер ревью: `H1-R2.37`.** Пакет компоновки принят 2026-08-30. Текущий
-аппаратный маркер — `H3-R2.2.1`.
+аппаратный маркер — `H3-R2.2.2`.
 
 ### 1. Размещение функциональных островов
 
@@ -59,8 +59,8 @@
 
 ### 3. Межплатный transport
 
-- ✅ M1 полностью посчитан: 29 сигналов, 14 main-power, 2 AON, 24 определённых
-  возврата и 11 настоящих NC; step 4,25 А даёт 0,3036 А на main-контакт.
+- ✅ M1 полностью посчитан: 30 сигналов, 14 main-power, 2 AON, 24 определённых
+  возврата и 10 настоящих NC; step 4,25 А даёт 0,3036 А на main-контакт.
 - ✅ M1 не несёт силовой нагрузки: четыре упора 11,00 мм, минимум два
   anti-shear datums и независимый захват плат закрывают случай одного ослабленного винта.
 - ✅ Заднее аудио занимает менее 0,4 МБ/с на проверенном RP-link 1,5 МБ/с;
@@ -130,8 +130,8 @@
 
 - ✅ Бортовой аналоговый видеоприёмник, декодер, MMCX, антенна и физическая зона
   удалены. После PCBA нет скрытого активного модуля, требующего пайки владельцем.
-- ✅ Точный текущий резерв: 6 GPIO у S3, 5 у заднего RP и 11 настоящих NC у M1;
-  контакты 35–36 остаются NC.
+- ✅ Точный текущий резерв: 6 GPIO у S3, 5 у заднего RP и 10 настоящих NC у M1;
+  контакт 35 остаётся NC, контакт 36 несёт отдельный S3 fault-UI reset.
 - ✅ Полный внешний вид, обе внутренние стороны после физического переворота
   плат и реальные разрезы приняты 2026-08-30. [Открыть отчёт фазы](h1-r2-acceptance.ru.md).
 
@@ -139,7 +139,7 @@
 
 **Маркер ревью: `H2-R2.1.5`.** Все prerequisites и exact ledgers закрыты.
 Три native-проекта KiCad R2 теперь материализуют 1 187 устанавливаемых
-экземпляров, 4 327 физических pins и 827 канонических nets. Все три root-
+экземпляров, 4 327 физических pins и 826 канонических nets. Все три root-
 схемы читаются и экспортируются; ERC даёт ноль ошибок и ноль предупреждений.
 Сквозная сверка sheets и HW↔FW проходит. Placement и routing ещё не начинались.
 
@@ -170,12 +170,12 @@
   групп распределены по трём native-проектам; старый ledger R1 не передаёт ни
   одного net, reference designator или правила топологии.
 - ✅ Net-checkpoint `H2-R2.1.3`: все 4 323 контакта устанавливаемых экземпляров
-  сведены в 4 063 подключённых endpoints, 260 явных board no-connects и 827
+  сведены в 4 065 подключённых endpoints, 258 явных board no-connects и 826
   канонических nets; неразрешённых endpoints нет.
 - ✅ Native-KiCad-checkpoint `H2-R2.1.3`: 3 проекта, 23 sheets графа, 1 187 symbols
   и 4 327 физических pins проходят parser/export и ERC без замечаний.
-- ✅ `H2-R2.1.4`: шесть доменов, 173 строки контроллеров, 50 межпроектных и
-  233 межлистовых nets сведены без незакрытых границ.
+- ✅ `H2-R2.1.4`: шесть доменов, 173 строки контроллеров, 51 межпроектная и
+  236 межлистовых nets сведены без незакрытых границ.
 - ✅ `H2-R2.1.5`: [двуязычный отчёт фазы](h2-acceptance.ru.md) опубликован;
   синхронизированный firmware H2 gate открыт.
 - 🔒 PCB placement, routing, quote, закупка и печать остаются запрещены.
@@ -192,7 +192,7 @@
 | H0 · Требования и функциональная архитектура | ✅ [R2 проведено ревью](h0-r2-functional-architecture.ru.md) | Функции продукта, владельцы, transport, safety и рабочие pin-бюджеты | У каждой функции один владелец; все рабочие бюджеты сходятся |
 | H1 · Физический дизайн продукта | ✅ [Проведено ревью · `H1-R2.37`](h1-r2-acceptance.ru.md) | Внешний вид, отдельные внутренние стороны, разрезы, точные корпуса, RF-локальность, сервис и power-envelope | Нет коллизий bodies/fasteners/silkscreen/antennas/accessories/opposing sides; точный MPN или контролируемый reserve; мокап принят |
 | H2 · Production ECAD-схема | ✅ [Проведено ревью · `H2-R2.1.5`](h2-acceptance.ru.md) | Точные R2 symbols, contacts, nets, values, protection и footprints | Native KiCad, ERC без замечаний и сверка sheets/HW↔FW проходят |
-| **H3 · Виртуальная электрическая проверка** | **▶ Сейчас · `H3-R2.2.1`** | Полная симуляция power, digital, RF, audio, timing, thermal и faults | Все разрешённые состояния и переходы проходят до печати |
+| **H3 · Виртуальная электрическая проверка** | **▶ Сейчас · `H3-R2.2.2`** | Полная симуляция power, digital, RF, audio, timing, thermal и faults | Все разрешённые состояния и переходы проходят до печати |
 | H4 · Объединённый pre-layout gate | ⏳ Ожидает H3 и firmware R2 evidence | Одно текущее mechanics/ECAD/electrical/firmware review | Нет виртуального blocker; каждой физической неопределённости назначен тест |
 | H5 · Компоненты и фабричные evidence | ⏳ Ожидает H4 | Точная актуальная фабричная карта и контролируемые external routes | У каждой BOM-строки есть текущий фабричный маршрут без молчаливой замены |
 | H6 · KiCad placement, routing и release candidate | 🔒 Ожидает H5 | Две разведённые платы, routed re-analysis и hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs и независимый DFM/CPL review проходят |
@@ -214,7 +214,7 @@
 
 1. ✅ `H2-R2.1.1`: зафиксировать native R2 sources, sheet map и точный component inventory.
 2. ✅ `H2-R2.1.2`: сформировать exact ledger symbols, contacts, values, protection и footprints.
-3. ✅ `H2-R2.1.3`: материализовать 1 187 проверенных экземпляров и 827 канонических nets в трёх native-проектах KiCad; пройти ERC без замечаний.
+3. ✅ `H2-R2.1.3`: материализовать 1 187 проверенных экземпляров и 826 канонических nets в трёх native-проектах KiCad; пройти ERC без замечаний.
 4. ✅ `H2-R2.1.4`: пройти cross-sheet и HW↔FW reconciliation.
 5. ✅ `H2-R2.1.5`: опубликовать двуязычный отчёт H2 и открыть H3.
 6. ✅ [`H3-R2.0.1`](h3-r2-input-freeze.ru.md): связать хешами 14 входов H2 и ровно один раз назначить все 23 native-листа семи workstreams.
@@ -222,15 +222,15 @@
 8. ✅ [`H3-R2.0.3`](verification-methods.ru.md): зафиксировать девять воспроизводимых методов, двенадцать pass/fail rules и fail-closed назначения для всех 242 групп.
 9. ✅ [`H3-R2.1`](power-dc-source-result.ru.md): проверить worst-case DC, source, charge и power states.
    - ✅ [`H3-R2.1.1`](power-state-register.ru.md): перечислить все 2 266 разрешённых состояния.
-   - ✅ [`H3-R2.1.2`](power-load-binding.ru.md): связать все 612 устанавливаемых питаемых экземпляров — 596 прямых и 16 косвенных — и шесть внешних нагрузок без скрытого aggregate.
+   - ✅ [`H3-R2.1.2`](power-load-binding.ru.md): связать все 613 устанавливаемых питаемых экземпляров — 597 прямых и 16 косвенных — и шесть внешних нагрузок без скрытого aggregate.
    - ✅ [`H3-R2.1.3`](power-rail-margins.ru.md): провести ревью 224 профилей шин; все четыре шины проходят проверки напряжения, защиты и установившегося нагрева с минимальным запасом тока 30,560% и температуры кристалла 24,706 °C.
    - ✅ [`H3-R2.1.4`](power-source-margins.ru.md): назначить владельца всем 75 source/pack-строкам и безопасно допустить все 2 266 состояний; максимальный ток pack — 3,516 А против границы 8 А, заряд всегда уступает системной нагрузке.
    - ✅ [`H3-R2.1.5`](power-dc-source-result.ru.md): пройти все 15 cross-checks ownership, states, rails, sources и authorization и опубликовать H3-R2.1.
 10. ▶ `H3-R2.2`: проверить startup, shutdown, source handover, brownout, inrush и watchdog.
-    - ▶ `H3-R2.2.1`: проверить упорядоченные startup, shutdown, reset и recovery.
-    - ⏳ `H3-R2.2.2`: проверить USB→pack handover, DPM, brownout и потерю источника.
+    - ✅ [`H3-R2.2.1`](power-transition-sequences.ru.md): проверить 14 упорядоченных сценариев startup, shutdown, reset и recovery без автоматического перезапуска.
+    - ▶ `H3-R2.2.2`: проверить USB→pack handover, DPM, brownout и потерю источника.
     - ⏳ `H3-R2.2.3`: проверить inrush, load steps, watchdog kill и сохранённое сообщение об ошибке.
     - ⏳ `H3-R2.2.4`: выполнить cross-check и опубликовать результат H3-R2.2.
 
-Следующее действие — sequencing H3-R2.2.1. Placement, routing,
+Следующее действие — source handover H3-R2.2.2. Placement, routing,
 quote и любой заказ остаются заблокированы.

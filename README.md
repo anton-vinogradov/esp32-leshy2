@@ -10,7 +10,7 @@
 
 </div>
 
-> **Current hardware marker: `H3-R2.2.1`.** The complete two-PCB `H1-R2.37`
+> **Current hardware marker: `H3-R2.2.2`.** The complete two-PCB `H1-R2.37`
 > placement was accepted and reviewed on 30 August 2026: exact dual-RP GPIO/M1 map and C5 SDIO/service-mux,
 > the series-produced `ER-TFT035IPS-6` + `ER-TPC035-6` display, passive 40-to-50-contact
 > adapter, all 18 U219 support bodies, NFC pickup loop and the external volume
@@ -26,18 +26,18 @@
 > explicit on-module RF interfaces, with zero unclaimed named pads. The controlled
 > library of 237 R2 symbols and 1,618 unique PCB-pad pins passes KiCad 10; all
 > 1,187 fitted instances are allocated without importing R1 designators. Their
-> 4,323 logical contacts resolve to 4,063 connected endpoints, 260 explicit
+> 4,323 logical contacts resolve to 4,065 connected endpoints, 258 explicit
 > no-connects and 826 canonical nets with zero unresolved endpoints. The three
 > [native KiCad projects](docs/h2-r2-native-kicad.md) now contain all 1,187
 > symbols and 4,327 physical pins; KiCad ERC reports zero errors and zero
 > warnings. H2 cross-sheet and hardware/firmware reconciliation covers six
-> domains, 173 controller pins, 50 cross-project nets and 234 cross-sheet nets;
+> domains, 173 controller pins, 51 cross-project nets and 236 cross-sheet nets;
 > [H2-R2.1.5 is reviewed](docs/h2-acceptance.md). [H3-R2.0.1](docs/h3-r2-input-freeze.md)
 > freezes 14 stable inputs and all 23 sheets. [H3-R2.0.2](docs/parameter-model-register.md)
 > reviews exact provenance for all 242 R2 groups and 1,187 fitted positions.
 > [H3-R2.0.3](docs/verification-methods.md) freezes nine methods and twelve
 > pass/fail rules. [H3-R2.1.1](docs/power-state-register.md) reviewed all 2,266 legal R2 states;
-> [H3-R2.1.2](docs/power-load-binding.md) binds every load without a hidden aggregate. [H3-R2.1.3](docs/power-rail-margins.md) reviews 224 passing rail profiles. [H3-R2.1.4](docs/power-source-margins.md) owns all 75 source/pack lines and safely admits all 2,266 legal states: maximum pack current is 3.516 A against the 8-A boundary; 9-V/3-A and 15-V/2-A run every profile, while 14 oversized 5-V/3-A USB-only states are explicitly refused. The [H3-R2.1 cross-check](docs/power-dc-source-result.md) is reviewed. H3-R2.2.1 now verifies ordered startup, shutdown, reset and recovery. Ordering remains blocked.
+> [H3-R2.1.2](docs/power-load-binding.md) binds every load without a hidden aggregate. [H3-R2.1.3](docs/power-rail-margins.md) reviews 224 passing rail profiles. [H3-R2.1.4](docs/power-source-margins.md) owns all 75 source/pack lines and safely admits all 2,266 legal states: maximum pack current is 3.516 A against the 8-A boundary; 9-V/3-A and 15-V/2-A run every profile, while 14 oversized 5-V/3-A USB-only states are explicitly refused. The [H3-R2.1 cross-check](docs/power-dc-source-result.md) is reviewed. [H3-R2.2.1](docs/power-transition-sequences.md) reviews 14 startup, shutdown, reset and recovery scenarios without automatic restart. H3-R2.2.2 now verifies USB↔pack handover, DPM, brownout and source loss. Ordering remains blocked.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
 > controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad
@@ -90,7 +90,7 @@ and independent safety.
 
 No video payload crosses the 80-contact M1 connector. The i8080-8 display TX
 path remains local to S3; nRF payload remains local to the front RP. M1 is fully
-assigned: 29 live signals, 14 main-power contacts, 2 AON contacts, 24 defined returns and 11 true NC
+assigned: 30 live signals, 14 main-power contacts, 2 AON contacts, 24 defined returns and 10 true NC
 reserves.
 
 The drawings are generated from one machine-readable placement source. Inner
@@ -123,7 +123,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
 | H1 · Physical product design | ✅ Reviewed · `H1-R2.37` | [Bilingual phase result](docs/h1-r2-acceptance.md) · [placement](docs/h1-r2-physical-layout.md) |
 | H2 · Production ECAD schematic | ✅ Reviewed · `H2-R2.1.5` | [Bilingual phase result](docs/h2-acceptance.md) · [native KiCad result](docs/h2-r2-native-kicad.md) |
-| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.2.1`** | [Input freeze](docs/h3-r2-input-freeze.md) · [parameter/model register](docs/parameter-model-register.md) · [verification methods](docs/verification-methods.md) · [power states](docs/power-state-register.md) · [load binding](docs/power-load-binding.md) · [rail margins](docs/power-rail-margins.md) · [source/charge margins](docs/power-source-margins.md) · [reviewed DC/source result](docs/power-dc-source-result.md) · [stage page](docs/stage-results.md#h3) |
+| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.2.2`** | [Input freeze](docs/h3-r2-input-freeze.md) · [parameter/model register](docs/parameter-model-register.md) · [verification methods](docs/verification-methods.md) · [power states](docs/power-state-register.md) · [load binding](docs/power-load-binding.md) · [rail margins](docs/power-rail-margins.md) · [source/charge margins](docs/power-source-margins.md) · [reviewed DC/source result](docs/power-dc-source-result.md) · [transition sequences](docs/power-transition-sequences.md) · [stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
 | H5 · Component and factory evidence | ⏳ Waiting for R2 H4 | [Stage page](docs/stage-results.md#h5) |
 | H6 · KiCad placement, routing and release candidate | 🔒 Waiting for R2 H5 | [Stage page](docs/stage-results.md#h6) |
@@ -154,26 +154,27 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ `H2-R2.1.2`: exact ledger reviewed — 237 board groups, 5 explicit non-PCBA groups, 1,662 logical contacts and zero unresolved groups.
 - ✅ `H2-R2.1.3`: 1,187 fitted positions and 4,323 logical contacts resolve into 826 canonical nets; the three native projects materialize 4,327 physical pins with zero KiCad ERC errors or warnings.
 - ✅ The Airband chain is complete and double-isolated: paired `HMC544AETR`, exact official transformers, private power-coherent LO I²C and a stock-backed nominal H2 filter state are present in the schematic. Filter retuning remains an explicit H3 gate.
-- ✅ `H2-R2.1.4`: six domains, 173 controller-pin rows, 50 cross-project nets
-  and 234 cross-sheet nets reconcile with zero unresolved boundary.
+- ✅ `H2-R2.1.4`: six domains, 173 controller-pin rows, 51 cross-project nets
+  and 236 cross-sheet nets reconcile with zero unresolved boundary.
 - ✅ `H2-R2.1.5`: the [bilingual H2 result](docs/h2-acceptance.md) is reviewed
   and the synchronized firmware H2 gate is open.
 - ✅ `H3-R2.0.1`: [14 exact inputs and all 23 native sheets are hash-frozen](docs/h3-r2-input-freeze.md) across seven workstreams and all six domains.
 - ✅ `H3-R2.0.2`: [all 242 R2 groups and 1,187 fitted positions have exact parameter/model provenance](docs/parameter-model-register.md), one H3 owner and no silent value assumption.
 - ✅ `H3-R2.0.3`: [nine reproducible methods and twelve pass/fail rules](docs/verification-methods.md) cover all seven workstreams and all 242 groups.
 - ✅ `H3-R2.1.1`: [all 2,266 legal R2 source, charge, fault and operating states are enumerated](docs/power-state-register.md), including U214/U219, Airband and all three-nRF mixes.
-- ✅ `H3-R2.1.2`: [612 fitted powered instances—596 direct and 16 indirect—plus six external loads are bound explicitly](docs/power-load-binding.md); all 17 reviewed H2 power nets are covered, with no duplicate, unbound or miscellaneous line.
-- ✅ `H3-R2.1.3`: [224 rail profiles across four rails pass voltage, protection and steady-thermal review](docs/power-rail-margins.md); all 618 fitted/external loads have one current owner or explicit source/pack deferral, minimum current reserve is 30.560% and minimum junction-temperature reserve is 24.706 °C.
+- ✅ `H3-R2.1.2`: [613 fitted powered instances—597 direct and 16 indirect—plus six external loads are bound explicitly](docs/power-load-binding.md); all 17 reviewed H2 power nets are covered, with no duplicate, unbound or miscellaneous line.
+- ✅ `H3-R2.1.3`: [224 rail profiles across four rails pass voltage, protection and steady-thermal review](docs/power-rail-margins.md); all 619 fitted/external loads have one current owner or explicit source/pack deferral, minimum current reserve is 30.560% and minimum junction-temperature reserve is 24.706 °C.
 - ✅ `H3-R2.1.4`: [all 75 source/pack lines and 2,266 legal states pass safe source/charge admission](docs/power-source-margins.md); maximum pack current is 3.516 A, sustained admission 1.549 A, and charge yields before system load.
 - ✅ `H3-R2.1.5`: [all 15 ownership, state, rail, source and authorization cross-checks pass](docs/power-dc-source-result.md); the complete H3-R2.1 workstream is reviewed.
-- ▶ **Exact current point `H3-R2.2.1`:** verify ordered startup, shutdown, reset and recovery sequencing.
+- ✅ `H3-R2.2.1`: [all 14 startup, shutdown, reset and recovery scenarios pass](docs/power-transition-sequences.md); every restart requires a fresh qualified physical KILL→RUN edge, while S3 retains the fault UI independently of direct C5/RF-RP reset.
+- ▶ **Exact current point `H3-R2.2.2`:** verify USB↔pack handover, DPM, brownout and source loss.
 - 🔒 PCB placement, routing, prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H3-R2.2.1 -->
+<!-- current-substep: H3-R2.2.2 -->
 
 ## Repository
 
