@@ -20,6 +20,7 @@ class H3R2InputFreezeTest(unittest.TestCase):
         self.assertEqual([], result["errors"])
         self.assertEqual(23, result["summary"]["unique_matrix_sheets"])
         self.assertEqual(7, result["summary"]["workstream_count"])
+        self.assertEqual(12, result["summary"]["shared_parameter_dependencies"])
         self.assertEqual(
             ["c5", "hub_rp", "pack", "rf_rp", "s3", "safety"],
             result["summary"]["covered_domains"],
@@ -40,6 +41,12 @@ class H3R2InputFreezeTest(unittest.TestCase):
         contract["expected"]["canonical_nets"] += 1
         result = MODULE.build(contract)
         self.assertIn("reviewed H2-R2 counts differ from the H3 input-freeze contract", result["errors"])
+
+    def test_unknown_shared_parameter_dependency_fails_closed(self):
+        contract = copy.deepcopy(MODULE.load(MODULE.CONTRACT))
+        contract["workstreams"][1]["shared_parameter_dependencies"].append("missing_device")
+        result = MODULE.build(contract)
+        self.assertTrue(any("shared parameter dependencies" in error for error in result["errors"]))
 
     def test_checked_in_outputs_are_current(self):
         result = MODULE.build()

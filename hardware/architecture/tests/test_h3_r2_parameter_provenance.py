@@ -51,6 +51,19 @@ class H3R2ParameterProvenanceTests(unittest.TestCase):
         self.assertFalse(self.result["authorization"]["placement_or_routing"])
         self.assertFalse(self.result["authorization"]["purchasing"])
 
+    def test_dynamic_safety_chain_is_owned_by_h3_r2_2(self):
+        required = {
+            "murata_grm21br71e225ke11l",
+            "nexperia_74lvc2g14gv_125",
+            "ti_sn74lvc1g17_dckr",
+            "ti_sn74lvc1g74_dcur",
+            "ti_tps3435cakagddfr",
+            "ti_tps3808g33_dbvr",
+            "yageo_rc0402fr_07100kl",
+        }
+        rows = {row["device_id"]: row for row in self.result["rows"]}
+        self.assertTrue(all("H3-R2.2" in rows[device_id]["owner_workstreams"] for device_id in required))
+
     def test_source_hashes_and_public_pages_are_current(self):
         for relative, expected in self.result["source_sha256"].items():
             actual = hashlib.sha256((ROOT / relative).read_bytes()).hexdigest()

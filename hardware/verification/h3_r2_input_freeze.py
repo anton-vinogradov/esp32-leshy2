@@ -98,10 +98,21 @@ def build(contract: dict | None = None) -> dict:
         for workstream in contract.get("workstreams", [])
         for sheet in workstream.get("sheets", [])
     ]
+    inventory_devices = {row["device_id"] for row in inventory.get("component_groups", [])}
+    shared_dependencies = [
+        (workstream["id"], device_id)
+        for workstream in contract.get("workstreams", [])
+        for device_id in workstream.get("shared_parameter_dependencies", [])
+    ]
     if sorted(matrix_sheets) != sorted(inventory_sheets):
         errors.append("H3 matrix does not cover the exact 23-sheet native graph")
     if len(matrix_sheets) != len(set(matrix_sheets)):
         errors.append("a native sheet has more than one primary H3 workstream")
+    if len(shared_dependencies) != len(set(shared_dependencies)):
+        errors.append("a workstream repeats a shared parameter dependency")
+    unknown_dependencies = sorted({device_id for _, device_id in shared_dependencies} - inventory_devices)
+    if unknown_dependencies:
+        errors.append("shared parameter dependencies are not exact inventory groups: " + ", ".join(unknown_dependencies))
     workstream_ids = [row.get("id") for row in contract.get("workstreams", [])]
     if workstream_ids != [f"H3-R2.{index}" for index in range(1, 8)]:
         errors.append("H3 matrix must contain ordered workstreams H3-R2.1 through H3-R2.7")
@@ -141,6 +152,7 @@ def build(contract: dict | None = None) -> dict:
             "workstream_count": len(contract.get("workstreams", [])),
             "matrix_sheet_assignments": len(matrix_sheets),
             "unique_matrix_sheets": len(set(matrix_sheets)),
+            "shared_parameter_dependencies": len(shared_dependencies),
             "covered_domains": sorted(matrix_domains),
             "errors": len(errors),
         },
@@ -179,7 +191,7 @@ def render_doc(result: dict, ru: bool) -> str:
         headers = ("Workstream", "Primary scope", "Sheets", "Pass rule")
         boundary = "This step authorizes analysis and simulation only. Placement, routing, purchasing and fabrication remain forbidden."
     rows = "\n".join(
-        f"| `{row['id']}` | {row['title']} | {len(row['sheets'])} | {row['pass_rule']} |"
+        f"| `{row['id']}` | {row['title']} | {len(row['sheets'])} + {len(row.get('shared_parameter_dependencies', []))} shared parameter groups | {row['pass_rule']} |"
         for row in result["workstreams"]
     )
     return "\n".join([

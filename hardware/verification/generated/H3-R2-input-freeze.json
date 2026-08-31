@@ -4,9 +4,9 @@
   "marker": "H3-R2.0.1",
   "status": "pass",
   "accepted_hardware_input": "H2-R2.1.5",
-  "freeze_sha256": "8b38dc1f7a3ce6e248bf93a5b71c18ebfa720348dc72a109a331f10c5931aafb",
+  "freeze_sha256": "2c9c48260ed198e25ef8dbefdb6a79eb2285817dfe0f4463bf3f11a04f53e046",
   "source_sha256": {
-    "hardware/verification/h3-r2-input-freeze-contract.json": "a18786a9e4322ed42f49b831367ba4a2539c256afd34546a6d8f7333f52ced8c",
+    "hardware/verification/h3-r2-input-freeze-contract.json": "f310a7a189211a6cfa3e1f290685a961d32d55c5e35a5baa9c64c039e600e570",
     "hardware/architecture/h0-r2-rebaseline.json": "f46b4a95d9e76b910c5df8e5141bfea782ae550e3d5ad4badec4f2af4178c06e",
     "hardware/product-design/h1-r2-placement.json": "5c87457efa793572df1ff699f499b58437590e0b5b4655492552015dac8ccadc",
     "hardware/ecad/generated/H2-R2-native-inventory.json": "ae48e1145603db59a05d87f326d2f708d5484c8fb4177d7c54e39aeb74d49f2f",
@@ -36,6 +36,7 @@
     "workstream_count": 7,
     "matrix_sheet_assignments": 23,
     "unique_matrix_sheets": 23,
+    "shared_parameter_dependencies": 12,
     "covered_domains": [
       "c5",
       "hub_rp",
@@ -91,6 +92,20 @@
         "reset and strap truth tables",
         "watchdog timing",
         "hard-off sequence"
+      ],
+      "shared_parameter_dependencies": [
+        "murata_grm21br71e225ke11l",
+        "nexperia_74lvc1g32gv_125",
+        "nexperia_74lvc2g14gv_125",
+        "ti_sn74lvc08a_pwr",
+        "ti_sn74lvc1g06_dckr",
+        "ti_sn74lvc1g07_dckr",
+        "ti_sn74lvc1g17_dckr",
+        "ti_sn74lvc1g74_dcur",
+        "ti_sn74lvc3g07_dcur",
+        "ti_tps3435cakagddfr",
+        "ti_tps3808g33_dbvr",
+        "yageo_rc0402fr_07100kl"
       ],
       "pass_rule": "Every legal transition reaches a bounded safe state; every illegal or stalled transition fails closed with diagnosable state retention.",
       "physical_residual_owner": "H8 sequenced bring-up, brownout, watchdog and unattended-operation captures"
@@ -195,6 +210,7 @@
         "kill-path independence",
         "latched diagnostic retention"
       ],
+      "shared_parameter_dependencies": [],
       "pass_rule": "No accepted single fault defeats the independent hard-off path; thermal/watchdog faults remove hazardous power while preserving a readable cause when energy remains.",
       "physical_residual_owner": "H8 controlled fault injection and thermal shutdown captures"
     },

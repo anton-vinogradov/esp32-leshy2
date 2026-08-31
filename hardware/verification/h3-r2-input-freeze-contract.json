@@ -33,6 +33,20 @@
       "sheets": ["RF_02_PACK_SAFETY_AON", "RF_31_REAR_CONTROLS"],
       "domains": ["pack", "safety", "hub_rp", "rf_rp", "s3", "c5"],
       "models": ["state-transition graph", "reset and strap truth tables", "watchdog timing", "hard-off sequence"],
+      "shared_parameter_dependencies": [
+        "murata_grm21br71e225ke11l",
+        "nexperia_74lvc1g32gv_125",
+        "nexperia_74lvc2g14gv_125",
+        "ti_sn74lvc08a_pwr",
+        "ti_sn74lvc1g06_dckr",
+        "ti_sn74lvc1g07_dckr",
+        "ti_sn74lvc1g17_dckr",
+        "ti_sn74lvc1g74_dcur",
+        "ti_sn74lvc3g07_dcur",
+        "ti_tps3435cakagddfr",
+        "ti_tps3808g33_dbvr",
+        "yageo_rc0402fr_07100kl"
+      ],
       "pass_rule": "Every legal transition reaches a bounded safe state; every illegal or stalled transition fails closed with diagnosable state retention.",
       "physical_residual_owner": "H8 sequenced bring-up, brownout, watchdog and unattended-operation captures"
     },
@@ -69,6 +83,7 @@
       "sheets": ["UI_50_FRONT_POWER_SAFETY", "RF_50_TX_SAFETY_EVIDENCE"],
       "domains": ["pack", "safety", "hub_rp", "rf_rp", "s3", "c5"],
       "models": ["thermal network", "single-fault matrix", "kill-path independence", "latched diagnostic retention"],
+      "shared_parameter_dependencies": [],
       "pass_rule": "No accepted single fault defeats the independent hard-off path; thermal/watchdog faults remove hazardous power while preserving a readable cause when energy remains.",
       "physical_residual_owner": "H8 controlled fault injection and thermal shutdown captures"
     },

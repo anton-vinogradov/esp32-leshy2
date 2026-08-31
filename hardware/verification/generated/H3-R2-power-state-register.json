@@ -4,11 +4,11 @@
   "marker": "H3-R2.1.1",
   "status": "pass",
   "accepted_input": "H3-R2.0.3",
-  "state_register_sha256": "dd6a41a5e4b5c30710e63c53232841c4b647d3cdfe2a747a6101099f98455d3e",
+  "state_register_sha256": "898d47e8e3ddb0f3382735f458e44cffcb783b8ddd32893b04b17d9b16088757",
   "source_sha256": {
     "hardware/verification/h3-r2-power-state-contract.json": "3237c420face274426143ad23cb4e2ec09ee45d64ab64f532dbfa6905853cf96",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "daf5c44e11f8e6c93e5bd3a99e69d9849bba2d9acdf6b65eaf165632bc7cb7e2",
-    "hardware/verification/generated/H3-R2-method-contract.json": "d1211fdfaa741c2c7352ceb35e224a04307cc8fa3fc204fa3fb7a5dd45c8c553",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "fc2fd991189cf65baa93cae0df3eddebefe02f756343515fbde951e4a082c3a6",
+    "hardware/verification/generated/H3-R2-method-contract.json": "5821002f8c8b1d1b3e8b94e36c26db78b8e6d4e98eca858af17fec992ce2f704",
     "hardware/architecture/h0-r2-rebaseline.json": "f46b4a95d9e76b910c5df8e5141bfea782ae550e3d5ad4badec4f2af4178c06e",
     "hardware/ecad/generated/H2-R2-hwfw-contract.json": "8a26ab35e51cf76ca7e54e37fd1c58a3c8cdc12faec9086bfea186cf7b996157"
   },

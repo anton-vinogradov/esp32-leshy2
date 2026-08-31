@@ -4,11 +4,11 @@
   "marker": "H3-R2.0.2",
   "status": "pass",
   "accepted_input": "H3-R2.0.1",
-  "input_freeze_sha256": "8b38dc1f7a3ce6e248bf93a5b71c18ebfa720348dc72a109a331f10c5931aafb",
-  "register_sha256": "005197bf8d000012b0312ef58a94e0bb8afe8c8c8959d86c5d5d50758f684b89",
+  "input_freeze_sha256": "2c9c48260ed198e25ef8dbefdb6a79eb2285817dfe0f4463bf3f11a04f53e046",
+  "register_sha256": "9e0eaa47c44116a4c9016f69a09695d7f0af778dffd6a387e248f4b71b893fef",
   "source_sha256": {
     "hardware/verification/h3-r2-parameter-provenance-contract.json": "fd3a16540e49b3bc288203ebfe78b6eb06feeaf8c2e55bf34a22d84f63e49ca6",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "daf5c44e11f8e6c93e5bd3a99e69d9849bba2d9acdf6b65eaf165632bc7cb7e2",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "fc2fd991189cf65baa93cae0df3eddebefe02f756343515fbde951e4a082c3a6",
     "hardware/ecad/generated/H2-R2-native-inventory.json": "ae48e1145603db59a05d87f326d2f708d5484c8fb4177d7c54e39aeb74d49f2f",
     "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "6536747c134dff3f8911431cac416b4f6b8cc5787619598bda0a7345994f5843",
     "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "c891b92bc78ac00bc5f2e1cecf7980d40f9dcb41b4e5357ca87294f7329076c8",
@@ -5050,6 +5050,7 @@
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
         "H3-R2.1",
+        "H3-R2.2",
         "H3-R2.5",
         "H3-R2.6"
       ],
@@ -6254,6 +6255,7 @@
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
         "H3-R2.1",
+        "H3-R2.2",
         "H3-R2.6"
       ],
       "factory_catalog_parameter_gap": null,
@@ -6388,6 +6390,7 @@
       "model_method_candidate": "datasheet_static_and_timing_model",
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
+        "H3-R2.2",
         "H3-R2.3",
         "H3-R2.4",
         "H3-R2.5",
@@ -8923,6 +8926,7 @@
       "model_method_candidate": "datasheet_static_and_timing_model",
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
+        "H3-R2.2",
         "H3-R2.6"
       ],
       "factory_catalog_parameter_gap": null,
@@ -8989,6 +8993,7 @@
       "model_method_candidate": "datasheet_static_and_timing_model",
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
+        "H3-R2.2",
         "H3-R2.6"
       ],
       "factory_catalog_parameter_gap": null,
@@ -9068,6 +9073,7 @@
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
         "H3-R2.1",
+        "H3-R2.2",
         "H3-R2.3",
         "H3-R2.4",
         "H3-R2.5",
@@ -9329,6 +9335,7 @@
       "model_method_candidate": "datasheet_static_and_timing_model",
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
+        "H3-R2.2",
         "H3-R2.6"
       ],
       "factory_catalog_parameter_gap": null,
@@ -9442,6 +9449,7 @@
       "model_method_candidate": "datasheet_corner_model",
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
+        "H3-R2.2",
         "H3-R2.4",
         "H3-R2.6"
       ],
@@ -9632,6 +9640,7 @@
       "model_method_candidate": "datasheet_static_and_timing_model",
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
+        "H3-R2.2",
         "H3-R2.6"
       ],
       "factory_catalog_parameter_gap": null,
@@ -10891,6 +10900,7 @@
       "model_method_candidate": "corner_equation_and_circuit_model",
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
+        "H3-R2.2",
         "H3-R2.6"
       ],
       "factory_catalog_parameter_gap": null,
@@ -10951,6 +10961,7 @@
       "model_method_candidate": "datasheet_corner_model",
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
+        "H3-R2.2",
         "H3-R2.5",
         "H3-R2.6"
       ],
@@ -12985,6 +12996,7 @@
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
         "H3-R2.1",
+        "H3-R2.2",
         "H3-R2.3",
         "H3-R2.4",
         "H3-R2.5",

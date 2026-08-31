@@ -85,6 +85,10 @@ def build() -> dict:
         for workstream in freeze.get("workstreams", [])
         for sheet in workstream.get("sheets", [])
     }
+    shared_owner = defaultdict(set)
+    for workstream in freeze.get("workstreams", []):
+        for device_id in workstream.get("shared_parameter_dependencies", []):
+            shared_owner[device_id].add(workstream["id"])
     overrides = contract.get("manufacturer_source_overrides", {})
     factory_only = contract.get("factory_catalog_only_parameter_sources", {})
     non_pcba_owners = contract.get("non_pcba_workstream_owners", {})
@@ -115,7 +119,10 @@ def build() -> dict:
             errors.append(f"factory catalog source is not classified or overridden: {device_id}")
 
         sheets = sorted({row["sheet"] for row in instances})
-        owners = sorted({sheet_owner[sheet] for sheet in sheets if sheet in sheet_owner})
+        owners = sorted(
+            {sheet_owner[sheet] for sheet in sheets if sheet in sheet_owner}
+            | shared_owner.get(device_id, set())
+        )
         if not owners:
             owners = sorted(non_pcba_owners.get(device_id, []))
         if not owners:

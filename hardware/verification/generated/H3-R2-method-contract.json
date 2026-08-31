@@ -4,13 +4,13 @@
   "marker": "H3-R2.0.3",
   "status": "pass",
   "accepted_input": "H3-R2.0.2",
-  "input_freeze_sha256": "8b38dc1f7a3ce6e248bf93a5b71c18ebfa720348dc72a109a331f10c5931aafb",
-  "parameter_register_sha256": "005197bf8d000012b0312ef58a94e0bb8afe8c8c8959d86c5d5d50758f684b89",
-  "method_contract_sha256": "47c5cc48d26a995e53525e612caef8aafa58d7b4e8a633b45bc3896d655956ef",
+  "input_freeze_sha256": "2c9c48260ed198e25ef8dbefdb6a79eb2285817dfe0f4463bf3f11a04f53e046",
+  "parameter_register_sha256": "9e0eaa47c44116a4c9016f69a09695d7f0af778dffd6a387e248f4b71b893fef",
+  "method_contract_sha256": "d9109fcba24ded24d6376415f4878570d51eb2f01bfcf5f9b39c33632d3c5a94",
   "source_sha256": {
     "hardware/verification/h3-r2-method-contract.json": "c7a0de0068c5eefc55f4074bab8f8905a2f833bb326f458dd2aeb14455988d4e",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "daf5c44e11f8e6c93e5bd3a99e69d9849bba2d9acdf6b65eaf165632bc7cb7e2",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "4e436c9e4176ae8ea091c031047a0fe21e2beab0995ea0dd864f43d4447e47c7"
+    "hardware/verification/generated/H3-R2-input-freeze.json": "fc2fd991189cf65baa93cae0df3eddebefe02f756343515fbde951e4a082c3a6",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "75a6761adbb3c91e11f9f1ae83925ee33e5735b2cf4a7b47ae0f68c92ae4e7a9"
   },
   "toolchain": {
     "python": ">=3.12,<3.15",
@@ -1459,6 +1459,7 @@
       "parameter_class": "passive_corner",
       "owner_workstreams": [
         "H3-R2.1",
+        "H3-R2.2",
         "H3-R2.5",
         "H3-R2.6"
       ],
@@ -1467,7 +1468,8 @@
         "M-INT",
         "M-RF",
         "M-STATE",
-        "M-THERMAL"
+        "M-THERMAL",
+        "M-TRANS"
       ],
       "parameter_state": "explicit_extraction_queue",
       "missing_parameter_disposition": "unresolved_fail"
@@ -1767,6 +1769,7 @@
       "parameter_class": "digital_interface",
       "owner_workstreams": [
         "H3-R2.1",
+        "H3-R2.2",
         "H3-R2.6"
       ],
       "method_ids": [
@@ -1774,7 +1777,8 @@
         "M-DIGITAL",
         "M-INT",
         "M-STATE",
-        "M-THERMAL"
+        "M-THERMAL",
+        "M-TRANS"
       ],
       "parameter_state": "explicit_extraction_queue",
       "missing_parameter_disposition": "unresolved_fail"
@@ -1799,6 +1803,7 @@
       "device_id": "nexperia_74lvc2g14gv_125",
       "parameter_class": "digital_interface",
       "owner_workstreams": [
+        "H3-R2.2",
         "H3-R2.3",
         "H3-R2.4",
         "H3-R2.5",
@@ -2410,13 +2415,15 @@
       "device_id": "ti_sn74lvc08a_pwr",
       "parameter_class": "digital_interface",
       "owner_workstreams": [
+        "H3-R2.2",
         "H3-R2.6"
       ],
       "method_ids": [
         "M-DIGITAL",
         "M-INT",
         "M-STATE",
-        "M-THERMAL"
+        "M-THERMAL",
+        "M-TRANS"
       ],
       "parameter_state": "explicit_extraction_queue",
       "missing_parameter_disposition": "unresolved_fail"
@@ -2425,13 +2432,15 @@
       "device_id": "ti_sn74lvc1g06_dckr",
       "parameter_class": "digital_interface",
       "owner_workstreams": [
+        "H3-R2.2",
         "H3-R2.6"
       ],
       "method_ids": [
         "M-DIGITAL",
         "M-INT",
         "M-STATE",
-        "M-THERMAL"
+        "M-THERMAL",
+        "M-TRANS"
       ],
       "parameter_state": "structured_seed_present",
       "missing_parameter_disposition": "evaluate_authoritative_corners"
@@ -2441,6 +2450,7 @@
       "parameter_class": "digital_interface",
       "owner_workstreams": [
         "H3-R2.1",
+        "H3-R2.2",
         "H3-R2.3",
         "H3-R2.4",
         "H3-R2.5",
@@ -2512,13 +2522,15 @@
       "device_id": "ti_sn74lvc1g17_dckr",
       "parameter_class": "digital_interface",
       "owner_workstreams": [
+        "H3-R2.2",
         "H3-R2.6"
       ],
       "method_ids": [
         "M-DIGITAL",
         "M-INT",
         "M-STATE",
-        "M-THERMAL"
+        "M-THERMAL",
+        "M-TRANS"
       ],
       "parameter_state": "structured_seed_present",
       "missing_parameter_disposition": "evaluate_authoritative_corners"
@@ -2543,6 +2555,7 @@
       "device_id": "ti_sn74lvc1g74_dcur",
       "parameter_class": "general_component",
       "owner_workstreams": [
+        "H3-R2.2",
         "H3-R2.4",
         "H3-R2.6"
       ],
@@ -2550,7 +2563,8 @@
         "M-DIGITAL",
         "M-INT",
         "M-STATE",
-        "M-THERMAL"
+        "M-THERMAL",
+        "M-TRANS"
       ],
       "parameter_state": "explicit_extraction_queue",
       "missing_parameter_disposition": "unresolved_fail"
@@ -2596,13 +2610,15 @@
       "device_id": "ti_sn74lvc3g07_dcur",
       "parameter_class": "digital_interface",
       "owner_workstreams": [
+        "H3-R2.2",
         "H3-R2.6"
       ],
       "method_ids": [
         "M-DIGITAL",
         "M-INT",
         "M-STATE",
-        "M-THERMAL"
+        "M-THERMAL",
+        "M-TRANS"
       ],
       "parameter_state": "structured_seed_present",
       "missing_parameter_disposition": "evaluate_authoritative_corners"
@@ -2917,6 +2933,7 @@
       "device_id": "ti_tps3435cakagddfr",
       "parameter_class": "power_safety_active",
       "owner_workstreams": [
+        "H3-R2.2",
         "H3-R2.6"
       ],
       "method_ids": [
@@ -2933,6 +2950,7 @@
       "device_id": "ti_tps3808g33_dbvr",
       "parameter_class": "general_component",
       "owner_workstreams": [
+        "H3-R2.2",
         "H3-R2.5",
         "H3-R2.6"
       ],
@@ -2940,7 +2958,8 @@
         "M-INT",
         "M-RF",
         "M-STATE",
-        "M-THERMAL"
+        "M-THERMAL",
+        "M-TRANS"
       ],
       "parameter_state": "explicit_extraction_queue",
       "missing_parameter_disposition": "unresolved_fail"
@@ -3371,6 +3390,7 @@
       "parameter_class": "passive_corner",
       "owner_workstreams": [
         "H3-R2.1",
+        "H3-R2.2",
         "H3-R2.3",
         "H3-R2.4",
         "H3-R2.5",
@@ -3961,7 +3981,7 @@
       "M-RF": 84,
       "M-STATE": 157,
       "M-THERMAL": 116,
-      "M-TRANS": 121
+      "M-TRANS": 129
     },
     "explicit_unresolved_until_extraction": 174,
     "open_method_questions": 0,
