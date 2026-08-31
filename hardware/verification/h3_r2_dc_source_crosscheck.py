@@ -129,7 +129,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
                   "- 9 В × 3 А и 15 В × 2 А запускают любой объявленный профиль.")
         boundary_h = "## Что дальше"
         boundary = "`H3-R2.2` проверяет динамику: запуск, shutdown, inrush, DPM, brownout, watchdog и USB↔pack handover. Routed parasitics остаются H6, измерения — H8."
-        end = "**Текущий маркер:** `H3-R2.2.1` — упорядоченные startup, shutdown, reset и recovery. Placement, routing, закупка и печать по-прежнему запрещены.\n\n[Машинный cross-check](../hardware/verification/generated/H3-R2-dc-source-crosscheck.json)."
+        end = "**H3-R2.1 полностью проведён ревью.** Актуальная точка указана в [роадмапе](roadmap.ru.md). Placement, routing, закупка и печать по-прежнему запрещены.\n\n[Машинный cross-check](../hardware/verification/generated/H3-R2-dc-source-crosscheck.json)."
     else:
         title = "# DC, source and charge result · H3-R2.1"
         nav = "[Русский](power-dc-source-result.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Rails](power-rail-margins.md) · [Sources](power-source-margins.md)"
@@ -143,7 +143,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
                   "- 9 V × 3 A and 15 V × 2 A run every declared profile.")
         boundary_h = "## Next boundary"
         boundary = "`H3-R2.2` verifies dynamics: startup, shutdown, inrush, DPM, brownout, watchdog and USB↔pack handover. Routed parasitics remain H6 and measurement remains H8."
-        end = "**Current marker:** `H3-R2.2.1` — ordered startup, shutdown, reset and recovery. Placement, routing, purchasing and fabrication remain forbidden.\n\n[Machine cross-check](../hardware/verification/generated/H3-R2-dc-source-crosscheck.json)."
+        end = "**H3-R2.1 is fully reviewed.** The [roadmap](roadmap.md) carries the live marker. Placement, routing, purchasing and fabrication remain forbidden.\n\n[Machine cross-check](../hardware/verification/generated/H3-R2-dc-source-crosscheck.json)."
     return "\n\n".join((title, nav, intro, coverage_h, coverage, result_h, result, boundary_h, boundary, end)) + "\n"
 
 

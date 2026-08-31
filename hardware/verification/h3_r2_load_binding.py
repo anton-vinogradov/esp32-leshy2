@@ -260,7 +260,7 @@ def render_doc(result: dict, ru: bool) -> str:
         headers = "| Disposition | Строк |\n|---|---:|"
         boundary_h = "## Что ещё не является pass"
         boundary = "Это ревью полноты учёта, не численный DC-pass. Для каждой строки без применимого exact maximum `H3-R2.1.3` обязан извлечь параметр из закреплённого manufacturer source либо вернуть `unresolved_fail`. Child rails RP/codec/pack отмечены отдельно и не могут считаться второй раз поверх полного device total."
-        next_text = "**Downstream-результат:** [`H3-R2.1`](power-dc-source-result.ru.md) полностью проведён ревью; текущий маркер — `H3-R2.2.1`."
+        next_text = "**Downstream-результат:** [`H3-R2.1`](power-dc-source-result.ru.md) полностью проведён ревью; актуальная точка всегда указана в [роадмапе](roadmap.ru.md)."
         evidence = "[Полный машинный реестр строк](../hardware/verification/generated/H3-R2-load-binding.json)."
     else:
         title = "# R2 power-load binding"
@@ -270,7 +270,7 @@ def render_doc(result: dict, ru: bool) -> str:
         headers = "| Disposition | Lines |\n|---|---:|"
         boundary_h = "## What is not yet a pass"
         boundary = "This reviews accounting completeness, not numeric DC margin. For every line without an applicable exact maximum, `H3-R2.1.3` must extract the parameter from its bound manufacturer source or return `unresolved_fail`. RP/codec/pack child rails are explicit and cannot be counted again on top of the owning device total."
-        next_text = "**Downstream result:** [`H3-R2.1`](power-dc-source-result.md) is fully reviewed; the current marker is `H3-R2.2.1`."
+        next_text = "**Downstream result:** [`H3-R2.1`](power-dc-source-result.md) is fully reviewed; the [roadmap](roadmap.md) carries the live marker."
         evidence = "[Complete machine line register](../hardware/verification/generated/H3-R2-load-binding.json)."
     return "\n\n".join((title, nav, intro, table_h, headers + "\n" + dispositions, boundary_h, boundary, next_text, evidence)) + "\n"
 

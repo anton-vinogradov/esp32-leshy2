@@ -3,7 +3,7 @@
 [На главную](../README.ru.md) · [English](roadmap.md) ·
 [Роадмап прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md)
 
-> **▶ Текущая аппаратная граница: `H3-R2.2.2`.** H0, H1, [H2-R2.1.5](h2-acceptance.ru.md), весь [DC/source-workstream H3-R2.1](power-dc-source-result.ru.md) и [sequencing H3-R2.2.1](power-transition-sequences.ru.md) прошли ревью. H3-R2.2.2 теперь проверяет USB↔pack handover, DPM, brownout и потерю источника.
+> **▶ Текущая аппаратная граница: `H3-R2.2.3`.** H0, H1, [H2-R2.1.5](h2-acceptance.ru.md), весь [DC/source-workstream H3-R2.1](power-dc-source-result.ru.md), [sequencing H3-R2.2.1](power-transition-sequences.ru.md) и [USB/pack handover H3-R2.2.2](power-handover.ru.md) прошли ревью. H3-R2.2.3 теперь проверяет inrush, load steps, watchdog kill и сохранение причины fault.
 > KiCad routing R2, quote, reservation и заказ не разрешены.
 
 Статус сверен: **31 августа 2026 года**.
@@ -32,10 +32,10 @@
 
 ## Проведённое ревью H1 · точный состав
 
-<!-- current-substep: H3-R2.2.2 -->
+<!-- current-substep: H3-R2.2.3 -->
 
 **Маркер ревью: `H1-R2.37`.** Пакет компоновки принят 2026-08-30. Текущий
-аппаратный маркер — `H3-R2.2.2`.
+аппаратный маркер — `H3-R2.2.3`.
 
 ### 1. Размещение функциональных островов
 
@@ -192,7 +192,7 @@
 | H0 · Требования и функциональная архитектура | ✅ [R2 проведено ревью](h0-r2-functional-architecture.ru.md) | Функции продукта, владельцы, transport, safety и рабочие pin-бюджеты | У каждой функции один владелец; все рабочие бюджеты сходятся |
 | H1 · Физический дизайн продукта | ✅ [Проведено ревью · `H1-R2.37`](h1-r2-acceptance.ru.md) | Внешний вид, отдельные внутренние стороны, разрезы, точные корпуса, RF-локальность, сервис и power-envelope | Нет коллизий bodies/fasteners/silkscreen/antennas/accessories/opposing sides; точный MPN или контролируемый reserve; мокап принят |
 | H2 · Production ECAD-схема | ✅ [Проведено ревью · `H2-R2.1.5`](h2-acceptance.ru.md) | Точные R2 symbols, contacts, nets, values, protection и footprints | Native KiCad, ERC без замечаний и сверка sheets/HW↔FW проходят |
-| **H3 · Виртуальная электрическая проверка** | **▶ Сейчас · `H3-R2.2.2`** | Полная симуляция power, digital, RF, audio, timing, thermal и faults | Все разрешённые состояния и переходы проходят до печати |
+| **H3 · Виртуальная электрическая проверка** | **▶ Сейчас · `H3-R2.2.3`** | Полная симуляция power, digital, RF, audio, timing, thermal и faults | Все разрешённые состояния и переходы проходят до печати |
 | H4 · Объединённый pre-layout gate | ⏳ Ожидает H3 и firmware R2 evidence | Одно текущее mechanics/ECAD/electrical/firmware review | Нет виртуального blocker; каждой физической неопределённости назначен тест |
 | H5 · Компоненты и фабричные evidence | ⏳ Ожидает H4 | Точная актуальная фабричная карта и контролируемые external routes | У каждой BOM-строки есть текущий фабричный маршрут без молчаливой замены |
 | H6 · KiCad placement, routing и release candidate | 🔒 Ожидает H5 | Две разведённые платы, routed re-analysis и hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs и независимый DFM/CPL review проходят |
@@ -228,9 +228,9 @@
    - ✅ [`H3-R2.1.5`](power-dc-source-result.ru.md): пройти все 15 cross-checks ownership, states, rails, sources и authorization и опубликовать H3-R2.1.
 10. ▶ `H3-R2.2`: проверить startup, shutdown, source handover, brownout, inrush и watchdog.
     - ✅ [`H3-R2.2.1`](power-transition-sequences.ru.md): проверить 14 упорядоченных сценариев startup, shutdown, reset и recovery без автоматического перезапуска.
-    - ▶ `H3-R2.2.2`: проверить USB→pack handover, DPM, brownout и потерю источника.
-    - ⏳ `H3-R2.2.3`: проверить inrush, load steps, watchdog kill и сохранённое сообщение об ошибке.
+    - ✅ [`H3-R2.2.2`](power-handover.ru.md): проверить все 7 316 переходов USB/pack, DPM, brownout и потерю источника.
+    - ▶ `H3-R2.2.3`: проверить inrush, load steps, watchdog kill и сохранённое сообщение об ошибке.
     - ⏳ `H3-R2.2.4`: выполнить cross-check и опубликовать результат H3-R2.2.
 
-Следующее действие — source handover H3-R2.2.2. Placement, routing,
+Следующее действие — inrush/load-step/watchdog H3-R2.2.3. Placement, routing,
 quote и любой заказ остаются заблокированы.

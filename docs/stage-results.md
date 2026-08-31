@@ -116,7 +116,7 @@ clearly labels retained R1 ECAD as non-current evidence.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** ▶️ current at **`H3-R2.2.2`** inside H3-R2.2.
+**Status:** ▶️ current at **`H3-R2.2.3`** inside H3-R2.2.
 
 [`H3-R2.0.1`](h3-r2-input-freeze.md) reviewed the hash-bound H2 input and complete R2
 verification matrix. [`H3-R2.0.2`](parameter-model-register.md) reviewed exact
@@ -134,8 +134,10 @@ The [H3-R2.1 cross-check](power-dc-source-result.md) reconciles all 619 loads,
 224 rail profiles and 2,266 states through 15 passing checks, so H3-R2.1 is
 reviewed. [`H3-R2.2.1`](power-transition-sequences.md) reviews all 14 ordered
 startup, shutdown, reset and recovery scenarios without automatic restart;
-S3 retains the fault UI while C5/RF RP reset directly. Current H3-R2.2.2 work
-verifies USB↔pack handover, DPM, brownout and source loss. The expected result is complete power, digital, RF, audio,
+S3 retains the fault UI while C5/RF RP reset directly. [`H3-R2.2.2`](power-handover.md)
+reviews all 7,316 USB/pack/DPM/brownout/source-loss cases with zero unsafe
+admission or automatic restart. Current H3-R2.2.3 work verifies inrush, load
+steps, watchdog kill and retained fault display. The expected result is complete power, digital, RF, audio,
 timing, thermal and fault verification. Every legal state and transition must
 pass before fabrication.
 

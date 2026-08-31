@@ -12,7 +12,7 @@
   "sheet": "RF_01_USB_PD_CHARGE",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "2673a4d23435effe9ec592e6060a3b1bc525598944d932f0a502d0fd4636ce8f",
-    "hardware/architecture/devices.json": "96bd2cf3a4bfae0af34e249d6737a16a2763fea46b3892e06b465b84e1c18e2f",
+    "hardware/architecture/devices.json": "d20f0385775cc71e06578c5ab97df21adb589b43cdee19e315a99817a6a6d46a",
     "hardware/ecad/generated/H2-instance-ledger.json": "7a265f865aac48c9e8826ad296f49164ad514a7f576b9a76efb0f2684580508e",
     "hardware/ecad/generated/H2-RF-root-interface.json": "0e68fd755d6f0840d4a68dbf6c47f8dea0aa2e0669a59d5b7f44457f11fff871"
   },

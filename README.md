@@ -10,7 +10,7 @@
 
 </div>
 
-> **Current hardware marker: `H3-R2.2.2`.** The complete two-PCB `H1-R2.37`
+> **Current hardware marker: `H3-R2.2.3`.** The complete two-PCB `H1-R2.37`
 > placement was accepted and reviewed on 30 August 2026: exact dual-RP GPIO/M1 map and C5 SDIO/service-mux,
 > the series-produced `ER-TFT035IPS-6` + `ER-TPC035-6` display, passive 40-to-50-contact
 > adapter, all 18 U219 support bodies, NFC pickup loop and the external volume
@@ -37,7 +37,7 @@
 > reviews exact provenance for all 242 R2 groups and 1,187 fitted positions.
 > [H3-R2.0.3](docs/verification-methods.md) freezes nine methods and twelve
 > pass/fail rules. [H3-R2.1.1](docs/power-state-register.md) reviewed all 2,266 legal R2 states;
-> [H3-R2.1.2](docs/power-load-binding.md) binds every load without a hidden aggregate. [H3-R2.1.3](docs/power-rail-margins.md) reviews 224 passing rail profiles. [H3-R2.1.4](docs/power-source-margins.md) owns all 75 source/pack lines and safely admits all 2,266 legal states: maximum pack current is 3.516 A against the 8-A boundary; 9-V/3-A and 15-V/2-A run every profile, while 14 oversized 5-V/3-A USB-only states are explicitly refused. The [H3-R2.1 cross-check](docs/power-dc-source-result.md) is reviewed. [H3-R2.2.1](docs/power-transition-sequences.md) reviews 14 startup, shutdown, reset and recovery scenarios without automatic restart. H3-R2.2.2 now verifies USB↔pack handover, DPM, brownout and source loss. Ordering remains blocked.
+> [H3-R2.1.2](docs/power-load-binding.md) binds every load without a hidden aggregate. [H3-R2.1.3](docs/power-rail-margins.md) reviews 224 passing rail profiles. [H3-R2.1.4](docs/power-source-margins.md) owns all 75 source/pack lines and safely admits all 2,266 legal states: maximum pack current is 3.516 A against the 8-A boundary; 9-V/3-A and 15-V/2-A run every profile, while 14 oversized 5-V/3-A USB-only states are explicitly refused. The [H3-R2.1 cross-check](docs/power-dc-source-result.md) is reviewed. [H3-R2.2.1](docs/power-transition-sequences.md) reviews 14 startup/reset/recovery scenarios without automatic restart, and [H3-R2.2.2](docs/power-handover.md) reviews all 7,316 USB/pack/DPM/brownout/source-loss cases. H3-R2.2.3 now verifies inrush, load steps, watchdog kill and retained fault display. Ordering remains blocked.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
 > controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad
@@ -123,7 +123,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
 | H1 · Physical product design | ✅ Reviewed · `H1-R2.37` | [Bilingual phase result](docs/h1-r2-acceptance.md) · [placement](docs/h1-r2-physical-layout.md) |
 | H2 · Production ECAD schematic | ✅ Reviewed · `H2-R2.1.5` | [Bilingual phase result](docs/h2-acceptance.md) · [native KiCad result](docs/h2-r2-native-kicad.md) |
-| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.2.2`** | [Input freeze](docs/h3-r2-input-freeze.md) · [parameter/model register](docs/parameter-model-register.md) · [verification methods](docs/verification-methods.md) · [power states](docs/power-state-register.md) · [load binding](docs/power-load-binding.md) · [rail margins](docs/power-rail-margins.md) · [source/charge margins](docs/power-source-margins.md) · [reviewed DC/source result](docs/power-dc-source-result.md) · [transition sequences](docs/power-transition-sequences.md) · [stage page](docs/stage-results.md#h3) |
+| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.2.3`** | [Input freeze](docs/h3-r2-input-freeze.md) · [parameter/model register](docs/parameter-model-register.md) · [verification methods](docs/verification-methods.md) · [power states](docs/power-state-register.md) · [load binding](docs/power-load-binding.md) · [rail margins](docs/power-rail-margins.md) · [source/charge margins](docs/power-source-margins.md) · [reviewed DC/source result](docs/power-dc-source-result.md) · [transition sequences](docs/power-transition-sequences.md) · [USB/pack handover](docs/power-handover.md) · [stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
 | H5 · Component and factory evidence | ⏳ Waiting for R2 H4 | [Stage page](docs/stage-results.md#h5) |
 | H6 · KiCad placement, routing and release candidate | 🔒 Waiting for R2 H5 | [Stage page](docs/stage-results.md#h6) |
@@ -167,14 +167,15 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ `H3-R2.1.4`: [all 75 source/pack lines and 2,266 legal states pass safe source/charge admission](docs/power-source-margins.md); maximum pack current is 3.516 A, sustained admission 1.549 A, and charge yields before system load.
 - ✅ `H3-R2.1.5`: [all 15 ownership, state, rail, source and authorization cross-checks pass](docs/power-dc-source-result.md); the complete H3-R2.1 workstream is reviewed.
 - ✅ `H3-R2.2.1`: [all 14 startup, shutdown, reset and recovery scenarios pass](docs/power-transition-sequences.md); every restart requires a fresh qualified physical KILL→RUN edge, while S3 retains the fault UI independently of direct C5/RF-RP reset.
-- ▶ **Exact current point `H3-R2.2.2`:** verify USB↔pack handover, DPM, brownout and source loss.
+- ✅ `H3-R2.2.2`: [all 7,316 USB/pack/DPM/brownout/source-loss transition cases pass](docs/power-handover.md); charging yields before system load, pack supplement remains inside 8 A, and OTG/backup stay disabled.
+- ▶ **Exact current point `H3-R2.2.3`:** verify inrush, load steps, watchdog kill and retained fault display.
 - 🔒 PCB placement, routing, prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H3-R2.2.2 -->
+<!-- current-substep: H3-R2.2.3 -->
 
 ## Repository
 

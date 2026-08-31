@@ -6,7 +6,7 @@
   "source_hashes": {
     "hardware/ecad/generated/H2-REV51-power-paths.json": "bbb1b286fbda4183986a15c52cdac90ded9f32b02ff9a599cd537a392bcc3443",
     "hardware/ecad/generated/H2-REV52-recovery-paths.json": "8a2d16dbb10afe5104127d6462c5454aca667a1778120491e1f1f4184cee9699",
-    "hardware/ecad/generated/H2-REV53-no-back-power.json": "7dcd7dcd8a97f282ebf39c66c3ba2490ee37c35c35510726440a0bc76d22af78",
+    "hardware/ecad/generated/H2-REV53-no-back-power.json": "8b19887b0e168d7793a215856a2fe8b65ae2a8681781b1f765f038f667edf41d",
     "hardware/ecad/generated/H2-REV54-quiet-state.json": "35813ad1f6eed8a41b18aee1cafac6308320338d21f2e0f75f76b479ef1c1c50",
     "hardware/ecad/generated/H2-REV55-fault-kill.json": "7b983385a5eb41f68ecabf82dee205d92f562fb565060047281981bc68e26c39"
   },

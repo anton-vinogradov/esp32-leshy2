@@ -80,8 +80,38 @@ def inferred_sheet(instance: str, allowed: list[str]) -> str | None:
     return None
 
 
-def reference_prefix(symbols: dict, device_id: str) -> str:
-    return symbols[device_id]["reference_prefix"]
+def reference_prefix(device_id: str, footprint: str) -> str:
+    library = footprint.split(":", 1)[0]
+    if library.startswith("Resistor"):
+        return "R"
+    if library.startswith("Capacitor"):
+        return "C"
+    if library.startswith("Inductor"):
+        return "L"
+    if library.startswith("Crystal"):
+        return "Y"
+    if library.startswith(("Diode", "LED")) or device_id.startswith("vishay_vsm"):
+        return "D"
+    if library.startswith("Connector") or any(
+        token in device_id
+        for token in ("gct_rfpc", "gct_usb", "hirose_", "jae_", "samtec_", "seeed_1125")
+    ):
+        return "J"
+    if library.startswith(("Button_Switch", "Rotary_Encoder")) or device_id.startswith(
+        ("alps_", "ck_js", "omron_")
+    ):
+        return "SW"
+    if "fuse" in device_id or device_id.startswith("littelfuse_045"):
+        return "F"
+    if device_id.startswith(("diodes_2n", "diodes_dmn", "diodes_mmbt")):
+        return "Q"
+    if device_id == "keystone_1048p":
+        return "BT"
+    if device_id == "pui_as02404po":
+        return "LS"
+    if device_id == "same_sky_cmej_0413_42_smt_tr":
+        return "MK"
+    return "U"
 
 
 def build() -> dict:
@@ -110,11 +140,9 @@ def build() -> dict:
 
     inventory = loaded.get("native_inventory", {})
     definitions = loaded.get("exact_definition_ledger", {})
-    symbol_manifest = loaded.get("controlled_symbol_library", {})
-    if inventory.get("status") != "pass" or definitions.get("status") != "pass" or symbol_manifest.get("status") != "pass":
+    if inventory.get("status") != "pass" or definitions.get("status") != "pass":
         errors.append("one or more current R2 instance prerequisites are not passing")
     definition_rows = {row["device_id"]: row for row in definitions.get("groups", []) if row.get("symbol_id")}
-    symbols = {row["device_id"]: row for row in symbol_manifest.get("symbols", [])}
     old_by_device = defaultdict(list)
     old_by_device_instance = {}
     for row in historical:
@@ -138,7 +166,7 @@ def build() -> dict:
             continue
         device_id = group["device_id"]
         quantity = group["quantity_per_product"]
-        if device_id not in definition_rows or device_id not in symbols:
+        if device_id not in definition_rows:
             errors.append(f"instance group lacks current symbol definition: {device_id}")
             continue
         if device_id in exact_names:
@@ -211,7 +239,9 @@ def build() -> dict:
                     "mpn": group["mpn"],
                     "symbol_id": definition_rows[device_id]["symbol_id"],
                     "footprint": definition_rows[device_id]["footprint"],
-                    "reference_prefix": reference_prefix(symbols, device_id),
+                    "reference_prefix": reference_prefix(
+                        device_id, definition_rows[device_id]["footprint"]
+                    ),
                     "allocation_origin": origin,
                     "historical_topology_authority": False,
                 }

@@ -118,7 +118,7 @@ def render_svg(data: dict) -> str:
         '<text x="630" y="258" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#526076">80-contact</text>',
         '<text x="630" y="292" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#7c3aed">RP link</text>',
         '<text x="630" y="310" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#526076">1.5 MB/s</text>',
-        '<text x="630" y="355" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#7c3aed">M1.35–36</text>',
+        '<text x="630" y="355" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#7c3aed">M1.35 reserve · 36 S3 reset</text>',
         '<text x="630" y="373" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#526076">1 NC + S3 reset</text>',
         '<text x="630" y="420" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#b42318">RUN / FAULT</text>',
         '<text x="630" y="438" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#526076">3× nRF evidence</text>',
@@ -165,7 +165,7 @@ def render_report(data: dict, ru: bool) -> str:
             "на S3, высокоскоростные периферийные тракты разгружены через Hub RP, "
             "бортовой видеотракт удалён, а Airband AM 118–137 МГц теперь обязателен."
         )
-        current = "Текущий точный маркер — **H3-R2.2.2**. Физическая проекция H1-R2.37 с двумя независимыми RP2354B, точными GPIO0..47, M1 и 226 корпусами принята и прошла ревью 2026-08-30. Native R2 H2 материализует 1 187 экземпляров и 826 nets в трёх проектах KiCad без замечаний ERC. H3-R2.0 фиксирует входы, provenance и методы; H3-R2.1 проводит ревью worst-case power/DC states; H3-R2.2.1 проводит ревью 14 сценариев startup, shutdown, reset и recovery без автоматического перезапуска. Контакт M1-36 теперь несёт отдельный reset S3 fault-UI, а C5 и RF RP сохраняют прямой fault-reset. H3-R2.2.2 проверяет USB↔pack handover, DPM, brownout и потерю источника."
+        current = "Текущий точный маркер — **H3-R2.2.3**. Физическая проекция H1-R2.37 с двумя независимыми RP2354B, точными GPIO0..47, M1 и 226 корпусами принята и прошла ревью 2026-08-30. Native R2 H2 материализует 1 187 экземпляров и 826 nets в трёх проектах KiCad без замечаний ERC. H3-R2.0 фиксирует входы, provenance и методы; H3-R2.1 проводит ревью worst-case power/DC states; H3-R2.2.1 проводит ревью 14 сценариев startup, reset и recovery; H3-R2.2.2 проводит ревью 7 316 переходов USB/pack/DPM/brownout/source-loss без автоматического перезапуска. Контакт M1-36 несёт отдельный reset S3 fault-UI, а C5 и RF RP сохраняют прямой fault-reset. H3-R2.2.3 проверяет inrush, load steps, watchdog kill и сохранение причины fault."
         sections = {
             "result": "Что зафиксировано",
             "air": "Airband RX",
@@ -204,7 +204,7 @@ def render_report(data: dict, ru: bool) -> str:
             "high-throughput peripheral work is offloaded through the Hub RP, the onboard "
             "video path is removed, and 118–137 MHz Airband AM is now mandatory."
         )
-        current = "The exact current marker is **H3-R2.2.2**. The H1-R2.37 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, M1 and 226 bodies was accepted and reviewed on 2026-08-30. Native R2 H2 materializes 1,187 instances and 826 nets in three KiCad projects with zero ERC findings. H3-R2.0 freezes inputs, provenance and methods; H3-R2.1 reviews worst-case power/DC states; H3-R2.2.1 reviews 14 startup, shutdown, reset and recovery scenarios without automatic restart. M1-36 now carries an independent S3 fault-UI reset while C5 and RF RP retain direct fault reset. H3-R2.2.2 verifies USB↔pack handover, DPM, brownout and source loss."
+        current = "The exact current marker is **H3-R2.2.3**. The H1-R2.37 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, M1 and 226 bodies was accepted and reviewed on 2026-08-30. Native R2 H2 materializes 1,187 instances and 826 nets in three KiCad projects with zero ERC findings. H3-R2.0 freezes inputs, provenance and methods; H3-R2.1 reviews worst-case power/DC states; H3-R2.2.1 reviews 14 startup/reset/recovery scenarios; H3-R2.2.2 reviews 7,316 USB/pack/DPM/brownout/source-loss transitions without automatic restart. M1-36 carries an independent S3 fault-UI reset while C5 and RF RP retain direct fault reset. H3-R2.2.3 verifies inrush, load steps, watchdog kill and retained fault cause."
         sections = {
             "result": "Accepted result",
             "air": "Airband RX",
@@ -270,14 +270,14 @@ def render_report(data: dict, ru: bool) -> str:
         "- Airband — подрежим `BROADCAST_RX`, поэтому его RF-домен не включается одновременно с TX-группой.\n"
         "- Кнопки остаются на локальном для S3 TCA9539PWR, энкодер и USB подключены к S3 напрямую; direct i8080-8 даёт 24 МБ/с при безопасных для ILI9488 24 МГц.\n"
         "- Передний RP владеет тремя nRF24 и microSD; задний RP владеет Si4732/Airband, CC1101, voice, аудио, M5 и одним из U214/U219.\n"
-        "- M1 переносит control/status, safety, USB и питание; контакты 35–36 теперь NC-резерв."
+        "- M1 переносит control/status, safety, USB и питание; контакт 35 — NC-резерв, контакт 36 — отдельный reset S3 fault-UI."
         if ru
         else
         "- One user port is labelled `FM / SW / AIR RX`; no new external connector is added.\n"
         "- Airband is a `BROADCAST_RX` submode, so its RF domain cannot run together with a TX group.\n"
         "- Buttons stay on the S3-local TCA9539PWR path while encoder and USB remain direct; direct i8080-8 provides 24 MB/s at the ILI9488-safe 24 MHz.\n"
         "- The front RP owns three nRF24 paths and microSD; the rear RP owns Si4732/Airband, CC1101, voice, audio, M5 and exactly one U214/U219 profile.\n"
-        "- M1 carries control/status, safety, USB and power; contacts 35–36 are now NC reserve."
+        "- M1 carries control/status, safety, USB and power; contact 35 is NC reserve and contact 36 is the independent S3 fault-UI reset."
     )
     filter_note = (
         "`BPF-A127+` не найден в каталоге JLCPCB (0 exact matches). Он используется как опубликованный эталон маски; production-вариант — серийная LC-лестница из фабричных passives, а не кастомная деталь. Все её MPN закрываются после H1 RF-синтеза и layout extraction."

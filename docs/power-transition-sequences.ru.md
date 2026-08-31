@@ -45,6 +45,6 @@ Safety держит `SAFETY_FAULT_REQUEST` активным после сбро�
 - H8 measures the populated 100-kohm/2.2-uF RC under DC bias and temperature; startup safety does not depend solely on this number.
 - H8 captures POR assertion/release, direct C5/RF-RP reset and S3 fault-display retention at real rail corners.
 
-**Результат:** `14/14` сценариев и `51` endpoint-проверок проходят. **Текущий маркер:** `H3-R2.2.2` — USB↔pack handover, DPM, brownout и потеря источника. Заказ и трассировка всё ещё запрещены.
+**Результат:** `14/14` сценариев и `51` endpoint-проверок проходят. [`H3-R2.2.2`](power-handover.ru.md) также проведён ревью; **текущий маркер — `H3-R2.2.3`**. Заказ и трассировка всё ещё запрещены.
 
 [Машинный отчёт](../hardware/verification/generated/H3-R2-transition-sequences.json).

@@ -1,11 +1,32 @@
-# USB ↔ pack handover and brownout · historical R1
+# USB, pack and DPM · H3-R2.2.2
 
-[Русский](power-handover.ru.md) · [Home](../README.md) · [H3.2 result](power-transition-result.md)
+[Русский](power-handover.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Startup sequencing](power-transition-sequences.md)
 
-Seven transitions cover USB attach/detach, DPM, USB without a pack, KILL while USB remains, AON brownout and external reverse drive. BQ25798 reduces charge first and then permits pack supplement; ordinary handover does not need OTG/backup mode.
+`H3-R2.2.2` is verified against the complete R2 source/load register, not one nominal mode. `7316` transitions pass: USB attach/detach, DPM, pack removal, USB loss without a pack and brownout.
 
-A source transition cannot enable RF: loss of AON clears permit, while SYS, USB and BATFET have no path to the latch clock. If no healthy pack exists, loss of the sole USB source is an expected safe shutdown rather than a hold-up promise.
+## What the hardware does
 
-The absolute SYS droop inside the proprietary BQ25798 control loop is not invented from the datasheet. It is an explicit H8 oscilloscope acceptance case at the H3.1 worst profiles.
+USB-C passes through **TPS25751D**, while USB and the protected pack converge in **BQ25798**. Its `SYS` output powers the product. Weak USB reduces charge to zero first; a healthy pack automatically supplements any remaining deficit. When USB disappears, the integrated BATFET transfers the load to the pack. OTG and backup are forbidden, so the pack cannot drive power back into USB.
 
-**Status:** `H3.2.2` reviewed; 7/7 transitions pass. [Machine evidence](../hardware/verification/generated/H3-VRF22-handover-brownout.json).
+Unqualified 5 V is not a RUN source: only AON diagnostics and disabled charging are allowed until Rp/PD is read and the protected profile is written. Masked readback is mandatory.
+
+## Result
+
+| Check | Result |
+| --- | ---: |
+| USB attach with a healthy pack | `1740` / `1740` |
+| USB detach → pack | `1740` / `1740` |
+| DPM and system-load priority | `1740` / `1740` |
+| Pack removal/isolation while on USB | `1740` / `1740` |
+| USB loss without a pack | `350` / `350` |
+| Brownout/anti-rearm | `6` / `6` |
+
+Worst supplement is `3.516 A` against the `8.000 A` limit; unsafe admissions and automatic restarts are both `0`.
+
+## Honest proof boundary
+
+Logic, current limits and safe outcomes are proved analytically. Absolute `SYS` droop, BATFET transfer time and routed parasitics depend on the assembled board and are oscilloscope checks on the first unit in H8. Placement, routing, purchasing and fabrication remain unauthorized.
+
+**Next point:** `H3-R2.2.3` — inrush, load steps, watchdog kill and retained fault cause.
+
+[Complete machine result](../hardware/verification/generated/H3-R2-handover.json).

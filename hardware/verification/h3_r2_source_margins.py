@@ -231,7 +231,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         limits_h = "## Граница доказательства"
         limits = (f"Электрический одновременный угол даёт pack endpoint `{e['maximum_pack_discharge']['pack_endpoint_v']} В` и расчётные `{e['maximum_pack_discharge']['cell_pair_i2r_w']} Вт` в двух ячейках. "
                   f"Длительный envelope отдельно ограничен SUPPORT_IDLE и 1,00 А внешнего 5-В порта: `{s['maximum_sustained_pack_discharge_a']} А`, `{s['maximum_sustained_cell_pair_i2r_w']} Вт` в ячейках. Пуск, DPM и USB↔pack handover остаются H3-R2.2, routed resistance — H6, измерение — H8.")
-        end = "**Downstream-результат:** [`H3-R2.1`](power-dc-source-result.ru.md) полностью проведён ревью; текущий маркер — `H3-R2.2.1`.\n\n[Полный машинный результат](../hardware/verification/generated/H3-R2-source-margins.json)."
+        end = "**Downstream-результат:** [`H3-R2.1`](power-dc-source-result.ru.md) полностью проведён ревью; актуальная точка всегда указана в [роадмапе](roadmap.ru.md).\n\n[Полный машинный результат](../hardware/verification/generated/H3-R2-source-margins.json)."
     else:
         title = "# Source, pack and charge margins · H3-R2.1.4"
         nav = "[Русский](power-source-margins.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Rail margins](power-rail-margins.md)"
@@ -248,7 +248,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         limits_h = "## Proof boundary"
         limits = (f"The electrical simultaneous corner gives a `{e['maximum_pack_discharge']['pack_endpoint_v']} V` pack endpoint and `{e['maximum_pack_discharge']['cell_pair_i2r_w']} W` calculated in the two cells. "
                   f"The sustained envelope is separately restricted to SUPPORT_IDLE and 1.00 A on external 5 V: `{s['maximum_sustained_pack_discharge_a']} A`, `{s['maximum_sustained_cell_pair_i2r_w']} W` in the cells. Startup, DPM and USB↔pack handover remain H3-R2.2, routed resistance remains H6 and measurement remains H8.")
-        end = "**Downstream result:** [`H3-R2.1`](power-dc-source-result.md) is fully reviewed; the current marker is `H3-R2.2.1`.\n\n[Complete machine result](../hardware/verification/generated/H3-R2-source-margins.json)."
+        end = "**Downstream result:** [`H3-R2.1`](power-dc-source-result.md) is fully reviewed; the [roadmap](roadmap.md) carries the live marker.\n\n[Complete machine result](../hardware/verification/generated/H3-R2-source-margins.json)."
     return "\n\n".join((title, nav, intro, result_h, result, source_h, source, limits_h, limits, end)) + "\n"
 
 

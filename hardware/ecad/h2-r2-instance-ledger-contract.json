@@ -7,7 +7,6 @@
   "authority": {
     "native_inventory": "hardware/ecad/generated/H2-R2-native-inventory.json",
     "exact_definition_ledger": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-    "controlled_symbol_library": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
     "physical_source_table": "hardware/product-design/generated/H1-physical-source-table.json"
   },
   "historical_hints": {

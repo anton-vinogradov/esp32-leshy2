@@ -21,6 +21,6 @@
 
 This reviews accounting completeness, not numeric DC margin. For every line without an applicable exact maximum, `H3-R2.1.3` must extract the parameter from its bound manufacturer source or return `unresolved_fail`. RP/codec/pack child rails are explicit and cannot be counted again on top of the owning device total.
 
-**Downstream result:** [`H3-R2.1`](power-dc-source-result.md) is fully reviewed; the current marker is `H3-R2.2.1`.
+**Downstream result:** [`H3-R2.1`](power-dc-source-result.md) is fully reviewed; the [roadmap](roadmap.md) carries the live marker.
 
 [Complete machine line register](../hardware/verification/generated/H3-R2-load-binding.json).

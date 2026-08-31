@@ -21,6 +21,6 @@
 
 Это ревью полноты учёта, не численный DC-pass. Для каждой строки без применимого exact maximum `H3-R2.1.3` обязан извлечь параметр из закреплённого manufacturer source либо вернуть `unresolved_fail`. Child rails RP/codec/pack отмечены отдельно и не могут считаться второй раз поверх полного device total.
 
-**Downstream-результат:** [`H3-R2.1`](power-dc-source-result.ru.md) полностью проведён ревью; текущий маркер — `H3-R2.2.1`.
+**Downstream-результат:** [`H3-R2.1`](power-dc-source-result.ru.md) полностью проведён ревью; актуальная точка всегда указана в [роадмапе](roadmap.ru.md).
 
 [Полный машинный реестр строк](../hardware/verification/generated/H3-R2-load-binding.json).

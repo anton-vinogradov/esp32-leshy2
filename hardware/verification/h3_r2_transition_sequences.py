@@ -392,7 +392,7 @@ def build() -> tuple[dict[Path, str], dict]:
         ],
         "physical_residuals": contract["physical_residuals"],
         "authorization": contract["authorization"],
-        "next": {"marker": "H3-R2.2.2", "action": "verify USB-to-pack handover, DPM, brownout and source loss"},
+        "next": {"marker": "H3-R2.2.3", "action": "H3-R2.2.2 handover is reviewed; verify inrush, load steps, watchdog kill and retained fault display"},
         "errors": errors,
     }
     outputs = {
@@ -428,7 +428,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
                  "- Антиавтозапуск теперь опирается на квалифицированный физический KILL, а не на предположение о моменте RC-фронта.")
         residual_h = "## Что остаётся физике"
         residual = "\n".join(f"- {row}" for row in manifest["physical_residuals"])
-        end = f"**Результат:** `{s['passed_scenarios']}/{s['scenarios']}` сценариев и `{s['topology_endpoints']}` endpoint-проверок проходят. **Текущий маркер:** `H3-R2.2.2` — USB↔pack handover, DPM, brownout и потеря источника. Заказ и трассировка всё ещё запрещены.\n\n[Машинный отчёт](../hardware/verification/generated/H3-R2-transition-sequences.json)."
+        end = f"**Результат:** `{s['passed_scenarios']}/{s['scenarios']}` сценариев и `{s['topology_endpoints']}` endpoint-проверок проходят. [`H3-R2.2.2`](power-handover.ru.md) также проведён ревью; **текущий маркер — `H3-R2.2.3`**. Заказ и трассировка всё ещё запрещены.\n\n[Машинный отчёт](../hardware/verification/generated/H3-R2-transition-sequences.json)."
     else:
         title = "# Startup, reset and recovery · H3-R2.2.1"
         nav = "[Русский](power-transition-sequences.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md)"
@@ -450,7 +450,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
                  "- Anti-auto-start now depends on qualified physical KILL rather than assumed RC-edge timing.")
         residual_h = "## Physical residuals"
         residual = "\n".join(f"- {row}" for row in manifest["physical_residuals"])
-        end = f"**Result:** `{s['passed_scenarios']}/{s['scenarios']}` scenarios and `{s['topology_endpoints']}` endpoint checks pass. **Current marker:** `H3-R2.2.2` — USB↔pack handover, DPM, brownout and source loss. Ordering and routing remain forbidden.\n\n[Machine report](../hardware/verification/generated/H3-R2-transition-sequences.json)."
+        end = f"**Result:** `{s['passed_scenarios']}/{s['scenarios']}` scenarios and `{s['topology_endpoints']}` endpoint checks pass. [`H3-R2.2.2`](power-handover.md) is also reviewed; the **current marker is `H3-R2.2.3`**. Ordering and routing remain forbidden.\n\n[Machine report](../hardware/verification/generated/H3-R2-transition-sequences.json)."
     return "\n\n".join((title, nav, intro, states_h, states, timing_h, timing, seq_h, header + "\n" + body, fixes_h, fixes, residual_h, residual, end)) + "\n"
 
 

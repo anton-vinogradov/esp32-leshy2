@@ -36,6 +36,7 @@ class H2R2InstanceLedgerTests(unittest.TestCase):
             {"L2-DISP-ADP-001-B", "LESHY2-RF-R2", "LESHY2-UI-R2"},
             set(summary["project_counts"]),
         )
+        self.assertNotIn("controlled_symbol_library", self.ledger["sources"])
 
     def test_references_and_project_local_names_are_unique(self):
         for field in ("instance", "reference"):

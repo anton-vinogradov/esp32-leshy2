@@ -19,6 +19,6 @@
 
 The electrical simultaneous corner gives a `5.578 V` pack endpoint and `0.989 W` calculated in the two cells. The sustained envelope is separately restricted to SUPPORT_IDLE and 1.00 A on external 5 V: `1.549 A`, `0.192 W` in the cells. Startup, DPM and USB↔pack handover remain H3-R2.2, routed resistance remains H6 and measurement remains H8.
 
-**Downstream result:** [`H3-R2.1`](power-dc-source-result.md) is fully reviewed; the current marker is `H3-R2.2.1`.
+**Downstream result:** [`H3-R2.1`](power-dc-source-result.md) is fully reviewed; the [roadmap](roadmap.md) carries the live marker.
 
 [Complete machine result](../hardware/verification/generated/H3-R2-source-margins.json).

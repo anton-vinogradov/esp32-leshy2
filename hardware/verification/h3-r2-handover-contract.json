@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "artifact": "H3-R2-handover-contract",
+  "marker": "H3-R2.2.2",
+  "charger": {
+    "device_id": "ti_bq25798_rqmr",
+    "instance": "nvdc_charger",
+    "topology": "NVDC automatic VBUS/BAT selection with BAT supplement",
+    "system_priority": "reduce charge to zero before reducing an admitted system load",
+    "ordinary_handover_requires_otg": false,
+    "ordinary_handover_requires_backup": false
+  },
+  "required_endpoints": {
+    "nvdc_charger.VBUS": "PD_NEGOTIATED_VBUS",
+    "nvdc_charger.VAC1": "PD_NEGOTIATED_VBUS",
+    "nvdc_charger.VAC2": "PD_NEGOTIATED_VBUS",
+    "nvdc_charger.BAT": "PROTECTED_PACK_POSITIVE",
+    "nvdc_charger.SYS": "NVDC_SYS",
+    "nvdc_charger.CE": "CHARGE_EN_N",
+    "nvdc_charger.INT": "CHARGER_INT_N",
+    "nvdc_charger.SCL": "PD_LOCAL_I2C_SCL",
+    "nvdc_charger.SDA": "PD_LOCAL_I2C_SDA",
+    "pd_controller.GPIO1": "CHARGE_EN_N",
+    "pd_controller.I2Cc_IRQ": "CHARGER_INT_N",
+    "pd_controller.I2Cc_SCL": "PD_LOCAL_I2C_SCL",
+    "pd_controller.I2Cc_SDA": "PD_LOCAL_I2C_SDA"
+  },
+  "policy": {
+    "unknown_5v_run_allowed": false,
+    "unknown_5v_charge_allowed": false,
+    "pack_pf03_admission_a": 8.0,
+    "profile_readback_required_before_run_or_charge": true,
+    "dpm_status_is_interrupt_driven": true,
+    "source_transition_can_rearm_run_permit": false,
+    "usb_only_source_loss": "monotonic safe reset/shutdown; no hold-up duration is claimed",
+    "brownout": "AON supervisor clears RUN permit; source recovery alone cannot re-arm"
+  },
+  "datasheet_facts": {
+    "document": "Texas Instruments BQ25798 datasheet",
+    "version": "SLUSDV2C, May 2020, revised June 2026",
+    "url": "https://www.ti.com/lit/ds/symlink/bq25798.pdf",
+    "checked": "2026-08-31",
+    "iindpm_range_a": [0.1, 3.3],
+    "iindpm_step_a": 0.01,
+    "vindpm_range_v": [3.6, 22.0],
+    "vindpm_step_v": 0.1,
+    "two_cell_vsysmin_default_v": 7.0,
+    "behavior": "DPM limits input current or voltage; VSYSMIN reduces charging first; below that, BATFET supplement supports SYS"
+  },
+  "residual_physical_only": [
+    "measure SYS, AON and downstream-rail minima during every USB attach/detach and DPM transition",
+    "measure actual BATFET handover and supplement waveforms at low, nominal and full pack voltage",
+    "inject weak and current-limited USB sources with healthy, absent and isolated packs",
+    "repeat the worst transitions at the declared temperature corners"
+  ]
+}

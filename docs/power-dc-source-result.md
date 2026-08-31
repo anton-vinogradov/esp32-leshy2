@@ -19,6 +19,6 @@ The check reconciles `2266` states, `56` operating profiles, `224` rail corners,
 
 `H3-R2.2` verifies dynamics: startup, shutdown, inrush, DPM, brownout, watchdog and USB↔pack handover. Routed parasitics remain H6 and measurement remains H8.
 
-**Current marker:** `H3-R2.2.1` — ordered startup, shutdown, reset and recovery. Placement, routing, purchasing and fabrication remain forbidden.
+**H3-R2.1 is fully reviewed.** The [roadmap](roadmap.md) carries the live marker. Placement, routing, purchasing and fabrication remain forbidden.
 
 [Machine cross-check](../hardware/verification/generated/H3-R2-dc-source-crosscheck.json).

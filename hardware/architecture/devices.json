@@ -6124,6 +6124,23 @@
       "configuration_contract": {
         "cell_count": 2,
         "charge_current_a_max": 2.0,
+        "minimum_system_voltage_v": 7.0,
+        "power_path_mode": "NVDC automatic VBUS/BAT selection with BAT supplement; system load has priority over charging",
+        "reverse_power_modes": {
+          "en_otg": false,
+          "en_backup": false,
+          "reason": "ordinary SYS handover uses the integrated BATFET path; reverse VBUS/PMID generation is outside the product contract"
+        },
+        "input_dpm_profiles": {
+          "unqualified_5v": {"run_allowed": false, "charge_allowed": false, "iindpm_a_max": 0.5, "vindpm_v": 4.4},
+          "usb_pd_5v_3a": {"run_allowed": true, "iindpm_a_max": 3.0, "vindpm_v": 4.4},
+          "usb_pd_9v_3a": {"run_allowed": true, "iindpm_a_max": 3.0, "vindpm_v": 8.4},
+          "usb_pd_15v_2a": {"run_allowed": true, "iindpm_a_max": 2.0, "vindpm_v": 14.0}
+        },
+        "dpm_register_contract": "IINDPM range 0.1..3.3 A in 10-mA steps and VINDPM range 3.6..22 V in 100-mV steps; the protected TPS25751 image writes the selected profile and verifies masked readback before charge or RUN admission",
+        "dpm_status_contract": "VINDPM_STAT and IINDPM_STAT are interrupt-driven telemetry; charge request is reduced to zero before an admitted system load is reduced, then a healthy pack may supplement SYS",
+        "automatic_input_optimization": false,
+        "mppt": false,
         "ts_ignore": false,
         "ts_cool_code": 1,
         "ts_warm_code": 0,

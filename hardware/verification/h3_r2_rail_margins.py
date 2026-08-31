@@ -266,7 +266,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         h3 = "## Установившийся тепловой режим"
         t3 = "| Шина | Длительный ток | Tj преобразователя | Запас до Tj max | Tj eFuse | Итог |\n|---|---:|---:|---:|---:|---|\n" + "\n".join(thermal_rows)
         p3 = "`SUPPORT_WORST` остаётся электрическим одновременным углом, а не разрешением на 24–48 часов. Для внешнего 5-В порта сохранён электрический потолок 1,25 А, но до H6/H8 длительная автоматика допускает 1,00 А; выбранные U214/U219/M5-сценарии функций не теряют."
-        end = "**Downstream-результат:** [`H3-R2.1`](power-dc-source-result.ru.md) полностью проведён ревью; текущий маркер — `H3-R2.2.1`.\n\n[Полный машинный результат](../hardware/verification/generated/H3-R2-rail-margins.json)."
+        end = "**Downstream-результат:** [`H3-R2.1`](power-dc-source-result.ru.md) полностью проведён ревью; актуальная точка всегда указана в [роадмапе](roadmap.ru.md).\n\n[Полный машинный результат](../hardware/verification/generated/H3-R2-rail-margins.json)."
     else:
         title = "# Power-rail margins · H3-R2.1.3"
         nav = "[Русский](power-rail-margins.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Load binding](power-load-binding.md)"
@@ -279,7 +279,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         h3 = "## Steady thermal envelope"
         t3 = "| Rail | Sustained current | Converter Tj | Margin to Tj max | eFuse Tj | Result |\n|---|---:|---:|---:|---:|---|\n" + "\n".join(thermal_rows)
         p3 = "`SUPPORT_WORST` remains an electrical simultaneous corner, not a 24-to-48-hour permission. The exposed 5-V port keeps its 1.25-A electrical ceiling, while unattended control admits 1.00 A until H6/H8; the selected U214/U219/M5 functions are unaffected."
-        end = "**Downstream result:** [`H3-R2.1`](power-dc-source-result.md) is fully reviewed; the current marker is `H3-R2.2.1`.\n\n[Complete machine result](../hardware/verification/generated/H3-R2-rail-margins.json)."
+        end = "**Downstream result:** [`H3-R2.1`](power-dc-source-result.md) is fully reviewed; the [roadmap](roadmap.md) carries the live marker.\n\n[Complete machine result](../hardware/verification/generated/H3-R2-rail-margins.json)."
     return "\n\n".join((title, nav, intro, h1, t1, p1, h2, t2, h3, t3, p3, end)) + "\n"
 
 

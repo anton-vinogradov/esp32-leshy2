@@ -19,6 +19,6 @@
 
 `H3-R2.2` проверяет динамику: запуск, shutdown, inrush, DPM, brownout, watchdog и USB↔pack handover. Routed parasitics остаются H6, измерения — H8.
 
-**Текущий маркер:** `H3-R2.2.1` — упорядоченные startup, shutdown, reset и recovery. Placement, routing, закупка и печать по-прежнему запрещены.
+**H3-R2.1 полностью проведён ревью.** Актуальная точка указана в [роадмапе](roadmap.ru.md). Placement, routing, закупка и печать по-прежнему запрещены.
 
 [Машинный cross-check](../hardware/verification/generated/H3-R2-dc-source-crosscheck.json).

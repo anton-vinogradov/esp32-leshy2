@@ -5,14 +5,14 @@
   "status": "reviewed_startup_shutdown_reset_and_recovery",
   "source_sha256": {
     "hardware/verification/h3-r2-transition-sequence-contract.json": "201b7b47d8154b5b321e8ba951505f774e0100731585b996b3bea6db84ac9c41",
-    "hardware/verification/h3-r2-verification-plan.json": "014e32c35022f39f75f1ad13164c5440f78d7cd28cacf78c9950eabbe6e4b453",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "34dbdff89429c235072cac8126f2f70e01618929ff4889274e0e32fea66c792e",
-    "hardware/verification/generated/H3-R2-method-contract.json": "869fb8b8337939cbdac6035a35217c00c75ac0b1cf5efe8a47af9daa55e4a2f7",
-    "hardware/verification/generated/H3-R2-dc-source-crosscheck.json": "977e930c8c7c93db338ba9b645b2b6f43afa1deacf19be88295bc863e274f39f",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "a74ec13d3b2482226734436debecf360fffe3986ce0a6e9f06fe35d98b3745e7",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "5f3c52f7164df747df0e11a5e8bb405d060e26ad1b649c2f6275bd8675686626",
+    "hardware/verification/h3-r2-verification-plan.json": "8c4d057572a52837c9f723707d570971dc9fbf213a855156e92023582fc5b38a",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "75420e74851dabae190e3ca4e224d972f9e7a1203fc07161efc2151361ccd108",
+    "hardware/verification/generated/H3-R2-method-contract.json": "c28a6c4df5060067f624efd2e65859c25c8762f3271ef1b79479cf4116be56ae",
+    "hardware/verification/generated/H3-R2-dc-source-crosscheck.json": "887b504c4459cad530a3473a5bf31e5aa43e784b95143445876957d6fd8b9e8f",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "e2887185f19fd7d6c29aa91502ba973cd12e2fa45e7d0d28d5d5f0fe87c21ac5",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "6f4bd55dc54a911a075fb08b2b8cadeba255fc85cde1893bb93f9d8880d01dfc",
     "hardware/ecad/generated/H2-R2-interboard-m1.json": "baf93ef396bada362de08057604e4413bad26e2bbd1f18e520fb4bc49e43ae39",
-    "hardware/architecture/devices.json": "96bd2cf3a4bfae0af34e249d6737a16a2763fea46b3892e06b465b84e1c18e2f"
+    "hardware/architecture/devices.json": "d20f0385775cc71e06578c5ab97df21adb589b43cdee19e315a99817a6a6d46a"
   },
   "exact_devices": {
     "supervisor": {
@@ -2135,8 +2135,8 @@
     "fabrication": false
   },
   "next": {
-    "marker": "H3-R2.2.2",
-    "action": "verify USB-to-pack handover, DPM, brownout and source loss"
+    "marker": "H3-R2.2.3",
+    "action": "H3-R2.2.2 handover is reviewed; verify inrush, load steps, watchdog kill and retained fault display"
   },
   "errors": []
 }
