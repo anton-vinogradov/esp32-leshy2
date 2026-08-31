@@ -5,11 +5,11 @@
   "method": "fresh native KiCad XML netlists compared with all root hierarchy names and both physical M1 connector pin maps",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "2673a4d23435effe9ec592e6060a3b1bc525598944d932f0a502d0fd4636ce8f",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "3f9cbd769badeb336755c6e07cfa9ae2d12d92b70b60673fc654690664ccf8cc",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "fd7e569821ec06aab2bfeeddc6a423b3b023f5919482e30fd9d77d1ffb8d4857",
-    "hardware/ecad/generated/H2-CAP00-root-interface.json": "d7320cd6566143e26fcb46405d5fff626db3ac1148bbee6841f445e8e0af8198",
-    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "25830fa2927f6db5482f3465d5d5c7c7585220002d800f6f362b1a588d821850",
-    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "c7fd3608bc3230ebd8956b0f2b0784b6fcf362450cdcd53929f9bb32513f833f",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "48da1d707e5f62bad32deb6808a82fc99eddf8fc374f90fd31d3c0347dbd3fe8",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "0e68fd755d6f0840d4a68dbf6c47f8dea0aa2e0669a59d5b7f44457f11fff871",
+    "hardware/ecad/generated/H2-CAP00-root-interface.json": "611fd0a5bee6267c3e18d052dc838b9f9ccf0002b2e9833f66e6eb206a3a4f6e",
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "c853fe72d82c4197874fc5c37c59939bf05f2f4f0d6e9366b16e4821929f2a60",
+    "hardware/ecad/generated/H2-RF40-interboard-m1.json": "fa256d1766b709e9f345153a8430097c459d25d52e498534540dcd1caa49d87b",
     "hardware/ecad/kicad/LESHY2-UI/LESHY2-UI.kicad_sch": "ab4e73fe576c5e1557e6695b89fd3ce182c4533a61e984bd755d3c25b287ce97",
     "hardware/ecad/kicad/LESHY2-RF/LESHY2-RF.kicad_sch": "62036d985924f988257859617422a4eedbdab3d0d8f940cb485d32b7b97f23bc",
     "hardware/ecad/kicad/LESHY2-LORA-CAP-01/LESHY2-LORA-CAP-01.kicad_sch": "22e2a86e866ae34846d8e526e21fe4029a0891dbc1c85ea6a266a353e4fe307c"

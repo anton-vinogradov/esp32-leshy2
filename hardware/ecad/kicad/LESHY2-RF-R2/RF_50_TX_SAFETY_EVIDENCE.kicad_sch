@@ -9928,7 +9928,8 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "66f29ac6-53cf-5165-b1bf-42fc136e6081")
 	)
-	(label "FAULT_KILL"
+	(hierarchical_label "FAULT_KILL"
+		(shape bidirectional)
 		(at 309.88 269.24 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "89c31652-4243-536e-b87d-52b76c36006a")

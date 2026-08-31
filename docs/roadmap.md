@@ -3,7 +3,7 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H3-R2.2.3`.** H0, H1, [H2-R2.1.5](h2-acceptance.md), the complete [H3-R2.1 DC/source workstream](power-dc-source-result.md), [H3-R2.2.1 transition sequencing](power-transition-sequences.md) and [H3-R2.2.2 USB/pack handover](power-handover.md) are reviewed. H3-R2.2.3 now verifies inrush, load steps, watchdog kill and retained fault display.
+> **▶ Current hardware boundary: `H3-R2.3`.** H0, H1, [H2-R2.1.5](h2-acceptance.md), [H3-R2.1 DC/source](power-dc-source-result.md) and the complete [H3-R2.2 power-transition workstream](power-transition-result.md) are reviewed. H3-R2.3 now verifies display, audio, IR, battery and Airband analog corners.
 > No R2 KiCad routing, quote, reservation or order is authorized.
 
 Status reconciled: **31 August 2026**.
@@ -32,10 +32,10 @@ marker and current checklist; it is never presented as review of the whole phase
 
 ## Reviewed H1 · exact composition
 
-<!-- current-substep: H3-R2.2.3 -->
+<!-- current-substep: H3-R2.3 -->
 
 **Reviewed marker: `H1-R2.37`.** The placement package was accepted on
-2026-08-31. The current hardware marker is `H3-R2.2.3`.
+2026-08-31. The current hardware marker is `H3-R2.3`.
 
 ### 1. Functional-island placement
 
@@ -59,8 +59,8 @@ marker and current checklist; it is never presented as review of the whole phase
 
 ### 3. Interboard transport
 
-- ✅ M1 is fully counted: 30 live signals, 14 main-power, 2 AON, 24 defined
-  returns and 10 true NC reserves; the 4.25-A step is 0.3036 A per main contact.
+- ✅ M1 is fully counted: 31 live signals, 14 main-power, 2 AON, 24 defined
+  returns and 9 true NC reserves; the 4.25-A step is 0.3036 A per main contact.
 - ✅ M1 carries no structural load: four 11.00-mm stops, at least two anti-shear
   datums and independent PCB capture cover the one-loose-screw case.
 - ✅ Rear audio stays below 0.4 MB/s on the qualified 1.5 MB/s RP link; nRF
@@ -130,9 +130,9 @@ marker and current checklist; it is never presented as review of the whole phase
 
 - ✅ The onboard analog-video receiver, decoder, MMCX, antenna and physical bay
   are removed. No hidden active module requires owner soldering after PCBA.
-- ✅ Current exact reserve is six GPIO on S3, five on the rear RP and ten true
-  NC contacts on M1; contact 35 remains NC, while contact 36 carries the
-  independent S3 fault-UI reset.
+- ✅ Current exact reserve is six GPIO on S3, five on the rear RP and nine true
+  NC contacts on M1; contact 35 carries latched `FAULT_KILL` to the independent
+  front indicator, while contact 36 carries the independent S3 fault-UI reset.
 - ✅ The complete exterior, both turned-over inner faces and the real sandwich
   sections were accepted on 2026-08-30. [Read the phase report](h1-r2-acceptance.md).
 
@@ -171,12 +171,12 @@ routing have not started.
   allocated across 237 groups and three native projects; the historical R1
   ledger contributes no net, reference designator or topology authority.
 - ✅ `H2-R2.1.3` net checkpoint: all 4,323 fitted-instance contacts reconcile
-  to 4,065 connected endpoints, 258 explicit board no-connects and 826
+  to 4,067 connected endpoints, 256 explicit board no-connects and 826
   canonical nets; unresolved endpoints: zero.
 - ✅ `H2-R2.1.3` native KiCad checkpoint: 3 projects, 23 project-graph sheets,
   1,187 symbols and 4,327 physical pins pass parser/export and zero-finding ERC.
-- ✅ `H2-R2.1.4`: six domains, 173 controller pins, 51 cross-project nets and
-  236 cross-sheet nets reconcile with no unresolved boundary.
+- ✅ `H2-R2.1.4`: six domains, 173 controller pins, 52 cross-project nets and
+  238 cross-sheet nets reconcile with no unresolved boundary.
 - ✅ `H2-R2.1.5`: the [bilingual phase report](h2-acceptance.md) is published;
   the synchronized firmware H2 gate is open.
 - 🔒 PCB placement, routing, quote, purchase and fabrication remain unauthorized.
@@ -193,7 +193,7 @@ routing have not started.
 | H0 · Requirements and functional architecture | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Product functions, owners, transports, safety and working pin budgets | Every function has one owner and all working budgets close |
 | H1 · Physical product design | ✅ [Reviewed · `H1-R2.37`](h1-r2-acceptance.md) | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
 | H2 · Production ECAD schematic | ✅ [Reviewed · `H2-R2.1.5`](h2-acceptance.md) | Exact R2 symbols, contacts, nets, values, protection and footprints | Native KiCad, zero-finding ERC and cross-sheet/HW↔FW reconciliation pass |
-| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.2.3`** | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
+| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.3`** | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
 | H4 · Joined pre-layout gate | ⏳ Waiting for H3 and firmware R2 evidence | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |
 | H5 · Component and factory evidence | ⏳ Waiting for H4 | Exact current factory map and controlled external routes | Every BOM line has a current factory route without silent substitution |
 | H6 · KiCad placement, routing and release candidate | 🔒 Waiting for H5 | Two routed boards, routed re-analysis and hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs and independent DFM/CPL review pass |
@@ -227,11 +227,12 @@ routing have not started.
    - ✅ [`H3-R2.1.3`](power-rail-margins.md): review 224 rail profiles; all four rails pass voltage, protection and steady-thermal checks with 30.560% minimum current reserve and 24.706 °C minimum junction-temperature reserve.
    - ✅ [`H3-R2.1.4`](power-source-margins.md): own all 75 source/pack lines and safely admit all 2,266 states; maximum pack current is 3.516 A against the 8-A boundary, while charging always yields to system load.
    - ✅ [`H3-R2.1.5`](power-dc-source-result.md): pass all 15 ownership, state, rail, source and authorization cross-checks and publish H3-R2.1.
-10. ▶ `H3-R2.2`: verify startup, shutdown, source handover, brownout, inrush and watchdog behaviour.
+10. ✅ [`H3-R2.2`](power-transition-result.md): verify startup, shutdown, source handover, brownout, inrush and watchdog behaviour.
     - ✅ [`H3-R2.2.1`](power-transition-sequences.md): verify 14 ordered startup, shutdown, reset and recovery scenarios without automatic restart.
     - ✅ [`H3-R2.2.2`](power-handover.md): verify all 7,316 USB/pack handover, DPM, brownout and source-loss cases.
-    - ▶ `H3-R2.2.3`: verify inrush, load steps, watchdog kill and retained fault display.
-    - ⏳ `H3-R2.2.4`: cross-check and publish the reviewed H3-R2.2 result.
+    - ✅ [`H3-R2.2.3`](inrush-load-step.md): verify five protected-rail starts, four load-step envelopes, watchdog kill and retained fault display.
+    - ✅ [`H3-R2.2.4`](power-transition-result.md): cross-check and publish the reviewed H3-R2.2 result.
+11. ▶ `H3-R2.3`: verify display, audio, IR, battery and Airband analog corners.
 
-H3-R2.2.3 inrush/load-step/watchdog verification is the next action. Placement, routing, quoting and
+H3-R2.3 analog-corner verification is the next action. Placement, routing, quoting and
 every order remain blocked.

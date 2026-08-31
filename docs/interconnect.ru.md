@@ -6,7 +6,7 @@ UI- и RF/power-платы соединяет одна точная прямая
 
 ## Бюджет 80 контактов
 
-`30` live signals · `14` main-power · `2` AON · `24` defined returns · `10` NC reserve
+`31` live signals · `14` main-power · `2` AON · `24` defined returns · `9` NC reserve
 
 Основная шина использует **14** параллельных контактов и столько же основных возвратов. При continuous `3.75 А` получается `0.2679 А/контакт`; при step `4.25 А` — `0.3036 А/контакт` против рейтинга `0.4 А`.
 
@@ -70,7 +70,7 @@ M1 выполняет только электрическую функцию и 
 | `32` | `HUB_SAFE_I2C_SDA` | `control` |
 | `33` | `HUB_SAFE_I2C_SCL` | `control` |
 | `34` | `POWER_GROUND` | `control_return` |
-| `35` | `NC_35` | `reserve` |
+| `35` | `FAULT_KILL` | `safety` |
 | `36` | `S3_RESET_KILL_GATE` | `safety` |
 | `37` | `RUN_PERMIT` | `safety` |
 | `38` | `FAULT_ASSERT_N` | `safety` |

@@ -41,7 +41,7 @@ The complete verifiable physical model of the two 75 × 150 mm PCBs was accepted
 - Complete TX evidence: `8` exact detectors, `5` couplers and `8` bounded local islands pass fail-closed audit; all six AD8314 positions use the accepted `AD8314ARMZ-REEL` / `C652687`.
 - C5 DBG10 is relocated beside S3 DBG10 and intersects no adjacent body.
 - GPIO: front RP `47/48` with `1` free; rear RP `43/48` with `5` free; S3 uses 27 of 33 GPIO.
-- M1: all 80 contacts are assigned — 30 signals, 14 main-power, 2 AON, 24 returns and 10 true NC reserves.
+- M1: all 80 contacts are assigned — 31 signals, 14 main-power, 2 AON, 24 returns and 9 true NC reserves.
 - M1 mechanics: four 11.00-mm compression stops, two anti-shear datums and independent PCB capture; the connector carries no impact or bending load.
 - Antenna silkscreen: the generator proves no overlap with SMA bodies, the Cap-Bus slot, the display or mounting keep-outs.
 - The exact ten-SMA land pattern follows the A1 drawings: one rectangular 1.87 × 3.30-mm RF land at x=0, four rectangular 1.60 × 3.30-mm shell lands at x=±2.55 mm and board edge y=0. H5 locks the dual-face soldering process, H7 inspects all five joints per connector on the one assembled prototype, and H8 performs ordinary assembly/disassembly, continuity/inspection and every path-specific RF check without artificial ageing, drops or a vibration programme.

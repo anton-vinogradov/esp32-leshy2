@@ -13,8 +13,8 @@ fabrication or ordering.
 | Item | Checked result |
 |---|---:|
 | Current fitted-instance contacts | 4,323 |
-| Contacts assigned to native nets | 4,065 |
-| Explicit board no-connects | 258 |
+| Contacts assigned to native nets | 4,067 |
+| Explicit board no-connects | 256 |
 | Unresolved or hidden external contacts | 0 |
 | Canonical native nets | 826 |
 | Net-name aliases collapsed at a common physical node | 46 |

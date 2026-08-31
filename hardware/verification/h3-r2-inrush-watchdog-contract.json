@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "artifact": "H3-R2-inrush-watchdog-contract",
+  "marker": "H3-R2.2.3",
+  "policy": {
+    "steady_current_reserve_minimum_percent": 25,
+    "watchdog_service_period_ms": 500,
+    "watchdog_service_deadline_fraction_maximum": 0.8,
+    "s3_heartbeat_period_ms": 500,
+    "s3_heartbeat_missed_periods_before_fault": 2,
+    "fault_record_sector_bytes": 1024,
+    "fault_record_slots": 2,
+    "external_accessory_input_capacitance_uf_max": 705,
+    "external_accessory_rule": "The official U214 schematic fits 470 uF at the 5-V input. It is enveloped at +50%; any U214 or M5 Unit accessory above 705 uF requires a separate admission calculation before connection.",
+    "automatic_restart_after_fault": false,
+    "fault_only_ui_can_clear_latch": false
+  },
+  "rails": [
+    {
+      "id": "AON_SAFE_3V3",
+      "output_net": "AON_SAFE_3V3",
+      "voltage_v": 3.3,
+      "rail_margin_key": "AON_SAFE_3V3",
+      "efuse_instance": "aon_efuse",
+      "efuse_device_id": "ti_tps25961_drvr",
+      "strategy": "current_limited",
+      "datasheet_slew_v_per_ms_typical": 4.43
+    },
+    {
+      "id": "3V3_MAIN",
+      "output_net": "3V3_MAIN",
+      "voltage_v": 3.3,
+      "rail_margin_key": "3V3_MAIN",
+      "efuse_instance": "main_efuse",
+      "efuse_device_id": "ti_tps25974l_rpwr",
+      "strategy": "dvdt",
+      "dvdt_cap_instance": "main_efuse_dvdt_cap",
+      "dvdt_formula_pf_v_per_ms": 3300
+    },
+    {
+      "id": "VVOICE_4V",
+      "output_net": "VVOICE_4V",
+      "voltage_v": 4.0,
+      "rail_margin_key": "VVOICE_4V",
+      "efuse_instance": "voice_efuse",
+      "efuse_device_id": "ti_tps25974l_rpwr",
+      "strategy": "dvdt",
+      "dvdt_cap_instance": "voice_efuse_dvdt_cap",
+      "dvdt_formula_pf_v_per_ms": 3300
+    },
+    {
+      "id": "5V_U214_PROTECTED",
+      "output_net": "5V_U214_PROTECTED",
+      "voltage_v": 5.0,
+      "rail_margin_key": "5V_EXT_ACTIVE_BRANCH",
+      "efuse_instance": "ext_efuse",
+      "efuse_device_id": "ti_tps259470l_rpwr",
+      "strategy": "dvdt_external",
+      "dvdt_cap_instance": "ext_dvdt_cap",
+      "dvdt_formula_pf_v_per_ms": 2000,
+      "external_capacitance_uf_max": 705,
+      "external_capacitance_basis": "M5Stack U214 official schematic C12=470 uF, conservatively enlarged by 50%"
+    },
+    {
+      "id": "5V_UNIT_PROTECTED",
+      "output_net": "5V_UNIT_PROTECTED",
+      "voltage_v": 5.0,
+      "rail_margin_key": "5V_EXT_ACTIVE_BRANCH",
+      "efuse_instance": "unit_efuse",
+      "efuse_device_id": "ti_tps259470l_rpwr",
+      "strategy": "dvdt_external",
+      "dvdt_cap_instance": "unit_dvdt_cap",
+      "dvdt_formula_pf_v_per_ms": 2000,
+      "external_capacitance_uf_max": 705,
+      "external_capacitance_basis": "bounded M5 Unit admission; larger input reservoirs require a separate calculation"
+    }
+  ],
+  "required_endpoints": {
+    "safety_watchdog.WDI": "SAFETY_WATCHDOG_WDI",
+    "safety_watchdog.WDO_N": "FAULT_ASSERT_N",
+    "safety_controller.PA6": "SAFETY_WATCHDOG_WDI",
+    "safety_controller.PA25": "SAFETY_FAULT_REQUEST",
+    "safety_controller.PA23": "S3_FAULT_RESET_REQUEST",
+    "safety_controller.PA22": "ANY_TX_AON_N",
+    "safety_controller.PA30": "POWER_FAULT_N",
+    "safety_fault_request_iso.Y": "FAULT_ASSERT_N",
+    "safe_latch.CLR_N": "SAFE_CLEAR_N",
+    "safe_latch.Q_N": "FAULT_KILL",
+    "m1_rf_receptacle.P35": "FAULT_KILL",
+    "m1_ui_plug.P35": "FAULT_KILL",
+    "fault_led_series.END_1": "FAULT_KILL",
+    "safe_c5_fault_reset_buffer.A": "FAULT_ASSERT_N",
+    "safe_fault_reset_buffer.1A": "FAULT_ASSERT_N",
+    "safe_fault_reset_buffer.2A": "FAULT_ASSERT_N",
+    "safety_s3_reset_iso.Y": "S3_RESET_KILL_GATE"
+  },
+  "datasheet_sources": {
+    "tps25961": {
+      "document": "Texas Instruments TPS25961 datasheet",
+      "version": "SLVSGT8, December 2022",
+      "url": "https://www.ti.com/lit/ds/symlink/tps25961.pdf",
+      "checked": "2026-08-31",
+      "fact": "At 3.3 V the internally controlled nominal output slew is 4.43 V/ms and IINRUSH=COUT*SR; active current limiting bounds overload."
+    },
+    "tps2597": {
+      "document": "Texas Instruments TPS2597xx datasheet",
+      "version": "SLVSGG5D, revised May 2025",
+      "url": "https://www.ti.com/lit/ds/symlink/tps2597.pdf",
+      "checked": "2026-08-31",
+      "fact": "CdVdt(pF)=3300/SR(V/ms) and IINRUSH(mA)=SR(V/ms)*COUT(uF)."
+    },
+    "tps25947": {
+      "document": "Texas Instruments TPS25947xx datasheet",
+      "version": "SLVSFC9C, revised May 2026",
+      "url": "https://www.ti.com/lit/ds/symlink/tps25947.pdf",
+      "checked": "2026-08-31",
+      "fact": "CdVdt(pF)=2000/SR(V/ms) and IINRUSH(mA)=SR(V/ms)*COUT(uF)."
+    },
+    "tps3435": {
+      "document": "Texas Instruments TPS3435 datasheet",
+      "version": "SNVSCF7A, revised August 2024",
+      "url": "https://www.ti.com/lit/ds/symlink/tps3435.pdf",
+      "checked": "2026-08-31",
+      "fact": "TPS3435CAKAGDDFR has a 1.44..1.76-s watchdog timeout, zero watchdog startup delay, 500-us maximum device startup time and a 180..220-ms WDO-low interval."
+    },
+    "mspm0c1106": {
+      "document": "Texas Instruments MSPM0C1106 datasheet",
+      "version": "SLASFJ6B, revised January 2026",
+      "url": "https://www.ti.com/lit/ds/symlink/mspm0c1106.pdf",
+      "checked": "2026-08-31",
+      "fact": "The lower 32 kB flash is rated for 100k erase/program cycles with 1-kB sectors; remaining flash is rated for 10k cycles."
+    },
+    "u214": {
+      "document": "M5Stack U214 Cap LoRa-1262 schematic",
+      "version": "SCH V1.1, 2025-10-29",
+      "url": "https://m5stack-doc.oss-cn-shenzhen.aliyuncs.com/1208/U214-sche-Cap-LoRa1262_SCH_V1.1_20251029_2025_11_07_22_53_19.pdf",
+      "checked": "2026-08-31",
+      "fact": "C12 is a fitted 470-uF input reservoir."
+    }
+  },
+  "physical_residuals": [
+    "H8 measures every protected-rail rise, minimum voltage and settling waveform at the generated worst load step",
+    "H8 measures the real U214 and selected M5 Unit input capacitance/inrush before that accessory is admitted",
+    "H8 injects missing and stuck watchdog service, captures WDO/FAULT_ASSERT_N/FAULT_KILL and proves that source recovery cannot restart the product",
+    "H8 interrupts every fault-journal write boundary and verifies valid-slot or explicit generic-fallback selection",
+    "H8 proves the fault-only UI cannot enable C5, either RP2354B, RF/IR, voice PTT or either external 5-V branch"
+  ]
+}

@@ -11,7 +11,7 @@ Safety держит `SAFETY_FAULT_REQUEST` активным после сбро�
 ## Точные границы
 
 - TPS3808 с открытым CT: `12..28 мс`; аварийное утверждение reset — не более `20 мкс`.
-- TPS3435: timeout `1.44..1.76 с`, WDO low `180..220 мс`; heartbeat — `500 мс`.
+- TPS3435: запуск ИС — не более `500 мкс`, задержка запуска watchdog-окна — `0 мс`; timeout `1.44..1.76 с`, WDO low `180..220 мс`; heartbeat — `500 мс`.
 - 100 кОм / 2,2 мкФ: расчётный rise `96.888..283.86 мс`, гарантированный tolerance-only discharge `484.525 мс`; это debounce, не единственный interlock.
 
 ## Проверенные сценарии
@@ -45,6 +45,6 @@ Safety держит `SAFETY_FAULT_REQUEST` активным после сбро�
 - H8 measures the populated 100-kohm/2.2-uF RC under DC bias and temperature; startup safety does not depend solely on this number.
 - H8 captures POR assertion/release, direct C5/RF-RP reset and S3 fault-display retention at real rail corners.
 
-**Результат:** `14/14` сценариев и `51` endpoint-проверок проходят. [`H3-R2.2.2`](power-handover.ru.md) также проведён ревью; **текущий маркер — `H3-R2.2.3`**. Заказ и трассировка всё ещё запрещены.
+**Результат:** `14/14` сценариев и `51` endpoint-проверок проходят. [Весь H3-R2.2](power-transition-result.ru.md) проведён ревью; **текущий маркер — `H3-R2.3`**. Заказ и трассировка всё ещё запрещены.
 
 [Машинный отчёт](../hardware/verification/generated/H3-R2-transition-sequences.json).

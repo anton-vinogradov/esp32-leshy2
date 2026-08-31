@@ -1,0 +1,1511 @@
+{
+  "schema_version": 1,
+  "artifact": "H3-R2-inrush-watchdog",
+  "marker": "H3-R2.2.3",
+  "status": "reviewed_inrush_load_steps_watchdog_and_retained_fault_display",
+  "source_sha256": {
+    "hardware/verification/h3-r2-inrush-watchdog-contract.json": "0658274da5110cd64dc6e8100501197f8b82a7287ef3195d8af29a12e29b4b90",
+    "hardware/verification/h3-r2-verification-plan.json": "906bfe6fd0ae0bf8d9c7c7611a17a4b5a7aecfa236c8e63a56813b9cb76057e9",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "9452a9e9d84e67627cc1ae34faffdb2a0e75bf18574dfd5fbc6f340b5aeaf421",
+    "hardware/verification/generated/H3-R2-transition-sequences.json": "23f51d6b009ef132ca452af39dd9f13260e123c2da3bb45f0e857291f8126bd7",
+    "hardware/verification/generated/H3-R2-handover.json": "4a92bc64aa90ff9d42d8634dac5c360b9f23e9434cf29d06e63addf6a4e0350c",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "ecda8751f7231c67a8a9dbdb8b98f47d8e1b4e4ce3de005fec25527cda64d7fa",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "3a4fdf2d85119cdf93cb03f14837813f981a83741885294088d7b2e1b1ee9b7d",
+    "hardware/architecture/devices.json": "a41ef2f1ad5cf24f8320a751c6cddf64cad420d29acd69d4feb57d447aafb7c8"
+  },
+  "datasheet_sources": {
+    "tps25961": {
+      "document": "Texas Instruments TPS25961 datasheet",
+      "version": "SLVSGT8, December 2022",
+      "url": "https://www.ti.com/lit/ds/symlink/tps25961.pdf",
+      "checked": "2026-08-31",
+      "fact": "At 3.3 V the internally controlled nominal output slew is 4.43 V/ms and IINRUSH=COUT*SR; active current limiting bounds overload."
+    },
+    "tps2597": {
+      "document": "Texas Instruments TPS2597xx datasheet",
+      "version": "SLVSGG5D, revised May 2025",
+      "url": "https://www.ti.com/lit/ds/symlink/tps2597.pdf",
+      "checked": "2026-08-31",
+      "fact": "CdVdt(pF)=3300/SR(V/ms) and IINRUSH(mA)=SR(V/ms)*COUT(uF)."
+    },
+    "tps25947": {
+      "document": "Texas Instruments TPS25947xx datasheet",
+      "version": "SLVSFC9C, revised May 2026",
+      "url": "https://www.ti.com/lit/ds/symlink/tps25947.pdf",
+      "checked": "2026-08-31",
+      "fact": "CdVdt(pF)=2000/SR(V/ms) and IINRUSH(mA)=SR(V/ms)*COUT(uF)."
+    },
+    "tps3435": {
+      "document": "Texas Instruments TPS3435 datasheet",
+      "version": "SNVSCF7A, revised August 2024",
+      "url": "https://www.ti.com/lit/ds/symlink/tps3435.pdf",
+      "checked": "2026-08-31",
+      "fact": "TPS3435CAKAGDDFR has a 1.44..1.76-s watchdog timeout, zero watchdog startup delay, 500-us maximum device startup time and a 180..220-ms WDO-low interval."
+    },
+    "mspm0c1106": {
+      "document": "Texas Instruments MSPM0C1106 datasheet",
+      "version": "SLASFJ6B, revised January 2026",
+      "url": "https://www.ti.com/lit/ds/symlink/mspm0c1106.pdf",
+      "checked": "2026-08-31",
+      "fact": "The lower 32 kB flash is rated for 100k erase/program cycles with 1-kB sectors; remaining flash is rated for 10k cycles."
+    },
+    "u214": {
+      "document": "M5Stack U214 Cap LoRa-1262 schematic",
+      "version": "SCH V1.1, 2025-10-29",
+      "url": "https://m5stack-doc.oss-cn-shenzhen.aliyuncs.com/1208/U214-sche-Cap-LoRa1262_SCH_V1.1_20251029_2025_11_07_22_53_19.pdf",
+      "checked": "2026-08-31",
+      "fact": "C12 is a fitted 470-uF input reservoir."
+    }
+  },
+  "topology_checks": {
+    "safety_watchdog.WDI": true,
+    "safety_watchdog.WDO_N": true,
+    "safety_controller.PA6": true,
+    "safety_controller.PA25": true,
+    "safety_controller.PA23": true,
+    "safety_controller.PA22": true,
+    "safety_controller.PA30": true,
+    "safety_fault_request_iso.Y": true,
+    "safe_latch.CLR_N": true,
+    "safe_latch.Q_N": true,
+    "m1_rf_receptacle.P35": true,
+    "m1_ui_plug.P35": true,
+    "fault_led_series.END_1": true,
+    "safe_c5_fault_reset_buffer.A": true,
+    "safe_fault_reset_buffer.1A": true,
+    "safe_fault_reset_buffer.2A": true,
+    "safety_s3_reset_iso.Y": true
+  },
+  "automatic_capacitance_inventory": {
+    "AON_SAFE_3V3": {
+      "net": "AON_SAFE_3V3",
+      "capacitor_instances": 53,
+      "nominal_uf": "35.900000",
+      "upper_uf": "42.490000",
+      "parts": [
+        {
+          "instance_uid": "LESHY2-RF-R2:aon_efuse_output_cap",
+          "device_id": "murata_grm188r60j106me47d",
+          "mpn": "Murata GRM188R60J106ME47D",
+          "nominal_uf": "10.000000",
+          "tolerance_pct": "20.000",
+          "upper_uf": "12.000000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:cc_backup_gate_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:cc_detector_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:evidence_cmp_cc_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:evidence_cmp_voice_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:evidence_cmp_voice_v_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:evidence_mask_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:ext_branch_gate_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:ext_evidence_buffer_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:ext_request_or_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:hub_safe_i2c_aon_100n",
+          "device_id": "samsung_cl05b104ko5nnnc",
+          "mpn": "Samsung CL05B104KO5NNNC",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:hub_safe_i2c_aon_1u",
+          "device_id": "samsung_cl05a105ka5nqnc",
+          "mpn": "Samsung CL05A105KA5NQNC",
+          "nominal_uf": "1.000000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "1.100000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:pd_vin_cap",
+          "device_id": "murata_grm188r60j106me47d",
+          "mpn": "Murata GRM188R60J106ME47D",
+          "nominal_uf": "10.000000",
+          "tolerance_pct": "20.000",
+          "upper_uf": "12.000000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:safe_conditioner_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:safe_fault_reset_buffer_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:safe_gate_b_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:safe_latch_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:safe_ptt_or_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:safe_rearm_buffer_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:safe_reset_buffer_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:safe_run_fault_iso_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:safe_supervisor_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:safety_controller_bulk",
+          "device_id": "murata_grm188r60j106me47d",
+          "mpn": "Murata GRM188R60J106ME47D",
+          "nominal_uf": "10.000000",
+          "tolerance_pct": "20.000",
+          "upper_uf": "12.000000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:safety_controller_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:safety_fault_request_iso_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:safety_s3_reset_iso_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:safety_watchdog_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:slow_io_fault_sense_iso_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:slow_io_s3_evidence_iso_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:u214_supervisor_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:unit_supervisor_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:voice_band_inverter_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:voice_detector_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:voice_pd_gate_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:voice_supervisor_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:voice_v_detector_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:c5_detector_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:c5_service_mux_logic_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:c5_service_owner_latch_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:c5_service_release_logic_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:c5_service_reset_proof_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:evidence_cmp_a_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:evidence_cmp_b_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:ir_evidence_amp_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:ir_safe_gate_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:nrf0_detector_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:nrf1_detector_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:nrf2_detector_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:nrf_backup_gate_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:s3_detector_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:safe_c5_fault_reset_buffer_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:safe_c5_reset_buffer_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:safe_gate_a_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        }
+      ]
+    },
+    "3V3_MAIN": {
+      "net": "3V3_MAIN",
+      "capacitor_instances": 71,
+      "nominal_uf": "67.900000",
+      "upper_uf": "78.890000",
+      "parts": [
+        {
+          "instance_uid": "LESHY2-RF-R2:air_power_input_bulk",
+          "device_id": "samsung_cl05a105ka5nqnc",
+          "mpn": "Samsung CL05A105KA5NQNC",
+          "nominal_uf": "1.000000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "1.100000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:air_power_switch_input_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:audio_capture_selector_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:audio_rx_mux_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:audio_safe_gate_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:audio_speaker_selector_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:audio_tx_selector_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:cc_power_input_cap",
+          "device_id": "tdk_c1608x7r1c105k080ac",
+          "mpn": "TDK C1608X7R1C105K080AC",
+          "nominal_uf": "1.000000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "1.100000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:codec_i2c_iso_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:codec_i2s_bclk_iso_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:codec_i2s_din_boot_gate_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:codec_i2s_din_iso_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:codec_i2s_dout_iso_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:codec_i2s_ws_iso_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:codec_power_input_cap",
+          "device_id": "tdk_c1608x7r1c105k080ac",
+          "mpn": "TDK C1608X7R1C105K080AC",
+          "nominal_uf": "1.000000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "1.100000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:headset_control_io_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:headset_mic_selector_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:hub_safe_i2c_main_100n",
+          "device_id": "samsung_cl05b104ko5nnnc",
+          "mpn": "Samsung CL05B104KO5NNNC",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:hub_safe_i2c_main_1u",
+          "device_id": "samsung_cl05a105ka5nqnc",
+          "mpn": "Samsung CL05A105KA5NQNC",
+          "nominal_uf": "1.000000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "1.100000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:main_efuse_output_cap",
+          "device_id": "murata_grm188r60j106me47d",
+          "mpn": "Murata GRM188R60J106ME47D",
+          "nominal_uf": "10.000000",
+          "tolerance_pct": "20.000",
+          "upper_uf": "12.000000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:receiver_i2c_iso_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:receiver_power_input_cap",
+          "device_id": "tdk_c1608x7r1c105k080ac",
+          "mpn": "TDK C1608X7R1C105K080AC",
+          "nominal_uf": "1.000000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "1.100000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:rf_rp_adc_avdd_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:rf_rp_iovdd15_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:rf_rp_iovdd24_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:rf_rp_iovdd29_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:rf_rp_iovdd41_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:rf_rp_iovdd50_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:rf_rp_iovdd5_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:rf_rp_iovdd60_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:rf_rp_iovdd76_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:rf_rp_qspi_iovdd_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:rf_rp_service_usb_switch_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:rf_rp_usb_otp_vdd_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:rf_rp_vreg_vin_bulk",
+          "device_id": "tdk_c1005x5r0j475k050bc",
+          "mpn": "TDK C1005X5R0J475K050BC",
+          "nominal_uf": "4.700000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "5.170000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:slow_io_bulk_cap",
+          "device_id": "tdk_c1608x7r1c105k080ac",
+          "mpn": "TDK C1608X7R1C105K080AC",
+          "nominal_uf": "1.000000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "1.100000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:slow_io_vcci_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:slow_io_vccp_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:speaker_amp_bulk_cap",
+          "device_id": "murata_grm188r60j106me47d",
+          "mpn": "Murata GRM188R60J106ME47D",
+          "nominal_uf": "10.000000",
+          "tolerance_pct": "20.000",
+          "upper_uf": "12.000000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:speaker_amp_input_cap",
+          "device_id": "tdk_c1608x7r1c105k080ac",
+          "mpn": "TDK C1608X7R1C105K080AC",
+          "nominal_uf": "1.000000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "1.100000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:u214_host_buffer_a_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:u214_host_buffer_b_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:u214_i2c_iso_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:u214_return_buffer_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:unit_signal_iso_vcca_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:unit_signal_iso_vccb_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:voice_band_io_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:voice_hl_driver_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:voice_io_power_input_cap",
+          "device_id": "tdk_c1608x7r1c105k080ac",
+          "mpn": "TDK C1608X7R1C105K080AC",
+          "nominal_uf": "1.000000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "1.100000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:backlight_efuse_input_cap",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:c5_service_usb_switch_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:hub_rp_adc_avdd_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd15_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd24_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd29_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd41_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd50_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd5_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd60_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:hub_rp_iovdd76_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:hub_rp_qspi_iovdd_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:hub_rp_service_usb_switch_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:hub_rp_usb_otp_vdd_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:hub_rp_vreg_vin_bulk",
+          "device_id": "tdk_c1005x5r0j475k050bc",
+          "mpn": "TDK C1005X5R0J475K050BC",
+          "nominal_uf": "4.700000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "5.170000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:ir_power_input_cap",
+          "device_id": "tdk_c1608x7r1c105k080ac",
+          "mpn": "TDK C1608X7R1C105K080AC",
+          "nominal_uf": "1.000000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "1.100000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:nrf_power_input_cap",
+          "device_id": "tdk_c1608x7r1c105k080ac",
+          "mpn": "TDK C1608X7R1C105K080AC",
+          "nominal_uf": "1.000000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "1.100000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:s3_supply_bulk",
+          "device_id": "murata_grm21br60j226me39l",
+          "mpn": "Murata GRM21BR60J226ME39L",
+          "nominal_uf": "22.000000",
+          "tolerance_pct": "20.000",
+          "upper_uf": "26.400000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:s3_supply_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:sd_power_input_cap",
+          "device_id": "tdk_c1608x7r1c105k080ac",
+          "mpn": "TDK C1608X7R1C105K080AC",
+          "nominal_uf": "1.000000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "1.100000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:touch_irq_buffer_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:ui_matrix_io_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        }
+      ]
+    },
+    "VVOICE_4V": {
+      "net": "VVOICE_4V",
+      "capacitor_instances": 1,
+      "nominal_uf": "10.000000",
+      "upper_uf": "12.000000",
+      "parts": [
+        {
+          "instance_uid": "LESHY2-RF-R2:voice_efuse_output_cap",
+          "device_id": "murata_grm188r60j106me47d",
+          "mpn": "Murata GRM188R60J106ME47D",
+          "nominal_uf": "10.000000",
+          "tolerance_pct": "20.000",
+          "upper_uf": "12.000000"
+        }
+      ]
+    },
+    "5V_U214_PROTECTED": {
+      "net": "5V_U214_PROTECTED",
+      "capacitor_instances": 1,
+      "nominal_uf": "2.200000",
+      "upper_uf": "2.420000",
+      "parts": [
+        {
+          "instance_uid": "LESHY2-RF-R2:ext_output_cap",
+          "device_id": "murata_grm21br71e225ke11l",
+          "mpn": "Murata GRM21BR71E225KE11L",
+          "nominal_uf": "2.200000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "2.420000"
+        }
+      ]
+    },
+    "5V_UNIT_PROTECTED": {
+      "net": "5V_UNIT_PROTECTED",
+      "capacitor_instances": 1,
+      "nominal_uf": "2.200000",
+      "upper_uf": "2.420000",
+      "parts": [
+        {
+          "instance_uid": "LESHY2-RF-R2:unit_output_cap",
+          "device_id": "murata_grm21br71e225ke11l",
+          "mpn": "Murata GRM21BR71E225KE11L",
+          "nominal_uf": "2.200000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "2.420000"
+        }
+      ]
+    }
+  },
+  "startup_envelopes": [
+    {
+      "rail": "AON_SAFE_3V3",
+      "output_net": "AON_SAFE_3V3",
+      "strategy": "minimum current limit bounds a commanded fixed-slew start",
+      "pcb_capacitance_upper_uf": "42.490000",
+      "external_capacitance_upper_uf": "0.000000",
+      "capacitance_upper_uf": "42.490000",
+      "worst_load_ma": "72.100",
+      "capacitive_inrush_ma": "92.900",
+      "combined_current_ma": "165.000",
+      "effective_hardware_min_ma": "165.000",
+      "current_margin_ma": "0.000",
+      "ramp_time_ms": "1.509333",
+      "energy_mj": "0.231358",
+      "status": "pass"
+    },
+    {
+      "rail": "3V3_MAIN",
+      "output_net": "3V3_MAIN",
+      "strategy": "fastest dV/dt corner from minimum exact control capacitance",
+      "pcb_capacitance_upper_uf": "78.890000",
+      "external_capacitance_upper_uf": "0.000000",
+      "capacitance_upper_uf": "78.890000",
+      "worst_load_ma": "3046.000",
+      "capacitive_inrush_ma": "61.545",
+      "combined_current_ma": "3107.545",
+      "effective_hardware_min_ma": "4000.000",
+      "current_margin_ma": "892.455",
+      "ramp_time_ms": "4.230000",
+      "energy_mj": "0.429556",
+      "status": "pass"
+    },
+    {
+      "rail": "VVOICE_4V",
+      "output_net": "VVOICE_4V",
+      "strategy": "fastest dV/dt corner from minimum exact control capacitance",
+      "pcb_capacitance_upper_uf": "12.000000",
+      "external_capacitance_upper_uf": "0.000000",
+      "capacitance_upper_uf": "12.000000",
+      "worst_load_ma": "750.000",
+      "capacitive_inrush_ma": "9.362",
+      "combined_current_ma": "759.362",
+      "effective_hardware_min_ma": "1550.000",
+      "current_margin_ma": "790.638",
+      "ramp_time_ms": "5.127273",
+      "energy_mj": "0.096000",
+      "status": "pass"
+    },
+    {
+      "rail": "5V_U214_PROTECTED",
+      "output_net": "5V_U214_PROTECTED",
+      "strategy": "fastest dV/dt corner from minimum exact control capacitance",
+      "pcb_capacitance_upper_uf": "2.420000",
+      "external_capacitance_upper_uf": "705.000000",
+      "capacitance_upper_uf": "707.420000",
+      "worst_load_ma": "1250.000",
+      "capacitive_inrush_ma": "334.478",
+      "combined_current_ma": "1584.478",
+      "effective_hardware_min_ma": "1632.000",
+      "current_margin_ma": "47.522",
+      "ramp_time_ms": "10.575000",
+      "energy_mj": "8.842750",
+      "status": "pass"
+    },
+    {
+      "rail": "5V_UNIT_PROTECTED",
+      "output_net": "5V_UNIT_PROTECTED",
+      "strategy": "fastest dV/dt corner from minimum exact control capacitance",
+      "pcb_capacitance_upper_uf": "2.420000",
+      "external_capacitance_upper_uf": "705.000000",
+      "capacitance_upper_uf": "707.420000",
+      "worst_load_ma": "1250.000",
+      "capacitive_inrush_ma": "334.478",
+      "combined_current_ma": "1584.478",
+      "effective_hardware_min_ma": "1632.000",
+      "current_margin_ma": "47.522",
+      "ramp_time_ms": "10.575000",
+      "energy_mj": "8.842750",
+      "status": "pass"
+    }
+  ],
+  "external_accessory_admission": {
+    "official_u214_capacitance_uf": 470,
+    "admitted_external_capacitance_uf": 705,
+    "rule": "The official U214 schematic fits 470 uF at the 5-V input. It is enveloped at +50%; any U214 or M5 Unit accessory above 705 uF requires a separate admission calculation before connection.",
+    "u214_source": {
+      "document": "M5Stack U214 Cap LoRa-1262 schematic",
+      "version": "SCH V1.1, 2025-10-29",
+      "url": "https://m5stack-doc.oss-cn-shenzhen.aliyuncs.com/1208/U214-sche-Cap-LoRa1262_SCH_V1.1_20251029_2025_11_07_22_53_19.pdf",
+      "checked": "2026-08-31",
+      "fact": "C12 is a fitted 470-uF input reservoir."
+    }
+  },
+  "load_steps": {
+    "AON_SAFE_3V3": {
+      "minimum_endpoint_ma": "55.000",
+      "maximum_endpoint_ma": "72.100",
+      "maximum_upward_step_ma": "17.100",
+      "endpoint_current_margin_ma": "92.900",
+      "steady_pf03_status": "pass",
+      "status": "pass"
+    },
+    "3V3_MAIN": {
+      "minimum_endpoint_ma": "390.000",
+      "maximum_endpoint_ma": "3046.000",
+      "maximum_upward_step_ma": "2656.000",
+      "endpoint_current_margin_ma": "954.000",
+      "steady_pf03_status": "pass",
+      "status": "pass"
+    },
+    "VVOICE_4V": {
+      "minimum_endpoint_ma": "0.000",
+      "maximum_endpoint_ma": "750.000",
+      "maximum_upward_step_ma": "750.000",
+      "endpoint_current_margin_ma": "800.000",
+      "steady_pf03_status": "pass",
+      "status": "pass"
+    },
+    "5V_EXT_ACTIVE_BRANCH": {
+      "minimum_endpoint_ma": "0.000",
+      "maximum_endpoint_ma": "1250.000",
+      "maximum_upward_step_ma": "1250.000",
+      "endpoint_current_margin_ma": "382.000",
+      "steady_pf03_status": "pass",
+      "status": "pass"
+    }
+  },
+  "convergence": {
+    "dt_ms": "0.010",
+    "dt2_ms": "0.005",
+    "maximum_ramp_time_difference_ms": "0.005000",
+    "same_pass_fail": true,
+    "rows": [
+      {
+        "rail": "AON_SAFE_3V3",
+        "dt_ms": "0.010",
+        "ramp_ms": "1.510000",
+        "dt2_ms": "0.005",
+        "ramp_dt2_ms": "1.510000",
+        "difference_ms": "0.000000",
+        "same_result": true
+      },
+      {
+        "rail": "3V3_MAIN",
+        "dt_ms": "0.010",
+        "ramp_ms": "4.230000",
+        "dt2_ms": "0.005",
+        "ramp_dt2_ms": "4.230000",
+        "difference_ms": "0.000000",
+        "same_result": true
+      },
+      {
+        "rail": "VVOICE_4V",
+        "dt_ms": "0.010",
+        "ramp_ms": "5.130000",
+        "dt2_ms": "0.005",
+        "ramp_dt2_ms": "5.130000",
+        "difference_ms": "0.000000",
+        "same_result": true
+      },
+      {
+        "rail": "5V_U214_PROTECTED",
+        "dt_ms": "0.010",
+        "ramp_ms": "10.580000",
+        "dt2_ms": "0.005",
+        "ramp_dt2_ms": "10.575000",
+        "difference_ms": "0.005000",
+        "same_result": true
+      },
+      {
+        "rail": "5V_UNIT_PROTECTED",
+        "dt_ms": "0.010",
+        "ramp_ms": "10.580000",
+        "dt2_ms": "0.005",
+        "ramp_dt2_ms": "10.575000",
+        "difference_ms": "0.005000",
+        "same_result": true
+      }
+    ]
+  },
+  "watchdog": {
+    "device_id": "ti_tps3435cakagddfr",
+    "mpn": "Texas Instruments TPS3435CAKAGDDFR",
+    "device_startup_time_us_max": 500,
+    "watchdog_startup_delay_ms": {
+      "min": 0,
+      "typ": 0,
+      "max": 0
+    },
+    "timeout_ms": {
+      "min": 1440,
+      "typ": 1600,
+      "max": 1760
+    },
+    "wdo_low_ms": {
+      "min": 180,
+      "typ": 200,
+      "max": 220
+    },
+    "service_period_ms": 500,
+    "deadline_fraction_percent": "34.722",
+    "s3_heartbeat_period_ms": 500,
+    "s3_heartbeat_deadline_ms": 1000,
+    "interpretation": "tWDO is the output-low interval after timeout, not additional fault-detection latency",
+    "checks": {
+      "exact_mpn": true,
+      "timeout": true,
+      "device_startup": true,
+      "watchdog_startup_delay": true,
+      "wdo_interval": true,
+      "service_deadline": true,
+      "topology": true
+    }
+  },
+  "fault_record": {
+    "controller": "Texas Instruments MSPM0C1106SDGS20R",
+    "flash_kb": 64,
+    "slots": 2,
+    "sector_bytes_each": 1024,
+    "lower_flash_endurance_cycles_per_sector": 100000,
+    "minimum_fault_commits": 200000,
+    "commit_order": [
+      "erase inactive sector",
+      "write body and CRC",
+      "verify body",
+      "write final commit marker",
+      "select newest valid event counter"
+    ],
+    "fields": [
+      "schema",
+      "event_counter",
+      "primary_cause",
+      "zone_or_group",
+      "measured_value",
+      "limit",
+      "evidence_mask",
+      "rail_and_source_state",
+      "action",
+      "crc",
+      "commit_marker"
+    ],
+    "complete_aon_loss": "final write is not guaranteed; show an explicit generic power-loss fallback instead of inventing a cause"
+  },
+  "fault_display": {
+    "screen_when": "3V3_MAIN and the UI thermal zone remain safe",
+    "screen_must_show": [
+      "plain-language cause",
+      "zone or signal group",
+      "measured value and limit when known",
+      "action already taken",
+      "event identifier",
+      "move RUN to KILL before restart"
+    ],
+    "screen_forbidden_actions": [
+      "clear FAULT_KILL",
+      "enable C5",
+      "enable either RP2354B",
+      "enable RF or IR",
+      "assert voice PTT",
+      "enable either external 5-V branch"
+    ],
+    "screen_unavailable": "UI/display overtemperature, unsafe main rail or complete AON loss; use the AON FAULT LED when powered and later readout"
+  },
+  "fault_scenarios": [
+    {
+      "id": "WD-R2-01",
+      "fault": "safety controller stops or WDI sticks",
+      "maximum_detection_ms": 1760,
+      "outcome": "TPS3435 drives FAULT_ASSERT_N low and hardware clears RUN permit"
+    },
+    {
+      "id": "WD-R2-02",
+      "fault": "S3 system heartbeat stops",
+      "maximum_detection_ms": 1000,
+      "outcome": "safety-controller lease monitor requests fault; its own stall remains covered by TPS3435"
+    },
+    {
+      "id": "WD-R2-03",
+      "fault": "TX evidence exists without the current short lease",
+      "maximum_detection_ms": 100,
+      "outcome": "AON evidence interrupt requests fault; no application-side override exists"
+    },
+    {
+      "id": "WD-R2-04",
+      "fault": "POWER_FAULT_N or a critical POWER/RF condition",
+      "maximum_detection_ms": 100,
+      "outcome": "fault request clears RUN, resets C5/RF RP and clamps voice power"
+    },
+    {
+      "id": "WD-R2-05",
+      "fault": "WDO or external fault source later recovers",
+      "maximum_detection_ms": 0,
+      "outcome": "FAULT_KILL remains latched; physical KILL-to-RUN is still required"
+    },
+    {
+      "id": "WD-R2-06",
+      "fault": "S3 application is unresponsive but main/UI rails are safe",
+      "maximum_detection_ms": 1000,
+      "outcome": "Safety records cause, pulses only S3 reset and permits bounded fault-only UI"
+    },
+    {
+      "id": "WD-R2-07",
+      "fault": "UI/display thermal zone is unsafe",
+      "maximum_detection_ms": 100,
+      "outcome": "screen stays off; AON FAULT LED and later service record replace live display"
+    },
+    {
+      "id": "WD-R2-08",
+      "fault": "complete AON loss",
+      "maximum_detection_ms": 0,
+      "outcome": "hardware falls safe; a later boot uses the generic power-loss fallback if no committed record exists"
+    },
+    {
+      "id": "WD-R2-09",
+      "fault": "power fails during fault-record update",
+      "maximum_detection_ms": 0,
+      "outcome": "previous CRC-valid slot remains authoritative; partial slot is ignored"
+    },
+    {
+      "id": "WD-R2-10",
+      "fault": "fault-only firmware attempts to enable a payload",
+      "maximum_detection_ms": 0,
+      "outcome": "C5/RP/RF/IR/voice/external rails remain blocked by the uncleared hardware latch"
+    }
+  ],
+  "summary": {
+    "pcb_capacitor_instances": 127,
+    "startup_envelopes": 5,
+    "passed_startup_envelopes": 5,
+    "load_step_rails": 4,
+    "passed_load_step_rails": 4,
+    "fault_scenarios": 10,
+    "passed_fault_scenarios": 10,
+    "topology_checks": 17,
+    "analytical_failures": 0,
+    "automatic_restarts": 0
+  },
+  "proof_boundary": {
+    "proved": "exact current-limit and dV/dt corners, generated capacitance inventory, load-step endpoints, independent watchdog topology/deadline and fail-closed retained-diagnostic contract",
+    "not_claimed": "routed droop, ringing, converter settling, accessory specimen capacitance or implemented fault-journal power-cut behavior",
+    "physical_owner": "H8 after H6 routed-parasitic re-analysis"
+  },
+  "physical_residuals": [
+    "H8 measures every protected-rail rise, minimum voltage and settling waveform at the generated worst load step",
+    "H8 measures the real U214 and selected M5 Unit input capacitance/inrush before that accessory is admitted",
+    "H8 injects missing and stuck watchdog service, captures WDO/FAULT_ASSERT_N/FAULT_KILL and proves that source recovery cannot restart the product",
+    "H8 interrupts every fault-journal write boundary and verifies valid-slot or explicit generic-fallback selection",
+    "H8 proves the fault-only UI cannot enable C5, either RP2354B, RF/IR, voice PTT or either external 5-V branch"
+  ],
+  "authorization": {
+    "pcb_placement_or_routing": false,
+    "purchasing": false,
+    "fabrication": false
+  },
+  "next": {
+    "marker": "H3-R2.2.4",
+    "action": "cross-check and publish the reviewed H3-R2.2 result"
+  },
+  "corrected_findings": [
+    {
+      "id": "H3-R2.2.3-F01",
+      "before": "fault LED override used FAULT_ASSERT_N",
+      "after": "fault LED resistor is driven by latched FAULT_KILL",
+      "functional_effect": "amber indicator is on after a latched fault rather than during normal operation"
+    },
+    {
+      "id": "H3-R2.2.3-F02",
+      "before": "TPS3435 startup_delay_ms ambiguously mixed two timings",
+      "after": "500-us device startup and zero watchdog startup delay are separate exact fields",
+      "functional_effect": "startup timing is no longer overstated"
+    }
+  ],
+  "errors": []
+}

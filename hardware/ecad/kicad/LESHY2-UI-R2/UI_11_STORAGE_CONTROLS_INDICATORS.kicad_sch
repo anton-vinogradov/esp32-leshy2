@@ -6230,11 +6230,11 @@
 			)
 		)
 	)
-	(hierarchical_label "FAULT_ASSERT_N"
+	(hierarchical_label "FAULT_KILL"
 		(shape bidirectional)
 		(at 401.32 157.48 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "aa494ac1-5052-5066-b00f-687550dc0754")
+		(uuid "ceda0d1d-15ef-5f86-afac-6b389afae020")
 	)
 	(label "FAULT_LED_A"
 		(at 441.96 157.48 180)

@@ -4,15 +4,15 @@
   "marker": "H3-R2.2.1",
   "status": "reviewed_startup_shutdown_reset_and_recovery",
   "source_sha256": {
-    "hardware/verification/h3-r2-transition-sequence-contract.json": "201b7b47d8154b5b321e8ba951505f774e0100731585b996b3bea6db84ac9c41",
-    "hardware/verification/h3-r2-verification-plan.json": "8c4d057572a52837c9f723707d570971dc9fbf213a855156e92023582fc5b38a",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "75420e74851dabae190e3ca4e224d972f9e7a1203fc07161efc2151361ccd108",
-    "hardware/verification/generated/H3-R2-method-contract.json": "c28a6c4df5060067f624efd2e65859c25c8762f3271ef1b79479cf4116be56ae",
-    "hardware/verification/generated/H3-R2-dc-source-crosscheck.json": "887b504c4459cad530a3473a5bf31e5aa43e784b95143445876957d6fd8b9e8f",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "e2887185f19fd7d6c29aa91502ba973cd12e2fa45e7d0d28d5d5f0fe87c21ac5",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "6f4bd55dc54a911a075fb08b2b8cadeba255fc85cde1893bb93f9d8880d01dfc",
-    "hardware/ecad/generated/H2-R2-interboard-m1.json": "baf93ef396bada362de08057604e4413bad26e2bbd1f18e520fb4bc49e43ae39",
-    "hardware/architecture/devices.json": "d20f0385775cc71e06578c5ab97df21adb589b43cdee19e315a99817a6a6d46a"
+    "hardware/verification/h3-r2-transition-sequence-contract.json": "5d7b9f1484abf3dd943e68712ea0b385f633b4483b61dc74605a1af667e9a618",
+    "hardware/verification/h3-r2-verification-plan.json": "906bfe6fd0ae0bf8d9c7c7611a17a4b5a7aecfa236c8e63a56813b9cb76057e9",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "e743b1373f35f10b33c4c2892a7355625064a911f77b5a3bcaf5ccd0080378d9",
+    "hardware/verification/generated/H3-R2-method-contract.json": "243841c29782227d2483fac5d4a41476d6a794a42df7a229b2e505b35665ef36",
+    "hardware/verification/generated/H3-R2-dc-source-crosscheck.json": "6dd9a4ea2273b3ea8d441b4a1d4357dcda150a6469c97e891480f602679b38a3",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "ecda8751f7231c67a8a9dbdb8b98f47d8e1b4e4ce3de005fec25527cda64d7fa",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "3a4fdf2d85119cdf93cb03f14837813f981a83741885294088d7b2e1b1ee9b7d",
+    "hardware/ecad/generated/H2-R2-interboard-m1.json": "127965ec1e68cbf8c57d028fd067c56a724a3259248bab4ba5c86c8f9307b6fd",
+    "hardware/architecture/devices.json": "a41ef2f1ad5cf24f8320a751c6cddf64cad420d29acd69d4feb57d447aafb7c8"
   },
   "exact_devices": {
     "supervisor": {
@@ -130,6 +130,7 @@
     "safe_reset_sink_b.D1": true
   },
   "net_checks": {
+    "FAULT_KILL": true,
     "S3_RESET_KILL_GATE": true,
     "FAULT_ASSERT_N": true,
     "RUN_PERMIT": true,
@@ -151,6 +152,12 @@
       "min": 180,
       "typ": 200,
       "max": 220
+    },
+    "watchdog_device_startup_time_us_max": 500,
+    "watchdog_startup_delay_ms": {
+      "min": 0,
+      "typ": 0,
+      "max": 0
     },
     "watchdog_service_period_ms": 500,
     "rearm_rc": {
@@ -2102,7 +2109,7 @@
     "passed_scenarios": 14,
     "topology_endpoints": 51,
     "topology_failures": 0,
-    "net_checks": 4,
+    "net_checks": 5,
     "errors": 0
   },
   "corrections": [

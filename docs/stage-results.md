@@ -58,7 +58,7 @@ TX path physically complete; the six AD8314 positions use the accepted
 external, internal, antenna-edge and sandwich views report zero same-face
 collisions and 2.59 mm minimum opposing-face clearance against the 0.70 mm rule.
 The onboard video receiver, decoder, connector, antenna and physical bay are
-removed. Six S3 GPIOs, five rear-RP GPIOs and eleven M1 contacts remain
+removed. Six S3 GPIOs, five rear-RP GPIOs and nine M1 contacts remain
 reserves; no hidden active module requires owner soldering after PCBA.
 
 H1 has no physical blocker. The complete mock-up was explicitly accepted on
@@ -93,11 +93,11 @@ Exact current checklist:
 6. ✅ `H2-R2.1.3` definitions/instances: 237 controlled symbols, 1,618 PCB-pad
    pins and all 1,187 fitted instances pass the current three-project allocation;
 7. ✅ `H2-R2.1.3` nets: 4,323 fitted-instance contacts resolve to 826 canonical
-   nets or 258 explicit board no-connects with zero unresolved endpoints;
+   nets or 256 explicit board no-connects with zero unresolved endpoints;
 8. ✅ `H2-R2.1.3`: three native KiCad projects materialize 4,327 physical pins
    and pass ERC with zero errors and zero warnings;
-9. ✅ `H2-R2.1.4`: six domains, 173 controller pins, 51 cross-project nets and
-   236 cross-sheet nets reconcile with zero unresolved boundary;
+9. ✅ `H2-R2.1.4`: six domains, 173 controller pins, 52 cross-project nets and
+   238 cross-sheet nets reconcile with zero unresolved boundary;
 10. ✅ `H2-R2.1.5`: the bilingual result report is published and the synchronized
     firmware H2 gate is open.
 
@@ -116,7 +116,7 @@ clearly labels retained R1 ECAD as non-current evidence.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** ▶️ current at **`H3-R2.2.3`** inside H3-R2.2.
+**Status:** ▶️ current at **`H3-R2.3`**; H3-R2.2 is reviewed.
 
 [`H3-R2.0.1`](h3-r2-input-freeze.md) reviewed the hash-bound H2 input and complete R2
 verification matrix. [`H3-R2.0.2`](parameter-model-register.md) reviewed exact
@@ -136,8 +136,11 @@ reviewed. [`H3-R2.2.1`](power-transition-sequences.md) reviews all 14 ordered
 startup, shutdown, reset and recovery scenarios without automatic restart;
 S3 retains the fault UI while C5/RF RP reset directly. [`H3-R2.2.2`](power-handover.md)
 reviews all 7,316 USB/pack/DPM/brownout/source-loss cases with zero unsafe
-admission or automatic restart. Current H3-R2.2.3 work verifies inrush, load
-steps, watchdog kill and retained fault display. The expected result is complete power, digital, RF, audio,
+admission or automatic restart. [`H3-R2.2.3/.4`](power-transition-result.md)
+reviews five protected-rail starts, four load-step envelopes and ten
+watchdog/fault-display cases with zero analytical failures or automatic restart.
+Current H3-R2.3 work verifies display, audio, IR, battery and Airband analog
+corners. The expected result is complete power, digital, RF, audio,
 timing, thermal and fault verification. Every legal state and transition must
 pass before fabrication.
 

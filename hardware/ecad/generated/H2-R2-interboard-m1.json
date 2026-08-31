@@ -210,8 +210,8 @@
     },
     {
       "contact": 35,
-      "net": "NC_35",
-      "class": "reserve",
+      "net": "FAULT_KILL",
+      "class": "safety",
       "direction": null
     },
     {
@@ -488,8 +488,8 @@
   "summary": {
     "physical_contacts": 80,
     "unique_nets": 44,
-    "no_connect_reserve_contacts": 10,
-    "explicit_reserve_class_contacts": 10,
+    "no_connect_reserve_contacts": 9,
+    "explicit_reserve_class_contacts": 9,
     "errors": 0
   },
   "errors": []

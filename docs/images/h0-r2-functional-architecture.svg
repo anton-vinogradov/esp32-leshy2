@@ -51,13 +51,13 @@
 <text x="630" y="258" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#526076">80-contact</text>
 <text x="630" y="292" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#7c3aed">RP link</text>
 <text x="630" y="310" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#526076">1.5 MB/s</text>
-<text x="630" y="355" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#7c3aed">M1.35 reserve · 36 S3 reset</text>
+<text x="630" y="355" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#7c3aed">M1.35 FAULT · 36 S3 reset</text>
 <text x="630" y="373" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#526076">1 NC + S3 reset</text>
 <text x="630" y="420" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#b42318">RUN / FAULT</text>
 <text x="630" y="438" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#526076">3× nRF evidence</text>
 <text x="630" y="485" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#166534">14 × 3V3</text>
 <text x="630" y="503" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">24 returns</text>
-<text x="630" y="520" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">30 signals</text>
+<text x="630" y="520" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">31 signals</text>
 <text x="630" y="538" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#166534">10 NC reserve</text>
 <line x1="550" y1="309" x2="585" y2="309" stroke="#7c3aed" stroke-width="2" marker-end="url(#a)"/>
 <line x1="675" y1="309" x2="710" y2="309" stroke="#7c3aed" stroke-width="2" marker-end="url(#a)"/>

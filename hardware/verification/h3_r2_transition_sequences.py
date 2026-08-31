@@ -262,8 +262,11 @@ def build() -> tuple[dict[Path, str], dict]:
     if not s3_gate_exact:
         errors.append("S3 reset gate has an unreviewed extra or missing endpoint")
 
-    if m1["summary"]["physical_contacts"] != 80 or m1["summary"]["no_connect_reserve_contacts"] != 10:
+    if m1["summary"]["physical_contacts"] != 80 or m1["summary"]["no_connect_reserve_contacts"] != 9:
         errors.append("M1 contact/reserve count differs from the current R2 map")
+    p35 = next(row for row in m1["contacts"] if row["contact"] == 35)
+    if p35["net"] != "FAULT_KILL" or p35["class"] != "safety":
+        errors.append("M1 contact 35 is not the latched front-indicator crossing")
     p36 = next(row for row in m1["contacts"] if row["contact"] == 36)
     if p36["net"] != "S3_RESET_KILL_GATE" or p36["class"] != "safety":
         errors.append("M1 contact 36 is not the bounded S3 reset crossing")
@@ -298,6 +301,10 @@ def build() -> tuple[dict[Path, str], dict]:
         errors.append("TPS3435 K timeout contract changed")
     if watchdog["watchdog_assert_time_ms"] != {"min": 180, "typ": 200, "max": 220}:
         errors.append("TPS3435 G assert-time contract changed")
+    if watchdog["device_startup_time_us_max"] != 500:
+        errors.append("TPS3435 device-startup bound changed")
+    if watchdog["watchdog_startup_delay_ms"] != {"min": 0, "typ": 0, "max": 0}:
+        errors.append("TPS3435 watchdog-window startup delay changed")
     if "CLR_N low forces Q low" not in latch["clear_behavior"]:
         errors.append("latch asynchronous-clear behavior is not bound")
 
@@ -346,6 +353,8 @@ def build() -> tuple[dict[Path, str], dict]:
             "supervisor_assertion_max_us": supervisor["sense_to_reset_assertion_max_us"],
             "watchdog_timeout_s": watchdog["watchdog_timeout_s"],
             "watchdog_assert_time_ms": watchdog["watchdog_assert_time_ms"],
+            "watchdog_device_startup_time_us_max": watchdog["device_startup_time_us_max"],
+            "watchdog_startup_delay_ms": watchdog["watchdog_startup_delay_ms"],
             "watchdog_service_period_ms": contract["policy"]["watchdog_service_period_ms"],
             "rearm_rc": {
                 "resistor_ohm": {"min": 99000, "nom": 100000, "max": 101000},
@@ -417,7 +426,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
                   "и только следующий фронт `KILL→RUN` может тактировать аппаратную защёлку `RUN_PERMIT`. USB, software reset и исчезновение причины fault фронт не создают.")
         timing_h = "## Точные границы"
         timing = (f"- TPS3808 с открытым CT: `{t['supervisor_ct_open_reset_delay_ms']['min']}..{t['supervisor_ct_open_reset_delay_ms']['max']} мс`; аварийное утверждение reset — не более `{t['supervisor_assertion_max_us']} мкс`.\n"
-                  f"- TPS3435: timeout `{t['watchdog_timeout_s']['min']}..{t['watchdog_timeout_s']['max']} с`, WDO low `{t['watchdog_assert_time_ms']['min']}..{t['watchdog_assert_time_ms']['max']} мс`; heartbeat — `{t['watchdog_service_period_ms']} мс`.\n"
+                  f"- TPS3435: запуск ИС — не более `{t['watchdog_device_startup_time_us_max']} мкс`, задержка запуска watchdog-окна — `{t['watchdog_startup_delay_ms']['max']} мс`; timeout `{t['watchdog_timeout_s']['min']}..{t['watchdog_timeout_s']['max']} с`, WDO low `{t['watchdog_assert_time_ms']['min']}..{t['watchdog_assert_time_ms']['max']} мс`; heartbeat — `{t['watchdog_service_period_ms']} мс`.\n"
                   f"- 100 кОм / 2,2 мкФ: расчётный rise `{t['rearm_rc']['rise_ms']['earliest']}..{t['rearm_rc']['rise_ms']['latest']} мс`, гарантированный tolerance-only discharge `{t['rearm_rc']['guaranteed_fall_below_vt_minus_min_ms']} мс`; это debounce, не единственный interlock.")
         seq_h = "## Проверенные сценарии"
         header = "| Сценарий | Итог |\n|---|---|"
@@ -428,7 +437,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
                  "- Антиавтозапуск теперь опирается на квалифицированный физический KILL, а не на предположение о моменте RC-фронта.")
         residual_h = "## Что остаётся физике"
         residual = "\n".join(f"- {row}" for row in manifest["physical_residuals"])
-        end = f"**Результат:** `{s['passed_scenarios']}/{s['scenarios']}` сценариев и `{s['topology_endpoints']}` endpoint-проверок проходят. [`H3-R2.2.2`](power-handover.ru.md) также проведён ревью; **текущий маркер — `H3-R2.2.3`**. Заказ и трассировка всё ещё запрещены.\n\n[Машинный отчёт](../hardware/verification/generated/H3-R2-transition-sequences.json)."
+        end = f"**Результат:** `{s['passed_scenarios']}/{s['scenarios']}` сценариев и `{s['topology_endpoints']}` endpoint-проверок проходят. [Весь H3-R2.2](power-transition-result.ru.md) проведён ревью; **текущий маркер — `H3-R2.3`**. Заказ и трассировка всё ещё запрещены.\n\n[Машинный отчёт](../hardware/verification/generated/H3-R2-transition-sequences.json)."
     else:
         title = "# Startup, reset and recovery · H3-R2.2.1"
         nav = "[Русский](power-transition-sequences.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md)"
@@ -439,7 +448,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
                   "and only the following `KILL→RUN` edge may clock the hardware `RUN_PERMIT` latch. USB, software reset and fault recovery create no such edge.")
         timing_h = "## Exact bounds"
         timing = (f"- TPS3808 with CT open: `{t['supervisor_ct_open_reset_delay_ms']['min']}..{t['supervisor_ct_open_reset_delay_ms']['max']} ms`; reset assertion within `{t['supervisor_assertion_max_us']} us`.\n"
-                  f"- TPS3435: `{t['watchdog_timeout_s']['min']}..{t['watchdog_timeout_s']['max']} s` timeout, `{t['watchdog_assert_time_ms']['min']}..{t['watchdog_assert_time_ms']['max']} ms` WDO-low interval; heartbeat target `{t['watchdog_service_period_ms']} ms`.\n"
+                  f"- TPS3435: device startup within `{t['watchdog_device_startup_time_us_max']} us`, watchdog-window startup delay `{t['watchdog_startup_delay_ms']['max']} ms`; `{t['watchdog_timeout_s']['min']}..{t['watchdog_timeout_s']['max']} s` timeout, `{t['watchdog_assert_time_ms']['min']}..{t['watchdog_assert_time_ms']['max']} ms` WDO-low interval; heartbeat target `{t['watchdog_service_period_ms']} ms`.\n"
                   f"- 100 kohm / 2.2 uF: analytical rise `{t['rearm_rc']['rise_ms']['earliest']}..{t['rearm_rc']['rise_ms']['latest']} ms`, tolerance-only guaranteed discharge `{t['rearm_rc']['guaranteed_fall_below_vt_minus_min_ms']} ms`; this is debounce, not the sole interlock.")
         seq_h = "## Verified scenarios"
         header = "| Scenario | Result |\n|---|---|"
@@ -450,7 +459,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
                  "- Anti-auto-start now depends on qualified physical KILL rather than assumed RC-edge timing.")
         residual_h = "## Physical residuals"
         residual = "\n".join(f"- {row}" for row in manifest["physical_residuals"])
-        end = f"**Result:** `{s['passed_scenarios']}/{s['scenarios']}` scenarios and `{s['topology_endpoints']}` endpoint checks pass. [`H3-R2.2.2`](power-handover.md) is also reviewed; the **current marker is `H3-R2.2.3`**. Ordering and routing remain forbidden.\n\n[Machine report](../hardware/verification/generated/H3-R2-transition-sequences.json)."
+        end = f"**Result:** `{s['passed_scenarios']}/{s['scenarios']}` scenarios and `{s['topology_endpoints']}` endpoint checks pass. [Complete H3-R2.2](power-transition-result.md) is reviewed; the **current marker is `H3-R2.3`**. Ordering and routing remain forbidden.\n\n[Machine report](../hardware/verification/generated/H3-R2-transition-sequences.json)."
     return "\n\n".join((title, nav, intro, states_h, states, timing_h, timing, seq_h, header + "\n" + body, fixes_h, fixes, residual_h, residual, end)) + "\n"
 
 

@@ -12,10 +12,10 @@
     "canonical_nets": 826,
     "domains": 6,
     "controller_pins": 173,
-    "cross_project_nets": 51,
-    "cross_sheet_nets": 236,
+    "cross_project_nets": 52,
+    "cross_sheet_nets": 238,
     "m1_contacts": 80,
-    "m1_true_nc": 10
+    "m1_true_nc": 9
   },
   "workstreams": [
     {

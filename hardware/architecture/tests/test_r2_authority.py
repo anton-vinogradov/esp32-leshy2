@@ -84,7 +84,7 @@ class R2AuthorityTest(unittest.TestCase):
         self.assertEqual(6, result["current_h0"]["domain_count"])
         self.assertEqual({"hub_rp", "rf_rp"}, set(result["current_h0"]["rp_domain_ids"]))
         self.assertEqual(80, result["current_h0"]["m1_contacts"])
-        self.assertEqual(10, result["current_h0"]["m1_reserve_contacts"])
+        self.assertEqual(9, result["current_h0"]["m1_reserve_contacts"])
         self.assertEqual(
             ("H1-R2.31", 48, 48, 5),
             (
@@ -104,7 +104,7 @@ class R2AuthorityTest(unittest.TestCase):
         self.assertEqual(6, current["domain_count"])
         self.assertEqual({"hub_rp", "rf_rp"}, set(current["rp_instances"]))
         self.assertEqual(44, current["m1_unique_nets"])
-        self.assertEqual(10, current["m1_reserve_contacts"])
+        self.assertEqual(9, current["m1_reserve_contacts"])
         self.assertTrue(current["native_kicad_started"])
         self.assertTrue(result["r2_h2_authoritative"])
         self.assertTrue(result["r2_kicad_started"])

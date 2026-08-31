@@ -1044,8 +1044,11 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "68274053-e760-5366-81e9-36e9f88fede4")
 	)
-	(no_connect (at 35.56 134.62)
-		(uuid "46c42a91-2223-5b01-bd7f-b5a5221eb62e")
+	(hierarchical_label "FAULT_KILL"
+		(shape bidirectional)
+		(at 35.56 134.62 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "108342a1-8f7e-546b-ab55-7b2f21e26cb1")
 	)
 	(hierarchical_label "S3_RESET_KILL_GATE"
 		(shape bidirectional)

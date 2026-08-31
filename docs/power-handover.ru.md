@@ -27,6 +27,6 @@ Worst-case supplement — `3.516 А` при лимите `8,000 А`; опасн�
 
 Логика, токовые пределы и безопасные исходы доказаны аналитически. Абсолютный провал `SYS`, время переключения BATFET и реальные паразитики зависят от собранной платы: их измеряем осциллографом на первом экземпляре в H8. До этого placement, routing, закупка и печать не разрешены.
 
-**Следующая точка:** `H3-R2.2.3` — inrush, load steps, watchdog kill и сохранение причины fault.
+[`H3-R2.2.3/.4`](power-transition-result.ru.md) завершили проверку inrush, load steps, watchdog и fault display. **Текущий маркер: `H3-R2.3`.**
 
 [Полный машинный результат](../hardware/verification/generated/H3-R2-handover.json).

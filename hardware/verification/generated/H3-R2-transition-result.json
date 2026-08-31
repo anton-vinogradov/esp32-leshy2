@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "artifact": "H3-R2-transition-result",
+  "marker": "H3-R2.2.4",
+  "status": "reviewed_h3_r2_2_power_transitions_complete",
+  "source_sha256": {
+    "hardware/verification/generated/H3-R2-transition-sequences.json": "23f51d6b009ef132ca452af39dd9f13260e123c2da3bb45f0e857291f8126bd7",
+    "hardware/verification/generated/H3-R2-handover.json": "4a92bc64aa90ff9d42d8634dac5c360b9f23e9434cf29d06e63addf6a4e0350c",
+    "hardware/verification/generated/H3-R2-inrush-watchdog.json": "ee9e5c31bd4dd6026096e2ad47b2efd69dcc09377d012b2b6846ba0fb9b6ed63"
+  },
+  "checks": {
+    "startup_sequences": true,
+    "usb_pack_handover": true,
+    "inrush": true,
+    "load_steps": true,
+    "watchdog": true,
+    "convergence": true,
+    "physical_residuals_owned": true,
+    "no_automatic_restart": true
+  },
+  "accepted_results": {
+    "startup_scenarios": 14,
+    "handover_cases": 7316,
+    "startup_envelopes": 5,
+    "load_step_rails": 4,
+    "fault_scenarios": 10,
+    "maximum_watchdog_detection_ms": 1760,
+    "analytical_failures": 0,
+    "automatic_restarts": 0
+  },
+  "corrected_findings": [
+    {
+      "id": "H3-R2.2.3-F01",
+      "before": "fault LED override used FAULT_ASSERT_N",
+      "after": "fault LED resistor is driven by latched FAULT_KILL",
+      "functional_effect": "amber indicator is on after a latched fault rather than during normal operation"
+    },
+    {
+      "id": "H3-R2.2.3-F02",
+      "before": "TPS3435 startup_delay_ms ambiguously mixed two timings",
+      "after": "500-us device startup and zero watchdog startup delay are separate exact fields",
+      "functional_effect": "startup timing is no longer overstated"
+    }
+  ],
+  "physical_residuals": [
+    "H8 measures every protected-rail rise, minimum voltage and settling waveform at the generated worst load step",
+    "H8 measures the real U214 and selected M5 Unit input capacitance/inrush before that accessory is admitted",
+    "H8 injects missing and stuck watchdog service, captures WDO/FAULT_ASSERT_N/FAULT_KILL and proves that source recovery cannot restart the product",
+    "H8 interrupts every fault-journal write boundary and verifies valid-slot or explicit generic-fallback selection",
+    "H8 proves the fault-only UI cannot enable C5, either RP2354B, RF/IR, voice PTT or either external 5-V branch"
+  ],
+  "authorization": {
+    "pcb_placement_or_routing": false,
+    "purchasing": false,
+    "fabrication": false
+  },
+  "next": {
+    "marker": "H3-R2.3",
+    "action": "verify display, audio, IR, battery and Airband analog corners"
+  },
+  "errors": []
+}

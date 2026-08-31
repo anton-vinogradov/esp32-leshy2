@@ -7661,7 +7661,8 @@
       },
       "electrical_contract": {
         "watchdog_timeout_s": {"min": 1.44, "typ": 1.6, "max": 1.76},
-        "startup_delay_ms": {"min": 0, "typ": 0, "max": 0},
+        "device_startup_time_us_max": 500,
+        "watchdog_startup_delay_ms": {"min": 0, "typ": 0, "max": 0},
         "watchdog_assert_time_ms": {"min": 180, "typ": 200, "max": 220},
         "output": "active-low open-drain WDO",
         "input_contract": "timeout WDI; the AON safety controller must continue making edges before the 1.6-s deadline",

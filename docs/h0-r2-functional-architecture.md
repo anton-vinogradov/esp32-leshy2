@@ -2,7 +2,7 @@
 
 H0-R2 is the new functional baseline: UI and display remain local to S3, high-throughput peripheral work is offloaded through the Hub RP, the onboard video path is removed, and 118–137 MHz Airband AM is now mandatory.
 
-> The exact current marker is **H3-R2.2.3**. The H1-R2.37 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, M1 and 226 bodies was accepted and reviewed on 2026-08-30. Native R2 H2 materializes 1,187 instances and 826 nets in three KiCad projects with zero ERC findings. H3-R2.0 freezes inputs, provenance and methods; H3-R2.1 reviews worst-case power/DC states; H3-R2.2.1 reviews 14 startup/reset/recovery scenarios; H3-R2.2.2 reviews 7,316 USB/pack/DPM/brownout/source-loss transitions without automatic restart. M1-36 carries an independent S3 fault-UI reset while C5 and RF RP retain direct fault reset. H3-R2.2.3 verifies inrush, load steps, watchdog kill and retained fault cause.
+> The exact current marker is **H3-R2.3**. The H1-R2.37 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, M1 and 226 bodies was accepted and reviewed on 2026-08-30. Native R2 H2 materializes 1,187 instances and 826 nets in three KiCad projects with zero ERC findings. H3-R2.0 freezes inputs, provenance and methods; H3-R2.1 reviews worst-case power/DC states; H3-R2.2 reviews 14 startup/reset/recovery scenarios, 7,316 USB/pack/DPM/brownout/source-loss transitions, five protected-rail starts, four load-step envelopes and ten watchdog/fault-display cases without automatic restart. M1-35 carries latched FAULT_KILL to the independent front indicator and M1-36 carries the separate S3 fault-UI reset. H3-R2.3 verifies display, audio, IR, battery and Airband analog corners.
 
 ![H0-R2 functional architecture](images/h0-r2-functional-architecture.svg)
 
@@ -12,7 +12,7 @@ H0-R2 is the new functional baseline: UI and display remain local to S3, high-th
 - Airband is a `BROADCAST_RX` submode, so its RF domain cannot run together with a TX group.
 - Buttons stay on the S3-local TCA9539PWR path while encoder and USB remain direct; direct i8080-8 provides 24 MB/s at the ILI9488-safe 24 MHz.
 - The front RP owns three nRF24 paths and microSD; the rear RP owns Si4732/Airband, CC1101, voice, audio, M5 and exactly one U214/U219 profile.
-- M1 carries control/status, safety, USB and power; contact 35 is NC reserve and contact 36 is the independent S3 fault-UI reset.
+- M1 carries control/status, safety, USB and power; contact 35 carries latched FAULT_KILL to the front indicator and contact 36 is the independent S3 fault-UI reset.
 
 ## Airband RX
 

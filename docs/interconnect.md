@@ -6,7 +6,7 @@ The UI and RF/power PCBs use one exact straight-SMT `Hirose FX8C-80P-SV1(92)` / 
 
 ## 80-contact budget
 
-`30` live signals · `14` main-power · `2` AON · `24` defined returns · `10` NC reserve
+`31` live signals · `14` main-power · `2` AON · `24` defined returns · `9` NC reserve
 
 The main rail uses **14** parallel contacts and the same number of primary returns. Continuous `3.75 A` is `0.2679 A/contact`; the `4.25 A` step is `0.3036 A/contact` against a `0.4 A` rating.
 
@@ -70,7 +70,7 @@ M1 is electrical/alignment only. Four exact 11.00-mm compression stops, at least
 | `32` | `HUB_SAFE_I2C_SDA` | `control` |
 | `33` | `HUB_SAFE_I2C_SCL` | `control` |
 | `34` | `POWER_GROUND` | `control_return` |
-| `35` | `NC_35` | `reserve` |
+| `35` | `FAULT_KILL` | `safety` |
 | `36` | `S3_RESET_KILL_GATE` | `safety` |
 | `37` | `RUN_PERMIT` | `safety` |
 | `38` | `FAULT_ASSERT_N` | `safety` |

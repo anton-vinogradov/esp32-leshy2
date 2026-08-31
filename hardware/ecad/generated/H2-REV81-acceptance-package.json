@@ -9,13 +9,13 @@
     "superseded_by": "hardware/architecture/h0-r2-rebaseline.json"
   },
   "source_hashes": {
-    "hardware/ecad/generated/H2-REV56-safety-consolidated.json": "a9671cbec88a5951688d604175e5829266c062743195e83bd954a7f1a1f609fb",
-    "hardware/ecad/generated/H2-REV64-erc-consolidated.json": "b9c2c5e491e9753467f6767b0c2460fdc87f6fae028d4183dedb6a3bf5f269c4",
-    "hardware/ecad/generated/H2-REV75-hwfw-consolidated.json": "df4abae1e0b6b065033ca462e4bf172646c6be51567ecda849ebee68e2148fc0",
-    "hardware/ecad/generated/H2-REV71-canonical-inventories.json": "c1da209eab3e4a3239f30d0fd38aa5ff2c6a4dfb460fa36da59dc9620e475dc5",
-    "hardware/ecad/generated/H2-REV72-physical-contacts.json": "143274974913b13e16f2f6e4eba47c4523a8908e75869cf6476cbebb19c82a5b",
-    "hardware/ecad/generated/H2-REV73-named-nets-m1.json": "9775da3a8b6382402f487c0690d549cf64b57a67c750865fcf1cb2a209e482ec",
-    "hardware/ecad/generated/H2-REV62-no-connects.json": "1cdc157ed33bb054e014805ee2e34855379d96e216133fbbad549d0c2bf763e7",
+    "hardware/ecad/generated/H2-REV56-safety-consolidated.json": "73d4f85d80753b43bb992b2db7c2acd142006b3f3c0fb66223c7c613ff540bb5",
+    "hardware/ecad/generated/H2-REV64-erc-consolidated.json": "177a82971298e23a1fa793f16f804aa555e72ecc7389edd0ffe7c3053e2d3ad3",
+    "hardware/ecad/generated/H2-REV75-hwfw-consolidated.json": "c25e8292cfe1ebb5243c5853cf33abe9fca72b71dc5a127b6373a4eee955d07c",
+    "hardware/ecad/generated/H2-REV71-canonical-inventories.json": "53346bc46ac53041e2810c3e059d1b1704c7e5c72f1f127c404f10d8e9902003",
+    "hardware/ecad/generated/H2-REV72-physical-contacts.json": "efeecf1a9efdaf403fe3cf569c790dd04e8085e4f780d4c0b5f5931ffe7211f8",
+    "hardware/ecad/generated/H2-REV73-named-nets-m1.json": "3d8762a337934cc70a5b3a0ab97452a575d636372b96360d0c945682f514ea56",
+    "hardware/ecad/generated/H2-REV62-no-connects.json": "b4529c040569555ce65ab7ab1e7455ba6dd87b6947cb2be1fb2544bfd4a825fa",
     "hardware/ecad/h2-schematic-plan.json": "ae07ba6c2a271bbea439b8285f4d427e1b58188e678ba4ab452f11f946595dfa"
   },
   "final_counts": {

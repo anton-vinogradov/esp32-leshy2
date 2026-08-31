@@ -64,6 +64,12 @@
     "safe_reset_sink_b.D1": "RF_RP_RESET_N"
   },
   "required_net_members": {
+    "FAULT_KILL": [
+      "safe_latch.Q_N",
+      "m1_rf_receptacle.P35",
+      "m1_ui_plug.P35",
+      "fault_led_series.END_1"
+    ],
     "S3_RESET_KILL_GATE": [
       "safety_s3_reset_iso.Y",
       "m1_rf_receptacle.P36",

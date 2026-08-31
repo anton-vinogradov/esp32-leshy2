@@ -32,7 +32,7 @@
     "ui_matrix_io.SCL": "SYS_UI_I2C_SCL",
     "ui_matrix_io.INT_N": "UI_HUB_ALERT_N",
     "touch_irq_buffer.Y": "UI_HUB_ALERT_N",
-    "fault_led_series.END_1": "FAULT_ASSERT_N",
+    "fault_led_series.END_1": "FAULT_KILL",
     "fault_led.K": "POWER_GROUND",
     "front_function_esd.GND": "POWER_GROUND",
     "ui_matrix_esd.GND": "POWER_GROUND",

@@ -3,8 +3,8 @@
   "stage": "H3",
   "baseline": "R2",
   "status": "current",
-  "current_workstream": "H3-R2.2",
-  "current_substep": "H3-R2.2.3",
+  "current_workstream": "H3-R2.3",
+  "current_substep": "H3-R2.3",
   "accepted_input": {
     "stage": "H2-R2.1.5",
     "status": "reviewed",
@@ -36,13 +36,13 @@
       {"id": "H3-R2.1.4", "title": "Evaluate USB, pack, charge, supplement and source-admission margins", "status": "reviewed"},
       {"id": "H3-R2.1.5", "title": "Cross-check and publish the reviewed H3-R2.1 result", "status": "reviewed"}
     ]},
-    {"id": "H3-R2.2", "title": "Startup, shutdown, handover, brownout, inrush and watchdog verification", "status": "current", "details": [
+    {"id": "H3-R2.2", "title": "Startup, shutdown, handover, brownout, inrush and watchdog verification", "status": "reviewed", "details": [
       {"id": "H3-R2.2.1", "title": "Verify ordered startup, shutdown, reset and recovery sequencing", "status": "reviewed"},
       {"id": "H3-R2.2.2", "title": "Verify USB-to-pack handover, DPM, brownout and source loss", "status": "reviewed"},
-      {"id": "H3-R2.2.3", "title": "Verify inrush, load steps, watchdog kill and retained fault display", "status": "current"},
-      {"id": "H3-R2.2.4", "title": "Cross-check and publish the reviewed H3-R2.2 result", "status": "waiting"}
+      {"id": "H3-R2.2.3", "title": "Verify inrush, load steps, watchdog kill and retained fault display", "status": "reviewed"},
+      {"id": "H3-R2.2.4", "title": "Cross-check and publish the reviewed H3-R2.2 result", "status": "reviewed"}
     ]},
-    {"id": "H3-R2.3", "title": "Display, audio, IR, battery and Airband analog-corner verification", "status": "waiting"},
+    {"id": "H3-R2.3", "title": "Display, audio, IR, battery and Airband analog-corner verification", "status": "current"},
     {"id": "H3-R2.4", "title": "Digital levels, timing, loading and direct-i8080 verification", "status": "waiting"},
     {"id": "H3-R2.5", "title": "RF feeds, coexistence, quiet states and 3x nRF24 concurrency", "status": "waiting"},
     {"id": "H3-R2.6", "title": "Thermal, single-fault and unattended-operation verification", "status": "waiting"},

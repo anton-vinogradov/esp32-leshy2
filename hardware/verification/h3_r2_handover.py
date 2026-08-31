@@ -81,7 +81,7 @@ Worst-case supplement — `{worst['pack_discharge_a']} А` при лимите `
 
 Логика, токовые пределы и безопасные исходы доказаны аналитически. Абсолютный провал `SYS`, время переключения BATFET и реальные паразитики зависят от собранной платы: их измеряем осциллографом на первом экземпляре в H8. До этого placement, routing, закупка и печать не разрешены.
 
-**Следующая точка:** `H3-R2.2.3` — inrush, load steps, watchdog kill и сохранение причины fault.
+[`H3-R2.2.3/.4`](power-transition-result.ru.md) завершили проверку inrush, load steps, watchdog и fault display. **Текущий маркер: `H3-R2.3`.**
 
 [Полный машинный результат](../hardware/verification/generated/H3-R2-handover.json).
 """
@@ -114,7 +114,7 @@ Worst supplement is `{worst['pack_discharge_a']} A` against the `8.000 A` limit;
 
 Logic, current limits and safe outcomes are proved analytically. Absolute `SYS` droop, BATFET transfer time and routed parasitics depend on the assembled board and are oscilloscope checks on the first unit in H8. Placement, routing, purchasing and fabrication remain unauthorized.
 
-**Next point:** `H3-R2.2.3` — inrush, load steps, watchdog kill and retained fault cause.
+[`H3-R2.2.3/.4`](power-transition-result.md) completed inrush, load-step, watchdog and fault-display review. **Current marker: `H3-R2.3`.**
 
 [Complete machine result](../hardware/verification/generated/H3-R2-handover.json).
 """

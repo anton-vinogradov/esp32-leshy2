@@ -50,8 +50,8 @@ class H2R2NativeKiCadTests(unittest.TestCase):
         self.assertEqual(19, summary["populated_sheet_count"])
         self.assertEqual(1187, summary["fitted_symbol_instance_count"])
         self.assertEqual(4327, summary["physical_symbol_pin_count"])
-        self.assertEqual(4069, summary["connected_physical_pin_count"])
-        self.assertEqual(258, summary["explicit_no_connect_physical_pin_count"])
+        self.assertEqual(4071, summary["connected_physical_pin_count"])
+        self.assertEqual(256, summary["explicit_no_connect_physical_pin_count"])
         self.assertEqual(5, summary["external_module_interface_annotation_count"])
         self.assertEqual(826, summary["canonical_net_count"])
 
@@ -78,7 +78,7 @@ class H2R2NativeKiCadTests(unittest.TestCase):
                     no_connect += 1
                     self.assertEqual("no_connect", disposition)
                     self.assertIsNone(net)
-        self.assertEqual((4327, 4069, 258), (physical, connected, no_connect))
+        self.assertEqual((4327, 4071, 256), (physical, connected, no_connect))
 
     def test_module_receptacles_are_annotations_not_false_pcb_pins(self):
         external = [

@@ -1,19 +1,25 @@
-# Inrush and load steps · historical R1
+# Inrush and load steps · H3-R2.2.3
 
-[Русский](inrush-load-step.ru.md) · [Home](../README.md) · [H3.2 result](power-transition-result.md)
+[Русский](inrush-load-step.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Power-transition result](power-transition-result.md)
 
-Capacitance is no longer copied by hand: the generator collects every actual capacitor instance attached to each rail from the single component/net map. It currently accounts for `103` fitted capacitors.
+The generator collects `127` fitted capacitors directly from the current R2 net ledger, applies each exact MPN tolerance and checks five protected outputs. Main, voice and external 5-V rails use the fastest `dV/dt` corner from the minimum control-capacitance corner. AON is checked as a current-limited start.
 
-| Rail | Nominal C, µF | Worst active load, mA | Result |
-|---|---:|---:|---|
-| `AON_SAFE_3V3` | 24.4 | 89.5 | pass_current_limited_start |
-| `3V3_MAIN` | 59.8 | 3063.0 | pass |
-| `VVOICE_4V` | 10.0 | 750.0 | pass |
-| `5V_U214_PROTECTED` | 2.2 | 1250.0 | pass |
-| `5V_UNIT_PROTECTED` | 2.2 | 1250.0 | pass |
+| Rail | C max, µF | Worst load, mA | Inrush, mA | Margin to min limit, mA | Result |
+| --- | ---: | ---: | ---: | ---: | --- |
+| `AON_SAFE_3V3` | 42.490000 | 72.100 | 92.900 | 0.000 | ✅ |
+| `3V3_MAIN` | 78.890000 | 3046.000 | 61.545 | 892.455 | ✅ |
+| `VVOICE_4V` | 12.000000 | 750.000 | 9.362 | 790.638 | ✅ |
+| `5V_U214_PROTECTED` | 707.420000 | 1250.000 | 334.478 | 47.522 | ✅ |
+| `5V_UNIT_PROTECTED` | 707.420000 | 1250.000 | 334.478 | 47.522 | ✅ |
 
-The AON eFuse may enter a bounded current-limited ramp and retains positive margin. Main, voice and external dV/dt networks bound capacitive inrush; accepted worst active load plus inrush remains below each minimum current limit.
+The official U214 schematic really does fit `C12 = 470 µF`; it is not hidden. The calculation admits `705 µF`, a `+50%` envelope. The same ceiling applies to an attached M5 Unit; a larger reservoir needs its own calculation first. Both external branches remain below the `1.632 A` minimum limit even with the `1.25 A` worst load.
 
-This proves the current envelope, not the short closed-loop buck droop. Effective MLCC capacitance, rail minimum and settling at named load steps remain H8 waveforms.
+The largest `3V3_MAIN` step is `2656.000 mA`; its endpoint plus startup current retains positive hardware margin. `10 µs` and `5 µs` discretizations preserve identical pass/fail results with no more than `0.005000 ms timing difference.
 
-**Status:** `H3.2.3` reviewed; 5/5 startup envelopes pass. [Machine evidence](../hardware/verification/generated/H3-VRF23-inrush-load-step.json).
+## Honest proof boundary
+
+This proves the current envelope and absence of a hardware-limit crossing. Real minimum droop, ringing, closed-loop settling and routed effective MLCC capacitance are named H8 oscilloscope checks, not invented analytical results.
+
+**Status:** `H3-R2.2.3` reviewed; `5/5` starts and `4/4` rail load-step envelopes pass.
+
+[Complete machine result](../hardware/verification/generated/H3-R2-inrush-watchdog.json).

@@ -6,17 +6,17 @@
   "sources": {
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "6f4bd55dc54a911a075fb08b2b8cadeba255fc85cde1893bb93f9d8880d01dfc",
+      "sha256": "3a4fdf2d85119cdf93cb03f14837813f981a83741885294088d7b2e1b1ee9b7d",
       "authority": true
     },
     "definitions": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "f56f83598ec8cfb98e0b4040bd5ae2415622291039cb50e341e15219fb5d3efe",
+      "sha256": "6d0a46781b50e3037c17652a25fc6bcfc669fb3fbcdbaac251d73a38c263bddd",
       "authority": true
     },
     "h0": {
       "path": "hardware/architecture/h0-r2-rebaseline.json",
-      "sha256": "f14f33a176eb6fac99365ad808cd8b99db26e672101f72dc4c02c5e5f51a2bed",
+      "sha256": "2d8acc3cb2e8b0831bfd0ceefbd55aa4798c2f08bf9d62620760082150baba6f",
       "authority": true
     },
     "dual_rp": {
@@ -41,7 +41,7 @@
     },
     "topology": {
       "path": "hardware/ecad/h2-r2-topology-overrides.json",
-      "sha256": "81090a12969d5fc8070bc581a42fd6805467197a96fb72b33170467a56338a5a",
+      "sha256": "b7490b8650e27422eb94a91a6ff399302ac1126024dc93801e59b40caa4d2b24",
       "authority": true
     },
     "historical_route_contract": {
@@ -77,8 +77,8 @@
   },
   "summary": {
     "endpoint_count": 4323,
-    "connected_endpoint_count": 4065,
-    "no_connect_endpoint_count": 258,
+    "connected_endpoint_count": 4067,
+    "no_connect_endpoint_count": 256,
     "external_interface_endpoint_count": 0,
     "unresolved_endpoint_count": 0,
     "unique_net_count": 826,
@@ -88,8 +88,8 @@
       "current_display_adapter_map": 97,
       "current_exact_contact_role": 24,
       "current_exact_stacked_flash_no_connect": 12,
-      "current_h0_m1_explicit_nc": 20,
-      "current_h0_m1_map": 140,
+      "current_h0_m1_explicit_nc": 18,
+      "current_h0_m1_map": 142,
       "current_h0_reserved_gpio_explicit_nc": 6,
       "current_h0_s3_pin_map": 27,
       "current_h1_dual_rp_pin_map": 90,
@@ -35384,9 +35384,9 @@
       "contact": "P35",
       "physical": "35",
       "role": "io",
-      "disposition": "no_connect",
-      "net": null,
-      "origin": "current_h0_m1_explicit_nc",
+      "disposition": "connected",
+      "net": "FAULT_KILL",
+      "origin": "current_h0_m1_map",
       "historical_topology_authority": false
     },
     {
@@ -44400,7 +44400,7 @@
       "physical": "1",
       "role": "power",
       "disposition": "connected",
-      "net": "FAULT_ASSERT_N",
+      "net": "FAULT_KILL",
       "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
@@ -62384,9 +62384,9 @@
       "contact": "P35",
       "physical": "35",
       "role": "io",
-      "disposition": "no_connect",
-      "net": null,
-      "origin": "current_h0_m1_explicit_nc",
+      "disposition": "connected",
+      "net": "FAULT_KILL",
+      "origin": "current_h0_m1_map",
       "historical_topology_authority": false
     },
     {

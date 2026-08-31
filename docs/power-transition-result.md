@@ -1,15 +1,21 @@
-# Power-transition verification result · historical R1
+# Power transitions and fault shutdown · H3-R2.2 result
 
-[Русский](power-transition-result.ru.md) · [Home](../README.md) · [Startup/KILL](power-transition-startup.md) · [Handover](power-handover.md) · [Inrush](inrush-load-step.md) · [Watchdog/UI](watchdog-fault-display.md)
+[Русский](power-transition-result.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Startup](power-transition-sequences.md) · [Handover](power-handover.md) · [Inrush](inrush-load-step.md) · [Watchdog](watchdog-fault-display.md)
 
-H3.2 closes as one reviewed chain: startup/KILL → USB↔pack/brownout → eFuse/inrush/load-step → watchdog/retained reason.
+The complete H3-R2.2 chain is reviewed against the current R2 architecture: physical startup and KILL → USB/pack/DPM/brownout → eFuse/inrush/load-step → watchdog, hardware latch and retained cause.
 
-- `7` startup/shutdown sequences, `7` handover states, `5` rail-startup envelopes and `6` fault scenarios pass with no unresolved analytical failure.
-- Earliest re-arm is `48.444 ms`, leaving `20.444 ms after maximum POR.
-- The watchdog detects missing service no later than `1760 ms`.
-- Two real source errors were corrected: latch polarity/asynchronous inputs and the wrong POR timing claim.
-- Physical waveforms, switch bounce, MLCC DC bias, charger-loop droop and fault injection are not claimed complete; they are explicitly assigned to H8.
+| Result | Checked |
+| --- | ---: |
+| Startup/reset/recovery | 14 / 14 |
+| USB/pack/DPM/brownout | 7316 / 7316 |
+| Protected rail starts | 5 / 5 |
+| Rail load-step envelopes | 4 / 4 |
+| Watchdog/fault display | 10 / 10 |
 
-**Historical R1-chain status:** `H3.2-R1` reviewed. The later marker in that chain was `H3.6.1-R1`, the worst-case board, battery and enclosure thermal model. The current hardware marker is `H1-R2.31`.
+Review corrected two real errors: the amber indicator now uses the latched `FAULT_KILL` rather than `FAULT_ASSERT_N`, and TPS3435 now distinguishes its `500 µs` device startup from the zero watchdog-window startup delay. Analytical failures and automatic re-arm paths are both `0`.
 
-[Machine closure package](../hardware/verification/generated/H3-VRF25-transition-consolidation.json).
+This result does not authorize placement, routing, purchase or fabrication. H6 repeats the calculations with extracted parasitics, while H8 measures the named waveform and fault-injection cases.
+
+**Next point:** `H3-R2.3` — display, audio, IR, battery and Airband analog corners.
+
+[Machine package](../hardware/verification/generated/H3-R2-transition-result.json).

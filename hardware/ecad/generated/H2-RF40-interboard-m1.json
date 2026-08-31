@@ -12,10 +12,10 @@
   "sheet": "RF_40_INTERBOARD_M1",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "2673a4d23435effe9ec592e6060a3b1bc525598944d932f0a502d0fd4636ce8f",
-    "hardware/architecture/devices.json": "d20f0385775cc71e06578c5ab97df21adb589b43cdee19e315a99817a6a6d46a",
+    "hardware/architecture/devices.json": "a41ef2f1ad5cf24f8320a751c6cddf64cad420d29acd69d4feb57d447aafb7c8",
     "hardware/ecad/generated/H2-instance-ledger.json": "7a265f865aac48c9e8826ad296f49164ad514a7f576b9a76efb0f2684580508e",
     "hardware/ecad/generated/H2-RF-root-interface.json": "0e68fd755d6f0840d4a68dbf6c47f8dea0aa2e0669a59d5b7f44457f11fff871",
-    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "d3ba9c6dc092f4f10747bffc5fd0c8f0ab83afcbc1d8624637bc92959b28510e"
+    "hardware/ecad/generated/H2-UI40-interboard-m1.json": "c853fe72d82c4197874fc5c37c59939bf05f2f4f0d6e9366b16e4821929f2a60"
   },
   "summary": {
     "ledger_instances": 1,

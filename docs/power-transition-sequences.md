@@ -11,7 +11,7 @@ Safety holds `SAFETY_FAULT_REQUEST` active after reset. Self-test must pass, phy
 ## Exact bounds
 
 - TPS3808 with CT open: `12..28 ms`; reset assertion within `20 us`.
-- TPS3435: `1.44..1.76 s` timeout, `180..220 ms` WDO-low interval; heartbeat target `500 ms`.
+- TPS3435: device startup within `500 us`, watchdog-window startup delay `0 ms`; `1.44..1.76 s` timeout, `180..220 ms` WDO-low interval; heartbeat target `500 ms`.
 - 100 kohm / 2.2 uF: analytical rise `96.888..283.86 ms`, tolerance-only guaranteed discharge `484.525 ms`; this is debounce, not the sole interlock.
 
 ## Verified scenarios
@@ -45,6 +45,6 @@ Safety holds `SAFETY_FAULT_REQUEST` active after reset. Self-test must pass, phy
 - H8 measures the populated 100-kohm/2.2-uF RC under DC bias and temperature; startup safety does not depend solely on this number.
 - H8 captures POR assertion/release, direct C5/RF-RP reset and S3 fault-display retention at real rail corners.
 
-**Result:** `14/14` scenarios and `51` endpoint checks pass. [`H3-R2.2.2`](power-handover.md) is also reviewed; the **current marker is `H3-R2.2.3`**. Ordering and routing remain forbidden.
+**Result:** `14/14` scenarios and `51` endpoint checks pass. [Complete H3-R2.2](power-transition-result.md) is reviewed; the **current marker is `H3-R2.3`**. Ordering and routing remain forbidden.
 
 [Machine report](../hardware/verification/generated/H3-R2-transition-sequences.json).

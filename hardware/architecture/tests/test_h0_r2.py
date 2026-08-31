@@ -74,7 +74,7 @@ class H0R2ArchitectureTest(unittest.TestCase):
         self.assertEqual(list(range(1, 81)), [row["contact"] for row in rows])
         classes = [row["class"] for row in rows]
         self.assertEqual(14, classes.count("main_power"))
-        self.assertEqual(10, classes.count("reserve"))
+        self.assertEqual(9, classes.count("reserve"))
         self.assertEqual(14, classes.count("main_return"))
         self.assertLess(m1["main_current"]["step_per_contact_a"], m1["main_current"]["contact_rating_a"])
         self.assertIn("compression stops", m1["mechanical_load_path"])
@@ -89,7 +89,7 @@ class H0R2ArchitectureTest(unittest.TestCase):
                 any(net.startswith(prefix) for net in nets),
                 f"board-local payload unexpectedly crosses M1: {prefix}",
             )
-        self.assertEqual("NC_35", nets[34])
+        self.assertEqual("FAULT_KILL", nets[34])
         self.assertEqual("S3_RESET_KILL_GATE", nets[35])
         self.assertEqual(
             {"HUB_RF_ALERT_N", "HUB_RF_CS_N", "HUB_RF_SCK", "HUB_RF_MOSI", "HUB_RF_MISO"},
@@ -190,7 +190,7 @@ class H0R2ArchitectureTest(unittest.TestCase):
         self.assertEqual(module.render(self.data, False), module.EN.read_text(encoding="utf-8"))
         self.assertEqual(module.render(self.data, True), module.RU.read_text(encoding="utf-8"))
         self.assertIn("0.3036 A/contact", module.EN.read_text(encoding="utf-8"))
-        self.assertIn("`10` NC reserve", module.EN.read_text(encoding="utf-8"))
+        self.assertIn("`9` NC reserve", module.EN.read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

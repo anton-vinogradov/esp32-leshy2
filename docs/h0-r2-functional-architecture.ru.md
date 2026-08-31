@@ -2,7 +2,7 @@
 
 H0-R2 проведён как новый функциональный baseline: UI и дисплей остаются на S3, высокоскоростные периферийные тракты разгружены через Hub RP, бортовой видеотракт удалён, а Airband AM 118–137 МГц теперь обязателен.
 
-> Текущий точный маркер — **H3-R2.2.3**. Физическая проекция H1-R2.37 с двумя независимыми RP2354B, точными GPIO0..47, M1 и 226 корпусами принята и прошла ревью 2026-08-30. Native R2 H2 материализует 1 187 экземпляров и 826 nets в трёх проектах KiCad без замечаний ERC. H3-R2.0 фиксирует входы, provenance и методы; H3-R2.1 проводит ревью worst-case power/DC states; H3-R2.2.1 проводит ревью 14 сценариев startup, reset и recovery; H3-R2.2.2 проводит ревью 7 316 переходов USB/pack/DPM/brownout/source-loss без автоматического перезапуска. Контакт M1-36 несёт отдельный reset S3 fault-UI, а C5 и RF RP сохраняют прямой fault-reset. H3-R2.2.3 проверяет inrush, load steps, watchdog kill и сохранение причины fault.
+> Текущий точный маркер — **H3-R2.3**. Физическая проекция H1-R2.37 с двумя независимыми RP2354B, точными GPIO0..47, M1 и 226 корпусами принята и прошла ревью 2026-08-30. Native R2 H2 материализует 1 187 экземпляров и 826 nets в трёх проектах KiCad без замечаний ERC. H3-R2.0 фиксирует входы, provenance и методы; H3-R2.1 проводит ревью worst-case power/DC states; H3-R2.2 проводит ревью 14 сценариев startup/reset/recovery, 7 316 переходов USB/pack/DPM/brownout/source-loss, пяти protected-rail starts, четырёх load-step envelopes и десяти watchdog/fault-display cases без автоматического перезапуска. M1-35 переносит latched FAULT_KILL к независимому лицевому индикатору, M1-36 — отдельный reset S3 fault-UI. H3-R2.3 проверяет analog corners дисплея, аудио, IR, аккумуляторов и Airband.
 
 ![H0-R2 functional architecture](images/h0-r2-functional-architecture.svg)
 
@@ -12,7 +12,7 @@ H0-R2 проведён как новый функциональный baseline: 
 - Airband — подрежим `BROADCAST_RX`, поэтому его RF-домен не включается одновременно с TX-группой.
 - Кнопки остаются на локальном для S3 TCA9539PWR, энкодер и USB подключены к S3 напрямую; direct i8080-8 даёт 24 МБ/с при безопасных для ILI9488 24 МГц.
 - Передний RP владеет тремя nRF24 и microSD; задний RP владеет Si4732/Airband, CC1101, voice, аудио, M5 и одним из U214/U219.
-- M1 переносит control/status, safety, USB и питание; контакт 35 — NC-резерв, контакт 36 — отдельный reset S3 fault-UI.
+- M1 переносит control/status, safety, USB и питание; контакт 35 — latched FAULT_KILL лицевого индикатора, контакт 36 — отдельный reset S3 fault-UI.
 
 ## Airband RX
 

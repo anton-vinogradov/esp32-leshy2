@@ -4,15 +4,15 @@
   "marker": "H3-R2.0.2",
   "status": "pass",
   "accepted_input": "H3-R2.0.1",
-  "input_freeze_sha256": "cb3ddcb7fa7c974cc7f04a816f8b180d3781dfc31033f051480d52d4b3f667ec",
-  "register_sha256": "52c4f59a4dec1cd4dccdad75d6acf3cf84cfb87a9b04379dfde4c720752d5939",
+  "input_freeze_sha256": "13587b2a5e62b3689a8335abc5340c67036c1faa3696ec4f69bd2bb0f1c14e06",
+  "register_sha256": "24e4be1a32e8e6b2288a825a14bf5fb8f89e06465742fd6a58f6a330e7237569",
   "source_sha256": {
     "hardware/verification/h3-r2-parameter-provenance-contract.json": "fd3a16540e49b3bc288203ebfe78b6eb06feeaf8c2e55bf34a22d84f63e49ca6",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "75420e74851dabae190e3ca4e224d972f9e7a1203fc07161efc2151361ccd108",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "4c88c32befb8d2eadbb0642d84669347e304209d0a115427a80d2b214fb8e368",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "6f4bd55dc54a911a075fb08b2b8cadeba255fc85cde1893bb93f9d8880d01dfc",
-    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "f56f83598ec8cfb98e0b4040bd5ae2415622291039cb50e341e15219fb5d3efe",
-    "hardware/architecture/devices.json": "d20f0385775cc71e06578c5ab97df21adb589b43cdee19e315a99817a6a6d46a"
+    "hardware/verification/generated/H3-R2-input-freeze.json": "e743b1373f35f10b33c4c2892a7355625064a911f77b5a3bcaf5ccd0080378d9",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "783b2c1dbc675a8dc2a9e20e025b2592c7292bcda1644d796a66becf44f62cf1",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "3a4fdf2d85119cdf93cb03f14837813f981a83741885294088d7b2e1b1ee9b7d",
+    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "6d0a46781b50e3037c17652a25fc6bcfc669fb3fbcdbaac251d73a38c263bddd",
+    "hardware/architecture/devices.json": "a41ef2f1ad5cf24f8320a751c6cddf64cad420d29acd69d4feb57d447aafb7c8"
   },
   "policy": {
     "accepted_h2_identity_is_immutable": true,
@@ -10901,7 +10901,8 @@
           "typ": 1.6,
           "max": 1.76
         },
-        "startup_delay_ms": {
+        "device_startup_time_us_max": 500,
+        "watchdog_startup_delay_ms": {
           "min": 0,
           "typ": 0,
           "max": 0
@@ -10916,7 +10917,7 @@
         "quiescent_current_typ_na": 250,
         "use": "independent last-resort monitor; WDO directly presets the hardware FAULT_KILL latch"
       },
-      "structured_parameter_count": 7,
+      "structured_parameter_count": 8,
       "parameter_state": "structured_seed_present",
       "model_method_candidate": "corner_equation_and_circuit_model",
       "model_method_state": "candidate_pending_H3-R2.0.3",
@@ -10926,7 +10927,7 @@
       ],
       "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "df77ed0db61ca2bbb8cffe72f2154509c530fc73b7b8de225891b65249c560d2",
-      "symbol_electrical_contract_sha256": "b3cf0cb8f9c67bea43dad566fa072d3a75e7f210b752504ae0475b9b0ff41cfb"
+      "symbol_electrical_contract_sha256": "dfc5440245cc84f89d02fa75574a325ed1d6ffee3fee54d71ff4cd2559b19764"
     },
     {
       "device_id": "ti_tps3808g33_dbvr",
