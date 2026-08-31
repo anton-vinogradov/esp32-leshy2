@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "id": "H3-R2-PARAMETER-PROVENANCE",
+  "marker": "H3-R2.0.2",
+  "accepted_input": "H3-R2.0.1",
+  "status": "reviewed",
+  "expected": {
+    "component_groups": 242,
+    "board_component_groups": 237,
+    "explicit_non_pcba_groups": 5,
+    "fitted_board_instances": 1187,
+    "source_missing": 0,
+    "factory_catalog_only_parameter_sources": 2
+  },
+  "manufacturer_source_overrides": {
+    "jae_dx07s016ja1r1500": {
+      "document": "JAE DX07S016JA1R1500 official exact-product page",
+      "url": "https://products.jae.com/jp/ja/connectors/category/io/dx07-receptacle/dx07s016ja1r1500/",
+      "checked": "2026-08-31",
+      "reason": "replace the distributor-hosted brochure mirror with the original manufacturer's exact-product record"
+    },
+    "ralec_rtt023r00fth": {
+      "document": "RALEC official exact-part search record for RTT023R00FTH and RTT series specification",
+      "url": "https://www.ralec.com/en-global/product_search/index/?page=1&part_no=RTT023R00FTH",
+      "checked": "2026-08-31",
+      "reason": "replace the factory catalogue card as electrical provenance while retaining C166468 as the assembly route"
+    }
+  },
+  "factory_catalog_only_parameter_sources": {
+    "chilisin_cs0805_r27j_s": {
+      "owner": "H3-R2.3",
+      "known_identity_route": "JLCPCB C108271 exact manufacturer card",
+      "required_closure": "extract the complete CS0805-R27J-S RF inductor tolerance, Q, SRF, DCR, bias and temperature envelope from a manufacturer-controlled specification or retain it as an H5 measured residual"
+    },
+    "suzhou_liming_3225_27_00_10_10_10_a": {
+      "owner": "H3-R2.3",
+      "known_identity_route": "JLCPCB C518151 exact manufacturer card",
+      "required_closure": "bind the exact crystal ESR, drive level, aging and temperature envelope to manufacturer-controlled evidence or retain it as an H5 measured residual"
+    }
+  },
+  "non_pcba_workstream_owners": {
+    "davies_1227_j": ["H3-R2.4"],
+    "eastrising_er_tft035ips_6_ctp": ["H3-R2.3", "H3-R2.4"],
+    "m5_u214": ["H3-R2.5"],
+    "te_2118651_2": ["H3-R2.5"],
+    "xtar_18650_4000mah_protected": ["H3-R2.1", "H3-R2.3", "H3-R2.6"]
+  },
+  "policy": {
+    "accepted_h2_identity_is_immutable": true,
+    "a_factory_catalog_card_proves_identity_and_assembly_route_but_not_unpublished_electrical_corners": true,
+    "missing_parameters_are_explicit_workstream_inputs_not_assumed_values": true,
+    "model_methods_are_candidates_until_h3_r2_0_3": true,
+    "no_component_replacement_or_order_is_authorized": true
+  }
+}

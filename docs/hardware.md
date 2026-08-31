@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Русский](hardware.ru.md) · [Pin assignment](pinout.md) · [Schematics](schematics.md) · [Safety](safety.md)
 
-> Current marker: **`H3-R2.0.2`**. The `H1-R2.37` physical design was accepted
+> Current marker: **`H3-R2.0.3`**. The `H1-R2.37` physical design was accepted
 > and reviewed on 2026-08-30. Nothing on this page authorizes KiCad routing
 > or an order.
 
@@ -16,8 +16,9 @@
 > The native R2 inventory and exact symbol/contact/footprint ledger passed
 > review. Three native KiCad projects now materialize all 1,187 fitted instances
 > and 4,327 physical pins with zero ERC findings. Cross-sheet and HW↔FW
-> reconciliation is reviewed; H3-R2.0.1 freezes those inputs and H3-R2.0.2 now
-> rebuilds exact parameter/model provenance.
+> reconciliation is reviewed; H3-R2.0.1 freezes those inputs and H3-R2.0.2
+> reviews exact parameter/model provenance for all 242 groups and 1,187 fitted
+> positions. H3-R2.0.3 now freezes reproducible verification methods and rules.
 
 ## Capabilities
 

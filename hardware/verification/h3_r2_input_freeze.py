@@ -24,13 +24,15 @@ HWFW = REPO / "hardware/ecad/generated/H2-R2-hwfw-contract.json"
 M1 = REPO / "hardware/ecad/generated/H2-R2-interboard-m1.json"
 AUTHORITY = REPO / "hardware/architecture/generated/H0-R2-authority-gate.json"
 PREORDER = REPO / "hardware/verification/preorder-verification-contract.json"
+H2_CONSOLIDATED = REPO / "hardware/ecad/generated/H2-REV75-hwfw-consolidated.json"
+H2_ACCEPTANCE = REPO / "hardware/ecad/generated/H2-REV81-acceptance-package.json"
 OUTPUT = REPO / "hardware/verification/generated/H3-R2-input-freeze.json"
 DOC_EN = REPO / "docs/h3-r2-input-freeze.md"
 DOC_RU = REPO / "docs/h3-r2-input-freeze.ru.md"
 
 SOURCES = (
-    CONTRACT, PLAN, H0, H1, INVENTORY, LEDGER, CONTACTS, INSTANCES, NETS,
-    KICAD, HWFW, M1, AUTHORITY, PREORDER,
+    CONTRACT, H0, H1, INVENTORY, LEDGER, CONTACTS, INSTANCES, NETS,
+    KICAD, HWFW, M1, AUTHORITY, H2_CONSOLIDATED, H2_ACCEPTANCE,
 )
 
 
@@ -73,7 +75,8 @@ def build(contract: dict | None = None) -> dict:
     if plan.get("accepted_input", {}).get("stage") != "H2-R2.1.5":
         errors.append("H3 plan does not accept reviewed H2-R2.1.5")
     statuses = {row.get("id"): row.get("status") for row in plan.get("substeps", [])}
-    if plan.get("current_substep") != "H3-R2.0.2" or statuses.get("H3-R2.0.1") != "reviewed":
+    current_h3 = str(plan.get("current_substep", ""))
+    if not current_h3.startswith("H3-R2.") or statuses.get("H3-R2.0.1") != "reviewed":
         errors.append("H3 plan does not preserve reviewed input freeze before parameter provenance")
     if kicad.get("status") != "pass" or hwfw.get("status") != "pass":
         errors.append("native KiCad or hardware/firmware reconciliation is not passing")

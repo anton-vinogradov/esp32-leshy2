@@ -1,25 +1,34 @@
-# H3 parameters and models · historical R1
+# R2 parameters and models
 
-[Русский](parameter-model-register.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Virtual verification](virtual-verification.md)
+[Home](../README.md) · [Roadmap](roadmap.md) · [Русский](parameter-model-register.ru.md)
 
-This is the H3 calculation input register: for every actually fitted device type it links the MPN, instances, schematic ownership, primary source, required parameter groups and future model method. The full table remains machine-readable so the product site stays readable.
+`H3-R2.0.2` is reviewed. This is the exact future-calculation input register for the accepted R2 circuit, not the old R1 topology: every component type is bound to its MPN, instances, sheets, parameter source, model class and verification owner.
 
 ## Coverage
 
-- `1081` instances and `218` used device types.
-- A primary source exists for `218` of `218` types; missing: `0`.
-- `74` types already have structured parameters; `144` are extracted by class during H3.1–H3.6.
-- There are `0` local vendor models; an admissible analytic, behavioral or circuit method is frozen in `H3.0.3`, never invented silently.
-- Two H2 document mirrors are superseded here by exact official Hirose and JAE sources without changing accepted H2.
+- `242` component groups: `237` on-board and `5` explicitly external/final-installed.
+- `1187` fitted positions; all `242` groups have an H3 owner.
+- `68` groups already contain structured parameters; `174` are in an explicit extraction queue rather than receiving invented values.
+- `242` method candidates are assigned; exact methods, tolerances and applicability are frozen next in `H3-R2.0.3`.
 
-## What cannot honestly close before receiving a sample
+## Model classes
 
-The exact `HMX035CTFT-001` tail/connector, optics and backlight plus the `ES8311` supplier and lot remain H5 incoming inspection. Their published-data electrical analysis still runs in H3.
+| Class | Groups | With structured seed | Need extraction |
+|---|---:|---:|---:|
+| `analog_peripheral` | 6 | 3 | 3 |
+| `connector_interconnect` | 14 | 6 | 8 |
+| `digital_interface` | 33 | 18 | 15 |
+| `electromechanical_or_load` | 7 | 0 | 7 |
+| `general_component` | 38 | 13 | 25 |
+| `passive_corner` | 118 | 17 | 101 |
+| `power_safety_active` | 11 | 3 | 8 |
+| `programmable_controller` | 2 | 0 | 2 |
+| `radio_rf` | 13 | 8 | 5 |
 
-## Closed architecture gate
+## Bounded source findings
 
-`H3-NRF24-LIFECYCLE` is closed with option A: three `E01-ML01SP4` modules remain because they provide the required full nRF24 hardware behavior. Exact C97340 is factory-stocked and adds PA/LNA output up to 20 dBm; the nRF24 family is not recommended for new designs, so H5 must still verify received marking and RF performance. A modern nRF52 is 2.4-GHz-only and supports over-air ESB compatibility, but is not an SPI/register drop-in replacement.
+For `CS0805-R27J-S` (`C108271`) and `3225-27.00-10-10-10/A` (`C518151`), JLCPCB proves exact identity and the factory route, but a complete manufacturer-controlled corner model is not yet bound. They remain `H3-R2.3` inputs; missing parameters may not be silently assumed. This is not a component-replacement request.
 
-**Historical R1-chain status:** `H3.0.2-R1` is reviewed; the later marker in that chain is `H3.6.1-R1`. The current hardware marker is `H1-R2.37`.
+> Placement, routing, purchasing and fabrication remain forbidden. The next step reproducibly freezes methods, tolerances and pass/fail rules.
 
-[213-row machine register](../hardware/verification/generated/H3-VRF02-parameter-inventory.json).
+[242-row machine register](../hardware/verification/generated/H3-R2-parameter-provenance.json). The historical R1 `H3-VRF02` register remains archived evidence and is not R2 authority.
