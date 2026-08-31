@@ -116,14 +116,15 @@ clearly labels retained R1 ECAD as non-current evidence.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** ▶️ current at **`H3-R2.1`**.
+**Status:** ▶️ current at **`H3-R2.1.2`** inside H3-R2.1.
 
 [`H3-R2.0.1`](h3-r2-input-freeze.md) reviewed the hash-bound H2 input and complete R2
 verification matrix. [`H3-R2.0.2`](parameter-model-register.md) reviewed exact
 parameter/model provenance for 242 groups and 1,187 fitted positions. Current
 methods are frozen by [`H3-R2.0.3`](verification-methods.md): nine methods and
-twelve pass/fail rules cover all 242 groups. Current work verifies worst-case
-DC, source, charge and power states. The expected result is complete power, digital, RF, audio,
+twelve pass/fail rules cover all 242 groups. [`H3-R2.1.1`](power-state-register.md)
+reviews all 2,266 legal source, charge, fault and operating states. Current work
+binds every powered instance to an explicit load line before evaluating DC margins. The expected result is complete power, digital, RF, audio,
 timing, thermal and fault verification. Every legal state and transition must
 pass before fabrication.
 

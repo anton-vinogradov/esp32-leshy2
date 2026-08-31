@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "artifact": "H3-R2-power-state-contract",
+  "marker": "H3-R2.1.1",
+  "source_profiles": {
+    "usb": [
+      {"id": "USB_ABSENT", "voltage_v": 0, "current_limit_a": 0, "negotiated": false},
+      {"id": "USB_5V_FALLBACK", "voltage_v": 5, "current_limit_a": null, "negotiated": false, "rule": "source-advertised current is measured before RUN; without a healthy pack only AON diagnostics are admitted"},
+      {"id": "USB_5V_3A", "voltage_v": 5, "current_limit_a": 3, "negotiated": true},
+      {"id": "USB_9V_3A", "voltage_v": 9, "current_limit_a": 3, "negotiated": true},
+      {"id": "USB_15V_2A", "voltage_v": 15, "current_limit_a": 2, "negotiated": true}
+    ],
+    "pack": [
+      {"id": "PACK_ABSENT", "healthy": false, "isolated": false, "voltage_v": null},
+      {"id": "PACK_ISOLATED", "healthy": false, "isolated": true, "voltage_v": null},
+      {"id": "PACK_2S_LOW", "healthy": true, "isolated": false, "voltage_v": 6.0},
+      {"id": "PACK_2S_NOMINAL", "healthy": true, "isolated": false, "voltage_v": 7.2},
+      {"id": "PACK_2S_FULL", "healthy": true, "isolated": false, "voltage_v": 8.4}
+    ]
+  },
+  "signal_groups": [
+    {"id": "NONE", "hardware": "all switched payload rails off", "modes": [{"id": "QUIET", "tx_count": 0, "rx_count": 0, "rails": []}]},
+    {"id": "S3_RF", "hardware": "native S3 2.4-GHz Wi-Fi/BLE/ESP-NOW", "modes": [{"id": "2G4_RX_OR_SCAN", "tx_count": 0}, {"id": "2G4_TX_MAX", "tx_count": 1}]},
+    {"id": "C5_RF", "hardware": "native C5 2.4/5-GHz Wi-Fi and IEEE 802.15.4", "modes": [{"id": "2G4_RX", "tx_count": 0}, {"id": "2G4_TX_MAX", "tx_count": 1}, {"id": "5G_RX", "tx_count": 0}, {"id": "5G_TX_MAX", "tx_count": 1}, {"id": "802154_RX", "tx_count": 0}, {"id": "802154_TX_MAX", "tx_count": 1}]},
+    {"id": "NRF24", "hardware": "three independent Hub-RP-local E01-ML01SP4 paths", "internal_mix_exception": true, "modes": [{"id": "3PRX", "tx_count": 0, "rx_count": 3, "identity_permutations": 1}, {"id": "1PTX_2PRX", "tx_count": 1, "rx_count": 2, "identity_permutations": 3}, {"id": "2PTX_1PRX", "tx_count": 2, "rx_count": 1, "identity_permutations": 3}, {"id": "3PTX", "tx_count": 3, "rx_count": 0, "identity_permutations": 1}]},
+    {"id": "CC1101", "hardware": "onboard bidirectional CC1101", "modes": [{"id": "RX", "tx_count": 0}, {"id": "TX_MAX", "tx_count": 1}]},
+    {"id": "VOICE", "hardware": "one-hot SA818S-U or SA818S-V", "modes": [{"id": "RX", "tx_count": 0}, {"id": "PTT_TX_MAX", "tx_count": 1}]},
+    {"id": "IR", "hardware": "C5-owned IR learning/receive/transmit", "modes": [{"id": "LEARN_OR_RAW_RX", "tx_count": 0}, {"id": "TX_MAX_DUTY_ENVELOPE", "tx_count": 1}]},
+    {"id": "LORA_CAP", "hardware": "exclusive signed rear Cap slot; R2 role name CAP_SLOT", "modes": [{"id": "U214_STOCK_RX_GNSS", "tx_count": 0, "profile": "U214"}, {"id": "U214_LESHY_RX", "tx_count": 0, "profile": "U214"}, {"id": "U214_LESHY_TX_MAX", "tx_count": 1, "profile": "U214"}, {"id": "U219_CC1101_NFC_RX_ONLY", "tx_count": 0, "profile": "U219"}]},
+    {"id": "M5_UNIT", "hardware": "independent protected M5 Unit connector", "modes": [{"id": "QUALIFIED_RX_OR_PASSIVE", "tx_count": 0}, {"id": "QUALIFIED_TX_MAX", "tx_count": 1}]},
+    {"id": "BROADCAST_RX", "hardware": "mutually exclusive FM/SW, AM/LW or Airband receive", "modes": [{"id": "FM_SW_RX", "tx_count": 0}, {"id": "AM_LW_RX", "tx_count": 0}, {"id": "AIRBAND_118_137_RX", "tx_count": 0}]}
+  ],
+  "support_profiles": [
+    {"id": "SUPPORT_IDLE", "concurrent": ["S3/C5/Hub RP/RF RP idle", "display and touch at minimum useful backlight", "storage and audio idle"]},
+    {"id": "SUPPORT_WORST", "concurrent": ["S3/C5/Hub RP/RF RP peak admitted compute", "maximum normal display backlight", "waterfall update", "microSD write", "group-legal maximum audio", "all ten indicators on"]}
+  ],
+  "rejected_pack_conditions": [
+    {"id": "ONE_CELL_ONLY", "result": "pack admission and charging rejected; USB may independently power the product"},
+    {"id": "CELL_MISMATCH", "result": "pack isolated and diagnostic retained"},
+    {"id": "REVERSED_CELL", "result": "pack isolated; no charge or run from pack"},
+    {"id": "OPEN_FUSE_OR_PROTECTION_TRIP", "result": "pack isolated; USB may independently power the product"},
+    {"id": "PACK_TEMPERATURE_INVALID", "result": "charge inhibited; unsafe discharge requests isolation"},
+    {"id": "UNQUALIFIED_OR_UNPROTECTED_CELL", "result": "outside the product contract and not admitted"}
+  ],
+  "invariants": {
+    "top_level_active_signal_groups_max": 1,
+    "nrf24_required_mixes": ["3PRX", "1PTX_2PRX", "2PTX_1PRX", "3PTX"],
+    "cap_slot_profiles_mutually_exclusive": true,
+    "broadcast_submodes_mutually_exclusive": true,
+    "fault_state": "AON safety plus bounded local retained-fault renderer; RF, IR, external 5 V and FAULT_KILL clear remain disabled"
+  }
+}
