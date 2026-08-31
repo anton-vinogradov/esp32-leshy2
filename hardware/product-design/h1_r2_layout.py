@@ -32,7 +32,8 @@ SOURCE_TABLE_PATH = REPO / "hardware/product-design/generated/H1-physical-source
 U219_SOURCE_PATH = REPO / "hardware/architecture/h1-r2-u219-cap.json"
 DUAL_RP_PINOUT_PATH = REPO / "hardware/architecture/h1-r2-dual-rp-pinout.json"
 DEVICES_PATH = REPO / "hardware/architecture/devices.json"
-PUBLIC_ASSET_REV = "h1-r2.37-reviewed-1"
+CANDIDATE_PATH = REPO / "hardware/architecture/candidates/G2F-3I.json"
+PUBLIC_ASSET_REV = "h1-r2.37-reviewed-2"
 BOTTOM_SILK_OWNER_BASELINE_MM = 145.1
 BOTTOM_SILK_ROLE_BASELINE_MM = 147.0
 
@@ -1453,6 +1454,7 @@ def r2_antenna_topology(model: dict, rows: list[dict]) -> dict:
         "C5-2G4/5": "c5_rf_coupler_r2",
     }
     for path, (source_id, connector_id, source_kind) in front_sources.items():
+        cable_spec = model["antenna_bank_optimization"]["microcoax_by_path"][path]
         source_point = centre(source_id)
         connector_point = centre(connector_id)
         trace_points = [connector_point]
@@ -1477,6 +1479,9 @@ def r2_antenna_topology(model: dict, rows: list[dict]) -> dict:
                 "path": path,
                 "points": [source_point, connector_point],
                 "medium": "removable-microcoax",
+                "device_id": cable_spec["device_id"],
+                "mpn": cable_spec["mpn"],
+                "length_mm": cable_spec["length_mm"],
                 "stroke": "#0f766e",
                 "width": 3.2,
             }
@@ -1543,6 +1548,89 @@ def r2_antenna_topology(model: dict, rows: list[dict]) -> dict:
         ]
     )
     return {"pcb_segments": pcb_segments, "cables": cables, "connectors": connectors}
+
+
+def r2_microcoax_audit(model: dict, rows: list[dict], topology: dict) -> dict:
+    """Prove every selected cable reaches without pretending the nRF axis is centred.
+
+    S3/C5 retain source-backed connector axes from the accepted module drawings.
+    For each E01-ML01SP4, the farthest point of the complete maximum module body
+    is deliberately used.  The published IPEX socket lies inside that body, so a
+    positive result is conservative even before its received-lot mate is checked.
+    """
+    row_by_id = {row["id"]: row for row in rows}
+    candidate = load(CANDIDATE_PATH)
+    devices = load(DEVICES_PATH)["devices"]
+    cable_by_path = {row["path"]: row for row in topology["cables"]}
+    source_by_path = {
+        "N24-0": ("nrf0_r2", "nrf0_rf_board_connector_r2", "nrf0_rf_jumper"),
+        "S3-2G4": ("s3", "s3_rf_board_connector_r2", "s3_rf_jumper"),
+        "N24-1": ("nrf1_r2", "nrf1_rf_board_connector_r2", "nrf1_rf_jumper"),
+        "C5-2G4/5": ("c5", "c5_rf_board_connector_r2", "c5_rf_jumper"),
+        "N24-2": ("nrf2_r2", "nrf2_rf_board_connector_r2", "nrf2_rf_jumper"),
+    }
+    exact_native_axes = {
+        "S3-2G4": [21.0, 24.46],
+        "C5-2G4/5": [66.0, 24.38],
+    }
+    entries = []
+    errors = []
+    for path, (source_id, connector_id, candidate_instance) in source_by_path.items():
+        source_box = row_by_id[source_id]["bbox"]
+        connector_box = row_by_id[connector_id]["bbox"]
+        connector_point = [
+            (connector_box["x"][0] + connector_box["x"][1]) / 2,
+            (connector_box["y"][0] + connector_box["y"][1]) / 2,
+        ]
+        if path in exact_native_axes:
+            source_point = exact_native_axes[path]
+            projection = math.hypot(
+                source_point[0] - connector_point[0],
+                source_point[1] - connector_point[1],
+            )
+            projection_basis = "exact module connector axis to board-U.FL centre"
+        else:
+            projection = max(
+                math.hypot(x - connector_point[0], y - connector_point[1])
+                for x in source_box["x"]
+                for y in source_box["y"]
+            )
+            source_point = None
+            projection_basis = "farthest maximum-module-envelope corner to board-U.FL centre"
+        cable = cable_by_path[path]
+        selected_device_id = candidate["instances"][candidate_instance]
+        selected = devices[selected_device_id]
+        length = float(selected["electrical_contract"]["cable_length_mm"])
+        slack = length - projection
+        if selected_device_id != cable["device_id"]:
+            errors.append(f"{path}: candidate and placement cable identities differ")
+        if selected["mpn"] != cable["mpn"] or length != float(cable["length_mm"]):
+            errors.append(f"{path}: selected cable MPN/length differs from placement contract")
+        if slack < 5.0:
+            errors.append(f"{path}: conservative cable slack is only {slack:.3f} mm")
+        entries.append({
+            "path": path,
+            "source_instance": source_id,
+            "board_connector_instance": connector_id,
+            "selected_device_id": selected_device_id,
+            "mpn": selected["mpn"],
+            "length_mm": length,
+            "projection_mm": round(projection, 3),
+            "minimum_conservative_slack_mm": round(slack, 3),
+            "projection_basis": projection_basis,
+            "source_connector_point_mm": source_point,
+            "board_connector_point_mm": connector_point,
+        })
+    return {
+        "status": "pass" if not errors else "fail",
+        "paths": entries,
+        "path_count": len(entries),
+        "thirty_mm_paths": sum(row["length_mm"] == 30.0 for row in entries),
+        "sixty_mm_paths": sum(row["length_mm"] == 60.0 for row in entries),
+        "minimum_conservative_slack_mm": min(row["minimum_conservative_slack_mm"] for row in entries),
+        "received_only_gate": "connector mating, bend radius, strain relief and routed service loop remain J4-F/H8 physical evidence",
+        "errors": errors,
+    }
 
 
 def render_complete_inner_svg(model: dict, base: dict, source_table: dict, result: dict) -> str:
@@ -1862,7 +1950,7 @@ def render_inner_face_svg(
         out.extend(
             [
                 f'<line x1="{note_x}" y1="{note_y+70}" x2="{note_x+44}" y2="{note_y+70}" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round"/>',
-                text(note_x+56, note_y+74, "straight removable microcoax: module IPEX/U.FL to board U.FL", 10, colour="#526076"),
+                text(note_x+56, note_y+74, "straight removable microcoax: 30 mm S3/C5 · 60 mm nRF", 10, colour="#526076"),
             ]
         )
         key_tail_y = note_y + 92
@@ -2330,7 +2418,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         bullets = [
             "Десять основных SMA разделены симметрично `5 + 5`; каждый радиотракт остаётся на плате своего разъёма.",
             f"Выбранные GCT `RFPC-SMA31/32-FN-175-A` не держатся на одной стороне: корпус охватывает торец 1,6-мм платы, на стороне установки припаиваются RF-пята и две земляные лапы, на противоположной — ещё две земляные лапы. Это тот же двусторонний принцип, который виден в [ESP32-DIV v2]({model['antenna_bank_optimization']['main_sma_mounting']['comparison_url']}); односторонняя замена запрещена.",
-            "На передней плате пять коротких съёмных микрокоаксиальных перемычек соединяют IPEX/U.FL радиоисточников с платными U.FL; дальше до SMA идут локальные контролируемые PCB-тракты.",
+            "На передней плате две точные 30-мм перемычки S3/C5 и три точные 60-мм перемычки nRF соединяют IPEX/U.FL радиоисточников с платными U.FL; дальше до SMA идут локальные контролируемые PCB-тракты.",
             "На задней плате U.FL и съёмных RF-кабелей нет: voice и FM/SW идут локальными RF-трактами, AM/LW — отдельным высокоомным AMI-трактом, а Airband — через питаемую ветвь преобразования и селектор.",
             "В общий слот устанавливается ровно один модуль: U214 (84×24×15,287 мм) или optional U219 (84×24×19,7 мм). U219 выше на 4,413 мм, но остаётся на 1,0 мм ниже держателя батарей и на 1,3 мм ниже максимального заднего габарита.",
             "Все пользовательские подписи являются читаемой шелкографией; внутренние стороны плат шелкографии не содержат.",
@@ -2344,6 +2432,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             f'Коллизии корпусов на одной стороне: `{len(result["same_face_collisions"])}`.',
             f'Минимальный встречный Z-зазор: `{result["minimum_opposing_clearance_mm"]:.2f} мм` при требовании `{result["required_opposing_clearance_mm"]:.2f} мм`.',
             f'Полное TX-evidence: `{result["tx_evidence_physical_register"]["detector_count"]}` точных детекторов, `{result["tx_evidence_physical_register"]["coupler_count"]}` coupler и `{result["tx_evidence_physical_register"]["local_island_count"]}` локальных островов проходят fail-closed аудит; шесть AD8314 используют принятый `AD8314ARMZ-REEL` / `C652687`.',
+            f'Длина microcoax: две 30-мм перемычки native-radio и три 60-мм перемычки nRF имеют не меньше `{result["rf_microcoax"]["minimum_conservative_slack_mm"]:.2f} мм` расчётного запаса; каждый nRF проверен до самого дальнего угла полного корпуса SP4, а не до предположенной оси IPEX.',
             "C5 DBG10 расположен рядом с S3 DBG10 и не пересекается с соседними корпусами.",
             f'GPIO: передний RP `{model["functional_partition"]["front_rp_gpio"]["used"]}/48`, резерв `{model["functional_partition"]["front_rp_gpio"]["free"]}`; задний RP `{model["functional_partition"]["rear_rp_gpio"]["used"]}/48`, резерв `{model["functional_partition"]["rear_rp_gpio"]["free"]}`; S3 использует 27 из 33 GPIO.',
             "M1: все 80 контактов распределены — 31 сигнал, 14 main-power, 2 AON, 24 возврата и 9 настоящих NC-резервов.",
@@ -2371,7 +2460,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         bullets = [
             "Ten main SMA ports are split symmetrically `5 + 5`; every radio path remains on the PCB that carries its connector.",
             f"The selected GCT `RFPC-SMA31/32-FN-175-A` bodies are not retained by one PCB face: each shell straddles the 1.6-mm board edge, with one RF plus two ground lands on the component face and two more shell-ground lands on the opposite face. This is the same dual-face principle visible in [ESP32-DIV v2]({model['antenna_bank_optimization']['main_sma_mounting']['comparison_url']}); a one-face substitute is forbidden.",
-            "On the front PCB, five short removable microcoax jumpers connect the radio-source IPEX/U.FL sockets to board U.FL sockets; controlled board-local PCB paths continue from there to SMA.",
+            "On the front PCB, two exact 30-mm S3/C5 and three exact 60-mm nRF removable microcoax jumpers connect the radio-source IPEX/U.FL sockets to board U.FL sockets; controlled board-local PCB paths continue from there to SMA.",
             "The rear PCB has no U.FL or removable RF cable: voice and FM/SW use board-local RF paths, AM/LW uses a separate high-impedance AMI path, and Airband uses the powered conversion branch and selector.",
             "Exactly one accessory occupies the common slot: U214 (84 × 24 × 15.287 mm) or optional U219 (84 × 24 × 19.7 mm). U219 is 4.413 mm taller, yet remains 1.0 mm below the battery holder and 1.3 mm below the selected rear maximum.",
             "All user-facing labels are readable silkscreen; neither inner PCB face carries silkscreen.",
@@ -2385,6 +2474,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             f'Same-face body collisions: `{len(result["same_face_collisions"])}`.',
             f'Minimum opposing Z clearance: `{result["minimum_opposing_clearance_mm"]:.2f} mm` against `{result["required_opposing_clearance_mm"]:.2f} mm` required.',
             f'Complete TX evidence: `{result["tx_evidence_physical_register"]["detector_count"]}` exact detectors, `{result["tx_evidence_physical_register"]["coupler_count"]}` couplers and `{result["tx_evidence_physical_register"]["local_island_count"]}` bounded local islands pass fail-closed audit; all six AD8314 positions use the accepted `AD8314ARMZ-REEL` / `C652687`.',
+            f'Microcoax reach: two 30-mm native-radio and three 60-mm nRF paths have at least `{result["rf_microcoax"]["minimum_conservative_slack_mm"]:.2f} mm` paper slack, with each nRF checked against the farthest corner of the complete SP4 envelope rather than a guessed IPEX axis.',
             "C5 DBG10 is relocated beside S3 DBG10 and intersects no adjacent body.",
             f'GPIO: front RP `{model["functional_partition"]["front_rp_gpio"]["used"]}/48` with `{model["functional_partition"]["front_rp_gpio"]["free"]}` free; rear RP `{model["functional_partition"]["rear_rp_gpio"]["used"]}/48` with `{model["functional_partition"]["rear_rp_gpio"]["free"]}` free; S3 uses 27 of 33 GPIO.',
             "M1: all 80 contacts are assigned — 31 signals, 14 main-power, 2 AON, 24 returns and 9 true NC reserves.",
@@ -2440,6 +2530,13 @@ def main() -> int:
     base = load(BASE_PATH)
     source_table = load(SOURCE_TABLE_PATH)
     result = audit(model, base)
+    complete_rows = complete_inner_rows(model, base, source_table, result)
+    antenna_topology = r2_antenna_topology(model, complete_rows)
+    result["antenna_topology"] = antenna_topology
+    result["rf_microcoax"] = r2_microcoax_audit(model, complete_rows, antenna_topology)
+    result["errors"].extend(result["rf_microcoax"]["errors"])
+    if result["errors"]:
+        result["status"] = "fail"
     external_svg = render_external_svg(model)
     inner_ui_svg = render_inner_face_svg(model, base, source_table, result, "ui-inner")
     inner_rf_svg = render_inner_face_svg(model, base, source_table, result, "rf-inner")

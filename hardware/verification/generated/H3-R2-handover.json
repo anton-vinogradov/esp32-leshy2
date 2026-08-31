@@ -5,12 +5,12 @@
   "status": "reviewed_usb_pack_handover_dpm_brownout_and_source_loss",
   "source_sha256": {
     "hardware/verification/h3-r2-handover-contract.json": "7247e7083ad38732123131f9cf27157abe15db5a5553019493364d038344d55e",
-    "hardware/verification/h3-r2-verification-plan.json": "ca52fa3ced0f59bb6f786cf0a299f34cbf51f5559a213a40da6ae126e777a0b4",
-    "hardware/verification/generated/H3-R2-source-margins.json": "6a40957c1fa6703516a28de9afb610b6bb8d77a3a5656d66823f021f2deebd73",
-    "hardware/verification/generated/H3-R2-transition-sequences.json": "9c016a8851667ebc5a657bcc1b3a07d434e53296490102095faa493baed9dd73",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "7e904d6d9d855bd5c297b6924a7d2d9b0d4b837fa118f46e0e8f0d68bd0c4fe7",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "dd28abcfd626ea7b2581fe22a2d4c02a91e45ec1c064304f33a51ebbbd26e1a0",
-    "hardware/architecture/devices.json": "bc933e01c50be1af4ff8ae75be7b143b206ddede6440d67889fa3a6793af650f"
+    "hardware/verification/h3-r2-verification-plan.json": "0c3b062b07608615d26572805947a71499fc11b91662118aefa6e0029dc67887",
+    "hardware/verification/generated/H3-R2-source-margins.json": "5daccf3d5155609d8897353a2690a6356b37da44d5952dd5fd88a41f8ab7ac25",
+    "hardware/verification/generated/H3-R2-transition-sequences.json": "2b451d9cf2eafe1ea8edbd54615a551ff660f1997f077277b420afe6ee5a3f48",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "4cda4b3cae4cf847cfac561c8119b528bcb9e757511d0e6de341571c792b66cb",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "62062b9faa2e3f9a9d2430bb068bb4bfc8ba5b37f9ab00d7744cc97605852df5",
+    "hardware/architecture/devices.json": "9db9ce928ceb1dd38324d5e1eaff57a3d686ff449217ec3216577400dbe51060"
   },
   "exact_charger": {
     "device_id": "ti_bq25798_rqmr",

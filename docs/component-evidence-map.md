@@ -65,7 +65,7 @@ flowchart LR
 ### `H3-PHY-062` · `phase`
 
 - Selected: `ESP32-S3-WROOM-1U-N16R8`; `ESP32-C5-WROOM-1U-N8R8`; `Ebyte E01-ML01SP4`; `TE Connectivity 2118651-2`; `Hirose U.FL-R-SMT-1(80)`.
-- Still to prove: received 2118651-2 bend, retention and strain behaviour in all five installed paths; received E01 fitted-receptacle mate fit against the published connector locations before freezing placement.
+- Still to prove: received 2118651-2 bend, retention and strain behaviour in the two 30-mm S3/C5 paths and 1-2118651-0 behaviour in the three 60-mm nRF paths; received E01 fitted-receptacle mate fit against the published connector locations before freezing placement.
 - Pass rule: the received specimen directly demonstrates this item: measure received 2118651-2 bend/retention/strain behavior and E01 connector axes before freezing the five microcoax paths; a mismatch reopens the owning H1/H2/H3 result
 
 ## Fourteen mechanical gates

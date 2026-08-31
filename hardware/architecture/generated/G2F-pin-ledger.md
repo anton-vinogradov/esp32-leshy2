@@ -139,6 +139,7 @@
 | `tdk_c1005x5r0j475k050bc` | `TDK C1005X5R0J475K050BC` | `verified_exact_rp2350_reference_regulator_capacitor` | `active_orderable` | [TDK C1005X5R0J475K050BC product data and characteristic model; Raspberry Pi Hardware design with RP2350 chapter 2 production status and exact characteristics checked 2026-08-23](https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1005X5R0J475K050BC) | same primary source |
 | `tdk_c1608x7r1c105k080ac` | `TDK C1608X7R1C105K080AC` | `verified_candidate` | `active_production` | [TDK C1608X7R1C105K080AC product and characterization data production status and DC-bias/temperature curves checked 2026-08-18](https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=C1608X7R1C105K080AC) | same primary source |
 | `tdk_cga5l1x7r1e475k160ac` | `TDK CGA5L1X7R1E475K160AC` | `verified_candidate` | `active` | [TDK CGA5L1X7R1E475K160AC product data and characteristic models production status checked 2026-08-18](https://product.tdk.com/en/search/capacitor/ceramic/mlcc/info?part_no=CGA5L1X7R1E475K160AC) | same primary source |
+| `te_1_2118651_0` | `TE Connectivity 1-2118651-0` | `verified_exact_nrf_rf_jumper` | `active_orderable` | [TE Connectivity 1-2118651-0 exact product record and ENG_CD_2118651_C5 drawing live exact-product record](https://www.te.com/en/product-1-2118651-0.html) | same primary source |
 | `te_2118651_2` | `TE Connectivity 2118651-2` | `verified_exact_native_rf_jumper` | `active_orderable` | [TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record ENG_CD_2118651_C5; live exact-product record](https://www.te.com/en/product-2118651-2.html) | same primary source |
 | `ti_bq25798_rqmr` | `Texas Instruments BQ25798RQMR` | `verified_candidate` | `active` | [BQ25798 1-to-4-cell 5-A buck-boost charger datasheet SLUSDV2C, May 2020, revised June 2026](https://www.ti.com/lit/ds/symlink/bq25798.pdf) | same primary source |
 | `ti_csd87313dms` | `Texas Instruments CSD87313DMS` | `verified_exact_jlcpcb_stocked_candidate` | `active_factory_stocked_standard_pcba` | [CSD87313DMS 30-V dual common-drain N-channel NexFET datasheet SLPS659, April 2017; package addendum updated 2025-10-17](https://www.ti.com/lit/ds/symlink/csd87313dms.pdf) | same primary source |
@@ -3421,7 +3422,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `SAFETY_GROUND` | `c5_detector_ground_res.END_2` | `abstract:safety-ground` | gain network local return |
 | `C5_DETECT_V` | `det_c5.VOUT` | `c5_detector_output_cap.END_1` | exact 33-pF output load follows the detector reference circuit |
 | `SAFETY_GROUND` | `c5_detector_output_cap.END_2` | `abstract:safety-ground` | output capacitor local return |
-| `NRF0_MODULE_RF_50R` | `nrf0.ANT` | `nrf0_rf_jumper.END_A` | Ebyte's controlled Gen1 antenna evidence mates the exact 30-mm UMCC Gen1 jumper; received-lot fit remains an H5 gate |
+| `NRF0_MODULE_RF_50R` | `nrf0.ANT` | `nrf0_rf_jumper.END_A` | Ebyte's controlled Gen1 antenna evidence mates the exact 60-mm UMCC Gen1 jumper; received-lot fit remains an H5 gate |
 | `NRF0_MODULE_RF_50R` | `nrf0_rf_jumper.END_B` | `nrf0_rf_board_connector.CENTER` | the exact second Gen1 plug terminates at a controlled first-generation U.FL board receptacle |
 | `NRF0_RF_GROUND` | `nrf0_rf_board_connector.SHELL` | `abstract:rf-ground` | all three receptacle ground lands receive shortest RF-ground paths |
 | `NRF0_MODULE_RF_50R` | `nrf0_rf_board_connector.CENTER` | `nrf0_coupler.RF_IN` | coupler IN faces the module so its sample is forward TX energy |
@@ -3442,7 +3443,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `NRF0_DETECT_FILTER` | `det_nrf0.FLTR` | `nrf0_detector_filter.END_1` | exact 120-pF C0G filter position bounds burst response without hiding TX |
 | `NRF0_DETECT_V` | `nrf0_detector_filter.END_2` | `det_nrf0.V_UP` | AD8314 filter capacitor is placed between FLTR and V_UP per datasheet |
 | `NRF0_DETECT_VDN_NC` | `det_nrf0.V_DN` | `abstract:no-connect` | controller-mode falling output is intentionally unused |
-| `NRF1_MODULE_RF_50R` | `nrf1.ANT` | `nrf1_rf_jumper.END_A` | Ebyte's controlled Gen1 antenna evidence mates the exact 30-mm UMCC Gen1 jumper; received-lot fit remains an H5 gate |
+| `NRF1_MODULE_RF_50R` | `nrf1.ANT` | `nrf1_rf_jumper.END_A` | Ebyte's controlled Gen1 antenna evidence mates the exact 60-mm UMCC Gen1 jumper; received-lot fit remains an H5 gate |
 | `NRF1_MODULE_RF_50R` | `nrf1_rf_jumper.END_B` | `nrf1_rf_board_connector.CENTER` | the exact second Gen1 plug terminates at a controlled first-generation U.FL board receptacle |
 | `NRF1_RF_GROUND` | `nrf1_rf_board_connector.SHELL` | `abstract:rf-ground` | all three receptacle ground lands receive shortest RF-ground paths |
 | `NRF1_MODULE_RF_50R` | `nrf1_rf_board_connector.CENTER` | `nrf1_coupler.RF_IN` | coupler IN faces the module so its sample is forward TX energy |
@@ -3463,7 +3464,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `NRF1_DETECT_FILTER` | `det_nrf1.FLTR` | `nrf1_detector_filter.END_1` | exact 120-pF C0G filter position bounds burst response without hiding TX |
 | `NRF1_DETECT_V` | `nrf1_detector_filter.END_2` | `det_nrf1.V_UP` | AD8314 filter capacitor is placed between FLTR and V_UP per datasheet |
 | `NRF1_DETECT_VDN_NC` | `det_nrf1.V_DN` | `abstract:no-connect` | controller-mode falling output is intentionally unused |
-| `NRF2_MODULE_RF_50R` | `nrf2.ANT` | `nrf2_rf_jumper.END_A` | Ebyte's controlled Gen1 antenna evidence mates the exact 30-mm UMCC Gen1 jumper; received-lot fit remains an H5 gate |
+| `NRF2_MODULE_RF_50R` | `nrf2.ANT` | `nrf2_rf_jumper.END_A` | Ebyte's controlled Gen1 antenna evidence mates the exact 60-mm UMCC Gen1 jumper; received-lot fit remains an H5 gate |
 | `NRF2_MODULE_RF_50R` | `nrf2_rf_jumper.END_B` | `nrf2_rf_board_connector.CENTER` | the exact second Gen1 plug terminates at a controlled first-generation U.FL board receptacle |
 | `NRF2_RF_GROUND` | `nrf2_rf_board_connector.SHELL` | `abstract:rf-ground` | all three receptacle ground lands receive shortest RF-ground paths |
 | `NRF2_MODULE_RF_50R` | `nrf2_rf_board_connector.CENTER` | `nrf2_coupler.RF_IN` | coupler IN faces the module so its sample is forward TX energy |
@@ -3943,11 +3944,11 @@ Reserved: `PA1_NRST`. Free: none.
 - `nrf0` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
 - `nrf1` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
 - `nrf2` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
-- `nrf0_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
+- `nrf0_rf_jumper` uses `TE Connectivity 1-2118651-0` as `verified_exact_nrf_rf_jumper`, not an accepted production choice.
 - `nrf0_rf_jumper` lifecycle: `active_orderable`.
-- `nrf1_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
+- `nrf1_rf_jumper` uses `TE Connectivity 1-2118651-0` as `verified_exact_nrf_rf_jumper`, not an accepted production choice.
 - `nrf1_rf_jumper` lifecycle: `active_orderable`.
-- `nrf2_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
+- `nrf2_rf_jumper` uses `TE Connectivity 1-2118651-0` as `verified_exact_nrf_rf_jumper`, not an accepted production choice.
 - `nrf2_rf_jumper` lifecycle: `active_orderable`.
 - `nrf0_rf_board_connector` uses `Hirose U.FL-R-SMT-1(80)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
 - `nrf0_rf_board_connector` lifecycle: `active_orderable`.

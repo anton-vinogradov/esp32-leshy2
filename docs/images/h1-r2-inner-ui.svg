@@ -178,7 +178,7 @@
 <line x1="550" y1="384" x2="594" y2="384" stroke="#2563eb" stroke-width="1.7"/>
 <text x="606.0" y="388.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#526076">board-local RF topology; matching and final geometry belong to KiCad</text>
 <line x1="550" y1="406" x2="594" y2="406" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round"/>
-<text x="606.0" y="410.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#526076">straight removable microcoax: module IPEX/U.FL to board U.FL</text>
+<text x="606.0" y="410.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#526076">straight removable microcoax: 30 mm S3/C5 · 60 mm nRF</text>
 <text x="550.0" y="428.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">Body key</text>
 <rect x="550" y="444.0" width="28" height="18" fill="#eef2f6" stroke="#94a3b8"/>
 <text x="590.0" y="458.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#526076">retained registered body</text>

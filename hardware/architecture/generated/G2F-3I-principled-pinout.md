@@ -679,9 +679,9 @@ flowchart TD
   NRF0["Ebyte E01-ML01SP4<br/>nRF24-compatible full-function radio 0"]
   NRF1["Ebyte E01-ML01SP4<br/>nRF24-compatible full-function radio 1"]
   NRF2["Ebyte E01-ML01SP4<br/>nRF24-compatible full-function radio 2"]
-  NRF0_RF_JUMPER["TE Connectivity 2118651-2<br/>nrf0 rf jumper physical component"]
-  NRF1_RF_JUMPER["TE Connectivity 2118651-2<br/>nrf1 rf jumper physical component"]
-  NRF2_RF_JUMPER["TE Connectivity 2118651-2<br/>nrf2 rf jumper physical component"]
+  NRF0_RF_JUMPER["TE Connectivity 1-2118651-0<br/>nrf0 rf jumper physical component"]
+  NRF1_RF_JUMPER["TE Connectivity 1-2118651-0<br/>nrf1 rf jumper physical component"]
+  NRF2_RF_JUMPER["TE Connectivity 1-2118651-0<br/>nrf2 rf jumper physical component"]
   NRF0_RF_BOARD_CONNECTOR["Hirose U.FL-R-SMT-1(80)<br/>nrf0 rf board connector physical component"]
   NRF1_RF_BOARD_CONNECTOR["Hirose U.FL-R-SMT-1(80)<br/>nrf1 rf board connector physical component"]
   NRF2_RF_BOARD_CONNECTOR["Hirose U.FL-R-SMT-1(80)<br/>nrf2 rf board connector physical component"]
@@ -4998,7 +4998,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `SAFETY_GROUND` | `c5_detector_ground_res.END_2` | `abstract:safety-ground` | gain network local return |
 | `C5_DETECT_V` | `det_c5.VOUT` | `c5_detector_output_cap.END_1` | exact 33-pF output load follows the detector reference circuit |
 | `SAFETY_GROUND` | `c5_detector_output_cap.END_2` | `abstract:safety-ground` | output capacitor local return |
-| `NRF0_MODULE_RF_50R` | `nrf0.ANT` | `nrf0_rf_jumper.END_A` | Ebyte's controlled Gen1 antenna evidence mates the exact 30-mm UMCC Gen1 jumper; received-lot fit remains an H5 gate |
+| `NRF0_MODULE_RF_50R` | `nrf0.ANT` | `nrf0_rf_jumper.END_A` | Ebyte's controlled Gen1 antenna evidence mates the exact 60-mm UMCC Gen1 jumper; received-lot fit remains an H5 gate |
 | `NRF0_MODULE_RF_50R` | `nrf0_rf_jumper.END_B` | `nrf0_rf_board_connector.CENTER` | the exact second Gen1 plug terminates at a controlled first-generation U.FL board receptacle |
 | `NRF0_RF_GROUND` | `nrf0_rf_board_connector.SHELL` | `abstract:rf-ground` | all three receptacle ground lands receive shortest RF-ground paths |
 | `NRF0_MODULE_RF_50R` | `nrf0_rf_board_connector.CENTER` | `nrf0_coupler.RF_IN` | coupler IN faces the module so its sample is forward TX energy |
@@ -5019,7 +5019,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `NRF0_DETECT_FILTER` | `det_nrf0.FLTR` | `nrf0_detector_filter.END_1` | exact 120-pF C0G filter position bounds burst response without hiding TX |
 | `NRF0_DETECT_V` | `nrf0_detector_filter.END_2` | `det_nrf0.V_UP` | AD8314 filter capacitor is placed between FLTR and V_UP per datasheet |
 | `NRF0_DETECT_VDN_NC` | `det_nrf0.V_DN` | `abstract:no-connect` | controller-mode falling output is intentionally unused |
-| `NRF1_MODULE_RF_50R` | `nrf1.ANT` | `nrf1_rf_jumper.END_A` | Ebyte's controlled Gen1 antenna evidence mates the exact 30-mm UMCC Gen1 jumper; received-lot fit remains an H5 gate |
+| `NRF1_MODULE_RF_50R` | `nrf1.ANT` | `nrf1_rf_jumper.END_A` | Ebyte's controlled Gen1 antenna evidence mates the exact 60-mm UMCC Gen1 jumper; received-lot fit remains an H5 gate |
 | `NRF1_MODULE_RF_50R` | `nrf1_rf_jumper.END_B` | `nrf1_rf_board_connector.CENTER` | the exact second Gen1 plug terminates at a controlled first-generation U.FL board receptacle |
 | `NRF1_RF_GROUND` | `nrf1_rf_board_connector.SHELL` | `abstract:rf-ground` | all three receptacle ground lands receive shortest RF-ground paths |
 | `NRF1_MODULE_RF_50R` | `nrf1_rf_board_connector.CENTER` | `nrf1_coupler.RF_IN` | coupler IN faces the module so its sample is forward TX energy |
@@ -5040,7 +5040,7 @@ Reserved: `PA1_NRST`. Free: none.
 | `NRF1_DETECT_FILTER` | `det_nrf1.FLTR` | `nrf1_detector_filter.END_1` | exact 120-pF C0G filter position bounds burst response without hiding TX |
 | `NRF1_DETECT_V` | `nrf1_detector_filter.END_2` | `det_nrf1.V_UP` | AD8314 filter capacitor is placed between FLTR and V_UP per datasheet |
 | `NRF1_DETECT_VDN_NC` | `det_nrf1.V_DN` | `abstract:no-connect` | controller-mode falling output is intentionally unused |
-| `NRF2_MODULE_RF_50R` | `nrf2.ANT` | `nrf2_rf_jumper.END_A` | Ebyte's controlled Gen1 antenna evidence mates the exact 30-mm UMCC Gen1 jumper; received-lot fit remains an H5 gate |
+| `NRF2_MODULE_RF_50R` | `nrf2.ANT` | `nrf2_rf_jumper.END_A` | Ebyte's controlled Gen1 antenna evidence mates the exact 60-mm UMCC Gen1 jumper; received-lot fit remains an H5 gate |
 | `NRF2_MODULE_RF_50R` | `nrf2_rf_jumper.END_B` | `nrf2_rf_board_connector.CENTER` | the exact second Gen1 plug terminates at a controlled first-generation U.FL board receptacle |
 | `NRF2_RF_GROUND` | `nrf2_rf_board_connector.SHELL` | `abstract:rf-ground` | all three receptacle ground lands receive shortest RF-ground paths |
 | `NRF2_MODULE_RF_50R` | `nrf2_rf_board_connector.CENTER` | `nrf2_coupler.RF_IN` | coupler IN faces the module so its sample is forward TX energy |
@@ -5520,11 +5520,11 @@ Reserved: `PA1_NRST`. Free: none.
 - `nrf0` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
 - `nrf1` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
 - `nrf2` lifecycle: `nrf24_family_not_recommended_for_new_designs`.
-- `nrf0_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
+- `nrf0_rf_jumper` uses `TE Connectivity 1-2118651-0` as `verified_exact_nrf_rf_jumper`, not an accepted production choice.
 - `nrf0_rf_jumper` lifecycle: `active_orderable`.
-- `nrf1_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
+- `nrf1_rf_jumper` uses `TE Connectivity 1-2118651-0` as `verified_exact_nrf_rf_jumper`, not an accepted production choice.
 - `nrf1_rf_jumper` lifecycle: `active_orderable`.
-- `nrf2_rf_jumper` uses `TE Connectivity 2118651-2` as `verified_exact_native_rf_jumper`, not an accepted production choice.
+- `nrf2_rf_jumper` uses `TE Connectivity 1-2118651-0` as `verified_exact_nrf_rf_jumper`, not an accepted production choice.
 - `nrf2_rf_jumper` lifecycle: `active_orderable`.
 - `nrf0_rf_board_connector` uses `Hirose U.FL-R-SMT-1(80)` as `verified_exact_native_rf_board_mate`, not an accepted production choice.
 - `nrf0_rf_board_connector` lifecycle: `active_orderable`.

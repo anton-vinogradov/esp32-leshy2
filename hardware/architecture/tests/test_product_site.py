@@ -122,6 +122,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/rf-coexistence.ru.md",
         "docs/rf-verification-result.md",
         "docs/rf-verification-result.ru.md",
+        "docs/rf-electrical-verification.md",
+        "docs/rf-electrical-verification.ru.md",
         "docs/thermal-model.md",
         "docs/thermal-model.ru.md",
         "docs/single-fault-review.md",
@@ -215,12 +217,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: `H3-R2.5`", "H3-R2.1 DC/source",
+                "Current hardware boundary: `H3-R2.6`", "H3-R2.1 DC/source",
                 "firmware F1-R2 reviewed", "F2-R2.4",
                 "H9 · Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H3-R2.5`", "DC/source H3-R2.1",
+                "Текущая аппаратная граница: `H3-R2.6`", "DC/source H3-R2.1",
                 "firmware F1-R2 проведено ревью", "F2-R2.4",
                 "H9 · Manufacturing release",
                 "Production ECAD",
@@ -236,8 +238,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Current hardware marker: `H3-R2.5`", "fabrication"),
-            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H3-R2.5`", "печати прототипа"),
+            "README.md": ("Roadmap and current position", "Current hardware marker: `H3-R2.6`", "fabrication"),
+            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H3-R2.6`", "печати прототипа"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -447,10 +449,10 @@ class ProductSiteTests(unittest.TestCase):
             "draft_order_integrated_manifest_exact_display_selected_factory_response_pending",
             evidence["status"],
         )
-        self.assertEqual(30, evidence["summary"]["article_lines"])
+        self.assertEqual(31, evidence["summary"]["article_lines"])
         self.assertEqual(11, evidence["summary"]["measurement_contracts"])
         self.assertEqual(23, evidence["summary"]["covered_residuals_and_gates"])
-        self.assertEqual("245.92", evidence["summary"]["known_engineering_material_budget_usd"])
+        self.assertEqual("243.79", evidence["summary"]["known_engineering_material_budget_usd"])
         self.assertEqual(0, evidence["summary"]["unpriced_manufacturer_lines"])
         self.assertTrue(all(evidence["checks"].values()))
         pack_gauge = next(row for row in evidence["articles"] if row["id"] == "pack-gauges")
@@ -488,7 +490,7 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(name)
             self.assertEqual(1, page.count("```mermaid"), name)
             self.assertIn("H5-EVR03", page, name)
-            self.assertIn("245.92", page, name)
+            self.assertIn("243.79", page, name)
             self.assertIn("SA818S-V", page, name)
             self.assertIn("H7/H8", page, name)
 
@@ -515,7 +517,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("routes_complete_dual_sa818s_preorder_and_factory_gates_open", evidence["status"])
         self.assertEqual("JLCPCB Standard PCBA", evidence["decision"]["reference_platform"])
         self.assertFalse(evidence["decision"]["exclusive_lock_in"])
-        self.assertEqual(211, evidence["summary"]["target_bom_lines"])
+        self.assertEqual(212, evidence["summary"]["target_bom_lines"])
         self.assertEqual(23, evidence["summary"]["critical_lines_spot_checked"])
         self.assertEqual(19, evidence["summary"]["public_stock_exact_or_revision_explicit"])
         self.assertEqual(3, evidence["summary"]["preorder_reservation"])
@@ -538,10 +540,10 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(184, evidence["summary"]["current_exact_catalogue_routes_before_outlier_resolution"])
         self.assertEqual(156, evidence["summary"]["current_public_stock_lines_before_outlier_resolution"])
         self.assertEqual(27, evidence["summary"]["current_preorder_lines_before_outlier_resolution"])
-        self.assertEqual(27, evidence["summary"]["current_unmatched_lines_before_outlier_resolution"])
+        self.assertEqual(28, evidence["summary"]["current_unmatched_lines_before_outlier_resolution"])
         self.assertEqual(1052, evidence["summary"]["target_placements_parsed"])
         self.assertEqual(
-            {"J0": 167, "J1": 0, "J2": 29, "J3": 10, "J4-F": 3, "J4-P": 1, "J5-U": 1},
+            {"J0": 167, "J1": 0, "J2": 29, "J3": 10, "J4-F": 4, "J4-P": 1, "J5-U": 1},
             evidence["summary"]["availability_routes"],
         )
         self.assertEqual(0, evidence["summary"]["full_bom_lines_pending_mapping"])
@@ -576,7 +578,7 @@ class ProductSiteTests(unittest.TestCase):
             evidence["checks"]["first_minimum_bom_upload_was_transmitted_and_parse_failed"]
         )
         self.assertTrue(evidence["checks"]["historical_209_line_compact_bom_was_transmitted_and_processed"])
-        self.assertTrue(evidence["checks"]["current_211_line_upload_was_generated_but_not_transmitted"])
+        self.assertTrue(evidence["checks"]["current_212_line_upload_was_generated_but_not_transmitted"])
         self.assertFalse(evidence["bom_tool_upload"]["transmitted"])
         self.assertFalse(evidence["bom_tool_upload"]["processed"])
         self.assertEqual(
@@ -605,7 +607,7 @@ class ProductSiteTests(unittest.TestCase):
             ],
             list(upload_rows[0]),
         )
-        self.assertEqual(211, len(upload_rows))
+        self.assertEqual(212, len(upload_rows))
         self.assertTrue(all(row["Manufacturer Part Number"] for row in upload_rows))
         self.assertTrue(all(int(row["Quantity"]) > 0 for row in upload_rows))
         self.assertTrue(all(row["Footprint"] == "TBD" for row in upload_rows))
@@ -616,11 +618,11 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual("H5-EVR05", match["artifact"])
         self.assertEqual(184, match["summary"]["matched_lines"])
-        self.assertEqual(27, match["summary"]["unmatched_lines"])
+        self.assertEqual(28, match["summary"]["unmatched_lines"])
         self.assertEqual(1052, match["summary"]["parsed_placements"])
         self.assertEqual(2, match["summary"]["strict_text_variants"])
         self.assertEqual(0, match["summary"]["semantic_mpn_mismatches"])
-        self.assertEqual(211, len(match["routes"]))
+        self.assertEqual(212, len(match["routes"]))
         self.assertTrue(all(route["designators_complete"] for route in match["routes"]))
         self.assertTrue(all(match["checks"].values()))
         current_routes = {route["normalized_mpn"]: route for route in match["routes"]}
@@ -638,9 +640,9 @@ class ProductSiteTests(unittest.TestCase):
             self.read("hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json")
         )
         self.assertEqual("H5-EVR06", outliers["artifact"])
-        self.assertEqual(27, outliers["summary"]["bom_tool_outliers_resolved"])
+        self.assertEqual(28, outliers["summary"]["bom_tool_outliers_resolved"])
         self.assertEqual(
-            {"J0": 167, "J1": 0, "J2": 29, "J3": 10, "J4-F": 3, "J4-P": 1, "J5-U": 1},
+            {"J0": 167, "J1": 0, "J2": 29, "J3": 10, "J4-F": 4, "J4-P": 1, "J5-U": 1},
             outliers["summary"]["availability_routes"],
         )
         self.assertEqual(0, outliers["summary"]["component_replacements"])
@@ -654,7 +656,7 @@ class ProductSiteTests(unittest.TestCase):
             outliers["boundary"]["factory_packed_removable"]["accepted_and_quoted"]
         )
         self.assertEqual(
-            {"2118651-2", "1227-J"},
+            {"2118651-2", "1-2118651-0", "1227-J"},
             {
                 row["normalized_mpn"]
                 for row in outliers["outlier_resolutions"]
@@ -787,14 +789,14 @@ class ProductSiteTests(unittest.TestCase):
     def test_h1_r2_32_public_boundary_separates_electrical_and_physical_work(self):
         expectations = {
             "README.md": (
-                "Current hardware marker: `H3-R2.5`",
+                "Current hardware marker: `H3-R2.6`",
                 "exact dual-RP GPIO/M1 map",
                 "mutually exclusive U214/U219 Cap slot",
                 "native R2 inventory is reviewed at `H2-R2.1.1`",
                 "six compute domains",
             ),
             "README.ru.md": (
-                "Текущий маркер железа: `H3-R2.5`",
+                "Текущий маркер железа: `H3-R2.6`",
                 "dual-RP GPIO/M1",
                 "взаимоисключающий Cap-слот U214/U219",
                 "Native R2 inventory проведён ревью как `H2-R2.1.1`",
@@ -802,14 +804,14 @@ class ProductSiteTests(unittest.TestCase):
                 "шесть вычислительных доменов",
             ),
             "docs/roadmap.md": (
-                "Current hardware boundary: `H3-R2.5`",
+                "Current hardware boundary: `H3-R2.6`",
                 "18 exact production",
                 "U219 Cap integration",
                 "H1-R2.37 reviewed",
                 "4,323 fitted-instance contacts reconcile",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H3-R2.5`",
+                "Текущая аппаратная граница: `H3-R2.6`",
                 "18 точных production",
                 "Интеграция U219 Cap",
                 "H1-R2.37 проведено ревью",
@@ -1034,9 +1036,9 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
         self.assertEqual("H3", state["current_stage"])
-        self.assertEqual("H3-R2.5", state["current_substep"])
+        self.assertEqual("H3-R2.6", state["current_substep"])
         self.assertEqual("current", r2_plan["status"])
-        self.assertEqual("H3-R2.5", r2_plan["current_substep"])
+        self.assertEqual("H3-R2.6", r2_plan["current_substep"])
         self.assertEqual("H2-R2.1.5", r2_plan["accepted_input"]["stage"])
         self.assertEqual("reviewed", plan["substeps"][0]["status"])
         self.assertEqual("reviewed", plan["substeps"][0]["children"][0]["status"])
@@ -1345,8 +1347,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(1053, summary["main_candidate_instances"])
         self.assertEqual(26, summary["lora_cap_common_instances"])
         self.assertEqual(2, summary["lora_cap_alternative_module_instances"])
-        self.assertEqual(223, summary["h1_dimensioned_instances"])
-        self.assertEqual(10, summary["h1_r2_superseded_historical_instances"])
+        self.assertEqual(220, summary["h1_dimensioned_instances"])
+        self.assertEqual(13, summary["h1_r2_superseded_historical_instances"])
         self.assertEqual(820, summary["schematic_only_main_instances"])
         self.assertEqual(1041, summary["main_board_fitted_components"])
         self.assertEqual(6, summary["main_fitted_interconnect_assemblies"])

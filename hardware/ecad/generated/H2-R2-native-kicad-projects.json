@@ -6,19 +6,19 @@
   "sources": {
     "inventory": {
       "path": "hardware/ecad/h2-r2-native-inventory-contract.json",
-      "sha256": "406bc29822549e48d10cc47f07bfe7cc14ac2a855bd5008407ab6bff49259977"
+      "sha256": "f7abcd2721dde990462a252caee310921f5a055ddb2648f68460b6fd187965f6"
     },
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "dd28abcfd626ea7b2581fe22a2d4c02a91e45ec1c064304f33a51ebbbd26e1a0"
+      "sha256": "62062b9faa2e3f9a9d2430bb068bb4bfc8ba5b37f9ab00d7744cc97605852df5"
     },
     "nets": {
       "path": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "sha256": "7e904d6d9d855bd5c297b6924a7d2d9b0d4b837fa118f46e0e8f0d68bd0c4fe7"
+      "sha256": "4cda4b3cae4cf847cfac561c8119b528bcb9e757511d0e6de341571c792b66cb"
     },
     "symbols": {
       "path": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-      "sha256": "90e9299d12cb0fd33a2ef86338c2105f718d58a3c47d0b4f558f69709c79d70f"
+      "sha256": "a80b18a10514e35734a26bdebfbe0e01c5889f4c98ec2c12ad6b437c4ee069c6"
     },
     "symbol_library": {
       "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",

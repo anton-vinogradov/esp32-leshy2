@@ -2,7 +2,7 @@
 
 H0-R2 is the new functional baseline: UI and display remain local to S3, high-throughput peripheral work is offloaded through the Hub RP, the onboard video path is removed, and 118–137 MHz Airband AM is now mandatory.
 
-> The exact current marker is **H3-R2.5**. The H1-R2.37 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, M1 and 226 bodies was accepted and reviewed on 2026-08-30. Native R2 H2 materializes 1,185 instances and 823 nets in three KiCad projects with zero ERC findings. H3-R2.0 freezes inputs, provenance and methods; H3-R2.1 through R2.4 are reviewed. H3-R2.4 proves levels, timing, USB/service ownership, M1 and direct i8080-8 at an exact 20 MHz. H3-R2.5 verifies RF feeds, coexistence, quiet states and concurrent service of three nRF24 paths.
+> The exact current marker is **H3-R2.6**. The H1-R2.37 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, M1 and 226 bodies was accepted and reviewed on 2026-08-30. Native R2 H2 materializes 1,185 instances and 823 nets in three KiCad projects with zero ERC findings. H3-R2.0 freezes inputs, provenance and methods; H3-R2.1 through R2.5 are reviewed. H3-R2.5 proves all ten permanent antenna feeds, five removable microcoaxes, the quiet-state contract and every concurrent three-nRF24 service mode. H3-R2.6 verifies the thermal, single-fault and unattended-operation envelope.
 
 ![H0-R2 functional architecture](images/h0-r2-functional-architecture.svg)
 

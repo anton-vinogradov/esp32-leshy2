@@ -83,8 +83,8 @@ Host-switch, AON gate, два bridge, comparator, вспомогательные
 Прежние KiCad-листы R1 и машинные отчёты сохранены в репозитории как
 историческое инженерное evidence. Это **не** production-схема R2, и печатать
 по ним нельзя. Текущий native R2 source — три проекта из
-[результа `H2-R2.1.3`](h2-r2-native-kicad.ru.md): 23 sheets, 1 187
-устанавливаемых позиций, 4 327 физических pins и 826 канонических nets. Он
+[результа `H2-R2.1.3`](h2-r2-native-kicad.ru.md): 23 sheets, 1 185
+устанавливаемых позиций, 4 323 физических pins и 823 канонических nets. Он
 ERC-clean; [результат H2-R2.1.5](h2-acceptance.ru.md) также проходит six-domain
 cross-sheet/HW↔FW reconciliation. Placement, routing и последующие release-gates
 остаются обязательными до печати.

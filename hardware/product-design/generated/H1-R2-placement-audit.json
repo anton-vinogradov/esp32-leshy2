@@ -4970,5 +4970,558 @@
         ]
       }
     }
-  ]
+  ],
+  "antenna_topology": {
+    "pcb_segments": [
+      {
+        "frame": "ui-inner",
+        "path": "N24-0",
+        "branch": "main",
+        "points": [
+          [
+            11.5,
+            10.55
+          ],
+          [
+            8.1,
+            0.0
+          ]
+        ],
+        "medium": "controlled-50-ohm-pcb",
+        "stroke": "#2563eb",
+        "width": 1.7,
+        "dash": null
+      },
+      {
+        "frame": "ui-inner",
+        "path": "S3-2G4",
+        "branch": "main",
+        "points": [
+          [
+            22.8,
+            10.55
+          ],
+          [
+            22.8,
+            6.62
+          ],
+          [
+            22.8,
+            0.0
+          ]
+        ],
+        "medium": "controlled-50-ohm-pcb",
+        "stroke": "#2563eb",
+        "width": 1.7,
+        "dash": null
+      },
+      {
+        "frame": "ui-inner",
+        "path": "N24-1",
+        "branch": "main",
+        "points": [
+          [
+            37.5,
+            15.55
+          ],
+          [
+            37.5,
+            0.0
+          ]
+        ],
+        "medium": "controlled-50-ohm-pcb",
+        "stroke": "#2563eb",
+        "width": 1.7,
+        "dash": null
+      },
+      {
+        "frame": "ui-inner",
+        "path": "C5-2G4/5",
+        "branch": "main",
+        "points": [
+          [
+            52.2,
+            10.55
+          ],
+          [
+            52.2,
+            6.62
+          ],
+          [
+            52.2,
+            0.0
+          ]
+        ],
+        "medium": "controlled-50-ohm-pcb",
+        "stroke": "#2563eb",
+        "width": 1.7,
+        "dash": null
+      },
+      {
+        "frame": "ui-inner",
+        "path": "N24-2",
+        "branch": "main",
+        "points": [
+          [
+            63.5,
+            10.55
+          ],
+          [
+            66.9,
+            0.0
+          ]
+        ],
+        "medium": "controlled-50-ohm-pcb",
+        "stroke": "#2563eb",
+        "width": 1.7,
+        "dash": null
+      },
+      {
+        "frame": "rf-inner",
+        "path": "VOICE-VHF",
+        "branch": "main",
+        "points": [
+          [
+            41.400000000000006,
+            42.0
+          ],
+          [
+            52.2,
+            0.0
+          ]
+        ],
+        "medium": "controlled-50-ohm-pcb",
+        "stroke": "#2563eb",
+        "width": 1.7,
+        "dash": null
+      },
+      {
+        "frame": "rf-inner",
+        "path": "VOICE-UHF",
+        "branch": "main",
+        "points": [
+          [
+            13.3,
+            50.3
+          ],
+          [
+            66.9,
+            0.0
+          ]
+        ],
+        "medium": "controlled-50-ohm-pcb",
+        "stroke": "#2563eb",
+        "width": 1.7,
+        "dash": null
+      },
+      {
+        "frame": "rf-inner",
+        "path": "CC-SUB",
+        "branch": "matched-main",
+        "points": [
+          [
+            36.0,
+            10.3
+          ],
+          [
+            37.5,
+            0.0
+          ]
+        ],
+        "medium": "matched-rf-pcb-topology",
+        "stroke": "#2563eb",
+        "width": 1.7,
+        "dash": null
+      },
+      {
+        "frame": "rf-inner",
+        "path": "RX-AM/LW",
+        "branch": "ami",
+        "points": [
+          [
+            22.8,
+            0.0
+          ],
+          [
+            13.95,
+            26.5
+          ]
+        ],
+        "medium": "high-impedance-ami-pcb",
+        "stroke": "#7c3aed",
+        "width": 1.9,
+        "dash": null
+      },
+      {
+        "frame": "rf-inner",
+        "path": "RX-FM/SW",
+        "branch": "direct-fm-sw",
+        "points": [
+          [
+            8.1,
+            0.0
+          ],
+          [
+            21.0,
+            10.5
+          ],
+          [
+            13.95,
+            26.5
+          ]
+        ],
+        "medium": "direct-fm-sw-pcb",
+        "stroke": "#2563eb",
+        "width": 1.7,
+        "dash": null
+      },
+      {
+        "frame": "rf-inner",
+        "path": "RX-FM/SW",
+        "branch": "converted-airband",
+        "points": [
+          [
+            8.1,
+            0.0
+          ],
+          [
+            12.25,
+            11.05
+          ],
+          [
+            17.0,
+            10.5
+          ],
+          [
+            21.0,
+            10.5
+          ]
+        ],
+        "medium": "converted-airband-rf-if-pcb",
+        "stroke": "#ea580c",
+        "width": 2.0,
+        "dash": null
+      },
+      {
+        "frame": "rf-inner",
+        "path": "RX-FM/SW",
+        "branch": "airband-lo",
+        "points": [
+          [
+            25.0,
+            10.5
+          ],
+          [
+            17.0,
+            10.5
+          ]
+        ],
+        "medium": "112-mhz-local-oscillator-pcb",
+        "stroke": "#ea580c",
+        "width": 1.5,
+        "dash": "4 3"
+      }
+    ],
+    "cables": [
+      {
+        "frame": "ui-inner",
+        "path": "N24-0",
+        "points": [
+          [
+            17.05,
+            49.3
+          ],
+          [
+            11.5,
+            10.55
+          ]
+        ],
+        "medium": "removable-microcoax",
+        "device_id": "te_1_2118651_0",
+        "mpn": "TE Connectivity 1-2118651-0",
+        "length_mm": 60.0,
+        "stroke": "#0f766e",
+        "width": 3.2
+      },
+      {
+        "frame": "ui-inner",
+        "path": "S3-2G4",
+        "points": [
+          [
+            15.0,
+            31.6
+          ],
+          [
+            22.8,
+            10.55
+          ]
+        ],
+        "medium": "removable-microcoax",
+        "device_id": "te_2118651_2",
+        "mpn": "TE Connectivity 2118651-2",
+        "length_mm": 30.0,
+        "stroke": "#0f766e",
+        "width": 3.2
+      },
+      {
+        "frame": "ui-inner",
+        "path": "N24-1",
+        "points": [
+          [
+            36.85,
+            49.3
+          ],
+          [
+            37.5,
+            15.55
+          ]
+        ],
+        "medium": "removable-microcoax",
+        "device_id": "te_1_2118651_0",
+        "mpn": "TE Connectivity 1-2118651-0",
+        "length_mm": 60.0,
+        "stroke": "#0f766e",
+        "width": 3.2
+      },
+      {
+        "frame": "ui-inner",
+        "path": "C5-2G4/5",
+        "points": [
+          [
+            60.0,
+            32.6
+          ],
+          [
+            52.2,
+            10.55
+          ]
+        ],
+        "medium": "removable-microcoax",
+        "device_id": "te_2118651_2",
+        "mpn": "TE Connectivity 2118651-2",
+        "length_mm": 30.0,
+        "stroke": "#0f766e",
+        "width": 3.2
+      },
+      {
+        "frame": "ui-inner",
+        "path": "N24-2",
+        "points": [
+          [
+            56.650000000000006,
+            51.3
+          ],
+          [
+            63.5,
+            10.55
+          ]
+        ],
+        "medium": "removable-microcoax",
+        "device_id": "te_1_2118651_0",
+        "mpn": "TE Connectivity 1-2118651-0",
+        "length_mm": 60.0,
+        "stroke": "#0f766e",
+        "width": 3.2
+      }
+    ],
+    "connectors": [
+      {
+        "frame": "ui-inner",
+        "path": "N24-0",
+        "point": [
+          17.05,
+          49.3
+        ],
+        "part": "module-rf-connector",
+        "kind": "IPEX"
+      },
+      {
+        "frame": "ui-inner",
+        "path": "N24-0",
+        "point": [
+          11.5,
+          10.55
+        ],
+        "part": "board-ufl",
+        "kind": "U.FL"
+      },
+      {
+        "frame": "ui-inner",
+        "path": "S3-2G4",
+        "point": [
+          15.0,
+          31.6
+        ],
+        "part": "module-rf-connector",
+        "kind": "U.FL"
+      },
+      {
+        "frame": "ui-inner",
+        "path": "S3-2G4",
+        "point": [
+          22.8,
+          10.55
+        ],
+        "part": "board-ufl",
+        "kind": "U.FL"
+      },
+      {
+        "frame": "ui-inner",
+        "path": "N24-1",
+        "point": [
+          36.85,
+          49.3
+        ],
+        "part": "module-rf-connector",
+        "kind": "IPEX"
+      },
+      {
+        "frame": "ui-inner",
+        "path": "N24-1",
+        "point": [
+          37.5,
+          15.55
+        ],
+        "part": "board-ufl",
+        "kind": "U.FL"
+      },
+      {
+        "frame": "ui-inner",
+        "path": "C5-2G4/5",
+        "point": [
+          60.0,
+          32.6
+        ],
+        "part": "module-rf-connector",
+        "kind": "U.FL"
+      },
+      {
+        "frame": "ui-inner",
+        "path": "C5-2G4/5",
+        "point": [
+          52.2,
+          10.55
+        ],
+        "part": "board-ufl",
+        "kind": "U.FL"
+      },
+      {
+        "frame": "ui-inner",
+        "path": "N24-2",
+        "point": [
+          56.650000000000006,
+          51.3
+        ],
+        "part": "module-rf-connector",
+        "kind": "IPEX"
+      },
+      {
+        "frame": "ui-inner",
+        "path": "N24-2",
+        "point": [
+          63.5,
+          10.55
+        ],
+        "part": "board-ufl",
+        "kind": "U.FL"
+      }
+    ]
+  },
+  "rf_microcoax": {
+    "status": "pass",
+    "paths": [
+      {
+        "path": "N24-0",
+        "source_instance": "nrf0_r2",
+        "board_connector_instance": "nrf0_rf_board_connector_r2",
+        "selected_device_id": "te_1_2118651_0",
+        "mpn": "TE Connectivity 1-2118651-0",
+        "length_mm": 60.0,
+        "projection_mm": 48.309,
+        "minimum_conservative_slack_mm": 11.691,
+        "projection_basis": "farthest maximum-module-envelope corner to board-U.FL centre",
+        "source_connector_point_mm": null,
+        "board_connector_point_mm": [
+          11.5,
+          10.55
+        ]
+      },
+      {
+        "path": "S3-2G4",
+        "source_instance": "s3",
+        "board_connector_instance": "s3_rf_board_connector_r2",
+        "selected_device_id": "te_2118651_2",
+        "mpn": "TE Connectivity 2118651-2",
+        "length_mm": 30.0,
+        "projection_mm": 14.026,
+        "minimum_conservative_slack_mm": 15.974,
+        "projection_basis": "exact module connector axis to board-U.FL centre",
+        "source_connector_point_mm": [
+          21.0,
+          24.46
+        ],
+        "board_connector_point_mm": [
+          22.8,
+          10.55
+        ]
+      },
+      {
+        "path": "N24-1",
+        "source_instance": "nrf1_r2",
+        "board_connector_instance": "nrf1_rf_board_connector_r2",
+        "selected_device_id": "te_1_2118651_0",
+        "mpn": "TE Connectivity 1-2118651-0",
+        "length_mm": 60.0,
+        "projection_mm": 42.18,
+        "minimum_conservative_slack_mm": 17.82,
+        "projection_basis": "farthest maximum-module-envelope corner to board-U.FL centre",
+        "source_connector_point_mm": null,
+        "board_connector_point_mm": [
+          37.5,
+          15.55
+        ]
+      },
+      {
+        "path": "C5-2G4/5",
+        "source_instance": "c5",
+        "board_connector_instance": "c5_rf_board_connector_r2",
+        "selected_device_id": "te_2118651_2",
+        "mpn": "TE Connectivity 2118651-2",
+        "length_mm": 30.0,
+        "projection_mm": 19.537,
+        "minimum_conservative_slack_mm": 10.463,
+        "projection_basis": "exact module connector axis to board-U.FL centre",
+        "source_connector_point_mm": [
+          66.0,
+          24.38
+        ],
+        "board_connector_point_mm": [
+          52.2,
+          10.55
+        ]
+      },
+      {
+        "path": "N24-2",
+        "source_instance": "nrf2_r2",
+        "board_connector_instance": "nrf2_rf_board_connector_r2",
+        "selected_device_id": "te_1_2118651_0",
+        "mpn": "TE Connectivity 1-2118651-0",
+        "length_mm": 60.0,
+        "projection_mm": 50.612,
+        "minimum_conservative_slack_mm": 9.388,
+        "projection_basis": "farthest maximum-module-envelope corner to board-U.FL centre",
+        "source_connector_point_mm": null,
+        "board_connector_point_mm": [
+          63.5,
+          10.55
+        ]
+      }
+    ],
+    "path_count": 5,
+    "thirty_mm_paths": 2,
+    "sixty_mm_paths": 3,
+    "minimum_conservative_slack_mm": 9.388,
+    "received_only_gate": "connector mating, bend radius, strain relief and routed service loop remain J4-F/H8 physical evidence",
+    "errors": []
+  }
 }

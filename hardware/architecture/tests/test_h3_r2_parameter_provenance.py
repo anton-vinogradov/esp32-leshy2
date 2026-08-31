@@ -17,19 +17,19 @@ class H3R2ParameterProvenanceTests(unittest.TestCase):
     def test_exact_r2_counts_and_ownership(self):
         summary = self.result["summary"]
         self.assertEqual("pass", self.result["status"])
-        self.assertEqual(239, summary["component_groups"])
+        self.assertEqual(240, summary["component_groups"])
         self.assertEqual(234, summary["board_component_groups"])
-        self.assertEqual(5, summary["explicit_non_pcba_groups"])
+        self.assertEqual(6, summary["explicit_non_pcba_groups"])
         self.assertEqual(1185, summary["fitted_board_instances"])
-        self.assertEqual(239, summary["owned_component_groups"])
-        self.assertEqual(239, summary["model_method_candidates"])
+        self.assertEqual(240, summary["owned_component_groups"])
+        self.assertEqual(240, summary["model_method_candidates"])
         self.assertEqual(0, summary["errors"])
         self.assertEqual(0, summary["open_decisions"])
 
     def test_every_group_has_provenance_and_no_silent_model(self):
         rows = self.result["rows"]
-        self.assertEqual(239, len(rows))
-        self.assertEqual(239, len({row["device_id"] for row in rows}))
+        self.assertEqual(240, len(rows))
+        self.assertEqual(240, len({row["device_id"] for row in rows}))
         for row in rows:
             self.assertTrue(row["mpn"], row["device_id"])
             self.assertTrue(row["source"]["url"], row["device_id"])
@@ -68,7 +68,7 @@ class H3R2ParameterProvenanceTests(unittest.TestCase):
         for relative in ("docs/parameter-model-register.md", "docs/parameter-model-register.ru.md"):
             page = (ROOT / relative).read_text(encoding="utf-8")
             self.assertIn("H3-R2.0.2", page, relative)
-            self.assertIn("239", page, relative)
+            self.assertIn("240", page, relative)
             self.assertIn("1185", page, relative)
             self.assertNotIn("# H3 parameters and models · historical R1", page, relative)
 

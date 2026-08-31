@@ -7,7 +7,7 @@
     "hardware/verification/generated/H3-VRF72-physical-residuals.json": "bb42a28438471824376c593e5d37974f2f5c12e55bd1af90380fd7a9ec257149",
     "hardware/product-design/generated/H1-physical-source-table.json": "97bca94c9954caf5ef504ed1bdef9cdafb5a37df37945b437067546a0b2f5b5a",
     "hardware/product-design/mechanical-evidence-gates.json": "4404c8134c8e6d4b2894672a57737909860d7535742bea01c88db0e4d24c68cd",
-    "hardware/architecture/devices.json": "33764997afecc02f1112a0d471647b9c8562ac38ee74b31222ea09db68bdac07",
+    "hardware/architecture/devices.json": "9db9ce928ceb1dd38324d5e1eaff57a3d686ff449217ec3216577400dbe51060",
     "hardware/architecture/am-lw-pod.json": "6571e20c26f2ceaebf9c4bf410d155417a68116b3b5ef2e16d7c77ee06503e08"
   },
   "summary": {
@@ -718,7 +718,7 @@
         "H5-MECH-NATIVE-RF-JUMPERS"
       ],
       "missing_data": [
-        "received 2118651-2 bend, retention and strain behaviour in all five installed paths",
+        "received 2118651-2 bend, retention and strain behaviour in the two 30-mm S3/C5 paths and 1-2118651-0 behaviour in the three 60-mm nRF paths",
         "received E01 fitted-receptacle mate fit against the published connector locations before freezing placement"
       ],
       "sample_specific": true,

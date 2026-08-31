@@ -99,7 +99,7 @@ RESIDUAL_MAP = {
         ],
         "mechanical_gates": ["H5-MECH-NRF-GEN1-FEEDS", "H5-MECH-NATIVE-RF-JUMPERS"],
         "missing_data": [
-            "received 2118651-2 bend, retention and strain behaviour in all five installed paths",
+            "received 2118651-2 bend, retention and strain behaviour in the two 30-mm S3/C5 paths and 1-2118651-0 behaviour in the three 60-mm nRF paths",
             "received E01 fitted-receptacle mate fit against the published connector locations before freezing placement",
         ],
         "sample_specific": True,

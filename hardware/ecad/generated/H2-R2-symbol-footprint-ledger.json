@@ -6,11 +6,11 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "c53c6b6452923107d28ed7f87ab04b377fadffbb802e58a0749abef8c5c78323"
+      "sha256": "6b459e2e695cead85cba8f65fe2ee02120f0f8165b01e829f433fd6cb5cb2a5a"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "bc933e01c50be1af4ff8ae75be7b143b206ddede6440d67889fa3a6793af650f"
+      "sha256": "9db9ce928ceb1dd38324d5e1eaff57a3d686ff449217ec3216577400dbe51060"
     }
   },
   "historical_hint_sources": [
@@ -22,150 +22,150 @@
     },
     {
       "path": "hardware/ecad/generated/H2-RF-root-interface.json",
-      "sha256": "489c8de94702253ebaaff7567ed97485a12266fe9441710304c4a398857b5b9b",
+      "sha256": "30a47c6cbf4e2247105cf0d554ae89a8d5e6a3bf8de6dc663b601458e7dcccaf",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF01-usb-pd-charge.json",
-      "sha256": "b2097a822152123729112ba18ab64fb65bbe37757768effa0aea2695dd296a79",
+      "sha256": "eeafb3c97703a339d4877c0c047e6a80178aff5994aa7ab02dc03d5292167437",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF02-pack-safety-aon.json",
-      "sha256": "3c3cb5c5a07a4edd24d5a79cd69293434cb1bfce10e38ecfdd05cf6b667a1cb3",
+      "sha256": "7cf070e3207f3bdb72e8549e66250dfe5210813ed912d46142992d8bc77d22ba",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json",
-      "sha256": "7e742a25ac98db61237be96bbf0f1d193054bec2e02dcbcdb971dd2303af69b9",
+      "sha256": "bad4b8c7058362ed37714b604c5853192adeb9b5e32b7b50163541cae1441182",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF30-rp2354-core-service.json",
-      "sha256": "396edf479b52ee2d21d02a0e5011c237877e51cbb56062b76079f5ab81708dff",
+      "sha256": "af0e3ba1375dc2cb6e13887f27e43c78e692a1053bc8012bb9791210272bb85a",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF31-nrf24-x3.json",
-      "sha256": "bd085c9ad10e22d21bc22e1404b794b2690b9b2a7c3410e30aca44a00cb7efcd",
+      "sha256": "2852aa77c21332fc5c7992ea8695ef46dc3b9d6d06237cf81f8236765fdf6a9a",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF32-subghz-voice.json",
-      "sha256": "de22cf930bffb2992997e615a043b69dae5f7c890a9b133ad7b52f493cb9e7fc",
+      "sha256": "21174adcdb60959df0aed6c4dd5088937ec3180ad63519fd1ced694b8e8dd868",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF34-u214-m5-ext.json",
-      "sha256": "e017d92ad95f17dfa744d991ae7b28dea0ea98383aeb347eb3de67667d7995f3",
+      "sha256": "523d9cf42766d2b75a9c862fa493b29f40f8e8510f8e6e96098961a4bf902905",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF35-rear-controls.json",
-      "sha256": "a72c44cbc661c5d49bf82abd50e0d07fbc0c3eb3315eb59d5737ac625f6ef462",
+      "sha256": "06e48d56191a838a44d4f4c3495e5aef7f3e341807e7781cb1d5bab78c02b354",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF36-audio-io-amp.json",
-      "sha256": "af0b66e269b78ded130776eeaaaa4b82cec345c9ab176ff26b1a780539fd82f4",
+      "sha256": "668d46dcbd922055b28e0457c524e5f9e3b00a35e54d3ec05004b77c8278fb01",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF40-interboard-m1.json",
-      "sha256": "d14efcf3054860c41629709ca52d6b0254724a8f5399a4d388a03eb5ddcd78ec",
+      "sha256": "0ff32dcab7c4b57142cecd096c53fcba8182208716f731a79c0bdaf3497f668f",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF50-tx-safety-evidence.json",
-      "sha256": "5a9d2ea301c69ab62aa5cb6068cb1afbfdc7af0568226d4edfd224e16165d0dd",
+      "sha256": "05a9f6912c48071dae5893dae23743d3b726a725f70e9ef45dcc751164d2445f",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF60-testpoints-manufacturing.json",
-      "sha256": "71636d132f35b76482d4c3f914cb15234f79c9178289e06bceaf77bc7fe1717e",
+      "sha256": "915bb1f7e4c4098a78b624c9f10fc28a7660ba57ca5086a5aa8b5f283cba1590",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI-root-interface.json",
-      "sha256": "bae25a8367240dcd638e78696973c42c109bec4980966c0a6fce9eb051c3f099",
+      "sha256": "42010b6fec4b82cf295cbbcd33c67841e8cd2edfc8bfc648288130522c58314d",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI10-S3-core.json",
-      "sha256": "8dee2cd6b2825d57d46bb14099e05baa67796c4c6dc533273d049b7f8642a27a",
+      "sha256": "e8737b6797283f5213ce613488b482d726787df0ef506a1e02cc3e2a1dda71ab",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI11-display-touch-storage.json",
-      "sha256": "5814a82e486b166bc6d43fa2ac5150ababd9626ef194af45c07e6cc2d503d4eb",
+      "sha256": "d31d3346a9ac911d67503b9b9726ddeb019729148338d3a11edde4eefb0efc3e",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI12-controls-indicators.json",
-      "sha256": "0962daa75f24d7ce95127f6f4fb265b9c612edd4dd1c7aaa92519bd73268bda4",
+      "sha256": "8427e61399611ec3a54da7aff3a92b03b401fa4fc7d17e6463a150b29c82a665",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI13-audio-codec-headset.json",
-      "sha256": "d59eebcb5b89aaca41bcbe8e17fd1b2c7dc7ae3299219635e490c2f5d46b5d4e",
+      "sha256": "06b45bef16ab9de8f7e07f25bda67cddfb9315595d63e8afce4812166cc9b0ec",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json",
-      "sha256": "2ec33bf603cb7fb2315db0413c8d48643909914cd9915bfbed413d78ee56f9c9",
+      "sha256": "8f63b982e447f2d01c7b9021cbc0f831a759c81fec884e3480c78955f66a5539",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI21-fm-am-receiver.json",
-      "sha256": "393188b71741967bc3f777d50ec826d4af35ec05818f660f58c9aab6f1829c7b",
+      "sha256": "c47849345e2e3c0c813cc893bb190046c0d378a7c3c8bfd9c01f08fa5ccbb4d0",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI40-interboard-m1.json",
-      "sha256": "e8b3392b74d414bafa45f0639b4c4a5bab84246e5b318d7f8812fd79edd0ca75",
+      "sha256": "cc75231365ac0c4a1f867dda1830f1c1f03a9165ecb05fd951bffea0f1715a35",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI50-tx-safety-evidence.json",
-      "sha256": "b6f8fdb708a81d0a659048f117e9d955fd54e9780d74aca2c50db47b3bb55113",
+      "sha256": "fc4c9723c351bf47b485a0bb73b1eb3f087c720baf0f9c93e842386a0f7b0fc0",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI60-testpoints-manufacturing.json",
-      "sha256": "7c006295cb669d34c7c6b8e2741026fa124d0f5e0819f033afc5c33e9a0c9128",
+      "sha256": "ef681553ff2afc9c9abb3ac418d9a91a887cd13d8d436d16c69f017ea75df15d",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     }
   ],
   "summary": {
-    "component_group_count": 239,
+    "component_group_count": 240,
     "board_component_group_count": 234,
-    "explicit_non_pcba_group_count": 5,
+    "explicit_non_pcba_group_count": 6,
     "symbol_identity_count": 234,
     "footprint_identity_count": 234,
-    "logical_contact_count": 1656,
+    "logical_contact_count": 1658,
     "historical_package_hints_reconciled": 196,
     "historical_package_conflicts_resolved": 5,
     "explicit_current_footprint_overrides": 38,
@@ -10441,15 +10441,55 @@
       "jlcpcb_part_number": "C2170392"
     },
     {
+      "device_id": "te_1_2118651_0",
+      "mpn": "TE Connectivity 1-2118651-0",
+      "quantity_per_product": 3,
+      "role": "three 60-mm nRF RF jumpers / три 60-мм RF-кабеля nRF",
+      "ecad_disposition": "three removable 60-mm off-board U.FL-to-U.FL cable assemblies; only their board connectors are represented in ECAD",
+      "native_sheet_affinity": [
+        "UI_31_NRF24_X3_TX_EVIDENCE"
+      ],
+      "schematic_value": "double_ended_umcc_gen1_microcoax_jumper",
+      "symbol_id": null,
+      "symbol_status": "not_applicable_external_or_final_assembly",
+      "logical_contact_count": 2,
+      "contact_role_counts": {
+        "rf": 2
+      },
+      "contact_map": {
+        "END_A": {
+          "physical": "right-angle UMCC GEN 1 plug A",
+          "role": "rf"
+        },
+        "END_B": {
+          "physical": "right-angle UMCC GEN 1 plug B",
+          "role": "rf"
+        }
+      },
+      "contact_map_sha256": "d6c501e7f0d50d3ead67e407c1c4254c222bff1297687cc1289f5c6c19d12196",
+      "electrical_contract_sha256": "95079559620cf533e190a212c175c96836e13e100c0066406a16e9b3e640c5b0",
+      "manufacturer_evidence": {
+        "document": "TE Connectivity 1-2118651-0 exact product record and ENG_CD_2118651_C5 drawing",
+        "version": "live exact-product record",
+        "url": "https://www.te.com/en/product-1-2118651-0.html",
+        "checked": "2026-08-31"
+      },
+      "footprint": null,
+      "footprint_resolution": "not_applicable_off_board_or_final_assembly",
+      "footprint_definition": null,
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": null
+    },
+    {
       "device_id": "te_2118651_2",
       "mpn": "TE Connectivity 2118651-2",
-      "quantity_per_product": 5,
-      "role": "five 30-mm RF jumpers / пять 30-мм RF-кабелей",
-      "ecad_disposition": "removable off-board U.FL-to-U.FL cable assembly; only its two board connectors are represented in ECAD",
+      "quantity_per_product": 2,
+      "role": "two 30-mm S3/C5 RF jumpers / два 30-мм RF-кабеля S3/C5",
+      "ecad_disposition": "two removable 30-mm off-board U.FL-to-U.FL cable assemblies; only their board connectors are represented in ECAD",
       "native_sheet_affinity": [
         "UI_10_S3_DISPLAY_TOUCH",
-        "UI_20_C5_WIFI_IR_SERVICE",
-        "UI_31_NRF24_X3_TX_EVIDENCE"
+        "UI_20_C5_WIFI_IR_SERVICE"
       ],
       "schematic_value": "double_ended_umcc_gen1_microcoax_jumper",
       "symbol_id": null,

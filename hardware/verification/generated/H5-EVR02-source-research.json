@@ -5,8 +5,8 @@
   "checked_on": "2026-08-26",
   "purpose": "exhaust primary documentary evidence and fully documented serial alternatives before fixing the sole-prototype order manifest",
   "inputs": {
-    "hardware/verification/generated/H5-EVR01-residual-map.json": "51ff8a79a6ccb9b51990626e19ff60a1eb39e7215436132aaf5c2b4159fcffd8",
-    "hardware/architecture/devices.json": "33764997afecc02f1112a0d471647b9c8562ac38ee74b31222ea09db68bdac07"
+    "hardware/verification/generated/H5-EVR01-residual-map.json": "1bb18a9926cfecc3d7f493c622de1392b299115820c71f17a5dc7255a9d97077",
+    "hardware/architecture/devices.json": "9db9ce928ceb1dd38324d5e1eaff57a3d686ff449217ec3216577400dbe51060"
   },
   "summary": {
     "h5_residuals_researched": 9,

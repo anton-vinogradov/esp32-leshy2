@@ -14,10 +14,10 @@
 > detector/latch/release implementation is reviewed as `H2-R2.0.2`; the exact
 > `TCA9803DGKR/C2687966` Pack/Safety boundary is reviewed as `H2-R2.0.3`.
 > The native R2 inventory and exact symbol/contact/footprint ledger passed
-> review. Three native KiCad projects now materialize all 1,187 fitted instances
-> and 4,327 physical pins with zero ERC findings. Cross-sheet and HW↔FW
+> review. Three native KiCad projects now materialize all 1,185 fitted instances
+> and 4,323 physical pins with zero ERC findings. Cross-sheet and HW↔FW
 > reconciliation is reviewed; H3-R2.0.1 freezes those inputs and H3-R2.0.2
-> reviews exact parameter/model provenance for all 242 groups and 1,187 fitted
+> reviews exact parameter/model provenance for all 240 groups and 1,185 fitted
 > positions. H3-R2.0.3 freezes reproducible verification methods and rules;
 > H3-R2.1 now verifies worst-case power/DC states.
 
@@ -171,10 +171,10 @@ open geometry gate. The exact EastRising panel and passive adapter are fixed as
 well. H1 was explicitly accepted and reviewed on 2026-08-30. The C5 electrical
 pin/mux contract, live FSUSB42MUX/C11355 route and exact service-VBUS
 detector/latch/release implementation and exact TCA9803 Pack/Safety boundary
-are closed. `H2-R2.1.1` reviewed 3 native projects, 23 sheets and 242 exact MPN
-groups; `H2-R2.1.2` reviewed exact identities for 237 board groups, five
-explicit non-PCBA groups and 1,662 logical contacts. `H2-R2.1.3` materializes
-1,187 fitted instances and 826 canonical nets in three native projects with
+are closed. `H2-R2.1.1` reviewed 3 native projects, 23 sheets and 240 exact MPN
+groups; `H2-R2.1.2` reviewed exact identities for 234 board groups, six
+explicit non-PCBA groups and 1,658 logical contacts. `H2-R2.1.3` materializes
+1,185 fitted instances and 823 canonical nets in three native projects with
 zero-finding ERC. Cross-sheet and HW↔FW reconciliation passed in the reviewed
 `H2-R2.1.5` result; H3 now freezes those inputs.
 The legacy HMX display is reference evidence only and cannot enter

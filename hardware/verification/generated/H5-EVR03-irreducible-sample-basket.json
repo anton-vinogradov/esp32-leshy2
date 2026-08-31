@@ -21,20 +21,20 @@
   "inputs": {
     "residual_map": {
       "path": "hardware/verification/generated/H5-EVR01-residual-map.json",
-      "sha256": "51ff8a79a6ccb9b51990626e19ff60a1eb39e7215436132aaf5c2b4159fcffd8"
+      "sha256": "1bb18a9926cfecc3d7f493c622de1392b299115820c71f17a5dc7255a9d97077"
     },
     "source_research": {
       "path": "hardware/verification/generated/H5-EVR02-source-research.json",
-      "sha256": "dcfc891234521d01656a8b6f5a54743761db38ece7ba028a59890615bc8976df"
+      "sha256": "7585bfa076bbfb2ae4d726f8e9ad0f2da2f7dc52136cb97bd1f0b046747af3c2"
     }
   },
   "summary": {
-    "article_lines": 30,
+    "article_lines": 31,
     "measurement_contracts": 11,
     "covered_residuals_and_gates": 23,
-    "published_price_subtotal_usd": "241.92",
+    "published_price_subtotal_usd": "239.79",
     "conservative_budget_caps_usd": "4.00",
-    "known_engineering_material_budget_usd": "245.92",
+    "known_engineering_material_budget_usd": "243.79",
     "unpriced_manufacturer_lines": 0,
     "excluded_from_budget": [
       "factory display attrition",
@@ -57,7 +57,7 @@
     "expansion": "31.68",
     "ir": "5.30",
     "power": "46.38",
-    "rf": "59.92",
+    "rf": "57.79",
     "storage": "40.05"
   },
   "articles": [
@@ -280,16 +280,16 @@
       "purchase_authorized": false
     },
     {
-      "id": "rf-jumpers",
+      "id": "rf-jumpers-native",
       "group": "rf",
       "mpn": "TE Connectivity 2118651-2",
-      "order_quantity": 5,
+      "order_quantity": 2,
       "order_unit": "piece",
       "contained_pieces_per_order_unit": 1,
       "pricing": {
         "kind": "published_usd",
         "unit_usd": "2.52",
-        "subtotal_usd": "12.600",
+        "subtotal_usd": "5.040",
         "source_price": null
       },
       "source": {
@@ -299,12 +299,38 @@
         "availability": "3,082 shown in stock"
       },
       "coverage": [
-        "H3-PHY-053",
         "H3-PHY-062",
-        "H5-MECH-NRF-GEN1-FEEDS",
         "H5-MECH-NATIVE-RF-JUMPERS"
       ],
-      "minimum_quantity_basis": "five real paths exist: S3, C5 and three nRF24; every installed bend/retention path must be represented",
+      "minimum_quantity_basis": "two exact 30-mm paths serve S3 and C5; each installed bend/retention path must be represented",
+      "risk": null,
+      "purchase_authorized": false
+    },
+    {
+      "id": "rf-jumpers-nrf",
+      "group": "rf",
+      "mpn": "TE Connectivity 1-2118651-0",
+      "order_quantity": 3,
+      "order_unit": "piece",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "1.81",
+        "subtotal_usd": "5.430",
+        "source_price": null
+      },
+      "source": {
+        "label": "DigiKey exact-MPN listing",
+        "url": "https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/1-2118651-0/12380462",
+        "checked_on": "2026-08-29",
+        "availability": "7,283 shown in stock"
+      },
+      "coverage": [
+        "H3-PHY-053",
+        "H3-PHY-062",
+        "H5-MECH-NRF-GEN1-FEEDS"
+      ],
+      "minimum_quantity_basis": "three exact 60-mm paths serve the E01-ML01SP4 radios and retain at least the generated conservative routing slack",
       "risk": null,
       "purchase_authorized": false
     },
@@ -918,7 +944,8 @@
       "id": "H5-MSR-RF5",
       "articles": [
         "nrf-modules",
-        "rf-jumpers",
+        "rf-jumpers-native",
+        "rf-jumpers-nrf",
         "rf-board-receptacles",
         "edge-sma"
       ],
@@ -928,7 +955,7 @@
         "H5-MECH-NRF-GEN1-FEEDS",
         "H5-MECH-NATIVE-RF-JUMPERS"
       ],
-      "method": "inspect all E01 factory receptacles; assemble the five U.FL cable paths and edge SMA boundaries normally; inspect bend, retention and strain relief, verify continuity and S-parameters, then run all three nRF24 simultaneously in full RX, TX and mixed modes with every inactive interface hardware-quiet",
+      "method": "inspect all E01 factory receptacles; assemble the two 30-mm and three 60-mm U.FL cable paths and edge SMA boundaries normally; inspect bend, retention and strain relief, verify continuity and S-parameters, then run all three nRF24 simultaneously in full RX, TX and mixed modes with every inactive interface hardware-quiet",
       "pass_rule": "all five paths meet inherited loss/match and retention limits, all three nRF24 meet concurrent deadlines without neighbouring-interface stalls or desense",
       "artifacts": "microscope photos, continuity records, five VNA touchstone sets and 3R/1T2R/2T1R/3T traffic traces"
     },

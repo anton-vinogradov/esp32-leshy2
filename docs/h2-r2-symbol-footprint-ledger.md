@@ -10,11 +10,11 @@ projects or PCB layout.
 
 | Ledger item | Fixed result |
 |---|---|
-| Exact product component groups | 242 |
-| Board component groups | 237, each with one `Leshy2_R2` symbol identity and one exact footprint identity |
-| Explicit non-PCBA groups | 5: display assembly, U214, two-cell kit, encoder knob and five removable RF jumpers |
-| Logical contacts | 1,662, copied and hash-bound from current manufacturer contact evidence |
-| Standard KiCad package identities | 202 |
+| Exact product component groups | 240 |
+| Board component groups | 234, each with one `Leshy2_R2` symbol identity and one exact footprint identity |
+| Explicit non-PCBA groups | 6: display assembly, U214, two-cell kit, encoder knob and two exact MPN groups covering five removable RF jumpers |
+| Logical contacts | 1,658, copied and hash-bound from current manufacturer contact evidence |
+| Standard KiCad package identities | 199 |
 | Existing manufacturer-derived local definitions | 32 |
 | New local geometry materialized at the contact checkpoint | 3: exact `FH34SRJ-50S-0.5SH(50)`, `WBC1-1TLC` and `WBC16-1TLC` geometries |
 | Native schematic symbols/files/nets created | 0 / 0 / 0 |
@@ -28,10 +28,10 @@ old designator, net or sheet owner.
 
 ## Corrections found by the ledger
 
-Five TE Connectivity `2118651-2` parts are removable 30-mm U.FL-to-U.FL cable
-assemblies. They are no longer misrepresented as PCB components. The native
-schematic represents the board and module receptacle endpoints; the cable has
-no symbol or PCB footprint.
+Two TE Connectivity `2118651-2` 30-mm and three `1-2118651-0` 60-mm parts are
+removable U.FL-to-U.FL cable assemblies. They are not misrepresented as PCB
+components. The native schematic represents the board and module receptacle
+endpoints; each cable has no symbol or PCB footprint.
 
 Five conflicting historical package hints were resolved from the current exact
 manufacturer identity rather than inherited blindly:
@@ -50,17 +50,17 @@ was changed by this step.
 
 The new 50-contact FH34 and both six-pad Coilcraft transformer footprints are
 materialized from official drawings. A generated contact audit resolves all
-1,605 contacts belonging to the 237 board groups: 1,602 are footprint contacts
+1,599 contacts belonging to the 234 board groups: 1,596 are footprint contacts
 and three are explicit RF
 receptacles already carried by their modules. All named footprint pads are
 claimed as electrical or explicitly mechanical; no carrier pad is invented for
-an on-module receptacle. The remaining 57 contacts in the 1,662-contact source
-ledger belong to the five explicit non-PCBA assemblies.
+an on-module receptacle. The remaining 59 contacts in the 1,658-contact source
+ledger belong to the six explicit non-PCBA assemblies.
 
 ## Machine evidence
 
 - [Exact ledger contract](../hardware/ecad/h2-r2-symbol-footprint-contract.json)
-- [Generated 242-group ledger](../hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json)
+- [Generated 240-group ledger](../hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json)
 - [Contact-to-pad contract](../hardware/ecad/h2-r2-contact-materialization-contract.json)
 - [Generated contact materialization](../hardware/ecad/generated/H2-R2-contact-materialization.json)
 - [Controlled-symbol contract](../hardware/ecad/h2-r2-symbol-library-contract.json)
@@ -70,8 +70,8 @@ ledger belong to the five explicit non-PCBA assemblies.
 
 ## Current boundary
 
-The controlled `Leshy2_R2` library now contains all 237 exact-MPN symbols and
-1,618 unique electrical-pad pins and passes KiCad 10 parsing. All 1,187 fitted
+The controlled `Leshy2_R2` library now contains all 234 exact-MPN symbols and
+1,612 unique electrical-pad pins and passes KiCad 10 parsing. All 1,185 fitted
 instances are allocated to the current projects, and their 4,323 contacts pass
 [native net reconciliation](h2-r2-net-ledger.md). The
 [native KiCad projects](h2-r2-native-kicad.md) also pass zero-finding ERC.

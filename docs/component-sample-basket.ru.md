@@ -20,8 +20,8 @@ flowchart TD
 
 ## Сводка стоимости
 
-- **$245.92** — известный консервативный material budget для всех priced lines.
-- Внутри него **$241.92** — публичные USD-цены и **$4.00** — два консервативных cap для дешёвых IR-деталей, чьи live-страницы показывают цену в AUD/INR.
+- **$243.79** — известный консервативный material budget для всех priced lines.
+- Внутри него **$239.79** — публичные USD-цены и **$4.00** — два консервативных cap для дешёвых IR-деталей, чьи live-страницы показывают цену в AUD/INR.
 - В сумму включены exact `SA818S-U` `C3001549` за `$9.7347` и exact `SA818S-V` `C51897911` за `$10.0710`; у VHF-модуля stock `0`, MOQ 1 и типичные 8–15 рабочих дней, а final quote/lead остаются order-time gate.
 - Точный production panel по публичной цене `$14.91` включён; не включены только factory attrition, финальная сборка/FCT, доставка, налоги и таможня. Любые дополнительные экземпляры дисплея или коннекторов входят в attrition фабричного quote, а не в пользовательские samples; отдельного H5 coupon-заказа нет.
 - Старая сумма `$164.54` была не дешёвой полной корзиной, а неполным набором из восьми строк; она не покрывала большинство H5 gates.
@@ -52,8 +52,10 @@ flowchart TD
 
 - **3 × `Ebyte E01-ML01SP4 / JLCPCB C97340` — $13.45.** [JLCPCB exact original-manufacturer part page](https://jlcpcb.com/partdetail/E01-ML01SP4/C97340); 405 in stock, 388 available, MOQ 1; factory SMT placement.
   Почему минимум: exactly three factory-fitted PA/LNA modules are required to prove simultaneous full RX, TX and mixed operation; no owner placement or untouched spare
-- **5 × `TE Connectivity 2118651-2` — $12.60.** [DigiKey exact-MPN listing](https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824); 3,082 shown in stock.
-  Почему минимум: five real paths exist: S3, C5 and three nRF24; every installed bend/retention path must be represented
+- **2 × `TE Connectivity 2118651-2` — $5.04.** [DigiKey exact-MPN listing](https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824); 3,082 shown in stock.
+  Почему минимум: two exact 30-mm paths serve S3 and C5; each installed bend/retention path must be represented
+- **3 × `TE Connectivity 1-2118651-0` — $5.43.** [DigiKey exact-MPN listing](https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/1-2118651-0/12380462); 7,283 shown in stock.
+  Почему минимум: three exact 60-mm paths serve the E01-ML01SP4 radios and retain at least the generated conservative routing slack
 - **5 × `Hirose U.FL-R-SMT-1(80)` — $0.51.** [JLCPCB exact original-manufacturer part C88374](https://jlcpcb.com/partdetail/U.FL-R-SMT-1%2880%29/C88374); 72,989 in stock; 68,798 orderable; MOQ 1; factory SMT placement.
   Почему минимум: one board mate per selected 30-mm jumper path; (80) changes reel presentation only
 - **4 × `GCT RFPC-SMA31-FN-175-A` — $13.56.** [DigiKey exact-MPN listing](https://www.digikey.com/en/products/detail/gct/RFPC-SMA31-FN-175-A/25576371); 638 shown in stock.
@@ -149,7 +151,7 @@ flowchart TD
 <details><summary><code>H5-MSR-RF5</code></summary>
 
 - Покрывает: `H3-PHY-053, H3-PHY-062, H5-MECH-NRF-GEN1-FEEDS, H5-MECH-NATIVE-RF-JUMPERS`.
-- Метод: inspect all E01 factory receptacles; assemble the five U.FL cable paths and edge SMA boundaries normally; inspect bend, retention and strain relief, verify continuity and S-parameters, then run all three nRF24 simultaneously in full RX, TX and mixed modes with every inactive interface hardware-quiet.
+- Метод: inspect all E01 factory receptacles; assemble the two 30-mm and three 60-mm U.FL cable paths and edge SMA boundaries normally; inspect bend, retention and strain relief, verify continuity and S-parameters, then run all three nRF24 simultaneously in full RX, TX and mixed modes with every inactive interface hardware-quiet.
 - Критерий: all five paths meet inherited loss/match and retention limits, all three nRF24 meet concurrent deadlines without neighbouring-interface stalls or desense.
 - Артефакты: microscope photos, continuity records, five VNA touchstone sets and 3R/1T2R/2T1R/3T traffic traces.
 

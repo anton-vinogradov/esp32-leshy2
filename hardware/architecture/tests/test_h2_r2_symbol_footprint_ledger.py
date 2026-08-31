@@ -39,12 +39,12 @@ class H2R2SymbolFootprintLedgerTests(unittest.TestCase):
         self.assertEqual("H2-R2.1.2", self.ledger["marker"])
         self.assertEqual("pass", self.ledger["status"])
         summary = self.ledger["summary"]
-        self.assertEqual(239, summary["component_group_count"])
+        self.assertEqual(240, summary["component_group_count"])
         self.assertEqual(234, summary["board_component_group_count"])
-        self.assertEqual(5, summary["explicit_non_pcba_group_count"])
+        self.assertEqual(6, summary["explicit_non_pcba_group_count"])
         self.assertEqual(234, summary["symbol_identity_count"])
         self.assertEqual(234, summary["footprint_identity_count"])
-        self.assertEqual(1656, summary["logical_contact_count"])
+        self.assertEqual(1658, summary["logical_contact_count"])
         self.assertEqual(0, summary["unresolved_groups"])
 
     def test_contacts_are_hash_bound_to_current_device_evidence(self):
@@ -75,6 +75,7 @@ class H2R2SymbolFootprintLedgerTests(unittest.TestCase):
                 "davies_1227_j",
                 "eastrising_er_tft035ips_6_ctp",
                 "m5_u214",
+                "te_1_2118651_0",
                 "te_2118651_2",
                 "xtar_18650_4000mah_protected",
             },
@@ -82,6 +83,7 @@ class H2R2SymbolFootprintLedgerTests(unittest.TestCase):
         )
         self.assertTrue(all(row["footprint"] is None for row in external.values()))
         self.assertIn("off-board U.FL-to-U.FL", external["te_2118651_2"]["ecad_disposition"])
+        self.assertIn("off-board U.FL-to-U.FL", external["te_1_2118651_0"]["ecad_disposition"])
 
     def test_historical_package_hints_never_become_topology_authority(self):
         self.assertTrue(self.ledger["historical_hint_sources"])

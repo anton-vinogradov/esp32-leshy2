@@ -13,7 +13,7 @@ history of earlier design decisions.
 | Native projects | `LESHY2-UI-R2`, `LESHY2-RF-R2`, passive `L2-DISP-ADP-001-B` |
 | Functional sheets | 23 unique sheets with one owner for every responsibility |
 | Compute domains | 6: S3, C5, front Hub RP, rear RF RP, Pack and Safety |
-| Exact component groups | 242 MPN groups, 1,197 positions per finished product |
+| Exact component groups | 240 MPN groups, 1,195 positions per finished product |
 | External antenna kit | 8 exact groups, 12 separately identified antennas/pods |
 | Open pre-ECAD prerequisite | 0 |
 | Native symbols/nets created | 0 / 0 |
@@ -32,7 +32,7 @@ receptacle; it does not manufacture a separate LoRa-Cap PCB.
 
 The accepted H1 inventory had 210 groups and 1,099 positions. The reviewed
 Pack/Safety boundary and the exact complete Airband conversion branch bring the
-current result to 242 exact groups and 1,197 positions. Display, optional U214,
+current result to 240 exact groups and 1,195 positions. Display, optional U214,
 removable cells and encoder knob retain explicit non-PCBA/final-assembly
 dispositions.
 
@@ -49,7 +49,7 @@ architecture freeze and immediately before the exact-one order.
 
 ## Current boundary
 
-The exact ledger for these 242 groups passed review at
+The exact ledger for these 240 groups passed review at
 [`H2-R2.1.2`](h2-r2-symbol-footprint-ledger.md), and the downstream
 [4,323-endpoint net reconciliation](h2-r2-net-ledger.md) and
 [native KiCad generation](h2-r2-native-kicad.md) have passed. Cross-sheet and

@@ -5,9 +5,9 @@
   "accepted_input": "H3-R2.0.1",
   "status": "reviewed",
   "expected": {
-    "component_groups": 239,
+    "component_groups": 240,
     "board_component_groups": 234,
-    "explicit_non_pcba_groups": 5,
+    "explicit_non_pcba_groups": 6,
     "fitted_board_instances": 1185,
     "source_missing": 0,
     "factory_catalog_only_parameter_sources": 0
@@ -38,6 +38,7 @@
     "eastrising_er_tft035ips_6_ctp": ["H3-R2.3", "H3-R2.4"],
     "m5_u214": ["H3-R2.5"],
     "te_2118651_2": ["H3-R2.5"],
+    "te_1_2118651_0": ["H3-R2.5"],
     "xtar_18650_4000mah_protected": ["H3-R2.1", "H3-R2.3", "H3-R2.6"]
   },
   "policy": {

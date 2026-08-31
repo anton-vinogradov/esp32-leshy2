@@ -14,13 +14,13 @@
     "hardware/architecture/h1-r2-dual-rp-pinout.json": "45d7b02e86a626c5be841fef4d249fd304e98ce1715776e79d073ca9bc144753",
     "hardware/architecture/c5-sdio-service-mux-contract.json": "4bd88ffed2e8ac0b5f6e8856d6ebc21e7cc29aa38045d4a10e068b870e51c7f3",
     "hardware/architecture/pack-safety-i2c-boundary-contract.json": "5460c97ab81e9f58c41a042a5f024f5f83e5913099e11743b9ad72414eb5782c",
-    "hardware/architecture/candidates/G2F-3I.json": "ce60d399d4133a68b3115753880108ce070ed905dbdbe58d1171a4bba0ca2cba",
+    "hardware/architecture/candidates/G2F-3I.json": "ecf99050c571f990ca943e54d50e30c4c881ee3658151feb619cf3bf600cd2cb",
     "hardware/architecture/h1-r2-u219-cap.json": "01f01f750ceedaa9818b59968962a3484f4660057137e6ef43431a54b71c98fa",
-    "hardware/product-design/h1-r2-placement.json": "39b90a45de93dcee614065bbc10fa5fba9604c224583a21eaa6d510c9e183787",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "c53c6b6452923107d28ed7f87ab04b377fadffbb802e58a0749abef8c5c78323",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "dd28abcfd626ea7b2581fe22a2d4c02a91e45ec1c064304f33a51ebbbd26e1a0",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "7e904d6d9d855bd5c297b6924a7d2d9b0d4b837fa118f46e0e8f0d68bd0c4fe7",
-    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "59a6f74c91533b47d879839896d5d14f9cf338d167ee914c573db7ce05f8a5d9",
+    "hardware/product-design/h1-r2-placement.json": "219cdebfe3336b744056d019dc1ed57515fd574b2b545c083867e04155f3c1d8",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "6b459e2e695cead85cba8f65fe2ee02120f0f8165b01e829f433fd6cb5cb2a5a",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "62062b9faa2e3f9a9d2430bb068bb4bfc8ba5b37f9ab00d7744cc97605852df5",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "4cda4b3cae4cf847cfac561c8119b528bcb9e757511d0e6de341571c792b66cb",
+    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "69aefceff339dd39916640b4d72bce2b2e217827997922b338aa21c8bf3c76a9",
     "hardware/ecad/h2-r2-hwfw-reconciliation-contract.json": "b4f6a6d79531b51d96656ae654a1a80be2cb1d672a4d8b3f519868c8ea966993"
   },
   "bsp": {
@@ -6270,9 +6270,9 @@
       "hardware/architecture/h1-r2-dual-rp-pinout.json": "45d7b02e86a626c5be841fef4d249fd304e98ce1715776e79d073ca9bc144753",
       "hardware/architecture/c5-sdio-service-mux-contract.json": "4bd88ffed2e8ac0b5f6e8856d6ebc21e7cc29aa38045d4a10e068b870e51c7f3",
       "hardware/architecture/pack-safety-i2c-boundary-contract.json": "5460c97ab81e9f58c41a042a5f024f5f83e5913099e11743b9ad72414eb5782c",
-      "hardware/architecture/candidates/G2F-3I.json": "ce60d399d4133a68b3115753880108ce070ed905dbdbe58d1171a4bba0ca2cba",
+      "hardware/architecture/candidates/G2F-3I.json": "ecf99050c571f990ca943e54d50e30c4c881ee3658151feb619cf3bf600cd2cb",
       "hardware/architecture/h1-r2-u219-cap.json": "01f01f750ceedaa9818b59968962a3484f4660057137e6ef43431a54b71c98fa",
-      "hardware/product-design/h1-r2-placement.json": "39b90a45de93dcee614065bbc10fa5fba9604c224583a21eaa6d510c9e183787"
+      "hardware/product-design/h1-r2-placement.json": "219cdebfe3336b744056d019dc1ed57515fd574b2b545c083867e04155f3c1d8"
     },
     "interboard": {
       "connector": "FX8C-80P-SV1(92) / FX8C-80S-SV5(92), straight SMT, 80 contacts, 11-mm working gap",
@@ -6690,7 +6690,7 @@
     "pre_h2_gates": [],
     "physical_h1": {
       "source": "hardware/product-design/h1-r2-placement.json",
-      "sha256": "39b90a45de93dcee614065bbc10fa5fba9604c224583a21eaa6d510c9e183787",
+      "sha256": "219cdebfe3336b744056d019dc1ed57515fd574b2b545c083867e04155f3c1d8",
       "marker": "H1-R2.37",
       "pin_authority_marker": "H1-R2.31",
       "status": "reviewed",

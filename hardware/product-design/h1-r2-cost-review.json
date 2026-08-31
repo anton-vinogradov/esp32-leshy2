@@ -43,7 +43,7 @@
       },
       {
         "id": "internal-rf-path-integration",
-        "current_scope": "five U.FL receptacles and five 30-mm microcoax jumpers",
+        "current_scope": "five U.FL receptacles, two 30-mm S3/C5 jumpers and three 60-mm nRF jumpers",
         "working_savings_usd": [0, 3],
         "contract": "retain the same RF performance; current E01 and S3 module interfaces prevent removing four paths without changing the selected radio source",
         "status": "analysis_only_not_qualified"
@@ -762,16 +762,16 @@
       "decision_on": "2026-08-30"
     },
     {
-      "current_mpn": "TE Connectivity 2118651-2",
+      "current_mpn": "TE Connectivity 1-2118651-0",
       "market_result": "mass_market_stocked_exact_cable",
-      "best_mass_market_route": "retain exact 30-mm 1.13-mm U.FL-to-U.FL jumper",
-      "availability": "3,082 authorized-distributor stock; quantity-one and volume routes",
-      "functional_delta": "generic unnamed cables do not prove length, 9-GHz rating, connector retention or controlled factory routing",
+      "best_mass_market_route": "retain exact 60-mm 1.37-mm-max U.FL-to-U.FL jumper",
+      "availability": "7,283 authorized-distributor stock; quantity-one route at USD 1.81",
+      "functional_delta": "the 60-mm exact assembly replaces only the three nRF paths whose conservative whole-module-envelope reach exceeds 30 mm; generic unnamed cables do not prove length, 9-GHz rating or connector retention",
       "paper_saving_usd": 0.0,
-      "verdict": "retain_no_documented_no_worse_lower_cost_route",
-      "current_source": "https://www.te.com/en/product-2118651-2.html",
-      "candidate_source": "https://www.digikey.com/en/products/detail/te-connectivity-laird/2118651-2/13683867",
-      "checked_on": "2026-08-29"
+      "verdict": "retain_exact_length_required_by_generated_geometry",
+      "current_source": "https://www.te.com/en/product-1-2118651-0.html",
+      "candidate_source": "https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/1-2118651-0/12380462",
+      "checked_on": "2026-08-31"
     },
     {
       "current_mpn": "Ebyte E01-ML01SP4",

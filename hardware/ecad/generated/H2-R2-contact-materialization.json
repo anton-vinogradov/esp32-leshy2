@@ -6,17 +6,17 @@
   "sources": {
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "b3ca4e5a5d319fd99daa4399915bef23bb96e3ef80cc6645323a1cba8cd2d75c"
+      "sha256": "745e1bf7438e7dc2348d03e59473a135a2c31fced3d031e1a24acdc84ce998a4"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "bc933e01c50be1af4ff8ae75be7b143b206ddede6440d67889fa3a6793af650f"
+      "sha256": "9db9ce928ceb1dd38324d5e1eaff57a3d686ff449217ec3216577400dbe51060"
     }
   },
   "kicad_reference_version": "10.0.5",
   "summary": {
     "board_component_group_count": 234,
-    "source_ledger_logical_contact_count": 1656,
+    "source_ledger_logical_contact_count": 1658,
     "board_logical_contact_count": 1599,
     "pcb_footprint_contact_count": 1596,
     "external_on_module_interface_count": 3,

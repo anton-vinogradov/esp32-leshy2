@@ -4,15 +4,15 @@ The complete verifiable physical model of the two 75 × 150 mm PCBs was accepted
 
 ## What the user sees
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.37-reviewed-1)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.37-reviewed-2)
 
 ## Component legend
 
-![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.37-reviewed-1)
+![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.37-reviewed-2)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.37-reviewed-1)
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.37-reviewed-2)
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.37-reviewed-1)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.37-reviewed-2)
 
 ## What is inside
 
@@ -22,7 +22,7 @@ The complete verifiable physical model of the two 75 × 150 mm PCBs was accepted
 
 - Ten main SMA ports are split symmetrically `5 + 5`; every radio path remains on the PCB that carries its connector.
 - The selected GCT `RFPC-SMA31/32-FN-175-A` bodies are not retained by one PCB face: each shell straddles the 1.6-mm board edge, with one RF plus two ground lands on the component face and two more shell-ground lands on the opposite face. This is the same dual-face principle visible in [ESP32-DIV v2](https://github.com/cifertech/ESP32-DIV/tree/9d4d82fe7a12febf554b12e1eca6d434ebe79d39/PCB/v2); a one-face substitute is forbidden.
-- On the front PCB, five short removable microcoax jumpers connect the radio-source IPEX/U.FL sockets to board U.FL sockets; controlled board-local PCB paths continue from there to SMA.
+- On the front PCB, two exact 30-mm S3/C5 and three exact 60-mm nRF removable microcoax jumpers connect the radio-source IPEX/U.FL sockets to board U.FL sockets; controlled board-local PCB paths continue from there to SMA.
 - The rear PCB has no U.FL or removable RF cable: voice and FM/SW use board-local RF paths, AM/LW uses a separate high-impedance AMI path, and Airband uses the powered conversion branch and selector.
 - Exactly one accessory occupies the common slot: U214 (84 × 24 × 15.287 mm) or optional U219 (84 × 24 × 19.7 mm). U219 is 4.413 mm taller, yet remains 1.0 mm below the battery holder and 1.3 mm below the selected rear maximum.
 - All user-facing labels are readable silkscreen; neither inner PCB face carries silkscreen.
@@ -39,6 +39,7 @@ The complete verifiable physical model of the two 75 × 150 mm PCBs was accepted
 - Same-face body collisions: `0`.
 - Minimum opposing Z clearance: `2.59 mm` against `0.70 mm` required.
 - Complete TX evidence: `8` exact detectors, `5` couplers and `8` bounded local islands pass fail-closed audit; all six AD8314 positions use the accepted `AD8314ARMZ-REEL` / `C652687`.
+- Microcoax reach: two 30-mm native-radio and three 60-mm nRF paths have at least `9.39 mm` paper slack, with each nRF checked against the farthest corner of the complete SP4 envelope rather than a guessed IPEX axis.
 - C5 DBG10 is relocated beside S3 DBG10 and intersects no adjacent body.
 - GPIO: front RP `47/48` with `1` free; rear RP `43/48` with `5` free; S3 uses 27 of 33 GPIO.
 - M1: all 80 contacts are assigned — 31 signals, 14 main-power, 2 AON, 24 returns and 9 true NC reserves.

@@ -9,12 +9,12 @@
 ## Что уже посчитано
 
 - **1053** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **1052** supplied/costed placements collapse to **211** used exact-device/MPN lines.
-- Current orderability evidence exists for **211/211** used lines; **0** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **202/211** lines.
+- After excluding those non-purchase nodes, **1052** supplied/costed placements collapse to **212** used exact-device/MPN lines.
+- Current orderability evidence exists for **212/212** used lines; **0** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **203/212** lines.
 - Of the remaining **9** unpriced lines, **9** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **1038/1052** supplied placements; their partial subtotals are `base_product` — USD 251.9243. These are coverage diagnostics, not product COGS.
-- Machine-readable alternate/no-substitution evidence exists for **211/211** lines.
+- Those priced lines cover **1038/1052** supplied placements; their partial subtotals are `base_product` — USD 251.8910. These are coverage diagnostics, not product COGS.
+- Machine-readable alternate/no-substitution evidence exists for **212/212** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
 Scopes: `base_product` — 1049 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
@@ -315,7 +315,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 26 line(s)</summary>
+<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 27 line(s)</summary>
 
 - Disposition: no drop-in by nominal description; exact mate, outline, human factors and source-backed mechanical/environmental analysis required.
 - Equivalence envelope:
@@ -351,6 +351,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `samtec_ftsh_105_01_l_dv_k_p_tr` — `Samtec FTSH-105-01-L-DV-K-P-TR`.
   - `samtec_hle_107_02_g_dv_pe_lc` — `Samtec HLE-107-02-G-DV-PE-LC`.
   - `seeed_1125r_smt_4p` — `1125R-SMT-4P`.
+  - `te_1_2118651_0` — `TE Connectivity 1-2118651-0`.
   - `te_2118651_2` — `TE Connectivity 2118651-2`.
   - `xtar_18650_4000mah_protected` — `XTAR 18650 4000mAh`.
 
@@ -1332,7 +1333,16 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 
 </details>
 
-<details><summary><code>TE Connectivity 2118651-2</code> — 5 × USD 1.8211 = USD 9.1055</summary>
+<details><summary><code>TE Connectivity 1-2118651-0</code> — 3 × USD 1.8100 = USD 5.4300</summary>
+
+- Device id: `te_1_2118651_0`.
+- Scope: `base_product`.
+- Comparable basis: DigiKey published quantity-one bag price; conservative for planning; target quantity `1`.
+- Checked: `2026-08-31`; [published source](https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/1-2118651-0/12380462).
+
+</details>
+
+<details><summary><code>TE Connectivity 2118651-2</code> — 2 × USD 1.8211 = USD 3.6422</summary>
 
 - Device id: `te_2118651_2`.
 - Scope: `base_product`.

@@ -19,6 +19,18 @@ class H1R2LayoutTest(unittest.TestCase):
         cls.model = json.loads(MODULE.MODEL_PATH.read_text())
         cls.base = json.loads(MODULE.BASE_PATH.read_text())
         cls.audit = MODULE.audit(cls.model, cls.base)
+        source_table = json.loads(MODULE.SOURCE_TABLE_PATH.read_text())
+        complete_rows = MODULE.complete_inner_rows(
+            cls.model, cls.base, source_table, cls.audit
+        )
+        antenna_topology = MODULE.r2_antenna_topology(cls.model, complete_rows)
+        cls.audit["antenna_topology"] = antenna_topology
+        cls.audit["rf_microcoax"] = MODULE.r2_microcoax_audit(
+            cls.model, complete_rows, antenna_topology
+        )
+        cls.audit["errors"].extend(cls.audit["rf_microcoax"]["errors"])
+        if cls.audit["errors"]:
+            cls.audit["status"] = "fail"
 
     def test_incremental_placement_passes(self):
         self.assertEqual("H1-R2.37", self.model["marker"])

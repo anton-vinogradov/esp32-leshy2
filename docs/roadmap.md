@@ -3,7 +3,7 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H3-R2.5`.** H0, H1, [H2-R2.1.5](h2-acceptance.md), [H3-R2.1 DC/source](power-dc-source-result.md), the complete [H3-R2.2 power-transition workstream](power-transition-result.md), [H3-R2.3 analog verification](analog-electrical-verification.md) and [H3-R2.4 digital verification](digital-electrical-verification.md) are reviewed. H3-R2.5 now verifies RF feeds, coexistence, quiet states and three-nRF24 concurrency.
+> **▶ Current hardware boundary: `H3-R2.6`.** H0, H1, [H2-R2.1.5](h2-acceptance.md), [H3-R2.1 DC/source](power-dc-source-result.md), the complete [H3-R2.2 power-transition workstream](power-transition-result.md), [H3-R2.3 analog verification](analog-electrical-verification.md), [H3-R2.4 digital verification](digital-electrical-verification.md) and [H3-R2.5 RF verification](rf-electrical-verification.md) are reviewed. H3-R2.6 now verifies thermal, single-fault and unattended-operation envelopes.
 > No R2 KiCad routing, quote, reservation or order is authorized.
 
 Status reconciled: **31 August 2026**.
@@ -24,7 +24,7 @@ marker and current checklist; it is never presented as review of the whole phase
 | Area | Current result |
 |---|---|
 | Functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): front UI/radio and rear RF/power domains, explicit owners, transports, quiet states and safety crossings |
-| Physical design | ✅ [H1-R2.37 reviewed](h1-r2-acceptance.md): the complete two-PCB model, ten permanent antenna assignments, exact EastRising display, U214/U219 slot and all TX-evidence islands are physically coherent; [all 209 base-BOM MPN groups are ranked](h1-r2-cost.md) |
+| Physical design | ✅ [H1-R2.37 reviewed](h1-r2-acceptance.md): the complete two-PCB model, ten permanent antenna assignments, exact EastRising display, U214/U219 slot and all TX-evidence islands are physically coherent; [all 210 base-BOM MPN groups are ranked](h1-r2-cost.md) |
 | Principle diagrams | Current component/bus map, external mock-up, separate readable inner faces, service map and power/filter diagrams are published |
 | Production ECAD | ✅ [H2-R2.1.5 reviewed](h2-acceptance.md): three native KiCad projects materialize 1,185 instances, 4,323 physical pins and 823 canonical nets with zero ERC findings; six-domain cross-sheet/HW↔FW reconciliation passes; retained G2F/H2/KiCad is historical R1 evidence only |
 | Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.4 qualified all 12 target builds, 60 artifacts, 16 maps and 16 size gates, while F2-R2.5 reproducibility is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); a separate fail-closed `F-PO` requires diagnostics, emulation and recovery before ordering |
@@ -32,10 +32,10 @@ marker and current checklist; it is never presented as review of the whole phase
 
 ## Reviewed H1 · exact composition
 
-<!-- current-substep: H3-R2.5 -->
+<!-- current-substep: H3-R2.6 -->
 
 **Reviewed marker: `H1-R2.37`.** The placement package was accepted on
-2026-08-31. The current hardware marker is `H3-R2.5`.
+2026-08-31. The current hardware marker is `H3-R2.6`.
 
 ### 1. Functional-island placement
 
@@ -156,9 +156,9 @@ routing have not started.
   reviewed with two MAIN-local 2.2-kohm pull-ups, AON-local 3.3-mA current
   sources, four Basic decouplers and a USD 0.3953 exact-one component burden.
 - ✅ `H2-R2.1.1`: reviewed 3 native projects, 23 sheets, 6 domain owners,
-  239 exact MPN groups and 1,195 product positions.
-- ✅ `H2-R2.1.2`: 234 board groups have one symbol and footprint identity; five
-  non-PCBA groups are explicit; 1,656 logical contacts and all sheet affinities
+  240 exact MPN groups and 1,195 product positions.
+- ✅ `H2-R2.1.2`: 234 board groups have one symbol and footprint identity; six
+  non-PCBA groups are explicit; 1,658 logical contacts and all sheet affinities
   are hash-bound with zero unresolved groups.
 - ✅ `H2-R2.1.3` contact checkpoint: 1,599 board contacts across all 234 groups
   map to real selected-footprint pads or three explicit on-module RF interfaces;
@@ -193,7 +193,7 @@ routing have not started.
 | H0 · Requirements and functional architecture | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Product functions, owners, transports, safety and working pin budgets | Every function has one owner and all working budgets close |
 | H1 · Physical product design | ✅ [Reviewed · `H1-R2.37`](h1-r2-acceptance.md) | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
 | H2 · Production ECAD schematic | ✅ [Reviewed · `H2-R2.1.5`](h2-acceptance.md) | Exact R2 symbols, contacts, nets, values, protection and footprints | Native KiCad, zero-finding ERC and cross-sheet/HW↔FW reconciliation pass |
-| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.5`** | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
+| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.6`** | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
 | H4 · Joined pre-layout gate | ⏳ Waiting for H3 and firmware R2 evidence | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |
 | H5 · Component and factory evidence | ⏳ Waiting for H4 | Exact current factory map and controlled external routes | Every BOM line has a current factory route without silent substitution |
 | H6 · KiCad placement, routing and release candidate | 🔒 Waiting for H5 | Two routed boards, routed re-analysis and hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs and independent DFM/CPL review pass |
@@ -219,8 +219,8 @@ routing have not started.
 4. ✅ `H2-R2.1.4`: pass cross-sheet and HW↔FW reconciliation.
 5. ✅ `H2-R2.1.5`: publish the reviewed bilingual H2 report and open H3.
 6. ✅ [`H3-R2.0.1`](h3-r2-input-freeze.md): freeze 14 reviewed H2 inputs and assign all 23 native sheets exactly once across seven workstreams.
-7. ✅ [`H3-R2.0.2`](parameter-model-register.md): bind all 239 R2 groups and 1,185 fitted positions to exact provenance, parameter classes and H3 owners.
-8. ✅ [`H3-R2.0.3`](verification-methods.md): freeze nine reproducible methods, twelve pass/fail rules and fail-closed assignments for all 239 groups.
+7. ✅ [`H3-R2.0.2`](parameter-model-register.md): bind all 240 R2 groups and 1,185 fitted positions to exact provenance, parameter classes and H3 owners.
+8. ✅ [`H3-R2.0.3`](verification-methods.md): freeze nine reproducible methods, twelve pass/fail rules and fail-closed assignments for all 240 groups.
 9. ✅ [`H3-R2.1`](power-dc-source-result.md): verify worst-case DC, source, charge and power states.
    - ✅ [`H3-R2.1.1`](power-state-register.md): enumerate all 2,266 legal states.
    - ✅ [`H3-R2.1.2`](power-load-binding.md): bind all 613 fitted powered instances—597 direct and 16 indirect—and six external loads without a hidden aggregate.
@@ -234,7 +234,8 @@ routing have not started.
     - ✅ [`H3-R2.2.4`](power-transition-result.md): cross-check and publish the reviewed H3-R2.2 result.
 11. ✅ [`H3-R2.3`](analog-electrical-verification.md): verify display, audio, IR, battery and Airband analog corners.
 12. ✅ [`H3-R2.4`](digital-electrical-verification.md): verify digital levels, timing, schematic loading, USB/service ownership, M1 adjacency and the direct exact-20-MHz i8080-8 path.
-13. ▶ `H3-R2.5`: verify RF feeds, coexistence, quiet states and concurrent service of all three nRF24 paths.
+13. ✅ [`H3-R2.5`](rf-electrical-verification.md): verify RF feeds, coexistence, quiet states and concurrent service of all three nRF24 paths; 71 checks pass across ten permanent ports and five removable microcoaxes.
+14. ▶ `H3-R2.6`: verify thermal, single-fault and unattended-operation envelopes.
 
-H3-R2.5 RF/coexistence verification is the next action. Placement, routing, quoting and
+H3-R2.6 thermal/single-fault verification is the next action. Placement, routing, quoting and
 every order remain blocked.

@@ -1,0 +1,485 @@
+{
+  "schema_version": 1,
+  "artifact": "H3-R2-rf-coexistence",
+  "marker": "H3-R2.5",
+  "status": "pass",
+  "reviewed_on": "2026-08-31",
+  "source_hashes": {
+    "hardware/architecture/candidates/G2F-3I.json": "ecf99050c571f990ca943e54d50e30c4c881ee3658151feb619cf3bf600cd2cb",
+    "hardware/architecture/devices.json": "9db9ce928ceb1dd38324d5e1eaff57a3d686ff449217ec3216577400dbe51060",
+    "hardware/architecture/antenna-kit.json": "7ee1b3ca0f45a81346bd52033594c060a4f2deed4de9191545271ab58a4bc004",
+    "hardware/product-design/generated/H1-R2-placement-audit.json": "f9fa1491e95f2fcef91089c4cd4676e34faf8ba8cb584182eebc4b719c28da0d",
+    "hardware/verification/generated/H3-R2-power-state-register.json": "3d88b4f133461f513fd048107e629d83678f1707fe7f63e76b4ff0a3022311f9",
+    "hardware/verification/generated/H3-R2-digital-interfaces.json": "ddd4ebe549d43368ad6f711d8860235603e02085689c4e71a8c503983a03be04",
+    "hardware/verification/generated/H3-R2-analog-corners.json": "0e48fa21d007efc8c195b313d77727cefb5b0ee3a6c45ab3ba12b5582bacad88",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "d1d88c44ab8c97c50044623133b10f68dc973d040e236e83a41f66328198aca9"
+  },
+  "summary": {
+    "checks": 71,
+    "external_ports": 10,
+    "front_ports": 5,
+    "rear_ports": 5,
+    "microcoaxes": 5,
+    "minimum_conservative_microcoax_slack_mm": 9.388,
+    "active_signal_groups": 9,
+    "quiet_contracts": 13,
+    "nrf_role_modes": 4,
+    "nrf_identity_permutations": 8,
+    "analytical_findings_open": 0,
+    "physical_residuals": 7
+  },
+  "feed_summary": {
+    "external_ports": 10,
+    "tx_capable_paths": 8,
+    "receive_only_paths": 2,
+    "native_2g4_coupler_loss_db_max": 0.2,
+    "native_5g_coupler_loss_db_max": 0.4,
+    "nrf_coupler_loss_db_max": 0.25,
+    "cc_868_915_known_loss_before_passives_trace_connector_db": 1.84,
+    "voice_esd_ideal_loss_at_480mhz_db": 0.000713,
+    "amlw_total_cap_at_1710khz_315uh_pf": 27.5,
+    "amlw_external_cap_after_8pf_input_pf": 19.5,
+    "amlw_remaining_after_esd_pf": 19.25
+  },
+  "microcoax": {
+    "status": "pass",
+    "paths": [
+      {
+        "path": "N24-0",
+        "source_instance": "nrf0_r2",
+        "board_connector_instance": "nrf0_rf_board_connector_r2",
+        "selected_device_id": "te_1_2118651_0",
+        "mpn": "TE Connectivity 1-2118651-0",
+        "length_mm": 60.0,
+        "projection_mm": 48.309,
+        "minimum_conservative_slack_mm": 11.691,
+        "projection_basis": "farthest maximum-module-envelope corner to board-U.FL centre",
+        "source_connector_point_mm": null,
+        "board_connector_point_mm": [
+          11.5,
+          10.55
+        ]
+      },
+      {
+        "path": "S3-2G4",
+        "source_instance": "s3",
+        "board_connector_instance": "s3_rf_board_connector_r2",
+        "selected_device_id": "te_2118651_2",
+        "mpn": "TE Connectivity 2118651-2",
+        "length_mm": 30.0,
+        "projection_mm": 14.026,
+        "minimum_conservative_slack_mm": 15.974,
+        "projection_basis": "exact module connector axis to board-U.FL centre",
+        "source_connector_point_mm": [
+          21.0,
+          24.46
+        ],
+        "board_connector_point_mm": [
+          22.8,
+          10.55
+        ]
+      },
+      {
+        "path": "N24-1",
+        "source_instance": "nrf1_r2",
+        "board_connector_instance": "nrf1_rf_board_connector_r2",
+        "selected_device_id": "te_1_2118651_0",
+        "mpn": "TE Connectivity 1-2118651-0",
+        "length_mm": 60.0,
+        "projection_mm": 42.18,
+        "minimum_conservative_slack_mm": 17.82,
+        "projection_basis": "farthest maximum-module-envelope corner to board-U.FL centre",
+        "source_connector_point_mm": null,
+        "board_connector_point_mm": [
+          37.5,
+          15.55
+        ]
+      },
+      {
+        "path": "C5-2G4/5",
+        "source_instance": "c5",
+        "board_connector_instance": "c5_rf_board_connector_r2",
+        "selected_device_id": "te_2118651_2",
+        "mpn": "TE Connectivity 2118651-2",
+        "length_mm": 30.0,
+        "projection_mm": 19.537,
+        "minimum_conservative_slack_mm": 10.463,
+        "projection_basis": "exact module connector axis to board-U.FL centre",
+        "source_connector_point_mm": [
+          66.0,
+          24.38
+        ],
+        "board_connector_point_mm": [
+          52.2,
+          10.55
+        ]
+      },
+      {
+        "path": "N24-2",
+        "source_instance": "nrf2_r2",
+        "board_connector_instance": "nrf2_rf_board_connector_r2",
+        "selected_device_id": "te_1_2118651_0",
+        "mpn": "TE Connectivity 1-2118651-0",
+        "length_mm": 60.0,
+        "projection_mm": 50.612,
+        "minimum_conservative_slack_mm": 9.388,
+        "projection_basis": "farthest maximum-module-envelope corner to board-U.FL centre",
+        "source_connector_point_mm": null,
+        "board_connector_point_mm": [
+          63.5,
+          10.55
+        ]
+      }
+    ],
+    "path_count": 5,
+    "thirty_mm_paths": 2,
+    "sixty_mm_paths": 3,
+    "minimum_conservative_slack_mm": 9.388,
+    "received_only_gate": "connector mating, bend radius, strain relief and routed service loop remain J4-F/H8 physical evidence",
+    "errors": []
+  },
+  "path_topology": {
+    "front": [
+      "C5-2G4/5",
+      "N24-0",
+      "N24-1",
+      "N24-2",
+      "S3-2G4"
+    ],
+    "rear": [
+      "CC-SUB",
+      "RX-AM/LW",
+      "RX-FM/SW",
+      "VOICE-UHF",
+      "VOICE-VHF"
+    ],
+    "airband_branch": {
+      "frame": "rf-inner",
+      "path": "RX-FM/SW",
+      "branch": "converted-airband",
+      "points": [
+        [
+          8.1,
+          0.0
+        ],
+        [
+          12.25,
+          11.05
+        ],
+        [
+          17.0,
+          10.5
+        ],
+        [
+          21.0,
+          10.5
+        ]
+      ],
+      "medium": "converted-airband-rf-if-pcb",
+      "stroke": "#ea580c",
+      "width": 2.0,
+      "dash": null
+    }
+  },
+  "quiet_matrix": [
+    {
+      "signal_group": "SG-N24",
+      "members": [
+        "nrf0",
+        "nrf1",
+        "nrf2"
+      ],
+      "own_quiet_contracts": [
+        "N24_QUIET"
+      ],
+      "required_foreign_quiet_contracts": [
+        "C5_RF_QUIET",
+        "CC_QUIET",
+        "IR_QUIET",
+        "RECEIVER_QUIET",
+        "S3_RF_QUIET",
+        "U214_CAP_QUIET",
+        "UNIT_PORT_QUIET",
+        "VOICE_INTERFACE_QUIET",
+        "VOICE_QUIET"
+      ]
+    },
+    {
+      "signal_group": "SG-S3-24",
+      "members": [
+        "s3 Wi-Fi",
+        "s3 BLE",
+        "ESP-NOW"
+      ],
+      "own_quiet_contracts": [
+        "S3_RF_QUIET"
+      ],
+      "required_foreign_quiet_contracts": [
+        "C5_RF_QUIET",
+        "CC_QUIET",
+        "IR_QUIET",
+        "N24_QUIET",
+        "RECEIVER_QUIET",
+        "U214_CAP_QUIET",
+        "UNIT_PORT_QUIET",
+        "VOICE_INTERFACE_QUIET",
+        "VOICE_QUIET"
+      ]
+    },
+    {
+      "signal_group": "SG-C5-NATIVE",
+      "members": [
+        "c5 Wi-Fi 2.4/5",
+        "c5 IEEE 802.15.4"
+      ],
+      "own_quiet_contracts": [
+        "C5_RF_QUIET"
+      ],
+      "required_foreign_quiet_contracts": [
+        "CC_QUIET",
+        "IR_QUIET",
+        "N24_QUIET",
+        "RECEIVER_QUIET",
+        "S3_RF_QUIET",
+        "U214_CAP_QUIET",
+        "UNIT_PORT_QUIET",
+        "VOICE_INTERFACE_QUIET",
+        "VOICE_QUIET"
+      ]
+    },
+    {
+      "signal_group": "SG-CC",
+      "members": [
+        "cc"
+      ],
+      "own_quiet_contracts": [
+        "CC_QUIET"
+      ],
+      "required_foreign_quiet_contracts": [
+        "C5_RF_QUIET",
+        "IR_QUIET",
+        "N24_QUIET",
+        "RECEIVER_QUIET",
+        "S3_RF_QUIET",
+        "U214_CAP_QUIET",
+        "UNIT_PORT_QUIET",
+        "VOICE_INTERFACE_QUIET",
+        "VOICE_QUIET"
+      ]
+    },
+    {
+      "signal_group": "SG-VOICE",
+      "members": [
+        "voice UHF",
+        "voice_v VHF"
+      ],
+      "own_quiet_contracts": [
+        "VOICE_INTERFACE_QUIET",
+        "VOICE_QUIET"
+      ],
+      "required_foreign_quiet_contracts": [
+        "C5_RF_QUIET",
+        "CC_QUIET",
+        "IR_QUIET",
+        "N24_QUIET",
+        "RECEIVER_QUIET",
+        "S3_RF_QUIET",
+        "U214_CAP_QUIET",
+        "UNIT_PORT_QUIET"
+      ]
+    },
+    {
+      "signal_group": "SG-BROADCAST",
+      "members": [
+        "receiver",
+        "audio support"
+      ],
+      "own_quiet_contracts": [
+        "RECEIVER_QUIET"
+      ],
+      "required_foreign_quiet_contracts": [
+        "C5_RF_QUIET",
+        "CC_QUIET",
+        "IR_QUIET",
+        "N24_QUIET",
+        "S3_RF_QUIET",
+        "U214_CAP_QUIET",
+        "UNIT_PORT_QUIET",
+        "VOICE_INTERFACE_QUIET",
+        "VOICE_QUIET"
+      ]
+    },
+    {
+      "signal_group": "SG-U214",
+      "members": [
+        "stock U214 receive and GNSS",
+        "evidence-aware LoRa Cap RX/TX"
+      ],
+      "own_quiet_contracts": [
+        "U214_CAP_QUIET"
+      ],
+      "required_foreign_quiet_contracts": [
+        "C5_RF_QUIET",
+        "CC_QUIET",
+        "IR_QUIET",
+        "N24_QUIET",
+        "RECEIVER_QUIET",
+        "S3_RF_QUIET",
+        "UNIT_PORT_QUIET",
+        "VOICE_INTERFACE_QUIET",
+        "VOICE_QUIET"
+      ]
+    },
+    {
+      "signal_group": "SG-IR",
+      "members": [
+        "c5 IR"
+      ],
+      "own_quiet_contracts": [
+        "IR_QUIET"
+      ],
+      "required_foreign_quiet_contracts": [
+        "C5_RF_QUIET",
+        "CC_QUIET",
+        "N24_QUIET",
+        "RECEIVER_QUIET",
+        "S3_RF_QUIET",
+        "U214_CAP_QUIET",
+        "UNIT_PORT_QUIET",
+        "VOICE_INTERFACE_QUIET",
+        "VOICE_QUIET"
+      ]
+    },
+    {
+      "signal_group": "SG-EXT-*",
+      "members": [
+        "one exact accessory profile"
+      ],
+      "own_quiet_contracts": [
+        "UNIT_PORT_QUIET"
+      ],
+      "required_foreign_quiet_contracts": [
+        "C5_RF_QUIET",
+        "CC_QUIET",
+        "IR_QUIET",
+        "N24_QUIET",
+        "RECEIVER_QUIET",
+        "S3_RF_QUIET",
+        "U214_CAP_QUIET",
+        "VOICE_INTERFACE_QUIET",
+        "VOICE_QUIET"
+      ]
+    }
+  ],
+  "nrf_concurrency": {
+    "members": [
+      "nrf0",
+      "nrf1",
+      "nrf2"
+    ],
+    "role_modes": [
+      "3PRX",
+      "1PTX_2PRX",
+      "2PTX_1PRX",
+      "3PTX"
+    ],
+    "identity_permutations": 8,
+    "support_profiles": [
+      "SUPPORT_IDLE",
+      "SUPPORT_WORST"
+    ],
+    "paper_limit": "same/near-channel isolation remains physical H8 evidence; no peer standby or hidden RX gap may be substituted"
+  },
+  "checks": {
+    "upstream_h1_placement_passes": true,
+    "upstream_h3_inputs_pass": true,
+    "exactly_ten_named_onboard_paths": true,
+    "physical_topology_covers_all_paths": true,
+    "physical_split_is_exactly_five_plus_five": true,
+    "five_removable_microcoaxes": true,
+    "microcoax_mix_is_two_30_plus_three_60": true,
+    "microcoax_has_at_least_5mm_conservative_slack": true,
+    "each_microcoax_identity_matches_candidate": true,
+    "both_jumper_lengths_cover_c5_frequency": true,
+    "c5_connector_has_115mhz_margin": true,
+    "native_coupler_covers_s3_and_c5": true,
+    "nrf_coupler_covers_all_channels_under_quarter_db": true,
+    "cc_known_868_915_loss_is_1p84db": true,
+    "voice_esd_ideal_loss_is_below_0p001db": true,
+    "amlw_external_cap_budget_is_19p5pf": true,
+    "airband_reuses_rx_fm_sw_port": true,
+    "no_rf_path_uses_m1": true,
+    "one_top_level_group_only": true,
+    "all_nine_active_groups_mapped": true,
+    "all_13_quiet_contracts_present": true,
+    "each_group_requires_every_foreign_radio_quiet_contract": true,
+    "nrf_has_three_independent_members": true,
+    "nrf_has_all_four_role_mixes": true,
+    "nrf_has_eight_identity_permutations": true,
+    "nrf_profiles_cover_both_support_loads": true,
+    "nrf_has_three_independent_spi_resources": true,
+    "runtime_unknown_fails_closed": true,
+    "exact_s3_rf_jumper": true,
+    "exact_c5_rf_jumper": true,
+    "exact_nrf0_rf_jumper": true,
+    "exact_nrf1_rf_jumper": true,
+    "exact_nrf2_rf_jumper": true,
+    "exact_s3_rf_board_connector": true,
+    "exact_c5_rf_board_connector": true,
+    "exact_nrf0_rf_board_connector": true,
+    "exact_nrf1_rf_board_connector": true,
+    "exact_nrf2_rf_board_connector": true,
+    "exact_s3_rf_coupler": true,
+    "exact_c5_rf_coupler": true,
+    "exact_nrf0_coupler": true,
+    "exact_nrf1_coupler": true,
+    "exact_nrf2_coupler": true,
+    "exact_cc_balun": true,
+    "exact_cc_switch_a": true,
+    "exact_cc_switch_b": true,
+    "exact_voice": true,
+    "exact_voice_v": true,
+    "exact_receiver": true,
+    "route_s3_module_to_jumper": true,
+    "route_s3_jumper_to_board": true,
+    "route_s3_coupler_to_sma": true,
+    "route_c5_module_to_jumper": true,
+    "route_c5_jumper_to_board": true,
+    "route_c5_coupler_to_sma": true,
+    "route_cc_to_balun_p": true,
+    "route_cc_to_balun_n": true,
+    "route_cc_selected_to_sma": true,
+    "route_voice_u_to_sma": true,
+    "route_voice_v_to_sma": true,
+    "route_fm_sw_to_match": true,
+    "route_am_lw_to_coupling": true,
+    "route_nrf0_module_to_jumper": true,
+    "route_nrf0_jumper_to_board": true,
+    "route_nrf0_coupler_to_sma": true,
+    "route_nrf1_module_to_jumper": true,
+    "route_nrf1_jumper_to_board": true,
+    "route_nrf1_coupler_to_sma": true,
+    "route_nrf2_module_to_jumper": true,
+    "route_nrf2_jumper_to_board": true,
+    "route_nrf2_coupler_to_sma": true
+  },
+  "errors": [],
+  "physical_residuals": [
+    "H5/J4-F: inspect exact received cable/receptacle mating, gentle service loop, bend radius, retention and strain routing for all five paths",
+    "H6: field-solve and coupon-correlate every ordinary 50-ohm mainline, launch, reference plane, return path and via fence; extract RX-AM/LW capacitance separately",
+    "H8: VNA-test insertion loss and return loss for all ten complete assembled feeds at every admitted band edge",
+    "H8: calibrate every actual-TX detector and prove no false negative at minimum qualified output; inbound false positives may only delay",
+    "H8: run the isolated baseline, foreign-group quiet matrix, maximum support-load aggression and ordered transition/fault suite",
+    "H8: run all four 3xnRF role mixes and eight identity permutations with an independent observer; paper review does not claim same-channel isolation",
+    "H8: measure final antenna gain/feed loss and bind regional power, duty, emission, exposure and thermal profiles"
+  ],
+  "authorization": {
+    "paper_rf_contract_reviewed": true,
+    "kicad_routing_or_fabrication": false,
+    "final_rf_performance_claim": false
+  },
+  "next": {
+    "marker": "H3-R2.6",
+    "action": "thermal and duty-envelope verification"
+  }
+}

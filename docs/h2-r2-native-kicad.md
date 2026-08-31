@@ -9,8 +9,8 @@ the generator.
 |---|---:|
 | Native projects / project-graph sheets | 3 / 23 |
 | Populated logical sheets | 19 |
-| Fitted symbol instances | 1,187 |
-| Controlled physical symbol pins | 4,327 |
+| Fitted symbol instances | 1,185 |
+| Controlled physical symbol pins | 4,323 |
 | Connected / explicit no-connect pins | 4,067 / 260 |
 | Canonical nets | 827 |
 | KiCad ERC errors / warnings | 0 / 0 |

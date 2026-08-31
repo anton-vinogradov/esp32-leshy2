@@ -63,6 +63,9 @@ R2_H1_REPLACED_MPNS = {
     "nrf0",
     "nrf1",
     "nrf2",
+    "nrf0_rf_jumper",
+    "nrf1_rf_jumper",
+    "nrf2_rf_jumper",
 }
 
 # These order codes are the same physical Hirose receptacle and land pattern;

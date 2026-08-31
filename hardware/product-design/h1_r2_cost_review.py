@@ -38,7 +38,8 @@ ROLE_OVERRIDES = {
     "omron_b3s_1100p": "sixteen ordinary user keys / шестнадцать обычных клавиш",
     "qdtech_hmx035ctft_001": "unresolved production display gate / незакрытый production-display gate",
     "samtec_ftsh_105_01_l_dv_k_p_tr": "four internal recovery headers / четыре внутренних recovery-разъёма",
-    "te_2118651_2": "five 30-mm RF jumpers / пять 30-мм RF-кабелей",
+    "te_2118651_2": "two 30-mm S3/C5 RF jumpers / два 30-мм RF-кабеля S3/C5",
+    "te_1_2118651_0": "three 60-mm nRF RF jumpers / три 60-мм RF-кабеля nRF",
     "ti_tmux1136_dgsr": "four complete audio/control selectors / четыре полных audio/control selector",
     "murata_grm32er71e226ke15l": "thirteen 22-uF power capacitors / тринадцать силовых конденсаторов 22 мкФ",
     "ti_tpd4e05u06_dqar": "thirteen four-line ESD arrays / тринадцать четырёхканальных ESD-сборок",
@@ -380,8 +381,8 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
             2,
         )
     errors = []
-    if len(bom) != 211:
-        errors.append("target BOM is no longer 211 lines")
+    if len(bom) != 212:
+        errors.append("target BOM is no longer 212 lines")
     if any(
         rows[index]["line_burden_per_device_usd"] is not None
         and rows[index + 1]["line_burden_per_device_usd"] is not None
@@ -636,7 +637,7 @@ def render_doc(result: dict, ru: bool) -> str:
     if ru:
         lines += [
             f'- Серийная материальная база: **{money(summary["known_quantity_100_base_usd_per_device"])}** на устройство; '
-            f'цены известны для `{summary["quantity_100_priced_lines"]}/211` строк.',
+            f'цены известны для `{summary["quantity_100_priced_lines"]}/{summary["bom_lines"]}` строк.',
             f'- Достижимый плановый минимум: **{money(summary["planning_base_usd_per_device"])}** на устройство; '
             f'ещё `{summary["remaining_unpriced_base_lines"]}` базовых строк не оценены.',
             f'- Текущий плановый компонентный минимум без обязательных post-PCBA активных модулей: **{money(summary["planning_base_plus_post_pcba_usd_per_device"])}** '
@@ -655,7 +656,7 @@ def render_doc(result: dict, ru: bool) -> str:
     else:
         lines += [
             f'- Volume material basis: **{money(summary["known_quantity_100_base_usd_per_device"])}** per device; '
-            f'`{summary["quantity_100_priced_lines"]}/211` lines are priced.',
+            f'`{summary["quantity_100_priced_lines"]}/{summary["bom_lines"]}` lines are priced.',
             f'- Reachable planning subtotal: **{money(summary["planning_base_usd_per_device"])}** per device, with '
             f'`{summary["remaining_unpriced_base_lines"]}` base-product lines still unpriced.',
             f'- Current planned component minimum with no mandatory post-PCBA active module: **{money(summary["planning_base_plus_post_pcba_usd_per_device"])}** '
@@ -755,7 +756,8 @@ def render_doc(result: dict, ru: bool) -> str:
         )
     full_csv = '../hardware/product-design/generated/H1-R2-cost-ranked.csv'
     top20_csv = '../hardware/product-design/generated/H1-R2-cost-top20.csv'
-    full_text = 'Полный рейтинг 211 строк — CSV' if ru else 'Complete 211-line ranking — CSV'
+    full_text = (f'Полный рейтинг {summary["bom_lines"]} строк — CSV' if ru
+                 else f'Complete {summary["bom_lines"]}-line ranking — CSV')
     top20_text = 'Единый топ-20 — CSV' if ru else 'Unified top 20 — CSV'
     by_id = {row["device_id"]: row for row in rows}
     connector_cost = (
@@ -768,6 +770,7 @@ def render_doc(result: dict, ru: bool) -> str:
     )
     jumper_cost = (
         by_id["te_2118651_2"]["line_burden_per_device_usd"]
+        + by_id["te_1_2118651_0"]["line_burden_per_device_usd"]
         + by_id["hirose_ufl_r_smt_1_10"]["line_burden_per_device_usd"]
     )
     lines += ['', f'[{top20_text}]({top20_csv}) · [{full_text}]({full_csv})', '']

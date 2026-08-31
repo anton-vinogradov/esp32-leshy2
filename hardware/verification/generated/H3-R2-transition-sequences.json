@@ -5,14 +5,14 @@
   "status": "reviewed_startup_shutdown_reset_and_recovery",
   "source_sha256": {
     "hardware/verification/h3-r2-transition-sequence-contract.json": "5d7b9f1484abf3dd943e68712ea0b385f633b4483b61dc74605a1af667e9a618",
-    "hardware/verification/h3-r2-verification-plan.json": "ca52fa3ced0f59bb6f786cf0a299f34cbf51f5559a213a40da6ae126e777a0b4",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "b5a18d45abc8a53a6d9b964a2c6d22c5d2f96fe5fc5430a751420c5241a9e056",
-    "hardware/verification/generated/H3-R2-method-contract.json": "2cf832bc6d934de83effadd393e1afd0327b836ad8bca0dfb5e3c1d56955f7e8",
-    "hardware/verification/generated/H3-R2-dc-source-crosscheck.json": "9d7f0e4f87db01fc589be5f56e3ffe8fbc5ab51176f79f5149bea5deee508a6b",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "7e904d6d9d855bd5c297b6924a7d2d9b0d4b837fa118f46e0e8f0d68bd0c4fe7",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "dd28abcfd626ea7b2581fe22a2d4c02a91e45ec1c064304f33a51ebbbd26e1a0",
+    "hardware/verification/h3-r2-verification-plan.json": "0c3b062b07608615d26572805947a71499fc11b91662118aefa6e0029dc67887",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "a91d1a15e253150e3680c503b3b8ed6e30b2ac81ad000bc6e5021983a820f26f",
+    "hardware/verification/generated/H3-R2-method-contract.json": "0868d2c87fac5a3fb855e14fa7b89ef4fb40ac827e85dd5330ad52ae6e4a95ca",
+    "hardware/verification/generated/H3-R2-dc-source-crosscheck.json": "005121c6556ec01d1c2f75c3ed22719dd604b1feefc87f6daff59e22d1af3f38",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "4cda4b3cae4cf847cfac561c8119b528bcb9e757511d0e6de341571c792b66cb",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "62062b9faa2e3f9a9d2430bb068bb4bfc8ba5b37f9ab00d7744cc97605852df5",
     "hardware/ecad/generated/H2-R2-interboard-m1.json": "127965ec1e68cbf8c57d028fd067c56a724a3259248bab4ba5c86c8f9307b6fd",
-    "hardware/architecture/devices.json": "bc933e01c50be1af4ff8ae75be7b143b206ddede6440d67889fa3a6793af650f"
+    "hardware/architecture/devices.json": "9db9ce928ceb1dd38324d5e1eaff57a3d686ff449217ec3216577400dbe51060"
   },
   "exact_devices": {
     "supervisor": {

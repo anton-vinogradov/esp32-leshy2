@@ -16,7 +16,7 @@ fabrication or ordering.
 | Contacts assigned to native nets | 4,067 |
 | Explicit board no-connects | 256 |
 | Unresolved or hidden external contacts | 0 |
-| Canonical native nets | 826 |
+| Canonical native nets | 823 |
 | Net-name aliases collapsed at a common physical node | 46 |
 | Reconciliation errors | 0 |
 

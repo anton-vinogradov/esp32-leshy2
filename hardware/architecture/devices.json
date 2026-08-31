@@ -5506,6 +5506,63 @@
         "END_B": {"physical": "right-angle UMCC GEN 1 plug B", "role": "rf"}
       }
     },
+    "te_1_2118651_0": {
+      "mpn": "TE Connectivity 1-2118651-0",
+      "kind": "double_ended_umcc_gen1_microcoax_jumper",
+      "qualification": "verified_exact_nrf_rf_jumper",
+      "lifecycle": "active_orderable",
+      "dimensions_mm": [60.0, 1.37, 2.5],
+      "source": {
+        "document": "TE Connectivity 1-2118651-0 exact product record and ENG_CD_2118651_C5 drawing",
+        "version": "live exact-product record",
+        "url": "https://www.te.com/en/product-1-2118651-0.html",
+        "checked": "2026-08-31"
+      },
+      "orderable_source": {
+        "document": "DigiKey exact 1-2118651-0 authorized-distributor listing; 7,283 shown in stock",
+        "url": "https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/1-2118651-0/12380462",
+        "checked": "2026-08-31"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 1,
+        "unit_price_usd": 1.81,
+        "price_break": "DigiKey published quantity-one bag price; conservative for planning",
+        "source": {
+          "document": "DigiKey exact-MPN published stock and price listing",
+          "url": "https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/1-2118651-0/12380462",
+          "checked": "2026-08-31"
+        }
+      },
+      "factory_route": {
+        "jlcpcb_part": null,
+        "assembly_type": "J4-F final-assembly supplied part; not PCBA placement",
+        "stock": 0,
+        "moq": 1,
+        "route": "purchase from the authorized distributor and supply to the deterministic J4-F final-assembly operation",
+        "checked": "2026-08-31"
+      },
+      "electrical_contract": {
+        "impedance_ohm": 50,
+        "frequency_max_ghz": 9,
+        "cable_length_mm": 60.0,
+        "cable_outer_diameter_mm_max": 1.37,
+        "connector_family": "UMCC generation 1; mates with first-generation U.FL, MHF I and AMC receptacles",
+        "end_orientation": "right-angle plug at both ends"
+      },
+      "mechanical_contract": {
+        "maximum_mated_height_mm": 2.5,
+        "maximum_plug_plan_envelope_mm": [3.0, 3.1],
+        "plug_plan_basis": "TE exact 1-2118651-0 customer drawing, bounded by the controlled first-generation U.FL receptacle plan envelope",
+        "route_rule": "the 60-mm centreline must retain positive conservative whole-module-envelope slack plus a gentle service loop; production bend radius and strain relief remain J4-F/H8 checks",
+        "service_rule": "use the proper vertical extraction tool and keep within the documented connector mating-cycle limit"
+      },
+      "programmable": false,
+      "contacts": {
+        "END_A": {"physical": "right-angle UMCC GEN 1 plug A", "role": "rf"},
+        "END_B": {"physical": "right-angle UMCC GEN 1 plug B", "role": "rf"}
+      }
+    },
     "adi_ltc5507_es6_trmpbf": {
       "mpn": "LTC5507ES6#TRMPBF",
       "kind": "tsot23_6_rf_power_detector_100khz_1ghz",

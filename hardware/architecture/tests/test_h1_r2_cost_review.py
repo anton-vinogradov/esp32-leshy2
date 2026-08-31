@@ -26,7 +26,7 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertIn("TX2400-JW-5", ru)
 
     def test_complete_bom_is_ranked(self):
-        self.assertEqual(len(self.result["rows"]), 211)
+        self.assertEqual(len(self.result["rows"]), 212)
         mpns = [row["mpn"] for row in self.result["rows"]]
         self.assertEqual(len(mpns), len(set(mpns)))
         known = [
@@ -38,7 +38,7 @@ class H1R2CostReviewTest(unittest.TestCase):
 
     def test_cost_boundaries_are_explicit(self):
         summary = self.result["summary"]
-        self.assertEqual(summary["quantity_100_priced_lines"], 202)
+        self.assertEqual(summary["quantity_100_priced_lines"], 203)
         self.assertEqual(summary["remaining_unpriced_base_lines"], 5)
         self.assertGreater(summary["planning_base_plus_post_pcba_usd_per_device"], 270)
         self.assertAlmostEqual(
@@ -48,7 +48,7 @@ class H1R2CostReviewTest(unittest.TestCase):
         )
         self.assertEqual(summary["procurement_target_device_quantity"], 1)
         self.assertEqual(summary["historical_cost_capture_device_quantity"], 5)
-        self.assertEqual(summary["historical_capture_unmatched_lines"], 27)
+        self.assertEqual(summary["historical_capture_unmatched_lines"], 28)
         self.assertAlmostEqual(
             summary["planning_base_plus_post_pcba_usd_for_ten_devices"],
             10 * summary["planning_base_plus_post_pcba_usd_per_device"],
@@ -67,7 +67,7 @@ class H1R2CostReviewTest(unittest.TestCase):
 
     def test_accepted_all_in_one_target_gap_is_not_hidden(self):
         summary = self.result["summary"]
-        self.assertEqual(summary["base_bom_lines"], 209)
+        self.assertEqual(summary["base_bom_lines"], 210)
         self.assertGreater(summary["base_fitted_placements"], 1049)
         self.assertEqual(summary["community_complete_device_target_usd"], 260)
         self.assertEqual(summary["community_electronics_target_usd"], [189, 216])
@@ -201,7 +201,19 @@ class H1R2CostReviewTest(unittest.TestCase):
             89.1273,
             places=4,
         )
-        self.assertTrue(all(row["checked_on"] == "2026-08-29" for row in audit))
+        self.assertEqual(
+            {"2026-08-29", "2026-08-31"},
+            {row["checked_on"] for row in audit},
+        )
+        sixty_mm = next(
+            row for row in audit
+            if row["current_mpn"] == "TE Connectivity 1-2118651-0"
+        )
+        self.assertEqual("2026-08-31", sixty_mm["checked_on"])
+        self.assertEqual(
+            "retain_exact_length_required_by_generated_geometry",
+            sixty_mm["verdict"],
+        )
         rejected = [row for row in audit if "candidate_rejected" in row["verdict"]]
         self.assertEqual(len(rejected), 6)
         self.assertTrue(all(row["decision_on"] == "2026-08-30" for row in rejected))

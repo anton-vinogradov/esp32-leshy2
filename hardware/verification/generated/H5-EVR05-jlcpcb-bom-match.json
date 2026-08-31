@@ -2,19 +2,19 @@
   "schema_version": 1,
   "artifact": "H5-EVR05",
   "stage": "H5.0.3-R1",
-  "status": "current_211_line_route_join_captured_27_outliers_open",
+  "status": "current_212_line_route_join_captured_28_outliers_open",
   "checked_on": "2026-08-31",
   "input": {
     "target_bom": "hardware/architecture/generated/G2F-3I-target-bom.csv",
-    "target_bom_sha256": "6ac6e38c32d693fb50ace089be0dbfa40848792ebc446ae562b2380d26f3bd38",
+    "target_bom_sha256": "ab8aea857f0ac59b3dfa208032705d81c986147ff795f90b0116ed1b51cab41d",
     "upload": "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv",
-    "upload_sha256": "4088c7dffca0f40cfe86e54a2b758e443bce6b9a5b172e999f8c6d27f8007f1b",
+    "upload_sha256": "43c47fb1bc1ad3b1459b953ba9fdc1bceeb0e25ef8ca305465d7882326ec9c85",
     "capture": "hardware/verification/jlcpcb-bom-tool-capture-2026-08-25-compact.json",
     "capture_sha256": "58dcb44a3151150b2568163aa1bf422783d8347cc890f751676dc830854e772b",
     "assembly_quantity": 5
   },
   "summary": {
-    "target_lines": 211,
+    "target_lines": 212,
     "matched_lines": 184,
     "bom_tool_inherited_matched_lines": 176,
     "bom_tool_inherited_in_stock_lines": 135,
@@ -22,7 +22,7 @@
     "bom_tool_inherited_unmatched_lines": 33,
     "exact_voice_page_lines": 2,
     "exact_stocked_replacement_page_lines": 22,
-    "unmatched_lines": 27,
+    "unmatched_lines": 28,
     "in_stock_lines": 156,
     "pre_order_lines": 27,
     "parsed_placements": 1052,
@@ -2102,13 +2102,29 @@
     },
     {
       "bom_index": 116,
+      "device_id": "te_1_2118651_0",
+      "source_mpn": "TE Connectivity 1-2118651-0",
+      "normalized_mpn": "1-2118651-0",
+      "quantity": 3,
+      "route": "unresolved",
+      "tool_status": "not_matched",
+      "match_provenance": "new_exact_external_identity_not_present_in_historical_bom_capture",
+      "lcsc": null,
+      "matched_mpn": null,
+      "semantic_mpn_equal": null,
+      "stock_snapshot": null,
+      "displayed_line_cost_usd": null,
+      "designators_complete": true
+    },
+    {
+      "bom_index": 117,
       "device_id": "te_2118651_2",
       "source_mpn": "TE Connectivity 2118651-2",
       "normalized_mpn": "2118651-2",
-      "quantity": 5,
+      "quantity": 2,
       "designators_complete": true,
       "historical_capture_quantity": 5,
-      "current_quantity_delta": 0,
+      "current_quantity_delta": -3,
       "match_provenance": "unchanged_mpn_from_2026_08_25_bom_tool_capture",
       "route": "unresolved",
       "tool_status": "not_matched",
@@ -2119,7 +2135,7 @@
       "displayed_line_cost_usd": null
     },
     {
-      "bom_index": 117,
+      "bom_index": 118,
       "device_id": "ti_bq25798_rqmr",
       "source_mpn": "Texas Instruments BQ25798RQMR",
       "normalized_mpn": "BQ25798RQMR",
@@ -2137,7 +2153,7 @@
       "displayed_line_cost_usd": 14.632
     },
     {
-      "bom_index": 118,
+      "bom_index": 119,
       "device_id": "ti_csd87313dms",
       "source_mpn": "Texas Instruments CSD87313DMS",
       "normalized_mpn": "CSD87313DMS",
@@ -2154,7 +2170,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 119,
+      "bom_index": 120,
       "device_id": "ti_mspm0c1106_sdgs20r",
       "source_mpn": "Texas Instruments MSPM0C1106SDGS20R",
       "normalized_mpn": "MSPM0C1106SDGS20R",
@@ -2171,7 +2187,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 120,
+      "bom_index": 121,
       "device_id": "ti_sn74lvc08a_pwr",
       "source_mpn": "SN74LVC08APWR",
       "normalized_mpn": "SN74LVC08APWR",
@@ -2189,7 +2205,7 @@
       "displayed_line_cost_usd": 4.1107
     },
     {
-      "bom_index": 121,
+      "bom_index": 122,
       "device_id": "ti_sn74lvc1g06_dckr",
       "source_mpn": "Texas Instruments SN74LVC1G06DCKR",
       "normalized_mpn": "SN74LVC1G06DCKR",
@@ -2207,7 +2223,7 @@
       "displayed_line_cost_usd": 2.0088
     },
     {
-      "bom_index": 122,
+      "bom_index": 123,
       "device_id": "ti_sn74lvc1g07_dckr",
       "source_mpn": "SN74LVC1G07DCKR",
       "normalized_mpn": "SN74LVC1G07DCKR",
@@ -2225,7 +2241,7 @@
       "displayed_line_cost_usd": null
     },
     {
-      "bom_index": 123,
+      "bom_index": 124,
       "device_id": "ti_sn74lvc1g08_dckr",
       "source_mpn": "SN74LVC1G08DCKR",
       "normalized_mpn": "SN74LVC1G08DCKR",
@@ -2243,7 +2259,7 @@
       "displayed_line_cost_usd": null
     },
     {
-      "bom_index": 124,
+      "bom_index": 125,
       "device_id": "ti_sn74lvc1g125_dckr",
       "source_mpn": "Texas Instruments SN74LVC1G125DCKR",
       "normalized_mpn": "SN74LVC1G125DCKR",
@@ -2261,7 +2277,7 @@
       "displayed_line_cost_usd": 1.0791
     },
     {
-      "bom_index": 125,
+      "bom_index": 126,
       "device_id": "ti_sn74lvc1g126_dckr",
       "source_mpn": "Texas Instruments SN74LVC1G126DCKR",
       "normalized_mpn": "SN74LVC1G126DCKR",
@@ -2279,7 +2295,7 @@
       "displayed_line_cost_usd": 2.4548
     },
     {
-      "bom_index": 126,
+      "bom_index": 127,
       "device_id": "ti_sn74lvc1g17_dckr",
       "source_mpn": "SN74LVC1G17DCKR",
       "normalized_mpn": "SN74LVC1G17DCKR",
@@ -2297,7 +2313,7 @@
       "displayed_line_cost_usd": null
     },
     {
-      "bom_index": 127,
+      "bom_index": 128,
       "device_id": "ti_sn74lvc1g3157_dbvr",
       "source_mpn": "Texas Instruments SN74LVC1G3157DBVR",
       "normalized_mpn": "SN74LVC1G3157DBVR",
@@ -2315,7 +2331,7 @@
       "displayed_line_cost_usd": 1.2555
     },
     {
-      "bom_index": 128,
+      "bom_index": 129,
       "device_id": "ti_sn74lvc1g74_dcur",
       "source_mpn": "SN74LVC1G74DCUR",
       "normalized_mpn": "SN74LVC1G74DCUR",
@@ -2333,7 +2349,7 @@
       "displayed_line_cost_usd": 1.1945
     },
     {
-      "bom_index": 129,
+      "bom_index": 130,
       "device_id": "ti_sn74lvc2g08_dcur",
       "source_mpn": "Texas Instruments SN74LVC2G08DCUR",
       "normalized_mpn": "SN74LVC2G08DCUR",
@@ -2351,7 +2367,7 @@
       "displayed_line_cost_usd": 4.215
     },
     {
-      "bom_index": 130,
+      "bom_index": 131,
       "device_id": "ti_sn74lvc2g66_dcur",
       "source_mpn": "Texas Instruments SN74LVC2G66DCUR",
       "normalized_mpn": "SN74LVC2G66DCUR",
@@ -2369,7 +2385,7 @@
       "displayed_line_cost_usd": 6.87
     },
     {
-      "bom_index": 131,
+      "bom_index": 132,
       "device_id": "ti_sn74lvc3g07_dcur",
       "source_mpn": "SN74LVC3G07DCUR",
       "normalized_mpn": "SN74LVC3G07DCUR",
@@ -2387,7 +2403,7 @@
       "displayed_line_cost_usd": 4.45
     },
     {
-      "bom_index": 132,
+      "bom_index": 133,
       "device_id": "ti_sn74lvc3g34_dcur",
       "source_mpn": "SN74LVC3G34DCUR",
       "normalized_mpn": "SN74LVC3G34DCUR",
@@ -2405,7 +2421,7 @@
       "displayed_line_cost_usd": 2.631
     },
     {
-      "bom_index": 133,
+      "bom_index": 134,
       "device_id": "ti_tca9534a_pwr",
       "source_mpn": "TCA9534APWR",
       "normalized_mpn": "TCA9534APWR",
@@ -2423,7 +2439,7 @@
       "displayed_line_cost_usd": 7.657
     },
     {
-      "bom_index": 134,
+      "bom_index": 135,
       "device_id": "ti_tca9535_pwr",
       "source_mpn": "TCA9535PWR",
       "normalized_mpn": "TCA9535PWR",
@@ -2441,7 +2457,7 @@
       "displayed_line_cost_usd": 8.534
     },
     {
-      "bom_index": 135,
+      "bom_index": 136,
       "device_id": "ti_tca9539_pwr",
       "source_mpn": "TCA9539PWR",
       "normalized_mpn": "TCA9539PWR",
@@ -2459,7 +2475,7 @@
       "displayed_line_cost_usd": null
     },
     {
-      "bom_index": 136,
+      "bom_index": 137,
       "device_id": "ti_tlv1821_dckr",
       "source_mpn": "TLV1821DCKR",
       "normalized_mpn": "TLV1821DCKR",
@@ -2477,7 +2493,7 @@
       "displayed_line_cost_usd": null
     },
     {
-      "bom_index": 137,
+      "bom_index": 138,
       "device_id": "ti_tlv1824_pwr",
       "source_mpn": "TLV1824PWR",
       "normalized_mpn": "TLV1824PWR",
@@ -2495,7 +2511,7 @@
       "displayed_line_cost_usd": null
     },
     {
-      "bom_index": 138,
+      "bom_index": 139,
       "device_id": "ti_tlv9061_idbvr",
       "source_mpn": "TLV9061IDBVR",
       "normalized_mpn": "TLV9061IDBVR",
@@ -2513,7 +2529,7 @@
       "displayed_line_cost_usd": 1.2264
     },
     {
-      "bom_index": 139,
+      "bom_index": 140,
       "device_id": "ti_tmux1136_dgsr",
       "source_mpn": "Texas Instruments TMUX1136DGSR",
       "normalized_mpn": "TMUX1136DGSR",
@@ -2531,7 +2547,7 @@
       "displayed_line_cost_usd": 12.789
     },
     {
-      "bom_index": 140,
+      "bom_index": 141,
       "device_id": "ti_tpd2eusb30a_drtr",
       "source_mpn": "Texas Instruments TPD2EUSB30ADRTR",
       "normalized_mpn": "TPD2EUSB30ADRTR",
@@ -2549,7 +2565,7 @@
       "displayed_line_cost_usd": null
     },
     {
-      "bom_index": 141,
+      "bom_index": 142,
       "device_id": "ti_tpd4e05u06_dqar",
       "source_mpn": "Texas Instruments TPD4E05U06DQAR",
       "normalized_mpn": "TPD4E05U06DQAR",
@@ -2567,7 +2583,7 @@
       "displayed_line_cost_usd": null
     },
     {
-      "bom_index": 142,
+      "bom_index": 143,
       "device_id": "ti_tpd4s201_rukr",
       "source_mpn": "Texas Instruments TPD4S201RUKR",
       "normalized_mpn": "TPD4S201RUKR",
@@ -2585,7 +2601,7 @@
       "displayed_line_cost_usd": 10.426
     },
     {
-      "bom_index": 143,
+      "bom_index": 144,
       "device_id": "ti_tpd8e003_dqdr",
       "source_mpn": "Texas Instruments TPD8E003DQDR",
       "normalized_mpn": "TPD8E003DQDR",
@@ -2603,7 +2619,7 @@
       "displayed_line_cost_usd": 9.273
     },
     {
-      "bom_index": 144,
+      "bom_index": 145,
       "device_id": "ti_tps22919_dckr",
       "source_mpn": "Texas Instruments TPS22919DCKR",
       "normalized_mpn": "TPS22919DCKR",
@@ -2621,7 +2637,7 @@
       "displayed_line_cost_usd": 4.207
     },
     {
-      "bom_index": 145,
+      "bom_index": 146,
       "device_id": "ti_tps2553drvr_1",
       "source_mpn": "Texas Instruments TPS2553DRVR-1",
       "normalized_mpn": "TPS2553DRVR-1",
@@ -2639,7 +2655,7 @@
       "displayed_line_cost_usd": 1.665
     },
     {
-      "bom_index": 146,
+      "bom_index": 147,
       "device_id": "ti_tps25751d_refr",
       "source_mpn": "Texas Instruments TPS25751DREFR",
       "normalized_mpn": "TPS25751DREFR",
@@ -2657,7 +2673,7 @@
       "displayed_line_cost_usd": 12.667
     },
     {
-      "bom_index": 147,
+      "bom_index": 148,
       "device_id": "ti_tps259470l_rpwr",
       "source_mpn": "Texas Instruments TPS259470LRPWR",
       "normalized_mpn": "TPS259470LRPWR",
@@ -2675,7 +2691,7 @@
       "displayed_line_cost_usd": 9.127
     },
     {
-      "bom_index": 148,
+      "bom_index": 149,
       "device_id": "ti_tps25961_drvr",
       "source_mpn": "Texas Instruments TPS25961DRVR",
       "normalized_mpn": "TPS25961DRVR",
@@ -2693,7 +2709,7 @@
       "displayed_line_cost_usd": 9.004
     },
     {
-      "bom_index": 149,
+      "bom_index": 150,
       "device_id": "ti_tps25974l_rpwr",
       "source_mpn": "Texas Instruments TPS25974LRPWR",
       "normalized_mpn": "TPS25974LRPWR",
@@ -2711,7 +2727,7 @@
       "displayed_line_cost_usd": 8.656
     },
     {
-      "bom_index": 150,
+      "bom_index": 151,
       "device_id": "ti_tps3435cakagddfr",
       "source_mpn": "Texas Instruments TPS3435CAKAGDDFR",
       "normalized_mpn": "TPS3435CAKAGDDFR",
@@ -2729,7 +2745,7 @@
       "displayed_line_cost_usd": 13.3575
     },
     {
-      "bom_index": 151,
+      "bom_index": 152,
       "device_id": "ti_tps3808g33_dbvr",
       "source_mpn": "TPS3808G33DBVR",
       "normalized_mpn": "TPS3808G33DBVR",
@@ -2747,7 +2763,7 @@
       "displayed_line_cost_usd": 8.862
     },
     {
-      "bom_index": 152,
+      "bom_index": 153,
       "device_id": "ti_tps3839k33_dbzr",
       "source_mpn": "Texas Instruments TPS3839K33DBZR",
       "normalized_mpn": "TPS3839K33DBZR",
@@ -2765,7 +2781,7 @@
       "displayed_line_cost_usd": 6.399
     },
     {
-      "bom_index": 153,
+      "bom_index": 154,
       "device_id": "ti_tps564252_drlr",
       "source_mpn": "Texas Instruments TPS564252DRLR",
       "normalized_mpn": "TPS564252DRLR",
@@ -2783,7 +2799,7 @@
       "displayed_line_cost_usd": 5.9445
     },
     {
-      "bom_index": 154,
+      "bom_index": 155,
       "device_id": "ti_tps629203_drlr",
       "source_mpn": "Texas Instruments TPS629203DRLR",
       "normalized_mpn": "TPS629203DRLR",
@@ -2801,7 +2817,7 @@
       "displayed_line_cost_usd": 3.8655
     },
     {
-      "bom_index": 155,
+      "bom_index": 156,
       "device_id": "ti_tpul2g223_bqbr",
       "source_mpn": "Texas Instruments TPUL2G223BQBR",
       "normalized_mpn": "TPUL2G223BQBR",
@@ -2819,7 +2835,7 @@
       "displayed_line_cost_usd": null
     },
     {
-      "bom_index": 156,
+      "bom_index": 157,
       "device_id": "ti_ts5a63157_dckr",
       "source_mpn": "Texas Instruments TS5A63157DCKR",
       "normalized_mpn": "TS5A63157DCKR",
@@ -2837,7 +2853,7 @@
       "displayed_line_cost_usd": 4.3605
     },
     {
-      "bom_index": 157,
+      "bom_index": 158,
       "device_id": "ti_tvs2200_drvr",
       "source_mpn": "Texas Instruments TVS2200DRVR",
       "normalized_mpn": "TVS2200DRVR",
@@ -2855,7 +2871,7 @@
       "displayed_line_cost_usd": 2.315
     },
     {
-      "bom_index": 158,
+      "bom_index": 159,
       "device_id": "ti_txs0102_dcur",
       "source_mpn": "Texas Instruments TXS0102DCUR",
       "normalized_mpn": "TXS0102DCUR",
@@ -2873,7 +2889,7 @@
       "displayed_line_cost_usd": 1.137
     },
     {
-      "bom_index": 159,
+      "bom_index": 160,
       "device_id": "ttm_b0310j50100ahf",
       "source_mpn": "TTM Technologies B0310J50100AHF",
       "normalized_mpn": "B0310J50100AHF",
@@ -2891,7 +2907,7 @@
       "displayed_line_cost_usd": null
     },
     {
-      "bom_index": 160,
+      "bom_index": 161,
       "device_id": "ttm_dc2337j5010ahf",
       "source_mpn": "TTM Technologies DC2337J5010AHF",
       "normalized_mpn": "DC2337J5010AHF",
@@ -2909,7 +2925,7 @@
       "displayed_line_cost_usd": 20.4135
     },
     {
-      "bom_index": 161,
+      "bom_index": 162,
       "device_id": "uniroyal_0402wgf1333tce",
       "source_mpn": "UNI-ROYAL 0402WGF1333TCE",
       "normalized_mpn": "0402WGF1333TCE",
@@ -2926,7 +2942,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 162,
+      "bom_index": 163,
       "device_id": "uniroyal_0402wgf1603tce",
       "source_mpn": "UNI-ROYAL 0402WGF1603TCE",
       "normalized_mpn": "0402WGF1603TCE",
@@ -2943,7 +2959,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 163,
+      "bom_index": 164,
       "device_id": "uniroyal_0402wgf1651tce",
       "source_mpn": "UNI-ROYAL 0402WGF1651TCE",
       "normalized_mpn": "0402WGF1651TCE",
@@ -2960,7 +2976,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 164,
+      "bom_index": 165,
       "device_id": "uniroyal_0402wgf2201tce",
       "source_mpn": "UNI-ROYAL 0402WGF2201TCE",
       "normalized_mpn": "0402WGF2201TCE",
@@ -2977,7 +2993,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 165,
+      "bom_index": 166,
       "device_id": "uniroyal_0402wgf2703tce",
       "source_mpn": "UNI-ROYAL 0402WGF2703TCE",
       "normalized_mpn": "0402WGF2703TCE",
@@ -2994,7 +3010,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 166,
+      "bom_index": 167,
       "device_id": "uniroyal_0402wgf5231tce",
       "source_mpn": "UNI-ROYAL 0402WGF5231TCE",
       "normalized_mpn": "0402WGF5231TCE",
@@ -3011,7 +3027,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 167,
+      "bom_index": 168,
       "device_id": "uniroyal_0402wgf8201tce",
       "source_mpn": "UNI-ROYAL 0402WGF8201TCE",
       "normalized_mpn": "0402WGF8201TCE",
@@ -3028,7 +3044,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 168,
+      "bom_index": 169,
       "device_id": "vishay_tnpw040210k0beed",
       "source_mpn": "Vishay TNPW040210K0BEED",
       "normalized_mpn": "TNPW040210K0BEED",
@@ -3046,7 +3062,7 @@
       "displayed_line_cost_usd": 0.5894
     },
     {
-      "bom_index": 169,
+      "bom_index": 170,
       "device_id": "vishay_tnpw040243k7beed",
       "source_mpn": "Vishay TNPW040243K7BEED",
       "normalized_mpn": "TNPW040243K7BEED",
@@ -3064,7 +3080,7 @@
       "displayed_line_cost_usd": 8.9568
     },
     {
-      "bom_index": 170,
+      "bom_index": 171,
       "device_id": "vishay_tsmp95000tt",
       "source_mpn": "Vishay TSMP95000TT",
       "normalized_mpn": "TSMP95000TT",
@@ -3082,7 +3098,7 @@
       "displayed_line_cost_usd": null
     },
     {
-      "bom_index": 171,
+      "bom_index": 172,
       "device_id": "vishay_tsop75238tr",
       "source_mpn": "Vishay TSOP75238TR",
       "normalized_mpn": "TSOP75238TR",
@@ -3099,7 +3115,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 172,
+      "bom_index": 173,
       "device_id": "vishay_vemd1060x01",
       "source_mpn": "VEMD1060X01",
       "normalized_mpn": "VEMD1060X01",
@@ -3117,7 +3133,7 @@
       "displayed_line_cost_usd": 4.807
     },
     {
-      "bom_index": 173,
+      "bom_index": 174,
       "device_id": "vishay_vsmy14940",
       "source_mpn": "Vishay VSMY14940",
       "normalized_mpn": "VSMY14940",
@@ -3135,7 +3151,7 @@
       "displayed_line_cost_usd": 3.8895
     },
     {
-      "bom_index": 174,
+      "bom_index": 175,
       "device_id": "vishay_wsl25125l000fea",
       "source_mpn": "Vishay WSL25125L000FEA",
       "normalized_mpn": "WSL25125L000FEA",
@@ -3153,7 +3169,7 @@
       "displayed_line_cost_usd": 2.208
     },
     {
-      "bom_index": 175,
+      "bom_index": 176,
       "device_id": "xtar_18650_4000mah_protected",
       "source_mpn": "XTAR 18650 4000mAh",
       "normalized_mpn": "18650 4000mAh",
@@ -3171,7 +3187,7 @@
       "displayed_line_cost_usd": null
     },
     {
-      "bom_index": 176,
+      "bom_index": 177,
       "device_id": "yageo_cc0402krx7r9bb104",
       "source_mpn": "Yageo CC0402KRX7R9BB104",
       "normalized_mpn": "CC0402KRX7R9BB104",
@@ -3188,7 +3204,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 177,
+      "bom_index": 178,
       "device_id": "yageo_cc0603krx7r0bb104",
       "source_mpn": "Yageo CC0603KRX7R0BB104",
       "normalized_mpn": "CC0603KRX7R0BB104",
@@ -3205,7 +3221,7 @@
       "designators_complete": true
     },
     {
-      "bom_index": 178,
+      "bom_index": 179,
       "device_id": "yageo_rc0402fr_07100kl",
       "source_mpn": "Yageo RC0402FR-07100KL",
       "normalized_mpn": "RC0402FR-07100KL",
@@ -3223,7 +3239,7 @@
       "displayed_line_cost_usd": 0.88
     },
     {
-      "bom_index": 179,
+      "bom_index": 180,
       "device_id": "yageo_rc0402fr_07100rl",
       "source_mpn": "Yageo RC0402FR-07100RL",
       "normalized_mpn": "RC0402FR-07100RL",
@@ -3241,7 +3257,7 @@
       "displayed_line_cost_usd": null
     },
     {
-      "bom_index": 180,
+      "bom_index": 181,
       "device_id": "yageo_rc0402fr_0710kl",
       "source_mpn": "Yageo RC0402FR-0710KL",
       "normalized_mpn": "RC0402FR-0710KL",
@@ -3259,7 +3275,7 @@
       "displayed_line_cost_usd": 3.589
     },
     {
-      "bom_index": 181,
+      "bom_index": 182,
       "device_id": "yageo_rc0402fr_07110kl",
       "source_mpn": "Yageo RC0402FR-07110KL",
       "normalized_mpn": "RC0402FR-07110KL",
@@ -3277,7 +3293,7 @@
       "displayed_line_cost_usd": 0.076
     },
     {
-      "bom_index": 182,
+      "bom_index": 183,
       "device_id": "yageo_rc0402fr_0712kl",
       "source_mpn": "Yageo RC0402FR-0712KL",
       "normalized_mpn": "RC0402FR-0712KL",
@@ -3295,7 +3311,7 @@
       "displayed_line_cost_usd": 0.074
     },
     {
-      "bom_index": 183,
+      "bom_index": 184,
       "device_id": "yageo_rc0402fr_07169kl",
       "source_mpn": "Yageo RC0402FR-07169KL",
       "normalized_mpn": "RC0402FR-07169KL",
@@ -3313,7 +3329,7 @@
       "displayed_line_cost_usd": 0.077
     },
     {
-      "bom_index": 184,
+      "bom_index": 185,
       "device_id": "yageo_rc0402fr_07196kl",
       "source_mpn": "Yageo RC0402FR-07196KL",
       "normalized_mpn": "RC0402FR-07196KL",
@@ -3331,7 +3347,7 @@
       "displayed_line_cost_usd": 0.026
     },
     {
-      "bom_index": 185,
+      "bom_index": 186,
       "device_id": "yageo_rc0402fr_071k82l",
       "source_mpn": "Yageo RC0402FR-071K82L",
       "normalized_mpn": "RC0402FR-071K82L",
@@ -3349,7 +3365,7 @@
       "displayed_line_cost_usd": 0.048
     },
     {
-      "bom_index": 186,
+      "bom_index": 187,
       "device_id": "yageo_rc0402fr_071kl",
       "source_mpn": "Yageo RC0402FR-071KL",
       "normalized_mpn": "RC0402FR-071KL",
@@ -3367,7 +3383,7 @@
       "displayed_line_cost_usd": null
     },
     {
-      "bom_index": 187,
+      "bom_index": 188,
       "device_id": "yageo_rc0402fr_071ml",
       "source_mpn": "Yageo RC0402FR-071ML",
       "normalized_mpn": "RC0402FR-071ML",
@@ -3385,7 +3401,7 @@
       "displayed_line_cost_usd": 0.2665
     },
     {
-      "bom_index": 188,
+      "bom_index": 189,
       "device_id": "yageo_rc0402fr_07220kl",
       "source_mpn": "Yageo RC0402FR-07220KL",
       "normalized_mpn": "RC0402FR-07220KL",
@@ -3403,7 +3419,7 @@
       "displayed_line_cost_usd": 0.26
     },
     {
-      "bom_index": 189,
+      "bom_index": 190,
       "device_id": "yageo_rc0402fr_07220rl",
       "source_mpn": "Yageo RC0402FR-07220RL",
       "normalized_mpn": "RC0402FR-07220RL",
@@ -3421,7 +3437,7 @@
       "displayed_line_cost_usd": 0.08
     },
     {
-      "bom_index": 190,
+      "bom_index": 191,
       "device_id": "yageo_rc0402fr_07240kl",
       "source_mpn": "Yageo RC0402FR-07240KL",
       "normalized_mpn": "RC0402FR-07240KL",
@@ -3439,7 +3455,7 @@
       "displayed_line_cost_usd": 0.054
     },
     {
-      "bom_index": 191,
+      "bom_index": 192,
       "device_id": "yageo_rc0402fr_0730k1l",
       "source_mpn": "Yageo RC0402FR-0730K1L",
       "normalized_mpn": "RC0402FR-0730K1L",
@@ -3457,7 +3473,7 @@
       "displayed_line_cost_usd": 0.064
     },
     {
-      "bom_index": 192,
+      "bom_index": 193,
       "device_id": "yageo_rc0402fr_0730kl",
       "source_mpn": "Yageo RC0402FR-0730KL",
       "normalized_mpn": "RC0402FR-0730KL",
@@ -3475,7 +3491,7 @@
       "displayed_line_cost_usd": 0.082
     },
     {
-      "bom_index": 193,
+      "bom_index": 194,
       "device_id": "yageo_rc0402fr_0733kl",
       "source_mpn": "Yageo RC0402FR-0733KL",
       "normalized_mpn": "RC0402FR-0733KL",
@@ -3493,7 +3509,7 @@
       "displayed_line_cost_usd": 0.08
     },
     {
-      "bom_index": 194,
+      "bom_index": 195,
       "device_id": "yageo_rc0402fr_0733rl",
       "source_mpn": "Yageo RC0402FR-0733RL",
       "normalized_mpn": "RC0402FR-0733RL",
@@ -3511,7 +3527,7 @@
       "displayed_line_cost_usd": null
     },
     {
-      "bom_index": 195,
+      "bom_index": 196,
       "device_id": "yageo_rc0402fr_073k32l",
       "source_mpn": "Yageo RC0402FR-073K32L",
       "normalized_mpn": "RC0402FR-073K32L",
@@ -3529,7 +3545,7 @@
       "displayed_line_cost_usd": 0.328
     },
     {
-      "bom_index": 196,
+      "bom_index": 197,
       "device_id": "yageo_rc0402fr_0742k2l",
       "source_mpn": "Yageo RC0402FR-0742K2L",
       "normalized_mpn": "RC0402FR-0742K2L",
@@ -3547,7 +3563,7 @@
       "displayed_line_cost_usd": 0.078
     },
     {
-      "bom_index": 197,
+      "bom_index": 198,
       "device_id": "yageo_rc0402fr_0744k2l",
       "source_mpn": "Yageo RC0402FR-0744K2L",
       "normalized_mpn": "RC0402FR-0744K2L",
@@ -3565,7 +3581,7 @@
       "displayed_line_cost_usd": 0.082
     },
     {
-      "bom_index": 198,
+      "bom_index": 199,
       "device_id": "yageo_rc0402fr_0745k3l",
       "source_mpn": "Yageo RC0402FR-0745K3L",
       "normalized_mpn": "RC0402FR-0745K3L",
@@ -3583,7 +3599,7 @@
       "displayed_line_cost_usd": 0.078
     },
     {
-      "bom_index": 199,
+      "bom_index": 200,
       "device_id": "yageo_rc0402fr_07470rl",
       "source_mpn": "Yageo RC0402FR-07470RL",
       "normalized_mpn": "RC0402FR-07470RL",
@@ -3601,7 +3617,7 @@
       "displayed_line_cost_usd": 0.164
     },
     {
-      "bom_index": 200,
+      "bom_index": 201,
       "device_id": "yageo_rc0402fr_0747kl",
       "source_mpn": "Yageo RC0402FR-0747KL",
       "normalized_mpn": "RC0402FR-0747KL",
@@ -3619,7 +3635,7 @@
       "displayed_line_cost_usd": 0.2542
     },
     {
-      "bom_index": 201,
+      "bom_index": 202,
       "device_id": "yageo_rc0402fr_0749r9l",
       "source_mpn": "Yageo RC0402FR-0749R9L",
       "normalized_mpn": "RC0402FR-0749R9L",
@@ -3637,7 +3653,7 @@
       "displayed_line_cost_usd": 0.1435
     },
     {
-      "bom_index": 202,
+      "bom_index": 203,
       "device_id": "yageo_rc0402fr_074k7l",
       "source_mpn": "Yageo RC0402FR-074K7L",
       "normalized_mpn": "RC0402FR-074K7L",
@@ -3655,7 +3671,7 @@
       "displayed_line_cost_usd": null
     },
     {
-      "bom_index": 203,
+      "bom_index": 204,
       "device_id": "yageo_rc0402fr_0752r3l",
       "source_mpn": "Yageo RC0402FR-0752R3L",
       "normalized_mpn": "RC0402FR-0752R3L",
@@ -3673,7 +3689,7 @@
       "displayed_line_cost_usd": 0.051
     },
     {
-      "bom_index": 204,
+      "bom_index": 205,
       "device_id": "yageo_rc0402fr_0756kl",
       "source_mpn": "Yageo RC0402FR-0756KL",
       "normalized_mpn": "RC0402FR-0756KL",
@@ -3691,7 +3707,7 @@
       "displayed_line_cost_usd": 0.072
     },
     {
-      "bom_index": 205,
+      "bom_index": 206,
       "device_id": "yageo_rc0402fr_075k1l",
       "source_mpn": "Yageo RC0402FR-075K1L",
       "normalized_mpn": "RC0402FR-075K1L",
@@ -3709,7 +3725,7 @@
       "displayed_line_cost_usd": 0.14
     },
     {
-      "bom_index": 206,
+      "bom_index": 207,
       "device_id": "yageo_rc0402fr_07620kl",
       "source_mpn": "Yageo RC0402FR-07620KL",
       "normalized_mpn": "RC0402FR-07620KL",
@@ -3727,7 +3743,7 @@
       "displayed_line_cost_usd": 0.08
     },
     {
-      "bom_index": 207,
+      "bom_index": 208,
       "device_id": "yageo_rc0402fr_0768kl",
       "source_mpn": "Yageo RC0402FR-0768KL",
       "normalized_mpn": "RC0402FR-0768KL",
@@ -3745,7 +3761,7 @@
       "displayed_line_cost_usd": 0.114
     },
     {
-      "bom_index": 208,
+      "bom_index": 209,
       "device_id": "yageo_rc0402jr_070rl",
       "source_mpn": "Yageo RC0402JR-070RL",
       "normalized_mpn": "RC0402JR-070RL",
@@ -3763,7 +3779,7 @@
       "displayed_line_cost_usd": 0.102
     },
     {
-      "bom_index": 209,
+      "bom_index": 210,
       "device_id": "yageo_rc0603fr_071kl",
       "source_mpn": "Yageo RC0603FR-071KL",
       "normalized_mpn": "RC0603FR-071KL",
@@ -3781,7 +3797,7 @@
       "displayed_line_cost_usd": 0.156
     },
     {
-      "bom_index": 210,
+      "bom_index": 211,
       "device_id": "yageo_rt0402brd07100kl",
       "source_mpn": "Yageo RT0402BRD07100KL",
       "normalized_mpn": "RT0402BRD07100KL",
@@ -3799,7 +3815,7 @@
       "displayed_line_cost_usd": 0.53
     },
     {
-      "bom_index": 211,
+      "bom_index": 212,
       "device_id": "yageo_rt0402brd07191kl",
       "source_mpn": "Yageo RT0402BRD07191KL",
       "normalized_mpn": "RT0402BRD07191KL",
@@ -3818,7 +3834,7 @@
     }
   ],
   "next": {
-    "local": "retain the 27 current outlier resolutions, join exact display, connector, RP2354B, MSPM0 pre-order, SA818S-U/V, full-power nRF24 and C5 V1.2 supplier routes, then recheck every current route without accepting substitutions",
+    "local": "retain the 28 current outlier resolutions, including both exact microcoax lengths, and join exact display, connector, RP2354B, MSPM0 pre-order, SA818S-U/V, full-power nRF24 and C5 V1.2 supplier routes before rechecking every current route without substitutions",
     "external_authority_later": "a sourcing request, private-stock reservation, quote creation or purchase still requires explicit authority",
     "forbidden": [
       "sourcing request",
@@ -3833,7 +3849,7 @@
   "checks": {
     "historical_capture_is_self_consistent": true,
     "historical_capture_diff_is_exactly_known_replacements_to_current_exact_pages": true,
-    "all_211_current_lines_returned_once": true,
+    "all_212_current_lines_returned_once": true,
     "all_current_designator_quantities_and_1052_placements_reconcile": true,
     "current_exact_route_counts_reconcile": true,
     "both_voice_routes_use_exact_current_jlcpcb_pages": true,

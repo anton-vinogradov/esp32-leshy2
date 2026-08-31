@@ -19,7 +19,7 @@
 | Main antenna ports | 10, permanently assigned 5 + 5 |
 | Interboard M1 | 80 contacts: 31 signals, 14 main-power, 2 AON, 24 returns, 9 true NC; contact 35 carries latched `FAULT_KILL` to the front indicator and contact 36 is the bounded S3 fault-UI reset |
 | Base-BOM groups / fitted placements | 208 / 1,096 |
-| Current electronics planning floor | USD 273.42 before five unpriced lines, PCBs and assembly |
+| Current electronics planning floor | USD 272.97 before five unpriced lines, PCBs and assembly |
 | Accepted no-loss savings | USD 10.4192 |
 
 The front PCB owns the user interface, exact EastRising 3.5-inch touch display
@@ -57,8 +57,8 @@ H2 is now reviewed at **H2-R2.1.5**. Its prerequisite ledger is closed:
    rail-local termination for Pack/Safety I²C on Hub GPIO42/43.
 
 The native R2 source/sheet/component inventory passed review as `H2-R2.1.1`.
-The exact 237-board-group symbol/contact/value/footprint ledger passed review
-as `H2-R2.1.2`. `H2-R2.1.3` then materialized 1,187 fitted positions and 4,327
+The exact 234-board-group symbol/contact/value/footprint ledger passed review
+as `H2-R2.1.2`. `H2-R2.1.3` then materialized 1,185 fitted positions and 4,323
 physical pins across three native KiCad projects; all three pass ERC with zero
 errors and zero warnings. Cross-sheet and machine-readable hardware/firmware
 reconciliation passed at `H2-R2.1.4`; H3 now freezes the reviewed result.

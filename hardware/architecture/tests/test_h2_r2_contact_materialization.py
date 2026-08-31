@@ -38,7 +38,7 @@ class H2R2ContactMaterializationTests(unittest.TestCase):
         self.assertEqual([], self.artifact["errors"])
         summary = self.artifact["summary"]
         self.assertEqual(234, summary["board_component_group_count"])
-        self.assertEqual(1656, summary["source_ledger_logical_contact_count"])
+        self.assertEqual(1658, summary["source_ledger_logical_contact_count"])
         self.assertEqual(1599, summary["board_logical_contact_count"])
         self.assertEqual(1596, summary["pcb_footprint_contact_count"])
         self.assertEqual(3, summary["external_on_module_interface_count"])

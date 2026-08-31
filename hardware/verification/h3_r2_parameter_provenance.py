@@ -252,7 +252,7 @@ def render_doc(result: dict, ru: bool) -> str:
         findings_title = "## Ограниченные находки источников"
         findings = "У реестра не осталось factory-catalog-only источников параметров. Для точного `3225-27.00-10-10-10/A` (`C518151`) привязаны пределы TX3 по ESR, drive и температуре; прежний `CS0805-R27J-S` заменён фабрично доступным `RS-06L2R70FT` (`C323265`) после расчёта подсветки H3-R2.3."
         boundary = "Placement, routing, закупка и печать не разрешены. Следующий шаг — воспроизводимо зафиксировать методы, допуски и pass/fail rules."
-        machine = "[Машинный реестр из 239 строк](../hardware/verification/generated/H3-R2-parameter-provenance.json). Исторический R1-реестр сохранён отдельно как `H3-VRF02`, но не является authority R2."
+        machine = "[Машинный реестр из 240 строк](../hardware/verification/generated/H3-R2-parameter-provenance.json). Исторический R1-реестр сохранён отдельно как `H3-VRF02`, но не является authority R2."
     else:
         title = "# R2 parameters and models"
         nav = "[Home](../README.md) · [Roadmap](roadmap.md) · [Русский](parameter-model-register.ru.md)"
@@ -269,7 +269,7 @@ def render_doc(result: dict, ru: bool) -> str:
         findings_title = "## Bounded source findings"
         findings = "No factory-catalog-only parameter source remains. Exact `3225-27.00-10-10-10/A` (`C518151`) is bound to TX3 ESR, drive and temperature limits; former `CS0805-R27J-S` is replaced by factory-stocked `RS-06L2R70FT` (`C323265`) after the H3-R2.3 backlight calculation."
         boundary = "Placement, routing, purchasing and fabrication remain forbidden. The next step reproducibly freezes methods, tolerances and pass/fail rules."
-        machine = "[239-row machine register](../hardware/verification/generated/H3-R2-parameter-provenance.json). The historical R1 `H3-VRF02` register remains archived evidence and is not R2 authority."
+        machine = "[240-row machine register](../hardware/verification/generated/H3-R2-parameter-provenance.json). The historical R1 `H3-VRF02` register remains archived evidence and is not R2 authority."
     table = "\n".join(
         f"| `{name}` | {count} | {structured.get(name, 0)} | {count - structured.get(name, 0)} |"
         for name, count in sorted(classes.items())

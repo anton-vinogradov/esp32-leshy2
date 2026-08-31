@@ -8130,7 +8130,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TE Connectivity 2118651-2"
+		(property "Value" "TE Connectivity 1-2118651-0"
 			(at 441.96 49.53 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8187,7 +8187,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TE Connectivity 2118651-2"
+		(property "Value" "TE Connectivity 1-2118651-0"
 			(at 508.00 49.53 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8244,7 +8244,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "TE Connectivity 2118651-2"
+		(property "Value" "TE Connectivity 1-2118651-0"
 			(at 574.04 49.53 0)
 			(show_name no)
 			(do_not_autoplace no)

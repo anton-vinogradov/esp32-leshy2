@@ -4,18 +4,18 @@
   "checked_on": "2026-08-29",
   "status": "pass_review_with_open_cost_actions",
   "summary": {
-    "bom_lines": 211,
-    "quantity_100_priced_lines": 202,
-    "known_quantity_100_base_usd_per_device": 253.1996,
-    "planning_base_usd_per_device": 273.0053,
+    "bom_lines": 212,
+    "quantity_100_priced_lines": 203,
+    "known_quantity_100_base_usd_per_device": 253.1663,
+    "planning_base_usd_per_device": 272.972,
     "remaining_unpriced_base_lines": 5,
-    "planning_base_plus_post_pcba_usd_per_device": 273.0053,
+    "planning_base_plus_post_pcba_usd_per_device": 272.972,
     "procurement_target_device_quantity": 1,
     "historical_cost_capture_device_quantity": 5,
-    "planning_base_plus_post_pcba_usd_for_procurement_target": 273.0053,
-    "planning_base_plus_post_pcba_usd_for_ten_devices": 2730.053,
-    "planning_plus_known_antenna_usd_per_device": 411.3219,
-    "base_bom_lines": 209,
+    "planning_base_plus_post_pcba_usd_for_procurement_target": 272.972,
+    "planning_base_plus_post_pcba_usd_for_ten_devices": 2729.72,
+    "planning_plus_known_antenna_usd_per_device": 411.2886,
+    "base_bom_lines": 210,
     "base_fitted_placements": 1096,
     "community_complete_device_target_usd": 260,
     "community_electronics_target_usd": [
@@ -23,26 +23,26 @@
       216
     ],
     "paper_qualified_no_loss_savings_usd": 10.4192,
-    "base_after_paper_qualified_savings_usd": 273.0053,
-    "pre_pcba_margin_to_complete_ceiling_usd": -13.0053,
+    "base_after_paper_qualified_savings_usd": 272.972,
+    "pre_pcba_margin_to_complete_ceiling_usd": -12.972,
     "additional_savings_to_electronics_target_usd": [
-      57.0053,
-      84.0053
+      56.972,
+      83.972
     ],
-    "combined_top_20_share_pct": 66.62,
+    "combined_top_20_share_pct": 65.74,
     "top_20_mass_market_retained_groups": 20,
     "top_20_qualification_candidate_groups": 0,
     "top_20_rejected_candidate_groups": 6,
     "top_20_unaccepted_paper_saving_usd": 89.1273,
     "top_20_rejected_paper_saving_usd": 89.1273,
-    "top_10_share_pct": 40.7,
-    "top_20_share_pct": 58.9,
-    "top_40_share_pct": 76.82,
+    "top_10_share_pct": 40.22,
+    "top_20_share_pct": 57.56,
+    "top_40_share_pct": 76.19,
     "historical_capture_matched_lines": 184,
     "live_spot_checks": 25,
     "historical_capture_displayed_usd": 1370.1253,
     "historical_spot_adjusted_displayed_usd": 1411.5139,
-    "historical_capture_unmatched_lines": 27,
+    "historical_capture_unmatched_lines": 28,
     "preorder_rows": 27,
     "preorder_capture_usd": 660.0134,
     "preorder_volume_basis_for_historical_capture_usd": 331.0305,
@@ -73,8 +73,8 @@
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
       "cost_gate": null,
-      "share_of_planning_base_pct": 7.222,
-      "cumulative_planning_base_pct": 7.222
+      "share_of_planning_base_pct": 7.223,
+      "cumulative_planning_base_pct": 7.223
     },
     {
       "device_id": "eastrising_er_tft035ips_6_ctp",
@@ -97,8 +97,8 @@
       "historical_capture_route": "factory_final_assembly",
       "jlcpcb_part": null,
       "cost_gate": null,
-      "share_of_planning_base_pct": 5.461,
-      "cumulative_planning_base_pct": 12.683
+      "share_of_planning_base_pct": 5.462,
+      "cumulative_planning_base_pct": 12.685
     },
     {
       "device_id": "adi_ad8314armz_reel",
@@ -121,8 +121,8 @@
       "historical_capture_route": "explicit overseas-stock/pre-order route; six required pieces satisfy MOQ 4",
       "jlcpcb_part": "C652687",
       "cost_gate": null,
-      "share_of_planning_base_pct": 4.263,
-      "cumulative_planning_base_pct": 16.947
+      "share_of_planning_base_pct": 4.264,
+      "cumulative_planning_base_pct": 16.949
     },
     {
       "device_id": "omron_b3s_1100p",
@@ -146,7 +146,7 @@
       "jlcpcb_part": "C2733652",
       "cost_gate": null,
       "share_of_planning_base_pct": 3.754,
-      "cumulative_planning_base_pct": 20.7
+      "cumulative_planning_base_pct": 20.703
     },
     {
       "device_id": "nicerf_sa818s_v_v18",
@@ -170,7 +170,7 @@
       "jlcpcb_part": "C51897911",
       "cost_gate": "quantity_100_rfq_required",
       "share_of_planning_base_pct": 3.689,
-      "cumulative_planning_base_pct": 24.389
+      "cumulative_planning_base_pct": 24.392
     },
     {
       "device_id": "nicerf_sa818s_u_v18",
@@ -194,31 +194,7 @@
       "jlcpcb_part": "C3001549",
       "cost_gate": "quantity_100_rfq_required",
       "share_of_planning_base_pct": 3.566,
-      "cumulative_planning_base_pct": 27.955
-    },
-    {
-      "device_id": "te_2118651_2",
-      "source_device_id": "te_2118651_2",
-      "mpn": "TE Connectivity 2118651-2",
-      "role": "five 30-mm RF jumpers / пять 30-мм RF-кабелей",
-      "scope": "base_product",
-      "quantity_per_device": 5,
-      "quantity_procurement_target": 5,
-      "planning_procurement_line_usd": 9.1055,
-      "quantity_historical_capture": 25,
-      "unit_price_quantity_100_usd": 1.8211,
-      "effective_unit_price_usd": 1.8211,
-      "line_burden_per_device_usd": 9.1055,
-      "line_burden_basis": "quantity-100",
-      "quantity_100_batch_line_usd": 910.55,
-      "quantity_ten_devices": 50,
-      "planning_ten_devices_line_usd": 91.05499999999999,
-      "historical_capture_displayed_line_usd": null,
-      "historical_capture_route": "not_matched",
-      "jlcpcb_part": null,
-      "cost_gate": null,
-      "share_of_planning_base_pct": 3.335,
-      "cumulative_planning_base_pct": 31.29
+      "cumulative_planning_base_pct": 27.959
     },
     {
       "device_id": "ebyte_e01_ml01sp4",
@@ -241,8 +217,8 @@
       "historical_capture_route": "in stock; exact original-manufacturer PA/LNA module is factory placeable",
       "jlcpcb_part": "C97340",
       "cost_gate": null,
-      "share_of_planning_base_pct": 3.256,
-      "cumulative_planning_base_pct": 34.547
+      "share_of_planning_base_pct": 3.257,
+      "cumulative_planning_base_pct": 31.215
     },
     {
       "device_id": "keystone_1048p",
@@ -265,8 +241,8 @@
       "historical_capture_route": "pre-order",
       "jlcpcb_part": "C6038062",
       "cost_gate": null,
-      "share_of_planning_base_pct": 3.139,
-      "cumulative_planning_base_pct": 37.686
+      "share_of_planning_base_pct": 3.14,
+      "cumulative_planning_base_pct": 34.355
     },
     {
       "device_id": "ti_tmux1136_dgsr",
@@ -289,8 +265,8 @@
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C2673301",
       "cost_gate": null,
-      "share_of_planning_base_pct": 3.015,
-      "cumulative_planning_base_pct": 40.701
+      "share_of_planning_base_pct": 3.016,
+      "cumulative_planning_base_pct": 37.371
     },
     {
       "device_id": "adi_ltc5532_es6_trmpbf",
@@ -314,7 +290,7 @@
       "jlcpcb_part": "C580926",
       "cost_gate": null,
       "share_of_planning_base_pct": 2.848,
-      "cumulative_planning_base_pct": 43.549
+      "cumulative_planning_base_pct": 40.219
     },
     {
       "device_id": "samtec_ftsh_105_01_l_dv_k_p_tr",
@@ -337,8 +313,32 @@
       "historical_capture_route": "in stock; four fitted per R2 device and no pre-order is required for the exact-one prototype",
       "jlcpcb_part": "C2932107",
       "cost_gate": null,
-      "share_of_planning_base_pct": 2.489,
-      "cumulative_planning_base_pct": 46.039
+      "share_of_planning_base_pct": 2.49,
+      "cumulative_planning_base_pct": 42.709
+    },
+    {
+      "device_id": "te_1_2118651_0",
+      "source_device_id": "te_1_2118651_0",
+      "mpn": "TE Connectivity 1-2118651-0",
+      "role": "three 60-mm nRF RF jumpers / три 60-мм RF-кабеля nRF",
+      "scope": "base_product",
+      "quantity_per_device": 3,
+      "quantity_procurement_target": 3,
+      "planning_procurement_line_usd": 5.43,
+      "quantity_historical_capture": 15,
+      "unit_price_quantity_100_usd": 1.81,
+      "effective_unit_price_usd": 1.8099999999999998,
+      "line_burden_per_device_usd": 5.43,
+      "line_burden_basis": "quantity-100",
+      "quantity_100_batch_line_usd": 543.0,
+      "quantity_ten_devices": 30,
+      "planning_ten_devices_line_usd": 54.3,
+      "historical_capture_displayed_line_usd": null,
+      "historical_capture_route": "not_matched",
+      "jlcpcb_part": null,
+      "cost_gate": null,
+      "share_of_planning_base_pct": 1.989,
+      "cumulative_planning_base_pct": 44.698
     },
     {
       "device_id": "esp32_s3_wroom_1u_n16r8",
@@ -362,7 +362,7 @@
       "jlcpcb_part": "C3013946",
       "cost_gate": null,
       "share_of_planning_base_pct": 1.871,
-      "cumulative_planning_base_pct": 47.91
+      "cumulative_planning_base_pct": 46.569
     },
     {
       "device_id": "gct_rfpc_sma32_fn_175_a",
@@ -386,7 +386,7 @@
       "jlcpcb_part": null,
       "cost_gate": null,
       "share_of_planning_base_pct": 1.806,
-      "cumulative_planning_base_pct": 49.715
+      "cumulative_planning_base_pct": 48.375
     },
     {
       "device_id": "ti_tps3808g33_dbvr",
@@ -409,8 +409,8 @@
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C43698",
       "cost_gate": null,
-      "share_of_planning_base_pct": 1.609,
-      "cumulative_planning_base_pct": 51.325
+      "share_of_planning_base_pct": 1.61,
+      "cumulative_planning_base_pct": 49.985
     },
     {
       "device_id": "ti_tpd4e05u06_dqar",
@@ -434,7 +434,7 @@
       "jlcpcb_part": null,
       "cost_gate": null,
       "share_of_planning_base_pct": 1.585,
-      "cumulative_planning_base_pct": 52.909
+      "cumulative_planning_base_pct": 51.569
     },
     {
       "device_id": "murata_grm32er71e226ke15l",
@@ -458,7 +458,7 @@
       "jlcpcb_part": "C21397",
       "cost_gate": null,
       "share_of_planning_base_pct": 1.573,
-      "cumulative_planning_base_pct": 54.482
+      "cumulative_planning_base_pct": 53.142
     },
     {
       "device_id": "esp32_c5_wroom_1u_n8r8",
@@ -482,7 +482,7 @@
       "jlcpcb_part": "C54951858",
       "cost_gate": null,
       "share_of_planning_base_pct": 1.514,
-      "cumulative_planning_base_pct": 55.996
+      "cumulative_planning_base_pct": 54.657
     },
     {
       "device_id": "adi_max17320_g20_t",
@@ -506,7 +506,7 @@
       "jlcpcb_part": "C7457895",
       "cost_gate": null,
       "share_of_planning_base_pct": 1.466,
-      "cumulative_planning_base_pct": 57.462
+      "cumulative_planning_base_pct": 56.123
     },
     {
       "device_id": "hirose_fx8c_80s_sv5_92",
@@ -529,8 +529,32 @@
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
       "cost_gate": null,
-      "share_of_planning_base_pct": 1.433,
-      "cumulative_planning_base_pct": 58.896
+      "share_of_planning_base_pct": 1.434,
+      "cumulative_planning_base_pct": 57.556
+    },
+    {
+      "device_id": "te_2118651_2",
+      "source_device_id": "te_2118651_2",
+      "mpn": "TE Connectivity 2118651-2",
+      "role": "two 30-mm S3/C5 RF jumpers / два 30-мм RF-кабеля S3/C5",
+      "scope": "base_product",
+      "quantity_per_device": 2,
+      "quantity_procurement_target": 2,
+      "planning_procurement_line_usd": 3.6422,
+      "quantity_historical_capture": 10,
+      "unit_price_quantity_100_usd": 1.8211,
+      "effective_unit_price_usd": 1.8211,
+      "line_burden_per_device_usd": 3.6422,
+      "line_burden_basis": "quantity-100",
+      "quantity_100_batch_line_usd": 364.21999999999997,
+      "quantity_ten_devices": 20,
+      "planning_ten_devices_line_usd": 36.422,
+      "historical_capture_displayed_line_usd": null,
+      "historical_capture_route": "not_matched",
+      "jlcpcb_part": null,
+      "cost_gate": null,
+      "share_of_planning_base_pct": 1.334,
+      "cumulative_planning_base_pct": 58.891
     },
     {
       "device_id": "ti_bq25798_rqmr",
@@ -554,7 +578,7 @@
       "jlcpcb_part": "C2876593",
       "cost_gate": null,
       "share_of_planning_base_pct": 1.287,
-      "cumulative_planning_base_pct": 60.183
+      "cumulative_planning_base_pct": 60.178
     },
     {
       "device_id": "alps_ec11e18244au",
@@ -577,8 +601,8 @@
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C202365",
       "cost_gate": null,
-      "share_of_planning_base_pct": 1.204,
-      "cumulative_planning_base_pct": 61.387
+      "share_of_planning_base_pct": 1.205,
+      "cumulative_planning_base_pct": 61.382
     },
     {
       "device_id": "hirose_fx8c_80p_sv1_92",
@@ -602,7 +626,7 @@
       "jlcpcb_part": "C7197102",
       "cost_gate": null,
       "share_of_planning_base_pct": 1.163,
-      "cumulative_planning_base_pct": 62.55
+      "cumulative_planning_base_pct": 62.546
     },
     {
       "device_id": "ttm_dc2337j5010ahf",
@@ -626,7 +650,7 @@
       "jlcpcb_part": "C509396",
       "cost_gate": null,
       "share_of_planning_base_pct": 1.131,
-      "cumulative_planning_base_pct": 63.681
+      "cumulative_planning_base_pct": 63.677
     },
     {
       "device_id": "cc1101rgpr",
@@ -650,7 +674,7 @@
       "jlcpcb_part": "C29953",
       "cost_gate": null,
       "share_of_planning_base_pct": 1.112,
-      "cumulative_planning_base_pct": 64.793
+      "cumulative_planning_base_pct": 64.789
     },
     {
       "device_id": "rp2354b_a4",
@@ -674,7 +698,7 @@
       "jlcpcb_part": "C39843328",
       "cost_gate": null,
       "share_of_planning_base_pct": 1.094,
-      "cumulative_planning_base_pct": 65.887
+      "cumulative_planning_base_pct": 65.883
     },
     {
       "device_id": "littelfuse_0451005_mrl",
@@ -697,8 +721,8 @@
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C48467",
       "cost_gate": null,
-      "share_of_planning_base_pct": 1.061,
-      "cumulative_planning_base_pct": 66.948
+      "share_of_planning_base_pct": 1.062,
+      "cumulative_planning_base_pct": 66.944
     },
     {
       "device_id": "hirose_dm3at_sf_pejm5",
@@ -722,7 +746,7 @@
       "jlcpcb_part": "C114218",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.94,
-      "cumulative_planning_base_pct": 67.888
+      "cumulative_planning_base_pct": 67.884
     },
     {
       "device_id": "samtec_hle_107_02_g_dv_pe_lc",
@@ -746,7 +770,7 @@
       "jlcpcb_part": "C5649644",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.931,
-      "cumulative_planning_base_pct": 68.819
+      "cumulative_planning_base_pct": 68.815
     },
     {
       "device_id": "pui_as02404po",
@@ -770,7 +794,7 @@
       "jlcpcb_part": null,
       "cost_gate": null,
       "share_of_planning_base_pct": 0.927,
-      "cumulative_planning_base_pct": 69.746
+      "cumulative_planning_base_pct": 69.742
     },
     {
       "device_id": "ti_tlv1824_pwr",
@@ -794,7 +818,7 @@
       "jlcpcb_part": null,
       "cost_gate": null,
       "share_of_planning_base_pct": 0.771,
-      "cumulative_planning_base_pct": 70.516
+      "cumulative_planning_base_pct": 70.513
     },
     {
       "device_id": "ti_tca9534a_pwr",
@@ -818,7 +842,7 @@
       "jlcpcb_part": "C206010",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.748,
-      "cumulative_planning_base_pct": 71.264
+      "cumulative_planning_base_pct": 71.261
     },
     {
       "device_id": "ti_tps259470l_rpwr",
@@ -842,7 +866,7 @@
       "jlcpcb_part": "C3662793",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.747,
-      "cumulative_planning_base_pct": 72.011
+      "cumulative_planning_base_pct": 72.008
     },
     {
       "device_id": "tca4307dgkr",
@@ -866,7 +890,7 @@
       "jlcpcb_part": "C880333",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.738,
-      "cumulative_planning_base_pct": 72.749
+      "cumulative_planning_base_pct": 72.745
     },
     {
       "device_id": "yageo_rc0402fr_0710kl",
@@ -889,8 +913,8 @@
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C60490",
       "cost_gate": null,
-      "share_of_planning_base_pct": 0.735,
-      "cumulative_planning_base_pct": 73.484
+      "share_of_planning_base_pct": 0.736,
+      "cumulative_planning_base_pct": 73.481
     },
     {
       "device_id": "alps_skrtlae010",
@@ -914,7 +938,7 @@
       "jlcpcb_part": "C110293",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.713,
-      "cumulative_planning_base_pct": 74.197
+      "cumulative_planning_base_pct": 74.194
     },
     {
       "device_id": "nexperia_74lvc2g126dp_125",
@@ -938,7 +962,7 @@
       "jlcpcb_part": "C503392",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.687,
-      "cumulative_planning_base_pct": 74.885
+      "cumulative_planning_base_pct": 74.882
     },
     {
       "device_id": "ti_tps25751d_refr",
@@ -962,7 +986,7 @@
       "jlcpcb_part": "C30169739",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.673,
-      "cumulative_planning_base_pct": 75.558
+      "cumulative_planning_base_pct": 75.555
     },
     {
       "device_id": "yageo_cc0402krx7r9bb104",
@@ -986,7 +1010,7 @@
       "jlcpcb_part": "C131394",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.635,
-      "cumulative_planning_base_pct": 76.193
+      "cumulative_planning_base_pct": 76.19
     },
     {
       "device_id": "gct_usb4105_gf_a",
@@ -1010,7 +1034,7 @@
       "jlcpcb_part": "C3020560",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.631,
-      "cumulative_planning_base_pct": 76.824
+      "cumulative_planning_base_pct": 76.821
     },
     {
       "device_id": "tca6424argjr",
@@ -1034,7 +1058,7 @@
       "jlcpcb_part": "C80692",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.623,
-      "cumulative_planning_base_pct": 77.447
+      "cumulative_planning_base_pct": 77.444
     },
     {
       "device_id": "skyworks_si4732_a10_gsr",
@@ -1058,7 +1082,7 @@
       "jlcpcb_part": "C2155558",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.615,
-      "cumulative_planning_base_pct": 78.062
+      "cumulative_planning_base_pct": 78.059
     },
     {
       "device_id": "ti_mspm0c1106_sdgs20r",
@@ -1082,7 +1106,7 @@
       "jlcpcb_part": "C52995805",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.614,
-      "cumulative_planning_base_pct": 78.676
+      "cumulative_planning_base_pct": 78.673
     },
     {
       "device_id": "ti_tps25974l_rpwr",
@@ -1106,7 +1130,7 @@
       "jlcpcb_part": "C3662931",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.581,
-      "cumulative_planning_base_pct": 79.257
+      "cumulative_planning_base_pct": 79.254
     },
     {
       "device_id": "ti_tlv1821_dckr",
@@ -1130,7 +1154,7 @@
       "jlcpcb_part": null,
       "cost_gate": null,
       "share_of_planning_base_pct": 0.545,
-      "cumulative_planning_base_pct": 79.802
+      "cumulative_planning_base_pct": 79.799
     },
     {
       "device_id": "ti_tps3435cakagddfr",
@@ -1154,7 +1178,7 @@
       "jlcpcb_part": "C6339182",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.541,
-      "cumulative_planning_base_pct": 80.343
+      "cumulative_planning_base_pct": 80.34
     },
     {
       "device_id": "murata_grm31cr71e106ma12l",
@@ -1178,7 +1202,7 @@
       "jlcpcb_part": "C440205",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.538,
-      "cumulative_planning_base_pct": 80.881
+      "cumulative_planning_base_pct": 80.878
     },
     {
       "device_id": "tdk_c1608x7r1c105k080ac",
@@ -1202,7 +1226,7 @@
       "jlcpcb_part": "C2167399",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.531,
-      "cumulative_planning_base_pct": 81.412
+      "cumulative_planning_base_pct": 81.41
     },
     {
       "device_id": "onsemi_fsusb42_mux",
@@ -1226,7 +1250,7 @@
       "jlcpcb_part": "C11355",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.512,
-      "cumulative_planning_base_pct": 81.924
+      "cumulative_planning_base_pct": 81.922
     },
     {
       "device_id": "ti_tpd8e003_dqdr",
@@ -1250,7 +1274,7 @@
       "jlcpcb_part": "C2867469",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.472,
-      "cumulative_planning_base_pct": 82.396
+      "cumulative_planning_base_pct": 82.394
     },
     {
       "device_id": "ti_tpd2eusb30a_drtr",
@@ -1274,7 +1298,7 @@
       "jlcpcb_part": null,
       "cost_gate": null,
       "share_of_planning_base_pct": 0.464,
-      "cumulative_planning_base_pct": 82.86
+      "cumulative_planning_base_pct": 82.858
     },
     {
       "device_id": "jae_dx07s016ja1r1500",
@@ -1298,7 +1322,7 @@
       "jlcpcb_part": "C3197885",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.45,
-      "cumulative_planning_base_pct": 83.31
+      "cumulative_planning_base_pct": 83.307
     },
     {
       "device_id": "vishay_tsop75238tr",
@@ -1322,7 +1346,7 @@
       "jlcpcb_part": "C511498",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.448,
-      "cumulative_planning_base_pct": 83.758
+      "cumulative_planning_base_pct": 83.756
     },
     {
       "device_id": "ti_tca9535_pwr",
@@ -1346,7 +1370,7 @@
       "jlcpcb_part": "C130204",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.436,
-      "cumulative_planning_base_pct": 84.194
+      "cumulative_planning_base_pct": 84.192
     },
     {
       "device_id": "littelfuse_sesd0402x1un_0020_090",
@@ -1370,7 +1394,7 @@
       "jlcpcb_part": "C1973340",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.417,
-      "cumulative_planning_base_pct": 84.611
+      "cumulative_planning_base_pct": 84.609
     },
     {
       "device_id": "nexperia_74lvc126apw_118",
@@ -1394,7 +1418,7 @@
       "jlcpcb_part": "C2442297",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.393,
-      "cumulative_planning_base_pct": 85.004
+      "cumulative_planning_base_pct": 85.002
     },
     {
       "device_id": "vishay_tsmp95000tt",
@@ -1418,7 +1442,7 @@
       "jlcpcb_part": null,
       "cost_gate": null,
       "share_of_planning_base_pct": 0.388,
-      "cumulative_planning_base_pct": 85.392
+      "cumulative_planning_base_pct": 85.39
     },
     {
       "device_id": "vishay_wsl25125l000fea",
@@ -1442,7 +1466,7 @@
       "jlcpcb_part": "C844900",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.388,
-      "cumulative_planning_base_pct": 85.78
+      "cumulative_planning_base_pct": 85.779
     },
     {
       "device_id": "ti_tca9539_pwr",
@@ -1465,8 +1489,8 @@
       "historical_capture_route": "not_matched",
       "jlcpcb_part": null,
       "cost_gate": null,
-      "share_of_planning_base_pct": 0.373,
-      "cumulative_planning_base_pct": 86.154
+      "share_of_planning_base_pct": 0.374,
+      "cumulative_planning_base_pct": 86.152
     },
     {
       "device_id": "ttm_b0310j50100ahf",
@@ -1490,7 +1514,7 @@
       "jlcpcb_part": null,
       "cost_gate": null,
       "share_of_planning_base_pct": 0.364,
-      "cumulative_planning_base_pct": 86.518
+      "cumulative_planning_base_pct": 86.516
     },
     {
       "device_id": "davies_1227_j",
@@ -1514,7 +1538,7 @@
       "jlcpcb_part": null,
       "cost_gate": null,
       "share_of_planning_base_pct": 0.356,
-      "cumulative_planning_base_pct": 86.874
+      "cumulative_planning_base_pct": 86.872
     },
     {
       "device_id": "same_sky_sj_43504_smt_tr",
@@ -1538,7 +1562,7 @@
       "jlcpcb_part": "C20182908",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.341,
-      "cumulative_planning_base_pct": 87.214
+      "cumulative_planning_base_pct": 87.213
     },
     {
       "device_id": "ti_tps564252_drlr",
@@ -1561,8 +1585,8 @@
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C19191267",
       "cost_gate": null,
-      "share_of_planning_base_pct": 0.324,
-      "cumulative_planning_base_pct": 87.539
+      "share_of_planning_base_pct": 0.325,
+      "cumulative_planning_base_pct": 87.537
     },
     {
       "device_id": "kyocera_avx_cp0603q5425entr",
@@ -1586,7 +1610,7 @@
       "jlcpcb_part": "C2654257",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.313,
-      "cumulative_planning_base_pct": 87.852
+      "cumulative_planning_base_pct": 87.85
     },
     {
       "device_id": "ti_tps22919_dckr",
@@ -1610,7 +1634,7 @@
       "jlcpcb_part": "C2149796",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.305,
-      "cumulative_planning_base_pct": 88.157
+      "cumulative_planning_base_pct": 88.155
     },
     {
       "device_id": "ti_sn74lvc3g07_dcur",
@@ -1634,7 +1658,7 @@
       "jlcpcb_part": "C131955",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.299,
-      "cumulative_planning_base_pct": 88.456
+      "cumulative_planning_base_pct": 88.455
     },
     {
       "device_id": "abracon_abm8_272_t3",
@@ -1658,7 +1682,7 @@
       "jlcpcb_part": "C20625731",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.299,
-      "cumulative_planning_base_pct": 88.755
+      "cumulative_planning_base_pct": 88.754
     },
     {
       "device_id": "murata_grm21br60j226me39l",
@@ -1682,7 +1706,7 @@
       "jlcpcb_part": "C77071",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.295,
-      "cumulative_planning_base_pct": 89.05
+      "cumulative_planning_base_pct": 89.049
     },
     {
       "device_id": "ti_tlv9061_idbvr",
@@ -1706,7 +1730,7 @@
       "jlcpcb_part": "C398358",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.289,
-      "cumulative_planning_base_pct": 89.339
+      "cumulative_planning_base_pct": 89.337
     },
     {
       "device_id": "ti_tps3839k33_dbzr",
@@ -1730,7 +1754,7 @@
       "jlcpcb_part": "C96333",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.289,
-      "cumulative_planning_base_pct": 89.627
+      "cumulative_planning_base_pct": 89.626
     },
     {
       "device_id": "ti_sn74lvc2g66_dcur",
@@ -1754,7 +1778,7 @@
       "jlcpcb_part": "C181970",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.288,
-      "cumulative_planning_base_pct": 89.915
+      "cumulative_planning_base_pct": 89.914
     },
     {
       "device_id": "ck_js102011scqn",
@@ -1778,7 +1802,7 @@
       "jlcpcb_part": "C221661",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.287,
-      "cumulative_planning_base_pct": 90.202
+      "cumulative_planning_base_pct": 90.201
     },
     {
       "device_id": "ti_tpd4s201_rukr",
@@ -1802,7 +1826,7 @@
       "jlcpcb_part": "C49438759",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.283,
-      "cumulative_planning_base_pct": 90.484
+      "cumulative_planning_base_pct": 90.483
     },
     {
       "device_id": "ti_csd87313dms",
@@ -1826,7 +1850,7 @@
       "jlcpcb_part": "C2863848",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.28,
-      "cumulative_planning_base_pct": 90.765
+      "cumulative_planning_base_pct": 90.763
     },
     {
       "device_id": "hirose_df40c_40dp_0_4v_51",
@@ -1850,7 +1874,7 @@
       "jlcpcb_part": "C424643",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.266,
-      "cumulative_planning_base_pct": 91.03
+      "cumulative_planning_base_pct": 91.029
     },
     {
       "device_id": "tdk_c1005x5r0j475k050bc",
@@ -1874,7 +1898,7 @@
       "jlcpcb_part": "C2167436",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.265,
-      "cumulative_planning_base_pct": 91.295
+      "cumulative_planning_base_pct": 91.294
     },
     {
       "device_id": "murata_grm188r60j106me47d",
@@ -1898,7 +1922,7 @@
       "jlcpcb_part": "C77041",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.262,
-      "cumulative_planning_base_pct": 91.557
+      "cumulative_planning_base_pct": 91.556
     },
     {
       "device_id": "onsemi_cat24c512wi_gt3",
@@ -1922,7 +1946,7 @@
       "jlcpcb_part": "C79986",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.261,
-      "cumulative_planning_base_pct": 91.819
+      "cumulative_planning_base_pct": 91.818
     },
     {
       "device_id": "ti_ts5a63157_dckr",
@@ -1946,7 +1970,7 @@
       "jlcpcb_part": "C133575",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.256,
-      "cumulative_planning_base_pct": 92.075
+      "cumulative_planning_base_pct": 92.074
     },
     {
       "device_id": "panasonic_erj_2rkf22r0x",
@@ -1969,8 +1993,8 @@
       "historical_capture_route": "in_stock",
       "jlcpcb_part": "C413049",
       "cost_gate": null,
-      "share_of_planning_base_pct": 0.255,
-      "cumulative_planning_base_pct": 92.33
+      "share_of_planning_base_pct": 0.256,
+      "cumulative_planning_base_pct": 92.329
     },
     {
       "device_id": "tdk_b57332v5103f360",
@@ -1994,7 +2018,7 @@
       "jlcpcb_part": "C209893",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.254,
-      "cumulative_planning_base_pct": 92.585
+      "cumulative_planning_base_pct": 92.584
     },
     {
       "device_id": "ti_sn74lvc2g08_dcur",
@@ -2018,7 +2042,7 @@
       "jlcpcb_part": "C91875",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.252,
-      "cumulative_planning_base_pct": 92.837
+      "cumulative_planning_base_pct": 92.836
     },
     {
       "device_id": "ti_tps629203_drlr",
@@ -2042,7 +2066,7 @@
       "jlcpcb_part": "C5219295",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.227,
-      "cumulative_planning_base_pct": 93.064
+      "cumulative_planning_base_pct": 93.063
     },
     {
       "device_id": "ti_tps2553drvr_1",
@@ -2066,7 +2090,7 @@
       "jlcpcb_part": "C411878",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.223,
-      "cumulative_planning_base_pct": 93.287
+      "cumulative_planning_base_pct": 93.286
     },
     {
       "device_id": "liteon_ltst_c190krkt",
@@ -2114,7 +2138,7 @@
       "jlcpcb_part": "C3169104",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.214,
-      "cumulative_planning_base_pct": 93.723
+      "cumulative_planning_base_pct": 93.722
     },
     {
       "device_id": "sunlord_mwsa0503s_2r2mt",
@@ -2138,7 +2162,7 @@
       "jlcpcb_part": "C408408",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.211,
-      "cumulative_planning_base_pct": 93.934
+      "cumulative_planning_base_pct": 93.933
     },
     {
       "device_id": "sunlord_mwsa0503s_4r7mt",
@@ -2186,7 +2210,7 @@
       "jlcpcb_part": "C144925",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.197,
-      "cumulative_planning_base_pct": 94.341
+      "cumulative_planning_base_pct": 94.34
     },
     {
       "device_id": "diodes_2n7002dw_7_f",
@@ -2210,7 +2234,7 @@
       "jlcpcb_part": "C83571",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.187,
-      "cumulative_planning_base_pct": 94.528
+      "cumulative_planning_base_pct": 94.527
     },
     {
       "device_id": "ti_sn74lvc1g07_dckr",
@@ -2234,7 +2258,7 @@
       "jlcpcb_part": null,
       "cost_gate": null,
       "share_of_planning_base_pct": 0.186,
-      "cumulative_planning_base_pct": 94.715
+      "cumulative_planning_base_pct": 94.714
     },
     {
       "device_id": "vishay_vsmy14940",
@@ -2258,7 +2282,7 @@
       "jlcpcb_part": "C511069",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.184,
-      "cumulative_planning_base_pct": 94.899
+      "cumulative_planning_base_pct": 94.898
     },
     {
       "device_id": "ti_tps25961_drvr",
@@ -2306,7 +2330,7 @@
       "jlcpcb_part": "C523793",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.165,
-      "cumulative_planning_base_pct": 95.229
+      "cumulative_planning_base_pct": 95.228
     },
     {
       "device_id": "tdk_cga5l1x7r1e475k160ac",
@@ -2330,7 +2354,7 @@
       "jlcpcb_part": "C2170392",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.156,
-      "cumulative_planning_base_pct": 95.385
+      "cumulative_planning_base_pct": 95.384
     },
     {
       "device_id": "ti_sn74lvc08a_pwr",
@@ -2354,7 +2378,7 @@
       "jlcpcb_part": "C465737",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.156,
-      "cumulative_planning_base_pct": 95.541
+      "cumulative_planning_base_pct": 95.54
     },
     {
       "device_id": "infineon_bgs13sn8e6327xtsa1",
@@ -2498,7 +2522,7 @@
       "jlcpcb_part": "C4990730",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.129,
-      "cumulative_planning_base_pct": 96.396
+      "cumulative_planning_base_pct": 96.395
     },
     {
       "device_id": "diodes_bat54_7_f",
@@ -2522,7 +2546,7 @@
       "jlcpcb_part": "C106920",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.128,
-      "cumulative_planning_base_pct": 96.524
+      "cumulative_planning_base_pct": 96.523
     },
     {
       "device_id": "ti_txs0102_dcur",
@@ -2666,7 +2690,7 @@
       "jlcpcb_part": "C464977",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.117,
-      "cumulative_planning_base_pct": 97.258
+      "cumulative_planning_base_pct": 97.257
     },
     {
       "device_id": "murata_grm21br71e225ke11l",
@@ -2690,7 +2714,7 @@
       "jlcpcb_part": "C77081",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.112,
-      "cumulative_planning_base_pct": 97.37
+      "cumulative_planning_base_pct": 97.369
     },
     {
       "device_id": "abracon_aota_b201610s3r3_101_t",
@@ -2786,7 +2810,7 @@
       "jlcpcb_part": "C130024",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.096,
-      "cumulative_planning_base_pct": 97.793
+      "cumulative_planning_base_pct": 97.792
     },
     {
       "device_id": "murata_gjm1555c1h150jb01d",
@@ -3098,7 +3122,7 @@
       "jlcpcb_part": "C76949",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.058,
-      "cumulative_planning_base_pct": 98.701
+      "cumulative_planning_base_pct": 98.7
     },
     {
       "device_id": "yageo_rc0402fr_071kl",
@@ -3194,7 +3218,7 @@
       "jlcpcb_part": "C137993",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.05,
-      "cumulative_planning_base_pct": 98.915
+      "cumulative_planning_base_pct": 98.914
     },
     {
       "device_id": "ti_sn74lvc1g3157_dbvr",
@@ -3338,7 +3362,7 @@
       "jlcpcb_part": "C12517",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.038,
-      "cumulative_planning_base_pct": 99.169
+      "cumulative_planning_base_pct": 99.168
     },
     {
       "device_id": "yageo_rc0402fr_0747kl",
@@ -3722,7 +3746,7 @@
       "jlcpcb_part": "C22548",
       "cost_gate": null,
       "share_of_planning_base_pct": 0.018,
-      "cumulative_planning_base_pct": 99.596
+      "cumulative_planning_base_pct": 99.595
     },
     {
       "device_id": "yageo_rc0402fr_07169kl",
@@ -5200,7 +5224,7 @@
       "effective_unit_price_usd": 35.95,
       "group_cost_per_prototype_usd": 35.95,
       "rank": 1,
-      "share_of_known_combined_total_pct": 8.74
+      "share_of_known_combined_total_pct": 8.741
     },
     {
       "source": "external_antenna",
@@ -5210,7 +5234,7 @@
       "effective_unit_price_usd": 16.91,
       "group_cost_per_prototype_usd": 33.82,
       "rank": 2,
-      "share_of_known_combined_total_pct": 8.222
+      "share_of_known_combined_total_pct": 8.223
     },
     {
       "source": "external_antenna",
@@ -5230,7 +5254,7 @@
       "effective_unit_price_usd": 11.23,
       "group_cost_per_prototype_usd": 22.46,
       "rank": 4,
-      "share_of_known_combined_total_pct": 5.46
+      "share_of_known_combined_total_pct": 5.461
     },
     {
       "source": "base_bom",
@@ -5240,7 +5264,7 @@
       "effective_unit_price_usd": 2.46456,
       "group_cost_per_prototype_usd": 19.71648,
       "rank": 5,
-      "share_of_known_combined_total_pct": 4.793
+      "share_of_known_combined_total_pct": 4.794
     },
     {
       "source": "base_bom",
@@ -5270,7 +5294,7 @@
       "effective_unit_price_usd": 0.6405,
       "group_cost_per_prototype_usd": 10.248,
       "rank": 8,
-      "share_of_known_combined_total_pct": 2.491
+      "share_of_known_combined_total_pct": 2.492
     },
     {
       "source": "base_bom",
@@ -5280,7 +5304,7 @@
       "effective_unit_price_usd": 10.071,
       "group_cost_per_prototype_usd": 10.071,
       "rank": 9,
-      "share_of_known_combined_total_pct": 2.448
+      "share_of_known_combined_total_pct": 2.449
     },
     {
       "source": "base_bom",
@@ -5304,22 +5328,12 @@
     },
     {
       "source": "base_bom",
-      "mpn": "TE Connectivity 2118651-2",
-      "role": "five 30-mm RF jumpers / пять 30-мм RF-кабелей",
-      "quantity_per_prototype": 5,
-      "effective_unit_price_usd": 1.8211,
-      "group_cost_per_prototype_usd": 9.1055,
-      "rank": 12,
-      "share_of_known_combined_total_pct": 2.214
-    },
-    {
-      "source": "base_bom",
       "mpn": "Ebyte E01-ML01SP4",
       "role": "three 20-dBm PA/LNA full-function nRF24 radios / три полнофункциональных nRF24 с PA/LNA 20 dBm",
       "quantity_per_prototype": 3,
       "effective_unit_price_usd": 2.9633,
       "group_cost_per_prototype_usd": 8.889899999999999,
-      "rank": 13,
+      "rank": 12,
       "share_of_known_combined_total_pct": 2.161
     },
     {
@@ -5329,7 +5343,7 @@
       "quantity_per_prototype": 1,
       "effective_unit_price_usd": 8.57,
       "group_cost_per_prototype_usd": 8.57,
-      "rank": 14,
+      "rank": 13,
       "share_of_known_combined_total_pct": 2.084
     },
     {
@@ -5339,8 +5353,8 @@
       "quantity_per_prototype": 4,
       "effective_unit_price_usd": 2.0581,
       "group_cost_per_prototype_usd": 8.2324,
-      "rank": 15,
-      "share_of_known_combined_total_pct": 2.001
+      "rank": 14,
+      "share_of_known_combined_total_pct": 2.002
     },
     {
       "source": "base_bom",
@@ -5349,7 +5363,7 @@
       "quantity_per_prototype": 2,
       "effective_unit_price_usd": 3.8877,
       "group_cost_per_prototype_usd": 7.7754,
-      "rank": 16,
+      "rank": 15,
       "share_of_known_combined_total_pct": 1.89
     },
     {
@@ -5359,8 +5373,18 @@
       "quantity_per_prototype": 4,
       "effective_unit_price_usd": 1.6991,
       "group_cost_per_prototype_usd": 6.7964,
-      "rank": 17,
+      "rank": 16,
       "share_of_known_combined_total_pct": 1.652
+    },
+    {
+      "source": "base_bom",
+      "mpn": "TE Connectivity 1-2118651-0",
+      "role": "three 60-mm nRF RF jumpers / три 60-мм RF-кабеля nRF",
+      "quantity_per_prototype": 3,
+      "effective_unit_price_usd": 1.8099999999999998,
+      "group_cost_per_prototype_usd": 5.43,
+      "rank": 17,
+      "share_of_known_combined_total_pct": 1.32
     },
     {
       "source": "base_bom",
@@ -5576,22 +5600,6 @@
       "current_group_cost_usd": 9.6
     },
     {
-      "current_mpn": "TE Connectivity 2118651-2",
-      "market_result": "mass_market_stocked_exact_cable",
-      "best_mass_market_route": "retain exact 30-mm 1.13-mm U.FL-to-U.FL jumper",
-      "availability": "3,082 authorized-distributor stock; quantity-one and volume routes",
-      "functional_delta": "generic unnamed cables do not prove length, 9-GHz rating, connector retention or controlled factory routing",
-      "paper_saving_usd": 0.0,
-      "verdict": "retain_no_documented_no_worse_lower_cost_route",
-      "current_source": "https://www.te.com/en/product-2118651-2.html",
-      "candidate_source": "https://www.digikey.com/en/products/detail/te-connectivity-laird/2118651-2/13683867",
-      "checked_on": "2026-08-29",
-      "rank": 12,
-      "source": "base_bom",
-      "quantity_per_prototype": 5,
-      "current_group_cost_usd": 9.1055
-    },
-    {
       "current_mpn": "Ebyte E01-ML01SP4",
       "market_result": "exact_factory_stocked",
       "best_mass_market_route": "retain JLCPCB C97340",
@@ -5602,7 +5610,7 @@
       "current_source": "https://jlcpcb.com/partdetail/E01-ML01SP4/C97340",
       "candidate_source": "https://www.ebyte.com/product/1200.html",
       "checked_on": "2026-08-29",
-      "rank": 13,
+      "rank": 12,
       "source": "base_bom",
       "quantity_per_prototype": 3,
       "current_group_cost_usd": 8.889899999999999
@@ -5618,7 +5626,7 @@
       "current_source": "https://www.digikey.com/en/products/detail/keystone-electronics/1048P/4499417",
       "candidate_source": "https://jlcpcb.com/partdetail/KeystoneElectronics-1048P/C6038062",
       "checked_on": "2026-08-29",
-      "rank": 14,
+      "rank": 13,
       "source": "base_bom",
       "quantity_per_prototype": 1,
       "current_group_cost_usd": 8.57
@@ -5634,7 +5642,7 @@
       "current_source": "https://jlcpcb.com/partdetail/TexasInstruments-TMUX1136DGSR/C2673301",
       "candidate_source": "https://www.ti.com/lit/ds/symlink/tmux1136.pdf",
       "checked_on": "2026-08-29",
-      "rank": 15,
+      "rank": 14,
       "source": "base_bom",
       "quantity_per_prototype": 4,
       "current_group_cost_usd": 8.2324
@@ -5650,7 +5658,7 @@
       "current_source": "https://jlcpcb.com/partdetail/AnalogDevices-LTC5532ES6TRMPBF/C580926",
       "candidate_source": "https://www.analog.com/media/en/technical-documentation/data-sheets/5532f.pdf",
       "checked_on": "2026-08-29",
-      "rank": 16,
+      "rank": 15,
       "source": "base_bom",
       "quantity_per_prototype": 2,
       "current_group_cost_usd": 7.7754
@@ -5666,10 +5674,26 @@
       "current_source": "https://jlcpcb.com/partdetail/Samtec-FTSH_105_01_L_DV_K_PTR/C2932107",
       "candidate_source": "https://www.tag-connect.com/product/tc2050-idc-nl-10-pin-no-legs-cable-with-ribbon-connector",
       "checked_on": "2026-08-29",
-      "rank": 17,
+      "rank": 16,
       "source": "base_bom",
       "quantity_per_prototype": 4,
       "current_group_cost_usd": 6.7964
+    },
+    {
+      "current_mpn": "TE Connectivity 1-2118651-0",
+      "market_result": "mass_market_stocked_exact_cable",
+      "best_mass_market_route": "retain exact 60-mm 1.37-mm-max U.FL-to-U.FL jumper",
+      "availability": "7,283 authorized-distributor stock; quantity-one route at USD 1.81",
+      "functional_delta": "the 60-mm exact assembly replaces only the three nRF paths whose conservative whole-module-envelope reach exceeds 30 mm; generic unnamed cables do not prove length, 9-GHz rating or connector retention",
+      "paper_saving_usd": 0.0,
+      "verdict": "retain_exact_length_required_by_generated_geometry",
+      "current_source": "https://www.te.com/en/product-1-2118651-0.html",
+      "candidate_source": "https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/1-2118651-0/12380462",
+      "checked_on": "2026-08-31",
+      "rank": 17,
+      "source": "base_bom",
+      "quantity_per_prototype": 3,
+      "current_group_cost_usd": 5.43
     },
     {
       "current_mpn": "ESP32-S3-WROOM-1U-N16R8",
@@ -5815,7 +5839,7 @@
       },
       {
         "id": "internal-rf-path-integration",
-        "current_scope": "five U.FL receptacles and five 30-mm microcoax jumpers",
+        "current_scope": "five U.FL receptacles, two 30-mm S3/C5 jumpers and three 60-mm nRF jumpers",
         "working_savings_usd": [
           0,
           3

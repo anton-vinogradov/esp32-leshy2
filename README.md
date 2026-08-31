@@ -10,7 +10,7 @@
 
 </div>
 
-> **Current hardware marker: `H3-R2.5`.** The complete two-PCB `H1-R2.37`
+> **Current hardware marker: `H3-R2.6`.** The complete two-PCB `H1-R2.37`
 > placement was accepted and reviewed on 30 August 2026: exact dual-RP GPIO/M1 map and C5 SDIO/service-mux,
 > the series-produced `ER-TFT035IPS-6` + `ER-TPC035-6` display, passive 40-to-50-contact
 > adapter, all 18 U219 support bodies, NFC pickup loop and the external volume
@@ -18,9 +18,9 @@
 > blocker remains. The exact `FSUSB42MUX/C11355` factory route is reviewed;
 > the exact service-VBUS path and `TCA9803DGKR/C2687966` Pack/Safety boundary
 > are reviewed. The native R2 inventory is reviewed at `H2-R2.1.1`: three
-> projects, 23 sheets, six domains, 239 exact component groups and 1,195 product
+> projects, 23 sheets, six domains, 240 exact component groups and 1,195 product
 > positions. The exact symbol/contact/footprint ledger is reviewed at
-> `H2-R2.1.2`: 234 board groups, five explicit non-PCBA groups and 1,656 logical
+> `H2-R2.1.2`: 234 board groups, six explicit non-PCBA groups and 1,658 logical
 > contacts. Native symbol/footprint materialization accounts for all 1,599
 > board contacts against real selected-footprint pads or three
 > explicit on-module RF interfaces, with zero unclaimed named pads. The controlled
@@ -34,10 +34,10 @@
 > domains, 173 controller pins, 52 cross-project nets and 238 cross-sheet nets;
 > [H2-R2.1.5 is reviewed](docs/h2-acceptance.md). [H3-R2.0.1](docs/h3-r2-input-freeze.md)
 > freezes 14 stable inputs and all 23 sheets. [H3-R2.0.2](docs/parameter-model-register.md)
-> reviews exact provenance for all 239 R2 groups and 1,185 fitted positions.
+> reviews exact provenance for all 240 R2 groups and 1,185 fitted positions.
 > [H3-R2.0.3](docs/verification-methods.md) freezes nine methods and twelve
 > pass/fail rules. [H3-R2.1.1](docs/power-state-register.md) reviewed all 2,266 legal R2 states;
-> [H3-R2.1.2](docs/power-load-binding.md) binds every load without a hidden aggregate. [H3-R2.1.3](docs/power-rail-margins.md) reviews 224 passing rail profiles. [H3-R2.1.4](docs/power-source-margins.md) owns all 75 source/pack lines and safely admits all 2,266 legal states: maximum pack current is 3.516 A against the 8-A boundary; 9-V/3-A and 15-V/2-A run every profile, while 14 oversized 5-V/3-A USB-only states are explicitly refused. The [H3-R2.1 cross-check](docs/power-dc-source-result.md) is reviewed. The complete [H3-R2.2 power-transition result](docs/power-transition-result.md) is also reviewed: 14 startup/reset/recovery scenarios, 7,316 USB/pack/DPM/brownout/source-loss cases, five protected-rail starts, four load-step envelopes and ten watchdog/fault-display cases pass without automatic restart. [H3-R2.3 analog verification](docs/analog-electrical-verification.md) and [H3-R2.4 digital verification](docs/digital-electrical-verification.md) are reviewed. The latter proves positive logic/timing margins, deterministic USB/service ownership, 80/80 M1 parity and direct i8080-8 at exact 20 MHz. H3-R2.5 now verifies RF feeds, coexistence, quiet states and three-nRF24 concurrency. Ordering remains blocked.
+> [H3-R2.1.2](docs/power-load-binding.md) binds every load without a hidden aggregate. [H3-R2.1.3](docs/power-rail-margins.md) reviews 224 passing rail profiles. [H3-R2.1.4](docs/power-source-margins.md) owns all 75 source/pack lines and safely admits all 2,266 legal states: maximum pack current is 3.516 A against the 8-A boundary; 9-V/3-A and 15-V/2-A run every profile, while 14 oversized 5-V/3-A USB-only states are explicitly refused. The [H3-R2.1 cross-check](docs/power-dc-source-result.md) is reviewed. The complete [H3-R2.2 power-transition result](docs/power-transition-result.md) is also reviewed: 14 startup/reset/recovery scenarios, 7,316 USB/pack/DPM/brownout/source-loss cases, five protected-rail starts, four load-step envelopes and ten watchdog/fault-display cases pass without automatic restart. [H3-R2.3 analog verification](docs/analog-electrical-verification.md), [H3-R2.4 digital verification](docs/digital-electrical-verification.md) and [H3-R2.5 RF verification](docs/rf-electrical-verification.md) are reviewed. RF review passes 71 machine checks across ten permanent antenna ports, five removable microcoaxes, 13 quiet contracts and every three-nRF24 role mix. H3-R2.6 now verifies thermal, single-fault and unattended-operation envelopes. Ordering remains blocked.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
 > controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad
@@ -123,7 +123,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
 | H1 · Physical product design | ✅ Reviewed · `H1-R2.37` | [Bilingual phase result](docs/h1-r2-acceptance.md) · [placement](docs/h1-r2-physical-layout.md) |
 | H2 · Production ECAD schematic | ✅ Reviewed · `H2-R2.1.5` | [Bilingual phase result](docs/h2-acceptance.md) · [native KiCad result](docs/h2-r2-native-kicad.md) |
-| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.5`** | [Input freeze](docs/h3-r2-input-freeze.md) · [reviewed DC/source result](docs/power-dc-source-result.md) · [reviewed power-transition result](docs/power-transition-result.md) · [reviewed analog result](docs/analog-electrical-verification.md) · [reviewed digital result](docs/digital-electrical-verification.md) · [stage page](docs/stage-results.md#h3) |
+| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.6`** | [Input freeze](docs/h3-r2-input-freeze.md) · [reviewed DC/source result](docs/power-dc-source-result.md) · [reviewed power-transition result](docs/power-transition-result.md) · [reviewed analog result](docs/analog-electrical-verification.md) · [reviewed digital result](docs/digital-electrical-verification.md) · [reviewed RF result](docs/rf-electrical-verification.md) · [stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
 | H5 · Component and factory evidence | ⏳ Waiting for R2 H4 | [Stage page](docs/stage-results.md#h5) |
 | H6 · KiCad placement, routing and release candidate | 🔒 Waiting for R2 H5 | [Stage page](docs/stage-results.md#h6) |
@@ -142,7 +142,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ The onboard analog-video receiver, decoder, MMCX, antenna and physical reserves are removed; no active part requires owner soldering after PCBA.
 - ✅ C5 DBG10 remains beside S3 DBG10; the structural audit of all currently registered bodies, including corrected maximum U219 package envelopes, reports zero same-face collisions and 2.59 mm minimum opposing clearance against 0.70 mm required.
 - ✅ Public exterior, separate readable inner faces, service surface and real section views regenerated.
-- ✅ The 209-line `H1-R2.37` base BOM is grouped by exact MPN and cost-ranked for one fitted prototype; R2 overrides count the second RP and its complete reference support, four DBG10 headers and 1,096 fitted parts. The accepted no-loss `AD8314ARMZ-REEL` and stocked `Hirose U.FL-R-SMT-1(80)` packaging routes save $10.42 in total; the current electronics planning floor is $273.01 before five unpriced lines, boards and assembly. All 20 most expensive groups now have a critical mass-market audit and are retained. Six cheaper antenna comparisons with $89.13 theoretical saving were explicitly rejected on 2026-08-30 and are neither active qualification routes nor BOM substitutions. The two identical `ANT-433-CW-QW-SMA` units remain permanently assigned to separate SUB-GHz and UHF VOICE ports so a menu error cannot key either transmitter into a missing or wrong-band load. A proven further $57.01–84.01 is needed to reach the $189–216 electronics band behind the $220–260 complete-device target. The former five-board BOM Tool run remains historical evidence only. Procurement targets exactly one factory-assembled prototype without batteries. The HMX donor route is rejected; the selected EastRising panel is a customer-supplied final-assembly part.
+- ✅ The 210-line `H1-R2.37` base BOM is grouped by exact MPN and cost-ranked for one fitted prototype; R2 overrides count the second RP and its complete reference support, four DBG10 headers and 1,096 fitted parts. The accepted no-loss `AD8314ARMZ-REEL` and stocked `Hirose U.FL-R-SMT-1(80)` packaging routes save $10.42 in total; the current electronics planning floor is $272.97 before five unpriced lines, boards and assembly. All 20 most expensive groups now have a critical mass-market audit and are retained. Six cheaper antenna comparisons with $89.13 theoretical saving were explicitly rejected on 2026-08-30 and are neither active qualification routes nor BOM substitutions. The two identical `ANT-433-CW-QW-SMA` units remain permanently assigned to separate SUB-GHz and UHF VOICE ports so a menu error cannot key either transmitter into a missing or wrong-band load. A proven further $56.97–83.97 is needed to reach the $189–216 electronics band behind the $220–260 complete-device target. The former five-board BOM Tool run remains historical evidence only. Procurement targets exactly one factory-assembled prototype without batteries. The HMX donor route is rejected; the selected EastRising panel is a customer-supplied final-assembly part.
 - ✅ U219 is accepted as the second mutually exclusive Cap profile: CC1101 is hard RX-only, NFC is poll/read-only, pin 10 is fail-disconnected and NFC field evidence joins `ANY_TX_AON_N`. Pin 7 power identity remains a received-unit gate, not an H2 claim.
 - ✅ The two DCK boundaries, two BAT54S bridges and LMV331 comparator use official maximum full-package envelopes and source-backed courtyards; all five fit their bounded islands without overlap.
 - ✅ All 18 exact U219 support parts and the existing Cap/evidence register now have one source-backed coordinate and conservative courtyard; the NFC pickup loop, DNP tuning bank and external swept volume of the supplied antenna are covered by the same fail-closed audit.
@@ -150,8 +150,8 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ `H2-R2.0.1`: live Standard-PCBA route for onsemi `FSUSB42MUX` / JLCPCB `C11355` reviewed with stock 66,698, available 66,045, MOQ 1 and USD 0.3179 quantity-one price.
 - ✅ `H2-R2.0.2`: exact `DMN2056U-7` detector, `SN74LVC1G74DCUR` ownership latch and `74HC20PW,118` release qualifier reviewed with live Standard-PCBA routes, a fail-closed truth table and USD 0.5857 exact-one component cost.
 - ✅ `H2-R2.0.3`: exact `TCA9803DGKR/C2687966` Pack/Safety powered-off boundary reviewed with correct rail-local termination and USD 0.3953 exact-one component cost.
-- ✅ `H2-R2.1.1`: native R2 inventory reviewed — 3 projects, 23 sheets, 6 domain owners, 239 exact MPN groups and 1,195 product positions.
-- ✅ `H2-R2.1.2`: exact ledger reviewed — 234 board groups, 5 explicit non-PCBA groups, 1,656 logical contacts and zero unresolved groups.
+- ✅ `H2-R2.1.1`: native R2 inventory reviewed — 3 projects, 23 sheets, 6 domain owners, 240 exact MPN groups and 1,195 product positions.
+- ✅ `H2-R2.1.2`: exact ledger reviewed — 234 board groups, 6 explicit non-PCBA groups, 1,658 logical contacts and zero unresolved groups.
 - ✅ `H2-R2.1.3`: 1,185 fitted positions and 4,323 logical contacts resolve into 823 canonical nets; the three native projects materialize 4,323 physical pins with zero KiCad ERC errors or warnings.
 - ✅ The Airband chain is complete and double-isolated: paired `HMC544AETR`, exact official transformers, private power-coherent LO I²C and a stock-backed nominal H2 filter state are present in the schematic. Filter retuning remains an explicit H3 gate.
 - ✅ `H2-R2.1.4`: six domains, 173 controller-pin rows, 52 cross-project nets
@@ -159,8 +159,8 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ `H2-R2.1.5`: the [bilingual H2 result](docs/h2-acceptance.md) is reviewed
   and the synchronized firmware H2 gate is open.
 - ✅ `H3-R2.0.1`: [14 exact inputs and all 23 native sheets are hash-frozen](docs/h3-r2-input-freeze.md) across seven workstreams and all six domains.
-- ✅ `H3-R2.0.2`: [all 239 R2 groups and 1,185 fitted positions have exact parameter/model provenance](docs/parameter-model-register.md), one H3 owner and no silent value assumption.
-- ✅ `H3-R2.0.3`: [nine reproducible methods and twelve pass/fail rules](docs/verification-methods.md) cover all seven workstreams and all 239 groups.
+- ✅ `H3-R2.0.2`: [all 240 R2 groups and 1,185 fitted positions have exact parameter/model provenance](docs/parameter-model-register.md), one H3 owner and no silent value assumption.
+- ✅ `H3-R2.0.3`: [nine reproducible methods and twelve pass/fail rules](docs/verification-methods.md) cover all seven workstreams and all 240 groups.
 - ✅ `H3-R2.1.1`: [all 2,266 legal R2 source, charge, fault and operating states are enumerated](docs/power-state-register.md), including U214/U219, Airband and all three-nRF mixes.
 - ✅ `H3-R2.1.2`: [613 fitted powered instances—597 direct and 16 indirect—plus six external loads are bound explicitly](docs/power-load-binding.md); all 17 reviewed H2 power nets are covered, with no duplicate, unbound or miscellaneous line.
 - ✅ `H3-R2.1.3`: [224 rail profiles across four rails pass voltage, protection and steady-thermal review](docs/power-rail-margins.md); all 619 fitted/external loads have one current owner or explicit source/pack deferral, minimum current reserve is 30.560% and minimum junction-temperature reserve is 24.706 °C.
@@ -171,14 +171,15 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ `H3-R2.2.3/.4`: [five protected-rail starts, four load-step envelopes and ten watchdog/fault-display scenarios pass](docs/power-transition-result.md); M1-35 carries latched `FAULT_KILL` to the independent front indicator and nine true NC reserves remain.
 - ✅ `H3-R2.3`: [all calculable display, audio, IR, battery and Airband analog corners pass](docs/analog-electrical-verification.md); the EastRising panel has a bounded 2.7-ohm backlight path, the exact Airband filter keeps 0.187 dB minimum margin and remaining work is physical-only H6/H8 measurement.
 - ✅ `H3-R2.4`: [all calculable digital/interface checks pass](docs/digital-electrical-verification.md); five 3.3-V boundary classes retain positive DC margin, i8080-8 is exact 20 MHz with 15.36-ms full-frame wire time, M1 has 80/80 parity and nine true NC, and C5 service USB cannot contend with SDIO D2/D3.
-- ▶ **Exact current point `H3-R2.5`:** verify RF feeds, coexistence, quiet states and concurrent service of all three nRF24 paths.
+- ✅ `H3-R2.5`: [all 71 RF/coexistence checks pass](docs/rf-electrical-verification.md); all ten permanent antenna feeds and five removable microcoaxes are explicit, the cable mix is 2×30 mm + 3×60 mm with 9.388 mm minimum conservative slack, and all four three-nRF24 role mixes remain admitted.
+- ▶ **Exact current point `H3-R2.6`:** verify thermal, single-fault and unattended-operation envelopes.
 - 🔒 PCB placement, routing, prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H3-R2.5 -->
+<!-- current-substep: H3-R2.6 -->
 
 ## Repository
 

@@ -11,10 +11,10 @@
   "project": "LESHY2-UI",
   "sheet": "UI_20_C5_RADIO_IR_SERVICE",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "ce60d399d4133a68b3115753880108ce070ed905dbdbe58d1171a4bba0ca2cba",
-    "hardware/architecture/devices.json": "bc933e01c50be1af4ff8ae75be7b143b206ddede6440d67889fa3a6793af650f",
-    "hardware/ecad/generated/H2-instance-ledger.json": "0e54e6c0b5a16f34bbedb5a17e04d49fbe2c1ee25db17528ba5fad0479bf7a33",
-    "hardware/ecad/generated/H2-UI-root-interface.json": "bae25a8367240dcd638e78696973c42c109bec4980966c0a6fce9eb051c3f099"
+    "hardware/architecture/candidates/G2F-3I.json": "ecf99050c571f990ca943e54d50e30c4c881ee3658151feb619cf3bf600cd2cb",
+    "hardware/architecture/devices.json": "9db9ce928ceb1dd38324d5e1eaff57a3d686ff449217ec3216577400dbe51060",
+    "hardware/ecad/generated/H2-instance-ledger.json": "4aeb92a824ab429bfa40da383eba3f9ed35a30cdf5e1666c3c61a04ed3a5ac27",
+    "hardware/ecad/generated/H2-UI-root-interface.json": "42010b6fec4b82cf295cbbcd33c67841e8cd2edfc8bfc648288130522c58314d"
   },
   "summary": {
     "ledger_instances": 60,

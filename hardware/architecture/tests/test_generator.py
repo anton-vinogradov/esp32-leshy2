@@ -54,7 +54,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
         plan_normalized = " ".join(plan.split())
-        self.assertEqual("H3-R2.5", roadmap["current_substep"])
+        self.assertEqual("H3-R2.6", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
         self.assertEqual("H5.0.3-R1", h5["current_substep"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
@@ -304,7 +304,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
         self.assertEqual(1052, sum(line["quantity"] for line in lines))
-        self.assertEqual(211, len(lines))
+        self.assertEqual(212, len(lines))
         self.assertEqual(
             0,
             sum(line["orderable_evidence"] == "missing" for line in lines),
@@ -314,7 +314,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            202,
+            203,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
@@ -397,11 +397,11 @@ class ArchitectureValidationTests(unittest.TestCase):
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
         self.assertIn("**1053** architecture instances", rendered)
         self.assertIn("**1052** supplied/costed placements", rendered)
-        self.assertIn("**211/211** used lines", rendered)
-        self.assertIn("**211/211** lines", rendered)
-        self.assertIn("**202/211** lines", rendered)
+        self.assertIn("**212/212** used lines", rendered)
+        self.assertIn("**212/212** lines", rendered)
+        self.assertIn("**203/212** lines", rendered)
         self.assertIn("**1038/1052** supplied placements", rendered)
-        self.assertIn("USD 251.9243", rendered)
+        self.assertIn("USD 251.8910", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -2194,9 +2194,9 @@ class ArchitectureValidationTests(unittest.TestCase):
             "det_nrf0": "adi_ad8314acpz_rl7",
             "det_nrf1": "adi_ad8314acpz_rl7",
             "det_nrf2": "adi_ad8314acpz_rl7",
-            "nrf0_rf_jumper": "te_2118651_2",
-            "nrf1_rf_jumper": "te_2118651_2",
-            "nrf2_rf_jumper": "te_2118651_2",
+            "nrf0_rf_jumper": "te_1_2118651_0",
+            "nrf1_rf_jumper": "te_1_2118651_0",
+            "nrf2_rf_jumper": "te_1_2118651_0",
             "nrf0_rf_board_connector": "hirose_ufl_r_smt_1_10",
             "nrf1_rf_board_connector": "hirose_ufl_r_smt_1_10",
             "nrf2_rf_board_connector": "hirose_ufl_r_smt_1_10",
@@ -2528,6 +2528,9 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertEqual(30.0, jumper["electrical_contract"]["cable_length_mm"])
         self.assertEqual(9, jumper["electrical_contract"]["frequency_max_ghz"])
         self.assertEqual("right-angle UMCC GEN 1 plug A", jumper["contacts"]["END_A"]["physical"])
+        nrf_jumper = self.database["devices"]["te_1_2118651_0"]
+        self.assertEqual(60.0, nrf_jumper["electrical_contract"]["cable_length_mm"])
+        self.assertEqual(9, nrf_jumper["electrical_contract"]["frequency_max_ghz"])
 
         routes = {
             (route["from"], route["to"], route["net"])

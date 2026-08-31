@@ -17,8 +17,8 @@ class H3R2MethodContractTests(unittest.TestCase):
     def test_complete_method_and_rule_surface(self):
         summary = self.result["summary"]
         self.assertEqual("pass", self.result["status"])
-        self.assertEqual(239, summary["parameter_rows"])
-        self.assertEqual(239, summary["assigned_parameter_rows"])
+        self.assertEqual(240, summary["parameter_rows"])
+        self.assertEqual(240, summary["assigned_parameter_rows"])
         self.assertEqual(9, summary["parameter_classes"])
         self.assertEqual(7, summary["workstreams"])
         self.assertEqual(9, summary["methods"])
@@ -30,7 +30,7 @@ class H3R2MethodContractTests(unittest.TestCase):
     def test_every_assignment_is_fail_closed_and_owned(self):
         known = {row["id"] for row in self.result["methods"]}
         assignments = self.result["parameter_method_assignments"]
-        self.assertEqual(239, len(assignments))
+        self.assertEqual(240, len(assignments))
         for row in assignments:
             self.assertTrue(row["owner_workstreams"], row["device_id"])
             self.assertTrue(row["method_ids"], row["device_id"])
@@ -54,7 +54,7 @@ class H3R2MethodContractTests(unittest.TestCase):
         for relative in ("docs/verification-methods.md", "docs/verification-methods.ru.md"):
             page = (ROOT / relative).read_text(encoding="utf-8")
             self.assertIn("H3-R2.0.3", page, relative)
-            self.assertIn("239", page, relative)
+            self.assertIn("240", page, relative)
             self.assertNotIn("historical R1", page, relative)
 
 

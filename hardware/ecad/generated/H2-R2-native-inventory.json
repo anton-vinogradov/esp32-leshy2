@@ -14,15 +14,15 @@
     },
     "physical": {
       "path": "hardware/product-design/h1-r2-placement.json",
-      "sha256": "39b90a45de93dcee614065bbc10fa5fba9604c224583a21eaa6d510c9e183787"
+      "sha256": "219cdebfe3336b744056d019dc1ed57515fd574b2b545c083867e04155f3c1d8"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "bc933e01c50be1af4ff8ae75be7b143b206ddede6440d67889fa3a6793af650f"
+      "sha256": "9db9ce928ceb1dd38324d5e1eaff57a3d686ff449217ec3216577400dbe51060"
     },
     "component_groups": {
       "path": "hardware/product-design/generated/H1-R2-cost-audit.json",
-      "sha256": "e4239639981024f81819f89f607c7e07760787c40538dea640df8869e4c96f4f"
+      "sha256": "cf97e24f3ef516e02abb29e7e296fd7214997cd86bfb89b42a754f6b399cb51e"
     },
     "c5_mux_and_service_vbus": {
       "path": "hardware/architecture/c5-sdio-service-mux-contract.json",
@@ -282,7 +282,7 @@
     "project_count": 3,
     "sheet_count": 23,
     "domain_count": 6,
-    "component_group_count": 239,
+    "component_group_count": 240,
     "component_quantity_per_product": 1195,
     "external_antenna_group_count": 8,
     "external_antenna_count": 12,
@@ -2336,12 +2336,26 @@
       "historical_cost_route_only": "pre_order"
     },
     {
+      "device_id": "te_1_2118651_0",
+      "mpn": "TE Connectivity 1-2118651-0",
+      "quantity_per_product": 3,
+      "scope": "base_product",
+      "role": "three 60-mm nRF RF jumpers / три 60-мм RF-кабеля nRF",
+      "ecad_disposition": "three removable 60-mm off-board U.FL-to-U.FL cable assemblies; only their board connectors are represented in ECAD",
+      "qualification": "verified_exact_nrf_rf_jumper",
+      "lifecycle": "active_orderable",
+      "contact_evidence": true,
+      "jlcpcb_part_number": null,
+      "accepted_identity_source": "hardware/architecture/devices.json",
+      "historical_cost_route_only": "not_matched"
+    },
+    {
       "device_id": "te_2118651_2",
       "mpn": "TE Connectivity 2118651-2",
-      "quantity_per_product": 5,
+      "quantity_per_product": 2,
       "scope": "base_product",
-      "role": "five 30-mm RF jumpers / пять 30-мм RF-кабелей",
-      "ecad_disposition": "removable off-board U.FL-to-U.FL cable assembly; only its two board connectors are represented in ECAD",
+      "role": "two 30-mm S3/C5 RF jumpers / два 30-мм RF-кабеля S3/C5",
+      "ecad_disposition": "two removable 30-mm off-board U.FL-to-U.FL cable assemblies; only their board connectors are represented in ECAD",
       "qualification": "verified_exact_native_rf_jumper",
       "lifecycle": "active_orderable",
       "contact_evidence": true,

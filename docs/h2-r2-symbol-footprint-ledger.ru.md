@@ -10,11 +10,11 @@ KiCad-проекты или PCB layout.
 
 | Элемент ledger | Зафиксированный результат |
 |---|---|
-| Точные component groups продукта | 242 |
-| Группы компонентов на платах | 237; у каждой один symbol `Leshy2_R2` и одна точная footprint-identity |
-| Явные non-PCBA groups | 5: display assembly, U214, комплект из двух cells, ручка encoder и пять съёмных RF-jumper |
-| Логические контакты | 1 662, скопированы и hash-bound к текущему manufacturer contact evidence |
-| Стандартные package identities KiCad | 202 |
+| Точные component groups продукта | 240 |
+| Группы компонентов на платах | 234; у каждой один symbol `Leshy2_R2` и одна точная footprint-identity |
+| Явные non-PCBA groups | 6: display assembly, U214, комплект из двух cells, ручка encoder и две точные MPN-группы для пяти съёмных RF-jumper |
+| Логические контакты | 1 658, скопированы и hash-bound к текущему manufacturer contact evidence |
+| Стандартные package identities KiCad | 199 |
 | Существующие локальные manufacturer-derived definitions | 32 |
 | Новые локальные геометрии, материализованные в contact-checkpoint | 3: `FH34SRJ-50S-0.5SH(50)`, `WBC1-1TLC` и `WBC16-1TLC` |
 | Созданные native schematic symbols/files/nets | 0 / 0 / 0 |
@@ -28,9 +28,10 @@ KiCad-проекты или PCB layout.
 
 ## Исправления, найденные ledger
 
-Пять TE Connectivity `2118651-2` — это съёмные 30-мм кабели U.FL↔U.FL. Они
-больше не изображаются как PCB-компоненты. Native-схема показывает разъёмы на
-плате и модуле; у самого кабеля нет symbol или PCB-footprint.
+Два TE Connectivity `2118651-2` длиной 30 мм и три `1-2118651-0` длиной 60 мм —
+это съёмные кабели U.FL↔U.FL. Они не изображаются как PCB-компоненты.
+Native-схема показывает разъёмы на плате и модуле; у кабелей нет symbol или
+PCB-footprint.
 
 Пять конфликтов исторических package-hints разрешены по текущей точной
 manufacturer identity, а не унаследованы автоматически:
@@ -48,16 +49,16 @@ manufacturer identity, а не унаследованы автоматическ
 
 Новый 50-контактный footprint FH34 и оба six-pad Coilcraft transformer
 материализованы по официальным чертежам. Сгенерированный аудит разрешает
-все 1 605 контактов 237 board groups: 1 602 являются контактами footprints,
+все 1 599 контактов 234 board groups: 1 596 являются контактами footprints,
 ещё три — явными RF-разъёмами на модулях. Все именованные площадки footprints учтены
 как электрические или явно механические; фиктивные площадки carrier для разъёмов
-на модулях не создаются. Остальные 57 контактов исходного ledger из 1 662 контактов
-принадлежат пяти явным non-PCBA assemblies.
+на модулях не создаются. Остальные 59 контактов исходного ledger из 1 658 контактов
+принадлежат шести явным non-PCBA assemblies.
 
 ## Машинное evidence
 
 - [Контракт exact ledger](../hardware/ecad/h2-r2-symbol-footprint-contract.json)
-- [Сгенерированный ledger 242 групп](../hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json)
+- [Сгенерированный ledger 240 групп](../hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json)
 - [Контракт contact-to-pad](../hardware/ecad/h2-r2-contact-materialization-contract.json)
 - [Сгенерированная материализация контактов](../hardware/ecad/generated/H2-R2-contact-materialization.json)
 - [Контракт controlled symbols](../hardware/ecad/h2-r2-symbol-library-contract.json)
@@ -67,8 +68,8 @@ manufacturer identity, а не унаследованы автоматическ
 
 ## Текущая граница
 
-Controlled library `Leshy2_R2` теперь содержит все 237 exact-MPN symbols и
-1 618 уникальных electrical-pad pins и проходит parser KiCad 10. Все 1 187
+Controlled library `Leshy2_R2` теперь содержит все 234 exact-MPN symbols и
+1 612 уникальных electrical-pad pins и проходит parser KiCad 10. Все 1 185
 устанавливаемых экземпляров распределены по текущим проектам, а их 4 323
 контакта прошли [сверку native nets](h2-r2-net-ledger.ru.md).
 [Проекты native KiCad](h2-r2-native-kicad.ru.md) также проходят ERC без замечаний.

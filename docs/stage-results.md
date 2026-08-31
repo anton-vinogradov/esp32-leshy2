@@ -86,9 +86,9 @@ Exact current checklist:
    release qualifier reviewed with complete Standard-PCBA routes and fail-closed truth table;
 3. ✅ `H2-R2.0.3`: exact TI `TCA9803DGKR` / `C2687966` Pack/Safety boundary
    reviewed with rail-local termination, four Basic decouplers and USD 0.3953 cost;
-4. ✅ `H2-R2.1.1`: 3 projects, 23 sheets, 6 domain owners and 239 exact MPN
+4. ✅ `H2-R2.1.1`: 3 projects, 23 sheets, 6 domain owners and 240 exact MPN
    groups reviewed;
-5. ✅ `H2-R2.1.2`: 234 board groups, five explicit non-PCBA groups and 1,656
+5. ✅ `H2-R2.1.2`: 234 board groups, six explicit non-PCBA groups and 1,658
    logical contacts mapped with zero unresolved groups;
 6. ✅ `H2-R2.1.3` definitions/instances: 234 controlled symbols, 1,612 PCB-pad
    pins and all 1,185 fitted instances pass the current three-project allocation;
@@ -116,13 +116,13 @@ clearly labels retained R1 ECAD as non-current evidence.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** ▶️ current at **`H3-R2.5`**; H3-R2.4 is reviewed.
+**Status:** ▶️ current at **`H3-R2.6`**; H3-R2.5 is reviewed.
 
 [`H3-R2.0.1`](h3-r2-input-freeze.md) reviewed the hash-bound H2 input and complete R2
 verification matrix. [`H3-R2.0.2`](parameter-model-register.md) reviewed exact
-parameter/model provenance for 239 groups and 1,185 fitted positions. Current
+parameter/model provenance for 240 groups and 1,185 fitted positions. Current
 methods are frozen by [`H3-R2.0.3`](verification-methods.md): nine methods and
-twelve pass/fail rules cover all 239 groups. [`H3-R2.1.1`](power-state-register.md)
+twelve pass/fail rules cover all 240 groups. [`H3-R2.1.1`](power-state-register.md)
 reviews all 2,266 legal source, charge, fault and operating states.
 [`H3-R2.1.2`](power-load-binding.md) reviews explicit binding for 613 fitted powered
 power-connected instances and six external loads. [`H3-R2.1.3`](power-rail-margins.md)
@@ -142,8 +142,10 @@ watchdog/fault-display cases with zero analytical failures or automatic restart.
 [`H3-R2.3`](analog-electrical-verification.md) reviews all calculable display,
 audio, IR, battery and Airband analog corners. [`H3-R2.4`](digital-electrical-verification.md)
 reviews logic levels, timing, schematic loading, USB/service ownership, M1 and
-the direct exact-20-MHz i8080-8 path. Current H3-R2.5 work verifies RF feeds,
-coexistence, quiet states and three-nRF24 concurrency. The expected result is complete power, digital, RF, audio,
+the direct exact-20-MHz i8080-8 path. [`H3-R2.5`](rf-electrical-verification.md)
+reviews 71 RF feed, topology, cable-slack, quiet-state and three-nRF24 concurrency
+checks. Current H3-R2.6 work verifies thermal, single-fault and unattended-operation
+envelopes. The expected result is complete power, digital, RF, audio,
 timing, thermal and fault verification. Every legal state and transition must
 pass before fabrication.
 

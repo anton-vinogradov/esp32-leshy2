@@ -85,8 +85,8 @@ HW↔FW проходит. Placement/routing не начинались.
 3. ✅ `H2-R2.0.3`: точная граница TI `TCA9803DGKR` / `C2687966` для Pack/Safety
    прошла ревью с rail-local termination, четырьмя Basic decoupler и ценой USD 0,3953;
 4. ✅ `H2-R2.1.1`: проведено ревью 3 проектов, 23 sheets, 6 владельцев доменов
-   и 239 точных MPN-групп;
-5. ✅ `H2-R2.1.2`: 234 board groups, пять явных non-PCBA groups и 1 656
+   и 240 точных MPN-групп;
+5. ✅ `H2-R2.1.2`: 234 board groups, шесть явных non-PCBA groups и 1 658
    логических контактов отображены без незакрытых групп;
 6. ✅ Definitions/instances `H2-R2.1.3`: 234 controlled symbols, 1 612 PCB-pad
    pins и все 1 185 устанавливаемых экземпляров проходят раскладку по трём проектам;
@@ -114,13 +114,13 @@ R2, сверенная распиновка, ERC/NC-ревью и синхрон
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка
 
-**Статус:** ▶️ сейчас **`H3-R2.5`**; H3-R2.4 проведён ревью.
+**Статус:** ▶️ сейчас **`H3-R2.6`**; H3-R2.5 проведён ревью.
 
 [`H3-R2.0.1`](h3-r2-input-freeze.ru.md) провёл ревью hash-bound входа H2 и полной
 матрицы проверки R2. [`H3-R2.0.2`](parameter-model-register.ru.md) провёл ревью
-точного происхождения параметров/моделей 239 групп и 1 185 устанавливаемых
+точного происхождения параметров/моделей 240 групп и 1 185 устанавливаемых
 позиций. [`H3-R2.0.3`](verification-methods.ru.md) фиксирует девять методов и
-двенадцать pass/fail rules для всех 239 групп. [`H3-R2.1.1`](power-state-register.ru.md)
+двенадцать pass/fail rules для всех 240 групп. [`H3-R2.1.1`](power-state-register.ru.md)
 проводит ревью всех 2 266 разрешённых source, charge, fault и operating states.
 [`H3-R2.1.2`](power-load-binding.ru.md) проводит ревью явной привязки 613
 устанавливаемых питаемых экземпляров и шести внешних нагрузок. [`H3-R2.1.3`](power-rail-margins.ru.md)
@@ -142,8 +142,9 @@ watchdog/fault-display cases без аналитических failures или �
 рассчитываемых analog corners дисплея, аудио, IR, аккумуляторов и Airband.
 [`H3-R2.4`](digital-electrical-verification.ru.md) проводит ревью уровней,
 таймингов, schematic loading, USB/service ownership, M1 и прямого i8080-8 на
-точных 20 МГц. Текущий H3-R2.5 проверяет RF feeds, coexistence, quiet states и
-одновременное обслуживание трёх nRF24.
+точных 20 МГц. [`H3-R2.5`](rf-electrical-verification.ru.md) проводит ревью 71
+проверки RF feeds, topology, cable slack, quiet-state и одновременной работы трёх
+nRF24. Текущий H3-R2.6 проверяет thermal, single-fault и unattended-operation envelope.
 Ожидаемый результат — полная проверка power, digital, RF,
 audio, timing, thermal и faults. Все разрешённые состояния и переходы должны
 пройти до печати.

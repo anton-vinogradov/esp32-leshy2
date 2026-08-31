@@ -84,6 +84,13 @@
       "comparison_reference": "ESP32-DIV v2 top/bottom Gerbers at commit 9d4d82fe7a12febf554b12e1eca6d434ebe79d39 provide the durable comparison for the same dual-face edge-soldering principle; exact connector identity is not inferred",
       "comparison_url": "https://github.com/cifertech/ESP32-DIV/tree/9d4d82fe7a12febf554b12e1eca6d434ebe79d39/PCB/v2"
     },
+    "microcoax_by_path": {
+      "S3-2G4": {"device_id": "te_2118651_2", "mpn": "TE Connectivity 2118651-2", "length_mm": 30.0, "basis": "exact retained S3 module U.FL axis"},
+      "C5-2G4/5": {"device_id": "te_2118651_2", "mpn": "TE Connectivity 2118651-2", "length_mm": 30.0, "basis": "exact retained C5 module U.FL axis"},
+      "N24-0": {"device_id": "te_1_2118651_0", "mpn": "TE Connectivity 1-2118651-0", "length_mm": 60.0, "basis": "conservative farthest E01-ML01SP4 body corner; published IPEX lies inside this envelope"},
+      "N24-1": {"device_id": "te_1_2118651_0", "mpn": "TE Connectivity 1-2118651-0", "length_mm": 60.0, "basis": "conservative farthest E01-ML01SP4 body corner; published IPEX lies inside this envelope"},
+      "N24-2": {"device_id": "te_1_2118651_0", "mpn": "TE Connectivity 1-2118651-0", "length_mm": 60.0, "basis": "conservative farthest E01-ML01SP4 body corner; published IPEX lies inside this envelope"}
+    },
     "through_hole_candidate_review": {
       "standard_mpn": "DreamLNK SMA-KWE902",
       "reverse_mpn": "DreamLNK SMA-KWE901",

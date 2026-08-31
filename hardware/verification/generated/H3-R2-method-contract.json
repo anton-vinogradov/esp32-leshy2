@@ -4,13 +4,13 @@
   "marker": "H3-R2.0.3",
   "status": "pass",
   "accepted_input": "H3-R2.0.2",
-  "input_freeze_sha256": "a4db1b9989384f82e1a8fcbfed164249c3a1cc60b56988873780d2222c53a85a",
-  "parameter_register_sha256": "1b0628151dd2a466b2ad2c27d70f498556253be3231ccea793932cab8db4fd8d",
-  "method_contract_sha256": "ba504be1fafabe184711999ee1ea252b6de263d5d27f60cee0071a764b34a246",
+  "input_freeze_sha256": "d6f4b1f11de3724e6317baeedd7c415d9857ade04f58cba99e2372dc422ac956",
+  "parameter_register_sha256": "2210c6e867c0f97797b9be6602f80ebb9ce7cffdb0a344e602c53a9b30b0a66d",
+  "method_contract_sha256": "8e05467ad3de6d51a2c712ab4ccd859d0ab2e92b62672981d7a19ef772b31be4",
   "source_sha256": {
-    "hardware/verification/h3-r2-method-contract.json": "2dad3ae4ab293e68650f321de7f792472330e01b58c3246b4740dc791ca1543b",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "b5a18d45abc8a53a6d9b964a2c6d22c5d2f96fe5fc5430a751420c5241a9e056",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "ab7d4218efbea243d9a61d423d0d56c028df55e0a771707937e4a53592895af2"
+    "hardware/verification/h3-r2-method-contract.json": "38023374570438893c7c9b5a84417090f7399388c8de38e87ecb63d5241a64b4",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "a91d1a15e253150e3680c503b3b8ed6e30b2ac81ad000bc6e5021983a820f26f",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "d1d88c44ab8c97c50044623133b10f68dc973d040e236e83a41f66328198aca9"
   },
   "toolchain": {
     "python": ">=3.12,<3.15",
@@ -2320,6 +2320,20 @@
       "missing_parameter_disposition": "unresolved_fail"
     },
     {
+      "device_id": "te_1_2118651_0",
+      "parameter_class": "general_component",
+      "owner_workstreams": [
+        "H3-R2.5"
+      ],
+      "method_ids": [
+        "M-INT",
+        "M-RF",
+        "M-STATE"
+      ],
+      "parameter_state": "structured_seed_present",
+      "missing_parameter_disposition": "evaluate_authoritative_corners"
+    },
+    {
       "device_id": "te_2118651_2",
       "parameter_class": "general_component",
       "owner_workstreams": [
@@ -3920,19 +3934,19 @@
     }
   ],
   "summary": {
-    "parameter_rows": 239,
+    "parameter_rows": 240,
     "parameter_classes": 9,
     "workstreams": 7,
     "methods": 9,
     "pass_fail_rules": 12,
-    "assigned_parameter_rows": 239,
+    "assigned_parameter_rows": 240,
     "method_usage": {
       "M-ANALOG": 84,
       "M-DC": 68,
       "M-DIGITAL": 88,
-      "M-INT": 239,
-      "M-RF": 84,
-      "M-STATE": 157,
+      "M-INT": 240,
+      "M-RF": 85,
+      "M-STATE": 158,
       "M-THERMAL": 112,
       "M-TRANS": 125
     },
