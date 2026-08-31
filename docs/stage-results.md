@@ -116,7 +116,7 @@ clearly labels retained R1 ECAD as non-current evidence.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** ▶️ current at **`H3-R2.7`**; H3-R2.6 is reviewed.
+**Status:** ✅ reviewed at **`H3-R2.7`**. [Bilingual phase result](h3-r2-acceptance.md) · [physical evidence register](physical-evidence-register-r2.md).
 
 [`H3-R2.0.1`](h3-r2-input-freeze.md) reviewed the hash-bound H2 input and complete R2
 verification matrix. [`H3-R2.0.2`](parameter-model-register.md) reviewed exact
@@ -146,16 +146,16 @@ the direct exact-20-MHz i8080-8 path. [`H3-R2.5`](rf-electrical-verification.md)
 reviews 71 RF feed, topology, cable-slack, quiet-state and three-nRF24 concurrency
 checks. [`H3-R2.6`](thermal-fault-electrical-verification.md) reviews all 56 thermal
 profiles, 30 single-fault cases and the local-only extended-operation policy through
-25 passing checks. Current H3-R2.7 work cross-checks the complete R2 evidence chain,
-consolidates physical residual ownership and publishes the bilingual phase report.
-The expected result is complete power, digital, RF, audio,
-timing, thermal and fault verification. Every legal state and transition must
-pass before fabrication.
+25 passing checks. [`H3-R2.7`](h3-r2-acceptance.md) cross-checks 20 current
+evidence artifacts and all recorded source hashes with zero mismatch or open
+analytical finding. Its 51-row [physical register](physical-evidence-register-r2.md)
+keeps every non-paper result explicitly open and owned by H5/H6/H8.
 
 <a id="h4"></a>
 ## H4 · Joined pre-layout gate
 
-**Status:** 🔒 waits for reviewed H3 and current firmware R2 evidence.
+**Status:** ▶️ current at **`H4-R2.0.1`** — freeze the exact current mechanics,
+ECAD, H3 and firmware-R2 join inputs and hashes.
 
 Expected result: one current mechanics/ECAD/electrical/firmware review with no
 virtual blocker and an owned downstream test for every physical residual.

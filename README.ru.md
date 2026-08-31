@@ -10,7 +10,7 @@
 
 </div>
 
-> **Текущий маркер железа: `H3-R2.7`.** Полная компоновка двух плат
+> **Текущий маркер железа: `H4-R2.0.1`.** Полная компоновка двух плат
 > `H1-R2.37` принята и прошла ревью 30 августа 2026 года: точные dual-RP GPIO/M1 и C5 SDIO/service-mux,
 > серийный дисплей `ER-TFT035IPS-6` + `ER-TPC035-6`, пассивный 40→50-контактный
 > адаптер, все 18 компонентов U219, NFC pickup-loop и внешний объём штатной
@@ -37,7 +37,7 @@
 > проводит ревью точного происхождения всех 240 групп R2 и 1 185 устанавливаемых
 > позиций. [H3-R2.0.3](docs/verification-methods.ru.md) фиксирует девять методов
 > и двенадцать pass/fail rules. [H3-R2.1.1](docs/power-state-register.ru.md) провёл ревью всех 2 266 разрешённых состояний R2;
-> [H3-R2.1.2](docs/power-load-binding.ru.md) связывает все нагрузки без скрытого aggregate. [H3-R2.1.3](docs/power-rail-margins.ru.md) проводит ревью 224 проходящих профилей шин. [H3-R2.1.4](docs/power-source-margins.ru.md) назначает владельцев всем 75 source/pack-строкам и безопасно допускает все 2 266 состояний: максимум pack — 3,516 А против границы 8 А; 9 В × 3 А и 15 В × 2 А запускают любой профиль, а 14 слишком тяжёлых USB-only состояний на 5 В × 3 А явно отклоняются. [Cross-check H3-R2.1](docs/power-dc-source-result.ru.md) проведён ревью. Полный [итог переходов питания H3-R2.2](docs/power-transition-result.ru.md) тоже проведён ревью: проходят 14 сценариев startup/reset/recovery, 7 316 переходов USB/pack/DPM/brownout/source-loss, пять запусков защищённых шин, четыре load-step envelope и десять watchdog/fault-display cases без автоматического перезапуска. [Аналоговая проверка H3-R2.3](docs/analog-electrical-verification.ru.md), [цифровая проверка H3-R2.4](docs/digital-electrical-verification.ru.md), [RF-проверка H3-R2.5](docs/rf-electrical-verification.ru.md) и [thermal/fault-проверка H3-R2.6](docs/thermal-fault-electrical-verification.ru.md) проведены ревью. H3-R2.6 проходит 25 сводных checks для всех 56 thermal-профилей и 30 single-fault сценариев, сохраняет локальную 24/48-часовую проверку без обещания автономности и назначает семь физических остатков H6/H8. H3-R2.7 выполняет итоговый cross-check R2 и сведение остаточных проверок. Заказ заблокирован.
+> [H3-R2.1.2](docs/power-load-binding.ru.md) связывает все нагрузки без скрытого aggregate. [H3-R2.1.3](docs/power-rail-margins.ru.md) проводит ревью 224 проходящих профилей шин. [H3-R2.1.4](docs/power-source-margins.ru.md) назначает владельцев всем 75 source/pack-строкам и безопасно допускает все 2 266 состояний: максимум pack — 3,516 А против границы 8 А; 9 В × 3 А и 15 В × 2 А запускают любой профиль, а 14 слишком тяжёлых USB-only состояний на 5 В × 3 А явно отклоняются. [Cross-check H3-R2.1](docs/power-dc-source-result.ru.md) проведён ревью. Полный [итог переходов питания H3-R2.2](docs/power-transition-result.ru.md) тоже проведён ревью: проходят 14 сценариев startup/reset/recovery, 7 316 переходов USB/pack/DPM/brownout/source-loss cases, пять запусков защищённых шин, четыре load-step envelope и десять watchdog/fault-display cases без автоматического перезапуска. [Аналоговая проверка H3-R2.3](docs/analog-electrical-verification.ru.md), [цифровая проверка H3-R2.4](docs/digital-electrical-verification.ru.md), [RF-проверка H3-R2.5](docs/rf-electrical-verification.ru.md) и [thermal/fault-проверка H3-R2.6](docs/thermal-fault-electrical-verification.ru.md) проведены ревью. [Глобальный итог H3-R2](docs/h3-r2-acceptance.ru.md) сводит 20 текущих evidence-artifacts и все записанные source hashes без mismatch или открытого аналитического finding; 51 physical-only строка остаётся явно назначенной H5/H6/H8. H4-R2.0.1 теперь фиксирует входы объединённого mechanics/ECAD/H3/firmware review. Заказ заблокирован.
 
 > **Authority-gate R2:** текущие H0/H1 содержат шесть вычислительных доменов и
 > два `SC1512-A4`: передний Hub RP и задний RF RP. Сохранённые G2F/H2/KiCad —
@@ -121,8 +121,8 @@ VHF/UHF voice, broadcast/Airband, аудио, M5 и взаимоисключаю
 | H0 · Требования и функциональная архитектура | ✅ Проведено ревью · R2 | [Результат H0-R2](docs/h0-r2-functional-architecture.ru.md) |
 | H1 · Физический дизайн устройства | ✅ Проведено ревью · `H1-R2.37` | [Двуязычный отчёт фазы](docs/h1-r2-acceptance.ru.md) · [компоновка](docs/h1-r2-physical-layout.ru.md) |
 | H2 · Production ECAD-схема | ✅ Проведено ревью · `H2-R2.1.5` | [Двуязычный итог фазы](docs/h2-acceptance.ru.md) · [результат native KiCad](docs/h2-r2-native-kicad.ru.md) |
-| **H3 · Виртуальная электрическая проверка** | **▶ Сейчас · `H3-R2.7`** | [Фиксация входов](docs/h3-r2-input-freeze.ru.md) · [проведённый DC/source cross-check](docs/power-dc-source-result.ru.md) · [проведённый итог переходов питания](docs/power-transition-result.ru.md) · [проведённый analog-итог](docs/analog-electrical-verification.ru.md) · [проведённый digital-итог](docs/digital-electrical-verification.ru.md) · [проведённый RF-итог](docs/rf-electrical-verification.ru.md) · [проведённый thermal/fault-итог](docs/thermal-fault-electrical-verification.ru.md) · [страница этапов](docs/stage-results.ru.md#h3) |
-| H4 · Совместный pre-layout gate железа и прошивки | ⏳ Ожидает R2 H3 и контракт прошивки | [Страница этапов](docs/stage-results.ru.md#h4) |
+| H3 · Виртуальная электрическая проверка | ✅ Проведено ревью · `H3-R2.7` | [Двуязычный итог фазы](docs/h3-r2-acceptance.ru.md) · [реестр физических evidence](docs/physical-evidence-register-r2.ru.md) · [страница этапов](docs/stage-results.ru.md#h3) |
+| **H4 · Совместный pre-layout gate железа и прошивки** | **▶ Сейчас · `H4-R2.0.1`** | [Страница этапов](docs/stage-results.ru.md#h4) |
 | H5 · Компоненты и фабричные evidence | ⏳ Ожидает R2 H4 | [Страница этапов](docs/stage-results.ru.md#h5) |
 | H6 · Размещение, трассировка и release candidate в KiCad | 🔒 Ожидает R2 H5 | [Страница этапов](docs/stage-results.ru.md#h6) |
 | F-PO · Допуск первого экземпляра | 🔒 Ожидает финальные H2/H6 и firmware R2 | [Страница этапов](docs/stage-results.ru.md#f-po) |
@@ -171,14 +171,15 @@ VHF/UHF voice, broadcast/Airband, аудио, M5 и взаимоисключаю
 - ✅ `H3-R2.4`: [все рассчитываемые digital/interface-проверки проходят](docs/digital-electrical-verification.ru.md); пять классов 3,3-В границ сохраняют положительный DC-запас, i8080-8 работает на точных 20 МГц с 15,36 мс на полный кадр, M1 совпадает 80/80 и содержит девять настоящих NC, а service USB C5 не может конфликтовать с SDIO D2/D3.
 - ✅ `H3-R2.5`: [все 71 проверки RF/coexistence проходят](docs/rf-electrical-verification.ru.md); явно заданы десять постоянных антенных трактов и пять съёмных microcoax, набор кабелей 2×30 мм + 3×60 мм имеет минимум 9,388 мм консервативного запаса, допускаются все четыре сочетания ролей трёх nRF24.
 - ✅ `H3-R2.6`: [все 25 thermal/fault checks проходят](docs/thermal-fault-electrical-verification.ru.md); аналитически закрыты 56 текущих R2-профилей, 30 single-fault сценариев и local-only extended-operation policy, семь физических остатков назначены H6/H8.
-- ▶ **Точная текущая точка `H3-R2.7`:** выполнить cross-check всех текущих результатов R2, свести физические остатки и опубликовать двуязычный отчёт фазы H3.
+- ✅ `H3-R2.7`: [двуязычный глобальный отчёт H3](docs/h3-r2-acceptance.ru.md) сводит 20 текущих artifacts и их source hashes без mismatch или открытого аналитического finding; [физический реестр](docs/physical-evidence-register-r2.ru.md) сохраняет все 51 оставшуюся строку открытой и назначенной.
+- ▶ **Точная текущая точка `H4-R2.0.1`:** зафиксировать текущие mechanics, ECAD, H3 и firmware-R2 inputs для одного объединённого pre-layout review.
 - 🔒 PCB placement, routing, закупка прототипа и печать не разрешены.
 
 Каждая закрытая глобальная фаза `H*` получает двуязычный понятный отчёт со
 ссылкой из таблицы. Внутренние подшаги обновляют точный маркер и обе
 документации, но не выдают себя за ревью всей фазы.
 
-<!-- current-substep: H3-R2.7 -->
+<!-- current-substep: H4-R2.0.1 -->
 
 ## Репозитории
 

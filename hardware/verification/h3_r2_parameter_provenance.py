@@ -69,7 +69,7 @@ def build() -> dict:
     current_h3 = str(plan.get("current_substep", ""))
     progress_valid = current_h3 == "H3-R2.0.2" or (
         current_h3.startswith("H3-R2.") and statuses.get("H3-R2.0.2") == "reviewed"
-    )
+    ) or (plan.get("status") == "reviewed" and plan.get("current_substep") is None and statuses.get("H3-R2.0.2") == "reviewed")
     if not progress_valid:
         errors.append("H3 plan does not expose current or reviewed H3-R2.0.2")
     if freeze.get("status") != "pass" or freeze.get("marker") != "H3-R2.0.1":

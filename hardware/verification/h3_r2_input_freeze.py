@@ -76,14 +76,15 @@ def build(contract: dict | None = None) -> dict:
         errors.append("H3 plan does not accept reviewed H2-R2.1.5")
     statuses = {row.get("id"): row.get("status") for row in plan.get("substeps", [])}
     current_h3 = str(plan.get("current_substep", ""))
-    if not current_h3.startswith("H3-R2.") or statuses.get("H3-R2.0.1") != "reviewed":
+    phase_closed = plan.get("status") == "reviewed" and plan.get("current_substep") is None
+    if not (current_h3.startswith("H3-R2.") or phase_closed) or statuses.get("H3-R2.0.1") != "reviewed":
         errors.append("H3 plan does not preserve reviewed input freeze before parameter provenance")
     if kicad.get("status") != "pass" or hwfw.get("status") != "pass":
         errors.append("native KiCad or hardware/firmware reconciliation is not passing")
     if authority.get("status") != "pass_current_r2_h2_reconciled" or not authority.get("r2_h2_authoritative"):
         errors.append("current R2 H2 authority gate is not open")
     gates = {row.get("id"): row.get("status") for row in preorder.get("gates", [])}
-    if gates.get("P2_R2_PRODUCTION_SCHEMATIC") != "reviewed" or gates.get("P3_R2_VIRTUAL_ELECTRICAL") != "in_progress":
+    if gates.get("P2_R2_PRODUCTION_SCHEMATIC") != "reviewed" or gates.get("P3_R2_VIRTUAL_ELECTRICAL") not in {"in_progress", "reviewed"}:
         errors.append("pre-order contract does not expose reviewed P2 and current P3")
     if preorder.get("current_truth", {}).get("order_authorized") is not False:
         errors.append("input freeze must not authorize an order")

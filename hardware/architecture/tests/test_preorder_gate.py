@@ -34,7 +34,7 @@ class PreorderGateTests(unittest.TestCase):
         self.assertEqual("reviewed", gates["P0_REQUIREMENTS_ARCHITECTURE"]["status"])
         self.assertEqual("reviewed", gates["P1_CURRENT_PHYSICAL_DESIGN"]["status"])
         self.assertEqual("reviewed", gates["P2_R2_PRODUCTION_SCHEMATIC"]["status"])
-        self.assertEqual("in_progress", gates["P3_R2_VIRTUAL_ELECTRICAL"]["status"])
+        self.assertEqual("reviewed", gates["P3_R2_VIRTUAL_ELECTRICAL"]["status"])
         for gate_id in (
             "P4_JOINED_PRE_LAYOUT_REVIEW",
             "P5_EXACT_PRODUCTION_SOURCING",

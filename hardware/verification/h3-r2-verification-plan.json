@@ -2,9 +2,9 @@
   "schema_version": 1,
   "stage": "H3",
   "baseline": "R2",
-  "status": "current",
-  "current_workstream": "H3-R2.7",
-  "current_substep": "H3-R2.7",
+  "status": "reviewed",
+  "current_workstream": null,
+  "current_substep": null,
   "accepted_input": {
     "stage": "H2-R2.1.5",
     "status": "reviewed",
@@ -46,7 +46,7 @@
     {"id": "H3-R2.4", "title": "Digital levels, timing, loading and direct-i8080 verification", "status": "reviewed"},
     {"id": "H3-R2.5", "title": "RF feeds, coexistence, quiet states and 3x nRF24 concurrency", "status": "reviewed"},
     {"id": "H3-R2.6", "title": "Thermal, single-fault and unattended-operation verification", "status": "reviewed"},
-    {"id": "H3-R2.7", "title": "Cross-check, physical residual register and bilingual phase report", "status": "current"}
+    {"id": "H3-R2.7", "title": "Cross-check, physical residual register and bilingual phase report", "status": "reviewed"}
   ],
   "exit_criteria": [
     "Every H2-R2 electrical claim checkable without fabricated hardware has reproducible evidence.",

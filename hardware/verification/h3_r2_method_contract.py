@@ -65,6 +65,8 @@ def build() -> dict:
         plan.get("current_substep") == "H3-R2.0.3" and statuses.get("H3-R2.0.3") == "current"
     ) or (
         str(plan.get("current_substep", "")).startswith("H3-R2.") and statuses.get("H3-R2.0.3") == "reviewed"
+    ) or (
+        plan.get("status") == "reviewed" and plan.get("current_substep") is None and statuses.get("H3-R2.0.3") == "reviewed"
     )
     if not progress_valid:
         errors.append("H3 plan does not expose current or reviewed H3-R2.0.3")

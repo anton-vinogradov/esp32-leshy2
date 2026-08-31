@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "stage": "H4",
+  "baseline": "R2",
+  "status": "current",
+  "current_substep": "H4-R2.0.1",
+  "accepted_inputs": {
+    "mechanics": "H1-R2.37",
+    "ecad": "H2-R2.1.5",
+    "virtual_electrical": "H3-R2.7",
+    "firmware": "current R2 evidence only; historical R1 F3/F4 is regression evidence"
+  },
+  "authorization": {
+    "joined_read_only_review": true,
+    "component_purchase": false,
+    "pcb_placement_and_routing": false,
+    "fabrication": false
+  },
+  "substeps": [
+    {
+      "id": "H4-R2.0.1",
+      "title": "Freeze exact current mechanics, ECAD, H3 and firmware-R2 join inputs and hashes",
+      "status": "current"
+    },
+    {
+      "id": "H4-R2.0.2",
+      "title": "Reconcile every hardware-visible firmware contract and retained implementation obligation",
+      "status": "waiting"
+    },
+    {
+      "id": "H4-R2.1",
+      "title": "Run the joined mechanics, ECAD, electrical and firmware cross-check",
+      "status": "waiting"
+    },
+    {
+      "id": "H4-R2.2",
+      "title": "Correct and regenerate every cross-domain contradiction",
+      "status": "waiting"
+    },
+    {
+      "id": "H4-R2.3",
+      "title": "Publish the bilingual R2 pre-layout gate and transfer exact residual ownership to H5/H6/H8",
+      "status": "waiting"
+    }
+  ],
+  "exit_criteria": [
+    "One hash-bound current R2 join covers mechanics, native ECAD, H3 evidence and hardware-visible firmware contracts.",
+    "No cross-domain contradiction or unowned physical residual remains.",
+    "Historical R1 firmware evidence is never treated as proof of the current dual-RP topology.",
+    "H4 does not authorize purchase, placement, routing or fabrication."
+  ]
+}

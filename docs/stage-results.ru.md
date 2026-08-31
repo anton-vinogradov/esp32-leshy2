@@ -114,7 +114,7 @@ R2, сверенная распиновка, ERC/NC-ревью и синхрон
 <a id="h3"></a>
 ## H3 · Виртуальная электрическая проверка
 
-**Статус:** ▶️ сейчас **`H3-R2.7`**; H3-R2.6 проведён ревью.
+**Статус:** ✅ проведена на **`H3-R2.7`**. [Двуязычный итог фазы](h3-r2-acceptance.ru.md) · [реестр физических evidence](physical-evidence-register-r2.ru.md).
 
 [`H3-R2.0.1`](h3-r2-input-freeze.ru.md) провёл ревью hash-bound входа H2 и полной
 матрицы проверки R2. [`H3-R2.0.2`](parameter-model-register.ru.md) провёл ревью
@@ -146,16 +146,16 @@ watchdog/fault-display cases без аналитических failures или �
 проверки RF feeds, topology, cable slack, quiet-state и одновременной работы трёх
 nRF24. [`H3-R2.6`](thermal-fault-electrical-verification.ru.md) проводит ревью всех
 56 thermal-профилей, 30 single-fault сценариев и local-only extended-operation
-policy через 25 проходящих checks. Текущий H3-R2.7 выполняет cross-check полной
-цепочки R2, сводит владельцев физических остатков и публикует двуязычный отчёт фазы.
-Ожидаемый результат — полная проверка power, digital, RF,
-audio, timing, thermal и faults. Все разрешённые состояния и переходы должны
-пройти до печати.
+policy через 25 проходящих checks. [`H3-R2.7`](h3-r2-acceptance.ru.md) сводит
+20 текущих evidence-artifacts и все записанные source hashes без mismatch или
+открытого аналитического finding. [Физический реестр](physical-evidence-register-r2.ru.md)
+сохраняет все 51 небумажную строку открытой и назначенной H5/H6/H8.
 
 <a id="h4"></a>
 ## H4 · Объединённый pre-layout gate
 
-**Статус:** 🔒 ждёт проведённого ревью H3 и актуального firmware R2 evidence.
+**Статус:** ▶️ сейчас **`H4-R2.0.1`** — фиксация точных текущих mechanics,
+ECAD, H3 и firmware-R2 inputs и hashes объединённого review.
 
 Ожидаемый результат: одно актуальное mechanics/ECAD/electrical/firmware review
 без virtual-blocker и с назначенным downstream-тестом для каждой физической неопределённости.

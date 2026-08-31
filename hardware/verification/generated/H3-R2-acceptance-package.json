@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "artifact": "H3-R2-acceptance-package",
+  "marker": "H3-R2.7",
+  "stage": "H3",
+  "baseline": "R2",
+  "status": "reviewed",
+  "source_sha256": {
+    "hardware/verification/generated/H3-R2-crosscheck.json": "eb782126ac82e3009816991435f520a1c12bb09c514629126a44ae3cb502a18e",
+    "hardware/verification/generated/H3-R2-physical-residuals.json": "e6b9894a7fdc675d881ad45cc43be7f5d183a33fffce6bdade07aace4e78c53c"
+  },
+  "result": {
+    "analytical_scope_complete": true,
+    "open_analytical_findings": 0,
+    "physical_residuals": 51,
+    "physical_residuals_owned": true,
+    "firmware_obligations": 1,
+    "next_marker": "H4-R2.0.1"
+  },
+  "acceptance_meaning": [
+    "every R2 electrical claim checkable before PCB placement has reproducible current evidence",
+    "all recorded source hashes match and no analytical finding remains open",
+    "every remaining physical uncertainty has an H5, H6 or H8 owner and an evidence contract",
+    "firmware implementation work remains explicitly separate and joins at H4-R2"
+  ],
+  "acceptance_does_not_authorize": [
+    "component purchase",
+    "PCB placement or routing",
+    "fabrication",
+    "physical performance claims",
+    "unattended-runtime claims"
+  ],
+  "authorization": {
+    "advance_to_h4_r2": true,
+    "pcb_placement_or_routing": false,
+    "purchasing": false,
+    "fabrication": false
+  },
+  "open_findings": [],
+  "pending_decisions": []
+}

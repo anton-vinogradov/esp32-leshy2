@@ -10,8 +10,8 @@
     "hardware/verification/generated/H3-R2-method-contract.json": "0868d2c87fac5a3fb855e14fa7b89ef4fb40ac827e85dd5330ad52ae6e4a95ca",
     "hardware/verification/generated/H3-R2-rail-margins.json": "da05b2bd05b75de7ff6ff3c6fe88d67bb4fc4bf932d40c93bb49de4bdc3fd84b",
     "hardware/verification/generated/H3-R2-source-margins.json": "5daccf3d5155609d8897353a2690a6356b37da44d5952dd5fd88a41f8ab7ac25",
-    "hardware/verification/generated/H3-R2-transition-result.json": "82d0b27032ff40f830b06873e0ab8e1c552c4606703965cc534a5cdd00a08477",
-    "hardware/verification/generated/H3-R2-inrush-watchdog.json": "80e39224cf6b44dac66444e47f2ea7dcc049101d95d240b3c408ce88a162fb3f",
+    "hardware/verification/generated/H3-R2-transition-result.json": "eecb08aa271f129bb87a008e55613f42bbdbb350955aa127b50d2e552b949af3",
+    "hardware/verification/generated/H3-R2-inrush-watchdog.json": "f085a7a024f8a7f18b9b64186293a7f0a3e89ddc6345eab6801342b7ce66eac5",
     "hardware/verification/generated/H3-VRF34-battery-analog.json": "07042051b55b401d808b5ac58b6e6998988b05086f439eeb549eecb970f06975",
     "hardware/verification/generated/H3-R2-rf-coexistence.json": "a42a4398baca3a6dae5de3cd29e2d13eddd7e306271b821b9366d8dfb5eb0d1e",
     "hardware/ecad/generated/H2-REV55-fault-kill.json": "4f96d41cb2cff48b90de6666dd16c9ecfef9d64bcd9564d68fcbc31b12992058"

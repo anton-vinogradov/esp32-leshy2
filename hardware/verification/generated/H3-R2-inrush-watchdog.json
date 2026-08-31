@@ -5,10 +5,10 @@
   "status": "reviewed_inrush_load_steps_watchdog_and_retained_fault_display",
   "source_sha256": {
     "hardware/verification/h3-r2-inrush-watchdog-contract.json": "0658274da5110cd64dc6e8100501197f8b82a7287ef3195d8af29a12e29b4b90",
-    "hardware/verification/h3-r2-verification-plan.json": "295c3564480bb562f76a17bdc7a81a5f99db6b5422cb042905d4575fc683c6ee",
+    "hardware/verification/h3-r2-verification-plan.json": "54143b22eeddf73fbe05ea5f0996c363e22bf7830c49e13ced6f3dcca8c7d16c",
     "hardware/verification/generated/H3-R2-rail-margins.json": "da05b2bd05b75de7ff6ff3c6fe88d67bb4fc4bf932d40c93bb49de4bdc3fd84b",
-    "hardware/verification/generated/H3-R2-transition-sequences.json": "0ede1301a1b08eeb18f70c3fc843f52870eaca4ab10a647fc4517cc320fa2313",
-    "hardware/verification/generated/H3-R2-handover.json": "2f50eecfee0003f165fc0c3ed49ab365d790c9c20badbab5058f0eb55f53e0b5",
+    "hardware/verification/generated/H3-R2-transition-sequences.json": "a75b9c3e1e273b116e13a4c7d6e57ecfc8513bc382fe34eb9a71f5c3862fa6b2",
+    "hardware/verification/generated/H3-R2-handover.json": "15564663fbdd99f54dccf8d0704fe76980d1ff6f8d61ee1e616b2f6b77c26115",
     "hardware/ecad/generated/H2-R2-native-net-ledger.json": "4cda4b3cae4cf847cfac561c8119b528bcb9e757511d0e6de341571c792b66cb",
     "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "62062b9faa2e3f9a9d2430bb068bb4bfc8ba5b37f9ab00d7744cc97605852df5",
     "hardware/architecture/devices.json": "9db9ce928ceb1dd38324d5e1eaff57a3d686ff449217ec3216577400dbe51060"

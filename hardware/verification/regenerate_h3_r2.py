@@ -32,6 +32,7 @@ SCRIPTS = (
     "hardware/verification/h3_r2_digital_interfaces.py",
     "hardware/verification/h3_r2_rf_coexistence.py",
     "hardware/verification/h3_r2_thermal_fault.py",
+    "hardware/verification/h3_r2_crosscheck.py",
 )
 
 

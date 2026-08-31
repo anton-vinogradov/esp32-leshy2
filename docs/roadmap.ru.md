@@ -3,7 +3,7 @@
 [На главную](../README.ru.md) · [English](roadmap.md) ·
 [Роадмап прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md)
 
-> **▶ Текущая аппаратная граница: `H3-R2.7`.** H0, H1, [H2-R2.1.5](h2-acceptance.ru.md), [DC/source H3-R2.1](power-dc-source-result.ru.md), весь [workstream переходов питания H3-R2.2](power-transition-result.ru.md), [аналоговая проверка H3-R2.3](analog-electrical-verification.ru.md), [цифровая проверка H3-R2.4](digital-electrical-verification.ru.md), [RF-проверка H3-R2.5](rf-electrical-verification.ru.md) и [thermal/fault-проверка H3-R2.6](thermal-fault-electrical-verification.ru.md) прошли ревью. H3-R2.7 выполняет итоговый cross-check, реестр физических остатков и двуязычный отчёт фазы.
+> **▶ Текущая аппаратная граница: `H4-R2.0.1`.** H0, H1, [H2-R2.1.5](h2-acceptance.ru.md) и полный [глобальный итог H3-R2](h3-r2-acceptance.ru.md) проведены ревью. H3-R2.7 сводит 20 текущих evidence-artifacts и все записанные source hashes без mismatch или открытого аналитического finding; [реестр физических evidence](physical-evidence-register-r2.ru.md) сохраняет 51 строку открытой и назначенной H5/H6/H8. H4-R2.0.1 теперь фиксирует текущие mechanics, ECAD, H3 и firmware-R2 inputs объединённого review.
 > KiCad routing R2, quote, reservation и заказ не разрешены.
 
 Статус сверен: **1 сентября 2026 года**.
@@ -32,10 +32,10 @@
 
 ## Проведённое ревью H1 · точный состав
 
-<!-- current-substep: H3-R2.7 -->
+<!-- current-substep: H4-R2.0.1 -->
 
 **Маркер ревью: `H1-R2.37`.** Пакет компоновки принят 2026-08-30. Текущий
-аппаратный маркер — `H3-R2.7`.
+аппаратный маркер — `H4-R2.0.1`.
 
 ### 1. Размещение функциональных островов
 
@@ -193,8 +193,8 @@
 | H0 · Требования и функциональная архитектура | ✅ [R2 проведено ревью](h0-r2-functional-architecture.ru.md) | Функции продукта, владельцы, transport, safety и рабочие pin-бюджеты | У каждой функции один владелец; все рабочие бюджеты сходятся |
 | H1 · Физический дизайн продукта | ✅ [Проведено ревью · `H1-R2.37`](h1-r2-acceptance.ru.md) | Внешний вид, отдельные внутренние стороны, разрезы, точные корпуса, RF-локальность, сервис и power-envelope | Нет коллизий bodies/fasteners/silkscreen/antennas/accessories/opposing sides; точный MPN или контролируемый reserve; мокап принят |
 | H2 · Production ECAD-схема | ✅ [Проведено ревью · `H2-R2.1.5`](h2-acceptance.ru.md) | Точные R2 symbols, contacts, nets, values, protection и footprints | Native KiCad, ERC без замечаний и сверка sheets/HW↔FW проходят |
-| **H3 · Виртуальная электрическая проверка** | **▶ Сейчас · `H3-R2.7`** | Полная симуляция power, digital, RF, audio, timing, thermal и faults | Все разрешённые состояния и переходы проходят до печати |
-| H4 · Объединённый pre-layout gate | ⏳ Ожидает H3 и firmware R2 evidence | Одно текущее mechanics/ECAD/electrical/firmware review | Нет виртуального blocker; каждой физической неопределённости назначен тест |
+| H3 · Виртуальная электрическая проверка | ✅ [Проведена · `H3-R2.7`](h3-r2-acceptance.ru.md) | Полная проверка power, digital, RF, audio, timing, thermal и faults | Все рассчитываемые pre-layout claims проходят; физические остатки сохраняют владельцев |
+| **H4 · Объединённый pre-layout gate** | **▶ Сейчас · `H4-R2.0.1`** | Одно текущее mechanics/ECAD/electrical/firmware review | Нет виртуального blocker; каждой физической неопределённости назначен тест |
 | H5 · Компоненты и фабричные evidence | ⏳ Ожидает H4 | Точная актуальная фабричная карта и контролируемые external routes | У каждой BOM-строки есть текущий фабричный маршрут без молчаливой замены |
 | H6 · KiCad placement, routing и release candidate | 🔒 Ожидает H5 | Две разведённые платы, routed re-analysis и hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs и независимый DFM/CPL review проходят |
 | `F-PO` · Допуск первого экземпляра | 🔒 Ожидает H2/H6 и firmware R2 | Шесть diagnostic images, S3 QEMU, fake-HAL/dev-board evidence, flash/recovery и owner bring-up script | `FPO1`–`FPO7` проведены ревью на тех же H2/H6 candidate hashes; платный factory FCT не требуется |
@@ -236,7 +236,8 @@
 12. ✅ [`H3-R2.4`](digital-electrical-verification.ru.md): проверить digital levels, timing, schematic loading, USB/service ownership, M1 adjacency и прямой i8080-8 на точных 20 МГц.
 13. ✅ [`H3-R2.5`](rf-electrical-verification.ru.md): проверить RF feeds, coexistence, quiet states и одновременное обслуживание всех трёх nRF24; 71 проверка проходит для десяти постоянных портов и пяти съёмных microcoax.
 14. ✅ [`H3-R2.6`](thermal-fault-electrical-verification.ru.md): проверить все 56 thermal-профилей, 30 single-fault сценариев и extended-operation policy; 25 сводных checks проходят, семь физических остатков назначены H6/H8.
-15. ▶ `H3-R2.7`: выполнить cross-check всех текущих результатов R2, свести реестр физических остатков и опубликовать двуязычный отчёт фазы H3.
+15. ✅ [`H3-R2.7`](h3-r2-acceptance.ru.md): выполнить cross-check всех текущих результатов R2, опубликовать реестр из 51 physical-evidence строки и закрыть двуязычный отчёт фазы H3.
+16. ▶ `H4-R2.0.1`: зафиксировать точные текущие mechanics, ECAD, H3 и firmware-R2 inputs и hashes объединённого review.
 
-Следующее действие — итоговый cross-check и отчёт H3-R2.7. Placement, routing,
+Следующее действие — фиксация объединённых inputs H4-R2.0.1. Placement, routing,
 quote и любой заказ остаются заблокированы.

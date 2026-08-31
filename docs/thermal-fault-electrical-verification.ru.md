@@ -2,7 +2,7 @@
 
 [English](thermal-fault-electrical-verification.md) · [Главная](../README.ru.md) · [Роадмап](roadmap.ru.md)
 
-`H3-R2.6` проведён ревью: **25 checks**, `56` thermal-профилей и `30` single-fault сценариев проходят без открытых аналитических findings. Текущий маркер — `H3-R2.7`.
+`H3-R2.6` проведён ревью: **25 checks**, `56` thermal-профилей и `30` single-fault сценариев проходят без открытых аналитических findings. Итог H3-R2.7 также проведён ревью; текущий маркер — `H4-R2.0.1`.
 
 ## Тепло
 
