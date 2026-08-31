@@ -66,10 +66,9 @@ def build() -> dict:
     errors: list[str] = []
 
     statuses = {row.get("id"): row.get("status") for row in plan.get("substeps", [])}
-    progress_valid = (
-        plan.get("current_substep") == "H3-R2.0.2" and statuses.get("H3-R2.0.2") == "current"
-    ) or (
-        plan.get("current_substep") == "H3-R2.0.3" and statuses.get("H3-R2.0.2") == "reviewed"
+    current_h3 = str(plan.get("current_substep", ""))
+    progress_valid = current_h3 == "H3-R2.0.2" or (
+        current_h3.startswith("H3-R2.") and statuses.get("H3-R2.0.2") == "reviewed"
     )
     if not progress_valid:
         errors.append("H3 plan does not expose current or reviewed H3-R2.0.2")

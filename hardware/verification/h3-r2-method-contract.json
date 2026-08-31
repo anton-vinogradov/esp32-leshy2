@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "id": "H3-R2-METHOD-CONTRACT",
+  "marker": "H3-R2.0.3",
+  "accepted_input": "H3-R2.0.2",
+  "status": "reviewed",
+  "expected": {
+    "parameter_rows": 242,
+    "parameter_classes": 9,
+    "workstreams": 7,
+    "methods": 9,
+    "pass_fail_rules": 12
+  },
+  "toolchain": {
+    "python": ">=3.12,<3.15",
+    "third_party_runtime_dependencies": [],
+    "numeric_core": "decimal.Decimal precision 50 with ROUND_HALF_EVEN; fractions.Fraction where exact",
+    "accepted_artifacts": ["canonical JSON", "CSV", "SVG"],
+    "network_during_regeneration": "forbidden",
+    "acceptance_randomness": "forbidden",
+    "external_solver_policy": "an external solver is corroborative only until its exact version, model files, options and convergence checks are hash-bound in a reviewed contract"
+  },
+  "tolerance_policy": {
+    "normal_and_degraded_states": "evaluate all legal discrete states and every applicable min/max corner",
+    "typical_values": "informative only and never sufficient for pass",
+    "correlation": "apply correlation only when an authoritative source states it; otherwise enumerate independent bounds",
+    "passive_derating": "apply value tolerance, voltage/current/power derating, temperature coefficient and frequency or DC-bias dependence whenever applicable",
+    "missing_limit": "unresolved_fail",
+    "rounding": "evaluate pass/fail before presentation rounding",
+    "units": "store value and margin in explicit SI or named engineering units"
+  },
+  "methods": [
+    {
+      "id": "M-INT",
+      "workstreams": ["H3-R2.1", "H3-R2.2", "H3-R2.3", "H3-R2.4", "H3-R2.5", "H3-R2.6"],
+      "method": "deterministic interval/corner enumeration over authoritative min/max tolerances and legal discrete modes",
+      "anti_shortcut": "typical values, undocumented defaults and Monte Carlo percentiles cannot prove pass"
+    },
+    {
+      "id": "M-DC",
+      "workstreams": ["H3-R2.1"],
+      "method": "closed-form KCL/KVL, source ORing, conversion efficiency and dissipation envelopes for every legal source/load state",
+      "anti_shortcut": "a hidden aggregate load or unexplained efficiency allowance is forbidden"
+    },
+    {
+      "id": "M-TRANS",
+      "workstreams": ["H3-R2.2", "H3-R2.3", "H3-R2.6"],
+      "method": "bounded piecewise-linear or datasheet behavioral transient model with explicit initial conditions and dt versus dt/2 convergence",
+      "anti_shortcut": "a plotted waveform without thresholds, input provenance and convergence margin is non-evidence"
+    },
+    {
+      "id": "M-STATE",
+      "workstreams": ["H3-R2.1", "H3-R2.2", "H3-R2.5", "H3-R2.6"],
+      "method": "deterministic state, arbitration, watchdog, reset, recovery and single-fault enumeration",
+      "anti_shortcut": "a nominal happy path cannot close safety, quiet-state or ownership requirements"
+    },
+    {
+      "id": "M-ANALOG",
+      "workstreams": ["H3-R2.3"],
+      "method": "bounded small-signal, gain, noise, bandwidth, loading and threshold equations with exact selected-part applicability",
+      "anti_shortcut": "a family reference circuit cannot replace exact selected-value and load corners"
+    },
+    {
+      "id": "M-DIGITAL",
+      "workstreams": ["H3-R2.4"],
+      "method": "VIH/VIL/VOH/VOL, leakage, pull, power-off, fanout, setup/hold and occupancy algebra for each endpoint and bus",
+      "anti_shortcut": "logic-family names or nominal clock rates cannot replace endpoint limits and worst-case service time"
+    },
+    {
+      "id": "M-RF",
+      "workstreams": ["H3-R2.5"],
+      "method": "source-to-port 50-ohm pre-layout loss/mismatch/isolation budget plus deterministic one-active-group and three-nRF service analysis",
+      "anti_shortcut": "pre-layout work cannot claim final impedance, radiated performance, antenna match or coexistence; those remain H6/H8"
+    },
+    {
+      "id": "M-THERMAL",
+      "workstreams": ["H3-R2.1", "H3-R2.3", "H3-R2.6"],
+      "method": "worst-case dissipation with bounded junction/board/enclosure/cell thermal resistance and capacitance networks",
+      "anti_shortcut": "unknown enclosure or interface resistance is a range, never a guessed scalar"
+    },
+    {
+      "id": "M-XCHECK",
+      "workstreams": ["H3-R2.7"],
+      "method": "machine join from every frozen sheet, component, net, requirement and method result to one downstream physical residual owner",
+      "anti_shortcut": "an unlinked pass, orphan input or unowned uncertainty cannot close H3"
+    }
+  ],
+  "pass_fail_rules": [
+    {"id": "PF-R2-01", "rule": "Every normal and allowed degraded corner remains inside manufacturer recommended operating conditions; absolute maximum is never a design target."},
+    {"id": "PF-R2-02", "rule": "A missing min/max tolerance, applicability condition, unit or model provenance makes the owning result unresolved_fail."},
+    {"id": "PF-R2-03", "rule": "Steady rail/source current retains at least 25% reserve over enumerated worst-case load; a named transient-only rating requires separate transient proof."},
+    {"id": "PF-R2-04", "rule": "A regulated rail retains at least 5% nominal-voltage headroom after source tolerance, distribution loss and steady droop while every load stays in its supply range."},
+    {"id": "PF-R2-05", "rule": "Worst-case timing and shared-resource occupancy consume no more than 80% of the assigned deadline or service budget; independent buses are never combined artificially."},
+    {"id": "PF-R2-06", "rule": "Power-off, reset and quiet-state combinations cannot back-power or enable a transmitter; any allowed injection stays below the exact published limit with at least 2x analytical reserve."},
+    {"id": "PF-R2-07", "rule": "Predicted junction temperature stays at least 20 C below its applicable maximum; cell charge/discharge temperature stays at least 10 C inside exact cell and charger limits."},
+    {"id": "PF-R2-08", "rule": "Transient results at dt and dt/2 differ by no more than 10% of the remaining pass margin; otherwise the timestep is reduced or the result is unresolved_fail."},
+    {"id": "PF-R2-09", "rule": "Every single fault reaches a bounded-energy safe state without relying on the same failed compute domain, and a readable cause remains recoverable whenever energy remains."},
+    {"id": "PF-R2-10", "rule": "RF pre-layout pass means only a complete constraint and margin budget; final feed, antenna, VNA, spectrum and coexistence claims require H6/H8 evidence."},
+    {"id": "PF-R2-11", "rule": "Every calculator emits all evaluated states/corners, the worst case, numeric margin, outcome and physical residual; summary-only output is non-evidence."},
+    {"id": "PF-R2-12", "rule": "Input hash drift, tool-policy drift, a failed margin or an unowned residual invalidates acceptance and requires downstream regeneration."}
+  ],
+  "reproducibility": {
+    "required_cli_modes": ["--write", "--check"],
+    "required_output_fields": ["source hashes", "method ids", "units", "states/corners", "worst case", "numeric margin", "pass/fail/unresolved", "physical residual owner"],
+    "required_test_evidence": ["unit tests", "negative fail-closed test", "checked-in deterministic artifact"],
+    "regeneration_order": "H3-R2-input-freeze -> H3-R2-parameter-provenance -> H3-R2-method-contract -> H3-R2.1...H3-R2.7"
+  },
+  "authorization": {
+    "analysis_and_simulation": true,
+    "placement_or_routing": false,
+    "purchasing": false,
+    "fabrication": false
+  }
+}
