@@ -10,7 +10,10 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-SCRIPTS = ("hardware/verification/h4_r2_input_freeze.py",)
+SCRIPTS = (
+    "hardware/verification/h4_r2_input_freeze.py",
+    "hardware/verification/h4_r2_contract_reconciliation.py",
+)
 
 
 def main() -> int:

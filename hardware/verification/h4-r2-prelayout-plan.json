@@ -3,7 +3,7 @@
   "stage": "H4",
   "baseline": "R2",
   "status": "current",
-  "current_substep": "H4-R2.0.2",
+  "current_substep": "H4-R2.2",
   "accepted_inputs": {
     "mechanics": "H1-R2.37",
     "ecad": "H2-R2.1.5",
@@ -25,17 +25,17 @@
     {
       "id": "H4-R2.0.2",
       "title": "Reconcile every hardware-visible firmware contract and retained implementation obligation",
-      "status": "current"
+      "status": "reviewed"
     },
     {
       "id": "H4-R2.1",
       "title": "Run the joined mechanics, ECAD, electrical and firmware cross-check",
-      "status": "waiting"
+      "status": "reviewed"
     },
     {
       "id": "H4-R2.2",
       "title": "Correct and regenerate every cross-domain contradiction",
-      "status": "waiting"
+      "status": "current"
     },
     {
       "id": "H4-R2.3",

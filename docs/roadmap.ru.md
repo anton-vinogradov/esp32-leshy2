@@ -3,7 +3,7 @@
 [На главную](../README.ru.md) · [English](roadmap.md) ·
 [Роадмап прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md)
 
-> **▶ Текущая аппаратная граница: `H4-R2.0.2`.** H0, H1, [H2-R2.1.5](h2-acceptance.ru.md) и полный [глобальный итог H3-R2](h3-r2-acceptance.ru.md) проведены ревью. H3-R2.7 сводит 20 текущих evidence-artifacts и все записанные source hashes без mismatch или открытого аналитического finding; [реестр физических evidence](physical-evidence-register-r2.ru.md) сохраняет 51 строку открытой и назначенной H5/H6/H8. [H4-R2.0.1](h4-r2-input-freeze.ru.md) фиксирует 24 точных текущих join-inputs при совпадении всех cross-repository H3 hashes; H4-R2.0.2 теперь сверяет видимые железу firmware-контракты.
+> **▶ Текущая аппаратная граница: `H4-R2.2`.** H0, H1, [H2-R2.1.5](h2-acceptance.ru.md), полный [глобальный итог H3-R2](h3-r2-acceptance.ru.md) и [сверка контрактов H4-R2.0.2/H4-R2.1](h4-r2-contract-reconciliation.ru.md) проведены ревью. H2, все 80 контактов M1 и текущие импорты H3 совпадают; H4-R2.2 исправляет назначенный пробел генерации 38 BSP-строк C5/Pack/Safety. Все 51 physical-остаток и обязательство F5/F6 по i8080 остаются открытыми.
 > KiCad routing R2, quote, reservation и заказ не разрешены.
 
 Статус сверен: **1 сентября 2026 года**.
@@ -32,10 +32,10 @@
 
 ## Проведённое ревью H1 · точный состав
 
-<!-- current-substep: H4-R2.0.2 -->
+<!-- current-substep: H4-R2.2 -->
 
 **Маркер ревью: `H1-R2.37`.** Пакет компоновки принят 2026-08-30. Текущий
-аппаратный маркер — `H4-R2.0.2`.
+аппаратный маркер — `H4-R2.2`.
 
 ### 1. Размещение функциональных островов
 
@@ -194,7 +194,7 @@
 | H1 · Физический дизайн продукта | ✅ [Проведено ревью · `H1-R2.37`](h1-r2-acceptance.ru.md) | Внешний вид, отдельные внутренние стороны, разрезы, точные корпуса, RF-локальность, сервис и power-envelope | Нет коллизий bodies/fasteners/silkscreen/antennas/accessories/opposing sides; точный MPN или контролируемый reserve; мокап принят |
 | H2 · Production ECAD-схема | ✅ [Проведено ревью · `H2-R2.1.5`](h2-acceptance.ru.md) | Точные R2 symbols, contacts, nets, values, protection и footprints | Native KiCad, ERC без замечаний и сверка sheets/HW↔FW проходят |
 | H3 · Виртуальная электрическая проверка | ✅ [Проведена · `H3-R2.7`](h3-r2-acceptance.ru.md) | Полная проверка power, digital, RF, audio, timing, thermal и faults | Все рассчитываемые pre-layout claims проходят; физические остатки сохраняют владельцев |
-| **H4 · Объединённый pre-layout gate** | **▶ Сейчас · `H4-R2.0.2`** | Одно текущее mechanics/ECAD/electrical/firmware review | Нет виртуального blocker; каждой физической неопределённости назначен тест |
+| **H4 · Объединённый pre-layout gate** | **▶ Сейчас · `H4-R2.2`** | Одно текущее mechanics/ECAD/electrical/firmware review | Нет виртуального blocker; каждой физической неопределённости назначен тест |
 | H5 · Компоненты и фабричные evidence | ⏳ Ожидает H4 | Точная актуальная фабричная карта и контролируемые external routes | У каждой BOM-строки есть текущий фабричный маршрут без молчаливой замены |
 | H6 · KiCad placement, routing и release candidate | 🔒 Ожидает H5 | Две разведённые платы, routed re-analysis и hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs и независимый DFM/CPL review проходят |
 | `F-PO` · Допуск первого экземпляра | 🔒 Ожидает H2/H6 и firmware R2 | Шесть diagnostic images, S3 QEMU, fake-HAL/dev-board evidence, flash/recovery и owner bring-up script | `FPO1`–`FPO7` проведены ревью на тех же H2/H6 candidate hashes; платный factory FCT не требуется |
@@ -238,7 +238,9 @@
 14. ✅ [`H3-R2.6`](thermal-fault-electrical-verification.ru.md): проверить все 56 thermal-профилей, 30 single-fault сценариев и extended-operation policy; 25 сводных checks проходят, семь физических остатков назначены H6/H8.
 15. ✅ [`H3-R2.7`](h3-r2-acceptance.ru.md): выполнить cross-check всех текущих результатов R2, опубликовать реестр из 51 physical-evidence строки и закрыть двуязычный отчёт фазы H3.
 16. ✅ [`H4-R2.0.1`](h4-r2-input-freeze.ru.md): зафиксировать 24 точных текущих mechanics, ECAD, H3 и firmware-R2 inputs и проверить все три cross-repository hashes импорта H3.
-17. ▶ `H4-R2.0.2`: сверить все видимые железу firmware-контракты и сохранённое обязательство F5/F6 по i8080.
+17. ✅ [`H4-R2.0.2`](h4-r2-contract-reconciliation.ru.md): сверить все видимые железу firmware-контракты и сохранённое обязательство F5/F6 по i8080.
+18. ✅ [`H4-R2.1`](h4-r2-contract-reconciliation.ru.md): провести объединённый cross-check; найти три назначенных BSP-коррекции без неназначенного противоречия.
+19. ▶ `H4-R2.2`: сгенерировать полные точные BSP-карты и target guards C5, Pack и Safety.
 
-Следующее действие — сверка контрактов H4-R2.0.2. Placement, routing,
+Следующее действие — коррекция BSP H4-R2.2. Placement, routing,
 quote и любой заказ остаются заблокированы.

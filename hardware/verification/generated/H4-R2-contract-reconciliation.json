@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "artifact": "H4-R2-contract-reconciliation",
+  "marker": "H4-R2.0.2",
+  "status": "reviewed_with_corrections_required",
+  "source_sha256": {
+    "hardware/verification/h4-r2-prelayout-plan.json": "6d317a2838d892c55bb38f40d76635809ae7fa606bee557e93a39db430f13d75",
+    "hardware/verification/generated/H4-R2-input-freeze.json": "7c84b7f8a000f7aeb6742057f61a36e3ac53de58258592c39a65269e7b7eb156",
+    "hardware/ecad/generated/H2-R2-hwfw-contract.json": "c1efe901f1ffdf90d6c7c4f67c76495f205fd762526972cd7355076d6000958a",
+    "hardware/ecad/generated/H2-R2-interboard-m1.json": "127965ec1e68cbf8c57d028fd067c56a724a3259248bab4ba5c86c8f9307b6fd",
+    "hardware/verification/generated/H3-R2-digital-interfaces.json": "ddd4ebe549d43368ad6f711d8860235603e02085689c4e71a8c503983a03be04",
+    "hardware/verification/generated/H3-R2-physical-residuals.json": "e6b9894a7fdc675d881ad45cc43be7f5d183a33fffce6bdade07aace4e78c53c",
+    "hardware/verification/preorder-verification-contract.json": "09e45bce81585a107215354cd2335d0bae526578224b35780fd95ac69ea70600",
+    "../esp32-leshy2-firmware/config/h0_r2_hardware_contract.json": "7ae70ac38df41ab54c90ef61b967771f62d3579b2ea22ddd0e70688fc281f534",
+    "../esp32-leshy2-firmware/config/r2_h2_sync_gate.json": "220b69b543c0d588a781e740a91d8e4b57ef190d65ce0c52813323f8a2fdb61d",
+    "../esp32-leshy2-firmware/config/f2_r2_bsp_generation.json": "85dae101e1f315b0cf22a01cfef3f3e7ee810292b5b611885f2315f1e1cfa3e3",
+    "../esp32-leshy2-firmware/config/f2_r2_bsp_consumption.json": "1dcea19a80a84f7bbce957cf63622d893a4878738c0be68860d935034a1a661b",
+    "../esp32-leshy2-firmware/generated/r2/source_manifest.json": "2e701f4ca021a575fcd114566db779e84eb202ef28464ea0d1525c3f7099cecd",
+    "../esp32-leshy2-firmware/config/f2_r2_build_qualification.json": "d89dd9da0d22612ca400c6f28f572505d6358ceffc308fb717aa6d93d7bf2631",
+    "../esp32-leshy2-firmware/config/h3_r2_digital_interfaces.json": "5013ee44dfcf688a2a824257a7e8d1d6077a5ac1aeae2c9ccc5d0ba74bdd9824",
+    "../esp32-leshy2-firmware/config/h3_r2_acceptance.json": "1718f2201cc0e5532a2e26caa4ae4553426811ddefe707a404919e30a0b6fa95",
+    "../esp32-leshy2-firmware/config/h4_r2_input_freeze.json": "2f7e31cebfd43435c83815ef082a2bdbd52393f931eb07637e13033574308d93",
+    "../esp32-leshy2-firmware/config/h3_r2_transition_contract.json": "93031858324751309cf14b664710907d142648f8ba610b8f8ffe54db836e50b7",
+    "../esp32-leshy2-firmware/config/h3_r2_handover_contract.json": "2cd9e21b8a4212249ed58639e67cd6f5a4349c6b68100cdeb008b122586bc4d9",
+    "../esp32-leshy2-firmware/config/h3_r2_inrush_watchdog_contract.json": "4f458c12a16d309863d16d54ca97865258e1e2475425b7f67e50fd414e654347",
+    "../esp32-leshy2-firmware/config/h3_r2_rf_coexistence.json": "0943e0ea7be74ce253a95d63b79c76a3ee206d786486b111da95119d460e9adb",
+    "../esp32-leshy2-firmware/config/h3_r2_thermal_fault.json": "1c46601168040d8d50a012f8c02a45bf9f1c9f214b96920bc4193b69bfca831e"
+  },
+  "summary": {
+    "domains": 6,
+    "hardware_pin_rows": 173,
+    "generated_bsp_pin_rows": 135,
+    "missing_generated_bsp_rows": 38,
+    "exact_generated_domains": 3,
+    "corrections_required": 3,
+    "retained_firmware_obligations": 1,
+    "physical_residuals_carried": 51,
+    "structural_check_failures": 0
+  },
+  "domain_coverage": [
+    {
+      "domain": "s3",
+      "expected_h2_rows": 33,
+      "generated_bsp_rows": 33,
+      "missing_rows": 0,
+      "mapping": "exact_pins",
+      "exact": true
+    },
+    {
+      "domain": "c5",
+      "expected_h2_rows": 14,
+      "generated_bsp_rows": 6,
+      "missing_rows": 8,
+      "mapping": "partial_exact_pins",
+      "exact": false
+    },
+    {
+      "domain": "rf_rp",
+      "expected_h2_rows": 48,
+      "generated_bsp_rows": 48,
+      "missing_rows": 0,
+      "mapping": "exact_pins",
+      "exact": true
+    },
+    {
+      "domain": "hub_rp",
+      "expected_h2_rows": 48,
+      "generated_bsp_rows": 48,
+      "missing_rows": 0,
+      "mapping": "exact_pins",
+      "exact": true
+    },
+    {
+      "domain": "pack",
+      "expected_h2_rows": 13,
+      "generated_bsp_rows": 0,
+      "missing_rows": 13,
+      "mapping": "identity_only",
+      "exact": false
+    },
+    {
+      "domain": "safety",
+      "expected_h2_rows": 17,
+      "generated_bsp_rows": 0,
+      "missing_rows": 17,
+      "mapping": "identity_only",
+      "exact": false
+    }
+  ],
+  "checks": {
+    "plan_records_reconciliation_and_join_reviewed": true,
+    "joined_input_freeze_is_reviewed_and_imported": true,
+    "six_domain_h2_contract_is_exactly_imported": true,
+    "six_domain_identities_match": true,
+    "h2_sync_gate_selects_six_domain_authority": true,
+    "m1_all_80_contacts_match_semantically": true,
+    "all_h3_contract_import_hashes_are_current": true,
+    "digital_display_contract_matches": true,
+    "digital_usb_and_m1_contracts_match": true,
+    "digital_transport_contracts_match": true,
+    "f2_build_claim_is_bounded": true,
+    "single_i8080_obligation_is_retained": true,
+    "all_physical_residuals_remain_owned": true,
+    "no_release_authority_is_created": true
+  },
+  "corrections_required": [
+    {
+      "id": "FW-BSP-001",
+      "domain": "c5",
+      "finding": "generated BSP exposes 6/14 current H2 pin rows as partial_exact_pins",
+      "required_correction": "generate the complete canonical H2 domain pin map and make the owning target fail closed on exact mapping/count",
+      "owner": "H4-R2.2 + firmware F2-R2"
+    },
+    {
+      "id": "FW-BSP-002",
+      "domain": "pack",
+      "finding": "generated BSP exposes 0/13 current H2 pin rows as identity_only",
+      "required_correction": "generate the complete canonical H2 domain pin map and make the owning target fail closed on exact mapping/count",
+      "owner": "H4-R2.2 + firmware F2-R2"
+    },
+    {
+      "id": "FW-BSP-003",
+      "domain": "safety",
+      "finding": "generated BSP exposes 0/17 current H2 pin rows as identity_only",
+      "required_correction": "generate the complete canonical H2 domain pin map and make the owning target fail closed on exact mapping/count",
+      "owner": "H4-R2.2 + firmware F2-R2"
+    }
+  ],
+  "retained_obligations": [
+    {
+      "owner": "F5/F6",
+      "obligation": "instantiate the locked ESP-IDF i80 config at exact 20 MHz, CS=-1, 8-bit bus and rising-edge panel capture; exercise TE, dirty-region and full-frame fixtures",
+      "handoff": "H4-R2 joined review and the owning firmware phase",
+      "status": "implementation_evidence_required"
+    }
+  ],
+  "authorization": {
+    "component_purchase": false,
+    "pcb_placement_and_routing": false,
+    "fabrication": false
+  },
+  "next": {
+    "marker": "H4-R2.1",
+    "action": "run the joined cross-check and route every contradiction to H4-R2.2"
+  }
+}

@@ -154,10 +154,10 @@ policy через 25 проходящих checks. [`H3-R2.7`](h3-r2-acceptance.r
 <a id="h4"></a>
 ## H4 · Объединённый pre-layout gate
 
-**Статус:** ▶️ сейчас **`H4-R2.0.2`**. [`H4-R2.0.1`](h4-r2-input-freeze.ru.md)
-провёл ревью 24 точных текущих mechanics, ECAD, H3 и firmware-R2 join-inputs
-при совпадении всех трёх cross-repository H3 hashes. Текущая работа сверяет
-каждый видимый железу firmware-контракт и сохранённое обязательство F5/F6 по i8080.
+**Статус:** ▶️ сейчас **`H4-R2.2`**. [`H4-R2.0.1`](h4-r2-input-freeze.ru.md)
+зафиксировал 24 точных входа. [`H4-R2.0.2/H4-R2.1`](h4-r2-contract-reconciliation.ru.md)
+затем свели H2/M1/H3 и нашли один назначенный 38-строчный пробел генерации BSP
+в C5, Pack и Safety. Текущая работа исправляет эти три карты.
 
 Ожидаемый результат: одно актуальное mechanics/ECAD/electrical/firmware review
 без virtual-blocker и с назначенным downstream-тестом для каждой физической неопределённости.

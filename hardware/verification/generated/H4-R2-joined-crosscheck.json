@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "artifact": "H4-R2-joined-crosscheck",
+  "marker": "H4-R2.1",
+  "status": "reviewed_corrections_required",
+  "source": {
+    "path": "hardware/verification/generated/H4-R2-contract-reconciliation.json",
+    "sha256": "acabed7190267c22571e314e2b05ebaa69cc892acb032fa80640706a7b9cf2dc"
+  },
+  "summary": {
+    "structural_checks": 14,
+    "structural_check_failures": 0,
+    "cross_domain_contradictions": 3,
+    "unowned_contradictions": 0,
+    "retained_firmware_obligations": 1,
+    "physical_residuals_carried": 51
+  },
+  "contradictions": [
+    {
+      "id": "FW-BSP-001",
+      "domain": "c5",
+      "finding": "generated BSP exposes 6/14 current H2 pin rows as partial_exact_pins",
+      "required_correction": "generate the complete canonical H2 domain pin map and make the owning target fail closed on exact mapping/count",
+      "owner": "H4-R2.2 + firmware F2-R2"
+    },
+    {
+      "id": "FW-BSP-002",
+      "domain": "pack",
+      "finding": "generated BSP exposes 0/13 current H2 pin rows as identity_only",
+      "required_correction": "generate the complete canonical H2 domain pin map and make the owning target fail closed on exact mapping/count",
+      "owner": "H4-R2.2 + firmware F2-R2"
+    },
+    {
+      "id": "FW-BSP-003",
+      "domain": "safety",
+      "finding": "generated BSP exposes 0/17 current H2 pin rows as identity_only",
+      "required_correction": "generate the complete canonical H2 domain pin map and make the owning target fail closed on exact mapping/count",
+      "owner": "H4-R2.2 + firmware F2-R2"
+    }
+  ],
+  "retained_obligations": [
+    {
+      "owner": "F5/F6",
+      "obligation": "instantiate the locked ESP-IDF i80 config at exact 20 MHz, CS=-1, 8-bit bus and rising-edge panel capture; exercise TE, dirty-region and full-frame fixtures",
+      "handoff": "H4-R2 joined review and the owning firmware phase",
+      "status": "implementation_evidence_required"
+    }
+  ],
+  "authorization": {
+    "component_purchase": false,
+    "pcb_placement_and_routing": false,
+    "fabrication": false
+  },
+  "next": {
+    "marker": "H4-R2.2",
+    "action": "correct and regenerate the C5, Pack and Safety BSP boundaries without changing hardware"
+  }
+}
