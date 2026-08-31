@@ -129,7 +129,7 @@ def render_doc(result: dict, russian: bool) -> str:
     if russian:
         title = "# Thermal, единичные отказы и длительная работа · H3-R2.6"
         nav = "[English](thermal-fault-electrical-verification.md) · [Главная](../README.ru.md) · [Роадмап](roadmap.ru.md)"
-        intro = f"`H3-R2.6` проведён ревью: **{s['checks']} checks**, `{s['thermal_profiles']}` thermal-профилей и `{s['single_fault_cases']}` single-fault сценариев проходят без открытых аналитических findings. Итог H3-R2.7 и фиксация H4-R2.0.1 также проведены ревью; текущий маркер — `H4-R2.2`."
+        intro = f"`H3-R2.6` проведён ревью: **{s['checks']} checks**, `{s['thermal_profiles']}` thermal-профилей и `{s['single_fault_cases']}` single-fault сценариев проходят без открытых аналитических findings. Итоги H3-R2.7 и H4-R2 также проведены ревью; текущий маркер — `H5.0.3-R1`."
         thermal = ("## Тепло\n\n"
                    f"Для длительной thermal-квалификации допускается только support-нагрузка `SUPPORT_IDLE`; внешний 5-В порт ограничен 1,00 А. Худший непрерывный расчётный профиль — `{sustained['id']}`: консервативно `{sustained['conservative_enclosure_heat_upper_w']:.3f} Вт` внутри корпуса. При 35 °C H6 должен обеспечить не хуже `{sustained['rtheta_to_65c_at_35c_k_per_w_max']:.3f} K/W` до предупреждения 65 °C. Сам этот TX-профиль остаётся ограниченной сессией до H8, а не разрешением на unattended TX. "
                    f"Абсолютный electrical corner `{absolute['id']}` даёт `{absolute['conservative_enclosure_heat_upper_w']:.3f} Вт`, но не разрешён как длительный режим. Три NTC, пороги warning/kill/rearm и charger `TREG=60 °C`, `TSHUT=85 °C` остаются независимыми защитами. Это параметрическая верхняя граница, не обещание температуры готового корпуса.")
@@ -142,7 +142,7 @@ def render_doc(result: dict, russian: bool) -> str:
     else:
         title = "# Thermal, single-fault and extended-operation result · H3-R2.6"
         nav = "[Русский](thermal-fault-electrical-verification.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md)"
-        intro = f"`H3-R2.6` is reviewed: **{s['checks']} checks**, `{s['thermal_profiles']}` thermal profiles and `{s['single_fault_cases']}` single-fault cases pass with no open analytical finding. H3-R2.7 and the H4-R2.0.1 input freeze are also reviewed; the current marker is `H4-R2.2`."
+        intro = f"`H3-R2.6` is reviewed: **{s['checks']} checks**, `{s['thermal_profiles']}` thermal profiles and `{s['single_fault_cases']}` single-fault cases pass with no open analytical finding. H3-R2.7 and global H4-R2 are also reviewed; the current marker is `H5.0.3-R1`."
         thermal = ("## Thermal envelope\n\n"
                    f"Only the `SUPPORT_IDLE` support load is eligible for sustained thermal qualification and external 5 V is capped at 1.00 A. The worst continuous calculation profile is `{sustained['id']}`: a conservative `{sustained['conservative_enclosure_heat_upper_w']:.3f} W` inside the enclosure. At 35 °C H6 must achieve no worse than `{sustained['rtheta_to_65c_at_35c_k_per_w_max']:.3f} K/W` before the 65 °C warning. That TX case remains a bounded session pending H8, not permission for unattended TX. "
                    f"The absolute electrical corner `{absolute['id']}` reaches `{absolute['conservative_enclosure_heat_upper_w']:.3f} W` but is not a sustained permission. Three NTCs, warning/kill/rearm thresholds and charger `TREG=60 °C`, `TSHUT=85 °C` remain independent protections. This is a parameterized upper bound, not a finished-enclosure temperature claim.")

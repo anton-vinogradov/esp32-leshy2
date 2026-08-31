@@ -10,7 +10,7 @@
 
 </div>
 
-> **Текущий маркер железа: `H4-R2.2`.** Полная компоновка двух плат
+> **Текущий маркер железа: `H5.0.3-R1`.** Полная компоновка двух плат
 > `H1-R2.37` принята и прошла ревью 30 августа 2026 года: точные dual-RP GPIO/M1 и C5 SDIO/service-mux,
 > серийный дисплей `ER-TFT035IPS-6` + `ER-TPC035-6`, пассивный 40→50-контактный
 > адаптер, все 18 компонентов U219, NFC pickup-loop и внешний объём штатной
@@ -37,7 +37,7 @@
 > проводит ревью точного происхождения всех 240 групп R2 и 1 185 устанавливаемых
 > позиций. [H3-R2.0.3](docs/verification-methods.ru.md) фиксирует девять методов
 > и двенадцать pass/fail rules. [H3-R2.1.1](docs/power-state-register.ru.md) провёл ревью всех 2 266 разрешённых состояний R2;
-> [H3-R2.1.2](docs/power-load-binding.ru.md) связывает все нагрузки без скрытого aggregate. [H3-R2.1.3](docs/power-rail-margins.ru.md) проводит ревью 224 проходящих профилей шин. [H3-R2.1.4](docs/power-source-margins.ru.md) назначает владельцев всем 75 source/pack-строкам и безопасно допускает все 2 266 состояний. Полные [проверки H3](docs/h3-r2-acceptance.ru.md) проведены ревью без mismatch и открытого аналитического finding; 51 physical-only строка остаётся назначенной H5/H6/H8. [H4-R2.0.1](docs/h4-r2-input-freeze.ru.md) фиксирует 24 точных inputs. [H4-R2.0.2/H4-R2.1](docs/h4-r2-contract-reconciliation.ru.md) сводят H2, M1 и H3 и находят один назначенный пробел генерации: в BSP не хватает 38 controller-строк C5, Pack и Safety. H4-R2.2 их добавляет. Заказ заблокирован.
+> [H3-R2.1.2](docs/power-load-binding.ru.md) связывает все нагрузки без скрытого aggregate. [H3-R2.1.3](docs/power-rail-margins.ru.md) проводит ревью 224 проходящих профилей шин. [H3-R2.1.4](docs/power-source-margins.ru.md) назначает владельцев всем 75 source/pack-строкам и безопасно допускает все 2 266 состояний. Полные [проверки H3](docs/h3-r2-acceptance.ru.md) проведены ревью без mismatch и открытого аналитического finding; 51 physical-only строка остаётся назначенной H5/H6/H8. [H4-R2.0.1](docs/h4-r2-input-freeze.ru.md) зафиксировал 24 точных inputs. [Диагностика H4](docs/h4-r2-contract-reconciliation.ru.md) нашла один назначенный пробел генерации 38 BSP-строк; [исправление H4-R2.2](docs/h4-r2-correction-closure.ru.md) восстановило 173/173 строки и повторно квалифицировало все 12 target-сборок. [Глобальный итог H4-R2](docs/h4-r2-acceptance.ru.md) проведён ревью без междоменных противоречий. Сейчас выполняется фабричная/компонентная проверка H5.0.3-R1; заказ заблокирован.
 
 > **Authority-gate R2:** текущие H0/H1 содержат шесть вычислительных доменов и
 > два `SC1512-A4`: передний Hub RP и задний RF RP. Сохранённые G2F/H2/KiCad —
@@ -122,15 +122,15 @@ VHF/UHF voice, broadcast/Airband, аудио, M5 и взаимоисключаю
 | H1 · Физический дизайн устройства | ✅ Проведено ревью · `H1-R2.37` | [Двуязычный отчёт фазы](docs/h1-r2-acceptance.ru.md) · [компоновка](docs/h1-r2-physical-layout.ru.md) |
 | H2 · Production ECAD-схема | ✅ Проведено ревью · `H2-R2.1.5` | [Двуязычный итог фазы](docs/h2-acceptance.ru.md) · [результат native KiCad](docs/h2-r2-native-kicad.ru.md) |
 | H3 · Виртуальная электрическая проверка | ✅ Проведено ревью · `H3-R2.7` | [Двуязычный итог фазы](docs/h3-r2-acceptance.ru.md) · [реестр физических evidence](docs/physical-evidence-register-r2.ru.md) · [страница этапов](docs/stage-results.ru.md#h3) |
-| **H4 · Совместный pre-layout gate железа и прошивки** | **▶ Сейчас · `H4-R2.2`** | [сверка контрактов](docs/h4-r2-contract-reconciliation.ru.md) · [фиксация входов](docs/h4-r2-input-freeze.ru.md) · [страница этапов](docs/stage-results.ru.md#h4) |
-| H5 · Компоненты и фабричные evidence | ⏳ Ожидает R2 H4 | [Страница этапов](docs/stage-results.ru.md#h5) |
+| H4 · Совместный pre-layout gate железа и прошивки | ✅ Проведено ревью · `H4-R2.3` | [глобальный итог](docs/h4-r2-acceptance.ru.md) · [исправление BSP](docs/h4-r2-correction-closure.ru.md) · [страница этапов](docs/stage-results.ru.md#h4) |
+| **H5 · Компоненты и фабричные evidence** | **▶ Сейчас · `H5.0.3-R1`** | [Страница этапов](docs/stage-results.ru.md#h5) |
 | H6 · Размещение, трассировка и release candidate в KiCad | 🔒 Ожидает R2 H5 | [Страница этапов](docs/stage-results.ru.md#h6) |
 | F-PO · Допуск первого экземпляра | 🔒 Ожидает финальные H2/H6 и firmware R2 | [Страница этапов](docs/stage-results.ru.md#f-po) |
 | H7 · Печать прототипа и bring-up | 🔒 Ожидает H6, F-PO, immutable release и одобрение exact-one quote | [Страница этапов](docs/stage-results.ru.md#h7) |
 | H8 · Физическая квалификация | 🔒 Ожидает H7 | [Страница этапов](docs/stage-results.ru.md#h8) |
 | H9 · Manufacturing release | 🔒 Ожидает H8 и firmware F11 | [Страница этапов](docs/stage-results.ru.md#h9) |
 
-### Итоги H1/H2 и текущий вход H3
+### Итоги H1/H2/H3/H4 и текущий вход H5
 
 - ✅ Точные карты GPIO0..47 переднего/заднего RP, пять сигналов Hub↔RF через M1 и электрический стык C5 SDIO/service-mux проходят машинную проверку; бюджеты — `47/48` (1 свободный) и `43/48` (5 свободных: GP32/33/34/37/38). RF GPIO28/29 образуют отдельный power-coherent PIO-I²C для Si5351. После замыкания reset/service-трактов у S3 остаются 6 свободных GPIO.
 - ✅ Десять основных антенных портов распределены `5 + 5`; ни один главный RF-тракт не пересекает M1.
@@ -173,15 +173,17 @@ VHF/UHF voice, broadcast/Airband, аудио, M5 и взаимоисключаю
 - ✅ `H3-R2.6`: [все 25 thermal/fault checks проходят](docs/thermal-fault-electrical-verification.ru.md); аналитически закрыты 56 текущих R2-профилей, 30 single-fault сценариев и local-only extended-operation policy, семь физических остатков назначены H6/H8.
 - ✅ `H3-R2.7`: [двуязычный глобальный отчёт H3](docs/h3-r2-acceptance.ru.md) сводит 20 текущих artifacts и их source hashes без mismatch или открытого аналитического finding; [физический реестр](docs/physical-evidence-register-r2.ru.md) сохраняет все 51 оставшуюся строку открытой и назначенной.
 - ✅ `H4-R2.0.1`: [24 точных текущих mechanics, ECAD, H3 и firmware-R2 inputs зафиксированы hashes](docs/h4-r2-input-freeze.ru.md); все три cross-repository hashes импорта H3 совпадают.
-- ✅ `H4-R2.0.2` / `H4-R2.1`: [сведены все шесть доменов H2, 80 контактов M1 и текущие импорты H3](docs/h4-r2-contract-reconciliation.ru.md); BSP пока содержит 135/173 controller-строк, все три затронутых домена имеют владельцев.
-- ▶ **Точная текущая точка `H4-R2.2`:** полностью сгенерировать карты C5, Pack и Safety и добавить fail-closed target guards.
+- ✅ `H4-R2.0.2` / `H4-R2.1`: [сохранённая диагностика](docs/h4-r2-contract-reconciliation.ru.md) сводит все шесть доменов H2, 80 контактов M1 и текущие импорты H3 и назначает владельцев 38 недостающим строкам генерации.
+- ✅ `H4-R2.2`: [полные BSP-карты C5, Pack и Safety](docs/h4-r2-correction-closure.ru.md) восстанавливают 173/173 строки; все 12 target-конфигураций, 60 artifacts, 16 maps и 16 size gates повторно проходят без warnings.
+- ✅ `H4-R2.3`: [двуязычный глобальный итог H4](docs/h4-r2-acceptance.ru.md) закрывает объединённый pre-layout gate без противоречий и передаёт все 51 physical-остаток в H5/H6/H8.
+- ▶ **Точная текущая точка `H5.0.3-R1`:** завершить маршрут компонентов/фабрики для ровно одного прототипа без молчаливых замен.
 - 🔒 PCB placement, routing, закупка прототипа и печать не разрешены.
 
 Каждая закрытая глобальная фаза `H*` получает двуязычный понятный отчёт со
 ссылкой из таблицы. Внутренние подшаги обновляют точный маркер и обе
 документации, но не выдают себя за ревью всей фазы.
 
-<!-- current-substep: H4-R2.2 -->
+<!-- current-substep: H5.0.3-R1 -->
 
 ## Репозитории
 

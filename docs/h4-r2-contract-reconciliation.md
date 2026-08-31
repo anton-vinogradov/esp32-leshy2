@@ -15,8 +15,8 @@ The review found one bounded implementation-class issue with three domain owners
 | `pack` | 13 | 0 | 13 | `identity_only` |
 | `safety` | 17 | 0 | 17 | `identity_only` |
 
-H4-R2.2 must regenerate complete exact maps for C5, Pack and Safety and make their owning targets fail closed on exact mapping/count. The separate F5/F6 display-driver obligation remains open by design; no H5/H6/H8 physical evidence is consumed.
+H4-R2.2 subsequently regenerated complete exact maps for C5, Pack and Safety and made their owning targets fail closed on exact mapping/count. The preserved diagnostic remains the auditable reason for that [completed correction](h4-r2-correction-closure.md). The separate F5/F6 display-driver obligation remains open by design; no H5/H6/H8 physical evidence is consumed.
 
-**Current marker: `H4-R2.2`.** Purchase, placement, routing and fabrication remain unauthorized.
+The [global H4-R2 joined gate](h4-r2-acceptance.md) is reviewed. **Current marker: `H5.0.3-R1`.** Purchase, placement, routing and fabrication remain unauthorized.
 
 [Machine reconciliation](../hardware/verification/generated/H4-R2-contract-reconciliation.json) · [machine joined cross-check](../hardware/verification/generated/H4-R2-joined-crosscheck.json).

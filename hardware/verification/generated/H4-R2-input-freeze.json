@@ -4,8 +4,8 @@
   "marker": "H4-R2.0.1",
   "status": "reviewed",
   "source_sha256": {
-    "hardware/verification/h4-r2-prelayout-plan.json": "6d317a2838d892c55bb38f40d76635809ae7fa606bee557e93a39db430f13d75",
-    "hardware/roadmap": "48c07e0f4c59004f992f960273b3b3f75163f3d0f4db05122bdbc8255d595722",
+    "hardware/verification/h4-r2-prelayout-plan.json": "bba399900a001d9a8cf277095652eb05a1d8f41a11b932c07012d86c2420b908",
+    "hardware/roadmap": "89cdb8227e732d38697576111f14d58fbd8f003fa80cde7f52ee12895b0af6b7",
     "hardware/h0_authority": "d99ee3216e7091262e9c3a2784682fd78ef8ec286e650dab9422c829c2fd5e55",
     "hardware/h1_physical": "f9fa1491e95f2fcef91089c4cd4676e34faf8ba8cb584182eebc4b719c28da0d",
     "hardware/h2_kicad": "69aefceff339dd39916640b4d72bce2b2e217827997922b338aa21c8bf3c76a9",
@@ -15,7 +15,7 @@
     "hardware/h3_crosscheck": "eb782126ac82e3009816991435f520a1c12bb09c514629126a44ae3cb502a18e",
     "hardware/h3_residuals": "e6b9894a7fdc675d881ad45cc43be7f5d183a33fffce6bdade07aace4e78c53c",
     "hardware/preorder": "09e45bce81585a107215354cd2335d0bae526578224b35780fd95ac69ea70600",
-    "firmware/roadmap": "6d2fca13c0e667a3d48dfab531f4dc7882d8b0ef0878a7e70b0a30d7724def22",
+    "firmware/roadmap": "b70604a22d3ab58eadd7fad0f781c8e08e47f3e07ceb043e7bd884d8565d3c66",
     "firmware/h0_contract": "7ae70ac38df41ab54c90ef61b967771f62d3579b2ea22ddd0e70688fc281f534",
     "firmware/h2_sync": "220b69b543c0d588a781e740a91d8e4b57ef190d65ce0c52813323f8a2fdb61d",
     "firmware/h3_transition": "93031858324751309cf14b664710907d142648f8ba610b8f8ffe54db836e50b7",
@@ -26,9 +26,9 @@
     "firmware/h3_thermal": "1c46601168040d8d50a012f8c02a45bf9f1c9f214b96920bc4193b69bfca831e",
     "firmware/h3_acceptance": "1718f2201cc0e5532a2e26caa4ae4553426811ddefe707a404919e30a0b6fa95",
     "firmware/f2_targets": "3210bbd39c013d639f3925a3b1e144265004cdd4a29a3813895ec6ca47e420d3",
-    "firmware/f2_bsp": "85dae101e1f315b0cf22a01cfef3f3e7ee810292b5b611885f2315f1e1cfa3e3",
+    "firmware/f2_bsp": "9961847a69ef18b92a0ee59b2c77cb8ebeeace61bc103741b712e499d3ceffd5",
     "firmware/f2_consumption": "1dcea19a80a84f7bbce957cf63622d893a4878738c0be68860d935034a1a661b",
-    "firmware/f2_builds": "d89dd9da0d22612ca400c6f28f572505d6358ceffc308fb717aa6d93d7bf2631"
+    "firmware/f2_builds": "1c1b2ff9f30ec9870d8b8d9589a392a21287d2aba38135286b38c3175f425a97"
   },
   "input_groups": {
     "mechanics": [
@@ -79,7 +79,7 @@
   },
   "checks": {
     "h4_plan_exposes_reviewed_input_freeze": true,
-    "hardware_roadmap_is_at_h4_r2_2": true,
+    "hardware_roadmap_is_at_h4_r2_3": true,
     "h0_h1_and_h2_boundaries_pass": true,
     "h3_r2_is_reviewed_without_analytical_finding": true,
     "all_51_physical_residuals_remain_open_and_owned": true,

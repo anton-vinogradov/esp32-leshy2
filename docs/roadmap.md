@@ -3,7 +3,7 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H4-R2.2`.** H0, H1, [H2-R2.1.5](h2-acceptance.md), the complete [H3-R2 global result](h3-r2-acceptance.md) and [H4-R2.0.2/H4-R2.1 contract reconciliation](h4-r2-contract-reconciliation.md) are reviewed. H2, all 80 M1 contacts and current H3 imports agree; H4-R2.2 now corrects the owned 38-row C5/Pack/Safety BSP-generation gap. All 51 physical residuals and the F5/F6 i8080 obligation remain open.
+> **▶ Current hardware boundary: `H5.0.3-R1`.** H0, H1, [H2-R2.1.5](h2-acceptance.md), the complete [H3-R2 global result](h3-r2-acceptance.md) and the [global H4-R2 joined gate](h4-r2-acceptance.md) are reviewed. The preserved H4 diagnostic found an owned 38-row C5/Pack/Safety BSP gap; H4-R2.2 restored 173/173 rows and all 12 target builds requalified. All 51 physical residuals and the F5/F6 i8080 obligation remain open under their exact downstream owners.
 > No R2 KiCad routing, quote, reservation or order is authorized.
 
 Status reconciled: **1 September 2026**.
@@ -32,10 +32,10 @@ marker and current checklist; it is never presented as review of the whole phase
 
 ## Reviewed H1 · exact composition
 
-<!-- current-substep: H4-R2.2 -->
+<!-- current-substep: H5.0.3-R1 -->
 
 **Reviewed marker: `H1-R2.37`.** The placement package was accepted on
-2026-08-31. The current hardware marker is `H4-R2.2`.
+2026-08-31. The current hardware marker is `H5.0.3-R1`.
 
 ### 1. Functional-island placement
 
@@ -194,8 +194,8 @@ routing have not started.
 | H1 · Physical product design | ✅ [Reviewed · `H1-R2.37`](h1-r2-acceptance.md) | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
 | H2 · Production ECAD schematic | ✅ [Reviewed · `H2-R2.1.5`](h2-acceptance.md) | Exact R2 symbols, contacts, nets, values, protection and footprints | Native KiCad, zero-finding ERC and cross-sheet/HW↔FW reconciliation pass |
 | H3 · Virtual electrical verification | ✅ [Reviewed · `H3-R2.7`](h3-r2-acceptance.md) | Complete power, digital, RF, audio, timing, thermal and fault verification | Every calculable pre-layout claim passes; all physical residuals remain owned |
-| **H4 · Joined pre-layout gate** | **▶ Current · `H4-R2.2`** | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |
-| H5 · Component and factory evidence | ⏳ Waiting for H4 | Exact current factory map and controlled external routes | Every BOM line has a current factory route without silent substitution |
+| H4 · Joined pre-layout gate | ✅ [Reviewed · `H4-R2.3`](h4-r2-acceptance.md) | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |
+| **H5 · Component and factory evidence** | **▶ Current · `H5.0.3-R1`** | Exact current factory map and controlled external routes | Every BOM line has a current factory route without silent substitution |
 | H6 · KiCad placement, routing and release candidate | 🔒 Waiting for H5 | Two routed boards, routed re-analysis and hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs and independent DFM/CPL review pass |
 | `F-PO` · First-spin admission | 🔒 Waiting for H2/H6 and firmware R2 | Six diagnostic images, S3 QEMU, fake-HAL/dev-board evidence, flash/recovery and owner bring-up script | `FPO1`–`FPO7` are reviewed against the same H2/H6 candidate hashes; paid factory FCT is not required |
 | H7 · Prototype fabrication and bring-up | 🔒 Waiting for H6, `F-PO`, immutable release and exact-one quote approval | Exactly one factory-assembled `R2-EVT1` and retained owner bring-up log | Released assembly package needs no factory engineering guesses; owner current-limited USB power-on proves rails, recovery, UI, storage, audio, radios and expansion |
@@ -211,7 +211,7 @@ routing have not started.
 5. RF transmission and dangerous tests run only on owned loads, with owner authorization or inside an isolated laboratory.
 6. Emulation does not replace bring-up, but H7 cannot be the first firmware execution: [`F-PO`](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/config/first_spin_preorder_gate.json) is mandatory before ordering.
 
-## Current H3 execution path
+## Reviewed H2–H4 execution path and current H5
 
 1. ✅ `H2-R2.1.1`: freeze native R2 sources, sheet map and exact component inventory.
 2. ✅ `H2-R2.1.2`: build the exact symbols, contacts, values, protection and footprint ledger.
@@ -240,7 +240,9 @@ routing have not started.
 16. ✅ [`H4-R2.0.1`](h4-r2-input-freeze.md): freeze 24 exact current mechanics, ECAD, H3 and firmware-R2 inputs and verify all three cross-repository H3 import hashes.
 17. ✅ [`H4-R2.0.2`](h4-r2-contract-reconciliation.md): reconcile every hardware-visible firmware contract and the retained F5/F6 i8080 obligation.
 18. ✅ [`H4-R2.1`](h4-r2-contract-reconciliation.md): run the joined cross-check; find three owned BSP-domain corrections and no unowned contradiction.
-19. ▶ `H4-R2.2`: regenerate complete exact C5, Pack and Safety BSP maps and target guards.
+19. ✅ [`H4-R2.2`](h4-r2-correction-closure.md): regenerate complete exact C5, Pack and Safety BSP maps and fail-closed target guards; requalify all 12 builds.
+20. ✅ [`H4-R2.3`](h4-r2-acceptance.md): publish the global bilingual joined gate with zero contradiction and transfer all 51 physical residuals.
+21. ▶ `H5.0.3-R1`: finish the exact-one-prototype component and factory evidence route without silent substitution.
 
-H4-R2.2 BSP correction is the next action. Placement, routing, quoting and
+H5.0.3-R1 component/factory evidence is the current action. Placement, routing, quoting and
 every order remain blocked.

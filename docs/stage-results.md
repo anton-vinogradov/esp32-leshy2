@@ -154,18 +154,17 @@ keeps every non-paper result explicitly open and owned by H5/H6/H8.
 <a id="h4"></a>
 ## H4 · Joined pre-layout gate
 
-**Status:** ▶️ current at **`H4-R2.2`**. [`H4-R2.0.1`](h4-r2-input-freeze.md)
-reviewed 24 exact inputs. [`H4-R2.0.2/H4-R2.1`](h4-r2-contract-reconciliation.md)
-then reconciled H2/M1/H3 and found one owned 38-row firmware BSP-generation gap
-across C5, Pack and Safety. Current work corrects those three generated maps.
-
-Expected result: one current mechanics/ECAD/electrical/firmware review with no
-virtual blocker and an owned downstream test for every physical residual.
+**Status:** ✅ reviewed at **`H4-R2.3`**. [`H4-R2.0.1`](h4-r2-input-freeze.md)
+froze 24 exact inputs. The preserved [`H4-R2.0.2/H4-R2.1`](h4-r2-contract-reconciliation.md)
+diagnostic found one owned 38-row firmware BSP-generation gap across C5, Pack
+and Safety. [`H4-R2.2`](h4-r2-correction-closure.md) restored 173/173 rows and
+requalified all 12 target builds. The [global bilingual H4 result](h4-r2-acceptance.md)
+closes with zero contradiction and transfers all 51 physical residuals.
 
 <a id="h5"></a>
 ## H5 · Component and factory evidence
 
-**Status:** 🔒 waits for reviewed H4.
+**Status:** ▶️ current at **`H5.0.3-R1`**.
 
 Expected result: every exact MPN rechecked on the current JLCPCB surface,
 non-PCBA accessories listed, consigned/private/global sourcing qualified and

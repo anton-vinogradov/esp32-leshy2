@@ -8,6 +8,6 @@ The freeze carries the reviewed H1-R2.37 mechanics, native H2-R2.1.5 ECAD, H3-R2
 
 It also carries all `51` still-open physical rows and the explicit F5/F6 i8080 implementation obligation. Nothing is silently treated as completed. Purchase, placement, routing and fabrication remain unauthorized.
 
-H4-R2.0.2/H4-R2.1 subsequently found one owned C5/Pack/Safety BSP-generation gap. **Current marker: `H4-R2.2`.**
+H4-R2.0.2/H4-R2.1 subsequently found one owned C5/Pack/Safety BSP-generation gap. H4-R2.2 closed all 38 missing rows and requalified every target build; [H4-R2.3 is reviewed](h4-r2-acceptance.md). **Current marker: `H5.0.3-R1`.**
 
 [Machine freeze](../hardware/verification/generated/H4-R2-input-freeze.json).

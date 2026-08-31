@@ -65,7 +65,7 @@ def semantic_m1(rows: list[dict]) -> list[tuple[int, str, str]]:
     return [(row["contact"], row["net"], row["class"]) for row in rows]
 
 
-def build() -> tuple[dict[Path, str], dict, dict]:
+def _build_live_diagnostic() -> tuple[dict[Path, str], dict, dict]:
     plan = load(PLAN)
     freeze = load(FREEZE)
     h2 = load(H2_CONTRACT)
@@ -234,6 +234,44 @@ H4-R2.2 должен сгенерировать полные точные кар
         JOIN_OUTPUT: json.dumps(joined, ensure_ascii=False, indent=2) + "\n",
         DOC_EN: en,
         DOC_RU: ru,
+    }
+    return outputs, reconciliation, joined
+
+
+def build() -> tuple[dict[Path, str], dict, dict]:
+    """Validate the immutable H4-R2.0.2/R2.1 diagnostic snapshot.
+
+    H4-R2.2 intentionally changes the live firmware inputs that exposed the
+    gap.  Recomputing the diagnostic from corrected inputs would erase the
+    evidence, so this checker now validates the reviewed snapshot itself.
+    """
+
+    reconciliation = load(RECONCILIATION_OUTPUT)
+    joined = load(JOIN_OUTPUT)
+    summary = reconciliation.get("summary", {})
+    if (
+        reconciliation.get("marker") != "H4-R2.0.2"
+        or reconciliation.get("status") != "reviewed_with_corrections_required"
+        or (summary.get("hardware_pin_rows"), summary.get("generated_bsp_pin_rows"), summary.get("missing_generated_bsp_rows")) != (173, 135, 38)
+        or [row.get("domain") for row in reconciliation.get("corrections_required", [])] != ["c5", "pack", "safety"]
+        or not all(reconciliation.get("checks", {}).values())
+    ):
+        raise ValueError("invalid immutable H4-R2.0.2 diagnostic snapshot")
+    serialized_reconciliation = json.dumps(
+        reconciliation, ensure_ascii=False, indent=2
+    ) + "\n"
+    if (
+        joined.get("marker") != "H4-R2.1"
+        or joined.get("status") != "reviewed_corrections_required"
+        or joined.get("summary", {}).get("cross_domain_contradictions") != 3
+        or joined.get("summary", {}).get("unowned_contradictions") != 0
+        or joined.get("source", {}).get("sha256")
+        != hashlib.sha256(serialized_reconciliation.encode("utf-8")).hexdigest()
+    ):
+        raise ValueError("invalid immutable H4-R2.1 joined snapshot")
+    outputs = {
+        RECONCILIATION_OUTPUT: serialized_reconciliation,
+        JOIN_OUTPUT: json.dumps(joined, ensure_ascii=False, indent=2) + "\n",
     }
     return outputs, reconciliation, joined
 

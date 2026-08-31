@@ -15,8 +15,8 @@
 | `pack` | 13 | 0 | 13 | `identity_only` |
 | `safety` | 17 | 0 | 17 | `identity_only` |
 
-H4-R2.2 должен сгенерировать полные точные карты C5, Pack и Safety и заставить их target-проекты fail-closed проверять точный mapping/count. Отдельное обязательство F5/F6 по драйверу дисплея остаётся открытым намеренно; никакое физическое evidence H5/H6/H8 не поглощено.
+H4-R2.2 затем сгенерировал полные точные карты C5, Pack и Safety и заставил их target-проекты fail-closed проверять точный mapping/count. Сохранённая диагностика остаётся проверяемой причиной этого [завершённого исправления](h4-r2-correction-closure.ru.md). Отдельное обязательство F5/F6 по драйверу дисплея остаётся открытым намеренно; никакое физическое evidence H5/H6/H8 не поглощено.
 
-**Текущий маркер: `H4-R2.2`.** Закупка, placement, routing и печать остаются запрещены.
+[Глобальный объединённый gate H4-R2](h4-r2-acceptance.ru.md) проведён ревью. **Текущий маркер: `H5.0.3-R1`.** Закупка, placement, routing и печать остаются запрещены.
 
 [Машинная сверка](../hardware/verification/generated/H4-R2-contract-reconciliation.json) · [машинный объединённый cross-check](../hardware/verification/generated/H4-R2-joined-crosscheck.json).

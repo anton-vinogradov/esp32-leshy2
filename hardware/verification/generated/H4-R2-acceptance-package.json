@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "artifact": "H4-R2-acceptance-package",
+  "marker": "H4-R2.3",
+  "status": "reviewed",
+  "source_sha256": {
+    "hardware/verification/h4-r2-prelayout-plan.json": "0382c645cfb90665b2a7b7ea8ac1c59f3c38eb7f5b955faae85b06e7d228580b",
+    "hardware/verification/generated/H4-R2-input-freeze.json": "e3b5c2aef6c0d566382d3f5d91ac15ecbe385dbef70b5aab1a2ee61e147a0ef8",
+    "hardware/verification/generated/H4-R2-contract-reconciliation.json": "acabed7190267c22571e314e2b05ebaa69cc892acb032fa80640706a7b9cf2dc",
+    "hardware/verification/generated/H4-R2-joined-crosscheck.json": "89836ba2b022e150cc0710d0e564711c0d4263f9f2269e30b772c08932893a2e",
+    "hardware/verification/generated/H4-R2-correction-closure.json": "c681bffba41f23a8493369671cc561afb378d7b3a00f1d5f6f5dc60be1160167",
+    "hardware/ecad/generated/H2-R2-interboard-m1.json": "127965ec1e68cbf8c57d028fd067c56a724a3259248bab4ba5c86c8f9307b6fd",
+    "hardware/verification/generated/H3-R2-acceptance-package.json": "157622f6009c0bdfeba0c898b4794453137a65501f79febd2581d14b076fffd6",
+    "hardware/verification/generated/H3-R2-physical-residuals.json": "e6b9894a7fdc675d881ad45cc43be7f5d183a33fffce6bdade07aace4e78c53c",
+    "hardware/verification/hardware-roadmap-state.json": "472e0f522f3c20d6163df97b68e61c6057a0f35e778e2b6ffdf92bcf9508947e",
+    "hardware/verification/h5-component-evidence-plan.json": "b27f94abf7164496b99a6c971f30b405837a8281adf7d339eb0ad2495ab392b6",
+    "hardware/verification/preorder-verification-contract.json": "2e72776b529dc7109d32ac374a86755b14d080c5f8058873a6aa75c2a891d067",
+    "../esp32-leshy2-firmware/config/h4_r2_correction_closure.json": "5c838939b459ad0dfb89137e45dc3cb57536ca9af1fdd2f1ab5e3f65f5a566b9",
+    "../esp32-leshy2-firmware/config/firmware_roadmap_state.json": "09665e9d1ba7d2c7bac01cbf6da944c5ee22bbb299f214771dac530753e64dee",
+    "../esp32-leshy2-firmware/config/h3_r2_acceptance.json": "1718f2201cc0e5532a2e26caa4ae4553426811ddefe707a404919e30a0b6fa95"
+  },
+  "result": {
+    "joined_inputs": 24,
+    "compute_domains": 6,
+    "h2_controller_rows": 173,
+    "generated_bsp_rows": 173,
+    "m1_contacts": 80,
+    "qualified_target_configurations": 12,
+    "cross_domain_contradictions_remaining": 0,
+    "open_analytical_findings": 0,
+    "physical_residuals_transferred": 51,
+    "physical_residuals_by_stage": {
+      "H5": 1,
+      "H6": 5,
+      "H8": 46
+    },
+    "firmware_obligations_transferred": 1,
+    "failed_checks": 0
+  },
+  "checks": {
+    "all_h4_r2_substeps_are_reviewed": true,
+    "joined_input_snapshot_is_complete": true,
+    "original_gap_remains_auditable": true,
+    "joined_review_owned_every_contradiction": true,
+    "all_joined_contradictions_are_closed": true,
+    "all_eighty_m1_contacts_remain_exact": true,
+    "h3_has_no_analytical_finding": true,
+    "all_physical_residuals_have_exact_downstream_owners": true,
+    "firmware_import_matches_hardware_correction": true,
+    "firmware_i8080_obligation_stays_open": true,
+    "both_roadmaps_advance_to_current_h5_work": true,
+    "h5_accepts_h4_without_spend_authority": true,
+    "preorder_gate_remains_closed": true,
+    "h4_creates_no_purchase_layout_or_fabrication_authority": true
+  },
+  "handoff": {
+    "H5": "exact production identity, current factory route and received-part evidence; current H5.0.3-R1",
+    "H6": "routed geometry, extracted values, production outputs and independent DFM/CPL review",
+    "F5/F6": "instantiate and exercise the exact direct 20-MHz i8080 target configuration",
+    "H8": "ordinary non-destructive measurement on the sole assembled prototype"
+  },
+  "claims": {
+    "joined_prelayout_gate_reviewed": true,
+    "current_hardware_and_firmware_contracts_agree": true,
+    "virtual_prelayout_blocker_open": false,
+    "physical_hardware_proven": false,
+    "routing_proven": false,
+    "component_purchase_authorized": false,
+    "pcb_placement_and_routing_authorized": false,
+    "fabrication_authorized": false
+  },
+  "next": {
+    "stage": "H5",
+    "marker": "H5.0.3-R1",
+    "action": "finish the exact-one-prototype component/factory evidence route without silent substitution"
+  }
+}

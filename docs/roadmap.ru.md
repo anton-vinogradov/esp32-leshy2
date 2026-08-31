@@ -3,7 +3,7 @@
 [На главную](../README.ru.md) · [English](roadmap.md) ·
 [Роадмап прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md)
 
-> **▶ Текущая аппаратная граница: `H4-R2.2`.** H0, H1, [H2-R2.1.5](h2-acceptance.ru.md), полный [глобальный итог H3-R2](h3-r2-acceptance.ru.md) и [сверка контрактов H4-R2.0.2/H4-R2.1](h4-r2-contract-reconciliation.ru.md) проведены ревью. H2, все 80 контактов M1 и текущие импорты H3 совпадают; H4-R2.2 исправляет назначенный пробел генерации 38 BSP-строк C5/Pack/Safety. Все 51 physical-остаток и обязательство F5/F6 по i8080 остаются открытыми.
+> **▶ Текущая аппаратная граница: `H5.0.3-R1`.** H0, H1, [H2-R2.1.5](h2-acceptance.ru.md), полный [глобальный итог H3-R2](h3-r2-acceptance.ru.md) и [глобальный объединённый gate H4-R2](h4-r2-acceptance.ru.md) проведены ревью. Сохранённая диагностика H4 нашла назначенный пробел 38 BSP-строк C5/Pack/Safety; H4-R2.2 восстановил 173/173 строки, все 12 target-сборок повторно квалифицированы. Все 51 physical-остаток и обязательство F5/F6 по i8080 остаются открытыми у точных downstream-владельцев.
 > KiCad routing R2, quote, reservation и заказ не разрешены.
 
 Статус сверен: **1 сентября 2026 года**.
@@ -32,10 +32,10 @@
 
 ## Проведённое ревью H1 · точный состав
 
-<!-- current-substep: H4-R2.2 -->
+<!-- current-substep: H5.0.3-R1 -->
 
 **Маркер ревью: `H1-R2.37`.** Пакет компоновки принят 2026-08-30. Текущий
-аппаратный маркер — `H4-R2.2`.
+аппаратный маркер — `H5.0.3-R1`.
 
 ### 1. Размещение функциональных островов
 
@@ -194,8 +194,8 @@
 | H1 · Физический дизайн продукта | ✅ [Проведено ревью · `H1-R2.37`](h1-r2-acceptance.ru.md) | Внешний вид, отдельные внутренние стороны, разрезы, точные корпуса, RF-локальность, сервис и power-envelope | Нет коллизий bodies/fasteners/silkscreen/antennas/accessories/opposing sides; точный MPN или контролируемый reserve; мокап принят |
 | H2 · Production ECAD-схема | ✅ [Проведено ревью · `H2-R2.1.5`](h2-acceptance.ru.md) | Точные R2 symbols, contacts, nets, values, protection и footprints | Native KiCad, ERC без замечаний и сверка sheets/HW↔FW проходят |
 | H3 · Виртуальная электрическая проверка | ✅ [Проведена · `H3-R2.7`](h3-r2-acceptance.ru.md) | Полная проверка power, digital, RF, audio, timing, thermal и faults | Все рассчитываемые pre-layout claims проходят; физические остатки сохраняют владельцев |
-| **H4 · Объединённый pre-layout gate** | **▶ Сейчас · `H4-R2.2`** | Одно текущее mechanics/ECAD/electrical/firmware review | Нет виртуального blocker; каждой физической неопределённости назначен тест |
-| H5 · Компоненты и фабричные evidence | ⏳ Ожидает H4 | Точная актуальная фабричная карта и контролируемые external routes | У каждой BOM-строки есть текущий фабричный маршрут без молчаливой замены |
+| H4 · Объединённый pre-layout gate | ✅ [Проведено ревью · `H4-R2.3`](h4-r2-acceptance.ru.md) | Одно текущее mechanics/ECAD/electrical/firmware review | Нет виртуального blocker; каждой физической неопределённости назначен тест |
+| **H5 · Компоненты и фабричные evidence** | **▶ Сейчас · `H5.0.3-R1`** | Точная актуальная фабричная карта и контролируемые external routes | У каждой BOM-строки есть текущий фабричный маршрут без молчаливой замены |
 | H6 · KiCad placement, routing и release candidate | 🔒 Ожидает H5 | Две разведённые платы, routed re-analysis и hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs и независимый DFM/CPL review проходят |
 | `F-PO` · Допуск первого экземпляра | 🔒 Ожидает H2/H6 и firmware R2 | Шесть diagnostic images, S3 QEMU, fake-HAL/dev-board evidence, flash/recovery и owner bring-up script | `FPO1`–`FPO7` проведены ревью на тех же H2/H6 candidate hashes; платный factory FCT не требуется |
 | H7 · Печать прототипа и bring-up | 🔒 Ожидает H6, `F-PO`, immutable release и одобрение exact-one quote | Ровно один фабрично собранный `R2-EVT1` и owner bring-up log | Released assembly package не требует догадок фабрики; owner current-limited USB power-on проверяет rails, recovery, UI, storage, audio, radio и expansion |
@@ -211,7 +211,7 @@
 5. RF-передача и опасные тесты выполняются только на своей нагрузке, с разрешением владельца или в изолированной лаборатории.
 6. Эмуляция не заменяет bring-up, но H7 не может стать первым запуском прошивки: до заказа обязателен [`F-PO`](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/config/first_spin_preorder_gate.json).
 
-## Текущий путь выполнения H3
+## Проведённый путь H2–H4 и текущий H5
 
 1. ✅ `H2-R2.1.1`: зафиксировать native R2 sources, sheet map и точный component inventory.
 2. ✅ `H2-R2.1.2`: сформировать exact ledger symbols, contacts, values, protection и footprints.
@@ -240,7 +240,9 @@
 16. ✅ [`H4-R2.0.1`](h4-r2-input-freeze.ru.md): зафиксировать 24 точных текущих mechanics, ECAD, H3 и firmware-R2 inputs и проверить все три cross-repository hashes импорта H3.
 17. ✅ [`H4-R2.0.2`](h4-r2-contract-reconciliation.ru.md): сверить все видимые железу firmware-контракты и сохранённое обязательство F5/F6 по i8080.
 18. ✅ [`H4-R2.1`](h4-r2-contract-reconciliation.ru.md): провести объединённый cross-check; найти три назначенных BSP-коррекции без неназначенного противоречия.
-19. ▶ `H4-R2.2`: сгенерировать полные точные BSP-карты и target guards C5, Pack и Safety.
+19. ✅ [`H4-R2.2`](h4-r2-correction-closure.ru.md): сгенерировать полные точные BSP-карты и fail-closed target guards C5, Pack и Safety; повторно квалифицировать все 12 сборок.
+20. ✅ [`H4-R2.3`](h4-r2-acceptance.ru.md): опубликовать глобальный двуязычный joined gate без противоречий и передать все 51 physical-остаток.
+21. ▶ `H5.0.3-R1`: завершить маршрут компонентов и фабрики для ровно одного прототипа без молчаливой замены.
 
-Следующее действие — коррекция BSP H4-R2.2. Placement, routing,
+Текущее действие — component/factory evidence H5.0.3-R1. Placement, routing,
 quote и любой заказ остаются заблокированы.

@@ -2,8 +2,8 @@
   "schema_version": 1,
   "stage": "H4",
   "baseline": "R2",
-  "status": "current",
-  "current_substep": "H4-R2.2",
+  "status": "reviewed",
+  "current_substep": "H4-R2.3",
   "accepted_inputs": {
     "mechanics": "H1-R2.37",
     "ecad": "H2-R2.1.5",
@@ -35,12 +35,12 @@
     {
       "id": "H4-R2.2",
       "title": "Correct and regenerate every cross-domain contradiction",
-      "status": "current"
+      "status": "reviewed"
     },
     {
       "id": "H4-R2.3",
       "title": "Publish the bilingual R2 pre-layout gate and transfer exact residual ownership to H5/H6/H8",
-      "status": "waiting"
+      "status": "reviewed"
     }
   ],
   "exit_criteria": [

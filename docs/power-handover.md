@@ -27,6 +27,6 @@ Worst supplement is `3.516 A` against the `8.000 A` limit; unsafe admissions and
 
 Logic, current limits and safe outcomes are proved analytically. Absolute `SYS` droop, BATFET transfer time and routed parasitics depend on the assembled board and are oscilloscope checks on the first unit in H8. Placement, routing, purchasing and fabrication remain unauthorized.
 
-[`H3-R2.2.3/.4`](power-transition-result.md) completed inrush, load-step, watchdog and fault-display review. [`H3-R2.3`](analog-electrical-verification.md), [`H3-R2.4`](digital-electrical-verification.md), [`H3-R2.5`](rf-electrical-verification.md), [`H3-R2.6`](thermal-fault-electrical-verification.md), H3-R2.7 and the H4-R2.0.1 input freeze are reviewed; **current marker: `H4-R2.2`.**
+[`H3-R2.2.3/.4`](power-transition-result.md) completed inrush, load-step, watchdog and fault-display review. [`H3-R2.3`](analog-electrical-verification.md), [`H3-R2.4`](digital-electrical-verification.md), [`H3-R2.5`](rf-electrical-verification.md), [`H3-R2.6`](thermal-fault-electrical-verification.md), H3-R2.7 and global H4-R2 are reviewed; **current marker: `H5.0.3-R1`.**
 
 [Complete machine result](../hardware/verification/generated/H3-R2-handover.json).

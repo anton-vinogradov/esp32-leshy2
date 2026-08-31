@@ -13,6 +13,8 @@ ROOT = Path(__file__).resolve().parents[2]
 SCRIPTS = (
     "hardware/verification/h4_r2_input_freeze.py",
     "hardware/verification/h4_r2_contract_reconciliation.py",
+    "hardware/verification/h4_r2_correction_closure.py",
+    "hardware/verification/h4_r2_acceptance.py",
 )
 
 

@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "artifact": "H4-R2-correction-closure",
+  "marker": "H4-R2.2",
+  "status": "reviewed",
+  "source_sha256": {
+    "hardware/verification/h4-r2-prelayout-plan.json": "bba399900a001d9a8cf277095652eb05a1d8f41a11b932c07012d86c2420b908",
+    "hardware/verification/generated/H4-R2-contract-reconciliation.json": "acabed7190267c22571e314e2b05ebaa69cc892acb032fa80640706a7b9cf2dc",
+    "hardware/verification/generated/H4-R2-joined-crosscheck.json": "89836ba2b022e150cc0710d0e564711c0d4263f9f2269e30b772c08932893a2e",
+    "hardware/verification/generated/H4-R2-input-freeze.json": "e3b5c2aef6c0d566382d3f5d91ac15ecbe385dbef70b5aab1a2ee61e147a0ef8",
+    "hardware/ecad/generated/H2-R2-hwfw-contract.json": "c1efe901f1ffdf90d6c7c4f67c76495f205fd762526972cd7355076d6000958a",
+    "hardware/verification/preorder-verification-contract.json": "09e45bce81585a107215354cd2335d0bae526578224b35780fd95ac69ea70600",
+    "../esp32-leshy2-firmware/config/h0_r2_hardware_contract.json": "7ae70ac38df41ab54c90ef61b967771f62d3579b2ea22ddd0e70688fc281f534",
+    "../esp32-leshy2-firmware/config/f2_r2_bsp_generation.json": "9961847a69ef18b92a0ee59b2c77cb8ebeeace61bc103741b712e499d3ceffd5",
+    "../esp32-leshy2-firmware/generated/r2/source_manifest.json": "c82b45958b15745ebddd5f1bb8ec5a92549ebae486052fd0a49714c31099e813",
+    "../esp32-leshy2-firmware/config/f2_r2_bsp_consumption.json": "1dcea19a80a84f7bbce957cf63622d893a4878738c0be68860d935034a1a661b",
+    "../esp32-leshy2-firmware/config/f2_r2_build_qualification.json": "1c1b2ff9f30ec9870d8b8d9589a392a21287d2aba38135286b38c3175f425a97",
+    "../esp32-leshy2-firmware/config/h3_r2_acceptance.json": "1718f2201cc0e5532a2e26caa4ae4553426811ddefe707a404919e30a0b6fa95",
+    "../esp32-leshy2-firmware/targets/s3/main/app_main.c": "65f0cf5a9be470e29e4bfa0096835c0b8c7e846447b987910b52fd25bfaa601a",
+    "../esp32-leshy2-firmware/targets/c5/main/app_main.c": "be4074c38c0ff3d9e788f880ed58b6ddf3fec36391913aed9e76a636ead99838",
+    "../esp32-leshy2-firmware/targets/rf_rp/main.c": "3ebd028594037f1ab483e588d3350fabc5d394af22095b5ca6053069010d5707",
+    "../esp32-leshy2-firmware/targets/hub_rp/main.c": "bcbd3110b5b1e6fb0d1c5352cb1d647654c746329f161d1cb2c2f39deb5791e6",
+    "../esp32-leshy2-firmware/targets/pack/main.c": "e206bff922a9a6c02c2e651b257929f205ca373ec249f9a7b508558cdc4cfb60",
+    "../esp32-leshy2-firmware/targets/safety/main.c": "bcdc1b8355dac7b0b637e15e4db32c3ebb8b60f7c033e5f6ec549f24b867edb2"
+  },
+  "summary": {
+    "domains": 6,
+    "h2_controller_rows": 173,
+    "generated_bsp_rows": 173,
+    "restored_rows": 38,
+    "exact_domains": 6,
+    "remaining_contradictions": 0,
+    "qualified_configurations": 12,
+    "verified_artifacts": 60,
+    "verified_maps": 16,
+    "passed_size_gates": 16,
+    "build_warnings": 0,
+    "retained_firmware_obligations": 1,
+    "physical_residuals_carried": 51,
+    "failed_checks": 0
+  },
+  "domain_coverage": [
+    {
+      "domain": "s3",
+      "h2_rows": 33,
+      "generated_rows": 33,
+      "mapping": "exact_pins",
+      "h2_pin_contract_sha256": "9e2c945064dba6b08f85d82b064ce553060eee211b816d4acde9ead8805ce400",
+      "generated_pin_contract_sha256": "9e2c945064dba6b08f85d82b064ce553060eee211b816d4acde9ead8805ce400",
+      "exact": true
+    },
+    {
+      "domain": "c5",
+      "h2_rows": 14,
+      "generated_rows": 14,
+      "mapping": "exact_pins",
+      "h2_pin_contract_sha256": "cea40de26bc594ba6f67ee5480ba85d6ec693c1a67ea16f05c637f5efd674659",
+      "generated_pin_contract_sha256": "cea40de26bc594ba6f67ee5480ba85d6ec693c1a67ea16f05c637f5efd674659",
+      "exact": true
+    },
+    {
+      "domain": "rf_rp",
+      "h2_rows": 48,
+      "generated_rows": 48,
+      "mapping": "exact_pins",
+      "h2_pin_contract_sha256": "66ebf31c4444d2a0f0cfe1364e3f0fb1fe2bf1cd59224119c09a2ac00c98e7cf",
+      "generated_pin_contract_sha256": "66ebf31c4444d2a0f0cfe1364e3f0fb1fe2bf1cd59224119c09a2ac00c98e7cf",
+      "exact": true
+    },
+    {
+      "domain": "hub_rp",
+      "h2_rows": 48,
+      "generated_rows": 48,
+      "mapping": "exact_pins",
+      "h2_pin_contract_sha256": "a001402c8451ae29a660e94734d79c993ba291ff38655381c5433e8658905079",
+      "generated_pin_contract_sha256": "a001402c8451ae29a660e94734d79c993ba291ff38655381c5433e8658905079",
+      "exact": true
+    },
+    {
+      "domain": "pack",
+      "h2_rows": 13,
+      "generated_rows": 13,
+      "mapping": "exact_pins",
+      "h2_pin_contract_sha256": "6ea44dc9b0546c06a8bba700a0250bf423a19630e7fc1ce045cf86a326a96de7",
+      "generated_pin_contract_sha256": "6ea44dc9b0546c06a8bba700a0250bf423a19630e7fc1ce045cf86a326a96de7",
+      "exact": true
+    },
+    {
+      "domain": "safety",
+      "h2_rows": 17,
+      "generated_rows": 17,
+      "mapping": "exact_pins",
+      "h2_pin_contract_sha256": "219d37cd966a0b08e6d45c1f6b98f4e233803d90450dd9998f6b403373e88925",
+      "generated_pin_contract_sha256": "219d37cd966a0b08e6d45c1f6b98f4e233803d90450dd9998f6b403373e88925",
+      "exact": true
+    }
+  ],
+  "target_fail_closed_guards": {
+    "s3": true,
+    "c5": true,
+    "rf_rp": true,
+    "hub_rp": true,
+    "pack": true,
+    "safety": true
+  },
+  "qualified_firmware_commit": "95718da4feab8a969b587d86e91f8e9c7cb7b03c",
+  "checks": {
+    "h4_plan_advances_after_reviewed_correction": true,
+    "diagnostic_snapshot_retains_original_gap": true,
+    "joined_snapshot_has_three_owned_corrections": true,
+    "joined_freeze_is_current": true,
+    "h2_and_firmware_projection_are_identical": true,
+    "all_six_generated_contracts_are_exact": true,
+    "generation_model_selects_complete_h2_maps": true,
+    "generation_source_hash_is_current": true,
+    "all_generated_files_match_manifest": true,
+    "one_generated_domain_is_consumed_per_target": true,
+    "all_targets_fail_closed_on_exact_map_and_count": true,
+    "qualification_build_commit_contains_corrected_bsp": true,
+    "all_twelve_target_builds_passed_after_correction": true,
+    "build_claim_stays_bounded": true,
+    "display_implementation_obligation_remains_open": true,
+    "no_purchase_layout_or_fabrication_authority": true
+  },
+  "retained_obligations": [
+    {
+      "owner": "F5/F6",
+      "obligation": "instantiate the locked ESP-IDF i80 config at exact 20 MHz, CS=-1, 8-bit bus and rising-edge panel capture; exercise TE, dirty-region and full-frame fixtures",
+      "handoff": "H4-R2 joined review and the owning firmware phase",
+      "status": "implementation_evidence_required"
+    }
+  ],
+  "authorization": {
+    "component_purchase": false,
+    "pcb_placement_and_routing": false,
+    "fabrication": false
+  },
+  "next": {
+    "marker": "H4-R2.3",
+    "action": "publish the joined R2 pre-layout gate and transfer exact residual ownership to H5/H6/H8"
+  }
+}

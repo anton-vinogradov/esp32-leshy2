@@ -53,7 +53,7 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def build() -> tuple[dict[Path, str], dict]:
+def _build_live_freeze() -> tuple[dict[Path, str], dict]:
     plan = load(PLAN)
     hw = {name: load(path) for name, path in HW_INPUTS.items()}
     fw = {name: load(path) for name, path in FW_INPUTS.items()}
@@ -64,16 +64,16 @@ def build() -> tuple[dict[Path, str], dict]:
         for name, row in h3_import_sources.items()
     }
     checks = {
-        "h4_plan_exposes_reviewed_input_freeze": plan["status"] == "current" and steps["H4-R2.0.1"] == "reviewed" and plan["current_substep"] == "H4-R2.2",
-        "hardware_roadmap_is_at_h4_r2_2": hw["roadmap"]["current_stage"] == "H4" and hw["roadmap"]["current_substep"] == "H4-R2.2",
+        "h4_plan_exposes_reviewed_input_freeze": plan["status"] == "current" and steps["H4-R2.0.1"] == "reviewed" and plan["current_substep"] == "H4-R2.3",
+        "hardware_roadmap_is_at_h4_r2_3": hw["roadmap"]["current_stage"] == "H4" and hw["roadmap"]["current_substep"] == "H4-R2.3",
         "h0_h1_and_h2_boundaries_pass": hw["h0_authority"]["status"] == "pass_current_r2_h2_reconciled" and hw["h1_physical"]["status"] == "pass" and all(hw[key]["status"] == "pass" for key in ("h2_kicad", "h2_hwfw", "h2_m1")),
         "h3_r2_is_reviewed_without_analytical_finding": hw["h3_acceptance"]["status"] == "reviewed" and hw["h3_acceptance"]["result"]["open_analytical_findings"] == 0,
         "all_51_physical_residuals_remain_open_and_owned": hw["h3_residuals"]["summary"]["physical_evidence_rows"] == 51 and hw["h3_residuals"]["summary"]["unassigned"] == 0 and all(row["status"] == "physical_evidence_required" for row in hw["h3_residuals"]["registry"]),
-        "firmware_roadmap_tracks_the_same_h4_marker": fw["roadmap"]["hardware_boundary"]["current_hardware_stage"] == "H4" and fw["roadmap"]["hardware_boundary"]["current_hardware_substep"] == "H4-R2.2",
+        "firmware_roadmap_tracks_the_same_h4_marker": fw["roadmap"]["hardware_boundary"]["current_hardware_stage"] == "H4" and fw["roadmap"]["hardware_boundary"]["current_hardware_substep"] == "H4-R2.3",
         "firmware_h2_gate_is_current_six_domain_r2": fw["h2_sync"]["status"] == "reviewed_six_domain_h2_export",
         "firmware_h3_acceptance_import_matches_hardware": all(imported_hash_checks.values()) and fw["h3_acceptance"]["hardware_marker"] == "H3-R2.7",
         "firmware_h3_import_keeps_the_i8080_obligation_open": len(fw["h3_acceptance"]["firmware_obligations"]) == 1 and fw["h3_acceptance"]["firmware_obligations"][0]["owner"] == "F5/F6" and not fw["h3_acceptance"]["claims"]["i8080_target_implementation_proven"],
-        "firmware_f2_r2_target_and_bsp_evidence_is_reviewed": fw["f2_targets"]["status"] == "reviewed_structure" and fw["f2_bsp"]["status"] == "reviewed_generated_boundary" and fw["f2_consumption"]["status"] == "reviewed",
+        "firmware_f2_r2_target_and_bsp_evidence_is_reviewed": fw["f2_targets"]["status"] == "reviewed_structure" and fw["f2_bsp"]["status"] == "reviewed_generated_h2_boundary" and fw["f2_consumption"]["status"] == "reviewed",
         "firmware_f2_r2_build_qualification_is_reviewed": fw["f2_builds"]["status"] == "reviewed_target_build_qualification",
         "all_twenty_four_join_inputs_exist": len(HW_INPUTS) + len(FW_INPUTS) == 24 and all(path.is_file() for path in (*HW_INPUTS.values(), *FW_INPUTS.values())),
         "no_order_layout_or_fabrication_authority": not any(plan["authorization"][key] for key in ("component_purchase", "pcb_placement_and_routing", "fabrication")) and hw["preorder"]["current_truth"]["order_authorized"] is False,
@@ -131,7 +131,7 @@ The freeze carries the reviewed H1-R2.37 mechanics, native H2-R2.1.5 ECAD, H3-R2
 
 It also carries all `51` still-open physical rows and the explicit F5/F6 i8080 implementation obligation. Nothing is silently treated as completed. Purchase, placement, routing and fabrication remain unauthorized.
 
-H4-R2.0.2/H4-R2.1 subsequently found one owned C5/Pack/Safety BSP-generation gap. **Current marker: `H4-R2.2`.**
+H4-R2.0.2/H4-R2.1 subsequently found one owned C5/Pack/Safety BSP-generation gap. H4-R2.2 closed all 38 missing rows and requalified every target build. **Current marker: `H4-R2.3`.**
 
 [Machine freeze](../hardware/verification/generated/H4-R2-input-freeze.json).
 """
@@ -145,11 +145,30 @@ H4-R2.0.2/H4-R2.1 subsequently found one owned C5/Pack/Safety BSP-generation gap
 
 Также перенесены все `51` ещё открытых physical-строк и явное обязательство F5/F6 по реализации i8080. Ничто молча не названо завершённым. Закупка, placement, routing и печать остаются запрещены.
 
-Затем H4-R2.0.2/H4-R2.1 нашли один назначенный пробел генерации BSP C5/Pack/Safety. **Текущий маркер: `H4-R2.2`.**
+Затем H4-R2.0.2/H4-R2.1 нашли один назначенный пробел генерации BSP C5/Pack/Safety. H4-R2.2 закрыл все 38 недостающих строк и повторно квалифицировал каждую target-сборку. **Текущий маркер: `H4-R2.3`.**
 
 [Машинная фиксация](../hardware/verification/generated/H4-R2-input-freeze.json).
 """
     return {OUTPUT: json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", DOC_EN: en, DOC_RU: ru}, manifest
+
+
+def build() -> tuple[dict[Path, str], dict]:
+    """Validate the immutable joined-input snapshot used by final H4 review."""
+
+    manifest = load(OUTPUT)
+    summary = manifest.get("summary", {})
+    if (
+        manifest.get("marker") != "H4-R2.0.1"
+        or manifest.get("status") != "reviewed"
+        or summary.get("total_inputs") != 24
+        or summary.get("cross_repository_h3_hash_mismatches") != 0
+        or summary.get("failed_checks") != 0
+        or not all(manifest.get("checks", {}).values())
+    ):
+        raise ValueError("invalid immutable H4-R2.0.1 input snapshot")
+    return {
+        OUTPUT: json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+    }, manifest
 
 
 def main() -> int:
