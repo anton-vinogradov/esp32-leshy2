@@ -10,7 +10,7 @@
 
 </div>
 
-> **Current hardware marker: `H3-R2.1.3`.** Inside H3-R2.1, the complete two-PCB `H1-R2.37`
+> **Current hardware marker: `H3-R2.1.4`.** Inside H3-R2.1, the complete two-PCB `H1-R2.37`
 > placement was accepted and reviewed on 30 August 2026: exact dual-RP GPIO/M1 map and C5 SDIO/service-mux,
 > the series-produced `ER-TFT035IPS-6` + `ER-TPC035-6` display, passive 40-to-50-contact
 > adapter, all 18 U219 support bodies, NFC pickup loop and the external volume
@@ -37,7 +37,7 @@
 > reviews exact provenance for all 242 R2 groups and 1,187 fitted positions.
 > [H3-R2.0.3](docs/verification-methods.md) freezes nine methods and twelve
 > pass/fail rules. [H3-R2.1.1](docs/power-state-register.md) reviewed all 2,266 legal R2 states;
-> [H3-R2.1.2](docs/power-load-binding.md) binds 612 fitted powered instances—596 direct and 16 indirect—plus six external loads without a hidden aggregate. Exact rail margins are current. Ordering remains blocked.
+> [H3-R2.1.2](docs/power-load-binding.md) binds 612 fitted powered instances—596 direct and 16 indirect—plus six external loads without a hidden aggregate. [H3-R2.1.3](docs/power-rail-margins.md) reviews 224 profiles across all four rails: every voltage, protection and steady-thermal check passes, with 30.560% minimum current reserve and 24.706 °C minimum junction-temperature reserve. Source and charge margins are current. Ordering remains blocked.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
 > controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad
@@ -123,7 +123,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
 | H1 · Physical product design | ✅ Reviewed · `H1-R2.37` | [Bilingual phase result](docs/h1-r2-acceptance.md) · [placement](docs/h1-r2-physical-layout.md) |
 | H2 · Production ECAD schematic | ✅ Reviewed · `H2-R2.1.5` | [Bilingual phase result](docs/h2-acceptance.md) · [native KiCad result](docs/h2-r2-native-kicad.md) |
-| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.1.3`** | [Input freeze](docs/h3-r2-input-freeze.md) · [parameter/model register](docs/parameter-model-register.md) · [verification methods](docs/verification-methods.md) · [power states](docs/power-state-register.md) · [load binding](docs/power-load-binding.md) · [stage page](docs/stage-results.md#h3) |
+| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.1.4`** | [Input freeze](docs/h3-r2-input-freeze.md) · [parameter/model register](docs/parameter-model-register.md) · [verification methods](docs/verification-methods.md) · [power states](docs/power-state-register.md) · [load binding](docs/power-load-binding.md) · [rail margins](docs/power-rail-margins.md) · [stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ⏳ Waiting for R2 H3 and firmware contract | [Stage page](docs/stage-results.md#h4) |
 | H5 · Component and factory evidence | ⏳ Waiting for R2 H4 | [Stage page](docs/stage-results.md#h5) |
 | H6 · KiCad placement, routing and release candidate | 🔒 Waiting for R2 H5 | [Stage page](docs/stage-results.md#h6) |
@@ -163,14 +163,15 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ `H3-R2.0.3`: [nine reproducible methods and twelve pass/fail rules](docs/verification-methods.md) cover all seven workstreams and all 242 groups.
 - ✅ `H3-R2.1.1`: [all 2,266 legal R2 source, charge, fault and operating states are enumerated](docs/power-state-register.md), including U214/U219, Airband and all three-nRF mixes.
 - ✅ `H3-R2.1.2`: [612 fitted powered instances—596 direct and 16 indirect—plus six external loads are bound explicitly](docs/power-load-binding.md); all 17 reviewed H2 power nets are covered, with no duplicate, unbound or miscellaneous line.
-- ▶ **Exact current point `H3-R2.1.3`:** calculate rail voltage/current, protection and steady thermal margins from those explicit lines.
+- ✅ `H3-R2.1.3`: [224 rail profiles across four rails pass voltage, protection and steady-thermal review](docs/power-rail-margins.md); all 618 fitted/external loads have one current owner or explicit source/pack deferral, minimum current reserve is 30.560% and minimum junction-temperature reserve is 24.706 °C.
+- ▶ **Exact current point `H3-R2.1.4`:** evaluate USB, pack, charge, supplement and source-admission margins.
 - 🔒 PCB placement, routing, prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H3-R2.1.3 -->
+<!-- current-substep: H3-R2.1.4 -->
 
 ## Repository
 

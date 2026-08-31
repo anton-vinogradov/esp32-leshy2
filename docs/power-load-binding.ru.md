@@ -21,6 +21,6 @@
 
 Это ревью полноты учёта, не численный DC-pass. Для каждой строки без применимого exact maximum `H3-R2.1.3` обязан извлечь параметр из закреплённого manufacturer source либо вернуть `unresolved_fail`. Child rails RP/codec/pack отмечены отдельно и не могут считаться второй раз поверх полного device total.
 
-**Точный текущий маркер:** `H3-R2.1.3` — worst-case rail voltage/current/protection/steady-thermal margins.
+**Downstream-результат:** [`H3-R2.1.3`](power-rail-margins.ru.md) провёл worst-case ревью напряжения/тока шин, защит и установившегося нагрева; текущий маркер — `H3-R2.1.4`.
 
 [Полный машинный реестр строк](../hardware/verification/generated/H3-R2-load-binding.json).

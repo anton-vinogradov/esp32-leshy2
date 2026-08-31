@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "artifact": "H3-R2-rail-margin-contract",
+  "marker": "H3-R2.1.3",
+  "policy": {
+    "steady_current_reserve_minimum_percent": 25,
+    "raw_regulated_voltage_minimum_fraction_of_nominal": 0.95,
+    "junction_margin_below_maximum_c": 20,
+    "ambient_design_c": 35,
+    "electrical_worst_is_not_a_sustained_profile": true,
+    "hidden_miscellaneous_allowance": "forbidden",
+    "functional_envelope_rule": "every physical member is named by the H3-R2.1.2 instance UID; a branch envelope may own several parts only when the generated ownership list is complete"
+  },
+  "rails": {
+    "AON_SAFE_3V3": {
+      "nominal_v": 3.3,
+      "raw_average_min_v": 3.234,
+      "raw_average_max_v": 3.366,
+      "ripple_pp_v": 0.020,
+      "distribution_drop_v": 0.025,
+      "load_min_v": 2.7,
+      "load_max_v": 3.6,
+      "converter_min_a": 0.300,
+      "protection_min_a": 0.165,
+      "efuse_ron_max_ohm": 0.240,
+      "efuse_theta_ja_k_per_w": 74.1,
+      "converter_theta_ja_k_per_w": 60.0,
+      "source": "https://www.ti.com/lit/ds/symlink/tps629203.pdf"
+    },
+    "3V3_MAIN": {
+      "nominal_v": 3.222,
+      "raw_average_min_v": 3.168510,
+      "raw_average_max_v": 3.275658,
+      "ripple_pp_v": 0.020,
+      "distribution_drop_v": 0.050,
+      "load_min_v": 3.0,
+      "load_max_v": 3.3,
+      "converter_min_a": 4.000,
+      "protection_min_a": 4.3399,
+      "efuse_ron_max_ohm": 0.050,
+      "efuse_theta_ja_k_per_w": 71.8,
+      "converter_theta_ja_k_per_w": 74.0,
+      "source": "https://www.ti.com/lit/ds/symlink/tps564252.pdf"
+    },
+    "VVOICE_4V": {
+      "nominal_v": 4.0,
+      "raw_average_min_v": 3.873683,
+      "raw_average_max_v": 4.129717,
+      "ripple_pp_v": 0.040,
+      "distribution_drop_v": 0.060,
+      "load_min_v": 3.3,
+      "load_max_v": 5.5,
+      "converter_min_a": 4.000,
+      "protection_min_a": 1.550,
+      "efuse_ron_max_ohm": 0.050,
+      "efuse_theta_ja_k_per_w": 71.8,
+      "converter_theta_ja_k_per_w": 74.0,
+      "source": "https://www.ti.com/lit/ds/symlink/tps564252.pdf"
+    },
+    "5V_EXT_ACTIVE_BRANCH": {
+      "nominal_v": 5.0,
+      "raw_average_min_v": 4.839178,
+      "raw_average_max_v": 5.165222,
+      "ripple_pp_v": 0.050,
+      "distribution_drop_v": 0.120,
+      "load_min_v": 4.5,
+      "load_max_v": 5.5,
+      "converter_min_a": 4.000,
+      "protection_min_a": 1.632,
+      "efuse_ron_max_ohm": 0.060,
+      "efuse_theta_ja_k_per_w": 74.5,
+      "converter_theta_ja_k_per_w": 74.0,
+      "electrical_load_a": 1.250,
+      "sustained_thermal_admission_a": 1.000,
+      "source": "https://www.ti.com/lit/ds/symlink/tps25947.pdf"
+    }
+  },
+  "branch_currents_ma": {
+    "aon_common": {
+      "steady_worst": 55.0,
+      "basis": "6.0 TPS25751 + 5.8 two MSPM0 + 1.4 two LTC5532 + 15.0 ten indicators + 24.9735 exact-package logic/analog/supervisor maxima + 1.8265 named bias and pull branches",
+      "source": "official exact-MPN datasheets bound by H3-R2.0.2"
+    },
+    "aon_detector_one": {"steady_worst": 5.7, "basis": "AD8314 maximum active current per enabled detector", "source": "https://www.analog.com/media/en/technical-documentation/data-sheets/ad8314.pdf"},
+    "s3_idle": {"steady_worst": 100.0, "basis": "admitted compute/UI idle envelope", "source": "https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_en.pdf"},
+    "s3_peak": {"steady_worst": 340.0, "basis": "published 802.11b 1-Mbit/s 21-dBm peak", "source": "https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_en.pdf"},
+    "c5_idle": {"steady_worst": 65.0, "basis": "admitted compute/no-active-RF envelope", "source": "https://documentation.espressif.com/esp32-c5_datasheet_en.html"},
+    "c5_peak": {"steady_worst": 408.0, "basis": "published 5-GHz 802.11a 6-Mbit/s 18-dBm peak", "source": "https://documentation.espressif.com/esp32-c5_datasheet_en.html"},
+    "hub_rp_idle": {"steady_worst": 50.0, "basis": "admitted idle PIO/flash envelope", "source": "https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf"},
+    "hub_rp_peak": {"steady_worst": 250.0, "basis": "200-mA internal regulator maximum plus 50-mA I/O/flash admission", "source": "https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf"},
+    "rf_rp_idle": {"steady_worst": 50.0, "basis": "admitted idle PIO/flash envelope", "source": "https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf"},
+    "rf_rp_peak": {"steady_worst": 250.0, "basis": "200-mA internal regulator maximum plus 50-mA I/O/flash admission", "source": "https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf"},
+    "display_idle": {"steady_worst": 80.0, "basis": "display/touch logic and dim backlight admission", "source": "https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf"},
+    "display_peak": {"steady_worst": 200.0, "basis": "80-mA display/touch admission plus exact 120-mA backlight maximum", "source": "https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf"},
+    "storage_idle": {"steady_worst": 0.0, "basis": "qualified medium unpowered or idle outside storage operation", "source": "product admission"},
+    "storage_peak": {"steady_worst": 500.0, "basis": "qualified removable-medium admission ceiling", "source": "https://www.hirose.com/product/series/DM3"},
+    "audio_idle": {"steady_worst": 10.0, "basis": "codec and selectors idle admission", "source": "exact ES8311 and PAM8302A sources"},
+    "audio_peak": {"steady_worst": 625.0, "basis": "codec/selectors plus worst admitted 4-ohm speaker playback", "source": "https://www.diodes.com/datasheet/download/PAM8302A.pdf"},
+    "main_common_idle": {"steady_worst": 35.0, "basis": "complete generated member list; idle control, mux, expander and pull-network admission", "source": "H3-R2.1.2 instance ownership"},
+    "main_common_peak": {"steady_worst": 75.0, "basis": "complete generated member list; active control, mux, expander and simultaneously asserted user-input pull networks", "source": "H3-R2.1.2 instance ownership"},
+    "nrf24_group": {"steady_worst": 398.0, "basis": "three E01-ML01SP4 at 130 mA plus eight-mA exact interface/switch envelope", "source": "https://www.ebyte.com/product/49.html"},
+    "cc1101_group": {"steady_worst": 40.0, "basis": "CC1101 maximum selected TX table plus both BGS13SN8 and local controls", "source": "https://www.ti.com/lit/ds/symlink/cc1101.pdf"},
+    "voice_main_aux": {"steady_worst": 20.0, "basis": "3.3-V selectors, logic and audio-feed admission; PA current is on VVOICE", "source": "exact member datasheets"},
+    "ir_group": {"steady_worst": 60.0, "basis": "50.6-mA corrected hot emitter corner plus both receivers and control logic", "source": "https://www.vishay.com/docs/84221/vsmy14940.pdf"},
+    "broadcast_receiver": {"steady_worst": 35.0, "basis": "Si4732 receiver and switched-route admission", "source": "https://www.skyworksinc.com/-/media/SkyWorks/SL/documents/public/data-sheets/Si4732-A10.pdf"},
+    "airband_chain": {"steady_worst": 185.0, "basis": "receiver + 60.4-mA Si5351 maximum + 12-mA LT5560 maximum + 70-mA PGA-103 design admission + switches/bias", "source": "official exact-part sources"},
+    "voice_pa": {"steady_worst": 750.0, "basis": "one-hot selected SA818S-U or SA818S-V high-power TX maximum", "source": "https://www.nicerf.com/upload/20260430/391f11abcc1d835ac5ed151613fdae68.pdf"},
+    "external_port_electrical": {"steady_worst": 1250.0, "basis": "electrical port admission; U214 and M5 Unit paths are mutually exclusive", "source": "product interface contract"},
+    "external_port_sustained": {"steady_worst": 1000.0, "basis": "35-C ambient thermal admission; 1.25 A remains an electrical/transient ceiling", "source": "PF-R2-07 analytical thermal boundary"}
+  },
+  "profile_rules": {
+    "support_idle": ["s3_idle", "c5_idle", "hub_rp_idle", "rf_rp_idle", "display_idle", "storage_idle", "audio_idle", "main_common_idle"],
+    "support_worst": ["s3_peak", "c5_peak", "hub_rp_peak", "rf_rp_peak", "display_peak", "storage_peak", "audio_peak", "main_common_peak"],
+    "idle_active_owner_uplift_ma": {
+      "S3_RF": 240.0,
+      "C5_RF": 343.0,
+      "NRF24": 200.0,
+      "CC1101": 200.0,
+      "VOICE": 200.0,
+      "IR": 200.0,
+      "BROADCAST_RX": 200.0
+    },
+    "signal_group_branch": {
+      "NONE": null,
+      "S3_RF": null,
+      "C5_RF": null,
+      "NRF24": "nrf24_group",
+      "CC1101": "cc1101_group",
+      "VOICE": "voice_main_aux",
+      "IR": "ir_group",
+      "LORA_CAP": "voice_main_aux",
+      "M5_UNIT": "voice_main_aux",
+      "BROADCAST_RX": "airband_chain"
+    },
+    "aon_enabled_detector_count": {"NONE": 0, "S3_RF": 1, "C5_RF": 1, "NRF24": 3, "CC1101": 1, "VOICE": 0, "IR": 0, "LORA_CAP": 0, "M5_UNIT": 0, "BROADCAST_RX": 0}
+  },
+  "thermal": {
+    "minimum_efficiency": 0.85,
+    "sustained_profile": "SUPPORT_IDLE",
+    "main_converter_evm_theta_ja_k_per_w": 74.0,
+    "reason": "SUPPORT_WORST is an electrical anti-hidden-load simultaneous corner, not a 24-to-48-hour operating permission"
+  }
+}

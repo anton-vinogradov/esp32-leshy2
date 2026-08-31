@@ -21,6 +21,6 @@
 
 This reviews accounting completeness, not numeric DC margin. For every line without an applicable exact maximum, `H3-R2.1.3` must extract the parameter from its bound manufacturer source or return `unresolved_fail`. RP/codec/pack child rails are explicit and cannot be counted again on top of the owning device total.
 
-**Exact current marker:** `H3-R2.1.3` — worst-case rail voltage/current/protection/steady-thermal margins.
+**Downstream result:** [`H3-R2.1.3`](power-rail-margins.md) completed worst-case rail voltage/current, protection and steady-thermal review; the current marker is `H3-R2.1.4`.
 
 [Complete machine line register](../hardware/verification/generated/H3-R2-load-binding.json).
