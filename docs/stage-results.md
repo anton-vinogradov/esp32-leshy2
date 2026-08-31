@@ -154,8 +154,10 @@ keeps every non-paper result explicitly open and owned by H5/H6/H8.
 <a id="h4"></a>
 ## H4 · Joined pre-layout gate
 
-**Status:** ▶️ current at **`H4-R2.0.1`** — freeze the exact current mechanics,
-ECAD, H3 and firmware-R2 join inputs and hashes.
+**Status:** ▶️ current at **`H4-R2.0.2`**. [`H4-R2.0.1`](h4-r2-input-freeze.md)
+reviewed 24 exact current mechanics, ECAD, H3 and firmware-R2 join inputs with
+all three cross-repository H3 hashes matching. Current work reconciles every
+hardware-visible firmware contract and the retained F5/F6 i8080 obligation.
 
 Expected result: one current mechanics/ECAD/electrical/firmware review with no
 virtual blocker and an owned downstream test for every physical residual.

@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "artifact": "H4-R2-input-freeze",
+  "marker": "H4-R2.0.1",
+  "status": "reviewed",
+  "source_sha256": {
+    "hardware/verification/h4-r2-prelayout-plan.json": "a9ad09d51c5aa1f45319b96ad7f7fac710a1c02cd5385beafade89eaad901eb2",
+    "hardware/roadmap": "f5c539ef17f53ceb8d41a496af997cfad988aae863f28be9de27476d9ca10420",
+    "hardware/h0_authority": "d99ee3216e7091262e9c3a2784682fd78ef8ec286e650dab9422c829c2fd5e55",
+    "hardware/h1_physical": "f9fa1491e95f2fcef91089c4cd4676e34faf8ba8cb584182eebc4b719c28da0d",
+    "hardware/h2_kicad": "69aefceff339dd39916640b4d72bce2b2e217827997922b338aa21c8bf3c76a9",
+    "hardware/h2_hwfw": "c1efe901f1ffdf90d6c7c4f67c76495f205fd762526972cd7355076d6000958a",
+    "hardware/h2_m1": "127965ec1e68cbf8c57d028fd067c56a724a3259248bab4ba5c86c8f9307b6fd",
+    "hardware/h3_acceptance": "157622f6009c0bdfeba0c898b4794453137a65501f79febd2581d14b076fffd6",
+    "hardware/h3_crosscheck": "eb782126ac82e3009816991435f520a1c12bb09c514629126a44ae3cb502a18e",
+    "hardware/h3_residuals": "e6b9894a7fdc675d881ad45cc43be7f5d183a33fffce6bdade07aace4e78c53c",
+    "hardware/preorder": "48bdab32f9ae8056f0ec6936d1066076c9f23c359a15e7b07fe765b9748ecb99",
+    "firmware/roadmap": "458f1ab4d414651034eb35fb7975d2cb2c94cd8242b01cf478ec002b9ba3bdee",
+    "firmware/h0_contract": "7ae70ac38df41ab54c90ef61b967771f62d3579b2ea22ddd0e70688fc281f534",
+    "firmware/h2_sync": "220b69b543c0d588a781e740a91d8e4b57ef190d65ce0c52813323f8a2fdb61d",
+    "firmware/h3_transition": "c08f6ff87caa25c5442f9c4cdd856e3aa4f38d5badbbd03ff13ff5b2f9382b62",
+    "firmware/h3_handover": "c41420f9d55d4f4de56853edcb7808516051395b145ea19922e41df24eb41362",
+    "firmware/h3_inrush_watchdog": "93d705c5fddd7bd0aeee5dcb6d9c59755fe4407fb8c932fae09f621df5dcd5bd",
+    "firmware/h3_digital": "0a3e0b6838dd92a5c5a1658ec22e71eddb2d096541ed926f6af2189e755476c0",
+    "firmware/h3_rf": "5470ebcff8429e621c0899c0601659351157e1ced68676b3f338fb21b756c3d0",
+    "firmware/h3_thermal": "c857d3618c7bc81518e08677deb61446a43ce0a8c18105df7dcf57c07e53fea4",
+    "firmware/h3_acceptance": "390a6e74bf70d46676e8be0009bb3cf5995b5d2931738755b274fc0d595d6601",
+    "firmware/f2_targets": "3210bbd39c013d639f3925a3b1e144265004cdd4a29a3813895ec6ca47e420d3",
+    "firmware/f2_bsp": "85dae101e1f315b0cf22a01cfef3f3e7ee810292b5b611885f2315f1e1cfa3e3",
+    "firmware/f2_consumption": "1dcea19a80a84f7bbce957cf63622d893a4878738c0be68860d935034a1a661b",
+    "firmware/f2_builds": "d89dd9da0d22612ca400c6f28f572505d6358ceffc308fb717aa6d93d7bf2631"
+  },
+  "input_groups": {
+    "mechanics": [
+      "hardware/h0_authority",
+      "hardware/h1_physical"
+    ],
+    "ecad": [
+      "hardware/h2_kicad",
+      "hardware/h2_hwfw",
+      "hardware/h2_m1"
+    ],
+    "electrical": [
+      "hardware/h3_acceptance",
+      "hardware/h3_crosscheck",
+      "hardware/h3_residuals"
+    ],
+    "firmware_boundary": [
+      "firmware/roadmap",
+      "firmware/h0_contract",
+      "firmware/h2_sync",
+      "firmware/h3_transition",
+      "firmware/h3_handover",
+      "firmware/h3_inrush_watchdog",
+      "firmware/h3_digital",
+      "firmware/h3_rf",
+      "firmware/h3_thermal",
+      "firmware/h3_acceptance",
+      "firmware/f2_targets",
+      "firmware/f2_bsp",
+      "firmware/f2_consumption",
+      "firmware/f2_builds"
+    ],
+    "release_safety": [
+      "hardware/preorder",
+      "hardware/roadmap"
+    ]
+  },
+  "summary": {
+    "hardware_inputs": 10,
+    "firmware_inputs": 14,
+    "total_inputs": 24,
+    "cross_repository_h3_hashes_checked": 3,
+    "cross_repository_h3_hash_mismatches": 0,
+    "physical_residuals_carried": 51,
+    "firmware_obligations_carried": 1,
+    "checks": 13,
+    "failed_checks": 0
+  },
+  "checks": {
+    "h4_plan_exposes_reviewed_input_freeze": true,
+    "hardware_roadmap_is_at_h4_r2_0_2": true,
+    "h0_h1_and_h2_boundaries_pass": true,
+    "h3_r2_is_reviewed_without_analytical_finding": true,
+    "all_51_physical_residuals_remain_open_and_owned": true,
+    "firmware_roadmap_tracks_the_same_h4_marker": true,
+    "firmware_h2_gate_is_current_six_domain_r2": true,
+    "firmware_h3_acceptance_import_matches_hardware": true,
+    "firmware_h3_import_keeps_the_i8080_obligation_open": true,
+    "firmware_f2_r2_target_and_bsp_evidence_is_reviewed": true,
+    "firmware_f2_r2_build_qualification_is_reviewed": true,
+    "all_twenty_four_join_inputs_exist": true,
+    "no_order_layout_or_fabrication_authority": true
+  },
+  "boundary": {
+    "firmware_phase": "F2",
+    "firmware_current_substep": "F2-R2.5",
+    "historical_r1_execution_evidence": "regression-only; not current dual-RP proof",
+    "physical_evidence": "still open under H5/H6/H8; not consumed by the H4 input freeze"
+  },
+  "authorization": {
+    "joined_read_only_review": true,
+    "component_purchase": false,
+    "pcb_placement_and_routing": false,
+    "fabrication": false
+  },
+  "errors": [],
+  "next": {
+    "marker": "H4-R2.0.2",
+    "action": "reconcile every hardware-visible firmware contract and retained implementation obligation"
+  }
+}

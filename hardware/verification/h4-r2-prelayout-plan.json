@@ -3,7 +3,7 @@
   "stage": "H4",
   "baseline": "R2",
   "status": "current",
-  "current_substep": "H4-R2.0.1",
+  "current_substep": "H4-R2.0.2",
   "accepted_inputs": {
     "mechanics": "H1-R2.37",
     "ecad": "H2-R2.1.5",
@@ -20,12 +20,12 @@
     {
       "id": "H4-R2.0.1",
       "title": "Freeze exact current mechanics, ECAD, H3 and firmware-R2 join inputs and hashes",
-      "status": "current"
+      "status": "reviewed"
     },
     {
       "id": "H4-R2.0.2",
       "title": "Reconcile every hardware-visible firmware contract and retained implementation obligation",
-      "status": "waiting"
+      "status": "current"
     },
     {
       "id": "H4-R2.1",
