@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "artifact": "H3-R2-source-margin-contract",
+  "marker": "H3-R2.1.4",
+  "policy": {
+    "minimum_source_to_sys_efficiency": 0.85,
+    "minimum_charge_efficiency": 0.85,
+    "minimum_rail_conversion_efficiency": 0.85,
+    "steady_current_reserve_minimum_percent": 25,
+    "pack_continuous_current_a": 10.0,
+    "pack_pf03_admission_a": 8.0,
+    "charge_current_ceiling_a": 2.0,
+    "sustained_external_5v_admission_a": 1.0,
+    "unknown_fallback_rule": "zero numeric USB contribution until advertised current and DPM headroom are measured; healthy pack carries RUN, otherwise only AON diagnostics",
+    "load_priority_rule": "system load first, charge second; charge is reduced to zero before an admitted system load is reduced",
+    "hidden_miscellaneous_allowance": "forbidden"
+  },
+  "usb_profiles": {
+    "USB_ABSENT": {"voltage_v": 0, "current_limit_a": 0},
+    "USB_5V_FALLBACK": {"voltage_v": 5, "current_limit_a": null},
+    "USB_5V_3A": {"voltage_v": 5, "current_limit_a": 3},
+    "USB_9V_3A": {"voltage_v": 9, "current_limit_a": 3},
+    "USB_15V_2A": {"voltage_v": 15, "current_limit_a": 2}
+  },
+  "pack_profiles": {
+    "PACK_ABSENT": {"voltage_v": null, "healthy": false},
+    "PACK_ISOLATED": {"voltage_v": null, "healthy": false},
+    "PACK_2S_LOW": {"voltage_v": 6.0, "healthy": true},
+    "PACK_2S_NOMINAL": {"voltage_v": 7.2, "healthy": true},
+    "PACK_2S_FULL": {"voltage_v": 8.4, "healthy": true}
+  },
+  "charge_request_a": {
+    "POWERLESS": 0,
+    "PACK_DISCHARGE": 0,
+    "USB_LIMITED_NO_CHARGE": 0,
+    "CHARGE_INHIBITED_UNTIL_DPM_HEADROOM": 0,
+    "PACK_SUPPLEMENT_IF_REQUIRED": 0,
+    "USB_SYSTEM_SUPPLY_NO_CHARGE": 0,
+    "CHARGE_DISABLED": 0,
+    "CHARGE_INITIAL_1A": 1,
+    "CHARGE_MAX_2A_IF_HEADROOM": 2,
+    "CHARGE_TERMINATED": 0,
+    "RECHARGE_IF_THRESHOLD_REACHED": 1
+  },
+  "fixed_overhead_branches_w": {
+    "usb_support": {"active_w": 0.050, "when": "USB present", "basis": "CAT24C512 active envelope, TPD4S201/TVS leakage, pull networks and complete SOURCE_OVERHEAD USB member list", "source": "exact H3-R2.0.2 manufacturer sources"},
+    "nvdc_control": {"active_w": 0.080, "when": "any AON-capable source", "basis": "BQ25798 control and bias envelope, including its complete bound member list", "source": "https://www.ti.com/lit/ds/symlink/bq25798.pdf"},
+    "rail_converter_iq": {"active_w": 0.015, "when": "any payload rail enabled", "basis": "three TPS564252 100-uA-class quiescent paths plus AON-converter bias allowance", "source": "https://www.ti.com/lit/ds/symlink/tps564252.pdf"},
+    "pack_control": {"active_w": 0.080, "when": "healthy pack present", "basis": "MAX17320, pack-admission MSPM0, timer/logic and complete PACK control member list", "source": "https://www.analog.com/media/en/technical-documentation/data-sheets/max17320.pdf"},
+    "passive_leakage": {"active_w": 0.025, "when": "any AON-capable source", "basis": "all source/pack divider, pull, capacitor-leakage and protection-leakage members", "source": "exact H3-R2.0.2 manufacturer sources"}
+  },
+  "path_corners": {
+    "usb_path_resistance_ohm": 0.100,
+    "usb_minimum_charger_input_v": 3.5,
+    "pack_external_series_resistance_ohm": 0.120,
+    "cell_pair_internal_resistance_ohm": 0.080,
+    "pack_minimum_protected_input_v": 5.4,
+    "basis": "conservative connector/switch/copper/fuse/FET/shunt and two-cell initial-resistance envelopes; routed extraction remains H6"
+  },
+  "ownership_rules": {
+    "SOURCE_OVERHEAD": {
+      "ti_tps564252_drlr": "rail_converter_iq",
+      "onsemi_cat24c512wi_gt3": "usb_support",
+      "ti_tvs2200_drvr": "usb_support",
+      "ti_tpd4s201_rukr": "usb_support",
+      "jae_dx07s016ja1r1500": "usb_support",
+      "default": "passive_leakage"
+    },
+    "PACK_DIRECT": {
+      "ti_bq25798_rqmr": "nvdc_control",
+      "adi_max17320_g20_t": "pack_control",
+      "ti_mspm0c1106_sdgs20r": "pack_control",
+      "ti_tpul2g223_bqbr": "pack_control",
+      "onsemi_bav70lt1g": "pack_control",
+      "ti_csd87313dms": "pack_series_path",
+      "littelfuse_0451005_mrl": "pack_series_path",
+      "keystone_1048p": "pack_series_path",
+      "default": "passive_leakage"
+    },
+    "EXTERNAL:EXT-CELLS": "pack_source"
+  },
+  "sources": [
+    "https://www.ti.com/lit/ds/symlink/tps25751.pdf",
+    "https://www.ti.com/lit/ds/symlink/bq25798.pdf",
+    "https://www.ti.com/lit/ds/symlink/tps564252.pdf",
+    "https://www.analog.com/media/en/technical-documentation/data-sheets/max17320.pdf"
+  ]
+}

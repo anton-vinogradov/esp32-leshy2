@@ -3,7 +3,7 @@
 [На главную](../README.ru.md) · [English](roadmap.md) ·
 [Роадмап прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md)
 
-> **▶ Текущая аппаратная граница: `H3-R2.1.4`.** Внутри H3-R2.1 H0, H1 и [H2-R2.1.5](h2-acceptance.ru.md) прошли ревью. [H3-R2.0.1](h3-r2-input-freeze.ru.md) фиксирует 14 входов, [H3-R2.0.2](parameter-model-register.ru.md) связывает 242 группы, [H3-R2.0.3](verification-methods.ru.md) фиксирует методы/rules, [H3-R2.1.1](power-state-register.ru.md) проводит ревью 2 266 разрешённых состояний, [H3-R2.1.2](power-load-binding.ru.md) связывает все нагрузки, а [H3-R2.1.3](power-rail-margins.ru.md) проводит ревью 224 проходящих профилей всех четырёх шин. Сейчас считаются запасы USB, аккумуляторов, заряда, supplement и допуска источников.
+> **▶ Текущая аппаратная граница: `H3-R2.1.5`.** Внутри H3-R2.1 H0, H1 и [H2-R2.1.5](h2-acceptance.ru.md) прошли ревью. [H3-R2.0.1](h3-r2-input-freeze.ru.md)…[H3-R2.1.3](power-rail-margins.ru.md) фиксируют входы и проводят ревью каждой нагрузки и шины. [H3-R2.1.4](power-source-margins.ru.md) проводит ревью всех 75 source/pack-строк и 2 266 разрешённых состояний без небезопасного допуска. Сейчас идут cross-check и публикация H3-R2.1.
 > KiCad routing R2, quote, reservation и заказ не разрешены.
 
 Статус сверен: **31 августа 2026 года**.
@@ -32,10 +32,10 @@
 
 ## Проведённое ревью H1 · точный состав
 
-<!-- current-substep: H3-R2.1.4 -->
+<!-- current-substep: H3-R2.1.5 -->
 
 **Маркер ревью: `H1-R2.37`.** Пакет компоновки принят 2026-08-30. Текущий
-аппаратный маркер — `H3-R2.1.4`.
+аппаратный маркер — `H3-R2.1.5`.
 
 ### 1. Размещение функциональных островов
 
@@ -192,7 +192,7 @@
 | H0 · Требования и функциональная архитектура | ✅ [R2 проведено ревью](h0-r2-functional-architecture.ru.md) | Функции продукта, владельцы, transport, safety и рабочие pin-бюджеты | У каждой функции один владелец; все рабочие бюджеты сходятся |
 | H1 · Физический дизайн продукта | ✅ [Проведено ревью · `H1-R2.37`](h1-r2-acceptance.ru.md) | Внешний вид, отдельные внутренние стороны, разрезы, точные корпуса, RF-локальность, сервис и power-envelope | Нет коллизий bodies/fasteners/silkscreen/antennas/accessories/opposing sides; точный MPN или контролируемый reserve; мокап принят |
 | H2 · Production ECAD-схема | ✅ [Проведено ревью · `H2-R2.1.5`](h2-acceptance.ru.md) | Точные R2 symbols, contacts, nets, values, protection и footprints | Native KiCad, ERC без замечаний и сверка sheets/HW↔FW проходят |
-| **H3 · Виртуальная электрическая проверка** | **▶ Сейчас · `H3-R2.1.4`** | Полная симуляция power, digital, RF, audio, timing, thermal и faults | Все разрешённые состояния и переходы проходят до печати |
+| **H3 · Виртуальная электрическая проверка** | **▶ Сейчас · `H3-R2.1.5`** | Полная симуляция power, digital, RF, audio, timing, thermal и faults | Все разрешённые состояния и переходы проходят до печати |
 | H4 · Объединённый pre-layout gate | ⏳ Ожидает H3 и firmware R2 evidence | Одно текущее mechanics/ECAD/electrical/firmware review | Нет виртуального blocker; каждой физической неопределённости назначен тест |
 | H5 · Компоненты и фабричные evidence | ⏳ Ожидает H4 | Точная актуальная фабричная карта и контролируемые external routes | У каждой BOM-строки есть текущий фабричный маршрут без молчаливой замены |
 | H6 · KiCad placement, routing и release candidate | 🔒 Ожидает H5 | Две разведённые платы, routed re-analysis и hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs и независимый DFM/CPL review проходят |
@@ -224,7 +224,8 @@
    - ✅ [`H3-R2.1.1`](power-state-register.ru.md): перечислить все 2 266 разрешённых состояния.
    - ✅ [`H3-R2.1.2`](power-load-binding.ru.md): связать все 612 устанавливаемых питаемых экземпляров — 596 прямых и 16 косвенных — и шесть внешних нагрузок без скрытого aggregate.
    - ✅ [`H3-R2.1.3`](power-rail-margins.ru.md): провести ревью 224 профилей шин; все четыре шины проходят проверки напряжения, защиты и установившегося нагрева с минимальным запасом тока 30,560% и температуры кристалла 24,706 °C.
-   - ▶ `H3-R2.1.4`: проверить запасы USB, аккумуляторов, заряда, supplement и допуска источников.
+   - ✅ [`H3-R2.1.4`](power-source-margins.ru.md): назначить владельца всем 75 source/pack-строкам и безопасно допустить все 2 266 состояний; максимальный ток pack — 3,516 А против границы 8 А, заряд всегда уступает системной нагрузке.
+   - ▶ `H3-R2.1.5`: выполнить cross-check и опубликовать результат H3-R2.1.
 
-Следующее действие — проверка source и charge margins. Placement, routing,
+Следующее действие — cross-check H3-R2.1. Placement, routing,
 quote и любой заказ остаются заблокированы.
