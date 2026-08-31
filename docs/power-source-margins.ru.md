@@ -19,6 +19,6 @@
 
 Электрический одновременный угол даёт pack endpoint `5.578 В` и расчётные `0.989 Вт` в двух ячейках. Длительный envelope отдельно ограничен SUPPORT_IDLE и 1,00 А внешнего 5-В порта: `1.549 А`, `0.192 Вт` в ячейках. Пуск, DPM и USB↔pack handover остаются H3-R2.2, routed resistance — H6, измерение — H8.
 
-**Следующий точный маркер:** `H3-R2.1.5` — cross-check и публикация результата H3-R2.1.
+**Downstream-результат:** [`H3-R2.1`](power-dc-source-result.ru.md) полностью проведён ревью; текущий маркер — `H3-R2.2.1`.
 
 [Полный машинный результат](../hardware/verification/generated/H3-R2-source-margins.json).

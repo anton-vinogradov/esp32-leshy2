@@ -35,6 +35,6 @@ The limiting 3V3_MAIN element is the current 4-A `TPS564252DRLR`, not the histor
 
 `SUPPORT_WORST` remains an electrical simultaneous corner, not a 24-to-48-hour permission. The exposed 5-V port keeps its 1.25-A electrical ceiling, while unattended control admits 1.00 A until H6/H8; the selected U214/U219/M5 functions are unaffected.
 
-**Next exact marker:** `H3-R2.1.4` — USB, pack, charge, supplement and source-admission margins.
+**Downstream result:** [`H3-R2.1`](power-dc-source-result.md) is fully reviewed; the current marker is `H3-R2.2.1`.
 
 [Complete machine result](../hardware/verification/generated/H3-R2-rail-margins.json).

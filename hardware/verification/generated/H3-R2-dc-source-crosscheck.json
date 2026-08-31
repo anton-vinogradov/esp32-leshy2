@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "artifact": "H3-R2-dc-source-crosscheck",
+  "marker": "H3-R2.1.5",
+  "status": "reviewed_h3_r2_1_worst_case_dc_source_charge_and_power_states",
+  "source_sha256": {
+    "hardware/verification/generated/H3-R2-method-contract.json": "d1211fdfaa741c2c7352ceb35e224a04307cc8fa3fc204fa3fb7a5dd45c8c553",
+    "hardware/verification/generated/H3-R2-power-state-register.json": "7f9be4ec4376e3c43e615576c64b9c34f9b3b94ccfb4d58049bbbacfbbbdddb6",
+    "hardware/verification/generated/H3-R2-load-binding.json": "fbe58b7d4a54ffcd1e9366dd19c1cf78a2a78ac122441faf9f2db073dcd84fb5",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "f1c775864461bf2b01687bddf3afea39df3b3beaff5e09949d695813faf985a5",
+    "hardware/verification/generated/H3-R2-source-margins.json": "e720086dbc1e8e104908b1a5527ce6620509d7623cabbc88ed1efc66c7807575"
+  },
+  "checks": {
+    "plan_closes_h3_r2_1": true,
+    "state_register_passes": true,
+    "all_2266_states_exist": true,
+    "all_56_profiles_exist": true,
+    "all_224_rail_profiles_exist": true,
+    "all_618_loads_are_bound": true,
+    "rail_ownership_exact": true,
+    "numeric_and_deferred_partition": true,
+    "all_75_deferred_lines_are_source_owned": true,
+    "no_hidden_load_or_source_allowance": true,
+    "rail_current_voltage_thermal_pass": true,
+    "all_source_states_safe": true,
+    "oversized_usb_only_profiles_are_refused": true,
+    "method_rules_present": true,
+    "ordering_stays_blocked": true
+  },
+  "coverage": {
+    "legal_states": 2266,
+    "operating_profiles": 56,
+    "rail_profiles": 224,
+    "physical_and_external_loads": 618,
+    "direct_numeric_rail_owners": 543,
+    "source_pack_owners": 75,
+    "pass_fail_rules_used": [
+      "PF-R2-01",
+      "PF-R2-02",
+      "PF-R2-03",
+      "PF-R2-04",
+      "PF-R2-07",
+      "PF-R2-11"
+    ]
+  },
+  "result": {
+    "minimum_rail_current_reserve_percent": "30.560",
+    "minimum_junction_margin_c": "24.706",
+    "maximum_sys_demand_w": "17.930",
+    "maximum_pack_discharge_a": "3.516",
+    "maximum_sustained_pack_discharge_a": "1.549",
+    "pack_reserve_percent_at_worst": "127.555",
+    "usb_only_profiles_refused": 14,
+    "charge_states_derated": 306
+  },
+  "corrections": [
+    {
+      "id": "H3-R2.1.3-F01",
+      "finding": "the historical R1 calculator still described 3V3_MAIN as a 6-A rail although R2 fits TPS564252DRLR",
+      "correction": "R2 uses the exact 4.000-A converter minimum as the limiting hardware capability",
+      "effect": "the worst 3.046-A electrical corner still passes PF-R2-03, but only with 154 mA to the 3.200-A 25%-reserve boundary",
+      "bom_cost_effect": "0; evidence correction only"
+    },
+    {
+      "id": "H3-R2.1.3-F02",
+      "finding": "the 1.25-A exposed-port electrical ceiling was previously indistinguishable from a 24-to-48-hour thermal permission",
+      "correction": "retain 1.25 A electrically and admit 1.00 A sustained at 35 C until H6/H8 closes the real layout/enclosure thermal path",
+      "effect": "selected U214/U219/M5 functions remain available; unknown higher-current accessories are duty-limited rather than silently overheated",
+      "bom_cost_effect": "0; safety admission only"
+    }
+  ],
+  "conditional_admissions": [
+    "unknown 5-V fallback contributes zero assumed watts until source current and DPM headroom are measured",
+    "5-V/3-A USB-only refuses fourteen oversized profiles; a healthy pack may supplement",
+    "external 5 V retains a 1.25-A electrical ceiling and a 1.00-A sustained admission until H6/H8",
+    "SUPPORT_WORST is an electrical simultaneous corner, not unattended permission"
+  ],
+  "residual_gates": {
+    "H3-R2.2": "startup, shutdown, inrush, DPM, brownout and USB/pack handover",
+    "H3-R2.6": "joined component/enclosure thermal and single-fault proof",
+    "H6": "routed resistance, parasitics and post-route re-analysis",
+    "H8": "measured currents, efficiencies, temperatures and handover"
+  },
+  "authorization": {
+    "pcb_placement_or_routing": false,
+    "purchasing": false,
+    "fabrication": false
+  },
+  "next": {
+    "marker": "H3-R2.2.1",
+    "action": "verify ordered startup, shutdown, reset and recovery sequencing"
+  },
+  "errors": []
+}

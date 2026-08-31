@@ -116,7 +116,7 @@ clearly labels retained R1 ECAD as non-current evidence.
 <a id="h3"></a>
 ## H3 · Virtual electrical verification
 
-**Status:** ▶️ current at **`H3-R2.1.5`** inside H3-R2.1.
+**Status:** ▶️ current at **`H3-R2.2.1`** inside H3-R2.2.
 
 [`H3-R2.0.1`](h3-r2-input-freeze.md) reviewed the hash-bound H2 input and complete R2
 verification matrix. [`H3-R2.0.2`](parameter-model-register.md) reviewed exact
@@ -130,7 +130,10 @@ reviews 224 passing profiles across all four rails, with 30.560% minimum current
 reserve and 24.706 °C minimum junction-temperature reserve. [`H3-R2.1.4`](power-source-margins.md)
 reviews all 75 source/pack lines and 2,266 legal states: maximum pack current is
 3.516 A, sustained admission is 1.549 A, and charging yields before system load.
-Current work cross-checks and publishes H3-R2.1. The expected result is complete power, digital, RF, audio,
+The [H3-R2.1 cross-check](power-dc-source-result.md) reconciles all 618 loads,
+224 rail profiles and 2,266 states through 15 passing checks, so H3-R2.1 is
+reviewed. Current H3-R2.2.1 work verifies ordered startup, shutdown, reset and
+recovery. The expected result is complete power, digital, RF, audio,
 timing, thermal and fault verification. Every legal state and transition must
 pass before fabrication.
 

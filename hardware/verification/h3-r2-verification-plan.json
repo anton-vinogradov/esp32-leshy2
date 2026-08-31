@@ -3,8 +3,8 @@
   "stage": "H3",
   "baseline": "R2",
   "status": "current",
-  "current_workstream": "H3-R2.1",
-  "current_substep": "H3-R2.1.5",
+  "current_workstream": "H3-R2.2",
+  "current_substep": "H3-R2.2.1",
   "accepted_input": {
     "stage": "H2-R2.1.5",
     "status": "reviewed",
@@ -29,14 +29,19 @@
     {"id": "H3-R2.0.1", "title": "Freeze the reviewed H2-R2.1.5 inputs, source hashes and current verification matrix", "status": "reviewed"},
     {"id": "H3-R2.0.2", "title": "Rebuild the exact parameter and model provenance register for R2", "status": "reviewed"},
     {"id": "H3-R2.0.3", "title": "Freeze reproducible tolerances, tools and pass/fail rules", "status": "reviewed"},
-    {"id": "H3-R2.1", "title": "Worst-case DC, source, charge and power-state verification", "status": "current", "details": [
+    {"id": "H3-R2.1", "title": "Worst-case DC, source, charge and power-state verification", "status": "reviewed", "details": [
       {"id": "H3-R2.1.1", "title": "Enumerate every legal R2 source, charge, fault and operating state", "status": "reviewed"},
       {"id": "H3-R2.1.2", "title": "Bind every powered instance to an explicit worst-case rail-load line", "status": "reviewed"},
       {"id": "H3-R2.1.3", "title": "Evaluate rail voltage, current, protection and steady thermal margins", "status": "reviewed"},
       {"id": "H3-R2.1.4", "title": "Evaluate USB, pack, charge, supplement and source-admission margins", "status": "reviewed"},
-      {"id": "H3-R2.1.5", "title": "Cross-check and publish the reviewed H3-R2.1 result", "status": "current"}
+      {"id": "H3-R2.1.5", "title": "Cross-check and publish the reviewed H3-R2.1 result", "status": "reviewed"}
     ]},
-    {"id": "H3-R2.2", "title": "Startup, shutdown, handover, brownout, inrush and watchdog verification", "status": "waiting"},
+    {"id": "H3-R2.2", "title": "Startup, shutdown, handover, brownout, inrush and watchdog verification", "status": "current", "details": [
+      {"id": "H3-R2.2.1", "title": "Verify ordered startup, shutdown, reset and recovery sequencing", "status": "current"},
+      {"id": "H3-R2.2.2", "title": "Verify USB-to-pack handover, DPM, brownout and source loss", "status": "waiting"},
+      {"id": "H3-R2.2.3", "title": "Verify inrush, load steps, watchdog kill and retained fault display", "status": "waiting"},
+      {"id": "H3-R2.2.4", "title": "Cross-check and publish the reviewed H3-R2.2 result", "status": "waiting"}
+    ]},
     {"id": "H3-R2.3", "title": "Display, audio, IR, battery and Airband analog-corner verification", "status": "waiting"},
     {"id": "H3-R2.4", "title": "Digital levels, timing, loading and direct-i8080 verification", "status": "waiting"},
     {"id": "H3-R2.5", "title": "RF feeds, coexistence, quiet states and 3x nRF24 concurrency", "status": "waiting"},

@@ -10,7 +10,7 @@
 
 </div>
 
-> **Текущий маркер железа: `H3-R2.1.5`.** Внутри H3-R2.1 полная компоновка двух плат
+> **Текущий маркер железа: `H3-R2.2.1`.** Полная компоновка двух плат
 > `H1-R2.37` принята и прошла ревью 30 августа 2026 года: точные dual-RP GPIO/M1 и C5 SDIO/service-mux,
 > серийный дисплей `ER-TFT035IPS-6` + `ER-TPC035-6`, пассивный 40→50-контактный
 > адаптер, все 18 компонентов U219, NFC pickup-loop и внешний объём штатной
@@ -37,7 +37,7 @@
 > проводит ревью точного происхождения всех 242 групп R2 и 1 187 устанавливаемых
 > позиций. [H3-R2.0.3](docs/verification-methods.ru.md) фиксирует девять методов
 > и двенадцать pass/fail rules. [H3-R2.1.1](docs/power-state-register.ru.md) провёл ревью всех 2 266 разрешённых состояний R2;
-> [H3-R2.1.2](docs/power-load-binding.ru.md) связывает все нагрузки без скрытого aggregate. [H3-R2.1.3](docs/power-rail-margins.ru.md) проводит ревью 224 проходящих профилей шин. [H3-R2.1.4](docs/power-source-margins.ru.md) назначает владельцев всем 75 source/pack-строкам и безопасно допускает все 2 266 состояний: максимум pack — 3,516 А против границы 8 А; 9 В × 3 А и 15 В × 2 А запускают любой профиль, а 14 слишком тяжёлых USB-only состояний на 5 В × 3 А явно отклоняются. Сейчас идёт cross-check H3-R2.1. Заказ заблокирован.
+> [H3-R2.1.2](docs/power-load-binding.ru.md) связывает все нагрузки без скрытого aggregate. [H3-R2.1.3](docs/power-rail-margins.ru.md) проводит ревью 224 проходящих профилей шин. [H3-R2.1.4](docs/power-source-margins.ru.md) назначает владельцев всем 75 source/pack-строкам и безопасно допускает все 2 266 состояний: максимум pack — 3,516 А против границы 8 А; 9 В × 3 А и 15 В × 2 А запускают любой профиль, а 14 слишком тяжёлых USB-only состояний на 5 В × 3 А явно отклоняются. [Cross-check H3-R2.1](docs/power-dc-source-result.ru.md) проведён ревью. H3-R2.2.1 теперь проверяет упорядоченные startup, shutdown, reset и recovery. Заказ заблокирован.
 
 > **Authority-gate R2:** текущие H0/H1 содержат шесть вычислительных доменов и
 > два `SC1512-A4`: передний Hub RP и задний RF RP. Сохранённые G2F/H2/KiCad —
@@ -121,7 +121,7 @@ VHF/UHF voice, broadcast/Airband, аудио, M5 и взаимоисключаю
 | H0 · Требования и функциональная архитектура | ✅ Проведено ревью · R2 | [Результат H0-R2](docs/h0-r2-functional-architecture.ru.md) |
 | H1 · Физический дизайн устройства | ✅ Проведено ревью · `H1-R2.37` | [Двуязычный отчёт фазы](docs/h1-r2-acceptance.ru.md) · [компоновка](docs/h1-r2-physical-layout.ru.md) |
 | H2 · Production ECAD-схема | ✅ Проведено ревью · `H2-R2.1.5` | [Двуязычный итог фазы](docs/h2-acceptance.ru.md) · [результат native KiCad](docs/h2-r2-native-kicad.ru.md) |
-| **H3 · Виртуальная электрическая проверка** | **▶ Сейчас · `H3-R2.1.5`** | [Фиксация входов](docs/h3-r2-input-freeze.ru.md) · [реестр параметров/моделей](docs/parameter-model-register.ru.md) · [методы проверки](docs/verification-methods.ru.md) · [состояния питания](docs/power-state-register.ru.md) · [привязка нагрузок](docs/power-load-binding.ru.md) · [запасы шин](docs/power-rail-margins.ru.md) · [источники/заряд](docs/power-source-margins.ru.md) · [страница этапов](docs/stage-results.ru.md#h3) |
+| **H3 · Виртуальная электрическая проверка** | **▶ Сейчас · `H3-R2.2.1`** | [Фиксация входов](docs/h3-r2-input-freeze.ru.md) · [реестр параметров/моделей](docs/parameter-model-register.ru.md) · [методы проверки](docs/verification-methods.ru.md) · [состояния питания](docs/power-state-register.ru.md) · [привязка нагрузок](docs/power-load-binding.ru.md) · [запасы шин](docs/power-rail-margins.ru.md) · [источники/заряд](docs/power-source-margins.ru.md) · [проведённый DC/source cross-check](docs/power-dc-source-result.ru.md) · [страница этапов](docs/stage-results.ru.md#h3) |
 | H4 · Совместный pre-layout gate железа и прошивки | ⏳ Ожидает R2 H3 и контракт прошивки | [Страница этапов](docs/stage-results.ru.md#h4) |
 | H5 · Компоненты и фабричные evidence | ⏳ Ожидает R2 H4 | [Страница этапов](docs/stage-results.ru.md#h5) |
 | H6 · Размещение, трассировка и release candidate в KiCad | 🔒 Ожидает R2 H5 | [Страница этапов](docs/stage-results.ru.md#h6) |
@@ -163,14 +163,15 @@ VHF/UHF voice, broadcast/Airband, аудио, M5 и взаимоисключаю
 - ✅ `H3-R2.1.2`: [612 устанавливаемых питаемых экземпляров — 596 прямых и 16 косвенных — и шесть внешних нагрузок связаны явно](docs/power-load-binding.ru.md); покрыты все 17 прошедших H2-ревью силовых сетей, дублей, пропусков и miscellaneous-строк нет.
 - ✅ `H3-R2.1.3`: [224 профиля четырёх шин прошли ревью напряжения, защиты и установившегося нагрева](docs/power-rail-margins.ru.md); у всех 618 установленных/внешних нагрузок один владелец тока либо явный перенос в source/pack, минимальный запас тока — 30,560%, температуры кристалла — 24,706 °C.
 - ✅ `H3-R2.1.4`: [все 75 source/pack-строк и 2 266 разрешённых состояния проходят безопасный допуск источников/заряда](docs/power-source-margins.ru.md); максимальный ток pack — 3,516 А, длительный — 1,549 А, заряд уступает системной нагрузке.
-- ▶ **Точная текущая точка `H3-R2.1.5`:** выполнить cross-check и опубликовать результат H3-R2.1.
+- ✅ `H3-R2.1.5`: [все 15 cross-checks ownership, states, rails, sources и authorization проходят](docs/power-dc-source-result.ru.md); весь workstream H3-R2.1 проведён ревью.
+- ▶ **Точная текущая точка `H3-R2.2.1`:** проверить упорядоченные startup, shutdown, reset и recovery.
 - 🔒 PCB placement, routing, закупка прототипа и печать не разрешены.
 
 Каждая закрытая глобальная фаза `H*` получает двуязычный понятный отчёт со
 ссылкой из таблицы. Внутренние подшаги обновляют точный маркер и обе
 документации, но не выдают себя за ревью всей фазы.
 
-<!-- current-substep: H3-R2.1.5 -->
+<!-- current-substep: H3-R2.2.1 -->
 
 ## Репозитории
 
