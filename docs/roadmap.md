@@ -3,7 +3,7 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H3-R2.1.2`.** Inside H3-R2.1, H0, H1 and [H2-R2.1.5](h2-acceptance.md) are reviewed. [H3-R2.0.1](h3-r2-input-freeze.md) freezes 14 stable inputs, [H3-R2.0.2](parameter-model-register.md) binds all 242 R2 groups, [H3-R2.0.3](verification-methods.md) freezes nine methods and twelve rules, and [H3-R2.1.1](power-state-register.md) reviews 2,266 legal states. Exact load binding is current.
+> **▶ Current hardware boundary: `H3-R2.1.3`.** Inside H3-R2.1, H0, H1 and [H2-R2.1.5](h2-acceptance.md) are reviewed. [H3-R2.0.1](h3-r2-input-freeze.md) freezes 14 stable inputs, [H3-R2.0.2](parameter-model-register.md) binds all 242 R2 groups, [H3-R2.0.3](verification-methods.md) freezes nine methods and twelve rules, [H3-R2.1.1](power-state-register.md) reviews 2,266 legal states, and [H3-R2.1.2](power-load-binding.md) explicitly binds 596 fitted instances plus six external loads. Rail-margin evaluation is current.
 > No R2 KiCad routing, quote, reservation or order is authorized.
 
 Status reconciled: **31 August 2026**.
@@ -32,10 +32,10 @@ marker and current checklist; it is never presented as review of the whole phase
 
 ## Reviewed H1 · exact composition
 
-<!-- current-substep: H3-R2.1.2 -->
+<!-- current-substep: H3-R2.1.3 -->
 
 **Reviewed marker: `H1-R2.37`.** The placement package was accepted on
-2026-08-31. The current hardware marker is `H3-R2.1.2`.
+2026-08-31. The current hardware marker is `H3-R2.1.3`.
 
 ### 1. Functional-island placement
 
@@ -192,7 +192,7 @@ routing have not started.
 | H0 · Requirements and functional architecture | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Product functions, owners, transports, safety and working pin budgets | Every function has one owner and all working budgets close |
 | H1 · Physical product design | ✅ [Reviewed · `H1-R2.37`](h1-r2-acceptance.md) | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
 | H2 · Production ECAD schematic | ✅ [Reviewed · `H2-R2.1.5`](h2-acceptance.md) | Exact R2 symbols, contacts, nets, values, protection and footprints | Native KiCad, zero-finding ERC and cross-sheet/HW↔FW reconciliation pass |
-| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.1.2`** | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
+| **H3 · Virtual electrical verification** | **▶ Current · `H3-R2.1.3`** | Complete power, digital, RF, audio, timing, thermal and fault simulation | Every legal state and transition passes before fabrication |
 | H4 · Joined pre-layout gate | ⏳ Waiting for H3 and firmware R2 evidence | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |
 | H5 · Component and factory evidence | ⏳ Waiting for H4 | Exact current factory map and controlled external routes | Every BOM line has a current factory route without silent substitution |
 | H6 · KiCad placement, routing and release candidate | 🔒 Waiting for H5 | Two routed boards, routed re-analysis and hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs and independent DFM/CPL review pass |
@@ -222,7 +222,8 @@ routing have not started.
 8. ✅ [`H3-R2.0.3`](verification-methods.md): freeze nine reproducible methods, twelve pass/fail rules and fail-closed assignments for all 242 groups.
 9. ▶ `H3-R2.1`: verify worst-case DC, source, charge and power states.
    - ✅ [`H3-R2.1.1`](power-state-register.md): enumerate all 2,266 legal states.
-   - ▶ `H3-R2.1.2`: bind every powered instance to an explicit worst-case load line.
+   - ✅ [`H3-R2.1.2`](power-load-binding.md): bind all 596 fitted power-connected instances and six external loads without a hidden aggregate.
+   - ▶ `H3-R2.1.3`: evaluate rail voltage/current, protection and steady thermal margins.
 
 Worst-case power/DC verification is the next action. Placement, routing, quoting and
 every order remain blocked.

@@ -3,7 +3,7 @@
 [На главную](../README.ru.md) · [English](roadmap.md) ·
 [Роадмап прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md)
 
-> **▶ Текущая аппаратная граница: `H3-R2.1.2`.** Внутри H3-R2.1 H0, H1 и [H2-R2.1.5](h2-acceptance.ru.md) прошли ревью. [H3-R2.0.1](h3-r2-input-freeze.ru.md) фиксирует 14 входов, [H3-R2.0.2](parameter-model-register.ru.md) связывает 242 группы, [H3-R2.0.3](verification-methods.ru.md) фиксирует методы/rules, а [H3-R2.1.1](power-state-register.ru.md) проводит ревью 2 266 разрешённых состояний. Сейчас связываются точные нагрузки.
+> **▶ Текущая аппаратная граница: `H3-R2.1.3`.** Внутри H3-R2.1 H0, H1 и [H2-R2.1.5](h2-acceptance.ru.md) прошли ревью. [H3-R2.0.1](h3-r2-input-freeze.ru.md) фиксирует 14 входов, [H3-R2.0.2](parameter-model-register.ru.md) связывает 242 группы, [H3-R2.0.3](verification-methods.ru.md) фиксирует методы/rules, [H3-R2.1.1](power-state-register.ru.md) проводит ревью 2 266 разрешённых состояний, а [H3-R2.1.2](power-load-binding.ru.md) явно связывает 596 устанавливаемых экземпляров и шесть внешних нагрузок. Сейчас считаются запасы шин.
 > KiCad routing R2, quote, reservation и заказ не разрешены.
 
 Статус сверен: **31 августа 2026 года**.
@@ -32,10 +32,10 @@
 
 ## Проведённое ревью H1 · точный состав
 
-<!-- current-substep: H3-R2.1.2 -->
+<!-- current-substep: H3-R2.1.3 -->
 
 **Маркер ревью: `H1-R2.37`.** Пакет компоновки принят 2026-08-30. Текущий
-аппаратный маркер — `H3-R2.1.2`.
+аппаратный маркер — `H3-R2.1.3`.
 
 ### 1. Размещение функциональных островов
 
@@ -192,7 +192,7 @@
 | H0 · Требования и функциональная архитектура | ✅ [R2 проведено ревью](h0-r2-functional-architecture.ru.md) | Функции продукта, владельцы, transport, safety и рабочие pin-бюджеты | У каждой функции один владелец; все рабочие бюджеты сходятся |
 | H1 · Физический дизайн продукта | ✅ [Проведено ревью · `H1-R2.37`](h1-r2-acceptance.ru.md) | Внешний вид, отдельные внутренние стороны, разрезы, точные корпуса, RF-локальность, сервис и power-envelope | Нет коллизий bodies/fasteners/silkscreen/antennas/accessories/opposing sides; точный MPN или контролируемый reserve; мокап принят |
 | H2 · Production ECAD-схема | ✅ [Проведено ревью · `H2-R2.1.5`](h2-acceptance.ru.md) | Точные R2 symbols, contacts, nets, values, protection и footprints | Native KiCad, ERC без замечаний и сверка sheets/HW↔FW проходят |
-| **H3 · Виртуальная электрическая проверка** | **▶ Сейчас · `H3-R2.1.2`** | Полная симуляция power, digital, RF, audio, timing, thermal и faults | Все разрешённые состояния и переходы проходят до печати |
+| **H3 · Виртуальная электрическая проверка** | **▶ Сейчас · `H3-R2.1.3`** | Полная симуляция power, digital, RF, audio, timing, thermal и faults | Все разрешённые состояния и переходы проходят до печати |
 | H4 · Объединённый pre-layout gate | ⏳ Ожидает H3 и firmware R2 evidence | Одно текущее mechanics/ECAD/electrical/firmware review | Нет виртуального blocker; каждой физической неопределённости назначен тест |
 | H5 · Компоненты и фабричные evidence | ⏳ Ожидает H4 | Точная актуальная фабричная карта и контролируемые external routes | У каждой BOM-строки есть текущий фабричный маршрут без молчаливой замены |
 | H6 · KiCad placement, routing и release candidate | 🔒 Ожидает H5 | Две разведённые платы, routed re-analysis и hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs и независимый DFM/CPL review проходят |
@@ -222,7 +222,8 @@
 8. ✅ [`H3-R2.0.3`](verification-methods.ru.md): зафиксировать девять воспроизводимых методов, двенадцать pass/fail rules и fail-closed назначения для всех 242 групп.
 9. ▶ `H3-R2.1`: проверить worst-case DC, source, charge и power states.
    - ✅ [`H3-R2.1.1`](power-state-register.ru.md): перечислить все 2 266 разрешённых состояния.
-   - ▶ `H3-R2.1.2`: связать каждый питаемый экземпляр с явной worst-case нагрузкой.
+   - ✅ [`H3-R2.1.2`](power-load-binding.ru.md): связать все 596 устанавливаемых питаемых экземпляров и шесть внешних нагрузок без скрытого aggregate.
+   - ▶ `H3-R2.1.3`: проверить запасы напряжения/тока шин, защит и установившегося теплового режима.
 
 Следующее действие — worst-case проверка питания/DC. Placement, routing,
 quote и любой заказ остаются заблокированы.
