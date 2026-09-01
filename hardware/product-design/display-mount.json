@@ -28,9 +28,62 @@
     "primary_retention": "thin perimeter display-grade PSA on the front-shell bed",
     "secondary_retention": "four corner locators and a compliant 0.5-1.0-mm closed-cell rear preload pad",
     "flex_strain_relief": "controlled folded-tail corridor from the antenna edge to the direct ZIF; no tensile or peel load reaches the contacts or latch",
-    "service_rule": "opening the sandwich exposes the ZIF latch; release the latch before lifting the display assembly"
+    "service_rule": "opening the sandwich exposes the ZIF latch; release the latch before lifting the display assembly",
+    "physical_realization": [
+      {
+        "id": "front_shell_display_bed_and_bezel",
+        "quantity": 1,
+        "part_type": "integral enclosure geometry, not a separate purchased part",
+        "implementation": "the front shell contains one rigid recessed ledge under the panel perimeter and one continuous bezel lip; the visible opening stays outside the exact 49.96 x 74.44-mm viewing area and the lip never bears on the active touch surface",
+        "load_role": "supports panel depth and transfers normal and finger loads into the front shell"
+      },
+      {
+        "id": "display_psa_frame",
+        "quantity": 1,
+        "part_type": "die-cut display-grade acrylic transfer-adhesive frame",
+        "implementation": "0.10-0.20-mm target thickness; applied only around the documented inactive perimeter between the panel assembly and the rigid shell bed; no liquid glue",
+        "load_role": "retains the panel against lift and distributes load without loading the glass active area",
+        "release_gate": "freeze exact adhesive grade and cut drawing after the assembler accepts the one-prototype display-installation operation"
+      },
+      {
+        "id": "front_shell_corner_locators",
+        "quantity": 4,
+        "part_type": "four short ribs integral to the front shell",
+        "implementation": "one rib at each panel corner, outside the touch/viewing area; target lateral assembly clearance is 0.20-0.30 mm per side before final enclosure-tolerance closure",
+        "load_role": "takes in-plane shear so ordinary handling does not peel the PSA or pull the FPC"
+      },
+      {
+        "id": "rear_compliant_preload_pad",
+        "quantity": 1,
+        "part_type": "die-cut closed-cell urethane- or silicone-foam pad",
+        "implementation": "0.5-1.0-mm nominal thickness with 15-30-percent target compression after shell closure; bonded to the shell support surface and applied only to a documented safe rear-panel zone, never across the FPC or components",
+        "load_role": "removes rattle and maintains light seating against the front bed",
+        "release_gate": "freeze exact foam grade, thickness and safe-zone cutout from the received-panel tolerance stack and enclosure drawing"
+      },
+      {
+        "id": "fpc_bend_guide",
+        "quantity": 1,
+        "part_type": "integral shell corridor with optional low-tack polyimide guide tab",
+        "implementation": "controls bend radius and preserves service slack between the antenna-edge tail exit and the ZIF",
+        "load_role": "prevents panel motion from becoming tensile or peel load at the ZIF contacts"
+      }
+    ],
+    "structural_load_path": "finger or handling load -> bezel and rigid display bed -> front shell -> enclosure stops and fasteners; never through the FPC or ZIF",
+    "esp32_div_v2_reference": {
+      "source": "https://github.com/cifertech/ESP32-DIV/tree/9d4d82fe7a12febf554b12e1eca6d434ebe79d39/PCB/v2",
+      "panel_mount": "raw 2.8-inch display body seated directly on the main PCB",
+      "in_plane_location": "four 1.2-mm copper-free locator holes on a 49.10 x 68.25-mm rectangle accept the display-frame locating features",
+      "electrical_connection": "18-contact display FPC soldered directly to eighteen 0.4 x 4.5-mm SMD lands; no display ZIF",
+      "not_publicly_documented": "no controlled adhesive, foam-preload or display-screw specification is present in the published v2 PCB and 3D-model sources",
+      "leshy2_adoption_rule": "copy exact enclosure-bed and anti-shear location, not the load-bearing direct-soldered flex; Leshy2 keeps a serviceable non-load-bearing ZIF"
+    }
   },
   "electrical": {
+    "owner_contract": {
+      "display_bus_owner": "s3",
+      "touch_host_owner": "s3",
+      "c5_display_or_touch_connection": "none"
+    },
     "panel_position_count": 50,
     "panel_interface_pitch_mm": 0.5,
     "added_active_devices": 0,
@@ -127,6 +180,10 @@
     {
       "source": "https://jlcpcb.com/partdetail/HRS_Hirose-FH34SRJ_50S_0_5SH_50/C3169104",
       "finding": "FH34SRJ-50S-0.5SH(50) is exact HRS original-manufacturer C3169104, Extended SMT, Economic/Standard PCBA, MOQ 1 and verified live stock."
+    },
+    {
+      "source": "https://github.com/cifertech/ESP32-DIV/tree/9d4d82fe7a12febf554b12e1eca6d434ebe79d39/PCB/v2",
+      "finding": "The official ESP32-DIV v2 PCB uses four display locator holes and eighteen direct-solder FPC lands rather than a display ZIF; its public sources do not specify a controlled adhesive or foam-preload stack."
     }
   ],
   "release_boundary": "H1 freezes the exact panel, direct C3169104 ZIF position, 50-contact electrical map, folded-tail corridor and non-load-bearing connector rule. H2 imports the exact footprint and routes the display sheet directly on the UI PCB; H5 confirms current-lot tail conformity, written factory acceptance for panel PSA/FPC insertion and one-prototype final mating."

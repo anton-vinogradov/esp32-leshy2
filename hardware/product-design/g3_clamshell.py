@@ -2025,7 +2025,37 @@ def validate_display_mount_design(
     for field in ("panel_support", "primary_retention", "secondary_retention", "flex_strain_relief", "service_rule"):
         if not retention.get(field):
             errors.append(f"display-mount: mechanical retention lacks {field}")
+    physical_parts = {
+        row.get("id"): row for row in retention.get("physical_realization", [])
+    }
+    expected_physical_parts = {
+        "front_shell_display_bed_and_bezel": 1,
+        "display_psa_frame": 1,
+        "front_shell_corner_locators": 4,
+        "rear_compliant_preload_pad": 1,
+        "fpc_bend_guide": 1,
+    }
+    if {
+        part_id: physical_parts.get(part_id, {}).get("quantity")
+        for part_id in expected_physical_parts
+    } != expected_physical_parts:
+        errors.append("display-mount: physical retention implementation is incomplete")
+    if not retention.get("structural_load_path", "").endswith("never through the FPC or ZIF"):
+        errors.append("display-mount: structural load path must terminate outside the FPC and ZIF")
+    div_reference = retention.get("esp32_div_v2_reference", {})
+    if "four 1.2-mm" not in div_reference.get("in_plane_location", ""):
+        errors.append("display-mount: DIV reference must preserve the four measured locator holes")
+    if "18-contact" not in div_reference.get("electrical_connection", ""):
+        errors.append("display-mount: DIV reference must preserve the direct-soldered 18-contact flex")
+    if "non-load-bearing ZIF" not in div_reference.get("leshy2_adoption_rule", ""):
+        errors.append("display-mount: DIV comparison must not make the Leshy2 ZIF load-bearing")
     electrical = design.get("electrical", {})
+    if electrical.get("owner_contract") != {
+        "display_bus_owner": "s3",
+        "touch_host_owner": "s3",
+        "c5_display_or_touch_connection": "none",
+    }:
+        errors.append("display-mount: display and touch must remain exclusively S3-owned")
     panel_map = electrical.get("panel_pin_map", {})
     if set(panel_map) != {str(pin) for pin in range(1, 51)}:
         errors.append("display-mount: exact 50-contact panel map is incomplete")
@@ -4679,27 +4709,33 @@ def render_display_mount(design):
         label(40, 68, "L2-DISP-DIRECT-001-A · one connector on the UI PCB · no adapter PCB · ZIF carries no mechanical load", 11, colour="#526076"),
         label(55, 112, "Front-to-rear section", 14, "bold", colour="#1d4ed8"),
         '<rect x="70" y="145" width="385" height="22" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>',
-        label(262, 160, "front bezel overlap", 10, "bold", "middle", "#1d4ed8"),
+        label(262, 160, "1 · integral front-shell bezel / rigid bed", 10, "bold", "middle", "#1d4ed8"),
         '<rect x="92" y="167" width="341" height="172" rx="7" fill="#eaf2ff" stroke="#60a5fa" stroke-width="2"/>',
         '<rect x="107" y="183" width="311" height="139" rx="5" fill="#cfe1ff" stroke="#2563eb" stroke-width="2"/>',
         label(262, 254, "ER-TFT035IPS-6 + ER-TPC035-6", 13, "bold", "middle"),
         label(262, 276, "touch/display assembly", 10, "normal", "middle", "#526076"),
-        '<rect x="92" y="339" width="341" height="9" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>',
-        label(443, 347, "perimeter PSA on rigid display bed", 10, "bold", "start", "#92400e"),
+        '<path d="M92 176 L80 176 L80 330 L92 330 M433 176 L445 176 L445 330 L433 330" fill="none" stroke="#f97316" stroke-width="4" data-mechanical-part="front_shell_corner_locators" data-count="4"/>',
+        label(81, 193, "3", 10, "bold", "middle", "#c2410c"),
+        label(444, 193, "3", 10, "bold", "middle", "#c2410c"),
+        '<rect x="92" y="339" width="341" height="9" fill="#fde68a" stroke="#d97706" stroke-width="1.5" data-mechanical-part="display_psa_frame"/>',
+        label(262, 336, "2 · die-cut PSA frame", 9.5, "bold", "middle", "#92400e"),
         '<rect x="105" y="358" width="315" height="18" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>',
-        label(443, 372, "0.5–1.0 mm compliant rear preload", 10, "bold", "start", "#166534"),
+        label(262, 371, "4 · closed-cell foam preload", 9.5, "bold", "middle", "#166534"),
         '<path d="M385 322 C455 333 467 409 378 437 L330 437" fill="none" stroke="#0f766e" stroke-width="10" stroke-linecap="round"/>',
         '<path d="M385 322 C455 333 467 409 378 437 L330 437" fill="none" stroke="#99f6e4" stroke-width="5" stroke-linecap="round"/>',
-        label(470, 410, "controlled folded FPC corridor", 10, "bold", "start", "#0f766e"),
+        label(470, 410, "5 · FPC guide / service slack", 9.5, "bold", "start", "#0f766e"),
         '<rect x="70" y="455" width="385" height="18" rx="3" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>',
         label(262, 469, "UI PCB", 10, "bold", "middle", "#166534"),
         '<rect x="236" y="417" width="154" height="38" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>',
         label(313, 440, "50-pin ZIF", 11, "bold", "middle", "#1d4ed8"),
-        '<path d="M313 417 L313 390" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>',
-        label(313, 385, "latch remains accessible after opening", 9, "bold", "middle", "#b42318"),
-        label(70, 505, "Load path", 13, "bold", colour="#166534"),
-        label(70, 530, "bezel → panel bed/PSA → shell; corner locators stop shear; compliant pad controls rattle", 10.5),
-        label(70, 553, "The folded FPC has slack and strain relief. It does not retain the screen and does not peel the ZIF.", 10.5, "bold", colour="#166534"),
+        '<path d="M313 417 L313 408" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>',
+        label(313, 402, "latch accessible after opening", 8.5, "bold", "middle", "#b42318"),
+        label(70, 510, "Physical retention", 13, "bold", colour="#1d4ed8"),
+        label(70, 534, "1 shell bed/bezel · 2 PSA 0.10–0.20 mm · 3 four integral corner ribs", 9.8),
+        label(70, 556, "4 foam 0.5–1.0 mm at 15–30% compression · 5 FPC bend guide", 9.8),
+        label(70, 585, "Load path", 13, "bold", colour="#166534"),
+        label(70, 609, "finger → integral bezel/rigid bed → front shell → enclosure stops/fasteners", 10.5),
+        label(70, 632, "The FPC and ZIF carry no panel load.", 10.5, "bold", colour="#166534"),
         label(650, 112, "UI PCB inner-face plan", 14, "bold", colour="#7c3aed"),
         '<rect x="720" y="140" width="300" height="500" rx="8" fill="#f8fafc" stroke="#344054" stroke-width="3"/>',
         '<circle cx="740" cy="177" r="16" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="6 4"/>',
@@ -4708,12 +4744,19 @@ def render_display_mount(design):
         label(870, 162, "FH34SRJ-50S", 8.5, "bold", "middle", "#1d4ed8"),
         '<path d="M870 146 L870 122" stroke="#0f766e" stroke-width="6" stroke-linecap="round"/>',
         label(870, 92, "FPC enters from antenna edge", 10, "bold", "middle", "#0f766e"),
-        '<rect x="760" y="225" width="95" height="78" rx="4" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>',
-        '<rect x="885" y="225" width="95" height="78" rx="4" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>',
+        '<rect x="760" y="225" width="95" height="78" rx="4" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-display-owner="S3"/>',
+        '<rect x="885" y="225" width="95" height="78" rx="4" fill="#f8fafc" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5 4" data-c5-display-connection="none"/>',
         label(807, 267, "S3", 12, "bold", "middle"),
         label(932, 267, "C5", 12, "bold", "middle"),
-        label(870, 332, "direct display nets", 10, "bold", "middle", "#166534"),
-        '<path d="M816 171 L807 225 M924 171 L932 225" stroke="#16a34a" stroke-width="2"/>',
+        label(807, 326, "S3-local i8080-8 + touch", 9.5, "bold", "middle", "#166534"),
+        label(932, 326, "no display/touch connection", 9.2, "bold", "middle", "#64748b"),
+        '<path d="M840 171 L807 225" stroke="#16a34a" stroke-width="2" data-route="display-to-owner" data-owner="S3"/>',
+        label(650, 382, "What DIV v2 does", 13, "bold", colour="#7c3aed"),
+        label(650, 406, "• raw 2.8-inch panel sits directly on the main PCB", 10),
+        label(650, 428, "• four 1.2-mm locator holes resist in-plane shift", 10),
+        label(650, 450, "• 18-contact FPC is soldered to the PCB; no display ZIF", 10),
+        label(650, 480, "Leshy2 keeps the exact bed/locators, but its ZIF remains", 10, "bold", colour="#166534"),
+        label(650, 502, "serviceable and outside the structural load path.", 10, "bold", colour="#166534"),
         label(650, 595, f"Connector envelope: {connector['envelope_mm'][0]:.1f} × {connector['envelope_mm'][1]:.1f} × {connector['envelope_mm'][2]:.1f} mm", 10.5, "bold"),
         label(650, 618, f"Inner gap: {stack['available_interboard_gap_mm']:.1f} mm · removed stack: {stack['removed_adapter_stack_height_mm']:.1f} mm · height saved: {stack['height_reduction_mm']:.1f} mm", 10.5),
         label(650, 650, "Removed: both DF40 connectors and the separate display-adapter PCB", 11, "bold", colour="#b42318"),

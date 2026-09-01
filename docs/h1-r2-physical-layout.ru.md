@@ -4,19 +4,19 @@
 
 ## Что увидит пользователь
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.38-direct-zif-1)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.38-direct-zif-2)
 
 ## Легенда компонентов
 
-![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.38-direct-zif-1)
+![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.38-direct-zif-2)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.38-direct-zif-1)
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.38-direct-zif-2)
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.38-direct-zif-1)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.38-direct-zif-2)
 
 ## Что находится внутри
 
-![Direct display ZIF and mechanical retention](images/display-mount.svg?rev=h1-r2.38-direct-zif-1)
+![Direct display ZIF and mechanical retention](images/display-mount.svg?rev=h1-r2.38-direct-zif-2)
 
 [Передняя UI/radio-плата · full-scale inner view](images/h1-r2-inner-ui.svg)
 
@@ -32,7 +32,9 @@
 - Три nRF24 полностью перенесены на переднюю плату вместе с буферами, safety-gate и отдельным `TLV1824PWR`.
 - Бортовой видеоприёмник, декодер, MMCX и их резервы удалены: за экраном и между антеннами нет скрытого post-PCBA модуля.
 - FM/SW/AM/LW/Airband, CC1101, два voice-тракта и аудио локальны задней плате; S3 напрямую ведёт i8080-8, энкодер и USB, а кнопки — через локальный TCA9539PWR. После замыкания reset/service-трактов свободным электрическим резервом остаются шесть GPIO.
-- Экран физически развёрнут шлейфом к антенному торцу, как у ESP32-DIV; шлейф входит прямо в 50-контактный ZIF на UI-плате, а firmware разворачивает изображение и touch на 180°. Рамка, периметральный PSA, угловые упоры и мягкий преднатяг держат панель независимо от разъёма.
+- Экран физически развёрнут шлейфом к антенному торцу, как у ESP32-DIV; шлейф входит прямо в 50-контактный ZIF на UI-плате, а firmware разворачивает изображение и touch на 180°. Все линии дисплея и touch остаются локальными S3; C5 к панели не подключён.
+- Крепление — это конкретный стек корпуса: цельная полка и рамка в передней половине корпуса, вырубная рамка PSA толщиной 0,10–0,20 мм, четыре коротких угловых ребра корпуса и вырубная закрытоячеистая прокладка 0,5–1,0 мм с целевым сжатием 15–30 %. Прокладка давит только на безопасную заднюю зону панели; FPC и ZIF нагрузки не несут.
+- У ESP32-DIV v2 сырой 2,8-дюймовый дисплей лежит прямо на основной PCB: четыре отверстия Ø1,2 мм позиционируют его рамку, а 18-контактный FPC припаян к длинным SMD-площадкам без ZIF. В открытых исходниках DIV не задан отдельный стек клея, пены или винтов дисплея. Leshy2 перенимает точное ложе и защиту от сдвига, но сохраняет обслуживаемый ненагруженный ZIF.
 
 ![True inner sandwich sections](images/h1-r2-inner-sections.svg)
 

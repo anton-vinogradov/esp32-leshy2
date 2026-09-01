@@ -48,6 +48,30 @@ class H1R2LayoutTest(unittest.TestCase):
             self.audit["required_opposing_clearance_mm"],
         )
 
+    def test_display_mount_is_s3_only_and_names_physical_retention(self):
+        legacy = MODULE.legacy_generator()
+        design = json.loads(legacy.DISPLAY_MOUNT_DESIGN_PATH.read_text())
+        self.assertEqual(
+            {
+                "display_bus_owner": "s3",
+                "touch_host_owner": "s3",
+                "c5_display_or_touch_connection": "none",
+            },
+            design["electrical"]["owner_contract"],
+        )
+        svg = legacy.render_display_mount(design)
+        self.assertEqual(1, svg.count('data-route="display-to-owner"'))
+        self.assertIn('data-owner="S3"', svg)
+        self.assertIn('data-c5-display-connection="none"', svg)
+        self.assertIn("S3-local i8080-8 + touch", svg)
+        self.assertIn("no display/touch connection", svg)
+        self.assertIn('data-mechanical-part="display_psa_frame"', svg)
+        self.assertIn('data-mechanical-part="front_shell_corner_locators"', svg)
+        div_reference = design["mechanical_retention"]["esp32_div_v2_reference"]
+        self.assertIn("four 1.2-mm", div_reference["in_plane_location"])
+        self.assertIn("18-contact", div_reference["electrical_connection"])
+        self.assertIn("What DIV v2 does", svg)
+
     def test_every_fixed_body_has_exact_mpn(self):
         for item in self.model["placements"]:
             if item["kind"] == "fixed_body":

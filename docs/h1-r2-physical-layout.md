@@ -4,19 +4,19 @@ The complete verifiable physical model of the two 75 × 150 mm PCBs was accepted
 
 ## What the user sees
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.38-direct-zif-1)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.38-direct-zif-2)
 
 ## Component legend
 
-![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.38-direct-zif-1)
+![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.38-direct-zif-2)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.38-direct-zif-1)
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.38-direct-zif-2)
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.38-direct-zif-1)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.38-direct-zif-2)
 
 ## What is inside
 
-![Direct display ZIF and mechanical retention](images/display-mount.svg?rev=h1-r2.38-direct-zif-1)
+![Direct display ZIF and mechanical retention](images/display-mount.svg?rev=h1-r2.38-direct-zif-2)
 
 [Front UI/radio PCB · full-scale inner view](images/h1-r2-inner-ui.svg)
 
@@ -32,7 +32,9 @@ The complete verifiable physical model of the two 75 × 150 mm PCBs was accepted
 - All three nRF24 islands move to the front PCB with their buffers, safety gate and a dedicated second `TLV1824PWR`.
 - The onboard video receiver, decoder, MMCX and physical reserves are removed: no hidden post-PCBA module remains behind the display or between the antennas.
 - FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; S3 directly owns i8080-8, encoder and USB, with buttons on its local TCA9539PWR path. Six GPIO remain uncommitted electrical reserve after reset and service closure.
-- The panel is physically turned with its flex toward the antenna edge, as on ESP32-DIV; the tail enters one direct 50-contact ZIF on the UI PCB and firmware rotates display output and touch by 180°. The bezel, perimeter PSA, corner locators and compliant preload retain the panel independently of the connector.
+- The panel is physically turned with its flex toward the antenna edge, as on ESP32-DIV; the tail enters one direct 50-contact ZIF on the UI PCB and firmware rotates display output and touch by 180°. All display and touch lines remain S3-local; C5 has no panel connection.
+- Retention is a concrete enclosure stack: an integral front-shell ledge and bezel, a die-cut 0.10–0.20-mm PSA frame, four short integral corner ribs and a die-cut 0.5–1.0-mm closed-cell pad at 15–30% target compression. The pad touches only a safe rear-panel zone; neither the FPC nor ZIF carries panel load.
+- ESP32-DIV v2 seats its raw 2.8-inch display directly on the main PCB: four 1.2-mm holes locate the display frame while the 18-contact FPC is soldered to long SMD lands without a ZIF. Its public sources do not define a separate adhesive, foam or display-screw stack. Leshy2 adopts the exact bed and anti-shear location, but retains a serviceable non-load-bearing ZIF.
 
 ![True inner sandwich sections](images/h1-r2-inner-sections.svg)
 

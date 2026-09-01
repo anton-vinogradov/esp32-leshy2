@@ -6,10 +6,10 @@
   "source_hashes": {
     "hardware/architecture/h0-r2-rebaseline.json": "95b9536cfeb8404b4ed74c1dd2bd5825f16a640c6c242765c1ff244c4f7ca891",
     "hardware/architecture/devices.json": "2caf023fb65a15be416b66686f7bcbd9ce199f8c8a55c4d37457782e73ceb6ef",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "87bdeb90711455a70de7ed5e394c4bf2584f1cdb0ce61c7ffef8aace7308959b",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "671b3b429e3b134bdfda6b07ae0859d084b8ef2da5138b65ec79ead770eb5337",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "f3edb2ae8313b90288a040dfc9d95f2664e41f932435a1de2a7f7308ea5510f0",
-    "hardware/product-design/display-mount.json": "7b6ae6b1687d3d2b5db6712b2d8dd93daaf24a4a1de2cef26880637cb8d2c5e9"
+    "hardware/verification/generated/H3-R2-rail-margins.json": "62a84cea7f6694e9ec787c9a19899e41289a801614085cec5d8e97c71774bf59",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "8f33aa8d7143d78696e31f0d6e967d243586399f7ddeeddc392e176bfa23a488",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "8005e4a9f3b3324877d11286e6d679d8694bb68d949f8fcb4797043f2036f2f6",
+    "hardware/product-design/display-mount.json": "2e08e1920aae39878449c60ee39655c1d6b40583e4e50e0fe1c7e73ed5a00a8d"
   },
   "methods": [
     "M-INT",
