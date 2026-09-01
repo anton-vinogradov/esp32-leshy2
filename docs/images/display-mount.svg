@@ -1,16 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
-<text x="40.0" y="42.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — folded display FPC through an internal PCB slot</text>
-<text x="40.0" y="68.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">L2-DISP-DIRECT-001-A · acrylic-foam PSA spacer · 27-mm tongue slot · direct 50-pin ZIF</text>
+<text x="40.0" y="42.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — one-piece display PSA and folded FPC</text>
+<text x="40.0" y="68.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">L2-DISP-DIRECT-001-A · two silkscreen datums · one carrier-backed PSA cut · 27-mm slot · direct 50-pin ZIF</text>
 <text x="55.0" y="108.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#1d4ed8">Folded stack · side section</text>
 <text x="55.0" y="128.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#64748b">schematic section · vertical scale is intentionally enlarged</text>
 <rect x="90" y="150" width="400" height="132" rx="7" fill="#eaf2ff" stroke="#60a5fa" stroke-width="2"/>
 <rect x="106" y="166" width="368" height="106" rx="5" fill="#cfe1ff" stroke="#2563eb" stroke-width="2"/>
 <text x="290.0" y="211.0" font-family="sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#172033">ER-TFT035IPS-6 + ER-TPC035-6</text>
 <text x="290.0" y="235.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="middle" fill="#526076">1 · panel rear stays flat; FPC components sit in the pocket</text>
-<g data-mechanical-part="display_psa_frame"><rect x="90" y="282" width="34" height="28" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/><rect x="456" y="282" width="34" height="28" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/></g>
-<text x="215.0" y="300.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="middle" fill="#92400e">2 · acrylic-foam PSA spacer</text>
+<rect x="90" y="282" width="220" height="28" fill="#fde68a" stroke="#d97706" stroke-width="1.5" data-mechanical-part="display_psa_pad"/>
+<text x="200.0" y="300.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="middle" fill="#92400e">2 · broad lower PSA field</text>
+<text x="462.0" y="291.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="middle" fill="#92400e">connected side shoulders</text>
+<text x="462.0" y="305.0" font-family="sans-serif" font-size="8.2" font-weight="normal" text-anchor="middle" fill="#92400e">sit outside this section</text>
 <rect x="70" y="310" width="255" height="49" rx="3" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-mechanical-part="ui_pcb_display_bed"/>
 <rect x="349" y="310" width="161" height="49" rx="3" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-mechanical-part="ui_pcb_display_bed"/>
 <rect x="325" y="310" width="24" height="49" fill="#ffffff" stroke="#16a34a" stroke-width="2" stroke-dasharray="4 3" data-mechanical-part="fpc_tongue_slot"/>
@@ -27,50 +29,54 @@
 <line x1="70" y1="418" x2="510" y2="418" stroke="#64748b" stroke-width="1" stroke-dasharray="4 4"/>
 <text x="72.0" y="434.0" font-family="sans-serif" font-size="8.8" font-weight="bold" text-anchor="start" fill="#64748b">INNER / INTERBOARD SIDE</text>
 <text x="70.0" y="466.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#1d4ed8">Retention</text>
-<text x="70.0" y="490.0" font-family="sans-serif" font-size="9.8" font-weight="normal" text-anchor="start" fill="#172033">Panel → perimeter PSA spacer → UI PCB. The central pocket carries no adhesive.</text>
-<text x="70.0" y="512.0" font-family="sans-serif" font-size="9.8" font-weight="bold" text-anchor="start" fill="#92400e">Released spacer depth ≥ measured folded-FPC maximum stack + 0.20 mm.</text>
+<text x="70.0" y="490.0" font-family="sans-serif" font-size="9.8" font-weight="normal" text-anchor="start" fill="#172033">Panel → broad one-piece PSA support → UI PCB. The FPC pocket carries no adhesive.</text>
+<text x="70.0" y="512.0" font-family="sans-serif" font-size="9.8" font-weight="bold" text-anchor="start" fill="#92400e">Released foam thickness ≥ measured folded-FPC maximum stack + 0.20 mm.</text>
 <text x="70.0" y="544.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#166534">What crosses the PCB</text>
 <text x="70.0" y="568.0" font-family="sans-serif" font-size="9.8" font-weight="normal" text-anchor="start" fill="#172033">Only the 25.50 ±0.15-mm contact tongue; the 47.90-mm FPC pocket is not a PCB cut-out.</text>
 <text x="70.0" y="600.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#166534">Load path</text>
-<text x="70.0" y="624.0" font-family="sans-serif" font-size="9.8" font-weight="normal" text-anchor="start" fill="#172033">finger / handling → panel perimeter → PSA spacer → UI PCB; never through FPC or ZIF</text>
-<text x="650.0" y="108.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#7c3aed">UI PCB plan · outer display bed plus inner-face U.FL/ZIF</text>
+<text x="70.0" y="624.0" font-family="sans-serif" font-size="9.8" font-weight="normal" text-anchor="start" fill="#172033">finger / handling → panel → one-piece PSA pad → UI PCB; never through FPC or ZIF</text>
+<text x="650.0" y="108.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#7c3aed">UI PCB before panel placement · both alignment frames visible</text>
 <rect x="690" y="140" width="300" height="500" rx="8" fill="#f8fafc" stroke="#344054" stroke-width="3"/>
 <text x="840.0" y="132.0" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="middle" fill="#b42318">ANTENNA EDGE · board -Y</text>
-<rect x="726" y="205" width="228" height="340" rx="5" fill="#dbeafe" fill-opacity="0.45" stroke="#2563eb" stroke-width="2" data-mechanical-part="ui_pcb_display_bed"/>
+<rect x="726" y="205" width="228" height="340" rx="5" fill="none" stroke="#94a3b8" stroke-width="1.2" data-mechanical-part="ui_pcb_display_bed"/>
+<rect x="724.8" y="203.8" width="230.4" height="342.4" rx="5" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="7 4" data-mechanical-part="display_alignment_silkscreen" data-silkscreen-datum="display"/>
 <g data-layer="ui-inner-ufl" fill="#ecfeff" stroke="#0f766e" stroke-width="2" stroke-dasharray="3 2"><circle cx="736" cy="176" r="7"/><circle cx="781" cy="176" r="7"/><circle cx="840" cy="196" r="7"/><circle cx="899" cy="176" r="7"/><circle cx="944" cy="176" r="7"/></g>
 <text x="840.0" y="158.0" font-family="sans-serif" font-size="8.8" font-weight="bold" text-anchor="middle" fill="#0f766e">5× U.FL stay at y=9…17 mm · inner face</text>
-<g data-mechanical-part="display_psa_frame"><rect x="726" y="205" width="18" height="13" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/><rect x="936" y="205" width="18" height="13" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/><rect x="726" y="532" width="228" height="13" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/><rect x="726" y="218" width="12" height="314" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/><rect x="942" y="218" width="12" height="314" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/></g>
-<rect x="744" y="205" width="192" height="58" rx="4" fill="#fef3c7" fill-opacity="0.75" stroke="#d97706" stroke-width="2" stroke-dasharray="5 3" data-mechanical-part="fpc_pocket"/>
-<text x="840.0" y="229.0" font-family="sans-serif" font-size="9.3" font-weight="bold" text-anchor="middle" fill="#92400e">47.90-mm FPC POCKET</text>
-<text x="840.0" y="246.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="middle" fill="#92400e">adhesive opening · PCB remains intact</text>
+<path d="M731 518 L949 518 L949 186 L936 186 L936 284 L744 284 L744 186 L731 186 Z" fill="#fde68a" stroke="#d97706" stroke-width="1.5" data-mechanical-part="display_psa_pad" data-psa-piece-count="1"/>
+<path d="M730 519 L950 519 L950 185 L935 185 L935 283 L745 283 L745 185 L730 185 Z" fill="none" stroke="#f97316" stroke-width="1.2" stroke-dasharray="5 3" data-mechanical-part="display_alignment_silkscreen" data-silkscreen-datum="psa"/>
+<rect x="744" y="186" width="192" height="98" rx="3" fill="#f8fafc" stroke="none" data-mechanical-part="fpc_pocket"/>
+<text x="840.0" y="217.0" font-family="sans-serif" font-size="9.3" font-weight="bold" text-anchor="middle" fill="#92400e">47.90-mm FPC POCKET</text>
+<text x="840.0" y="235.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="middle" fill="#92400e">no adhesive · PCB is not cut</text>
+<text x="840.0" y="402.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#92400e">ONE-PIECE PSA</text>
+<text x="840.0" y="422.0" font-family="sans-serif" font-size="8.7" font-weight="bold" text-anchor="middle" fill="#92400e">solid lower field + connected shoulders</text>
+<text x="840.0" y="440.0" font-family="sans-serif" font-size="8.4" font-weight="bold" text-anchor="middle" fill="#92400e">69.8% panel support · no separate top strip</text>
 <rect x="789" y="258" width="102" height="21" rx="3" fill="#99f6e4" stroke="#0f766e" stroke-width="2" data-mechanical-part="fpc_contact_tongue"/>
 <rect x="786" y="276" width="108" height="6" rx="3" fill="#ffffff" stroke="#dc2626" stroke-width="2" data-mechanical-part="fpc_tongue_slot"/>
 <text x="840.0" y="300.0" font-family="sans-serif" font-size="8.8" font-weight="bold" text-anchor="middle" fill="#b42318">27.00 × 1.20-mm ROUNDED PCB SLOT</text>
 <rect x="786" y="307" width="108" height="18" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="2" stroke-dasharray="5 3" data-instance="display_connector"/>
 <text x="840.0" y="320.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">INNER: FH34SRJ-50S</text>
-<rect x="740" y="331" width="200" height="198" rx="4" fill="#cfe1ff" stroke="#60a5fa" stroke-width="1.5"/>
-<text x="840.0" y="421.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#1d4ed8">DISPLAY</text>
-<text x="840.0" y="443.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#526076">56.54 × 84.96 mm</text>
+<text x="840.0" y="540.0" font-family="sans-serif" font-size="8.6" font-weight="bold" text-anchor="middle" fill="#1d4ed8">DISPLAY SILK · 56.54 × 84.96 mm · FPC ↑</text>
 <text x="840.0" y="572.0" font-family="sans-serif" font-size="8.8" font-weight="bold" text-anchor="middle" fill="#0f766e">U.FL row ends at y=17.1 mm</text>
 <text x="840.0" y="591.0" font-family="sans-serif" font-size="8.8" font-weight="bold" text-anchor="middle" fill="#166534">slot starts at y=34.0 mm · gap 16.9 mm</text>
-<text x="1018.0" y="145.0" font-family="sans-serif" font-size="12.5" font-weight="bold" text-anchor="start" fill="#7c3aed">What is actually cut</text>
-<text x="1018.0" y="170.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• one 27 × 1.2-mm slot</text>
-<text x="1018.0" y="191.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• rounded / deburred</text>
-<text x="1018.0" y="212.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• under the display</text>
-<text x="1018.0" y="250.0" font-family="sans-serif" font-size="12.5" font-weight="bold" text-anchor="start" fill="#166534">What is not cut</text>
-<text x="1018.0" y="275.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• 47.9-mm FPC pocket</text>
-<text x="1018.0" y="296.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">  exists only in PSA</text>
-<text x="1018.0" y="317.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• antenna/U.FL zone</text>
-<text x="1018.0" y="355.0" font-family="sans-serif" font-size="12.5" font-weight="bold" text-anchor="start" fill="#1d4ed8">Connector</text>
-<text x="1018.0" y="380.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="start" fill="#172033">ZIF 27.0 × 3.8 × 1.0 mm</text>
-<text x="1018.0" y="401.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">inner gap 11.0 mm</text>
-<text x="1018.0" y="439.0" font-family="sans-serif" font-size="12.5" font-weight="bold" text-anchor="start" fill="#92400e">Open H5 evidence</text>
-<text x="1018.0" y="464.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• folded stack height</text>
-<text x="1018.0" y="485.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• safe bend radius</text>
-<text x="1018.0" y="506.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• exact foam PSA MPN</text>
-<text x="1018.0" y="527.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• factory cut/process</text>
-<text x="1018.0" y="574.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#92400e">drawing spacer envelope 1.0 mm</text>
-<text x="1018.0" y="595.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#92400e">not a released material thickness</text>
-<text x="40.0" y="682.0" font-family="sans-serif" font-size="9.9" font-weight="bold" text-anchor="start" fill="#166534">Factory sequence: clean bed → apply die-cut spacer → fold FPC into pocket → pass tongue through slot → insert/lock ZIF → fixture-place panel → press perimeter → inspect and power on.</text>
-<text x="40.0" y="712.0" font-family="sans-serif" font-size="9.7" font-weight="bold" text-anchor="start" fill="#92400e">The old outer-edge loop and 0.17-mm PSA concept are removed. Exact spacer thickness closes only after the current-lot folded FPC stack is measured.</text>
+<text x="1018.0" y="145.0" font-family="sans-serif" font-size="12.5" font-weight="bold" text-anchor="start" fill="#7c3aed">Two assembly datums</text>
+<text x="1018.0" y="170.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="start" fill="#172033">1 · PSA SILK</text>
+<text x="1018.0" y="191.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="start" fill="#172033">2 · DISPLAY + FPC ↑</text>
+<text x="1018.0" y="229.0" font-family="sans-serif" font-size="12.5" font-weight="bold" text-anchor="start" fill="#b42318">What is actually cut</text>
+<text x="1018.0" y="254.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• one 27 × 1.2-mm slot</text>
+<text x="1018.0" y="275.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• rounded / deburred</text>
+<text x="1018.0" y="296.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• under the display</text>
+<text x="1018.0" y="334.0" font-family="sans-serif" font-size="12.5" font-weight="bold" text-anchor="start" fill="#166534">Not cut</text>
+<text x="1018.0" y="359.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• FPC pocket</text>
+<text x="1018.0" y="380.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• U.FL zone</text>
+<text x="1018.0" y="418.0" font-family="sans-serif" font-size="12.5" font-weight="bold" text-anchor="start" fill="#1d4ed8">Connector</text>
+<text x="1018.0" y="443.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="start" fill="#172033">ZIF 27.0 × 3.8 × 1.0 mm</text>
+<text x="1018.0" y="464.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">inner gap 11.0 mm</text>
+<text x="1018.0" y="502.0" font-family="sans-serif" font-size="12.5" font-weight="bold" text-anchor="start" fill="#92400e">Open H5 evidence</text>
+<text x="1018.0" y="527.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• folded stack / bend</text>
+<text x="1018.0" y="548.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• exact foam PSA MPN</text>
+<text x="1018.0" y="569.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• converter + process</text>
+<text x="1018.0" y="608.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#92400e">drawing spacer envelope 1.0 mm</text>
+<text x="1018.0" y="629.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#92400e">not a released material thickness</text>
+<text x="40.0" y="682.0" font-family="sans-serif" font-size="9.9" font-weight="bold" text-anchor="start" fill="#166534">Factory sequence: clean PCB → place one-piece PSA by PSA SILK with upper liner on → route/lock FPC → peel liner → align DISPLAY/FPC ↑ → press broad support.</text>
+<text x="40.0" y="712.0" font-family="sans-serif" font-size="9.7" font-weight="bold" text-anchor="start" fill="#92400e">One carrier-backed adhesive piece replaces thin loose strips. Exact foam thickness closes only after the current-lot folded FPC stack is measured.</text>
 </svg>
