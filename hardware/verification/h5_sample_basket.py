@@ -233,10 +233,10 @@ def build() -> dict:
                 "ticket_number": None,
                 "scope": "information only; no order, quote project, sourcing request or reservation",
             },
-            "next_action": "wait for the itemized SA818S-V pre-order and J4-F/J4-P factory response, then publish the remaining cost and capability evidence",
+            "next_action": "send the prepared exact-one clarification and obtain the nine release-relevant answers for the two-designator job, exact SA818S-V installation, four required final-assembly operations and exact-MPN control",
         },
         "sequencing": {
-            "now": "wait for JLCPCB's itemized response to the no-order inquiry submitted on 2026-08-26; retain SA818S-V and J4-F/J4-P as open factory gates",
+            "now": "send the prepared exact-one clarification to JLCPCB; retain only its nine release-relevant supplier answers as open gates, while Function Test, batteries and accessory packing remain optional or owner-supplied",
             "after_mapping": "use approved read-only Parts access for repeatable availability checks when permission becomes usable; no additional submission is required for the current gate",
             "after_quote": "publish exact sole-prototype and final-assembly costs, close the H5 supplier/manifest gate, then continue through H6 and the existing single H7 prototype-order approval",
             "after_order": "H7 records arrival identity, assembly and first owner bring-up; H8 executes the retained fit, RF, thermal, audio, control and interoperability contracts on that prototype and ordinary accessories",
@@ -343,7 +343,7 @@ flowchart TD
 
 ## Открытые supplier inputs
 
-Цена каждого выбранного модуля известна. Частичный ответ JLCPCB от 26 августа подтверждает для exact `SA818S-V` MOQ 1 и типичные 8–15 рабочих дней pre-order; final quote/lead доступны только после pre-order. Открыты реальная two-designator U/V job, остальные `J4-F`/`J4-P` и identity control. Аккумуляторы перенесены в `J5-U`: пользователь покупает их отдельно, они не входят в поставку и не являются supplier-gate. `SA818S-CE C19632390` остаётся только qualified-pending UHF-заменой после HIL и firmware-clamp 470 МГц. Quote, reservation и заказ не создавались.
+Цена каждого выбранного модуля известна. Частичный ответ JLCPCB от 26 августа подтверждает для exact `SA818S-V` MOQ 1 и типичные 8–15 рабочих дней pre-order; final quote/lead доступны только после pre-order. Открыты девять относящихся к release ответов: реальная two-designator U/V job, установка exact `SA818S-V` средствами Standard PCBA, четыре обязательные операции финальной сборки одного прототипа и exact-MPN/no-substitution control. Function Test, аккумуляторы и упаковка аксессуаров не являются gate. `SA818S-CE C19632390` остаётся только qualified-pending UHF-заменой после HIL и firmware-clamp 470 МГц. Quote, reservation и заказ не создавались.
 
 Машинный результат: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).
 """
@@ -387,7 +387,7 @@ All `{summary['covered_residuals_and_gates']}` residuals/gates are covered by `{
 
 ## Open supplier inputs
 
-Both selected module prices are known. JLCPCB's partial 26 August response confirms MOQ 1 and a typical 8–15-working-day pre-order for exact `SA818S-V`; final quote/lead exist only after pre-order. The actual two-designator U/V job, remaining `J4-F`/`J4-P` and identity control are open. Accumulators now use `J5-U`: the user buys them separately, they are not part of delivery and are not a supplier gate. `SA818S-CE C19632390` remains only a qualified-pending UHF alternate after HIL and a 470-MHz firmware clamp. No quote, reservation or order was created.
+Both selected module prices are known. JLCPCB's partial 26 August response confirms MOQ 1 and a typical 8–15-working-day pre-order for exact `SA818S-V`; final quote/lead exist only after pre-order. Nine release-relevant answers remain open: the actual two-designator U/V job, exact `SA818S-V` Standard-PCBA installation, four required one-prototype final-assembly operations and exact-MPN/no-substitution control. Function Test, batteries and accessory packing are not gates. `SA818S-CE C19632390` remains only a qualified-pending UHF alternate after HIL and a 470-MHz firmware clamp. No quote, reservation or order was created.
 
 Machine result: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).
 """
@@ -408,7 +408,8 @@ ordering source. There is no separate engineering-sample or H5 coupon order:
 the listed production parts and ordinary bring-up accessories join the sole
 prototype order, and H7/H8 execute the evidence contracts after delivery.
 PCB placement/routing and fabrication remain unauthorized. The VHF pre-order
-lead time and J4-F/J4-P factory gates remain open while all 210 routes are rebuilt.
+route is recorded; the nine exact-one supplier answers remain open while the
+integrated manifest is rebuilt.
 """
 
 

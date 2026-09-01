@@ -81,6 +81,8 @@ class H5SupplierResponseTests(unittest.TestCase):
         self.assertGreater(result["summary"]["missing_field_count"], 0)
         self.assertEqual([], result["explicit_declines"])
         self.assertEqual(1, result["summary"]["out_of_supplier_scope_operations"])
+        self.assertEqual(4, result["summary"]["release_required_final_assembly_operations"])
+        self.assertEqual(3, result["summary"]["optional_non_gating_operations"])
         self.assertTrue(result["checks"]["exact_sa818s_v_identity_preserved"])
         self.assertTrue(result["checks"]["commercial_layout_and_fabrication_authority_remains_false"])
         self.assertEqual(0, result["summary"]["orders_authorized"])
@@ -102,6 +104,15 @@ class H5SupplierResponseTests(unittest.TestCase):
         self.assertTrue(result["summary"]["response_complete"])
         self.assertFalse(result["summary"]["factory_gate_passed"])
         self.assertIn("alternate factory", result["next"])
+
+    def test_optional_function_test_and_packing_do_not_gate_one_prototype(self):
+        data = self.complete_response()
+        for row in data["j4_f_operations"] + data["j4_p_operations"]:
+            if row.get("required_for_release") is False:
+                row["accepted"] = False
+        result = h5_supplier_response.build(data)
+        self.assertEqual("passed_supplier_gate", result["status"])
+        self.assertEqual([], result["explicit_declines"])
 
     def test_response_record_cannot_grant_order_authority(self):
         data = self.complete_response()

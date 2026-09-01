@@ -12,4 +12,5 @@ ordering source. There is no separate engineering-sample or H5 coupon order:
 the listed production parts and ordinary bring-up accessories join the sole
 prototype order, and H7/H8 execute the evidence contracts after delivery.
 PCB placement/routing and fabrication remain unauthorized. The VHF pre-order
-lead time and J4-F/J4-P factory gates remain open while all 210 routes are rebuilt.
+route is recorded; the nine exact-one supplier answers remain open while the
+integrated manifest is rebuilt.

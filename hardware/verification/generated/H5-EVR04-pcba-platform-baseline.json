@@ -88,7 +88,7 @@
   ],
   "fallback_factory_evidence": {
     "path": "hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json",
-    "sha256": "58e1694b016ef2119b9418b9794efcf3de874b560322b2c44682b37e8c152dfd",
+    "sha256": "859b837d180dc614f8e712d3b75d5a1665c8c3c3fc4aaf0fcafb4b4df2470ac8",
     "status": "fallback_ranked_no_contact_authorized",
     "first_fallback": "pcbway",
     "second_source_pcba": "seeed-fusion",
@@ -391,7 +391,7 @@
       "processed": false,
       "result": "historical 209-line capture retained for 196 preserved identities; 195 join unchanged, C5 is rebound to current exact C54951858, 15 exact catalogue rows join separately, and the new exact 60-mm external jumper is fail-closed into the 212-line map"
     },
-    "blocker": "all 212 current lines have defined routes and all sample component prices are known; the actual two-designator U/V job plus J4-F/J4-P final-assembly acceptance/pricing remain open; accumulators are user-supplied and not a delivery gate; no sourcing request, quote, reservation or order has been created"
+    "blocker": "all 212 current lines have defined routes and all sample component prices are known; nine exact-one supplier answers remain open for the actual two-designator U/V job, exact SA818S-V Standard-PCBA installation, four required J4-F operations and exact-MPN/no-substitution control; Function Test, batteries and accessory packing are not release gates; no sourcing request, quote, reservation or order has been created"
   },
   "critical_spot_checks": [
     {
@@ -689,7 +689,7 @@
     "continuity": "permanent availability is approximated by qualified alternates or reserved private inventory, never claimed from one stock snapshot"
   },
   "next": {
-    "local": "all 212 lines have defined routes; preserve the map, keep the two-designator and J4-F/J4-P clarification open, keep accumulators outside delivery, keep the optional rejected Parts API path fail-closed, and retain PCBWay as the prepared unsent full-device fallback",
+    "local": "all 212 lines have defined routes; preserve the map, keep the nine exact-one supplier answers open, keep optional services and accumulators outside the release gate, keep the optional rejected Parts API path fail-closed, and retain PCBWay as the prepared unsent full-device fallback",
     "external_authority_later": "quote creation, sourcing requests, private-stock reservation, purchase and any materially expanded supplier request still require separate explicit authority",
     "forbidden": [
       "purchase",

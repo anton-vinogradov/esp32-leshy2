@@ -222,6 +222,6 @@ All `23` residuals/gates are covered by `11` contracts. They execute after the s
 
 ## Open supplier inputs
 
-Both selected module prices are known. JLCPCB's partial 26 August response confirms MOQ 1 and a typical 8–15-working-day pre-order for exact `SA818S-V`; final quote/lead exist only after pre-order. The actual two-designator U/V job, remaining `J4-F`/`J4-P` and identity control are open. Accumulators now use `J5-U`: the user buys them separately, they are not part of delivery and are not a supplier gate. `SA818S-CE C19632390` remains only a qualified-pending UHF alternate after HIL and a 470-MHz firmware clamp. No quote, reservation or order was created.
+Both selected module prices are known. JLCPCB's partial 26 August response confirms MOQ 1 and a typical 8–15-working-day pre-order for exact `SA818S-V`; final quote/lead exist only after pre-order. Nine release-relevant answers remain open: the actual two-designator U/V job, exact `SA818S-V` Standard-PCBA installation, four required one-prototype final-assembly operations and exact-MPN/no-substitution control. Function Test, batteries and accessory packing are not gates. `SA818S-CE C19632390` remains only a qualified-pending UHF alternate after HIL and a 470-MHz firmware clamp. No quote, reservation or order was created.
 
 Machine result: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).

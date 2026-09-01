@@ -1099,10 +1099,10 @@
       "ticket_number": null,
       "scope": "information only; no order, quote project, sourcing request or reservation"
     },
-    "next_action": "wait for the itemized SA818S-V pre-order and J4-F/J4-P factory response, then publish the remaining cost and capability evidence"
+    "next_action": "send the prepared exact-one clarification and obtain the nine release-relevant answers for the two-designator job, exact SA818S-V installation, four required final-assembly operations and exact-MPN control"
   },
   "sequencing": {
-    "now": "wait for JLCPCB's itemized response to the no-order inquiry submitted on 2026-08-26; retain SA818S-V and J4-F/J4-P as open factory gates",
+    "now": "send the prepared exact-one clarification to JLCPCB; retain only its nine release-relevant supplier answers as open gates, while Function Test, batteries and accessory packing remain optional or owner-supplied",
     "after_mapping": "use approved read-only Parts access for repeatable availability checks when permission becomes usable; no additional submission is required for the current gate",
     "after_quote": "publish exact sole-prototype and final-assembly costs, close the H5 supplier/manifest gate, then continue through H6 and the existing single H7 prototype-order approval",
     "after_order": "H7 records arrival identity, assembly and first owner bring-up; H8 executes the retained fit, RF, thermal, audio, control and interoperability contracts on that prototype and ordinary accessories",

@@ -32,6 +32,7 @@
   "j4_f_operations": [
     {
       "id": "display_flex",
+      "required_for_release": true,
       "description": "mate and test HMX035CTFT-001 display/flex",
       "accepted": null,
       "setup_nre_usd": null,
@@ -43,6 +44,7 @@
     },
     {
       "id": "microcoax_x5",
+      "required_for_release": true,
       "description": "install, strain-route and continuity-test five TE Connectivity 2118651-2 microcoax jumpers",
       "accepted": null,
       "setup_nre_usd": null,
@@ -54,6 +56,7 @@
     },
     {
       "id": "encoder_knob",
+      "required_for_release": true,
       "description": "install Davies 1227-J encoder knob",
       "accepted": null,
       "setup_nre_usd": null,
@@ -65,6 +68,7 @@
     },
     {
       "id": "sandwich_enclosure",
+      "required_for_release": true,
       "description": "assemble the two-board sandwich and enclosure",
       "accepted": null,
       "setup_nre_usd": null,
@@ -76,6 +80,7 @@
     },
     {
       "id": "whole_device_test",
+      "required_for_release": false,
       "description": "execute the supplied whole-device functional-test procedure",
       "accepted": null,
       "setup_nre_usd": 15.7,
@@ -92,6 +97,7 @@
   "j4_p_operations": [
     {
       "id": "u214_test_and_pack",
+      "required_for_release": false,
       "description": "compatibility-test and pack M5Stack U214 Cap LoRa-1262 separately",
       "accepted": null,
       "setup_nre_usd": null,
@@ -102,6 +108,7 @@
     },
     {
       "id": "antenna_kit",
+      "required_for_release": false,
       "description": "pack ten labelled external antennas as a kit",
       "accepted": null,
       "setup_nre_usd": null,
@@ -112,6 +119,7 @@
     },
     {
       "id": "protected_cells",
+      "required_for_release": false,
       "description": "pack two exact protected XTAR 18650 4000 mAh 10 A cells separately for user installation",
       "in_supplier_scope": false,
       "project_disposition": "user_supplied_not_part_of_device_delivery",

@@ -8,7 +8,7 @@
 
 Целевой заказ — ровно **один полностью собранный прототип**, без аккумуляторов. Фабрика не выбирает схемные или механические решения: production package заранее фиксирует exact panel, его mating, все компоненты и последовательность сборки. Первый полноценный power-on и USB bring-up выполняет владелец.
 
-PCBWay — первый резерв полного устройства: его официальные страницы подтверждают [turnkey/combo/consigned PCBA и тестирование](https://www.pcbway.com/assembly-capabilities.html), а также [OEM final assembly](https://www.pcbway.com/oem.html). Точное принятие Leshy2 и цены ещё не подтверждены письменно; подготовленный запрос не отправлялся. Seeed Fusion подтверждён только как второй источник PCBA: [turnkey, OPL, mixed assembly и functional test](https://www.seeedstudio.com/pcb-assembly.html) есть, но требуемая полная сборка `J4-F/J4-P` публично не доказана.
+PCBWay — первый резерв полного устройства: его официальные страницы подтверждают [turnkey/combo/consigned PCBA и тестирование](https://www.pcbway.com/assembly-capabilities.html), а также [OEM final assembly](https://www.pcbway.com/oem.html). Точное принятие Leshy2 и цены ещё не подтверждены письменно; подготовленный запрос не отправлялся. Seeed Fusion подтверждён только как второй источник PCBA: [turnkey, OPL и mixed assembly](https://www.seeedstudio.com/pcb-assembly.html) есть, но четыре обязательные операции финальной сборки одного прототипа публично не доказаны.
 
 ```mermaid
 flowchart TD

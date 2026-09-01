@@ -34,8 +34,7 @@ FACTORIES = [
         },
         "still_requires_written_acceptance": [
             "exact SA818S-V sourcing lead time or consignment",
-            "all five J4-F operations and itemized quantity-5/10 price",
-            "all three J4-P operations and protected-cell shipping boundary",
+            "the four release-required final-assembly operations for exactly one unpowered device",
             "exact-MPN incoming inspection and no-silent-substitution terms",
         ],
         "status": "ready_for_same_no_order_questionnaire_if_authorized",
@@ -56,7 +55,7 @@ FACTORIES = [
         "still_requires_written_acceptance": [
             "full-device final assembly rather than PCBA only",
             "exact SA818S-U/V sourcing or consignment",
-            "all J4-F/J4-P operations, prices and battery-shipping boundary",
+            "the four release-required final-assembly operations for exactly one unpowered device",
         ],
         "status": "retain_as_pcba_second_source_not_first_box_build_fallback",
     },
@@ -70,7 +69,7 @@ def build() -> dict:
     checks = {
         "exactly_two_non_jlc_candidates_are_recorded": set(rows) == {"pcbway", "seeed-fusion"},
         "pcbway_public_evidence_covers_sourcing_pcba_test_and_final_assembly_classes": all(pcbway["publicly_confirmed"].values()),
-        "pcbway_exact_leshy_acceptance_and_price_remain_open": len(pcbway["still_requires_written_acceptance"]) == 4,
+        "pcbway_exact_leshy_acceptance_and_price_remain_open": len(pcbway["still_requires_written_acceptance"]) == 3,
         "seeed_public_evidence_is_not_overstated_as_full_box_build": seeed["role"] == "second_source_for_pcba_not_yet_full_box_build" and "404" in seeed["observed_gap"],
         "no_supplier_contact_or_commercial_action_is_authorized": True,
     }
@@ -100,7 +99,7 @@ def build() -> dict:
             "pcb_placement_and_routing": False,
             "fabrication": False,
         },
-        "next": "keep waiting for JLCPCB; if its response fails H5-EVR07, request separate authority to send the identical no-order gate questionnaire to PCBWay",
+        "next": "keep waiting for JLCPCB; if it declines a release-required operation, request separate authority to send the exact-one no-order gate questionnaire to PCBWay",
     }
 
 

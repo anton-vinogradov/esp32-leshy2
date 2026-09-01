@@ -8,7 +8,7 @@
 
 The procurement target is exactly **one fully assembled prototype**, with no batteries. The factory makes no electrical or mechanical design choices: the production package first fixes the exact panel, its mating, every component and the assembly sequence. The owner performs the first full power-on and USB bring-up.
 
-PCBWay is the first full-device fallback: its official pages confirm [turnkey/combo/consigned PCBA and test](https://www.pcbway.com/assembly-capabilities.html) plus [OEM final assembly](https://www.pcbway.com/oem.html). Exact Leshy2 acceptance and prices still need a written answer; the prepared inquiry has not been sent. Seeed Fusion is confirmed only as a PCBA second source: [turnkey, OPL, mixed assembly and functional test](https://www.seeedstudio.com/pcb-assembly.html) are public, but the required complete `J4-F/J4-P` assembly is not proven.
+PCBWay is the first full-device fallback: its official pages confirm [turnkey/combo/consigned PCBA and test](https://www.pcbway.com/assembly-capabilities.html) plus [OEM final assembly](https://www.pcbway.com/oem.html). Exact Leshy2 acceptance and prices still need a written answer; the prepared inquiry has not been sent. Seeed Fusion is confirmed only as a PCBA second source: [turnkey, OPL and mixed assembly](https://www.seeedstudio.com/pcb-assembly.html) are public, but the four required final-assembly operations for one prototype are not proven.
 
 ```mermaid
 flowchart TD

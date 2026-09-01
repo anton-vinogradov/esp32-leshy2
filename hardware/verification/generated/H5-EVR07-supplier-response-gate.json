@@ -8,25 +8,25 @@
   "summary": {
     "response_complete": false,
     "factory_gate_passed": false,
-    "missing_field_count": 16,
+    "missing_field_count": 9,
     "explicit_decline_count": 0,
     "out_of_supplier_scope_operations": 1,
     "j4_f_operations": 5,
     "j4_p_operations": 2,
+    "release_required_final_assembly_operations": 4,
+    "optional_non_gating_operations": 3,
     "orders_authorized": 0
   },
   "checks": {
     "exact_sa818s_v_identity_preserved": true,
     "exact_sa818s_u_identity_preserved": true,
-    "seven_inquiry_sections_are_machine_represented": true,
+    "release_relevant_and_optional_operations_are_machine_separated": true,
     "commercial_layout_and_fabrication_authority_remains_false": true,
     "response_complete": false,
     "all_required_factory_gates_accepted": false
   },
   "missing_fields": [
     "dual_module_job.accepted",
-    "dual_module_job.common_rev_1_8_land_pattern_confirmed",
-    "dual_module_job.separate_rf_paths_confirmed",
     "identity_control.exact_external_mpns_controlled_at_incoming_inspection",
     "identity_control.exceptions",
     "identity_control.silent_substitution_prohibited",
@@ -34,12 +34,7 @@
     "j4_f_operations.encoder_knob.accepted",
     "j4_f_operations.microcoax_x5.accepted",
     "j4_f_operations.sandwich_enclosure.accepted",
-    "j4_f_operations.whole_device_test.accepted",
-    "j4_p_operations.antenna_kit.accepted",
-    "j4_p_operations.u214_test_and_pack.accepted",
-    "sa818s_v.preorder_or_service_charge_usd",
-    "sa818s_v.standard_pcba_installation",
-    "supplier.legal_entity"
+    "sa818s_v.standard_pcba_installation"
   ],
   "explicit_declines": [],
   "blockers": [
@@ -54,5 +49,5 @@
     "pcb_placement_and_routing": false,
     "fabrication": false
   },
-  "next": "request itemized clarification for the unanswered two-designator, J4-F/J4-P and identity-control lines; accumulators are user-supplied and not a supplier gate"
+  "next": "send the prepared exact-one clarification for the two-designator job, four required final-assembly operations and exact-MPN control; Function Test, batteries and accessory packing are not gates"
 }

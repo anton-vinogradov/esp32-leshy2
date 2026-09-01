@@ -36,22 +36,17 @@ def present(value: object) -> bool:
     return value is not None and value != ""
 
 
-def money(value: object) -> bool:
-    return isinstance(value, (int, float)) and not isinstance(value, bool) and value >= 0
-
-
-def operation_completeness(row: dict, *, terms_key: str) -> tuple[list[str], bool]:
+def operation_completeness(row: dict) -> tuple[list[str], bool]:
     missing: list[str] = []
+    if row.get("required_for_release") is not True:
+        return missing, True
     if not isinstance(row.get("accepted"), bool):
         missing.append(f"{row.get('id', '<unknown>')}.accepted")
         return missing, False
-    if not present(row.get(terms_key)):
-        missing.append(f"{row['id']}.{terms_key}")
     if row["accepted"] is False:
         return missing, False
-    for field in ("setup_nre_usd", "per_unit_usd_q5", "per_unit_usd_q10"):
-        if not money(row.get(field)):
-            missing.append(f"{row['id']}.{field}")
+    if not isinstance(row.get("required_fixtures_or_files"), list):
+        missing.append(f"{row['id']}.required_fixtures_or_files")
     return missing, row["accepted"]
 
 
@@ -73,18 +68,28 @@ def build(source: dict | None = None) -> dict:
         raise ValueError("J4-P operation set drifted")
     if {row.get("id") for row in out_of_scope} != OUT_OF_SUPPLIER_SCOPE_IDS:
         raise ValueError("out-of-supplier-scope operation set drifted")
+    required_j4_f = [row for row in j4_f if row.get("required_for_release") is True]
+    optional_operations = [row for row in j4_f + j4_p if row.get("required_for_release") is False]
+    if {row.get("id") for row in required_j4_f} != {
+        "display_flex", "microcoax_x5", "encoder_knob", "sandwich_enclosure"
+    }:
+        raise ValueError("release-required final-assembly operation set drifted")
+    if {row.get("id") for row in optional_operations} != {
+        "whole_device_test", "u214_test_and_pack", "antenna_kit"
+    }:
+        raise ValueError("optional operation set drifted")
     if set(source.get("authorization", {})) != FORBIDDEN_AUTHORITY:
         raise ValueError("authorization boundary drifted")
 
     missing: list[str] = []
     supplier = source["supplier"]
-    for field in ("legal_entity", "received_on", "source_reference"):
+    for field in ("received_on", "source_reference"):
         if not present(supplier.get(field)):
             missing.append(f"supplier.{field}")
 
     voice = source["sa818s_v"]
     exact_voice_identity = voice.get("mpn") == "SA818S-V" and voice.get("jlcpcb_part") == "C51897911"
-    for field in ("standard_pcba_installation", "sample_lead_time_days", "moq", "preorder_or_service_charge_usd"):
+    for field in ("standard_pcba_installation", "sample_lead_time_days", "moq"):
         if not present(voice.get(field)):
             missing.append(f"sa818s_v.{field}")
     voice_values_valid = (
@@ -95,28 +100,19 @@ def build(source: dict | None = None) -> dict:
         and isinstance(voice.get("moq"), int)
         and not isinstance(voice.get("moq"), bool)
         and voice.get("moq", 0) >= 1
-        and money(voice.get("preorder_or_service_charge_usd"))
     )
 
     dual = source["dual_module_job"]
     exact_dual_identity = dual.get("sa818s_u_mpn") == "SA818S-U" and dual.get("sa818s_u_jlcpcb_part") == "C3001549"
-    for field in ("accepted", "common_rev_1_8_land_pattern_confirmed", "separate_rf_paths_confirmed"):
+    for field in ("accepted",):
         if not isinstance(dual.get(field), bool):
             missing.append(f"dual_module_job.{field}")
 
     j4_f_accepted = True
-    for row in j4_f:
-        row_missing, accepted = operation_completeness(row, terms_key="reject_rework_terms")
+    for row in required_j4_f:
+        row_missing, accepted = operation_completeness(row)
         missing.extend(f"j4_f_operations.{item}" for item in row_missing)
-        if row.get("accepted") is True and not isinstance(row.get("required_fixtures_or_files"), list):
-            missing.append(f"j4_f_operations.{row['id']}.required_fixtures_or_files")
         j4_f_accepted = j4_f_accepted and accepted
-
-    j4_p_accepted = True
-    for row in j4_p:
-        row_missing, accepted = operation_completeness(row, terms_key="requirements_or_exclusions")
-        missing.extend(f"j4_p_operations.{item}" for item in row_missing)
-        j4_p_accepted = j4_p_accepted and accepted
 
     battery = source["battery_shipping"]
     battery_out_of_scope = battery.get("supply_scope") is False and battery.get("user_supplied") is True
@@ -145,17 +141,12 @@ def build(source: dict | None = None) -> dict:
         missing.append("status=response_recorded")
     response_complete = not missing and voice_values_valid and battery_complete and identity_complete
     explicit_declines = [
-        f"J4-F:{row['id']}" for row in j4_f if row.get("accepted") is False
-    ] + [
-        f"J4-P:{row['id']}" for row in j4_p if row.get("accepted") is False
+        f"J4-F:{row['id']}" for row in required_j4_f if row.get("accepted") is False
     ]
     all_factory_gates_accepted = (
         voice.get("standard_pcba_installation") is True
         and dual.get("accepted") is True
-        and dual.get("common_rev_1_8_land_pattern_confirmed") is True
-        and dual.get("separate_rf_paths_confirmed") is True
         and j4_f_accepted
-        and j4_p_accepted
         and identity.get("exact_external_mpns_controlled_at_incoming_inspection") is True
         and identity.get("silent_substitution_prohibited") is True
         and not identity.get("exceptions")
@@ -190,12 +181,14 @@ def build(source: dict | None = None) -> dict:
             "out_of_supplier_scope_operations": len(out_of_scope),
             "j4_f_operations": len(j4_f),
             "j4_p_operations": len(j4_p),
+            "release_required_final_assembly_operations": len(required_j4_f),
+            "optional_non_gating_operations": len(optional_operations),
             "orders_authorized": 0,
         },
         "checks": {
             "exact_sa818s_v_identity_preserved": exact_voice_identity,
             "exact_sa818s_u_identity_preserved": exact_dual_identity,
-            "seven_inquiry_sections_are_machine_represented": len(j4_f) == 5 and len(j4_p) == 2 and len(out_of_scope) == 1,
+            "release_relevant_and_optional_operations_are_machine_separated": len(required_j4_f) == 4 and len(optional_operations) == 3 and len(out_of_scope) == 1,
             "commercial_layout_and_fabrication_authority_remains_false": no_new_authority,
             "response_complete": response_complete,
             "all_required_factory_gates_accepted": all_factory_gates_accepted,
@@ -204,7 +197,7 @@ def build(source: dict | None = None) -> dict:
         "explicit_declines": explicit_declines,
         "blockers": blockers,
         "authorization": source["authorization"],
-        "next": ("request itemized clarification for the unanswered two-designator, J4-F/J4-P and identity-control lines; accumulators are user-supplied and not a supplier gate" if source["status"] == "response_recorded" and not response_complete else ("wait for the supplier response" if not response_complete else ("prepare the separate cost/order decision" if gate_passed else "compare an alternate factory or revise the declined operation boundary"))),
+        "next": ("send the prepared exact-one clarification for the two-designator job, four required final-assembly operations and exact-MPN control; Function Test, batteries and accessory packing are not gates" if source["status"] == "response_recorded" and not response_complete else ("wait for the supplier response" if not response_complete else ("prepare the separate cost/order decision" if gate_passed else "compare an alternate factory or revise the declined required operation boundary"))),
     }
 
 

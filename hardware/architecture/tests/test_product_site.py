@@ -1212,10 +1212,13 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertFalse(h5_plan["decision_gate"]["requires_user_authority"])
         self.assertTrue(h5_plan["decision_gate"]["authorized_now"])
-        self.assertEqual("submitted_waiting_for_response", h5_plan["decision_gate"]["action_status"])
+        self.assertEqual(
+            "exact_one_clarification_prepared_waiting_for_action_time_send_confirmation",
+            h5_plan["decision_gate"]["action_status"],
+        )
         self.assertTrue(h5_plan["authorization"]["supplier_contact_send"])
         self.assertEqual("successfully_submitted", h5_plan["authorization"]["supplier_contact_result"])
-        self.assertIn("supplier inputs", h5_plan["blocker"])
+        self.assertIn("Nine release-relevant answers remain external", h5_plan["blocker"])
         self.assertFalse(h5_plan["authorization"]["sample_or_component_purchase"])
         self.assertTrue(h5_plan["authorization"]["parts_api_application"])
         self.assertEqual("approved", h5_plan["authorization"]["parts_api_application_status"])

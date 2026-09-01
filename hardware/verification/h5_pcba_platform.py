@@ -1008,7 +1008,7 @@ def build_outlier_resolution(rows: list[dict[str, str]], match_result: dict) -> 
                 "route": "J4-P",
                 "mpns": sorted(J4_PACKED_MPNS),
                 "accepted_and_quoted": False,
-                "gate": "kit inclusion and packing must be quoted; compatibility testing is owner bring-up unless separately quoted",
+                "gate": "none for H5 release; removable accessories are owner-supplied after delivery unless packing is separately requested later",
             },
             "user_supplied_not_delivered": {
                 "route": "J5-U",
@@ -1019,7 +1019,7 @@ def build_outlier_resolution(rows: list[dict[str, str]], match_result: dict) -> 
             "not_authorized": ["sourcing request", "quote", "reservation", "purchase", "component replacement", "KiCad placement/routing", "fabrication"],
         },
         "next": {
-            "decision_needed": "request itemized clarification after the partial 2026-08-26 response: SA818S-V MOQ 1 and typical 8-15-working-day pre-order are known; accumulators are user-supplied and not a gate; the actual two-designator job plus remaining J4-F/J4-P capability/pricing remain open before H5.0.3-R1 can close",
+            "decision_needed": "send the prepared exact-one clarification after the partial 2026-08-26 response: SA818S-V MOQ 1 and typical 8-15-working-day pre-order are known; H5 still needs nine release-relevant answers covering the actual two-designator job, exact SA818S-V Standard-PCBA installation, four required J4-F operations and exact-MPN/no-substitution control; Function Test, batteries and accessory packing are not gates",
             "purchase_remains_last": True,
         },
         "checks": checks,
@@ -1230,7 +1230,7 @@ def build() -> dict:
                 "processed": False,
                 "result": "historical 209-line capture retained for 196 preserved identities; 195 join unchanged, C5 is rebound to current exact C54951858, 15 exact catalogue rows join separately, and the new exact 60-mm external jumper is fail-closed into the 212-line map",
             },
-            "blocker": "all 212 current lines have defined routes and all sample component prices are known; the actual two-designator U/V job plus J4-F/J4-P final-assembly acceptance/pricing remain open; accumulators are user-supplied and not a delivery gate; no sourcing request, quote, reservation or order has been created",
+            "blocker": "all 212 current lines have defined routes and all sample component prices are known; nine exact-one supplier answers remain open for the actual two-designator U/V job, exact SA818S-V Standard-PCBA installation, four required J4-F operations and exact-MPN/no-substitution control; Function Test, batteries and accessory packing are not release gates; no sourcing request, quote, reservation or order has been created",
         },
         "critical_spot_checks": SPOT_CHECKS,
         "summary": {
@@ -1263,7 +1263,7 @@ def build() -> dict:
             "continuity": "permanent availability is approximated by qualified alternates or reserved private inventory, never claimed from one stock snapshot",
         },
         "next": {
-            "local": "all 212 lines have defined routes; preserve the map, keep the two-designator and J4-F/J4-P clarification open, keep accumulators outside delivery, keep the optional rejected Parts API path fail-closed, and retain PCBWay as the prepared unsent full-device fallback",
+            "local": "all 212 lines have defined routes; preserve the map, keep the nine exact-one supplier answers open, keep optional services and accumulators outside the release gate, keep the optional rejected Parts API path fail-closed, and retain PCBWay as the prepared unsent full-device fallback",
             "external_authority_later": "quote creation, sourcing requests, private-stock reservation, purchase and any materially expanded supplier request still require separate explicit authority",
             "forbidden": ["purchase", "component replacement", "sourcing request", "quote creation", "private-stock reservation", "raw API data redistribution", "KiCad placement/routing", "fabrication"],
         },
@@ -1318,7 +1318,7 @@ def render(data: dict, match_result: dict, outlier_result: dict, russian: bool) 
 
 Целевой заказ — ровно **один полностью собранный прототип**, без аккумуляторов. Фабрика не выбирает схемные или механические решения: production package заранее фиксирует exact panel, его mating, все компоненты и последовательность сборки. Первый полноценный power-on и USB bring-up выполняет владелец.
 
-PCBWay — первый резерв полного устройства: его официальные страницы подтверждают [turnkey/combo/consigned PCBA и тестирование]({SOURCES['pcbway_capabilities']}), а также [OEM final assembly]({SOURCES['pcbway_oem']}). Точное принятие Leshy2 и цены ещё не подтверждены письменно; подготовленный запрос не отправлялся. Seeed Fusion подтверждён только как второй источник PCBA: [turnkey, OPL, mixed assembly и functional test]({SOURCES['seeed_pcba']}) есть, но требуемая полная сборка `J4-F/J4-P` публично не доказана.
+PCBWay — первый резерв полного устройства: его официальные страницы подтверждают [turnkey/combo/consigned PCBA и тестирование]({SOURCES['pcbway_capabilities']}), а также [OEM final assembly]({SOURCES['pcbway_oem']}). Точное принятие Leshy2 и цены ещё не подтверждены письменно; подготовленный запрос не отправлялся. Seeed Fusion подтверждён только как второй источник PCBA: [turnkey, OPL и mixed assembly]({SOURCES['seeed_pcba']}) есть, но четыре обязательные операции финальной сборки одного прототипа публично не доказаны.
 
 ```mermaid
 flowchart TD
@@ -1406,7 +1406,7 @@ JLCPCB Standard PCBA собирает обе платы и принятые SMT/
 
 The procurement target is exactly **one fully assembled prototype**, with no batteries. The factory makes no electrical or mechanical design choices: the production package first fixes the exact panel, its mating, every component and the assembly sequence. The owner performs the first full power-on and USB bring-up.
 
-PCBWay is the first full-device fallback: its official pages confirm [turnkey/combo/consigned PCBA and test]({SOURCES['pcbway_capabilities']}) plus [OEM final assembly]({SOURCES['pcbway_oem']}). Exact Leshy2 acceptance and prices still need a written answer; the prepared inquiry has not been sent. Seeed Fusion is confirmed only as a PCBA second source: [turnkey, OPL, mixed assembly and functional test]({SOURCES['seeed_pcba']}) are public, but the required complete `J4-F/J4-P` assembly is not proven.
+PCBWay is the first full-device fallback: its official pages confirm [turnkey/combo/consigned PCBA and test]({SOURCES['pcbway_capabilities']}) plus [OEM final assembly]({SOURCES['pcbway_oem']}). Exact Leshy2 acceptance and prices still need a written answer; the prepared inquiry has not been sent. Seeed Fusion is confirmed only as a PCBA second source: [turnkey, OPL and mixed assembly]({SOURCES['seeed_pcba']}) are public, but the four required final-assembly operations for one prototype are not proven.
 
 ```mermaid
 flowchart TD
@@ -1563,7 +1563,7 @@ def main() -> None:
         f"{data['summary']['current_exact_catalogue_routes_before_outlier_resolution']}/"
         f"{data['summary']['target_bom_lines']} exact catalogue routes before retained outlier resolution; "
         f"all {data['summary']['target_bom_lines']} sourcing/final-assembly routes mapped; "
-        "partial supplier response recorded; two-designator and J4-F/J4-P clarification open; "
+        "partial supplier response recorded; nine exact-one supplier answers open; "
         "no order or replacement authorized"
     )
 
