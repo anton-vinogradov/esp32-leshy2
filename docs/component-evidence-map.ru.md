@@ -18,7 +18,7 @@ flowchart LR
 
 - Выбрано: `EastRising ER-TFT035IPS-6 + ER-TPC035-6`; `Hirose FH34SRJ-50S-0.5SH(50)`.
 - Осталось доказать: конструкцию FPC текущей партии, fit в прямом FH34SRJ-50S-0.5SH(50), подтверждённый радиус свободной петли и clearance корпуса; identity/readback ER-TFT035IPS-6 + ER-TPC035-6, равенство разгона VDD/VDDI и factory assembly record единственного прототипа.
-- Критерий: factory assembly record подтверждает точную ER-TFT035IPS-6 + ER-TPC035-6, правильный PSA-cut, свободную петлю и ввод в прямой FH34SRJ; owner bring-up единственного прототипа подтверждает ILI9488/FT6236, VDD/VDDI, reset, изображение и touch; несовпадение повторно открывает H1/H2/H3.
+- Критерий: factory assembly record подтверждает точную ER-TFT035IPS-6 + ER-TPC035-6, неразрезанный 3M (TC) 4910SQ-2(5), сложенный FPC не выше 0,714 мм, реальный зазор PSA не меньше 0,20 мм, свободную петлю и ввод в прямой FH34SRJ; owner bring-up единственного прототипа подтверждает ILI9488/FT6236, VDD/VDDI, reset, изображение и touch; несовпадение повторно открывает H1/H2/H3.
 
 ### `H3-PHY-024` · `ir`
 
@@ -70,7 +70,7 @@ flowchart LR
 
 ## Четырнадцать механических gate’ов
 
-- `H5-MECH-DISPLAY-TAIL` — `EastRising ER-TFT035IPS-6 + ER-TPC035-6`; `Hirose FH34SRJ-50S-0.5SH(50)`; открыто: конструкцию и stiffener FPC текущей партии, fit прямого ZIF, свободную петлю без острого сгиба и контакта с торцом FR4, clearance корпуса, точный PSA-cut и factory process
+- `H5-MECH-DISPLAY-TAIL` — `EastRising ER-TFT035IPS-6 + ER-TPC035-6`; `Hirose FH34SRJ-50S-0.5SH(50)`; открыто: основной PSA-кандидат — 3M (TC) 4910SQ-2(5), DigiKey 1067-4910SQ-2(5)-ND, активный складской квадрат 50,80 x 50,80 x 1,016 мм; на 2026-09-01 доступны 16 позиций по $22.12 за quantity-one. Точного результата в Standard-каталоге JLCPCB нет, поэтому это customer-supplied расходник J4-F. Открыто: сложенный FPC текущей партии <=0,714 мм, реальный зазор PSA >=0,20 мм, точный загиб 180 градусов, фактическая вставка и согласие сборщика на поддержанную оснастку 100 кПа с выдержкой. Безымянные reseller-площадки, полный рулон 33 м и 0,17-мм 9495LE отклонены
 - `H5-MECH-NRF-GEN1-FEEDS` — `Ebyte E01-ML01SP4`; `TE Connectivity 1-2118651-0`; `Hirose U.FL-R-SMT-1(80)`; `GCT RFPC-SMA31-FN-175-A`; открыто: ось и MPN встроенного разъёма партии E01, fit/retention, изгиб и сквозные RF-потери
 - `H5-MECH-U214-MATING-STACK` — `M5Stack U214 Cap LoRa-1262`; `Samtec HLE-107-02-G-DV-PE-LC`; открыто: сечение штырей U214, усилия, циклы, винтовое удержание и preload планки
 - `H5-MECH-NAVIGATION-CONTROLS` — `OMRON B3S-1100P`; открыто: доступ через корпус, защита от случайного нажатия, ощущения, герметизация и ресурс

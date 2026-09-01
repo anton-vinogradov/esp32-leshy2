@@ -4,13 +4,13 @@
   "marker": "H3-R2.0.3",
   "status": "pass",
   "accepted_input": "H3-R2.0.2",
-  "input_freeze_sha256": "67d16f3395ea69753bd49daa50d0a76aafff82b60eb9e9615c424031ecc0bd90",
-  "parameter_register_sha256": "2ea7bdcb7f286812105dfc0a1d1b06ff1bf0d01f2592d54127fa76cc2bde3300",
-  "method_contract_sha256": "d06a49fdc6168492625c9b69e315c9290ab1781af4648edfe5a72f27e2d60bf0",
+  "input_freeze_sha256": "2cb4e94a0e945d844543ae9a6fdbc7de772358676426763ded84ed4f6e10ac1c",
+  "parameter_register_sha256": "1ead5b41645be356ce1e1ac831a58c1896b79275c7b3d152012ca4ddd9292fbe",
+  "method_contract_sha256": "b3aac83aea734ec2803e36dc1eda07fe029ce2e44a02bdd48f371679c2b6b432",
   "source_sha256": {
     "hardware/verification/h3-r2-method-contract.json": "698cf8aa9b32afdc135608c401cfb9750b340acd3252bccae387d666f3bcc5cb",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "1f704cf752c3d6611e726bea612ae1a151759557a7ee675939518e46722b4240",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "2645ace0e4cb0b9d4e56eee27ec0a890d2eb8b2feb8dbb752b92ac546b848769"
+    "hardware/verification/generated/H3-R2-input-freeze.json": "f448168470c39be2b09114bf88c3c179a6977549046bd68c5398febe3728f385",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "ff4741015fa7e901a340309602e5151f69072433daf80bf97dd9c52c9ca1d207"
   },
   "toolchain": {
     "python": ">=3.12,<3.15",

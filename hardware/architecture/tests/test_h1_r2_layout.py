@@ -72,8 +72,12 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertIn("One 180° fold, no twist", svg)
         self.assertIn("rounded 27.0 × 1.2-mm slot", svg)
         self.assertIn("PSA pressing comes last", svg)
+        self.assertIn("3M 4910SQ-2(5)", svg)
+        self.assertIn("folded-FPC stack ≤0.714 mm", svg)
         self.assertEqual(design["orientation"]["fpc_exit_direction_board_axis"], "-Y")
         route = design["mechanical_retention"]["fpc_route_side_section"]
+        self.assertEqual([50.8, 50.8], route["stock_psa_rectangle_size_mm"])
+        self.assertEqual([12.1, 44.46], route["stock_psa_rectangle_position_mm"])
         self.assertFalse(route["tail_under_psa"])
         self.assertFalse(route["tail_bears_on_bare_pcb_edge"])
         self.assertFalse(route["hard_crease_allowed"])
@@ -82,7 +86,7 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual(div_reference["retention_evidence_status"], "unknown_from_public_sources")
         self.assertIn("four empty 1.2-mm holes", div_reference["in_plane_location"])
         self.assertIn("18-contact", div_reference["electrical_connection"])
-        self.assertIn("stock display PSA rectangle and folded FPC", svg)
+        self.assertIn("exact stock display PSA and folded FPC", svg)
 
     def test_every_fixed_body_has_exact_mpn(self):
         for item in self.model["placements"]:

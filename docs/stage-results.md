@@ -32,7 +32,7 @@ power—not primary RF payloads.
 - [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.38-fpc-slack-1)
 - [Front inner face](images/h1-r2-inner-ui.svg)
 - [Rear inner face](images/h1-r2-inner-rf.svg)
-- [Display PSA, relaxed FPC route and direct ZIF](images/display-mount.svg?rev=h1-r2.38-fpc-slack-1)
+- [Display PSA, relaxed FPC route and direct ZIF](images/display-mount.svg?rev=h1-r2.38-4910sq-1)
 - [True sandwich sections](images/h1-r2-inner-sections.svg?rev=h1-r2.38-fpc-slack-1)
 - [External service access](images/h1-r2-service-access.svg?rev=h1-r2.38-fpc-slack-1)
 - [Machine placement audit](../hardware/product-design/generated/H1-R2-placement-audit.json)

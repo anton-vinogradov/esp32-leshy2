@@ -463,10 +463,10 @@ class ProductSiteTests(unittest.TestCase):
             "draft_order_integrated_manifest_exact_display_selected_factory_response_pending",
             evidence["status"],
         )
-        self.assertEqual(31, evidence["summary"]["article_lines"])
+        self.assertEqual(32, evidence["summary"]["article_lines"])
         self.assertEqual(11, evidence["summary"]["measurement_contracts"])
         self.assertEqual(23, evidence["summary"]["covered_residuals_and_gates"])
-        self.assertEqual("243.79", evidence["summary"]["known_engineering_material_budget_usd"])
+        self.assertEqual("265.91", evidence["summary"]["known_engineering_material_budget_usd"])
         self.assertEqual(0, evidence["summary"]["unpriced_manufacturer_lines"])
         self.assertTrue(all(evidence["checks"].values()))
         pack_gauge = next(row for row in evidence["articles"] if row["id"] == "pack-gauges")
@@ -506,7 +506,7 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(name)
             self.assertEqual(1, page.count("```mermaid"), name)
             self.assertIn("H5-EVR03", page, name)
-            self.assertIn("243.79", page, name)
+            self.assertIn("265.91", page, name)
             self.assertIn("SA818S-V", page, name)
             self.assertIn("H7/H8", page, name)
 

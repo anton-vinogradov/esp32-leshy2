@@ -7,7 +7,7 @@
   "procurement_target": {
     "finished_device_quantity": 1,
     "deliverable": "one fully assembled Leshy2 prototype built without factory engineering choices",
-    "display": "one exact EastRising ER-TFT035IPS-6 + ER-TPC035-6 option 5344 panel, installed and mated by the factory in that prototype",
+    "display": "one exact EastRising ER-TFT035IPS-6 + ER-TPC035-6 option 5344 panel retained by one ready-cut 3M (TC) 4910SQ-2(5), installed and mated by the factory in that prototype after the explicit stack/clearance and written process gates close",
     "first_power_on": "owner USB-powered bring-up after delivery: known image, backlight and touch",
     "factory_function_test": "optional quote-only insurance; not required and not a release gate",
     "batteries_included": false,
@@ -21,20 +21,20 @@
   "inputs": {
     "residual_map": {
       "path": "hardware/verification/generated/H5-EVR01-residual-map.json",
-      "sha256": "80616b8af31be381f27e47b38dbc874c56088b48663a01a87ad8a101d75195a2"
+      "sha256": "150f4d0fbbace3210ef276b3bbd9cc1d60bfb210db14d1cbe37380565af67906"
     },
     "source_research": {
       "path": "hardware/verification/generated/H5-EVR02-source-research.json",
-      "sha256": "05a858071e30b093b4ebcd3384e281d5ad11b511a5f8f13294669ba9fd973fbf"
+      "sha256": "4671fd16e268150f8c9ad4c606f2f5f427bbdd75436fc43b37f11e1cbe105b48"
     }
   },
   "summary": {
-    "article_lines": 31,
+    "article_lines": 32,
     "measurement_contracts": 11,
     "covered_residuals_and_gates": 23,
-    "published_price_subtotal_usd": "239.79",
+    "published_price_subtotal_usd": "261.91",
     "conservative_budget_caps_usd": "4.00",
-    "known_engineering_material_budget_usd": "243.79",
+    "known_engineering_material_budget_usd": "265.91",
     "unpriced_manufacturer_lines": 0,
     "excluded_from_budget": [
       "factory display attrition",
@@ -47,13 +47,13 @@
       "general laboratory instruments and ordinary passives"
     ],
     "former_parked_plan_usd": "164.54 for only a partial eight-line lot",
-    "comparison_note": "The priced subtotal includes the exact one-piece production panel and excludes only factory attrition and services; these lines form the integrated sole-prototype/bring-up manifest, not a separate sample basket or device batch."
+    "comparison_note": "The priced subtotal includes the exact one-piece production panel and one exact ready-cut display PSA square; it excludes only factory attrition and services. These lines form the integrated sole-prototype/bring-up manifest, not a separate sample basket or device batch."
   },
   "group_budget_usd": {
     "amlw-pod": "19.79",
     "audio": "5.90",
     "controls": "21.99",
-    "display": "14.91",
+    "display": "37.03",
     "expansion": "31.68",
     "ir": "5.30",
     "power": "46.38",
@@ -87,6 +87,33 @@
       ],
       "minimum_quantity_basis": "exactly one production panel is installed and mated in the finished prototype; the exact FH34SRJ-50S-0.5SH(50) board connector is populated during PCBA",
       "risk": "The panel identity and electrical/mechanical endpoint are fixed. Only written acceptance of adhesive/FPC handling and final mating by the selected assembler remains an H5 supplier gate; HMX035CTFT-001 stays legacy evidence only.",
+      "purchase_authorized": false
+    },
+    {
+      "id": "display-psa",
+      "group": "display",
+      "mpn": "3M (TC) 4910SQ-2(5)",
+      "order_quantity": 1,
+      "order_unit": "ready-cut square",
+      "contained_pieces_per_order_unit": 1,
+      "pricing": {
+        "kind": "published_usd",
+        "unit_usd": "22.12",
+        "subtotal_usd": "22.120",
+        "source_price": null
+      },
+      "source": {
+        "label": "DigiKey exact-MPN listing",
+        "url": "https://www.digikey.com/en/products/detail/3m-tc/4910SQ-2-5/3339259",
+        "checked_on": "2026-09-01",
+        "availability": "active; 16 sellable units shown in stock; quantity-one displayed price"
+      },
+      "coverage": [
+        "H5-MECH-DISPLAY-TAIL",
+        "H5-MECH-DISPLAY-PERFORMANCE"
+      ],
+      "minimum_quantity_basis": "one ready-cut 50.80 x 50.80 mm square retains the sole production display without an owner cutting operation; no spare or long roll is included",
+      "risk": "JLCPCB public Standard-parts search exposed no exact result. Treat as a customer-supplied J4-F final-assembly consumable until the assembler accepts the exact pad, backed >=100 kPa pressure process and final FPC mating in writing. Release also requires measured folded-FPC stack <=0.714 mm and actual clearance >=0.20 mm.",
       "purchase_authorized": false
     },
     {
@@ -899,16 +926,17 @@
     {
       "id": "H5-MSR-DISPLAY",
       "articles": [
-        "production-display"
+        "production-display",
+        "display-psa"
       ],
       "evidence": [
         "H3-PHY-017",
         "H5-MECH-DISPLAY-TAIL",
         "H5-MECH-DISPLAY-PERFORMANCE"
       ],
-      "method": "the factory installs and mates exact ER-TFT035IPS-6 + ER-TPC035-6 option 5344 through exact FH34SRJ-50S-0.5SH(50) in the sole finished prototype; the owner performs first USB-powered bring-up and records known-image, backlight and touch results",
-      "pass_rule": "the released drawing, connector, mating, retention and assembly steps are deterministic; written adhesive/FPC/final-mating feasibility is obtained before order, while any paid pre-shipment Function Test is optional quote-only insurance and never a release gate",
-      "artifacts": "controlled panel and connector identities/drawings, deterministic assembly instructions, factory assembly record, owner USB bring-up image/backlight/touch traces and signed result"
+      "method": "the factory installs exact ER-TFT035IPS-6 + ER-TPC035-6 option 5344 on one ready-cut 3M (TC) 4910SQ-2(5), folds the FPC through the controlled slot and mates it through exact FH34SRJ-50S-0.5SH(50) in the sole finished prototype; the owner performs first USB-powered bring-up and records known-image, backlight and touch results",
+      "pass_rule": "the released drawing, connector, mating and retention steps are deterministic; measured folded-FPC stack is <=0.714 mm, actual pad-to-stack clearance is >=0.20 mm, and written acceptance of the supplied exact pad, uniformly backed >=100 kPa pressure process, FPC handling and final mating is obtained before order; any paid pre-shipment Function Test remains optional quote-only insurance and never a release gate",
+      "artifacts": "controlled panel, pad and connector identities/drawings, incoming pad dimensions/lot, FPC stack and clearance measurement, deterministic assembly instructions, factory assembly record, owner USB bring-up image/backlight/touch traces and signed result"
     },
     {
       "id": "H5-MSR-U214",
@@ -1130,6 +1158,7 @@
     "every_article_is_used_by_a_measurement": true,
     "every_selected_identity_is_exact": true,
     "production_display_is_one_exact_priced_factory_installed_panel": true,
+    "display_psa_is_one_exact_priced_ready_cut_square": true,
     "every_quantity_has_an_explicit_minimum_basis": true,
     "no_selected_article_has_unpriced_identity": true,
     "both_selected_voice_variants_are_in_the_integrated_manifest": true,

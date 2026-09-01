@@ -42,7 +42,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "native 2.4/5-GHz and IR owner"
+			(property "Description" "native 2.4/5-GHz and IR owner; shifted 0.7 mm outward for the central display ZIF corridor"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4513,7 +4513,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "native 2.4/5-GHz and IR owner"
+		(property "Description" "native 2.4/5-GHz and IR owner; shifted 0.7 mm outward for the central display ZIF corridor"
 			(at 45.72 62.23 0)
 			(show_name no)
 			(do_not_autoplace no)

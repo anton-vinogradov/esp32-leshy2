@@ -141,7 +141,8 @@ RESIDUAL_MISSING_RU = {
 
 RESIDUAL_PASS_RU = {
     "H3-PHY-017": (
-        "factory assembly record подтверждает точную ER-TFT035IPS-6 + ER-TPC035-6, правильный PSA-cut, "
+        "factory assembly record подтверждает точную ER-TFT035IPS-6 + ER-TPC035-6, неразрезанный "
+        "3M (TC) 4910SQ-2(5), сложенный FPC не выше 0,714 мм, реальный зазор PSA не меньше 0,20 мм, "
         "свободную петлю и ввод в прямой FH34SRJ; owner bring-up единственного прототипа подтверждает "
         "ILI9488/FT6236, VDD/VDDI, reset, изображение и touch; несовпадение повторно открывает H1/H2/H3"
     ),
@@ -155,7 +156,7 @@ RESIDUAL_PASS_RU = {
 
 
 MECHANICAL_MISSING_RU = {
-    "H5-MECH-DISPLAY-TAIL": "конструкцию и stiffener FPC текущей партии, fit прямого ZIF, свободную петлю без острого сгиба и контакта с торцом FR4, clearance корпуса, точный PSA-cut и factory process",
+    "H5-MECH-DISPLAY-TAIL": "основной PSA-кандидат — 3M (TC) 4910SQ-2(5), DigiKey 1067-4910SQ-2(5)-ND, активный складской квадрат 50,80 x 50,80 x 1,016 мм; на 2026-09-01 доступны 16 позиций по $22.12 за quantity-one. Точного результата в Standard-каталоге JLCPCB нет, поэтому это customer-supplied расходник J4-F. Открыто: сложенный FPC текущей партии <=0,714 мм, реальный зазор PSA >=0,20 мм, точный загиб 180 градусов, фактическая вставка и согласие сборщика на поддержанную оснастку 100 кПа с выдержкой. Безымянные reseller-площадки, полный рулон 33 м и 0,17-мм 9495LE отклонены",
     "H5-MECH-NRF-GEN1-FEEDS": "ось и MPN встроенного разъёма партии E01, fit/retention, изгиб и сквозные RF-потери",
     "H5-MECH-U214-MATING-STACK": "сечение штырей U214, усилия, циклы, винтовое удержание и preload планки",
     "H5-MECH-NAVIGATION-CONTROLS": "доступ через корпус, защита от случайного нажатия, ощущения, герметизация и ресурс",
@@ -352,8 +353,9 @@ def residual_sections(data: dict, russian: bool) -> str:
         else:
             pass_rule = {
                 "H3-PHY-017": (
-                    "the factory assembly record confirms the exact ER-TFT035IPS-6 + ER-TPC035-6, correct PSA cut, "
-                    "free loop and direct-FH34SRJ insertion; owner bring-up of the sole prototype confirms ILI9488/FT6236, "
+                    "the factory assembly record confirms the exact ER-TFT035IPS-6 + ER-TPC035-6, untrimmed 3M (TC) "
+                    "4910SQ-2(5), folded-FPC stack <=0.714 mm, actual pad clearance >=0.20 mm, free loop and "
+                    "direct-FH34SRJ insertion; owner bring-up of the sole prototype confirms ILI9488/FT6236, "
                     "VDD/VDDI, reset, image and touch; a mismatch reopens H1/H2/H3"
                 )
             }.get(row["id"], row["accepted_pass_rule"])

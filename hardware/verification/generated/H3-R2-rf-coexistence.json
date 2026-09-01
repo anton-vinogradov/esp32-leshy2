@@ -9,10 +9,10 @@
     "hardware/architecture/devices.json": "2caf023fb65a15be416b66686f7bcbd9ce199f8c8a55c4d37457782e73ceb6ef",
     "hardware/architecture/antenna-kit.json": "7ee1b3ca0f45a81346bd52033594c060a4f2deed4de9191545271ab58a4bc004",
     "hardware/product-design/generated/H1-R2-placement-audit.json": "f3f7e3ce631153c75e9f280bd1a6622e42d70b272748fbb899d012ea449a9c3f",
-    "hardware/verification/generated/H3-R2-power-state-register.json": "2992462f1a8c6280d470ffed3d75bccf19731225328c63ac0f62d343c81ff836",
-    "hardware/verification/generated/H3-R2-digital-interfaces.json": "d648ad0f49bd7903d5779db1a6ededb7b7f03d1ee9e476af170fbb254636abcc",
-    "hardware/verification/generated/H3-R2-analog-corners.json": "e3ce914cd530699516187a1a760171817b7db4690f26ee4f968a1070338e230d",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "2645ace0e4cb0b9d4e56eee27ec0a890d2eb8b2feb8dbb752b92ac546b848769"
+    "hardware/verification/generated/H3-R2-power-state-register.json": "55655a303ac46451e57d6a81327ac87a1cf7197a4f720d35121aed28f15e9deb",
+    "hardware/verification/generated/H3-R2-digital-interfaces.json": "e2a89eff3009ccc1f7fdde6a86523a55677cf9849b596591de984cbcc21cdc18",
+    "hardware/verification/generated/H3-R2-analog-corners.json": "456f0faf421c4f964251e1a67c32aa87e4b723ad0eba3ea7f0a73a9725837485",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "ff4741015fa7e901a340309602e5151f69072433daf80bf97dd9c52c9ca1d207"
   },
   "summary": {
     "checks": 71,

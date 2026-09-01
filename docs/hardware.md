@@ -90,7 +90,7 @@ below 0.4 MB/s, so it does not saturate the RP transport.
 
 [Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.38-fpc-slack-1).
 
-![Display PSA, one-fold relaxed FPC route and direct ZIF](images/display-mount.svg?rev=h1-r2.38-fpc-slack-1)
+![Display PSA, one-fold relaxed FPC route and direct ZIF](images/display-mount.svg?rev=h1-r2.38-4910sq-1)
 
 The ten main antenna ports are split symmetrically:
 

@@ -6,7 +6,7 @@
   "sources": {
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "94bb6fd6a77f23ab1ad8b14a7e556df5e331ca07586580789bf40f8a4762008c"
+      "sha256": "6bdbd40b6a2bf9d86e7e812c954a806710b2fe8be4eead592a92a1436829da4a"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",

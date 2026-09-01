@@ -8,7 +8,7 @@
 
 ![Reviewed H1-R2 four-face layout](images/h1-r2-four-faces.svg?rev=h1-r2.38-fpc-slack-1)
 
-![Reviewed display PSA, relaxed FPC route and direct ZIF](images/display-mount.svg?rev=h1-r2.38-fpc-slack-1)
+![Reviewed display PSA, relaxed FPC route and direct ZIF](images/display-mount.svg?rev=h1-r2.38-4910sq-1)
 
 ## Finished result
 

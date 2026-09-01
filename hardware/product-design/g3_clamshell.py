@@ -2057,7 +2057,7 @@ def validate_display_mount_design(
         math.isclose(float(fpc_route.get(field, -1)), expected, abs_tol=1e-9)
         for field, expected in (
             ("pcb_thickness_mm", 1.6),
-            ("drawing_stock_pad_envelope_mm", 1.0),
+            ("drawing_stock_pad_envelope_mm", 1.016),
             ("zif_height_mm", body_z),
             ("contact_stiffener_thickness_mm", 0.3),
             ("contact_tail_width_mm", 25.5),
@@ -2083,18 +2083,29 @@ def validate_display_mount_design(
         or fpc_route.get("alignment_silkscreen_datum_count") != 2
         or not math.isclose(float(fpc_route.get("supported_panel_area_fraction", 0)), support_fraction, abs_tol=0.001)
         or support_fraction < 0.50
-        or stock_rectangle != [50.0, 50.0]
-        or fpc_route.get("stock_psa_rectangle_position_mm") != [12.5, 44.46]
+        or stock_rectangle != [50.8, 50.8]
+        or fpc_route.get("stock_psa_rectangle_position_mm") != [12.1, 44.46]
     ):
         errors.append("display-mount: stocked rectangular PSA support geometry drifted")
     manufacturing = design.get("manufacturing_route", {})
     if (
-        "stocked 50 x 50-mm" not in manufacturing.get("baseline", "")
+        "stocked 50.8 x 50.8-mm" not in manufacturing.get("baseline", "")
         or manufacturing.get("wait_for_custom_service_answer") is not False
         or manufacturing.get("external_converter_order_allowed") is not False
         or manufacturing.get("custom_pcba_die_cut_status") != "not publicly documented and the earlier support request remains unanswered"
     ):
         errors.append("display-mount: non-blocking stock-rectangle manufacturing route drifted")
+    pad_candidate = manufacturing.get("primary_stock_pad_candidate", {})
+    if (
+        pad_candidate.get("manufacturer") != "3M (TC)"
+        or pad_candidate.get("mpn") != "4910SQ-2(5)"
+        or pad_candidate.get("distributor_part") != "1067-4910SQ-2(5)-ND"
+        or pad_candidate.get("form_mm") != [50.8, 50.8, 1.016]
+        or not math.isclose(float(pad_candidate.get("minimum_spec_thickness_mm", -1)), 0.914, abs_tol=1e-9)
+        or not math.isclose(float(pad_candidate.get("maximum_allowed_folded_fpc_stack_mm", -1)), 0.714, abs_tol=1e-9)
+        or "customer-supplied J4-F" not in pad_candidate.get("jlcpcb_standard_pcba_status_on_2026_09_01", "")
+    ):
+        errors.append("display-mount: traceable stock PSA qualification candidate drifted")
     slot_x, slot_y = map(float, fpc_route.get("pcb_slot_position_mm", [-1, -1]))
     slot_w = float(fpc_route.get("pcb_slot_width_mm", -1))
     slot_h = float(fpc_route.get("pcb_slot_height_mm", -1))
@@ -4868,8 +4879,8 @@ def render_display_mount(design):
         '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
-        label(40, 42, "Leshy2 — stock display PSA rectangle and folded FPC", 22, "bold"),
-        label(40, 68, "L2-DISP-DIRECT-001-A · stock 50 × 50-mm PSA · slot y=23 · ZIF y=25 · ≥5-mm relaxed FPC slack", 11, colour="#526076"),
+        label(40, 42, "Leshy2 — exact stock display PSA and folded FPC", 22, "bold"),
+        label(40, 68, "L2-DISP-DIRECT-001-A · 3M 4910SQ-2(5) · 50.8-mm square · slot y=23 · ZIF y=25 · ≥5-mm relaxed FPC slack", 11, colour="#526076"),
         label(55, 108, "Folded stack · side section", 14, "bold", colour="#1d4ed8"),
         label(55, 128, "schematic section · vertical scale is intentionally enlarged", 9.5, colour="#64748b"),
         '<rect x="90" y="150" width="400" height="132" rx="7" fill="#eaf2ff" stroke="#60a5fa" stroke-width="2"/>',
@@ -4877,7 +4888,7 @@ def render_display_mount(design):
         label(290, 211, "ER-TFT035IPS-6 + ER-TPC035-6", 12.5, "bold", "middle"),
         label(290, 235, "1 · panel rear stays flat; FPC components sit in the adhesive-free zone", 9.5, "normal", "middle", "#526076"),
         '<rect x="90" y="282" width="200" height="28" fill="#fde68a" stroke="#d97706" stroke-width="1.5" data-mechanical-part="display_psa_rectangle"/>',
-        label(190, 300, "2 · stock 50 × 50-mm PSA rectangle", 9.2, "bold", "middle", "#92400e"),
+        label(190, 300, "2 · stock 50.8 × 50.8-mm PSA", 9.2, "bold", "middle", "#92400e"),
         '<rect x="70" y="310" width="255" height="49" rx="3" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-mechanical-part="ui_pcb_display_bed"/>',
         '<rect x="349" y="310" width="161" height="49" rx="3" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-mechanical-part="ui_pcb_display_bed"/>',
         '<rect x="325" y="310" width="24" height="49" fill="#ffffff" stroke="#16a34a" stroke-width="2" stroke-dasharray="4 3" data-mechanical-part="fpc_tongue_slot"/>',
@@ -4895,8 +4906,8 @@ def render_display_mount(design):
         '<line x1="70" y1="418" x2="510" y2="418" stroke="#64748b" stroke-width="1" stroke-dasharray="4 4"/>',
         label(72, 434, "INNER / INTERBOARD SIDE", 8.8, "bold", colour="#64748b"),
         label(70, 466, "Retention", 13, "bold", colour="#1d4ed8"),
-        label(70, 490, "Panel → one stocked 50 × 50-mm PSA rectangle → UI PCB. The upper FPC zone has no adhesive.", 9.8),
-        label(70, 512, "Released foam thickness ≥ measured folded-FPC maximum stack + 0.20 mm.", 9.8, "bold", colour="#92400e"),
+        label(70, 490, "Panel → one stocked 3M 4910SQ-2(5) square → UI PCB. The upper FPC zone has no adhesive.", 9.8),
+        label(70, 512, "4910 worst-case 0.914 mm: folded-FPC stack ≤0.714 mm and actual clearance ≥0.20 mm.", 9.8, "bold", colour="#92400e"),
         label(70, 544, "What crosses the PCB", 13, "bold", colour="#166534"),
         label(70, 568, "Tail 30.16 ±0.50 mm; measured exit→contact-stop route ≤24.66 mm; relaxed reserve ≥5.00 mm.", 9.8),
         label(70, 586, "One 180° fold, no twist: panel pin 1 → connector pin 1; panel pin 50 → connector pin 50.", 9.4, "bold", colour="#0f766e"),
@@ -4914,9 +4925,9 @@ def render_display_mount(design):
         '<rect x="744" y="186" width="192" height="98" rx="3" fill="#f8fafc" stroke="none" data-mechanical-part="fpc_free_zone"/>',
         label(840, 217, "47.90-mm FPC FREE ZONE", 9.3, "bold", "middle", "#92400e"),
         label(840, 235, "no adhesive · PCB is not cut", 8.2, "bold", "middle", "#92400e"),
-        label(840, 402, "STOCK 50 × 50-mm PSA", 13, "bold", "middle", "#92400e"),
-        label(840, 422, "one ready-made rectangle · no custom die", 8.7, "bold", "middle", "#92400e"),
-        label(840, 440, "52.0% panel support · no upper strip", 8.4, "bold", "middle", "#92400e"),
+        label(840, 402, "3M 4910SQ-2(5) · 50.8-mm", 13, "bold", "middle", "#92400e"),
+        label(840, 422, "one ready-made square · no cutting / custom die", 8.7, "bold", "middle", "#92400e"),
+        label(840, 440, "53.7% panel support · no upper strip", 8.4, "bold", "middle", "#92400e"),
         '<path d="M891 245 C918 245 918 270 891 270 L789 270" fill="none" stroke="#99f6e4" stroke-width="15" stroke-linecap="round" data-mechanical-part="fpc_contact_tongue" data-slack="relaxed"/>',
         '<rect x="786" y="276" width="108" height="6" rx="3" fill="#ffffff" stroke="#dc2626" stroke-width="2" data-mechanical-part="fpc_tongue_slot"/>',
         '<rect x="786" y="286" width="108" height="18" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="2" stroke-dasharray="5 3" data-instance="display_connector"/>',
@@ -4941,9 +4952,9 @@ def render_display_mount(design):
         label(1018, 502, "Open H5 evidence", 12.5, "bold", colour="#92400e"),
         label(1018, 527, "• actual bend radius / stack", 9.5),
         label(1018, 548, "• dry-fit path ≤24.66 mm", 9.5),
-        label(1018, 569, "• exact foam PSA MPN", 9.5),
-        label(1018, 608, f"drawing stock-pad envelope {route['drawing_stock_pad_envelope_mm']:.1f} mm", 9.2, "bold", colour="#92400e"),
-        label(1018, 629, "not a released material thickness", 9.2, "bold", colour="#92400e"),
+        label(1018, 569, "• factory accepts supplied PSA", 9.5),
+        label(1018, 608, f"4910SQ nominal {route['drawing_stock_pad_envelope_mm']:.3f} mm", 9.2, "bold", colour="#92400e"),
+        label(1018, 629, "release only after ≤0.714-mm stack fit", 9.2, "bold", colour="#92400e"),
         label(40, 682, "Factory: liner on → one untwisted fold → dry-fit 1↔1 / 50↔50 → prove ≥5-mm relaxed slack → latch → peel liner → align → press once.", 9.7, "bold", colour="#166534"),
         label(40, 712, "Stop if taut, twisted, pin order is reversed or the measured neutral-axis route exceeds 24.66 mm. PSA pressing comes last.", 9.7, "bold", colour="#b42318"),
         '</svg>',

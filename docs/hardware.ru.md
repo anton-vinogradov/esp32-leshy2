@@ -89,7 +89,7 @@ M1 — точная прямая SMT-пара Hirose `FX8C-80P-SV1(92)` /
 
 [Открыть детальный внешний вид в полном масштабе](images/h1-r2-external-layout.svg?rev=h1-r2.38-fpc-slack-1).
 
-![PSA дисплея, один ненатянутый загиб FPC и прямой ZIF](images/display-mount.svg?rev=h1-r2.38-fpc-slack-1)
+![PSA дисплея, один ненатянутый загиб FPC и прямой ZIF](images/display-mount.svg?rev=h1-r2.38-4910sq-1)
 
 Десять основных антенных портов разделены симметрично:
 

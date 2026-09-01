@@ -18,7 +18,7 @@ flowchart LR
 
 - Selected: `EastRising ER-TFT035IPS-6 + ER-TPC035-6`; `Hirose FH34SRJ-50S-0.5SH(50)`.
 - Still to prove: current-lot complete FPC construction and fit in the direct FH34SRJ-50S-0.5SH(50), including the source-backed free-loop radius and enclosure keep-out; received ER-TFT035IPS-6 plus ER-TPC035-6 identity/readback, measured VDD/VDDI ramp equality and one-prototype adhesive/FPC assembly record.
-- Pass rule: the factory assembly record confirms the exact ER-TFT035IPS-6 + ER-TPC035-6, correct PSA cut, free loop and direct-FH34SRJ insertion; owner bring-up of the sole prototype confirms ILI9488/FT6236, VDD/VDDI, reset, image and touch; a mismatch reopens H1/H2/H3
+- Pass rule: the factory assembly record confirms the exact ER-TFT035IPS-6 + ER-TPC035-6, untrimmed 3M (TC) 4910SQ-2(5), folded-FPC stack <=0.714 mm, actual pad clearance >=0.20 mm, free loop and direct-FH34SRJ insertion; owner bring-up of the sole prototype confirms ILI9488/FT6236, VDD/VDDI, reset, image and touch; a mismatch reopens H1/H2/H3
 
 ### `H3-PHY-024` · `ir`
 
@@ -70,7 +70,7 @@ flowchart LR
 
 ## Fourteen mechanical gates
 
-- `H5-MECH-DISPLAY-TAIL` — `EastRising ER-TFT035IPS-6 + ER-TPC035-6`; `Hirose FH34SRJ-50S-0.5SH(50)`; open: Current-lot folded FPC maximum component stack, exact 180-degree bend radius, actual insertion, one exact traceable stocked 50x50-mm industrial acrylic-foam MPN and the assembler's accepted material/process remain properties of the one-prototype route. The 1.00-mm drawing envelope and reseller 3M VHB 4910 pads prove only that the format exists; neither is a released production selection. The earlier 0.17-mm 3M 9495LE candidate is too thin unless measurement unexpectedly proves the required 0.20-mm clearance.
+- `H5-MECH-DISPLAY-TAIL` — `EastRising ER-TFT035IPS-6 + ER-TPC035-6`; `Hirose FH34SRJ-50S-0.5SH(50)`; open: Primary PSA candidate: 3M (TC) 4910SQ-2(5), DigiKey 1067-4910SQ-2(5)-ND, an active stocked 50.80x50.80x1.016-mm square with 16 live line items and a USD 22.12 quantity-one displayed price on 2026-09-01. No exact JLCPCB Standard catalog result was found, so it remains a customer-supplied J4-F consumable. Open: current-lot folded-FPC maximum <=0.714 mm, actual pad clearance >=0.20 mm, exact 180-degree bend, actual insertion and the assembler's accepted supported 100-kPa fixture plus dwell. Untraceable reseller pads, the full 33-m roll and 0.17-mm 9495LE are rejected routes.
 - `H5-MECH-NRF-GEN1-FEEDS` — `Ebyte E01-ML01SP4`; `TE Connectivity 1-2118651-0`; `Hirose U.FL-R-SMT-1(80)`; `GCT RFPC-SMA31-FN-175-A`; open: The fitted receptacle manufacturer's exact subpart MPN, actual mate retention, bend/strain behaviour and end-to-end RF loss remain received-part properties. H1 uses the published connector location and full maximum body envelope; H5/H8 verify the real fit and RF path.
 - `H5-MECH-U214-MATING-STACK` — `M5Stack U214 Cap LoRa-1262`; `Samtec HLE-107-02-G-DV-PE-LC`; open: Current U214 post section, insertion force, contact retention, retention-screw engagement and final compliant rail preload remain received-part properties; absent manufacturer limits remain design-analysis inputs and do not create an artificial cycle test.
 - `H5-MECH-NAVIGATION-CONTROLS` — `OMRON B3S-1100P`; open: Assembled enclosure opening access, accidental-press margin, multi-button feel and sealing boundary.

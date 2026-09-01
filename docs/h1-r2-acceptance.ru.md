@@ -8,7 +8,7 @@
 
 ![Принятая четырёхсторонняя компоновка H1-R2](images/h1-r2-four-faces.svg?rev=h1-r2.38-fpc-slack-1)
 
-![Принятые PSA дисплея, ненатянутый путь FPC и прямой ZIF](images/display-mount.svg?rev=h1-r2.38-fpc-slack-1)
+![Принятые PSA дисплея, ненатянутый путь FPC и прямой ZIF](images/display-mount.svg?rev=h1-r2.38-4910sq-1)
 
 ## Готовый результат
 

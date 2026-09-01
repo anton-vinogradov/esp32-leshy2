@@ -149,7 +149,7 @@
     "locked": "world datum, PCB outlines, mounting axes, touch plane, external interface directions and component/accessory keep-outs",
     "not_yet_locked": "wall thickness, ribs, seals, exact bezel overlap, grille, external fillets and manufacturing tolerance stack",
     "rule": "later enclosure surfaces may grow around the locked component model but may not move an accepted PCB/interface datum silently",
-    "mandatory_load_paths": "front/rear PCB capture lips, two anti-shear datums, four 11.00-mm compression stops, a Keystone 1048P cradle/end-stop pair, and a flat component-free UI-PCB display bed with one stocked 50 x 50-mm acrylic-foam PSA rectangle, separate PSA and DISPLAY/FPC-UP silkscreen datums, an adhesive-free folded-FPC zone and rounded tongue slot are required before release; the panel tail points toward board -Y / the antenna edge and the direct ZIF is never load-bearing"
+    "mandatory_load_paths": "front/rear PCB capture lips, two anti-shear datums, four 11.00-mm compression stops, a Keystone 1048P cradle/end-stop pair, and a flat component-free UI-PCB display bed with one traceable stock 3M (TC) 4910SQ-2(5) 50.80 x 50.80-mm acrylic-foam PSA candidate, separate PSA and DISPLAY/FPC-UP silkscreen datums, an adhesive-free folded-FPC zone and rounded tongue slot are required before release; the panel tail points toward board -Y / the antenna edge and the direct ZIF is never load-bearing"
   },
   "cap_evidence_coordinate_register": {
     "status": "pass",
@@ -3139,7 +3139,7 @@
       "connector_is_load_bearing": false,
       "retention": {
         "connector_is_load_bearing": false,
-        "panel_support": "one stocked 50.00 x 50.00-mm rectangular acrylic-foam PSA pad applied to the flat component-free UI-PCB outer face at x=12.50...62.50 mm, y=44.46...94.46 mm; it supports 52.0% of the stiff panel plan while the complete folded-FPC zone above it remains adhesive-free",
+        "panel_support": "one stocked 50.80 x 50.80-mm rectangular acrylic-foam PSA pad applied to the flat component-free UI-PCB outer face at x=12.10...62.90 mm, y=44.46...95.26 mm; it supports 53.7% of the stiff panel plan while the complete folded-FPC zone above it remains adhesive-free",
         "primary_retention": "a single stocked rectangular industrial PSA pad applied to the UI PCB, never to the loose panel; its exact released thickness must exceed the measured folded-FPC maximum stack by at least 0.20 mm",
         "secondary_retention": "none in the assembled stack; PCB assembly datums and a removable placement fixture control alignment without becoming retained parts",
         "flex_strain_relief": "the tail leaves the panel toward board -Y, folds back once without twist into the adhesive-free pocket under the panel, and only the 25.50-mm contact tongue crosses the rounded 27.00 x 1.20-mm PCB slot before entering the inner-face ZIF. The 30.16 +/-0.50-mm source length, slot at y=23.00 mm and ZIF at y=25.00 mm preserve at least 5.00 mm of relaxed service slack after the actual bend/insertion path is proven. The pocket prevents component compression and the bonded panel prevents motion, so no sharp crease, routed-edge bearing, tensile load or peel load reaches the contacts or latch",
@@ -3156,16 +3156,17 @@
             "id": "display_psa_rectangle",
             "quantity": 1,
             "part_type": "one stocked rectangular double-coated acrylic-foam display-bonding pad; no custom converter contour",
-            "implementation": "apply one 50.00 x 50.00-mm rectangle to the PCB at x=12.50...62.50 mm, y=44.46...94.46 mm using its PSA silkscreen datum while the upper release liner remains fitted. It supports 2500 mm2 or about 52.0% of the exact panel plan, exceeding the roughly 40% partial-area bond visually inferred from the supplied ESP32-DIV sample photograph. The drawing uses a 1.00-mm envelope only to make the stack readable; H5 must select a traceable stocked industrial MPN whose exact thickness clears the measured current-lot folded-FPC maximum stack by at least 0.20 mm. No liquid glue, external converter order, adhesive on the FPC or separate upper strip",
+            "implementation": "apply one 50.80 x 50.80-mm 3M (TC) 4910SQ-2(5) candidate to the PCB at x=12.10...62.90 mm, y=44.46...95.26 mm using its PSA silkscreen datum while the upper release liner remains fitted. It supports 2580.64 mm2 or about 53.7% of the exact panel plan, exceeding the roughly 40% partial-area bond visually inferred from the supplied ESP32-DIV sample photograph. Its 1.016-mm nominal 3M VHB 4910 construction has +/-10% family thickness tolerance, so the released current-lot folded-FPC stack must be <=0.714 mm and the received dry fit must preserve >=0.20 mm actual clearance. No liquid glue, trimming, external converter order, adhesive on the FPC or separate upper strip",
             "load_role": "retains the stiff panel against lift and in-plane shear and supports more than half of its plan without a custom cut or separately positioned shoulders",
-            "material_candidate_not_yet_selected": "50 x 50 x 1-mm 3M VHB 4910 reseller pads prove that the stock format exists but are not yet an accepted production MPN or JLCPCB inventory item. The earlier 0.17-mm 3M 9495LE candidate is rejected unless measurement proves the required clearance",
-            "release_gate": "freeze one exact traceable stocked 50 x 50-mm industrial pad MPN, live source, thickness, cleaning/pressure/dwell process and written one-prototype assembler acceptance before order. A custom contour is allowed only if the same PCBA factory confirms in writing that it will manufacture and install it inside the order; an external converter order is not allowed"
+            "primary_qualification_mpn": "3M (TC) 4910SQ-2(5); DigiKey 1067-4910SQ-2(5)-ND; active stocked 50.80 x 50.80 x 1.016-mm square. This is a dimensional and sourcing candidate, not an unconditional released production line until the <=0.714-mm FPC-stack and factory-process gates pass",
+            "rejected_material_routes": "untraceable reseller 50 x 50 x 1-mm 3M-labelled pads, the 33-m 4910F50 roll and the earlier 0.17-mm 3M 9495LE route are not the one-prototype production selection",
+            "release_gate": "measure the current-lot folded-FPC stack <=0.714 mm, verify >=0.20 mm actual clearance with the received 4910SQ-2(5), freeze its cleaning/pressure/dwell process and obtain written one-prototype assembler acceptance before order. A custom contour is allowed only if the same PCBA factory confirms in writing that it will manufacture and install it inside the order; an external converter order is not allowed"
           },
           {
             "id": "display_alignment_silkscreen",
             "quantity": 1,
             "part_type": "two UI-PCB outer-face silkscreen datums, not retained parts",
-            "implementation": "print a 0.15-mm DISPLAY placement outline 0.30 mm outside the exact 56.54 x 84.96-mm panel body plus an FPC-UP orientation mark; print a second 0.15-mm 50 x 50-mm PSA outline 0.25 mm outside the stock rectangle. Every silk line stays outside adhesive contact, so neither frame creates a thickness step under the bond",
+            "implementation": "print a 0.15-mm DISPLAY placement outline 0.30 mm outside the exact 56.54 x 84.96-mm panel body plus an FPC-UP orientation mark; print a second 0.15-mm 50.80 x 50.80-mm PSA outline 0.25 mm outside the stock rectangle. Every silk line stays outside adhesive contact, so neither frame creates a thickness step under the bond",
             "load_role": "first locates the stock rectangle on the PCB with its liner fitted, then locates and orients the panel after the FPC tongue is passed and the upper liner is removed"
           },
           {
@@ -3179,7 +3180,7 @@
         "fpc_route_side_section": {
           "route": "panel antenna-edge tail -> 180-degree fold through the adhesive-free upper zone under panel -> narrow contact tongue through rounded internal PCB slot -> flat inner-face run -> ZIF",
           "pcb_thickness_mm": 1.6,
-          "drawing_stock_pad_envelope_mm": 1.0,
+          "drawing_stock_pad_envelope_mm": 1.016,
           "stock_pad_release_rule": "exact stock pad thickness >= measured folded FPC maximum stack + 0.20 mm",
           "zif_height_mm": 1.0,
           "contact_stiffener_thickness_mm": 0.3,
@@ -3191,21 +3192,21 @@
           "contact_tail_width_tolerance_mm": 0.15,
           "component_fpc_pocket_width_mm": 47.9,
           "stock_psa_rectangle_size_mm": [
-            50.0,
-            50.0
+            50.8,
+            50.8
           ],
           "stock_psa_rectangle_position_mm": [
-            12.5,
+            12.1,
             44.46
           ],
-          "supported_panel_area_fraction": 0.52,
+          "supported_panel_area_fraction": 0.537,
           "adhesive_piece_count": 1,
           "alignment_silkscreen_datum_count": 2,
           "custom_die_cut_required": false,
           "external_converter_order_allowed": false,
           "upper_support_part_fitted": false,
           "separate_upper_tape_fitted": false,
-          "separate_upper_tape_reason": "the stiff panel already has 2500 mm2 of primary bond area; observed ESP32-DIV construction suggests that a smaller partial-area bond is adequate, so a second strip or shoulder feature adds assembly work without a demonstrated need",
+          "separate_upper_tape_reason": "the stiff panel already has 2580.64 mm2 of primary bond area; observed ESP32-DIV construction suggests that a smaller partial-area bond is adequate, so a second strip or shoulder feature adds assembly work without a demonstrated need",
           "pcb_slot_position_mm": [
             24.0,
             23.0
@@ -3227,7 +3228,7 @@
           "minimum_bend_radius_mm": null,
           "bend_radius_gate": "H5 must bind the 180-degree fold radius, folded stack height and pocket depth to the current-lot FPC construction before release; the drawing deliberately does not invent an unsupported radius or component height"
         },
-        "structural_load_path": "finger or handling load -> stiff panel body -> stocked 50 x 50-mm acrylic-foam PSA rectangle -> UI PCB -> sandwich stops and fasteners; never through the FPC or ZIF",
+        "structural_load_path": "finger or handling load -> stiff panel body -> stocked 50.8 x 50.8-mm acrylic-foam PSA rectangle -> UI PCB -> sandwich stops and fasteners; never through the FPC or ZIF",
         "esp32_div_v2_reference": {
           "source": "https://github.com/cifertech/ESP32-DIV/tree/9d4d82fe7a12febf554b12e1eca6d434ebe79d39/PCB/v2",
           "panel_mount": "raw 2.8-inch display body seated directly on the main PCB",

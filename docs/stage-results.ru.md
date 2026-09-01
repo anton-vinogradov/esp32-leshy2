@@ -32,7 +32,7 @@ M1 идут transport управления/данных, safety evidence и пи
 - [Внешние стороны](images/h1-r2-external-layout.svg?rev=h1-r2.38-fpc-slack-1)
 - [Внутренняя сторона передней платы](images/h1-r2-inner-ui.svg)
 - [Внутренняя сторона задней платы](images/h1-r2-inner-rf.svg)
-- [PSA дисплея, ненатянутый путь FPC и прямой ZIF](images/display-mount.svg?rev=h1-r2.38-fpc-slack-1)
+- [PSA дисплея, ненатянутый путь FPC и прямой ZIF](images/display-mount.svg?rev=h1-r2.38-4910sq-1)
 - [Настоящие разрезы бутерброда](images/h1-r2-inner-sections.svg?rev=h1-r2.38-fpc-slack-1)
 - [Внешний сервисный доступ](images/h1-r2-service-access.svg?rev=h1-r2.38-fpc-slack-1)
 - [Машинный аудит размещения](../hardware/product-design/generated/H1-R2-placement-audit.json)

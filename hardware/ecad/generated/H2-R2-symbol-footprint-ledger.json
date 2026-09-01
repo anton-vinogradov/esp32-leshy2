@@ -6,7 +6,7 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "25d935be5bec2531ad2560deceec860bfacfc6a08f817f8bde7ee8365eeeacbe"
+      "sha256": "d0e9edfb67fdc83d07c4e03005f5d8ec38d4aa513cbb1f962599e0c7baf8a90a"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
@@ -22,139 +22,139 @@
     },
     {
       "path": "hardware/ecad/generated/H2-RF-root-interface.json",
-      "sha256": "6e44cdbb50d3f70e488448ec68d1040913fb5ed86448a56ecace964c68959a1d",
+      "sha256": "76ea3625a73122d89dbb07e0ba53a41ce84b8a0087d95855a4681ba2f0cd66b0",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF01-usb-pd-charge.json",
-      "sha256": "8f6fbff26bbf3b71cfc501dc1416a241b67fed780bf32b5f8c0b22ef5c21b60b",
+      "sha256": "03ef61b7b3bd538717ca68dc586c4d587d3b89b36a3a5084407fcb336d20d685",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF02-pack-safety-aon.json",
-      "sha256": "d8b8dabc49b368b281b3bd62d2308bbeacf11aacf9f23167c89c09681234e53d",
+      "sha256": "58a2f6de116ee4eb401fd320723531b5f1a3d54dcc65c3c4a8246428627fcf44",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json",
-      "sha256": "b8edfe23dfc3b19c65ed8355f3cc0a85ff8150bd6f797f9c53de8d6268131266",
+      "sha256": "070c0455aa158641a41acd085182772d7a8c583658152f55bd8f5b1c2ec86ddb",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF30-rp2354-core-service.json",
-      "sha256": "61dc2e6ed6e37d289da8a03daa59ef9ace53adb57457d543054e8af31fee8b93",
+      "sha256": "bfd4b5da9a363445276dff62e20e22d5bc6a6e6394911ea10dc1431f62058da8",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF31-nrf24-x3.json",
-      "sha256": "74e714209a5772ad2a8550818ec6e83e95c24b9b081809c2e66191659823acbc",
+      "sha256": "f452a7bd4c42d9ef5f96d39bf063d1774875be5cef18d7ea0f4450898e0ce75c",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF32-subghz-voice.json",
-      "sha256": "b0070d6d71d063e32eb4207179bfe3a6f9c4cc1e7311874e169451d2b65ff064",
+      "sha256": "d6991f7a46bff02b0f519bdcb34c918b58c74e9ed60ac775a4570a1330ad668a",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF34-u214-m5-ext.json",
-      "sha256": "5fcac5a569c74eb73785e53ec70931d412c9fcc191b30147c018b2f6fda97b26",
+      "sha256": "d0542674edda1b658df868523075d35d93246c7b61fe65408372395134b3b7ac",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF35-rear-controls.json",
-      "sha256": "47d50065b28001f59517624f9eefe147859c62df2c685f3bd03d8e6d03f3806a",
+      "sha256": "c093112b8060acd2449d11569302fb8c57976ffdac1fa774558d2fcce74a49d6",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF36-audio-io-amp.json",
-      "sha256": "90bb32a8901ea8fa53e751fb1f9187ed750234f9f36da313ca1dd8e9e1980795",
+      "sha256": "f45dca30b37423dc5a2e15bc6c4fff67c49325c75589938c865674de6ecd4c93",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF40-interboard-m1.json",
-      "sha256": "d320f94c7ae7d8a68933e63a16b6603f7ec6889ed6347216069af680a1b3cda6",
+      "sha256": "9178ee0690cb0a073c06ccd8ce7fc28d51b85469f27f482a7040e8b2e3b07a18",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF50-tx-safety-evidence.json",
-      "sha256": "770e8f4ffca087eac31173e788025d435442436a8394447222630caa07cbd422",
+      "sha256": "ebe556f2c9d0765576d8137d83a683249d7632957eac7b030f917e515f20cd3c",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF60-testpoints-manufacturing.json",
-      "sha256": "3e3bab5e8af46091744548d6a4a08fef84ab442599b5dc67cf39b5d8e4e5eb98",
+      "sha256": "860d659aad9af60448ec09ed3f93be2a11709b358e19c4c83d4093f2b1a98cc0",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI-root-interface.json",
-      "sha256": "c2354294dccd45a0c72ff934b5fc7b067f5d3f96c681afd419d11ef6ce0d9437",
+      "sha256": "3299e39c41968599c03adb46d5bf006abe3b1290f6ad896c213279b1de543363",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI10-S3-core.json",
-      "sha256": "552df04025bc11dd914c29776c82d5bb88c7350cf7739db6881e69a8b34732cd",
+      "sha256": "14885aeb8f87a082e4b958e0b2691810dd226087af06cfde654c6514b70416bd",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI11-display-touch-storage.json",
-      "sha256": "aec4874a07e5140f44a1260bff587fd6ee2d9f8afb7c82dc2d5cad00aa0deb7a",
+      "sha256": "2e338536167c4e3ac656e70dd33965faf4e3ad1e8031b049f45bb4db6cce0d8c",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI12-controls-indicators.json",
-      "sha256": "0a3959744ff2ab5620ae18b6abc96436c16874cd7eb20432e6c3999e5758d8bc",
+      "sha256": "8fe60a2c0ed85a0bed858762d3e8afb4f56533f8c38eeec8b224e8218e886eea",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI13-audio-codec-headset.json",
-      "sha256": "33ff75486256055ca9d6d78367d186258a2623856dd77078d5421c2e44bcaf45",
+      "sha256": "8470208c966e4a1848cbd6d13ef093a6177422af2b03b73e83850dad73b1e24f",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json",
-      "sha256": "60546058101f1c4a0bfce06390efb0963fe68ed3d993a30c695ea737bef3df16",
+      "sha256": "d9605d2c5cb8aa5b81387a36311d101158d642ba7adf2bbb5ddc7d213e6f5a79",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI21-fm-am-receiver.json",
-      "sha256": "bc618fc09f178f513beeaa9122141f8b0fe7e748744d8dc66d7c733f630fba0a",
+      "sha256": "15d8efd7e9f0b98341d19a9b45a8c9e4b40884ac5a2cd53f797247dc948d7603",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI40-interboard-m1.json",
-      "sha256": "c7f4d3cca4377f70eef01ba2e7a1866a5689a6571f1b644ec6fea6ab60629d77",
+      "sha256": "8b469114ab1ab948a031a134b1027de3ab353d1fe2017e9bcdea0564fa6ffebc",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI50-tx-safety-evidence.json",
-      "sha256": "e2ff675a10353b9fe6aa14fb08dbc25d28861ee331ae974e780406e9f24e905c",
+      "sha256": "4daa46a65fa5af78e34daa0ac2f1dc52aa1db76fc64ca4a1e2c790c90be3331a",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI60-testpoints-manufacturing.json",
-      "sha256": "5aa93c30226d30054e4803446db5cd59d9a4dec2b60576c51bdec0799b77a4d8",
+      "sha256": "291fb882e513bd5510925ebd53ca882881ef661776d30d87424b4c88e7badcef",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     }
