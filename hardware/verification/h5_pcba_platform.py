@@ -45,6 +45,18 @@ SUPPLIER_CLARIFICATION = {
     "result": "message_sent",
     "scope": "exactly one prototype; information only; no order, pre-order, quote, reservation, sourcing request or fabrication",
 }
+SUPPLIER_DISPLAY_PSA_CLARIFICATION = {
+    "supplier": "JLCPCB",
+    "channel": "Gmail",
+    "submitted_on": "2026-09-01",
+    "submitted_at_local": "19:25 Europe/Moscow",
+    "from": "vinogradov.anton@gmail.com",
+    "to": "support@jlcpcb.com",
+    "subject": "Re: Leshy2 PCBA and final assembly inquiry — clarification",
+    "result": "message_sent",
+    "source_reference": "hardware/procurement/H5.0.3-R1-jlcpcb-display-psa-clarification.md",
+    "scope": "exact 3M (TC) 4910SQ-2(5), deterministic FPC/ZIF/pressure process and exactly one prototype; information only; no commercial action",
+}
 
 
 # The architecture register intentionally keeps the manufacturer beside the
@@ -1016,7 +1028,7 @@ def build_outlier_resolution(rows: list[dict[str, str]], match_result: dict) -> 
             "not_authorized": ["sourcing request", "quote", "reservation", "purchase", "component replacement", "KiCad placement/routing", "fabrication"],
         },
         "next": {
-            "decision_needed": "wait for the response to the exact-one clarification sent on 2026-09-01: SA818S-V MOQ 1 and typical 8-15-working-day pre-order are known; H5 still needs nine release-relevant answers covering the actual two-designator job, exact SA818S-V Standard-PCBA installation, four required J4-F operations and exact-MPN/no-substitution control; Function Test, batteries and accessory packing are not gates",
+            "decision_needed": "wait for responses to the exact-one clarification and exact 4910SQ display-process supplement sent on 2026-09-01: SA818S-V MOQ 1 and typical 8-15-working-day pre-order are known; H5 still needs release-relevant answers covering the actual two-designator job, exact SA818S-V Standard-PCBA installation, four required J4-F operations including the PSA/FPC/ZIF process, and exact-MPN/no-substitution control; Function Test, batteries and accessory packing are not gates",
             "purchase_remains_last": True,
         },
         "checks": checks,
@@ -1181,6 +1193,7 @@ def build() -> dict:
         "parts_api": JLCAPI_STATE,
         "supplier_inquiry": SUPPLIER_INQUIRY,
         "supplier_clarification": SUPPLIER_CLARIFICATION,
+        "supplier_display_psa_clarification": SUPPLIER_DISPLAY_PSA_CLARIFICATION,
         "voice_part_routes": VOICE_PART_ROUTES,
         "c5_procurement_invariant": {
             "path": str(C5_INVARIANT_PATH.relative_to(REPO)),
@@ -1387,7 +1400,7 @@ JLCPCB Standard PCBA собирает обе платы и принятые SMT/
 
 - JLCPCB Standard PCBA принят как рабочий reference без lock-in.
 - Все `{summary['target_bom_lines']}` строк имеют определённый маршрут `J0`–`J3`, `J4-F`, `J4-P` или `J5-U`; функциональных замен нет.
-- Частичный [ответ JLCPCB](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-08-26.md) подтверждает exact `SA818S-V C51897911` MOQ 1 и типичные 8–15 рабочих дней pre-order, а также официальный путь Function Test с ручным review процедуры и базой `$15.70 + $7.86/hour`. [Исправленное exact-one уточнение](../hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md) отправлено 1 сентября с `vinogradov.anton@gmail.com` на `support@jlcpcb.com`; ожидаются девять release-relevant ответов. Для проекта Function Test необязателен и не закрывает gate; аккумуляторы остаются `J5-U` и не входят в поставку. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) остаётся fail-closed; закупка и заказ не разрешены.
+- Частичный [ответ JLCPCB](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-08-26.md) подтверждает exact `SA818S-V C51897911` MOQ 1 и типичные 8–15 рабочих дней pre-order, а также официальный путь Function Test с ручным review процедуры и базой `$15.70 + $7.86/hour`. [Исправленное exact-one уточнение](../hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md) и [дополнение по exact `3M (TC) 4910SQ-2(5)`](../hardware/procurement/H5.0.3-R1-jlcpcb-display-psa-clarification.md) отправлены 1 сентября с `vinogradov.anton@gmail.com` на `support@jlcpcb.com`; ожидаются release-relevant ответы по двум модулям, четырём J4-F операциям, PSA/FPC/ZIF process и exact-MPN control. Для проекта Function Test необязателен и не закрывает gate; аккумуляторы остаются `J5-U` и не входят в поставку. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) остаётся fail-closed; закупка и заказ не разрешены.
 - Заявка JLCAPI одобрена, приложение `ESP32-Leshy2 BOM Validator` создано, ключ подписи хранится только локально вне Git, но право Parts остаётся `Rejected`. [Поддержка ответила](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md), что аккаунт новый и не имеет истории заказов, поэтому устойчивую business need пока не удалось подтвердить; повторная заявка возможна после появления истории либо с расширенным business case/integration plan. Автор ответа отдельно указал, что не входит в API review team, и точный порог заказов не назван. Повторная заявка не отправлена: до фактического одобрения API-вызовы невозможны, а активным авторитетным путём остаются ручные карточки каталога и BOM. PCB/3D также отклонены, SMT Stencil и JLC Balance выключены.
 - [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json) фиксирует резерв без возврата к началу H5: PCBWay — первый кандидат на полную сборку, Seeed — второй источник PCBA. [Одинаковый no-order запрос PCBWay](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) подготовлен, но его отправка и любые коммерческие действия не разрешены.
 - Прежний 209-строчный BOM upload был передан и обработан; текущий 210-строчный direct-ZIF файл сгенерирован локально, но не передавался. Оба устаревших DF40 удалены; актуальный C5 route и новый внешний 60-мм microcoax проверены отдельно. Quote, sourcing request, reservation, покупка, замены, KiCad layout и fabrication не выполнялись и не разрешены. Сырые API-ответы публично не распространяются.
@@ -1475,7 +1488,7 @@ The official MPN remains `ESP32-C5-WROOM-1U-N8R8`. Only the supplier order code 
 
 - JLCPCB Standard PCBA is the working reference without lock-in.
 - All `{summary['target_bom_lines']}` lines have a defined `J0`–`J3`, `J4-F`, `J4-P` or `J5-U` route; no functional replacement was introduced.
-- JLCPCB's partial [26 August 2026 response](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-08-26.md) confirms exact `SA818S-V C51897911` MOQ 1 and a typical 8–15-working-day pre-order, plus the official Function Test path with manual procedure review and a `$15.70 + $7.86/hour` basis. The [corrected exact-one clarification](../hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md) was sent on 1 September from `vinogradov.anton@gmail.com` to `support@jlcpcb.com`; nine release-relevant answers are awaited. Function Test is optional and closes no gate; accumulators remain `J5-U` and outside delivery. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) stays fail-closed; purchase and order remain unauthorized.
+- JLCPCB's partial [26 August 2026 response](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-08-26.md) confirms exact `SA818S-V C51897911` MOQ 1 and a typical 8–15-working-day pre-order, plus the official Function Test path with manual procedure review and a `$15.70 + $7.86/hour` basis. The [corrected exact-one clarification](../hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md) and [exact `3M (TC) 4910SQ-2(5)` supplement](../hardware/procurement/H5.0.3-R1-jlcpcb-display-psa-clarification.md) were sent on 1 September from `vinogradov.anton@gmail.com` to `support@jlcpcb.com`; release-relevant answers are awaited for both modules, four J4-F operations, the PSA/FPC/ZIF process and exact-MPN control. Function Test is optional and closes no gate; accumulators remain `J5-U` and outside delivery. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) stays fail-closed; purchase and order remain unauthorized.
 - The JLCAPI application is approved, the `ESP32-Leshy2 BOM Validator` app exists, and its signing key is stored locally outside Git, but Parts permission remains `Rejected`. [Support replied](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md) that the account is new and has no order history, so an ongoing business need could not yet be verified; reapplication is possible after building history or with a fuller business case/integration plan. The responder explicitly is not on the API review team and supplied no exact order threshold. No reapplication was submitted: API calls remain unusable, and live manual catalogue cards plus BOM validation remain authoritative. PCB/3D are also rejected; SMT Stencil and JLC Balance remain inactive.
 - [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json) preserves a fallback without restarting H5: PCBWay is the first full-device candidate and Seeed is the PCBA second source. The [same no-order PCBWay questionnaire](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) is prepared but sending it and all commercial actions remain unauthorized.
 - The former 209-line BOM upload was transmitted and processed; the current 210-line direct-ZIF file was generated locally but not transmitted. Both superseded DF40 parts are removed; the refreshed C5 route and the new external 60-mm microcoax were checked separately. No quote, sourcing request, reservation, purchase, KiCad layout or fabrication was performed or authorized. Raw API responses are not redistributed publicly.
@@ -1561,7 +1574,7 @@ def main() -> None:
         f"{data['summary']['current_exact_catalogue_routes_before_outlier_resolution']}/"
         f"{data['summary']['target_bom_lines']} exact catalogue routes before retained outlier resolution; "
         f"all {data['summary']['target_bom_lines']} sourcing/final-assembly routes mapped; "
-        "partial supplier response recorded; nine exact-one supplier answers open; "
+        "partial supplier response recorded; exact-one and display-PSA clarifications sent; supplier answers open; "
         "no order or replacement authorized"
     )
 

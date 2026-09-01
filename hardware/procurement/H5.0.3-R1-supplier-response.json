@@ -22,6 +22,20 @@
     "commercial_action_created": false,
     "notes": "Standalone exact-one clarification sent from the JLCPCB-account email after verifying the sender and recipient in Gmail; awaiting supplier reply."
   },
+  "display_psa_clarification": {
+    "sent_on": "2026-09-01",
+    "sent_at_local": "19:25 Europe/Moscow",
+    "from": "vinogradov.anton@gmail.com",
+    "to": "support@jlcpcb.com",
+    "channel": "Gmail",
+    "subject": "Re: Leshy2 PCBA and final assembly inquiry — clarification",
+    "result": "message_sent",
+    "source_reference": "hardware/procurement/H5.0.3-R1-jlcpcb-display-psa-clarification.md",
+    "exact_mpn": "3M (TC) 4910SQ-2(5)",
+    "information_only": true,
+    "commercial_action_created": false,
+    "notes": "Exact ready-cut PSA, FPC/ZIF geometry, >=5 mm slack, uniformly supported >=100 kPa pressure and 24-hour pre-pack hold were sent as a supplement in the same thread; awaiting supplier reply."
+  },
   "sa818s_v": {
     "mpn": "SA818S-V",
     "jlcpcb_part": "C51897911",
@@ -45,14 +59,14 @@
     {
       "id": "display_flex",
       "required_for_release": true,
-      "description": "install and mate one customer-supplied exact ER-TFT035IPS-6 + ER-TPC035-6 option 5344 display flex in the populated FH34SRJ-50S-0.5SH(50) ZIF and apply the specified adhesive",
+      "description": "install and mate one customer-supplied exact ER-TFT035IPS-6 + ER-TPC035-6 option 5344 display flex in the populated FH34SRJ-50S-0.5SH(50) ZIF, then retain the panel with one exact 3M (TC) 4910SQ-2(5) using the released supported-pressure process",
       "accepted": null,
       "setup_nre_usd": null,
       "per_unit_usd_q5": null,
       "per_unit_usd_q10": null,
       "required_fixtures_or_files": null,
       "reject_rework_terms": null,
-      "notes": "Current exact-one clarification supersedes the original HMX035CTFT-001 wording; the donor display and adapter route are rejected."
+      "notes": "The exact-one clarification supersedes the original HMX035CTFT-001 wording. The 2026-09-01 display-PSA supplement adds exact pad identity, one untwisted fold, pin-order/slack rules, >=100 kPa uniformly supported pressure and 24-hour pre-pack hold; the donor display and adapter route remain rejected."
     },
     {
       "id": "microcoax_x5",

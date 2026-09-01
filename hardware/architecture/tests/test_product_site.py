@@ -479,13 +479,15 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("C3001549", evidence["supply_constraints"]["selected_uhf"]["jlcpcb_part"])
         self.assertEqual("C51897911", evidence["supply_constraints"]["selected_vhf"]["jlcpcb_part"])
         self.assertEqual("priced_preorder_lead_time_open", evidence["supply_constraints"]["selected_vhf"]["status"])
-        self.assertEqual(2, evidence["supply_constraints"]["orders_or_requests_submitted"])
-        self.assertEqual(2, evidence["supply_constraints"]["supplier_information_inquiries_submitted"])
+        self.assertEqual(3, evidence["supply_constraints"]["orders_or_requests_submitted"])
+        self.assertEqual(3, evidence["supply_constraints"]["supplier_information_inquiries_submitted"])
         self.assertEqual(0, evidence["supply_constraints"]["sourcing_requests_submitted"])
         self.assertEqual(0, evidence["supply_constraints"]["orders_submitted"])
         self.assertEqual("successfully_submitted", evidence["supply_constraints"]["submitted_inquiry"]["result"])
         self.assertEqual("message_sent", evidence["supply_constraints"]["submitted_clarification"]["result"])
         self.assertEqual("vinogradov.anton@gmail.com", evidence["supply_constraints"]["submitted_clarification"]["from"])
+        self.assertEqual("message_sent", evidence["supply_constraints"]["submitted_display_psa_clarification"]["result"])
+        self.assertIn("4910SQ-2(5)", evidence["supply_constraints"]["submitted_display_psa_clarification"]["scope"])
         self.assertTrue(all(not row["purchase_authorized"] for row in evidence["articles"]))
         self.assertEqual(1, evidence["procurement_target"]["finished_device_quantity"])
         self.assertFalse(evidence["procurement_target"]["batteries_included"])
@@ -1215,12 +1217,12 @@ class ProductSiteTests(unittest.TestCase):
         self.assertFalse(h5_plan["decision_gate"]["requires_user_authority"])
         self.assertTrue(h5_plan["decision_gate"]["authorized_now"])
         self.assertEqual(
-            "exact_one_clarification_sent_waiting_for_supplier_response",
+            "exact_one_and_display_psa_clarifications_sent_waiting_for_supplier_response",
             h5_plan["decision_gate"]["action_status"],
         )
         self.assertTrue(h5_plan["authorization"]["supplier_contact_send"])
         self.assertEqual("successfully_submitted", h5_plan["authorization"]["supplier_contact_result"])
-        self.assertIn("Nine release-relevant supplier answers are awaited", h5_plan["blocker"])
+        self.assertIn("display-process supplement were sent", h5_plan["blocker"])
         self.assertFalse(h5_plan["authorization"]["sample_or_component_purchase"])
         self.assertTrue(h5_plan["authorization"]["parts_api_application"])
         self.assertEqual("approved", h5_plan["authorization"]["parts_api_application_status"])

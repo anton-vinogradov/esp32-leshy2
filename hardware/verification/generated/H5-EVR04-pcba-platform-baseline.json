@@ -223,6 +223,18 @@
     "result": "message_sent",
     "scope": "exactly one prototype; information only; no order, pre-order, quote, reservation, sourcing request or fabrication"
   },
+  "supplier_display_psa_clarification": {
+    "supplier": "JLCPCB",
+    "channel": "Gmail",
+    "submitted_on": "2026-09-01",
+    "submitted_at_local": "19:25 Europe/Moscow",
+    "from": "vinogradov.anton@gmail.com",
+    "to": "support@jlcpcb.com",
+    "subject": "Re: Leshy2 PCBA and final assembly inquiry — clarification",
+    "result": "message_sent",
+    "source_reference": "hardware/procurement/H5.0.3-R1-jlcpcb-display-psa-clarification.md",
+    "scope": "exact 3M (TC) 4910SQ-2(5), deterministic FPC/ZIF/pressure process and exactly one prototype; information only; no commercial action"
+  },
   "voice_part_routes": {
     "SA818S-U": {
       "device_id": "nicerf_sa818s_u_v18",

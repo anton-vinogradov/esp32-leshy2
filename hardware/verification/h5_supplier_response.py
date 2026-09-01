@@ -96,6 +96,17 @@ def build(source: dict | None = None) -> dict:
         and clarification.get("information_only") is True
         and clarification.get("commercial_action_created") is False
     )
+    display_psa = source.get("display_psa_clarification", {})
+    display_psa_clarification_sent = (
+        display_psa.get("sent_on") == "2026-09-01"
+        and display_psa.get("from") == "vinogradov.anton@gmail.com"
+        and display_psa.get("to") == "support@jlcpcb.com"
+        and display_psa.get("result") == "message_sent"
+        and display_psa.get("exact_mpn") == "3M (TC) 4910SQ-2(5)"
+        and display_psa.get("source_reference") == "hardware/procurement/H5.0.3-R1-jlcpcb-display-psa-clarification.md"
+        and display_psa.get("information_only") is True
+        and display_psa.get("commercial_action_created") is False
+    )
 
     voice = source["sa818s_v"]
     exact_voice_identity = voice.get("mpn") == "SA818S-V" and voice.get("jlcpcb_part") == "C51897911"
@@ -162,7 +173,7 @@ def build(source: dict | None = None) -> dict:
         and not identity.get("exceptions")
     )
     no_new_authority = all(value is False for value in source["authorization"].values())
-    gate_passed = response_complete and exact_voice_identity and exact_dual_identity and all_factory_gates_accepted and no_new_authority
+    gate_passed = response_complete and exact_voice_identity and exact_dual_identity and all_factory_gates_accepted and clarification_sent and display_psa_clarification_sent and no_new_authority
 
     blockers: list[str] = []
     if missing:
@@ -200,6 +211,7 @@ def build(source: dict | None = None) -> dict:
             "exact_sa818s_u_identity_preserved": exact_dual_identity,
             "release_relevant_and_optional_operations_are_machine_separated": len(required_j4_f) == 4 and len(optional_operations) == 3 and len(out_of_scope) == 1,
             "exact_one_clarification_sent_without_commercial_action": clarification_sent,
+            "exact_display_psa_clarification_sent_without_commercial_action": display_psa_clarification_sent,
             "commercial_layout_and_fabrication_authority_remains_false": no_new_authority,
             "response_complete": response_complete,
             "all_required_factory_gates_accepted": all_factory_gates_accepted,
@@ -208,7 +220,7 @@ def build(source: dict | None = None) -> dict:
         "explicit_declines": explicit_declines,
         "blockers": blockers,
         "authorization": source["authorization"],
-        "next": ("wait for the supplier response to the exact-one clarification" if clarification_sent and not response_complete else ("send the prepared exact-one clarification for the two-designator job, four required final-assembly operations and exact-MPN control; Function Test, batteries and accessory packing are not gates" if not response_complete else ("prepare the separate cost/order decision" if gate_passed else "compare an alternate factory or revise the declined required operation boundary"))),
+        "next": ("wait for the supplier response to the exact-one and display-PSA clarifications" if clarification_sent and display_psa_clarification_sent and not response_complete else ("send the prepared exact-one and exact display-PSA clarifications without authorizing a commercial action" if not response_complete else ("prepare the separate cost/order decision" if gate_passed else "compare an alternate factory or revise the declined required operation boundary"))),
     }
 
 

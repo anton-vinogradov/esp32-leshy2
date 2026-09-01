@@ -22,6 +22,7 @@
     "exact_sa818s_u_identity_preserved": true,
     "release_relevant_and_optional_operations_are_machine_separated": true,
     "exact_one_clarification_sent_without_commercial_action": true,
+    "exact_display_psa_clarification_sent_without_commercial_action": true,
     "commercial_layout_and_fabrication_authority_remains_false": true,
     "response_complete": false,
     "all_required_factory_gates_accepted": false
@@ -50,5 +51,5 @@
     "pcb_placement_and_routing": false,
     "fabrication": false
   },
-  "next": "wait for the supplier response to the exact-one clarification"
+  "next": "wait for the supplier response to the exact-one and display-PSA clarifications"
 }
