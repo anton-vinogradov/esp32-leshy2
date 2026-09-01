@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Русский](pinout.ru.md) · [Hardware](hardware.md)
 
-This is the exact H1-R2.31 working GPIO map for the two independent RP2354B domains and their five M1 signals. The exact C5 module-pad/IO-mux electrical contract is joined. It still does not authorize fabrication: the live FSUSB42MUX/C11355 route, exact service-VBUS detector/latch/release implementation and TCA9803DGKR/C2687966 Pack/Safety powered-off-Ioff boundary are reviewed; native R2 ECAD now begins.
+This is the exact H1-R2.31 working GPIO map for the two independent RP2354B domains and their five M1 signals. The exact C5 module-pad/IO-mux electrical contract is joined. It still does not authorize fabrication: the live FSUSB42MUX/C11355 route, exact service-VBUS detector/latch/release implementation and TCA9803DGKR/C2687966 Pack/Safety powered-off-Ioff boundary are reviewed and materialized in accepted native R2 ECAD H2-R2.1.5.
 
 > Machine source: `hardware/architecture/h1-r2-dual-rp-pinout.json`. Pin-map artifact marker: **`H1-R2.31`**; current physical-design marker: **`H1-R2.38`**.
 
@@ -59,7 +59,7 @@ Front S3/C5/rear-RP fan-out, three independent nRF24 buses, microSD, Pack/Safety
 | `42` | `HUB_SAFE_I2C_SDA` | `io` | `I2C1` | TCA9803DGKR SDAA on 3V3_MAIN -> powered-off-Ioff boundary -> SDAB on AON_SAFE_3V3 -> M1.32 -> Pack/Safety mailboxes | input/open-drain released; 2.2-kohm MAIN-local pull-up; A-side high-Z when MAIN is off; no external B-side pull-up |
 | `43` | `HUB_SAFE_I2C_SCL` | `od` | `I2C1` | TCA9803DGKR SCLA on 3V3_MAIN -> powered-off-Ioff boundary -> SCLB on AON_SAFE_3V3 -> M1.33 -> Pack/Safety mailboxes | input/open-drain released; 2.2-kohm MAIN-local pull-up; A-side high-Z when MAIN is off; no external B-side pull-up |
 | `44` | `SD_DETECT_N` | `in` | `GPIO_IRQ` | microSD socket detect | input; external pull-up |
-| `45` | `LCD_TE` | `in` | `GPIO_IRQ` | HMX035CTFT-001 TE | input; external pull-down while panel reset is asserted |
+| `45` | `LCD_TE` | `in` | `GPIO_IRQ` | ER-TFT035IPS-6 ILI9488 TE | input; external pull-down while panel reset is asserted |
 | `46` | `LCD_BL_PWM` | `out` | `PWM` | backlight hardware gate | input/high-Z; external pull-down keeps backlight off |
 | `47` | `HUB_RESERVE_47` | `reserve` | `GPIO` | test pad only | input/high-Z; external pull-down; DNP |
 

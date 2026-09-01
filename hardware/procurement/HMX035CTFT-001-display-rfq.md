@@ -1,4 +1,11 @@
-# No-order technical data request — HMX035CTFT-001 LCD/CTP assembly
+# Historical rejected route — HMX035CTFT-001 LCD/CTP data request
+
+> This request was never sent and is retained only as legacy evidence for the
+> rejected donor-display route. It is not the selected panel, connector or
+> factory-assembly contract. The current controlled route is
+> [`ER-TFT035IPS-6-display-assembly.md`](ER-TFT035IPS-6-display-assembly.md):
+> exact EastRising option 5344, direct 50-contact ZIF on the UI PCB and no
+> adapter PCB.
 
 Supplier route: Shenzhen QDtech / LCDWIKI product channel  
 Public contact: `Lcdwiki@163.com`, `goodtft@163.com`  

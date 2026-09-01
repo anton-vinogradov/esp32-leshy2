@@ -5,9 +5,9 @@
   "status": "pass_exact_dual_rp_working_authority",
   "authority": {
     "source": "hardware/architecture/h1-r2-dual-rp-pinout.json",
-    "source_sha256": "45d7b02e86a626c5be841fef4d249fd304e98ce1715776e79d073ca9bc144753",
+    "source_sha256": "2805b468a903179e5450a097aec5e88f9d6d153f10cca41c2f7f73048a17069d",
     "functional_source": "hardware/architecture/h0-r2-rebaseline.json",
-    "functional_source_sha256": "95b9536cfeb8404b4ed74c1dd2bd5825f16a640c6c242765c1ff244c4f7ca891",
+    "functional_source_sha256": "833970eca629e1ab9a6079d9f2a3d7078103a897195f1458479a95726b17fffc",
     "c5_mux_source": "hardware/architecture/c5-sdio-service-mux-contract.json",
     "c5_mux_source_sha256": "4bd88ffed2e8ac0b5f6e8856d6ebc21e7cc29aa38045d4a10e068b870e51c7f3",
     "pack_safety_i2c_source": "hardware/architecture/pack-safety-i2c-boundary-contract.json",
@@ -414,7 +414,7 @@
         "net": "LCD_TE",
         "direction": "in",
         "controller": "GPIO_IRQ",
-        "endpoint": "HMX035CTFT-001 TE",
+        "endpoint": "ER-TFT035IPS-6 ILI9488 TE",
         "reset": "input; external pull-down while panel reset is asserted"
       },
       {

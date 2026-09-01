@@ -432,9 +432,9 @@ def render_public(source: dict[str, Any], candidate: dict[str, Any], russian: bo
         intro = (
             "Это точная рабочая H1-R2.31-карта GPIO двух независимых RP2354B и их пяти "
             "сигналов через M1. Точный электрический контракт module-pad/IO-mux C5 присоединён. "
-            "Она ещё не разрешает KiCad: live production route FSUSB42MUX/C11355, "
+            "Она ещё не разрешает производство: live production route FSUSB42MUX/C11355, "
             "detector/latch/release service-VBUS и TCA9803DGKR/C2687966 Pack/Safety "
-            "powered-off-Ioff граница прошли ревью; начинается native R2 ECAD."
+            "powered-off-Ioff граница прошли ревью и материализованы в принятой native R2 ECAD H2-R2.1.5."
         )
         names = {"hub_rp": "Передний Hub RP", "rf_rp": "Задний RF RP"}
         cols = "| GPIO | Сеть | Направление | Контроллер | Физический endpoint | Reset / pull |"
@@ -451,7 +451,7 @@ def render_public(source: dict[str, Any], candidate: dict[str, Any], russian: bo
             "and their five M1 signals. The exact C5 module-pad/IO-mux electrical contract is joined. "
             "It still does not authorize fabrication: the live FSUSB42MUX/C11355 route, exact "
             "service-VBUS detector/latch/release implementation and TCA9803DGKR/C2687966 "
-            "Pack/Safety powered-off-Ioff boundary are reviewed; native R2 ECAD now begins."
+            "Pack/Safety powered-off-Ioff boundary are reviewed and materialized in accepted native R2 ECAD H2-R2.1.5."
         )
         names = {"hub_rp": "Front Hub RP", "rf_rp": "Rear RF RP"}
         cols = "| GPIO | Net | Direction | Controller | Physical endpoint | Reset / pull |"
@@ -563,7 +563,7 @@ def main() -> int:
     if stale:
         print("stale: " + ", ".join(stale))
         return 1
-    print("ok: exact dual-RP GPIO/M1 plus C5 electrical join; production gates still block R2 H2")
+    print("ok: exact dual-RP GPIO/M1 plus C5 electrical join is materialized in H2-R2.1.5; fabrication remains blocked")
     return 0
 
 

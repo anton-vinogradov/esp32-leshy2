@@ -6,7 +6,7 @@
   "source_sha256": {
     "hardware/architecture/pack-safety-i2c-boundary-contract.json": "5460c97ab81e9f58c41a042a5f024f5f83e5913099e11743b9ad72414eb5782c",
     "hardware/architecture/devices.json": "2caf023fb65a15be416b66686f7bcbd9ce199f8c8a55c4d37457782e73ceb6ef",
-    "hardware/architecture/h1-r2-dual-rp-pinout.json": "45d7b02e86a626c5be841fef4d249fd304e98ce1715776e79d073ca9bc144753"
+    "hardware/architecture/h1-r2-dual-rp-pinout.json": "2805b468a903179e5450a097aec5e88f9d6d153f10cca41c2f7f73048a17069d"
   },
   "contract": {
     "schema_version": 1,

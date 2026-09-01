@@ -67,7 +67,7 @@
       {"gpio": 2, "net": "SYS_UI_I2C_SCL", "peripheral": "I2C0", "direction": "out"},
       {"gpio": 3, "net": "UI_HUB_ALERT_N", "peripheral": "GPIO_IRQ", "direction": "in", "gate": "wired-OR open-drain UI/touch/fault sources plus Hub RP; Hub held reset/high-Z through strap sampling"},
       {"gpio": 4, "net": "LCD_DB0", "peripheral": "LCD_CAM_TX", "direction": "out"},
-      {"gpio": 5, "net": "LCD_RST_N", "peripheral": "GPIO", "direction": "out", "gate": "direct display-adapter reset; reset-time pull-down keeps the panel disabled"},
+      {"gpio": 5, "net": "LCD_RST_N", "peripheral": "GPIO", "direction": "out", "gate": "direct ILI9488 panel reset through the 50-contact UI-PCB ZIF; reset-time pull-down keeps the panel disabled"},
       {"gpio": 6, "net": "TOUCH_RST_N", "peripheral": "GPIO", "direction": "out", "gate": "direct touch-controller reset; reset-time pull-down keeps touch disabled"},
       {"gpio": 7, "net": "S3_UART_SERVICE_TX", "peripheral": "UART1_TX", "direction": "out", "gate": "DBG10 series path; idle high only after strap sampling"},
       {"gpio": 8, "net": "S3_UART_SERVICE_RX", "peripheral": "UART1_RX", "direction": "in", "gate": "DBG10 series path with fixture-side protection"},

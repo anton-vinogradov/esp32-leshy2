@@ -38,7 +38,7 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual("pass", self.audit["structural_status"])
         self.assertEqual([], self.audit["errors"])
         self.assertEqual([], self.audit["same_face_collisions"])
-        self.assertEqual(87, len(self.audit["opposing_overlaps"]))
+        self.assertEqual(88, len(self.audit["opposing_overlaps"]))
         self.assertEqual(
             [{"ui": "m1_ui_plug", "rf": "m1_rf_receptacle", "overlap_mm": 3.8}],
             self.audit["intentional_opposing_mates"],
@@ -60,20 +60,18 @@ class H1R2LayoutTest(unittest.TestCase):
             design["electrical"]["owner_contract"],
         )
         svg = legacy.render_display_mount(design)
-        self.assertEqual(1, svg.count('data-route="display-to-owner"'))
-        self.assertIn('data-owner="S3"', svg)
-        self.assertIn('data-c5-display-connection="none"', svg)
-        self.assertIn("S3-local i8080-8 + touch", svg)
-        self.assertIn("no display/touch connection", svg)
-        self.assertIn('data-mechanical-part="display_psa_frame"', svg)
+        self.assertNotIn('data-route="display-to-owner"', svg)
+        self.assertNotIn('data-owner="C5"', svg)
+        self.assertIn('data-mechanical-part="display_psa_rectangle"', svg)
         self.assertIn('data-mechanical-part="ui_pcb_display_bed"', svg)
         self.assertNotIn('data-mechanical-part="front_shell_corner_locators"', svg)
         self.assertNotIn("closed-cell foam preload", svg)
-        self.assertIn("FPC MUST EXIT UP", svg)
-        self.assertIn('data-fpc-route="outer-edge-inner-zif"', svg)
-        self.assertIn("free loop outside PCB edge", svg)
-        self.assertIn("no sharp crease · no bare-FR4 bearing", svg)
-        self.assertIn("PSA GAP FOR FPC", svg)
+        self.assertIn("FPC FREE ZONE", svg)
+        self.assertIn('data-fpc-route="single-fold-relaxed-loop-internal-slot-zif"', svg)
+        self.assertIn('data-slack="relaxed"', svg)
+        self.assertIn("One 180° fold, no twist", svg)
+        self.assertIn("rounded 27.0 × 1.2-mm slot", svg)
+        self.assertIn("PSA pressing comes last", svg)
         self.assertEqual(design["orientation"]["fpc_exit_direction_board_axis"], "-Y")
         route = design["mechanical_retention"]["fpc_route_side_section"]
         self.assertFalse(route["tail_under_psa"])
@@ -84,7 +82,7 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual(div_reference["retention_evidence_status"], "unknown_from_public_sources")
         self.assertIn("four empty 1.2-mm holes", div_reference["in_plane_location"])
         self.assertIn("18-contact", div_reference["electrical_connection"])
-        self.assertIn("What DIV v2 proves", svg)
+        self.assertIn("stock display PSA rectangle and folded FPC", svg)
 
     def test_every_fixed_body_has_exact_mpn(self):
         for item in self.model["placements"]:

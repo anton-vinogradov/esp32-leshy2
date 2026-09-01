@@ -6,17 +6,17 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "0003ba4eae051e315288283952a2c53d803e47bb63bb2ad95c23821690a1d5ce",
+      "sha256": "25d935be5bec2531ad2560deceec860bfacfc6a08f817f8bde7ee8365eeeacbe",
       "authority": true
     },
     "exact_definition_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "e6f1dcf9f0a20811f0c5081228454a3f7792a091e697becf26aa85c5bedc1aae",
+      "sha256": "94bb6fd6a77f23ab1ad8b14a7e556df5e331ca07586580789bf40f8a4762008c",
       "authority": true
     },
     "physical_source_table": {
       "path": "hardware/product-design/generated/H1-physical-source-table.json",
-      "sha256": "2702b180e9ec23daecf54ff92cd6db39435cbb769bf9dddb1a6e9bdaccddb13f",
+      "sha256": "4500ac9dc2d39a8660d001750c595f77fb73b0868568dd046962792a22944b08",
       "authority": true
     },
     "historical_instance_hints": {

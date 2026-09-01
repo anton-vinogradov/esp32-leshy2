@@ -5,8 +5,8 @@
   "purpose": "map every H5 residual to selected identities, sources, still-missing data and an inherited pass rule without claiming physical closure",
   "source_hashes": {
     "hardware/verification/generated/H3-VRF72-physical-residuals.json": "bb42a28438471824376c593e5d37974f2f5c12e55bd1af90380fd7a9ec257149",
-    "hardware/product-design/generated/H1-physical-source-table.json": "2702b180e9ec23daecf54ff92cd6db39435cbb769bf9dddb1a6e9bdaccddb13f",
-    "hardware/product-design/mechanical-evidence-gates.json": "03bf3e9e09b8ae4991f4c7c94ec412d5a5604f2195106539a0d521ee648d1d8c",
+    "hardware/product-design/generated/H1-physical-source-table.json": "4500ac9dc2d39a8660d001750c595f77fb73b0868568dd046962792a22944b08",
+    "hardware/product-design/mechanical-evidence-gates.json": "77fc2e22ba5a581ef204bb50d4418c4d52527062f3f82a03c8273158b73fbb51",
     "hardware/architecture/devices.json": "2caf023fb65a15be416b66686f7bcbd9ce199f8c8a55c4d37457782e73ceb6ef",
     "hardware/architecture/am-lw-pod.json": "6571e20c26f2ceaebf9c4bf410d155417a68116b3b5ef2e16d7c77ee06503e08"
   },
@@ -52,7 +52,7 @@
           "identity": "display_connector",
           "kind": "selected_physical_instance",
           "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
-          "role": "direct 50-contact dual-contact ZIF for the folded display FPC",
+          "role": "direct 50-contact dual-contact ZIF behind the folded display FPC slot; pin 1 at world x-min",
           "source": {
             "document": "Hirose FH34SRJ controlled series drawing; 50-position body uses the 24.5-mm contact span and 27.0-mm overall width",
             "url": "https://www.hirose.com/en/product/series/FH34SRJ",
@@ -500,7 +500,7 @@
           "identity": "s3",
           "kind": "selected_physical_instance",
           "mpn": "ESP32-S3-WROOM-1U-N16R8",
-          "role": "UI, display, storage and audio owner",
+          "role": "UI, display, storage and audio owner; shifted 0.7 mm outward for the central display ZIF corridor",
           "source": {
             "document": "ESP32-S3-WROOM-1/WROOM-1U Datasheet",
             "version": "v1.8",
@@ -512,7 +512,7 @@
           "identity": "c5",
           "kind": "selected_physical_instance",
           "mpn": "ESP32-C5-WROOM-1U-N8R8",
-          "role": "native 2.4/5-GHz and IR owner",
+          "role": "native 2.4/5-GHz and IR owner; shifted 0.7 mm outward for the central display ZIF corridor",
           "source": {
             "document": "ESP32-C5-WROOM-1/WROOM-1U Datasheet",
             "version": "v1.2",
@@ -710,7 +710,7 @@
           "identity": "display_connector",
           "kind": "selected_physical_instance",
           "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
-          "role": "direct 50-contact dual-contact ZIF for the folded display FPC",
+          "role": "direct 50-contact dual-contact ZIF behind the folded display FPC slot; pin 1 at world x-min",
           "source": {
             "document": "Hirose FH34SRJ controlled series drawing; 50-position body uses the 24.5-mm contact span and 27.0-mm overall width",
             "url": "https://www.hirose.com/en/product/series/FH34SRJ",
@@ -718,9 +718,9 @@
           }
         }
       ],
-      "known_boundary": "EastRising controls the exact ER-TFT035IPS-6 plus ER-TPC035-6 assembly, 56.54x84.96-mm CTP outline and folded 50-contact 0.50-mm tail. L2-DISP-DIRECT-001-A fixes the stocked dual-contact FH34SRJ connector on the UI PCB inner face, a direct component-free UI-PCB outer display bed and a die-cut perimeter-PSA load path in which the ZIF is not load-bearing.",
-      "missing_data": "Current-lot FPC thickness/stiffener conformity, actual insertion, exact free-loop bend radius and enclosure keep-out, the exact safe rear adhesive perimeter and the assembler's accepted die-cut PSA material/process remain properties of the one-prototype route. 3M 9495LE is only a 0.17-mm technical candidate until that route is confirmed.",
-      "accepted_pass_rule": "Before order, H5 locks the source-backed direct-ZIF footprint, mandatory board -Y / antenna-edge tail direction, component-free outer and inner FPC corridors, free-loop volume with no sharp crease or bare-FR4 bearing, exact adhesive grade and cut drawing, cleaning/pressure/dwell instruction and written assembler acceptance; H7/H8 inspect insertion, strain relief, retention and continuity after arrival.",
+      "known_boundary": "EastRising controls the exact ER-TFT035IPS-6 plus ER-TPC035-6 assembly, 56.54x84.96-mm CTP outline and folded 50-contact 0.50-mm tail, including the 30.16 +/-0.50-mm edge-to-tip length, 25.50 +/-0.15-mm contact-tongue width, 0.30-mm stiffener and drawing-view 50-left/1-right order. L2-DISP-DIRECT-001-A fixes the top-and-bottom-contact FH34SRJ at [24.00,25.00] on the UI PCB inner face, a rounded 27.00x1.20-mm tongue slot at [24.00,23.00], one no-twist 180-degree fold, 1-to-1 / 50-to-50 orientation, at least 5.00 mm of relaxed service slack, an adhesive-free folded-FPC upper zone, one stock-format 50.00x50.00-mm PSA rectangle at [12.50,44.46], and separate PSA and DISPLAY/FPC-UP silkscreen datums. The rectangle supports 2500 mm2 or about 52.0% of the panel plan; no separate upper strip or custom converter contour is required and the ZIF is not load-bearing.",
+      "missing_data": "Current-lot folded FPC maximum component stack, exact 180-degree bend radius, actual insertion, one exact traceable stocked 50x50-mm industrial acrylic-foam MPN and the assembler's accepted material/process remain properties of the one-prototype route. The 1.00-mm drawing envelope and reseller 3M VHB 4910 pads prove only that the format exists; neither is a released production selection. The earlier 0.17-mm 3M 9495LE candidate is too thin unless measurement unexpectedly proves the required 0.20-mm clearance.",
+      "accepted_pass_rule": "Before order, H5 locks the source-backed direct-ZIF footprint and rotation, mandatory board -Y / antenna-edge tail direction, rounded tongue slot and keep-outs, one-fold/no-twist 1-to-1 / 50-to-50 insertion, received dry-fit neutral-axis route <=24.66 mm with >=5.00-mm relaxed slack, current-lot folded-stack height plus at least 0.20-mm clearance, exact bend radius, exact traceable stocked 50x50-mm adhesive MPN and source, both silkscreen datums, cleaning/pressure/dwell instruction and written assembler acceptance. A custom contour is allowed only if the same PCBA factory confirms manufacture and installation inside the order; no external converter order. H7/H8 inspect insertion, strain relief, retention and continuity after arrival.",
       "blocks": [
         "H8"
       ],
@@ -1380,7 +1380,7 @@
           "identity": "display_connector",
           "kind": "selected_physical_instance",
           "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
-          "role": "direct 50-contact dual-contact ZIF for the folded display FPC",
+          "role": "direct 50-contact dual-contact ZIF behind the folded display FPC slot; pin 1 at world x-min",
           "source": {
             "document": "Hirose FH34SRJ controlled series drawing; 50-position body uses the 24.5-mm contact span and 27.0-mm overall width",
             "url": "https://www.hirose.com/en/product/series/FH34SRJ",
