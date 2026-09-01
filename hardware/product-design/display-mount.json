@@ -72,10 +72,11 @@
     "esp32_div_v2_reference": {
       "source": "https://github.com/cifertech/ESP32-DIV/tree/9d4d82fe7a12febf554b12e1eca6d434ebe79d39/PCB/v2",
       "panel_mount": "raw 2.8-inch display body seated directly on the main PCB",
-      "in_plane_location": "four 1.2-mm copper-free locator holes on a 49.10 x 68.25-mm rectangle accept the display-frame locating features",
+      "in_plane_location": "four empty 1.2-mm holes surround the display zone on a 49.10 x 68.25-mm rectangle; the official Gerber drill file marks them plated, but the copper flashes are only drill-size and the assembled-device photograph shows that they do not locate or retain the display",
       "electrical_connection": "18-contact display FPC soldered directly to eighteen 0.4 x 4.5-mm SMD lands; no display ZIF",
-      "not_publicly_documented": "no controlled adhesive, foam-preload or display-screw specification is present in the published v2 PCB and 3D-model sources",
-      "leshy2_adoption_rule": "copy exact enclosure-bed and anti-shear location, not the load-bearing direct-soldered flex; Leshy2 keeps a serviceable non-load-bearing ZIF"
+      "retention_evidence_status": "unknown_from_public_sources",
+      "not_publicly_documented": "the published Gerbers, PcbDoc, BOM, 3D model and assembled-device photograph do not identify a positive display retainer; the BOM contains no frame, fastener, foam or adhesive line, so a hidden PSA bond is plausible but unproven",
+      "leshy2_adoption_rule": "do not copy an inferred DIV retention mechanism; Leshy2 independently specifies a positive panel load path and keeps a serviceable non-load-bearing ZIF"
     }
   },
   "electrical": {
@@ -183,7 +184,7 @@
     },
     {
       "source": "https://github.com/cifertech/ESP32-DIV/tree/9d4d82fe7a12febf554b12e1eca6d434ebe79d39/PCB/v2",
-      "finding": "The official ESP32-DIV v2 PCB uses four display locator holes and eighteen direct-solder FPC lands rather than a display ZIF; its public sources do not specify a controlled adhesive or foam-preload stack."
+      "finding": "The official ESP32-DIV v2 Gerbers expose eighteen direct-solder FPC lands and four empty 1.2-mm holes around the display zone. The holes do not retain the assembled display, and the public PCB, BOM, 3D model and photograph do not establish the actual retention method; a hidden PSA bond remains an inference, not a documented fact."
     }
   ],
   "release_boundary": "H1 freezes the exact panel, direct C3169104 ZIF position, 50-contact electrical map, folded-tail corridor and non-load-bearing connector rule. H2 imports the exact footprint and routes the display sheet directly on the UI PCB; H5 confirms current-lot tail conformity, written factory acceptance for panel PSA/FPC insertion and one-prototype final mating."

@@ -47,12 +47,13 @@
 <text x="807.0" y="326.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#166534">S3-local i8080-8 + touch</text>
 <text x="932.0" y="326.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="middle" fill="#64748b">no display/touch connection</text>
 <path d="M840 171 L807 225" stroke="#16a34a" stroke-width="2" data-route="display-to-owner" data-owner="S3"/>
-<text x="650.0" y="382.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#7c3aed">What DIV v2 does</text>
-<text x="650.0" y="406.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• raw 2.8-inch panel sits directly on the main PCB</text>
-<text x="650.0" y="428.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• four 1.2-mm locator holes resist in-plane shift</text>
-<text x="650.0" y="450.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• 18-contact FPC is soldered to the PCB; no display ZIF</text>
-<text x="650.0" y="480.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="start" fill="#166534">Leshy2 keeps the exact bed/locators, but its ZIF remains</text>
-<text x="650.0" y="502.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="start" fill="#166534">serviceable and outside the structural load path.</text>
+<text x="745.0" y="382.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#7c3aed">What DIV v2 proves</text>
+<text x="745.0" y="406.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• panel body sits directly on the PCB</text>
+<text x="745.0" y="428.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• four 1.2-mm holes remain empty</text>
+<text x="745.0" y="450.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• 18-pin FPC is soldered; no ZIF</text>
+<text x="745.0" y="472.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• retention is not documented</text>
+<text x="745.0" y="494.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">PSA is plausible, not proven.</text>
+<text x="745.0" y="520.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="start" fill="#166534">Leshy2 uses its own load path.</text>
 <text x="650.0" y="595.0" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="start" fill="#172033">Connector envelope: 27.0 × 3.8 × 1.0 mm</text>
 <text x="650.0" y="618.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#172033">Inner gap: 11.0 mm · removed stack: 3.8 mm · height saved: 2.8 mm</text>
 <text x="650.0" y="650.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#b42318">Removed: both DF40 connectors and the separate display-adapter PCB</text>

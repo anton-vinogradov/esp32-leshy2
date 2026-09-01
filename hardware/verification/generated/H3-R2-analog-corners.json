@@ -6,16 +6,16 @@
   "sources": {
     "hardware/architecture/candidates/G2F-3I.json": "1c614996fd626b9ca44a98395c0c01712c347c9ba4ac43e69250db3f2bf2f1df",
     "hardware/architecture/devices.json": "2caf023fb65a15be416b66686f7bcbd9ce199f8c8a55c4d37457782e73ceb6ef",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "62a84cea7f6694e9ec787c9a19899e41289a801614085cec5d8e97c71774bf59",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "c5e0c1e1f5f1d04fabe0b2ff1104f908382011c2a748591d05170b925a88a369",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "90307b49bf06a2d7b4046d1cd0d660d0d276bed280b5db5360604e234dcf911c",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "6a1a676b912b05e49fa721f450ea1c9ecc1d70fffa4913204fd79bf64daa1e1d",
     "hardware/verification/generated/H3-VRF32-audio.json": "bc26b2ce06e9dcb204a33363110e96524638d3d77e46ec98626e290e70f38988",
     "hardware/verification/generated/H3-VRF33-ir.json": "847e7d5da9d7ebde16cc33622f143fe4f3432015c62f8b16392b4ee52fd7a27a",
     "hardware/verification/generated/H3-VRF34-battery-analog.json": "15950606ec7d7b0e4e4285c6f41fe1e9e454e0b00f0fa8d86425ac62ad4da0ba",
     "hardware/verification/generated/H3-R2-airband-corners.json": "e493841a7ddaf01db47d3b7be61f3f34057184639565ad72c3ba8db7757ca8d1",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "8f33aa8d7143d78696e31f0d6e967d243586399f7ddeeddc392e176bfa23a488",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "8005e4a9f3b3324877d11286e6d679d8694bb68d949f8fcb4797043f2036f2f6",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "b0da9c4c07ed47c5d5ed5a237ca25780ded747e3cf482071a72d110d8337ad61",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "36a1de835d48ee68ae7baa05ac8e90fd0192bc8f0916df0bab03444ee914f293",
     "hardware/product-design/generated/H1-R2-cost-audit.json": "00d1916f096b881f06042f594cd01fb530a2e82ceaa8a8bedf829895eb4f48fc",
-    "hardware/product-design/display-mount.json": "2e08e1920aae39878449c60ee39655c1d6b40583e4e50e0fe1c7e73ed5a00a8d"
+    "hardware/product-design/display-mount.json": "f1fbbec84ba706d7fae795be6ef45eac28e3e18c0209e6a9d2c5e6ca5c4a978d"
   },
   "method": "current R2 topology/identity binding plus transferred exact-part interval corners and a new production-panel backlight calculation",
   "exact_part_checks": {

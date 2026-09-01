@@ -2043,8 +2043,10 @@ def validate_display_mount_design(
     if not retention.get("structural_load_path", "").endswith("never through the FPC or ZIF"):
         errors.append("display-mount: structural load path must terminate outside the FPC and ZIF")
     div_reference = retention.get("esp32_div_v2_reference", {})
-    if "four 1.2-mm" not in div_reference.get("in_plane_location", ""):
-        errors.append("display-mount: DIV reference must preserve the four measured locator holes")
+    if div_reference.get("retention_evidence_status") != "unknown_from_public_sources":
+        errors.append("display-mount: DIV retention must remain explicitly unproven")
+    if "four empty 1.2-mm holes" not in div_reference.get("in_plane_location", ""):
+        errors.append("display-mount: DIV reference must preserve the four observed empty holes")
     if "18-contact" not in div_reference.get("electrical_connection", ""):
         errors.append("display-mount: DIV reference must preserve the direct-soldered 18-contact flex")
     if "non-load-bearing ZIF" not in div_reference.get("leshy2_adoption_rule", ""):
@@ -4751,12 +4753,13 @@ def render_display_mount(design):
         label(807, 326, "S3-local i8080-8 + touch", 9.5, "bold", "middle", "#166534"),
         label(932, 326, "no display/touch connection", 9.2, "bold", "middle", "#64748b"),
         '<path d="M840 171 L807 225" stroke="#16a34a" stroke-width="2" data-route="display-to-owner" data-owner="S3"/>',
-        label(650, 382, "What DIV v2 does", 13, "bold", colour="#7c3aed"),
-        label(650, 406, "• raw 2.8-inch panel sits directly on the main PCB", 10),
-        label(650, 428, "• four 1.2-mm locator holes resist in-plane shift", 10),
-        label(650, 450, "• 18-contact FPC is soldered to the PCB; no display ZIF", 10),
-        label(650, 480, "Leshy2 keeps the exact bed/locators, but its ZIF remains", 10, "bold", colour="#166534"),
-        label(650, 502, "serviceable and outside the structural load path.", 10, "bold", colour="#166534"),
+        label(745, 382, "What DIV v2 proves", 13, "bold", colour="#7c3aed"),
+        label(745, 406, "• panel body sits directly on the PCB", 10),
+        label(745, 428, "• four 1.2-mm holes remain empty", 10),
+        label(745, 450, "• 18-pin FPC is soldered; no ZIF", 10),
+        label(745, 472, "• retention is not documented", 10),
+        label(745, 494, "PSA is plausible, not proven.", 10),
+        label(745, 520, "Leshy2 uses its own load path.", 10, "bold", colour="#166534"),
         label(650, 595, f"Connector envelope: {connector['envelope_mm'][0]:.1f} × {connector['envelope_mm'][1]:.1f} × {connector['envelope_mm'][2]:.1f} mm", 10.5, "bold"),
         label(650, 618, f"Inner gap: {stack['available_interboard_gap_mm']:.1f} mm · removed stack: {stack['removed_adapter_stack_height_mm']:.1f} mm · height saved: {stack['height_reduction_mm']:.1f} mm", 10.5),
         label(650, 650, "Removed: both DF40 connectors and the separate display-adapter PCB", 11, "bold", colour="#b42318"),

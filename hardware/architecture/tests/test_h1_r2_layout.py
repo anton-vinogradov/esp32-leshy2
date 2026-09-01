@@ -68,9 +68,10 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertIn('data-mechanical-part="display_psa_frame"', svg)
         self.assertIn('data-mechanical-part="front_shell_corner_locators"', svg)
         div_reference = design["mechanical_retention"]["esp32_div_v2_reference"]
-        self.assertIn("four 1.2-mm", div_reference["in_plane_location"])
+        self.assertEqual(div_reference["retention_evidence_status"], "unknown_from_public_sources")
+        self.assertIn("four empty 1.2-mm holes", div_reference["in_plane_location"])
         self.assertIn("18-contact", div_reference["electrical_connection"])
-        self.assertIn("What DIV v2 does", svg)
+        self.assertIn("What DIV v2 proves", svg)
 
     def test_every_fixed_body_has_exact_mpn(self):
         for item in self.model["placements"]:

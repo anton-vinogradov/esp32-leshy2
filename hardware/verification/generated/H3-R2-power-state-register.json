@@ -4,13 +4,13 @@
   "marker": "H3-R2.1.1",
   "status": "pass",
   "accepted_input": "H3-R2.0.3",
-  "state_register_sha256": "04472b557b7c9cd687197dcf9bebb30c25f7504aeca9aaa9255d097e1ff7084b",
+  "state_register_sha256": "765f7341e4f4b407f50a5ce764fba6a33b6e537a1b760a3d559168224879f368",
   "source_sha256": {
     "hardware/verification/h3-r2-power-state-contract.json": "3237c420face274426143ad23cb4e2ec09ee45d64ab64f532dbfa6905853cf96",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "dc087026e66e9a03542fa45df81395dd98ee4926b850262efa51a43c18b0818b",
-    "hardware/verification/generated/H3-R2-method-contract.json": "d083f6801c6c0727ced98e8accd0800bb9f0ccd7f736d80ea7213a5d00827479",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "a108916b3aca812f160b580da6a72fb0473aff9dd75188124fc13a04490b82f8",
+    "hardware/verification/generated/H3-R2-method-contract.json": "3296d5d4c5ea12c89d2a3baf3be88a64d506c9e749b26c09b54667ffaa00884d",
     "hardware/architecture/h0-r2-rebaseline.json": "95b9536cfeb8404b4ed74c1dd2bd5825f16a640c6c242765c1ff244c4f7ca891",
-    "hardware/ecad/generated/H2-R2-hwfw-contract.json": "ae2374aff85ef346baa5e5ddc19ab421a1024da177c022467f95bbe99f906c43"
+    "hardware/ecad/generated/H2-R2-hwfw-contract.json": "79cc1f40e30870e194c66ed1c4abddc8b363768d3b66b0c682ff5542978a5c65"
   },
   "source_contract": {
     "usb": [
