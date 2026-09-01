@@ -82,6 +82,6 @@
     "locked": "world datum, PCB outlines, mounting axes, touch plane, external interface directions and component/accessory keep-outs",
     "not_yet_locked": "wall thickness, ribs, seals, exact bezel overlap, grille, external fillets and manufacturing tolerance stack",
     "rule": "later enclosure surfaces may grow around the locked component model but may not move an accepted PCB/interface datum silently",
-    "mandatory_load_paths": "front/rear PCB capture lips, two anti-shear datums, four 11.00-mm compression stops, a Keystone 1048P cradle/end-stop pair, and a flat component-free UI-PCB display bed with one carrier-backed acrylic-foam support pad, connected upper shoulders, separate PSA and DISPLAY/FPC-UP silkscreen datums, a folded-FPC pocket and rounded tongue slot are required before release; the panel tail points toward board -Y / the antenna edge and the direct ZIF is never load-bearing"
+    "mandatory_load_paths": "front/rear PCB capture lips, two anti-shear datums, four 11.00-mm compression stops, a Keystone 1048P cradle/end-stop pair, and a flat component-free UI-PCB display bed with one stocked 50 x 50-mm acrylic-foam PSA rectangle, separate PSA and DISPLAY/FPC-UP silkscreen datums, an adhesive-free folded-FPC zone and rounded tongue slot are required before release; the panel tail points toward board -Y / the antenna edge and the direct ZIF is never load-bearing"
   }
 }

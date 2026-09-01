@@ -2030,7 +2030,7 @@ def validate_display_mount_design(
     }
     expected_physical_parts = {
         "ui_pcb_display_bed": 1,
-        "display_psa_pad": 1,
+        "display_psa_rectangle": 1,
         "display_alignment_silkscreen": 1,
         "fpc_bend_guide": 1,
     }
@@ -2055,7 +2055,7 @@ def validate_display_mount_design(
         math.isclose(float(fpc_route.get(field, -1)), expected, abs_tol=1e-9)
         for field, expected in (
             ("pcb_thickness_mm", 1.6),
-            ("drawing_spacer_envelope_mm", 1.0),
+            ("drawing_stock_pad_envelope_mm", 1.0),
             ("zif_height_mm", body_z),
             ("contact_stiffener_thickness_mm", 0.3),
             ("contact_tail_width_mm", 25.5),
@@ -2064,26 +2064,35 @@ def validate_display_mount_design(
         )
     ):
         errors.append("display-mount: side-section dimensions drifted")
-    if fpc_route.get("spacer_release_rule") != "exact spacer thickness >= measured folded FPC maximum stack + 0.20 mm":
-        errors.append("display-mount: folded-FPC spacer clearance rule drifted")
-    lower_field = fpc_route.get("one_piece_psa_lower_field_mm", [])
-    side_shoulder = fpc_route.get("one_piece_psa_side_shoulder_mm", [])
+    if fpc_route.get("stock_pad_release_rule") != "exact stock pad thickness >= measured folded FPC maximum stack + 0.20 mm":
+        errors.append("display-mount: folded-FPC stock-pad clearance rule drifted")
+    stock_rectangle = fpc_route.get("stock_psa_rectangle_size_mm", [])
     support_fraction = (
-        (float(lower_field[0]) * float(lower_field[1]) + 2 * float(side_shoulder[0]) * float(side_shoulder[1]))
-        / (DISPLAY_W * DISPLAY_H)
-        if len(lower_field) == 2 and len(side_shoulder) == 2
+        float(stock_rectangle[0]) * float(stock_rectangle[1]) / (DISPLAY_W * DISPLAY_H)
+        if len(stock_rectangle) == 2
         else 0
     )
     if (
         fpc_route.get("separate_upper_tape_fitted") is not False
+        or fpc_route.get("upper_support_part_fitted") is not False
+        or fpc_route.get("custom_die_cut_required") is not False
+        or fpc_route.get("external_converter_order_allowed") is not False
         or fpc_route.get("adhesive_piece_count") != 1
         or fpc_route.get("alignment_silkscreen_datum_count") != 2
         or not math.isclose(float(fpc_route.get("supported_panel_area_fraction", 0)), support_fraction, abs_tol=0.001)
-        or support_fraction < 0.69
-        or lower_field != [54.54, 58.46]
-        or side_shoulder != [3.32, 24.5]
+        or support_fraction < 0.50
+        or stock_rectangle != [50.0, 50.0]
+        or fpc_route.get("stock_psa_rectangle_position_mm") != [12.5, 44.46]
     ):
-        errors.append("display-mount: one-piece PSA support geometry drifted")
+        errors.append("display-mount: stocked rectangular PSA support geometry drifted")
+    manufacturing = design.get("manufacturing_route", {})
+    if (
+        "stocked 50 x 50-mm" not in manufacturing.get("baseline", "")
+        or manufacturing.get("wait_for_custom_service_answer") is not False
+        or manufacturing.get("external_converter_order_allowed") is not False
+        or manufacturing.get("custom_pcba_die_cut_status") != "not publicly documented and the earlier support request remains unanswered"
+    ):
+        errors.append("display-mount: non-blocking stock-rectangle manufacturing route drifted")
     slot_x, slot_y = map(float, fpc_route.get("pcb_slot_position_mm", [-1, -1]))
     slot_w = float(fpc_route.get("pcb_slot_width_mm", -1))
     slot_h = float(fpc_route.get("pcb_slot_height_mm", -1))
@@ -4785,7 +4794,7 @@ def render_navigation_cluster(design, devices, instances):
 
 
 def render_display_mount(design):
-    """Render the one-piece PSA datums, folded-FPC pocket, slot and direct ZIF."""
+    """Render the stock PSA rectangle, folded-FPC free zone, slot and direct ZIF."""
     connector = design["components"][0]
     stack = design["stack"]
     route = design["mechanical_retention"]["fpc_route_side_section"]
@@ -4800,18 +4809,18 @@ def render_display_mount(design):
         '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
-        label(40, 42, "Leshy2 — one-piece display PSA and folded FPC", 22, "bold"),
-        label(40, 68, "L2-DISP-DIRECT-001-A · two silkscreen datums · one carrier-backed PSA cut · 27-mm slot · direct 50-pin ZIF", 11, colour="#526076"),
+        label(40, 42, "Leshy2 — stock display PSA rectangle and folded FPC", 22, "bold"),
+        label(40, 68, "L2-DISP-DIRECT-001-A · two silkscreen datums · one stocked 50 × 50-mm pad · 27-mm slot · direct 50-pin ZIF", 11, colour="#526076"),
         label(55, 108, "Folded stack · side section", 14, "bold", colour="#1d4ed8"),
         label(55, 128, "schematic section · vertical scale is intentionally enlarged", 9.5, colour="#64748b"),
         '<rect x="90" y="150" width="400" height="132" rx="7" fill="#eaf2ff" stroke="#60a5fa" stroke-width="2"/>',
         '<rect x="106" y="166" width="368" height="106" rx="5" fill="#cfe1ff" stroke="#2563eb" stroke-width="2"/>',
         label(290, 211, "ER-TFT035IPS-6 + ER-TPC035-6", 12.5, "bold", "middle"),
-        label(290, 235, "1 · panel rear stays flat; FPC components sit in the pocket", 9.5, "normal", "middle", "#526076"),
-        '<rect x="90" y="282" width="220" height="28" fill="#fde68a" stroke="#d97706" stroke-width="1.5" data-mechanical-part="display_psa_pad"/>',
-        label(200, 300, "2 · broad lower PSA field", 9.2, "bold", "middle", "#92400e"),
-        label(462, 291, "connected side shoulders", 8.2, "bold", "middle", "#92400e"),
-        label(462, 305, "sit outside this section", 8.2, "normal", "middle", "#92400e"),
+        label(290, 235, "1 · panel rear stays flat; FPC components sit in the adhesive-free zone", 9.5, "normal", "middle", "#526076"),
+        '<rect x="90" y="282" width="200" height="28" fill="#fde68a" stroke="#d97706" stroke-width="1.5" data-mechanical-part="display_psa_rectangle"/>',
+        label(190, 300, "2 · stock 50 × 50-mm PSA rectangle", 9.2, "bold", "middle", "#92400e"),
+        label(443, 291, "upper FPC zone", 8.2, "bold", "middle", "#92400e"),
+        label(443, 305, "has no adhesive", 8.2, "normal", "middle", "#92400e"),
         '<rect x="70" y="310" width="255" height="49" rx="3" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-mechanical-part="ui_pcb_display_bed"/>',
         '<rect x="349" y="310" width="161" height="49" rx="3" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-mechanical-part="ui_pcb_display_bed"/>',
         '<rect x="325" y="310" width="24" height="49" fill="#ffffff" stroke="#16a34a" stroke-width="2" stroke-dasharray="4 3" data-mechanical-part="fpc_tongue_slot"/>',
@@ -4828,12 +4837,12 @@ def render_display_mount(design):
         '<line x1="70" y1="418" x2="510" y2="418" stroke="#64748b" stroke-width="1" stroke-dasharray="4 4"/>',
         label(72, 434, "INNER / INTERBOARD SIDE", 8.8, "bold", colour="#64748b"),
         label(70, 466, "Retention", 13, "bold", colour="#1d4ed8"),
-        label(70, 490, "Panel → broad one-piece PSA support → UI PCB. The FPC pocket carries no adhesive.", 9.8),
+        label(70, 490, "Panel → one stocked 50 × 50-mm PSA rectangle → UI PCB. The upper FPC zone has no adhesive.", 9.8),
         label(70, 512, "Released foam thickness ≥ measured folded-FPC maximum stack + 0.20 mm.", 9.8, "bold", colour="#92400e"),
         label(70, 544, "What crosses the PCB", 13, "bold", colour="#166534"),
         label(70, 568, "Only the 25.50 ±0.15-mm contact tongue; the 47.90-mm FPC pocket is not a PCB cut-out.", 9.8),
         label(70, 600, "Load path", 13, "bold", colour="#166534"),
-        label(70, 624, "finger / handling → panel → one-piece PSA pad → UI PCB; never through FPC or ZIF", 9.8),
+        label(70, 624, "finger / handling → stiff panel → stock PSA rectangle → UI PCB; never through FPC or ZIF", 9.8),
         label(650, 108, "UI PCB before panel placement · both alignment frames visible", 14, "bold", colour="#7c3aed"),
         '<rect x="690" y="140" width="300" height="500" rx="8" fill="#f8fafc" stroke="#344054" stroke-width="3"/>',
         label(840, 132, "ANTENNA EDGE · board -Y", 10.5, "bold", "middle", "#b42318"),
@@ -4841,19 +4850,19 @@ def render_display_mount(design):
         '<rect x="724.8" y="203.8" width="230.4" height="342.4" rx="5" fill="none" stroke="#2563eb" stroke-width="1.4" stroke-dasharray="7 4" data-mechanical-part="display_alignment_silkscreen" data-silkscreen-datum="display"/>',
         '<g data-layer="ui-inner-ufl" fill="#ecfeff" stroke="#0f766e" stroke-width="2" stroke-dasharray="3 2"><circle cx="736" cy="176" r="7"/><circle cx="781" cy="176" r="7"/><circle cx="840" cy="196" r="7"/><circle cx="899" cy="176" r="7"/><circle cx="944" cy="176" r="7"/></g>',
         label(840, 158, "5× U.FL stay at y=9…17 mm · inner face", 8.8, "bold", "middle", "#0f766e"),
-        '<path d="M731 518 L949 518 L949 186 L936 186 L936 284 L744 284 L744 186 L731 186 Z" fill="#fde68a" stroke="#d97706" stroke-width="1.5" data-mechanical-part="display_psa_pad" data-psa-piece-count="1"/>',
-        '<path d="M730 519 L950 519 L950 185 L935 185 L935 283 L745 283 L745 185 L730 185 Z" fill="none" stroke="#f97316" stroke-width="1.2" stroke-dasharray="5 3" data-mechanical-part="display_alignment_silkscreen" data-silkscreen-datum="psa"/>',
-        '<rect x="744" y="186" width="192" height="98" rx="3" fill="#f8fafc" stroke="none" data-mechanical-part="fpc_pocket"/>',
-        label(840, 217, "47.90-mm FPC POCKET", 9.3, "bold", "middle", "#92400e"),
+        '<rect x="740" y="318" width="200" height="200" rx="2" fill="#fde68a" stroke="#d97706" stroke-width="1.5" data-mechanical-part="display_psa_rectangle" data-psa-piece-count="1"/>',
+        '<rect x="739" y="317" width="202" height="202" rx="2" fill="none" stroke="#f97316" stroke-width="1.2" stroke-dasharray="5 3" data-mechanical-part="display_alignment_silkscreen" data-silkscreen-datum="psa"/>',
+        '<rect x="744" y="186" width="192" height="98" rx="3" fill="#f8fafc" stroke="none" data-mechanical-part="fpc_free_zone"/>',
+        label(840, 217, "47.90-mm FPC FREE ZONE", 9.3, "bold", "middle", "#92400e"),
         label(840, 235, "no adhesive · PCB is not cut", 8.2, "bold", "middle", "#92400e"),
-        label(840, 402, "ONE-PIECE PSA", 13, "bold", "middle", "#92400e"),
-        label(840, 422, "solid lower field + connected shoulders", 8.7, "bold", "middle", "#92400e"),
-        label(840, 440, "69.8% panel support · no separate top strip", 8.4, "bold", "middle", "#92400e"),
+        label(840, 402, "STOCK 50 × 50-mm PSA", 13, "bold", "middle", "#92400e"),
+        label(840, 422, "one ready-made rectangle · no custom die", 8.7, "bold", "middle", "#92400e"),
+        label(840, 440, "52.0% panel support · no upper strip", 8.4, "bold", "middle", "#92400e"),
         '<rect x="789" y="258" width="102" height="21" rx="3" fill="#99f6e4" stroke="#0f766e" stroke-width="2" data-mechanical-part="fpc_contact_tongue"/>',
         '<rect x="786" y="276" width="108" height="6" rx="3" fill="#ffffff" stroke="#dc2626" stroke-width="2" data-mechanical-part="fpc_tongue_slot"/>',
-        label(840, 300, "27.00 × 1.20-mm ROUNDED PCB SLOT", 8.8, "bold", "middle", "#b42318"),
-        '<rect x="786" y="307" width="108" height="18" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="2" stroke-dasharray="5 3" data-instance="display_connector"/>',
-        label(840, 320, "INNER: FH34SRJ-50S", 8.2, "bold", "middle", "#1d4ed8"),
+        label(840, 313, "PCB SLOT · 27.00 × 1.20 mm", 8.0, "bold", "middle", "#b42318"),
+        '<rect x="786" y="286" width="108" height="18" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="2" stroke-dasharray="5 3" data-instance="display_connector"/>',
+        label(840, 299, "INNER: FH34SRJ-50S", 8.2, "bold", "middle", "#1d4ed8"),
         label(840, 540, "DISPLAY SILK · 56.54 × 84.96 mm · FPC ↑", 8.6, "bold", "middle", "#1d4ed8"),
         label(840, 572, "U.FL row ends at y=17.1 mm", 8.8, "bold", "middle", "#0f766e"),
         label(840, 591, "slot starts at y=34.0 mm · gap 16.9 mm", 8.8, "bold", "middle", "#166534"),
@@ -4865,7 +4874,7 @@ def render_display_mount(design):
         label(1018, 275, "• rounded / deburred", 9.5),
         label(1018, 296, "• under the display", 9.5),
         label(1018, 334, "Not cut", 12.5, "bold", colour="#166534"),
-        label(1018, 359, "• FPC pocket", 9.5),
+        label(1018, 359, "• FPC free zone", 9.5),
         label(1018, 380, "• U.FL zone", 9.5),
         label(1018, 418, "Connector", 12.5, "bold", colour="#1d4ed8"),
         label(1018, 443, f"ZIF {connector['envelope_mm'][0]:.1f} × {connector['envelope_mm'][1]:.1f} × {connector['envelope_mm'][2]:.1f} mm", 9.5, "bold"),
@@ -4873,11 +4882,11 @@ def render_display_mount(design):
         label(1018, 502, "Open H5 evidence", 12.5, "bold", colour="#92400e"),
         label(1018, 527, "• folded stack / bend", 9.5),
         label(1018, 548, "• exact foam PSA MPN", 9.5),
-        label(1018, 569, "• converter + process", 9.5),
-        label(1018, 608, f"drawing spacer envelope {route['drawing_spacer_envelope_mm']:.1f} mm", 9.2, "bold", colour="#92400e"),
+        label(1018, 569, "• stock source + process", 9.5),
+        label(1018, 608, f"drawing stock-pad envelope {route['drawing_stock_pad_envelope_mm']:.1f} mm", 9.2, "bold", colour="#92400e"),
         label(1018, 629, "not a released material thickness", 9.2, "bold", colour="#92400e"),
-        label(40, 682, "Factory sequence: clean PCB → place one-piece PSA by PSA SILK with upper liner on → route/lock FPC → peel liner → align DISPLAY/FPC ↑ → press broad support.", 9.9, "bold", colour="#166534"),
-        label(40, 712, "One carrier-backed adhesive piece replaces thin loose strips. Exact foam thickness closes only after the current-lot folded FPC stack is measured.", 9.7, "bold", colour="#92400e"),
+        label(40, 682, "Factory sequence: clean PCB → place stock rectangle by PSA SILK with upper liner on → route/lock FPC → peel liner → align DISPLAY/FPC ↑ → press once.", 9.9, "bold", colour="#166534"),
+        label(40, 712, "No custom converter order or upper strip. Exact stocked MPN/thickness closes only after the current-lot folded FPC stack is measured.", 9.7, "bold", colour="#92400e"),
         '</svg>',
     ]
     return "\n".join(out) + "\n"
