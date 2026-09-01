@@ -1087,8 +1087,8 @@
       "status": "not_in_order_manifest",
       "restriction": "may replace only SA818S-U after owner HIL and a 470-MHz firmware clamp; never replaces SA818S-V and never substitutes silently"
     },
-    "orders_or_requests_submitted": 1,
-    "supplier_information_inquiries_submitted": 1,
+    "orders_or_requests_submitted": 2,
+    "supplier_information_inquiries_submitted": 2,
     "sourcing_requests_submitted": 0,
     "orders_submitted": 0,
     "submitted_inquiry": {
@@ -1099,10 +1099,19 @@
       "ticket_number": null,
       "scope": "information only; no order, quote project, sourcing request or reservation"
     },
-    "next_action": "send the prepared exact-one clarification and obtain the nine release-relevant answers for the two-designator job, exact SA818S-V installation, four required final-assembly operations and exact-MPN control"
+    "submitted_clarification": {
+      "supplier": "JLCPCB",
+      "channel": "Gmail",
+      "submitted_on": "2026-09-01",
+      "from": "vinogradov.anton@gmail.com",
+      "to": "support@jlcpcb.com",
+      "result": "message_sent",
+      "scope": "exactly one prototype; information only; no order, pre-order, quote, reservation, sourcing request or fabrication"
+    },
+    "next_action": "wait for JLCPCB's response to the exact-one clarification and record the nine release-relevant answers for the two-designator job, exact SA818S-V installation, four required final-assembly operations and exact-MPN control"
   },
   "sequencing": {
-    "now": "send the prepared exact-one clarification to JLCPCB; retain only its nine release-relevant supplier answers as open gates, while Function Test, batteries and accessory packing remain optional or owner-supplied",
+    "now": "wait for JLCPCB's response to the exact-one clarification sent on 2026-09-01; retain only its nine release-relevant supplier answers as open gates, while Function Test, batteries and accessory packing remain optional or owner-supplied",
     "after_mapping": "use approved read-only Parts access for repeatable availability checks when permission becomes usable; no additional submission is required for the current gate",
     "after_quote": "publish exact sole-prototype and final-assembly costs, close the H5 supplier/manifest gate, then continue through H6 and the existing single H7 prototype-order approval",
     "after_order": "H7 records arrival identity, assembly and first owner bring-up; H8 executes the retained fit, RF, thermal, audio, control and interoperability contracts on that prototype and ordinary accessories",

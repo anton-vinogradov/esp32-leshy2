@@ -10,6 +10,18 @@
     "signatory": "Jax",
     "notes": "The response identifies the JLCPCB support channel and signatory but not the exact legal entity."
   },
+  "clarification": {
+    "sent_on": "2026-09-01",
+    "from": "vinogradov.anton@gmail.com",
+    "to": "support@jlcpcb.com",
+    "channel": "Gmail",
+    "subject": "Re: Leshy2 PCBA and final assembly inquiry — clarification",
+    "result": "message_sent",
+    "source_reference": "hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md",
+    "information_only": true,
+    "commercial_action_created": false,
+    "notes": "Standalone exact-one clarification sent from the JLCPCB-account email after verifying the sender and recipient in Gmail; awaiting supplier reply."
+  },
   "sa818s_v": {
     "mpn": "SA818S-V",
     "jlcpcb_part": "C51897911",

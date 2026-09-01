@@ -39,6 +39,10 @@
     "supplier_contact_sent_on": "2026-08-26",
     "supplier_contact_channel": "JLCPCB Contact Us / PCB Assembly Inquiry",
     "supplier_contact_result": "successfully_submitted",
+    "exact_one_clarification_sent_on": "2026-09-01",
+    "exact_one_clarification_from": "vinogradov.anton@gmail.com",
+    "exact_one_clarification_to": "support@jlcpcb.com",
+    "exact_one_clarification_result": "message_sent",
     "sample_or_component_purchase": false,
     "pcb_placement_and_routing": false,
     "fabrication": false
@@ -97,7 +101,7 @@
       "readable_manifest_ru": "docs/component-sample-basket.ru.md",
       "readable_platform_en": "docs/manufacturing-platform.md",
       "readable_platform_ru": "docs/manufacturing-platform.ru.md",
-      "result": "The procurement target is exactly one fully assembled prototype without batteries, not a batch or separate sample order. Thirty-one integrated production/bring-up article lines cover all nine H5 residuals and fourteen mechanical gates; USD 243.79 is priced, including the exact production panel, while factory attrition/final assembly/freight remain quote-only. HMX donors are rejected procurement and legacy evidence only. All 210 current BOM lines and 1052 placements retain exact J0-J3/J4-F/J4-P/J5-U routes. JLCPCB Standard PCBA exposes a Function Test review/quote path, but it is optional and not a gate; only the actual dual-designator module job, four one-device final-assembly operations and exact-MPN/no-substitution control require clarification. First full USB power-on and physical evidence belong to owner H7/H8. No separate H5 sample/coupon subphases exist. Parts API remains rejected and manual catalogue/BOM evidence remains authoritative."
+      "result": "The procurement target is exactly one fully assembled prototype without batteries, not a batch or separate sample order. Thirty-one integrated production/bring-up article lines cover all nine H5 residuals and fourteen mechanical gates; USD 243.79 is priced, including the exact production panel, while factory attrition/final assembly/freight remain quote-only. HMX donors are rejected procurement and legacy evidence only. All 212 current BOM lines and 1052 placements retain exact J0-J3/J4-F/J4-P/J5-U routes. JLCPCB Standard PCBA exposes a Function Test review/quote path, but it is optional and not a gate. The corrected exact-one clarification was sent on 2026-09-01; only the actual dual-designator module job, four one-device final-assembly operations and exact-MPN/no-substitution control await supplier answers. First full USB power-on and physical evidence belong to owner H7/H8. No separate H5 sample/coupon subphases exist. Parts API remains rejected and manual catalogue/BOM evidence remains authoritative."
     }
   },
   "superseded_artifacts": {
@@ -132,12 +136,12 @@
     "requires_user_authority": false,
     "authorized_now": true,
     "authorized_on": "2026-08-26",
-    "action_status": "exact_one_clarification_prepared_waiting_for_action_time_send_confirmation",
+    "action_status": "exact_one_clarification_sent_waiting_for_supplier_response",
     "requested_scope": "reply with the corrected exact-one no-order clarification for SA818S-U/V at separate reference designators, four required unpowered final-assembly operations and exact-MPN/no-substitution control",
     "prepared_message": "hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md",
     "does_not_authorize": ["reservation", "purchase", "component replacement", "PCB placement/routing", "fabrication"]
   },
-  "blocker": "H5.0.3-R1 targets one assembled prototype without batteries. SA818S-V MOQ and typical pre-order lead plus the exact production panel are known. Nine release-relevant answers remain external: Standard-PCBA installation of exact C51897911, the actual two-reference-designator U/V job, four deterministic one-device final-assembly operations and exact-MPN/no-substitution control. Optional paid Function Test, battery supply, U214 compatibility testing and antenna kitting close no gate; first full USB bring-up belongs to the owner. H5-EVR07 remains fail-closed and H5-EVR08 preserves PCBWay as the uncontacted full-device fallback.",
+  "blocker": "H5.0.3-R1 targets one assembled prototype without batteries. SA818S-V MOQ and typical pre-order lead plus the exact production panel are known. The corrected exact-one clarification was sent on 2026-09-01 from vinogradov.anton@gmail.com to support@jlcpcb.com. Nine release-relevant supplier answers are awaited: Standard-PCBA installation of exact C51897911, the actual two-reference-designator U/V job, four deterministic one-device final-assembly operations and exact-MPN/no-substitution control. Optional paid Function Test, battery supply, U214 compatibility testing and antenna kitting close no gate; first full USB bring-up belongs to the owner. H5-EVR07 remains fail-closed and H5-EVR08 preserves PCBWay as the uncontacted full-device fallback.",
   "next_active_repository": "esp32-leshy2",
   "next_active_substep": "H5.0.3-R1"
 }

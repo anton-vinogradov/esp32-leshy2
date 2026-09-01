@@ -87,6 +87,16 @@ def build(source: dict | None = None) -> dict:
         if not present(supplier.get(field)):
             missing.append(f"supplier.{field}")
 
+    clarification = source.get("clarification", {})
+    clarification_sent = (
+        clarification.get("sent_on") == "2026-09-01"
+        and clarification.get("from") == "vinogradov.anton@gmail.com"
+        and clarification.get("to") == "support@jlcpcb.com"
+        and clarification.get("result") == "message_sent"
+        and clarification.get("information_only") is True
+        and clarification.get("commercial_action_created") is False
+    )
+
     voice = source["sa818s_v"]
     exact_voice_identity = voice.get("mpn") == "SA818S-V" and voice.get("jlcpcb_part") == "C51897911"
     for field in ("standard_pcba_installation", "sample_lead_time_days", "moq"):
@@ -189,6 +199,7 @@ def build(source: dict | None = None) -> dict:
             "exact_sa818s_v_identity_preserved": exact_voice_identity,
             "exact_sa818s_u_identity_preserved": exact_dual_identity,
             "release_relevant_and_optional_operations_are_machine_separated": len(required_j4_f) == 4 and len(optional_operations) == 3 and len(out_of_scope) == 1,
+            "exact_one_clarification_sent_without_commercial_action": clarification_sent,
             "commercial_layout_and_fabrication_authority_remains_false": no_new_authority,
             "response_complete": response_complete,
             "all_required_factory_gates_accepted": all_factory_gates_accepted,
@@ -197,7 +208,7 @@ def build(source: dict | None = None) -> dict:
         "explicit_declines": explicit_declines,
         "blockers": blockers,
         "authorization": source["authorization"],
-        "next": ("send the prepared exact-one clarification for the two-designator job, four required final-assembly operations and exact-MPN control; Function Test, batteries and accessory packing are not gates" if source["status"] == "response_recorded" and not response_complete else ("wait for the supplier response" if not response_complete else ("prepare the separate cost/order decision" if gate_passed else "compare an alternate factory or revise the declined required operation boundary"))),
+        "next": ("wait for the supplier response to the exact-one clarification" if clarification_sent and not response_complete else ("send the prepared exact-one clarification for the two-designator job, four required final-assembly operations and exact-MPN control; Function Test, batteries and accessory packing are not gates" if not response_complete else ("prepare the separate cost/order decision" if gate_passed else "compare an alternate factory or revise the declined required operation boundary"))),
     }
 
 

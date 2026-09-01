@@ -213,6 +213,16 @@
     "ticket_number": null,
     "scope": "information only; no order, quote project, sourcing request or reservation"
   },
+  "supplier_clarification": {
+    "supplier": "JLCPCB",
+    "channel": "Gmail",
+    "submitted_on": "2026-09-01",
+    "from": "vinogradov.anton@gmail.com",
+    "to": "support@jlcpcb.com",
+    "subject": "Re: Leshy2 PCBA and final assembly inquiry — clarification",
+    "result": "message_sent",
+    "scope": "exactly one prototype; information only; no order, pre-order, quote, reservation, sourcing request or fabrication"
+  },
   "voice_part_routes": {
     "SA818S-U": {
       "device_id": "nicerf_sa818s_u_v18",

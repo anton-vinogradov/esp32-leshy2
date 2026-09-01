@@ -83,6 +83,8 @@ class H5SupplierResponseTests(unittest.TestCase):
         self.assertEqual(1, result["summary"]["out_of_supplier_scope_operations"])
         self.assertEqual(4, result["summary"]["release_required_final_assembly_operations"])
         self.assertEqual(3, result["summary"]["optional_non_gating_operations"])
+        self.assertTrue(result["checks"]["exact_one_clarification_sent_without_commercial_action"])
+        self.assertEqual("wait for the supplier response to the exact-one clarification", result["next"])
         self.assertTrue(result["checks"]["exact_sa818s_v_identity_preserved"])
         self.assertTrue(result["checks"]["commercial_layout_and_fabrication_authority_remains_false"])
         self.assertEqual(0, result["summary"]["orders_authorized"])
