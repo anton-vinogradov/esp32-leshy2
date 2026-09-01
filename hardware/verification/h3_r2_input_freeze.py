@@ -106,7 +106,7 @@ def build(contract: dict | None = None) -> dict:
         for device_id in workstream.get("shared_parameter_dependencies", [])
     ]
     if sorted(matrix_sheets) != sorted(inventory_sheets):
-        errors.append("H3 matrix does not cover the exact 23-sheet native graph")
+        errors.append(f"H3 matrix does not cover the exact {actual['sheets']}-sheet native graph")
     if len(matrix_sheets) != len(set(matrix_sheets)):
         errors.append("a native sheet has more than one primary H3 workstream")
     if len(shared_dependencies) != len(set(shared_dependencies)):
@@ -232,7 +232,7 @@ def main() -> int:
     if stale:
         print("stale: " + ", ".join(stale))
         return 1
-    print("ok: reviewed H2 inputs and all 23 native sheets are frozen for H3-R2")
+    print(f"ok: reviewed H2 inputs and all {result['summary']['sheets']} native sheets are frozen for H3-R2")
     return 0
 
 

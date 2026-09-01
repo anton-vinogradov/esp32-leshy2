@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h1-r2-acceptance.ru.md)
 
-> **Reviewed on 30 August 2026.** The complete `H1-R2.37` physical model was
+> **Reviewed on 30 August 2026.** The complete `H1-R2.38` physical model was
 > accepted as the working product layout. This closes H1; it does not authorize
 > native R2 KiCad work, component purchase or fabrication.
 
@@ -18,8 +18,8 @@
 | Minimum opposing-face clearance | 2.59 mm against a 0.70 mm rule |
 | Main antenna ports | 10, permanently assigned 5 + 5 |
 | Interboard M1 | 80 contacts: 31 signals, 14 main-power, 2 AON, 24 returns, 9 true NC; contact 35 carries latched `FAULT_KILL` to the front indicator and contact 36 is the bounded S3 fault-UI reset |
-| Base-BOM groups / fitted placements | 208 / 1,096 |
-| Current electronics planning floor | USD 272.97 before five unpriced lines, PCBs and assembly |
+| Base-BOM groups / fitted placements | 208 / 1,094 |
+| Current electronics planning floor | USD 271.90 before five unpriced lines, PCBs and assembly |
 | Accepted no-loss savings | USD 10.4192 |
 
 The front PCB owns the user interface, exact EastRising 3.5-inch touch display
@@ -57,9 +57,9 @@ H2 is now reviewed at **H2-R2.1.5**. Its prerequisite ledger is closed:
    rail-local termination for Pack/Safety I²C on Hub GPIO42/43.
 
 The native R2 source/sheet/component inventory passed review as `H2-R2.1.1`.
-The exact 234-board-group symbol/contact/value/footprint ledger passed review
-as `H2-R2.1.2`. `H2-R2.1.3` then materialized 1,185 fitted positions and 4,323
-physical pins across three native KiCad projects; all three pass ERC with zero
+The exact 232-board-group symbol/contact/value/footprint ledger passed review
+as `H2-R2.1.2`. `H2-R2.1.3` then materialized 1,183 fitted positions and 4,243
+physical pins across two native KiCad projects; both pass ERC with zero
 errors and zero warnings. Cross-sheet and machine-readable hardware/firmware
 reconciliation passed at `H2-R2.1.4`; H3 now freezes the reviewed result.
 

@@ -101,7 +101,7 @@
     "adi_ad8314armz_reel": ["UI_31_NRF24_X3_TX_EVIDENCE", "RF_20_CC1101_VOICE_TX"],
     "davies_1227_j": ["UI_11_STORAGE_CONTROLS_INDICATORS"],
     "eastrising_er_tft035ips_6_ctp": ["UI_10_S3_DISPLAY_TOUCH"],
-    "hirose_fh34srj_50s_0_5sh_50": ["ADP_00_DISPLAY_ADAPTER"],
+    "hirose_fh34srj_50s_0_5sh_50": ["UI_10_S3_DISPLAY_TOUCH"],
     "m5_u214": ["RF_30_U214_U219_M5_EXT"],
     "samsung_cl05a105ka5nqnc": ["RF_02_PACK_SAFETY_AON", "RF_21_BROADCAST_AIRBAND_RX"],
     "samsung_cl05b104ko5nnnc": ["RF_02_PACK_SAFETY_AON"],

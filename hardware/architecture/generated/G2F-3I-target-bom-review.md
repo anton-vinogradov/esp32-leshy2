@@ -8,16 +8,16 @@
 
 ## Что уже посчитано
 
-- **1053** architecture instances include **1** explicit assembly-internal evidence node.
-- After excluding those non-purchase nodes, **1052** supplied/costed placements collapse to **212** used exact-device/MPN lines.
-- Current orderability evidence exists for **212/212** used lines; **0** need a current source check.
-- Machine-readable quantity-100 cost evidence exists for **203/212** lines.
+- **1053** architecture instances include **3** explicit assembly-internal evidence nodes.
+- After excluding those non-purchase nodes, **1050** supplied/costed placements collapse to **210** used exact-device/MPN lines.
+- Current orderability evidence exists for **210/210** used lines; **0** need a current source check.
+- Machine-readable quantity-100 cost evidence exists for **201/210** lines.
 - Of the remaining **9** unpriced lines, **9** have an explicit RFQ/retail comparability gate instead of a fabricated numeric value.
-- Those priced lines cover **1038/1052** supplied placements; their partial subtotals are `base_product` — USD 251.8910. These are coverage diagnostics, not product COGS.
-- Machine-readable alternate/no-substitution evidence exists for **212/212** lines.
+- Those priced lines cover **1036/1050** supplied placements; their partial subtotals are `base_product` — USD 250.8222. These are coverage diagnostics, not product COGS.
+- Machine-readable alternate/no-substitution evidence exists for **210/210** lines.
 - Cost basis: USD quantity 100 component material only; PCB, assembly, test, enclosure, tax, freight, yield and tooling stay separate until factory RFQ.
 
-Scopes: `base_product` — 1049 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
+Scopes: `base_product` — 1047 placements; `optional_external_accessory` — 1 placements; `regional_replaceable_cell_kit` — 2 placements.
 
 The complete per-line manifest is the adjacent `G2F-3I-target-bom.csv`; unused comparison-device definitions are deliberately excluded.
 
@@ -315,7 +315,7 @@ Every purchase line below belongs to exactly one validated class. A class is a d
 
 </details>
 
-<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 27 line(s)</summary>
+<details><summary><code>SUB-MECH-OPTICAL</code> — Display, cells, connectors, controls and electro-acoustic/mechanical parts — 25 line(s)</summary>
 
 - Disposition: no drop-in by nominal description; exact mate, outline, human factors and source-backed mechanical/environmental analysis required.
 - Equivalence envelope:
@@ -335,8 +335,6 @@ Every purchase line below belongs to exactly one validated class. A class is a d
   - `gct_rfpc_sma31_fn_175_a` — `GCT RFPC-SMA31-FN-175-A`.
   - `gct_rfpc_sma32_fn_175_a` — `GCT RFPC-SMA32-FN-175-A`.
   - `gct_usb4105_gf_a` — `GCT USB4105-GF-A`.
-  - `hirose_df40c_2_0_40ds_0_4v_51` — `Hirose DF40C(2.0)-40DS-0.4V(51)`.
-  - `hirose_df40c_40dp_0_4v_51` — `Hirose DF40C-40DP-0.4V(51)`.
   - `hirose_dm3at_sf_pejm5` — `Hirose DM3AT-SF-PEJM5`.
   - `hirose_fh34srj_50s_0_5sh_50` — `Hirose FH34SRJ-50S-0.5SH(50)`.
   - `hirose_fx8c_80p_sv1_92` — `Hirose FX8C-80P-SV1(92)`.
@@ -610,24 +608,6 @@ Only exact-MPN published USD prices that apply to a 100-piece purchase are liste
 - Scope: `base_product`.
 - Comparable basis: DigiKey cut-tape quantity-100 tier; target quantity `100`.
 - Checked: `2026-08-19`; [published source](https://www.digikey.com/en/products/detail/gct/USB4105-GF-A/11198510).
-
-</details>
-
-<details><summary><code>Hirose DF40C(2.0)-40DS-0.4V(51)</code> — 1 × USD 0.3428 = USD 0.3428</summary>
-
-- Device id: `hirose_df40c_2_0_40ds_0_4v_51`.
-- Scope: `base_product`.
-- Comparable basis: JLCPCB quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-28`; [published source](https://jlcpcb.com/partdetail/x/C597934).
-
-</details>
-
-<details><summary><code>Hirose DF40C-40DP-0.4V(51)</code> — 1 × USD 0.7260 = USD 0.7260</summary>
-
-- Device id: `hirose_df40c_40dp_0_4v_51`.
-- Scope: `base_product`.
-- Comparable basis: Mouser cut-tape quantity-100 tier; target quantity `100`.
-- Checked: `2026-08-23`; [published source](https://www.mouser.com/ProductDetail/Hirose-Connector/DF40C-40DP-0.4V51?qs=eDUdFcBPps3ody6AX5VRNA%3D%3D).
 
 </details>
 
@@ -2276,6 +2256,8 @@ These entries are intentionally excluded from the partial subtotal until a compa
 ## Assembly-internal evidence nodes excluded from purchase BOM
 
 - `display_touch_controller` / `Sitronix ST77922` is contained by `display`: Sitronix ST77922 is a COG internal to HMX035CTFT-001; it remains a separate architecture/diagram evidence node but is not a separately supplied or costed BOM placement.
+- `display_adapter_plug` / `Hirose DF40C-40DP-0.4V(51)` is contained by `display`: superseded by the H1-R2.38 direct 50-contact display ZIF on the UI PCB.
+- `display_panel_connector` / `Hirose FH34SRJ-40S-0.5SH(99)` is contained by `display`: historical adapter-side role is merged into display_connector by H1-R2.38.
 
 ## Physical purchase families with explicit resolution gates
 

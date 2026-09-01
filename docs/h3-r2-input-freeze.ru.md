@@ -2,15 +2,15 @@
 
 [Главная](../README.ru.md) · [Роадмап](roadmap.ru.md) · [English](h3-r2-input-freeze.md)
 
-Проведено ревью точного входа H2-R2.1.5: `3` проекта, `23` листа, `1185` устанавливаемых symbols, `4323` физических pins и `823` nets. Все входы захешированы; любое изменение закрывает воспроизводимость до повторной генерации.
+Проведено ревью точного входа H2-R2.1.5: `2` проекта, `22` листа, `1183` устанавливаемых symbols, `4243` физических pins и `816` nets. Все входы захешированы; любое изменение закрывает воспроизводимость до повторной генерации.
 
-Freeze SHA-256: `d6f4b1f11de3724e6317baeedd7c415d9857ade04f58cba99e2372dc422ac956`
+Freeze SHA-256: `bb375eefc8cc71bd7fa194301b7f9f9356d981b028a1d81f7b32512449163f6c`
 
 | Работа | Основной охват | Листы | Критерий |
 |---|---|---:|---|
 | `H3-R2.1` | Worst-case DC, source, charge and power-state verification | 2 + 0 shared parameter groups | Every legal source/load state has positive voltage, current, thermal and protection margin at tolerance corners. |
 | `H3-R2.2` | Startup, shutdown, handover, brownout, inrush and watchdog verification | 2 + 12 shared parameter groups | Every legal transition reaches a bounded safe state; every illegal or stalled transition fails closed with diagnosable state retention. |
-| `H3-R2.3` | Display, audio, IR, battery and Airband analog-corner verification | 4 + 0 shared parameter groups | Every selected analog path meets its stated amplitude, bandwidth, noise, load and fail-off limits at reproducible corners. |
+| `H3-R2.3` | Display, audio, IR, battery and Airband analog-corner verification | 3 + 0 shared parameter groups | Every selected analog path meets its stated amplitude, bandwidth, noise, load and fail-off limits at reproducible corners. |
 | `H3-R2.4` | Digital levels, timing, loading and direct-i8080 verification | 8 + 0 shared parameter groups | Every digital boundary has positive level/timing margin, deterministic ownership and a recoverable reset/service state without payload contention. |
 | `H3-R2.5` | RF feeds, coexistence, quiet states and 3x nRF24 concurrency | 3 + 0 shared parameter groups | Each RF port has one bounded owner and quiet state; three nRF24 paths remain concurrently serviceable; no inactive path can transmit or load the active group unexpectedly. |
 | `H3-R2.6` | Thermal, single-fault and unattended-operation verification | 2 + 0 shared parameter groups | No accepted single fault defeats the independent hard-off path; thermal/watchdog faults remove hazardous power while preserving a readable cause when energy remains. |

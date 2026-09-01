@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790" data-coordinate-model="L2-ASM-COORD-001-A" data-review-gate="H1-R2.37" data-review-status="reviewed">
+<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790" data-coordinate-model="L2-ASM-COORD-001-A" data-review-gate="H1-R2.38" data-review-status="reviewed">
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
-<text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.37 current external layout</text>
+<text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.38 current external layout</text>
 <text x="30.0" y="56.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">Reviewed R2 exterior. PCB-face free text is silkscreen; drawing notes and arrows are annotations.</text>
 <text x="80.0" y="85.8" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Front / UI face</text>
 <rect x="80.0" y="150.0" width="277.5" height="555.0" rx="5" fill="#f8fafc" stroke="#344054" stroke-width="1.5" data-face="front-outer" data-board-mm="75x150"/>
@@ -23,14 +23,14 @@
 <circle cx="483.5" cy="686.5" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
 <circle cx="724.0" cy="686.5" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
 <circle cx="724.0" cy="686.5" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
-<rect x="465.0" y="212.9" width="277.5" height="88.8" rx="4" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="5 3"/>
-<rect x="448.4" y="212.9" width="310.8" height="88.8" rx="6" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5"/>
-<rect x="570.9" y="247.9" width="65.8" height="18.8" rx="2" fill="#e0f2fe" stroke="#0369a1" stroke-width="1.5" stroke-dasharray="4 2"/>
-<circle cx="500.1" cy="257.3" r="5.9" fill="#ffffff" stroke="#0369a1" stroke-width="1.2"/>
-<circle cx="707.4" cy="257.3" r="5.9" fill="#ffffff" stroke="#0369a1" stroke-width="1.2"/>
-<text x="603.8" y="242.5" font-family="sans-serif" font-size="6.3" font-weight="bold" text-anchor="middle" fill="#9a3412">Cap-Bus slot · U214 / U219 · 84×24 mm</text>
-<text x="603.8" y="259.1" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#075985">shared Cap-Bus rail · HLE-107-02-G-DV-PE-LC beneath</text>
-<text x="603.8" y="275.8" font-family="sans-serif" font-size="6.2" font-weight="normal" text-anchor="middle" fill="#dc2626">insert ⊗ · remove ⊙</text>
+<rect x="465.0" y="213.0" width="277.5" height="88.8" rx="4" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="5 3"/>
+<rect x="448.4" y="213.0" width="310.8" height="88.8" rx="6" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5"/>
+<rect x="570.9" y="248.0" width="65.8" height="18.8" rx="2" fill="#e0f2fe" stroke="#0369a1" stroke-width="1.5" stroke-dasharray="4 2"/>
+<circle cx="500.1" cy="257.4" r="5.9" fill="#ffffff" stroke="#0369a1" stroke-width="1.2"/>
+<circle cx="707.4" cy="257.4" r="5.9" fill="#ffffff" stroke="#0369a1" stroke-width="1.2"/>
+<text x="603.8" y="242.6" font-family="sans-serif" font-size="6.3" font-weight="bold" text-anchor="middle" fill="#9a3412">Cap-Bus slot · U214 / U219 · 84×24 mm</text>
+<text x="603.8" y="259.2" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#075985">shared Cap-Bus rail · HLE-107-02-G-DV-PE-LC beneath</text>
+<text x="603.8" y="275.9" font-family="sans-serif" font-size="6.2" font-weight="normal" text-anchor="middle" fill="#dc2626">insert ⊗ · remove ⊙</text>
 <g id="rear-outer-rf-bank" data-mount-face="rf-pcb-outer">
 <rect x="476.1" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
 <rect x="483.2" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
@@ -239,7 +239,7 @@
 <text x="850.0" y="699.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Davies 1227-J is the exact encoder knob; only its fit HIL remains.</text>
 <text x="850.0" y="722.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">UP/DOWN/LEFT/RIGHT/OK/BACK/OPT/F1…F8/PTT are serial direct buttons.</text>
 <text x="850.0" y="745.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The side C&amp;K JS102011SCQN is the sole RUN/KILL and source-command control.</text>
-<g id="h1-r2-external-delta" data-marker="H1-R2.37" data-state="in-progress">
+<g id="h1-r2-external-delta" data-marker="H1-R2.38" data-state="in-progress">
 <text data-role="board-identification" data-face="front" data-layer="pcb-silkscreen" x="218.8" y="528.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#172033">ESP32-LESHY2 · UI PCB · R2-EVT1 · REV A</text>
 <text data-role="board-identification" data-face="rear" data-layer="pcb-silkscreen" x="603.8" y="664.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#172033">RF/PWR PCB · R2-EVT1 · REV A</text>
 <path d="M140.9 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)" data-instance="hub_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>

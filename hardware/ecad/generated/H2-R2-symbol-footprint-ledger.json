@@ -6,11 +6,11 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "6b459e2e695cead85cba8f65fe2ee02120f0f8165b01e829f433fd6cb5cb2a5a"
+      "sha256": "e58f530b63be6f207fa92abbf29cc046e55e35cd2582bd3cafba1161ce41a189"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "9db9ce928ceb1dd38324d5e1eaff57a3d686ff449217ec3216577400dbe51060"
+      "sha256": "2caf023fb65a15be416b66686f7bcbd9ce199f8c8a55c4d37457782e73ceb6ef"
     }
   },
   "historical_hint_sources": [
@@ -22,154 +22,154 @@
     },
     {
       "path": "hardware/ecad/generated/H2-RF-root-interface.json",
-      "sha256": "30a47c6cbf4e2247105cf0d554ae89a8d5e6a3bf8de6dc663b601458e7dcccaf",
+      "sha256": "6e44cdbb50d3f70e488448ec68d1040913fb5ed86448a56ecace964c68959a1d",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF01-usb-pd-charge.json",
-      "sha256": "eeafb3c97703a339d4877c0c047e6a80178aff5994aa7ab02dc03d5292167437",
+      "sha256": "8f6fbff26bbf3b71cfc501dc1416a241b67fed780bf32b5f8c0b22ef5c21b60b",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF02-pack-safety-aon.json",
-      "sha256": "7cf070e3207f3bdb72e8549e66250dfe5210813ed912d46142992d8bc77d22ba",
+      "sha256": "d8b8dabc49b368b281b3bd62d2308bbeacf11aacf9f23167c89c09681234e53d",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json",
-      "sha256": "bad4b8c7058362ed37714b604c5853192adeb9b5e32b7b50163541cae1441182",
+      "sha256": "b8edfe23dfc3b19c65ed8355f3cc0a85ff8150bd6f797f9c53de8d6268131266",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF30-rp2354-core-service.json",
-      "sha256": "af0e3ba1375dc2cb6e13887f27e43c78e692a1053bc8012bb9791210272bb85a",
+      "sha256": "61dc2e6ed6e37d289da8a03daa59ef9ace53adb57457d543054e8af31fee8b93",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF31-nrf24-x3.json",
-      "sha256": "2852aa77c21332fc5c7992ea8695ef46dc3b9d6d06237cf81f8236765fdf6a9a",
+      "sha256": "74e714209a5772ad2a8550818ec6e83e95c24b9b081809c2e66191659823acbc",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF32-subghz-voice.json",
-      "sha256": "21174adcdb60959df0aed6c4dd5088937ec3180ad63519fd1ced694b8e8dd868",
+      "sha256": "b0070d6d71d063e32eb4207179bfe3a6f9c4cc1e7311874e169451d2b65ff064",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF34-u214-m5-ext.json",
-      "sha256": "523d9cf42766d2b75a9c862fa493b29f40f8e8510f8e6e96098961a4bf902905",
+      "sha256": "5fcac5a569c74eb73785e53ec70931d412c9fcc191b30147c018b2f6fda97b26",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF35-rear-controls.json",
-      "sha256": "06e48d56191a838a44d4f4c3495e5aef7f3e341807e7781cb1d5bab78c02b354",
+      "sha256": "47d50065b28001f59517624f9eefe147859c62df2c685f3bd03d8e6d03f3806a",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF36-audio-io-amp.json",
-      "sha256": "668d46dcbd922055b28e0457c524e5f9e3b00a35e54d3ec05004b77c8278fb01",
+      "sha256": "90bb32a8901ea8fa53e751fb1f9187ed750234f9f36da313ca1dd8e9e1980795",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF40-interboard-m1.json",
-      "sha256": "0ff32dcab7c4b57142cecd096c53fcba8182208716f731a79c0bdaf3497f668f",
+      "sha256": "d320f94c7ae7d8a68933e63a16b6603f7ec6889ed6347216069af680a1b3cda6",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF50-tx-safety-evidence.json",
-      "sha256": "05a9f6912c48071dae5893dae23743d3b726a725f70e9ef45dcc751164d2445f",
+      "sha256": "770e8f4ffca087eac31173e788025d435442436a8394447222630caa07cbd422",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF60-testpoints-manufacturing.json",
-      "sha256": "915bb1f7e4c4098a78b624c9f10fc28a7660ba57ca5086a5aa8b5f283cba1590",
+      "sha256": "3e3bab5e8af46091744548d6a4a08fef84ab442599b5dc67cf39b5d8e4e5eb98",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI-root-interface.json",
-      "sha256": "42010b6fec4b82cf295cbbcd33c67841e8cd2edfc8bfc648288130522c58314d",
+      "sha256": "c2354294dccd45a0c72ff934b5fc7b067f5d3f96c681afd419d11ef6ce0d9437",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI10-S3-core.json",
-      "sha256": "e8737b6797283f5213ce613488b482d726787df0ef506a1e02cc3e2a1dda71ab",
+      "sha256": "552df04025bc11dd914c29776c82d5bb88c7350cf7739db6881e69a8b34732cd",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI11-display-touch-storage.json",
-      "sha256": "d31d3346a9ac911d67503b9b9726ddeb019729148338d3a11edde4eefb0efc3e",
+      "sha256": "aec4874a07e5140f44a1260bff587fd6ee2d9f8afb7c82dc2d5cad00aa0deb7a",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI12-controls-indicators.json",
-      "sha256": "8427e61399611ec3a54da7aff3a92b03b401fa4fc7d17e6463a150b29c82a665",
+      "sha256": "0a3959744ff2ab5620ae18b6abc96436c16874cd7eb20432e6c3999e5758d8bc",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI13-audio-codec-headset.json",
-      "sha256": "06b45bef16ab9de8f7e07f25bda67cddfb9315595d63e8afce4812166cc9b0ec",
+      "sha256": "33ff75486256055ca9d6d78367d186258a2623856dd77078d5421c2e44bcaf45",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json",
-      "sha256": "8f63b982e447f2d01c7b9021cbc0f831a759c81fec884e3480c78955f66a5539",
+      "sha256": "60546058101f1c4a0bfce06390efb0963fe68ed3d993a30c695ea737bef3df16",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI21-fm-am-receiver.json",
-      "sha256": "c47849345e2e3c0c813cc893bb190046c0d378a7c3c8bfd9c01f08fa5ccbb4d0",
+      "sha256": "bc618fc09f178f513beeaa9122141f8b0fe7e748744d8dc66d7c733f630fba0a",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI40-interboard-m1.json",
-      "sha256": "cc75231365ac0c4a1f867dda1830f1c1f03a9165ecb05fd951bffea0f1715a35",
+      "sha256": "c7f4d3cca4377f70eef01ba2e7a1866a5689a6571f1b644ec6fea6ab60629d77",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI50-tx-safety-evidence.json",
-      "sha256": "fc4c9723c351bf47b485a0bb73b1eb3f087c720baf0f9c93e842386a0f7b0fc0",
+      "sha256": "e2ff675a10353b9fe6aa14fb08dbc25d28861ee331ae974e780406e9f24e905c",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI60-testpoints-manufacturing.json",
-      "sha256": "ef681553ff2afc9c9abb3ac418d9a91a887cd13d8d436d16c69f017ea75df15d",
+      "sha256": "5aa93c30226d30054e4803446db5cd59d9a4dec2b60576c51bdec0799b77a4d8",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     }
   ],
   "summary": {
-    "component_group_count": 240,
-    "board_component_group_count": 234,
+    "component_group_count": 238,
+    "board_component_group_count": 232,
     "explicit_non_pcba_group_count": 6,
-    "symbol_identity_count": 234,
-    "footprint_identity_count": 234,
-    "logical_contact_count": 1658,
-    "historical_package_hints_reconciled": 196,
+    "symbol_identity_count": 232,
+    "footprint_identity_count": 232,
+    "logical_contact_count": 1578,
+    "historical_package_hints_reconciled": 194,
     "historical_package_conflicts_resolved": 5,
     "explicit_current_footprint_overrides": 38,
-    "standard_kicad_footprint_identities": 199,
+    "standard_kicad_footprint_identities": 197,
     "reconciled_local_footprint_definitions": 32,
     "new_exact_footprint_geometries_pending_materialization": 3,
     "schematic_symbols_or_footprint_files_created": 0,
@@ -2755,409 +2755,6 @@
       "jlcpcb_part_number": "C3020560"
     },
     {
-      "device_id": "hirose_df40c_2_0_40ds_0_4v_51",
-      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
-      "quantity_per_product": 1,
-      "role": "display_connector",
-      "ecad_disposition": "schematic_component_group",
-      "native_sheet_affinity": [
-        "UI_10_S3_DISPLAY_TOUCH",
-        "UI_11_STORAGE_CONTROLS_INDICATORS"
-      ],
-      "schematic_value": "40_position_0_4mm_2mm_stack_vertical_board_to_board_receptacle",
-      "symbol_id": "Leshy2_R2:hirose_df40c_2_0_40ds_0_4v_51",
-      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
-      "logical_contact_count": 40,
-      "contact_role_counts": {
-        "passive": 40
-      },
-      "contact_map": {
-        "PIN_1": {
-          "physical": "1",
-          "role": "passive"
-        },
-        "PIN_2": {
-          "physical": "2",
-          "role": "passive"
-        },
-        "PIN_3": {
-          "physical": "3",
-          "role": "passive"
-        },
-        "PIN_4": {
-          "physical": "4",
-          "role": "passive"
-        },
-        "PIN_5": {
-          "physical": "5",
-          "role": "passive"
-        },
-        "PIN_6": {
-          "physical": "6",
-          "role": "passive"
-        },
-        "PIN_7": {
-          "physical": "7",
-          "role": "passive"
-        },
-        "PIN_8": {
-          "physical": "8",
-          "role": "passive"
-        },
-        "PIN_9": {
-          "physical": "9",
-          "role": "passive"
-        },
-        "PIN_10": {
-          "physical": "10",
-          "role": "passive"
-        },
-        "PIN_11": {
-          "physical": "11",
-          "role": "passive"
-        },
-        "PIN_12": {
-          "physical": "12",
-          "role": "passive"
-        },
-        "PIN_13": {
-          "physical": "13",
-          "role": "passive"
-        },
-        "PIN_14": {
-          "physical": "14",
-          "role": "passive"
-        },
-        "PIN_15": {
-          "physical": "15",
-          "role": "passive"
-        },
-        "PIN_16": {
-          "physical": "16",
-          "role": "passive"
-        },
-        "PIN_17": {
-          "physical": "17",
-          "role": "passive"
-        },
-        "PIN_18": {
-          "physical": "18",
-          "role": "passive"
-        },
-        "PIN_19": {
-          "physical": "19",
-          "role": "passive"
-        },
-        "PIN_20": {
-          "physical": "20",
-          "role": "passive"
-        },
-        "PIN_21": {
-          "physical": "21",
-          "role": "passive"
-        },
-        "PIN_22": {
-          "physical": "22",
-          "role": "passive"
-        },
-        "PIN_23": {
-          "physical": "23",
-          "role": "passive"
-        },
-        "PIN_24": {
-          "physical": "24",
-          "role": "passive"
-        },
-        "PIN_25": {
-          "physical": "25",
-          "role": "passive"
-        },
-        "PIN_26": {
-          "physical": "26",
-          "role": "passive"
-        },
-        "PIN_27": {
-          "physical": "27",
-          "role": "passive"
-        },
-        "PIN_28": {
-          "physical": "28",
-          "role": "passive"
-        },
-        "PIN_29": {
-          "physical": "29",
-          "role": "passive"
-        },
-        "PIN_30": {
-          "physical": "30",
-          "role": "passive"
-        },
-        "PIN_31": {
-          "physical": "31",
-          "role": "passive"
-        },
-        "PIN_32": {
-          "physical": "32",
-          "role": "passive"
-        },
-        "PIN_33": {
-          "physical": "33",
-          "role": "passive"
-        },
-        "PIN_34": {
-          "physical": "34",
-          "role": "passive"
-        },
-        "PIN_35": {
-          "physical": "35",
-          "role": "passive"
-        },
-        "PIN_36": {
-          "physical": "36",
-          "role": "passive"
-        },
-        "PIN_37": {
-          "physical": "37",
-          "role": "passive"
-        },
-        "PIN_38": {
-          "physical": "38",
-          "role": "passive"
-        },
-        "PIN_39": {
-          "physical": "39",
-          "role": "passive"
-        },
-        "PIN_40": {
-          "physical": "40",
-          "role": "passive"
-        }
-      },
-      "contact_map_sha256": "0e59ae592f191892cb75bac3e70c784cab6b8758cdd3722333d5af80ecb4729f",
-      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-      "manufacturer_evidence": {
-        "document": "Hirose exact product page, 2D drawing and specification sheet",
-        "version": "CL0684-4042-5-51; exact 40-position receptacle; packaging suffix changes reel quantity only",
-        "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-51",
-        "checked": "2026-08-28"
-      },
-      "footprint": "Connector_Hirose_DF40:Hirose_DF40C(2.0)-40DS-0.4V_2x20_P0.4mm",
-      "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",
-      "footprint_definition": {
-        "status": "exact_package_identity_mapped_to_standard_kicad_library",
-        "path": null,
-        "sha256": null
-      },
-      "historical_hint_files": [
-        "hardware/ecad/generated/H2-UI11-display-touch-storage.json"
-      ],
-      "historical_hint_pin_counts": [
-        40
-      ],
-      "jlcpcb_part_number": "C597934"
-    },
-    {
-      "device_id": "hirose_df40c_40dp_0_4v_51",
-      "mpn": "Hirose DF40C-40DP-0.4V(51)",
-      "quantity_per_product": 1,
-      "role": "display_adapter_plug",
-      "ecad_disposition": "schematic_component_group",
-      "native_sheet_affinity": [
-        "ADP_00_DISPLAY_ADAPTER"
-      ],
-      "schematic_value": "40_position_0_4mm_vertical_board_to_board_plug",
-      "symbol_id": "Leshy2_R2:hirose_df40c_40dp_0_4v_51",
-      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
-      "logical_contact_count": 40,
-      "contact_role_counts": {
-        "passive": 40
-      },
-      "contact_map": {
-        "PIN_1": {
-          "physical": "1",
-          "role": "passive"
-        },
-        "PIN_2": {
-          "physical": "2",
-          "role": "passive"
-        },
-        "PIN_3": {
-          "physical": "3",
-          "role": "passive"
-        },
-        "PIN_4": {
-          "physical": "4",
-          "role": "passive"
-        },
-        "PIN_5": {
-          "physical": "5",
-          "role": "passive"
-        },
-        "PIN_6": {
-          "physical": "6",
-          "role": "passive"
-        },
-        "PIN_7": {
-          "physical": "7",
-          "role": "passive"
-        },
-        "PIN_8": {
-          "physical": "8",
-          "role": "passive"
-        },
-        "PIN_9": {
-          "physical": "9",
-          "role": "passive"
-        },
-        "PIN_10": {
-          "physical": "10",
-          "role": "passive"
-        },
-        "PIN_11": {
-          "physical": "11",
-          "role": "passive"
-        },
-        "PIN_12": {
-          "physical": "12",
-          "role": "passive"
-        },
-        "PIN_13": {
-          "physical": "13",
-          "role": "passive"
-        },
-        "PIN_14": {
-          "physical": "14",
-          "role": "passive"
-        },
-        "PIN_15": {
-          "physical": "15",
-          "role": "passive"
-        },
-        "PIN_16": {
-          "physical": "16",
-          "role": "passive"
-        },
-        "PIN_17": {
-          "physical": "17",
-          "role": "passive"
-        },
-        "PIN_18": {
-          "physical": "18",
-          "role": "passive"
-        },
-        "PIN_19": {
-          "physical": "19",
-          "role": "passive"
-        },
-        "PIN_20": {
-          "physical": "20",
-          "role": "passive"
-        },
-        "PIN_21": {
-          "physical": "21",
-          "role": "passive"
-        },
-        "PIN_22": {
-          "physical": "22",
-          "role": "passive"
-        },
-        "PIN_23": {
-          "physical": "23",
-          "role": "passive"
-        },
-        "PIN_24": {
-          "physical": "24",
-          "role": "passive"
-        },
-        "PIN_25": {
-          "physical": "25",
-          "role": "passive"
-        },
-        "PIN_26": {
-          "physical": "26",
-          "role": "passive"
-        },
-        "PIN_27": {
-          "physical": "27",
-          "role": "passive"
-        },
-        "PIN_28": {
-          "physical": "28",
-          "role": "passive"
-        },
-        "PIN_29": {
-          "physical": "29",
-          "role": "passive"
-        },
-        "PIN_30": {
-          "physical": "30",
-          "role": "passive"
-        },
-        "PIN_31": {
-          "physical": "31",
-          "role": "passive"
-        },
-        "PIN_32": {
-          "physical": "32",
-          "role": "passive"
-        },
-        "PIN_33": {
-          "physical": "33",
-          "role": "passive"
-        },
-        "PIN_34": {
-          "physical": "34",
-          "role": "passive"
-        },
-        "PIN_35": {
-          "physical": "35",
-          "role": "passive"
-        },
-        "PIN_36": {
-          "physical": "36",
-          "role": "passive"
-        },
-        "PIN_37": {
-          "physical": "37",
-          "role": "passive"
-        },
-        "PIN_38": {
-          "physical": "38",
-          "role": "passive"
-        },
-        "PIN_39": {
-          "physical": "39",
-          "role": "passive"
-        },
-        "PIN_40": {
-          "physical": "40",
-          "role": "passive"
-        }
-      },
-      "contact_map_sha256": "0e59ae592f191892cb75bac3e70c784cab6b8758cdd3722333d5af80ecb4729f",
-      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-      "manufacturer_evidence": {
-        "document": "Hirose exact product page, 2D drawing and specification sheet",
-        "version": "CL0684-4013-7-51; detailed specifications updated 2026-08-05",
-        "url": "https://www.hirose.com/en/product/p/CL0684-4013-7-51",
-        "checked": "2026-08-23"
-      },
-      "footprint": "Connector_Hirose_DF40:Hirose_DF40C-40DP-0.4V_2x20-1MP_P0.4mm",
-      "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",
-      "footprint_definition": {
-        "status": "exact_package_identity_mapped_to_standard_kicad_library",
-        "path": null,
-        "sha256": null
-      },
-      "historical_hint_files": [
-        "hardware/ecad/generated/H2-ADP00-display-adapter.json"
-      ],
-      "historical_hint_pin_counts": [
-        40
-      ],
-      "jlcpcb_part_number": "C424643"
-    },
-    {
       "device_id": "hirose_dm3at_sf_pejm5",
       "mpn": "Hirose DM3AT-SF-PEJM5",
       "quantity_per_product": 1,
@@ -3249,10 +2846,10 @@
       "device_id": "hirose_fh34srj_50s_0_5sh_50",
       "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
       "quantity_per_product": 1,
-      "role": "display_panel_connector",
+      "role": "display_connector",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
-        "ADP_00_DISPLAY_ADAPTER"
+        "UI_10_S3_DISPLAY_TOUCH"
       ],
       "schematic_value": "50_position_0_5mm_dual_contact_zif_fpc_receptacle",
       "symbol_id": "Leshy2_R2:hirose_fh34srj_50s_0_5sh_50",

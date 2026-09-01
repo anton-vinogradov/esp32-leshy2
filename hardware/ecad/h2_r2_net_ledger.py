@@ -198,26 +198,12 @@ def routed_current_net(
     return next(iter(nets)), "reconciled_historical_same_endpoint_route_hint"
 
 
-def display_main_map(display: dict) -> dict[int, str | None]:
-    result: dict[int, str | None] = {position: None for position in range(1, 41)}
-    for text in display["electrical"]["panel_pin_map"].values():
-        match = re.fullmatch(r"MAIN_(\d+)\s+(.+)", text)
-        if not match:
-            continue
-        position = int(match.group(1))
-        net = match.group(2)
-        if result[position] not in (None, net):
-            raise ValueError(f"display MAIN_{position} maps to two nets")
-        result[position] = net
-    return result
-
-
 def current_override(instance: str, contact: str, sources: dict[str, dict], aliases: dict[str, str]) -> tuple[str | None, str | None]:
     h0 = sources["h0"]
     dual = sources["dual_rp"]
     c5 = sources["c5_mux"]
     boundary = sources["pack_safety_boundary"]
-    display = sources["display_adapter"]
+    display = sources["display_mount"]
     h1_routes = sources["h1_routes"]
     routes = sources["_h1_route_index"]
     allocations = sources["_h1_allocation_index"]
@@ -265,21 +251,12 @@ def current_override(instance: str, contact: str, sources: dict[str, dict], alia
     if instance == "hub_safe_i2c_boundary":
         row = next(row for row in boundary["buffer"]["pin_topology"] if row["name"] == contact)
         return aliases.get(row["net"], row["net"]), "current_pack_safety_boundary"
-    if instance in {"display_connector", "display_adapter_plug"} and contact.startswith("PIN_"):
-        position = int(contact[4:])
-        net = display_main_map(display)[position]
-        if net is None:
-            return None, "current_display_adapter_explicit_nc"
-        return aliases.get(net, net), "current_display_adapter_map"
-    if instance == "display_panel_connector" and contact.startswith("PIN_"):
+    if instance == "display_connector" and contact.startswith("PIN_"):
         position = contact[4:]
         text = display["electrical"]["panel_pin_map"][position]
         if text.startswith("OPEN "):
-            return None, "current_display_adapter_explicit_nc"
-        match = re.fullmatch(r"MAIN_\d+\s+(.+)", text)
-        if not match:
-            raise ValueError(f"invalid panel map row: {position}: {text}")
-        return aliases.get(match.group(1), match.group(1)), "current_display_adapter_map"
+            return None, "current_display_direct_explicit_nc"
+        return aliases.get(text, text), "current_display_direct_map"
     if instance in {"hub_rp", "rf_rp"} and contact.startswith("QSPI_") and contact != "QSPI_SS_USB_BOOT":
         return None, "current_exact_stacked_flash_no_connect"
     controller_gpio = instance in {"s3", "c5", "hub_rp", "rf_rp"} and contact.startswith("GPIO")
@@ -433,8 +410,8 @@ def build() -> dict:
             if disposition == "unresolved":
                 unresolved.append(row)
 
-    if len(rows) != 4319:
-        errors.append(f"current endpoint count changed: {len(rows)} != 4319")
+    if len(rows) != 4239:
+        errors.append(f"current endpoint count changed: {len(rows)} != 4239")
     current_endpoints = {row["endpoint"] for row in rows}
     stale_topology = sorted(set(current_sources.get("topology", {}).get("endpoint_overrides", {})) - current_endpoints)
     if stale_topology:
@@ -505,7 +482,7 @@ def main() -> int:
     if not OUTPUT.is_file() or OUTPUT.read_text(encoding="utf-8") != text:
         print(f"stale: {OUTPUT.relative_to(ROOT)}")
         return 1
-    print("ok: 4319 current R2 endpoints reconciled; zero unresolved; native projects not yet created")
+    print("ok: 4239 current R2 endpoints reconciled; zero unresolved; native projects not yet created")
     return 0
 
 

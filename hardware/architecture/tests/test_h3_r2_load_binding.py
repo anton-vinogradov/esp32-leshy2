@@ -17,7 +17,7 @@ class H3R2LoadBindingTests(unittest.TestCase):
         self.assertEqual("pass", self.result["status"])
         self.assertGreater(summary["power_connected_instances"], 250)
         self.assertEqual(summary["power_connected_instances"], summary["bound_instance_lines"])
-        self.assertEqual(597, summary["direct_power_connected_instances"])
+        self.assertEqual(595, summary["direct_power_connected_instances"])
         self.assertEqual(16, summary["indirect_powered_instances"])
         self.assertEqual(0, summary["unbound_power_connected_instances"])
         self.assertEqual(0, summary["duplicate_instance_lines"])

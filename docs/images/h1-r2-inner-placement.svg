@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1380" height="4881" viewBox="0 0 1380 4881">
 <rect width="1380" height="4881" fill="#ffffff"/>
-<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · H1-R2.37 inner placement</text>
+<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · H1-R2.38 inner placement</text>
 <text x="40" y="70" font-family="sans-serif" font-size="13" fill="#526076">World-scale engineering view · both inner faces are shown directly after turning each PCB over · numbered marks are documentation, never inner-face silkscreen.</text>
 <text x="190.00" y="96" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">UI PCB · inner · turned-over view</text>
 <rect x="70.00" y="122.00" width="240.00" height="480.00" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -8,7 +8,7 @@
 <rect x="70.00" y="512.40" width="10.88" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="70.00" y="490.00" width="10.88" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="194.99" y="578.48" width="28.61" height="23.52" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="173.04" y="142.80" width="33.92" height="10.82" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="146.80" y="127.76" width="86.40" height="12.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="268.40" y="384.40" width="16.00" height="14.08" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="288.24" y="384.40" width="21.76" height="9.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="288.24" y="362.00" width="21.76" height="9.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
@@ -38,14 +38,14 @@
 <text x="244.96" y="464.14" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">49</text>
 <rect x="232.24" y="150.80" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
 <text x="237.04" y="155.76" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">23</text>
-<rect x="234.48" y="141.84" width="5.12" height="2.69" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="237.04" y="143.18" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">24</text>
+<rect x="234.48" y="143.76" width="5.12" height="2.69" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="237.04" y="145.10" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">24</text>
 <rect x="218.48" y="152.40" width="9.28" height="5.12" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
 <text x="223.12" y="154.96" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">70</text>
 <rect x="138.16" y="150.80" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
 <text x="142.96" y="155.76" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">25</text>
-<rect x="140.40" y="141.84" width="5.12" height="2.69" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="142.96" y="143.18" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">26</text>
+<rect x="140.40" y="143.76" width="5.12" height="2.69" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<text x="142.96" y="145.10" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">26</text>
 <rect x="151.92" y="152.40" width="9.28" height="5.12" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
 <text x="156.56" y="154.96" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">71</text>
 <rect x="226.48" y="256.40" width="57.92" height="46.72" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
@@ -222,7 +222,7 @@
 <rect x="508.88" y="346.00" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="496.40" y="356.24" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="577.84" y="360.56" width="7.68" height="6.72" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="460.56" y="226.00" width="113.92" height="60.80" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="460.56" y="226.06" width="113.92" height="60.80" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="603.60" y="150.80" width="14.40" height="13.12" rx="3" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2" stroke-dasharray="none"/>
 <text x="610.80" y="157.36" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#b45309">2</text>
 <rect x="590.80" y="150.80" width="9.60" height="9.60" rx="3" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2" stroke-dasharray="none"/>
@@ -535,7 +535,7 @@
 <text x="755" y="4535" font-family="sans-serif" font-size="10.5" fill="#526076">comparator</text>
 <text x="1100" y="112" font-family="sans-serif" font-size="17" font-weight="700" fill="#172033">Machine audit</text>
 <text x="1100" y="142" font-family="sans-serif" font-size="12" fill="#166534">✓ same-face collisions: 0</text>
-<text x="1100" y="164" font-family="sans-serif" font-size="12" fill="#166534">✓ opposing crossings: 90</text>
+<text x="1100" y="164" font-family="sans-serif" font-size="12" fill="#166534">✓ opposing crossings: 87</text>
 <text x="1100" y="186" font-family="sans-serif" font-size="12" fill="#166534">✓ minimum Z clearance: 2.59 mm</text>
 <text x="1100" y="208" font-family="sans-serif" font-size="12" fill="#526076">required: 0.70 mm</text>
 <text x="1100" y="248" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">Line key</text>

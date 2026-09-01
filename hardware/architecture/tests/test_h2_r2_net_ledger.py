@@ -27,7 +27,7 @@ class H2R2NetLedgerTests(unittest.TestCase):
             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("4319 current R2 endpoints reconciled", result.stdout)
+        self.assertIn("4239 current R2 endpoints reconciled", result.stdout)
 
     def test_every_current_instance_contact_occurs_once(self):
         instances = json.loads(INSTANCES.read_text(encoding="utf-8"))["rows"]
@@ -41,7 +41,7 @@ class H2R2NetLedgerTests(unittest.TestCase):
             for contact in definitions[instance["device_id"]]["contact_map"]
         }
         self.assertEqual(expected, set(self.by_endpoint))
-        self.assertEqual(4319, len(expected))
+        self.assertEqual(4239, len(expected))
         self.assertFalse([
             endpoint for endpoint, count in Counter(row["endpoint"] for row in self.rows).items()
             if count != 1
@@ -51,12 +51,12 @@ class H2R2NetLedgerTests(unittest.TestCase):
         summary = self.ledger["summary"]
         self.assertEqual("pass", self.ledger["status"])
         self.assertEqual([], self.ledger["errors"])
-        self.assertEqual(4319, summary["endpoint_count"])
-        self.assertEqual(4063, summary["connected_endpoint_count"])
-        self.assertEqual(256, summary["no_connect_endpoint_count"])
+        self.assertEqual(4239, summary["endpoint_count"])
+        self.assertEqual(4002, summary["connected_endpoint_count"])
+        self.assertEqual(237, summary["no_connect_endpoint_count"])
         self.assertEqual(0, summary["external_interface_endpoint_count"])
         self.assertEqual(0, summary["unresolved_endpoint_count"])
-        self.assertEqual(823, summary["unique_net_count"])
+        self.assertEqual(816, summary["unique_net_count"])
 
     def test_m1_contacts_match_on_both_projects(self):
         for position in range(1, 81):
@@ -101,8 +101,8 @@ class H2R2NetLedgerTests(unittest.TestCase):
         origins = Counter(row["origin"] for row in self.rows)
         self.assertEqual(7, origins["current_pack_safety_boundary"])
         self.assertEqual(8, origins["current_pack_safety_decoupling"])
-        self.assertEqual(97, origins["current_display_adapter_map"])
-        self.assertEqual(24, origins["current_display_adapter_explicit_nc"])
+        self.assertEqual(39, origins["current_display_direct_map"])
+        self.assertEqual(6, origins["current_display_direct_explicit_nc"])
         self.assertEqual(
             "HUB_SAFE_I2C_SDA_MAIN",
             self.by_endpoint["hub_safe_i2c_boundary.SDAA"]["net"],

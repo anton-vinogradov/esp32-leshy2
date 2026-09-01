@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "model_id": "L2-ASM-COORD-001-A",
-  "stage": "H1-R2.37",
+  "stage": "H1-R2.38",
   "status": "reviewed",
   "reviewed_on": "2026-08-30",
   "accepted_by": "user",
@@ -61,27 +61,27 @@
   },
   "longitudinal_zones": {
     "antenna_connector_zone_y_mm": [0.0, 6.0],
-    "u214_cap_y_mm": [17.0, 41.0],
+    "u214_cap_y_mm": [17.02, 41.02],
     "battery_holder_y_mm": [42.0, 128.0],
     "bottom_service_edge_y_mm": 150.0
   },
   "accessory_envelopes": {
-    "u214": {"x_mm": [-4.5, 79.5], "y_mm": [17.0, 41.0], "z_mm": [17.96, 33.247]},
+    "u214": {"x_mm": [-4.5, 79.5], "y_mm": [17.02, 41.02], "z_mm": [17.96, 33.247]},
     "cap_bus_slot": {
       "population": "exactly_one_of_u214_or_u219",
       "x_mm": [-4.5, 79.5],
-      "y_mm": [17.0, 41.0],
+      "y_mm": [17.02, 41.02],
       "host_outer_plane_z_mm": 17.96,
       "maximum_profile": "u219"
     },
-    "u219": {"x_mm": [-4.5, 79.5], "y_mm": [17.0, 41.0], "z_mm": [17.96, 37.66]},
+    "u219": {"x_mm": [-4.5, 79.5], "y_mm": [17.02, 41.02], "z_mm": [17.96, 37.66]},
     "battery_holder": {"body_x_mm": [17.6, 57.38], "body_y_mm": [46.47, 123.53], "pad_span_y_mm": [42.0, 128.0], "z_mm": [17.96, 38.66], "mounting": "SMT with enclosure cradle/end-stop load path"},
-    "display_adapter_bay": {"x_mm": [22.25, 52.75], "y_mm": [1.0, 13.0], "z_mm": [5.36, 9.16]}
+    "display_direct_zif": {"x_mm": [24.0, 51.0], "y_mm": [1.8, 5.6], "z_mm": [5.36, 6.36]}
   },
   "enclosure_reference": {
     "locked": "world datum, PCB outlines, mounting axes, touch plane, external interface directions and component/accessory keep-outs",
-    "not_yet_locked": "wall thickness, ribs, seals, bezel, grille, external fillets and manufacturing tolerance stack",
+    "not_yet_locked": "wall thickness, ribs, seals, exact bezel overlap, grille, external fillets and manufacturing tolerance stack",
     "rule": "later enclosure surfaces may grow around the locked component model but may not move an accepted PCB/interface datum silently",
-    "mandatory_load_paths": "front/rear PCB capture lips, two anti-shear datums, four 11.00-mm compression stops and a Keystone 1048P cradle/end-stop pair are required before enclosure release"
+    "mandatory_load_paths": "front/rear PCB capture lips, two anti-shear datums, four 11.00-mm compression stops, a Keystone 1048P cradle/end-stop pair, and a display bed with perimeter PSA, corner locators and compliant rear preload are required before enclosure release; the direct ZIF is never load-bearing"
   }
 }

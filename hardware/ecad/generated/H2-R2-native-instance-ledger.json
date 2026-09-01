@@ -6,37 +6,35 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "6b459e2e695cead85cba8f65fe2ee02120f0f8165b01e829f433fd6cb5cb2a5a",
+      "sha256": "e58f530b63be6f207fa92abbf29cc046e55e35cd2582bd3cafba1161ce41a189",
       "authority": true
     },
     "exact_definition_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "745e1bf7438e7dc2348d03e59473a135a2c31fced3d031e1a24acdc84ce998a4",
+      "sha256": "b14648597c68c7f566725dc5ec4f008d42e720b8c5b80271c7653976dc8c4ab2",
       "authority": true
     },
     "physical_source_table": {
       "path": "hardware/product-design/generated/H1-physical-source-table.json",
-      "sha256": "97bca94c9954caf5ef504ed1bdef9cdafb5a37df37945b437067546a0b2f5b5a",
+      "sha256": "2702b180e9ec23daecf54ff92cd6db39435cbb769bf9dddb1a6e9bdaccddb13f",
       "authority": true
     },
     "historical_instance_hints": {
       "path": "hardware/ecad/generated/H2-instance-ledger.json",
-      "sha256": "4aeb92a824ab429bfa40da383eba3f9ed35a30cdf5e1666c3c61a04ed3a5ac27",
+      "sha256": "6f6cf784861620487b1e3fb67f17b98ba6f4c49c29d53f0f8f78176f196774d2",
       "authority": false
     }
   },
   "summary": {
-    "fitted_board_instance_count": 1185,
-    "component_group_count": 234,
+    "fitted_board_instance_count": 1183,
+    "component_group_count": 232,
     "project_counts": {
-      "L2-DISP-ADP-001-B": 2,
       "LESHY2-RF-R2": 755,
       "LESHY2-UI-R2": 428
     },
-    "project_graph_sheet_count": 23,
-    "populated_sheet_count": 19,
+    "project_graph_sheet_count": 22,
+    "populated_sheet_count": 18,
     "sheet_counts": {
-      "ADP_00_DISPLAY_ADAPTER": 2,
       "RF_01_USB_PD_CHARGE": 52,
       "RF_02_PACK_SAFETY_AON": 65,
       "RF_03_MAIN_RAILS_DOMAIN_GATES": 69,
@@ -48,8 +46,8 @@
       "RF_31_REAR_CONTROLS": 14,
       "RF_40_INTERBOARD_M1": 1,
       "RF_50_TX_SAFETY_EVIDENCE": 98,
-      "UI_10_S3_DISPLAY_TOUCH": 34,
-      "UI_11_STORAGE_CONTROLS_INDICATORS": 107,
+      "UI_10_S3_DISPLAY_TOUCH": 35,
+      "UI_11_STORAGE_CONTROLS_INDICATORS": 106,
       "UI_20_C5_WIFI_IR_SERVICE": 96,
       "UI_30_HUB_RP_CORE_SERVICE": 47,
       "UI_31_NRF24_X3_TX_EVIDENCE": 107,
@@ -58,43 +56,15 @@
     },
     "allocation_origins": {
       "current_r2_allocation_with_explicit_additions": 529,
-      "exact_current_role_list": 456,
+      "exact_current_role_list": 454,
       "explicit_current_r2_allocation": 93,
       "reconciled_historical_instance_name_hint": 107
     },
-    "former_sheet_hints_reconciled": 723,
+    "former_sheet_hints_reconciled": 721,
     "native_schematic_nets_created": 0,
     "errors": 0
   },
   "rows": [
-    {
-      "instance_uid": "L2-DISP-ADP-001-B:display_adapter_plug",
-      "instance": "display_adapter_plug",
-      "project": "L2-DISP-ADP-001-B",
-      "sheet": "ADP_00_DISPLAY_ADAPTER",
-      "device_id": "hirose_df40c_40dp_0_4v_51",
-      "mpn": "Hirose DF40C-40DP-0.4V(51)",
-      "symbol_id": "Leshy2_R2:hirose_df40c_40dp_0_4v_51",
-      "footprint": "Connector_Hirose_DF40:Hirose_DF40C-40DP-0.4V_2x20-1MP_P0.4mm",
-      "reference_prefix": "J",
-      "allocation_origin": "exact_current_role_list",
-      "historical_topology_authority": false,
-      "reference": "J1"
-    },
-    {
-      "instance_uid": "L2-DISP-ADP-001-B:display_panel_connector",
-      "instance": "display_panel_connector",
-      "project": "L2-DISP-ADP-001-B",
-      "sheet": "ADP_00_DISPLAY_ADAPTER",
-      "device_id": "hirose_fh34srj_50s_0_5sh_50",
-      "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
-      "symbol_id": "Leshy2_R2:hirose_fh34srj_50s_0_5sh_50",
-      "footprint": "Leshy2_R2:FH34SRJ-50S-0.5SH-50",
-      "reference_prefix": "J",
-      "allocation_origin": "explicit_current_r2_allocation",
-      "historical_topology_authority": false,
-      "reference": "J2"
-    },
     {
       "instance_uid": "LESHY2-RF-R2:charger_bat_cap0",
       "instance": "charger_bat_cap0",
@@ -10666,6 +10636,20 @@
       "reference": "R279"
     },
     {
+      "instance_uid": "LESHY2-UI-R2:display_connector",
+      "instance": "display_connector",
+      "project": "LESHY2-UI-R2",
+      "sheet": "UI_10_S3_DISPLAY_TOUCH",
+      "device_id": "hirose_fh34srj_50s_0_5sh_50",
+      "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
+      "symbol_id": "Leshy2_R2:hirose_fh34srj_50s_0_5sh_50",
+      "footprint": "Leshy2_R2:FH34SRJ-50S-0.5SH-50",
+      "reference_prefix": "J",
+      "allocation_origin": "explicit_current_r2_allocation",
+      "historical_topology_authority": false,
+      "reference": "J1"
+    },
+    {
       "instance_uid": "LESHY2-UI-R2:product_usb_dm_series",
       "instance": "product_usb_dm_series",
       "project": "LESHY2-UI-R2",
@@ -10803,7 +10787,7 @@
       "reference_prefix": "J",
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
-      "reference": "J1"
+      "reference": "J2"
     },
     {
       "instance_uid": "LESHY2-UI-R2:s3_dbg_id0_strap",
@@ -10971,7 +10955,7 @@
       "reference_prefix": "J",
       "allocation_origin": "reconciled_historical_instance_name_hint",
       "historical_topology_authority": false,
-      "reference": "J2"
+      "reference": "J3"
     },
     {
       "instance_uid": "LESHY2-UI-R2:s3_reset_button",
@@ -11041,7 +11025,7 @@
       "reference_prefix": "J",
       "allocation_origin": "reconciled_historical_instance_name_hint",
       "historical_topology_authority": false,
-      "reference": "J3"
+      "reference": "J4"
     },
     {
       "instance_uid": "LESHY2-UI-R2:s3_rf_coupler",
@@ -11336,20 +11320,6 @@
       "allocation_origin": "current_r2_allocation_with_explicit_additions",
       "historical_topology_authority": false,
       "reference": "R27"
-    },
-    {
-      "instance_uid": "LESHY2-UI-R2:display_connector",
-      "instance": "display_connector",
-      "project": "LESHY2-UI-R2",
-      "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
-      "device_id": "hirose_df40c_2_0_40ds_0_4v_51",
-      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
-      "symbol_id": "Leshy2_R2:hirose_df40c_2_0_40ds_0_4v_51",
-      "footprint": "Connector_Hirose_DF40:Hirose_DF40C(2.0)-40DS-0.4V_2x20_P0.4mm",
-      "reference_prefix": "J",
-      "allocation_origin": "exact_current_role_list",
-      "historical_topology_authority": false,
-      "reference": "J4"
     },
     {
       "instance_uid": "LESHY2-UI-R2:display_logic_bulk_cap",

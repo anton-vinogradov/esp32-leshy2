@@ -53,8 +53,6 @@ def project_for_sheet(sheet: str) -> str:
         return "LESHY2-UI-R2"
     if sheet.startswith("RF_"):
         return "LESHY2-RF-R2"
-    if sheet.startswith("ADP_"):
-        return "L2-DISP-ADP-001-B"
     raise ValueError(f"sheet has no native project: {sheet}")
 
 
@@ -259,15 +257,15 @@ def build() -> dict:
     for row in rows:
         counters[row["project"]][row["reference_prefix"]] += 1
         row["reference"] = f"{row['reference_prefix']}{counters[row['project']][row['reference_prefix']]}"
-    if len(rows) != 1185:
-        errors.append(f"expected 1185 fitted board instances, got {len(rows)}")
+    if len(rows) != 1183:
+        errors.append(f"expected 1183 fitted board instances, got {len(rows)}")
     project_counts = Counter(row["project"] for row in rows)
     project_graph_sheet_count = sum(
         len(project.get("sheets", [])) for project in inventory.get("projects", [])
     )
-    if project_graph_sheet_count != 23:
+    if project_graph_sheet_count != 22:
         errors.append(f"native project graph sheet count changed: {project_graph_sheet_count}")
-    if set(project_counts) != {"LESHY2-UI-R2", "LESHY2-RF-R2", "L2-DISP-ADP-001-B"}:
+    if set(project_counts) != {"LESHY2-UI-R2", "LESHY2-RF-R2"}:
         errors.append(f"native project coverage changed: {dict(project_counts)}")
     authorization = contract.get("authorization", {})
     if authorization != {
@@ -322,7 +320,7 @@ def main() -> int:
     if not OUTPUT.is_file() or OUTPUT.read_text(encoding="utf-8") != text:
         print(f"stale: {OUTPUT.relative_to(ROOT)}")
         return 1
-    print("ok: 1185 exact fitted R2 instances across 3 native projects and 23 sheets; zero nets created")
+    print("ok: 1183 exact fitted R2 instances across 2 native projects and 22 sheets; zero nets created")
     return 0
 
 

@@ -5,10 +5,10 @@
   "accepted_input": "H3-R2.0.1",
   "status": "reviewed",
   "expected": {
-    "component_groups": 240,
-    "board_component_groups": 234,
+    "component_groups": 238,
+    "board_component_groups": 232,
     "explicit_non_pcba_groups": 6,
-    "fitted_board_instances": 1185,
+    "fitted_board_instances": 1183,
     "source_missing": 0,
     "factory_catalog_only_parameter_sources": 0
   },

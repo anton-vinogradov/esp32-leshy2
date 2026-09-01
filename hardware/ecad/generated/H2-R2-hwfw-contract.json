@@ -14,14 +14,14 @@
     "hardware/architecture/h1-r2-dual-rp-pinout.json": "45d7b02e86a626c5be841fef4d249fd304e98ce1715776e79d073ca9bc144753",
     "hardware/architecture/c5-sdio-service-mux-contract.json": "4bd88ffed2e8ac0b5f6e8856d6ebc21e7cc29aa38045d4a10e068b870e51c7f3",
     "hardware/architecture/pack-safety-i2c-boundary-contract.json": "5460c97ab81e9f58c41a042a5f024f5f83e5913099e11743b9ad72414eb5782c",
-    "hardware/architecture/candidates/G2F-3I.json": "ecf99050c571f990ca943e54d50e30c4c881ee3658151feb619cf3bf600cd2cb",
+    "hardware/architecture/candidates/G2F-3I.json": "1c614996fd626b9ca44a98395c0c01712c347c9ba4ac43e69250db3f2bf2f1df",
     "hardware/architecture/h1-r2-u219-cap.json": "01f01f750ceedaa9818b59968962a3484f4660057137e6ef43431a54b71c98fa",
-    "hardware/product-design/h1-r2-placement.json": "219cdebfe3336b744056d019dc1ed57515fd574b2b545c083867e04155f3c1d8",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "6b459e2e695cead85cba8f65fe2ee02120f0f8165b01e829f433fd6cb5cb2a5a",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "62062b9faa2e3f9a9d2430bb068bb4bfc8ba5b37f9ab00d7744cc97605852df5",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "4cda4b3cae4cf847cfac561c8119b528bcb9e757511d0e6de341571c792b66cb",
-    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "69aefceff339dd39916640b4d72bce2b2e217827997922b338aa21c8bf3c76a9",
-    "hardware/ecad/h2-r2-hwfw-reconciliation-contract.json": "b4f6a6d79531b51d96656ae654a1a80be2cb1d672a4d8b3f519868c8ea966993"
+    "hardware/product-design/h1-r2-placement.json": "deb1e0629342daeb9fc0624bf5c9780d6bc08665193b2b3c92d1bf9d2c2c1257",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "e58f530b63be6f207fa92abbf29cc046e55e35cd2582bd3cafba1161ce41a189",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "f3edb2ae8313b90288a040dfc9d95f2664e41f932435a1de2a7f7308ea5510f0",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "671b3b429e3b134bdfda6b07ae0859d084b8ef2da5138b65ec79ead770eb5337",
+    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "9d38329370fd786b617e44ce2b75d07ffd11bc4c4497ac80815242fb9a4affaa",
+    "hardware/ecad/h2-r2-hwfw-reconciliation-contract.json": "da0f652479660671fe78fb0b484ac744f8c401796a5b494a7437967aa74e9189"
   },
   "bsp": {
     "domains": [
@@ -6270,9 +6270,9 @@
       "hardware/architecture/h1-r2-dual-rp-pinout.json": "45d7b02e86a626c5be841fef4d249fd304e98ce1715776e79d073ca9bc144753",
       "hardware/architecture/c5-sdio-service-mux-contract.json": "4bd88ffed2e8ac0b5f6e8856d6ebc21e7cc29aa38045d4a10e068b870e51c7f3",
       "hardware/architecture/pack-safety-i2c-boundary-contract.json": "5460c97ab81e9f58c41a042a5f024f5f83e5913099e11743b9ad72414eb5782c",
-      "hardware/architecture/candidates/G2F-3I.json": "ecf99050c571f990ca943e54d50e30c4c881ee3658151feb619cf3bf600cd2cb",
+      "hardware/architecture/candidates/G2F-3I.json": "1c614996fd626b9ca44a98395c0c01712c347c9ba4ac43e69250db3f2bf2f1df",
       "hardware/architecture/h1-r2-u219-cap.json": "01f01f750ceedaa9818b59968962a3484f4660057137e6ef43431a54b71c98fa",
-      "hardware/product-design/h1-r2-placement.json": "219cdebfe3336b744056d019dc1ed57515fd574b2b545c083867e04155f3c1d8"
+      "hardware/product-design/h1-r2-placement.json": "deb1e0629342daeb9fc0624bf5c9780d6bc08665193b2b3c92d1bf9d2c2c1257"
     },
     "interboard": {
       "connector": "FX8C-80P-SV1(92) / FX8C-80S-SV5(92), straight SMT, 80 contacts, 11-mm working gap",
@@ -6690,8 +6690,8 @@
     "pre_h2_gates": [],
     "physical_h1": {
       "source": "hardware/product-design/h1-r2-placement.json",
-      "sha256": "219cdebfe3336b744056d019dc1ed57515fd574b2b545c083867e04155f3c1d8",
-      "marker": "H1-R2.37",
+      "sha256": "deb1e0629342daeb9fc0624bf5c9780d6bc08665193b2b3c92d1bf9d2c2c1257",
+      "marker": "H1-R2.38",
       "pin_authority_marker": "H1-R2.31",
       "status": "reviewed",
       "current_h1_blockers": [],
@@ -6700,22 +6700,21 @@
     "native_kicad": {
       "marker": "H2-R2.1.3",
       "summary": {
-        "project_count": 3,
-        "project_graph_sheet_count": 23,
-        "populated_sheet_count": 19,
-        "fitted_symbol_instance_count": 1185,
-        "physical_symbol_pin_count": 4323,
-        "connected_physical_pin_count": 4067,
-        "explicit_no_connect_physical_pin_count": 256,
+        "project_count": 2,
+        "project_graph_sheet_count": 22,
+        "populated_sheet_count": 18,
+        "fitted_symbol_instance_count": 1183,
+        "physical_symbol_pin_count": 4243,
+        "connected_physical_pin_count": 4006,
+        "explicit_no_connect_physical_pin_count": 237,
         "external_module_interface_annotation_count": 5,
-        "canonical_net_count": 823,
-        "generated_file_count": 32,
+        "canonical_net_count": 816,
+        "generated_file_count": 28,
         "pcb_file_count": 0
       },
       "cross_sheet_net_counts": {
-        "LESHY2-UI-R2": 111,
-        "LESHY2-RF-R2": 127,
-        "L2-DISP-ADP-001-B": 0
+        "LESHY2-UI-R2": 103,
+        "LESHY2-RF-R2": 127
       }
     },
     "pin_reconciliation": [
@@ -8538,233 +8537,8 @@
         ]
       },
       {
-        "net": "LCD_DB0",
-        "projects": [
-          "L2-DISP-ADP-001-B",
-          "LESHY2-UI-R2"
-        ],
-        "boundary_evidence": [
-          {
-            "role": "40-contact display adapter connector",
-            "endpoint_instances": [
-              "display_adapter_plug",
-              "display_connector"
-            ]
-          }
-        ]
-      },
-      {
-        "net": "LCD_DB1",
-        "projects": [
-          "L2-DISP-ADP-001-B",
-          "LESHY2-UI-R2"
-        ],
-        "boundary_evidence": [
-          {
-            "role": "40-contact display adapter connector",
-            "endpoint_instances": [
-              "display_adapter_plug",
-              "display_connector"
-            ]
-          }
-        ]
-      },
-      {
-        "net": "LCD_DB2",
-        "projects": [
-          "L2-DISP-ADP-001-B",
-          "LESHY2-UI-R2"
-        ],
-        "boundary_evidence": [
-          {
-            "role": "40-contact display adapter connector",
-            "endpoint_instances": [
-              "display_adapter_plug",
-              "display_connector"
-            ]
-          }
-        ]
-      },
-      {
-        "net": "LCD_DB3",
-        "projects": [
-          "L2-DISP-ADP-001-B",
-          "LESHY2-UI-R2"
-        ],
-        "boundary_evidence": [
-          {
-            "role": "40-contact display adapter connector",
-            "endpoint_instances": [
-              "display_adapter_plug",
-              "display_connector"
-            ]
-          }
-        ]
-      },
-      {
-        "net": "LCD_DB4",
-        "projects": [
-          "L2-DISP-ADP-001-B",
-          "LESHY2-UI-R2"
-        ],
-        "boundary_evidence": [
-          {
-            "role": "40-contact display adapter connector",
-            "endpoint_instances": [
-              "display_adapter_plug",
-              "display_connector"
-            ]
-          }
-        ]
-      },
-      {
-        "net": "LCD_DB5",
-        "projects": [
-          "L2-DISP-ADP-001-B",
-          "LESHY2-UI-R2"
-        ],
-        "boundary_evidence": [
-          {
-            "role": "40-contact display adapter connector",
-            "endpoint_instances": [
-              "display_adapter_plug",
-              "display_connector"
-            ]
-          }
-        ]
-      },
-      {
-        "net": "LCD_DB6",
-        "projects": [
-          "L2-DISP-ADP-001-B",
-          "LESHY2-UI-R2"
-        ],
-        "boundary_evidence": [
-          {
-            "role": "40-contact display adapter connector",
-            "endpoint_instances": [
-              "display_adapter_plug",
-              "display_connector"
-            ]
-          }
-        ]
-      },
-      {
-        "net": "LCD_DB7",
-        "projects": [
-          "L2-DISP-ADP-001-B",
-          "LESHY2-UI-R2"
-        ],
-        "boundary_evidence": [
-          {
-            "role": "40-contact display adapter connector",
-            "endpoint_instances": [
-              "display_adapter_plug",
-              "display_connector"
-            ]
-          }
-        ]
-      },
-      {
-        "net": "LCD_DC",
-        "projects": [
-          "L2-DISP-ADP-001-B",
-          "LESHY2-UI-R2"
-        ],
-        "boundary_evidence": [
-          {
-            "role": "40-contact display adapter connector",
-            "endpoint_instances": [
-              "display_adapter_plug",
-              "display_connector"
-            ]
-          }
-        ]
-      },
-      {
-        "net": "LCD_LEDA_PROTECTED",
-        "projects": [
-          "L2-DISP-ADP-001-B",
-          "LESHY2-UI-R2"
-        ],
-        "boundary_evidence": [
-          {
-            "role": "40-contact display adapter connector",
-            "endpoint_instances": [
-              "display_adapter_plug",
-              "display_connector"
-            ]
-          }
-        ]
-      },
-      {
-        "net": "LCD_LEDK",
-        "projects": [
-          "L2-DISP-ADP-001-B",
-          "LESHY2-UI-R2"
-        ],
-        "boundary_evidence": [
-          {
-            "role": "40-contact display adapter connector",
-            "endpoint_instances": [
-              "display_adapter_plug",
-              "display_connector"
-            ]
-          }
-        ]
-      },
-      {
-        "net": "LCD_RST_N",
-        "projects": [
-          "L2-DISP-ADP-001-B",
-          "LESHY2-UI-R2"
-        ],
-        "boundary_evidence": [
-          {
-            "role": "40-contact display adapter connector",
-            "endpoint_instances": [
-              "display_adapter_plug",
-              "display_connector"
-            ]
-          }
-        ]
-      },
-      {
-        "net": "LCD_TE",
-        "projects": [
-          "L2-DISP-ADP-001-B",
-          "LESHY2-UI-R2"
-        ],
-        "boundary_evidence": [
-          {
-            "role": "40-contact display adapter connector",
-            "endpoint_instances": [
-              "display_adapter_plug",
-              "display_connector"
-            ]
-          }
-        ]
-      },
-      {
-        "net": "LCD_TOUCH_INT_RAW_N",
-        "projects": [
-          "L2-DISP-ADP-001-B",
-          "LESHY2-UI-R2"
-        ],
-        "boundary_evidence": [
-          {
-            "role": "40-contact display adapter connector",
-            "endpoint_instances": [
-              "display_adapter_plug",
-              "display_connector"
-            ]
-          }
-        ]
-      },
-      {
         "net": "POWER_GROUND",
         "projects": [
-          "L2-DISP-ADP-001-B",
           "LESHY2-RF-R2",
           "LESHY2-UI-R2"
         ],
@@ -8774,13 +8548,6 @@
             "endpoint_instances": [
               "m1_rf_receptacle",
               "m1_ui_plug"
-            ]
-          },
-          {
-            "role": "40-contact display adapter connector",
-            "endpoint_instances": [
-              "display_adapter_plug",
-              "display_connector"
             ]
           }
         ]
@@ -8866,54 +8633,6 @@
         ]
       },
       {
-        "net": "SYS_UI_I2C_SCL",
-        "projects": [
-          "L2-DISP-ADP-001-B",
-          "LESHY2-UI-R2"
-        ],
-        "boundary_evidence": [
-          {
-            "role": "40-contact display adapter connector",
-            "endpoint_instances": [
-              "display_adapter_plug",
-              "display_connector"
-            ]
-          }
-        ]
-      },
-      {
-        "net": "SYS_UI_I2C_SDA",
-        "projects": [
-          "L2-DISP-ADP-001-B",
-          "LESHY2-UI-R2"
-        ],
-        "boundary_evidence": [
-          {
-            "role": "40-contact display adapter connector",
-            "endpoint_instances": [
-              "display_adapter_plug",
-              "display_connector"
-            ]
-          }
-        ]
-      },
-      {
-        "net": "TOUCH_RST_N",
-        "projects": [
-          "L2-DISP-ADP-001-B",
-          "LESHY2-UI-R2"
-        ],
-        "boundary_evidence": [
-          {
-            "role": "40-contact display adapter connector",
-            "endpoint_instances": [
-              "display_adapter_plug",
-              "display_connector"
-            ]
-          }
-        ]
-      },
-      {
         "net": "UI_ENCODER_PUSH_N",
         "projects": [
           "LESHY2-RF-R2",
@@ -8953,8 +8672,8 @@
     "exact_pin_rows": 147,
     "conditioned_boundary_rows": 14,
     "explicit_reserve_no_connect_rows": 12,
-    "cross_project_net_count": 52,
-    "cross_sheet_net_count": 238,
+    "cross_project_net_count": 35,
+    "cross_sheet_net_count": 230,
     "errors": 0
   },
   "authorization": {

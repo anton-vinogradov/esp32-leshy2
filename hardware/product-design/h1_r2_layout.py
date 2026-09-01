@@ -33,7 +33,7 @@ U219_SOURCE_PATH = REPO / "hardware/architecture/h1-r2-u219-cap.json"
 DUAL_RP_PINOUT_PATH = REPO / "hardware/architecture/h1-r2-dual-rp-pinout.json"
 DEVICES_PATH = REPO / "hardware/architecture/devices.json"
 CANDIDATE_PATH = REPO / "hardware/architecture/candidates/G2F-3I.json"
-PUBLIC_ASSET_REV = "h1-r2.37-reviewed-2"
+PUBLIC_ASSET_REV = "h1-r2.38-direct-zif-1"
 BOTTOM_SILK_OWNER_BASELINE_MM = 145.1
 BOTTOM_SILK_ROLE_BASELINE_MM = 147.0
 
@@ -1905,7 +1905,16 @@ def render_inner_face_svg(
             fill, stroke, dash = "#eef2f6", "#94a3b8", ""
         out.append(f'<rect x="{vx:.2f}" y="{vy:.2f}" width="{body_w*scale:.2f}" height="{body_d*scale:.2f}" rx="2" fill="{fill}" stroke="{stroke}" stroke-width="1"{dash} data-instance="{html.escape(row["id"])}" data-mpn="{html.escape(row["mpn"])}"/>')
         font = 7.0 if min(body_w, body_d) >= 1.6 else 4.8
-        out.append(text(vx + body_w*scale/2, vy + body_d*scale/2 + font/3, str(numbers[row["id"]]), font, "bold", "middle", stroke))
+        if row["id"] == "display_connector":
+            # This is drawing annotation, not production silkscreen.  The direct
+            # display connector is deliberately called out because its long,
+            # shallow outline is otherwise easy to mistake for a passive or a
+            # mechanical keepout in the complete inner-face mock-up.
+            centre_x = vx + body_w * scale / 2
+            out.append(text(centre_x, vy + 8.2, f'{numbers[row["id"]]} · 50-pin ZIF', 7.2, "bold", "middle", stroke))
+            out.append(text(centre_x, vy + 17.0, "DISPLAY FPC", 6.4, "bold", "middle", stroke))
+        else:
+            out.append(text(vx + body_w*scale/2, vy + body_d*scale/2 + font/3, str(numbers[row["id"]]), font, "bold", "middle", stroke))
 
     # Removable microcoax and its two connector ends are physical objects above
     # the PCB; draw them after the body layer. Rear paths have no such cables.
@@ -2426,7 +2435,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "Три nRF24 полностью перенесены на переднюю плату вместе с буферами, safety-gate и отдельным `TLV1824PWR`.",
             "Бортовой видеоприёмник, декодер, MMCX и их резервы удалены: за экраном и между антеннами нет скрытого post-PCBA модуля.",
             "FM/SW/AM/LW/Airband, CC1101, два voice-тракта и аудио локальны задней плате; S3 напрямую ведёт i8080-8, энкодер и USB, а кнопки — через локальный TCA9539PWR. После замыкания reset/service-трактов свободным электрическим резервом остаются шесть GPIO.",
-            "Экран физически развёрнут шлейфом к антенному торцу, как у ESP32-DIV; адаптер находится в верхней внутренней зоне, а firmware разворачивает изображение и touch на 180°. Шлейф не входит в зону LED, D-pad и боковых клавиш.",
+            "Экран физически развёрнут шлейфом к антенному торцу, как у ESP32-DIV; шлейф входит прямо в 50-контактный ZIF на UI-плате, а firmware разворачивает изображение и touch на 180°. Рамка, периметральный PSA, угловые упоры и мягкий преднатяг держат панель независимо от разъёма.",
         ]
         audit_lines = [
             f'Коллизии корпусов на одной стороне: `{len(result["same_face_collisions"])}`.',
@@ -2440,7 +2449,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "Шелкография антенн: генератор подтвердил отсутствие пересечений с SMA, Cap-Bus-слотом, дисплеем и монтажными keep-out.",
             "Точная посадка десяти SMA следует чертежам A1: прямоугольная RF-пята `1,87×3,30 мм` в `x=0`, четыре прямоугольные земляные лапы `1,60×3,30 мм` в `x=±2,55 мм`, край платы `y=0`. H5 фиксирует двусторонний процесс пайки, H7 осматривает все пять паек каждого разъёма на единственном собранном прототипе, H8 выполняет обычную сборку/разборку, continuity/inspection и повторную проверку каждого RF-тракта без искусственного старения, падений и vibration-программы.",
             f'Cap-Bus: взаимоисключающие профили U214/U219 и все восемь целевых зазоров проходят; все 18 точных корпусов U219, их source-backed courtyards, NFC pickup-loop и внешний swept volume штатной 108-мм антенны зарегистрированы fail-closed. Открытых H1 geometry-gates: `{len(model["current_h1_blockers"])}`.',
-            "Экран `ER-TFT035IPS-6` + `ER-TPC035-6`, его 50-контактный `FH34SRJ-50S-0.5SH(50)` и пассивный адаптер `L2-DISP-ADP-001-B` зафиксированы; адаптер имеет ноль коллизий и 5,10 мм минимального встречного зазора, а платный U.FL второго nRF24 оставляет 1,00 мм планарного зазора.",
+            "Экран `ER-TFT035IPS-6` + `ER-TPC035-6` и прямой UI-платный `FH34SRJ-50S-0.5SH(50)` зафиксированы; 1,00-мм ZIF оставляет 10,00 мм до противоположной плоскости платы, оба DF40 и отдельная плата-адаптер удалены, а сам разъём не несёт нагрузку панели.",
         ]
         route_col = "Текущая доступность/маршрут"
     else:
@@ -2468,7 +2477,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "All three nRF24 islands move to the front PCB with their buffers, safety gate and a dedicated second `TLV1824PWR`.",
             "The onboard video receiver, decoder, MMCX and physical reserves are removed: no hidden post-PCBA module remains behind the display or between the antennas.",
             "FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; S3 directly owns i8080-8, encoder and USB, with buttons on its local TCA9539PWR path. Six GPIO remain uncommitted electrical reserve after reset and service closure.",
-            "The panel is physically turned with its flex toward the antenna edge, as on ESP32-DIV; the adapter occupies the upper inner zone and firmware rotates display output and touch by 180°. The tail stays out of the LED, D-pad and side-key zone.",
+            "The panel is physically turned with its flex toward the antenna edge, as on ESP32-DIV; the tail enters one direct 50-contact ZIF on the UI PCB and firmware rotates display output and touch by 180°. The bezel, perimeter PSA, corner locators and compliant preload retain the panel independently of the connector.",
         ]
         audit_lines = [
             f'Same-face body collisions: `{len(result["same_face_collisions"])}`.',
@@ -2482,7 +2491,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "Antenna silkscreen: the generator proves no overlap with SMA bodies, the Cap-Bus slot, the display or mounting keep-outs.",
             "The exact ten-SMA land pattern follows the A1 drawings: one rectangular 1.87 × 3.30-mm RF land at x=0, four rectangular 1.60 × 3.30-mm shell lands at x=±2.55 mm and board edge y=0. H5 locks the dual-face soldering process, H7 inspects all five joints per connector on the one assembled prototype, and H8 performs ordinary assembly/disassembly, continuity/inspection and every path-specific RF check without artificial ageing, drops or a vibration programme.",
             f'Cap-Bus: mutually exclusive U214/U219 profiles and all eight target clearances pass; all 18 exact U219 bodies, their source-backed courtyards, the NFC pickup loop and the external swept volume of the supplied 108-mm antenna are registered fail-closed. Open H1 geometry gates: `{len(model["current_h1_blockers"])}`.',
-            "The `ER-TFT035IPS-6` + `ER-TPC035-6` assembly, its 50-contact `FH34SRJ-50S-0.5SH(50)` connector and passive `L2-DISP-ADP-001-B` are fixed; the adapter has zero body collisions and 5.10 mm minimum opposing clearance, while the second nRF24 board U.FL retains 1.00 mm planar clearance.",
+            "The `ER-TFT035IPS-6` + `ER-TPC035-6` assembly and direct UI-board `FH34SRJ-50S-0.5SH(50)` are fixed; the 1.00-mm ZIF leaves 10.00 mm to the opposing PCB plane, both DF40 parts and the adapter PCB are removed, and the connector carries no panel load.",
         ]
         route_col = "Current availability/route"
     lines = [
@@ -2493,6 +2502,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         f"[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev={PUBLIC_ASSET_REV})", "",
         f"![External service access](images/h1-r2-service-access.svg?rev={PUBLIC_ASSET_REV})", "",
         inside, "",
+        f"![Direct display ZIF and mechanical retention](images/display-mount.svg?rev={PUBLIC_ASSET_REV})", "",
         f"[{board_names[0]} · full-scale inner view](images/h1-r2-inner-ui.svg)", "",
         f"[{board_names[1]} · full-scale inner view](images/h1-r2-inner-rf.svg)", "",
     ]

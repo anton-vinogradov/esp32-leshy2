@@ -127,7 +127,7 @@ def _build_live_freeze() -> tuple[dict[Path, str], dict]:
 
 `H4-R2.0.1` is reviewed. The joined pre-layout gate now has one hash-bound input set: `{manifest['summary']['hardware_inputs']}` hardware artifacts and `{manifest['summary']['firmware_inputs']}` firmware artifacts (`{manifest['summary']['total_inputs']}` total). All `{manifest['summary']['cross_repository_h3_hashes_checked']}` cross-repository H3 import hashes match.
 
-The freeze carries the reviewed H1-R2.37 mechanics, native H2-R2.1.5 ECAD, H3-R2.7 analytical result, current six-domain firmware contracts and reviewed F2-R2 target/BSP/build evidence. Historical R1 F3/F4 execution remains regression-only and cannot prove the current dual-RP topology.
+The freeze carries the reviewed H1-R2.38 mechanics, native H2-R2.1.5 ECAD, H3-R2.7 analytical result, current six-domain firmware contracts and reviewed F2-R2 target/BSP/build evidence. Historical R1 F3/F4 execution remains regression-only and cannot prove the current dual-RP topology.
 
 It also carries all `51` still-open physical rows and the explicit F5/F6 i8080 implementation obligation. Nothing is silently treated as completed. Purchase, placement, routing and fabrication remain unauthorized.
 
@@ -141,7 +141,7 @@ H4-R2.0.2/H4-R2.1 subsequently found one owned C5/Pack/Safety BSP-generation gap
 
 `H4-R2.0.1` проведён ревью. Объединённый pre-layout gate теперь имеет один hash-bound набор: `{manifest['summary']['hardware_inputs']}` hardware-artifacts и `{manifest['summary']['firmware_inputs']}` firmware-artifacts (всего `{manifest['summary']['total_inputs']}`). Все `{manifest['summary']['cross_repository_h3_hashes_checked']}` cross-repository hashes импорта H3 совпадают.
 
-Фиксация переносит проведённые mechanics H1-R2.37, native ECAD H2-R2.1.5, аналитический итог H3-R2.7, текущие six-domain firmware-контракты и проведённое F2-R2 target/BSP/build evidence. Историческое R1 execution-evidence F3/F4 остаётся только regression и не доказывает текущую dual-RP топологию.
+Фиксация переносит проведённые mechanics H1-R2.38, native ECAD H2-R2.1.5, аналитический итог H3-R2.7, текущие six-domain firmware-контракты и проведённое F2-R2 target/BSP/build evidence. Историческое R1 execution-evidence F3/F4 остаётся только regression и не доказывает текущую dual-RP топологию.
 
 Также перенесены все `51` ещё открытых physical-строк и явное обязательство F5/F6 по реализации i8080. Ничто молча не названо завершённым. Закупка, placement, routing и печать остаются запрещены.
 

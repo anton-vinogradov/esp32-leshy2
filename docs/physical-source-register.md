@@ -9,8 +9,8 @@ remains; H5 locks deterministic pre-order evidence, while received fit, RF, acou
 
 | Coverage | Result |
 |---|---:|
-| Rendered physical instances | 233 |
-| Exact-MPN instances | 233 |
+| Rendered physical instances | 231 |
+| Exact-MPN instances | 231 |
 | Explicit MPN TBD instances | 0 |
 | H1 geometry blockers | 0 |
 | H5 received-sample gates | 14 |
@@ -19,7 +19,6 @@ remains; H5 locks deterministic pre-order evidence, while received fit, RF, acou
 
 | Frame | Datum | Bodies |
 |---|---|---:|
-| `display-adapter` | L2-DISP-ADP-001-B top-left, viewed from its panel-facing side | 2 |
 | `display-assembly` | ER-TFT035IPS-6 + ER-TPC035-6 configured CTP-outline top-left, front view | 1 |
 | `front-outer` | UI PCB top-left, viewed from the front/exterior | 31 |
 | `rear-outer` | RF/power PCB top-left, viewed from the rear/exterior | 13 |

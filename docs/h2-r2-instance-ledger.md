@@ -10,10 +10,10 @@ It does not create or approve schematic nets, PCB placement or fabrication.
 
 | Item | Checked result |
 |---|---:|
-| Fitted board instances | 1,185 |
-| Exact board component groups | 234 |
-| Native projects | 3 |
-| Project graph | 23 sheets; hierarchy-only root sheets intentionally contain no parts |
+| Fitted board instances | 1,183 |
+| Exact board component groups | 232 |
+| Native projects | 2 |
+| Project graph | 22 sheets; hierarchy-only root sheets intentionally contain no parts |
 | Independent RP2354B domains | 2: front Hub RP and rear RF RP |
 | Native nets created | 0 |
 | Allocation errors or duplicate project-local names | 0 |
@@ -28,7 +28,7 @@ the TCA9803 Pack/Safety boundary are present.
 ## Machine evidence
 
 - [Allocation contract](../hardware/ecad/h2-r2-instance-ledger-contract.json)
-- [Generated 1,185-instance ledger](../hardware/ecad/generated/H2-R2-native-instance-ledger.json)
+- [Generated 1,183-instance ledger](../hardware/ecad/generated/H2-R2-native-instance-ledger.json)
 - [Generator](../hardware/ecad/h2_r2_instance_ledger.py)
 
 The downstream [native net reconciliation](h2-r2-net-ledger.md) and

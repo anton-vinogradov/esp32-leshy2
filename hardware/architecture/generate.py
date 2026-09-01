@@ -1646,7 +1646,7 @@ def _target_bom_lines(
     substitution_class_by_device = _substitution_class_lookup(audit)
     current_h1_procurement_override = {
         "display": "eastrising_er_tft035ips_6_ctp",
-        "display_panel_connector": "hirose_fh34srj_50s_0_5sh_50",
+        "display_connector": "hirose_fh34srj_50s_0_5sh_50",
     }
     substitution_class_by_device.update(
         {
@@ -1654,7 +1654,7 @@ def _target_bom_lines(
                 "qdtech_hmx035ctft_001"
             ],
             "hirose_fh34srj_50s_0_5sh_50": substitution_class_by_device[
-                "hirose_fh34srj_40s_0_5sh_99"
+                "hirose_df40c_2_0_40ds_0_4v_51"
             ],
         }
     )
@@ -3936,9 +3936,9 @@ def _render_principled_pinout_bundle(
         "  " + " ~~~ ".join(instance.upper() for instance in service_instance_names),
         "  end",
         "  subgraph UI_STORAGE[\"UI and storage devices\"]",
-        node("display_connector", "40-position 0.4-mm UI-board receptacle for the replaceable display adapter"),
-        node("display_adapter_plug", "40-position 0.4-mm adapter-board plug; exact 2-mm DF40 mate"),
-        node("display_panel_connector", "40-position 0.5-mm dual-contact ZIF on the replaceable adapter"),
+        node("display_connector", "50-position 0.5-mm dual-contact ZIF directly on the UI PCB"),
+        node("display_adapter_plug", "superseded adapter plug; historical non-purchase evidence only"),
+        node("display_panel_connector", "superseded adapter-side ZIF role; historical non-purchase evidence only"),
         node("display", "3.5-inch QSPI IPS display and capacitive-touch assembly"),
         node("display_touch_controller", "integrated display plus capacitive-touch TDDI COG"),
         node("display_logic_bulk_cap", "10-uF protected-main display-logic bulk capacitor"),
@@ -4536,9 +4536,7 @@ def _render_principled_pinout_bundle(
         "  AON_EFUSE --> SLOW_IO_S3_EVIDENCE_ISO_BYPASS --> SLOW_IO_S3_EVIDENCE_ISO",
         "  MAIN_EFUSE --> SLOW_IO_S3_EVIDENCE_PULLUP --> SLOW_IO",
         f"  S3 -->|\"QSPI/touch/PWM: {contacts('s3', ('DISPLAY_SD_', 'LCD_'))}\"| DISPLAY_CONNECTOR",
-        "  DISPLAY_CONNECTOR <-->|\"exact 2-mm 40-contact DF40 mate\"| DISPLAY_ADAPTER_PLUG",
-        "  DISPLAY_ADAPTER_PLUG <-->|\"one-to-one adapter copper\"| DISPLAY_PANEL_CONNECTOR",
-        "  DISPLAY_PANEL_CONNECTOR <-->|\"dual-contact 40-position ZIF; received-tail fit H5\"| DISPLAY",
+        "  DISPLAY_CONNECTOR <-->|\"direct 50-position ZIF; received-tail fit H5\"| DISPLAY",
         "  DISPLAY -->|\"integrated exact COG\"| DISPLAY_TOUCH_CONTROLLER",
         "  DISPLAY_TOUCH_CONTROLLER -->|\"TP_INT low on touch\"| TOUCH_IRQ_RAW",
         "  TOUCH_IRQ_PULLUP -->|\"10 kOhm to 3V3_MAIN\"| TOUCH_IRQ_RAW",

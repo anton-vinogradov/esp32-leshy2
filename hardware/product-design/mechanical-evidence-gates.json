@@ -17,10 +17,10 @@
     {
       "id": "H5-MECH-DISPLAY-TAIL",
       "disposition": "h5_received_sample_gate",
-      "affected_instances": ["display", "display_connector", "display_adapter_plug", "display_panel_connector"],
-      "evidence_boundary": "Official QDtech sources prove the HMX035CTFT-001 marking, complete-donor 54.5x101.5-mm reserve, 40-contact electrical map and 54.5x83.0x3.2-mm LCD/CTP screen body. L2-DISP-ADP-001-A fixes a 25.5x12.0-mm replaceable adapter, exact 2.0-mm 40-contact DF40 board mate, direct one-to-one copper and an active dual-contact FH34SRJ panel ZIF. The main UI board and enclosure no longer depend on an inferred raw-flex outline or exposed-contact side.",
-      "unknown": "Standalone order identity, current-lot complete FPC outline, thickness, stiffener, adhesive, bend path and actual insertion/retention in the selected dual-contact ZIF remain received-display properties; a mismatch may revise only the small adapter and its panel-side connector.",
-      "closure": "H5 locks the source-backed adapter/connector geometry and deterministic mating instruction before order; H7/H8 then measure the received HMX035CTFT-001 tail and inspect insertion, retention, bend clearance and continuity on the one assembled prototype after arrival.",
+      "affected_instances": ["display", "display_connector"],
+      "evidence_boundary": "EastRising controls the exact ER-TFT035IPS-6 plus ER-TPC035-6 assembly, 56.54x84.96-mm CTP outline and folded 50-contact 0.50-mm tail. L2-DISP-DIRECT-001-A fixes the stocked dual-contact FH34SRJ connector directly on the UI PCB and a bezel/PSA/corner-locator/compliant-pad load path in which the ZIF is not load-bearing.",
+      "unknown": "Current-lot FPC thickness/stiffener conformity, actual insertion, PSA process and final bezel/preload fit remain assembly properties of the one prototype.",
+      "closure": "H5 locks the source-backed direct-ZIF footprint, folded-tail corridor, enclosure retention geometry and deterministic factory assembly instruction before order; H7/H8 inspect insertion, strain relief, retention and continuity after arrival.",
       "blocks": ["H8"]
     },
     {
@@ -116,10 +116,10 @@
     {
       "id": "H5-MECH-DISPLAY-PERFORMANCE",
       "disposition": "h5_received_sample_gate",
-      "affected_instances": ["display", "display_connector", "display_adapter_plug", "display_panel_connector"],
-      "evidence_boundary": "H1 fixes the controlled screen body, replaceable adapter bay, exact DF40 stack and dual-contact panel connector; electrical and optical behavior remain qualification evidence.",
-      "unknown": "QSPI/touch operation, optical quality, backlight current/thermal and received flex geometry.",
-      "closure": "H5 locks documented panel/adapter geometry, routing and deterministic assembly instructions before order; H7/H8 perform electrical, optical and thermal checks plus flex-route clearance and continuity inspection after arrival, without repeatedly cycling the flex.",
+      "affected_instances": ["display", "display_connector"],
+      "evidence_boundary": "H1 fixes the controlled screen body, direct 50-contact ZIF, i8080-8 map, folded-tail corridor and enclosure load path; electrical and optical behavior remain qualification evidence.",
+      "unknown": "i8080/touch operation, optical quality, backlight current/thermal and received flex conformity.",
+      "closure": "H5 locks documented panel/direct-ZIF geometry, routing and deterministic assembly instructions before order; H7/H8 perform electrical, optical and thermal checks plus flex-route clearance and continuity inspection after arrival, without repeatedly cycling the flex.",
       "blocks": ["H8"]
     },
     {

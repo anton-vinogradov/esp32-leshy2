@@ -1,4 +1,4 @@
-# H1-R2.37 · component cost ranking
+# H1-R2.38 · component cost ranking
 
 [Русский](h1-r2-cost.ru.md) · [English](h1-r2-cost.md) · [Current placement](h1-r2-physical-layout.md)
 
@@ -6,20 +6,20 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 
 ## Summary
 
-- Volume material basis: **$253.17** per device; `203/212` lines are priced.
-- Reachable planning subtotal: **$272.97** per device, with `5` base-product lines still unpriced.
-- Current planned component minimum with no mandatory post-PCBA active module: **$272.97** per device and **$272.97** for the one target prototype before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.
-- The same accepted price basis scales linearly to **$2,729.72** for ten devices. This compares groups; it is not a batch quote.
-- The top 10 / 20 / 40 groups contribute **40.22% / 57.56% / 76.19%** of the known base BOM.
-- Historical five-board JLCPCB capture: **$1,370.13** for `184` matched lines; `25` live checks move it to **$1,411.51**, with `28` rows excluded. This is evidence, not the target quantity.
-- The external antenna kit is separate: **$138.32** is known and `4` positions in `2` MPN groups remain unpriced. The known electronics plus known antennas already reach **$411.29** before PCB/PCBA, enclosure and freight.
+- Volume material basis: **$252.10** per device; `201/210` lines are priced.
+- Reachable planning subtotal: **$271.90** per device, with `5` base-product lines still unpriced.
+- Current planned component minimum with no mandatory post-PCBA active module: **$271.90** per device and **$271.90** for the one target prototype before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.
+- The same accepted price basis scales linearly to **$2,719.03** for ten devices. This compares groups; it is not a batch quote.
+- The top 10 / 20 / 40 groups contribute **40.38% / 57.78% / 76.49%** of the known base BOM.
+- Historical five-board JLCPCB capture: **$1,365.05** for `182` matched lines; `24` live checks move it to **$1,406.44**, with `28` rows excluded. This is evidence, not the target quantity.
+- The external antenna kit is separate: **$138.32** is known and `4` positions in `2` MPN groups remain unpriced. The known electronics plus known antennas already reach **$410.22** before PCB/PCBA, enclosure and freight.
 
 ## Accepted all-in-one cost boundary
 
 - The current product remains a fully populated all-in-one. Its repeatable complete-device target is **$220.00–$260.00**, excluding batteries and the full specialized external-antenna kit.
 - To leave room for PCB, PCBA and enclosure, electronics must land near **$189.00–$216.00**.
-- The current base BOM has `210` MPN groups and `1096` fitted components. The accepted no-function-loss AD8314 and Hirose U.FL routes already save **$10.42** and leave the exact current planning floor at **$272.97**. The cheaper SMA/RP-SMA pair was checked and rejected, so its hypothetical saving is not counted.
-- A further **$56.97–$83.97** must be removed to reach the electronics band. The formal margin to the complete-device ceiling is only **$-12.97**, so boards, assembly and enclosure do not fit without further resynthesis.
+- The current base BOM has `208` MPN groups and `1094` fitted components. The accepted no-function-loss AD8314 and Hirose U.FL routes already save **$10.42** and leave the exact current planning floor at **$271.90**. The cheaper SMA/RP-SMA pair was checked and rejected, so its hypothetical saving is not counted.
+- A further **$55.90–$82.90** must be removed to reach the electronics band. The formal margin to the complete-device ceiling is only **$-11.90**, so boards, assembly and enclosure do not fit without further resynthesis.
 
 **Accepted:** no separate `Core` is designed now. One fully populated `R2-EVT1` is built and verified first; implementation cost is reduced without removing built-in functions or the safety outcome. The historical `$150` goal is deferred as a possible post-EVT1 community fit option, not a current hardware branch. The sole first order will still cost more because MOQ, setup, manual placement, freight and tax cannot be amortized.
 
@@ -33,8 +33,8 @@ That does not mean Leshy2 must cost eight times as much. It means the current ar
 
 | Boundary | Electronics | Complete base | Honest result |
 |---|---:|---:|---|
-| Current circuit | $272.97 | above $272.97 | already above the accepted ceiling before boards, assembly and enclosure |
-| After the accepted AD8314 and Hirose U.FL changes | $272.97 | above $272.97 | exact current planning floor; still insufficient |
+| Current circuit | $271.90 | above $271.90 | already above the accepted ceiling before boards, assembly and enclosure |
+| After the accepted AD8314 and Hirose U.FL changes | $271.90 | above $271.90 | exact current planning floor; still insufficient |
 | Same built-in user functions and same safety outcome after full cost resynthesis | $214.00–$235.00 | $241.00–$280.00 | only the upper portion overlaps the `$220–260` target |
 | Modular community base; specialist paths are fitted as task-specific Caps/Units | $108.00–$125.00 | $135.00–$165.00 | deferred until a working `R2-EVT1`; there is no separate Core now |
 
@@ -48,28 +48,28 @@ The primary ranking below shows **one prototype only**. It contains neither the 
 
 | № | Source | MPN and role | Qty ×1 | Unit on accepted basis | Group ×1 | Share of known total |
 |---:|---|---|---:|---:|---:|---:|
-| 1 | Antenna | `SMA-W100RX2`<br><sub>receive-only telescopic whip; AIR</sub> | 1 | $35.95 | $35.95 | 8.74% |
-| 2 | Antenna | `001-0012`<br><sub>2.4/5 GHz native radio; S3, C5</sub> | 2 | $16.91 | $33.82 | 8.22% |
-| 3 | Antenna | `AN0155H13`<br><sub>VHF 136-174 MHz; VHF</sub> | 1 | $31.70 | $31.70 | 7.71% |
-| 4 | Antenna | `ANT-433-CW-QW-SMA`<br><sub>433 MHz / UHF 400-470 MHz; S433, UHF</sub> | 2 | $11.23 | $22.46 | 5.46% |
-| 5 | Base BOM | `GCT RFPC-SMA31-FN-175-A`<br><sub>eight standard outward SMA / восемь внешних SMA</sub> | 8 | $2.46 | $19.72 | 4.79% |
-| 6 | Base BOM | `EastRising ER-TFT035IPS-6 + ER-TPC035-6`<br><sub>display</sub> | 1 | $14.91 | $14.91 | 3.62% |
-| 7 | Base BOM | `Analog Devices AD8314ARMZ-REEL`<br><sub>six real-TX RF detectors / шесть RF-детекторов фактической передачи</sub> | 6 | $1.94 | $11.64 | 2.83% |
-| 8 | Base BOM | `OMRON B3S-1100P`<br><sub>sixteen ordinary user keys / шестнадцать обычных клавиш</sub> | 16 | $0.64 | $10.25 | 2.49% |
-| 9 | Base BOM | `G-NiceRF SA818S-V`<br><sub>VHF voice transceiver / VHF голосовой трансивер</sub> | 1 | $10.07 | $10.07 | 2.45% |
+| 1 | Antenna | `SMA-W100RX2`<br><sub>receive-only telescopic whip; AIR</sub> | 1 | $35.95 | $35.95 | 8.76% |
+| 2 | Antenna | `001-0012`<br><sub>2.4/5 GHz native radio; S3, C5</sub> | 2 | $16.91 | $33.82 | 8.24% |
+| 3 | Antenna | `AN0155H13`<br><sub>VHF 136-174 MHz; VHF</sub> | 1 | $31.70 | $31.70 | 7.73% |
+| 4 | Antenna | `ANT-433-CW-QW-SMA`<br><sub>433 MHz / UHF 400-470 MHz; S433, UHF</sub> | 2 | $11.23 | $22.46 | 5.47% |
+| 5 | Base BOM | `GCT RFPC-SMA31-FN-175-A`<br><sub>eight standard outward SMA / восемь внешних SMA</sub> | 8 | $2.46 | $19.72 | 4.81% |
+| 6 | Base BOM | `EastRising ER-TFT035IPS-6 + ER-TPC035-6`<br><sub>display</sub> | 1 | $14.91 | $14.91 | 3.63% |
+| 7 | Base BOM | `Analog Devices AD8314ARMZ-REEL`<br><sub>six real-TX RF detectors / шесть RF-детекторов фактической передачи</sub> | 6 | $1.94 | $11.64 | 2.84% |
+| 8 | Base BOM | `OMRON B3S-1100P`<br><sub>sixteen ordinary user keys / шестнадцать обычных клавиш</sub> | 16 | $0.64 | $10.25 | 2.50% |
+| 9 | Base BOM | `G-NiceRF SA818S-V`<br><sub>VHF voice transceiver / VHF голосовой трансивер</sub> | 1 | $10.07 | $10.07 | 2.46% |
 | 10 | Base BOM | `G-NiceRF SA818S-U`<br><sub>UHF voice transceiver / UHF голосовой трансивер</sub> | 1 | $9.73 | $9.73 | 2.37% |
-| 11 | Antenna | `ANT-315-CW-HW-SMA`<br><sub>315 MHz; S315</sub> | 1 | $9.60 | $9.60 | 2.33% |
-| 12 | Base BOM | `Ebyte E01-ML01SP4`<br><sub>three 20-dBm PA/LNA full-function nRF24 radios / три полнофункциональных nRF24 с PA/LNA 20 dBm</sub> | 3 | $2.96 | $8.89 | 2.16% |
-| 13 | Base BOM | `Keystone Electronics 1048P`<br><sub>dual protected-18650 holder / держатель двух защищённых 18650</sub> | 1 | $8.57 | $8.57 | 2.08% |
-| 14 | Base BOM | `Texas Instruments TMUX1136DGSR`<br><sub>four complete audio/control selectors / четыре полных audio/control selector</sub> | 4 | $2.06 | $8.23 | 2.00% |
-| 15 | Base BOM | `LTC5532ES6#TRMPBF`<br><sub>S3/C5 2.4/5-GHz TX detectors / детекторы TX S3/C5 2,4/5 ГГц</sub> | 2 | $3.89 | $7.78 | 1.89% |
-| 16 | Base BOM | `Samtec FTSH-105-01-L-DV-K-P-TR`<br><sub>four internal recovery headers / четыре внутренних recovery-разъёма</sub> | 4 | $1.70 | $6.80 | 1.65% |
+| 11 | Antenna | `ANT-315-CW-HW-SMA`<br><sub>315 MHz; S315</sub> | 1 | $9.60 | $9.60 | 2.34% |
+| 12 | Base BOM | `Ebyte E01-ML01SP4`<br><sub>three 20-dBm PA/LNA full-function nRF24 radios / три полнофункциональных nRF24 с PA/LNA 20 dBm</sub> | 3 | $2.96 | $8.89 | 2.17% |
+| 13 | Base BOM | `Keystone Electronics 1048P`<br><sub>dual protected-18650 holder / держатель двух защищённых 18650</sub> | 1 | $8.57 | $8.57 | 2.09% |
+| 14 | Base BOM | `Texas Instruments TMUX1136DGSR`<br><sub>four complete audio/control selectors / четыре полных audio/control selector</sub> | 4 | $2.06 | $8.23 | 2.01% |
+| 15 | Base BOM | `LTC5532ES6#TRMPBF`<br><sub>S3/C5 2.4/5-GHz TX detectors / детекторы TX S3/C5 2,4/5 ГГц</sub> | 2 | $3.89 | $7.78 | 1.90% |
+| 16 | Base BOM | `Samtec FTSH-105-01-L-DV-K-P-TR`<br><sub>four internal recovery headers / четыре внутренних recovery-разъёма</sub> | 4 | $1.70 | $6.80 | 1.66% |
 | 17 | Base BOM | `TE Connectivity 1-2118651-0`<br><sub>three 60-mm nRF RF jumpers / три 60-мм RF-кабеля nRF</sub> | 3 | $1.81 | $5.43 | 1.32% |
-| 18 | Base BOM | `ESP32-S3-WROOM-1U-N16R8`<br><sub>s3</sub> | 1 | $5.11 | $5.11 | 1.24% |
+| 18 | Base BOM | `ESP32-S3-WROOM-1U-N16R8`<br><sub>s3</sub> | 1 | $5.11 | $5.11 | 1.25% |
 | 19 | Base BOM | `GCT RFPC-SMA32-FN-175-A`<br><sub>two native-radio RP-SMA / два RP-SMA native-радио</sub> | 2 | $2.46 | $4.93 | 1.20% |
-| 20 | Antenna | `TI.08.C.0112`<br><sub>868/915 MHz; S915</sub> | 1 | $4.79 | $4.79 | 1.16% |
+| 20 | Antenna | `TI.08.C.0112`<br><sub>868/915 MHz; S915</sub> | 1 | $4.79 | $4.79 | 1.17% |
 
-[Unified top 20 — CSV](../hardware/product-design/generated/H1-R2-cost-top20.csv) · [Complete 212-line ranking — CSV](../hardware/product-design/generated/H1-R2-cost-ranked.csv)
+[Unified top 20 — CSV](../hardware/product-design/generated/H1-R2-cost-top20.csv) · [Complete 210-line ranking — CSV](../hardware/product-design/generated/H1-R2-cost-ranked.csv)
 
 ## Critical mass-market audit of the complete top 20
 
@@ -170,7 +170,6 @@ These positions have an **unknown**, not zero, price. The total remains a lower 
 | codec transmit attenuator top resistor | `Vishay CRCW0402160KFKED` | `UNI-ROYAL 0402WGF1603TCE` | `C25757` | 388017 | `accepted_stocked_exact_parametric_replacement` |
 | IR emitter current-limit resistor | `YAGEO RC1206FR-0747RL` | `FH RS-06K47R0FT` | `C140014` | 78058 | `accepted_stocked_exact_parametric_replacement` |
 | 100-nF 100-V USB VBIAS capacitor | `TDK C1608X7S2A104K080AB` | `YAGEO CC0603KRX7R0BB104` | `C113803` | 1027658 | `accepted_stocked_no_worse_parametric_replacement` |
-| display-adapter main-board receptacle | `Hirose DF40C(2.0)-40DS-0.4V(58)` | `Hirose DF40C(2.0)-40DS-0.4V(51)` | `C597934` | 7205 | `accepted_stocked_exact_packaging_variant` |
 | dual common-drain pack-protection MOSFET | `Texas Instruments CSD87313DMST` | `Texas Instruments CSD87313DMS` | `C2863848` | 4741 | `accepted_stocked_exact_packaging_variant` |
 | robust 38-kHz demodulating IR receiver | `Vishay TSOP75238TT` | `Vishay TSOP75238TR` | `C511498` | 15 | `accepted_stocked_exact_tape_presentation_variant_with_placement_gate` |
 | Si4732 FMI 56-nH high-Q matching inductor | `Murata LQW15AN56NJ00D` | `Murata LQW15AN56NG00D` | `C167482` | 20744 | `accepted_stocked_no_worse_parametric_replacement` |
@@ -191,7 +190,6 @@ These positions have an **unknown**, not zero, price. The total remains a lower 
 - **`UNI-ROYAL 0402WGF1603TCE`:** Accepted at H1-R2.27. The UNI-ROYAL part preserves 160 kOhm, +/-1%, 0402, the standardized 1/16-W rating, 50-V working voltage, 100-ppm/C temperature coefficient and -55 to +155 C range. Its official body is 1.00 x 0.50 x 0.35 mm versus the selected Vishay's 1.00 x 0.50 x 0.40 mm, so the verified 0402 land pattern and sandwich clearance do not degrade. The five-device line falls from USD 8.9565 pre-order to USD 0.0130 in stock, saving USD 8.9435; the public material basis falls by USD 0.0131 per device. [JLCPCB](https://jlcpcb.com/partdetail/26500-0402WGF1603TCE/C25757)
 - **`FH RS-06K47R0FT`:** Accepted at H1-R2.27. The FH part preserves 47 Ohm, +/-1%, 1206, 0.25 W, 200 V, 100 ppm/C and -55 to +155 C. Its official 3.20 x 1.60 x 0.55-mm body is thinner than the selected YAGEO 3.20 x 1.60 x 0.65-mm body and uses the standard 1206 land pattern. The five-device line falls from USD 8.9566 pre-order to USD 0.0310 in stock, saving USD 8.9256; the public material basis falls by USD 0.0108 per device. [JLCPCB](https://jlcpcb.com/partdetail/151340-RS06K47R0FT/C140014)
 - **`YAGEO CC0603KRX7R0BB104`:** Accepted at H1-R2.27. The YAGEO part preserves 100 nF, +/-10%, 100 V, 0603/1608, -55 to +125 C and the exact 1.60 x 0.80 x 0.80-mm body. X7R holds capacitance within +/-15% over temperature and is stricter than the former X7S +/-22% class, so the USB VBIAS role does not degrade. The five-device line falls from USD 9.0752 pre-order to USD 0.1300 in stock, saving USD 8.9452; the public material basis falls by USD 0.0266 per device. [JLCPCB](https://jlcpcb.com/partdetail/YAGEO-CC0603KRX7R0BB104/C113803)
-- **`Hirose DF40C(2.0)-40DS-0.4V(51)`:** Accepted at H1-R2.29. Hirose defines (51) and (58) as the same 40-position 0.4-mm receptacle, 10.6 x 3.38 x 1.95-mm body, 2.0-mm mated stack, contacts and ratings; only the factory reel quantity changes from 1,000 to 4,000. C597934 is live JLCPCB Standard-PCBA stock. The five-device line falls from USD 5.3500 to USD 2.7695, saving USD 2.5805; the quantity-100 material basis falls by USD 0.7272 per device. [JLCPCB](https://jlcpcb.com/partdetail/x/C597934)
 - **`Texas Instruments CSD87313DMS`:** Accepted at H1-R2.29. TI lists DMS and DMST as the same production die, WSON-CLIP DMS 8 package, pin map and electrical limits; DMS is the 2,500-piece large tape-and-reel code and DMST is the 250-piece small tape-and-reel code. C2863848 is live JLCPCB Standard-PCBA stock. The five-device line falls from USD 7.3675 to USD 5.2790, saving USD 2.0885; the quantity-100 material basis falls by USD 0.7084 per device. [JLCPCB](https://jlcpcb.com/partdetail/x/C2863848)
 - **`Vishay TSOP75238TR`:** Accepted at H1-R2.29. Vishay uses the same final 6.8 x 3.0 x 3.2-mm Heimdall body, contacts and electrical contract for TR and TT; TR changes the tape presentation from top view to side view and the reel quantity from 2,200 to 2,300. C511498 currently covers the five-device trial but not a 100-device run. Before every order, exact stock plus attrition must be covered or pre-ordered, and the CPL rotation/feeder presentation must be approved against the JLCPCB placement preview. The five-device line falls from USD 7.3000 to USD 6.5055, saving USD 0.7945; the quantity-100 material basis falls by USD 0.2369 per device. [JLCPCB](https://jlcpcb.com/partdetail/x/C511498)
 - **`Murata LQW15AN56NG00D`:** Accepted at H1-R2.29. The Murata G code preserves the LQW15AN 0402 body, 56-nH nominal inductance, Q, 2.8-GHz minimum SRF, 200-mA current and 1.17-Ohm maximum DCR while tightening tolerance from +/-5% to +/-2%. C167482 is live JLCPCB Standard-PCBA stock. The five-device line falls from USD 0.3620 to USD 0.2235, saving USD 0.1385; the quantity-100 material basis falls by USD 0.0277 per device. [JLCPCB](https://jlcpcb.com/partdetail/x/C167482)
@@ -219,7 +217,7 @@ These positions have an **unknown**, not zero, price. The total remains a lower 
 
 - Exact EastRising drawings control the complete panel body, 50-contact FPC, 0.50-mm pitch, 0.30-mm stiffener and contact map; donor-board geometry is no longer used.
 - The panel is physically oriented **with its flex toward the antenna edge**, while ILI9488 display memory and FT6236 touch coordinates rotate in firmware. The tail stays out of the LED, D-pad and function-key zone.
-- The accepted upper adapter PCB position `[22.25, 1.0]` passes the current exact-body model: `0` same-face collisions and `2.6 mm` minimum opposing clearance versus `0.7 mm` required, with no GPIO or BOM change.
-- H1 fixes the orientation and replaceable adapter; only written factory acceptance of panel/FPC work and incoming-lot conformity remain open.
+- Direct ZIF `Hirose FH34SRJ-50S-0.5SH(50)` at `[24.0, 1.8]` passes the current exact-body model: `0` same-face collisions and `10.0 mm` to the opposing PCB plane versus `0.7 mm` required.
+- The adapter PCB and both DF40 parts are removed: stack height falls from `3.8` to `1.0 mm`, and one-prototype component cost falls by `$1.07`. The bezel, PSA and compliant preload carry the panel; ZIF contacts carry no mechanical load.
 
-> Marker: **H1-R2.37**. Included in the reviewed H1-R2.37 result.
+> Marker: **H1-R2.38**. Included in the current reviewed H1 result.

@@ -55,9 +55,9 @@ flowchart TD
   subgraph UI_STORAGE_1["UI and storage devices"]
   S3["ESP32-S3-WROOM-1U-N16R8<br/>application, UI, display/storage, audio, BLE/Wi-Fi owner"]
   MAIN_EFUSE["Texas Instruments TPS25974LRPWR<br/>main latch-off overvoltage circuit-breaker eFuse with protected PG"]
-  DISPLAY_CONNECTOR["Hirose DF40C(2.0)-40DS-0.4V(51)<br/>40-position 0.4-mm UI-board receptacle for the replaceable display adapter"]
-  DISPLAY_ADAPTER_PLUG["Hirose DF40C-40DP-0.4V(51)<br/>40-position 0.4-mm adapter-board plug; exact 2-mm DF40 mate"]
-  DISPLAY_PANEL_CONNECTOR["Hirose FH34SRJ-40S-0.5SH(99)<br/>40-position 0.5-mm dual-contact ZIF on the replaceable adapter"]
+  DISPLAY_CONNECTOR["Hirose DF40C(2.0)-40DS-0.4V(51)<br/>50-position 0.5-mm dual-contact ZIF directly on the UI PCB"]
+  DISPLAY_ADAPTER_PLUG["Hirose DF40C-40DP-0.4V(51)<br/>superseded adapter plug; historical non-purchase evidence only"]
+  DISPLAY_PANEL_CONNECTOR["Hirose FH34SRJ-40S-0.5SH(99)<br/>superseded adapter-side ZIF role; historical non-purchase evidence only"]
   DISPLAY["HMX035CTFT-001 (QDtech schematic assembly marking)<br/>3.5-inch QSPI IPS display and capacitive-touch assembly"]
   DISPLAY_TOUCH_CONTROLLER["Sitronix ST77922<br/>integrated display plus capacitive-touch TDDI COG"]
   DISPLAY_LOGIC_BULK_CAP["Murata GRM188R60J106ME47D<br/>10-uF protected-main display-logic bulk capacitor"]
@@ -115,9 +115,7 @@ flowchart TD
   SD_ESD_A -.->|"CLK/CMD/DAT0/DAT3 shunt clamps"| SD
   SD_ESD_B -.->|"DAT1/DAT2/VDD/detect shunt clamps"| SD
   S3 -->|"QSPI/touch/PWM: GPIO4,GPIO18,GPIO38,GPIO40,GPIO41,GPIO42,GPIO46"| DISPLAY_CONNECTOR
-  DISPLAY_CONNECTOR <-->|"exact 2-mm 40-contact DF40 mate"| DISPLAY_ADAPTER_PLUG
-  DISPLAY_ADAPTER_PLUG <-->|"one-to-one adapter copper"| DISPLAY_PANEL_CONNECTOR
-  DISPLAY_PANEL_CONNECTOR <-->|"dual-contact 40-position ZIF; received-tail fit H5"| DISPLAY
+  DISPLAY_CONNECTOR <-->|"direct 50-position ZIF; received-tail fit H5"| DISPLAY
   DISPLAY -->|"integrated exact COG"| DISPLAY_TOUCH_CONTROLLER
   DISPLAY_RESET_PULLDOWN -->|"RESX default low"| DISPLAY_CONNECTOR
   TOUCH_RESET_PULLDOWN -->|"TP_RESXP default low"| DISPLAY_CONNECTOR

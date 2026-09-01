@@ -43,11 +43,6 @@
       "projects": ["LESHY2-RF-R2", "LESHY2-UI-R2"],
       "endpoint_instances": ["m1_rf_receptacle", "m1_ui_plug"],
       "role": "80-contact M1 interboard connector"
-    },
-    {
-      "projects": ["L2-DISP-ADP-001-B", "LESHY2-UI-R2"],
-      "endpoint_instances": ["display_adapter_plug", "display_connector"],
-      "role": "40-contact display adapter connector"
     }
   ],
   "authorization": {

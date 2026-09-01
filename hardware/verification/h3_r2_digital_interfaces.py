@@ -17,7 +17,7 @@ DEVICES = ROOT / "hardware/architecture/devices.json"
 RAILS = ROOT / "hardware/verification/generated/H3-R2-rail-margins.json"
 NETS = ROOT / "hardware/ecad/generated/H2-R2-native-net-ledger.json"
 INSTANCES = ROOT / "hardware/ecad/generated/H2-R2-native-instance-ledger.json"
-ADAPTER = ROOT / "hardware/product-design/display-adapter.json"
+DISPLAY_MOUNT = ROOT / "hardware/product-design/display-mount.json"
 OUTPUT = ROOT / "hardware/verification/generated/H3-R2-digital-interfaces.json"
 DOC_EN = ROOT / "docs/digital-electrical-verification.md"
 DOC_RU = ROOT / "docs/digital-electrical-verification.ru.md"
@@ -115,7 +115,7 @@ def build() -> dict:
     rails = load(RAILS)
     rows = load(NETS)["rows"]
     instances = load(INSTANCES)["rows"]
-    adapter = load(ADAPTER)
+    display_mount = load(DISPLAY_MOUNT)
     errors: list[str] = []
 
     main = rails["voltage_corners"]["3V3_MAIN"]
@@ -153,18 +153,21 @@ def build() -> dict:
     }
     display_topology = {
         "all_s3_data_lanes_exact": all(endpoint(rows, pin, net) for net, pin in expected_s3_lanes.items()),
-        "wr_is_direct_gpio17": endpoint(rows, "s3.GPIO17", "LCD_WR_N") and endpoint(rows, "display_connector.PIN_11", "LCD_WR_N"),
-        "dc_is_direct_gpio45": endpoint(rows, "s3.GPIO45", "LCD_DC") and endpoint(rows, "display_connector.PIN_10", "LCD_DC"),
-        "panel_receives_all_eight_lanes": all(endpoint(rows, f"display_panel_connector.PIN_{32 - lane}", f"LCD_DB{lane}") for lane in range(8)),
-        "panel_wr_dc_reach_exact_contacts": endpoint(rows, "display_panel_connector.PIN_36", "LCD_WR_N_OR_SPI_SCL") and endpoint(rows, "display_panel_connector.PIN_37", "LCD_DC"),
-        "cs_is_hard_low": endpoint(rows, "display_connector.PIN_9", "POWER_GROUND") and endpoint(rows, "display_panel_connector.PIN_38", "LCD_CS_LOW_OR_SPI_CS_N"),
-        "rd_is_hard_high": endpoint(rows, "display_connector.PIN_12", "3V3_MAIN") and endpoint(rows, "display_panel_connector.PIN_35", "LCD_RD_HIGH"),
-        "im_straps_are_011": endpoint(rows, "display_connector.PIN_38", "3V3_MAIN") and endpoint(rows, "display_connector.PIN_39", "3V3_MAIN") and endpoint(rows, "display_connector.PIN_40", "POWER_GROUND"),
-        "adapter_mode_is_exact": adapter["electrical"]["selected_mode"] == "ILI9488 8080 8-bit with IM2/IM1/IM0 = 0/1/1",
-        "recovery_sda_is_not_populated_on_ui_board": endpoint(rows, "display_connector.PIN_13", None),
+        "wr_is_direct_gpio17": endpoint(rows, "s3.GPIO17", "LCD_WR_N") and endpoint(rows, "display_connector.PIN_36", "LCD_WR_N"),
+        "dc_is_direct_gpio45": endpoint(rows, "s3.GPIO45", "LCD_DC") and endpoint(rows, "display_connector.PIN_37", "LCD_DC"),
+        "panel_receives_all_eight_lanes": all(endpoint(rows, f"display_connector.PIN_{32 - lane}", f"LCD_DB{lane}") for lane in range(8)),
+        "panel_wr_dc_reach_exact_contacts": endpoint(rows, "display_connector.PIN_36", "LCD_WR_N") and endpoint(rows, "display_connector.PIN_37", "LCD_DC"),
+        "cs_is_hard_low": endpoint(rows, "display_connector.PIN_38", "POWER_GROUND"),
+        "rd_is_hard_high": endpoint(rows, "display_connector.PIN_35", "3V3_MAIN"),
+        "im_straps_are_011": endpoint(rows, "display_connector.PIN_7", "3V3_MAIN") and endpoint(rows, "display_connector.PIN_8", "3V3_MAIN") and endpoint(rows, "display_connector.PIN_9", "POWER_GROUND"),
+        "direct_mount_mode_is_exact": display_mount["electrical"]["selected_mode"] == "ILI9488 8080 8-bit with IM2/IM1/IM0 = 0/1/1",
+        "recovery_sda_is_not_populated_on_ui_board": endpoint(rows, "display_connector.PIN_34", None),
     }
     if not all_true(display_topology):
-        errors.append("direct i8080 topology or mode straps drifted")
+        errors.append(
+            "direct i8080 topology or mode straps drifted: "
+            + ", ".join(name for name, passed in display_topology.items() if not passed)
+        )
 
     display = architecture["display_contract"]
     cycle_ns = dec(1_000_000_000) / dec(display["selected_clock_hz"])
@@ -266,7 +269,7 @@ def build() -> dict:
         errors.append("one or more synchronous transport budgets failed")
 
     loading = {
-        "i8080": {"fanout_per_driven_line": 1, "route_rule": "one S3 output -> one passive board connector -> one passive adapter -> one ILI9488 input"},
+        "i8080": {"fanout_per_driven_line": 1, "route_rule": "one S3 output -> one direct UI-board ZIF contact -> one ILI9488 input"},
         "hub_c5_sdio": {"fanout_per_line": 1, "series_elements": 6, "d2_d3_switch_bandwidth_mhz": fsusb["bandwidth_mhz"], "switch_to_bus_clock_ratio": fsusb["bandwidth_mhz"] / 40},
         "hub_rf_m1": {"fanout_per_line": 1, "signal_contacts": [22, 23, 24, 26, 27], "reference_contacts": [21, 25, 28]},
         "sys_ui_i2c": {"pullup_ohm": 2200, "clock_hz": 400000, "maximum_allowed_bus_capacitance_pf": 120, "rise_time_at_max_cap_ns": 0.8473 * 2200 * 120 / 1000, "fast_mode_rise_limit_ns": 300},
@@ -291,7 +294,7 @@ def build() -> dict:
         "artifact": "H3-R2-digital-interfaces",
         "marker": "H3-R2.4",
         "status": "pass" if not errors else "fail",
-        "source_hashes": {str(path.relative_to(ROOT)): sha256(path) for path in (ARCH, DEVICES, RAILS, NETS, INSTANCES, ADAPTER)},
+        "source_hashes": {str(path.relative_to(ROOT)): sha256(path) for path in (ARCH, DEVICES, RAILS, NETS, INSTANCES, DISPLAY_MOUNT)},
         "methods": ["M-INT", "M-DIGITAL"],
         "authoritative_limits": SOURCES,
         "rail_corner_v": {"minimum": float(v_min), "maximum": float(v_max)},

@@ -163,13 +163,13 @@ def build() -> tuple[dict, dict]:
             )
 
     expected_native_summary = {
-        "project_count": 3,
-        "project_graph_sheet_count": 23,
-        "fitted_symbol_instance_count": 1185,
-        "physical_symbol_pin_count": 4323,
-        "connected_physical_pin_count": 4067,
-        "explicit_no_connect_physical_pin_count": 256,
-        "canonical_net_count": 823,
+        "project_count": 2,
+        "project_graph_sheet_count": 22,
+        "fitted_symbol_instance_count": 1183,
+        "physical_symbol_pin_count": 4243,
+        "connected_physical_pin_count": 4006,
+        "explicit_no_connect_physical_pin_count": 237,
+        "canonical_net_count": 816,
     }
     for key, value in expected_native_summary.items():
         if native["summary"].get(key) != value:

@@ -303,8 +303,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             candidate["bom_audit"]["status"],
         )
         lines = GENERATOR._target_bom_lines(self.database, candidate)
-        self.assertEqual(1052, sum(line["quantity"] for line in lines))
-        self.assertEqual(212, len(lines))
+        self.assertEqual(1050, sum(line["quantity"] for line in lines))
+        self.assertEqual(210, len(lines))
         self.assertEqual(
             0,
             sum(line["orderable_evidence"] == "missing" for line in lines),
@@ -314,11 +314,11 @@ class ArchitectureValidationTests(unittest.TestCase):
             sum(line["cost_evidence"] == "missing" for line in lines),
         )
         self.assertEqual(
-            203,
+            201,
             sum(line["cost_evidence"] == "present" for line in lines),
         )
         self.assertEqual(
-            1038,
+            1036,
             sum(
                 line["quantity"]
                 for line in lines
@@ -396,12 +396,12 @@ class ArchitectureValidationTests(unittest.TestCase):
 
         rendered = GENERATOR.render_target_bom_review(self.database, self.candidates)
         self.assertIn("**1053** architecture instances", rendered)
-        self.assertIn("**1052** supplied/costed placements", rendered)
-        self.assertIn("**212/212** used lines", rendered)
-        self.assertIn("**212/212** lines", rendered)
-        self.assertIn("**203/212** lines", rendered)
-        self.assertIn("**1038/1052** supplied placements", rendered)
-        self.assertIn("USD 251.8910", rendered)
+        self.assertIn("**1050** supplied/costed placements", rendered)
+        self.assertIn("**210/210** used lines", rendered)
+        self.assertIn("**210/210** lines", rendered)
+        self.assertIn("**201/210** lines", rendered)
+        self.assertIn("**1036/1050** supplied placements", rendered)
+        self.assertIn("USD 250.8222", rendered)
         self.assertIn("12", rendered)
         self.assertIn("quantity_100_rfq_required", rendered)
         self.assertIn("retail_only_no_quantity_100_tier", rendered)
@@ -580,15 +580,15 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Sunlord MWSA0503S-2R2MT",
             "Murata GRM31CR71E106MA12L",
             'data-zone="cc-reference-rf-network"',
-            'data-opposing-pairs="46"',
+            'data-opposing-pairs="44"',
             'data-min-z-clearance-mm="3.31"',
             'data-opposing-cable-pairs="2"',
             'data-rf-pcb-topology-guides="10"',
             'data-route-state="pre-ecad-topology-only"',
             'data-nrf-cable-reserves="3"',
-            'data-nrf-reserve-opposing-pairs="6"',
+            'data-nrf-reserve-opposing-pairs="4"',
             'data-encoder-through-features="7"',
-            'data-voice-v-rf-endpoint-distance-mm="45.57"',
+            'data-voice-v-rf-endpoint-distance-mm="45.59"',
             'data-voice-u-rf-endpoint-distance-mm="47.33"',
             'data-path="S3-2G4"',
             'data-path="RX-FM/SW"',

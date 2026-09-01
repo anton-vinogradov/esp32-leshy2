@@ -14,15 +14,15 @@
     },
     "physical": {
       "path": "hardware/product-design/h1-r2-placement.json",
-      "sha256": "219cdebfe3336b744056d019dc1ed57515fd574b2b545c083867e04155f3c1d8"
+      "sha256": "deb1e0629342daeb9fc0624bf5c9780d6bc08665193b2b3c92d1bf9d2c2c1257"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "9db9ce928ceb1dd38324d5e1eaff57a3d686ff449217ec3216577400dbe51060"
+      "sha256": "2caf023fb65a15be416b66686f7bcbd9ce199f8c8a55c4d37457782e73ceb6ef"
     },
     "component_groups": {
       "path": "hardware/product-design/generated/H1-R2-cost-audit.json",
-      "sha256": "cf97e24f3ef516e02abb29e7e296fd7214997cd86bfb89b42a754f6b399cb51e"
+      "sha256": "00d1916f096b881f06042f594cd01fb530a2e82ceaa8a8bedf829895eb4f48fc"
     },
     "c5_mux_and_service_vbus": {
       "path": "hardware/architecture/c5-sdio-service-mux-contract.json",
@@ -36,9 +36,9 @@
       "path": "hardware/architecture/h1-r2-u219-cap.json",
       "sha256": "01f01f750ceedaa9818b59968962a3484f4660057137e6ef43431a54b71c98fa"
     },
-    "display_adapter": {
-      "path": "hardware/product-design/display-adapter.json",
-      "sha256": "fb51eb612c6782497db14c1ec7786b1873809c57556be9651bff274ac318ac25"
+    "display_mount": {
+      "path": "hardware/product-design/display-mount.json",
+      "sha256": "7b6ae6b1687d3d2b5db6712b2d8dd93daaf24a4a1de2cef26880637cb8d2c5e9"
     },
     "airband": {
       "path": "hardware/product-design/h1-airband-filter.json",
@@ -66,12 +66,12 @@
         },
         {
           "id": "UI_10_S3_DISPLAY_TOUCH",
-          "role": "S3 core, exact direct i8080-8 display, touch and S3 service",
+          "role": "S3 core, exact direct i8080-8 display through the UI-board ZIF, touch and S3 service",
           "domain_owner": "s3",
           "sources": [
             "functional",
             "pin_map",
-            "display_adapter"
+            "display_mount"
           ]
         },
         {
@@ -261,29 +261,14 @@
           ]
         }
       ]
-    },
-    {
-      "id": "L2-DISP-ADP-001-B",
-      "board": "replaceable passive 40-to-50 display adapter",
-      "root": "ADP_00_DISPLAY_ADAPTER",
-      "sheets": [
-        {
-          "id": "ADP_00_DISPLAY_ADAPTER",
-          "role": "exact passive DF40-to-FH34 one-to-one/strap map; no active device",
-          "sources": [
-            "display_adapter",
-            "physical"
-          ]
-        }
-      ]
     }
   ],
   "summary": {
-    "project_count": 3,
-    "sheet_count": 23,
+    "project_count": 2,
+    "sheet_count": 22,
     "domain_count": 6,
-    "component_group_count": 240,
-    "component_quantity_per_product": 1195,
+    "component_group_count": 238,
+    "component_quantity_per_product": 1193,
     "external_antenna_group_count": 8,
     "external_antenna_count": 12,
     "unresolved_pre_ecad_prerequisites": 0,
@@ -760,34 +745,6 @@
       "historical_cost_route_only": "in_stock"
     },
     {
-      "device_id": "hirose_df40c_2_0_40ds_0_4v_51",
-      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
-      "quantity_per_product": 1,
-      "scope": "base_product",
-      "role": "display_connector",
-      "ecad_disposition": "schematic_component_group",
-      "qualification": "verified_exact_jlcpcb_stocked_display_adapter_main_board_receptacle",
-      "lifecycle": "active_factory_stocked_standard_pcba",
-      "contact_evidence": true,
-      "jlcpcb_part_number": "C597934",
-      "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": "in stock; the (51) suffix changes only factory reel quantity from the former (58) order code"
-    },
-    {
-      "device_id": "hirose_df40c_40dp_0_4v_51",
-      "mpn": "Hirose DF40C-40DP-0.4V(51)",
-      "quantity_per_product": 1,
-      "scope": "base_product",
-      "role": "display_adapter_plug",
-      "ecad_disposition": "schematic_component_group",
-      "qualification": "verified_exact_display_adapter_daughter_board_plug",
-      "lifecycle": "active and authorized-distributor-stocked",
-      "contact_evidence": true,
-      "jlcpcb_part_number": "C424643",
-      "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": "in_stock"
-    },
-    {
       "device_id": "hirose_dm3at_sf_pejm5",
       "mpn": "Hirose DM3AT-SF-PEJM5",
       "quantity_per_product": 1,
@@ -806,9 +763,9 @@
       "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
       "quantity_per_product": 1,
       "scope": "base_product",
-      "role": "display_panel_connector",
+      "role": "display_connector",
       "ecad_disposition": "schematic_component_group",
-      "qualification": "verified_exact_jlcpcb_stocked_display_adapter_panel_connector",
+      "qualification": "verified_exact_jlcpcb_stocked_direct_ui_display_connector",
       "lifecycle": "active exact manufacturer line; current JLCPCB Standard-PCBA stock and assembly route verified",
       "contact_evidence": true,
       "jlcpcb_part_number": "C3169104",

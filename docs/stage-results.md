@@ -25,7 +25,7 @@ power—not primary RF payloads.
 <a id="h1"></a>
 ## H1 · Physical product design
 
-**Status:** ✅ reviewed at **`H1-R2.37`** on 2026-08-30.
+**Status:** ✅ reviewed at **`H1-R2.38`** on 2026-08-30.
 
 - [Reviewed H1 phase result](h1-r2-acceptance.md)
 - [Current physical design](h1-r2-physical-layout.md)
@@ -71,7 +71,7 @@ H1 has no physical blocker. The complete mock-up was explicitly accepted on
 
 The former G2F/H2/KiCad result is historical single-RP R1 evidence. All three
 new R2 electrical prerequisites, the native source/sheet/component inventory,
-the exact symbol/contact/footprint ledger and the 4,323-endpoint net
+the exact symbol/contact/footprint ledger and the 4,243-endpoint net
 reconciliation are reviewed. Three native KiCad projects now pass zero-finding
 ERC; cross-sheet and HW↔FW reconciliation passes. Placement/routing have
 not started.
@@ -86,18 +86,18 @@ Exact current checklist:
    release qualifier reviewed with complete Standard-PCBA routes and fail-closed truth table;
 3. ✅ `H2-R2.0.3`: exact TI `TCA9803DGKR` / `C2687966` Pack/Safety boundary
    reviewed with rail-local termination, four Basic decouplers and USD 0.3953 cost;
-4. ✅ `H2-R2.1.1`: 3 projects, 23 sheets, 6 domain owners and 240 exact MPN
+4. ✅ `H2-R2.1.1`: 2 projects, 22 sheets, 6 domain owners and 238 exact MPN
    groups reviewed;
-5. ✅ `H2-R2.1.2`: 234 board groups, six explicit non-PCBA groups and 1,658
+5. ✅ `H2-R2.1.2`: 232 board groups, six explicit non-PCBA groups and 1,578
    logical contacts mapped with zero unresolved groups;
-6. ✅ `H2-R2.1.3` definitions/instances: 234 controlled symbols, 1,612 PCB-pad
-   pins and all 1,185 fitted instances pass the current three-project allocation;
-7. ✅ `H2-R2.1.3` nets: 4,323 fitted-instance contacts resolve to 823 canonical
-   nets or 256 explicit board no-connects with zero unresolved endpoints;
-8. ✅ `H2-R2.1.3`: three native KiCad projects materialize 4,323 physical pins
+6. ✅ `H2-R2.1.3` definitions/instances: 232 controlled symbols, 1,532 PCB-pad
+   pins and all 1,183 fitted instances pass the current two-project allocation;
+7. ✅ `H2-R2.1.3` nets: 4,239 fitted-instance contacts resolve to 816 canonical
+   nets or 237 explicit board no-connects with zero unresolved endpoints;
+8. ✅ `H2-R2.1.3`: two native KiCad projects materialize 4,243 physical pins
    and pass ERC with zero errors and zero warnings;
-9. ✅ `H2-R2.1.4`: six domains, 173 controller pins, 52 cross-project nets and
-   238 cross-sheet nets reconcile with zero unresolved boundary;
+9. ✅ `H2-R2.1.4`: six domains, 173 controller pins, 35 cross-project nets and
+   230 cross-sheet nets reconcile with zero unresolved boundary;
 10. ✅ `H2-R2.1.5`: the bilingual result report is published and the synchronized
     firmware H2 gate is open.
 
@@ -120,9 +120,9 @@ clearly labels retained R1 ECAD as non-current evidence.
 
 [`H3-R2.0.1`](h3-r2-input-freeze.md) reviewed the hash-bound H2 input and complete R2
 verification matrix. [`H3-R2.0.2`](parameter-model-register.md) reviewed exact
-parameter/model provenance for 240 groups and 1,185 fitted positions. Current
+parameter/model provenance for 238 groups and 1,183 fitted positions. Current
 methods are frozen by [`H3-R2.0.3`](verification-methods.md): nine methods and
-twelve pass/fail rules cover all 240 groups. [`H3-R2.1.1`](power-state-register.md)
+twelve pass/fail rules cover all 238 groups. [`H3-R2.1.1`](power-state-register.md)
 reviews all 2,266 legal source, charge, fault and operating states.
 [`H3-R2.1.2`](power-load-binding.md) reviews explicit binding for 613 fitted powered
 power-connected instances and six external loads. [`H3-R2.1.3`](power-rail-margins.md)
@@ -130,7 +130,7 @@ reviews 224 passing profiles across all four rails, with 30.560% minimum current
 reserve and 24.706 °C minimum junction-temperature reserve. [`H3-R2.1.4`](power-source-margins.md)
 reviews all 75 source/pack lines and 2,266 legal states: maximum pack current is
 3.516 A, sustained admission is 1.549 A, and charging yields before system load.
-The [H3-R2.1 cross-check](power-dc-source-result.md) reconciles all 619 loads,
+The [H3-R2.1 cross-check](power-dc-source-result.md) reconciles all 617 fitted/external loads,
 224 rail profiles and 2,266 states through 15 passing checks, so H3-R2.1 is
 reviewed. [`H3-R2.2.1`](power-transition-sequences.md) reviews all 14 ordered
 startup, shutdown, reset and recovery scenarios without automatic restart;
@@ -175,7 +175,7 @@ received-part measurements assigned to their controlled downstream gates.
 
 **Status:** 🔒 waits for reviewed H5.
 
-Expected result: two routed boards, the replaceable display adapter and one
+Expected result: two routed boards with the exact panel connected directly to the UI-board ZIF, and one
 hash-locked fabrication package. H6 closes only after eight reviewable steps:
 
 1. both-face placement for every board;

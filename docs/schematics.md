@@ -2,14 +2,14 @@
 
 [Home](../README.md) · [Hardware](hardware.md) · [Русский](schematics.ru.md)
 
-These are the current `H0-R2`/`H1-R2.37` principle diagrams of the finished
+These are the current `H0-R2`/`H1-R2.38` principle diagrams of the finished
 device. They explain ownership, buses, RF locality, power and service access.
 The exact dual-RP GPIO/M1 map and C5 SDIO/service-mux electrical join are closed
-as H1 authority. The native R2 production schematic now exists as three KiCad
+as H1 authority. The native R2 production schematic now exists as two KiCad
 projects and passes ERC with zero errors and zero warnings; its cross-sheet and
 hardware/firmware reconciliation passes as the reviewed H2-R2.1.5 result. U219
 host-body placement, all 18 U219 support bodies, the NFC pickup loop, supplied
-antenna swept volume and the exact EastRising display/adapter are closed. H1
+antenna swept volume and the exact EastRising display/direct ZIF are closed. H1
 is included in the reviewed H1 result and the materialized H2 schematic.
 
 The checked-in G2F/H2/KiCad tree is reviewed historical **single-RP R1**
@@ -82,8 +82,8 @@ included in the reviewed H1/H2 result.
 The repository retains the former R1 KiCad sheets and machine reports as
 historical engineering evidence. They are **not** the production schematic for
 R2 and must not be used for fabrication. The current native R2 source is the
-three-project [`H2-R2.1.3` result](h2-r2-native-kicad.md): 23 sheets, 1,185
-fitted positions, 4,323 physical pins and 823 canonical nets. It is ERC-clean;
+two-project [`H2-R2.1.3` result](h2-r2-native-kicad.md): 22 sheets, 1,183
+fitted positions, 4,243 physical pins and 816 canonical nets. It is ERC-clean;
 the [reviewed H2-R2.1.5 result](h2-acceptance.md) also passes six-domain
 cross-sheet/HW↔FW reconciliation. Placement, routing and the later release
 gates remain mandatory before fabrication.

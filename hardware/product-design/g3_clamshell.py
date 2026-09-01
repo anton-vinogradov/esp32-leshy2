@@ -18,7 +18,7 @@ CANDIDATE_PATH = REPO / "hardware/architecture/candidates/G2F-3I.json"
 MECHANICAL_GATES_PATH = REPO / "hardware/product-design/mechanical-evidence-gates.json"
 SOURCE_RESEARCH_PATH = REPO / "hardware/product-design/h1-source-research.json"
 NAVIGATION_CLUSTER_PATH = REPO / "hardware/product-design/navigation-cluster.json"
-DISPLAY_ADAPTER_DESIGN_PATH = REPO / "hardware/product-design/display-adapter.json"
+DISPLAY_MOUNT_DESIGN_PATH = REPO / "hardware/product-design/display-mount.json"
 ASSEMBLY_COORDINATE_MODEL_PATH = REPO / "hardware/product-design/assembly-coordinate-model.json"
 H1_R2_PLACEMENT_PATH = REPO / "hardware/product-design/h1-r2-placement.json"
 EXTERNAL_OUTPUT = REPO / "docs/images/current-clamshell.svg"
@@ -27,7 +27,7 @@ INTERNAL_OUTPUT = REPO / "docs/images/internal-board-layout.svg"
 SANDWICH_OUTPUT = REPO / "docs/images/sandwich-section.svg"
 TOP_EDGE_OUTPUT = REPO / "docs/images/top-edge-view.svg"
 NAVIGATION_OUTPUT = REPO / "docs/images/navigation-cluster.svg"
-DISPLAY_ADAPTER_OUTPUT = REPO / "docs/images/display-adapter.svg"
+DISPLAY_MOUNT_OUTPUT = REPO / "docs/images/display-mount.svg"
 SOURCE_TABLE_OUTPUT = REPO / "hardware/product-design/generated/H1-physical-source-table.json"
 SOURCE_REGISTER_OUTPUT = REPO / "docs/physical-source-register.md"
 UNIFIED_COORDINATE_TABLE_OUTPUT = REPO / "hardware/product-design/generated/H1-unified-coordinate-table.json"
@@ -51,7 +51,7 @@ INTENTIONAL_INTERBOARD_MATES = {
 }
 
 U214_X = -4.5
-U214_Y = 17.0
+U214_Y = 17.02
 U214_W = 84.0
 U214_H = 24.0
 U214_CLEARANCE = 0.7
@@ -100,7 +100,7 @@ REAR_RF = (
     (52.2, "VOICE-VHF", "SMA"),
     (66.9, "VOICE-UHF", "SMA"),
 )
-VOICE_V_RF_CORRIDOR = ((52.2, 0.0), (20.25, 32.5))
+VOICE_V_RF_CORRIDOR = ((52.2, 0.0), (20.25, 32.52))
 VOICE_U_RF_CORRIDOR = (
     (66.9, 0.0),
     (66.9, 6.0),
@@ -110,7 +110,7 @@ VOICE_U_RF_CORRIDOR = (
 )
 OPPOSITE_FACE_CLEARANCE_MM = 1.5
 
-# H1-R2.37 fail-closed placement scope. These are the already accepted G2F-3I
+# H1-R2.38 fail-closed placement scope. These are the already accepted G2F-3I
 # Cap-Bus protection/control and hardware TX-evidence aggregate bodies. The
 # values bind each instance to its current exact device key: a substitution,
 # omitted coordinate or duplicate projection must fail generation.
@@ -387,7 +387,7 @@ UI_INNER = (
     Placement("c5_rf_board_connector", 57.5, 9.0, "C5 30-mm jumper board receptacle"),
     Placement("s3", 6.0, 22.0, "UI, display, storage and audio owner"),
     Placement("c5", 51.0, 22.0, "native 2.4/5-GHz and IR owner"),
-    Placement("display_connector", 32.2, 6.5, "40-contact fixed receptacle for the antenna-edge replaceable display adapter"),
+    Placement("display_connector", 24.0, 1.8, "direct 50-contact dual-contact ZIF for the folded display FPC"),
     Placement("slow_io", 24.0, 55.0, "24-line slow-control expander"),
     Placement("ui_matrix_io", 33.0, 55.0, "sixteen-line direct-control input expander"),
     Placement("codec", 42.0, 55.0, "audio capture and playback codec"),
@@ -532,15 +532,15 @@ ANTENNA_TOPOLOGY_GUIDES = (
 
 RF_INNER = (
     Placement("nrf0_rf_board_connector", 23.0, 28.0, "nRF24 #0 Gen1 jumper board receptacle"),
-    Placement("nrf1_rf_board_connector", 50.0, 28.0, "nRF24 #1 Gen1 jumper board receptacle"),
+    Placement("nrf1_rf_board_connector", 47.9, 28.0, "nRF24 #1 Gen1 jumper board receptacle"),
     Placement("nrf2_rf_board_connector", 70.0, 22.0, "nRF24 #2 Gen1 jumper board receptacle"),
     Placement("rp", 0.0, 32.2, "deterministic radio owner"),
-    Placement("nrf0", 10.0, 7.5, "full-function nRF24 radio #0"),
-    Placement("nrf1", 33.1, 7.5, "superseded R1 nRF24 #1 seed; displaced clear of the current CC reference zone", 90),
-    Placement("nrf2", 53.1, 7.5, "superseded R1 nRF24 #2 seed; displaced clear of the current CC reference zone"),
-    Placement("voice_v", 15.8, 32.5, "VHF 134-174-MHz SA818S-V; dedicated contact-12 RF path", 180),
+    Placement("nrf0", 9.0, 7.5, "full-function nRF24 radio #0"),
+    Placement("nrf1", 34.5, 7.5, "full-function nRF24 radio #1; clear of the CC reference zone and U214 socket tails"),
+    Placement("nrf2", 49.9, 7.5, "full-function nRF24 radio #2; clear of the top-right mounting keep-out"),
+    Placement("voice_v", 15.8, 32.52, "VHF 134-174-MHz SA818S-V; dedicated contact-12 RF path", 180),
     Placement("voice", 52.2, 32.5, "UHF 400-480-MHz SA818S-U; dedicated contact-12 RF path", 270),
-    Placement("cc", 24.0, 8.3, "multi-band sub-GHz transceiver inside its local reference RF zone"),
+    Placement("cc", 25.0, 8.3, "multi-band sub-GHz transceiver inside its local reference RF zone"),
     Placement("nvdc_charger", 1.0, 63.0, "2S charger and NVDC power path"),
     Placement("pack_gauge", 1.0, 84.0, "2S protection and fuel gauge"),
     Placement("pack_admission", 5.7, 84.0, "fail-closed battery admission MCU"),
@@ -700,21 +700,21 @@ RF_NRF_CABLE_RESERVES = (
         "nrf0_rf_jumper",
         "nrf0",
         "nrf0_rf_board_connector",
-        ((22.1, 25.0), (24.5, 29.55)),
+        ((22.0, 25.6), (24.5, 29.55)),
         "direct nRF24 #0 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
     ),
     CableReserve(
         "nrf1_rf_jumper",
         "nrf1",
         "nrf1_rf_board_connector",
-        ((50.6, 19.6), (51.5, 29.55)),
+        ((34.5, 20.0), (49.4, 29.55)),
         "direct nRF24 #1 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
     ),
     CableReserve(
         "nrf2_rf_jumper",
         "nrf2",
         "nrf2_rf_board_connector",
-        ((65.2, 23.55), (71.5, 23.55)),
+        ((64.5, 23.55), (71.5, 23.55)),
         "direct nRF24 #2 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
     ),
 )
@@ -763,7 +763,7 @@ REAR_SELECTED_ACTUATORS = (
 INTERNAL_RESERVES = (
     Reserve(
         "cc-reference-rf-network",
-        22.9,
+        24.3,
         7.5,
         9.5,
         17.5,
@@ -777,9 +777,7 @@ INTERNAL_ZONE_ALLOWED_INSTANCES = {
 
 # Bodies that are mechanically accounted for by a dedicated assembly or
 # exterior projection rather than by one of the two inner-face placement maps.
-MECHANICAL_ASSEMBLY_EMBEDDED_INSTANCES = {
-    "display_touch_controller", "display_adapter_plug", "display_panel_connector",
-}
+MECHANICAL_ASSEMBLY_EMBEDDED_INSTANCES = {"display_touch_controller"}
 MECHANICAL_EXTERIOR_INSTANCES = {
     "display", "u214", "pack_holder", "pack_cell0", "pack_cell1",
     *RF_INSTANCE_BY_PATH.values(),
@@ -810,7 +808,6 @@ MECHANICAL_PROJECTION_FRAMES = {
     "ui-inner-route": "UI PCB top-left, viewed from the front/exterior",
     "rf-inner-route": "RF/power PCB top-left, viewed from the rear/exterior",
     "display-assembly": "ER-TFT035IPS-6 + ER-TPC035-6 configured CTP-outline top-left, front view",
-    "display-adapter": "L2-DISP-ADP-001-B top-left, viewed from its panel-facing side",
 }
 
 PLACEMENT_PROJECTION_GROUPS = (
@@ -823,9 +820,7 @@ PLACEMENT_PROJECTION_GROUPS = (
 )
 
 INTERNAL_CONNECTOR_ACTUATOR_DIRECTIONS = {
-    "display_connector": "normal to the UI-inner face toward the replaceable adapter plug",
-    "display_adapter_plug": "normal to the adapter underside toward the UI-board receptacle",
-    "display_panel_connector": "horizontal FPC insertion in the adapter plane; dual-contact orientation; received-tail thickness remains H5 evidence",
+    "display_connector": "horizontal FPC insertion toward the antenna edge; dual-contact ZIF; latch remains accessible after opening",
     "s3_rf_board_connector": "normal to the UI-inner face toward the cable plug",
     "c5_rf_board_connector": "normal to the UI-inner face toward the cable plug",
     "nrf0_rf_board_connector": "normal to the RF-inner face toward the Gen1 cable plug",
@@ -913,18 +908,6 @@ EXTERIOR_BODY_CONTRACTS = (
         0,
         "superseded H2 controller node; the H1 physical endpoint contains exact ILI9488 and FT6236 identities without a separate host-board body",
     ),
-    BodyProjectionContract(
-        "display_adapter_plug",
-        "display-adapter",
-        0,
-        "normal to the adapter underside toward the UI-board receptacle",
-    ),
-    BodyProjectionContract(
-        "display_panel_connector",
-        "display-adapter",
-        0,
-        "horizontal FPC insertion in the adapter plane; dual-contact orientation; received-tail thickness remains H5 evidence",
-    ),
 )
 
 
@@ -932,17 +915,19 @@ def load() -> tuple[dict, dict, dict, dict, dict, dict]:
     devices = json.loads(DEVICES_PATH.read_text(encoding="utf-8"))["devices"]
     candidate = json.loads(CANDIDATE_PATH.read_text(encoding="utf-8"))
     navigation_cluster = json.loads(NAVIGATION_CLUSTER_PATH.read_text(encoding="utf-8"))
-    display_adapter_design = json.loads(DISPLAY_ADAPTER_DESIGN_PATH.read_text(encoding="utf-8"))
+    display_mount_design = json.loads(DISPLAY_MOUNT_DESIGN_PATH.read_text(encoding="utf-8"))
     assembly_coordinate_model = json.loads(ASSEMBLY_COORDINATE_MODEL_PATH.read_text(encoding="utf-8"))
     instances = dict(candidate["instances"])
-    # H1-R2.37 owns the physical display endpoint.  The reviewed G2F-3I
+    # H1-R2.38 owns the physical display endpoint.  The reviewed G2F-3I
     # electrical candidate remains the superseded H2 input until the next
-    # phase rewires its display sheet to the accepted passive 40-to-50 map.
+    # phase rewires its display sheet to the accepted direct 50-contact map.
     instances["display"] = "eastrising_er_tft035ips_6_ctp"
-    instances["display_panel_connector"] = "hirose_fh34srj_50s_0_5sh_50"
+    instances["display_connector"] = "hirose_fh34srj_50s_0_5sh_50"
+    instances.pop("display_adapter_plug", None)
+    instances.pop("display_panel_connector", None)
     return (
         devices, candidate, instances, navigation_cluster,
-        display_adapter_design, assembly_coordinate_model,
+        display_mount_design, assembly_coordinate_model,
     )
 
 
@@ -1097,30 +1082,25 @@ def interboard_clearance_pairs(
     return sorted(pairs, key=lambda row: (row[0], row[1].instance, row[2].instance))
 
 
-def display_adapter_opposing_clearance_pairs(
+def display_mount_opposing_clearance_pairs(
     design: dict,
     devices: dict,
     instances: dict,
 ) -> list[tuple[float, Placement]]:
-    """Check the complete elevated display-adapter envelope against RF-inner."""
-    board = design["board"]
-    adapter_x, adapter_y = map(float, board["ui_inner_position_mm"])
-    adapter_box = (
-        adapter_x,
-        adapter_y,
-        float(board["width_mm"]),
-        float(board["height_mm"]),
-    )
-    adapter_height = float(design["stack"]["ui_board_to_panel_connector_top_mm"])
+    """Check the direct display ZIF envelope against the opposing RF-inner face."""
+    row = design["components"][0]
+    connector_x, connector_y = map(float, row["ui_inner_position_mm"])
+    connector_w, connector_h, connector_z = map(float, row["envelope_mm"])
+    connector_box = (connector_x, connector_y, connector_w, connector_h)
     rows: list[tuple[float, Placement]] = []
     for rf_item in RF_INNER:
         rf_w, rf_h = placement_size(rf_item, devices, instances)
         rf_box = (mirrored_x(rf_item.x, rf_w), rf_item.y, rf_w, rf_h)
-        if overlaps(adapter_box, rf_box):
+        if overlaps(connector_box, rf_box):
             rows.append(
                 (
                     INTERBOARD_GAP_MM
-                    - adapter_height
+                    - connector_z
                     - placement_height(rf_item, devices, instances),
                     rf_item,
                 )
@@ -1249,7 +1229,10 @@ def nrf_cable_reserve_opposing_pairs(
     pairs: list[tuple[float, CableReserve, Placement]] = []
     for reserve in RF_NRF_CABLE_RESERVES:
         cable = devices[instances[reserve.instance]]
-        radius = float(cable["electrical_contract"]["cable_outer_diameter_mm"]) / 2
+        cable_contract = cable["electrical_contract"]
+        radius = float(
+            cable_contract.get("cable_outer_diameter_mm", cable_contract["cable_outer_diameter_mm_max"])
+        ) / 2
         occupied_height = max(
             float(cable["mechanical_contract"]["maximum_mated_height_mm"]),
             placement_height(
@@ -1596,13 +1579,15 @@ def validate_nrf_cable_reserves(devices: dict, instances: dict) -> list[str]:
         contract = cable["electrical_contract"]
         mechanical = cable["mechanical_contract"]
         exact_length = float(contract["cable_length_mm"])
-        cable_radius = float(contract["cable_outer_diameter_mm"]) / 2
+        cable_radius = float(
+            contract.get("cable_outer_diameter_mm", contract["cable_outer_diameter_mm_max"])
+        ) / 2
         plug_plan = list(map(float, mechanical.get("maximum_plug_plan_envelope_mm", [])))
         if len(plug_plan) != 2 or plug_plan != [3.0, 3.1]:
             errors.append(f"nrf-rf-cable: {reserve.instance} lacks the exact Gen1 plug plan envelope")
         escape_length = polyline_length(reserve.escape_points)
         if not 0 < escape_length < exact_length:
-            errors.append(f"nrf-rf-cable: {reserve.instance} escape cannot retain 30-mm cable slack")
+            errors.append(f"nrf-rf-cable: {reserve.instance} escape cannot retain cable slack")
         if len(reserve.escape_points) != 2:
             errors.append(
                 f"nrf-rf-cable: {reserve.instance} must render as one direct IPEX-zone-to-U.FL projection"
@@ -1857,7 +1842,7 @@ def validate_mechanical_evidence_gates(instances: dict, rendered: set[str]) -> l
             errors.append(f"mechanical-gates: {gate.get('id')} must block H8")
 
     required_open_instances = {
-        "display", "display_connector", "display_adapter_plug", "display_panel_connector",
+        "display", "display_connector",
         "nrf0", "nrf1", "nrf2",
         "nrf0_rf_jumper", "nrf1_rf_jumper", "nrf2_rf_jumper",
         "nrf0_rf_board_connector", "nrf1_rf_board_connector", "nrf2_rf_board_connector",
@@ -1886,7 +1871,7 @@ def validate_source_research() -> list[str]:
     errors: list[str] = []
     if data.get("schema_version") != 1 or data.get("stage") != "H1.1.3.3":
         errors.append("source-research: schema/stage mismatch")
-    if data.get("status") != "reviewed" or data.get("current_substep") != "H1-R2.37":
+    if data.get("status") != "reviewed" or data.get("current_substep") != "H1-R2.38":
         errors.append("source-research: exact current substep drifted")
     policy = data.get("policy", {})
     if policy.get("order_authorized") is not False:
@@ -1984,146 +1969,90 @@ def validate_navigation_cluster(design: dict, devices: dict, instances: dict) ->
     return errors
 
 
-def validate_display_adapter_design(
+def validate_display_mount_design(
     design: dict, devices: dict, candidate: dict, instances: dict
 ) -> list[str]:
-    """Keep the replaceable passive 40-to-50 display interface honest."""
+    """Keep the direct panel-to-UI ZIF and non-load-bearing mount honest."""
     errors: list[str] = []
-    if design.get("schema_version") != 1 or design.get("design_id") != "L2-DISP-ADP-001-B":
-        errors.append("display-adapter: schema/design identity mismatch")
-    if design.get("stage") != "H1-R2.37":
-        errors.append("display-adapter: exact source-research stage drifted")
-    board = design.get("board", {})
-    board_w = float(board.get("width_mm", 0))
-    board_h = float(board.get("height_mm", 0))
-    board_t = float(board.get("thickness_mm", 0))
-    board_x, board_y = map(float, board.get("ui_inner_position_mm", [0, 0]))
-    if (board_w, board_h, board_t) != (30.5, 12.0, 0.8):
-        errors.append("display-adapter: controlled 30.5x12.0x0.8-mm PCB envelope drifted")
-    if board_x < 0 or board_y < 0 or board_x + board_w > BOARD_W or board_y + board_h > BOARD_H:
-        errors.append("display-adapter: adapter PCB leaves the UI-board projection")
-    if any(hits_hole((board_x, board_y, board_w, board_h), hole) for hole in HOLES):
-        errors.append("display-adapter: adapter PCB enters a mounting-hole keep-out")
-
-    expected_mpns = {
-        "display_connector": "Hirose DF40C(2.0)-40DS-0.4V(51)",
-        "display_adapter_plug": "Hirose DF40C-40DP-0.4V(51)",
-        "display_panel_connector": "Hirose FH34SRJ-50S-0.5SH(50)",
-    }
-    rows = {row.get("instance"): row for row in design.get("components", [])}
-    if set(rows) != set(expected_mpns):
-        errors.append("display-adapter: exact three-connector mechanical set drifted")
-    for instance, expected_mpn in expected_mpns.items():
-        if instance not in instances or instance not in rows:
-            continue
-        device = devices[instances[instance]]
-        if device.get("mpn") != expected_mpn or rows[instance].get("mpn") != expected_mpn:
-            errors.append(f"display-adapter: {instance} exact MPN drifted")
-        if [float(value) for value in rows[instance].get("envelope_mm", [])] != [
-            float(value) for value in device.get("dimensions_mm", [])
-        ]:
-            errors.append(f"display-adapter: {instance} envelope disagrees with device register")
-
-    main = rows.get("display_connector", {})
-    main_x, main_y = map(float, main.get("ui_inner_position_mm", [0, 0]))
-    main_w, main_h, _ = map(float, main.get("envelope_mm", [0, 0, 0]))
-    if not (
-        board_x <= main_x
-        and board_y <= main_y
-        and main_x + main_w <= board_x + board_w
-        and main_y + main_h <= board_y + board_h
-    ):
-        errors.append("display-adapter: main receptacle leaves the adapter projection")
+    if design.get("schema_version") != 1 or design.get("design_id") != "L2-DISP-DIRECT-001-A":
+        errors.append("display-mount: schema/design identity mismatch")
+    if design.get("stage") != "H1-R2.38":
+        errors.append("display-mount: exact source-research stage drifted")
+    rows = design.get("components", [])
+    if len(rows) != 1 or rows[0].get("instance") != "display_connector":
+        errors.append("display-mount: exactly one direct connector is required")
+        return errors
+    connector = rows[0]
+    device = devices[instances["display_connector"]]
+    expected_mpn = "Hirose FH34SRJ-50S-0.5SH(50)"
+    if connector.get("mpn") != expected_mpn or device.get("mpn") != expected_mpn:
+        errors.append("display-mount: exact direct ZIF MPN drifted")
+    if [float(value) for value in connector.get("envelope_mm", [])] != [
+        float(value) for value in device.get("dimensions_mm", [])
+    ]:
+        errors.append("display-mount: direct ZIF envelope disagrees with device register")
+    x, y = map(float, connector.get("ui_inner_position_mm", [0, 0]))
+    width, height, body_z = map(float, connector.get("envelope_mm", [0, 0, 0]))
+    box = (x, y, width, height)
+    if x < 0 or y < 0 or x + width > BOARD_W or y + height > BOARD_H:
+        errors.append("display-mount: direct ZIF leaves the UI-board projection")
+    if any(hits_hole(box, hole, MIN_INTERBOARD_Z_CLEARANCE_MM) for hole in HOLES):
+        errors.append("display-mount: direct ZIF enters a mounting-hole keep-out")
     ui_connector = next((item for item in UI_INNER if item.instance == "display_connector"), None)
-    if ui_connector is None or (ui_connector.x, ui_connector.y) != (main_x, main_y):
-        errors.append("display-adapter: main-receptacle coordinate disagrees with UI-inner placement")
-
-    adapter_plug = rows.get("display_adapter_plug", {})
-    plug_x, plug_y = map(float, adapter_plug.get("adapter_position_mm", [0, 0]))
-    plug_w, plug_h, _ = map(float, adapter_plug.get("envelope_mm", [0, 0, 0]))
-    panel_mate = rows.get("display_panel_connector", {})
-    panel_x, panel_y = map(float, panel_mate.get("adapter_position_mm", [0, 0]))
-    panel_w, panel_h, _ = map(float, panel_mate.get("envelope_mm", [0, 0, 0]))
-    for name, x, y, w, h in (
-        ("adapter plug", plug_x, plug_y, plug_w, plug_h),
-        ("panel connector", panel_x, panel_y, panel_w, panel_h),
-    ):
-        if x < 0 or y < 0 or x + w > board_w or y + h > board_h:
-            errors.append(f"display-adapter: {name} leaves the adapter PCB")
-    if not math.isclose(main_x + main_w / 2, board_x + plug_x + plug_w / 2, abs_tol=0.01):
-        errors.append("display-adapter: DF40 plug/receptacle X axes do not coincide")
-    if not math.isclose(main_y + main_h / 2, board_y + plug_y + plug_h / 2, abs_tol=0.01):
-        errors.append("display-adapter: DF40 plug/receptacle Y axes do not coincide")
-
-    stack = design.get("stack", {})
-    derived_height = (
-        float(stack.get("df40_mated_height_mm", 0))
-        + board_t
-        + float(stack.get("panel_connector_height_mm", 0))
-    )
-    if not math.isclose(derived_height, float(stack.get("ui_board_to_panel_connector_top_mm", -1)), abs_tol=1e-9):
-        errors.append("display-adapter: stored Z stack is stale")
-    if derived_height + float(stack.get("minimum_reserved_clearance_mm", 0)) > INTERBOARD_GAP_MM:
-        errors.append("display-adapter: connector stack exceeds the interboard gap")
-    adapter_box = (board_x, board_y, board_w, board_h)
+    if ui_connector is None or (ui_connector.x, ui_connector.y) != (x, y):
+        errors.append("display-mount: ZIF coordinate disagrees with UI-inner placement")
     for item in UI_INNER:
         if item.instance == "display_connector":
             continue
-        if overlaps(adapter_box, (item.x, item.y, *placement_size(item, devices, instances))):
-            errors.append(f"display-adapter: board projection conflicts with {item.instance}")
-    for hole in HOLES:
-        if hits_hole(adapter_box, hole, MIN_INTERBOARD_Z_CLEARANCE_MM):
-            errors.append(f"display-adapter: board projection enters mounting keep-out at {hole}")
-    for clearance, rf_item in display_adapter_opposing_clearance_pairs(
-        design, devices, instances
+        if overlaps(box, (item.x, item.y, *placement_size(item, devices, instances))):
+            errors.append(f"display-mount: direct ZIF conflicts with {item.instance}")
+    stack = design.get("stack", {})
+    if not math.isclose(
+        body_z, float(stack.get("connector_height_from_ui_inner_mm", -1)), abs_tol=1e-9
     ):
+        errors.append("display-mount: stored connector height is stale")
+    if body_z + float(stack.get("minimum_reserved_clearance_mm", 0)) > INTERBOARD_GAP_MM:
+        errors.append("display-mount: direct ZIF exceeds the interboard gap")
+    for clearance, rf_item in display_mount_opposing_clearance_pairs(design, devices, instances):
         if clearance < MIN_INTERBOARD_Z_CLEARANCE_MM:
             errors.append(
-                f"display-adapter: complete stack opposite {rf_item.instance} leaves only "
+                f"display-mount: direct ZIF opposite {rf_item.instance} leaves only "
                 f"{clearance:.2f} mm, below the {MIN_INTERBOARD_Z_CLEARANCE_MM:.1f}-mm minimum"
             )
-
+    retention = design.get("mechanical_retention", {})
+    if retention.get("connector_is_load_bearing") is not False:
+        errors.append("display-mount: ZIF must be explicitly non-load-bearing")
+    for field in ("panel_support", "primary_retention", "secondary_retention", "flex_strain_relief", "service_rule"):
+        if not retention.get(field):
+            errors.append(f"display-mount: mechanical retention lacks {field}")
     electrical = design.get("electrical", {})
     panel_map = electrical.get("panel_pin_map", {})
     if set(panel_map) != {str(pin) for pin in range(1, 51)}:
-        errors.append("display-adapter: exact 50-contact panel map is incomplete")
-    if int(electrical.get("main_position_count", 0)) != 40 or int(electrical.get("panel_position_count", 0)) != 50:
-        errors.append("display-adapter: 40-to-50 position counts drifted")
-    for pin, source in panel_map.items():
-        if not isinstance(source, str) or not source:
-            errors.append(f"display-adapter: panel pin {pin} lacks a deterministic source or OPEN disposition")
-        if source.startswith("MAIN_"):
-            try:
-                main_pin = int(source.split()[0].split("_", 1)[1])
-            except (ValueError, IndexError):
-                errors.append(f"display-adapter: panel pin {pin} has a malformed main-contact source")
-            else:
-                if not 1 <= main_pin <= 40:
-                    errors.append(f"display-adapter: panel pin {pin} leaves the 40-contact main interface")
+        errors.append("display-mount: exact 50-contact panel map is incomplete")
+    if int(electrical.get("panel_position_count", 0)) != 50:
+        errors.append("display-mount: panel position count drifted")
     if electrical.get("selected_mode") != "ILI9488 8080 8-bit with IM2/IM1/IM0 = 0/1/1":
-        errors.append("display-adapter: selected ILI9488 i8080 strap drifted")
-    expected_mode_straps = {
-        "7": "MAIN_38 LCD_IM0_HIGH",
-        "8": "MAIN_39 LCD_IM1_HIGH",
-        "9": "MAIN_40 LCD_IM2_LOW",
-    }
+        errors.append("display-mount: selected ILI9488 i8080 strap drifted")
+    expected_mode_straps = {"7": "LCD_IM0_HIGH", "8": "LCD_IM1_HIGH", "9": "LCD_IM2_LOW"}
     for pin, expected in expected_mode_straps.items():
         if panel_map.get(pin) != expected:
-            errors.append(f"display-adapter: panel pin {pin} mode strap drifted")
+            errors.append(f"display-mount: panel pin {pin} mode strap drifted")
+    if any(value.startswith("MAIN_") for value in panel_map.values()):
+        errors.append("display-mount: obsolete intermediate 40-contact map remains")
     if "H5" not in design.get("release_boundary", ""):
-        errors.append("display-adapter: received-tail fit must remain an H5 gate")
+        errors.append("display-mount: received-tail fit must remain an H5 gate")
     return errors
 
 
 def validate_assembly_coordinate_model(
-    model: dict, devices: dict, instances: dict, display_adapter_design: dict
+    model: dict, devices: dict, instances: dict, display_mount_design: dict
 ) -> list[str]:
     """Prove that every view shares one X/Y/Z datum and board transformation."""
     errors: list[str] = []
     if (
         model.get("schema_version") != 1
         or model.get("model_id") != "L2-ASM-COORD-001-A"
-        or model.get("stage") != "H1-R2.37"
+        or model.get("stage") != "H1-R2.38"
         or model.get("status") != "reviewed"
     ):
         errors.append("coordinate-model: schema, identity, stage or review status drifted")
@@ -2172,34 +2101,44 @@ def validate_assembly_coordinate_model(
     zones = model.get("longitudinal_zones", {})
     u214_y = list(map(float, zones.get("u214_cap_y_mm", [])))
     battery_y = list(map(float, zones.get("battery_holder_y_mm", [])))
-    if u214_y != [U214_Y, U214_Y + U214_H] or battery_y != [PACK_HOLDER_Y, PACK_HOLDER_Y + PACK_HOLDER_H]:
+    if (
+        len(u214_y) != 2
+        or any(not math.isclose(actual, expected, abs_tol=1e-9) for actual, expected in zip(u214_y, [U214_Y, U214_Y + U214_H]))
+        or battery_y != [PACK_HOLDER_Y, PACK_HOLDER_Y + PACK_HOLDER_H]
+    ):
         errors.append("coordinate-model: U214 or battery Y zone drifted")
     elif u214_y[1] + U214_CLEARANCE > battery_y[0]:
         errors.append("coordinate-model: U214 and battery longitudinal zones overlap")
 
     envelopes = model.get("accessory_envelopes", {})
-    adapter = envelopes.get("display_adapter_bay", {})
-    board = display_adapter_design["board"]
-    adapter_x, adapter_y = map(float, board["ui_inner_position_mm"])
-    expected_adapter = {
-        "x_mm": [adapter_x, adapter_x + float(board["width_mm"])],
-        "y_mm": [adapter_y, adapter_y + float(board["height_mm"])],
+    direct_zif = envelopes.get("display_direct_zif", {})
+    connector = display_mount_design["components"][0]
+    connector_x, connector_y = map(float, connector["ui_inner_position_mm"])
+    connector_w, connector_h, connector_z = map(float, connector["envelope_mm"])
+    expected_connector = {
+        "x_mm": [connector_x, connector_x + connector_w],
+        "y_mm": [connector_y, connector_y + connector_h],
         "z_mm": [
             float(stack.get("ui_inner_face_z", 0)),
-            float(stack.get("ui_inner_face_z", 0))
-            + float(display_adapter_design["stack"]["ui_board_to_panel_connector_top_mm"]),
+            float(stack.get("ui_inner_face_z", 0)) + connector_z,
         ],
     }
-    for axis, expected in expected_adapter.items():
-        if [float(value) for value in adapter.get(axis, [])] != expected:
-            errors.append(f"coordinate-model: display-adapter {axis} envelope drifted")
-    if expected_adapter["z_mm"][1] + MIN_INTERBOARD_Z_CLEARANCE_MM > float(stack.get("rf_inner_face_z", 0)):
-        errors.append("coordinate-model: display adapter violates the unified Z channel")
+    for axis, expected in expected_connector.items():
+        if [float(value) for value in direct_zif.get(axis, [])] != expected:
+            errors.append(f"coordinate-model: direct display ZIF {axis} envelope drifted")
+    if expected_connector["z_mm"][1] + MIN_INTERBOARD_Z_CLEARANCE_MM > float(stack.get("rf_inner_face_z", 0)):
+        errors.append("coordinate-model: direct display ZIF violates the unified Z channel")
 
     u214 = envelopes.get("u214", {})
     if [float(value) for value in u214.get("x_mm", [])] != [U214_X, U214_X + U214_W]:
         errors.append("coordinate-model: U214 X envelope drifted")
-    if [float(value) for value in u214.get("y_mm", [])] != [U214_Y, U214_Y + U214_H]:
+    if (
+        len(u214.get("y_mm", [])) != 2
+        or any(
+            not math.isclose(float(actual), expected, abs_tol=1e-9)
+            for actual, expected in zip(u214.get("y_mm", []), [U214_Y, U214_Y + U214_H])
+        )
+    ):
         errors.append("coordinate-model: U214 Y envelope drifted")
     if not model.get("enclosure_reference", {}).get("not_yet_locked"):
         errors.append("coordinate-model: enclosure-open boundary must remain explicit")
@@ -2209,7 +2148,7 @@ def validate_assembly_coordinate_model(
 def validate() -> list[str]:
     (
         devices, candidate, instances, navigation_cluster,
-        display_adapter_design, assembly_coordinate_model,
+        display_mount_design, assembly_coordinate_model,
     ) = load()
     errors: list[str] = []
     required = {
@@ -2227,9 +2166,7 @@ def validate() -> list[str]:
         "ui_dpad_left": "OMRON B3S-1100P",
         "ui_dpad_right": "OMRON B3S-1100P",
         "ui_dpad_ok": "OMRON B3S-1100P",
-        "display_connector": "Hirose DF40C(2.0)-40DS-0.4V(51)",
-        "display_adapter_plug": "Hirose DF40C-40DP-0.4V(51)",
-        "display_panel_connector": "Hirose FH34SRJ-50S-0.5SH(50)",
+        "display_connector": "Hirose FH34SRJ-50S-0.5SH(50)",
     }
     for instance, expected in required.items():
         actual = devices[instances[instance]]["mpn"]
@@ -2246,11 +2183,11 @@ def validate() -> list[str]:
     errors += validate_mechanical_evidence_gates(instances, mechanically_accounted)
     errors += validate_source_research()
     errors += validate_navigation_cluster(navigation_cluster, devices, instances)
-    errors += validate_display_adapter_design(
-        display_adapter_design, devices, candidate, instances
+    errors += validate_display_mount_design(
+        display_mount_design, devices, candidate, instances
     )
     errors += validate_assembly_coordinate_model(
-        assembly_coordinate_model, devices, instances, display_adapter_design
+        assembly_coordinate_model, devices, instances, display_mount_design
     )
     for instance, device_key in instances.items():
         device = devices[device_key]
@@ -2799,10 +2736,10 @@ def validate() -> list[str]:
     if external_root.attrib.get("data-coordinate-model") != "L2-ASM-COORD-001-A":
         errors.append("external layout must identify the unified coordinate model")
     if (
-        external_root.attrib.get("data-review-gate") != "H1-R2.37"
+        external_root.attrib.get("data-review-gate") != "H1-R2.38"
         or external_root.attrib.get("data-review-status") != "ready-for-user-acceptance"
     ):
-        errors.append("external layout must identify the current H1-R2.37 acceptance candidate")
+        errors.append("external layout must identify the current H1-R2.38 acceptance candidate")
     face_nodes = {
         element.attrib.get("data-face"): element
         for element in external_root.iter("{http://www.w3.org/2000/svg}rect")
@@ -2904,7 +2841,7 @@ def validate() -> list[str]:
         if token not in external_svg:
             errors.append("both antenna banks must render as outward-face assemblies")
     errors += validate_external_silkscreen(external_svg, devices, instances)
-    internal_svg = render_internal(devices, instances, display_adapter_design)
+    internal_svg = render_internal(devices, instances, display_mount_design)
     if 'data-layer="pcb-silkscreen"' in internal_svg:
         errors.append("inner PCB faces must not carry silkscreen text")
     if internal_svg.count('data-connector-bodies="omitted-outer-face"') != 2:
@@ -3062,7 +2999,7 @@ def render_external(devices, instances):
 
     front, rear = (80.0, 150.0), (465.0, 150.0)
     out = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790" data-coordinate-model="L2-ASM-COORD-001-A" data-review-gate="H1-R2.37" data-review-status="ready-for-user-acceptance">',
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790" data-coordinate-model="L2-ASM-COORD-001-A" data-review-gate="H1-R2.38" data-review-status="ready-for-user-acceptance">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         text(30, 32, "Leshy2 — dimensioned external layout", 22, "bold"),
@@ -3515,7 +3452,7 @@ def render_service_access(devices, instances):
     return "\n".join(out) + "\n"
 
 
-def render_internal(devices, instances, display_adapter_design):
+def render_internal(devices, instances, display_mount_design):
     scale = 3.7
     sx, sy, text, rect = helpers(scale)
 
@@ -3532,14 +3469,18 @@ def render_internal(devices, instances, display_adapter_design):
     notes_top = max(560, legend_bottom + 35)
     clearance_pairs = interboard_clearance_pairs(devices, instances)
     individual_clearances = interboard_individual_clearances(devices, instances)
-    adapter_clearance_pairs = display_adapter_opposing_clearance_pairs(
-        display_adapter_design, devices, instances
+    mount_clearance_pairs = display_mount_opposing_clearance_pairs(
+        display_mount_design, devices, instances
     )
     cable_clearance_pairs = cable_interboard_clearance_pairs(devices, instances)
     nrf_reserve_clearance_pairs = nrf_cable_reserve_opposing_pairs(devices, instances)
     through_board_clearance_pairs = through_board_opposing_pairs(devices, instances)
     maximum_cable_od = max(
-        float(devices[instances[route.instance]]["electrical_contract"]["cable_outer_diameter_mm"])
+        float(
+            devices[instances[route.instance]]["electrical_contract"]["cable_outer_diameter_mm"]
+            if "cable_outer_diameter_mm" in devices[instances[route.instance]]["electrical_contract"]
+            else devices[instances[route.instance]]["electrical_contract"]["cable_outer_diameter_mm_max"]
+        )
         for route in UI_RF_CABLES + tuple(
             CableRoute(reserve.instance, reserve.escape_points, reserve.role)
             for reserve in RF_NRF_CABLE_RESERVES
@@ -3547,7 +3488,11 @@ def render_internal(devices, instances, display_adapter_design):
     )
     minimum_clearance, minimum_ui, minimum_rf = clearance_pairs[0]
     minimum_individual_clearance, tallest_item = individual_clearances[0]
-    minimum_adapter_clearance, minimum_adapter_body = adapter_clearance_pairs[0]
+    minimum_mount_clearance = min(
+        (row[0] for row in mount_clearance_pairs),
+        default=INTERBOARD_GAP_MM - float(display_mount_design["stack"]["connector_height_from_ui_inner_mm"]),
+    )
+    minimum_mount_body = mount_clearance_pairs[0][1].instance if mount_clearance_pairs else "opposite PCB plane"
     minimum_nrf_reserve_clearance, _, _ = nrf_reserve_clearance_pairs[0]
     minimum_through_board_clearance, _, _ = through_board_clearance_pairs[0]
     tallest_height = placement_height(tallest_item, devices, instances)
@@ -3769,10 +3714,9 @@ def render_internal(devices, instances, display_adapter_design):
             f"{sx(rf,mirrored_x(x)):.1f},{sy(rf,y):.1f}"
             for x, y in reserve.escape_points
         )
+        reserve_contract = devices[instances[reserve.instance]]["electrical_contract"]
         cable_od = float(
-            devices[instances[reserve.instance]]["electrical_contract"][
-                "cable_outer_diameter_mm"
-            ]
+            reserve_contract.get("cable_outer_diameter_mm", reserve_contract["cable_outer_diameter_mm_max"])
         )
         assembly_length = float(
             devices[instances[reserve.instance]]["electrical_contract"][
@@ -3973,8 +3917,8 @@ def render_internal(devices, instances, display_adapter_design):
         f'<g id="validated-clearances" data-legend-bottom="{legend_bottom}" data-top="{notes_top}" '
         f'data-inner-body-count="{len(individual_clearances)}" data-max-inner-height-mm="{tallest_height:.2f}" '
         f'data-min-single-body-clearance-mm="{minimum_individual_clearance:.2f}" '
-        f'data-display-adapter-opposing-pairs="{len(adapter_clearance_pairs)}" '
-        f'data-min-display-adapter-clearance-mm="{minimum_adapter_clearance:.2f}" '
+        f'data-display-direct-zif-opposing-pairs="{len(mount_clearance_pairs)}" '
+        f'data-min-display-direct-zif-clearance-mm="{minimum_mount_clearance:.2f}" '
         f'data-opposing-pairs="{len(clearance_pairs)}" data-intentional-mates="{len(INTENTIONAL_INTERBOARD_MATES)}" '
         f'data-min-z-clearance-mm="{minimum_clearance:.2f}" data-rf-cable-routes="{len(UI_RF_CABLES)}" '
         f'data-rf-pcb-topology-guides="{len(ANTENNA_TOPOLOGY_GUIDES)}" '
@@ -3986,7 +3930,7 @@ def render_internal(devices, instances, display_adapter_design):
         text(note_x,notes_top,"Validated clearances",14,"bold"),
         text(note_x,notes_top+24,"• same-face device-to-device clearance: ≥0.7 mm",10),
         text(note_x,notes_top+45,f"• all {len(individual_clearances)} inner bodies checked individually; tallest {tallest_height:.2f} mm; opposite-plane remainder {minimum_individual_clearance:.2f} mm",10),
-        text(note_x,notes_top+66,f"• complete 3.80-mm display adapter: {len(adapter_clearance_pairs)} opposing crossings; minimum Z gap {minimum_adapter_clearance:.2f} mm to {minimum_adapter_body.instance}",10),
+        text(note_x,notes_top+66,f"• direct 1.00-mm display ZIF: {len(mount_clearance_pairs)} opposing crossings; minimum Z gap {minimum_mount_clearance:.2f} mm to {minimum_mount_body}",10),
         text(note_x,notes_top+87,f"• opposing inner faces: {len(clearance_pairs)} non-mating XY pairs checked; minimum Z gap {minimum_clearance:.2f} mm",10),
         text(note_x,notes_top+108,f"• outward connector / through-hole tail clearance on the opposite face: ≥{OPPOSITE_FACE_CLEARANCE_MM:.1f} mm",10),
         text(note_x,notes_top+129,f"• RF coax: {len(UI_RF_CABLES)} direct exact-endpoint projections + {len(RF_NRF_CABLE_RESERVES)} nRF module-face reserves; all five 30-mm assemblies accounted",10),
@@ -4001,7 +3945,7 @@ def render_internal(devices, instances, display_adapter_design):
         text(note_x,notes_top+318,"SMA · GCT RFPC-SMA31-FN-175-A",9.2,"bold",colour="#344054"),
         text(note_x,notes_top+338,"RP-SMA · GCT RFPC-SMA32-FN-175-A",9.2,"bold",colour="#344054"),
         text(note_x,notes_top+364,"All five native/nRF module feeds use exact 30-mm 2118651-2 Gen1 jumpers.",9.2,"bold",colour="#166534"),
-        text(note_x,notes_top+385,"Physical keep-outs pass; display-tail evidence and final PCB copper/via DRC remain open.",9.2,"bold",colour="#b42318"),
+        text(note_x,notes_top+385,"Physical keep-outs pass; display-tail insertion, bezel retention and final PCB copper/via DRC remain open.",9.2,"bold",colour="#b42318"),
         text(note_x,notes_top+406,"Placement projection; all mechanically significant bodies are accounted; small passives and production copper remain ECAD work.",9.2,colour="#526076"),
         "</g>",
     ]
@@ -4716,20 +4660,10 @@ def render_navigation_cluster(design, devices, instances):
     return "\n".join(out) + "\n"
 
 
-def render_display_adapter(design):
-    """Render the fixed main-board mate and replaceable display-tail adapter."""
-    board = design["board"]
-    components = {row["instance"]: row for row in design["components"]}
-    scale = 14.0
-    ox, oy = 130.0, 135.0
-    bw = float(board["width_mm"]) * scale
-    bh = float(board["height_mm"]) * scale
-
-    def tx(value: float) -> float:
-        return ox + value * scale
-
-    def ty(value: float) -> float:
-        return oy + value * scale
+def render_display_mount(design):
+    """Render the direct ZIF and the enclosure load path that protects it."""
+    connector = design["components"][0]
+    stack = design["stack"]
 
     def label(x, y, value, size=11, weight="normal", anchor="start", colour="#172033"):
         return (
@@ -4737,63 +4671,53 @@ def render_display_adapter(design):
             f'font-weight="{weight}" text-anchor="{anchor}" fill="{colour}">{html.escape(str(value))}</text>'
         )
 
-    def component_box(row, fill, stroke):
-        x, y = map(float, row["adapter_position_mm"])
-        w, h, _ = map(float, row["envelope_mm"])
-        return (
-            f'<rect x="{tx(x):.1f}" y="{ty(y):.1f}" width="{w*scale:.1f}" height="{h*scale:.1f}" '
-            f'rx="3" fill="{fill}" stroke="{stroke}" stroke-width="2"/>'
-        )
-
-    plug = components["display_adapter_plug"]
-    panel = components["display_panel_connector"]
-    stack = design["stack"]
     out = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650">',
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
-        label(40, 42, "Leshy2 — replaceable passive 40-to-50 display adapter", 22, "bold"),
-        label(40, 68, "L2-DISP-ADP-001-B · exact connector bodies and explicit 50-to-40 electrical map", 11, colour="#526076"),
-        label(ox, 112, "Panel-facing adapter side · millimetre scale", 14, "bold", colour="#1d4ed8"),
-        f'<rect x="{ox:.1f}" y="{oy:.1f}" width="{bw:.1f}" height="{bh:.1f}" rx="5" fill="#f8fafc" stroke="#344054" stroke-width="2"/>',
-        component_box(panel, "#dbeafe", "#2563eb"),
-        component_box(plug, "#ede9fe", "#7c3aed"),
-        label(tx(15.25), ty(2.9), "FH34SRJ-50S-0.5SH(50) · C3169104", 9.5, "bold", "middle", "#1d4ed8"),
-        label(tx(15.25), ty(7.65), "DF40C-40DP-0.4V(51) · underside", 8.5, "bold", "middle", "#6d28d9"),
-        f'<path d="M{tx(1.75):.1f} {ty(2.7):.1f} L{tx(-2.5):.1f} {ty(2.7):.1f}" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>',
-        label(tx(-2.9), ty(2.25), "DISPLAY FPC", 8.8, "bold", "end", "#b42318"),
-        label(ox + bw/2, oy + bh + 26, f"{float(board['width_mm']):.1f} × {float(board['height_mm']):.1f} × {float(board['thickness_mm']):.1f} mm adapter PCB", 11, "bold", "middle"),
-        label(545, 112, "Front-to-rear stack", 14, "bold", colour="#166534"),
-    ]
-
-    sx0 = 555.0
-    base_y = 325.0
-    z_scale = 38.0
-    main_h = 1.95 * z_scale
-    mate_h = float(stack["df40_mated_height_mm"]) * z_scale
-    pcb_h = float(board["thickness_mm"]) * z_scale
-    panel_h = float(stack["panel_connector_height_mm"]) * z_scale
-    out += [
-        f'<rect x="{sx0:.1f}" y="{base_y:.1f}" width="235" height="18" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>',
-        label(sx0 + 245, base_y + 13, "UI/control PCB", 10, "bold"),
-        f'<rect x="{sx0+55:.1f}" y="{base_y-main_h:.1f}" width="125" height="{main_h:.1f}" fill="#e0e7ff" stroke="#4338ca" stroke-width="2"/>',
-        label(sx0 + 117.5, base_y-main_h/2+4, "DF40C(2.0)-40DS-0.4V(51)", 8.5, "bold", "middle"),
-        f'<rect x="{sx0+62:.1f}" y="{base_y-mate_h:.1f}" width="111" height="{1.14*z_scale:.1f}" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>',
-        f'<rect x="{sx0+15:.1f}" y="{base_y-mate_h-pcb_h:.1f}" width="205" height="{pcb_h:.1f}" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>',
-        label(sx0 + 230, base_y-mate_h-pcb_h/2+4, "0.8-mm adapter", 10, "bold"),
-        f'<rect x="{sx0+25:.1f}" y="{base_y-mate_h-pcb_h-panel_h:.1f}" width="185" height="{panel_h:.1f}" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>',
-        label(sx0 + 140.0, base_y-mate_h-pcb_h-panel_h/2+4, "FH34SRJ-50S-0.5SH(50)", 8.8, "bold", "middle"),
-        label(555, 390, f"Selected height to panel-connector top: {stack['ui_board_to_panel_connector_top_mm']:.1f} mm", 11, "bold"),
-        label(555, 413, f"Available inner gap: {stack['available_interboard_gap_mm']:.1f} mm", 11),
-        label(555, 455, "Electrical contract", 14, "bold"),
-        label(555, 480, "50 panel contacts map explicitly to the fixed 40-contact UI mate.", 11, "bold", colour="#166534"),
-        label(555, 503, "Unused RGB pins are grounded/open; i8080-8, touch and power stay direct.", 10.5),
-        label(555, 526, "No active device: a replacement panel changes only this small adapter.", 10.5),
-        label(555, 549, "Tail thickness/outline remains a received-display H5 fit check.", 10.5, "bold", colour="#b42318"),
-        label(40, 590, "H1 result", 14, "bold", colour="#166534"),
-        label(140, 590, "exact EastRising tail, stocked 50-pin ZIF and passive 40-to-50 map are fixed before purchase", 11, "bold", colour="#166534"),
-        label(40, 620, "H5 boundary", 14, "bold", colour="#b42318"),
-        label(140, 620, "a received tail may revise only this small adapter and its panel-side connector", 11, colour="#b42318"),
+        label(40, 42, "Leshy2 — direct display ZIF and supported panel mount", 22, "bold"),
+        label(40, 68, "L2-DISP-DIRECT-001-A · one connector on the UI PCB · no adapter PCB · ZIF carries no mechanical load", 11, colour="#526076"),
+        label(55, 112, "Front-to-rear section", 14, "bold", colour="#1d4ed8"),
+        '<rect x="70" y="145" width="385" height="22" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>',
+        label(262, 160, "front bezel overlap", 10, "bold", "middle", "#1d4ed8"),
+        '<rect x="92" y="167" width="341" height="172" rx="7" fill="#eaf2ff" stroke="#60a5fa" stroke-width="2"/>',
+        '<rect x="107" y="183" width="311" height="139" rx="5" fill="#cfe1ff" stroke="#2563eb" stroke-width="2"/>',
+        label(262, 254, "ER-TFT035IPS-6 + ER-TPC035-6", 13, "bold", "middle"),
+        label(262, 276, "touch/display assembly", 10, "normal", "middle", "#526076"),
+        '<rect x="92" y="339" width="341" height="9" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>',
+        label(443, 347, "perimeter PSA on rigid display bed", 10, "bold", "start", "#92400e"),
+        '<rect x="105" y="358" width="315" height="18" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>',
+        label(443, 372, "0.5–1.0 mm compliant rear preload", 10, "bold", "start", "#166534"),
+        '<path d="M385 322 C455 333 467 409 378 437 L330 437" fill="none" stroke="#0f766e" stroke-width="10" stroke-linecap="round"/>',
+        '<path d="M385 322 C455 333 467 409 378 437 L330 437" fill="none" stroke="#99f6e4" stroke-width="5" stroke-linecap="round"/>',
+        label(470, 410, "controlled folded FPC corridor", 10, "bold", "start", "#0f766e"),
+        '<rect x="70" y="455" width="385" height="18" rx="3" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>',
+        label(262, 469, "UI PCB", 10, "bold", "middle", "#166534"),
+        '<rect x="236" y="417" width="154" height="38" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>',
+        label(313, 440, "50-pin ZIF", 11, "bold", "middle", "#1d4ed8"),
+        '<path d="M313 417 L313 390" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>',
+        label(313, 385, "latch remains accessible after opening", 9, "bold", "middle", "#b42318"),
+        label(70, 505, "Load path", 13, "bold", colour="#166534"),
+        label(70, 530, "bezel → panel bed/PSA → shell; corner locators stop shear; compliant pad controls rattle", 10.5),
+        label(70, 553, "The folded FPC has slack and strain relief. It does not retain the screen and does not peel the ZIF.", 10.5, "bold", colour="#166534"),
+        label(650, 112, "UI PCB inner-face plan", 14, "bold", colour="#7c3aed"),
+        '<rect x="720" y="140" width="300" height="500" rx="8" fill="#f8fafc" stroke="#344054" stroke-width="3"/>',
+        '<circle cx="740" cy="177" r="16" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="6 4"/>',
+        '<circle cx="1000" cy="177" r="16" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="6 4"/>',
+        '<rect x="816" y="146" width="108" height="25" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="2" data-instance="display_connector"/>',
+        label(870, 162, "FH34SRJ-50S", 8.5, "bold", "middle", "#1d4ed8"),
+        '<path d="M870 146 L870 122" stroke="#0f766e" stroke-width="6" stroke-linecap="round"/>',
+        label(870, 92, "FPC enters from antenna edge", 10, "bold", "middle", "#0f766e"),
+        '<rect x="760" y="225" width="95" height="78" rx="4" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>',
+        '<rect x="885" y="225" width="95" height="78" rx="4" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>',
+        label(807, 267, "S3", 12, "bold", "middle"),
+        label(932, 267, "C5", 12, "bold", "middle"),
+        label(870, 332, "direct display nets", 10, "bold", "middle", "#166534"),
+        '<path d="M816 171 L807 225 M924 171 L932 225" stroke="#16a34a" stroke-width="2"/>',
+        label(650, 595, f"Connector envelope: {connector['envelope_mm'][0]:.1f} × {connector['envelope_mm'][1]:.1f} × {connector['envelope_mm'][2]:.1f} mm", 10.5, "bold"),
+        label(650, 618, f"Inner gap: {stack['available_interboard_gap_mm']:.1f} mm · removed stack: {stack['removed_adapter_stack_height_mm']:.1f} mm · height saved: {stack['height_reduction_mm']:.1f} mm", 10.5),
+        label(650, 650, "Removed: both DF40 connectors and the separate display-adapter PCB", 11, "bold", colour="#b42318"),
+        label(40, 680, "Factory operation: populate ZIF on UI PCB, install panel into shell bed, close latch, apply PSA/preload and perform visual/power-on inspection.", 10.5, "bold", colour="#166534"),
         '</svg>',
     ]
     return "\n".join(out) + "\n"
@@ -4905,7 +4829,7 @@ def build_unified_coordinate_table(
     model: dict,
     devices: dict,
     instances: dict,
-    display_adapter_design: dict,
+    display_mount_design: dict,
 ) -> dict:
     """Resolve local view coordinates into the shared front-facing world datum."""
     stack = model["stack"]
@@ -4950,8 +4874,8 @@ def build_unified_coordinate_table(
     cable_pairs = cable_interboard_clearance_pairs(devices, instances)
     nrf_reserve_pairs = nrf_cable_reserve_opposing_pairs(devices, instances)
     through_board_pairs = through_board_opposing_pairs(devices, instances)
-    adapter_pairs = display_adapter_opposing_clearance_pairs(
-        display_adapter_design, devices, instances
+    mount_pairs = display_mount_opposing_clearance_pairs(
+        display_mount_design, devices, instances
     )
     minimum_individual_clearance, tallest_item = individual_clearances[0]
     minimum_pair_clearance, minimum_ui, minimum_rf = opposing_pairs[0]
@@ -4962,7 +4886,11 @@ def build_unified_coordinate_table(
     minimum_through_clearance, minimum_through_feature, minimum_through_body = (
         through_board_pairs[0]
     )
-    minimum_adapter_clearance, minimum_adapter_body = adapter_pairs[0]
+    minimum_mount_clearance = min(
+        (row[0] for row in mount_pairs),
+        default=INTERBOARD_GAP_MM - float(display_mount_design["stack"]["connector_height_from_ui_inner_mm"]),
+    )
+    minimum_mount_body = mount_pairs[0][1].instance if mount_pairs else "opposite_pcb_plane"
     mate_instances = {
         instance
         for pair in INTENTIONAL_INTERBOARD_MATES
@@ -4995,7 +4923,7 @@ def build_unified_coordinate_table(
             "interboard_gap_mm": INTERBOARD_GAP_MM,
             "minimum_required_clearance_mm": MIN_INTERBOARD_Z_CLEARANCE_MM,
             "inner_body_count": len(individual_clearances),
-            "total_inner_component_count_including_adapter": len(individual_clearances) + 2,
+            "total_inner_component_count": len(individual_clearances),
             "all_inner_bodies_have_sourced_positive_height": True,
             "no_inner_body_exceeds_gap": minimum_individual_clearance >= 0,
             "no_inner_body_violates_minimum_clearance": (
@@ -5041,34 +4969,31 @@ def build_unified_coordinate_table(
                 }
                 for clearance, ui_item, rf_item in opposing_pairs
             ],
-            "display_adapter_assembly": {
-                "component_instances": [
-                    "display_adapter_plug",
-                    "display_panel_connector",
-                ],
-                "board_envelope_mm": [
-                    float(display_adapter_design["board"]["width_mm"]),
-                    float(display_adapter_design["board"]["height_mm"]),
-                    float(display_adapter_design["board"]["thickness_mm"]),
+            "display_direct_mount": {
+                "component_instances": ["display_connector"],
+                "connector_envelope_mm": [
+                    float(value) for value in display_mount_design["components"][0]["envelope_mm"]
                 ],
                 "complete_height_from_ui_inner_mm": float(
-                    display_adapter_design["stack"]["ui_board_to_panel_connector_top_mm"]
+                    display_mount_design["stack"]["connector_height_from_ui_inner_mm"]
                 ),
                 "remaining_to_opposite_pcb_plane_mm": round(
                     INTERBOARD_GAP_MM
-                    - float(display_adapter_design["stack"]["ui_board_to_panel_connector_top_mm"]),
+                    - float(display_mount_design["stack"]["connector_height_from_ui_inner_mm"]),
                     6,
                 ),
-                "opposing_pair_count": len(adapter_pairs),
-                "minimum_opposing_body": minimum_adapter_body.instance,
-                "minimum_opposing_z_clearance_mm": round(minimum_adapter_clearance, 6),
+                "opposing_pair_count": len(mount_pairs),
+                "minimum_opposing_body": minimum_mount_body,
+                "minimum_opposing_z_clearance_mm": round(minimum_mount_clearance, 6),
+                "connector_is_load_bearing": False,
+                "retention": display_mount_design["mechanical_retention"],
                 "opposing_pairs": [
                     {
                         "rf_instance": rf_item.instance,
                         "rf_height_mm": round(placement_height(rf_item, devices, instances), 6),
                         "remaining_z_clearance_mm": round(clearance, 6),
                     }
-                    for clearance, rf_item in adapter_pairs
+                    for clearance, rf_item in mount_pairs
                 ],
             },
             "intentional_mate": {
@@ -5236,13 +5161,14 @@ def build_unified_coordinate_table(
                 ],
             },
             "display_bus": {
-                "main_board_and_adapter_stack_result": "paper_geometry_passed",
-                "complete_adapter_height_mm": float(
-                    display_adapter_design["stack"]["ui_board_to_panel_connector_top_mm"]
+                "direct_ui_zif_result": "paper_geometry_passed",
+                "connector_height_mm": float(
+                    display_mount_design["stack"]["connector_height_from_ui_inner_mm"]
                 ),
-                "minimum_opposing_z_clearance_mm": round(minimum_adapter_clearance, 6),
+                "minimum_opposing_z_clearance_mm": round(minimum_mount_clearance, 6),
+                "connector_is_load_bearing": False,
                 "received_panel_tail_result": "H5_open",
-                "open_evidence": "current-lot FPC outline, stiffener, thickness and bend path",
+                "open_evidence": "current-lot FPC outline, stiffener, thickness, insertion and bezel/preload fit",
             },
             "outer_face_through_board_features": {
                 "encoder_feature_count": len(
@@ -5582,12 +5508,10 @@ def build_cross_view_acceptance(
                 "rendered_physical_instances"
             ],
             "inner_body_count": fit["inner_body_count"],
-            "total_inner_component_count_including_adapter": fit[
-                "total_inner_component_count_including_adapter"
-            ],
+            "total_inner_component_count": fit["total_inner_component_count"],
             "minimum_required_clearance_mm": fit["minimum_required_clearance_mm"],
             "minimum_opposing_pair": fit["minimum_opposing_pair"],
-            "display_adapter_minimum_clearance_mm": fit["display_adapter_assembly"][
+            "display_direct_zif_minimum_clearance_mm": fit["display_direct_mount"][
                 "minimum_opposing_z_clearance_mm"
             ],
             "all_external_machine_checks": all(
@@ -5736,12 +5660,12 @@ def main() -> int:
         return 1
     (
         devices, candidate, instances, navigation_cluster,
-        display_adapter_design, assembly_coordinate_model,
+        display_mount_design, assembly_coordinate_model,
     ) = load()
     source_table = build_physical_source_table(devices, instances)
     unified_coordinate_table = build_unified_coordinate_table(
         source_table, assembly_coordinate_model, devices, instances,
-        display_adapter_design,
+        display_mount_design,
     )
     external_face_acceptance = build_external_face_acceptance(
         devices, instances, assembly_coordinate_model
@@ -5753,11 +5677,11 @@ def main() -> int:
     outputs = {
         EXTERNAL_OUTPUT: render_external(devices, instances),
         SERVICE_OUTPUT: render_service_access(devices, instances),
-        INTERNAL_OUTPUT: render_internal(devices, instances, display_adapter_design),
+        INTERNAL_OUTPUT: render_internal(devices, instances, display_mount_design),
         SANDWICH_OUTPUT: render_sandwich(devices, instances),
         TOP_EDGE_OUTPUT: render_top_edge(devices, instances),
         NAVIGATION_OUTPUT: render_navigation_cluster(navigation_cluster, devices, instances),
-        DISPLAY_ADAPTER_OUTPUT: render_display_adapter(display_adapter_design),
+        DISPLAY_MOUNT_OUTPUT: render_display_mount(display_mount_design),
         SOURCE_TABLE_OUTPUT: json.dumps(source_table, ensure_ascii=False, indent=2) + "\n",
         UNIFIED_COORDINATE_TABLE_OUTPUT: json.dumps(
             unified_coordinate_table, ensure_ascii=False, indent=2
@@ -5782,7 +5706,7 @@ def main() -> int:
             for path in stale:
                 print(f"error: stale {path}")
             return 1
-        print("ok: external, internal, top-edge, section, navigation and display-adapter mechanical projections are valid and current")
+        print("ok: external, internal, top-edge, section, navigation and direct-display-mount mechanical projections are valid and current")
     if not args.write and not args.check:
         parser.error("choose --write or --check")
     return 0

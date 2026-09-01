@@ -3,7 +3,7 @@
   "id": "LESHY2-H2-R2-NATIVE-INSTANCE-LEDGER",
   "marker": "H2-R2.1.3",
   "status": "current_native_instance_allocation",
-  "purpose": "Allocate exactly 1,185 fitted R2 component instances to the reviewed three-project/23-sheet graph, including the fully isolated receive-only Airband signal chain, before native schematic generation.",
+  "purpose": "Allocate exactly 1,183 fitted R2 component instances to the reviewed two-project/22-sheet graph, including the fully isolated receive-only Airband signal chain and direct display ZIF, before native schematic generation.",
   "authority": {
     "native_inventory": "hardware/ecad/generated/H2-R2-native-inventory.json",
     "exact_definition_ledger": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
@@ -22,7 +22,7 @@
     "alps_skrtlae010": ["s3_reset_button", "s3_boot_button", "c5_reset_button", "c5_boot_button", "hub_rp_reset_button", "hub_rp_boot_button", "rf_rp_reset_button", "rf_rp_boot_button"],
     "gct_rfpc_sma31_fn_175_a": ["receiver_fmsw_external_sma", "receiver_amlw_external_sma", "nrf0_external_sma", "nrf1_external_sma", "nrf2_external_sma", "cc_external_sma", "voice_external_sma", "voice_v_external_sma"],
     "gct_usb4105_gf_a": ["c5_service_usb_connector", "hub_rp_service_usb_connector", "rf_rp_service_usb_connector"],
-    "hirose_fh34srj_50s_0_5sh_50": ["display_panel_connector"],
+    "hirose_fh34srj_50s_0_5sh_50": ["display_connector"],
     "onsemi_fsusb42_mux": ["c5_service_usb_switch", "hub_rp_service_usb_switch", "rf_rp_service_usb_switch"],
     "pui_as02404po": ["speaker"],
     "rp2354b_a4": ["hub_rp", "rf_rp"],
@@ -197,8 +197,7 @@
     "RF_36_AUDIO_IO_AMP": "RF_22_AUDIO_CODEC_IO",
     "RF_40_INTERBOARD_M1": "RF_40_INTERBOARD_M1",
     "RF_50_TX_SAFETY_EVIDENCE": "RF_50_TX_SAFETY_EVIDENCE",
-    "RF_60_TESTPOINTS_MANUFACTURING": "RF_60_TESTPOINTS_MANUFACTURING",
-    "ADP_00_DISPLAY_ADAPTER": "ADP_00_DISPLAY_ADAPTER"
+    "RF_60_TESTPOINTS_MANUFACTURING": "RF_60_TESTPOINTS_MANUFACTURING"
   },
   "authorization": {
     "native_instance_ledger": true,

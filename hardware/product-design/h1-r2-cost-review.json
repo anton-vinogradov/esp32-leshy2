@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.37",
+  "marker": "H1-R2.38",
   "checked_on": "2026-08-29",
   "purpose": "Rank the complete-device component burden, remove avoidable pre-order penalties without functional degradation, and keep small-lot purchasing penalties separate from quantity-100 material cost.",
   "community_cost_target": {
@@ -531,21 +531,6 @@
       "source": "https://jlcpcb.com/partdetail/YAGEO-CC0603KRX7R0BB104/C113803",
       "checked_on": "2026-08-28"
     },
-    "hirose_df40c_2_0_40ds_0_4v_51": {
-      "manufacturer": "HRS(Hirose)",
-      "mpn": "DF40C(2.0)-40DS-0.4V(51)",
-      "jlcpcb_part": "C597934",
-      "assembly_type": "Extended SMT; Economic and Standard PCBA; fixture required",
-      "stock": 7218,
-      "available_order_quantity": 7205,
-      "moq": 1,
-      "trial_required_quantity": 5,
-      "trial_displayed_cost_usd": 2.7695,
-      "estimated_unit_price_usd": 0.5539,
-      "route": "in stock; the (51) suffix changes only factory reel quantity from the former (58) order code",
-      "source": "https://jlcpcb.com/partdetail/x/C597934",
-      "checked_on": "2026-08-28"
-    },
     "ti_csd87313dms": {
       "manufacturer": "Texas Instruments",
       "mpn": "CSD87313DMS",
@@ -597,18 +582,20 @@
     "official_complete_donor_rear_view": "https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf",
     "observed": "The selected EastRising production drawings control the complete configured panel, 50-contact 0.50-mm tail, 0.30-mm stiffener, contact map and folded-tail orientation; donor geometry is not used.",
     "accepted_rule": "Physically orient the selected documented production panel so its flex points toward the antenna edge, then rotate display memory and touch coordinates in firmware. Do not allow the tail to enter the LED, D-pad or function-button zone.",
-    "previous_lower_adapter_board_xy_mm": [24.75, 90.5],
-    "current_upper_adapter_board_xy_mm": [22.25, 1.0],
-    "current_upper_main_connector_xy_mm": [32.2, 6.5],
+    "previous_adapter_board_xy_mm": [22.25, 1.0],
+    "current_direct_zif_xy_mm": [24.0, 1.8],
+    "current_direct_zif_mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
     "paper_fit": {
       "same_face_collisions": 0,
-      "minimum_opposing_clearance_mm": 2.59,
+      "minimum_opposing_clearance_mm": 10.0,
       "required_minimum_mm": 0.7,
       "gpio_change": 0,
-      "bom_change_usd": 0.0,
+      "bom_change_usd": -1.0688,
+      "removed_stack_height_mm": 3.8,
+      "direct_zif_height_mm": 1.0,
       "firmware_change": "ILI9488 display-memory rotation plus FT6236 touch-coordinate transform only"
     },
-    "remaining_gate": "The selected exact production-panel geometry is closed; only written factory acceptance of adhesive placement, FPC insertion and final mating plus incoming-lot conformity remain open."
+    "remaining_gate": "The exact direct-ZIF geometry is closed; only written factory acceptance of customer-supplied panel PSA/FPC insertion plus incoming-lot conformity remain open."
   },
   "accepted_cost_reduction_policy": {
     "accepted_on": "2026-08-28",
@@ -1056,25 +1043,6 @@
       "why_ru": "Принято в H1-R2.27. YAGEO сохраняет 100 нФ, допуск +/-10 %, 100 В, корпус 0603/1608, диапазон -55…+125 °C и точные габариты 1,60 x 0,80 x 0,80 мм. X7R удерживает ёмкость в пределах +/-15 % по температуре и строже прежнего X7S +/-22 %, поэтому тракт USB VBIAS не ухудшается. Строка партии из пяти устройств снижается с $9,0752 pre-order до $0,1300 со склада, экономия $8,9452; публичная материальная база снижается на $0,0266 на устройство.",
       "source": "https://jlcpcb.com/partdetail/YAGEO-CC0603KRX7R0BB104/C113803",
       "manufacturer_source": "https://www.yageogroup.com/download/specsheet/CC0603KRX7R0BB104",
-      "checked_on": "2026-08-28"
-    },
-    {
-      "scope": "display-adapter main-board receptacle",
-      "current_mpn": "Hirose DF40C(2.0)-40DS-0.4V(58)",
-      "candidate_mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
-      "jlcpcb_part": "C597934",
-      "manufacturer": "HRS(Hirose)",
-      "assembly_type": "Extended SMT; Economic and Standard PCBA; fixture required",
-      "stock": 7218,
-      "available_order_quantity": 7205,
-      "moq": 1,
-      "trial_required_quantity": 5,
-      "price_tiers_usd": {"1": 0.5539, "10": 0.4483, "30": 0.3964, "100": 0.3428},
-      "status": "accepted_stocked_exact_packaging_variant",
-      "why": "Accepted at H1-R2.29. Hirose defines (51) and (58) as the same 40-position 0.4-mm receptacle, 10.6 x 3.38 x 1.95-mm body, 2.0-mm mated stack, contacts and ratings; only the factory reel quantity changes from 1,000 to 4,000. C597934 is live JLCPCB Standard-PCBA stock. The five-device line falls from USD 5.3500 to USD 2.7695, saving USD 2.5805; the quantity-100 material basis falls by USD 0.7272 per device.",
-      "why_ru": "Принято в H1-R2.29. Hirose определяет (51) и (58) как один и тот же 40-контактный receptacle с шагом 0,4 мм, корпусом 10,6 x 3,38 x 1,95 мм, высотой состыкованной пары 2,0 мм, теми же контактами и пределами; меняется только заводская катушка с 1000 на 4000 шт. C597934 есть на складе JLCPCB для Standard PCBA. Строка пяти устройств снижается с $5,3500 до $2,7695, экономия $2,5805; серийная материальная база уменьшается на $0,7272 на устройство.",
-      "source": "https://jlcpcb.com/partdetail/x/C597934",
-      "manufacturer_source": "https://www.hirose.com/en/product/p/CL0684-4042-5-51",
       "checked_on": "2026-08-28"
     },
     {

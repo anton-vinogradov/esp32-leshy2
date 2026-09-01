@@ -6259,8 +6259,7 @@
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "73633192-0d0f-5d23-ac6b-13738b336d94")
 	)
-	(hierarchical_label "LCD_TE"
-		(shape bidirectional)
+	(label "LCD_TE"
 		(at 624.84 190.50 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "b42010a1-b4c6-5336-a644-23d46363417f")

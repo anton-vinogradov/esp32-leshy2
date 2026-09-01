@@ -33,4 +33,4 @@
 - 0.1-to-4.25-A load-step simulation and protected-rail droop
 - board-plus-enclosure thermal solution and sensor-map update
 
-> Маркер результата: **H1-R2.4**. Включено в проведённое ревью H1-R2.37.
+> Маркер результата: **H1-R2.4**. Включено в проведённое ревью H1-R2.38.

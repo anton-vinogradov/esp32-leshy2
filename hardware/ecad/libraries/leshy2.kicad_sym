@@ -21901,7 +21901,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Description" "superseded R1 nRF24 #1 seed; displaced clear of the current CC reference zone"
+				(property "Description" "full-function nRF24 radio #1; clear of the CC reference zone and U214 socket tails"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -24269,7 +24269,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Description" "superseded R1 nRF24 #2 seed; displaced clear of the current CC reference zone"
+				(property "Description" "full-function nRF24 radio #2; clear of the top-right mounting keep-out"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -58445,7 +58445,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-				(property "Description" "40-contact fixed receptacle for the antenna-edge replaceable display adapter"
+				(property "Description" "direct 50-contact dual-contact ZIF for the folded display FPC"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)

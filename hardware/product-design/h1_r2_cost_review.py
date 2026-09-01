@@ -381,8 +381,8 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
             2,
         )
     errors = []
-    if len(bom) != 212:
-        errors.append("target BOM is no longer 212 lines")
+    if len(bom) != 210:
+        errors.append("target BOM is no longer 210 lines")
     if any(
         rows[index]["line_burden_per_device_usd"] is not None
         and rows[index + 1]["line_burden_per_device_usd"] is not None
@@ -401,12 +401,12 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
         errors.append(f"top-20 mass-market audit mismatch: missing={missing}; stale={stale}")
     display = model["display_orientation_review"]
     if display["paper_fit"]["same_face_collisions"] != 0:
-        errors.append("upper display-adapter candidate collides on the UI inner face")
+        errors.append("direct display ZIF collides on the UI inner face")
     if (
         display["paper_fit"]["minimum_opposing_clearance_mm"]
         < display["paper_fit"]["required_minimum_mm"]
     ):
-        errors.append("upper display-adapter candidate violates opposing clearance")
+        errors.append("direct display ZIF violates opposing clearance")
     return {
         "schema_version": 1,
         "marker": model["marker"],
@@ -945,20 +945,20 @@ def render_doc(result: dict, ru: bool) -> str:
         lines += [
             '- Точные чертежи EastRising контролируют полный корпус панели, 50-контактный FPC, шаг 0,50 мм, stiffener 0,30 мм и карту контактов; геометрия donor-board больше не используется.',
             '- Экран физически ориентирован **шлейфом к антенному торцу**, а изображение ILI9488 и координаты FT6236 разворачиваются программно. Шлейф не входит в зону LED, D-pad и функциональных клавиш.',
-            f'- Принятая верхняя позиция adapter PCB `{display["current_upper_adapter_board_xy_mm"]}` прогнана по текущим точным корпусам: `0` same-face collisions, минимальный встречный зазор `{display["paper_fit"]["minimum_opposing_clearance_mm"]:.1f} мм` при требуемых `{display["paper_fit"]["required_minimum_mm"]:.1f} мм`, GPIO и BOM не меняются.',
-            '- Ориентация и сменный адаптер зафиксированы в H1; открыты только письменное принятие фабрикой установки/FPC и входная проверка соответствия полученной партии.',
+            f'- Прямой ZIF `{display["current_direct_zif_mpn"]}` в позиции `{display["current_direct_zif_xy_mm"]}` прогнан по текущим точным корпусам: `0` same-face collisions и `{display["paper_fit"]["minimum_opposing_clearance_mm"]:.1f} мм` до противоположной плоскости при требуемых `{display["paper_fit"]["required_minimum_mm"]:.1f} мм`.',
+            f'- Отдельная плата-адаптер и оба DF40 удалены: высота стека снижается с `{display["paper_fit"]["removed_stack_height_mm"]:.1f}` до `{display["paper_fit"]["direct_zif_height_mm"]:.1f} мм`, а цена компонентов одного прототипа — на `${-display["paper_fit"]["bom_change_usd"]:.2f}`. Панель держат рамка, PSA и мягкий подпор, а не контакты ZIF.',
         ]
     else:
         lines += [
             '- Exact EastRising drawings control the complete panel body, 50-contact FPC, 0.50-mm pitch, 0.30-mm stiffener and contact map; donor-board geometry is no longer used.',
             '- The panel is physically oriented **with its flex toward the antenna edge**, while ILI9488 display memory and FT6236 touch coordinates rotate in firmware. The tail stays out of the LED, D-pad and function-key zone.',
-            f'- The accepted upper adapter PCB position `{display["current_upper_adapter_board_xy_mm"]}` passes the current exact-body model: `0` same-face collisions and `{display["paper_fit"]["minimum_opposing_clearance_mm"]:.1f} mm` minimum opposing clearance versus `{display["paper_fit"]["required_minimum_mm"]:.1f} mm` required, with no GPIO or BOM change.',
-            '- H1 fixes the orientation and replaceable adapter; only written factory acceptance of panel/FPC work and incoming-lot conformity remain open.',
+            f'- Direct ZIF `{display["current_direct_zif_mpn"]}` at `{display["current_direct_zif_xy_mm"]}` passes the current exact-body model: `0` same-face collisions and `{display["paper_fit"]["minimum_opposing_clearance_mm"]:.1f} mm` to the opposing PCB plane versus `{display["paper_fit"]["required_minimum_mm"]:.1f} mm` required.',
+            f'- The adapter PCB and both DF40 parts are removed: stack height falls from `{display["paper_fit"]["removed_stack_height_mm"]:.1f}` to `{display["paper_fit"]["direct_zif_height_mm"]:.1f} mm`, and one-prototype component cost falls by `${-display["paper_fit"]["bom_change_usd"]:.2f}`. The bezel, PSA and compliant preload carry the panel; ZIF contacts carry no mechanical load.',
         ]
     footer = (
-        f'> Маркер: **{result["marker"]}**. Включено в проведённое ревью H1-R2.37.'
+        f'> Маркер: **{result["marker"]}**. Включено в текущий проведённый ревью результат H1.'
         if ru
-        else f'> Marker: **{result["marker"]}**. Included in the reviewed H1-R2.37 result.'
+        else f'> Marker: **{result["marker"]}**. Included in the current reviewed H1 result.'
     )
     lines += ['', footer]
     return '\n'.join(lines) + '\n'

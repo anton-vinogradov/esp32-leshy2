@@ -12,9 +12,9 @@
   "sheet": "CAP_30_TX_EVIDENCE",
   "source_hashes": {
     "hardware/accessories/leshy2-lora-cap-01.json": "dd3cd0e9741b704c4ad6bf1c03f54d95884df2cebefd4c3fb57a238bcbc0d6ab",
-    "hardware/architecture/devices.json": "9db9ce928ceb1dd38324d5e1eaff57a3d686ff449217ec3216577400dbe51060",
-    "hardware/ecad/generated/H2-instance-ledger.json": "4aeb92a824ab429bfa40da383eba3f9ed35a30cdf5e1666c3c61a04ed3a5ac27",
-    "hardware/ecad/generated/H2-CAP00-root-interface.json": "e324e9c65624c8c219726a1bad67e4e3954bce744108573d6c14ea4046a0f113"
+    "hardware/architecture/devices.json": "2caf023fb65a15be416b66686f7bcbd9ce199f8c8a55c4d37457782e73ceb6ef",
+    "hardware/ecad/generated/H2-instance-ledger.json": "6f6cf784861620487b1e3fb67f17b98ba6f4c49c29d53f0f8f78176f196774d2",
+    "hardware/ecad/generated/H2-CAP00-root-interface.json": "38acaffbcd56d03ffa99a528be794f2af4b974438d63b389fed321b25d03c6c8"
   },
   "summary": {
     "ledger_instances": 11,

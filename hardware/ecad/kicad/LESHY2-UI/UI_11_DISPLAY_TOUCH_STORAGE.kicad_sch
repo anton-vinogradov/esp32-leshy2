@@ -822,7 +822,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-			(property "Description" "40-contact fixed receptacle for the antenna-edge replaceable display adapter"
+			(property "Description" "direct 50-contact dual-contact ZIF for the folded display FPC"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4555,7 +4555,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "40-contact fixed receptacle for the antenna-edge replaceable display adapter"
+		(property "Description" "direct 50-contact dual-contact ZIF for the folded display FPC"
 			(at 213.36 92.71 0)
 			(show_name no)
 			(do_not_autoplace no)

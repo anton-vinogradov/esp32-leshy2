@@ -19,6 +19,6 @@ Both exposed-port eFuses now use the active `Yageo RC0402FR-071K82L` 1.82-kohm r
 
 All four DC rails pass the 25% rule against the minimum hardware threshold. The worst `3V3_MAIN` profile draws 3.063 A, leaving 687 mA to the accepted 3.75-A continuous envelope and 41.69% to the guaranteed 4.3399-A protection threshold. H3.2 must still prove the load step and H8 must measure the real sum.
 
-**Status:** the H3.1.2 numeric model is refreshed and passes for `H1-R2.37`; the complete H3 phase is not closed.
+**Status:** the H3.1.2 numeric model is refreshed and passes for `H1-R2.38`; the complete H3 phase is not closed.
 
 [Complete machine calculation](../hardware/verification/generated/H3-VRF12-dc-budget.json).

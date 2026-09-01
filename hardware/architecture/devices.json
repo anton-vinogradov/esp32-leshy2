@@ -1569,7 +1569,7 @@
     "hirose_fh34srj_50s_0_5sh_50": {
       "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
       "kind": "50_position_0_5mm_dual_contact_zif_fpc_receptacle",
-      "qualification": "verified_exact_jlcpcb_stocked_display_adapter_panel_connector",
+      "qualification": "verified_exact_jlcpcb_stocked_direct_ui_display_connector",
       "lifecycle": "active exact manufacturer line; current JLCPCB Standard-PCBA stock and assembly route verified",
       "dimensions_mm": [27.0, 3.8, 1.0],
       "source": {

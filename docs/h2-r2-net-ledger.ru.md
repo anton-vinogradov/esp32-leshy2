@@ -12,16 +12,16 @@
 
 | Элемент | Проверенный результат |
 |---|---:|
-| Контакты текущих устанавливаемых экземпляров | 4 323 |
-| Контакты, назначенные native nets | 4 067 |
-| Явные board no-connects | 256 |
+| Контакты текущих устанавливаемых экземпляров | 4 239 |
+| Контакты, назначенные native nets | 4 002 |
+| Явные board no-connects | 237 |
 | Неразрешённые или скрытые внешние контакты | 0 |
-| Канонические native nets | 823 |
+| Канонические native nets | 816 |
 | Псевдонимы nets, объединённые в общем физическом узле | 46 |
 | Ошибки сверки | 0 |
 
 Текущие источники H0/H1 владеют GPIO-картами обоих RP, картой S3, стыком C5
-SDIO/service mux, всеми 80 контактами M1 на обеих платах, display-adapter и
+SDIO/service mux, всеми 80 контактами M1 на обеих платах, прямым 50-контактным ZIF дисплея и
 powered-off-границей Pack/Safety. Обе выведенные из корпуса stacked-flash-шины
 явно оставлены board no-connect. Функциональные имена, сходящиеся на одном
 физическом выводе, свёрнуты в один медный net: например, `AON_EFUSE_EN` и
@@ -40,11 +40,11 @@ ledger.
 ## Машинное evidence
 
 - [Контракт сверки nets](../hardware/ecad/h2-r2-net-ledger-contract.json)
-- [Сгенерированный ledger 4 323 endpoints](../hardware/ecad/generated/H2-R2-native-net-ledger.json)
+- [Сгенерированный ledger 4 239 endpoints](../hardware/ecad/generated/H2-R2-native-net-ledger.json)
 - [Генератор](../hardware/ecad/h2_r2_net_ledger.py)
 - [Машинные тесты](../hardware/architecture/tests/test_h2_r2_net_ledger.py)
 
-Три [native-проекта KiCad](h2-r2-native-kicad.ru.md) теперь материализуют этот
+Два [native-проекта KiCad](h2-r2-native-kicad.ru.md) теперь материализуют этот
 ledger и проходят ERC без замечаний. Сверка sheets и HW↔FW также прошла в
 [H2-R2.1.5](h2-acceptance.ru.md). Теперь H3 фиксирует эти входы; placement,
 routing, печать и заказ остаются заблокированы.

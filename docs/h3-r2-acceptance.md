@@ -6,7 +6,7 @@
 
 | Workstream | Reviewed scope | Result |
 |---|---|---|
-| `H3-R2.0` | Inputs, provenance and methods | 3 projects · 23 sheets · 1,185 fitted positions · 823 nets · 240 exact groups · 9 methods |
+| `H3-R2.0` | Inputs, provenance and methods | 2 projects · 22 sheets · 1,183 fitted positions · 816 nets · 238 exact groups · 9 methods |
 | `H3-R2.1` | DC, rails, sources and charge | 2,266 legal states · 224 rail corners · 30.560% minimum reserve · 3.516 A maximum pack current |
 | `H3-R2.2` | Transitions and faults | 14 ordered scenarios · 7,316 handover cases · 5 starts · 4 load steps · 10 watchdog/fault cases |
 | `H3-R2.3` | Analog corners | display, audio, IR, battery and Airband calculations pass; routed Airband tuning remains measured |
@@ -16,7 +16,7 @@
 
 ## What is complete
 
-- Every electrical claim calculable before layout has a reproducible result on the exact H1-R2.37 / H2-R2.1.5 boundary.
+- Every electrical claim calculable before layout has a reproducible result on the exact H1-R2.38 / H2-R2.1.5 boundary.
 - All legal power states, transitions, analog corners, digital interfaces, permanent RF paths, thermal profiles and single-fault cases pass their frozen paper rules.
 - Every correction is already present in the current source and all dependent evidence has been regenerated.
 

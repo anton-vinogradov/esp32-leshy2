@@ -5,7 +5,7 @@
 Это живой реестр prerequisites новой production-схемы R2 с шестью доменами и
 двумя RP. Здесь фиксируются проверенные результаты, а не история решений.
 Все три строки prerequisites закрыты. Native R2 inventory прошёл `H2-R2.1.1`;
-exact ledger symbols/contacts/footprints прошёл `H2-R2.1.2`, а сверка 4 323
+exact ledger symbols/contacts/footprints прошёл `H2-R2.1.2`, а сверка 4 243
 endpoints и генерация [трёх native-проектов KiCad](h2-r2-native-kicad.ru.md)
 пройдены в `H2-R2.1.3`, включая ERC без замечаний. Сквозная сверка sheets и
 HW↔FW прошла в `H2-R2.1.5`. Печать и заказ по-прежнему запрещены.

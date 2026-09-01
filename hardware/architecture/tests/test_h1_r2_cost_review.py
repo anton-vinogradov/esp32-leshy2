@@ -26,7 +26,7 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertIn("TX2400-JW-5", ru)
 
     def test_complete_bom_is_ranked(self):
-        self.assertEqual(len(self.result["rows"]), 212)
+        self.assertEqual(len(self.result["rows"]), 210)
         mpns = [row["mpn"] for row in self.result["rows"]]
         self.assertEqual(len(mpns), len(set(mpns)))
         known = [
@@ -38,7 +38,7 @@ class H1R2CostReviewTest(unittest.TestCase):
 
     def test_cost_boundaries_are_explicit(self):
         summary = self.result["summary"]
-        self.assertEqual(summary["quantity_100_priced_lines"], 203)
+        self.assertEqual(summary["quantity_100_priced_lines"], 201)
         self.assertEqual(summary["remaining_unpriced_base_lines"], 5)
         self.assertGreater(summary["planning_base_plus_post_pcba_usd_per_device"], 270)
         self.assertAlmostEqual(
@@ -67,7 +67,7 @@ class H1R2CostReviewTest(unittest.TestCase):
 
     def test_accepted_all_in_one_target_gap_is_not_hidden(self):
         summary = self.result["summary"]
-        self.assertEqual(summary["base_bom_lines"], 210)
+        self.assertEqual(summary["base_bom_lines"], 208)
         self.assertGreater(summary["base_fitted_placements"], 1049)
         self.assertEqual(summary["community_complete_device_target_usd"], 260)
         self.assertEqual(summary["community_electronics_target_usd"], [189, 216])
@@ -82,7 +82,7 @@ class H1R2CostReviewTest(unittest.TestCase):
         ru = MODULE.render_doc(self.result, True)
         self.assertIn("Принятая ценовая граница all-in-one", ru)
         self.assertIn("отдельный `Core` сейчас не проектируется", ru)
-        self.assertIn("1096", ru)
+        self.assertIn("1094", ru)
         self.assertIn("пересинтез", ru)
 
     def test_cost_feasibility_separates_all_in_one_from_modular_entry(self):
@@ -229,15 +229,16 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertEqual(len(market_csv.strip().splitlines()), 21)
         self.assertIn("functional_delta", market_csv.splitlines()[0])
 
-    def test_display_upper_candidate_has_margin(self):
+    def test_direct_display_zif_has_margin(self):
         display = self.result["display_orientation_review"]
         fit = display["paper_fit"]
-        self.assertEqual(display["current_upper_adapter_board_xy_mm"], [22.25, 1.0])
+        self.assertEqual(display["current_direct_zif_xy_mm"], [24.0, 1.8])
+        self.assertEqual(display["current_direct_zif_mpn"], "Hirose FH34SRJ-50S-0.5SH(50)")
         self.assertIn("antenna edge", display["accepted_rule"])
         self.assertEqual(fit["same_face_collisions"], 0)
         self.assertGreater(fit["minimum_opposing_clearance_mm"], fit["required_minimum_mm"])
         self.assertEqual(fit["gpio_change"], 0)
-        self.assertEqual(fit["bom_change_usd"], 0.0)
+        self.assertLess(fit["bom_change_usd"], 0.0)
 
     def test_stocked_candidate_policy_is_conservative(self):
         policy = self.result["accepted_cost_reduction_policy"]
@@ -269,10 +270,7 @@ class H1R2CostReviewTest(unittest.TestCase):
             candidates["DreamLNK SMA-KWE902 / SMA-KWE901"]["status"],
             "rejected_current_5_plus_5_mechanical_envelope_and_factory_route",
         )
-        self.assertEqual(
-            candidates["Hirose DF40C(2.0)-40DS-0.4V(51)"]["jlcpcb_part"],
-            "C597934",
-        )
+        self.assertNotIn("Hirose DF40C(2.0)-40DS-0.4V(51)", candidates)
         self.assertEqual(
             candidates["Texas Instruments CSD87313DMS"]["jlcpcb_part"],
             "C2863848",

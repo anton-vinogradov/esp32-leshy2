@@ -3,7 +3,7 @@
   "id": "LESHY2-H2-R2-NATIVE-KICAD",
   "marker": "H2-R2.1.3",
   "status": "current_native_schematic_project_contract",
-  "purpose": "Generate the three current R2 KiCad schematic projects from the reviewed instance, exact-symbol and canonical-net ledgers without inheriting the R1 topology or authorizing PCB work.",
+  "purpose": "Generate the two current R2 KiCad schematic projects from the reviewed instance, exact-symbol and canonical-net ledgers without inheriting the R1 topology or authorizing PCB work; the display ZIF is on the UI PCB.",
   "authority": {
     "inventory": "hardware/ecad/h2-r2-native-inventory-contract.json",
     "instances": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",

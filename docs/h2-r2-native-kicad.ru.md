@@ -1,18 +1,18 @@
 # H2-R2.1.3 · native-схемы R2 в KiCad
 
 **Пройдено 31 августа 2026 года.** Текущая архитектура R2 теперь существует
-как три native-проекта схем KiCad 10, сгенерированных из точных authority
+как два native-проекта схем KiCad 10, сгенерированных из точных authority
 компонентов, контактов, экземпляров и nets. Сохранённые single-RP проекты R1
 генератор не читает.
 
 | Результат | Значение |
 |---|---:|
-| Native-проекты / sheets в графе проектов | 3 / 23 |
-| Заполненные логические sheets | 19 |
-| Устанавливаемые symbol instances | 1 185 |
-| Контролируемые физические symbol pins | 4 323 |
-| Подключённые / явные no-connect pins | 4 067 / 260 |
-| Канонические nets | 827 |
+| Native-проекты / sheets в графе проектов | 2 / 22 |
+| Заполненные логические sheets | 18 |
+| Устанавливаемые symbol instances | 1 183 |
+| Контролируемые физические symbol pins | 4 243 |
+| Подключённые / явные no-connect pins | 4 006 / 237 |
+| Канонические nets | 816 |
 | Ошибки / предупреждения KiCad ERC | 0 / 0 |
 | PCB, placement или routing-файлы | 0 |
 
@@ -21,9 +21,10 @@
 - [`LESHY2-UI-R2`](../hardware/ecad/kicad/LESHY2-UI-R2/) — UI/display S3,
   C5, Hub RP, три полных nRF24-острова, storage и передняя safety-часть;
 - [`LESHY2-RF-R2`](../hardware/ecad/kicad/LESHY2-RF-R2/) — RF RP, питание,
-  CC1101, VHF/UHF, broadcast/Airband, audio, expansion и TX evidence;
-- [`L2-DISP-ADP-001-B`](../hardware/ecad/kicad/L2-DISP-ADP-001-B/) —
-  пассивный адаптер точной панели.
+  CC1101, VHF/UHF, broadcast/Airband, audio, expansion и TX evidence.
+
+Точный 50-контактный шлейф дисплея входит прямо в
+`FH34SRJ-50S-0.5SH(50)` на `LESHY2-UI-R2`; отдельного проекта переходника нет.
 
 ## Airband в принципиальной схеме
 

@@ -31,10 +31,10 @@ class H2R2NativeInventoryTests(unittest.TestCase):
 
     def test_native_project_graph_has_no_historical_cap_board(self):
         self.assertEqual(
-            ["LESHY2-UI-R2", "LESHY2-RF-R2", "L2-DISP-ADP-001-B"],
+            ["LESHY2-UI-R2", "LESHY2-RF-R2"],
             [row["id"] for row in self.actual["projects"]],
         )
-        self.assertEqual(23, self.actual["summary"]["sheet_count"])
+        self.assertEqual(22, self.actual["summary"]["sheet_count"])
         self.assertNotIn(
             "LESHY2-LORA-CAP-01",
             {row["id"] for row in self.actual["projects"]},
@@ -52,8 +52,8 @@ class H2R2NativeInventoryTests(unittest.TestCase):
         )
 
     def test_exact_component_group_and_pack_delta_are_frozen(self):
-        self.assertEqual(240, self.actual["summary"]["component_group_count"])
-        self.assertEqual(1195, self.actual["summary"]["component_quantity_per_product"])
+        self.assertEqual(238, self.actual["summary"]["component_group_count"])
+        self.assertEqual(1193, self.actual["summary"]["component_quantity_per_product"])
         groups = {row["device_id"]: row for row in self.actual["component_groups"]}
         self.assertEqual("TCA9803DGKR", groups["ti_tca9803_dgkr"]["mpn"])
         self.assertEqual("C2687966", groups["ti_tca9803_dgkr"]["jlcpcb_part_number"])
@@ -84,7 +84,7 @@ class H2R2NativeInventoryTests(unittest.TestCase):
             stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("240 exact component groups", result.stdout)
+        self.assertIn("238 exact component groups", result.stdout)
 
 
 if __name__ == "__main__":

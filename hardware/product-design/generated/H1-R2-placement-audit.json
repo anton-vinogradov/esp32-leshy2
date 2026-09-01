@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.37",
+  "marker": "H1-R2.38",
   "status": "pass",
   "structural_status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -46,7 +46,7 @@
     "ui_matrix_io"
   ],
   "same_face_collisions": [],
-  "opposing_overlap_count": 90,
+  "opposing_overlap_count": 87,
   "minimum_opposing_clearance_mm": 2.59,
   "required_opposing_clearance_mm": 0.7,
   "opposing_overlaps": [
@@ -154,27 +154,6 @@
       "ui_origin": "retained_base",
       "rf_origin": "retained_base",
       "clearance_mm": 4.38
-    },
-    {
-      "ui": "display_connector",
-      "rf": "airband_filter_reserve",
-      "ui_origin": "retained_base",
-      "rf_origin": "r2",
-      "clearance_mm": 7.85
-    },
-    {
-      "ui": "display_connector",
-      "rf": "cc_r2",
-      "ui_origin": "retained_base",
-      "rf_origin": "r2",
-      "clearance_mm": 8.05
-    },
-    {
-      "ui": "display_connector",
-      "rf": "det_cc_r2",
-      "ui_origin": "retained_base",
-      "rf_origin": "r2",
-      "clearance_mm": 7.95
     },
     {
       "ui": "ir_demod",
@@ -700,8 +679,8 @@
             31.5
           ],
           "y": [
-            5.7,
-            13.2
+            6.3,
+            13.8
           ]
         },
         "members": [
@@ -720,8 +699,8 @@
             54.2
           ],
           "y": [
-            5.7,
-            13.2
+            6.3,
+            13.8
           ]
         },
         "members": [
@@ -729,7 +708,7 @@
           "c5_rf_coupler_r2",
           "det_c5_r2"
         ],
-        "minimum_clearance_mm": 1.2
+        "minimum_clearance_mm": 0.7
       },
       {
         "id": "nrf0_tx_evidence_island_reserve",
@@ -912,7 +891,7 @@
           "u219_field_threshold_bottom",
           "u219_field_threshold_top"
         ],
-        "minimum_clearance_mm": 0.7
+        "minimum_clearance_mm": 0.72
       },
       {
         "id": "u219_nfc_pickup_loop",
@@ -964,7 +943,7 @@
           ]
         },
         "members": [],
-        "minimum_clearance_mm": 0.7
+        "minimum_clearance_mm": 0.72
       }
     ],
     "unresolved_geometry": [],
@@ -1045,8 +1024,8 @@
             23.85
           ],
           "y": [
-            5.95,
-            7.29
+            6.55,
+            7.89
           ]
         }
       },
@@ -1075,8 +1054,8 @@
             53.25
           ],
           "y": [
-            5.95,
-            7.29
+            6.55,
+            7.89
           ]
         }
       },
@@ -1245,8 +1224,8 @@
             31.5
           ],
           "y": [
-            5.7,
-            13.2
+            6.3,
+            13.8
           ]
         },
         "minimum_compression_stop_clearance_mm": 12.0
@@ -1264,8 +1243,8 @@
             54.2
           ],
           "y": [
-            5.7,
-            13.2
+            6.3,
+            13.8
           ]
         },
         "minimum_compression_stop_clearance_mm": 11.8
@@ -1865,7 +1844,7 @@
         "frame": "rear-outer",
         "coordinate_mm": [
           28.61,
-          26.46
+          26.48
         ],
         "rotation_deg": 0,
         "source_envelope_mm": [
@@ -1878,8 +1857,8 @@
             46.74
           ],
           "y": [
-            26.11,
-            31.89
+            26.13,
+            31.91
           ]
         },
         "source": {
@@ -2628,9 +2607,9 @@
         },
         "source": {
           "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
-          "version": "Rev. M",
+          "version": "Rev. N, revised August 2026",
           "url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
-          "checked": "2026-08-17"
+          "checked": "2026-08-31"
         }
       },
       {
@@ -3194,8 +3173,8 @@
       {
         "face": "front",
         "path": "S3-2G4",
-        "body": "s3_rf_coupler_r2",
-        "clearance_to_protected_pin_keepout_mm": -0.15
+        "body": "display_connector",
+        "clearance_to_protected_pin_keepout_mm": -1.5
       },
       {
         "face": "front",
@@ -3206,8 +3185,8 @@
       {
         "face": "front",
         "path": "C5-2G4/5",
-        "body": "c5_rf_coupler_r2",
-        "clearance_to_protected_pin_keepout_mm": -0.15
+        "body": "display_connector",
+        "clearance_to_protected_pin_keepout_mm": -1.5
       },
       {
         "face": "rear",
@@ -3575,8 +3554,8 @@
           23.6
         ],
         "y": [
-          6.2,
-          7.04
+          6.8,
+          7.64
         ],
         "z": [
           5.36,
@@ -3638,8 +3617,8 @@
           53.0
         ],
         "y": [
-          6.2,
-          7.04
+          6.8,
+          7.64
         ],
         "z": [
           5.36,
@@ -5003,7 +4982,7 @@
           ],
           [
             22.8,
-            6.62
+            7.22
           ],
           [
             22.8,
@@ -5045,7 +5024,7 @@
           ],
           [
             52.2,
-            6.62
+            7.22
           ],
           [
             52.2,
@@ -5083,7 +5062,7 @@
         "points": [
           [
             41.400000000000006,
-            42.0
+            42.02
           ],
           [
             52.2,

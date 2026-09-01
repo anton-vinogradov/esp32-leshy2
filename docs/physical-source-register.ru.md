@@ -10,8 +10,8 @@
 
 | Покрытие | Результат |
 |---|---:|
-| Отрисованных физических экземпляров | 233 |
-| Экземпляров с точным MPN | 233 |
+| Отрисованных физических экземпляров | 231 |
+| Экземпляров с точным MPN | 231 |
 | Экземпляров с явным MPN TBD | 0 |
 | Blocker геометрии H1 | 0 |
 | Received-sample gate H5 | 14 |
@@ -20,7 +20,6 @@
 
 | Система | Datum | Корпусов |
 |---|---|---:|
-| `display-adapter` | L2-DISP-ADP-001-B top-left, viewed from its panel-facing side | 2 |
 | `display-assembly` | ER-TFT035IPS-6 + ER-TPC035-6 configured CTP-outline top-left, front view | 1 |
 | `front-outer` | UI PCB top-left, viewed from the front/exterior | 31 |
 | `rear-outer` | RF/power PCB top-left, viewed from the rear/exterior | 13 |

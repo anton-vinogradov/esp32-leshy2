@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="3710" viewBox="0 0 1900 3710" data-marker="H1-R2.37" data-view="both-inner-faces-mirrored" data-inner-silkscreen="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="3710" viewBox="0 0 1900 3710" data-marker="H1-R2.38" data-view="both-inner-faces-mirrored" data-inner-silkscreen="none">
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="1900" height="3710" fill="#ffffff"/>
-<text x="30.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.37 complete inner-body map</text>
+<text x="30.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.38 complete inner-body map</text>
 <text x="30.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Each PCB is shown exactly as viewed after turning it over. Numbers are drawing references; inner faces contain no silkscreen.</text>
 <text x="201.9" y="110.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#172033">UI PCB · inner · turned-over view</text>
 <rect x="65.0" y="130.0" width="273.8" height="547.5" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -9,8 +9,8 @@
 <circle cx="83.2" cy="170.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="320.5" cy="659.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="83.2" cy="659.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
-<rect x="223.78" y="150.81" width="38.32" height="27.37" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="s3_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
-<rect x="140.92" y="150.81" width="37.23" height="27.37" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="c5_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
+<rect x="223.78" y="153.00" width="38.32" height="27.38" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="s3_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
+<rect x="140.92" y="153.00" width="37.23" height="27.38" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="c5_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
 <rect x="263.92" y="161.03" width="39.42" height="33.22" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="nrf0_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
 <rect x="194.57" y="179.28" width="39.42" height="28.47" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="nrf1_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
 <rect x="100.41" y="161.03" width="32.12" height="33.22" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="nrf2_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
@@ -29,11 +29,11 @@
 <rect x="520.30" y="235.85" width="7.67" height="10.22" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="u219_nfc_dnp_tuning_bank" data-feature-kind="placement_reserve"/>
 <g id="antenna-pcb-topology" data-topology-source="r2" data-route-state="pre-ecad-topology-only">
 <polyline points="296.8,168.5 309.2,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="N24-0" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
-<polyline points="255.5,168.5 255.5,154.2 255.5,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="S3-2G4" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
+<polyline points="255.5,168.5 255.5,156.4 255.5,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="S3-2G4" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
 <polyline points="201.9,186.8 201.9,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="N24-1" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
-<polyline points="148.2,168.5 148.2,154.2 148.2,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="C5-2G4/5" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
+<polyline points="148.2,168.5 148.2,156.4 148.2,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="C5-2G4/5" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
 <polyline points="107.0,168.5 94.6,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="N24-2" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
-<polyline points="562.6,283.3 523.2,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="VOICE-VHF" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
+<polyline points="562.6,283.4 523.2,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="VOICE-VHF" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
 <polyline points="665.2,313.6 469.6,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="VOICE-UHF" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
 <polyline points="582.4,167.6 576.9,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="CC-SUB" data-branch="matched-main" data-medium="matched-rf-pcb-topology"/>
 <polyline points="630.5,130.0 662.8,226.7" fill="none" stroke="#7c3aed" stroke-width="1.9" data-path="RX-AM/LW" data-branch="ami" data-medium="high-impedance-ami-pcb"/>
@@ -109,7 +109,7 @@
 <text x="458.2" y="268.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">33</text>
 <rect x="630.53" y="248.62" width="69.35" height="129.94" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="voice" data-mpn="G-NiceRF SA818S-U"/>
 <text x="665.2" y="315.9" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">34</text>
-<rect x="497.67" y="248.62" width="129.94" height="69.35" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="voice_v" data-mpn="G-NiceRF SA818S-V"/>
+<rect x="497.67" y="248.70" width="129.94" height="69.35" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="voice_v" data-mpn="G-NiceRF SA818S-V"/>
 <text x="562.6" y="285.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">35</text>
 <rect x="482.34" y="287.68" width="11.68" height="18.80" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="det_voice_v_r2" data-mpn="AD8314ARMZ-REEL"/>
 <text x="488.2" y="299.3" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">36</text>
@@ -383,12 +383,12 @@
 <text x="500.1" y="667.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">170</text>
 <rect x="604.25" y="662.90" width="14.60" height="14.60" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="microphone" data-mpn="Same Sky CMEJ-0413-42-SMT-TR"/>
 <text x="611.5" y="672.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">171</text>
-<rect x="252.61" y="152.63" width="5.84" height="3.07" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="s3_rf_coupler_r2" data-mpn="CP0603Q5425ENTR"/>
-<text x="255.5" y="155.8" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">172</text>
-<rect x="145.30" y="152.63" width="5.84" height="3.07" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="c5_rf_coupler_r2" data-mpn="CP0603Q5425ENTR"/>
-<text x="148.2" y="155.8" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">173</text>
-<rect x="182.53" y="153.72" width="38.69" height="12.34" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="display_connector" data-mpn="Hirose DF40C(2.0)-40DS-0.4V(51)"/>
-<text x="201.9" y="162.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">174</text>
+<rect x="152.60" y="136.57" width="98.55" height="13.87" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="display_connector" data-mpn="Hirose FH34SRJ-50S-0.5SH(50)"/>
+<text x="201.9" y="145.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">172</text>
+<rect x="252.61" y="154.82" width="5.84" height="3.07" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="s3_rf_coupler_r2" data-mpn="CP0603Q5425ENTR"/>
+<text x="255.5" y="158.0" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">173</text>
+<rect x="145.30" y="154.82" width="5.84" height="3.07" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="c5_rf_coupler_r2" data-mpn="CP0603Q5425ENTR"/>
+<text x="148.2" y="158.0" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">174</text>
 <rect x="291.30" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(80)"/>
 <text x="296.8" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">175</text>
 <rect x="250.06" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="s3_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(80)"/>
@@ -881,15 +881,15 @@
 <text x="978.0" y="3523.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">product USB-C data and sink</text>
 <text x="950.0" y="3560.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">171  Same Sky CMEJ-0413-42-SMT-TR</text>
 <text x="978.0" y="3573.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">rear bottom-facing microphone</text>
-<text x="1410.0" y="760.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">172  CP0603Q5425ENTR</text>
-<text x="1438.0" y="773.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">S3 forward-power evidence coupler aligned with the S3-2G4</text>
-<text x="1438.0" y="784.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front SMA</text>
+<text x="1410.0" y="760.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">172  Hirose FH34SRJ-50S-0.5SH(50)</text>
+<text x="1438.0" y="773.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">direct 50-contact dual-contact ZIF for the folded display</text>
+<text x="1438.0" y="784.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">FPC</text>
 <text x="1410.0" y="810.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">173  CP0603Q5425ENTR</text>
-<text x="1438.0" y="823.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">C5 dual-band forward-power evidence coupler aligned with</text>
-<text x="1438.0" y="834.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">the C5-2G4/5 front SMA</text>
-<text x="1410.0" y="860.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">174  Hirose DF40C(2.0)-40DS-0.4V(51)</text>
-<text x="1438.0" y="873.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">40-contact fixed receptacle for the antenna-edge</text>
-<text x="1438.0" y="884.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">replaceable display adapter</text>
+<text x="1438.0" y="823.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">S3 forward-power evidence coupler aligned with the S3-2G4</text>
+<text x="1438.0" y="834.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">front SMA</text>
+<text x="1410.0" y="860.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">174  CP0603Q5425ENTR</text>
+<text x="1438.0" y="873.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">C5 dual-band forward-power evidence coupler aligned with</text>
+<text x="1438.0" y="884.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">the C5-2G4/5 front SMA</text>
 <text x="1410.0" y="910.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">175  U.FL-R-SMT-1(80)</text>
 <text x="1438.0" y="923.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #0 module-to-board microcoax termination</text>
 <text x="1410.0" y="960.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">176  U.FL-R-SMT-1(80)</text>

@@ -5,11 +5,11 @@
   "status": "pass",
   "source_hashes": {
     "hardware/architecture/h0-r2-rebaseline.json": "95b9536cfeb8404b4ed74c1dd2bd5825f16a640c6c242765c1ff244c4f7ca891",
-    "hardware/architecture/devices.json": "9db9ce928ceb1dd38324d5e1eaff57a3d686ff449217ec3216577400dbe51060",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "da05b2bd05b75de7ff6ff3c6fe88d67bb4fc4bf932d40c93bb49de4bdc3fd84b",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "4cda4b3cae4cf847cfac561c8119b528bcb9e757511d0e6de341571c792b66cb",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "62062b9faa2e3f9a9d2430bb068bb4bfc8ba5b37f9ab00d7744cc97605852df5",
-    "hardware/product-design/display-adapter.json": "fb51eb612c6782497db14c1ec7786b1873809c57556be9651bff274ac318ac25"
+    "hardware/architecture/devices.json": "2caf023fb65a15be416b66686f7bcbd9ce199f8c8a55c4d37457782e73ceb6ef",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "87bdeb90711455a70de7ed5e394c4bf2584f1cdb0ce61c7ffef8aace7308959b",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "671b3b429e3b134bdfda6b07ae0859d084b8ef2da5138b65ec79ead770eb5337",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "f3edb2ae8313b90288a040dfc9d95f2664e41f932435a1de2a7f7308ea5510f0",
+    "hardware/product-design/display-mount.json": "7b6ae6b1687d3d2b5db6712b2d8dd93daaf24a4a1de2cef26880637cb8d2c5e9"
   },
   "methods": [
     "M-INT",
@@ -146,7 +146,7 @@
     "cs_is_hard_low": true,
     "rd_is_hard_high": true,
     "im_straps_are_011": true,
-    "adapter_mode_is_exact": true,
+    "direct_mount_mode_is_exact": true,
     "recovery_sda_is_not_populated_on_ui_board": true
   },
   "display_timing": {
@@ -304,7 +304,7 @@
     "models": {
       "i8080": {
         "fanout_per_driven_line": 1,
-        "route_rule": "one S3 output -> one passive board connector -> one passive adapter -> one ILI9488 input"
+        "route_rule": "one S3 output -> one direct UI-board ZIF contact -> one ILI9488 input"
       },
       "hub_c5_sdio": {
         "fanout_per_line": 1,

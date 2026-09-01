@@ -6,8 +6,8 @@ This is the live prerequisite ledger for the new six-domain, dual-RP R2
 production schematic. It records verified results, not the decision history.
 All three prerequisite rows are closed. The native R2 inventory passed
 `H2-R2.1.1`; exact symbol/contact/footprint reconciliation passed
-`H2-R2.1.2`; the 4,323-endpoint native net reconciliation and generation of
-the [three native KiCad projects](h2-r2-native-kicad.md) have also passed at
+`H2-R2.1.2`; the 4,243-endpoint native net reconciliation and generation of
+the [two native KiCad projects](h2-r2-native-kicad.md) have also passed at
 `H2-R2.1.3`, including zero-finding ERC. Cross-sheet and HW↔FW reconciliation
 passed in reviewed `H2-R2.1.5`. Fabrication and ordering remain blocked.
 

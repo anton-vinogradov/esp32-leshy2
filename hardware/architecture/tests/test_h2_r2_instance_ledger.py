@@ -22,18 +22,18 @@ class H2R2InstanceLedgerTests(unittest.TestCase):
             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("1185 exact fitted R2 instances", result.stdout)
+        self.assertIn("1183 exact fitted R2 instances", result.stdout)
 
     def test_all_groups_quantities_projects_and_sheets_close(self):
         self.assertEqual("pass", self.ledger["status"])
         self.assertEqual([], self.ledger["errors"])
         summary = self.ledger["summary"]
-        self.assertEqual(1185, summary["fitted_board_instance_count"])
-        self.assertEqual(234, summary["component_group_count"])
-        self.assertEqual(23, summary["project_graph_sheet_count"])
+        self.assertEqual(1183, summary["fitted_board_instance_count"])
+        self.assertEqual(232, summary["component_group_count"])
+        self.assertEqual(22, summary["project_graph_sheet_count"])
         self.assertEqual(len(summary["sheet_counts"]), summary["populated_sheet_count"])
         self.assertEqual(
-            {"L2-DISP-ADP-001-B", "LESHY2-RF-R2", "LESHY2-UI-R2"},
+            {"LESHY2-RF-R2", "LESHY2-UI-R2"},
             set(summary["project_counts"]),
         )
         self.assertNotIn("controlled_symbol_library", self.ledger["sources"])
@@ -72,7 +72,7 @@ class H2R2InstanceLedgerTests(unittest.TestCase):
     def test_current_replacements_and_pack_boundary_are_present(self):
         by_name = {row["instance"]: row for row in self.rows}
         self.assertEqual("adi_ad8314armz_reel", by_name["det_nrf0"]["device_id"])
-        self.assertEqual("hirose_fh34srj_50s_0_5sh_50", by_name["display_panel_connector"]["device_id"])
+        self.assertEqual("hirose_fh34srj_50s_0_5sh_50", by_name["display_connector"]["device_id"])
         self.assertEqual("ti_tca9803_dgkr", by_name["hub_safe_i2c_boundary"]["device_id"])
         self.assertEqual("RF_02_PACK_SAFETY_AON", by_name["hub_safe_i2c_boundary"]["sheet"])
         self.assertNotIn("evidence_mask_p17_pulldown", by_name)

@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Русский](hardware.ru.md) · [Pin assignment](pinout.md) · [Schematics](schematics.md) · [Safety](safety.md)
 
-> Current marker: **`H3-R2.1`**. The `H1-R2.37` physical design was accepted
+> Current marker: **`H3-R2.1`**. The `H1-R2.38` physical design was accepted
 > and reviewed on 2026-08-30. Nothing on this page authorizes KiCad routing
 > or an order.
 
@@ -14,10 +14,10 @@
 > detector/latch/release implementation is reviewed as `H2-R2.0.2`; the exact
 > `TCA9803DGKR/C2687966` Pack/Safety boundary is reviewed as `H2-R2.0.3`.
 > The native R2 inventory and exact symbol/contact/footprint ledger passed
-> review. Three native KiCad projects now materialize all 1,185 fitted instances
-> and 4,323 physical pins with zero ERC findings. Cross-sheet and HW↔FW
+> review. Two native KiCad projects now materialize all 1,183 fitted instances
+> and 4,243 physical pins with zero ERC findings. Cross-sheet and HW↔FW
 > reconciliation is reviewed; H3-R2.0.1 freezes those inputs and H3-R2.0.2
-> reviews exact parameter/model provenance for all 240 groups and 1,185 fitted
+> reviews exact parameter/model provenance for all 238 groups and 1,183 fitted
 > positions. H3-R2.0.3 freezes reproducible verification methods and rules;
 > H3-R2.1 now verifies worst-case power/DC states.
 
@@ -130,7 +130,7 @@ the drawing is its pad span.
 
 ## User interface and service
 
-- 3.5-inch portrait 320×480 IPS `ER-TFT035IPS-6` + `ER-TPC035-6`, `ILI9488` + `FT6236`, direct exact-20-MHz i8080-8 through passive adapter `L2-DISP-ADP-001-B`.
+- 3.5-inch portrait 320×480 IPS `ER-TFT035IPS-6` + `ER-TPC035-6`, `ILI9488` + `FT6236`, direct exact-20-MHz i8080-8 through `FH34SRJ-50S-0.5SH(50)` on the UI PCB; the adapter PCB and both DF40 parts are removed.
 - Five serial navigation switches forming the D-pad, eight side function keys,
   PTT and encoder.
 - Two aligned rows of five user-facing status LEDs below the display.
@@ -167,14 +167,14 @@ registered body. The onboard video experiment, its connector and its
 post-PCBA receiver bay are removed; there is no hidden active module for the
 owner to solder after factory assembly. The structural audit of every body, all 18 U219 support parts,
 the NFC pickup loop and the supplied 108-mm antenna swept volume passes with no
-open geometry gate. The exact EastRising panel and passive adapter are fixed as
+open geometry gate. The exact EastRising panel and its direct 50-contact ZIF are fixed as
 well. H1 was explicitly accepted and reviewed on 2026-08-30. The C5 electrical
 pin/mux contract, live FSUSB42MUX/C11355 route and exact service-VBUS
 detector/latch/release implementation and exact TCA9803 Pack/Safety boundary
-are closed. `H2-R2.1.1` reviewed 3 native projects, 23 sheets and 240 exact MPN
-groups; `H2-R2.1.2` reviewed exact identities for 234 board groups, six
-explicit non-PCBA groups and 1,658 logical contacts. `H2-R2.1.3` materializes
-1,185 fitted instances and 823 canonical nets in three native projects with
+are closed. `H2-R2.1.1` reviewed 2 native projects, 22 sheets and 238 exact MPN
+groups; `H2-R2.1.2` reviewed exact identities for 232 board groups, six
+explicit non-PCBA groups and 1,578 logical contacts. `H2-R2.1.3` materializes
+1,183 fitted instances and 816 canonical nets in two native projects with
 zero-finding ERC. Cross-sheet and HW↔FW reconciliation passed in the reviewed
 `H2-R2.1.5` result; H3 now freezes those inputs.
 The legacy HMX display is reference evidence only and cannot enter

@@ -16,7 +16,7 @@ flowchart LR
 
 ### `H3-PHY-017` · `display`
 
-- Выбрано: `EastRising ER-TFT035IPS-6 + ER-TPC035-6`; `Sitronix ST77922`; `Hirose DF40C(2.0)-40DS-0.4V(51)`; `Hirose DF40C-40DP-0.4V(51)`; `Hirose FH34SRJ-50S-0.5SH(50)`.
+- Выбрано: `EastRising ER-TFT035IPS-6 + ER-TPC035-6`; `Sitronix ST77922`; прямой UI-PCB `Hirose FH34SRJ-50S-0.5SH(50)`.
 - Осталось доказать: самостоятельный order identity и полный контур FPC production panel; identity/readback контроллера и равенство разгона VDD/VDDI на единственном прототипе в H7/H8.
 - Критерий: полученный и однозначно идентифицированный образец напрямую подтверждает пункт; несовпадение повторно открывает связанный результат H1/H2/H3.
 
@@ -70,7 +70,7 @@ flowchart LR
 
 ## Четырнадцать механических gate’ов
 
-- `H5-MECH-DISPLAY-TAIL` — `EastRising ER-TFT035IPS-6 + ER-TPC035-6`; `Hirose DF40C(2.0)-40DS-0.4V(51)`; `Hirose DF40C-40DP-0.4V(51)`; `Hirose FH34SRJ-50S-0.5SH(50)`; открыто: контур, толщина, stiffener, клей, изгиб и удержание FPC текущей партии дисплея
+- `H5-MECH-DISPLAY-TAIL` — `EastRising ER-TFT035IPS-6 + ER-TPC035-6`; прямой UI-PCB `Hirose FH34SRJ-50S-0.5SH(50)`; открыто: контур, толщина, stiffener, клей, изгиб и ввод FPC текущей партии. Нагрузку панели несут рамка, perimeter PSA, locators и упругий прижим; несовпадение блокирует одноплатную компоновку, а не молча возвращает переходник
 - `H5-MECH-NRF-GEN1-FEEDS` — `Ebyte E01-ML01SP4`; `TE Connectivity 2118651-2`; `Hirose U.FL-R-SMT-1(80)`; `GCT RFPC-SMA31-FN-175-A`; открыто: ось и MPN встроенного разъёма партии E01, fit/retention, изгиб и сквозные RF-потери
 - `H5-MECH-U214-MATING-STACK` — `M5Stack U214 Cap LoRa-1262`; `Samtec HLE-107-02-G-DV-PE-LC`; открыто: сечение штырей U214, усилия, циклы, винтовое удержание и preload планки
 - `H5-MECH-NAVIGATION-CONTROLS` — `OMRON B3S-1100P`; открыто: доступ через корпус, защита от случайного нажатия, ощущения, герметизация и ресурс
@@ -81,7 +81,7 @@ flowchart LR
 - `H5-MECH-M5-UNIT-MATE` — `1125R-SMT-4P`; открыто: вставка, удержание, разгрузка и циклы полученного Grove-кабеля
 - `H5-MECH-CELL-HOLDER-FIT` — `Keystone Electronics 1048P`; `XTAR 18650 4000mAh`; открыто: усилие вставки, прижим контактов, полярность, вибрация и термоциклы
 - `H5-MECH-NATIVE-RF-JUMPERS` — `TE Connectivity 2118651-2`; `Hirose U.FL-R-SMT-1(80)`; открыто: реальный радиус изгиба, разгрузка, усилие, удержание и RF-потери после сборки
-- `H5-MECH-DISPLAY-PERFORMANCE` — `EastRising ER-TFT035IPS-6 + ER-TPC035-6`; `Hirose DF40C(2.0)-40DS-0.4V(51)`; `Hirose DF40C-40DP-0.4V(51)`; `Hirose FH34SRJ-50S-0.5SH(50)`; открыто: QSPI/touch, оптика, ток и нагрев подсветки, ресурс flex и повторяемость партий
+- `H5-MECH-DISPLAY-PERFORMANCE` — `EastRising ER-TFT035IPS-6 + ER-TPC035-6`; прямой UI-PCB `Hirose FH34SRJ-50S-0.5SH(50)`; открыто: i8080/recovery-serial и touch, оптика, ток и нагрев подсветки, ресурс flex и повторяемость партий
 - `H5-MECH-ACOUSTIC-PATHS` — `PUI Audio AS02404PO`; `Same Sky CMEJ-0413-42-SMT-TR`; открыто: акустика корпуса, резонанс, герметизация, feedback, response микрофона и вибрация
 - `H5-MECH-HEADSET-JACK` — `Same Sky SJ-43504-SMT-TR`; открыто: допуски выреза, shield/solder-tab fit, усилия, CTIA/TRS, удержание и transient отключения
 

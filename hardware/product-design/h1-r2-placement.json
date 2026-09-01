@@ -5,7 +5,7 @@
   "reviewed_on": "2026-08-30",
   "accepted_by": "user",
   "acceptance_scope": "Complete R2 exterior, both inner faces as viewed after physical turn-over, service access, antenna-edge locality and all real sandwich sections.",
-  "marker": "H1-R2.37",
+  "marker": "H1-R2.38",
   "pin_authority_marker": "H1-R2.31",
   "checked_on": "2026-08-29",
   "purpose": "Close the pre-KiCad physical architecture around direct i8080-8, a fully counted 80-contact M1, mechanically unloaded board retention, direct 5+5 antenna locality and local nRF concurrency, with no onboard video-receiver burden.",
@@ -172,7 +172,7 @@
       "structural_role": "none; M1 is electrical/alignment only"
     },
     "transport": "rear audio at 48-kHz full duplex remains below 0.4 MB/s on the 1.5-MB/s qualified RP link; nRF payload is now front-local",
-    "display": "S3 drives the exact EastRising ER-TFT035IPS-6 + ER-TPC035-6 assembly directly over 8-bit i8080 at an exact 20 MHz produced by the locked ESP-IDF integer divider; the panel flex faces the antenna edge and firmware rotates display memory and touch coordinates by 180 degrees; buttons use the S3-local TCA9539PWR path while encoder and USB stay direct to S3; six GPIO remain uncommitted reserves after reset and service closure, and a deliberate adapter revision can expose ordinary 4-wire serial recovery"
+    "display": "S3 drives the exact EastRising ER-TFT035IPS-6 + ER-TPC035-6 assembly directly over 8-bit i8080 at an exact 20 MHz produced by the locked ESP-IDF integer divider; the panel flex faces the antenna edge and enters one direct 50-contact ZIF on the UI PCB; firmware rotates display memory and touch coordinates by 180 degrees; buttons use the S3-local TCA9539PWR path while encoder and USB stay direct to S3; six GPIO remain uncommitted reserves after reset and service closure"
   },
   "mechanical_retention": {
     "m1_rule": "M1 is never a load-bearing member",
@@ -248,7 +248,7 @@
       "id": "s3_tx_evidence_island_reserve",
       "kind": "placement_reserve",
       "frame": "ui-inner",
-      "world_bbox_mm": {"x": [21.0, 31.5], "y": [5.7, 13.2]},
+      "world_bbox_mm": {"x": [21.0, 31.5], "y": [6.3, 13.8]},
       "role": "bounded local RF and support-passive allocation from the S3 U.FL path through its coupler and LTC5532 detector",
       "members": ["s3_rf_board_connector_r2", "s3_rf_coupler_r2", "det_s3_r2"],
       "courtyard_status": "all exact bodies fit; H2 owns the short controlled-impedance fanout and exact passive footprints"
@@ -257,7 +257,7 @@
       "id": "c5_tx_evidence_island_reserve",
       "kind": "placement_reserve",
       "frame": "ui-inner",
-      "world_bbox_mm": {"x": [44.0, 54.2], "y": [5.7, 13.2]},
+      "world_bbox_mm": {"x": [44.0, 54.2], "y": [6.3, 13.8]},
       "role": "bounded local RF and support-passive allocation from the C5 U.FL path through its coupler and LTC5532 detector",
       "members": ["c5_rf_board_connector_r2", "c5_rf_coupler_r2", "det_c5_r2"],
       "courtyard_status": "all exact bodies fit; H2 owns the short controlled-impedance fanout and exact passive footprints"
@@ -410,8 +410,8 @@
       "checked": "2026-08-29"
     },
     {
-      "role": "50-contact display-tail connector on the passive adapter",
-      "role_ru": "50-контактный разъём шлейфа дисплея на пассивном адаптере",
+      "role": "direct 50-contact display-tail ZIF on the UI PCB",
+      "role_ru": "прямой 50-контактный ZIF шлейфа дисплея на UI-плате",
       "mpn": "FH34SRJ-50S-0.5SH(50)",
       "jlcpcb_part": "C3169104",
       "manufacturer": "Hirose",
@@ -825,10 +825,10 @@
       "frame": "ui-inner",
       "mpn": "CP0603Q5425ENTR",
       "role": "S3 forward-power evidence coupler aligned with the S3-2G4 front SMA",
-      "world_xy_mm": [22.0, 6.2],
+      "world_xy_mm": [22.0, 6.8],
       "size_mm": [1.6, 0.84, 0.6],
       "courtyard_xy_mm": [2.1, 1.34],
-      "courtyard_world_bbox_mm": {"x": [21.75, 23.85], "y": [5.95, 7.29]},
+      "courtyard_world_bbox_mm": {"x": [21.75, 23.85], "y": [6.55, 7.89]},
       "courtyard_status": "source-backed H1 fit evidence for the complete exact package",
       "courtyard_basis": "manufacturer maximum body plus 0.25 mm assembly margin per side",
       "replaces": ["s3_rf_coupler"]
@@ -865,10 +865,10 @@
       "frame": "ui-inner",
       "mpn": "CP0603Q5425ENTR",
       "role": "C5 dual-band forward-power evidence coupler aligned with the C5-2G4/5 front SMA",
-      "world_xy_mm": [51.4, 6.2],
+      "world_xy_mm": [51.4, 6.8],
       "size_mm": [1.6, 0.84, 0.6],
       "courtyard_xy_mm": [2.1, 1.34],
-      "courtyard_world_bbox_mm": {"x": [51.15, 53.25], "y": [5.95, 7.29]},
+      "courtyard_world_bbox_mm": {"x": [51.15, 53.25], "y": [6.55, 7.89]},
       "courtyard_status": "source-backed H1 fit evidence for the complete exact package",
       "courtyard_basis": "manufacturer maximum body plus 0.25 mm assembly margin per side",
       "replaces": ["c5_rf_coupler"]

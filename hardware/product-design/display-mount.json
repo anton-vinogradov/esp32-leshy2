@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "design_id": "L2-DISP-DIRECT-001-A",
+  "stage": "H1-R2.38",
+  "status": "dimensioned_exact_production_panel_direct_zif_ready_for_h2",
+  "purpose": "Mate the exact EastRising ER-TFT035IPS-6 plus ER-TPC035-6 configured assembly directly to the UI PCB through one serviceable 50-contact ZIF; the enclosure bezel and compliant panel bed carry every mechanical load.",
+  "components": [
+    {
+      "instance": "display_connector",
+      "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
+      "jlcpcb_part": "C3169104",
+      "mount": "UI PCB inner face",
+      "ui_inner_position_mm": [24.0, 1.8],
+      "envelope_mm": [27.0, 3.8, 1.0],
+      "role": "direct dual-contact 50-position ZIF for the exact 0.30-mm EastRising tail"
+    }
+  ],
+  "stack": {
+    "connector_height_from_ui_inner_mm": 1.0,
+    "available_interboard_gap_mm": 11.0,
+    "minimum_reserved_clearance_mm": 0.7,
+    "removed_adapter_stack_height_mm": 3.8,
+    "height_reduction_mm": 2.8
+  },
+  "mechanical_retention": {
+    "connector_is_load_bearing": false,
+    "panel_support": "continuous front-shell display bed plus bezel overlap outside the active and touch areas",
+    "primary_retention": "thin perimeter display-grade PSA on the front-shell bed",
+    "secondary_retention": "four corner locators and a compliant 0.5-1.0-mm closed-cell rear preload pad",
+    "flex_strain_relief": "controlled folded-tail corridor from the antenna edge to the direct ZIF; no tensile or peel load reaches the contacts or latch",
+    "service_rule": "opening the sandwich exposes the ZIF latch; release the latch before lifting the display assembly"
+  },
+  "electrical": {
+    "panel_position_count": 50,
+    "panel_interface_pitch_mm": 0.5,
+    "added_active_devices": 0,
+    "signal_contract": "the UI PCB routes every required panel power, ground, i8080-8, recovery and touch net directly to the exact 50-contact connector; manufacturer NC and SDO contacts remain open",
+    "selected_mode": "ILI9488 8080 8-bit with IM2/IM1/IM0 = 0/1/1",
+    "recovery_mode": "deliberate strap change to ILI9488 4-wire serial; no QSPI claim",
+    "panel_pin_map": {
+      "1": "LCD_LEDA_PROTECTED",
+      "2": "LCD_LEDK",
+      "3": "LCD_LEDK",
+      "4": "OPEN NC",
+      "5": "OPEN NC",
+      "6": "OPEN NC",
+      "7": "LCD_IM0_HIGH",
+      "8": "LCD_IM1_HIGH",
+      "9": "LCD_IM2_LOW",
+      "10": "LCD_RST_N",
+      "11": "POWER_GROUND",
+      "12": "POWER_GROUND",
+      "13": "POWER_GROUND",
+      "14": "POWER_GROUND",
+      "15": "POWER_GROUND",
+      "16": "POWER_GROUND",
+      "17": "POWER_GROUND",
+      "18": "POWER_GROUND",
+      "19": "POWER_GROUND",
+      "20": "POWER_GROUND",
+      "21": "POWER_GROUND",
+      "22": "POWER_GROUND",
+      "23": "POWER_GROUND",
+      "24": "POWER_GROUND",
+      "25": "LCD_DB7",
+      "26": "LCD_DB6",
+      "27": "LCD_DB5",
+      "28": "LCD_DB4",
+      "29": "LCD_DB3",
+      "30": "LCD_DB2",
+      "31": "LCD_DB1",
+      "32": "LCD_DB0",
+      "33": "OPEN SDO",
+      "34": "OPEN SDA_RECOVERY_DNP",
+      "35": "LCD_RD_HIGH",
+      "36": "LCD_WR_N_OR_SPI_SCL",
+      "37": "LCD_DC",
+      "38": "LCD_CS_LOW_OR_SPI_CS_N",
+      "39": "OPEN TE",
+      "40": "LCD_VDDI_3V3",
+      "41": "LCD_VDDI_3V3",
+      "42": "LCD_VCI_3V3",
+      "43": "POWER_GROUND",
+      "44": "SYS_UI_I2C_SCL",
+      "45": "SYS_UI_I2C_SDA",
+      "46": "LCD_TOUCH_INT_RAW_N",
+      "47": "TOUCH_RST_N",
+      "48": "POWER_GROUND",
+      "49": "POWER_GROUND",
+      "50": "POWER_GROUND"
+    },
+    "recovery_straps": {
+      "primary_population": "i8080-8: pin 34 and TE pin 39 are open; pin 38 CS is strapped low; RD is strapped high; IM2/IM1/IM0 = 0/1/1",
+      "serial_recovery": "service-only solder-jumper population links panel SDA pin 34 to S3 LCD_DB7/GPIO46 and moves CS pin 38 from ground to S3 LCD_DB6/GPIO42; the mode-select jumpers are repopulated to the manufacturer 4-wire-serial code",
+      "safety": "all recovery pads are on the opened inner face and cannot change mode during normal use"
+    },
+    "h2_rule": "H2 places this connector on the UI PCB and routes the accepted panel map directly; no display adapter PCB or board-to-board display connector is populated."
+  },
+  "orientation": {
+    "accepted_on": "2026-09-01",
+    "panel_rule": "mount the configured panel with its folded FPC toward the antenna edge, as on ESP32-DIV, so the tail never enters the LED, navigation or function-key zone",
+    "display_memory_transform": "rotate ILI9488 output by 180 degrees relative to its cable-down native orientation",
+    "touch_transform": "rotate FT6236 coordinates by 180 degrees before UI hit-testing",
+    "tail_contract": "manufacturer drawing controls the 50-contact 0.50-mm-pitch, 0.30-mm-stiffened folded tail; H5 incoming inspection verifies lot conformity and insertion"
+  },
+  "paper_checks": {
+    "connector_within_ui_outline": true,
+    "connector_clear_of_mounting_holes": true,
+    "connector_height_within_interboard_gap": true,
+    "minimum_same_face_clearance_mm": 0.7,
+    "panel_connector_jlcpcb_stock_on_2026_08_29": 2679,
+    "panel_connector_jlcpcb_orderable_on_2026_08_29": 2614,
+    "panel_connector_moq": 1,
+    "panel_connector_usd_at_1": 0.5832,
+    "configured_panel_usd_at_1": 14.91,
+    "removed_components": ["Hirose DF40C(2.0)-40DS-0.4V(51)", "Hirose DF40C-40DP-0.4V(51)", "L2-DISP-ADP-001-B PCB"]
+  },
+  "evidence": [
+    {
+      "source": "https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf",
+      "finding": "EastRising controls the 50-contact 0.50-mm tail, complete CTP outline, 8080-8 strap and every LCD/touch/backlight contact."
+    },
+    {
+      "source": "https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen",
+      "finding": "Exact ER-TFT035IPS-6 is orderable at quantity one with the ER-TPC035-6 capacitive-touch option."
+    },
+    {
+      "source": "https://jlcpcb.com/partdetail/HRS_Hirose-FH34SRJ_50S_0_5SH_50/C3169104",
+      "finding": "FH34SRJ-50S-0.5SH(50) is exact HRS original-manufacturer C3169104, Extended SMT, Economic/Standard PCBA, MOQ 1 and verified live stock."
+    }
+  ],
+  "release_boundary": "H1 freezes the exact panel, direct C3169104 ZIF position, 50-contact electrical map, folded-tail corridor and non-load-bearing connector rule. H2 imports the exact footprint and routes the display sheet directly on the UI PCB; H5 confirms current-lot tail conformity, written factory acceptance for panel PSA/FPC insertion and one-prototype final mating."
+}

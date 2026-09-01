@@ -5,7 +5,7 @@
   "accepted_input": "H3-R2.0.2",
   "status": "reviewed",
   "expected": {
-    "parameter_rows": 240,
+    "parameter_rows": 238,
     "parameter_classes": 9,
     "workstreams": 7,
     "methods": 9,

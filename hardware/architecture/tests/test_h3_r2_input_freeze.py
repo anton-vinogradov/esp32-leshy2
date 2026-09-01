@@ -18,7 +18,7 @@ class H3R2InputFreezeTest(unittest.TestCase):
         result = MODULE.build()
         self.assertEqual("pass", result["status"])
         self.assertEqual([], result["errors"])
-        self.assertEqual(23, result["summary"]["unique_matrix_sheets"])
+        self.assertEqual(22, result["summary"]["unique_matrix_sheets"])
         self.assertEqual(7, result["summary"]["workstream_count"])
         self.assertEqual(12, result["summary"]["shared_parameter_dependencies"])
         self.assertEqual(

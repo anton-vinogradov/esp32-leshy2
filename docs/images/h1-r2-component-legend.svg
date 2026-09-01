@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="3117" viewBox="0 0 1900 3117" data-marker="H1-R2.37" data-view="numbered-component-legend">
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="3117" viewBox="0 0 1900 3117" data-marker="H1-R2.38" data-view="numbered-component-legend">
 <rect width="1900" height="3117" fill="#ffffff"/>
-<text x="30.0" y="42.0" font-family="sans-serif" font-size="24" font-weight="bold" fill="#172033">Leshy2 · H1-R2.37 · numbered component legend</text>
+<text x="30.0" y="42.0" font-family="sans-serif" font-size="24" font-weight="bold" fill="#172033">Leshy2 · H1-R2.38 · numbered component legend</text>
 <text x="30.0" y="72.0" font-family="sans-serif" font-size="12" font-weight="normal" fill="#526076">226 unique drawing references · MPN or explicit physical reserve · role in the target device</text>
 <text x="30.0" y="100.0" font-family="sans-serif" font-size="11" font-weight="normal" fill="#526076">Bodies — blue: R2 placement · grey: retained register · orange: physical reserve</text>
 <text x="30.0" y="126.0" font-family="sans-serif" font-size="11" font-weight="normal" fill="#526076">Non-component geometry — red: exact PTH keepout · violet: bounded placement island</text>
-<text x="30.0" y="150.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">s3_tx_evidence_island_reserve · placement_reserve · X 21…31.5 · Y 5.7…13.2 mm</text>
-<text x="30.0" y="167.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">c5_tx_evidence_island_reserve · placement_reserve · X 44…54.2 · Y 5.7…13.2 mm</text>
+<text x="30.0" y="150.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">s3_tx_evidence_island_reserve · placement_reserve · X 21…31.5 · Y 6.3…13.8 mm</text>
+<text x="30.0" y="167.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">c5_tx_evidence_island_reserve · placement_reserve · X 44…54.2 · Y 6.3…13.8 mm</text>
 <text x="30.0" y="184.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">nrf0_tx_evidence_island_reserve · placement_reserve · X 9.7…20.5 · Y 8.5…17.6 mm</text>
 <text x="30.0" y="201.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">nrf1_tx_evidence_island_reserve · placement_reserve · X 28.7…39.5 · Y 13.5…21.3 mm</text>
 <text x="30.0" y="218.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">nrf2_tx_evidence_island_reserve · placement_reserve · X 56.5…65.3 · Y 8.5…17.6 mm</text>
@@ -372,15 +372,14 @@
 <text x="988.0" y="2976.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">product USB-C data and sink</text>
 <text x="960.0" y="3012.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">171  Same Sky CMEJ-0413-42-SMT-TR</text>
 <text x="988.0" y="3026.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">rear bottom-facing microphone</text>
-<text x="1425.0" y="212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">172  CP0603Q5425ENTR</text>
-<text x="1453.0" y="226.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">S3 forward-power evidence coupler aligned with the S3-2G4</text>
-<text x="1453.0" y="237.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front SMA</text>
+<text x="1425.0" y="212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">172  Hirose FH34SRJ-50S-0.5SH(50)</text>
+<text x="1453.0" y="226.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">direct 50-contact dual-contact ZIF for the folded display FPC</text>
 <text x="1425.0" y="262.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">173  CP0603Q5425ENTR</text>
-<text x="1453.0" y="276.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5 dual-band forward-power evidence coupler aligned with the</text>
-<text x="1453.0" y="287.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5-2G4/5 front SMA</text>
-<text x="1425.0" y="312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">174  Hirose DF40C(2.0)-40DS-0.4V(51)</text>
-<text x="1453.0" y="326.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">40-contact fixed receptacle for the antenna-edge replaceable</text>
-<text x="1453.0" y="337.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">display adapter</text>
+<text x="1453.0" y="276.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">S3 forward-power evidence coupler aligned with the S3-2G4</text>
+<text x="1453.0" y="287.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front SMA</text>
+<text x="1425.0" y="312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">174  CP0603Q5425ENTR</text>
+<text x="1453.0" y="326.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5 dual-band forward-power evidence coupler aligned with the</text>
+<text x="1453.0" y="337.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5-2G4/5 front SMA</text>
 <text x="1425.0" y="362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">175  U.FL-R-SMT-1(80)</text>
 <text x="1453.0" y="376.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #0 module-to-board microcoax termination</text>
 <text x="1425.0" y="412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">176  U.FL-R-SMT-1(80)</text>

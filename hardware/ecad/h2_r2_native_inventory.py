@@ -64,8 +64,8 @@ def build() -> dict:
         errors.append("functional authority is not the exact six-domain R2 model")
     if pins.get("marker") != "H1-R2.31" or pins.get("authority_chain", {}).get("remaining_h2_gates") != []:
         errors.append("pin authority is not the closed H1-R2.31 map")
-    if physical.get("marker") != "H1-R2.37" or physical.get("status") != "reviewed":
-        errors.append("physical authority is not reviewed H1-R2.37")
+    if physical.get("marker") != "H1-R2.38" or physical.get("status") != "reviewed":
+        errors.append("physical authority is not reviewed H1-R2.38")
     if c5.get("production_mux_route", {}).get("selection_status") != "accepted":
         errors.append("H2-R2.0.1 live C5 mux route is not accepted")
     if c5.get("ownership", {}).get("detector_latch_implementation", {}).get("selection_status") != "accepted":
@@ -79,12 +79,12 @@ def build() -> dict:
 
     projects = contract.get("projects", [])
     project_ids = [row.get("id") for row in projects]
-    if project_ids != ["LESHY2-UI-R2", "LESHY2-RF-R2", "L2-DISP-ADP-001-B"]:
-        errors.append("native R2 must contain exactly the two product PCBs and passive display adapter")
+    if project_ids != ["LESHY2-UI-R2", "LESHY2-RF-R2"]:
+        errors.append("native R2 must contain exactly the two product PCBs")
     sheets = [sheet for project in projects for sheet in project.get("sheets", [])]
     sheet_ids = [row.get("id") for row in sheets]
-    if len(sheet_ids) != 23 or len(sheet_ids) != len(set(sheet_ids)):
-        errors.append("native R2 sheet inventory must contain 23 unique sheets")
+    if len(sheet_ids) != 22 or len(sheet_ids) != len(set(sheet_ids)):
+        errors.append("native R2 sheet inventory must contain 22 unique sheets")
     source_keys = set(contract.get("authority", {}))
     for sheet in sheets:
         if not set(sheet.get("sources", [])).issubset(source_keys):
@@ -268,7 +268,7 @@ def main() -> int:
         print(f"stale: {OUTPUT.relative_to(ROOT)}")
         return 1
     print(
-        "ok: H2-R2.1.1 freezes 3 native projects, 23 sheets, 6 domains, "
+        "ok: H2-R2.1.1 freezes 2 native projects, 22 sheets, 6 domains, "
         f"{result['summary']['component_group_count']} exact component groups and {result['summary']['component_quantity_per_product']} per-product positions; no symbols or nets created"
     )
     return 0

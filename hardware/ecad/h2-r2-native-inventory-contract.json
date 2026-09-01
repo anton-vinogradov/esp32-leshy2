@@ -13,7 +13,7 @@
     "c5_mux_and_service_vbus": "hardware/architecture/c5-sdio-service-mux-contract.json",
     "pack_safety_boundary": "hardware/architecture/pack-safety-i2c-boundary-contract.json",
     "u214_u219": "hardware/architecture/h1-r2-u219-cap.json",
-    "display_adapter": "hardware/product-design/display-adapter.json",
+    "display_mount": "hardware/product-design/display-mount.json",
     "airband": "hardware/product-design/h1-airband-filter.json",
     "antennas": "hardware/architecture/antenna-kit.json"
   },
@@ -31,7 +31,7 @@
       "root": "UI_00_ROOT",
       "sheets": [
         {"id": "UI_00_ROOT", "role": "front hierarchy and named interfaces only", "sources": ["functional", "pin_map", "physical"]},
-        {"id": "UI_10_S3_DISPLAY_TOUCH", "role": "S3 core, exact direct i8080-8 display, touch and S3 service", "domain_owner": "s3", "sources": ["functional", "pin_map", "display_adapter"]},
+        {"id": "UI_10_S3_DISPLAY_TOUCH", "role": "S3 core, exact direct i8080-8 display through the UI-board ZIF, touch and S3 service", "domain_owner": "s3", "sources": ["functional", "pin_map", "display_mount"]},
         {"id": "UI_11_STORAGE_CONTROLS_INDICATORS", "role": "Hub-local microSD, encoder, user keys and two-row indicators", "sources": ["functional", "pin_map", "physical"]},
         {"id": "UI_20_C5_WIFI_IR_SERVICE", "role": "C5 native 2.4/5-GHz, IR, exact SDIO/service mux and independent recovery", "domain_owner": "c5", "sources": ["functional", "pin_map", "c5_mux_and_service_vbus"]},
         {"id": "UI_30_HUB_RP_CORE_SERVICE", "role": "front Hub RP2354B core, flash, reset, USB, DBG10 and local transport fan-out", "domain_owner": "hub_rp", "sources": ["functional", "pin_map"]},
@@ -60,19 +60,11 @@
         {"id": "RF_50_TX_SAFETY_EVIDENCE", "role": "rear actual-TX evidence, wired fault plane and fail-closed release gates", "sources": ["functional", "pin_map", "pack_safety_boundary"]},
         {"id": "RF_60_TESTPOINTS_MANUFACTURING", "role": "rear diagnostic and manufacturing access only", "sources": ["functional", "pin_map", "physical"]}
       ]
-    },
-    {
-      "id": "L2-DISP-ADP-001-B",
-      "board": "replaceable passive 40-to-50 display adapter",
-      "root": "ADP_00_DISPLAY_ADAPTER",
-      "sheets": [
-        {"id": "ADP_00_DISPLAY_ADAPTER", "role": "exact passive DF40-to-FH34 one-to-one/strap map; no active device", "sources": ["display_adapter", "physical"]}
-      ]
     }
   ],
   "component_inventory": {
-  "base_group_count": 212,
-    "base_quantity_per_product": 1099,
+  "base_group_count": 210,
+    "base_quantity_per_product": 1097,
     "adjustments": [
       {"device_id": "uniroyal_0402wgf2201tce", "quantity_delta": 2, "sheets": ["RF_02_PACK_SAFETY_AON", "RF_31_REAR_CONTROLS"], "reason": "remove two obsolete Cap-identity pull-ups, then add two MAIN-side Pack/Safety and two rear-local I2C pull-ups"},
       {"device_id": "samtec_ftsh_105_01_l_dv_k_p_tr", "quantity_delta": 2, "sheets": ["RF_02_PACK_SAFETY_AON", "RF_50_TX_SAFETY_EVIDENCE"], "reason": "physical internal DBG10 fixtures for Pack and Safety MSPM0 recovery"},
@@ -125,8 +117,8 @@
       {"device_id": "yageo_rc0402fr_0782rl", "quantity": 2, "sheet": "RF_21_BROADCAST_AIRBAND_RX", "role": "12-dB nominal LO pi-pad shunts", "identity_source": "hardware/architecture/devices.json"},
       {"device_id": "yageo_rc0402fr_0793r1l", "quantity": 1, "sheet": "RF_21_BROADCAST_AIRBAND_RX", "role": "12-dB nominal LO pi-pad series arm", "identity_source": "hardware/architecture/devices.json"}
     ],
-  "expected_group_count": 240,
-    "expected_quantity_per_product": 1195,
+  "expected_group_count": 238,
+    "expected_quantity_per_product": 1193,
     "non_pcba_dispositions": {
       "eastrising_er_tft035ips_6_ctp": "factory-final-mated display assembly represented by its controlled connector endpoint",
       "m5_u214": "optional removable external accessory; host receptacle remains in ECAD",

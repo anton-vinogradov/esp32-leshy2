@@ -147,7 +147,6 @@
   "mechanical_only_pads": {
     "alps_ec11e18244au": ["MP"],
     "alps_skrtlae010": ["MP"],
-    "hirose_df40c_40dp_0_4v_51": ["MP"],
     "hirose_fh34srj_50s_0_5sh_50": ["MP1", "MP2"]
   },
   "allowed_shared_electrical_pads": {

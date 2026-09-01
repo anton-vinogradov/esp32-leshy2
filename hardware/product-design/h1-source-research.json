@@ -3,7 +3,7 @@
   "stage": "H1.1.3.3",
   "as_of": "2026-08-29",
   "status": "reviewed",
-  "current_substep": "H1-R2.37",
+  "current_substep": "H1-R2.38",
   "policy": {
     "order_authorized": false,
     "purchase_is_last_resort": true,
@@ -49,14 +49,6 @@
         {
           "source": "https://jlcpcb.com/partdetail/HRS_Hirose-FH34SRJ_50S_0_5SH_50/C3169104",
           "finding": "Exact HRS FH34SRJ-50S-0.5SH(50), C3169104, is an Extended SMT Economic/Standard-PCBA part with 2,614 orderable, MOQ 1 and USD 0.5832 quantity-one price on 2026-08-29."
-        },
-        {
-          "source": "https://www.hirose.com/en/product/p/CL0684-4042-5-58",
-          "finding": "The active DF40C(2.0)-40DS-0.4V(51) fixes the main-board 40-contact receptacle and exact 2.0-mm stack independently of the raw display tail. The former (58) order code differs only in reel quantity."
-        },
-        {
-          "source": "https://www.hirose.com/en/product/p/CL0684-4013-7-51",
-          "finding": "The active DF40C-40DP-0.4V(51) is the exact mating 40-contact adapter-board plug."
         }
       ],
       "remaining_gap": "No display geometry or order identity remains open. H5 must obtain written factory acceptance for customer-supplied panel handling, adhesive placement, FPC insertion and final mating; this is a process/quote gate, not a layout ambiguity.",
@@ -77,12 +69,12 @@
           "reason": "It preserves a fast serial path through AXS15231B, but the raw LCD/CTP assembly still lacks a separately controlled order identity and flex drawing, reproducing the same procurement gap."
         },
         {
-          "candidate": "ER-TFT035IPS-6 + ER-TPC035-6 on L2-DISP-ADP-001-B",
+          "candidate": "ER-TFT035IPS-6 + ER-TPC035-6 with direct UI-board FH34SRJ-50S-0.5SH(50)",
           "result": "selected",
-          "reason": "The exact IPS panel preserves 320x480 capacitive touch and direct i8080-8 video, while the passive 50-to-40 adapter isolates any future panel change from the main PCB."
+          "reason": "The exact IPS panel preserves 320x480 capacitive touch and direct i8080-8 video; one stocked ZIF on the UI PCB removes two connectors and a daughterboard while the enclosure carries every screen load."
         }
       ],
-      "current_disposition": "exact_production_panel_and_replaceable_adapter_selected_no_purchase_authorized"
+      "current_disposition": "exact_production_panel_and_direct_ui_zif_selected_no_purchase_authorized"
     },
     {
       "id": "nrf24",

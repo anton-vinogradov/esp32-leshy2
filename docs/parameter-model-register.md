@@ -6,17 +6,17 @@
 
 ## Coverage
 
-- `240` component groups: `234` on-board and `6` explicitly external/final-installed.
-- `1185` fitted positions; all `240` groups have an H3 owner.
-- `74` groups already contain structured parameters; `166` are in an explicit extraction queue rather than receiving invented values.
-- `240` method candidates are assigned; exact methods, tolerances and applicability are frozen next in `H3-R2.0.3`.
+- `238` component groups: `232` on-board and `6` explicitly external/final-installed.
+- `1183` fitted positions; all `238` groups have an H3 owner.
+- `74` groups already contain structured parameters; `164` are in an explicit extraction queue rather than receiving invented values.
+- `238` method candidates are assigned; exact methods, tolerances and applicability are frozen next in `H3-R2.0.3`.
 
 ## Model classes
 
 | Class | Groups | With structured seed | Need extraction |
 |---|---:|---:|---:|
 | `analog_peripheral` | 6 | 3 | 3 |
-| `connector_interconnect` | 14 | 6 | 8 |
+| `connector_interconnect` | 12 | 6 | 6 |
 | `digital_interface` | 33 | 18 | 15 |
 | `electromechanical_or_load` | 7 | 0 | 7 |
 | `general_component` | 37 | 17 | 20 |
@@ -31,4 +31,4 @@ No factory-catalog-only parameter source remains. Exact `3225-27.00-10-10-10/A` 
 
 > Placement, routing, purchasing and fabrication remain forbidden. The next step reproducibly freezes methods, tolerances and pass/fail rules.
 
-[240-row machine register](../hardware/verification/generated/H3-R2-parameter-provenance.json). The historical R1 `H3-VRF02` register remains archived evidence and is not R2 authority.
+[238-row machine register](../hardware/verification/generated/H3-R2-parameter-provenance.json). The historical R1 `H3-VRF02` register remains archived evidence and is not R2 authority.

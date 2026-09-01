@@ -4,11 +4,11 @@
   "marker": "H3-R2.1.5",
   "status": "reviewed_h3_r2_1_worst_case_dc_source_charge_and_power_states",
   "source_sha256": {
-    "hardware/verification/generated/H3-R2-method-contract.json": "0868d2c87fac5a3fb855e14fa7b89ef4fb40ac827e85dd5330ad52ae6e4a95ca",
-    "hardware/verification/generated/H3-R2-power-state-register.json": "3d88b4f133461f513fd048107e629d83678f1707fe7f63e76b4ff0a3022311f9",
-    "hardware/verification/generated/H3-R2-load-binding.json": "a845765ca77d8acc0c1864601f949435d8b3c8af3967af45ae9dd6d81d8ee79d",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "da05b2bd05b75de7ff6ff3c6fe88d67bb4fc4bf932d40c93bb49de4bdc3fd84b",
-    "hardware/verification/generated/H3-R2-source-margins.json": "5daccf3d5155609d8897353a2690a6356b37da44d5952dd5fd88a41f8ab7ac25"
+    "hardware/verification/generated/H3-R2-method-contract.json": "8e817d437f5b22d259887e9ba476baee246735a702a762845ec06cdcbbc8ea01",
+    "hardware/verification/generated/H3-R2-power-state-register.json": "50b3d06a29021e9936e6723ec80aa913782d87bed6eb6a34c4e51753242db386",
+    "hardware/verification/generated/H3-R2-load-binding.json": "98b6239bd1137c4f562179d30a33d455d7c31343f821b03bc7b78410d3c4dd74",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "87bdeb90711455a70de7ed5e394c4bf2584f1cdb0ce61c7ffef8aace7308959b",
+    "hardware/verification/generated/H3-R2-source-margins.json": "09d28d32a05fdb49173e41fc6b59d81428a74b44324cd0276d35f7fc29854cc0"
   },
   "checks": {
     "plan_closes_h3_r2_1": true,
@@ -16,7 +16,7 @@
     "all_2266_states_exist": true,
     "all_56_profiles_exist": true,
     "all_224_rail_profiles_exist": true,
-    "all_619_loads_are_bound": true,
+    "all_current_loads_are_bound": true,
     "rail_ownership_exact": true,
     "numeric_and_deferred_partition": true,
     "all_75_deferred_lines_are_source_owned": true,
@@ -31,8 +31,8 @@
     "legal_states": 2266,
     "operating_profiles": 56,
     "rail_profiles": 224,
-    "physical_and_external_loads": 619,
-    "direct_numeric_rail_owners": 544,
+    "physical_and_external_loads": 617,
+    "direct_numeric_rail_owners": 542,
     "source_pack_owners": 75,
     "pass_fail_rules_used": [
       "PF-R2-01",

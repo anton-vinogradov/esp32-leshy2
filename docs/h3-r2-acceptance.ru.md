@@ -6,7 +6,7 @@
 
 | Workstream | Что проверено | Результат |
 |---|---|---|
-| `H3-R2.0` | Входы, provenance и методы | 3 projects · 23 sheets · 1,185 fitted positions · 823 nets · 240 exact groups · 9 methods |
+| `H3-R2.0` | Входы, provenance и методы | 2 projects · 22 sheets · 1,183 fitted positions · 816 nets · 238 exact groups · 9 methods |
 | `H3-R2.1` | DC, шины, источники и заряд | 2,266 legal states · 224 rail corners · 30.560% minimum reserve · 3.516 A maximum pack current |
 | `H3-R2.2` | Переходы и faults | 14 ordered scenarios · 7,316 handover cases · 5 starts · 4 load steps · 10 watchdog/fault cases |
 | `H3-R2.3` | Аналоговые corners | display, audio, IR, battery and Airband calculations pass; routed Airband tuning remains measured |
@@ -16,7 +16,7 @@
 
 ## Что завершено
 
-- Каждое электрическое утверждение, рассчитываемое до разводки, имеет воспроизводимый результат на точной границе H1-R2.37 / H2-R2.1.5.
+- Каждое электрическое утверждение, рассчитываемое до разводки, имеет воспроизводимый результат на точной границе H1-R2.38 / H2-R2.1.5.
 - Все разрешённые состояния питания, переходы, analog corners, цифровые интерфейсы, постоянные RF-тракты, thermal-профили и single-fault cases проходят зафиксированные бумажные правила.
 - Все найденные исправления уже внесены в текущие источники, а зависимое evidence регенерировано.
 

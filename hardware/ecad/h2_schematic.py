@@ -59,6 +59,7 @@ R2_H1_REPARTITIONED_EXTERNALS = {
 }
 R2_H1_REPLACED_MPNS = {
     "display",
+    "display_connector",
     "display_panel_connector",
     "nrf0",
     "nrf1",
@@ -92,7 +93,7 @@ def contact_counts(device: dict) -> tuple[int, int]:
 
 
 def sheet_for(instance: str, frame: str) -> str:
-    if frame == "display-adapter":
+    if frame == "display-adapter" or instance in {"display_adapter_plug", "display_panel_connector"}:
         return "ADP_00_DISPLAY_ADAPTER"
     if instance in {"product_usb_dp_series", "product_usb_dm_series"}:
         return "UI_10_S3_CORE_MEMORY_BOOT"

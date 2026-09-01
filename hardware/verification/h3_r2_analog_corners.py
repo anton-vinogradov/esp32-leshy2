@@ -21,7 +21,7 @@ AIRBAND = ROOT / "hardware/verification/generated/H3-R2-airband-corners.json"
 NATIVE_NETS = ROOT / "hardware/ecad/generated/H2-R2-native-net-ledger.json"
 NATIVE_INSTANCES = ROOT / "hardware/ecad/generated/H2-R2-native-instance-ledger.json"
 COST_AUDIT = ROOT / "hardware/product-design/generated/H1-R2-cost-audit.json"
-DISPLAY_ADAPTER = ROOT / "hardware/product-design/display-adapter.json"
+DISPLAY_MOUNT = ROOT / "hardware/product-design/display-mount.json"
 OUTPUT = ROOT / "hardware/verification/generated/H3-R2-analog-corners.json"
 DOC_EN = ROOT / "docs/analog-electrical-verification.md"
 DOC_RU = ROOT / "docs/analog-electrical-verification.ru.md"
@@ -63,7 +63,7 @@ def build() -> dict:
     native_nets = load(NATIVE_NETS)["rows"]
     native_instances = load(NATIVE_INSTANCES)["rows"]
     cost_rows = load(COST_AUDIT)["rows"]
-    display_adapter = load(DISPLAY_ADAPTER)
+    display_mount = load(DISPLAY_MOUNT)
     native_by_instance = {row["instance"]: row["device_id"] for row in native_instances}
     selected_non_pcba = {row["role"]: row["device_id"] for row in cost_rows}
     errors: list[str] = []
@@ -102,23 +102,26 @@ def build() -> dict:
         errors.append("one or more H3-R2.3 exact part identities drifted")
 
     topology_checks = {
-        "panel_vddi_40_41_from_main": all(endpoint_on_net(native_nets, f"display_panel_connector.PIN_{pin}", "LCD_VDDI_3V3") for pin in (40, 41)),
-        "panel_vci_42_from_main": endpoint_on_net(native_nets, "display_panel_connector.PIN_42", "LCD_VCI_3V3"),
-        "backlight_anode_is_latch_protected": endpoint_on_net(native_nets, "backlight_efuse.OUT", "LCD_LEDA_PROTECTED") and endpoint_on_net(native_nets, "display_panel_connector.PIN_1", "LCD_LEDA_PROTECTED"),
-        "both_panel_cathodes_enter_one_series_resistor": all(endpoint_on_net(native_nets, f"display_panel_connector.PIN_{pin}", "LCD_LEDK") for pin in (2, 3)) and endpoint_on_net(native_nets, "backlight_series_resistor.END_1", "LCD_LEDK"),
+        "panel_vddi_40_41_from_main": all(endpoint_on_net(native_nets, f"display_connector.PIN_{pin}", "LCD_VDDI_3V3") for pin in (40, 41)),
+        "panel_vci_42_from_main": endpoint_on_net(native_nets, "display_connector.PIN_42", "LCD_VCI_3V3"),
+        "backlight_anode_is_latch_protected": endpoint_on_net(native_nets, "backlight_efuse.OUT", "LCD_LEDA_PROTECTED") and endpoint_on_net(native_nets, "display_connector.PIN_1", "LCD_LEDA_PROTECTED"),
+        "both_panel_cathodes_enter_one_series_resistor": all(endpoint_on_net(native_nets, f"display_connector.PIN_{pin}", "LCD_LEDK") for pin in (2, 3)) and endpoint_on_net(native_nets, "backlight_series_resistor.END_1", "LCD_LEDK"),
         "series_resistor_precedes_pwm_sink": endpoint_on_net(native_nets, "backlight_series_resistor.END_2", "LCD_LEDK_LIMITED") and endpoint_on_net(native_nets, "backlight_mosfet.D", "LCD_LEDK_LIMITED"),
         "pwm_sink_returns_to_ground": endpoint_on_net(native_nets, "backlight_mosfet.S", "POWER_GROUND"),
         "backlight_gate_fails_low": endpoint_on_net(native_nets, "backlight_mosfet.G", "LCD_BACKLIGHT_GATE") and endpoint_on_net(native_nets, "backlight_gate_pulldown.END_1", "LCD_BACKLIGHT_GATE"),
-        "production_adapter_is_passive_i8080_8": display_adapter["electrical"]["selected_mode"] == "ILI9488 8080 8-bit with IM2/IM1/IM0 = 0/1/1" and display_adapter["electrical"]["added_active_devices"] == 0,
+        "production_direct_zif_is_passive_i8080_8": display_mount["electrical"]["selected_mode"] == "ILI9488 8080 8-bit with IM2/IM1/IM0 = 0/1/1" and display_mount["electrical"]["added_active_devices"] == 0,
         "all_eight_i8080_data_lanes_reach_panel": all(
-            endpoint_on_net(native_nets, f"display_panel_connector.PIN_{32 - lane}", f"LCD_DB{lane}")
+            endpoint_on_net(native_nets, f"display_connector.PIN_{32 - lane}", f"LCD_DB{lane}")
             and any(row.get("instance") == "s3" and row.get("net") == f"LCD_DB{lane}" for row in native_nets)
             for lane in range(8)
         ),
-        "i8080_write_strobe_reaches_panel": endpoint_on_net(native_nets, "display_panel_connector.PIN_36", "LCD_WR_N_OR_SPI_SCL") and any(row.get("instance") == "s3" and row.get("net") == "LCD_WR_N" for row in native_nets),
+        "i8080_write_strobe_reaches_panel": endpoint_on_net(native_nets, "display_connector.PIN_36", "LCD_WR_N") and any(row.get("instance") == "s3" and row.get("net") == "LCD_WR_N" for row in native_nets),
     }
     if not all_true(topology_checks):
-        errors.append("display supply/backlight topology drifted")
+        errors.append(
+            "display supply/backlight topology drifted: "
+            + ", ".join(name for name, passed in topology_checks.items() if not passed)
+        )
 
     display = devices[exact_parts["display"]]["electrical_contract"]
     resistor = devices[exact_parts["backlight_series_resistor"]]["electrical_contract"]
@@ -182,7 +185,7 @@ def build() -> dict:
         "artifact": "H3-R2-analog-corners",
         "marker": "H3-R2.3",
         "status": "pass" if not errors else "fail",
-        "sources": {str(path.relative_to(ROOT)): sha256(path) for path in (CANDIDATE, DEVICES, RAILS, PROVENANCE, AUDIO, IR, BATTERY, AIRBAND, NATIVE_NETS, NATIVE_INSTANCES, COST_AUDIT, DISPLAY_ADAPTER)},
+        "sources": {str(path.relative_to(ROOT)): sha256(path) for path in (CANDIDATE, DEVICES, RAILS, PROVENANCE, AUDIO, IR, BATTERY, AIRBAND, NATIVE_NETS, NATIVE_INSTANCES, COST_AUDIT, DISPLAY_MOUNT)},
         "method": "current R2 topology/identity binding plus transferred exact-part interval corners and a new production-panel backlight calculation",
         "exact_part_checks": exact_part_checks,
         "topology_checks": topology_checks,

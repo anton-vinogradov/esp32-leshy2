@@ -2,7 +2,7 @@
 
 H0-R2 is the new functional baseline: UI and display remain local to S3, high-throughput peripheral work is offloaded through the Hub RP, the onboard video path is removed, and 118–137 MHz Airband AM is now mandatory.
 
-> The exact current marker is **H5.0.3-R1**. The H1-R2.37 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, M1 and 226 bodies was accepted and reviewed on 2026-08-30. Native R2 H2 materializes 1,185 instances and 823 nets in three KiCad projects with zero ERC findings. H3-R2 is fully reviewed: 20 current evidence artifacts and their recorded source hashes reconcile without mismatch or open analytical finding, while 51 physical residuals remain owned by H5/H6/H8. Global H4-R2 is reviewed: the BSP covers 173/173 controller rows, all 12 target builds are qualified and no cross-domain contradiction remains.
+> The exact current marker is **H5.0.3-R1**. The H1-R2.38 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, M1 and the direct 50-contact display ZIF was accepted and reviewed on 2026-08-30. Native R2 H2 materializes 1,183 instances and 816 nets in two KiCad projects with zero ERC findings. H3-R2 is fully reviewed: 20 current evidence artifacts and their recorded source hashes reconcile without mismatch or open analytical finding, while 51 physical residuals remain owned by H5/H6/H8. Global H4-R2 is reviewed: the BSP covers 173/173 controller rows, all 12 target builds are qualified and no cross-domain contradiction remains.
 
 ![H0-R2 functional architecture](images/h0-r2-functional-architecture.svg)
 

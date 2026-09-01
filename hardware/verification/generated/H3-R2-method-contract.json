@@ -4,13 +4,13 @@
   "marker": "H3-R2.0.3",
   "status": "pass",
   "accepted_input": "H3-R2.0.2",
-  "input_freeze_sha256": "d6f4b1f11de3724e6317baeedd7c415d9857ade04f58cba99e2372dc422ac956",
-  "parameter_register_sha256": "2210c6e867c0f97797b9be6602f80ebb9ce7cffdb0a344e602c53a9b30b0a66d",
-  "method_contract_sha256": "8e05467ad3de6d51a2c712ab4ccd859d0ab2e92b62672981d7a19ef772b31be4",
+  "input_freeze_sha256": "bb375eefc8cc71bd7fa194301b7f9f9356d981b028a1d81f7b32512449163f6c",
+  "parameter_register_sha256": "b45794d8b3f12f3f5f0302e8651bd3d9642e81b7a35855fe9124f7365ef03f3a",
+  "method_contract_sha256": "22c2d153058de074399fe13e0c97d03d3aaa9a14f4cf76768be153a4c6f93a10",
   "source_sha256": {
-    "hardware/verification/h3-r2-method-contract.json": "38023374570438893c7c9b5a84417090f7399388c8de38e87ecb63d5241a64b4",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "a91d1a15e253150e3680c503b3b8ed6e30b2ac81ad000bc6e5021983a820f26f",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "d1d88c44ab8c97c50044623133b10f68dc973d040e236e83a41f66328198aca9"
+    "hardware/verification/h3-r2-method-contract.json": "698cf8aa9b32afdc135608c401cfb9750b340acd3252bccae387d666f3bcc5cb",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "64e84e45fc9f403ba8f4c84e5bfe27edb50ecb36c971849f2c7aff3ebe68d370",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "ee04bc78791938c1980c0838ab7b91fc256ba9fa35fd59bfaf14ae2c1950177a"
   },
   "toolchain": {
     "python": ">=3.12,<3.15",
@@ -676,34 +676,6 @@
       "method_ids": [
         "M-DIGITAL",
         "M-INT"
-      ],
-      "parameter_state": "explicit_extraction_queue",
-      "missing_parameter_disposition": "unresolved_fail"
-    },
-    {
-      "device_id": "hirose_df40c_2_0_40ds_0_4v_51",
-      "parameter_class": "connector_interconnect",
-      "owner_workstreams": [
-        "H3-R2.4"
-      ],
-      "method_ids": [
-        "M-DIGITAL",
-        "M-INT"
-      ],
-      "parameter_state": "explicit_extraction_queue",
-      "missing_parameter_disposition": "unresolved_fail"
-    },
-    {
-      "device_id": "hirose_df40c_40dp_0_4v_51",
-      "parameter_class": "connector_interconnect",
-      "owner_workstreams": [
-        "H3-R2.3"
-      ],
-      "method_ids": [
-        "M-ANALOG",
-        "M-INT",
-        "M-THERMAL",
-        "M-TRANS"
       ],
       "parameter_state": "explicit_extraction_queue",
       "missing_parameter_disposition": "unresolved_fail"
@@ -3934,23 +3906,23 @@
     }
   ],
   "summary": {
-    "parameter_rows": 240,
+    "parameter_rows": 238,
     "parameter_classes": 9,
     "workstreams": 7,
     "methods": 9,
     "pass_fail_rules": 12,
-    "assigned_parameter_rows": 240,
+    "assigned_parameter_rows": 238,
     "method_usage": {
-      "M-ANALOG": 84,
+      "M-ANALOG": 83,
       "M-DC": 68,
-      "M-DIGITAL": 88,
-      "M-INT": 240,
+      "M-DIGITAL": 87,
+      "M-INT": 238,
       "M-RF": 85,
       "M-STATE": 158,
-      "M-THERMAL": 112,
-      "M-TRANS": 125
+      "M-THERMAL": 111,
+      "M-TRANS": 124
     },
-    "explicit_unresolved_until_extraction": 166,
+    "explicit_unresolved_until_extraction": 164,
     "open_method_questions": 0,
     "errors": 0
   },

@@ -36,6 +36,6 @@ flowchart LR
 - It does not describe dual-RP R2, `U219`, the current C5 SDIO/USB mux or the new exact pinout.
 - Purchase, PCB placement/routing and fabrication remain unauthorized.
 
-The current project position is `H1-R2.37`: the exact `H1-R2.31` dual-RP GPIO/M1 and C5 SDIO/USB mux baseline plus the complete current Cap/evidence body register are closed. The new R2 H2 remains closed until the physical H1 blockers and all production gates close. The former transition to `H5.0.1-R1` was cancelled by the architecture change.
+The current project position is `H1-R2.38`: the exact `H1-R2.31` dual-RP GPIO/M1 and C5 SDIO/USB mux baseline plus the complete current Cap/evidence body register are closed. The new R2 H2 remains closed until the physical H1 blockers and all production gates close. The former transition to `H5.0.1-R1` was cancelled by the architecture change.
 
 Machine evidence: [`H4.1`](../hardware/verification/generated/H4-PLG11-joined-review.json), [`H4.2`](../hardware/verification/generated/H4-PLG12-correction-closure.json), [`H4.3`](../hardware/verification/generated/H4-PLG13-acceptance-package.json).

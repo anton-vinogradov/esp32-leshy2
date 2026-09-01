@@ -53,16 +53,16 @@
   },
   "physical_fit": {
     "result": "paper_geometry_passed",
-    "source_registered_instances": 233,
+    "source_registered_instances": 231,
     "inner_body_count": 181,
-    "total_inner_component_count_including_adapter": 183,
+    "total_inner_component_count": 181,
     "minimum_required_clearance_mm": 0.7,
     "minimum_opposing_pair": {
       "ui_instance": "headphone_jack",
       "rf_instance": "pack_fuse0",
       "remaining_z_clearance_mm": 3.31
     },
-    "display_adapter_minimum_clearance_mm": 5.1,
+    "display_direct_zif_minimum_clearance_mm": 10.0,
     "all_external_machine_checks": true,
     "physical_interconnect_result": "paper_keepouts_passed_final_ecad_and_h5_open",
     "five_rf_microcoaxes_accounted": true,
@@ -131,7 +131,7 @@
     "purchase_authorized": false
   },
   "remaining_gates": [
-    "H5 received E01-ML01IPX connector axes and cable bend/retention coupons",
+    "H5 received E01-ML01SP4 mate-fit and cable bend/retention coupons against the published connector locations",
     "H5 current-lot ER-TFT035IPS-6/ER-TPC035-6 FPC conformity and factory insertion acceptance",
     "KiCad footprint-level copper/via routing and DRC",
     "assembled tolerance stack and HIL"

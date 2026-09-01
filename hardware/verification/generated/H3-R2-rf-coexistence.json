@@ -5,14 +5,14 @@
   "status": "pass",
   "reviewed_on": "2026-08-31",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "ecf99050c571f990ca943e54d50e30c4c881ee3658151feb619cf3bf600cd2cb",
-    "hardware/architecture/devices.json": "9db9ce928ceb1dd38324d5e1eaff57a3d686ff449217ec3216577400dbe51060",
+    "hardware/architecture/candidates/G2F-3I.json": "1c614996fd626b9ca44a98395c0c01712c347c9ba4ac43e69250db3f2bf2f1df",
+    "hardware/architecture/devices.json": "2caf023fb65a15be416b66686f7bcbd9ce199f8c8a55c4d37457782e73ceb6ef",
     "hardware/architecture/antenna-kit.json": "7ee1b3ca0f45a81346bd52033594c060a4f2deed4de9191545271ab58a4bc004",
-    "hardware/product-design/generated/H1-R2-placement-audit.json": "f9fa1491e95f2fcef91089c4cd4676e34faf8ba8cb584182eebc4b719c28da0d",
-    "hardware/verification/generated/H3-R2-power-state-register.json": "3d88b4f133461f513fd048107e629d83678f1707fe7f63e76b4ff0a3022311f9",
-    "hardware/verification/generated/H3-R2-digital-interfaces.json": "ddd4ebe549d43368ad6f711d8860235603e02085689c4e71a8c503983a03be04",
-    "hardware/verification/generated/H3-R2-analog-corners.json": "0e48fa21d007efc8c195b313d77727cefb5b0ee3a6c45ab3ba12b5582bacad88",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "d1d88c44ab8c97c50044623133b10f68dc973d040e236e83a41f66328198aca9"
+    "hardware/product-design/generated/H1-R2-placement-audit.json": "d321dc3806c756e562a392b8e74c40b0668cf272b10e8e2c8d9af7aea4c365b5",
+    "hardware/verification/generated/H3-R2-power-state-register.json": "50b3d06a29021e9936e6723ec80aa913782d87bed6eb6a34c4e51753242db386",
+    "hardware/verification/generated/H3-R2-digital-interfaces.json": "67eec86f317f4d97c443440ecf6eab88f1181d7f84534b060b42484e51873ab8",
+    "hardware/verification/generated/H3-R2-analog-corners.json": "3e09195ad8fb6ef185452250853cef4924ac99ab78aa3d774f82344386f637a6",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "ee04bc78791938c1980c0838ab7b91fc256ba9fa35fd59bfaf14ae2c1950177a"
   },
   "summary": {
     "checks": 71,

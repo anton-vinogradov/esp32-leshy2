@@ -2,14 +2,14 @@
 
 [На главную](../README.ru.md) · [Аппаратная часть](hardware.ru.md) · [English](schematics.md)
 
-Здесь собраны актуальные принципиальные схемы `H0-R2`/`H1-R2.37` готового
+Здесь собраны актуальные принципиальные схемы `H0-R2`/`H1-R2.38` готового
 устройства: владельцы функций, шины, локальность RF, питание и сервисный
 доступ. Точные dual-RP GPIO/M1 и электрический стык C5 SDIO/service-mux закрыты
-как authority H1. Native production ECAD R2 уже существует как три
+как authority H1. Native production ECAD R2 уже существует как два
 KiCad-проекта и проходит ERC с нулём ошибок и предупреждений;
 cross-sheet и HW/FW reconciliation проходит в результате H2-R2.1.5. Placement
 host-корпусов, все 18 компонентов U219, NFC pickup-loop, swept volume штатной
-антенны и точный дисплей EastRising с адаптером закрыты H1 и
+антенны и точный дисплей EastRising с прямым ZIF закрыты H1 и
 материализованы в H2.
 
 Сохранённое дерево G2F/H2/KiCad — проведённое ревью исторического **single-RP
@@ -82,9 +82,9 @@ Host-switch, AON gate, два bridge, comparator, вспомогательные
 
 Прежние KiCad-листы R1 и машинные отчёты сохранены в репозитории как
 историческое инженерное evidence. Это **не** production-схема R2, и печатать
-по ним нельзя. Текущий native R2 source — три проекта из
-[результа `H2-R2.1.3`](h2-r2-native-kicad.ru.md): 23 sheets, 1 185
-устанавливаемых позиций, 4 323 физических pins и 823 канонических nets. Он
+по ним нельзя. Текущий native R2 source — два проекта из
+[результа `H2-R2.1.3`](h2-r2-native-kicad.ru.md): 22 sheets, 1 183
+устанавливаемых позиций, 4 243 физических pins и 816 канонических nets. Он
 ERC-clean; [результат H2-R2.1.5](h2-acceptance.ru.md) также проходит six-domain
 cross-sheet/HW↔FW reconciliation. Placement, routing и последующие release-gates
 остаются обязательными до печати.

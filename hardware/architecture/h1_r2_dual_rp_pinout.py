@@ -470,9 +470,9 @@ def render_public(source: dict[str, Any], candidate: dict[str, Any], russian: bo
             f"> Machine source: `{SOURCE.relative_to(ROOT)}`. "
             + (
                 f"Маркер pin-map-артефакта: **`{source['marker']}`**; "
-                "текущий маркер физического дизайна: **`H1-R2.37`**."
+                "текущий маркер физического дизайна: **`H1-R2.38`**."
                 if russian
-                else f"Pin-map artifact marker: **`{source['marker']}`**; current physical-design marker: **`H1-R2.37`**."
+                else f"Pin-map artifact marker: **`{source['marker']}`**; current physical-design marker: **`H1-R2.38`**."
             )
         ), "",
     ]

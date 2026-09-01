@@ -4,15 +4,15 @@
   "marker": "H3-R2.0.2",
   "status": "pass",
   "accepted_input": "H3-R2.0.1",
-  "input_freeze_sha256": "d6f4b1f11de3724e6317baeedd7c415d9857ade04f58cba99e2372dc422ac956",
-  "register_sha256": "2210c6e867c0f97797b9be6602f80ebb9ce7cffdb0a344e602c53a9b30b0a66d",
+  "input_freeze_sha256": "bb375eefc8cc71bd7fa194301b7f9f9356d981b028a1d81f7b32512449163f6c",
+  "register_sha256": "b45794d8b3f12f3f5f0302e8651bd3d9642e81b7a35855fe9124f7365ef03f3a",
   "source_sha256": {
-    "hardware/verification/h3-r2-parameter-provenance-contract.json": "6ee72fede9860fe533e3a1baec045d463949e89179659d3e801b319fa7ef2cbf",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "a91d1a15e253150e3680c503b3b8ed6e30b2ac81ad000bc6e5021983a820f26f",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "6b459e2e695cead85cba8f65fe2ee02120f0f8165b01e829f433fd6cb5cb2a5a",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "62062b9faa2e3f9a9d2430bb068bb4bfc8ba5b37f9ab00d7744cc97605852df5",
-    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "745e1bf7438e7dc2348d03e59473a135a2c31fced3d031e1a24acdc84ce998a4",
-    "hardware/architecture/devices.json": "9db9ce928ceb1dd38324d5e1eaff57a3d686ff449217ec3216577400dbe51060"
+    "hardware/verification/h3-r2-parameter-provenance-contract.json": "7de656dfbc2582f137d250f4d4ca28e5ef986a11338a01b79ee097693ee06307",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "64e84e45fc9f403ba8f4c84e5bfe27edb50ecb36c971849f2c7aff3ebe68d370",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "e58f530b63be6f207fa92abbf29cc046e55e35cd2582bd3cafba1161ce41a189",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "f3edb2ae8313b90288a040dfc9d95f2664e41f932435a1de2a7f7308ea5510f0",
+    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "b14648597c68c7f566725dc5ec4f008d42e720b8c5b80271c7653976dc8c4ab2",
+    "hardware/architecture/devices.json": "2caf023fb65a15be416b66686f7bcbd9ce199f8c8a55c4d37457782e73ceb6ef"
   },
   "policy": {
     "accepted_h2_identity_is_immutable": true,
@@ -22,20 +22,20 @@
     "no_component_replacement_or_order_is_authorized": true
   },
   "summary": {
-    "component_groups": 240,
-    "board_component_groups": 234,
+    "component_groups": 238,
+    "board_component_groups": 232,
     "explicit_non_pcba_groups": 6,
-    "fitted_board_instances": 1185,
+    "fitted_board_instances": 1183,
     "source_missing": 0,
     "factory_catalog_only_parameter_sources": 0,
     "groups_with_structured_parameter_seeds": 74,
-    "groups_in_explicit_parameter_extraction_queue": 166,
-    "manufacturer_primary_sources": 240,
-    "model_method_candidates": 240,
-    "owned_component_groups": 240,
+    "groups_in_explicit_parameter_extraction_queue": 164,
+    "manufacturer_primary_sources": 238,
+    "model_method_candidates": 238,
+    "owned_component_groups": 238,
     "parameter_classes": {
       "analog_peripheral": 6,
-      "connector_interconnect": 14,
+      "connector_interconnect": 12,
       "digital_interface": 33,
       "electromechanical_or_load": 7,
       "general_component": 37,
@@ -1928,7 +1928,7 @@
         "UI_20_C5_WIFI_IR_SERVICE"
       ],
       "references": [
-        "J2",
+        "J3",
         "J7"
       ],
       "lifecycle": "active",
@@ -2041,116 +2041,6 @@
       "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
-      "device_id": "hirose_df40c_2_0_40ds_0_4v_51",
-      "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
-      "manufacturer": null,
-      "kind": "40_position_0_4mm_2mm_stack_vertical_board_to_board_receptacle",
-      "role": "display_connector",
-      "scope": "base_product",
-      "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 1,
-      "fitted_board_instance_count": 1,
-      "projects": [
-        "LESHY2-UI-R2"
-      ],
-      "sheets": [
-        "UI_11_STORAGE_CONTROLS_INDICATORS"
-      ],
-      "references": [
-        "J4"
-      ],
-      "lifecycle": "active_factory_stocked_standard_pcba",
-      "jlcpcb_part_number": "C597934",
-      "source": {
-        "document": "Hirose exact product page, 2D drawing and specification sheet",
-        "version": "CL0684-4042-5-51; exact 40-position receptacle; packaging suffix changes reel quantity only",
-        "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-51",
-        "checked": "2026-08-28"
-      },
-      "source_tier": "manufacturer_primary_accepted_h2",
-      "accepted_h2_source_preserved": {
-        "document": "Hirose exact product page, 2D drawing and specification sheet",
-        "version": "CL0684-4042-5-51; exact 40-position receptacle; packaging suffix changes reel quantity only",
-        "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-51",
-        "checked": "2026-08-28"
-      },
-      "source_host": "www.hirose.com",
-      "parameter_class": "connector_interconnect",
-      "required_parameter_groups": [
-        "rating",
-        "contact_loss",
-        "parasitics",
-        "mating",
-        "frequency_or_data_rate"
-      ],
-      "structured_parameters": {},
-      "structured_parameter_count": 0,
-      "parameter_state": "explicit_extraction_queue",
-      "model_method_candidate": "datasheet_plus_prelayout_constraint",
-      "model_method_state": "candidate_pending_H3-R2.0.3",
-      "owner_workstreams": [
-        "H3-R2.4"
-      ],
-      "factory_catalog_parameter_gap": null,
-      "symbol_contact_map_sha256": "0e59ae592f191892cb75bac3e70c784cab6b8758cdd3722333d5af80ecb4729f",
-      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
-    },
-    {
-      "device_id": "hirose_df40c_40dp_0_4v_51",
-      "mpn": "Hirose DF40C-40DP-0.4V(51)",
-      "manufacturer": null,
-      "kind": "40_position_0_4mm_vertical_board_to_board_plug",
-      "role": "display_adapter_plug",
-      "scope": "base_product",
-      "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 1,
-      "fitted_board_instance_count": 1,
-      "projects": [
-        "L2-DISP-ADP-001-B"
-      ],
-      "sheets": [
-        "ADP_00_DISPLAY_ADAPTER"
-      ],
-      "references": [
-        "J1"
-      ],
-      "lifecycle": "active and authorized-distributor-stocked",
-      "jlcpcb_part_number": "C424643",
-      "source": {
-        "document": "Hirose exact product page, 2D drawing and specification sheet",
-        "version": "CL0684-4013-7-51; detailed specifications updated 2026-08-05",
-        "url": "https://www.hirose.com/en/product/p/CL0684-4013-7-51",
-        "checked": "2026-08-23"
-      },
-      "source_tier": "manufacturer_primary_accepted_h2",
-      "accepted_h2_source_preserved": {
-        "document": "Hirose exact product page, 2D drawing and specification sheet",
-        "version": "CL0684-4013-7-51; detailed specifications updated 2026-08-05",
-        "url": "https://www.hirose.com/en/product/p/CL0684-4013-7-51",
-        "checked": "2026-08-23"
-      },
-      "source_host": "www.hirose.com",
-      "parameter_class": "connector_interconnect",
-      "required_parameter_groups": [
-        "rating",
-        "contact_loss",
-        "parasitics",
-        "mating",
-        "frequency_or_data_rate"
-      ],
-      "structured_parameters": {},
-      "structured_parameter_count": 0,
-      "parameter_state": "explicit_extraction_queue",
-      "model_method_candidate": "datasheet_plus_prelayout_constraint",
-      "model_method_state": "candidate_pending_H3-R2.0.3",
-      "owner_workstreams": [
-        "H3-R2.3"
-      ],
-      "factory_catalog_parameter_gap": null,
-      "symbol_contact_map_sha256": "0e59ae592f191892cb75bac3e70c784cab6b8758cdd3722333d5af80ecb4729f",
-      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
-    },
-    {
       "device_id": "hirose_dm3at_sf_pejm5",
       "mpn": "Hirose DM3AT-SF-PEJM5",
       "manufacturer": null,
@@ -2210,19 +2100,19 @@
       "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
       "manufacturer": null,
       "kind": "50_position_0_5mm_dual_contact_zif_fpc_receptacle",
-      "role": "display_panel_connector",
+      "role": "display_connector",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 1,
       "fitted_board_instance_count": 1,
       "projects": [
-        "L2-DISP-ADP-001-B"
+        "LESHY2-UI-R2"
       ],
       "sheets": [
-        "ADP_00_DISPLAY_ADAPTER"
+        "UI_10_S3_DISPLAY_TOUCH"
       ],
       "references": [
-        "J2"
+        "J1"
       ],
       "lifecycle": "active exact manufacturer line; current JLCPCB Standard-PCBA stock and assembly route verified",
       "jlcpcb_part_number": "C3169104",
@@ -2406,7 +2296,7 @@
         "J13",
         "J15",
         "J17",
-        "J3",
+        "J4",
         "J8"
       ],
       "lifecycle": "active_orderable",
@@ -7579,9 +7469,9 @@
         "UI_30_HUB_RP_CORE_SERVICE"
       ],
       "references": [
-        "J1",
         "J10",
         "J13",
+        "J2",
         "J2",
         "J3",
         "J6"

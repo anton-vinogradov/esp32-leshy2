@@ -1,18 +1,18 @@
 # H2-R2.1.3 · native R2 KiCad schematics
 
-**Passed on 31 August 2026.** The current R2 architecture now exists as three
+**Passed on 31 August 2026.** The current R2 architecture now exists as two
 native KiCad 10 schematic projects generated from the exact component, contact,
 instance and net authorities. The retained single-RP R1 projects are not read by
 the generator.
 
 | Result | Value |
 |---|---:|
-| Native projects / project-graph sheets | 3 / 23 |
-| Populated logical sheets | 19 |
-| Fitted symbol instances | 1,185 |
-| Controlled physical symbol pins | 4,323 |
-| Connected / explicit no-connect pins | 4,067 / 260 |
-| Canonical nets | 827 |
+| Native projects / project-graph sheets | 2 / 22 |
+| Populated logical sheets | 18 |
+| Fitted symbol instances | 1,183 |
+| Controlled physical symbol pins | 4,243 |
+| Connected / explicit no-connect pins | 4,006 / 237 |
+| Canonical nets | 816 |
 | KiCad ERC errors / warnings | 0 / 0 |
 | PCB, placement or routing files | 0 |
 
@@ -21,9 +21,10 @@ The projects are:
 - [`LESHY2-UI-R2`](../hardware/ecad/kicad/LESHY2-UI-R2/) — S3 UI/display,
   C5, Hub RP, three complete nRF24 islands, storage and front safety;
 - [`LESHY2-RF-R2`](../hardware/ecad/kicad/LESHY2-RF-R2/) — RF RP, power,
-  CC1101, VHF/UHF, broadcast/Airband, audio, expansion and TX evidence;
-- [`L2-DISP-ADP-001-B`](../hardware/ecad/kicad/L2-DISP-ADP-001-B/) — the
-  passive exact-panel adapter.
+  CC1101, VHF/UHF, broadcast/Airband, audio, expansion and TX evidence.
+
+The exact 50-contact display tail terminates directly in
+`FH34SRJ-50S-0.5SH(50)` on `LESHY2-UI-R2`; there is no adapter-PCB project.
 
 ## Airband closure carried into the schematic
 

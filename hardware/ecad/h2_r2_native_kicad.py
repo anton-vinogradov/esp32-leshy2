@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the three current H2-R2 native KiCad schematic projects.
+"""Generate the two current H2-R2 native KiCad schematic projects.
 
 The generator deliberately stops at logical schematics.  It materializes the
 reviewed fitted-instance ledger, exact controlled symbols, canonical networks
@@ -711,7 +711,7 @@ def main() -> int:
             path.write_text(content, encoding="utf-8")
         manifest_path.write_text(manifest_text, encoding="utf-8")
         print(
-            "wrote 3 native projects: "
+            "wrote 2 native projects: "
             f"{manifest['summary']['fitted_symbol_instance_count']} symbols, "
             f"{manifest['summary']['physical_symbol_pin_count']} pins, "
             f"{manifest['summary']['canonical_net_count']} nets"
@@ -727,7 +727,7 @@ def main() -> int:
         print("stale: " + ", ".join(stale[:20]))
         return 1
     print(
-        "ok: 3 native projects, 23 sheets, "
+        "ok: 2 native projects, 22 sheets, "
         f"{manifest['summary']['fitted_symbol_instance_count']} symbols, "
         f"{manifest['summary']['physical_symbol_pin_count']} pins"
     )

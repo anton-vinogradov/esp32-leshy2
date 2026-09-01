@@ -36,9 +36,9 @@ flowchart TD
 
 ## Контрольный BOM Tool прогон
 
-Контрольный BOM Tool capture относится к прежним 209 строкам: 176 matched, 33 unmatched и 1019 установок. Текущий BOM заменяет `SA518` двумя exact voice-модулями, legacy-дисплей — точным EastRising endpoint, а прежний 0-dBm nRF24 — складским full-power `E01-ML01SP4`. Так получена проверяемая текущая карта `212` строк и `1052` установок без повторной передачи BOM. До применения сохранённых outlier-решений в ней 184 exact catalogue route и 28 unresolved lines; семантических подмен MPN — ноль.
+Контрольный BOM Tool capture относится к прежним 209 строкам: 176 matched, 33 unmatched и 1019 установок. Текущий BOM заменяет `SA518` двумя exact voice-модулями, legacy-дисплей — точным EastRising endpoint, а прежний 0-dBm nRF24 — складским full-power `E01-ML01SP4`. Так получена проверяемая текущая карта `210` строк и `1050` установок без повторной передачи BOM. До применения сохранённых outlier-решений в ней 182 exact catalogue route и 28 unresolved lines; семантических подмен MPN — ноль.
 
-Сохранённый exact-поиск закрывает все 28 оставшихся outlier без замены компонентов: 11 добавлены в `J0`, 2 — в `J2`, 10 сохраняют точный MPN через `J3`, 3 требуют фабричной финальной сборки `J4-F`, U214 идёт через `J4-P`, а аккумуляторы — через `J5-U` вне поставки. Точный EastRising-дисплей уже входит отдельным прямым маршрутом `J4-F`. Итог всей BOM: `J0=167`, `J1=0`, `J2=29`, `J3=10`, `J4-F=4`, `J4-P=1`, `J5-U=1`; несопоставленных строк — ноль.
+Сохранённый exact-поиск закрывает все 28 оставшихся outlier без замены компонентов: 11 добавлены в `J0`, 2 — в `J2`, 10 сохраняют точный MPN через `J3`, 3 требуют фабричной финальной сборки `J4-F`, U214 идёт через `J4-P`, а аккумуляторы — через `J5-U` вне поставки. Точный EastRising-дисплей уже входит отдельным прямым маршрутом `J4-F`. Итог всей BOM: `J0=165`, `J1=0`, `J2=29`, `J3=10`, `J4-F=4`, `J4-P=1`, `J5-U=1`; несопоставленных строк — ноль.
 
 Показываемая в историческом BOM Tool capture сумма `$1255.6365` относится только к прежним 176 найденным строкам и **не** является текущей полной ценой сборки, quote или заказом. Актуальный order-integrated article manifest единственного прототипа посчитан на [странице manifest](component-sample-basket.ru.md); отдельной закупки образцов/coupons нет.
 
@@ -80,7 +80,7 @@ flowchart TD
 
 ## Независимая проверка критических деталей
 
-До bulk-прогона отдельно проверены `23` критических идентичностей. Их stock-снимки не заменяют текущий BOM Tool результат и не обещают постоянную доступность.
+До bulk-прогона отдельно проверены `22` критических идентичностей. Их stock-снимки не заменяют текущий BOM Tool результат и не обещают постоянную доступность.
 
 | MPN | JLC | Сейчас | Маршрут |
 |---|---:|---|---|
@@ -103,7 +103,6 @@ flowchart TD
 | [`0402WGF1603TCE`](https://jlcpcb.com/partdetail/26500-0402WGF1603TCE/C25757) | `C25757` | stock 388017 | `J0` · exact stocked 160-kOhm 0402 replacement preserves the complete audio-attenuator electrical contract and uses a thinner body |
 | [`RS-06K47R0FT`](https://jlcpcb.com/partdetail/151340-RS06K47R0FT/C140014) | `C140014` | stock 78058 | `J0` · exact stocked 47-Ohm 1206 replacement preserves the IR current-limit power, voltage and temperature contract |
 | [`CC0603KRX7R0BB104`](https://jlcpcb.com/partdetail/YAGEO-CC0603KRX7R0BB104/C113803) | `C113803` | stock 1027658 | `J0` · exact stocked 100-nF 100-V 0603 body; X7R temperature stability is stricter than the replaced X7S class |
-| [`DF40C(2.0)-40DS-0.4V(51)`](https://jlcpcb.com/partdetail/x/C597934) | `C597934` | stock 7218 | `J0` · exact Hirose receptacle body and mate; (51) changes only reel quantity from the former (58) order code |
 | [`CSD87313DMS`](https://jlcpcb.com/partdetail/x/C2863848) | `C2863848` | stock 4813 | `J0` · same production die, WSON-CLIP body, contacts and electrical contract as DMST; DMS changes tape-and-reel quantity only |
 | [`TSOP75238TR`](https://jlcpcb.com/partdetail/x/C511498) | `C511498` | stock 17 | `J0` · same final body, contacts and electrical contract as TT; TR changes tape presentation, so approve CPL rotation/feeder orientation and recheck complete-job stock before order |
 | [`LQW15AN56NG00D`](https://jlcpcb.com/partdetail/x/C167482) | `C167482` | stock 21558 | `J0` · exact 56-nH LQW15AN 0402 body; G tightens inductance tolerance from +/-5% to +/-2% without degrading RF limits |
@@ -131,10 +130,10 @@ JLCPCB Standard PCBA собирает обе платы и принятые SMT/
 ## Текущий результат
 
 - JLCPCB Standard PCBA принят как рабочий reference без lock-in.
-- Все `212` строк имеют определённый маршрут `J0`–`J3`, `J4-F`, `J4-P` или `J5-U`; функциональных замен нет.
+- Все `210` строк имеют определённый маршрут `J0`–`J3`, `J4-F`, `J4-P` или `J5-U`; функциональных замен нет.
 - Частичный [ответ JLCPCB](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-08-26.md) подтверждает exact `SA818S-V C51897911` MOQ 1 и типичные 8–15 рабочих дней pre-order, а также официальный путь Function Test с ручным review процедуры и базой `$15.70 + $7.86/hour`. [Исправленное exact-one уточнение](../hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md) отправлено 1 сентября с `vinogradov.anton@gmail.com` на `support@jlcpcb.com`; ожидаются девять release-relevant ответов. Для проекта Function Test необязателен и не закрывает gate; аккумуляторы остаются `J5-U` и не входят в поставку. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) остаётся fail-closed; закупка и заказ не разрешены.
 - Заявка JLCAPI одобрена, приложение `ESP32-Leshy2 BOM Validator` создано, ключ подписи хранится только локально вне Git, но право Parts остаётся `Rejected`. [Поддержка ответила](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md), что аккаунт новый и не имеет истории заказов, поэтому устойчивую business need пока не удалось подтвердить; повторная заявка возможна после появления истории либо с расширенным business case/integration plan. Автор ответа отдельно указал, что не входит в API review team, и точный порог заказов не назван. Повторная заявка не отправлена: до фактического одобрения API-вызовы невозможны, а активным авторитетным путём остаются ручные карточки каталога и BOM. PCB/3D также отклонены, SMT Stencil и JLC Balance выключены.
 - [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json) фиксирует резерв без возврата к началу H5: PCBWay — первый кандидат на полную сборку, Seeed — второй источник PCBA. [Одинаковый no-order запрос PCBWay](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) подготовлен, но его отправка и любые коммерческие действия не разрешены.
-- Прежний 209-строчный BOM upload был передан и обработан; текущий 212-строчный файл сгенерирован локально, но не передавался: 196 identity сохранены, 15 exact-страниц, актуальный C5 route и новый внешний 60-мм microcoax проверены отдельно. Quote, sourcing request, reservation, покупка, замены, KiCad layout и fabrication не выполнялись и не разрешены. Сырые API-ответы публично не распространяются.
+- Прежний 209-строчный BOM upload был передан и обработан; текущий 210-строчный direct-ZIF файл сгенерирован локально, но не передавался. Оба устаревших DF40 удалены; актуальный C5 route и новый внешний 60-мм microcoax проверены отдельно. Quote, sourcing request, reservation, покупка, замены, KiCad layout и fabrication не выполнялись и не разрешены. Сырые API-ответы публично не распространяются.
 
 Машинные результаты: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json), [`H5-EVR05`](../hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json), [`H5-EVR06`](../hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json) и [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json). [Требования JLCPCB к BOM](https://jlcpcb.com/help/article/bill-of-materials-for-pcb-assembly).

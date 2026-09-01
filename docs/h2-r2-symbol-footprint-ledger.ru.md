@@ -10,11 +10,11 @@ KiCad-проекты или PCB layout.
 
 | Элемент ledger | Зафиксированный результат |
 |---|---|
-| Точные component groups продукта | 240 |
-| Группы компонентов на платах | 234; у каждой один symbol `Leshy2_R2` и одна точная footprint-identity |
+| Точные component groups продукта | 238 |
+| Группы компонентов на платах | 232; у каждой один symbol `Leshy2_R2` и одна точная footprint-identity |
 | Явные non-PCBA groups | 6: display assembly, U214, комплект из двух cells, ручка encoder и две точные MPN-группы для пяти съёмных RF-jumper |
-| Логические контакты | 1 658, скопированы и hash-bound к текущему manufacturer contact evidence |
-| Стандартные package identities KiCad | 199 |
+| Логические контакты | 1 578, скопированы и hash-bound к текущему manufacturer contact evidence |
+| Стандартные package identities KiCad | 197 |
 | Существующие локальные manufacturer-derived definitions | 32 |
 | Новые локальные геометрии, материализованные в contact-checkpoint | 3: `FH34SRJ-50S-0.5SH(50)`, `WBC1-1TLC` и `WBC16-1TLC` |
 | Созданные native schematic symbols/files/nets | 0 / 0 / 0 |
@@ -49,16 +49,16 @@ manufacturer identity, а не унаследованы автоматическ
 
 Новый 50-контактный footprint FH34 и оба six-pad Coilcraft transformer
 материализованы по официальным чертежам. Сгенерированный аудит разрешает
-все 1 599 контактов 234 board groups: 1 596 являются контактами footprints,
+все 1 519 контактов 232 board groups: 1 516 являются контактами footprints,
 ещё три — явными RF-разъёмами на модулях. Все именованные площадки footprints учтены
 как электрические или явно механические; фиктивные площадки carrier для разъёмов
-на модулях не создаются. Остальные 59 контактов исходного ledger из 1 658 контактов
+на модулях не создаются. Остальные 59 контактов исходного ledger из 1 578 контактов
 принадлежат шести явным non-PCBA assemblies.
 
 ## Машинное evidence
 
 - [Контракт exact ledger](../hardware/ecad/h2-r2-symbol-footprint-contract.json)
-- [Сгенерированный ledger 240 групп](../hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json)
+- [Сгенерированный ledger 238 групп](../hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json)
 - [Контракт contact-to-pad](../hardware/ecad/h2-r2-contact-materialization-contract.json)
 - [Сгенерированная материализация контактов](../hardware/ecad/generated/H2-R2-contact-materialization.json)
 - [Контракт controlled symbols](../hardware/ecad/h2-r2-symbol-library-contract.json)
@@ -68,9 +68,9 @@ manufacturer identity, а не унаследованы автоматическ
 
 ## Текущая граница
 
-Controlled library `Leshy2_R2` теперь содержит все 234 exact-MPN symbols и
-1 612 уникальных electrical-pad pins и проходит parser KiCad 10. Все 1 185
-устанавливаемых экземпляров распределены по текущим проектам, а их 4 323
+Controlled library `Leshy2_R2` теперь содержит все 232 exact-MPN symbols и
+1 532 уникальных electrical-pad pins и проходит parser KiCad 10. Все 1 183
+устанавливаемых экземпляров распределены по текущим проектам, а их 4 243
 контакта прошли [сверку native nets](h2-r2-net-ledger.ru.md).
 [Проекты native KiCad](h2-r2-native-kicad.ru.md) также проходят ERC без замечаний.
 Сверка sheets и HW↔FW прошла в [H2-R2.1.5](h2-acceptance.ru.md). Теперь H3

@@ -16,7 +16,7 @@ flowchart LR
 
 ### `H3-PHY-017` · `display`
 
-- Selected: `EastRising ER-TFT035IPS-6 + ER-TPC035-6`; `Sitronix ST77922`; `Hirose DF40C(2.0)-40DS-0.4V(51)`; `Hirose DF40C-40DP-0.4V(51)`; `Hirose FH34SRJ-50S-0.5SH(50)`.
+- Selected: `EastRising ER-TFT035IPS-6 + ER-TPC035-6`; `Sitronix ST77922`; direct UI-PCB `Hirose FH34SRJ-50S-0.5SH(50)`.
 - Still to prove: standalone order identity and current-lot full FPC outline for the HMX035CTFT-001-marked assembly; received-controller identity/readback and measured VDD/VDDI ramp equality.
 - Pass rule: the received specimen directly demonstrates this item: confirm HMX035CTFT-001 tail, ST77922 identity, VDD/VDDI ramp equality and reset/readback on received specimens; a mismatch reopens the owning H1/H2/H3 result
 
@@ -70,7 +70,7 @@ flowchart LR
 
 ## Fourteen mechanical gates
 
-- `H5-MECH-DISPLAY-TAIL` — `EastRising ER-TFT035IPS-6 + ER-TPC035-6`; `Hirose DF40C(2.0)-40DS-0.4V(51)`; `Hirose DF40C-40DP-0.4V(51)`; `Hirose FH34SRJ-50S-0.5SH(50)`; open: Standalone order identity, current-lot complete FPC outline, thickness, stiffener, adhesive, bend path and actual insertion/retention in the selected dual-contact ZIF remain received-display properties; a mismatch may revise only the small adapter and its panel-side connector.
+- `H5-MECH-DISPLAY-TAIL` — `EastRising ER-TFT035IPS-6 + ER-TPC035-6`; direct UI-PCB `Hirose FH34SRJ-50S-0.5SH(50)`; open: current-lot complete FPC outline, thickness, stiffener, adhesive, bend path and actual insertion in the selected dual-contact ZIF remain received-display properties. The bezel, perimeter PSA, locators and compliant preload must carry the panel load; a mismatch blocks the one-board layout rather than silently restoring an adapter.
 - `H5-MECH-NRF-GEN1-FEEDS` — `Ebyte E01-ML01SP4`; `TE Connectivity 2118651-2`; `Hirose U.FL-R-SMT-1(80)`; `GCT RFPC-SMA31-FN-175-A`; open: The fitted receptacle manufacturer's exact subpart MPN, actual mate retention, bend/strain behaviour and end-to-end RF loss remain received-part properties. H1 uses the published connector location and full maximum body envelope; H5/H8 verify the real fit and RF path.
 - `H5-MECH-U214-MATING-STACK` — `M5Stack U214 Cap LoRa-1262`; `Samtec HLE-107-02-G-DV-PE-LC`; open: Current U214 post section, insertion force, contact retention, retention-screw engagement and final compliant rail preload remain received-part properties; absent manufacturer limits remain design-analysis inputs and do not create an artificial cycle test.
 - `H5-MECH-NAVIGATION-CONTROLS` — `OMRON B3S-1100P`; open: Assembled enclosure opening access, accidental-press margin, multi-button feel and sealing boundary.
@@ -81,7 +81,7 @@ flowchart LR
 - `H5-MECH-M5-UNIT-MATE` — `1125R-SMT-4P`; open: Received Grove cable insertion, retention and strain relief.
 - `H5-MECH-CELL-HOLDER-FIT` — `Keystone Electronics 1048P`; `XTAR 18650 4000mAh`; open: Received insertion force, contact compression, polarity protection and enclosure support; values absent from manufacturer sources remain design-analysis inputs.
 - `H5-MECH-NATIVE-RF-JUMPERS` — `TE Connectivity 2118651-2`; `Hirose U.FL-R-SMT-1(80)`; open: Actual bend radius, strain relief, insertion force, retention and RF loss after assembly.
-- `H5-MECH-DISPLAY-PERFORMANCE` — `EastRising ER-TFT035IPS-6 + ER-TPC035-6`; `Hirose DF40C(2.0)-40DS-0.4V(51)`; `Hirose DF40C-40DP-0.4V(51)`; `Hirose FH34SRJ-50S-0.5SH(50)`; open: QSPI/touch operation, optical quality, backlight current/thermal and received flex geometry.
+- `H5-MECH-DISPLAY-PERFORMANCE` — `EastRising ER-TFT035IPS-6 + ER-TPC035-6`; direct UI-PCB `Hirose FH34SRJ-50S-0.5SH(50)`; open: i8080/recovery-serial and touch operation, optical quality, backlight current/thermal and received flex geometry.
 - `H5-MECH-ACOUSTIC-PATHS` — `PUI Audio AS02404PO`; `Same Sky CMEJ-0413-42-SMT-TR`; open: Enclosure acoustic treatment, cavity resonance, sealing, feedback and microphone response.
 - `H5-MECH-HEADSET-JACK` — `Same Sky SJ-43504-SMT-TR`; open: Received cutout tolerance, shield and solder-tab fit, enclosure opening, plug insertion/withdrawal force, CTIA and three-pole TRS behavior, retention and unplug transient remain assembled-product properties.
 

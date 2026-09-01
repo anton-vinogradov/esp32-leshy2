@@ -38,6 +38,16 @@
         "instance": "display_touch_controller",
         "parent_instance": "display",
         "reason": "Sitronix ST77922 is a COG internal to HMX035CTFT-001; it remains a separate architecture/diagram evidence node but is not a separately supplied or costed BOM placement"
+      },
+      {
+        "instance": "display_adapter_plug",
+        "parent_instance": "display",
+        "reason": "superseded by the H1-R2.38 direct 50-contact display ZIF on the UI PCB"
+      },
+      {
+        "instance": "display_panel_connector",
+        "parent_instance": "display",
+        "reason": "historical adapter-side role is merged into display_connector by H1-R2.38"
       }
     ],
     "substitution_policy": {
@@ -140,7 +150,7 @@
           "equivalence_envelope": ["same mating standard/contact map/polarity plus compatible footprint, keepout, insertion, retention and service access", "display optics/touch/backlight, cell protection/chemistry, switch force/travel/current and transducer acoustic response no worse", "sealing, strain, temperature, life and manufacturing process remain compatible"],
           "requalification": ["source-backed dimensional/fit analysis, geometry/DRC and deterministic assembly instructions before order", "ordinary assembly/disassembly, continuity and visual inspection on the one prototype after arrival; unsourced loads remain design-analysis inputs and no artificial ageing is required", "display, battery, UI and acoustic functional checks on the one prototype without drop, shaker/vibration or prescribed-cycle qualification"],
           "device_ids": [
-            "alps_ec11e18244au", "alps_skrtlae010", "ck_js102011scqn", "davies_1227_j", "omron_b3s_1100p", "gct_rfpc_sma31_fn_175_a", "gct_rfpc_sma32_fn_175_a", "gct_usb4105_gf_a", "hirose_dm3at_sf_pejm5", "hirose_fh34srj_40s_0_5sh_99", "hirose_df40c_2_0_40ds_0_4v_51", "hirose_df40c_40dp_0_4v_51", "hirose_fx8c_80p_sv1_92", "hirose_fx8c_80s_sv5_92", "hirose_ufl_r_smt_1_10", "jae_dx07s016ja1r1500", "keystone_1048p", "pui_as02404po", "qdtech_hmx035ctft_001", "same_sky_cmej_0413_42_smt_tr", "same_sky_sj_43504_smt_tr", "samtec_ftsh_105_01_l_dv_k_p_tr", "samtec_hle_107_02_g_dv_pe_lc", "seeed_1125r_smt_4p", "te_2118651_2", "te_1_2118651_0", "xtar_18650_4000mah_protected"
+            "alps_ec11e18244au", "alps_skrtlae010", "ck_js102011scqn", "davies_1227_j", "omron_b3s_1100p", "gct_rfpc_sma31_fn_175_a", "gct_rfpc_sma32_fn_175_a", "gct_usb4105_gf_a", "hirose_dm3at_sf_pejm5", "hirose_df40c_2_0_40ds_0_4v_51", "hirose_fx8c_80p_sv1_92", "hirose_fx8c_80s_sv5_92", "hirose_ufl_r_smt_1_10", "jae_dx07s016ja1r1500", "keystone_1048p", "pui_as02404po", "qdtech_hmx035ctft_001", "same_sky_cmej_0413_42_smt_tr", "same_sky_sj_43504_smt_tr", "samtec_ftsh_105_01_l_dv_k_p_tr", "samtec_hle_107_02_g_dv_pe_lc", "seeed_1125r_smt_4p", "te_2118651_2", "te_1_2118651_0", "xtar_18650_4000mah_protected"
           ]
         }
       ]

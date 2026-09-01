@@ -6,8 +6,8 @@
   "checked_on": "2026-08-31",
   "input": {
     "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
-    "sha256": "ab8aea857f0ac59b3dfa208032705d81c986147ff795f90b0116ed1b51cab41d",
-    "exact_lines": 212
+    "sha256": "f794ab3d4f4c9e0453b6a73a3e8775da70a3b0b33e41011f633ac619660682c3",
+    "exact_lines": 210
   },
   "r2_quantity_overlay": {
     "status": "current_h0_r2_authority_over_historical_g2f_bom",
@@ -343,7 +343,7 @@
   },
   "bom_tool_upload": {
     "path": "hardware/verification/generated/H5-EVR04-jlcpcb-bom-upload.csv",
-    "sha256": "43c47fb1bc1ad3b1459b953ba9fdc1bceeb0e25ef8ca305465d7882326ec9c85",
+    "sha256": "2a719281b5ad8b5fc8a9d22973e39a9ea62f6c4a7965bd4d4ee67a93098348f6",
     "columns": [
       "Comment",
       "Designator",
@@ -352,7 +352,7 @@
       "Manufacturer Part Number",
       "LCSC Part #"
     ],
-    "exact_lines": 212,
+    "exact_lines": 210,
     "project_data_fields": [
       "Manufacturer Part Number",
       "Quantity"
@@ -395,13 +395,13 @@
       "processed": true,
       "result": "176 matched, 33 unmatched, all 1019 historical target placements parsed"
     },
-    "current_212_line_attempt": {
-      "sha256": "43c47fb1bc1ad3b1459b953ba9fdc1bceeb0e25ef8ca305465d7882326ec9c85",
+    "current_210_line_attempt": {
+      "sha256": "2a719281b5ad8b5fc8a9d22973e39a9ea62f6c4a7965bd4d4ee67a93098348f6",
       "transmitted": false,
       "processed": false,
-      "result": "historical 209-line capture retained for 196 preserved identities; 195 join unchanged, C5 is rebound to current exact C54951858, 15 exact catalogue rows join separately, and the new exact 60-mm external jumper is fail-closed into the 212-line map"
+      "result": "historical 209-line capture retained as evidence; the current direct-ZIF BOM is joined without either superseded DF40 part, C5 is rebound to current exact C54951858, and the new exact 60-mm external jumper remains fail-closed in the 210-line map"
     },
-    "blocker": "all 212 current lines have defined routes and all sample component prices are known; nine exact-one supplier answers remain open for the actual two-designator U/V job, exact SA818S-V Standard-PCBA installation, four required J4-F operations and exact-MPN/no-substitution control; Function Test, batteries and accessory packing are not release gates; no sourcing request, quote, reservation or order has been created"
+    "blocker": "all 210 current lines have defined routes and all sample component prices are known; nine exact-one supplier answers remain open for the actual two-designator U/V job, exact SA818S-V Standard-PCBA installation, four required J4-F operations and exact-MPN/no-substitution control; Function Test, batteries and accessory packing are not release gates; no sourcing request, quote, reservation or order has been created"
   },
   "critical_spot_checks": [
     {
@@ -613,18 +613,6 @@
       "finding": "exact stocked 100-nF 100-V 0603 body; X7R temperature stability is stricter than the replaced X7S class"
     },
     {
-      "device_id": "hirose_df40c_2_0_40ds_0_4v_51",
-      "mpn": "DF40C(2.0)-40DS-0.4V(51)",
-      "jlc": "C597934",
-      "tier": "J0",
-      "stock": 7218,
-      "available_order_quantity": 7205,
-      "moq": 1,
-      "pcba": "Extended SMT; Economic and Standard; fixture",
-      "source": "https://jlcpcb.com/partdetail/x/C597934",
-      "finding": "exact Hirose receptacle body and mate; (51) changes only reel quantity from the former (58) order code"
-    },
-    {
       "device_id": "ti_csd87313dms",
       "mpn": "CSD87313DMS",
       "jlc": "C2863848",
@@ -662,9 +650,9 @@
     }
   ],
   "summary": {
-    "target_bom_lines": 212,
-    "critical_lines_spot_checked": 23,
-    "public_stock_exact_or_revision_explicit": 19,
+    "target_bom_lines": 210,
+    "critical_lines_spot_checked": 22,
+    "public_stock_exact_or_revision_explicit": 18,
     "preorder_reservation": 3,
     "global_sourcing_or_consignment": 0,
     "factory_final_assembly": 1,
@@ -674,14 +662,14 @@
     "historical_bom_tool_public_stock_lines": 135,
     "historical_bom_tool_preorder_lines": 41,
     "historical_bom_tool_unmatched_lines": 33,
-    "current_exact_catalogue_routes_before_outlier_resolution": 184,
-    "current_public_stock_lines_before_outlier_resolution": 156,
+    "current_exact_catalogue_routes_before_outlier_resolution": 182,
+    "current_public_stock_lines_before_outlier_resolution": 154,
     "current_preorder_lines_before_outlier_resolution": 27,
     "current_unmatched_lines_before_outlier_resolution": 28,
-    "target_placements_parsed": 1052,
+    "target_placements_parsed": 1050,
     "outliers_resolved_after_exact_search": 28,
     "availability_routes": {
-      "J0": 167,
+      "J0": 165,
       "J1": 0,
       "J2": 29,
       "J3": 10,
@@ -699,7 +687,7 @@
     "continuity": "permanent availability is approximated by qualified alternates or reserved private inventory, never claimed from one stock snapshot"
   },
   "next": {
-    "local": "all 212 lines have defined routes; preserve the map, keep the nine exact-one supplier answers open, keep optional services and accumulators outside the release gate, keep the optional rejected Parts API path fail-closed, and retain PCBWay as the prepared unsent full-device fallback",
+    "local": "all 210 lines have defined routes; preserve the map, keep the nine exact-one supplier answers open, keep optional services and accumulators outside the release gate, keep the optional rejected Parts API path fail-closed, and retain PCBWay as the prepared unsent full-device fallback",
     "external_authority_later": "quote creation, sourcing requests, private-stock reservation, purchase and any materially expanded supplier request still require separate explicit authority",
     "forbidden": [
       "purchase",
@@ -725,7 +713,7 @@
   },
   "checks": {
     "reference_is_standard_pcba": true,
-    "target_bom_has_212_exact_lines": true,
+    "target_bom_has_210_exact_lines": true,
     "every_spot_check_is_in_target_bom": true,
     "every_spot_check_has_a_source_and_tier": true,
     "no_stock_snapshot_claims_permanent_availability": true,
@@ -733,11 +721,11 @@
     "minimum_bom_upload_authorized_by_user": true,
     "first_minimum_bom_upload_was_transmitted_and_parse_failed": true,
     "historical_209_line_compact_bom_was_transmitted_and_processed": true,
-    "current_212_line_upload_was_generated_but_not_transmitted": true,
+    "current_210_line_upload_was_generated_but_not_transmitted": true,
     "all_target_placements_were_parsed": true,
     "no_semantic_mpn_substitution_was_observed": true,
     "all_28_current_unmatched_lines_remain_explicit": true,
-    "all_212_lines_have_defined_availability_or_final_assembly_route": true,
+    "all_210_lines_have_defined_availability_or_final_assembly_route": true,
     "all_component_sample_prices_are_known": true,
     "sa818s_v_preorder_lead_time_is_explicitly_open": true,
     "factory_final_assembly_gate_is_explicitly_open": true,

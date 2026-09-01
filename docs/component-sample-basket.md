@@ -7,7 +7,7 @@ The `H5.0.3-R1` target is one order-integrated manifest for exactly **one fully 
 ```mermaid
 flowchart TD
   R["✅ H5.0.2-R1<br/>sources + replacements"] --> B["▶️ H5.0.3-R1<br/>one order manifest"]
-  B --> P["JLCPCB Standard<br/>210 lines · 1052 placements"]
+  B --> P["JLCPCB Standard<br/>210 lines · 1050 placements"]
   P --> Q["route rebuild<br/>J0–J3 · J4-F/P"]
   Q --> S["SA818S-V<br/>final pre-order quote"]
   Q --> X["J4-F box-build<br/>J4-P kit/shipping"]

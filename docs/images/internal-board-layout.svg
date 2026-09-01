@@ -63,8 +63,8 @@
 <polyline points="672.2,203.1 603.8,183.5 603.8,165.0" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4 3" data-instance="cc_sub_pcb_guide" data-path="CC-SUB" data-source="cc" data-external="cc_external_sma" data-role="CC1101 selected matching branch to outward Sub-GHz SMA"/>
 <circle cx="672.2" cy="203.1" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
 <circle cx="603.8" cy="165.0" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
-<polyline points="667.6,285.2 549.4,165.0" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4 3" data-instance="voice_v_pcb_guide" data-path="VOICE-VHF" data-source="voice_v" data-external="voice_v_external_sma" data-role="SA818S-V contact 12 to outward VHF 134-174-MHz SMA"/>
-<circle cx="667.6" cy="285.2" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
+<polyline points="667.6,285.3 549.4,165.0" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4 3" data-instance="voice_v_pcb_guide" data-path="VOICE-VHF" data-source="voice_v" data-external="voice_v_external_sma" data-role="SA818S-V contact 12 to outward VHF 134-174-MHz SMA"/>
+<circle cx="667.6" cy="285.3" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
 <circle cx="549.4" cy="165.0" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
 <polyline points="479.1,301.7 515.0,276.0 515.0,187.2 495.0,187.2 495.0,165.0" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="4 3" data-instance="voice_u_pcb_guide" data-path="VOICE-UHF" data-source="voice" data-external="voice_external_sma" data-role="SA818S-U contact 12 to outward UHF 400-480-MHz SMA"/>
 <circle cx="479.1" cy="301.7" r="3.2" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
@@ -89,7 +89,7 @@
 <text x="820.0" y="570.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="start" fill="#344054">solid green/cyan = direct cable projection · dashed blue = future 50 Ω PCB mainline</text>
 <text x="820.0" y="589.0" font-family="sans-serif" font-size="9.2" font-weight="normal" text-anchor="start" fill="#526076">The 30-mm cable has 3D slack; the forward TX sample branches only after the board U.FL.</text>
 <text x="820.0" y="616.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="start" fill="#1d4ed8">UI antenna bank: S3 · FM/SW/AIR · AM/LW · C5</text>
-<text x="820.0" y="636.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="start" fill="#1d4ed8">RF antenna bank: nRF24-1/2/3 · SUB-GHz · FPV · VHF/UHF</text>
+<text x="820.0" y="636.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="start" fill="#1d4ed8">RF antenna bank: nRF24-1/2/3 · SUB-GHz · VHF/UHF · broadcast RX</text>
 <text x="820.0" y="656.0" font-family="sans-serif" font-size="9.2" font-weight="normal" text-anchor="start" fill="#526076">Every blue guide ends at its matching red outer-face antenna datum; none represents finished KiCad copper.</text>
 <g data-rf-feed-path="s3" data-duplicate-hardware="false">
 <text x="820.0" y="142.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#172033">S3 native antenna path</text>
@@ -135,8 +135,8 @@
 <text x="1310.0" y="440.0" font-family="sans-serif" font-size="9.0" font-weight="bold" text-anchor="middle" fill="#172033">GCT RFPC-SMA32-FN-175-A</text>
 <text x="1310.0" y="456.0" font-family="sans-serif" font-size="8.1" font-weight="normal" text-anchor="middle" fill="#526076">outward RP-SMA · antenna screws on here</text>
 </g>
-<rect x="622.6" y="192.8" width="35.1" height="64.8" rx="3" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="5 3" data-zone-kind="selected_support_placement_zone" data-zone="cc-reference-rf-network"/>
-<text x="640.2" y="227.1" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#9a3412">CC RF REF</text>
+<rect x="617.4" y="192.8" width="35.1" height="64.8" rx="3" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="5 3" data-zone-kind="selected_support_placement_zone" data-zone="cc-reference-rf-network"/>
+<text x="635.0" y="227.1" font-family="sans-serif" font-size="5.2" font-weight="bold" text-anchor="middle" fill="#9a3412">CC RF REF</text>
 <g id="exact-native-rf-jumpers" data-medium="removable-microcoax" data-route-units="mm" data-rendering="direct-axis-projection" data-slack-state="H5-open">
 <polyline points="279.8,255.5 298.3,204.0" fill="none" stroke="#0f766e" stroke-width="4.18" stroke-linecap="round" stroke-linejoin="round" data-instance="s3_rf_jumper" data-projected-chord-mm="14.78" data-assembly-length-mm="30.00" data-unprojected-slack-mm="15.22"/>
 <circle cx="279.8" cy="255.5" r="5.0" fill="none" stroke="#0f766e" stroke-width="1.2"/>
@@ -148,15 +148,15 @@
 <text x="126.2" y="224.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#115e59">35</text>
 </g>
 <g id="nrf-module-face-cable-reserves" data-medium="removable-microcoax" data-rendering="direct-connector-projection" data-axis-state="schematic-position-H5-open" data-route-units="mm">
-<rect x="660.7" y="192.8" width="44.8" height="70.7" rx="2" fill="none" stroke="#0891b2" stroke-width="1.5" stroke-dasharray="4 3" data-instance="nrf0_rf_jumper" data-reserve="module-face"/>
-<polyline points="660.7,257.5 651.9,274.3" fill="none" stroke="#0891b2" stroke-width="4.18" stroke-linecap="round" stroke-linejoin="round" data-instance="nrf0_rf_jumper" data-reserve="whole-module-face-plus-direct-projection" data-projected-chord-mm="5.14" data-assembly-length-mm="30.00" data-unprojected-slack-mm="24.86"/>
-<text x="656.3" y="261.9" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#0e7490">184</text>
-<rect x="549.4" y="192.8" width="70.7" height="44.8" rx="2" fill="none" stroke="#0891b2" stroke-width="1.5" stroke-dasharray="4 3" data-instance="nrf1_rf_jumper" data-reserve="module-face"/>
-<polyline points="555.3,237.5 552.0,274.3" fill="none" stroke="#0891b2" stroke-width="4.18" stroke-linecap="round" stroke-linejoin="round" data-instance="nrf1_rf_jumper" data-reserve="whole-module-face-plus-direct-projection" data-projected-chord-mm="9.99" data-assembly-length-mm="30.00" data-unprojected-slack-mm="20.01"/>
-<text x="553.6" y="251.9" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#0e7490">185</text>
-<rect x="501.3" y="192.8" width="44.8" height="70.7" rx="2" fill="none" stroke="#0891b2" stroke-width="1.5" stroke-dasharray="4 3" data-instance="nrf2_rf_jumper" data-reserve="module-face"/>
-<polyline points="501.3,252.1 477.9,252.1" fill="none" stroke="#0891b2" stroke-width="4.18" stroke-linecap="round" stroke-linejoin="round" data-instance="nrf2_rf_jumper" data-reserve="whole-module-face-plus-direct-projection" data-projected-chord-mm="6.30" data-assembly-length-mm="30.00" data-unprojected-slack-mm="23.70"/>
-<text x="489.6" y="248.1" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#0e7490">186</text>
+<rect x="655.2" y="192.8" width="54.0" height="67.0" rx="2" fill="none" stroke="#0891b2" stroke-width="1.5" stroke-dasharray="4 3" data-instance="nrf0_rf_jumper" data-reserve="module-face"/>
+<polyline points="661.1,259.7 651.9,274.3" fill="none" stroke="#0891b2" stroke-width="5.07" stroke-linecap="round" stroke-linejoin="round" data-instance="nrf0_rf_jumper" data-reserve="whole-module-face-plus-direct-projection" data-projected-chord-mm="4.67" data-assembly-length-mm="60.00" data-unprojected-slack-mm="55.33"/>
+<text x="656.5" y="263.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#0e7490">184</text>
+<rect x="560.8" y="192.8" width="54.0" height="67.0" rx="2" fill="none" stroke="#0891b2" stroke-width="1.5" stroke-dasharray="4 3" data-instance="nrf1_rf_jumper" data-reserve="module-face"/>
+<polyline points="614.9,239.0 559.7,274.3" fill="none" stroke="#0891b2" stroke-width="5.07" stroke-linecap="round" stroke-linejoin="round" data-instance="nrf1_rf_jumper" data-reserve="whole-module-face-plus-direct-projection" data-projected-chord-mm="17.70" data-assembly-length-mm="60.00" data-unprojected-slack-mm="42.30"/>
+<text x="587.3" y="252.7" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#0e7490">185</text>
+<rect x="503.9" y="192.8" width="54.0" height="67.0" rx="2" fill="none" stroke="#0891b2" stroke-width="1.5" stroke-dasharray="4 3" data-instance="nrf2_rf_jumper" data-reserve="module-face"/>
+<polyline points="503.9,252.1 477.9,252.1" fill="none" stroke="#0891b2" stroke-width="5.07" stroke-linecap="round" stroke-linejoin="round" data-instance="nrf2_rf_jumper" data-reserve="whole-module-face-plus-direct-projection" data-projected-chord-mm="7.00" data-assembly-length-mm="60.00" data-unprojected-slack-mm="53.00"/>
+<text x="490.9" y="248.1" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#0e7490">186</text>
 </g>
 <g id="encoder-through-board-features" data-source-face="rear-outer" data-inner-projection-mm="3.5">
 <rect x="733.1" y="346.9" width="5.9" height="10.0" rx="1" fill="#fdf2f8" stroke="#be185d" stroke-width="1.5" stroke-dasharray="2 2" data-feature="dummy_terminal_1"/>
@@ -177,8 +177,8 @@
 <text x="302.0" y="284.9" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">5</text>
 <rect x="102.2" y="246.4" width="66.6" height="78.4" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="c5"/>
 <text x="135.5" y="288.6" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">6</text>
-<rect x="199.1" y="189.1" width="39.2" height="12.5" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="display_connector"/>
-<text x="218.7" y="198.3" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">7</text>
+<rect x="168.8" y="171.7" width="99.9" height="14.1" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="display_connector"/>
+<text x="218.8" y="181.7" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">7</text>
 <rect x="250.2" y="368.5" width="18.5" height="18.5" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="slow_io"/>
 <text x="259.5" y="380.8" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">8</text>
 <rect x="206.5" y="368.5" width="28.9" height="16.3" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="ui_matrix_io"/>
@@ -232,22 +232,22 @@
 <rect x="80.0" y="616.4" width="12.6" height="16.7" rx="2" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5" data-instance="c5_boot_button"/>
 <text x="86.3" y="627.7" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">33</text>
 <rect x="646.3" y="268.6" width="11.1" height="11.5" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nrf0_rf_board_connector"/>
-<rect x="546.4" y="268.6" width="11.1" height="11.5" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nrf1_rf_board_connector"/>
+<rect x="554.2" y="268.6" width="11.1" height="11.5" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nrf1_rf_board_connector"/>
 <rect x="472.4" y="246.4" width="11.1" height="11.5" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nrf2_rf_board_connector"/>
 <rect x="705.5" y="284.1" width="37.0" height="37.0" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="rp"/>
 <text x="724.0" y="305.6" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">39</text>
-<rect x="660.7" y="192.8" width="44.8" height="70.7" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nrf0"/>
-<text x="683.1" y="231.1" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">40</text>
-<rect x="549.4" y="192.8" width="70.7" height="44.8" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nrf1"/>
-<text x="584.7" y="218.1" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">41</text>
-<rect x="501.3" y="192.8" width="44.8" height="70.7" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nrf2"/>
-<text x="523.6" y="231.1" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">42</text>
-<rect x="552.3" y="285.2" width="131.7" height="70.3" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="voice_v"/>
-<text x="618.2" y="323.4" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">43</text>
+<rect x="655.2" y="192.8" width="54.0" height="67.0" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nrf0"/>
+<text x="682.2" y="229.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">40</text>
+<rect x="560.8" y="192.8" width="54.0" height="67.0" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nrf1"/>
+<text x="587.8" y="229.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">41</text>
+<rect x="503.9" y="192.8" width="54.0" height="67.0" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nrf2"/>
+<text x="530.9" y="229.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">42</text>
+<rect x="552.3" y="285.3" width="131.7" height="70.3" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="voice_v"/>
+<text x="618.2" y="323.5" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">43</text>
 <rect x="479.1" y="285.2" width="70.3" height="131.7" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="voice"/>
 <text x="514.2" y="354.1" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">44</text>
-<rect x="638.9" y="195.7" width="14.8" height="14.8" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="cc"/>
-<text x="646.3" y="206.1" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">45</text>
+<rect x="635.2" y="195.7" width="14.8" height="14.8" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="cc"/>
+<text x="642.6" y="206.1" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">45</text>
 <rect x="724.0" y="398.1" width="14.8" height="14.8" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="nvdc_charger"/>
 <text x="731.4" y="408.5" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">46</text>
 <rect x="724.0" y="475.8" width="14.8" height="14.8" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="pack_gauge"/>
@@ -534,16 +534,16 @@
 <circle cx="113.3" cy="255.2" r="1.4" fill="#f59e0b" stroke="#92400e" stroke-width="0.8"/>
 </g>
 <g data-instance="nrf0_integrated_ipex" data-rf-connector="Ebyte-published IPEX; generation H5-open" data-relation="module-IPEX-output-and-cable-start" data-position-state="schematic-within-published-module-face">
-<circle cx="660.7" cy="257.5" r="5.2" fill="#ffffff" stroke="#0891b2" stroke-width="1.6"/>
-<circle cx="660.7" cy="257.5" r="1.4" fill="#f59e0b" stroke="#92400e" stroke-width="0.8"/>
+<circle cx="661.1" cy="259.7" r="5.2" fill="#ffffff" stroke="#0891b2" stroke-width="1.6"/>
+<circle cx="661.1" cy="259.7" r="1.4" fill="#f59e0b" stroke="#92400e" stroke-width="0.8"/>
 </g>
 <g data-instance="nrf1_integrated_ipex" data-rf-connector="Ebyte-published IPEX; generation H5-open" data-relation="module-IPEX-output-and-cable-start" data-position-state="schematic-within-published-module-face">
-<circle cx="555.3" cy="237.5" r="5.2" fill="#ffffff" stroke="#0891b2" stroke-width="1.6"/>
-<circle cx="555.3" cy="237.5" r="1.4" fill="#f59e0b" stroke="#92400e" stroke-width="0.8"/>
+<circle cx="614.9" cy="239.0" r="5.2" fill="#ffffff" stroke="#0891b2" stroke-width="1.6"/>
+<circle cx="614.9" cy="239.0" r="1.4" fill="#f59e0b" stroke="#92400e" stroke-width="0.8"/>
 </g>
 <g data-instance="nrf2_integrated_ipex" data-rf-connector="Ebyte-published IPEX; generation H5-open" data-relation="module-IPEX-output-and-cable-start" data-position-state="schematic-within-published-module-face">
-<circle cx="501.3" cy="252.1" r="5.2" fill="#ffffff" stroke="#0891b2" stroke-width="1.6"/>
-<circle cx="501.3" cy="252.1" r="1.4" fill="#f59e0b" stroke="#92400e" stroke-width="0.8"/>
+<circle cx="503.9" cy="252.1" r="5.2" fill="#ffffff" stroke="#0891b2" stroke-width="1.6"/>
+<circle cx="503.9" cy="252.1" r="1.4" fill="#f59e0b" stroke="#92400e" stroke-width="0.8"/>
 </g>
 </g>
 <g id="board-rf-cable-to-trace-handoffs" data-count="5">
@@ -566,10 +566,10 @@
 <text x="655.9" y="272.5" font-family="sans-serif" font-size="5.6" font-weight="bold" text-anchor="middle" fill="#172033">36</text>
 </g>
 <g data-instance="nrf1_rf_board_connector" data-rf-connector="U.FL-compatible Gen1" data-relation="physical-cable-end-and-pcb-trace-start" data-position-state="exact">
-<circle cx="552.0" cy="274.3" r="5.2" fill="#ffffff" stroke="#0f766e" stroke-width="1.6"/>
-<circle cx="552.0" cy="274.3" r="1.4" fill="#f59e0b" stroke="#92400e" stroke-width="0.8"/>
-<circle cx="556.0" cy="270.3" r="3.8" fill="#ffffff" stroke="#667085" stroke-width="1.0"/>
-<text x="556.0" y="272.5" font-family="sans-serif" font-size="5.6" font-weight="bold" text-anchor="middle" fill="#172033">37</text>
+<circle cx="559.7" cy="274.3" r="5.2" fill="#ffffff" stroke="#0f766e" stroke-width="1.6"/>
+<circle cx="559.7" cy="274.3" r="1.4" fill="#f59e0b" stroke="#92400e" stroke-width="0.8"/>
+<circle cx="563.8" cy="270.3" r="3.8" fill="#ffffff" stroke="#667085" stroke-width="1.0"/>
+<text x="563.8" y="272.5" font-family="sans-serif" font-size="5.6" font-weight="bold" text-anchor="middle" fill="#172033">37</text>
 </g>
 <g data-instance="nrf2_rf_board_connector" data-rf-connector="U.FL-compatible Gen1" data-relation="physical-cable-end-and-pcb-trace-start" data-position-state="exact">
 <circle cx="477.9" cy="252.1" r="5.2" fill="#ffffff" stroke="#0f766e" stroke-width="1.6"/>
@@ -609,8 +609,8 @@
 <text x="56.0" y="888.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">UI, display, storage and audio owner</text>
 <text x="30.0" y="900.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">06  ESP32-C5-WROOM-1U-N8R8</text>
 <text x="56.0" y="909.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">native 2.4/5-GHz and IR owner</text>
-<text x="30.0" y="921.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">07  Hirose DF40C(2.0)-40DS-0.4V(51)</text>
-<text x="56.0" y="930.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">40-contact fixed receptacle for the antenna-edge replaceable display adapter</text>
+<text x="30.0" y="921.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">07  Hirose FH34SRJ-50S-0.5SH(50)</text>
+<text x="56.0" y="930.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">direct 50-contact dual-contact ZIF for the folded display FPC</text>
 <text x="30.0" y="942.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">08  TCA6424ARGJR</text>
 <text x="56.0" y="951.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">24-line slow-control expander</text>
 <text x="30.0" y="963.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">09  TCA9539PWR</text>
@@ -676,12 +676,12 @@
 <text x="426.0" y="846.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">nRF24 #2 Gen1 jumper board receptacle</text>
 <text x="400.0" y="858.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">39  SC1512-A4</text>
 <text x="426.0" y="867.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">deterministic radio owner</text>
-<text x="400.0" y="879.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">40  Ebyte E01-ML01IPX</text>
+<text x="400.0" y="879.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">40  Ebyte E01-ML01SP4</text>
 <text x="426.0" y="888.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">full-function nRF24 radio #0</text>
-<text x="400.0" y="900.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">41  Ebyte E01-ML01IPX</text>
-<text x="426.0" y="909.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">superseded R1 nRF24 #1 seed; displaced clear of the current CC reference zone</text>
-<text x="400.0" y="921.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">42  Ebyte E01-ML01IPX</text>
-<text x="426.0" y="930.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">superseded R1 nRF24 #2 seed; displaced clear of the current CC reference zone</text>
+<text x="400.0" y="900.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">41  Ebyte E01-ML01SP4</text>
+<text x="426.0" y="909.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">full-function nRF24 radio #1; clear of the CC reference zone and U214 socket tails</text>
+<text x="400.0" y="921.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">42  Ebyte E01-ML01SP4</text>
+<text x="426.0" y="930.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">full-function nRF24 radio #2; clear of the top-right mounting keep-out</text>
 <text x="400.0" y="942.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">43  G-NiceRF SA818S-V</text>
 <text x="426.0" y="951.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">VHF 134-174-MHz SA818S-V; dedicated contact-12 RF path</text>
 <text x="400.0" y="963.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">44  G-NiceRF SA818S-U</text>
@@ -966,32 +966,32 @@
 <text x="1166.0" y="1728.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">raw VBUS local capacitor</text>
 <text x="1140.0" y="1740.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">183  Texas Instruments TVS2200DRVR</text>
 <text x="1166.0" y="1749.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">raw VBUS flat-clamp TVS</text>
-<text x="1140.0" y="1761.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">184  TE Connectivity 2118651-2</text>
+<text x="1140.0" y="1761.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">184  TE Connectivity 1-2118651-0</text>
 <text x="1166.0" y="1770.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">direct nRF24 #0 IPEX-zone-to-board-U.FL projection; module axis closes at H5</text>
-<text x="1140.0" y="1782.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">185  TE Connectivity 2118651-2</text>
+<text x="1140.0" y="1782.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">185  TE Connectivity 1-2118651-0</text>
 <text x="1166.0" y="1791.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">direct nRF24 #1 IPEX-zone-to-board-U.FL projection; module axis closes at H5</text>
-<text x="1140.0" y="1803.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">186  TE Connectivity 2118651-2</text>
+<text x="1140.0" y="1803.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">186  TE Connectivity 1-2118651-0</text>
 <text x="1166.0" y="1812.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">direct nRF24 #2 IPEX-zone-to-board-U.FL projection; module axis closes at H5</text>
-<g id="validated-clearances" data-legend-bottom="1854" data-top="1889" data-inner-body-count="181" data-max-inner-height-mm="8.95" data-min-single-body-clearance-mm="2.05" data-display-adapter-opposing-pairs="2" data-min-display-adapter-clearance-mm="5.10" data-opposing-pairs="46" data-intentional-mates="1" data-min-z-clearance-mm="3.31" data-rf-cable-routes="2" data-rf-pcb-topology-guides="10" data-nrf-cable-reserves="3" data-opposing-cable-pairs="2" data-cable-od-max-mm="1.13" data-nrf-reserve-opposing-pairs="6" data-encoder-through-features="7" data-functional-zones="1" data-voice-v-rf-endpoint-distance-mm="45.57" data-voice-u-rf-endpoint-distance-mm="47.33">
+<g id="validated-clearances" data-legend-bottom="1854" data-top="1889" data-inner-body-count="181" data-max-inner-height-mm="8.95" data-min-single-body-clearance-mm="2.05" data-display-direct-zif-opposing-pairs="0" data-min-display-direct-zif-clearance-mm="10.00" data-opposing-pairs="44" data-intentional-mates="1" data-min-z-clearance-mm="3.31" data-rf-cable-routes="2" data-rf-pcb-topology-guides="10" data-nrf-cable-reserves="3" data-opposing-cable-pairs="2" data-cable-od-max-mm="1.37" data-nrf-reserve-opposing-pairs="4" data-encoder-through-features="7" data-functional-zones="1" data-voice-v-rf-endpoint-distance-mm="45.59" data-voice-u-rf-endpoint-distance-mm="47.33">
 <text x="30.0" y="1889.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#172033">Validated clearances</text>
 <text x="30.0" y="1913.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• same-face device-to-device clearance: ≥0.7 mm</text>
 <text x="30.0" y="1934.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• all 181 inner bodies checked individually; tallest 8.95 mm; opposite-plane remainder 2.05 mm</text>
-<text x="30.0" y="1955.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• complete 3.80-mm display adapter: 2 opposing crossings; minimum Z gap 5.10 mm to nrf1</text>
-<text x="30.0" y="1976.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• opposing inner faces: 46 non-mating XY pairs checked; minimum Z gap 3.31 mm</text>
+<text x="30.0" y="1955.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• direct 1.00-mm display ZIF: 0 opposing crossings; minimum Z gap 10.00 mm to opposite PCB plane</text>
+<text x="30.0" y="1976.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• opposing inner faces: 44 non-mating XY pairs checked; minimum Z gap 3.31 mm</text>
 <text x="30.0" y="1997.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• outward connector / through-hole tail clearance on the opposite face: ≥1.5 mm</text>
 <text x="30.0" y="2018.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• RF coax: 2 direct exact-endpoint projections + 3 nRF module-face reserves; all five 30-mm assemblies accounted</text>
 <text x="30.0" y="2039.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• limiting pair: 23 3.5-mm CTIA headset TRRS mid-mount connector / 157 protected-pack branch fuse #0</text>
 <text x="30.0" y="2060.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• exact M1 plug/receptacle is one intentional 11-mm mate, not a clearance pair</text>
 <text x="30.0" y="2081.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• M2.5 hole/head keep-out: 4.0-mm radius</text>
 <text x="30.0" y="2102.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• both inner views are horizontally mirrored from their external faces</text>
-<text x="30.0" y="2123.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• nRF reserve crossings: 6; minimum Z gap 5.20 mm; H5 locks the corridor, H7/H8 inspect received IPEX axes</text>
+<text x="30.0" y="2123.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• nRF reserve crossings: 4; minimum Z gap 5.20 mm; H5 locks the corridor, H7/H8 inspect received IPEX axes</text>
 <text x="30.0" y="2144.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• EC11E through-board features: 7 checked; 2 opposing crossings; minimum Z gap 4.20 mm</text>
 <text x="30.0" y="2165.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• all 10 onboard antenna paths have a source-to-port topology guide; final copper remains KiCad work</text>
 <text x="30.0" y="2186.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• orange dashed boundary is a placement zone, not one combined device</text>
 <text x="30.0" y="2207.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#344054">SMA · GCT RFPC-SMA31-FN-175-A</text>
 <text x="30.0" y="2227.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#344054">RP-SMA · GCT RFPC-SMA32-FN-175-A</text>
 <text x="30.0" y="2253.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#166534">All five native/nRF module feeds use exact 30-mm 2118651-2 Gen1 jumpers.</text>
-<text x="30.0" y="2274.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#b42318">Physical keep-outs pass; display-tail evidence and final PCB copper/via DRC remain open.</text>
+<text x="30.0" y="2274.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#b42318">Physical keep-outs pass; display-tail insertion, bezel retention and final PCB copper/via DRC remain open.</text>
 <text x="30.0" y="2295.0" font-family="sans-serif" font-size="9.2" font-weight="normal" text-anchor="start" fill="#526076">Placement projection; all mechanically significant bodies are accounted; small passives and production copper remain ECAD work.</text>
 </g>
 </svg>

@@ -6,36 +6,36 @@
   "sources": {
     "inventory": {
       "path": "hardware/ecad/h2-r2-native-inventory-contract.json",
-      "sha256": "f7abcd2721dde990462a252caee310921f5a055ddb2648f68460b6fd187965f6"
+      "sha256": "72d3b9337e28d568f26d72ab51db5043e1d499214a8fa497c0fbbd96a00fe88b"
     },
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "62062b9faa2e3f9a9d2430bb068bb4bfc8ba5b37f9ab00d7744cc97605852df5"
+      "sha256": "f3edb2ae8313b90288a040dfc9d95f2664e41f932435a1de2a7f7308ea5510f0"
     },
     "nets": {
       "path": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "sha256": "4cda4b3cae4cf847cfac561c8119b528bcb9e757511d0e6de341571c792b66cb"
+      "sha256": "671b3b429e3b134bdfda6b07ae0859d084b8ef2da5138b65ec79ead770eb5337"
     },
     "symbols": {
       "path": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-      "sha256": "a80b18a10514e35734a26bdebfbe0e01c5889f4c98ec2c12ad6b437c4ee069c6"
+      "sha256": "eeae5b09a26b066fef9671bc6e0d4f0a164b7cfa881dedd4a26eb3d0cc813e70"
     },
     "symbol_library": {
       "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-      "sha256": "2e809e8e4b103fc9f16db074f3ef074cacad7be11d5bfe90537c1211478894b7"
+      "sha256": "cec9fdf71ef24aa99907dd6469f8edabd18df49d08c727ba8407bb56d98e3784"
     }
   },
   "summary": {
-    "project_count": 3,
-    "project_graph_sheet_count": 23,
-    "populated_sheet_count": 19,
-    "fitted_symbol_instance_count": 1185,
-    "physical_symbol_pin_count": 4323,
-    "connected_physical_pin_count": 4067,
-    "explicit_no_connect_physical_pin_count": 256,
+    "project_count": 2,
+    "project_graph_sheet_count": 22,
+    "populated_sheet_count": 18,
+    "fitted_symbol_instance_count": 1183,
+    "physical_symbol_pin_count": 4243,
+    "connected_physical_pin_count": 4006,
+    "explicit_no_connect_physical_pin_count": 237,
     "external_module_interface_annotation_count": 5,
-    "canonical_net_count": 823,
-    "generated_file_count": 32,
+    "canonical_net_count": 816,
+    "generated_file_count": 28,
     "pcb_file_count": 0
   },
   "projects": [
@@ -45,10 +45,10 @@
       "sheet_count": 9,
       "populated_sheet_count": 7,
       "instance_count": 428,
-      "physical_symbol_pin_count": 1588,
+      "physical_symbol_pin_count": 1598,
       "external_module_interface_count": 5,
-      "canonical_net_count": 327,
-      "cross_sheet_net_count": 111
+      "canonical_net_count": 329,
+      "cross_sheet_net_count": 103
     },
     {
       "id": "LESHY2-RF-R2",
@@ -60,28 +60,17 @@
       "external_module_interface_count": 0,
       "canonical_net_count": 522,
       "cross_sheet_net_count": 127
-    },
-    {
-      "id": "L2-DISP-ADP-001-B",
-      "root": "ADP_00_DISPLAY_ADAPTER",
-      "sheet_count": 1,
-      "populated_sheet_count": 1,
-      "instance_count": 2,
-      "physical_symbol_pin_count": 90,
-      "external_module_interface_count": 0,
-      "canonical_net_count": 27,
-      "cross_sheet_net_count": 0
     }
   ],
   "sheets": [
     {
       "id": "UI_10_S3_DISPLAY_TOUCH",
-      "role": "S3 core, exact direct i8080-8 display, touch and S3 service",
-      "instance_count": 34,
-      "physical_symbol_pin_count": 128,
-      "connected_physical_pin_count": 115,
-      "explicit_no_connect_physical_pin_count": 13,
-      "hierarchical_interface_count": 37,
+      "role": "S3 core, exact direct i8080-8 display through the UI-board ZIF, touch and S3 service",
+      "instance_count": 35,
+      "physical_symbol_pin_count": 178,
+      "connected_physical_pin_count": 159,
+      "explicit_no_connect_physical_pin_count": 19,
+      "hierarchical_interface_count": 30,
       "external_module_interface_count": 1,
       "external_module_interfaces": [
         {
@@ -95,11 +84,11 @@
     {
       "id": "UI_11_STORAGE_CONTROLS_INDICATORS",
       "role": "Hub-local microSD, encoder, user keys and two-row indicators",
-      "instance_count": 107,
-      "physical_symbol_pin_count": 380,
-      "connected_physical_pin_count": 358,
-      "explicit_no_connect_physical_pin_count": 22,
-      "hierarchical_interface_count": 42,
+      "instance_count": 106,
+      "physical_symbol_pin_count": 340,
+      "connected_physical_pin_count": 329,
+      "explicit_no_connect_physical_pin_count": 11,
+      "hierarchical_interface_count": 34,
       "external_module_interface_count": 0,
       "external_module_interfaces": [],
       "project": "LESHY2-UI-R2"
@@ -129,7 +118,7 @@
       "physical_symbol_pin_count": 215,
       "connected_physical_pin_count": 200,
       "explicit_no_connect_physical_pin_count": 15,
-      "hierarchical_interface_count": 50,
+      "hierarchical_interface_count": 49,
       "external_module_interface_count": 0,
       "external_module_interfaces": [],
       "project": "LESHY2-UI-R2"
@@ -341,37 +330,9 @@
       "external_module_interface_count": 0,
       "external_module_interfaces": [],
       "project": "LESHY2-RF-R2"
-    },
-    {
-      "id": "ADP_00_DISPLAY_ADAPTER",
-      "role": "exact passive DF40-to-FH34 one-to-one/strap map; no active device",
-      "instance_count": 2,
-      "physical_symbol_pin_count": 90,
-      "connected_physical_pin_count": 76,
-      "explicit_no_connect_physical_pin_count": 14,
-      "hierarchical_interface_count": 0,
-      "external_module_interface_count": 0,
-      "external_module_interfaces": [],
-      "project": "L2-DISP-ADP-001-B"
     }
   ],
   "generated_files": [
-    {
-      "path": "hardware/ecad/kicad/L2-DISP-ADP-001-B/L2-DISP-ADP-001-B.kicad_pro",
-      "sha256": "761abc87013048539b803232cc7a798648f1f31caf739a6abd113d68cebc8d51"
-    },
-    {
-      "path": "hardware/ecad/kicad/L2-DISP-ADP-001-B/L2-DISP-ADP-001-B.kicad_sch",
-      "sha256": "a296c773b4229de0a227424d4b86b1408d272e5f167542219db08b23a61b5dcf"
-    },
-    {
-      "path": "hardware/ecad/kicad/L2-DISP-ADP-001-B/fp-lib-table",
-      "sha256": "eb057c6d938aff935f19f0b3f640069852d9da6cc0cfa1d02de8f6efdf52fcdb"
-    },
-    {
-      "path": "hardware/ecad/kicad/L2-DISP-ADP-001-B/sym-lib-table",
-      "sha256": "44042c7fe8c20f1980c94a8ce204dc596d5c4b1aa10b2c59b78fe28720b44565"
-    },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pro",
       "sha256": "f756ad3ce5cb30b0722d67c1a6623d2fff3789de5f4b2f1b025864436c7f54aa"
@@ -442,15 +403,15 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch",
-      "sha256": "0e9b2e03e2253e5ededf65ab3101a8aecd4f9d00c952fb50b34e7f6c9c4c47ef"
+      "sha256": "b5ee559bd8fa88a0222566dfbadd065e60d2058946f4dc445633410cd8cbb6af"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_10_S3_DISPLAY_TOUCH.kicad_sch",
-      "sha256": "43d661e596ada374b78fadba9c62cdbb4671b85ad5a2bb8681338e52dd475d24"
+      "sha256": "be50ee09ae6e090a817d38f720a462e2df4f90795cac6b06291e2c13b8933087"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_11_STORAGE_CONTROLS_INDICATORS.kicad_sch",
-      "sha256": "3da51013a7ea8ecebbeed45c864bcb16a43306c451d1bdcd2fb3540aa8e40ed6"
+      "sha256": "14aa981fb8373623e66ca6be22c2b1491bdf5bd383f417b04e0c6b0dd7937197"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch",
@@ -458,7 +419,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_30_HUB_RP_CORE_SERVICE.kicad_sch",
-      "sha256": "2f1441ddaf6bb6c2f1dd03ce9f2370db53565fb37a769b607b24ab243bba5751"
+      "sha256": "9f52ea3f5ce0f8382a69a266b9b441908788b513cafc5ff7daa474bca5020f89"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_31_NRF24_X3_TX_EVIDENCE.kicad_sch",

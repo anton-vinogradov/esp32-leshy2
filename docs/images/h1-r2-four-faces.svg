@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1050" height="1500" viewBox="0 0 1050 1500" data-view="four-faces-matched-columns">
 <defs><clipPath id="front-external-content"><rect x="106" y="145" width="328" height="615"/></clipPath><clipPath id="rear-external-content"><rect x="616" y="145" width="328" height="615"/></clipPath></defs>
 <rect width="1050" height="1500" fill="#ffffff"/>
-<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.37 · four matched PCB faces</text>
+<text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.38 · four matched PCB faces</text>
 <text x="40" y="70" font-family="sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#526076">Outer face above; the inner face is shown exactly as viewed after physically turning the PCB over.</text>
 <text x="270" y="104" font-family="sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#1d4ed8">FRONT / UI PCB</text>
 <text x="780" y="104" font-family="sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#166534">REAR / RF-POWER PCB</text>
@@ -10,7 +10,7 @@
 <g clip-path="url(#front-external-content)" data-panel="front-external"><svg x="45" y="145" width="450" height="615" viewBox="45 90 350 660" preserveAspectRatio="xMidYMid meet" overflow="hidden">
 <defs><marker id="ext-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 
-<text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.37 current external layout</text>
+<text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.38 current external layout</text>
 <text x="30.0" y="56.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">Reviewed R2 exterior. PCB-face free text is silkscreen; drawing notes and arrows are annotations.</text>
 <text x="80.0" y="85.8" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Front / UI face</text>
 <rect x="80.0" y="150.0" width="277.5" height="555.0" rx="5" fill="#f8fafc" stroke="#344054" stroke-width="1.5" data-face="front-outer" data-board-mm="75x150"/>
@@ -32,14 +32,14 @@
 <circle cx="483.5" cy="686.5" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
 <circle cx="724.0" cy="686.5" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
 <circle cx="724.0" cy="686.5" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
-<rect x="465.0" y="212.9" width="277.5" height="88.8" rx="4" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="5 3"/>
-<rect x="448.4" y="212.9" width="310.8" height="88.8" rx="6" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5"/>
-<rect x="570.9" y="247.9" width="65.8" height="18.8" rx="2" fill="#e0f2fe" stroke="#0369a1" stroke-width="1.5" stroke-dasharray="4 2"/>
-<circle cx="500.1" cy="257.3" r="5.9" fill="#ffffff" stroke="#0369a1" stroke-width="1.2"/>
-<circle cx="707.4" cy="257.3" r="5.9" fill="#ffffff" stroke="#0369a1" stroke-width="1.2"/>
-<text x="603.8" y="242.5" font-family="sans-serif" font-size="6.3" font-weight="bold" text-anchor="middle" fill="#9a3412">Cap-Bus slot · U214 / U219 · 84×24 mm</text>
-<text x="603.8" y="259.1" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#075985">shared Cap-Bus rail · HLE-107-02-G-DV-PE-LC beneath</text>
-<text x="603.8" y="275.8" font-family="sans-serif" font-size="6.2" font-weight="normal" text-anchor="middle" fill="#dc2626">insert ⊗ · remove ⊙</text>
+<rect x="465.0" y="213.0" width="277.5" height="88.8" rx="4" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="5 3"/>
+<rect x="448.4" y="213.0" width="310.8" height="88.8" rx="6" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5"/>
+<rect x="570.9" y="248.0" width="65.8" height="18.8" rx="2" fill="#e0f2fe" stroke="#0369a1" stroke-width="1.5" stroke-dasharray="4 2"/>
+<circle cx="500.1" cy="257.4" r="5.9" fill="#ffffff" stroke="#0369a1" stroke-width="1.2"/>
+<circle cx="707.4" cy="257.4" r="5.9" fill="#ffffff" stroke="#0369a1" stroke-width="1.2"/>
+<text x="603.8" y="242.6" font-family="sans-serif" font-size="6.3" font-weight="bold" text-anchor="middle" fill="#9a3412">Cap-Bus slot · U214 / U219 · 84×24 mm</text>
+<text x="603.8" y="259.2" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#075985">shared Cap-Bus rail · HLE-107-02-G-DV-PE-LC beneath</text>
+<text x="603.8" y="275.9" font-family="sans-serif" font-size="6.2" font-weight="normal" text-anchor="middle" fill="#dc2626">insert ⊗ · remove ⊙</text>
 <g id="ext-rear-outer-rf-bank" data-mount-face="rf-pcb-outer">
 <rect x="476.1" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
 <rect x="483.2" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
@@ -248,7 +248,7 @@
 <text x="850.0" y="699.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Davies 1227-J is the exact encoder knob; only its fit HIL remains.</text>
 <text x="850.0" y="722.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">UP/DOWN/LEFT/RIGHT/OK/BACK/OPT/F1…F8/PTT are serial direct buttons.</text>
 <text x="850.0" y="745.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The side C&amp;K JS102011SCQN is the sole RUN/KILL and source-command control.</text>
-<g id="ext-h1-r2-external-delta" data-marker="H1-R2.37" data-state="in-progress">
+<g id="ext-h1-r2-external-delta" data-marker="H1-R2.38" data-state="in-progress">
 <text data-role="board-identification" data-face="front" data-layer="pcb-silkscreen" x="218.8" y="528.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#172033">ESP32-LESHY2 · UI PCB · R2-EVT1 · REV A</text>
 <text data-role="board-identification" data-face="rear" data-layer="pcb-silkscreen" x="603.8" y="664.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#172033">RF/PWR PCB · R2-EVT1 · REV A</text>
 <path d="M140.9 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ext-arrow)" data-instance="hub_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
@@ -278,7 +278,7 @@
 <g clip-path="url(#rear-external-content)" data-panel="rear-external"><svg x="555" y="145" width="450" height="615" viewBox="430 90 350 660" preserveAspectRatio="xMidYMid meet" overflow="hidden">
 <defs><marker id="ext-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 
-<text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.37 current external layout</text>
+<text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.38 current external layout</text>
 <text x="30.0" y="56.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">Reviewed R2 exterior. PCB-face free text is silkscreen; drawing notes and arrows are annotations.</text>
 <text x="80.0" y="85.8" font-family="sans-serif" font-size="15" font-weight="bold" text-anchor="start" fill="#172033">Front / UI face</text>
 <rect x="80.0" y="150.0" width="277.5" height="555.0" rx="5" fill="#f8fafc" stroke="#344054" stroke-width="1.5" data-face="front-outer" data-board-mm="75x150"/>
@@ -300,14 +300,14 @@
 <circle cx="483.5" cy="686.5" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
 <circle cx="724.0" cy="686.5" r="14.8" fill="#fff7ed" stroke="#fb923c" stroke-width="1" stroke-dasharray="4 3"/>
 <circle cx="724.0" cy="686.5" r="5.0" fill="white" stroke="#475467" stroke-width="1.4"/>
-<rect x="465.0" y="212.9" width="277.5" height="88.8" rx="4" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="5 3"/>
-<rect x="448.4" y="212.9" width="310.8" height="88.8" rx="6" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5"/>
-<rect x="570.9" y="247.9" width="65.8" height="18.8" rx="2" fill="#e0f2fe" stroke="#0369a1" stroke-width="1.5" stroke-dasharray="4 2"/>
-<circle cx="500.1" cy="257.3" r="5.9" fill="#ffffff" stroke="#0369a1" stroke-width="1.2"/>
-<circle cx="707.4" cy="257.3" r="5.9" fill="#ffffff" stroke="#0369a1" stroke-width="1.2"/>
-<text x="603.8" y="242.5" font-family="sans-serif" font-size="6.3" font-weight="bold" text-anchor="middle" fill="#9a3412">Cap-Bus slot · U214 / U219 · 84×24 mm</text>
-<text x="603.8" y="259.1" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#075985">shared Cap-Bus rail · HLE-107-02-G-DV-PE-LC beneath</text>
-<text x="603.8" y="275.8" font-family="sans-serif" font-size="6.2" font-weight="normal" text-anchor="middle" fill="#dc2626">insert ⊗ · remove ⊙</text>
+<rect x="465.0" y="213.0" width="277.5" height="88.8" rx="4" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="5 3"/>
+<rect x="448.4" y="213.0" width="310.8" height="88.8" rx="6" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5"/>
+<rect x="570.9" y="248.0" width="65.8" height="18.8" rx="2" fill="#e0f2fe" stroke="#0369a1" stroke-width="1.5" stroke-dasharray="4 2"/>
+<circle cx="500.1" cy="257.4" r="5.9" fill="#ffffff" stroke="#0369a1" stroke-width="1.2"/>
+<circle cx="707.4" cy="257.4" r="5.9" fill="#ffffff" stroke="#0369a1" stroke-width="1.2"/>
+<text x="603.8" y="242.6" font-family="sans-serif" font-size="6.3" font-weight="bold" text-anchor="middle" fill="#9a3412">Cap-Bus slot · U214 / U219 · 84×24 mm</text>
+<text x="603.8" y="259.2" font-family="sans-serif" font-size="5.0" font-weight="bold" text-anchor="middle" fill="#075985">shared Cap-Bus rail · HLE-107-02-G-DV-PE-LC beneath</text>
+<text x="603.8" y="275.9" font-family="sans-serif" font-size="6.2" font-weight="normal" text-anchor="middle" fill="#dc2626">insert ⊗ · remove ⊙</text>
 <g id="ext-rear-outer-rf-bank" data-mount-face="rf-pcb-outer">
 <rect x="476.1" y="150.0" width="37.7" height="22.2" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>
 <rect x="483.2" y="107.8" width="23.5" height="42.2" fill="#d0d5dd" stroke="#344054" stroke-width="1.2"/>
@@ -516,7 +516,7 @@
 <text x="850.0" y="699.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Davies 1227-J is the exact encoder knob; only its fit HIL remains.</text>
 <text x="850.0" y="722.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#172033">UP/DOWN/LEFT/RIGHT/OK/BACK/OPT/F1…F8/PTT are serial direct buttons.</text>
 <text x="850.0" y="745.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">The side C&amp;K JS102011SCQN is the sole RUN/KILL and source-command control.</text>
-<g id="ext-h1-r2-external-delta" data-marker="H1-R2.37" data-state="in-progress">
+<g id="ext-h1-r2-external-delta" data-marker="H1-R2.38" data-state="in-progress">
 <text data-role="board-identification" data-face="front" data-layer="pcb-silkscreen" x="218.8" y="528.1" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#172033">ESP32-LESHY2 · UI PCB · R2-EVT1 · REV A</text>
 <text data-role="board-identification" data-face="rear" data-layer="pcb-silkscreen" x="603.8" y="664.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#172033">RF/PWR PCB · R2-EVT1 · REV A</text>
 <path d="M140.9 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ext-arrow)" data-instance="hub_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
@@ -547,7 +547,7 @@
 <text x="780" y="790" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#526076">inner · viewed after turning over · no silkscreen</text>
 <svg x="45" y="805" width="450" height="650" viewBox="70 95 440 940" preserveAspectRatio="xMidYMid meet" overflow="hidden">
 
-<text x="35.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.37 · UI / radio PCB inner face</text>
+<text x="35.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.38 · UI / radio PCB inner face</text>
 <text x="35.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Direct view after physically turning the PCB over. Numbers are drawing references; this face has no silkscreen.</text>
 <text x="290.0" y="105.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#1d4ed8">ANTENNA EDGE · five board-local RF paths</text>
 <rect x="80.0" y="165.0" width="420.0" height="840.0" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -565,24 +565,25 @@
 <circle cx="108.0" cy="226.6" r="22.4" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="472.0" cy="977.0" r="22.4" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="108.0" cy="977.0" r="22.4" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
-<rect x="323.60" y="196.92" width="58.80" height="42.00" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.4" stroke-dasharray="6 4" data-physical-feature="s3_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
-<rect x="196.48" y="196.92" width="57.12" height="42.00" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.4" stroke-dasharray="6 4" data-physical-feature="c5_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
+<rect x="323.60" y="200.28" width="58.80" height="42.00" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.4" stroke-dasharray="6 4" data-physical-feature="s3_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
+<rect x="196.48" y="200.28" width="57.12" height="42.00" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.4" stroke-dasharray="6 4" data-physical-feature="c5_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
 <rect x="385.20" y="212.60" width="60.48" height="50.96" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.4" stroke-dasharray="6 4" data-physical-feature="nrf0_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
 <rect x="278.80" y="240.60" width="60.48" height="43.68" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.4" stroke-dasharray="6 4" data-physical-feature="nrf1_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
 <rect x="134.32" y="212.60" width="49.28" height="50.96" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.4" stroke-dasharray="6 4" data-physical-feature="nrf2_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
 <g id="ui-antenna-pcb-topology" data-topology-source="r2" data-route-state="pre-ecad-topology-only">
 <polyline points="435.6,224.1 454.6,165.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="N24-0" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
-<polyline points="372.3,224.1 372.3,202.1 372.3,165.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="S3-2G4" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
+<polyline points="372.3,224.1 372.3,205.4 372.3,165.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="S3-2G4" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
 <polyline points="290.0,252.1 290.0,165.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="N24-1" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
-<polyline points="207.7,224.1 207.7,202.1 207.7,165.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="C5-2G4/5" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
+<polyline points="207.7,224.1 207.7,205.4 207.7,165.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="C5-2G4/5" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
 <polyline points="144.4,224.1 125.4,165.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="N24-2" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
 </g>
-<rect x="367.84" y="199.72" width="8.96" height="4.70" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="s3_rf_coupler_r2" data-mpn="CP0603Q5425ENTR"/>
-<text x="372.3" y="203.7" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">172</text>
-<rect x="203.20" y="199.72" width="8.96" height="4.70" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="c5_rf_coupler_r2" data-mpn="CP0603Q5425ENTR"/>
-<text x="207.7" y="203.7" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">173</text>
-<rect x="260.32" y="201.40" width="59.36" height="18.93" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="display_connector" data-mpn="Hirose DF40C(2.0)-40DS-0.4V(51)"/>
-<text x="290.0" y="213.2" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">174</text>
+<rect x="214.40" y="175.08" width="151.20" height="21.28" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="display_connector" data-mpn="Hirose FH34SRJ-50S-0.5SH(50)"/>
+<text x="290.0" y="183.3" font-family="sans-serif" font-size="7.2" font-weight="bold" text-anchor="middle" fill="#94a3b8">172 · 50-pin ZIF</text>
+<text x="290.0" y="192.1" font-family="sans-serif" font-size="6.4" font-weight="bold" text-anchor="middle" fill="#94a3b8">DISPLAY FPC</text>
+<rect x="367.84" y="203.08" width="8.96" height="4.70" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="s3_rf_coupler_r2" data-mpn="CP0603Q5425ENTR"/>
+<text x="372.3" y="207.0" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">173</text>
+<rect x="203.20" y="203.08" width="8.96" height="4.70" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="c5_rf_coupler_r2" data-mpn="CP0603Q5425ENTR"/>
+<text x="207.7" y="207.0" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">174</text>
 <rect x="427.20" y="215.40" width="16.80" height="17.36" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(80)"/>
 <text x="435.6" y="226.4" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#2563eb">175</text>
 <rect x="363.92" y="215.40" width="16.80" height="17.36" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="s3_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(80)"/>
@@ -717,7 +718,7 @@
 </svg>
 <svg x="555" y="805" width="450" height="650" viewBox="70 95 440 940" preserveAspectRatio="xMidYMid meet" overflow="hidden">
 
-<text x="35.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.37 · RF / power PCB inner face</text>
+<text x="35.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.38 · RF / power PCB inner face</text>
 <text x="35.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Direct view after physically turning the PCB over. Numbers are drawing references; this face has no silkscreen.</text>
 <text x="290.0" y="105.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#1d4ed8">ANTENNA EDGE · five board-local RF paths</text>
 <rect x="80.0" y="165.0" width="420.0" height="840.0" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
@@ -743,7 +744,7 @@
 <rect x="202.08" y="277.00" width="34.16" height="66.08" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.4" stroke-dasharray="6 4" data-physical-feature="u219_nfc_evidence_island_reserve" data-feature-kind="placement_reserve"/>
 <rect x="203.20" y="327.40" width="11.76" height="15.68" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.4" stroke-dasharray="6 4" data-physical-feature="u219_nfc_dnp_tuning_bank" data-feature-kind="placement_reserve"/>
 <g id="rf-antenna-pcb-topology" data-topology-source="r2" data-route-state="pre-ecad-topology-only">
-<polyline points="268.2,400.2 207.7,165.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="VOICE-VHF" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
+<polyline points="268.2,400.3 207.7,165.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="VOICE-VHF" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
 <polyline points="425.5,446.7 125.4,165.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="VOICE-UHF" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
 <polyline points="298.4,222.7 290.0,165.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="CC-SUB" data-branch="matched-main" data-medium="matched-rf-pcb-topology"/>
 <polyline points="372.3,165.0 421.9,313.4" fill="none" stroke="#7c3aed" stroke-width="1.9" data-path="RX-AM/LW" data-branch="ami" data-medium="high-impedance-ami-pcb"/>
@@ -819,8 +820,8 @@
 <text x="108.0" y="375.7" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">33</text>
 <rect x="372.32" y="347.00" width="106.40" height="199.36" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="voice" data-mpn="G-NiceRF SA818S-U"/>
 <text x="425.5" y="449.0" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">34</text>
-<rect x="168.48" y="347.00" width="199.36" height="106.40" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="voice_v" data-mpn="G-NiceRF SA818S-V"/>
-<text x="268.2" y="402.5" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">35</text>
+<rect x="168.48" y="347.11" width="199.36" height="106.40" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="voice_v" data-mpn="G-NiceRF SA818S-V"/>
+<text x="268.2" y="402.6" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">35</text>
 <rect x="144.96" y="406.92" width="17.92" height="28.84" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="det_voice_v_r2" data-mpn="AD8314ARMZ-REEL"/>
 <text x="153.9" y="423.7" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#2563eb">36</text>
 <rect x="354.40" y="459.00" width="5.60" height="2.80" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="u214_i2c_host_scl_pullup" data-mpn="UNI-ROYAL 0402WGF2201TCE"/>

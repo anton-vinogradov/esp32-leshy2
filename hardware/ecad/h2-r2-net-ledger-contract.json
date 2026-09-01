@@ -10,7 +10,7 @@
     "dual_rp": "hardware/architecture/h1-r2-dual-rp-pinout.json",
     "c5_mux": "hardware/architecture/c5-sdio-service-mux-contract.json",
     "pack_safety_boundary": "hardware/architecture/pack-safety-i2c-boundary-contract.json",
-    "display_adapter": "hardware/product-design/display-adapter.json"
+    "display_mount": "hardware/product-design/display-mount.json"
     ,"topology": "hardware/ecad/h2-r2-topology-overrides.json"
   },
   "reconciled_historical_hints": {
@@ -30,6 +30,7 @@
     "adi_ad8314armz_reel": "adi_ad8314acpz_rl7"
   },
   "canonical_net_aliases": {
+    "LCD_WR_N_OR_SPI_SCL": "LCD_WR_N",
     "AON_EFUSE_EN": "AON_RAW_3V3",
     "FAULT_LATCH_SENSE_AON": "FAULT_KILL",
     "GND": "POWER_GROUND",

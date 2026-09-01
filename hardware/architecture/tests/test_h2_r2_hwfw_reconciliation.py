@@ -43,7 +43,7 @@ class H2R2HardwareFirmwareReconciliationTests(unittest.TestCase):
 
     def test_every_cross_project_net_uses_a_registered_connector_pair(self):
         rows = self.export["r2_reconciliation"]["cross_project_nets"]
-        self.assertEqual(52, len(rows))
+        self.assertEqual(35, len(rows))
         self.assertTrue(all(row["boundary_evidence"] for row in rows))
         for row in rows:
             for boundary in row["boundary_evidence"]:
@@ -52,13 +52,12 @@ class H2R2HardwareFirmwareReconciliationTests(unittest.TestCase):
     def test_cross_sheet_counts_match_native_projects(self):
         self.assertEqual(
             {
-                "LESHY2-UI-R2": 111,
+                "LESHY2-UI-R2": 103,
                 "LESHY2-RF-R2": 127,
-                "L2-DISP-ADP-001-B": 0,
             },
             self.export["r2_reconciliation"]["native_kicad"]["cross_sheet_net_counts"],
         )
-        self.assertEqual(238, self.export["summary"]["cross_sheet_net_count"])
+        self.assertEqual(230, self.export["summary"]["cross_sheet_net_count"])
 
     def test_exact_80_contact_m1_and_current_authority_pass(self):
         self.assertEqual(80, self.m1["summary"]["physical_contacts"])
