@@ -4,18 +4,18 @@
 <text x="40" y="70" font-family="sans-serif" font-size="13" fill="#526076">World-scale engineering view · both inner faces are shown directly after turning each PCB over · numbered marks are documentation, never inner-face silkscreen.</text>
 <text x="190.00" y="96" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">UI PCB · inner · turned-over view</text>
 <rect x="70.00" y="122.00" width="240.00" height="480.00" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
-<rect x="89.20" y="192.40" width="57.60" height="67.84" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="86.96" y="192.40" width="57.60" height="67.84" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="70.00" y="512.40" width="10.88" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="70.00" y="490.00" width="10.88" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="194.99" y="578.48" width="28.61" height="23.52" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="146.80" y="127.76" width="86.40" height="12.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="146.80" y="237.20" width="86.40" height="12.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="268.40" y="384.40" width="16.00" height="14.08" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="288.24" y="384.40" width="21.76" height="9.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="288.24" y="362.00" width="21.76" height="9.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="300.40" y="406.80" width="9.60" height="8.03" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="278.00" y="362.00" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="141.04" y="502.80" width="97.92" height="20.80" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="233.20" y="192.40" width="57.60" height="61.44" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="235.44" y="192.40" width="57.60" height="61.44" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="299.12" y="512.40" width="10.88" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="263.12" y="454.80" width="30.88" height="18.69" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="299.12" y="490.00" width="10.88" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>

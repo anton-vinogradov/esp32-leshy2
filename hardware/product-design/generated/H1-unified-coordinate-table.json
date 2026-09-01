@@ -136,8 +136,8 @@
         51.0
       ],
       "y_mm": [
-        1.8,
-        5.6
+        36.0,
+        39.8
       ],
       "z_mm": [
         5.36,
@@ -149,7 +149,7 @@
     "locked": "world datum, PCB outlines, mounting axes, touch plane, external interface directions and component/accessory keep-outs",
     "not_yet_locked": "wall thickness, ribs, seals, exact bezel overlap, grille, external fillets and manufacturing tolerance stack",
     "rule": "later enclosure surfaces may grow around the locked component model but may not move an accepted PCB/interface datum silently",
-    "mandatory_load_paths": "front/rear PCB capture lips, two anti-shear datums, four 11.00-mm compression stops, a Keystone 1048P cradle/end-stop pair, and a flat component-free UI-PCB display bed with a die-cut perimeter PSA frame are required before release; the panel tail points toward board -Y / the antenna edge and the direct ZIF is never load-bearing"
+    "mandatory_load_paths": "front/rear PCB capture lips, two anti-shear datums, four 11.00-mm compression stops, a Keystone 1048P cradle/end-stop pair, and a flat component-free UI-PCB display bed with a die-cut acrylic-foam perimeter spacer, folded-FPC pocket and rounded tongue slot are required before release; the panel tail points toward board -Y / the antenna edge and the direct ZIF is never load-bearing"
   },
   "cap_evidence_coordinate_register": {
     "status": "pass",
@@ -2842,13 +2842,6 @@
         "remaining_z_clearance_mm": 4.6
       },
       {
-        "ui_instance": "s3",
-        "rf_instance": "voice_v",
-        "ui_height_mm": 3.2,
-        "rf_height_mm": 3.2,
-        "remaining_z_clearance_mm": 4.6
-      },
-      {
         "ui_instance": "c5",
         "rf_instance": "nrf0",
         "ui_height_mm": 3.3,
@@ -2916,6 +2909,13 @@
         "rf_instance": "rp",
         "ui_height_mm": 3.3,
         "rf_height_mm": 0.9,
+        "remaining_z_clearance_mm": 6.8
+      },
+      {
+        "ui_instance": "display_connector",
+        "rf_instance": "voice_v",
+        "ui_height_mm": 1.0,
+        "rf_height_mm": 3.2,
         "remaining_z_clearance_mm": 6.8
       },
       {
@@ -3112,55 +3112,66 @@
       ],
       "complete_height_from_ui_inner_mm": 1.0,
       "remaining_to_opposite_pcb_plane_mm": 10.0,
-      "opposing_pair_count": 0,
-      "minimum_opposing_body": "opposite_pcb_plane",
-      "minimum_opposing_z_clearance_mm": 10.0,
+      "opposing_pair_count": 1,
+      "minimum_opposing_body": "voice_v",
+      "minimum_opposing_z_clearance_mm": 6.8,
       "connector_is_load_bearing": false,
       "retention": {
         "connector_is_load_bearing": false,
-        "panel_support": "flat component-free UI PCB outer-face display bed reserved under the complete 56.54 x 84.96-mm configured panel outline",
-        "primary_retention": "one 0.17-mm target die-cut perimeter PSA frame directly between the panel rear perimeter and the UI PCB outer soldermask",
+        "panel_support": "die-cut perimeter spacer on a flat component-free UI-PCB outer-face display bed; its central pocket clears the folded component-bearing FPC and its only PCB opening is the narrow contact-tongue slot",
+        "primary_retention": "one die-cut acrylic-foam PSA perimeter spacer between the panel rear perimeter and UI-PCB outer soldermask; its exact released thickness must exceed the measured folded-FPC maximum stack by at least 0.20 mm",
         "secondary_retention": "none in the assembled stack; PCB assembly datums and a removable placement fixture control alignment without becoming retained parts",
-        "flex_strain_relief": "the tail leaves the panel toward board -Y, runs over the component-free outer-face corridor, forms one free bend loop outside the antenna-edge PCB outline, returns flat along the inner face and enters the edge-facing ZIF parallel to the PCB; no sharp crease, bare-FR4 bearing, tensile load or peel load reaches the contacts or latch",
+        "flex_strain_relief": "the tail leaves the panel toward board -Y, folds back into the adhesive-free pocket under the panel, and only the 25.50-mm contact tongue crosses the rounded 27.00 x 1.20-mm PCB slot before entering the inner-face ZIF; the pocket prevents component compression and the bonded panel prevents motion, so no sharp crease, routed-edge bearing, tensile load or peel load reaches the contacts or latch",
         "service_rule": "opening the sandwich exposes the ZIF latch; release the latch first, then warm and cut the PSA frame before lifting the panel, and install a fresh die-cut frame before reassembly",
         "physical_realization": [
           {
             "id": "ui_pcb_display_bed",
             "quantity": 1,
             "part_type": "component-free region of the UI PCB outer face, not a separate purchased part",
-            "implementation": "reserve the complete 56.54 x 84.96-mm configured panel projection as a flat soldermask-controlled landing area; the adhesive zone contains no components, vias, test points, copper-height steps or silkscreen, and placement datums remain outside the panel outline",
+            "implementation": "reserve the complete 56.54 x 84.96-mm configured panel projection as a flat soldermask-controlled landing area except for the single rounded 27.00 x 1.20-mm FPC tongue slot; the adhesive zone contains no components, vias, test points, copper-height steps or silkscreen, and placement datums remain outside the panel outline",
             "load_role": "supports the panel and transfers normal, touch and handling loads directly into the UI PCB"
           },
           {
             "id": "display_psa_frame",
             "quantity": 1,
-            "part_type": "carrier-backed double-coated acrylic display-bonding tape, converter die-cut as a peelable frame",
-            "implementation": "0.17-mm target thickness; nominal 2.0-mm perimeter band on the documented safe rear perimeter, interrupted at the antenna-edge FPC exit; no liquid glue and no adhesive on the active glass, FPC or rear components",
+            "part_type": "double-coated acrylic-foam display-bonding spacer, converter die-cut as a peelable frame with a central FPC pocket",
+            "implementation": "nominal 2.0-mm perimeter band with one central folded-FPC pocket; the drawing uses a 1.00-mm envelope only to make the stack readable, while H5 releases the exact thickness from the measured current-lot folded-FPC maximum stack plus at least 0.20 mm clearance; no liquid glue and no adhesive on the active glass, FPC or rear components",
             "load_role": "retains the panel against lift and in-plane shear and distributes touch load into the PCB bed",
-            "material_candidate_not_yet_selected": "3M 9495LE is a technically suitable 0.17-mm die-cuttable display-bonding candidate, but is not an accepted production MPN or JLCPCB placement route yet",
+            "material_candidate_not_yet_selected": "the earlier 0.17-mm 3M 9495LE candidate is rejected for this folded-component FPC stack unless measurement proves the required clearance; H5 must select a thicker die-cuttable acrylic-foam display-bonding grade and an accepted one-prototype assembly route",
             "release_gate": "freeze the exact adhesive grade, converter cut drawing, cleaning/pressure/dwell process and written one-prototype assembler acceptance before order"
           },
           {
             "id": "fpc_bend_guide",
             "quantity": 1,
-            "part_type": "PCB keep-out corridor plus optional removable low-tack polyimide assembly guide",
-            "implementation": "reserve the complete outer-face run, free-loop volume beyond board -Y and inner-face run to the edge-facing ZIF; the tail must not pass under PSA, touch the bare routed FR4 edge or receive a hard fold. A removable low-tack polyimide guide may hold the free loop during insertion but is not structural",
-            "load_role": "prevents panel motion from becoming tensile or peel load at the ZIF contacts"
+            "part_type": "adhesive-free folded-FPC pocket, rounded PCB tongue slot and optional removable low-tack polyimide insertion guide",
+            "implementation": "reserve a 47.90-mm-wide component-bearing FPC pocket under the antenna-edge portion of the panel and one centered 27.00 x 1.20-mm rounded NPTH slot at board x=24.00...51.00 mm, y=34.00...35.20 mm; the 25.50 +/-0.15-mm tongue crosses with 0.75-mm nominal and 0.675-mm worst-case lateral clearance per side. Deburr the routed slot and use a removable low-tack polyimide insertion guide when mating; the folded FPC must not be compressed, bonded or allowed to bear on the routed edge",
+            "load_role": "keeps the component-bearing flex unloaded and prevents panel motion from becoming tensile or peel load at the ZIF contacts"
           }
         ],
         "fpc_route_side_section": {
-          "route": "panel rear tail -> component-free UI-PCB outer-face corridor -> free loop outside antenna edge / board -Y -> flat UI-PCB inner-face run -> edge-facing ZIF",
+          "route": "panel antenna-edge tail -> 180-degree fold into adhesive-free spacer pocket under panel -> narrow contact tongue through rounded internal PCB slot -> flat inner-face run -> ZIF",
           "pcb_thickness_mm": 1.6,
-          "psa_target_thickness_mm": 0.17,
+          "drawing_spacer_envelope_mm": 1.0,
+          "spacer_release_rule": "exact spacer thickness >= measured folded FPC maximum stack + 0.20 mm",
           "zif_height_mm": 1.0,
           "contact_stiffener_thickness_mm": 0.3,
+          "contact_tail_width_mm": 25.5,
+          "contact_tail_width_tolerance_mm": 0.15,
+          "component_fpc_pocket_width_mm": 47.9,
+          "pcb_slot_position_mm": [
+            24.0,
+            34.0
+          ],
+          "pcb_slot_width_mm": 27.0,
+          "pcb_slot_height_mm": 1.2,
           "tail_under_psa": false,
           "tail_bears_on_bare_pcb_edge": false,
+          "component_bearing_fpc_compressed": false,
           "hard_crease_allowed": false,
           "minimum_bend_radius_mm": null,
-          "bend_radius_gate": "H5 must bind the free-loop radius and enclosure keep-out to the current-lot FPC construction before release; the drawing deliberately does not invent an unsupported radius"
+          "bend_radius_gate": "H5 must bind the 180-degree fold radius, folded stack height and pocket depth to the current-lot FPC construction before release; the drawing deliberately does not invent an unsupported radius or component height"
         },
-        "structural_load_path": "finger or handling load -> panel rear perimeter -> die-cut PSA frame -> UI PCB -> sandwich stops and fasteners; never through the FPC or ZIF",
+        "structural_load_path": "finger or handling load -> panel rear perimeter -> die-cut acrylic-foam PSA spacer -> UI PCB -> sandwich stops and fasteners; never through the FPC or ZIF",
         "esp32_div_v2_reference": {
           "source": "https://github.com/cifertech/ESP32-DIV/tree/9d4d82fe7a12febf554b12e1eca6d434ebe79d39/PCB/v2",
           "panel_mount": "raw 2.8-inch display body seated directly on the main PCB",
@@ -3171,7 +3182,13 @@
           "leshy2_adoption_rule": "use DIV only as evidence that a raw panel can occupy a direct PCB seat; Leshy2 explicitly defines the otherwise undocumented adhesive bond, assembly controls and a serviceable non-load-bearing ZIF"
         }
       },
-      "opposing_pairs": []
+      "opposing_pairs": [
+        {
+          "rf_instance": "voice_v",
+          "rf_height_mm": 3.2,
+          "remaining_z_clearance_mm": 6.8
+        }
+      ]
     },
     "intentional_mate": {
       "ui_instance": "m1_ui_plug",
@@ -3224,7 +3241,7 @@
           "cable_instance": "s3_rf_jumper",
           "points_mm": [
             [
-              21.0,
+              20.3,
               24.46
             ],
             [
@@ -3232,15 +3249,15 @@
               10.55
             ]
           ],
-          "projected_chord_mm": 14.781343,
+          "projected_chord_mm": 14.559468,
           "assembly_length_mm": 30.0,
-          "unprojected_3d_slack_mm": 15.218657
+          "unprojected_3d_slack_mm": 15.440532
         },
         {
           "cable_instance": "c5_rf_jumper",
           "points_mm": [
             [
-              66.0,
+              66.7,
               24.38
             ],
             [
@@ -3248,9 +3265,9 @@
               10.55
             ]
           ],
-          "projected_chord_mm": 15.50061,
+          "projected_chord_mm": 15.829052,
           "assembly_length_mm": 30.0,
-          "unprojected_3d_slack_mm": 14.49939
+          "unprojected_3d_slack_mm": 14.170948
         }
       ],
       "native_slack_bend_and_retention_status": "H5_open",
@@ -3664,7 +3681,7 @@
     "display_bus": {
       "direct_ui_zif_result": "paper_geometry_passed",
       "connector_height_mm": 1.0,
-      "minimum_opposing_z_clearance_mm": 10.0,
+      "minimum_opposing_z_clearance_mm": 6.8,
       "connector_is_load_bearing": false,
       "received_panel_tail_result": "H5_open",
       "open_evidence": "current-lot FPC outline, stiffener, thickness, insertion and bezel/preload fit"
@@ -3827,8 +3844,8 @@
       "source_frame": "ui-inner",
       "world_bbox_mm": {
         "x": [
-          51.0,
-          69.0
+          51.7,
+          69.7
         ],
         "y": [
           22.0,
@@ -4363,8 +4380,8 @@
           51.0
         ],
         "y": [
-          1.8,
-          5.6
+          36.0,
+          39.8
         ],
         "z": [
           5.36,
@@ -5879,8 +5896,8 @@
       "source_frame": "ui-inner",
       "world_bbox_mm": {
         "x": [
-          6.0,
-          24.0
+          5.3,
+          23.3
         ],
         "y": [
           22.0,

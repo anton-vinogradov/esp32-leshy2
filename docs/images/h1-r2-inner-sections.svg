@@ -29,10 +29,10 @@
 <text x="363.9" y="356.9" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#2563eb">4</text>
 <rect x="391.6" y="348.6" width="10.8" height="15.4" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1.2" data-instance="codec_i2s_din_boot_gate_r2"/>
 <text x="397.0" y="359.3" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#2563eb">5</text>
-<rect x="132.4" y="210.0" width="97.2" height="44.8" rx="2" fill="#eef2f6" stroke="#64748b" stroke-width="1.2" data-instance="s3"/>
-<text x="181.0" y="235.4" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#64748b">6</text>
-<rect x="375.4" y="210.0" width="97.2" height="46.2" rx="2" fill="#eef2f6" stroke="#64748b" stroke-width="1.2" data-instance="c5"/>
-<text x="424.0" y="236.1" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#64748b">7</text>
+<rect x="128.6" y="210.0" width="97.2" height="44.8" rx="2" fill="#eef2f6" stroke="#64748b" stroke-width="1.2" data-instance="s3"/>
+<text x="177.2" y="235.4" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#64748b">6</text>
+<rect x="379.2" y="210.0" width="97.2" height="46.2" rx="2" fill="#eef2f6" stroke="#64748b" stroke-width="1.2" data-instance="c5"/>
+<text x="427.8" y="236.1" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#64748b">7</text>
 <line x1="100.0" y1="398.2" x2="505.0" y2="398.2" stroke="#334155"/>
 <line x1="100.0" y1="394.0" x2="100.0" y2="402.4" stroke="#334155"/>
 <line x1="505.0" y1="394.0" x2="505.0" y2="402.4" stroke="#334155"/>
@@ -111,9 +111,11 @@
 <text x="35.0" y="951.0" font-family="sans-serif" font-size="8.8" font-weight="bold" text-anchor="start" fill="#172033">05  SN74LVC1G08DCKR</text>
 <text x="61.0" y="964.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">rear-local codec readiness and AUDIO_ARM reset-safe gate</text>
 <text x="35.0" y="1005.0" font-family="sans-serif" font-size="8.8" font-weight="bold" text-anchor="start" fill="#172033">06  ESP32-S3-WROOM-1U-N16R8</text>
-<text x="61.0" y="1018.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI, display, storage and audio owner</text>
+<text x="61.0" y="1018.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI, display, storage and audio owner; shifted 0.7 mm</text>
+<text x="61.0" y="1029.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">outward for the central display ZIF corridor</text>
 <text x="525.0" y="735.0" font-family="sans-serif" font-size="8.8" font-weight="bold" text-anchor="start" fill="#172033">07  ESP32-C5-WROOM-1U-N8R8</text>
-<text x="551.0" y="748.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">native 2.4/5-GHz and IR owner</text>
+<text x="551.0" y="748.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">native 2.4/5-GHz and IR owner; shifted 0.7 mm outward for</text>
+<text x="551.0" y="759.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">the central display ZIF corridor</text>
 <text x="525.0" y="789.0" font-family="sans-serif" font-size="8.8" font-weight="bold" text-anchor="start" fill="#172033">08  G-NiceRF SA818S-U</text>
 <text x="551.0" y="802.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UHF 400-480-MHz SA818S-U; dedicated contact-12 RF path</text>
 <text x="525.0" y="843.0" font-family="sans-serif" font-size="8.8" font-weight="bold" text-anchor="start" fill="#172033">09  Sunlord MWSA0503S-2R2MT</text>

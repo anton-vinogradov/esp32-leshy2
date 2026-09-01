@@ -156,6 +156,13 @@
       "clearance_mm": 4.38
     },
     {
+      "ui": "display_connector",
+      "rf": "voice_v",
+      "ui_origin": "retained_base",
+      "rf_origin": "retained_base",
+      "clearance_mm": 6.8
+    },
+    {
       "ui": "ir_demod",
       "rf": "evidence_mask",
       "ui_origin": "retained_base",
@@ -172,13 +179,6 @@
     {
       "ui": "s3",
       "rf": "voice",
-      "ui_origin": "retained_base",
-      "rf_origin": "retained_base",
-      "clearance_mm": 4.6
-    },
-    {
-      "ui": "s3",
-      "rf": "voice_v",
       "ui_origin": "retained_base",
       "rf_origin": "retained_base",
       "clearance_mm": 4.6
@@ -688,7 +688,7 @@
           "s3_rf_board_connector_r2",
           "s3_rf_coupler_r2"
         ],
-        "minimum_clearance_mm": 0.7
+        "minimum_clearance_mm": 2.85
       },
       {
         "id": "c5_tx_evidence_island_reserve",
@@ -708,7 +708,7 @@
           "c5_rf_coupler_r2",
           "det_c5_r2"
         ],
-        "minimum_clearance_mm": 0.7
+        "minimum_clearance_mm": 2.6
       },
       {
         "id": "nrf0_tx_evidence_island_reserve",
@@ -3171,24 +3171,6 @@
     ],
     "inner_pin_keepout_hits": [
       {
-        "face": "front",
-        "path": "S3-2G4",
-        "body": "display_connector",
-        "clearance_to_protected_pin_keepout_mm": -1.5
-      },
-      {
-        "face": "front",
-        "path": "N24-1",
-        "body": "display_connector",
-        "clearance_to_protected_pin_keepout_mm": -1.5
-      },
-      {
-        "face": "front",
-        "path": "C5-2G4/5",
-        "body": "display_connector",
-        "clearance_to_protected_pin_keepout_mm": -1.5
-      },
-      {
         "face": "rear",
         "path": "RX-FM/SW",
         "body": "airband_filter_reserve",
@@ -5227,7 +5209,7 @@
         "path": "S3-2G4",
         "points": [
           [
-            15.0,
+            14.3,
             31.6
           ],
           [
@@ -5267,7 +5249,7 @@
         "path": "C5-2G4/5",
         "points": [
           [
-            60.0,
+            60.7,
             32.6
           ],
           [
@@ -5328,7 +5310,7 @@
         "frame": "ui-inner",
         "path": "S3-2G4",
         "point": [
-          15.0,
+          14.3,
           31.6
         ],
         "part": "module-rf-connector",
@@ -5368,7 +5350,7 @@
         "frame": "ui-inner",
         "path": "C5-2G4/5",
         "point": [
-          60.0,
+          60.7,
           32.6
         ],
         "part": "module-rf-connector",

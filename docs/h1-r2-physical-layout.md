@@ -4,19 +4,19 @@ The complete verifiable physical model of the two 75 × 150 mm PCBs was accepted
 
 ## What the user sees
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.38-direct-zif-2)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.38-folded-fpc-slot-1)
 
 ## Component legend
 
-![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.38-direct-zif-2)
+![Numbered component legend](images/h1-r2-component-legend.svg?rev=h1-r2.38-folded-fpc-slot-1)
 
-[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.38-direct-zif-2)
+[Detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.38-folded-fpc-slot-1)
 
-![External service access](images/h1-r2-service-access.svg?rev=h1-r2.38-direct-zif-2)
+![External service access](images/h1-r2-service-access.svg?rev=h1-r2.38-folded-fpc-slot-1)
 
 ## What is inside
 
-![Direct display ZIF and mechanical retention](images/display-mount.svg?rev=h1-r2.38-direct-zif-2)
+![Direct display ZIF and mechanical retention](images/display-mount.svg?rev=h1-r2.38-folded-fpc-slot-1)
 
 [Front UI/radio PCB · full-scale inner view](images/h1-r2-inner-ui.svg)
 
@@ -33,7 +33,7 @@ The complete verifiable physical model of the two 75 × 150 mm PCBs was accepted
 - The onboard video receiver, decoder, MMCX and physical reserves are removed: no hidden post-PCBA module remains behind the display or between the antennas.
 - FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; S3 directly owns i8080-8, encoder and USB, with buttons on its local TCA9539PWR path. Six GPIO remain uncommitted electrical reserve after reset and service closure.
 - The panel is physically turned with its flex toward the antenna edge / board -Y; the tail enters one direct 50-contact ZIF on the UI PCB and firmware rotates display output and touch by 180°. A tail toward +Y is a stop-work factory error. All display and touch lines remain S3-local; C5 has no panel connection.
-- The panel bonds directly to a flat, component-free UI-PCB outer-face bed through one 0.17-mm target die-cut perimeter PSA frame. There is no separate bezel frame, corner-rib retainer or rear preload foam. Assembly datums and a removable fixture control alignment; the PCB and PSA carry touch, lift and shear loads, while neither the FPC nor ZIF carries panel load.
+- The panel bonds to the UI-PCB outer bed through one die-cut perimeter spacer made from double-coated acrylic foam. The wide component-bearing FPC folds into an adhesive-free pocket beneath the panel; only its 25.50±0.15-mm tongue crosses one rounded 27.00×1.20-mm PCB slot into the inner ZIF at [24.0, 36.0]. Released spacer thickness must exceed the measured folded-FPC maximum stack by at least 0.20 mm; the drawn 1.00-mm envelope is not yet a selected material. All five U.FL bodies end at y=17.1 mm and the slot begins at y=34.0 mm, leaving 16.9 mm between them. Neither the FPC nor ZIF carries panel load.
 - ESP32-DIV v2 seats its raw 2.8-inch display directly on the main PCB while its 18-contact FPC is soldered to long SMD lands without a ZIF. Four 1.2-mm holes around the display zone remain empty on the assembled device and do not retain the panel. The public Gerbers, PcbDoc, BOM, 3D model and photograph do not disclose the actual retention method; hidden PSA or double-sided tape is plausible but unproven. Leshy2 therefore does not copy DIV's unknown mechanics and defines its own positive load path with a serviceable non-load-bearing ZIF.
 
 ![True inner sandwich sections](images/h1-r2-inner-sections.svg)

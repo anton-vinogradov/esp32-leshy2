@@ -1528,7 +1528,7 @@
       "instance": "c5",
       "device_key": "esp32_c5_wroom_1u_n8r8",
       "mpn": "ESP32-C5-WROOM-1U-N8R8",
-      "role": "native 2.4/5-GHz and IR owner",
+      "role": "native 2.4/5-GHz and IR owner; shifted 0.7 mm outward for the central display ZIF corridor",
       "frame": "ui-inner",
       "frame_datum": "UI PCB top-left, viewed from the front/exterior",
       "rotation_deg": 0,
@@ -1547,7 +1547,7 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        51.0,
+        51.7,
         22.0
       ]
     },
@@ -1743,7 +1743,7 @@
       ],
       "route_points_mm": [
         [
-          66.0,
+          66.7,
           24.38
         ],
         [
@@ -2450,7 +2450,7 @@
       "instance": "display_connector",
       "device_key": "hirose_fh34srj_50s_0_5sh_50",
       "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
-      "role": "direct 50-contact dual-contact ZIF for the folded display FPC",
+      "role": "direct 50-contact dual-contact ZIF behind the folded display FPC slot",
       "frame": "ui-inner",
       "frame_datum": "UI PCB top-left, viewed from the front/exterior",
       "rotation_deg": 0,
@@ -2478,7 +2478,7 @@
       ],
       "position_mm": [
         24.0,
-        1.8
+        36.0
       ]
     },
     {
@@ -5272,7 +5272,7 @@
       "instance": "s3",
       "device_key": "esp32_s3_wroom_1u_n16r8",
       "mpn": "ESP32-S3-WROOM-1U-N16R8",
-      "role": "UI, display, storage and audio owner",
+      "role": "UI, display, storage and audio owner; shifted 0.7 mm outward for the central display ZIF corridor",
       "frame": "ui-inner",
       "frame_datum": "UI PCB top-left, viewed from the front/exterior",
       "rotation_deg": 0,
@@ -5291,7 +5291,7 @@
       },
       "evidence_gates": [],
       "position_mm": [
-        6.0,
+        5.3,
         22.0
       ]
     },
@@ -5487,7 +5487,7 @@
       ],
       "route_points_mm": [
         [
-          21.0,
+          20.3,
           24.46
         ],
         [
