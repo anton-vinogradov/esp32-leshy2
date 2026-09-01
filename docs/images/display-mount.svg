@@ -1,61 +1,66 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="100%" height="100%" fill="#ffffff"/>
-<text x="40.0" y="42.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — direct display ZIF and supported panel mount</text>
-<text x="40.0" y="68.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">L2-DISP-DIRECT-001-A · one connector on the UI PCB · no adapter PCB · ZIF carries no mechanical load</text>
+<text x="40.0" y="42.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — display bonded directly to the UI PCB</text>
+<text x="40.0" y="68.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">L2-DISP-DIRECT-001-A · die-cut PSA · direct 50-pin ZIF · no adapter, frame, corner ribs or preload foam</text>
 <text x="55.0" y="112.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#1d4ed8">Front-to-rear section</text>
-<rect x="70" y="145" width="385" height="22" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
-<text x="262.0" y="160.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#1d4ed8">1 · integral front-shell bezel / rigid bed</text>
-<rect x="92" y="167" width="341" height="172" rx="7" fill="#eaf2ff" stroke="#60a5fa" stroke-width="2"/>
-<rect x="107" y="183" width="311" height="139" rx="5" fill="#cfe1ff" stroke="#2563eb" stroke-width="2"/>
-<text x="262.0" y="254.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#172033">ER-TFT035IPS-6 + ER-TPC035-6</text>
-<text x="262.0" y="276.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="middle" fill="#526076">touch/display assembly</text>
-<path d="M92 176 L80 176 L80 330 L92 330 M433 176 L445 176 L445 330 L433 330" fill="none" stroke="#f97316" stroke-width="4" data-mechanical-part="front_shell_corner_locators" data-count="4"/>
-<text x="81.0" y="193.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#c2410c">3</text>
-<text x="444.0" y="193.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#c2410c">3</text>
-<rect x="92" y="339" width="341" height="9" fill="#fde68a" stroke="#d97706" stroke-width="1.5" data-mechanical-part="display_psa_frame"/>
-<text x="262.0" y="336.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#92400e">2 · die-cut PSA frame</text>
-<rect x="105" y="358" width="315" height="18" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
-<text x="262.0" y="371.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#166534">4 · closed-cell foam preload</text>
-<path d="M385 322 C455 333 467 409 378 437 L330 437" fill="none" stroke="#0f766e" stroke-width="10" stroke-linecap="round"/>
-<path d="M385 322 C455 333 467 409 378 437 L330 437" fill="none" stroke="#99f6e4" stroke-width="5" stroke-linecap="round"/>
-<text x="470.0" y="410.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="start" fill="#0f766e">5 · FPC guide / service slack</text>
-<rect x="70" y="455" width="385" height="18" rx="3" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
-<text x="262.0" y="469.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#166534">UI PCB</text>
-<rect x="236" y="417" width="154" height="38" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
-<text x="313.0" y="440.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle" fill="#1d4ed8">50-pin ZIF</text>
-<path d="M313 417 L313 408" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>
-<text x="313.0" y="402.0" font-family="sans-serif" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#b42318">latch accessible after opening</text>
-<text x="70.0" y="510.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#1d4ed8">Physical retention</text>
-<text x="70.0" y="534.0" font-family="sans-serif" font-size="9.8" font-weight="normal" text-anchor="start" fill="#172033">1 shell bed/bezel · 2 PSA 0.10–0.20 mm · 3 four integral corner ribs</text>
-<text x="70.0" y="556.0" font-family="sans-serif" font-size="9.8" font-weight="normal" text-anchor="start" fill="#172033">4 foam 0.5–1.0 mm at 15–30% compression · 5 FPC bend guide</text>
-<text x="70.0" y="585.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#166534">Load path</text>
-<text x="70.0" y="609.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#172033">finger → integral bezel/rigid bed → front shell → enclosure stops/fasteners</text>
-<text x="70.0" y="632.0" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="start" fill="#166534">The FPC and ZIF carry no panel load.</text>
-<text x="650.0" y="112.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#7c3aed">UI PCB inner-face plan</text>
-<rect x="720" y="140" width="300" height="500" rx="8" fill="#f8fafc" stroke="#344054" stroke-width="3"/>
-<circle cx="740" cy="177" r="16" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="6 4"/>
-<circle cx="1000" cy="177" r="16" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="6 4"/>
-<rect x="816" y="146" width="108" height="25" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="2" data-instance="display_connector"/>
-<text x="870.0" y="162.0" font-family="sans-serif" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#1d4ed8">FH34SRJ-50S</text>
-<path d="M870 146 L870 122" stroke="#0f766e" stroke-width="6" stroke-linecap="round"/>
-<text x="870.0" y="92.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#0f766e">FPC enters from antenna edge</text>
-<rect x="760" y="225" width="95" height="78" rx="4" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-display-owner="S3"/>
-<rect x="885" y="225" width="95" height="78" rx="4" fill="#f8fafc" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5 4" data-c5-display-connection="none"/>
-<text x="807.0" y="267.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#172033">S3</text>
-<text x="932.0" y="267.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#172033">C5</text>
-<text x="807.0" y="326.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#166534">S3-local i8080-8 + touch</text>
-<text x="932.0" y="326.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="middle" fill="#64748b">no display/touch connection</text>
-<path d="M840 171 L807 225" stroke="#16a34a" stroke-width="2" data-route="display-to-owner" data-owner="S3"/>
-<text x="745.0" y="382.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#7c3aed">What DIV v2 proves</text>
-<text x="745.0" y="406.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• panel body sits directly on the PCB</text>
-<text x="745.0" y="428.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• four 1.2-mm holes remain empty</text>
-<text x="745.0" y="450.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• 18-pin FPC is soldered; no ZIF</text>
-<text x="745.0" y="472.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• retention is not documented</text>
-<text x="745.0" y="494.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">PSA is plausible, not proven.</text>
-<text x="745.0" y="520.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="start" fill="#166534">Leshy2 uses its own load path.</text>
-<text x="650.0" y="595.0" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="start" fill="#172033">Connector envelope: 27.0 × 3.8 × 1.0 mm</text>
-<text x="650.0" y="618.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#172033">Inner gap: 11.0 mm · removed stack: 3.8 mm · height saved: 2.8 mm</text>
-<text x="650.0" y="650.0" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="start" fill="#b42318">Removed: both DF40 connectors and the separate display-adapter PCB</text>
-<text x="40.0" y="680.0" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="start" fill="#166534">Factory operation: populate ZIF on UI PCB, install panel into shell bed, close latch, apply PSA/preload and perform visual/power-on inspection.</text>
+<rect x="92" y="150" width="341" height="162" rx="7" fill="#eaf2ff" stroke="#60a5fa" stroke-width="2"/>
+<rect x="107" y="166" width="311" height="132" rx="5" fill="#cfe1ff" stroke="#2563eb" stroke-width="2"/>
+<text x="262.0" y="225.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#172033">ER-TFT035IPS-6 + ER-TPC035-6</text>
+<text x="262.0" y="248.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="middle" fill="#526076">1 · exact touch/display assembly</text>
+<g data-mechanical-part="display_psa_frame"><rect x="92" y="312" width="341" height="9" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/></g>
+<text x="262.0" y="307.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#92400e">2 · die-cut PSA frame · 0.17 mm target</text>
+<rect x="70" y="321" width="385" height="24" rx="3" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-mechanical-part="ui_pcb_display_bed"/>
+<text x="262.0" y="337.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#166534">3 · flat component-free UI-PCB outer bed</text>
+<rect x="70" y="345" width="385" height="18" rx="3" fill="#bbf7d0" stroke="#16a34a" stroke-width="2"/>
+<text x="262.0" y="358.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#166534">UI PCB · 1.6 mm</text>
+<path d="M391 298 C470 305 481 377 390 404 L354 404" fill="none" stroke="#0f766e" stroke-width="10" stroke-linecap="round" data-mechanical-part="fpc_bend_guide"/>
+<path d="M391 298 C470 305 481 377 390 404 L354 404" fill="none" stroke="#99f6e4" stroke-width="5" stroke-linecap="round"/>
+<text x="476.0" y="389.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="start" fill="#0f766e">4 · controlled FPC fold</text>
+<rect x="220" y="363" width="170" height="42" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2" data-instance="display_connector"/>
+<text x="305.0" y="389.0" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="middle" fill="#1d4ed8">5 · 50-pin ZIF · inner face</text>
+<text x="70.0" y="447.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#1d4ed8">Physical retention</text>
+<text x="70.0" y="471.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">Panel → 0.17-mm target die-cut PSA → flat UI-PCB soldermask bed</text>
+<text x="70.0" y="493.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">No separate frame, locating ribs or rear foam. A removable fixture controls placement.</text>
+<text x="70.0" y="525.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#166534">Load path</text>
+<text x="70.0" y="549.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">finger / handling → panel rear perimeter → PSA → UI PCB → sandwich fasteners</text>
+<text x="70.0" y="571.0" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="start" fill="#166534">The FPC and ZIF carry no panel load.</text>
+<text x="70.0" y="607.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#7c3aed">Service</text>
+<text x="70.0" y="631.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">Open sandwich → release ZIF → warm/cut PSA → replace PSA before reassembly.</text>
+<text x="650.0" y="112.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#7c3aed">UI PCB orientation / assembly datum</text>
+<rect x="690" y="140" width="300" height="500" rx="8" fill="#f8fafc" stroke="#344054" stroke-width="3"/>
+<text x="840.0" y="132.0" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="middle" fill="#b42318">ANTENNA EDGE · board -Y</text>
+<rect x="726" y="205" width="228" height="340" rx="5" fill="#dbeafe" fill-opacity="0.45" stroke="#2563eb" stroke-width="2" data-mechanical-part="ui_pcb_display_bed"/>
+<path d="M726 205 H954 V545 H726 Z M738 218 V532 H942 V218 Z" fill="#fde68a" fill-rule="evenodd" stroke="#d97706" stroke-width="1.5" data-mechanical-part="display_psa_frame"/>
+<rect x="740" y="221" width="200" height="308" rx="4" fill="#cfe1ff" stroke="#60a5fa" stroke-width="1.5"/>
+<text x="840.0" y="382.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#1d4ed8">DISPLAY</text>
+<text x="840.0" y="404.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#526076">56.54 × 84.96 mm</text>
+<rect x="786" y="151" width="108" height="25" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="2" data-instance="display_connector"/>
+<text x="840.0" y="167.0" font-family="sans-serif" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#1d4ed8">FH34SRJ-50S</text>
+<path d="M840 221 L840 177" stroke="#0f766e" stroke-width="7" stroke-linecap="round"/>
+<path d="M840 151 L840 105" stroke="#dc2626" stroke-width="3" marker-end="url(#arrow)"/>
+<text x="840.0" y="92.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#b42318">FPC MUST EXIT UP</text>
+<text x="840.0" y="573.0" font-family="sans-serif" font-size="9.3" font-weight="bold" text-anchor="middle" fill="#92400e">PSA zone: no vias · no test points · no silkscreen</text>
+<text x="840.0" y="598.0" font-family="sans-serif" font-size="9.3" font-weight="normal" text-anchor="middle" fill="#526076">Placement marks stay outside the panel outline</text>
+<rect x="1018" y="145" width="145" height="70" rx="5" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-display-owner="S3"/>
+<text x="1090.0" y="175.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#172033">S3</text>
+<text x="1090.0" y="196.0" font-family="sans-serif" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#166534">S3-local i8080-8 + touch</text>
+<rect x="1018" y="235" width="145" height="70" rx="5" fill="#f8fafc" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5 4" data-c5-display-connection="none"/>
+<text x="1090.0" y="265.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#172033">C5</text>
+<text x="1090.0" y="286.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="middle" fill="#64748b">no display/touch connection</text>
+<path d="M894 163 L1018 180" stroke="#16a34a" stroke-width="2" data-route="display-to-owner" data-owner="S3"/>
+<text x="1018.0" y="348.0" font-family="sans-serif" font-size="12.5" font-weight="bold" text-anchor="start" fill="#7c3aed">What DIV v2 proves</text>
+<text x="1018.0" y="372.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• panel sits on the PCB</text>
+<text x="1018.0" y="393.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• four holes stay empty</text>
+<text x="1018.0" y="414.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• 18-pin FPC is soldered</text>
+<text x="1018.0" y="435.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• retention is undocumented</text>
+<text x="1018.0" y="463.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="start" fill="#92400e">A hidden PSA bond is</text>
+<text x="1018.0" y="482.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="start" fill="#92400e">plausible, not proven.</text>
+<text x="1018.0" y="527.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="start" fill="#172033">ZIF: 27.0 × 3.8 × 1.0 mm</text>
+<text x="1018.0" y="550.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">Inner gap: 11.0 mm</text>
+<text x="1018.0" y="573.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">Height saved: 2.8 mm</text>
+<text x="1018.0" y="610.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="start" fill="#b42318">Removed: 2× DF40 +</text>
+<text x="1018.0" y="630.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="start" fill="#b42318">display-adapter PCB</text>
+<text x="40.0" y="676.0" font-family="sans-serif" font-size="10.2" font-weight="bold" text-anchor="start" fill="#166534">Factory sequence: clean PCB bed → apply die-cut PSA → verify FPC points to -Y / antenna edge → place with fixture → press → insert FPC and close ZIF → inspect and power on.</text>
+<text x="40.0" y="702.0" font-family="sans-serif" font-size="9.8" font-weight="bold" text-anchor="start" fill="#92400e">3M 9495LE is only a 0.17-mm technical candidate until the exact cut and one-prototype assembly route are accepted in writing.</text>
 </svg>

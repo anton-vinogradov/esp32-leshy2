@@ -6,11 +6,11 @@
   "sources": {
     "contact_materialization": {
       "path": "hardware/ecad/generated/H2-R2-contact-materialization.json",
-      "sha256": "0d9dd78fd0317a4441c2713aa014b8dc599e75a805f372e07f76f223ba06d972"
+      "sha256": "1caeb8c803f5d7807718b2d6f6ad7539656ba4337649ee8df73cb3411b44b430"
     },
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "2735bd78ca5da8f320cc88d7d41145abcaff5a4a582725ac23a062ee05d1180f"
+      "sha256": "2104aab154082b358c084c1db6b0df77e671921c53fabca25402ea8a7d4ea721"
     }
   },
   "library": {

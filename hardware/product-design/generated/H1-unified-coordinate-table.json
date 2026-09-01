@@ -149,7 +149,7 @@
     "locked": "world datum, PCB outlines, mounting axes, touch plane, external interface directions and component/accessory keep-outs",
     "not_yet_locked": "wall thickness, ribs, seals, exact bezel overlap, grille, external fillets and manufacturing tolerance stack",
     "rule": "later enclosure surfaces may grow around the locked component model but may not move an accepted PCB/interface datum silently",
-    "mandatory_load_paths": "front/rear PCB capture lips, two anti-shear datums, four 11.00-mm compression stops, a Keystone 1048P cradle/end-stop pair, and a display bed with perimeter PSA, corner locators and compliant rear preload are required before enclosure release; the direct ZIF is never load-bearing"
+    "mandatory_load_paths": "front/rear PCB capture lips, two anti-shear datums, four 11.00-mm compression stops, a Keystone 1048P cradle/end-stop pair, and a flat component-free UI-PCB display bed with a die-cut perimeter PSA frame are required before release; the panel tail points toward board -Y / the antenna edge and the direct ZIF is never load-bearing"
   },
   "cap_evidence_coordinate_register": {
     "status": "pass",
@@ -3118,51 +3118,37 @@
       "connector_is_load_bearing": false,
       "retention": {
         "connector_is_load_bearing": false,
-        "panel_support": "continuous front-shell display bed plus bezel overlap outside the active and touch areas",
-        "primary_retention": "thin perimeter display-grade PSA on the front-shell bed",
-        "secondary_retention": "four corner locators and a compliant 0.5-1.0-mm closed-cell rear preload pad",
+        "panel_support": "flat component-free UI PCB outer-face display bed reserved under the complete 56.54 x 84.96-mm configured panel outline",
+        "primary_retention": "one 0.17-mm target die-cut perimeter PSA frame directly between the panel rear perimeter and the UI PCB outer soldermask",
+        "secondary_retention": "none in the assembled stack; PCB assembly datums and a removable placement fixture control alignment without becoming retained parts",
         "flex_strain_relief": "controlled folded-tail corridor from the antenna edge to the direct ZIF; no tensile or peel load reaches the contacts or latch",
-        "service_rule": "opening the sandwich exposes the ZIF latch; release the latch before lifting the display assembly",
+        "service_rule": "opening the sandwich exposes the ZIF latch; release the latch first, then warm and cut the PSA frame before lifting the panel, and install a fresh die-cut frame before reassembly",
         "physical_realization": [
           {
-            "id": "front_shell_display_bed_and_bezel",
+            "id": "ui_pcb_display_bed",
             "quantity": 1,
-            "part_type": "integral enclosure geometry, not a separate purchased part",
-            "implementation": "the front shell contains one rigid recessed ledge under the panel perimeter and one continuous bezel lip; the visible opening stays outside the exact 49.96 x 74.44-mm viewing area and the lip never bears on the active touch surface",
-            "load_role": "supports panel depth and transfers normal and finger loads into the front shell"
+            "part_type": "component-free region of the UI PCB outer face, not a separate purchased part",
+            "implementation": "reserve the complete 56.54 x 84.96-mm configured panel projection as a flat soldermask-controlled landing area; the adhesive zone contains no components, vias, test points, copper-height steps or silkscreen, and placement datums remain outside the panel outline",
+            "load_role": "supports the panel and transfers normal, touch and handling loads directly into the UI PCB"
           },
           {
             "id": "display_psa_frame",
             "quantity": 1,
-            "part_type": "die-cut display-grade acrylic transfer-adhesive frame",
-            "implementation": "0.10-0.20-mm target thickness; applied only around the documented inactive perimeter between the panel assembly and the rigid shell bed; no liquid glue",
-            "load_role": "retains the panel against lift and distributes load without loading the glass active area",
-            "release_gate": "freeze exact adhesive grade and cut drawing after the assembler accepts the one-prototype display-installation operation"
-          },
-          {
-            "id": "front_shell_corner_locators",
-            "quantity": 4,
-            "part_type": "four short ribs integral to the front shell",
-            "implementation": "one rib at each panel corner, outside the touch/viewing area; target lateral assembly clearance is 0.20-0.30 mm per side before final enclosure-tolerance closure",
-            "load_role": "takes in-plane shear so ordinary handling does not peel the PSA or pull the FPC"
-          },
-          {
-            "id": "rear_compliant_preload_pad",
-            "quantity": 1,
-            "part_type": "die-cut closed-cell urethane- or silicone-foam pad",
-            "implementation": "0.5-1.0-mm nominal thickness with 15-30-percent target compression after shell closure; bonded to the shell support surface and applied only to a documented safe rear-panel zone, never across the FPC or components",
-            "load_role": "removes rattle and maintains light seating against the front bed",
-            "release_gate": "freeze exact foam grade, thickness and safe-zone cutout from the received-panel tolerance stack and enclosure drawing"
+            "part_type": "carrier-backed double-coated acrylic display-bonding tape, converter die-cut as a peelable frame",
+            "implementation": "0.17-mm target thickness; nominal 2.0-mm perimeter band on the documented safe rear perimeter, interrupted at the antenna-edge FPC exit; no liquid glue and no adhesive on the active glass, FPC or rear components",
+            "load_role": "retains the panel against lift and in-plane shear and distributes touch load into the PCB bed",
+            "material_candidate_not_yet_selected": "3M 9495LE is a technically suitable 0.17-mm die-cuttable display-bonding candidate, but is not an accepted production MPN or JLCPCB placement route yet",
+            "release_gate": "freeze the exact adhesive grade, converter cut drawing, cleaning/pressure/dwell process and written one-prototype assembler acceptance before order"
           },
           {
             "id": "fpc_bend_guide",
             "quantity": 1,
-            "part_type": "integral shell corridor with optional low-tack polyimide guide tab",
-            "implementation": "controls bend radius and preserves service slack between the antenna-edge tail exit and the ZIF",
+            "part_type": "PCB keep-out corridor plus optional removable low-tack polyimide assembly guide",
+            "implementation": "controls bend radius and preserves service slack from the panel tail at board -Y to the antenna-edge ZIF; the guide is removed or left non-structural after insertion",
             "load_role": "prevents panel motion from becoming tensile or peel load at the ZIF contacts"
           }
         ],
-        "structural_load_path": "finger or handling load -> bezel and rigid display bed -> front shell -> enclosure stops and fasteners; never through the FPC or ZIF",
+        "structural_load_path": "finger or handling load -> panel rear perimeter -> die-cut PSA frame -> UI PCB -> sandwich stops and fasteners; never through the FPC or ZIF",
         "esp32_div_v2_reference": {
           "source": "https://github.com/cifertech/ESP32-DIV/tree/9d4d82fe7a12febf554b12e1eca6d434ebe79d39/PCB/v2",
           "panel_mount": "raw 2.8-inch display body seated directly on the main PCB",
@@ -3170,7 +3156,7 @@
           "electrical_connection": "18-contact display FPC soldered directly to eighteen 0.4 x 4.5-mm SMD lands; no display ZIF",
           "retention_evidence_status": "unknown_from_public_sources",
           "not_publicly_documented": "the published Gerbers, PcbDoc, BOM, 3D model and assembled-device photograph do not identify a positive display retainer; the BOM contains no frame, fastener, foam or adhesive line, so a hidden PSA bond is plausible but unproven",
-          "leshy2_adoption_rule": "do not copy an inferred DIV retention mechanism; Leshy2 independently specifies a positive panel load path and keeps a serviceable non-load-bearing ZIF"
+          "leshy2_adoption_rule": "use DIV only as evidence that a raw panel can occupy a direct PCB seat; Leshy2 explicitly defines the otherwise undocumented adhesive bond, assembly controls and a serviceable non-load-bearing ZIF"
         }
       },
       "opposing_pairs": []

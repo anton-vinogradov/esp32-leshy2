@@ -6,7 +6,7 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "25d61128f0a91993cae89ad304e0efa1162a373c7df145f3d4b47ec27010a716"
+      "sha256": "ab5fc16e6a2fc725eae407a61966eeab24462708e16e7543037251a6c4f20860"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",

@@ -2029,10 +2029,8 @@ def validate_display_mount_design(
         row.get("id"): row for row in retention.get("physical_realization", [])
     }
     expected_physical_parts = {
-        "front_shell_display_bed_and_bezel": 1,
+        "ui_pcb_display_bed": 1,
         "display_psa_frame": 1,
-        "front_shell_corner_locators": 4,
-        "rear_compliant_preload_pad": 1,
         "fpc_bend_guide": 1,
     }
     if {
@@ -2051,6 +2049,11 @@ def validate_display_mount_design(
         errors.append("display-mount: DIV reference must preserve the direct-soldered 18-contact flex")
     if "non-load-bearing ZIF" not in div_reference.get("leshy2_adoption_rule", ""):
         errors.append("display-mount: DIV comparison must not make the Leshy2 ZIF load-bearing")
+    orientation = design.get("orientation", {})
+    if orientation.get("fpc_exit_direction_board_axis") != "-Y":
+        errors.append("display-mount: panel FPC must exit toward board -Y / the antenna edge")
+    if "stop-work" not in orientation.get("factory_orientation_check", ""):
+        errors.append("display-mount: factory orientation check must fail closed before PSA pressing")
     electrical = design.get("electrical", {})
     if electrical.get("owner_contract") != {
         "display_bus_owner": "s3",
@@ -4693,7 +4696,7 @@ def render_navigation_cluster(design, devices, instances):
 
 
 def render_display_mount(design):
-    """Render the direct ZIF and the enclosure load path that protects it."""
+    """Render the direct PCB/PSA panel mount and its fail-closed orientation."""
     connector = design["components"][0]
     stack = design["stack"]
 
@@ -4704,66 +4707,71 @@ def render_display_mount(design):
         )
 
     out = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">',
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
-        label(40, 42, "Leshy2 — direct display ZIF and supported panel mount", 22, "bold"),
-        label(40, 68, "L2-DISP-DIRECT-001-A · one connector on the UI PCB · no adapter PCB · ZIF carries no mechanical load", 11, colour="#526076"),
+        label(40, 42, "Leshy2 — display bonded directly to the UI PCB", 22, "bold"),
+        label(40, 68, "L2-DISP-DIRECT-001-A · die-cut PSA · direct 50-pin ZIF · no adapter, frame, corner ribs or preload foam", 11, colour="#526076"),
         label(55, 112, "Front-to-rear section", 14, "bold", colour="#1d4ed8"),
-        '<rect x="70" y="145" width="385" height="22" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>',
-        label(262, 160, "1 · integral front-shell bezel / rigid bed", 10, "bold", "middle", "#1d4ed8"),
-        '<rect x="92" y="167" width="341" height="172" rx="7" fill="#eaf2ff" stroke="#60a5fa" stroke-width="2"/>',
-        '<rect x="107" y="183" width="311" height="139" rx="5" fill="#cfe1ff" stroke="#2563eb" stroke-width="2"/>',
-        label(262, 254, "ER-TFT035IPS-6 + ER-TPC035-6", 13, "bold", "middle"),
-        label(262, 276, "touch/display assembly", 10, "normal", "middle", "#526076"),
-        '<path d="M92 176 L80 176 L80 330 L92 330 M433 176 L445 176 L445 330 L433 330" fill="none" stroke="#f97316" stroke-width="4" data-mechanical-part="front_shell_corner_locators" data-count="4"/>',
-        label(81, 193, "3", 10, "bold", "middle", "#c2410c"),
-        label(444, 193, "3", 10, "bold", "middle", "#c2410c"),
-        '<rect x="92" y="339" width="341" height="9" fill="#fde68a" stroke="#d97706" stroke-width="1.5" data-mechanical-part="display_psa_frame"/>',
-        label(262, 336, "2 · die-cut PSA frame", 9.5, "bold", "middle", "#92400e"),
-        '<rect x="105" y="358" width="315" height="18" rx="6" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>',
-        label(262, 371, "4 · closed-cell foam preload", 9.5, "bold", "middle", "#166534"),
-        '<path d="M385 322 C455 333 467 409 378 437 L330 437" fill="none" stroke="#0f766e" stroke-width="10" stroke-linecap="round"/>',
-        '<path d="M385 322 C455 333 467 409 378 437 L330 437" fill="none" stroke="#99f6e4" stroke-width="5" stroke-linecap="round"/>',
-        label(470, 410, "5 · FPC guide / service slack", 9.5, "bold", "start", "#0f766e"),
-        '<rect x="70" y="455" width="385" height="18" rx="3" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>',
-        label(262, 469, "UI PCB", 10, "bold", "middle", "#166534"),
-        '<rect x="236" y="417" width="154" height="38" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>',
-        label(313, 440, "50-pin ZIF", 11, "bold", "middle", "#1d4ed8"),
-        '<path d="M313 417 L313 408" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow)"/>',
-        label(313, 402, "latch accessible after opening", 8.5, "bold", "middle", "#b42318"),
-        label(70, 510, "Physical retention", 13, "bold", colour="#1d4ed8"),
-        label(70, 534, "1 shell bed/bezel · 2 PSA 0.10–0.20 mm · 3 four integral corner ribs", 9.8),
-        label(70, 556, "4 foam 0.5–1.0 mm at 15–30% compression · 5 FPC bend guide", 9.8),
-        label(70, 585, "Load path", 13, "bold", colour="#166534"),
-        label(70, 609, "finger → integral bezel/rigid bed → front shell → enclosure stops/fasteners", 10.5),
-        label(70, 632, "The FPC and ZIF carry no panel load.", 10.5, "bold", colour="#166534"),
-        label(650, 112, "UI PCB inner-face plan", 14, "bold", colour="#7c3aed"),
-        '<rect x="720" y="140" width="300" height="500" rx="8" fill="#f8fafc" stroke="#344054" stroke-width="3"/>',
-        '<circle cx="740" cy="177" r="16" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="6 4"/>',
-        '<circle cx="1000" cy="177" r="16" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="6 4"/>',
-        '<rect x="816" y="146" width="108" height="25" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="2" data-instance="display_connector"/>',
-        label(870, 162, "FH34SRJ-50S", 8.5, "bold", "middle", "#1d4ed8"),
-        '<path d="M870 146 L870 122" stroke="#0f766e" stroke-width="6" stroke-linecap="round"/>',
-        label(870, 92, "FPC enters from antenna edge", 10, "bold", "middle", "#0f766e"),
-        '<rect x="760" y="225" width="95" height="78" rx="4" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-display-owner="S3"/>',
-        '<rect x="885" y="225" width="95" height="78" rx="4" fill="#f8fafc" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5 4" data-c5-display-connection="none"/>',
-        label(807, 267, "S3", 12, "bold", "middle"),
-        label(932, 267, "C5", 12, "bold", "middle"),
-        label(807, 326, "S3-local i8080-8 + touch", 9.5, "bold", "middle", "#166534"),
-        label(932, 326, "no display/touch connection", 9.2, "bold", "middle", "#64748b"),
-        '<path d="M840 171 L807 225" stroke="#16a34a" stroke-width="2" data-route="display-to-owner" data-owner="S3"/>',
-        label(745, 382, "What DIV v2 proves", 13, "bold", colour="#7c3aed"),
-        label(745, 406, "• panel body sits directly on the PCB", 10),
-        label(745, 428, "• four 1.2-mm holes remain empty", 10),
-        label(745, 450, "• 18-pin FPC is soldered; no ZIF", 10),
-        label(745, 472, "• retention is not documented", 10),
-        label(745, 494, "PSA is plausible, not proven.", 10),
-        label(745, 520, "Leshy2 uses its own load path.", 10, "bold", colour="#166534"),
-        label(650, 595, f"Connector envelope: {connector['envelope_mm'][0]:.1f} × {connector['envelope_mm'][1]:.1f} × {connector['envelope_mm'][2]:.1f} mm", 10.5, "bold"),
-        label(650, 618, f"Inner gap: {stack['available_interboard_gap_mm']:.1f} mm · removed stack: {stack['removed_adapter_stack_height_mm']:.1f} mm · height saved: {stack['height_reduction_mm']:.1f} mm", 10.5),
-        label(650, 650, "Removed: both DF40 connectors and the separate display-adapter PCB", 11, "bold", colour="#b42318"),
-        label(40, 680, "Factory operation: populate ZIF on UI PCB, install panel into shell bed, close latch, apply PSA/preload and perform visual/power-on inspection.", 10.5, "bold", colour="#166534"),
+        '<rect x="92" y="150" width="341" height="162" rx="7" fill="#eaf2ff" stroke="#60a5fa" stroke-width="2"/>',
+        '<rect x="107" y="166" width="311" height="132" rx="5" fill="#cfe1ff" stroke="#2563eb" stroke-width="2"/>',
+        label(262, 225, "ER-TFT035IPS-6 + ER-TPC035-6", 13, "bold", "middle"),
+        label(262, 248, "1 · exact touch/display assembly", 10, "normal", "middle", "#526076"),
+        '<g data-mechanical-part="display_psa_frame"><rect x="92" y="312" width="341" height="9" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/></g>',
+        label(262, 307, "2 · die-cut PSA frame · 0.17 mm target", 9.5, "bold", "middle", "#92400e"),
+        '<rect x="70" y="321" width="385" height="24" rx="3" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-mechanical-part="ui_pcb_display_bed"/>',
+        label(262, 337, "3 · flat component-free UI-PCB outer bed", 10, "bold", "middle", "#166534"),
+        '<rect x="70" y="345" width="385" height="18" rx="3" fill="#bbf7d0" stroke="#16a34a" stroke-width="2"/>',
+        label(262, 358, "UI PCB · 1.6 mm", 9.5, "bold", "middle", "#166534"),
+        '<path d="M391 298 C470 305 481 377 390 404 L354 404" fill="none" stroke="#0f766e" stroke-width="10" stroke-linecap="round" data-mechanical-part="fpc_bend_guide"/>',
+        '<path d="M391 298 C470 305 481 377 390 404 L354 404" fill="none" stroke="#99f6e4" stroke-width="5" stroke-linecap="round"/>',
+        label(476, 389, "4 · controlled FPC fold", 9.5, "bold", "start", "#0f766e"),
+        '<rect x="220" y="363" width="170" height="42" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2" data-instance="display_connector"/>',
+        label(305, 389, "5 · 50-pin ZIF · inner face", 10.5, "bold", "middle", "#1d4ed8"),
+        label(70, 447, "Physical retention", 13, "bold", colour="#1d4ed8"),
+        label(70, 471, "Panel → 0.17-mm target die-cut PSA → flat UI-PCB soldermask bed", 10),
+        label(70, 493, "No separate frame, locating ribs or rear foam. A removable fixture controls placement.", 10),
+        label(70, 525, "Load path", 13, "bold", colour="#166534"),
+        label(70, 549, "finger / handling → panel rear perimeter → PSA → UI PCB → sandwich fasteners", 10),
+        label(70, 571, "The FPC and ZIF carry no panel load.", 10.5, "bold", colour="#166534"),
+        label(70, 607, "Service", 13, "bold", colour="#7c3aed"),
+        label(70, 631, "Open sandwich → release ZIF → warm/cut PSA → replace PSA before reassembly.", 10),
+        label(650, 112, "UI PCB orientation / assembly datum", 14, "bold", colour="#7c3aed"),
+        '<rect x="690" y="140" width="300" height="500" rx="8" fill="#f8fafc" stroke="#344054" stroke-width="3"/>',
+        label(840, 132, "ANTENNA EDGE · board -Y", 10.5, "bold", "middle", "#b42318"),
+        '<rect x="726" y="205" width="228" height="340" rx="5" fill="#dbeafe" fill-opacity="0.45" stroke="#2563eb" stroke-width="2" data-mechanical-part="ui_pcb_display_bed"/>',
+        '<path d="M726 205 H954 V545 H726 Z M738 218 V532 H942 V218 Z" fill="#fde68a" fill-rule="evenodd" stroke="#d97706" stroke-width="1.5" data-mechanical-part="display_psa_frame"/>',
+        '<rect x="740" y="221" width="200" height="308" rx="4" fill="#cfe1ff" stroke="#60a5fa" stroke-width="1.5"/>',
+        label(840, 382, "DISPLAY", 14, "bold", "middle", "#1d4ed8"),
+        label(840, 404, "56.54 × 84.96 mm", 9.5, "bold", "middle", "#526076"),
+        '<rect x="786" y="151" width="108" height="25" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="2" data-instance="display_connector"/>',
+        label(840, 167, "FH34SRJ-50S", 8.5, "bold", "middle", "#1d4ed8"),
+        '<path d="M840 221 L840 177" stroke="#0f766e" stroke-width="7" stroke-linecap="round"/>',
+        '<path d="M840 151 L840 105" stroke="#dc2626" stroke-width="3" marker-end="url(#arrow)"/>',
+        label(840, 92, "FPC MUST EXIT UP", 12, "bold", "middle", "#b42318"),
+        label(840, 573, "PSA zone: no vias · no test points · no silkscreen", 9.3, "bold", "middle", "#92400e"),
+        label(840, 598, "Placement marks stay outside the panel outline", 9.3, "normal", "middle", "#526076"),
+        '<rect x="1018" y="145" width="145" height="70" rx="5" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-display-owner="S3"/>',
+        label(1090, 175, "S3", 12, "bold", "middle"),
+        label(1090, 196, "S3-local i8080-8 + touch", 8.5, "bold", "middle", "#166534"),
+        '<rect x="1018" y="235" width="145" height="70" rx="5" fill="#f8fafc" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5 4" data-c5-display-connection="none"/>',
+        label(1090, 265, "C5", 12, "bold", "middle"),
+        label(1090, 286, "no display/touch connection", 8.2, "bold", "middle", "#64748b"),
+        '<path d="M894 163 L1018 180" stroke="#16a34a" stroke-width="2" data-route="display-to-owner" data-owner="S3"/>',
+        label(1018, 348, "What DIV v2 proves", 12.5, "bold", colour="#7c3aed"),
+        label(1018, 372, "• panel sits on the PCB", 9.5),
+        label(1018, 393, "• four holes stay empty", 9.5),
+        label(1018, 414, "• 18-pin FPC is soldered", 9.5),
+        label(1018, 435, "• retention is undocumented", 9.5),
+        label(1018, 463, "A hidden PSA bond is", 9.5, "bold", colour="#92400e"),
+        label(1018, 482, "plausible, not proven.", 9.5, "bold", colour="#92400e"),
+        label(1018, 527, f"ZIF: {connector['envelope_mm'][0]:.1f} × {connector['envelope_mm'][1]:.1f} × {connector['envelope_mm'][2]:.1f} mm", 9.5, "bold"),
+        label(1018, 550, f"Inner gap: {stack['available_interboard_gap_mm']:.1f} mm", 9.5),
+        label(1018, 573, f"Height saved: {stack['height_reduction_mm']:.1f} mm", 9.5),
+        label(1018, 610, "Removed: 2× DF40 +", 9.5, "bold", colour="#b42318"),
+        label(1018, 630, "display-adapter PCB", 9.5, "bold", colour="#b42318"),
+        label(40, 676, "Factory sequence: clean PCB bed → apply die-cut PSA → verify FPC points to -Y / antenna edge → place with fixture → press → insert FPC and close ZIF → inspect and power on.", 10.2, "bold", colour="#166534"),
+        label(40, 702, "3M 9495LE is only a 0.17-mm technical candidate until the exact cut and one-prototype assembly route are accepted in writing.", 9.8, "bold", colour="#92400e"),
         '</svg>',
     ]
     return "\n".join(out) + "\n"

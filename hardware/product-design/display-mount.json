@@ -3,7 +3,7 @@
   "design_id": "L2-DISP-DIRECT-001-A",
   "stage": "H1-R2.38",
   "status": "dimensioned_exact_production_panel_direct_zif_ready_for_h2",
-  "purpose": "Mate the exact EastRising ER-TFT035IPS-6 plus ER-TPC035-6 configured assembly directly to the UI PCB through one serviceable 50-contact ZIF; the enclosure bezel and compliant panel bed carry every mechanical load.",
+  "purpose": "Bond the exact EastRising ER-TFT035IPS-6 plus ER-TPC035-6 configured assembly directly to the UI PCB outer face with a die-cut PSA frame and mate its upward-facing tail through one serviceable 50-contact ZIF on the UI PCB inner face; neither the FPC nor ZIF carries panel load.",
   "components": [
     {
       "instance": "display_connector",
@@ -24,51 +24,37 @@
   },
   "mechanical_retention": {
     "connector_is_load_bearing": false,
-    "panel_support": "continuous front-shell display bed plus bezel overlap outside the active and touch areas",
-    "primary_retention": "thin perimeter display-grade PSA on the front-shell bed",
-    "secondary_retention": "four corner locators and a compliant 0.5-1.0-mm closed-cell rear preload pad",
+    "panel_support": "flat component-free UI PCB outer-face display bed reserved under the complete 56.54 x 84.96-mm configured panel outline",
+    "primary_retention": "one 0.17-mm target die-cut perimeter PSA frame directly between the panel rear perimeter and the UI PCB outer soldermask",
+    "secondary_retention": "none in the assembled stack; PCB assembly datums and a removable placement fixture control alignment without becoming retained parts",
     "flex_strain_relief": "controlled folded-tail corridor from the antenna edge to the direct ZIF; no tensile or peel load reaches the contacts or latch",
-    "service_rule": "opening the sandwich exposes the ZIF latch; release the latch before lifting the display assembly",
+    "service_rule": "opening the sandwich exposes the ZIF latch; release the latch first, then warm and cut the PSA frame before lifting the panel, and install a fresh die-cut frame before reassembly",
     "physical_realization": [
       {
-        "id": "front_shell_display_bed_and_bezel",
+        "id": "ui_pcb_display_bed",
         "quantity": 1,
-        "part_type": "integral enclosure geometry, not a separate purchased part",
-        "implementation": "the front shell contains one rigid recessed ledge under the panel perimeter and one continuous bezel lip; the visible opening stays outside the exact 49.96 x 74.44-mm viewing area and the lip never bears on the active touch surface",
-        "load_role": "supports panel depth and transfers normal and finger loads into the front shell"
+        "part_type": "component-free region of the UI PCB outer face, not a separate purchased part",
+        "implementation": "reserve the complete 56.54 x 84.96-mm configured panel projection as a flat soldermask-controlled landing area; the adhesive zone contains no components, vias, test points, copper-height steps or silkscreen, and placement datums remain outside the panel outline",
+        "load_role": "supports the panel and transfers normal, touch and handling loads directly into the UI PCB"
       },
       {
         "id": "display_psa_frame",
         "quantity": 1,
-        "part_type": "die-cut display-grade acrylic transfer-adhesive frame",
-        "implementation": "0.10-0.20-mm target thickness; applied only around the documented inactive perimeter between the panel assembly and the rigid shell bed; no liquid glue",
-        "load_role": "retains the panel against lift and distributes load without loading the glass active area",
-        "release_gate": "freeze exact adhesive grade and cut drawing after the assembler accepts the one-prototype display-installation operation"
-      },
-      {
-        "id": "front_shell_corner_locators",
-        "quantity": 4,
-        "part_type": "four short ribs integral to the front shell",
-        "implementation": "one rib at each panel corner, outside the touch/viewing area; target lateral assembly clearance is 0.20-0.30 mm per side before final enclosure-tolerance closure",
-        "load_role": "takes in-plane shear so ordinary handling does not peel the PSA or pull the FPC"
-      },
-      {
-        "id": "rear_compliant_preload_pad",
-        "quantity": 1,
-        "part_type": "die-cut closed-cell urethane- or silicone-foam pad",
-        "implementation": "0.5-1.0-mm nominal thickness with 15-30-percent target compression after shell closure; bonded to the shell support surface and applied only to a documented safe rear-panel zone, never across the FPC or components",
-        "load_role": "removes rattle and maintains light seating against the front bed",
-        "release_gate": "freeze exact foam grade, thickness and safe-zone cutout from the received-panel tolerance stack and enclosure drawing"
+        "part_type": "carrier-backed double-coated acrylic display-bonding tape, converter die-cut as a peelable frame",
+        "implementation": "0.17-mm target thickness; nominal 2.0-mm perimeter band on the documented safe rear perimeter, interrupted at the antenna-edge FPC exit; no liquid glue and no adhesive on the active glass, FPC or rear components",
+        "load_role": "retains the panel against lift and in-plane shear and distributes touch load into the PCB bed",
+        "material_candidate_not_yet_selected": "3M 9495LE is a technically suitable 0.17-mm die-cuttable display-bonding candidate, but is not an accepted production MPN or JLCPCB placement route yet",
+        "release_gate": "freeze the exact adhesive grade, converter cut drawing, cleaning/pressure/dwell process and written one-prototype assembler acceptance before order"
       },
       {
         "id": "fpc_bend_guide",
         "quantity": 1,
-        "part_type": "integral shell corridor with optional low-tack polyimide guide tab",
-        "implementation": "controls bend radius and preserves service slack between the antenna-edge tail exit and the ZIF",
+        "part_type": "PCB keep-out corridor plus optional removable low-tack polyimide assembly guide",
+        "implementation": "controls bend radius and preserves service slack from the panel tail at board -Y to the antenna-edge ZIF; the guide is removed or left non-structural after insertion",
         "load_role": "prevents panel motion from becoming tensile or peel load at the ZIF contacts"
       }
     ],
-    "structural_load_path": "finger or handling load -> bezel and rigid display bed -> front shell -> enclosure stops and fasteners; never through the FPC or ZIF",
+    "structural_load_path": "finger or handling load -> panel rear perimeter -> die-cut PSA frame -> UI PCB -> sandwich stops and fasteners; never through the FPC or ZIF",
     "esp32_div_v2_reference": {
       "source": "https://github.com/cifertech/ESP32-DIV/tree/9d4d82fe7a12febf554b12e1eca6d434ebe79d39/PCB/v2",
       "panel_mount": "raw 2.8-inch display body seated directly on the main PCB",
@@ -76,7 +62,7 @@
       "electrical_connection": "18-contact display FPC soldered directly to eighteen 0.4 x 4.5-mm SMD lands; no display ZIF",
       "retention_evidence_status": "unknown_from_public_sources",
       "not_publicly_documented": "the published Gerbers, PcbDoc, BOM, 3D model and assembled-device photograph do not identify a positive display retainer; the BOM contains no frame, fastener, foam or adhesive line, so a hidden PSA bond is plausible but unproven",
-      "leshy2_adoption_rule": "do not copy an inferred DIV retention mechanism; Leshy2 independently specifies a positive panel load path and keeps a serviceable non-load-bearing ZIF"
+      "leshy2_adoption_rule": "use DIV only as evidence that a raw panel can occupy a direct PCB seat; Leshy2 explicitly defines the otherwise undocumented adhesive bond, assembly controls and a serviceable non-load-bearing ZIF"
     }
   },
   "electrical": {
@@ -152,7 +138,9 @@
   },
   "orientation": {
     "accepted_on": "2026-09-01",
-    "panel_rule": "mount the configured panel with its folded FPC toward the antenna edge, as on ESP32-DIV, so the tail never enters the LED, navigation or function-key zone",
+    "panel_rule": "mount the configured panel with its folded FPC toward the antenna edge (board -Y) so the tail never enters the LED, navigation or function-key zone",
+    "fpc_exit_direction_board_axis": "-Y",
+    "factory_orientation_check": "before pressing the PSA, the panel tail must exit toward the antenna edge and align with the direct ZIF corridor; any tail toward +Y is a stop-work assembly error",
     "display_memory_transform": "rotate ILI9488 output by 180 degrees relative to its cable-down native orientation",
     "touch_transform": "rotate FT6236 coordinates by 180 degrees before UI hit-testing",
     "tail_contract": "manufacturer drawing controls the 50-contact 0.50-mm-pitch, 0.30-mm-stiffened folded tail; H5 incoming inspection verifies lot conformity and insertion"
@@ -183,9 +171,13 @@
       "finding": "FH34SRJ-50S-0.5SH(50) is exact HRS original-manufacturer C3169104, Extended SMT, Economic/Standard PCBA, MOQ 1 and verified live stock."
     },
     {
+      "source": "https://multimedia.3m.com/mws/media/2366195O/3M-Double-Coated-Tape-9495LE.pdf",
+      "finding": "3M documents 9495LE as a 0.17-mm carrier-backed double-coated acrylic tape for die cutting and bonding metals, plastics and glass; it is only a technical candidate until an exact converter cut and assembler route are confirmed."
+    },
+    {
       "source": "https://github.com/cifertech/ESP32-DIV/tree/9d4d82fe7a12febf554b12e1eca6d434ebe79d39/PCB/v2",
       "finding": "The official ESP32-DIV v2 Gerbers expose eighteen direct-solder FPC lands and four empty 1.2-mm holes around the display zone. The holes do not retain the assembled display, and the public PCB, BOM, 3D model and photograph do not establish the actual retention method; a hidden PSA bond remains an inference, not a documented fact."
     }
   ],
-  "release_boundary": "H1 freezes the exact panel, direct C3169104 ZIF position, 50-contact electrical map, folded-tail corridor and non-load-bearing connector rule. H2 imports the exact footprint and routes the display sheet directly on the UI PCB; H5 confirms current-lot tail conformity, written factory acceptance for panel PSA/FPC insertion and one-prototype final mating."
+  "release_boundary": "H1 freezes the exact panel, component-free UI-PCB display bed, mandatory board -Y / antenna-edge FPC direction, direct C3169104 ZIF position, 50-contact electrical map and non-load-bearing connector rule. H2 imports the exact footprint and routes the display sheet directly on the UI PCB; before order H5 freezes the exact PSA grade/cut/process and obtains written factory acceptance for panel placement and FPC insertion; H7/H8 inspect the one assembled prototype."
 }

@@ -66,7 +66,11 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertIn("S3-local i8080-8 + touch", svg)
         self.assertIn("no display/touch connection", svg)
         self.assertIn('data-mechanical-part="display_psa_frame"', svg)
-        self.assertIn('data-mechanical-part="front_shell_corner_locators"', svg)
+        self.assertIn('data-mechanical-part="ui_pcb_display_bed"', svg)
+        self.assertNotIn('data-mechanical-part="front_shell_corner_locators"', svg)
+        self.assertNotIn("closed-cell foam preload", svg)
+        self.assertIn("FPC MUST EXIT UP", svg)
+        self.assertEqual(design["orientation"]["fpc_exit_direction_board_axis"], "-Y")
         div_reference = design["mechanical_retention"]["esp32_div_v2_reference"]
         self.assertEqual(div_reference["retention_evidence_status"], "unknown_from_public_sources")
         self.assertIn("four empty 1.2-mm holes", div_reference["in_plane_location"])

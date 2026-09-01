@@ -17,10 +17,10 @@
     "hardware/architecture/candidates/G2F-3I.json": "1c614996fd626b9ca44a98395c0c01712c347c9ba4ac43e69250db3f2bf2f1df",
     "hardware/architecture/h1-r2-u219-cap.json": "01f01f750ceedaa9818b59968962a3484f4660057137e6ef43431a54b71c98fa",
     "hardware/product-design/h1-r2-placement.json": "deb1e0629342daeb9fc0624bf5c9780d6bc08665193b2b3c92d1bf9d2c2c1257",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "25d61128f0a91993cae89ad304e0efa1162a373c7df145f3d4b47ec27010a716",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "36a1de835d48ee68ae7baa05ac8e90fd0192bc8f0916df0bab03444ee914f293",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "b0da9c4c07ed47c5d5ed5a237ca25780ded747e3cf482071a72d110d8337ad61",
-    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "07af7b4aecf2374369f5660736e9b6095b20de0609d9bc98dc6754efb7108e67",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "ab5fc16e6a2fc725eae407a61966eeab24462708e16e7543037251a6c4f20860",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "64cb10c5e5cb1c9d7debbaf469803f5dc704ed97f107815deac9beb44e247b20",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "a5114841fb03fa55694f5c574628db4aa914e21fe952201de8f7adfa0a865ca9",
+    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "3f12421d7a48431eb8b512c9aec00152ad8eaa524aedbc4ce9d78d296f481996",
     "hardware/ecad/h2-r2-hwfw-reconciliation-contract.json": "da0f652479660671fe78fb0b484ac744f8c401796a5b494a7437967aa74e9189"
   },
   "bsp": {

@@ -112,7 +112,7 @@
   },
   "orientation": {
     "accepted_on": "2026-08-29",
-    "panel_rule": "mount the configured panel with its folded FPC toward the antenna edge, as on ESP32-DIV, so the tail never enters the LED, navigation or function-key zone",
+    "panel_rule": "mount the configured panel with its folded FPC toward the antenna edge / board -Y so the tail never enters the LED, navigation or function-key zone",
     "display_memory_transform": "rotate ILI9488 output by 180 degrees relative to its cable-down native orientation",
     "touch_transform": "rotate FT6236 coordinates by 180 degrees before UI hit-testing",
     "tail_contract": "manufacturer drawing controls the 50-contact 0.50-mm-pitch, 0.30-mm-stiffened folded tail; H5 incoming inspection verifies only lot conformity and insertion, not an unknown geometry"
