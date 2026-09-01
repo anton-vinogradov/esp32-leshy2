@@ -69,12 +69,16 @@ user to accept the non-aggression/authorized-use terms.
 
 ## Physical mock-up
 
-![Reviewed four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.37-reviewed-1)
+![Reviewed four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.38-fpc-slack-1)
 
-[Open the legend for all 226 numbered references](docs/images/h1-r2-component-legend.svg?rev=h1-r2.37-reviewed-1) ·
-[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.37-reviewed-1) ·
+[Open the legend for all 226 numbered references](docs/images/h1-r2-component-legend.svg?rev=h1-r2.38-fpc-slack-1) ·
+[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.38-fpc-slack-1) ·
 [front inner face](docs/images/h1-r2-inner-ui.svg) ·
 [rear inner face](docs/images/h1-r2-inner-rf.svg)
+
+![Display PSA, folded FPC, relaxed service loop and direct ZIF](docs/images/display-mount.svg?rev=h1-r2.38-fpc-slack-1)
+
+![True side sections through the two-board sandwich](docs/images/h1-r2-inner-sections.svg?rev=h1-r2.38-fpc-slack-1)
 
 The exterior silkscreen identifies `UI PCB · R2-EVT1 · REV A` and
 `RF/PWR PCB · R2-EVT1 · REV A`; `H1-R2.xx` remains documentation-only.
@@ -136,7 +140,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 
 - ✅ Exact front/rear RP GPIO0..47 maps, five Hub↔RF M1 signals and C5 SDIO/service-mux electrical join are machine-checked; budgets are `47/48` (1 free) and `43/48` (5 free: GP32/33/34/37/38). RF GPIO28/29 now form a power-coherent private Si5351 PIO-I²C bus. S3 retains 6 uncommitted GPIO after reset/service closure.
 - ✅ Ten main antenna ports repartitioned `5 + 5`; no main RF trace crosses M1.
-- ✅ Series-produced `ER-TFT035IPS-6` + `ER-TPC035-6` is fixed with its exact 50-contact FPC, `ILI9488`, `FT6236` and direct `FH34SRJ-50S-0.5SH(50)` on the UI PCB. The bezel/PSA/preload retain the panel independently of the ZIF; direct i8080-8 runs at an exact divider-safe 20 MHz (20 MB/s, 15.36 ms per full frame), with ordinary 4-wire serial retained through opened-device solder-jumper recovery.
+- ✅ Series-produced `ER-TFT035IPS-6` + `ER-TPC035-6` is fixed with its exact 50-contact FPC, `ILI9488`, `FT6236` and direct `FH34SRJ-50S-0.5SH(50)` on the UI PCB. One stocked 50×50-mm PSA rectangle retains the panel independently of the ZIF; the shortened slot/ZIF route preserves a machine-checked ≥5-mm relaxed FPC reserve with one no-twist fold and explicit 1-to-1 / 50-to-50 orientation. Direct i8080-8 runs at an exact divider-safe 20 MHz (20 MB/s, 15.36 ms per full frame), with ordinary 4-wire serial retained through opened-device solder-jumper recovery.
 - ✅ M1 has a complete 80-contact map and an enclosure load path: four 11-mm stops, anti-shear datums and independent PCB capture.
 - ✅ Antenna silkscreen passes generated body/cable/accessory/fastener no-overlap checks.
 - ✅ The onboard analog-video receiver, decoder, MMCX, antenna and physical reserves are removed; no active part requires owner soldering after PCBA.

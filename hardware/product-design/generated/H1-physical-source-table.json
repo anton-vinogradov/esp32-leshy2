@@ -2450,7 +2450,7 @@
       "instance": "display_connector",
       "device_key": "hirose_fh34srj_50s_0_5sh_50",
       "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
-      "role": "direct 50-contact dual-contact ZIF behind the folded display FPC slot",
+      "role": "direct 50-contact dual-contact ZIF behind the folded display FPC slot; pin 1 at world x-min",
       "frame": "ui-inner",
       "frame_datum": "UI PCB top-left, viewed from the front/exterior",
       "rotation_deg": 0,
@@ -2478,7 +2478,7 @@
       ],
       "position_mm": [
         24.0,
-        36.0
+        25.0
       ]
     },
     {

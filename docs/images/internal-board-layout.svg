@@ -177,8 +177,8 @@
 <text x="304.6" y="284.9" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">5</text>
 <rect x="99.6" y="246.4" width="66.6" height="78.4" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="c5"/>
 <text x="132.9" y="288.6" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">6</text>
-<rect x="168.8" y="298.2" width="99.9" height="14.1" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="display_connector"/>
-<text x="218.8" y="308.2" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">7</text>
+<rect x="168.8" y="257.5" width="99.9" height="14.1" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="display_connector"/>
+<text x="218.8" y="267.5" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">7</text>
 <rect x="250.2" y="368.5" width="18.5" height="18.5" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="slow_io"/>
 <text x="259.5" y="380.8" font-family="sans-serif" font-size="7.5" font-weight="bold" text-anchor="middle" fill="#172033">8</text>
 <rect x="206.5" y="368.5" width="28.9" height="16.3" rx="2" fill="#eef2f6" stroke="#667085" stroke-width="1.5" data-instance="ui_matrix_io"/>
@@ -610,7 +610,7 @@
 <text x="30.0" y="900.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">06  ESP32-C5-WROOM-1U-N8R8</text>
 <text x="56.0" y="909.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">native 2.4/5-GHz and IR owner; shifted 0.7 mm outward for the central display ZIF corridor</text>
 <text x="30.0" y="921.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">07  Hirose FH34SRJ-50S-0.5SH(50)</text>
-<text x="56.0" y="930.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">direct 50-contact dual-contact ZIF behind the folded display FPC slot</text>
+<text x="56.0" y="930.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">direct 50-contact dual-contact ZIF behind the folded display FPC slot; pin 1 at world x-min</text>
 <text x="30.0" y="942.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">08  TCA6424ARGJR</text>
 <text x="56.0" y="951.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">24-line slow-control expander</text>
 <text x="30.0" y="963.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">09  TCA9539PWR</text>
@@ -972,26 +972,26 @@
 <text x="1166.0" y="1791.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">direct nRF24 #1 IPEX-zone-to-board-U.FL projection; module axis closes at H5</text>
 <text x="1140.0" y="1803.0" font-family="sans-serif" font-size="8.1" font-weight="bold" text-anchor="start" fill="#172033">186  TE Connectivity 1-2118651-0</text>
 <text x="1166.0" y="1812.0" font-family="sans-serif" font-size="7.2" font-weight="normal" text-anchor="start" fill="#526076">direct nRF24 #2 IPEX-zone-to-board-U.FL projection; module axis closes at H5</text>
-<g id="validated-clearances" data-legend-bottom="1854" data-top="1889" data-inner-body-count="181" data-max-inner-height-mm="8.95" data-min-single-body-clearance-mm="2.05" data-display-direct-zif-opposing-pairs="1" data-min-display-direct-zif-clearance-mm="6.80" data-opposing-pairs="44" data-intentional-mates="1" data-min-z-clearance-mm="3.31" data-rf-cable-routes="2" data-rf-pcb-topology-guides="10" data-nrf-cable-reserves="3" data-opposing-cable-pairs="2" data-cable-od-max-mm="1.37" data-nrf-reserve-opposing-pairs="4" data-encoder-through-features="7" data-functional-zones="1" data-voice-v-rf-endpoint-distance-mm="45.59" data-voice-u-rf-endpoint-distance-mm="47.33">
+<g id="validated-clearances" data-legend-bottom="1854" data-top="1889" data-inner-body-count="181" data-max-inner-height-mm="8.95" data-min-single-body-clearance-mm="2.05" data-display-direct-zif-opposing-pairs="4" data-min-display-direct-zif-clearance-mm="7.50" data-opposing-pairs="47" data-intentional-mates="1" data-min-z-clearance-mm="3.31" data-rf-cable-routes="2" data-rf-pcb-topology-guides="10" data-nrf-cable-reserves="3" data-opposing-cable-pairs="2" data-cable-od-max-mm="1.37" data-nrf-reserve-opposing-pairs="7" data-encoder-through-features="7" data-functional-zones="1" data-voice-v-rf-endpoint-distance-mm="45.59" data-voice-u-rf-endpoint-distance-mm="47.33">
 <text x="30.0" y="1889.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#172033">Validated clearances</text>
 <text x="30.0" y="1913.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• same-face device-to-device clearance: ≥0.7 mm</text>
 <text x="30.0" y="1934.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• all 181 inner bodies checked individually; tallest 8.95 mm; opposite-plane remainder 2.05 mm</text>
-<text x="30.0" y="1955.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• direct 1.00-mm display ZIF: 1 opposing crossings; minimum Z gap 6.80 mm to voice_v</text>
-<text x="30.0" y="1976.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• opposing inner faces: 44 non-mating XY pairs checked; minimum Z gap 3.31 mm</text>
+<text x="30.0" y="1955.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• direct 1.00-mm display ZIF: 4 opposing crossings; minimum Z gap 7.50 mm to nrf1</text>
+<text x="30.0" y="1976.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• opposing inner faces: 47 non-mating XY pairs checked; minimum Z gap 3.31 mm</text>
 <text x="30.0" y="1997.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• outward connector / through-hole tail clearance on the opposite face: ≥1.5 mm</text>
 <text x="30.0" y="2018.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• RF coax: 2 direct exact-endpoint projections + 3 nRF module-face reserves; all five 30-mm assemblies accounted</text>
 <text x="30.0" y="2039.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• limiting pair: 23 3.5-mm CTIA headset TRRS mid-mount connector / 157 protected-pack branch fuse #0</text>
 <text x="30.0" y="2060.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• exact M1 plug/receptacle is one intentional 11-mm mate, not a clearance pair</text>
 <text x="30.0" y="2081.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• M2.5 hole/head keep-out: 4.0-mm radius</text>
 <text x="30.0" y="2102.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• both inner views are horizontally mirrored from their external faces</text>
-<text x="30.0" y="2123.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• nRF reserve crossings: 4; minimum Z gap 5.20 mm; H5 locks the corridor, H7/H8 inspect received IPEX axes</text>
+<text x="30.0" y="2123.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• nRF reserve crossings: 7; minimum Z gap 5.20 mm; H5 locks the corridor, H7/H8 inspect received IPEX axes</text>
 <text x="30.0" y="2144.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• EC11E through-board features: 7 checked; 2 opposing crossings; minimum Z gap 4.20 mm</text>
 <text x="30.0" y="2165.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• all 10 onboard antenna paths have a source-to-port topology guide; final copper remains KiCad work</text>
 <text x="30.0" y="2186.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">• orange dashed boundary is a placement zone, not one combined device</text>
 <text x="30.0" y="2207.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#344054">SMA · GCT RFPC-SMA31-FN-175-A</text>
 <text x="30.0" y="2227.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#344054">RP-SMA · GCT RFPC-SMA32-FN-175-A</text>
 <text x="30.0" y="2253.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#166534">All five native/nRF module feeds use exact 30-mm 2118651-2 Gen1 jumpers.</text>
-<text x="30.0" y="2274.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#b42318">Physical keep-outs pass; display-tail insertion, bezel retention and final PCB copper/via DRC remain open.</text>
+<text x="30.0" y="2274.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#b42318">Physical keep-outs pass; display dry-fit/slack, exact PSA process and final PCB copper/via DRC remain open.</text>
 <text x="30.0" y="2295.0" font-family="sans-serif" font-size="9.2" font-weight="normal" text-anchor="start" fill="#526076">Placement projection; all mechanically significant bodies are accounted; small passives and production copper remain ECAD work.</text>
 </g>
 </svg>

@@ -85,9 +85,11 @@ M1 — точная прямая SMT-пара Hirose `FX8C-80P-SV1(92)` /
 
 ## Физическая компоновка
 
-![Четыре согласованных стороны плат](images/h1-r2-four-faces.svg?rev=h1-r2.37-reviewed-1)
+![Четыре согласованных стороны плат](images/h1-r2-four-faces.svg?rev=h1-r2.38-fpc-slack-1)
 
-[Открыть детальный внешний вид в полном масштабе](images/h1-r2-external-layout.svg?rev=h1-r2.37-reviewed-1).
+[Открыть детальный внешний вид в полном масштабе](images/h1-r2-external-layout.svg?rev=h1-r2.38-fpc-slack-1).
+
+![PSA дисплея, один ненатянутый загиб FPC и прямой ZIF](images/display-mount.svg?rev=h1-r2.38-fpc-slack-1)
 
 Десять основных антенных портов разделены симметрично:
 
@@ -101,7 +103,7 @@ M1 — точная прямая SMT-пара Hirose `FX8C-80P-SV1(92)` /
 
 ### Легенда компонентов
 
-![Номер, MPN и роль каждого компонента](images/h1-r2-component-legend.svg?rev=h1-r2.37-reviewed-1)
+![Номер, MPN и роль каждого компонента](images/h1-r2-component-legend.svg?rev=h1-r2.38-fpc-slack-1)
 
 [Передняя внутренняя сторона в полном масштабе](images/h1-r2-inner-ui.svg) ·
 [задняя внутренняя сторона в полном масштабе](images/h1-r2-inner-rf.svg)

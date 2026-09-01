@@ -414,7 +414,7 @@
 <text x="1453.0" y="1037.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">central display ZIF corridor</text>
 <text x="1425.0" y="1062.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">189  Hirose FH34SRJ-50S-0.5SH(50)</text>
 <text x="1453.0" y="1076.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">direct 50-contact dual-contact ZIF behind the folded display</text>
-<text x="1453.0" y="1087.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">FPC slot</text>
+<text x="1453.0" y="1087.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">FPC slot; pin 1 at world x-min</text>
 <text x="1425.0" y="1112.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">190  E01-ML01SP4</text>
 <text x="1453.0" y="1126.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">factory-stocked 20-dBm PA/LNA full-function nRF24 radio #0 on</text>
 <text x="1453.0" y="1137.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">the front radio/UI domain</text>

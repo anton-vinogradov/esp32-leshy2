@@ -6,7 +6,9 @@
 > accepted as the working product layout. This closes H1; it does not authorize
 > native R2 KiCad work, component purchase or fabrication.
 
-![Reviewed H1-R2 four-face layout](images/h1-r2-four-faces.svg?rev=h1-r2.37-reviewed-1)
+![Reviewed H1-R2 four-face layout](images/h1-r2-four-faces.svg?rev=h1-r2.38-fpc-slack-1)
+
+![Reviewed display PSA, relaxed FPC route and direct ZIF](images/display-mount.svg?rev=h1-r2.38-fpc-slack-1)
 
 ## Finished result
 

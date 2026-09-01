@@ -46,7 +46,7 @@
     "ui_matrix_io"
   ],
   "same_face_collisions": [],
-  "opposing_overlap_count": 87,
+  "opposing_overlap_count": 88,
   "minimum_opposing_clearance_mm": 2.59,
   "required_opposing_clearance_mm": 0.7,
   "opposing_overlaps": [
@@ -157,10 +157,17 @@
     },
     {
       "ui": "display_connector",
-      "rf": "voice_v",
+      "rf": "u219_field_bridge_b",
       "ui_origin": "retained_base",
-      "rf_origin": "retained_base",
-      "clearance_mm": 6.8
+      "rf_origin": "r2",
+      "clearance_mm": 8.9
+    },
+    {
+      "ui": "display_connector",
+      "rf": "u219_field_comparator",
+      "ui_origin": "retained_base",
+      "rf_origin": "r2",
+      "clearance_mm": 8.55
     },
     {
       "ui": "ir_demod",

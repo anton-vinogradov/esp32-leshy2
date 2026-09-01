@@ -136,8 +136,8 @@
         51.0
       ],
       "y_mm": [
-        36.0,
-        39.8
+        25.0,
+        28.8
       ],
       "z_mm": [
         5.36,
@@ -2785,7 +2785,7 @@
         "remaining_to_opposite_pcb_plane_mm": 10.65
       }
     ],
-    "opposing_non_mating_pair_count": 44,
+    "opposing_non_mating_pair_count": 47,
     "minimum_opposing_pair": {
       "ui_instance": "headphone_jack",
       "rf_instance": "pack_fuse0",
@@ -2912,13 +2912,6 @@
         "remaining_z_clearance_mm": 6.8
       },
       {
-        "ui_instance": "display_connector",
-        "rf_instance": "voice_v",
-        "ui_height_mm": 1.0,
-        "rf_height_mm": 3.2,
-        "remaining_z_clearance_mm": 6.8
-      },
-      {
         "ui_instance": "audio_speaker_selector",
         "rf_instance": "voice_inductor",
         "ui_height_mm": 1.1,
@@ -2926,11 +2919,39 @@
         "remaining_z_clearance_mm": 6.9
       },
       {
+        "ui_instance": "display_connector",
+        "rf_instance": "nrf1",
+        "ui_height_mm": 1.0,
+        "rf_height_mm": 2.5,
+        "remaining_z_clearance_mm": 7.5
+      },
+      {
+        "ui_instance": "display_connector",
+        "rf_instance": "nrf2",
+        "ui_height_mm": 1.0,
+        "rf_height_mm": 2.5,
+        "remaining_z_clearance_mm": 7.5
+      },
+      {
         "ui_instance": "sd",
         "rf_instance": "pd_config_eeprom",
         "ui_height_mm": 1.68,
         "rf_height_mm": 1.75,
         "remaining_z_clearance_mm": 7.57
+      },
+      {
+        "ui_instance": "display_connector",
+        "rf_instance": "nrf0_rf_board_connector",
+        "ui_height_mm": 1.0,
+        "rf_height_mm": 2.4,
+        "remaining_z_clearance_mm": 7.6
+      },
+      {
+        "ui_instance": "display_connector",
+        "rf_instance": "nrf1_rf_board_connector",
+        "ui_height_mm": 1.0,
+        "rf_height_mm": 2.4,
+        "remaining_z_clearance_mm": 7.6
       },
       {
         "ui_instance": "receiver",
@@ -3112,16 +3133,16 @@
       ],
       "complete_height_from_ui_inner_mm": 1.0,
       "remaining_to_opposite_pcb_plane_mm": 10.0,
-      "opposing_pair_count": 1,
-      "minimum_opposing_body": "voice_v",
-      "minimum_opposing_z_clearance_mm": 6.8,
+      "opposing_pair_count": 4,
+      "minimum_opposing_body": "nrf1",
+      "minimum_opposing_z_clearance_mm": 7.5,
       "connector_is_load_bearing": false,
       "retention": {
         "connector_is_load_bearing": false,
         "panel_support": "one stocked 50.00 x 50.00-mm rectangular acrylic-foam PSA pad applied to the flat component-free UI-PCB outer face at x=12.50...62.50 mm, y=44.46...94.46 mm; it supports 52.0% of the stiff panel plan while the complete folded-FPC zone above it remains adhesive-free",
         "primary_retention": "a single stocked rectangular industrial PSA pad applied to the UI PCB, never to the loose panel; its exact released thickness must exceed the measured folded-FPC maximum stack by at least 0.20 mm",
         "secondary_retention": "none in the assembled stack; PCB assembly datums and a removable placement fixture control alignment without becoming retained parts",
-        "flex_strain_relief": "the tail leaves the panel toward board -Y, folds back into the adhesive-free pocket under the panel, and only the 25.50-mm contact tongue crosses the rounded 27.00 x 1.20-mm PCB slot before entering the inner-face ZIF; the pocket prevents component compression and the bonded panel prevents motion, so no sharp crease, routed-edge bearing, tensile load or peel load reaches the contacts or latch",
+        "flex_strain_relief": "the tail leaves the panel toward board -Y, folds back once without twist into the adhesive-free pocket under the panel, and only the 25.50-mm contact tongue crosses the rounded 27.00 x 1.20-mm PCB slot before entering the inner-face ZIF. The 30.16 +/-0.50-mm source length, slot at y=23.00 mm and ZIF at y=25.00 mm preserve at least 5.00 mm of relaxed service slack after the actual bend/insertion path is proven. The pocket prevents component compression and the bonded panel prevents motion, so no sharp crease, routed-edge bearing, tensile load or peel load reaches the contacts or latch",
         "service_rule": "opening the sandwich exposes the ZIF latch; release the latch first, then warm and cut the rectangular PSA pad before lifting the panel, and install one fresh stocked rectangle on the PCB before reassembly",
         "physical_realization": [
           {
@@ -3151,7 +3172,7 @@
             "id": "fpc_bend_guide",
             "quantity": 1,
             "part_type": "adhesive-free folded-FPC upper zone, rounded PCB tongue slot and optional removable low-tack polyimide insertion guide",
-            "implementation": "reserve a 47.90-mm-wide adhesive-free zone for the component-bearing FPC under the antenna-edge portion of the panel and one centered 27.00 x 1.20-mm rounded NPTH slot at board x=24.00...51.00 mm, y=34.00...35.20 mm; the 25.50 +/-0.15-mm tongue crosses with 0.75-mm nominal and 0.675-mm worst-case lateral clearance per side. Deburr the routed slot and use a removable low-tack polyimide insertion guide when mating; the folded FPC must not be compressed, bonded or allowed to bear on the routed edge",
+            "implementation": "reserve a 47.90-mm-wide adhesive-free zone for the component-bearing FPC under the antenna-edge portion of the panel and one centered 27.00 x 1.20-mm rounded NPTH slot at board x=24.00...51.00 mm, y=23.00...24.20 mm; the 25.50 +/-0.15-mm tongue crosses with 0.75-mm nominal and 0.675-mm worst-case lateral clearance per side. Deburr the routed slot and use a removable low-tack polyimide insertion guide when mating; the folded FPC must not be compressed, bonded, twisted or allowed to bear on the routed edge. Dry fit must show at least 5.00 mm of relaxed path reserve before the PSA liner is removed",
             "load_role": "keeps the component-bearing flex unloaded and prevents panel motion from becoming tensile or peel load at the ZIF contacts"
           }
         ],
@@ -3162,6 +3183,10 @@
           "stock_pad_release_rule": "exact stock pad thickness >= measured folded FPC maximum stack + 0.20 mm",
           "zif_height_mm": 1.0,
           "contact_stiffener_thickness_mm": 0.3,
+          "source_tail_length_from_panel_edge_to_tip_mm": 30.16,
+          "source_tail_length_tolerance_mm": 0.5,
+          "minimum_source_tail_length_mm": 29.66,
+          "panel_tail_exit_edge_y_mm": 10.5,
           "contact_tail_width_mm": 25.5,
           "contact_tail_width_tolerance_mm": 0.15,
           "component_fpc_pocket_width_mm": 47.9,
@@ -3183,7 +3208,7 @@
           "separate_upper_tape_reason": "the stiff panel already has 2500 mm2 of primary bond area; observed ESP32-DIV construction suggests that a smaller partial-area bond is adequate, so a second strip or shoulder feature adds assembly work without a demonstrated need",
           "pcb_slot_position_mm": [
             24.0,
-            34.0
+            23.0
           ],
           "pcb_slot_width_mm": 27.0,
           "pcb_slot_height_mm": 1.2,
@@ -3191,6 +3216,14 @@
           "tail_bears_on_bare_pcb_edge": false,
           "component_bearing_fpc_compressed": false,
           "hard_crease_allowed": false,
+          "twist_allowed": false,
+          "fold_count": 1,
+          "connector_full_depth_reach_y_mm": 28.8,
+          "minimum_raw_length_reserve_mm": 11.36,
+          "minimum_relaxed_service_slack_mm": 5.0,
+          "maximum_measured_route_to_contact_stop_mm": 24.66,
+          "bend_insertion_and_tolerance_budget_mm": 6.36,
+          "slack_release_rule": "with the received panel dry-fitted and the PSA upper liner still installed, the measured neutral-axis route from the panel exit to the connector contact stop must be <= 24.66 mm, leaving >= 5.00 mm against the 29.66-mm minimum source tail; the tongue must show a relaxed bow and must not pull the latch",
           "minimum_bend_radius_mm": null,
           "bend_radius_gate": "H5 must bind the 180-degree fold radius, folded stack height and pocket depth to the current-lot FPC construction before release; the drawing deliberately does not invent an unsupported radius or component height"
         },
@@ -3207,9 +3240,24 @@
       },
       "opposing_pairs": [
         {
-          "rf_instance": "voice_v",
-          "rf_height_mm": 3.2,
-          "remaining_z_clearance_mm": 6.8
+          "rf_instance": "nrf1",
+          "rf_height_mm": 2.5,
+          "remaining_z_clearance_mm": 7.5
+        },
+        {
+          "rf_instance": "nrf2",
+          "rf_height_mm": 2.5,
+          "remaining_z_clearance_mm": 7.5
+        },
+        {
+          "rf_instance": "nrf0_rf_board_connector",
+          "rf_height_mm": 2.4,
+          "remaining_z_clearance_mm": 7.6
+        },
+        {
+          "rf_instance": "nrf1_rf_board_connector",
+          "rf_height_mm": 2.4,
+          "remaining_z_clearance_mm": 7.6
         }
       ]
     },
@@ -3294,7 +3342,7 @@
         }
       ],
       "native_slack_bend_and_retention_status": "H5_open",
-      "nrf_reserve_opposing_crossing_count": 4,
+      "nrf_reserve_opposing_crossing_count": 7,
       "minimum_nrf_reserve_opposing_crossing": {
         "cable_instance": "nrf0_rf_jumper",
         "ui_instance": "c5",
@@ -3704,10 +3752,10 @@
     "display_bus": {
       "direct_ui_zif_result": "paper_geometry_passed",
       "connector_height_mm": 1.0,
-      "minimum_opposing_z_clearance_mm": 6.8,
+      "minimum_opposing_z_clearance_mm": 7.5,
       "connector_is_load_bearing": false,
       "received_panel_tail_result": "H5_open",
-      "open_evidence": "current-lot FPC outline, stiffener, thickness, insertion and bezel/preload fit"
+      "open_evidence": "current-lot FPC stack/bend, <=24.66-mm dry-fit route, >=5.00-mm relaxed slack, insertion and exact PSA process"
     },
     "outer_face_through_board_features": {
       "encoder_feature_count": 7,
@@ -4403,8 +4451,8 @@
           51.0
         ],
         "y": [
-          36.0,
-          39.8
+          25.0,
+          28.8
         ],
         "z": [
           5.36,

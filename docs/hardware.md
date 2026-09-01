@@ -86,9 +86,11 @@ below 0.4 MB/s, so it does not saturate the RP transport.
 
 ## Physical layout
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.37-reviewed-1)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.38-fpc-slack-1)
 
-[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.37-reviewed-1).
+[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.38-fpc-slack-1).
+
+![Display PSA, one-fold relaxed FPC route and direct ZIF](images/display-mount.svg?rev=h1-r2.38-fpc-slack-1)
 
 The ten main antenna ports are split symmetrically:
 
@@ -102,7 +104,7 @@ The ten main antenna ports are split symmetrically:
 
 ### Component legend
 
-![Number, MPN and role of every component](images/h1-r2-component-legend.svg?rev=h1-r2.37-reviewed-1)
+![Number, MPN and role of every component](images/h1-r2-component-legend.svg?rev=h1-r2.38-fpc-slack-1)
 
 [Front inner face at full scale](images/h1-r2-inner-ui.svg) ·
 [rear inner face at full scale](images/h1-r2-inner-rf.svg)

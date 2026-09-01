@@ -3220,15 +3220,15 @@ class ProductSiteTests(unittest.TestCase):
             "SKRTLAE010",
             "FTSH-105-01-L-DV-K-P-TR",
             "TE Connectivity 2118651-2",
-            'data-instance="s3_rf_jumper" data-projected-chord-mm="14.78" data-assembly-length-mm="30.00" data-unprojected-slack-mm="15.22"',
-            'data-instance="c5_rf_jumper" data-projected-chord-mm="15.50" data-assembly-length-mm="30.00" data-unprojected-slack-mm="14.50"',
+            'data-instance="s3_rf_jumper" data-projected-chord-mm="14.56" data-assembly-length-mm="30.00" data-unprojected-slack-mm="15.44"',
+            'data-instance="c5_rf_jumper" data-projected-chord-mm="15.83" data-assembly-length-mm="30.00" data-unprojected-slack-mm="14.17"',
             " · SPK",
             'data-inner-body-count="181"',
             'data-max-inner-height-mm="8.95"',
             'data-min-single-body-clearance-mm="2.05"',
-            'data-display-direct-zif-opposing-pairs="0"',
-            'data-min-display-direct-zif-clearance-mm="10.00"',
-            'data-opposing-pairs="44"',
+            'data-display-direct-zif-opposing-pairs="4"',
+            'data-min-display-direct-zif-clearance-mm="7.50"',
+            'data-opposing-pairs="47"',
             'data-intentional-mates="1"',
             'data-min-z-clearance-mm="3.31"',
             'data-rf-cable-routes="2"',
@@ -3236,7 +3236,7 @@ class ProductSiteTests(unittest.TestCase):
             'data-route-state="pre-ecad-topology-only"',
             'data-nrf-cable-reserves="3"',
             'data-opposing-cable-pairs="2"',
-            'data-nrf-reserve-opposing-pairs="4"',
+            'data-nrf-reserve-opposing-pairs="7"',
             'data-encoder-through-features="7"',
             'data-cable-od-max-mm="1.37"',
             'data-functional-zones="1"',
@@ -3264,10 +3264,10 @@ class ProductSiteTests(unittest.TestCase):
             "ring on S3/C5 = module U.FL · ring on nRF = module IPEX · numbered ring = board U.FL",
             "outward RP-SMA · antenna screws on here",
             "all 181 inner bodies checked individually; tallest 8.95 mm; opposite-plane remainder 2.05 mm",
-            "direct 1.00-mm display ZIF: 0 opposing crossings; minimum Z gap 10.00 mm",
-            "opposing inner faces: 44 non-mating XY pairs checked; minimum Z gap 3.31 mm",
+            "direct 1.00-mm display ZIF: 4 opposing crossings; minimum Z gap 7.50 mm to nrf1",
+            "opposing inner faces: 47 non-mating XY pairs checked; minimum Z gap 3.31 mm",
             "RF coax: 2 direct exact-endpoint projections + 3 nRF module-face reserves; all five 30-mm assemblies accounted",
-            "nRF reserve crossings: 4; minimum Z gap 5.20 mm",
+            "nRF reserve crossings: 7; minimum Z gap 5.20 mm",
             "EC11E through-board features: 7 checked; 2 opposing crossings; minimum Z gap 4.20 mm",
             "limiting pair: 23 3.5-mm CTIA headset TRRS mid-mount connector / 157 protected-pack branch fuse #0",
             "TCA9534APWR",
@@ -3333,9 +3333,9 @@ class ProductSiteTests(unittest.TestCase):
                 for row in audit["individual_body_clearances"]
             )
         )
-        self.assertEqual(44, audit["opposing_non_mating_pair_count"])
+        self.assertEqual(47, audit["opposing_non_mating_pair_count"])
         self.assertEqual(3.31, audit["minimum_opposing_pair"]["remaining_z_clearance_mm"])
-        self.assertEqual(44, len(audit["opposing_non_mating_pairs"]))
+        self.assertEqual(47, len(audit["opposing_non_mating_pairs"]))
         self.assertTrue(
             all(
                 row["remaining_z_clearance_mm"] >= 0.7
@@ -3344,8 +3344,8 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual(11.0, audit["intentional_mate"]["mated_height_mm"])
         self.assertEqual(1.0, audit["display_direct_mount"]["complete_height_from_ui_inner_mm"])
-        self.assertEqual(0, audit["display_direct_mount"]["opposing_pair_count"])
-        self.assertEqual(10.0, audit["display_direct_mount"]["minimum_opposing_z_clearance_mm"])
+        self.assertEqual(4, audit["display_direct_mount"]["opposing_pair_count"])
+        self.assertEqual(7.5, audit["display_direct_mount"]["minimum_opposing_z_clearance_mm"])
         self.assertFalse(audit["display_direct_mount"]["connector_is_load_bearing"])
         self.assertEqual(
             7.37,
@@ -3364,7 +3364,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(2, coax["direct_projection_opposing_crossing_count"])
         self.assertEqual("H5_open", coax["native_slack_bend_and_retention_status"])
         self.assertEqual(
-            [14.781343, 15.50061],
+            [14.559468, 15.829052],
             [row["projected_chord_mm"] for row in coax["native_direct_projections"]],
         )
         self.assertEqual(3, coax["conservative_nrf_module_face_reserve_count"])

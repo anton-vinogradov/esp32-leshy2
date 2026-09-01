@@ -387,7 +387,7 @@ UI_INNER = (
     Placement("c5_rf_board_connector", 57.5, 9.0, "C5 30-mm jumper board receptacle"),
     Placement("s3", 5.3, 22.0, "UI, display, storage and audio owner; shifted 0.7 mm outward for the central display ZIF corridor"),
     Placement("c5", 51.7, 22.0, "native 2.4/5-GHz and IR owner; shifted 0.7 mm outward for the central display ZIF corridor"),
-    Placement("display_connector", 24.0, 36.0, "direct 50-contact dual-contact ZIF behind the folded display FPC slot"),
+    Placement("display_connector", 24.0, 25.0, "direct 50-contact dual-contact ZIF behind the folded display FPC slot; pin 1 at world x-min"),
     Placement("slow_io", 24.0, 55.0, "24-line slow-control expander"),
     Placement("ui_matrix_io", 33.0, 55.0, "sixteen-line direct-control input expander"),
     Placement("codec", 42.0, 55.0, "audio capture and playback codec"),
@@ -2047,6 +2047,8 @@ def validate_display_mount_design(
         or fpc_route.get("tail_bears_on_bare_pcb_edge") is not False
         or fpc_route.get("hard_crease_allowed") is not False
         or fpc_route.get("component_bearing_fpc_compressed") is not False
+        or fpc_route.get("twist_allowed") is not False
+        or fpc_route.get("fold_count") != 1
         or fpc_route.get("minimum_bend_radius_mm") is not None
         or "H5" not in fpc_route.get("bend_radius_gate", "")
     ):
@@ -2113,6 +2115,12 @@ def validate_display_mount_design(
         errors.append("display-mount: FPC tongue/slot lateral clearance drifted")
     if worst_lateral < 0.5:
         errors.append("display-mount: worst-case FPC tongue/slot lateral clearance is below 0.5 mm")
+    if not math.isclose(slot_x, 24.0, abs_tol=1e-9) or not math.isclose(slot_y, 23.0, abs_tol=1e-9):
+        errors.append("display-mount: slack-qualified FPC slot position drifted")
+    if not math.isclose(x, slot_x, abs_tol=1e-9) or not math.isclose(y, 25.0, abs_tol=1e-9):
+        errors.append("display-mount: slack-qualified direct-ZIF position drifted")
+    if y - (slot_y + slot_h) < 0.7:
+        errors.append("display-mount: FPC slot-to-ZIF mouth corridor is below 0.7 mm")
     if not (
         DISPLAY_X <= slot_x
         and slot_x + slot_w <= DISPLAY_X + DISPLAY_W
@@ -2138,6 +2146,45 @@ def validate_display_mount_design(
             abs_tol=1e-9,
         ) or ufl_gap < 0.7:
             errors.append("display-mount: FPC slot/U.FL separation drifted")
+    source_tail = float(fpc_route.get("source_tail_length_from_panel_edge_to_tip_mm", -1))
+    source_tol = float(fpc_route.get("source_tail_length_tolerance_mm", -1))
+    minimum_tail = source_tail - source_tol
+    panel_edge_y = float(fpc_route.get("panel_tail_exit_edge_y_mm", -1))
+    connector_full_depth_y = y + height
+    panel_to_connector = connector_full_depth_y - panel_edge_y
+    raw_reserve = minimum_tail - panel_to_connector
+    protected_slack = float(fpc_route.get("minimum_relaxed_service_slack_mm", -1))
+    maximum_route = minimum_tail - protected_slack
+    bend_budget = raw_reserve - protected_slack
+    calculated_slack = {
+        "minimum_source_tail_length_mm": minimum_tail,
+        "connector_full_depth_reach_y_mm": connector_full_depth_y,
+        "minimum_raw_length_reserve_mm": raw_reserve,
+        "maximum_measured_route_to_contact_stop_mm": maximum_route,
+        "bend_insertion_and_tolerance_budget_mm": bend_budget,
+    }
+    if any(
+        not math.isclose(float(fpc_route.get(field, -1)), expected, abs_tol=1e-9)
+        for field, expected in calculated_slack.items()
+    ):
+        errors.append("display-mount: source-tail slack budget drifted")
+    paper_slack = {
+        "minimum_tail_length_mm": minimum_tail,
+        "panel_edge_to_connector_full_depth_mm": panel_to_connector,
+        "minimum_raw_length_reserve_mm": raw_reserve,
+        "minimum_relaxed_service_slack_mm": protected_slack,
+        "maximum_measured_route_to_contact_stop_mm": maximum_route,
+        "bend_insertion_and_tolerance_budget_mm": bend_budget,
+    }
+    if any(
+        not math.isclose(float(paper_checks.get(field, -1)), expected, abs_tol=1e-9)
+        for field, expected in paper_slack.items()
+    ):
+        errors.append("display-mount: paper tail-slack audit disagrees with geometry")
+    if raw_reserve < 10.0 or protected_slack < 5.0 or bend_budget < 5.0:
+        errors.append("display-mount: protected FPC slack or bend budget is insufficient")
+    if "<= 24.66 mm" not in fpc_route.get("slack_release_rule", ""):
+        errors.append("display-mount: received-panel neutral-axis route gate is missing")
     div_reference = retention.get("esp32_div_v2_reference", {})
     if div_reference.get("retention_evidence_status") != "unknown_from_public_sources":
         errors.append("display-mount: DIV retention must remain explicitly unproven")
@@ -2152,6 +2199,18 @@ def validate_display_mount_design(
         errors.append("display-mount: panel FPC must exit toward board -Y / the antenna edge")
     if "stop-work" not in orientation.get("factory_orientation_check", ""):
         errors.append("display-mount: factory orientation check must fail closed before PSA pressing")
+    if orientation.get("connector_contact_orientation") != "top and bottom contact":
+        errors.append("display-mount: exact FH34SRJ dual-contact orientation was lost")
+    if orientation.get("tail_pin_1_world_side_after_rotation_and_fold") != "board left / world x-min":
+        errors.append("display-mount: folded tail pin 1 no longer lands at world x-min")
+    if orientation.get("connector_pin_1_world_side") != "board left / world x-min":
+        errors.append("display-mount: connector footprint pin 1 no longer matches the tail")
+    if orientation.get("tail_pin_50_world_side_after_rotation_and_fold") != "board right / world x-max":
+        errors.append("display-mount: folded tail pin 50 no longer lands at world x-max")
+    if orientation.get("connector_pin_50_world_side") != "board right / world x-max":
+        errors.append("display-mount: connector footprint pin 50 no longer matches the tail")
+    if paper_checks.get("pin_order_and_contact_face_checked") is not True:
+        errors.append("display-mount: pin-order/contact-face paper check is not closed")
     electrical = design.get("electrical", {})
     if electrical.get("owner_contract") != {
         "display_bus_owner": "s3",
@@ -4078,7 +4137,7 @@ def render_internal(devices, instances, display_mount_design):
         text(note_x,notes_top+318,"SMA · GCT RFPC-SMA31-FN-175-A",9.2,"bold",colour="#344054"),
         text(note_x,notes_top+338,"RP-SMA · GCT RFPC-SMA32-FN-175-A",9.2,"bold",colour="#344054"),
         text(note_x,notes_top+364,"All five native/nRF module feeds use exact 30-mm 2118651-2 Gen1 jumpers.",9.2,"bold",colour="#166534"),
-        text(note_x,notes_top+385,"Physical keep-outs pass; display-tail insertion, bezel retention and final PCB copper/via DRC remain open.",9.2,"bold",colour="#b42318"),
+        text(note_x,notes_top+385,"Physical keep-outs pass; display dry-fit/slack, exact PSA process and final PCB copper/via DRC remain open.",9.2,"bold",colour="#b42318"),
         text(note_x,notes_top+406,"Placement projection; all mechanically significant bodies are accounted; small passives and production copper remain ECAD work.",9.2,colour="#526076"),
         "</g>",
     ]
@@ -4810,7 +4869,7 @@ def render_display_mount(design):
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         label(40, 42, "Leshy2 — stock display PSA rectangle and folded FPC", 22, "bold"),
-        label(40, 68, "L2-DISP-DIRECT-001-A · two silkscreen datums · one stocked 50 × 50-mm pad · 27-mm slot · direct 50-pin ZIF", 11, colour="#526076"),
+        label(40, 68, "L2-DISP-DIRECT-001-A · stock 50 × 50-mm PSA · slot y=23 · ZIF y=25 · ≥5-mm relaxed FPC slack", 11, colour="#526076"),
         label(55, 108, "Folded stack · side section", 14, "bold", colour="#1d4ed8"),
         label(55, 128, "schematic section · vertical scale is intentionally enlarged", 9.5, colour="#64748b"),
         '<rect x="90" y="150" width="400" height="132" rx="7" fill="#eaf2ff" stroke="#60a5fa" stroke-width="2"/>',
@@ -4819,18 +4878,17 @@ def render_display_mount(design):
         label(290, 235, "1 · panel rear stays flat; FPC components sit in the adhesive-free zone", 9.5, "normal", "middle", "#526076"),
         '<rect x="90" y="282" width="200" height="28" fill="#fde68a" stroke="#d97706" stroke-width="1.5" data-mechanical-part="display_psa_rectangle"/>',
         label(190, 300, "2 · stock 50 × 50-mm PSA rectangle", 9.2, "bold", "middle", "#92400e"),
-        label(443, 291, "upper FPC zone", 8.2, "bold", "middle", "#92400e"),
-        label(443, 305, "has no adhesive", 8.2, "normal", "middle", "#92400e"),
         '<rect x="70" y="310" width="255" height="49" rx="3" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-mechanical-part="ui_pcb_display_bed"/>',
         '<rect x="349" y="310" width="161" height="49" rx="3" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-mechanical-part="ui_pcb_display_bed"/>',
         '<rect x="325" y="310" width="24" height="49" fill="#ffffff" stroke="#16a34a" stroke-width="2" stroke-dasharray="4 3" data-mechanical-part="fpc_tongue_slot"/>',
         label(188, 340, "3 · UI PCB · 1.6 mm", 9.5, "bold", "middle", "#166534"),
         label(423, 374, "rounded 27.0 × 1.2-mm slot", 8.8, "bold", "middle", "#b42318"),
-        '<path d="M458 273 C500 278 500 306 458 306 L342 306 L337 366 L300 366" fill="none" stroke="#0f766e" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" data-mechanical-part="fpc_bend_guide" data-fpc-route="folded-pocket-internal-slot-zif"/>',
-        '<path d="M458 273 C500 278 500 306 458 306 L342 306 L337 366 L300 366" fill="none" stroke="#99f6e4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>',
+        '<path d="M458 273 C507 271 510 308 467 308 C440 308 432 292 408 304 L342 304 L337 366 L300 366" fill="none" stroke="#0f766e" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" data-mechanical-part="fpc_bend_guide" data-fpc-route="single-fold-relaxed-loop-internal-slot-zif"/>',
+        '<path d="M458 273 C507 271 510 308 467 308 C440 308 432 292 408 304 L342 304 L337 366 L300 366" fill="none" stroke="#99f6e4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>',
         '<rect x="390" y="296" width="16" height="8" rx="1" fill="#f59e0b" stroke="#b45309" stroke-width="1"/><rect x="415" y="296" width="12" height="8" rx="1" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>',
         label(427, 324, "component-bearing FPC", 8.8, "bold", "middle", "#0f766e"),
         label(427, 341, "not compressed · not glued", 8.5, "bold", "middle", "#b42318"),
+        label(478, 259, "relaxed service bow ≥5 mm", 8.5, "bold", "middle", "#0f766e"),
         '<rect x="198" y="360" width="112" height="42" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2" data-instance="display_connector"/>',
         label(254, 378, "4 · FH34SRJ-50S", 9.4, "bold", "middle", "#1d4ed8"),
         label(254, 394, "inner face · non-load-bearing", 8.5, "bold", "middle", "#526076"),
@@ -4840,9 +4898,10 @@ def render_display_mount(design):
         label(70, 490, "Panel → one stocked 50 × 50-mm PSA rectangle → UI PCB. The upper FPC zone has no adhesive.", 9.8),
         label(70, 512, "Released foam thickness ≥ measured folded-FPC maximum stack + 0.20 mm.", 9.8, "bold", colour="#92400e"),
         label(70, 544, "What crosses the PCB", 13, "bold", colour="#166534"),
-        label(70, 568, "Only the 25.50 ±0.15-mm contact tongue; the 47.90-mm FPC pocket is not a PCB cut-out.", 9.8),
-        label(70, 600, "Load path", 13, "bold", colour="#166534"),
-        label(70, 624, "finger / handling → stiff panel → stock PSA rectangle → UI PCB; never through FPC or ZIF", 9.8),
+        label(70, 568, "Tail 30.16 ±0.50 mm; measured exit→contact-stop route ≤24.66 mm; relaxed reserve ≥5.00 mm.", 9.8),
+        label(70, 586, "One 180° fold, no twist: panel pin 1 → connector pin 1; panel pin 50 → connector pin 50.", 9.4, "bold", colour="#0f766e"),
+        label(70, 612, "Load path", 13, "bold", colour="#166534"),
+        label(70, 638, "finger / handling → stiff panel → stock PSA rectangle → UI PCB; never through FPC or ZIF", 9.8),
         label(650, 108, "UI PCB before panel placement · both alignment frames visible", 14, "bold", colour="#7c3aed"),
         '<rect x="690" y="140" width="300" height="500" rx="8" fill="#f8fafc" stroke="#344054" stroke-width="3"/>',
         label(840, 132, "ANTENNA EDGE · board -Y", 10.5, "bold", "middle", "#b42318"),
@@ -4858,14 +4917,14 @@ def render_display_mount(design):
         label(840, 402, "STOCK 50 × 50-mm PSA", 13, "bold", "middle", "#92400e"),
         label(840, 422, "one ready-made rectangle · no custom die", 8.7, "bold", "middle", "#92400e"),
         label(840, 440, "52.0% panel support · no upper strip", 8.4, "bold", "middle", "#92400e"),
-        '<rect x="789" y="258" width="102" height="21" rx="3" fill="#99f6e4" stroke="#0f766e" stroke-width="2" data-mechanical-part="fpc_contact_tongue"/>',
+        '<path d="M891 245 C918 245 918 270 891 270 L789 270" fill="none" stroke="#99f6e4" stroke-width="15" stroke-linecap="round" data-mechanical-part="fpc_contact_tongue" data-slack="relaxed"/>',
         '<rect x="786" y="276" width="108" height="6" rx="3" fill="#ffffff" stroke="#dc2626" stroke-width="2" data-mechanical-part="fpc_tongue_slot"/>',
-        label(840, 313, "PCB SLOT · 27.00 × 1.20 mm", 8.0, "bold", "middle", "#b42318"),
         '<rect x="786" y="286" width="108" height="18" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="2" stroke-dasharray="5 3" data-instance="display_connector"/>',
-        label(840, 299, "INNER: FH34SRJ-50S", 8.2, "bold", "middle", "#1d4ed8"),
+        label(791, 269, "1", 7.5, "bold", "middle", "#0f766e"),
+        label(889, 269, "50", 7.5, "bold", "middle", "#0f766e"),
         label(840, 540, "DISPLAY SILK · 56.54 × 84.96 mm · FPC ↑", 8.6, "bold", "middle", "#1d4ed8"),
         label(840, 572, "U.FL row ends at y=17.1 mm", 8.8, "bold", "middle", "#0f766e"),
-        label(840, 591, "slot starts at y=34.0 mm · gap 16.9 mm", 8.8, "bold", "middle", "#166534"),
+        label(840, 591, "slot y=23.0 mm · U.FL gap 5.9 mm · raw reach reserve 11.36 mm", 8.4, "bold", "middle", "#166534"),
         label(1018, 145, "Two assembly datums", 12.5, "bold", colour="#7c3aed"),
         label(1018, 170, "1 · PSA SILK", 9.5, "bold"),
         label(1018, 191, "2 · DISPLAY + FPC ↑", 9.5, "bold"),
@@ -4880,13 +4939,13 @@ def render_display_mount(design):
         label(1018, 443, f"ZIF {connector['envelope_mm'][0]:.1f} × {connector['envelope_mm'][1]:.1f} × {connector['envelope_mm'][2]:.1f} mm", 9.5, "bold"),
         label(1018, 464, f"inner gap {stack['available_interboard_gap_mm']:.1f} mm", 9.5),
         label(1018, 502, "Open H5 evidence", 12.5, "bold", colour="#92400e"),
-        label(1018, 527, "• folded stack / bend", 9.5),
-        label(1018, 548, "• exact foam PSA MPN", 9.5),
-        label(1018, 569, "• stock source + process", 9.5),
+        label(1018, 527, "• actual bend radius / stack", 9.5),
+        label(1018, 548, "• dry-fit path ≤24.66 mm", 9.5),
+        label(1018, 569, "• exact foam PSA MPN", 9.5),
         label(1018, 608, f"drawing stock-pad envelope {route['drawing_stock_pad_envelope_mm']:.1f} mm", 9.2, "bold", colour="#92400e"),
         label(1018, 629, "not a released material thickness", 9.2, "bold", colour="#92400e"),
-        label(40, 682, "Factory sequence: clean PCB → place stock rectangle by PSA SILK with upper liner on → route/lock FPC → peel liner → align DISPLAY/FPC ↑ → press once.", 9.9, "bold", colour="#166534"),
-        label(40, 712, "No custom converter order or upper strip. Exact stocked MPN/thickness closes only after the current-lot folded FPC stack is measured.", 9.7, "bold", colour="#92400e"),
+        label(40, 682, "Factory: liner on → one untwisted fold → dry-fit 1↔1 / 50↔50 → prove ≥5-mm relaxed slack → latch → peel liner → align → press once.", 9.7, "bold", colour="#166534"),
+        label(40, 712, "Stop if taut, twisted, pin order is reversed or the measured neutral-axis route exceeds 24.66 mm. PSA pressing comes last.", 9.7, "bold", colour="#b42318"),
         '</svg>',
     ]
     return "\n".join(out) + "\n"
@@ -5337,7 +5396,7 @@ def build_unified_coordinate_table(
                 "minimum_opposing_z_clearance_mm": round(minimum_mount_clearance, 6),
                 "connector_is_load_bearing": False,
                 "received_panel_tail_result": "H5_open",
-                "open_evidence": "current-lot FPC outline, stiffener, thickness, insertion and bezel/preload fit",
+                "open_evidence": "current-lot FPC stack/bend, <=24.66-mm dry-fit route, >=5.00-mm relaxed slack, insertion and exact PSA process",
             },
             "outer_face_through_board_features": {
                 "encoder_feature_count": len(

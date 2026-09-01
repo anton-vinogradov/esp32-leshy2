@@ -8,7 +8,7 @@
 <rect x="70.00" y="512.40" width="10.88" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="70.00" y="490.00" width="10.88" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="194.99" y="578.48" width="28.61" height="23.52" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="146.80" y="237.20" width="86.40" height="12.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
+<rect x="146.80" y="202.00" width="86.40" height="12.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="268.40" y="384.40" width="16.00" height="14.08" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="288.24" y="384.40" width="21.76" height="9.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
 <rect x="288.24" y="362.00" width="21.76" height="9.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
@@ -535,7 +535,7 @@
 <text x="755" y="4535" font-family="sans-serif" font-size="10.5" fill="#526076">comparator</text>
 <text x="1100" y="112" font-family="sans-serif" font-size="17" font-weight="700" fill="#172033">Machine audit</text>
 <text x="1100" y="142" font-family="sans-serif" font-size="12" fill="#166534">✓ same-face collisions: 0</text>
-<text x="1100" y="164" font-family="sans-serif" font-size="12" fill="#166534">✓ opposing crossings: 87</text>
+<text x="1100" y="164" font-family="sans-serif" font-size="12" fill="#166534">✓ opposing crossings: 88</text>
 <text x="1100" y="186" font-family="sans-serif" font-size="12" fill="#166534">✓ minimum Z clearance: 2.59 mm</text>
 <text x="1100" y="208" font-family="sans-serif" font-size="12" fill="#526076">required: 0.70 mm</text>
 <text x="1100" y="248" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">Line key</text>

@@ -76,7 +76,7 @@
     },
     "u219": {"x_mm": [-4.5, 79.5], "y_mm": [17.02, 41.02], "z_mm": [17.96, 37.66]},
     "battery_holder": {"body_x_mm": [17.6, 57.38], "body_y_mm": [46.47, 123.53], "pad_span_y_mm": [42.0, 128.0], "z_mm": [17.96, 38.66], "mounting": "SMT with enclosure cradle/end-stop load path"},
-    "display_direct_zif": {"x_mm": [24.0, 51.0], "y_mm": [36.0, 39.8], "z_mm": [5.36, 6.36]}
+    "display_direct_zif": {"x_mm": [24.0, 51.0], "y_mm": [25.0, 28.8], "z_mm": [5.36, 6.36]}
   },
   "enclosure_reference": {
     "locked": "world datum, PCB outlines, mounting axes, touch plane, external interface directions and component/accessory keep-outs",

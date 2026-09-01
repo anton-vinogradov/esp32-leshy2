@@ -946,14 +946,14 @@ def render_doc(result: dict, ru: bool) -> str:
             '- Точные чертежи EastRising контролируют полный корпус панели, 50-контактный FPC, шаг 0,50 мм, stiffener 0,30 мм и карту контактов; геометрия donor-board больше не используется.',
             '- Экран физически ориентирован **шлейфом к антенному торцу**, а изображение ILI9488 и координаты FT6236 разворачиваются программно. Шлейф не входит в зону LED, D-pad и функциональных клавиш.',
             f'- Прямой ZIF `{display["current_direct_zif_mpn"]}` в позиции `{display["current_direct_zif_xy_mm"]}` прогнан по текущим точным корпусам: `0` same-face collisions и `{display["paper_fit"]["minimum_opposing_clearance_mm"]:.1f} мм` до противоположной плоскости при требуемых `{display["paper_fit"]["required_minimum_mm"]:.1f} мм`.',
-            f'- Отдельная плата-адаптер и оба DF40 удалены: высота стека снижается с `{display["paper_fit"]["removed_stack_height_mm"]:.1f}` до `{display["paper_fit"]["direct_zif_height_mm"]:.1f} мм`, а цена компонентов одного прототипа — на `${-display["paper_fit"]["bom_change_usd"]:.2f}`. Панель держат рамка, PSA и мягкий подпор, а не контакты ZIF.',
+            f'- Отдельная плата-адаптер и оба DF40 удалены: высота стека снижается с `{display["paper_fit"]["removed_stack_height_mm"]:.1f}` до `{display["paper_fit"]["direct_zif_height_mm"]:.1f} мм`, а цена компонентов одного прототипа — на `${-display["paper_fit"]["bom_change_usd"]:.2f}`. Панель держит один готовый PSA-прямоугольник 50×50 мм; контакты ZIF нагрузки не несут.',
         ]
     else:
         lines += [
             '- Exact EastRising drawings control the complete panel body, 50-contact FPC, 0.50-mm pitch, 0.30-mm stiffener and contact map; donor-board geometry is no longer used.',
             '- The panel is physically oriented **with its flex toward the antenna edge**, while ILI9488 display memory and FT6236 touch coordinates rotate in firmware. The tail stays out of the LED, D-pad and function-key zone.',
             f'- Direct ZIF `{display["current_direct_zif_mpn"]}` at `{display["current_direct_zif_xy_mm"]}` passes the current exact-body model: `0` same-face collisions and `{display["paper_fit"]["minimum_opposing_clearance_mm"]:.1f} mm` to the opposing PCB plane versus `{display["paper_fit"]["required_minimum_mm"]:.1f} mm` required.',
-            f'- The adapter PCB and both DF40 parts are removed: stack height falls from `{display["paper_fit"]["removed_stack_height_mm"]:.1f}` to `{display["paper_fit"]["direct_zif_height_mm"]:.1f} mm`, and one-prototype component cost falls by `${-display["paper_fit"]["bom_change_usd"]:.2f}`. The bezel, PSA and compliant preload carry the panel; ZIF contacts carry no mechanical load.',
+            f'- The adapter PCB and both DF40 parts are removed: stack height falls from `{display["paper_fit"]["removed_stack_height_mm"]:.1f}` to `{display["paper_fit"]["direct_zif_height_mm"]:.1f} mm`, and one-prototype component cost falls by `${-display["paper_fit"]["bom_change_usd"]:.2f}`. One stocked 50×50-mm PSA rectangle carries the panel; ZIF contacts carry no mechanical load.',
         ]
     footer = (
         f'> Маркер: **{result["marker"]}**. Включено в текущий проведённый ревью результат H1.'

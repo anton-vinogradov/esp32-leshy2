@@ -10,7 +10,7 @@
       "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
       "jlcpcb_part": "C3169104",
       "mount": "UI PCB inner face",
-      "ui_inner_position_mm": [24.0, 36.0],
+      "ui_inner_position_mm": [24.0, 25.0],
       "envelope_mm": [27.0, 3.8, 1.0],
       "role": "direct dual-contact 50-position ZIF for the exact 0.30-mm EastRising tail"
     }
@@ -39,7 +39,7 @@
     "panel_support": "one stocked 50.00 x 50.00-mm rectangular acrylic-foam PSA pad applied to the flat component-free UI-PCB outer face at x=12.50...62.50 mm, y=44.46...94.46 mm; it supports 52.0% of the stiff panel plan while the complete folded-FPC zone above it remains adhesive-free",
     "primary_retention": "a single stocked rectangular industrial PSA pad applied to the UI PCB, never to the loose panel; its exact released thickness must exceed the measured folded-FPC maximum stack by at least 0.20 mm",
     "secondary_retention": "none in the assembled stack; PCB assembly datums and a removable placement fixture control alignment without becoming retained parts",
-    "flex_strain_relief": "the tail leaves the panel toward board -Y, folds back into the adhesive-free pocket under the panel, and only the 25.50-mm contact tongue crosses the rounded 27.00 x 1.20-mm PCB slot before entering the inner-face ZIF; the pocket prevents component compression and the bonded panel prevents motion, so no sharp crease, routed-edge bearing, tensile load or peel load reaches the contacts or latch",
+    "flex_strain_relief": "the tail leaves the panel toward board -Y, folds back once without twist into the adhesive-free pocket under the panel, and only the 25.50-mm contact tongue crosses the rounded 27.00 x 1.20-mm PCB slot before entering the inner-face ZIF. The 30.16 +/-0.50-mm source length, slot at y=23.00 mm and ZIF at y=25.00 mm preserve at least 5.00 mm of relaxed service slack after the actual bend/insertion path is proven. The pocket prevents component compression and the bonded panel prevents motion, so no sharp crease, routed-edge bearing, tensile load or peel load reaches the contacts or latch",
     "service_rule": "opening the sandwich exposes the ZIF latch; release the latch first, then warm and cut the rectangular PSA pad before lifting the panel, and install one fresh stocked rectangle on the PCB before reassembly",
     "physical_realization": [
       {
@@ -69,7 +69,7 @@
         "id": "fpc_bend_guide",
         "quantity": 1,
         "part_type": "adhesive-free folded-FPC upper zone, rounded PCB tongue slot and optional removable low-tack polyimide insertion guide",
-        "implementation": "reserve a 47.90-mm-wide adhesive-free zone for the component-bearing FPC under the antenna-edge portion of the panel and one centered 27.00 x 1.20-mm rounded NPTH slot at board x=24.00...51.00 mm, y=34.00...35.20 mm; the 25.50 +/-0.15-mm tongue crosses with 0.75-mm nominal and 0.675-mm worst-case lateral clearance per side. Deburr the routed slot and use a removable low-tack polyimide insertion guide when mating; the folded FPC must not be compressed, bonded or allowed to bear on the routed edge",
+        "implementation": "reserve a 47.90-mm-wide adhesive-free zone for the component-bearing FPC under the antenna-edge portion of the panel and one centered 27.00 x 1.20-mm rounded NPTH slot at board x=24.00...51.00 mm, y=23.00...24.20 mm; the 25.50 +/-0.15-mm tongue crosses with 0.75-mm nominal and 0.675-mm worst-case lateral clearance per side. Deburr the routed slot and use a removable low-tack polyimide insertion guide when mating; the folded FPC must not be compressed, bonded, twisted or allowed to bear on the routed edge. Dry fit must show at least 5.00 mm of relaxed path reserve before the PSA liner is removed",
         "load_role": "keeps the component-bearing flex unloaded and prevents panel motion from becoming tensile or peel load at the ZIF contacts"
       }
     ],
@@ -80,6 +80,10 @@
       "stock_pad_release_rule": "exact stock pad thickness >= measured folded FPC maximum stack + 0.20 mm",
       "zif_height_mm": 1.0,
       "contact_stiffener_thickness_mm": 0.3,
+      "source_tail_length_from_panel_edge_to_tip_mm": 30.16,
+      "source_tail_length_tolerance_mm": 0.5,
+      "minimum_source_tail_length_mm": 29.66,
+      "panel_tail_exit_edge_y_mm": 10.5,
       "contact_tail_width_mm": 25.5,
       "contact_tail_width_tolerance_mm": 0.15,
       "component_fpc_pocket_width_mm": 47.9,
@@ -93,13 +97,21 @@
       "upper_support_part_fitted": false,
       "separate_upper_tape_fitted": false,
       "separate_upper_tape_reason": "the stiff panel already has 2500 mm2 of primary bond area; observed ESP32-DIV construction suggests that a smaller partial-area bond is adequate, so a second strip or shoulder feature adds assembly work without a demonstrated need",
-      "pcb_slot_position_mm": [24.0, 34.0],
+      "pcb_slot_position_mm": [24.0, 23.0],
       "pcb_slot_width_mm": 27.0,
       "pcb_slot_height_mm": 1.2,
       "tail_under_psa": false,
       "tail_bears_on_bare_pcb_edge": false,
       "component_bearing_fpc_compressed": false,
       "hard_crease_allowed": false,
+      "twist_allowed": false,
+      "fold_count": 1,
+      "connector_full_depth_reach_y_mm": 28.8,
+      "minimum_raw_length_reserve_mm": 11.36,
+      "minimum_relaxed_service_slack_mm": 5.0,
+      "maximum_measured_route_to_contact_stop_mm": 24.66,
+      "bend_insertion_and_tolerance_budget_mm": 6.36,
+      "slack_release_rule": "with the received panel dry-fitted and the PSA upper liner still installed, the measured neutral-axis route from the panel exit to the connector contact stop must be <= 24.66 mm, leaving >= 5.00 mm against the 29.66-mm minimum source tail; the tongue must show a relaxed bow and must not pull the latch",
       "minimum_bend_radius_mm": null,
       "bend_radius_gate": "H5 must bind the 180-degree fold radius, folded stack height and pocket depth to the current-lot FPC construction before release; the drawing deliberately does not invent an unsupported radius or component height"
     },
@@ -189,10 +201,19 @@
     "accepted_on": "2026-09-01",
     "panel_rule": "mount the configured panel with its folded FPC toward the antenna edge (board -Y) so the tail never enters the LED, navigation or function-key zone",
     "fpc_exit_direction_board_axis": "-Y",
-    "factory_orientation_check": "before pressing the panel onto the stock PSA rectangle, the panel tail must exit toward the antenna edge, fold through the adhesive-free upper zone and align its narrow tongue with the rounded slot and direct ZIF; any tail toward +Y or any FPC trapped under adhesive is a stop-work assembly error",
+    "factory_orientation_check": "before pressing the panel onto the stock PSA rectangle, the panel tail must exit toward the antenna edge, make one untwisted 180-degree fold through the adhesive-free upper zone and align its narrow tongue with the rounded slot and direct ZIF. The dry fit must preserve at least 5.00 mm of relaxed slack, panel pin 1 must meet connector pin 1, and no latch load is allowed; tail toward +Y, any twist, swapped 1/50 ends, FPC trapped under adhesive or a taut tongue is a stop-work assembly error",
+    "source_drawing_pin_order_native_front_view": "pin 50 at drawing left; pin 1 at drawing right",
+    "mounted_panel_rotation_deg": 180,
+    "fold_axis": "world X; one 180-degree fold changes the contact face but does not reverse left/right pin order",
+    "tail_pin_1_world_side_after_rotation_and_fold": "board left / world x-min",
+    "tail_pin_50_world_side_after_rotation_and_fold": "board right / world x-max",
+    "connector_contact_orientation": "top and bottom contact",
+    "connector_pin_1_world_side": "board left / world x-min",
+    "connector_pin_50_world_side": "board right / world x-max",
+    "connector_footprint_rotation_rule": "orient the exact H2/H6 footprint so connector pin 1 is at world x-min and pin 50 at world x-max; the dual-contact FH34SRJ accepts the contact face produced by the single fold, but it does not excuse a 1-to-50 pin-order reversal",
     "display_memory_transform": "rotate ILI9488 output by 180 degrees relative to its cable-down native orientation",
     "touch_transform": "rotate FT6236 coordinates by 180 degrees before UI hit-testing",
-    "tail_contract": "manufacturer drawing controls the 50-contact 0.50-mm-pitch, 0.30-mm-stiffened folded tail; H5 incoming inspection verifies lot conformity and insertion"
+    "tail_contract": "manufacturer drawing controls the 30.16 +/-0.50-mm edge-to-tip length, 50-contact 0.50-mm pitch, 0.30-mm stiffener and native 50-left/1-right drawing order; Hirose controls the top-and-bottom-contact connector. H5 incoming inspection verifies lot conformity, one untwisted fold, 1-to-1 / 50-to-50 orientation, measured route <=24.66 mm, relaxed slack >=5.00 mm and insertion"
   },
   "paper_checks": {
     "connector_within_ui_outline": true,
@@ -205,7 +226,14 @@
     "display_tail_width_tolerance_mm": 0.15,
     "nominal_slot_lateral_clearance_each_side_mm": 0.75,
     "worst_case_slot_lateral_clearance_each_side_mm": 0.675,
-    "minimum_slot_to_existing_ufl_body_gap_mm": 16.9,
+    "minimum_slot_to_existing_ufl_body_gap_mm": 5.9,
+    "minimum_tail_length_mm": 29.66,
+    "panel_edge_to_connector_full_depth_mm": 18.3,
+    "minimum_raw_length_reserve_mm": 11.36,
+    "minimum_relaxed_service_slack_mm": 5.0,
+    "maximum_measured_route_to_contact_stop_mm": 24.66,
+    "bend_insertion_and_tolerance_budget_mm": 6.36,
+    "pin_order_and_contact_face_checked": true,
     "panel_connector_jlcpcb_stock_on_2026_08_29": 2679,
     "panel_connector_jlcpcb_orderable_on_2026_08_29": 2614,
     "panel_connector_moq": 1,
@@ -216,11 +244,15 @@
   "evidence": [
     {
       "source": "https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf",
-      "finding": "EastRising controls the 50-contact 0.50-mm tail, including its 25.50 +/-0.15-mm overall contact-tongue width and 0.30-mm stiffener, complete CTP outline, 8080-8 strap and every LCD/touch/backlight contact."
+      "finding": "EastRising controls the tail exit at the short panel edge, 30.16 +/-0.50-mm edge-to-tip length, 50-contact 0.50-mm pitch, 25.50 +/-0.15-mm overall contact-tongue width, 0.30-mm stiffener and the drawing-view pin order 50-left/1-right, plus the complete CTP outline, 8080-8 strap and every LCD/touch/backlight contact."
     },
     {
       "source": "https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen",
       "finding": "Exact ER-TFT035IPS-6 is orderable at quantity one with the ER-TPC035-6 capacitive-touch option."
+    },
+    {
+      "source": "https://www.hirose.com/en/product/p/CL0580-1266-2-50",
+      "finding": "Hirose identifies the exact FH34SRJ-50S-0.5SH(50) as a 50-position, 0.5-mm-pitch, 1.0-mm-high horizontal ZIF with top-and-bottom contacts for 0.30-mm FPC. The dual-contact construction accepts the contact face after the one-fold route; the PCB footprint still must preserve pin 1 to pin 1 and pin 50 to pin 50."
     },
     {
       "source": "https://jlcpcb.com/partdetail/HRS_Hirose-FH34SRJ_50S_0_5SH_50/C3169104",
@@ -235,5 +267,5 @@
       "finding": "The official ESP32-DIV v2 Gerbers expose eighteen direct-solder FPC lands and four empty 1.2-mm holes around the display zone. The holes do not retain the assembled display, and the public PCB, BOM, 3D model and photograph do not establish the actual retention method; a hidden PSA bond remains an inference, not a documented fact."
     }
   ],
-  "release_boundary": "H1 freezes the exact panel, component-free UI-PCB display bed, mandatory board -Y / antenna-edge FPC direction, 27.00 x 1.20-mm rounded tongue slot, one stock-format 50 x 50-mm PSA rectangle at [12.50,44.46], both silkscreen datums, direct C3169104 ZIF position, 50-contact electrical map and non-load-bearing connector rule. H2 imports the exact footprint, slot and keep-outs and routes the display sheet directly on the UI PCB; before order H5 measures the folded current-lot FPC stack, selects one exact traceable stocked rectangle at least 0.20 mm thicker, freezes its cleaning/pressure/dwell process and obtains written factory acceptance for placement and FPC insertion; H7/H8 inspect the one assembled prototype."
+  "release_boundary": "H1 freezes the exact panel, component-free UI-PCB display bed, mandatory board -Y / antenna-edge FPC direction, 27.00 x 1.20-mm rounded tongue slot at [24.00,23.00], one stock-format 50 x 50-mm PSA rectangle at [12.50,44.46], both silkscreen datums, direct C3169104 ZIF at [24.00,25.00], 50-contact electrical map, 1-to-1 / 50-to-50 orientation, one-fold/no-twist rule, >=5.00-mm relaxed-slack rule and non-load-bearing connector rule. H2 imports the exact footprint, rotation, slot and keep-outs and routes the display sheet directly on the UI PCB; before order H5 measures the current-lot folded stack, bend path and actual neutral-axis route <=24.66 mm, selects one exact traceable stocked rectangle at least 0.20 mm thicker, freezes its cleaning/pressure/dwell process and obtains written factory acceptance for placement and FPC insertion; H7/H8 inspect the one assembled prototype."
 }
