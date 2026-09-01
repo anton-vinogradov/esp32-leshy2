@@ -5,16 +5,16 @@
   "purpose": "map every H5 residual to selected identities, sources, still-missing data and an inherited pass rule without claiming physical closure",
   "source_hashes": {
     "hardware/verification/generated/H3-VRF72-physical-residuals.json": "bb42a28438471824376c593e5d37974f2f5c12e55bd1af90380fd7a9ec257149",
-    "hardware/product-design/generated/H1-physical-source-table.json": "97bca94c9954caf5ef504ed1bdef9cdafb5a37df37945b437067546a0b2f5b5a",
-    "hardware/product-design/mechanical-evidence-gates.json": "4404c8134c8e6d4b2894672a57737909860d7535742bea01c88db0e4d24c68cd",
-    "hardware/architecture/devices.json": "9db9ce928ceb1dd38324d5e1eaff57a3d686ff449217ec3216577400dbe51060",
+    "hardware/product-design/generated/H1-physical-source-table.json": "2702b180e9ec23daecf54ff92cd6db39435cbb769bf9dddb1a6e9bdaccddb13f",
+    "hardware/product-design/mechanical-evidence-gates.json": "03bf3e9e09b8ae4991f4c7c94ec412d5a5604f2195106539a0d521ee648d1d8c",
+    "hardware/architecture/devices.json": "2caf023fb65a15be416b66686f7bcbd9ce199f8c8a55c4d37457782e73ceb6ef",
     "hardware/architecture/am-lw-pod.json": "6571e20c26f2ceaebf9c4bf410d155417a68116b3b5ef2e16d7c77ee06503e08"
   },
   "summary": {
     "h3_residuals": 9,
     "mechanical_gates": 14,
-    "mapped_selected_part_references": 44,
-    "board_fitted_mechanical_part_references": 54,
+    "mapped_selected_part_references": 41,
+    "board_fitted_mechanical_part_references": 50,
     "physical_claims_closed": 0,
     "sample_orders_authorized": 0,
     "explicit_research_targets": 15
@@ -49,46 +49,10 @@
           }
         },
         {
-          "identity": "display_touch_controller",
-          "kind": "selected_physical_instance",
-          "mpn": "Sitronix ST77922",
-          "role": "single_chip_tft_controller_driver_and_capacitive_touch_tddi_cog",
-          "source": {
-            "document": "ST77922 Single-Chip TFT Controller/Driver/Touch datasheet",
-            "version": "Preliminary 0.1, 2023-06",
-            "url": "https://dl.espressif.com/AE/esp-iot-solution/ST77922_SPEC_V0.1.pdf",
-            "checked": "2026-08-18"
-          }
-        },
-        {
           "identity": "display_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
-          "role": "40-contact fixed receptacle for the antenna-edge replaceable display adapter",
-          "source": {
-            "document": "Hirose exact product page, 2D drawing and specification sheet",
-            "version": "CL0684-4042-5-51; exact 40-position receptacle; packaging suffix changes reel quantity only",
-            "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-51",
-            "checked": "2026-08-28"
-          }
-        },
-        {
-          "identity": "display_adapter_plug",
-          "kind": "selected_physical_instance",
-          "mpn": "Hirose DF40C-40DP-0.4V(51)",
-          "role": "40_position_0_4mm_vertical_board_to_board_plug",
-          "source": {
-            "document": "Hirose exact product page, 2D drawing and specification sheet",
-            "version": "CL0684-4013-7-51; detailed specifications updated 2026-08-05",
-            "url": "https://www.hirose.com/en/product/p/CL0684-4013-7-51",
-            "checked": "2026-08-23"
-          }
-        },
-        {
-          "identity": "display_panel_connector",
-          "kind": "selected_physical_instance",
           "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
-          "role": "50_position_0_5mm_dual_contact_zif_fpc_receptacle",
+          "role": "direct 50-contact dual-contact ZIF for the folded display FPC",
           "source": {
             "document": "Hirose FH34SRJ controlled series drawing; 50-position body uses the 24.5-mm contact span and 27.0-mm overall width",
             "url": "https://www.hirose.com/en/product/series/FH34SRJ",
@@ -101,8 +65,8 @@
         "H5-MECH-DISPLAY-PERFORMANCE"
       ],
       "missing_data": [
-        "standalone order identity and current-lot full FPC outline for the HMX035CTFT-001-marked assembly",
-        "received-controller identity/readback and measured VDD/VDDI ramp equality"
+        "current-lot complete FPC construction and fit in the direct FH34SRJ-50S-0.5SH(50), including the source-backed free-loop radius and enclosure keep-out",
+        "received ER-TFT035IPS-6 plus ER-TPC035-6 identity/readback, measured VDD/VDDI ramp equality and one-prototype adhesive/FPC assembly record"
       ],
       "sample_specific": true,
       "required_artifact": "lot-identified photographs, dimensional/mating records and raw measurement file tied to the exact received MPN",
@@ -351,37 +315,37 @@
         {
           "identity": "nrf0_rf_jumper",
           "kind": "selected_physical_instance",
-          "mpn": "TE Connectivity 2118651-2",
+          "mpn": "TE Connectivity 1-2118651-0",
           "role": "direct nRF24 #0 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
           "source": {
-            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
-            "version": "ENG_CD_2118651_C5; live exact-product record",
-            "url": "https://www.te.com/en/product-2118651-2.html",
-            "checked": "2026-08-20"
+            "document": "TE Connectivity 1-2118651-0 exact product record and ENG_CD_2118651_C5 drawing",
+            "version": "live exact-product record",
+            "url": "https://www.te.com/en/product-1-2118651-0.html",
+            "checked": "2026-08-31"
           }
         },
         {
           "identity": "nrf1_rf_jumper",
           "kind": "selected_physical_instance",
-          "mpn": "TE Connectivity 2118651-2",
+          "mpn": "TE Connectivity 1-2118651-0",
           "role": "direct nRF24 #1 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
           "source": {
-            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
-            "version": "ENG_CD_2118651_C5; live exact-product record",
-            "url": "https://www.te.com/en/product-2118651-2.html",
-            "checked": "2026-08-20"
+            "document": "TE Connectivity 1-2118651-0 exact product record and ENG_CD_2118651_C5 drawing",
+            "version": "live exact-product record",
+            "url": "https://www.te.com/en/product-1-2118651-0.html",
+            "checked": "2026-08-31"
           }
         },
         {
           "identity": "nrf2_rf_jumper",
           "kind": "selected_physical_instance",
-          "mpn": "TE Connectivity 2118651-2",
+          "mpn": "TE Connectivity 1-2118651-0",
           "role": "direct nRF24 #2 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
           "source": {
-            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
-            "version": "ENG_CD_2118651_C5; live exact-product record",
-            "url": "https://www.te.com/en/product-2118651-2.html",
-            "checked": "2026-08-20"
+            "document": "TE Connectivity 1-2118651-0 exact product record and ENG_CD_2118651_C5 drawing",
+            "version": "live exact-product record",
+            "url": "https://www.te.com/en/product-1-2118651-0.html",
+            "checked": "2026-08-31"
           }
         },
         {
@@ -392,8 +356,8 @@
           "source": {
             "document": "Hirose U.FL Series connector catalog",
             "version": "current catalog",
-            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
-            "checked": "2026-08-18"
+            "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+            "checked": "2026-08-29"
           }
         },
         {
@@ -404,8 +368,8 @@
           "source": {
             "document": "Hirose U.FL Series connector catalog",
             "version": "current catalog",
-            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
-            "checked": "2026-08-18"
+            "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+            "checked": "2026-08-29"
           }
         },
         {
@@ -416,8 +380,8 @@
           "source": {
             "document": "Hirose U.FL Series connector catalog",
             "version": "current catalog",
-            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
-            "checked": "2026-08-18"
+            "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+            "checked": "2026-08-29"
           }
         },
         {
@@ -619,37 +583,37 @@
         {
           "identity": "nrf0_rf_jumper",
           "kind": "selected_physical_instance",
-          "mpn": "TE Connectivity 2118651-2",
+          "mpn": "TE Connectivity 1-2118651-0",
           "role": "direct nRF24 #0 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
           "source": {
-            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
-            "version": "ENG_CD_2118651_C5; live exact-product record",
-            "url": "https://www.te.com/en/product-2118651-2.html",
-            "checked": "2026-08-20"
+            "document": "TE Connectivity 1-2118651-0 exact product record and ENG_CD_2118651_C5 drawing",
+            "version": "live exact-product record",
+            "url": "https://www.te.com/en/product-1-2118651-0.html",
+            "checked": "2026-08-31"
           }
         },
         {
           "identity": "nrf1_rf_jumper",
           "kind": "selected_physical_instance",
-          "mpn": "TE Connectivity 2118651-2",
+          "mpn": "TE Connectivity 1-2118651-0",
           "role": "direct nRF24 #1 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
           "source": {
-            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
-            "version": "ENG_CD_2118651_C5; live exact-product record",
-            "url": "https://www.te.com/en/product-2118651-2.html",
-            "checked": "2026-08-20"
+            "document": "TE Connectivity 1-2118651-0 exact product record and ENG_CD_2118651_C5 drawing",
+            "version": "live exact-product record",
+            "url": "https://www.te.com/en/product-1-2118651-0.html",
+            "checked": "2026-08-31"
           }
         },
         {
           "identity": "nrf2_rf_jumper",
           "kind": "selected_physical_instance",
-          "mpn": "TE Connectivity 2118651-2",
+          "mpn": "TE Connectivity 1-2118651-0",
           "role": "direct nRF24 #2 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
           "source": {
-            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
-            "version": "ENG_CD_2118651_C5; live exact-product record",
-            "url": "https://www.te.com/en/product-2118651-2.html",
-            "checked": "2026-08-20"
+            "document": "TE Connectivity 1-2118651-0 exact product record and ENG_CD_2118651_C5 drawing",
+            "version": "live exact-product record",
+            "url": "https://www.te.com/en/product-1-2118651-0.html",
+            "checked": "2026-08-31"
           }
         },
         {
@@ -660,8 +624,8 @@
           "source": {
             "document": "Hirose U.FL Series connector catalog",
             "version": "current catalog",
-            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
-            "checked": "2026-08-18"
+            "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+            "checked": "2026-08-29"
           }
         },
         {
@@ -672,8 +636,8 @@
           "source": {
             "document": "Hirose U.FL Series connector catalog",
             "version": "current catalog",
-            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
-            "checked": "2026-08-18"
+            "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+            "checked": "2026-08-29"
           }
         },
         {
@@ -684,8 +648,8 @@
           "source": {
             "document": "Hirose U.FL Series connector catalog",
             "version": "current catalog",
-            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
-            "checked": "2026-08-18"
+            "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+            "checked": "2026-08-29"
           }
         },
         {
@@ -696,8 +660,8 @@
           "source": {
             "document": "Hirose U.FL Series connector catalog",
             "version": "current catalog",
-            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
-            "checked": "2026-08-18"
+            "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+            "checked": "2026-08-29"
           }
         },
         {
@@ -708,8 +672,8 @@
           "source": {
             "document": "Hirose U.FL Series connector catalog",
             "version": "current catalog",
-            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
-            "checked": "2026-08-18"
+            "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+            "checked": "2026-08-29"
           }
         }
       ],
@@ -745,32 +709,8 @@
         {
           "identity": "display_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
-          "role": "40-contact fixed receptacle for the antenna-edge replaceable display adapter",
-          "source": {
-            "document": "Hirose exact product page, 2D drawing and specification sheet",
-            "version": "CL0684-4042-5-51; exact 40-position receptacle; packaging suffix changes reel quantity only",
-            "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-51",
-            "checked": "2026-08-28"
-          }
-        },
-        {
-          "identity": "display_adapter_plug",
-          "kind": "selected_physical_instance",
-          "mpn": "Hirose DF40C-40DP-0.4V(51)",
-          "role": "40_position_0_4mm_vertical_board_to_board_plug",
-          "source": {
-            "document": "Hirose exact product page, 2D drawing and specification sheet",
-            "version": "CL0684-4013-7-51; detailed specifications updated 2026-08-05",
-            "url": "https://www.hirose.com/en/product/p/CL0684-4013-7-51",
-            "checked": "2026-08-23"
-          }
-        },
-        {
-          "identity": "display_panel_connector",
-          "kind": "selected_physical_instance",
           "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
-          "role": "50_position_0_5mm_dual_contact_zif_fpc_receptacle",
+          "role": "direct 50-contact dual-contact ZIF for the folded display FPC",
           "source": {
             "document": "Hirose FH34SRJ controlled series drawing; 50-position body uses the 24.5-mm contact span and 27.0-mm overall width",
             "url": "https://www.hirose.com/en/product/series/FH34SRJ",
@@ -778,9 +718,9 @@
           }
         }
       ],
-      "known_boundary": "Official QDtech sources prove the HMX035CTFT-001 marking, complete-donor 54.5x101.5-mm reserve, 40-contact electrical map and 54.5x83.0x3.2-mm LCD/CTP screen body. L2-DISP-ADP-001-A fixes a 25.5x12.0-mm replaceable adapter, exact 2.0-mm 40-contact DF40 board mate, direct one-to-one copper and an active dual-contact FH34SRJ panel ZIF. The main UI board and enclosure no longer depend on an inferred raw-flex outline or exposed-contact side.",
-      "missing_data": "Standalone order identity, current-lot complete FPC outline, thickness, stiffener, adhesive, bend path and actual insertion/retention in the selected dual-contact ZIF remain received-display properties; a mismatch may revise only the small adapter and its panel-side connector.",
-      "accepted_pass_rule": "H5 locks the source-backed adapter/connector geometry and deterministic mating instruction before order; H7/H8 then measure the received HMX035CTFT-001 tail and inspect insertion, retention, bend clearance and continuity on the one assembled prototype after arrival.",
+      "known_boundary": "EastRising controls the exact ER-TFT035IPS-6 plus ER-TPC035-6 assembly, 56.54x84.96-mm CTP outline and folded 50-contact 0.50-mm tail. L2-DISP-DIRECT-001-A fixes the stocked dual-contact FH34SRJ connector on the UI PCB inner face, a direct component-free UI-PCB outer display bed and a die-cut perimeter-PSA load path in which the ZIF is not load-bearing.",
+      "missing_data": "Current-lot FPC thickness/stiffener conformity, actual insertion, exact free-loop bend radius and enclosure keep-out, the exact safe rear adhesive perimeter and the assembler's accepted die-cut PSA material/process remain properties of the one-prototype route. 3M 9495LE is only a 0.17-mm technical candidate until that route is confirmed.",
+      "accepted_pass_rule": "Before order, H5 locks the source-backed direct-ZIF footprint, mandatory board -Y / antenna-edge tail direction, component-free outer and inner FPC corridors, free-loop volume with no sharp crease or bare-FR4 bearing, exact adhesive grade and cut drawing, cleaning/pressure/dwell instruction and written assembler acceptance; H7/H8 inspect insertion, strain relief, retention and continuity after arrival.",
       "blocks": [
         "H8"
       ],
@@ -828,37 +768,37 @@
         {
           "identity": "nrf0_rf_jumper",
           "kind": "selected_physical_instance",
-          "mpn": "TE Connectivity 2118651-2",
+          "mpn": "TE Connectivity 1-2118651-0",
           "role": "direct nRF24 #0 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
           "source": {
-            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
-            "version": "ENG_CD_2118651_C5; live exact-product record",
-            "url": "https://www.te.com/en/product-2118651-2.html",
-            "checked": "2026-08-20"
+            "document": "TE Connectivity 1-2118651-0 exact product record and ENG_CD_2118651_C5 drawing",
+            "version": "live exact-product record",
+            "url": "https://www.te.com/en/product-1-2118651-0.html",
+            "checked": "2026-08-31"
           }
         },
         {
           "identity": "nrf1_rf_jumper",
           "kind": "selected_physical_instance",
-          "mpn": "TE Connectivity 2118651-2",
+          "mpn": "TE Connectivity 1-2118651-0",
           "role": "direct nRF24 #1 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
           "source": {
-            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
-            "version": "ENG_CD_2118651_C5; live exact-product record",
-            "url": "https://www.te.com/en/product-2118651-2.html",
-            "checked": "2026-08-20"
+            "document": "TE Connectivity 1-2118651-0 exact product record and ENG_CD_2118651_C5 drawing",
+            "version": "live exact-product record",
+            "url": "https://www.te.com/en/product-1-2118651-0.html",
+            "checked": "2026-08-31"
           }
         },
         {
           "identity": "nrf2_rf_jumper",
           "kind": "selected_physical_instance",
-          "mpn": "TE Connectivity 2118651-2",
+          "mpn": "TE Connectivity 1-2118651-0",
           "role": "direct nRF24 #2 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
           "source": {
-            "document": "TE Connectivity CABLE ASSEMBLY, COAX 1.13 MM DOUBLE ENDED, UMCC GEN1 PLUG and exact 2118651-2 product record",
-            "version": "ENG_CD_2118651_C5; live exact-product record",
-            "url": "https://www.te.com/en/product-2118651-2.html",
-            "checked": "2026-08-20"
+            "document": "TE Connectivity 1-2118651-0 exact product record and ENG_CD_2118651_C5 drawing",
+            "version": "live exact-product record",
+            "url": "https://www.te.com/en/product-1-2118651-0.html",
+            "checked": "2026-08-31"
           }
         },
         {
@@ -869,8 +809,8 @@
           "source": {
             "document": "Hirose U.FL Series connector catalog",
             "version": "current catalog",
-            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
-            "checked": "2026-08-18"
+            "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+            "checked": "2026-08-29"
           }
         },
         {
@@ -881,8 +821,8 @@
           "source": {
             "document": "Hirose U.FL Series connector catalog",
             "version": "current catalog",
-            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
-            "checked": "2026-08-18"
+            "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+            "checked": "2026-08-29"
           }
         },
         {
@@ -893,8 +833,8 @@
           "source": {
             "document": "Hirose U.FL Series connector catalog",
             "version": "current catalog",
-            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
-            "checked": "2026-08-18"
+            "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+            "checked": "2026-08-29"
           }
         },
         {
@@ -1397,8 +1337,8 @@
           "source": {
             "document": "Hirose U.FL Series connector catalog",
             "version": "current catalog",
-            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
-            "checked": "2026-08-18"
+            "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+            "checked": "2026-08-29"
           }
         },
         {
@@ -1409,8 +1349,8 @@
           "source": {
             "document": "Hirose U.FL Series connector catalog",
             "version": "current catalog",
-            "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/5971/PdfFile_255398.pdf",
-            "checked": "2026-08-18"
+            "url": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+            "checked": "2026-08-29"
           }
         }
       ],
@@ -1439,32 +1379,8 @@
         {
           "identity": "display_connector",
           "kind": "selected_physical_instance",
-          "mpn": "Hirose DF40C(2.0)-40DS-0.4V(51)",
-          "role": "40-contact fixed receptacle for the antenna-edge replaceable display adapter",
-          "source": {
-            "document": "Hirose exact product page, 2D drawing and specification sheet",
-            "version": "CL0684-4042-5-51; exact 40-position receptacle; packaging suffix changes reel quantity only",
-            "url": "https://www.hirose.com/en/product/p/CL0684-4042-5-51",
-            "checked": "2026-08-28"
-          }
-        },
-        {
-          "identity": "display_adapter_plug",
-          "kind": "selected_physical_instance",
-          "mpn": "Hirose DF40C-40DP-0.4V(51)",
-          "role": "40_position_0_4mm_vertical_board_to_board_plug",
-          "source": {
-            "document": "Hirose exact product page, 2D drawing and specification sheet",
-            "version": "CL0684-4013-7-51; detailed specifications updated 2026-08-05",
-            "url": "https://www.hirose.com/en/product/p/CL0684-4013-7-51",
-            "checked": "2026-08-23"
-          }
-        },
-        {
-          "identity": "display_panel_connector",
-          "kind": "selected_physical_instance",
           "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
-          "role": "50_position_0_5mm_dual_contact_zif_fpc_receptacle",
+          "role": "direct 50-contact dual-contact ZIF for the folded display FPC",
           "source": {
             "document": "Hirose FH34SRJ controlled series drawing; 50-position body uses the 24.5-mm contact span and 27.0-mm overall width",
             "url": "https://www.hirose.com/en/product/series/FH34SRJ",
@@ -1472,9 +1388,9 @@
           }
         }
       ],
-      "known_boundary": "H1 fixes the controlled screen body, replaceable adapter bay, exact DF40 stack and dual-contact panel connector; electrical and optical behavior remain qualification evidence.",
-      "missing_data": "QSPI/touch operation, optical quality, backlight current/thermal and received flex geometry.",
-      "accepted_pass_rule": "H5 locks documented panel/adapter geometry, routing and deterministic assembly instructions before order; H7/H8 perform electrical, optical and thermal checks plus flex-route clearance and continuity inspection after arrival, without repeatedly cycling the flex.",
+      "known_boundary": "H1 fixes the controlled screen body, direct 50-contact ZIF, i8080-8 map, folded-tail corridor and enclosure load path; electrical and optical behavior remain qualification evidence.",
+      "missing_data": "i8080/touch operation, optical quality, backlight current/thermal and received flex conformity.",
+      "accepted_pass_rule": "H5 locks documented panel/direct-ZIF geometry, routing and deterministic assembly instructions before order; H7/H8 perform electrical, optical and thermal checks plus flex-route clearance and continuity inspection after arrival, without repeatedly cycling the flex.",
       "blocks": [
         "H8"
       ],

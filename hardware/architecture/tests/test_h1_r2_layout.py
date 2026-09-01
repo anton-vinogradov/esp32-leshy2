@@ -70,7 +70,16 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertNotIn('data-mechanical-part="front_shell_corner_locators"', svg)
         self.assertNotIn("closed-cell foam preload", svg)
         self.assertIn("FPC MUST EXIT UP", svg)
+        self.assertIn('data-fpc-route="outer-edge-inner-zif"', svg)
+        self.assertIn("free loop outside PCB edge", svg)
+        self.assertIn("no sharp crease · no bare-FR4 bearing", svg)
+        self.assertIn("PSA GAP FOR FPC", svg)
         self.assertEqual(design["orientation"]["fpc_exit_direction_board_axis"], "-Y")
+        route = design["mechanical_retention"]["fpc_route_side_section"]
+        self.assertFalse(route["tail_under_psa"])
+        self.assertFalse(route["tail_bears_on_bare_pcb_edge"])
+        self.assertFalse(route["hard_crease_allowed"])
+        self.assertIsNone(route["minimum_bend_radius_mm"])
         div_reference = design["mechanical_retention"]["esp32_div_v2_reference"]
         self.assertEqual(div_reference["retention_evidence_status"], "unknown_from_public_sources")
         self.assertIn("four empty 1.2-mm holes", div_reference["in_plane_location"])

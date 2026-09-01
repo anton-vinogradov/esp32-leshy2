@@ -2040,6 +2040,25 @@ def validate_display_mount_design(
         errors.append("display-mount: physical retention implementation is incomplete")
     if not retention.get("structural_load_path", "").endswith("never through the FPC or ZIF"):
         errors.append("display-mount: structural load path must terminate outside the FPC and ZIF")
+    fpc_route = retention.get("fpc_route_side_section", {})
+    if (
+        fpc_route.get("tail_under_psa") is not False
+        or fpc_route.get("tail_bears_on_bare_pcb_edge") is not False
+        or fpc_route.get("hard_crease_allowed") is not False
+        or fpc_route.get("minimum_bend_radius_mm") is not None
+        or "H5" not in fpc_route.get("bend_radius_gate", "")
+    ):
+        errors.append("display-mount: side-section FPC route is not fail-closed")
+    if not all(
+        math.isclose(float(fpc_route.get(field, -1)), expected, abs_tol=1e-9)
+        for field, expected in (
+            ("pcb_thickness_mm", 1.6),
+            ("psa_target_thickness_mm", 0.17),
+            ("zif_height_mm", body_z),
+            ("contact_stiffener_thickness_mm", 0.3),
+        )
+    ):
+        errors.append("display-mount: side-section dimensions drifted")
     div_reference = retention.get("esp32_div_v2_reference", {})
     if div_reference.get("retention_evidence_status") != "unknown_from_public_sources":
         errors.append("display-mount: DIV retention must remain explicitly unproven")
@@ -4712,22 +4731,31 @@ def render_display_mount(design):
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         label(40, 42, "Leshy2 — display bonded directly to the UI PCB", 22, "bold"),
         label(40, 68, "L2-DISP-DIRECT-001-A · die-cut PSA · direct 50-pin ZIF · no adapter, frame, corner ribs or preload foam", 11, colour="#526076"),
-        label(55, 112, "Front-to-rear section", 14, "bold", colour="#1d4ed8"),
-        '<rect x="92" y="150" width="341" height="162" rx="7" fill="#eaf2ff" stroke="#60a5fa" stroke-width="2"/>',
-        '<rect x="107" y="166" width="311" height="132" rx="5" fill="#cfe1ff" stroke="#2563eb" stroke-width="2"/>',
-        label(262, 225, "ER-TFT035IPS-6 + ER-TPC035-6", 13, "bold", "middle"),
-        label(262, 248, "1 · exact touch/display assembly", 10, "normal", "middle", "#526076"),
-        '<g data-mechanical-part="display_psa_frame"><rect x="92" y="312" width="341" height="9" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/></g>',
-        label(262, 307, "2 · die-cut PSA frame · 0.17 mm target", 9.5, "bold", "middle", "#92400e"),
-        '<rect x="70" y="321" width="385" height="24" rx="3" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-mechanical-part="ui_pcb_display_bed"/>',
-        label(262, 337, "3 · flat component-free UI-PCB outer bed", 10, "bold", "middle", "#166534"),
-        '<rect x="70" y="345" width="385" height="18" rx="3" fill="#bbf7d0" stroke="#16a34a" stroke-width="2"/>',
-        label(262, 358, "UI PCB · 1.6 mm", 9.5, "bold", "middle", "#166534"),
-        '<path d="M391 298 C470 305 481 377 390 404 L354 404" fill="none" stroke="#0f766e" stroke-width="10" stroke-linecap="round" data-mechanical-part="fpc_bend_guide"/>',
-        '<path d="M391 298 C470 305 481 377 390 404 L354 404" fill="none" stroke="#99f6e4" stroke-width="5" stroke-linecap="round"/>',
-        label(476, 389, "4 · controlled FPC fold", 9.5, "bold", "start", "#0f766e"),
-        '<rect x="220" y="363" width="170" height="42" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2" data-instance="display_connector"/>',
-        label(305, 389, "5 · 50-pin ZIF · inner face", 10.5, "bold", "middle", "#1d4ed8"),
+        label(55, 112, "Antenna-edge cable route · side section", 14, "bold", colour="#1d4ed8"),
+        label(55, 132, "schematic section · vertical scale is intentionally enlarged", 9.5, colour="#64748b"),
+        '<rect x="90" y="150" width="315" height="142" rx="7" fill="#eaf2ff" stroke="#60a5fa" stroke-width="2"/>',
+        '<rect x="106" y="166" width="283" height="116" rx="5" fill="#cfe1ff" stroke="#2563eb" stroke-width="2"/>',
+        label(247, 218, "ER-TFT035IPS-6 + ER-TPC035-6", 12.5, "bold", "middle"),
+        label(247, 241, "1 · flat metal rear over the panel body", 9.8, "normal", "middle", "#526076"),
+        '<g data-mechanical-part="display_psa_frame"><rect x="90" y="292" width="315" height="9" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/></g>',
+        label(247, 288, "2 · 0.17-mm target PSA · stops before FPC exit", 9.3, "bold", "middle", "#92400e"),
+        '<rect x="70" y="301" width="410" height="25" rx="3" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-mechanical-part="ui_pcb_display_bed"/>',
+        '<rect x="70" y="326" width="410" height="20" rx="3" fill="#bbf7d0" stroke="#16a34a" stroke-width="2"/>',
+        label(245, 318, "3 · UI PCB outer face", 9.8, "bold", "middle", "#166534"),
+        label(245, 341, "UI PCB · 1.6 mm", 9.5, "bold", "middle", "#166534"),
+        '<line x1="480" y1="275" x2="480" y2="432" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4"/>',
+        label(480, 267, "BOARD -Y / ANTENNA EDGE", 9.2, "bold", "middle", "#b42318"),
+        '<path d="M388 282 L430 300 C468 302 507 315 516 348 C524 382 500 407 460 407 L408 407" fill="none" stroke="#0f766e" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" data-mechanical-part="fpc_bend_guide" data-fpc-route="outer-edge-inner-zif"/>',
+        '<path d="M388 282 L430 300 C468 302 507 315 516 348 C524 382 500 407 460 407 L408 407" fill="none" stroke="#99f6e4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>',
+        '<rect x="388" y="278" width="42" height="8" rx="2" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>',
+        label(421, 370, "4 · free loop outside PCB edge", 9.3, "bold", "middle", "#0f766e"),
+        label(421, 386, "no sharp crease · no bare-FR4 bearing", 8.8, "bold", "middle", "#b42318"),
+        '<rect x="250" y="386" width="160" height="42" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2" data-instance="display_connector"/>',
+        label(330, 404, "5 · edge-facing 50-pin ZIF", 9.8, "bold", "middle", "#1d4ed8"),
+        label(330, 419, "inner face · 1.0 mm", 8.7, "bold", "middle", "#526076"),
+        '<line x1="70" y1="361" x2="470" y2="361" stroke="#64748b" stroke-width="1" stroke-dasharray="4 4"/>',
+        label(72, 378, "INNER / INTERBOARD SIDE", 8.8, "bold", colour="#64748b"),
+        label(490, 424, "FPC lies flat before insertion", 8.8, "bold", "middle", "#0f766e"),
         label(70, 447, "Physical retention", 13, "bold", colour="#1d4ed8"),
         label(70, 471, "Panel → 0.17-mm target die-cut PSA → flat UI-PCB soldermask bed", 10),
         label(70, 493, "No separate frame, locating ribs or rear foam. A removable fixture controls placement.", 10),
@@ -4740,7 +4768,13 @@ def render_display_mount(design):
         '<rect x="690" y="140" width="300" height="500" rx="8" fill="#f8fafc" stroke="#344054" stroke-width="3"/>',
         label(840, 132, "ANTENNA EDGE · board -Y", 10.5, "bold", "middle", "#b42318"),
         '<rect x="726" y="205" width="228" height="340" rx="5" fill="#dbeafe" fill-opacity="0.45" stroke="#2563eb" stroke-width="2" data-mechanical-part="ui_pcb_display_bed"/>',
-        '<path d="M726 205 H954 V545 H726 Z M738 218 V532 H942 V218 Z" fill="#fde68a" fill-rule="evenodd" stroke="#d97706" stroke-width="1.5" data-mechanical-part="display_psa_frame"/>',
+        '<g data-mechanical-part="display_psa_frame">'
+        '<rect x="726" y="205" width="96" height="13" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>'
+        '<rect x="858" y="205" width="96" height="13" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>'
+        '<rect x="726" y="532" width="228" height="13" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>'
+        '<rect x="726" y="218" width="12" height="314" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>'
+        '<rect x="942" y="218" width="12" height="314" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/>'
+        '</g>',
         '<rect x="740" y="221" width="200" height="308" rx="4" fill="#cfe1ff" stroke="#60a5fa" stroke-width="1.5"/>',
         label(840, 382, "DISPLAY", 14, "bold", "middle", "#1d4ed8"),
         label(840, 404, "56.54 × 84.96 mm", 9.5, "bold", "middle", "#526076"),
@@ -4749,6 +4783,7 @@ def render_display_mount(design):
         '<path d="M840 221 L840 177" stroke="#0f766e" stroke-width="7" stroke-linecap="round"/>',
         '<path d="M840 151 L840 105" stroke="#dc2626" stroke-width="3" marker-end="url(#arrow)"/>',
         label(840, 92, "FPC MUST EXIT UP", 12, "bold", "middle", "#b42318"),
+        label(840, 193, "PSA GAP FOR FPC", 8.8, "bold", "middle", "#92400e"),
         label(840, 573, "PSA zone: no vias · no test points · no silkscreen", 9.3, "bold", "middle", "#92400e"),
         label(840, 598, "Placement marks stay outside the panel outline", 9.3, "normal", "middle", "#526076"),
         '<rect x="1018" y="145" width="145" height="70" rx="5" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-display-owner="S3"/>',

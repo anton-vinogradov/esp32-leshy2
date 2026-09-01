@@ -27,7 +27,7 @@
     "panel_support": "flat component-free UI PCB outer-face display bed reserved under the complete 56.54 x 84.96-mm configured panel outline",
     "primary_retention": "one 0.17-mm target die-cut perimeter PSA frame directly between the panel rear perimeter and the UI PCB outer soldermask",
     "secondary_retention": "none in the assembled stack; PCB assembly datums and a removable placement fixture control alignment without becoming retained parts",
-    "flex_strain_relief": "controlled folded-tail corridor from the antenna edge to the direct ZIF; no tensile or peel load reaches the contacts or latch",
+    "flex_strain_relief": "the tail leaves the panel toward board -Y, runs over the component-free outer-face corridor, forms one free bend loop outside the antenna-edge PCB outline, returns flat along the inner face and enters the edge-facing ZIF parallel to the PCB; no sharp crease, bare-FR4 bearing, tensile load or peel load reaches the contacts or latch",
     "service_rule": "opening the sandwich exposes the ZIF latch; release the latch first, then warm and cut the PSA frame before lifting the panel, and install a fresh die-cut frame before reassembly",
     "physical_realization": [
       {
@@ -50,10 +50,22 @@
         "id": "fpc_bend_guide",
         "quantity": 1,
         "part_type": "PCB keep-out corridor plus optional removable low-tack polyimide assembly guide",
-        "implementation": "controls bend radius and preserves service slack from the panel tail at board -Y to the antenna-edge ZIF; the guide is removed or left non-structural after insertion",
+        "implementation": "reserve the complete outer-face run, free-loop volume beyond board -Y and inner-face run to the edge-facing ZIF; the tail must not pass under PSA, touch the bare routed FR4 edge or receive a hard fold. A removable low-tack polyimide guide may hold the free loop during insertion but is not structural",
         "load_role": "prevents panel motion from becoming tensile or peel load at the ZIF contacts"
       }
     ],
+    "fpc_route_side_section": {
+      "route": "panel rear tail -> component-free UI-PCB outer-face corridor -> free loop outside antenna edge / board -Y -> flat UI-PCB inner-face run -> edge-facing ZIF",
+      "pcb_thickness_mm": 1.6,
+      "psa_target_thickness_mm": 0.17,
+      "zif_height_mm": 1.0,
+      "contact_stiffener_thickness_mm": 0.3,
+      "tail_under_psa": false,
+      "tail_bears_on_bare_pcb_edge": false,
+      "hard_crease_allowed": false,
+      "minimum_bend_radius_mm": null,
+      "bend_radius_gate": "H5 must bind the free-loop radius and enclosure keep-out to the current-lot FPC construction before release; the drawing deliberately does not invent an unsupported radius"
+    },
     "structural_load_path": "finger or handling load -> panel rear perimeter -> die-cut PSA frame -> UI PCB -> sandwich stops and fasteners; never through the FPC or ZIF",
     "esp32_div_v2_reference": {
       "source": "https://github.com/cifertech/ESP32-DIV/tree/9d4d82fe7a12febf554b12e1eca6d434ebe79d39/PCB/v2",

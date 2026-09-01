@@ -22,11 +22,11 @@ DOC_RU = REPO / "docs/component-evidence-map.ru.md"
 
 RESIDUAL_MAP = {
     "H3-PHY-017": {
-        "instances": ["display", "display_touch_controller", "display_connector", "display_adapter_plug", "display_panel_connector"],
+        "instances": ["display", "display_connector"],
         "mechanical_gates": ["H5-MECH-DISPLAY-TAIL", "H5-MECH-DISPLAY-PERFORMANCE"],
         "missing_data": [
-            "standalone order identity and current-lot full FPC outline for the HMX035CTFT-001-marked assembly",
-            "received-controller identity/readback and measured VDD/VDDI ramp equality",
+            "current-lot complete FPC construction and fit in the direct FH34SRJ-50S-0.5SH(50), including the source-backed free-loop radius and enclosure keep-out",
+            "received ER-TFT035IPS-6 plus ER-TPC035-6 identity/readback, measured VDD/VDDI ramp equality and one-prototype adhesive/FPC assembly record",
         ],
         "sample_specific": True,
     },
@@ -127,7 +127,7 @@ CURRENT_INSTANCE_OVERRIDES = {
 
 
 RESIDUAL_MISSING_RU = {
-    "H3-PHY-017": "самостоятельный order identity и полный контур FPC production panel; identity/readback контроллера и равенство разгона VDD/VDDI на единственном прототипе в H7/H8",
+    "H3-PHY-017": "конструкцию FPC текущей партии, fit в прямом FH34SRJ-50S-0.5SH(50), подтверждённый радиус свободной петли и clearance корпуса; identity/readback ER-TFT035IPS-6 + ER-TPC035-6, равенство разгона VDD/VDDI и factory assembly record единственного прототипа",
     "H3-PHY-024": "ориентацию полученной партии, startup, quiet guard, два канала захвата и отсутствие обратного питания",
     "H3-PHY-028": "на одном экземпляре — blank → намеренно некорректная, но электрически безопасная конфигурация → golden/recovery с чтением обоих address space, checksum, NVError и bitmap оставшихся обновлений; zero-remaining и failed-copy — только в emulator/fixture без расходования всех семи физических записей",
     "H3-PHY-038": "выбрать точный серийный MPN эталонной microSD; измерить CMD6 identity, скорость, задержки и работу 512-КиБ буфера",
@@ -140,6 +140,11 @@ RESIDUAL_MISSING_RU = {
 
 
 RESIDUAL_PASS_RU = {
+    "H3-PHY-017": (
+        "factory assembly record подтверждает точную ER-TFT035IPS-6 + ER-TPC035-6, правильный PSA-cut, "
+        "свободную петлю и ввод в прямой FH34SRJ; owner bring-up единственного прототипа подтверждает "
+        "ILI9488/FT6236, VDD/VDDI, reset, изображение и touch; несовпадение повторно открывает H1/H2/H3"
+    ),
     "H3-PHY-024": (
         "полученный и однозначно идентифицированный образец подтверждает TSOP75238TR/TSMP95000TT, "
         "ориентацию, два канала захвата, 20-мс startup guard, 5-мс QOD quiet guard и отсутствие "
@@ -150,7 +155,7 @@ RESIDUAL_PASS_RU = {
 
 
 MECHANICAL_MISSING_RU = {
-    "H5-MECH-DISPLAY-TAIL": "контур, толщина, stiffener, клей, изгиб и удержание FPC текущей партии дисплея",
+    "H5-MECH-DISPLAY-TAIL": "конструкцию и stiffener FPC текущей партии, fit прямого ZIF, свободную петлю без острого сгиба и контакта с торцом FR4, clearance корпуса, точный PSA-cut и factory process",
     "H5-MECH-NRF-GEN1-FEEDS": "ось и MPN встроенного разъёма партии E01, fit/retention, изгиб и сквозные RF-потери",
     "H5-MECH-U214-MATING-STACK": "сечение штырей U214, усилия, циклы, винтовое удержание и preload планки",
     "H5-MECH-NAVIGATION-CONTROLS": "доступ через корпус, защита от случайного нажатия, ощущения, герметизация и ресурс",
@@ -161,7 +166,7 @@ MECHANICAL_MISSING_RU = {
     "H5-MECH-M5-UNIT-MATE": "вставка, удержание, разгрузка и циклы полученного Grove-кабеля",
     "H5-MECH-CELL-HOLDER-FIT": "усилие вставки, прижим контактов, полярность, вибрация и термоциклы",
     "H5-MECH-NATIVE-RF-JUMPERS": "реальный радиус изгиба, разгрузка, усилие, удержание и RF-потери после сборки",
-    "H5-MECH-DISPLAY-PERFORMANCE": "QSPI/touch, оптика, ток и нагрев подсветки, ресурс flex и повторяемость партий",
+    "H5-MECH-DISPLAY-PERFORMANCE": "i8080-8/touch, оптика, ток и нагрев подсветки, ресурс flex и повторяемость партий",
     "H5-MECH-ACOUSTIC-PATHS": "акустика корпуса, резонанс, герметизация, feedback, response микрофона и вибрация",
     "H5-MECH-HEADSET-JACK": "допуски выреза, shield/solder-tab fit, усилия, CTIA/TRS, удержание и transient отключения",
 }
@@ -345,11 +350,18 @@ def residual_sections(data: dict, russian: bool) -> str:
                 f"- Критерий: {pass_rule}."
             )
         else:
+            pass_rule = {
+                "H3-PHY-017": (
+                    "the factory assembly record confirms the exact ER-TFT035IPS-6 + ER-TPC035-6, correct PSA cut, "
+                    "free loop and direct-FH34SRJ insertion; owner bring-up of the sole prototype confirms ILI9488/FT6236, "
+                    "VDD/VDDI, reset, image and touch; a mismatch reopens H1/H2/H3"
+                )
+            }.get(row["id"], row["accepted_pass_rule"])
             sections.append(
                 f"### `{row['id']}` · `{row['source_group']}`\n\n"
                 f"- Selected: {short_mpns(row)}.\n"
                 f"- Still to prove: {'; '.join(row['missing_data'])}.\n"
-                f"- Pass rule: {row['accepted_pass_rule']}"
+                f"- Pass rule: {pass_rule}"
             )
     return "\n\n".join(sections)
 

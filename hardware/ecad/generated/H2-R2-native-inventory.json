@@ -38,7 +38,7 @@
     },
     "display_mount": {
       "path": "hardware/product-design/display-mount.json",
-      "sha256": "bdd978cf80a87de7816f3ff75ad96b20c39a3f43ee0472e346ce40150af5ac9f"
+      "sha256": "72f55c6f16759fc2d44cc1e0d25300645b8d3c08ea9129dc17ae6a763abcd635"
     },
     "airband": {
       "path": "hardware/product-design/h1-airband-filter.json",

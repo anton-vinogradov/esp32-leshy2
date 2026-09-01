@@ -3,22 +3,31 @@
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="40.0" y="42.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — display bonded directly to the UI PCB</text>
 <text x="40.0" y="68.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">L2-DISP-DIRECT-001-A · die-cut PSA · direct 50-pin ZIF · no adapter, frame, corner ribs or preload foam</text>
-<text x="55.0" y="112.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#1d4ed8">Front-to-rear section</text>
-<rect x="92" y="150" width="341" height="162" rx="7" fill="#eaf2ff" stroke="#60a5fa" stroke-width="2"/>
-<rect x="107" y="166" width="311" height="132" rx="5" fill="#cfe1ff" stroke="#2563eb" stroke-width="2"/>
-<text x="262.0" y="225.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#172033">ER-TFT035IPS-6 + ER-TPC035-6</text>
-<text x="262.0" y="248.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="middle" fill="#526076">1 · exact touch/display assembly</text>
-<g data-mechanical-part="display_psa_frame"><rect x="92" y="312" width="341" height="9" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/></g>
-<text x="262.0" y="307.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#92400e">2 · die-cut PSA frame · 0.17 mm target</text>
-<rect x="70" y="321" width="385" height="24" rx="3" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-mechanical-part="ui_pcb_display_bed"/>
-<text x="262.0" y="337.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#166534">3 · flat component-free UI-PCB outer bed</text>
-<rect x="70" y="345" width="385" height="18" rx="3" fill="#bbf7d0" stroke="#16a34a" stroke-width="2"/>
-<text x="262.0" y="358.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#166534">UI PCB · 1.6 mm</text>
-<path d="M391 298 C470 305 481 377 390 404 L354 404" fill="none" stroke="#0f766e" stroke-width="10" stroke-linecap="round" data-mechanical-part="fpc_bend_guide"/>
-<path d="M391 298 C470 305 481 377 390 404 L354 404" fill="none" stroke="#99f6e4" stroke-width="5" stroke-linecap="round"/>
-<text x="476.0" y="389.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="start" fill="#0f766e">4 · controlled FPC fold</text>
-<rect x="220" y="363" width="170" height="42" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2" data-instance="display_connector"/>
-<text x="305.0" y="389.0" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="middle" fill="#1d4ed8">5 · 50-pin ZIF · inner face</text>
+<text x="55.0" y="112.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#1d4ed8">Antenna-edge cable route · side section</text>
+<text x="55.0" y="132.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#64748b">schematic section · vertical scale is intentionally enlarged</text>
+<rect x="90" y="150" width="315" height="142" rx="7" fill="#eaf2ff" stroke="#60a5fa" stroke-width="2"/>
+<rect x="106" y="166" width="283" height="116" rx="5" fill="#cfe1ff" stroke="#2563eb" stroke-width="2"/>
+<text x="247.0" y="218.0" font-family="sans-serif" font-size="12.5" font-weight="bold" text-anchor="middle" fill="#172033">ER-TFT035IPS-6 + ER-TPC035-6</text>
+<text x="247.0" y="241.0" font-family="sans-serif" font-size="9.8" font-weight="normal" text-anchor="middle" fill="#526076">1 · flat metal rear over the panel body</text>
+<g data-mechanical-part="display_psa_frame"><rect x="90" y="292" width="315" height="9" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/></g>
+<text x="247.0" y="288.0" font-family="sans-serif" font-size="9.3" font-weight="bold" text-anchor="middle" fill="#92400e">2 · 0.17-mm target PSA · stops before FPC exit</text>
+<rect x="70" y="301" width="410" height="25" rx="3" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-mechanical-part="ui_pcb_display_bed"/>
+<rect x="70" y="326" width="410" height="20" rx="3" fill="#bbf7d0" stroke="#16a34a" stroke-width="2"/>
+<text x="245.0" y="318.0" font-family="sans-serif" font-size="9.8" font-weight="bold" text-anchor="middle" fill="#166534">3 · UI PCB outer face</text>
+<text x="245.0" y="341.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#166534">UI PCB · 1.6 mm</text>
+<line x1="480" y1="275" x2="480" y2="432" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="480.0" y="267.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="middle" fill="#b42318">BOARD -Y / ANTENNA EDGE</text>
+<path d="M388 282 L430 300 C468 302 507 315 516 348 C524 382 500 407 460 407 L408 407" fill="none" stroke="#0f766e" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" data-mechanical-part="fpc_bend_guide" data-fpc-route="outer-edge-inner-zif"/>
+<path d="M388 282 L430 300 C468 302 507 315 516 348 C524 382 500 407 460 407 L408 407" fill="none" stroke="#99f6e4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="388" y="278" width="42" height="8" rx="2" fill="#f59e0b" stroke="#b45309" stroke-width="1"/>
+<text x="421.0" y="370.0" font-family="sans-serif" font-size="9.3" font-weight="bold" text-anchor="middle" fill="#0f766e">4 · free loop outside PCB edge</text>
+<text x="421.0" y="386.0" font-family="sans-serif" font-size="8.8" font-weight="bold" text-anchor="middle" fill="#b42318">no sharp crease · no bare-FR4 bearing</text>
+<rect x="250" y="386" width="160" height="42" rx="5" fill="#dbeafe" stroke="#2563eb" stroke-width="2" data-instance="display_connector"/>
+<text x="330.0" y="404.0" font-family="sans-serif" font-size="9.8" font-weight="bold" text-anchor="middle" fill="#1d4ed8">5 · edge-facing 50-pin ZIF</text>
+<text x="330.0" y="419.0" font-family="sans-serif" font-size="8.7" font-weight="bold" text-anchor="middle" fill="#526076">inner face · 1.0 mm</text>
+<line x1="70" y1="361" x2="470" y2="361" stroke="#64748b" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="72.0" y="378.0" font-family="sans-serif" font-size="8.8" font-weight="bold" text-anchor="start" fill="#64748b">INNER / INTERBOARD SIDE</text>
+<text x="490.0" y="424.0" font-family="sans-serif" font-size="8.8" font-weight="bold" text-anchor="middle" fill="#0f766e">FPC lies flat before insertion</text>
 <text x="70.0" y="447.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#1d4ed8">Physical retention</text>
 <text x="70.0" y="471.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">Panel → 0.17-mm target die-cut PSA → flat UI-PCB soldermask bed</text>
 <text x="70.0" y="493.0" font-family="sans-serif" font-size="10" font-weight="normal" text-anchor="start" fill="#172033">No separate frame, locating ribs or rear foam. A removable fixture controls placement.</text>
@@ -31,7 +40,7 @@
 <rect x="690" y="140" width="300" height="500" rx="8" fill="#f8fafc" stroke="#344054" stroke-width="3"/>
 <text x="840.0" y="132.0" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="middle" fill="#b42318">ANTENNA EDGE · board -Y</text>
 <rect x="726" y="205" width="228" height="340" rx="5" fill="#dbeafe" fill-opacity="0.45" stroke="#2563eb" stroke-width="2" data-mechanical-part="ui_pcb_display_bed"/>
-<path d="M726 205 H954 V545 H726 Z M738 218 V532 H942 V218 Z" fill="#fde68a" fill-rule="evenodd" stroke="#d97706" stroke-width="1.5" data-mechanical-part="display_psa_frame"/>
+<g data-mechanical-part="display_psa_frame"><rect x="726" y="205" width="96" height="13" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/><rect x="858" y="205" width="96" height="13" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/><rect x="726" y="532" width="228" height="13" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/><rect x="726" y="218" width="12" height="314" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/><rect x="942" y="218" width="12" height="314" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/></g>
 <rect x="740" y="221" width="200" height="308" rx="4" fill="#cfe1ff" stroke="#60a5fa" stroke-width="1.5"/>
 <text x="840.0" y="382.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#1d4ed8">DISPLAY</text>
 <text x="840.0" y="404.0" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#526076">56.54 × 84.96 mm</text>
@@ -40,6 +49,7 @@
 <path d="M840 221 L840 177" stroke="#0f766e" stroke-width="7" stroke-linecap="round"/>
 <path d="M840 151 L840 105" stroke="#dc2626" stroke-width="3" marker-end="url(#arrow)"/>
 <text x="840.0" y="92.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#b42318">FPC MUST EXIT UP</text>
+<text x="840.0" y="193.0" font-family="sans-serif" font-size="8.8" font-weight="bold" text-anchor="middle" fill="#92400e">PSA GAP FOR FPC</text>
 <text x="840.0" y="573.0" font-family="sans-serif" font-size="9.3" font-weight="bold" text-anchor="middle" fill="#92400e">PSA zone: no vias · no test points · no silkscreen</text>
 <text x="840.0" y="598.0" font-family="sans-serif" font-size="9.3" font-weight="normal" text-anchor="middle" fill="#526076">Placement marks stay outside the panel outline</text>
 <rect x="1018" y="145" width="145" height="70" rx="5" fill="#dcfce7" stroke="#16a34a" stroke-width="2" data-display-owner="S3"/>
