@@ -479,8 +479,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("C3001549", evidence["supply_constraints"]["selected_uhf"]["jlcpcb_part"])
         self.assertEqual("C51897911", evidence["supply_constraints"]["selected_vhf"]["jlcpcb_part"])
         self.assertEqual("priced_preorder_lead_time_open", evidence["supply_constraints"]["selected_vhf"]["status"])
-        self.assertEqual(3, evidence["supply_constraints"]["orders_or_requests_submitted"])
-        self.assertEqual(3, evidence["supply_constraints"]["supplier_information_inquiries_submitted"])
+        self.assertEqual(4, evidence["supply_constraints"]["orders_or_requests_submitted"])
+        self.assertEqual(4, evidence["supply_constraints"]["supplier_information_inquiries_submitted"])
         self.assertEqual(0, evidence["supply_constraints"]["sourcing_requests_submitted"])
         self.assertEqual(0, evidence["supply_constraints"]["orders_submitted"])
         self.assertEqual("successfully_submitted", evidence["supply_constraints"]["submitted_inquiry"]["result"])
@@ -488,6 +488,13 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("vinogradov.anton@gmail.com", evidence["supply_constraints"]["submitted_clarification"]["from"])
         self.assertEqual("message_sent", evidence["supply_constraints"]["submitted_display_psa_clarification"]["result"])
         self.assertIn("4910SQ-2(5)", evidence["supply_constraints"]["submitted_display_psa_clarification"]["scope"])
+        self.assertEqual("message_sent", evidence["supply_constraints"]["submitted_fallback_inquiry"]["result"])
+        self.assertEqual("vinogradov.anton@gmail.com", evidence["supply_constraints"]["submitted_fallback_inquiry"]["from"])
+        self.assertEqual("service@pcbway.com", evidence["supply_constraints"]["submitted_fallback_inquiry"]["to"])
+        self.assertFalse(evidence["supply_constraints"]["jlcpcb_ticket_merge"]["substantive_release_answer"])
+        self.assertEqual("pcba_only_accepted_full_device_declined", evidence["supply_constraints"]["jlcpcb_substantive_response"]["result"])
+        self.assertEqual(2, evidence["supply_constraints"]["jlcpcb_substantive_response"]["pcba_minimum_quantity"])
+        self.assertFalse(evidence["supply_constraints"]["jlcpcb_substantive_response"]["complete_enclosure_assembly"])
         self.assertTrue(all(not row["purchase_authorized"] for row in evidence["articles"]))
         self.assertEqual(1, evidence["procurement_target"]["finished_device_quantity"])
         self.assertFalse(evidence["procurement_target"]["batteries_included"])
@@ -543,7 +550,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(1, evidence["summary"]["factory_final_assembly"])
         self.assertEqual(0, evidence["summary"]["factory_packed_removable"])
         self.assertEqual(
-            "open_until_factory_acceptance_and_quote",
+            "open_at_active_full_device_candidate",
             evidence["assembly_boundary"]["J4-F_factory_final_assembly"]["status"],
         )
         self.assertEqual(1, evidence["procurement_target"]["finished_device_quantity"])
@@ -587,7 +594,12 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(evidence["supplier_inquiry"]["ticket_number"])
         self.assertEqual("pcbway", evidence["fallback_factory_evidence"]["first_fallback"])
         self.assertEqual("seeed-fusion", evidence["fallback_factory_evidence"]["second_source_pcba"])
-        self.assertFalse(evidence["fallback_factory_evidence"]["contact_authorized"])
+        self.assertEqual("message_sent", evidence["fallback_factory_evidence"]["contact_result"])
+        self.assertEqual("2026-09-02", evidence["fallback_factory_evidence"]["contact_sent_on"])
+        self.assertEqual("vinogradov.anton@gmail.com", evidence["fallback_factory_evidence"]["contact_from"])
+        self.assertEqual("service@pcbway.com", evidence["fallback_factory_evidence"]["contact_to"])
+        self.assertTrue(evidence["fallback_factory_evidence"]["information_only"])
+        self.assertFalse(evidence["fallback_factory_evidence"]["commercial_action_created"])
         self.assertTrue(all(evidence["checks"].values()))
         self.assertIn("component replacement", evidence["next"]["forbidden"])
         self.assertIn("purchase", evidence["next"]["forbidden"])
@@ -1197,7 +1209,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("H5.0.3-R1", h5_plan["current_substep"])
         self.assertEqual("reviewed", h5_plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", h5_plan["substeps"][0]["children"][1]["status"])
-        self.assertEqual("current_partial_supplier_response_clarification_open", h5_plan["substeps"][0]["children"][2]["status"])
+        self.assertEqual("current_active_full_device_supplier_response_open", h5_plan["substeps"][0]["children"][2]["status"])
         self.assertIn("H5.0.1-R1", h5_plan["reviewed_artifacts"])
         self.assertIn("H5.0.2-R1", h5_plan["reviewed_artifacts"])
         self.assertIn("H5.0.3", h5_plan["superseded_current_artifacts"])
@@ -1212,17 +1224,19 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual(
             "hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md",
-            h5_plan["current_artifacts"]["H5.0.3-R1"]["prepared_fallback_inquiry"],
+            h5_plan["current_artifacts"]["H5.0.3-R1"]["sent_fallback_inquiry"],
         )
         self.assertFalse(h5_plan["decision_gate"]["requires_user_authority"])
-        self.assertTrue(h5_plan["decision_gate"]["authorized_now"])
+        self.assertFalse(h5_plan["decision_gate"]["authorized_now"])
         self.assertEqual(
-            "exact_one_and_display_psa_clarifications_sent_waiting_for_supplier_response",
+            "jlcpcb_full_device_gate_failed_pcbway_response_open",
             h5_plan["decision_gate"]["action_status"],
         )
         self.assertTrue(h5_plan["authorization"]["supplier_contact_send"])
         self.assertEqual("successfully_submitted", h5_plan["authorization"]["supplier_contact_result"])
-        self.assertIn("display-process supplement were sent", h5_plan["blocker"])
+        self.assertIn("explicitly declines complete enclosure", h5_plan["blocker"])
+        self.assertEqual("message_sent", h5_plan["authorization"]["fallback_supplier_contact_result"])
+        self.assertFalse(h5_plan["authorization"]["fallback_supplier_contact_commercial_action_created"])
         self.assertFalse(h5_plan["authorization"]["sample_or_component_purchase"])
         self.assertTrue(h5_plan["authorization"]["parts_api_application"])
         self.assertEqual("approved", h5_plan["authorization"]["parts_api_application_status"])

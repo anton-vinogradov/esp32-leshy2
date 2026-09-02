@@ -242,7 +242,10 @@
 18. ✅ [`H4-R2.1`](h4-r2-contract-reconciliation.ru.md): провести объединённый cross-check; найти три назначенных BSP-коррекции без неназначенного противоречия.
 19. ✅ [`H4-R2.2`](h4-r2-correction-closure.ru.md): сгенерировать полные точные BSP-карты и fail-closed target guards C5, Pack и Safety; повторно квалифицировать все 12 сборок.
 20. ✅ [`H4-R2.3`](h4-r2-acceptance.ru.md): опубликовать глобальный двуязычный joined gate без противоречий и передать все 51 physical-остаток.
-21. ▶ `H5.0.3-R1`: завершить маршрут компонентов и фабрики для ровно одного прототипа без молчаливой замены.
+21. ▶ `H5.0.3-R1`: сохранить JLCPCB как PCBA-only после явного отказа от final-device assembly и дождаться exact-one full-device ответа PCBWay без молчаливой замены.
 
-Текущее действие — component/factory evidence H5.0.3-R1. Placement, routing,
+Текущее действие — component/factory evidence H5.0.3-R1. JLCPCB подтвердил
+exact dual-module/no-substitution PCBA, но отказался от полной сборки устройства
+и pre-order подтверждения special process. Information-only запрос PCBWay от
+2 сентября теперь является активным full-device gate. Placement, routing,
 quote и любой заказ остаются заблокированы.

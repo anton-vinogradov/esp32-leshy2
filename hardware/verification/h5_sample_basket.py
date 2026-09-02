@@ -228,8 +228,8 @@ def build() -> dict:
             "selected_uhf": {"mpn": "G-NiceRF SA818S-U", "jlcpcb_part": "C3001549", "stock": 68, "available_order_quantity": 60, "quantity_one_usd": "9.7347", "status": "priced_in_stock"},
             "selected_vhf": {"mpn": "G-NiceRF SA818S-V", "jlcpcb_part": "C51897911", "stock": 0, "minimum_quantity": 1, "quantity_one_usd": "10.0710", "status": "priced_preorder_lead_time_open"},
             "qualified_pending_uhf_alternate": {"mpn": "G-NiceRF SA818S-CE", "jlcpcb_part": "C19632390", "stock": 8, "quantity_one_usd": "9.3449", "status": "not_in_order_manifest", "restriction": "may replace only SA818S-U after owner HIL and a 470-MHz firmware clamp; never replaces SA818S-V and never substitutes silently"},
-            "orders_or_requests_submitted": 3,
-            "supplier_information_inquiries_submitted": 3,
+            "orders_or_requests_submitted": 4,
+            "supplier_information_inquiries_submitted": 4,
             "sourcing_requests_submitted": 0,
             "orders_submitted": 0,
             "submitted_inquiry": {
@@ -260,10 +260,42 @@ def build() -> dict:
                 "source_reference": "hardware/procurement/H5.0.3-R1-jlcpcb-display-psa-clarification.md",
                 "scope": "exact 3M (TC) 4910SQ-2(5), deterministic FPC/ZIF/pressure process and exactly one prototype; information only; no commercial action",
             },
-            "next_action": "wait for JLCPCB's response to the exact-one and exact display-PSA clarifications; record the release-relevant answers for the two-designator job, exact SA818S-V installation, four required final-assembly operations including the 4910SQ process, and exact-MPN control",
+            "submitted_fallback_inquiry": {
+                "supplier": "PCBWay",
+                "channel": "Gmail",
+                "submitted_on": "2026-09-02",
+                "submitted_at_local": "20:14 Europe/Moscow",
+                "from": "vinogradov.anton@gmail.com",
+                "to": "service@pcbway.com",
+                "result": "message_sent",
+                "source_reference": "hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md",
+                "scope": "exactly one prototype; information only; no order, quote project, sourcing request, reservation or purchase",
+            },
+            "jlcpcb_ticket_merge": {
+                "received_on": "2026-09-02",
+                "from": "mitchell@jlcpcb.com",
+                "to": "vinogradov.anton@gmail.com",
+                "merged_into_ticket": "TKEM2026082605925",
+                "substantive_release_answer": False,
+                "source_reference": "hardware/procurement/H5.0.3-R1-jlcpcb-ticket-merge-2026-09-02.md",
+            },
+            "jlcpcb_substantive_response": {
+                "received_on": "2026-09-02",
+                "from": "support@jlcpcb.com",
+                "to": "av@apache.org",
+                "viewed_in_gmail_account": "no.mail.in@gmail.com",
+                "result": "pcba_only_accepted_full_device_declined",
+                "exact_dual_module_placement": True,
+                "exact_mpn_and_no_silent_substitution": True,
+                "pcba_minimum_quantity": 2,
+                "special_process_preorder_acceptance": False,
+                "complete_enclosure_assembly": False,
+                "source_reference": "hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-09-02.md",
+            },
+            "next_action": "wait for PCBWay's written response to the exact-one full-device questionnaire; JLCPCB remains the PCBA-only reference after explicitly declining complete enclosure assembly and deferring special-process feasibility until after order",
         },
         "sequencing": {
-            "now": "wait for JLCPCB's response to the exact-one clarification and the exact 4910SQ display-process supplement sent on 2026-09-01; retain only release-relevant supplier answers as open gates, while Function Test, batteries and accessory packing remain optional or owner-supplied",
+            "now": "wait for PCBWay's substantive full-device response; retain JLCPCB's accepted exact dual-module/no-substitution PCBA route but not as the final-device assembler, while Function Test, batteries and accessory packing remain optional or owner-supplied",
             "after_mapping": "use approved read-only Parts access for repeatable availability checks when permission becomes usable; no additional submission is required for the current gate",
             "after_quote": "publish exact sole-prototype and final-assembly costs, close the H5 supplier/manifest gate, then continue through H6 and the existing single H7 prototype-order approval",
             "after_order": "H7 records arrival identity, assembly and first owner bring-up; H8 executes the retained fit, RF, thermal, audio, control and interoperability contracts on that prototype and ordinary accessories",
@@ -371,7 +403,7 @@ flowchart TD
 
 ## Открытые supplier inputs
 
-Цена каждого выбранного модуля известна. Частичный ответ JLCPCB от 26 августа подтверждает для exact `SA818S-V` MOQ 1 и типичные 8–15 рабочих дней pre-order; final quote/lead доступны только после pre-order. [Исправленное exact-one уточнение](../hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md) и [дополнение по exact `3M (TC) 4910SQ-2(5)`](../hardware/procurement/H5.0.3-R1-jlcpcb-display-psa-clarification.md) отправлены 1 сентября с `vinogradov.anton@gmail.com` на `support@jlcpcb.com`. Ожидаются относящиеся к release ответы: реальная two-designator U/V job, установка exact `SA818S-V` средствами Standard PCBA, четыре обязательные операции финальной сборки одного прототипа, точный PSA/FPC/ZIF/pressure process и exact-MPN/no-substitution control. Function Test, аккумуляторы и упаковка аксессуаров не являются gate. `SA818S-CE C19632390` остаётся только qualified-pending UHF-заменой после HIL и firmware-clamp 470 МГц. Quote, reservation и заказ не создавались.
+Цена каждого выбранного модуля известна. [Содержательный ответ JLCPCB от 2 сентября](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-09-02.md) подтверждает установку exact `SA818S-V C51897911` и `SA818S-U C3001549` на разных designator через BOM Matching, exact-MPN incoming control и запрет замены без подтверждения. Одновременно JLCPCB установил PCBA MOQ 2, отказался от полной сборки корпуса/устройства и оставил клей, FPC и пять microcoax только на post-order review. Поэтому JLCPCB остаётся PCBA-only reference, а [information-only запрос PCBWay](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md), отправленный 2 сентября с `vinogradov.anton@gmail.com`, теперь является активным full-device gate. Function Test, аккумуляторы и упаковка аксессуаров не являются gate. `SA818S-CE C19632390` остаётся только qualified-pending UHF-заменой после HIL и firmware-clamp 470 МГц. Quote, reservation и заказ не создавались.
 
 Машинный результат: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).
 """
@@ -416,7 +448,7 @@ All `{summary['covered_residuals_and_gates']}` residuals/gates are covered by `{
 
 ## Open supplier inputs
 
-Both selected module prices are known. JLCPCB's partial 26 August response confirms MOQ 1 and a typical 8–15-working-day pre-order for exact `SA818S-V`; final quote/lead exist only after pre-order. The [corrected exact-one clarification](../hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md) and [exact `3M (TC) 4910SQ-2(5)` supplement](../hardware/procurement/H5.0.3-R1-jlcpcb-display-psa-clarification.md) were sent on 1 September from `vinogradov.anton@gmail.com` to `support@jlcpcb.com`. Release-relevant answers are awaited for the actual two-designator U/V job, exact `SA818S-V` Standard-PCBA installation, four required one-prototype final-assembly operations, the exact PSA/FPC/ZIF/pressure process and exact-MPN/no-substitution control. Function Test, batteries and accessory packing are not gates. `SA818S-CE C19632390` remains only a qualified-pending UHF alternate after HIL and a 470-MHz firmware clamp. No quote, reservation or order was created.
+Both selected module prices are known. JLCPCB's [substantive 2 September response](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-09-02.md) confirms separate-designator placement of exact `SA818S-V C51897911` and `SA818S-U C3001549` through BOM Matching, exact-MPN incoming control and no replacement without customer confirmation. It also sets PCBA MOQ 2, declines complete enclosure/final-device assembly, and leaves adhesive, FPC and five-microcoax feasibility to post-order review. JLCPCB therefore remains the PCBA-only reference, while the [information-only PCBWay inquiry](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md), sent on 2 September from `vinogradov.anton@gmail.com`, is now the active full-device gate. Function Test, batteries and accessory packing are not gates. `SA818S-CE C19632390` remains only a qualified-pending UHF alternate after HIL and a 470-MHz firmware clamp. No quote, reservation or order was created.
 
 Machine result: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).
 """

@@ -36,24 +36,59 @@
     "commercial_action_created": false,
     "notes": "Exact ready-cut PSA, FPC/ZIF geometry, >=5 mm slack, uniformly supported >=100 kPa pressure and 24-hour pre-pack hold were sent as a supplement in the same thread; awaiting supplier reply."
   },
+  "ticket_merge_notice": {
+    "received_on": "2026-09-02",
+    "received_at_local": "04:24 Europe/Moscow",
+    "from": "mitchell@jlcpcb.com",
+    "to": "vinogradov.anton@gmail.com",
+    "channel": "Gmail",
+    "subject": "Re: Leshy2 PCBA and final assembly inquiry — clarification",
+    "result": "clarification_request_closed_and_merged",
+    "merged_into_ticket": "TKEM2026082605925",
+    "merged_ticket_subject": "Re: Leshy2 PCBA and final assembly inquiry (no order)",
+    "source_reference": "hardware/procurement/H5.0.3-R1-jlcpcb-ticket-merge-2026-09-02.md",
+    "substantive_release_answer": false,
+    "commercial_action_created": false,
+    "notes": "Administrative merge only. It supplies no acceptance, price, lead-time or exact-MPN-control evidence, so H5-EVR07 remains open."
+  },
+  "substantive_clarification_response": {
+    "received_on": "2026-09-02",
+    "received_at_local": "19:02 Europe/Moscow",
+    "from": "support@jlcpcb.com",
+    "to": "av@apache.org",
+    "viewed_in_gmail_account": "no.mail.in@gmail.com",
+    "channel": "Gmail / merged JLCPCB ticket",
+    "subject": "Re: Leshy2 PCBA and final assembly inquiry (no order)",
+    "result": "partial_acceptance_with_required_final_assembly_decline",
+    "source_reference": "hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-09-02.md",
+    "signatory": "Jax",
+    "information_only": true,
+    "commercial_action_created": false
+  },
+  "pcba_order": {
+    "minimum_quantity_pieces": 2,
+    "online_orders_only": true,
+    "special_process_feasibility_confirmed_before_order": false,
+    "notes": "Accurate pricing and special-process feasibility require complete Gerber/BOM/CPL, order remarks and post-submission engineering review."
+  },
   "sa818s_v": {
     "mpn": "SA818S-V",
     "jlcpcb_part": "C51897911",
-    "standard_pcba_installation": null,
+    "standard_pcba_installation": true,
     "sample_lead_time_days": 15,
     "sample_lead_time_working_days_typical": [8, 15],
     "supplier_confirmation_threshold_working_days": 18,
     "moq": 1,
     "preorder_or_service_charge_usd": null,
-    "notes": "Stock zero. Pre-order is required. Final quotation and exact lead time are confirmed only after pre-order; over 18 working days triggers continue/cancel-and-refund confirmation. The integer lead-time field records the conservative upper end of the stated typical working-day range. Standard-PCBA installation and any extra service charge were not explicitly confirmed."
+    "notes": "Stock zero. Pre-order is required. Final quotation and exact lead time are confirmed only after pre-order; over 18 working days triggers continue/cancel-and-refund confirmation. The integer lead-time field records the conservative upper end of the stated typical working-day range. JLCPCB later confirmed that exact C51897911 and C3001549 can each be selected for its own designator in BOM Matching and assembled from Gerber/BOM/CPL."
   },
   "dual_module_job": {
     "sa818s_u_mpn": "SA818S-U",
     "sa818s_u_jlcpcb_part": "C3001549",
-    "accepted": null,
+    "accepted": true,
     "common_rev_1_8_land_pattern_confirmed": null,
     "separate_rf_paths_confirmed": null,
-    "notes": "Supplier asked whether both C-numbers were intended for one reference designator. They are not: Leshy2 uses two separate reference designators and independent RF paths, so an explicit answer for the actual job remains open."
+    "notes": "JLCPCB confirmed that C51897911 and C3001549 can be assigned to their corresponding separate reference designators and assembled. It did not independently verify the common land geometry or functional isolation of the RF paths; those remain design and owner H7/H8 evidence."
   },
   "j4_f_operations": [
     {
@@ -96,13 +131,13 @@
       "id": "sandwich_enclosure",
       "required_for_release": true,
       "description": "assemble the two-board sandwich and enclosure",
-      "accepted": null,
+      "accepted": false,
       "setup_nre_usd": null,
       "per_unit_usd_q5": null,
       "per_unit_usd_q10": null,
       "required_fixtures_or_files": null,
       "reject_rework_terms": null,
-      "notes": null
+      "notes": "JLCPCB explicitly states that it does not support complete enclosure/final-device assembly of populated PCBs, spacers and enclosure; the customer must perform it after receiving the PCBA."
     },
     {
       "id": "whole_device_test",
@@ -169,10 +204,10 @@
     "notes": "Project owner confirmed that accumulator cells are not part of device delivery. The user supplies and installs compatible protected cells separately; this is no longer a supplier gate."
   },
   "identity_control": {
-    "exact_external_mpns_controlled_at_incoming_inspection": null,
-    "silent_substitution_prohibited": null,
-    "exceptions": null,
-    "notes": null
+    "exact_external_mpns_controlled_at_incoming_inspection": true,
+    "silent_substitution_prohibited": true,
+    "exceptions": [],
+    "notes": "JLCPCB confirms exact customer-supplied/consigned MPN control. If engineering review finds an issue, it emails the customer; Replace Part is enabled only after confirmation and the customer chooses the replacement in Order History."
   },
   "authorization": {
     "quote_project": false,

@@ -242,7 +242,10 @@ routing have not started.
 18. ✅ [`H4-R2.1`](h4-r2-contract-reconciliation.md): run the joined cross-check; find three owned BSP-domain corrections and no unowned contradiction.
 19. ✅ [`H4-R2.2`](h4-r2-correction-closure.md): regenerate complete exact C5, Pack and Safety BSP maps and fail-closed target guards; requalify all 12 builds.
 20. ✅ [`H4-R2.3`](h4-r2-acceptance.md): publish the global bilingual joined gate with zero contradiction and transfer all 51 physical residuals.
-21. ▶ `H5.0.3-R1`: finish the exact-one-prototype component and factory evidence route without silent substitution.
+21. ▶ `H5.0.3-R1`: retain JLCPCB as PCBA-only after its explicit final-device decline and await PCBWay's exact-one full-device answer without silent substitution.
 
-H5.0.3-R1 component/factory evidence is the current action. Placement, routing, quoting and
-every order remain blocked.
+H5.0.3-R1 component/factory evidence is the current action. JLCPCB confirmed
+exact dual-module/no-substitution PCBA but declined complete final-device
+assembly and pre-order special-process approval. The information-only PCBWay
+inquiry sent on 2 September is now the active full-device gate. Placement,
+routing, quoting and every order remain blocked.

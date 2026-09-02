@@ -88,11 +88,18 @@
   ],
   "fallback_factory_evidence": {
     "path": "hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json",
-    "sha256": "859b837d180dc614f8e712d3b75d5a1665c8c3c3fc4aaf0fcafb4b4df2470ac8",
-    "status": "fallback_ranked_no_contact_authorized",
+    "sha256": "25f6fea8a4610c3c4dcb977a39acb696c28b704d72cb4f715119acac3e085513",
+    "status": "active_full_device_inquiry_sent_response_open",
     "first_fallback": "pcbway",
     "second_source_pcba": "seeed-fusion",
-    "contact_authorized": false
+    "jlcpcb_remains_pcba_reference": true,
+    "jlcpcb_remains_primary_full_device_factory": false,
+    "contact_result": "message_sent",
+    "contact_sent_on": "2026-09-02",
+    "contact_from": "vinogradov.anton@gmail.com",
+    "contact_to": "service@pcbway.com",
+    "information_only": true,
+    "commercial_action_created": false
   },
   "availability_tiers": [
     {
@@ -138,14 +145,14 @@
       "board connectors and soldered RF boundaries when their exact assembly rule is accepted"
     ],
     "J4-F_factory_final_assembly": {
-      "status": "open_until_factory_acceptance_and_quote",
+      "status": "open_at_active_full_device_candidate",
       "required_operations": [
         "install and mate the documented exact production panel from released drawings",
         "install, strain-route and continuity-check two exact 30-mm plus three exact 60-mm microcoax jumpers",
         "encoder knob installation",
         "final sandwich/enclosure integration from deterministic assembly instructions"
       ],
-      "display_mating_feasibility": "exact endpoint selected; awaiting written factory confirmation only for adhesive, FPC insertion and final mating",
+      "display_mating_feasibility": "exact endpoint selected; JLCPCB defers adhesive/FPC/microcoax feasibility until after order, so pre-order acceptance is awaited from PCBWay",
       "factory_function_test": "optional quote-only insurance; not required for H5/H7 closure",
       "close_gate": "H5 and H7 cannot close until the selected factory accepts and prices deterministic one-prototype final assembly; Function Test is not part of this gate"
     },
@@ -699,7 +706,7 @@
     "continuity": "permanent availability is approximated by qualified alternates or reserved private inventory, never claimed from one stock snapshot"
   },
   "next": {
-    "local": "all 210 lines have defined routes; preserve the map, keep the nine exact-one supplier answers open, keep optional services and accumulators outside the release gate, keep the optional rejected Parts API path fail-closed, and retain PCBWay as the prepared unsent full-device fallback",
+    "local": "all 210 lines have defined routes; preserve JLCPCB's accepted exact dual-module/no-substitution PCBA facts and explicit full-device decline, keep optional services and accumulators outside the release gate, keep the rejected Parts API path fail-closed, and wait for PCBWay's sent information-only full-device response",
     "external_authority_later": "quote creation, sourcing requests, private-stock reservation, purchase and any materially expanded supplier request still require separate explicit authority",
     "forbidden": [
       "purchase",

@@ -3,11 +3,35 @@
   "artifact": "H5-EVR08",
   "gate": "H5.0.3-R1",
   "checked_on": "2026-08-26",
-  "status": "fallback_ranked_no_contact_authorized",
+  "updated_on": "2026-09-02",
+  "status": "active_full_device_inquiry_sent_response_open",
+  "contact": {
+    "authorized_on": "2026-09-02",
+    "sent_on": "2026-09-02",
+    "sent_at_local": "20:14 Europe/Moscow",
+    "from": "vinogradov.anton@gmail.com",
+    "to": "service@pcbway.com",
+    "channel": "Gmail",
+    "subject": "Leshy2 exact-part PCBA and final assembly capability — information only",
+    "result": "message_sent",
+    "information_only": true,
+    "commercial_action_created": false,
+    "source_reference": "hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md"
+  },
+  "primary_disposition": {
+    "received_on": "2026-09-02",
+    "source_reference": "hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-09-02.md",
+    "exact_dual_module_placement_accepted": true,
+    "exact_mpn_and_no_silent_substitution_accepted": true,
+    "pcba_minimum_quantity": 2,
+    "special_process_preorder_acceptance": false,
+    "complete_enclosure_final_device_assembly": false,
+    "role": "pcba_only_reference"
+  },
   "factories": [
     {
       "id": "pcbway",
-      "role": "first_fallback_for_full_device",
+      "role": "active_full_device_candidate_after_jlcpcb_decline",
       "official_sources": [
         "https://www.pcbway.com/assembly-capabilities.html",
         "https://www.pcbway.com/oem.html"
@@ -28,7 +52,7 @@
         "the four release-required final-assembly operations for exactly one unpowered device",
         "exact-MPN incoming inspection and no-silent-substitution terms"
       ],
-      "status": "ready_for_same_no_order_questionnaire_if_authorized"
+      "status": "questionnaire_sent_waiting_for_written_response"
     },
     {
       "id": "seeed-fusion",
@@ -55,19 +79,22 @@
   ],
   "selection": {
     "first_fallback": "pcbway",
-    "reason": "strongest public evidence for exact-part approval, consignment, mixed PCBA, customer functional test and final product assembly in one supplier class",
+    "reason": "JLCPCB explicitly declines complete enclosure/final-device assembly; PCBWay has the strongest public evidence for exact-part approval, consignment, mixed PCBA, customer functional test and final product assembly in one supplier class",
     "second_source_pcba": "seeed-fusion",
-    "jlcpcb_remains_primary": true
+    "jlcpcb_remains_pcba_reference": true,
+    "jlcpcb_remains_primary_full_device_factory": false
   },
   "checks": {
     "exactly_two_non_jlc_candidates_are_recorded": true,
     "pcbway_public_evidence_covers_sourcing_pcba_test_and_final_assembly_classes": true,
     "pcbway_exact_leshy_acceptance_and_price_remain_open": true,
     "seeed_public_evidence_is_not_overstated_as_full_box_build": true,
-    "no_supplier_contact_or_commercial_action_is_authorized": true
+    "pcbway_information_only_questionnaire_sent_without_commercial_action": true,
+    "fallback_activation_is_supported_by_jlcpcb_required_operation_decline": true,
+    "no_order_or_commercial_action_is_authorized": true
   },
   "authorization": {
-    "fallback_supplier_contact_send": false,
+    "additional_fallback_supplier_contact_send": false,
     "quote_project": false,
     "reservation": false,
     "sourcing_request": false,
@@ -76,5 +103,5 @@
     "pcb_placement_and_routing": false,
     "fabrication": false
   },
-  "next": "keep waiting for JLCPCB; if it declines a release-required operation, request separate authority to send the exact-one no-order gate questionnaire to PCBWay"
+  "next": "wait for PCBWay's written line-by-line response; JLCPCB remains PCBA-only because it declines complete enclosure/final-device assembly and defers special-process feasibility until after order"
 }

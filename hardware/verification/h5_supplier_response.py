@@ -107,6 +107,32 @@ def build(source: dict | None = None) -> dict:
         and display_psa.get("information_only") is True
         and display_psa.get("commercial_action_created") is False
     )
+    merge = source.get("ticket_merge_notice", {})
+    administrative_merge_recorded = (
+        merge.get("received_on") == "2026-09-02"
+        and merge.get("result") == "clarification_request_closed_and_merged"
+        and merge.get("merged_into_ticket") == "TKEM2026082605925"
+        and merge.get("source_reference") == "hardware/procurement/H5.0.3-R1-jlcpcb-ticket-merge-2026-09-02.md"
+        and merge.get("substantive_release_answer") is False
+        and merge.get("commercial_action_created") is False
+    )
+    substantive = source.get("substantive_clarification_response", {})
+    substantive_response_recorded = (
+        substantive.get("received_on") == "2026-09-02"
+        and substantive.get("from") == "support@jlcpcb.com"
+        and substantive.get("to") == "av@apache.org"
+        and substantive.get("viewed_in_gmail_account") == "no.mail.in@gmail.com"
+        and substantive.get("result") == "partial_acceptance_with_required_final_assembly_decline"
+        and substantive.get("source_reference") == "hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-09-02.md"
+        and substantive.get("information_only") is True
+        and substantive.get("commercial_action_created") is False
+    )
+    pcba_order = source.get("pcba_order", {})
+    pcba_order_boundary_recorded = (
+        pcba_order.get("minimum_quantity_pieces") == 2
+        and pcba_order.get("online_orders_only") is True
+        and pcba_order.get("special_process_feasibility_confirmed_before_order") is False
+    )
 
     voice = source["sa818s_v"]
     exact_voice_identity = voice.get("mpn") == "SA818S-V" and voice.get("jlcpcb_part") == "C51897911"
@@ -173,7 +199,7 @@ def build(source: dict | None = None) -> dict:
         and not identity.get("exceptions")
     )
     no_new_authority = all(value is False for value in source["authorization"].values())
-    gate_passed = response_complete and exact_voice_identity and exact_dual_identity and all_factory_gates_accepted and clarification_sent and display_psa_clarification_sent and no_new_authority
+    gate_passed = response_complete and exact_voice_identity and exact_dual_identity and all_factory_gates_accepted and clarification_sent and display_psa_clarification_sent and substantive_response_recorded and no_new_authority
 
     blockers: list[str] = []
     if missing:
@@ -193,7 +219,7 @@ def build(source: dict | None = None) -> dict:
         "gate": "H5.0.3-R1",
         "source": str(INPUT.relative_to(REPO)),
         "source_status": source["status"],
-        "status": "passed_supplier_gate" if gate_passed else ("complete_response_gate_failed" if response_complete else ("partial_response_gate_open" if source["status"] == "response_recorded" else "waiting_for_complete_supplier_response")),
+        "status": "passed_supplier_gate" if gate_passed else ("supplier_gate_failed_explicit_required_decline" if explicit_declines else ("complete_response_gate_failed" if response_complete else ("partial_response_gate_open" if source["status"] == "response_recorded" else "waiting_for_complete_supplier_response"))),
         "summary": {
             "response_complete": response_complete,
             "factory_gate_passed": gate_passed,
@@ -212,6 +238,9 @@ def build(source: dict | None = None) -> dict:
             "release_relevant_and_optional_operations_are_machine_separated": len(required_j4_f) == 4 and len(optional_operations) == 3 and len(out_of_scope) == 1,
             "exact_one_clarification_sent_without_commercial_action": clarification_sent,
             "exact_display_psa_clarification_sent_without_commercial_action": display_psa_clarification_sent,
+            "administrative_ticket_merge_recorded_without_closing_the_gate": administrative_merge_recorded,
+            "substantive_response_address_and_scope_recorded": substantive_response_recorded,
+            "pcba_moq_and_post_order_special_process_boundary_recorded": pcba_order_boundary_recorded,
             "commercial_layout_and_fabrication_authority_remains_false": no_new_authority,
             "response_complete": response_complete,
             "all_required_factory_gates_accepted": all_factory_gates_accepted,
@@ -220,7 +249,7 @@ def build(source: dict | None = None) -> dict:
         "explicit_declines": explicit_declines,
         "blockers": blockers,
         "authorization": source["authorization"],
-        "next": ("wait for the supplier response to the exact-one and display-PSA clarifications" if clarification_sent and display_psa_clarification_sent and not response_complete else ("send the prepared exact-one and exact display-PSA clarifications without authorizing a commercial action" if not response_complete else ("prepare the separate cost/order decision" if gate_passed else "compare an alternate factory or revise the declined required operation boundary"))),
+        "next": ("use PCBWay as the active full-device candidate; retain JLCPCB as the PCBA-only reference" if explicit_declines else ("wait for a substantive supplier response in merged ticket TKEM2026082605925" if clarification_sent and display_psa_clarification_sent and administrative_merge_recorded and not response_complete else ("wait for the supplier response to the exact-one and display-PSA clarifications" if clarification_sent and display_psa_clarification_sent and not response_complete else ("send the prepared exact-one and exact display-PSA clarifications without authorizing a commercial action" if not response_complete else ("prepare the separate cost/order decision" if gate_passed else "compare an alternate factory or revise the declined required operation boundary"))))),
     }
 
 

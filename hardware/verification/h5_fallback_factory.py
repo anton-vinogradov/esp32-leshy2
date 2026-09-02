@@ -11,12 +11,40 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 OUTPUT = REPO / "hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json"
 CHECKED_ON = "2026-08-26"
+UPDATED_ON = "2026-09-02"
+
+
+PCBWAY_CONTACT = {
+    "authorized_on": "2026-09-02",
+    "sent_on": "2026-09-02",
+    "sent_at_local": "20:14 Europe/Moscow",
+    "from": "vinogradov.anton@gmail.com",
+    "to": "service@pcbway.com",
+    "channel": "Gmail",
+    "subject": "Leshy2 exact-part PCBA and final assembly capability — information only",
+    "result": "message_sent",
+    "information_only": True,
+    "commercial_action_created": False,
+    "source_reference": "hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md",
+}
+
+
+JLCPCB_DISPOSITION = {
+    "received_on": "2026-09-02",
+    "source_reference": "hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-09-02.md",
+    "exact_dual_module_placement_accepted": True,
+    "exact_mpn_and_no_silent_substitution_accepted": True,
+    "pcba_minimum_quantity": 2,
+    "special_process_preorder_acceptance": False,
+    "complete_enclosure_final_device_assembly": False,
+    "role": "pcba_only_reference",
+}
 
 
 FACTORIES = [
     {
         "id": "pcbway",
-        "role": "first_fallback_for_full_device",
+        "role": "active_full_device_candidate_after_jlcpcb_decline",
         "official_sources": [
             "https://www.pcbway.com/assembly-capabilities.html",
             "https://www.pcbway.com/oem.html",
@@ -37,7 +65,7 @@ FACTORIES = [
             "the four release-required final-assembly operations for exactly one unpowered device",
             "exact-MPN incoming inspection and no-silent-substitution terms",
         ],
-        "status": "ready_for_same_no_order_questionnaire_if_authorized",
+        "status": "questionnaire_sent_waiting_for_written_response",
     },
     {
         "id": "seeed-fusion",
@@ -71,7 +99,13 @@ def build() -> dict:
         "pcbway_public_evidence_covers_sourcing_pcba_test_and_final_assembly_classes": all(pcbway["publicly_confirmed"].values()),
         "pcbway_exact_leshy_acceptance_and_price_remain_open": len(pcbway["still_requires_written_acceptance"]) == 3,
         "seeed_public_evidence_is_not_overstated_as_full_box_build": seeed["role"] == "second_source_for_pcba_not_yet_full_box_build" and "404" in seeed["observed_gap"],
-        "no_supplier_contact_or_commercial_action_is_authorized": True,
+        "pcbway_information_only_questionnaire_sent_without_commercial_action": PCBWAY_CONTACT["result"] == "message_sent"
+        and PCBWAY_CONTACT["information_only"]
+        and not PCBWAY_CONTACT["commercial_action_created"],
+        "fallback_activation_is_supported_by_jlcpcb_required_operation_decline": not JLCPCB_DISPOSITION["complete_enclosure_final_device_assembly"]
+        and not JLCPCB_DISPOSITION["special_process_preorder_acceptance"]
+        and JLCPCB_DISPOSITION["role"] == "pcba_only_reference",
+        "no_order_or_commercial_action_is_authorized": True,
     }
     if not all(checks.values()):
         raise ValueError([key for key, value in checks.items() if not value])
@@ -80,17 +114,21 @@ def build() -> dict:
         "artifact": "H5-EVR08",
         "gate": "H5.0.3-R1",
         "checked_on": CHECKED_ON,
-        "status": "fallback_ranked_no_contact_authorized",
+        "updated_on": UPDATED_ON,
+        "status": "active_full_device_inquiry_sent_response_open",
+        "contact": PCBWAY_CONTACT,
+        "primary_disposition": JLCPCB_DISPOSITION,
         "factories": FACTORIES,
         "selection": {
             "first_fallback": "pcbway",
-            "reason": "strongest public evidence for exact-part approval, consignment, mixed PCBA, customer functional test and final product assembly in one supplier class",
+            "reason": "JLCPCB explicitly declines complete enclosure/final-device assembly; PCBWay has the strongest public evidence for exact-part approval, consignment, mixed PCBA, customer functional test and final product assembly in one supplier class",
             "second_source_pcba": "seeed-fusion",
-            "jlcpcb_remains_primary": True,
+            "jlcpcb_remains_pcba_reference": True,
+            "jlcpcb_remains_primary_full_device_factory": False,
         },
         "checks": checks,
         "authorization": {
-            "fallback_supplier_contact_send": False,
+            "additional_fallback_supplier_contact_send": False,
             "quote_project": False,
             "reservation": False,
             "sourcing_request": False,
@@ -99,7 +137,7 @@ def build() -> dict:
             "pcb_placement_and_routing": False,
             "fabrication": False,
         },
-        "next": "keep waiting for JLCPCB; if it declines a release-required operation, request separate authority to send the exact-one no-order gate questionnaire to PCBWay",
+        "next": "wait for PCBWay's written line-by-line response; JLCPCB remains PCBA-only because it declines complete enclosure/final-device assembly and defers special-process feasibility until after order",
     }
 
 
@@ -117,7 +155,7 @@ def main() -> int:
     if args.check:
         if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != expected:
             raise SystemExit(f"stale generated artifact: {OUTPUT.relative_to(REPO)}")
-        print("ok: H5 fallback factory readiness is current; no contact authorized")
+        print("ok: H5 fallback inquiry is sent, response-open and commercially fail-closed")
         return 0
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(expected, encoding="utf-8")

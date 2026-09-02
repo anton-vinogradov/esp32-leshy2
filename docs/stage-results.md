@@ -168,6 +168,12 @@ closes with zero contradiction and transfers all 51 physical residuals.
 
 **Status:** ▶️ current at **`H5.0.3-R1`**.
 
+JLCPCB confirmed exact dual-module/no-substitution PCBA, but set PCBA MOQ 2,
+declined complete final-device assembly and deferred special-process feasibility
+until after order. The information-only PCBWay inquiry sent on 2 September is
+therefore the active full-device gate; no quote, sourcing request, reservation,
+purchase or order was created.
+
 Expected result: every exact MPN rechecked on the current JLCPCB surface,
 non-PCBA accessories listed, consigned/private/global sourcing qualified and
 received-part measurements assigned to their controlled downstream gates.

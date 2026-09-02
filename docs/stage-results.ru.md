@@ -169,6 +169,12 @@ policy через 25 проходящих checks. [`H3-R2.7`](h3-r2-acceptance.r
 
 **Статус:** ▶️ сейчас **`H5.0.3-R1`**.
 
+JLCPCB подтвердил exact dual-module/no-substitution PCBA, но установил PCBA MOQ
+2, отказался от полной сборки устройства и отложил special-process feasibility
+до post-order review. Поэтому information-only запрос PCBWay от 2 сентября
+теперь является активным full-device gate; quote, sourcing request, reservation,
+purchase и order не создавались.
+
 Ожидаемый результат: повторная проверка каждого точного MPN на текущей
 поверхности JLCPCB, список аксессуаров после PCBA, qualification
 consigned/private/global sourcing и назначение измерений полученных деталей контролируемым downstream-gates.
