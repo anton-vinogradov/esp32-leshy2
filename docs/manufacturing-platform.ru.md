@@ -6,9 +6,9 @@
 
 **Рабочий reference — JLCPCB Standard PCBA.** Это не эксклюзивная привязка и не разрешение заказа. Standard выбран из-за публичной assembly-библиотеки со stock/JLC-number, двухстороннего SMT+THT, fine-pitch/BGA/QFN, специального stack-up и SPI/AOI/X-ray. [Официальные capabilities](https://jlcpcb.com/capabilities/pcb-assembly-capabilities) и [варианты sourcing](https://jlcpcb.com/help/article/pcba-parts-sourcing-instruction).
 
-Целевой заказ — ровно **один полностью собранный прототип**, без аккумуляторов. Фабрика не выбирает схемные или механические решения: production package заранее фиксирует exact panel, его mating, все компоненты и последовательность сборки. Первый полноценный power-on и USB bring-up выполняет владелец.
+Целевой заказ — две фабрично установленные PCBA по MOQ JLCPCB, из которых владелец собирает ровно **один рабочий прототип**, без аккумуляторов в поставке. Фабрика не выбирает схемные или механические решения: production package заранее фиксирует exact panel, его mating, все компоненты и последовательность сборки. Владелец ставит дисплей с готовым PSA, пять microcoax, ручку и крепёж, затем выполняет первый полноценный power-on и USB bring-up.
 
-JLCPCB остаётся PCBA-only reference: он подтвердил exact dual-designator placement и no-silent-substitution, но прямо отказался от полной сборки корпуса/устройства и рассматривает специальные клей/FPC/microcoax-процессы только после заказа. PCBWay поэтому стал активным кандидатом полного устройства: его официальные страницы подтверждают [turnkey/combo/consigned PCBA и тестирование](https://www.pcbway.com/assembly-capabilities.html), а также [OEM final assembly](https://www.pcbway.com/oem.html). [Информационный exact-one запрос](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) отправлен 2 сентября с `vinogradov.anton@gmail.com` на `service@pcbway.com`; письменное принятие Leshy2 и цены ещё ожидаются. Отправка не создала quote, sourcing request, reservation, purchase или order. Seeed Fusion подтверждён только как второй источник PCBA.
+JLCPCB подтвердил exact dual-designator placement и no-silent-substitution и остаётся основной PCBA-кандидатурой. Его отказ от полной сборки корпуса/устройства больше не блокирует проект, потому что владелец принял контролируемую post-PCBA сборку. [Информационный exact-one запрос PCBWay](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) уже отправлен; ответ даст полезное сравнение цены и удобства, но ждать его для release не нужно. Seeed Fusion остаётся вторым источником PCBA. Ни один запрос не создал quote, sourcing request, reservation, purchase или order.
 
 ```mermaid
 flowchart TD
@@ -17,8 +17,8 @@ flowchart TD
   J0 -->|нет| J1["J1 · квалифицированная замена"]
   J1 -->|нет без деградации| J2["J2 · private pre-order"]
   J2 -->|нет| J3["J3 · global/consign"]
-  P -->|нет; ставит фабрика| J4F["J4-F · factory final assembly"]
-  P -->|нет; в комплект отдельно| J4P["J4-P · factory-packed"]
+  P -->|нет; ставит владелец| J4F["J4-F · post-PCBA final assembly"]
+  P -->|нет; съёмный аксессуар| J4P["J4-P · owner-installed"]
   P -->|не входит в поставку| J5U["J5-U · user-supplied"]
   J0 --> F["BOM freeze"]
   J1 --> F
@@ -38,7 +38,7 @@ flowchart TD
 
 Контрольный BOM Tool capture относится к прежним 209 строкам: 176 matched, 33 unmatched и 1019 установок. Текущий BOM заменяет `SA518` двумя exact voice-модулями, legacy-дисплей — точным EastRising endpoint, а прежний 0-dBm nRF24 — складским full-power `E01-ML01SP4`. Так получена проверяемая текущая карта `210` строк и `1050` установок без повторной передачи BOM. До применения сохранённых outlier-решений в ней 182 exact catalogue route и 28 unresolved lines; семантических подмен MPN — ноль.
 
-Сохранённый exact-поиск закрывает все 28 оставшихся outlier без замены компонентов: 11 добавлены в `J0`, 2 — в `J2`, 10 сохраняют точный MPN через `J3`, 3 требуют фабричной финальной сборки `J4-F`, U214 идёт через `J4-P`, а аккумуляторы — через `J5-U` вне поставки. Точный EastRising-дисплей уже входит отдельным прямым маршрутом `J4-F`. Итог всей BOM: `J0=165`, `J1=0`, `J2=29`, `J3=10`, `J4-F=4`, `J4-P=1`, `J5-U=1`; несопоставленных строк — ноль.
+Сохранённый exact-поиск закрывает все 28 оставшихся outlier без замены компонентов: 11 добавлены в `J0`, 2 — в `J2`, 10 сохраняют точный MPN через `J3`, 3 входят в контролируемую post-PCBA сборку владельца `J4-F`, U214 идёт через owner-installed `J4-P`, а аккумуляторы — через `J5-U` вне поставки. Точный EastRising-дисплей уже входит отдельным прямым маршрутом `J4-F`. Итог всей BOM: `J0=165`, `J1=0`, `J2=29`, `J3=10`, `J4-F=4`, `J4-P=1`, `J5-U=1`; несопоставленных строк — ноль.
 
 Показываемая в историческом BOM Tool capture сумма `$1255.6365` относится только к прежним 176 найденным строкам и **не** является текущей полной ценой сборки, quote или заказом. Актуальный order-integrated article manifest единственного прототипа посчитан на [странице manifest](component-sample-basket.ru.md); отдельной закупки образцов/coupons нет.
 
@@ -47,7 +47,7 @@ flowchart TD
 
 | Нормализованный MPN | Кол-во | Маршрут | Доказательство |
 |---|---:|---:|---|
-| `1227-J` | 1 | `J4-F` | encoder knob requires deterministic factory installation after enclosure integration; full control bring-up is performed by the owner |
+| `1227-J` | 1 | `J4-F` | encoder knob is owner-installed after enclosure integration; full control bring-up is performed by the owner |
 | `RFPC-SMA31-FN-175-A` | 8 | `J3` | exact board SMA is orderable outside the public JLC library |
 | `RFPC-SMA32-FN-175-A` | 2 | `J3` | exact board RP-SMA is orderable outside the public JLC library |
 | `FX8C-80S-SV5(92)` | 1 | `J3` | exact inter-board receptacle is orderable outside the public JLC library |
@@ -57,8 +57,8 @@ flowchart TD
 | `PESD24VY1BSF` | 2 | `J3` | retain exact low-capacitance RF ESD identity until an RF-equivalent alternate is separately qualified |
 | `AS02404PO` | 1 | `J3` | exact board speaker is orderable outside the public JLC library and needs manual/THT assembly acceptance |
 | `1125R-SMT-4P` | 1 | `J3` | exact Seeed SMT Unit connector is orderable outside the public JLC library |
-| `1-2118651-0` | 3 | `J4-F` | three removable 60-mm nRF microcoax jumpers require deterministic factory installation and strain routing during final sandwich assembly; full power-on is owner bring-up |
-| `2118651-2` | 2 | `J4-F` | two removable 30-mm S3/C5 microcoax jumpers require deterministic factory installation and strain routing during final sandwich assembly; full power-on is owner bring-up |
+| `1-2118651-0` | 3 | `J4-F` | three removable 60-mm nRF microcoax jumpers are owner-installed and strain-routed during final sandwich assembly; the released routing and continuity check remain mandatory |
+| `2118651-2` | 2 | `J4-F` | two removable 30-mm S3/C5 microcoax jumpers are owner-installed and strain-routed during final sandwich assembly; the released routing and continuity check remain mandatory |
 | `SN74LVC1G07DCKR` | 10 | `J0` | `C7830` · stock 31027 |
 | `SN74LVC1G08DCKR` | 4 | `J0` | `C7832` · stock 179787 |
 | `SN74LVC1G17DCKR` | 1 | `J0` | `C10425` · stock 59402 |
@@ -98,7 +98,7 @@ flowchart TD
 | [`E01-ML01SP4`](https://jlcpcb.com/partdetail/E01-ML01SP4/C97340) | `C97340` | stock 405 | `J0` · exact Chengdu Ebyte PA/LNA module is directly factory-placeable; 20-dBm and ten-land footprint replace the incorrect 0-dBm E01-ML01IPX baseline |
 | [`G-NiceRF SA818S-U`](https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549) | `C3001549` | stock 68 | `J0` · exact selected UHF module is priced and in public stock |
 | [`G-NiceRF SA818S-V`](https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911) | `C51897911` | Standard PCBA pre-order | `J2` · exact selected VHF module is priced but stock-zero pre-order; lead time remains open |
-| [`ER-TFT035IPS-6 + ER-TPC035-6 option 5344`](https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen) | `—` | stock manufacturer in stock | `J4-F` · exact configured panel, drawings, 50-contact tail, ILI9488/FT6236 endpoint and price are fixed; written assembler acceptance remains only for adhesive/FPC/final mating |
+| [`ER-TFT035IPS-6 + ER-TPC035-6 option 5344`](https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen) | `—` | stock manufacturer in stock | `J4-F` · exact configured panel, drawings, 50-contact tail, ILI9488/FT6236 endpoint and price are fixed; received-part FPC dry fit remains before bonding |
 | [`FH34SRJ-50S-0.5SH(50)`](https://jlcpcb.com/partdetail/HRS_Hirose-FH34SRJ_50S_0_5SH_50/C3169104) | `C3169104` | stock 2679 | `J0` · exact selected 50-position panel connector is directly placeable; quantity-one price USD 0.5832 |
 | [`0402WGF1603TCE`](https://jlcpcb.com/partdetail/26500-0402WGF1603TCE/C25757) | `C25757` | stock 388017 | `J0` · exact stocked 160-kOhm 0402 replacement preserves the complete audio-attenuator electrical contract and uses a thinner body |
 | [`RS-06K47R0FT`](https://jlcpcb.com/partdetail/151340-RS06K47R0FT/C140014) | `C140014` | stock 78058 | `J0` · exact stocked 47-Ohm 1206 replacement preserves the IR current-limit power, voltage and temperature contract |
@@ -109,15 +109,15 @@ flowchart TD
 
 ## Граница сборки
 
-JLCPCB Standard PCBA собирает обе платы и принятые SMT/THT-компоненты; exact dual-SA818S placement и запрет молчаливой замены подтверждены. Однако PCBA MOQ равен 2, клей/FPC/microcoax оцениваются только после заказа, а complete enclosure/final-device assembly не поддерживается. Поэтому точный `ER-TFT035IPS-6 + ER-TPC035-6` option 5344 и его `FH34SRJ-50S-0.5SH(50)` сохраняются, но полное J4-F принятие до заказа теперь требуется от PCBWay. Function Test остаётся optional quote-insurance, а не gate.
+JLCPCB Standard PCBA собирает обе платы и принятые SMT/THT-компоненты; exact dual-SA818S placement и запрет молчаливой замены подтверждены. PCBA MOQ равен 2. Точный `ER-TFT035IPS-6 + ER-TPC035-6` option 5344, готовый PSA и пять microcoax устанавливает владелец по release-инструкции; точные 11-мм упоры `Ettinger 007.02.611` сохраняют четыре проходных пластиковых M2.5-винта, длину которых фиксирует H6 после размеров корпуса. Отказ JLCPCB от box-build и post-order review special process больше не являются gate. Function Test и ответ PCBWay остаются optional.
 
 | Маршрут | Обязательная операция | Статус |
 |---|---|---|
-| `J4-F` | Фабрика по release package устанавливает и стыкует exact `ER-TFT035IPS-6 + ER-TPC035-6` через `C3169104`, фиксирует две 30-мм и три 60-мм microcoax, ставит ручку энкодера и собирает корпус/«бутерброд» без инженерных догадок | ❌ JLCPCB отказался от complete enclosure assembly и не подтверждает special process до заказа; 🔒 ожидается письменный exact-one ответ PCBWay |
+| `J4-F` | Владелец устанавливает и стыкует exact `ER-TFT035IPS-6 + ER-TPC035-6` через `C3169104`, фиксирует две 30-мм и три 60-мм microcoax, ставит ручку энкодера и собирает корпус/«бутерброд» по release-инструкции | ✅ Роль принята; точные 11-мм упоры `Ettinger 007.02.611` выбраны; H6 фиксирует зависящую от стенок длину M2.5 nylon-винтов; received-part dry fit дисплея выполняется до наклейки |
 | `J4-P` | U214 и внешние антенны остаются съёмными аксессуарами, которые владелец приобретает и устанавливает после доставки | ✅ Необязательная упаковка фабрикой не является release gate |
 | `J5-U` | Пользователь отдельно приобретает и устанавливает совместимые защищённые 18650 | ✅ Принятая граница продукта: аккумуляторы не входят в поставку устройства |
 
-`J4-F` фиксирует обязательный результат для выбранной фабрики или fallback box-build подрядчика. `J4-P` сохраняется только как классификация съёмных аксессуаров и не требует принятия фабрикой для release.
+`J4-F` фиксирует обязательный результат post-PCBA сборки владельца; box-build подрядчик может выполнить его только как необязательную услугу. `J4-P` сохраняется как классификация съёмных аксессуаров.
 
 ## Два точных voice-маршрута
 
@@ -129,11 +129,11 @@ JLCPCB Standard PCBA собирает обе платы и принятые SMT/
 
 ## Текущий результат
 
-- JLCPCB Standard PCBA сохранён как PCBA-only reference без lock-in; full-device роль отклонена самим JLCPCB.
+- JLCPCB Standard PCBA сохранён как основная PCBA-кандидатура без lock-in; full-device роль не требуется.
 - Все `210` строк имеют определённый маршрут `J0`–`J3`, `J4-F`, `J4-P` или `J5-U`; функциональных замен нет.
-- [Ответ JLCPCB от 2 сентября](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-09-02.md) подтверждает exact `SA818S-V C51897911` и `SA818S-U C3001549` на разных designator через BOM Matching, exact-MPN incoming control и запрет замены без подтверждения. Он одновременно задаёт PCBA MOQ 2, откладывает решение по клею/FPC/microcoax до post-order engineering review и прямо отказывает в complete enclosure/final-device assembly. Письмо пришло в исходный тикет на `av@apache.org` и отображается в Gmail-аккаунте `no.mail.in@gmail.com`; это объясняет видимую адресную путаницу. [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) фиксирует explicit required decline; JLCPCB full-device gate не пройден.
+- [Ответ JLCPCB от 2 сентября](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-09-02.md) подтверждает exact `SA818S-V C51897911` и `SA818S-U C3001549` на разных designator через BOM Matching, exact-MPN incoming control и запрет замены без подтверждения. Он задаёт PCBA MOQ 2 и не поддерживает complete enclosure assembly, но [`H5-EVR07`](../hardware/verification/generated/H5-EVR07-supplier-response-gate.json) теперь закрывает PCBA supplier gate: дисплей/PSA, microcoax, ручка и корпус приняты как owner assembly. Письмо пришло в исходный тикет на `av@apache.org` и отображается в Gmail-аккаунте `no.mail.in@gmail.com`.
 - Заявка JLCAPI одобрена, приложение `ESP32-Leshy2 BOM Validator` создано, ключ подписи хранится только локально вне Git, но право Parts остаётся `Rejected`. [Поддержка ответила](../hardware/procurement/H5.0.3-R1-parts-api-support-inquiry.md), что аккаунт новый и не имеет истории заказов, поэтому устойчивую business need пока не удалось подтвердить; повторная заявка возможна после появления истории либо с расширенным business case/integration plan. Автор ответа отдельно указал, что не входит в API review team, и точный порог заказов не назван. Повторная заявка не отправлена: до фактического одобрения API-вызовы невозможны, а активным авторитетным путём остаются ручные карточки каталога и BOM. PCB/3D также отклонены, SMT Stencil и JLC Balance выключены.
-- [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json) переводит PCBWay из резерва в активного кандидата полной сборки; Seeed остаётся вторым источником PCBA. [No-order запрос PCBWay](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) отправлен 2 сентября; ожидается письменный line-by-line ответ. Никаких коммерческих действий запрос не создал.
-- Прежний 209-строчный BOM upload был передан и обработан; текущий 210-строчный direct-ZIF файл сгенерирован локально, но не передавался. Оба устаревших DF40 удалены; актуальный C5 route и новый внешний 60-мм microcoax проверены отдельно. Quote, sourcing request, reservation, покупка, замены, KiCad layout и fabrication не выполнялись и не разрешены. Сырые API-ответы публично не распространяются.
+- [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json) сохраняет PCBWay как необязательное сравнение box-build цены/удобства, а Seeed — вторым источником PCBA. [No-order запрос PCBWay](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) уже отправлен; его ответ будет записан, но не блокирует H6.
+- Прежний 209-строчный BOM upload был передан и обработан; текущий 210-строчный direct-ZIF файл сгенерирован локально, но не передавался. Оба устаревших DF40 удалены; актуальный C5 route и новый внешний 60-мм microcoax проверены отдельно. H5 не выполнял quote, sourcing request, reservation, покупку, замены, KiCad layout или fabrication; H6 теперь владеет layout, а все коммерческие действия и печать остаются заблокированы. Сырые API-ответы публично не распространяются.
 
 Машинные результаты: [`H5-EVR04`](../hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json), [`H5-EVR05`](../hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json), [`H5-EVR06`](../hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json) и [`H5-EVR08`](../hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json). [Требования JLCPCB к BOM](https://jlcpcb.com/help/article/bill-of-materials-for-pcb-assembly).

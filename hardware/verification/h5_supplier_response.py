@@ -69,6 +69,9 @@ def build(source: dict | None = None) -> dict:
     if {row.get("id") for row in out_of_scope} != OUT_OF_SUPPLIER_SCOPE_IDS:
         raise ValueError("out-of-supplier-scope operation set drifted")
     required_j4_f = [row for row in j4_f if row.get("required_for_release") is True]
+    supplier_required_j4_f = [
+        row for row in required_j4_f if row.get("supplier_acceptance_required") is True
+    ]
     optional_operations = [row for row in j4_f + j4_p if row.get("required_for_release") is False]
     if {row.get("id") for row in required_j4_f} != {
         "display_flex", "microcoax_x5", "encoder_knob", "sandwich_enclosure"
@@ -78,6 +81,22 @@ def build(source: dict | None = None) -> dict:
         "whole_device_test", "u214_test_and_pack", "antenna_kit"
     }:
         raise ValueError("optional operation set drifted")
+    owner_boundary = source.get("owner_assembly_boundary", {})
+    owner_final_assembly_accepted = (
+        owner_boundary.get("accepted_on") == "2026-09-02"
+        and owner_boundary.get("complete_factory_device_required") is False
+        and owner_boundary.get("display_and_fpc_installed_by_owner") is True
+        and owner_boundary.get("ready_cut_display_psa_required") is True
+        and owner_boundary.get("microcoax_jumpers_installed_by_owner") is True
+        and owner_boundary.get("encoder_knob_installed_by_owner") is True
+        and owner_boundary.get("sandwich_and_enclosure_assembled_by_owner") is True
+        and owner_boundary.get("pcbway_full_device_response_is_release_gate") is False
+        and owner_boundary.get("compression_stop_mpn") == "Ettinger 007.02.611"
+        and owner_boundary.get("exact_fastener_kit_status")
+        == "exact_stop_selected_screw_family_qualified_exact_length_owned_by_H6"
+        and not supplier_required_j4_f
+        and all(row.get("supplier_acceptance_required") is False for row in required_j4_f)
+    )
     if set(source.get("authorization", {})) != FORBIDDEN_AUTHORITY:
         raise ValueError("authorization boundary drifted")
 
@@ -156,7 +175,7 @@ def build(source: dict | None = None) -> dict:
             missing.append(f"dual_module_job.{field}")
 
     j4_f_accepted = True
-    for row in required_j4_f:
+    for row in supplier_required_j4_f:
         row_missing, accepted = operation_completeness(row)
         missing.extend(f"j4_f_operations.{item}" for item in row_missing)
         j4_f_accepted = j4_f_accepted and accepted
@@ -190,6 +209,11 @@ def build(source: dict | None = None) -> dict:
     explicit_declines = [
         f"J4-F:{row['id']}" for row in required_j4_f if row.get("accepted") is False
     ]
+    blocking_declines = [
+        f"J4-F:{row['id']}"
+        for row in supplier_required_j4_f
+        if row.get("accepted") is False
+    ]
     all_factory_gates_accepted = (
         voice.get("standard_pcba_installation") is True
         and dual.get("accepted") is True
@@ -197,6 +221,7 @@ def build(source: dict | None = None) -> dict:
         and identity.get("exact_external_mpns_controlled_at_incoming_inspection") is True
         and identity.get("silent_substitution_prohibited") is True
         and not identity.get("exceptions")
+        and owner_final_assembly_accepted
     )
     no_new_authority = all(value is False for value in source["authorization"].values())
     gate_passed = response_complete and exact_voice_identity and exact_dual_identity and all_factory_gates_accepted and clarification_sent and display_psa_clarification_sent and substantive_response_recorded and no_new_authority
@@ -204,8 +229,8 @@ def build(source: dict | None = None) -> dict:
     blockers: list[str] = []
     if missing:
         blockers.append("supplier response is incomplete")
-    if explicit_declines:
-        blockers.append("supplier explicitly declines: " + ", ".join(explicit_declines))
+    if blocking_declines:
+        blockers.append("supplier explicitly declines a supplier-required operation: " + ", ".join(blocking_declines))
     if response_complete and not all_factory_gates_accepted:
         blockers.append("supplier explicitly declines or qualifies at least one required factory gate")
     if not exact_voice_identity or not exact_dual_identity:
@@ -219,16 +244,18 @@ def build(source: dict | None = None) -> dict:
         "gate": "H5.0.3-R1",
         "source": str(INPUT.relative_to(REPO)),
         "source_status": source["status"],
-        "status": "passed_supplier_gate" if gate_passed else ("supplier_gate_failed_explicit_required_decline" if explicit_declines else ("complete_response_gate_failed" if response_complete else ("partial_response_gate_open" if source["status"] == "response_recorded" else "waiting_for_complete_supplier_response"))),
+        "status": "passed_pcba_supplier_gate_owner_final_assembly" if gate_passed else ("supplier_gate_failed_explicit_required_decline" if blocking_declines else ("complete_response_gate_failed" if response_complete else ("partial_response_gate_open" if source["status"] == "response_recorded" else "waiting_for_complete_supplier_response"))),
         "summary": {
             "response_complete": response_complete,
             "factory_gate_passed": gate_passed,
             "missing_field_count": len(missing),
             "explicit_decline_count": len(explicit_declines),
+            "blocking_decline_count": len(blocking_declines),
             "out_of_supplier_scope_operations": len(out_of_scope),
             "j4_f_operations": len(j4_f),
             "j4_p_operations": len(j4_p),
             "release_required_final_assembly_operations": len(required_j4_f),
+            "supplier_required_final_assembly_operations": len(supplier_required_j4_f),
             "optional_non_gating_operations": len(optional_operations),
             "orders_authorized": 0,
         },
@@ -241,15 +268,17 @@ def build(source: dict | None = None) -> dict:
             "administrative_ticket_merge_recorded_without_closing_the_gate": administrative_merge_recorded,
             "substantive_response_address_and_scope_recorded": substantive_response_recorded,
             "pcba_moq_and_post_order_special_process_boundary_recorded": pcba_order_boundary_recorded,
+            "owner_final_assembly_boundary_is_accepted": owner_final_assembly_accepted,
             "commercial_layout_and_fabrication_authority_remains_false": no_new_authority,
             "response_complete": response_complete,
             "all_required_factory_gates_accepted": all_factory_gates_accepted,
         },
         "missing_fields": sorted(set(missing)),
         "explicit_declines": explicit_declines,
+        "blocking_declines": blocking_declines,
         "blockers": blockers,
         "authorization": source["authorization"],
-        "next": ("use PCBWay as the active full-device candidate; retain JLCPCB as the PCBA-only reference" if explicit_declines else ("wait for a substantive supplier response in merged ticket TKEM2026082605925" if clarification_sent and display_psa_clarification_sent and administrative_merge_recorded and not response_complete else ("wait for the supplier response to the exact-one and display-PSA clarifications" if clarification_sent and display_psa_clarification_sent and not response_complete else ("send the prepared exact-one and exact display-PSA clarifications without authorizing a commercial action" if not response_complete else ("prepare the separate cost/order decision" if gate_passed else "compare an alternate factory or revise the declined required operation boundary"))))),
+        "next": ("close H5 and continue H6; the exact 11-mm stop is selected, H6 owns exact nylon screw length and quoteable outputs, and PCBWay remains an optional comparison" if gate_passed else ("use PCBWay as the active full-device candidate; retain JLCPCB as the PCBA-only reference" if blocking_declines else ("wait for a substantive supplier response in merged ticket TKEM2026082605925" if clarification_sent and display_psa_clarification_sent and administrative_merge_recorded and not response_complete else ("wait for the supplier response to the exact-one and display-PSA clarifications" if clarification_sent and display_psa_clarification_sent and not response_complete else ("send the prepared exact-one and exact display-PSA clarifications without authorizing a commercial action" if not response_complete else "compare an alternate factory or revise the declined required operation boundary"))))),
     }
 
 

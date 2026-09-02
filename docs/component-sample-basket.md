@@ -2,16 +2,16 @@
 
 [Русский](component-sample-basket.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Previous research](component-source-research.md)
 
-The `H5.0.3-R1` target is one order-integrated manifest for exactly **one fully assembled Leshy2 prototype** and its ordinary bring-up accessories. There is no separate engineering-sample purchase and no separate H5 coupon board. The manifest joins factory-installed production parts, accepted factory-packed accessories and ordinary owner-supplied operating items; it is not a second commercial order. From the released production package, the factory installs exact `ER-TFT035IPS-6 + ER-TPC035-6` option 5344 on one ready-cut `3M (TC) 4910SQ-2(5)` and mates it through `FH34SRJ-50S-0.5SH(50)` without making engineering guesses, after the measurement and written supplier gates close. The owner performs first full USB image/backlight/touch bring-up in H7 and continues physical qualification on that same prototype in H8. Paid factory Function Test is optional quote-only insurance, not a gate. Batteries are neither installed nor supplied. HMX035CTFT-001 and complete donor boards remain legacy evidence only and are rejected as the procurement route. [JLCPCB Standard PCBA remains the non-exclusive manufacturing reference](manufacturing-platform.md). Purchase, sourcing request, quote/reservation, PCB placement/routing and fabrication remain unauthorized.
+`H5.0.3-R1` is reviewed as one integrated manifest for exactly **one Leshy2 prototype** assembled by the owner from two factory-populated PCBAs and the exact mechanical/accessory kit. There is no separate engineering-sample purchase and no separate H5 coupon board. The factory populates the boards without engineering guesses; the owner installs exact `ER-TFT035IPS-6 + ER-TPC035-6` option 5344 on one ready-cut `3M (TC) 4910SQ-2(5)`, mates its FPC with `FH34SRJ-50S-0.5SH(50)`, snaps in five microcoax jumpers, fits the knob and closes the enclosure from the released instructions. First full USB image/backlight/touch bring-up follows that assembly in H7, with physical qualification on the same prototype in H8. Paid factory Function Test is optional quote-only insurance, not a gate. Batteries are neither factory-installed nor included. HMX035CTFT-001 and complete donor boards remain legacy evidence only. [JLCPCB Standard PCBA remains the non-exclusive manufacturing reference](manufacturing-platform.md). H6 PCB placement/routing is authorized; purchase, sourcing request, quote/reservation and fabrication are not.
 
 ```mermaid
 flowchart TD
-  R["✅ H5.0.2-R1<br/>sources + replacements"] --> B["▶️ H5.0.3-R1<br/>one order manifest"]
+  R["✅ H5.0.2-R1<br/>sources + replacements"] --> B["✅ H5.0.3-R1<br/>one order manifest"]
   B --> P["JLCPCB Standard<br/>210 lines · 1050 placements"]
   P --> Q["route rebuild<br/>J0–J3 · J4-F/P"]
   Q --> S["SA818S-V<br/>final pre-order quote"]
-  Q --> X["J4-F box-build<br/>J4-P kit/shipping"]
-  S --> A["one-prototype price<br/>+ factory attrition"]
+  Q --> X["J4-F owner assembly<br/>J4-P removable items"]
+  S --> A["one-prototype price<br/>+ PCBA MOQ and fasteners"]
   X --> A
   A --> H6["H6<br/>KiCad release"]
   H6 --> H7["H7<br/>1 prototype + owner bring-up"]
@@ -20,11 +20,11 @@ flowchart TD
 
 ## Cost summary
 
-- **$265.91** is the known conservative material budget for every priced line.
-- It contains **$261.91** of published USD prices and **$4.00** of conservative caps for two cheap IR parts whose live pages expose AUD/INR prices.
+- **$267.91** is the known conservative material budget for every priced line.
+- It contains **$261.91** of published USD prices and **$6.00** of conservative caps for two cheap IR parts with live AUD/INR prices and the EUR-priced minimum pack of exact 11-mm stops.
 - The total includes exact `SA818S-U` `C3001549` at `$9.7347` and exact `SA818S-V` `C51897911` at `$10.0710`; the VHF module has zero stock, MOQ 1 and a typical 8–15-working-day lead, while final quote/lead remain an order-time gate.
-- The exact production panel at `$14.91` and one ready-cut `3M (TC) 4910SQ-2(5)` at `$22.12` are included. The square requires no owner cutting; its use remains fail-closed until the folded-FPC stack measures `≤0.714 mm`, actual clearance is `≥0.20 mm`, and the factory accepts J4-F installation with uniformly backed `≥100 kPa` pressure in writing.
-- Only factory attrition, final assembly/FCT, freight, taxes and customs are excluded. Any additional display or connector units belong to the factory attrition quote, not to user samples; there is no separate H5 coupon order.
+- The exact production panel at `$14.91` and one ready-cut `3M (TC) 4910SQ-2(5)` at `$22.12` are included. The square requires no owner cutting; before bonding, the owner verifies folded-FPC stack `≤0.714 mm`, actual clearance `≥0.20 mm`, contact orientation and relaxed flex reserve.
+- The exact ten-piece pack of 11-mm Ettinger `007.02.611` pass-through stops is included at a conservative `$2.00` cap; four go into the device. PCBA fabrication/assembly at MOQ 2, four exact-H6-length M2.5 nylon screws, enclosure manufacture, freight, taxes and customs remain excluded. There is no separate H5 coupon order.
 - The former `$164.54` was not a cheaper complete basket: it covered only eight partial lines and omitted most H5 gates.
 
 ## Integrated order and bring-up articles
@@ -32,9 +32,14 @@ flowchart TD
 ### Display
 
 - **1 × `EastRising ER-TFT035IPS-6 + ER-TPC035-6 option 5344` — $14.91.** [BuyDisplay exact product page](https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen); listed in stock; one-piece price published; exact panel/touch drawings and interface table available.
-  Minimum basis: exactly one production panel is installed and mated in the finished prototype; the exact FH34SRJ-50S-0.5SH(50) board connector is populated during PCBA
+  Minimum basis: exactly one production panel is owner-installed and mated in the finished prototype; the exact FH34SRJ-50S-0.5SH(50) board connector is populated during PCBA
 - **1 × `3M (TC) 4910SQ-2(5)` — $22.12.** [DigiKey exact-MPN listing](https://www.digikey.com/en/products/detail/3m-tc/4910SQ-2-5/3339259); active; 16 sellable units shown in stock; quantity-one displayed price.
   Minimum basis: one ready-cut 50.80 x 50.80 mm square retains the sole production display without an owner cutting operation; no spare or long roll is included
+
+### Mechanical kit
+
+- **1 × `Ettinger 007.02.611` — $2.00.** [Buerklin exact-MPN listing](https://www.buerklin.com/en/p/ettinger/spacer-bolts/007-02-611/18H0210/); 300 pieces available in 5 days; MOQ 10; listed EUR 0.1345 each including VAT.
+  Minimum basis: four exact 11.00-mm unthreaded polyamide sleeves form the compression stops; the smallest ten-piece order leaves six ordinary replacements
 
 ### Expansion
 
@@ -122,14 +127,23 @@ flowchart TD
 
 ## H7/H8 owner evidence contracts
 
-All `23` residuals/gates are covered by `11` contracts. They execute after the sole prototype arrives in H7/H8, not through a separate sample/coupon purchase. A pass/fail summary without raw evidence is not accepted.
+All `23` residuals/gates are covered by `12` contracts. They execute after the sole prototype arrives in H7/H8, not through a separate sample/coupon purchase. A pass/fail summary without raw evidence is not accepted.
 
 <details><summary><code>H5-MSR-DISPLAY</code></summary>
 
 - Covers: `H3-PHY-017, H5-MECH-DISPLAY-TAIL, H5-MECH-DISPLAY-PERFORMANCE`.
-- Method: the factory installs exact ER-TFT035IPS-6 + ER-TPC035-6 option 5344 on one ready-cut 3M (TC) 4910SQ-2(5), folds the FPC through the controlled slot and mates it through exact FH34SRJ-50S-0.5SH(50) in the sole finished prototype; the owner performs first USB-powered bring-up and records known-image, backlight and touch results.
-- Pass rule: the released drawing, connector, mating and retention steps are deterministic; measured folded-FPC stack is <=0.714 mm, actual pad-to-stack clearance is >=0.20 mm, and written acceptance of the supplied exact pad, uniformly backed >=100 kPa pressure process, FPC handling and final mating is obtained before order; any paid pre-shipment Function Test remains optional quote-only insurance and never a release gate.
-- Artifacts: controlled panel, pad and connector identities/drawings, incoming pad dimensions/lot, FPC stack and clearance measurement, deterministic assembly instructions, factory assembly record, owner USB bring-up image/backlight/touch traces and signed result.
+- Method: the owner dry-fits exact ER-TFT035IPS-6 + ER-TPC035-6 option 5344, confirms contact orientation and relaxed FPC reserve, folds the FPC through the controlled slot, mates it through factory-populated FH34SRJ-50S-0.5SH(50), then bonds the panel using one ready-cut 3M (TC) 4910SQ-2(5) with uniformly supported pressure; first USB-powered bring-up records known-image, backlight and touch results.
+- Pass rule: the released drawing, connector, mating and retention steps are deterministic; measured folded-FPC stack is <=0.714 mm, actual pad-to-stack clearance is >=0.20 mm, the flex is untwisted and not tensioned, and dry-fit image/backlight/touch checks pass before the irreversible PSA bond; any paid supplier installation or Function Test remains optional.
+- Artifacts: controlled panel, pad and connector identities/drawings, incoming pad dimensions/lot, FPC stack and clearance measurement, dry-fit orientation/slack photos, deterministic owner assembly record, USB bring-up image/backlight/touch traces and signed result.
+
+</details>
+
+<details><summary><code>H5-MSR-SANDWICH</code></summary>
+
+- Covers: `H5-MECH-DISPLAY-PERFORMANCE, H5-MECH-U214-MATING-STACK`.
+- Method: fit four exact Ettinger 007.02.611 pass-through sleeves between the boards, select the exact M2.5 nylon screw length only after H6 locks both enclosure wall thicknesses, then assemble the four-corner stack with the released low torque and verify the capture lips and anti-shear datums are seated.
+- Pass rule: all four measured PCB-to-PCB gaps are 11.00 mm within the released H6 tolerance; screw ends have safe engagement without bottoming or entering the user/button volume; ordinary side load is carried by enclosure datums rather than soldered connectors or board flex.
+- Artifacts: exact sleeve identity/receipt, H6 screw-length calculation and exact MPN, four gap measurements, torque record and assembled side photographs.
 
 </details>
 
@@ -223,8 +237,8 @@ All `23` residuals/gates are covered by `11` contracts. They execute after the s
 
 </details>
 
-## Open supplier inputs
+## Assigned H6 and order-time inputs
 
-Both selected module prices are known. JLCPCB's [substantive 2 September response](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-09-02.md) confirms separate-designator placement of exact `SA818S-V C51897911` and `SA818S-U C3001549` through BOM Matching, exact-MPN incoming control and no replacement without customer confirmation. It also sets PCBA MOQ 2, declines complete enclosure/final-device assembly, and leaves adhesive, FPC and five-microcoax feasibility to post-order review. JLCPCB therefore remains the PCBA-only reference, while the [information-only PCBWay inquiry](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md), sent on 2 September from `vinogradov.anton@gmail.com`, is now the active full-device gate. Function Test, batteries and accessory packing are not gates. `SA818S-CE C19632390` remains only a qualified-pending UHF alternate after HIL and a 470-MHz firmware clamp. No quote, reservation or order was created.
+Both selected module prices are known. JLCPCB's [substantive 2 September response](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-09-02.md) confirms separate-designator placement of exact `SA818S-V C51897911` and `SA818S-U C3001549` through BOM Matching, exact-MPN incoming control and no replacement without customer confirmation. PCBA MOQ 2 remains a cost factor, but JLCPCB's final-device decline no longer blocks the project: the owner accepted installation of the display with ready-cut PSA, microcoax jumpers, knob and enclosure. The exact 11-mm pass-through stop is now Ettinger `007.02.611`; H6 owns the exact M2.5 nylon screw length because it depends on released enclosure walls. The real PCBA price likewise requires H6 Gerber/BOM/CPL. Final `SA818S-V` pre-order terms and the complete stock recheck are immediate pre-order gates, not reasons to block layout. The [PCBWay reply](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) is an optional cost/convenience comparison. `SA818S-CE C19632390` remains only a qualified-pending UHF alternate after HIL and a 470-MHz firmware clamp. No quote, reservation or order was created.
 
 Machine result: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).

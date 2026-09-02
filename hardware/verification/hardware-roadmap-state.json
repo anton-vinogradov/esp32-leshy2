@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "baseline": "R2",
-  "current_stage": "H5",
-  "current_substep": "H5.0.3-R1",
-  "current_detail": "H4-R2 is reviewed. One hash-bound joined gate covers current mechanics, native ECAD, analytical evidence and hardware-visible firmware contracts; all six BSP maps cover 173/173 H2 rows, all 12 target builds pass, no cross-domain contradiction remains, and all 51 physical residuals retain H5/H6/H8 owners. H5.0.3-R1 resumes the exact-one-prototype factory/evidence route. Placement/routing, purchasing and fabrication remain unauthorized.",
+  "current_stage": "H6",
+  "current_substep": "H6.0.1-R1",
+  "current_detail": "H5-R1 is reviewed. All 210 BOM lines and 1050 placements have controlled routes with zero unmapped lines and zero substitutions; the JLCPCB PCBA supplier gate passes, owner final assembly is accepted, and exact Ettinger 007.02.611 11.00-mm stops preserve the four-plastic-screw stack. H6.0.1-R1 now owns placement/routing, enclosure wall thickness, exact screw length and quoteable Gerber/BOM/CPL. Purchasing and fabrication remain unauthorized.",
   "preorder_release": {
     "status": "blocked",
     "assembled_device_quantity": 1,
-    "factory_role": "deterministic fabrication, population, display mating and final assembly from released files",
+    "factory_role": "deterministic PCB fabrication and population from released files; owner performs display, microcoax, knob and enclosure final assembly",
     "factory_powered_function_test": "optional and non-gating",
     "first_full_power_on": "owner current-limited bring-up after delivery",
     "required_chain": ["H1", "H2", "H3", "H4", "H5", "H6", "F-PO", "immutable exact-one release"]
@@ -18,8 +18,8 @@
     {"id": "H2", "status": "reviewed", "baseline": "R2", "result_marker": "H2-R2.1.5", "completed_substeps": ["H2-R2.0.1", "H2-R2.0.2", "H2-R2.0.3", "H2-R2.1.1", "H2-R2.1.2", "H2-R2.1.3", "H2-R2.1.4", "H2-R2.1.5"], "historical_r1_status": "reviewed", "historical_r1_accepted_by_user": "2026-08-26"},
     {"id": "H3", "status": "reviewed", "baseline": "R2", "result_marker": "H3-R2.7", "completed_substeps": ["H3-R2.0.1", "H3-R2.0.2", "H3-R2.0.3", "H3-R2.1.1", "H3-R2.1.2", "H3-R2.1.3", "H3-R2.1.4", "H3-R2.1.5", "H3-R2.1", "H3-R2.2.1", "H3-R2.2.2", "H3-R2.2.3", "H3-R2.2.4", "H3-R2.2", "H3-R2.3", "H3-R2.4", "H3-R2.5", "H3-R2.6", "H3-R2.7"], "historical_r1_status": "reviewed"},
     {"id": "H4", "status": "reviewed", "baseline": "R2", "result_marker": "H4-R2.3", "completed_substeps": ["H4-R2.0.1", "H4-R2.0.2", "H4-R2.1", "H4-R2.2", "H4-R2.3"], "historical_r1_status": "reviewed"},
-    {"id": "H5", "status": "current", "baseline": "R2", "current_substep": "H5.0.3-R1", "historical_r1_status": "in_progress_at_rebaseline", "superseded_evidence": "single-SA518 baseline"},
-    {"id": "H6", "status": "waiting", "exit": "placement, routed parity, routed electrical/RF/mechanical re-analysis, production outputs and independent DFM/CPL review"},
+    {"id": "H5", "status": "reviewed", "baseline": "R2", "result_marker": "H5.0.3-R1", "historical_r1_status": "in_progress_at_rebaseline", "superseded_evidence": "single-SA518 baseline"},
+    {"id": "H6", "status": "current", "current_substep": "H6.0.1-R1", "exit": "placement, routed parity, routed electrical/RF/mechanical re-analysis, production outputs and independent DFM/CPL review"},
     {"id": "H7", "status": "waiting", "order_quantity": 1},
     {"id": "H8", "status": "waiting"},
     {"id": "H9", "status": "waiting"}

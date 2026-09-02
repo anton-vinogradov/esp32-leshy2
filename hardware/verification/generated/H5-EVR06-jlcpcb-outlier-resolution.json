@@ -2,11 +2,11 @@
   "schema_version": 2,
   "artifact": "H5-EVR06",
   "stage": "H5.0.3-R1",
-  "status": "all_210_routes_mapped_dual_sa818s_and_factory_gates_open",
+  "status": "all_210_routes_mapped_owner_final_assembly_accepted",
   "checked_on": "2026-08-31",
   "input": {
     "bom_tool_result": "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json",
-    "bom_tool_result_sha256": "7fb95caf411e461a410ca16c8e3f45c5f4a75f8d8f467395897bf845d1edd3a4",
+    "bom_tool_result_sha256": "c83329c493b4503b3fe3cd2ad9722f4fe762df4b72968b6e4b26ad4db9cae024",
     "search_capture": "hardware/verification/jlcpcb-outlier-search-capture-2026-08-25.json",
     "search_capture_sha256": "50fdf7c69a95bc53e32148cf8e7e3b2d245818a74cec065a708c128527af2699"
   },
@@ -40,7 +40,7 @@
       "lcsc": null,
       "manufacturer": null,
       "stock_snapshot": null,
-      "reason": "encoder knob requires deterministic factory installation after enclosure integration; full control bring-up is performed by the owner",
+      "reason": "encoder knob is owner-installed after enclosure integration; full control bring-up is performed by the owner",
       "target_bom_orderable_evidence": "present",
       "target_bom_source": "https://www.mouser.com/en/ProductDetail/Davies-Molding/1227-J?qs=AaRlLUpeMszUlt7gcGM9fQ%3D%3D",
       "component_replacement": false
@@ -180,7 +180,7 @@
       "lcsc": null,
       "manufacturer": null,
       "stock_snapshot": null,
-      "reason": "three removable 60-mm nRF microcoax jumpers require deterministic factory installation and strain routing during final sandwich assembly; full power-on is owner bring-up",
+      "reason": "three removable 60-mm nRF microcoax jumpers are owner-installed and strain-routed during final sandwich assembly; the released routing and continuity check remain mandatory",
       "target_bom_orderable_evidence": "present",
       "target_bom_source": "https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/1-2118651-0/12380462",
       "component_replacement": false
@@ -194,7 +194,7 @@
       "lcsc": null,
       "manufacturer": null,
       "stock_snapshot": null,
-      "reason": "two removable 30-mm S3/C5 microcoax jumpers require deterministic factory installation and strain routing during final sandwich assembly; full power-on is owner bring-up",
+      "reason": "two removable 30-mm S3/C5 microcoax jumpers are owner-installed and strain-routed during final sandwich assembly; the released routing and continuity check remain mandatory",
       "target_bom_orderable_evidence": "present",
       "target_bom_source": "https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824",
       "component_replacement": false
@@ -640,7 +640,7 @@
       "semantic_mpn_equal": null,
       "stock_snapshot": null,
       "displayed_line_cost_usd": null,
-      "outlier_resolution_reason": "encoder knob requires deterministic factory installation after enclosure integration; full control bring-up is performed by the owner",
+      "outlier_resolution_reason": "encoder knob is owner-installed after enclosure integration; full control bring-up is performed by the owner",
       "component_replacement": false
     },
     {
@@ -740,7 +740,7 @@
       "normalized_mpn": "ER-TFT035IPS-6 + ER-TPC035-6",
       "quantity": 1,
       "route": "J4-F",
-      "tool_status": "factory_final_assembly",
+      "tool_status": "owner_post_pcba_final_assembly",
       "match_provenance": "current_exact_jlcpcb_part_page",
       "lcsc": null,
       "matched_mpn": "ER-TFT035IPS-6 + ER-TPC035-6",
@@ -2481,7 +2481,7 @@
       "stock_snapshot": null,
       "displayed_line_cost_usd": null,
       "designators_complete": true,
-      "outlier_resolution_reason": "three removable 60-mm nRF microcoax jumpers require deterministic factory installation and strain routing during final sandwich assembly; full power-on is owner bring-up",
+      "outlier_resolution_reason": "three removable 60-mm nRF microcoax jumpers are owner-installed and strain-routed during final sandwich assembly; the released routing and continuity check remain mandatory",
       "component_replacement": false
     },
     {
@@ -2501,7 +2501,7 @@
       "semantic_mpn_equal": null,
       "stock_snapshot": null,
       "displayed_line_cost_usd": null,
-      "outlier_resolution_reason": "two removable 30-mm S3/C5 microcoax jumpers require deterministic factory installation and strain routing during final sandwich assembly; full power-on is owner bring-up",
+      "outlier_resolution_reason": "two removable 30-mm S3/C5 microcoax jumpers are owner-installed and strain-routed during final sandwich assembly; the released routing and continuity check remain mandatory",
       "component_replacement": false
     },
     {
@@ -4237,7 +4237,7 @@
   ],
   "boundary": {
     "meaning": "availability and sourcing route only; footprint, placement, assembly-class and current stock are revalidated at BOM freeze",
-    "factory_final_assembly": {
+    "post_pcba_final_assembly": {
       "route": "J4-F",
       "mpns": [
         "1-2118651-0",
@@ -4245,8 +4245,9 @@
         "2118651-2",
         "ER-TFT035IPS-6 + ER-TPC035-6"
       ],
-      "accepted_and_quoted": false,
-      "gate": "H5 and H7 remain open until the selected factory accepts and quotes deterministic installation; whole-device functional test is optional and not a release gate"
+      "owner_installation_accepted": true,
+      "supplier_quote_required": false,
+      "gate": "the exact display/PSA/FPC, microcoax, knob and fastener kit must be complete before H7 owner assembly; supplier box-build is optional"
     },
     "factory_packed_removable": {
       "route": "J4-P",
@@ -4275,7 +4276,7 @@
     ]
   },
   "next": {
-    "decision_needed": "wait for responses to the exact-one clarification and exact 4910SQ display-process supplement sent on 2026-09-01: SA818S-V MOQ 1 and typical 8-15-working-day pre-order are known; H5 still needs release-relevant answers covering the actual two-designator job, exact SA818S-V Standard-PCBA installation, four required J4-F operations including the PSA/FPC/ZIF process, and exact-MPN/no-substitution control; Function Test, batteries and accessory packing are not gates",
+    "decision_needed": "none: the JLCPCB PCBA supplier gate is answered for exact dual-SA818S/no-silent-substitution and the exact 11.00-mm stop is selected; close H5, then let H6 select the wall-dependent screw length and emit the files needed for the real PCBA quote; final pre-order terms and stock recheck remain order-time gates",
     "purchase_remains_last": true
   },
   "checks": {
@@ -4284,7 +4285,7 @@
     "j0_rows_have_positive_original_maker_stock": true,
     "j2_rows_have_exact_zero_stock_catalogue_identity": true,
     "j3_rows_keep_exact_selected_identity": true,
-    "j4f_rows_are_factory_final_assembly_parts": true,
+    "j4f_rows_are_post_pcba_final_assembly_parts": true,
     "j4p_rows_are_factory_packed_removable_parts": true,
     "j5u_rows_are_user_supplied_not_delivered_parts": true,
     "generic_placeholders_are_not_accepted_as_identity": true,

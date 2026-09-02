@@ -20,7 +20,7 @@
     "source_reference": "hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md",
     "information_only": true,
     "commercial_action_created": false,
-    "notes": "Standalone exact-one clarification sent from the JLCPCB-account email after verifying the sender and recipient in Gmail; awaiting supplier reply."
+    "notes": "Standalone exact-one clarification sent from the JLCPCB-account email after verifying the sender and recipient in Gmail; the substantive response later arrived in the original merged ticket."
   },
   "display_psa_clarification": {
     "sent_on": "2026-09-01",
@@ -34,7 +34,7 @@
     "exact_mpn": "3M (TC) 4910SQ-2(5)",
     "information_only": true,
     "commercial_action_created": false,
-    "notes": "Exact ready-cut PSA, FPC/ZIF geometry, >=5 mm slack, uniformly supported >=100 kPa pressure and 24-hour pre-pack hold were sent as a supplement in the same thread; awaiting supplier reply."
+    "notes": "Exact ready-cut PSA, FPC/ZIF geometry, >=5 mm slack, uniformly supported >=100 kPa pressure and 24-hour hold were sent as a supplement. JLCPCB deferred the special process until post-order review; owner installation subsequently made factory acceptance non-gating."
   },
   "ticket_merge_notice": {
     "received_on": "2026-09-02",
@@ -49,7 +49,7 @@
     "source_reference": "hardware/procurement/H5.0.3-R1-jlcpcb-ticket-merge-2026-09-02.md",
     "substantive_release_answer": false,
     "commercial_action_created": false,
-    "notes": "Administrative merge only. It supplies no acceptance, price, lead-time or exact-MPN-control evidence, so H5-EVR07 remains open."
+    "notes": "Administrative merge only. It supplies no acceptance, price, lead-time or exact-MPN-control evidence; the later substantive response and accepted owner-assembly boundary determine H5-EVR07."
   },
   "substantive_clarification_response": {
     "received_on": "2026-09-02",
@@ -70,6 +70,24 @@
     "online_orders_only": true,
     "special_process_feasibility_confirmed_before_order": false,
     "notes": "Accurate pricing and special-process feasibility require complete Gerber/BOM/CPL, order remarks and post-submission engineering review."
+  },
+  "owner_assembly_boundary": {
+    "accepted_on": "2026-09-02",
+    "complete_factory_device_required": false,
+    "display_and_fpc_installed_by_owner": true,
+    "ready_cut_display_psa_required": true,
+    "microcoax_jumpers_installed_by_owner": true,
+    "encoder_knob_installed_by_owner": true,
+    "sandwich_and_enclosure_assembled_by_owner": true,
+    "pcbway_full_device_response_is_release_gate": false,
+    "fastener_policy": "four M2.5 nonconductive screws clamp through four exact 11.00-mm nonconductive stops; enclosure capture lips and anti-shear datums carry ordinary side load",
+    "compression_stop_mpn": "Ettinger 007.02.611",
+    "compression_stop_geometry": "11.00-mm length, 6.0-mm OD, 2.7-mm unthreaded bore, black polyamide",
+    "compression_stop_external_route": "Buerklin 18H0210; 300 available in 5 days; MOQ 10 on 2026-09-02",
+    "compression_stop_jlcpcb_result": "no exact manufacturer result; generic JLCPCB Assembly C9900280696 rejected because stock is zero, MOQ is 443 and identity is not controlled",
+    "screw_family": "Essentra 50M025045Pxxx M2.5x0.45 nylon pan-head Phillips",
+    "exact_fastener_kit_status": "exact_stop_selected_screw_family_qualified_exact_length_owned_by_H6",
+    "notes": "The owner explicitly accepts post-PCBA display, cable, knob and enclosure assembly. Four exact pass-through stops preserve the Div-like four-long-plastic-screw architecture. H6 selects the exact screw length after both enclosure wall thicknesses are locked; factory installation remains an optional convenience, not a release requirement."
   },
   "sa818s_v": {
     "mpn": "SA818S-V",
@@ -94,6 +112,8 @@
     {
       "id": "display_flex",
       "required_for_release": true,
+      "supplier_acceptance_required": false,
+      "project_disposition": "owner_installation_accepted_with_exact_ready_cut_psa",
       "description": "install and mate one customer-supplied exact ER-TFT035IPS-6 + ER-TPC035-6 option 5344 display flex in the populated FH34SRJ-50S-0.5SH(50) ZIF, then retain the panel with one exact 3M (TC) 4910SQ-2(5) using the released supported-pressure process",
       "accepted": null,
       "setup_nre_usd": null,
@@ -106,6 +126,8 @@
     {
       "id": "microcoax_x5",
       "required_for_release": true,
+      "supplier_acceptance_required": false,
+      "project_disposition": "owner_installation_and_strain_routing_accepted",
       "description": "install, strain-route and continuity-test two 30-mm TE Connectivity 2118651-2 and three 60-mm TE Connectivity 1-2118651-0 microcoax jumpers",
       "accepted": null,
       "setup_nre_usd": null,
@@ -118,6 +140,8 @@
     {
       "id": "encoder_knob",
       "required_for_release": true,
+      "supplier_acceptance_required": false,
+      "project_disposition": "owner_press_fit_installation_accepted",
       "description": "install Davies 1227-J encoder knob",
       "accepted": null,
       "setup_nre_usd": null,
@@ -130,6 +154,8 @@
     {
       "id": "sandwich_enclosure",
       "required_for_release": true,
+      "supplier_acceptance_required": false,
+      "project_disposition": "owner_assembly_accepted_with_complete_fastener_kit",
       "description": "assemble the two-board sandwich and enclosure",
       "accepted": false,
       "setup_nre_usd": null,
@@ -142,6 +168,7 @@
     {
       "id": "whole_device_test",
       "required_for_release": false,
+      "supplier_acceptance_required": false,
       "description": "execute the supplied whole-device functional-test procedure",
       "accepted": null,
       "setup_nre_usd": 15.7,

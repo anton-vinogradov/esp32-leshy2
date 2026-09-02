@@ -1,22 +1,23 @@
 {
   "schema_version": 2,
   "stage": "H5.0.3-R1",
-  "status": "draft_order_integrated_manifest_exact_display_selected_factory_response_pending",
+  "status": "reviewed_order_manifest_owner_final_assembly_h6_and_order_gates_assigned",
   "checked_on": "2026-08-29",
-  "purpose": "one order-integrated article manifest for the sole fully assembled Leshy2 prototype plus H7/H8 owner evidence contracts; no device batch, separate sample purchase or purchase authorization",
+  "purpose": "one integrated procurement and owner-assembly manifest for the sole Leshy2 prototype plus H7/H8 owner evidence contracts; no device batch, separate sample purchase or purchase authorization",
   "procurement_target": {
     "finished_device_quantity": 1,
-    "deliverable": "one fully assembled Leshy2 prototype built without factory engineering choices",
-    "display": "one exact EastRising ER-TFT035IPS-6 + ER-TPC035-6 option 5344 panel retained by one ready-cut 3M (TC) 4910SQ-2(5), installed and mated by the factory in that prototype after the explicit stack/clearance and written process gates close",
-    "first_power_on": "owner USB-powered bring-up after delivery: known image, backlight and touch",
+    "deliverable": "one Leshy2 prototype assembled by the owner from two factory-populated PCBAs and the exact mechanical/accessory kit",
+    "display": "one exact EastRising ER-TFT035IPS-6 + ER-TPC035-6 option 5344 panel retained by one ready-cut 3M (TC) 4910SQ-2(5), installed and mated by the owner after the received-part dry-fit gate",
+    "sandwich_fasteners": "four exact Ettinger 007.02.611 unthreaded 11.00-mm polyamide stops preserve four pass-through M2.5 nylon screws; H6 locks the exact screw length after the enclosure walls are dimensioned",
+    "first_power_on": "owner USB-powered bring-up after PCBA receipt and final assembly: known image, backlight and touch",
     "factory_function_test": "optional quote-only insurance; not required and not a release gate",
     "batteries_included": false,
-    "factory_attrition_rule": "extra display units, connectors and flex components belong to quoted factory attrition and are not user samples",
+    "factory_attrition_rule": "PCBA attrition belongs to the board quote; the owner kit intentionally contains one production display and one ready-cut PSA with no sacrificial spare",
     "hmx_donor_route": "rejected procurement route; legacy evidence only",
     "separate_engineering_sample_purchase": false,
     "coupon_board_phase": false,
     "physical_evidence_execution": "owner H7 arrival/bring-up and H8 qualification on the sole prototype and ordinary accessories",
-    "article_manifest_scope": "factory-installed production parts, factory-packed accessories where accepted, and ordinary owner-supplied operating items; it is not a second commercial order"
+    "article_manifest_scope": "factory-populated board parts plus exact owner-installed display, PSA, microcoax, knob, enclosure hardware and ordinary operating accessories; supplier parcels may be separate"
   },
   "inputs": {
     "residual_map": {
@@ -29,25 +30,25 @@
     }
   },
   "summary": {
-    "article_lines": 32,
-    "measurement_contracts": 11,
+    "article_lines": 33,
+    "measurement_contracts": 12,
     "covered_residuals_and_gates": 23,
     "published_price_subtotal_usd": "261.91",
-    "conservative_budget_caps_usd": "4.00",
-    "known_engineering_material_budget_usd": "265.91",
+    "conservative_budget_caps_usd": "6.00",
+    "known_engineering_material_budget_usd": "267.91",
     "unpriced_manufacturer_lines": 0,
     "excluded_from_budget": [
-      "factory display attrition",
+      "PCBA fabrication and assembly at the supplier MOQ",
       "SA818S-V pre-order freight/lead-time charge",
-      "J4-F box-build",
-      "J4-P kit/packing",
+      "four exact-length M2.5 nylon screws selected after H6 locks enclosure wall thickness",
+      "enclosure manufacture",
       "freight",
       "tax",
       "customs",
       "general laboratory instruments and ordinary passives"
     ],
     "former_parked_plan_usd": "164.54 for only a partial eight-line lot",
-    "comparison_note": "The priced subtotal includes the exact one-piece production panel and one exact ready-cut display PSA square; it excludes only factory attrition and services. These lines form the integrated sole-prototype/bring-up manifest, not a separate sample basket or device batch."
+    "comparison_note": "The priced subtotal includes the exact one-piece production panel, one exact ready-cut display PSA square and the ten-piece minimum of exact 11.00-mm pass-through stops. PCBA MOQ cost, enclosure and the four exact-length H6 nylon screws remain outside this material subtotal. These lines form the integrated sole-prototype/bring-up manifest, not a separate sample basket or device batch."
   },
   "group_budget_usd": {
     "amlw-pod": "19.79",
@@ -56,6 +57,7 @@
     "display": "37.03",
     "expansion": "31.68",
     "ir": "5.30",
+    "mechanical": "2.00",
     "power": "46.38",
     "rf": "57.79",
     "storage": "40.05"
@@ -66,7 +68,7 @@
       "group": "display",
       "mpn": "EastRising ER-TFT035IPS-6 + ER-TPC035-6 option 5344",
       "order_quantity": 1,
-      "order_unit": "factory-installed panel",
+      "order_unit": "owner-installed panel",
       "contained_pieces_per_order_unit": 1,
       "pricing": {
         "kind": "published_usd",
@@ -85,8 +87,8 @@
         "H5-MECH-DISPLAY-TAIL",
         "H5-MECH-DISPLAY-PERFORMANCE"
       ],
-      "minimum_quantity_basis": "exactly one production panel is installed and mated in the finished prototype; the exact FH34SRJ-50S-0.5SH(50) board connector is populated during PCBA",
-      "risk": "The panel identity and electrical/mechanical endpoint are fixed. Only written acceptance of adhesive/FPC handling and final mating by the selected assembler remains an H5 supplier gate; HMX035CTFT-001 stays legacy evidence only.",
+      "minimum_quantity_basis": "exactly one production panel is owner-installed and mated in the finished prototype; the exact FH34SRJ-50S-0.5SH(50) board connector is populated during PCBA",
+      "risk": "The panel identity and electrical/mechanical endpoint are fixed. Owner installation is accepted with the exact ready-cut PSA; the remaining gate is the received-part dry fit of FPC length, bend, contact orientation and stack clearance. HMX035CTFT-001 stays legacy evidence only.",
       "purchase_authorized": false
     },
     {
@@ -113,7 +115,39 @@
         "H5-MECH-DISPLAY-PERFORMANCE"
       ],
       "minimum_quantity_basis": "one ready-cut 50.80 x 50.80 mm square retains the sole production display without an owner cutting operation; no spare or long roll is included",
-      "risk": "JLCPCB public Standard-parts search exposed no exact result. Treat as a customer-supplied J4-F final-assembly consumable until the assembler accepts the exact pad, backed >=100 kPa pressure process and final FPC mating in writing. Release also requires measured folded-FPC stack <=0.714 mm and actual clearance >=0.20 mm.",
+      "risk": "JLCPCB public Standard-parts search exposed no exact result, so the exact ready-cut square is separately sourced and included in the owner assembly kit. Release requires the existing drawing checks and received-part dry fit: folded-FPC stack <=0.714 mm and actual clearance >=0.20 mm.",
+      "purchase_authorized": false
+    },
+    {
+      "id": "sandwich-stop-pack",
+      "group": "mechanical",
+      "mpn": "Ettinger 007.02.611",
+      "order_quantity": 1,
+      "order_unit": "10-piece pack",
+      "contained_pieces_per_order_unit": 10,
+      "pricing": {
+        "kind": "conservative_budget_cap_usd",
+        "unit_usd": "2.00",
+        "subtotal_usd": "2.000",
+        "source_price": {
+          "currency": "EUR",
+          "unit": "0.1345",
+          "minimum_extended": "1.345",
+          "note": "USD 2.00 is a conservative cap for the ten-piece minimum, not a claimed currency conversion or shipping price"
+        }
+      },
+      "source": {
+        "label": "Buerklin exact-MPN listing",
+        "url": "https://www.buerklin.com/en/p/ettinger/spacer-bolts/007-02-611/18H0210/",
+        "checked_on": "2026-09-02",
+        "availability": "300 pieces available in 5 days; MOQ 10; listed EUR 0.1345 each including VAT"
+      },
+      "coverage": [
+        "H5-MECH-DISPLAY-PERFORMANCE",
+        "H5-MECH-U214-MATING-STACK"
+      ],
+      "minimum_quantity_basis": "four exact 11.00-mm unthreaded polyamide sleeves form the compression stops; the smallest ten-piece order leaves six ordinary replacements",
+      "risk": "The 2.7-mm bore accepts a pass-through M2.5 screw and preserves the four-screw architecture. The 6.0-mm outside diameter fits the existing 4.0-mm-radius board keepout. JLCPCB exposes only an identity-less stock-zero generic M2.5x11 placeholder (C9900280696, MOQ 443), so the exact sleeve is separately sourced. Exact nylon screw length remains an H6 enclosure-stack output.",
       "purchase_authorized": false
     },
     {
@@ -934,9 +968,22 @@
         "H5-MECH-DISPLAY-TAIL",
         "H5-MECH-DISPLAY-PERFORMANCE"
       ],
-      "method": "the factory installs exact ER-TFT035IPS-6 + ER-TPC035-6 option 5344 on one ready-cut 3M (TC) 4910SQ-2(5), folds the FPC through the controlled slot and mates it through exact FH34SRJ-50S-0.5SH(50) in the sole finished prototype; the owner performs first USB-powered bring-up and records known-image, backlight and touch results",
-      "pass_rule": "the released drawing, connector, mating and retention steps are deterministic; measured folded-FPC stack is <=0.714 mm, actual pad-to-stack clearance is >=0.20 mm, and written acceptance of the supplied exact pad, uniformly backed >=100 kPa pressure process, FPC handling and final mating is obtained before order; any paid pre-shipment Function Test remains optional quote-only insurance and never a release gate",
-      "artifacts": "controlled panel, pad and connector identities/drawings, incoming pad dimensions/lot, FPC stack and clearance measurement, deterministic assembly instructions, factory assembly record, owner USB bring-up image/backlight/touch traces and signed result"
+      "method": "the owner dry-fits exact ER-TFT035IPS-6 + ER-TPC035-6 option 5344, confirms contact orientation and relaxed FPC reserve, folds the FPC through the controlled slot, mates it through factory-populated FH34SRJ-50S-0.5SH(50), then bonds the panel using one ready-cut 3M (TC) 4910SQ-2(5) with uniformly supported pressure; first USB-powered bring-up records known-image, backlight and touch results",
+      "pass_rule": "the released drawing, connector, mating and retention steps are deterministic; measured folded-FPC stack is <=0.714 mm, actual pad-to-stack clearance is >=0.20 mm, the flex is untwisted and not tensioned, and dry-fit image/backlight/touch checks pass before the irreversible PSA bond; any paid supplier installation or Function Test remains optional",
+      "artifacts": "controlled panel, pad and connector identities/drawings, incoming pad dimensions/lot, FPC stack and clearance measurement, dry-fit orientation/slack photos, deterministic owner assembly record, USB bring-up image/backlight/touch traces and signed result"
+    },
+    {
+      "id": "H5-MSR-SANDWICH",
+      "articles": [
+        "sandwich-stop-pack"
+      ],
+      "evidence": [
+        "H5-MECH-DISPLAY-PERFORMANCE",
+        "H5-MECH-U214-MATING-STACK"
+      ],
+      "method": "fit four exact Ettinger 007.02.611 pass-through sleeves between the boards, select the exact M2.5 nylon screw length only after H6 locks both enclosure wall thicknesses, then assemble the four-corner stack with the released low torque and verify the capture lips and anti-shear datums are seated",
+      "pass_rule": "all four measured PCB-to-PCB gaps are 11.00 mm within the released H6 tolerance; screw ends have safe engagement without bottoming or entering the user/button volume; ordinary side load is carried by enclosure datums rather than soldered connectors or board flex",
+      "artifacts": "exact sleeve identity/receipt, H6 screw-length calculation and exact MPN, four gap measurements, torque record and assembled side photographs"
     },
     {
       "id": "H5-MSR-U214",
@@ -1115,6 +1162,19 @@
       "status": "not_in_order_manifest",
       "restriction": "may replace only SA818S-U after owner HIL and a 470-MHz firmware clamp; never replaces SA818S-V and never substitutes silently"
     },
+    "sandwich_fastener": {
+      "compression_stop_mpn": "Ettinger 007.02.611",
+      "installed_quantity": 4,
+      "purchase_quantity": 10,
+      "geometry": "11.00-mm long, 6.0-mm OD, 2.7-mm unthreaded bore, black polyamide",
+      "architecture": "four pass-through M2.5 nylon screws; no threaded standoff and no additional board holes",
+      "external_route": "Buerklin 18H0210; 300 available in 5 days; MOQ 10 on 2026-09-02",
+      "jlcpcb_route": "no exact manufacturer result; generic C9900280696 rejected because identity is JLCPCB Assembly, stock is zero and MOQ is 443",
+      "screw_family": "Essentra 50M025045Pxxx M2.5x0.45 nylon pan-head Phillips family",
+      "screw_family_stock_example": "50M025045P006 active; 6,346 shown in DigiKey stock at USD 0.14 on 2026-09-02",
+      "exact_screw_length_gate": "H6 locks front wall + PCB stack + 11.00-mm stop + rear wall + engagement and then selects the exact family MPN",
+      "status": "exact_stop_selected_screw_family_qualified_exact_length_owned_by_H6"
+    },
     "orders_or_requests_submitted": 4,
     "supplier_information_inquiries_submitted": 4,
     "sourcing_requests_submitted": 0,
@@ -1179,12 +1239,12 @@
       "complete_enclosure_assembly": false,
       "source_reference": "hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-09-02.md"
     },
-    "next_action": "wait for PCBWay's written response to the exact-one full-device questionnaire; JLCPCB remains the PCBA-only reference after explicitly declining complete enclosure assembly and deferring special-process feasibility until after order"
+    "next_action": "close H5 and continue H6 placement/enclosure work; H6 selects the exact screw length and produces Gerber/BOM/CPL for the real two-PCBA quote; final SA818S-V pre-order terms and the complete stock recheck execute immediately before the single order"
   },
   "sequencing": {
-    "now": "wait for PCBWay's substantive full-device response; retain JLCPCB's accepted exact dual-module/no-substitution PCBA route but not as the final-device assembler, while Function Test, batteries and accessory packing remain optional or owner-supplied",
+    "now": "close H5 with the exact 11.00-mm pass-through stop and controlled owner final assembly, then start H6 placement/routing and enclosure-stack closure; PCBWay remains an optional comparison",
     "after_mapping": "use approved read-only Parts access for repeatable availability checks when permission becomes usable; no additional submission is required for the current gate",
-    "after_quote": "publish exact sole-prototype and final-assembly costs, close the H5 supplier/manifest gate, then continue through H6 and the existing single H7 prototype-order approval",
+    "after_quote": "after H6 emits real Gerber/BOM/CPL, publish the exact two-PCBA supplier price and owner-kit cost before the existing single H7 prototype-order approval",
     "after_order": "H7 records arrival identity, assembly and first owner bring-up; H8 executes the retained fit, RF, thermal, audio, control and interoperability contracts on that prototype and ordinary accessories",
     "forbidden": [
       "separate engineering-sample purchase",
@@ -1200,7 +1260,7 @@
     "article_ids_are_unique": true,
     "every_article_is_used_by_a_measurement": true,
     "every_selected_identity_is_exact": true,
-    "production_display_is_one_exact_priced_factory_installed_panel": true,
+    "production_display_is_one_exact_priced_owner_installed_panel": true,
     "display_psa_is_one_exact_priced_ready_cut_square": true,
     "every_quantity_has_an_explicit_minimum_basis": true,
     "no_selected_article_has_unpriced_identity": true,

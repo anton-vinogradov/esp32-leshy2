@@ -1,7 +1,7 @@
 # Controlled display assembly — ER-TFT035IPS-6 + ER-TPC035-6
 
 Status: **selected production route; purchase and fabrication are not
-authorized.** This is the deterministic factory-assembly boundary for the sole
+authorized.** This is the deterministic owner-assembly boundary for the sole
 prototype. The former `HMX035CTFT-001` donor and `L2-DISP-ADP-001-B` adapter
 are rejected historical routes.
 
@@ -15,7 +15,7 @@ are rejected historical routes.
   `1067-4910SQ-2(5)-ND`, one ready-made `50.80 × 50.80 × 1.016 mm`
   VHB 4910 square applied to the component-free UI-PCB outer face; it is an
   exact stocked candidate, but release still depends on the current-lot
-  folded-FPC height and written factory acceptance;
+  folded-FPC height and owner dry fit before bonding;
 - electrical interface: direct 8-bit i8080 at the exact 20-MHz first-prototype
   limit, with the serial recovery option retained on opened-device jumpers.
 
@@ -53,9 +53,9 @@ Pin orientation is not inferred from the dual-contact connector:
 - after the released in-plane panel rotation and the single fold, tail pin 1
   is at board/world X-min and tail pin 50 at X-max;
 - the connector footprint must put pin 1 at world X-min and pin 50 at X-max;
-- the assembler verifies `1 → 1` and `50 → 50` before closing the latch.
+- the owner verifies `1 → 1` and `50 → 50` before closing the latch.
 
-## Deterministic factory sequence
+## Deterministic owner sequence
 
 1. Inspect exact panel option, tail, contact side and pin marks against the
    EastRising controlled drawing; reject any substitution.
@@ -68,7 +68,7 @@ Pin orientation is not inferred from the dual-contact connector:
 6. Remove the PSA upper liner, align the panel to the `DISPLAY/FPC-UP` datum,
    apply the released pressure/time process and preserve the released dwell.
 7. Inspect panel planarity, adhesive coverage, uncompressed FPC pocket and the
-   absence of latch or routed-edge load. No power-on factory test is required.
+   absence of latch or routed-edge load, then perform owner USB bring-up.
 
 ## Exact stock-pad evidence
 
@@ -93,8 +93,8 @@ it costs hundreds of euros and still requires cutting.
 ## Released 4910 application process
 
 This process follows the official 3M 4910 data sheet and VHB surface-preparation
-guidance. It does not override an EastRising panel pressure limit; the factory
-must accept the fixture and operation before order.
+guidance. It does not override an EastRising panel pressure limit; the owner
+must use a flat support/roller arrangement that cannot point-load the glass.
 
 1. Condition the PCB, panel and pad at `21…38 °C`.
 2. Clean both bond faces with fresh lint-free wipes and `70% IPA / 30% water`:
@@ -123,12 +123,13 @@ pressure on the display.
 - prove folded-FPC maximum `≤0.714 mm` and actual dry-fit clearance `≥0.20 mm`
   with the received `4910SQ-2(5)`; otherwise select a thicker traceable stock
   rectangle and repeat this review;
-- obtain written quantity-one factory acceptance for customer-supplied panel,
-  pad, dry fit, ZIF insertion, supported `100-kPa` PSA application, `24-h`
-  pre-pack dwell and final device assembly.
+- prove the dry-fit image/backlight/touch path before removing the upper liner;
+- complete the exact M2.5 nonconductive fastener and 11.00-mm compression-stop
+  kit used after the display, cables and knob are installed.
 
-The owner performs the first USB power-on and verifies image, backlight and
-touch during H7/H8. Batteries are not supplied or installed by the factory.
+The owner performs USB power-on and verifies image, backlight and touch during
+H7/H8 before the irreversible PSA bond where practical, then repeats it after
+bonding and enclosure assembly. Batteries are separately sourced and installed.
 
 ## Primary sources
 

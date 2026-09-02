@@ -37,14 +37,15 @@ JLCPCB_DISPOSITION = {
     "pcba_minimum_quantity": 2,
     "special_process_preorder_acceptance": False,
     "complete_enclosure_final_device_assembly": False,
-    "role": "pcba_only_reference",
+    "owner_final_assembly_accepted": True,
+    "role": "primary_pcba_candidate_with_owner_final_assembly",
 }
 
 
 FACTORIES = [
     {
         "id": "pcbway",
-        "role": "active_full_device_candidate_after_jlcpcb_decline",
+        "role": "optional_full_device_cost_and_convenience_comparison",
         "official_sources": [
             "https://www.pcbway.com/assembly-capabilities.html",
             "https://www.pcbway.com/oem.html",
@@ -62,10 +63,10 @@ FACTORIES = [
         },
         "still_requires_written_acceptance": [
             "exact SA818S-V sourcing lead time or consignment",
-            "the four release-required final-assembly operations for exactly one unpowered device",
+            "the four requested final-assembly operations for exactly one unpowered device",
             "exact-MPN incoming inspection and no-silent-substitution terms",
         ],
-        "status": "questionnaire_sent_waiting_for_written_response",
+        "status": "questionnaire_sent_response_optional_for_release",
     },
     {
         "id": "seeed-fusion",
@@ -83,7 +84,7 @@ FACTORIES = [
         "still_requires_written_acceptance": [
             "full-device final assembly rather than PCBA only",
             "exact SA818S-U/V sourcing or consignment",
-            "the four release-required final-assembly operations for exactly one unpowered device",
+            "the four requested final-assembly operations for exactly one unpowered device",
         ],
         "status": "retain_as_pcba_second_source_not_first_box_build_fallback",
     },
@@ -102,9 +103,10 @@ def build() -> dict:
         "pcbway_information_only_questionnaire_sent_without_commercial_action": PCBWAY_CONTACT["result"] == "message_sent"
         and PCBWAY_CONTACT["information_only"]
         and not PCBWAY_CONTACT["commercial_action_created"],
-        "fallback_activation_is_supported_by_jlcpcb_required_operation_decline": not JLCPCB_DISPOSITION["complete_enclosure_final_device_assembly"]
+        "owner_final_assembly_removes_jlcpcb_full_device_decline_from_release_gate": not JLCPCB_DISPOSITION["complete_enclosure_final_device_assembly"]
         and not JLCPCB_DISPOSITION["special_process_preorder_acceptance"]
-        and JLCPCB_DISPOSITION["role"] == "pcba_only_reference",
+        and JLCPCB_DISPOSITION["owner_final_assembly_accepted"]
+        and JLCPCB_DISPOSITION["role"] == "primary_pcba_candidate_with_owner_final_assembly",
         "no_order_or_commercial_action_is_authorized": True,
     }
     if not all(checks.values()):
@@ -115,13 +117,13 @@ def build() -> dict:
         "gate": "H5.0.3-R1",
         "checked_on": CHECKED_ON,
         "updated_on": UPDATED_ON,
-        "status": "active_full_device_inquiry_sent_response_open",
+        "status": "optional_full_device_inquiry_response_open_pcba_path_unblocked",
         "contact": PCBWAY_CONTACT,
         "primary_disposition": JLCPCB_DISPOSITION,
         "factories": FACTORIES,
         "selection": {
             "first_fallback": "pcbway",
-            "reason": "JLCPCB explicitly declines complete enclosure/final-device assembly; PCBWay has the strongest public evidence for exact-part approval, consignment, mixed PCBA, customer functional test and final product assembly in one supplier class",
+            "reason": "PCBWay remains useful as an optional cost/convenience comparison, but owner installation of the display, five microcoax jumpers, encoder knob and enclosure removes full-device factory assembly from the release gate",
             "second_source_pcba": "seeed-fusion",
             "jlcpcb_remains_pcba_reference": True,
             "jlcpcb_remains_primary_full_device_factory": False,
@@ -137,7 +139,7 @@ def build() -> dict:
             "pcb_placement_and_routing": False,
             "fabrication": False,
         },
-        "next": "wait for PCBWay's written line-by-line response; JLCPCB remains PCBA-only because it declines complete enclosure/final-device assembly and defers special-process feasibility until after order",
+        "next": "close H5 and continue H6 on the JLCPCB PCBA path; select exact screw length and obtain the real PCBA price only after H6 enclosure and fabrication outputs exist; record PCBWay's reply when it arrives, but do not wait for it",
     }
 
 
@@ -155,7 +157,7 @@ def main() -> int:
     if args.check:
         if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != expected:
             raise SystemExit(f"stale generated artifact: {OUTPUT.relative_to(REPO)}")
-        print("ok: H5 fallback inquiry is sent, response-open and commercially fail-closed")
+        print("ok: PCBWay response is optional; JLCPCB PCBA plus owner final assembly is unblocked")
         return 0
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(expected, encoding="utf-8")

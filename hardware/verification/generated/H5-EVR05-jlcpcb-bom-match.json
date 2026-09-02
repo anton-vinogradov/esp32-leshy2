@@ -357,7 +357,7 @@
       "normalized_mpn": "ER-TFT035IPS-6 + ER-TPC035-6",
       "quantity": 1,
       "route": "J4-F",
-      "tool_status": "factory_final_assembly",
+      "tool_status": "owner_post_pcba_final_assembly",
       "match_provenance": "current_exact_jlcpcb_part_page",
       "lcsc": null,
       "matched_mpn": "ER-TFT035IPS-6 + ER-TPC035-6",

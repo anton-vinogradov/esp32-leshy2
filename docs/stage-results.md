@@ -166,22 +166,22 @@ closes with zero contradiction and transfers all 51 physical residuals.
 <a id="h5"></a>
 ## H5 · Component and factory evidence
 
-**Status:** ▶️ current at **`H5.0.3-R1`**.
+**Status:** ✅ reviewed at **`H5.0.3-R1`**.
 
-JLCPCB confirmed exact dual-module/no-substitution PCBA, but set PCBA MOQ 2,
-declined complete final-device assembly and deferred special-process feasibility
-until after order. The information-only PCBWay inquiry sent on 2 September is
-therefore the active full-device gate; no quote, sourcing request, reservation,
-purchase or order was created.
+The [global bilingual H5 result](h5-r1-acceptance.md) reviews all 210 BOM routes
+and 1,050 placements with zero unmapped line or substitution. JLCPCB confirmed
+exact dual-module/no-substitution PCBA at MOQ 2, the owner accepted deterministic
+post-PCBA final assembly, and exact `Ettinger 007.02.611` 11-mm pass-through
+stops preserve the four-long-plastic-screw architecture. The known owner-kit
+material budget is `$267.91`; no commercial action was created.
 
-Expected result: every exact MPN rechecked on the current JLCPCB surface,
-non-PCBA accessories listed, consigned/private/global sourcing qualified and
-received-part measurements assigned to their controlled downstream gates.
+H6 owns enclosure-dependent screw length and quoteable Gerber/BOM/CPL. Final
+`SA818S-V` terms and live stock/price recheck remain immediate pre-order gates.
 
 <a id="h6"></a>
 ## H6 · KiCad placement, routing and release candidate
 
-**Status:** 🔒 waits for reviewed H5.
+**Status:** ▶️ current at **`H6.0.1-R1`**.
 
 Expected result: two routed boards with the exact panel connected directly to the UI-board ZIF, and one
 hash-locked fabrication package. H6 closes only after eight reviewable steps:

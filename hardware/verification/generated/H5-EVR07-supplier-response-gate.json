@@ -4,16 +4,18 @@
   "gate": "H5.0.3-R1",
   "source": "hardware/procurement/H5.0.3-R1-supplier-response.json",
   "source_status": "response_recorded",
-  "status": "supplier_gate_failed_explicit_required_decline",
+  "status": "passed_pcba_supplier_gate_owner_final_assembly",
   "summary": {
-    "response_complete": false,
-    "factory_gate_passed": false,
-    "missing_field_count": 3,
+    "response_complete": true,
+    "factory_gate_passed": true,
+    "missing_field_count": 0,
     "explicit_decline_count": 1,
+    "blocking_decline_count": 0,
     "out_of_supplier_scope_operations": 1,
     "j4_f_operations": 5,
     "j4_p_operations": 2,
     "release_required_final_assembly_operations": 4,
+    "supplier_required_final_assembly_operations": 0,
     "optional_non_gating_operations": 3,
     "orders_authorized": 0
   },
@@ -26,22 +28,17 @@
     "administrative_ticket_merge_recorded_without_closing_the_gate": true,
     "substantive_response_address_and_scope_recorded": true,
     "pcba_moq_and_post_order_special_process_boundary_recorded": true,
+    "owner_final_assembly_boundary_is_accepted": true,
     "commercial_layout_and_fabrication_authority_remains_false": true,
-    "response_complete": false,
-    "all_required_factory_gates_accepted": false
+    "response_complete": true,
+    "all_required_factory_gates_accepted": true
   },
-  "missing_fields": [
-    "j4_f_operations.display_flex.accepted",
-    "j4_f_operations.encoder_knob.accepted",
-    "j4_f_operations.microcoax_x5.accepted"
-  ],
+  "missing_fields": [],
   "explicit_declines": [
     "J4-F:sandwich_enclosure"
   ],
-  "blockers": [
-    "supplier response is incomplete",
-    "supplier explicitly declines: J4-F:sandwich_enclosure"
-  ],
+  "blocking_declines": [],
+  "blockers": [],
   "authorization": {
     "quote_project": false,
     "reservation": false,
@@ -51,5 +48,5 @@
     "pcb_placement_and_routing": false,
     "fabrication": false
   },
-  "next": "use PCBWay as the active full-device candidate; retain JLCPCB as the PCBA-only reference"
+  "next": "close H5 and continue H6; the exact 11-mm stop is selected, H6 owns exact nylon screw length and quoteable outputs, and PCBWay remains an optional comparison"
 }

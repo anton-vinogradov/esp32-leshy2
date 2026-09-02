@@ -3,10 +3,12 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H5.0.3-R1`.** H0, H1, [H2-R2.1.5](h2-acceptance.md), the complete [H3-R2 global result](h3-r2-acceptance.md) and the [global H4-R2 joined gate](h4-r2-acceptance.md) are reviewed. The preserved H4 diagnostic found an owned 38-row C5/Pack/Safety BSP gap; H4-R2.2 restored 173/173 rows and all 12 target builds requalified. All 51 physical residuals and the F5/F6 i8080 obligation remain open under their exact downstream owners.
-> No R2 KiCad routing, quote, reservation or order is authorized.
+> **▶ Current hardware boundary: `H6.0.1-R1`.** H0–H4 and the [global H5-R1 result](h5-r1-acceptance.md) are reviewed. All 210 component/factory routes and 1,050 placements are controlled with zero substitution; owner final assembly and exact 11-mm pass-through stops are fixed. The 51 physical residuals and F5/F6 i8080 obligation retain exact downstream owners.
+> H6 placement/routing is authorized; quote, reservation, purchase and fabrication are not.
 
-Status reconciled: **1 September 2026**.
+[Current H6 machine checklist](../hardware/verification/h6-layout-release-plan.json).
+
+Status reconciled: **2 September 2026**.
 
 ## Status rules
 
@@ -32,10 +34,10 @@ marker and current checklist; it is never presented as review of the whole phase
 
 ## Reviewed H1 · exact composition
 
-<!-- current-substep: H5.0.3-R1 -->
+<!-- current-substep: H6.0.1-R1 -->
 
 **Reviewed marker: `H1-R2.38`.** The placement package was accepted on
-2026-08-31. The current hardware marker is `H5.0.3-R1`.
+2026-08-31. The current hardware marker is `H6.0.1-R1`.
 
 ### 1. Functional-island placement
 
@@ -195,8 +197,8 @@ routing have not started.
 | H2 · Production ECAD schematic | ✅ [Reviewed · `H2-R2.1.5`](h2-acceptance.md) | Exact R2 symbols, contacts, nets, values, protection and footprints | Native KiCad, zero-finding ERC and cross-sheet/HW↔FW reconciliation pass |
 | H3 · Virtual electrical verification | ✅ [Reviewed · `H3-R2.7`](h3-r2-acceptance.md) | Complete power, digital, RF, audio, timing, thermal and fault verification | Every calculable pre-layout claim passes; all physical residuals remain owned |
 | H4 · Joined pre-layout gate | ✅ [Reviewed · `H4-R2.3`](h4-r2-acceptance.md) | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |
-| **H5 · Component and factory evidence** | **▶ Current · `H5.0.3-R1`** | Exact current factory map and controlled external routes | Every BOM line has a current factory route without silent substitution |
-| H6 · KiCad placement, routing and release candidate | 🔒 Waiting for H5 | Two routed boards, routed re-analysis and hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs and independent DFM/CPL review pass |
+| H5 · Component and factory evidence | ✅ [Reviewed · `H5.0.3-R1`](h5-r1-acceptance.md) | Exact current factory map and controlled external routes | Every BOM line has a current factory route without silent substitution |
+| **H6 · KiCad placement, routing and release candidate** | **▶ Current · `H6.0.1-R1`** | Two routed boards, routed re-analysis and hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs and independent DFM/CPL review pass |
 | `F-PO` · First-spin admission | 🔒 Waiting for H2/H6 and firmware R2 | Six diagnostic images, S3 QEMU, fake-HAL/dev-board evidence, flash/recovery and owner bring-up script | `FPO1`–`FPO7` are reviewed against the same H2/H6 candidate hashes; paid factory FCT is not required |
 | H7 · Prototype fabrication and bring-up | 🔒 Waiting for H6, `F-PO`, immutable release and exact-one quote approval | Exactly one factory-assembled `R2-EVT1` and retained owner bring-up log | Released assembly package needs no factory engineering guesses; owner current-limited USB power-on proves rails, recovery, UI, storage, audio, radios and expansion |
 | H8 · Physical qualification | 🔒 Waiting for H7 | HIL, RF, thermal, power, safety and endurance evidence | Concurrent nRF modes, quiet interfaces, coexistence, VNA, watchdog and single-fault tests pass |
@@ -211,7 +213,7 @@ routing have not started.
 5. RF transmission and dangerous tests run only on owned loads, with owner authorization or inside an isolated laboratory.
 6. Emulation does not replace bring-up, but H7 cannot be the first firmware execution: [`F-PO`](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/config/first_spin_preorder_gate.json) is mandatory before ordering.
 
-## Reviewed H2–H4 execution path and current H5
+## Reviewed H2–H5 execution path and current H6
 
 1. ✅ `H2-R2.1.1`: freeze native R2 sources, sheet map and exact component inventory.
 2. ✅ `H2-R2.1.2`: build the exact symbols, contacts, values, protection and footprint ledger.
@@ -242,10 +244,12 @@ routing have not started.
 18. ✅ [`H4-R2.1`](h4-r2-contract-reconciliation.md): run the joined cross-check; find three owned BSP-domain corrections and no unowned contradiction.
 19. ✅ [`H4-R2.2`](h4-r2-correction-closure.md): regenerate complete exact C5, Pack and Safety BSP maps and fail-closed target guards; requalify all 12 builds.
 20. ✅ [`H4-R2.3`](h4-r2-acceptance.md): publish the global bilingual joined gate with zero contradiction and transfer all 51 physical residuals.
-21. ▶ `H5.0.3-R1`: retain JLCPCB as PCBA-only after its explicit final-device decline and await PCBWay's exact-one full-device answer without silent substitution.
+21. ✅ [`H5.0.3-R1`](h5-r1-acceptance.md): review all 210 controlled routes and 1,050 placements with zero substitutions, accept owner final assembly and select exact `Ettinger 007.02.611` 11-mm stops.
+22. ▶ `H6.0.1-R1`: place and route both PCBAs, lock enclosure walls and exact M2.5 nylon screw length, then emit quoteable Gerber/BOM/CPL.
 
-H5.0.3-R1 component/factory evidence is the current action. JLCPCB confirmed
-exact dual-module/no-substitution PCBA but declined complete final-device
-assembly and pre-order special-process approval. The information-only PCBWay
-inquiry sent on 2 September is now the active full-device gate. Placement,
-routing, quoting and every order remain blocked.
+H5-R1 is reviewed: all 210 component/factory routes are controlled, the JLCPCB
+PCBA gate passes, owner final assembly is accepted and exact 11-mm pass-through
+stops are selected. H6.0.1-R1 is current. It owns placement/routing, enclosure
+walls, exact screw length and the Gerber/BOM/CPL needed for a real PCBA quote.
+Final VHF pre-order terms and the complete stock recheck execute immediately
+before the one order; purchase and fabrication remain blocked.

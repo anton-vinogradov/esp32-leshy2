@@ -138,6 +138,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/h4-r2-correction-closure.ru.md",
         "docs/h4-r2-acceptance.md",
         "docs/h4-r2-acceptance.ru.md",
+        "docs/h5-r1-acceptance.md",
+        "docs/h5-r1-acceptance.ru.md",
         "docs/thermal-model.md",
         "docs/thermal-model.ru.md",
         "docs/single-fault-review.md",
@@ -231,12 +233,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: `H5.0.3-R1`", "H4-R2 joined gate",
+                "Current hardware boundary: `H6.0.1-R1`", "global H5-R1 result",
                 "firmware F1-R2 reviewed", "F2-R2.4",
                 "H9 · Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H5.0.3-R1`", "объединённый gate H4-R2",
+                "Текущая аппаратная граница: `H6.0.1-R1`", "глобальный итог H5-R1",
                 "firmware F1-R2 проведено ревью", "F2-R2.4",
                 "H9 · Manufacturing release",
                 "Production ECAD",
@@ -252,8 +254,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Current hardware marker: `H5.0.3-R1`", "fabrication"),
-            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H5.0.3-R1`", "печати прототипа"),
+            "README.md": ("Roadmap and current position", "Current hardware marker: `H6.0.1-R1`", "fabrication"),
+            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H6.0.1-R1`", "печати прототипа"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -460,13 +462,13 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual("H5.0.3-R1", evidence["stage"])
         self.assertEqual(
-            "draft_order_integrated_manifest_exact_display_selected_factory_response_pending",
+            "reviewed_order_manifest_owner_final_assembly_h6_and_order_gates_assigned",
             evidence["status"],
         )
-        self.assertEqual(32, evidence["summary"]["article_lines"])
-        self.assertEqual(11, evidence["summary"]["measurement_contracts"])
+        self.assertEqual(33, evidence["summary"]["article_lines"])
+        self.assertEqual(12, evidence["summary"]["measurement_contracts"])
         self.assertEqual(23, evidence["summary"]["covered_residuals_and_gates"])
-        self.assertEqual("265.91", evidence["summary"]["known_engineering_material_budget_usd"])
+        self.assertEqual("267.91", evidence["summary"]["known_engineering_material_budget_usd"])
         self.assertEqual(0, evidence["summary"]["unpriced_manufacturer_lines"])
         self.assertTrue(all(evidence["checks"].values()))
         pack_gauge = next(row for row in evidence["articles"] if row["id"] == "pack-gauges")
@@ -502,6 +504,15 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("owner USB-powered", evidence["procurement_target"]["first_power_on"])
         self.assertFalse(evidence["procurement_target"]["separate_engineering_sample_purchase"])
         self.assertFalse(evidence["procurement_target"]["coupon_board_phase"])
+        self.assertIn("Ettinger 007.02.611", evidence["procurement_target"]["sandwich_fasteners"])
+        self.assertEqual(
+            "Ettinger 007.02.611",
+            evidence["supply_constraints"]["sandwich_fastener"]["compression_stop_mpn"],
+        )
+        self.assertIn(
+            "owned_by_H6",
+            evidence["supply_constraints"]["sandwich_fastener"]["status"],
+        )
         substep_ids = {
             row["id"] for row in plan["substeps"]
         }
@@ -515,9 +526,55 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(name)
             self.assertEqual(1, page.count("```mermaid"), name)
             self.assertIn("H5-EVR03", page, name)
-            self.assertIn("265.91", page, name)
+            self.assertIn("267.91", page, name)
+            self.assertIn("007.02.611", page, name)
             self.assertIn("SA818S-V", page, name)
             self.assertIn("H7/H8", page, name)
+
+    def test_h5_r1_global_acceptance_is_reviewed_and_hands_off_to_h6(self):
+        subprocess.run(
+            [sys.executable, "hardware/verification/h5_r1_acceptance.py", "--check"],
+            cwd=REPO_ROOT,
+            check=True,
+        )
+        acceptance = json.loads(
+            self.read("hardware/verification/generated/H5-R1-acceptance-package.json")
+        )
+        self.assertEqual("reviewed", acceptance["status"])
+        self.assertEqual("H5.0.3-R1", acceptance["marker"])
+        self.assertEqual(210, acceptance["result"]["bom_lines"])
+        self.assertEqual(1050, acceptance["result"]["placements"])
+        self.assertEqual(0, acceptance["result"]["unmapped_lines"])
+        self.assertEqual(0, acceptance["result"]["component_replacements"])
+        self.assertEqual("Ettinger 007.02.611", acceptance["result"]["exact_interboard_stop"])
+        self.assertEqual("H6.0.1-R1", acceptance["next"]["marker"])
+        self.assertTrue(acceptance["claims"]["h6_placement_and_routing_may_start"])
+        self.assertFalse(acceptance["claims"]["purchase_authorized"])
+        self.assertTrue(all(acceptance["checks"].values()))
+        for name in ("docs/h5-r1-acceptance.md", "docs/h5-r1-acceptance.ru.md"):
+            page = self.read(name)
+            self.assertEqual(1, page.count("```mermaid"), name)
+            self.assertIn("210", page, name)
+            self.assertIn("007.02.611", page, name)
+            self.assertIn("H6", page, name)
+
+    def test_h6_current_plan_is_fail_closed_and_mechanically_explicit(self):
+        plan = json.loads(
+            self.read("hardware/verification/h6-layout-release-plan.json")
+        )
+        self.assertEqual("H6", plan["stage"])
+        self.assertEqual("in_progress", plan["status"])
+        self.assertEqual("H6.0.1-R1", plan["current_substep"])
+        self.assertEqual(8, len(plan["substeps"]))
+        self.assertEqual(
+            "Ettinger 007.02.611",
+            plan["mechanical_stack"]["compression_stop"]["mpn"],
+        )
+        self.assertIn("50M025045Pxxx", plan["mechanical_stack"]["screw_family"])
+        self.assertTrue(plan["authorization"]["pcb_placement_and_routing"])
+        self.assertFalse(plan["authorization"]["purchase"])
+        self.assertFalse(plan["authorization"]["fabrication"])
+        self.assertIsNone(plan["blocker"])
 
     def test_h5_0_3_pcba_platform_baseline_is_complete_and_honest(self):
         plan = json.loads(self.read("hardware/verification/h5-component-evidence-plan.json"))
@@ -539,7 +596,7 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual("H5-EVR04", evidence["artifact"])
         self.assertEqual("H5.0.3-R1", evidence["stage"])
-        self.assertEqual("routes_complete_dual_sa818s_preorder_and_factory_gates_open", evidence["status"])
+        self.assertEqual("routes_complete_pcba_supplier_gate_passed_h6_and_order_gates_assigned", evidence["status"])
         self.assertEqual("JLCPCB Standard PCBA", evidence["decision"]["reference_platform"])
         self.assertFalse(evidence["decision"]["exclusive_lock_in"])
         self.assertEqual(210, evidence["summary"]["target_bom_lines"])
@@ -547,18 +604,18 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(18, evidence["summary"]["public_stock_exact_or_revision_explicit"])
         self.assertEqual(3, evidence["summary"]["preorder_reservation"])
         self.assertEqual(0, evidence["summary"]["global_sourcing_or_consignment"])
-        self.assertEqual(1, evidence["summary"]["factory_final_assembly"])
+        self.assertEqual(1, evidence["summary"]["post_pcba_final_assembly"])
         self.assertEqual(0, evidence["summary"]["factory_packed_removable"])
         self.assertEqual(
-            "open_at_active_full_device_candidate",
-            evidence["assembly_boundary"]["J4-F_factory_final_assembly"]["status"],
+            "owner_assembly_accepted_exact_stop_selected_screw_length_owned_by_h6",
+            evidence["assembly_boundary"]["J4-F_post_pcba_final_assembly"]["status"],
         )
         self.assertEqual(1, evidence["procurement_target"]["finished_device_quantity"])
         self.assertFalse(evidence["procurement_target"]["batteries_included"])
         self.assertFalse(evidence["procurement_target"]["factory_function_test"]["release_gate"])
         self.assertEqual(1, evidence["bom_tool_upload"]["assembly_quantity"])
         self.assertEqual(
-            "open_until_kit_and_packing_quote",
+            "owner_sourced_optional_factory_packing",
             evidence["assembly_boundary"]["J4-P_factory_packed_removable"]["status"],
         )
         self.assertEqual(176, evidence["summary"]["historical_bom_tool_matched_lines"])
@@ -679,8 +736,11 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(0, outliers["summary"]["unmapped_lines"])
         self.assertIsNone(outliers["summary"]["open_qualified_price_mpn"])
         self.assertEqual("SA818S-V", outliers["summary"]["preorder_lead_time_open_mpn"])
+        self.assertTrue(
+            outliers["boundary"]["post_pcba_final_assembly"]["owner_installation_accepted"]
+        )
         self.assertFalse(
-            outliers["boundary"]["factory_final_assembly"]["accepted_and_quoted"]
+            outliers["boundary"]["post_pcba_final_assembly"]["supplier_quote_required"]
         )
         self.assertFalse(
             outliers["boundary"]["factory_packed_removable"]["accepted_and_quoted"]
@@ -819,14 +879,14 @@ class ProductSiteTests(unittest.TestCase):
     def test_h1_r2_32_public_boundary_separates_electrical_and_physical_work(self):
         expectations = {
             "README.md": (
-                "Current hardware marker: `H5.0.3-R1`",
+                "Current hardware marker: `H6.0.1-R1`",
                 "exact dual-RP GPIO/M1 map",
                 "mutually exclusive U214/U219 Cap slot",
                 "native R2 inventory is reviewed at `H2-R2.1.1`",
                 "six compute domains",
             ),
             "README.ru.md": (
-                "Текущий маркер железа: `H5.0.3-R1`",
+                "Текущий маркер железа: `H6.0.1-R1`",
                 "dual-RP GPIO/M1",
                 "взаимоисключающий Cap-слот U214/U219",
                 "Native R2 inventory проведён ревью как `H2-R2.1.1`",
@@ -834,14 +894,14 @@ class ProductSiteTests(unittest.TestCase):
                 "шесть вычислительных доменов",
             ),
             "docs/roadmap.md": (
-                "Current hardware boundary: `H5.0.3-R1`",
+                "Current hardware boundary: `H6.0.1-R1`",
                 "18 exact production",
                 "U219 Cap integration",
                 "H1-R2.38 reviewed",
                 "4,239 fitted-instance contacts reconcile",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H5.0.3-R1`",
+                "Текущая аппаратная граница: `H6.0.1-R1`",
                 "18 точных production",
                 "Интеграция U219 Cap",
                 "H1-R2.38 проведено ревью",
@@ -1065,8 +1125,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertTrue(r2_authority["r2_kicad_started"])
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
-        self.assertEqual("H5", state["current_stage"])
-        self.assertEqual("H5.0.3-R1", state["current_substep"])
+        self.assertEqual("H6", state["current_stage"])
+        self.assertEqual("H6.0.1-R1", state["current_substep"])
         self.assertEqual("reviewed", r2_plan["status"])
         self.assertIsNone(r2_plan["current_substep"])
         self.assertEqual("H2-R2.1.5", r2_plan["accepted_input"]["stage"])
@@ -1205,11 +1265,11 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("reviewed", h4_plan["substeps"][0]["children"][0]["status"])
         self.assertTrue(all(row["status"] == "reviewed" for row in h4_plan["substeps"]))
         self.assertEqual("H5", h5_plan["stage"])
-        self.assertEqual("in_progress", h5_plan["status"])
-        self.assertEqual("H5.0.3-R1", h5_plan["current_substep"])
+        self.assertEqual("reviewed", h5_plan["status"])
+        self.assertIsNone(h5_plan["current_substep"])
         self.assertEqual("reviewed", h5_plan["substeps"][0]["children"][0]["status"])
         self.assertEqual("reviewed", h5_plan["substeps"][0]["children"][1]["status"])
-        self.assertEqual("current_active_full_device_supplier_response_open", h5_plan["substeps"][0]["children"][2]["status"])
+        self.assertEqual("reviewed", h5_plan["substeps"][0]["children"][2]["status"])
         self.assertIn("H5.0.1-R1", h5_plan["reviewed_artifacts"])
         self.assertIn("H5.0.2-R1", h5_plan["reviewed_artifacts"])
         self.assertIn("H5.0.3", h5_plan["superseded_current_artifacts"])
@@ -1227,14 +1287,16 @@ class ProductSiteTests(unittest.TestCase):
             h5_plan["current_artifacts"]["H5.0.3-R1"]["sent_fallback_inquiry"],
         )
         self.assertFalse(h5_plan["decision_gate"]["requires_user_authority"])
-        self.assertFalse(h5_plan["decision_gate"]["authorized_now"])
+        self.assertTrue(h5_plan["decision_gate"]["authorized_now"])
         self.assertEqual(
-            "jlcpcb_full_device_gate_failed_pcbway_response_open",
+            "h5_reviewed_h6_placement_and_routing_authorized",
             h5_plan["decision_gate"]["action_status"],
         )
         self.assertTrue(h5_plan["authorization"]["supplier_contact_send"])
         self.assertEqual("successfully_submitted", h5_plan["authorization"]["supplier_contact_result"])
-        self.assertIn("explicitly declines complete enclosure", h5_plan["blocker"])
+        self.assertIsNone(h5_plan["blocker"])
+        self.assertEqual("Ettinger 007.02.611", h5_plan["authorization"]["exact_compression_stop_mpn"])
+        self.assertTrue(h5_plan["authorization"]["pcb_placement_and_routing"])
         self.assertEqual("message_sent", h5_plan["authorization"]["fallback_supplier_contact_result"])
         self.assertFalse(h5_plan["authorization"]["fallback_supplier_contact_commercial_action_created"])
         self.assertFalse(h5_plan["authorization"]["sample_or_component_purchase"])

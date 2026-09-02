@@ -3,10 +3,12 @@
 [На главную](../README.ru.md) · [English](roadmap.md) ·
 [Роадмап прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md)
 
-> **▶ Текущая аппаратная граница: `H5.0.3-R1`.** H0, H1, [H2-R2.1.5](h2-acceptance.ru.md), полный [глобальный итог H3-R2](h3-r2-acceptance.ru.md) и [глобальный объединённый gate H4-R2](h4-r2-acceptance.ru.md) проведены ревью. Сохранённая диагностика H4 нашла назначенный пробел 38 BSP-строк C5/Pack/Safety; H4-R2.2 восстановил 173/173 строки, все 12 target-сборок повторно квалифицированы. Все 51 physical-остаток и обязательство F5/F6 по i8080 остаются открытыми у точных downstream-владельцев.
-> KiCad routing R2, quote, reservation и заказ не разрешены.
+> **▶ Текущая аппаратная граница: `H6.0.1-R1`.** H0–H4 и [глобальный итог H5-R1](h5-r1-acceptance.ru.md) проведены ревью. Все 210 component/factory routes и 1 050 установок контролируются без замен; owner final assembly и точные 11-мм проходные упоры зафиксированы. Все 51 physical-остаток и обязательство F5/F6 по i8080 сохраняют точных downstream-владельцев.
+> H6 placement/routing разрешены; quote, reservation, закупка и печать — нет.
 
-Статус сверен: **1 сентября 2026 года**.
+[Текущий машинный checklist H6](../hardware/verification/h6-layout-release-plan.json).
+
+Статус сверен: **2 сентября 2026 года**.
 
 ## Правила статусов
 
@@ -32,10 +34,10 @@
 
 ## Проведённое ревью H1 · точный состав
 
-<!-- current-substep: H5.0.3-R1 -->
+<!-- current-substep: H6.0.1-R1 -->
 
 **Маркер ревью: `H1-R2.38`.** Пакет компоновки принят 2026-08-30. Текущий
-аппаратный маркер — `H5.0.3-R1`.
+аппаратный маркер — `H6.0.1-R1`.
 
 ### 1. Размещение функциональных островов
 
@@ -195,8 +197,8 @@
 | H2 · Production ECAD-схема | ✅ [Проведено ревью · `H2-R2.1.5`](h2-acceptance.ru.md) | Точные R2 symbols, contacts, nets, values, protection и footprints | Native KiCad, ERC без замечаний и сверка sheets/HW↔FW проходят |
 | H3 · Виртуальная электрическая проверка | ✅ [Проведена · `H3-R2.7`](h3-r2-acceptance.ru.md) | Полная проверка power, digital, RF, audio, timing, thermal и faults | Все рассчитываемые pre-layout claims проходят; физические остатки сохраняют владельцев |
 | H4 · Объединённый pre-layout gate | ✅ [Проведено ревью · `H4-R2.3`](h4-r2-acceptance.ru.md) | Одно текущее mechanics/ECAD/electrical/firmware review | Нет виртуального blocker; каждой физической неопределённости назначен тест |
-| **H5 · Компоненты и фабричные evidence** | **▶ Сейчас · `H5.0.3-R1`** | Точная актуальная фабричная карта и контролируемые external routes | У каждой BOM-строки есть текущий фабричный маршрут без молчаливой замены |
-| H6 · KiCad placement, routing и release candidate | 🔒 Ожидает H5 | Две разведённые платы, routed re-analysis и hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs и независимый DFM/CPL review проходят |
+| H5 · Компоненты и фабричные evidence | ✅ [Проведено ревью · `H5.0.3-R1`](h5-r1-acceptance.ru.md) | Точная актуальная фабричная карта и контролируемые external routes | У каждой BOM-строки есть текущий фабричный маршрут без молчаливой замены |
+| **H6 · KiCad placement, routing и release candidate** | **▶ Сейчас · `H6.0.1-R1`** | Две разведённые платы, routed re-analysis и hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs и независимый DFM/CPL review проходят |
 | `F-PO` · Допуск первого экземпляра | 🔒 Ожидает H2/H6 и firmware R2 | Шесть diagnostic images, S3 QEMU, fake-HAL/dev-board evidence, flash/recovery и owner bring-up script | `FPO1`–`FPO7` проведены ревью на тех же H2/H6 candidate hashes; платный factory FCT не требуется |
 | H7 · Печать прототипа и bring-up | 🔒 Ожидает H6, `F-PO`, immutable release и одобрение exact-one quote | Ровно один фабрично собранный `R2-EVT1` и owner bring-up log | Released assembly package не требует догадок фабрики; owner current-limited USB power-on проверяет rails, recovery, UI, storage, audio, radio и expansion |
 | H8 · Физическая квалификация | 🔒 Ожидает H7 | HIL, RF, thermal, power, safety и endurance evidence | Concurrent nRF modes, quiet interfaces, coexistence, VNA, watchdog и single-fault tests проходят |
@@ -211,7 +213,7 @@
 5. RF-передача и опасные тесты выполняются только на своей нагрузке, с разрешением владельца или в изолированной лаборатории.
 6. Эмуляция не заменяет bring-up, но H7 не может стать первым запуском прошивки: до заказа обязателен [`F-PO`](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/config/first_spin_preorder_gate.json).
 
-## Проведённый путь H2–H4 и текущий H5
+## Проведённый путь H2–H5 и текущий H6
 
 1. ✅ `H2-R2.1.1`: зафиксировать native R2 sources, sheet map и точный component inventory.
 2. ✅ `H2-R2.1.2`: сформировать exact ledger symbols, contacts, values, protection и footprints.
@@ -242,10 +244,12 @@
 18. ✅ [`H4-R2.1`](h4-r2-contract-reconciliation.ru.md): провести объединённый cross-check; найти три назначенных BSP-коррекции без неназначенного противоречия.
 19. ✅ [`H4-R2.2`](h4-r2-correction-closure.ru.md): сгенерировать полные точные BSP-карты и fail-closed target guards C5, Pack и Safety; повторно квалифицировать все 12 сборок.
 20. ✅ [`H4-R2.3`](h4-r2-acceptance.ru.md): опубликовать глобальный двуязычный joined gate без противоречий и передать все 51 physical-остаток.
-21. ▶ `H5.0.3-R1`: сохранить JLCPCB как PCBA-only после явного отказа от final-device assembly и дождаться exact-one full-device ответа PCBWay без молчаливой замены.
+21. ✅ [`H5.0.3-R1`](h5-r1-acceptance.ru.md): провести ревью всех 210 контролируемых маршрутов и 1 050 установок без замен, принять owner final assembly и выбрать точные 11-мм упоры `Ettinger 007.02.611`.
+22. ▶ `H6.0.1-R1`: разместить и развести обе PCBA, зафиксировать стенки корпуса и точную длину M2.5 nylon-винтов, затем выпустить quoteable Gerber/BOM/CPL.
 
-Текущее действие — component/factory evidence H5.0.3-R1. JLCPCB подтвердил
-exact dual-module/no-substitution PCBA, но отказался от полной сборки устройства
-и pre-order подтверждения special process. Information-only запрос PCBWay от
-2 сентября теперь является активным full-device gate. Placement, routing,
-quote и любой заказ остаются заблокированы.
+H5-R1 проведён ревью: все 210 component/factory routes контролируются, JLCPCB
+PCBA gate проходит, owner final assembly принята и выбраны точные 11-мм
+проходные упоры. Сейчас выполняется H6.0.1-R1. Он владеет placement/routing,
+стенками корпуса, точной длиной винтов и Gerber/BOM/CPL для реальной PCBA-цены.
+Финальные условия VHF pre-order и полный stock recheck выполняются прямо перед
+единственным заказом; закупка и печать остаются заблокированы.

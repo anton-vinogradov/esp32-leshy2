@@ -1,14 +1,15 @@
 {
   "schema_version": 1,
   "stage": "H5",
-  "status": "in_progress",
-  "current_substep": "H5.0.3-R1",
+  "status": "reviewed",
+  "current_substep": null,
   "purpose": "lock exact identities, factory routes and an order-integrated manifest before H6; execute physical evidence only on the sole H7/H8 prototype and ordinary bring-up accessories",
   "accepted_inputs": [
     "H4 joined pre-layout gate reviewed",
     "nine H3 physical residuals explicitly assigned to H5",
     "current dual-SA818S H1/H2/H3 physical evidence gates assigned to H7/H8 owner bring-up",
-    "user rule: there is one prototype order after H6/F-PO and no separate engineering-sample or H5 coupon purchase"
+    "user rule: there is one prototype order after H6/F-PO and no separate engineering-sample or H5 coupon purchase",
+    "user accepts deterministic post-PCBA display, microcoax, knob and enclosure assembly"
   ],
   "authorization": {
     "manufacturer_and_distributor_research": true,
@@ -62,6 +63,11 @@
     "jlcpcb_pcba_minimum_quantity": 2,
     "jlcpcb_special_process_preorder_acceptance": false,
     "jlcpcb_complete_enclosure_assembly": false,
+    "owner_final_assembly_accepted_on": "2026-09-02",
+    "owner_installs_display_psa_fpc_microcoax_knob_and_enclosure": true,
+    "pcbway_full_device_response_is_release_gate": false,
+    "exact_m2_5_nonconductive_fastener_and_11mm_stop_kit_status": "exact_stop_selected_screw_family_qualified_exact_length_owned_by_H6",
+    "exact_compression_stop_mpn": "Ettinger 007.02.611",
     "fallback_supplier_contact_send": true,
     "fallback_supplier_contact_sent_on": "2026-09-02",
     "fallback_supplier_contact_sent_at_local": "20:14 Europe/Moscow",
@@ -70,14 +76,14 @@
     "fallback_supplier_contact_result": "message_sent",
     "fallback_supplier_contact_commercial_action_created": false,
     "sample_or_component_purchase": false,
-    "pcb_placement_and_routing": false,
+    "pcb_placement_and_routing": true,
     "fabrication": false
   },
   "substeps": [
     {
       "id": "H5.0",
       "title": "Reduce the physical evidence set before spending",
-      "status": "current",
+      "status": "reviewed",
       "children": [
         {
           "id": "H5.0.1-R1",
@@ -92,7 +98,7 @@
         {
           "id": "H5.0.3-R1",
           "title": "Publish the sole-prototype article manifest, H7/H8 evidence contracts and current one-prototype cost",
-          "status": "current_active_full_device_supplier_response_open"
+          "status": "reviewed"
         }
       ]
     }
@@ -109,6 +115,12 @@
       "readable_result_en": "docs/component-source-research.md",
       "readable_result_ru": "docs/component-source-research.ru.md",
       "result": "all nine H5 residuals and fourteen gates researched; SA818S-U and SA818S-V retain exact manufacturer/JLCPCB routes; stock-zero SA818S-V is pre-order; SA818S-CE is a non-silent qualified-pending UHF-only alternate with a 470-MHz clamp; zero physical claims closed and zero orders authorized"
+    },
+    "H5.0.3-R1": {
+      "machine_result": "hardware/verification/generated/H5-R1-acceptance-package.json",
+      "readable_result_en": "docs/h5-r1-acceptance.md",
+      "readable_result_ru": "docs/h5-r1-acceptance.ru.md",
+      "result": "210/210 BOM routes and 1050 placements are controlled with zero unmapped lines and zero substitutions; JLCPCB PCBA gate passes, owner final assembly is accepted, exact 11.00-mm stops are selected, H6/order-time gates are assigned and no purchase or fabrication is authorized"
     }
   },
   "current_artifacts": {
@@ -129,7 +141,7 @@
       "readable_manifest_ru": "docs/component-sample-basket.ru.md",
       "readable_platform_en": "docs/manufacturing-platform.md",
       "readable_platform_ru": "docs/manufacturing-platform.ru.md",
-      "result": "The procurement target is exactly one fully assembled prototype without batteries, not a batch or separate sample order. Thirty-two integrated production/bring-up article lines cover all nine H5 residuals and fourteen mechanical gates; USD 265.91 is priced, including the exact production panel and one exact ready-cut 3M (TC) 4910SQ-2(5), while factory attrition/final assembly/freight remain quote-only. All 212 current BOM lines and 1052 placements retain exact J0-J3/J4-F/J4-P/J5-U routes. JLCPCB's 2026-09-02 response confirms exact dual-designator SA818S-U/V placement, exact-MPN incoming control and no silent substitution, but sets PCBA MOQ 2, defers adhesive/FPC/microcoax feasibility until after order and explicitly declines complete enclosure/final-device assembly. JLCPCB is therefore PCBA-only and its full-device gate failed. The information-only PCBWay inquiry was sent on 2026-09-02 without creating a commercial action and is now the active full-device gate. First full USB power-on and physical evidence belong to owner H7/H8. No separate H5 sample/coupon subphases exist. Parts API remains rejected and manual catalogue/BOM evidence remains authoritative."
+      "result": "The procurement target is exactly one owner-assembled prototype without batteries, not a device batch or separate sample order. Thirty-three integrated production/bring-up article lines cover all nine H5 residuals and fourteen mechanical gates; USD 267.91 is priced, including the exact production panel, one exact ready-cut 3M (TC) 4910SQ-2(5) and the ten-piece minimum of exact Ettinger 007.02.611 11.00-mm pass-through stops. All 210 current BOM lines and 1050 placements retain exact J0-J3/J4-F/J4-P/J5-U routes. JLCPCB's 2026-09-02 response confirms exact dual-designator SA818S-U/V placement, exact-MPN incoming control and no silent substitution, with PCBA MOQ 2. The owner accepted post-PCBA display/PSA/FPC, five-microcoax, knob and enclosure assembly. H6 owns the exact wall-dependent nylon screw length and quoteable Gerber/BOM/CPL; final VHF pre-order terms and stock recheck are order-time gates. First full USB power-on and physical evidence belong to owner H7/H8. Parts API remains rejected and manual catalogue/BOM evidence remains authoritative."
     }
   },
   "superseded_artifacts": {
@@ -162,18 +174,23 @@
   },
   "decision_gate": {
     "requires_user_authority": false,
-    "authorized_now": false,
+    "authorized_now": true,
     "authorized_on": "2026-09-02",
-    "action_status": "jlcpcb_full_device_gate_failed_pcbway_response_open",
-    "requested_scope": "wait for PCBWay's substantive written response covering exact SA818S-U/V at separate reference designators, four required unpowered final-assembly operations and exact-MPN/no-substitution control; retain JLCPCB only as the PCBA reference",
+    "action_status": "h5_reviewed_h6_placement_and_routing_authorized",
+    "requested_scope": "continue autonomously through H6 until a real layout is ready for review; select the exact screw length and obtain the real PCBA price from H6 outputs; keep purchase and fabrication locked",
     "sent_messages": [
       "hardware/procurement/H5.0.3-R1-jlcpcb-clarification-reply.md",
       "hardware/procurement/H5.0.3-R1-jlcpcb-display-psa-clarification.md",
       "hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md"
     ],
-    "does_not_authorize": ["reservation", "purchase", "component replacement", "PCB placement/routing", "fabrication"]
+    "does_not_authorize": ["reservation", "purchase", "component replacement", "fabrication"]
   },
-  "blocker": "H5.0.3-R1 targets one assembled prototype without batteries. JLCPCB's 2026-09-02 substantive response confirms exact SA818S-U/V placement at separate designators, exact-MPN incoming control and no silent substitution. It also sets PCBA MOQ 2, defers adhesive/FPC/microcoax feasibility until after order and explicitly declines complete enclosure/final-device assembly. The response was addressed to the original ticket address av@apache.org and is visible in Gmail account no.mail.in@gmail.com; the separate merge notice reached vinogradov.anton@gmail.com. JLCPCB therefore remains PCBA-only and H5-EVR07 records an explicit required-operation failure. The information-only PCBWay inquiry was sent on 2026-09-02 from vinogradov.anton@gmail.com to service@pcbway.com without creating a quote, sourcing request, reservation, purchase or order. PCBWay's written answer is now required for all four deterministic one-device final-assembly operations including the exact PSA/FPC/ZIF/pressure process. Optional paid Function Test, battery supply, U214 compatibility testing and antenna kitting close no gate; first full USB bring-up belongs to the owner. H5-EVR08 remains fail-closed.",
+  "global_result": {
+    "machine": "hardware/verification/generated/H5-R1-acceptance-package.json",
+    "readable_en": "docs/h5-r1-acceptance.md",
+    "readable_ru": "docs/h5-r1-acceptance.ru.md"
+  },
+  "blocker": null,
   "next_active_repository": "esp32-leshy2",
-  "next_active_substep": "H5.0.3-R1"
+  "next_active_substep": "H6.0.1-R1"
 }

@@ -167,22 +167,24 @@ policy через 25 проходящих checks. [`H3-R2.7`](h3-r2-acceptance.r
 <a id="h5"></a>
 ## H5 · Компоненты и фабричные evidence
 
-**Статус:** ▶️ сейчас **`H5.0.3-R1`**.
+**Статус:** ✅ проведено ревью как **`H5.0.3-R1`**.
 
-JLCPCB подтвердил exact dual-module/no-substitution PCBA, но установил PCBA MOQ
-2, отказался от полной сборки устройства и отложил special-process feasibility
-до post-order review. Поэтому information-only запрос PCBWay от 2 сентября
-теперь является активным full-device gate; quote, sourcing request, reservation,
-purchase и order не создавались.
+[Глобальный двуязычный итог H5](h5-r1-acceptance.ru.md) проводит ревью всех 210
+BOM-маршрутов и 1 050 установок без неназначенных строк или замен. JLCPCB
+подтвердил exact dual-module/no-substitution PCBA при MOQ 2, владелец принял
+детерминированную post-PCBA final assembly, а точные 11-мм проходные упоры
+`Ettinger 007.02.611` сохраняют архитектуру четырёх длинных пластиковых винтов.
+Известный material budget owner-комплекта — `$267.91`; коммерческих действий не
+создавалось.
 
-Ожидаемый результат: повторная проверка каждого точного MPN на текущей
-поверхности JLCPCB, список аксессуаров после PCBA, qualification
-consigned/private/global sourcing и назначение измерений полученных деталей контролируемым downstream-gates.
+H6 владеет зависящей от корпуса длиной винтов и quoteable Gerber/BOM/CPL.
+Финальные условия `SA818S-V` и live stock/price recheck остаются gates прямо
+перед заказом.
 
 <a id="h6"></a>
 ## H6 · KiCad placement, routing и release candidate
 
-**Статус:** 🔒 ждёт проведённого ревью H5.
+**Статус:** ▶️ сейчас **`H6.0.1-R1`**.
 
 Ожидаемый результат: две разведённые платы с точной панелью в прямом ZIF передней платы и один
 hash-locked fabrication package. H6 закрывается только после восьми проверяемых

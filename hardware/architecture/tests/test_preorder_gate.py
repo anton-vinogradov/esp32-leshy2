@@ -62,14 +62,14 @@ class PreorderGateTests(unittest.TestCase):
         for token in ('4.0" ST7796', "SW_STOP", "ANT_LoRa", "80mm top"):
             self.assertIn(token, legacy)
 
-    def test_procurement_remains_unauthorized_during_h5_evidence_planning(self):
+    def test_procurement_remains_unauthorized_after_h5_handoff_to_h6(self):
         index = (REPO_ROOT / "hardware/procurement/README.md").read_text(encoding="utf-8")
         plan = (
             REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
         plan_normalized = " ".join(plan.split())
-        self.assertIn("H1 through H4", index)
-        self.assertIn("H5.0.3 is current", index)
+        self.assertIn("H1 through H5", index)
+        self.assertIn("H6.0.1-R1 is current", index)
         self.assertIn("superseded", plan)
         self.assertIn("remain unauthorized", plan)
         self.assertIn("no separate engineering-sample or H5 coupon order", plan_normalized)

@@ -2,7 +2,7 @@
 
 [Русский](thermal-fault-electrical-verification.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md)
 
-`H3-R2.6` is reviewed: **25 checks**, `56` thermal profiles and `30` single-fault cases pass with no open analytical finding. H3-R2.7 and global H4-R2 are also reviewed; the current marker is `H5.0.3-R1`.
+`H3-R2.6` is reviewed: **25 checks**, `56` thermal profiles and `30` single-fault cases pass with no open analytical finding. H3-R2.7, global H4-R2 and global H5-R1 are also reviewed; the current marker is `H6.0.1-R1`.
 
 ## Thermal envelope
 

@@ -2,7 +2,7 @@
   "schema_version": 3,
   "artifact": "H5-EVR04",
   "stage": "H5.0.3-R1",
-  "status": "routes_complete_dual_sa818s_preorder_and_factory_gates_open",
+  "status": "routes_complete_pcba_supplier_gate_passed_h6_and_order_gates_assigned",
   "checked_on": "2026-08-31",
   "input": {
     "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
@@ -28,24 +28,24 @@
   },
   "decision": {
     "reference_platform": "JLCPCB Standard PCBA",
-    "fallback_platform": "PCBWay turnkey/box-build quote",
+    "optional_full_device_comparison": "PCBWay turnkey/box-build response",
     "second_source_quote": "Seeed Fusion",
     "exclusive_lock_in": false,
     "reason": "JLCPCB gives the strongest public, repeatable component-selection surface while retaining exact-part pre-order, global sourcing and consignment paths."
   },
   "procurement_target": {
     "finished_device_quantity": 1,
-    "deliverable": "one fully assembled Leshy2 prototype built from the released production package",
+    "deliverable": "one owner-assembled Leshy2 prototype built from two factory-populated PCBAs and the released exact owner kit",
     "device_batch": false,
     "batteries_included": false,
-    "production_display": "exact EastRising ER-TFT035IPS-6 + ER-TPC035-6 option 5344 selected; factory installs and mates it without engineering interpretation through exact C3169104",
-    "first_power_on": "owner USB-powered bring-up after delivery",
+    "production_display": "exact EastRising ER-TFT035IPS-6 + ER-TPC035-6 option 5344 selected; owner installs it with exact ready-cut PSA and mates it through factory-populated C3169104 after received-part dry fit",
+    "first_power_on": "owner USB-powered bring-up after PCBA receipt and final assembly",
     "factory_function_test": {
       "standard_pcba_service_surface": "supported subject to procedure review and quote",
       "project_use": "optional quote-only insurance",
       "release_gate": false
     },
-    "factory_attrition_rule": "extra display units, connectors and assembly consumables are quoted factory attrition, not user samples"
+    "factory_attrition_rule": "PCBA attrition is quoted by the board assembler; the owner kit intentionally contains one display and one PSA without a sacrificial spare"
   },
   "platforms": [
     {
@@ -64,8 +64,8 @@
     },
     {
       "id": "pcbway-turnkey",
-      "role": "first-fallback-for-full-device",
-      "reason": "official sources confirm turnkey/combo/consigned sourcing, customer approval before component decisions, double-sided mixed PCBA, inspection/customer functional test and OEM final assembly; exact Leshy2 acceptance and price remain written-response gates",
+      "role": "optional-full-device-cost-and-convenience-comparison",
+      "reason": "official sources confirm turnkey/combo/consigned sourcing, customer approval before component decisions, double-sided mixed PCBA, inspection/customer functional test and OEM final assembly; the sent Leshy2 inquiry is now optional because owner final assembly is accepted",
       "fit": {
         "double_sided_smt_tht": true,
         "functional_test": true,
@@ -76,7 +76,7 @@
     {
       "id": "seeed-fusion",
       "role": "second-source-for-pcba-only",
-      "reason": "official PCBA source confirms turnkey sourcing, OPL, double-sided mixed assembly and functional test; the inspected productization deep link returned 404 and the required J4-F/J4-P full-device operations remain unproven",
+      "reason": "official PCBA source confirms turnkey sourcing, OPL, double-sided mixed assembly and functional test; the inspected productization deep link returned 404, but final-device assembly is no longer a release gate",
       "fit": {
         "double_sided_smt_tht": true,
         "functional_test": true,
@@ -88,8 +88,8 @@
   ],
   "fallback_factory_evidence": {
     "path": "hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json",
-    "sha256": "25f6fea8a4610c3c4dcb977a39acb696c28b704d72cb4f715119acac3e085513",
-    "status": "active_full_device_inquiry_sent_response_open",
+    "sha256": "dd8b7b902ad78c1770f7706cee6496e7f5f10ad130dc36bf57b306b7e503c2d4",
+    "status": "optional_full_device_inquiry_response_open_pcba_path_unblocked",
     "first_fallback": "pcbway",
     "second_source_pcba": "seeed-fusion",
     "jlcpcb_remains_pcba_reference": true,
@@ -124,13 +124,13 @@
     },
     {
       "id": "J4-F",
-      "name": "factory final assembly",
-      "rule": "the final-assembly factory installs and connects the part from the deterministic package and records assembly; H5 and H7 cannot close until this box-build route is accepted and quoted, while whole-device FCT is optional"
+      "name": "post-PCBA final assembly",
+      "rule": "the owner installs and connects the part from the deterministic release package; an optional supplier quote may replace this manual step but is not a release gate"
     },
     {
       "id": "J4-P",
-      "name": "factory-packed removable item",
-      "rule": "the factory packs the removable accessory or antenna separately for user installation; compatibility and full power-on are owner bring-up unless separately quoted"
+      "name": "removable owner-installed item",
+      "rule": "the owner separately sources and installs the removable accessory or antenna; optional factory packing is convenience only"
     },
     {
       "id": "J5-U",
@@ -144,23 +144,24 @@
       "all ordinary SMT/THT parts accepted by Standard PCBA",
       "board connectors and soldered RF boundaries when their exact assembly rule is accepted"
     ],
-    "J4-F_factory_final_assembly": {
-      "status": "open_at_active_full_device_candidate",
+    "J4-F_post_pcba_final_assembly": {
+      "status": "owner_assembly_accepted_exact_stop_selected_screw_length_owned_by_h6",
       "required_operations": [
         "install and mate the documented exact production panel from released drawings",
         "install, strain-route and continuity-check two exact 30-mm plus three exact 60-mm microcoax jumpers",
         "encoder knob installation",
         "final sandwich/enclosure integration from deterministic assembly instructions"
       ],
-      "display_mating_feasibility": "exact endpoint selected; JLCPCB defers adhesive/FPC/microcoax feasibility until after order, so pre-order acceptance is awaited from PCBWay",
+      "responsible_party": "owner",
+      "display_mating_feasibility": "exact endpoint and ready-cut PSA selected; received-part dry fit must confirm FPC length, relaxed bend, contact orientation and stack clearance before bonding",
       "factory_function_test": "optional quote-only insurance; not required for H5/H7 closure",
-      "close_gate": "H5 and H7 cannot close until the selected factory accepts and prices deterministic one-prototype final assembly; Function Test is not part of this gate"
+      "close_gate": "H5 closes the exact display/PSA/microcoax/knob/11-mm-stop identities; H6 selects the enclosure-dependent screw length and creates the quoteable release outputs; H7 executes owner assembly and first power-on; PCBWay box-build is optional"
     },
     "J4-P_factory_packed_removable": {
-      "status": "open_until_kit_and_packing_quote",
+      "status": "owner_sourced_optional_factory_packing",
       "required_operations": [
-        "test U214 compatibility, then pack the removable Cap separately",
-        "pack selected external antennas separately"
+        "owner installs and tests the removable U214 Cap",
+        "owner installs the labelled external antennas"
       ]
     },
     "J5-U_user_supplied_not_delivered": {
@@ -420,7 +421,7 @@
       "processed": false,
       "result": "historical 209-line capture retained as evidence; the current direct-ZIF BOM is joined without either superseded DF40 part, C5 is rebound to current exact C54951858, and the new exact 60-mm external jumper remains fail-closed in the 210-line map"
     },
-    "blocker": "all 210 current lines have defined routes and all sample component prices are known; nine exact-one supplier answers remain open for the actual two-designator U/V job, exact SA818S-V Standard-PCBA installation, four required J4-F operations and exact-MPN/no-substitution control; Function Test, batteries and accessory packing are not release gates; no sourcing request, quote, reservation or order has been created"
+    "blocker": "none inside H5: all 210 current lines have defined routes, the JLCPCB exact dual-SA818S/no-silent-substitution PCBA gate is answered, owner final assembly is accepted and exact Ettinger 007.02.611 stops preserve the four-screw stack. H6 owns exact screw length and quoteable Gerber/BOM/CPL; final SA818S-V terms and stock recheck are order-time gates. PCBWay box-build, Function Test and accessory packing are optional; no sourcing request, quote, reservation or order has been created"
   },
   "critical_spot_checks": [
     {
@@ -585,9 +586,9 @@
       "stock": "manufacturer in stock",
       "moq": 1,
       "quantity_one_usd": "14.91",
-      "pcba": "customer-supplied display/flex belongs to factory final assembly",
+      "pcba": "owner-installed after PCBA with exact ready-cut PSA",
       "source": "https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen",
-      "finding": "exact configured panel, drawings, 50-contact tail, ILI9488/FT6236 endpoint and price are fixed; written assembler acceptance remains only for adhesive/FPC/final mating"
+      "finding": "exact configured panel, drawings, 50-contact tail, ILI9488/FT6236 endpoint and price are fixed; received-part FPC dry fit remains before bonding"
     },
     {
       "device_id": "hirose_fh34srj_50s_0_5sh_50",
@@ -674,7 +675,7 @@
     "public_stock_exact_or_revision_explicit": 18,
     "preorder_reservation": 3,
     "global_sourcing_or_consignment": 0,
-    "factory_final_assembly": 1,
+    "post_pcba_final_assembly": 1,
     "factory_packed_removable": 0,
     "user_supplied_not_delivered": 0,
     "historical_bom_tool_matched_lines": 176,
@@ -706,7 +707,7 @@
     "continuity": "permanent availability is approximated by qualified alternates or reserved private inventory, never claimed from one stock snapshot"
   },
   "next": {
-    "local": "all 210 lines have defined routes; preserve JLCPCB's accepted exact dual-module/no-substitution PCBA facts and explicit full-device decline, keep optional services and accumulators outside the release gate, keep the rejected Parts API path fail-closed, and wait for PCBWay's sent information-only full-device response",
+    "local": "close H5 and start H6 placement/routing plus enclosure-stack closure; select exact nylon screw length and obtain the real two-PCBA price from H6 outputs, then execute final SA818S-V terms and complete stock recheck immediately before the single order; record any PCBWay response only as an optional comparison",
     "external_authority_later": "quote creation, sourcing requests, private-stock reservation, purchase and any materially expanded supplier request still require separate explicit authority",
     "forbidden": [
       "purchase",
@@ -747,7 +748,7 @@
     "all_210_lines_have_defined_availability_or_final_assembly_route": true,
     "all_component_sample_prices_are_known": true,
     "sa818s_v_preorder_lead_time_is_explicitly_open": true,
-    "factory_final_assembly_gate_is_explicitly_open": true,
+    "owner_final_assembly_removes_factory_box_build_gate": true,
     "one_prototype_without_batteries_is_the_only_procurement_target": true,
     "factory_function_test_is_optional_not_a_release_gate": true,
     "fallback_factory_readiness_is_current_and_fail_closed": true,

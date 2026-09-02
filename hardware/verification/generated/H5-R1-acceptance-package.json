@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "artifact": "H5-R1-acceptance-package",
+  "marker": "H5.0.3-R1",
+  "status": "reviewed",
+  "source_sha256": {
+    "hardware/verification/generated/H5-EVR01-residual-map.json": "150f4d0fbbace3210ef276b3bbd9cc1d60bfb210db14d1cbe37380565af67906",
+    "hardware/verification/generated/H5-EVR02-source-research.json": "4671fd16e268150f8c9ad4c606f2f5f427bbdd75436fc43b37f11e1cbe105b48",
+    "hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json": "72ec81a8d03fdfaeea706d646025a2cf24b892270fcf9143e6284fa0495b6591",
+    "hardware/verification/generated/H5-EVR04-pcba-platform-baseline.json": "c439aa7a4cc9f126d8f9a4991ef98f5f4691bdd404c53e4d3864ccc597badf63",
+    "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json": "c83329c493b4503b3fe3cd2ad9722f4fe762df4b72968b6e4b26ad4db9cae024",
+    "hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json": "2a4d71b6ebe61b06ff86fa83647e65451a57908c6b030bf00af390f5426f33db",
+    "hardware/verification/generated/H5-EVR07-supplier-response-gate.json": "deeaf03d016de83efa30562b570ded50fbb6dc87c7e82072e71aff4ee8ad0757",
+    "hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json": "dd8b7b902ad78c1770f7706cee6496e7f5f10ad130dc36bf57b306b7e503c2d4",
+    "hardware/product-design/assembly-coordinate-model.json": "038fcd35f47effe8d3d1b860eb7782f5d8e26eb2de7b0bb4b0991f02e59c4ffe",
+    "hardware/procurement/H5.0.3-R1-supplier-response.json": "6245deba64300c3f0869c8e7264cad5bcecc8214335bfce47832cda1b0323a35"
+  },
+  "result": {
+    "bom_lines": 210,
+    "placements": 1050,
+    "availability_routes": {
+      "J0": 165,
+      "J1": 0,
+      "J2": 29,
+      "J3": 10,
+      "J4-F": 4,
+      "J4-P": 1,
+      "J5-U": 1
+    },
+    "unmapped_lines": 0,
+    "component_replacements": 0,
+    "owner_assembly_article_lines": 33,
+    "owner_measurement_contracts": 12,
+    "known_material_budget_usd": "267.91",
+    "exact_interboard_stop": "Ettinger 007.02.611",
+    "supplier_gate_passed": true,
+    "failed_checks": 0
+  },
+  "checks": {
+    "residual_and_source_research_are_reviewed": true,
+    "sole_prototype_manifest_is_reviewed_and_fully_priced": true,
+    "all_current_bom_lines_have_exact_controlled_routes": true,
+    "jlcpcb_pcba_supplier_gate_passes": true,
+    "owner_final_assembly_is_explicit": true,
+    "four_screw_stack_has_exact_eleven_mm_stop": true,
+    "fallback_response_is_optional": true,
+    "commercial_actions_remain_zero": true
+  },
+  "handoff": {
+    "H6": [
+      "place and route the two PCBAs against all reviewed H1-H5 constraints",
+      "lock enclosure wall thickness and select the exact Essentra 50M025045Pxxx nylon screw length",
+      "emit Gerber/BOM/CPL and obtain the real two-PCBA MOQ price"
+    ],
+    "pre_order": [
+      "confirm final SA818S-V pre-order charge and lead time",
+      "recheck every selected exact production MPN on the live JLCPCB surface"
+    ],
+    "H7": [
+      "dry-fit display FPC orientation, bend, slack and image/backlight/touch before PSA bonding",
+      "install five microcoax jumpers vertically with the correct tool and no cable pull",
+      "assemble one finished prototype from two factory-populated PCBAs"
+    ]
+  },
+  "claims": {
+    "h5_component_and_factory_route_reviewed": true,
+    "h6_placement_and_routing_may_start": true,
+    "pcb_layout_proven": false,
+    "first_prototype_proven": false,
+    "purchase_authorized": false,
+    "fabrication_authorized": false
+  },
+  "next": {
+    "stage": "H6",
+    "marker": "H6.0.1-R1",
+    "action": "create the routed mechanical/electrical release candidate"
+  }
+}

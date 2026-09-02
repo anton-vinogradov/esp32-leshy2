@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "stage": "H6",
+  "baseline": "R2",
+  "status": "in_progress",
+  "current_substep": "H6.0.1-R1",
+  "objective": "Produce two routed, mechanically coherent and quoteable R2-EVT1 PCBAs without changing the reviewed H0-H5 functional, safety or exact-component boundary.",
+  "accepted_inputs": {
+    "physical_design": "H1-R2.38",
+    "production_schematic": "H2-R2.1.5",
+    "virtual_electrical_verification": "H3-R2.7",
+    "joined_pre_layout_gate": "H4-R2.3",
+    "component_and_factory_route": "H5.0.3-R1"
+  },
+  "authorization": {
+    "pcb_placement_and_routing": true,
+    "enclosure_dimensioning": true,
+    "production_output_generation": true,
+    "non_commercial_quote_preparation": true,
+    "reservation": false,
+    "purchase": false,
+    "fabrication": false,
+    "component_replacement": false
+  },
+  "mechanical_stack": {
+    "architecture": "four pass-through M2.5 nylon screws clamp the two PCBAs through four unthreaded compression stops; enclosure capture lips and anti-shear datums carry ordinary side load",
+    "interboard_gap_mm": 11.0,
+    "compression_stop": {
+      "mpn": "Ettinger 007.02.611",
+      "quantity": 4,
+      "length_mm": 11.0,
+      "outside_diameter_mm": 6.0,
+      "bore_mm": 2.7,
+      "material": "polyamide"
+    },
+    "screw_family": "Essentra 50M025045Pxxx M2.5x0.45 nylon pan-head Phillips",
+    "exact_screw_length_status": "pending H6 enclosure front/rear bearing thickness and retained-thread geometry",
+    "retention_status": "H6 must choose one exact nonconductive serviceable retention route and prevent loosening without loading M1",
+    "display_installation": "owner dry-fits the exact panel and FPC, proves orientation/image/backlight/touch, then bonds it to the PCB using the supplied ready-cut PSA"
+  },
+  "substeps": [
+    {
+      "id": "H6.0.1-R1",
+      "status": "current",
+      "title": "Placement and mechanical stack",
+      "exit": "both PCB outlines, exact footprints, display/FPC slot and relaxed bend, antenna edge, U.FL and microcoax routes, M1, four stops, enclosure capture/datums, wall bearings and exact screw/retention geometry are dimensioned without collision"
+    },
+    {
+      "id": "H6.0.2-R1",
+      "status": "waiting",
+      "title": "Routing and net parity",
+      "exit": "every reviewed H2 net is routed or intentionally no-connect, and schematic/layout parity plus zero-finding DRC pass"
+    },
+    {
+      "id": "H6.0.3-R1",
+      "status": "waiting",
+      "title": "Routed power and thermal verification",
+      "exit": "copper, vias, returns, inrush paths, rail drops and thermal estimates retain H3 margins"
+    },
+    {
+      "id": "H6.0.4-R1",
+      "status": "waiting",
+      "title": "Digital, USB and M1 signal-integrity review",
+      "exit": "direct i8080-8, four USB paths, SDIO/SPI/I2C/UART and all 80 M1 contacts retain the reviewed timing, ownership and return paths"
+    },
+    {
+      "id": "H6.0.5-R1",
+      "status": "waiting",
+      "title": "RF and Airband routed review",
+      "exit": "ten permanent antenna paths, five microcoax jumpers, RF keepouts, matching networks and Airband extracted parasitics pass without a cross-board RF feed"
+    },
+    {
+      "id": "H6.0.6-R1",
+      "status": "waiting",
+      "title": "STEP, enclosure and cable audit",
+      "exit": "the full assembled STEP and tolerance stack clear bodies, controls, battery volume, display bend, coax service loops and the one-loose-screw case"
+    },
+    {
+      "id": "H6.0.7-R1",
+      "status": "waiting",
+      "title": "Manufacturing and bring-up outputs",
+      "exit": "Gerber, drill, BOM, CPL, drawings, assembly notes, programming/recovery access and owner first-power-on inputs are complete and hash-manifested"
+    },
+    {
+      "id": "H6.0.8-R1",
+      "status": "waiting",
+      "title": "Independent DFM/CPL and release-candidate review",
+      "exit": "the two-board candidate passes independent file/placement/orientation review, yields a real PCBA quote and is ready for the separate F-PO and immutable exact-one order gates"
+    }
+  ],
+  "order_time_gates": [
+    "recheck every exact production MPN against the live JLCPCB Standard PCBA surface",
+    "confirm the final SA818S-V pre-order charge and lead time",
+    "approve the exact-one-device quote while accepting any supplier PCB panel or minimum quantities",
+    "complete F-PO diagnostic, emulation, recovery and first-power-on evidence against the same H6 hashes"
+  ],
+  "blocker": null
+}

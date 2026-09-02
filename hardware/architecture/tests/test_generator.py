@@ -54,9 +54,10 @@ class ArchitectureValidationTests(unittest.TestCase):
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
         plan_normalized = " ".join(plan.split())
-        self.assertEqual("H5.0.3-R1", roadmap["current_substep"])
+        self.assertEqual("H6.0.1-R1", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
-        self.assertEqual("H5.0.3-R1", h5["current_substep"])
+        self.assertIsNone(h5["current_substep"])
+        self.assertEqual("reviewed", h5["status"])
         self.assertIn("H5.0.1-R1", h5["reviewed_artifacts"])
         self.assertIn("H5.0.2-R1", h5["reviewed_artifacts"])
         self.assertIn("H5.0.3", h5["superseded_current_artifacts"])
@@ -65,7 +66,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("superseded", plan)
         self.assertIn("no separate engineering-sample or H5 coupon order", plan_normalized)
         self.assertIn("sole prototype order", plan_normalized)
-        self.assertIn("remain unauthorized", plan)
+        self.assertIn("fabrication remain unauthorized", plan)
         for device_id in ("nicerf_sa818s_u_v18", "nicerf_sa818s_v_v18"):
             voice = self.database["devices"][device_id]
             self.assertEqual([35.6, 19.0, 3.2], voice["maximum_dimensions_mm"])

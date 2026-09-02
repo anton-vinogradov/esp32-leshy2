@@ -75,41 +75,47 @@ class H5SupplierResponseTests(unittest.TestCase):
 
     def test_current_partial_record_is_fail_closed_and_generated(self):
         result = h5_supplier_response.build()
-        self.assertEqual("supplier_gate_failed_explicit_required_decline", result["status"])
-        self.assertFalse(result["summary"]["response_complete"])
-        self.assertFalse(result["summary"]["factory_gate_passed"])
-        self.assertGreater(result["summary"]["missing_field_count"], 0)
+        self.assertEqual("passed_pcba_supplier_gate_owner_final_assembly", result["status"])
+        self.assertTrue(result["summary"]["response_complete"])
+        self.assertTrue(result["summary"]["factory_gate_passed"])
+        self.assertEqual(0, result["summary"]["missing_field_count"])
         self.assertEqual(["J4-F:sandwich_enclosure"], result["explicit_declines"])
+        self.assertEqual([], result["blocking_declines"])
+        self.assertEqual([], result["blockers"])
         self.assertEqual(1, result["summary"]["out_of_supplier_scope_operations"])
         self.assertEqual(4, result["summary"]["release_required_final_assembly_operations"])
+        self.assertEqual(0, result["summary"]["supplier_required_final_assembly_operations"])
         self.assertEqual(3, result["summary"]["optional_non_gating_operations"])
         self.assertTrue(result["checks"]["exact_one_clarification_sent_without_commercial_action"])
         self.assertTrue(result["checks"]["exact_display_psa_clarification_sent_without_commercial_action"])
         self.assertTrue(result["checks"]["administrative_ticket_merge_recorded_without_closing_the_gate"])
         self.assertTrue(result["checks"]["substantive_response_address_and_scope_recorded"])
         self.assertTrue(result["checks"]["pcba_moq_and_post_order_special_process_boundary_recorded"])
-        self.assertEqual("use PCBWay as the active full-device candidate; retain JLCPCB as the PCBA-only reference", result["next"])
+        self.assertTrue(result["checks"]["owner_final_assembly_boundary_is_accepted"])
+        self.assertIn("H6", result["next"])
+        self.assertIn("11-mm stop", result["next"])
         self.assertTrue(result["checks"]["exact_sa818s_v_identity_preserved"])
         self.assertTrue(result["checks"]["commercial_layout_and_fabrication_authority_remains_false"])
         self.assertEqual(0, result["summary"]["orders_authorized"])
 
     def test_complete_positive_response_passes_supplier_gate_only(self):
         result = h5_supplier_response.build(self.complete_response())
-        self.assertEqual("passed_supplier_gate", result["status"])
+        self.assertEqual("passed_pcba_supplier_gate_owner_final_assembly", result["status"])
         self.assertTrue(result["summary"]["response_complete"])
         self.assertTrue(result["summary"]["factory_gate_passed"])
         self.assertEqual([], result["missing_fields"])
         self.assertTrue(all(value is False for value in result["authorization"].values()))
-        self.assertEqual("prepare the separate cost/order decision", result["next"])
+        self.assertIn("H6", result["next"])
 
     def test_complete_decline_requires_alternate_factory(self):
         data = self.complete_response()
         data["j4_f_operations"][0]["accepted"] = False
+        data["j4_f_operations"][0]["supplier_acceptance_required"] = True
         result = h5_supplier_response.build(data)
         self.assertEqual("supplier_gate_failed_explicit_required_decline", result["status"])
         self.assertTrue(result["summary"]["response_complete"])
         self.assertFalse(result["summary"]["factory_gate_passed"])
-        self.assertIn("PCBWay", result["next"])
+        self.assertEqual(["J4-F:display_flex"], result["blocking_declines"])
 
     def test_optional_function_test_and_packing_do_not_gate_one_prototype(self):
         data = self.complete_response()
@@ -117,7 +123,7 @@ class H5SupplierResponseTests(unittest.TestCase):
             if row.get("required_for_release") is False:
                 row["accepted"] = False
         result = h5_supplier_response.build(data)
-        self.assertEqual("passed_supplier_gate", result["status"])
+        self.assertEqual("passed_pcba_supplier_gate_owner_final_assembly", result["status"])
         self.assertEqual([], result["explicit_declines"])
 
     def test_response_record_cannot_grant_order_authority(self):

@@ -2,16 +2,16 @@
 
 [English](component-sample-basket.md) · [На главную](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Предыдущий поиск](component-source-research.ru.md)
 
-Цель `H5.0.3-R1` — один order-integrated manifest для ровно **одного полностью собранного прототипа Leshy2** и его обычных bring-up accessories. Отдельной закупки engineering samples и отдельной H5 coupon-платы нет. Manifest объединяет установленные фабрикой production parts, принятые фабрикой packed accessories и обычные owner-supplied operating items; это не второй коммерческий заказ. Фабрика по закрытому production package устанавливает точный `ER-TFT035IPS-6 + ER-TPC035-6` option 5344 на готовый квадрат `3M (TC) 4910SQ-2(5)` и стыкует его через `FH34SRJ-50S-0.5SH(50)` без инженерных догадок — после закрытия измерительного и письменного supplier gate. Первый полный power-on и USB bring-up изображения, подсветки и touch выполняет владелец в H7; физическая квалификация продолжается на том же прототипе в H8. Платный factory Function Test — только optional quote-insurance, а не gate. Аккумуляторы не устанавливаются и не поставляются. HMX035CTFT-001 и полные donor-board остаются только legacy evidence и не являются маршрутом закупки. [JLCPCB Standard PCBA остаётся неэксклюзивным производственным ориентиром](manufacturing-platform.ru.md). Закупка, sourcing request, quote/reservation, PCB placement/routing и fabrication пока не разрешены.
+`H5.0.3-R1` проведён ревью как один integrated manifest для ровно **одного прототипа Leshy2**, который владелец собирает из двух фабрично установленных PCBA и точного набора механики/accessories. Отдельной закупки engineering samples и отдельной H5 coupon-платы нет. Фабрика монтирует платы без инженерных догадок; владелец устанавливает точный `ER-TFT035IPS-6 + ER-TPC035-6` option 5344 на готовый квадрат `3M (TC) 4910SQ-2(5)`, стыкует FPC с `FH34SRJ-50S-0.5SH(50)`, защёлкивает пять microcoax, ставит ручку и собирает корпус по release-инструкции. Первый полный power-on и USB bring-up изображения, подсветки и touch выполняется после этой сборки в H7; физическая квалификация продолжается на том же прототипе в H8. Платный factory Function Test — только optional quote-insurance, а не gate. Аккумуляторы не устанавливаются фабрикой и не входят в поставку. HMX035CTFT-001 и полные donor-board остаются только legacy evidence. [JLCPCB Standard PCBA остаётся неэксклюзивным производственным ориентиром](manufacturing-platform.ru.md). H6 PCB placement/routing разрешены; закупка, sourcing request, quote/reservation и fabrication пока нет.
 
 ```mermaid
 flowchart TD
-  R["✅ H5.0.2-R1<br/>источники и замены"] --> B["▶️ H5.0.3-R1<br/>единый order manifest"]
+  R["✅ H5.0.2-R1<br/>источники и замены"] --> B["✅ H5.0.3-R1<br/>единый order manifest"]
   B --> P["JLCPCB Standard<br/>210 строк · 1050 установок"]
   P --> Q["пересборка маршрутов<br/>J0–J3 · J4-F/P"]
   Q --> S["SA818S-V<br/>final pre-order quote"]
-  Q --> X["J4-F box-build<br/>J4-P kit/shipping"]
-  S --> A["цена одного прототипа<br/>+ factory attrition"]
+  Q --> X["J4-F owner assembly<br/>J4-P removable items"]
+  S --> A["цена одного прототипа<br/>+ PCBA MOQ и крепёж"]
   X --> A
   A --> H6["H6<br/>KiCad release"]
   H6 --> H7["H7<br/>1 прототип + owner bring-up"]
@@ -20,11 +20,11 @@ flowchart TD
 
 ## Сводка стоимости
 
-- **$265.91** — известный консервативный material budget для всех priced lines.
-- Внутри него **$261.91** — публичные USD-цены и **$4.00** — два консервативных cap для дешёвых IR-деталей, чьи live-страницы показывают цену в AUD/INR.
+- **$267.91** — известный консервативный material budget для всех priced lines.
+- Внутри него **$261.91** — публичные USD-цены и **$6.00** — консервативные cap для двух дешёвых IR-деталей с live-ценами в AUD/INR и минимальной упаковки точных 11-мм упоров с ценой в EUR.
 - В сумму включены exact `SA818S-U` `C3001549` за `$9.7347` и exact `SA818S-V` `C51897911` за `$10.0710`; у VHF-модуля stock `0`, MOQ 1 и типичные 8–15 рабочих дней, а final quote/lead остаются order-time gate.
-- Точный production panel за `$14.91` и один готовый квадрат `3M (TC) 4910SQ-2(5)` за `$22.12` включены. Квадрат не требует ручной вырубки; его использование остаётся fail-closed до измерения folded-FPC stack `≤0.714 mm`, фактического зазора `≥0.20 mm` и письменного согласия фабрики на J4-F установку с равномерно поддержанным давлением `≥100 kPa`.
-- Не включены только factory attrition, финальная сборка/FCT, доставка, налоги и таможня. Любые дополнительные экземпляры дисплея или коннекторов входят в attrition фабричного quote, а не в пользовательские samples; отдельного H5 coupon-заказа нет.
+- Точный production panel за `$14.91` и один готовый квадрат `3M (TC) 4910SQ-2(5)` за `$22.12` включены. Квадрат не требует ручной вырубки; перед наклейкой владелец подтверждает folded-FPC stack `≤0.714 mm`, фактический зазор `≥0.20 mm`, ориентацию контактов и свободный запас шлейфа.
+- Точный комплект из десяти 11-мм проходных упоров Ettinger `007.02.611` уже включён с консервативным cap `$2.00`; в устройство идут четыре. Пока не включены PCBA fabrication/assembly при MOQ 2, четыре M2.5 nylon-винта точной H6-длины, корпус, доставка, налоги и таможня. Отдельного H5 coupon-заказа нет.
 - Старая сумма `$164.54` была не дешёвой полной корзиной, а неполным набором из восьми строк; она не покрывала большинство H5 gates.
 
 ## Что входит в единый manifest
@@ -32,9 +32,14 @@ flowchart TD
 ### Дисплей
 
 - **1 × `EastRising ER-TFT035IPS-6 + ER-TPC035-6 option 5344` — $14.91.** [BuyDisplay exact product page](https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen); listed in stock; one-piece price published; exact panel/touch drawings and interface table available.
-  Почему минимум: exactly one production panel is installed and mated in the finished prototype; the exact FH34SRJ-50S-0.5SH(50) board connector is populated during PCBA
+  Почему минимум: exactly one production panel is owner-installed and mated in the finished prototype; the exact FH34SRJ-50S-0.5SH(50) board connector is populated during PCBA
 - **1 × `3M (TC) 4910SQ-2(5)` — $22.12.** [DigiKey exact-MPN listing](https://www.digikey.com/en/products/detail/3m-tc/4910SQ-2-5/3339259); active; 16 sellable units shown in stock; quantity-one displayed price.
   Почему минимум: one ready-cut 50.80 x 50.80 mm square retains the sole production display without an owner cutting operation; no spare or long roll is included
+
+### Механический комплект
+
+- **1 × `Ettinger 007.02.611` — $2.00.** [Buerklin exact-MPN listing](https://www.buerklin.com/en/p/ettinger/spacer-bolts/007-02-611/18H0210/); 300 pieces available in 5 days; MOQ 10; listed EUR 0.1345 each including VAT.
+  Почему минимум: four exact 11.00-mm unthreaded polyamide sleeves form the compression stops; the smallest ten-piece order leaves six ordinary replacements
 
 ### Расширения
 
@@ -122,14 +127,23 @@ flowchart TD
 
 ## Контракты owner bring-up H7/H8
 
-Все `23` residual/gate покрыты `11` контрактами. Они исполняются после получения единственного прототипа в H7/H8, а не отдельной закупкой samples/coupons. Pass/fail без raw evidence не принимается.
+Все `23` residual/gate покрыты `12` контрактами. Они исполняются после получения единственного прототипа в H7/H8, а не отдельной закупкой samples/coupons. Pass/fail без raw evidence не принимается.
 
 <details><summary><code>H5-MSR-DISPLAY</code></summary>
 
 - Покрывает: `H3-PHY-017, H5-MECH-DISPLAY-TAIL, H5-MECH-DISPLAY-PERFORMANCE`.
-- Метод: the factory installs exact ER-TFT035IPS-6 + ER-TPC035-6 option 5344 on one ready-cut 3M (TC) 4910SQ-2(5), folds the FPC through the controlled slot and mates it through exact FH34SRJ-50S-0.5SH(50) in the sole finished prototype; the owner performs first USB-powered bring-up and records known-image, backlight and touch results.
-- Критерий: the released drawing, connector, mating and retention steps are deterministic; measured folded-FPC stack is <=0.714 mm, actual pad-to-stack clearance is >=0.20 mm, and written acceptance of the supplied exact pad, uniformly backed >=100 kPa pressure process, FPC handling and final mating is obtained before order; any paid pre-shipment Function Test remains optional quote-only insurance and never a release gate.
-- Артефакты: controlled panel, pad and connector identities/drawings, incoming pad dimensions/lot, FPC stack and clearance measurement, deterministic assembly instructions, factory assembly record, owner USB bring-up image/backlight/touch traces and signed result.
+- Метод: the owner dry-fits exact ER-TFT035IPS-6 + ER-TPC035-6 option 5344, confirms contact orientation and relaxed FPC reserve, folds the FPC through the controlled slot, mates it through factory-populated FH34SRJ-50S-0.5SH(50), then bonds the panel using one ready-cut 3M (TC) 4910SQ-2(5) with uniformly supported pressure; first USB-powered bring-up records known-image, backlight and touch results.
+- Критерий: the released drawing, connector, mating and retention steps are deterministic; measured folded-FPC stack is <=0.714 mm, actual pad-to-stack clearance is >=0.20 mm, the flex is untwisted and not tensioned, and dry-fit image/backlight/touch checks pass before the irreversible PSA bond; any paid supplier installation or Function Test remains optional.
+- Артефакты: controlled panel, pad and connector identities/drawings, incoming pad dimensions/lot, FPC stack and clearance measurement, dry-fit orientation/slack photos, deterministic owner assembly record, USB bring-up image/backlight/touch traces and signed result.
+
+</details>
+
+<details><summary><code>H5-MSR-SANDWICH</code></summary>
+
+- Покрывает: `H5-MECH-DISPLAY-PERFORMANCE, H5-MECH-U214-MATING-STACK`.
+- Метод: fit four exact Ettinger 007.02.611 pass-through sleeves between the boards, select the exact M2.5 nylon screw length only after H6 locks both enclosure wall thicknesses, then assemble the four-corner stack with the released low torque and verify the capture lips and anti-shear datums are seated.
+- Критерий: all four measured PCB-to-PCB gaps are 11.00 mm within the released H6 tolerance; screw ends have safe engagement without bottoming or entering the user/button volume; ordinary side load is carried by enclosure datums rather than soldered connectors or board flex.
+- Артефакты: exact sleeve identity/receipt, H6 screw-length calculation and exact MPN, four gap measurements, torque record and assembled side photographs.
 
 </details>
 
@@ -223,8 +237,8 @@ flowchart TD
 
 </details>
 
-## Открытые supplier inputs
+## Назначенные H6 и order-time inputs
 
-Цена каждого выбранного модуля известна. [Содержательный ответ JLCPCB от 2 сентября](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-09-02.md) подтверждает установку exact `SA818S-V C51897911` и `SA818S-U C3001549` на разных designator через BOM Matching, exact-MPN incoming control и запрет замены без подтверждения. Одновременно JLCPCB установил PCBA MOQ 2, отказался от полной сборки корпуса/устройства и оставил клей, FPC и пять microcoax только на post-order review. Поэтому JLCPCB остаётся PCBA-only reference, а [information-only запрос PCBWay](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md), отправленный 2 сентября с `vinogradov.anton@gmail.com`, теперь является активным full-device gate. Function Test, аккумуляторы и упаковка аксессуаров не являются gate. `SA818S-CE C19632390` остаётся только qualified-pending UHF-заменой после HIL и firmware-clamp 470 МГц. Quote, reservation и заказ не создавались.
+Цена каждого выбранного модуля известна. [Содержательный ответ JLCPCB от 2 сентября](../hardware/procurement/H5.0.3-R1-jlcpcb-response-2026-09-02.md) подтверждает установку exact `SA818S-V C51897911` и `SA818S-U C3001549` на разных designator через BOM Matching, exact-MPN incoming control и запрет замены без подтверждения. PCBA MOQ 2 остаётся ценовым фактором, но отказ JLCPCB от полной сборки больше не блокирует проект: владелец принял установку дисплея с готовой PSA, microcoax, ручки и корпуса. Точный 11-мм проходной упор теперь `Ettinger 007.02.611`; точная длина четырёх пластиковых M2.5 фиксируется в H6 после размеров стенок корпуса. Реальная PCBA-цена также требует H6 Gerber/BOM/CPL. Финальные условия pre-order `SA818S-V` и полный stock recheck выполняются непосредственно перед единственным заказом и больше не блокируют разводку. [Ответ PCBWay](../hardware/procurement/H5.0.3-R1-pcbway-fallback-inquiry.md) остаётся optional-сравнением цены/удобства. `SA818S-CE C19632390` остаётся только qualified-pending UHF-заменой после HIL и firmware-clamp 470 МГц. Quote, reservation и заказ не создавались.
 
 Машинный результат: [`H5-EVR03`](../hardware/verification/generated/H5-EVR03-irreducible-sample-basket.json).
