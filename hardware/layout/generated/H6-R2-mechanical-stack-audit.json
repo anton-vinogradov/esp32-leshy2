@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "artifact": "H6-R2 mechanical stack audit",
+  "marker": "H6.0.1-R1",
+  "status": "pass",
+  "source_hashes": {
+    "hardware/layout/h6-r2-mechanical-stack.json": "c37d5b7420e06633185fb7b6be19cd86414817c970fa3aa69f3bc332d7652888",
+    "hardware/layout/generated/H6-R2-placement-audit.json": "2ecb08d23689d1091e6a2e1c0ccc0349eb7e92a10fe5fb9622e3d8f18e8eab91"
+  },
+  "stack": {
+    "members": [
+      "front_bearing_floor_mm",
+      "ui_pcb_mm",
+      "compression_stop_mm",
+      "rf_pcb_mm",
+      "rear_bearing_floor_mm"
+    ],
+    "under_head_to_nut_nominal_mm": 17.0,
+    "under_head_to_nut_minimum_mm": 16.38,
+    "under_head_to_nut_maximum_mm": 17.62,
+    "thread_available_at_nut_nominal_mm": 3.0,
+    "thread_available_at_nut_minimum_mm": 2.18,
+    "thread_available_at_nut_maximum_mm": 3.82,
+    "thread_beyond_nut_minimum_mm": 0.18,
+    "thread_beyond_nut_maximum_mm": 2.02,
+    "minimum_tip_clearance_to_outer_surface_mm": 0.38
+  },
+  "geometry": {
+    "mounting_axis_count": 4,
+    "mounting_axes_match_native_pcbs": true,
+    "bearing_annulus_inside_8mm_keepout": true,
+    "calculated_minimum_pilot_diametral_clearance_mm": 0.2,
+    "capture_segments_per_board": 4,
+    "m1_structural_role": "none"
+  },
+  "selected_hardware": {
+    "compression_stop": "007.02.611",
+    "screw": "50M025045P020",
+    "nut": "04M025045HN"
+  },
+  "errors": []
+}

@@ -53,10 +53,14 @@ The board files use six copper layers and 1.6 mm finished thickness. The
 placement-time candidate only; H6.0.4/H6.0.5 must bind real trace widths,
 dielectrics and order-calculator values before release.
 
-H6.0.1 still has to dimension the enclosure capture lips, anti-shear datums,
-wall bearings, relaxed microcoax service loops and exact nylon screw/retention
-geometry. Only after those physical constraints are closed does H6.0.2 start
-routing and own zero-finding DRC plus schematic/PCB parity.
+The [mechanical-stack slice](h6-r2-mechanical-stack.md) now locks the enclosure
+capture lips, four pilot datums, wall bearings and exact 20-mm nylon
+screw/captive-nut geometry. Its worst tolerance corner still provides 2.18 mm
+of thread at the nut and keeps the screw tip buried; M1 has no structural role.
+H6.0.1 now remains open only for the five relaxed microcoax service-loop
+corridors, clip positions and their enclosure/inspection clearances. Only after
+those physical constraints are closed does H6.0.2 start routing and own
+zero-finding DRC plus schematic/PCB parity.
 
 ## Reproduce
 

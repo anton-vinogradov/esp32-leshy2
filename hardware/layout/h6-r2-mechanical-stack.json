@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "id": "L2-H6-R2-MECHANICAL-STACK-001",
+  "marker": "H6.0.1-R1",
+  "status": "reviewed_design_constraint",
+  "checked_on": "2026-09-03",
+  "purpose": "Lock the local enclosure bearing, screw, nut, compression-stop and independent PCB-capture geometry so M1 remains electrical only even if one screw is one turn loose.",
+  "authorization": {
+    "layout_and_enclosure_design": true,
+    "purchase": false,
+    "fabrication": false
+  },
+  "coordinate_system": {
+    "board_outline_mm": [75.0, 150.0],
+    "origin": "upper-left antenna-edge corner in the H6 PCB frame",
+    "mounting_axes_mm": [[5.0, 11.0], [70.0, 11.0], [5.0, 145.0], [70.0, 145.0]]
+  },
+  "selected_hardware": {
+    "compression_stop": {
+      "manufacturer": "Ettinger",
+      "mpn": "007.02.611",
+      "quantity": 4,
+      "material": "polyamide",
+      "length_nominal_mm": 11.0,
+      "length_design_allowance_mm": 0.1,
+      "outside_diameter_mm": 6.0,
+      "bore_mm": 2.7,
+      "source": "https://www.buerklin.com/en/p/ettinger/spacer-bolts/007-02-611/18H0210/",
+      "route": "owner-supplied final-assembly hardware; not a PCBA placement"
+    },
+    "screw": {
+      "manufacturer": "Essentra Components",
+      "mpn": "50M025045P020",
+      "quantity": 4,
+      "material": "nylon 6/6",
+      "thread": "M2.5x0.45",
+      "length_below_head_nominal_mm": 20.0,
+      "length_receipt_window_mm": [19.8, 20.2],
+      "head_diameter_mm": 5.0,
+      "head_height_mm": 2.1,
+      "drive": "Phillips pan head",
+      "source": "https://www.digikey.com/en/products/detail/essentra-components/50M025045P020/11637969",
+      "route": "active distributor-stocked owner-supplied final-assembly hardware; not a PCBA placement"
+    },
+    "nut": {
+      "manufacturer": "Essentra Components",
+      "mpn": "04M025045HN",
+      "quantity": 4,
+      "material": "nylon 6/6",
+      "thread": "M2.5x0.45",
+      "across_flats_design_max_mm": 5.0,
+      "height_design_range_mm": [1.8, 2.0],
+      "source": "https://www.essentracomponents.com/en-gb/p/standard-hex-nuts-plastic/04m025045hn?indexed=true",
+      "route": "active distributor-stocked owner-supplied final-assembly hardware; not a PCBA placement"
+    }
+  },
+  "tolerance_stack": {
+    "front_bearing_floor_mm": {"nominal": 1.4, "minus": 0.1, "plus": 0.1},
+    "ui_pcb_mm": {"nominal": 1.6, "minus": 0.16, "plus": 0.16},
+    "compression_stop_mm": {"nominal": 11.0, "minus": 0.1, "plus": 0.1},
+    "rf_pcb_mm": {"nominal": 1.6, "minus": 0.16, "plus": 0.16},
+    "rear_bearing_floor_mm": {"nominal": 1.4, "minus": 0.1, "plus": 0.1},
+    "required_full_nut_engagement_mm": 2.0,
+    "minimum_thread_beyond_nut_mm": 0.15,
+    "maximum_thread_beyond_nut_mm": 2.1
+  },
+  "enclosure_local_geometry": {
+    "bearing_annulus_outside_diameter_mm": 7.0,
+    "pcb_hole_diameter_mm": 2.7,
+    "pilot_shoulder": {
+      "diameter_nominal_mm": 2.45,
+      "diameter_tolerance_mm": 0.05,
+      "engagement_into_each_pcb_mm": 0.6,
+      "minimum_diametral_clearance_mm": 0.15,
+      "role": "four shell pilots locate each PCB in shear independently of screw preload"
+    },
+    "front_head_recess": {
+      "diameter_mm": 5.5,
+      "depth_mm": 2.3,
+      "local_total_boss_depth_mm": 3.7,
+      "result": "head remains below the exterior surface"
+    },
+    "rear_captive_nut_recess": {
+      "across_flats_mm": 5.25,
+      "depth_mm": 4.2,
+      "local_total_boss_depth_mm": 5.6,
+      "retention": "three printed 0.15-mm snap detents retain the nut and prevent rotation while remaining owner-serviceable",
+      "minimum_tip_clearance_to_outer_surface_mm": 0.08
+    },
+    "edge_capture": {
+      "boards": ["LESHY2-UI-R2", "LESHY2-RF-R2"],
+      "segments_per_board": 4,
+      "side_edges": ["x=0", "x=75"],
+      "y_segments_mm": [[98.0, 105.0], [106.0, 113.0]],
+      "lip_overlap_onto_outer_pcb_face_mm": 0.6,
+      "assembled_vertical_clearance_mm": 0.15,
+      "board_edge_clearance_mm": 0.2,
+      "role": "each shell retains its own PCB against separation; the four pilot shoulders carry in-plane shear"
+    }
+  },
+  "assembly": {
+    "sequence": [
+      "snap four 04M025045HN nuts into the rear-shell hex recesses",
+      "seat the RF PCB on all four rear pilots and capture lips",
+      "place all four 007.02.611 stops on the mounting axes",
+      "mate M1 in a parallel fixture without using it to pull the boards together",
+      "seat the UI PCB on all four front pilots and capture lips",
+      "insert four 50M025045P020 screws and tighten in a diagonal pattern until every stop is seated"
+    ],
+    "installation_torque_target_nm": 0.05,
+    "installation_torque_do_not_exceed_nm": 0.09,
+    "torque_basis": "conservative assembly setting below published generic M2.5 nylon-6/6 guidance; verify seating, not high preload",
+    "parallel_mating_fixture_required": true,
+    "m1_structural_role": "none",
+    "one_loose_screw_case": "three screws still clamp the four-stop stack; four pilots and independent edge lips retain both boards, so M1 is not the shear or separation stop"
+  },
+  "release_boundaries": {
+    "locked_here": [
+      "20-mm exact screw MPN",
+      "exact nylon nut MPN",
+      "four local bearing floors and recess dimensions",
+      "four pilot shoulders and four capture segments per PCB",
+      "worst-case full-nut engagement and buried screw tip"
+    ],
+    "still_h6_0_1": [
+      "five relaxed microcoax service-loop corridors and clip positions",
+      "enclosure clearance around the cable corridors and antenna solder inspection windows"
+    ],
+    "still_h6_0_6": [
+      "complete shell STEP, fillets and material/process tolerances",
+      "assembled 3D collision audit including cable free shape"
+    ],
+    "receipt_checks": [
+      "measure screw below-head length inside 19.8..20.2 mm",
+      "measure received nut height inside 1.8..2.0 mm",
+      "measure all four stops and reject outside 10.9..11.1 mm",
+      "confirm four-board-gap seating and that no screw tip reaches the exterior"
+    ]
+  }
+}

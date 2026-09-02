@@ -6,8 +6,11 @@
   "current_substep": "H6.0.1-R1",
   "current_evidence": {
     "exact_footprint_placement": "pass",
+    "mechanical_stack_and_m1_load_relief": "pass",
     "report": "docs/h6-r2-exact-placement.md",
+    "mechanical_report": "docs/h6-r2-mechanical-stack.md",
     "audit": "hardware/layout/generated/H6-R2-placement-audit.json",
+    "mechanical_audit": "hardware/layout/generated/H6-R2-mechanical-stack-audit.json",
     "native_boards": [
       "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
       "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb"
@@ -17,10 +20,8 @@
     "unplaced_instances": 0,
     "routing_started": false,
     "remaining_before_substep_exit": [
-      "enclosure capture lips and anti-shear datums",
-      "front/rear wall bearings",
-      "exact nylon screw length and serviceable retention",
-      "relaxed microcoax service loops and enclosure clearance"
+      "five relaxed microcoax service-loop corridors and clip positions",
+      "enclosure clearance around cable corridors and antenna solder inspection windows"
     ]
   },
   "objective": "Produce two routed, mechanically coherent and quoteable R2-EVT1 PCBAs without changing the reviewed H0-H5 functional, safety or exact-component boundary.",
@@ -52,9 +53,23 @@
       "bore_mm": 2.7,
       "material": "polyamide"
     },
-    "screw_family": "Essentra 50M025045Pxxx M2.5x0.45 nylon pan-head Phillips",
-    "exact_screw_length_status": "pending H6 enclosure front/rear bearing thickness and retained-thread geometry",
-    "retention_status": "H6 must choose one exact nonconductive serviceable retention route and prevent loosening without loading M1",
+    "screw": {
+      "mpn": "Essentra 50M025045P020",
+      "quantity": 4,
+      "thread": "M2.5x0.45",
+      "length_below_head_mm": 20.0,
+      "material": "nylon 6/6"
+    },
+    "nut": {
+      "mpn": "Essentra 04M025045HN",
+      "quantity": 4,
+      "thread": "M2.5x0.45",
+      "material": "nylon 6/6",
+      "retention": "snap-detented anti-rotation rear-shell pocket"
+    },
+    "enclosure_bearing": "1.40-mm front and rear local floors, 7.00-mm annuli, four 2.45-mm pilot shoulders and four independent edge-lip segments per PCB",
+    "tolerance_result": "16.38..17.62-mm clamped path; >=2.18-mm thread available at nut; >=0.18-mm thread beyond 2.00-mm nut; >=0.38-mm buried-tip clearance",
+    "retention_status": "locked and machine-checked; M1 has no structural role even with one screw one turn loose",
     "display_installation": "owner dry-fits the exact panel and FPC, proves orientation/image/backlight/touch, then bonds it to the PCB using the supplied ready-cut PSA"
   },
   "substeps": [

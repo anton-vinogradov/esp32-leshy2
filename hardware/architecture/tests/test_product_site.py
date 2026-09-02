@@ -144,6 +144,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/h5-r2-current-route.ru.md",
         "docs/h6-r2-exact-placement.md",
         "docs/h6-r2-exact-placement.ru.md",
+        "docs/h6-r2-mechanical-stack.md",
+        "docs/h6-r2-mechanical-stack.ru.md",
         "docs/thermal-model.md",
         "docs/thermal-model.ru.md",
         "docs/single-fault-review.md",
@@ -574,7 +576,18 @@ class ProductSiteTests(unittest.TestCase):
             "Ettinger 007.02.611",
             plan["mechanical_stack"]["compression_stop"]["mpn"],
         )
-        self.assertIn("50M025045Pxxx", plan["mechanical_stack"]["screw_family"])
+        self.assertEqual(
+            "Essentra 50M025045P020",
+            plan["mechanical_stack"]["screw"]["mpn"],
+        )
+        self.assertEqual(
+            "Essentra 04M025045HN",
+            plan["mechanical_stack"]["nut"]["mpn"],
+        )
+        self.assertEqual(
+            "pass",
+            plan["current_evidence"]["mechanical_stack_and_m1_load_relief"],
+        )
         self.assertTrue(plan["authorization"]["pcb_placement_and_routing"])
         self.assertFalse(plan["authorization"]["purchase"])
         self.assertFalse(plan["authorization"]["fabrication"])

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1460" height="960" viewBox="0 0 1460 960" data-marker="H6.0.1-R1" data-view="mechanical-stack">
+<rect width="1460" height="960" fill="#ffffff"/>
+<text x="70" y="62" font-family="Inter,Arial,sans-serif" font-size="32" font-weight="700" text-anchor="start" fill="#172033">Leshy2 · H6.0.1 local mechanical stack</text>
+<text x="70" y="96" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="500" text-anchor="start" fill="#526076">20-mm nylon screw · captive nut · four exact 11-mm stops · M1 carries no enclosure load</text>
+<text x="70" y="145" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1d4ed8">SECTION THROUGH ONE OF FOUR IDENTICAL CORNER AXES</text>
+<text x="420" y="182" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#172033">clamped path 17.0 mm nominal</text>
+<text x="420" y="206" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="500" text-anchor="middle" fill="#526076">worst range 16.38…17.62 mm</text>
+<line x1="120" y1="285" x2="760" y2="285" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="180.0" y="243" width="22.4" height="84" fill="#f4d06f" stroke="#334155" stroke-width="1.5"/>
+<text x="191.2" y="291" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">1</text>
+<rect x="202.4" y="243" width="25.6" height="84" fill="#2563eb" stroke="#334155" stroke-width="1.5"/>
+<text x="215.20000000000002" y="291" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">2</text>
+<rect x="228.0" y="243" width="176.0" height="84" fill="#dbeafe" stroke="#334155" stroke-width="1.5"/>
+<text x="316.0" y="291" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">3</text>
+<rect x="404.0" y="243" width="25.6" height="84" fill="#2563eb" stroke="#334155" stroke-width="1.5"/>
+<text x="416.8" y="291" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">4</text>
+<rect x="429.6" y="243" width="22.4" height="84" fill="#f4d06f" stroke="#334155" stroke-width="1.5"/>
+<text x="440.8" y="291" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">5</text>
+<line x1="148" y1="285" x2="522.0" y2="285" stroke="#7c3aed" stroke-width="8" stroke-linecap="round"/>
+<circle cx="148" cy="285" r="17" fill="#ede9fe" stroke="#7c3aed" stroke-width="3"/>
+<polygon points="457.0,261 491.0,261 507.0,285 491.0,309 457.0,309 441.0,285" fill="#ede9fe" stroke="#7c3aed" stroke-width="3"/>
+<text x="148" y="223" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#6d28d9">50M025045P020</text>
+<text x="474.0" y="223" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#6d28d9">04M025045HN</text>
+<text x="100" y="366" font-family="Inter,Arial,sans-serif" font-size="12.5" font-weight="600" text-anchor="start" fill="#172033">1  front bearing floor · 1.4 mm</text>
+<text x="360" y="366" font-family="Inter,Arial,sans-serif" font-size="12.5" font-weight="600" text-anchor="start" fill="#172033">2  UI PCB · 1.6 mm</text>
+<text x="575" y="366" font-family="Inter,Arial,sans-serif" font-size="12.5" font-weight="600" text-anchor="start" fill="#172033">3  Ettinger stop · 11.0 mm</text>
+<text x="865" y="366" font-family="Inter,Arial,sans-serif" font-size="12.5" font-weight="600" text-anchor="start" fill="#172033">4  RF PCB · 1.6 mm</text>
+<text x="1080" y="366" font-family="Inter,Arial,sans-serif" font-size="12.5" font-weight="600" text-anchor="start" fill="#172033">5  rear bearing floor · 1.4 mm</text>
+<rect x="55" y="420" width="300" height="132" rx="14" fill="#ecfdf5" stroke="#059669" stroke-width="2.5"/>
+<text x="205" y="454" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#059669">FULL NUT ENGAGEMENT</text>
+<text x="205" y="492" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="600" text-anchor="middle" fill="#172033">min available thread 2.18 mm</text>
+<text x="205" y="520" font-family="Inter,Arial,sans-serif" font-size="12.5" font-weight="500" text-anchor="middle" fill="#526076">min tail 0.18 mm</text>
+<rect x="395" y="420" width="300" height="132" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/>
+<text x="545" y="454" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#2563eb">BURIED TIP</text>
+<text x="545" y="492" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="600" text-anchor="middle" fill="#172033">rear tip clearance 0.38 mm</text>
+<text x="545" y="520" font-family="Inter,Arial,sans-serif" font-size="12.5" font-weight="500" text-anchor="middle" fill="#526076">no finger contact</text>
+<rect x="735" y="420" width="300" height="132" rx="14" fill="#fff7ed" stroke="#ea580c" stroke-width="2.5"/>
+<text x="885" y="454" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#ea580c">INDEPENDENT CAPTURE</text>
+<text x="885" y="492" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="600" text-anchor="middle" fill="#172033">4 pilot shoulders + 4 lips / PCB</text>
+<text x="885" y="520" font-family="Inter,Arial,sans-serif" font-size="12.5" font-weight="500" text-anchor="middle" fill="#526076">one loose screw does not load M1</text>
+<rect x="1075" y="420" width="300" height="132" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2.5"/>
+<text x="1225" y="454" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#7c3aed">SERVICEABLE</text>
+<text x="1225" y="492" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="600" text-anchor="middle" fill="#172033">snap-retained nylon hex nut</text>
+<text x="1225" y="520" font-family="Inter,Arial,sans-serif" font-size="12.5" font-weight="500" text-anchor="middle" fill="#526076">0.05 N·m diagonal seating</text>
+<text x="70" y="615" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1d4ed8">WHAT HOLDS WHAT</text>
+<text x="90" y="660" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#7c3aed">Clamp / Z</text>
+<text x="250" y="660" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="normal" text-anchor="start" fill="#172033">screw → bearing floors → PCBs → 11-mm stops → nut</text>
+<text x="90" y="700" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#ea580c">Shear / X-Y</text>
+<text x="250" y="700" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="normal" text-anchor="start" fill="#172033">four 2.45-mm shell pilots inside the existing 2.70-mm PCB holes</text>
+<text x="90" y="740" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#059669">Separation</text>
+<text x="250" y="740" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="normal" text-anchor="start" fill="#172033">four edge-lip segments retain each PCB independently</text>
+<text x="90" y="780" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#dc2626">M1</text>
+<text x="250" y="780" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="normal" text-anchor="start" fill="#172033">electrical mating and alignment only · never used to pull the boards together</text>
+<text x="70" y="865" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="600" text-anchor="start" fill="#526076">H6.0.1 remains open only for the five microcoax service loops and their enclosure/inspection clearances.</text>
+<text x="70" y="908" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#166534">audit: pass · four axes match both native PCBs · no fabrication or purchase authorized</text>
+</svg>

@@ -190,8 +190,12 @@ contains two native six-layer KiCad boards. All 1,208/1,208 reviewed fitted
 instances and all 823 canonical nets are materialized; the machine audit reports
 zero hard courtyard conflicts, zero unplaced bodies and zero mapping errors.
 Generation is byte-reproducible and KiCad 10 parses both boards. Routing has not
-started: enclosure retention, exact screw geometry and cable service loops keep
-H6.0.1 open.
+started. The [exact mechanical-stack result](h6-r2-mechanical-stack.md) now locks
+20-mm nylon M2.5 screws, captive nuts, 11-mm stops, wall bearings, four pilot
+shoulders and independent edge capture; its full tolerance corner preserves
+2.18 mm of nut thread and keeps the screw tip buried without using M1
+structurally. Only five relaxed microcoax corridors plus their enclosure and
+inspection clearances keep H6.0.1 open.
 
 Expected result: two routed boards with the exact panel connected directly to the UI-board ZIF, and one
 hash-locked fabrication package. H6 closes only after eight reviewable steps:
