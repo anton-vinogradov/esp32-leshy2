@@ -3,7 +3,7 @@
 [На главную](../README.ru.md) · [English](roadmap.md) ·
 [Роадмап прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md)
 
-> **▶ Текущая аппаратная граница: `H6.0.1-R1`.** H0–H4 проведены ревью, а [актуальная перепроверка H5-R2](h5-r2-current-route.ru.md) контролирует все 249 закупаемых групп / 1 216 изделий без неназначенных маршрутов. [Точное размещение H6](h6-r2-exact-placement.ru.md) материализует 1 208/1 208 позиций на двух нативных шестислойных платах без жёстких коллизий, а [точный механический стек](h6-r2-mechanical-stack.ru.md) уже фиксирует опоры/захваты корпуса и 20-мм нейлоновый крепёж M2.5 без нагрузки на M1. Трассировка не начиналась; остаются пять сервисных microcoax-коридоров. Для `WBC16-1TLC` сохраняется один явный order-time sourcing gate. Все 51 physical-остаток и обязательство F5/F6 по i8080 имеют точных downstream-владельцев.
+> **▶ Текущая аппаратная граница: `H6.0.2-R1`.** H0–H4 проведены ревью, а [актуальная перепроверка H5-R2](h5-r2-current-route.ru.md) контролирует все 249 закупаемых групп / 1 216 изделий без неназначенных маршрутов. H6.0.1 завершён: [точное размещение](h6-r2-exact-placement.ru.md) материализует 1 208/1 208 позиций на двух нативных шестислойных платах без жёстких коллизий, [механический стек](h6-r2-mechanical-stack.ru.md) фиксирует захваты корпуса и крепёж M2.5 без нагрузки на M1, а [результат microcoax](h6-r2-microcoax-service.ru.md) фиксирует пять ненатянутых коридоров, пять свободных седел и десять окон осмотра антенных паек. H6.0.2 теперь владеет трассировкой всех 823 сетей, сверкой native schematic/PCB и DRC без замечаний. Для `WBC16-1TLC` сохраняется один явный order-time sourcing gate. Все 51 physical-остаток и обязательство F5/F6 по i8080 имеют точных downstream-владельцев.
 > H6 placement/routing разрешены; quote, reservation, закупка и печать — нет.
 
 [Текущий машинный checklist H6](../hardware/verification/h6-layout-release-plan.json).
@@ -34,10 +34,10 @@
 
 ## Проведённое ревью H1 · точный состав
 
-<!-- current-substep: H6.0.1-R1 -->
+<!-- current-substep: H6.0.2-R1 -->
 
 **Маркер ревью: `H1-R2.38`.** Пакет компоновки принят 2026-08-30. Текущий
-аппаратный маркер — `H6.0.1-R1`.
+аппаратный маркер — `H6.0.2-R1`.
 
 ### 1. Размещение функциональных островов
 
@@ -199,7 +199,7 @@ routing ещё не начинались; текущий прогресс H6 з�
 | H3 · Виртуальная электрическая проверка | ✅ [Проведена · `H3-R2.7`](h3-r2-acceptance.ru.md) | Полная проверка power, digital, RF, audio, timing, thermal и faults | Все рассчитываемые pre-layout claims проходят; физические остатки сохраняют владельцев |
 | H4 · Объединённый pre-layout gate | ✅ [Проведено ревью · `H4-R2.3`](h4-r2-acceptance.ru.md) | Одно текущее mechanics/ECAD/electrical/firmware review | Нет виртуального blocker; каждой физической неопределённости назначен тест |
 | H5 · Компоненты и фабричные evidence | ✅ [Актуальные R2-маршруты проверены · `H5-R2.1`](h5-r2-current-route.ru.md) | Точная текущая фабричная карта поверх сохранённого [evidence H5-R1](h5-r1-acceptance.ru.md) | У каждой закупаемой группы есть контролируемый маршрут; order-time sourcing gates явны |
-| **H6 · KiCad placement, routing и release candidate** | **▶ Сейчас · `H6.0.1-R1`** | [Точное размещение](h6-r2-exact-placement.ru.md) и [прогресс механического стека](h6-r2-mechanical-stack.ru.md); две разведённые платы, routed re-analysis и hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs и независимый DFM/CPL review проходят |
+| **H6 · KiCad placement, routing и release candidate** | **▶ Сейчас · `H6.0.2-R1`** | [Точное размещение](h6-r2-exact-placement.ru.md), [механический стек](h6-r2-mechanical-stack.ru.md) и [закрытие microcoax](h6-r2-microcoax-service.ru.md); две разведённые платы, routed re-analysis и hash-locked fabrication candidate | Placement/mechanics/cables проходят; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP; outputs и независимый DFM/CPL review проходят |
 | `F-PO` · Допуск первого экземпляра | 🔒 Ожидает H2/H6 и firmware R2 | Шесть diagnostic images, S3 QEMU, fake-HAL/dev-board evidence, flash/recovery и owner bring-up script | `FPO1`–`FPO7` проведены ревью на тех же H2/H6 candidate hashes; платный factory FCT не требуется |
 | H7 · Печать прототипа и bring-up | 🔒 Ожидает H6, `F-PO`, immutable release и одобрение exact-one quote | Ровно один фабрично собранный `R2-EVT1` и owner bring-up log | Released assembly package не требует догадок фабрики; owner current-limited USB power-on проверяет rails, recovery, UI, storage, audio, radio и expansion |
 | H8 · Физическая квалификация | 🔒 Ожидает H7 | HIL, RF, thermal, power, safety и endurance evidence | Concurrent nRF modes, quiet interfaces, coexistence, VNA, watchdog и single-fault tests проходят |
@@ -247,11 +247,12 @@ routing ещё не начинались; текущий прогресс H6 з�
 20. ✅ [`H4-R2.3`](h4-r2-acceptance.ru.md): опубликовать глобальный двуязычный joined gate без противоречий и передать все 51 physical-остаток.
 21. ✅ [`H5.0.3-R1`](h5-r1-acceptance.ru.md): сохранить историческое evidence 210 маршрутов / 1 050 установок, owner final assembly и точные 11-мм упоры `Ettinger 007.02.611`.
 22. ✅ [`H5-R2.1`](h5-r2-current-route.ru.md): перепроверить все 249 текущих закупаемых групп / 1 216 изделий без неназначенных маршрутов и явно вынести один order-time sourcing gate `WBC16-1TLC`.
-23. ▶ `H6.0.1-R1`: [размещение точных footprints](h6-r2-exact-placement.ru.md) проходит для 1 208/1 208 позиций без жёстких коллизий; [механический стек](h6-r2-mechanical-stack.ru.md) фиксирует опоры стенок, независимые захваты PCB, точные 20-мм нейлоновые винты M2.5/захваченные гайки и нагрузочный путь при одном ослабленном винте. До трассировки и quoteable Gerber/BOM/CPL остаются пять ненатянутых microcoax-коридоров и зазоры корпуса/окон осмотра.
+23. ✅ `H6.0.1-R1`: [размещение точных footprints](h6-r2-exact-placement.ru.md) проходит для 1 208/1 208 позиций без жёстких коллизий; [механический стек](h6-r2-mechanical-stack.ru.md) фиксирует опоры стенок, независимые захваты PCB, точные 20-мм нейлоновые винты M2.5/захваченные гайки и нагрузочный путь при одном ослабленном винте; [результат сервиса microcoax](h6-r2-microcoax-service.ru.md) фиксирует пять ненатянутых коридоров, пять свободных седел и десять окон осмотра антенных паек.
+24. ▶ `H6.0.2-R1`: развести все 823 канонические сети, доказать паритет native schematic/PCB и получить DRC без замечаний, не нарушив placement/mechanics/cable-контракт H6.0.1.
 
 H5-R2.1 актуален и проведён ревью: у всех 249 закупаемых групп / 1 216 изделий
 есть контролируемые маршруты, а для `WBC16-1TLC` явно оставлен один order-time
-gate Global Sourcing либо квалифицированной замены. H6.0.1-R1 владеет
-placement/routing, стенками корпуса, точной длиной винтов и Gerber/BOM/CPL для
-реальной PCBA-цены. Финальные условия VHF pre-order и полный stock recheck
+gate Global Sourcing либо квалифицированной замены. H6.0.2-R1 владеет
+трассировкой и native net parity; следующие подшаги H6 владеют routed-проверками,
+стенками корпуса и Gerber/BOM/CPL для реальной PCBA-цены. Финальные условия VHF pre-order и полный stock recheck
 выполняются прямо перед единственным заказом; закупка и печать заблокированы.

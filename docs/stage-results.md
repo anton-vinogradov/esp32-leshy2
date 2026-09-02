@@ -183,19 +183,20 @@ recheck remain immediate pre-order gates.
 <a id="h6"></a>
 ## H6 · KiCad placement, routing and release candidate
 
-**Status:** ▶️ current at **`H6.0.1-R1`**.
+**Status:** ▶️ current at **`H6.0.2-R1`**.
 
 The [current exact-footprint placement result](h6-r2-exact-placement.md) now
 contains two native six-layer KiCad boards. All 1,208/1,208 reviewed fitted
 instances and all 823 canonical nets are materialized; the machine audit reports
 zero hard courtyard conflicts, zero unplaced bodies and zero mapping errors.
-Generation is byte-reproducible and KiCad 10 parses both boards. Routing has not
-started. The [exact mechanical-stack result](h6-r2-mechanical-stack.md) now locks
+Generation is byte-reproducible and KiCad 10 parses both boards. The [exact mechanical-stack result](h6-r2-mechanical-stack.md) locks
 20-mm nylon M2.5 screws, captive nuts, 11-mm stops, wall bearings, four pilot
 shoulders and independent edge capture; its full tolerance corner preserves
 2.18 mm of nut thread and keeps the screw tip buried without using M1
-structurally. Only five relaxed microcoax corridors plus their enclosure and
-inspection clearances keep H6.0.1 open.
+structurally. The [microcoax service result](h6-r2-microcoax-service.md) adds five
+relaxed corridors, five clear tape saddles and ten antenna solder windows with
+9.13 mm minimum cable reserve. H6.0.1 is complete; H6.0.2 now owns routing all
+823 nets, native schematic/PCB parity and zero-finding DRC.
 
 Expected result: two routed boards with the exact panel connected directly to the UI-board ZIF, and one
 hash-locked fabrication package. H6 closes only after eight reviewable steps:

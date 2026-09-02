@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h6-r2-mechanical-stack.ru.md) · [Exact placement](h6-r2-exact-placement.md)
 
-**Status:** ✅ the local screw, stop, enclosure-bearing and independent PCB-capture geometry is locked and machine-checked. **H6.0.1 remains in progress** for the five microcoax service loops and their enclosure/inspection clearances. Routing, purchase and fabrication remain unauthorized.
+**Status:** ✅ the local screw, stop, enclosure-bearing and independent PCB-capture geometry is locked and machine-checked. The [five microcoax service loops](h6-r2-microcoax-service.md) now close H6.0.1; **H6.0.2 routing is current.** Purchase and fabrication remain unauthorized.
 
 ![H6 mechanical stack](images/h6-r2-mechanical-stack.svg)
 
@@ -51,9 +51,9 @@ These are owner-installed enclosure parts, not JLCPCB PCBA placements. The exact
 
 Before final assembly, measure the four screws, nuts and stops against the receipt windows in the [source contract](../hardware/layout/h6-r2-mechanical-stack.json). A part outside that window is rejected; the PCB or enclosure is not silently reworked around it.
 
-## Remaining H6.0.1 work
+## H6.0.1 closure
 
-The next slice replaces the old illustrative cable lines with five exact H6 service-loop corridors and clip positions using the current footprint coordinates. It must preserve relaxed cable length, connector inspection access, the display/FPC pocket and opposing-board clearance. Only then can H6.0.1 close and routing begin.
+The [microcoax service result](h6-r2-microcoax-service.md) replaces the old illustrative cable lines with five exact H6 corridors and tape-saddle positions. It proves relaxed cable length, connector inspection access, the display/FPC pocket and 2D mechanical keepout clearance. H6.0.1 is closed; H6.0.2 now routes the boards, while the assembled STEP repeats exact opposing-body clearance in H6.0.6.
 
 ## Reproduce
 

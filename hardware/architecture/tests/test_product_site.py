@@ -146,6 +146,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/h6-r2-exact-placement.ru.md",
         "docs/h6-r2-mechanical-stack.md",
         "docs/h6-r2-mechanical-stack.ru.md",
+        "docs/h6-r2-microcoax-service.md",
+        "docs/h6-r2-microcoax-service.ru.md",
         "docs/thermal-model.md",
         "docs/thermal-model.ru.md",
         "docs/single-fault-review.md",
@@ -239,12 +241,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: `H6.0.1-R1`", "current H5-R2 route revalidation",
+                "Current hardware boundary: `H6.0.2-R1`", "current H5-R2 route revalidation",
                 "firmware F1-R2 reviewed", "F2-R2.4",
                 "H9 · Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H6.0.1-R1`", "актуальная перепроверка H5-R2",
+                "Текущая аппаратная граница: `H6.0.2-R1`", "актуальная перепроверка H5-R2",
                 "firmware F1-R2 проведено ревью", "F2-R2.4",
                 "H9 · Manufacturing release",
                 "Production ECAD",
@@ -260,8 +262,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Current hardware marker: `H6.0.1-R1`", "fabrication"),
-            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H6.0.1-R1`", "печати прототипа"),
+            "README.md": ("Roadmap and current position", "Current hardware marker: `H6.0.2-R1`", "fabrication"),
+            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H6.0.2-R1`", "печати прототипа"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -570,7 +572,7 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual("H6", plan["stage"])
         self.assertEqual("in_progress", plan["status"])
-        self.assertEqual("H6.0.1-R1", plan["current_substep"])
+        self.assertEqual("H6.0.2-R1", plan["current_substep"])
         self.assertEqual(8, len(plan["substeps"]))
         self.assertEqual(
             "Ettinger 007.02.611",
@@ -896,14 +898,14 @@ class ProductSiteTests(unittest.TestCase):
     def test_h1_r2_32_public_boundary_separates_electrical_and_physical_work(self):
         expectations = {
             "README.md": (
-                "Current hardware marker: `H6.0.1-R1`",
+                "Current hardware marker: `H6.0.2-R1`",
                 "exact dual-RP GPIO/M1 map",
                 "mutually exclusive U214/U219 Cap slot",
                 "native R2 inventory is reviewed at `H2-R2.1.1`",
                 "six compute domains",
             ),
             "README.ru.md": (
-                "Текущий маркер железа: `H6.0.1-R1`",
+                "Текущий маркер железа: `H6.0.2-R1`",
                 "dual-RP GPIO/M1",
                 "взаимоисключающий Cap-слот U214/U219",
                 "Native R2 inventory проведён ревью как `H2-R2.1.1`",
@@ -911,14 +913,14 @@ class ProductSiteTests(unittest.TestCase):
                 "шесть вычислительных доменов",
             ),
             "docs/roadmap.md": (
-                "Current hardware boundary: `H6.0.1-R1`",
+                "Current hardware boundary: `H6.0.2-R1`",
                 "18 exact production",
                 "U219 Cap integration",
                 "H1-R2.38 reviewed",
                 "4,302 fitted-instance contacts reconcile",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H6.0.1-R1`",
+                "Текущая аппаратная граница: `H6.0.2-R1`",
                 "18 точных production",
                 "Интеграция U219 Cap",
                 "H1-R2.38 проведено ревью",
@@ -1143,7 +1145,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
         self.assertEqual("H6", state["current_stage"])
-        self.assertEqual("H6.0.1-R1", state["current_substep"])
+        self.assertEqual("H6.0.2-R1", state["current_substep"])
         self.assertEqual("reviewed", r2_plan["status"])
         self.assertIsNone(r2_plan["current_substep"])
         self.assertEqual("H2-R2.1.5", r2_plan["accepted_input"]["stage"])

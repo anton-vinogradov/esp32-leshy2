@@ -45,6 +45,6 @@ Safety держит `SAFETY_FAULT_REQUEST` активным после сбро�
 - H8 measures the populated 100-kohm/2.2-uF RC under DC bias and temperature; startup safety does not depend solely on this number.
 - H8 captures POR assertion/release, direct C5/RF-RP reset and S3 fault-display retention at real rail corners.
 
-**Результат:** `14/14` сценариев и `51` endpoint-проверок проходят. H3-R2.3, [цифровая проверка H3-R2.4](digital-electrical-verification.ru.md), [RF-проверка H3-R2.5](rf-electrical-verification.ru.md), [thermal/fault H3-R2.6](thermal-fault-electrical-verification.ru.md), итоги H3-R2.7, H4-R2 и H5-R1 проведены ревью; **текущий маркер — `H6.0.1-R1`**. H6 placement/routing разрешена; заказ и fabrication всё ещё запрещены.
+**Результат:** `14/14` сценариев и `51` endpoint-проверок проходят. H3-R2.3, [цифровая проверка H3-R2.4](digital-electrical-verification.ru.md), [RF-проверка H3-R2.5](rf-electrical-verification.ru.md), [thermal/fault H3-R2.6](thermal-fault-electrical-verification.ru.md), итоги H3-R2.7, H4-R2 и H5-R1 проведены ревью; **текущий маркер — `H6.0.2-R1`**. H6 placement/routing разрешена; заказ и fabrication всё ещё запрещены.
 
 [Машинный отчёт](../hardware/verification/generated/H3-R2-transition-sequences.json).

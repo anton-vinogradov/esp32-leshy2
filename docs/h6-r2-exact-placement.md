@@ -3,8 +3,10 @@
 [Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h6-r2-exact-placement.ru.md)
 
 **Status:** ✅ the native-PCB placement slice of H6.0.1 is reproducible and
-collision-free. **H6.0.1 and H6 as a whole remain in progress.** Routing has
-not started and this result does not authorize fabrication or purchase.
+collision-free. The [mechanical stack](h6-r2-mechanical-stack.md) and
+[microcoax service closure](h6-r2-microcoax-service.md) now complete H6.0.1.
+**H6.0.2 routing and native net parity are current.** This result does not
+authorize fabrication or purchase.
 
 ![Exact H6 placement of both accessible inner faces](images/h6-r2-exact-placement.svg)
 
@@ -46,7 +48,7 @@ footprints exposed and corrected four real issues:
 
 These are production-footprint corrections, not product-function changes.
 
-## Stack candidate and remaining H6.0.1 work
+## Stack candidate and H6.0.1 closure
 
 The board files use six copper layers and 1.6 mm finished thickness. The
 [JLC3313 six-layer impedance candidate](https://jlcpcb.com/impedance) remains a
@@ -57,10 +59,10 @@ The [mechanical-stack slice](h6-r2-mechanical-stack.md) now locks the enclosure
 capture lips, four pilot datums, wall bearings and exact 20-mm nylon
 screw/captive-nut geometry. Its worst tolerance corner still provides 2.18 mm
 of thread at the nut and keeps the screw tip buried; M1 has no structural role.
-H6.0.1 now remains open only for the five relaxed microcoax service-loop
-corridors, clip positions and their enclosure/inspection clearances. Only after
-those physical constraints are closed does H6.0.2 start routing and own
-zero-finding DRC plus schematic/PCB parity.
+The [five relaxed microcoax service-loop corridors](h6-r2-microcoax-service.md),
+clip positions and enclosure/inspection clearances are now machine-checked.
+They close H6.0.1 and release H6.0.2 routing without changing this placement;
+H6.0.2 owns zero-finding DRC plus schematic/PCB parity.
 
 ## Reproduce
 

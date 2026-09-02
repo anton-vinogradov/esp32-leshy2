@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "artifact": "H6-R2 microcoax service audit",
+  "marker": "H6.0.1-R1",
+  "status": "pass",
+  "source_hashes": {
+    "hardware/layout/h6-r2-microcoax-service.json": "1bcf34203172baef2f6959dfb43c5f151f61d20d700115429ba1e3c35c210171",
+    "hardware/layout/generated/H6-R2-placement-audit.json": "2ecb08d23689d1091e6a2e1c0ccc0349eb7e92a10fe5fb9622e3d8f18e8eab91",
+    "hardware/layout/h6-r2-placement-contract.json": "b09a4ee69eb31f679640f5c91665254697e47c75a33b064c9f314892a414e88b",
+    "hardware/product-design/h1-r2-placement.json": "66321938e7ea53875639ad6841f02209aaf08510054323c0108d8a5077813054",
+    "hardware/verification/generated/H3-R2-rf-coexistence.json": "8231f73ce2a168763e1692591e1fcbe2f58fc2bcb1e77e782e4f0938123b0642"
+  },
+  "summary": {
+    "path_count": 5,
+    "thirty_mm_paths": 2,
+    "sixty_mm_paths": 3,
+    "retention_saddles": 5,
+    "antenna_solder_windows": 10,
+    "minimum_relaxed_reserve_mm": 9.13,
+    "minimum_display_exclusion_distance_mm": 2.255,
+    "minimum_mechanical_keepout_clearance_mm": 0.456,
+    "routing_may_start": true
+  },
+  "paths": [
+    {
+      "path": "N24-0",
+      "source_basis": "farthest point of published-corner access window",
+      "source_reference_mm": [
+        23.05,
+        44.8
+      ],
+      "board_connector_mm": [
+        12.0,
+        10.0
+      ],
+      "cable_mpn": "TE Connectivity 1-2118651-0",
+      "selected_length_mm": 60.0,
+      "conservative_corridor_length_mm": 45.064,
+      "minimum_relaxed_reserve_mm": 14.936,
+      "minimum_display_exclusion_distance_mm": 3.255,
+      "minimum_mechanical_keepout_clearance_mm": 0.564,
+      "retention_saddle_centre_mm": [
+        8.0,
+        18.0
+      ],
+      "retention_landing_clear": true,
+      "retention_mechanical_keepout_clearance_mm": 1.256,
+      "source_free_length_mm": 32.709,
+      "board_connector_free_length_mm": 8.944
+    },
+    {
+      "path": "S3-2G4",
+      "source_basis": "exact module connector axis",
+      "source_reference_mm": [
+        21.0,
+        24.46
+      ],
+      "board_connector_mm": [
+        22.8,
+        10.55
+      ],
+      "cable_mpn": "TE Connectivity 2118651-2",
+      "selected_length_mm": 30.0,
+      "conservative_corridor_length_mm": 15.28,
+      "minimum_relaxed_reserve_mm": 14.72,
+      "minimum_display_exclusion_distance_mm": 7.653,
+      "minimum_mechanical_keepout_clearance_mm": 12.556,
+      "retention_saddle_centre_mm": [
+        25.0,
+        17.0
+      ],
+      "retention_landing_clear": true,
+      "retention_mechanical_keepout_clearance_mm": 13.766,
+      "source_free_length_mm": 8.465,
+      "board_connector_free_length_mm": 6.815
+    },
+    {
+      "path": "N24-1",
+      "source_basis": "farthest point of published-corner access window",
+      "source_reference_mm": [
+        42.85,
+        44.8
+      ],
+      "board_connector_mm": [
+        37.5,
+        15.55
+      ],
+      "cable_mpn": "TE Connectivity 1-2118651-0",
+      "selected_length_mm": 60.0,
+      "conservative_corridor_length_mm": 49.524,
+      "minimum_relaxed_reserve_mm": 10.476,
+      "minimum_display_exclusion_distance_mm": 2.255,
+      "minimum_mechanical_keepout_clearance_mm": 19.168,
+      "retention_saddle_centre_mm": [
+        44.5,
+        28.5
+      ],
+      "retention_landing_clear": true,
+      "retention_mechanical_keepout_clearance_mm": 23.67,
+      "source_free_length_mm": 31.41,
+      "board_connector_free_length_mm": 14.721
+    },
+    {
+      "path": "C5-2G4/5",
+      "source_basis": "exact module connector axis",
+      "source_reference_mm": [
+        66.0,
+        24.38
+      ],
+      "board_connector_mm": [
+        52.2,
+        10.55
+      ],
+      "cable_mpn": "TE Connectivity 2118651-2",
+      "selected_length_mm": 30.0,
+      "conservative_corridor_length_mm": 20.87,
+      "minimum_relaxed_reserve_mm": 9.13,
+      "minimum_display_exclusion_distance_mm": 13.177,
+      "minimum_mechanical_keepout_clearance_mm": 8.482,
+      "retention_saddle_centre_mm": [
+        55.5,
+        19.0
+      ],
+      "retention_landing_clear": true,
+      "retention_mechanical_keepout_clearance_mm": 9.309,
+      "source_free_length_mm": 11.798,
+      "board_connector_free_length_mm": 9.072
+    },
+    {
+      "path": "N24-2",
+      "source_basis": "farthest point of published-corner access window",
+      "source_reference_mm": [
+        62.65,
+        46.8
+      ],
+      "board_connector_mm": [
+        63.0,
+        10.0
+      ],
+      "cable_mpn": "TE Connectivity 1-2118651-0",
+      "selected_length_mm": 60.0,
+      "conservative_corridor_length_mm": 42.457,
+      "minimum_relaxed_reserve_mm": 17.543,
+      "minimum_display_exclusion_distance_mm": 14.535,
+      "minimum_mechanical_keepout_clearance_mm": 0.456,
+      "retention_saddle_centre_mm": [
+        67.0,
+        17.5
+      ],
+      "retention_landing_clear": true,
+      "retention_mechanical_keepout_clearance_mm": 0.757,
+      "source_free_length_mm": 30.498,
+      "board_connector_free_length_mm": 8.5
+    }
+  ],
+  "antenna_solder_windows": [
+    {
+      "board": "LESHY2-UI-R2",
+      "instance": "nrf0_external_sma",
+      "centre_x_mm": 14.0
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "instance": "s3_external_rp_sma",
+      "centre_x_mm": 25.75
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "instance": "nrf1_external_sma",
+      "centre_x_mm": 37.5
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "instance": "c5_external_rp_sma",
+      "centre_x_mm": 49.25
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "instance": "nrf2_external_sma",
+      "centre_x_mm": 61.0
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "instance": "receiver_fmsw_external_sma",
+      "centre_x_mm": 14.0
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "instance": "receiver_amlw_external_sma",
+      "centre_x_mm": 25.75
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "instance": "cc_external_sma",
+      "centre_x_mm": 37.5
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "instance": "voice_external_sma",
+      "centre_x_mm": 49.25
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "instance": "voice_v_external_sma",
+      "centre_x_mm": 61.0
+    }
+  ],
+  "enclosure_clearance": {
+    "route_prism_height_above_ui_inner_mm": 4.5,
+    "minimum_free_height_above_cable_mm": 1.0,
+    "rule": "no enclosure rib, pilot, stop, adhesive or loose hardware may enter a cable corridor or either connector inspection cylinder",
+    "closed_sandwich_rule": "the RF PCB and enclosure may not press a cable; exact opposed-body clearance is rechecked from the assembled STEP in H6.0.6"
+  },
+  "residual_physical_evidence": [
+    "confirm received E01 IPEX axes remain inside the published-corner service windows",
+    "dry-fit all five received cable assemblies and confirm the 6-mm formed-radius target without connector preload",
+    "recheck exact opposed-body and enclosure clearance from the assembled STEP in H6.0.6",
+    "measure complete RF feeds during H8 bring-up"
+  ],
+  "errors": []
+}

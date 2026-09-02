@@ -71,7 +71,7 @@ class PreorderGateTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
         plan_normalized = " ".join(plan.split())
         self.assertIn("H1 through H5", index)
-        self.assertIn("H6.0.1-R1 is current", index)
+        self.assertIn("H6.0.2-R1 routing and net parity are current", index)
         self.assertIn("superseded", plan)
         self.assertIn("remain unauthorized", plan)
         self.assertIn("no separate engineering-sample or H5 coupon order", plan_normalized)

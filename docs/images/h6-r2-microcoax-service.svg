@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1460" height="910" viewBox="0 0 1460 910" data-marker="H6.0.1-R1" data-view="microcoax-service">
+<rect width="1460" height="910" fill="#ffffff"/>
+<text x="70.0" y="54.0" font-family="Inter,Arial,sans-serif" font-size="31" font-weight="700" text-anchor="start" fill="#172033">Leshy2 - five relaxed microcoax service corridors</text>
+<text x="70.0" y="86.0" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="500" text-anchor="start" fill="#526076">Actual H6 footprint coordinates - one removable tape saddle per cable - ZIF and display slot stay accessible</text>
+<text x="70.0" y="126.0" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700" text-anchor="start" fill="#1d4ed8">UI PCB - inner face - antenna edge and upper service volume</text>
+<rect x="70.0" y="150.0" width="615.0" height="508.4" rx="14" fill="#f8fafc" stroke="#334155" stroke-width="3"/>
+<rect x="100.4" y="319.2" width="160.6" height="166.0" rx="5" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+<text x="180.7" y="407.1" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#334155">U1</text>
+<rect x="494.0" y="321.0" width="156.5" height="182.8" rx="5" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+<text x="572.2" y="417.4" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#334155">U14</text>
+<rect x="133.6" y="492.4" width="152.4" height="123.7" rx="5" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+<text x="209.8" y="559.3" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#334155">U35</text>
+<rect x="296.0" y="492.4" width="152.4" height="123.7" rx="5" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+<text x="372.2" y="559.3" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#334155">U39</text>
+<rect x="458.3" y="508.8" width="152.4" height="123.7" rx="5" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+<text x="534.5" y="575.7" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#334155">U43</text>
+<rect x="264.8" y="422.7" width="225.4" height="35.2" rx="5" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+<text x="377.5" y="445.3" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#991b1b">ZIF</text>
+<rect x="266.8" y="408.3" width="221.4" height="9.8" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="7 5"/>
+<rect x="264.8" y="422.7" width="225.4" height="35.2" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="7 5"/>
+<polyline points="259.0,517.4 238.1,473.9 238.1,396.0 135.6,297.6 168.4,232.0" fill="none" stroke="#0f766e" stroke-opacity="0.16" stroke-width="20.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="259.0,517.4 238.1,473.9 238.1,396.0 135.6,297.6 168.4,232.0" fill="none" stroke="#0f766e" stroke-width="9.3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="238.5" y="496.9" width="41.0" height="41.0" fill="none" stroke="#0f766e" stroke-width="2" stroke-dasharray="5 4"/>
+<circle cx="259.0" cy="517.4" r="24.6" fill="none" stroke="#0f766e" stroke-width="1.7" stroke-dasharray="5 4"/>
+<circle cx="259.0" cy="517.4" r="5" fill="#ffffff" stroke="#0f766e" stroke-width="3"/>
+<circle cx="168.4" cy="232.0" r="24.6" fill="none" stroke="#0f766e" stroke-width="1.7" stroke-dasharray="5 4"/>
+<circle cx="168.4" cy="232.0" r="5" fill="#ffffff" stroke="#0f766e" stroke-width="3"/>
+<rect x="115.1" y="285.3" width="41.0" height="24.6" rx="4" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2"/>
+<text x="135.6" y="301.6" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#92400e">T</text>
+<polyline points="242.2,350.6 275.0,289.4 257.0,236.5" fill="none" stroke="#2563eb" stroke-opacity="0.16" stroke-width="20.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="242.2,350.6 275.0,289.4 257.0,236.5" fill="none" stroke="#2563eb" stroke-width="9.3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="242.2" cy="350.6" r="24.6" fill="none" stroke="#2563eb" stroke-width="1.7" stroke-dasharray="5 4"/>
+<circle cx="242.2" cy="350.6" r="5" fill="#ffffff" stroke="#2563eb" stroke-width="3"/>
+<circle cx="257.0" cy="236.5" r="24.6" fill="none" stroke="#2563eb" stroke-width="1.7" stroke-dasharray="5 4"/>
+<circle cx="257.0" cy="236.5" r="5" fill="#ffffff" stroke="#2563eb" stroke-width="3"/>
+<rect x="254.5" y="277.1" width="41.0" height="24.6" rx="4" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2"/>
+<text x="275.0" y="293.4" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#92400e">T</text>
+<polyline points="421.4,517.4 508.7,473.9 508.7,387.8 434.9,383.7 377.5,277.5" fill="none" stroke="#7c3aed" stroke-opacity="0.16" stroke-width="20.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="421.4,517.4 508.7,473.9 508.7,387.8 434.9,383.7 377.5,277.5" fill="none" stroke="#7c3aed" stroke-width="9.3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="400.9" y="496.9" width="41.0" height="41.0" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="5 4"/>
+<circle cx="421.4" cy="517.4" r="24.6" fill="none" stroke="#7c3aed" stroke-width="1.7" stroke-dasharray="5 4"/>
+<circle cx="421.4" cy="517.4" r="5" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/>
+<circle cx="377.5" cy="277.5" r="24.6" fill="none" stroke="#7c3aed" stroke-width="1.7" stroke-dasharray="5 4"/>
+<circle cx="377.5" cy="277.5" r="5" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/>
+<rect x="414.4" y="371.4" width="41.0" height="24.6" rx="4" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2"/>
+<text x="434.9" y="387.7" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#92400e">T</text>
+<polyline points="611.2,349.9 525.1,305.8 498.0,236.5" fill="none" stroke="#dc2626" stroke-opacity="0.16" stroke-width="20.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="611.2,349.9 525.1,305.8 498.0,236.5" fill="none" stroke="#dc2626" stroke-width="9.3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="611.2" cy="349.9" r="24.6" fill="none" stroke="#dc2626" stroke-width="1.7" stroke-dasharray="5 4"/>
+<circle cx="611.2" cy="349.9" r="5" fill="#ffffff" stroke="#dc2626" stroke-width="3"/>
+<circle cx="498.0" cy="236.5" r="24.6" fill="none" stroke="#dc2626" stroke-width="1.7" stroke-dasharray="5 4"/>
+<circle cx="498.0" cy="236.5" r="5" fill="#ffffff" stroke="#dc2626" stroke-width="3"/>
+<rect x="504.6" y="293.5" width="41.0" height="24.6" rx="4" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2"/>
+<text x="525.1" y="309.8" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#92400e">T</text>
+<polyline points="583.7,533.8 619.4,473.9 619.4,293.5 586.6,232.0" fill="none" stroke="#ea580c" stroke-opacity="0.16" stroke-width="20.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="583.7,533.8 619.4,473.9 619.4,293.5 586.6,232.0" fill="none" stroke="#ea580c" stroke-width="9.3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="563.2" y="513.3" width="41.0" height="41.0" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="5 4"/>
+<circle cx="583.7" cy="533.8" r="24.6" fill="none" stroke="#ea580c" stroke-width="1.7" stroke-dasharray="5 4"/>
+<circle cx="583.7" cy="533.8" r="5" fill="#ffffff" stroke="#ea580c" stroke-width="3"/>
+<circle cx="586.6" cy="232.0" r="24.6" fill="none" stroke="#ea580c" stroke-width="1.7" stroke-dasharray="5 4"/>
+<circle cx="586.6" cy="232.0" r="5" fill="#ffffff" stroke="#ea580c" stroke-width="3"/>
+<rect x="598.9" y="281.2" width="41.0" height="24.6" rx="4" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2"/>
+<text x="619.4" y="297.5" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#92400e">T</text>
+<text x="100.0" y="690.0" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="600" text-anchor="start" fill="#92400e">T = 5 x 3 mm removable polyimide-tape saddle on a machine-checked clear landing</text>
+<text x="760.0" y="145.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#1d4ed8">DO NOT GUESS AN IPEX AXIS FOR THE THREE LONG PATHS</text>
+<text x="760.0" y="180.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#172033">The Ebyte drawing puts IPEX in one corner but gives no centre dimension.</text>
+<text x="760.0" y="205.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#172033">Dashed source windows enclose that entire published corner.</text>
+<text x="760.0" y="230.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#172033">Length is checked from the farthest window point, not the drawn dot.</text>
+<text x="760.0" y="275.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#1d4ed8">ROUTE RESULT</text>
+<circle cx="776" cy="303" r="6" fill="#0f766e"/>
+<text x="795.0" y="308.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#0f766e">N24-0</text>
+<text x="930.0" y="308.0" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="600" text-anchor="start" fill="#172033">60 mm cable</text>
+<text x="1060.0" y="308.0" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#172033">route &lt;= 45.06 mm</text>
+<text x="1240.0" y="308.0" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#166534">reserve 14.94 mm</text>
+<circle cx="776" cy="341" r="6" fill="#2563eb"/>
+<text x="795.0" y="346.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#2563eb">S3-2G4</text>
+<text x="930.0" y="346.0" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="600" text-anchor="start" fill="#172033">30 mm cable</text>
+<text x="1060.0" y="346.0" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#172033">route &lt;= 15.28 mm</text>
+<text x="1240.0" y="346.0" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#166534">reserve 14.72 mm</text>
+<circle cx="776" cy="379" r="6" fill="#7c3aed"/>
+<text x="795.0" y="384.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#7c3aed">N24-1</text>
+<text x="930.0" y="384.0" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="600" text-anchor="start" fill="#172033">60 mm cable</text>
+<text x="1060.0" y="384.0" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#172033">route &lt;= 49.52 mm</text>
+<text x="1240.0" y="384.0" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#166534">reserve 10.48 mm</text>
+<circle cx="776" cy="417" r="6" fill="#dc2626"/>
+<text x="795.0" y="422.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#dc2626">C5-2G4/5</text>
+<text x="930.0" y="422.0" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="600" text-anchor="start" fill="#172033">30 mm cable</text>
+<text x="1060.0" y="422.0" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#172033">route &lt;= 20.87 mm</text>
+<text x="1240.0" y="422.0" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#166534">reserve 9.13 mm</text>
+<circle cx="776" cy="455" r="6" fill="#ea580c"/>
+<text x="795.0" y="460.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#ea580c">N24-2</text>
+<text x="930.0" y="460.0" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="600" text-anchor="start" fill="#172033">60 mm cable</text>
+<text x="1060.0" y="460.0" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#172033">route &lt;= 42.46 mm</text>
+<text x="1240.0" y="460.0" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="start" fill="#166534">reserve 17.54 mm</text>
+<text x="760.0" y="525.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#1d4ed8">ASSEMBLY / ACCESS</text>
+<text x="775.0" y="560.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#ffffff">1</text>
+<circle cx="775" cy="555" r="14" fill="#2563eb"/>
+<text x="805.0" y="560.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#172033">Continuity-check and mate both ends vertically.</text>
+<text x="775.0" y="603.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#ffffff">2</text>
+<circle cx="775" cy="598" r="14" fill="#2563eb"/>
+<text x="805.0" y="603.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#172033">Form a visible relaxed bow; never pull on a plug.</text>
+<text x="775.0" y="646.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#ffffff">3</text>
+<circle cx="775" cy="641" r="14" fill="#2563eb"/>
+<text x="805.0" y="646.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#172033">Apply one removable saddle without flattening the cable.</text>
+<text x="775.0" y="689.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#ffffff">4</text>
+<circle cx="775" cy="684" r="14" fill="#2563eb"/>
+<text x="805.0" y="689.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#172033">Inspect all 10 microcoax mates and 10 SMA solder windows.</text>
+<text x="760.0" y="750.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#1d4ed8">ENCLOSURE RULE</text>
+<text x="760.0" y="783.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#172033">No rib, stop, screw, adhesive or loose hardware enters a corridor</text>
+<text x="760.0" y="808.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#172033">or its 6-mm connector inspection circle. The 11-mm sandwich</text>
+<text x="760.0" y="833.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#172033">must close with no cable pressure; assembled STEP rechecks this in H6.0.6.</text>
+<text x="70.0" y="876.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#166534">audit: pass - five paths - five clear saddles - minimum relaxed reserve 9.13 mm - H6.0.2 routing may start</text>
+</svg>

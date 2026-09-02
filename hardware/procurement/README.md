@@ -8,7 +8,8 @@ platform second, a documented replacement or exact-part sourcing route third,
 and one prototype order only after H6/F-PO and explicit approval. There is no
 separate engineering-sample or H5 coupon purchase.
 H1 through H5, including the joined pre-layout and component/factory reviews,
-are complete. H6.0.1-R1 is current. JLCPCB Standard PCBA is the
+are complete. H6.0.2-R1 routing and net parity are current after the complete
+H6.0.1 placement/mechanical/cable closure. JLCPCB Standard PCBA is the
 non-exclusive reference, and the full 210-line BOM is mapped to `J0`–`J3`, `J4-F`, `J4-P` or `J5-U`
 in the [public manufacturing baseline](../../docs/manufacturing-platform.md).
 The controlling state is

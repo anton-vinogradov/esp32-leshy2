@@ -3,7 +3,7 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H6.0.1-R1`.** H0–H4 are reviewed, and the [current H5-R2 route revalidation](h5-r2-current-route.md) controls all 249 purchasable groups / 1,216 articles with zero unmapped route. The [exact-footprint H6 placement](h6-r2-exact-placement.md) materializes 1,208/1,208 fitted positions on two native six-layer boards with zero hard conflict, and the [exact mechanical stack](h6-r2-mechanical-stack.md) now locks enclosure bearing/capture plus 20-mm M2.5 nylon retention without loading M1. Routing has not started; five microcoax service corridors remain. `WBC16-1TLC` has one explicit order-time sourcing gate. The 51 physical residuals and F5/F6 i8080 obligation retain exact downstream owners.
+> **▶ Current hardware boundary: `H6.0.2-R1`.** H0–H4 are reviewed, and the [current H5-R2 route revalidation](h5-r2-current-route.md) controls all 249 purchasable groups / 1,216 articles with zero unmapped route. H6.0.1 is complete: [exact placement](h6-r2-exact-placement.md) materializes 1,208/1,208 fitted positions on two native six-layer boards with zero hard conflict, the [mechanical stack](h6-r2-mechanical-stack.md) locks enclosure capture and M2.5 retention without loading M1, and the [microcoax result](h6-r2-microcoax-service.md) locks five relaxed corridors, five clear saddles and ten antenna solder windows. H6.0.2 now owns all 823 routed nets, native schematic/PCB parity and zero-finding DRC. `WBC16-1TLC` has one explicit order-time sourcing gate. The 51 physical residuals and F5/F6 i8080 obligation retain exact downstream owners.
 > H6 placement/routing is authorized; quote, reservation, purchase and fabrication are not.
 
 [Current H6 machine checklist](../hardware/verification/h6-layout-release-plan.json).
@@ -34,10 +34,10 @@ marker and current checklist; it is never presented as review of the whole phase
 
 ## Reviewed H1 · exact composition
 
-<!-- current-substep: H6.0.1-R1 -->
+<!-- current-substep: H6.0.2-R1 -->
 
 **Reviewed marker: `H1-R2.38`.** The placement package was accepted on
-2026-08-31. The current hardware marker is `H6.0.1-R1`.
+2026-08-31. The current hardware marker is `H6.0.2-R1`.
 
 ### 1. Functional-island placement
 
@@ -197,7 +197,7 @@ placement and routing had not started; current H6 progress is recorded above.
 | H3 · Virtual electrical verification | ✅ [Reviewed · `H3-R2.7`](h3-r2-acceptance.md) | Complete power, digital, RF, audio, timing, thermal and fault verification | Every calculable pre-layout claim passes; all physical residuals remain owned |
 | H4 · Joined pre-layout gate | ✅ [Reviewed · `H4-R2.3`](h4-r2-acceptance.md) | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |
 | H5 · Component and factory evidence | ✅ [Current R2 routes reviewed · `H5-R2.1`](h5-r2-current-route.md) | Exact current factory map over retained [H5-R1 evidence](h5-r1-acceptance.md) | Every purchasable group has a controlled route; order-time sourcing gates remain explicit |
-| **H6 · KiCad placement, routing and release candidate** | **▶ Current · `H6.0.1-R1`** | [Exact placement](h6-r2-exact-placement.md) and [mechanical-stack progress](h6-r2-mechanical-stack.md); two routed boards, routed re-analysis and hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs and independent DFM/CPL review pass |
+| **H6 · KiCad placement, routing and release candidate** | **▶ Current · `H6.0.2-R1`** | [Exact placement](h6-r2-exact-placement.md), [mechanical stack](h6-r2-mechanical-stack.md) and [microcoax closure](h6-r2-microcoax-service.md); two routed boards, routed re-analysis and hash-locked fabrication candidate | Placement/mechanics/cables pass; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP; outputs and independent DFM/CPL review pass |
 | `F-PO` · First-spin admission | 🔒 Waiting for H2/H6 and firmware R2 | Six diagnostic images, S3 QEMU, fake-HAL/dev-board evidence, flash/recovery and owner bring-up script | `FPO1`–`FPO7` are reviewed against the same H2/H6 candidate hashes; paid factory FCT is not required |
 | H7 · Prototype fabrication and bring-up | 🔒 Waiting for H6, `F-PO`, immutable release and exact-one quote approval | Exactly one factory-assembled `R2-EVT1` and retained owner bring-up log | Released assembly package needs no factory engineering guesses; owner current-limited USB power-on proves rails, recovery, UI, storage, audio, radios and expansion |
 | H8 · Physical qualification | 🔒 Waiting for H7 | HIL, RF, thermal, power, safety and endurance evidence | Concurrent nRF modes, quiet interfaces, coexistence, VNA, watchdog and single-fault tests pass |
@@ -245,11 +245,12 @@ placement and routing had not started; current H6 progress is recorded above.
 20. ✅ [`H4-R2.3`](h4-r2-acceptance.md): publish the global bilingual joined gate with zero contradiction and transfer all 51 physical residuals.
 21. ✅ [`H5.0.3-R1`](h5-r1-acceptance.md): preserve the historical 210-route / 1,050-placement evidence, owner final assembly and exact `Ettinger 007.02.611` 11-mm stops.
 22. ✅ [`H5-R2.1`](h5-r2-current-route.md): revalidate all 249 current purchasable groups / 1,216 articles with zero unmapped route and expose the one `WBC16-1TLC` order-time sourcing gate.
-23. ▶ `H6.0.1-R1`: [exact-footprint placement](h6-r2-exact-placement.md) passes for 1,208/1,208 positions with zero hard conflict; the [mechanical stack](h6-r2-mechanical-stack.md) locks wall bearings, independent PCB capture, exact 20-mm M2.5 nylon screws/captive nuts and the one-loose-screw load path. Five relaxed microcoax corridors and their enclosure/inspection clearances remain before routing and quoteable Gerber/BOM/CPL.
+23. ✅ `H6.0.1-R1`: [exact-footprint placement](h6-r2-exact-placement.md) passes for 1,208/1,208 positions with zero hard conflict; the [mechanical stack](h6-r2-mechanical-stack.md) locks wall bearings, independent PCB capture, exact 20-mm M2.5 nylon screws/captive nuts and the one-loose-screw load path; the [microcoax service result](h6-r2-microcoax-service.md) locks five relaxed corridors, five clear saddles and ten antenna solder windows.
+24. ▶ `H6.0.2-R1`: route all 823 canonical nets, prove native schematic/PCB parity and reach zero-finding DRC without violating the H6.0.1 placement/mechanical/cable contract.
 
 H5-R2.1 is current and reviewed: all 249 purchasable groups / 1,216 articles
 have controlled routes, with one explicit order-time Global Sourcing or
-qualified-replacement gate for `WBC16-1TLC`. H6.0.1-R1 owns placement/routing,
-enclosure walls, exact screw length and the Gerber/BOM/CPL needed for a real
-PCBA quote. Final VHF pre-order terms and the complete stock recheck execute
+qualified-replacement gate for `WBC16-1TLC`. H6.0.2-R1 owns routing and native
+net parity; later H6 steps own routed verification, enclosure walls and the
+Gerber/BOM/CPL needed for a real PCBA quote. Final VHF pre-order terms and the complete stock recheck execute
 immediately before the one order; purchase and fabrication remain blocked.

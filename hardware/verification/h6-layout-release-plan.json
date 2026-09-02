@@ -3,14 +3,17 @@
   "stage": "H6",
   "baseline": "R2",
   "status": "in_progress",
-  "current_substep": "H6.0.1-R1",
+  "current_substep": "H6.0.2-R1",
   "current_evidence": {
     "exact_footprint_placement": "pass",
     "mechanical_stack_and_m1_load_relief": "pass",
+    "microcoax_service_and_inspection": "pass",
     "report": "docs/h6-r2-exact-placement.md",
     "mechanical_report": "docs/h6-r2-mechanical-stack.md",
+    "microcoax_report": "docs/h6-r2-microcoax-service.md",
     "audit": "hardware/layout/generated/H6-R2-placement-audit.json",
     "mechanical_audit": "hardware/layout/generated/H6-R2-mechanical-stack-audit.json",
+    "microcoax_audit": "hardware/layout/generated/H6-R2-microcoax-service-audit.json",
     "native_boards": [
       "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
       "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb"
@@ -20,8 +23,8 @@
     "unplaced_instances": 0,
     "routing_started": false,
     "remaining_before_substep_exit": [
-      "five relaxed microcoax service-loop corridors and clip positions",
-      "enclosure clearance around cable corridors and antenna solder inspection windows"
+      "route all 823 reviewed nets or preserve an explicit intentional no-connect",
+      "prove native schematic/PCB parity and zero-finding KiCad DRC"
     ]
   },
   "objective": "Produce two routed, mechanically coherent and quoteable R2-EVT1 PCBAs without changing the reviewed H0-H5 functional, safety or exact-component boundary.",
@@ -75,13 +78,13 @@
   "substeps": [
     {
       "id": "H6.0.1-R1",
-      "status": "current",
+      "status": "complete",
       "title": "Placement and mechanical stack",
       "exit": "both PCB outlines, exact footprints, display/FPC slot and relaxed bend, antenna edge, U.FL and microcoax routes, M1, four stops, enclosure capture/datums, wall bearings and exact screw/retention geometry are dimensioned without collision"
     },
     {
       "id": "H6.0.2-R1",
-      "status": "waiting",
+      "status": "current",
       "title": "Routing and net parity",
       "exit": "every reviewed H2 net is routed or intentionally no-connect, and schematic/layout parity plus zero-finding DRC pass"
     },

@@ -10,7 +10,7 @@
 
 </div>
 
-> **Текущий маркер железа: `H6.0.1-R1`.** Полная компоновка двух плат
+> **Текущий маркер железа: `H6.0.2-R1`.** Полная компоновка двух плат
 > `H1-R2.38` принята и прошла ревью 30 августа 2026 года: точные dual-RP GPIO/M1 и C5 SDIO/service-mux,
 > серийный дисплей `ER-TFT035IPS-6` + `ER-TPC035-6` и его прямой 50-контактный
 > ZIF на UI-плате, все 18 компонентов U219, NFC pickup-loop и внешний объём штатной
@@ -37,12 +37,14 @@
 > проводит ревью точного происхождения всех 251 групп R2 и 1 208 устанавливаемых
 > позиций. [H3-R2.0.3](docs/verification-methods.ru.md) фиксирует девять методов
 > и двенадцать pass/fail rules. [H3-R2.1.1](docs/power-state-register.ru.md) провёл ревью всех 2 266 разрешённых состояний R2;
-> [H3-R2.1.2](docs/power-load-binding.ru.md) связывает все нагрузки без скрытого aggregate. [H3-R2.1.3](docs/power-rail-margins.ru.md) проводит ревью 224 проходящих профилей шин. [H3-R2.1.4](docs/power-source-margins.ru.md) назначает владельцев всем 75 source/pack-строкам и безопасно допускает все 2 266 состояний. Полные [проверки H3](docs/h3-r2-acceptance.ru.md) проведены ревью без mismatch и открытого аналитического finding; 51 physical-only строка остаётся назначенной H5/H6/H8. [H4-R2.0.1](docs/h4-r2-input-freeze.ru.md) зафиксировал 24 точных inputs. [Диагностика H4](docs/h4-r2-contract-reconciliation.ru.md) нашла один назначенный пробел генерации 38 BSP-строк; [исправление H4-R2.2](docs/h4-r2-correction-closure.ru.md) восстановило 173/173 строки и повторно квалифицировало все 12 target-сборок. [Глобальный итог H4-R2](docs/h4-r2-acceptance.ru.md) проведён ревью без междоменных противоречий. Исторический [итог H5-R1](docs/h5-r1-acceptance.ru.md) дополнен [актуальной перепроверкой H5-R2](docs/h5-r2-current-route.ru.md): все 249 закупаемых групп / 1 216 изделий имеют контролируемые маршруты, а `WBC16-1TLC` после обнуления склада JLCPCB вынесен в явный order-time sourcing gate. Сейчас выполняется H6.0.1-R1: точная длина винтов следует из стенок корпуса, а реальная PCBA-цена — из Gerber/BOM/CPL. Заказ заблокирован.
+> [H3-R2.1.2](docs/power-load-binding.ru.md) связывает все нагрузки без скрытого aggregate. [H3-R2.1.3](docs/power-rail-margins.ru.md) проводит ревью 224 проходящих профилей шин. [H3-R2.1.4](docs/power-source-margins.ru.md) назначает владельцев всем 75 source/pack-строкам и безопасно допускает все 2 266 состояний. Полные [проверки H3](docs/h3-r2-acceptance.ru.md) проведены ревью без mismatch и открытого аналитического finding; 51 physical-only строка остаётся назначенной H5/H6/H8. [H4-R2.0.1](docs/h4-r2-input-freeze.ru.md) зафиксировал 24 точных inputs. [Диагностика H4](docs/h4-r2-contract-reconciliation.ru.md) нашла один назначенный пробел генерации 38 BSP-строк; [исправление H4-R2.2](docs/h4-r2-correction-closure.ru.md) восстановило 173/173 строки и повторно квалифицировало все 12 target-сборок. [Глобальный итог H4-R2](docs/h4-r2-acceptance.ru.md) проведён ревью без междоменных противоречий. Исторический [итог H5-R1](docs/h5-r1-acceptance.ru.md) дополнен [актуальной перепроверкой H5-R2](docs/h5-r2-current-route.ru.md): все 249 закупаемых групп / 1 216 изделий имеют контролируемые маршруты, а `WBC16-1TLC` после обнуления склада JLCPCB вынесен в явный order-time sourcing gate. H6.0.1-R1 завершён: точное размещение, стек корпуса/крепежа и пять ненатянутых коридоров microcoax проходят. Сейчас H6.0.2-R1 владеет трассировкой всех 823 канонических сетей и сверкой native schematic/PCB; реальная PCBA-цена по-прежнему следует из Gerber/BOM/CPL. Заказ заблокирован.
 
 > **Evidence размещения H6:** [текущий результат с точными footprints](docs/h6-r2-exact-placement.ru.md)
 > материализует обе нативные шестислойные платы и размещает все 1 208/1 208
 > устанавливаемых экземпляров без жёстких courtyard-коллизий и потерь.
-> Трассировка не начиналась; H6.0.1 остаётся открытым до фиксации корпуса и винтов.
+> [Механический стек](docs/h6-r2-mechanical-stack.ru.md) и
+> [пять сервисных коридоров microcoax](docs/h6-r2-microcoax-service.ru.md)
+> также проходят, закрывая H6.0.1. Сейчас выполняются трассировка H6.0.2 и native net parity.
 
 > **Authority-gate R2:** текущие H0/H1 содержат шесть вычислительных доменов и
 > два `SC1512-A4`: передний Hub RP и задний RF RP. Сохранённые G2F/H2/KiCad —
@@ -133,7 +135,7 @@ VHF/UHF voice, broadcast/Airband, аудио, M5 и взаимоисключаю
 | H3 · Виртуальная электрическая проверка | ✅ Проведено ревью · `H3-R2.7` | [Двуязычный итог фазы](docs/h3-r2-acceptance.ru.md) · [реестр физических evidence](docs/physical-evidence-register-r2.ru.md) · [страница этапов](docs/stage-results.ru.md#h3) |
 | H4 · Совместный pre-layout gate железа и прошивки | ✅ Проведено ревью · `H4-R2.3` | [глобальный итог](docs/h4-r2-acceptance.ru.md) · [исправление BSP](docs/h4-r2-correction-closure.ru.md) · [страница этапов](docs/stage-results.ru.md#h4) |
 | H5 · Компоненты и фабричные evidence | ✅ Проведено ревью актуальных R2-маршрутов · `H5-R2.1` | [Актуальный итог R2](docs/h5-r2-current-route.ru.md) · [исторический H5-R1](docs/h5-r1-acceptance.ru.md) · [страница этапов](docs/stage-results.ru.md#h5) |
-| **H6 · Размещение, трассировка и release candidate в KiCad** | **▶ Сейчас · `H6.0.1-R1`** | [Прогресс точного размещения](docs/h6-r2-exact-placement.ru.md) · [механический стек](docs/h6-r2-mechanical-stack.ru.md) · [страница этапов](docs/stage-results.ru.md#h6) · [машинный checklist](hardware/verification/h6-layout-release-plan.json) |
+| **H6 · Размещение, трассировка и release candidate в KiCad** | **▶ Сейчас · `H6.0.2-R1`** | [Точное размещение](docs/h6-r2-exact-placement.ru.md) · [механический стек](docs/h6-r2-mechanical-stack.ru.md) · [закрытие microcoax](docs/h6-r2-microcoax-service.ru.md) · [страница этапов](docs/stage-results.ru.md#h6) · [машинный checklist](hardware/verification/h6-layout-release-plan.json) |
 | F-PO · Допуск первого экземпляра | 🔒 Ожидает финальные H2/H6 и firmware R2 | [Страница этапов](docs/stage-results.ru.md#f-po) |
 | H7 · Печать прототипа и bring-up | 🔒 Ожидает H6, F-PO, immutable release и одобрение exact-one quote | [Страница этапов](docs/stage-results.ru.md#h7) |
 | H8 · Физическая квалификация | 🔒 Ожидает H7 | [Страница этапов](docs/stage-results.ru.md#h8) |
@@ -186,14 +188,15 @@ VHF/UHF voice, broadcast/Airband, аудио, M5 и взаимоисключаю
 - ✅ `H4-R2.2`: [полные BSP-карты C5, Pack и Safety](docs/h4-r2-correction-closure.ru.md) восстанавливают 173/173 строки; все 12 target-конфигураций, 60 artifacts, 16 maps и 16 size gates повторно проходят без warnings.
 - ✅ `H4-R2.3`: [двуязычный глобальный итог H4](docs/h4-r2-acceptance.ru.md) закрывает объединённый pre-layout gate без противоречий и передаёт все 51 physical-остаток в H5/H6/H8.
 - ✅ `H5-R2.1`: [актуальный двуязычный итог H5](docs/h5-r2-current-route.ru.md) перепроверяет 249 закупаемых групп / 1 216 изделий без неназначенных маршрутов; исторический [H5-R1](docs/h5-r1-acceptance.ru.md) сохранён как evidence, а `WBC16-1TLC` вынесен в явный order-time sourcing gate.
-- ▶ **Точная текущая точка `H6.0.1-R1`:** [нативное размещение](docs/h6-r2-exact-placement.ru.md) воспроизводимо для 1 208/1 208 позиций без жёстких коллизий, а [точный механический стек](docs/h6-r2-mechanical-stack.ru.md) закрывает захваты корпуса и крепёж M2.5; до трассировки остаются только пять ненатянутых microcoax-коридоров и зазоры корпуса/окон осмотра.
+- ✅ **`H6.0.1-R1` завершён:** [нативное размещение](docs/h6-r2-exact-placement.ru.md) воспроизводимо для 1 208/1 208 позиций без жёстких коллизий; [точный механический стек](docs/h6-r2-mechanical-stack.ru.md) закрывает захваты корпуса и крепёж M2.5; [закрытие microcoax](docs/h6-r2-microcoax-service.ru.md) доказывает пять ненатянутых коридоров, пять свободных седел и десять окон осмотра антенных паек.
+- ▶ **Точная текущая точка `H6.0.2-R1`:** развести все 823 канонические сети, свести native schematic/PCB и получить DRC без замечаний, не нарушив зафиксированные placement/mechanics/cable-контракты.
 - 🔒 Закупка прототипа и печать не разрешены.
 
 Каждая закрытая глобальная фаза `H*` получает двуязычный понятный отчёт со
 ссылкой из таблицы. Внутренние подшаги обновляют точный маркер и обе
 документации, но не выдают себя за ревью всей фазы.
 
-<!-- current-substep: H6.0.1-R1 -->
+<!-- current-substep: H6.0.2-R1 -->
 
 ## Репозитории
 
