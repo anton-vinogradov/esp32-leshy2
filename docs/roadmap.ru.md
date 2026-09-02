@@ -3,12 +3,12 @@
 [На главную](../README.ru.md) · [English](roadmap.md) ·
 [Роадмап прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md)
 
-> **▶ Текущая аппаратная граница: `H6.0.1-R1`.** H0–H4 проведены ревью, а [актуальная перепроверка H5-R2](h5-r2-current-route.ru.md) контролирует все 249 закупаемых групп / 1 216 изделий без неназначенных маршрутов. Для `WBC16-1TLC` остаётся один явный order-time sourcing gate; owner final assembly и точные 11-мм проходные упоры сохраняются. Все 51 physical-остаток и обязательство F5/F6 по i8080 имеют точных downstream-владельцев.
+> **▶ Текущая аппаратная граница: `H6.0.1-R1`.** H0–H4 проведены ревью, а [актуальная перепроверка H5-R2](h5-r2-current-route.ru.md) контролирует все 249 закупаемых групп / 1 216 изделий без неназначенных маршрутов. [Точное размещение H6](h6-r2-exact-placement.ru.md) уже материализует 1 208/1 208 позиций на двух нативных шестислойных платах без жёстких коллизий; трассировка не начиналась. Для `WBC16-1TLC` остаётся один явный order-time sourcing gate; owner final assembly и точные 11-мм проходные упоры сохраняются. Все 51 physical-остаток и обязательство F5/F6 по i8080 имеют точных downstream-владельцев.
 > H6 placement/routing разрешены; quote, reservation, закупка и печать — нет.
 
 [Текущий машинный checklist H6](../hardware/verification/h6-layout-release-plan.json).
 
-Статус сверен: **2 сентября 2026 года**.
+Статус сверен: **3 сентября 2026 года**.
 
 ## Правила статусов
 
@@ -144,7 +144,8 @@
 Два native-проекта KiCad R2 теперь материализуют 1 208 устанавливаемых
 экземпляров, 4 306 физических pins и 823 канонические nets. Обе root-
 схемы читаются и экспортируются; ERC даёт ноль ошибок и ноль предупреждений.
-Сквозная сверка sheets и HW↔FW проходит. Placement и routing ещё не начинались.
+Сквозная сверка sheets и HW↔FW проходит. На момент закрытия H2 placement и
+routing ещё не начинались; текущий прогресс H6 записан выше.
 
 - ✅ `H2-R2.0.1`: точный маршрут Standard PCBA onsemi `FSUSB42MUX` / `C11355`
   прошёл ревью по live-поверхности: stock 66 698; доступно 66 045; MOQ 1;
@@ -198,7 +199,7 @@
 | H3 · Виртуальная электрическая проверка | ✅ [Проведена · `H3-R2.7`](h3-r2-acceptance.ru.md) | Полная проверка power, digital, RF, audio, timing, thermal и faults | Все рассчитываемые pre-layout claims проходят; физические остатки сохраняют владельцев |
 | H4 · Объединённый pre-layout gate | ✅ [Проведено ревью · `H4-R2.3`](h4-r2-acceptance.ru.md) | Одно текущее mechanics/ECAD/electrical/firmware review | Нет виртуального blocker; каждой физической неопределённости назначен тест |
 | H5 · Компоненты и фабричные evidence | ✅ [Актуальные R2-маршруты проверены · `H5-R2.1`](h5-r2-current-route.ru.md) | Точная текущая фабричная карта поверх сохранённого [evidence H5-R1](h5-r1-acceptance.ru.md) | У каждой закупаемой группы есть контролируемый маршрут; order-time sourcing gates явны |
-| **H6 · KiCad placement, routing и release candidate** | **▶ Сейчас · `H6.0.1-R1`** | Две разведённые платы, routed re-analysis и hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs и независимый DFM/CPL review проходят |
+| **H6 · KiCad placement, routing и release candidate** | **▶ Сейчас · `H6.0.1-R1`** | [Прогресс точного размещения](h6-r2-exact-placement.ru.md); две разведённые платы, routed re-analysis и hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs и независимый DFM/CPL review проходят |
 | `F-PO` · Допуск первого экземпляра | 🔒 Ожидает H2/H6 и firmware R2 | Шесть diagnostic images, S3 QEMU, fake-HAL/dev-board evidence, flash/recovery и owner bring-up script | `FPO1`–`FPO7` проведены ревью на тех же H2/H6 candidate hashes; платный factory FCT не требуется |
 | H7 · Печать прототипа и bring-up | 🔒 Ожидает H6, `F-PO`, immutable release и одобрение exact-one quote | Ровно один фабрично собранный `R2-EVT1` и owner bring-up log | Released assembly package не требует догадок фабрики; owner current-limited USB power-on проверяет rails, recovery, UI, storage, audio, radio и expansion |
 | H8 · Физическая квалификация | 🔒 Ожидает H7 | HIL, RF, thermal, power, safety и endurance evidence | Concurrent nRF modes, quiet interfaces, coexistence, VNA, watchdog и single-fault tests проходят |
@@ -246,7 +247,7 @@
 20. ✅ [`H4-R2.3`](h4-r2-acceptance.ru.md): опубликовать глобальный двуязычный joined gate без противоречий и передать все 51 physical-остаток.
 21. ✅ [`H5.0.3-R1`](h5-r1-acceptance.ru.md): сохранить историческое evidence 210 маршрутов / 1 050 установок, owner final assembly и точные 11-мм упоры `Ettinger 007.02.611`.
 22. ✅ [`H5-R2.1`](h5-r2-current-route.ru.md): перепроверить все 249 текущих закупаемых групп / 1 216 изделий без неназначенных маршрутов и явно вынести один order-time sourcing gate `WBC16-1TLC`.
-23. ▶ `H6.0.1-R1`: разместить и развести обе PCBA, зафиксировать стенки корпуса и точную длину M2.5 nylon-винтов, затем выпустить quoteable Gerber/BOM/CPL.
+23. ▶ [`H6.0.1-R1`](h6-r2-exact-placement.ru.md): размещение точных footprints проходит для 1 208/1 208 позиций без жёстких коллизий; до трассировки и quoteable Gerber/BOM/CPL зафиксировать стенки корпуса, сервисные петли кабелей и точную геометрию нейлоновых винтов M2.5/фиксаторов.
 
 H5-R2.1 актуален и проведён ревью: у всех 249 закупаемых групп / 1 216 изделий
 есть контролируемые маршруты, а для `WBC16-1TLC` явно оставлен один order-time

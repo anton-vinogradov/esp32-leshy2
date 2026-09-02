@@ -4,6 +4,25 @@
   "baseline": "R2",
   "status": "in_progress",
   "current_substep": "H6.0.1-R1",
+  "current_evidence": {
+    "exact_footprint_placement": "pass",
+    "report": "docs/h6-r2-exact-placement.md",
+    "audit": "hardware/layout/generated/H6-R2-placement-audit.json",
+    "native_boards": [
+      "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
+      "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb"
+    ],
+    "placed_instances": 1208,
+    "hard_conflicts": 0,
+    "unplaced_instances": 0,
+    "routing_started": false,
+    "remaining_before_substep_exit": [
+      "enclosure capture lips and anti-shear datums",
+      "front/rear wall bearings",
+      "exact nylon screw length and serviceable retention",
+      "relaxed microcoax service loops and enclosure clearance"
+    ]
+  },
   "objective": "Produce two routed, mechanically coherent and quoteable R2-EVT1 PCBAs without changing the reviewed H0-H5 functional, safety or exact-component boundary.",
   "accepted_inputs": {
     "physical_design": "H1-R2.38",

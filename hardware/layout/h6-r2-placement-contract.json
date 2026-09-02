@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "id": "L2-H6-R2-PLACEMENT-001",
+  "marker": "H6.0.1-R1",
+  "status": "in_progress",
+  "purpose": "Materialize both reviewed R2 schematics as native six-layer KiCad boards and replace the illustrative H1 rectangles with exact-footprint placement evidence.",
+  "inputs": {
+    "placement": "hardware/product-design/h1-r2-placement.json",
+    "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
+    "instance_ledger": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
+    "net_ledger": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+    "symbol_library": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json"
+  },
+  "boards": {
+    "LESHY2-UI-R2": {
+      "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
+      "inner_face": "B.Cu",
+      "outer_face": "F.Cu",
+      "sheet_anchors_mm": {
+        "UI_10_S3_DISPLAY_TOUCH": [28.0, 31.0],
+        "UI_11_STORAGE_CONTROLS_INDICATORS": [37.5, 92.0],
+        "UI_20_C5_WIFI_IR_SERVICE": [59.0, 49.0],
+        "UI_30_HUB_RP_CORE_SERVICE": [40.0, 82.0],
+        "UI_31_NRF24_X3_TX_EVIDENCE": [37.5, 56.0],
+        "UI_40_INTERBOARD_M1": [37.5, 122.0],
+        "UI_50_FRONT_POWER_SAFETY": [37.5, 108.0]
+      }
+    },
+    "LESHY2-RF-R2": {
+      "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
+      "inner_face": "B.Cu",
+      "outer_face": "F.Cu",
+      "sheet_anchors_mm": {
+        "RF_01_USB_PD_CHARGE": [57.0, 137.0],
+        "RF_02_PACK_SAFETY_AON": [15.0, 79.0],
+        "RF_03_MAIN_RAILS_DOMAIN_GATES": [38.0, 76.0],
+        "RF_10_RP2354_CORE_SERVICE": [60.0, 103.0],
+        "RF_20_CC1101_VOICE_TX": [52.0, 39.0],
+        "RF_21_BROADCAST_AIRBAND_RX": [18.0, 18.0],
+        "RF_22_AUDIO_CODEC_IO": [59.0, 74.0],
+        "RF_30_U214_U219_M5_EXT": [24.0, 35.0],
+        "RF_31_REAR_CONTROLS": [65.0, 58.0],
+        "RF_40_INTERBOARD_M1": [37.5, 122.0],
+        "RF_50_TX_SAFETY_EVIDENCE": [35.0, 104.0]
+      }
+    }
+  },
+  "board": {
+    "width_mm": 75.0,
+    "height_mm": 150.0,
+    "thickness_mm": 1.6,
+    "corner_radius_mm": 2.0,
+    "copper_layers": 6,
+    "layer_intent": [
+      "F.Cu: outer-face components, short local signals and RF launches",
+      "In1.Cu: uninterrupted ground reference",
+      "In2.Cu: controlled internal signals and low-current distribution",
+      "In3.Cu: power distribution and low-speed signals",
+      "In4.Cu: uninterrupted ground reference",
+      "B.Cu: inner-face components, short local signals and RF routes"
+    ],
+    "factory_stack_candidate": {
+      "manufacturer": "JLCPCB",
+      "name": "JLC3313 6-layer impedance-control stackup",
+      "finished_thickness_mm": 1.6,
+      "outer_copper_mm": 0.035,
+      "inner_copper_mm": 0.0152,
+      "outer_prepreg": "3313 x1, 0.0994 mm nominal",
+      "inner_prepreg": "2116 x1, 0.1088 mm nominal",
+      "core_each_mm": 0.35,
+      "source": "https://jlcpcb.com/impedance",
+      "selection_status": "placement-time candidate; H6.0.4/H6.0.5 bind exact trace geometry and order-time calculator values"
+    },
+    "minimum_courtyard_gap_mm": 0.10,
+    "packing_grid_mm": 0.25,
+    "ordinary_edge_clearance_mm": 0.25
+  },
+  "mechanical": {
+    "mounting_holes": {
+      "diameter_mm": 2.7,
+      "head_keepout_radius_mm": 4.0,
+      "centres_mm": [[5.0, 11.0], [70.0, 11.0], [5.0, 145.0], [70.0, 145.0]]
+    },
+    "display_slot": {
+      "board": "LESHY2-UI-R2",
+      "bbox_mm": {"x": [24.0, 51.0], "y": [31.5, 32.7]},
+      "end_radius_mm": 0.6,
+      "edge_layer": "Edge.Cuts"
+    },
+    "display_bed": {
+      "panel_bbox_mm": {"x": [9.23, 65.77], "y": [19.00, 103.96]},
+      "psa_bbox_mm": {"x": [12.10, 62.90], "y": [52.96, 103.76]},
+      "tail_direction": "toward board -Y / antenna edge",
+      "minimum_relaxed_slack_mm": 5.0
+    },
+    "rear_battery_holder": {
+      "instance": "pack_holder",
+      "side": "F.Cu",
+      "centre_mm": [37.49, 85.0],
+      "rotation_deg": 90.0
+    },
+    "u219_pickup_loop": {
+      "instance": "u219_nfc_pickup_loop",
+      "side": "F.Cu",
+      "bbox_mm": {"x": [1.5, 73.5], "y": [17.8, 40.2]}
+    }
+  },
+  "antenna_ports": {
+    "LESHY2-UI-R2": {
+      "nrf0_external_sma": [14.0, 0.0],
+      "s3_external_rp_sma": [25.75, 0.0],
+      "nrf1_external_sma": [37.5, 0.0],
+      "c5_external_rp_sma": [49.25, 0.0],
+      "nrf2_external_sma": [61.0, 0.0]
+    },
+    "LESHY2-RF-R2": {
+      "receiver_fmsw_external_sma": [14.0, 0.0],
+      "receiver_amlw_external_sma": [25.75, 0.0],
+      "cc_external_sma": [37.5, 0.0],
+      "voice_external_sma": [49.25, 0.0],
+      "voice_v_external_sma": [61.0, 0.0]
+    }
+  },
+  "placement_overrides": {
+    "display_connector": {"frame": "ui-inner", "centre_mm": [37.5, 35.4], "rotation_deg": 0.0, "reason": "display and complete FPC path move 8.50 mm away from the exact SMA courtyards, leaving a readable antenna-silkscreen strip without changing their relative geometry"},
+    "encoder": {"frame": "rear-outer", "centre_mm": [66.0, 50.5], "rotation_deg": 90.0, "reason": "rotate the exact EC11E land pattern around the unchanged user axis to retain 0.91 mm holder-courtyard clearance and keep the complete footprint inside the PCB"},
+    "ui_switch_f1": {"frame": "front-outer", "centre_mm": [4.6, 22.5], "rotation_deg": 90.0, "reason": "rotate the exact B3S land pattern clear of the display bed"},
+    "ui_switch_f2": {"frame": "front-outer", "centre_mm": [4.6, 36.0], "rotation_deg": 90.0, "reason": "rotate the exact B3S land pattern clear of the display bed"},
+    "ui_switch_f3": {"frame": "front-outer", "centre_mm": [4.6, 49.5], "rotation_deg": 90.0, "reason": "rotate the exact B3S land pattern clear of the display bed"},
+    "ui_switch_f4": {"frame": "front-outer", "centre_mm": [4.6, 63.0], "rotation_deg": 90.0, "reason": "rotate the exact B3S land pattern clear of the display bed"},
+    "ui_switch_f5": {"frame": "front-outer", "centre_mm": [70.4, 22.5], "rotation_deg": 90.0, "reason": "rotate the exact B3S land pattern clear of the display bed"},
+    "ui_switch_f6": {"frame": "front-outer", "centre_mm": [70.4, 36.0], "rotation_deg": 90.0, "reason": "rotate the exact B3S land pattern clear of the display bed"},
+    "ui_switch_f7": {"frame": "front-outer", "centre_mm": [70.4, 49.5], "rotation_deg": 90.0, "reason": "rotate the exact B3S land pattern clear of the display bed"},
+    "ui_switch_f8": {"frame": "front-outer", "centre_mm": [70.4, 63.0], "rotation_deg": 90.0, "reason": "rotate the exact B3S land pattern clear of the display bed"},
+    "ui_dpad_left": {"frame": "front-outer", "centre_mm": [27.0, 132.4], "rotation_deg": 0.0, "reason": "increase exact B3S courtyard pitch"},
+    "ui_dpad_ok": {"frame": "front-outer", "centre_mm": [37.5, 132.4], "rotation_deg": 0.0, "reason": "centre datum retained"},
+    "ui_dpad_right": {"frame": "front-outer", "centre_mm": [48.0, 132.4], "rotation_deg": 0.0, "reason": "increase exact B3S courtyard pitch"},
+    "ui_dpad_up": {"frame": "front-outer", "centre_mm": [37.5, 121.9], "rotation_deg": 0.0, "reason": "increase exact B3S courtyard pitch"},
+    "ui_dpad_down": {"frame": "front-outer", "centre_mm": [37.5, 142.9], "rotation_deg": 0.0, "reason": "increase exact B3S courtyard pitch"}
+  },
+  "instance_aliases": {
+    "hub_rp_service_usb_connector": "hub_service_usb_connector",
+    "hub_rp_dbg_header": "hub_dbg_header",
+    "hub_rp_reset_button": "hub_reset_button",
+    "hub_rp_boot_button": "hub_boot_button",
+    "rf_rp": "rp",
+    "rf_rp_service_usb_connector": "rp_service_usb_connector",
+    "rf_rp_dbg_header": "rp_dbg_header",
+    "rf_rp_reset_button": "rp_reset_button",
+    "rf_rp_boot_button": "rp_boot_button",
+    "air_lna": "airband_lna",
+    "air_mixer": "airband_mixer",
+    "air_path_selector": "airband_selector",
+    "air_lo": "airband_lo"
+  },
+  "placement_policy": {
+    "hard_locked": [
+      "display_connector",
+      "m1_ui_plug",
+      "m1_rf_receptacle",
+      "pack_holder",
+      "u214_connector",
+      "encoder",
+      "ptt_switch",
+      "product_usb_connector",
+      "c5_service_usb_connector",
+      "hub_rp_service_usb_connector",
+      "rf_rp_service_usb_connector",
+      "ui_dpad_down",
+      "ui_dpad_left",
+      "ui_dpad_ok",
+      "ui_dpad_right",
+      "ui_dpad_up",
+      "ui_switch_back",
+      "ui_switch_f1",
+      "ui_switch_f2",
+      "ui_switch_f3",
+      "ui_switch_f4",
+      "ui_switch_f5",
+      "ui_switch_f6",
+      "ui_switch_f7",
+      "ui_switch_f8",
+      "ui_switch_opt"
+    ],
+    "edge_anchor_names": ["_external_sma", "_service_usb_connector", "product_usb_connector"],
+    "unplaced_default": "B.Cu inner face",
+    "automatic_seed": "weighted centroid of already placed low-fanout net neighbours, else sheet anchor",
+    "automatic_search": "nearest collision-free 0/90-degree courtyard placement on the contract grid"
+  },
+  "authorization": {
+    "placement_and_board_file_generation": true,
+    "routing": false,
+    "production_output": false,
+    "purchase": false,
+    "fabrication": false
+  }
+}

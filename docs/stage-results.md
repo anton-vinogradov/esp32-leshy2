@@ -75,8 +75,8 @@ The former G2F/H2/KiCad result is historical single-RP R1 evidence. All three
 new R2 electrical prerequisites, the native source/sheet/component inventory,
 the exact symbol/contact/footprint ledger and the 4,306-pin native project
 reconciliation are reviewed. Two native KiCad projects now pass zero-finding
-ERC; cross-sheet and HW↔FW reconciliation passes. Placement/routing have
-not started.
+ERC; cross-sheet and HW↔FW reconciliation passes. At H2 closure,
+placement/routing had not started; the current H6 status is recorded below.
 
 Exact current checklist:
 
@@ -184,6 +184,14 @@ recheck remain immediate pre-order gates.
 ## H6 · KiCad placement, routing and release candidate
 
 **Status:** ▶️ current at **`H6.0.1-R1`**.
+
+The [current exact-footprint placement result](h6-r2-exact-placement.md) now
+contains two native six-layer KiCad boards. All 1,208/1,208 reviewed fitted
+instances and all 823 canonical nets are materialized; the machine audit reports
+zero hard courtyard conflicts, zero unplaced bodies and zero mapping errors.
+Generation is byte-reproducible and KiCad 10 parses both boards. Routing has not
+started: enclosure retention, exact screw geometry and cable service loops keep
+H6.0.1 open.
 
 Expected result: two routed boards with the exact panel connected directly to the UI-board ZIF, and one
 hash-locked fabrication package. H6 closes only after eight reviewable steps:

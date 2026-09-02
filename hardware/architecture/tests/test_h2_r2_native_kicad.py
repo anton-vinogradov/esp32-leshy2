@@ -98,7 +98,7 @@ class H2R2NativeKiCadTests(unittest.TestCase):
         )
         self.assertTrue(all("no Leshy2 PCB pad" in item["representation"] for item in external))
 
-    def test_three_projects_are_complete_and_have_no_pcb(self):
+    def test_two_schematic_projects_are_complete_and_h2_manifest_stops_before_pcb(self):
         expected = {
             "LESHY2-UI-R2": (9, 428),
             "LESHY2-RF-R2": (13, 780),
@@ -111,7 +111,9 @@ class H2R2NativeKiCadTests(unittest.TestCase):
             self.assertTrue((directory / f"{project_id}.kicad_sch").is_file())
             self.assertTrue((directory / "sym-lib-table").is_file())
             self.assertTrue((directory / "fp-lib-table").is_file())
-            self.assertFalse(list(directory.glob("*.kicad_pcb")))
+            # H2 itself did not authorize PCB generation. A later H6 board may
+            # now live beside the reviewed schematic without rewriting that
+            # historical phase boundary.
         self.assertEqual(0, self.manifest["summary"]["pcb_file_count"])
 
     def test_project_local_references_remain_unique(self):

@@ -142,6 +142,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/h5-r1-acceptance.ru.md",
         "docs/h5-r2-current-route.md",
         "docs/h5-r2-current-route.ru.md",
+        "docs/h6-r2-exact-placement.md",
+        "docs/h6-r2-exact-placement.ru.md",
         "docs/thermal-model.md",
         "docs/thermal-model.ru.md",
         "docs/single-fault-review.md",
@@ -1356,7 +1358,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertFalse(plan["authorization"]["fabrication"])
         self.assertFalse(plan["authorization"]["purchasing"])
 
-    def test_h2_1_kicad_scaffold_is_complete_and_contains_no_pcb(self):
+    def test_h2_1_kicad_scaffold_is_complete_and_its_projects_contain_no_pcb(self):
         import json
 
         manifest = json.loads(
@@ -1376,7 +1378,7 @@ class ProductSiteTests(unittest.TestCase):
             self.assertTrue((directory / project["root_file"]).is_file())
             self.assertTrue((directory / project["symbol_table"]).is_file())
             self.assertTrue((directory / project["footprint_table"]).is_file())
-        self.assertEqual([], list((REPO_ROOT / "hardware/ecad").rglob("*.kicad_pcb")))
+            self.assertEqual([], list(directory.glob("*.kicad_pcb")))
 
     def test_h2_2_1_ui_root_hierarchy_is_complete_and_current(self):
         import json

@@ -39,6 +39,11 @@
 > и двенадцать pass/fail rules. [H3-R2.1.1](docs/power-state-register.ru.md) провёл ревью всех 2 266 разрешённых состояний R2;
 > [H3-R2.1.2](docs/power-load-binding.ru.md) связывает все нагрузки без скрытого aggregate. [H3-R2.1.3](docs/power-rail-margins.ru.md) проводит ревью 224 проходящих профилей шин. [H3-R2.1.4](docs/power-source-margins.ru.md) назначает владельцев всем 75 source/pack-строкам и безопасно допускает все 2 266 состояний. Полные [проверки H3](docs/h3-r2-acceptance.ru.md) проведены ревью без mismatch и открытого аналитического finding; 51 physical-only строка остаётся назначенной H5/H6/H8. [H4-R2.0.1](docs/h4-r2-input-freeze.ru.md) зафиксировал 24 точных inputs. [Диагностика H4](docs/h4-r2-contract-reconciliation.ru.md) нашла один назначенный пробел генерации 38 BSP-строк; [исправление H4-R2.2](docs/h4-r2-correction-closure.ru.md) восстановило 173/173 строки и повторно квалифицировало все 12 target-сборок. [Глобальный итог H4-R2](docs/h4-r2-acceptance.ru.md) проведён ревью без междоменных противоречий. Исторический [итог H5-R1](docs/h5-r1-acceptance.ru.md) дополнен [актуальной перепроверкой H5-R2](docs/h5-r2-current-route.ru.md): все 249 закупаемых групп / 1 216 изделий имеют контролируемые маршруты, а `WBC16-1TLC` после обнуления склада JLCPCB вынесен в явный order-time sourcing gate. Сейчас выполняется H6.0.1-R1: точная длина винтов следует из стенок корпуса, а реальная PCBA-цена — из Gerber/BOM/CPL. Заказ заблокирован.
 
+> **Evidence размещения H6:** [текущий результат с точными footprints](docs/h6-r2-exact-placement.ru.md)
+> материализует обе нативные шестислойные платы и размещает все 1 208/1 208
+> устанавливаемых экземпляров без жёстких courtyard-коллизий и потерь.
+> Трассировка не начиналась; H6.0.1 остаётся открытым до фиксации корпуса и винтов.
+
 > **Authority-gate R2:** текущие H0/H1 содержат шесть вычислительных доменов и
 > два `SC1512-A4`: передний Hub RP и задний RF RP. Сохранённые G2F/H2/KiCad —
 > историческое single-RP evidence R1, а не authority текущего R2. Оно не разрешает
@@ -128,7 +133,7 @@ VHF/UHF voice, broadcast/Airband, аудио, M5 и взаимоисключаю
 | H3 · Виртуальная электрическая проверка | ✅ Проведено ревью · `H3-R2.7` | [Двуязычный итог фазы](docs/h3-r2-acceptance.ru.md) · [реестр физических evidence](docs/physical-evidence-register-r2.ru.md) · [страница этапов](docs/stage-results.ru.md#h3) |
 | H4 · Совместный pre-layout gate железа и прошивки | ✅ Проведено ревью · `H4-R2.3` | [глобальный итог](docs/h4-r2-acceptance.ru.md) · [исправление BSP](docs/h4-r2-correction-closure.ru.md) · [страница этапов](docs/stage-results.ru.md#h4) |
 | H5 · Компоненты и фабричные evidence | ✅ Проведено ревью актуальных R2-маршрутов · `H5-R2.1` | [Актуальный итог R2](docs/h5-r2-current-route.ru.md) · [исторический H5-R1](docs/h5-r1-acceptance.ru.md) · [страница этапов](docs/stage-results.ru.md#h5) |
-| **H6 · Размещение, трассировка и release candidate в KiCad** | **▶ Сейчас · `H6.0.1-R1`** | [Страница этапов](docs/stage-results.ru.md#h6) · [машинный checklist](hardware/verification/h6-layout-release-plan.json) |
+| **H6 · Размещение, трассировка и release candidate в KiCad** | **▶ Сейчас · `H6.0.1-R1`** | [Прогресс точного размещения](docs/h6-r2-exact-placement.ru.md) · [страница этапов](docs/stage-results.ru.md#h6) · [машинный checklist](hardware/verification/h6-layout-release-plan.json) |
 | F-PO · Допуск первого экземпляра | 🔒 Ожидает финальные H2/H6 и firmware R2 | [Страница этапов](docs/stage-results.ru.md#f-po) |
 | H7 · Печать прототипа и bring-up | 🔒 Ожидает H6, F-PO, immutable release и одобрение exact-one quote | [Страница этапов](docs/stage-results.ru.md#h7) |
 | H8 · Физическая квалификация | 🔒 Ожидает H7 | [Страница этапов](docs/stage-results.ru.md#h8) |
@@ -181,7 +186,7 @@ VHF/UHF voice, broadcast/Airband, аудио, M5 и взаимоисключаю
 - ✅ `H4-R2.2`: [полные BSP-карты C5, Pack и Safety](docs/h4-r2-correction-closure.ru.md) восстанавливают 173/173 строки; все 12 target-конфигураций, 60 artifacts, 16 maps и 16 size gates повторно проходят без warnings.
 - ✅ `H4-R2.3`: [двуязычный глобальный итог H4](docs/h4-r2-acceptance.ru.md) закрывает объединённый pre-layout gate без противоречий и передаёт все 51 physical-остаток в H5/H6/H8.
 - ✅ `H5-R2.1`: [актуальный двуязычный итог H5](docs/h5-r2-current-route.ru.md) перепроверяет 249 закупаемых групп / 1 216 изделий без неназначенных маршрутов; исторический [H5-R1](docs/h5-r1-acceptance.ru.md) сохранён как evidence, а `WBC16-1TLC` вынесен в явный order-time sourcing gate.
-- ▶ **Точная текущая точка `H6.0.1-R1`:** разместить и развести обе PCBA, зафиксировать стенки корпуса и точную длину M2.5 nylon-винтов, затем выпустить quoteable Gerber/BOM/CPL.
+- ▶ **Точная текущая точка `H6.0.1-R1`:** [нативное размещение](docs/h6-r2-exact-placement.ru.md) воспроизводимо для 1 208/1 208 позиций без жёстких коллизий; теперь надо зафиксировать захваты корпуса, сервисные петли кабелей и точную геометрию нейлоновых винтов M2.5/фиксаторов перед трассировкой.
 - 🔒 Закупка прототипа и печать не разрешены.
 
 Каждая закрытая глобальная фаза `H*` получает двуязычный понятный отчёт со
