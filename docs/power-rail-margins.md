@@ -2,7 +2,7 @@
 
 [Русский](power-rail-margins.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Load binding](power-load-binding.md)
 
-`H3-R2.1.3` is reviewed. All 612 fitted consumers and six external loads have exactly one current owner or an explicit source/pack deferral to H3-R2.1.4. There is no hidden miscellaneous line.
+`H3-R2.1.3` is reviewed. All 629 physical and external load lines have exactly one current owner or an explicit source/pack deferral to H3-R2.1.4. There is no hidden miscellaneous line.
 
 ## Current and protection
 

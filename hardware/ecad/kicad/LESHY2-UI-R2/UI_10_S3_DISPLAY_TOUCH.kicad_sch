@@ -42,7 +42,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "c5_boot_button, c5_reset_button, rp_boot_button, rp_reset_button, s3_boot_button, s3_reset_button"
+			(property "Description" "c5_boot_button;c5_reset_button;rp_boot_button;rp_reset_button;s3_boot_button;s3_reset_button"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -446,7 +446,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "two native-radio RP-SMA / два RP-SMA native-радио"
+			(property "Description" "c5_external_rp_sma;s3_external_rp_sma"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -922,7 +922,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "five native/module microcoax mates / пять микрокоаксиальных точек"
+			(property "Description" "c5_rf_board_connector;nrf0_rf_board_connector;nrf1_rf_board_connector;nrf2_rf_board_connector;s3_rf_board_connector"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1007,7 +1007,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "c5_detector_output_cap, ext_buck_ff_cap, main_ff_cap, s3_detector_output_cap, voice_ff_cap"
+			(property "Description" "c5_detector_output_cap;ext_buck_ff_cap;main_ff_cap;s3_detector_output_cap;voice_ff_cap"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1092,7 +1092,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "c5_rf_coupler, s3_rf_coupler"
+			(property "Description" "c5_rf_coupler;s3_rf_coupler"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1189,7 +1189,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "c5_detector_input_cap, s3_detector_input_cap"
+			(property "Description" "c5_detector_input_cap;s3_detector_input_cap"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1274,7 +1274,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "headphone_l_coupling0, headphone_l_coupling1, headphone_r_coupling0, headphone_r_coupling1, s3_supply_bulk, sd_power_bulk_cap"
+			(property "Description" "headphone_l_coupling0;headphone_l_coupling1;headphone_r_coupling0;headphone_r_coupling1;s3_supply_bulk;sd_power_bulk_cap"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1359,7 +1359,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "c5_service_usb_dm_series, c5_service_usb_dp_series, cc_band_v1_series, cc_band_v2_series, cc_csn_series, cc_gdo0_series, cc_gdo2_series, cc_sclk_series, cc_si_series, cc_so_series, headphone_l_series, headphone_r_series, nrf0_ce_series, nrf0_csn_series, nrf0_irq_series, nrf0_miso_series, nrf0_mosi_series, nrf0_sck_series, nrf1_ce_series, nrf1_csn_series, nrf1_irq_series, nrf1_miso_series, nrf1_mosi_series, nrf1_sck_series, nrf2_ce_series, nrf2_csn_series, nrf2_irq_series, nrf2_miso_series, nrf2_mosi_series, nrf2_sck_series, product_usb_dm_series, product_usb_dp_series, sd_cmd_series, sd_cs_series, sd_miso_series, sd_sck_series, u214_series_busy, u214_series_gps_rx, u214_series_gps_tx, u214_series_irq, u214_series_miso, u214_series_mosi, u214_series_nss, u214_series_rst, u214_series_sck"
+			(property "Description" "c5_service_usb_dm_series;c5_service_usb_dp_series;cc_band_v1_series;cc_band_v2_series;cc_csn_series;cc_gdo0_series;cc_gdo2_series;cc_sclk_series;cc_si_series;cc_so_series;headphone_l_series;headphone_r_series;nrf0_ce_series;nrf0_csn_series;nrf0_irq_series;nrf0_miso_series;nrf0_mosi_series;nrf0_sck_series;nrf1_ce_series;nrf1_csn_series;nrf1_irq_series;nrf1_miso_series;nrf1_mosi_series;nrf1_sck_series;nrf2_ce_series;nrf2_csn_series;nrf2_irq_series;nrf2_miso_series;nrf2_mosi_series;nrf2_sck_series;product_usb_dm_series;product_usb_dp_series;sd_cmd_series;sd_cs_series;sd_miso_series;sd_sck_series;u214_series_busy;u214_series_gps_rx;u214_series_gps_tx;u214_series_irq;u214_series_miso;u214_series_mosi;u214_series_nss;u214_series_rst;u214_series_sck"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1444,7 +1444,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "four internal recovery headers / четыре внутренних recovery-разъёма"
+			(property "Description" "c5_dbg_header;rp_dbg_header;s3_dbg_header"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1577,7 +1577,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "audio_capture_input_coupling, audio_capture_local_bias_cap, audio_capture_mic_coupling, audio_capture_rx_coupling, audio_vmid_cap, cc_evidence_hold_cap, cc_local_bulk_cap, cc_power_input_cap, codec_adc_n_coupling, codec_adc_p_coupling, codec_adcvref_cap, codec_dacvref_cap, codec_power_input_cap, codec_tx_coupling, codec_vmid_cap, ir_power_input_cap, mic_tx_coupling, nrf_evidence_hold_cap, nrf_power_input_cap, pack_diag_lockout_cap, product_usb_vpwr_cap, receiver_power_input_cap, s3_reset_delay_cap, sd_power_input_cap, si_audio_l_coupling, si_audio_r_coupling, slow_io_bulk_cap, speaker_amp_input_cap, speaker_input_n_coupling, speaker_input_p_coupling, voice_evidence_hold_cap, voice_io_power_input_cap, voice_io_power_output_cap, voice_mic_coupling, voice_rx_coupling, voice_v_evidence_hold_cap, voice_v_mic_coupling"
+			(property "Description" "audio_capture_input_coupling;audio_capture_local_bias_cap;audio_capture_mic_coupling;audio_capture_rx_coupling;audio_vmid_cap;cc_evidence_hold_cap;cc_local_bulk_cap;cc_power_input_cap;codec_adc_n_coupling;codec_adc_p_coupling;codec_adcvref_cap;codec_dacvref_cap;codec_power_input_cap;codec_tx_coupling;codec_vmid_cap;ir_power_input_cap;mic_tx_coupling;nrf_evidence_hold_cap;nrf_power_input_cap;pack_diag_lockout_cap;product_usb_vpwr_cap;receiver_power_input_cap;s3_reset_delay_cap;sd_power_input_cap;si_audio_l_coupling;si_audio_r_coupling;slow_io_bulk_cap;speaker_amp_input_cap;speaker_input_n_coupling;speaker_input_p_coupling;voice_evidence_hold_cap;voice_io_power_input_cap;voice_io_power_output_cap;voice_mic_coupling;voice_rx_coupling;voice_v_evidence_hold_cap;voice_v_mic_coupling"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1662,7 +1662,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "thirteen four-line ESD arrays / тринадцать четырёхканальных ESD-сборок"
+			(property "Description" "c5_dbg_esd;encoder_ptt_esd;headphone_esd;rear_control_esd;rp_dbg_esd;s3_dbg_esd;safety_control_esd;sd_esd_a;sd_esd_b;u214_esd_a;u214_esd_b;u214_esd_c;unit_esd"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1795,7 +1795,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "c5_tx_led_series, cc_tx_led_series, codec_i2c_scl_pullup, codec_i2c_sda_pullup, codec_tx_atten_bottom, ext_tx_led_series, fault_led_series, headset_mic_bias_res, ir_tx_led_series, microphone_bias_res, nrf0_tx_led_series, nrf1_tx_led_series, nrf2_tx_led_series, pd_local_scl_pullup, pd_local_sda_pullup, receiver_i2c_scl_pullup, receiver_i2c_sda_pullup, s3_tx_led_series, sys_i2c_scl_pullup, sys_i2c_sda_pullup, u214_i2c_host_scl_pullup, u214_i2c_host_sda_pullup, voice_tx_led_series"
+			(property "Description" "c5_tx_led_series;cc_tx_led_series;codec_i2c_scl_pullup;codec_i2c_sda_pullup;codec_tx_atten_bottom;ext_tx_led_series;fault_led_series;headset_mic_bias_res;ir_tx_led_series;microphone_bias_res;nrf0_tx_led_series;nrf1_tx_led_series;nrf2_tx_led_series;pd_local_scl_pullup;pd_local_sda_pullup;receiver_i2c_scl_pullup;receiver_i2c_sda_pullup;s3_tx_led_series;sys_i2c_scl_pullup;sys_i2c_sda_pullup;u214_i2c_host_scl_pullup;u214_i2c_host_sda_pullup;voice_tx_led_series"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1880,7 +1880,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "147 stocked 100-nF bypass capacitors / 147 складских развязывающих конденсаторов 100 нФ"
+			(property "Description" "aon_efuse_input_cap;audio_capture_buffer_bypass;audio_capture_selector_bypass;audio_rx_mux_bypass;audio_safe_gate_bypass;audio_speaker_selector_bypass;audio_tx_selector_bypass;backlight_efuse_input_cap;backlight_efuse_output_hf;c5_detector_bypass;c5_service_usb_switch_bypass;cc_avdd11_bypass;cc_avdd14_bypass;cc_avdd15_bypass;cc_avdd9_bypass;cc_backup_gate_bypass;cc_band_buffer_bypass;cc_dcoupl_cap;cc_detector_bypass;cc_dvdd_bypass;cc_host_buffer_bypass;cc_return_buffer_bypass;charger_pmid_hf_cap;charger_sys_hf_cap;charger_vbus_hf_cap;codec_avdd_bypass;codec_dvdd_bypass;codec_i2c_iso_bypass;codec_i2s_bclk_iso_bypass;codec_i2s_din_boot_gate_bypass;codec_i2s_din_iso_bypass;codec_i2s_dout_iso_bypass;codec_i2s_ws_iso_bypass;codec_pvdd_bypass;codec_supervisor_bypass;display_logic_hf_cap;evidence_cmp_a_bypass;evidence_cmp_b_bypass;evidence_cmp_voice_bypass;evidence_cmp_voice_v_bypass;evidence_main_isolator_bypass;evidence_mask_bypass;ext_branch_gate_bypass;ext_buck_hf_input_cap;ext_evidence_buffer_bypass;ext_request_or_bypass;headset_control_io_bypass;headset_mic_selector_bypass;ir_evidence_amp_bypass;ir_evidence_vref_cap;ir_power_output_bypass;ir_return_buffer_bypass;ir_safe_gate_bypass;main_hf_input_cap;nrf0_detector_bypass;nrf0_host_buffer_bypass;nrf0_module_hf_cap;nrf0_return_buffer_bypass;nrf1_detector_bypass;nrf1_host_buffer_bypass;nrf1_module_hf_cap;nrf1_return_buffer_bypass;nrf2_detector_bypass;nrf2_host_buffer_bypass;nrf2_module_hf_cap;nrf2_return_buffer_bypass;nrf_backup_gate_bypass;pack_admission_bypass;pack_batts_filter_cap;pack_cell1_filter_cap;pack_chg_gate_cap;pack_diag_timer_bypass;pack_dis_gate_cap;pack_in_bypass;pd_eeprom_bypass;power_command_filter;power_zone_temp_filter;ptt_filter_cap;receiver_i2c_iso_bypass;receiver_irq_iso_bypass;receiver_supervisor_bypass;receiver_vdd_bypass;rf_zone_temp_filter;rp_adc_avdd_bypass;rp_dvdd10_bypass;rp_dvdd32_bypass;rp_dvdd51_bypass;rp_iovdd15_bypass;rp_iovdd24_bypass;rp_iovdd29_bypass;rp_iovdd41_bypass;rp_iovdd50_bypass;rp_iovdd5_bypass;rp_iovdd60_bypass;rp_iovdd76_bypass;rp_qspi_iovdd_bypass;rp_service_usb_switch_bypass;rp_usb_otp_vdd_bypass;run_loop_filter;s3_detector_bypass;s3_supply_bypass;safe_c5_fault_reset_buffer_bypass;safe_c5_reset_buffer_bypass;safe_conditioner_bypass;safe_fault_reset_buffer_bypass;safe_gate_a_bypass;safe_gate_b_bypass;safe_latch_bypass;safe_ptt_or_bypass;safe_rearm_buffer_bypass;safe_reset_buffer_bypass;safe_run_fault_iso_bypass;safe_supervisor_bypass;safety_controller_bypass;safety_fault_request_iso_bypass;safety_s3_reset_iso_bypass;safety_watchdog_bypass;sd_detect_cap;sd_host_buffer_bypass;sd_miso_buffer_bypass;sd_power_hf_cap;slow_io_fault_sense_iso_bypass;slow_io_s3_evidence_iso_bypass;slow_io_vcci_bypass;slow_io_vccp_bypass;touch_irq_buffer_bypass;u214_host_buffer_a_bypass;u214_host_buffer_b_bypass;u214_i2c_iso_bypass;u214_return_buffer_bypass;u214_supervisor_bypass;ui_matrix_io_bypass;ui_zone_temp_filter;unit_signal_iso_vcca_bypass;unit_signal_iso_vccb_bypass;unit_supervisor_bypass;voice_audio_mux_bypass;voice_band_inverter_bypass;voice_band_io_bypass;voice_control_mux_a_bypass;voice_control_mux_b_bypass;voice_detector_bypass;voice_hf_input_cap;voice_hl_driver_bypass;voice_pd_gate_bypass;voice_supervisor_bypass;voice_v_detector_bypass"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1965,7 +1965,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "any_tx_aon_pullup, audio_arm_pulldown, audio_capture_sel_pulldown, audio_rx_sel_pulldown, audio_speaker_req_pulldown, audio_speaker_safe_pulldown, audio_tx_req_pulldown, audio_tx_safe_pulldown, backlight_fault_pullup, backlight_gate_pulldown, c5_boot_pullup, c5_dbg_id0_strap, c5_dbg_id1_strap, c5_detector_feedback_res, c5_detector_ground_res, c5_evidence_main_pullup, c5_evidence_output_pullup, c5_evidence_threshold_bottom, c5_gpio27_pullup, c5_reset_pullup, cc_band_v1_host_pulldown, cc_band_v2_host_pulldown, cc_evidence_hold_pulldown, cc_evidence_output_pullup, cc_evidence_threshold_bottom, cc_host_csn_pullup, cc_host_gdo0_pulldown, cc_host_gdo2_pulldown, cc_host_sclk_pulldown, cc_host_si_pulldown, cc_host_so_pulldown, cc_power_on_pulldown, cc_switch_a_v1_pulldown, cc_switch_a_v2_pulldown, cc_switch_b_v1_pulldown, cc_switch_b_v2_pulldown, charger_ce_pullup, charger_int_pullup, codec_ce_pullup, codec_power_on_pulldown, display_reset_pulldown, evidence_mask_p12_pulldown, evidence_mask_p13_pulldown, evidence_mask_p14_pulldown, evidence_mask_p15_pulldown, evidence_mask_p16_pulldown, evidence_mask_p17_pulldown, evidence_mask_scl_pullup, evidence_mask_sda_pullup, ext_any_req_pulldown, ext_en_pulldown, ext_evidence_input_pullup, ext_evidence_output_pullup, ext_pg_pullup, fault_assert_pullup, headphone_tip_detect_pullup, headset_detect_series, ir_carrier_host_pullup, ir_demod_host_pullup, ir_evidence_main_pullup, ir_evidence_output_pullup, ir_evidence_vref_bottom, ir_power_on_pulldown, ir_tx_carrier_pulldown, ir_tx_gate_pulldown, lcd_host_cs_pullup, nrf0_evidence_output_pullup, nrf0_evidence_threshold_bottom, nrf0_host_ce_pulldown, nrf0_host_csn_pullup, nrf0_host_irq_pullup, nrf0_host_miso_pulldown, nrf0_host_mosi_pulldown, nrf0_host_sck_pulldown, nrf0_module_ce_pulldown, nrf0_module_csn_pullup, nrf0_module_irq_pullup, nrf0_module_miso_pulldown, nrf0_module_mosi_pulldown, nrf0_module_sck_pulldown, nrf1_evidence_output_pullup, nrf1_evidence_threshold_bottom, nrf1_host_ce_pulldown, nrf1_host_csn_pullup, nrf1_host_irq_pullup, nrf1_host_miso_pulldown, nrf1_host_mosi_pulldown, nrf1_host_sck_pulldown, nrf1_module_ce_pulldown, nrf1_module_csn_pullup, nrf1_module_irq_pullup, nrf1_module_miso_pulldown, nrf1_module_mosi_pulldown, nrf1_module_sck_pulldown, nrf2_evidence_output_pullup, nrf2_evidence_threshold_bottom, nrf2_host_ce_pulldown, nrf2_host_csn_pullup, nrf2_host_irq_pullup, nrf2_host_miso_pulldown, nrf2_host_mosi_pulldown, nrf2_host_sck_pulldown, nrf2_module_ce_pulldown, nrf2_module_csn_pullup, nrf2_module_irq_pullup, nrf2_module_miso_pulldown, nrf2_module_mosi_pulldown, nrf2_module_sck_pulldown, nrf_evidence_hold_pulldown, nrf_power_on_pulldown, pack_alrt_pullup, pack_diag_gate_pulldown, pack_diag_trigger_pulldown, pack_gauge_scl_pullup, pack_gauge_sda_pullup, pack_hold_pullup, pack_hold_release_pulldown, pack_irq_gate_pulldown, pack_pfail_pullup, pd_eeprom_wp_pullup, power_fault_pullup, power_zone_temp_pullup, product_usb_fault_pullup, ptt_pullup, receiver_irq_pullup, receiver_power_on_pulldown, receiver_senb_pulldown, rf_zone_temp_pullup, rp_any_tx_main_pullup, rp_boot_pullup, rp_dbg_id0_strap, rp_dbg_id1_strap, rp_reset_pullup, run_loop_pullup, s3_boot_pullup, s3_dbg_id0_strap, s3_dbg_id1_strap, s3_detector_feedback_res, s3_detector_ground_res, s3_evidence_output_pullup, s3_evidence_threshold_bottom, s3_reset_gate_pullup, s3_reset_pullup, safe_c5_reset_gate_pullup, safe_latch_d_pullup, safe_por_pullup, safe_reset_gate_pullup, safety_fault_request_pulldown, safety_watchdog_mr_pullup, safety_watchdog_wdi_pulldown, safety_watchdog_wdo_pullup, sd_card_cmd_pullup, sd_card_dat0_pullup, sd_card_dat1_pullup, sd_card_dat2_pullup, sd_card_dat3_pullup, sd_detect_pullup, sd_host_cs_pullup, sd_host_d0_pulldown, sd_host_d1_pullup, sd_host_sck_pulldown, sd_on_pulldown, si_audio_l_sum, si_audio_r_sum, slow_io_fault_sense_pullup, slow_io_reset_pullup, slow_io_s3_evidence_pullup, speaker_amp_enable_pulldown, sys_int_pullup, touch_irq_pullup, touch_reset_pulldown, u214_req_pulldown, u214_supervisor_pullup, ui_input_down_pullup, ui_input_left_pullup, ui_input_ok_pullup, ui_input_right_pullup, ui_input_up_pullup, ui_zone_temp_pullup, unit_req_pulldown, unit_signal_iso_oe_pulldown, unit_supervisor_pullup, voice_band_p1_pulldown, voice_band_p2_pulldown, voice_band_p3_pulldown, voice_band_p4_pulldown, voice_band_p5_pulldown, voice_band_p6_pulldown, voice_band_p7_pulldown, voice_band_select_pulldown, voice_efuse_en_pullup, voice_en_pulldown, voice_evidence_hold_pulldown, voice_evidence_output_pullup, voice_evidence_threshold_bottom, voice_hl_req_pulldown, voice_pg_pullup, voice_ptt_pullup, voice_rx_series, voice_supervisor_pullup, voice_v_evidence_hold_pulldown, voice_v_evidence_threshold_bottom, voice_v_ptt_pullup"
+			(property "Description" "any_tx_aon_pullup;audio_arm_pulldown;audio_capture_sel_pulldown;audio_rx_sel_pulldown;audio_speaker_req_pulldown;audio_speaker_safe_pulldown;audio_tx_req_pulldown;audio_tx_safe_pulldown;backlight_fault_pullup;backlight_gate_pulldown;c5_boot_pullup;c5_dbg_id0_strap;c5_dbg_id1_strap;c5_detector_feedback_res;c5_detector_ground_res;c5_evidence_main_pullup;c5_evidence_output_pullup;c5_evidence_threshold_bottom;c5_gpio27_pullup;c5_reset_pullup;cc_band_v1_host_pulldown;cc_band_v2_host_pulldown;cc_evidence_hold_pulldown;cc_evidence_output_pullup;cc_evidence_threshold_bottom;cc_host_csn_pullup;cc_host_gdo0_pulldown;cc_host_gdo2_pulldown;cc_host_sclk_pulldown;cc_host_si_pulldown;cc_host_so_pulldown;cc_power_on_pulldown;cc_switch_a_v1_pulldown;cc_switch_a_v2_pulldown;cc_switch_b_v1_pulldown;cc_switch_b_v2_pulldown;charger_ce_pullup;charger_int_pullup;codec_ce_pullup;codec_power_on_pulldown;display_reset_pulldown;evidence_mask_p12_pulldown;evidence_mask_p13_pulldown;evidence_mask_p14_pulldown;evidence_mask_p15_pulldown;evidence_mask_p16_pulldown;evidence_mask_p17_pulldown;evidence_mask_scl_pullup;evidence_mask_sda_pullup;ext_any_req_pulldown;ext_en_pulldown;ext_evidence_input_pullup;ext_evidence_output_pullup;ext_pg_pullup;fault_assert_pullup;headphone_tip_detect_pullup;headset_detect_series;ir_carrier_host_pullup;ir_demod_host_pullup;ir_evidence_main_pullup;ir_evidence_output_pullup;ir_evidence_vref_bottom;ir_power_on_pulldown;ir_tx_carrier_pulldown;ir_tx_gate_pulldown;lcd_host_cs_pullup;nrf0_evidence_output_pullup;nrf0_evidence_threshold_bottom;nrf0_host_ce_pulldown;nrf0_host_csn_pullup;nrf0_host_irq_pullup;nrf0_host_miso_pulldown;nrf0_host_mosi_pulldown;nrf0_host_sck_pulldown;nrf0_module_ce_pulldown;nrf0_module_csn_pullup;nrf0_module_irq_pullup;nrf0_module_miso_pulldown;nrf0_module_mosi_pulldown;nrf0_module_sck_pulldown;nrf1_evidence_output_pullup;nrf1_evidence_threshold_bottom;nrf1_host_ce_pulldown;nrf1_host_csn_pullup;nrf1_host_irq_pullup;nrf1_host_miso_pulldown;nrf1_host_mosi_pulldown;nrf1_host_sck_pulldown;nrf1_module_ce_pulldown;nrf1_module_csn_pullup;nrf1_module_irq_pullup;nrf1_module_miso_pulldown;nrf1_module_mosi_pulldown;nrf1_module_sck_pulldown;nrf2_evidence_output_pullup;nrf2_evidence_threshold_bottom;nrf2_host_ce_pulldown;nrf2_host_csn_pullup;nrf2_host_irq_pullup;nrf2_host_miso_pulldown;nrf2_host_mosi_pulldown;nrf2_host_sck_pulldown;nrf2_module_ce_pulldown;nrf2_module_csn_pullup;nrf2_module_irq_pullup;nrf2_module_miso_pulldown;nrf2_module_mosi_pulldown;nrf2_module_sck_pulldown;nrf_evidence_hold_pulldown;nrf_power_on_pulldown;pack_alrt_pullup;pack_diag_gate_pulldown;pack_diag_trigger_pulldown;pack_gauge_scl_pullup;pack_gauge_sda_pullup;pack_hold_pullup;pack_hold_release_pulldown;pack_irq_gate_pulldown;pack_pfail_pullup;pd_eeprom_wp_pullup;power_fault_pullup;power_zone_temp_pullup;product_usb_fault_pullup;ptt_pullup;receiver_irq_pullup;receiver_power_on_pulldown;receiver_senb_pulldown;rf_zone_temp_pullup;rp_any_tx_main_pullup;rp_boot_pullup;rp_dbg_id0_strap;rp_dbg_id1_strap;rp_reset_pullup;run_loop_pullup;s3_boot_pullup;s3_dbg_id0_strap;s3_dbg_id1_strap;s3_detector_feedback_res;s3_detector_ground_res;s3_evidence_output_pullup;s3_evidence_threshold_bottom;s3_reset_gate_pullup;s3_reset_pullup;safe_c5_reset_gate_pullup;safe_latch_d_pullup;safe_por_pullup;safe_reset_gate_pullup;safety_fault_request_pulldown;safety_watchdog_mr_pullup;safety_watchdog_wdi_pulldown;safety_watchdog_wdo_pullup;sd_card_cmd_pullup;sd_card_dat0_pullup;sd_card_dat1_pullup;sd_card_dat2_pullup;sd_card_dat3_pullup;sd_detect_pullup;sd_host_cs_pullup;sd_host_d0_pulldown;sd_host_d1_pullup;sd_host_sck_pulldown;sd_on_pulldown;si_audio_l_sum;si_audio_r_sum;slow_io_fault_sense_pullup;slow_io_reset_pullup;slow_io_s3_evidence_pullup;speaker_amp_enable_pulldown;sys_int_pullup;touch_irq_pullup;touch_reset_pulldown;u214_req_pulldown;u214_supervisor_pullup;ui_input_down_pullup;ui_input_left_pullup;ui_input_ok_pullup;ui_input_right_pullup;ui_input_up_pullup;ui_zone_temp_pullup;unit_req_pulldown;unit_signal_iso_oe_pulldown;unit_supervisor_pullup;voice_band_p1_pulldown;voice_band_p2_pulldown;voice_band_p3_pulldown;voice_band_p4_pulldown;voice_band_p5_pulldown;voice_band_p6_pulldown;voice_band_p7_pulldown;voice_band_select_pulldown;voice_efuse_en_pullup;voice_en_pulldown;voice_evidence_hold_pulldown;voice_evidence_output_pullup;voice_evidence_threshold_bottom;voice_hl_req_pulldown;voice_pg_pullup;voice_ptt_pullup;voice_rx_series;voice_supervisor_pullup;voice_v_evidence_hold_pulldown;voice_v_evidence_threshold_bottom;voice_v_ptt_pullup"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2050,7 +2050,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "c5_dbg_boot_series, c5_dbg_reset_series, c5_dbg_vtref_series, ext_evidence_input_series, pack_pckp_res, rp_clock_series, rp_dbg_boot_series, rp_dbg_reset_series, rp_dbg_vtref_series, s3_dbg_boot_series, s3_dbg_reset_series, s3_dbg_vtref_series"
+			(property "Description" "c5_dbg_boot_series;c5_dbg_reset_series;c5_dbg_vtref_series;ext_evidence_input_series;pack_pckp_res;rp_clock_series;rp_dbg_boot_series;rp_dbg_reset_series;rp_dbg_vtref_series;s3_dbg_boot_series;s3_dbg_reset_series;s3_dbg_vtref_series"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2135,7 +2135,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "c5_dbg0_series, c5_dbg1_series, rp_dbg0_series, rp_dbg1_series, s3_dbg0_series, s3_dbg1_series"
+			(property "Description" "c5_dbg0_series;c5_dbg1_series;rp_dbg0_series;rp_dbg1_series;s3_dbg0_series;s3_dbg1_series"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2220,7 +2220,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "c5_rf_coupler_termination, nrf0_coupler_termination, nrf1_coupler_termination, nrf2_coupler_termination, s3_rf_coupler_termination"
+			(property "Description" "c5_rf_coupler_termination;nrf0_coupler_termination;nrf1_coupler_termination;nrf2_coupler_termination;s3_rf_coupler_termination"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3118,20 +3118,20 @@
 	(no_connect (at 624.84 81.28)
 		(uuid "f896c5ee-c30b-5359-b1e7-d4e79b2b2541")
 	)
-	(label "LCD_VDDI_3V3"
+	(label "3V3_MAIN"
 		(at 624.84 83.82 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "82e9c4f5-22aa-5676-a101-1b844479535b")
+		(uuid "985ae1ce-252d-5dcf-894b-b74afc22ff8e")
 	)
-	(label "LCD_VDDI_3V3"
+	(label "3V3_MAIN"
 		(at 624.84 86.36 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "c18e4c27-1055-5f27-9380-721f758383dc")
+		(uuid "4996c46a-53fe-5c30-8092-4433bc4ebf98")
 	)
-	(label "LCD_VCI_3V3"
+	(label "3V3_MAIN"
 		(at 624.84 88.90 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "03c81181-2c1e-54c7-a5ce-d6c81331dd57")
+		(uuid "ca5794df-cb4b-5b33-a830-2fe6055cfe5d")
 	)
 	(label "POWER_GROUND"
 		(at 624.84 91.44 180)

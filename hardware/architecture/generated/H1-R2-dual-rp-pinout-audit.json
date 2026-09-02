@@ -5,17 +5,17 @@
   "status": "pass_exact_dual_rp_working_authority",
   "authority": {
     "source": "hardware/architecture/h1-r2-dual-rp-pinout.json",
-    "source_sha256": "2805b468a903179e5450a097aec5e88f9d6d153f10cca41c2f7f73048a17069d",
+    "source_sha256": "28289ca9dcaf2c3af2b133c3fc09223a2737d764f5a9b6e075150d9aef15229a",
     "functional_source": "hardware/architecture/h0-r2-rebaseline.json",
-    "functional_source_sha256": "833970eca629e1ab9a6079d9f2a3d7078103a897195f1458479a95726b17fffc",
+    "functional_source_sha256": "e6f4e43ddf9c6839e233cfbb791f6f1ec4da82f1f9e49ea94ded632ca5822cdf",
     "c5_mux_source": "hardware/architecture/c5-sdio-service-mux-contract.json",
     "c5_mux_source_sha256": "4bd88ffed2e8ac0b5f6e8856d6ebc21e7cc29aa38045d4a10e068b870e51c7f3",
     "pack_safety_i2c_source": "hardware/architecture/pack-safety-i2c-boundary-contract.json",
     "pack_safety_i2c_source_sha256": "5460c97ab81e9f58c41a042a5f024f5f83e5913099e11743b9ad72414eb5782c",
     "u219_profile_source": "hardware/architecture/h1-r2-u219-cap.json",
-    "u219_profile_source_sha256": "01f01f750ceedaa9818b59968962a3484f4660057137e6ef43431a54b71c98fa",
+    "u219_profile_source_sha256": "ab14f5e4e9fbc2c360f44defdd45b8c16922ada108085239463aac1603cf7f2e",
     "device_register_source": "hardware/architecture/devices.json",
-    "device_register_source_sha256": "2caf023fb65a15be416b66686f7bcbd9ce199f8c8a55c4d37457782e73ceb6ef",
+    "device_register_source_sha256": "23b5799bc5334f9d02c13635c7f9e4f7503929795c669e98223fc37b95cc1c04",
     "r2_h2_authorized": false,
     "c5_electrical_join_status": "closed against C5-SDIO-SERVICE-MUX-1: exact module pads, fixed IO mux, FSUSB42 branch polarity, reset ownership and Hub-side signal order are joined.",
     "remaining_h2_gates": [],
@@ -29,8 +29,8 @@
     "domains": 2,
     "gpio_rows": 96,
     "m1_signal_bindings": 5,
-    "hub_gpio_used": 47,
-    "hub_gpio_reserve": 1,
+    "hub_gpio_used": 46,
+    "hub_gpio_reserve": 2,
     "rf_gpio_used": 43,
     "rf_gpio_reserve": 5,
     "hub_pio_used": 8,
@@ -42,9 +42,10 @@
     "role": "Front S3/C5/rear-RP fan-out, three independent nRF24 buses, microSD, Pack/Safety mailbox, LCD TE and backlight; no audio or broadcast ownership.",
     "gpio_budget": {
       "available": 48,
-      "used": 47,
-      "reserve": 1,
+      "used": 46,
+      "reserve": 2,
       "reserve_gpios": [
+        45,
         47
       ]
     },
@@ -411,11 +412,11 @@
       },
       {
         "gpio": 45,
-        "net": "LCD_TE",
-        "direction": "in",
-        "controller": "GPIO_IRQ",
-        "endpoint": "ER-TFT035IPS-6 ILI9488 TE",
-        "reset": "input; external pull-down while panel reset is asserted"
+        "net": "HUB_RESERVE_45",
+        "direction": "reserve",
+        "controller": "GPIO",
+        "endpoint": "uncommitted electrical reserve; no board connection because the accepted panel TE contact is deliberately open",
+        "reset": "input/high-Z; no external connection; DNP"
       },
       {
         "gpio": 46,

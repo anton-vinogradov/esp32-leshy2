@@ -6,25 +6,25 @@
   "sources": {
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "6bdbd40b6a2bf9d86e7e812c954a806710b2fe8be4eead592a92a1436829da4a"
+      "sha256": "58edf8e83979aa76246f501d6943d139a1683ef87b786e693af17046a5b847ee"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "2caf023fb65a15be416b66686f7bcbd9ce199f8c8a55c4d37457782e73ceb6ef"
+      "sha256": "23b5799bc5334f9d02c13635c7f9e4f7503929795c669e98223fc37b95cc1c04"
     }
   },
   "kicad_reference_version": "10.0.5",
   "summary": {
-    "board_component_group_count": 232,
-    "source_ledger_logical_contact_count": 1578,
-    "board_logical_contact_count": 1519,
-    "pcb_footprint_contact_count": 1516,
+    "board_component_group_count": 245,
+    "source_ledger_logical_contact_count": 1617,
+    "board_logical_contact_count": 1558,
+    "pcb_footprint_contact_count": 1555,
     "external_on_module_interface_count": 3,
-    "named_footprint_pad_count": 1536,
-    "footprint_pad_occurrence_count": 1588,
+    "named_footprint_pad_count": 1575,
+    "footprint_pad_occurrence_count": 1627,
     "mechanical_only_pad_occurrence_count": 6,
     "ignored_unnumbered_pad_occurrence_count": 91,
-    "new_exact_footprint_files_materialized": 3,
+    "new_exact_footprint_files_materialized": 7,
     "native_schematic_nets_created": 0,
     "unresolved_error_count": 0
   },
@@ -86,6 +86,46 @@
         0.76
       ],
       "row_center_span_mm": 4.57
+    },
+    "ti_tps566231p_rqfr": {
+      "footprint": "Leshy2_R2:Texas_RQF0009A_1.5x2.0mm",
+      "manufacturer_source": "Texas Instruments RQF0009A package drawing and land-pattern example 4225248/A",
+      "evidence_checked_at": "2026-09-02",
+      "positions": 9,
+      "body_mm": [
+        2.0,
+        1.5,
+        1.0
+      ]
+    },
+    "prodtech_pspmaa0605h_2r2m_anp": {
+      "footprint": "Leshy2_R2:PRODTech_PSPMAA0605H_7.1x6.6mm",
+      "manufacturer_source": "PROD Tech PSPMAA0605H exact manufacturer drawing and recommended pads",
+      "evidence_checked_at": "2026-09-02",
+      "positions": 2,
+      "body_mm": [
+        7.1,
+        6.6,
+        5.0
+      ]
+    },
+    "leshy2_nfc_pickup_loop_r2": {
+      "footprint": "Leshy2_R2:NFC_Pickup_Loop_R2",
+      "manufacturer_source": "H1-R2.38 fixed Leshy2 PCB-copper feature geometry",
+      "evidence_checked_at": "2026-09-02",
+      "positions": 2,
+      "reserve_mm": [
+        72.0,
+        22.4
+      ],
+      "routing_gate": "H6 selects the RF outer copper layer and routes the continuous weak pickup loop between the two fixed feed vias"
+    },
+    "leshy2_pcb_testpoint_pad_1mm_r2": {
+      "footprint": "Leshy2_R2:PCB_TestPoint_Pad_D1.0mm",
+      "manufacturer_source": "repository-controlled exposed copper diagnostic feature",
+      "evidence_checked_at": "2026-09-02",
+      "positions": 1,
+      "pad_diameter_mm": 1.0
     }
   },
   "groups": [
@@ -169,7 +209,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "abracon_abm8_272_t3",
@@ -251,7 +292,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "abracon_aota_b201610s3r3_101_t",
@@ -301,7 +343,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "adi_ad8314armz_reel",
@@ -447,7 +490,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "adi_hmc544aetr",
@@ -561,7 +605,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "adi_lt5560edd_trpbf",
@@ -723,7 +768,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "adi_ltc5532_es6_trmpbf",
@@ -837,7 +883,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "adi_max17320_g20_t",
@@ -1255,7 +1302,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "alps_ec11e18244au",
@@ -1361,7 +1409,8 @@
       "mechanical_only_pads": [
         "MP"
       ],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "alps_skrtlae010",
@@ -1434,7 +1483,8 @@
           "C1",
           "C2"
         ]
-      }
+      },
+      "bom_excluded": false
     },
     {
       "device_id": "bourns_crm2512_fx_20r0elf",
@@ -1484,7 +1534,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "cc1101rgpr",
@@ -1838,7 +1889,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ck_js102011scqn",
@@ -1904,7 +1956,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "coilcraft_wbc16_1tlc",
@@ -2018,7 +2071,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "coilcraft_wbc1_1tlc",
@@ -2132,7 +2186,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "diodes_2n7002dw_7_f",
@@ -2246,7 +2301,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "diodes_bat54_7_f",
@@ -2312,7 +2368,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "diodes_dmn2056u_7",
@@ -2378,7 +2435,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "diodes_mmbt3904_7_f",
@@ -2444,7 +2502,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "diodes_pam8302a_aycr",
@@ -2590,7 +2649,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ebyte_e01_ml01sp4",
@@ -2777,7 +2837,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "epson_q13fc13500005",
@@ -2827,7 +2888,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "esp32_c5_wroom_1u_n8r8",
@@ -3330,7 +3392,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "esp32_s3_wroom_1u_n16r8",
@@ -3996,7 +4059,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "everest_es8311_qfn20",
@@ -4350,7 +4414,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "fh_rs_06k47r0ft",
@@ -4400,7 +4465,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "fh_rs_06l2r70ft",
@@ -4450,7 +4516,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "gct_rfpc_sma31_fn_175_a",
@@ -4548,7 +4615,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "gct_rfpc_sma32_fn_175_a",
@@ -4646,7 +4714,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "gct_usb4105_gf_a",
@@ -4936,7 +5005,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "hirose_dm3at_sf_pejm5",
@@ -5130,7 +5200,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "hirose_fh34srj_50s_0_5sh_50",
@@ -5963,7 +6034,8 @@
         "MP1",
         "MP2"
       ],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "hirose_fx8c_80p_sv1_92",
@@ -7261,7 +7333,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "hirose_fx8c_80s_sv5_92",
@@ -8559,7 +8632,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "hirose_ufl_r_smt_1_10",
@@ -8609,7 +8683,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "infineon_bgs13sn8e6327xtsa1",
@@ -8755,7 +8830,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "jae_dx07s016ja1r1500",
@@ -9045,7 +9121,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "kemet_c0402c102k5ractu",
@@ -9095,7 +9172,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "kemet_c0402c330j5gactu",
@@ -9145,7 +9223,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "keystone_1048p",
@@ -9227,7 +9306,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "kyocera_avx_cp0603q5425entr",
@@ -9309,7 +9389,94 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
+    },
+    {
+      "device_id": "leshy2_nfc_pickup_loop_r2",
+      "mpn": "LESHY2-NFC-PICKUP-LOOP-R2",
+      "symbol_id": "Leshy2_R2:leshy2_nfc_pickup_loop_r2",
+      "footprint": "Leshy2_R2:NFC_Pickup_Loop_R2",
+      "footprint_source": "hardware/ecad/libraries/Leshy2_R2.pretty/NFC_Pickup_Loop_R2.kicad_mod",
+      "footprint_sha256": "9f7a1ca633332e2fb4438e0a4225a78d59299efc88ce0730d0dabd871645e2a2",
+      "logical_contact_count": 2,
+      "footprint_named_pad_count": 2,
+      "footprint_pad_occurrence_count": 2,
+      "ignored_unnumbered_pad_occurrence_count": 0,
+      "pad_inventory": {
+        "1": {
+          "occurrences": 1,
+          "types": [
+            "thru_hole"
+          ]
+        },
+        "2": {
+          "occurrences": 1,
+          "types": [
+            "thru_hole"
+          ]
+        }
+      },
+      "contacts": [
+        {
+          "contact": "END_P",
+          "role": "rf",
+          "physical": "1",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "1"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "END_N",
+          "role": "rf",
+          "physical": "2",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "2"
+          ],
+          "resolution": "exact_physical_pad_name"
+        }
+      ],
+      "mechanical_only_pads": [],
+      "shared_electrical_pads": {},
+      "bom_excluded": true
+    },
+    {
+      "device_id": "leshy2_pcb_testpoint_pad_1mm_r2",
+      "mpn": "LESHY2-PCB-TP-1MM-R2",
+      "symbol_id": "Leshy2_R2:leshy2_pcb_testpoint_pad_1mm_r2",
+      "footprint": "Leshy2_R2:PCB_TestPoint_Pad_D1.0mm",
+      "footprint_source": "hardware/ecad/libraries/Leshy2_R2.pretty/PCB_TestPoint_Pad_D1.0mm.kicad_mod",
+      "footprint_sha256": "1d542b339d8528bfe6884d51736737822b665a8ba74263b52c12ebfa6e5bb33e",
+      "logical_contact_count": 1,
+      "footprint_named_pad_count": 1,
+      "footprint_pad_occurrence_count": 1,
+      "ignored_unnumbered_pad_occurrence_count": 0,
+      "pad_inventory": {
+        "1": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        }
+      },
+      "contacts": [
+        {
+          "contact": "PROBE",
+          "role": "signal",
+          "physical": "1",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "1"
+          ],
+          "resolution": "exact_physical_pad_name"
+        }
+      ],
+      "mechanical_only_pads": [],
+      "shared_electrical_pads": {},
+      "bom_excluded": true
     },
     {
       "device_id": "liteon_ltst_c190kfkt",
@@ -9359,7 +9526,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "liteon_ltst_c190krkt",
@@ -9409,7 +9577,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "littelfuse_0451005_mrl",
@@ -9459,7 +9628,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "littelfuse_sesd0402x1un_0020_090",
@@ -9509,7 +9679,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "minicircuits_pga_103_plus",
@@ -9590,7 +9761,8 @@
           "GND_1",
           "GND_2"
         ]
-      }
+      },
+      "bom_excluded": false
     },
     {
       "device_id": "murata_blm18pg181sn1d",
@@ -9640,7 +9812,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gcm1555c1h121fa16d",
@@ -9690,7 +9863,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gcm1555c1h200fa16d",
@@ -9740,7 +9914,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h100jb01d",
@@ -9790,7 +9965,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h101jb01d",
@@ -9840,7 +10016,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h150jb01d",
@@ -9890,7 +10067,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h1r2bb01d",
@@ -9940,7 +10118,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h1r4wb01d",
@@ -9990,7 +10169,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h4r7bb01d",
@@ -10040,7 +10220,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h5r7wb01d",
@@ -10090,7 +10271,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h5r8wb01d",
@@ -10140,7 +10322,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h6r2db01d",
@@ -10190,7 +10373,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h8r0db01d",
@@ -10240,7 +10424,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1hr47bb01d",
@@ -10290,7 +10475,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1hr60bb01d",
@@ -10340,7 +10526,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm1555c1h102ja01d",
@@ -10390,7 +10577,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm1555c1h121ja01d",
@@ -10440,7 +10628,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm1555c1h220ja01d",
@@ -10490,7 +10679,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm1555c1h221ja01d",
@@ -10540,7 +10730,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm1555c1h390ja01d",
@@ -10590,7 +10781,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm155r71a474ke01d",
@@ -10640,7 +10832,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm155r71e473ka88d",
@@ -10690,7 +10883,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm155r71h103ka88d",
@@ -10740,7 +10934,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm155r71h472ka01d",
@@ -10790,7 +10985,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm188r60j106me47d",
@@ -10840,7 +11036,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm188r71e224ka88d",
@@ -10890,7 +11087,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm188r71e474ka12d",
@@ -10940,7 +11138,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm188z71a475me15d",
@@ -10990,7 +11189,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm21br60j226me39l",
@@ -11040,7 +11240,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm21br71e225ke11l",
@@ -11090,7 +11291,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm31c5c1h224je02l",
@@ -11140,7 +11342,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm31cr71a226ke15l",
@@ -11190,7 +11393,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm31cr71e106ma12l",
@@ -11240,7 +11444,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm32er71e226ke15l",
@@ -11290,7 +11495,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqg15hs10nj02d",
@@ -11340,7 +11546,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqg15hs15nj02d",
@@ -11390,7 +11597,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqg15hs2n2s02d",
@@ -11440,7 +11648,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqg15hs3n3s02d",
@@ -11490,7 +11699,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqg15hs3n6s02d",
@@ -11540,7 +11750,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqg15hs6n8j02d",
@@ -11590,7 +11801,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw15an12ng80d",
@@ -11640,7 +11852,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw15an47ng80d",
@@ -11690,7 +11903,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw15an56ng00d",
@@ -11740,7 +11954,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw2bas22ng00l",
@@ -11790,7 +12005,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw2bas47ng00l",
@@ -11840,7 +12056,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw2basr22g00l",
@@ -11890,7 +12107,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw2basr33g00l",
@@ -11940,7 +12158,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw2uasr56f00l",
@@ -11990,7 +12209,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "nexperia_74hc20pw_118",
@@ -12232,7 +12452,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "nexperia_74lvc126apw_118",
@@ -12474,7 +12695,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "nexperia_74lvc1g32gv_125",
@@ -12572,7 +12794,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "nexperia_74lvc2g126dp_125",
@@ -12718,7 +12941,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "nexperia_74lvc2g14gv_125",
@@ -12832,7 +13056,75 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
+    },
+    {
+      "device_id": "nexperia_bat54s_215",
+      "mpn": "BAT54S,215",
+      "symbol_id": "Leshy2_R2:nexperia_bat54s_215",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "footprint_source": "${KICAD10_FOOTPRINT_DIR}/Package_TO_SOT_SMD.pretty/SOT-23.kicad_mod",
+      "footprint_sha256": "0d88c86c1b6d8c1aae4aa8c09386264c089d4451a128b6ccd63ed253f4300b15",
+      "logical_contact_count": 3,
+      "footprint_named_pad_count": 3,
+      "footprint_pad_occurrence_count": 3,
+      "ignored_unnumbered_pad_occurrence_count": 0,
+      "pad_inventory": {
+        "1": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "2": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "3": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        }
+      },
+      "contacts": [
+        {
+          "contact": "A1",
+          "role": "analog",
+          "physical": "1",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "1"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "K2",
+          "role": "analog",
+          "physical": "2",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "2"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "K1_A2",
+          "role": "analog",
+          "physical": "3",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "3"
+          ],
+          "resolution": "exact_physical_pad_name"
+        }
+      ],
+      "mechanical_only_pads": [],
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "nexperia_pesd24vy1bsf",
@@ -12882,7 +13174,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "nicerf_sa818s_u_v18",
@@ -13188,7 +13481,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "nicerf_sa818s_v_v18",
@@ -13494,7 +13788,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "omron_b3s_1100p",
@@ -13592,7 +13887,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "onsemi_bat54alt1g",
@@ -13658,7 +13954,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "onsemi_bav70lt1g",
@@ -13724,7 +14021,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "onsemi_cat24c512wi_gt3",
@@ -13870,7 +14168,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "onsemi_fsusb42_mux",
@@ -14048,7 +14347,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "panasonic_erj_2rkf22r0x",
@@ -14098,7 +14398,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "panasonic_erj_2rkf27r0x",
@@ -14148,7 +14449,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "panasonic_erj_p08f10r0v",
@@ -14198,7 +14500,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "panasonic_erj_p08f49r9v",
@@ -14248,7 +14551,59 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
+    },
+    {
+      "device_id": "prodtech_pspmaa0605h_2r2m_anp",
+      "mpn": "PSPMAA0605H-2R2M-ANP",
+      "symbol_id": "Leshy2_R2:prodtech_pspmaa0605h_2r2m_anp",
+      "footprint": "Leshy2_R2:PRODTech_PSPMAA0605H_7.1x6.6mm",
+      "footprint_source": "hardware/ecad/libraries/Leshy2_R2.pretty/PRODTech_PSPMAA0605H_7.1x6.6mm.kicad_mod",
+      "footprint_sha256": "7aea07cf1e6f4f161ab7ae76e6251546afbb2c63d2c6c88c9e7d2a1796a1e856",
+      "logical_contact_count": 2,
+      "footprint_named_pad_count": 2,
+      "footprint_pad_occurrence_count": 2,
+      "ignored_unnumbered_pad_occurrence_count": 0,
+      "pad_inventory": {
+        "1": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "2": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        }
+      },
+      "contacts": [
+        {
+          "contact": "END_1",
+          "role": "power",
+          "physical": "1",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "1"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "END_2",
+          "role": "power",
+          "physical": "2",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "2"
+          ],
+          "resolution": "exact_physical_pad_name"
+        }
+      ],
+      "mechanical_only_pads": [],
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "pui_as02404po",
@@ -14298,7 +14653,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ralec_rtt023r00fth",
@@ -14348,7 +14704,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "rp2354b_a4",
@@ -15662,7 +16019,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "same_sky_cmej_0413_42_smt_tr",
@@ -15712,7 +16070,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "same_sky_sj_43504_smt_tr",
@@ -15826,7 +16185,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "samsung_cl05a105ka5nqnc",
@@ -15876,7 +16236,59 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
+    },
+    {
+      "device_id": "samsung_cl05b104kb5nnnc",
+      "mpn": "CL05B104KB5NNNC",
+      "symbol_id": "Leshy2_R2:samsung_cl05b104kb5nnnc",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "footprint_source": "${KICAD10_FOOTPRINT_DIR}/Capacitor_SMD.pretty/C_0402_1005Metric.kicad_mod",
+      "footprint_sha256": "0403382fc4583ed510b461b1fa4a36dfaec6f4c0d9b1a67e6b0027837a54e1b5",
+      "logical_contact_count": 2,
+      "footprint_named_pad_count": 2,
+      "footprint_pad_occurrence_count": 2,
+      "ignored_unnumbered_pad_occurrence_count": 0,
+      "pad_inventory": {
+        "1": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "2": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        }
+      },
+      "contacts": [
+        {
+          "contact": "END_1",
+          "role": "power",
+          "physical": "1",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "1"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "END_2",
+          "role": "power",
+          "physical": "2",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "2"
+          ],
+          "resolution": "exact_physical_pad_name"
+        }
+      ],
+      "mechanical_only_pads": [],
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "samsung_cl05b104ko5nnnc",
@@ -15926,7 +16338,59 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
+    },
+    {
+      "device_id": "samsung_cl10b105ko8nnnc",
+      "mpn": "CL10B105KO8NNNC",
+      "symbol_id": "Leshy2_R2:samsung_cl10b105ko8nnnc",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "footprint_source": "${KICAD10_FOOTPRINT_DIR}/Capacitor_SMD.pretty/C_0603_1608Metric.kicad_mod",
+      "footprint_sha256": "fe0dbfefbb181a0466f93a8de52d84ba7b00fcd9acdbb69575f4128a0af4e405",
+      "logical_contact_count": 2,
+      "footprint_named_pad_count": 2,
+      "footprint_pad_occurrence_count": 2,
+      "ignored_unnumbered_pad_occurrence_count": 0,
+      "pad_inventory": {
+        "1": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "2": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        }
+      },
+      "contacts": [
+        {
+          "contact": "END_1",
+          "role": "power",
+          "physical": "1",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "1"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "END_2",
+          "role": "power",
+          "physical": "2",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "2"
+          ],
+          "resolution": "exact_physical_pad_name"
+        }
+      ],
+      "mechanical_only_pads": [],
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "samtec_ftsh_105_01_l_dv_k_p_tr",
@@ -16104,7 +16568,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "samtec_hle_107_02_g_dv_pe_lc",
@@ -16346,7 +16811,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "seeed_1125r_smt_4p",
@@ -16428,7 +16894,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "skyworks_si4732_a10_gsr",
@@ -16702,7 +17169,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "skyworks_si5351a_b_gtr",
@@ -16880,7 +17348,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "sunlord_mwsa0503s_2r2mt",
@@ -16930,7 +17399,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "sunlord_mwsa0503s_3r3mt",
@@ -16980,7 +17450,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "sunlord_mwsa0503s_4r7mt",
@@ -17030,7 +17501,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "sunlord_wpn201612h2r2mt",
@@ -17080,7 +17552,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "suzhou_liming_3225_27_00_10_10_10_a",
@@ -17162,7 +17635,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "tca4307dgkr",
@@ -17308,7 +17782,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "tca6424argjr",
@@ -17854,7 +18329,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "tdk_b57332v5103f360",
@@ -17904,7 +18380,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "tdk_c1005x5r0j475k050bc",
@@ -17954,7 +18431,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "tdk_c1608x7r1c105k080ac",
@@ -18004,7 +18482,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "tdk_cga5l1x7r1e475k160ac",
@@ -18054,7 +18533,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_bq25798_rqmr",
@@ -18518,7 +18998,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_csd87313dms",
@@ -18644,7 +19125,107 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
+    },
+    {
+      "device_id": "ti_lmv331_idbvr",
+      "mpn": "LMV331IDBVR",
+      "symbol_id": "Leshy2_R2:ti_lmv331_idbvr",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "footprint_source": "${KICAD10_FOOTPRINT_DIR}/Package_TO_SOT_SMD.pretty/SOT-23-5.kicad_mod",
+      "footprint_sha256": "455a3f7c3e5eb5b8847eaa5df23e18651e78ab9f75afd09a0883758a0d901761",
+      "logical_contact_count": 5,
+      "footprint_named_pad_count": 5,
+      "footprint_pad_occurrence_count": 5,
+      "ignored_unnumbered_pad_occurrence_count": 0,
+      "pad_inventory": {
+        "1": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "2": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "3": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "4": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "5": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        }
+      },
+      "contacts": [
+        {
+          "contact": "IN_P",
+          "role": "analog",
+          "physical": "1",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "1"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "GND",
+          "role": "power",
+          "physical": "2",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "2"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "IN_N",
+          "role": "analog",
+          "physical": "3",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "3"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "OUT",
+          "role": "signal",
+          "physical": "4",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "4"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "VCC",
+          "role": "power",
+          "physical": "5",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "5"
+          ],
+          "resolution": "exact_physical_pad_name"
+        }
+      ],
+      "mechanical_only_pads": [],
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_mspm0c1106_sdgs20r",
@@ -18982,7 +19563,107 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
+    },
+    {
+      "device_id": "ti_sn74cbtlv1g125_dckr",
+      "mpn": "SN74CBTLV1G125DCKR",
+      "symbol_id": "Leshy2_R2:ti_sn74cbtlv1g125_dckr",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+      "footprint_source": "${KICAD10_FOOTPRINT_DIR}/Package_TO_SOT_SMD.pretty/Texas_R-PDSO-G5_DCK-5.kicad_mod",
+      "footprint_sha256": "8e2465de33c1e4ccbf7f586477a17fcf8fef4500e03f5ca0dfcb697372181c8d",
+      "logical_contact_count": 5,
+      "footprint_named_pad_count": 5,
+      "footprint_pad_occurrence_count": 5,
+      "ignored_unnumbered_pad_occurrence_count": 0,
+      "pad_inventory": {
+        "1": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "2": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "3": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "4": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "5": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        }
+      },
+      "contacts": [
+        {
+          "contact": "OE_N",
+          "role": "signal",
+          "physical": "1",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "1"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "A",
+          "role": "signal",
+          "physical": "2",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "2"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "GND",
+          "role": "power",
+          "physical": "3",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "3"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "B",
+          "role": "signal",
+          "physical": "4",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "4"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "VCC",
+          "role": "power",
+          "physical": "5",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "5"
+          ],
+          "resolution": "exact_physical_pad_name"
+        }
+      ],
+      "mechanical_only_pads": [],
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc08a_pwr",
@@ -19224,7 +19905,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g06_dckr",
@@ -19322,7 +20004,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g07_dckr",
@@ -19420,7 +20103,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g08_dckr",
@@ -19518,7 +20202,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g125_dckr",
@@ -19616,7 +20301,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g126_dckr",
@@ -19714,7 +20400,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g17_dckr",
@@ -19812,7 +20499,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g3157_dbvr",
@@ -19926,7 +20614,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g74_dcur",
@@ -20072,7 +20761,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc2g08_dcur",
@@ -20218,7 +20908,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc2g66_dcur",
@@ -20364,7 +21055,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc3g07_dcur",
@@ -20510,7 +21202,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc3g34_dcur",
@@ -20656,7 +21349,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tca9534a_pwr",
@@ -20930,7 +21624,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tca9535_pwr",
@@ -21332,7 +22027,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tca9539_pwr",
@@ -21734,7 +22430,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tca9803_dgkr",
@@ -21880,7 +22577,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tlv1821_dckr",
@@ -21978,7 +22676,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tlv1824_pwr",
@@ -22220,7 +22919,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tlv9061_idbvr",
@@ -22318,7 +23018,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tmux1136_dgsr",
@@ -22496,7 +23197,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tpd2eusb30a_drtr",
@@ -22562,7 +23264,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tpd4e05u06_dqar",
@@ -22740,7 +23443,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tpd4s201_rukr",
@@ -23094,7 +23798,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tpd8e003_dqdr",
@@ -23256,7 +23961,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps22919_dckr",
@@ -23370,7 +24076,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps2553drvr_1",
@@ -23500,7 +24207,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps25751d_refr",
@@ -24064,7 +24772,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps259470l_rpwr",
@@ -24242,7 +24951,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps25961_drvr",
@@ -24372,7 +25082,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps25974l_rpwr",
@@ -24550,7 +25261,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps3435cakagddfr",
@@ -24696,7 +25408,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps3808g33_dbvr",
@@ -24810,7 +25523,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps3839k33_dbzr",
@@ -24876,7 +25590,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps564252_drlr",
@@ -24990,7 +25705,171 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
+    },
+    {
+      "device_id": "ti_tps566231p_rqfr",
+      "mpn": "TPS566231PRQFR",
+      "symbol_id": "Leshy2_R2:ti_tps566231p_rqfr",
+      "footprint": "Leshy2_R2:Texas_RQF0009A_1.5x2.0mm",
+      "footprint_source": "hardware/ecad/libraries/Leshy2_R2.pretty/Texas_RQF0009A_1.5x2.0mm.kicad_mod",
+      "footprint_sha256": "d3db497923e7a8204b10fa2a4e069773629da24eefe1dba19fef9713792f3607",
+      "logical_contact_count": 9,
+      "footprint_named_pad_count": 9,
+      "footprint_pad_occurrence_count": 9,
+      "ignored_unnumbered_pad_occurrence_count": 0,
+      "pad_inventory": {
+        "1": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "2": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "3": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "4": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "5": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "6": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "7": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "8": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "9": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        }
+      },
+      "contacts": [
+        {
+          "contact": "VCC",
+          "role": "power",
+          "physical": "1",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "1"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "FB",
+          "role": "analog",
+          "physical": "2",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "2"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "EN",
+          "role": "signal",
+          "physical": "3",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "3"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "PGND",
+          "role": "power",
+          "physical": "4",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "4"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "VIN_1",
+          "role": "power",
+          "physical": "5",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "5"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "VIN_2",
+          "role": "power",
+          "physical": "6",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "6"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "BST",
+          "role": "power",
+          "physical": "7",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "7"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "SW",
+          "role": "power",
+          "physical": "8",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "8"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "PG",
+          "role": "signal",
+          "physical": "9",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "9"
+          ],
+          "resolution": "exact_physical_pad_name"
+        }
+      ],
+      "mechanical_only_pads": [],
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps629203_drlr",
@@ -25136,7 +26015,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tpul2g223_bqbr",
@@ -25417,7 +26297,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_ts5a63157_dckr",
@@ -25531,7 +26412,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tvs2200_drvr",
@@ -25616,7 +26498,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ti_txs0102_dcur",
@@ -25762,7 +26645,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ttm_b0310j50100ahf",
@@ -25876,7 +26760,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "ttm_dc2337j5010ahf",
@@ -25990,7 +26875,212 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
+    },
+    {
+      "device_id": "uniroyal_0402wgf1001tce",
+      "mpn": "0402WGF1001TCE",
+      "symbol_id": "Leshy2_R2:uniroyal_0402wgf1001tce",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "footprint_source": "${KICAD10_FOOTPRINT_DIR}/Resistor_SMD.pretty/R_0402_1005Metric.kicad_mod",
+      "footprint_sha256": "e05c7605248c220836f642ed1f526133edf0374acdfd5bb2631e58b4e377acfb",
+      "logical_contact_count": 2,
+      "footprint_named_pad_count": 2,
+      "footprint_pad_occurrence_count": 2,
+      "ignored_unnumbered_pad_occurrence_count": 0,
+      "pad_inventory": {
+        "1": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "2": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        }
+      },
+      "contacts": [
+        {
+          "contact": "END_1",
+          "role": "analog",
+          "physical": "1",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "1"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "END_2",
+          "role": "analog",
+          "physical": "2",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "2"
+          ],
+          "resolution": "exact_physical_pad_name"
+        }
+      ],
+      "mechanical_only_pads": [],
+      "shared_electrical_pads": {},
+      "bom_excluded": false
+    },
+    {
+      "device_id": "uniroyal_0402wgf1002tce",
+      "mpn": "0402WGF1002TCE",
+      "symbol_id": "Leshy2_R2:uniroyal_0402wgf1002tce",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "footprint_source": "${KICAD10_FOOTPRINT_DIR}/Resistor_SMD.pretty/R_0402_1005Metric.kicad_mod",
+      "footprint_sha256": "e05c7605248c220836f642ed1f526133edf0374acdfd5bb2631e58b4e377acfb",
+      "logical_contact_count": 2,
+      "footprint_named_pad_count": 2,
+      "footprint_pad_occurrence_count": 2,
+      "ignored_unnumbered_pad_occurrence_count": 0,
+      "pad_inventory": {
+        "1": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "2": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        }
+      },
+      "contacts": [
+        {
+          "contact": "END_1",
+          "role": "analog",
+          "physical": "1",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "1"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "END_2",
+          "role": "analog",
+          "physical": "2",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "2"
+          ],
+          "resolution": "exact_physical_pad_name"
+        }
+      ],
+      "mechanical_only_pads": [],
+      "shared_electrical_pads": {},
+      "bom_excluded": false
+    },
+    {
+      "device_id": "uniroyal_0402wgf1003tce",
+      "mpn": "0402WGF1003TCE",
+      "symbol_id": "Leshy2_R2:uniroyal_0402wgf1003tce",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "footprint_source": "${KICAD10_FOOTPRINT_DIR}/Resistor_SMD.pretty/R_0402_1005Metric.kicad_mod",
+      "footprint_sha256": "e05c7605248c220836f642ed1f526133edf0374acdfd5bb2631e58b4e377acfb",
+      "logical_contact_count": 2,
+      "footprint_named_pad_count": 2,
+      "footprint_pad_occurrence_count": 2,
+      "ignored_unnumbered_pad_occurrence_count": 0,
+      "pad_inventory": {
+        "1": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "2": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        }
+      },
+      "contacts": [
+        {
+          "contact": "END_1",
+          "role": "analog",
+          "physical": "1",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "1"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "END_2",
+          "role": "analog",
+          "physical": "2",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "2"
+          ],
+          "resolution": "exact_physical_pad_name"
+        }
+      ],
+      "mechanical_only_pads": [],
+      "shared_electrical_pads": {},
+      "bom_excluded": false
+    },
+    {
+      "device_id": "uniroyal_0402wgf1004tce",
+      "mpn": "0402WGF1004TCE",
+      "symbol_id": "Leshy2_R2:uniroyal_0402wgf1004tce",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "footprint_source": "${KICAD10_FOOTPRINT_DIR}/Resistor_SMD.pretty/R_0402_1005Metric.kicad_mod",
+      "footprint_sha256": "e05c7605248c220836f642ed1f526133edf0374acdfd5bb2631e58b4e377acfb",
+      "logical_contact_count": 2,
+      "footprint_named_pad_count": 2,
+      "footprint_pad_occurrence_count": 2,
+      "ignored_unnumbered_pad_occurrence_count": 0,
+      "pad_inventory": {
+        "1": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        },
+        "2": {
+          "occurrences": 1,
+          "types": [
+            "smd"
+          ]
+        }
+      },
+      "contacts": [
+        {
+          "contact": "END_1",
+          "role": "analog",
+          "physical": "1",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "1"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "END_2",
+          "role": "analog",
+          "physical": "2",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "2"
+          ],
+          "resolution": "exact_physical_pad_name"
+        }
+      ],
+      "mechanical_only_pads": [],
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf1333tce",
@@ -26040,7 +27130,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf1603tce",
@@ -26090,7 +27181,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf1651tce",
@@ -26140,7 +27232,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf2201tce",
@@ -26190,7 +27283,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf2703tce",
@@ -26240,7 +27334,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf5231tce",
@@ -26290,7 +27385,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf8201tce",
@@ -26340,7 +27436,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_tnpw040210k0beed",
@@ -26390,7 +27487,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_tnpw040243k7beed",
@@ -26440,7 +27538,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_tsmp95000tt",
@@ -26522,7 +27621,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_tsop75238tr",
@@ -26604,7 +27704,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_vemd1060x01",
@@ -26654,7 +27755,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_vsmy14940",
@@ -26704,7 +27806,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_wsl25125l000fea",
@@ -26754,7 +27857,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_cc0402brnpo9bn2r8",
@@ -26804,7 +27908,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_cc0402krx7r9bb104",
@@ -26854,7 +27959,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_cc0603krx7r0bb104",
@@ -26904,7 +28010,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07100kl",
@@ -26954,7 +28061,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07100rl",
@@ -27004,7 +28112,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0710kl",
@@ -27054,7 +28163,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07110kl",
@@ -27104,7 +28214,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0712kl",
@@ -27154,7 +28265,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07169kl",
@@ -27204,7 +28316,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07196kl",
@@ -27254,7 +28367,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_071k82l",
@@ -27304,7 +28418,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_071kl",
@@ -27354,7 +28469,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_071ml",
@@ -27404,7 +28520,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07220kl",
@@ -27454,7 +28571,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07220rl",
@@ -27504,7 +28622,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07240kl",
@@ -27554,7 +28673,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0730k1l",
@@ -27604,7 +28724,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0730kl",
@@ -27654,7 +28775,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0733kl",
@@ -27704,7 +28826,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0733rl",
@@ -27754,7 +28877,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_073k32l",
@@ -27804,7 +28928,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0742k2l",
@@ -27854,7 +28979,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0744k2l",
@@ -27904,7 +29030,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0745k3l",
@@ -27954,7 +29081,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07470rl",
@@ -28004,7 +29132,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0747kl",
@@ -28054,7 +29183,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0749r9l",
@@ -28104,7 +29234,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_074k7l",
@@ -28154,7 +29285,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0752r3l",
@@ -28204,7 +29336,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0756kl",
@@ -28254,7 +29387,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_075k1l",
@@ -28304,7 +29438,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07620kl",
@@ -28354,7 +29489,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0768kl",
@@ -28404,7 +29540,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0782rl",
@@ -28454,7 +29591,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0793r1l",
@@ -28504,7 +29642,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402jr_070rl",
@@ -28554,7 +29693,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0603fr_071kl",
@@ -28604,7 +29744,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rt0402brd07100kl",
@@ -28654,7 +29795,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rt0402brd07191kl",
@@ -28704,7 +29846,8 @@
         }
       ],
       "mechanical_only_pads": [],
-      "shared_electrical_pads": {}
+      "shared_electrical_pads": {},
+      "bom_excluded": false
     }
   ],
   "authorization": {

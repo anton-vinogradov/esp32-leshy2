@@ -3,7 +3,7 @@
   "id": "LESHY2-H2-R2-NATIVE-INSTANCE-LEDGER",
   "marker": "H2-R2.1.3",
   "status": "current_native_instance_allocation",
-  "purpose": "Allocate exactly 1,183 fitted R2 component instances to the reviewed two-project/22-sheet graph, including the fully isolated receive-only Airband signal chain and direct display ZIF, before native schematic generation.",
+  "purpose": "Allocate exactly 1,208 R2 board schematic instances to the reviewed two-project/22-sheet graph, including 1,206 fitted board positions and two BOM-excluded PCB copper features, before native schematic generation.",
   "authority": {
     "native_inventory": "hardware/ecad/generated/H2-R2-native-inventory.json",
     "exact_definition_ledger": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
@@ -54,7 +54,20 @@
     "ralec_rtt023r00fth": ["air_mixer_bias_r"],
     "yageo_rc0402fr_0782rl": ["air_lo_pad_shunt_in", "air_lo_pad_shunt_out"],
     "yageo_rc0402fr_0793r1l": ["air_lo_pad_series"],
-    "ti_tpd4e05u06_dqar": ["u214_esd_a", "u214_esd_b", "u214_esd_c", "unit_esd", "rear_control_esd", "encoder_ptt_esd", "safety_control_esd", "sd_esd_a", "sd_esd_b", "headphone_esd", "s3_dbg_esd", "c5_dbg_esd", "hub_rp_dbg_esd", "rf_rp_dbg_esd"]
+    "ti_tpd4e05u06_dqar": ["u214_esd_a", "u214_esd_b", "u214_esd_c", "unit_esd", "rear_control_esd", "encoder_ptt_esd", "safety_control_esd", "sd_esd_a", "sd_esd_b", "headphone_esd", "s3_dbg_esd", "c5_dbg_esd", "hub_rp_dbg_esd", "rf_rp_dbg_esd"],
+    "ti_tps566231p_rqfr": ["main_buck"],
+    "prodtech_pspmaa0605h_2r2m_anp": ["main_inductor"],
+    "samsung_cl10b105ko8nnnc": ["main_buck_vcc_cap"],
+    "samsung_cl05b104kb5nnnc": ["main_buck_bootstrap_cap"],
+    "ti_sn74cbtlv1g125_dckr": ["u219_pin10_switch"],
+    "nexperia_bat54s_215": ["u219_field_bridge_d1", "u219_field_bridge_d2"],
+    "ti_lmv331_idbvr": ["u219_field_comparator"],
+    "uniroyal_0402wgf1001tce": ["u219_field_input_r_p", "u219_field_input_r_n"],
+    "uniroyal_0402wgf1002tce": ["u219_pin10_oe_pullup", "u219_pin10_command_pulldown", "u219_field_output_pullup", "u219_field_threshold_bottom"],
+    "uniroyal_0402wgf1003tce": ["u219_field_env_discharge", "u219_field_threshold_top"],
+    "uniroyal_0402wgf1004tce": ["u219_field_hysteresis"],
+    "leshy2_nfc_pickup_loop_r2": ["u219_nfc_pickup_loop"],
+    "leshy2_pcb_testpoint_pad_1mm_r2": ["main_raw_pg_testpoint"]
   },
   "additional_instance_names": {
     "samtec_ftsh_105_01_l_dv_k_p_tr": ["pack_dbg_header", "safety_dbg_header"],
@@ -68,10 +81,13 @@
     "yageo_rc0402fr_071ml": ["c5_service_vbus_divider_top", "c5_service_vbus_divider_bottom"],
     "yageo_rc0402fr_0710kl": ["c5_service_vbus_present_pullup", "c5_sdio_cmd_pullup", "c5_sdio_d0_pullup", "c5_sdio_d1_pullup", "c5_sdio_d2_pullup", "c5_sdio_d3_pullup", "air_rx_en_pulldown", "air_lo_sda_pullup", "air_lo_scl_pullup"],
     "yageo_rc0402fr_07100kl": ["c5_mux_sel_pulldown", "c5_mux_oe_pulldown", "air_rx_mode_pulldown"],
-    "yageo_cc0402krx7r9bb104": ["c5_service_owner_latch_bypass", "c5_service_release_logic_bypass", "c5_service_mux_logic_bypass", "c5_service_reset_proof_bypass", "evidence_cmp_cc_bypass", "air_power_switch_input_bypass", "air_lna_rail_bypass", "air_lo_vdd_bypass", "air_mode_inverter_bypass"],
-    "yageo_rc0402jr_070rl": ["c5_sdio_clk_series", "c5_sdio_cmd_series", "c5_sdio_d0_series", "c5_sdio_d1_series", "c5_sdio_d2_series", "c5_sdio_d3_series", "air_mixer_output_link_p", "air_mixer_output_link_n"],
+    "yageo_cc0402krx7r9bb104": ["c5_service_owner_latch_bypass", "c5_service_release_logic_bypass", "c5_service_mux_logic_bypass", "c5_service_reset_proof_bypass", "evidence_cmp_cc_bypass", "air_power_switch_input_bypass", "air_lna_rail_bypass", "air_lo_vdd_bypass", "air_mode_inverter_bypass", "u219_pin10_switch_bypass", "u219_pin10_oe_driver_bypass", "u219_field_comparator_bypass"],
+    "yageo_rc0402jr_070rl": ["c5_sdio_clk_series", "c5_sdio_cmd_series", "c5_sdio_d0_series", "c5_sdio_d1_series", "c5_sdio_d2_series", "c5_sdio_d3_series", "air_mixer_output_link_p", "air_mixer_output_link_n", "main_buck_bootstrap_link"],
     "murata_grm1555c1h102ja01d": ["air_filter_to_lna_dc_block", "air_lna_to_t1_dc_block", "air_lo_dc_block", "air_t2_to_selector_dc_block", "air_direct_to_selector_dc_block", "air_selector_to_receiver_dc_block", "air_mixer_vcc_hf_bypass"],
-    "murata_gjm1555c1h150jb01d": ["air_mixer_input_match_c"]
+    "murata_gjm1555c1h150jb01d": ["air_mixer_input_match_c"],
+    "ti_sn74lvc1g06_dckr": ["u219_pin10_oe_driver"],
+    "murata_grm32er71e226ke15l": ["main_input_cap_1", "main_input_cap_2", "main_output_cap2"],
+    "murata_grm155r71h103ka88d": ["u219_field_env_cap"]
   },
   "replace_instance_names": {
     "yageo_rc0402fr_0710kl": {
@@ -97,6 +113,8 @@
     "rp_any_tx_main_pullup"
   ],
   "instance_sheet_overrides": {
+    "u219_pin10_oe_driver": "RF_30_U214_U219_M5_EXT",
+    "main_buck_bootstrap_link": "RF_03_MAIN_RAILS_DOMAIN_GATES",
     "safe_reset_sink_a": "UI_50_FRONT_POWER_SAFETY",
     "ir_evidence_feedback_cap": "UI_50_FRONT_POWER_SAFETY",
     "safe_c5_reset_buffer": "UI_50_FRONT_POWER_SAFETY",
@@ -165,6 +183,9 @@
     "murata_grm188r60j106me47d": ["radio_bulk"],
     "tdk_c1608x7r1c105k080ac": ["local_regulator_input", "local_regulator_output"],
     "ti_sn74lvc1g06_dckr": ["evidence_driver"],
+    "ti_tps564252_drlr": ["main_buck"],
+    "sunlord_mwsa0503s_3r3mt": ["main_inductor"],
+    "panasonic_erj_2rkf22r0x": ["u214_series_busy"],
     "ti_sn74lvc3g07_dcur": ["evidence_main_isolator"],
     "ti_tlv1821_dckr": ["evidence_comparator"],
     "uniroyal_0402wgf1333tce": ["evidence_timing_resistor"],

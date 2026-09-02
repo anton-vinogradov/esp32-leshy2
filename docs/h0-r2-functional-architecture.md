@@ -2,7 +2,7 @@
 
 H0-R2 is the new functional baseline: UI and display remain local to S3, high-throughput peripheral work is offloaded through the Hub RP, the onboard video path is removed, and 118–137 MHz Airband AM is now mandatory.
 
-> The exact current marker is **H6.0.1-R1**. The H1-R2.38 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, M1 and the direct 50-contact display ZIF was accepted and reviewed on 2026-08-30. Native R2 H2 materializes 1,183 instances and 816 nets in two KiCad projects with zero ERC findings. H3-R2 is fully reviewed: 20 current evidence artifacts and their recorded source hashes reconcile without mismatch or open analytical finding, while 51 physical residuals remain owned by H5/H6/H8. Global H4-R2 and H5-R1 are reviewed; H6 placement and routing are current.
+> The exact current marker is **H6.0.1-R1**. The H1-R2.38 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, M1 and the direct 50-contact display ZIF was accepted and reviewed on 2026-08-30. Native R2 H2 materializes 1,208 schematic instances and 823 nets in two KiCad projects with zero ERC findings. H3-R2 is fully reviewed: 20 current evidence artifacts and their recorded source hashes reconcile without mismatch or open analytical finding, while 51 physical residuals remain owned by H5/H6/H8. Global H4-R2 and H5-R1 are reviewed; H6 placement and routing are current.
 
 ![H0-R2 functional architecture](images/h0-r2-functional-architecture.svg)
 
@@ -27,7 +27,7 @@ The fixed 112 MHz low-side LO maps 118–137 MHz to 6–25 MHz. The image band i
 | Rear RP GP35 | `AIR_RX_EN` | pulled low; LNA/mixer/LO domain off |
 | Rear RP GP36 | `AIR_RX_MODE` | direct FM/SW path selected |
 
-Front RP budget: **47 used / 1 free**. Rear RP budget: **43 used / 5 free**. SI5351 control stays on the rear-local I²C bus at `0x60`; no Airband control traffic uses the S3 UI bus.
+Front RP budget: **46 used / 2 free**. Rear RP budget: **43 used / 5 free**. SI5351 control stays on the rear-local I²C bus at `0x60`; no Airband control traffic uses the S3 UI bus.
 
 ## Working principle pin design
 
@@ -80,10 +80,9 @@ This is the complete H0-R2 working principle budget, not authorization to begin 
 | `36` | FAULT_KILL-qualified common nRF24 switched-rail request |
 | `37, 38, 39, 40, 41, 44` | dedicated microSD SPI SCK/MOSI/MISO/CS plus power and detect |
 | `42, 43` | dedicated fail-closed I2C1 controller bus to Pack and Safety MSPM0 mailboxes |
-| `45` | LCD_TE direct front-local edge capture; Hub timestamps/alerts S3 without consuming another S3 GPIO |
+| `45, 47` | uncommitted electrical reserves; the accepted display TE contact remains deliberately open |
 | `46` | LCD_BL_PWM front-local backlight gate drive with the existing hardware reset-off pull-down |
 | `6` | AON Pack/PD mailbox alert through M1.59 |
-| `47` | uncommitted electrical reserve |
 
 | Rear RP GPIO | Assignment |
 |---|---|

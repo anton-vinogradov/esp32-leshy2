@@ -2,7 +2,7 @@
 
 [Русский](power-source-margins.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Rail margins](power-rail-margins.md)
 
-`H3-R2.1.4` evaluates all 2266 legal R2 states. All 75 source/pack lines have an explicit owner; there is no hidden allowance.
+`H3-R2.1.4` evaluates all 2266 legal R2 states. All 77 source/pack lines have an explicit owner; there is no hidden allowance.
 
 ## Result
 

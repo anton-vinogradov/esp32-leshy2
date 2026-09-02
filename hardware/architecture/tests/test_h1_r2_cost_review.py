@@ -26,7 +26,7 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertIn("TX2400-JW-5", ru)
 
     def test_complete_bom_is_ranked(self):
-        self.assertEqual(len(self.result["rows"]), 210)
+        self.assertEqual(len(self.result["rows"]), 249)
         mpns = [row["mpn"] for row in self.result["rows"]]
         self.assertEqual(len(mpns), len(set(mpns)))
         known = [
@@ -38,7 +38,7 @@ class H1R2CostReviewTest(unittest.TestCase):
 
     def test_cost_boundaries_are_explicit(self):
         summary = self.result["summary"]
-        self.assertEqual(summary["quantity_100_priced_lines"], 201)
+        self.assertEqual(summary["quantity_100_priced_lines"], 240)
         self.assertEqual(summary["remaining_unpriced_base_lines"], 5)
         self.assertGreater(summary["planning_base_plus_post_pcba_usd_per_device"], 270)
         self.assertAlmostEqual(
@@ -54,7 +54,7 @@ class H1R2CostReviewTest(unittest.TestCase):
             10 * summary["planning_base_plus_post_pcba_usd_per_device"],
             places=3,
         )
-        self.assertGreater(summary["top_40_share_pct"], 75)
+        self.assertGreater(summary["top_40_share_pct"], 70)
         self.assertGreater(
             summary["planning_plus_known_antenna_usd_per_device"], 400
         )
@@ -67,8 +67,8 @@ class H1R2CostReviewTest(unittest.TestCase):
 
     def test_accepted_all_in_one_target_gap_is_not_hidden(self):
         summary = self.result["summary"]
-        self.assertEqual(summary["base_bom_lines"], 208)
-        self.assertGreater(summary["base_fitted_placements"], 1049)
+        self.assertEqual(summary["base_bom_lines"], 247)
+        self.assertEqual(summary["base_fitted_placements"], 1213)
         self.assertEqual(summary["community_complete_device_target_usd"], 260)
         self.assertEqual(summary["community_electronics_target_usd"], [189, 216])
         self.assertAlmostEqual(
@@ -82,7 +82,7 @@ class H1R2CostReviewTest(unittest.TestCase):
         ru = MODULE.render_doc(self.result, True)
         self.assertIn("Принятая ценовая граница all-in-one", ru)
         self.assertIn("отдельный `Core` сейчас не проектируется", ru)
-        self.assertIn("1094", ru)
+        self.assertIn("1213", ru)
         self.assertIn("пересинтез", ru)
 
     def test_cost_feasibility_separates_all_in_one_from_modular_entry(self):
@@ -139,10 +139,10 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertEqual(10, rp["quantity_historical_capture"])
         self.assertEqual("C39843328", rp["jlcpcb_part"])
         headers = by_id["samtec_ftsh_105_01_l_dv_k_p_tr"]
-        self.assertEqual(4, headers["quantity_per_device"])
-        self.assertEqual(20, headers["quantity_historical_capture"])
+        self.assertEqual(6, headers["quantity_per_device"])
+        self.assertEqual(30, headers["quantity_historical_capture"])
         detector = by_id["adi_ad8314armz_reel"]
-        self.assertEqual("adi_ad8314acpz_rl7", detector["source_device_id"])
+        self.assertEqual("adi_ad8314armz_reel", detector["source_device_id"])
         self.assertEqual("C652687", detector["jlcpcb_part"])
         self.assertEqual(6, detector["quantity_per_device"])
         self.assertAlmostEqual(11.6388, detector["line_burden_per_device_usd"])
@@ -183,26 +183,26 @@ class H1R2CostReviewTest(unittest.TestCase):
             {row["current_mpn"] for row in audit},
         )
         self.assertEqual(
-            self.result["summary"]["top_20_mass_market_retained_groups"], 20
+            self.result["summary"]["top_20_mass_market_retained_groups"], 19
         )
         self.assertEqual(
-            self.result["summary"]["top_20_qualification_candidate_groups"], 0
+            self.result["summary"]["top_20_qualification_candidate_groups"], 1
         )
         self.assertEqual(
-            self.result["summary"]["top_20_rejected_candidate_groups"], 6
+            self.result["summary"]["top_20_rejected_candidate_groups"], 5
         )
         self.assertAlmostEqual(
             self.result["summary"]["top_20_unaccepted_paper_saving_usd"],
-            89.1273,
+            96.0966,
             places=4,
         )
         self.assertAlmostEqual(
             self.result["summary"]["top_20_rejected_paper_saving_usd"],
-            89.1273,
+            86.8307,
             places=4,
         )
         self.assertEqual(
-            {"2026-08-29", "2026-08-31"},
+            {"2026-08-29", "2026-08-31", "2026-09-02"},
             {row["checked_on"] for row in audit},
         )
         sixty_mm = next(
@@ -215,8 +215,13 @@ class H1R2CostReviewTest(unittest.TestCase):
             sixty_mm["verdict"],
         )
         rejected = [row for row in audit if "candidate_rejected" in row["verdict"]]
-        self.assertEqual(len(rejected), 6)
+        self.assertEqual(len(rejected), 5)
         self.assertTrue(all(row["decision_on"] == "2026-08-30" for row in rejected))
+        wbc16 = next(row for row in audit if row["current_mpn"] == "WBC16-1TLC")
+        self.assertEqual(
+            "qualification_required_before_bom_replacement", wbc16["verdict"]
+        )
+        self.assertIn("C22383426", wbc16["best_mass_market_route"])
         self.assertEqual(
             self.result["top_20_user_decision"]["decision"],
             "retain_all_current_groups",

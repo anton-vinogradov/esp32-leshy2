@@ -142,7 +142,7 @@ class H1R2U219CapTests(unittest.TestCase):
         self.assertIn("never authorization", evidence["function"])
         self.assertEqual(
             {
-                "TCA9535 evidence_mask.P12 diagnostic input",
+                "TCA9535 evidence_mask.P17 diagnostic input",
                 "existing evidence_or_4.K2 spare cathode",
                 "existing evidence_or_4.A_COMMON -> ANY_TX_AON_N",
             },

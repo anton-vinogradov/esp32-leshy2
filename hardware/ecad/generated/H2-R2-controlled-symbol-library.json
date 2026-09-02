@@ -6,19 +6,19 @@
   "sources": {
     "contact_materialization": {
       "path": "hardware/ecad/generated/H2-R2-contact-materialization.json",
-      "sha256": "81c4aca530294652b60a47e88328c61d783c5a378304612fb0b09b6e30918f9e"
+      "sha256": "4ddce437776d9f2e33ca259b54de60f517dc0380291a81efbf66b2c7297a1ba0"
     },
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "6bdbd40b6a2bf9d86e7e812c954a806710b2fe8be4eead592a92a1436829da4a"
+      "sha256": "58edf8e83979aa76246f501d6943d139a1683ef87b786e693af17046a5b847ee"
     }
   },
   "library": {
     "id": "Leshy2_R2",
     "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-    "sha256": "cec9fdf71ef24aa99907dd6469f8edabd18df49d08c727ba8407bb56d98e3784",
-    "symbol_count": 232,
-    "pin_count": 1532,
+    "sha256": "9cb2f1c69ae8c1ee6be359e202edd504ea4d9fa9ab7bb38460921d55c91ec017",
+    "symbol_count": 245,
+    "pin_count": 1571,
     "external_interface_metadata_count": 3
   },
   "symbols": [
@@ -76,7 +76,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "abracon_abm8_272_t3",
@@ -132,7 +133,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "abracon_aota_b201610s3r3_101_t",
@@ -166,7 +168,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "adi_ad8314armz_reel",
@@ -266,7 +269,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "adi_hmc544aetr",
@@ -344,7 +348,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "adi_lt5560edd_trpbf",
@@ -455,7 +460,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "adi_ltc5532_es6_trmpbf",
@@ -533,7 +539,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "adi_max17320_g20_t",
@@ -820,7 +827,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "alps_ec11e18244au",
@@ -887,7 +895,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "alps_skrtlae010",
@@ -922,7 +931,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "bourns_crm2512_fx_20r0elf",
@@ -956,7 +966,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "cc1101rgpr",
@@ -1199,7 +1210,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ck_js102011scqn",
@@ -1244,7 +1256,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "coilcraft_wbc16_1tlc",
@@ -1322,7 +1335,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "coilcraft_wbc1_1tlc",
@@ -1400,7 +1414,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "diodes_2n7002dw_7_f",
@@ -1478,7 +1493,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "diodes_bat54_7_f",
@@ -1523,7 +1539,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "diodes_dmn2056u_7",
@@ -1568,7 +1585,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "diodes_mmbt3904_7_f",
@@ -1613,7 +1631,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "diodes_pam8302a_aycr",
@@ -1713,7 +1732,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ebyte_e01_ml01sp4",
@@ -1837,7 +1857,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "epson_q13fc13500005",
@@ -1871,7 +1892,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "esp32_c5_wroom_1u_n8r8",
@@ -2237,7 +2259,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "esp32_s3_wroom_1u_n16r8",
@@ -2702,7 +2725,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "everest_es8311_qfn20",
@@ -2945,7 +2969,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "fh_rs_06k47r0ft",
@@ -2979,7 +3004,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "fh_rs_06l2r70ft",
@@ -3013,7 +3039,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "gct_rfpc_sma31_fn_175_a",
@@ -3080,7 +3107,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "gct_rfpc_sma32_fn_175_a",
@@ -3147,7 +3175,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "gct_usb4105_gf_a",
@@ -3346,7 +3375,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "hirose_dm3at_sf_pejm5",
@@ -3479,7 +3509,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "hirose_fh34srj_50s_0_5sh_50",
@@ -4041,7 +4072,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "hirose_fx8c_80p_sv1_92",
@@ -4933,7 +4965,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "hirose_fx8c_80s_sv5_92",
@@ -5825,7 +5858,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "hirose_ufl_r_smt_1_10",
@@ -5859,7 +5893,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "infineon_bgs13sn8e6327xtsa1",
@@ -5959,7 +5994,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "jae_dx07s016ja1r1500",
@@ -6158,7 +6194,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "kemet_c0402c102k5ractu",
@@ -6192,7 +6229,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "kemet_c0402c330j5gactu",
@@ -6226,7 +6264,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "keystone_1048p",
@@ -6282,7 +6321,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "kyocera_avx_cp0603q5425entr",
@@ -6338,7 +6378,67 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
+    },
+    {
+      "device_id": "leshy2_nfc_pickup_loop_r2",
+      "symbol_id": "Leshy2_R2:leshy2_nfc_pickup_loop_r2",
+      "reference_prefix": "L",
+      "value": "LESHY2-NFC-PICKUP-LOOP-R2",
+      "footprint": "Leshy2_R2:NFC_Pickup_Loop_R2",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_P",
+          "contacts": [
+            "END_P"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_N",
+          "contacts": [
+            "END_N"
+          ],
+          "roles": [
+            "rf"
+          ],
+          "type": "passive"
+        }
+      ],
+      "bom_excluded": true
+    },
+    {
+      "device_id": "leshy2_pcb_testpoint_pad_1mm_r2",
+      "symbol_id": "Leshy2_R2:leshy2_pcb_testpoint_pad_1mm_r2",
+      "reference_prefix": "TP",
+      "value": "LESHY2-PCB-TP-1MM-R2",
+      "footprint": "Leshy2_R2:PCB_TestPoint_Pad_D1.0mm",
+      "pin_count": 1,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "PROBE",
+          "contacts": [
+            "PROBE"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        }
+      ],
+      "bom_excluded": true
     },
     {
       "device_id": "liteon_ltst_c190kfkt",
@@ -6372,7 +6472,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "liteon_ltst_c190krkt",
@@ -6406,7 +6507,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "littelfuse_0451005_mrl",
@@ -6440,7 +6542,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "littelfuse_sesd0402x1un_0020_090",
@@ -6474,7 +6577,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "minicircuits_pga_103_plus",
@@ -6520,7 +6624,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_blm18pg181sn1d",
@@ -6554,7 +6659,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gcm1555c1h121fa16d",
@@ -6588,7 +6694,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gcm1555c1h200fa16d",
@@ -6622,7 +6729,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h100jb01d",
@@ -6656,7 +6764,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h101jb01d",
@@ -6690,7 +6799,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h150jb01d",
@@ -6724,7 +6834,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h1r2bb01d",
@@ -6758,7 +6869,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h1r4wb01d",
@@ -6792,7 +6904,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h4r7bb01d",
@@ -6826,7 +6939,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h5r7wb01d",
@@ -6860,7 +6974,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h5r8wb01d",
@@ -6894,7 +7009,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h6r2db01d",
@@ -6928,7 +7044,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h8r0db01d",
@@ -6962,7 +7079,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1hr47bb01d",
@@ -6996,7 +7114,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1hr60bb01d",
@@ -7030,7 +7149,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm1555c1h102ja01d",
@@ -7064,7 +7184,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm1555c1h121ja01d",
@@ -7098,7 +7219,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm1555c1h220ja01d",
@@ -7132,7 +7254,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm1555c1h221ja01d",
@@ -7166,7 +7289,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm1555c1h390ja01d",
@@ -7200,7 +7324,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm155r71a474ke01d",
@@ -7234,7 +7359,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm155r71e473ka88d",
@@ -7268,7 +7394,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm155r71h103ka88d",
@@ -7302,7 +7429,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm155r71h472ka01d",
@@ -7336,7 +7464,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm188r60j106me47d",
@@ -7370,7 +7499,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm188r71e224ka88d",
@@ -7404,7 +7534,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm188r71e474ka12d",
@@ -7438,7 +7569,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm188z71a475me15d",
@@ -7472,7 +7604,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm21br60j226me39l",
@@ -7506,7 +7639,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm21br71e225ke11l",
@@ -7540,7 +7674,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm31c5c1h224je02l",
@@ -7574,7 +7709,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm31cr71a226ke15l",
@@ -7608,7 +7744,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm31cr71e106ma12l",
@@ -7642,7 +7779,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm32er71e226ke15l",
@@ -7676,7 +7814,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqg15hs10nj02d",
@@ -7710,7 +7849,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqg15hs15nj02d",
@@ -7744,7 +7884,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqg15hs2n2s02d",
@@ -7778,7 +7919,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqg15hs3n3s02d",
@@ -7812,7 +7954,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqg15hs3n6s02d",
@@ -7846,7 +7989,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqg15hs6n8j02d",
@@ -7880,7 +8024,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw15an12ng80d",
@@ -7914,7 +8059,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw15an47ng80d",
@@ -7948,7 +8094,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw15an56ng00d",
@@ -7982,7 +8129,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw2bas22ng00l",
@@ -8016,7 +8164,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw2bas47ng00l",
@@ -8050,7 +8199,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw2basr22g00l",
@@ -8084,7 +8234,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw2basr33g00l",
@@ -8118,7 +8269,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw2uasr56f00l",
@@ -8152,7 +8304,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "nexperia_74hc20pw_118",
@@ -8318,7 +8471,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "nexperia_74lvc126apw_118",
@@ -8484,7 +8638,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "nexperia_74lvc1g32gv_125",
@@ -8551,7 +8706,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "nexperia_74lvc2g126dp_125",
@@ -8651,7 +8807,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "nexperia_74lvc2g14gv_125",
@@ -8729,7 +8886,54 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
+    },
+    {
+      "device_id": "nexperia_bat54s_215",
+      "symbol_id": "Leshy2_R2:nexperia_bat54s_215",
+      "reference_prefix": "U",
+      "value": "BAT54S,215",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "pin_count": 3,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "A1",
+          "contacts": [
+            "A1"
+          ],
+          "roles": [
+            "analog"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "K2",
+          "contacts": [
+            "K2"
+          ],
+          "roles": [
+            "analog"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "3",
+          "name": "K1_A2",
+          "contacts": [
+            "K1_A2"
+          ],
+          "roles": [
+            "analog"
+          ],
+          "type": "passive"
+        }
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "nexperia_pesd24vy1bsf",
@@ -8763,7 +8967,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "nicerf_sa818s_u_v18",
@@ -8973,7 +9178,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "nicerf_sa818s_v_v18",
@@ -9183,7 +9389,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "omron_b3s_1100p",
@@ -9250,7 +9457,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "onsemi_bat54alt1g",
@@ -9295,7 +9503,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "onsemi_bav70lt1g",
@@ -9340,7 +9549,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "onsemi_cat24c512wi_gt3",
@@ -9440,7 +9650,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "onsemi_fsusb42_mux",
@@ -9562,7 +9773,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "panasonic_erj_2rkf22r0x",
@@ -9596,7 +9808,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "panasonic_erj_2rkf27r0x",
@@ -9630,7 +9843,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "panasonic_erj_p08f10r0v",
@@ -9664,7 +9878,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "panasonic_erj_p08f49r9v",
@@ -9698,7 +9913,43 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
+    },
+    {
+      "device_id": "prodtech_pspmaa0605h_2r2m_anp",
+      "symbol_id": "Leshy2_R2:prodtech_pspmaa0605h_2r2m_anp",
+      "reference_prefix": "U",
+      "value": "PSPMAA0605H-2R2M-ANP",
+      "footprint": "Leshy2_R2:PRODTech_PSPMAA0605H_7.1x6.6mm",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        }
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "pui_as02404po",
@@ -9732,7 +9983,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ralec_rtt023r00fth",
@@ -9766,7 +10018,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "rp2354b_a4",
@@ -10669,7 +10922,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "same_sky_cmej_0413_42_smt_tr",
@@ -10703,7 +10957,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "same_sky_sj_43504_smt_tr",
@@ -10781,7 +11036,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "samsung_cl05a105ka5nqnc",
@@ -10815,7 +11071,43 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
+    },
+    {
+      "device_id": "samsung_cl05b104kb5nnnc",
+      "symbol_id": "Leshy2_R2:samsung_cl05b104kb5nnnc",
+      "reference_prefix": "C",
+      "value": "CL05B104KB5NNNC",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        }
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "samsung_cl05b104ko5nnnc",
@@ -10849,7 +11141,43 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
+    },
+    {
+      "device_id": "samsung_cl10b105ko8nnnc",
+      "symbol_id": "Leshy2_R2:samsung_cl10b105ko8nnnc",
+      "reference_prefix": "C",
+      "value": "CL10B105KO8NNNC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        }
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "samtec_ftsh_105_01_l_dv_k_p_tr",
@@ -10971,7 +11299,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "samtec_hle_107_02_g_dv_pe_lc",
@@ -11137,7 +11466,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "seeed_1125r_smt_4p",
@@ -11193,7 +11523,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "skyworks_si4732_a10_gsr",
@@ -11381,7 +11712,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "skyworks_si5351a_b_gtr",
@@ -11503,7 +11835,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "sunlord_mwsa0503s_2r2mt",
@@ -11537,7 +11870,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "sunlord_mwsa0503s_3r3mt",
@@ -11571,7 +11905,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "sunlord_mwsa0503s_4r7mt",
@@ -11605,7 +11940,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "sunlord_wpn201612h2r2mt",
@@ -11639,7 +11975,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "suzhou_liming_3225_27_00_10_10_10_a",
@@ -11695,7 +12032,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "tca4307dgkr",
@@ -11795,7 +12133,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "tca6424argjr",
@@ -12170,7 +12509,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "tdk_b57332v5103f360",
@@ -12204,7 +12544,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "tdk_c1005x5r0j475k050bc",
@@ -12238,7 +12579,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "tdk_c1608x7r1c105k080ac",
@@ -12272,7 +12614,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "tdk_cga5l1x7r1e475k160ac",
@@ -12306,7 +12649,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_bq25798_rqmr",
@@ -12637,7 +12981,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_csd87313dms",
@@ -12748,7 +13093,76 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
+    },
+    {
+      "device_id": "ti_lmv331_idbvr",
+      "symbol_id": "Leshy2_R2:ti_lmv331_idbvr",
+      "reference_prefix": "U",
+      "value": "LMV331IDBVR",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "pin_count": 5,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "IN_P",
+          "contacts": [
+            "IN_P"
+          ],
+          "roles": [
+            "analog"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "GND",
+          "contacts": [
+            "GND"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "3",
+          "name": "IN_N",
+          "contacts": [
+            "IN_N"
+          ],
+          "roles": [
+            "analog"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "4",
+          "name": "OUT",
+          "contacts": [
+            "OUT"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "5",
+          "name": "VCC",
+          "contacts": [
+            "VCC"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        }
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_mspm0c1106_sdgs20r",
@@ -12980,7 +13394,76 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
+    },
+    {
+      "device_id": "ti_sn74cbtlv1g125_dckr",
+      "symbol_id": "Leshy2_R2:ti_sn74cbtlv1g125_dckr",
+      "reference_prefix": "U",
+      "value": "SN74CBTLV1G125DCKR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+      "pin_count": 5,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "OE_N",
+          "contacts": [
+            "OE_N"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "A",
+          "contacts": [
+            "A"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "3",
+          "name": "GND",
+          "contacts": [
+            "GND"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "4",
+          "name": "B",
+          "contacts": [
+            "B"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "5",
+          "name": "VCC",
+          "contacts": [
+            "VCC"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        }
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc08a_pwr",
@@ -13146,7 +13629,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g06_dckr",
@@ -13213,7 +13697,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g07_dckr",
@@ -13280,7 +13765,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g08_dckr",
@@ -13347,7 +13833,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g125_dckr",
@@ -13414,7 +13901,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g126_dckr",
@@ -13481,7 +13969,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g17_dckr",
@@ -13548,7 +14037,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g3157_dbvr",
@@ -13626,7 +14116,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g74_dcur",
@@ -13726,7 +14217,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc2g08_dcur",
@@ -13826,7 +14318,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc2g66_dcur",
@@ -13926,7 +14419,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc3g07_dcur",
@@ -14026,7 +14520,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc3g34_dcur",
@@ -14126,7 +14621,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tca9534a_pwr",
@@ -14314,7 +14810,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tca9535_pwr",
@@ -14590,7 +15087,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tca9539_pwr",
@@ -14866,7 +15364,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tca9803_dgkr",
@@ -14966,7 +15465,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tlv1821_dckr",
@@ -15033,7 +15533,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tlv1824_pwr",
@@ -15199,7 +15700,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tlv9061_idbvr",
@@ -15266,7 +15768,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tmux1136_dgsr",
@@ -15388,7 +15891,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tpd2eusb30a_drtr",
@@ -15433,7 +15937,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tpd4e05u06_dqar",
@@ -15555,7 +16060,8 @@
           ],
           "type": "no_connect"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tpd4s201_rukr",
@@ -15798,7 +16304,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tpd8e003_dqdr",
@@ -15909,7 +16416,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps22919_dckr",
@@ -15987,7 +16495,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps2553drvr_1",
@@ -16076,7 +16585,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps25751d_refr",
@@ -16462,7 +16972,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps259470l_rpwr",
@@ -16584,7 +17095,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps25961_drvr",
@@ -16673,7 +17185,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps25974l_rpwr",
@@ -16795,7 +17308,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps3435cakagddfr",
@@ -16895,7 +17409,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps3808g33_dbvr",
@@ -16973,7 +17488,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps3839k33_dbzr",
@@ -17018,7 +17534,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps564252_drlr",
@@ -17096,7 +17613,120 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
+    },
+    {
+      "device_id": "ti_tps566231p_rqfr",
+      "symbol_id": "Leshy2_R2:ti_tps566231p_rqfr",
+      "reference_prefix": "U",
+      "value": "TPS566231PRQFR",
+      "footprint": "Leshy2_R2:Texas_RQF0009A_1.5x2.0mm",
+      "pin_count": 9,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "VCC",
+          "contacts": [
+            "VCC"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "FB",
+          "contacts": [
+            "FB"
+          ],
+          "roles": [
+            "analog"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "3",
+          "name": "EN",
+          "contacts": [
+            "EN"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "4",
+          "name": "PGND",
+          "contacts": [
+            "PGND"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "5",
+          "name": "VIN_1",
+          "contacts": [
+            "VIN_1"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "6",
+          "name": "VIN_2",
+          "contacts": [
+            "VIN_2"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "7",
+          "name": "BST",
+          "contacts": [
+            "BST"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "8",
+          "name": "SW",
+          "contacts": [
+            "SW"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "9",
+          "name": "PG",
+          "contacts": [
+            "PG"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        }
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps629203_drlr",
@@ -17196,7 +17826,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tpul2g223_bqbr",
@@ -17395,7 +18026,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_ts5a63157_dckr",
@@ -17473,7 +18105,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tvs2200_drvr",
@@ -17562,7 +18195,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ti_txs0102_dcur",
@@ -17662,7 +18296,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ttm_b0310j50100ahf",
@@ -17740,7 +18375,8 @@
           ],
           "type": "no_connect"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "ttm_dc2337j5010ahf",
@@ -17818,7 +18454,148 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
+    },
+    {
+      "device_id": "uniroyal_0402wgf1001tce",
+      "symbol_id": "Leshy2_R2:uniroyal_0402wgf1001tce",
+      "reference_prefix": "R",
+      "value": "0402WGF1001TCE",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "analog"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "analog"
+          ],
+          "type": "passive"
+        }
+      ],
+      "bom_excluded": false
+    },
+    {
+      "device_id": "uniroyal_0402wgf1002tce",
+      "symbol_id": "Leshy2_R2:uniroyal_0402wgf1002tce",
+      "reference_prefix": "R",
+      "value": "0402WGF1002TCE",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "analog"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "analog"
+          ],
+          "type": "passive"
+        }
+      ],
+      "bom_excluded": false
+    },
+    {
+      "device_id": "uniroyal_0402wgf1003tce",
+      "symbol_id": "Leshy2_R2:uniroyal_0402wgf1003tce",
+      "reference_prefix": "R",
+      "value": "0402WGF1003TCE",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "analog"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "analog"
+          ],
+          "type": "passive"
+        }
+      ],
+      "bom_excluded": false
+    },
+    {
+      "device_id": "uniroyal_0402wgf1004tce",
+      "symbol_id": "Leshy2_R2:uniroyal_0402wgf1004tce",
+      "reference_prefix": "R",
+      "value": "0402WGF1004TCE",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "pin_count": 2,
+      "no_connect_pin_count": 0,
+      "external_interfaces": [],
+      "pin_map": [
+        {
+          "number": "1",
+          "name": "END_1",
+          "contacts": [
+            "END_1"
+          ],
+          "roles": [
+            "analog"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "END_2",
+          "contacts": [
+            "END_2"
+          ],
+          "roles": [
+            "analog"
+          ],
+          "type": "passive"
+        }
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf1333tce",
@@ -17852,7 +18629,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf1603tce",
@@ -17886,7 +18664,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf1651tce",
@@ -17920,7 +18699,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf2201tce",
@@ -17954,7 +18734,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf2703tce",
@@ -17988,7 +18769,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf5231tce",
@@ -18022,7 +18804,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf8201tce",
@@ -18056,7 +18839,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_tnpw040210k0beed",
@@ -18090,7 +18874,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_tnpw040243k7beed",
@@ -18124,7 +18909,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_tsmp95000tt",
@@ -18180,7 +18966,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_tsop75238tr",
@@ -18236,7 +19023,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_vemd1060x01",
@@ -18270,7 +19058,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_vsmy14940",
@@ -18304,7 +19093,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_wsl25125l000fea",
@@ -18338,7 +19128,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_cc0402brnpo9bn2r8",
@@ -18372,7 +19163,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_cc0402krx7r9bb104",
@@ -18406,7 +19198,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_cc0603krx7r0bb104",
@@ -18440,7 +19233,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07100kl",
@@ -18474,7 +19268,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07100rl",
@@ -18508,7 +19303,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0710kl",
@@ -18542,7 +19338,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07110kl",
@@ -18576,7 +19373,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0712kl",
@@ -18610,7 +19408,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07169kl",
@@ -18644,7 +19443,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07196kl",
@@ -18678,7 +19478,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_071k82l",
@@ -18712,7 +19513,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_071kl",
@@ -18746,7 +19548,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_071ml",
@@ -18780,7 +19583,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07220kl",
@@ -18814,7 +19618,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07220rl",
@@ -18848,7 +19653,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07240kl",
@@ -18882,7 +19688,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0730k1l",
@@ -18916,7 +19723,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0730kl",
@@ -18950,7 +19758,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0733kl",
@@ -18984,7 +19793,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0733rl",
@@ -19018,7 +19828,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_073k32l",
@@ -19052,7 +19863,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0742k2l",
@@ -19086,7 +19898,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0744k2l",
@@ -19120,7 +19933,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0745k3l",
@@ -19154,7 +19968,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07470rl",
@@ -19188,7 +20003,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0747kl",
@@ -19222,7 +20038,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0749r9l",
@@ -19256,7 +20073,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_074k7l",
@@ -19290,7 +20108,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0752r3l",
@@ -19324,7 +20143,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0756kl",
@@ -19358,7 +20178,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_075k1l",
@@ -19392,7 +20213,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07620kl",
@@ -19426,7 +20248,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0768kl",
@@ -19460,7 +20283,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0782rl",
@@ -19494,7 +20318,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0793r1l",
@@ -19528,7 +20353,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402jr_070rl",
@@ -19562,7 +20388,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0603fr_071kl",
@@ -19596,7 +20423,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rt0402brd07100kl",
@@ -19630,7 +20458,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rt0402brd07191kl",
@@ -19664,7 +20493,8 @@
           ],
           "type": "passive"
         }
-      ]
+      ],
+      "bom_excluded": false
     }
   ],
   "authorization": {

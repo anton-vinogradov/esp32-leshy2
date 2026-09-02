@@ -24,8 +24,8 @@ class H3R2RailMarginTest(unittest.TestCase):
 
     def test_every_load_line_has_one_owner(self):
         summary = self.manifest["ownership_summary"]
-        self.assertEqual(617, summary["physical_and_external_lines"])
-        self.assertEqual(617, summary["numeric_or_deferred_owner_lines"])
+        self.assertEqual(629, summary["physical_and_external_lines"])
+        self.assertEqual(629, summary["numeric_or_deferred_owner_lines"])
         self.assertEqual(0, summary["unowned_lines"])
         self.assertEqual(0, summary["hidden_miscellaneous_allowances"])
 

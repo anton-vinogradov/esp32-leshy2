@@ -119,7 +119,7 @@ class H1R2LayoutTest(unittest.TestCase):
         )
 
     def test_physical_gpio_budgets_are_bound_to_exact_dual_rp_authority(self):
-        self.assertEqual({"used": 47, "free": 1}, self.model["functional_partition"]["front_rp_gpio"])
+        self.assertEqual({"used": 46, "free": 2}, self.model["functional_partition"]["front_rp_gpio"])
         self.assertEqual({"used": 43, "free": 5}, self.model["functional_partition"]["rear_rp_gpio"])
         broken = copy.deepcopy(self.model)
         broken["functional_partition"]["rear_rp_gpio"] = {"used": 45, "free": 3}

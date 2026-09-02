@@ -33,9 +33,9 @@ class H3R2DcSourceCrosscheckTest(unittest.TestCase):
         self.assertEqual(2266, coverage["legal_states"])
         self.assertEqual(56, coverage["operating_profiles"])
         self.assertEqual(224, coverage["rail_profiles"])
-        self.assertEqual(617, coverage["physical_and_external_loads"])
-        self.assertEqual(542, coverage["direct_numeric_rail_owners"])
-        self.assertEqual(75, coverage["source_pack_owners"])
+        self.assertEqual(629, coverage["physical_and_external_loads"])
+        self.assertEqual(552, coverage["direct_numeric_rail_owners"])
+        self.assertEqual(77, coverage["source_pack_owners"])
 
     def test_published_result_and_authorization_boundary(self):
         result = self.manifest["result"]

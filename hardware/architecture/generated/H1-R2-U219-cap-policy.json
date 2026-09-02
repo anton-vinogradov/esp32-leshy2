@@ -2,7 +2,7 @@
   "schema": "leshy2.generated.h1-r2.u219-cap-policy.v1",
   "design_id": "H1-R2-U219-CAP-01",
   "source": "hardware/architecture/h1-r2-u219-cap.json",
-  "source_sha256": "01f01f750ceedaa9818b59968962a3484f4660057137e6ef43431a54b71c98fa",
+  "source_sha256": "ab14f5e4e9fbc2c360f44defdd45b8c16922ada108085239463aac1603cf7f2e",
   "base_candidate": "hardware/architecture/candidates/G2F-3I.json",
   "base_candidate_sha256": "1c614996fd626b9ca44a98395c0c01712c347c9ba4ac43e69250db3f2bf2f1df",
   "evidence_date": "2026-08-29",
@@ -142,12 +142,12 @@
       "EV_N9_U219_NFC active low with AON pull-up"
     ],
     "digital_fanout": [
-      "TCA9535 evidence_mask.P12 diagnostic input",
+      "TCA9535 evidence_mask.P17 diagnostic input",
       "existing evidence_or_4.K2 spare cathode",
       "existing evidence_or_4.A_COMMON -> ANY_TX_AON_N"
     ],
     "supersedes": [
-      "evidence_mask_p12_pulldown and EVIDENCE_MASK_UNUSED_P12",
+      "evidence_mask_p17_pulldown and EVIDENCE_MASK_UNUSED_P17",
       "evidence_or_4.K2 no-connect"
     ],
     "polarity": {
@@ -401,7 +401,7 @@
     {
       "id": "U219-HIL-04",
       "stage": "H7/H8",
-      "requirement": "false-positive injection, adjacent RF, loop open/short, comparator stuck states, P12 fault, K2 aggregate continuity and immediate lease revocation",
+      "requirement": "false-positive injection, adjacent RF, loop open/short, comparator stuck states, P17 fault, K2 aggregate continuity and immediate lease revocation",
       "closed": false
     },
     {

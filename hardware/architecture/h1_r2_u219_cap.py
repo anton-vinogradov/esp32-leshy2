@@ -99,7 +99,7 @@ def validate(model: dict, base: dict) -> list[str]:
         ("u214_series_rst.END_2", "u214_esd_a.D2_PLUS", "U214_RST_CONNECTOR"),
         ("u214_esd_a.D2_PLUS", "u214_connector.PIN_8", "U214_RST_CONNECTOR"),
         ("u214_connector.PIN_10", "u214_esd_b.D2_MINUS", "U214_BUSY_CONNECTOR"),
-        ("evidence_mask.P12", "evidence_mask_p12_pulldown.END_1", "EVIDENCE_MASK_UNUSED_P12"),
+        ("evidence_mask.P17", "evidence_mask_p17_pulldown.END_1", "EVIDENCE_MASK_UNUSED_P17"),
         ("evidence_or_4.K2", "abstract:no-connect", "EVIDENCE_OR_4_UNUSED_DIODE_NC"),
         ("evidence_or_4.A_COMMON", "safety_controller.PA22", "ANY_TX_AON_N"),
     }
@@ -155,12 +155,12 @@ def validate(model: dict, base: dict) -> list[str]:
     if evidence.get("signal") != "EV_N9_U219_NFC":
         errors.append("independent NFC evidence must be EV_N9_U219_NFC")
     expected_fanout = {
-        "TCA9535 evidence_mask.P12 diagnostic input",
+        "TCA9535 evidence_mask.P17 diagnostic input",
         "existing evidence_or_4.K2 spare cathode",
         "existing evidence_or_4.A_COMMON -> ANY_TX_AON_N",
     }
     if set(evidence.get("digital_fanout", [])) != expected_fanout:
-        errors.append("EV_N9 must reach P12, K2 and ANY_TX_AON_N")
+        errors.append("EV_N9 must reach P17, K2 and ANY_TX_AON_N")
     analog_text = " ".join(evidence.get("analog_path", []))
     for token in ("BAT54S,215", "LMV331IDBVR", "full-wave", "open-collector"):
         if token not in analog_text:

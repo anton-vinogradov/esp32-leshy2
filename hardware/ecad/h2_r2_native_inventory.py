@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
 import json
 import re
@@ -17,6 +18,88 @@ OUTPUT = ROOT / "hardware/ecad/generated/H2-R2-native-inventory.json"
 
 def load(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_authority(path: Path) -> dict | list[dict]:
+    if path.suffix == ".csv":
+        with path.open(encoding="utf-8", newline="") as handle:
+            return list(csv.DictReader(handle))
+    return load(path)
+
+
+def r2_cost_base_rows(historical_rows: list[dict], model: dict) -> list[dict]:
+    """Build the pre-H2 R2 component ledger without reading generated H2 output.
+
+    The cost report consumes the native inventory, so the native inventory must
+    not consume the generated cost report in return.  This projection keeps the
+    historical G2F BOM plus the accepted H1 R2 replacements, additions and
+    quantity overrides as the stable, acyclic 221-group base.
+    """
+    replacements = model.get("r2_device_replacements", {})
+    overrides = model.get("r2_quantity_overrides", {})
+    rows: list[dict] = []
+    for historical in historical_rows:
+        row = dict(historical)
+        replacement = replacements.get(row["device_id"])
+        if replacement:
+            row["historical_capture_route"] = row["device_id"]
+            row["device_id"] = replacement["device_id"]
+            row["mpn"] = replacement["mpn"]
+        quantity = int(row["quantity"])
+        if row["device_id"] in overrides:
+            quantity = int(overrides[row["device_id"]]["quantity_per_device"])
+        rows.append({
+            "scope": row["scope"],
+            "device_id": row["device_id"],
+            "mpn": row["mpn"],
+            "quantity_per_device": quantity,
+            "role": row.get("placements", row["device_id"]),
+            "historical_capture_route": row.get("historical_capture_route"),
+        })
+    for addition in model.get("r2_additional_groups", []):
+        rows.append({
+            "scope": addition["scope"],
+            "device_id": addition["device_id"],
+            "mpn": addition["mpn"],
+            "quantity_per_device": int(addition["quantity"]),
+            "role": addition.get("placements", addition["device_id"]),
+            "historical_capture_route": None,
+        })
+    return rows
+
+
+def antenna_rows(antenna_model: dict) -> list[dict]:
+    grouped: dict[str, dict] = {}
+    for item in antenna_model.get("items", []):
+        prices = [
+            value for key, value in item.get("availability", {}).items()
+            if key.startswith("unit_price_usd") and value is not None
+        ]
+        price = float(prices[0]) if prices else None
+        row = grouped.setdefault(item["mpn"], {
+            "codes": [],
+            "mpn": item["mpn"],
+            "quantity": 0,
+            "known_line_usd": 0.0 if price is not None else None,
+            "profiles": [],
+        })
+        row["codes"].append(item["kit_code"])
+        row["profiles"].append(item["profile"])
+        row["quantity"] += int(item["quantity"])
+        if price is None:
+            row["known_line_usd"] = None
+        elif row["known_line_usd"] is not None:
+            row["known_line_usd"] += price * int(item["quantity"])
+    return [
+        {
+            "code": ", ".join(row["codes"]),
+            "mpn": row["mpn"],
+            "quantity": row["quantity"],
+            "known_line_usd": row["known_line_usd"],
+            "profile": " / ".join(dict.fromkeys(row["profiles"])),
+        }
+        for row in grouped.values()
+    ]
 
 
 def sha256(path: Path) -> str:
@@ -49,15 +132,18 @@ def build() -> dict:
             errors.append(f"missing authority source: {relative}")
             continue
         sources[key] = {"path": relative, "sha256": sha256(path)}
-        loaded[key] = load(path)
+        loaded[key] = load_authority(path)
 
     h0 = loaded.get("functional", {})
     pins = loaded.get("pin_map", {})
     physical = loaded.get("physical", {})
     devices = loaded.get("device_register", {}).get("devices", {})
-    cost = loaded.get("component_groups", {})
+    cost_model = loaded.get("r2_cost_model", {})
     c5 = loaded.get("c5_mux_and_service_vbus", {})
     pack = loaded.get("pack_safety_boundary", {})
+    power = loaded.get("power_cell", {})
+    u219 = loaded.get("u214_u219", {})
+    freeze = loaded.get("freeze_new_parts", {})
 
     domain_ids = [row.get("id") for row in h0.get("compute_domains", [])]
     if domain_ids != ["s3", "c5", "rf_rp", "hub_rp", "pack", "safety"]:
@@ -76,6 +162,23 @@ def build() -> dict:
         or pack.get("buffer", {}).get("jlcpcb_part_number") != "C2687966"
     ):
         errors.append("H2-R2.0.3 exact Pack/Safety boundary is not reviewed")
+    if (
+        power.get("main_power_cell", {}).get("converter", {}).get("mpn") != "TPS566231PRQFR"
+        or power.get("main_power_cell", {}).get("inductor", {}).get("mpn") != "PSPMAA0605H-2R2M-ANP"
+    ):
+        errors.append("accepted H1-R2 main power cell is not present")
+    if u219.get("status") != "paper_architecture_accepted__pcb_vna_hil_open":
+        errors.append("accepted H1-R2 U219 support circuit is not present")
+    frozen_mpns = {row.get("mpn") for row in freeze.get("parts", [])}
+    required_frozen_mpns = {
+        "TPS566231PRQFR", "PSPMAA0605H-2R2M-ANP", "CL10B105KO8NNNC",
+        "CL05B104KB5NNNC", "SN74CBTLV1G125DCKR", "SN74LVC1G06DCKR",
+        "BAT54S,215", "LMV331IDBVR", "0402WGF1001TCE", "0402WGF1002TCE",
+        "0402WGF1003TCE", "0402WGF1004TCE", "GRM155R71H103KA88D",
+        "CC0402KRX7R9BB104", "RC0402JR-070RL",
+    }
+    if frozen_mpns != required_frozen_mpns or not all(freeze.get("checks", {}).values()):
+        errors.append("new power/U219 groups lack an exact passing JLCPCB architecture-freeze recheck")
 
     projects = contract.get("projects", [])
     project_ids = [row.get("id") for row in projects]
@@ -99,7 +202,7 @@ def build() -> dict:
     if any("LORA-CAP" in project_id for project_id in project_ids):
         errors.append("native R2 may not manufacture the historical custom LoRa-Cap PCB")
 
-    base_rows = cost.get("rows", [])
+    base_rows = r2_cost_base_rows(loaded.get("component_groups", []), cost_model)
     component_contract = contract.get("component_inventory", {})
     if len(base_rows) != component_contract.get("base_group_count"):
         errors.append("base exact component-group count drifted")
@@ -129,6 +232,7 @@ def build() -> dict:
             "jlcpcb_part_number": jlc_number(row, device),
             "accepted_identity_source": "hardware/architecture/devices.json",
             "historical_cost_route_only": row.get("historical_capture_route"),
+            "bom_excluded": bool(device.get("bom_excluded", False)),
         }
 
     adjustment_sheets: dict[str, list[str]] = {}
@@ -165,6 +269,7 @@ def build() -> dict:
             "jlcpcb_part_number": jlc_number({}, device),
             "accepted_identity_source": addition.get("identity_source", "hardware/architecture/pack-safety-i2c-boundary-contract.json"),
             "historical_cost_route_only": None,
+            "bom_excluded": bool(device.get("bom_excluded", False)),
         }
         new_group_sheets.setdefault(device_id, []).append(addition["sheet"])
 
@@ -215,7 +320,7 @@ def build() -> dict:
     }:
         errors.append("H2-R2.1.1 authorization boundary changed")
 
-    antennas = cost.get("antenna_rows", [])
+    antennas = antenna_rows(loaded.get("antennas", {}))
     return {
         "schema_version": 1,
         "artifact": "H2-R2-native-inventory",

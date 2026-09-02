@@ -12,7 +12,7 @@
   "sheet": "UI_50_TX_SAFETY_EVIDENCE",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "1c614996fd626b9ca44a98395c0c01712c347c9ba4ac43e69250db3f2bf2f1df",
-    "hardware/architecture/devices.json": "2caf023fb65a15be416b66686f7bcbd9ce199f8c8a55c4d37457782e73ceb6ef",
+    "hardware/architecture/devices.json": "23b5799bc5334f9d02c13635c7f9e4f7503929795c669e98223fc37b95cc1c04",
     "hardware/ecad/generated/H2-instance-ledger.json": "9705d77158822926ba24182b435ba434794c4cba689f7b5e2529b4363fd2808c",
     "hardware/ecad/generated/H2-UI-root-interface.json": "3299e39c41968599c03adb46d5bf006abe3b1290f6ad896c213279b1de543363"
   },

@@ -10,10 +10,10 @@
   },
   "source_sha256": {
     "hardware/verification/h3-r2-source-margin-contract.json": "a5b2b4682b475e0f58ecfd2b2e4d197718d25197d9b315fe765f9b7676b0cf28",
-    "hardware/verification/generated/H3-R2-power-state-register.json": "55655a303ac46451e57d6a81327ac87a1cf7197a4f720d35121aed28f15e9deb",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "b3574a58a84636cb0643a2be3dea9147dbce43390e3ec949f83adc159f6c39f6",
-    "hardware/verification/generated/H3-R2-load-binding.json": "dba51a88bec5cbcbe41ca5c9a064fd968af39c040baad2b69c9746b7cfce0e39",
-    "hardware/verification/generated/H3-R2-method-contract.json": "db6906bce175ad06fa398e978743279a2f8271f6b238e63d898c7793ae8660c2"
+    "hardware/verification/generated/H3-R2-power-state-register.json": "7fd62c7f3a29c4fa516301a57ba36b46ab1ef93fb4971f197aa3b4a3bd75e815",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "26f0fde6c13b6a436df4a7cdba0cdc92c140071c484a9a0fd44eef97bf36d529",
+    "hardware/verification/generated/H3-R2-load-binding.json": "5ffde6e6240c36bf460e14d6488d073ac81bb12b581c591b245f0c3a362d202e",
+    "hardware/verification/generated/H3-R2-method-contract.json": "91a322bb9bdd33233f474e40f05f038bb09e22ddb477dd44fbc9ea1f73f5d0cf"
   },
   "policy": {
     "minimum_source_to_sys_efficiency": 0.85,
@@ -302,12 +302,20 @@
       "owner": "passive_leakage"
     },
     {
+      "instance_uid": "LESHY2-RF-R2:main_input_cap_1",
+      "owner": "passive_leakage"
+    },
+    {
+      "instance_uid": "LESHY2-RF-R2:main_input_cap_2",
+      "owner": "passive_leakage"
+    },
+    {
       "instance_uid": "LESHY2-RF-R2:ext_buck",
       "owner": "rail_converter_iq"
     },
     {
       "instance_uid": "LESHY2-RF-R2:main_buck",
-      "owner": "rail_converter_iq"
+      "owner": "passive_leakage"
     },
     {
       "instance_uid": "LESHY2-RF-R2:voice_hf_input_cap",
@@ -336,8 +344,8 @@
       "pack_control": 4,
       "pack_series_path": 4,
       "pack_source": 1,
-      "passive_leakage": 58,
-      "rail_converter_iq": 3,
+      "passive_leakage": 61,
+      "rail_converter_iq": 2,
       "usb_support": 4
     },
     "owner_instance_uids": {
@@ -415,13 +423,15 @@
         "LESHY2-RF-R2:ext_buck_input_cap",
         "LESHY2-RF-R2:main_hf_input_cap",
         "LESHY2-RF-R2:main_input_cap",
+        "LESHY2-RF-R2:main_input_cap_1",
+        "LESHY2-RF-R2:main_input_cap_2",
+        "LESHY2-RF-R2:main_buck",
         "LESHY2-RF-R2:voice_hf_input_cap",
         "LESHY2-RF-R2:voice_input_cap",
         "LESHY2-RF-R2:power_command_pullup"
       ],
       "rail_converter_iq": [
         "LESHY2-RF-R2:ext_buck",
-        "LESHY2-RF-R2:main_buck",
         "LESHY2-RF-R2:voice_buck"
       ],
       "usb_support": [
@@ -193053,7 +193063,7 @@
   },
   "summary": {
     "states_evaluated": 2266,
-    "deferred_lines_owned": 75,
+    "deferred_lines_owned": 77,
     "failed_states": 0,
     "maximum_sys_demand_w": "17.930",
     "maximum_source_raw_required_w": "21.094",

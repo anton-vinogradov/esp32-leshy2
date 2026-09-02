@@ -98,6 +98,14 @@ def local_footprint_record(footprint: str) -> dict:
             "sha256": sha256(path),
         }
     if footprint.startswith("Leshy2_R2:"):
+        name = footprint.split(":", 1)[1]
+        path = ROOT / "hardware/ecad/libraries/Leshy2_R2.pretty" / f"{name}.kicad_mod"
+        if path.is_file():
+            return {
+                "status": "current_exact_local_definition_materialized",
+                "path": str(path.relative_to(ROOT)),
+                "sha256": sha256(path),
+            }
         return {
             "status": "exact_manufacturer_geometry_registered_pending_h2_r2_1_3_materialization",
             "path": None,
@@ -139,7 +147,7 @@ def build() -> dict:
     if inventory.get("marker") != "H2-R2.1.1" or inventory.get("status") != "pass":
         errors.append("H2-R2.1.1 native inventory is not a passing input")
     groups = inventory.get("component_groups", [])
-    if len(groups) != 238:
+    if len(groups) != 251:
         errors.append("native component group count drifted")
     current_mpns = {row.get("mpn") for row in groups}
 
@@ -242,14 +250,15 @@ def build() -> dict:
             "historical_hint_files": hint.get("files", []),
             "historical_hint_pin_counts": hint.get("pin_counts", []),
             "jlcpcb_part_number": group.get("jlcpcb_part_number"),
+            "bom_excluded": bool(group.get("bom_excluded", False)),
         }
         rows.append(row)
 
     rows.sort(key=lambda row: row["device_id"])
     board_rows = [row for row in rows if row["symbol_id"]]
     external_rows = [row for row in rows if not row["symbol_id"]]
-    if len(rows) != 238 or len(board_rows) != 232 or len(external_rows) != 6:
-        errors.append("expected 232 board groups plus six explicit non-PCBA groups")
+    if len(rows) != 251 or len(board_rows) != 245 or len(external_rows) != 6:
+        errors.append("expected 245 board groups plus six explicit non-PCBA groups")
     if len({row["symbol_id"] for row in board_rows}) != len(board_rows):
         errors.append("symbol identities are not one-to-one with board component groups")
     if any(not row["footprint"] for row in board_rows):
@@ -291,16 +300,18 @@ def build() -> dict:
             "standard_kicad_footprint_identities": sum(
                 1
                 for row in board_rows
-                if row["footprint_definition"]["status"]
+                if row["footprint_definition"]
+                and row["footprint_definition"]["status"]
                 == "exact_package_identity_mapped_to_standard_kicad_library"
             ),
             "reconciled_local_footprint_definitions": sum(
                 1
                 for row in board_rows
-                if row["footprint_definition"]["status"]
+                if row["footprint_definition"]
+                and row["footprint_definition"]["status"]
                 == "existing_manufacturer_derived_definition_reconciled"
             ),
-            "new_exact_footprint_geometries_pending_materialization": new_exact_geometry,
+            "new_exact_footprint_geometries_materialized": new_exact_geometry,
             "schematic_symbols_or_footprint_files_created": 0,
             "native_schematic_nets_created": 0,
             "unresolved_groups": len(errors),

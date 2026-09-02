@@ -33,6 +33,7 @@
     {"domain": "c5", "contact": "GPIO24", "authority_net": "IR_TX_EVIDENCE_N", "schematic_net": "EV_N7_IR", "boundary": "named physical TX-evidence channel"},
     {"domain": "hub_rp", "contact": "GPIO42", "authority_net": "HUB_SAFE_I2C_SDA", "schematic_net": "HUB_SAFE_I2C_SDA_MAIN", "boundary": "TCA9803 main-side powered-off I2C boundary"},
     {"domain": "hub_rp", "contact": "GPIO43", "authority_net": "HUB_SAFE_I2C_SCL", "schematic_net": "HUB_SAFE_I2C_SCL_MAIN", "boundary": "TCA9803 main-side powered-off I2C boundary"},
+    {"domain": "rf_rp", "contact": "GPIO12", "authority_net": "CAP_PIN10_BUSY_OR_NFC_CS_N", "schematic_net": "CAP_PIN10_HOST", "boundary": "SN74CBTLV1G125 controller-side segment of the profile-dependent bidirectional pin-10 boundary"},
     {"domain": "pack", "contact": "PA0", "authority_net": "HUB_SAFE_I2C_SDA", "schematic_net": "HUB_SAFE_I2C_SDA_AON", "boundary": "TCA9803 always-on side"},
     {"domain": "pack", "contact": "PA11", "authority_net": "HUB_SAFE_I2C_SCL", "schematic_net": "HUB_SAFE_I2C_SCL_AON", "boundary": "TCA9803 always-on side"},
     {"domain": "safety", "contact": "PA0", "authority_net": "HUB_SAFE_I2C_SDA", "schematic_net": "HUB_SAFE_I2C_SDA_AON", "boundary": "TCA9803 always-on side"},

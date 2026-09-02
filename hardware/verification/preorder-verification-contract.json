@@ -12,11 +12,11 @@
   "current_truth": {
     "target_architecture": "H0-R2 reviewed for six domains; ownership, working pin budgets, safety and HW/FW boundaries are current",
     "mechanical_projection": "H1-R2.38 is the user-accepted reviewed dimensioned physical result; the exact 50-contact display FPC now terminates directly in the UI-PCB ZIF, machine geometry is clean, and H1 does not authorize ECAD or ordering",
-    "current_ecad": "H2-R2.1.5 is reviewed. Two native R2 KiCad projects contain 1183 fitted board positions, 4243 physical pins and 816 canonical nets; both pass ERC with zero errors and zero warnings. Six domains, 173 controller pins, 35 cross-project nets and 230 cross-sheet nets reconcile. M1-35 carries latched FAULT_KILL to the independent front indicator, leaving nine true NC reserves. H3-R2.0.1 hash-binds fourteen exact inputs and assigns all 22 native sheets exactly once across seven verification workstreams. Placement/routing and production release have not begun, and the archived R1 ECAD is historical and must not be built",
-    "virtual_electrical": "H3-R2.7 is reviewed: 20 current evidence artifacts and every recorded source hash cross-check without mismatch or open analytical finding. The stable H2 input is hash-frozen, all 238 R2 component groups plus 1183 fitted positions have exact provenance and an H3 owner, nine methods plus twelve pass/fail rules are frozen, and all calculable power-transition, analog, digital/interface, RF/coexistence, thermal and single-fault corners pass. Direct i8080-8 is exact 20 MHz; USB/service ownership and M1 parity/adjacency pass; all ten permanent antenna paths, 13 quiet contracts, four three-nRF24 role mixes, 56 thermal profiles and 30 single-fault cases pass the pre-layout contract. All 51 physical-only rows remain open and owned by H5/H6/H8, while one F5/F6 i8080 implementation obligation remains explicit. Routed-value re-analysis still belongs to H6, and historical R1 H3 evidence is not R2 order authority",
+    "current_ecad": "H2-R2.1.5 is reviewed. Two native R2 KiCad projects contain 1208 schematic instances, 4306 physical pins and 823 canonical nets; both pass ERC with zero errors and zero warnings. Six domains, 173 controller pins, 35 cross-project nets and 231 cross-sheet nets reconcile. M1-35 carries latched FAULT_KILL to the independent front indicator, leaving nine true NC reserves. H3-R2.0.1 hash-binds fourteen exact inputs and assigns all 22 native sheets exactly once across seven verification workstreams. Placement/routing and production release have not begun, and the archived R1 ECAD is historical and must not be built",
+    "virtual_electrical": "H3-R2.7 is reviewed: 20 current evidence artifacts and every recorded source hash cross-check without mismatch or open analytical finding. The stable H2 input is hash-frozen, all 251 R2 component groups plus 1208 schematic instances have exact provenance and an H3 owner, nine methods plus twelve pass/fail rules are frozen, and all calculable power-transition, analog, digital/interface, RF/coexistence, thermal and single-fault corners pass. Direct i8080-8 is exact 20 MHz; USB/service ownership and M1 parity/adjacency pass; all ten permanent antenna paths, 13 quiet contracts, four three-nRF24 role mixes, 56 thermal profiles and 30 single-fault cases pass the pre-layout contract. All 51 physical-only rows remain open and owned by H5/H6/H8, while one F5/F6 i8080 implementation obligation remains explicit. Routed-value re-analysis still belongs to H6, and historical R1 H3 evidence is not R2 order authority",
     "executable_firmware": "F2-R2.5 is in progress for six production-SDK targets; the first-spin diagnostic, current R2 BSP import and recovery bundle are not reviewed",
     "instruction_emulation": "F3-R2 and F-PO remain blocked; historical S3 QEMU evidence cannot prove the current R2 peripherals, PCB or non-S3 execution",
-    "joined_release": "Global H4-R2 is reviewed: 24 joined inputs, 173/173 generated controller rows, 80/80 M1 contacts, 12/12 qualified target configurations and zero remaining cross-domain contradiction. H5.0.3-R1 exact sourcing/factory evidence is current; H6 routed release candidate and immutable P8 order release have not run",
+    "joined_release": "Global H4-R2 is reviewed: 24 joined inputs, 173/173 generated controller rows, 80/80 M1 contacts, 12/12 qualified target configurations and zero remaining cross-domain contradiction. H5-R2.1 revalidates all 249 current purchasable groups / 1216 articles with zero unmapped route; WBC16-1TLC remains one explicit order-time sourcing gate. H6 routed release candidate and immutable P8 order release have not run",
     "physical_hil": "not run",
     "order_authorized": false
   },
@@ -65,7 +65,7 @@
     },
     {
       "id": "P4_JOINED_PRE_LAYOUT_REVIEW",
-      "status": "in_progress",
+      "status": "reviewed",
       "required_evidence": [
         "one current H1/H2/H3/firmware review",
         "zero virtual blocker",
@@ -120,6 +120,6 @@
     "factory_fct": "optional only; design correctness must not depend on a paid factory powered test",
     "final_components_or_pcbs": "forbidden before P8 release",
     "assembled_devices": "exactly one R2-EVT1 after P8 release",
-    "kicad": "R2 schematic begins only after accepted H1; routing begins only after P4/P5 inputs are current"
+    "kicad": "R2 schematic begins only after accepted H1; routing begins only after reviewed P4 and the current H5-R2 route map; the remaining P5 order-time sourcing gate does not authorize purchase"
   }
 }

@@ -10302,8 +10302,8 @@
       "qualification": "verified_exact_dc1027a_airband_mixer", "lifecycle": "production_active_factory_stocked_standard_pcba",
       "dimensions_mm": [3.0, 3.0, 0.8],
       "source": {"document": "LT5560 data sheet and DC1027A official schematic", "url": "https://www.analog.com/media/en/technical-documentation/eval-board-schematic/DC1027A-SCH.pdf", "checked": "2026-08-31"},
-      "orderable_source": {"document": "JLCPCB exact Analog Devices card C462645; SMT, Economic and Standard PCBA, 165 in stock, 165 available, MOQ 1", "url": "https://jlcpcb.com/partdetail/AnalogDevices-LT5560EDDTRPBF/C462645", "checked": "2026-08-31"},
-      "cost": {"currency": "USD", "target_quantity": 1, "unit_price_usd": 14.5398, "price_break": "JLCPCB one-piece tier", "source": {"document": "JLCPCB C462645 live price table", "url": "https://jlcpcb.com/partdetail/AnalogDevices-LT5560EDDTRPBF/C462645", "checked": "2026-08-31"}},
+      "orderable_source": {"document": "JLCPCB exact Analog Devices card C462645; SMT, Economic and Standard PCBA, 198 in stock, 193 available, MOQ 1", "url": "https://jlcpcb.com/partdetail/AnalogDevices-LT5560EDDTRPBF/C462645", "checked": "2026-09-02"},
+      "cost": {"currency": "USD", "target_quantity": 1, "unit_price_usd": 6.9028, "price_break": "JLCPCB one-piece tier", "source": {"document": "JLCPCB C462645 live price table", "url": "https://jlcpcb.com/partdetail/AnalogDevices-LT5560EDDTRPBF/C462645", "checked": "2026-09-02"}},
       "programmable": false,
       "contacts": {"LO_N": {"physical": "1", "role": "rf"}, "EN": {"physical": "2", "role": "signal"}, "IN_P": {"physical": "3", "role": "rf"}, "IN_N": {"physical": "4", "role": "rf"}, "OUT_N": {"physical": "5", "role": "rf"}, "OUT_P": {"physical": "6", "role": "rf"}, "VCC": {"physical": "7", "role": "power"}, "LO_P": {"physical": "8", "role": "rf"}, "EP_GND": {"physical": "9", "role": "power"}}
     },
@@ -10332,8 +10332,8 @@
       "qualification": "verified_exact_airband_direct_converted_selector", "lifecycle": "production_active_factory_stocked_standard_pcba",
       "dimensions_mm": [3.0, 1.7, 1.45],
       "source": {"document": "HMC544A official data sheet", "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/hmc544.pdf", "checked": "2026-08-31"},
-      "orderable_source": {"document": "JLCPCB exact Analog Devices card C579555; SMT, Economic and Standard PCBA, 2,004 in stock, 1,952 available, MOQ 1", "url": "https://jlcpcb.com/partdetail/AnalogDevices-HMC544AETR/C579555", "checked": "2026-08-31"},
-      "cost": {"currency": "USD", "target_quantity": 1, "unit_price_usd": 3.1529, "price_break": "JLCPCB one-piece tier", "source": {"document": "JLCPCB C579555 live price table", "url": "https://jlcpcb.com/partdetail/AnalogDevices-HMC544AETR/C579555", "checked": "2026-08-31"}},
+      "orderable_source": {"document": "JLCPCB exact Analog Devices card C579555; SMT, Economic and Standard PCBA, 304 in stock, 268 available, MOQ 1", "url": "https://jlcpcb.com/partdetail/AnalogDevices-HMC544AETR/C579555", "checked": "2026-09-02"},
+      "cost": {"currency": "USD", "target_quantity": 1, "unit_price_usd": 1.8112, "price_break": "JLCPCB one-piece tier", "source": {"document": "JLCPCB C579555 live price table", "url": "https://jlcpcb.com/partdetail/AnalogDevices-HMC544AETR/C579555", "checked": "2026-09-02"}},
       "programmable": false,
       "contacts": {"RF2": {"physical": "1", "role": "rf"}, "GND": {"physical": "2", "role": "power"}, "RF1": {"physical": "3", "role": "rf"}, "B": {"physical": "4", "role": "signal"}, "RFC": {"physical": "5", "role": "rf"}, "A": {"physical": "6", "role": "signal"}}
     },
@@ -10342,18 +10342,19 @@
       "qualification": "verified_exact_dc1027a_input_transformer", "lifecycle": "production_active_factory_stocked_standard_pcba",
       "dimensions_mm": [4.4, 4.1, 3.4],
       "source": {"document": "Coilcraft WBC series official data sheet", "url": "https://www.coilcraft.com/getmedia/f685d903-2563-4c96-8ba6-f82a58883aeb/wbc.pdf", "checked": "2026-08-31"},
-      "orderable_source": {"document": "JLCPCB exact Coilcraft card C19191631; SMT, Economic and Standard PCBA, 1,318 in stock, 1,311 available, MOQ 1", "url": "https://jlcpcb.com/partdetail/Coilcraft-WBC11TLC/C19191631", "checked": "2026-08-31"},
-      "cost": {"currency": "USD", "target_quantity": 1, "unit_price_usd": 10.0019, "price_break": "JLCPCB one-piece tier", "source": {"document": "JLCPCB C19191631 live price table", "url": "https://jlcpcb.com/partdetail/Coilcraft-WBC11TLC/C19191631", "checked": "2026-08-31"}},
+      "orderable_source": {"document": "JLCPCB exact Coilcraft card C19191631; SMT, Economic and Standard PCBA, 1,071 in stock, 1,064 available, MOQ 1", "url": "https://jlcpcb.com/partdetail/Coilcraft-WBC11TLC/C19191631", "checked": "2026-09-02"},
+      "cost": {"currency": "USD", "target_quantity": 1, "unit_price_usd": 4.2829, "price_break": "JLCPCB one-piece tier", "source": {"document": "JLCPCB C19191631 live price table", "url": "https://jlcpcb.com/partdetail/Coilcraft-WBC11TLC/C19191631", "checked": "2026-09-02"}},
       "programmable": false,
       "contacts": {"SEC_A": {"physical": "1", "role": "rf"}, "SEC_CT": {"physical": "2", "role": "rf"}, "SEC_B": {"physical": "3", "role": "rf"}, "PRI_A": {"physical": "4", "role": "rf"}, "PRI_CT": {"physical": "5", "role": "rf"}, "PRI_B": {"physical": "6", "role": "rf"}}
     },
     "coilcraft_wbc16_1tlc": {
       "mpn": "WBC16-1TLC", "manufacturer": "Coilcraft", "kind": "one_to_sixteen_wideband_rf_transformer_smd6",
-      "qualification": "verified_exact_dc1027a_output_transformer", "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "qualification": "verified_exact_dc1027a_output_transformer", "lifecycle": "production_active_factory_global_sourcing_required",
       "dimensions_mm": [4.4, 4.1, 3.4],
       "source": {"document": "Coilcraft WBC series official data sheet", "url": "https://www.coilcraft.com/getmedia/f685d903-2563-4c96-8ba6-f82a58883aeb/wbc.pdf", "checked": "2026-08-31"},
-      "orderable_source": {"document": "JLCPCB exact Coilcraft card C22402290; SMT, Economic and Standard PCBA, 27 in stock, 26 available, MOQ 1", "url": "https://jlcpcb.com/partdetail/Coilcraft-WBC161TLC/C22402290", "checked": "2026-08-31"},
-      "cost": {"currency": "USD", "target_quantity": 1, "unit_price_usd": 9.671, "price_break": "JLCPCB one-piece tier", "source": {"document": "JLCPCB C22402290 live price table", "url": "https://jlcpcb.com/partdetail/Coilcraft-WBC161TLC/C22402290", "checked": "2026-08-31"}},
+      "orderable_source": {"document": "JLCPCB exact Coilcraft card C22402290; SMT, Economic and Standard PCBA, zero live stock, MOQ 1; use the explicit Global Sourcing or Private Library route before order", "url": "https://jlcpcb.com/partdetail/Coilcraft-WBC161TLC/C22402290", "checked": "2026-09-02"},
+      "cost": {"currency": "USD", "target_quantity": 1, "unit_price_usd": 10.2728, "price_break": "last displayed JLCPCB one-piece tier; not a live-stock quotation", "source": {"document": "JLCPCB C22402290 zero-stock price table", "url": "https://jlcpcb.com/partdetail/Coilcraft-WBC161TLC/C22402290", "checked": "2026-09-02"}},
+      "replacement_candidate": {"mpn": "H3-TC16-161T+", "manufacturer": "HenryTech", "lcsc_part": "C22383426", "qualification": "official manufacturer positions it as a TC16-161T+ equivalent; 1:16, 0.6-160 MHz, 50 ohm, SMT; exact JLCPCB Standard-PCBA route still to be confirmed before BOM replacement", "source": {"document": "HenryTech product catalogue and LCSC exact product record", "url": "https://www.hltchips.com/en/product.html?cid=121&page=3", "checked": "2026-09-02"}},
       "programmable": false,
       "contacts": {"SEC_A": {"physical": "1", "role": "rf"}, "SEC_CT": {"physical": "2", "role": "rf"}, "SEC_B": {"physical": "3", "role": "rf"}, "PRI_A": {"physical": "4", "role": "rf"}, "PRI_CT": {"physical": "5", "role": "rf"}, "PRI_B": {"physical": "6", "role": "rf"}}
     },
@@ -10396,6 +10397,84 @@
     "ralec_rtt023r00fth": {"mpn":"RTT023R00FTH","manufacturer":"RALEC","kind":"3ohm_1pct_0402_mixer_bias_resistor","qualification":"verified_stocked_exact_dc1027a_bias_value","lifecycle":"production_active_factory_stocked_standard_pcba","dimensions_mm":[1.0,0.5,0.35],"source":{"document":"RALEC RTT series product data","url":"https://jlcpcb.com/partdetail/RALEC-RTT023R00FTH/C166468","checked":"2026-08-31"},"orderable_source":{"document":"JLCPCB C166468 exact card; 264 in stock, MOQ 1","url":"https://jlcpcb.com/partdetail/RALEC-RTT023R00FTH/C166468","checked":"2026-08-31"},"cost":{"currency":"USD","target_quantity":1,"unit_price_usd":0.0034,"price_break":"JLCPCB one-piece tier","source":{"document":"JLCPCB C166468","url":"https://jlcpcb.com/partdetail/RALEC-RTT023R00FTH/C166468","checked":"2026-08-31"}},"programmable":false,"contacts":{"END_1":{"physical":"1","role":"analog"},"END_2":{"physical":"2","role":"analog"}}},
     "yageo_rc0402fr_0782rl": {"mpn":"RC0402FR-0782RL","manufacturer":"Yageo","kind":"82ohm_1pct_0402_lo_attenuator_resistor","qualification":"verified_stocked_exact_airband_lo_pad","lifecycle":"production_active_factory_stocked_standard_pcba","dimensions_mm":[1.0,0.5,0.35],"source":{"document":"Yageo RC series specification","url":"https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-0782RL","checked":"2026-08-31"},"orderable_source":{"document":"JLCPCB C163453 exact card; 110,352 in stock, MOQ 1","url":"https://jlcpcb.com/partdetail/x/C163453","checked":"2026-08-31"},"cost":{"currency":"USD","target_quantity":1,"unit_price_usd":0.004,"price_break":"JLCPCB one-piece tier","source":{"document":"JLCPCB C163453","url":"https://jlcpcb.com/partdetail/x/C163453","checked":"2026-08-31"}},"programmable":false,"contacts":{"END_1":{"physical":"1","role":"rf"},"END_2":{"physical":"2","role":"rf"}}},
     "yageo_rc0402fr_0793r1l": {"mpn":"RC0402FR-0793R1L","manufacturer":"Yageo","kind":"93_1ohm_1pct_0402_lo_attenuator_resistor","qualification":"verified_stocked_exact_airband_lo_pad","lifecycle":"production_active_factory_stocked_standard_pcba","dimensions_mm":[1.0,0.5,0.35],"source":{"document":"Yageo RC series specification","url":"https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-0793R1L","checked":"2026-08-31"},"orderable_source":{"document":"JLCPCB C185385 exact card; 343 in stock, MOQ 1","url":"https://jlcpcb.com/partdetail/x/C185385","checked":"2026-08-31"},"cost":{"currency":"USD","target_quantity":1,"unit_price_usd":0.0013,"price_break":"JLCPCB one-piece tier","source":{"document":"JLCPCB C185385","url":"https://jlcpcb.com/partdetail/x/C185385","checked":"2026-08-31"}},"programmable":false,"contacts":{"END_1":{"physical":"1","role":"rf"},"END_2":{"physical":"2","role":"rf"}}},
+    "ti_tps566231p_rqfr": {
+      "mpn": "TPS566231PRQFR", "manufacturer": "Texas Instruments", "kind": "6a_600khz_synchronous_buck_with_power_good",
+      "qualification": "reviewed_exact_h1_r2_main_power_cell_factory_stocked", "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "dimensions_mm": [2.0, 1.5, 1.0],
+      "source": {"document": "TPS566231 3-V to 18-V input, 6-A synchronous buck converter datasheet", "url": "https://www.ti.com/lit/ds/symlink/tps566231.pdf", "checked": "2026-09-02"},
+      "orderable_source": {"document": "JLCPCB exact TI card C3190178; Extended SMT, Economic and Standard PCBA; 106 in stock, 105 available, MOQ 1", "url": "https://jlcpcb.com/partdetail/TexasInstruments-TPS566231PRQFR/C3190178", "checked": "2026-09-02"},
+      "cost": {"currency": "USD", "target_quantity": 1, "unit_price_usd": 1.0235, "price_break": "JLCPCB one-piece tier", "source": {"document": "JLCPCB C3190178 live exact-MPN price table", "url": "https://jlcpcb.com/partdetail/TexasInstruments-TPS566231PRQFR/C3190178", "checked": "2026-09-02"}},
+      "programmable": false,
+      "contacts": {"VCC": {"physical": "1", "role": "power"}, "FB": {"physical": "2", "role": "analog"}, "EN": {"physical": "3", "role": "signal"}, "PGND": {"physical": "4", "role": "power"}, "VIN_1": {"physical": "5", "role": "power"}, "VIN_2": {"physical": "6", "role": "power"}, "BST": {"physical": "7", "role": "power"}, "SW": {"physical": "8", "role": "power"}, "PG": {"physical": "9", "role": "signal"}}
+    },
+    "prodtech_pspmaa0605h_2r2m_anp": {
+      "mpn": "PSPMAA0605H-2R2M-ANP", "manufacturer": "PROD Tech", "kind": "2_2uh_10a_molded_power_inductor",
+      "qualification": "reviewed_exact_h1_r2_main_power_inductor_factory_stocked", "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "dimensions_mm": [7.1, 6.6, 5.0],
+      "source": {"document": "PROD Tech PSPMAA0605H exact JLCPCB manufacturer data", "url": "https://jlcpcb.com/partdetail/PRODTech-PSPMAA0605H2R2MANP/C2983088", "checked": "2026-09-02"},
+      "orderable_source": {"document": "JLCPCB exact PROD Tech card C2983088; Extended SMT, Economic and Standard PCBA; 479 in stock, 469 available, MOQ 1", "url": "https://jlcpcb.com/partdetail/PRODTech-PSPMAA0605H2R2MANP/C2983088", "checked": "2026-09-02"},
+      "cost": {"currency": "USD", "target_quantity": 1, "unit_price_usd": 0.1733, "price_break": "JLCPCB one-piece tier", "source": {"document": "JLCPCB C2983088 live exact-MPN price table", "url": "https://jlcpcb.com/partdetail/PRODTech-PSPMAA0605H2R2MANP/C2983088", "checked": "2026-09-02"}},
+      "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "power"}, "END_2": {"physical": "2", "role": "power"}}
+    },
+    "samsung_cl10b105ko8nnnc": {
+      "mpn": "CL10B105KO8NNNC", "manufacturer": "Samsung Electro-Mechanics", "kind": "1uf_10pct_16v_x7r_0603_vcc_capacitor",
+      "qualification": "reviewed_exact_h1_r2_main_buck_vcc_cap_factory_stocked", "lifecycle": "production_active_factory_stocked_standard_pcba", "dimensions_mm": [1.6, 0.8, 0.8],
+      "source": {"document": "Samsung CL10B105KO8NNNC product data", "url": "https://jlcpcb.com/partdetail/x/C59782", "checked": "2026-09-02"},
+      "orderable_source": {"document": "JLCPCB exact Samsung card C59782; SMT, Economic and Standard PCBA; 596580 in stock, 522346 available, MOQ 1", "url": "https://jlcpcb.com/partdetail/x/C59782", "checked": "2026-09-02"},
+      "cost": {"currency": "USD", "target_quantity": 1, "unit_price_usd": 0.021, "price_break": "JLCPCB one-piece tier", "source": {"document": "JLCPCB C59782 live exact-MPN price table", "url": "https://jlcpcb.com/partdetail/x/C59782", "checked": "2026-09-02"}},
+      "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "power"}, "END_2": {"physical": "2", "role": "power"}}
+    },
+    "samsung_cl05b104kb5nnnc": {
+      "mpn": "CL05B104KB5NNNC", "manufacturer": "Samsung Electro-Mechanics", "kind": "100nf_10pct_50v_x7r_0402_bootstrap_capacitor",
+      "qualification": "reviewed_exact_h1_r2_main_buck_bootstrap_cap_factory_stocked", "lifecycle": "production_active_factory_stocked_standard_pcba", "dimensions_mm": [1.0, 0.5, 0.5],
+      "source": {"document": "Samsung CL05B104KB5NNNC product data", "url": "https://jlcpcb.com/partdetail/x/C960916", "checked": "2026-09-02"},
+      "orderable_source": {"document": "JLCPCB exact Samsung card C960916; SMT, Economic and Standard PCBA; 761347 in stock, 561825 available, MOQ 1", "url": "https://jlcpcb.com/partdetail/x/C960916", "checked": "2026-09-02"},
+      "cost": {"currency": "USD", "target_quantity": 1, "unit_price_usd": 0.0093, "price_break": "JLCPCB one-piece tier", "source": {"document": "JLCPCB C960916 live exact-MPN price table", "url": "https://jlcpcb.com/partdetail/x/C960916", "checked": "2026-09-02"}},
+      "programmable": false, "contacts": {"END_1": {"physical": "1", "role": "power"}, "END_2": {"physical": "2", "role": "power"}}
+    },
+    "ti_sn74cbtlv1g125_dckr": {
+      "mpn": "SN74CBTLV1G125DCKR", "manufacturer": "Texas Instruments", "kind": "single_bus_switch_active_low_enable_sc70_5",
+      "qualification": "reviewed_exact_u219_pin10_bidirectional_boundary", "lifecycle": "production_active_factory_stocked_standard_pcba", "dimensions_mm": [2.0, 1.25, 1.1],
+      "source": {"document": "SN74CBTLV1G125 single FET bus switch datasheet", "url": "https://www.ti.com/lit/ds/symlink/sn74cbtlv1g125.pdf", "checked": "2026-09-02"},
+      "orderable_source": {"document": "JLCPCB exact TI card C131992; Extended SMT, Economic and Standard PCBA; 2969 in stock, 2968 available, MOQ 1", "url": "https://jlcpcb.com/partdetail/TexasInstruments-SN74CBTLV1G125DCKR/C131992", "checked": "2026-09-02"},
+      "cost": {"currency": "USD", "target_quantity": 1, "unit_price_usd": 0.3144, "price_break": "JLCPCB one-piece tier", "source": {"document": "JLCPCB C131992 live exact-MPN price table", "url": "https://jlcpcb.com/partdetail/TexasInstruments-SN74CBTLV1G125DCKR/C131992", "checked": "2026-09-02"}},
+      "electrical_contract": {"function": "bidirectional pin-10 disconnect switch", "supply_v": 3.3, "enable": "active-low OE", "partial_power_down": "Ioff"},
+      "programmable": false, "contacts": {"OE_N": {"physical": "1", "role": "signal"}, "A": {"physical": "2", "role": "signal"}, "GND": {"physical": "3", "role": "power"}, "B": {"physical": "4", "role": "signal"}, "VCC": {"physical": "5", "role": "power"}}
+    },
+    "nexperia_bat54s_215": {
+      "mpn": "BAT54S,215", "manufacturer": "Nexperia", "kind": "dual_series_schottky_diode_sot23",
+      "qualification": "reviewed_exact_u219_nfc_full_wave_bridge", "lifecycle": "production_active_factory_stocked_standard_pcba", "dimensions_mm": [3.0, 1.4, 1.1],
+      "source": {"document": "Nexperia BAT54 series Schottky barrier diodes datasheet", "url": "https://assets.nexperia.com/documents/data-sheet/BAT54_SER.pdf", "checked": "2026-09-02"},
+      "orderable_source": {"document": "JLCPCB exact Nexperia card C47546; Extended SMT, Economic and Standard PCBA; 381015 in stock, 378780 available, MOQ 1", "url": "https://jlcpcb.com/partdetail/Nexperia-BAT54S215/C47546", "checked": "2026-09-02"},
+      "cost": {"currency": "USD", "target_quantity": 1, "unit_price_usd": 0.0335, "price_break": "JLCPCB one-piece tier", "source": {"document": "JLCPCB C47546 live exact-MPN price table", "url": "https://jlcpcb.com/partdetail/Nexperia-BAT54S215/C47546", "checked": "2026-09-02"}},
+      "programmable": false, "contacts": {"A1": {"physical": "1", "role": "analog"}, "K2": {"physical": "2", "role": "analog"}, "K1_A2": {"physical": "3", "role": "analog"}}
+    },
+    "ti_lmv331_idbvr": {
+      "mpn": "LMV331IDBVR", "manufacturer": "Texas Instruments", "kind": "single_open_collector_low_voltage_comparator_sot23_5",
+      "qualification": "reviewed_exact_u219_nfc_evidence_comparator", "lifecycle": "production_active_factory_stocked_standard_pcba", "dimensions_mm": [3.0, 1.75, 1.45],
+      "source": {"document": "LMV331 low-voltage comparator datasheet", "url": "https://www.ti.com/lit/ds/symlink/lmv331.pdf", "checked": "2026-09-02"},
+      "orderable_source": {"document": "JLCPCB exact TI card C34731; Extended SMT, Economic and Standard PCBA; 41026 in stock, 39761 available, MOQ 1", "url": "https://jlcpcb.com/partdetail/TexasInstruments-LMV331IDBVR/C34731", "checked": "2026-09-02"},
+      "cost": {"currency": "USD", "target_quantity": 1, "unit_price_usd": 0.1648, "price_break": "JLCPCB one-piece tier", "source": {"document": "JLCPCB C34731 live exact-MPN price table", "url": "https://jlcpcb.com/partdetail/TexasInstruments-LMV331IDBVR/C34731", "checked": "2026-09-02"}},
+      "programmable": false, "contacts": {"IN_P": {"physical": "1", "role": "analog"}, "GND": {"physical": "2", "role": "power"}, "IN_N": {"physical": "3", "role": "analog"}, "OUT": {"physical": "4", "role": "signal"}, "VCC": {"physical": "5", "role": "power"}}
+    },
+    "leshy2_nfc_pickup_loop_r2": {
+      "mpn": "LESHY2-NFC-PICKUP-LOOP-R2", "manufacturer": "Leshy2 PCB copper", "kind": "weakly_coupled_13_56mhz_printed_pickup_loop",
+      "qualification": "reviewed_h1_r2_copper_feature_pending_h6_field_tuning", "lifecycle": "fabricated_as_part_of_rf_power_pcb",
+      "dimensions_mm": [72.0, 22.4, 0.035],
+      "source": {"document": "H1-R2.38 fixed U219 NFC pickup-loop geometry", "url": "hardware/product-design/h1-r2-placement.json", "checked": "2026-09-02"},
+      "orderable_source": {"document": "etched copper feature included in RF/power PCB fabrication; no separately purchased part", "checked": "2026-09-02"},
+      "bom_excluded": true, "programmable": false,
+      "contacts": {"END_P": {"physical": "1", "role": "rf"}, "END_N": {"physical": "2", "role": "rf"}}
+    },
+    "leshy2_pcb_testpoint_pad_1mm_r2": {
+      "mpn": "LESHY2-PCB-TP-1MM-R2", "manufacturer": "Leshy2 PCB copper", "kind": "exposed_1mm_smd_copper_testpoint",
+      "qualification": "reviewed_board_copper_diagnostic_feature", "lifecycle": "fabricated_as_part_of_product_pcb",
+      "dimensions_mm": [1.0, 1.0, 0.035],
+      "source": {"document": "H2 raw-main Power-Good diagnostic requirement", "url": "hardware/ecad/H2-sheet-contract.json", "checked": "2026-09-02"},
+      "orderable_source": {"document": "exposed copper feature included in PCB fabrication; no separately purchased part", "checked": "2026-09-02"},
+      "bom_excluded": true, "programmable": false,
+      "contacts": {"PROBE": {"physical": "1", "role": "signal"}}
+    },
     "sn74hc595pwr": {
       "mpn": "SN74HC595PWR",
       "kind": "tssop16",

@@ -3,7 +3,7 @@
 [На главную](../README.ru.md) · [English](roadmap.md) ·
 [Роадмап прошивки](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md)
 
-> **▶ Текущая аппаратная граница: `H6.0.1-R1`.** H0–H4 и [глобальный итог H5-R1](h5-r1-acceptance.ru.md) проведены ревью. Все 210 component/factory routes и 1 050 установок контролируются без замен; owner final assembly и точные 11-мм проходные упоры зафиксированы. Все 51 physical-остаток и обязательство F5/F6 по i8080 сохраняют точных downstream-владельцев.
+> **▶ Текущая аппаратная граница: `H6.0.1-R1`.** H0–H4 проведены ревью, а [актуальная перепроверка H5-R2](h5-r2-current-route.ru.md) контролирует все 249 закупаемых групп / 1 216 изделий без неназначенных маршрутов. Для `WBC16-1TLC` остаётся один явный order-time sourcing gate; owner final assembly и точные 11-мм проходные упоры сохраняются. Все 51 physical-остаток и обязательство F5/F6 по i8080 имеют точных downstream-владельцев.
 > H6 placement/routing разрешены; quote, reservation, закупка и печать — нет.
 
 [Текущий машинный checklist H6](../hardware/verification/h6-layout-release-plan.json).
@@ -26,9 +26,9 @@
 | Область | Текущий результат |
 |---|---|
 | Функциональная архитектура | ✅ [H0-R2 проведено ревью](h0-r2-functional-architecture.ru.md): передний UI/radio и задний RF/power домены, явные владельцы, transport, quiet-state и safety-crossings |
-| Физический дизайн | ✅ [H1-R2.38 проведено ревью](h1-r2-acceptance.ru.md): полная модель двух плат, десять постоянных назначений антенн, точный EastRising-дисплей, слот U214/U219 и TX-evidence-острова физически согласованы; [все 210 MPN-групп базового BOM ранжированы](h1-r2-cost.ru.md) |
+| Физический дизайн | ✅ [H1-R2.38 проведено ревью](h1-r2-acceptance.ru.md): полная модель двух плат, десять постоянных назначений антенн, точный EastRising-дисплей, слот U214/U219 и TX-evidence-острова физически согласованы; [все 249 закупаемых групп R2 ранжированы](h1-r2-cost.ru.md) |
 | Принципиальные диаграммы | Опубликованы актуальные связи компонентов/шин, внешний мокап, отдельные читаемые внутренние стороны, service map и диаграммы питания/фильтра |
-| Production ECAD | ✅ [H2-R2.1.5 проведено ревью](h2-acceptance.ru.md): два native-проекта KiCad материализуют 1 183 экземпляров, 4 243 физических pins и 816 канонических nets без замечаний ERC; six-domain сверка sheets/HW↔FW проходит; G2F/H2/KiCad — только историческое evidence R1 |
+| Production ECAD | ✅ [H2-R2.1.5 проведено ревью](h2-acceptance.ru.md): два native-проекта KiCad материализуют 1 208 экземпляров, 4 306 физических pins и 823 канонические nets без замечаний ERC; six-domain сверка sheets/HW↔FW проходит; G2F/H2/KiCad — только историческое evidence R1 |
 | Пререквизит прошивки | ✅ firmware F1-R2 проведено ревью; F2-R2.4 квалифицировал все 12 target builds, 60 artifacts, 16 maps и 16 size gates, а F2-R2.5 reproducibility сейчас в отдельном [роадмапе F0–F11](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.ru.md); отдельный fail-closed `F-PO` требует диагностические образы, эмуляцию и recovery до заказа |
 | Заказ | 🔒 Ровно один собранный `R2-EVT1` — только после H6, `F-PO`, immutable release-package и явного одобрения exact-one quote; производство — только на H9 |
 
@@ -83,10 +83,10 @@
   а PCB REV повышается только при изменении выпущенных производственных файлов.
 - ✅ Генерируемый ценовой аудит ранжирует каждую строку BOM по установленному
   количеству и проекции на 100 устройств. BOM Tool capture на пять плат — только historical evidence; закупка целится в один полностью собранный протип без аккумуляторов.
-- ✅ Исправлена недооценка R1→R2: cost-аудит теперь добавляет полный типовой
-  набор второго RP2354B, четвёртые USB/recovery-группы и считает 1094 установок.
-  Проверенные более дешёвые кнопки, держатели и Tag-Connect не приняты из-за
-  ухудшения ESD/механики/service-workflow; их прежняя ожидаемая экономия удалена.
+- ✅ Текущий cost-аудит ранжирует все 249 закупаемых групп / 1 216 изделий
+  одного прототипа. Известная электроника стоит `$311,38`, известные внешние
+  антенны — `$138,32`. Девятнадцать текущих top-20 групп сохраняются, а у
+  обнулённого на складе `WBC16-1TLC` есть один ещё не принятый кандидат.
 - ✅ Пять pre-order-буферов `74LVC2G126DC,125` заменены складским вариантом
   того же семейства `74LVC2G126DP,125` (`C503392`). Логика, порядок выводов,
   Schmitt-входы, `Ioff` и тайминги не изменились; увеличенные TSSOP-корпуса
@@ -141,8 +141,8 @@
 ## Проведённое ревью H2-R2.1.5 · native-проекты и сверка
 
 **Маркер ревью: `H2-R2.1.5`.** Все prerequisites и exact ledgers закрыты.
-Два native-проекта KiCad R2 теперь материализуют 1 183 устанавливаемых
-экземпляров, 4 243 физических pins и 816 канонических nets. Обе root-
+Два native-проекта KiCad R2 теперь материализуют 1 208 устанавливаемых
+экземпляров, 4 306 физических pins и 823 канонические nets. Обе root-
 схемы читаются и экспортируются; ERC даёт ноль ошибок и ноль предупреждений.
 Сквозная сверка sheets и HW↔FW проходит. Placement и routing ещё не начинались.
 
@@ -158,27 +158,27 @@
   прошла ревью с двумя MAIN-local pull-up 2,2 кОм, AON-local источниками 3,3 мА,
   четырьмя Basic decoupler и стоимостью компонентов USD 0,3953 для одного тракта.
 - ✅ `H2-R2.1.1`: проведено ревью 2 native-проектов, 22 sheets, 6 владельцев
-  доменов, 238 точных MPN-групп и 1 193 позиций.
-- ✅ `H2-R2.1.2`: у 232 board groups есть по одной symbol- и footprint-identity;
-  шесть non-PCBA groups явны; 1 578 логических контактов и все sheet affinities
+  доменов, 251 точной component-group и 1 218 позиций.
+- ✅ `H2-R2.1.2`: у 245 board groups есть по одной symbol- и footprint-identity;
+  шесть non-PCBA groups явны; 1 617 логических контактов и все sheet affinities
   hash-bound, незакрытых групп нет.
-- ✅ Contact-checkpoint `H2-R2.1.3`: 1 519 контактов платы во всех 232 группах
-  сопоставлены реальным площадкам выбранных footprints или трём явным RF-интерфейсам
+- ✅ Contact-checkpoint `H2-R2.1.3`: 1 558 контактов платы во всех 245 группах
+  сопоставлены 1 555 реальным контактам выбранных footprints или трём явным RF-интерфейсам
   на модулях; каждая именованная площадка учтена. Точный 50-контактный footprint
   Hirose FH34 и six-pad Coilcraft transformer материализованы по официальным чертежам.
 - ✅ Symbol-checkpoint `H2-R2.1.3`: детерминированная library `Leshy2_R2`
-  содержит 232 exact-MPN symbols и 1 532 уникальных electrical-pad pins; KiCad 10
+  содержит 245 exact-MPN symbols и 1 571 symbol pins; KiCad 10
   читает, пересохраняет и экспортирует контрольные symbols без ошибок.
-- ✅ Instance-checkpoint `H2-R2.1.3`: все 1 183 устанавливаемых позиций из 232
+- ✅ Instance-checkpoint `H2-R2.1.3`: все 1 208 устанавливаемых позиций из 245
   групп распределены по двум native-проектам; старый ledger R1 не передаёт ни
   одного net, reference designator или правила топологии.
-- ✅ Net-checkpoint `H2-R2.1.3`: все 4 239 контактов устанавливаемых экземпляров
-  сведены в 4 002 подключённых endpoints, 237 явных board no-connects и 816
+- ✅ Net-checkpoint `H2-R2.1.3`: все 4 302 контакта устанавливаемых экземпляров
+  сведены в 4 064 подключённых endpoints, 238 явных board no-connects и 823
   канонических nets; неразрешённых endpoints нет.
-- ✅ Native-KiCad-checkpoint `H2-R2.1.3`: 2 проекта, 22 sheets графа, 1 183 symbols
-  и 4 243 физических pins проходят parser/export и ERC без замечаний.
+- ✅ Native-KiCad-checkpoint `H2-R2.1.3`: 2 проекта, 22 sheets графа, 1 208 symbols
+  и 4 306 физических pins проходят parser/export и ERC без замечаний.
 - ✅ `H2-R2.1.4`: шесть доменов, 173 строки контроллеров, 35 межпроектных и
-  230 межлистовых nets сведены без незакрытых границ.
+  231 межлистовая net сведена без незакрытых границ.
 - ✅ `H2-R2.1.5`: [двуязычный отчёт фазы](h2-acceptance.ru.md) опубликован;
   синхронизированный firmware H2 gate открыт.
 - 🔒 PCB placement, routing, quote, закупка и печать остаются запрещены.
@@ -197,7 +197,7 @@
 | H2 · Production ECAD-схема | ✅ [Проведено ревью · `H2-R2.1.5`](h2-acceptance.ru.md) | Точные R2 symbols, contacts, nets, values, protection и footprints | Native KiCad, ERC без замечаний и сверка sheets/HW↔FW проходят |
 | H3 · Виртуальная электрическая проверка | ✅ [Проведена · `H3-R2.7`](h3-r2-acceptance.ru.md) | Полная проверка power, digital, RF, audio, timing, thermal и faults | Все рассчитываемые pre-layout claims проходят; физические остатки сохраняют владельцев |
 | H4 · Объединённый pre-layout gate | ✅ [Проведено ревью · `H4-R2.3`](h4-r2-acceptance.ru.md) | Одно текущее mechanics/ECAD/electrical/firmware review | Нет виртуального blocker; каждой физической неопределённости назначен тест |
-| H5 · Компоненты и фабричные evidence | ✅ [Проведено ревью · `H5.0.3-R1`](h5-r1-acceptance.ru.md) | Точная актуальная фабричная карта и контролируемые external routes | У каждой BOM-строки есть текущий фабричный маршрут без молчаливой замены |
+| H5 · Компоненты и фабричные evidence | ✅ [Актуальные R2-маршруты проверены · `H5-R2.1`](h5-r2-current-route.ru.md) | Точная текущая фабричная карта поверх сохранённого [evidence H5-R1](h5-r1-acceptance.ru.md) | У каждой закупаемой группы есть контролируемый маршрут; order-time sourcing gates явны |
 | **H6 · KiCad placement, routing и release candidate** | **▶ Сейчас · `H6.0.1-R1`** | Две разведённые платы, routed re-analysis и hash-locked fabrication candidate | Placement; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP/stack/cables; outputs и независимый DFM/CPL review проходят |
 | `F-PO` · Допуск первого экземпляра | 🔒 Ожидает H2/H6 и firmware R2 | Шесть diagnostic images, S3 QEMU, fake-HAL/dev-board evidence, flash/recovery и owner bring-up script | `FPO1`–`FPO7` проведены ревью на тех же H2/H6 candidate hashes; платный factory FCT не требуется |
 | H7 · Печать прототипа и bring-up | 🔒 Ожидает H6, `F-PO`, immutable release и одобрение exact-one quote | Ровно один фабрично собранный `R2-EVT1` и owner bring-up log | Released assembly package не требует догадок фабрики; owner current-limited USB power-on проверяет rails, recovery, UI, storage, audio, radio и expansion |
@@ -217,15 +217,15 @@
 
 1. ✅ `H2-R2.1.1`: зафиксировать native R2 sources, sheet map и точный component inventory.
 2. ✅ `H2-R2.1.2`: сформировать exact ledger symbols, contacts, values, protection и footprints.
-3. ✅ `H2-R2.1.3`: материализовать 1 183 проверенных экземпляров и 816 канонических nets в двух native-проектах KiCad; пройти ERC без замечаний.
+3. ✅ `H2-R2.1.3`: материализовать 1 208 проверенных экземпляров и 823 канонические nets в двух native-проектах KiCad; пройти ERC без замечаний.
 4. ✅ `H2-R2.1.4`: пройти cross-sheet и HW↔FW reconciliation.
 5. ✅ `H2-R2.1.5`: опубликовать двуязычный отчёт H2 и открыть H3.
 6. ✅ [`H3-R2.0.1`](h3-r2-input-freeze.ru.md): связать хешами 14 входов H2 и ровно один раз назначить все 22 native-листа семи workstreams.
-7. ✅ [`H3-R2.0.2`](parameter-model-register.ru.md): связать все 238 групп R2 и 1 183 устанавливаемых позиций с точным provenance, классами параметров и владельцами H3.
-8. ✅ [`H3-R2.0.3`](verification-methods.ru.md): зафиксировать девять воспроизводимых методов, двенадцать pass/fail rules и fail-closed назначения для всех 238 групп.
+7. ✅ [`H3-R2.0.2`](parameter-model-register.ru.md): связать все 251 группу R2 и 1 208 устанавливаемых позиций с точным provenance, классами параметров и владельцами H3.
+8. ✅ [`H3-R2.0.3`](verification-methods.ru.md): зафиксировать девять воспроизводимых методов, двенадцать pass/fail rules и fail-closed назначения для всех 251 группы.
 9. ✅ [`H3-R2.1`](power-dc-source-result.ru.md): проверить worst-case DC, source, charge и power states.
    - ✅ [`H3-R2.1.1`](power-state-register.ru.md): перечислить все 2 266 разрешённых состояния.
-   - ✅ [`H3-R2.1.2`](power-load-binding.ru.md): связать все 611 устанавливаемых питаемых экземпляров — 595 прямых и 16 косвенных — и шесть внешних нагрузок без скрытого aggregate.
+   - ✅ [`H3-R2.1.2`](power-load-binding.ru.md): связать все 623 устанавливаемых питаемых экземпляра — 607 прямых и 16 косвенных — и шесть внешних нагрузок без скрытого aggregate.
    - ✅ [`H3-R2.1.3`](power-rail-margins.ru.md): провести ревью 224 профилей шин; все четыре шины проходят проверки напряжения, защиты и установившегося нагрева с минимальным запасом тока 30,560% и температуры кристалла 24,706 °C.
    - ✅ [`H3-R2.1.4`](power-source-margins.ru.md): назначить владельца всем 75 source/pack-строкам и безопасно допустить все 2 266 состояний; максимальный ток pack — 3,516 А против границы 8 А, заряд всегда уступает системной нагрузке.
    - ✅ [`H3-R2.1.5`](power-dc-source-result.ru.md): пройти все 15 cross-checks ownership, states, rails, sources и authorization и опубликовать H3-R2.1.
@@ -244,12 +244,13 @@
 18. ✅ [`H4-R2.1`](h4-r2-contract-reconciliation.ru.md): провести объединённый cross-check; найти три назначенных BSP-коррекции без неназначенного противоречия.
 19. ✅ [`H4-R2.2`](h4-r2-correction-closure.ru.md): сгенерировать полные точные BSP-карты и fail-closed target guards C5, Pack и Safety; повторно квалифицировать все 12 сборок.
 20. ✅ [`H4-R2.3`](h4-r2-acceptance.ru.md): опубликовать глобальный двуязычный joined gate без противоречий и передать все 51 physical-остаток.
-21. ✅ [`H5.0.3-R1`](h5-r1-acceptance.ru.md): провести ревью всех 210 контролируемых маршрутов и 1 050 установок без замен, принять owner final assembly и выбрать точные 11-мм упоры `Ettinger 007.02.611`.
-22. ▶ `H6.0.1-R1`: разместить и развести обе PCBA, зафиксировать стенки корпуса и точную длину M2.5 nylon-винтов, затем выпустить quoteable Gerber/BOM/CPL.
+21. ✅ [`H5.0.3-R1`](h5-r1-acceptance.ru.md): сохранить историческое evidence 210 маршрутов / 1 050 установок, owner final assembly и точные 11-мм упоры `Ettinger 007.02.611`.
+22. ✅ [`H5-R2.1`](h5-r2-current-route.ru.md): перепроверить все 249 текущих закупаемых групп / 1 216 изделий без неназначенных маршрутов и явно вынести один order-time sourcing gate `WBC16-1TLC`.
+23. ▶ `H6.0.1-R1`: разместить и развести обе PCBA, зафиксировать стенки корпуса и точную длину M2.5 nylon-винтов, затем выпустить quoteable Gerber/BOM/CPL.
 
-H5-R1 проведён ревью: все 210 component/factory routes контролируются, JLCPCB
-PCBA gate проходит, owner final assembly принята и выбраны точные 11-мм
-проходные упоры. Сейчас выполняется H6.0.1-R1. Он владеет placement/routing,
-стенками корпуса, точной длиной винтов и Gerber/BOM/CPL для реальной PCBA-цены.
-Финальные условия VHF pre-order и полный stock recheck выполняются прямо перед
-единственным заказом; закупка и печать остаются заблокированы.
+H5-R2.1 актуален и проведён ревью: у всех 249 закупаемых групп / 1 216 изделий
+есть контролируемые маршруты, а для `WBC16-1TLC` явно оставлен один order-time
+gate Global Sourcing либо квалифицированной замены. H6.0.1-R1 владеет
+placement/routing, стенками корпуса, точной длиной винтов и Gerber/BOM/CPL для
+реальной PCBA-цены. Финальные условия VHF pre-order и полный stock recheck
+выполняются прямо перед единственным заказом; закупка и печать заблокированы.

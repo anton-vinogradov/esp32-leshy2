@@ -16,7 +16,7 @@
     "cc",
     "codec",
     "codec_i2s_din_boot_gate",
-    "evidence_mask_p12_pulldown",
+    "evidence_mask_p17_pulldown",
     "headphone_jack",
     "headset_control_io",
     "main_buck",

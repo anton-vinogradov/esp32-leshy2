@@ -19,13 +19,15 @@ class PreorderGateTests(unittest.TestCase):
         self.assertIn("H1-R2.38 is the user-accepted reviewed", truth["mechanical_projection"])
         self.assertIn("H2-R2.1.5 is reviewed", truth["current_ecad"])
         self.assertIn("H3-R2.0.1", truth["current_ecad"])
-        self.assertIn("1183 fitted board positions", truth["current_ecad"])
-        self.assertIn("816 canonical nets", truth["current_ecad"])
+        self.assertIn("1208 schematic instances", truth["current_ecad"])
+        self.assertIn("823 canonical nets", truth["current_ecad"])
         self.assertIn("both pass ERC", truth["current_ecad"])
         self.assertIn("173 controller pins", truth["current_ecad"])
         self.assertIn("F2-R2.5 is in progress", truth["executable_firmware"])
         self.assertIn("F3-R2 and F-PO remain blocked", truth["instruction_emulation"])
         self.assertIn("H6 routed release candidate", truth["joined_release"])
+        self.assertIn("H5-R2.1 revalidates all 249", truth["joined_release"])
+        self.assertIn("WBC16-1TLC", truth["joined_release"])
         self.assertIn("immutable P8 order release", truth["joined_release"])
         self.assertEqual("not run", truth["physical_hil"])
         self.assertFalse(truth["order_authorized"])
@@ -35,7 +37,7 @@ class PreorderGateTests(unittest.TestCase):
         self.assertEqual("reviewed", gates["P1_CURRENT_PHYSICAL_DESIGN"]["status"])
         self.assertEqual("reviewed", gates["P2_R2_PRODUCTION_SCHEMATIC"]["status"])
         self.assertEqual("reviewed", gates["P3_R2_VIRTUAL_ELECTRICAL"]["status"])
-        self.assertEqual("in_progress", gates["P4_JOINED_PRE_LAYOUT_REVIEW"]["status"])
+        self.assertEqual("reviewed", gates["P4_JOINED_PRE_LAYOUT_REVIEW"]["status"])
         for gate_id in (
             "P5_EXACT_PRODUCTION_SOURCING",
             "P6_ROUTED_PRODUCTION_PACKAGE",

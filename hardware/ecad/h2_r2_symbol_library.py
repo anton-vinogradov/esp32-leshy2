@@ -54,6 +54,10 @@ def property_block(key: str, value: object, x: float, y: float, hide: bool = Fal
 
 
 def reference_prefix(device_id: str, footprint: str) -> str:
+    if device_id == "leshy2_nfc_pickup_loop_r2":
+        return "L"
+    if device_id == "leshy2_pcb_testpoint_pad_1mm_r2":
+        return "TP"
     library = footprint.split(":", 1)[0]
     if library.startswith("Resistor"):
         return "R"
@@ -126,11 +130,12 @@ def symbol_text(group: dict, ledger: dict) -> tuple[str, dict]:
     ]
     name = group["device_id"]
     prefix = reference_prefix(name, group["footprint"])
+    in_bom = "no" if ledger.get("bom_excluded") else "yes"
     lines = [
         f'\t(symbol "{escaped(name)}"',
         "\t\t(pin_names (offset 1.016))",
         "\t\t(exclude_from_sim no)",
-        "\t\t(in_bom yes)",
+        f"\t\t(in_bom {in_bom})",
         "\t\t(on_board yes)",
         "\t\t(in_pos_files yes)",
         "\t\t(duplicate_pin_numbers_are_jumpers no)",
@@ -178,6 +183,7 @@ def symbol_text(group: dict, ledger: dict) -> tuple[str, dict]:
         "no_connect_pin_count": sum(pin["type"] == "no_connect" for pin in pins),
         "external_interfaces": external,
         "pin_map": pins,
+        "bom_excluded": bool(ledger.get("bom_excluded", False)),
     }
     return "\n".join(lines), manifest
 
@@ -226,11 +232,11 @@ def build() -> tuple[str, dict]:
         ]
     )
     symbol_ids = [row["symbol_id"] for row in symbols]
-    if len(symbols) != 232 or len(set(symbol_ids)) != 232:
-        errors.append("expected 232 unique controlled symbols")
+    if len(symbols) != 245 or len(set(symbol_ids)) != 245:
+        errors.append("expected 245 unique controlled symbols")
     pin_count = sum(row["pin_count"] for row in symbols)
-    if pin_count != 1532:
-        errors.append(f"expected 1532 unique electrical-pad pins, got {pin_count}")
+    if pin_count != 1571:
+        errors.append(f"expected 1571 unique electrical-pad pins, got {pin_count}")
     external_count = sum(len(row["external_interfaces"]) for row in symbols)
     if external_count != 3:
         errors.append(f"expected three on-module external interfaces, got {external_count}")
@@ -293,7 +299,7 @@ def main() -> int:
     if stale:
         print("stale: " + ", ".join(stale))
         return 1
-    print("ok: 232 controlled R2 symbols, 1532 exact pad pins, 3 external-interface metadata entries")
+    print("ok: 245 controlled R2 symbols, 1571 exact pad pins, 3 external-interface metadata entries")
     return 0
 
 

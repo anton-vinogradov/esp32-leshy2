@@ -10,18 +10,18 @@
     "pcb_placement_or_routing": false
   },
   "source_sha256": {
-    "hardware/architecture/h0-r2-rebaseline.json": "833970eca629e1ab9a6079d9f2a3d7078103a897195f1458479a95726b17fffc",
-    "hardware/architecture/h1-r2-dual-rp-pinout.json": "2805b468a903179e5450a097aec5e88f9d6d153f10cca41c2f7f73048a17069d",
+    "hardware/architecture/h0-r2-rebaseline.json": "e6f4e43ddf9c6839e233cfbb791f6f1ec4da82f1f9e49ea94ded632ca5822cdf",
+    "hardware/architecture/h1-r2-dual-rp-pinout.json": "28289ca9dcaf2c3af2b133c3fc09223a2737d764f5a9b6e075150d9aef15229a",
     "hardware/architecture/c5-sdio-service-mux-contract.json": "4bd88ffed2e8ac0b5f6e8856d6ebc21e7cc29aa38045d4a10e068b870e51c7f3",
     "hardware/architecture/pack-safety-i2c-boundary-contract.json": "5460c97ab81e9f58c41a042a5f024f5f83e5913099e11743b9ad72414eb5782c",
     "hardware/architecture/candidates/G2F-3I.json": "1c614996fd626b9ca44a98395c0c01712c347c9ba4ac43e69250db3f2bf2f1df",
-    "hardware/architecture/h1-r2-u219-cap.json": "01f01f750ceedaa9818b59968962a3484f4660057137e6ef43431a54b71c98fa",
-    "hardware/product-design/h1-r2-placement.json": "deb1e0629342daeb9fc0624bf5c9780d6bc08665193b2b3c92d1bf9d2c2c1257",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "d0e9edfb67fdc83d07c4e03005f5d8ec38d4aa513cbb1f962599e0c7baf8a90a",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "5dc7ac1e0ce44c297f0281b4fcbc35a26353439e5ae1a06e314217cde209e328",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "aac31f30edd014c8623b1ed9d5421496c055e5d7897b8fe012321a7b72866a00",
-    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "68ae91b18b3f65ce58ab9de41e38c7f72fe3311df560924eefee30793bbe66be",
-    "hardware/ecad/h2-r2-hwfw-reconciliation-contract.json": "da0f652479660671fe78fb0b484ac744f8c401796a5b494a7437967aa74e9189"
+    "hardware/architecture/h1-r2-u219-cap.json": "ab14f5e4e9fbc2c360f44defdd45b8c16922ada108085239463aac1603cf7f2e",
+    "hardware/product-design/h1-r2-placement.json": "66321938e7ea53875639ad6841f02209aaf08510054323c0108d8a5077813054",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "5b59d8dbcf142296f2d299f136987486325e7758b9c2bb76bdd82e824559acaf",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "56ebc2d92be86a2b1059d72f374a11be5d4d562dbfedd14de7b76adbe15ae6d2",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "7432b9589b8631d6f48299678aa25686c98fa596bf7875549fc5fe104af65e56",
+    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "083e80bc83c7227b80a73b132e1c8b2ed083333c326174e3eae1949bdd0cada9",
+    "hardware/ecad/h2-r2-hwfw-reconciliation-contract.json": "a670e5e735f0c3631c7c9dcd13e8f4edbe7ff83c9b43c10ec2e46b56742aedc3"
   },
   "bsp": {
     "domains": [
@@ -1167,11 +1167,11 @@
           },
           {
             "gpio": 45,
-            "net": "LCD_TE",
-            "direction": "in",
-            "controller": "GPIO_IRQ",
-            "endpoint": "ER-TFT035IPS-6 ILI9488 TE",
-            "reset": "input; external pull-down while panel reset is asserted"
+            "net": "HUB_RESERVE_45",
+            "direction": "reserve",
+            "controller": "GPIO",
+            "endpoint": "uncommitted electrical reserve; no board connection because the accepted panel TE contact is deliberately open",
+            "reset": "input/high-Z; no external connection; DNP"
           },
           {
             "gpio": 46,
@@ -2695,11 +2695,11 @@
           },
           {
             "gpio": 45,
-            "net": "LCD_TE",
-            "direction": "in",
-            "controller": "GPIO_IRQ",
-            "endpoint": "ER-TFT035IPS-6 ILI9488 TE",
-            "reset": "input; external pull-down while panel reset is asserted"
+            "net": "HUB_RESERVE_45",
+            "direction": "reserve",
+            "controller": "GPIO",
+            "endpoint": "uncommitted electrical reserve; no board connection because the accepted panel TE contact is deliberately open",
+            "reset": "input/high-Z; no external connection; DNP"
           },
           {
             "gpio": 46,
@@ -4224,11 +4224,11 @@
           },
           {
             "gpio": 45,
-            "net": "LCD_TE",
-            "direction": "in",
-            "controller": "GPIO_IRQ",
-            "endpoint": "ER-TFT035IPS-6 ILI9488 TE",
-            "reset": "input; external pull-down while panel reset is asserted"
+            "net": "HUB_RESERVE_45",
+            "direction": "reserve",
+            "controller": "GPIO",
+            "endpoint": "uncommitted electrical reserve; no board connection because the accepted panel TE contact is deliberately open",
+            "reset": "input/high-Z; no external connection; DNP"
           },
           {
             "gpio": 46,
@@ -4970,11 +4970,11 @@
       },
       {
         "gpio": 45,
-        "net": "LCD_TE",
-        "direction": "in",
-        "controller": "GPIO_IRQ",
-        "endpoint": "ER-TFT035IPS-6 ILI9488 TE",
-        "reset": "input; external pull-down while panel reset is asserted"
+        "net": "HUB_RESERVE_45",
+        "direction": "reserve",
+        "controller": "GPIO",
+        "endpoint": "uncommitted electrical reserve; no board connection because the accepted panel TE contact is deliberately open",
+        "reset": "input/high-Z; no external connection; DNP"
       },
       {
         "gpio": 46,
@@ -6266,13 +6266,13 @@
       }
     },
     "hardware_sources": {
-      "hardware/architecture/h0-r2-rebaseline.json": "833970eca629e1ab9a6079d9f2a3d7078103a897195f1458479a95726b17fffc",
-      "hardware/architecture/h1-r2-dual-rp-pinout.json": "2805b468a903179e5450a097aec5e88f9d6d153f10cca41c2f7f73048a17069d",
+      "hardware/architecture/h0-r2-rebaseline.json": "e6f4e43ddf9c6839e233cfbb791f6f1ec4da82f1f9e49ea94ded632ca5822cdf",
+      "hardware/architecture/h1-r2-dual-rp-pinout.json": "28289ca9dcaf2c3af2b133c3fc09223a2737d764f5a9b6e075150d9aef15229a",
       "hardware/architecture/c5-sdio-service-mux-contract.json": "4bd88ffed2e8ac0b5f6e8856d6ebc21e7cc29aa38045d4a10e068b870e51c7f3",
       "hardware/architecture/pack-safety-i2c-boundary-contract.json": "5460c97ab81e9f58c41a042a5f024f5f83e5913099e11743b9ad72414eb5782c",
       "hardware/architecture/candidates/G2F-3I.json": "1c614996fd626b9ca44a98395c0c01712c347c9ba4ac43e69250db3f2bf2f1df",
-      "hardware/architecture/h1-r2-u219-cap.json": "01f01f750ceedaa9818b59968962a3484f4660057137e6ef43431a54b71c98fa",
-      "hardware/product-design/h1-r2-placement.json": "deb1e0629342daeb9fc0624bf5c9780d6bc08665193b2b3c92d1bf9d2c2c1257"
+      "hardware/architecture/h1-r2-u219-cap.json": "ab14f5e4e9fbc2c360f44defdd45b8c16922ada108085239463aac1603cf7f2e",
+      "hardware/product-design/h1-r2-placement.json": "66321938e7ea53875639ad6841f02209aaf08510054323c0108d8a5077813054"
     },
     "interboard": {
       "connector": "FX8C-80P-SV1(92) / FX8C-80S-SV5(92), straight SMT, 80 contacts, 11-mm working gap",
@@ -6690,7 +6690,7 @@
     "pre_h2_gates": [],
     "physical_h1": {
       "source": "hardware/product-design/h1-r2-placement.json",
-      "sha256": "deb1e0629342daeb9fc0624bf5c9780d6bc08665193b2b3c92d1bf9d2c2c1257",
+      "sha256": "66321938e7ea53875639ad6841f02209aaf08510054323c0108d8a5077813054",
       "marker": "H1-R2.38",
       "pin_authority_marker": "H1-R2.31",
       "status": "reviewed",
@@ -6703,18 +6703,18 @@
         "project_count": 2,
         "project_graph_sheet_count": 22,
         "populated_sheet_count": 18,
-        "fitted_symbol_instance_count": 1183,
-        "physical_symbol_pin_count": 4243,
-        "connected_physical_pin_count": 4006,
-        "explicit_no_connect_physical_pin_count": 237,
+        "fitted_symbol_instance_count": 1208,
+        "physical_symbol_pin_count": 4306,
+        "connected_physical_pin_count": 4068,
+        "explicit_no_connect_physical_pin_count": 238,
         "external_module_interface_annotation_count": 5,
-        "canonical_net_count": 816,
+        "canonical_net_count": 823,
         "generated_file_count": 28,
         "pcb_file_count": 0
       },
       "cross_sheet_net_counts": {
         "LESHY2-UI-R2": 103,
-        "LESHY2-RF-R2": 127
+        "LESHY2-RF-R2": 128
       }
     },
     "pin_reconciliation": [
@@ -7195,8 +7195,8 @@
         "instance": "rf_rp",
         "contact": "GPIO12",
         "authority_net": "CAP_PIN10_BUSY_OR_NFC_CS_N",
-        "schematic_net": "CAP_PIN10_BUSY_OR_NFC_CS_N",
-        "resolution": "exact"
+        "schematic_net": "CAP_PIN10_HOST",
+        "resolution": "conditioned_boundary"
       },
       {
         "domain": "rf_rp",
@@ -7842,9 +7842,9 @@
         "domain": "hub_rp",
         "instance": "hub_rp",
         "contact": "GPIO45",
-        "authority_net": "LCD_TE",
-        "schematic_net": "LCD_TE",
-        "resolution": "exact"
+        "authority_net": "HUB_RESERVE_45",
+        "schematic_net": null,
+        "resolution": "explicit_no_connect"
       },
       {
         "domain": "hub_rp",
@@ -8669,11 +8669,11 @@
   "summary": {
     "domain_count": 6,
     "controller_pin_rows": 173,
-    "exact_pin_rows": 147,
-    "conditioned_boundary_rows": 14,
-    "explicit_reserve_no_connect_rows": 12,
+    "exact_pin_rows": 145,
+    "conditioned_boundary_rows": 15,
+    "explicit_reserve_no_connect_rows": 13,
     "cross_project_net_count": 35,
-    "cross_sheet_net_count": 230,
+    "cross_sheet_net_count": 231,
     "errors": 0
   },
   "authorization": {

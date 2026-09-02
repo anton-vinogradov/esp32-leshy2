@@ -17,7 +17,7 @@ class H3R2LoadBindingTests(unittest.TestCase):
         self.assertEqual("pass", self.result["status"])
         self.assertGreater(summary["power_connected_instances"], 250)
         self.assertEqual(summary["power_connected_instances"], summary["bound_instance_lines"])
-        self.assertEqual(595, summary["direct_power_connected_instances"])
+        self.assertEqual(607, summary["direct_power_connected_instances"])
         self.assertEqual(16, summary["indirect_powered_instances"])
         self.assertEqual(0, summary["unbound_power_connected_instances"])
         self.assertEqual(0, summary["duplicate_instance_lines"])
@@ -32,9 +32,10 @@ class H3R2LoadBindingTests(unittest.TestCase):
         for rail in ("AON_SAFE_3V3", "3V3_MAIN", "VVOICE_4V", "5V_EXT_ACTIVE_BRANCH", "PACK_DIRECT", "SOURCE_OVERHEAD"):
             self.assertIn(rail, rails)
         profiles = self.result["summary"]["profile_bindings"]
-        for profile in ("SUPPORT", "NRF24", "CC1101", "IR", "BROADCAST_RX", "BROADCAST_RX_AIRBAND", "VOICE", "DISPLAY", "STORAGE", "CAP_SLOT", "M5_UNIT"):
+        for profile in ("SUPPORT", "NRF24", "CC1101", "IR", "BROADCAST_RX", "BROADCAST_RX_AIRBAND", "VOICE", "DISPLAY_BACKLIGHT", "STORAGE", "CAP_SLOT", "M5_UNIT"):
             self.assertIn(profile, profiles)
         self.assertEqual(6, len(self.result["external_load_lines"]))
+        self.assertIn("DISPLAY", {row["profile"] for row in self.result["external_load_lines"]})
 
     def test_every_line_is_source_bound_and_fail_closed(self):
         for row in self.result["load_lines"]:

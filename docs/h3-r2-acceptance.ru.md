@@ -6,7 +6,7 @@
 
 | Workstream | Что проверено | Результат |
 |---|---|---|
-| `H3-R2.0` | Входы, provenance и методы | 2 projects · 22 sheets · 1,183 fitted positions · 816 nets · 238 exact groups · 9 methods |
+| `H3-R2.0` | Входы, provenance и методы | 2 projects · 22 sheets · 1,208 schematic instances · 823 nets · 251 exact groups · 9 methods |
 | `H3-R2.1` | DC, шины, источники и заряд | 2,266 legal states · 224 rail corners · 30.560% minimum reserve · 3.516 A maximum pack current |
 | `H3-R2.2` | Переходы и faults | 14 ordered scenarios · 7,316 handover cases · 5 starts · 4 load steps · 10 watchdog/fault cases |
 | `H3-R2.3` | Аналоговые corners | display, audio, IR, battery and Airband calculations pass; routed Airband tuning remains measured |

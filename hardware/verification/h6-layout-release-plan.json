@@ -10,7 +10,7 @@
     "production_schematic": "H2-R2.1.5",
     "virtual_electrical_verification": "H3-R2.7",
     "joined_pre_layout_gate": "H4-R2.3",
-    "component_and_factory_route": "H5.0.3-R1"
+    "component_and_factory_route": "H5-R2.1 current-route revalidation over H5.0.3-R1 evidence"
   },
   "authorization": {
     "pcb_placement_and_routing": true,
@@ -90,6 +90,7 @@
   ],
   "order_time_gates": [
     "recheck every exact production MPN against the live JLCPCB Standard PCBA surface",
+    "confirm WBC16-1TLC C22402290 through JLCPCB Global Sourcing/Private Library or qualify and explicitly adopt its H3-TC16-161T+ candidate; never substitute silently",
     "confirm the final SA818S-V pre-order charge and lead time",
     "approve the exact-one-device quote while accepting any supplier PCB panel or minimum quantities",
     "complete F-PO diagnostic, emulation, recovery and first-power-on evidence against the same H6 hashes"

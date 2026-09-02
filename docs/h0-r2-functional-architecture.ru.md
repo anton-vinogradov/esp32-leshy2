@@ -2,7 +2,7 @@
 
 H0-R2 проведён как новый функциональный baseline: UI и дисплей остаются на S3, высокоскоростные периферийные тракты разгружены через Hub RP, бортовой видеотракт удалён, а Airband AM 118–137 МГц теперь обязателен.
 
-> Текущий точный маркер — **H6.0.1-R1**. Физическая проекция H1-R2.38 с двумя независимыми RP2354B, точными GPIO0..47, M1 и прямым 50-контактным ZIF дисплея принята и прошла ревью 2026-08-30. Native R2 H2 материализует 1 183 экземпляра и 816 nets в двух проектах KiCad без замечаний ERC. H3-R2 полностью проведён ревью: 20 текущих evidence-artifacts и записанные source hashes сведены без mismatch или открытого аналитического finding; 51 физический остаток назначен H5/H6/H8. Глобальные H4-R2 и H5-R1 проведены ревью; H6 размещение и трассировка являются текущей работой.
+> Текущий точный маркер — **H6.0.1-R1**. Физическая проекция H1-R2.38 с двумя независимыми RP2354B, точными GPIO0..47, M1 и прямым 50-контактным ZIF дисплея принята и прошла ревью 2026-08-30. Native R2 H2 материализует 1 208 schematic-экземпляров и 823 nets в двух проектах KiCad без замечаний ERC. H3-R2 полностью проведён ревью: 20 текущих evidence-artifacts и записанные source hashes сведены без mismatch или открытого аналитического finding; 51 физический остаток назначен H5/H6/H8. Глобальные H4-R2 и H5-R1 проведены ревью; H6 размещение и трассировка являются текущей работой.
 
 ![H0-R2 functional architecture](images/h0-r2-functional-architecture.svg)
 
@@ -27,7 +27,7 @@ H0-R2 проведён как новый функциональный baseline: 
 | Rear RP GP35 | `AIR_RX_EN` | pulled low; LNA/mixer/LO domain off |
 | Rear RP GP36 | `AIR_RX_MODE` | direct FM/SW path selected |
 
-Front RP budget: **47 used / 1 free**. Rear RP budget: **43 used / 5 free**. SI5351 control stays on the rear-local I²C bus at `0x60`; no Airband control traffic uses the S3 UI bus.
+Front RP budget: **46 used / 2 free**. Rear RP budget: **43 used / 5 free**. SI5351 control stays on the rear-local I²C bus at `0x60`; no Airband control traffic uses the S3 UI bus.
 
 ## Рабочая принципиальная распиновка
 
@@ -80,10 +80,9 @@ Front RP budget: **47 used / 1 free**. Rear RP budget: **43 used / 5 free**. SI5
 | `36` | FAULT_KILL-qualified common nRF24 switched-rail request |
 | `37, 38, 39, 40, 41, 44` | dedicated microSD SPI SCK/MOSI/MISO/CS plus power and detect |
 | `42, 43` | dedicated fail-closed I2C1 controller bus to Pack and Safety MSPM0 mailboxes |
-| `45` | LCD_TE direct front-local edge capture; Hub timestamps/alerts S3 without consuming another S3 GPIO |
+| `45, 47` | uncommitted electrical reserves; the accepted display TE contact remains deliberately open |
 | `46` | LCD_BL_PWM front-local backlight gate drive with the existing hardware reset-off pull-down |
 | `6` | AON Pack/PD mailbox alert through M1.59 |
-| `47` | uncommitted electrical reserve |
 
 | GPIO заднего RP | Назначение |
 |---|---|

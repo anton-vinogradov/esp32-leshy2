@@ -45,7 +45,7 @@ The complete verifiable physical model of the two 75 × 150 mm PCBs was accepted
 - Complete TX evidence: `8` exact detectors, `5` couplers and `8` bounded local islands pass fail-closed audit; all six AD8314 positions use the accepted `AD8314ARMZ-REEL` / `C652687`.
 - Microcoax reach: two 30-mm native-radio and three 60-mm nRF paths have at least `9.39 mm` paper slack, with each nRF checked against the farthest corner of the complete SP4 envelope rather than a guessed IPEX axis.
 - C5 DBG10 is relocated beside S3 DBG10 and intersects no adjacent body.
-- GPIO: front RP `47/48` with `1` free; rear RP `43/48` with `5` free; S3 uses 27 of 33 GPIO.
+- GPIO: front RP `46/48` with `2` free; rear RP `43/48` with `5` free; S3 uses 27 of 33 GPIO.
 - M1: all 80 contacts are assigned — 31 signals, 14 main-power, 2 AON, 24 returns and 9 true NC reserves.
 - M1 mechanics: four 11.00-mm compression stops, two anti-shear datums and independent PCB capture; the connector carries no impact or bending load.
 - Antenna silkscreen: the generator proves no overlap with SMA bodies, the Cap-Bus slot, the display or mounting keep-outs.

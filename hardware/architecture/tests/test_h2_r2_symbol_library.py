@@ -27,15 +27,15 @@ class H2R2SymbolLibraryTests(unittest.TestCase):
             stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("232 controlled R2 symbols", result.stdout)
+        self.assertIn("245 controlled R2 symbols", result.stdout)
 
     def test_library_boundary_is_complete_and_pre_net(self):
         self.assertEqual("pass", self.manifest["status"])
         self.assertEqual([], self.manifest["errors"])
         library = self.manifest["library"]
         self.assertEqual("Leshy2_R2", library["id"])
-        self.assertEqual(232, library["symbol_count"])
-        self.assertEqual(1532, library["pin_count"])
+        self.assertEqual(245, library["symbol_count"])
+        self.assertEqual(1571, library["pin_count"])
         self.assertEqual(3, library["external_interface_metadata_count"])
         self.assertTrue(self.manifest["authorization"]["controlled_symbol_library"])
         self.assertFalse(self.manifest["authorization"]["native_schematic_nets"])
@@ -74,6 +74,10 @@ class H2R2SymbolLibraryTests(unittest.TestCase):
         for number in ("19", "20", "22"):
             pin = next(row for row in c5["pin_map"] if row["number"] == number)
             self.assertEqual("no_connect", pin["type"])
+
+    def test_board_copper_features_are_excluded_from_bom(self):
+        for device_id in ("leshy2_nfc_pickup_loop_r2", "leshy2_pcb_testpoint_pad_1mm_r2"):
+            self.assertTrue(self.symbols[device_id]["bom_excluded"])
 
     def test_kicad_can_parse_and_resave_library_when_cli_is_available(self):
         cli = shutil.which("kicad-cli")

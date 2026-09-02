@@ -33,18 +33,18 @@ class H2R2SymbolFootprintLedgerTests(unittest.TestCase):
             stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("232 board groups", result.stdout)
+        self.assertIn("245 board groups", result.stdout)
 
     def test_exact_group_boundary_is_complete(self):
         self.assertEqual("H2-R2.1.2", self.ledger["marker"])
         self.assertEqual("pass", self.ledger["status"])
         summary = self.ledger["summary"]
-        self.assertEqual(238, summary["component_group_count"])
-        self.assertEqual(232, summary["board_component_group_count"])
+        self.assertEqual(251, summary["component_group_count"])
+        self.assertEqual(245, summary["board_component_group_count"])
         self.assertEqual(6, summary["explicit_non_pcba_group_count"])
-        self.assertEqual(232, summary["symbol_identity_count"])
-        self.assertEqual(232, summary["footprint_identity_count"])
-        self.assertEqual(1578, summary["logical_contact_count"])
+        self.assertEqual(245, summary["symbol_identity_count"])
+        self.assertEqual(245, summary["footprint_identity_count"])
+        self.assertEqual(1617, summary["logical_contact_count"])
         self.assertEqual(0, summary["unresolved_groups"])
 
     def test_contacts_are_hash_bound_to_current_device_evidence(self):
@@ -97,21 +97,30 @@ class H2R2SymbolFootprintLedgerTests(unittest.TestCase):
             )
         self.assertEqual(5, self.ledger["summary"]["historical_package_conflicts_resolved"])
 
-    def test_new_panel_connector_geometry_is_explicit_and_singular(self):
-        pending = [
+    def test_all_new_local_geometries_are_materialized(self):
+        materialized = [
             row for row in self.ledger["groups"]
             if row["footprint_definition"]
-            and row["footprint_definition"]["status"].endswith("pending_h2_r2_1_3_materialization")
+            and row["footprint_definition"]["status"] == "current_exact_local_definition_materialized"
         ]
-        self.assertEqual(3, len(pending))
+        self.assertEqual(7, len(materialized))
         self.assertEqual(
-            {"hirose_fh34srj_50s_0_5sh_50", "coilcraft_wbc1_1tlc", "coilcraft_wbc16_1tlc"},
-            {row["device_id"] for row in pending},
+            {
+                "hirose_fh34srj_50s_0_5sh_50",
+                "coilcraft_wbc1_1tlc",
+                "coilcraft_wbc16_1tlc",
+                "prodtech_pspmaa0605h_2r2m_anp",
+                "ti_tps566231p_rqfr",
+                "leshy2_nfc_pickup_loop_r2",
+                "leshy2_pcb_testpoint_pad_1mm_r2",
+            },
+            {row["device_id"] for row in materialized},
         )
         self.assertIn(
             "Leshy2_R2:FH34SRJ-50S-0.5SH-50",
-            {row["footprint"] for row in pending},
+            {row["footprint"] for row in materialized},
         )
+        self.assertEqual(7, self.ledger["summary"]["new_exact_footprint_geometries_materialized"])
 
     def test_authorization_remains_net_and_kicad_free(self):
         self.assertEqual([], self.ledger["errors"])

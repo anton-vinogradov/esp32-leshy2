@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "artifact": "H6-R2-input-freeze-new-parts",
+  "checked_on": "2026-09-02",
+  "surface": "JLCPCB Assembly Parts Library; SMT; Economic and Standard PCBA",
+  "purpose": "Architecture-freeze recheck for the exact power-cell and U219-support MPNs newly materialized after the historical 210-line H5 capture.",
+  "method": "Read the exact public JLCPCB part card after its dynamic stock panel loaded; no BOM upload, quote, reservation, sourcing request or order was created.",
+  "parts": [
+    {"mpn":"TPS566231PRQFR","manufacturer":"Texas Instruments","jlcpcb_part":"C3190178","stock":106,"available_order_quantity":105,"moq":1,"unit_price_usd":1.0235,"route":"J0 in-stock Extended SMT / Standard PCBA","url":"https://jlcpcb.com/partdetail/TexasInstruments-TPS566231PRQFR/C3190178"},
+    {"mpn":"PSPMAA0605H-2R2M-ANP","manufacturer":"PROD Tech","jlcpcb_part":"C2983088","stock":479,"available_order_quantity":469,"moq":1,"unit_price_usd":0.1733,"route":"J0 in-stock Extended SMT / Standard PCBA","url":"https://jlcpcb.com/partdetail/PRODTech-PSPMAA0605H2R2MANP/C2983088"},
+    {"mpn":"CL10B105KO8NNNC","manufacturer":"Samsung Electro-Mechanics","jlcpcb_part":"C59782","stock":596580,"available_order_quantity":522346,"moq":1,"unit_price_usd":0.0210,"route":"J0 in-stock SMT / Standard PCBA","url":"https://jlcpcb.com/partdetail/x/C59782"},
+    {"mpn":"CL05B104KB5NNNC","manufacturer":"Samsung Electro-Mechanics","jlcpcb_part":"C960916","stock":761347,"available_order_quantity":561825,"moq":1,"unit_price_usd":0.0093,"route":"J0 in-stock SMT / Standard PCBA","url":"https://jlcpcb.com/partdetail/x/C960916"},
+    {"mpn":"SN74CBTLV1G125DCKR","manufacturer":"Texas Instruments","jlcpcb_part":"C131992","stock":2969,"available_order_quantity":2968,"moq":1,"unit_price_usd":0.3144,"route":"J0 in-stock Extended SMT / Standard PCBA","url":"https://jlcpcb.com/partdetail/TexasInstruments-SN74CBTLV1G125DCKR/C131992"},
+    {"mpn":"SN74LVC1G06DCKR","manufacturer":"Texas Instruments","jlcpcb_part":"C7828","stock":5455,"available_order_quantity":4296,"moq":1,"unit_price_usd":0.1672,"route":"J0 in-stock Extended SMT / Standard PCBA","url":"https://jlcpcb.com/partdetail/TexasInstruments-SN74LVC1G06DCKR/C7828"},
+    {"mpn":"BAT54S,215","manufacturer":"Nexperia","jlcpcb_part":"C47546","stock":381015,"available_order_quantity":378780,"moq":1,"unit_price_usd":0.0335,"route":"J0 in-stock Extended SMT / Standard PCBA","url":"https://jlcpcb.com/partdetail/Nexperia-BAT54S215/C47546"},
+    {"mpn":"LMV331IDBVR","manufacturer":"Texas Instruments","jlcpcb_part":"C34731","stock":41026,"available_order_quantity":39761,"moq":1,"unit_price_usd":0.1648,"route":"J0 in-stock Extended SMT / Standard PCBA","url":"https://jlcpcb.com/partdetail/TexasInstruments-LMV331IDBVR/C34731"},
+    {"mpn":"0402WGF1001TCE","manufacturer":"UNI-ROYAL(Uniroyal Elec)","jlcpcb_part":"C11702","stock":12791157,"available_order_quantity":9993706,"moq":1,"unit_price_usd":0.0039,"route":"J0 in-stock Basic SMT / Standard PCBA","url":"https://jlcpcb.com/partdetail/12256-0402WGF1001TCE/C11702"},
+    {"mpn":"0402WGF1002TCE","manufacturer":"UNI-ROYAL(Uniroyal Elec)","jlcpcb_part":"C25744","stock":30751146,"available_order_quantity":26594331,"moq":1,"unit_price_usd":0.0031,"route":"J0 in-stock Basic SMT / Standard PCBA","url":"https://jlcpcb.com/partdetail/26487-UNI_ROYAL0402WGF1002TCE/C25744"},
+    {"mpn":"0402WGF1003TCE","manufacturer":"UNI-ROYAL(Uniroyal Elec)","jlcpcb_part":"C25741","stock":13511533,"available_order_quantity":11997768,"moq":1,"unit_price_usd":0.0028,"route":"J0 in-stock Basic SMT / Standard PCBA","url":"https://jlcpcb.com/partdetail/x/C25741"},
+    {"mpn":"0402WGF1004TCE","manufacturer":"UNI-ROYAL(Uniroyal Elec)","jlcpcb_part":"C26083","stock":3249651,"available_order_quantity":2856724,"moq":1,"unit_price_usd":0.0026,"route":"J0 in-stock Basic SMT / Standard PCBA","url":"https://jlcpcb.com/partdetail/x/C26083"},
+    {"mpn":"GRM155R71H103KA88D","manufacturer":"Murata Electronics","jlcpcb_part":"C77019","stock":556926,"available_order_quantity":514593,"moq":1,"unit_price_usd":0.0097,"route":"J0 in-stock Extended SMT / Standard PCBA","url":"https://jlcpcb.com/partdetail/MurataElectronics-GRM155R71H103KA88D/C77019"},
+    {"mpn":"CC0402KRX7R9BB104","manufacturer":"YAGEO","jlcpcb_part":"C131394","stock":8877721,"available_order_quantity":7757037,"moq":1,"unit_price_usd":0.0104,"route":"J0 in-stock Extended SMT / Standard PCBA","url":"https://jlcpcb.com/partdetail/Yageo-CC0402KRX7R9BB104/C131394"},
+    {"mpn":"RC0402JR-070RL","manufacturer":"YAGEO","jlcpcb_part":"C60485","stock":4657969,"available_order_quantity":4397247,"moq":1,"unit_price_usd":0.0034,"route":"J0 in-stock Extended SMT / Standard PCBA","url":"https://jlcpcb.com/partdetail/YAGEO-RC0402JR070RL/C60485"}
+  ],
+  "checks": {
+    "all_exact_mpn_and_manufacturer_pairs_match": true,
+    "all_are_smt_and_standard_pcba_placeable": true,
+    "all_have_moq_one": true,
+    "all_are_live_in_stock_not_preorder": true,
+    "no_commercial_action_created": true
+  }
+}

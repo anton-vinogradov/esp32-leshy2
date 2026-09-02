@@ -102,8 +102,8 @@ def build() -> dict:
         errors.append("one or more H3-R2.3 exact part identities drifted")
 
     topology_checks = {
-        "panel_vddi_40_41_from_main": all(endpoint_on_net(native_nets, f"display_connector.PIN_{pin}", "LCD_VDDI_3V3") for pin in (40, 41)),
-        "panel_vci_42_from_main": endpoint_on_net(native_nets, "display_connector.PIN_42", "LCD_VCI_3V3"),
+        "panel_vddi_40_41_on_canonical_main": all(endpoint_on_net(native_nets, f"display_connector.PIN_{pin}", "3V3_MAIN") for pin in (40, 41)),
+        "panel_vci_42_on_canonical_main": endpoint_on_net(native_nets, "display_connector.PIN_42", "3V3_MAIN"),
         "backlight_anode_is_latch_protected": endpoint_on_net(native_nets, "backlight_efuse.OUT", "LCD_LEDA_PROTECTED") and endpoint_on_net(native_nets, "display_connector.PIN_1", "LCD_LEDA_PROTECTED"),
         "both_panel_cathodes_enter_one_series_resistor": all(endpoint_on_net(native_nets, f"display_connector.PIN_{pin}", "LCD_LEDK") for pin in (2, 3)) and endpoint_on_net(native_nets, "backlight_series_resistor.END_1", "LCD_LEDK"),
         "series_resistor_precedes_pwm_sink": endpoint_on_net(native_nets, "backlight_series_resistor.END_2", "LCD_LEDK_LIMITED") and endpoint_on_net(native_nets, "backlight_mosfet.D", "LCD_LEDK_LIMITED"),

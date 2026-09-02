@@ -7,13 +7,13 @@
   "expected": {
     "projects": 2,
     "sheets": 22,
-    "fitted_symbols": 1183,
-    "physical_pins": 4243,
-    "canonical_nets": 816,
+    "fitted_symbols": 1208,
+    "physical_pins": 4306,
+    "canonical_nets": 823,
     "domains": 6,
     "controller_pins": 173,
     "cross_project_nets": 35,
-    "cross_sheet_nets": 230,
+    "cross_sheet_nets": 231,
     "m1_contacts": 80,
     "m1_true_nc": 9
   },

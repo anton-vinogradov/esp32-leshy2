@@ -22,8 +22,8 @@ class H3R2SourceMarginTest(unittest.TestCase):
 
     def test_all_deferred_source_pack_lines_have_one_owner(self):
         ownership = self.manifest["ownership"]
-        self.assertEqual(75, len(ownership))
-        self.assertEqual(75, len({row["instance_uid"] for row in ownership}))
+        self.assertEqual(77, len(ownership))
+        self.assertEqual(77, len({row["instance_uid"] for row in ownership}))
         self.assertIn("pack_source", self.manifest["ownership_summary"]["owner_counts"])
         self.assertEqual(0, self.manifest["summary"]["hidden_miscellaneous_allowances"])
 

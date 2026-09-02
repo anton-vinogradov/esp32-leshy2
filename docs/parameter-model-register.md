@@ -6,10 +6,10 @@
 
 ## Coverage
 
-- `238` component groups: `232` on-board and `6` explicitly external/final-installed.
-- `1183` fitted positions; all `238` groups have an H3 owner.
-- `74` groups already contain structured parameters; `164` are in an explicit extraction queue rather than receiving invented values.
-- `238` method candidates are assigned; exact methods, tolerances and applicability are frozen next in `H3-R2.0.3`.
+- `251` component groups: `245` on-board and `6` explicitly external/final-installed.
+- `1208` fitted positions; all `251` groups have an H3 owner.
+- `75` groups already contain structured parameters; `176` are in an explicit extraction queue rather than receiving invented values.
+- `251` method candidates are assigned; exact methods, tolerances and applicability are frozen next in `H3-R2.0.3`.
 
 ## Model classes
 
@@ -17,11 +17,11 @@
 |---|---:|---:|---:|
 | `analog_peripheral` | 6 | 3 | 3 |
 | `connector_interconnect` | 12 | 6 | 6 |
-| `digital_interface` | 33 | 18 | 15 |
-| `electromechanical_or_load` | 7 | 0 | 7 |
-| `general_component` | 37 | 17 | 20 |
-| `passive_corner` | 117 | 19 | 98 |
-| `power_safety_active` | 11 | 3 | 8 |
+| `digital_interface` | 34 | 19 | 15 |
+| `electromechanical_or_load` | 8 | 0 | 8 |
+| `general_component` | 39 | 17 | 22 |
+| `passive_corner` | 124 | 19 | 105 |
+| `power_safety_active` | 13 | 3 | 10 |
 | `programmable_controller` | 2 | 0 | 2 |
 | `radio_rf` | 13 | 8 | 5 |
 
@@ -31,4 +31,4 @@ No factory-catalog-only parameter source remains. Exact `3225-27.00-10-10-10/A` 
 
 > Placement, routing, purchasing and fabrication remain forbidden. The next step reproducibly freezes methods, tolerances and pass/fail rules.
 
-[238-row machine register](../hardware/verification/generated/H3-R2-parameter-provenance.json). The historical R1 `H3-VRF02` register remains archived evidence and is not R2 authority.
+[251-row machine register](../hardware/verification/generated/H3-R2-parameter-provenance.json). The historical R1 `H3-VRF02` register remains archived evidence and is not R2 authority.

@@ -239,6 +239,7 @@ def build() -> dict:
                 "contacts": contact_rows,
                 "mechanical_only_pads": mechanical_names,
                 "shared_electrical_pads": shared_actual,
+                "bom_excluded": bool(ledger_row.get("bom_excluded", False)),
             }
         )
 
@@ -247,13 +248,13 @@ def build() -> dict:
     stale_contract_ids = sorted(used_overrides - board_ids)
     if stale_contract_ids:
         errors.append(f"contract references non-board device groups: {stale_contract_ids}")
-    if len(board_rows) != 232:
-        errors.append("expected exactly 232 board component groups")
+    if len(board_rows) != 245:
+        errors.append("expected exactly 245 board component groups")
     logical_contact_count = sum(row["logical_contact_count"] for row in rows)
     source_ledger_contact_count = ledger.get("summary", {}).get("logical_contact_count")
-    if logical_contact_count != 1519 or source_ledger_contact_count != 1578:
+    if logical_contact_count != 1558 or source_ledger_contact_count != 1617:
         errors.append(
-            "expected 1519 board contacts inside the reviewed 1578-contact total ledger"
+            "expected 1558 board contacts inside the reviewed 1617-contact total ledger"
         )
     if mapped_contact_count + external_contact_count != logical_contact_count:
         errors.append("contact disposition accounting does not balance")

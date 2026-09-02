@@ -73,8 +73,8 @@ H1 has no physical blocker. The complete mock-up was explicitly accepted on
 
 The former G2F/H2/KiCad result is historical single-RP R1 evidence. All three
 new R2 electrical prerequisites, the native source/sheet/component inventory,
-the exact symbol/contact/footprint ledger and the 4,243-endpoint net
-reconciliation are reviewed. Three native KiCad projects now pass zero-finding
+the exact symbol/contact/footprint ledger and the 4,306-pin native project
+reconciliation are reviewed. Two native KiCad projects now pass zero-finding
 ERC; cross-sheet and HW↔FW reconciliation passes. Placement/routing have
 not started.
 
@@ -88,18 +88,18 @@ Exact current checklist:
    release qualifier reviewed with complete Standard-PCBA routes and fail-closed truth table;
 3. ✅ `H2-R2.0.3`: exact TI `TCA9803DGKR` / `C2687966` Pack/Safety boundary
    reviewed with rail-local termination, four Basic decouplers and USD 0.3953 cost;
-4. ✅ `H2-R2.1.1`: 2 projects, 22 sheets, 6 domain owners and 238 exact MPN
-   groups reviewed;
-5. ✅ `H2-R2.1.2`: 232 board groups, six explicit non-PCBA groups and 1,578
+4. ✅ `H2-R2.1.1`: 2 projects, 22 sheets, 6 domain owners and 251 exact
+   component groups reviewed;
+5. ✅ `H2-R2.1.2`: 245 board groups, six explicit non-PCBA groups and 1,617
    logical contacts mapped with zero unresolved groups;
-6. ✅ `H2-R2.1.3` definitions/instances: 232 controlled symbols, 1,532 PCB-pad
-   pins and all 1,183 fitted instances pass the current two-project allocation;
-7. ✅ `H2-R2.1.3` nets: 4,239 fitted-instance contacts resolve to 816 canonical
-   nets or 237 explicit board no-connects with zero unresolved endpoints;
-8. ✅ `H2-R2.1.3`: two native KiCad projects materialize 4,243 physical pins
+6. ✅ `H2-R2.1.3` definitions/instances: 245 controlled symbols, 1,571 symbol
+   pins and all 1,208 fitted instances pass the current two-project allocation;
+7. ✅ `H2-R2.1.3` nets: 4,302 fitted-instance contacts resolve to 823 canonical
+   nets or 238 explicit board no-connects with zero unresolved endpoints;
+8. ✅ `H2-R2.1.3`: two native KiCad projects materialize 4,306 physical pins
    and pass ERC with zero errors and zero warnings;
 9. ✅ `H2-R2.1.4`: six domains, 173 controller pins, 35 cross-project nets and
-   230 cross-sheet nets reconcile with zero unresolved boundary;
+   231 cross-sheet nets reconcile with zero unresolved boundary;
 10. ✅ `H2-R2.1.5`: the bilingual result report is published and the synchronized
     firmware H2 gate is open.
 
@@ -122,11 +122,11 @@ clearly labels retained R1 ECAD as non-current evidence.
 
 [`H3-R2.0.1`](h3-r2-input-freeze.md) reviewed the hash-bound H2 input and complete R2
 verification matrix. [`H3-R2.0.2`](parameter-model-register.md) reviewed exact
-parameter/model provenance for 238 groups and 1,183 fitted positions. Current
+parameter/model provenance for 251 groups and 1,208 fitted positions. Current
 methods are frozen by [`H3-R2.0.3`](verification-methods.md): nine methods and
-twelve pass/fail rules cover all 238 groups. [`H3-R2.1.1`](power-state-register.md)
+twelve pass/fail rules cover all 251 groups. [`H3-R2.1.1`](power-state-register.md)
 reviews all 2,266 legal source, charge, fault and operating states.
-[`H3-R2.1.2`](power-load-binding.md) reviews explicit binding for 613 fitted powered
+[`H3-R2.1.2`](power-load-binding.md) reviews explicit binding for 623 fitted powered
 power-connected instances and six external loads. [`H3-R2.1.3`](power-rail-margins.md)
 reviews 224 passing profiles across all four rails, with 30.560% minimum current
 reserve and 24.706 °C minimum junction-temperature reserve. [`H3-R2.1.4`](power-source-margins.md)
@@ -166,17 +166,19 @@ closes with zero contradiction and transfers all 51 physical residuals.
 <a id="h5"></a>
 ## H5 · Component and factory evidence
 
-**Status:** ✅ reviewed at **`H5.0.3-R1`**.
+**Status:** ✅ current R2 routes reviewed at **`H5-R2.1`**.
 
-The [global bilingual H5 result](h5-r1-acceptance.md) reviews all 210 BOM routes
-and 1,050 placements with zero unmapped line or substitution. JLCPCB confirmed
-exact dual-module/no-substitution PCBA at MOQ 2, the owner accepted deterministic
-post-PCBA final assembly, and exact `Ettinger 007.02.611` 11-mm pass-through
-stops preserve the four-long-plastic-screw architecture. The known owner-kit
-material budget is `$267.91`; no commercial action was created.
+The [current bilingual H5-R2 result](h5-r2-current-route.md) revalidates all 249
+purchasable groups / 1,216 articles with zero unmapped route. It preserves the
+[historical H5-R1 evidence](h5-r1-acceptance.md), owner final assembly and exact
+`Ettinger 007.02.611` 11-mm pass-through stops. One order-time gate remains:
+zero-stock `WBC16-1TLC` must use an explicitly confirmed JLCPCB Global Sourcing
+route or a separately qualified and adopted replacement; no silent substitution
+is allowed. No commercial action was created.
 
 H6 owns enclosure-dependent screw length and quoteable Gerber/BOM/CPL. Final
-`SA818S-V` terms and live stock/price recheck remain immediate pre-order gates.
+`SA818S-V` terms, `WBC16-1TLC` sourcing and the complete live stock/price
+recheck remain immediate pre-order gates.
 
 <a id="h6"></a>
 ## H6 · KiCad placement, routing and release candidate

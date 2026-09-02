@@ -67,7 +67,7 @@ def inferred_sheet(instance: str, allowed: list[str]) -> str | None:
         (("cc_", "voice_", "voice_v_", "det_cc", "det_voice"), "RF_20_CC1101_VOICE_TX"),
         (("receiver_", "airband_", "air_", "si_"), "RF_21_BROADCAST_AIRBAND_RX"),
         (("audio_", "codec_", "speaker", "microphone", "headset_", "headphone_"), "RF_22_AUDIO_CODEC_IO"),
-        (("u214_", "unit_", "ext_", "cap_"), "RF_30_U214_U219_M5_EXT"),
+        (("u214_", "u219_", "unit_", "ext_", "cap_"), "RF_30_U214_U219_M5_EXT"),
         (("pack_", "safety_", "hub_safe_i2c", "aon_"), "RF_02_PACK_SAFETY_AON"),
         (("pd_", "charger_", "product_usb_"), "RF_01_USB_PD_CHARGE"),
         (("main_", "power_", "voice_efuse", "ext_buck"), "RF_03_MAIN_RAILS_DOMAIN_GATES"),
@@ -79,6 +79,10 @@ def inferred_sheet(instance: str, allowed: list[str]) -> str | None:
 
 
 def reference_prefix(device_id: str, footprint: str) -> str:
+    if device_id == "leshy2_nfc_pickup_loop_r2":
+        return "L"
+    if device_id == "leshy2_pcb_testpoint_pad_1mm_r2":
+        return "TP"
     library = footprint.split(":", 1)[0]
     if library.startswith("Resistor"):
         return "R"
@@ -242,6 +246,7 @@ def build() -> dict:
                     ),
                     "allocation_origin": origin,
                     "historical_topology_authority": False,
+                    "bom_excluded": bool(group.get("bom_excluded", False)),
                 }
             )
             reconciliation_counts[origin] += 1
@@ -257,8 +262,8 @@ def build() -> dict:
     for row in rows:
         counters[row["project"]][row["reference_prefix"]] += 1
         row["reference"] = f"{row['reference_prefix']}{counters[row['project']][row['reference_prefix']]}"
-    if len(rows) != 1183:
-        errors.append(f"expected 1183 fitted board instances, got {len(rows)}")
+    if len(rows) != 1208:
+        errors.append(f"expected 1208 board schematic instances, got {len(rows)}")
     project_counts = Counter(row["project"] for row in rows)
     project_graph_sheet_count = sum(
         len(project.get("sheets", [])) for project in inventory.get("projects", [])
@@ -320,7 +325,7 @@ def main() -> int:
     if not OUTPUT.is_file() or OUTPUT.read_text(encoding="utf-8") != text:
         print(f"stale: {OUTPUT.relative_to(ROOT)}")
         return 1
-    print("ok: 1183 exact fitted R2 instances across 2 native projects and 22 sheets; zero nets created")
+    print("ok: 1208 exact R2 board instances across 2 native projects and 22 sheets; zero nets created")
     return 0
 
 

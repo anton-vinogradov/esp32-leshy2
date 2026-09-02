@@ -39,7 +39,7 @@ class H2R2NativeKiCadTests(unittest.TestCase):
             stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("2 native projects, 22 sheets, 1183 symbols, 4243 pins", result.stdout)
+        self.assertIn("2 native projects, 22 sheets, 1208 symbols, 4306 pins", result.stdout)
 
     def test_exact_project_sheet_instance_and_pin_totals_close(self):
         self.assertEqual("pass", self.manifest["status"])
@@ -48,12 +48,12 @@ class H2R2NativeKiCadTests(unittest.TestCase):
         self.assertEqual(2, summary["project_count"])
         self.assertEqual(22, summary["project_graph_sheet_count"])
         self.assertEqual(18, summary["populated_sheet_count"])
-        self.assertEqual(1183, summary["fitted_symbol_instance_count"])
-        self.assertEqual(4243, summary["physical_symbol_pin_count"])
-        self.assertEqual(4006, summary["connected_physical_pin_count"])
-        self.assertEqual(237, summary["explicit_no_connect_physical_pin_count"])
+        self.assertEqual(1208, summary["fitted_symbol_instance_count"])
+        self.assertEqual(4306, summary["physical_symbol_pin_count"])
+        self.assertEqual(4068, summary["connected_physical_pin_count"])
+        self.assertEqual(238, summary["explicit_no_connect_physical_pin_count"])
         self.assertEqual(5, summary["external_module_interface_annotation_count"])
-        self.assertEqual(816, summary["canonical_net_count"])
+        self.assertEqual(823, summary["canonical_net_count"])
 
     def test_every_controlled_physical_pin_has_one_connected_or_nc_target(self):
         rows_by_instance = {}
@@ -78,7 +78,7 @@ class H2R2NativeKiCadTests(unittest.TestCase):
                     no_connect += 1
                     self.assertEqual("no_connect", disposition)
                     self.assertIsNone(net)
-        self.assertEqual((4243, 4006, 237), (physical, connected, no_connect))
+        self.assertEqual((4306, 4068, 238), (physical, connected, no_connect))
 
     def test_module_receptacles_are_annotations_not_false_pcb_pins(self):
         external = [
@@ -101,7 +101,7 @@ class H2R2NativeKiCadTests(unittest.TestCase):
     def test_three_projects_are_complete_and_have_no_pcb(self):
         expected = {
             "LESHY2-UI-R2": (9, 428),
-            "LESHY2-RF-R2": (13, 755),
+            "LESHY2-RF-R2": (13, 780),
         }
         actual = {row["id"]: (row["sheet_count"], row["instance_count"]) for row in self.manifest["projects"]}
         self.assertEqual(expected, actual)
@@ -157,6 +157,37 @@ class H2R2NativeKiCadTests(unittest.TestCase):
                 components = tree.getroot().findall("./components/comp")
                 self.assertEqual(component_count, len(components), project_id)
                 self.assertEqual(component_count, len({row.get("ref") for row in components}), project_id)
+
+    def test_kicad_native_erc_is_empty_for_both_roots(self):
+        cli = shutil.which("kicad-cli")
+        mac_cli = Path("/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli")
+        if not cli and mac_cli.is_file():
+            cli = str(mac_cli)
+        if not cli:
+            self.skipTest("kicad-cli is not installed")
+        with tempfile.TemporaryDirectory() as directory:
+            for project in self.manifest["projects"]:
+                project_id = project["id"]
+                report = Path(directory) / f"{project_id}-erc.json"
+                schematic = PROJECT_ROOT / project_id / f"{project_id}.kicad_sch"
+                result = subprocess.run(
+                    [
+                        cli, "sch", "erc", "--format", "json", "--severity-all",
+                        "--exit-code-violations", "-o", str(report), str(schematic),
+                    ],
+                    cwd=ROOT,
+                    text=True,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                )
+                self.assertEqual(0, result.returncode, result.stdout)
+                erc = json.loads(report.read_text(encoding="utf-8"))
+                violations = [
+                    violation
+                    for sheet in erc.get("sheets", [])
+                    for violation in sheet.get("violations", [])
+                ]
+                self.assertEqual([], violations, project_id)
 
 
 if __name__ == "__main__":

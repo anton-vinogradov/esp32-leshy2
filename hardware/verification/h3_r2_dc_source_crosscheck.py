@@ -56,7 +56,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "all_current_loads_are_bound": len(all_load_uids) == rails["summary"]["physical_and_external_lines_owned"],
         "rail_ownership_exact": set(rail_ownership) == all_load_uids,
         "numeric_and_deferred_partition": numeric.isdisjoint(deferred) and numeric | deferred == all_load_uids,
-        "all_75_deferred_lines_are_source_owned": len(deferred) == 75 and set(source_ownership) == deferred,
+        "all_77_deferred_lines_are_source_owned": len(deferred) == 77 and set(source_ownership) == deferred,
         "no_hidden_load_or_source_allowance": loads["summary"]["hidden_miscellaneous_allowances"] == 0 == rails["summary"]["hidden_miscellaneous_allowances"] == sources["summary"]["hidden_miscellaneous_allowances"],
         "rail_current_voltage_thermal_pass": rails["summary"]["current_failures"] == rails["summary"]["voltage_failures"] == rails["summary"]["steady_thermal_failures"] == 0,
         "all_source_states_safe": sources["summary"]["failed_states"] == 0,

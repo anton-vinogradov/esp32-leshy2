@@ -191,6 +191,35 @@
       "body_max_mm": [4.45, 4.19, 3.05],
       "contact_pad_mm": [1.52, 0.76],
       "row_center_span_mm": 4.57
+    },
+    "ti_tps566231p_rqfr": {
+      "footprint": "Leshy2_R2:Texas_RQF0009A_1.5x2.0mm",
+      "manufacturer_source": "Texas Instruments RQF0009A package drawing and land-pattern example 4225248/A",
+      "evidence_checked_at": "2026-09-02",
+      "positions": 9,
+      "body_mm": [2.0, 1.5, 1.0]
+    },
+    "prodtech_pspmaa0605h_2r2m_anp": {
+      "footprint": "Leshy2_R2:PRODTech_PSPMAA0605H_7.1x6.6mm",
+      "manufacturer_source": "PROD Tech PSPMAA0605H exact manufacturer drawing and recommended pads",
+      "evidence_checked_at": "2026-09-02",
+      "positions": 2,
+      "body_mm": [7.1, 6.6, 5.0]
+    },
+    "leshy2_nfc_pickup_loop_r2": {
+      "footprint": "Leshy2_R2:NFC_Pickup_Loop_R2",
+      "manufacturer_source": "H1-R2.38 fixed Leshy2 PCB-copper feature geometry",
+      "evidence_checked_at": "2026-09-02",
+      "positions": 2,
+      "reserve_mm": [72.0, 22.4],
+      "routing_gate": "H6 selects the RF outer copper layer and routes the continuous weak pickup loop between the two fixed feed vias"
+    },
+    "leshy2_pcb_testpoint_pad_1mm_r2": {
+      "footprint": "Leshy2_R2:PCB_TestPoint_Pad_D1.0mm",
+      "manufacturer_source": "repository-controlled exposed copper diagnostic feature",
+      "evidence_checked_at": "2026-09-02",
+      "positions": 1,
+      "pad_diameter_mm": 1.0
     }
   },
   "authorization": {

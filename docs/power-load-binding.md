@@ -2,19 +2,19 @@
 
 [Home](../README.md) · [Roadmap](roadmap.md) · [States](power-state-register.md) · [Русский](power-load-binding.ru.md)
 
-`H3-R2.1.2` passes structural review: all `611` fitted instances touching an accounted rail have exactly one explicit line. The register adds `6` external load contracts. Unbound lines: `0`; hidden miscellaneous allowances: `0`.
+`H3-R2.1.2` passes structural review: all `623` fitted instances touching an accounted rail have exactly one explicit line. The register adds `6` external load contracts. Unbound lines: `0`; hidden miscellaneous allowances: `0`.
 
 ## Bound surface
 
 | Disposition | Lines |
 |---|---:|
-| `active_consumer` | 121 |
+| `active_consumer` | 125 |
 | `connector_or_external_boundary` | 9 |
 | `conversion_or_protection_path` | 22 |
-| `effective_capacitance_and_dc_leakage` | 241 |
+| `effective_capacitance_and_dc_leakage` | 247 |
 | `indirect_powered_consumer` | 16 |
-| `resistive_dc_branch` | 191 |
-| `series_dcr_and_saturation` | 9 |
+| `resistive_dc_branch` | 194 |
+| `series_dcr_and_saturation` | 8 |
 | `series_protection` | 2 |
 
 ## What is not yet a pass

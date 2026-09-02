@@ -6,11 +6,11 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "d0e9edfb67fdc83d07c4e03005f5d8ec38d4aa513cbb1f962599e0c7baf8a90a"
+      "sha256": "5b59d8dbcf142296f2d299f136987486325e7758b9c2bb76bdd82e824559acaf"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "2caf023fb65a15be416b66686f7bcbd9ce199f8c8a55c4d37457782e73ceb6ef"
+      "sha256": "23b5799bc5334f9d02c13635c7f9e4f7503929795c669e98223fc37b95cc1c04"
     }
   },
   "historical_hint_sources": [
@@ -28,67 +28,67 @@
     },
     {
       "path": "hardware/ecad/generated/H2-RF01-usb-pd-charge.json",
-      "sha256": "03ef61b7b3bd538717ca68dc586c4d587d3b89b36a3a5084407fcb336d20d685",
+      "sha256": "d1ff9b79ddac752b01ad650e7c7f174efe2c549c03a9e09f02e30ab754d859a2",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF02-pack-safety-aon.json",
-      "sha256": "58a2f6de116ee4eb401fd320723531b5f1a3d54dcc65c3c4a8246428627fcf44",
+      "sha256": "f3ace1b520c6c70404aed5e5d671b24f53ec9188ab18248a57568777aa79682d",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json",
-      "sha256": "070c0455aa158641a41acd085182772d7a8c583658152f55bd8f5b1c2ec86ddb",
+      "sha256": "ed376e92753619de294fdb794651ff40ae43a61841b209b50dafaf97a93ffdfd",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF30-rp2354-core-service.json",
-      "sha256": "bfd4b5da9a363445276dff62e20e22d5bc6a6e6394911ea10dc1431f62058da8",
+      "sha256": "523bba76422ee6feb493529652940ac713135e8b2b5b64e9502d80ac231912c2",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF31-nrf24-x3.json",
-      "sha256": "f452a7bd4c42d9ef5f96d39bf063d1774875be5cef18d7ea0f4450898e0ce75c",
+      "sha256": "d5ef6a3b67ca4ab126a4155f20100bef485c32b4baa49a2ff5c32bc6002c7aa7",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF32-subghz-voice.json",
-      "sha256": "d6991f7a46bff02b0f519bdcb34c918b58c74e9ed60ac775a4570a1330ad668a",
+      "sha256": "3809d72fe3acf5fd508a389b83dd00d9f9947110c33ed153b07ac46ee76ba7df",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF34-u214-m5-ext.json",
-      "sha256": "d0542674edda1b658df868523075d35d93246c7b61fe65408372395134b3b7ac",
+      "sha256": "5cd64bdf1d1dc5f72d08e3ccc0d48869e0ae044ebce5d55f505534beaba2476d",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF35-rear-controls.json",
-      "sha256": "c093112b8060acd2449d11569302fb8c57976ffdac1fa774558d2fcce74a49d6",
+      "sha256": "a91ad0d851a58faa95b984cf8cb95e331e2bc392ad4240f9ed9801368c02147f",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF36-audio-io-amp.json",
-      "sha256": "f45dca30b37423dc5a2e15bc6c4fff67c49325c75589938c865674de6ecd4c93",
+      "sha256": "8485f238b0b9bf8989d1ed5fe441d563349af2244e05aef156fb3fe65484f56c",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF40-interboard-m1.json",
-      "sha256": "9178ee0690cb0a073c06ccd8ce7fc28d51b85469f27f482a7040e8b2e3b07a18",
+      "sha256": "9392966e07dd1ab3c6c618720fd9b5605f0b697229d1096b77af3434cc098bff",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-RF50-tx-safety-evidence.json",
-      "sha256": "ebe556f2c9d0765576d8137d83a683249d7632957eac7b030f917e515f20cd3c",
+      "sha256": "7f6b8a63cc1e77744a8fff5995f2894e1adaceea249515a9739c85de881a9a5b",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
@@ -106,49 +106,49 @@
     },
     {
       "path": "hardware/ecad/generated/H2-UI10-S3-core.json",
-      "sha256": "14885aeb8f87a082e4b958e0b2691810dd226087af06cfde654c6514b70416bd",
+      "sha256": "6548359faf02be99c43cbbcdc70fcdd2aec3fbc91265f0f78bb00847ecaba346",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI11-display-touch-storage.json",
-      "sha256": "2e338536167c4e3ac656e70dd33965faf4e3ad1e8031b049f45bb4db6cce0d8c",
+      "sha256": "d502afaef7718455dc037bfba66d1c12b77699345d3d7df7b6fd49030c69c7f9",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI12-controls-indicators.json",
-      "sha256": "8fe60a2c0ed85a0bed858762d3e8afb4f56533f8c38eeec8b224e8218e886eea",
+      "sha256": "fb2025170af9e070b5721f3cc4e04b12546ee3c2a0ec07ceb8a9282772943e2b",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI13-audio-codec-headset.json",
-      "sha256": "8470208c966e4a1848cbd6d13ef093a6177422af2b03b73e83850dad73b1e24f",
+      "sha256": "9ccb751e33e645fffa820e3de52156a5c60accd32325721c7b802f3b377e04a1",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json",
-      "sha256": "d9605d2c5cb8aa5b81387a36311d101158d642ba7adf2bbb5ddc7d213e6f5a79",
+      "sha256": "8172e99feae51fb76b2143ca3e8726622a4cd815e44cd49c25f3069f353e3f79",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI21-fm-am-receiver.json",
-      "sha256": "15d8efd7e9f0b98341d19a9b45a8c9e4b40884ac5a2cd53f797247dc948d7603",
+      "sha256": "1121d46cb51372a011c7015488814edb506e26f9e2af4b61fa61962b66be78bd",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI40-interboard-m1.json",
-      "sha256": "8b469114ab1ab948a031a134b1027de3ab353d1fe2017e9bcdea0564fa6ffebc",
+      "sha256": "ee49fffea0a9f2c08a1514516155c450d41737d2e1939487b60f1efcaa2a320c",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
     {
       "path": "hardware/ecad/generated/H2-UI50-tx-safety-evidence.json",
-      "sha256": "4daa46a65fa5af78e34daa0ac2f1dc52aa1db76fc64ca4a1e2c790c90be3331a",
+      "sha256": "faa7faae9308a2d57d77b7a2fbed995c6278e3df0766db0cce1ad1097b700479",
       "authority": false,
       "use": "exact-MPN package-name hint only; no designator, net or sheet authority"
     },
@@ -160,18 +160,18 @@
     }
   ],
   "summary": {
-    "component_group_count": 238,
-    "board_component_group_count": 232,
+    "component_group_count": 251,
+    "board_component_group_count": 245,
     "explicit_non_pcba_group_count": 6,
-    "symbol_identity_count": 232,
-    "footprint_identity_count": 232,
-    "logical_contact_count": 1578,
+    "symbol_identity_count": 245,
+    "footprint_identity_count": 245,
+    "logical_contact_count": 1617,
     "historical_package_hints_reconciled": 194,
     "historical_package_conflicts_resolved": 5,
-    "explicit_current_footprint_overrides": 38,
-    "standard_kicad_footprint_identities": 197,
+    "explicit_current_footprint_overrides": 51,
+    "standard_kicad_footprint_identities": 206,
     "reconciled_local_footprint_definitions": 32,
-    "new_exact_footprint_geometries_pending_materialization": 3,
+    "new_exact_footprint_geometries_materialized": 7,
     "schematic_symbols_or_footprint_files_created": 0,
     "native_schematic_nets_created": 0,
     "unresolved_groups": 0
@@ -233,7 +233,8 @@
       "historical_hint_pin_counts": [
         4
       ],
-      "jlcpcb_part_number": "C1985475"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "abracon_abm8_272_t3",
@@ -292,7 +293,8 @@
       "historical_hint_pin_counts": [
         4
       ],
-      "jlcpcb_part_number": "C20625731"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "abracon_aota_b201610s3r3_101_t",
@@ -342,13 +344,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C42411119"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "adi_ad8314armz_reel",
       "mpn": "Analog Devices AD8314ARMZ-REEL",
       "quantity_per_product": 6,
-      "role": "six real-TX RF detectors / шесть RF-детекторов фактической передачи",
+      "role": "det_cc;det_nrf0;det_nrf1;det_nrf2;det_voice;det_voice_v",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX",
@@ -415,7 +418,8 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C652687"
+      "jlcpcb_part_number": "C652687",
+      "bom_excluded": false
     },
     {
       "device_id": "adi_hmc544aetr",
@@ -477,7 +481,8 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C579555"
+      "jlcpcb_part_number": "C579555",
+      "bom_excluded": false
     },
     {
       "device_id": "adi_lt5560edd_trpbf",
@@ -551,13 +556,14 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C462645"
+      "jlcpcb_part_number": "C462645",
+      "bom_excluded": false
     },
     {
       "device_id": "adi_ltc5532_es6_trmpbf",
       "mpn": "LTC5532ES6#TRMPBF",
       "quantity_per_product": 2,
-      "role": "S3/C5 2.4/5-GHz TX detectors / детекторы TX S3/C5 2,4/5 ГГц",
+      "role": "det_c5;det_s3",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "UI_50_FRONT_POWER_SAFETY"
@@ -618,7 +624,8 @@
       "historical_hint_pin_counts": [
         6
       ],
-      "jlcpcb_part_number": "C580926"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "adi_max17320_g20_t",
@@ -762,7 +769,8 @@
       "historical_hint_pin_counts": [
         25
       ],
-      "jlcpcb_part_number": "C7457895"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "alps_ec11e18244au",
@@ -825,13 +833,14 @@
       "historical_hint_pin_counts": [
         5
       ],
-      "jlcpcb_part_number": "C202365"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "alps_skrtlae010",
       "mpn": "Alps Alpine SKRTLAE010",
       "quantity_per_product": 8,
-      "role": "c5_boot_button, c5_reset_button, rp_boot_button, rp_reset_button, s3_boot_button, s3_reset_button",
+      "role": "c5_boot_button;c5_reset_button;rp_boot_button;rp_reset_button;s3_boot_button;s3_reset_button",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_10_RP2354_CORE_SERVICE",
@@ -884,13 +893,14 @@
       "historical_hint_pin_counts": [
         3
       ],
-      "jlcpcb_part_number": "C110293"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "bourns_crm2512_fx_20r0elf",
       "mpn": "Bourns CRM2512-FX-20R0ELF",
       "quantity_per_product": 2,
-      "role": "pack_diag_res0, pack_diag_res1",
+      "role": "pack_diag_res0;pack_diag_res1",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_02_PACK_SAFETY_AON"
@@ -933,7 +943,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C1848837"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "cc1101rgpr",
@@ -1062,7 +1073,8 @@
       "historical_hint_pin_counts": [
         21
       ],
-      "jlcpcb_part_number": "C29953"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ck_js102011scqn",
@@ -1117,7 +1129,8 @@
       "historical_hint_pin_counts": [
         3
       ],
-      "jlcpcb_part_number": "C221661"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "coilcraft_wbc16_1tlc",
@@ -1171,13 +1184,14 @@
       "footprint": "Leshy2_R2:Coilcraft_WBC_6P_4.45x4.19mm",
       "footprint_resolution": "explicit_current_override",
       "footprint_definition": {
-        "status": "exact_manufacturer_geometry_registered_pending_h2_r2_1_3_materialization",
-        "path": null,
-        "sha256": null
+        "status": "current_exact_local_definition_materialized",
+        "path": "hardware/ecad/libraries/Leshy2_R2.pretty/Coilcraft_WBC_6P_4.45x4.19mm.kicad_mod",
+        "sha256": "eddc9939deec9273ac8e970f9d11183c48e502f65f16a5437a404604ebddf9d0"
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C22402290"
+      "jlcpcb_part_number": "C22402290",
+      "bom_excluded": false
     },
     {
       "device_id": "coilcraft_wbc1_1tlc",
@@ -1231,13 +1245,14 @@
       "footprint": "Leshy2_R2:Coilcraft_WBC_6P_4.45x4.19mm",
       "footprint_resolution": "explicit_current_override",
       "footprint_definition": {
-        "status": "exact_manufacturer_geometry_registered_pending_h2_r2_1_3_materialization",
-        "path": null,
-        "sha256": null
+        "status": "current_exact_local_definition_materialized",
+        "path": "hardware/ecad/libraries/Leshy2_R2.pretty/Coilcraft_WBC_6P_4.45x4.19mm.kicad_mod",
+        "sha256": "eddc9939deec9273ac8e970f9d11183c48e502f65f16a5437a404604ebddf9d0"
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C19191631"
+      "jlcpcb_part_number": "C19191631",
+      "bom_excluded": false
     },
     {
       "device_id": "davies_1227_j",
@@ -1267,13 +1282,14 @@
       "footprint_definition": null,
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "diodes_2n7002dw_7_f",
       "mpn": "Diodes Incorporated 2N7002DW-7-F",
       "quantity_per_product": 5,
-      "role": "pack_hold, pack_status_buffer, safe_reset_sink_a, safe_reset_sink_b",
+      "role": "pack_hold;pack_status_buffer;safe_reset_sink_a;safe_reset_sink_b",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_02_PACK_SAFETY_AON",
@@ -1337,13 +1353,14 @@
       "historical_hint_pin_counts": [
         6
       ],
-      "jlcpcb_part_number": "C83571"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "diodes_bat54_7_f",
       "mpn": "Diodes Incorporated BAT54-7-F",
       "quantity_per_product": 5,
-      "role": "cc_evidence_hold_diode, nrf_evidence_hold_diode, pack_system_diode, voice_evidence_hold_diode, voice_v_evidence_hold_diode",
+      "role": "cc_evidence_hold_diode;nrf_evidence_hold_diode;pack_system_diode;voice_evidence_hold_diode;voice_v_evidence_hold_diode",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_02_PACK_SAFETY_AON",
@@ -1396,13 +1413,14 @@
       "historical_hint_pin_counts": [
         3
       ],
-      "jlcpcb_part_number": "C106920"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "diodes_dmn2056u_7",
       "mpn": "Diodes Incorporated DMN2056U-7",
       "quantity_per_product": 5,
-      "role": "backlight_mosfet, ir_tx_mosfet, pack_diag_switch",
+      "role": "backlight_mosfet;ir_tx_mosfet;pack_diag_switch",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_02_PACK_SAFETY_AON",
@@ -1455,13 +1473,14 @@
       "historical_hint_pin_counts": [
         3
       ],
-      "jlcpcb_part_number": "C332302"
+      "jlcpcb_part_number": "C332302",
+      "bom_excluded": false
     },
     {
       "device_id": "diodes_mmbt3904_7_f",
       "mpn": "Diodes Incorporated MMBT3904-7-F",
       "quantity_per_product": 2,
-      "role": "ext_pg_qualifier, voice_pg_qualifier",
+      "role": "ext_pg_qualifier;voice_pg_qualifier",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
@@ -1510,7 +1529,8 @@
       "historical_hint_pin_counts": [
         3
       ],
-      "jlcpcb_part_number": "C94514"
+      "jlcpcb_part_number": "C94514",
+      "bom_excluded": false
     },
     {
       "device_id": "diodes_pam8302a_aycr",
@@ -1586,7 +1606,8 @@
       "historical_hint_pin_counts": [
         8
       ],
-      "jlcpcb_part_number": "C4990730"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "eastrising_er_tft035ips_6_ctp",
@@ -1778,13 +1799,14 @@
       "footprint_definition": null,
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ebyte_e01_ml01sp4",
       "mpn": "Ebyte E01-ML01SP4",
       "quantity_per_product": 3,
-      "role": "three 20-dBm PA/LNA full-function nRF24 radios / три полнофункциональных nRF24 с PA/LNA 20 dBm",
+      "role": "nrf0;nrf1;nrf2",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "UI_31_NRF24_X3_TX_EVIDENCE"
@@ -1865,7 +1887,8 @@
       "historical_hint_pin_counts": [
         10
       ],
-      "jlcpcb_part_number": "C97340"
+      "jlcpcb_part_number": "C97340",
+      "bom_excluded": false
     },
     {
       "device_id": "epson_q13fc13500005",
@@ -1914,7 +1937,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C841881"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "esp32_c5_wroom_1u_n8r8",
@@ -2075,7 +2099,8 @@
       "historical_hint_pin_counts": [
         32
       ],
-      "jlcpcb_part_number": "C54951858"
+      "jlcpcb_part_number": "C54951858",
+      "bom_excluded": false
     },
     {
       "device_id": "esp32_s3_wroom_1u_n16r8",
@@ -2280,7 +2305,8 @@
       "historical_hint_pin_counts": [
         41
       ],
-      "jlcpcb_part_number": "C3013946"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "everest_es8311_qfn20",
@@ -2409,13 +2435,14 @@
       "historical_hint_pin_counts": [
         21
       ],
-      "jlcpcb_part_number": "C962342"
+      "jlcpcb_part_number": "C962342",
+      "bom_excluded": false
     },
     {
       "device_id": "fh_rs_06k47r0ft",
       "mpn": "FH RS-06K47R0FT",
       "quantity_per_product": 1,
-      "role": "stocked IR emitter current-limit resistor / складской токоограничивающий резистор IR",
+      "role": "ir_emitter_limit",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "UI_20_C5_WIFI_IR_SERVICE"
@@ -2458,7 +2485,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C140014"
+      "jlcpcb_part_number": "C140014",
+      "bom_excluded": false
     },
     {
       "device_id": "fh_rs_06l2r70ft",
@@ -2507,13 +2535,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C323265"
+      "jlcpcb_part_number": "C323265",
+      "bom_excluded": false
     },
     {
       "device_id": "gct_rfpc_sma31_fn_175_a",
       "mpn": "GCT RFPC-SMA31-FN-175-A",
       "quantity_per_product": 8,
-      "role": "eight standard outward SMA / восемь внешних SMA",
+      "role": "cc_external_sma;nrf0_external_sma;nrf1_external_sma;nrf2_external_sma;receiver_amlw_external_sma;receiver_fmsw_external_sma;voice_external_sma;voice_v_external_sma",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX",
@@ -2573,13 +2602,14 @@
       "historical_hint_pin_counts": [
         5
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "gct_rfpc_sma32_fn_175_a",
       "mpn": "GCT RFPC-SMA32-FN-175-A",
       "quantity_per_product": 2,
-      "role": "two native-radio RP-SMA / два RP-SMA native-радио",
+      "role": "c5_external_rp_sma;s3_external_rp_sma",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "UI_10_S3_DISPLAY_TOUCH",
@@ -2637,13 +2667,14 @@
       "historical_hint_pin_counts": [
         5
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "gct_usb4105_gf_a",
       "mpn": "GCT USB4105-GF-A",
       "quantity_per_product": 3,
-      "role": "c5_service_usb_connector, rp_service_usb_connector",
+      "role": "c5_service_usb_connector;rp_service_usb_connector",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_10_RP2354_CORE_SERVICE",
@@ -2752,7 +2783,8 @@
       "historical_hint_pin_counts": [
         17
       ],
-      "jlcpcb_part_number": "C3020560"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "hirose_dm3at_sf_pejm5",
@@ -2840,7 +2872,8 @@
       "historical_hint_pin_counts": [
         11
       ],
-      "jlcpcb_part_number": "C114218"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "hirose_fh34srj_50s_0_5sh_50",
@@ -3074,19 +3107,20 @@
       "footprint": "Leshy2_R2:FH34SRJ-50S-0.5SH-50",
       "footprint_resolution": "explicit_current_override",
       "footprint_definition": {
-        "status": "exact_manufacturer_geometry_registered_pending_h2_r2_1_3_materialization",
-        "path": null,
-        "sha256": null
+        "status": "current_exact_local_definition_materialized",
+        "path": "hardware/ecad/libraries/Leshy2_R2.pretty/FH34SRJ-50S-0.5SH-50.kicad_mod",
+        "sha256": "3e63f78edb8ca34534ca5272586c5789c1492e973e2250b1d641855c88261428"
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C3169104"
+      "jlcpcb_part_number": "C3169104",
+      "bom_excluded": false
     },
     {
       "device_id": "hirose_fx8c_80p_sv1_92",
       "mpn": "Hirose FX8C-80P-SV1(92)",
       "quantity_per_product": 1,
-      "role": "80-contact UI-side interboard plug / 80-контактная межплатная вилка UI",
+      "role": "m1_ui_plug",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "UI_40_INTERBOARD_M1"
@@ -3441,13 +3475,14 @@
       "historical_hint_pin_counts": [
         80
       ],
-      "jlcpcb_part_number": "C7197102"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "hirose_fx8c_80s_sv5_92",
       "mpn": "Hirose FX8C-80S-SV5(92)",
       "quantity_per_product": 1,
-      "role": "80-contact RF-side interboard receptacle / 80-контактная межплатная розетка RF",
+      "role": "m1_rf_receptacle",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_40_INTERBOARD_M1"
@@ -3802,13 +3837,14 @@
       "historical_hint_pin_counts": [
         80
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "hirose_ufl_r_smt_1_10",
       "mpn": "Hirose U.FL-R-SMT-1(80)",
       "quantity_per_product": 5,
-      "role": "five native/module microcoax mates / пять микрокоаксиальных точек",
+      "role": "c5_rf_board_connector;nrf0_rf_board_connector;nrf1_rf_board_connector;nrf2_rf_board_connector;s3_rf_board_connector",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "UI_10_S3_DISPLAY_TOUCH",
@@ -3856,13 +3892,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C88374"
+      "jlcpcb_part_number": "C88374",
+      "bom_excluded": false
     },
     {
       "device_id": "infineon_bgs13sn8e6327xtsa1",
       "mpn": "Infineon BGS13SN8E6327XTSA1",
       "quantity_per_product": 2,
-      "role": "cc_switch_a, cc_switch_b",
+      "role": "cc_switch_a;cc_switch_b",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX"
@@ -3931,7 +3968,8 @@
       "historical_hint_pin_counts": [
         8
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "jae_dx07s016ja1r1500",
@@ -4042,13 +4080,14 @@
       "historical_hint_pin_counts": [
         17
       ],
-      "jlcpcb_part_number": "C3197885"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "kemet_c0402c102k5ractu",
       "mpn": "KEMET C0402C102K5RACTU",
       "quantity_per_product": 2,
-      "role": "charger_sdrv_cap, ir_evidence_feedback_cap",
+      "role": "charger_sdrv_cap;ir_evidence_feedback_cap",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_01_USB_PD_CHARGE",
@@ -4093,13 +4132,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C2649506"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "kemet_c0402c330j5gactu",
       "mpn": "KEMET C0402C330J5GACTU",
       "quantity_per_product": 5,
-      "role": "c5_detector_output_cap, ext_buck_ff_cap, main_ff_cap, s3_detector_output_cap, voice_ff_cap",
+      "role": "c5_detector_output_cap;ext_buck_ff_cap;main_ff_cap;s3_detector_output_cap;voice_ff_cap",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
@@ -4148,13 +4188,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C2649530"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "keystone_1048p",
       "mpn": "Keystone Electronics 1048P",
       "quantity_per_product": 1,
-      "role": "dual protected-18650 holder / держатель двух защищённых 18650",
+      "role": "pack_holder",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_02_PACK_SAFETY_AON"
@@ -4205,13 +4246,14 @@
       "historical_hint_pin_counts": [
         4
       ],
-      "jlcpcb_part_number": "C6038062"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "kyocera_avx_cp0603q5425entr",
       "mpn": "KYOCERA AVX CP0603Q5425ENTR",
       "quantity_per_product": 2,
-      "role": "c5_rf_coupler, s3_rf_coupler",
+      "role": "c5_rf_coupler;s3_rf_coupler",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "UI_10_S3_DISPLAY_TOUCH",
@@ -4264,7 +4306,94 @@
       "historical_hint_pin_counts": [
         4
       ],
-      "jlcpcb_part_number": "C2654257"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
+    },
+    {
+      "device_id": "leshy2_nfc_pickup_loop_r2",
+      "mpn": "LESHY2-NFC-PICKUP-LOOP-R2",
+      "quantity_per_product": 1,
+      "role": "weakly coupled printed NFC evidence loop; PCB copper feature excluded from BOM",
+      "ecad_disposition": "schematic_component_group",
+      "native_sheet_affinity": [
+        "RF_30_U214_U219_M5_EXT"
+      ],
+      "schematic_value": "weakly_coupled_13_56mhz_printed_pickup_loop",
+      "symbol_id": "Leshy2_R2:leshy2_nfc_pickup_loop_r2",
+      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
+      "logical_contact_count": 2,
+      "contact_role_counts": {
+        "rf": 2
+      },
+      "contact_map": {
+        "END_P": {
+          "physical": "1",
+          "role": "rf"
+        },
+        "END_N": {
+          "physical": "2",
+          "role": "rf"
+        }
+      },
+      "contact_map_sha256": "71ed2272b4d6b0b9f1e91681799b6a121212ace7d62e36eef26938617e5973e2",
+      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "manufacturer_evidence": {
+        "document": "H1-R2.38 fixed U219 NFC pickup-loop geometry",
+        "url": "hardware/product-design/h1-r2-placement.json",
+        "checked": "2026-09-02"
+      },
+      "footprint": "Leshy2_R2:NFC_Pickup_Loop_R2",
+      "footprint_resolution": "explicit_current_override",
+      "footprint_definition": {
+        "status": "current_exact_local_definition_materialized",
+        "path": "hardware/ecad/libraries/Leshy2_R2.pretty/NFC_Pickup_Loop_R2.kicad_mod",
+        "sha256": "9f7a1ca633332e2fb4438e0a4225a78d59299efc88ce0730d0dabd871645e2a2"
+      },
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": null,
+      "bom_excluded": true
+    },
+    {
+      "device_id": "leshy2_pcb_testpoint_pad_1mm_r2",
+      "mpn": "LESHY2-PCB-TP-1MM-R2",
+      "quantity_per_product": 1,
+      "role": "raw main-converter Power-Good diagnostic copper pad; excluded from BOM",
+      "ecad_disposition": "schematic_component_group",
+      "native_sheet_affinity": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES"
+      ],
+      "schematic_value": "exposed_1mm_smd_copper_testpoint",
+      "symbol_id": "Leshy2_R2:leshy2_pcb_testpoint_pad_1mm_r2",
+      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
+      "logical_contact_count": 1,
+      "contact_role_counts": {
+        "signal": 1
+      },
+      "contact_map": {
+        "PROBE": {
+          "physical": "1",
+          "role": "signal"
+        }
+      },
+      "contact_map_sha256": "b0ad4856f3b2e9e8e1def69d965a8e2cdbc3996d70279366b5e137ad5fe3ba4a",
+      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "manufacturer_evidence": {
+        "document": "H2 raw-main Power-Good diagnostic requirement",
+        "url": "hardware/ecad/H2-sheet-contract.json",
+        "checked": "2026-09-02"
+      },
+      "footprint": "Leshy2_R2:PCB_TestPoint_Pad_D1.0mm",
+      "footprint_resolution": "explicit_current_override",
+      "footprint_definition": {
+        "status": "current_exact_local_definition_materialized",
+        "path": "hardware/ecad/libraries/Leshy2_R2.pretty/PCB_TestPoint_Pad_D1.0mm.kicad_mod",
+        "sha256": "1d542b339d8528bfe6884d51736737822b665a8ba74263b52c12ebfa6e5bb33e"
+      },
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": null,
+      "bom_excluded": true
     },
     {
       "device_id": "liteon_ltst_c190kfkt",
@@ -4313,13 +4442,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C157740"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "liteon_ltst_c190krkt",
       "mpn": "LTST-C190KRKT",
       "quantity_per_product": 9,
-      "role": "c5_tx_led, cc_tx_led, ext_tx_led, ir_tx_led, nrf0_tx_led, nrf1_tx_led, nrf2_tx_led, s3_tx_led, voice_tx_led",
+      "role": "c5_tx_led;cc_tx_led;ext_tx_led;ir_tx_led;nrf0_tx_led;nrf1_tx_led;nrf2_tx_led;s3_tx_led;voice_tx_led",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "UI_11_STORAGE_CONTROLS_INDICATORS"
@@ -4362,13 +4492,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C94869"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "littelfuse_0451005_mrl",
       "mpn": "Littelfuse 0451005.MRL",
       "quantity_per_product": 2,
-      "role": "pack_fuse0, pack_fuse1",
+      "role": "pack_fuse0;pack_fuse1",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_02_PACK_SAFETY_AON"
@@ -4411,13 +4542,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C48467"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "littelfuse_sesd0402x1un_0020_090",
       "mpn": "Littelfuse SESD0402X1UN-0020-090",
       "quantity_per_product": 3,
-      "role": "cc_rf_esd, receiver_ami_esd, receiver_fmi_esd",
+      "role": "cc_rf_esd;receiver_ami_esd;receiver_fmi_esd",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX",
@@ -4463,7 +4595,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C1973340"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "m5_u214",
@@ -4553,7 +4686,8 @@
       "footprint_definition": null,
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "minicircuits_pga_103_plus",
@@ -4606,13 +4740,14 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C3008207"
+      "jlcpcb_part_number": "C3008207",
+      "bom_excluded": false
     },
     {
       "device_id": "murata_blm18pg181sn1d",
       "mpn": "Murata BLM18PG181SN1D",
       "quantity_per_product": 4,
-      "role": "codec_avdd_bead, codec_dvdd_bead, speaker_output_bead_n, speaker_output_bead_p",
+      "role": "codec_avdd_bead;codec_dvdd_bead;speaker_output_bead_n;speaker_output_bead_p",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_22_AUDIO_CODEC_IO"
@@ -4656,7 +4791,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C82850"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gcm1555c1h121fa16d",
@@ -4700,7 +4836,8 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C126496"
+      "jlcpcb_part_number": "C126496",
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gcm1555c1h200fa16d",
@@ -4744,7 +4881,8 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C437436"
+      "jlcpcb_part_number": "C437436",
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h100jb01d",
@@ -4793,13 +4931,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C85874"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h101jb01d",
       "mpn": "Murata GJM1555C1H101JB01D",
       "quantity_per_product": 2,
-      "role": "cc_rf_n_dc_block, cc_rf_p_dc_block",
+      "role": "cc_rf_n_dc_block;cc_rf_p_dc_block",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX"
@@ -4842,13 +4981,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h150jb01d",
       "mpn": "Murata GJM1555C1H150JB01D",
       "quantity_per_product": 7,
-      "role": "cc_crystal_load_q1, cc_crystal_load_q2, rp_clock_load_xin, rp_clock_load_xout",
+      "role": "cc_crystal_load_q1;cc_crystal_load_q2;rp_clock_load_xin;rp_clock_load_xout",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_10_RP2354_CORE_SERVICE",
@@ -4896,7 +5036,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C88877"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h1r2bb01d",
@@ -4945,7 +5086,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C72135"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h1r4wb01d",
@@ -4989,7 +5131,8 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C2181496"
+      "jlcpcb_part_number": "C2181496",
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h4r7bb01d",
@@ -5033,7 +5176,8 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C161327"
+      "jlcpcb_part_number": "C161327",
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h5r7wb01d",
@@ -5077,7 +5221,8 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C2220921"
+      "jlcpcb_part_number": "C2220921",
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h5r8wb01d",
@@ -5121,7 +5266,8 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C2177031"
+      "jlcpcb_part_number": "C2177031",
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h6r2db01d",
@@ -5170,7 +5316,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C161332"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1h8r0db01d",
@@ -5219,7 +5366,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C2191663"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1hr47bb01d",
@@ -5268,7 +5416,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C2168943"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_gjm1555c1hr60bb01d",
@@ -5317,7 +5466,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C76913"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm1555c1h102ja01d",
@@ -5366,13 +5516,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C76947"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm1555c1h121ja01d",
       "mpn": "Murata GRM1555C1H121JA01D",
       "quantity_per_product": 8,
-      "role": "cc_detector_filter, main_efuse_itimer_cap, nrf0_detector_filter, nrf1_detector_filter, nrf2_detector_filter, voice_detector_filter, voice_efuse_itimer_cap, voice_v_detector_filter",
+      "role": "cc_detector_filter;main_efuse_itimer_cap;nrf0_detector_filter;nrf1_detector_filter;nrf2_detector_filter;voice_detector_filter;voice_efuse_itimer_cap;voice_v_detector_filter",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
@@ -5420,13 +5571,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C76949"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm1555c1h220ja01d",
       "mpn": "Murata GRM1555C1H220JA01D",
       "quantity_per_product": 2,
-      "role": "receiver_clock_cap_gpo3, receiver_clock_cap_rclk",
+      "role": "receiver_clock_cap_gpo3;receiver_clock_cap_rclk",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_21_BROADCAST_AIRBAND_RX"
@@ -5469,13 +5621,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C76960"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm1555c1h221ja01d",
       "mpn": "Murata GRM1555C1H221JA01D",
       "quantity_per_product": 4,
-      "role": "pd_cc1_cap, pd_cc2_cap, speaker_output_cap_n, speaker_output_cap_p",
+      "role": "pd_cc1_cap;pd_cc2_cap;speaker_output_cap_n;speaker_output_cap_p",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_01_USB_PD_CHARGE",
@@ -5521,13 +5674,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C71693"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm1555c1h390ja01d",
       "mpn": "Murata GRM1555C1H390JA01D",
       "quantity_per_product": 2,
-      "role": "c5_detector_input_cap, s3_detector_input_cap",
+      "role": "c5_detector_input_cap;s3_detector_input_cap",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "UI_10_S3_DISPLAY_TOUCH",
@@ -5572,7 +5726,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C76966"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm155r71a474ke01d",
@@ -5621,13 +5776,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C88946"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm155r71e473ka88d",
       "mpn": "Murata GRM155R71E473KA88D",
       "quantity_per_product": 2,
-      "role": "charger_btst1_cap, charger_btst2_cap",
+      "role": "charger_btst1_cap;charger_btst2_cap",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_01_USB_PD_CHARGE"
@@ -5670,13 +5826,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C77017"
+      "jlcpcb_part_number": "C77017",
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm155r71h103ka88d",
       "mpn": "Murata GRM155R71H103KA88D",
-      "quantity_per_product": 8,
-      "role": "codec_tx_filter, pack_admission_reset_cap, pack_mid_adc_filter, pack_stack_adc_filter, safety_controller_reset_cap, u214_supervisor_ct, unit_supervisor_ct, voice_supervisor_ct",
+      "quantity_per_product": 9,
+      "role": "codec_tx_filter;pack_admission_reset_cap;pack_mid_adc_filter;pack_stack_adc_filter;safety_controller_reset_cap;u214_supervisor_ct;unit_supervisor_ct;voice_supervisor_ct",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_02_PACK_SAFETY_AON",
@@ -5729,13 +5886,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C77019"
+      "jlcpcb_part_number": "C77019",
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm155r71h472ka01d",
       "mpn": "Murata GRM155R71H472KA01D",
       "quantity_per_product": 4,
-      "role": "ext_dvdt_cap, main_efuse_dvdt_cap, unit_dvdt_cap, voice_efuse_dvdt_cap",
+      "role": "ext_dvdt_cap;main_efuse_dvdt_cap;unit_dvdt_cap;voice_efuse_dvdt_cap",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
@@ -5783,13 +5941,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C77024"
+      "jlcpcb_part_number": "C77024",
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm188r60j106me47d",
       "mpn": "Murata GRM188R60J106ME47D",
       "quantity_per_product": 19,
-      "role": "aon_efuse_output_cap, backlight_efuse_output_bulk, codec_power_output_cap, display_logic_bulk_cap, headset_microphone_bias_filter_cap, ir_power_output_cap, main_efuse_output_cap, microphone_bias_filter_cap, nrf0_module_bulk_cap, nrf1_module_bulk_cap, nrf2_module_bulk_cap, pack_admission_bulk_cap, pd_ldo1v5_cap, pd_ldo3v3_cap, pd_vin_cap, receiver_power_output_cap, safety_controller_bulk, speaker_amp_bulk_cap, voice_efuse_output_cap",
+      "role": "aon_efuse_output_cap;backlight_efuse_output_bulk;codec_power_output_cap;display_logic_bulk_cap;headset_microphone_bias_filter_cap;ir_power_output_cap;main_efuse_output_cap;microphone_bias_filter_cap;nrf0_module_bulk_cap;nrf1_module_bulk_cap;nrf2_module_bulk_cap;pack_admission_bulk_cap;pd_ldo1v5_cap;pd_ldo3v3_cap;pd_vin_cap;receiver_power_output_cap;safety_controller_bulk;speaker_amp_bulk_cap;voice_efuse_output_cap",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_01_USB_PD_CHARGE",
@@ -5853,13 +6012,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C77041"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm188r71e224ka88d",
       "mpn": "Murata GRM188R71E224KA88D",
       "quantity_per_product": 2,
-      "role": "ext_itimer_cap, unit_itimer_cap",
+      "role": "ext_itimer_cap;unit_itimer_cap",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
@@ -5905,13 +6065,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C77051"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm188r71e474ka12d",
       "mpn": "Murata GRM188R71E474KA12D",
       "quantity_per_product": 4,
-      "role": "pack_aoldo_cap, pack_cp_cap, pack_reg2_cap, pack_reg3_cap",
+      "role": "pack_aoldo_cap;pack_cp_cap;pack_reg2_cap;pack_reg3_cap",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_02_PACK_SAFETY_AON"
@@ -5954,13 +6115,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C77052"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm188z71a475me15d",
       "mpn": "Murata GRM188Z71A475ME15D",
       "quantity_per_product": 2,
-      "role": "ir_carrier_supply_cap, ir_demod_supply_cap",
+      "role": "ir_carrier_supply_cap;ir_demod_supply_cap",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "UI_20_C5_WIFI_IR_SERVICE"
@@ -6003,13 +6165,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C3835885"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm21br60j226me39l",
       "mpn": "Murata GRM21BR60J226ME39L",
       "quantity_per_product": 6,
-      "role": "headphone_l_coupling0, headphone_l_coupling1, headphone_r_coupling0, headphone_r_coupling1, s3_supply_bulk, sd_power_bulk_cap",
+      "role": "headphone_l_coupling0;headphone_l_coupling1;headphone_r_coupling0;headphone_r_coupling1;s3_supply_bulk;sd_power_bulk_cap",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_22_AUDIO_CODEC_IO",
@@ -6056,13 +6219,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C77071"
+      "jlcpcb_part_number": "C77071",
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm21br71e225ke11l",
       "mpn": "Murata GRM21BR71E225KE11L",
       "quantity_per_product": 5,
-      "role": "ext_input_cap, ext_output_cap, safe_rearm_delay_cap, unit_input_cap, unit_output_cap",
+      "role": "ext_input_cap;ext_output_cap;safe_rearm_delay_cap;unit_input_cap;unit_output_cap",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
@@ -6110,7 +6274,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C77081"
+      "jlcpcb_part_number": "C77081",
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm31c5c1h224je02l",
@@ -6160,7 +6325,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C464977"
+      "jlcpcb_part_number": "C464977",
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm31cr71a226ke15l",
@@ -6209,13 +6375,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C91604"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm31cr71e106ma12l",
       "mpn": "Murata GRM31CR71E106MA12L",
       "quantity_per_product": 12,
-      "role": "charger_bat_cap0, charger_bat_cap1, charger_pmid_cap0, charger_pmid_cap1, charger_pmid_cap2, charger_sys_cap0, charger_sys_cap1, charger_sys_cap2, charger_sys_cap3, charger_sys_cap4, charger_vbus_cap0, charger_vbus_cap1",
+      "role": "charger_bat_cap0;charger_bat_cap1;charger_pmid_cap0;charger_pmid_cap1;charger_pmid_cap2;charger_sys_cap0;charger_sys_cap1;charger_sys_cap2;charger_sys_cap3;charger_sys_cap4;charger_vbus_cap0;charger_vbus_cap1",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_01_USB_PD_CHARGE"
@@ -6258,13 +6425,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C440205"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_grm32er71e226ke15l",
       "mpn": "Murata GRM32ER71E226KE15L",
-      "quantity_per_product": 13,
-      "role": "thirteen 22-uF power capacitors / тринадцать силовых конденсаторов 22 мкФ",
+      "quantity_per_product": 16,
+      "role": "ext_buck_input_cap;ext_buck_output_cap0;ext_buck_output_cap1;main_input_cap;main_output_cap0;main_output_cap1;pd_pphv_cap0;pd_pphv_cap1;pd_pphv_cap2;pd_pphv_cap3;voice_input_cap;voice_output_cap0;voice_output_cap1",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_01_USB_PD_CHARGE",
@@ -6311,13 +6479,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C21397"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqg15hs10nj02d",
       "mpn": "Murata LQG15HS10NJ02D",
       "quantity_per_product": 3,
-      "role": "cc_315_l10_in, cc_315_l10_out, cc_868_915_l10",
+      "role": "cc_315_l10_in;cc_315_l10_out;cc_868_915_l10",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX"
@@ -6360,7 +6529,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C77103"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqg15hs15nj02d",
@@ -6409,7 +6579,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C86059"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqg15hs2n2s02d",
@@ -6458,7 +6629,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C86061"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqg15hs3n3s02d",
@@ -6507,7 +6679,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C86064"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqg15hs3n6s02d",
@@ -6556,7 +6729,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C19216"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqg15hs6n8j02d",
@@ -6605,7 +6779,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C77110"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw15an12ng80d",
@@ -6649,7 +6824,8 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C3223181"
+      "jlcpcb_part_number": "C3223181",
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw15an47ng80d",
@@ -6693,7 +6869,8 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C237556"
+      "jlcpcb_part_number": "C237556",
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw15an56ng00d",
@@ -6742,7 +6919,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C167482"
+      "jlcpcb_part_number": "C167482",
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw2bas22ng00l",
@@ -6786,7 +6964,8 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C2042201"
+      "jlcpcb_part_number": "C2042201",
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw2bas47ng00l",
@@ -6830,7 +7009,8 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C162657"
+      "jlcpcb_part_number": "C162657",
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw2basr22g00l",
@@ -6874,7 +7054,8 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C527968"
+      "jlcpcb_part_number": "C527968",
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw2basr33g00l",
@@ -6918,7 +7099,8 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C703717"
+      "jlcpcb_part_number": "C703717",
+      "bom_excluded": false
     },
     {
       "device_id": "murata_lqw2uasr56f00l",
@@ -6962,7 +7144,8 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C907989"
+      "jlcpcb_part_number": "C907989",
+      "bom_excluded": false
     },
     {
       "device_id": "nexperia_74hc20pw_118",
@@ -7057,13 +7240,14 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C546719"
+      "jlcpcb_part_number": "C546719",
+      "bom_excluded": false
     },
     {
       "device_id": "nexperia_74lvc126apw_118",
       "mpn": "Nexperia 74LVC126APW,118",
       "quantity_per_product": 8,
-      "role": "cc_host_buffer, cc_return_buffer, nrf0_host_buffer, nrf1_host_buffer, nrf2_host_buffer, u214_host_buffer_a, u214_host_buffer_b, u214_return_buffer",
+      "role": "cc_host_buffer;cc_return_buffer;nrf0_host_buffer;nrf1_host_buffer;nrf2_host_buffer;u214_host_buffer_a;u214_host_buffer_b;u214_return_buffer",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX",
@@ -7159,13 +7343,14 @@
       "historical_hint_pin_counts": [
         14
       ],
-      "jlcpcb_part_number": "C2442297"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "nexperia_74lvc1g32gv_125",
       "mpn": "74LVC1G32GV,125",
       "quantity_per_product": 2,
-      "role": "ext_request_or, safe_ptt_or",
+      "role": "ext_request_or;safe_ptt_or",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
@@ -7224,13 +7409,14 @@
       "historical_hint_pin_counts": [
         5
       ],
-      "jlcpcb_part_number": "C12517"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "nexperia_74lvc2g126dp_125",
       "mpn": "Nexperia 74LVC2G126DP,125",
       "quantity_per_product": 5,
-      "role": "cc_band_buffer, ir_return_buffer, nrf0_return_buffer, nrf1_return_buffer, nrf2_return_buffer",
+      "role": "cc_band_buffer;ir_return_buffer;nrf0_return_buffer;nrf1_return_buffer;nrf2_return_buffer",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX",
@@ -7302,13 +7488,14 @@
       "historical_hint_pin_counts": [
         8
       ],
-      "jlcpcb_part_number": "C503392"
+      "jlcpcb_part_number": "C503392",
+      "bom_excluded": false
     },
     {
       "device_id": "nexperia_74lvc2g14gv_125",
       "mpn": "74LVC2G14GV,125",
       "quantity_per_product": 5,
-      "role": "two stocked dual Schmitt inverters / два складских двойных Schmitt-инвертора",
+      "role": "safe_conditioner;voice_band_inverter",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX",
@@ -7373,13 +7560,63 @@
       "historical_hint_pin_counts": [
         6
       ],
-      "jlcpcb_part_number": "C426708"
+      "jlcpcb_part_number": "C426708",
+      "bom_excluded": false
+    },
+    {
+      "device_id": "nexperia_bat54s_215",
+      "mpn": "BAT54S,215",
+      "quantity_per_product": 2,
+      "role": "u219_field_bridge_d1;u219_field_bridge_d2",
+      "ecad_disposition": "schematic_component_group",
+      "native_sheet_affinity": [
+        "RF_30_U214_U219_M5_EXT"
+      ],
+      "schematic_value": "dual_series_schottky_diode_sot23",
+      "symbol_id": "Leshy2_R2:nexperia_bat54s_215",
+      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
+      "logical_contact_count": 3,
+      "contact_role_counts": {
+        "analog": 3
+      },
+      "contact_map": {
+        "A1": {
+          "physical": "1",
+          "role": "analog"
+        },
+        "K2": {
+          "physical": "2",
+          "role": "analog"
+        },
+        "K1_A2": {
+          "physical": "3",
+          "role": "analog"
+        }
+      },
+      "contact_map_sha256": "ab2164fcbbce61b9aab28e8c7fa6029c6c59a05b281c475361869db864857247",
+      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "manufacturer_evidence": {
+        "document": "Nexperia BAT54 series Schottky barrier diodes datasheet",
+        "url": "https://assets.nexperia.com/documents/data-sheet/BAT54_SER.pdf",
+        "checked": "2026-09-02"
+      },
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "footprint_resolution": "explicit_current_override",
+      "footprint_definition": {
+        "status": "exact_package_identity_mapped_to_standard_kicad_library",
+        "path": null,
+        "sha256": null
+      },
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": "C47546",
+      "bom_excluded": false
     },
     {
       "device_id": "nexperia_pesd24vy1bsf",
       "mpn": "Nexperia PESD24VY1BSF",
       "quantity_per_product": 2,
-      "role": "voice_rf_esd, voice_v_rf_esd",
+      "role": "voice_rf_esd;voice_v_rf_esd",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX"
@@ -7423,13 +7660,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "nicerf_sa818s_u_v18",
       "mpn": "G-NiceRF SA818S-U",
       "quantity_per_product": 1,
-      "role": "UHF voice transceiver / UHF голосовой трансивер",
+      "role": "voice",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX"
@@ -7540,13 +7778,14 @@
       "historical_hint_pin_counts": [
         18
       ],
-      "jlcpcb_part_number": "C3001549"
+      "jlcpcb_part_number": "C3001549",
+      "bom_excluded": false
     },
     {
       "device_id": "nicerf_sa818s_v_v18",
       "mpn": "G-NiceRF SA818S-V",
       "quantity_per_product": 1,
-      "role": "VHF voice transceiver / VHF голосовой трансивер",
+      "role": "voice_v",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX"
@@ -7657,13 +7896,14 @@
       "historical_hint_pin_counts": [
         18
       ],
-      "jlcpcb_part_number": "C51897911"
+      "jlcpcb_part_number": "C51897911",
+      "bom_excluded": false
     },
     {
       "device_id": "omron_b3s_1100p",
       "mpn": "OMRON B3S-1100P",
       "quantity_per_product": 16,
-      "role": "sixteen ordinary user keys / шестнадцать обычных клавиш",
+      "role": "ptt_switch;ui_dpad_down;ui_dpad_left;ui_dpad_ok;ui_dpad_right;ui_dpad_up;ui_switch_back;ui_switch_f1;ui_switch_f2;ui_switch_f3;ui_switch_f4;ui_switch_f5;ui_switch_f6;ui_switch_f7;ui_switch_f8;ui_switch_opt",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_31_REAR_CONTROLS",
@@ -7721,13 +7961,14 @@
       "historical_hint_pin_counts": [
         5
       ],
-      "jlcpcb_part_number": "C2733652"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "onsemi_bat54alt1g",
       "mpn": "BAT54ALT1G",
       "quantity_per_product": 5,
-      "role": "evidence_or_0, evidence_or_1, evidence_or_2, evidence_or_3, evidence_or_4",
+      "role": "evidence_or_0;evidence_or_1;evidence_or_2;evidence_or_3;evidence_or_4",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_50_TX_SAFETY_EVIDENCE",
@@ -7775,7 +8016,8 @@
       "historical_hint_pin_counts": [
         3
       ],
-      "jlcpcb_part_number": "C92068"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "onsemi_bav70lt1g",
@@ -7828,7 +8070,8 @@
       "historical_hint_pin_counts": [
         3
       ],
-      "jlcpcb_part_number": "C82479"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "onsemi_cat24c512wi_gt3",
@@ -7903,13 +8146,14 @@
       "historical_hint_pin_counts": [
         8
       ],
-      "jlcpcb_part_number": "C79986"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "onsemi_fsusb42_mux",
       "mpn": "onsemi FSUSB42MUX",
       "quantity_per_product": 3,
-      "role": "c5_service_usb_switch, rp_service_usb_switch",
+      "role": "c5_service_usb_switch;rp_service_usb_switch",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_10_RP2354_CORE_SERVICE",
@@ -7989,13 +8233,14 @@
       "historical_hint_pin_counts": [
         10
       ],
-      "jlcpcb_part_number": "C11355"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "panasonic_erj_2rkf22r0x",
       "mpn": "Panasonic ERJ-2RKF22R0X",
-      "quantity_per_product": 45,
-      "role": "c5_service_usb_dm_series, c5_service_usb_dp_series, cc_band_v1_series, cc_band_v2_series, cc_csn_series, cc_gdo0_series, cc_gdo2_series, cc_sclk_series, cc_si_series, cc_so_series, headphone_l_series, headphone_r_series, nrf0_ce_series, nrf0_csn_series, nrf0_irq_series, nrf0_miso_series, nrf0_mosi_series, nrf0_sck_series, nrf1_ce_series, nrf1_csn_series, nrf1_irq_series, nrf1_miso_series, nrf1_mosi_series, nrf1_sck_series, nrf2_ce_series, nrf2_csn_series, nrf2_irq_series, nrf2_miso_series, nrf2_mosi_series, nrf2_sck_series, product_usb_dm_series, product_usb_dp_series, sd_cmd_series, sd_cs_series, sd_miso_series, sd_sck_series, u214_series_busy, u214_series_gps_rx, u214_series_gps_tx, u214_series_irq, u214_series_miso, u214_series_mosi, u214_series_nss, u214_series_rst, u214_series_sck",
+      "quantity_per_product": 44,
+      "role": "c5_service_usb_dm_series;c5_service_usb_dp_series;cc_band_v1_series;cc_band_v2_series;cc_csn_series;cc_gdo0_series;cc_gdo2_series;cc_sclk_series;cc_si_series;cc_so_series;headphone_l_series;headphone_r_series;nrf0_ce_series;nrf0_csn_series;nrf0_irq_series;nrf0_miso_series;nrf0_mosi_series;nrf0_sck_series;nrf1_ce_series;nrf1_csn_series;nrf1_irq_series;nrf1_miso_series;nrf1_mosi_series;nrf1_sck_series;nrf2_ce_series;nrf2_csn_series;nrf2_irq_series;nrf2_miso_series;nrf2_mosi_series;nrf2_sck_series;product_usb_dm_series;product_usb_dp_series;sd_cmd_series;sd_cs_series;sd_miso_series;sd_sck_series;u214_series_busy;u214_series_gps_rx;u214_series_gps_tx;u214_series_irq;u214_series_miso;u214_series_mosi;u214_series_nss;u214_series_rst;u214_series_sck",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX",
@@ -8050,13 +8295,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C413049"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "panasonic_erj_2rkf27r0x",
       "mpn": "Panasonic ERJ-2RKF27R0X",
       "quantity_per_product": 4,
-      "role": "rp_service_usb_dm_series, rp_service_usb_dp_series",
+      "role": "rp_service_usb_dm_series;rp_service_usb_dp_series",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_10_RP2354_CORE_SERVICE",
@@ -8100,7 +8346,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C413051"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "panasonic_erj_p08f10r0v",
@@ -8149,13 +8396,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C4064522"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "panasonic_erj_p08f49r9v",
       "mpn": "Panasonic ERJ-P08F49R9V",
       "quantity_per_product": 2,
-      "role": "pack_batts_rbal, pack_cell1_rbal",
+      "role": "pack_batts_rbal;pack_cell1_rbal",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_02_PACK_SAFETY_AON"
@@ -8198,7 +8446,53 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C4308208"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
+    },
+    {
+      "device_id": "prodtech_pspmaa0605h_2r2m_anp",
+      "mpn": "PSPMAA0605H-2R2M-ANP",
+      "quantity_per_product": 1,
+      "role": "main_inductor",
+      "ecad_disposition": "schematic_component_group",
+      "native_sheet_affinity": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES"
+      ],
+      "schematic_value": "2_2uh_10a_molded_power_inductor",
+      "symbol_id": "Leshy2_R2:prodtech_pspmaa0605h_2r2m_anp",
+      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
+      "logical_contact_count": 2,
+      "contact_role_counts": {
+        "power": 2
+      },
+      "contact_map": {
+        "END_1": {
+          "physical": "1",
+          "role": "power"
+        },
+        "END_2": {
+          "physical": "2",
+          "role": "power"
+        }
+      },
+      "contact_map_sha256": "8ad93250b7a3805546fef1e86dd39bc556c12c1ba9f702bb47c9472c70912279",
+      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "manufacturer_evidence": {
+        "document": "PROD Tech PSPMAA0605H exact JLCPCB manufacturer data",
+        "url": "https://jlcpcb.com/partdetail/PRODTech-PSPMAA0605H2R2MANP/C2983088",
+        "checked": "2026-09-02"
+      },
+      "footprint": "Leshy2_R2:PRODTech_PSPMAA0605H_7.1x6.6mm",
+      "footprint_resolution": "explicit_current_override",
+      "footprint_definition": {
+        "status": "current_exact_local_definition_materialized",
+        "path": "hardware/ecad/libraries/Leshy2_R2.pretty/PRODTech_PSPMAA0605H_7.1x6.6mm.kicad_mod",
+        "sha256": "7aea07cf1e6f4f161ab7ae76e6251546afbb2c63d2c6c88c9e7d2a1796a1e856"
+      },
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": "C2983088",
+      "bom_excluded": false
     },
     {
       "device_id": "pui_as02404po",
@@ -8247,7 +8541,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ralec_rtt023r00fth",
@@ -8291,7 +8586,8 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C166468"
+      "jlcpcb_part_number": "C166468",
+      "bom_excluded": false
     },
     {
       "device_id": "rp2354b_a4",
@@ -8662,7 +8958,8 @@
       "historical_hint_pin_counts": [
         81
       ],
-      "jlcpcb_part_number": "C39843328"
+      "jlcpcb_part_number": "C39843328",
+      "bom_excluded": false
     },
     {
       "device_id": "same_sky_cmej_0413_42_smt_tr",
@@ -8712,7 +9009,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C3273679"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "same_sky_sj_43504_smt_tr",
@@ -8779,7 +9077,8 @@
       "historical_hint_pin_counts": [
         6
       ],
-      "jlcpcb_part_number": "C20182908"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "samsung_cl05a105ka5nqnc",
@@ -8825,7 +9124,53 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C52923"
+      "jlcpcb_part_number": "C52923",
+      "bom_excluded": false
+    },
+    {
+      "device_id": "samsung_cl05b104kb5nnnc",
+      "mpn": "CL05B104KB5NNNC",
+      "quantity_per_product": 1,
+      "role": "main_buck_bootstrap_cap",
+      "ecad_disposition": "schematic_component_group",
+      "native_sheet_affinity": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES"
+      ],
+      "schematic_value": "100nf_10pct_50v_x7r_0402_bootstrap_capacitor",
+      "symbol_id": "Leshy2_R2:samsung_cl05b104kb5nnnc",
+      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
+      "logical_contact_count": 2,
+      "contact_role_counts": {
+        "power": 2
+      },
+      "contact_map": {
+        "END_1": {
+          "physical": "1",
+          "role": "power"
+        },
+        "END_2": {
+          "physical": "2",
+          "role": "power"
+        }
+      },
+      "contact_map_sha256": "8ad93250b7a3805546fef1e86dd39bc556c12c1ba9f702bb47c9472c70912279",
+      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "manufacturer_evidence": {
+        "document": "Samsung CL05B104KB5NNNC product data",
+        "url": "https://jlcpcb.com/partdetail/x/C960916",
+        "checked": "2026-09-02"
+      },
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "footprint_resolution": "explicit_current_override",
+      "footprint_definition": {
+        "status": "exact_package_identity_mapped_to_standard_kicad_library",
+        "path": null,
+        "sha256": null
+      },
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": "C960916",
+      "bom_excluded": false
     },
     {
       "device_id": "samsung_cl05b104ko5nnnc",
@@ -8870,13 +9215,59 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C1525"
+      "jlcpcb_part_number": "C1525",
+      "bom_excluded": false
+    },
+    {
+      "device_id": "samsung_cl10b105ko8nnnc",
+      "mpn": "CL10B105KO8NNNC",
+      "quantity_per_product": 1,
+      "role": "main_buck_vcc_cap",
+      "ecad_disposition": "schematic_component_group",
+      "native_sheet_affinity": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES"
+      ],
+      "schematic_value": "1uf_10pct_16v_x7r_0603_vcc_capacitor",
+      "symbol_id": "Leshy2_R2:samsung_cl10b105ko8nnnc",
+      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
+      "logical_contact_count": 2,
+      "contact_role_counts": {
+        "power": 2
+      },
+      "contact_map": {
+        "END_1": {
+          "physical": "1",
+          "role": "power"
+        },
+        "END_2": {
+          "physical": "2",
+          "role": "power"
+        }
+      },
+      "contact_map_sha256": "8ad93250b7a3805546fef1e86dd39bc556c12c1ba9f702bb47c9472c70912279",
+      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "manufacturer_evidence": {
+        "document": "Samsung CL10B105KO8NNNC product data",
+        "url": "https://jlcpcb.com/partdetail/x/C59782",
+        "checked": "2026-09-02"
+      },
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "footprint_resolution": "explicit_current_override",
+      "footprint_definition": {
+        "status": "exact_package_identity_mapped_to_standard_kicad_library",
+        "path": null,
+        "sha256": null
+      },
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": "C59782",
+      "bom_excluded": false
     },
     {
       "device_id": "samtec_ftsh_105_01_l_dv_k_p_tr",
       "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
       "quantity_per_product": 6,
-      "role": "four internal recovery headers / четыре внутренних recovery-разъёма",
+      "role": "c5_dbg_header;rp_dbg_header;s3_dbg_header",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_02_PACK_SAFETY_AON",
@@ -8961,7 +9352,8 @@
       "historical_hint_pin_counts": [
         10
       ],
-      "jlcpcb_part_number": "C2932107"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "samtec_hle_107_02_g_dv_pe_lc",
@@ -9059,7 +9451,8 @@
       "historical_hint_pin_counts": [
         14
       ],
-      "jlcpcb_part_number": "C5649644"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "seeed_1125r_smt_4p",
@@ -9117,7 +9510,8 @@
       "historical_hint_pin_counts": [
         4
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "skyworks_si4732_a10_gsr",
@@ -9228,7 +9622,8 @@
       "historical_hint_pin_counts": [
         16
       ],
-      "jlcpcb_part_number": "C2155558"
+      "jlcpcb_part_number": "C2155558",
+      "bom_excluded": false
     },
     {
       "device_id": "skyworks_si5351a_b_gtr",
@@ -9306,7 +9701,8 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C504891"
+      "jlcpcb_part_number": "C504891",
+      "bom_excluded": false
     },
     {
       "device_id": "sunlord_mwsa0503s_2r2mt",
@@ -9355,13 +9751,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C408408"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "sunlord_mwsa0503s_3r3mt",
       "mpn": "Sunlord MWSA0503S-3R3MT",
-      "quantity_per_product": 2,
-      "role": "main_inductor, voice_inductor",
+      "quantity_per_product": 1,
+      "role": "main_inductor;voice_inductor",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
@@ -9406,7 +9803,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C408409"
+      "jlcpcb_part_number": "C408409",
+      "bom_excluded": false
     },
     {
       "device_id": "sunlord_mwsa0503s_4r7mt",
@@ -9455,7 +9853,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C408410"
+      "jlcpcb_part_number": "C408410",
+      "bom_excluded": false
     },
     {
       "device_id": "sunlord_wpn201612h2r2mt",
@@ -9504,7 +9903,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C97025"
+      "jlcpcb_part_number": "C97025",
+      "bom_excluded": false
     },
     {
       "device_id": "suzhou_liming_3225_27_00_10_10_10_a",
@@ -9557,7 +9957,8 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C518151"
+      "jlcpcb_part_number": "C518151",
+      "bom_excluded": false
     },
     {
       "device_id": "tca4307dgkr",
@@ -9631,7 +10032,8 @@
       "historical_hint_pin_counts": [
         8
       ],
-      "jlcpcb_part_number": "C880333"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "tca6424argjr",
@@ -9807,13 +10209,14 @@
       "historical_hint_pin_counts": [
         33
       ],
-      "jlcpcb_part_number": "C80692"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "tdk_b57332v5103f360",
       "mpn": "TDK B57332V5103F360",
       "quantity_per_product": 6,
-      "role": "charger_ts_ntc, pack_ntc0, pack_ntc1, power_zone_ntc, rf_zone_ntc, ui_zone_ntc",
+      "role": "charger_ts_ntc;pack_ntc0;pack_ntc1;power_zone_ntc;rf_zone_ntc;ui_zone_ntc",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_01_USB_PD_CHARGE",
@@ -9862,13 +10265,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C209893"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "tdk_c1005x5r0j475k050bc",
       "mpn": "TDK C1005X5R0J475K050BC",
       "quantity_per_product": 8,
-      "role": "rp_dvdd_remote_bulk, rp_vreg_avdd_filter_cap, rp_vreg_output_bulk, rp_vreg_vin_bulk",
+      "role": "rp_dvdd_remote_bulk;rp_vreg_avdd_filter_cap;rp_vreg_output_bulk;rp_vreg_vin_bulk",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_10_RP2354_CORE_SERVICE",
@@ -9912,13 +10316,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C2167436"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "tdk_c1608x7r1c105k080ac",
       "mpn": "TDK C1608X7R1C105K080AC",
       "quantity_per_product": 37,
-      "role": "audio_capture_input_coupling, audio_capture_local_bias_cap, audio_capture_mic_coupling, audio_capture_rx_coupling, audio_vmid_cap, cc_evidence_hold_cap, cc_local_bulk_cap, cc_power_input_cap, codec_adc_n_coupling, codec_adc_p_coupling, codec_adcvref_cap, codec_dacvref_cap, codec_power_input_cap, codec_tx_coupling, codec_vmid_cap, ir_power_input_cap, mic_tx_coupling, nrf_evidence_hold_cap, nrf_power_input_cap, pack_diag_lockout_cap, product_usb_vpwr_cap, receiver_power_input_cap, s3_reset_delay_cap, sd_power_input_cap, si_audio_l_coupling, si_audio_r_coupling, slow_io_bulk_cap, speaker_amp_input_cap, speaker_input_n_coupling, speaker_input_p_coupling, voice_evidence_hold_cap, voice_io_power_input_cap, voice_io_power_output_cap, voice_mic_coupling, voice_rx_coupling, voice_v_evidence_hold_cap, voice_v_mic_coupling",
+      "role": "audio_capture_input_coupling;audio_capture_local_bias_cap;audio_capture_mic_coupling;audio_capture_rx_coupling;audio_vmid_cap;cc_evidence_hold_cap;cc_local_bulk_cap;cc_power_input_cap;codec_adc_n_coupling;codec_adc_p_coupling;codec_adcvref_cap;codec_dacvref_cap;codec_power_input_cap;codec_tx_coupling;codec_vmid_cap;ir_power_input_cap;mic_tx_coupling;nrf_evidence_hold_cap;nrf_power_input_cap;pack_diag_lockout_cap;product_usb_vpwr_cap;receiver_power_input_cap;s3_reset_delay_cap;sd_power_input_cap;si_audio_l_coupling;si_audio_r_coupling;slow_io_bulk_cap;speaker_amp_input_cap;speaker_input_n_coupling;speaker_input_p_coupling;voice_evidence_hold_cap;voice_io_power_input_cap;voice_io_power_output_cap;voice_mic_coupling;voice_rx_coupling;voice_v_evidence_hold_cap;voice_v_mic_coupling",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_01_USB_PD_CHARGE",
@@ -9984,13 +10389,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C2167399"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "tdk_cga5l1x7r1e475k160ac",
       "mpn": "TDK CGA5L1X7R1E475K160AC",
       "quantity_per_product": 3,
-      "role": "aon_input_cap, charger_regn_cap, pd_vbus_cap",
+      "role": "aon_input_cap;charger_regn_cap;pd_vbus_cap",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_01_USB_PD_CHARGE",
@@ -10035,13 +10441,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C2170392"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "te_1_2118651_0",
       "mpn": "TE Connectivity 1-2118651-0",
       "quantity_per_product": 3,
-      "role": "three 60-mm nRF RF jumpers / три 60-мм RF-кабеля nRF",
+      "role": "nrf0_rf_jumper;nrf1_rf_jumper;nrf2_rf_jumper",
       "ecad_disposition": "three removable 60-mm off-board U.FL-to-U.FL cable assemblies; only their board connectors are represented in ECAD",
       "native_sheet_affinity": [
         "UI_31_NRF24_X3_TX_EVIDENCE"
@@ -10076,13 +10483,14 @@
       "footprint_definition": null,
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "te_2118651_2",
       "mpn": "TE Connectivity 2118651-2",
       "quantity_per_product": 2,
-      "role": "two 30-mm S3/C5 RF jumpers / два 30-мм RF-кабеля S3/C5",
+      "role": "c5_rf_jumper;s3_rf_jumper",
       "ecad_disposition": "two removable 30-mm off-board U.FL-to-U.FL cable assemblies; only their board connectors are represented in ECAD",
       "native_sheet_affinity": [
         "UI_10_S3_DISPLAY_TOUCH",
@@ -10118,7 +10526,8 @@
       "footprint_definition": null,
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_bq25798_rqmr",
@@ -10269,7 +10678,8 @@
       "historical_hint_pin_counts": [
         29
       ],
-      "jlcpcb_part_number": "C2876593"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_csd87313dms",
@@ -10330,13 +10740,73 @@
       "historical_hint_pin_counts": [
         9
       ],
-      "jlcpcb_part_number": "C2863848"
+      "jlcpcb_part_number": "C2863848",
+      "bom_excluded": false
+    },
+    {
+      "device_id": "ti_lmv331_idbvr",
+      "mpn": "LMV331IDBVR",
+      "quantity_per_product": 1,
+      "role": "u219_field_comparator",
+      "ecad_disposition": "schematic_component_group",
+      "native_sheet_affinity": [
+        "RF_30_U214_U219_M5_EXT"
+      ],
+      "schematic_value": "single_open_collector_low_voltage_comparator_sot23_5",
+      "symbol_id": "Leshy2_R2:ti_lmv331_idbvr",
+      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
+      "logical_contact_count": 5,
+      "contact_role_counts": {
+        "analog": 2,
+        "power": 2,
+        "signal": 1
+      },
+      "contact_map": {
+        "IN_P": {
+          "physical": "1",
+          "role": "analog"
+        },
+        "GND": {
+          "physical": "2",
+          "role": "power"
+        },
+        "IN_N": {
+          "physical": "3",
+          "role": "analog"
+        },
+        "OUT": {
+          "physical": "4",
+          "role": "signal"
+        },
+        "VCC": {
+          "physical": "5",
+          "role": "power"
+        }
+      },
+      "contact_map_sha256": "acce9d2353a64ccc763b8207f72106bff5b6031c4193c902cfa9fe3035d6dfe9",
+      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "manufacturer_evidence": {
+        "document": "LMV331 low-voltage comparator datasheet",
+        "url": "https://www.ti.com/lit/ds/symlink/lmv331.pdf",
+        "checked": "2026-09-02"
+      },
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "footprint_resolution": "explicit_current_override",
+      "footprint_definition": {
+        "status": "exact_package_identity_mapped_to_standard_kicad_library",
+        "path": null,
+        "sha256": null
+      },
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": "C34731",
+      "bom_excluded": false
     },
     {
       "device_id": "ti_mspm0c1106_sdgs20r",
       "mpn": "Texas Instruments MSPM0C1106SDGS20R",
       "quantity_per_product": 2,
-      "role": "pack_admission, safety_controller",
+      "role": "pack_admission;safety_controller",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_02_PACK_SAFETY_AON",
@@ -10455,13 +10925,72 @@
       "historical_hint_pin_counts": [
         20
       ],
-      "jlcpcb_part_number": "C52995805"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
+    },
+    {
+      "device_id": "ti_sn74cbtlv1g125_dckr",
+      "mpn": "SN74CBTLV1G125DCKR",
+      "quantity_per_product": 1,
+      "role": "u219_pin10_switch",
+      "ecad_disposition": "schematic_component_group",
+      "native_sheet_affinity": [
+        "RF_30_U214_U219_M5_EXT"
+      ],
+      "schematic_value": "single_bus_switch_active_low_enable_sc70_5",
+      "symbol_id": "Leshy2_R2:ti_sn74cbtlv1g125_dckr",
+      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
+      "logical_contact_count": 5,
+      "contact_role_counts": {
+        "power": 2,
+        "signal": 3
+      },
+      "contact_map": {
+        "OE_N": {
+          "physical": "1",
+          "role": "signal"
+        },
+        "A": {
+          "physical": "2",
+          "role": "signal"
+        },
+        "GND": {
+          "physical": "3",
+          "role": "power"
+        },
+        "B": {
+          "physical": "4",
+          "role": "signal"
+        },
+        "VCC": {
+          "physical": "5",
+          "role": "power"
+        }
+      },
+      "contact_map_sha256": "ad9ee01196201a23ad87528832b32f4654439bc51479c7ba37bd4f9b0726670f",
+      "electrical_contract_sha256": "4b79a39325818832826b080de559d49fbd8cb0a2e5c7a3431359f1500f2e7814",
+      "manufacturer_evidence": {
+        "document": "SN74CBTLV1G125 single FET bus switch datasheet",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74cbtlv1g125.pdf",
+        "checked": "2026-09-02"
+      },
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+      "footprint_resolution": "explicit_current_override",
+      "footprint_definition": {
+        "status": "exact_package_identity_mapped_to_standard_kicad_library",
+        "path": null,
+        "sha256": null
+      },
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": "C131992",
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc08a_pwr",
       "mpn": "SN74LVC08APWR",
       "quantity_per_product": 2,
-      "role": "safe_gate_a, safe_gate_b",
+      "role": "safe_gate_a;safe_gate_b",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_50_TX_SAFETY_EVIDENCE",
@@ -10554,15 +11083,17 @@
       "historical_hint_pin_counts": [
         14
       ],
-      "jlcpcb_part_number": "C465737"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g06_dckr",
       "mpn": "Texas Instruments SN74LVC1G06DCKR",
-      "quantity_per_product": 2,
-      "role": "safe_c5_reset_buffer, safe_reset_buffer",
+      "quantity_per_product": 3,
+      "role": "safe_c5_reset_buffer;safe_reset_buffer",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
+        "RF_30_U214_U219_M5_EXT",
         "RF_50_TX_SAFETY_EVIDENCE",
         "UI_50_FRONT_POWER_SAFETY"
       ],
@@ -10619,13 +11150,14 @@
       "historical_hint_pin_counts": [
         5
       ],
-      "jlcpcb_part_number": "C7828"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g07_dckr",
       "mpn": "SN74LVC1G07DCKR",
       "quantity_per_product": 10,
-      "role": "ext_evidence_buffer, receiver_irq_iso, safe_c5_fault_reset_buffer, safe_run_fault_iso, safety_fault_request_iso, safety_s3_reset_iso, slow_io_fault_sense_iso, slow_io_s3_evidence_iso, touch_irq_buffer, voice_hl_driver",
+      "role": "ext_evidence_buffer;receiver_irq_iso;safe_c5_fault_reset_buffer;safe_run_fault_iso;safety_fault_request_iso;safety_s3_reset_iso;slow_io_fault_sense_iso;slow_io_s3_evidence_iso;touch_irq_buffer;voice_hl_driver",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
@@ -10694,13 +11226,14 @@
       "historical_hint_pin_counts": [
         5
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g08_dckr",
       "mpn": "SN74LVC1G08DCKR",
       "quantity_per_product": 4,
-      "role": "cc_backup_gate, codec_i2s_din_boot_gate, ir_safe_gate, nrf_backup_gate",
+      "role": "cc_backup_gate;codec_i2s_din_boot_gate;ir_safe_gate;nrf_backup_gate",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX",
@@ -10762,7 +11295,8 @@
       "historical_hint_pin_counts": [
         5
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g125_dckr",
@@ -10825,13 +11359,14 @@
       "historical_hint_pin_counts": [
         5
       ],
-      "jlcpcb_part_number": "C7833"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g126_dckr",
       "mpn": "Texas Instruments SN74LVC1G126DCKR",
       "quantity_per_product": 4,
-      "role": "codec_i2s_bclk_iso, codec_i2s_din_iso, codec_i2s_dout_iso, codec_i2s_ws_iso",
+      "role": "codec_i2s_bclk_iso;codec_i2s_din_iso;codec_i2s_dout_iso;codec_i2s_ws_iso",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_22_AUDIO_CODEC_IO"
@@ -10887,7 +11422,8 @@
       "historical_hint_pin_counts": [
         5
       ],
-      "jlcpcb_part_number": "C88039"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g17_dckr",
@@ -10951,7 +11487,8 @@
       "historical_hint_pin_counts": [
         5
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g3157_dbvr",
@@ -11018,7 +11555,8 @@
       "historical_hint_pin_counts": [
         6
       ],
-      "jlcpcb_part_number": "C10426"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc1g74_dcur",
@@ -11095,13 +11633,14 @@
       "historical_hint_pin_counts": [
         8
       ],
-      "jlcpcb_part_number": "C70285"
+      "jlcpcb_part_number": "C70285",
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc2g08_dcur",
       "mpn": "Texas Instruments SN74LVC2G08DCUR",
       "quantity_per_product": 3,
-      "role": "audio_safe_gate, ext_branch_gate, voice_pd_gate",
+      "role": "audio_safe_gate;ext_branch_gate;voice_pd_gate",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
@@ -11173,13 +11712,14 @@
       "historical_hint_pin_counts": [
         8
       ],
-      "jlcpcb_part_number": "C91875"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc2g66_dcur",
       "mpn": "Texas Instruments SN74LVC2G66DCUR",
       "quantity_per_product": 2,
-      "role": "codec_i2c_iso, receiver_i2c_iso",
+      "role": "codec_i2c_iso;receiver_i2c_iso",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_21_BROADCAST_AIRBAND_RX",
@@ -11250,13 +11790,14 @@
       "historical_hint_pin_counts": [
         8
       ],
-      "jlcpcb_part_number": "C181970"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc3g07_dcur",
       "mpn": "SN74LVC3G07DCUR",
       "quantity_per_product": 1,
-      "role": "evidence_main_isolator, safe_fault_reset_buffer",
+      "role": "evidence_main_isolator;safe_fault_reset_buffer",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_50_TX_SAFETY_EVIDENCE",
@@ -11325,7 +11866,8 @@
       "historical_hint_pin_counts": [
         8
       ],
-      "jlcpcb_part_number": "C131955"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_sn74lvc3g34_dcur",
@@ -11400,13 +11942,14 @@
       "historical_hint_pin_counts": [
         8
       ],
-      "jlcpcb_part_number": "C130024"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tca9534a_pwr",
       "mpn": "TCA9534APWR",
       "quantity_per_product": 2,
-      "role": "headset_control_io, voice_band_io",
+      "role": "headset_control_io;voice_band_io",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX",
@@ -11508,7 +12051,8 @@
       "historical_hint_pin_counts": [
         16
       ],
-      "jlcpcb_part_number": "C206010"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tca9535_pwr",
@@ -11647,7 +12191,8 @@
       "historical_hint_pin_counts": [
         24
       ],
-      "jlcpcb_part_number": "C130204"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tca9539_pwr",
@@ -11786,7 +12331,8 @@
       "historical_hint_pin_counts": [
         24
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tca9803_dgkr",
@@ -11856,13 +12402,14 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C2687966"
+      "jlcpcb_part_number": "C2687966",
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tlv1821_dckr",
       "mpn": "TLV1821DCKR",
       "quantity_per_product": 3,
-      "role": "evidence_cmp_voice, evidence_cmp_voice_v",
+      "role": "evidence_cmp_voice;evidence_cmp_voice_v",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_50_TX_SAFETY_EVIDENCE",
@@ -11920,13 +12467,14 @@
       "historical_hint_pin_counts": [
         5
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tlv1824_pwr",
       "mpn": "TLV1824PWR",
       "quantity_per_product": 2,
-      "role": "evidence_cmp_a, evidence_cmp_b",
+      "role": "evidence_cmp_a;evidence_cmp_b",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_50_TX_SAFETY_EVIDENCE",
@@ -12021,13 +12569,14 @@
       "historical_hint_pin_counts": [
         14
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tlv9061_idbvr",
       "mpn": "TLV9061IDBVR",
       "quantity_per_product": 2,
-      "role": "audio_capture_buffer, ir_evidence_amp",
+      "role": "audio_capture_buffer;ir_evidence_amp",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_22_AUDIO_CODEC_IO",
@@ -12085,13 +12634,14 @@
       "historical_hint_pin_counts": [
         5
       ],
-      "jlcpcb_part_number": "C398358"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tmux1136_dgsr",
       "mpn": "Texas Instruments TMUX1136DGSR",
       "quantity_per_product": 4,
-      "role": "four complete audio/control selectors / четыре полных audio/control selector",
+      "role": "audio_speaker_selector;voice_audio_mux;voice_control_mux_a;voice_control_mux_b",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX",
@@ -12170,13 +12720,14 @@
       "historical_hint_pin_counts": [
         10
       ],
-      "jlcpcb_part_number": "C2673301"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tpd2eusb30a_drtr",
       "mpn": "Texas Instruments TPD2EUSB30ADRTR",
       "quantity_per_product": 3,
-      "role": "c5_service_usb_esd, rp_service_usb_esd",
+      "role": "c5_service_usb_esd;rp_service_usb_esd",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_10_RP2354_CORE_SERVICE",
@@ -12227,13 +12778,14 @@
       "historical_hint_pin_counts": [
         3
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tpd4e05u06_dqar",
       "mpn": "Texas Instruments TPD4E05U06DQAR",
       "quantity_per_product": 14,
-      "role": "thirteen four-line ESD arrays / тринадцать четырёхканальных ESD-сборок",
+      "role": "c5_dbg_esd;encoder_ptt_esd;headphone_esd;rear_control_esd;rp_dbg_esd;s3_dbg_esd;safety_control_esd;sd_esd_a;sd_esd_b;u214_esd_a;u214_esd_b;u214_esd_c;unit_esd",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_10_RP2354_CORE_SERVICE",
@@ -12326,7 +12878,8 @@
       "historical_hint_pin_counts": [
         10
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tpd4s201_rukr",
@@ -12453,13 +13006,14 @@
       "historical_hint_pin_counts": [
         21
       ],
-      "jlcpcb_part_number": "C49438759"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tpd8e003_dqdr",
       "mpn": "Texas Instruments TPD8E003DQDR",
       "quantity_per_product": 2,
-      "role": "front_function_esd, ui_matrix_esd",
+      "role": "front_function_esd;ui_matrix_esd",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "UI_11_STORAGE_CONTROLS_INDICATORS"
@@ -12531,13 +13085,14 @@
       "historical_hint_pin_counts": [
         9
       ],
-      "jlcpcb_part_number": "C2867469"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps22919_dckr",
       "mpn": "Texas Instruments TPS22919DCKR",
       "quantity_per_product": 8,
-      "role": "cc_power_switch, codec_power_switch, ir_power_switch, nrf_power_switch, receiver_power_switch, sd_power_switch, voice_io_power_switch",
+      "role": "cc_power_switch;codec_power_switch;ir_power_switch;nrf_power_switch;receiver_power_switch;sd_power_switch;voice_io_power_switch",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX",
@@ -12609,7 +13164,8 @@
       "historical_hint_pin_counts": [
         6
       ],
-      "jlcpcb_part_number": "C2149796"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps2553drvr_1",
@@ -12681,7 +13237,8 @@
       "historical_hint_pin_counts": [
         7
       ],
-      "jlcpcb_part_number": "C411878"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps25751d_refr",
@@ -12861,13 +13418,14 @@
       "historical_hint_pin_counts": [
         34
       ],
-      "jlcpcb_part_number": "C30169739"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps259470l_rpwr",
       "mpn": "Texas Instruments TPS259470LRPWR",
       "quantity_per_product": 2,
-      "role": "ext_efuse, unit_efuse",
+      "role": "ext_efuse;unit_efuse",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
@@ -12946,7 +13504,8 @@
       "historical_hint_pin_counts": [
         10
       ],
-      "jlcpcb_part_number": "C3662793"
+      "jlcpcb_part_number": "C3662793",
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps25961_drvr",
@@ -13016,13 +13575,14 @@
       "historical_hint_pin_counts": [
         7
       ],
-      "jlcpcb_part_number": "C5571272"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps25974l_rpwr",
       "mpn": "Texas Instruments TPS25974LRPWR",
       "quantity_per_product": 2,
-      "role": "main_efuse, voice_efuse",
+      "role": "main_efuse;voice_efuse",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
@@ -13101,7 +13661,8 @@
       "historical_hint_pin_counts": [
         10
       ],
-      "jlcpcb_part_number": "C3662931"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps3435cakagddfr",
@@ -13180,13 +13741,14 @@
       "historical_hint_pin_counts": [
         8
       ],
-      "jlcpcb_part_number": "C6339182"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps3808g33_dbvr",
       "mpn": "TPS3808G33DBVR",
       "quantity_per_product": 4,
-      "role": "safe_supervisor, u214_supervisor, unit_supervisor, voice_supervisor",
+      "role": "safe_supervisor;u214_supervisor;unit_supervisor;voice_supervisor",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX",
@@ -13252,13 +13814,14 @@
       "historical_hint_pin_counts": [
         6
       ],
-      "jlcpcb_part_number": "C43698"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps3839k33_dbzr",
       "mpn": "Texas Instruments TPS3839K33DBZR",
       "quantity_per_product": 2,
-      "role": "codec_supervisor, receiver_supervisor",
+      "role": "codec_supervisor;receiver_supervisor",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_21_BROADCAST_AIRBAND_RX",
@@ -13308,13 +13871,14 @@
       "historical_hint_pin_counts": [
         3
       ],
-      "jlcpcb_part_number": "C96333"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps564252_drlr",
       "mpn": "Texas Instruments TPS564252DRLR",
-      "quantity_per_product": 3,
-      "role": "ext_buck, main_buck, voice_buck",
+      "quantity_per_product": 2,
+      "role": "ext_buck;main_buck;voice_buck",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
@@ -13377,7 +13941,83 @@
       "historical_hint_pin_counts": [
         6
       ],
-      "jlcpcb_part_number": "C19191267"
+      "jlcpcb_part_number": "C19191267",
+      "bom_excluded": false
+    },
+    {
+      "device_id": "ti_tps566231p_rqfr",
+      "mpn": "TPS566231PRQFR",
+      "quantity_per_product": 1,
+      "role": "main_buck",
+      "ecad_disposition": "schematic_component_group",
+      "native_sheet_affinity": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES"
+      ],
+      "schematic_value": "6a_600khz_synchronous_buck_with_power_good",
+      "symbol_id": "Leshy2_R2:ti_tps566231p_rqfr",
+      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
+      "logical_contact_count": 9,
+      "contact_role_counts": {
+        "analog": 1,
+        "power": 6,
+        "signal": 2
+      },
+      "contact_map": {
+        "VCC": {
+          "physical": "1",
+          "role": "power"
+        },
+        "FB": {
+          "physical": "2",
+          "role": "analog"
+        },
+        "EN": {
+          "physical": "3",
+          "role": "signal"
+        },
+        "PGND": {
+          "physical": "4",
+          "role": "power"
+        },
+        "VIN_1": {
+          "physical": "5",
+          "role": "power"
+        },
+        "VIN_2": {
+          "physical": "6",
+          "role": "power"
+        },
+        "BST": {
+          "physical": "7",
+          "role": "power"
+        },
+        "SW": {
+          "physical": "8",
+          "role": "power"
+        },
+        "PG": {
+          "physical": "9",
+          "role": "signal"
+        }
+      },
+      "contact_map_sha256": "5a4b4019e00032727c737c7898810a51b72b388ab9f97de2f2d3920147e468f7",
+      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "manufacturer_evidence": {
+        "document": "TPS566231 3-V to 18-V input, 6-A synchronous buck converter datasheet",
+        "url": "https://www.ti.com/lit/ds/symlink/tps566231.pdf",
+        "checked": "2026-09-02"
+      },
+      "footprint": "Leshy2_R2:Texas_RQF0009A_1.5x2.0mm",
+      "footprint_resolution": "explicit_current_override",
+      "footprint_definition": {
+        "status": "current_exact_local_definition_materialized",
+        "path": "hardware/ecad/libraries/Leshy2_R2.pretty/Texas_RQF0009A_1.5x2.0mm.kicad_mod",
+        "sha256": "d3db497923e7a8204b10fa2a4e069773629da24eefe1dba19fef9713792f3607"
+      },
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": "C3190178",
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tps629203_drlr",
@@ -13453,7 +14093,8 @@
       "historical_hint_pin_counts": [
         8
       ],
-      "jlcpcb_part_number": "C5219295"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tpul2g223_bqbr",
@@ -13560,13 +14201,14 @@
       "historical_hint_pin_counts": [
         17
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_ts5a63157_dckr",
       "mpn": "Texas Instruments TS5A63157DCKR",
       "quantity_per_product": 3,
-      "role": "audio_capture_selector, audio_tx_selector, headset_mic_selector",
+      "role": "audio_capture_selector;audio_tx_selector;headset_mic_selector",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_22_AUDIO_CODEC_IO"
@@ -13627,7 +14269,8 @@
       "historical_hint_pin_counts": [
         6
       ],
-      "jlcpcb_part_number": "C133575"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_tvs2200_drvr",
@@ -13676,7 +14319,8 @@
       "historical_hint_pin_counts": [
         7
       ],
-      "jlcpcb_part_number": "C523793"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ti_txs0102_dcur",
@@ -13750,7 +14394,8 @@
       "historical_hint_pin_counts": [
         8
       ],
-      "jlcpcb_part_number": "C53434"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ttm_b0310j50100ahf",
@@ -13817,13 +14462,14 @@
       "historical_hint_pin_counts": [
         6
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "ttm_dc2337j5010ahf",
       "mpn": "TTM Technologies DC2337J5010AHF",
       "quantity_per_product": 3,
-      "role": "nrf0_coupler, nrf1_coupler, nrf2_coupler",
+      "role": "nrf0_coupler;nrf1_coupler;nrf2_coupler",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "UI_31_NRF24_X3_TX_EVIDENCE"
@@ -13883,7 +14529,188 @@
       "historical_hint_pin_counts": [
         6
       ],
-      "jlcpcb_part_number": "C509396"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
+    },
+    {
+      "device_id": "uniroyal_0402wgf1001tce",
+      "mpn": "0402WGF1001TCE",
+      "quantity_per_product": 2,
+      "role": "u219_field_input_r_p;u219_field_input_r_n",
+      "ecad_disposition": "schematic_component_group",
+      "native_sheet_affinity": [
+        "RF_30_U214_U219_M5_EXT"
+      ],
+      "schematic_value": "1kohm_1pct_0402_resistor",
+      "symbol_id": "Leshy2_R2:uniroyal_0402wgf1001tce",
+      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
+      "logical_contact_count": 2,
+      "contact_role_counts": {
+        "analog": 2
+      },
+      "contact_map": {
+        "END_1": {
+          "physical": "1",
+          "role": "analog"
+        },
+        "END_2": {
+          "physical": "2",
+          "role": "analog"
+        }
+      },
+      "contact_map_sha256": "a4fe4d9b5fed9986f6d71137bf769f1dcec85fb93c89dc0c595f5f8b2cd72add",
+      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "manufacturer_evidence": {
+        "document": "UNI-ROYAL thick-film chip resistor series datasheet",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-29"
+      },
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "footprint_resolution": "explicit_current_override",
+      "footprint_definition": {
+        "status": "exact_package_identity_mapped_to_standard_kicad_library",
+        "path": null,
+        "sha256": null
+      },
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": "C11702",
+      "bom_excluded": false
+    },
+    {
+      "device_id": "uniroyal_0402wgf1002tce",
+      "mpn": "0402WGF1002TCE",
+      "quantity_per_product": 4,
+      "role": "u219_pin10_oe_pullup;u219_pin10_command_pulldown;u219_field_output_pullup;u219_field_threshold_bottom",
+      "ecad_disposition": "schematic_component_group",
+      "native_sheet_affinity": [
+        "RF_30_U214_U219_M5_EXT"
+      ],
+      "schematic_value": "10kohm_1pct_0402_resistor",
+      "symbol_id": "Leshy2_R2:uniroyal_0402wgf1002tce",
+      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
+      "logical_contact_count": 2,
+      "contact_role_counts": {
+        "analog": 2
+      },
+      "contact_map": {
+        "END_1": {
+          "physical": "1",
+          "role": "analog"
+        },
+        "END_2": {
+          "physical": "2",
+          "role": "analog"
+        }
+      },
+      "contact_map_sha256": "a4fe4d9b5fed9986f6d71137bf769f1dcec85fb93c89dc0c595f5f8b2cd72add",
+      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "manufacturer_evidence": {
+        "document": "UNI-ROYAL thick-film chip resistor series datasheet",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-29"
+      },
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "footprint_resolution": "explicit_current_override",
+      "footprint_definition": {
+        "status": "exact_package_identity_mapped_to_standard_kicad_library",
+        "path": null,
+        "sha256": null
+      },
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": "C25744",
+      "bom_excluded": false
+    },
+    {
+      "device_id": "uniroyal_0402wgf1003tce",
+      "mpn": "0402WGF1003TCE",
+      "quantity_per_product": 2,
+      "role": "u219_field_env_discharge;u219_field_threshold_top",
+      "ecad_disposition": "schematic_component_group",
+      "native_sheet_affinity": [
+        "RF_30_U214_U219_M5_EXT"
+      ],
+      "schematic_value": "100kohm_1pct_0402_resistor",
+      "symbol_id": "Leshy2_R2:uniroyal_0402wgf1003tce",
+      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
+      "logical_contact_count": 2,
+      "contact_role_counts": {
+        "analog": 2
+      },
+      "contact_map": {
+        "END_1": {
+          "physical": "1",
+          "role": "analog"
+        },
+        "END_2": {
+          "physical": "2",
+          "role": "analog"
+        }
+      },
+      "contact_map_sha256": "a4fe4d9b5fed9986f6d71137bf769f1dcec85fb93c89dc0c595f5f8b2cd72add",
+      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "manufacturer_evidence": {
+        "document": "UNI-ROYAL thick-film chip resistor series datasheet",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-29"
+      },
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "footprint_resolution": "explicit_current_override",
+      "footprint_definition": {
+        "status": "exact_package_identity_mapped_to_standard_kicad_library",
+        "path": null,
+        "sha256": null
+      },
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": "C25741",
+      "bom_excluded": false
+    },
+    {
+      "device_id": "uniroyal_0402wgf1004tce",
+      "mpn": "0402WGF1004TCE",
+      "quantity_per_product": 1,
+      "role": "u219_field_hysteresis",
+      "ecad_disposition": "schematic_component_group",
+      "native_sheet_affinity": [
+        "RF_30_U214_U219_M5_EXT"
+      ],
+      "schematic_value": "1mohm_1pct_0402_resistor",
+      "symbol_id": "Leshy2_R2:uniroyal_0402wgf1004tce",
+      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
+      "logical_contact_count": 2,
+      "contact_role_counts": {
+        "analog": 2
+      },
+      "contact_map": {
+        "END_1": {
+          "physical": "1",
+          "role": "analog"
+        },
+        "END_2": {
+          "physical": "2",
+          "role": "analog"
+        }
+      },
+      "contact_map_sha256": "a4fe4d9b5fed9986f6d71137bf769f1dcec85fb93c89dc0c595f5f8b2cd72add",
+      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "manufacturer_evidence": {
+        "document": "UNI-ROYAL thick-film chip resistor series datasheet",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-29"
+      },
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "footprint_resolution": "explicit_current_override",
+      "footprint_definition": {
+        "status": "exact_package_identity_mapped_to_standard_kicad_library",
+        "path": null,
+        "sha256": null
+      },
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": "C26083",
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf1333tce",
@@ -13934,13 +14761,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C25753"
+      "jlcpcb_part_number": "C25753",
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf1603tce",
       "mpn": "UNI-ROYAL 0402WGF1603TCE",
       "quantity_per_product": 1,
-      "role": "stocked codec TX attenuator resistor / складской резистор аттенюатора TX кодека",
+      "role": "codec_tx_atten_top",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_22_AUDIO_CODEC_IO"
@@ -13983,7 +14811,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C25757"
+      "jlcpcb_part_number": "C25757",
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf1651tce",
@@ -14033,13 +14862,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C25869"
+      "jlcpcb_part_number": "C25869",
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf2201tce",
       "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "quantity_per_product": 25,
-      "role": "c5_tx_led_series, cc_tx_led_series, codec_i2c_scl_pullup, codec_i2c_sda_pullup, codec_tx_atten_bottom, ext_tx_led_series, fault_led_series, headset_mic_bias_res, ir_tx_led_series, microphone_bias_res, nrf0_tx_led_series, nrf1_tx_led_series, nrf2_tx_led_series, pd_local_scl_pullup, pd_local_sda_pullup, receiver_i2c_scl_pullup, receiver_i2c_sda_pullup, s3_tx_led_series, sys_i2c_scl_pullup, sys_i2c_sda_pullup, u214_i2c_host_scl_pullup, u214_i2c_host_sda_pullup, voice_tx_led_series",
+      "role": "c5_tx_led_series;cc_tx_led_series;codec_i2c_scl_pullup;codec_i2c_sda_pullup;codec_tx_atten_bottom;ext_tx_led_series;fault_led_series;headset_mic_bias_res;ir_tx_led_series;microphone_bias_res;nrf0_tx_led_series;nrf1_tx_led_series;nrf2_tx_led_series;pd_local_scl_pullup;pd_local_sda_pullup;receiver_i2c_scl_pullup;receiver_i2c_sda_pullup;s3_tx_led_series;sys_i2c_scl_pullup;sys_i2c_sda_pullup;u214_i2c_host_scl_pullup;u214_i2c_host_sda_pullup;voice_tx_led_series",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_01_USB_PD_CHARGE",
@@ -14094,7 +14924,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C25879"
+      "jlcpcb_part_number": "C25879",
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf2703tce",
@@ -14143,7 +14974,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C25770"
+      "jlcpcb_part_number": "C25770",
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf5231tce",
@@ -14192,7 +15024,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C25907"
+      "jlcpcb_part_number": "C25907",
+      "bom_excluded": false
     },
     {
       "device_id": "uniroyal_0402wgf8201tce",
@@ -14242,7 +15075,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C25924"
+      "jlcpcb_part_number": "C25924",
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_tnpw040210k0beed",
@@ -14292,7 +15126,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C844452"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_tnpw040243k7beed",
@@ -14341,7 +15176,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C4056533"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_tsmp95000tt",
@@ -14399,7 +15235,8 @@
       "historical_hint_pin_counts": [
         4
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_tsop75238tr",
@@ -14457,7 +15294,8 @@
       "historical_hint_pin_counts": [
         4
       ],
-      "jlcpcb_part_number": "C511498"
+      "jlcpcb_part_number": "C511498",
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_vemd1060x01",
@@ -14506,7 +15344,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C144925"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_vsmy14940",
@@ -14555,7 +15394,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C511069"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "vishay_wsl25125l000fea",
@@ -14604,13 +15444,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C844900"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "xtar_18650_4000mah_protected",
       "mpn": "XTAR 18650 4000mAh",
       "quantity_per_product": 2,
-      "role": "pack_cell0, pack_cell1",
+      "role": "pack_cell0;pack_cell1",
       "ecad_disposition": "owner-supplied removable cells; absent from factory supply",
       "native_sheet_affinity": [
         "RF_01_USB_PD_CHARGE",
@@ -14646,7 +15487,8 @@
       "footprint_definition": null,
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_cc0402brnpo9bn2r8",
@@ -14690,13 +15532,14 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C1853353"
+      "jlcpcb_part_number": "C1853353",
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_cc0402krx7r9bb104",
       "mpn": "Yageo CC0402KRX7R9BB104",
-      "quantity_per_product": 170,
-      "role": "147 stocked 100-nF bypass capacitors / 147 складских развязывающих конденсаторов 100 нФ",
+      "quantity_per_product": 173,
+      "role": "aon_efuse_input_cap;audio_capture_buffer_bypass;audio_capture_selector_bypass;audio_rx_mux_bypass;audio_safe_gate_bypass;audio_speaker_selector_bypass;audio_tx_selector_bypass;backlight_efuse_input_cap;backlight_efuse_output_hf;c5_detector_bypass;c5_service_usb_switch_bypass;cc_avdd11_bypass;cc_avdd14_bypass;cc_avdd15_bypass;cc_avdd9_bypass;cc_backup_gate_bypass;cc_band_buffer_bypass;cc_dcoupl_cap;cc_detector_bypass;cc_dvdd_bypass;cc_host_buffer_bypass;cc_return_buffer_bypass;charger_pmid_hf_cap;charger_sys_hf_cap;charger_vbus_hf_cap;codec_avdd_bypass;codec_dvdd_bypass;codec_i2c_iso_bypass;codec_i2s_bclk_iso_bypass;codec_i2s_din_boot_gate_bypass;codec_i2s_din_iso_bypass;codec_i2s_dout_iso_bypass;codec_i2s_ws_iso_bypass;codec_pvdd_bypass;codec_supervisor_bypass;display_logic_hf_cap;evidence_cmp_a_bypass;evidence_cmp_b_bypass;evidence_cmp_voice_bypass;evidence_cmp_voice_v_bypass;evidence_main_isolator_bypass;evidence_mask_bypass;ext_branch_gate_bypass;ext_buck_hf_input_cap;ext_evidence_buffer_bypass;ext_request_or_bypass;headset_control_io_bypass;headset_mic_selector_bypass;ir_evidence_amp_bypass;ir_evidence_vref_cap;ir_power_output_bypass;ir_return_buffer_bypass;ir_safe_gate_bypass;main_hf_input_cap;nrf0_detector_bypass;nrf0_host_buffer_bypass;nrf0_module_hf_cap;nrf0_return_buffer_bypass;nrf1_detector_bypass;nrf1_host_buffer_bypass;nrf1_module_hf_cap;nrf1_return_buffer_bypass;nrf2_detector_bypass;nrf2_host_buffer_bypass;nrf2_module_hf_cap;nrf2_return_buffer_bypass;nrf_backup_gate_bypass;pack_admission_bypass;pack_batts_filter_cap;pack_cell1_filter_cap;pack_chg_gate_cap;pack_diag_timer_bypass;pack_dis_gate_cap;pack_in_bypass;pd_eeprom_bypass;power_command_filter;power_zone_temp_filter;ptt_filter_cap;receiver_i2c_iso_bypass;receiver_irq_iso_bypass;receiver_supervisor_bypass;receiver_vdd_bypass;rf_zone_temp_filter;rp_adc_avdd_bypass;rp_dvdd10_bypass;rp_dvdd32_bypass;rp_dvdd51_bypass;rp_iovdd15_bypass;rp_iovdd24_bypass;rp_iovdd29_bypass;rp_iovdd41_bypass;rp_iovdd50_bypass;rp_iovdd5_bypass;rp_iovdd60_bypass;rp_iovdd76_bypass;rp_qspi_iovdd_bypass;rp_service_usb_switch_bypass;rp_usb_otp_vdd_bypass;run_loop_filter;s3_detector_bypass;s3_supply_bypass;safe_c5_fault_reset_buffer_bypass;safe_c5_reset_buffer_bypass;safe_conditioner_bypass;safe_fault_reset_buffer_bypass;safe_gate_a_bypass;safe_gate_b_bypass;safe_latch_bypass;safe_ptt_or_bypass;safe_rearm_buffer_bypass;safe_reset_buffer_bypass;safe_run_fault_iso_bypass;safe_supervisor_bypass;safety_controller_bypass;safety_fault_request_iso_bypass;safety_s3_reset_iso_bypass;safety_watchdog_bypass;sd_detect_cap;sd_host_buffer_bypass;sd_miso_buffer_bypass;sd_power_hf_cap;slow_io_fault_sense_iso_bypass;slow_io_s3_evidence_iso_bypass;slow_io_vcci_bypass;slow_io_vccp_bypass;touch_irq_buffer_bypass;u214_host_buffer_a_bypass;u214_host_buffer_b_bypass;u214_i2c_iso_bypass;u214_return_buffer_bypass;u214_supervisor_bypass;ui_matrix_io_bypass;ui_zone_temp_filter;unit_signal_iso_vcca_bypass;unit_signal_iso_vccb_bypass;unit_supervisor_bypass;voice_audio_mux_bypass;voice_band_inverter_bypass;voice_band_io_bypass;voice_control_mux_a_bypass;voice_control_mux_b_bypass;voice_detector_bypass;voice_hf_input_cap;voice_hl_driver_bypass;voice_pd_gate_bypass;voice_supervisor_bypass;voice_v_detector_bypass",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_01_USB_PD_CHARGE",
@@ -14769,13 +15612,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C131394"
+      "jlcpcb_part_number": "C131394",
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_cc0603krx7r0bb104",
       "mpn": "Yageo CC0603KRX7R0BB104",
       "quantity_per_product": 1,
-      "role": "stocked 100-nF 100-V USB VBIAS capacitor / складской конденсатор USB VBIAS 100 нФ 100 В",
+      "role": "product_usb_vbias_cap",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_01_USB_PD_CHARGE"
@@ -14819,13 +15663,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C113803"
+      "jlcpcb_part_number": "C113803",
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07100kl",
       "mpn": "Yageo RC0402FR-07100KL",
       "quantity_per_product": 43,
-      "role": "aon_efuse_ovlo_bottom, audio_capture_local_bias_bottom, audio_capture_local_bias_top, audio_capture_mic_bias, audio_capture_rx_bias, audio_vmid_bottom, audio_vmid_top, c5_evidence_threshold_top, cc_evidence_threshold_top, charger_ilim_bottom, codec_ready_pulldown, fault_assert_sense_series, headset_absent_pulldown, headset_control_p1_pulldown, headset_control_p2_pulldown, headset_control_p3_pulldown, headset_control_p4_pulldown, headset_control_p5_pulldown, headset_control_p6_pulldown, headset_control_p7_pulldown, headset_mic_select_pullup, ir_evidence_threshold_top, ir_evidence_vref_top, main_en_pulldown, mic_tx_bias, nrf0_evidence_threshold_top, nrf1_evidence_threshold_top, nrf2_evidence_threshold_top, receiver_ready_pulldown, s3_evidence_threshold_top, safe_rearm_delay_res, si_audio_sum_bias, voice_audio_on_pulldown, voice_efuse_ovlo_bottom, voice_evidence_threshold_top, voice_rx_bias, voice_uart_rx_pulldown, voice_uart_tx_pulldown, voice_v_evidence_threshold_top, voice_v_uart_rx_pulldown",
+      "role": "aon_efuse_ovlo_bottom;audio_capture_local_bias_bottom;audio_capture_local_bias_top;audio_capture_mic_bias;audio_capture_rx_bias;audio_vmid_bottom;audio_vmid_top;c5_evidence_threshold_top;cc_evidence_threshold_top;charger_ilim_bottom;codec_ready_pulldown;fault_assert_sense_series;headset_absent_pulldown;headset_control_p1_pulldown;headset_control_p2_pulldown;headset_control_p3_pulldown;headset_control_p4_pulldown;headset_control_p5_pulldown;headset_control_p6_pulldown;headset_control_p7_pulldown;headset_mic_select_pullup;ir_evidence_threshold_top;ir_evidence_vref_top;main_en_pulldown;mic_tx_bias;nrf0_evidence_threshold_top;nrf1_evidence_threshold_top;nrf2_evidence_threshold_top;receiver_ready_pulldown;s3_evidence_threshold_top;safe_rearm_delay_res;si_audio_sum_bias;voice_audio_on_pulldown;voice_efuse_ovlo_bottom;voice_evidence_threshold_top;voice_rx_bias;voice_uart_rx_pulldown;voice_uart_tx_pulldown;voice_v_evidence_threshold_top;voice_v_uart_rx_pulldown",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_01_USB_PD_CHARGE",
@@ -14882,13 +15727,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C60491"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07100rl",
       "mpn": "Yageo RC0402FR-07100RL",
       "quantity_per_product": 7,
-      "role": "backlight_gate_series, charger_batp_res, ir_carrier_series, ir_carrier_supply_res, ir_demod_series, ir_demod_supply_res, ir_tx_gate_series",
+      "role": "backlight_gate_series;charger_batp_res;ir_carrier_series;ir_carrier_supply_res;ir_demod_series;ir_demod_supply_res;ir_tx_gate_series",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_01_USB_PD_CHARGE",
@@ -14936,13 +15782,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C106232"
+      "jlcpcb_part_number": "C106232",
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0710kl",
       "mpn": "Yageo RC0402FR-0710KL",
       "quantity_per_product": 216,
-      "role": "any_tx_aon_pullup, audio_arm_pulldown, audio_capture_sel_pulldown, audio_rx_sel_pulldown, audio_speaker_req_pulldown, audio_speaker_safe_pulldown, audio_tx_req_pulldown, audio_tx_safe_pulldown, backlight_fault_pullup, backlight_gate_pulldown, c5_boot_pullup, c5_dbg_id0_strap, c5_dbg_id1_strap, c5_detector_feedback_res, c5_detector_ground_res, c5_evidence_main_pullup, c5_evidence_output_pullup, c5_evidence_threshold_bottom, c5_gpio27_pullup, c5_reset_pullup, cc_band_v1_host_pulldown, cc_band_v2_host_pulldown, cc_evidence_hold_pulldown, cc_evidence_output_pullup, cc_evidence_threshold_bottom, cc_host_csn_pullup, cc_host_gdo0_pulldown, cc_host_gdo2_pulldown, cc_host_sclk_pulldown, cc_host_si_pulldown, cc_host_so_pulldown, cc_power_on_pulldown, cc_switch_a_v1_pulldown, cc_switch_a_v2_pulldown, cc_switch_b_v1_pulldown, cc_switch_b_v2_pulldown, charger_ce_pullup, charger_int_pullup, codec_ce_pullup, codec_power_on_pulldown, display_reset_pulldown, evidence_mask_p12_pulldown, evidence_mask_p13_pulldown, evidence_mask_p14_pulldown, evidence_mask_p15_pulldown, evidence_mask_p16_pulldown, evidence_mask_p17_pulldown, evidence_mask_scl_pullup, evidence_mask_sda_pullup, ext_any_req_pulldown, ext_en_pulldown, ext_evidence_input_pullup, ext_evidence_output_pullup, ext_pg_pullup, fault_assert_pullup, headphone_tip_detect_pullup, headset_detect_series, ir_carrier_host_pullup, ir_demod_host_pullup, ir_evidence_main_pullup, ir_evidence_output_pullup, ir_evidence_vref_bottom, ir_power_on_pulldown, ir_tx_carrier_pulldown, ir_tx_gate_pulldown, lcd_host_cs_pullup, nrf0_evidence_output_pullup, nrf0_evidence_threshold_bottom, nrf0_host_ce_pulldown, nrf0_host_csn_pullup, nrf0_host_irq_pullup, nrf0_host_miso_pulldown, nrf0_host_mosi_pulldown, nrf0_host_sck_pulldown, nrf0_module_ce_pulldown, nrf0_module_csn_pullup, nrf0_module_irq_pullup, nrf0_module_miso_pulldown, nrf0_module_mosi_pulldown, nrf0_module_sck_pulldown, nrf1_evidence_output_pullup, nrf1_evidence_threshold_bottom, nrf1_host_ce_pulldown, nrf1_host_csn_pullup, nrf1_host_irq_pullup, nrf1_host_miso_pulldown, nrf1_host_mosi_pulldown, nrf1_host_sck_pulldown, nrf1_module_ce_pulldown, nrf1_module_csn_pullup, nrf1_module_irq_pullup, nrf1_module_miso_pulldown, nrf1_module_mosi_pulldown, nrf1_module_sck_pulldown, nrf2_evidence_output_pullup, nrf2_evidence_threshold_bottom, nrf2_host_ce_pulldown, nrf2_host_csn_pullup, nrf2_host_irq_pullup, nrf2_host_miso_pulldown, nrf2_host_mosi_pulldown, nrf2_host_sck_pulldown, nrf2_module_ce_pulldown, nrf2_module_csn_pullup, nrf2_module_irq_pullup, nrf2_module_miso_pulldown, nrf2_module_mosi_pulldown, nrf2_module_sck_pulldown, nrf_evidence_hold_pulldown, nrf_power_on_pulldown, pack_alrt_pullup, pack_diag_gate_pulldown, pack_diag_trigger_pulldown, pack_gauge_scl_pullup, pack_gauge_sda_pullup, pack_hold_pullup, pack_hold_release_pulldown, pack_irq_gate_pulldown, pack_pfail_pullup, pd_eeprom_wp_pullup, power_fault_pullup, power_zone_temp_pullup, product_usb_fault_pullup, ptt_pullup, receiver_irq_pullup, receiver_power_on_pulldown, receiver_senb_pulldown, rf_zone_temp_pullup, rp_any_tx_main_pullup, rp_boot_pullup, rp_dbg_id0_strap, rp_dbg_id1_strap, rp_reset_pullup, run_loop_pullup, s3_boot_pullup, s3_dbg_id0_strap, s3_dbg_id1_strap, s3_detector_feedback_res, s3_detector_ground_res, s3_evidence_output_pullup, s3_evidence_threshold_bottom, s3_reset_gate_pullup, s3_reset_pullup, safe_c5_reset_gate_pullup, safe_latch_d_pullup, safe_por_pullup, safe_reset_gate_pullup, safety_fault_request_pulldown, safety_watchdog_mr_pullup, safety_watchdog_wdi_pulldown, safety_watchdog_wdo_pullup, sd_card_cmd_pullup, sd_card_dat0_pullup, sd_card_dat1_pullup, sd_card_dat2_pullup, sd_card_dat3_pullup, sd_detect_pullup, sd_host_cs_pullup, sd_host_d0_pulldown, sd_host_d1_pullup, sd_host_sck_pulldown, sd_on_pulldown, si_audio_l_sum, si_audio_r_sum, slow_io_fault_sense_pullup, slow_io_reset_pullup, slow_io_s3_evidence_pullup, speaker_amp_enable_pulldown, sys_int_pullup, touch_irq_pullup, touch_reset_pulldown, u214_req_pulldown, u214_supervisor_pullup, ui_input_down_pullup, ui_input_left_pullup, ui_input_ok_pullup, ui_input_right_pullup, ui_input_up_pullup, ui_zone_temp_pullup, unit_req_pulldown, unit_signal_iso_oe_pulldown, unit_supervisor_pullup, voice_band_p1_pulldown, voice_band_p2_pulldown, voice_band_p3_pulldown, voice_band_p4_pulldown, voice_band_p5_pulldown, voice_band_p6_pulldown, voice_band_p7_pulldown, voice_band_select_pulldown, voice_efuse_en_pullup, voice_en_pulldown, voice_evidence_hold_pulldown, voice_evidence_output_pullup, voice_evidence_threshold_bottom, voice_hl_req_pulldown, voice_pg_pullup, voice_ptt_pullup, voice_rx_series, voice_supervisor_pullup, voice_v_evidence_hold_pulldown, voice_v_evidence_threshold_bottom, voice_v_ptt_pullup",
+      "role": "any_tx_aon_pullup;audio_arm_pulldown;audio_capture_sel_pulldown;audio_rx_sel_pulldown;audio_speaker_req_pulldown;audio_speaker_safe_pulldown;audio_tx_req_pulldown;audio_tx_safe_pulldown;backlight_fault_pullup;backlight_gate_pulldown;c5_boot_pullup;c5_dbg_id0_strap;c5_dbg_id1_strap;c5_detector_feedback_res;c5_detector_ground_res;c5_evidence_main_pullup;c5_evidence_output_pullup;c5_evidence_threshold_bottom;c5_gpio27_pullup;c5_reset_pullup;cc_band_v1_host_pulldown;cc_band_v2_host_pulldown;cc_evidence_hold_pulldown;cc_evidence_output_pullup;cc_evidence_threshold_bottom;cc_host_csn_pullup;cc_host_gdo0_pulldown;cc_host_gdo2_pulldown;cc_host_sclk_pulldown;cc_host_si_pulldown;cc_host_so_pulldown;cc_power_on_pulldown;cc_switch_a_v1_pulldown;cc_switch_a_v2_pulldown;cc_switch_b_v1_pulldown;cc_switch_b_v2_pulldown;charger_ce_pullup;charger_int_pullup;codec_ce_pullup;codec_power_on_pulldown;display_reset_pulldown;evidence_mask_p12_pulldown;evidence_mask_p13_pulldown;evidence_mask_p14_pulldown;evidence_mask_p15_pulldown;evidence_mask_p16_pulldown;evidence_mask_p17_pulldown;evidence_mask_scl_pullup;evidence_mask_sda_pullup;ext_any_req_pulldown;ext_en_pulldown;ext_evidence_input_pullup;ext_evidence_output_pullup;ext_pg_pullup;fault_assert_pullup;headphone_tip_detect_pullup;headset_detect_series;ir_carrier_host_pullup;ir_demod_host_pullup;ir_evidence_main_pullup;ir_evidence_output_pullup;ir_evidence_vref_bottom;ir_power_on_pulldown;ir_tx_carrier_pulldown;ir_tx_gate_pulldown;lcd_host_cs_pullup;nrf0_evidence_output_pullup;nrf0_evidence_threshold_bottom;nrf0_host_ce_pulldown;nrf0_host_csn_pullup;nrf0_host_irq_pullup;nrf0_host_miso_pulldown;nrf0_host_mosi_pulldown;nrf0_host_sck_pulldown;nrf0_module_ce_pulldown;nrf0_module_csn_pullup;nrf0_module_irq_pullup;nrf0_module_miso_pulldown;nrf0_module_mosi_pulldown;nrf0_module_sck_pulldown;nrf1_evidence_output_pullup;nrf1_evidence_threshold_bottom;nrf1_host_ce_pulldown;nrf1_host_csn_pullup;nrf1_host_irq_pullup;nrf1_host_miso_pulldown;nrf1_host_mosi_pulldown;nrf1_host_sck_pulldown;nrf1_module_ce_pulldown;nrf1_module_csn_pullup;nrf1_module_irq_pullup;nrf1_module_miso_pulldown;nrf1_module_mosi_pulldown;nrf1_module_sck_pulldown;nrf2_evidence_output_pullup;nrf2_evidence_threshold_bottom;nrf2_host_ce_pulldown;nrf2_host_csn_pullup;nrf2_host_irq_pullup;nrf2_host_miso_pulldown;nrf2_host_mosi_pulldown;nrf2_host_sck_pulldown;nrf2_module_ce_pulldown;nrf2_module_csn_pullup;nrf2_module_irq_pullup;nrf2_module_miso_pulldown;nrf2_module_mosi_pulldown;nrf2_module_sck_pulldown;nrf_evidence_hold_pulldown;nrf_power_on_pulldown;pack_alrt_pullup;pack_diag_gate_pulldown;pack_diag_trigger_pulldown;pack_gauge_scl_pullup;pack_gauge_sda_pullup;pack_hold_pullup;pack_hold_release_pulldown;pack_irq_gate_pulldown;pack_pfail_pullup;pd_eeprom_wp_pullup;power_fault_pullup;power_zone_temp_pullup;product_usb_fault_pullup;ptt_pullup;receiver_irq_pullup;receiver_power_on_pulldown;receiver_senb_pulldown;rf_zone_temp_pullup;rp_any_tx_main_pullup;rp_boot_pullup;rp_dbg_id0_strap;rp_dbg_id1_strap;rp_reset_pullup;run_loop_pullup;s3_boot_pullup;s3_dbg_id0_strap;s3_dbg_id1_strap;s3_detector_feedback_res;s3_detector_ground_res;s3_evidence_output_pullup;s3_evidence_threshold_bottom;s3_reset_gate_pullup;s3_reset_pullup;safe_c5_reset_gate_pullup;safe_latch_d_pullup;safe_por_pullup;safe_reset_gate_pullup;safety_fault_request_pulldown;safety_watchdog_mr_pullup;safety_watchdog_wdi_pulldown;safety_watchdog_wdo_pullup;sd_card_cmd_pullup;sd_card_dat0_pullup;sd_card_dat1_pullup;sd_card_dat2_pullup;sd_card_dat3_pullup;sd_detect_pullup;sd_host_cs_pullup;sd_host_d0_pulldown;sd_host_d1_pullup;sd_host_sck_pulldown;sd_on_pulldown;si_audio_l_sum;si_audio_r_sum;slow_io_fault_sense_pullup;slow_io_reset_pullup;slow_io_s3_evidence_pullup;speaker_amp_enable_pulldown;sys_int_pullup;touch_irq_pullup;touch_reset_pulldown;u214_req_pulldown;u214_supervisor_pullup;ui_input_down_pullup;ui_input_left_pullup;ui_input_ok_pullup;ui_input_right_pullup;ui_input_up_pullup;ui_zone_temp_pullup;unit_req_pulldown;unit_signal_iso_oe_pulldown;unit_supervisor_pullup;voice_band_p1_pulldown;voice_band_p2_pulldown;voice_band_p3_pulldown;voice_band_p4_pulldown;voice_band_p5_pulldown;voice_band_p6_pulldown;voice_band_p7_pulldown;voice_band_select_pulldown;voice_efuse_en_pullup;voice_en_pulldown;voice_evidence_hold_pulldown;voice_evidence_output_pullup;voice_evidence_threshold_bottom;voice_hl_req_pulldown;voice_pg_pullup;voice_ptt_pullup;voice_rx_series;voice_supervisor_pullup;voice_v_evidence_hold_pulldown;voice_v_evidence_threshold_bottom;voice_v_ptt_pullup",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_01_USB_PD_CHARGE",
@@ -15017,13 +15864,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C60490"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07110kl",
       "mpn": "Yageo RC0402FR-07110KL",
       "quantity_per_product": 2,
-      "role": "u214_supervisor_sense_top, unit_supervisor_sense_top",
+      "role": "u214_supervisor_sense_top;unit_supervisor_sense_top",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_30_U214_U219_M5_EXT"
@@ -15066,13 +15914,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C138065"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0712kl",
       "mpn": "Yageo RC0402FR-0712KL",
       "quantity_per_product": 2,
-      "role": "ir_evidence_threshold_bottom, voice_fb_bottom",
+      "role": "ir_evidence_threshold_bottom;voice_fb_bottom",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX",
@@ -15118,13 +15967,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C114760"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07169kl",
       "mpn": "Yageo RC0402FR-07169KL",
       "quantity_per_product": 5,
-      "role": "ext_ovlo_top, pack_diag_timer_res, pack_mid_adc_bottom, pack_stack_adc_bottom, unit_ovlo_top",
+      "role": "ext_ovlo_top;pack_diag_timer_res;pack_mid_adc_bottom;pack_stack_adc_bottom;unit_ovlo_top",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_02_PACK_SAFETY_AON",
@@ -15171,7 +16021,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C327367"
+      "jlcpcb_part_number": "C327367",
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07196kl",
@@ -15220,13 +16071,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C477631"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_071k82l",
       "mpn": "Yageo RC0402FR-071K82L",
       "quantity_per_product": 2,
-      "role": "ext_rilm, unit_rilm",
+      "role": "ext_rilm;unit_rilm",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
@@ -15272,13 +16124,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C185449"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_071kl",
       "mpn": "Yageo RC0402FR-071KL",
       "quantity_per_product": 16,
-      "role": "c5_dbg_boot_series, c5_dbg_reset_series, c5_dbg_vtref_series, ext_evidence_input_series, pack_pckp_res, rp_clock_series, rp_dbg_boot_series, rp_dbg_reset_series, rp_dbg_vtref_series, s3_dbg_boot_series, s3_dbg_reset_series, s3_dbg_vtref_series",
+      "role": "c5_dbg_boot_series;c5_dbg_reset_series;c5_dbg_vtref_series;ext_evidence_input_series;pack_pckp_res;rp_clock_series;rp_dbg_boot_series;rp_dbg_reset_series;rp_dbg_vtref_series;s3_dbg_boot_series;s3_dbg_reset_series;s3_dbg_vtref_series",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_02_PACK_SAFETY_AON",
@@ -15330,13 +16183,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_071ml",
       "mpn": "Yageo RC0402FR-071ML",
       "quantity_per_product": 15,
-      "role": "c5_evidence_hysteresis, c5_service_usb_vbus_bleeder, cc_evidence_hysteresis, fault_assert_backup_pulldown, ir_evidence_hysteresis, nrf0_evidence_hysteresis, nrf1_evidence_hysteresis, nrf2_evidence_hysteresis, rp_service_usb_vbus_bleeder, s3_evidence_hysteresis, voice_evidence_hysteresis, voice_v_evidence_hysteresis",
+      "role": "c5_evidence_hysteresis;c5_service_usb_vbus_bleeder;cc_evidence_hysteresis;fault_assert_backup_pulldown;ir_evidence_hysteresis;nrf0_evidence_hysteresis;nrf1_evidence_hysteresis;nrf2_evidence_hysteresis;rp_service_usb_vbus_bleeder;s3_evidence_hysteresis;voice_evidence_hysteresis;voice_v_evidence_hysteresis",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_10_RP2354_CORE_SERVICE",
@@ -15386,13 +16240,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C138033"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07220kl",
       "mpn": "Yageo RC0402FR-07220KL",
       "quantity_per_product": 11,
-      "role": "ext_buck_fb_top, pack_mid_adc_top0, pack_mid_adc_top1, pack_stack_adc_top0, pack_stack_adc_top1, pack_stack_adc_top2, pack_stack_adc_top3, pack_stack_adc_top4, u214_supervisor_sense_bottom, unit_supervisor_sense_bottom, voice_supervisor_sense_bottom",
+      "role": "ext_buck_fb_top;pack_mid_adc_top0;pack_mid_adc_top1;pack_stack_adc_top0;pack_stack_adc_top1;pack_stack_adc_top2;pack_stack_adc_top3;pack_stack_adc_top4;u214_supervisor_sense_bottom;unit_supervisor_sense_bottom;voice_supervisor_sense_bottom",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_02_PACK_SAFETY_AON",
@@ -15441,13 +16296,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C138030"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07220rl",
       "mpn": "Yageo RC0402FR-07220RL",
       "quantity_per_product": 2,
-      "role": "headset_microphone_bias_filter_res, microphone_bias_filter_res",
+      "role": "headset_microphone_bias_filter_res;microphone_bias_filter_res",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_22_AUDIO_CODEC_IO"
@@ -15490,7 +16346,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C112291"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07240kl",
@@ -15540,7 +16397,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C138029"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0730k1l",
@@ -15590,13 +16448,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C138009"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0730kl",
       "mpn": "Yageo RC0402FR-0730KL",
       "quantity_per_product": 2,
-      "role": "ext_buck_fb_bottom, main_efuse_pg_bottom",
+      "role": "ext_buck_fb_bottom;main_efuse_pg_bottom",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES"
@@ -15640,7 +16499,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C138008"
+      "jlcpcb_part_number": "C138075",
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0733kl",
@@ -15690,7 +16550,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C138003"
+      "jlcpcb_part_number": "C138003",
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0733rl",
@@ -15740,13 +16601,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_073k32l",
       "mpn": "Yageo RC0402FR-073K32L",
       "quantity_per_product": 14,
-      "role": "encoder_a_pullup, encoder_b_pullup, ui_input_back_pullup, ui_input_encoder_pullup, ui_input_f1_pullup, ui_input_f2_pullup, ui_input_f3_pullup, ui_input_f4_pullup, ui_input_f5_pullup, ui_input_f6_pullup, ui_input_f7_pullup, ui_input_f8_pullup, ui_input_opt_pullup, voice_efuse_rilm",
+      "role": "encoder_a_pullup;encoder_b_pullup;ui_input_back_pullup;ui_input_encoder_pullup;ui_input_f1_pullup;ui_input_f2_pullup;ui_input_f3_pullup;ui_input_f4_pullup;ui_input_f5_pullup;ui_input_f6_pullup;ui_input_f7_pullup;ui_input_f8_pullup;ui_input_opt_pullup;voice_efuse_rilm",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX",
@@ -15792,7 +16654,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C137993"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0742k2l",
@@ -15842,7 +16705,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C276270"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0744k2l",
@@ -15891,7 +16755,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C354260"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0745k3l",
@@ -15940,13 +16805,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C137977"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07470rl",
       "mpn": "Yageo RC0402FR-07470RL",
       "quantity_per_product": 8,
-      "role": "c5_dbg0_series, c5_dbg1_series, rp_dbg0_series, rp_dbg1_series, s3_dbg0_series, s3_dbg1_series",
+      "role": "c5_dbg0_series;c5_dbg1_series;rp_dbg0_series;rp_dbg1_series;s3_dbg0_series;s3_dbg1_series",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_10_RP2354_CORE_SERVICE",
@@ -15994,13 +16860,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C114877"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0747kl",
       "mpn": "Yageo RC0402FR-0747KL",
       "quantity_per_product": 10,
-      "role": "aon_pg_pullup, ext_ovlo_bottom, ir_evidence_feedback, pack_admission_reset_pullup, power_command_pullup, safety_controller_reset_pullup, speaker_input_n_gain, speaker_input_p_gain, unit_ovlo_bottom, voice_supervisor_sense_top",
+      "role": "aon_pg_pullup;ext_ovlo_bottom;ir_evidence_feedback;pack_admission_reset_pullup;power_command_pullup;safety_controller_reset_pullup;speaker_input_n_gain;speaker_input_p_gain;unit_ovlo_bottom;voice_supervisor_sense_top",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_02_PACK_SAFETY_AON",
@@ -16056,13 +16923,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C93943"
+      "jlcpcb_part_number": "C93943",
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0749r9l",
       "mpn": "Yageo RC0402FR-0749R9L",
       "quantity_per_product": 5,
-      "role": "c5_rf_coupler_termination, nrf0_coupler_termination, nrf1_coupler_termination, nrf2_coupler_termination, s3_rf_coupler_termination",
+      "role": "c5_rf_coupler_termination;nrf0_coupler_termination;nrf1_coupler_termination;nrf2_coupler_termination;s3_rf_coupler_termination",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "UI_10_S3_DISPLAY_TOUCH",
@@ -16110,7 +16978,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C87044"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_074k7l",
@@ -16160,13 +17029,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": null
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0752r3l",
       "mpn": "Yageo RC0402FR-0752R3L",
       "quantity_per_product": 5,
-      "role": "nrf0_detector_match, nrf1_detector_match, nrf2_detector_match, voice_detector_match, voice_v_detector_match",
+      "role": "nrf0_detector_match;nrf1_detector_match;nrf2_detector_match;voice_detector_match;voice_v_detector_match",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_20_CC1101_VOICE_TX",
@@ -16212,7 +17082,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C273696"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0756kl",
@@ -16262,13 +17133,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C114756"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_075k1l",
       "mpn": "Yageo RC0402FR-075K1L",
       "quantity_per_product": 8,
-      "role": "c5_service_usb_cc1_rd, c5_service_usb_cc2_rd, rp_service_usb_cc1_rd, rp_service_usb_cc2_rd, voice_detector_series_attenuator, voice_v_detector_series_attenuator",
+      "role": "c5_service_usb_cc1_rd;c5_service_usb_cc2_rd;rp_service_usb_cc1_rd;rp_service_usb_cc2_rd;voice_detector_series_attenuator;voice_v_detector_series_attenuator",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_10_RP2354_CORE_SERVICE",
@@ -16316,7 +17188,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C105872"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_07620kl",
@@ -16365,13 +17238,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C137952"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0768kl",
       "mpn": "Yageo RC0402FR-0768KL",
       "quantity_per_product": 4,
-      "role": "ext_pg_base_res, voice_efuse_pg_top, voice_fb_top, voice_pg_base_res",
+      "role": "ext_pg_base_res;voice_efuse_pg_top;voice_fb_top;voice_pg_base_res",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
@@ -16416,7 +17290,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C137947"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0782rl",
@@ -16460,7 +17335,8 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C163453"
+      "jlcpcb_part_number": "C163453",
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402fr_0793r1l",
@@ -16504,15 +17380,17 @@
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
-      "jlcpcb_part_number": "C185385"
+      "jlcpcb_part_number": "C185385",
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0402jr_070rl",
       "mpn": "Yageo RC0402JR-070RL",
-      "quantity_per_product": 11,
-      "role": "audio_ground_link, codec_adc_n_series, codec_adc_p_series",
+      "quantity_per_product": 12,
+      "role": "audio_ground_link;codec_adc_n_series;codec_adc_p_series",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
         "RF_21_BROADCAST_AIRBAND_RX",
         "RF_22_AUDIO_CODEC_IO",
         "UI_10_S3_DISPLAY_TOUCH",
@@ -16556,13 +17434,14 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C60485"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rc0603fr_071kl",
       "mpn": "Yageo RC0603FR-071KL",
       "quantity_per_product": 4,
-      "role": "ext_bleeder, ptt_series, sd_detect_series, unit_bleeder",
+      "role": "ext_bleeder;ptt_series;sd_detect_series;unit_bleeder",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_03_MAIN_RAILS_DOMAIN_GATES",
@@ -16612,7 +17491,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C22548"
+      "jlcpcb_part_number": "C22548",
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rt0402brd07100kl",
@@ -16662,7 +17542,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C852472"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     },
     {
       "device_id": "yageo_rt0402brd07191kl",
@@ -16711,7 +17592,8 @@
       "historical_hint_pin_counts": [
         2
       ],
-      "jlcpcb_part_number": "C852583"
+      "jlcpcb_part_number": null,
+      "bom_excluded": false
     }
   ],
   "authorization": {

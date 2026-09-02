@@ -27,7 +27,7 @@ class H2R2NetLedgerTests(unittest.TestCase):
             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("4239 current R2 endpoints reconciled", result.stdout)
+        self.assertIn("4302 current R2 endpoints reconciled", result.stdout)
 
     def test_every_current_instance_contact_occurs_once(self):
         instances = json.loads(INSTANCES.read_text(encoding="utf-8"))["rows"]
@@ -41,7 +41,7 @@ class H2R2NetLedgerTests(unittest.TestCase):
             for contact in definitions[instance["device_id"]]["contact_map"]
         }
         self.assertEqual(expected, set(self.by_endpoint))
-        self.assertEqual(4239, len(expected))
+        self.assertEqual(4302, len(expected))
         self.assertFalse([
             endpoint for endpoint, count in Counter(row["endpoint"] for row in self.rows).items()
             if count != 1
@@ -51,12 +51,12 @@ class H2R2NetLedgerTests(unittest.TestCase):
         summary = self.ledger["summary"]
         self.assertEqual("pass", self.ledger["status"])
         self.assertEqual([], self.ledger["errors"])
-        self.assertEqual(4239, summary["endpoint_count"])
-        self.assertEqual(4002, summary["connected_endpoint_count"])
-        self.assertEqual(237, summary["no_connect_endpoint_count"])
+        self.assertEqual(4302, summary["endpoint_count"])
+        self.assertEqual(4064, summary["connected_endpoint_count"])
+        self.assertEqual(238, summary["no_connect_endpoint_count"])
         self.assertEqual(0, summary["external_interface_endpoint_count"])
         self.assertEqual(0, summary["unresolved_endpoint_count"])
-        self.assertEqual(816, summary["unique_net_count"])
+        self.assertEqual(823, summary["unique_net_count"])
 
     def test_m1_contacts_match_on_both_projects(self):
         for position in range(1, 81):
@@ -84,6 +84,9 @@ class H2R2NetLedgerTests(unittest.TestCase):
                 if row["direction"] == "reserve":
                     self.assertIsNone(endpoint["net"])
                     self.assertEqual("current_h1_reserved_gpio_explicit_nc", endpoint["origin"])
+                elif owner == "rf_rp" and row["gpio"] == 12:
+                    self.assertEqual("CAP_PIN10_HOST", endpoint["net"])
+                    self.assertEqual("current_r2_board_local_topology", endpoint["origin"])
                 else:
                     self.assertEqual(aliases.get(row["net"], row["net"]), endpoint["net"])
                     self.assertEqual("current_h1_dual_rp_pin_map", endpoint["origin"])
@@ -114,6 +117,9 @@ class H2R2NetLedgerTests(unittest.TestCase):
         self.assertEqual("POWER_GROUND", aliases["PACK_SHUNT_CSN"])
         self.assertEqual("FAULT_KILL", aliases["FAULT_LATCH_SENSE_AON"])
         self.assertEqual("RX_RST_N", aliases["RECEIVER_READY"])
+        self.assertEqual("3V3_MAIN", aliases["LCD_LOGIC_3V3"])
+        self.assertEqual("3V3_MAIN", aliases["LCD_VDDI_3V3"])
+        self.assertEqual("3V3_MAIN", aliases["LCD_VCI_3V3"])
         for row in self.rows:
             self.assertNotIn("route_alias_conflict", row["origin"])
 
@@ -126,11 +132,13 @@ class H2R2NetLedgerTests(unittest.TestCase):
             "SAFETY_GROUND",
             self.by_endpoint["safety_s3_reset_pulldown.END_2"]["net"],
         )
+        self.assertEqual("EV_N9_U219_NFC", self.by_endpoint["evidence_mask.P17"]["net"])
+        self.assertNotIn("evidence_mask_p17_pulldown.END_1", self.by_endpoint)
+        self.assertEqual("C5_MUX_SEL_REQUEST", self.by_endpoint["evidence_mask.P12"]["net"])
         self.assertEqual(
             "SAFETY_GROUND",
-            self.by_endpoint["evidence_mask.P17"]["net"],
+            self.by_endpoint["evidence_mask_p12_pulldown.END_2"]["net"],
         )
-        self.assertNotIn("evidence_mask_p17_pulldown.END_1", self.by_endpoint)
 
     def test_airband_is_fail_direct_fail_off_and_power_coherent(self):
         expected = {
@@ -159,12 +167,18 @@ class H2R2NetLedgerTests(unittest.TestCase):
         self.assertEqual("no_connect", self.by_endpoint["airband_power_switch.NC"]["disposition"])
         self.assertEqual("no_connect", self.by_endpoint["airband_mode_inverter.2Y"]["disposition"])
 
+    def test_board_copper_endpoints_are_materialized(self):
+        self.assertEqual("MAIN_RAW_3V3_PG_N", self.by_endpoint["main_raw_pg_testpoint.PROBE"]["net"])
+        self.assertEqual("NFC_PICKUP_P", self.by_endpoint["u219_nfc_pickup_loop.END_P"]["net"])
+        self.assertEqual("NFC_PICKUP_N", self.by_endpoint["u219_nfc_pickup_loop.END_N"]["net"])
+        self.assertEqual("no_connect", self.by_endpoint["hub_rp.GPIO45"]["disposition"])
+
     def test_historical_sources_remain_non_authoritative_hints(self):
         for name, source in self.ledger["sources"].items():
             if name.startswith("historical_"):
                 self.assertFalse(source["authority"])
         historical = [row for row in self.rows if row["origin"].startswith("reconciled_historical")]
-        self.assertEqual(3311, len(historical))
+        self.assertEqual(3293, len(historical))
         self.assertTrue(all(row["historical_topology_authority"] is False for row in historical))
         self.assertFalse(self.ledger["authorization"]["kicad_project_creation"])
 

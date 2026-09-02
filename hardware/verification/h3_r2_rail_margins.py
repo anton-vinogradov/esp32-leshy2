@@ -257,7 +257,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
     if russian:
         title = "# Запасы шин питания · H3-R2.1.3"
         nav = "[English](power-rail-margins.md) · [Главная](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Привязка нагрузок](power-load-binding.ru.md)"
-        intro = "`H3-R2.1.3` проведён ревью. Все 612 установленных потребителей и шесть внешних нагрузок имеют ровно одного владельца тока либо явный перенос source/pack-строки в H3-R2.1.4. Скрытой строки «прочее» нет."
+        intro = f"`H3-R2.1.3` проведён ревью. Все {manifest['summary']['physical_and_external_lines_owned']} физических и внешних строк нагрузки имеют ровно одного владельца тока либо явный перенос source/pack-строки в H3-R2.1.4. Скрытой строки «прочее» нет."
         h1 = "## Ток и защита"
         t1 = "| Шина | Худшая электрическая нагрузка | Минимум железа | Запас | Профиль |\n|---|---:|---:|---:|---|\n" + "\n".join(current_rows)
         p1 = "Ограничивающий элемент 3V3_MAIN — нынешний 4-А `TPS564252DRLR`, а не исторический 6-А преобразователь. Худший угол оставляет 154 мА до границы правила 25%."
@@ -270,7 +270,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
     else:
         title = "# Power-rail margins · H3-R2.1.3"
         nav = "[Русский](power-rail-margins.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Load binding](power-load-binding.md)"
-        intro = "`H3-R2.1.3` is reviewed. All 612 fitted consumers and six external loads have exactly one current owner or an explicit source/pack deferral to H3-R2.1.4. There is no hidden miscellaneous line."
+        intro = f"`H3-R2.1.3` is reviewed. All {manifest['summary']['physical_and_external_lines_owned']} physical and external load lines have exactly one current owner or an explicit source/pack deferral to H3-R2.1.4. There is no hidden miscellaneous line."
         h1 = "## Current and protection"
         t1 = "| Rail | Electrical worst load | Hardware minimum | Reserve | Profile |\n|---|---:|---:|---:|---|\n" + "\n".join(current_rows)
         p1 = "The limiting 3V3_MAIN element is the current 4-A `TPS564252DRLR`, not the historical 6-A converter. The worst corner retains 154 mA before the 25% rule boundary."

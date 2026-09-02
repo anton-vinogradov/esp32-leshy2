@@ -6,12 +6,12 @@
   "source_sha256": {
     "hardware/verification/h3-r2-inrush-watchdog-contract.json": "0658274da5110cd64dc6e8100501197f8b82a7287ef3195d8af29a12e29b4b90",
     "hardware/verification/h3-r2-verification-plan.json": "54143b22eeddf73fbe05ea5f0996c363e22bf7830c49e13ced6f3dcca8c7d16c",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "b3574a58a84636cb0643a2be3dea9147dbce43390e3ec949f83adc159f6c39f6",
-    "hardware/verification/generated/H3-R2-transition-sequences.json": "bf90bf72067ea477ef6279619c8fbf3beac16be10197cd82fb9cedbdc7068e43",
-    "hardware/verification/generated/H3-R2-handover.json": "c1586d15752dc769949cda03ecd07fff6a72e5873ced32f63e1533879174c937",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "aac31f30edd014c8623b1ed9d5421496c055e5d7897b8fe012321a7b72866a00",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "5dc7ac1e0ce44c297f0281b4fcbc35a26353439e5ae1a06e314217cde209e328",
-    "hardware/architecture/devices.json": "2caf023fb65a15be416b66686f7bcbd9ce199f8c8a55c4d37457782e73ceb6ef"
+    "hardware/verification/generated/H3-R2-rail-margins.json": "26f0fde6c13b6a436df4a7cdba0cdc92c140071c484a9a0fd44eef97bf36d529",
+    "hardware/verification/generated/H3-R2-transition-sequences.json": "ee8eb3dc420ce14d5c843ce19c597dfded7e1f427705cd1d9c936954c6c14e97",
+    "hardware/verification/generated/H3-R2-handover.json": "c37a6e2ef33126adb64efbeecbdd890db6bb68438f90e36284cdcfe34747972e",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "7432b9589b8631d6f48299678aa25686c98fa596bf7875549fc5fe104af65e56",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "56ebc2d92be86a2b1059d72f374a11be5d4d562dbfedd14de7b76adbe15ae6d2",
+    "hardware/architecture/devices.json": "23b5799bc5334f9d02c13635c7f9e4f7503929795c669e98223fc37b95cc1c04"
   },
   "datasheet_sources": {
     "tps25961": {
@@ -79,9 +79,9 @@
   "automatic_capacitance_inventory": {
     "AON_SAFE_3V3": {
       "net": "AON_SAFE_3V3",
-      "capacitor_instances": 53,
-      "nominal_uf": "35.900000",
-      "upper_uf": "42.490000",
+      "capacitor_instances": 55,
+      "nominal_uf": "36.100000",
+      "upper_uf": "42.710000",
       "parts": [
         {
           "instance_uid": "LESHY2-RF-R2:aon_efuse_output_cap",
@@ -324,6 +324,22 @@
           "upper_uf": "0.110000"
         },
         {
+          "instance_uid": "LESHY2-RF-R2:u219_field_comparator_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-RF-R2:u219_pin10_oe_driver_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
           "instance_uid": "LESHY2-RF-R2:unit_supervisor_bypass",
           "device_id": "yageo_cc0402krx7r9bb104",
           "mpn": "Yageo CC0402KRX7R9BB104",
@@ -511,9 +527,9 @@
     },
     "3V3_MAIN": {
       "net": "3V3_MAIN",
-      "capacitor_instances": 71,
-      "nominal_uf": "67.900000",
-      "upper_uf": "78.890000",
+      "capacitor_instances": 74,
+      "nominal_uf": "78.100000",
+      "upper_uf": "91.110000",
       "parts": [
         {
           "instance_uid": "LESHY2-RF-R2:air_power_input_bulk",
@@ -868,6 +884,14 @@
           "upper_uf": "0.110000"
         },
         {
+          "instance_uid": "LESHY2-RF-R2:u219_pin10_switch_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
           "instance_uid": "LESHY2-RF-R2:unit_signal_iso_vcca_bypass",
           "device_id": "yageo_cc0402krx7r9bb104",
           "mpn": "Yageo CC0402KRX7R9BB104",
@@ -917,6 +941,22 @@
         },
         {
           "instance_uid": "LESHY2-UI-R2:c5_service_usb_switch_bypass",
+          "device_id": "yageo_cc0402krx7r9bb104",
+          "mpn": "Yageo CC0402KRX7R9BB104",
+          "nominal_uf": "0.100000",
+          "tolerance_pct": "10.000",
+          "upper_uf": "0.110000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:display_logic_bulk_cap",
+          "device_id": "murata_grm188r60j106me47d",
+          "mpn": "Murata GRM188R60J106ME47D",
+          "nominal_uf": "10.000000",
+          "tolerance_pct": "20.000",
+          "upper_uf": "12.000000"
+        },
+        {
+          "instance_uid": "LESHY2-UI-R2:display_logic_hf_cap",
           "device_id": "yageo_cc0402krx7r9bb104",
           "mpn": "Yageo CC0402KRX7R9BB104",
           "nominal_uf": "0.100000",
@@ -1139,32 +1179,32 @@
       "rail": "AON_SAFE_3V3",
       "output_net": "AON_SAFE_3V3",
       "strategy": "minimum current limit bounds a commanded fixed-slew start",
-      "pcb_capacitance_upper_uf": "42.490000",
+      "pcb_capacitance_upper_uf": "42.710000",
       "external_capacitance_upper_uf": "0.000000",
-      "capacitance_upper_uf": "42.490000",
+      "capacitance_upper_uf": "42.710000",
       "worst_load_ma": "72.100",
       "capacitive_inrush_ma": "92.900",
       "combined_current_ma": "165.000",
       "effective_hardware_min_ma": "165.000",
       "current_margin_ma": "0.000",
-      "ramp_time_ms": "1.509333",
-      "energy_mj": "0.231358",
+      "ramp_time_ms": "1.517147",
+      "energy_mj": "0.232556",
       "status": "pass"
     },
     {
       "rail": "3V3_MAIN",
       "output_net": "3V3_MAIN",
       "strategy": "fastest dV/dt corner from minimum exact control capacitance",
-      "pcb_capacitance_upper_uf": "78.890000",
+      "pcb_capacitance_upper_uf": "91.110000",
       "external_capacitance_upper_uf": "0.000000",
-      "capacitance_upper_uf": "78.890000",
+      "capacitance_upper_uf": "91.110000",
       "worst_load_ma": "3046.000",
-      "capacitive_inrush_ma": "61.545",
-      "combined_current_ma": "3107.545",
+      "capacitive_inrush_ma": "71.079",
+      "combined_current_ma": "3117.079",
       "effective_hardware_min_ma": "4000.000",
-      "current_margin_ma": "892.455",
+      "current_margin_ma": "882.921",
       "ramp_time_ms": "4.230000",
-      "energy_mj": "0.429556",
+      "energy_mj": "0.496094",
       "status": "pass"
     },
     {
@@ -1271,9 +1311,9 @@
       {
         "rail": "AON_SAFE_3V3",
         "dt_ms": "0.010",
-        "ramp_ms": "1.510000",
+        "ramp_ms": "1.520000",
         "dt2_ms": "0.005",
-        "ramp_dt2_ms": "1.510000",
+        "ramp_dt2_ms": "1.520000",
         "difference_ms": "0.000000",
         "same_result": true
       },
@@ -1461,7 +1501,7 @@
     }
   ],
   "summary": {
-    "pcb_capacitor_instances": 127,
+    "pcb_capacitor_instances": 132,
     "startup_envelopes": 5,
     "passed_startup_envelopes": 5,
     "load_step_rails": 4,

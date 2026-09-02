@@ -6,20 +6,20 @@ This is a ranked snapshot of the current hardware, not a commercial quote. Every
 
 ## Summary
 
-- Volume material basis: **$252.10** per device; `201/210` lines are priced.
-- Reachable planning subtotal: **$271.90** per device, with `5` base-product lines still unpriced.
-- Current planned component minimum with no mandatory post-PCBA active module: **$271.90** per device and **$271.90** for the one target prototype before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.
-- The same accepted price basis scales linearly to **$2,719.03** for ten devices. This compares groups; it is not a batch quote.
-- The top 10 / 20 / 40 groups contribute **40.38% / 57.78% / 76.49%** of the known base BOM.
+- Volume material basis: **$291.58** per device; `240/249` lines are priced.
+- Reachable planning subtotal: **$311.38** per device, with `5` base-product lines still unpriced.
+- Current planned component minimum with no mandatory post-PCBA active module: **$311.38** per device and **$311.38** for the one target prototype before PCB/PCBA, enclosure, antennas, freight, tax, yield and test.
+- The same accepted price basis scales linearly to **$3,113.83** for ten devices. This compares groups; it is not a batch quote.
+- The top 10 / 20 / 40 groups contribute **36.69% / 54.89% / 74.16%** of the known base BOM.
 - Historical five-board JLCPCB capture: **$1,365.05** for `182` matched lines; `24` live checks move it to **$1,406.44**, with `28` rows excluded. This is evidence, not the target quantity.
-- The external antenna kit is separate: **$138.32** is known and `4` positions in `2` MPN groups remain unpriced. The known electronics plus known antennas already reach **$410.22** before PCB/PCBA, enclosure and freight.
+- The external antenna kit is separate: **$138.32** is known and `4` positions in `2` MPN groups remain unpriced. The known electronics plus known antennas already reach **$449.70** before PCB/PCBA, enclosure and freight.
 
 ## Accepted all-in-one cost boundary
 
 - The current product remains a fully populated all-in-one. Its repeatable complete-device target is **$220.00–$260.00**, excluding batteries and the full specialized external-antenna kit.
 - To leave room for PCB, PCBA and enclosure, electronics must land near **$189.00–$216.00**.
-- The current base BOM has `208` MPN groups and `1094` fitted components. The accepted no-function-loss AD8314 and Hirose U.FL routes already save **$10.42** and leave the exact current planning floor at **$271.90**. The cheaper SMA/RP-SMA pair was checked and rejected, so its hypothetical saving is not counted.
-- A further **$55.90–$82.90** must be removed to reach the electronics band. The formal margin to the complete-device ceiling is only **$-11.90**, so boards, assembly and enclosure do not fit without further resynthesis.
+- The current base BOM has `247` MPN groups and `1213` fitted components. The accepted no-function-loss AD8314 and Hirose U.FL routes already save **$10.42** and leave the exact current planning floor at **$311.38**. The cheaper SMA/RP-SMA pair was checked and rejected, so its hypothetical saving is not counted.
+- A further **$95.38–$122.38** must be removed to reach the electronics band. The formal margin to the complete-device ceiling is only **$-51.38**, so boards, assembly and enclosure do not fit without further resynthesis.
 
 **Accepted:** no separate `Core` is designed now. One fully populated `R2-EVT1` is built and verified first; implementation cost is reduced without removing built-in functions or the safety outcome. The historical `$150` goal is deferred as a possible post-EVT1 community fit option, not a current hardware branch. The sole first order will still cost more because MOQ, setup, manual placement, freight and tax cannot be amortized.
 
@@ -33,8 +33,8 @@ That does not mean Leshy2 must cost eight times as much. It means the current ar
 
 | Boundary | Electronics | Complete base | Honest result |
 |---|---:|---:|---|
-| Current circuit | $271.90 | above $271.90 | already above the accepted ceiling before boards, assembly and enclosure |
-| After the accepted AD8314 and Hirose U.FL changes | $271.90 | above $271.90 | exact current planning floor; still insufficient |
+| Current circuit | $311.38 | above $311.38 | already above the accepted ceiling before boards, assembly and enclosure |
+| After the accepted AD8314 and Hirose U.FL changes | $311.38 | above $311.38 | exact current planning floor; still insufficient |
 | Same built-in user functions and same safety outcome after full cost resynthesis | $214.00–$235.00 | $241.00–$280.00 | only the upper portion overlaps the `$220–260` target |
 | Modular community base; specialist paths are fitted as task-specific Caps/Units | $108.00–$125.00 | $135.00–$165.00 | deferred until a working `R2-EVT1`; there is no separate Core now |
 
@@ -48,32 +48,32 @@ The primary ranking below shows **one prototype only**. It contains neither the 
 
 | № | Source | MPN and role | Qty ×1 | Unit on accepted basis | Group ×1 | Share of known total |
 |---:|---|---|---:|---:|---:|---:|
-| 1 | Antenna | `SMA-W100RX2`<br><sub>receive-only telescopic whip; AIR</sub> | 1 | $35.95 | $35.95 | 8.76% |
-| 2 | Antenna | `001-0012`<br><sub>2.4/5 GHz native radio; S3, C5</sub> | 2 | $16.91 | $33.82 | 8.24% |
-| 3 | Antenna | `AN0155H13`<br><sub>VHF 136-174 MHz; VHF</sub> | 1 | $31.70 | $31.70 | 7.73% |
-| 4 | Antenna | `ANT-433-CW-QW-SMA`<br><sub>433 MHz / UHF 400-470 MHz; S433, UHF</sub> | 2 | $11.23 | $22.46 | 5.47% |
-| 5 | Base BOM | `GCT RFPC-SMA31-FN-175-A`<br><sub>eight standard outward SMA / восемь внешних SMA</sub> | 8 | $2.46 | $19.72 | 4.81% |
-| 6 | Base BOM | `EastRising ER-TFT035IPS-6 + ER-TPC035-6`<br><sub>display</sub> | 1 | $14.91 | $14.91 | 3.63% |
-| 7 | Base BOM | `Analog Devices AD8314ARMZ-REEL`<br><sub>six real-TX RF detectors / шесть RF-детекторов фактической передачи</sub> | 6 | $1.94 | $11.64 | 2.84% |
-| 8 | Base BOM | `OMRON B3S-1100P`<br><sub>sixteen ordinary user keys / шестнадцать обычных клавиш</sub> | 16 | $0.64 | $10.25 | 2.50% |
-| 9 | Base BOM | `G-NiceRF SA818S-V`<br><sub>VHF voice transceiver / VHF голосовой трансивер</sub> | 1 | $10.07 | $10.07 | 2.46% |
-| 10 | Base BOM | `G-NiceRF SA818S-U`<br><sub>UHF voice transceiver / UHF голосовой трансивер</sub> | 1 | $9.73 | $9.73 | 2.37% |
-| 11 | Antenna | `ANT-315-CW-HW-SMA`<br><sub>315 MHz; S315</sub> | 1 | $9.60 | $9.60 | 2.34% |
-| 12 | Base BOM | `Ebyte E01-ML01SP4`<br><sub>three 20-dBm PA/LNA full-function nRF24 radios / три полнофункциональных nRF24 с PA/LNA 20 dBm</sub> | 3 | $2.96 | $8.89 | 2.17% |
-| 13 | Base BOM | `Keystone Electronics 1048P`<br><sub>dual protected-18650 holder / держатель двух защищённых 18650</sub> | 1 | $8.57 | $8.57 | 2.09% |
-| 14 | Base BOM | `Texas Instruments TMUX1136DGSR`<br><sub>four complete audio/control selectors / четыре полных audio/control selector</sub> | 4 | $2.06 | $8.23 | 2.01% |
-| 15 | Base BOM | `LTC5532ES6#TRMPBF`<br><sub>S3/C5 2.4/5-GHz TX detectors / детекторы TX S3/C5 2,4/5 ГГц</sub> | 2 | $3.89 | $7.78 | 1.90% |
-| 16 | Base BOM | `Samtec FTSH-105-01-L-DV-K-P-TR`<br><sub>four internal recovery headers / четыре внутренних recovery-разъёма</sub> | 4 | $1.70 | $6.80 | 1.66% |
-| 17 | Base BOM | `TE Connectivity 1-2118651-0`<br><sub>three 60-mm nRF RF jumpers / три 60-мм RF-кабеля nRF</sub> | 3 | $1.81 | $5.43 | 1.32% |
-| 18 | Base BOM | `ESP32-S3-WROOM-1U-N16R8`<br><sub>s3</sub> | 1 | $5.11 | $5.11 | 1.25% |
-| 19 | Base BOM | `GCT RFPC-SMA32-FN-175-A`<br><sub>two native-radio RP-SMA / два RP-SMA native-радио</sub> | 2 | $2.46 | $4.93 | 1.20% |
-| 20 | Antenna | `TI.08.C.0112`<br><sub>868/915 MHz; S915</sub> | 1 | $4.79 | $4.79 | 1.17% |
+| 1 | Antenna | `SMA-W100RX2`<br><sub>receive-only telescopic whip; AIR</sub> | 1 | $35.95 | $35.95 | 7.99% |
+| 2 | Antenna | `001-0012`<br><sub>2.4/5 GHz native radio; S3, C5</sub> | 2 | $16.91 | $33.82 | 7.52% |
+| 3 | Antenna | `AN0155H13`<br><sub>VHF 136-174 MHz; VHF</sub> | 1 | $31.70 | $31.70 | 7.05% |
+| 4 | Antenna | `ANT-433-CW-QW-SMA`<br><sub>433 MHz / UHF 400-470 MHz; S433, UHF</sub> | 2 | $11.23 | $22.46 | 4.99% |
+| 5 | Base BOM | `GCT RFPC-SMA31-FN-175-A`<br><sub>eight standard outward SMA / восемь внешних SMA</sub> | 8 | $2.46 | $19.72 | 4.38% |
+| 6 | Base BOM | `EastRising ER-TFT035IPS-6 + ER-TPC035-6`<br><sub>display</sub> | 1 | $14.91 | $14.91 | 3.32% |
+| 7 | Base BOM | `Analog Devices AD8314ARMZ-REEL`<br><sub>six real-TX RF detectors / шесть RF-детекторов фактической передачи</sub> | 6 | $1.94 | $11.64 | 2.59% |
+| 8 | Base BOM | `WBC16-1TLC`<br><sub>official DC1027A 1:16 mixer-output transformer</sub> | 1 | $10.27 | $10.27 | 2.28% |
+| 9 | Base BOM | `OMRON B3S-1100P`<br><sub>sixteen ordinary user keys / шестнадцать обычных клавиш</sub> | 16 | $0.64 | $10.25 | 2.28% |
+| 10 | Base BOM | `Samtec FTSH-105-01-L-DV-K-P-TR`<br><sub>four internal recovery headers / четыре внутренних recovery-разъёма</sub> | 6 | $1.70 | $10.19 | 2.27% |
+| 11 | Base BOM | `G-NiceRF SA818S-V`<br><sub>VHF voice transceiver / VHF голосовой трансивер</sub> | 1 | $10.07 | $10.07 | 2.24% |
+| 12 | Base BOM | `G-NiceRF SA818S-U`<br><sub>UHF voice transceiver / UHF голосовой трансивер</sub> | 1 | $9.73 | $9.73 | 2.17% |
+| 13 | Antenna | `ANT-315-CW-HW-SMA`<br><sub>315 MHz; S315</sub> | 1 | $9.60 | $9.60 | 2.13% |
+| 14 | Base BOM | `Ebyte E01-ML01SP4`<br><sub>three 20-dBm PA/LNA full-function nRF24 radios / три полнофункциональных nRF24 с PA/LNA 20 dBm</sub> | 3 | $2.96 | $8.89 | 1.98% |
+| 15 | Base BOM | `Keystone Electronics 1048P`<br><sub>dual protected-18650 holder / держатель двух защищённых 18650</sub> | 1 | $8.57 | $8.57 | 1.91% |
+| 16 | Base BOM | `Texas Instruments TMUX1136DGSR`<br><sub>four complete audio/control selectors / четыре полных audio/control selector</sub> | 4 | $2.06 | $8.23 | 1.83% |
+| 17 | Base BOM | `LTC5532ES6#TRMPBF`<br><sub>S3/C5 2.4/5-GHz TX detectors / детекторы TX S3/C5 2,4/5 ГГц</sub> | 2 | $3.89 | $7.78 | 1.73% |
+| 18 | Base BOM | `LT5560EDD#TRPBF`<br><sub>official-reference active down-converting mixer</sub> | 1 | $6.90 | $6.90 | 1.53% |
+| 19 | Base BOM | `TE Connectivity 1-2118651-0`<br><sub>three 60-mm nRF RF jumpers / три 60-мм RF-кабеля nRF</sub> | 3 | $1.81 | $5.43 | 1.21% |
+| 20 | Base BOM | `Murata GRM32ER71E226KE15L`<br><sub>thirteen 22-uF power capacitors / тринадцать силовых конденсаторов 22 мкФ</sub> | 16 | $0.33 | $5.28 | 1.18% |
 
-[Unified top 20 — CSV](../hardware/product-design/generated/H1-R2-cost-top20.csv) · [Complete 210-line ranking — CSV](../hardware/product-design/generated/H1-R2-cost-ranked.csv)
+[Unified top 20 — CSV](../hardware/product-design/generated/H1-R2-cost-top20.csv) · [Complete 249-line ranking — CSV](../hardware/product-design/generated/H1-R2-cost-ranked.csv)
 
 ## Critical mass-market audit of the complete top 20
 
-All 20 current groups were checked and **all 20 are retained**. Six cheaper antenna candidates were rejected by the `2026-08-30` decision: their combined paper saving of **$89.13** remains comparison evidence only and is neither an active qualification route nor a BOM substitution.
+All 20 current groups were checked: **19 are retained**, and **1** require qualification before any BOM replacement. Six cheaper antenna candidates were rejected by the `2026-08-30` decision: their combined paper saving of **$86.83** remains comparison evidence only and is neither an active qualification route nor a BOM substitution.
 
 | # | Current group | Best mass-market route | Status | Saving up to |
 |---:|---|---|---|---:|
@@ -84,19 +84,19 @@ All 20 current groups were checked and **all 20 are retained**. Six cheaper ante
 | 5 | [`GCT RFPC-SMA31-FN-175-A`](https://www.digikey.com/en/products/detail/gct/RFPC-SMA31-FN-175-A/17833784) | [retain current GCT standard-SMA body](https://jlcpcb.com/partdetail/DreamLNK-SMAKWE902/C914554) | ✅ retain | $0.00 |
 | 6 | [`EastRising ER-TFT035IPS-6 + ER-TPC035-6`](https://www.buydisplay.com/3-5-inch-tft-lcd-display-capacitive-touch-screen-ips-320x480) | [retain the documented EastRising panel and touch pair](https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf) | ✅ retain | $0.00 |
 | 7 | [`Analog Devices AD8314ARMZ-REEL`](https://jlcpcb.com/partdetail/AnalogDevices-AD8314ARMZREEL/C652687) | [retain accepted C652687 MSOP route](https://www.analog.com/media/en/technical-documentation/data-sheets/ad8314.pdf) | ✅ retain | $0.00 |
-| 8 | [`OMRON B3S-1100P`](https://www.digikey.com/en/products/detail/omron-electronics-inc-emc-div/B3S-1100P/60835) | [retain B3S-1100P; source by JLC pre-order/consignment if necessary](https://jlcpcb.com/partdetail/OmronElectronicComponents-B3S1100P/C2733652) | ✅ retain | $0.00 |
-| 9 | [`G-NiceRF SA818S-V`](https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911) | [retain exact SA818S-V C51897911](https://www.nicerf.com/walkie-talkie-module-sa818s.html) | ✅ retain | $0.00 |
-| 10 | [`G-NiceRF SA818S-U`](https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549) | [retain SA818S-U C3001549](https://www.nicerf.com/walkie-talkie-module-sa818s.html) | ✅ retain | $0.00 |
-| 11 | [`ANT-315-CW-HW-SMA`](https://www.te.com/en/product-ANT-315-CW-HW-SMA.html) | [Joymax UHX-328ASA2B](https://www.digikey.com/en/products/detail/joymax-electronics/UHX-328ASA2B/28334978) | ✅ retain · candidate rejected | $4.03 |
-| 12 | [`Ebyte E01-ML01SP4`](https://jlcpcb.com/partdetail/E01-ML01SP4/C97340) | [retain JLCPCB C97340](https://www.ebyte.com/product/1200.html) | ✅ retain | $0.00 |
-| 13 | [`Keystone Electronics 1048P`](https://www.digikey.com/en/products/detail/keystone-electronics/1048P/4499417) | [retain 1048P; use reviewed factory sourcing/consignment route](https://jlcpcb.com/partdetail/KeystoneElectronics-1048P/C6038062) | ✅ retain | $0.00 |
-| 14 | [`Texas Instruments TMUX1136DGSR`](https://jlcpcb.com/partdetail/TexasInstruments-TMUX1136DGSR/C2673301) | [retain TMUX1136DGSR C2673301](https://www.ti.com/lit/ds/symlink/tmux1136.pdf) | ✅ retain | $0.00 |
-| 15 | [`LTC5532ES6#TRMPBF`](https://jlcpcb.com/partdetail/AnalogDevices-LTC5532ES6TRMPBF/C580926) | [retain LTC5532; exact-one needs two and current stock covers it](https://www.analog.com/media/en/technical-documentation/data-sheets/5532f.pdf) | ✅ retain | $0.00 |
-| 16 | [`Samtec FTSH-105-01-L-DV-K-P-TR`](https://jlcpcb.com/partdetail/Samtec-FTSH_105_01_L_DV_K_PTR/C2932107) | [retain JLCPCB C2932107](https://www.tag-connect.com/product/tc2050-idc-nl-10-pin-no-legs-cable-with-ribbon-connector) | ✅ retain | $0.00 |
-| 17 | [`TE Connectivity 1-2118651-0`](https://www.te.com/en/product-1-2118651-0.html) | [retain exact 60-mm 1.37-mm-max U.FL-to-U.FL jumper](https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/1-2118651-0/12380462) | ✅ retain | $0.00 |
-| 18 | [`ESP32-S3-WROOM-1U-N16R8`](https://jlcpcb.com/partdetail/EspressifSystems-ESP32S3WROOM1UN16R8/C3013946) | [retain exact N16R8 external-antenna module](https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf) | ✅ retain | $0.00 |
-| 19 | [`GCT RFPC-SMA32-FN-175-A`](https://www.digikey.com/en/products/detail/gct/RFPC-SMA32-FN-175-A/17833785) | [retain current GCT reverse-polarity body](https://jlcpcb.com/partdetail/DreamLNK-SMAKWE901/C914553) | ✅ retain | $0.00 |
-| 20 | [`TI.08.C.0112`](https://www.taoglas.com/datasheets/TI.08.C.0112.pdf) | [Seeed Studio 113070002 868/915-MHz whip](https://www.seeedstudio.com/External-Antenna-868-915MHZ-2dBi-SMA-L195mm-Foldable-p-5863.html) | ✅ retain · candidate rejected | $2.30 |
+| 8 | [`WBC16-1TLC`](https://jlcpcb.com/partdetail/Coilcraft-WBC161TLC/C22402290) | [qualify HenryTech H3-TC16-161T+ / LCSC C22383426](https://www.lcsc.com/product-detail/Balun_HenryTech-H3-TC16-161T_C22383426.html) | 🧪 qualify | $9.27 |
+| 9 | [`OMRON B3S-1100P`](https://www.digikey.com/en/products/detail/omron-electronics-inc-emc-div/B3S-1100P/60835) | [retain B3S-1100P; source by JLC pre-order/consignment if necessary](https://jlcpcb.com/partdetail/OmronElectronicComponents-B3S1100P/C2733652) | ✅ retain | $0.00 |
+| 10 | [`Samtec FTSH-105-01-L-DV-K-P-TR`](https://jlcpcb.com/partdetail/Samtec-FTSH_105_01_L_DV_K_PTR/C2932107) | [retain JLCPCB C2932107](https://www.tag-connect.com/product/tc2050-idc-nl-10-pin-no-legs-cable-with-ribbon-connector) | ✅ retain | $0.00 |
+| 11 | [`G-NiceRF SA818S-V`](https://jlcpcb.com/partdetail/GNiceRF-SA818SV/C51897911) | [retain exact SA818S-V C51897911](https://www.nicerf.com/walkie-talkie-module-sa818s.html) | ✅ retain | $0.00 |
+| 12 | [`G-NiceRF SA818S-U`](https://jlcpcb.com/partdetail/GNiceRF-SA818SU/C3001549) | [retain SA818S-U C3001549](https://www.nicerf.com/walkie-talkie-module-sa818s.html) | ✅ retain | $0.00 |
+| 13 | [`ANT-315-CW-HW-SMA`](https://www.te.com/en/product-ANT-315-CW-HW-SMA.html) | [Joymax UHX-328ASA2B](https://www.digikey.com/en/products/detail/joymax-electronics/UHX-328ASA2B/28334978) | ✅ retain · candidate rejected | $4.03 |
+| 14 | [`Ebyte E01-ML01SP4`](https://jlcpcb.com/partdetail/E01-ML01SP4/C97340) | [retain JLCPCB C97340](https://www.ebyte.com/product/1200.html) | ✅ retain | $0.00 |
+| 15 | [`Keystone Electronics 1048P`](https://www.digikey.com/en/products/detail/keystone-electronics/1048P/4499417) | [retain 1048P; use reviewed factory sourcing/consignment route](https://jlcpcb.com/partdetail/KeystoneElectronics-1048P/C6038062) | ✅ retain | $0.00 |
+| 16 | [`Texas Instruments TMUX1136DGSR`](https://jlcpcb.com/partdetail/TexasInstruments-TMUX1136DGSR/C2673301) | [retain TMUX1136DGSR C2673301](https://www.ti.com/lit/ds/symlink/tmux1136.pdf) | ✅ retain | $0.00 |
+| 17 | [`LTC5532ES6#TRMPBF`](https://jlcpcb.com/partdetail/AnalogDevices-LTC5532ES6TRMPBF/C580926) | [retain LTC5532; exact-one needs two and current stock covers it](https://www.analog.com/media/en/technical-documentation/data-sheets/5532f.pdf) | ✅ retain | $0.00 |
+| 18 | [`LT5560EDD#TRPBF`](https://jlcpcb.com/partdetail/AnalogDevices-LT5560EDDTRPBF/C462645) | [retain exact C462645 active mixer](https://www.analog.com/media/en/technical-documentation/eval-board-schematic/DC1027A-SCH.pdf) | ✅ retain | $0.00 |
+| 19 | [`TE Connectivity 1-2118651-0`](https://www.te.com/en/product-1-2118651-0.html) | [retain exact 60-mm 1.37-mm-max U.FL-to-U.FL jumper](https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/1-2118651-0/12380462) | ✅ retain | $0.00 |
+| 20 | [`Murata GRM32ER71E226KE15L`](https://jlcpcb.com/partdetail/MurataElectronics-GRM32ER71E226KE15L/C21397) | [retain exact Murata C21397 until an alternative's DC-bias curve proves the same effective capacitance](https://www.murata.com/en-global/products/productdetail?partno=GRM32ER71E226KE15L) | ✅ retain | $0.00 |
 
 Why the six alternatives were rejected:
 
@@ -105,7 +105,10 @@ Why the six alternatives were rejected:
 - **`AN0155H13` → Powerwerx ANT-8:** covers 136-174 and 400-470 MHz with standard SMA, but its public page does not close gain, VSWR, power or exact mechanical seating; it may cover both voice ports only after VNA and voice-TX HIL (in stock; USD 7.77)
 - **`ANT-433-CW-QW-SMA` → Ebyte TX433-JZR-6 for UHF plus TX433-JK-11 for the narrow 433-MHz port:** UHF candidate preserves 400-480 MHz, 10 W and improves stated VSWR but nominal gain falls 3.3 to 3.0 dBi; the 433 candidate is narrow-band and both need VNA/EIRP HIL (both serial Ebyte parts available from stocked distributors; TX433-JZR-6 observed at USD 1.72)
 - **`ANT-315-CW-HW-SMA` → Joymax UHX-328ASA2B:** candidate is 312-317 rather than 304-325 MHz, -0.4 rather than 0 dBi and 1 W; adequate only for the exact 315-MHz profile after VNA/TX HIL (958 DigiKey stock; USD 5.5693 at 100)
-- **`TI.08.C.0112` → Seeed Studio 113070002 868/915-MHz whip:** candidate preserves both bands, SMA and 10 W but changes right-angle mechanics and falls from 2.48 to 2.0 dBi at 868 MHz; both regional EIRP limits require HIL (in stock; USD 2.49)
+
+What remains to qualify before a BOM change:
+
+- **`WBC16-1TLC` → qualify HenryTech H3-TC16-161T+ / LCSC C22383426:** the candidate preserves 1:16, 50-ohm and 0.6-160-MHz coverage but changes from the Coilcraft six-pad body to a five-pad 3.8-mm body; accept only after exact pin-map, insertion/return-loss and factory-placement checks (WBC16-1TLC C22402290 is at zero JLCPCB stock; HenryTech C22383426 has 63 immediately shippable LCSC units at USD 1.0069 and is eligible for a JLCPCB Global Sourcing or Private Library request, but its exact Standard-PCBA route is not yet confirmed)
 
 [Complete audit and evidence — CSV](../hardware/product-design/generated/H1-R2-top20-market-audit.csv)
 
@@ -119,7 +122,7 @@ Why the six alternatives were rejected:
 | 4 | 5 U.FL plus 5 cables | $9.48 | The Hirose packaging route is already reduced without loss; only a proven C5 T2 route can remove one path | up to ~$1.90 more |
 | 5 | 16 user buttons | $10.25 | Checked cheaper candidates weaken ESD, feel or evidence; the current group is justified | $0 |
 | 6 | Dual-18650 holder | $8.57 | Stocked single-cell bodies do not prove the complete protected-cell and polarity contract; 1048P is justified | $0 |
-| 7 | 4 internal DBG10 headers | $6.80 | Exact Samtec is stocked; Tag-Connect costs more for the sole EVT1 and weakens long-session ergonomics | $0 for EVT1 |
+| 7 | 4 internal DBG10 headers | $10.19 | Exact Samtec is stocked; Tag-Connect costs more for the sole EVT1 and weakens long-session ergonomics | $0 for EVT1 |
 
 **Not classified as unjustified:** the $14.91 serial display, $19.81 dual voice modules, $8.89 three full-function nRF24 modules, both RP/S3/C5, M1 and autonomous safety components. Removing or simplifying them directly cuts an accepted function, throughput, recovery or safety boundary.
 
@@ -132,7 +135,7 @@ These positions have an **unknown**, not zero, price. The total remains a lower 
 | Base BOM | `Murata GJM1555C1H101JB01D`<br><sub>cc_rf_n_dc_block, cc_rf_p_dc_block</sub> | 2 |
 | Base BOM | `Nexperia PESD24VY1BSF`<br><sub>voice_rf_esd, voice_v_rf_esd</sub> | 2 |
 | Base BOM | `Panasonic ERJ-P08F49R9V`<br><sub>pack_batts_rbal, pack_cell1_rbal</sub> | 2 |
-| Base BOM | `Sunlord MWSA0503S-3R3MT`<br><sub>main_inductor, voice_inductor</sub> | 2 |
+| Base BOM | `Sunlord MWSA0503S-3R3MT`<br><sub>main_inductor, voice_inductor</sub> | 1 |
 | Base BOM | `Texas Instruments TPUL2G223BQBR`<br><sub>pack_diag_timer</sub> | 1 |
 | Antenna kit | `TX2400-JW-5`<br><sub>2.4 GHz nRF24; N1, N2, N3</sub> | 3 |
 | Antenna kit | `L2-ANT-AM-LW-001`<br><sub>passive receive-only direct-plug ferrite pod; LOOP</sub> | 1 |

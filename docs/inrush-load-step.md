@@ -2,12 +2,12 @@
 
 [Русский](inrush-load-step.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Power-transition result](power-transition-result.md)
 
-The generator collects `127` fitted capacitors directly from the current R2 net ledger, applies each exact MPN tolerance and checks five protected outputs. Main, voice and external 5-V rails use the fastest `dV/dt` corner from the minimum control-capacitance corner. AON is checked as a current-limited start.
+The generator collects `132` fitted capacitors directly from the current R2 net ledger, applies each exact MPN tolerance and checks five protected outputs. Main, voice and external 5-V rails use the fastest `dV/dt` corner from the minimum control-capacitance corner. AON is checked as a current-limited start.
 
 | Rail | C max, µF | Worst load, mA | Inrush, mA | Margin to min limit, mA | Result |
 | --- | ---: | ---: | ---: | ---: | --- |
-| `AON_SAFE_3V3` | 42.490000 | 72.100 | 92.900 | 0.000 | ✅ |
-| `3V3_MAIN` | 78.890000 | 3046.000 | 61.545 | 892.455 | ✅ |
+| `AON_SAFE_3V3` | 42.710000 | 72.100 | 92.900 | 0.000 | ✅ |
+| `3V3_MAIN` | 91.110000 | 3046.000 | 71.079 | 882.921 | ✅ |
 | `VVOICE_4V` | 12.000000 | 750.000 | 9.362 | 790.638 | ✅ |
 | `5V_U214_PROTECTED` | 707.420000 | 1250.000 | 334.478 | 47.522 | ✅ |
 | `5V_UNIT_PROTECTED` | 707.420000 | 1250.000 | 334.478 | 47.522 | ✅ |

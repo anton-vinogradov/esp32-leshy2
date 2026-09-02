@@ -61,13 +61,13 @@ class H0R2ArchitectureTest(unittest.TestCase):
         hub = self.data["hub_rp"]
         groups = hub["pin_groups"]
         gpios = [gpio for group in groups for gpio in group["gpios"]]
-        reserve = next(group for group in groups if group["role"] == "uncommitted electrical reserve")
+        reserve = next(group for group in groups if group["role"].startswith("uncommitted electrical reserve"))
         committed = [gpio for group in groups if group is not reserve for gpio in group["gpios"]]
         self.assertEqual(hub["gpio_budget"]["used"], len(committed))
         self.assertEqual(len(gpios), len(set(gpios)))
         self.assertEqual(48, hub["gpio_budget"]["available"])
         self.assertEqual(hub["gpio_budget"]["free"], len(reserve["gpios"]))
-        self.assertEqual(1, hub["gpio_budget"]["free"])
+        self.assertEqual(2, hub["gpio_budget"]["free"])
         self.assertEqual(list(range(48)), sorted(gpios))
 
     def test_interboard_map_closes_current_and_mechanics(self):

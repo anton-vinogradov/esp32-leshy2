@@ -35,12 +35,12 @@
 
 ## Reproducibility
 
-All `238` groups have at least one method; the contract defines `9` methods and `12` common rules. Runtime is `Python 3.14.6` with standard library only, Decimal precision 50/Fraction and hash-bound JSON/CSV/SVG. Network access, randomness and an unbound external solver cannot participate in acceptance.
+All `251` groups have at least one method; the contract defines `9` methods and `12` common rules. Runtime is `Python 3.14.6` with standard library only, Decimal precision 50/Fraction and hash-bound JSON/CSV/SVG. Network access, randomness and an unbound external solver cannot participate in acceptance.
 
 ## What is not yet a pass
 
-`164` groups still require exact parameter extraction. The method contract is closed, but their calculations must return `unresolved_fail` until min/max, unit and applicability are bound.
+`176` groups still require exact parameter extraction. The method contract is closed, but their calculations must return `unresolved_fail` until min/max, unit and applicability are bound.
 
 > The next step is H3-R2.1 power/DC/source/charge/state analysis. Placement, routing, purchasing and fabrication remain forbidden.
 
-[Machine method contract and 238 assignments](../hardware/verification/generated/H3-R2-method-contract.json). Historical `H3-VRF03` is not R2 authority.
+[Machine method contract and 251 assignments](../hardware/verification/generated/H3-R2-method-contract.json). Historical `H3-VRF03` is not R2 authority.

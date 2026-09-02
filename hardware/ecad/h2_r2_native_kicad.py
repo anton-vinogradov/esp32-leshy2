@@ -146,13 +146,14 @@ def symbol_instance(
 ) -> str:
     coords, body_height = pin_layout(symbol)
     symbol_uuid = stable_uuid(f"symbol:{project}:{sheet}:{instance['instance']}")
+    in_bom = "no" if instance.get("bom_excluded") else "yes"
     lines = [
         "\t(symbol",
         f'\t\t(lib_id "{escaped(symbol["symbol_id"])}")',
         f"\t\t(at {x:.2f} {y:.2f} 0)",
         "\t\t(unit 1)",
         "\t\t(exclude_from_sim no)",
-        "\t\t(in_bom yes)",
+        f"\t\t(in_bom {in_bom})",
         "\t\t(on_board yes)",
         "\t\t(dnp no)",
         f'\t\t(uuid "{symbol_uuid}")',

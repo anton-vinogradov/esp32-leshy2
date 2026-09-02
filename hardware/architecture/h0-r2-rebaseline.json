@@ -106,7 +106,7 @@
   },
   "hub_rp": {
     "mpn": "SC1512-A4",
-    "gpio_budget": {"available": 48, "used": 47, "free": 1},
+    "gpio_budget": {"available": 48, "used": 46, "free": 2},
     "pin_groups": [
       {"gpios": [0, 1, 2, 3, 4, 5], "role": "exclusive point-to-point S3 quad-SPI D0..D3/SCK plus wired-OR UI_HUB_ALERT_N; no redundant chip-select wire"},
       {"gpios": [7, 8, 9, 10, 11, 12], "role": "C5 native 4-bit SDIO CLK/CMD/D0..D3"},
@@ -117,10 +117,9 @@
       {"gpios": [36], "role": "FAULT_KILL-qualified common nRF24 switched-rail request"},
       {"gpios": [37, 38, 39, 40, 41, 44], "role": "dedicated microSD SPI SCK/MOSI/MISO/CS plus power and detect"},
       {"gpios": [42, 43], "role": "dedicated fail-closed I2C1 controller bus to Pack and Safety MSPM0 mailboxes"},
-      {"gpios": [45], "role": "LCD_TE direct front-local edge capture; Hub timestamps/alerts S3 without consuming another S3 GPIO"},
+      {"gpios": [45, 47], "role": "uncommitted electrical reserves; the accepted display TE contact remains deliberately open"},
       {"gpios": [46], "role": "LCD_BL_PWM front-local backlight gate drive with the existing hardware reset-off pull-down"},
-      {"gpios": [6], "role": "AON Pack/PD mailbox alert through M1.59"},
-      {"gpios": [47], "role": "uncommitted electrical reserve"}
+      {"gpios": [6], "role": "AON Pack/PD mailbox alert through M1.59"}
     ],
     "service": "Independent native USB, SWD, RUN and USB_BOOT remain mandatory; the diagnostic UART reserve is not a substitute for USB/SWD recovery."
   },
@@ -356,7 +355,7 @@
     "capability_loss": [],
     "controller_count": 6,
     "s3_gpio": "27 used / 6 free",
-    "hub_gpio": "47 used / 1 free",
+    "hub_gpio": "46 used / 2 free",
     "rf_rp_gpio": "43 used / 5 free",
     "interboard": "80 contacts: 31 live signals, 14 main-power, 2 AON, 24 defined returns and 9 true NC reserves; M1 carries no structural load",
     "display": "direct 8-bit i8080 at an exact panel- and ESP-IDF-divider-safe 20 MHz; 4-wire serial is adapter-revision recovery only",

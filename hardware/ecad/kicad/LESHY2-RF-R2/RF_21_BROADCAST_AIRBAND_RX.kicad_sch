@@ -581,7 +581,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "eight standard outward SMA / восемь внешних SMA"
+			(property "Description" "cc_external_sma;nrf0_external_sma;nrf1_external_sma;nrf2_external_sma;receiver_amlw_external_sma;receiver_fmsw_external_sma;voice_external_sma;voice_v_external_sma"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -684,7 +684,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "cc_rf_esd, receiver_ami_esd, receiver_fmi_esd"
+			(property "Description" "cc_rf_esd;receiver_ami_esd;receiver_fmi_esd"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1030,7 +1030,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "cc_crystal_load_q1, cc_crystal_load_q2, rp_clock_load_xin, rp_clock_load_xout"
+			(property "Description" "cc_crystal_load_q1;cc_crystal_load_q2;rp_clock_load_xin;rp_clock_load_xout"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1540,7 +1540,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "receiver_clock_cap_gpo3, receiver_clock_cap_rclk"
+			(property "Description" "receiver_clock_cap_gpo3;receiver_clock_cap_rclk"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1710,7 +1710,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "aon_efuse_output_cap, backlight_efuse_output_bulk, codec_power_output_cap, display_logic_bulk_cap, headset_microphone_bias_filter_cap, ir_power_output_cap, main_efuse_output_cap, microphone_bias_filter_cap, nrf0_module_bulk_cap, nrf1_module_bulk_cap, nrf2_module_bulk_cap, pack_admission_bulk_cap, pd_ldo1v5_cap, pd_ldo3v3_cap, pd_vin_cap, receiver_power_output_cap, safety_controller_bulk, speaker_amp_bulk_cap, voice_efuse_output_cap"
+			(property "Description" "aon_efuse_output_cap;backlight_efuse_output_bulk;codec_power_output_cap;display_logic_bulk_cap;headset_microphone_bias_filter_cap;ir_power_output_cap;main_efuse_output_cap;microphone_bias_filter_cap;nrf0_module_bulk_cap;nrf1_module_bulk_cap;nrf2_module_bulk_cap;pack_admission_bulk_cap;pd_ldo1v5_cap;pd_ldo3v3_cap;pd_vin_cap;receiver_power_output_cap;safety_controller_bulk;speaker_amp_bulk_cap;voice_efuse_output_cap"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2475,7 +2475,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "two stocked dual Schmitt inverters / два складских двойных Schmitt-инвертора"
+			(property "Description" "safe_conditioner;voice_band_inverter"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3153,7 +3153,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "audio_capture_input_coupling, audio_capture_local_bias_cap, audio_capture_mic_coupling, audio_capture_rx_coupling, audio_vmid_cap, cc_evidence_hold_cap, cc_local_bulk_cap, cc_power_input_cap, codec_adc_n_coupling, codec_adc_p_coupling, codec_adcvref_cap, codec_dacvref_cap, codec_power_input_cap, codec_tx_coupling, codec_vmid_cap, ir_power_input_cap, mic_tx_coupling, nrf_evidence_hold_cap, nrf_power_input_cap, pack_diag_lockout_cap, product_usb_vpwr_cap, receiver_power_input_cap, s3_reset_delay_cap, sd_power_input_cap, si_audio_l_coupling, si_audio_r_coupling, slow_io_bulk_cap, speaker_amp_input_cap, speaker_input_n_coupling, speaker_input_p_coupling, voice_evidence_hold_cap, voice_io_power_input_cap, voice_io_power_output_cap, voice_mic_coupling, voice_rx_coupling, voice_v_evidence_hold_cap, voice_v_mic_coupling"
+			(property "Description" "audio_capture_input_coupling;audio_capture_local_bias_cap;audio_capture_mic_coupling;audio_capture_rx_coupling;audio_vmid_cap;cc_evidence_hold_cap;cc_local_bulk_cap;cc_power_input_cap;codec_adc_n_coupling;codec_adc_p_coupling;codec_adcvref_cap;codec_dacvref_cap;codec_power_input_cap;codec_tx_coupling;codec_vmid_cap;ir_power_input_cap;mic_tx_coupling;nrf_evidence_hold_cap;nrf_power_input_cap;pack_diag_lockout_cap;product_usb_vpwr_cap;receiver_power_input_cap;s3_reset_delay_cap;sd_power_input_cap;si_audio_l_coupling;si_audio_r_coupling;slow_io_bulk_cap;speaker_amp_input_cap;speaker_input_n_coupling;speaker_input_p_coupling;voice_evidence_hold_cap;voice_io_power_input_cap;voice_io_power_output_cap;voice_mic_coupling;voice_rx_coupling;voice_v_evidence_hold_cap;voice_v_mic_coupling"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3238,7 +3238,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "ext_evidence_buffer, receiver_irq_iso, safe_c5_fault_reset_buffer, safe_run_fault_iso, safety_fault_request_iso, safety_s3_reset_iso, slow_io_fault_sense_iso, slow_io_s3_evidence_iso, touch_irq_buffer, voice_hl_driver"
+			(property "Description" "ext_evidence_buffer;receiver_irq_iso;safe_c5_fault_reset_buffer;safe_run_fault_iso;safety_fault_request_iso;safety_s3_reset_iso;slow_io_fault_sense_iso;slow_io_s3_evidence_iso;touch_irq_buffer;voice_hl_driver"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3341,7 +3341,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "codec_i2c_iso, receiver_i2c_iso"
+			(property "Description" "codec_i2c_iso;receiver_i2c_iso"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3462,7 +3462,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "cc_power_switch, codec_power_switch, ir_power_switch, nrf_power_switch, receiver_power_switch, sd_power_switch, voice_io_power_switch"
+			(property "Description" "cc_power_switch;codec_power_switch;ir_power_switch;nrf_power_switch;receiver_power_switch;sd_power_switch;voice_io_power_switch"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3571,7 +3571,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "codec_supervisor, receiver_supervisor"
+			(property "Description" "codec_supervisor;receiver_supervisor"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3662,7 +3662,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "c5_tx_led_series, cc_tx_led_series, codec_i2c_scl_pullup, codec_i2c_sda_pullup, codec_tx_atten_bottom, ext_tx_led_series, fault_led_series, headset_mic_bias_res, ir_tx_led_series, microphone_bias_res, nrf0_tx_led_series, nrf1_tx_led_series, nrf2_tx_led_series, pd_local_scl_pullup, pd_local_sda_pullup, receiver_i2c_scl_pullup, receiver_i2c_sda_pullup, s3_tx_led_series, sys_i2c_scl_pullup, sys_i2c_sda_pullup, u214_i2c_host_scl_pullup, u214_i2c_host_sda_pullup, voice_tx_led_series"
+			(property "Description" "c5_tx_led_series;cc_tx_led_series;codec_i2c_scl_pullup;codec_i2c_sda_pullup;codec_tx_atten_bottom;ext_tx_led_series;fault_led_series;headset_mic_bias_res;ir_tx_led_series;microphone_bias_res;nrf0_tx_led_series;nrf1_tx_led_series;nrf2_tx_led_series;pd_local_scl_pullup;pd_local_sda_pullup;receiver_i2c_scl_pullup;receiver_i2c_sda_pullup;s3_tx_led_series;sys_i2c_scl_pullup;sys_i2c_sda_pullup;u214_i2c_host_scl_pullup;u214_i2c_host_sda_pullup;voice_tx_led_series"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3832,7 +3832,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "147 stocked 100-nF bypass capacitors / 147 складских развязывающих конденсаторов 100 нФ"
+			(property "Description" "aon_efuse_input_cap;audio_capture_buffer_bypass;audio_capture_selector_bypass;audio_rx_mux_bypass;audio_safe_gate_bypass;audio_speaker_selector_bypass;audio_tx_selector_bypass;backlight_efuse_input_cap;backlight_efuse_output_hf;c5_detector_bypass;c5_service_usb_switch_bypass;cc_avdd11_bypass;cc_avdd14_bypass;cc_avdd15_bypass;cc_avdd9_bypass;cc_backup_gate_bypass;cc_band_buffer_bypass;cc_dcoupl_cap;cc_detector_bypass;cc_dvdd_bypass;cc_host_buffer_bypass;cc_return_buffer_bypass;charger_pmid_hf_cap;charger_sys_hf_cap;charger_vbus_hf_cap;codec_avdd_bypass;codec_dvdd_bypass;codec_i2c_iso_bypass;codec_i2s_bclk_iso_bypass;codec_i2s_din_boot_gate_bypass;codec_i2s_din_iso_bypass;codec_i2s_dout_iso_bypass;codec_i2s_ws_iso_bypass;codec_pvdd_bypass;codec_supervisor_bypass;display_logic_hf_cap;evidence_cmp_a_bypass;evidence_cmp_b_bypass;evidence_cmp_voice_bypass;evidence_cmp_voice_v_bypass;evidence_main_isolator_bypass;evidence_mask_bypass;ext_branch_gate_bypass;ext_buck_hf_input_cap;ext_evidence_buffer_bypass;ext_request_or_bypass;headset_control_io_bypass;headset_mic_selector_bypass;ir_evidence_amp_bypass;ir_evidence_vref_cap;ir_power_output_bypass;ir_return_buffer_bypass;ir_safe_gate_bypass;main_hf_input_cap;nrf0_detector_bypass;nrf0_host_buffer_bypass;nrf0_module_hf_cap;nrf0_return_buffer_bypass;nrf1_detector_bypass;nrf1_host_buffer_bypass;nrf1_module_hf_cap;nrf1_return_buffer_bypass;nrf2_detector_bypass;nrf2_host_buffer_bypass;nrf2_module_hf_cap;nrf2_return_buffer_bypass;nrf_backup_gate_bypass;pack_admission_bypass;pack_batts_filter_cap;pack_cell1_filter_cap;pack_chg_gate_cap;pack_diag_timer_bypass;pack_dis_gate_cap;pack_in_bypass;pd_eeprom_bypass;power_command_filter;power_zone_temp_filter;ptt_filter_cap;receiver_i2c_iso_bypass;receiver_irq_iso_bypass;receiver_supervisor_bypass;receiver_vdd_bypass;rf_zone_temp_filter;rp_adc_avdd_bypass;rp_dvdd10_bypass;rp_dvdd32_bypass;rp_dvdd51_bypass;rp_iovdd15_bypass;rp_iovdd24_bypass;rp_iovdd29_bypass;rp_iovdd41_bypass;rp_iovdd50_bypass;rp_iovdd5_bypass;rp_iovdd60_bypass;rp_iovdd76_bypass;rp_qspi_iovdd_bypass;rp_service_usb_switch_bypass;rp_usb_otp_vdd_bypass;run_loop_filter;s3_detector_bypass;s3_supply_bypass;safe_c5_fault_reset_buffer_bypass;safe_c5_reset_buffer_bypass;safe_conditioner_bypass;safe_fault_reset_buffer_bypass;safe_gate_a_bypass;safe_gate_b_bypass;safe_latch_bypass;safe_ptt_or_bypass;safe_rearm_buffer_bypass;safe_reset_buffer_bypass;safe_run_fault_iso_bypass;safe_supervisor_bypass;safety_controller_bypass;safety_fault_request_iso_bypass;safety_s3_reset_iso_bypass;safety_watchdog_bypass;sd_detect_cap;sd_host_buffer_bypass;sd_miso_buffer_bypass;sd_power_hf_cap;slow_io_fault_sense_iso_bypass;slow_io_s3_evidence_iso_bypass;slow_io_vcci_bypass;slow_io_vccp_bypass;touch_irq_buffer_bypass;u214_host_buffer_a_bypass;u214_host_buffer_b_bypass;u214_i2c_iso_bypass;u214_return_buffer_bypass;u214_supervisor_bypass;ui_matrix_io_bypass;ui_zone_temp_filter;unit_signal_iso_vcca_bypass;unit_signal_iso_vccb_bypass;unit_supervisor_bypass;voice_audio_mux_bypass;voice_band_inverter_bypass;voice_band_io_bypass;voice_control_mux_a_bypass;voice_control_mux_b_bypass;voice_detector_bypass;voice_hf_input_cap;voice_hl_driver_bypass;voice_pd_gate_bypass;voice_supervisor_bypass;voice_v_detector_bypass"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3917,7 +3917,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "aon_efuse_ovlo_bottom, audio_capture_local_bias_bottom, audio_capture_local_bias_top, audio_capture_mic_bias, audio_capture_rx_bias, audio_vmid_bottom, audio_vmid_top, c5_evidence_threshold_top, cc_evidence_threshold_top, charger_ilim_bottom, codec_ready_pulldown, fault_assert_sense_series, headset_absent_pulldown, headset_control_p1_pulldown, headset_control_p2_pulldown, headset_control_p3_pulldown, headset_control_p4_pulldown, headset_control_p5_pulldown, headset_control_p6_pulldown, headset_control_p7_pulldown, headset_mic_select_pullup, ir_evidence_threshold_top, ir_evidence_vref_top, main_en_pulldown, mic_tx_bias, nrf0_evidence_threshold_top, nrf1_evidence_threshold_top, nrf2_evidence_threshold_top, receiver_ready_pulldown, s3_evidence_threshold_top, safe_rearm_delay_res, si_audio_sum_bias, voice_audio_on_pulldown, voice_efuse_ovlo_bottom, voice_evidence_threshold_top, voice_rx_bias, voice_uart_rx_pulldown, voice_uart_tx_pulldown, voice_v_evidence_threshold_top, voice_v_uart_rx_pulldown"
+			(property "Description" "aon_efuse_ovlo_bottom;audio_capture_local_bias_bottom;audio_capture_local_bias_top;audio_capture_mic_bias;audio_capture_rx_bias;audio_vmid_bottom;audio_vmid_top;c5_evidence_threshold_top;cc_evidence_threshold_top;charger_ilim_bottom;codec_ready_pulldown;fault_assert_sense_series;headset_absent_pulldown;headset_control_p1_pulldown;headset_control_p2_pulldown;headset_control_p3_pulldown;headset_control_p4_pulldown;headset_control_p5_pulldown;headset_control_p6_pulldown;headset_control_p7_pulldown;headset_mic_select_pullup;ir_evidence_threshold_top;ir_evidence_vref_top;main_en_pulldown;mic_tx_bias;nrf0_evidence_threshold_top;nrf1_evidence_threshold_top;nrf2_evidence_threshold_top;receiver_ready_pulldown;s3_evidence_threshold_top;safe_rearm_delay_res;si_audio_sum_bias;voice_audio_on_pulldown;voice_efuse_ovlo_bottom;voice_evidence_threshold_top;voice_rx_bias;voice_uart_rx_pulldown;voice_uart_tx_pulldown;voice_v_evidence_threshold_top;voice_v_uart_rx_pulldown"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -4002,7 +4002,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "any_tx_aon_pullup, audio_arm_pulldown, audio_capture_sel_pulldown, audio_rx_sel_pulldown, audio_speaker_req_pulldown, audio_speaker_safe_pulldown, audio_tx_req_pulldown, audio_tx_safe_pulldown, backlight_fault_pullup, backlight_gate_pulldown, c5_boot_pullup, c5_dbg_id0_strap, c5_dbg_id1_strap, c5_detector_feedback_res, c5_detector_ground_res, c5_evidence_main_pullup, c5_evidence_output_pullup, c5_evidence_threshold_bottom, c5_gpio27_pullup, c5_reset_pullup, cc_band_v1_host_pulldown, cc_band_v2_host_pulldown, cc_evidence_hold_pulldown, cc_evidence_output_pullup, cc_evidence_threshold_bottom, cc_host_csn_pullup, cc_host_gdo0_pulldown, cc_host_gdo2_pulldown, cc_host_sclk_pulldown, cc_host_si_pulldown, cc_host_so_pulldown, cc_power_on_pulldown, cc_switch_a_v1_pulldown, cc_switch_a_v2_pulldown, cc_switch_b_v1_pulldown, cc_switch_b_v2_pulldown, charger_ce_pullup, charger_int_pullup, codec_ce_pullup, codec_power_on_pulldown, display_reset_pulldown, evidence_mask_p12_pulldown, evidence_mask_p13_pulldown, evidence_mask_p14_pulldown, evidence_mask_p15_pulldown, evidence_mask_p16_pulldown, evidence_mask_p17_pulldown, evidence_mask_scl_pullup, evidence_mask_sda_pullup, ext_any_req_pulldown, ext_en_pulldown, ext_evidence_input_pullup, ext_evidence_output_pullup, ext_pg_pullup, fault_assert_pullup, headphone_tip_detect_pullup, headset_detect_series, ir_carrier_host_pullup, ir_demod_host_pullup, ir_evidence_main_pullup, ir_evidence_output_pullup, ir_evidence_vref_bottom, ir_power_on_pulldown, ir_tx_carrier_pulldown, ir_tx_gate_pulldown, lcd_host_cs_pullup, nrf0_evidence_output_pullup, nrf0_evidence_threshold_bottom, nrf0_host_ce_pulldown, nrf0_host_csn_pullup, nrf0_host_irq_pullup, nrf0_host_miso_pulldown, nrf0_host_mosi_pulldown, nrf0_host_sck_pulldown, nrf0_module_ce_pulldown, nrf0_module_csn_pullup, nrf0_module_irq_pullup, nrf0_module_miso_pulldown, nrf0_module_mosi_pulldown, nrf0_module_sck_pulldown, nrf1_evidence_output_pullup, nrf1_evidence_threshold_bottom, nrf1_host_ce_pulldown, nrf1_host_csn_pullup, nrf1_host_irq_pullup, nrf1_host_miso_pulldown, nrf1_host_mosi_pulldown, nrf1_host_sck_pulldown, nrf1_module_ce_pulldown, nrf1_module_csn_pullup, nrf1_module_irq_pullup, nrf1_module_miso_pulldown, nrf1_module_mosi_pulldown, nrf1_module_sck_pulldown, nrf2_evidence_output_pullup, nrf2_evidence_threshold_bottom, nrf2_host_ce_pulldown, nrf2_host_csn_pullup, nrf2_host_irq_pullup, nrf2_host_miso_pulldown, nrf2_host_mosi_pulldown, nrf2_host_sck_pulldown, nrf2_module_ce_pulldown, nrf2_module_csn_pullup, nrf2_module_irq_pullup, nrf2_module_miso_pulldown, nrf2_module_mosi_pulldown, nrf2_module_sck_pulldown, nrf_evidence_hold_pulldown, nrf_power_on_pulldown, pack_alrt_pullup, pack_diag_gate_pulldown, pack_diag_trigger_pulldown, pack_gauge_scl_pullup, pack_gauge_sda_pullup, pack_hold_pullup, pack_hold_release_pulldown, pack_irq_gate_pulldown, pack_pfail_pullup, pd_eeprom_wp_pullup, power_fault_pullup, power_zone_temp_pullup, product_usb_fault_pullup, ptt_pullup, receiver_irq_pullup, receiver_power_on_pulldown, receiver_senb_pulldown, rf_zone_temp_pullup, rp_any_tx_main_pullup, rp_boot_pullup, rp_dbg_id0_strap, rp_dbg_id1_strap, rp_reset_pullup, run_loop_pullup, s3_boot_pullup, s3_dbg_id0_strap, s3_dbg_id1_strap, s3_detector_feedback_res, s3_detector_ground_res, s3_evidence_output_pullup, s3_evidence_threshold_bottom, s3_reset_gate_pullup, s3_reset_pullup, safe_c5_reset_gate_pullup, safe_latch_d_pullup, safe_por_pullup, safe_reset_gate_pullup, safety_fault_request_pulldown, safety_watchdog_mr_pullup, safety_watchdog_wdi_pulldown, safety_watchdog_wdo_pullup, sd_card_cmd_pullup, sd_card_dat0_pullup, sd_card_dat1_pullup, sd_card_dat2_pullup, sd_card_dat3_pullup, sd_detect_pullup, sd_host_cs_pullup, sd_host_d0_pulldown, sd_host_d1_pullup, sd_host_sck_pulldown, sd_on_pulldown, si_audio_l_sum, si_audio_r_sum, slow_io_fault_sense_pullup, slow_io_reset_pullup, slow_io_s3_evidence_pullup, speaker_amp_enable_pulldown, sys_int_pullup, touch_irq_pullup, touch_reset_pulldown, u214_req_pulldown, u214_supervisor_pullup, ui_input_down_pullup, ui_input_left_pullup, ui_input_ok_pullup, ui_input_right_pullup, ui_input_up_pullup, ui_zone_temp_pullup, unit_req_pulldown, unit_signal_iso_oe_pulldown, unit_supervisor_pullup, voice_band_p1_pulldown, voice_band_p2_pulldown, voice_band_p3_pulldown, voice_band_p4_pulldown, voice_band_p5_pulldown, voice_band_p6_pulldown, voice_band_p7_pulldown, voice_band_select_pulldown, voice_efuse_en_pullup, voice_en_pulldown, voice_evidence_hold_pulldown, voice_evidence_output_pullup, voice_evidence_threshold_bottom, voice_hl_req_pulldown, voice_pg_pullup, voice_ptt_pullup, voice_rx_series, voice_supervisor_pullup, voice_v_evidence_hold_pulldown, voice_v_evidence_threshold_bottom, voice_v_ptt_pullup"
+			(property "Description" "any_tx_aon_pullup;audio_arm_pulldown;audio_capture_sel_pulldown;audio_rx_sel_pulldown;audio_speaker_req_pulldown;audio_speaker_safe_pulldown;audio_tx_req_pulldown;audio_tx_safe_pulldown;backlight_fault_pullup;backlight_gate_pulldown;c5_boot_pullup;c5_dbg_id0_strap;c5_dbg_id1_strap;c5_detector_feedback_res;c5_detector_ground_res;c5_evidence_main_pullup;c5_evidence_output_pullup;c5_evidence_threshold_bottom;c5_gpio27_pullup;c5_reset_pullup;cc_band_v1_host_pulldown;cc_band_v2_host_pulldown;cc_evidence_hold_pulldown;cc_evidence_output_pullup;cc_evidence_threshold_bottom;cc_host_csn_pullup;cc_host_gdo0_pulldown;cc_host_gdo2_pulldown;cc_host_sclk_pulldown;cc_host_si_pulldown;cc_host_so_pulldown;cc_power_on_pulldown;cc_switch_a_v1_pulldown;cc_switch_a_v2_pulldown;cc_switch_b_v1_pulldown;cc_switch_b_v2_pulldown;charger_ce_pullup;charger_int_pullup;codec_ce_pullup;codec_power_on_pulldown;display_reset_pulldown;evidence_mask_p12_pulldown;evidence_mask_p13_pulldown;evidence_mask_p14_pulldown;evidence_mask_p15_pulldown;evidence_mask_p16_pulldown;evidence_mask_p17_pulldown;evidence_mask_scl_pullup;evidence_mask_sda_pullup;ext_any_req_pulldown;ext_en_pulldown;ext_evidence_input_pullup;ext_evidence_output_pullup;ext_pg_pullup;fault_assert_pullup;headphone_tip_detect_pullup;headset_detect_series;ir_carrier_host_pullup;ir_demod_host_pullup;ir_evidence_main_pullup;ir_evidence_output_pullup;ir_evidence_vref_bottom;ir_power_on_pulldown;ir_tx_carrier_pulldown;ir_tx_gate_pulldown;lcd_host_cs_pullup;nrf0_evidence_output_pullup;nrf0_evidence_threshold_bottom;nrf0_host_ce_pulldown;nrf0_host_csn_pullup;nrf0_host_irq_pullup;nrf0_host_miso_pulldown;nrf0_host_mosi_pulldown;nrf0_host_sck_pulldown;nrf0_module_ce_pulldown;nrf0_module_csn_pullup;nrf0_module_irq_pullup;nrf0_module_miso_pulldown;nrf0_module_mosi_pulldown;nrf0_module_sck_pulldown;nrf1_evidence_output_pullup;nrf1_evidence_threshold_bottom;nrf1_host_ce_pulldown;nrf1_host_csn_pullup;nrf1_host_irq_pullup;nrf1_host_miso_pulldown;nrf1_host_mosi_pulldown;nrf1_host_sck_pulldown;nrf1_module_ce_pulldown;nrf1_module_csn_pullup;nrf1_module_irq_pullup;nrf1_module_miso_pulldown;nrf1_module_mosi_pulldown;nrf1_module_sck_pulldown;nrf2_evidence_output_pullup;nrf2_evidence_threshold_bottom;nrf2_host_ce_pulldown;nrf2_host_csn_pullup;nrf2_host_irq_pullup;nrf2_host_miso_pulldown;nrf2_host_mosi_pulldown;nrf2_host_sck_pulldown;nrf2_module_ce_pulldown;nrf2_module_csn_pullup;nrf2_module_irq_pullup;nrf2_module_miso_pulldown;nrf2_module_mosi_pulldown;nrf2_module_sck_pulldown;nrf_evidence_hold_pulldown;nrf_power_on_pulldown;pack_alrt_pullup;pack_diag_gate_pulldown;pack_diag_trigger_pulldown;pack_gauge_scl_pullup;pack_gauge_sda_pullup;pack_hold_pullup;pack_hold_release_pulldown;pack_irq_gate_pulldown;pack_pfail_pullup;pd_eeprom_wp_pullup;power_fault_pullup;power_zone_temp_pullup;product_usb_fault_pullup;ptt_pullup;receiver_irq_pullup;receiver_power_on_pulldown;receiver_senb_pulldown;rf_zone_temp_pullup;rp_any_tx_main_pullup;rp_boot_pullup;rp_dbg_id0_strap;rp_dbg_id1_strap;rp_reset_pullup;run_loop_pullup;s3_boot_pullup;s3_dbg_id0_strap;s3_dbg_id1_strap;s3_detector_feedback_res;s3_detector_ground_res;s3_evidence_output_pullup;s3_evidence_threshold_bottom;s3_reset_gate_pullup;s3_reset_pullup;safe_c5_reset_gate_pullup;safe_latch_d_pullup;safe_por_pullup;safe_reset_gate_pullup;safety_fault_request_pulldown;safety_watchdog_mr_pullup;safety_watchdog_wdi_pulldown;safety_watchdog_wdo_pullup;sd_card_cmd_pullup;sd_card_dat0_pullup;sd_card_dat1_pullup;sd_card_dat2_pullup;sd_card_dat3_pullup;sd_detect_pullup;sd_host_cs_pullup;sd_host_d0_pulldown;sd_host_d1_pullup;sd_host_sck_pulldown;sd_on_pulldown;si_audio_l_sum;si_audio_r_sum;slow_io_fault_sense_pullup;slow_io_reset_pullup;slow_io_s3_evidence_pullup;speaker_amp_enable_pulldown;sys_int_pullup;touch_irq_pullup;touch_reset_pulldown;u214_req_pulldown;u214_supervisor_pullup;ui_input_down_pullup;ui_input_left_pullup;ui_input_ok_pullup;ui_input_right_pullup;ui_input_up_pullup;ui_zone_temp_pullup;unit_req_pulldown;unit_signal_iso_oe_pulldown;unit_supervisor_pullup;voice_band_p1_pulldown;voice_band_p2_pulldown;voice_band_p3_pulldown;voice_band_p4_pulldown;voice_band_p5_pulldown;voice_band_p6_pulldown;voice_band_p7_pulldown;voice_band_select_pulldown;voice_efuse_en_pullup;voice_en_pulldown;voice_evidence_hold_pulldown;voice_evidence_output_pullup;voice_evidence_threshold_bottom;voice_hl_req_pulldown;voice_pg_pullup;voice_ptt_pullup;voice_rx_series;voice_supervisor_pullup;voice_v_evidence_hold_pulldown;voice_v_evidence_threshold_bottom;voice_v_ptt_pullup"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -4257,7 +4257,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "audio_ground_link, codec_adc_n_series, codec_adc_p_series"
+			(property "Description" "audio_ground_link;codec_adc_n_series;codec_adc_p_series"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -4319,7 +4319,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c6041bc6-3296-5daa-84bc-b11c72d900bb")
-		(property "Reference" "C150"
+		(property "Reference" "C155"
 			(at 55.88 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4368,7 +4368,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C150")
+					(reference "C155")
 					(unit 1)
 				)
 			)
@@ -4394,7 +4394,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "55d82794-3b11-58e1-ac31-ef6395f3d0ba")
-		(property "Reference" "C151"
+		(property "Reference" "C156"
 			(at 147.32 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4443,7 +4443,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C151")
+					(reference "C156")
 					(unit 1)
 				)
 			)
@@ -4468,7 +4468,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f09eec5c-4f7c-5e14-9db5-4a8139658737")
-		(property "Reference" "C152"
+		(property "Reference" "C157"
 			(at 238.76 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4517,7 +4517,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C152")
+					(reference "C157")
 					(unit 1)
 				)
 			)
@@ -4542,7 +4542,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "56f21911-6b80-5898-bf26-cfe118ac4bf8")
-		(property "Reference" "C153"
+		(property "Reference" "C158"
 			(at 330.20 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4591,7 +4591,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C153")
+					(reference "C158")
 					(unit 1)
 				)
 			)
@@ -4616,7 +4616,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "02a26cc1-dbb0-5ffd-817f-b4bba7153ead")
-		(property "Reference" "C154"
+		(property "Reference" "C159"
 			(at 421.64 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4665,7 +4665,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C154")
+					(reference "C159")
 					(unit 1)
 				)
 			)
@@ -4690,7 +4690,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "754f78f6-ca8c-5a3e-a0fc-e7f89bb5dcb8")
-		(property "Reference" "C155"
+		(property "Reference" "C160"
 			(at 513.08 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4739,7 +4739,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C155")
+					(reference "C160")
 					(unit 1)
 				)
 			)
@@ -4764,7 +4764,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "689de436-31f5-5042-82b0-66f123b3da7e")
-		(property "Reference" "C156"
+		(property "Reference" "C161"
 			(at 604.52 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4813,7 +4813,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C156")
+					(reference "C161")
 					(unit 1)
 				)
 			)
@@ -4838,7 +4838,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a4e8545f-c548-5a87-b350-fadf298cd41b")
-		(property "Reference" "C157"
+		(property "Reference" "C162"
 			(at 695.96 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4887,7 +4887,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C157")
+					(reference "C162")
 					(unit 1)
 				)
 			)
@@ -4912,7 +4912,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2c551c5b-5361-5943-b836-dda5e32940de")
-		(property "Reference" "C158"
+		(property "Reference" "C163"
 			(at 787.40 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4961,7 +4961,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C158")
+					(reference "C163")
 					(unit 1)
 				)
 			)
@@ -4986,7 +4986,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7b78396c-1ab8-57ca-a6d7-9e4f072594ef")
-		(property "Reference" "C159"
+		(property "Reference" "C164"
 			(at 878.84 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5035,7 +5035,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C159")
+					(reference "C164")
 					(unit 1)
 				)
 			)
@@ -5060,7 +5060,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4a579295-6133-585b-8048-8af8fd99a5ec")
-		(property "Reference" "C160"
+		(property "Reference" "C165"
 			(at 970.28 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5109,7 +5109,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C160")
+					(reference "C165")
 					(unit 1)
 				)
 			)
@@ -5134,7 +5134,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b8b6b97b-842c-5579-8069-b72b27988bde")
-		(property "Reference" "C161"
+		(property "Reference" "C166"
 			(at 1061.72 44.45 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5183,7 +5183,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C161")
+					(reference "C166")
 					(unit 1)
 				)
 			)
@@ -5208,7 +5208,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "166b7db8-966f-56ba-bab5-4edcbfb0f79a")
-		(property "Reference" "C162"
+		(property "Reference" "C167"
 			(at 55.88 80.01 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5257,7 +5257,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C162")
+					(reference "C167")
 					(unit 1)
 				)
 			)
@@ -5282,7 +5282,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3332bfb3-8df3-5445-9857-90656986b9fc")
-		(property "Reference" "C163"
+		(property "Reference" "C168"
 			(at 147.32 80.01 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5331,7 +5331,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C163")
+					(reference "C168")
 					(unit 1)
 				)
 			)
@@ -5356,7 +5356,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3ba2e460-c311-51f7-bde1-3fe471570cb9")
-		(property "Reference" "C164"
+		(property "Reference" "C169"
 			(at 238.76 80.01 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5405,7 +5405,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C164")
+					(reference "C169")
 					(unit 1)
 				)
 			)
@@ -5430,7 +5430,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0e63b4c1-99dc-5c2e-960e-95d47ec1db0e")
-		(property "Reference" "C165"
+		(property "Reference" "C170"
 			(at 330.20 80.01 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5479,7 +5479,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C165")
+					(reference "C170")
 					(unit 1)
 				)
 			)
@@ -5504,7 +5504,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e812460c-6184-534c-867c-6a37a8c5430b")
-		(property "Reference" "C166"
+		(property "Reference" "C171"
 			(at 421.64 80.01 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5553,7 +5553,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C166")
+					(reference "C171")
 					(unit 1)
 				)
 			)
@@ -5578,7 +5578,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6eeef04e-f0e9-548a-9f0a-3a018933ef82")
-		(property "Reference" "C167"
+		(property "Reference" "C172"
 			(at 513.08 80.01 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5627,7 +5627,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C167")
+					(reference "C172")
 					(unit 1)
 				)
 			)
@@ -5652,7 +5652,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "22971239-d3d4-592e-a02d-bedfbd571205")
-		(property "Reference" "C168"
+		(property "Reference" "C173"
 			(at 604.52 80.01 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5701,7 +5701,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C168")
+					(reference "C173")
 					(unit 1)
 				)
 			)
@@ -5726,7 +5726,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a2d9b4c6-f211-51e8-81e6-7eb15ec7b7c0")
-		(property "Reference" "C169"
+		(property "Reference" "C174"
 			(at 695.96 80.01 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5775,7 +5775,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C169")
+					(reference "C174")
 					(unit 1)
 				)
 			)
@@ -5800,7 +5800,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b5322030-601a-585c-a240-1d48eae9bed6")
-		(property "Reference" "C170"
+		(property "Reference" "C175"
 			(at 787.40 80.01 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5849,7 +5849,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C170")
+					(reference "C175")
 					(unit 1)
 				)
 			)
@@ -5874,7 +5874,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "66cd345f-8729-5cfc-9f2e-5be812c9bf10")
-		(property "Reference" "C171"
+		(property "Reference" "C176"
 			(at 878.84 80.01 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5923,7 +5923,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C171")
+					(reference "C176")
 					(unit 1)
 				)
 			)
@@ -5948,7 +5948,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0cf1600e-dcef-51ea-8ed2-d02608be2120")
-		(property "Reference" "C172"
+		(property "Reference" "C177"
 			(at 970.28 80.01 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5997,7 +5997,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C172")
+					(reference "C177")
 					(unit 1)
 				)
 			)
@@ -6023,7 +6023,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "fcf6515c-7d05-5cc1-8f5d-0182bbead14b")
-		(property "Reference" "C173"
+		(property "Reference" "C178"
 			(at 1061.72 80.01 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6072,7 +6072,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C173")
+					(reference "C178")
 					(unit 1)
 				)
 			)
@@ -6097,7 +6097,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a14f9b56-3a39-554d-804a-c6c252ad7f8c")
-		(property "Reference" "C174"
+		(property "Reference" "C179"
 			(at 55.88 115.57 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6146,7 +6146,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C174")
+					(reference "C179")
 					(unit 1)
 				)
 			)
@@ -6171,7 +6171,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e94a41b1-b378-5a77-a217-1fecec57eb19")
-		(property "Reference" "C175"
+		(property "Reference" "C180"
 			(at 147.32 115.57 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6220,7 +6220,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C175")
+					(reference "C180")
 					(unit 1)
 				)
 			)
@@ -6245,7 +6245,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8f6eb5a6-4dcf-5235-a036-0372a00b06d8")
-		(property "Reference" "C176"
+		(property "Reference" "C181"
 			(at 238.76 115.57 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6294,7 +6294,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C176")
+					(reference "C181")
 					(unit 1)
 				)
 			)
@@ -6319,7 +6319,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "63bec00a-fbc6-5474-9338-f66467a7fba7")
-		(property "Reference" "C177"
+		(property "Reference" "C182"
 			(at 330.20 115.57 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6368,7 +6368,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C177")
+					(reference "C182")
 					(unit 1)
 				)
 			)
@@ -6393,7 +6393,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "13e941c2-3b8e-5f89-8ca3-be8f2431bcad")
-		(property "Reference" "C178"
+		(property "Reference" "C183"
 			(at 421.64 115.57 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6442,7 +6442,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C178")
+					(reference "C183")
 					(unit 1)
 				)
 			)
@@ -6467,7 +6467,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4d258ceb-66f8-5840-ad5a-a0114b67b072")
-		(property "Reference" "C179"
+		(property "Reference" "C184"
 			(at 513.08 115.57 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6516,7 +6516,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C179")
+					(reference "C184")
 					(unit 1)
 				)
 			)
@@ -6541,7 +6541,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "ff380369-67a3-5ae6-90df-af413b1aa9c7")
-		(property "Reference" "C180"
+		(property "Reference" "C185"
 			(at 604.52 115.57 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6590,7 +6590,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C180")
+					(reference "C185")
 					(unit 1)
 				)
 			)
@@ -6615,7 +6615,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d126f2d5-a273-5fdd-8c80-84e3cb152231")
-		(property "Reference" "C181"
+		(property "Reference" "C186"
 			(at 695.96 115.57 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6664,7 +6664,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C181")
+					(reference "C186")
 					(unit 1)
 				)
 			)
@@ -6689,7 +6689,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "69d25ee4-b866-5546-915e-413b32c04b7a")
-		(property "Reference" "C182"
+		(property "Reference" "C187"
 			(at 787.40 115.57 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6738,7 +6738,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C182")
+					(reference "C187")
 					(unit 1)
 				)
 			)
@@ -6763,7 +6763,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "552eac36-0b3a-5012-8a38-fb5129d9dd81")
-		(property "Reference" "C183"
+		(property "Reference" "C188"
 			(at 878.84 115.57 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6812,7 +6812,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C183")
+					(reference "C188")
 					(unit 1)
 				)
 			)
@@ -6837,7 +6837,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7919bb5e-7440-54c9-898e-5a8b623a7e80")
-		(property "Reference" "C184"
+		(property "Reference" "C189"
 			(at 970.28 115.57 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6886,7 +6886,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C184")
+					(reference "C189")
 					(unit 1)
 				)
 			)
@@ -6911,7 +6911,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "94f833e7-ab11-5f46-b9e6-10b440f9fef8")
-		(property "Reference" "C185"
+		(property "Reference" "C190"
 			(at 1061.72 115.57 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6960,7 +6960,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C185")
+					(reference "C190")
 					(unit 1)
 				)
 			)
@@ -6985,7 +6985,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "91886f1f-a9ff-50e9-9c5e-bd5eb5c901b7")
-		(property "Reference" "C186"
+		(property "Reference" "C191"
 			(at 55.88 151.13 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7034,7 +7034,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C186")
+					(reference "C191")
 					(unit 1)
 				)
 			)
@@ -7059,7 +7059,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9b5fa2a3-5b3f-59b1-92f8-2be0b753658a")
-		(property "Reference" "C187"
+		(property "Reference" "C192"
 			(at 147.32 151.13 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7108,7 +7108,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C187")
+					(reference "C192")
 					(unit 1)
 				)
 			)
@@ -7133,7 +7133,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3b26ec30-0303-53a4-ad04-2367070f124c")
-		(property "Reference" "C188"
+		(property "Reference" "C193"
 			(at 238.76 151.13 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7182,7 +7182,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "C188")
+					(reference "C193")
 					(unit 1)
 				)
 			)
@@ -7551,7 +7551,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5145fc5e-0296-5fe7-888b-b113b4490d0b")
-		(property "Reference" "L15"
+		(property "Reference" "L14"
 			(at 695.96 151.13 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7600,7 +7600,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "L15")
+					(reference "L14")
 					(unit 1)
 				)
 			)
@@ -7625,7 +7625,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f223747c-80fc-504a-8fa6-484d4b4e7c89")
-		(property "Reference" "L16"
+		(property "Reference" "L15"
 			(at 787.40 151.13 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7674,7 +7674,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "L16")
+					(reference "L15")
 					(unit 1)
 				)
 			)
@@ -7699,7 +7699,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2736480c-e864-557d-a8b3-fb4792f97498")
-		(property "Reference" "L17"
+		(property "Reference" "L16"
 			(at 878.84 151.13 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7748,7 +7748,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "L17")
+					(reference "L16")
 					(unit 1)
 				)
 			)
@@ -7773,7 +7773,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1bee6c6f-fff0-5828-9fd3-445fc274c0ea")
-		(property "Reference" "L18"
+		(property "Reference" "L17"
 			(at 970.28 151.13 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7822,7 +7822,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "L18")
+					(reference "L17")
 					(unit 1)
 				)
 			)
@@ -7847,7 +7847,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0566257c-b99d-57cc-8ab8-9f5be4528549")
-		(property "Reference" "L19"
+		(property "Reference" "L18"
 			(at 1061.72 151.13 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7896,7 +7896,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "L19")
+					(reference "L18")
 					(unit 1)
 				)
 			)
@@ -7921,7 +7921,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "363badb8-8744-5f5d-8c33-bd847a65c7fd")
-		(property "Reference" "L20"
+		(property "Reference" "L19"
 			(at 55.88 186.69 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7970,7 +7970,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "L20")
+					(reference "L19")
 					(unit 1)
 				)
 			)
@@ -7995,7 +7995,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "86c68f86-c14a-5eab-9fe4-da93571d0103")
-		(property "Reference" "L21"
+		(property "Reference" "L20"
 			(at 147.32 186.69 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8044,7 +8044,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "L21")
+					(reference "L20")
 					(unit 1)
 				)
 			)
@@ -8069,7 +8069,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "123c15f0-d102-5bc6-97ea-c92d71274ff0")
-		(property "Reference" "L22"
+		(property "Reference" "L21"
 			(at 238.76 186.69 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8118,7 +8118,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "L22")
+					(reference "L21")
 					(unit 1)
 				)
 			)
@@ -8143,7 +8143,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "09646ce1-a8ef-556e-944a-552a0d3544e3")
-		(property "Reference" "L23"
+		(property "Reference" "L22"
 			(at 330.20 186.69 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8192,7 +8192,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "L23")
+					(reference "L22")
 					(unit 1)
 				)
 			)
@@ -8217,7 +8217,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "009a0fb4-28ee-5469-886e-342e0fa14bac")
-		(property "Reference" "L24"
+		(property "Reference" "L23"
 			(at 421.64 186.69 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8266,7 +8266,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "L24")
+					(reference "L23")
 					(unit 1)
 				)
 			)
@@ -8291,7 +8291,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6f49b956-e57c-54f1-8ac0-78b5fe653875")
-		(property "Reference" "L25"
+		(property "Reference" "L24"
 			(at 513.08 186.69 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8340,7 +8340,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "L25")
+					(reference "L24")
 					(unit 1)
 				)
 			)
@@ -8365,7 +8365,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "88e5cf4d-1146-5750-8956-f574e2c90e24")
-		(property "Reference" "L26"
+		(property "Reference" "L25"
 			(at 604.52 186.69 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8414,7 +8414,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "L26")
+					(reference "L25")
 					(unit 1)
 				)
 			)
@@ -8439,7 +8439,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5aa8d0d4-452a-5c67-a3a3-619d8f411dc5")
-		(property "Reference" "L27"
+		(property "Reference" "L26"
 			(at 695.96 186.69 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8488,7 +8488,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "L27")
+					(reference "L26")
 					(unit 1)
 				)
 			)
@@ -8513,7 +8513,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2996a0af-3874-58e3-9c4c-55651f8a224f")
-		(property "Reference" "L28"
+		(property "Reference" "L27"
 			(at 787.40 186.69 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8562,7 +8562,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "L28")
+					(reference "L27")
 					(unit 1)
 				)
 			)
@@ -8587,7 +8587,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "fc4e130b-1546-5d8b-9fd7-ebcc357b6c54")
-		(property "Reference" "R146"
+		(property "Reference" "R147"
 			(at 878.84 186.69 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8636,7 +8636,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "R146")
+					(reference "R147")
 					(unit 1)
 				)
 			)
@@ -8661,7 +8661,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "88d338aa-d89d-5f72-a8d2-2dabd7b728d6")
-		(property "Reference" "R147"
+		(property "Reference" "R148"
 			(at 970.28 186.69 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8710,7 +8710,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "R147")
+					(reference "R148")
 					(unit 1)
 				)
 			)
@@ -8735,7 +8735,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "6299cc91-c79b-5dd8-89f7-0dc18310a467")
-		(property "Reference" "R148"
+		(property "Reference" "R149"
 			(at 1061.72 186.69 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8784,7 +8784,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "R148")
+					(reference "R149")
 					(unit 1)
 				)
 			)
@@ -8809,7 +8809,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "bbfed97c-55ed-5655-b6a5-e429221868dd")
-		(property "Reference" "R149"
+		(property "Reference" "R150"
 			(at 55.88 222.25 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8858,7 +8858,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "R149")
+					(reference "R150")
 					(unit 1)
 				)
 			)
@@ -8884,7 +8884,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f2568041-ef98-5bce-a25c-f39c5557b86a")
-		(property "Reference" "R150"
+		(property "Reference" "R151"
 			(at 147.32 222.25 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8933,7 +8933,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "R150")
+					(reference "R151")
 					(unit 1)
 				)
 			)
@@ -8959,7 +8959,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "98058829-d0f9-5459-9ce6-afa525875e2f")
-		(property "Reference" "R151"
+		(property "Reference" "R152"
 			(at 238.76 222.25 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9008,7 +9008,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "R151")
+					(reference "R152")
 					(unit 1)
 				)
 			)
@@ -9033,7 +9033,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "09cfa16e-9f6c-5cc7-b71c-4a8291fa8cbd")
-		(property "Reference" "R152"
+		(property "Reference" "R153"
 			(at 330.20 222.25 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9082,7 +9082,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "R152")
+					(reference "R153")
 					(unit 1)
 				)
 			)
@@ -9107,7 +9107,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "fb743bae-0184-525a-9944-da91c7eea5b4")
-		(property "Reference" "R153"
+		(property "Reference" "R154"
 			(at 421.64 222.25 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9156,7 +9156,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "R153")
+					(reference "R154")
 					(unit 1)
 				)
 			)
@@ -9181,7 +9181,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5c5f421f-74d6-5aa2-837a-fb4772043c7b")
-		(property "Reference" "R154"
+		(property "Reference" "R155"
 			(at 513.08 222.25 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9230,7 +9230,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "R154")
+					(reference "R155")
 					(unit 1)
 				)
 			)
@@ -9256,7 +9256,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8fd8b2fe-78e1-5d92-a4e7-46df61ef2797")
-		(property "Reference" "R155"
+		(property "Reference" "R156"
 			(at 604.52 222.25 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9305,7 +9305,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "R155")
+					(reference "R156")
 					(unit 1)
 				)
 			)
@@ -9331,7 +9331,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b8195051-3786-5988-8aef-fecf914d00d5")
-		(property "Reference" "R156"
+		(property "Reference" "R157"
 			(at 695.96 222.25 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9380,7 +9380,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "R156")
+					(reference "R157")
 					(unit 1)
 				)
 			)
@@ -9405,7 +9405,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e5e73ddf-a2eb-5e2f-9e83-9c5c54eb8326")
-		(property "Reference" "R157"
+		(property "Reference" "R158"
 			(at 787.40 222.25 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9454,7 +9454,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "R157")
+					(reference "R158")
 					(unit 1)
 				)
 			)
@@ -9479,7 +9479,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "417ea332-1149-51c4-b732-30e1d945aaee")
-		(property "Reference" "R158"
+		(property "Reference" "R159"
 			(at 878.84 222.25 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9528,7 +9528,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "R158")
+					(reference "R159")
 					(unit 1)
 				)
 			)
@@ -9554,7 +9554,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c32089e6-296c-58b6-8654-e6aeacfb2ced")
-		(property "Reference" "R159"
+		(property "Reference" "R160"
 			(at 970.28 222.25 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9603,7 +9603,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "R159")
+					(reference "R160")
 					(unit 1)
 				)
 			)
@@ -9629,7 +9629,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "607757f3-645a-5bea-8064-aca40043b77e")
-		(property "Reference" "R160"
+		(property "Reference" "R161"
 			(at 1061.72 222.25 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9678,7 +9678,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "R160")
+					(reference "R161")
 					(unit 1)
 				)
 			)
@@ -9703,7 +9703,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3debe22a-319b-5080-a3a7-f7bf3c1fe945")
-		(property "Reference" "R161"
+		(property "Reference" "R162"
 			(at 55.88 257.81 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9752,7 +9752,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "R161")
+					(reference "R162")
 					(unit 1)
 				)
 			)
@@ -9777,7 +9777,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "fc762d4f-e45f-594d-84aa-e666d16f6078")
-		(property "Reference" "R162"
+		(property "Reference" "R163"
 			(at 147.32 257.81 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9826,7 +9826,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "R162")
+					(reference "R163")
 					(unit 1)
 				)
 			)
@@ -9852,7 +9852,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "eac091e5-f203-5c0d-b26f-df548bc535f0")
-		(property "Reference" "R163"
+		(property "Reference" "R164"
 			(at 238.76 257.81 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9901,7 +9901,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "R163")
+					(reference "R164")
 					(unit 1)
 				)
 			)
@@ -9926,7 +9926,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "02d167c4-ca86-5229-a04d-c52a5c1ed576")
-		(property "Reference" "R164"
+		(property "Reference" "R165"
 			(at 330.20 257.81 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9975,7 +9975,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "R164")
+					(reference "R165")
 					(unit 1)
 				)
 			)
@@ -10001,7 +10001,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7db0c724-677a-524b-8cd4-95f945f45e6f")
-		(property "Reference" "U51"
+		(property "Reference" "U52"
 			(at 421.64 257.81 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10062,7 +10062,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "U51")
+					(reference "U52")
 					(unit 1)
 				)
 			)
@@ -10107,7 +10107,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "668742c8-401b-53ab-bbd8-e8c5dccf5114")
-		(property "Reference" "U52"
+		(property "Reference" "U53"
 			(at 513.08 257.81 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10159,7 +10159,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "U52")
+					(reference "U53")
 					(unit 1)
 				)
 			)
@@ -10189,7 +10189,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "5aa63495-9ef7-54fc-8704-728d367d529e")
-		(property "Reference" "U53"
+		(property "Reference" "U54"
 			(at 604.52 257.81 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10262,7 +10262,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "U53")
+					(reference "U54")
 					(unit 1)
 				)
 			)
@@ -10323,7 +10323,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "f26a1ee9-c4a7-50e5-9d45-d90362a5e1cc")
-		(property "Reference" "U54"
+		(property "Reference" "U55"
 			(at 695.96 257.81 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10393,7 +10393,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "U54")
+					(reference "U55")
 					(unit 1)
 				)
 			)
@@ -10453,7 +10453,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a4d346f8-8b00-5fef-b521-6955fce8548e")
-		(property "Reference" "U55"
+		(property "Reference" "U56"
 			(at 787.40 257.81 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10514,7 +10514,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "U55")
+					(reference "U56")
 					(unit 1)
 				)
 			)
@@ -10557,7 +10557,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "64ad9547-f619-52e2-aa2e-b218baf3ca42")
-		(property "Reference" "U56"
+		(property "Reference" "U57"
 			(at 878.84 257.81 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10618,7 +10618,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "U56")
+					(reference "U57")
 					(unit 1)
 				)
 			)
@@ -10659,7 +10659,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "ecba3c92-91ae-5683-b470-0df6536823ad")
-		(property "Reference" "U57"
+		(property "Reference" "U58"
 			(at 970.28 257.81 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10720,7 +10720,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "U57")
+					(reference "U58")
 					(unit 1)
 				)
 			)
@@ -10765,7 +10765,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1c94c95c-4fa0-522f-b1be-1adf3ccda293")
-		(property "Reference" "U58"
+		(property "Reference" "U59"
 			(at 1061.72 257.81 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10826,7 +10826,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "U58")
+					(reference "U59")
 					(unit 1)
 				)
 			)
@@ -10869,7 +10869,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "02bebfb6-e2f8-514e-8286-a24460cbf6ac")
-		(property "Reference" "U59"
+		(property "Reference" "U60"
 			(at 55.88 293.37 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10930,7 +10930,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "U59")
+					(reference "U60")
 					(unit 1)
 				)
 			)
@@ -10973,7 +10973,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "583cbafd-db02-542b-8672-0ffc3cb9f13e")
-		(property "Reference" "U60"
+		(property "Reference" "U61"
 			(at 147.32 293.37 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11064,7 +11064,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "U60")
+					(reference "U61")
 					(unit 1)
 				)
 			)
@@ -11155,7 +11155,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "41f9155a-c6ae-523a-96ab-4a0094f7f451")
-		(property "Reference" "U61"
+		(property "Reference" "U62"
 			(at 238.76 293.37 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11204,7 +11204,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "U61")
+					(reference "U62")
 					(unit 1)
 				)
 			)
@@ -11229,7 +11229,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d6ed38c4-7296-5ced-ba4d-02f33b8a1c6b")
-		(property "Reference" "U62"
+		(property "Reference" "U63"
 			(at 330.20 293.37 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11296,7 +11296,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "U62")
+					(reference "U63")
 					(unit 1)
 				)
 			)
@@ -11353,7 +11353,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "93d8648a-c41c-5370-97d8-654d2d4dd864")
-		(property "Reference" "U63"
+		(property "Reference" "U64"
 			(at 421.64 293.37 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11411,7 +11411,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "U63")
+					(reference "U64")
 					(unit 1)
 				)
 			)
@@ -11449,7 +11449,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e51aad30-b8d3-5a5c-b714-1a615dd5f431")
-		(property "Reference" "U64"
+		(property "Reference" "U65"
 			(at 513.08 293.37 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11510,7 +11510,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "U64")
+					(reference "U65")
 					(unit 1)
 				)
 			)
@@ -11553,7 +11553,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "198fad98-6ff0-5914-9d51-e7f7d4f5b61e")
-		(property "Reference" "U65"
+		(property "Reference" "U66"
 			(at 787.40 293.37 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11605,7 +11605,7 @@
 		(instances
 			(project "LESHY2-RF-R2"
 				(path "/12b9cc42-a10b-5bbe-9200-64bf8a11fe4c"
-					(reference "U65")
+					(reference "U66")
 					(unit 1)
 				)
 			)

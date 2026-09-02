@@ -29,7 +29,7 @@ class H2R2ContactMaterializationTests(unittest.TestCase):
             stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("1519 board contacts", result.stdout)
+        self.assertIn("1558 board contacts", result.stdout)
         self.assertIn("zero errors", result.stdout)
 
     def test_every_contact_and_named_pad_is_accounted_for(self):
@@ -37,10 +37,10 @@ class H2R2ContactMaterializationTests(unittest.TestCase):
         self.assertEqual("pass", self.artifact["status"])
         self.assertEqual([], self.artifact["errors"])
         summary = self.artifact["summary"]
-        self.assertEqual(232, summary["board_component_group_count"])
-        self.assertEqual(1578, summary["source_ledger_logical_contact_count"])
-        self.assertEqual(1519, summary["board_logical_contact_count"])
-        self.assertEqual(1516, summary["pcb_footprint_contact_count"])
+        self.assertEqual(245, summary["board_component_group_count"])
+        self.assertEqual(1617, summary["source_ledger_logical_contact_count"])
+        self.assertEqual(1558, summary["board_logical_contact_count"])
+        self.assertEqual(1555, summary["pcb_footprint_contact_count"])
         self.assertEqual(3, summary["external_on_module_interface_count"])
         self.assertEqual(0, summary["unresolved_error_count"])
         for group in self.artifact["groups"]:
@@ -112,6 +112,28 @@ class H2R2ContactMaterializationTests(unittest.TestCase):
             self.assertEqual(6, geometry["positions"])
             self.assertEqual(1.52, geometry["pitch_mm"])
             self.assertEqual([4.45, 4.19, 3.05], geometry["body_max_mm"])
+
+    def test_new_main_power_footprints_are_exact_and_complete(self):
+        converter = self.groups["ti_tps566231p_rqfr"]
+        self.assertEqual(9, converter["footprint_named_pad_count"])
+        for number, contact in enumerate(
+            ("VCC", "FB", "EN", "PGND", "VIN_1", "VIN_2", "BST", "SW", "PG"),
+            start=1,
+        ):
+            self.assertEqual([str(number)], self.contact(converter["device_id"], contact)["pads"])
+        inductor = self.groups["prodtech_pspmaa0605h_2r2m_anp"]
+        self.assertEqual(2, inductor["footprint_named_pad_count"])
+        self.assertEqual(["1"], self.contact(inductor["device_id"], "END_1")["pads"])
+        self.assertEqual(["2"], self.contact(inductor["device_id"], "END_2")["pads"])
+
+    def test_bom_excluded_board_copper_features_are_physical(self):
+        loop = self.groups["leshy2_nfc_pickup_loop_r2"]
+        self.assertTrue(loop["bom_excluded"])
+        self.assertEqual(["1"], self.contact(loop["device_id"], "END_P")["pads"])
+        self.assertEqual(["2"], self.contact(loop["device_id"], "END_N")["pads"])
+        testpoint = self.groups["leshy2_pcb_testpoint_pad_1mm_r2"]
+        self.assertTrue(testpoint["bom_excluded"])
+        self.assertEqual(["1"], self.contact(testpoint["device_id"], "PROBE")["pads"])
 
     def test_scope_remains_pre_net_and_pre_layout(self):
         auth = self.artifact["authorization"]

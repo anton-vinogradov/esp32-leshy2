@@ -12,6 +12,8 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 MODEL_PATH = REPO / "hardware/product-design/h1-r2-cost-review.json"
 BOM_PATH = REPO / "hardware/architecture/generated/G2F-3I-target-bom.csv"
+R2_INVENTORY_PATH = REPO / "hardware/ecad/generated/H2-R2-native-inventory.json"
+DEVICES_PATH = REPO / "hardware/architecture/devices.json"
 TRIAL_PATH = REPO / "hardware/verification/generated/H5-EVR05-jlcpcb-bom-match.json"
 ANTENNA_PATH = REPO / "hardware/architecture/antenna-kit.json"
 AUDIT_PATH = REPO / "hardware/product-design/generated/H1-R2-cost-audit.json"
@@ -48,6 +50,17 @@ ROLE_OVERRIDES = {
     "uniroyal_0402wgf1603tce": "stocked codec TX attenuator resistor / складской резистор аттенюатора TX кодека",
     "fh_rs_06k47r0ft": "stocked IR emitter current-limit resistor / складской токоограничивающий резистор IR",
     "yageo_cc0603krx7r0bb104": "stocked 100-nF 100-V USB VBIAS capacitor / складской конденсатор USB VBIAS 100 нФ 100 В",
+    "ti_tps566231p_rqfr": "3V3_MAIN 6-A buck / силовой преобразователь 3V3_MAIN 6 А",
+    "prodtech_pspmaa0605h_2r2m_anp": "3V3_MAIN 2.2-uH power inductor / силовой дроссель 3V3_MAIN 2,2 мкГн",
+    "samsung_cl10b105ko8nnnc": "TPS566231 VCC capacitor / конденсатор VCC TPS566231",
+    "samsung_cl05b104kb5nnnc": "TPS566231 bootstrap capacitor / bootstrap-конденсатор TPS566231",
+    "ti_sn74cbtlv1g125_dckr": "U219 pin-10 bidirectional isolation / двунаправленная развязка pin 10 U219",
+    "nexperia_bat54s_215": "two-package U219 NFC field bridge / двухкорпусный мост поля NFC U219",
+    "ti_lmv331_idbvr": "U219 NFC evidence comparator / компаратор evidence NFC U219",
+    "uniroyal_0402wgf1001tce": "U219 NFC pickup input pair / входная пара pickup NFC U219",
+    "uniroyal_0402wgf1002tce": "U219 enable, threshold and pull-up network / сеть enable, порога и pull-up U219",
+    "uniroyal_0402wgf1003tce": "U219 NFC envelope and threshold network / сеть envelope и порога NFC U219",
+    "uniroyal_0402wgf1004tce": "U219 NFC comparator hysteresis / гистерезис компаратора NFC U219",
 }
 
 LANES_RU = {
@@ -103,13 +116,42 @@ def money(value: float | None) -> str:
     return "—" if value is None else f"${value:,.2f}"
 
 
-def load() -> tuple[dict, list[dict], dict, dict]:
+def current_r2_bom(inventory: dict, devices: dict) -> list[dict]:
+    """Project the authoritative R2 inventory into the cost-review row shape."""
+    rows = []
+    for group in inventory["component_groups"]:
+        if group.get("bom_excluded"):
+            continue
+        device = devices[group["device_id"]]
+        cost = device.get("cost", {})
+        unit_price = cost.get("unit_price_usd")
+        quantity = int(group["quantity_per_product"])
+        rows.append({
+            "scope": group["scope"],
+            "device_id": group["device_id"],
+            "mpn": group["mpn"],
+            "quantity": str(quantity),
+            "unit_price_usd": "" if unit_price is None else str(unit_price),
+            "line_material_usd": "" if unit_price is None else str(unit_price * quantity),
+            "cost_price_break": cost.get("price_break", ""),
+            "cost_source": cost.get("source", {}).get("url", ""),
+            "cost_checked": cost.get("source", {}).get("checked", ""),
+            "cost_gate_status": (device.get("cost_gate") or {}).get("status", ""),
+            "placements": group.get("role", group["device_id"]),
+        })
+    return rows
+
+
+def load() -> tuple[dict, list[dict], list[dict], dict, dict]:
     model = json.loads(MODEL_PATH.read_text(encoding="utf-8"))
     with BOM_PATH.open(encoding="utf-8", newline="") as handle:
-        bom = list(csv.DictReader(handle))
+        historical_bom = list(csv.DictReader(handle))
+    inventory = json.loads(R2_INVENTORY_PATH.read_text(encoding="utf-8"))
+    devices = json.loads(DEVICES_PATH.read_text(encoding="utf-8"))["devices"]
+    bom = current_r2_bom(inventory, devices)
     trial = json.loads(TRIAL_PATH.read_text(encoding="utf-8"))
     antennas = json.loads(ANTENNA_PATH.read_text(encoding="utf-8"))
-    return model, bom, trial, antennas
+    return model, historical_bom, bom, trial, antennas
 
 
 def trial_line_cost(row: dict, device_quantity: int) -> float | None:
@@ -126,30 +168,17 @@ def trial_line_cost(row: dict, device_quantity: int) -> float | None:
     return cost
 
 
-def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
+def build(model: dict, historical_bom: list[dict], bom: list[dict], trial: dict, antennas: dict) -> dict:
     procurement_quantity = model["procurement_target_device_quantity"]
     historical_quantity = model["historical_cost_capture_device_quantity"]
     trial_by_id = {row["device_id"]: row for row in trial["routes"]}
     provisional = model["provisional_unit_routes"]
     live = model["live_jlcpcb_spot_checks"]
-    replacements = model.get("r2_device_replacements", {})
     rows = []
     for original_source in bom:
         source = dict(original_source)
         source_device_id = source["device_id"]
-        replacement = replacements.get(source_device_id)
-        if replacement:
-            source.update({
-                key: value for key, value in replacement.items()
-                if key not in {"reason"}
-            })
         quantity = int(source["quantity"])
-        override = (
-            model.get("r2_quantity_overrides", {}).get(source["device_id"])
-            or model.get("r2_quantity_overrides", {}).get(source_device_id)
-        )
-        if override:
-            quantity = int(override["quantity_per_device"])
         production_line = (
             float(source["unit_price_usd"]) * quantity
             if source["line_material_usd"]
@@ -268,7 +297,7 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
         trial_line_cost(row, historical_quantity) or 0
         for row in preorder_rows
     )
-    bom_by_id = {row["device_id"]: row for row in bom}
+    bom_by_id = {row["device_id"]: row for row in historical_bom}
     preorder_scale = sum(
         historical_quantity
         * float(bom_by_id[row["device_id"]]["line_material_usd"] or 0)
@@ -381,8 +410,10 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
             2,
         )
     errors = []
-    if len(bom) != 210:
-        errors.append("target BOM is no longer 210 lines")
+    if len(historical_bom) != 210:
+        errors.append("historical target BOM is no longer 210 lines")
+    if len(rows) != 249:
+        errors.append(f"current R2 purchasable component-group ledger is not 249 lines: {len(rows)}")
     if any(
         rows[index]["line_burden_per_device_usd"] is not None
         and rows[index + 1]["line_burden_per_device_usd"] is not None
@@ -413,8 +444,9 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
         "checked_on": model["checked_on"],
         "status": "pass_review_with_open_cost_actions" if not errors else "fail",
         "summary": {
-            "bom_lines": len(bom),
-            "quantity_100_priced_lines": sum(bool(row["line_material_usd"]) for row in bom),
+            "bom_lines": len(rows),
+            "historical_source_bom_lines": len(historical_bom),
+            "quantity_100_priced_lines": sum(row["unit_price_quantity_100_usd"] is not None for row in rows),
             "known_quantity_100_base_usd_per_device": round(known_quantity_100, 4),
             "planning_base_usd_per_device": round(planning_base, 4),
             "remaining_unpriced_base_lines": len(remaining_base),
@@ -430,7 +462,7 @@ def build(model: dict, bom: list[dict], trial: dict, antennas: dict) -> dict:
             "planning_plus_known_antenna_usd_per_device": round(
                 known_combined_total, 4
             ),
-            "base_bom_lines": sum(row["scope"] == "base_product" for row in bom),
+            "base_bom_lines": sum(row["scope"] == "base_product" for row in rows),
             "base_fitted_placements": sum(
                 int(row["quantity_per_device"])
                 for row in rows if row["scope"] == "base_product"
@@ -778,7 +810,8 @@ def render_doc(result: dict, ru: bool) -> str:
     if ru:
         lines += [
             '## Критический аудит массового рынка для всего топ-20', '',
-            f'Проверены все 20 текущих групп, и **все {summary["top_20_mass_market_retained_groups"]} сохранены**. '
+            f'Проверены все 20 текущих групп: **{summary["top_20_mass_market_retained_groups"]} сохранены**, '
+            f'а **{summary["top_20_qualification_candidate_groups"]}** требуют квалификации до замены BOM. '
             f'Шесть более дешёвых антенных кандидатов отклонены решением от `{result["top_20_user_decision"]["decided_on"]}`: '
             f'их суммарная бумажная экономия **{money(summary["top_20_rejected_paper_saving_usd"])}** остаётся только сравнительным evidence и не является активным маршрутом квалификации или заменой BOM.',
             '',
@@ -788,7 +821,8 @@ def render_doc(result: dict, ru: bool) -> str:
     else:
         lines += [
             '## Critical mass-market audit of the complete top 20', '',
-            f'All 20 current groups were checked and **all {summary["top_20_mass_market_retained_groups"]} are retained**. '
+            f'All 20 current groups were checked: **{summary["top_20_mass_market_retained_groups"]} are retained**, '
+            f'and **{summary["top_20_qualification_candidate_groups"]}** require qualification before any BOM replacement. '
             f'Six cheaper antenna candidates were rejected by the `{result["top_20_user_decision"]["decided_on"]}` decision: '
             f'their combined paper saving of **{money(summary["top_20_rejected_paper_saving_usd"])}** remains comparison evidence only and is neither an active qualification route nor a BOM substitution.',
             '',
@@ -815,6 +849,17 @@ def render_doc(result: dict, ru: bool) -> str:
             f'- **`{audit["current_mpn"]}` → {audit["best_mass_market_route"]}:** '
             f'{audit["functional_delta"]} ({audit["availability"]})'
         )
+    qualification_rows = [
+        audit for audit in result["top_20_mass_market_audit"]
+        if "qualification" in audit["verdict"]
+    ]
+    if qualification_rows:
+        lines += ['', ('Что ещё надо проверить до замены BOM:' if ru else 'What remains to qualify before a BOM change:'), '']
+        for audit in qualification_rows:
+            lines.append(
+                f'- **`{audit["current_mpn"]}` → {audit["best_mass_market_route"]}:** '
+                f'{audit["functional_delta"]} ({audit["availability"]})'
+            )
     market_text = 'Полный аудит и evidence — CSV' if ru else 'Complete audit and evidence — CSV'
     lines += ['', f'[{market_text}]({market_csv})', '']
     if ru:

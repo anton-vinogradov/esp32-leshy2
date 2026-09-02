@@ -42,7 +42,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "80-contact RF-side interboard receptacle / 80-контактная межплатная розетка RF"
+			(property "Description" "m1_rf_receptacle"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)

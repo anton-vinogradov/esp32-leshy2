@@ -140,6 +140,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/h4-r2-acceptance.ru.md",
         "docs/h5-r1-acceptance.md",
         "docs/h5-r1-acceptance.ru.md",
+        "docs/h5-r2-current-route.md",
+        "docs/h5-r2-current-route.ru.md",
         "docs/thermal-model.md",
         "docs/thermal-model.ru.md",
         "docs/single-fault-review.md",
@@ -233,12 +235,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: `H6.0.1-R1`", "global H5-R1 result",
+                "Current hardware boundary: `H6.0.1-R1`", "current H5-R2 route revalidation",
                 "firmware F1-R2 reviewed", "F2-R2.4",
                 "H9 · Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H6.0.1-R1`", "глобальный итог H5-R1",
+                "Текущая аппаратная граница: `H6.0.1-R1`", "актуальная перепроверка H5-R2",
                 "firmware F1-R2 проведено ревью", "F2-R2.4",
                 "H9 · Manufacturing release",
                 "Production ECAD",
@@ -890,7 +892,7 @@ class ProductSiteTests(unittest.TestCase):
                 "dual-RP GPIO/M1",
                 "взаимоисключающий Cap-слот U214/U219",
                 "Native R2 inventory проведён ревью как `H2-R2.1.1`",
-                "4 239 ledger-endpoints сведены",
+                "4 302 ledger-endpoints сведены",
                 "шесть вычислительных доменов",
             ),
             "docs/roadmap.md": (
@@ -898,14 +900,14 @@ class ProductSiteTests(unittest.TestCase):
                 "18 exact production",
                 "U219 Cap integration",
                 "H1-R2.38 reviewed",
-                "4,239 fitted-instance contacts reconcile",
+                "4,302 fitted-instance contacts reconcile",
             ),
             "docs/roadmap.ru.md": (
                 "Текущая аппаратная граница: `H6.0.1-R1`",
                 "18 точных production",
                 "Интеграция U219 Cap",
                 "H1-R2.38 проведено ревью",
-                "4 239 контактов устанавливаемых экземпляров",
+                "4 302 контакта устанавливаемых экземпляров",
             ),
             "docs/stage-results.md": (
                 "reviewed at **`H1-R2.38`**",

@@ -27,7 +27,7 @@
   },
   "hub_rp": {
     "role": "Front S3/C5/rear-RP fan-out, three independent nRF24 buses, microSD, Pack/Safety mailbox, LCD TE and backlight; no audio or broadcast ownership.",
-    "gpio_budget": {"available": 48, "used": 47, "reserve": 1, "reserve_gpios": [47]},
+    "gpio_budget": {"available": 48, "used": 46, "reserve": 2, "reserve_gpios": [45, 47]},
     "pin_map": [
       {"gpio": 0, "net": "S3_HUB_D0", "direction": "io", "controller": "PIO1_SM0_S3_QUAD", "endpoint": "S3 GPIO21", "reset": "input/high-Z; external pull-down"},
       {"gpio": 1, "net": "S3_HUB_D1", "direction": "io", "controller": "PIO1_SM0_S3_QUAD", "endpoint": "S3 GPIO14", "reset": "input/high-Z; external pull-down"},
@@ -74,7 +74,7 @@
       {"gpio": 42, "net": "HUB_SAFE_I2C_SDA", "direction": "io", "controller": "I2C1", "endpoint": "TCA9803DGKR SDAA on 3V3_MAIN -> powered-off-Ioff boundary -> SDAB on AON_SAFE_3V3 -> M1.32 -> Pack/Safety mailboxes", "reset": "input/open-drain released; 2.2-kohm MAIN-local pull-up; A-side high-Z when MAIN is off; no external B-side pull-up"},
       {"gpio": 43, "net": "HUB_SAFE_I2C_SCL", "direction": "od", "controller": "I2C1", "endpoint": "TCA9803DGKR SCLA on 3V3_MAIN -> powered-off-Ioff boundary -> SCLB on AON_SAFE_3V3 -> M1.33 -> Pack/Safety mailboxes", "reset": "input/open-drain released; 2.2-kohm MAIN-local pull-up; A-side high-Z when MAIN is off; no external B-side pull-up"},
       {"gpio": 44, "net": "SD_DETECT_N", "direction": "in", "controller": "GPIO_IRQ", "endpoint": "microSD socket detect", "reset": "input; external pull-up"},
-      {"gpio": 45, "net": "LCD_TE", "direction": "in", "controller": "GPIO_IRQ", "endpoint": "ER-TFT035IPS-6 ILI9488 TE", "reset": "input; external pull-down while panel reset is asserted"},
+      {"gpio": 45, "net": "HUB_RESERVE_45", "direction": "reserve", "controller": "GPIO", "endpoint": "uncommitted electrical reserve; no board connection because the accepted panel TE contact is deliberately open", "reset": "input/high-Z; no external connection; DNP"},
       {"gpio": 46, "net": "LCD_BL_PWM", "direction": "out", "controller": "PWM", "endpoint": "backlight hardware gate", "reset": "input/high-Z; external pull-down keeps backlight off"},
       {"gpio": 47, "net": "HUB_RESERVE_47", "direction": "reserve", "controller": "GPIO", "endpoint": "test pad only", "reset": "input/high-Z; external pull-down; DNP"}
     ],

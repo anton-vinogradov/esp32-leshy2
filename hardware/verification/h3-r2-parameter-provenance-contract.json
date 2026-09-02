@@ -5,10 +5,10 @@
   "accepted_input": "H3-R2.0.1",
   "status": "reviewed",
   "expected": {
-    "component_groups": 238,
-    "board_component_groups": 232,
+    "component_groups": 251,
+    "board_component_groups": 245,
     "explicit_non_pcba_groups": 6,
-    "fitted_board_instances": 1183,
+    "fitted_board_instances": 1208,
     "source_missing": 0,
     "factory_catalog_only_parameter_sources": 0
   },
@@ -24,6 +24,24 @@
       "url": "https://www.ralec.com/en-global/product_search/index/?page=1&part_no=RTT023R00FTH",
       "checked": "2026-08-31",
       "reason": "replace the factory catalogue card as electrical provenance while retaining C166468 as the assembly route"
+    },
+    "prodtech_pspmaa0605h_2r2m_anp": {
+      "document": "PROD Tech PSPMAA0412-1265 series manufacturer datasheet, including exact PSPMAA0605H-2R2M-ANP electrical and dimensional rows",
+      "url": "https://datasheet.lcsc.com/lcsc/2409291213_PROD-Tech-PSPMAA0805-6R8M-ANP_C2962884.pdf",
+      "checked": "2026-09-02",
+      "reason": "bind the exact 2.2 uH code to the manufacturer-issued 20% tolerance, 13.5 mOhm maximum DCR, 8 A Irms, 14 A Isat and 0605H geometry while retaining C2983088 only as the assembly route"
+    },
+    "samsung_cl05b104kb5nnnc": {
+      "document": "Samsung Electro-Mechanics official CL05B104KB5NNN family product record, including exact C packaging suffix",
+      "url": "https://product.samsungsem.com/mlcc/CL05B104KB5NNN.do",
+      "checked": "2026-09-02",
+      "reason": "use the original manufacturer product record for the exact 100 nF 50 V X7R bootstrap capacitor while retaining C960916 only as the assembly route"
+    },
+    "samsung_cl10b105ko8nnnc": {
+      "document": "Samsung Electro-Mechanics official CL10B105KO8NNN family product record, including exact C packaging suffix",
+      "url": "https://product.samsungsem.com/mlcc/CL10B105KO8NNN.do",
+      "checked": "2026-09-02",
+      "reason": "use the original manufacturer product record for the exact 1 uF 16 V X7R VCC capacitor while retaining C59782 only as the assembly route"
     },
     "suzhou_liming_3225_27_00_10_10_10_a": {
       "document": "Suzhou Liming TX3 exact-series manufacturer datasheet for 3225-27.00-10-10-10/A",

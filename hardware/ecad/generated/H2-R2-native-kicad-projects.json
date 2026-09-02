@@ -6,35 +6,35 @@
   "sources": {
     "inventory": {
       "path": "hardware/ecad/h2-r2-native-inventory-contract.json",
-      "sha256": "72d3b9337e28d568f26d72ab51db5043e1d499214a8fa497c0fbbd96a00fe88b"
+      "sha256": "31880906847b95cd0eeb030e92a73fcc2ae7007bef35065704d82d9cf65d6108"
     },
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "5dc7ac1e0ce44c297f0281b4fcbc35a26353439e5ae1a06e314217cde209e328"
+      "sha256": "56ebc2d92be86a2b1059d72f374a11be5d4d562dbfedd14de7b76adbe15ae6d2"
     },
     "nets": {
       "path": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "sha256": "aac31f30edd014c8623b1ed9d5421496c055e5d7897b8fe012321a7b72866a00"
+      "sha256": "7432b9589b8631d6f48299678aa25686c98fa596bf7875549fc5fe104af65e56"
     },
     "symbols": {
       "path": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-      "sha256": "2352deb77f7c5e50a9e2c73a2be9c1abe14827a6984267379cbb45815f9d298a"
+      "sha256": "35eee43878d0cd17a34c4590cc81513816fb7d36e11e70f16214e56c52f4e50a"
     },
     "symbol_library": {
       "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-      "sha256": "cec9fdf71ef24aa99907dd6469f8edabd18df49d08c727ba8407bb56d98e3784"
+      "sha256": "9cb2f1c69ae8c1ee6be359e202edd504ea4d9fa9ab7bb38460921d55c91ec017"
     }
   },
   "summary": {
     "project_count": 2,
     "project_graph_sheet_count": 22,
     "populated_sheet_count": 18,
-    "fitted_symbol_instance_count": 1183,
-    "physical_symbol_pin_count": 4243,
-    "connected_physical_pin_count": 4006,
-    "explicit_no_connect_physical_pin_count": 237,
+    "fitted_symbol_instance_count": 1208,
+    "physical_symbol_pin_count": 4306,
+    "connected_physical_pin_count": 4068,
+    "explicit_no_connect_physical_pin_count": 238,
     "external_module_interface_annotation_count": 5,
-    "canonical_net_count": 816,
+    "canonical_net_count": 823,
     "generated_file_count": 28,
     "pcb_file_count": 0
   },
@@ -47,7 +47,7 @@
       "instance_count": 428,
       "physical_symbol_pin_count": 1598,
       "external_module_interface_count": 5,
-      "canonical_net_count": 329,
+      "canonical_net_count": 325,
       "cross_sheet_net_count": 103
     },
     {
@@ -55,11 +55,11 @@
       "root": "RF_00_ROOT",
       "sheet_count": 13,
       "populated_sheet_count": 11,
-      "instance_count": 755,
-      "physical_symbol_pin_count": 2645,
+      "instance_count": 780,
+      "physical_symbol_pin_count": 2708,
       "external_module_interface_count": 0,
-      "canonical_net_count": 522,
-      "cross_sheet_net_count": 127
+      "canonical_net_count": 533,
+      "cross_sheet_net_count": 128
     }
   ],
   "sheets": [
@@ -116,8 +116,8 @@
       "role": "front Hub RP2354B core, flash, reset, USB, DBG10 and local transport fan-out",
       "instance_count": 47,
       "physical_symbol_pin_count": 215,
-      "connected_physical_pin_count": 200,
-      "explicit_no_connect_physical_pin_count": 15,
+      "connected_physical_pin_count": 199,
+      "explicit_no_connect_physical_pin_count": 16,
       "hierarchical_interface_count": 49,
       "external_module_interface_count": 0,
       "external_module_interfaces": [],
@@ -214,10 +214,10 @@
     {
       "id": "RF_03_MAIN_RAILS_DOMAIN_GATES",
       "role": "AON and main rails plus independently quietable power domains",
-      "instance_count": 69,
-      "physical_symbol_pin_count": 186,
-      "connected_physical_pin_count": 182,
-      "explicit_no_connect_physical_pin_count": 4,
+      "instance_count": 76,
+      "physical_symbol_pin_count": 202,
+      "connected_physical_pin_count": 199,
+      "explicit_no_connect_physical_pin_count": 3,
       "hierarchical_interface_count": 21,
       "external_module_interface_count": 0,
       "external_module_interfaces": [],
@@ -274,11 +274,11 @@
     {
       "id": "RF_30_U214_U219_M5_EXT",
       "role": "mutually exclusive U214/U219 Cap profiles and protected M5 Unit expansion",
-      "instance_count": 52,
-      "physical_symbol_pin_count": 214,
-      "connected_physical_pin_count": 192,
-      "explicit_no_connect_physical_pin_count": 22,
-      "hierarchical_interface_count": 27,
+      "instance_count": 70,
+      "physical_symbol_pin_count": 261,
+      "connected_physical_pin_count": 237,
+      "explicit_no_connect_physical_pin_count": 24,
+      "hierarchical_interface_count": 28,
       "external_module_interface_count": 0,
       "external_module_interfaces": [],
       "project": "LESHY2-RF-R2"
@@ -312,9 +312,9 @@
       "role": "rear actual-TX evidence, wired fault plane and fail-closed release gates",
       "instance_count": 98,
       "physical_symbol_pin_count": 336,
-      "connected_physical_pin_count": 314,
-      "explicit_no_connect_physical_pin_count": 22,
-      "hierarchical_interface_count": 53,
+      "connected_physical_pin_count": 315,
+      "explicit_no_connect_physical_pin_count": 21,
+      "hierarchical_interface_count": 54,
       "external_module_interface_count": 0,
       "external_module_interfaces": [],
       "project": "LESHY2-RF-R2"
@@ -339,51 +339,51 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_sch",
-      "sha256": "45911ab97c74a85ae80ca281eafda7947da64cf1d5035bfb11a9c036dc2a4820"
+      "sha256": "f06f02a34e65d9d9bceb0bc6ed7d17aed0b26503baac57de263676e43b3c0209"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_01_USB_PD_CHARGE.kicad_sch",
-      "sha256": "069a285f61e34519150ca07e9c1530e8763ab5430de5853e86de9f7cde1882ee"
+      "sha256": "1797bd2f56083f54ccf470d861abb9ee10547cb9144aeaa6b7df0595a9b47511"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_02_PACK_SAFETY_AON.kicad_sch",
-      "sha256": "1788c44204a8cf56275b30843dd4570b84513949e175663e221b0a0fcd07a70b"
+      "sha256": "f9cf9450968cdb2fa3ec562f75987b0b47b6043c61ac90164672caee16dc7b55"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch",
-      "sha256": "bcff6fc1fee791e4f42f8330f77b7e4221310d23592031c630ea33630aa555ec"
+      "sha256": "178495869ba2a9f3481b332d2d9066b1825a2d67a9fd36b5bd6d4a45a5a13b6f"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_10_RP2354_CORE_SERVICE.kicad_sch",
-      "sha256": "237b6ed875225c57449adad74539d5bdd22fa7010a0a9f48fe64844dfe2ea106"
+      "sha256": "cfd5545d52d085c051dd927c6e7d3620ef75ce58401146e1cb0a4447eeb05e9d"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_20_CC1101_VOICE_TX.kicad_sch",
-      "sha256": "356f3256c422bad206924f35241f9f34990fcf34dba5f5e33bbcd2f86a8ce8c5"
+      "sha256": "466a5d6d2be351ba4f19ffa110e97bde4018fc711861eaa019618ed4fdf7ee36"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_21_BROADCAST_AIRBAND_RX.kicad_sch",
-      "sha256": "527e88a7abf1cfc2c68c97f73f6f2147950de49b91ca0062789333bfdf98dc62"
+      "sha256": "a47d3939d94e5e0006917c339e1fadbad67e123bf1037449f592ba75459e42ac"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_22_AUDIO_CODEC_IO.kicad_sch",
-      "sha256": "2955d119b701d85895773b037bf79cf046e5496c1050c012b4ea4d357a4e6786"
+      "sha256": "1bbdfd1539f98a58360c9238adfd0ffdb80af0203638784fb8ca76be9e702b8d"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_30_U214_U219_M5_EXT.kicad_sch",
-      "sha256": "a14423b6d9c38254b7df05231bb79f956dd592450cc4860833a0ed64e98715e0"
+      "sha256": "8b218e1db3fec7f1fb9680b09fc250142f92d49d9dbbfdd060d57b69be6ac758"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_31_REAR_CONTROLS.kicad_sch",
-      "sha256": "70d4330f72ea32c7bc482e3352c059c060d94d809002f0a013c3edd7ae5576b4"
+      "sha256": "76a92c6354f692258fe3ad5aa4835766d96c699824fb65a6f92090203ac8cb77"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_40_INTERBOARD_M1.kicad_sch",
-      "sha256": "7a8a929e5e6db5207dcc7309ed3c51809a9c870865737c75284fe0812d86fe47"
+      "sha256": "d9f890483f10c69a7a3224f51c1cdb66e1b3663a54d405b20e6c0ece03d5bfe2"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_50_TX_SAFETY_EVIDENCE.kicad_sch",
-      "sha256": "421d90d6b048dc36da0ae1f8e7c0135acf4bbb777f4cb6b078efdaa45b084c22"
+      "sha256": "7ef258ede9e8cc6a71b9e091f61571ac244796230ccf73bf88683feb4edb33ad"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch",
@@ -407,31 +407,31 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_10_S3_DISPLAY_TOUCH.kicad_sch",
-      "sha256": "be50ee09ae6e090a817d38f720a462e2df4f90795cac6b06291e2c13b8933087"
+      "sha256": "353cf17bdc794f3a5fc4b7ccfc2d6f7115a5481cf9cf3b883c15dfb2e5dcd3f1"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_11_STORAGE_CONTROLS_INDICATORS.kicad_sch",
-      "sha256": "14aa981fb8373623e66ca6be22c2b1491bdf5bd383f417b04e0c6b0dd7937197"
+      "sha256": "1ca2961cc07e4400c283e2d5a62696262cd111e74dab48635b25570a3d899d5f"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch",
-      "sha256": "02f9f016978f5e01eb58db89416e94e23be1c18c8a13cdd390db8e7b179f897e"
+      "sha256": "045c0d96cde476770f273d96a9fc719c68d4b8e9b0cfbf7c32a4d5d82e6f39d1"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_30_HUB_RP_CORE_SERVICE.kicad_sch",
-      "sha256": "9f52ea3f5ce0f8382a69a266b9b441908788b513cafc5ff7daa474bca5020f89"
+      "sha256": "2b9ff83f1cd526a9623febc0457411f30fac3afdab6b1efb94dcb7debabe348c"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_31_NRF24_X3_TX_EVIDENCE.kicad_sch",
-      "sha256": "4173fb2c217890bb94d5f0afe276b876823022297a232dbb3c6440bcab2d8e97"
+      "sha256": "b48694ce06d9547cf8e5a944c495414df8f8c36a0c2ec297cc6cffb8ae67c043"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_40_INTERBOARD_M1.kicad_sch",
-      "sha256": "64270a70bea6384a20d30dda06884f8a13ec5a6b463f5b8bbf5677b39abefe48"
+      "sha256": "404b145ff5eaced7965c61ab93d6ea2bda587f8b231078c29230f85ec814fe5a"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_50_FRONT_POWER_SAFETY.kicad_sch",
-      "sha256": "350685812810eedb000976966cfa130c3e59b1b54a6862c24af17992dfd859ef"
+      "sha256": "8f26f2c7543bac0668136988b0ec4e4237e80fac0d6c67754062bd1cab11536a"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch",

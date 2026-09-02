@@ -4,15 +4,15 @@
   "marker": "H3-R2.0.2",
   "status": "pass",
   "accepted_input": "H3-R2.0.1",
-  "input_freeze_sha256": "2cb4e94a0e945d844543ae9a6fdbc7de772358676426763ded84ed4f6e10ac1c",
-  "register_sha256": "1ead5b41645be356ce1e1ac831a58c1896b79275c7b3d152012ca4ddd9292fbe",
+  "input_freeze_sha256": "99361b8152e1a223aa74db40ef33aeafb619c7ffd8d37b6bf08d11851d84cc87",
+  "register_sha256": "e6b915679e4d84e5a63f397866ed6b255d08c96cd4a1f3f49db51d92df6055da",
   "source_sha256": {
-    "hardware/verification/h3-r2-parameter-provenance-contract.json": "7de656dfbc2582f137d250f4d4ca28e5ef986a11338a01b79ee097693ee06307",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "f448168470c39be2b09114bf88c3c179a6977549046bd68c5398febe3728f385",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "d0e9edfb67fdc83d07c4e03005f5d8ec38d4aa513cbb1f962599e0c7baf8a90a",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "5dc7ac1e0ce44c297f0281b4fcbc35a26353439e5ae1a06e314217cde209e328",
-    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "6bdbd40b6a2bf9d86e7e812c954a806710b2fe8be4eead592a92a1436829da4a",
-    "hardware/architecture/devices.json": "2caf023fb65a15be416b66686f7bcbd9ce199f8c8a55c4d37457782e73ceb6ef"
+    "hardware/verification/h3-r2-parameter-provenance-contract.json": "fb26cd78c18234ef1c02ce4ea6af5d4a21b0206229a5034e55c065b08f5d0346",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "77eba64453b5979af0577de91cf6b5871fe6a892d45997300440446b61d25a7f",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "5b59d8dbcf142296f2d299f136987486325e7758b9c2bb76bdd82e824559acaf",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "56ebc2d92be86a2b1059d72f374a11be5d4d562dbfedd14de7b76adbe15ae6d2",
+    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "58edf8e83979aa76246f501d6943d139a1683ef87b786e693af17046a5b847ee",
+    "hardware/architecture/devices.json": "23b5799bc5334f9d02c13635c7f9e4f7503929795c669e98223fc37b95cc1c04"
   },
   "policy": {
     "accepted_h2_identity_is_immutable": true,
@@ -22,32 +22,32 @@
     "no_component_replacement_or_order_is_authorized": true
   },
   "summary": {
-    "component_groups": 238,
-    "board_component_groups": 232,
+    "component_groups": 251,
+    "board_component_groups": 245,
     "explicit_non_pcba_groups": 6,
-    "fitted_board_instances": 1183,
+    "fitted_board_instances": 1208,
     "source_missing": 0,
     "factory_catalog_only_parameter_sources": 0,
-    "groups_with_structured_parameter_seeds": 74,
-    "groups_in_explicit_parameter_extraction_queue": 164,
-    "manufacturer_primary_sources": 238,
-    "model_method_candidates": 238,
-    "owned_component_groups": 238,
+    "groups_with_structured_parameter_seeds": 75,
+    "groups_in_explicit_parameter_extraction_queue": 176,
+    "manufacturer_primary_sources": 251,
+    "model_method_candidates": 251,
+    "owned_component_groups": 251,
     "parameter_classes": {
       "analog_peripheral": 6,
       "connector_interconnect": 12,
-      "digital_interface": 33,
-      "electromechanical_or_load": 7,
-      "general_component": 37,
-      "passive_corner": 117,
-      "power_safety_active": 11,
+      "digital_interface": 34,
+      "electromechanical_or_load": 8,
+      "general_component": 39,
+      "passive_corner": 124,
+      "power_safety_active": 13,
       "programmable_controller": 2,
       "radio_rf": 13
     },
     "structured_by_parameter_class": {
       "analog_peripheral": 3,
       "connector_interconnect": 6,
-      "digital_interface": 18,
+      "digital_interface": 19,
       "general_component": 17,
       "passive_corner": 19,
       "power_safety_active": 3,
@@ -69,6 +69,24 @@
       "url": "https://www.ralec.com/en-global/product_search/index/?page=1&part_no=RTT023R00FTH",
       "checked": "2026-08-31",
       "reason": "replace the factory catalogue card as electrical provenance while retaining C166468 as the assembly route"
+    },
+    "prodtech_pspmaa0605h_2r2m_anp": {
+      "document": "PROD Tech PSPMAA0412-1265 series manufacturer datasheet, including exact PSPMAA0605H-2R2M-ANP electrical and dimensional rows",
+      "url": "https://datasheet.lcsc.com/lcsc/2409291213_PROD-Tech-PSPMAA0805-6R8M-ANP_C2962884.pdf",
+      "checked": "2026-09-02",
+      "reason": "bind the exact 2.2 uH code to the manufacturer-issued 20% tolerance, 13.5 mOhm maximum DCR, 8 A Irms, 14 A Isat and 0605H geometry while retaining C2983088 only as the assembly route"
+    },
+    "samsung_cl05b104kb5nnnc": {
+      "document": "Samsung Electro-Mechanics official CL05B104KB5NNN family product record, including exact C packaging suffix",
+      "url": "https://product.samsungsem.com/mlcc/CL05B104KB5NNN.do",
+      "checked": "2026-09-02",
+      "reason": "use the original manufacturer product record for the exact 100 nF 50 V X7R bootstrap capacitor while retaining C960916 only as the assembly route"
+    },
+    "samsung_cl10b105ko8nnnc": {
+      "document": "Samsung Electro-Mechanics official CL10B105KO8NNN family product record, including exact C packaging suffix",
+      "url": "https://product.samsungsem.com/mlcc/CL10B105KO8NNN.do",
+      "checked": "2026-09-02",
+      "reason": "use the original manufacturer product record for the exact 1 uF 16 V X7R VCC capacitor while retaining C59782 only as the assembly route"
     },
     "suzhou_liming_3225_27_00_10_10_10_a": {
       "document": "Suzhou Liming TX3 exact-series manufacturer datasheet for 3225-27.00-10-10-10/A",
@@ -99,7 +117,7 @@
         "Y2"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C1985475",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "ABM8 low-profile SMD crystal datasheet and exact order-code data",
         "version": "current product data checked 2026-08-18",
@@ -163,7 +181,7 @@
         "Y1"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C20625731",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "ABM8-272-T3 source-control drawing and Raspberry Pi Hardware design with RP2350 chapter 4",
         "version": "Abracon drawing 456603 revision B; Raspberry Pi guide current 2026-08-23",
@@ -226,10 +244,10 @@
       ],
       "references": [
         "L1",
-        "L5"
+        "L4"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C42411119",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "AOTA-B201610S3R3-101-T exact datasheet and Raspberry Pi Hardware design with RP2350 chapter 2",
         "version": "Abracon revision A 2024-09-13; Raspberry Pi guide current 2026-08-23",
@@ -276,7 +294,7 @@
       "mpn": "Analog Devices AD8314ARMZ-REEL",
       "manufacturer": null,
       "kind": "msop8_100mhz_2_7ghz_log_rf_detector",
-      "role": "six real-TX RF detectors / шесть RF-детекторов фактической передачи",
+      "role": "det_cc;det_nrf0;det_nrf1;det_nrf2;det_voice;det_voice_v",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 6,
@@ -293,9 +311,9 @@
         "U32",
         "U33",
         "U34",
-        "U35",
         "U36",
-        "U37"
+        "U37",
+        "U38"
       ],
       "lifecycle": "production_active_explicit_jlcpcb_presale_route",
       "jlcpcb_part_number": "C652687",
@@ -370,8 +388,8 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "U51",
-        "U57"
+        "U52",
+        "U58"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C579555",
@@ -425,7 +443,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "U54"
+        "U55"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C462645",
@@ -466,7 +484,7 @@
       "mpn": "LTC5532ES6#TRMPBF",
       "manufacturer": null,
       "kind": "tsot23_6_rf_power_detector_300mhz_7ghz",
-      "role": "S3/C5 2.4/5-GHz TX detectors / детекторы TX S3/C5 2,4/5 ГГц",
+      "role": "det_c5;det_s3",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -482,7 +500,7 @@
         "U52"
       ],
       "lifecycle": "production",
-      "jlcpcb_part_number": "C580926",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "LTC5532 Precision 300MHz to 7GHz RF Detector datasheet",
         "version": "5532f",
@@ -538,7 +556,7 @@
         "U9"
       ],
       "lifecycle": "recommended_for_new_designs",
-      "jlcpcb_part_number": "C7457895",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "MAX17320 2S-4S ModelGauge m5 gauge/protector datasheet",
         "version": "Rev. 12, July 2025",
@@ -593,7 +611,7 @@
         "SW3"
       ],
       "lifecycle": "active_standard",
-      "jlcpcb_part_number": "C202365",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "EC11E Series Incremental Encoder catalog and product specification",
         "version": "catalog update 2510",
@@ -633,7 +651,7 @@
       "mpn": "Alps Alpine SKRTLAE010",
       "manufacturer": null,
       "kind": "spst_no_side_actuated_smt_tact_switch",
-      "role": "c5_boot_button, c5_reset_button, rp_boot_button, rp_reset_button, s3_boot_button, s3_reset_button",
+      "role": "c5_boot_button;c5_reset_button;rp_boot_button;rp_reset_button;s3_boot_button;s3_reset_button",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 8,
@@ -659,7 +677,7 @@
         "SW21"
       ],
       "lifecycle": "standard_active_orderable",
-      "jlcpcb_part_number": "C110293",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "SKRTLAE010 official product page, dimensions, land pattern and circuit diagram",
         "version": "live manufacturer product record",
@@ -709,7 +727,7 @@
       "mpn": "Bourns CRM2512-FX-20R0ELF",
       "manufacturer": null,
       "kind": "20ohm_1pct_2w_2512_pulse_rated_diagnostic_load_resistor",
-      "role": "pack_diag_res0, pack_diag_res1",
+      "role": "pack_diag_res0;pack_diag_res1",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -725,7 +743,7 @@
         "R21"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C1848837",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Bourns CRM2512 high-power resistor datasheet with pulse-load curve",
         "version": "Rev. 08/21; current product data checked 2026-08-18",
@@ -777,10 +795,10 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "U26"
+        "U27"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C29953",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "CC1101 Low-Power Sub-1 GHz RF Transceiver datasheet",
         "version": "SWRS061I",
@@ -835,7 +853,7 @@
         "SW5"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C221661",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Littelfuse C&K JS Series Sub-Miniature Slide Switches datasheet",
         "version": "VL 01/14/26",
@@ -898,9 +916,9 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "U56"
+        "U57"
       ],
-      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "lifecycle": "production_active_factory_global_sourcing_required",
       "jlcpcb_part_number": "C22402290",
       "source": {
         "document": "Coilcraft WBC series official data sheet",
@@ -952,7 +970,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "U55"
+        "U56"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C19191631",
@@ -1043,7 +1061,7 @@
       "mpn": "Diodes Incorporated 2N7002DW-7-F",
       "manufacturer": null,
       "kind": "dual_60v_nmos_sot363_hold_release",
-      "role": "pack_hold, pack_status_buffer, safe_reset_sink_a, safe_reset_sink_b",
+      "role": "pack_hold;pack_status_buffer;safe_reset_sink_a;safe_reset_sink_b",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 5,
@@ -1066,7 +1084,7 @@
         "Q6"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C83571",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "2N7002DW dual N-channel MOSFET datasheet",
         "version": "DS30120 Rev. 22-2, October 2021",
@@ -1108,7 +1126,7 @@
       "mpn": "Diodes Incorporated BAT54-7-F",
       "manufacturer": null,
       "kind": "single_schottky_system_source_isolation_diode",
-      "role": "cc_evidence_hold_diode, nrf_evidence_hold_diode, pack_system_diode, voice_evidence_hold_diode, voice_v_evidence_hold_diode",
+      "role": "cc_evidence_hold_diode;nrf_evidence_hold_diode;pack_system_diode;voice_evidence_hold_diode;voice_v_evidence_hold_diode",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 5,
@@ -1123,14 +1141,14 @@
         "UI_31_NRF24_X3_TX_EVIDENCE"
       ],
       "references": [
-        "U101",
+        "U107",
         "U12",
-        "U127",
-        "U128",
+        "U133",
+        "U134",
         "U48"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C106920",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "BAT54 surface-mount Schottky barrier diode datasheet",
         "version": "DS11005 Rev. 34-2, November 2023",
@@ -1172,7 +1190,7 @@
       "mpn": "Diodes Incorporated DMN2056U-7",
       "manufacturer": null,
       "kind": "20v_low_gate_drive_nmos_diagnostic_load_switch",
-      "role": "backlight_mosfet, ir_tx_mosfet, pack_diag_switch",
+      "role": "backlight_mosfet;ir_tx_mosfet;pack_diag_switch",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 5,
@@ -1235,7 +1253,7 @@
       "mpn": "Diodes Incorporated MMBT3904-7-F",
       "manufacturer": null,
       "kind": "40v_200ma_npn_switched_rail_pg_fault_qualifier",
-      "role": "ext_pg_qualifier, voice_pg_qualifier",
+      "role": "ext_pg_qualifier;voice_pg_qualifier",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -1305,10 +1323,10 @@
         "RF_22_AUDIO_CODEC_IO"
       ],
       "references": [
-        "U85"
+        "U86"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C4990730",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "PAM8302A 2.5-W mono filterless Class-D audio amplifier datasheet",
         "version": "DS41333 Rev. 6-2, May 2021",
@@ -1424,7 +1442,7 @@
       "mpn": "Ebyte E01-ML01SP4",
       "manufacturer": null,
       "kind": "smd_pa_lna_radio_module",
-      "role": "three 20-dBm PA/LNA full-function nRF24 radios / три полнофункциональных nRF24 с PA/LNA 20 dBm",
+      "role": "nrf0;nrf1;nrf2",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 3,
@@ -1494,10 +1512,10 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "U61"
+        "U62"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C841881",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "FC-135 32.768-kHz crystal-unit specification",
         "version": "current product specification checked 2026-08-18",
@@ -1612,7 +1630,7 @@
         "U1"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C3013946",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "ESP32-S3-WROOM-1/WROOM-1U Datasheet",
         "version": "v1.8",
@@ -1664,7 +1682,7 @@
         "RF_22_AUDIO_CODEC_IO"
       ],
       "references": [
-        "U72"
+        "U73"
       ],
       "lifecycle": "current manufacturer product brief revision 17.0 dated 2026-02; production sourcing and lot qualification remain open",
       "jlcpcb_part_number": "C962342",
@@ -1707,7 +1725,7 @@
       "mpn": "FH RS-06K47R0FT",
       "manufacturer": null,
       "kind": "47ohm_1pct_1206_0_25w_ir_emitter_current_limit_resistor",
-      "role": "stocked IR emitter current-limit resistor / складской токоограничивающий резистор IR",
+      "role": "ir_emitter_limit",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 1,
@@ -1837,7 +1855,7 @@
       "mpn": "GCT RFPC-SMA31-FN-175-A",
       "manufacturer": null,
       "kind": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
-      "role": "eight standard outward SMA / восемь внешних SMA",
+      "role": "cc_external_sma;nrf0_external_sma;nrf1_external_sma;nrf2_external_sma;receiver_amlw_external_sma;receiver_fmsw_external_sma;voice_external_sma;voice_v_external_sma",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 8,
@@ -1915,7 +1933,7 @@
       "mpn": "GCT RFPC-SMA32-FN-175-A",
       "manufacturer": null,
       "kind": "6ghz_ip67_reverse_polarity_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
-      "role": "two native-radio RP-SMA / два RP-SMA native-радио",
+      "role": "c5_external_rp_sma;s3_external_rp_sma",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -1985,7 +2003,7 @@
       "mpn": "GCT USB4105-GF-A",
       "manufacturer": null,
       "kind": "usb_type_c_usb2_16_contact_top_mount_receptacle",
-      "role": "c5_service_usb_connector, rp_service_usb_connector",
+      "role": "c5_service_usb_connector;rp_service_usb_connector",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 3,
@@ -2005,7 +2023,7 @@
         "J9"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C3020560",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "USB4105 USB Type-C receptacle drawing and product specification",
         "version": "drawing revision B4 dated 2023-12-18; specification revision 2.2",
@@ -2060,7 +2078,7 @@
         "J5"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C114218",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "DM3 Series microSD Card Connectors catalog",
         "version": "2026-05-01 current catalog and exact product page",
@@ -2153,7 +2171,7 @@
       "mpn": "Hirose FX8C-80P-SV1(92)",
       "manufacturer": null,
       "kind": "80_contact_0_6mm_11mm_stack_mezzanine_plug",
-      "role": "80-contact UI-side interboard plug / 80-контактная межплатная вилка UI",
+      "role": "m1_ui_plug",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 1,
@@ -2168,7 +2186,7 @@
         "J18"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C7197102",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Hirose FX8C-80P-SV1(92) official product data, 2D drawing and FX8C mating table",
         "version": "product specifications updated 2026-02-07",
@@ -2216,7 +2234,7 @@
       "mpn": "Hirose FX8C-80S-SV5(92)",
       "manufacturer": null,
       "kind": "80_contact_0_6mm_11mm_stack_mezzanine_receptacle",
-      "role": "80-contact RF-side interboard receptacle / 80-контактная межплатная розетка RF",
+      "role": "m1_rf_receptacle",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 1,
@@ -2279,7 +2297,7 @@
       "mpn": "Hirose U.FL-R-SMT-1(80)",
       "manufacturer": null,
       "kind": "first_generation_ufl_6ghz_board_receptacle",
-      "role": "five native/module microcoax mates / пять микрокоаксиальных точек",
+      "role": "c5_rf_board_connector;nrf0_rf_board_connector;nrf1_rf_board_connector;nrf2_rf_board_connector;s3_rf_board_connector",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 5,
@@ -2352,7 +2370,7 @@
       "mpn": "Infineon BGS13SN8E6327XTSA1",
       "manufacturer": null,
       "kind": "pg_tsnp_8_1_100mhz_to_6ghz_sp3t_rf_switch",
-      "role": "cc_switch_a, cc_switch_b",
+      "role": "cc_switch_a;cc_switch_b",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -2364,8 +2382,8 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "U33",
-        "U34"
+        "U34",
+        "U35"
       ],
       "lifecycle": "active_orderable",
       "jlcpcb_part_number": null,
@@ -2449,7 +2467,7 @@
         "J1"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C3197885",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "JAE DX07S016JA1R1500 official exact-product page",
         "url": "https://products.jae.com/jp/ja/connectors/category/io/dx07-receptacle/dx07s016ja1r1500/",
@@ -2489,7 +2507,7 @@
       "mpn": "KEMET C0402C102K5RACTU",
       "manufacturer": null,
       "kind": "1nf_10pct_50v_x7r_0402_charger_sdrv_capacitor",
-      "role": "charger_sdrv_cap, ir_evidence_feedback_cap",
+      "role": "charger_sdrv_cap;ir_evidence_feedback_cap",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -2507,7 +2525,7 @@
         "C82"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C2649506",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "KEMET C0402C102K5RACTU product specification and TI reference BOM",
         "version": "current product data checked 2026-08-18",
@@ -2548,7 +2566,7 @@
       "mpn": "KEMET C0402C330J5GACTU",
       "manufacturer": null,
       "kind": "33pf_5pct_50v_c0g_0402_buck_feedforward_capacitor",
-      "role": "c5_detector_output_cap, ext_buck_ff_cap, main_ff_cap, s3_detector_output_cap, voice_ff_cap",
+      "role": "c5_detector_output_cap;ext_buck_ff_cap;main_ff_cap;s3_detector_output_cap;voice_ff_cap",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 5,
@@ -2564,14 +2582,14 @@
         "UI_20_C5_WIFI_IR_SERVICE"
       ],
       "references": [
-        "C135",
+        "C140",
         "C23",
         "C3",
         "C59",
-        "C73"
+        "C75"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C2649530",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "KEMET C0402C330J5GACTU product specification",
         "version": "current product data checked 2026-08-18",
@@ -2614,7 +2632,7 @@
       "mpn": "Keystone Electronics 1048P",
       "manufacturer": null,
       "kind": "dual_18650_smt_polarized_open_holder",
-      "role": "dual protected-18650 holder / держатель двух защищённых 18650",
+      "role": "pack_holder",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 1,
@@ -2629,7 +2647,7 @@
         "BT1"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C6038062",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Keystone 1048P exact product page and 18650 holder drawing",
         "version": "current product page and catalog M65 p27 checked 2026-08-18",
@@ -2669,7 +2687,7 @@
       "mpn": "KYOCERA AVX CP0603Q5425ENTR",
       "manufacturer": null,
       "kind": "0603_dual_band_wifi_directional_coupler",
-      "role": "c5_rf_coupler, s3_rf_coupler",
+      "role": "c5_rf_coupler;s3_rf_coupler",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -2686,7 +2704,7 @@
         "U3"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C2654257",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "CP0302/CP0402/CP0603 High Directivity Directional Couplers for WiFi Bands",
         "version": "TDS-RFM-0055 Rev. 2",
@@ -2750,6 +2768,112 @@
       "symbol_electrical_contract_sha256": "2254fd5a8725897a723e461a44d8e5bdbb0030eda962b0bb93595f20468a6f97"
     },
     {
+      "device_id": "leshy2_nfc_pickup_loop_r2",
+      "mpn": "LESHY2-NFC-PICKUP-LOOP-R2",
+      "manufacturer": "Leshy2 PCB copper",
+      "kind": "weakly_coupled_13_56mhz_printed_pickup_loop",
+      "role": "weakly coupled printed NFC evidence loop; PCB copper feature excluded from BOM",
+      "scope": "base_product",
+      "ecad_disposition": "schematic_component_group",
+      "quantity_per_product": 1,
+      "fitted_board_instance_count": 1,
+      "projects": [
+        "LESHY2-RF-R2"
+      ],
+      "sheets": [
+        "RF_30_U214_U219_M5_EXT"
+      ],
+      "references": [
+        "L32"
+      ],
+      "lifecycle": "fabricated_as_part_of_rf_power_pcb",
+      "jlcpcb_part_number": null,
+      "source": {
+        "document": "H1-R2.38 fixed U219 NFC pickup-loop geometry",
+        "url": "hardware/product-design/h1-r2-placement.json",
+        "checked": "2026-09-02"
+      },
+      "source_tier": "manufacturer_primary_accepted_h2",
+      "accepted_h2_source_preserved": {
+        "document": "H1-R2.38 fixed U219 NFC pickup-loop geometry",
+        "url": "hardware/product-design/h1-r2-placement.json",
+        "checked": "2026-09-02"
+      },
+      "source_host": "",
+      "parameter_class": "electromechanical_or_load",
+      "required_parameter_groups": [
+        "rating",
+        "operating_tolerance",
+        "contact_or_drop",
+        "pulse_or_thermal",
+        "lifecycle"
+      ],
+      "structured_parameters": {},
+      "structured_parameter_count": 0,
+      "parameter_state": "explicit_extraction_queue",
+      "model_method_candidate": "datasheet_corner_model",
+      "model_method_state": "candidate_pending_H3-R2.0.3",
+      "owner_workstreams": [
+        "H3-R2.5"
+      ],
+      "factory_catalog_parameter_gap": null,
+      "symbol_contact_map_sha256": "71ed2272b4d6b0b9f1e91681799b6a121212ace7d62e36eef26938617e5973e2",
+      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "device_id": "leshy2_pcb_testpoint_pad_1mm_r2",
+      "mpn": "LESHY2-PCB-TP-1MM-R2",
+      "manufacturer": "Leshy2 PCB copper",
+      "kind": "exposed_1mm_smd_copper_testpoint",
+      "role": "raw main-converter Power-Good diagnostic copper pad; excluded from BOM",
+      "scope": "base_product",
+      "ecad_disposition": "schematic_component_group",
+      "quantity_per_product": 1,
+      "fitted_board_instance_count": 1,
+      "projects": [
+        "LESHY2-RF-R2"
+      ],
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES"
+      ],
+      "references": [
+        "TP1"
+      ],
+      "lifecycle": "fabricated_as_part_of_product_pcb",
+      "jlcpcb_part_number": null,
+      "source": {
+        "document": "H2 raw-main Power-Good diagnostic requirement",
+        "url": "hardware/ecad/H2-sheet-contract.json",
+        "checked": "2026-09-02"
+      },
+      "source_tier": "manufacturer_primary_accepted_h2",
+      "accepted_h2_source_preserved": {
+        "document": "H2 raw-main Power-Good diagnostic requirement",
+        "url": "hardware/ecad/H2-sheet-contract.json",
+        "checked": "2026-09-02"
+      },
+      "source_host": "",
+      "parameter_class": "general_component",
+      "required_parameter_groups": [
+        "operating_limits",
+        "dc_behavior",
+        "timing_or_frequency",
+        "temperature",
+        "applicability"
+      ],
+      "structured_parameters": {},
+      "structured_parameter_count": 0,
+      "parameter_state": "explicit_extraction_queue",
+      "model_method_candidate": "datasheet_corner_model",
+      "model_method_state": "candidate_pending_H3-R2.0.3",
+      "owner_workstreams": [
+        "H3-R2.1"
+      ],
+      "factory_catalog_parameter_gap": null,
+      "symbol_contact_map_sha256": "b0ad4856f3b2e9e8e1def69d965a8e2cdbc3996d70279366b5e137ad5fe3ba4a",
+      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
       "device_id": "liteon_ltst_c190kfkt",
       "mpn": "LTST-C190KFKT",
       "manufacturer": null,
@@ -2769,7 +2893,7 @@
         "D4"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C157740",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "LTST-C190KFKT SMD LED datasheet",
         "version": "BNS-OD-C131/A4",
@@ -2809,7 +2933,7 @@
       "mpn": "LTST-C190KRKT",
       "manufacturer": null,
       "kind": "0603_red_status_led",
-      "role": "c5_tx_led, cc_tx_led, ext_tx_led, ir_tx_led, nrf0_tx_led, nrf1_tx_led, nrf2_tx_led, s3_tx_led, voice_tx_led",
+      "role": "c5_tx_led;cc_tx_led;ext_tx_led;ir_tx_led;nrf0_tx_led;nrf1_tx_led;nrf2_tx_led;s3_tx_led;voice_tx_led",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 9,
@@ -2832,7 +2956,7 @@
         "D9"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C94869",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "LTST-C190KRKT SMD LED datasheet",
         "version": "BNS-OD-C131/A4",
@@ -2872,7 +2996,7 @@
       "mpn": "Littelfuse 0451005.MRL",
       "manufacturer": null,
       "kind": "5a_fast_nano2_surface_mount_fuse",
-      "role": "pack_fuse0, pack_fuse1",
+      "role": "pack_fuse0;pack_fuse1",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -2888,7 +3012,7 @@
         "F2"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C48467",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "451/453 Nano2 surface-mount fuse datasheet",
         "version": "current product data checked 2026-08-18",
@@ -2928,7 +3052,7 @@
       "mpn": "Littelfuse SESD0402X1UN-0020-090",
       "manufacturer": null,
       "kind": "0402_0_2pf_unidirectional_rf_esd_diode",
-      "role": "cc_rf_esd, receiver_ami_esd, receiver_fmi_esd",
+      "role": "cc_rf_esd;receiver_ami_esd;receiver_fmi_esd",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 3,
@@ -2946,7 +3070,7 @@
         "D5"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C1973340",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "SESD ultra-low-capacitance discrete TVS datasheet",
         "version": "current manufacturer document checked 2026-08-18",
@@ -3054,7 +3178,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "U52"
+        "U53"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C3008207",
@@ -3095,7 +3219,7 @@
       "mpn": "Murata BLM18PG181SN1D",
       "manufacturer": null,
       "kind": "180ohm_1_5a_0603_power_ferrite_bead",
-      "role": "codec_avdd_bead, codec_dvdd_bead, speaker_output_bead_n, speaker_output_bead_p",
+      "role": "codec_avdd_bead;codec_dvdd_bead;speaker_output_bead_n;speaker_output_bead_p",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 4,
@@ -3107,13 +3231,13 @@
         "RF_22_AUDIO_CODEC_IO"
       ],
       "references": [
+        "L28",
         "L29",
         "L30",
-        "L31",
-        "L32"
+        "L31"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C82850",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "BLM18PG181SN1 product specification",
         "version": "current manufacturer page checked 2026-08-18",
@@ -3169,8 +3293,8 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "C150",
-        "C153"
+        "C155",
+        "C158"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C126496",
@@ -3223,8 +3347,8 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "C152",
-        "C155"
+        "C157",
+        "C160"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C437436",
@@ -3277,10 +3401,10 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "C102"
+        "C107"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C85874",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata GJM high-frequency capacitor exact product data",
         "version": "current exact product data checked 2026-08-18",
@@ -3320,7 +3444,7 @@
       "mpn": "Murata GJM1555C1H101JB01D",
       "manufacturer": null,
       "kind": "100pf_50v_c0g_0402_high_q_rf_capacitor",
-      "role": "cc_rf_n_dc_block, cc_rf_p_dc_block",
+      "role": "cc_rf_n_dc_block;cc_rf_p_dc_block",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -3332,8 +3456,8 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "C123",
-        "C124"
+        "C128",
+        "C129"
       ],
       "lifecycle": "active_orderable",
       "jlcpcb_part_number": null,
@@ -3376,7 +3500,7 @@
       "mpn": "Murata GJM1555C1H150JB01D",
       "manufacturer": null,
       "kind": "15pf_50v_c0g_0402_high_q_rf_capacitor",
-      "role": "cc_crystal_load_q1, cc_crystal_load_q2, rp_clock_load_xin, rp_clock_load_xout",
+      "role": "cc_crystal_load_q1;cc_crystal_load_q2;rp_clock_load_xin;rp_clock_load_xout",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 7,
@@ -3392,16 +3516,16 @@
         "UI_30_HUB_RP_CORE_SERVICE"
       ],
       "references": [
-        "C110",
-        "C111",
-        "C168",
+        "C115",
+        "C116",
+        "C173",
         "C39",
         "C40",
-        "C81",
-        "C82"
+        "C86",
+        "C87"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C88877",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata GJM high-frequency capacitor exact product data",
         "version": "current exact product data checked 2026-08-18",
@@ -3455,10 +3579,10 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "C119"
+        "C124"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C72135",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata GJM high-frequency capacitor exact product data",
         "version": "current exact product data checked 2026-08-18",
@@ -3510,8 +3634,8 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "C151",
-        "C154"
+        "C156",
+        "C159"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C2181496",
@@ -3564,7 +3688,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "C165"
+        "C170"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C161327",
@@ -3617,7 +3741,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "C156"
+        "C161"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C2220921",
@@ -3670,7 +3794,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "C158"
+        "C163"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C2177031",
@@ -3723,10 +3847,10 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "C103"
+        "C108"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C161332",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata GJM high-frequency capacitor exact product data",
         "version": "current exact product data checked 2026-08-18",
@@ -3778,10 +3902,10 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "C101"
+        "C106"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C2191663",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata GJM high-frequency capacitor exact product data",
         "version": "current exact product data checked 2026-08-18",
@@ -3833,10 +3957,10 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "C115"
+        "C120"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C2168943",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata GJM high-frequency capacitor exact product data",
         "version": "current exact product data checked 2026-08-18",
@@ -3888,10 +4012,10 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "C122"
+        "C127"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C76913",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata GJM high-frequency capacitor exact product data",
         "version": "current exact product data checked 2026-08-18",
@@ -3943,17 +4067,17 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "C159",
-        "C160",
-        "C163",
         "C164",
-        "C170",
+        "C165",
+        "C168",
+        "C169",
         "C175",
-        "C176",
-        "C180"
+        "C180",
+        "C181",
+        "C185"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C76947",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata GRM1555C1H102JA01 exact-product specification",
         "version": "current manufacturer data checked 2026-08-18",
@@ -3998,7 +4122,7 @@
       "mpn": "Murata GRM1555C1H121JA01D",
       "manufacturer": null,
       "kind": "120pf_5pct_50v_c0g_0402_efuse_transient_timer_capacitor",
-      "role": "cc_detector_filter, main_efuse_itimer_cap, nrf0_detector_filter, nrf1_detector_filter, nrf2_detector_filter, voice_detector_filter, voice_efuse_itimer_cap, voice_v_detector_filter",
+      "role": "cc_detector_filter;main_efuse_itimer_cap;nrf0_detector_filter;nrf1_detector_filter;nrf2_detector_filter;voice_detector_filter;voice_efuse_itimer_cap;voice_v_detector_filter",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 8,
@@ -4013,17 +4137,17 @@
         "UI_31_NRF24_X3_TX_EVIDENCE"
       ],
       "references": [
-        "C114",
-        "C131",
-        "C133",
-        "C148",
+        "C119",
+        "C136",
+        "C138",
+        "C153",
         "C60",
         "C66",
-        "C71",
-        "C72"
+        "C72",
+        "C73"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C76949",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata GRM1555C1H121JA01 product data",
         "version": "current product data checked 2026-08-18",
@@ -4064,7 +4188,7 @@
       "mpn": "Murata GRM1555C1H220JA01D",
       "manufacturer": null,
       "kind": "22pf_5pct_50v_c0g_0402_crystal_load_capacitor",
-      "role": "receiver_clock_cap_gpo3, receiver_clock_cap_rclk",
+      "role": "receiver_clock_cap_gpo3;receiver_clock_cap_rclk",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -4076,11 +4200,11 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "C178",
-        "C179"
+        "C183",
+        "C184"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C76960",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata GRM series exact-product specification",
         "version": "current exact order code checked 2026-08-18",
@@ -4120,7 +4244,7 @@
       "mpn": "Murata GRM1555C1H221JA01D",
       "manufacturer": null,
       "kind": "220pf_5pct_50v_c0g_0402_usb_cc_capacitor",
-      "role": "pd_cc1_cap, pd_cc2_cap, speaker_output_cap_n, speaker_output_cap_p",
+      "role": "pd_cc1_cap;pd_cc2_cap;speaker_output_cap_n;speaker_output_cap_p",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 4,
@@ -4135,11 +4259,11 @@
       "references": [
         "C20",
         "C21",
-        "C232",
-        "C233"
+        "C237",
+        "C238"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C71693",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata GRM1555C1H221JA01 product data",
         "version": "current product data checked 2026-08-18",
@@ -4180,7 +4304,7 @@
       "mpn": "Murata GRM1555C1H390JA01D",
       "manufacturer": null,
       "kind": "39pf_5pct_50v_c0g_0402_rf_coupling_capacitor",
-      "role": "c5_detector_input_cap, s3_detector_input_cap",
+      "role": "c5_detector_input_cap;s3_detector_input_cap",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -4197,7 +4321,7 @@
         "C22"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C76966",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata GRM1555C1H390JA01 exact-product specification",
         "version": "current exact order code checked 2026-08-18",
@@ -4250,10 +4374,10 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "C177"
+        "C182"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C88946",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata GRM exact-part list and product specification",
         "version": "current manufacturer data checked 2026-08-18",
@@ -4298,7 +4422,7 @@
       "mpn": "Murata GRM155R71E473KA88D",
       "manufacturer": null,
       "kind": "47nf_10pct_25v_x7r_0402_charger_bootstrap_capacitor",
-      "role": "charger_btst1_cap, charger_btst2_cap",
+      "role": "charger_btst1_cap;charger_btst2_cap",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -4354,11 +4478,11 @@
       "mpn": "Murata GRM155R71H103KA88D",
       "manufacturer": null,
       "kind": "10nf_10pct_50v_x7r_0402_adc_filter_capacitor",
-      "role": "codec_tx_filter, pack_admission_reset_cap, pack_mid_adc_filter, pack_stack_adc_filter, safety_controller_reset_cap, u214_supervisor_ct, unit_supervisor_ct, voice_supervisor_ct",
+      "role": "codec_tx_filter;pack_admission_reset_cap;pack_mid_adc_filter;pack_stack_adc_filter;safety_controller_reset_cap;u214_supervisor_ct;unit_supervisor_ct;voice_supervisor_ct",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 8,
-      "fitted_board_instance_count": 8,
+      "quantity_per_product": 9,
+      "fitted_board_instance_count": 9,
       "projects": [
         "LESHY2-RF-R2"
       ],
@@ -4370,11 +4494,12 @@
         "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "references": [
-        "C146",
-        "C217",
-        "C240",
-        "C248",
-        "C272",
+        "C151",
+        "C222",
+        "C245",
+        "C247",
+        "C257",
+        "C281",
         "C39",
         "C50",
         "C53"
@@ -4423,7 +4548,7 @@
       "mpn": "Murata GRM155R71H472KA01D",
       "manufacturer": null,
       "kind": "4_7nf_10pct_50v_x7r_0402_efuse_slew_capacitor",
-      "role": "ext_dvdt_cap, main_efuse_dvdt_cap, unit_dvdt_cap, voice_efuse_dvdt_cap",
+      "role": "ext_dvdt_cap;main_efuse_dvdt_cap;unit_dvdt_cap;voice_efuse_dvdt_cap",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 4,
@@ -4437,10 +4562,10 @@
         "RF_30_U214_U219_M5_EXT"
       ],
       "references": [
-        "C132",
-        "C241",
+        "C137",
+        "C250",
         "C64",
-        "C70"
+        "C72"
       ],
       "lifecycle": "active",
       "jlcpcb_part_number": "C77024",
@@ -4484,7 +4609,7 @@
       "mpn": "Murata GRM188R60J106ME47D",
       "manufacturer": null,
       "kind": "10uf_20pct_6_3v_x5r_0603_pd_ldo_capacitor",
-      "role": "aon_efuse_output_cap, backlight_efuse_output_bulk, codec_power_output_cap, display_logic_bulk_cap, headset_microphone_bias_filter_cap, ir_power_output_cap, main_efuse_output_cap, microphone_bias_filter_cap, nrf0_module_bulk_cap, nrf1_module_bulk_cap, nrf2_module_bulk_cap, pack_admission_bulk_cap, pd_ldo1v5_cap, pd_ldo3v3_cap, pd_vin_cap, receiver_power_output_cap, safety_controller_bulk, speaker_amp_bulk_cap, voice_efuse_output_cap",
+      "role": "aon_efuse_output_cap;backlight_efuse_output_bulk;codec_power_output_cap;display_logic_bulk_cap;headset_microphone_bias_filter_cap;ir_power_output_cap;main_efuse_output_cap;microphone_bias_filter_cap;nrf0_module_bulk_cap;nrf1_module_bulk_cap;nrf2_module_bulk_cap;pack_admission_bulk_cap;pd_ldo1v5_cap;pd_ldo3v3_cap;pd_vin_cap;receiver_power_output_cap;safety_controller_bulk;speaker_amp_bulk_cap;voice_efuse_output_cap",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 19,
@@ -4507,27 +4632,27 @@
       ],
       "references": [
         "C10",
-        "C134",
-        "C184",
-        "C213",
-        "C225",
-        "C227",
-        "C228",
+        "C139",
+        "C189",
+        "C218",
         "C23",
+        "C230",
+        "C232",
+        "C233",
         "C24",
-        "C270",
+        "C279",
         "C30",
         "C35",
         "C37",
         "C55",
         "C62",
         "C68",
-        "C72",
+        "C74",
         "C74",
         "C8"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C77041",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata GRM188R60J106ME47 product data",
         "version": "current product data checked 2026-08-18",
@@ -4572,7 +4697,7 @@
       "mpn": "Murata GRM188R71E224KA88D",
       "manufacturer": null,
       "kind": "220nf_10pct_25v_x7r_0603_efuse_transient_timer_capacitor",
-      "role": "ext_itimer_cap, unit_itimer_cap",
+      "role": "ext_itimer_cap;unit_itimer_cap",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -4585,11 +4710,11 @@
         "RF_30_U214_U219_M5_EXT"
       ],
       "references": [
-        "C243",
+        "C252",
         "C67"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C77051",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata GRM188R71E224KA88 product data",
         "version": "current product data checked 2026-08-18",
@@ -4630,7 +4755,7 @@
       "mpn": "Murata GRM188R71E474KA12D",
       "manufacturer": null,
       "kind": "0_47uf_10pct_25v_x7r_0603_power_bypass_capacitor",
-      "role": "pack_aoldo_cap, pack_cp_cap, pack_reg2_cap, pack_reg3_cap",
+      "role": "pack_aoldo_cap;pack_cp_cap;pack_reg2_cap;pack_reg3_cap",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 4,
@@ -4648,7 +4773,7 @@
         "C52"
       ],
       "lifecycle": "active_stocked_orderable",
-      "jlcpcb_part_number": "C77052",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata GRM188R71E474KA12 exact product page",
         "version": "current product data checked 2026-08-19",
@@ -4694,7 +4819,7 @@
       "mpn": "Murata GRM188Z71A475ME15D",
       "manufacturer": null,
       "kind": "4_7uf_20pct_10v_x7r_0603_ir_receiver_filter_capacitor",
-      "role": "ir_carrier_supply_cap, ir_demod_supply_cap",
+      "role": "ir_carrier_supply_cap;ir_demod_supply_cap",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -4710,7 +4835,7 @@
         "C30"
       ],
       "lifecycle": "active_stocked_orderable",
-      "jlcpcb_part_number": "C3835885",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "GRM188Z71A475ME15 product data",
         "version": "current product data checked 2026-08-18",
@@ -4750,7 +4875,7 @@
       "mpn": "Murata GRM21BR60J226ME39L",
       "manufacturer": null,
       "kind": "22uf_20pct_6v3_x5r_0805_storage_bulk_capacitor",
-      "role": "headphone_l_coupling0, headphone_l_coupling1, headphone_r_coupling0, headphone_r_coupling1, s3_supply_bulk, sd_power_bulk_cap",
+      "role": "headphone_l_coupling0;headphone_l_coupling1;headphone_r_coupling0;headphone_r_coupling1;s3_supply_bulk;sd_power_bulk_cap",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 6,
@@ -4766,10 +4891,10 @@
       ],
       "references": [
         "C15",
-        "C219",
-        "C220",
-        "C221",
-        "C222",
+        "C224",
+        "C225",
+        "C226",
+        "C227",
         "C5"
       ],
       "lifecycle": "active",
@@ -4814,7 +4939,7 @@
       "mpn": "Murata GRM21BR71E225KE11L",
       "manufacturer": null,
       "kind": "2_2uf_10pct_25v_x7r_0805_efuse_local_capacitor",
-      "role": "ext_input_cap, ext_output_cap, safe_rearm_delay_cap, unit_input_cap, unit_output_cap",
+      "role": "ext_input_cap;ext_output_cap;safe_rearm_delay_cap;unit_input_cap;unit_output_cap",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 5,
@@ -4828,9 +4953,9 @@
         "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "references": [
-        "C242",
-        "C244",
-        "C266",
+        "C251",
+        "C253",
+        "C275",
         "C66",
         "C68"
       ],
@@ -4948,7 +5073,7 @@
         "C57"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C91604",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata GRM31CR71A226KE15 product data",
         "version": "current product data checked 2026-08-18",
@@ -4988,7 +5113,7 @@
       "mpn": "Murata GRM31CR71E106MA12L",
       "manufacturer": null,
       "kind": "10uf_20pct_25v_x7r_1206_charger_bulk_capacitor",
-      "role": "charger_bat_cap0, charger_bat_cap1, charger_pmid_cap0, charger_pmid_cap1, charger_pmid_cap2, charger_sys_cap0, charger_sys_cap1, charger_sys_cap2, charger_sys_cap3, charger_sys_cap4, charger_vbus_cap0, charger_vbus_cap1",
+      "role": "charger_bat_cap0;charger_bat_cap1;charger_pmid_cap0;charger_pmid_cap1;charger_pmid_cap2;charger_sys_cap0;charger_sys_cap1;charger_sys_cap2;charger_sys_cap3;charger_sys_cap4;charger_vbus_cap0;charger_vbus_cap1",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 12,
@@ -5014,7 +5139,7 @@
         "C7"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C440205",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata GRM31CR71E106MA12 product data",
         "version": "current product data checked 2026-08-18",
@@ -5054,11 +5179,11 @@
       "mpn": "Murata GRM32ER71E226KE15L",
       "manufacturer": null,
       "kind": "22uf_10pct_25v_x7r_1210_converter_bulk_capacitor",
-      "role": "thirteen 22-uF power capacitors / тринадцать силовых конденсаторов 22 мкФ",
+      "role": "ext_buck_input_cap;ext_buck_output_cap0;ext_buck_output_cap1;main_input_cap;main_output_cap0;main_output_cap1;pd_pphv_cap0;pd_pphv_cap1;pd_pphv_cap2;pd_pphv_cap3;voice_input_cap;voice_output_cap0;voice_output_cap1",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 13,
-      "fitted_board_instance_count": 13,
+      "quantity_per_product": 16,
+      "fitted_board_instance_count": 16,
       "projects": [
         "LESHY2-RF-R2"
       ],
@@ -5068,9 +5193,9 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "C138",
-        "C142",
         "C143",
+        "C147",
+        "C148",
         "C25",
         "C26",
         "C27",
@@ -5078,12 +5203,15 @@
         "C61",
         "C62",
         "C63",
-        "C75",
-        "C76",
-        "C77"
+        "C77",
+        "C78",
+        "C79",
+        "C80",
+        "C81",
+        "C82"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C21397",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata GRM32ER71E226KE15 product data and TI reference-BOM use",
         "version": "current product data checked 2026-08-18",
@@ -5124,7 +5252,7 @@
       "mpn": "Murata LQG15HS10NJ02D",
       "manufacturer": null,
       "kind": "10nh_0402_rf_inductor",
-      "role": "cc_315_l10_in, cc_315_l10_out, cc_868_915_l10",
+      "role": "cc_315_l10_in;cc_315_l10_out;cc_868_915_l10",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 3,
@@ -5136,12 +5264,12 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "L10",
+        "L5",
         "L6",
-        "L7"
+        "L9"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C77103",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata LQG15HS_02 RF inductor series specification",
         "version": "current exact product data checked 2026-08-18",
@@ -5193,10 +5321,10 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "L9"
+        "L8"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C86059",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata LQG15HS_02 RF inductor series specification",
         "version": "current exact product data checked 2026-08-18",
@@ -5248,10 +5376,10 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "L13"
+        "L12"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C86061",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata LQG15HS_02 RF inductor series specification",
         "version": "current exact product data checked 2026-08-18",
@@ -5303,10 +5431,10 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "L11"
+        "L10"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C86064",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata LQG15HS_02 RF inductor series specification",
         "version": "current exact product data checked 2026-08-18",
@@ -5358,10 +5486,10 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "L8"
+        "L7"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C19216",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata LQG15HS_02 RF inductor series specification",
         "version": "current exact product data checked 2026-08-18",
@@ -5413,10 +5541,10 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "L12"
+        "L11"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C77110",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Murata LQG15HS_02 RF inductor series specification",
         "version": "current exact product data checked 2026-08-18",
@@ -5468,8 +5596,8 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "L26",
-        "L27"
+        "L25",
+        "L26"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C3223181",
@@ -5522,7 +5650,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "L25"
+        "L24"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C237556",
@@ -5575,7 +5703,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "L28"
+        "L27"
       ],
       "lifecycle": "active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C167482",
@@ -5637,10 +5765,10 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
+        "L14",
         "L15",
         "L16",
-        "L17",
-        "L18"
+        "L17"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C2042201",
@@ -5693,8 +5821,8 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "L20",
-        "L23"
+        "L19",
+        "L22"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C162657",
@@ -5747,8 +5875,8 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "L19",
-        "L22"
+        "L18",
+        "L21"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C527968",
@@ -5801,7 +5929,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "L24"
+        "L23"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C703717",
@@ -5854,7 +5982,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "L21"
+        "L20"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C907989",
@@ -5950,7 +6078,7 @@
       "mpn": "Nexperia 74LVC126APW,118",
       "manufacturer": null,
       "kind": "tssop14_quad_noninverting_three_state_buffer_with_ioff",
-      "role": "cc_host_buffer, cc_return_buffer, nrf0_host_buffer, nrf1_host_buffer, nrf2_host_buffer, u214_host_buffer_a, u214_host_buffer_b, u214_return_buffer",
+      "role": "cc_host_buffer;cc_return_buffer;nrf0_host_buffer;nrf1_host_buffer;nrf2_host_buffer;u214_host_buffer_a;u214_host_buffer_b;u214_return_buffer",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 8,
@@ -5965,17 +6093,17 @@
         "UI_31_NRF24_X3_TX_EVIDENCE"
       ],
       "references": [
-        "U30",
-        "U32",
+        "U31",
+        "U33",
         "U37",
         "U41",
         "U45",
-        "U89",
         "U90",
-        "U92"
+        "U91",
+        "U93"
       ],
       "lifecycle": "production_active_orderable",
-      "jlcpcb_part_number": "C2442297",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "74LVC126A quad buffer/line driver product data sheet",
         "version": "Rev. 14, 12 June 2025",
@@ -6023,7 +6151,7 @@
       "mpn": "74LVC1G32GV,125",
       "manufacturer": null,
       "kind": "tsop5_single_or_gate",
-      "role": "ext_request_or, safe_ptt_or",
+      "role": "ext_request_or;safe_ptt_or",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -6036,11 +6164,11 @@
         "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "references": [
-        "U115",
+        "U121",
         "U19"
       ],
       "lifecycle": "production",
-      "jlcpcb_part_number": "C12517",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "74LVC1G32 Single 2-input OR gate datasheet",
         "version": "2024-09-03",
@@ -6082,7 +6210,7 @@
       "mpn": "Nexperia 74LVC2G126DP,125",
       "manufacturer": null,
       "kind": "tssop8_dual_noninverting_three_state_buffer_with_ioff",
-      "role": "cc_band_buffer, ir_return_buffer, nrf0_return_buffer, nrf1_return_buffer, nrf2_return_buffer",
+      "role": "cc_band_buffer;ir_return_buffer;nrf0_return_buffer;nrf1_return_buffer;nrf2_return_buffer",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 5,
@@ -6098,7 +6226,7 @@
       ],
       "references": [
         "U26",
-        "U29",
+        "U30",
         "U38",
         "U42",
         "U46"
@@ -6153,7 +6281,7 @@
       "mpn": "74LVC2G14GV,125",
       "manufacturer": null,
       "kind": "tsop6_dual_schmitt_inverter",
-      "role": "two stocked dual Schmitt inverters / два складских двойных Schmitt-инвертора",
+      "role": "safe_conditioner;voice_band_inverter",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 5,
@@ -6169,11 +6297,11 @@
         "UI_20_C5_WIFI_IR_SERVICE"
       ],
       "references": [
-        "U111",
+        "U117",
         "U17",
         "U20",
-        "U40",
-        "U58"
+        "U41",
+        "U59"
       ],
       "lifecycle": "production_active_factory_stocked_for_trial",
       "jlcpcb_part_number": "C426708",
@@ -6216,11 +6344,65 @@
       "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
+      "device_id": "nexperia_bat54s_215",
+      "mpn": "BAT54S,215",
+      "manufacturer": "Nexperia",
+      "kind": "dual_series_schottky_diode_sot23",
+      "role": "u219_field_bridge_d1;u219_field_bridge_d2",
+      "scope": "base_product",
+      "ecad_disposition": "schematic_component_group",
+      "quantity_per_product": 2,
+      "fitted_board_instance_count": 2,
+      "projects": [
+        "LESHY2-RF-R2"
+      ],
+      "sheets": [
+        "RF_30_U214_U219_M5_EXT"
+      ],
+      "references": [
+        "U95",
+        "U96"
+      ],
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "jlcpcb_part_number": "C47546",
+      "source": {
+        "document": "Nexperia BAT54 series Schottky barrier diodes datasheet",
+        "url": "https://assets.nexperia.com/documents/data-sheet/BAT54_SER.pdf",
+        "checked": "2026-09-02"
+      },
+      "source_tier": "manufacturer_primary_accepted_h2",
+      "accepted_h2_source_preserved": {
+        "document": "Nexperia BAT54 series Schottky barrier diodes datasheet",
+        "url": "https://assets.nexperia.com/documents/data-sheet/BAT54_SER.pdf",
+        "checked": "2026-09-02"
+      },
+      "source_host": "assets.nexperia.com",
+      "parameter_class": "power_safety_active",
+      "required_parameter_groups": [
+        "limits",
+        "loss_or_efficiency",
+        "threshold_tolerance",
+        "startup_fault_timing",
+        "thermal"
+      ],
+      "structured_parameters": {},
+      "structured_parameter_count": 0,
+      "parameter_state": "explicit_extraction_queue",
+      "model_method_candidate": "corner_equation_and_circuit_model",
+      "model_method_state": "candidate_pending_H3-R2.0.3",
+      "owner_workstreams": [
+        "H3-R2.5"
+      ],
+      "factory_catalog_parameter_gap": null,
+      "symbol_contact_map_sha256": "ab2164fcbbce61b9aab28e8c7fa6029c6c59a05b281c475361869db864857247",
+      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
       "device_id": "nexperia_pesd24vy1bsf",
       "mpn": "Nexperia PESD24VY1BSF",
       "manufacturer": null,
       "kind": "dsn0603_2_24v_0_17pf_bidirectional_antenna_esd_diode",
-      "role": "voice_rf_esd, voice_v_rf_esd",
+      "role": "voice_rf_esd;voice_v_rf_esd",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -6284,7 +6466,7 @@
       "mpn": "G-NiceRF SA818S-U",
       "manufacturer": null,
       "kind": "uhf_analog_voice_module",
-      "role": "UHF voice transceiver / UHF голосовой трансивер",
+      "role": "voice",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 1,
@@ -6296,7 +6478,7 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "U38"
+        "U39"
       ],
       "lifecycle": "current_orderable_product",
       "jlcpcb_part_number": "C3001549",
@@ -6356,7 +6538,7 @@
       "mpn": "G-NiceRF SA818S-V",
       "manufacturer": null,
       "kind": "vhf_analog_voice_module",
-      "role": "VHF voice transceiver / VHF голосовой трансивер",
+      "role": "voice_v",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 1,
@@ -6368,7 +6550,7 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "U50"
+        "U51"
       ],
       "lifecycle": "current_preorder_product",
       "jlcpcb_part_number": "C51897911",
@@ -6428,7 +6610,7 @@
       "mpn": "OMRON B3S-1100P",
       "manufacturer": null,
       "kind": "spst_no_direct_press_grounded_sealed_smt_tact_switch",
-      "role": "sixteen ordinary user keys / шестнадцать обычных клавиш",
+      "role": "ptt_switch;ui_dpad_down;ui_dpad_left;ui_dpad_ok;ui_dpad_right;ui_dpad_up;ui_switch_back;ui_switch_f1;ui_switch_f2;ui_switch_f3;ui_switch_f4;ui_switch_f5;ui_switch_f6;ui_switch_f7;ui_switch_f8;ui_switch_opt",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 16,
@@ -6460,7 +6642,7 @@
         "SW9"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C2733652",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
         "version": "A204-E1",
@@ -6510,7 +6692,7 @@
       "mpn": "BAT54ALT1G",
       "manufacturer": null,
       "kind": "sot23_dual_common_anode_schottky",
-      "role": "evidence_or_0, evidence_or_1, evidence_or_2, evidence_or_3, evidence_or_4",
+      "role": "evidence_or_0;evidence_or_1;evidence_or_2;evidence_or_3;evidence_or_4",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 5,
@@ -6522,14 +6704,14 @@
         "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "references": [
-        "U106",
-        "U107",
-        "U108",
-        "U109",
-        "U110"
+        "U112",
+        "U113",
+        "U114",
+        "U115",
+        "U116"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C92068",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "BAT54ALT1 Schottky Barrier Diodes datasheet",
         "version": "Rev. 16",
@@ -6584,7 +6766,7 @@
         "U11"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C82479",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "BAV70L dual common-cathode switching diode datasheet",
         "version": "Rev. 12",
@@ -6639,7 +6821,7 @@
         "U2"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C79986",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "CAT24C512 512-kb I2C serial EEPROM datasheet",
         "version": "Rev. 9",
@@ -6679,7 +6861,7 @@
       "mpn": "onsemi FSUSB42MUX",
       "manufacturer": null,
       "kind": "msop10_usb2_dpdt_power_off_protected_switch",
-      "role": "c5_service_usb_switch, rp_service_usb_switch",
+      "role": "c5_service_usb_switch;rp_service_usb_switch",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 3,
@@ -6695,11 +6877,11 @@
       ],
       "references": [
         "U22",
-        "U25",
+        "U26",
         "U31"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C11355",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "FSUSB42 low-power two-port high-speed USB 2.0 switch datasheet",
         "version": "Rev. 3, May 2022; current PDF checked 2026-08-19",
@@ -6749,11 +6931,11 @@
       "mpn": "Panasonic ERJ-2RKF22R0X",
       "manufacturer": null,
       "kind": "22ohm_1pct_0402_usb_series_resistor",
-      "role": "c5_service_usb_dm_series, c5_service_usb_dp_series, cc_band_v1_series, cc_band_v2_series, cc_csn_series, cc_gdo0_series, cc_gdo2_series, cc_sclk_series, cc_si_series, cc_so_series, headphone_l_series, headphone_r_series, nrf0_ce_series, nrf0_csn_series, nrf0_irq_series, nrf0_miso_series, nrf0_mosi_series, nrf0_sck_series, nrf1_ce_series, nrf1_csn_series, nrf1_irq_series, nrf1_miso_series, nrf1_mosi_series, nrf1_sck_series, nrf2_ce_series, nrf2_csn_series, nrf2_irq_series, nrf2_miso_series, nrf2_mosi_series, nrf2_sck_series, product_usb_dm_series, product_usb_dp_series, sd_cmd_series, sd_cs_series, sd_miso_series, sd_sck_series, u214_series_busy, u214_series_gps_rx, u214_series_gps_tx, u214_series_irq, u214_series_miso, u214_series_mosi, u214_series_nss, u214_series_rst, u214_series_sck",
+      "role": "c5_service_usb_dm_series;c5_service_usb_dp_series;cc_band_v1_series;cc_band_v2_series;cc_csn_series;cc_gdo0_series;cc_gdo2_series;cc_sclk_series;cc_si_series;cc_so_series;headphone_l_series;headphone_r_series;nrf0_ce_series;nrf0_csn_series;nrf0_irq_series;nrf0_miso_series;nrf0_mosi_series;nrf0_sck_series;nrf1_ce_series;nrf1_csn_series;nrf1_irq_series;nrf1_miso_series;nrf1_mosi_series;nrf1_sck_series;nrf2_ce_series;nrf2_csn_series;nrf2_irq_series;nrf2_miso_series;nrf2_mosi_series;nrf2_sck_series;product_usb_dm_series;product_usb_dp_series;sd_cmd_series;sd_cs_series;sd_miso_series;sd_sck_series;u214_series_busy;u214_series_gps_rx;u214_series_gps_tx;u214_series_irq;u214_series_miso;u214_series_mosi;u214_series_nss;u214_series_rst;u214_series_sck",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 45,
-      "fitted_board_instance_count": 45,
+      "quantity_per_product": 44,
+      "fitted_board_instance_count": 44,
       "projects": [
         "LESHY2-RF-R2",
         "LESHY2-UI-R2"
@@ -6769,10 +6951,10 @@
       ],
       "references": [
         "R1",
-        "R106",
         "R107",
         "R108",
         "R108",
+        "R109",
         "R109",
         "R146",
         "R148",
@@ -6788,14 +6970,13 @@
         "R185",
         "R186",
         "R188",
-        "R188",
         "R189",
+        "R190",
         "R196",
         "R197",
         "R2",
         "R204",
         "R205",
-        "R214",
         "R215",
         "R216",
         "R217",
@@ -6808,14 +6989,14 @@
         "R45",
         "R52",
         "R54",
-        "R92",
-        "R94",
+        "R93",
         "R95",
         "R96",
-        "R97"
+        "R97",
+        "R98"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C413049",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Panasonic ERJ precision thick-film chip resistor datasheet",
         "version": "current family datasheet checked 2026-08-18",
@@ -6857,7 +7038,7 @@
       "mpn": "Panasonic ERJ-2RKF27R0X",
       "manufacturer": null,
       "kind": "27ohm_1pct_0402_usb_series_resistor",
-      "role": "rp_service_usb_dm_series, rp_service_usb_dp_series",
+      "role": "rp_service_usb_dm_series;rp_service_usb_dp_series",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 4,
@@ -6873,11 +7054,11 @@
       "references": [
         "R142",
         "R143",
-        "R86",
-        "R87"
+        "R87",
+        "R88"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C413051",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "ERJ-2RKF27R0X exact product page and ERJ precision thick-film datasheet",
         "version": "current product data checked 2026-08-19",
@@ -6932,7 +7113,7 @@
         "R28"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C4064522",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Panasonic ERJ-P08F10R0V high-power anti-surge resistor product page",
         "version": "current product data checked 2026-08-18",
@@ -6972,7 +7153,7 @@
       "mpn": "Panasonic ERJ-P08F49R9V",
       "manufacturer": null,
       "kind": "49_9ohm_1pct_1206_0_66w_anti_surge_cell_balance_resistor",
-      "role": "pack_batts_rbal, pack_cell1_rbal",
+      "role": "pack_batts_rbal;pack_cell1_rbal",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -6988,7 +7169,7 @@
         "R17"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C4308208",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Panasonic ERJ-P08F49R9V exact product page",
         "version": "current product data checked 2026-08-19",
@@ -7028,6 +7209,60 @@
       "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "8ad93250b7a3805546fef1e86dd39bc556c12c1ba9f702bb47c9472c70912279",
       "symbol_electrical_contract_sha256": "5be443a7af786a0aae9ac33297d8f6527adb782983130685286a8893feb4245e"
+    },
+    {
+      "device_id": "prodtech_pspmaa0605h_2r2m_anp",
+      "mpn": "PSPMAA0605H-2R2M-ANP",
+      "manufacturer": "PROD Tech",
+      "kind": "2_2uh_10a_molded_power_inductor",
+      "role": "main_inductor",
+      "scope": "base_product",
+      "ecad_disposition": "schematic_component_group",
+      "quantity_per_product": 1,
+      "fitted_board_instance_count": 1,
+      "projects": [
+        "LESHY2-RF-R2"
+      ],
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES"
+      ],
+      "references": [
+        "U22"
+      ],
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "jlcpcb_part_number": "C2983088",
+      "source": {
+        "document": "PROD Tech PSPMAA0412-1265 series manufacturer datasheet, including exact PSPMAA0605H-2R2M-ANP electrical and dimensional rows",
+        "url": "https://datasheet.lcsc.com/lcsc/2409291213_PROD-Tech-PSPMAA0805-6R8M-ANP_C2962884.pdf",
+        "checked": "2026-09-02",
+        "reason": "bind the exact 2.2 uH code to the manufacturer-issued 20% tolerance, 13.5 mOhm maximum DCR, 8 A Irms, 14 A Isat and 0605H geometry while retaining C2983088 only as the assembly route"
+      },
+      "source_tier": "manufacturer_primary_h3_override",
+      "accepted_h2_source_preserved": {
+        "document": "PROD Tech PSPMAA0605H exact JLCPCB manufacturer data",
+        "url": "https://jlcpcb.com/partdetail/PRODTech-PSPMAA0605H2R2MANP/C2983088",
+        "checked": "2026-09-02"
+      },
+      "source_host": "datasheet.lcsc.com",
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "derating",
+        "temperature",
+        "frequency_or_bias"
+      ],
+      "structured_parameters": {},
+      "structured_parameter_count": 0,
+      "parameter_state": "explicit_extraction_queue",
+      "model_method_candidate": "analytic_or_vendor_curve",
+      "model_method_state": "candidate_pending_H3-R2.0.3",
+      "owner_workstreams": [
+        "H3-R2.1"
+      ],
+      "factory_catalog_parameter_gap": null,
+      "symbol_contact_map_sha256": "8ad93250b7a3805546fef1e86dd39bc556c12c1ba9f702bb47c9472c70912279",
+      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
       "device_id": "pui_as02404po",
@@ -7106,7 +7341,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "R151"
+        "R152"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C166468",
@@ -7162,7 +7397,7 @@
         "UI_30_HUB_RP_CORE_SERVICE"
       ],
       "references": [
-        "U22",
+        "U23",
         "U28"
       ],
       "lifecycle": "active_orderable",
@@ -7221,7 +7456,7 @@
         "MK1"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C3273679",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "CMEJ-0413-42-SMT-TR Electret Condenser Microphone datasheet",
         "version": "Rev. 1.04, September 2024",
@@ -7282,10 +7517,10 @@
         "RF_22_AUDIO_CODEC_IO"
       ],
       "references": [
-        "U82"
+        "U83"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C20182908",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "SJ-43504-SMT-TR Audio Jack datasheet",
         "version": "Rev. 1.06, September 2024",
@@ -7345,11 +7580,11 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "C161",
         "C166",
-        "C169",
-        "C172",
-        "C173",
+        "C171",
+        "C174",
+        "C177",
+        "C178",
         "C34",
         "C36"
       ],
@@ -7385,6 +7620,60 @@
       "owner_workstreams": [
         "H3-R2.2",
         "H3-R2.3"
+      ],
+      "factory_catalog_parameter_gap": null,
+      "symbol_contact_map_sha256": "8ad93250b7a3805546fef1e86dd39bc556c12c1ba9f702bb47c9472c70912279",
+      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "device_id": "samsung_cl05b104kb5nnnc",
+      "mpn": "CL05B104KB5NNNC",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "kind": "100nf_10pct_50v_x7r_0402_bootstrap_capacitor",
+      "role": "main_buck_bootstrap_cap",
+      "scope": "base_product",
+      "ecad_disposition": "schematic_component_group",
+      "quantity_per_product": 1,
+      "fitted_board_instance_count": 1,
+      "projects": [
+        "LESHY2-RF-R2"
+      ],
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES"
+      ],
+      "references": [
+        "C70"
+      ],
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "jlcpcb_part_number": "C960916",
+      "source": {
+        "document": "Samsung Electro-Mechanics official CL05B104KB5NNN family product record, including exact C packaging suffix",
+        "url": "https://product.samsungsem.com/mlcc/CL05B104KB5NNN.do",
+        "checked": "2026-09-02",
+        "reason": "use the original manufacturer product record for the exact 100 nF 50 V X7R bootstrap capacitor while retaining C960916 only as the assembly route"
+      },
+      "source_tier": "manufacturer_primary_h3_override",
+      "accepted_h2_source_preserved": {
+        "document": "Samsung CL05B104KB5NNNC product data",
+        "url": "https://jlcpcb.com/partdetail/x/C960916",
+        "checked": "2026-09-02"
+      },
+      "source_host": "product.samsungsem.com",
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "derating",
+        "temperature",
+        "frequency_or_bias"
+      ],
+      "structured_parameters": {},
+      "structured_parameter_count": 0,
+      "parameter_state": "explicit_extraction_queue",
+      "model_method_candidate": "analytic_or_vendor_curve",
+      "model_method_state": "candidate_pending_H3-R2.0.3",
+      "owner_workstreams": [
+        "H3-R2.1"
       ],
       "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "8ad93250b7a3805546fef1e86dd39bc556c12c1ba9f702bb47c9472c70912279",
@@ -7447,11 +7736,65 @@
       "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
+      "device_id": "samsung_cl10b105ko8nnnc",
+      "mpn": "CL10B105KO8NNNC",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "kind": "1uf_10pct_16v_x7r_0603_vcc_capacitor",
+      "role": "main_buck_vcc_cap",
+      "scope": "base_product",
+      "ecad_disposition": "schematic_component_group",
+      "quantity_per_product": 1,
+      "fitted_board_instance_count": 1,
+      "projects": [
+        "LESHY2-RF-R2"
+      ],
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES"
+      ],
+      "references": [
+        "C71"
+      ],
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "jlcpcb_part_number": "C59782",
+      "source": {
+        "document": "Samsung Electro-Mechanics official CL10B105KO8NNN family product record, including exact C packaging suffix",
+        "url": "https://product.samsungsem.com/mlcc/CL10B105KO8NNN.do",
+        "checked": "2026-09-02",
+        "reason": "use the original manufacturer product record for the exact 1 uF 16 V X7R VCC capacitor while retaining C59782 only as the assembly route"
+      },
+      "source_tier": "manufacturer_primary_h3_override",
+      "accepted_h2_source_preserved": {
+        "document": "Samsung CL10B105KO8NNNC product data",
+        "url": "https://jlcpcb.com/partdetail/x/C59782",
+        "checked": "2026-09-02"
+      },
+      "source_host": "product.samsungsem.com",
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "derating",
+        "temperature",
+        "frequency_or_bias"
+      ],
+      "structured_parameters": {},
+      "structured_parameter_count": 0,
+      "parameter_state": "explicit_extraction_queue",
+      "model_method_candidate": "analytic_or_vendor_curve",
+      "model_method_state": "candidate_pending_H3-R2.0.3",
+      "owner_workstreams": [
+        "H3-R2.1"
+      ],
+      "factory_catalog_parameter_gap": null,
+      "symbol_contact_map_sha256": "8ad93250b7a3805546fef1e86dd39bc556c12c1ba9f702bb47c9472c70912279",
+      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
       "device_id": "samtec_ftsh_105_01_l_dv_k_p_tr",
       "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
       "manufacturer": null,
       "kind": "keyed_pick_and_place_2x5_1_27mm_smt_debug_header",
-      "role": "four internal recovery headers / четыре внутренних recovery-разъёма",
+      "role": "c5_dbg_header;rp_dbg_header;s3_dbg_header",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 6,
@@ -7477,7 +7820,7 @@
         "J6"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C2932107",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Samtec FTSH double-row vertical SMT terminal-strip drawing and recommended footprint",
         "version": "drawing revision FX; -105/-01/-L/-DV/-K/-P configuration",
@@ -7535,7 +7878,7 @@
         "J10"
       ],
       "lifecycle": "active Extended Life Product; 138 exact parts shown as ships-tomorrow stock",
-      "jlcpcb_part_number": "C5649644",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Samtec exact HLE product page, series print and HLE catalog",
         "version": "HLE-107-02-G-DV-PE-LC / HLE-1XX-02-XX-DV-XE-XX-MKT",
@@ -7654,7 +7997,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "U60"
+        "U61"
       ],
       "lifecycle": "active_orderable",
       "jlcpcb_part_number": "C2155558",
@@ -7709,7 +8052,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "U53"
+        "U54"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C504891",
@@ -7765,7 +8108,7 @@
         "L1"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C408408",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Sunlord MWSA-S molded SMD power-inductor datasheet",
         "version": "current table checked 2026-08-18",
@@ -7805,21 +8148,19 @@
       "mpn": "Sunlord MWSA0503S-3R3MT",
       "manufacturer": null,
       "kind": "3_3uh_molded_power_inductor",
-      "role": "main_inductor, voice_inductor",
+      "role": "main_inductor;voice_inductor",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 2,
-      "fitted_board_instance_count": 2,
+      "quantity_per_product": 1,
+      "fitted_board_instance_count": 1,
       "projects": [
         "LESHY2-RF-R2"
       ],
       "sheets": [
-        "RF_03_MAIN_RAILS_DOMAIN_GATES",
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "L14",
-        "L4"
+        "L13"
       ],
       "lifecycle": "active",
       "jlcpcb_part_number": "C408409",
@@ -7851,7 +8192,6 @@
       "model_method_candidate": "analytic_or_vendor_curve",
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
-        "H3-R2.1",
         "H3-R2.5"
       ],
       "factory_catalog_parameter_gap": null,
@@ -8056,10 +8396,10 @@
         "RF_30_U214_U219_M5_EXT"
       ],
       "references": [
-        "U91"
+        "U92"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C880333",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TCA4307 Hot-Swappable I2C/SMBus Buffer With Stuck-Bus Recovery datasheet",
         "version": "SCPS270B",
@@ -8120,10 +8460,10 @@
         "RF_31_REAR_CONTROLS"
       ],
       "references": [
-        "U100"
+        "U106"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C80692",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TCA6424A Low-Voltage 24-Bit I2C/SMBus I/O Expander datasheet",
         "version": "SCPS193D",
@@ -8173,7 +8513,7 @@
       "mpn": "TDK B57332V5103F360",
       "manufacturer": null,
       "kind": "10k_1pct_b3380_0603_automotive_ntc",
-      "role": "charger_ts_ntc, pack_ntc0, pack_ntc1, power_zone_ntc, rf_zone_ntc, ui_zone_ntc",
+      "role": "charger_ts_ntc;pack_ntc0;pack_ntc1;power_zone_ntc;rf_zone_ntc;ui_zone_ntc",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 6,
@@ -8191,13 +8531,13 @@
       "references": [
         "R33",
         "R34",
-        "R70",
-        "R72",
+        "R71",
+        "R73",
         "R73",
         "R8"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C209893",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "B57 V5 automotive SMD NTC datasheet and exact product page",
         "version": "PPD ML PD 2025-10-30",
@@ -8249,7 +8589,7 @@
       "mpn": "TDK C1005X5R0J475K050BC",
       "manufacturer": null,
       "kind": "4_7uf_10pct_6_3v_x5r_0402_rp2350_reference_capacitor",
-      "role": "rp_dvdd_remote_bulk, rp_vreg_avdd_filter_cap, rp_vreg_output_bulk, rp_vreg_vin_bulk",
+      "role": "rp_dvdd_remote_bulk;rp_vreg_avdd_filter_cap;rp_vreg_output_bulk;rp_vreg_vin_bulk",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 8,
@@ -8263,17 +8603,17 @@
         "UI_30_HUB_RP_CORE_SERVICE"
       ],
       "references": [
-        "C100",
+        "C103",
+        "C104",
+        "C105",
         "C44",
         "C56",
         "C57",
         "C58",
-        "C86",
-        "C98",
-        "C99"
+        "C91"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C2167436",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TDK C1005X5R0J475K050BC product data and characteristic model; Raspberry Pi Hardware design with RP2350 chapter 2",
         "version": "production status and exact characteristics checked 2026-08-23",
@@ -8319,7 +8659,7 @@
       "mpn": "TDK C1608X7R1C105K080AC",
       "manufacturer": null,
       "kind": "1uf_10pct_16v_x7r_0603_diagnostic_lockout_timing_capacitor",
-      "role": "audio_capture_input_coupling, audio_capture_local_bias_cap, audio_capture_mic_coupling, audio_capture_rx_coupling, audio_vmid_cap, cc_evidence_hold_cap, cc_local_bulk_cap, cc_power_input_cap, codec_adc_n_coupling, codec_adc_p_coupling, codec_adcvref_cap, codec_dacvref_cap, codec_power_input_cap, codec_tx_coupling, codec_vmid_cap, ir_power_input_cap, mic_tx_coupling, nrf_evidence_hold_cap, nrf_power_input_cap, pack_diag_lockout_cap, product_usb_vpwr_cap, receiver_power_input_cap, s3_reset_delay_cap, sd_power_input_cap, si_audio_l_coupling, si_audio_r_coupling, slow_io_bulk_cap, speaker_amp_input_cap, speaker_input_n_coupling, speaker_input_p_coupling, voice_evidence_hold_cap, voice_io_power_input_cap, voice_io_power_output_cap, voice_mic_coupling, voice_rx_coupling, voice_v_evidence_hold_cap, voice_v_mic_coupling",
+      "role": "audio_capture_input_coupling;audio_capture_local_bias_cap;audio_capture_mic_coupling;audio_capture_rx_coupling;audio_vmid_cap;cc_evidence_hold_cap;cc_local_bulk_cap;cc_power_input_cap;codec_adc_n_coupling;codec_adc_p_coupling;codec_adcvref_cap;codec_dacvref_cap;codec_power_input_cap;codec_tx_coupling;codec_vmid_cap;ir_power_input_cap;mic_tx_coupling;nrf_evidence_hold_cap;nrf_power_input_cap;pack_diag_lockout_cap;product_usb_vpwr_cap;receiver_power_input_cap;s3_reset_delay_cap;sd_power_input_cap;si_audio_l_coupling;si_audio_r_coupling;slow_io_bulk_cap;speaker_amp_input_cap;speaker_input_n_coupling;speaker_input_p_coupling;voice_evidence_hold_cap;voice_io_power_input_cap;voice_io_power_output_cap;voice_mic_coupling;voice_rx_coupling;voice_v_evidence_hold_cap;voice_v_mic_coupling",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 37,
@@ -8342,37 +8682,37 @@
         "UI_31_NRF24_X3_TX_EVIDENCE"
       ],
       "references": [
-        "C118",
-        "C120",
-        "C139",
-        "C140",
-        "C141",
-        "C149",
+        "C123",
+        "C125",
+        "C144",
+        "C145",
+        "C146",
+        "C154",
         "C17",
-        "C183",
-        "C187",
         "C188",
-        "C190",
-        "C191",
         "C192",
         "C193",
-        "C199",
-        "C200",
-        "C201",
-        "C202",
+        "C195",
+        "C196",
+        "C197",
+        "C198",
         "C204",
-        "C212",
-        "C216",
-        "C218",
-        "C226",
-        "C229",
-        "C230",
+        "C205",
+        "C206",
+        "C207",
+        "C209",
+        "C217",
+        "C221",
+        "C223",
         "C231",
         "C234",
-        "C250",
-        "C253",
-        "C278",
-        "C279",
+        "C235",
+        "C236",
+        "C239",
+        "C259",
+        "C262",
+        "C287",
+        "C288",
         "C32",
         "C33",
         "C4",
@@ -8381,7 +8721,7 @@
         "C79"
       ],
       "lifecycle": "active_production",
-      "jlcpcb_part_number": "C2167399",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TDK C1608X7R1C105K080AC product and characterization data",
         "version": "production status and DC-bias/temperature curves checked 2026-08-18",
@@ -8426,7 +8766,7 @@
       "mpn": "TDK CGA5L1X7R1E475K160AC",
       "manufacturer": null,
       "kind": "4_7uf_10pct_25v_x7r_1206_aon_input_capacitor",
-      "role": "aon_input_cap, charger_regn_cap, pd_vbus_cap",
+      "role": "aon_input_cap;charger_regn_cap;pd_vbus_cap",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 3,
@@ -8444,7 +8784,7 @@
         "C9"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C2170392",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TDK CGA5L1X7R1E475K160AC product data and characteristic models",
         "version": "production status checked 2026-08-18",
@@ -8484,7 +8824,7 @@
       "mpn": "TE Connectivity 1-2118651-0",
       "manufacturer": null,
       "kind": "double_ended_umcc_gen1_microcoax_jumper",
-      "role": "three 60-mm nRF RF jumpers / три 60-мм RF-кабеля nRF",
+      "role": "nrf0_rf_jumper;nrf1_rf_jumper;nrf2_rf_jumper",
       "scope": "base_product",
       "ecad_disposition": "three removable 60-mm off-board U.FL-to-U.FL cable assemblies; only their board connectors are represented in ECAD",
       "quantity_per_product": 3,
@@ -8540,7 +8880,7 @@
       "mpn": "TE Connectivity 2118651-2",
       "manufacturer": null,
       "kind": "double_ended_umcc_gen1_microcoax_jumper",
-      "role": "two 30-mm S3/C5 RF jumpers / два 30-мм RF-кабеля S3/C5",
+      "role": "c5_rf_jumper;s3_rf_jumper",
       "scope": "base_product",
       "ecad_disposition": "two removable 30-mm off-board U.FL-to-U.FL cable assemblies; only their board connectors are represented in ECAD",
       "quantity_per_product": 2,
@@ -8611,7 +8951,7 @@
         "U1"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C2876593",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "BQ25798 1-to-4-cell 5-A buck-boost charger datasheet",
         "version": "SLUSDV2C, May 2020, revised June 2026",
@@ -8702,11 +9042,64 @@
       "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
+      "device_id": "ti_lmv331_idbvr",
+      "mpn": "LMV331IDBVR",
+      "manufacturer": "Texas Instruments",
+      "kind": "single_open_collector_low_voltage_comparator_sot23_5",
+      "role": "u219_field_comparator",
+      "scope": "base_product",
+      "ecad_disposition": "schematic_component_group",
+      "quantity_per_product": 1,
+      "fitted_board_instance_count": 1,
+      "projects": [
+        "LESHY2-RF-R2"
+      ],
+      "sheets": [
+        "RF_30_U214_U219_M5_EXT"
+      ],
+      "references": [
+        "U97"
+      ],
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "jlcpcb_part_number": "C34731",
+      "source": {
+        "document": "LMV331 low-voltage comparator datasheet",
+        "url": "https://www.ti.com/lit/ds/symlink/lmv331.pdf",
+        "checked": "2026-09-02"
+      },
+      "source_tier": "manufacturer_primary_accepted_h2",
+      "accepted_h2_source_preserved": {
+        "document": "LMV331 low-voltage comparator datasheet",
+        "url": "https://www.ti.com/lit/ds/symlink/lmv331.pdf",
+        "checked": "2026-09-02"
+      },
+      "source_host": "www.ti.com",
+      "parameter_class": "power_safety_active",
+      "required_parameter_groups": [
+        "limits",
+        "loss_or_efficiency",
+        "threshold_tolerance",
+        "startup_fault_timing",
+        "thermal"
+      ],
+      "structured_parameters": {},
+      "structured_parameter_count": 0,
+      "parameter_state": "explicit_extraction_queue",
+      "model_method_candidate": "corner_equation_and_circuit_model",
+      "model_method_state": "candidate_pending_H3-R2.0.3",
+      "owner_workstreams": [
+        "H3-R2.5"
+      ],
+      "factory_catalog_parameter_gap": null,
+      "symbol_contact_map_sha256": "acce9d2353a64ccc763b8207f72106bff5b6031c4193c902cfa9fe3035d6dfe9",
+      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
       "device_id": "ti_mspm0c1106_sdgs20r",
       "mpn": "Texas Instruments MSPM0C1106SDGS20R",
       "manufacturer": null,
       "kind": "32mhz_cortex_m0plus_safety_controller",
-      "role": "pack_admission, safety_controller",
+      "role": "pack_admission;safety_controller",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -8719,11 +9112,11 @@
         "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "references": [
-        "U121",
+        "U127",
         "U7"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C52995805",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "MSPM0C1105/MSPM0C1106 mixed-signal microcontroller datasheet",
         "version": "SLASFJ6B, revised January 2026",
@@ -8760,11 +9153,69 @@
       "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
+      "device_id": "ti_sn74cbtlv1g125_dckr",
+      "mpn": "SN74CBTLV1G125DCKR",
+      "manufacturer": "Texas Instruments",
+      "kind": "single_bus_switch_active_low_enable_sc70_5",
+      "role": "u219_pin10_switch",
+      "scope": "base_product",
+      "ecad_disposition": "schematic_component_group",
+      "quantity_per_product": 1,
+      "fitted_board_instance_count": 1,
+      "projects": [
+        "LESHY2-RF-R2"
+      ],
+      "sheets": [
+        "RF_30_U214_U219_M5_EXT"
+      ],
+      "references": [
+        "U99"
+      ],
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "jlcpcb_part_number": "C131992",
+      "source": {
+        "document": "SN74CBTLV1G125 single FET bus switch datasheet",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74cbtlv1g125.pdf",
+        "checked": "2026-09-02"
+      },
+      "source_tier": "manufacturer_primary_accepted_h2",
+      "accepted_h2_source_preserved": {
+        "document": "SN74CBTLV1G125 single FET bus switch datasheet",
+        "url": "https://www.ti.com/lit/ds/symlink/sn74cbtlv1g125.pdf",
+        "checked": "2026-09-02"
+      },
+      "source_host": "www.ti.com",
+      "parameter_class": "digital_interface",
+      "required_parameter_groups": [
+        "supply_current",
+        "logic_thresholds",
+        "leakage_backpower",
+        "reset_default",
+        "propagation_loading"
+      ],
+      "structured_parameters": {
+        "function": "bidirectional pin-10 disconnect switch",
+        "supply_v": 3.3,
+        "enable": "active-low OE",
+        "partial_power_down": "Ioff"
+      },
+      "structured_parameter_count": 4,
+      "parameter_state": "structured_seed_present",
+      "model_method_candidate": "datasheet_static_and_timing_model",
+      "model_method_state": "candidate_pending_H3-R2.0.3",
+      "owner_workstreams": [
+        "H3-R2.5"
+      ],
+      "factory_catalog_parameter_gap": null,
+      "symbol_contact_map_sha256": "ad9ee01196201a23ad87528832b32f4654439bc51479c7ba37bd4f9b0726670f",
+      "symbol_electrical_contract_sha256": "4b79a39325818832826b080de559d49fbd8cb0a2e5c7a3431359f1500f2e7814"
+    },
+    {
       "device_id": "ti_sn74lvc08a_pwr",
       "mpn": "SN74LVC08APWR",
       "manufacturer": null,
       "kind": "tssop14_quad_and_gate",
-      "role": "safe_gate_a, safe_gate_b",
+      "role": "safe_gate_a;safe_gate_b",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -8778,11 +9229,11 @@
         "UI_50_FRONT_POWER_SAFETY"
       ],
       "references": [
-        "U113",
+        "U119",
         "U58"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C465737",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "SNx4LVC08A Quadruple 2-Input Positive-AND Gates datasheet",
         "version": "Rev. W",
@@ -8823,25 +9274,27 @@
       "mpn": "Texas Instruments SN74LVC1G06DCKR",
       "manufacturer": null,
       "kind": "sc70_5_open_drain_inverting_buffer",
-      "role": "safe_c5_reset_buffer, safe_reset_buffer",
+      "role": "safe_c5_reset_buffer;safe_reset_buffer",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 2,
-      "fitted_board_instance_count": 2,
+      "quantity_per_product": 3,
+      "fitted_board_instance_count": 3,
       "projects": [
         "LESHY2-RF-R2",
         "LESHY2-UI-R2"
       ],
       "sheets": [
+        "RF_30_U214_U219_M5_EXT",
         "RF_50_TX_SAFETY_EVIDENCE",
         "UI_50_FRONT_POWER_SAFETY"
       ],
       "references": [
-        "U117",
-        "U57"
+        "U123",
+        "U57",
+        "U98"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C7828",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "SN74LVC1G06 single inverter with open-drain output datasheet",
         "version": "Rev. AB",
@@ -8879,6 +9332,7 @@
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
         "H3-R2.2",
+        "H3-R2.5",
         "H3-R2.6"
       ],
       "factory_catalog_parameter_gap": null,
@@ -8890,7 +9344,7 @@
       "mpn": "SN74LVC1G07DCKR",
       "manufacturer": null,
       "kind": "sc70_5_open_drain_noninverting_buffer",
-      "role": "ext_evidence_buffer, receiver_irq_iso, safe_c5_fault_reset_buffer, safe_run_fault_iso, safety_fault_request_iso, safety_s3_reset_iso, slow_io_fault_sense_iso, slow_io_s3_evidence_iso, touch_irq_buffer, voice_hl_driver",
+      "role": "ext_evidence_buffer;receiver_irq_iso;safe_c5_fault_reset_buffer;safe_run_fault_iso;safety_fault_request_iso;safety_s3_reset_iso;slow_io_fault_sense_iso;slow_io_s3_evidence_iso;touch_irq_buffer;voice_hl_driver",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 10,
@@ -8909,15 +9363,15 @@
       ],
       "references": [
         "U11",
-        "U118",
-        "U122",
-        "U123",
-        "U125",
-        "U126",
+        "U124",
+        "U128",
+        "U129",
+        "U131",
+        "U132",
         "U18",
-        "U46",
+        "U47",
         "U56",
-        "U63"
+        "U64"
       ],
       "lifecycle": "active",
       "jlcpcb_part_number": null,
@@ -8973,7 +9427,7 @@
       "mpn": "SN74LVC1G08DCKR",
       "manufacturer": null,
       "kind": "sc70_5_single_and_gate_partial_power_down",
-      "role": "cc_backup_gate, codec_i2s_din_boot_gate, ir_safe_gate, nrf_backup_gate",
+      "role": "cc_backup_gate;codec_i2s_din_boot_gate;ir_safe_gate;nrf_backup_gate",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 4,
@@ -8990,9 +9444,9 @@
       ],
       "references": [
         "U27",
-        "U27",
+        "U28",
         "U47",
-        "U75"
+        "U76"
       ],
       "lifecycle": "active_orderable",
       "jlcpcb_part_number": null,
@@ -9060,7 +9514,7 @@
         "U9"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C7833",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "SN74LVC1G125 single-bus buffer with 3-state output datasheet",
         "version": "SCES223T and current exact-part page checked 2026-08-18",
@@ -9100,7 +9554,7 @@
       "mpn": "Texas Instruments SN74LVC1G126DCKR",
       "manufacturer": null,
       "kind": "single_ioff_active_high_tristate_buffer",
-      "role": "codec_i2s_bclk_iso, codec_i2s_din_iso, codec_i2s_dout_iso, codec_i2s_ws_iso",
+      "role": "codec_i2s_bclk_iso;codec_i2s_din_iso;codec_i2s_dout_iso;codec_i2s_ws_iso",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 4,
@@ -9112,13 +9566,13 @@
         "RF_22_AUDIO_CODEC_IO"
       ],
       "references": [
-        "U74",
-        "U76",
+        "U75",
         "U77",
-        "U78"
+        "U78",
+        "U79"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C88039",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "SN74LVC1G126 Single Bus Buffer Gate With 3-State Output datasheet",
         "version": "SCES225 and current exact-part page checked 2026-08-18",
@@ -9173,7 +9627,7 @@
         "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "references": [
-        "U116"
+        "U122"
       ],
       "lifecycle": "active_orderable",
       "jlcpcb_part_number": null,
@@ -9245,10 +9699,10 @@
         "RF_22_AUDIO_CODEC_IO"
       ],
       "references": [
-        "U68"
+        "U69"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C10426",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "SN74LVC1G3157 single-pole, double-throw analog switch datasheet",
         "version": "SCES424O, January 2003, revised June 2025",
@@ -9302,7 +9756,7 @@
         "UI_20_C5_WIFI_IR_SERVICE"
       ],
       "references": [
-        "U114",
+        "U120",
         "U18"
       ],
       "lifecycle": "active_orderable_factory_stocked",
@@ -9355,7 +9809,7 @@
       "mpn": "Texas Instruments SN74LVC2G08DCUR",
       "manufacturer": null,
       "kind": "dual_two_input_and_gate",
-      "role": "audio_safe_gate, ext_branch_gate, voice_pd_gate",
+      "role": "audio_safe_gate;ext_branch_gate;voice_pd_gate",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 3,
@@ -9370,11 +9824,11 @@
       ],
       "references": [
         "U15",
-        "U48",
-        "U69"
+        "U49",
+        "U70"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C91875",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "SN74LVC2G08 dual 2-input positive-AND gate datasheet",
         "version": "SCES198N, April 1999, revised December 2015",
@@ -9416,7 +9870,7 @@
       "mpn": "Texas Instruments SN74LVC2G66DCUR",
       "manufacturer": null,
       "kind": "dual_bilateral_spst_analog_switch",
-      "role": "codec_i2c_iso, receiver_i2c_iso",
+      "role": "codec_i2c_iso;receiver_i2c_iso",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -9429,11 +9883,11 @@
         "RF_22_AUDIO_CODEC_IO"
       ],
       "references": [
-        "U62",
-        "U73"
+        "U63",
+        "U74"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C181970",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "SN74LVC2G66 Dual Bilateral Analog Switch datasheet",
         "version": "SCES325N, July 2001, revised August 2018",
@@ -9481,7 +9935,7 @@
       "mpn": "SN74LVC3G07DCUR",
       "manufacturer": null,
       "kind": "vssop8_triple_open_drain_noninverting_buffer",
-      "role": "evidence_main_isolator, safe_fault_reset_buffer",
+      "role": "evidence_main_isolator;safe_fault_reset_buffer",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 1,
@@ -9493,10 +9947,10 @@
         "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "references": [
-        "U112"
+        "U118"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C131955",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "SN74LVC3G07 Triple Buffer/Driver With Open-Drain Outputs datasheet",
         "version": "Rev. R",
@@ -9560,7 +10014,7 @@
         "U8"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C130024",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "SN74LVC3G34 Triple Buffer Gate datasheet",
         "version": "Rev. L",
@@ -9600,7 +10054,7 @@
       "mpn": "TCA9534APWR",
       "manufacturer": null,
       "kind": "tssop16_i2c_8bit_io_expander",
-      "role": "headset_control_io, voice_band_io",
+      "role": "headset_control_io;voice_band_io",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -9613,11 +10067,11 @@
         "RF_22_AUDIO_CODEC_IO"
       ],
       "references": [
-        "U41",
-        "U83"
+        "U42",
+        "U84"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C206010",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TCA9534A Low-Voltage 8-Bit I2C/SMBus I/O Expander datasheet",
         "version": "Rev. C",
@@ -9683,10 +10137,10 @@
         "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "references": [
-        "U105"
+        "U111"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C130204",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TCA9535 Low-Voltage 16-Bit I2C and SMBus Low-Power I/O Expander datasheet",
         "version": "Rev. E",
@@ -9875,7 +10329,7 @@
       "mpn": "TLV1821DCKR",
       "manufacturer": null,
       "kind": "sc70_5_single_open_drain_comparator",
-      "role": "evidence_cmp_voice, evidence_cmp_voice_v",
+      "role": "evidence_cmp_voice;evidence_cmp_voice_v",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 3,
@@ -9887,9 +10341,9 @@
         "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "references": [
-        "U102",
-        "U103",
-        "U104"
+        "U108",
+        "U109",
+        "U110"
       ],
       "lifecycle": "active_orderable",
       "jlcpcb_part_number": null,
@@ -9941,7 +10395,7 @@
       "mpn": "TLV1824PWR",
       "manufacturer": null,
       "kind": "tssop14_quad_open_drain_comparator",
-      "role": "evidence_cmp_a, evidence_cmp_b",
+      "role": "evidence_cmp_a;evidence_cmp_b",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -10006,7 +10460,7 @@
       "mpn": "TLV9061IDBVR",
       "manufacturer": null,
       "kind": "single_operational_amplifier",
-      "role": "audio_capture_buffer, ir_evidence_amp",
+      "role": "audio_capture_buffer;ir_evidence_amp",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -10021,10 +10475,10 @@
       ],
       "references": [
         "U55",
-        "U66"
+        "U67"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C398358",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TLV906x 10-MHz rail-to-rail input/output operational amplifiers datasheet",
         "version": "SBOS839N, March 2017, revised July 2026",
@@ -10065,7 +10519,7 @@
       "mpn": "Texas Instruments TMUX1136DGSR",
       "manufacturer": null,
       "kind": "dual_spdt_analog_switch",
-      "role": "four complete audio/control selectors / четыре полных audio/control selector",
+      "role": "audio_speaker_selector;voice_audio_mux;voice_control_mux_a;voice_control_mux_b",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 4,
@@ -10078,13 +10532,13 @@
         "RF_22_AUDIO_CODEC_IO"
       ],
       "references": [
-        "U39",
-        "U43",
+        "U40",
         "U44",
-        "U70"
+        "U45",
+        "U71"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C2673301",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TMUX1136 5-V, low-leakage-current, 2:1, 2-channel precision switch datasheet",
         "version": "SCDS402B, June 2019, revised February 2024",
@@ -10125,7 +10579,7 @@
       "mpn": "Texas Instruments TPD2EUSB30ADRTR",
       "manufacturer": null,
       "kind": "two_channel_low_capacitance_usb_esd_array",
-      "role": "c5_service_usb_esd, rp_service_usb_esd",
+      "role": "c5_service_usb_esd;rp_service_usb_esd",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 3,
@@ -10141,7 +10595,7 @@
       ],
       "references": [
         "U21",
-        "U24",
+        "U25",
         "U30"
       ],
       "lifecycle": "active_orderable",
@@ -10189,7 +10643,7 @@
       "mpn": "Texas Instruments TPD4E05U06DQAR",
       "manufacturer": null,
       "kind": "four_channel_0_5pf_iec_esd_array",
-      "role": "thirteen four-line ESD arrays / тринадцать четырёхканальных ESD-сборок",
+      "role": "c5_dbg_esd;encoder_ptt_esd;headphone_esd;rear_control_esd;rp_dbg_esd;s3_dbg_esd;safety_control_esd;sd_esd_a;sd_esd_b;u214_esd_a;u214_esd_b;u214_esd_c;unit_esd",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 14,
@@ -10210,20 +10664,20 @@
         "UI_30_HUB_RP_CORE_SERVICE"
       ],
       "references": [
-        "U120",
+        "U101",
+        "U104",
+        "U105",
+        "U126",
         "U15",
         "U2",
-        "U23",
+        "U24",
         "U29",
         "U6",
         "U7",
-        "U81",
-        "U86",
+        "U82",
         "U87",
         "U88",
-        "U95",
-        "U98",
-        "U99"
+        "U89"
       ],
       "lifecycle": "active",
       "jlcpcb_part_number": null,
@@ -10285,7 +10739,7 @@
         "U5"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C49438759",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TPD4S201 USB Type-C port-protection datasheet",
         "version": "SLVSIF2, July 2025",
@@ -10325,7 +10779,7 @@
       "mpn": "Texas Instruments TPD8E003DQDR",
       "manufacturer": null,
       "kind": "eight_channel_keypad_gpio_iec_esd_array",
-      "role": "front_function_esd, ui_matrix_esd",
+      "role": "front_function_esd;ui_matrix_esd",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -10341,7 +10795,7 @@
         "U5"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C2867469",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TPD8E003 8-Channel ESD Protection Diode for Keypad and GPIO datasheet",
         "version": "SLLSE38B",
@@ -10391,7 +10845,7 @@
       "mpn": "Texas Instruments TPS22919DCKR",
       "manufacturer": null,
       "kind": "1_5a_self_protected_load_switch_with_qod",
-      "role": "cc_power_switch, codec_power_switch, ir_power_switch, nrf_power_switch, receiver_power_switch, sd_power_switch, voice_io_power_switch",
+      "role": "cc_power_switch;codec_power_switch;ir_power_switch;nrf_power_switch;receiver_power_switch;sd_power_switch;voice_io_power_switch",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 8,
@@ -10411,15 +10865,15 @@
       "references": [
         "U10",
         "U25",
-        "U31",
-        "U47",
+        "U32",
+        "U48",
         "U49",
-        "U59",
-        "U64",
-        "U79"
+        "U60",
+        "U65",
+        "U80"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C2149796",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TPS22919 5.5-V, 1.5-A self-protected load-switch datasheet",
         "version": "SLVSEN5B, October 2018, revised May 2019",
@@ -10476,7 +10930,7 @@
         "U4"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C411878",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TPS2552/TPS2553 precision adjustable current-limited power-distribution switch datasheet",
         "version": "SLVS841F and current exact-part page checked 2026-08-18",
@@ -10531,7 +10985,7 @@
         "U3"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C30169739",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TPS25751 USB Type-C and USB PD Controller datasheet",
         "version": "SLVSH93A, October 2023, revised March 2024",
@@ -10571,7 +11025,7 @@
       "mpn": "Texas Instruments TPS259470LRPWR",
       "manufacturer": null,
       "kind": "5_5a_true_reverse_blocking_latchoff_adjustable_efuse",
-      "role": "ext_efuse, unit_efuse",
+      "role": "ext_efuse;unit_efuse",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -10584,8 +11038,8 @@
         "RF_30_U214_U219_M5_EXT"
       ],
       "references": [
-        "U17",
-        "U94"
+        "U100",
+        "U17"
       ],
       "lifecycle": "active",
       "jlcpcb_part_number": "C3662793",
@@ -10644,7 +11098,7 @@
         "U14"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C5571272",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TPS25961 2.7-V to 19-V, 106-mOhm eFuse datasheet",
         "version": "SLVSGT8, December 2022",
@@ -10684,7 +11138,7 @@
       "mpn": "Texas Instruments TPS25974LRPWR",
       "manufacturer": null,
       "kind": "7a_latchoff_adjustable_overvoltage_circuit_breaker_efuse_with_power_good",
-      "role": "main_efuse, voice_efuse",
+      "role": "main_efuse;voice_efuse",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -10698,10 +11152,10 @@
       ],
       "references": [
         "U21",
-        "U45"
+        "U46"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C3662931",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TPS2597xx 2.7-V to 23-V, 7-A, 9.8-mOhm eFuse datasheet",
         "version": "SLVSGG5D, November 2021, revised May 2025",
@@ -10754,10 +11208,10 @@
         "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "references": [
-        "U124"
+        "U130"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C6339182",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TPS3435 Nano IQ Precision Timeout Watchdog Timer datasheet",
         "version": "SNVSCF7A, revised August 2024",
@@ -10819,7 +11273,7 @@
       "mpn": "TPS3808G33DBVR",
       "manufacturer": null,
       "kind": "sot23_6_aon_supervisor",
-      "role": "safe_supervisor, u214_supervisor, unit_supervisor, voice_supervisor",
+      "role": "safe_supervisor;u214_supervisor;unit_supervisor;voice_supervisor",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 4,
@@ -10833,13 +11287,13 @@
         "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "references": [
-        "U119",
-        "U49",
-        "U93",
-        "U97"
+        "U103",
+        "U125",
+        "U50",
+        "U94"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C43698",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
         "version": "Rev. N, revised August 2026",
@@ -10901,7 +11355,7 @@
       "mpn": "Texas Instruments TPS3839K33DBZR",
       "manufacturer": null,
       "kind": "3v08_push_pull_supply_supervisor",
-      "role": "codec_supervisor, receiver_supervisor",
+      "role": "codec_supervisor;receiver_supervisor",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -10914,11 +11368,11 @@
         "RF_22_AUDIO_CODEC_IO"
       ],
       "references": [
-        "U65",
-        "U80"
+        "U66",
+        "U81"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C96333",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TPS383x 150-nA Ultralow Power Supply Voltage Monitor datasheet",
         "version": "SBVS193D and current exact-part page checked 2026-08-18",
@@ -10962,11 +11416,11 @@
       "mpn": "Texas Instruments TPS564252DRLR",
       "manufacturer": null,
       "kind": "4a_600khz_eco_synchronous_buck_with_power_good",
-      "role": "ext_buck, main_buck, voice_buck",
+      "role": "ext_buck;main_buck;voice_buck",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 3,
-      "fitted_board_instance_count": 3,
+      "quantity_per_product": 2,
+      "fitted_board_instance_count": 2,
       "projects": [
         "LESHY2-RF-R2"
       ],
@@ -10976,8 +11430,7 @@
       ],
       "references": [
         "U16",
-        "U20",
-        "U42"
+        "U43"
       ],
       "lifecycle": "active",
       "jlcpcb_part_number": "C19191267",
@@ -11017,6 +11470,59 @@
       "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
+      "device_id": "ti_tps566231p_rqfr",
+      "mpn": "TPS566231PRQFR",
+      "manufacturer": "Texas Instruments",
+      "kind": "6a_600khz_synchronous_buck_with_power_good",
+      "role": "main_buck",
+      "scope": "base_product",
+      "ecad_disposition": "schematic_component_group",
+      "quantity_per_product": 1,
+      "fitted_board_instance_count": 1,
+      "projects": [
+        "LESHY2-RF-R2"
+      ],
+      "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES"
+      ],
+      "references": [
+        "U20"
+      ],
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "jlcpcb_part_number": "C3190178",
+      "source": {
+        "document": "TPS566231 3-V to 18-V input, 6-A synchronous buck converter datasheet",
+        "url": "https://www.ti.com/lit/ds/symlink/tps566231.pdf",
+        "checked": "2026-09-02"
+      },
+      "source_tier": "manufacturer_primary_accepted_h2",
+      "accepted_h2_source_preserved": {
+        "document": "TPS566231 3-V to 18-V input, 6-A synchronous buck converter datasheet",
+        "url": "https://www.ti.com/lit/ds/symlink/tps566231.pdf",
+        "checked": "2026-09-02"
+      },
+      "source_host": "www.ti.com",
+      "parameter_class": "general_component",
+      "required_parameter_groups": [
+        "operating_limits",
+        "dc_behavior",
+        "timing_or_frequency",
+        "temperature",
+        "applicability"
+      ],
+      "structured_parameters": {},
+      "structured_parameter_count": 0,
+      "parameter_state": "explicit_extraction_queue",
+      "model_method_candidate": "datasheet_corner_model",
+      "model_method_state": "candidate_pending_H3-R2.0.3",
+      "owner_workstreams": [
+        "H3-R2.1"
+      ],
+      "factory_catalog_parameter_gap": null,
+      "symbol_contact_map_sha256": "5a4b4019e00032727c737c7898810a51b72b388ab9f97de2f2d3920147e468f7",
+      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
       "device_id": "ti_tps629203_drlr",
       "mpn": "Texas Instruments TPS629203DRLR",
       "manufacturer": null,
@@ -11036,7 +11542,7 @@
         "U13"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C5219295",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TPS629203 300-mA, 3-V to 17-V low-IQ buck converter datasheet",
         "version": "SLVSGE2, March 2022",
@@ -11131,7 +11637,7 @@
       "mpn": "Texas Instruments TS5A63157DCKR",
       "manufacturer": null,
       "kind": "single_spdt_analog_switch",
-      "role": "audio_capture_selector, audio_tx_selector, headset_mic_selector",
+      "role": "audio_capture_selector;audio_tx_selector;headset_mic_selector",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 3,
@@ -11143,12 +11649,12 @@
         "RF_22_AUDIO_CODEC_IO"
       ],
       "references": [
-        "U67",
-        "U71",
-        "U84"
+        "U68",
+        "U72",
+        "U85"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C133575",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TS5A63157 12-ohm SPDT analog switch datasheet",
         "version": "SCDS203B, December 2005, revised March 2019",
@@ -11203,7 +11709,7 @@
         "U4"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C523793",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TVS2200 22-V flat-clamp surge-protection datasheet",
         "version": "SLVSED5C, December 2017, revised August 2023; orderable addendum 2025-11-09",
@@ -11255,10 +11761,10 @@
         "RF_30_U214_U219_M5_EXT"
       ],
       "references": [
-        "U96"
+        "U102"
       ],
       "lifecycle": "active_production_orderable",
-      "jlcpcb_part_number": "C53434",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "TXS0102 2-bit bidirectional voltage-level translator datasheet",
         "version": "SCES640L, revised January 2026",
@@ -11323,7 +11829,7 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "U28"
+        "U29"
       ],
       "lifecycle": "active_orderable",
       "jlcpcb_part_number": null,
@@ -11377,7 +11883,7 @@
       "mpn": "TTM Technologies DC2337J5010AHF",
       "manufacturer": null,
       "kind": "0805_10db_2ghz_4ghz_directional_coupler",
-      "role": "nrf0_coupler, nrf1_coupler, nrf2_coupler",
+      "role": "nrf0_coupler;nrf1_coupler;nrf2_coupler",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 3,
@@ -11394,7 +11900,7 @@
         "U44"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C509396",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "DC2337J5010AHF 10-dB directional coupler datasheet",
         "version": "Rev. H",
@@ -11451,6 +11957,223 @@
       "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "28e80f9e3357641d4be03c540f691de1dceb3c9ca6b00082d10b05035a73623c",
       "symbol_electrical_contract_sha256": "815d6cdd0d48d8d6f4e70c26b29c75703b9b43fd51d81ed31e5a3a108c49472c"
+    },
+    {
+      "device_id": "uniroyal_0402wgf1001tce",
+      "mpn": "0402WGF1001TCE",
+      "manufacturer": "UNI-ROYAL(Uniroyal Elec)",
+      "kind": "1kohm_1pct_0402_resistor",
+      "role": "u219_field_input_r_p;u219_field_input_r_n",
+      "scope": "base_product",
+      "ecad_disposition": "schematic_component_group",
+      "quantity_per_product": 2,
+      "fitted_board_instance_count": 2,
+      "projects": [
+        "LESHY2-RF-R2"
+      ],
+      "sheets": [
+        "RF_30_U214_U219_M5_EXT"
+      ],
+      "references": [
+        "R228",
+        "R229"
+      ],
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "jlcpcb_part_number": "C11702",
+      "source": {
+        "document": "UNI-ROYAL thick-film chip resistor series datasheet",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-29"
+      },
+      "source_tier": "manufacturer_primary_accepted_h2",
+      "accepted_h2_source_preserved": {
+        "document": "UNI-ROYAL thick-film chip resistor series datasheet",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-29"
+      },
+      "source_host": "www.uni-royal.cn",
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "derating",
+        "temperature",
+        "frequency_or_bias"
+      ],
+      "structured_parameters": {},
+      "structured_parameter_count": 0,
+      "parameter_state": "explicit_extraction_queue",
+      "model_method_candidate": "analytic_or_vendor_curve",
+      "model_method_state": "candidate_pending_H3-R2.0.3",
+      "owner_workstreams": [
+        "H3-R2.5"
+      ],
+      "factory_catalog_parameter_gap": null,
+      "symbol_contact_map_sha256": "a4fe4d9b5fed9986f6d71137bf769f1dcec85fb93c89dc0c595f5f8b2cd72add",
+      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "device_id": "uniroyal_0402wgf1002tce",
+      "mpn": "0402WGF1002TCE",
+      "manufacturer": "UNI-ROYAL(Uniroyal Elec)",
+      "kind": "10kohm_1pct_0402_resistor",
+      "role": "u219_pin10_oe_pullup;u219_pin10_command_pulldown;u219_field_output_pullup;u219_field_threshold_bottom",
+      "scope": "base_product",
+      "ecad_disposition": "schematic_component_group",
+      "quantity_per_product": 4,
+      "fitted_board_instance_count": 4,
+      "projects": [
+        "LESHY2-RF-R2"
+      ],
+      "sheets": [
+        "RF_30_U214_U219_M5_EXT"
+      ],
+      "references": [
+        "R230",
+        "R231",
+        "R233",
+        "R234"
+      ],
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "jlcpcb_part_number": "C25744",
+      "source": {
+        "document": "UNI-ROYAL thick-film chip resistor series datasheet",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-29"
+      },
+      "source_tier": "manufacturer_primary_accepted_h2",
+      "accepted_h2_source_preserved": {
+        "document": "UNI-ROYAL thick-film chip resistor series datasheet",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-29"
+      },
+      "source_host": "www.uni-royal.cn",
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "derating",
+        "temperature",
+        "frequency_or_bias"
+      ],
+      "structured_parameters": {},
+      "structured_parameter_count": 0,
+      "parameter_state": "explicit_extraction_queue",
+      "model_method_candidate": "analytic_or_vendor_curve",
+      "model_method_state": "candidate_pending_H3-R2.0.3",
+      "owner_workstreams": [
+        "H3-R2.5"
+      ],
+      "factory_catalog_parameter_gap": null,
+      "symbol_contact_map_sha256": "a4fe4d9b5fed9986f6d71137bf769f1dcec85fb93c89dc0c595f5f8b2cd72add",
+      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "device_id": "uniroyal_0402wgf1003tce",
+      "mpn": "0402WGF1003TCE",
+      "manufacturer": "UNI-ROYAL(Uniroyal Elec)",
+      "kind": "100kohm_1pct_0402_resistor",
+      "role": "u219_field_env_discharge;u219_field_threshold_top",
+      "scope": "base_product",
+      "ecad_disposition": "schematic_component_group",
+      "quantity_per_product": 2,
+      "fitted_board_instance_count": 2,
+      "projects": [
+        "LESHY2-RF-R2"
+      ],
+      "sheets": [
+        "RF_30_U214_U219_M5_EXT"
+      ],
+      "references": [
+        "R226",
+        "R232"
+      ],
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "jlcpcb_part_number": "C25741",
+      "source": {
+        "document": "UNI-ROYAL thick-film chip resistor series datasheet",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-29"
+      },
+      "source_tier": "manufacturer_primary_accepted_h2",
+      "accepted_h2_source_preserved": {
+        "document": "UNI-ROYAL thick-film chip resistor series datasheet",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-29"
+      },
+      "source_host": "www.uni-royal.cn",
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "derating",
+        "temperature",
+        "frequency_or_bias"
+      ],
+      "structured_parameters": {},
+      "structured_parameter_count": 0,
+      "parameter_state": "explicit_extraction_queue",
+      "model_method_candidate": "analytic_or_vendor_curve",
+      "model_method_state": "candidate_pending_H3-R2.0.3",
+      "owner_workstreams": [
+        "H3-R2.5"
+      ],
+      "factory_catalog_parameter_gap": null,
+      "symbol_contact_map_sha256": "a4fe4d9b5fed9986f6d71137bf769f1dcec85fb93c89dc0c595f5f8b2cd72add",
+      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+    },
+    {
+      "device_id": "uniroyal_0402wgf1004tce",
+      "mpn": "0402WGF1004TCE",
+      "manufacturer": "UNI-ROYAL(Uniroyal Elec)",
+      "kind": "1mohm_1pct_0402_resistor",
+      "role": "u219_field_hysteresis",
+      "scope": "base_product",
+      "ecad_disposition": "schematic_component_group",
+      "quantity_per_product": 1,
+      "fitted_board_instance_count": 1,
+      "projects": [
+        "LESHY2-RF-R2"
+      ],
+      "sheets": [
+        "RF_30_U214_U219_M5_EXT"
+      ],
+      "references": [
+        "R227"
+      ],
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "jlcpcb_part_number": "C26083",
+      "source": {
+        "document": "UNI-ROYAL thick-film chip resistor series datasheet",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-29"
+      },
+      "source_tier": "manufacturer_primary_accepted_h2",
+      "accepted_h2_source_preserved": {
+        "document": "UNI-ROYAL thick-film chip resistor series datasheet",
+        "url": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+        "checked": "2026-08-29"
+      },
+      "source_host": "www.uni-royal.cn",
+      "parameter_class": "passive_corner",
+      "required_parameter_groups": [
+        "nominal",
+        "tolerance",
+        "derating",
+        "temperature",
+        "frequency_or_bias"
+      ],
+      "structured_parameters": {},
+      "structured_parameter_count": 0,
+      "parameter_state": "explicit_extraction_queue",
+      "model_method_candidate": "analytic_or_vendor_curve",
+      "model_method_state": "candidate_pending_H3-R2.0.3",
+      "owner_workstreams": [
+        "H3-R2.5"
+      ],
+      "factory_catalog_parameter_gap": null,
+      "symbol_contact_map_sha256": "a4fe4d9b5fed9986f6d71137bf769f1dcec85fb93c89dc0c595f5f8b2cd72add",
+      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
       "device_id": "uniroyal_0402wgf1333tce",
@@ -11512,7 +12235,7 @@
       "mpn": "UNI-ROYAL 0402WGF1603TCE",
       "manufacturer": null,
       "kind": "160kohm_1pct_0402_audio_attenuator_resistor",
-      "role": "stocked codec TX attenuator resistor / складской резистор аттенюатора TX кодека",
+      "role": "codec_tx_atten_top",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 1,
@@ -11524,7 +12247,7 @@
         "RF_22_AUDIO_CODEC_IO"
       ],
       "references": [
-        "R187"
+        "R188"
       ],
       "lifecycle": "active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C25757",
@@ -11589,7 +12312,7 @@
         "RF_03_MAIN_RAILS_DOMAIN_GATES"
       ],
       "references": [
-        "R66"
+        "R67"
       ],
       "lifecycle": "production_active_factory_stocked",
       "jlcpcb_part_number": "C25869",
@@ -11632,7 +12355,7 @@
       "mpn": "UNI-ROYAL 0402WGF2201TCE",
       "manufacturer": null,
       "kind": "2_2kohm_1pct_0402_i2c_pullup_resistor",
-      "role": "c5_tx_led_series, cc_tx_led_series, codec_i2c_scl_pullup, codec_i2c_sda_pullup, codec_tx_atten_bottom, ext_tx_led_series, fault_led_series, headset_mic_bias_res, ir_tx_led_series, microphone_bias_res, nrf0_tx_led_series, nrf1_tx_led_series, nrf2_tx_led_series, pd_local_scl_pullup, pd_local_sda_pullup, receiver_i2c_scl_pullup, receiver_i2c_sda_pullup, s3_tx_led_series, sys_i2c_scl_pullup, sys_i2c_sda_pullup, u214_i2c_host_scl_pullup, u214_i2c_host_sda_pullup, voice_tx_led_series",
+      "role": "c5_tx_led_series;cc_tx_led_series;codec_i2c_scl_pullup;codec_i2c_sda_pullup;codec_tx_atten_bottom;ext_tx_led_series;fault_led_series;headset_mic_bias_res;ir_tx_led_series;microphone_bias_res;nrf0_tx_led_series;nrf1_tx_led_series;nrf2_tx_led_series;pd_local_scl_pullup;pd_local_sda_pullup;receiver_i2c_scl_pullup;receiver_i2c_sda_pullup;s3_tx_led_series;sys_i2c_scl_pullup;sys_i2c_sda_pullup;u214_i2c_host_scl_pullup;u214_i2c_host_sda_pullup;voice_tx_led_series",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 25,
@@ -11653,19 +12376,19 @@
       "references": [
         "R11",
         "R12",
-        "R156",
         "R157",
+        "R158",
         "R18",
-        "R182",
         "R183",
-        "R186",
+        "R184",
+        "R187",
         "R19",
-        "R200",
-        "R205",
-        "R211",
+        "R201",
+        "R206",
         "R212",
-        "R237",
-        "R238",
+        "R213",
+        "R246",
+        "R247",
         "R26",
         "R27",
         "R31",
@@ -11734,7 +12457,7 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "R126"
+        "R127"
       ],
       "lifecycle": "production_active_factory_stocked",
       "jlcpcb_part_number": "C25770",
@@ -11899,10 +12622,10 @@
         "RF_03_MAIN_RAILS_DOMAIN_GATES"
       ],
       "references": [
-        "R68"
+        "R69"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C844452",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Vishay TNPW e3 high-stability thin-film resistor datasheet",
         "version": "Document 28758, revision 10-Apr-2026",
@@ -11960,10 +12683,10 @@
         "RF_03_MAIN_RAILS_DOMAIN_GATES"
       ],
       "references": [
-        "R69"
+        "R70"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C4056533",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Vishay TNPW e3 high-stability thin-film resistor datasheet",
         "version": "Document 28758, revision 10-Apr-2026",
@@ -12159,7 +12882,7 @@
         "U51"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C144925",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "VEMD1060X01 Silicon PIN Photodiode datasheet",
         "version": "Rev. 1.1",
@@ -12222,7 +12945,7 @@
         "D11"
       ],
       "lifecycle": "active_stocked_orderable",
-      "jlcpcb_part_number": "C511069",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "VSMY14940 high-speed infrared emitter datasheet",
         "version": "Rev. 1.6, 22-Sep-2017",
@@ -12300,7 +13023,7 @@
         "R37"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C844900",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "WSL power metal strip resistor datasheet",
         "version": "current product data checked 2026-08-18",
@@ -12340,7 +13063,7 @@
       "mpn": "XTAR 18650 4000mAh",
       "manufacturer": null,
       "kind": "protected_button_top_18650_liion_4000mah_10a_cell",
-      "role": "pack_cell0, pack_cell1",
+      "role": "pack_cell0;pack_cell1",
       "scope": "regional_replaceable_cell_kit",
       "ecad_disposition": "owner-supplied removable cells; absent from factory supply",
       "quantity_per_product": 2,
@@ -12425,7 +13148,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "C157"
+        "C162"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C1853353",
@@ -12466,11 +13189,11 @@
       "mpn": "Yageo CC0402KRX7R9BB104",
       "manufacturer": null,
       "kind": "100nf_10pct_50v_x7r_0402_converter_hf_input_capacitor",
-      "role": "147 stocked 100-nF bypass capacitors / 147 складских развязывающих конденсаторов 100 нФ",
+      "role": "aon_efuse_input_cap;audio_capture_buffer_bypass;audio_capture_selector_bypass;audio_rx_mux_bypass;audio_safe_gate_bypass;audio_speaker_selector_bypass;audio_tx_selector_bypass;backlight_efuse_input_cap;backlight_efuse_output_hf;c5_detector_bypass;c5_service_usb_switch_bypass;cc_avdd11_bypass;cc_avdd14_bypass;cc_avdd15_bypass;cc_avdd9_bypass;cc_backup_gate_bypass;cc_band_buffer_bypass;cc_dcoupl_cap;cc_detector_bypass;cc_dvdd_bypass;cc_host_buffer_bypass;cc_return_buffer_bypass;charger_pmid_hf_cap;charger_sys_hf_cap;charger_vbus_hf_cap;codec_avdd_bypass;codec_dvdd_bypass;codec_i2c_iso_bypass;codec_i2s_bclk_iso_bypass;codec_i2s_din_boot_gate_bypass;codec_i2s_din_iso_bypass;codec_i2s_dout_iso_bypass;codec_i2s_ws_iso_bypass;codec_pvdd_bypass;codec_supervisor_bypass;display_logic_hf_cap;evidence_cmp_a_bypass;evidence_cmp_b_bypass;evidence_cmp_voice_bypass;evidence_cmp_voice_v_bypass;evidence_main_isolator_bypass;evidence_mask_bypass;ext_branch_gate_bypass;ext_buck_hf_input_cap;ext_evidence_buffer_bypass;ext_request_or_bypass;headset_control_io_bypass;headset_mic_selector_bypass;ir_evidence_amp_bypass;ir_evidence_vref_cap;ir_power_output_bypass;ir_return_buffer_bypass;ir_safe_gate_bypass;main_hf_input_cap;nrf0_detector_bypass;nrf0_host_buffer_bypass;nrf0_module_hf_cap;nrf0_return_buffer_bypass;nrf1_detector_bypass;nrf1_host_buffer_bypass;nrf1_module_hf_cap;nrf1_return_buffer_bypass;nrf2_detector_bypass;nrf2_host_buffer_bypass;nrf2_module_hf_cap;nrf2_return_buffer_bypass;nrf_backup_gate_bypass;pack_admission_bypass;pack_batts_filter_cap;pack_cell1_filter_cap;pack_chg_gate_cap;pack_diag_timer_bypass;pack_dis_gate_cap;pack_in_bypass;pd_eeprom_bypass;power_command_filter;power_zone_temp_filter;ptt_filter_cap;receiver_i2c_iso_bypass;receiver_irq_iso_bypass;receiver_supervisor_bypass;receiver_vdd_bypass;rf_zone_temp_filter;rp_adc_avdd_bypass;rp_dvdd10_bypass;rp_dvdd32_bypass;rp_dvdd51_bypass;rp_iovdd15_bypass;rp_iovdd24_bypass;rp_iovdd29_bypass;rp_iovdd41_bypass;rp_iovdd50_bypass;rp_iovdd5_bypass;rp_iovdd60_bypass;rp_iovdd76_bypass;rp_qspi_iovdd_bypass;rp_service_usb_switch_bypass;rp_usb_otp_vdd_bypass;run_loop_filter;s3_detector_bypass;s3_supply_bypass;safe_c5_fault_reset_buffer_bypass;safe_c5_reset_buffer_bypass;safe_conditioner_bypass;safe_fault_reset_buffer_bypass;safe_gate_a_bypass;safe_gate_b_bypass;safe_latch_bypass;safe_ptt_or_bypass;safe_rearm_buffer_bypass;safe_reset_buffer_bypass;safe_run_fault_iso_bypass;safe_supervisor_bypass;safety_controller_bypass;safety_fault_request_iso_bypass;safety_s3_reset_iso_bypass;safety_watchdog_bypass;sd_detect_cap;sd_host_buffer_bypass;sd_miso_buffer_bypass;sd_power_hf_cap;slow_io_fault_sense_iso_bypass;slow_io_s3_evidence_iso_bypass;slow_io_vcci_bypass;slow_io_vccp_bypass;touch_irq_buffer_bypass;u214_host_buffer_a_bypass;u214_host_buffer_b_bypass;u214_i2c_iso_bypass;u214_return_buffer_bypass;u214_supervisor_bypass;ui_matrix_io_bypass;ui_zone_temp_filter;unit_signal_iso_vcca_bypass;unit_signal_iso_vccb_bypass;unit_supervisor_bypass;voice_audio_mux_bypass;voice_band_inverter_bypass;voice_band_io_bypass;voice_control_mux_a_bypass;voice_control_mux_b_bypass;voice_detector_bypass;voice_hf_input_cap;voice_hl_driver_bypass;voice_pd_gate_bypass;voice_supervisor_bypass;voice_v_detector_bypass",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 170,
-      "fitted_board_instance_count": 170,
+      "quantity_per_product": 173,
+      "fitted_board_instance_count": 173,
       "projects": [
         "LESHY2-RF-R2",
         "LESHY2-UI-R2"
@@ -12495,103 +13218,109 @@
       ],
       "references": [
         "C1",
-        "C104",
-        "C105",
-        "C106",
-        "C107",
-        "C108",
+        "C100",
+        "C101",
+        "C102",
         "C109",
         "C11",
+        "C110",
+        "C111",
         "C112",
         "C113",
-        "C116",
+        "C114",
         "C117",
+        "C118",
         "C12",
         "C121",
-        "C125",
+        "C122",
         "C126",
-        "C127",
-        "C128",
-        "C129",
         "C13",
         "C130",
-        "C136",
-        "C137",
+        "C131",
+        "C132",
+        "C133",
+        "C134",
+        "C135",
         "C14",
-        "C144",
-        "C145",
-        "C147",
+        "C141",
+        "C142",
+        "C149",
+        "C150",
+        "C152",
         "C16",
         "C16",
-        "C162",
         "C167",
-        "C171",
-        "C174",
+        "C172",
+        "C176",
+        "C179",
         "C18",
-        "C181",
-        "C182",
-        "C185",
         "C186",
-        "C189",
+        "C187",
         "C19",
         "C19",
+        "C190",
+        "C191",
         "C194",
-        "C195",
-        "C196",
-        "C197",
-        "C198",
+        "C199",
         "C20",
+        "C200",
+        "C201",
+        "C202",
         "C203",
-        "C205",
-        "C206",
-        "C207",
         "C208",
-        "C209",
         "C21",
         "C210",
         "C211",
+        "C212",
+        "C213",
         "C214",
         "C215",
+        "C216",
+        "C219",
         "C22",
-        "C223",
-        "C224",
-        "C235",
-        "C236",
-        "C237",
-        "C238",
-        "C239",
+        "C220",
+        "C228",
+        "C229",
         "C24",
-        "C245",
+        "C240",
+        "C241",
+        "C242",
+        "C243",
+        "C244",
         "C246",
-        "C247",
+        "C248",
         "C249",
         "C25",
-        "C251",
-        "C252",
         "C254",
         "C255",
         "C256",
-        "C257",
         "C258",
-        "C259",
         "C26",
         "C260",
         "C261",
-        "C262",
         "C263",
         "C264",
         "C265",
+        "C266",
         "C267",
         "C268",
         "C269",
         "C27",
+        "C270",
         "C271",
+        "C272",
         "C273",
         "C274",
-        "C275",
         "C276",
         "C277",
+        "C278",
         "C28",
+        "C280",
+        "C282",
+        "C283",
+        "C284",
+        "C285",
+        "C286",
         "C31",
         "C32",
         "C34",
@@ -12636,14 +13365,11 @@
         "C70",
         "C71",
         "C73",
-        "C74",
         "C75",
         "C76",
+        "C76",
         "C77",
-        "C78",
-        "C79",
         "C8",
-        "C80",
         "C80",
         "C81",
         "C83",
@@ -12652,18 +13378,18 @@
         "C84",
         "C85",
         "C85",
-        "C87",
         "C88",
         "C89",
         "C9",
         "C90",
-        "C91",
         "C92",
         "C93",
         "C94",
         "C95",
         "C96",
-        "C97"
+        "C97",
+        "C98",
+        "C99"
       ],
       "lifecycle": "active_orderable",
       "jlcpcb_part_number": "C131394",
@@ -12711,7 +13437,7 @@
       "mpn": "Yageo CC0603KRX7R0BB104",
       "manufacturer": null,
       "kind": "100nf_10pct_100v_x7r_0603_usb_protector_bias_capacitor",
-      "role": "stocked 100-nF 100-V USB VBIAS capacitor / складской конденсатор USB VBIAS 100 нФ 100 В",
+      "role": "product_usb_vbias_cap",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 1,
@@ -12775,7 +13501,7 @@
       "mpn": "Yageo RC0402FR-07100KL",
       "manufacturer": null,
       "kind": "100kohm_1pct_0402_charger_ilim_bottom_resistor",
-      "role": "aon_efuse_ovlo_bottom, audio_capture_local_bias_bottom, audio_capture_local_bias_top, audio_capture_mic_bias, audio_capture_rx_bias, audio_vmid_bottom, audio_vmid_top, c5_evidence_threshold_top, cc_evidence_threshold_top, charger_ilim_bottom, codec_ready_pulldown, fault_assert_sense_series, headset_absent_pulldown, headset_control_p1_pulldown, headset_control_p2_pulldown, headset_control_p3_pulldown, headset_control_p4_pulldown, headset_control_p5_pulldown, headset_control_p6_pulldown, headset_control_p7_pulldown, headset_mic_select_pullup, ir_evidence_threshold_top, ir_evidence_vref_top, main_en_pulldown, mic_tx_bias, nrf0_evidence_threshold_top, nrf1_evidence_threshold_top, nrf2_evidence_threshold_top, receiver_ready_pulldown, s3_evidence_threshold_top, safe_rearm_delay_res, si_audio_sum_bias, voice_audio_on_pulldown, voice_efuse_ovlo_bottom, voice_evidence_threshold_top, voice_rx_bias, voice_uart_rx_pulldown, voice_uart_tx_pulldown, voice_v_evidence_threshold_top, voice_v_uart_rx_pulldown",
+      "role": "aon_efuse_ovlo_bottom;audio_capture_local_bias_bottom;audio_capture_local_bias_top;audio_capture_mic_bias;audio_capture_rx_bias;audio_vmid_bottom;audio_vmid_top;c5_evidence_threshold_top;cc_evidence_threshold_top;charger_ilim_bottom;codec_ready_pulldown;fault_assert_sense_series;headset_absent_pulldown;headset_control_p1_pulldown;headset_control_p2_pulldown;headset_control_p3_pulldown;headset_control_p4_pulldown;headset_control_p5_pulldown;headset_control_p6_pulldown;headset_control_p7_pulldown;headset_mic_select_pullup;ir_evidence_threshold_top;ir_evidence_vref_top;main_en_pulldown;mic_tx_bias;nrf0_evidence_threshold_top;nrf1_evidence_threshold_top;nrf2_evidence_threshold_top;receiver_ready_pulldown;s3_evidence_threshold_top;safe_rearm_delay_res;si_audio_sum_bias;voice_audio_on_pulldown;voice_efuse_ovlo_bottom;voice_evidence_threshold_top;voice_rx_bias;voice_uart_rx_pulldown;voice_uart_tx_pulldown;voice_v_evidence_threshold_top;voice_v_uart_rx_pulldown",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 43,
@@ -12795,22 +13521,21 @@
         "UI_50_FRONT_POWER_SAFETY"
       ],
       "references": [
-        "R113",
-        "R125",
-        "R140",
+        "R114",
+        "R126",
         "R141",
-        "R145",
-        "R155",
-        "R160",
-        "R164",
-        "R166",
+        "R142",
+        "R146",
+        "R156",
+        "R161",
+        "R165",
         "R167",
         "R168",
         "R169",
-        "R177",
+        "R170",
         "R178",
-        "R185",
-        "R191",
+        "R179",
+        "R186",
         "R192",
         "R193",
         "R194",
@@ -12818,29 +13543,30 @@
         "R196",
         "R197",
         "R198",
-        "R201",
-        "R203",
+        "R199",
+        "R202",
+        "R204",
         "R208",
-        "R209",
+        "R210",
         "R211",
         "R212",
         "R216",
         "R220",
         "R224",
         "R226",
-        "R245",
-        "R255",
-        "R261",
-        "R275",
-        "R279",
+        "R254",
+        "R264",
+        "R270",
+        "R284",
+        "R288",
         "R3",
         "R44",
-        "R67",
+        "R68",
         "R91",
         "R92"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C60491",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Yageo RC0402FR-07100KL product specification",
         "version": "current product data checked 2026-08-18",
@@ -12885,7 +13611,7 @@
       "mpn": "Yageo RC0402FR-07100RL",
       "manufacturer": null,
       "kind": "100ohm_1pct_0402_charger_batp_series_resistor",
-      "role": "backlight_gate_series, charger_batp_res, ir_carrier_series, ir_carrier_supply_res, ir_demod_series, ir_demod_supply_res, ir_tx_gate_series",
+      "role": "backlight_gate_series;charger_batp_res;ir_carrier_series;ir_carrier_supply_res;ir_demod_series;ir_demod_supply_res;ir_tx_gate_series",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 7,
@@ -12950,7 +13676,7 @@
       "mpn": "Yageo RC0402FR-0710KL",
       "manufacturer": null,
       "kind": "10kohm_1pct_0402_main_feedback_bottom_resistor",
-      "role": "any_tx_aon_pullup, audio_arm_pulldown, audio_capture_sel_pulldown, audio_rx_sel_pulldown, audio_speaker_req_pulldown, audio_speaker_safe_pulldown, audio_tx_req_pulldown, audio_tx_safe_pulldown, backlight_fault_pullup, backlight_gate_pulldown, c5_boot_pullup, c5_dbg_id0_strap, c5_dbg_id1_strap, c5_detector_feedback_res, c5_detector_ground_res, c5_evidence_main_pullup, c5_evidence_output_pullup, c5_evidence_threshold_bottom, c5_gpio27_pullup, c5_reset_pullup, cc_band_v1_host_pulldown, cc_band_v2_host_pulldown, cc_evidence_hold_pulldown, cc_evidence_output_pullup, cc_evidence_threshold_bottom, cc_host_csn_pullup, cc_host_gdo0_pulldown, cc_host_gdo2_pulldown, cc_host_sclk_pulldown, cc_host_si_pulldown, cc_host_so_pulldown, cc_power_on_pulldown, cc_switch_a_v1_pulldown, cc_switch_a_v2_pulldown, cc_switch_b_v1_pulldown, cc_switch_b_v2_pulldown, charger_ce_pullup, charger_int_pullup, codec_ce_pullup, codec_power_on_pulldown, display_reset_pulldown, evidence_mask_p12_pulldown, evidence_mask_p13_pulldown, evidence_mask_p14_pulldown, evidence_mask_p15_pulldown, evidence_mask_p16_pulldown, evidence_mask_p17_pulldown, evidence_mask_scl_pullup, evidence_mask_sda_pullup, ext_any_req_pulldown, ext_en_pulldown, ext_evidence_input_pullup, ext_evidence_output_pullup, ext_pg_pullup, fault_assert_pullup, headphone_tip_detect_pullup, headset_detect_series, ir_carrier_host_pullup, ir_demod_host_pullup, ir_evidence_main_pullup, ir_evidence_output_pullup, ir_evidence_vref_bottom, ir_power_on_pulldown, ir_tx_carrier_pulldown, ir_tx_gate_pulldown, lcd_host_cs_pullup, nrf0_evidence_output_pullup, nrf0_evidence_threshold_bottom, nrf0_host_ce_pulldown, nrf0_host_csn_pullup, nrf0_host_irq_pullup, nrf0_host_miso_pulldown, nrf0_host_mosi_pulldown, nrf0_host_sck_pulldown, nrf0_module_ce_pulldown, nrf0_module_csn_pullup, nrf0_module_irq_pullup, nrf0_module_miso_pulldown, nrf0_module_mosi_pulldown, nrf0_module_sck_pulldown, nrf1_evidence_output_pullup, nrf1_evidence_threshold_bottom, nrf1_host_ce_pulldown, nrf1_host_csn_pullup, nrf1_host_irq_pullup, nrf1_host_miso_pulldown, nrf1_host_mosi_pulldown, nrf1_host_sck_pulldown, nrf1_module_ce_pulldown, nrf1_module_csn_pullup, nrf1_module_irq_pullup, nrf1_module_miso_pulldown, nrf1_module_mosi_pulldown, nrf1_module_sck_pulldown, nrf2_evidence_output_pullup, nrf2_evidence_threshold_bottom, nrf2_host_ce_pulldown, nrf2_host_csn_pullup, nrf2_host_irq_pullup, nrf2_host_miso_pulldown, nrf2_host_mosi_pulldown, nrf2_host_sck_pulldown, nrf2_module_ce_pulldown, nrf2_module_csn_pullup, nrf2_module_irq_pullup, nrf2_module_miso_pulldown, nrf2_module_mosi_pulldown, nrf2_module_sck_pulldown, nrf_evidence_hold_pulldown, nrf_power_on_pulldown, pack_alrt_pullup, pack_diag_gate_pulldown, pack_diag_trigger_pulldown, pack_gauge_scl_pullup, pack_gauge_sda_pullup, pack_hold_pullup, pack_hold_release_pulldown, pack_irq_gate_pulldown, pack_pfail_pullup, pd_eeprom_wp_pullup, power_fault_pullup, power_zone_temp_pullup, product_usb_fault_pullup, ptt_pullup, receiver_irq_pullup, receiver_power_on_pulldown, receiver_senb_pulldown, rf_zone_temp_pullup, rp_any_tx_main_pullup, rp_boot_pullup, rp_dbg_id0_strap, rp_dbg_id1_strap, rp_reset_pullup, run_loop_pullup, s3_boot_pullup, s3_dbg_id0_strap, s3_dbg_id1_strap, s3_detector_feedback_res, s3_detector_ground_res, s3_evidence_output_pullup, s3_evidence_threshold_bottom, s3_reset_gate_pullup, s3_reset_pullup, safe_c5_reset_gate_pullup, safe_latch_d_pullup, safe_por_pullup, safe_reset_gate_pullup, safety_fault_request_pulldown, safety_watchdog_mr_pullup, safety_watchdog_wdi_pulldown, safety_watchdog_wdo_pullup, sd_card_cmd_pullup, sd_card_dat0_pullup, sd_card_dat1_pullup, sd_card_dat2_pullup, sd_card_dat3_pullup, sd_detect_pullup, sd_host_cs_pullup, sd_host_d0_pulldown, sd_host_d1_pullup, sd_host_sck_pulldown, sd_on_pulldown, si_audio_l_sum, si_audio_r_sum, slow_io_fault_sense_pullup, slow_io_reset_pullup, slow_io_s3_evidence_pullup, speaker_amp_enable_pulldown, sys_int_pullup, touch_irq_pullup, touch_reset_pulldown, u214_req_pulldown, u214_supervisor_pullup, ui_input_down_pullup, ui_input_left_pullup, ui_input_ok_pullup, ui_input_right_pullup, ui_input_up_pullup, ui_zone_temp_pullup, unit_req_pulldown, unit_signal_iso_oe_pulldown, unit_supervisor_pullup, voice_band_p1_pulldown, voice_band_p2_pulldown, voice_band_p3_pulldown, voice_band_p4_pulldown, voice_band_p5_pulldown, voice_band_p6_pulldown, voice_band_p7_pulldown, voice_band_select_pulldown, voice_efuse_en_pullup, voice_en_pulldown, voice_evidence_hold_pulldown, voice_evidence_output_pullup, voice_evidence_threshold_bottom, voice_hl_req_pulldown, voice_pg_pullup, voice_ptt_pullup, voice_rx_series, voice_supervisor_pullup, voice_v_evidence_hold_pulldown, voice_v_evidence_threshold_bottom, voice_v_ptt_pullup",
+      "role": "any_tx_aon_pullup;audio_arm_pulldown;audio_capture_sel_pulldown;audio_rx_sel_pulldown;audio_speaker_req_pulldown;audio_speaker_safe_pulldown;audio_tx_req_pulldown;audio_tx_safe_pulldown;backlight_fault_pullup;backlight_gate_pulldown;c5_boot_pullup;c5_dbg_id0_strap;c5_dbg_id1_strap;c5_detector_feedback_res;c5_detector_ground_res;c5_evidence_main_pullup;c5_evidence_output_pullup;c5_evidence_threshold_bottom;c5_gpio27_pullup;c5_reset_pullup;cc_band_v1_host_pulldown;cc_band_v2_host_pulldown;cc_evidence_hold_pulldown;cc_evidence_output_pullup;cc_evidence_threshold_bottom;cc_host_csn_pullup;cc_host_gdo0_pulldown;cc_host_gdo2_pulldown;cc_host_sclk_pulldown;cc_host_si_pulldown;cc_host_so_pulldown;cc_power_on_pulldown;cc_switch_a_v1_pulldown;cc_switch_a_v2_pulldown;cc_switch_b_v1_pulldown;cc_switch_b_v2_pulldown;charger_ce_pullup;charger_int_pullup;codec_ce_pullup;codec_power_on_pulldown;display_reset_pulldown;evidence_mask_p12_pulldown;evidence_mask_p13_pulldown;evidence_mask_p14_pulldown;evidence_mask_p15_pulldown;evidence_mask_p16_pulldown;evidence_mask_p17_pulldown;evidence_mask_scl_pullup;evidence_mask_sda_pullup;ext_any_req_pulldown;ext_en_pulldown;ext_evidence_input_pullup;ext_evidence_output_pullup;ext_pg_pullup;fault_assert_pullup;headphone_tip_detect_pullup;headset_detect_series;ir_carrier_host_pullup;ir_demod_host_pullup;ir_evidence_main_pullup;ir_evidence_output_pullup;ir_evidence_vref_bottom;ir_power_on_pulldown;ir_tx_carrier_pulldown;ir_tx_gate_pulldown;lcd_host_cs_pullup;nrf0_evidence_output_pullup;nrf0_evidence_threshold_bottom;nrf0_host_ce_pulldown;nrf0_host_csn_pullup;nrf0_host_irq_pullup;nrf0_host_miso_pulldown;nrf0_host_mosi_pulldown;nrf0_host_sck_pulldown;nrf0_module_ce_pulldown;nrf0_module_csn_pullup;nrf0_module_irq_pullup;nrf0_module_miso_pulldown;nrf0_module_mosi_pulldown;nrf0_module_sck_pulldown;nrf1_evidence_output_pullup;nrf1_evidence_threshold_bottom;nrf1_host_ce_pulldown;nrf1_host_csn_pullup;nrf1_host_irq_pullup;nrf1_host_miso_pulldown;nrf1_host_mosi_pulldown;nrf1_host_sck_pulldown;nrf1_module_ce_pulldown;nrf1_module_csn_pullup;nrf1_module_irq_pullup;nrf1_module_miso_pulldown;nrf1_module_mosi_pulldown;nrf1_module_sck_pulldown;nrf2_evidence_output_pullup;nrf2_evidence_threshold_bottom;nrf2_host_ce_pulldown;nrf2_host_csn_pullup;nrf2_host_irq_pullup;nrf2_host_miso_pulldown;nrf2_host_mosi_pulldown;nrf2_host_sck_pulldown;nrf2_module_ce_pulldown;nrf2_module_csn_pullup;nrf2_module_irq_pullup;nrf2_module_miso_pulldown;nrf2_module_mosi_pulldown;nrf2_module_sck_pulldown;nrf_evidence_hold_pulldown;nrf_power_on_pulldown;pack_alrt_pullup;pack_diag_gate_pulldown;pack_diag_trigger_pulldown;pack_gauge_scl_pullup;pack_gauge_sda_pullup;pack_hold_pullup;pack_hold_release_pulldown;pack_irq_gate_pulldown;pack_pfail_pullup;pd_eeprom_wp_pullup;power_fault_pullup;power_zone_temp_pullup;product_usb_fault_pullup;ptt_pullup;receiver_irq_pullup;receiver_power_on_pulldown;receiver_senb_pulldown;rf_zone_temp_pullup;rp_any_tx_main_pullup;rp_boot_pullup;rp_dbg_id0_strap;rp_dbg_id1_strap;rp_reset_pullup;run_loop_pullup;s3_boot_pullup;s3_dbg_id0_strap;s3_dbg_id1_strap;s3_detector_feedback_res;s3_detector_ground_res;s3_evidence_output_pullup;s3_evidence_threshold_bottom;s3_reset_gate_pullup;s3_reset_pullup;safe_c5_reset_gate_pullup;safe_latch_d_pullup;safe_por_pullup;safe_reset_gate_pullup;safety_fault_request_pulldown;safety_watchdog_mr_pullup;safety_watchdog_wdi_pulldown;safety_watchdog_wdo_pullup;sd_card_cmd_pullup;sd_card_dat0_pullup;sd_card_dat1_pullup;sd_card_dat2_pullup;sd_card_dat3_pullup;sd_detect_pullup;sd_host_cs_pullup;sd_host_d0_pulldown;sd_host_d1_pullup;sd_host_sck_pulldown;sd_on_pulldown;si_audio_l_sum;si_audio_r_sum;slow_io_fault_sense_pullup;slow_io_reset_pullup;slow_io_s3_evidence_pullup;speaker_amp_enable_pulldown;sys_int_pullup;touch_irq_pullup;touch_reset_pulldown;u214_req_pulldown;u214_supervisor_pullup;ui_input_down_pullup;ui_input_left_pullup;ui_input_ok_pullup;ui_input_right_pullup;ui_input_up_pullup;ui_zone_temp_pullup;unit_req_pulldown;unit_signal_iso_oe_pulldown;unit_supervisor_pullup;voice_band_p1_pulldown;voice_band_p2_pulldown;voice_band_p3_pulldown;voice_band_p4_pulldown;voice_band_p5_pulldown;voice_band_p6_pulldown;voice_band_p7_pulldown;voice_band_select_pulldown;voice_efuse_en_pullup;voice_en_pulldown;voice_evidence_hold_pulldown;voice_evidence_output_pullup;voice_evidence_threshold_bottom;voice_hl_req_pulldown;voice_pg_pullup;voice_ptt_pullup;voice_rx_series;voice_supervisor_pullup;voice_v_evidence_hold_pulldown;voice_v_evidence_threshold_bottom;voice_v_ptt_pullup",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 216,
@@ -12987,13 +13713,13 @@
         "R103",
         "R104",
         "R104",
-        "R109",
+        "R105",
         "R11",
         "R110",
         "R111",
         "R112",
         "R113",
-        "R114",
+        "R113",
         "R114",
         "R115",
         "R116",
@@ -13004,9 +13730,10 @@
         "R12",
         "R120",
         "R121",
+        "R122",
         "R123",
         "R124",
-        "R124",
+        "R125",
         "R125",
         "R126",
         "R127",
@@ -13014,44 +13741,43 @@
         "R13",
         "R13",
         "R130",
-        "R130",
-        "R133",
-        "R135",
+        "R131",
+        "R134",
         "R135",
         "R136",
         "R136",
         "R137",
+        "R138",
         "R139",
         "R14",
-        "R144",
-        "R149",
+        "R145",
         "R15",
         "R15",
         "R150",
         "R150",
         "R151",
+        "R151",
         "R152",
         "R153",
         "R154",
-        "R154",
         "R155",
-        "R158",
+        "R155",
         "R158",
         "R159",
         "R159",
         "R16",
         "R160",
-        "R161",
+        "R160",
         "R161",
         "R162",
         "R162",
         "R163",
         "R163",
-        "R165",
-        "R170",
+        "R164",
+        "R166",
         "R170",
         "R171",
-        "R172",
+        "R171",
         "R172",
         "R173",
         "R173",
@@ -13060,17 +13786,18 @@
         "R175",
         "R175",
         "R176",
+        "R177",
         "R178",
         "R179",
         "R18",
         "R180",
         "R181",
-        "R181",
+        "R182",
         "R182",
         "R183",
-        "R184",
+        "R185",
         "R190",
-        "R190",
+        "R191",
         "R191",
         "R192",
         "R193",
@@ -13078,18 +13805,18 @@
         "R195",
         "R198",
         "R199",
-        "R199",
         "R2",
         "R20",
+        "R200",
         "R200",
         "R201",
         "R202",
         "R203",
         "R206",
-        "R206",
         "R207",
-        "R210",
-        "R213",
+        "R207",
+        "R211",
+        "R214",
         "R214",
         "R215",
         "R218",
@@ -13099,47 +13826,47 @@
         "R223",
         "R223",
         "R227",
-        "R229",
         "R23",
         "R23",
-        "R231",
-        "R232",
-        "R235",
-        "R239",
+        "R238",
         "R24",
         "R240",
         "R241",
-        "R243",
         "R244",
-        "R246",
-        "R247",
         "R248",
         "R249",
         "R25",
         "R250",
-        "R251",
         "R252",
-        "R254",
+        "R253",
+        "R255",
+        "R256",
         "R257",
         "R258",
         "R259",
         "R26",
         "R260",
-        "R262",
-        "R264",
-        "R265",
+        "R261",
+        "R263",
         "R266",
         "R267",
         "R268",
         "R269",
         "R27",
-        "R270",
         "R271",
         "R273",
         "R274",
+        "R275",
         "R276",
+        "R277",
         "R278",
+        "R279",
         "R28",
+        "R280",
+        "R282",
+        "R283",
+        "R285",
+        "R287",
         "R29",
         "R3",
         "R34",
@@ -13168,35 +13895,34 @@
         "R69",
         "R7",
         "R71",
-        "R71",
         "R72",
-        "R73",
+        "R72",
         "R74",
         "R74",
+        "R75",
         "R76",
-        "R79",
         "R8",
         "R80",
         "R80",
         "R81",
-        "R83",
+        "R81",
+        "R84",
         "R84",
         "R85",
         "R87",
         "R88",
         "R89",
         "R90",
-        "R90",
         "R91",
+        "R92",
         "R93",
-        "R93",
+        "R94",
         "R96",
-        "R98",
         "R98",
         "R99"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C60490",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Yageo RC0402FR-0710KL product specification",
         "version": "current product data checked 2026-08-18",
@@ -13241,7 +13967,7 @@
       "mpn": "Yageo RC0402FR-07110KL",
       "manufacturer": null,
       "kind": "110kohm_1pct_0402_external_5v_supervisor_sense_resistor",
-      "role": "u214_supervisor_sense_top, unit_supervisor_sense_top",
+      "role": "u214_supervisor_sense_top;unit_supervisor_sense_top",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -13254,10 +13980,10 @@
       ],
       "references": [
         "R225",
-        "R234"
+        "R243"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C138065",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "RC0402FR-07110KL exact product specification",
         "version": "current product data checked 2026-08-18",
@@ -13297,7 +14023,7 @@
       "mpn": "Yageo RC0402FR-0712KL",
       "manufacturer": null,
       "kind": "12kohm_1pct_0402_voice_feedback_bottom_resistor",
-      "role": "ir_evidence_threshold_bottom, voice_fb_bottom",
+      "role": "ir_evidence_threshold_bottom;voice_fb_bottom",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -13311,11 +14037,11 @@
         "UI_50_FRONT_POWER_SAFETY"
       ],
       "references": [
-        "R131",
+        "R132",
         "R210"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C114760",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Yageo RC0402FR-0712KL product specification",
         "version": "current product data checked 2026-08-18",
@@ -13356,7 +14082,7 @@
       "mpn": "Yageo RC0402FR-07169KL",
       "manufacturer": null,
       "kind": "169kohm_1pct_0402_efuse_ovlo_top_resistor",
-      "role": "ext_ovlo_top, pack_diag_timer_res, pack_mid_adc_bottom, pack_stack_adc_bottom, unit_ovlo_top",
+      "role": "ext_ovlo_top;pack_diag_timer_res;pack_mid_adc_bottom;pack_stack_adc_bottom;unit_ovlo_top",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 5,
@@ -13371,7 +14097,7 @@
       ],
       "references": [
         "R22",
-        "R228",
+        "R237",
         "R30",
         "R38",
         "R58"
@@ -13434,7 +14160,7 @@
         "R45"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C477631",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
         "version": "current product data checked 2026-08-18",
@@ -13474,7 +14200,7 @@
       "mpn": "Yageo RC0402FR-071K82L",
       "manufacturer": null,
       "kind": "1_82kohm_1pct_0402_efuse_current_limit_resistor",
-      "role": "ext_rilm, unit_rilm",
+      "role": "ext_rilm;unit_rilm",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -13487,11 +14213,11 @@
         "RF_30_U214_U219_M5_EXT"
       ],
       "references": [
-        "R230",
+        "R239",
         "R61"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C185449",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Yageo RC general-purpose thick-film chip resistor series datasheet",
         "version": "current product data checked 2026-08-24",
@@ -13532,7 +14258,7 @@
       "mpn": "Yageo RC0402FR-071KL",
       "manufacturer": null,
       "kind": "1kohm_1pct_0402_service_current_limit_resistor",
-      "role": "c5_dbg_boot_series, c5_dbg_reset_series, c5_dbg_vtref_series, ext_evidence_input_series, pack_pckp_res, rp_clock_series, rp_dbg_boot_series, rp_dbg_reset_series, rp_dbg_vtref_series, s3_dbg_boot_series, s3_dbg_reset_series, s3_dbg_vtref_series",
+      "role": "c5_dbg_boot_series;c5_dbg_reset_series;c5_dbg_vtref_series;ext_evidence_input_series;pack_pckp_res;rp_clock_series;rp_dbg_boot_series;rp_dbg_reset_series;rp_dbg_vtref_series;s3_dbg_boot_series;s3_dbg_reset_series;s3_dbg_vtref_series",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 16,
@@ -13558,12 +14284,12 @@
         "R35",
         "R55",
         "R6",
-        "R75",
-        "R78",
+        "R76",
         "R79",
-        "R81",
+        "R79",
         "R82",
         "R82",
+        "R83",
         "R83",
         "R9"
       ],
@@ -13611,7 +14337,7 @@
       "mpn": "Yageo RC0402FR-071ML",
       "manufacturer": null,
       "kind": "1megohm_1pct_0402_service_vbus_bleeder",
-      "role": "c5_evidence_hysteresis, c5_service_usb_vbus_bleeder, cc_evidence_hysteresis, fault_assert_backup_pulldown, ir_evidence_hysteresis, nrf0_evidence_hysteresis, nrf1_evidence_hysteresis, nrf2_evidence_hysteresis, rp_service_usb_vbus_bleeder, s3_evidence_hysteresis, voice_evidence_hysteresis, voice_v_evidence_hysteresis",
+      "role": "c5_evidence_hysteresis;c5_service_usb_vbus_bleeder;cc_evidence_hysteresis;fault_assert_backup_pulldown;ir_evidence_hysteresis;nrf0_evidence_hysteresis;nrf1_evidence_hysteresis;nrf2_evidence_hysteresis;rp_service_usb_vbus_bleeder;s3_evidence_hysteresis;voice_evidence_hysteresis;voice_v_evidence_hysteresis",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 15,
@@ -13637,15 +14363,15 @@
         "R217",
         "R221",
         "R225",
-        "R242",
-        "R253",
-        "R272",
-        "R277",
+        "R251",
+        "R262",
+        "R281",
+        "R286",
         "R86",
-        "R88"
+        "R89"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C138033",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "RC0402FR-071ML exact product specification",
         "version": "current exact order code checked 2026-08-19",
@@ -13686,7 +14412,7 @@
       "mpn": "Yageo RC0402FR-07220KL",
       "manufacturer": null,
       "kind": "220kohm_1pct_0402_accessory_feedback_top_resistor",
-      "role": "ext_buck_fb_top, pack_mid_adc_top0, pack_mid_adc_top1, pack_stack_adc_top0, pack_stack_adc_top1, pack_stack_adc_top2, pack_stack_adc_top3, pack_stack_adc_top4, u214_supervisor_sense_bottom, unit_supervisor_sense_bottom, voice_supervisor_sense_bottom",
+      "role": "ext_buck_fb_top;pack_mid_adc_top0;pack_mid_adc_top1;pack_stack_adc_top0;pack_stack_adc_top1;pack_stack_adc_top2;pack_stack_adc_top3;pack_stack_adc_top4;u214_supervisor_sense_bottom;unit_supervisor_sense_bottom;voice_supervisor_sense_bottom",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 11,
@@ -13701,9 +14427,9 @@
         "RF_30_U214_U219_M5_EXT"
       ],
       "references": [
-        "R138",
+        "R139",
         "R224",
-        "R233",
+        "R242",
         "R31",
         "R32",
         "R39",
@@ -13714,7 +14440,7 @@
         "R52"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C138030",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Yageo RC0402FR-07220KL product specification",
         "version": "current product data checked 2026-08-18",
@@ -13756,7 +14482,7 @@
       "mpn": "Yageo RC0402FR-07220RL",
       "manufacturer": null,
       "kind": "220ohm_1pct_0402_resistor",
-      "role": "headset_microphone_bias_filter_res, microphone_bias_filter_res",
+      "role": "headset_microphone_bias_filter_res;microphone_bias_filter_res",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -13768,11 +14494,11 @@
         "RF_22_AUDIO_CODEC_IO"
       ],
       "references": [
-        "R202",
-        "R204"
+        "R203",
+        "R205"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C112291",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Yageo RC general-purpose chip resistor specification",
         "version": "current exact order code checked 2026-08-18",
@@ -13827,7 +14553,7 @@
         "R46"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C138029",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Yageo RC0402FR-07240KL product specification",
         "version": "current product data checked 2026-08-18",
@@ -13882,7 +14608,7 @@
         "R7"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C138009",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Yageo RC0402FR-0730K1L product specification",
         "version": "current product data checked 2026-08-18",
@@ -13922,7 +14648,7 @@
       "mpn": "Yageo RC0402FR-0730KL",
       "manufacturer": null,
       "kind": "30kohm_1pct_0402_accessory_feedback_bottom_resistor",
-      "role": "ext_buck_fb_bottom, main_efuse_pg_bottom",
+      "role": "ext_buck_fb_bottom;main_efuse_pg_bottom",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 2,
@@ -13935,10 +14661,10 @@
       ],
       "references": [
         "R51",
-        "R64"
+        "R65"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C138008",
+      "jlcpcb_part_number": "C138075",
       "source": {
         "document": "Yageo RC0402FR-0730KL product specification",
         "version": "current product data checked 2026-08-18",
@@ -13990,7 +14716,7 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "R127"
+        "R128"
       ],
       "lifecycle": "active",
       "jlcpcb_part_number": "C138003",
@@ -14048,7 +14774,7 @@
       ],
       "references": [
         "R145",
-        "R89"
+        "R90"
       ],
       "lifecycle": "active_orderable",
       "jlcpcb_part_number": null,
@@ -14096,7 +14822,7 @@
       "mpn": "Yageo RC0402FR-073K32L",
       "manufacturer": null,
       "kind": "3_32kohm_1pct_0402_voice_efuse_current_threshold_resistor",
-      "role": "encoder_a_pullup, encoder_b_pullup, ui_input_back_pullup, ui_input_encoder_pullup, ui_input_f1_pullup, ui_input_f2_pullup, ui_input_f3_pullup, ui_input_f4_pullup, ui_input_f5_pullup, ui_input_f6_pullup, ui_input_f7_pullup, ui_input_f8_pullup, ui_input_opt_pullup, voice_efuse_rilm",
+      "role": "encoder_a_pullup;encoder_b_pullup;ui_input_back_pullup;ui_input_encoder_pullup;ui_input_f1_pullup;ui_input_f2_pullup;ui_input_f3_pullup;ui_input_f4_pullup;ui_input_f5_pullup;ui_input_f6_pullup;ui_input_f7_pullup;ui_input_f8_pullup;ui_input_opt_pullup;voice_efuse_rilm",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 14,
@@ -14110,7 +14836,7 @@
         "UI_11_STORAGE_CONTROLS_INDICATORS"
       ],
       "references": [
-        "R129",
+        "R130",
         "R29",
         "R30",
         "R57",
@@ -14126,7 +14852,7 @@
         "R70"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C137993",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Yageo RC0402FR-073K32L product specification",
         "version": "current product data checked 2026-08-18",
@@ -14182,7 +14908,7 @@
         "R47"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C276270",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Yageo RC0402FR-0742K2L product specification",
         "version": "current product data checked 2026-08-18",
@@ -14237,7 +14963,7 @@
         "R4"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C354260",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Yageo RC0402FR-0744K2L product specification",
         "version": "current product data checked 2026-08-18",
@@ -14289,10 +15015,10 @@
         "RF_03_MAIN_RAILS_DOMAIN_GATES"
       ],
       "references": [
-        "R65"
+        "R66"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C137977",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Yageo RC0402FR-0745K3L product specification",
         "version": "current product data checked 2026-08-18",
@@ -14332,7 +15058,7 @@
       "mpn": "Yageo RC0402FR-07470RL",
       "manufacturer": null,
       "kind": "470ohm_1pct_0402_debug_contention_limit_resistor",
-      "role": "c5_dbg0_series, c5_dbg1_series, rp_dbg0_series, rp_dbg1_series, s3_dbg0_series, s3_dbg1_series",
+      "role": "c5_dbg0_series;c5_dbg1_series;rp_dbg0_series;rp_dbg1_series;s3_dbg0_series;s3_dbg1_series",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 8,
@@ -14352,13 +15078,13 @@
         "R133",
         "R4",
         "R5",
-        "R76",
         "R77",
         "R77",
+        "R78",
         "R78"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C114877",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "RC0402FR-07470RL exact product specification",
         "version": "current exact order code checked 2026-08-19",
@@ -14399,7 +15125,7 @@
       "mpn": "Yageo RC0402FR-0747KL",
       "manufacturer": null,
       "kind": "47kohm_1pct_0402_efuse_ovlo_bottom_resistor",
-      "role": "aon_pg_pullup, ext_ovlo_bottom, ir_evidence_feedback, pack_admission_reset_pullup, power_command_pullup, safety_controller_reset_pullup, speaker_input_n_gain, speaker_input_p_gain, unit_ovlo_bottom, voice_supervisor_sense_top",
+      "role": "aon_pg_pullup;ext_ovlo_bottom;ir_evidence_feedback;pack_admission_reset_pullup;power_command_pullup;safety_controller_reset_pullup;speaker_input_n_gain;speaker_input_p_gain;unit_ovlo_bottom;voice_supervisor_sense_top",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 10,
@@ -14418,14 +15144,14 @@
         "UI_50_FRONT_POWER_SAFETY"
       ],
       "references": [
-        "R139",
         "R14",
-        "R207",
+        "R140",
         "R208",
         "R209",
-        "R227",
-        "R256",
-        "R263",
+        "R209",
+        "R236",
+        "R265",
+        "R272",
         "R48",
         "R57"
       ],
@@ -14474,7 +15200,7 @@
       "mpn": "Yageo RC0402FR-0749R9L",
       "manufacturer": null,
       "kind": "49_9ohm_1pct_0402_rf_termination_resistor",
-      "role": "c5_rf_coupler_termination, nrf0_coupler_termination, nrf1_coupler_termination, nrf2_coupler_termination, s3_rf_coupler_termination",
+      "role": "c5_rf_coupler_termination;nrf0_coupler_termination;nrf1_coupler_termination;nrf2_coupler_termination;s3_rf_coupler_termination",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 5,
@@ -14495,7 +15221,7 @@
         "R94"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C87044",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "RC0402FR-0749R9L exact product specification",
         "version": "current exact order code checked 2026-08-18",
@@ -14592,7 +15318,7 @@
       "mpn": "Yageo RC0402FR-0752R3L",
       "manufacturer": null,
       "kind": "52_3ohm_1pct_0402_rf_detector_shunt_match_resistor",
-      "role": "nrf0_detector_match, nrf1_detector_match, nrf2_detector_match, voice_detector_match, voice_v_detector_match",
+      "role": "nrf0_detector_match;nrf1_detector_match;nrf2_detector_match;voice_detector_match;voice_v_detector_match",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 5,
@@ -14606,14 +15332,14 @@
         "UI_31_NRF24_X3_TX_EVIDENCE"
       ],
       "references": [
-        "R122",
-        "R142",
+        "R123",
+        "R143",
         "R149",
         "R169",
         "R189"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C273696",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "RC0402FR-0752R3L exact product specification",
         "version": "current exact order code checked 2026-08-18",
@@ -14665,10 +15391,10 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "R105"
+        "R106"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C114756",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "RC0402FR-0756KL exact product specification",
         "version": "current exact product data checked 2026-08-18",
@@ -14708,7 +15434,7 @@
       "mpn": "Yageo RC0402FR-075K1L",
       "manufacturer": null,
       "kind": "5_1kohm_1pct_0402_resistor",
-      "role": "c5_service_usb_cc1_rd, c5_service_usb_cc2_rd, rp_service_usb_cc1_rd, rp_service_usb_cc2_rd, voice_detector_series_attenuator, voice_v_detector_series_attenuator",
+      "role": "c5_service_usb_cc1_rd;c5_service_usb_cc2_rd;rp_service_usb_cc1_rd;rp_service_usb_cc2_rd;voice_detector_series_attenuator;voice_v_detector_series_attenuator",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 8,
@@ -14726,15 +15452,15 @@
       "references": [
         "R106",
         "R107",
-        "R123",
+        "R124",
         "R140",
         "R141",
-        "R143",
-        "R84",
-        "R85"
+        "R144",
+        "R85",
+        "R86"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C105872",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "RC0402FR-075K1L exact product specification",
         "version": "current exact order code checked 2026-08-18",
@@ -14790,7 +15516,7 @@
         "R19"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C137952",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Yageo RC0402FR-07620KL exact product specification",
         "version": "generated 2026-05-21; checked 2026-08-18",
@@ -14830,7 +15556,7 @@
       "mpn": "Yageo RC0402FR-0768KL",
       "manufacturer": null,
       "kind": "68kohm_1pct_0402_voice_feedback_top_resistor",
-      "role": "ext_pg_base_res, voice_efuse_pg_top, voice_fb_top, voice_pg_base_res",
+      "role": "ext_pg_base_res;voice_efuse_pg_top;voice_fb_top;voice_pg_base_res",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 4,
@@ -14843,13 +15569,13 @@
         "RF_20_CC1101_VOICE_TX"
       ],
       "references": [
-        "R128",
-        "R132",
-        "R134",
+        "R129",
+        "R133",
+        "R135",
         "R59"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C137947",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Yageo RC0402FR-0768KL product specification",
         "version": "current product data checked 2026-08-18",
@@ -14902,8 +15628,8 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "R147",
-        "R148"
+        "R148",
+        "R149"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C163453",
@@ -14956,7 +15682,7 @@
         "RF_21_BROADCAST_AIRBAND_RX"
       ],
       "references": [
-        "R146"
+        "R147"
       ],
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C185385",
@@ -14997,16 +15723,17 @@
       "mpn": "Yageo RC0402JR-070RL",
       "manufacturer": null,
       "kind": "0ohm_0402_jumper_resistor",
-      "role": "audio_ground_link, codec_adc_n_series, codec_adc_p_series",
+      "role": "audio_ground_link;codec_adc_n_series;codec_adc_p_series",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 11,
-      "fitted_board_instance_count": 11,
+      "quantity_per_product": 12,
+      "fitted_board_instance_count": 12,
       "projects": [
         "LESHY2-RF-R2",
         "LESHY2-UI-R2"
       ],
       "sheets": [
+        "RF_03_MAIN_RAILS_DOMAIN_GATES",
         "RF_21_BROADCAST_AIRBAND_RX",
         "RF_22_AUDIO_CODEC_IO",
         "UI_20_C5_WIFI_IR_SERVICE"
@@ -15015,17 +15742,18 @@
         "R101",
         "R103",
         "R105",
-        "R152",
         "R153",
-        "R171",
-        "R179",
+        "R154",
+        "R172",
         "R180",
+        "R181",
+        "R62",
         "R95",
         "R97",
         "R99"
       ],
       "lifecycle": "active_orderable",
-      "jlcpcb_part_number": "C60485",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Yageo RC general-purpose chip resistor specification",
         "version": "current exact order code checked 2026-08-18",
@@ -15054,6 +15782,7 @@
       "model_method_candidate": "analytic_or_vendor_curve",
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
+        "H3-R2.1",
         "H3-R2.3",
         "H3-R2.4"
       ],
@@ -15066,7 +15795,7 @@
       "mpn": "Yageo RC0603FR-071KL",
       "manufacturer": null,
       "kind": "1kohm_1pct_100mw_0603_external_rail_bleeder",
-      "role": "ext_bleeder, ptt_series, sd_detect_series, unit_bleeder",
+      "role": "ext_bleeder;ptt_series;sd_detect_series;unit_bleeder",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
       "quantity_per_product": 4,
@@ -15082,8 +15811,8 @@
         "UI_11_STORAGE_CONTROLS_INDICATORS"
       ],
       "references": [
-        "R226",
-        "R236",
+        "R235",
+        "R245",
         "R47",
         "R50"
       ],
@@ -15143,10 +15872,10 @@
         "RF_03_MAIN_RAILS_DOMAIN_GATES"
       ],
       "references": [
-        "R62"
+        "R63"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C852472",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Yageo RT0402BRD07100KL product specification",
         "version": "current product data checked 2026-08-18",
@@ -15198,10 +15927,10 @@
         "RF_03_MAIN_RAILS_DOMAIN_GATES"
       ],
       "references": [
-        "R63"
+        "R64"
       ],
       "lifecycle": "active",
-      "jlcpcb_part_number": "C852583",
+      "jlcpcb_part_number": null,
       "source": {
         "document": "Yageo RT high-precision thin-film resistor series datasheet",
         "version": "current product data checked 2026-08-18",

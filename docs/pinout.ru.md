@@ -10,7 +10,7 @@
 
 Front S3/C5/rear-RP fan-out, three independent nRF24 buses, microSD, Pack/Safety mailbox, LCD TE and backlight; no audio or broadcast ownership.
 
-**GPIO:** `47/48` used, `1` reserve. **PIO:** `8/12` used. **DMA:** `14/16` used.
+**GPIO:** `46/48` used, `2` reserve. **PIO:** `8/12` used. **DMA:** `14/16` used.
 
 | GPIO | Сеть | Направление | Контроллер | Физический endpoint | Reset / pull |
 |---:|---|---|---|---|---|
@@ -59,7 +59,7 @@ Front S3/C5/rear-RP fan-out, three independent nRF24 buses, microSD, Pack/Safety
 | `42` | `HUB_SAFE_I2C_SDA` | `io` | `I2C1` | TCA9803DGKR SDAA on 3V3_MAIN -> powered-off-Ioff boundary -> SDAB on AON_SAFE_3V3 -> M1.32 -> Pack/Safety mailboxes | input/open-drain released; 2.2-kohm MAIN-local pull-up; A-side high-Z when MAIN is off; no external B-side pull-up |
 | `43` | `HUB_SAFE_I2C_SCL` | `od` | `I2C1` | TCA9803DGKR SCLA on 3V3_MAIN -> powered-off-Ioff boundary -> SCLB on AON_SAFE_3V3 -> M1.33 -> Pack/Safety mailboxes | input/open-drain released; 2.2-kohm MAIN-local pull-up; A-side high-Z when MAIN is off; no external B-side pull-up |
 | `44` | `SD_DETECT_N` | `in` | `GPIO_IRQ` | microSD socket detect | input; external pull-up |
-| `45` | `LCD_TE` | `in` | `GPIO_IRQ` | ER-TFT035IPS-6 ILI9488 TE | input; external pull-down while panel reset is asserted |
+| `45` | `HUB_RESERVE_45` | `reserve` | `GPIO` | uncommitted electrical reserve; no board connection because the accepted panel TE contact is deliberately open | input/high-Z; no external connection; DNP |
 | `46` | `LCD_BL_PWM` | `out` | `PWM` | backlight hardware gate | input/high-Z; external pull-down keeps backlight off |
 | `47` | `HUB_RESERVE_47` | `reserve` | `GPIO` | test pad only | input/high-Z; external pull-down; DNP |
 

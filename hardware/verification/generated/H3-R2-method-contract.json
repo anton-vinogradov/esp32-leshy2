@@ -4,13 +4,13 @@
   "marker": "H3-R2.0.3",
   "status": "pass",
   "accepted_input": "H3-R2.0.2",
-  "input_freeze_sha256": "2cb4e94a0e945d844543ae9a6fdbc7de772358676426763ded84ed4f6e10ac1c",
-  "parameter_register_sha256": "1ead5b41645be356ce1e1ac831a58c1896b79275c7b3d152012ca4ddd9292fbe",
-  "method_contract_sha256": "b3aac83aea734ec2803e36dc1eda07fe029ce2e44a02bdd48f371679c2b6b432",
+  "input_freeze_sha256": "99361b8152e1a223aa74db40ef33aeafb619c7ffd8d37b6bf08d11851d84cc87",
+  "parameter_register_sha256": "e6b915679e4d84e5a63f397866ed6b255d08c96cd4a1f3f49db51d92df6055da",
+  "method_contract_sha256": "c31c4803dccac7ddfbaa09a92df0c8afcf04dc6e45b5551ebdb06365c29aa169",
   "source_sha256": {
-    "hardware/verification/h3-r2-method-contract.json": "698cf8aa9b32afdc135608c401cfb9750b340acd3252bccae387d666f3bcc5cb",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "f448168470c39be2b09114bf88c3c179a6977549046bd68c5398febe3728f385",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "ff4741015fa7e901a340309602e5151f69072433daf80bf97dd9c52c9ca1d207"
+    "hardware/verification/h3-r2-method-contract.json": "658b4d1e4e64d62c7000b3bd764daac90c019b62bd389ae4cadcc44aa4622eed",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "77eba64453b5979af0577de91cf6b5871fe6a892d45997300440446b61d25a7f",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "11357e6b225a6fb605c53d98b46d9633f121f59e5bcb7ed93ceedcdc4ee15f95"
   },
   "toolchain": {
     "python": ">=3.12,<3.15",
@@ -851,6 +851,34 @@
       ],
       "parameter_state": "structured_seed_present",
       "missing_parameter_disposition": "evaluate_authoritative_corners"
+    },
+    {
+      "device_id": "leshy2_nfc_pickup_loop_r2",
+      "parameter_class": "electromechanical_or_load",
+      "owner_workstreams": [
+        "H3-R2.5"
+      ],
+      "method_ids": [
+        "M-INT",
+        "M-RF",
+        "M-STATE"
+      ],
+      "parameter_state": "explicit_extraction_queue",
+      "missing_parameter_disposition": "unresolved_fail"
+    },
+    {
+      "device_id": "leshy2_pcb_testpoint_pad_1mm_r2",
+      "parameter_class": "general_component",
+      "owner_workstreams": [
+        "H3-R2.1"
+      ],
+      "method_ids": [
+        "M-DC",
+        "M-INT",
+        "M-STATE"
+      ],
+      "parameter_state": "explicit_extraction_queue",
+      "missing_parameter_disposition": "unresolved_fail"
     },
     {
       "device_id": "liteon_ltst_c190kfkt",
@@ -1762,6 +1790,23 @@
       "missing_parameter_disposition": "unresolved_fail"
     },
     {
+      "device_id": "nexperia_bat54s_215",
+      "parameter_class": "power_safety_active",
+      "owner_workstreams": [
+        "H3-R2.5"
+      ],
+      "method_ids": [
+        "M-DC",
+        "M-INT",
+        "M-RF",
+        "M-STATE",
+        "M-THERMAL",
+        "M-TRANS"
+      ],
+      "parameter_state": "explicit_extraction_queue",
+      "missing_parameter_disposition": "unresolved_fail"
+    },
+    {
       "device_id": "nexperia_pesd24vy1bsf",
       "parameter_class": "radio_rf",
       "owner_workstreams": [
@@ -1939,6 +1984,20 @@
       "missing_parameter_disposition": "evaluate_authoritative_corners"
     },
     {
+      "device_id": "prodtech_pspmaa0605h_2r2m_anp",
+      "parameter_class": "passive_corner",
+      "owner_workstreams": [
+        "H3-R2.1"
+      ],
+      "method_ids": [
+        "M-DC",
+        "M-INT",
+        "M-STATE"
+      ],
+      "parameter_state": "explicit_extraction_queue",
+      "missing_parameter_disposition": "unresolved_fail"
+    },
+    {
       "device_id": "pui_as02404po",
       "parameter_class": "analog_peripheral",
       "owner_workstreams": [
@@ -2030,6 +2089,20 @@
       "missing_parameter_disposition": "unresolved_fail"
     },
     {
+      "device_id": "samsung_cl05b104kb5nnnc",
+      "parameter_class": "passive_corner",
+      "owner_workstreams": [
+        "H3-R2.1"
+      ],
+      "method_ids": [
+        "M-DC",
+        "M-INT",
+        "M-STATE"
+      ],
+      "parameter_state": "explicit_extraction_queue",
+      "missing_parameter_disposition": "unresolved_fail"
+    },
+    {
       "device_id": "samsung_cl05b104ko5nnnc",
       "parameter_class": "passive_corner",
       "owner_workstreams": [
@@ -2039,6 +2112,20 @@
         "M-INT",
         "M-STATE",
         "M-TRANS"
+      ],
+      "parameter_state": "explicit_extraction_queue",
+      "missing_parameter_disposition": "unresolved_fail"
+    },
+    {
+      "device_id": "samsung_cl10b105ko8nnnc",
+      "parameter_class": "passive_corner",
+      "owner_workstreams": [
+        "H3-R2.1"
+      ],
+      "method_ids": [
+        "M-DC",
+        "M-INT",
+        "M-STATE"
       ],
       "parameter_state": "explicit_extraction_queue",
       "missing_parameter_disposition": "unresolved_fail"
@@ -2139,11 +2226,9 @@
       "device_id": "sunlord_mwsa0503s_3r3mt",
       "parameter_class": "passive_corner",
       "owner_workstreams": [
-        "H3-R2.1",
         "H3-R2.5"
       ],
       "method_ids": [
-        "M-DC",
         "M-INT",
         "M-RF",
         "M-STATE"
@@ -2350,6 +2435,23 @@
       "missing_parameter_disposition": "unresolved_fail"
     },
     {
+      "device_id": "ti_lmv331_idbvr",
+      "parameter_class": "power_safety_active",
+      "owner_workstreams": [
+        "H3-R2.5"
+      ],
+      "method_ids": [
+        "M-DC",
+        "M-INT",
+        "M-RF",
+        "M-STATE",
+        "M-THERMAL",
+        "M-TRANS"
+      ],
+      "parameter_state": "explicit_extraction_queue",
+      "missing_parameter_disposition": "unresolved_fail"
+    },
+    {
       "device_id": "ti_mspm0c1106_sdgs20r",
       "parameter_class": "general_component",
       "owner_workstreams": [
@@ -2364,6 +2466,21 @@
       ],
       "parameter_state": "explicit_extraction_queue",
       "missing_parameter_disposition": "unresolved_fail"
+    },
+    {
+      "device_id": "ti_sn74cbtlv1g125_dckr",
+      "parameter_class": "digital_interface",
+      "owner_workstreams": [
+        "H3-R2.5"
+      ],
+      "method_ids": [
+        "M-DIGITAL",
+        "M-INT",
+        "M-RF",
+        "M-STATE"
+      ],
+      "parameter_state": "structured_seed_present",
+      "missing_parameter_disposition": "evaluate_authoritative_corners"
     },
     {
       "device_id": "ti_sn74lvc08a_pwr",
@@ -2387,11 +2504,13 @@
       "parameter_class": "digital_interface",
       "owner_workstreams": [
         "H3-R2.2",
+        "H3-R2.5",
         "H3-R2.6"
       ],
       "method_ids": [
         "M-DIGITAL",
         "M-INT",
+        "M-RF",
         "M-STATE",
         "M-THERMAL",
         "M-TRANS"
@@ -2950,6 +3069,20 @@
       "missing_parameter_disposition": "unresolved_fail"
     },
     {
+      "device_id": "ti_tps566231p_rqfr",
+      "parameter_class": "general_component",
+      "owner_workstreams": [
+        "H3-R2.1"
+      ],
+      "method_ids": [
+        "M-DC",
+        "M-INT",
+        "M-STATE"
+      ],
+      "parameter_state": "explicit_extraction_queue",
+      "missing_parameter_disposition": "unresolved_fail"
+    },
+    {
       "device_id": "ti_tps629203_drlr",
       "parameter_class": "general_component",
       "owner_workstreams": [
@@ -3048,6 +3181,62 @@
       ],
       "parameter_state": "structured_seed_present",
       "missing_parameter_disposition": "evaluate_authoritative_corners"
+    },
+    {
+      "device_id": "uniroyal_0402wgf1001tce",
+      "parameter_class": "passive_corner",
+      "owner_workstreams": [
+        "H3-R2.5"
+      ],
+      "method_ids": [
+        "M-INT",
+        "M-RF",
+        "M-STATE"
+      ],
+      "parameter_state": "explicit_extraction_queue",
+      "missing_parameter_disposition": "unresolved_fail"
+    },
+    {
+      "device_id": "uniroyal_0402wgf1002tce",
+      "parameter_class": "passive_corner",
+      "owner_workstreams": [
+        "H3-R2.5"
+      ],
+      "method_ids": [
+        "M-INT",
+        "M-RF",
+        "M-STATE"
+      ],
+      "parameter_state": "explicit_extraction_queue",
+      "missing_parameter_disposition": "unresolved_fail"
+    },
+    {
+      "device_id": "uniroyal_0402wgf1003tce",
+      "parameter_class": "passive_corner",
+      "owner_workstreams": [
+        "H3-R2.5"
+      ],
+      "method_ids": [
+        "M-INT",
+        "M-RF",
+        "M-STATE"
+      ],
+      "parameter_state": "explicit_extraction_queue",
+      "missing_parameter_disposition": "unresolved_fail"
+    },
+    {
+      "device_id": "uniroyal_0402wgf1004tce",
+      "parameter_class": "passive_corner",
+      "owner_workstreams": [
+        "H3-R2.5"
+      ],
+      "method_ids": [
+        "M-INT",
+        "M-RF",
+        "M-STATE"
+      ],
+      "parameter_state": "explicit_extraction_queue",
+      "missing_parameter_disposition": "unresolved_fail"
     },
     {
       "device_id": "uniroyal_0402wgf1333tce",
@@ -3843,13 +4032,16 @@
       "device_id": "yageo_rc0402jr_070rl",
       "parameter_class": "passive_corner",
       "owner_workstreams": [
+        "H3-R2.1",
         "H3-R2.3",
         "H3-R2.4"
       ],
       "method_ids": [
         "M-ANALOG",
+        "M-DC",
         "M-DIGITAL",
         "M-INT",
+        "M-STATE",
         "M-THERMAL",
         "M-TRANS"
       ],
@@ -3906,23 +4098,23 @@
     }
   ],
   "summary": {
-    "parameter_rows": 238,
+    "parameter_rows": 251,
     "parameter_classes": 9,
     "workstreams": 7,
     "methods": 9,
     "pass_fail_rules": 12,
-    "assigned_parameter_rows": 238,
+    "assigned_parameter_rows": 251,
     "method_usage": {
       "M-ANALOG": 83,
-      "M-DC": 68,
-      "M-DIGITAL": 87,
-      "M-INT": 238,
-      "M-RF": 85,
-      "M-STATE": 158,
-      "M-THERMAL": 111,
-      "M-TRANS": 124
+      "M-DC": 75,
+      "M-DIGITAL": 88,
+      "M-INT": 251,
+      "M-RF": 94,
+      "M-STATE": 172,
+      "M-THERMAL": 113,
+      "M-TRANS": 126
     },
-    "explicit_unresolved_until_extraction": 164,
+    "explicit_unresolved_until_extraction": 176,
     "open_method_questions": 0,
     "errors": 0
   },

@@ -158,7 +158,7 @@
     "accepted_on": "2026-08-27",
     "ui_board": ["S3-local UI/display", "C5 native RF/IR", "three complete nRF24 islands", "front RP", "microSD"],
     "rf_power_board": ["onboard CC1101", "VHF/UHF voice", "FM/SW/AM/LW/Airband", "audio", "M5 Unit", "exactly one signed U214/U219 Cap profile", "rear RP", "power and safety"],
-    "front_rp_gpio": {"used": 47, "free": 1},
+    "front_rp_gpio": {"used": 46, "free": 2},
     "rear_rp_gpio": {"used": 43, "free": 5},
     "m1": {
       "connector": "FX8C-80P-SV1(92) / FX8C-80S-SV5(92)",
@@ -1475,7 +1475,7 @@
       "courtyard_world_bbox_mm": {"x": [47.1, 50.65], "y": [27.0, 30.5]},
       "courtyard_basis": "maximum of official full-package and manufacturer-land extents plus 0.25 mm on every side",
       "courtyard_status": "source-backed H1 fit evidence; exact KiCad footprint import remains an H2 gate",
-      "replaces": ["evidence_mask_p12_pulldown"]
+      "replaces": ["evidence_mask_p17_pulldown"]
     },
     {
       "id": "u219_pin10_oe_pullup", "drawing_ref": "55", "kind": "fixed_body", "frame": "rf-inner",

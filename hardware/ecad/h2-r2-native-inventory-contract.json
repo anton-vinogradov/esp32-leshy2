@@ -8,14 +8,17 @@
     "functional": "hardware/architecture/h0-r2-rebaseline.json",
     "pin_map": "hardware/architecture/h1-r2-dual-rp-pinout.json",
     "physical": "hardware/product-design/h1-r2-placement.json",
+    "power_cell": "hardware/product-design/h1-r2-power-thermal.json",
     "device_register": "hardware/architecture/devices.json",
-    "component_groups": "hardware/product-design/generated/H1-R2-cost-audit.json",
+    "component_groups": "hardware/architecture/generated/G2F-3I-target-bom.csv",
+    "r2_cost_model": "hardware/product-design/h1-r2-cost-review.json",
     "c5_mux_and_service_vbus": "hardware/architecture/c5-sdio-service-mux-contract.json",
     "pack_safety_boundary": "hardware/architecture/pack-safety-i2c-boundary-contract.json",
     "u214_u219": "hardware/architecture/h1-r2-u219-cap.json",
     "display_mount": "hardware/product-design/display-mount.json",
     "airband": "hardware/product-design/h1-airband-filter.json",
-    "antennas": "hardware/architecture/antenna-kit.json"
+    "antennas": "hardware/architecture/antenna-kit.json",
+    "freeze_new_parts": "hardware/verification/jlcpcb-h2-freeze-new-parts-2026-09-02.json"
   },
   "project_rules": {
     "one_physical_pcb_per_project": true,
@@ -63,8 +66,8 @@
     }
   ],
   "component_inventory": {
-  "base_group_count": 210,
-    "base_quantity_per_product": 1097,
+  "base_group_count": 221,
+    "base_quantity_per_product": 1120,
     "adjustments": [
       {"device_id": "uniroyal_0402wgf2201tce", "quantity_delta": 2, "sheets": ["RF_02_PACK_SAFETY_AON", "RF_31_REAR_CONTROLS"], "reason": "remove two obsolete Cap-identity pull-ups, then add two MAIN-side Pack/Safety and two rear-local I2C pull-ups"},
       {"device_id": "samtec_ftsh_105_01_l_dv_k_p_tr", "quantity_delta": 2, "sheets": ["RF_02_PACK_SAFETY_AON", "RF_50_TX_SAFETY_EVIDENCE"], "reason": "physical internal DBG10 fixtures for Pack and Safety MSPM0 recovery"},
@@ -115,10 +118,12 @@
       {"device_id": "murata_gjm1555c1h5r8wb01d", "quantity": 1, "sheet": "RF_21_BROADCAST_AIRBAND_RX", "role": "H3-R2 verified Airband output series capacitor", "identity_source": "hardware/product-design/h1-airband-filter.json"},
       {"device_id": "ralec_rtt023r00fth", "quantity": 1, "sheet": "RF_21_BROADCAST_AIRBAND_RX", "role": "official DC1027A ten-milliamp mixer bias value", "identity_source": "hardware/architecture/devices.json"},
       {"device_id": "yageo_rc0402fr_0782rl", "quantity": 2, "sheet": "RF_21_BROADCAST_AIRBAND_RX", "role": "12-dB nominal LO pi-pad shunts", "identity_source": "hardware/architecture/devices.json"},
-      {"device_id": "yageo_rc0402fr_0793r1l", "quantity": 1, "sheet": "RF_21_BROADCAST_AIRBAND_RX", "role": "12-dB nominal LO pi-pad series arm", "identity_source": "hardware/architecture/devices.json"}
+      {"device_id": "yageo_rc0402fr_0793r1l", "quantity": 1, "sheet": "RF_21_BROADCAST_AIRBAND_RX", "role": "12-dB nominal LO pi-pad series arm", "identity_source": "hardware/architecture/devices.json"},
+      {"device_id": "leshy2_nfc_pickup_loop_r2", "quantity": 1, "sheet": "RF_30_U214_U219_M5_EXT", "role": "weakly coupled printed NFC evidence loop; PCB copper feature excluded from BOM", "identity_source": "hardware/architecture/h1-r2-u219-cap.json"},
+      {"device_id": "leshy2_pcb_testpoint_pad_1mm_r2", "quantity": 1, "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES", "role": "raw main-converter Power-Good diagnostic copper pad; excluded from BOM", "identity_source": "hardware/ecad/H2-sheet-contract.json"}
     ],
-  "expected_group_count": 238,
-    "expected_quantity_per_product": 1193,
+  "expected_group_count": 251,
+    "expected_quantity_per_product": 1218,
     "non_pcba_dispositions": {
       "eastrising_er_tft035ips_6_ctp": "factory-final-mated display assembly represented by its controlled connector endpoint",
       "m5_u214": "optional removable external accessory; host receptacle remains in ECAD",

@@ -207,12 +207,12 @@
       "EV_N9_U219_NFC active low with AON pull-up"
     ],
     "digital_fanout": [
-      "TCA9535 evidence_mask.P12 diagnostic input",
+      "TCA9535 evidence_mask.P17 diagnostic input",
       "existing evidence_or_4.K2 spare cathode",
       "existing evidence_or_4.A_COMMON -> ANY_TX_AON_N"
     ],
     "supersedes": [
-      "evidence_mask_p12_pulldown and EVIDENCE_MASK_UNUSED_P12",
+      "evidence_mask_p17_pulldown and EVIDENCE_MASK_UNUSED_P17",
       "evidence_or_4.K2 no-connect"
     ],
     "polarity": {
@@ -423,7 +423,7 @@
     {
       "id": "U219-HIL-04",
       "stage": "H7/H8",
-      "requirement": "false-positive injection, adjacent RF, loop open/short, comparator stuck states, P12 fault, K2 aggregate continuity and immediate lease revocation",
+      "requirement": "false-positive injection, adjacent RF, loop open/short, comparator stuck states, P17 fault, K2 aggregate continuity and immediate lease revocation",
       "closed": false
     },
     {
