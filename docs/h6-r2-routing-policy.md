@@ -29,7 +29,7 @@
 
 ## Disposable helper workspace
 
-`hardware/layout/h6_r2_routing_workspace.py` exports temporary DSNs without the protected net definitions. Pads and components remain as physical obstacles, but Freerouting can see only `GENERAL_CONTROL` nets: `61` on the UI board and `106` on the RF/power board. This explicit filter is required because Freerouting 2.3.0 parses its ignore-class option in headless mode but applies it only in the GUI loader. The generated DSNs and sessions are review inputs, never source or release artifacts.
+`hardware/layout/h6_r2_routing_workspace.py` exports temporary DSNs without the protected net definitions. Pads and components remain as physical obstacles, but Freerouting can see only `GENERAL_CONTROL` nets: `61` on the UI board and `106` on the RF/power board. This explicit filter is required because Freerouting 2.3.0 parses ignore-class and layer-active settings in headless mode but applies them only in the GUI loader. The disposable DSN therefore also declares `In1.Cu`/`In4.Cu` as non-signal layers. Generated DSNs and sessions are review inputs, never source or release artifacts. The helper may use only `F.Cu`, `In2.Cu`, `In3.Cu` and `B.Cu`; `In1.Cu`/`In4.Cu` remain uninterrupted reference planes, and the via cost is raised to `250`.
 
 Run the exporter with KiCad's bundled Python:
 

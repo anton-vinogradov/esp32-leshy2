@@ -258,11 +258,23 @@ def build() -> dict:
     display_rows = [row for row in rows if row["routing_class"] == "DISPLAY_I8080"]
     if {row["canonical_net"] for row in display_rows} != DISPLAY_I8080:
         errors.append("direct i8080 routing class does not contain exactly DB0..DB7, WR_N and DC")
-    automatic_classes = set(contract["automatic_helper"]["allowed_classes"])
+    helper = contract["automatic_helper"]
+    automatic_classes = set(helper["allowed_classes"])
     if automatic_classes != {"GENERAL_CONTROL"}:
         errors.append("automatic helper allow-list expanded beyond GENERAL_CONTROL")
     if any(row["route_mode"].startswith("automatic") and row["routing_class"] not in automatic_classes for row in rows):
         errors.append("a protected routing class permits automatic routing")
+    copper_layers = {item.split(":", 1)[0] for item in placement["board"]["layer_intent"]}
+    routable_layers = set(helper["routable_layers"])
+    reserved_layers = set(helper["reserved_reference_layers"])
+    if routable_layers | reserved_layers != copper_layers or routable_layers & reserved_layers:
+        errors.append("automatic-helper routable and reserved layers do not partition the stack")
+    if reserved_layers != {"In1.Cu", "In4.Cu"}:
+        errors.append("automatic helper does not preserve both uninterrupted ground-reference layers")
+    if set(helper["preferred_directions"]) != copper_layers:
+        errors.append("automatic-helper preferred directions do not cover the complete copper stack")
+    if helper["via_costs"] < 100 or helper["plane_via_costs"] < helper["via_costs"]:
+        errors.append("automatic-helper via cost does not discourage unnecessary layer changes")
     external_pair_stems = {stem for _project, stem in pair_members if stem in EXTERNAL_USB_PAIR_STEMS}
     if external_pair_stems != EXTERNAL_USB_PAIR_STEMS:
         errors.append("the four external USB connector pairs are not all present")
@@ -320,9 +332,12 @@ def doc(audit: dict, *, ru: bool) -> str:
             "Площадки и компоненты остаются физическими препятствиями, но Freerouting видит только `GENERAL_CONTROL`: "
             f"`{audit['boards']['LESHY2-UI-R2']['class_counts']['GENERAL_CONTROL']}` сеть на передней плате и "
             f"`{audit['boards']['LESHY2-RF-R2']['class_counts']['GENERAL_CONTROL']}` на RF/power-плате. Такой явный "
-            "фильтр нужен потому, что Freerouting 2.3.0 разбирает параметр исключения классов в headless-режиме, "
-            "но применяет его только в GUI-загрузчике. Полученные DSN и сессии служат лишь для ревью, а не являются "
-            "исходниками или релизными файлами.\n\n"
+            "фильтр нужен потому, что Freerouting 2.3.0 разбирает исключения классов и активность слоёв в "
+            "headless-режиме, но применяет их только в GUI-загрузчике. Поэтому временный DSN также объявляет "
+            "`In1.Cu`/`In4.Cu` несигнальными слоями. Полученные DSN и сессии служат лишь для ревью, а не являются "
+            "исходниками или релизными файлами. Автотрассировщик может использовать только `F.Cu`, `In2.Cu`, "
+            "`In3.Cu` и `B.Cu`; `In1.Cu`/`In4.Cu` остаются непрерывными опорными плоскостями, а стоимость via "
+            f"повышена до `{audit['automatic_helper']['via_costs']}`.\n\n"
             "Экспорт запускается встроенным Python из KiCad:\n\n"
             "```sh\n"
             "/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3 hardware/layout/h6_r2_routing_workspace.py --output-dir /private/tmp/leshy2-routing\n"
@@ -350,9 +365,12 @@ def doc(audit: dict, *, ru: bool) -> str:
             "Pads and components remain as physical obstacles, but Freerouting can see only `GENERAL_CONTROL` nets: "
             f"`{audit['boards']['LESHY2-UI-R2']['class_counts']['GENERAL_CONTROL']}` on the UI board and "
             f"`{audit['boards']['LESHY2-RF-R2']['class_counts']['GENERAL_CONTROL']}` on the RF/power board. This "
-            "explicit filter is required because Freerouting 2.3.0 parses its ignore-class option in headless mode but "
-            "applies it only in the GUI loader. The generated DSNs and sessions are review inputs, never source or "
-            "release artifacts.\n\n"
+            "explicit filter is required because Freerouting 2.3.0 parses ignore-class and layer-active settings in "
+            "headless mode but applies them only in the GUI loader. The disposable DSN therefore also declares "
+            "`In1.Cu`/`In4.Cu` as non-signal layers. Generated DSNs and sessions are review inputs, never source or "
+            "release artifacts. The helper may use only `F.Cu`, `In2.Cu`, `In3.Cu` and `B.Cu`; `In1.Cu`/`In4.Cu` "
+            "remain uninterrupted reference planes, and the via cost is raised to "
+            f"`{audit['automatic_helper']['via_costs']}`.\n\n"
             "Run the exporter with KiCad's bundled Python:\n\n"
             "```sh\n"
             "/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3 hardware/layout/h6_r2_routing_workspace.py --output-dir /private/tmp/leshy2-routing\n"

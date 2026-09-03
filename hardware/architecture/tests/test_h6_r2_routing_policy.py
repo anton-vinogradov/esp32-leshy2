@@ -4,6 +4,9 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from hardware.layout.h6_r2_routing_drc_delta import item_net, violation_fingerprint
+from hardware.layout.h6_r2_routing_session import placement_rounding, session_nets
+
 
 ROOT = Path(__file__).resolve().parents[3]
 CONTRACT = ROOT / "hardware/layout/h6-r2-routing-policy.json"
@@ -35,6 +38,15 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual(["GENERAL_CONTROL"], self.audit["automatic_helper"]["allowed_classes"])
         protected = set(self.audit["automatic_helper"]["locked_or_ignored_classes"])
         self.assertEqual(set(self.contract["classes"]) - {"GENERAL_CONTROL"}, protected)
+        self.assertEqual(
+            {"F.Cu", "In2.Cu", "In3.Cu", "B.Cu"},
+            set(self.audit["automatic_helper"]["routable_layers"]),
+        )
+        self.assertEqual(
+            {"In1.Cu", "In4.Cu"},
+            set(self.audit["automatic_helper"]["reserved_reference_layers"]),
+        )
+        self.assertGreaterEqual(self.audit["automatic_helper"]["via_costs"], 100)
         for row in self.audit["rows"]:
             if row["routing_class"] != "GENERAL_CONTROL":
                 self.assertFalse(row["route_mode"].startswith("automatic"), row["canonical_net"])
@@ -76,6 +88,28 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual(0, result.returncode, result.stdout)
         self.assertIn("0 unclassified", result.stdout)
 
+    def test_session_and_drc_guards_parse_machine_artifacts(self):
+        self.assertEqual(
+            {"/UI/ONE", "PLAIN_TWO"},
+            session_nets('      (net "/UI/ONE"\n      (net PLAIN_TWO\n'),
+        )
+        rounded, delta = placement_rounding(
+            {"U1": (100, 200, 90.0, True)},
+            {"U1": (101, 200, 90.0, True)},
+        )
+        self.assertEqual(["U1"], rounded)
+        self.assertEqual(1, delta)
+        self.assertEqual("/UI/ONE", item_net("Track [/UI/ONE] on F.Cu"))
+        violation = {
+            "type": "clearance",
+            "description": "too close",
+            "items": [{"uuid": "b"}, {"uuid": "a"}],
+        }
+        self.assertEqual(
+            ("clearance", "too close", ("a", "b")),
+            violation_fingerprint(violation),
+        )
+
     def test_temporary_dsn_workspace_replaces_the_permissive_default_class(self):
         if not KICAD_PYTHON.is_file():
             self.skipTest("KiCad bundled pcbnew Python is unavailable")
@@ -91,6 +125,8 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
             manifest = json.loads((Path(directory) / "routing-workspace-manifest.json").read_text(encoding="utf-8"))
             self.assertEqual(["GENERAL_CONTROL"], manifest["allowed_classes"])
             self.assertEqual(12, len(manifest["freerouting_ignore_classes"]))
+            self.assertEqual(["In1.Cu", "In4.Cu"], manifest["reserved_reference_layers"])
+            self.assertEqual(250, manifest["via_costs"])
             for project in manifest["projects"]:
                 dsn = Path(project["dsn"]).read_text(encoding="utf-8")
                 self.assertNotIn("(class kicad_default", dsn)
@@ -102,6 +138,12 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
                     project["helper_net_count"] + project["omitted_protected_net_count"],
                 )
                 self.assertEqual(project["class_counts"]["GENERAL_CONTROL"], project["helper_net_count"])
+                self.assertIn("(layer_rule In1.Cu\n      (active off)", dsn)
+                self.assertIn("(layer_rule In4.Cu\n      (active off)", dsn)
+                self.assertIn("(layer_rule In2.Cu\n      (active on)", dsn)
+                self.assertIn("(via_costs 250)", dsn)
+                self.assertIn("(layer In1.Cu\n      (type power)", dsn)
+                self.assertIn("(layer In4.Cu\n      (type power)", dsn)
 
 
 if __name__ == "__main__":

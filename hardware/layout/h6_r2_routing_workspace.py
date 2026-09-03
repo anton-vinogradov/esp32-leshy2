@@ -145,6 +145,51 @@ def prune_network_to_allowed(dsn: str, project: str, allowed_nets: set[str]) -> 
     return dsn[:network_start] + network + dsn[network_end:]
 
 
+def inject_autoroute_settings(dsn: str, project: str, policy: dict) -> str:
+    if "(autoroute_settings" in dsn:
+        raise ValueError(f"{project}: DSN already contains autoroute settings")
+    helper = policy["automatic_helper"]
+    routable = set(helper["routable_layers"])
+    directions = helper["preferred_directions"]
+    lines = [
+        "  (autoroute_settings",
+        "    (fanout off)",
+        "    (autoroute on)",
+        "    (postroute off)",
+        "    (vias on)",
+        f"    (via_costs {helper['via_costs']})",
+        f"    (plane_via_costs {helper['plane_via_costs']})",
+        "    (start_ripup_costs 100)",
+    ]
+    for layer, direction in directions.items():
+        if direction not in {"horizontal", "vertical"}:
+            raise ValueError(f"{project}: unsupported preferred direction {direction}")
+        lines.extend([
+            f"    (layer_rule {layer}",
+            f"      (active {'on' if layer in routable else 'off'})",
+            f"      (preferred_direction {direction})",
+            "      (preferred_direction_trace_costs 1.0)",
+            "      (against_preferred_direction_trace_costs 2.0)",
+            "    )",
+        ])
+    lines.append("  )")
+    marker = "\n  (wiring\n"
+    if dsn.count(marker) != 1:
+        raise ValueError(f"{project}: unique top-level wiring block is absent")
+    return dsn.replace(marker, "\n" + "\n".join(lines) + marker, 1)
+
+
+def mark_reference_layers_non_signal(dsn: str, project: str, policy: dict) -> str:
+    transformed = dsn
+    for layer in policy["automatic_helper"]["reserved_reference_layers"]:
+        marker = f"    (layer {layer}\n      (type signal)"
+        replacement = f"    (layer {layer}\n      (type power)"
+        if transformed.count(marker) != 1:
+            raise ValueError(f"{project}: unique signal declaration for {layer} is absent")
+        transformed = transformed.replace(marker, replacement, 1)
+    return transformed
+
+
 def export(output_dir: Path) -> dict:
     try:
         import pcbnew  # type: ignore
@@ -176,6 +221,8 @@ def export(output_dir: Path) -> dict:
         transformed = replace_default_class(
             transformed, project, policy, audit, allowed_classes
         )
+        transformed = mark_reference_layers_non_signal(transformed, project, policy)
+        transformed = inject_autoroute_settings(transformed, project, policy)
         output_path.write_text(transformed, encoding="utf-8")
         raw_path.unlink()
         counts = audit["boards"][project]["class_counts"]
@@ -205,7 +252,11 @@ def export(output_dir: Path) -> dict:
         "freerouting_ignore_classes": ignored,
         "freerouting_ignore_argument": ",".join(ignored),
         "allowed_classes": policy["automatic_helper"]["allowed_classes"],
-        "headless_filter_method": "protected net definitions omitted from disposable DSN because Freerouting 2.3.0 applies -inc inside its GUI loader only; original KiCad boards remain complete",
+        "routable_layers": policy["automatic_helper"]["routable_layers"],
+        "reserved_reference_layers": policy["automatic_helper"]["reserved_reference_layers"],
+        "via_costs": policy["automatic_helper"]["via_costs"],
+        "plane_via_costs": policy["automatic_helper"]["plane_via_costs"],
+        "headless_filter_method": "protected net definitions are omitted and In1/In4 are marked as non-signal in the disposable DSN because Freerouting 2.3.0 applies ignore-class and layer-active settings inside its GUI loader only; original KiCad boards remain complete",
         "acceptance": policy["automatic_helper"]["acceptance"],
     }
     manifest_path = output_dir / "routing-workspace-manifest.json"

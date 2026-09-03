@@ -4,7 +4,7 @@
   "marker": "H6.0.2-R1",
   "status": "pass",
   "source_hashes": {
-    "hardware/layout/h6-r2-routing-policy.json": "c774bc841c70d94304a78df26853f624d14f75c583553cc8fc213cea37471824",
+    "hardware/layout/h6-r2-routing-policy.json": "b63d79a06cf900fcfc9cff3e60a7308ecefbe0df882416a6fe9fe58ec52520d9",
     "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "af7083e3400191f102e0b11a7fb963d4fa72e3222499e313c56502a0a9940ae3",
     "hardware/ecad/generated/H2-R2-native-net-ledger.json": "7c0de54e0faa9e7d4ddef816b592bc18d523138e99bbf1135461f425ae08bf2e",
     "hardware/verification/h3-r2-load-binding-contract.json": "48d2575032bac09bd8ea276e814c16fbb1f76ca6afe0cea0dd36cee2e8c2a384",
@@ -91,6 +91,26 @@
     "allowed_classes": [
       "GENERAL_CONTROL"
     ],
+    "routable_layers": [
+      "F.Cu",
+      "In2.Cu",
+      "In3.Cu",
+      "B.Cu"
+    ],
+    "reserved_reference_layers": [
+      "In1.Cu",
+      "In4.Cu"
+    ],
+    "preferred_directions": {
+      "F.Cu": "horizontal",
+      "In1.Cu": "vertical",
+      "In2.Cu": "vertical",
+      "In3.Cu": "horizontal",
+      "In4.Cu": "horizontal",
+      "B.Cu": "vertical"
+    },
+    "via_costs": 250,
+    "plane_via_costs": 1000,
     "locked_or_ignored_classes": [
       "GROUND_REFERENCE",
       "PRIMARY_POWER",

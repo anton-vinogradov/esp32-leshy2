@@ -122,6 +122,18 @@
   },
   "automatic_helper": {
     "allowed_classes": ["GENERAL_CONTROL"],
+    "routable_layers": ["F.Cu", "In2.Cu", "In3.Cu", "B.Cu"],
+    "reserved_reference_layers": ["In1.Cu", "In4.Cu"],
+    "preferred_directions": {
+      "F.Cu": "horizontal",
+      "In1.Cu": "vertical",
+      "In2.Cu": "vertical",
+      "In3.Cu": "horizontal",
+      "In4.Cu": "horizontal",
+      "B.Cu": "vertical"
+    },
+    "via_costs": 250,
+    "plane_via_costs": 1000,
     "locked_or_ignored_classes": [
       "GROUND_REFERENCE",
       "PRIMARY_POWER",
