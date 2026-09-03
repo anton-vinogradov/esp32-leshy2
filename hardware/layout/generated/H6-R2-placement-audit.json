@@ -5,7 +5,7 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "329c86e7517ec7532af099d7be5f818604ff647f40e1a1f1cd21bbea033442df",
+    "contract_sha256": "21c741a9eacf3eafb76e5b535ca1037a7e1d99c5de7d161567da2179b7d43a2f",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "66321938e7ea53875639ad6841f02209aaf08510054323c0108d8a5077813054",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -32,14 +32,16 @@
   },
   "stackup": {
     "manufacturer": "JLCPCB",
-    "name": "JLC3313 6-layer impedance-control stackup",
+    "name": "JLC06161H-3313 6-layer impedance-control stackup",
+    "official_stackup_id": "JLC06161H-3313",
     "finished_thickness_mm": 1.6,
     "outer_copper_mm": 0.035,
     "inner_copper_mm": 0.0152,
     "outer_prepreg": "3313 x1, 0.0994 mm nominal",
     "inner_prepreg": "2116 x1, 0.1088 mm nominal",
-    "core_each_mm": 0.35,
+    "core_each_mm": 0.55,
     "source": "https://jlcpcb.com/impedance",
+    "verified_at": "2026-09-03",
     "selection_status": "placement-time candidate; H6.0.4/H6.0.5 bind exact trace geometry and order-time calculator values"
   },
   "boards": [

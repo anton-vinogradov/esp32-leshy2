@@ -87,6 +87,19 @@ class H6R2PlacementTests(unittest.TestCase):
         )
         self.assertEqual(90.0, self.contract["placement_overrides"]["encoder"]["rotation_deg"])
 
+    def test_factory_stack_candidate_is_the_current_1p6_mm_six_layer_stack(self):
+        stack = self.contract["board"]["factory_stack_candidate"]
+        self.assertEqual("JLCPCB", stack["manufacturer"])
+        self.assertEqual("JLC06161H-3313", stack["official_stackup_id"])
+        self.assertEqual(1.6, stack["finished_thickness_mm"])
+        self.assertEqual(0.035, stack["outer_copper_mm"])
+        self.assertEqual(0.0152, stack["inner_copper_mm"])
+        self.assertEqual("3313 x1, 0.0994 mm nominal", stack["outer_prepreg"])
+        self.assertEqual("2116 x1, 0.1088 mm nominal", stack["inner_prepreg"])
+        self.assertEqual(0.55, stack["core_each_mm"])
+        self.assertEqual("https://jlcpcb.com/impedance", stack["source"])
+        self.assertEqual("2026-09-03", stack["verified_at"])
+
     def test_generation_is_byte_reproducible_when_kicad_python_is_available(self):
         if not KICAD_PYTHON.is_file():
             self.skipTest("KiCad bundled pcbnew Python is unavailable")
