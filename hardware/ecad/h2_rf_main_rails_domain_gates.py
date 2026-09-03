@@ -130,28 +130,34 @@ def footprint_outputs() -> dict[Path, str]:
         "TI MPCS002G DRL0008A package-contact pattern: eight 0.5-mm-pitch contacts and 1.3x1.7-mm maximum body; final IPC density and paste rules close in H6",
     )
 
-    # RPW0010A is a ten-contact 2x2-mm HotRod VQFN-HR with 0.45-mm pitch.
-    # Every numbered copper contact is distinct here; H6 replaces this package
-    # contact pattern with the final TI recommended-board-layout paste/copper
-    # geometry before fabrication release.
-    rpw_pads = []
-    for number, x, y in (
-        (1, -0.78, 0.68), (2, -0.78, 0.23), (3, -0.78, -0.23),
-        (4, -0.78, -0.68), (5, -0.23, -0.78), (6, 0.23, -0.78),
-        (7, 0.78, -0.68), (8, 0.78, -0.23), (9, 0.78, 0.23),
-        (10, 0.78, 0.68),
-    ):
-        vertical = number not in {5, 6}
-        rpw_pads.append((
-            str(number), x, y,
-            0.32 if vertical else 0.40,
-            0.40 if vertical else 0.32,
-            copper, "rect",
-        ))
-    rpw = custom_footprint(
-        "TI-RPW0010A-VQFN-HR-10", rpw_pads, 2.10, 2.10, 2.50, 2.50,
-        "TI 4225183/A RPW0010A package-contact pattern: ten distinct 0.45-mm-pitch HotRod contacts and 2.1x2.1-mm maximum body; final shaped power lands and paste close in H6",
-    )
+    # Literal transcription of TI 4225183/A.  The four corner power contacts
+    # are L-shaped; flattening them into oversized rectangles both violated the
+    # fab clearance and inverted the physical pin order in the early H2 seed.
+    rpw = "\n".join([
+        '(footprint "TI-RPW0010A-VQFN-HR-10"',
+        '\t(version 20260206)',
+        '\t(generator "leshy2-h2-rf03")',
+        '\t(generator_version "1.0")',
+        '\t(layer "F.Cu")',
+        '\t(descr "TI 4225183/A RPW0010A recommended PCB layout: ten distinct HotRod lands, including four L-shaped corner power lands; cross-checked against verified JLC/LCSC C3662793 CAD")',
+        '\t(property "Reference" "REF**" (at 0 -4 0) (layer "F.SilkS") (effects (font (size 1 1) (thickness 0.15))))',
+        '\t(property "Value" "TI-RPW0010A-VQFN-HR-10" (at 0 4 0) (layer "F.Fab") (effects (font (size 1 1) (thickness 0.15))))',
+        '\t(attr smd)',
+        '\t(fp_rect (start -1.050 -1.050) (end 1.050 1.050) (stroke (width 0.10) (type default)) (fill none) (layer "F.Fab"))',
+        '\t(fp_rect (start -1.250 -1.250) (end 1.250 1.250) (stroke (width 0.05) (type default)) (fill none) (layer "F.CrtYd"))',
+        '\t(pad "1" smd custom (at -0.725 -0.750) (size 0.25 0.25) (layers "F.Cu" "F.Paste" "F.Mask") (options (clearance outline) (anchor rect)) (primitives (gr_poly (pts (xy -0.125 -0.450) (xy 0.125 -0.450) (xy 0.125 0.150) (xy -0.475 0.150) (xy -0.475 -0.150) (xy -0.125 -0.150)) (width 0) (fill yes))))',
+        '\t(pad "2" smd roundrect (at -0.900 -0.225) (size 0.600 0.250) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.20))',
+        '\t(pad "3" smd roundrect (at -0.900 0.225) (size 0.600 0.250) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.20))',
+        '\t(pad "4" smd custom (at -0.725 0.750) (size 0.25 0.25) (layers "F.Cu" "F.Paste" "F.Mask") (options (clearance outline) (anchor rect)) (primitives (gr_poly (pts (xy -0.475 -0.150) (xy 0.125 -0.150) (xy 0.125 0.450) (xy -0.125 0.450) (xy -0.125 0.150) (xy -0.475 0.150)) (width 0) (fill yes))))',
+        '\t(pad "5" smd roundrect (at -0.250 0) (size 0.300 2.400) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.16))',
+        '\t(pad "6" smd roundrect (at 0.250 0) (size 0.300 2.400) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.16))',
+        '\t(pad "7" smd custom (at 0.725 0.750) (size 0.25 0.25) (layers "F.Cu" "F.Paste" "F.Mask") (options (clearance outline) (anchor rect)) (primitives (gr_poly (pts (xy -0.125 -0.150) (xy 0.475 -0.150) (xy 0.475 0.150) (xy 0.125 0.150) (xy 0.125 0.450) (xy -0.125 0.450)) (width 0) (fill yes))))',
+        '\t(pad "8" smd roundrect (at 0.900 0.225) (size 0.600 0.250) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.20))',
+        '\t(pad "9" smd roundrect (at 0.900 -0.225) (size 0.600 0.250) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.20))',
+        '\t(pad "10" smd custom (at 0.725 -0.750) (size 0.25 0.25) (layers "F.Cu" "F.Paste" "F.Mask") (options (clearance outline) (anchor rect)) (primitives (gr_poly (pts (xy -0.125 -0.450) (xy 0.125 -0.450) (xy 0.125 -0.150) (xy 0.475 -0.150) (xy 0.475 0.150) (xy -0.125 0.150)) (width 0) (fill yes))))',
+        ')',
+        '',
+    ])
     return {
         FOOTPRINT_DIR / "TI-DRL0008A-SOT-5X3-8.kicad_mod": drl,
         FOOTPRINT_DIR / "TI-RPW0010A-VQFN-HR-10.kicad_mod": rpw,

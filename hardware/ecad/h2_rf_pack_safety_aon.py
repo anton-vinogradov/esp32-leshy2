@@ -161,22 +161,22 @@ def footprint_outputs() -> dict[Path, str]:
     )
 
     bqb_pads = [
-        ("1", -0.25, 1.55, 0.24, 0.60, copper, "rect"),
-        ("2", 0.25, 1.55, 0.24, 0.60, copper, "rect"),
-        ("9", -0.25, -1.55, 0.24, 0.60, copper, "rect"),
-        ("10", 0.25, -1.55, 0.24, 0.60, copper, "rect"),
+        ("1", -0.25, -1.55, 0.24, 0.60, copper, "roundrect"),
+        ("16", 0.25, -1.55, 0.24, 0.60, copper, "roundrect"),
+        ("8", -0.25, 1.55, 0.24, 0.60, copper, "roundrect"),
+        ("9", 0.25, 1.55, 0.24, 0.60, copper, "roundrect"),
     ]
     for index in range(6):
-        y = 1.25 - index * 0.50
-        bqb_pads.append((str(3 + index), -1.20, y, 0.60, 0.24, copper, "rect"))
-        bqb_pads.append((str(16 - index), 1.20, -y, 0.60, 0.24, copper, "rect"))
+        y = -1.25 + index * 0.50
+        bqb_pads.append((str(2 + index), -1.20, y, 0.60, 0.24, copper, "roundrect"))
+        bqb_pads.append((str(15 - index), 1.20, y, 0.60, 0.24, copper, "roundrect"))
     bqb_pads += [
-        ("17", 0.0, 0.0, 1.00, 2.30, copper_no_paste, "rect"),
-        ("17", 0.0, 0.0, 0.95, 1.79, paste, "rect"),
+        ("17", 0.0, 0.0, 1.00, 2.00, copper_no_paste, "rect"),
+        ("17", 0.0, 0.0, 0.95, 1.70, paste, "rect"),
     ]
     bqb = custom_footprint(
         "TPUL2G223BQBR", bqb_pads, 2.50, 3.50, 3.00, 4.00,
-        "TI BQB0016A 4224640/B January 2026: 16x 0.24x0.60-mm lands, 0.50-mm pitch, 2.5x3.3-mm outer land span and 1.0x2.3-mm exposed pad",
+        "TI BQB0016A 4224640/B January 2026 recommended PCB layout: 16x 0.24x0.60-mm lands, 0.50-mm pitch, 2.5x3.3-mm outer land span and 1.0x2.0-mm exposed pad",
     )
 
     fuse = custom_footprint(

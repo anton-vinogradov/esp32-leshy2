@@ -1,0 +1,29 @@
+(version 1)
+
+# Named edge components intentionally cross Edge.Cuts.  Ordinary copper retains
+# the 0.20 mm board rule; this exception is not available to routed tracks.
+(rule "RF named edge-mount copper"
+  (condition "A.Reference == 'J1' || A.Reference == 'J4' || A.Reference == 'J5' || A.Reference == 'J6' || A.Reference == 'J7' || A.Reference == 'J8' || A.Reference == 'J9' || A.Reference == 'J11' || A.Reference == 'SW1' || A.Reference == 'SW2'")
+  (constraint edge_clearance (min -3mm)))
+
+(rule "RF USB and side-switch internal hole geometry"
+  (condition "(A.Reference == 'J4' && B.Reference == 'J4') || (A.Reference == 'SW1' && B.Reference == 'SW1') || (A.Reference == 'SW2' && B.Reference == 'SW2')")
+  (constraint hole_clearance (min 0.09mm)))
+
+# TI's REF0038A recommended land pattern has a 0.125 mm local gap between the
+# two exposed power lands.  The exception is restricted to the single package.
+(rule "TPS25751 REF0038A internal exposed-pad gap"
+  (condition "A.Reference == 'U3' && B.Reference == 'U3'")
+  (constraint clearance (min 0.12mm)))
+
+(rule "RF edge-switch assembly silk"
+  (severity ignore)
+  (condition "A.Reference == 'SW1' || A.Reference == 'SW2'")
+  (constraint silk_clearance))
+
+# The interboard connector is on the inner face and the SMT battery holder is
+# on the outer face.  J12's two empty locator holes pass through the board under
+# the holder body without a protruding pin.
+(rule "J12 locator holes under opposite-face battery holder"
+  (condition "(A.Reference == 'J12' && B.Reference == 'BT1') || (A.Reference == 'BT1' && B.Reference == 'J12')")
+  (constraint courtyard_clearance (min -1mm)))

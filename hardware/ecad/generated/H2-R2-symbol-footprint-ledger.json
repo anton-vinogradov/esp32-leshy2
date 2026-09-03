@@ -1186,7 +1186,7 @@
       "footprint_definition": {
         "status": "current_exact_local_definition_materialized",
         "path": "hardware/ecad/libraries/Leshy2_R2.pretty/Coilcraft_WBC_6P_4.45x4.19mm.kicad_mod",
-        "sha256": "eddc9939deec9273ac8e970f9d11183c48e502f65f16a5437a404604ebddf9d0"
+        "sha256": "dadb60f46fb46be2afd795bc2746337c25f8006e082ceb2a27b8ba73176a860e"
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
@@ -1247,7 +1247,7 @@
       "footprint_definition": {
         "status": "current_exact_local_definition_materialized",
         "path": "hardware/ecad/libraries/Leshy2_R2.pretty/Coilcraft_WBC_6P_4.45x4.19mm.kicad_mod",
-        "sha256": "eddc9939deec9273ac8e970f9d11183c48e502f65f16a5437a404604ebddf9d0"
+        "sha256": "dadb60f46fb46be2afd795bc2746337c25f8006e082ceb2a27b8ba73176a860e"
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
@@ -1598,7 +1598,7 @@
       "footprint_definition": {
         "status": "existing_manufacturer_derived_definition_reconciled",
         "path": "hardware/ecad/libraries/Leshy2.pretty/PAM8302AAYCR-UDFN3030-8E.kicad_mod",
-        "sha256": "11aeb40759bba64159229730bbd3c9b1eb7d5441bd0f7ae5e11068272a8a29e0"
+        "sha256": "96a89de357ef4470bf8a34308374c3f818173a38d4728089d1240609d90dd074"
       },
       "historical_hint_files": [
         "hardware/ecad/generated/H2-RF36-audio-io-amp.json"
@@ -4347,7 +4347,7 @@
       "footprint_definition": {
         "status": "current_exact_local_definition_materialized",
         "path": "hardware/ecad/libraries/Leshy2_R2.pretty/NFC_Pickup_Loop_R2.kicad_mod",
-        "sha256": "9f7a1ca633332e2fb4438e0a4225a78d59299efc88ce0730d0dabd871645e2a2"
+        "sha256": "8b4322ac89011b33d91063610a00220f38192837b72f93cb58c67ce484ae28c1"
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
@@ -9001,7 +9001,7 @@
       "footprint_definition": {
         "status": "existing_manufacturer_derived_definition_reconciled",
         "path": "hardware/ecad/libraries/Leshy2.pretty/CMEJ-0413-42-SMT-TR.kicad_mod",
-        "sha256": "6a93023b63f3b0f8d8131a1110dcc96f3f3f73fad0ffbcac091ef5aa14d470ef"
+        "sha256": "039257c90aa952b1e74608cb510cf852cb93eeba0b7dea0b98d0864a2b085817"
       },
       "historical_hint_files": [
         "hardware/ecad/generated/H2-RF36-audio-io-amp.json"
@@ -9069,7 +9069,7 @@
       "footprint_definition": {
         "status": "existing_manufacturer_derived_definition_reconciled",
         "path": "hardware/ecad/libraries/Leshy2.pretty/SJ-43504-SMT-TR.kicad_mod",
-        "sha256": "ee4499243ce064ea0433bff8a9aa09ea881a9ae267e6fe71529189ebe8b71a9d"
+        "sha256": "db578dfdc43d6fe1a92f5ec649a19e6330b2dffd3f6e13b2037c249a8d18f5e4"
       },
       "historical_hint_files": [
         "hardware/ecad/generated/H2-UI13-audio-codec-headset.json"
@@ -13495,7 +13495,7 @@
       "footprint_definition": {
         "status": "existing_manufacturer_derived_definition_reconciled",
         "path": "hardware/ecad/libraries/Leshy2.pretty/TI-RPW0010A-VQFN-HR-10.kicad_mod",
-        "sha256": "c57be31e1dd0b26422fe40f74ff1df2a584be023dbfc35b980d35e3ef365e6be"
+        "sha256": "da6263789dcf1d56001cee951e611e33b14ca762756ab3746c319bcd229e5a8b"
       },
       "historical_hint_files": [
         "hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json",
@@ -13652,7 +13652,7 @@
       "footprint_definition": {
         "status": "existing_manufacturer_derived_definition_reconciled",
         "path": "hardware/ecad/libraries/Leshy2.pretty/TI-RPW0010A-VQFN-HR-10.kicad_mod",
-        "sha256": "c57be31e1dd0b26422fe40f74ff1df2a584be023dbfc35b980d35e3ef365e6be"
+        "sha256": "da6263789dcf1d56001cee951e611e33b14ca762756ab3746c319bcd229e5a8b"
       },
       "historical_hint_files": [
         "hardware/ecad/generated/H2-RF03-main-rails-domain-gates.json",
@@ -14012,7 +14012,7 @@
       "footprint_definition": {
         "status": "current_exact_local_definition_materialized",
         "path": "hardware/ecad/libraries/Leshy2_R2.pretty/Texas_RQF0009A_1.5x2.0mm.kicad_mod",
-        "sha256": "d3db497923e7a8204b10fa2a4e069773629da24eefe1dba19fef9713792f3607"
+        "sha256": "d24f28e34e0d65508dcd8a4903a4c4f80f8a892ec75c5cab40075ad425baa605"
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
@@ -14193,7 +14193,7 @@
       "footprint_definition": {
         "status": "existing_manufacturer_derived_definition_reconciled",
         "path": "hardware/ecad/libraries/Leshy2.pretty/TPUL2G223BQBR.kicad_mod",
-        "sha256": "15c193177ffa9e26ca2410e2a4108aab88bb2ccf8a94a1e30fa7a12893db7acb"
+        "sha256": "f38523d62b5096036135670c5bcabdeb4d14a87dbe4624d992a1eac304ca5044"
       },
       "historical_hint_files": [
         "hardware/ecad/generated/H2-RF02-pack-safety-aon.json"

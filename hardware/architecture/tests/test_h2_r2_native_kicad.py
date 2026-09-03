@@ -116,6 +116,20 @@ class H2R2NativeKiCadTests(unittest.TestCase):
             # historical phase boundary.
         self.assertEqual(0, self.manifest["summary"]["pcb_file_count"])
 
+    def test_native_projects_preserve_production_board_rules(self):
+        for project_id in ("LESHY2-UI-R2", "LESHY2-RF-R2"):
+            project = json.loads(
+                (PROJECT_ROOT / project_id / f"{project_id}.kicad_pro").read_text(
+                    encoding="utf-8"
+                )
+            )
+            rules = project["board"]["design_settings"]["rules"]
+            self.assertEqual(0.15, rules["min_clearance"])
+            self.assertEqual(0.20, rules["min_copper_edge_clearance"])
+            self.assertEqual(0.20, rules["min_through_hole_diameter"])
+            self.assertEqual(0.40, rules["min_via_diameter"])
+            self.assertEqual(0.20, project["net_settings"]["classes"][0]["via_drill"])
+
     def test_project_local_references_remain_unique(self):
         counts = Counter((row["project"], row["reference"]) for row in self.instances)
         self.assertFalse([key for key, count in counts.items() if count != 1])

@@ -136,6 +136,8 @@ def evaluate(contract: dict, placement: dict, placement_contract: dict, h1: dict
             errors.append(f"{path}: cable identity or length differs from accepted H1 selection")
 
         points = row["corridor_points_mm"]
+        if points[0] != row["source_reference_mm"]:
+            errors.append(f"{path}: corridor does not start at its source reference")
         if points[-1] != row["board_connector_mm"]:
             errors.append(f"{path}: corridor does not end at its board connector")
         remainder = sum(point_distance(a, b) for a, b in zip(points[1:], points[2:]))
@@ -153,7 +155,22 @@ def evaluate(contract: dict, placement: dict, placement_contract: dict, h1: dict
                 errors.append(f"{path}: Ebyte connector access window leaves the module courtyard")
             conservative_length = farthest_window_distance(window, points[1]) + remainder
             source_basis = "farthest point of published-corner access window"
+            actual_source_reference = row["source_reference_mm"]
         else:
+            source = placed.get(row["source_instance"])
+            if source is None:
+                errors.append(f"{path}: source module is absent from native placement")
+                continue
+            offset = row.get("source_axis_offset_from_courtyard_centre_mm")
+            if not offset:
+                errors.append(f"{path}: exact module axis has no placement-relative offset")
+                continue
+            actual_source_reference = [
+                round(source["courtyard_centre_mm"][0] + offset[0], 4),
+                round(source["courtyard_centre_mm"][1] + offset[1], 4),
+            ]
+            if any(abs(a - b) > 1e-6 for a, b in zip(actual_source_reference, row["source_reference_mm"])):
+                errors.append(f"{path}: source connector axis differs from native placement")
             conservative_length = sum(point_distance(a, b) for a, b in zip(points, points[1:]))
             source_basis = "exact module connector axis"
 
@@ -217,7 +234,7 @@ def evaluate(contract: dict, placement: dict, placement_contract: dict, h1: dict
             {
                 "path": path,
                 "source_basis": source_basis,
-                "source_reference_mm": row["source_reference_mm"],
+                "source_reference_mm": actual_source_reference,
                 "board_connector_mm": actual_destination,
                 "cable_mpn": row["cable_mpn"],
                 "selected_length_mm": float(row["selected_length_mm"]),

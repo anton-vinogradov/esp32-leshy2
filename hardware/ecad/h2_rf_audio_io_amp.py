@@ -126,12 +126,12 @@ def microphone_footprint() -> str:
         '\t(pad "1" smd circle (at 0 0) (size 0.86 0.86) (layers "F.Cu" "F.Paste" "F.Mask"))',
         '\t(pad "1" smd rect (at 0 0.89) (size 0.20 1.35) (layers "F.Cu" "F.Paste" "F.Mask"))',
         '\t(pad "2" smd custom',
-        '\t\t(at 0 0)',
+        '\t\t(at 0 -1.15)',
         '\t\t(size 0.40 0.40)',
         '\t\t(layers "F.Cu" "F.Paste" "F.Mask")',
         '\t\t(options (clearance outline) (anchor circle))',
         '\t\t(primitives',
-        '\t\t\t(gr_arc (start -0.35 1.095) (mid 0 -1.15) (end 0.35 1.095) (width 0.40))',
+        '\t\t\t(gr_arc (start -0.50 2.186) (mid 0 0) (end 0.50 2.186) (width 0.40))',
         '\t\t)',
         '\t)',
         ')',
@@ -154,8 +154,8 @@ def footprint_outputs() -> dict[Path, str]:
     )
     amplifier = amplifier.replace(
         "\t(attr smd)",
-        "\t(fp_circle (center -1.10 -1.10) (end -0.95 -1.10) "
-        "(stroke (width 0.10) (type default)) (fill none) (layer \"F.SilkS\"))\n"
+        "\t(fp_circle (center -1.55 -1.55) (end -1.43 -1.55) "
+        "(stroke (width 0.15) (type default)) (fill none) (layer \"F.SilkS\"))\n"
         "\t(attr smd)",
     )
     speaker = custom_footprint(

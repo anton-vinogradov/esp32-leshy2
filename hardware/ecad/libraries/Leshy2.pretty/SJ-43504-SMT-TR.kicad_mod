@@ -10,7 +10,7 @@
 	(fp_rect (start -3.400 -5.750) (end 3.400 5.750) (stroke (width 0.10) (type default)) (fill none) (layer "F.Fab"))
 	(fp_rect (start -5.300 -6.000) (end 5.300 6.000) (stroke (width 0.05) (type default)) (fill none) (layer "F.CrtYd"))
 	(pad "1" smd rect (at 4.250 -3.000) (size 1.700 1.500) (layers "F.Cu" "F.Paste" "F.Mask"))
-	(pad "2" smd rect (at -4.250 3.550) (size 1.700 1.500) (layers "F.Cu" "F.Paste" "F.Mask"))
+	(pad "2" smd rect (at -4.250 2.800) (size 1.700 1.500) (layers "F.Cu" "F.Paste" "F.Mask"))
 	(pad "3" smd rect (at 4.250 -0.250) (size 1.700 1.500) (layers "F.Cu" "F.Paste" "F.Mask"))
 	(pad "4" smd rect (at -4.250 -3.000) (size 1.700 1.500) (layers "F.Cu" "F.Paste" "F.Mask"))
 	(pad "5" smd rect (at -4.250 4.800) (size 1.700 1.500) (layers "F.Cu" "F.Paste" "F.Mask"))

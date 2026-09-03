@@ -470,13 +470,60 @@ def root_schematic(project: dict, interfaces: dict[str, list[str]]) -> str:
 def project_file(project_id: str) -> str:
     return json.dumps(
         {
-            "board": {},
+            "board": {
+                "design_settings": {
+                    "meta": {
+                        "filename": "board_design_settings.json",
+                        "version": 2,
+                    },
+                    "rules": {
+                        "allow_blind_buried_vias": False,
+                        "allow_microvias": False,
+                        "min_clearance": 0.15,
+                        "min_copper_edge_clearance": 0.20,
+                        "min_hole_clearance": 0.25,
+                        "min_hole_to_hole": 0.25,
+                        "min_silk_clearance": 0.15,
+                        "min_text_height": 1.0,
+                        "min_text_thickness": 0.15,
+                        "min_through_hole_diameter": 0.20,
+                        "min_track_width": 0.10,
+                        "min_via_annular_width": 0.10,
+                        "min_via_diameter": 0.40,
+                    },
+                }
+            },
             "boards": [],
             "cvpcb": {},
             "erc": {"rule_severities": {"lib_symbol_mismatch": "ignore"}},
             "libraries": {},
             "meta": {"filename": f"{project_id}.kicad_pro", "version": 1},
-            "net_settings": {"classes": [], "meta": {"version": 3}},
+            "net_settings": {
+                "classes": [
+                    {
+                        "bus_width": 12,
+                        "clearance": 0.15,
+                        "diff_pair_gap": 0.15,
+                        "diff_pair_via_gap": 0.15,
+                        "diff_pair_width": 0.15,
+                        "line_style": 0,
+                        "microvia_diameter": 0.30,
+                        "microvia_drill": 0.10,
+                        "name": "Default",
+                        "pcb_color": "rgba(0, 0, 0, 0.000)",
+                        "priority": 2147483647,
+                        "schematic_color": "rgba(0, 0, 0, 0.000)",
+                        "track_width": 0.15,
+                        "via_diameter": 0.40,
+                        "via_drill": 0.20,
+                        "wire_width": 6,
+                    }
+                ],
+                "meta": {"version": 4},
+                "net_colors": None,
+                "netclass_assignments": None,
+                "netclass_patterns": [],
+            },
             "pcbnew": {},
             "schematic": {},
             "sheets": [],

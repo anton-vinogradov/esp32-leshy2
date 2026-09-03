@@ -10,15 +10,15 @@
     },
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "56ebc2d92be86a2b1059d72f374a11be5d4d562dbfedd14de7b76adbe15ae6d2"
+      "sha256": "8c0845d155b887c8d799068235b4ef6af44497f86c10c4a9044192dd0baaef00"
     },
     "nets": {
       "path": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "sha256": "7432b9589b8631d6f48299678aa25686c98fa596bf7875549fc5fe104af65e56"
+      "sha256": "7c0de54e0faa9e7d4ddef816b592bc18d523138e99bbf1135461f425ae08bf2e"
     },
     "symbols": {
       "path": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-      "sha256": "35eee43878d0cd17a34c4590cc81513816fb7d36e11e70f16214e56c52f4e50a"
+      "sha256": "af13863573b2005e268c4535d0a70937f89b762919fab03655fe94edfc900e8d"
     },
     "symbol_library": {
       "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
@@ -335,7 +335,7 @@
   "generated_files": [
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pro",
-      "sha256": "f756ad3ce5cb30b0722d67c1a6623d2fff3789de5f4b2f1b025864436c7f54aa"
+      "sha256": "0d6281e49949a3d865033e795659b4ae1ec8e066aab2b2d1f7f5ac8aa824235f"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_sch",
@@ -399,7 +399,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pro",
-      "sha256": "1a22fc61f55497f697e9c73577bd0cd21387a0d22d362471a382aef2efcd7d48"
+      "sha256": "da3ee7fd223b0d7a7d0f4d443996fdef1edfca396e6b4f42165524c1fc5036c9"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch",

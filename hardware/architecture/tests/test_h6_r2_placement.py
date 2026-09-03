@@ -61,7 +61,11 @@ class H6R2PlacementTests(unittest.TestCase):
             self.assertIn('(8 "In3.Cu" signal)', text)
             self.assertIn('(10 "In4.Cu" signal)', text)
             self.assertIn('(2 "B.Cu" signal)', text)
-            self.assertNotIn('property "Leshy2Instance"', text)
+            self.assertEqual(
+                board["placed_instance_count"],
+                text.count('property "Leshy2Instance"'),
+                "every schematic footprint must retain its exact hierarchy identity",
+            )
 
     def test_user_critical_datums_are_exact_and_symmetric(self):
         expected_x = [14.0, 25.75, 37.5, 49.25, 61.0]

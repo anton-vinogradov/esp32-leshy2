@@ -37,6 +37,7 @@ COORDINATE_PATH = ROOT / "hardware/product-design/generated/H1-unified-coordinat
 INSTANCE_PATH = ROOT / "hardware/ecad/generated/H2-R2-native-instance-ledger.json"
 NET_PATH = ROOT / "hardware/ecad/generated/H2-R2-native-net-ledger.json"
 SYMBOL_PATH = ROOT / "hardware/ecad/generated/H2-R2-controlled-symbol-library.json"
+NET_BINDING_PATH = ROOT / "hardware/layout/generated/H6-R2-kicad-net-bindings.json"
 AUDIT_PATH = ROOT / "hardware/layout/generated/H6-R2-placement-audit.json"
 SVG_PATH = ROOT / "docs/images/h6-r2-exact-placement.svg"
 KICAD_FOOTPRINT_ROOT = Path(
@@ -177,6 +178,11 @@ def footprint_library(footprint: str) -> tuple[str, str]:
 
 
 def footprint_rect(fp, side: str) -> dict:
+    # The NFC pickup is a routed board feature, not a component courtyard.  Its
+    # Dwgs.User reserve must still drive placement centring after the deliberate
+    # removal of the misleading F.CrtYd rectangle.
+    if str(fp.GetFPID().GetLibItemName()) == "NFC_Pickup_Loop_R2":
+        return {"x": [-36.0, 36.0], "y": [-11.2, 11.2]}
     courtyard_layer = pcbnew.B_CrtYd if side == "B.Cu" else pcbnew.F_CrtYd
     courtyard = fp.GetCourtyard(courtyard_layer)
     box = courtyard.BBox()
@@ -189,11 +195,31 @@ def footprint_pose(fp, side: str, rotation: float) -> dict:
     fp.SetPosition(point(0.0, 0.0))
     fp.SetOrientationDegrees(rotation)
     local = footprint_rect(fp, side)
+    opposite_layer = pcbnew.F_Cu if side == "B.Cu" else pcbnew.B_Cu
+    opposite_pads = [
+        pad
+        for pad in fp.Pads()
+        if pad.IsOnLayer(opposite_layer) or pad.GetAttribute() == pcbnew.PAD_ATTRIB_NPTH
+    ]
+    cross_rects = sorted(
+        (box_mm(pad.GetBoundingBox()) for pad in opposite_pads),
+        key=lambda rect: (rect["y"][0], rect["x"][0], rect["y"][1], rect["x"][1]),
+    )
+    cross_body_rects = sorted(
+        (
+            box_mm(pad.GetBoundingBox())
+            for pad in opposite_pads
+            if pad.GetAttribute() != pcbnew.PAD_ATTRIB_NPTH
+        ),
+        key=lambda rect: (rect["y"][0], rect["x"][0], rect["y"][1], rect["x"][1]),
+    )
     return {
         "rotation": rotation,
         "local_rect": local,
         "local_centre": rect_centre(local),
         "size": rect_size(local),
+        "cross_rects": cross_rects,
+        "cross_body_rects": cross_body_rects,
     }
 
 
@@ -203,6 +229,37 @@ def rect_at_centre(pose: dict, centre: tuple[float, float]) -> dict:
         "x": [centre[0] - width / 2, centre[0] + width / 2],
         "y": [centre[1] - height / 2, centre[1] + height / 2],
     }
+
+
+def cross_rects_at_centre(
+    pose: dict,
+    centre: tuple[float, float],
+    key: str = "cross_rects",
+) -> list[dict]:
+    """Translate copper exposed on the opposite face with the same footprint anchor."""
+    offset_x = centre[0] - pose["local_centre"][0]
+    offset_y = centre[1] - pose["local_centre"][1]
+    return [
+        {
+            "x": [local["x"][0] + offset_x, local["x"][1] + offset_x],
+            "y": [local["y"][0] + offset_y, local["y"][1] + offset_y],
+        }
+        for local in pose[key]
+    ]
+
+
+def cross_rects_at_anchor(
+    pose: dict,
+    anchor: tuple[float, float],
+    key: str = "cross_rects",
+) -> list[dict]:
+    return [
+        {
+            "x": [local["x"][0] + anchor[0], local["x"][1] + anchor[0]],
+            "y": [local["y"][0] + anchor[1], local["y"][1] + anchor[1]],
+        }
+        for local in pose[key]
+    ]
 
 
 def apply_centre(fp, pose: dict, centre: tuple[float, float]) -> dict:
@@ -307,7 +364,16 @@ def add_text(
 def configure_board(board, contract: dict, project: str) -> None:
     geometry = contract["board"]
     board.SetCopperLayerCount(geometry["copper_layers"])
-    board.GetDesignSettings().SetBoardThickness(mm(geometry["thickness_mm"]))
+    settings = board.GetDesignSettings()
+    settings.SetBoardThickness(mm(geometry["thickness_mm"]))
+    # JLCPCB Standard PCBA production minima.  Keep the ordinary board rules
+    # explicit here; the few intentional edge-mount exceptions belong in a
+    # reference-scoped custom-rule file rather than weakening the whole board.
+    settings.m_MinClearance = mm(0.15)
+    settings.m_MinThroughDrill = mm(0.20)
+    settings.m_CopperEdgeClearance = mm(0.20)
+    settings.m_MinSilkTextHeight = mm(1.00)
+    settings.m_MinSilkTextThickness = mm(0.15)
     title = board.GetTitleBlock()
     title.SetTitle(f"Leshy2 {project} R2 exact placement")
     title.SetRevision(contract["marker"])
@@ -332,7 +398,12 @@ def add_mechanical_geometry(board, project: str, contract: dict, grids: dict) ->
         fp.SetReference(f"MH{index}")
         fp.SetValue("M2.5 compression-stop axis")
         fp.SetPosition(point(*centre))
-        fp.SetAttributes(fp.GetAttributes() | pcbnew.FP_EXCLUDE_FROM_BOM | pcbnew.FP_EXCLUDE_FROM_POS_FILES)
+        fp.SetAttributes(
+            fp.GetAttributes()
+            | pcbnew.FP_BOARD_ONLY
+            | pcbnew.FP_EXCLUDE_FROM_BOM
+            | pcbnew.FP_EXCLUDE_FROM_POS_FILES
+        )
         fp.Reference().SetVisible(False)
         fp.Value().SetVisible(False)
         rect = {
@@ -366,18 +437,18 @@ def add_user_silkscreen(board, project: str, placement: dict, contract: dict) ->
             {"x": [psa["x"][0] - 0.25, psa["x"][1] + 0.25], "y": [psa["y"][0] - 0.25, psa["y"][1] + 0.25]},
             pcbnew.F_SilkS,
         )
-        add_text(board, "DISPLAY · FPC ↑", (37.5, 105.4), pcbnew.F_SilkS, 0.70, 0.11)
+        add_text(board, "DISPLAY · FPC ↑", (37.5, 105.4), pcbnew.F_SilkS, 1.00, 0.15)
         add_text(board, "Леший", (37.5, 108.0), pcbnew.F_SilkS, 2.35, 0.32)
-        add_text(board, "ESP32-LESHY2 · UI PCB · R2-EVT1 · REV A", (37.5, 110.6), pcbnew.F_SilkS, 0.75, 0.12)
+        add_text(board, "ESP32-LESHY2 · UI PCB · R2-EVT1 · REV A", (37.5, 110.6), pcbnew.F_SilkS, 1.00, 0.15)
         antenna_rows = placement["antenna_silkscreen"]["front"]
     else:
         add_text(board, "ESP32-LESHY2", (37.5, 136.0), pcbnew.F_SilkS, 1.55, 0.23)
-        add_text(board, "RF/PWR PCB · R2-EVT1 · REV A", (37.5, 139.0), pcbnew.F_SilkS, 0.75, 0.12)
-        add_text(board, "github.com/anton-vinogradov/esp32-leshy2", (37.5, 142.0), pcbnew.F_SilkS, 0.70, 0.11)
+        add_text(board, "RF/PWR PCB · R2-EVT1 · REV A", (37.5, 139.0), pcbnew.F_SilkS, 1.00, 0.15)
+        add_text(board, "github.com/anton-vinogradov/esp32-leshy2", (37.5, 142.0), pcbnew.F_SilkS, 1.00, 0.15)
         antenna_rows = placement["antenna_silkscreen"]["rear"]
     antenna_positions = list(contract["antenna_ports"][project].values())
     for row, position in zip(antenna_rows, antenna_positions):
-        add_text(board, row["text"], (position[0], 15.2), pcbnew.F_SilkS, 0.72, 0.11)
+        add_text(board, row["text"], (position[0], 15.2), pcbnew.F_SilkS, 1.00, 0.15)
 
 
 def build_target_index(contract: dict, placement: dict, coordinate: dict) -> dict[str, dict]:
@@ -463,6 +534,10 @@ def target_side(target: dict | None) -> str:
     if not target:
         return "B.Cu"
     return "F.Cu" if target["frame"] in {"front-outer", "rear-outer", "ui-outer-face", "rf-outer-face", "rf-outer-right-edge"} else "B.Cu"
+
+
+def opposite_side(side: str) -> str:
+    return "B.Cu" if side == "F.Cu" else "F.Cu"
 
 
 def desired_rotation(poses: dict[float, dict], target: dict) -> float:
@@ -584,6 +659,7 @@ def add_nets_and_footprints(
     instance_rows: list[dict],
     net_rows: list[dict],
     symbols: dict[str, dict],
+    net_bindings: dict[str, str],
 ) -> tuple[list[dict], dict[str, set[str]], list[str]]:
     contact_to_pin = {
         device_id: {contact: pin["number"] for pin in symbol["pin_map"] for contact in pin["contacts"]}
@@ -611,9 +687,17 @@ def add_nets_and_footprints(
         instance_nets[row["instance"]].add(row["net"])
 
     net_names = sorted(set(pin_nets.values()))
+    missing_bindings = sorted(set(net_names) - set(net_bindings))
+    extra_bindings = sorted(set(net_bindings) - set(net_names))
+    if missing_bindings:
+        errors.append(f"missing exact KiCad names for {len(missing_bindings)} canonical nets")
+    if extra_bindings:
+        errors.append(f"net binding contains {len(extra_bindings)} unused canonical nets")
     board_nets = {}
     for net_name in net_names:
-        net = pcbnew.NETINFO_ITEM(board, net_name)
+        if net_name not in net_bindings:
+            continue
+        net = pcbnew.NETINFO_ITEM(board, net_bindings[net_name])
         board.Add(net)
         board_nets[net_name] = net
 
@@ -625,14 +709,17 @@ def add_nets_and_footprints(
             errors.append(f"could not load {row['footprint']} for {row['instance']}")
             continue
         board.Add(fp)
+        fp.SetFPIDAsString(row["footprint"])
         fp.SetReference(row["reference"])
         fp.SetValue(row["mpn"])
+        fp.SetField("Leshy2Instance", row["instance"])
+        fp.GetField("Leshy2Instance").SetVisible(False)
         fp.SetSheetname(row["sheet"])
         fp.SetSheetfile(f"{row['sheet']}.kicad_sch")
         fp.Reference().SetVisible(False)
         fp.Value().SetVisible(False)
         path = pcbnew.KIID_PATH()
-        path.push_back(pcbnew.KIID(schematic_uuid(f"sheet:{project}:{row['sheet']}")))
+        path.push_back(pcbnew.KIID(schematic_uuid(f"hierarchy:{project}:{row['sheet']}")))
         path.push_back(pcbnew.KIID(schematic_uuid(f"symbol:{project}:{row['sheet']}:{row['instance']}")))
         fp.SetPath(path)
         if row.get("bom_excluded"):
@@ -646,7 +733,8 @@ def add_nets_and_footprints(
                 continue
             for pad in fp.Pads():
                 if pad.GetNumber() == pin:
-                    pad.SetNet(board_nets[net_name])
+                    if net_name in board_nets:
+                        pad.SetNet(board_nets[net_name])
         entries.append({"row": row, "fp": fp})
     return entries, instance_nets, errors
 
@@ -685,6 +773,7 @@ def place_project(
     instance_rows: list[dict],
     net_rows: list[dict],
     symbols: dict[str, dict],
+    net_bindings: dict[str, str],
 ) -> tuple[object, dict]:
     board = pcbnew.BOARD()
     configure_board(board, contract, project)
@@ -701,7 +790,7 @@ def place_project(
     mechanics = add_mechanical_geometry(board, project, contract, grids)
     add_user_silkscreen(board, project, placement, contract)
     entries, instance_nets, errors = add_nets_and_footprints(
-        board, project, instance_rows, net_rows, symbols
+        board, project, instance_rows, net_rows, symbols, net_bindings
     )
     targets = build_target_index(contract, placement, coordinate)
     hard_locked = set(contract["placement_policy"]["hard_locked"])
@@ -735,12 +824,25 @@ def place_project(
             )
         )
 
-    def commit(entry: dict, rect: dict, method: str, moved_mm: float = 0.0) -> None:
+    def commit(
+        entry: dict,
+        rect: dict,
+        pose: dict,
+        method: str,
+        moved_mm: float = 0.0,
+        cross_rects: list[dict] | None = None,
+    ) -> None:
         instance = entry["row"]["instance"]
         target = entry["target"]
         if not (target and target.get("nonphysical_overlap")):
             grids[entry["side"]].add(instance, rect, "component")
         centre = rect_centre(rect)
+        if cross_rects is None:
+            cross_rects = cross_rects_at_centre(pose, centre)
+        for index, cross_rect in enumerate(cross_rects, 1):
+            grids[opposite_side(entry["side"])].add(
+                f"{instance}:cross:{index}", cross_rect, "opposite-face copper or hole keepout"
+            )
         placed_centres[instance] = centre
         placed_rows.append(
             {
@@ -751,6 +853,7 @@ def place_project(
                 "footprint": entry["row"]["footprint"],
                 "method": method,
                 "courtyard_bbox_mm": rect,
+                "opposite_face_keepout_bboxes_mm": cross_rects,
                 "courtyard_centre_mm": [round(centre[0], 4), round(centre[1], 4)],
                 "footprint_anchor_mm": [
                     round(pcbnew.ToMM(entry["fp"].GetPosition().x), 4),
@@ -778,17 +881,37 @@ def place_project(
         if "anchor" in target:
             rect = apply_anchor(entry["fp"], pose, tuple(target["anchor"]))
             desired = rect_centre(rect)
+            cross_rects = cross_rects_at_anchor(pose, tuple(target["anchor"]))
+            cross_body_rects = cross_rects_at_anchor(
+                pose, tuple(target["anchor"]), "cross_body_rects"
+            )
         else:
             desired = tuple(target.get("centre") or rect_centre(target["bbox"]))
             rect = apply_centre(entry["fp"], pose, desired)
+            cross_rects = cross_rects_at_centre(pose, desired)
+            cross_body_rects = cross_rects_at_centre(pose, desired, "cross_body_rects")
         allow_outside = is_edge_interface(entry["row"]["instance"], target, contract)
-        collisions = [] if target.get("nonphysical_overlap") else grids[side].conflicts(rect, allow_outside=allow_outside)
+        collisions = (
+            []
+            if target.get("nonphysical_overlap")
+            else grids[side].conflicts(rect, allow_outside=allow_outside)
+        )
+        for cross_rect in cross_body_rects:
+            collisions += grids[opposite_side(side)].conflicts(
+                cross_rect, allow_outside=allow_outside
+            )
         if not collisions:
             if allow_outside and not grids[side].inside(rect):
                 boundary_exceptions.append(
                     {"instance": entry["row"]["instance"], "reason": target["direction"], "bbox_mm": rect}
                 )
-            commit(entry, rect, "hard H1 datum" if entry["hard"] else "exact H1 seed")
+            commit(
+                entry,
+                rect,
+                pose,
+                "hard H1 datum" if entry["hard"] else "exact H1 seed",
+                cross_rects=cross_rects,
+            )
             continue
         if entry["hard"]:
             conflicts.append(
@@ -799,17 +922,34 @@ def place_project(
                     "conflicts": [row["id"] for row in collisions],
                 }
             )
-            commit(entry, rect, "hard H1 datum with conflict")
+            commit(entry, rect, pose, "hard H1 datum with conflict", cross_rects=cross_rects)
             continue
         placed = False
         for centre in candidate_centres(desired, geometry["packing_grid_mm"], geometry["width_mm"], geometry["height_mm"]):
             for candidate_rotation in (rotation, (rotation + 90.0) % 180.0):
                 candidate_pose = entry["poses"][candidate_rotation]
                 candidate = rect_at_centre(candidate_pose, centre)
-                if grids[side].is_free(candidate):
+                candidate_cross = cross_rects_at_centre(candidate_pose, centre)
+                candidate_cross_body = cross_rects_at_centre(
+                    candidate_pose, centre, "cross_body_rects"
+                )
+                if grids[side].is_free(candidate) and (
+                    not candidate_cross_body
+                    or not any(
+                        grids[opposite_side(side)].conflicts(rect)
+                        for rect in candidate_cross_body
+                    )
+                ):
                     moved = math.dist(desired, centre)
                     apply_centre(entry["fp"], candidate_pose, centre)
-                    commit(entry, candidate, "nearest exact-footprint correction", moved)
+                    commit(
+                        entry,
+                        candidate,
+                        candidate_pose,
+                        "nearest exact-footprint correction",
+                        moved,
+                        candidate_cross,
+                    )
                     placed = True
                     break
             if placed:
@@ -826,12 +966,54 @@ def place_project(
             placed_centres,
         )
         slot = nearest_grid_slot(grids[entry["side"]], entry["poses"], desired)
+        if slot is not None:
+            candidate, centre, candidate_pose = slot
+            candidate_cross = cross_rects_at_centre(candidate_pose, centre)
+            candidate_cross_body = cross_rects_at_centre(
+                candidate_pose, centre, "cross_body_rects"
+            )
+            if candidate_cross_body and any(
+                grids[opposite_side(entry["side"])].conflicts(rect)
+                for rect in candidate_cross_body
+            ):
+                slot = None
+        if slot is None and any(pose["cross_rects"] for pose in entry["poses"].values()):
+            for centre in candidate_centres(
+                desired,
+                geometry["packing_grid_mm"],
+                geometry["width_mm"],
+                geometry["height_mm"],
+            ):
+                for candidate_pose in entry["poses"].values():
+                    candidate = rect_at_centre(candidate_pose, centre)
+                    candidate_cross = cross_rects_at_centre(candidate_pose, centre)
+                    candidate_cross_body = cross_rects_at_centre(
+                        candidate_pose, centre, "cross_body_rects"
+                    )
+                    if grids[entry["side"]].is_free(candidate) and (
+                        not candidate_cross_body
+                        or not any(
+                            grids[opposite_side(entry["side"])].conflicts(rect)
+                            for rect in candidate_cross_body
+                        )
+                    ):
+                        slot = candidate, centre, candidate_pose
+                        break
+                if slot is not None:
+                    break
         if slot is None:
             failures.append(entry["row"]["instance"])
             continue
         candidate, centre, candidate_pose = slot
+        candidate_cross = cross_rects_at_centre(candidate_pose, centre)
         apply_centre(entry["fp"], candidate_pose, centre)
-        commit(entry, candidate, "connectivity/sheet automatic seed")
+        commit(
+            entry,
+            candidate,
+            candidate_pose,
+            "connectivity/sheet automatic seed",
+            cross_rects=candidate_cross,
+        )
 
     placed_rows.sort(key=lambda row: natural_key(row["reference"]))
     return board, {
@@ -948,6 +1130,7 @@ def build() -> tuple[dict[Path, bytes], dict]:
     instances = load(INSTANCE_PATH)["rows"]
     net_rows = load(NET_PATH)["rows"]
     symbols = {row["device_id"]: row for row in load(SYMBOL_PATH)["symbols"]}
+    binding_artifact = load(NET_BINDING_PATH)
     outputs: dict[Path, bytes] = {}
     board_audits = []
     for project in contract["boards"]:
@@ -960,6 +1143,7 @@ def build() -> tuple[dict[Path, bytes], dict]:
             project_instances,
             net_rows,
             symbols,
+            binding_artifact["projects"][project]["canonical_to_kicad"],
         )
         data = board_bytes(project, board)
         output_path = ROOT / contract["boards"][project]["output"]
@@ -994,6 +1178,8 @@ def build() -> tuple[dict[Path, bytes], dict]:
             "net_ledger_sha256": sha256(NET_PATH),
             "symbol_library": str(SYMBOL_PATH.relative_to(ROOT)),
             "symbol_library_sha256": sha256(SYMBOL_PATH),
+            "kicad_net_bindings": str(NET_BINDING_PATH.relative_to(ROOT)),
+            "kicad_net_bindings_sha256": sha256(NET_BINDING_PATH),
         },
         "summary": {
             "board_count": len(board_audits),

@@ -18,9 +18,9 @@
     "hardware/architecture/h1-r2-u219-cap.json": "ab14f5e4e9fbc2c360f44defdd45b8c16922ada108085239463aac1603cf7f2e",
     "hardware/product-design/h1-r2-placement.json": "66321938e7ea53875639ad6841f02209aaf08510054323c0108d8a5077813054",
     "hardware/ecad/generated/H2-R2-native-inventory.json": "5b59d8dbcf142296f2d299f136987486325e7758b9c2bb76bdd82e824559acaf",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "56ebc2d92be86a2b1059d72f374a11be5d4d562dbfedd14de7b76adbe15ae6d2",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "7432b9589b8631d6f48299678aa25686c98fa596bf7875549fc5fe104af65e56",
-    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "083e80bc83c7227b80a73b132e1c8b2ed083333c326174e3eae1949bdd0cada9",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "8c0845d155b887c8d799068235b4ef6af44497f86c10c4a9044192dd0baaef00",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "7c0de54e0faa9e7d4ddef816b592bc18d523138e99bbf1135461f425ae08bf2e",
+    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "647c7a013efa038294412b9b51d5a81fe6bf9de053d2f0392f049a161e22dd34",
     "hardware/ecad/h2-r2-hwfw-reconciliation-contract.json": "a670e5e735f0c3631c7c9dcd13e8f4edbe7ff83c9b43c10ec2e46b56742aedc3"
   },
   "bsp": {
