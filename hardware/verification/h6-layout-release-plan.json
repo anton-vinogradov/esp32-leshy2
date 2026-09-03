@@ -14,6 +14,8 @@
     "audit": "hardware/layout/generated/H6-R2-placement-audit.json",
     "mechanical_audit": "hardware/layout/generated/H6-R2-mechanical-stack-audit.json",
     "microcoax_audit": "hardware/layout/generated/H6-R2-microcoax-service-audit.json",
+    "routing_policy_report": "docs/h6-r2-routing-policy.md",
+    "routing_policy_audit": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
     "native_boards": [
       "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
       "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb"
@@ -21,6 +23,9 @@
     "placed_instances": 1208,
     "hard_conflicts": 0,
     "unplaced_instances": 0,
+    "classified_project_nets": 858,
+    "classified_canonical_nets": 823,
+    "automatic_helper_allowed_classes": ["GENERAL_CONTROL"],
     "routing_started": false,
     "remaining_before_substep_exit": [
       "route all 823 reviewed nets or preserve an explicit intentional no-connect",

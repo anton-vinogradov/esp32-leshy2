@@ -50,10 +50,11 @@ These are production-footprint corrections, not product-function changes.
 
 ## Stack candidate and H6.0.1 closure
 
-The board files use six copper layers and 1.6 mm finished thickness. The
-[JLC3313 six-layer impedance candidate](https://jlcpcb.com/impedance) remains a
-placement-time candidate only; H6.0.4/H6.0.5 must bind real trace widths,
-dielectrics and order-calculator values before release.
+The current factory table identifies the 1.6-mm candidate as
+[`JLC06161H-3313`](https://jlcpcb.com/impedance): 0.035-mm outer copper,
+0.0152-mm inner copper, 0.0994-mm outer 3313 prepreg, 0.1088-mm centre 2116
+prepreg and two 0.55-mm cores. H6.0.4/H6.0.5 must still bind actual trace
+widths and order-calculator values before release.
 
 The [mechanical-stack slice](h6-r2-mechanical-stack.md) now locks the enclosure
 capture lips, four pilot datums, wall bearings and exact 20-mm nylon

@@ -144,6 +144,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/h5-r2-current-route.ru.md",
         "docs/h6-r2-exact-placement.md",
         "docs/h6-r2-exact-placement.ru.md",
+        "docs/h6-r2-routing-policy.md",
+        "docs/h6-r2-routing-policy.ru.md",
         "docs/h6-r2-mechanical-stack.md",
         "docs/h6-r2-mechanical-stack.ru.md",
         "docs/h6-r2-microcoax-service.md",

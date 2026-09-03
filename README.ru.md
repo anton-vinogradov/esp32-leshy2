@@ -44,7 +44,10 @@
 > устанавливаемых экземпляров без жёстких courtyard-коллизий и потерь.
 > [Механический стек](docs/h6-r2-mechanical-stack.ru.md) и
 > [пять сервисных коридоров microcoax](docs/h6-r2-microcoax-service.ru.md)
-> также проходят, закрывая H6.0.1. Сейчас выполняются трассировка H6.0.2 и native net parity.
+> также проходят, закрывая H6.0.1. [Политика трассировки H6.0.2](docs/h6-r2-routing-policy.ru.md)
+> уже распределяет все 858 локальных для плат экземпляров net / 823 канонические
+> сети; автоматические предложения разрешены только для обычного низкоскоростного
+> управления. Трассировка и native net parity остаются текущей работой.
 
 > **Authority-gate R2:** текущие H0/H1 содержат шесть вычислительных доменов и
 > два `SC1512-A4`: передний Hub RP и задний RF RP. Сохранённые G2F/H2/KiCad —
@@ -135,7 +138,7 @@ VHF/UHF voice, broadcast/Airband, аудио, M5 и взаимоисключаю
 | H3 · Виртуальная электрическая проверка | ✅ Проведено ревью · `H3-R2.7` | [Двуязычный итог фазы](docs/h3-r2-acceptance.ru.md) · [реестр физических evidence](docs/physical-evidence-register-r2.ru.md) · [страница этапов](docs/stage-results.ru.md#h3) |
 | H4 · Совместный pre-layout gate железа и прошивки | ✅ Проведено ревью · `H4-R2.3` | [глобальный итог](docs/h4-r2-acceptance.ru.md) · [исправление BSP](docs/h4-r2-correction-closure.ru.md) · [страница этапов](docs/stage-results.ru.md#h4) |
 | H5 · Компоненты и фабричные evidence | ✅ Проведено ревью актуальных R2-маршрутов · `H5-R2.1` | [Актуальный итог R2](docs/h5-r2-current-route.ru.md) · [исторический H5-R1](docs/h5-r1-acceptance.ru.md) · [страница этапов](docs/stage-results.ru.md#h5) |
-| **H6 · Размещение, трассировка и release candidate в KiCad** | **▶ Сейчас · `H6.0.2-R1`** | [Точное размещение](docs/h6-r2-exact-placement.ru.md) · [механический стек](docs/h6-r2-mechanical-stack.ru.md) · [закрытие microcoax](docs/h6-r2-microcoax-service.ru.md) · [страница этапов](docs/stage-results.ru.md#h6) · [машинный checklist](hardware/verification/h6-layout-release-plan.json) |
+| **H6 · Размещение, трассировка и release candidate в KiCad** | **▶ Сейчас · `H6.0.2-R1`** | [Точное размещение](docs/h6-r2-exact-placement.ru.md) · [политика трассировки](docs/h6-r2-routing-policy.ru.md) · [механический стек](docs/h6-r2-mechanical-stack.ru.md) · [закрытие microcoax](docs/h6-r2-microcoax-service.ru.md) · [страница этапов](docs/stage-results.ru.md#h6) · [машинный checklist](hardware/verification/h6-layout-release-plan.json) |
 | F-PO · Допуск первого экземпляра | 🔒 Ожидает финальные H2/H6 и firmware R2 | [Страница этапов](docs/stage-results.ru.md#f-po) |
 | H7 · Печать прототипа и bring-up | 🔒 Ожидает H6, F-PO, immutable release и одобрение exact-one quote | [Страница этапов](docs/stage-results.ru.md#h7) |
 | H8 · Физическая квалификация | 🔒 Ожидает H7 | [Страница этапов](docs/stage-results.ru.md#h8) |

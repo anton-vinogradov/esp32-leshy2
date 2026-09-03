@@ -43,8 +43,11 @@
 > now materializes both native six-layer boards and places all 1,208/1,208 fitted
 > instances with zero hard courtyard conflict or unplaced body. Routing has not
 > started only after the [mechanical stack](docs/h6-r2-mechanical-stack.md) and
-> [five microcoax service corridors](docs/h6-r2-microcoax-service.md) passed;
-> H6.0.2 routing and native net parity are current.
+> [five microcoax service corridors](docs/h6-r2-microcoax-service.md) passed.
+> The [H6.0.2 routing policy](docs/h6-r2-routing-policy.md) now classifies all
+> 858 board-local net instances / 823 canonical nets; only ordinary low-rate
+> controls are eligible for automatic route proposals. Routing and native net
+> parity remain current.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
 > controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad
@@ -137,7 +140,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | H3 · Virtual electrical verification | ✅ Reviewed · `H3-R2.7` | [Bilingual phase result](docs/h3-r2-acceptance.md) · [physical evidence register](docs/physical-evidence-register-r2.md) · [stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ✅ Reviewed · `H4-R2.3` | [global result](docs/h4-r2-acceptance.md) · [BSP correction](docs/h4-r2-correction-closure.md) · [stage page](docs/stage-results.md#h4) |
 | H5 · Component and factory evidence | ✅ Reviewed current R2 routes · `H5-R2.1` | [Current R2 result](docs/h5-r2-current-route.md) · [historical H5-R1](docs/h5-r1-acceptance.md) · [stage page](docs/stage-results.md#h5) |
-| **H6 · KiCad placement, routing and release candidate** | **▶ Current · `H6.0.2-R1`** | [Exact placement](docs/h6-r2-exact-placement.md) · [mechanical stack](docs/h6-r2-mechanical-stack.md) · [microcoax closure](docs/h6-r2-microcoax-service.md) · [stage page](docs/stage-results.md#h6) · [machine checklist](hardware/verification/h6-layout-release-plan.json) |
+| **H6 · KiCad placement, routing and release candidate** | **▶ Current · `H6.0.2-R1`** | [Exact placement](docs/h6-r2-exact-placement.md) · [routing policy](docs/h6-r2-routing-policy.md) · [mechanical stack](docs/h6-r2-mechanical-stack.md) · [microcoax closure](docs/h6-r2-microcoax-service.md) · [stage page](docs/stage-results.md#h6) · [machine checklist](hardware/verification/h6-layout-release-plan.json) |
 | F-PO · First-spin admission | 🔒 Waiting for final H2/H6 and firmware R2 | [Stage page](docs/stage-results.md#f-po) |
 | H7 · Prototype fabrication and bring-up | 🔒 Waiting for H6, F-PO, immutable release and exact-one quote approval | [Stage page](docs/stage-results.md#h7) |
 | H8 · Physical qualification | 🔒 Waiting for H7 | [Stage page](docs/stage-results.md#h8) |

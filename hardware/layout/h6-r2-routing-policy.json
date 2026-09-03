@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "id": "L2-H6-R2-ROUTING-POLICY-001",
+  "marker": "H6.0.2-R1",
+  "status": "in_progress",
+  "purpose": "Classify every reviewed physical R2 net before copper is drawn, so an automatic helper can never route RF, USB, power, i8080, clocks, safety or analogue nets as ordinary signals.",
+  "inputs": {
+    "net_bindings": "hardware/layout/generated/H6-R2-kicad-net-bindings.json",
+    "net_ledger": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+    "power_binding": "hardware/verification/h3-r2-load-binding-contract.json",
+    "placement": "hardware/layout/h6-r2-placement-contract.json"
+  },
+  "stackup_binding": {
+    "manufacturer": "JLCPCB",
+    "official_stackup_id": "JLC06161H-3313",
+    "finished_thickness_mm": 1.6,
+    "outer_copper_mm": 0.035,
+    "inner_copper_mm": 0.0152,
+    "outer_prepreg_mm": 0.0994,
+    "centre_prepreg_mm": 0.1088,
+    "core_each_mm": 0.55,
+    "source": "https://jlcpcb.com/impedance",
+    "verified_at": "2026-09-03",
+    "exact_trace_geometry_status": "pending H6.0.4 digital/USB and H6.0.5 RF calculator binding"
+  },
+  "class_order": [
+    "GROUND_REFERENCE",
+    "PRIMARY_POWER",
+    "POWER_BRANCH",
+    "SWITCHING_NODE",
+    "RF_CONTROLLED",
+    "USB_DIFFERENTIAL",
+    "DISPLAY_I8080",
+    "OSCILLATOR",
+    "CLOCKED_DIGITAL",
+    "SAFETY_CONTROL",
+    "SERIAL_CONTROL",
+    "ANALOG_AUDIO_SENSE",
+    "GENERAL_CONTROL"
+  ],
+  "classes": {
+    "GROUND_REFERENCE": {
+      "route_mode": "plane_or_local_pour_manual",
+      "nominal_track_width_mm": null,
+      "geometry_release": "H6.0.3",
+      "intent": "Uninterrupted In1/In4 reference planes plus short, explicit local ground joins."
+    },
+    "PRIMARY_POWER": {
+      "route_mode": "manual_only",
+      "nominal_track_width_mm": null,
+      "geometry_release": "H6.0.3",
+      "intent": "Source, pack, protected-system and externally powered paths sized from the reviewed current envelope."
+    },
+    "POWER_BRANCH": {
+      "route_mode": "manual_only",
+      "nominal_track_width_mm": null,
+      "geometry_release": "H6.0.3",
+      "intent": "Regulated and switched load rails with local return and decoupling placement preserved."
+    },
+    "SWITCHING_NODE": {
+      "route_mode": "manual_only",
+      "nominal_track_width_mm": null,
+      "geometry_release": "H6.0.3",
+      "intent": "Keep each converter hot loop compact and away from RF, clocks, audio and sense nodes."
+    },
+    "RF_CONTROLLED": {
+      "route_mode": "manual_only",
+      "nominal_track_width_mm": null,
+      "target_impedance_ohm": 50,
+      "geometry_release": "H6.0.5",
+      "intent": "Ten antenna feeds and every matching, sampling, Airband and receiver RF segment."
+    },
+    "USB_DIFFERENTIAL": {
+      "route_mode": "manual_only",
+      "nominal_track_width_mm": null,
+      "target_differential_impedance_ohm": 90,
+      "geometry_release": "H6.0.4",
+      "intent": "All four USB 2.0 paths, routed as coupled pairs over a continuous reference."
+    },
+    "DISPLAY_I8080": {
+      "route_mode": "manual_only",
+      "nominal_track_width_mm": 0.15,
+      "geometry_release": "H6.0.4",
+      "intent": "Direct S3 i8080-8 data bus plus WR and D/C, kept local and reviewed as one skew group."
+    },
+    "OSCILLATOR": {
+      "route_mode": "manual_only",
+      "nominal_track_width_mm": 0.15,
+      "geometry_release": "H6.0.2",
+      "intent": "Short crystal and oscillator loops with no automatic vias or crossings."
+    },
+    "CLOCKED_DIGITAL": {
+      "route_mode": "manual_only",
+      "nominal_track_width_mm": 0.15,
+      "geometry_release": "H6.0.4",
+      "intent": "SDIO, SPI, I2S, M1 and other synchronous buses routed and reviewed as groups."
+    },
+    "SAFETY_CONTROL": {
+      "route_mode": "manual_only",
+      "nominal_track_width_mm": 0.20,
+      "geometry_release": "H6.0.2",
+      "intent": "Fault, kill, run-permit, watchdog, TX-evidence, PTT and power-enable paths remain visibly independent."
+    },
+    "SERIAL_CONTROL": {
+      "route_mode": "manual_only",
+      "nominal_track_width_mm": 0.15,
+      "geometry_release": "H6.0.4",
+      "intent": "I2C, UART, SWD and service/debug groups retain ownership and accessible branches."
+    },
+    "ANALOG_AUDIO_SENSE": {
+      "route_mode": "manual_only",
+      "nominal_track_width_mm": 0.15,
+      "geometry_release": "H6.0.2",
+      "intent": "Audio, detector, feedback, bias and measurement nodes avoid switching return currents."
+    },
+    "GENERAL_CONTROL": {
+      "route_mode": "automatic_helper_allowed_then_manual_review",
+      "nominal_track_width_mm": 0.15,
+      "geometry_release": "H6.0.2",
+      "intent": "Only the residual low-rate digital controls may be proposed by an automatic routing helper."
+    }
+  },
+  "automatic_helper": {
+    "allowed_classes": ["GENERAL_CONTROL"],
+    "locked_or_ignored_classes": [
+      "GROUND_REFERENCE",
+      "PRIMARY_POWER",
+      "POWER_BRANCH",
+      "SWITCHING_NODE",
+      "RF_CONTROLLED",
+      "USB_DIFFERENTIAL",
+      "DISPLAY_I8080",
+      "OSCILLATOR",
+      "CLOCKED_DIGITAL",
+      "SAFETY_CONTROL",
+      "SERIAL_CONTROL",
+      "ANALOG_AUDIO_SENSE"
+    ],
+    "acceptance": "No helper output is accepted until imported into KiCad, visually reviewed and passed by the native DRC."
+  },
+  "authorization": {
+    "routing_policy_and_noncritical_route_proposals": true,
+    "critical_net_autorouting": false,
+    "fabrication": false,
+    "ordering": false
+  }
+}
