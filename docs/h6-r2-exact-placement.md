@@ -22,8 +22,9 @@ authorize fabrication or purchase.
   display bed, ready-cut PSA guide and relaxed FPC slot on the UI board;
 - the current 5+5 direct-source antenna bank and user-facing board/screen
   silkscreen in the native boards;
-- one deterministic unrouted-seed generator, machine contract and hash-bearing
-  placement audit.
+- one deterministic unrouted-seed generator, machine contract, hash-bearing
+  placement audit and an exact **1,208-anchor freeze** that prevents a local
+  route-driven correction from repacking unrelated components.
 
 The [machine audit](../hardware/layout/generated/H6-R2-placement-audit.json)
 reports zero hard courtyard conflicts, zero unplaced instances and zero
@@ -34,6 +35,12 @@ must still match, while tracks, vias and copper pours are preserved and ignored.
 The deliberately destructive `--write` mode remains only for rebuilding a clean
 unrouted seed. KiCad 10 parses both native boards and exports placement files
 from them.
+
+The freeze also records two reviewed local H6.0.2 corrections: `R59` moved to
+open the encoder-side U12 pin-2/pin-3 fan-out, and `R109` moved to open the U12
+pin-7 C5 service-USB fan-out. All other anchors remain exactly where accepted;
+the regenerated placement still reports 1,208/1,208 positions and zero hard
+conflicts.
 
 ## Exact-footprint corrections to the H1 drawing
 
@@ -78,12 +85,14 @@ Run with KiCad's bundled Python:
 
 ```bash
 /Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3 hardware/layout/h6_r2_placement.py --check
+/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3 hardware/layout/h6_r2_placement_freeze.py --check
 ```
 
 Expected result:
 
 ```text
 H6-R2 placement pass: 1208/1208 positions; 0 hard conflicts; 0 unplaced
+H6-R2 placement freeze pass: 1208 exact anchors
 ```
 
 This is safe on a routed board. Do not run `--write` after routing has begun: it

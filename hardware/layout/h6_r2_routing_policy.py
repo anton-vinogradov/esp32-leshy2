@@ -16,6 +16,7 @@ CONTRACT = ROOT / "hardware/layout/h6-r2-routing-policy.json"
 AUDIT = ROOT / "hardware/layout/generated/H6-R2-routing-policy-audit.json"
 DOC_EN = ROOT / "docs/h6-r2-routing-policy.md"
 DOC_RU = ROOT / "docs/h6-r2-routing-policy.ru.md"
+GENERAL_ROUTING_AUDIT = ROOT / "hardware/layout/generated/H6-R2-general-routing-audit.json"
 
 
 def load(path: Path) -> dict:
@@ -310,15 +311,21 @@ def build() -> dict:
     }
 
 
-def doc(audit: dict, *, ru: bool) -> str:
+def doc(audit: dict, bootstrap: dict, *, ru: bool) -> str:
+    ui = next(row for row in bootstrap["boards"] if row["project"] == "LESHY2-UI-R2")
+    rf = next(row for row in bootstrap["boards"] if row["project"] == "LESHY2-RF-R2")
+    ru_track_items = f"{bootstrap['summary']['track_item_count']:,}".replace(",", " ")
+    ru_ui_unconnected = f"{ui['routed_total_unconnected_count']:,}".replace(",", " ")
+    ru_rf_unconnected = f"{rf['routed_total_unconnected_count']:,}".replace(",", " ")
     if ru:
         title = "# H6.0.2-R1 · Политика трассировки"
         nav = "[Главная](../README.ru.md) · [Роадмап](roadmap.ru.md) · [English](h6-r2-routing-policy.md)"
         lead = (
-            f"**Статус:** ✅ все {audit['summary']['project_net_count']} физических сетей двух плат "
-            f"({audit['summary']['global_canonical_net_count']} канонических) распределены по 13 классам до начала трассировки. "
-            "Автоматический помощник может предлагать медь только для обычных низкоскоростных управляющих линий; "
-            "RF, USB, питание, i8080, тактируемые шины, кварцы, safety и аналог остаются ручными."
+            f"**Статус:** 🟡 все {audit['summary']['project_net_count']} физических сетей двух плат "
+            f"({audit['summary']['global_canonical_net_count']} канонических) распределены по 13 классам. "
+            "Проверенный bootstrap `GENERAL_CONTROL` уже разведён полностью; в текущей H6.0.2 остаются "
+            "ручные кварцы, safety-control и аналоговые/audio/sense-сети. RF, USB, питание, i8080 и "
+            "тактируемые шины защищены до своих следующих ручных срезов."
         )
         headers = "| Класс | Сетей | Способ | Геометрия |\n| --- | ---: | --- | --- |"
         labels = {"manual_only": "вручную", "plane_or_local_pour_manual": "плоскость/полигон вручную", "automatic_helper_allowed_then_manual_review": "автопредложение + ручная проверка"}
@@ -341,9 +348,24 @@ def doc(audit: dict, *, ru: bool) -> str:
             "исходниками или релизными файлами. Автотрассировщик может использовать только `F.Cu`, `In2.Cu`, "
             "`In3.Cu` и `B.Cu`; `In1.Cu`/`In4.Cu` остаются непрерывными опорными плоскостями, а стоимость via "
             f"повышена до `{audit['automatic_helper']['via_costs']}`.\n\n"
+            "## Принятый bootstrap GENERAL_CONTROL\n\n"
+            "Предложения после импорта исправлены и проверены в KiCad. В сохранённых PCB теперь замкнуты все "
+            f"**{bootstrap['summary']['resolved_allowed_connection_count']}/{bootstrap['summary']['expected_allowed_connection_count']}** "
+            f"физических соединений во всех **{bootstrap['summary']['allowed_net_count']}** разрешённых сетях: "
+            f"{ui['resolved_allowed_connection_count']} соединения на UI и {rf['resolved_allowed_connection_count']} на RF/power. "
+            f"В них {ru_track_items} элементов дорожек/via, включая "
+            f"{bootstrap['summary']['via_count']} via; использованы только четыре разрешённых слоя, не затронута ни одна "
+            "защищённая сеть, а `In1.Cu`/`In4.Cu` остались нетронутыми. Свежий DRC KiCad "
+            f"{ui['drc']['kicad_version']} показывает **ноль нарушений** и ноль ошибок схема↔PCB на обеих платах. "
+            f"Точные native-остатки неподключённых соединений — {ru_ui_unconnected} на UI и "
+            f"{ru_rf_unconnected} на RF/power; 499 строк каждого JSON — только лимит вывода KiCad.\n\n"
+            "[Аудит принятой трассировки](../hardware/layout/generated/H6-R2-general-routing-audit.json) привязывает "
+            "результат к точным хешам PCB и freeze всех 1 208 позиций. Это bootstrap внутри H6.0.2, а не завершение "
+            "фазы: `OSCILLATOR`, `SAFETY_CONTROL` и `ANALOG_AUDIO_SENSE` ещё разводятся вручную.\n\n"
             "Экспорт запускается встроенным Python из KiCad:\n\n"
             "```sh\n"
             "/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3 hardware/layout/h6_r2_routing_workspace.py --output-dir /private/tmp/leshy2-routing\n"
+            "/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3 hardware/layout/h6_r2_general_routing.py --check\n"
             "```\n\n"
             "[Машинный аудит и все назначения](../hardware/layout/generated/H6-R2-routing-policy-audit.json)"
         )
@@ -351,10 +373,11 @@ def doc(audit: dict, *, ru: bool) -> str:
         title = "# H6.0.2-R1 · Routing policy"
         nav = "[Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h6-r2-routing-policy.ru.md)"
         lead = (
-            f"**Status:** ✅ all {audit['summary']['project_net_count']} physical nets across both boards "
-            f"({audit['summary']['global_canonical_net_count']} canonical) are assigned to 13 classes before routing starts. "
-            "An automatic helper may propose copper only for ordinary low-rate control nets; RF, USB, power, i8080, "
-            "clocked buses, oscillators, safety and analogue nets remain manual."
+            f"**Status:** 🟡 all {audit['summary']['project_net_count']} physical nets across both boards "
+            f"({audit['summary']['global_canonical_net_count']} canonical) are assigned to 13 classes. "
+            "The reviewed `GENERAL_CONTROL` bootstrap is now routed completely; manual H6.0.2 work on "
+            "oscillators, safety control and analogue/audio/sense nets remains current. RF, USB, power, i8080 "
+            "and clocked buses remain protected for their later manual releases."
         )
         headers = "| Class | Nets | Method | Geometry release |\n| --- | ---: | --- | --- |"
         labels = {"manual_only": "manual", "plane_or_local_pour_manual": "manual plane/pour", "automatic_helper_allowed_then_manual_review": "automatic proposal + manual review"}
@@ -377,9 +400,24 @@ def doc(audit: dict, *, ru: bool) -> str:
             "release artifacts. The helper may use only `F.Cu`, `In2.Cu`, `In3.Cu` and `B.Cu`; `In1.Cu`/`In4.Cu` "
             "remain uninterrupted reference planes, and the via cost is raised to "
             f"`{audit['automatic_helper']['via_costs']}`.\n\n"
+            "## Accepted GENERAL_CONTROL bootstrap\n\n"
+            "The imported proposals were repaired and reviewed in KiCad. The checked-in boards now resolve all "
+            f"**{bootstrap['summary']['resolved_allowed_connection_count']}/{bootstrap['summary']['expected_allowed_connection_count']}** "
+            f"physical connections across all **{bootstrap['summary']['allowed_net_count']}** allowed nets: "
+            f"{ui['resolved_allowed_connection_count']} connections on UI and {rf['resolved_allowed_connection_count']} on RF/power. "
+            f"They contain {bootstrap['summary']['track_item_count']:,} track/via items, including "
+            f"{bootstrap['summary']['via_count']} vias, use only the four permitted routing layers, touch zero protected "
+            "nets and leave `In1.Cu`/`In4.Cu` untouched. Fresh KiCad "
+            f"{ui['drc']['kicad_version']} DRC reports contain **zero violations** and zero schematic-parity errors on both boards. "
+            f"The exact native unconnected totals are {ui['routed_total_unconnected_count']:,} (UI) and "
+            f"{rf['routed_total_unconnected_count']:,} (RF/power); the 499 rows shown by each JSON report are only KiCad's output cap.\n\n"
+            "The [accepted-routing audit](../hardware/layout/generated/H6-R2-general-routing-audit.json) binds those "
+            "results to the exact PCB hashes and to the 1,208-position freeze. This is a bootstrap inside H6.0.2, "
+            "not completion of the phase: `OSCILLATOR`, `SAFETY_CONTROL` and `ANALOG_AUDIO_SENSE` are still routed manually.\n\n"
             "Run the exporter with KiCad's bundled Python:\n\n"
             "```sh\n"
             "/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3 hardware/layout/h6_r2_routing_workspace.py --output-dir /private/tmp/leshy2-routing\n"
+            "/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3 hardware/layout/h6_r2_general_routing.py --check\n"
             "```\n\n"
             "[Machine audit and every assignment](../hardware/layout/generated/H6-R2-routing-policy-audit.json)"
         )
@@ -398,10 +436,13 @@ def main() -> int:
     mode.add_argument("--check", action="store_true")
     args = parser.parse_args()
     audit = build()
+    bootstrap = load(GENERAL_ROUTING_AUDIT)
+    if bootstrap.get("status") != "pass":
+        raise SystemExit("accepted GENERAL_CONTROL routing audit is missing or failed")
     outputs = {
         AUDIT: json.dumps(audit, indent=2, ensure_ascii=False) + "\n",
-        DOC_EN: doc(audit, ru=False),
-        DOC_RU: doc(audit, ru=True),
+        DOC_EN: doc(audit, bootstrap, ru=False),
+        DOC_RU: doc(audit, bootstrap, ru=True),
     }
     if args.write:
         for path, content in outputs.items():

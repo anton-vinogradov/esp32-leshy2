@@ -32,6 +32,7 @@ except ModuleNotFoundError as exc:  # pragma: no cover - exercised by the wrappe
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTRACT_PATH = ROOT / "hardware/layout/h6-r2-placement-contract.json"
+FREEZE_PATH = ROOT / "hardware/layout/h6-r2-placement-freeze.json"
 PLACEMENT_PATH = ROOT / "hardware/product-design/h1-r2-placement.json"
 COORDINATE_PATH = ROOT / "hardware/product-design/generated/H1-unified-coordinate-table.json"
 INSTANCE_PATH = ROOT / "hardware/ecad/generated/H2-R2-native-instance-ledger.json"
@@ -283,6 +284,13 @@ def apply_anchor(fp, pose: dict, anchor: tuple[float, float]) -> dict:
     return rect_at_anchor(pose, anchor)
 
 
+def apply_exact_anchor(fp, pose: dict, anchor_nm: tuple[int, int]) -> dict:
+    """Restore a frozen KiCad anchor without losing a nanometre to JSON rounding."""
+    fp.SetOrientationDegrees(pose["rotation"])
+    fp.SetPosition(pcbnew.VECTOR2I(*anchor_nm))
+    return rect_at_anchor(pose, (pcbnew.ToMM(anchor_nm[0]), pcbnew.ToMM(anchor_nm[1])))
+
+
 def add_segment(board, layer: int, start: tuple[float, float], end: tuple[float, float], width: float) -> None:
     shape = pcbnew.PCB_SHAPE(board)
     shape.SetShape(pcbnew.SHAPE_T_SEGMENT)
@@ -489,6 +497,7 @@ def target_for_instance(
     instance: str,
     contract: dict,
     targets: dict[str, dict],
+    frozen: dict[tuple[str, str], dict],
 ) -> dict | None:
     override = contract.get("placement_overrides", {}).get(instance)
     if override:
@@ -498,7 +507,42 @@ def target_for_instance(
             "centre": override["centre_mm"],
             "rotation": override["rotation_deg"],
             "direction": override["reason"],
+            "placement_method": override.get("method"),
         }
+    row = frozen.get((project, instance))
+    if row:
+        frame = (
+            "front-outer"
+            if project == "LESHY2-UI-R2" and row["side"] == "F.Cu"
+            else "rear-outer"
+            if project == "LESHY2-RF-R2" and row["side"] == "F.Cu"
+            else "ui-inner"
+            if project == "LESHY2-UI-R2"
+            else "rear-inner"
+        )
+        target = {
+            "source": "H6.0.1 exact-placement freeze",
+            "frame": frame,
+            "centre": row["courtyard_centre_mm"],
+            "exact_anchor_nm": row.get("footprint_anchor_nm"),
+            "rotation": row["rotation_deg"],
+            "direction": "frozen before routed copper",
+            "frozen": True,
+            "placement_method": row["method"],
+        }
+        bbox = row["courtyard_bbox_mm"]
+        target["allow_outside"] = (
+            bbox["x"][0] < 0
+            or bbox["y"][0] < 0
+            or bbox["x"][1] > contract["board"]["width_mm"]
+            or bbox["y"][1] > contract["board"]["height_mm"]
+        )
+        if (
+            project == "LESHY2-RF-R2"
+            and instance == contract["mechanical"]["u219_pickup_loop"]["instance"]
+        ):
+            target["nonphysical_overlap"] = True
+        return target
     antennas = contract["antenna_ports"].get(project, {})
     if instance in antennas:
         return {
@@ -647,6 +691,8 @@ def nearest_grid_slot(
 
 
 def is_edge_interface(instance: str, target: dict | None, contract: dict) -> bool:
+    if (target or {}).get("allow_outside"):
+        return True
     if any(token in instance for token in contract["placement_policy"]["edge_anchor_names"]):
         return True
     direction = (target or {}).get("direction", "")
@@ -779,6 +825,7 @@ def place_project(
     net_rows: list[dict],
     symbols: dict[str, dict],
     net_bindings: dict[str, str],
+    frozen: dict[tuple[str, str], dict],
 ) -> tuple[object, dict]:
     board = pcbnew.BOARD()
     configure_board(board, contract, project)
@@ -810,7 +857,9 @@ def place_project(
     failures = []
 
     for entry in entries:
-        target = target_for_instance(project, entry["row"]["instance"], contract, targets)
+        target = target_for_instance(
+            project, entry["row"]["instance"], contract, targets, frozen
+        )
         entry["target"] = target
         entry["side"] = target_side(target)
         if entry["side"] == "B.Cu":
@@ -826,6 +875,7 @@ def place_project(
                 entry["row"]["instance"] in hard_locked
                 or "_external_sma" in entry["row"]["instance"]
                 or target.get("nonphysical_overlap")
+                or target.get("frozen")
             )
         )
 
@@ -883,7 +933,19 @@ def place_project(
         side = entry["side"]
         rotation = desired_rotation(entry["poses"], target)
         pose = entry["poses"][rotation]
-        if "anchor" in target:
+        if target.get("exact_anchor_nm"):
+            exact_anchor_nm = tuple(target["exact_anchor_nm"])
+            rect = apply_exact_anchor(entry["fp"], pose, exact_anchor_nm)
+            desired = rect_centre(rect)
+            exact_anchor_mm = (
+                pcbnew.ToMM(exact_anchor_nm[0]),
+                pcbnew.ToMM(exact_anchor_nm[1]),
+            )
+            cross_rects = cross_rects_at_anchor(pose, exact_anchor_mm)
+            cross_body_rects = cross_rects_at_anchor(
+                pose, exact_anchor_mm, "cross_body_rects"
+            )
+        elif "anchor" in target:
             rect = apply_anchor(entry["fp"], pose, tuple(target["anchor"]))
             desired = rect_centre(rect)
             cross_rects = cross_rects_at_anchor(pose, tuple(target["anchor"]))
@@ -914,7 +976,8 @@ def place_project(
                 entry,
                 rect,
                 pose,
-                "hard H1 datum" if entry["hard"] else "exact H1 seed",
+                target.get("placement_method")
+                or ("hard H1 datum" if entry["hard"] else "exact H1 seed"),
                 cross_rects=cross_rects,
             )
             continue
@@ -1150,6 +1213,7 @@ def svg_bytes(audit: dict) -> bytes:
         "exact H1 seed": ("#e9eef5", "#64748b"),
         "nearest exact-footprint correction": ("#fff4d6", "#d97706"),
         "connectivity/sheet automatic seed": ("#e7f8ef", "#059669"),
+        "reviewed H6.0.2 fan-out correction": ("#f3e8ff", "#7c3aed"),
         "hard H1 datum with conflict": ("#fee2e2", "#dc2626"),
     }
     out = [
@@ -1212,6 +1276,7 @@ def build() -> tuple[dict[Path, bytes], dict]:
     # byte-identical native boards and stable audit hashes.
     pcbnew.KIID.SeedGenerator(0x4C455348)
     contract = load(CONTRACT_PATH)
+    freeze = load(FREEZE_PATH)
     placement = load(PLACEMENT_PATH)
     coordinate = load(COORDINATE_PATH)
     instances = load(INSTANCE_PATH)["rows"]
@@ -1220,6 +1285,21 @@ def build() -> tuple[dict[Path, bytes], dict]:
     binding_artifact = load(NET_BINDING_PATH)
     outputs: dict[Path, bytes] = {}
     board_audits = []
+    frozen = {
+        (board["project"], row["instance"]): row
+        for board in freeze["boards"]
+        for row in board["placements"]
+    }
+    expected_frozen = {
+        (row["project"], row["instance"])
+        for row in instances
+    }
+    if set(frozen) != expected_frozen:
+        missing = sorted(expected_frozen - set(frozen))
+        extra = sorted(set(frozen) - expected_frozen)
+        raise ValueError(
+            f"placement freeze coverage mismatch; missing={missing[:10]}, extra={extra[:10]}"
+        )
     for project in contract["boards"]:
         project_instances = [row for row in instances if row["project"] == project]
         board, audit = place_project(
@@ -1231,6 +1311,7 @@ def build() -> tuple[dict[Path, bytes], dict]:
             net_rows,
             symbols,
             binding_artifact["projects"][project]["canonical_to_kicad"],
+            frozen,
         )
         data = board_bytes(project, board)
         output_path = ROOT / contract["boards"][project]["output"]
@@ -1258,6 +1339,8 @@ def build() -> tuple[dict[Path, bytes], dict]:
         "sources": {
             "contract": str(CONTRACT_PATH.relative_to(ROOT)),
             "contract_sha256": sha256(CONTRACT_PATH),
+            "placement_freeze": str(FREEZE_PATH.relative_to(ROOT)),
+            "placement_freeze_sha256": sha256(FREEZE_PATH),
             "placement": str(PLACEMENT_PATH.relative_to(ROOT)),
             "placement_sha256": sha256(PLACEMENT_PATH),
             "coordinate_model": str(COORDINATE_PATH.relative_to(ROOT)),

@@ -20,6 +20,10 @@ AUDIT = ROOT / "hardware/layout/generated/H6-R2-routing-policy-audit.json"
 SCRIPT = ROOT / "hardware/layout/h6_r2_routing_policy.py"
 RULES_SCRIPT = ROOT / "hardware/layout/h6_r2_kicad_rules.py"
 WORKSPACE_SCRIPT = ROOT / "hardware/layout/h6_r2_routing_workspace.py"
+PLACEMENT_FREEZE = ROOT / "hardware/layout/h6-r2-placement-freeze.json"
+PLACEMENT_FREEZE_SCRIPT = ROOT / "hardware/layout/h6_r2_placement_freeze.py"
+GENERAL_ROUTING_AUDIT = ROOT / "hardware/layout/generated/H6-R2-general-routing-audit.json"
+GENERAL_ROUTING_SCRIPT = ROOT / "hardware/layout/h6_r2_general_routing.py"
 KICAD_PYTHON = Path(
     "/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/"
     "Versions/3.9/bin/python3"
@@ -194,6 +198,56 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
             ("clearance", "too close", ("a", "b")),
             violation_fingerprint(violation),
         )
+
+    def test_exact_placement_freeze_and_general_bootstrap_are_complete(self):
+        freeze = json.loads(PLACEMENT_FREEZE.read_text(encoding="utf-8"))
+        self.assertEqual("pass", freeze["freeze"]["status"])
+        self.assertEqual(1208, freeze["freeze"]["footprint_count"])
+        rows = [row for board in freeze["boards"] for row in board["placements"]]
+        self.assertEqual(1208, len(rows))
+        self.assertTrue(all(len(row["footprint_anchor_nm"]) == 2 for row in rows))
+        self.assertNotIn("placement_freeze_sha256", freeze["sources"])
+
+        routing = json.loads(GENERAL_ROUTING_AUDIT.read_text(encoding="utf-8"))
+        self.assertEqual("pass", routing["status"])
+        self.assertEqual(165, routing["summary"]["allowed_net_count"])
+        self.assertEqual(346, routing["summary"]["expected_allowed_connection_count"])
+        self.assertEqual(346, routing["summary"]["resolved_allowed_connection_count"])
+        self.assertEqual(0, routing["summary"]["remaining_allowed_connection_count"])
+        self.assertEqual(0, routing["summary"]["drc_violation_count"])
+        self.assertEqual(0, routing["summary"]["error_count"])
+        self.assertEqual(
+            {"OSCILLATOR", "SAFETY_CONTROL", "ANALOG_AUDIO_SENSE"},
+            set(routing["scope"]["not_completed"]),
+        )
+        for board in routing["boards"]:
+            self.assertTrue(board["placement_unchanged"])
+            self.assertEqual(0, board["protected_routed_net_count"])
+            self.assertEqual(0, board["ordinary_copper_zone_count"])
+            self.assertEqual(0, board["remaining_allowed_connection_count"])
+            self.assertEqual(0, board["drc"]["violation_count"])
+            self.assertEqual(0, board["drc"]["schematic_parity_error_count"])
+            self.assertEqual(
+                {"F.Cu", "In2.Cu", "In3.Cu", "B.Cu"},
+                set(board["used_trace_layers"]),
+            )
+
+    def test_native_placement_and_routing_guards_are_current(self):
+        if not KICAD_PYTHON.is_file():
+            self.skipTest("KiCad bundled pcbnew Python is unavailable")
+        for script, expected in (
+            (PLACEMENT_FREEZE_SCRIPT, "1208 exact anchors"),
+            (GENERAL_ROUTING_SCRIPT, "346/346 connections"),
+        ):
+            result = subprocess.run(
+                [str(KICAD_PYTHON), str(script), "--check"],
+                cwd=ROOT,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+            )
+            self.assertEqual(0, result.returncode, result.stdout)
+            self.assertIn(expected, result.stdout)
 
     def test_temporary_dsn_workspace_replaces_the_permissive_default_class(self):
         if not KICAD_PYTHON.is_file():

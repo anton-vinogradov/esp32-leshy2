@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h6-r2-routing-policy.ru.md)
 
-**Status:** ✅ all 823 physical nets across both boards (789 canonical) are assigned to 13 classes before routing starts. An automatic helper may propose copper only for ordinary low-rate control nets; RF, USB, power, i8080, clocked buses, oscillators, safety and analogue nets remain manual.
+**Status:** 🟡 all 823 physical nets across both boards (789 canonical) are assigned to 13 classes. The reviewed `GENERAL_CONTROL` bootstrap is now routed completely; manual H6.0.2 work on oscillators, safety control and analogue/audio/sense nets remains current. RF, USB, power, i8080 and clocked buses remain protected for their later manual releases.
 
 | Class | Nets | Method | Geometry release |
 | --- | ---: | --- | --- |
@@ -33,10 +33,17 @@
 
 `hardware/layout/h6_r2_routing_workspace.py` exports temporary DSNs without the protected net definitions. Pads and components remain as physical obstacles, but Freerouting can see only `GENERAL_CONTROL` nets: `61` on the UI board and `104` on the RF/power board. This explicit filter is required because Freerouting 2.3.0 parses ignore-class and layer-active settings in headless mode but applies them only in the GUI loader. The disposable DSN therefore also declares `In1.Cu`/`In4.Cu` as non-signal layers. Generated DSNs and sessions are review inputs, never source or release artifacts. The helper may use only `F.Cu`, `In2.Cu`, `In3.Cu` and `B.Cu`; `In1.Cu`/`In4.Cu` remain uninterrupted reference planes, and the via cost is raised to `250`.
 
+## Accepted GENERAL_CONTROL bootstrap
+
+The imported proposals were repaired and reviewed in KiCad. The checked-in boards now resolve all **346/346** physical connections across all **165** allowed nets: 142 connections on UI and 204 on RF/power. They contain 2,550 track/via items, including 361 vias, use only the four permitted routing layers, touch zero protected nets and leave `In1.Cu`/`In4.Cu` untouched. Fresh KiCad 10.0.5 DRC reports contain **zero violations** and zero schematic-parity errors on both boards. The exact native unconnected totals are 1,085 (UI) and 1,834 (RF/power); the 499 rows shown by each JSON report are only KiCad's output cap.
+
+The [accepted-routing audit](../hardware/layout/generated/H6-R2-general-routing-audit.json) binds those results to the exact PCB hashes and to the 1,208-position freeze. This is a bootstrap inside H6.0.2, not completion of the phase: `OSCILLATOR`, `SAFETY_CONTROL` and `ANALOG_AUDIO_SENSE` are still routed manually.
+
 Run the exporter with KiCad's bundled Python:
 
 ```sh
 /Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3 hardware/layout/h6_r2_routing_workspace.py --output-dir /private/tmp/leshy2-routing
+/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3 hardware/layout/h6_r2_general_routing.py --check
 ```
 
 [Machine audit and every assignment](../hardware/layout/generated/H6-R2-routing-policy-audit.json)

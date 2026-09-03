@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "artifact": "H6-R2 accepted GENERAL_CONTROL routing bootstrap audit",
+  "marker": "H6.0.2-R1",
+  "status": "pass",
+  "sources": {
+    "routing_policy_audit": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
+    "routing_policy_audit_sha256": "960913eae46b82f4524f93e98ad221b77e96605fbe72ce366a455143f9c51e18",
+    "placement_freeze": "hardware/layout/h6-r2-placement-freeze.json",
+    "placement_freeze_sha256": "09538c503c54095c08058b5ae60f0ffd0563c231f77e648812c35405ccc52698"
+  },
+  "scope": {
+    "completed": "all GENERAL_CONTROL connections on both boards",
+    "not_completed": [
+      "OSCILLATOR",
+      "SAFETY_CONTROL",
+      "ANALOG_AUDIO_SENSE"
+    ],
+    "reserved_reference_layers": [
+      "In1.Cu",
+      "In4.Cu"
+    ],
+    "statement": "This is a routing bootstrap inside H6.0.2, not completion of the phase or of either PCB."
+  },
+  "summary": {
+    "board_count": 2,
+    "allowed_net_count": 165,
+    "expected_allowed_connection_count": 346,
+    "resolved_allowed_connection_count": 346,
+    "remaining_allowed_connection_count": 0,
+    "track_item_count": 2550,
+    "via_count": 361,
+    "drc_violation_count": 0,
+    "error_count": 0
+  },
+  "boards": [
+    {
+      "project": "LESHY2-UI-R2",
+      "board": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
+      "board_sha256": "2a233c012f4fd62a5944b5c065b1c0bee3551666ff3fb38163079577b5821d3c",
+      "placement_signature_sha256": "1ea1685b2ae596c42063b870ff272b2e1e838dad0151d68f576673bc2f9a0784",
+      "placement_unchanged": true,
+      "allowed_class": "GENERAL_CONTROL",
+      "allowed_net_count": 61,
+      "expected_allowed_connection_count": 142,
+      "resolved_allowed_connection_count": 142,
+      "remaining_allowed_connection_count": 0,
+      "seed_total_unconnected_count": 1227,
+      "routed_total_unconnected_count": 1085,
+      "routed_net_count": 61,
+      "track_item_count": 870,
+      "trace_count": 736,
+      "via_count": 134,
+      "used_trace_layers": [
+        "B.Cu",
+        "F.Cu",
+        "In2.Cu",
+        "In3.Cu"
+      ],
+      "trace_length_mm_by_layer": {
+        "B.Cu": 536.8241,
+        "F.Cu": 240.052,
+        "In2.Cu": 997.6798,
+        "In3.Cu": 988.5783
+      },
+      "trace_width_counts": [
+        {
+          "width_mm": 0.1,
+          "count": 5
+        },
+        {
+          "width_mm": 0.1124,
+          "count": 41
+        },
+        {
+          "width_mm": 0.15,
+          "count": 690
+        }
+      ],
+      "via_geometry_counts": [
+        {
+          "diameter_mm": 0.4,
+          "drill_mm": 0.2,
+          "count": 134
+        }
+      ],
+      "ordinary_copper_zone_count": 0,
+      "protected_routed_net_count": 0,
+      "drc": {
+        "tool": "KiCad CLI pcb drc",
+        "kicad_version": "10.0.5",
+        "checked_board_sha256": "2a233c012f4fd62a5944b5c065b1c0bee3551666ff3fb38163079577b5821d3c",
+        "violation_count": 0,
+        "schematic_parity_error_count": 0,
+        "visible_unconnected_item_count": 499,
+        "note": "KiCad JSON caps the visible unconnected-item list; native connectivity below is exact."
+      },
+      "errors": []
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
+      "board_sha256": "e5fb8f8c4284e2f6add3bd68e06608c676592a58e106501e596b960e6f211d7f",
+      "placement_signature_sha256": "faf7a2a5db1c2c73322c787a860f0b17a85f5cf465131b1b190516df7a861112",
+      "placement_unchanged": true,
+      "allowed_class": "GENERAL_CONTROL",
+      "allowed_net_count": 104,
+      "expected_allowed_connection_count": 204,
+      "resolved_allowed_connection_count": 204,
+      "remaining_allowed_connection_count": 0,
+      "seed_total_unconnected_count": 2038,
+      "routed_total_unconnected_count": 1834,
+      "routed_net_count": 104,
+      "track_item_count": 1680,
+      "trace_count": 1453,
+      "via_count": 227,
+      "used_trace_layers": [
+        "B.Cu",
+        "F.Cu",
+        "In2.Cu",
+        "In3.Cu"
+      ],
+      "trace_length_mm_by_layer": {
+        "B.Cu": 1143.9491,
+        "F.Cu": 3.4332,
+        "In2.Cu": 1766.0204,
+        "In3.Cu": 1553.0987
+      },
+      "trace_width_counts": [
+        {
+          "width_mm": 0.1,
+          "count": 2
+        },
+        {
+          "width_mm": 0.1124,
+          "count": 72
+        },
+        {
+          "width_mm": 0.15,
+          "count": 1379
+        }
+      ],
+      "via_geometry_counts": [
+        {
+          "diameter_mm": 0.4,
+          "drill_mm": 0.2,
+          "count": 227
+        }
+      ],
+      "ordinary_copper_zone_count": 0,
+      "protected_routed_net_count": 0,
+      "drc": {
+        "tool": "KiCad CLI pcb drc",
+        "kicad_version": "10.0.5",
+        "checked_board_sha256": "e5fb8f8c4284e2f6add3bd68e06608c676592a58e106501e596b960e6f211d7f",
+        "violation_count": 0,
+        "schematic_parity_error_count": 0,
+        "visible_unconnected_item_count": 499,
+        "note": "KiCad JSON caps the visible unconnected-item list; native connectivity below is exact."
+      },
+      "errors": []
+    }
+  ],
+  "errors": []
+}
