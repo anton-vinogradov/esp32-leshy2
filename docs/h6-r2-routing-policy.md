@@ -27,4 +27,14 @@
 - RF/USB widths are not guessed: H6.0.4/H6.0.5 bind them to the current JLCPCB calculator;
 - no automatic result is accepted before KiCad import, visual review and native DRC.
 
+## Disposable helper workspace
+
+`hardware/layout/h6_r2_routing_workspace.py` exports temporary DSNs without the protected net definitions. Pads and components remain as physical obstacles, but Freerouting can see only `GENERAL_CONTROL` nets: `61` on the UI board and `106` on the RF/power board. This explicit filter is required because Freerouting 2.3.0 parses its ignore-class option in headless mode but applies it only in the GUI loader. The generated DSNs and sessions are review inputs, never source or release artifacts.
+
+Run the exporter with KiCad's bundled Python:
+
+```sh
+/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3 hardware/layout/h6_r2_routing_workspace.py --output-dir /private/tmp/leshy2-routing
+```
+
 [Machine audit and every assignment](../hardware/layout/generated/H6-R2-routing-policy-audit.json)

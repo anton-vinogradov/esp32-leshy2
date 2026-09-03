@@ -27,4 +27,14 @@
 - ширины RF/USB не угадываются: они будут взяты из текущего калькулятора JLCPCB в H6.0.4/H6.0.5;
 - результат автотрассировки не принимается без импорта в KiCad, визуального ревью и штатного DRC.
 
+## Одноразовая рабочая область помощника
+
+`hardware/layout/h6_r2_routing_workspace.py` экспортирует временные DSN без описаний защищённых сетей. Площадки и компоненты остаются физическими препятствиями, но Freerouting видит только `GENERAL_CONTROL`: `61` сеть на передней плате и `106` на RF/power-плате. Такой явный фильтр нужен потому, что Freerouting 2.3.0 разбирает параметр исключения классов в headless-режиме, но применяет его только в GUI-загрузчике. Полученные DSN и сессии служат лишь для ревью, а не являются исходниками или релизными файлами.
+
+Экспорт запускается встроенным Python из KiCad:
+
+```sh
+/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3 hardware/layout/h6_r2_routing_workspace.py --output-dir /private/tmp/leshy2-routing
+```
+
 [Машинный аудит и все назначения](../hardware/layout/generated/H6-R2-routing-policy-audit.json)

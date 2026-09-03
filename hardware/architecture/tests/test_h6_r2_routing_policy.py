@@ -1,5 +1,6 @@
 import json
 import subprocess
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -8,6 +9,11 @@ ROOT = Path(__file__).resolve().parents[3]
 CONTRACT = ROOT / "hardware/layout/h6-r2-routing-policy.json"
 AUDIT = ROOT / "hardware/layout/generated/H6-R2-routing-policy-audit.json"
 SCRIPT = ROOT / "hardware/layout/h6_r2_routing_policy.py"
+WORKSPACE_SCRIPT = ROOT / "hardware/layout/h6_r2_routing_workspace.py"
+KICAD_PYTHON = Path(
+    "/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/"
+    "Versions/3.9/bin/python3"
+)
 
 
 class H6R2RoutingPolicyTests(unittest.TestCase):
@@ -69,6 +75,33 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         )
         self.assertEqual(0, result.returncode, result.stdout)
         self.assertIn("0 unclassified", result.stdout)
+
+    def test_temporary_dsn_workspace_replaces_the_permissive_default_class(self):
+        if not KICAD_PYTHON.is_file():
+            self.skipTest("KiCad bundled pcbnew Python is unavailable")
+        with tempfile.TemporaryDirectory() as directory:
+            result = subprocess.run(
+                [str(KICAD_PYTHON), str(WORKSPACE_SCRIPT), "--output-dir", directory],
+                cwd=ROOT,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+            )
+            self.assertEqual(0, result.returncode, result.stdout)
+            manifest = json.loads((Path(directory) / "routing-workspace-manifest.json").read_text(encoding="utf-8"))
+            self.assertEqual(["GENERAL_CONTROL"], manifest["allowed_classes"])
+            self.assertEqual(12, len(manifest["freerouting_ignore_classes"]))
+            for project in manifest["projects"]:
+                dsn = Path(project["dsn"]).read_text(encoding="utf-8")
+                self.assertNotIn("(class kicad_default", dsn)
+                self.assertEqual(project["emitted_class_count"], dsn.count("(class "))
+                self.assertEqual(project["physical_net_count"], sum(project["class_counts"].values()))
+                self.assertEqual(project["helper_net_count"], dsn.count("\n    (net "))
+                self.assertEqual(
+                    project["physical_net_count"],
+                    project["helper_net_count"] + project["omitted_protected_net_count"],
+                )
+                self.assertEqual(project["class_counts"]["GENERAL_CONTROL"], project["helper_net_count"])
 
 
 if __name__ == "__main__":
