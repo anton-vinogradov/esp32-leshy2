@@ -24,6 +24,7 @@ PLACEMENT_FREEZE = ROOT / "hardware/layout/h6-r2-placement-freeze.json"
 PLACEMENT_FREEZE_SCRIPT = ROOT / "hardware/layout/h6_r2_placement_freeze.py"
 GENERAL_ROUTING_AUDIT = ROOT / "hardware/layout/generated/H6-R2-general-routing-audit.json"
 GENERAL_ROUTING_SCRIPT = ROOT / "hardware/layout/h6_r2_general_routing.py"
+ROUTING_RENDER_SCRIPT = ROOT / "hardware/layout/h6_r2_routing_render.py"
 KICAD_PYTHON = Path(
     "/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/"
     "Versions/3.9/bin/python3"
@@ -134,6 +135,25 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         )
         self.assertEqual(0, rules.returncode, rules.stdout)
         self.assertIn("exact RF/USB outer-layer geometry", rules.stdout)
+
+        renders = subprocess.run(
+            ["python3", str(ROUTING_RENDER_SCRIPT), "--check"],
+            cwd=ROOT,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+        )
+        self.assertEqual(0, renders.returncode, renders.stdout)
+        self.assertIn("2 current board-linked SVG views", renders.stdout)
+
+    def test_routing_report_embeds_both_real_board_views(self):
+        for document in (
+            ROOT / "docs/h6-r2-routing-policy.md",
+            ROOT / "docs/h6-r2-routing-policy.ru.md",
+        ):
+            text = document.read_text(encoding="utf-8")
+            self.assertIn("images/h6-r2-routing-ui.svg", text)
+            self.assertIn("images/h6-r2-routing-rf.svg", text)
 
     def test_kicad_rules_bind_exact_calculator_geometry(self):
         for project in ("LESHY2-UI-R2", "LESHY2-RF-R2"):

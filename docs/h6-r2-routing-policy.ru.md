@@ -39,11 +39,24 @@
 
 [Аудит принятой трассировки](../hardware/layout/generated/H6-R2-general-routing-audit.json) привязывает результат к точным хешам PCB и freeze всех 1 208 позиций. Это срез внутри H6.0.2, а не завершение фазы: `ANALOG_AUDIO_SENSE` ещё разводится вручную.
 
+### Как сейчас выглядит реальная разводка
+
+Синим показана медь верхней стороны, красным — нижней; отверстия и переходные via видны в обоих слоях. Это прямой экспорт из сохранённых `.kicad_pcb`, а не иллюстративный мокап. Картинки содержат хеши исходных плат и автоматически считаются устаревшими после любого изменения PCB.
+
+**Передняя/UI-плата**
+
+![Текущая разводка передней UI-платы](images/h6-r2-routing-ui.svg)
+
+**Задняя RF/power-плата**
+
+![Текущая разводка задней RF/power-платы](images/h6-r2-routing-rf.svg)
+
 Экспорт запускается встроенным Python из KiCad:
 
 ```sh
 /Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3 hardware/layout/h6_r2_routing_workspace.py --output-dir /private/tmp/leshy2-routing
 /Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3 hardware/layout/h6_r2_general_routing.py --check
+python3 hardware/layout/h6_r2_routing_render.py --write
 ```
 
 [Машинный аудит и все назначения](../hardware/layout/generated/H6-R2-routing-policy-audit.json)

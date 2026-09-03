@@ -39,11 +39,24 @@ The imported `GENERAL_CONTROL` and `SAFETY_CONTROL` proposals were repaired and 
 
 The [accepted-routing audit](../hardware/layout/generated/H6-R2-general-routing-audit.json) binds those results to the exact PCB hashes and to the 1,208-position freeze. This is a slice inside H6.0.2, not completion of the phase: `ANALOG_AUDIO_SENSE` is still routed manually.
 
+### What the real routing looks like now
+
+Blue is front copper and red is back copper; holes and vias appear across both layers. These are direct exports from the checked-in `.kicad_pcb` files, not illustrative mockups. Each image carries the source board hash and becomes stale automatically after any PCB change.
+
+**Front/UI board**
+
+![Current front UI-board routing](images/h6-r2-routing-ui.svg)
+
+**Rear RF/power board**
+
+![Current rear RF/power-board routing](images/h6-r2-routing-rf.svg)
+
 Run the exporter with KiCad's bundled Python:
 
 ```sh
 /Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3 hardware/layout/h6_r2_routing_workspace.py --output-dir /private/tmp/leshy2-routing
 /Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3 hardware/layout/h6_r2_general_routing.py --check
+python3 hardware/layout/h6_r2_routing_render.py --write
 ```
 
 [Machine audit and every assignment](../hardware/layout/generated/H6-R2-routing-policy-audit.json)
