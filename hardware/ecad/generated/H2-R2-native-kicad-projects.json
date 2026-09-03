@@ -14,7 +14,7 @@
     },
     "nets": {
       "path": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "sha256": "8e517b079188779a9b666cf1e7d668b51d4b5663ef47b897076bed71c1cc53b4"
+      "sha256": "54f9212e5ac48c26aa1d4001d6c1f50b78cd04c6e1dc9c4f36bcedad1fe9254a"
     },
     "symbols": {
       "path": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
@@ -375,7 +375,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_31_REAR_CONTROLS.kicad_sch",
-      "sha256": "f93cb83de19ed453b1ca4af18c7577dbea262845d20a4f11312e368bafe47a29"
+      "sha256": "67c7037e8904b2c2cacec90310f510eea7ea490e5ea60f73770da883482b1319"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_40_INTERBOARD_M1.kicad_sch",

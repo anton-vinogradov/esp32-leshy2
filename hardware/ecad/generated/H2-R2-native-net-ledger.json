@@ -56,7 +56,7 @@
     },
     "topology": {
       "path": "hardware/ecad/h2-r2-topology-overrides.json",
-      "sha256": "79039dd86e0d82efdd4de2e439a30f1335d84888a31d52eaa7cc469a2b60cc26",
+      "sha256": "0f4dde3c80cb253ada01e83e3b7818b70a58ebedf59e8d31118c0287567f56fe",
       "authority": true
     },
     "historical_route_contract": {
@@ -34011,8 +34011,8 @@
       "contact": "P07",
       "physical": "8",
       "role": "signal",
-      "disposition": "no_connect",
-      "net": null,
+      "disposition": "connected",
+      "net": "POWER_FAULT_N",
       "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
@@ -34026,8 +34026,8 @@
       "contact": "P10",
       "physical": "9",
       "role": "signal",
-      "disposition": "connected",
-      "net": "CODEC_PWR_EN",
+      "disposition": "no_connect",
+      "net": null,
       "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
@@ -34132,7 +34132,7 @@
       "physical": "16",
       "role": "signal",
       "disposition": "connected",
-      "net": "U214_5V_REQ",
+      "net": "FAULT_LATCH_SENSE",
       "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
@@ -34146,8 +34146,8 @@
       "contact": "P20",
       "physical": "17",
       "role": "signal",
-      "disposition": "no_connect",
-      "net": null,
+      "disposition": "connected",
+      "net": "U214_5V_REQ",
       "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
@@ -34176,8 +34176,8 @@
       "contact": "P22",
       "physical": "19",
       "role": "signal",
-      "disposition": "connected",
-      "net": "FAULT_LATCH_SENSE",
+      "disposition": "no_connect",
+      "net": null,
       "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
@@ -34191,8 +34191,8 @@
       "contact": "P23",
       "physical": "20",
       "role": "signal",
-      "disposition": "no_connect",
-      "net": null,
+      "disposition": "connected",
+      "net": "CODEC_PWR_EN",
       "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
@@ -34221,8 +34221,8 @@
       "contact": "P25",
       "physical": "22",
       "role": "signal",
-      "disposition": "connected",
-      "net": "POWER_FAULT_N",
+      "disposition": "no_connect",
+      "net": null,
       "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },

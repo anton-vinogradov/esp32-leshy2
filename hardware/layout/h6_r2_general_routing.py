@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-"""Audit the accepted H6.0.2 GENERAL_CONTROL + OSCILLATOR routing bootstrap.
+"""Audit the accepted H6.0.2 control, oscillator and safety routing slice.
 
 The checked-in PCB files are the routed authority.  This guard regenerates the
 exact unrouted placement in memory, proves that routing did not change it, and
-then verifies that every added track/via belongs only to the one class released
-to the automatic helper.  A fresh KiCad CLI DRC report is required when writing
-the audit; later ``--check`` runs bind that evidence to the unchanged board
-hashes.
+then verifies that every added track/via belongs only to the classes accepted
+in this slice.  A fresh KiCad CLI DRC report is required when writing the audit;
+later ``--check`` runs bind that evidence to the unchanged board hashes.
 """
 
 from __future__ import annotations
@@ -45,7 +44,7 @@ FREEZE = ROOT / "hardware/layout/h6-r2-placement-freeze.json"
 OUTPUT = ROOT / "hardware/layout/generated/H6-R2-general-routing-audit.json"
 PROJECTS = ("LESHY2-UI-R2", "LESHY2-RF-R2")
 MECHANICAL_REFERENCES = {"MH1", "MH2", "MH3", "MH4"}
-ACCEPTED_CLASSES = ("GENERAL_CONTROL", "OSCILLATOR")
+ACCEPTED_CLASSES = ("GENERAL_CONTROL", "OSCILLATOR", "SAFETY_CONTROL")
 
 
 def load(path: Path) -> dict:
@@ -158,7 +157,7 @@ def route_metrics(board, allowed_nets: set[str]) -> tuple[dict, list[str]]:
     ordinary_copper_zones = [zone for zone in board.Zones() if not zone.GetIsRuleArea()]
     if ordinary_copper_zones:
         errors.append(
-            f"GENERAL_CONTROL bootstrap unexpectedly contains {len(ordinary_copper_zones)} copper zones"
+            f"H6.0.2 routing slice unexpectedly contains {len(ordinary_copper_zones)} copper zones"
         )
     return {
         "routed_net_count": len(routed_nets),
@@ -292,7 +291,7 @@ def build(ui_drc: Path | None = None, rf_drc: Path | None = None) -> dict:
         },
         "scope": {
             "completed": list(ACCEPTED_CLASSES),
-            "not_completed": ["SAFETY_CONTROL", "ANALOG_AUDIO_SENSE"],
+            "not_completed": ["ANALOG_AUDIO_SENSE"],
             "reserved_reference_layers": ["In1.Cu", "In4.Cu"],
             "statement": "This is a routing bootstrap inside H6.0.2, not completion of the phase or of either PCB.",
         },
@@ -340,7 +339,7 @@ def main() -> int:
         OUTPUT.parent.mkdir(parents=True, exist_ok=True)
         OUTPUT.write_bytes(data)
     elif not OUTPUT.exists() or OUTPUT.read_bytes() != data:
-        raise SystemExit("stale H6 GENERAL_CONTROL routing audit; rerun --write with fresh DRC reports")
+        raise SystemExit("stale H6.0.2 routing audit; rerun --write with fresh DRC reports")
     print(
         f"H6-R2 H6.0.2 routing {artifact['status']}: "
         f"{artifact['summary']['resolved_allowed_connection_count']}/"

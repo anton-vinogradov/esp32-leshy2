@@ -6,7 +6,7 @@
   "source_hashes": {
     "hardware/layout/h6-r2-routing-policy.json": "0aa74aba018d4b9437e3308b58ffcad4e2c6d6686de1da8d349bb94c6321bd1f",
     "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "c475863618fd995f45bafd7ce76f71f2bc5dc0c28b65d8c1954ae3110aa87aa2",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "8e517b079188779a9b666cf1e7d668b51d4b5663ef47b897076bed71c1cc53b4",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "54f9212e5ac48c26aa1d4001d6c1f50b78cd04c6e1dc9c4f36bcedad1fe9254a",
     "hardware/verification/h3-r2-load-binding-contract.json": "48d2575032bac09bd8ea276e814c16fbb1f76ca6afe0cea0dd36cee2e8c2a384",
     "hardware/layout/h6-r2-placement-contract.json": "855570e9f7229fb5c6d0fc465bbc4470617ae47ac1682eb87698775b88a66a0d"
   },

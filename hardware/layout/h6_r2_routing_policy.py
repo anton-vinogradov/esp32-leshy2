@@ -323,8 +323,8 @@ def doc(audit: dict, bootstrap: dict, *, ru: bool) -> str:
         lead = (
             f"**Статус:** 🟡 все {audit['summary']['project_net_count']} физических сетей двух плат "
             f"({audit['summary']['global_canonical_net_count']} канонических) распределены по 13 классам. "
-            "Проверенные `GENERAL_CONTROL` и все 12 кварцевых/генераторных сетей уже разведены полностью; "
-            "в текущей H6.0.2 остаются safety-control и аналоговые/audio/sense-сети. RF, USB, питание, i8080 и "
+            "Проверенные `GENERAL_CONTROL`, все 12 кварцевых/генераторных сетей и `SAFETY_CONTROL` уже разведены полностью; "
+            "в текущей H6.0.2 остаются аналоговые/audio/sense-сети. RF, USB, питание, i8080 и "
             "тактируемые шины защищены до своих следующих ручных срезов."
         )
         headers = "| Класс | Сетей | Способ | Геометрия |\n| --- | ---: | --- | --- |"
@@ -349,7 +349,7 @@ def doc(audit: dict, bootstrap: dict, *, ru: bool) -> str:
             "`In3.Cu` и `B.Cu`; `In1.Cu`/`In4.Cu` остаются непрерывными опорными плоскостями, а стоимость via "
             f"повышена до `{audit['automatic_helper']['via_costs']}`.\n\n"
             "## Принятый срез H6.0.2\n\n"
-            "Автопредложения `GENERAL_CONTROL` после импорта исправлены и проверены в KiCad; генераторные "
+            "Автопредложения `GENERAL_CONTROL` и `SAFETY_CONTROL` после импорта исправлены и проверены в KiCad; генераторные "
             "цепи проложены вручную с короткими локальными ветвями. В сохранённых PCB теперь замкнуты все "
             f"**{bootstrap['summary']['resolved_allowed_connection_count']}/{bootstrap['summary']['expected_allowed_connection_count']}** "
             f"физических соединений во всех **{bootstrap['summary']['allowed_net_count']}** разрешённых сетях: "
@@ -362,7 +362,7 @@ def doc(audit: dict, bootstrap: dict, *, ru: bool) -> str:
             f"{ru_rf_unconnected} на RF/power; 499 строк каждого JSON — только лимит вывода KiCad.\n\n"
             "[Аудит принятой трассировки](../hardware/layout/generated/H6-R2-general-routing-audit.json) привязывает "
             "результат к точным хешам PCB и freeze всех 1 208 позиций. Это срез внутри H6.0.2, а не завершение "
-            "фазы: `SAFETY_CONTROL` и `ANALOG_AUDIO_SENSE` ещё разводятся вручную.\n\n"
+            "фазы: `ANALOG_AUDIO_SENSE` ещё разводится вручную.\n\n"
             "Экспорт запускается встроенным Python из KiCad:\n\n"
             "```sh\n"
             "/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3 hardware/layout/h6_r2_routing_workspace.py --output-dir /private/tmp/leshy2-routing\n"
@@ -376,8 +376,8 @@ def doc(audit: dict, bootstrap: dict, *, ru: bool) -> str:
         lead = (
             f"**Status:** 🟡 all {audit['summary']['project_net_count']} physical nets across both boards "
             f"({audit['summary']['global_canonical_net_count']} canonical) are assigned to 13 classes. "
-            "The reviewed `GENERAL_CONTROL` set and all 12 crystal/oscillator nets are now routed completely; "
-            "manual H6.0.2 work on safety control and analogue/audio/sense nets remains current. RF, USB, power, i8080 "
+            "The reviewed `GENERAL_CONTROL` set, all 12 crystal/oscillator nets and `SAFETY_CONTROL` are now routed completely; "
+            "manual H6.0.2 work on analogue/audio/sense nets remains current. RF, USB, power, i8080 "
             "and clocked buses remain protected for their later manual releases."
         )
         headers = "| Class | Nets | Method | Geometry release |\n| --- | ---: | --- | --- |"
@@ -402,7 +402,7 @@ def doc(audit: dict, bootstrap: dict, *, ru: bool) -> str:
             "remain uninterrupted reference planes, and the via cost is raised to "
             f"`{audit['automatic_helper']['via_costs']}`.\n\n"
             "## Accepted H6.0.2 slice\n\n"
-            "The imported `GENERAL_CONTROL` proposals were repaired and reviewed in KiCad; oscillator branches "
+            "The imported `GENERAL_CONTROL` and `SAFETY_CONTROL` proposals were repaired and reviewed in KiCad; oscillator branches "
             "were routed manually with short local geometry. The checked-in boards now resolve all "
             f"**{bootstrap['summary']['resolved_allowed_connection_count']}/{bootstrap['summary']['expected_allowed_connection_count']}** "
             f"physical connections across all **{bootstrap['summary']['allowed_net_count']}** allowed nets: "
@@ -415,7 +415,7 @@ def doc(audit: dict, bootstrap: dict, *, ru: bool) -> str:
             f"{rf['routed_total_unconnected_count']:,} (RF/power); the 499 rows shown by each JSON report are only KiCad's output cap.\n\n"
             "The [accepted-routing audit](../hardware/layout/generated/H6-R2-general-routing-audit.json) binds those "
             "results to the exact PCB hashes and to the 1,208-position freeze. This is a slice inside H6.0.2, "
-            "not completion of the phase: `SAFETY_CONTROL` and `ANALOG_AUDIO_SENSE` are still routed manually.\n\n"
+            "not completion of the phase: `ANALOG_AUDIO_SENSE` is still routed manually.\n\n"
             "Run the exporter with KiCad's bundled Python:\n\n"
             "```sh\n"
             "/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3 hardware/layout/h6_r2_routing_workspace.py --output-dir /private/tmp/leshy2-routing\n"
@@ -440,7 +440,7 @@ def main() -> int:
     audit = build()
     bootstrap = load(GENERAL_ROUTING_AUDIT)
     if bootstrap.get("status") != "pass":
-        raise SystemExit("accepted GENERAL_CONTROL routing audit is missing or failed")
+        raise SystemExit("accepted H6.0.2 routing audit is missing or failed")
     outputs = {
         AUDIT: json.dumps(audit, indent=2, ensure_ascii=False) + "\n",
         DOC_EN: doc(audit, bootstrap, ru=False),

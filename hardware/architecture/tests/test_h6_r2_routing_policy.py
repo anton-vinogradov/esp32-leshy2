@@ -210,14 +210,14 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
 
         routing = json.loads(GENERAL_ROUTING_AUDIT.read_text(encoding="utf-8"))
         self.assertEqual("pass", routing["status"])
-        self.assertEqual(177, routing["summary"]["allowed_net_count"])
-        self.assertEqual(366, routing["summary"]["expected_allowed_connection_count"])
-        self.assertEqual(366, routing["summary"]["resolved_allowed_connection_count"])
+        self.assertEqual(288, routing["summary"]["allowed_net_count"])
+        self.assertEqual(652, routing["summary"]["expected_allowed_connection_count"])
+        self.assertEqual(652, routing["summary"]["resolved_allowed_connection_count"])
         self.assertEqual(0, routing["summary"]["remaining_allowed_connection_count"])
         self.assertEqual(0, routing["summary"]["drc_violation_count"])
         self.assertEqual(0, routing["summary"]["error_count"])
         self.assertEqual(
-            {"SAFETY_CONTROL", "ANALOG_AUDIO_SENSE"},
+            {"ANALOG_AUDIO_SENSE"},
             set(routing["scope"]["not_completed"]),
         )
         for board in routing["boards"]:
@@ -237,7 +237,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
             self.skipTest("KiCad bundled pcbnew Python is unavailable")
         for script, expected in (
             (PLACEMENT_FREEZE_SCRIPT, "1208 exact anchors"),
-            (GENERAL_ROUTING_SCRIPT, "366/366 connections"),
+            (GENERAL_ROUTING_SCRIPT, "652/652 connections"),
         ):
             result = subprocess.run(
                 [str(KICAD_PYTHON), str(script), "--check"],

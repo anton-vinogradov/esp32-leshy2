@@ -15,7 +15,7 @@
     "instance_ledger": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
     "instance_ledger_sha256": "8c0845d155b887c8d799068235b4ef6af44497f86c10c4a9044192dd0baaef00",
     "net_ledger": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-    "net_ledger_sha256": "8e517b079188779a9b666cf1e7d668b51d4b5663ef47b897076bed71c1cc53b4",
+    "net_ledger_sha256": "54f9212e5ac48c26aa1d4001d6c1f50b78cd04c6e1dc9c4f36bcedad1fe9254a",
     "symbol_library": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
     "symbol_library_sha256": "af13863573b2005e268c4535d0a70937f89b762919fab03655fe94edfc900e8d",
     "kicad_net_bindings": "hardware/layout/generated/H6-R2-kicad-net-bindings.json",
@@ -36922,8 +36922,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "0428f4ed1ddd0a21574814d1fea9ee3b5033c7141989d4f30a54b43e9f70a33f",
-      "placement_signature_sha256": "7a409323f3d68cff0b2b1fb33941c220db0a039d9103012b3823f272f13c6825"
+      "unrouted_seed_sha256": "bd0c011dd81bb740fc7412bc3007a14ff7696dca2108f236b8161b9dba5d5f35",
+      "placement_signature_sha256": "f3158f8dc9f4cce32ef720a9bca15148199ab96c0bb428c91d4201f242b5749e"
     }
   ],
   "authorization": {

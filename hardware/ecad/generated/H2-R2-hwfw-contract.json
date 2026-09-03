@@ -19,8 +19,8 @@
     "hardware/product-design/h1-r2-placement.json": "66321938e7ea53875639ad6841f02209aaf08510054323c0108d8a5077813054",
     "hardware/ecad/generated/H2-R2-native-inventory.json": "5b59d8dbcf142296f2d299f136987486325e7758b9c2bb76bdd82e824559acaf",
     "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "8c0845d155b887c8d799068235b4ef6af44497f86c10c4a9044192dd0baaef00",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "8e517b079188779a9b666cf1e7d668b51d4b5663ef47b897076bed71c1cc53b4",
-    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "ae424ca8bd6bd2ce294e7d55e286a5ab7af2a5376bddda3653e61db8f7a2fa67",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "54f9212e5ac48c26aa1d4001d6c1f50b78cd04c6e1dc9c4f36bcedad1fe9254a",
+    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "89c5752cdd05ac22f308245bab8b808ab6c300ab72c696716a331267be634f3a",
     "hardware/ecad/h2-r2-hwfw-reconciliation-contract.json": "a670e5e735f0c3631c7c9dcd13e8f4edbe7ff83c9b43c10ec2e46b56742aedc3"
   },
   "bsp": {

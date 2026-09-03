@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h6-r2-routing-policy.ru.md)
 
-**Status:** 🟡 all 823 physical nets across both boards (789 canonical) are assigned to 13 classes. The reviewed `GENERAL_CONTROL` set and all 12 crystal/oscillator nets are now routed completely; manual H6.0.2 work on safety control and analogue/audio/sense nets remains current. RF, USB, power, i8080 and clocked buses remain protected for their later manual releases.
+**Status:** 🟡 all 823 physical nets across both boards (789 canonical) are assigned to 13 classes. The reviewed `GENERAL_CONTROL` set, all 12 crystal/oscillator nets and `SAFETY_CONTROL` are now routed completely; manual H6.0.2 work on analogue/audio/sense nets remains current. RF, USB, power, i8080 and clocked buses remain protected for their later manual releases.
 
 | Class | Nets | Method | Geometry release |
 | --- | ---: | --- | --- |
@@ -35,9 +35,9 @@
 
 ## Accepted H6.0.2 slice
 
-The imported `GENERAL_CONTROL` proposals were repaired and reviewed in KiCad; oscillator branches were routed manually with short local geometry. The checked-in boards now resolve all **366/366** physical connections across all **177** allowed nets: 147 connections on UI and 219 on RF/power. They contain 2,626 track/via items, including 367 vias, use only the four permitted routing layers, touch zero protected nets and leave `In1.Cu`/`In4.Cu` untouched. Fresh KiCad 10.0.5 DRC reports contain **zero violations** and zero schematic-parity errors on both boards. The exact native unconnected totals are 1,080 (UI) and 1,819 (RF/power); the 499 rows shown by each JSON report are only KiCad's output cap.
+The imported `GENERAL_CONTROL` and `SAFETY_CONTROL` proposals were repaired and reviewed in KiCad; oscillator branches were routed manually with short local geometry. The checked-in boards now resolve all **652/652** physical connections across all **288** allowed nets: 231 connections on UI and 421 on RF/power. They contain 5,273 track/via items, including 836 vias, use only the four permitted routing layers, touch zero protected nets and leave `In1.Cu`/`In4.Cu` untouched. Fresh KiCad 10.0.5 DRC reports contain **zero violations** and zero schematic-parity errors on both boards. The exact native unconnected totals are 996 (UI) and 1,617 (RF/power); the 499 rows shown by each JSON report are only KiCad's output cap.
 
-The [accepted-routing audit](../hardware/layout/generated/H6-R2-general-routing-audit.json) binds those results to the exact PCB hashes and to the 1,208-position freeze. This is a slice inside H6.0.2, not completion of the phase: `SAFETY_CONTROL` and `ANALOG_AUDIO_SENSE` are still routed manually.
+The [accepted-routing audit](../hardware/layout/generated/H6-R2-general-routing-audit.json) binds those results to the exact PCB hashes and to the 1,208-position freeze. This is a slice inside H6.0.2, not completion of the phase: `ANALOG_AUDIO_SENSE` is still routed manually.
 
 Run the exporter with KiCad's bundled Python:
 
