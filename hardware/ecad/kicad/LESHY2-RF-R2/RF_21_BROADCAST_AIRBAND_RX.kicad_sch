@@ -7424,25 +7424,25 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "77a1ec47-044b-5565-9b8f-534707428d94")
 	)
-	(label "RX_AMLW_SMA_RF_GROUND"
+	(label "POWER_GROUND"
 		(at 492.76 158.75 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "e702371b-0a6c-5938-9ba9-2e6a2f1440b1")
+		(uuid "c14ed02b-4424-546f-a1f0-a3902731d123")
 	)
-	(label "RX_AMLW_SMA_RF_GROUND"
+	(label "POWER_GROUND"
 		(at 492.76 161.29 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "1af67451-b00b-56a9-ab35-774e0c570586")
+		(uuid "c5196dc8-af72-58bc-8ea0-c7d2fe7372ec")
 	)
-	(label "RX_AMLW_SMA_RF_GROUND"
+	(label "POWER_GROUND"
 		(at 533.40 156.21 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "3602d472-307c-5735-9c67-d85ab60008b0")
+		(uuid "fe8434fb-fc42-5a84-ba5a-39bfaa937c6c")
 	)
-	(label "RX_AMLW_SMA_RF_GROUND"
+	(label "POWER_GROUND"
 		(at 533.40 158.75 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "b33e07bd-067e-5c93-9ca1-b546292edcf6")
+		(uuid "596c0ac1-c067-528f-847f-03816c99ce6b")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:gct_rfpc_sma31_fn_175_a")
@@ -7522,25 +7522,25 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "d6ba1534-11fc-5f9a-a3a5-710b041a9798")
 	)
-	(label "RX_FMSW_SMA_RF_GROUND"
+	(label "POWER_GROUND"
 		(at 584.20 158.75 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "baf73284-9a6a-5039-904e-eead30054b47")
+		(uuid "98a1cc4a-7ba6-57e0-9b44-cb76faf8a61d")
 	)
-	(label "RX_FMSW_SMA_RF_GROUND"
+	(label "POWER_GROUND"
 		(at 584.20 161.29 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "4a15f3d5-f0db-5142-93cf-57e03feaf664")
+		(uuid "98ad9b83-77cf-5037-b7e1-472ead9ffcf8")
 	)
-	(label "RX_FMSW_SMA_RF_GROUND"
+	(label "POWER_GROUND"
 		(at 624.84 156.21 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "6c278575-2956-5130-9404-6acefd739bc1")
+		(uuid "8983ea1f-d77c-5411-bfa7-967ffb96d46a")
 	)
-	(label "RX_FMSW_SMA_RF_GROUND"
+	(label "POWER_GROUND"
 		(at 624.84 158.75 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "38bf71df-c1c5-5dd1-a61d-6d08c3d148b1")
+		(uuid "41746d92-015e-5ef7-81de-b16d1e1a0931")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:murata_lqw2bas22ng00l")

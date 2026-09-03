@@ -5,8 +5,8 @@
   "status": "pass",
   "source_hashes": {
     "hardware/layout/h6-r2-routing-policy.json": "0aa74aba018d4b9437e3308b58ffcad4e2c6d6686de1da8d349bb94c6321bd1f",
-    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "828873273d0e5e0154bb8b5f33fdddb5de8cebd45b44f5b563a8d13e3f26b667",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "7c0de54e0faa9e7d4ddef816b592bc18d523138e99bbf1135461f425ae08bf2e",
+    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "c475863618fd995f45bafd7ce76f71f2bc5dc0c28b65d8c1954ae3110aa87aa2",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "8e517b079188779a9b666cf1e7d668b51d4b5663ef47b897076bed71c1cc53b4",
     "hardware/verification/h3-r2-load-binding-contract.json": "48d2575032bac09bd8ea276e814c16fbb1f76ca6afe0cea0dd36cee2e8c2a384",
     "hardware/layout/h6-r2-placement-contract.json": "03a27c3468d814f84cd959c5ee13ce0c4e7bd11302c732d91121527398ab616c"
   },
@@ -69,8 +69,8 @@
     "exact_trace_geometry_status": "bound to the current JLCPCB calculator; mandatory order-time recheck remains"
   },
   "summary": {
-    "project_net_count": 858,
-    "global_canonical_net_count": 823,
+    "project_net_count": 823,
+    "global_canonical_net_count": 789,
     "routing_class_count": 13,
     "usb_pair_count": 12,
     "external_usb_port_count": 4,
@@ -80,7 +80,7 @@
     "unexpected_net_count": 0
   },
   "class_counts": {
-    "GROUND_REFERENCE": 32,
+    "GROUND_REFERENCE": 3,
     "PRIMARY_POWER": 22,
     "POWER_BRANCH": 22,
     "SWITCHING_NODE": 15,
@@ -90,15 +90,15 @@
     "OSCILLATOR": 12,
     "CLOCKED_DIGITAL": 142,
     "SAFETY_CONTROL": 111,
-    "SERIAL_CONTROL": 78,
+    "SERIAL_CONTROL": 74,
     "ANALOG_AUDIO_SENSE": 143,
-    "GENERAL_CONTROL": 167
+    "GENERAL_CONTROL": 165
   },
   "boards": {
     "LESHY2-RF-R2": {
-      "physical_net_count": 533,
+      "physical_net_count": 516,
       "class_counts": {
-        "GROUND_REFERENCE": 16,
+        "GROUND_REFERENCE": 2,
         "PRIMARY_POWER": 20,
         "POWER_BRANCH": 15,
         "SWITCHING_NODE": 14,
@@ -108,15 +108,15 @@
         "OSCILLATOR": 9,
         "CLOCKED_DIGITAL": 43,
         "SAFETY_CONTROL": 78,
-        "SERIAL_CONTROL": 42,
+        "SERIAL_CONTROL": 41,
         "ANALOG_AUDIO_SENSE": 122,
-        "GENERAL_CONTROL": 106
+        "GENERAL_CONTROL": 104
       }
     },
     "LESHY2-UI-R2": {
-      "physical_net_count": 325,
+      "physical_net_count": 307,
       "class_counts": {
-        "GROUND_REFERENCE": 16,
+        "GROUND_REFERENCE": 1,
         "PRIMARY_POWER": 2,
         "POWER_BRANCH": 7,
         "SWITCHING_NODE": 1,
@@ -126,7 +126,7 @@
         "OSCILLATOR": 3,
         "CLOCKED_DIGITAL": 99,
         "SAFETY_CONTROL": 33,
-        "SERIAL_CONTROL": 36,
+        "SERIAL_CONTROL": 33,
         "ANALOG_AUDIO_SENSE": 21,
         "GENERAL_CONTROL": 61
       }
@@ -1615,18 +1615,6 @@
     },
     {
       "project": "LESHY2-RF-R2",
-      "canonical_net": "CC_RF_GROUND",
-      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_RF_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power",
-        "rf"
-      ]
-    },
-    {
-      "project": "LESHY2-RF-R2",
       "canonical_net": "CC_RF_MATCH_MID",
       "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_RF_MATCH_MID",
       "routing_class": "RF_CONTROLLED",
@@ -1757,17 +1745,6 @@
       "geometry_release": "H6.0.4",
       "endpoint_roles": [
         "signal"
-      ]
-    },
-    {
-      "project": "LESHY2-RF-R2",
-      "canonical_net": "CC_SMA_RF_GROUND",
-      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_SMA_RF_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
       ]
     },
     {
@@ -2271,17 +2248,6 @@
     },
     {
       "project": "LESHY2-RF-R2",
-      "canonical_net": "ENCODER_PTT_ESD_GROUND",
-      "kicad_net": "/RF_31_REAR_CONTROLS/ENCODER_PTT_ESD_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
-      ]
-    },
-    {
-      "project": "LESHY2-RF-R2",
       "canonical_net": "EV_N0_S3",
       "kicad_net": "/RF_50_TX_SAFETY_EVIDENCE/EV_N0_S3",
       "routing_class": "SAFETY_CONTROL",
@@ -2602,17 +2568,6 @@
       "endpoint_roles": [
         "power",
         "signal"
-      ]
-    },
-    {
-      "project": "LESHY2-RF-R2",
-      "canonical_net": "HEADPHONE_ESD_GROUND",
-      "kicad_net": "/RF_22_AUDIO_CODEC_IO/HEADPHONE_ESD_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
       ]
     },
     {
@@ -3912,6 +3867,7 @@
         "power",
         "push_switch",
         "rf",
+        "service",
         "shield",
         "shield_ground",
         "signal",
@@ -3969,17 +3925,6 @@
         "power",
         "signal",
         "switch_contact"
-      ]
-    },
-    {
-      "project": "LESHY2-RF-R2",
-      "canonical_net": "REAR_CONTROL_ESD_GROUND",
-      "kicad_net": "/RF_31_REAR_CONTROLS/REAR_CONTROL_ESD_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
       ]
     },
     {
@@ -4078,17 +4023,6 @@
       "endpoint_roles": [
         "service",
         "signal"
-      ]
-    },
-    {
-      "project": "LESHY2-RF-R2",
-      "canonical_net": "RF_RP_DBG_ESD_RETURN",
-      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_DBG_ESD_RETURN",
-      "routing_class": "SERIAL_CONTROL",
-      "route_mode": "manual_only",
-      "geometry_release": "H6.0.4",
-      "endpoint_roles": [
-        "power"
       ]
     },
     {
@@ -4316,17 +4250,6 @@
     },
     {
       "project": "LESHY2-RF-R2",
-      "canonical_net": "RF_RP_VREG_POWER_GROUND",
-      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_VREG_POWER_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
-      ]
-    },
-    {
-      "project": "LESHY2-RF-R2",
       "canonical_net": "RF_RP_XIN",
       "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_XIN",
       "routing_class": "OSCILLATOR",
@@ -4459,17 +4382,6 @@
     },
     {
       "project": "LESHY2-RF-R2",
-      "canonical_net": "RX_AMLW_SMA_RF_GROUND",
-      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_SMA_RF_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
-      ]
-    },
-    {
-      "project": "LESHY2-RF-R2",
       "canonical_net": "RX_AUDIO_L",
       "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/RX_AUDIO_L",
       "routing_class": "ANALOG_AUDIO_SENSE",
@@ -4580,17 +4492,6 @@
       "geometry_release": "H6.0.5",
       "endpoint_roles": [
         "rf"
-      ]
-    },
-    {
-      "project": "LESHY2-RF-R2",
-      "canonical_net": "RX_FMSW_SMA_RF_GROUND",
-      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/RX_FMSW_SMA_RF_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
       ]
     },
     {
@@ -4823,17 +4724,6 @@
     },
     {
       "project": "LESHY2-RF-R2",
-      "canonical_net": "SAFETY_ESD_GROUND",
-      "kicad_net": "/RF_50_TX_SAFETY_EVIDENCE/SAFETY_ESD_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
-      ]
-    },
-    {
-      "project": "LESHY2-RF-R2",
       "canonical_net": "SAFETY_EVIDENCE_I2C_SCL",
       "kicad_net": "/RF_50_TX_SAFETY_EVIDENCE/SAFETY_EVIDENCE_I2C_SCL",
       "routing_class": "SAFETY_CONTROL",
@@ -4869,22 +4759,6 @@
         "analog",
         "gpio",
         "signal"
-      ]
-    },
-    {
-      "project": "LESHY2-RF-R2",
-      "canonical_net": "SAFETY_GROUND",
-      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/SAFETY_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "analog",
-        "io",
-        "power",
-        "service",
-        "signal",
-        "strap"
       ]
     },
     {
@@ -5152,17 +5026,6 @@
     },
     {
       "project": "LESHY2-RF-R2",
-      "canonical_net": "U214_ESD_GROUND",
-      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_ESD_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
-      ]
-    },
-    {
-      "project": "LESHY2-RF-R2",
       "canonical_net": "U214_GPS_RX_BUFFERED",
       "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_GPS_RX_BUFFERED",
       "routing_class": "GENERAL_CONTROL",
@@ -5421,28 +5284,6 @@
     },
     {
       "project": "LESHY2-RF-R2",
-      "canonical_net": "U214_UNUSED_A_LOW",
-      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_UNUSED_A_LOW",
-      "routing_class": "GENERAL_CONTROL",
-      "route_mode": "automatic_helper_allowed_then_manual_review",
-      "geometry_release": "H6.0.2",
-      "endpoint_roles": [
-        "signal"
-      ]
-    },
-    {
-      "project": "LESHY2-RF-R2",
-      "canonical_net": "U214_UNUSED_OE_LOW",
-      "kicad_net": "/RF_30_U214_U219_M5_EXT/U214_UNUSED_OE_LOW",
-      "routing_class": "GENERAL_CONTROL",
-      "route_mode": "automatic_helper_allowed_then_manual_review",
-      "geometry_release": "H6.0.2",
-      "endpoint_roles": [
-        "signal"
-      ]
-    },
-    {
-      "project": "LESHY2-RF-R2",
       "canonical_net": "U219_PIN10_OE_N",
       "kicad_net": "/RF_30_U214_U219_M5_EXT/U219_PIN10_OE_N",
       "routing_class": "GENERAL_CONTROL",
@@ -5578,17 +5419,6 @@
       "geometry_release": "H6.0.2",
       "endpoint_roles": [
         "analog"
-      ]
-    },
-    {
-      "project": "LESHY2-RF-R2",
-      "canonical_net": "UNIT_ESD_GROUND",
-      "kicad_net": "/RF_30_U214_U219_M5_EXT/UNIT_ESD_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
       ]
     },
     {
@@ -6108,17 +5938,6 @@
     },
     {
       "project": "LESHY2-RF-R2",
-      "canonical_net": "VOICE_SMA_RF_GROUND",
-      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_SMA_RF_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
-      ]
-    },
-    {
-      "project": "LESHY2-RF-R2",
       "canonical_net": "VOICE_UART_RX",
       "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_UART_RX",
       "routing_class": "SERIAL_CONTROL",
@@ -6388,17 +6207,6 @@
     },
     {
       "project": "LESHY2-RF-R2",
-      "canonical_net": "VOICE_V_SMA_RF_GROUND",
-      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_V_SMA_RF_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
-      ]
-    },
-    {
-      "project": "LESHY2-RF-R2",
       "canonical_net": "VOICE_V_UART_RX",
       "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_V_UART_RX",
       "routing_class": "SERIAL_CONTROL",
@@ -6460,20 +6268,9 @@
     {
       "project": "LESHY2-UI-R2",
       "canonical_net": "/UI_10_S3_CORE_MEMORY_BOOT/3V3_MAIN",
-      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH//UI_10_S3_CORE_MEMORY_BOOT/3V3_MAIN",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/{slash}UI_10_S3_CORE_MEMORY_BOOT{slash}3V3_MAIN",
       "routing_class": "POWER_BRANCH",
       "route_mode": "manual_only",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
-      ]
-    },
-    {
-      "project": "LESHY2-UI-R2",
-      "canonical_net": "/UI_10_S3_CORE_MEMORY_BOOT/POWER_GROUND",
-      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH//UI_10_S3_CORE_MEMORY_BOOT/POWER_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
       "geometry_release": "H6.0.3",
       "endpoint_roles": [
         "power"
@@ -6603,17 +6400,6 @@
       "endpoint_roles": [
         "service",
         "signal"
-      ]
-    },
-    {
-      "project": "LESHY2-UI-R2",
-      "canonical_net": "C5_DBG_ESD_RETURN",
-      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_DBG_ESD_RETURN",
-      "routing_class": "SERIAL_CONTROL",
-      "route_mode": "manual_only",
-      "geometry_release": "H6.0.4",
-      "endpoint_roles": [
-        "power"
       ]
     },
     {
@@ -6849,17 +6635,6 @@
         "power",
         "reset",
         "signal"
-      ]
-    },
-    {
-      "project": "LESHY2-UI-R2",
-      "canonical_net": "C5_RF_GROUND",
-      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_RF_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
       ]
     },
     {
@@ -7119,17 +6894,6 @@
       "routing_class": "ANALOG_AUDIO_SENSE",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.2",
-      "endpoint_roles": [
-        "power"
-      ]
-    },
-    {
-      "project": "LESHY2-UI-R2",
-      "canonical_net": "C5_SMA_RF_GROUND",
-      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SMA_RF_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
       "endpoint_roles": [
         "power"
       ]
@@ -7598,17 +7362,6 @@
     },
     {
       "project": "LESHY2-UI-R2",
-      "canonical_net": "HUB_RP_DBG_ESD_RETURN",
-      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_DBG_ESD_RETURN",
-      "routing_class": "SERIAL_CONTROL",
-      "route_mode": "manual_only",
-      "geometry_release": "H6.0.4",
-      "endpoint_roles": [
-        "power"
-      ]
-    },
-    {
-      "project": "LESHY2-UI-R2",
       "canonical_net": "HUB_RP_DBG_ID0",
       "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_DBG_ID0",
       "routing_class": "SERIAL_CONTROL",
@@ -7825,17 +7578,6 @@
       "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_VREG_LX_SW",
       "routing_class": "SWITCHING_NODE",
       "route_mode": "manual_only",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
-      ]
-    },
-    {
-      "project": "LESHY2-UI-R2",
-      "canonical_net": "HUB_RP_VREG_POWER_GROUND",
-      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_VREG_POWER_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
       "geometry_release": "H6.0.3",
       "endpoint_roles": [
         "power"
@@ -8610,17 +8352,6 @@
     },
     {
       "project": "LESHY2-UI-R2",
-      "canonical_net": "NRF0_RF_GROUND",
-      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_RF_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
-      ]
-    },
-    {
-      "project": "LESHY2-UI-R2",
       "canonical_net": "NRF0_SCK",
       "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_SCK",
       "routing_class": "CLOCKED_DIGITAL",
@@ -8653,17 +8384,6 @@
       "endpoint_roles": [
         "analog",
         "signal"
-      ]
-    },
-    {
-      "project": "LESHY2-UI-R2",
-      "canonical_net": "NRF0_SMA_RF_GROUND",
-      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_SMA_RF_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
       ]
     },
     {
@@ -8937,17 +8657,6 @@
     },
     {
       "project": "LESHY2-UI-R2",
-      "canonical_net": "NRF1_RF_GROUND",
-      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF1_RF_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
-      ]
-    },
-    {
-      "project": "LESHY2-UI-R2",
       "canonical_net": "NRF1_SCK",
       "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF1_SCK",
       "routing_class": "CLOCKED_DIGITAL",
@@ -8980,17 +8689,6 @@
       "endpoint_roles": [
         "analog",
         "signal"
-      ]
-    },
-    {
-      "project": "LESHY2-UI-R2",
-      "canonical_net": "NRF1_SMA_RF_GROUND",
-      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF1_SMA_RF_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
       ]
     },
     {
@@ -9264,17 +8962,6 @@
     },
     {
       "project": "LESHY2-UI-R2",
-      "canonical_net": "NRF2_RF_GROUND",
-      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_RF_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
-      ]
-    },
-    {
-      "project": "LESHY2-UI-R2",
       "canonical_net": "NRF2_SCK",
       "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_SCK",
       "routing_class": "CLOCKED_DIGITAL",
@@ -9307,17 +8994,6 @@
       "endpoint_roles": [
         "analog",
         "signal"
-      ]
-    },
-    {
-      "project": "LESHY2-UI-R2",
-      "canonical_net": "NRF2_SMA_RF_GROUND",
-      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_SMA_RF_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
       ]
     },
     {
@@ -9388,6 +9064,7 @@
       "route_mode": "plane_or_local_pour_manual",
       "geometry_release": "H6.0.3",
       "endpoint_roles": [
+        "analog",
         "io",
         "power",
         "rf",
@@ -9468,17 +9145,6 @@
       "endpoint_roles": [
         "service",
         "signal"
-      ]
-    },
-    {
-      "project": "LESHY2-UI-R2",
-      "canonical_net": "S3_DBG_ESD_RETURN",
-      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_DBG_ESD_RETURN",
-      "routing_class": "SERIAL_CONTROL",
-      "route_mode": "manual_only",
-      "geometry_release": "H6.0.4",
-      "endpoint_roles": [
-        "power"
       ]
     },
     {
@@ -9680,28 +9346,6 @@
     },
     {
       "project": "LESHY2-UI-R2",
-      "canonical_net": "S3_RF_GROUND",
-      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_RF_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
-      ]
-    },
-    {
-      "project": "LESHY2-UI-R2",
-      "canonical_net": "S3_SMA_RF_GROUND",
-      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_SMA_RF_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
-      ]
-    },
-    {
-      "project": "LESHY2-UI-R2",
       "canonical_net": "S3_TX_LED_A",
       "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/S3_TX_LED_A",
       "routing_class": "GENERAL_CONTROL",
@@ -9780,20 +9424,6 @@
       "geometry_release": "H6.0.4",
       "endpoint_roles": [
         "gpio",
-        "signal"
-      ]
-    },
-    {
-      "project": "LESHY2-UI-R2",
-      "canonical_net": "SAFETY_GROUND",
-      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/SAFETY_GROUND",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "analog",
-        "io",
-        "power",
         "signal"
       ]
     },
@@ -9949,28 +9579,6 @@
       "geometry_release": "H6.0.2",
       "endpoint_roles": [
         "gpio",
-        "power"
-      ]
-    },
-    {
-      "project": "LESHY2-UI-R2",
-      "canonical_net": "SD_ESD_GROUND_A",
-      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_ESD_GROUND_A",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
-        "power"
-      ]
-    },
-    {
-      "project": "LESHY2-UI-R2",
-      "canonical_net": "SD_ESD_GROUND_B",
-      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_ESD_GROUND_B",
-      "routing_class": "GROUND_REFERENCE",
-      "route_mode": "plane_or_local_pour_manual",
-      "geometry_release": "H6.0.3",
-      "endpoint_roles": [
         "power"
       ]
     },

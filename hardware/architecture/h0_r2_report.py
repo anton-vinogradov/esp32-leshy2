@@ -93,7 +93,7 @@ def render_svg(data: dict) -> str:
         '<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0 L7 3 L0 6z" fill="#475569"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         '<text x="630" y="38" text-anchor="middle" font-family="sans-serif" font-size="25" font-weight="700" fill="#172033">Leshy2 · H0-R2 functional architecture</text>',
-        '<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">H2-R2.1.5 is reviewed: 1,208 schematic instances, 823 nets, zero ERC findings and six-domain reconciliation.</text>',
+        '<text x="630" y="66" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#526076">H2-R2.1.5 is reviewed: 1,208 schematic instances, 789 canonical nets, zero ERC findings and six-domain reconciliation.</text>',
         '<rect x="40" y="105" width="540" height="610" rx="18" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>',
         '<rect x="680" y="105" width="540" height="610" rx="18" fill="#fff7ed" stroke="#ea580c" stroke-width="3"/>',
         '<text x="310" y="137" text-anchor="middle" font-family="sans-serif" font-size="19" font-weight="700" fill="#1d4ed8">FRONT · UI / RADIO PCB · five SMA</text>',
@@ -165,7 +165,7 @@ def render_report(data: dict, ru: bool) -> str:
             "на S3, высокоскоростные периферийные тракты разгружены через Hub RP, "
             "бортовой видеотракт удалён, а Airband AM 118–137 МГц теперь обязателен."
         )
-        current = "Текущий точный маркер — **H6.0.2-R1**. Физическая проекция H1-R2.38 с двумя независимыми RP2354B, точными GPIO0..47, M1 и прямым 50-контактным ZIF дисплея принята и прошла ревью 2026-08-30. Native R2 H2 материализует 1 208 schematic-экземпляров и 823 nets в двух проектах KiCad без замечаний ERC. H3-R2 полностью проведён ревью: 20 текущих evidence-artifacts и записанные source hashes сведены без mismatch или открытого аналитического finding; 51 физический остаток назначен H5/H6/H8. Глобальные H4-R2 и H5-R1 проведены ревью; H6.0.1 placement/mechanics/cables закрыт, а трассировка H6.0.2 является текущей работой."
+        current = "Текущий точный маркер — **H6.0.2-R1**. Физическая проекция H1-R2.38 с двумя независимыми RP2354B, точными GPIO0..47, M1 и прямым 50-контактным ZIF дисплея принята и прошла ревью 2026-08-30. Native R2 H2 материализует 1 208 schematic-экземпляров, 789 глобальных канонических / 823 локальных для плат nets в двух проектах KiCad без замечаний ERC. H3-R2 полностью проведён ревью: 20 текущих evidence-artifacts и записанные source hashes сведены без mismatch или открытого аналитического finding; 51 физический остаток назначен H5/H6/H8. Глобальные H4-R2 и H5-R1 проведены ревью; H6.0.1 placement/mechanics/cables закрыт, а трассировка H6.0.2 является текущей работой."
         sections = {
             "result": "Что зафиксировано",
             "air": "Airband RX",
@@ -204,7 +204,7 @@ def render_report(data: dict, ru: bool) -> str:
             "high-throughput peripheral work is offloaded through the Hub RP, the onboard "
             "video path is removed, and 118–137 MHz Airband AM is now mandatory."
         )
-        current = "The exact current marker is **H6.0.2-R1**. The H1-R2.38 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, M1 and the direct 50-contact display ZIF was accepted and reviewed on 2026-08-30. Native R2 H2 materializes 1,208 schematic instances and 823 nets in two KiCad projects with zero ERC findings. H3-R2 is fully reviewed: 20 current evidence artifacts and their recorded source hashes reconcile without mismatch or open analytical finding, while 51 physical residuals remain owned by H5/H6/H8. Global H4-R2 and H5-R1 are reviewed; H6.0.1 placement/mechanics/cables are closed and H6.0.2 routing is current."
+        current = "The exact current marker is **H6.0.2-R1**. The H1-R2.38 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, M1 and the direct 50-contact display ZIF was accepted and reviewed on 2026-08-30. Native R2 H2 materializes 1,208 schematic instances and 789 global canonical / 823 board-local nets in two KiCad projects with zero ERC findings. H3-R2 is fully reviewed: 20 current evidence artifacts and their recorded source hashes reconcile without mismatch or open analytical finding, while 51 physical residuals remain owned by H5/H6/H8. Global H4-R2 and H5-R1 are reviewed; H6.0.1 placement/mechanics/cables are closed and H6.0.2 routing is current."
         sections = {
             "result": "Accepted result",
             "air": "Airband RX",

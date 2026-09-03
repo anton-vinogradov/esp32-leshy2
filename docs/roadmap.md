@@ -3,7 +3,7 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H6.0.2-R1`.** H0–H4 are reviewed, and the [current H5-R2 route revalidation](h5-r2-current-route.md) controls all 249 purchasable groups / 1,216 articles with zero unmapped route. H6.0.1 is complete: [exact placement](h6-r2-exact-placement.md) materializes 1,208/1,208 fitted positions on two native six-layer boards with zero hard conflict, the [mechanical stack](h6-r2-mechanical-stack.md) locks enclosure capture and M2.5 retention without loading M1, and the [microcoax result](h6-r2-microcoax-service.md) locks five relaxed corridors, five clear saddles and ten antenna solder windows. H6.0.2 now owns all 823 routed nets, native schematic/PCB parity and zero-finding DRC. `WBC16-1TLC` has one explicit order-time sourcing gate. The 51 physical residuals and F5/F6 i8080 obligation retain exact downstream owners.
+> **▶ Current hardware boundary: `H6.0.2-R1`.** H0–H4 are reviewed, and the [current H5-R2 route revalidation](h5-r2-current-route.md) controls all 249 purchasable groups / 1,216 articles with zero unmapped route. H6.0.1 is complete: [exact placement](h6-r2-exact-placement.md) materializes 1,208/1,208 fitted positions on two native six-layer boards with zero hard conflict, the [mechanical stack](h6-r2-mechanical-stack.md) locks enclosure capture and M2.5 retention without loading M1, and the [microcoax result](h6-r2-microcoax-service.md) locks five relaxed corridors, five clear saddles and ten antenna solder windows. H6.0.2 now owns all 823 board-local physical / 789 global canonical nets, native schematic/PCB parity and zero-finding DRC. `WBC16-1TLC` has one explicit order-time sourcing gate. The 51 physical residuals and F5/F6 i8080 obligation retain exact downstream owners.
 > H6 placement/routing is authorized; quote, reservation, purchase and fabrication are not.
 
 [Current H6 machine checklist](../hardware/verification/h6-layout-release-plan.json).
@@ -28,7 +28,7 @@ marker and current checklist; it is never presented as review of the whole phase
 | Functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): front UI/radio and rear RF/power domains, explicit owners, transports, quiet states and safety crossings |
 | Physical design | ✅ [H1-R2.38 reviewed](h1-r2-acceptance.md): the complete two-PCB model, ten permanent antenna assignments, exact EastRising display, U214/U219 slot and all TX-evidence islands are physically coherent; [all 249 purchasable R2 groups are ranked](h1-r2-cost.md) |
 | Principle diagrams | Current component/bus map, external mock-up, separate readable inner faces, service map and power/filter diagrams are published |
-| Production ECAD | ✅ [H2-R2.1.5 reviewed](h2-acceptance.md): two native KiCad projects materialize 1,208 instances, 4,306 physical pins and 823 canonical nets with zero ERC findings; six-domain cross-sheet/HW↔FW reconciliation passes; retained G2F/H2/KiCad is historical R1 evidence only |
+| Production ECAD | ✅ [H2-R2.1.5 reviewed](h2-acceptance.md): two native KiCad projects materialize 1,208 instances, 4,306 physical pins and 789 global canonical / 823 board-local nets with zero ERC findings; six-domain cross-sheet/HW↔FW reconciliation passes; retained G2F/H2/KiCad is historical R1 evidence only |
 | Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.4 qualified all 12 target builds, 60 artifacts, 16 maps and 16 size gates, while F2-R2.5 reproducibility is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); a separate fail-closed `F-PO` requires diagnostics, emulation and recovery before ordering |
 | Ordering | 🔒 Exactly one assembled `R2-EVT1` only after H6, `F-PO`, immutable release package and explicit exact-one quote approval; production only at H9 |
 
@@ -141,7 +141,7 @@ marker and current checklist; it is never presented as review of the whole phase
 
 **Reviewed marker: `H2-R2.1.5`.** All pre-ECAD electrical prerequisites and exact
 ledgers are closed. The two native R2 KiCad projects now materialize 1,208
-fitted instances, 4,306 physical pins and 823 canonical nets. Both roots
+fitted instances, 4,306 physical pins and 789 global canonical / 823 board-local nets. Both roots
 parse and export, and KiCad ERC reports zero errors and zero warnings. Cross-sheet
 and machine-readable hardware/firmware reconciliation passes. At H2 closure,
 placement and routing had not started; current H6 progress is recorded above.
@@ -172,12 +172,12 @@ placement and routing had not started; current H6 progress is recorded above.
   allocated across 245 groups and two native projects; the historical R1
   ledger contributes no net, reference designator or topology authority.
 - ✅ `H2-R2.1.3` net checkpoint: all 4,302 fitted-instance contacts reconcile
-  to 4,064 connected endpoints, 238 explicit board no-connects and 823
-  canonical nets; unresolved endpoints: zero.
+  to 4,064 connected endpoints, 238 explicit board no-connects and 789 global
+  canonical / 823 board-local nets; unresolved endpoints: zero.
 - ✅ `H2-R2.1.3` native KiCad checkpoint: 2 projects, 22 project-graph sheets,
   1,208 symbols and 4,306 physical pins pass parser/export and zero-finding ERC.
-- ✅ `H2-R2.1.4`: six domains, 173 controller pins, 35 cross-project nets and
-  231 cross-sheet nets reconcile with no unresolved boundary.
+- ✅ `H2-R2.1.4`: six domains, 173 controller pins, 34 cross-project nets and
+  228 cross-sheet nets reconcile with no unresolved boundary.
 - ✅ `H2-R2.1.5`: the [bilingual phase report](h2-acceptance.md) is published;
   the synchronized firmware H2 gate is open.
 - 🔒 PCB placement, routing, quote, purchase and fabrication remain unauthorized.
@@ -216,7 +216,7 @@ placement and routing had not started; current H6 progress is recorded above.
 
 1. ✅ `H2-R2.1.1`: freeze native R2 sources, sheet map and exact component inventory.
 2. ✅ `H2-R2.1.2`: build the exact symbols, contacts, values, protection and footprint ledger.
-3. ✅ `H2-R2.1.3`: materialize 1,208 reviewed instances and 823 canonical nets in two native KiCad projects; pass zero-finding ERC.
+3. ✅ `H2-R2.1.3`: materialize 1,208 reviewed instances and 789 global canonical / 823 board-local nets in two native KiCad projects; pass zero-finding ERC.
 4. ✅ `H2-R2.1.4`: pass cross-sheet and HW↔FW reconciliation.
 5. ✅ `H2-R2.1.5`: publish the reviewed bilingual H2 report and open H3.
 6. ✅ [`H3-R2.0.1`](h3-r2-input-freeze.md): freeze 14 reviewed H2 inputs and assign all 22 native sheets exactly once across seven workstreams.
@@ -246,7 +246,7 @@ placement and routing had not started; current H6 progress is recorded above.
 21. ✅ [`H5.0.3-R1`](h5-r1-acceptance.md): preserve the historical 210-route / 1,050-placement evidence, owner final assembly and exact `Ettinger 007.02.611` 11-mm stops.
 22. ✅ [`H5-R2.1`](h5-r2-current-route.md): revalidate all 249 current purchasable groups / 1,216 articles with zero unmapped route and expose the one `WBC16-1TLC` order-time sourcing gate.
 23. ✅ `H6.0.1-R1`: [exact-footprint placement](h6-r2-exact-placement.md) passes for 1,208/1,208 positions with zero hard conflict; the [mechanical stack](h6-r2-mechanical-stack.md) locks wall bearings, independent PCB capture, exact 20-mm M2.5 nylon screws/captive nuts and the one-loose-screw load path; the [microcoax service result](h6-r2-microcoax-service.md) locks five relaxed corridors, five clear saddles and ten antenna solder windows.
-24. ▶ `H6.0.2-R1`: the [fail-closed routing policy](h6-r2-routing-policy.md) classifies all 858 board-local net instances / 823 canonical nets, permits automatic proposals only for ordinary low-rate controls, binds current `JLC06161H-3313` RF/USB geometry and exposes all 12 USB segments as native KiCad `_P/_N` pairs; route every net, prove native schematic/PCB parity and reach zero-finding DRC without violating H6.0.1.
+24. ▶ `H6.0.2-R1`: the [fail-closed routing policy](h6-r2-routing-policy.md) classifies all 823 board-local net instances / 789 global canonical nets, permits automatic proposals only for ordinary low-rate controls, binds current `JLC06161H-3313` RF/USB geometry and exposes all 12 USB segments as native KiCad `_P/_N` pairs; route every net, prove native schematic/PCB parity and reach zero-finding DRC without violating H6.0.1.
 
 H5-R2.1 is current and reviewed: all 249 purchasable groups / 1,216 articles
 have controlled routes, with one explicit order-time Global Sourcing or

@@ -12357,10 +12357,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "bc7a9d0b-bf16-5589-85d6-b3de7f158410")
 	)
-	(label "HEADPHONE_ESD_GROUND"
+	(label "POWER_GROUND"
 		(at 492.76 373.38 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "036d0a57-9ac8-5831-834d-df5d4cd1e326")
+		(uuid "67615628-5ad4-58a1-a1b1-c44b424cf83a")
 	)
 	(label "HEADSET_MIC_RAW"
 		(at 492.76 375.92 0)
@@ -12376,10 +12376,10 @@
 	(no_connect (at 533.40 370.84)
 		(uuid "11d83ca8-1535-512d-bd54-138486675f68")
 	)
-	(label "HEADPHONE_ESD_GROUND"
+	(label "POWER_GROUND"
 		(at 533.40 373.38 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "8cbfc822-770e-58fb-afd3-2fac3bb4aa16")
+		(uuid "cee1aa23-1c8d-5aff-94b4-0c7ead2a7277")
 	)
 	(no_connect (at 533.40 375.92)
 		(uuid "ed207f5e-293f-5f2c-a011-38fe8853e681")

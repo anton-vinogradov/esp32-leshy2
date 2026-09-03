@@ -121,8 +121,8 @@
       "board_connector_mm": [63.0, 10.0],
       "cable_mpn": "TE Connectivity 1-2118651-0",
       "selected_length_mm": 60.0,
-      "corridor_points_mm": [[62.65, 46.80], [67.00, 39.50], [67.00, 17.50], [63.00, 10.00]],
-      "retention_saddle_centre_mm": [67.00, 17.50],
+      "corridor_points_mm": [[62.65, 46.80], [67.00, 39.50], [67.00, 18.00], [63.00, 10.00]],
+      "retention_saddle_centre_mm": [67.00, 18.00],
       "source_exit": "right-side service lane"
     }
   ],

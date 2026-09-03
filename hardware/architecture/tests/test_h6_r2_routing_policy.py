@@ -5,6 +5,7 @@ import unittest
 from pathlib import Path
 
 from hardware.layout.h6_r2_routing_drc_delta import item_net, violation_fingerprint
+from hardware.layout.h6_r2_kicad_net_bindings import logical_pin_map, pcb_net_name
 from hardware.layout.h6_r2_routing_session import placement_rounding, session_nets
 
 
@@ -29,11 +30,11 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
     def test_every_physical_net_is_classified_once(self):
         self.assertEqual("pass", self.audit["status"])
         self.assertEqual([], self.audit["errors"])
-        self.assertEqual(858, self.audit["summary"]["project_net_count"])
-        self.assertEqual(823, self.audit["summary"]["global_canonical_net_count"])
+        self.assertEqual(823, self.audit["summary"]["project_net_count"])
+        self.assertEqual(789, self.audit["summary"]["global_canonical_net_count"])
         self.assertEqual(0, self.audit["summary"]["unclassified_net_count"])
         self.assertEqual(0, self.audit["summary"]["unexpected_net_count"])
-        self.assertEqual(858, sum(self.audit["class_counts"].values()))
+        self.assertEqual(823, sum(self.audit["class_counts"].values()))
 
     def test_automatic_helper_is_fail_closed(self):
         self.assertEqual(["GENERAL_CONTROL"], self.audit["automatic_helper"]["allowed_classes"])
@@ -68,6 +69,17 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual(
             {name[:-2] for name in usb_names if name.endswith("_P")},
             {name[:-2] for name in usb_names if name.endswith("_N")},
+        )
+
+    def test_duplicate_ground_pads_and_literal_slashes_survive_pcb_binding(self):
+        ui_pins, _ = logical_pin_map("LESHY2-UI-R2")
+        self.assertEqual(
+            {"POWER_GROUND"},
+            {ui_pins[("U1", pin)] for pin in ("1", "40", "41")},
+        )
+        self.assertEqual(
+            "/UI_10_S3_DISPLAY_TOUCH/{slash}UI_10_S3_CORE_MEMORY_BOOT{slash}3V3_MAIN",
+            pcb_net_name("/UI_10_S3_DISPLAY_TOUCH//UI_10_S3_CORE_MEMORY_BOOT/3V3_MAIN"),
         )
 
     def test_stackup_identity_and_core_thickness_are_not_ambiguous(self):

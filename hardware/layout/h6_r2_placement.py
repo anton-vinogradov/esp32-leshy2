@@ -661,10 +661,13 @@ def add_nets_and_footprints(
     symbols: dict[str, dict],
     net_bindings: dict[str, str],
 ) -> tuple[list[dict], dict[str, set[str]], list[str]]:
-    contact_to_pin = {
-        device_id: {contact: pin["number"] for pin in symbol["pin_map"] for contact in pin["contacts"]}
-        for device_id, symbol in symbols.items()
-    }
+    contact_to_pins = {}
+    for device_id, symbol in symbols.items():
+        mapped = defaultdict(list)
+        for pin in symbol["pin_map"]:
+            for contact in pin["contacts"]:
+                mapped[contact].append(pin["number"])
+        contact_to_pins[device_id] = {contact: tuple(pins) for contact, pins in mapped.items()}
     instance_by_name = {row["instance"]: row for row in instance_rows}
     pin_nets: dict[tuple[str, str], str] = {}
     instance_nets: dict[str, set[str]] = defaultdict(set)
@@ -673,17 +676,18 @@ def add_nets_and_footprints(
         if row["project"] != project or row["disposition"] != "connected":
             continue
         instance = instance_by_name[row["instance"]]
-        pin = contact_to_pin[instance["device_id"]].get(row["contact"])
-        if pin is None:
+        pins = contact_to_pins[instance["device_id"]].get(row["contact"], ())
+        if not pins:
             if row["contact"] in {"ANT", "ANT1"}:
                 continue
             errors.append(f"{row['instance']}.{row['contact']} has no controlled-symbol pad number")
             continue
-        key = (row["instance"], pin)
-        previous = pin_nets.get(key)
-        if previous and previous != row["net"]:
-            errors.append(f"{row['instance']} pad {pin} maps to both {previous} and {row['net']}")
-        pin_nets[key] = row["net"]
+        for pin in pins:
+            key = (row["instance"], pin)
+            previous = pin_nets.get(key)
+            if previous and previous != row["net"]:
+                errors.append(f"{row['instance']} pad {pin} maps to both {previous} and {row['net']}")
+            pin_nets[key] = row["net"]
         instance_nets[row["instance"]].add(row["net"])
 
     net_names = sorted(set(pin_nets.values()))
@@ -712,6 +716,7 @@ def add_nets_and_footprints(
         fp.SetFPIDAsString(row["footprint"])
         fp.SetReference(row["reference"])
         fp.SetValue(row["mpn"])
+        fp.SetField("Description", row["device_id"])
         fp.SetField("Leshy2Instance", row["instance"])
         fp.GetField("Leshy2Instance").SetVisible(False)
         fp.SetSheetname(row["sheet"])

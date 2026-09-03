@@ -27,17 +27,17 @@
 > library of 245 R2 symbols and 1,571 symbol pins passes KiCad 10; all
 > 1,208 fitted instances are allocated without importing R1 designators. Their
 > 4,302 ledger endpoints resolve to 4,064 connected endpoints, 238 explicit
-> no-connects and 823 canonical nets with zero unresolved endpoints. The two
+> no-connects and 789 global canonical / 823 board-local nets with zero unresolved endpoints. The two
 > [native KiCad projects](docs/h2-r2-native-kicad.md) now contain all 1,208
 > symbols and 4,306 physical pins; KiCad ERC reports zero errors and zero
 > warnings. H2 cross-sheet and hardware/firmware reconciliation covers six
-> domains, 173 controller pins, 35 cross-project nets and 231 cross-sheet nets;
+> domains, 173 controller pins, 34 cross-project nets and 228 cross-sheet nets;
 > [H2-R2.1.5 is reviewed](docs/h2-acceptance.md). [H3-R2.0.1](docs/h3-r2-input-freeze.md)
 > freezes 14 stable inputs and all 22 sheets. [H3-R2.0.2](docs/parameter-model-register.md)
 > reviews exact provenance for all 251 R2 groups and 1,208 fitted positions.
 > [H3-R2.0.3](docs/verification-methods.md) freezes nine methods and twelve
 > pass/fail rules. [H3-R2.1.1](docs/power-state-register.md) reviewed all 2,266 legal R2 states;
-> [H3-R2.1.2](docs/power-load-binding.md) binds every load without a hidden aggregate. [H3-R2.1.3](docs/power-rail-margins.md) reviews 224 passing rail profiles. [H3-R2.1.4](docs/power-source-margins.md) owns all 75 source/pack lines and safely admits all 2,266 legal states: maximum pack current is 3.516 A against the 8-A boundary; 9-V/3-A and 15-V/2-A run every profile, while 14 oversized 5-V/3-A USB-only states are explicitly refused. The [H3-R2.1 cross-check](docs/power-dc-source-result.md) is reviewed. The complete [H3-R2.2 power-transition result](docs/power-transition-result.md) is also reviewed: 14 startup/reset/recovery scenarios, 7,316 USB/pack/DPM/brownout/source-loss cases, five protected-rail starts, four load-step envelopes and ten watchdog/fault-display cases pass without automatic restart. [H3-R2.3 analog verification](docs/analog-electrical-verification.md), [H3-R2.4 digital verification](docs/digital-electrical-verification.md), [H3-R2.5 RF verification](docs/rf-electrical-verification.md) and [H3-R2.6 thermal/fault verification](docs/thermal-fault-electrical-verification.md) are reviewed. The [global H3-R2 result](docs/h3-r2-acceptance.md) cross-checks 20 current evidence artifacts and all recorded source hashes with zero mismatch or open analytical finding; 51 physical-only rows remain explicitly owned by H5/H6/H8. [H4-R2.0.1](docs/h4-r2-input-freeze.md) froze 24 exact joined inputs. The [H4 diagnostic](docs/h4-r2-contract-reconciliation.md) found one owned 38-row BSP-generation gap; the [H4-R2.2 correction](docs/h4-r2-correction-closure.md) restored 173/173 controller rows and requalified all 12 target builds. The [global H4-R2 result](docs/h4-r2-acceptance.md) is reviewed with zero cross-domain contradiction. The historical [H5-R1 result](docs/h5-r1-acceptance.md) is now joined by the [current H5-R2 route revalidation](docs/h5-r2-current-route.md): all 249 purchasable groups / 1,216 articles have controlled routes, while `WBC16-1TLC` has one explicit order-time sourcing gate after its JLCPCB stock fell to zero. H6.0.1-R1 is complete: exact placement, the enclosure/fastener stack and all five relaxed microcoax corridors pass. H6.0.2-R1 now owns routing all 823 canonical nets and native schematic/PCB parity; the real PCBA price still follows Gerber/BOM/CPL. Ordering remains blocked.
+> [H3-R2.1.2](docs/power-load-binding.md) binds every load without a hidden aggregate. [H3-R2.1.3](docs/power-rail-margins.md) reviews 224 passing rail profiles. [H3-R2.1.4](docs/power-source-margins.md) owns all 75 source/pack lines and safely admits all 2,266 legal states: maximum pack current is 3.516 A against the 8-A boundary; 9-V/3-A and 15-V/2-A run every profile, while 14 oversized 5-V/3-A USB-only states are explicitly refused. The [H3-R2.1 cross-check](docs/power-dc-source-result.md) is reviewed. The complete [H3-R2.2 power-transition result](docs/power-transition-result.md) is also reviewed: 14 startup/reset/recovery scenarios, 7,316 USB/pack/DPM/brownout/source-loss cases, five protected-rail starts, four load-step envelopes and ten watchdog/fault-display cases pass without automatic restart. [H3-R2.3 analog verification](docs/analog-electrical-verification.md), [H3-R2.4 digital verification](docs/digital-electrical-verification.md), [H3-R2.5 RF verification](docs/rf-electrical-verification.md) and [H3-R2.6 thermal/fault verification](docs/thermal-fault-electrical-verification.md) are reviewed. The [global H3-R2 result](docs/h3-r2-acceptance.md) cross-checks 20 current evidence artifacts and all recorded source hashes with zero mismatch or open analytical finding; 51 physical-only rows remain explicitly owned by H5/H6/H8. [H4-R2.0.1](docs/h4-r2-input-freeze.md) froze 24 exact joined inputs. The [H4 diagnostic](docs/h4-r2-contract-reconciliation.md) found one owned 38-row BSP-generation gap; the [H4-R2.2 correction](docs/h4-r2-correction-closure.md) restored 173/173 controller rows and requalified all 12 target builds. The [global H4-R2 result](docs/h4-r2-acceptance.md) is reviewed with zero cross-domain contradiction. The historical [H5-R1 result](docs/h5-r1-acceptance.md) is now joined by the [current H5-R2 route revalidation](docs/h5-r2-current-route.md): all 249 purchasable groups / 1,216 articles have controlled routes, while `WBC16-1TLC` has one explicit order-time sourcing gate after its JLCPCB stock fell to zero. H6.0.1-R1 is complete: exact placement, the enclosure/fastener stack and all five relaxed microcoax corridors pass. H6.0.2-R1 now owns routing all 823 board-local physical / 789 global canonical nets and native schematic/PCB parity; the real PCBA price still follows Gerber/BOM/CPL. Ordering remains blocked.
 
 > **H6 placement evidence:** the [current exact-footprint result](docs/h6-r2-exact-placement.md)
 > now materializes both native six-layer boards and places all 1,208/1,208 fitted
@@ -45,7 +45,7 @@
 > started only after the [mechanical stack](docs/h6-r2-mechanical-stack.md) and
 > [five microcoax service corridors](docs/h6-r2-microcoax-service.md) passed.
 > The [H6.0.2 routing policy](docs/h6-r2-routing-policy.md) now classifies all
-> 858 board-local net instances / 823 canonical nets; only ordinary low-rate
+> 823 board-local net instances / 789 global canonical nets; only ordinary low-rate
 > controls are eligible for automatic route proposals. The standard
 > `JLC06161H-3313` calculator geometry is now enforced in KiCad: outer RF is
 > 50-ohm CPWG at 5.31/6 mil and all 12 USB segments are native `_P/_N` pairs at
@@ -168,10 +168,10 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ `H2-R2.0.3`: exact `TCA9803DGKR/C2687966` Pack/Safety powered-off boundary reviewed with correct rail-local termination and USD 0.3953 exact-one component cost.
 - ✅ `H2-R2.1.1`: native R2 inventory reviewed — 2 projects, 22 sheets, 6 domain owners, 251 exact component groups and 1,218 product positions.
 - ✅ `H2-R2.1.2`: exact ledger reviewed — 245 board groups, 6 explicit non-PCBA groups, 1,617 logical contacts and zero unresolved groups.
-- ✅ `H2-R2.1.3`: 1,208 fitted positions expose 4,302 ledger endpoints: 4,064 connected and 238 explicit no-connects across 823 canonical nets; the two native projects materialize 4,306 physical pins with zero KiCad ERC errors or warnings.
+- ✅ `H2-R2.1.3`: 1,208 fitted positions expose 4,302 ledger endpoints: 4,064 connected and 238 explicit no-connects across 789 global canonical / 823 board-local nets; the two native projects materialize 4,306 physical pins with zero KiCad ERC errors or warnings.
 - ✅ The Airband chain is complete and double-isolated: paired `HMC544AETR`, exact official transformers, private power-coherent LO I²C and a stock-backed nominal H2 filter state are present in the schematic. Filter retuning remains an explicit H3 gate.
-- ✅ `H2-R2.1.4`: six domains, 173 controller-pin rows, 35 cross-project nets
-  and 231 cross-sheet nets reconcile with zero unresolved boundary.
+- ✅ `H2-R2.1.4`: six domains, 173 controller-pin rows, 34 cross-project nets
+  and 228 cross-sheet nets reconcile with zero unresolved boundary.
 - ✅ `H2-R2.1.5`: the [bilingual H2 result](docs/h2-acceptance.md) is reviewed
   and the synchronized firmware H2 gate is open.
 - ✅ `H3-R2.0.1`: [14 exact inputs and all 22 native sheets are hash-frozen](docs/h3-r2-input-freeze.md) across seven workstreams and all six domains.
@@ -196,7 +196,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ `H4-R2.3`: the [bilingual global H4 result](docs/h4-r2-acceptance.md) closes the joined pre-layout gate with zero contradiction and transfers all 51 physical residuals to H5/H6/H8.
 - ✅ `H5-R2.1`: the [current bilingual H5 result](docs/h5-r2-current-route.md) revalidates 249 purchasable groups / 1,216 articles with zero unmapped routes; the historical [H5-R1 evidence](docs/h5-r1-acceptance.md) remains available, and `WBC16-1TLC` is an explicit order-time sourcing gate.
 - ✅ **`H6.0.1-R1` complete:** [native placement](docs/h6-r2-exact-placement.md) is reproducible at 1,208/1,208 positions with zero hard conflict; the [exact mechanical stack](docs/h6-r2-mechanical-stack.md) closes enclosure capture plus M2.5 retention; the [microcoax closure](docs/h6-r2-microcoax-service.md) proves five relaxed corridors, five clear saddles and ten antenna solder windows.
-- ▶ **Exact current point `H6.0.2-R1`:** route all 823 canonical nets, reconcile native schematic/PCB parity and reach zero-finding DRC without invalidating the locked placement/mechanical/cable contract.
+- ▶ **Exact current point `H6.0.2-R1`:** route all 823 board-local physical / 789 global canonical nets, reconcile native schematic/PCB parity and reach zero-finding DRC without invalidating the locked placement/mechanical/cable contract.
 - 🔒 Prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked

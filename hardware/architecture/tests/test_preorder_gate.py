@@ -20,7 +20,7 @@ class PreorderGateTests(unittest.TestCase):
         self.assertIn("H2-R2.1.5 is reviewed", truth["current_ecad"])
         self.assertIn("H3-R2.0.1", truth["current_ecad"])
         self.assertIn("1208 schematic instances", truth["current_ecad"])
-        self.assertIn("823 canonical nets", truth["current_ecad"])
+        self.assertIn("789 canonical nets", truth["current_ecad"])
         self.assertIn("both pass ERC", truth["current_ecad"])
         self.assertIn("173 controller pins", truth["current_ecad"])
         self.assertIn("F2-R2.5 is in progress", truth["executable_firmware"])

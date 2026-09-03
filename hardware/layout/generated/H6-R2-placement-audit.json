@@ -13,11 +13,11 @@
     "instance_ledger": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
     "instance_ledger_sha256": "8c0845d155b887c8d799068235b4ef6af44497f86c10c4a9044192dd0baaef00",
     "net_ledger": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-    "net_ledger_sha256": "7c0de54e0faa9e7d4ddef816b592bc18d523138e99bbf1135461f425ae08bf2e",
+    "net_ledger_sha256": "8e517b079188779a9b666cf1e7d668b51d4b5663ef47b897076bed71c1cc53b4",
     "symbol_library": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
     "symbol_library_sha256": "af13863573b2005e268c4535d0a70937f89b762919fab03655fe94edfc900e8d",
     "kicad_net_bindings": "hardware/layout/generated/H6-R2-kicad-net-bindings.json",
-    "kicad_net_bindings_sha256": "828873273d0e5e0154bb8b5f33fdddb5de8cebd45b44f5b563a8d13e3f26b667"
+    "kicad_net_bindings_sha256": "c475863618fd995f45bafd7ce76f71f2bc5dc0c28b65d8c1954ae3110aa87aa2"
   },
   "summary": {
     "board_count": 2,
@@ -61,7 +61,7 @@
         "hard H1 datum": 27,
         "nearest exact-footprint correction": 16
       },
-      "net_count": 325,
+      "net_count": 307,
       "mechanical": [
         {
           "id": "MH1",
@@ -376,18 +376,18 @@
               25.259999999999998
             ],
             "y": [
-              2.85,
-              3.86
+              1.6,
+              2.61
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             24.305,
-            3.355
+            2.105
           ],
           "footprint_anchor_mm": [
             24.305,
-            3.355
+            2.105
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -575,8 +575,8 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              26.35,
-              28.259999999999998
+              28.85,
+              30.759999999999998
             ],
             "y": [
               37.85,
@@ -585,11 +585,11 @@
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            27.305,
+            29.805,
             38.355
           ],
           "footprint_anchor_mm": [
-            27.305,
+            29.805,
             38.355
           ],
           "rotation_deg": 0.0,
@@ -981,22 +981,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              25.1,
-              27.009999999999998
+              26.6,
+              28.509999999999998
             ],
             "y": [
-              39.1,
-              40.11000000000001
+              37.85,
+              38.86000000000001
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            26.055,
-            39.605
+            27.555,
+            38.355
           ],
           "footprint_anchor_mm": [
-            26.055,
-            39.605
+            27.555,
+            38.355
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -1503,22 +1503,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              31.1,
-              32.11
+              32.1,
+              33.11000000000001
             ],
             "y": [
-              76.6,
-              78.50999999999999
+              78.1,
+              80.00999999999999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            31.605,
-            77.555
+            32.605,
+            79.055
           ],
           "footprint_anchor_mm": [
-            31.605,
-            77.555
+            32.605,
+            79.055
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -1532,24 +1532,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              31.1,
-              33.01
+              30.85,
+              31.86
             ],
             "y": [
-              78.85,
-              79.85999999999999
+              76.85,
+              78.75999999999999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            32.055,
-            79.355
+            31.355,
+            77.805
           ],
           "footprint_anchor_mm": [
-            32.055,
-            79.355
+            31.355,
+            77.805
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -1561,22 +1561,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              29.85,
-              30.86
+              29.6,
+              30.61
             ],
             "y": [
-              76.6,
-              78.50999999999999
+              75.35,
+              77.25999999999999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            30.355,
-            77.555
+            30.105,
+            76.305
           ],
           "footprint_anchor_mm": [
-            30.355,
-            77.555
+            30.105,
+            76.305
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -1590,24 +1590,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              28.6,
-              30.509999999999998
+              29.6,
+              30.61
             ],
             "y": [
-              75.35,
-              76.35999999999999
+              77.6,
+              79.50999999999999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            29.555,
-            75.855
+            30.105,
+            78.555
           ],
           "footprint_anchor_mm": [
-            29.555,
-            75.855
+            30.105,
+            78.555
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -1938,24 +1938,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              49.35,
-              50.36000000000001
+              49.1,
+              51.01
             ],
             "y": [
-              65.85,
-              67.75999999999999
+              66.85,
+              67.85999999999999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            49.855,
-            66.805
+            50.055,
+            67.355
           ],
           "footprint_anchor_mm": [
-            49.855,
-            66.805
+            50.055,
+            67.355
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -1967,22 +1967,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              31.1,
-              32.11
+              28.35,
+              29.36
             ],
             "y": [
-              80.1,
-              82.00999999999999
+              75.6,
+              77.50999999999999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            31.605,
-            81.055
+            28.855,
+            76.555
           ],
           "footprint_anchor_mm": [
-            31.605,
-            81.055
+            28.855,
+            76.555
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -2025,24 +2025,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              48.6,
-              49.61000000000001
+              49.35,
+              51.26
             ],
             "y": [
-              62.85,
-              64.76
+              65.6,
+              66.60999999999999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            49.105,
-            63.805
+            50.305,
+            66.105
           ],
           "footprint_anchor_mm": [
-            49.105,
-            63.805
+            50.305,
+            66.105
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -2054,8 +2054,8 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              14.1,
-              15.110000000000001
+              12.85,
+              13.860000000000001
             ],
             "y": [
               33.35,
@@ -2064,11 +2064,11 @@
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            14.605,
+            13.355,
             34.305
           ],
           "footprint_anchor_mm": [
-            14.605,
+            13.355,
             34.305
           ],
           "rotation_deg": 90.0,
@@ -2083,24 +2083,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              23.35,
-              25.259999999999998
+              51.6,
+              52.61000000000001
             ],
             "y": [
-              62.1,
-              63.11000000000001
+              62.85,
+              64.76
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            24.305,
-            62.605
+            52.105,
+            63.805
           ],
           "footprint_anchor_mm": [
-            24.305,
-            62.605
+            52.105,
+            63.805
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -2112,24 +2112,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              8.85,
-              11.9
+              38.85,
+              40.4
             ],
             "y": [
-              22.6,
-              24.15
+              57.1,
+              60.15
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            10.375,
-            23.375
+            39.625,
+            58.625
           ],
           "footprint_anchor_mm": [
-            10.375,
-            23.375
+            39.625,
+            58.625
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -2141,22 +2141,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              10.6,
-              11.610000000000001
+              53.1,
+              54.11000000000001
             ],
             "y": [
-              26.85,
-              28.759999999999998
+              61.6,
+              63.51
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            11.105,
-            27.805
+            53.605,
+            62.555
           ],
           "footprint_anchor_mm": [
-            11.105,
-            27.805
+            53.605,
+            62.555
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -2170,22 +2170,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              49.85,
-              50.86000000000001
+              51.6,
+              52.61000000000001
             ],
             "y": [
-              62.85,
-              64.76
+              65.1,
+              67.00999999999999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            50.355,
-            63.805
+            52.105,
+            66.055
           ],
           "footprint_anchor_mm": [
-            50.355,
-            63.805
+            52.105,
+            66.055
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -2199,22 +2199,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              51.6,
-              52.61000000000001
+              52.85,
+              53.86000000000001
             ],
             "y": [
-              60.35,
-              62.26
+              63.85000000000001,
+              65.76
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            52.105,
-            61.305
+            53.355,
+            64.805
           ],
           "footprint_anchor_mm": [
-            52.105,
-            61.305
+            53.355,
+            64.805
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -2229,23 +2229,23 @@
           "courtyard_bbox_mm": {
             "x": [
               30.1,
-              31.11
+              32.01
             ],
             "y": [
-              29.1,
-              31.009999999999998
+              30.1,
+              31.11
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            30.605,
-            30.055
+            31.055,
+            30.605
           ],
           "footprint_anchor_mm": [
-            30.605,
-            30.055
+            31.055,
+            30.605
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -2257,22 +2257,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              51.1,
-              52.11000000000001
+              47.85,
+              48.86000000000001
             ],
             "y": [
-              62.6,
-              64.51
+              40.1,
+              42.01
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            51.605,
-            63.555
+            48.355,
+            41.055
           ],
           "footprint_anchor_mm": [
-            51.605,
-            63.555
+            48.355,
+            41.055
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -2286,22 +2286,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              37.1,
-              40.15
+              35.6,
+              38.65
             ],
             "y": [
-              25.85,
-              27.4
+              59.6,
+              61.15
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            38.625,
-            26.625
+            37.125,
+            60.375
           ],
           "footprint_anchor_mm": [
-            38.625,
-            26.625
+            37.125,
+            60.375
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -2315,24 +2315,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              34.35,
-              36.26
+              54.35,
+              55.36000000000001
             ],
             "y": [
-              27.6,
-              28.61
+              61.6,
+              63.51
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            35.305,
-            28.105
+            54.855,
+            62.555
           ],
           "footprint_anchor_mm": [
-            35.305,
-            28.105
+            54.855,
+            62.555
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -2344,22 +2344,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              23.1,
-              24.11
+              23.35,
+              24.36
             ],
             "y": [
-              63.35000000000001,
-              65.26
+              67.85,
+              69.75999999999999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            23.605,
-            64.305
+            23.855,
+            68.805
           ],
           "footprint_anchor_mm": [
-            23.605,
-            64.305
+            23.855,
+            68.805
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -2373,24 +2373,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              24.35,
-              25.36
+              51.35,
+              53.26
             ],
             "y": [
-              65.6,
-              67.50999999999999
+              67.35,
+              68.35999999999999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            24.855,
-            66.555
+            52.305,
+            67.855
           ],
           "footprint_anchor_mm": [
-            24.855,
-            66.555
+            52.305,
+            67.855
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -2402,22 +2402,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              45.6,
-              47.51
+              46.85,
+              48.76
             ],
             "y": [
-              30.1,
-              31.11
+              37.85,
+              38.86000000000001
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            46.555,
-            30.605
+            47.805,
+            38.355
           ],
           "footprint_anchor_mm": [
-            46.555,
-            30.605
+            47.805,
+            38.355
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -2431,22 +2431,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              52.85,
-              53.86000000000001
+              54.1,
+              55.11000000000001
             ],
             "y": [
-              60.35,
-              62.26
+              63.85000000000001,
+              65.76
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            53.355,
-            61.305
+            54.605,
+            64.805
           ],
           "footprint_anchor_mm": [
-            53.355,
-            61.305
+            54.605,
+            64.805
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -2460,24 +2460,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              59.6,
-              62.65
+              40.6,
+              42.15
             ],
             "y": [
-              19.1,
-              20.65
+              57.1,
+              60.15
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            61.125,
-            19.875
+            41.375,
+            58.625
           ],
           "footprint_anchor_mm": [
-            61.125,
-            19.875
+            41.375,
+            58.625
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -2489,22 +2489,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              50.35,
-              51.36000000000001
+              22.1,
+              23.11
             ],
             "y": [
-              24.6,
-              26.509999999999998
+              67.6,
+              69.50999999999999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            50.855,
-            25.555
+            22.605,
+            68.555
           ],
           "footprint_anchor_mm": [
-            50.855,
-            25.555
+            22.605,
+            68.555
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -2518,22 +2518,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              50.6,
-              51.61000000000001
+              28.35,
+              29.36
             ],
             "y": [
-              65.1,
-              67.00999999999999
+              72.6,
+              74.50999999999999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            51.105,
-            66.055
+            28.855,
+            73.555
           ],
           "footprint_anchor_mm": [
-            51.105,
-            66.055
+            28.855,
+            73.555
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -2547,22 +2547,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              52.35,
-              53.36000000000001
+              55.6,
+              56.61000000000001
             ],
             "y": [
-              62.6,
-              64.51
+              61.6,
+              63.51
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            52.855,
-            63.555
+            56.105,
+            62.555
           ],
           "footprint_anchor_mm": [
-            52.855,
-            63.555
+            56.105,
+            62.555
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -2605,8 +2605,8 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              38.85,
-              40.4
+              42.35,
+              43.9
             ],
             "y": [
               57.1,
@@ -2615,11 +2615,11 @@
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            39.625,
+            43.125,
             58.625
           ],
           "footprint_anchor_mm": [
-            39.625,
+            43.125,
             58.625
           ],
           "rotation_deg": 90.0,
@@ -4564,22 +4564,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              19.1,
-              21.050000000000004
+              23.6,
+              25.550000000000004
             ],
             "y": [
-              0.85,
-              1.88
+              2.85,
+              3.8800000000000003
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            20.075,
-            1.365
+            24.575,
+            3.365
           ],
           "footprint_anchor_mm": [
-            20.075,
-            1.365
+            24.575,
+            3.365
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -4651,8 +4651,8 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              40.6,
-              42.550000000000004
+              44.1,
+              46.050000000000004
             ],
             "y": [
               57.1,
@@ -4661,11 +4661,11 @@
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            41.575,
+            45.075,
             57.615
           ],
           "footprint_anchor_mm": [
-            41.575,
+            45.075,
             57.615
           ],
           "rotation_deg": 0.0,
@@ -5811,8 +5811,8 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              40.6,
-              42.550000000000004
+              44.1,
+              46.050000000000004
             ],
             "y": [
               58.35,
@@ -5821,11 +5821,11 @@
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            41.575,
+            45.075,
             58.865
           ],
           "footprint_anchor_mm": [
-            41.575,
+            45.075,
             58.865
           ],
           "rotation_deg": 0.0,
@@ -5840,22 +5840,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              36.6,
-              38.550000000000004
+              35.35,
+              37.300000000000004
             ],
             "y": [
-              59.6,
-              60.63
+              66.35,
+              67.38
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            37.575,
-            60.115
+            36.325,
+            66.865
           ],
           "footprint_anchor_mm": [
-            37.575,
-            60.115
+            36.325,
+            66.865
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -5898,22 +5898,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              35.35,
-              37.300000000000004
+              37.6,
+              39.550000000000004
             ],
             "y": [
-              66.35,
-              67.38
+              67.35,
+              68.38
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            36.325,
-            66.865
+            38.575,
+            67.865
           ],
           "footprint_anchor_mm": [
-            36.325,
-            66.865
+            38.575,
+            67.865
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -6797,22 +6797,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              53.1,
-              55.050000000000004
+              50.85,
+              52.800000000000004
             ],
             "y": [
-              6.6,
-              7.629999999999999
+              4.6,
+              5.629999999999999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            54.075,
-            7.115
+            51.825,
+            5.115
           ],
           "footprint_anchor_mm": [
-            54.075,
-            7.115
+            51.825,
+            5.115
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -7493,8 +7493,8 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              62.85,
-              64.8
+              60.35,
+              62.300000000000004
             ],
             "y": [
               19.6,
@@ -7503,11 +7503,11 @@
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            63.825,
+            61.325,
             20.115
           ],
           "footprint_anchor_mm": [
-            63.825,
+            61.325,
             20.115
           ],
           "rotation_deg": 0.0,
@@ -7522,24 +7522,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              29.85,
-              30.880000000000003
+              28.85,
+              30.800000000000004
             ],
             "y": [
-              38.1,
-              40.050000000000004
+              39.1,
+              40.13
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            30.365,
-            39.075
+            29.825,
+            39.615
           ],
           "footprint_anchor_mm": [
-            30.365,
-            39.075
+            29.825,
+            39.615
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -7754,22 +7754,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              40.6,
-              42.550000000000004
+              24.85,
+              26.800000000000004
             ],
             "y": [
-              59.6,
-              60.63
+              57.1,
+              58.13
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            41.575,
-            60.115
+            25.825,
+            57.615
           ],
           "footprint_anchor_mm": [
-            41.575,
-            60.115
+            25.825,
+            57.615
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -7841,8 +7841,8 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              39.35,
-              41.300000000000004
+              43.85,
+              45.800000000000004
             ],
             "y": [
               68.1,
@@ -7851,11 +7851,11 @@
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            40.325,
+            44.825,
             68.615
           ],
           "footprint_anchor_mm": [
-            40.325,
+            44.825,
             68.615
           ],
           "rotation_deg": 0.0,
@@ -7957,24 +7957,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              45.1,
-              46.13
+              45.35,
+              47.300000000000004
             ],
             "y": [
-              105.1,
-              107.04999999999998
+              105.6,
+              106.63
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            45.615,
-            106.075
+            46.325,
+            106.115
           ],
           "footprint_anchor_mm": [
-            45.615,
-            106.075
+            46.325,
+            106.115
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -8276,8 +8276,8 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              43.85,
-              45.800000000000004
+              46.1,
+              48.050000000000004
             ],
             "y": [
               68.1,
@@ -8286,11 +8286,11 @@
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            44.825,
+            47.075,
             68.615
           ],
           "footprint_anchor_mm": [
-            44.825,
+            47.075,
             68.615
           ],
           "rotation_deg": 0.0,
@@ -8334,24 +8334,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              8.85,
-              9.88
+              7.85,
+              9.799999999999999
             ],
             "y": [
-              18.35,
-              20.300000000000004
+              17.35,
+              18.380000000000003
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            9.365,
-            19.325
+            8.825,
+            17.865
           ],
           "footprint_anchor_mm": [
-            9.365,
-            19.325
+            8.825,
+            17.865
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -8392,22 +8392,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              10.35,
-              11.38
+              9.85,
+              10.88
             ],
             "y": [
-              16.6,
-              18.550000000000004
+              13.1,
+              15.049999999999999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            10.865,
-            17.575
+            10.365,
+            14.075
           ],
           "footprint_anchor_mm": [
-            10.865,
-            17.575
+            10.365,
+            14.075
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -8479,22 +8479,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              37.1,
-              39.050000000000004
+              47.1,
+              49.050000000000004
             ],
             "y": [
-              68.1,
-              69.13
+              80.85,
+              81.88
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            38.075,
-            68.615
+            48.075,
+            81.365
           ],
           "footprint_anchor_mm": [
-            38.075,
-            68.615
+            48.075,
+            81.365
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -8508,22 +8508,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              46.1,
-              48.050000000000004
+              45.6,
+              47.550000000000004
             ],
             "y": [
-              68.1,
-              69.13
+              66.85,
+              67.88
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            47.075,
-            68.615
+            46.575,
+            67.365
           ],
           "footprint_anchor_mm": [
-            47.075,
-            68.615
+            46.575,
+            67.365
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -8595,24 +8595,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              26.85,
-              28.800000000000004
+              28.35,
+              29.380000000000003
             ],
             "y": [
-              67.35,
-              68.38
+              69.1,
+              71.04999999999998
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            27.825,
-            67.865
+            28.865,
+            70.075
           ],
           "footprint_anchor_mm": [
-            27.825,
-            67.865
+            28.865,
+            70.075
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -8628,18 +8628,18 @@
               29.300000000000004
             ],
             "y": [
-              68.6,
-              69.63
+              67.35,
+              68.38
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             28.325,
-            69.115
+            67.865
           ],
           "footprint_anchor_mm": [
             28.325,
-            69.115
+            67.865
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -8647,35 +8647,6 @@
         {
           "instance": "nrf0_module_ce_pulldown",
           "reference": "R158",
-          "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
-          "side": "B.Cu",
-          "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
-          "courtyard_bbox_mm": {
-            "x": [
-              12.35,
-              13.38
-            ],
-            "y": [
-              38.35,
-              40.300000000000004
-            ]
-          },
-          "opposite_face_keepout_bboxes_mm": [],
-          "courtyard_centre_mm": [
-            12.865,
-            39.325
-          ],
-          "footprint_anchor_mm": [
-            12.865,
-            39.325
-          ],
-          "rotation_deg": 90.0,
-          "moved_from_seed_mm": 0.0
-        },
-        {
-          "instance": "nrf0_module_csn_pullup",
-          "reference": "R159",
           "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
@@ -8700,6 +8671,35 @@
             60.115
           ],
           "rotation_deg": 0.0,
+          "moved_from_seed_mm": 0.0
+        },
+        {
+          "instance": "nrf0_module_csn_pullup",
+          "reference": "R159",
+          "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
+          "side": "B.Cu",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "method": "connectivity/sheet automatic seed",
+          "courtyard_bbox_mm": {
+            "x": [
+              13.35,
+              14.38
+            ],
+            "y": [
+              60.85,
+              62.800000000000004
+            ]
+          },
+          "opposite_face_keepout_bboxes_mm": [],
+          "courtyard_centre_mm": [
+            13.865,
+            61.825
+          ],
+          "footprint_anchor_mm": [
+            13.865,
+            61.825
+          ],
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -8740,22 +8740,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              11.1,
-              12.13
+              6.35,
+              7.379999999999999
             ],
             "y": [
-              38.6,
-              40.550000000000004
+              51.1,
+              53.050000000000004
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            11.615,
-            39.575
+            6.865,
+            52.075
           ],
           "footprint_anchor_mm": [
-            11.615,
-            39.575
+            6.865,
+            52.075
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -8769,22 +8769,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              11.85,
-              13.799999999999999
+              16.1,
+              18.050000000000004
             ],
             "y": [
-              32.85,
-              33.88
+              40.35,
+              41.38
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            12.825,
-            33.365
+            17.075,
+            40.865
           ],
           "footprint_anchor_mm": [
-            12.825,
-            33.365
+            17.075,
+            40.865
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -8798,22 +8798,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              11.85,
-              13.799999999999999
+              13.85,
+              15.799999999999999
             ],
             "y": [
-              34.1,
-              35.13
+              40.35,
+              41.38
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            12.825,
-            34.615
+            14.825,
+            40.865
           ],
           "footprint_anchor_mm": [
-            12.825,
-            34.615
+            14.825,
+            40.865
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -8831,18 +8831,18 @@
               7.379999999999999
             ],
             "y": [
-              50.1,
-              52.050000000000004
+              48.85,
+              50.800000000000004
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             6.865,
-            51.075
+            49.825
           ],
           "footprint_anchor_mm": [
             6.865,
-            51.075
+            49.825
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -8856,24 +8856,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              6.35,
-              7.379999999999999
+              5.35,
+              7.299999999999999
             ],
             "y": [
-              47.85,
-              49.800000000000004
+              55.6,
+              56.63
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            6.865,
-            48.825
+            6.325,
+            56.115
           ],
           "footprint_anchor_mm": [
-            6.865,
-            48.825
+            6.325,
+            56.115
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -8885,24 +8885,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              24.85,
-              26.800000000000004
+              24.6,
+              25.630000000000003
             ],
             "y": [
-              57.85,
-              58.88
+              58.35,
+              60.300000000000004
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            25.825,
-            58.365
+            25.115,
+            59.325
           ],
           "footprint_anchor_mm": [
-            25.825,
-            58.365
+            25.115,
+            59.325
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -8914,24 +8914,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              37.35,
-              38.38
+              36.35,
+              38.300000000000004
             ],
             "y": [
-              21.1,
-              23.050000000000004
+              20.1,
+              21.130000000000003
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            37.865,
-            22.075
+            37.325,
+            20.615
           ],
           "footprint_anchor_mm": [
-            37.865,
-            22.075
+            37.325,
+            20.615
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -8943,8 +8943,8 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              23.6,
-              24.630000000000003
+              23.35,
+              24.380000000000003
             ],
             "y": [
               57.35,
@@ -8953,11 +8953,11 @@
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            24.115,
+            23.865,
             58.325
           ],
           "footprint_anchor_mm": [
-            24.115,
+            23.865,
             58.325
           ],
           "rotation_deg": 90.0,
@@ -8972,24 +8972,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              36.1,
-              37.13
+              39.1,
+              41.050000000000004
             ],
             "y": [
-              20.1,
-              22.050000000000004
+              14.6,
+              15.63
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            36.615,
-            21.075
+            40.075,
+            15.115
           ],
           "footprint_anchor_mm": [
-            36.615,
-            21.075
+            40.075,
+            15.115
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -9030,24 +9030,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              28.35,
-              29.380000000000003
+              28.1,
+              30.050000000000004
             ],
             "y": [
-              69.85,
-              71.79999999999998
+              71.35,
+              72.38
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            28.865,
-            70.825
+            29.075,
+            71.865
           ],
           "footprint_anchor_mm": [
-            28.865,
-            70.825
+            29.075,
+            71.865
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -9059,22 +9059,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              47.1,
-              49.050000000000004
+              35.35,
+              37.300000000000004
             ],
             "y": [
-              80.85,
-              81.88
+              68.1,
+              69.13
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            48.075,
-            81.365
+            36.325,
+            68.615
           ],
           "footprint_anchor_mm": [
-            48.075,
-            81.365
+            36.325,
+            68.615
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -9088,24 +9088,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              45.6,
-              47.550000000000004
+              33.1,
+              34.13
             ],
             "y": [
-              66.85,
-              67.88
+              71.85,
+              73.79999999999998
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            46.575,
-            67.365
+            33.615,
+            72.825
           ],
           "footprint_anchor_mm": [
-            46.575,
-            67.365
+            33.615,
+            72.825
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -9117,8 +9117,8 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              29.6,
-              31.550000000000004
+              30.35,
+              32.300000000000004
             ],
             "y": [
               71.85,
@@ -9127,11 +9127,11 @@
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            30.575,
+            31.325,
             72.365
           ],
           "footprint_anchor_mm": [
-            30.575,
+            31.325,
             72.365
           ],
           "rotation_deg": 0.0,
@@ -9150,18 +9150,18 @@
               28.130000000000003
             ],
             "y": [
-              69.85,
-              71.79999999999998
+              68.6,
+              70.54999999999998
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             27.615,
-            70.825
+            69.575
           ],
           "footprint_anchor_mm": [
             27.615,
-            70.825
+            69.575
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -9175,22 +9175,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              33.1,
-              34.13
+              24.35,
+              25.380000000000003
             ],
             "y": [
-              70.6,
-              72.54999999999998
+              65.6,
+              67.54999999999998
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            33.615,
-            71.575
+            24.865,
+            66.575
           ],
           "footprint_anchor_mm": [
-            33.615,
-            71.575
+            24.865,
+            66.575
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -9204,22 +9204,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              31.85,
-              32.88
+              26.85,
+              27.880000000000003
             ],
             "y": [
-              71.85,
-              73.79999999999998
+              70.85,
+              72.79999999999998
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            32.365,
-            72.825
+            27.365,
+            71.825
           ],
           "footprint_anchor_mm": [
-            32.365,
-            72.825
+            27.365,
+            71.825
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -9233,22 +9233,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              28.6,
-              29.630000000000003
+              23.35,
+              24.380000000000003
             ],
             "y": [
-              38.1,
-              40.050000000000004
+              59.6,
+              61.550000000000004
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            29.115,
-            39.075
+            23.865,
+            60.575
           ],
           "footprint_anchor_mm": [
-            29.115,
-            39.075
+            23.865,
+            60.575
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -9262,22 +9262,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              23.6,
-              25.550000000000004
+              23.35,
+              25.300000000000004
             ],
             "y": [
-              59.6,
-              60.63
+              61.85,
+              62.88
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            24.575,
-            60.115
+            24.325,
+            62.365
           ],
           "footprint_anchor_mm": [
-            24.575,
-            60.115
+            24.325,
+            62.365
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -9291,24 +9291,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              23.35,
-              25.300000000000004
+              23.1,
+              24.130000000000003
             ],
             "y": [
-              60.85,
-              61.88
+              63.1,
+              65.05
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            24.325,
-            61.365
+            23.615,
+            64.075
           ],
           "footprint_anchor_mm": [
-            24.325,
-            61.365
+            23.615,
+            64.075
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -9320,22 +9320,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              27.35,
-              28.380000000000003
+              23.1,
+              24.130000000000003
             ],
             "y": [
-              39.35,
-              41.300000000000004
+              65.35,
+              67.29999999999998
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            27.865,
-            40.325
+            23.615,
+            66.325
           ],
           "footprint_anchor_mm": [
-            27.865,
-            40.325
+            23.615,
+            66.325
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -9349,22 +9349,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              35.1,
-              37.050000000000004
+              26.85,
+              28.800000000000004
             ],
             "y": [
-              28.85,
-              29.880000000000003
+              40.35,
+              41.38
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            36.075,
-            29.365
+            27.825,
+            40.865
           ],
           "footprint_anchor_mm": [
-            36.075,
-            29.365
+            27.825,
+            40.865
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -9378,22 +9378,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              31.35,
-              33.300000000000004
+              45.6,
+              47.550000000000004
             ],
             "y": [
-              30.1,
-              31.130000000000003
+              40.35,
+              41.38
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            32.325,
-            30.615
+            46.575,
+            40.865
           ],
           "footprint_anchor_mm": [
-            32.325,
-            30.615
+            46.575,
+            40.865
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -9407,8 +9407,8 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              25.1,
-              27.050000000000004
+              24.6,
+              26.550000000000004
             ],
             "y": [
               40.35,
@@ -9417,11 +9417,11 @@
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            26.075,
+            25.575,
             40.865
           ],
           "footprint_anchor_mm": [
-            26.075,
+            25.575,
             40.865
           ],
           "rotation_deg": 0.0,
@@ -9436,22 +9436,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              22.85,
-              24.800000000000004
+              26.6,
+              28.550000000000004
             ],
             "y": [
-              40.35,
-              41.38
+              39.1,
+              40.13
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            23.825,
-            40.865
+            27.575,
+            39.615
           ],
           "footprint_anchor_mm": [
-            23.825,
-            40.865
+            27.575,
+            39.615
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -9459,122 +9459,6 @@
         {
           "instance": "nrf2_ce_series",
           "reference": "R186",
-          "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
-          "side": "B.Cu",
-          "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
-          "courtyard_bbox_mm": {
-            "x": [
-              42.85,
-              43.88
-            ],
-            "y": [
-              58.1,
-              60.050000000000004
-            ]
-          },
-          "opposite_face_keepout_bboxes_mm": [],
-          "courtyard_centre_mm": [
-            43.365,
-            59.075
-          ],
-          "footprint_anchor_mm": [
-            43.365,
-            59.075
-          ],
-          "rotation_deg": 90.0,
-          "moved_from_seed_mm": 0.0
-        },
-        {
-          "instance": "nrf2_coupler_termination",
-          "reference": "R187",
-          "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
-          "side": "B.Cu",
-          "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
-          "courtyard_bbox_mm": {
-            "x": [
-              61.85,
-              63.800000000000004
-            ],
-            "y": [
-              17.6,
-              18.630000000000003
-            ]
-          },
-          "opposite_face_keepout_bboxes_mm": [],
-          "courtyard_centre_mm": [
-            62.825,
-            18.115
-          ],
-          "footprint_anchor_mm": [
-            62.825,
-            18.115
-          ],
-          "rotation_deg": 0.0,
-          "moved_from_seed_mm": 0.0
-        },
-        {
-          "instance": "nrf2_csn_series",
-          "reference": "R188",
-          "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
-          "side": "B.Cu",
-          "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
-          "courtyard_bbox_mm": {
-            "x": [
-              44.1,
-              45.13
-            ],
-            "y": [
-              58.1,
-              60.050000000000004
-            ]
-          },
-          "opposite_face_keepout_bboxes_mm": [],
-          "courtyard_centre_mm": [
-            44.615,
-            59.075
-          ],
-          "footprint_anchor_mm": [
-            44.615,
-            59.075
-          ],
-          "rotation_deg": 90.0,
-          "moved_from_seed_mm": 0.0
-        },
-        {
-          "instance": "nrf2_detector_match",
-          "reference": "R189",
-          "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
-          "side": "B.Cu",
-          "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
-          "courtyard_bbox_mm": {
-            "x": [
-              60.6,
-              61.63
-            ],
-            "y": [
-              16.6,
-              18.550000000000004
-            ]
-          },
-          "opposite_face_keepout_bboxes_mm": [],
-          "courtyard_centre_mm": [
-            61.115,
-            17.575
-          ],
-          "footprint_anchor_mm": [
-            61.115,
-            17.575
-          ],
-          "rotation_deg": 90.0,
-          "moved_from_seed_mm": 0.0
-        },
-        {
-          "instance": "nrf2_host_ce_pulldown",
-          "reference": "R190",
           "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
@@ -9602,6 +9486,122 @@
           "moved_from_seed_mm": 0.0
         },
         {
+          "instance": "nrf2_coupler_termination",
+          "reference": "R187",
+          "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
+          "side": "B.Cu",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "method": "connectivity/sheet automatic seed",
+          "courtyard_bbox_mm": {
+            "x": [
+              63.1,
+              65.05
+            ],
+            "y": [
+              15.1,
+              16.13
+            ]
+          },
+          "opposite_face_keepout_bboxes_mm": [],
+          "courtyard_centre_mm": [
+            64.075,
+            15.615
+          ],
+          "footprint_anchor_mm": [
+            64.075,
+            15.615
+          ],
+          "rotation_deg": 0.0,
+          "moved_from_seed_mm": 0.0
+        },
+        {
+          "instance": "nrf2_csn_series",
+          "reference": "R188",
+          "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
+          "side": "B.Cu",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "method": "connectivity/sheet automatic seed",
+          "courtyard_bbox_mm": {
+            "x": [
+              46.85,
+              47.88
+            ],
+            "y": [
+              63.6,
+              65.55
+            ]
+          },
+          "opposite_face_keepout_bboxes_mm": [],
+          "courtyard_centre_mm": [
+            47.365,
+            64.575
+          ],
+          "footprint_anchor_mm": [
+            47.365,
+            64.575
+          ],
+          "rotation_deg": 90.0,
+          "moved_from_seed_mm": 0.0
+        },
+        {
+          "instance": "nrf2_detector_match",
+          "reference": "R189",
+          "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
+          "side": "B.Cu",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "method": "connectivity/sheet automatic seed",
+          "courtyard_bbox_mm": {
+            "x": [
+              60.6,
+              62.550000000000004
+            ],
+            "y": [
+              16.6,
+              17.630000000000003
+            ]
+          },
+          "opposite_face_keepout_bboxes_mm": [],
+          "courtyard_centre_mm": [
+            61.575,
+            17.115
+          ],
+          "footprint_anchor_mm": [
+            61.575,
+            17.115
+          ],
+          "rotation_deg": 0.0,
+          "moved_from_seed_mm": 0.0
+        },
+        {
+          "instance": "nrf2_host_ce_pulldown",
+          "reference": "R190",
+          "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
+          "side": "B.Cu",
+          "footprint": "Resistor_SMD:R_0402_1005Metric",
+          "method": "connectivity/sheet automatic seed",
+          "courtyard_bbox_mm": {
+            "x": [
+              30.85,
+              32.800000000000004
+            ],
+            "y": [
+              73.1,
+              74.13
+            ]
+          },
+          "opposite_face_keepout_bboxes_mm": [],
+          "courtyard_centre_mm": [
+            31.825,
+            73.615
+          ],
+          "footprint_anchor_mm": [
+            31.825,
+            73.615
+          ],
+          "rotation_deg": 0.0,
+          "moved_from_seed_mm": 0.0
+        },
+        {
           "instance": "nrf2_host_csn_pullup",
           "reference": "R191",
           "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
@@ -9614,18 +9614,18 @@
               32.800000000000004
             ],
             "y": [
-              74.1,
-              75.13
+              74.35,
+              75.38
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             31.825,
-            74.615
+            74.865
           ],
           "footprint_anchor_mm": [
             31.825,
-            74.615
+            74.865
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -9730,18 +9730,18 @@
               32.800000000000004
             ],
             "y": [
-              75.35,
-              76.38
+              75.6,
+              76.63
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             31.825,
-            75.865
+            76.115
           ],
           "footprint_anchor_mm": [
             31.825,
-            75.865
+            76.115
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -9755,22 +9755,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              46.85,
-              47.88
+              47.85,
+              48.88
             ],
             "y": [
-              64.6,
-              66.54999999999998
+              65.85,
+              67.79999999999998
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            47.365,
-            65.575
+            48.365,
+            66.825
           ],
           "footprint_anchor_mm": [
-            47.365,
-            65.575
+            48.365,
+            66.825
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -9788,18 +9788,18 @@
               49.13
             ],
             "y": [
-              65.85,
-              67.79999999999998
+              63.6,
+              65.55
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             48.615,
-            66.825
+            64.575
           ],
           "footprint_anchor_mm": [
             48.615,
-            66.825
+            64.575
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -9813,24 +9813,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              50.35,
-              51.38
+              51.6,
+              53.550000000000004
             ],
             "y": [
-              38.85,
-              40.800000000000004
+              60.35,
+              61.38
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            50.865,
-            39.825
+            52.575,
+            60.865
           ],
           "footprint_anchor_mm": [
-            50.865,
-            39.825
+            52.575,
+            60.865
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -9842,22 +9842,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              46.1,
-              47.13
+              53.85,
+              54.88
             ],
             "y": [
-              57.1,
-              59.050000000000004
+              59.1,
+              61.050000000000004
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            46.615,
-            58.075
+            54.365,
+            60.075
           ],
           "footprint_anchor_mm": [
-            46.615,
-            58.075
+            54.365,
+            60.075
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -9900,24 +9900,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              49.1,
-              50.13
+              49.35,
+              51.300000000000004
             ],
             "y": [
-              38.85,
-              40.800000000000004
+              62.85,
+              63.88
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            49.615,
-            39.825
+            50.325,
+            63.365
           ],
           "footprint_anchor_mm": [
-            49.615,
-            39.825
+            50.325,
+            63.365
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -9929,22 +9929,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              47.85,
-              48.88
+              57.35,
+              58.38
             ],
             "y": [
-              29.1,
-              31.050000000000004
+              59.1,
+              61.050000000000004
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            48.365,
-            30.075
+            57.865,
+            60.075
           ],
           "footprint_anchor_mm": [
-            48.365,
-            30.075
+            57.865,
+            60.075
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -9958,24 +9958,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              49.1,
-              50.13
+              55.1,
+              57.050000000000004
             ],
             "y": [
-              26.85,
-              28.800000000000004
+              60.35,
+              61.38
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            49.615,
-            27.825
+            56.075,
+            60.865
           ],
           "footprint_anchor_mm": [
-            49.615,
-            27.825
+            56.075,
+            60.865
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -9987,22 +9987,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              46.35,
-              48.300000000000004
+              50.85,
+              52.800000000000004
             ],
             "y": [
-              41.1,
-              42.13
+              61.6,
+              62.63
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            47.325,
-            41.615
+            51.825,
+            62.115
           ],
           "footprint_anchor_mm": [
-            47.325,
-            41.615
+            51.825,
+            62.115
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -10016,22 +10016,22 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              45.6,
-              47.550000000000004
+              49.35,
+              51.300000000000004
             ],
             "y": [
-              39.85,
-              40.88
+              64.35,
+              65.38
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            46.575,
-            40.365
+            50.325,
+            64.865
           ],
           "footprint_anchor_mm": [
-            46.575,
-            40.365
+            50.325,
+            64.865
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -10074,24 +10074,24 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              47.85,
-              48.88
+              45.6,
+              47.550000000000004
             ],
             "y": [
-              38.85,
-              40.800000000000004
+              39.1,
+              40.13
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            48.365,
-            39.825
+            46.575,
+            39.615
           ],
           "footprint_anchor_mm": [
-            48.365,
-            39.825
+            46.575,
+            39.615
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -13243,8 +13243,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "unrouted_seed_sha256": "e1d6435cfa26f8056a987761bf35af4ebc92668a3ad3c12037363f1b13b6ac39",
-      "placement_signature_sha256": "dc8ff6c7a0e7d9003b800e3bcdf1022d0771eb78f8903a8e7a52b128a7f0494c"
+      "unrouted_seed_sha256": "076ce5c3058be40022ce9f8f5c901a67c8fbbdd6c2c0e9a6fbde4c73a05460ba",
+      "placement_signature_sha256": "84ed2318ca774afecb1dd516fd174e9b83ce841c443d2ea41569bd9f379348b4"
     },
     {
       "project": "LESHY2-RF-R2",
@@ -13260,7 +13260,7 @@
         "hard H1 datum": 13,
         "nearest exact-footprint correction": 121
       },
-      "net_count": 533,
+      "net_count": 516,
       "mechanical": [
         {
           "id": "MH1",
@@ -36917,8 +36917,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "165f8cd6054eefaff8a4d83c7b9e156ef617d9a5750d4607c97db9bddbf9b64a",
-      "placement_signature_sha256": "f2105d6b3ce2fda0f213153f0e0b5ba1c4421de4af66fcbace25e71733794c8e"
+      "unrouted_seed_sha256": "ef70f5c5f5524b42345e3d8f7bfae5a096c7548a9bb8539a90b87c782469097e",
+      "placement_signature_sha256": "faf7a2a5db1c2c73322c787a860f0b17a85f5cf465131b1b190516df7a861112"
     }
   ],
   "authorization": {

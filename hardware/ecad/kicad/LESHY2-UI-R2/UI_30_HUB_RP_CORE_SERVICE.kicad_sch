@@ -3828,10 +3828,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "d1547ab3-e8b8-52d2-860c-94658579287d")
 	)
-	(label "HUB_RP_VREG_POWER_GROUND"
+	(label "POWER_GROUND"
 		(at 716.28 86.36 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "4628469e-fc54-561a-81b9-a0008d595400")
+		(uuid "1dcdbef4-94da-53ef-8a0a-7d9ca607cb10")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:tdk_c1005x5r0j475k050bc")
@@ -6286,10 +6286,10 @@
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "6f7a0dec-ab41-5322-a0c0-6df944325bcc")
 	)
-	(label "HUB_RP_VREG_POWER_GROUND"
+	(label "POWER_GROUND"
 		(at 624.84 205.74 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "e17f352f-077d-5360-b117-96022d8516c6")
+		(uuid "d3827f1e-a96f-5b33-8b3f-8ec92347f718")
 	)
 	(label "HUB_RP_VREG_LX_SW"
 		(at 624.84 208.28 180)
@@ -6476,10 +6476,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "7cc73472-5d05-5856-abc1-8c2f644e8e45")
 	)
-	(label "HUB_RP_DBG_ESD_RETURN"
+	(label "POWER_GROUND"
 		(at 675.64 160.02 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "57be0d2c-020a-5aeb-8f9b-810b63fa7570")
+		(uuid "a736bd55-2080-54d6-8ca7-cc7da4135a7d")
 	)
 	(label "HUB_RP_DBG0_CONNECTOR"
 		(at 675.64 162.56 0)
@@ -6497,10 +6497,10 @@
 	(no_connect (at 716.28 157.48)
 		(uuid "7254cd3a-0782-5cfd-92c5-fca113486dd6")
 	)
-	(label "HUB_RP_DBG_ESD_RETURN"
+	(label "POWER_GROUND"
 		(at 716.28 160.02 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "337d13e2-76de-5e2a-8643-6e17c117216b")
+		(uuid "04a29623-a318-5c2e-b590-071a877df142")
 	)
 	(no_connect (at 716.28 162.56)
 		(uuid "6d991ce6-bf7f-5967-ad6d-bd38bcedbc1d")

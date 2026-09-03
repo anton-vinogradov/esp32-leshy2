@@ -315,7 +315,8 @@ def doc(audit: dict, *, ru: bool) -> str:
         title = "# H6.0.2-R1 · Политика трассировки"
         nav = "[Главная](../README.ru.md) · [Роадмап](roadmap.ru.md) · [English](h6-r2-routing-policy.md)"
         lead = (
-            "**Статус:** ✅ все 858 физических сетей двух плат распределены по 13 классам до начала трассировки. "
+            f"**Статус:** ✅ все {audit['summary']['project_net_count']} физических сетей двух плат "
+            f"({audit['summary']['global_canonical_net_count']} канонических) распределены по 13 классам до начала трассировки. "
             "Автоматический помощник может предлагать медь только для обычных низкоскоростных управляющих линий; "
             "RF, USB, питание, i8080, тактируемые шины, кварцы, safety и аналог остаются ручными."
         )
@@ -325,6 +326,7 @@ def doc(audit: dict, *, ru: bool) -> str:
             "## Что зафиксировано\n\n"
             f"- точный стек: `{audit['stackup_binding']['official_stackup_id']}`, заказной номинал 1,6 мм, расчётная готовая толщина 1,54 мм ±10 %, два core по 0,55 мм;\n"
             f"- четыре внешних USB-порта разворачиваются в `{audit['summary']['usb_pair_count']}` полных сегментов диффпар, и ровно 10 линий прямого i8080-8 найдены автоматически;\n"
+            "- абстрактные RF-, safety-, ESD- и силовые ground-якоря физически сведены в сплошной `POWER_GROUND`; отдельной остаётся только `AUDIO_GROUND`, соединённая с ним явной 0-Ω перемычкой `R172`;\n"
             "- текущий калькулятор JLCPCB задаёт внешнюю RF CPWG 50 Ом как 5,31 mil ширины / 6 mil до боковой меди, а USB 90 Ом — как 5,31 mil ширины / 6 mil между линиями;\n"
             "- канонические `DP/DM` сохранены в контрактах, но физические KiCad-сети заканчиваются на `_P/_N`, поэтому штатный дифференциальный роутер видит все 12 пар;\n"
             "- результат автотрассировки не принимается без импорта в KiCad, визуального ревью и штатного DRC.\n\n"
@@ -349,7 +351,8 @@ def doc(audit: dict, *, ru: bool) -> str:
         title = "# H6.0.2-R1 · Routing policy"
         nav = "[Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h6-r2-routing-policy.ru.md)"
         lead = (
-            "**Status:** ✅ all 858 physical nets across both boards are assigned to 13 classes before routing starts. "
+            f"**Status:** ✅ all {audit['summary']['project_net_count']} physical nets across both boards "
+            f"({audit['summary']['global_canonical_net_count']} canonical) are assigned to 13 classes before routing starts. "
             "An automatic helper may propose copper only for ordinary low-rate control nets; RF, USB, power, i8080, "
             "clocked buses, oscillators, safety and analogue nets remain manual."
         )
@@ -359,6 +362,7 @@ def doc(audit: dict, *, ru: bool) -> str:
             "## What is locked\n\n"
             f"- exact stack: `{audit['stackup_binding']['official_stackup_id']}`, 1.6-mm order nominal, 1.54-mm ±10% calculated finished thickness, and two 0.55-mm cores;\n"
             f"- four external USB ports expand to `{audit['summary']['usb_pair_count']}` complete differential-pair segments, and exactly ten direct i8080-8 nets are detected automatically;\n"
+            "- abstract RF, safety, ESD and power-ground anchors are physically canonicalized onto the solid `POWER_GROUND`; only `AUDIO_GROUND` remains local and joins it through explicit 0-ohm link `R172`;\n"
             "- the current JLCPCB calculator sets outer 50-ohm RF CPWG to 5.31-mil width / 6-mil lateral copper gap and 90-ohm USB to 5.31-mil width / 6-mil pair gap;\n"
             "- canonical `DP/DM` identities remain in the contracts, while physical KiCad net names end in `_P/_N`, allowing the native differential router to discover all 12 pairs;\n"
             "- no automatic result is accepted before KiCad import, visual review and native DRC.\n\n"

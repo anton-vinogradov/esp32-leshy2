@@ -4673,11 +4673,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "d9fa4f4d-97c6-5468-a08b-727efe72357a")
 	)
-	(hierarchical_label "SAFETY_GROUND"
-		(shape bidirectional)
+	(label "POWER_GROUND"
 		(at 441.96 50.80 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "458e0efb-de63-5cfe-9397-73bb9b583fcb")
+		(uuid "e255c54f-5803-5ca8-8e05-2bc0460ecff9")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:kemet_c0402c330j5gactu")
@@ -5193,10 +5192,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "d035f22b-5915-5472-9ef2-56fe32a6f57f")
 	)
-	(label "SAFETY_GROUND"
+	(label "POWER_GROUND"
 		(at 1082.04 50.80 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "8454b133-e3d0-54bc-85d7-0586c75a4add")
+		(uuid "ca4a9183-0d78-5f05-abc1-312caf40e779")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:murata_grm21br71e225ke11l")
@@ -5490,10 +5489,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "b5903223-31ca-5a62-be82-8471831fac15")
 	)
-	(label "SAFETY_GROUND"
+	(label "POWER_GROUND"
 		(at 350.52 86.36 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "ea7ffd85-2ede-5813-bcaa-5e43ec08280a")
+		(uuid "dc73bd61-40f3-5baf-aa18-7014e09325e2")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:samsung_cl05b104kb5nnnc")
@@ -6528,10 +6527,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "85e63ee0-0c37-5eff-8bbc-edc4473a2d33")
 	)
-	(label "SAFETY_GROUND"
+	(label "POWER_GROUND"
 		(at 533.40 121.92 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "04da6d61-1bbc-52b7-a8a1-eae810a8af53")
+		(uuid "9d8f4a7d-ac76-5d5b-9361-0570e9f79423")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:yageo_cc0402krx7r9bb104")
@@ -6603,10 +6602,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "3bd5c3a3-d43f-58dc-a159-b034e03aef6e")
 	)
-	(label "SAFETY_GROUND"
+	(label "POWER_GROUND"
 		(at 624.84 121.92 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "fb96feba-686e-58fb-bb58-e5e71a1ed6ef")
+		(uuid "49b2bad4-35e9-5bb2-944c-ffd61de7b833")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:sunlord_wpn201612h2r2mt")
@@ -7280,10 +7279,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "477b2da6-5a86-5cae-9657-c98c705ec476")
 	)
-	(label "SAFETY_GROUND"
+	(label "POWER_GROUND"
 		(at 350.52 157.48 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "11185edb-e6aa-52a8-bfab-34eea66d3519")
+		(uuid "21077289-3da0-5a25-b246-db7fd8cf44ae")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:yageo_rc0603fr_071kl")
@@ -8912,10 +8911,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "e6d5094a-35e0-52f6-9e06-7e82d03b3ec2")
 	)
-	(label "SAFETY_GROUND"
+	(label "POWER_GROUND"
 		(at 167.64 228.60 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "05d8b2a4-b354-560c-8339-177474bbc0f1")
+		(uuid "5105073a-2421-5d77-bae9-073d619185a6")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:yageo_rc0402fr_0710kl")
@@ -9060,10 +9059,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "7b7ce56d-d630-53bc-a71b-9a2d749342d8")
 	)
-	(label "SAFETY_GROUND"
+	(label "POWER_GROUND"
 		(at 350.52 228.60 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "43073a5e-90f5-52d9-9b51-80284cb7b2a3")
+		(uuid "bb7d800b-efe1-52ef-b229-a69f4a0a5ca0")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:yageo_rc0402fr_0710kl")
@@ -9539,10 +9538,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "c40cc227-0ac3-59ca-92ca-3c968d11665c")
 	)
-	(label "SAFETY_GROUND"
+	(label "POWER_GROUND"
 		(at 767.08 233.68 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "974ca90a-a297-5c2b-aa41-e003e2b6fb9d")
+		(uuid "e50827c6-277e-5713-bcfc-a4afe37f3dd0")
 	)
 	(hierarchical_label "UNIT_5V_REQ"
 		(shape bidirectional)
@@ -9889,10 +9888,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "30468b5c-fb99-5192-8b24-d5bf8a6dd199")
 	)
-	(label "SAFETY_GROUND"
+	(label "POWER_GROUND"
 		(at 1041.40 232.41 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "aaee636b-d9de-5d8e-b19a-7a2a245e121e")
+		(uuid "41000541-8222-527f-ac9c-1417589a2ddc")
 	)
 	(label "EV_N8_LORA_EXT"
 		(at 1082.04 227.33 180)
@@ -9987,10 +9986,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "db41138d-5c7d-5935-b3e8-6505f54b2ae7")
 	)
-	(label "SAFETY_GROUND"
+	(label "POWER_GROUND"
 		(at 35.56 267.97 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "a4f2cb4b-b101-5616-80c3-0df9b781a193")
+		(uuid "a6c50b46-2ff5-5f62-a232-ee51394e3915")
 	)
 	(label "EXT_ANY_5V_REQ"
 		(at 76.20 262.89 180)

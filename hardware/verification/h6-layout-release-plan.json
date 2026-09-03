@@ -23,12 +23,12 @@
     "placed_instances": 1208,
     "hard_conflicts": 0,
     "unplaced_instances": 0,
-    "classified_project_nets": 858,
-    "classified_canonical_nets": 823,
+    "classified_project_nets": 823,
+    "classified_canonical_nets": 789,
     "automatic_helper_allowed_classes": ["GENERAL_CONTROL"],
     "routing_started": false,
     "remaining_before_substep_exit": [
-      "route all 823 reviewed nets or preserve an explicit intentional no-connect",
+      "route all 789 reviewed canonical nets / 823 board-local physical nets or preserve an explicit intentional no-connect",
       "prove native schematic/PCB parity and zero-finding KiCad DRC"
     ]
   },

@@ -2,9 +2,9 @@
 
 [Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h3-r2-input-freeze.ru.md)
 
-The exact H2-R2.1.5 input is reviewed: `2` projects, `22` sheets, `1208` fitted symbols, `4306` physical pins and `823` nets. Every input is hash-bound; any change closes reproducibility until regeneration.
+The exact H2-R2.1.5 input is reviewed: `2` projects, `22` sheets, `1208` fitted symbols, `4306` physical pins and `789` nets. Every input is hash-bound; any change closes reproducibility until regeneration.
 
-Freeze SHA-256: `307a09dd6a9ca74678bfc7e480ed5d84359f71da51344b430c58710323578cc6`
+Freeze SHA-256: `6c3079a76c1b609bf53107e546b7615f01c2271e43291329e9813e85cd090b27`
 
 | Workstream | Primary scope | Sheets | Pass rule |
 |---|---|---:|---|

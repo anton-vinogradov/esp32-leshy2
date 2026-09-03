@@ -4,14 +4,14 @@
   "marker": "H3-R2.1.2",
   "status": "pass",
   "accepted_input": "H3-R2.1.1",
-  "binding_sha256": "32cd86753562806745f441baa1d03c19bad6db7136d8f357bd40103c963ee5cd",
+  "binding_sha256": "56bd43866110d6c9224b3eb42ebe71aaaf8a75865b40a84940f04bcc51694d78",
   "source_sha256": {
     "hardware/verification/h3-r2-load-binding-contract.json": "48d2575032bac09bd8ea276e814c16fbb1f76ca6afe0cea0dd36cee2e8c2a384",
-    "hardware/verification/generated/H3-R2-power-state-register.json": "1e5abe3c1cab99867f276da3eab81afa00bd9b24adfa5491bc471f1f4baeea2d",
-    "hardware/verification/generated/H3-R2-method-contract.json": "47f68d10fe780c9b64e3e6be7abaa0ad25f2e082742de513248afa1d12cd4e86",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "5119f9f6db36571e161567b956eeb0a8512a24b3c300392a0cdbad6720ee8cdd",
+    "hardware/verification/generated/H3-R2-power-state-register.json": "f31ee29c673451425820189c7043c7815419de041428986491687c599cd045f4",
+    "hardware/verification/generated/H3-R2-method-contract.json": "d1bf0a2921258745ed546a180422c9d7e024a2628be501500d6125b2ea5756cf",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "3b88b08b13b6f8ca1e6acc48a12b9e3f083cd005335ef023483755b3961cdffc",
     "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "8c0845d155b887c8d799068235b4ef6af44497f86c10c4a9044192dd0baaef00",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "7c0de54e0faa9e7d4ddef816b592bc18d523138e99bbf1135461f425ae08bf2e",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "8e517b079188779a9b666cf1e7d668b51d4b5663ef47b897076bed71c1cc53b4",
     "hardware/architecture/devices.json": "23b5799bc5334f9d02c13635c7f9e4f7503929795c669e98223fc37b95cc1c04"
   },
   "policy": {

@@ -94,12 +94,12 @@ Exact current checklist:
    logical contacts mapped with zero unresolved groups;
 6. ✅ `H2-R2.1.3` definitions/instances: 245 controlled symbols, 1,571 symbol
    pins and all 1,208 fitted instances pass the current two-project allocation;
-7. ✅ `H2-R2.1.3` nets: 4,302 fitted-instance contacts resolve to 823 canonical
-   nets or 238 explicit board no-connects with zero unresolved endpoints;
+7. ✅ `H2-R2.1.3` nets: 4,302 fitted-instance contacts resolve to 789 global
+   canonical / 823 board-local nets or 238 explicit board no-connects with zero unresolved endpoints;
 8. ✅ `H2-R2.1.3`: two native KiCad projects materialize 4,306 physical pins
    and pass ERC with zero errors and zero warnings;
-9. ✅ `H2-R2.1.4`: six domains, 173 controller pins, 35 cross-project nets and
-   231 cross-sheet nets reconcile with zero unresolved boundary;
+9. ✅ `H2-R2.1.4`: six domains, 173 controller pins, 34 cross-project nets and
+   228 cross-sheet nets reconcile with zero unresolved boundary;
 10. ✅ `H2-R2.1.5`: the bilingual result report is published and the synchronized
     firmware H2 gate is open.
 
@@ -187,7 +187,7 @@ recheck remain immediate pre-order gates.
 
 The [current exact-footprint placement result](h6-r2-exact-placement.md) now
 contains two native six-layer KiCad boards. All 1,208/1,208 reviewed fitted
-instances and all 823 canonical nets are materialized; the machine audit reports
+instances and all 789 global canonical / 823 board-local nets are materialized; the machine audit reports
 zero hard courtyard conflicts, zero unplaced bodies and zero mapping errors.
 Generation is byte-reproducible and KiCad 10 parses both boards. The [exact mechanical-stack result](h6-r2-mechanical-stack.md) locks
 20-mm nylon M2.5 screws, captive nuts, 11-mm stops, wall bearings, four pilot
@@ -195,8 +195,8 @@ shoulders and independent edge capture; its full tolerance corner preserves
 2.18 mm of nut thread and keeps the screw tip buried without using M1
 structurally. The [microcoax service result](h6-r2-microcoax-service.md) adds five
 relaxed corridors, five clear tape saddles and ten antenna solder windows with
-9.13 mm minimum cable reserve. H6.0.1 is complete; H6.0.2 now owns routing all
-823 nets, native schematic/PCB parity and zero-finding DRC. Its current exact
+7.69 mm minimum cable reserve. H6.0.1 is complete; H6.0.2 now owns routing all
+823 board-local physical / 789 global canonical nets, native schematic/PCB parity and zero-finding DRC. Its current exact
 marker binds the standard `JLC06161H-3313` outer geometry (50-ohm RF CPWG and
 90-ohm USB at 5.31/6 mil) and gives all 12 USB segments native `_P/_N` names
 without changing their canonical `DP/DM` contract identities.

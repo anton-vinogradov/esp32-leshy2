@@ -49,7 +49,7 @@ python3 hardware/layout/h6_r2_microcoax_service.py --check
 Ожидаемый результат:
 
 ```text
-H6-R2 microcoax service pass: 5 paths; 5 clear saddles; 9.13 mm minimum reserve
+H6-R2 microcoax service pass: 5 paths; 5 clear saddles; 7.69 mm minimum reserve
 ```
 
 Машинные данные: [исходный контракт](../hardware/layout/h6-r2-microcoax-service.json) и [генерируемый аудит](../hardware/layout/generated/H6-R2-microcoax-service-audit.json).

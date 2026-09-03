@@ -125,13 +125,39 @@ def transform_legacy_net(net: str, rp_prefix: str | None, aliases: dict[str, str
     return aliases.get(net, net)
 
 
+def abstract_canonical(endpoint: str) -> str | None:
+    """Resolve abstract copper/rail anchors to their real physical net."""
+    if endpoint.startswith(("abstract:power-ground", "abstract:rf-ground")):
+        return "POWER_GROUND"
+    if endpoint.startswith("abstract:safety-ground"):
+        return "SAFETY_GROUND"
+    direct = {
+        "abstract:3V3_MAIN": "3V3_MAIN",
+        "abstract:chassis-rf-ground": "POWER_GROUND",
+        "abstract:audio-ground": "AUDIO_GROUND",
+        "abstract:AON_SAFE_3V3": "AON_SAFE_3V3",
+        "abstract:AON_RAW_3V3": "AON_RAW_3V3",
+        "abstract:MAIN_RAW_3V3": "MAIN_RAW_3V3",
+        "abstract:VVOICE_RAW_4V": "VVOICE_RAW_4V",
+        "abstract:admitted-system-3v3": "3V3_MAIN",
+        "abstract:SYS_INT_N_WIRED_LOW": "SYS_INT_N",
+        "abstract:power-current-thermal-fault": "POWER_FAULT_N",
+        "abstract:qualified-2s-positive": "BATTERY_STACK_POSITIVE",
+        "abstract:protected-2s-midpoint": "PACK_2S_MIDPOINT",
+        "abstract:internal-pack-fet-common-drain": "PACK_FET_COMMON_DRAIN",
+    }
+    return direct.get(endpoint)
+
+
 def route_indexes(
     h1: dict, explicit_aliases: dict[str, str]
 ) -> tuple[dict[str, list[dict]], dict[str, str], dict[str, str]]:
     routes: dict[str, list[dict]] = defaultdict(list)
     occurrences: Counter[str] = Counter()
+    abstract_targets: set[str] = set()
     for row in h1.get("fixed_routes", []):
-        occurrences[explicit_aliases.get(row["net"], row["net"])] += 1
+        route_net = explicit_aliases.get(row["net"], row["net"])
+        occurrences[route_net] += 1
         for endpoint in (row.get("from", ""), row.get("to", "")):
             if endpoint and not endpoint.startswith("abstract:"):
                 routes[endpoint].append(row)
@@ -155,10 +181,23 @@ def route_indexes(
             find(net)
         for net in nets[1:]:
             union(nets[0], net)
+    for row in h1.get("fixed_routes", []):
+        route_net = explicit_aliases.get(row["net"], row["net"])
+        for endpoint in (row.get("from", ""), row.get("to", "")):
+            canonical = abstract_canonical(endpoint)
+            if canonical is None:
+                continue
+            canonical = explicit_aliases.get(canonical, canonical)
+            find(route_net)
+            find(canonical)
+            union(route_net, canonical)
+            abstract_targets.add(canonical)
     groups: dict[str, set[str]] = defaultdict(set)
     for net in parent:
         groups[find(net)].add(net)
-    preferred = {explicit_aliases.get(net, net) for net in explicit_aliases.values()}
+    preferred = {
+        explicit_aliases.get(net, net) for net in explicit_aliases.values()
+    } | abstract_targets
     inferred_aliases: dict[str, str] = {}
     for group in groups.values():
         preferred_group = group & preferred
@@ -185,17 +224,30 @@ def routed_current_net(
     rows = routes.get(endpoint, [])
     if not rows:
         return None, None
+    used_current_abstract = False
+    resolved = set()
     for row in rows:
         peer = row["to"] if row["from"] == endpoint else row["from"]
         if peer.startswith("abstract:no-connect"):
             return None, "reconciled_historical_explicit_nc_hint"
-    nets = {
-        transform_legacy_net(route_aliases.get(row["net"], aliases.get(row["net"], row["net"])), rp_prefix, aliases)
-        for row in rows
-    }
-    if len(nets) != 1:
+        canonical = abstract_canonical(peer)
+        if canonical is not None:
+            used_current_abstract = True
+            resolved.add(transform_legacy_net(canonical, rp_prefix, aliases))
+        else:
+            resolved.add(transform_legacy_net(
+                route_aliases.get(row["net"], aliases.get(row["net"], row["net"])),
+                rp_prefix,
+                aliases,
+            ))
+    if len(resolved) != 1:
         return None, None
-    return next(iter(nets)), "reconciled_historical_same_endpoint_route_hint"
+    origin = (
+        "current_abstract_endpoint_canonical"
+        if used_current_abstract
+        else "reconciled_historical_same_endpoint_route_hint"
+    )
+    return next(iter(resolved)), origin
 
 
 def current_override(instance: str, contact: str, sources: dict[str, dict], aliases: dict[str, str]) -> tuple[str | None, str | None]:
@@ -211,7 +263,8 @@ def current_override(instance: str, contact: str, sources: dict[str, dict], alia
     topology = sources["topology"].get("endpoint_overrides", {})
     endpoint = f"{instance}.{contact}"
     if endpoint in topology:
-        return topology[endpoint], "current_r2_board_local_topology"
+        net = topology[endpoint]
+        return (aliases.get(net, net) if net is not None else None), "current_r2_board_local_topology"
     if instance == "s3" and contact.startswith("GPIO"):
         gpio = int(contact[4:])
         row = next((row for row in h0["s3"]["pin_map"] if row["gpio"] == gpio), None)

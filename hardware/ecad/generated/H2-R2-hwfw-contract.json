@@ -19,8 +19,8 @@
     "hardware/product-design/h1-r2-placement.json": "66321938e7ea53875639ad6841f02209aaf08510054323c0108d8a5077813054",
     "hardware/ecad/generated/H2-R2-native-inventory.json": "5b59d8dbcf142296f2d299f136987486325e7758b9c2bb76bdd82e824559acaf",
     "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "8c0845d155b887c8d799068235b4ef6af44497f86c10c4a9044192dd0baaef00",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "7c0de54e0faa9e7d4ddef816b592bc18d523138e99bbf1135461f425ae08bf2e",
-    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "b491e10d177fa9665acd423dc1d83d05ebf6dbb79b2913e14a8861349c3869ba",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "8e517b079188779a9b666cf1e7d668b51d4b5663ef47b897076bed71c1cc53b4",
+    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "ae424ca8bd6bd2ce294e7d55e286a5ab7af2a5376bddda3653e61db8f7a2fa67",
     "hardware/ecad/h2-r2-hwfw-reconciliation-contract.json": "a670e5e735f0c3631c7c9dcd13e8f4edbe7ff83c9b43c10ec2e46b56742aedc3"
   },
   "bsp": {
@@ -6708,13 +6708,13 @@
         "connected_physical_pin_count": 4068,
         "explicit_no_connect_physical_pin_count": 238,
         "external_module_interface_annotation_count": 5,
-        "canonical_net_count": 823,
+        "canonical_net_count": 789,
         "generated_file_count": 28,
         "pcb_file_count": 0
       },
       "cross_sheet_net_counts": {
-        "LESHY2-UI-R2": 103,
-        "LESHY2-RF-R2": 128
+        "LESHY2-UI-R2": 101,
+        "LESHY2-RF-R2": 127
       }
     },
     "pin_reconciliation": [
@@ -8617,22 +8617,6 @@
         ]
       },
       {
-        "net": "SAFETY_GROUND",
-        "projects": [
-          "LESHY2-RF-R2",
-          "LESHY2-UI-R2"
-        ],
-        "boundary_evidence": [
-          {
-            "role": "80-contact M1 interboard connector",
-            "endpoint_instances": [
-              "m1_rf_receptacle",
-              "m1_ui_plug"
-            ]
-          }
-        ]
-      },
-      {
         "net": "UI_ENCODER_PUSH_N",
         "projects": [
           "LESHY2-RF-R2",
@@ -8672,8 +8656,8 @@
     "exact_pin_rows": 145,
     "conditioned_boundary_rows": 15,
     "explicit_reserve_no_connect_rows": 13,
-    "cross_project_net_count": 35,
-    "cross_sheet_net_count": 231,
+    "cross_project_net_count": 34,
+    "cross_sheet_net_count": 228,
     "errors": 0
   },
   "authorization": {

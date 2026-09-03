@@ -17,7 +17,7 @@ authorize fabrication or purchase.
   and [RF/power PCB](../hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb);
 - all **1,208/1,208** reviewed fitted schematic instances placed using their
   selected KiCad footprints: 428 on UI and 780 on RF/power;
-- all **823** canonical H2 nets assigned to their real footprint pads;
+- all **789** global canonical / **823** board-local H2 nets assigned to their real footprint pads;
 - four M2.5 stop axes on each PCB, the rounded 75 × 150 mm outlines, the exact
   display bed, ready-cut PSA guide and relaxed FPC slot on the UI board;
 - the current 5+5 direct-source antenna bank and user-facing board/screen

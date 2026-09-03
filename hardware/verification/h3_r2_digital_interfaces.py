@@ -223,7 +223,7 @@ def build() -> dict:
             for owner, prefix in (("hub_rp", "HUB_RP"), ("rf_rp", "RF_RP"))
         ),
         "c5_service_vbus_is_sense_only": instance_net(rows, "c5_service_usb_connector", "C5_SERVICE_VBUS_SENSE_ONLY"),
-        "c5_mux_has_hardware_default_pulldowns": endpoint(rows, "c5_mux_sel_pulldown.END_2", "SAFETY_GROUND") and endpoint(rows, "c5_mux_oe_pulldown.END_2", "SAFETY_GROUND"),
+        "c5_mux_has_hardware_default_pulldowns": endpoint(rows, "c5_mux_sel_pulldown.END_2", "POWER_GROUND") and endpoint(rows, "c5_mux_oe_pulldown.END_2", "POWER_GROUND"),
         "c5_mux_switches_only_d2_d3_or_usb": all(instance_net(rows, "c5_service_usb_switch", net) for net in ("C5_GPIO13_COMMON", "C5_GPIO14_COMMON", "HUB_C5_SDIO_DAT2_BRANCH", "HUB_C5_SDIO_DAT3_BRANCH", "C5_SERVICE_USB_DM_BRANCH", "C5_SERVICE_USB_DP_BRANCH")),
         "service_ownership_latch_resets_both_compute_domains": instance_net(rows, "c5_service_owner_latch", "C5_SERVICE_OWNED") and instance_net(rows, "c5_service_reset_sink", "C5_RESET_N") and instance_net(rows, "c5_service_hub_reset_sink", "HUB_RP_RESET_N"),
         "service_switch_bandwidth_covers_usb_full_speed": fsusb["usb_speed_mbps"] >= 12 and fsusb["bandwidth_mhz"] >= 240,

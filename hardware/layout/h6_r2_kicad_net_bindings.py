@@ -30,17 +30,30 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def physical_pins_by_contact(symbol: dict) -> dict[str, tuple[str, ...]]:
+    """Preserve every physical pad when one logical contact has duplicate pins."""
+    contacts: dict[str, list[str]] = defaultdict(list)
+    for pin in symbol["pin_map"]:
+        for contact in pin["contacts"]:
+            contacts[contact].append(pin["number"])
+    return {contact: tuple(pins) for contact, pins in contacts.items()}
+
+
+def pcb_net_name(xml_name: str) -> str:
+    """Encode a literal slash inside a hierarchical label as KiCad PCB expects."""
+    if "//" not in xml_name:
+        return xml_name
+    hierarchy, literal = xml_name.split("//", 1)
+    return hierarchy + "/{slash}" + literal.replace("/", "{slash}")
+
+
 def logical_pin_map(project: str) -> tuple[dict[tuple[str, str], str], set[str]]:
     instances = load(INSTANCE_PATH)["rows"]
     rows = load(NET_PATH)["rows"]
     symbols = {row["device_id"]: row for row in load(SYMBOL_PATH)["symbols"]}
     by_instance = {row["instance"]: row for row in instances if row["project"] == project}
-    contact_to_pin = {
-        device_id: {
-            contact: pin["number"]
-            for pin in symbol["pin_map"]
-            for contact in pin["contacts"]
-        }
+    contact_to_pins = {
+        device_id: physical_pins_by_contact(symbol)
         for device_id, symbol in symbols.items()
     }
     result: dict[tuple[str, str], str] = {}
@@ -49,16 +62,17 @@ def logical_pin_map(project: str) -> tuple[dict[tuple[str, str], str], set[str]]
         if row["project"] != project or row["disposition"] != "connected":
             continue
         instance = by_instance[row["instance"]]
-        pin = contact_to_pin[instance["device_id"]].get(row["contact"])
-        if pin is None:
+        pins = contact_to_pins[instance["device_id"]].get(row["contact"], ())
+        if not pins:
             if row["contact"] in {"ANT", "ANT1"}:
                 continue
             raise ValueError(f"{project}: no physical pin for {row['endpoint']}")
-        key = (instance["reference"], pin)
-        previous = result.get(key)
-        if previous and previous != row["net"]:
-            raise ValueError(f"{project}: {key} maps to both {previous} and {row['net']}")
-        result[key] = row["net"]
+        for pin in pins:
+            key = (instance["reference"], pin)
+            previous = result.get(key)
+            if previous and previous != row["net"]:
+                raise ValueError(f"{project}: {key} maps to both {previous} and {row['net']}")
+            result[key] = row["net"]
         physical_nets.add(row["net"])
     return result, physical_nets
 
@@ -75,7 +89,7 @@ def bind_project(project: str, xml_path: Path) -> dict:
     if nets is None:
         raise ValueError(f"{project}: KiCad XML export contains no nets")
     for net in nets:
-        actual_name = net.attrib["name"]
+        actual_name = pcb_net_name(net.attrib["name"])
         canonical = {
             pin_map[(node.attrib["ref"], node.attrib["pin"])]
             for node in net

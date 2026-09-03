@@ -4,11 +4,11 @@
   "marker": "H6.0.1-R1",
   "status": "pass",
   "source_hashes": {
-    "hardware/layout/h6-r2-microcoax-service.json": "44be5829d05441bf70ddc2672a3a47e980b8b12e7b0828c64a2743bb729673e2",
-    "hardware/layout/generated/H6-R2-placement-audit.json": "53450fb580c23e75c1c85fcd31a78e8055589f79579f1d18330e72351234fb7f",
+    "hardware/layout/h6-r2-microcoax-service.json": "b3da7df95da12e7672955e8a0e23094c61e90a9e02b17513b42349b3faa0f9f9",
+    "hardware/layout/generated/H6-R2-placement-audit.json": "b87928495788b9b770fc5df44593e49a641605c495ff8777a3047738f2f17fd1",
     "hardware/layout/h6-r2-placement-contract.json": "03a27c3468d814f84cd959c5ee13ce0c4e7bd11302c732d91121527398ab616c",
     "hardware/product-design/h1-r2-placement.json": "66321938e7ea53875639ad6841f02209aaf08510054323c0108d8a5077813054",
-    "hardware/verification/generated/H3-R2-rf-coexistence.json": "d7315803a63b47e132bfc03318b058ad3f4cf4922e9d26ce3dbb3ad5c66d1221"
+    "hardware/verification/generated/H3-R2-rf-coexistence.json": "3cba80fe77f4e322b924348fa24f75d29e2133b444f9e73c831cfd6e98fbccf3"
   },
   "summary": {
     "path_count": 5,
@@ -139,18 +139,18 @@
       ],
       "cable_mpn": "TE Connectivity 1-2118651-0",
       "selected_length_mm": 60.0,
-      "conservative_corridor_length_mm": 42.457,
-      "minimum_relaxed_reserve_mm": 17.543,
+      "conservative_corridor_length_mm": 42.401,
+      "minimum_relaxed_reserve_mm": 17.599,
       "minimum_display_exclusion_distance_mm": 14.535,
-      "minimum_mechanical_keepout_clearance_mm": 0.456,
+      "minimum_mechanical_keepout_clearance_mm": 0.564,
       "retention_saddle_centre_mm": [
         67.0,
-        17.5
+        18.0
       ],
       "retention_landing_clear": true,
-      "retention_mechanical_keepout_clearance_mm": 0.757,
-      "source_free_length_mm": 30.498,
-      "board_connector_free_length_mm": 8.5
+      "retention_mechanical_keepout_clearance_mm": 1.256,
+      "source_free_length_mm": 29.998,
+      "board_connector_free_length_mm": 8.944
     }
   ],
   "antenna_solder_windows": [

@@ -2013,10 +2013,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "62ab641b-0395-5e61-91e1-ffaabeb0def8")
 	)
-	(label "ENCODER_PTT_ESD_GROUND"
+	(label "POWER_GROUND"
 		(at 1041.40 53.34 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "af1b83b9-68f2-54f7-8c49-204f3d1e000e")
+		(uuid "46fda5d5-00f6-5123-a2b1-7a89fc6074ac")
 	)
 	(label "PTT_BUTTON_RAW_N"
 		(at 1041.40 55.88 0)
@@ -2032,10 +2032,10 @@
 	(no_connect (at 1082.04 50.80)
 		(uuid "53137800-a840-50f3-a315-b7cd0e0b2b03")
 	)
-	(label "ENCODER_PTT_ESD_GROUND"
+	(label "POWER_GROUND"
 		(at 1082.04 53.34 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "4d29f981-eef3-5c43-9545-c7bcf87f24c9")
+		(uuid "84c1e189-b3b5-5bbb-8684-8c99253ed23a")
 	)
 	(no_connect (at 1082.04 55.88)
 		(uuid "53000a36-fc87-54c0-a2bc-0a191fbcf50e")
@@ -2139,10 +2139,10 @@
 	(no_connect (at 35.56 86.36)
 		(uuid "3a9f6e45-9050-5330-8181-b9c9e68b9869")
 	)
-	(label "REAR_CONTROL_ESD_GROUND"
+	(label "POWER_GROUND"
 		(at 35.56 88.90 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "a93eb298-27ce-583e-a075-9717f9380c91")
+		(uuid "73d0d2a7-f3dd-5c47-802c-e4cbbdbf50d7")
 	)
 	(no_connect (at 35.56 91.44)
 		(uuid "25dd6f4e-2f53-513c-b792-a153fe039f62")
@@ -2156,10 +2156,10 @@
 	(no_connect (at 76.20 86.36)
 		(uuid "29386452-821b-5803-baca-a84e749f2cbb")
 	)
-	(label "REAR_CONTROL_ESD_GROUND"
+	(label "POWER_GROUND"
 		(at 76.20 88.90 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "8c430a90-417f-5975-80b9-f3bd8bd11fec")
+		(uuid "84210190-5df6-53ca-98d8-4eb9e61cf25f")
 	)
 	(no_connect (at 76.20 91.44)
 		(uuid "ac6cf60a-6ab4-53d1-a343-2166af480a13")

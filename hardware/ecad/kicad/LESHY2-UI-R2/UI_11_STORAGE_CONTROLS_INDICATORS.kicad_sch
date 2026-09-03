@@ -3682,11 +3682,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "02614a1f-3cfa-549c-b300-45c162767af6")
 	)
-	(hierarchical_label "SAFETY_GROUND"
-		(shape bidirectional)
+	(label "POWER_GROUND"
 		(at 167.64 86.36 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "4aa3412f-e42f-5224-81b2-d33117586e6c")
+		(uuid "6358a105-bff4-5759-b4d7-cc4d72305a11")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:liteon_ltst_c190krkt")
@@ -8597,10 +8596,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "490d2584-5497-5b2f-847b-f04fc10ba21e")
 	)
-	(label "SAFETY_GROUND"
+	(label "POWER_GROUND"
 		(at 716.28 264.16 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "3b3f9cab-8d06-5b3d-8bb9-784147f2c22a")
+		(uuid "a40bbcad-264a-5660-b8fa-9d00a45cafde")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:yageo_rc0402fr_0710kl")
@@ -10560,10 +10559,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "393b1923-faee-5ef3-b032-0a399dcf81bf")
 	)
-	(label "SD_ESD_GROUND_A"
+	(label "POWER_GROUND"
 		(at 309.88 337.82 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "43158b7f-23cc-590f-b0aa-852fa09daea4")
+		(uuid "30a75aa3-b44e-5615-be20-e74a5dc8d800")
 	)
 	(label "SD_DAT3_CS_PROTECTED_N"
 		(at 309.88 340.36 0)
@@ -10581,10 +10580,10 @@
 	(no_connect (at 350.52 335.28)
 		(uuid "2bf7c206-9c55-5a6b-945d-7a40d6e9c396")
 	)
-	(label "SD_ESD_GROUND_A"
+	(label "POWER_GROUND"
 		(at 350.52 337.82 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "afa5b1f5-619e-51bc-916b-cfc6d2acc6f4")
+		(uuid "3d0027f2-ec45-584f-a7fd-6026c8867f09")
 	)
 	(no_connect (at 350.52 340.36)
 		(uuid "063e2cf6-8898-5412-a683-72769a7d7d1a")
@@ -10690,10 +10689,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "20b87512-1950-5174-988a-43a2ce0f68fa")
 	)
-	(label "SD_ESD_GROUND_B"
+	(label "POWER_GROUND"
 		(at 401.32 337.82 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "077ec7d9-ce03-58c8-9851-f633eb3a97ac")
+		(uuid "22d131cf-676c-5bec-9cff-9a910749900a")
 	)
 	(label "SD_CARD_3V3"
 		(at 401.32 340.36 0)
@@ -10711,10 +10710,10 @@
 	(no_connect (at 441.96 335.28)
 		(uuid "5ad97080-66de-5d77-96e8-be5dcdb78971")
 	)
-	(label "SD_ESD_GROUND_B"
+	(label "POWER_GROUND"
 		(at 441.96 337.82 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "e0839a5a-1916-5800-bfdd-9e81d9170597")
+		(uuid "0350ea0e-caf0-5622-a79e-68253e98d338")
 	)
 	(no_connect (at 441.96 340.36)
 		(uuid "538e8721-d995-5d98-834f-988b9224557b")

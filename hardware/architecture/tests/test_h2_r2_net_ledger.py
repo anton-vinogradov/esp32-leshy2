@@ -56,7 +56,7 @@ class H2R2NetLedgerTests(unittest.TestCase):
         self.assertEqual(238, summary["no_connect_endpoint_count"])
         self.assertEqual(0, summary["external_interface_endpoint_count"])
         self.assertEqual(0, summary["unresolved_endpoint_count"])
-        self.assertEqual(823, summary["unique_net_count"])
+        self.assertEqual(789, summary["unique_net_count"])
 
     def test_m1_contacts_match_on_both_projects(self):
         for position in range(1, 81):
@@ -115,6 +115,11 @@ class H2R2NetLedgerTests(unittest.TestCase):
         aliases = self.ledger["canonical_net_aliases"]
         self.assertEqual("AON_RAW_3V3", aliases["AON_EFUSE_EN"])
         self.assertEqual("POWER_GROUND", aliases["PACK_SHUNT_CSN"])
+        self.assertEqual("POWER_GROUND", aliases["SAFETY_GROUND"])
+        self.assertEqual(
+            "POWER_GROUND",
+            aliases["/UI_10_S3_CORE_MEMORY_BOOT/POWER_GROUND"],
+        )
         self.assertEqual("FAULT_KILL", aliases["FAULT_LATCH_SENSE_AON"])
         self.assertEqual("RX_RST_N", aliases["RECEIVER_READY"])
         self.assertEqual("3V3_MAIN", aliases["LCD_LOGIC_3V3"])
@@ -123,20 +128,49 @@ class H2R2NetLedgerTests(unittest.TestCase):
         for row in self.rows:
             self.assertNotIn("route_alias_conflict", row["origin"])
 
+    def test_abstract_ground_targets_are_real_plane_nets_not_floating_aliases(self):
+        expected = {
+            "hub_rp.VREG_PGND": ("POWER_GROUND", "current_abstract_endpoint_canonical"),
+            "rf_rp.VREG_PGND": ("POWER_GROUND", "current_abstract_endpoint_canonical"),
+            "nrf0.GND": ("POWER_GROUND", "current_abstract_endpoint_canonical"),
+            "nrf0_external_sma.GROUND_TOP_LEFT": ("POWER_GROUND", "current_abstract_endpoint_canonical"),
+            "sd_esd_a.GND_3": ("POWER_GROUND", "current_abstract_endpoint_canonical"),
+            "pd_controller.ADCIN2": ("POWER_GROUND", "current_r2_board_local_topology"),
+        }
+        for endpoint, (net, origin) in expected.items():
+            self.assertEqual(net, self.by_endpoint[endpoint]["net"], endpoint)
+            self.assertEqual(origin, self.by_endpoint[endpoint]["origin"], endpoint)
+
+    def test_no_named_connected_net_is_a_one_pad_floating_island(self):
+        counts = Counter(
+            (row["project"], row["net"])
+            for row in self.rows
+            if row["disposition"] == "connected"
+        )
+        # The protected-pack FET exposes its internally common drain as one
+        # logical contact even though the package contains several drain pads.
+        allowed_internal_common_contacts = {
+            ("LESHY2-RF-R2", "PACK_FET_COMMON_DRAIN"),
+        }
+        self.assertEqual(
+            allowed_internal_common_contacts,
+            {key for key, count in counts.items() if count == 1},
+        )
+
     def test_every_safety_controller_fault_output_has_a_fail_low_bias(self):
         self.assertEqual(
             "S3_FAULT_RESET_REQUEST",
             self.by_endpoint["safety_s3_reset_pulldown.END_1"]["net"],
         )
         self.assertEqual(
-            "SAFETY_GROUND",
+            "POWER_GROUND",
             self.by_endpoint["safety_s3_reset_pulldown.END_2"]["net"],
         )
         self.assertEqual("EV_N9_U219_NFC", self.by_endpoint["evidence_mask.P17"]["net"])
         self.assertNotIn("evidence_mask_p17_pulldown.END_1", self.by_endpoint)
         self.assertEqual("C5_MUX_SEL_REQUEST", self.by_endpoint["evidence_mask.P12"]["net"])
         self.assertEqual(
-            "SAFETY_GROUND",
+            "POWER_GROUND",
             self.by_endpoint["evidence_mask_p12_pulldown.END_2"]["net"],
         )
 
@@ -178,7 +212,11 @@ class H2R2NetLedgerTests(unittest.TestCase):
             if name.startswith("historical_"):
                 self.assertFalse(source["authority"])
         historical = [row for row in self.rows if row["origin"].startswith("reconciled_historical")]
-        self.assertEqual(3293, len(historical))
+        self.assertEqual(2199, len(historical))
+        self.assertEqual(
+            1094,
+            self.ledger["summary"]["origin_counts"]["current_abstract_endpoint_canonical"],
+        )
         self.assertTrue(all(row["historical_topology_authority"] is False for row in historical))
         self.assertFalse(self.ledger["authorization"]["kicad_project_creation"])
 

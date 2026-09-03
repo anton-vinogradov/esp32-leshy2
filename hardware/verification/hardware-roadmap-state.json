@@ -3,7 +3,7 @@
   "baseline": "R2",
   "current_stage": "H6",
   "current_substep": "H6.0.2-R1",
-  "current_detail": "H6.0.1-R1 is complete: 1208 exact footprints, the four-stop/M2.5 enclosure stack and five relaxed microcoax service corridors pass their machine checks. H6.0.2-R1 now owns routing all 823 reviewed nets plus native schematic/PCB parity and zero-finding DRC. Purchasing and fabrication remain unauthorized.",
+  "current_detail": "H6.0.1-R1 is complete: 1208 exact footprints, the four-stop/M2.5 enclosure stack and five relaxed microcoax service corridors pass their machine checks. H6.0.2-R1 now owns routing all 789 reviewed canonical nets / 823 board-local physical nets plus native schematic/PCB parity and zero-finding DRC. Purchasing and fabrication remain unauthorized.",
   "preorder_release": {
     "status": "blocked",
     "assembled_device_quantity": 1,
