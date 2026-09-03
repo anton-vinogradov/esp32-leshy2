@@ -49,11 +49,12 @@ class H6R2PlacementTests(unittest.TestCase):
         self.assertEqual(428, boards["LESHY2-UI-R2"]["placed_instance_count"])
         self.assertEqual(780, boards["LESHY2-RF-R2"]["placed_instance_count"])
 
-    def test_native_board_hashes_and_six_layer_headers_match_the_audit(self):
+    def test_native_boards_and_six_layer_headers_match_the_placement_audit(self):
         for board in self.audit["boards"]:
             path = ROOT / board["output"]
             self.assertTrue(path.is_file(), path)
-            self.assertEqual(board["sha256"], sha256(path), path)
+            self.assertEqual(64, len(board["unrouted_seed_sha256"]))
+            self.assertEqual(64, len(board["placement_signature_sha256"]))
             text = path.read_text(encoding="utf-8")
             self.assertIn('(0 "F.Cu" signal)', text)
             self.assertIn('(4 "In1.Cu" signal)', text)
@@ -114,6 +115,40 @@ class H6R2PlacementTests(unittest.TestCase):
         )
         self.assertEqual(0, result.returncode, result.stdout)
         self.assertIn("1208/1208 positions; 0 hard conflicts; 0 unplaced", result.stdout)
+
+    def test_placement_signature_ignores_tracks_but_detects_footprint_movement(self):
+        if not KICAD_PYTHON.is_file():
+            self.skipTest("KiCad bundled pcbnew Python is unavailable")
+        board_path = ROOT / self.audit["boards"][0]["output"]
+        code = f"""
+import sys
+from pathlib import Path
+import pcbnew
+sys.path.insert(0, {str(SCRIPT.parent)!r})
+import h6_r2_placement as placement
+path = Path({str(board_path)!r})
+board = pcbnew.LoadBoard(str(path))
+baseline = placement.placement_signature_bytes(path.stem, board)
+track = pcbnew.PCB_TRACK(board)
+track.SetStart(pcbnew.VECTOR2I(pcbnew.FromMM(1), pcbnew.FromMM(1)))
+track.SetEnd(pcbnew.VECTOR2I(pcbnew.FromMM(2), pcbnew.FromMM(1)))
+track.SetWidth(pcbnew.FromMM(0.2))
+track.SetLayer(pcbnew.F_Cu)
+board.Add(track)
+assert placement.placement_signature_bytes(path.stem, board) == baseline
+footprint = next(iter(board.GetFootprints()))
+position = footprint.GetPosition()
+footprint.SetPosition(pcbnew.VECTOR2I(position.x + pcbnew.FromMM(0.1), position.y))
+assert placement.placement_signature_bytes(path.stem, board) != baseline
+"""
+        result = subprocess.run(
+            [str(KICAD_PYTHON), "-c", code],
+            cwd=ROOT,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+        )
+        self.assertEqual(0, result.returncode, result.stdout)
 
     def test_kicad_cli_parses_both_native_boards(self):
         cli = shutil.which("kicad-cli")

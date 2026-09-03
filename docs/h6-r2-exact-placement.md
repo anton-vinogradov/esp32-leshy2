@@ -22,12 +22,18 @@ authorize fabrication or purchase.
   display bed, ready-cut PSA guide and relaxed FPC slot on the UI board;
 - the current 5+5 direct-source antenna bank and user-facing board/screen
   silkscreen in the native boards;
-- one deterministic generator, machine contract and hash-bearing audit.
+- one deterministic unrouted-seed generator, machine contract and hash-bearing
+  placement audit.
 
 The [machine audit](../hardware/layout/generated/H6-R2-placement-audit.json)
 reports zero hard courtyard conflicts, zero unplaced instances and zero
-net/footprint mapping errors. Regeneration is byte-for-byte reproducible. KiCad
-10 parses both native boards and exports placement files from them.
+net/footprint mapping errors. Unrouted-seed regeneration is byte-for-byte
+reproducible. The routine `--check` uses a routing-insensitive placement
+signature: footprints, pad/net binding, setup, constraints and board geometry
+must still match, while tracks, vias and copper pours are preserved and ignored.
+The deliberately destructive `--write` mode remains only for rebuilding a clean
+unrouted seed. KiCad 10 parses both native boards and exports placement files
+from them.
 
 ## Exact-footprint corrections to the H1 drawing
 
@@ -79,3 +85,6 @@ Expected result:
 ```text
 H6-R2 placement pass: 1208/1208 positions; 0 hard conflicts; 0 unplaced
 ```
+
+This is safe on a routed board. Do not run `--write` after routing has begun: it
+intentionally replaces each PCB with the reviewed unrouted seed.

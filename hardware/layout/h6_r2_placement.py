@@ -1053,6 +1053,88 @@ def board_bytes(project: str, board) -> bytes:
     return (text.rstrip() + "\n").encode()
 
 
+def _balanced_form_end(text: str, start: int) -> int:
+    depth = 0
+    quoted = False
+    escaped = False
+    for index in range(start, len(text)):
+        character = text[index]
+        if quoted:
+            if escaped:
+                escaped = False
+            elif character == "\\":
+                escaped = True
+            elif character == '"':
+                quoted = False
+        elif character == '"':
+            quoted = True
+        elif character == "(":
+            depth += 1
+        elif character == ")":
+            depth -= 1
+            if depth == 0:
+                return index + 1
+    raise ValueError("unterminated KiCad S-expression")
+
+
+def placement_projection(text: str) -> bytes:
+    """Canonicalize KiCad board structure while excluding routed copper."""
+    root = text.find("(kicad_pcb")
+    if root < 0:
+        raise ValueError("not a KiCad PCB document")
+    outer_end = _balanced_form_end(text, root)
+    cursor = root + len("(kicad_pcb")
+    forms = []
+    while cursor < outer_end - 1:
+        while cursor < outer_end - 1 and text[cursor].isspace():
+            cursor += 1
+        if cursor >= outer_end - 1:
+            break
+        if text[cursor] != "(":
+            raise ValueError(f"unexpected KiCad board token at offset {cursor}")
+        end = _balanced_form_end(text, cursor)
+        form = text[cursor:end]
+        match = re.match(r"\(\s*([^\s()]+)", form)
+        if not match:
+            raise ValueError(f"cannot identify KiCad form at offset {cursor}")
+        head = match.group(1)
+        if head in {"segment", "via", "arc", "group"}:
+            cursor = end
+            continue
+        if head == "zone" and "(keepout" not in form:
+            cursor = end
+            continue
+        # Generated UUIDs are serialization identities, not placement data.
+        form = re.sub(r'(\(uuid\s+)"[0-9a-fA-F-]+"', r'\1"<uuid>"', form)
+        forms.append(form)
+        cursor = end
+    return ("(kicad_pcb\n" + "\n".join(sorted(forms)) + "\n)\n").encode()
+
+
+def placement_signature_bytes(project: str, board) -> bytes:
+    """Return a stable board projection that deliberately excludes routed copper.
+
+    The H6 placement generator remains the authority for footprints, pads, nets,
+    board graphics and setup.  Tracks, vias and ordinary copper zones belong to
+    the routed board and must neither make ``--check`` fail nor be erased by a
+    routine placement verification.  Rule areas are retained because they are
+    placement/routing constraints rather than routed copper.
+    """
+    with tempfile.TemporaryDirectory(prefix="leshy2-h6-placement-") as directory:
+        staged = Path(directory) / f"{project}-staged.kicad_pcb"
+        if not pcbnew.SaveBoard(str(staged), board):
+            raise ValueError(f"KiCad failed to stage {project} for placement signature")
+        return placement_projection(staged.read_text(encoding="utf-8"))
+
+
+def placement_signature_from_board_bytes(project: str, data: bytes) -> bytes:
+    """Project already-normalized serialized board bytes through KiCad once."""
+    with tempfile.TemporaryDirectory(prefix="leshy2-h6-seed-") as directory:
+        path = Path(directory) / f"{project}.kicad_pcb"
+        path.write_bytes(data)
+        return placement_signature_bytes(project, pcbnew.LoadBoard(str(path)))
+
+
 def svg_bytes(audit: dict) -> bytes:
     width_px, height_px = 1680, 1050
     scale = 5.35
@@ -1149,7 +1231,10 @@ def build() -> tuple[dict[Path, bytes], dict]:
         output_path = ROOT / contract["boards"][project]["output"]
         outputs[output_path] = data
         audit["output"] = str(output_path.relative_to(ROOT))
-        audit["sha256"] = sha256_bytes(data)
+        audit["unrouted_seed_sha256"] = sha256_bytes(data)
+        audit["placement_signature_sha256"] = sha256_bytes(
+            placement_signature_from_board_bytes(project, data)
+        )
         board_audits.append(audit)
     errors = [
         f"{board['project']}: {message}"
@@ -1161,7 +1246,7 @@ def build() -> tuple[dict[Path, bytes], dict]:
         )
     ]
     audit = {
-        "schema_version": 1,
+        "schema_version": 2,
         "artifact": "H6-R2 exact-footprint placement audit",
         "marker": contract["marker"],
         "status": "pass" if not errors else "fail",
@@ -1204,8 +1289,16 @@ def build() -> tuple[dict[Path, bytes], dict]:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--write", action="store_true", help="write both PCB files, audit and SVG")
-    parser.add_argument("--check", action="store_true", help="verify committed outputs are current")
+    parser.add_argument(
+        "--write",
+        action="store_true",
+        help="DESTRUCTIVE after routing: replace both PCB files with unrouted seeds, audit and SVG",
+    )
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="verify placement/setup while preserving and ignoring routed copper",
+    )
     args = parser.parse_args()
     if args.write == args.check:
         parser.error("choose exactly one of --write or --check")
@@ -1215,15 +1308,26 @@ def main() -> int:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_bytes(data)
     else:
-        stale = [
-            (
-                str(path.relative_to(ROOT)),
-                sha256_bytes(path.read_bytes()) if path.exists() else "missing",
-                sha256_bytes(data),
-            )
-            for path, data in outputs.items()
-            if not path.exists() or path.read_bytes() != data
-        ]
+        expected_signatures = {
+            ROOT / row["output"]: row["placement_signature_sha256"]
+            for row in audit["boards"]
+        }
+        stale = []
+        for path, data in outputs.items():
+            expected = sha256_bytes(data)
+            if not path.exists():
+                stale.append((str(path.relative_to(ROOT)), "missing", expected))
+                continue
+            if path.suffix == ".kicad_pcb":
+                actual_board = pcbnew.LoadBoard(str(path))
+                actual = sha256_bytes(
+                    placement_signature_bytes(path.stem, actual_board)
+                )
+                expected = expected_signatures[path]
+            else:
+                actual = sha256_bytes(path.read_bytes())
+            if actual != expected:
+                stale.append((str(path.relative_to(ROOT)), actual, expected))
         if stale:
             details = ", ".join(
                 f"{path} (actual {actual}, expected {expected})"

@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "artifact": "H6-R2 exact-footprint placement audit",
   "marker": "H6.0.1-R1",
   "status": "pass",
@@ -13243,7 +13243,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "sha256": "e1d6435cfa26f8056a987761bf35af4ebc92668a3ad3c12037363f1b13b6ac39"
+      "unrouted_seed_sha256": "e1d6435cfa26f8056a987761bf35af4ebc92668a3ad3c12037363f1b13b6ac39",
+      "placement_signature_sha256": "dc8ff6c7a0e7d9003b800e3bcdf1022d0771eb78f8903a8e7a52b128a7f0494c"
     },
     {
       "project": "LESHY2-RF-R2",
@@ -36916,7 +36917,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "sha256": "a1f435d025a592da71c5c49ca9bde9a543684820af1a6ae73db32ea798be53aa"
+      "unrouted_seed_sha256": "165f8cd6054eefaff8a4d83c7b9e156ef617d9a5750d4607c97db9bddbf9b64a",
+      "placement_signature_sha256": "f2105d6b3ce2fda0f213153f0e0b5ba1c4421de4af66fcbace25e71733794c8e"
     }
   ],
   "authorization": {
