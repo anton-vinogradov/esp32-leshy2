@@ -17,6 +17,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 AUDIT = ROOT / "hardware/layout/generated/H6-R2-routing-policy-audit.json"
+MAX_SPECCTRA_ROUNDING_NM = 100
 
 
 def load(path: Path) -> dict:
@@ -61,8 +62,8 @@ def placement_rounding(before: dict, after: dict) -> tuple[list[str], int]:
     for reference, old in before.items():
         new = after[reference]
         delta = max(abs(old[0] - new[0]), abs(old[1] - new[1]))
-        if old[2:] != new[2:] or delta > 1:
-            return [reference], max(delta, 2)
+        if old[2:] != new[2:] or delta > MAX_SPECCTRA_ROUNDING_NM:
+            return [reference], max(delta, MAX_SPECCTRA_ROUNDING_NM + 1)
         if delta:
             rounded.append(reference)
             max_delta = max(max_delta, delta)
@@ -73,6 +74,23 @@ def restore_placement(board, state: dict, pcbnew) -> None:
     for footprint in board.GetFootprints():
         old = state[footprint.GetReference()]
         footprint.SetPosition(pcbnew.VECTOR2I(old[0], old[1]))
+
+
+def expected_connection_count(board, net_names: set[str]) -> int:
+    pad_counts = {name: 0 for name in net_names}
+    for pad in board.GetPads():
+        name = pad.GetNetname()
+        if name in pad_counts:
+            pad_counts[name] += 1
+    missing = sorted(name for name, count in pad_counts.items() if count < 2)
+    if missing:
+        raise SystemExit(f"allowed nets have fewer than two physical pads: {missing[:10]}")
+    return sum(count - 1 for count in pad_counts.values())
+
+
+def unconnected_count(board) -> int:
+    board.BuildConnectivity()
+    return board.GetConnectivity().GetUnconnectedCount(False)
 
 
 def validate_and_import(
@@ -116,16 +134,29 @@ def validate_and_import(
     board = pcbnew.LoadBoard(str(board_path))
     if list(board.GetTracks()):
         raise SystemExit(f"{project}: bootstrap importer requires a track-free source board")
+    expected_connections = expected_connection_count(board, allowed_nets)
+    source_unconnected_count = unconnected_count(board)
     before = footprint_state(board)
     if not pcbnew.ImportSpecctraSES(board, str(session_path)):
         raise SystemExit(f"{project}: KiCad rejected the SES")
     after = footprint_state(board)
     rounded, max_delta = placement_rounding(before, after)
-    if max_delta > 1:
-        raise SystemExit(f"{project}: SES changed footprint placement beyond 1 nm: {rounded[:10]}")
+    if max_delta > MAX_SPECCTRA_ROUNDING_NM:
+        raise SystemExit(
+            f"{project}: SES changed footprint placement beyond "
+            f"{MAX_SPECCTRA_ROUNDING_NM} nm: {rounded[:10]}"
+        )
     restore_placement(board, before, pcbnew)
     if footprint_state(board) != before:
         raise SystemExit(f"{project}: could not restore exact source footprint coordinates")
+    candidate_unconnected_count = unconnected_count(board)
+    resolved_connections = source_unconnected_count - candidate_unconnected_count
+    remaining_connections = expected_connections - resolved_connections
+    if resolved_connections < 0 or remaining_connections < 0:
+        raise SystemExit(
+            f"{project}: native connectivity changed impossibly; "
+            f"expected={expected_connections}, resolved={resolved_connections}"
+        )
 
     tracks = list(board.GetTracks())
     imported_nets = {track.GetNetname() for track in tracks}
@@ -165,6 +196,11 @@ def validate_and_import(
         "routable_layers": sorted(routable_layers),
         "used_trace_layers": sorted(route_layers),
         "allowed_net_count": len(allowed_nets),
+        "expected_allowed_connection_count": expected_connections,
+        "resolved_allowed_connection_count": resolved_connections,
+        "remaining_allowed_connection_count": remaining_connections,
+        "source_total_unconnected_count": source_unconnected_count,
+        "candidate_total_unconnected_count": candidate_unconnected_count,
         "routed_net_count": len(imported_nets),
         "track_item_count": len(tracks),
         "via_count": sum(isinstance(track, pcbnew.PCB_VIA) for track in tracks),
@@ -194,7 +230,8 @@ def main() -> int:
     print(
         f"H6-R2 routing session pass: {report['project']}; "
         f"{report['routed_net_count']} allowed nets; {report['track_item_count']} track items; "
-        f"{report['via_count']} vias; placement unchanged"
+        f"{report['via_count']} vias; {report['resolved_allowed_connection_count']} connections resolved; "
+        f"{report['remaining_allowed_connection_count']} remain; placement unchanged"
     )
     return 0
 

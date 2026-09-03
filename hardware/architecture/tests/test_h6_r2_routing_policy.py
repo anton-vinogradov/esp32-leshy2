@@ -6,7 +6,12 @@ from pathlib import Path
 
 from hardware.layout.h6_r2_routing_drc_delta import item_net, violation_fingerprint
 from hardware.layout.h6_r2_kicad_net_bindings import logical_pin_map, pcb_net_name
-from hardware.layout.h6_r2_routing_session import placement_rounding, session_nets
+from hardware.layout.h6_r2_routing_session import (
+    MAX_SPECCTRA_ROUNDING_NM,
+    expected_connection_count,
+    placement_rounding,
+    session_nets,
+)
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -148,6 +153,37 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         )
         self.assertEqual(["U1"], rounded)
         self.assertEqual(1, delta)
+        rounded, delta = placement_rounding(
+            {"MK1": (100, 200, 0.0, True)},
+            {"MK1": (100 + MAX_SPECCTRA_ROUNDING_NM, 200, 0.0, True)},
+        )
+        self.assertEqual(["MK1"], rounded)
+        self.assertEqual(MAX_SPECCTRA_ROUNDING_NM, delta)
+        rounded, delta = placement_rounding(
+            {"MK1": (100, 200, 0.0, True)},
+            {"MK1": (100 + MAX_SPECCTRA_ROUNDING_NM + 1, 200, 0.0, True)},
+        )
+        self.assertEqual(["MK1"], rounded)
+        self.assertEqual(MAX_SPECCTRA_ROUNDING_NM + 1, delta)
+        rounded, delta = placement_rounding(
+            {"U1": (100, 200, 0.0, True)},
+            {"U1": (100, 200, 90.0, True)},
+        )
+        self.assertEqual(["U1"], rounded)
+        self.assertGreater(delta, MAX_SPECCTRA_ROUNDING_NM)
+
+        class Pad:
+            def __init__(self, net):
+                self.net = net
+
+            def GetNetname(self):
+                return self.net
+
+        class Board:
+            def GetPads(self):
+                return [Pad("A"), Pad("A"), Pad("A"), Pad("B"), Pad("B"), Pad("OTHER")]
+
+        self.assertEqual(3, expected_connection_count(Board(), {"A", "B"}))
         self.assertEqual("/UI/ONE", item_net("Track [/UI/ONE] on F.Cu"))
         violation = {
             "type": "clearance",

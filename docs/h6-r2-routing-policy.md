@@ -27,7 +27,7 @@
 - abstract RF, safety, ESD and power-ground anchors are physically canonicalized onto the solid `POWER_GROUND`; only `AUDIO_GROUND` remains local and joins it through explicit 0-ohm link `R172`;
 - the current JLCPCB calculator sets outer 50-ohm RF CPWG to 5.31-mil width / 6-mil lateral copper gap and 90-ohm USB to 5.31-mil width / 6-mil pair gap;
 - canonical `DP/DM` identities remain in the contracts, while physical KiCad net names end in `_P/_N`, allowing the native differential router to discover all 12 pairs;
-- no automatic result is accepted before KiCad import, visual review and native DRC.
+- no automatic result is accepted before KiCad import, visual review and native DRC; completeness uses the full native connectivity count rather than the DRC JSON list capped at 499 rows.
 
 ## Disposable helper workspace
 
