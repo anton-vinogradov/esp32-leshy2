@@ -5,7 +5,7 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "21c741a9eacf3eafb76e5b535ca1037a7e1d99c5de7d161567da2179b7d43a2f",
+    "contract_sha256": "03a27c3468d814f84cd959c5ee13ce0c4e7bd11302c732d91121527398ab616c",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "66321938e7ea53875639ad6841f02209aaf08510054323c0108d8a5077813054",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -17,7 +17,7 @@
     "symbol_library": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
     "symbol_library_sha256": "af13863573b2005e268c4535d0a70937f89b762919fab03655fe94edfc900e8d",
     "kicad_net_bindings": "hardware/layout/generated/H6-R2-kicad-net-bindings.json",
-    "kicad_net_bindings_sha256": "af7083e3400191f102e0b11a7fb963d4fa72e3222499e313c56502a0a9940ae3"
+    "kicad_net_bindings_sha256": "828873273d0e5e0154bb8b5f33fdddb5de8cebd45b44f5b563a8d13e3f26b667"
   },
   "summary": {
     "board_count": 2,
@@ -34,15 +34,17 @@
     "manufacturer": "JLCPCB",
     "name": "JLC06161H-3313 6-layer impedance-control stackup",
     "official_stackup_id": "JLC06161H-3313",
-    "finished_thickness_mm": 1.6,
+    "order_thickness_mm": 1.6,
+    "calculator_finished_thickness_mm": 1.54,
+    "calculator_finished_thickness_tolerance_percent": 10,
     "outer_copper_mm": 0.035,
     "inner_copper_mm": 0.0152,
     "outer_prepreg": "3313 x1, 0.0994 mm nominal",
     "inner_prepreg": "2116 x1, 0.1088 mm nominal",
     "core_each_mm": 0.55,
-    "source": "https://jlcpcb.com/impedance",
+    "source": "https://jlcpcb.com/pcb-impedance-calculator/",
     "verified_at": "2026-09-03",
-    "selection_status": "placement-time candidate; H6.0.4/H6.0.5 bind exact trace geometry and order-time calculator values"
+    "selection_status": "current standard/recommended JLCPCB stack; order-time calculator recheck remains mandatory"
   },
   "boards": [
     {
@@ -13241,7 +13243,7 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "sha256": "a77868676e9e22740b59cd75b3324341239a717cecbe3c995c82b5617000c9f8"
+      "sha256": "e1d6435cfa26f8056a987761bf35af4ebc92668a3ad3c12037363f1b13b6ac39"
     },
     {
       "project": "LESHY2-RF-R2",
@@ -36914,7 +36916,7 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "sha256": "5728d14ffa792a955a37ad1a5a6f9909abeb19862ce2b0d58d85bb2a608bdc7f"
+      "sha256": "a1f435d025a592da71c5c49ca9bde9a543684820af1a6ae73db32ea798be53aa"
     }
   ],
   "authorization": {

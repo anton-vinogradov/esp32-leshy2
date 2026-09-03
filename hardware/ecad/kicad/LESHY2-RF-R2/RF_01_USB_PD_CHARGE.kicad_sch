@@ -5340,12 +5340,12 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "7fd97cc2-eeff-543d-9032-06e7ede0b2bb")
 	)
-	(label "USB2_DP_CONNECTOR"
+	(label "USB2_CONNECTOR_P"
 		(at 767.08 127.00 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "4155104b-d412-57a8-9a7b-1693365a9af8")
 	)
-	(label "USB2_DM_CONNECTOR"
+	(label "USB2_CONNECTOR_N"
 		(at 767.08 129.54 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "55776808-f8b0-5f65-8c93-433437134562")
@@ -5378,12 +5378,12 @@
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "000c3c34-b33a-5162-9781-b248ee15555f")
 	)
-	(label "USB2_DP_CONNECTOR"
+	(label "USB2_CONNECTOR_P"
 		(at 807.72 124.46 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "5135fa7f-f405-510f-94d0-e961517df8e5")
 	)
-	(label "USB2_DM_CONNECTOR"
+	(label "USB2_CONNECTOR_N"
 		(at 807.72 127.00 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "0f44993e-9763-51f6-9580-16d39a18cd4f")
@@ -7414,12 +7414,12 @@
 			)
 		)
 	)
-	(label "USB2_DP_CONNECTOR"
+	(label "USB2_CONNECTOR_P"
 		(at 309.88 190.50 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "9bf72689-feca-5a99-8d6e-691c012068c0")
 	)
-	(label "USB2_DM_CONNECTOR"
+	(label "USB2_CONNECTOR_N"
 		(at 309.88 193.04 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "03506a91-1bee-5135-8063-a0b6745bccb9")
@@ -7479,13 +7479,13 @@
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "2cbef06d-2715-5f8b-b516-ca44b87cf805")
 	)
-	(hierarchical_label "S3_USB_DM"
+	(hierarchical_label "S3_USB_N"
 		(shape bidirectional)
 		(at 350.52 195.58 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "b2257d48-d13e-5f8b-af99-c84038f93c09")
 	)
-	(hierarchical_label "S3_USB_DP"
+	(hierarchical_label "S3_USB_P"
 		(shape bidirectional)
 		(at 350.52 198.12 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))

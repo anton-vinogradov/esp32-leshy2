@@ -7,6 +7,8 @@ import xml.etree.ElementTree as ET
 from collections import Counter
 from pathlib import Path
 
+from hardware.ecad.h2_r2_native_kicad import kicad_net_name
+
 
 ROOT = Path(__file__).resolve().parents[3]
 SCRIPT = ROOT / "hardware/ecad/h2_r2_native_kicad.py"
@@ -129,6 +131,19 @@ class H2R2NativeKiCadTests(unittest.TestCase):
             self.assertEqual(0.20, rules["min_through_hole_diameter"])
             self.assertEqual(0.40, rules["min_via_diameter"])
             self.assertEqual(0.20, project["net_settings"]["classes"][0]["via_drill"])
+
+    def test_usb_physical_labels_are_native_kicad_pairs(self):
+        self.assertEqual("S3_USB_P", kicad_net_name("S3_USB_DP"))
+        self.assertEqual("S3_USB_N", kicad_net_name("S3_USB_DM"))
+        self.assertEqual(
+            "C5_SERVICE_USB_CONNECTOR_P",
+            kicad_net_name("C5_SERVICE_USB_DP_CONNECTOR"),
+        )
+        self.assertEqual(
+            "C5_SERVICE_USB_CONNECTOR_N",
+            kicad_net_name("C5_SERVICE_USB_DM_CONNECTOR"),
+        )
+        self.assertEqual("LCD_DB0", kicad_net_name("LCD_DB0"))
 
     def test_project_local_references_remain_unique(self):
         counts = Counter((row["project"], row["reference"]) for row in self.instances)

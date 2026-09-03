@@ -339,11 +339,11 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_sch",
-      "sha256": "f06f02a34e65d9d9bceb0bc6ed7d17aed0b26503baac57de263676e43b3c0209"
+      "sha256": "d001af9df0358683c8eb49516726d653d8b5cc721f70cd57845263de22bd0631"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_01_USB_PD_CHARGE.kicad_sch",
-      "sha256": "1797bd2f56083f54ccf470d861abb9ee10547cb9144aeaa6b7df0595a9b47511"
+      "sha256": "409320258afdc4336c3e0df4f5de3860abec1ee6b100a2c256cfd5b4656f6cc3"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_02_PACK_SAFETY_AON.kicad_sch",
@@ -355,7 +355,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_10_RP2354_CORE_SERVICE.kicad_sch",
-      "sha256": "cfd5545d52d085c051dd927c6e7d3620ef75ce58401146e1cb0a4447eeb05e9d"
+      "sha256": "222635e864182d3091bf76f6a459dde2ac9bfd03a7feb23877d275d1856f5bc9"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_20_CC1101_VOICE_TX.kicad_sch",
@@ -379,7 +379,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_40_INTERBOARD_M1.kicad_sch",
-      "sha256": "d9f890483f10c69a7a3224f51c1cdb66e1b3663a54d405b20e6c0ece03d5bfe2"
+      "sha256": "5d3bb2c774e156b73470eb30ec612299c33f958a8ef7d17d5f10a8b6834a6421"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_50_TX_SAFETY_EVIDENCE.kicad_sch",
@@ -403,11 +403,11 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch",
-      "sha256": "b5ee559bd8fa88a0222566dfbadd065e60d2058946f4dc445633410cd8cbb6af"
+      "sha256": "63d988df7a7bfcb63cadf9b2946948c7eb8310f2298b27b5357218886d6e473e"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_10_S3_DISPLAY_TOUCH.kicad_sch",
-      "sha256": "353cf17bdc794f3a5fc4b7ccfc2d6f7115a5481cf9cf3b883c15dfb2e5dcd3f1"
+      "sha256": "a24ce5c86730a9b4f1ac915bf09bf514a91d0d2f83a0e22f8043219a306bef5a"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_11_STORAGE_CONTROLS_INDICATORS.kicad_sch",
@@ -415,11 +415,11 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch",
-      "sha256": "045c0d96cde476770f273d96a9fc719c68d4b8e9b0cfbf7c32a4d5d82e6f39d1"
+      "sha256": "8c3da63bf06a053895c2e16ca7a48f2231e02bb9cba9144ec66d3e0a70a3aa4c"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_30_HUB_RP_CORE_SERVICE.kicad_sch",
-      "sha256": "2b9ff83f1cd526a9623febc0457411f30fac3afdab6b1efb94dcb7debabe348c"
+      "sha256": "c51fb0471c0f102d496e08289146e99e798b34e1dfec9203642dade1721feda5"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_31_NRF24_X3_TX_EVIDENCE.kicad_sch",
@@ -427,7 +427,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_40_INTERBOARD_M1.kicad_sch",
-      "sha256": "404b145ff5eaced7965c61ab93d6ea2bda587f8b231078c29230f85ec814fe5a"
+      "sha256": "a445b4704e98f51eae445fc2041f3bf057f093bec9ac652f940781b572119b05"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_50_FRONT_POWER_SAFETY.kicad_sch",

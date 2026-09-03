@@ -246,7 +246,7 @@ placement and routing had not started; current H6 progress is recorded above.
 21. ✅ [`H5.0.3-R1`](h5-r1-acceptance.md): preserve the historical 210-route / 1,050-placement evidence, owner final assembly and exact `Ettinger 007.02.611` 11-mm stops.
 22. ✅ [`H5-R2.1`](h5-r2-current-route.md): revalidate all 249 current purchasable groups / 1,216 articles with zero unmapped route and expose the one `WBC16-1TLC` order-time sourcing gate.
 23. ✅ `H6.0.1-R1`: [exact-footprint placement](h6-r2-exact-placement.md) passes for 1,208/1,208 positions with zero hard conflict; the [mechanical stack](h6-r2-mechanical-stack.md) locks wall bearings, independent PCB capture, exact 20-mm M2.5 nylon screws/captive nuts and the one-loose-screw load path; the [microcoax service result](h6-r2-microcoax-service.md) locks five relaxed corridors, five clear saddles and ten antenna solder windows.
-24. ▶ `H6.0.2-R1`: the [fail-closed routing policy](h6-r2-routing-policy.md) classifies all 858 board-local net instances / 823 canonical nets and permits automatic proposals only for ordinary low-rate controls; route every net, prove native schematic/PCB parity and reach zero-finding DRC without violating H6.0.1.
+24. ▶ `H6.0.2-R1`: the [fail-closed routing policy](h6-r2-routing-policy.md) classifies all 858 board-local net instances / 823 canonical nets, permits automatic proposals only for ordinary low-rate controls, binds current `JLC06161H-3313` RF/USB geometry and exposes all 12 USB segments as native KiCad `_P/_N` pairs; route every net, prove native schematic/PCB parity and reach zero-finding DRC without violating H6.0.1.
 
 H5-R2.1 is current and reviewed: all 249 purchasable groups / 1,216 articles
 have controlled routes, with one explicit order-time Global Sourcing or

@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[3]
 CONTRACT = ROOT / "hardware/layout/h6-r2-routing-policy.json"
 AUDIT = ROOT / "hardware/layout/generated/H6-R2-routing-policy-audit.json"
 SCRIPT = ROOT / "hardware/layout/h6_r2_routing_policy.py"
+RULES_SCRIPT = ROOT / "hardware/layout/h6_r2_kicad_rules.py"
 WORKSPACE_SCRIPT = ROOT / "hardware/layout/h6_r2_routing_workspace.py"
 KICAD_PYTHON = Path(
     "/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/"
@@ -58,13 +59,28 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         display = {row["canonical_net"] for row in self.audit["rows"] if row["routing_class"] == "DISPLAY_I8080"}
         self.assertEqual({"LCD_DC", "LCD_WR_N", *(f"LCD_DB{i}" for i in range(8))}, display)
         self.assertTrue(all(row["routing_class"] == "USB_DIFFERENTIAL" for row in self.audit["rows"] if "USB_DM" in row["canonical_net"] or "USB_DP" in row["canonical_net"] or row["canonical_net"].startswith(("USB2_DM", "USB2_DP"))))
+        usb_names = [
+            row["kicad_net"]
+            for row in self.audit["rows"]
+            if row["routing_class"] == "USB_DIFFERENTIAL"
+        ]
+        self.assertTrue(all(name.endswith(("_P", "_N")) for name in usb_names))
+        self.assertEqual(
+            {name[:-2] for name in usb_names if name.endswith("_P")},
+            {name[:-2] for name in usb_names if name.endswith("_N")},
+        )
 
     def test_stackup_identity_and_core_thickness_are_not_ambiguous(self):
         stack = self.audit["stackup_binding"]
         self.assertEqual("JLC06161H-3313", stack["official_stackup_id"])
-        self.assertEqual(1.6, stack["finished_thickness_mm"])
+        self.assertEqual(1.6, stack["order_thickness_mm"])
+        self.assertEqual(1.54, stack["calculator_finished_thickness_mm"])
         self.assertEqual(0.55, stack["core_each_mm"])
-        self.assertIn("pending H6.0.4", stack["exact_trace_geometry_status"])
+        self.assertIn("bound to the current JLCPCB calculator", stack["exact_trace_geometry_status"])
+        self.assertEqual(0.134874, stack["outer_layer_geometries"]["RF_50R_CPWG"]["trace_width_mm"])
+        self.assertEqual(0.1524, stack["outer_layer_geometries"]["RF_50R_CPWG"]["coplanar_gap_mm"])
+        self.assertEqual(0.134874, stack["outer_layer_geometries"]["USB_90R_DIFFERENTIAL"]["trace_width_mm"])
+        self.assertEqual(0.1524, stack["outer_layer_geometries"]["USB_90R_DIFFERENTIAL"]["pair_gap_mm"])
 
     def test_known_sensitive_lines_cannot_fall_into_the_automatic_class(self):
         assigned = {
@@ -87,6 +103,27 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         )
         self.assertEqual(0, result.returncode, result.stdout)
         self.assertIn("0 unclassified", result.stdout)
+
+        rules = subprocess.run(
+            ["python3", str(RULES_SCRIPT), "--check"],
+            cwd=ROOT,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+        )
+        self.assertEqual(0, rules.returncode, rules.stdout)
+        self.assertIn("exact RF/USB outer-layer geometry", rules.stdout)
+
+    def test_kicad_rules_bind_exact_calculator_geometry(self):
+        for project in ("LESHY2-UI-R2", "LESHY2-RF-R2"):
+            path = ROOT / f"hardware/ecad/kicad/{project}/{project}.kicad_dru"
+            text = path.read_text(encoding="utf-8")
+            self.assertIn("JLC06161H-3313", text)
+            self.assertIn("5.31mil width 6.00mil gap", text)
+            self.assertIn("(constraint track_width (min 5.31mil) (opt 5.31mil) (max 5.31mil))", text)
+            self.assertIn("(constraint diff_pair_gap (min 6.00mil) (opt 6.00mil) (max 6.00mil))", text)
+            self.assertIn('(layer inner)', text)
+            self.assertIn('(constraint disallow track via)', text)
 
     def test_session_and_drc_guards_parse_machine_artifacts(self):
         self.assertEqual(

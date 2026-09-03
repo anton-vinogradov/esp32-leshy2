@@ -46,8 +46,10 @@
 > [five microcoax service corridors](docs/h6-r2-microcoax-service.md) passed.
 > The [H6.0.2 routing policy](docs/h6-r2-routing-policy.md) now classifies all
 > 858 board-local net instances / 823 canonical nets; only ordinary low-rate
-> controls are eligible for automatic route proposals. Routing and native net
-> parity remain current.
+> controls are eligible for automatic route proposals. The standard
+> `JLC06161H-3313` calculator geometry is now enforced in KiCad: outer RF is
+> 50-ohm CPWG at 5.31/6 mil and all 12 USB segments are native `_P/_N` pairs at
+> 90 ohm, 5.31/6 mil. Routing and native net parity remain current.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
 > controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad

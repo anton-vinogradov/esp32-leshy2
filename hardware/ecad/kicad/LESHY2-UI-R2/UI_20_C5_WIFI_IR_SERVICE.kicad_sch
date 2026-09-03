@@ -5812,12 +5812,12 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "eec24934-0f01-5818-970f-c2452c0350de")
 	)
-	(label "C5_SERVICE_USB_DP_CONNECTOR"
+	(label "C5_SERVICE_USB_CONNECTOR_P"
 		(at 858.52 91.44 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "ce88a68c-a55f-5153-be05-a087ff06f038")
 	)
-	(label "C5_SERVICE_USB_DM_CONNECTOR"
+	(label "C5_SERVICE_USB_CONNECTOR_N"
 		(at 858.52 93.98 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "8fc50dab-6d6e-54cf-810b-0a428806fd62")
@@ -5850,12 +5850,12 @@
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "e7336250-1da0-59ac-a6fc-f47c25b865c1")
 	)
-	(label "C5_SERVICE_USB_DP_CONNECTOR"
+	(label "C5_SERVICE_USB_CONNECTOR_P"
 		(at 899.16 88.90 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "60c55dab-a8cb-5cae-971c-952ea478f09f")
 	)
-	(label "C5_SERVICE_USB_DM_CONNECTOR"
+	(label "C5_SERVICE_USB_CONNECTOR_N"
 		(at 899.16 91.44 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "cd9108a0-cc24-571d-b89c-18fae605a154")
@@ -8676,12 +8676,12 @@
 			)
 		)
 	)
-	(label "C5_SERVICE_USB_DM_BRANCH"
+	(label "C5_SERVICE_USB_BRANCH_N"
 		(at 584.20 195.58 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "bf6a5738-3f3c-5ec7-a86f-93c3226ec742")
 	)
-	(label "C5_SERVICE_USB_DM_CONNECTOR"
+	(label "C5_SERVICE_USB_CONNECTOR_N"
 		(at 624.84 195.58 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "db59bdc1-ae58-57bd-9b3e-970e792c69b7")
@@ -8750,12 +8750,12 @@
 			)
 		)
 	)
-	(label "C5_SERVICE_USB_DP_BRANCH"
+	(label "C5_SERVICE_USB_BRANCH_P"
 		(at 858.52 205.74 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "c910238c-85fb-5377-88b0-3add515d6e38")
 	)
-	(label "C5_SERVICE_USB_DP_CONNECTOR"
+	(label "C5_SERVICE_USB_CONNECTOR_P"
 		(at 899.16 205.74 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "f807ed2f-364e-559c-9cfa-c8fc8fdca1d0")
@@ -11479,12 +11479,12 @@
 			)
 		)
 	)
-	(label "C5_SERVICE_USB_DP_CONNECTOR"
+	(label "C5_SERVICE_USB_CONNECTOR_P"
 		(at 492.76 299.72 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "cfddbd48-07b5-56cb-94b0-939882f2dcbb")
 	)
-	(label "C5_SERVICE_USB_DM_CONNECTOR"
+	(label "C5_SERVICE_USB_CONNECTOR_N"
 		(at 492.76 302.26 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "a76e92ff-ce75-58e6-836a-2bfd93296e6a")
@@ -11607,12 +11607,12 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "a2a4e991-5d80-51d6-a012-797610ae3abd")
 	)
-	(label "C5_SERVICE_USB_DM_BRANCH"
+	(label "C5_SERVICE_USB_BRANCH_N"
 		(at 716.28 297.18 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "15e95fa2-ee84-569e-bb1e-9c07464f71c6")
 	)
-	(label "C5_SERVICE_USB_DP_BRANCH"
+	(label "C5_SERVICE_USB_BRANCH_P"
 		(at 716.28 299.72 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "b2738173-d4e7-5229-873d-8c44d78cfffa")

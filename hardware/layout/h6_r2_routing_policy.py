@@ -323,9 +323,10 @@ def doc(audit: dict, *, ru: bool) -> str:
         labels = {"manual_only": "вручную", "plane_or_local_pour_manual": "плоскость/полигон вручную", "automatic_helper_allowed_then_manual_review": "автопредложение + ручная проверка"}
         notes = (
             "## Что зафиксировано\n\n"
-            f"- точный стек: `{audit['stackup_binding']['official_stackup_id']}`, 6 слоёв, 1,6 мм, два core по 0,55 мм;\n"
+            f"- точный стек: `{audit['stackup_binding']['official_stackup_id']}`, заказной номинал 1,6 мм, расчётная готовая толщина 1,54 мм ±10 %, два core по 0,55 мм;\n"
             f"- четыре внешних USB-порта разворачиваются в `{audit['summary']['usb_pair_count']}` полных сегментов диффпар, и ровно 10 линий прямого i8080-8 найдены автоматически;\n"
-            "- ширины RF/USB не угадываются: они будут взяты из текущего калькулятора JLCPCB в H6.0.4/H6.0.5;\n"
+            "- текущий калькулятор JLCPCB задаёт внешнюю RF CPWG 50 Ом как 5,31 mil ширины / 6 mil до боковой меди, а USB 90 Ом — как 5,31 mil ширины / 6 mil между линиями;\n"
+            "- канонические `DP/DM` сохранены в контрактах, но физические KiCad-сети заканчиваются на `_P/_N`, поэтому штатный дифференциальный роутер видит все 12 пар;\n"
             "- результат автотрассировки не принимается без импорта в KiCad, визуального ревью и штатного DRC.\n\n"
             "## Одноразовая рабочая область помощника\n\n"
             "`hardware/layout/h6_r2_routing_workspace.py` экспортирует временные DSN без описаний защищённых сетей. "
@@ -356,9 +357,10 @@ def doc(audit: dict, *, ru: bool) -> str:
         labels = {"manual_only": "manual", "plane_or_local_pour_manual": "manual plane/pour", "automatic_helper_allowed_then_manual_review": "automatic proposal + manual review"}
         notes = (
             "## What is locked\n\n"
-            f"- exact stack: `{audit['stackup_binding']['official_stackup_id']}`, six layers, 1.6 mm, two 0.55-mm cores;\n"
+            f"- exact stack: `{audit['stackup_binding']['official_stackup_id']}`, 1.6-mm order nominal, 1.54-mm ±10% calculated finished thickness, and two 0.55-mm cores;\n"
             f"- four external USB ports expand to `{audit['summary']['usb_pair_count']}` complete differential-pair segments, and exactly ten direct i8080-8 nets are detected automatically;\n"
-            "- RF/USB widths are not guessed: H6.0.4/H6.0.5 bind them to the current JLCPCB calculator;\n"
+            "- the current JLCPCB calculator sets outer 50-ohm RF CPWG to 5.31-mil width / 6-mil lateral copper gap and 90-ohm USB to 5.31-mil width / 6-mil pair gap;\n"
+            "- canonical `DP/DM` identities remain in the contracts, while physical KiCad net names end in `_P/_N`, allowing the native differential router to discover all 12 pairs;\n"
             "- no automatic result is accepted before KiCad import, visual review and native DRC.\n\n"
             "## Disposable helper workspace\n\n"
             "`hardware/layout/h6_r2_routing_workspace.py` exports temporary DSNs without the protected net definitions. "

@@ -59,12 +59,12 @@
 			(effects (font (size 1.27 1.27)))
 			(uuid "43fa79fd-1fc0-5d0b-bf5c-6c27092f922f")
 		)
-		(pin "S3_USB_DM" bidirectional
+		(pin "S3_USB_N" bidirectional
 			(at 274.32 35.56 0)
 			(effects (font (size 1.27 1.27)))
 			(uuid "11629d40-57e8-52b8-91ea-ff8ffa84e017")
 		)
-		(pin "S3_USB_DP" bidirectional
+		(pin "S3_USB_P" bidirectional
 			(at 274.32 36.83 0)
 			(effects (font (size 1.27 1.27)))
 			(uuid "9a8dad79-d425-5fe3-bb77-e9082f902f2c")
@@ -1446,12 +1446,12 @@
 			(effects (font (size 1.27 1.27)))
 			(uuid "5028765a-b4e6-5186-9d74-2655c245bc81")
 		)
-		(pin "S3_USB_DM" bidirectional
+		(pin "S3_USB_N" bidirectional
 			(at 274.32 538.48 0)
 			(effects (font (size 1.27 1.27)))
 			(uuid "39d3a1b6-3cfe-5d44-be67-4f4a122b16d9")
 		)
-		(pin "S3_USB_DP" bidirectional
+		(pin "S3_USB_P" bidirectional
 			(at 274.32 539.75 0)
 			(effects (font (size 1.27 1.27)))
 			(uuid "3ae3da85-1513-5d98-85d9-74a111f1d9bc")

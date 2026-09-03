@@ -50,11 +50,12 @@ These are production-footprint corrections, not product-function changes.
 
 ## Stack candidate and H6.0.1 closure
 
-The current factory table identifies the 1.6-mm candidate as
-[`JLC06161H-3313`](https://jlcpcb.com/impedance): 0.035-mm outer copper,
+The current factory calculator identifies the standard/recommended 1.6-mm
+order option as [`JLC06161H-3313`](https://jlcpcb.com/pcb-impedance-calculator/),
+with a calculated finished thickness of 1.54 mm ±10%: 0.035-mm outer copper,
 0.0152-mm inner copper, 0.0994-mm outer 3313 prepreg, 0.1088-mm centre 2116
-prepreg and two 0.55-mm cores. H6.0.4/H6.0.5 must still bind actual trace
-widths and order-calculator values before release.
+prepreg and two 0.55-mm cores. The current outer-layer geometry is now bound
+in the routing policy; an order-time calculator recheck remains mandatory.
 
 The [mechanical-stack slice](h6-r2-mechanical-stack.md) now locks the enclosure
 capture lips, four pilot datums, wall bearings and exact 20-mm nylon

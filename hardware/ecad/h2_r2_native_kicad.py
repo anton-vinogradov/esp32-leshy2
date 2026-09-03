@@ -43,6 +43,21 @@ def escaped(value: object) -> str:
     return str(value).replace("\\", "\\\\").replace('"', '\\"')
 
 
+def kicad_net_name(canonical: str) -> str:
+    """Give USB pairs a terminal P/N suffix understood by KiCad's router.
+
+    The reviewed cross-domain contract keeps the conventional DP/DM spelling.
+    KiCad, however, discovers differential pairs only from a common basename
+    followed by P/N (or +/-).  Move the polarity marker to the physical label's
+    final suffix without changing the canonical net identity.
+    """
+    match = re.match(r"^(.*(?:USB2|USB))_D([PM])(.*)$", canonical)
+    if not match:
+        return canonical
+    polarity = "P" if match.group(2) == "P" else "N"
+    return f"{match.group(1)}{match.group(3)}_{polarity}"
+
+
 def natural_key(value: str) -> tuple:
     return tuple(int(part) if part.isdigit() else part for part in re.split(r"(\d+)", value))
 
@@ -297,7 +312,7 @@ def child_schematic(
                 f"net-label:{project}:{sheet_id}:{instance['instance']}:{pin['number']}:{net}"
             )
             lines += [
-                f'\t({token} "{escaped(net)}"{shape}',
+                f'\t({token} "{escaped(kicad_net_name(net))}"{shape}',
                 f"\t\t(at {pin_x:.2f} {pin_y:.2f} {angle})",
                 f"\t\t{effects(justify)}",
                 f'\t\t(uuid "{label_uuid}")',
@@ -413,7 +428,7 @@ def root_schematic(project: dict, interfaces: dict[str, list[str]]) -> str:
             pin_x, pin_y = x + width, y + 6.35 + pin_index * root_pin_pitch
             pin_positions[net].append((pin_x, pin_y, sheet_id))
             lines += [
-                f'\t\t(pin "{escaped(net)}" bidirectional',
+                f'\t\t(pin "{escaped(kicad_net_name(net))}" bidirectional',
                 f"\t\t\t(at {pin_x:.2f} {pin_y:.2f} 0)",
                 f"\t\t\t{effects()}",
                 f'\t\t\t(uuid "{stable_uuid(f"root-pin:{project_id}:{sheet_id}:{net}")}")',

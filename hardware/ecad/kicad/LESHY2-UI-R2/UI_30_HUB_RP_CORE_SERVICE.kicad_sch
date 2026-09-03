@@ -4169,12 +4169,12 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "43f4125e-7495-57a5-a13a-48e74cd9cf29")
 	)
-	(label "HUB_RP_SERVICE_USB_DP_CONNECTOR"
+	(label "HUB_RP_SERVICE_USB_CONNECTOR_P"
 		(at 949.96 91.44 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "528439b2-3b29-57d6-88dd-d29646ed2dd5")
 	)
-	(label "HUB_RP_SERVICE_USB_DM_CONNECTOR"
+	(label "HUB_RP_SERVICE_USB_CONNECTOR_N"
 		(at 949.96 93.98 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "fd225bb0-8fc2-5719-a625-997f0af33fd5")
@@ -4207,12 +4207,12 @@
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "ade31023-f06f-5f87-9f46-93713660d92a")
 	)
-	(label "HUB_RP_SERVICE_USB_DP_CONNECTOR"
+	(label "HUB_RP_SERVICE_USB_CONNECTOR_P"
 		(at 990.60 88.90 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "4fe1cf58-7a16-5c70-9fcd-4911dd37ff92")
 	)
-	(label "HUB_RP_SERVICE_USB_DM_CONNECTOR"
+	(label "HUB_RP_SERVICE_USB_CONNECTOR_N"
 		(at 990.60 91.44 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "7eeaa989-d710-53a2-a436-8a5d1200f6d9")
@@ -5262,12 +5262,12 @@
 			)
 		)
 	)
-	(label "HUB_RP_SERVICE_USB_DM_SWITCHED"
+	(label "HUB_RP_SERVICE_USB_SWITCHED_N"
 		(at 35.56 157.48 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "15493493-fe88-5829-8656-42703f51bddb")
 	)
-	(label "HUB_RP_USB_DM"
+	(label "HUB_RP_USB_N"
 		(at 76.20 157.48 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "0708b5fb-1dd5-5863-bfcc-6c169c0e07ab")
@@ -5336,12 +5336,12 @@
 			)
 		)
 	)
-	(label "HUB_RP_SERVICE_USB_DP_SWITCHED"
+	(label "HUB_RP_SERVICE_USB_SWITCHED_P"
 		(at 127.00 157.48 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "71764560-eb93-55bf-a851-4ec47d51db32")
 	)
-	(label "HUB_RP_USB_DP"
+	(label "HUB_RP_USB_P"
 		(at 167.64 157.48 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "5fe2362d-24f2-5abb-957e-41d13ade22ad")
@@ -6306,12 +6306,12 @@
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "f7f10190-48be-5593-bf40-4333278e28f0")
 	)
-	(label "HUB_RP_USB_DM"
+	(label "HUB_RP_USB_N"
 		(at 624.84 215.90 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "e3b460b3-bfee-579d-9f83-bfcfd86e3cfc")
 	)
-	(label "HUB_RP_USB_DP"
+	(label "HUB_RP_USB_P"
 		(at 624.84 218.44 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "441118d8-1d43-51b7-a58d-8fa0d1f4ee58")
@@ -6575,12 +6575,12 @@
 			)
 		)
 	)
-	(label "HUB_RP_SERVICE_USB_DP_CONNECTOR"
+	(label "HUB_RP_SERVICE_USB_CONNECTOR_P"
 		(at 767.08 157.48 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "e44698ae-58a0-504c-af11-c6cc68a6a641")
 	)
-	(label "HUB_RP_SERVICE_USB_DM_CONNECTOR"
+	(label "HUB_RP_SERVICE_USB_CONNECTOR_N"
 		(at 767.08 160.02 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "47bee9ba-70ab-5ff8-9be3-14e321bc02a2")
@@ -6688,12 +6688,12 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "2141b62e-7f03-5810-9959-b0af80470660")
 	)
-	(label "HUB_RP_SERVICE_USB_DP_CONNECTOR"
+	(label "HUB_RP_SERVICE_USB_CONNECTOR_P"
 		(at 1041.40 160.02 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "12fb7123-5338-5ea1-99f1-aea458799b54")
 	)
-	(label "HUB_RP_SERVICE_USB_DM_CONNECTOR"
+	(label "HUB_RP_SERVICE_USB_CONNECTOR_N"
 		(at 1041.40 162.56 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "aecf5469-d685-5573-a939-659ef43bf011")
@@ -6703,12 +6703,12 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "d5b168f0-0ff7-5de8-982a-f454aaf38dc2")
 	)
-	(label "HUB_RP_SERVICE_USB_DM_SWITCHED"
+	(label "HUB_RP_SERVICE_USB_SWITCHED_N"
 		(at 1082.04 154.94 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "35695a9f-3979-5433-8887-0229d22eb0df")
 	)
-	(label "HUB_RP_SERVICE_USB_DP_SWITCHED"
+	(label "HUB_RP_SERVICE_USB_SWITCHED_P"
 		(at 1082.04 157.48 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "42b41d9e-bbaa-548b-b9ed-19577494d225")

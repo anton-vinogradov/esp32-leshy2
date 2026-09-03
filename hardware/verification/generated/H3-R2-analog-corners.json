@@ -6,8 +6,8 @@
   "sources": {
     "hardware/architecture/candidates/G2F-3I.json": "1c614996fd626b9ca44a98395c0c01712c347c9ba4ac43e69250db3f2bf2f1df",
     "hardware/architecture/devices.json": "23b5799bc5334f9d02c13635c7f9e4f7503929795c669e98223fc37b95cc1c04",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "bdfe34e0cff3b35e84913ae0951aead07da28aa2426124bdafebf1fbd5d365de",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "6cb253bc3796d6ea3d3d7f61a232af2211d3b4db54823959c16cd871c0ff3b08",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "b9a3aba9f5336092d43e5b970fa94d4261796623466b305bf3a2ea4147f48d2d",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "5119f9f6db36571e161567b956eeb0a8512a24b3c300392a0cdbad6720ee8cdd",
     "hardware/verification/generated/H3-VRF32-audio.json": "5a381f31497c0b382178ba89e9fc08bdfc8b0b9685e3937a27ac84be3b6c4627",
     "hardware/verification/generated/H3-VRF33-ir.json": "63d6a0df75c2e76dc903d011cf2a2bbfa13de9cf787e54f2e9c7e69a5ea9be93",
     "hardware/verification/generated/H3-VRF34-battery-analog.json": "03e246f3b82e89d80c91f3754e072173e98d11464f5d9ec202b701051e3f0acc",

@@ -22,9 +22,10 @@
 
 ## What is locked
 
-- exact stack: `JLC06161H-3313`, six layers, 1.6 mm, two 0.55-mm cores;
+- exact stack: `JLC06161H-3313`, 1.6-mm order nominal, 1.54-mm ±10% calculated finished thickness, and two 0.55-mm cores;
 - four external USB ports expand to `12` complete differential-pair segments, and exactly ten direct i8080-8 nets are detected automatically;
-- RF/USB widths are not guessed: H6.0.4/H6.0.5 bind them to the current JLCPCB calculator;
+- the current JLCPCB calculator sets outer 50-ohm RF CPWG to 5.31-mil width / 6-mil lateral copper gap and 90-ohm USB to 5.31-mil width / 6-mil pair gap;
+- canonical `DP/DM` identities remain in the contracts, while physical KiCad net names end in `_P/_N`, allowing the native differential router to discover all 12 pairs;
 - no automatic result is accepted before KiCad import, visual review and native DRC.
 
 ## Disposable helper workspace

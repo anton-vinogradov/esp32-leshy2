@@ -196,7 +196,10 @@ shoulders and independent edge capture; its full tolerance corner preserves
 structurally. The [microcoax service result](h6-r2-microcoax-service.md) adds five
 relaxed corridors, five clear tape saddles and ten antenna solder windows with
 9.13 mm minimum cable reserve. H6.0.1 is complete; H6.0.2 now owns routing all
-823 nets, native schematic/PCB parity and zero-finding DRC.
+823 nets, native schematic/PCB parity and zero-finding DRC. Its current exact
+marker binds the standard `JLC06161H-3313` outer geometry (50-ohm RF CPWG and
+90-ohm USB at 5.31/6 mil) and gives all 12 USB segments native `_P/_N` names
+without changing their canonical `DP/DM` contract identities.
 
 Expected result: two routed boards with the exact panel connected directly to the UI-board ZIF, and one
 hash-locked fabrication package. H6 closes only after eight reviewable steps:

@@ -3551,13 +3551,13 @@
 			)
 		)
 	)
-	(hierarchical_label "S3_USB_DM"
+	(hierarchical_label "S3_USB_N"
 		(shape bidirectional)
 		(at 949.96 50.80 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "116c3cd4-d8a9-55c4-9122-590533155627")
 	)
-	(label "S3_USB_DM_LOCAL"
+	(label "S3_USB_LOCAL_N"
 		(at 990.60 50.80 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "59b4449d-fddf-5f89-b1cd-ab313f5cc649")
@@ -3626,13 +3626,13 @@
 			)
 		)
 	)
-	(hierarchical_label "S3_USB_DP"
+	(hierarchical_label "S3_USB_P"
 		(shape bidirectional)
 		(at 1041.40 50.80 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "7d2b48c0-cfd1-5147-9fca-a9fc2848dc7b")
 	)
-	(label "S3_USB_DP_LOCAL"
+	(label "S3_USB_LOCAL_P"
 		(at 1082.04 50.80 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "9569556c-4e22-5c50-adbe-3d5828f439de")
@@ -5361,12 +5361,12 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "2d01e598-4af5-57ee-9c32-c02cf809e0da")
 	)
-	(label "S3_USB_DM_LOCAL"
+	(label "S3_USB_LOCAL_N"
 		(at 1041.40 149.86 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "97b67464-0deb-51ca-a782-cd6be4b5cef9")
 	)
-	(label "S3_USB_DP_LOCAL"
+	(label "S3_USB_LOCAL_P"
 		(at 1041.40 152.40 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "0fdc44db-f73f-5119-9b2b-d925c96d518e")

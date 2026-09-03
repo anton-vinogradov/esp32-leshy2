@@ -3564,7 +3564,7 @@
 			(size 1.5 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_DM_BRANCH")
+			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_BRANCH_N")
 			(uuid "b56a93d1-6d3e-5e0b-ac4b-5b4f69bef346")
 		)
 		(pad "7" smd roundrect
@@ -3572,7 +3572,7 @@
 			(size 1.5 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_DP_BRANCH")
+			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_BRANCH_P")
 			(uuid "d4af5f85-fe89-5e5a-ae37-ad462733246e")
 		)
 		(pad "8" smd roundrect
@@ -12377,7 +12377,7 @@
 			(size 1.475 0.6)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_DP_CONNECTOR")
+			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_CONNECTOR_P")
 			(uuid "49750094-9313-5dd5-a88d-3e70a810fe7c")
 		)
 		(pad "2" smd roundrect
@@ -12385,7 +12385,7 @@
 			(size 1.475 0.6)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_DM_CONNECTOR")
+			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_CONNECTOR_N")
 			(uuid "b4830411-f5a1-5ef0-bd8f-e4ecf47ac69c")
 		)
 		(pad "3" smd roundrect
@@ -18515,7 +18515,7 @@
 			(size 1.475 0.6)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_DP_CONNECTOR")
+			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_CONNECTOR_P")
 			(uuid "dda5508d-a524-5df6-8dda-a4dd62c889e8")
 		)
 		(pad "2" smd roundrect
@@ -18523,7 +18523,7 @@
 			(size 1.475 0.6)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_DM_CONNECTOR")
+			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_CONNECTOR_N")
 			(uuid "3999f3b0-baf0-5da2-ad3a-7f791f7f6393")
 		)
 		(pad "3" smd roundrect
@@ -25949,7 +25949,7 @@
 			(size 0.3 1.15)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_DP_CONNECTOR")
+			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_CONNECTOR_P")
 			(uuid "54a492a4-775d-57a2-8a63-f9732a89288b")
 		)
 		(pad "A7" smd roundrect
@@ -25957,7 +25957,7 @@
 			(size 0.3 1.15)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_DM_CONNECTOR")
+			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_CONNECTOR_N")
 			(uuid "f72575b2-6031-541c-8fe9-c419b905d3ba")
 		)
 		(pad "A8" smd roundrect
@@ -26012,7 +26012,7 @@
 			(size 0.3 1.15)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_DP_CONNECTOR")
+			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_CONNECTOR_P")
 			(uuid "a91a25cc-69f9-58f6-9f89-ff1f744bb56b")
 		)
 		(pad "B7" smd roundrect
@@ -26020,7 +26020,7 @@
 			(size 0.3 1.15)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_DM_CONNECTOR")
+			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_CONNECTOR_N")
 			(uuid "95f39b67-0ee6-58c7-8942-304d749e77b7")
 		)
 		(pad "B8" smd roundrect
@@ -26591,7 +26591,7 @@
 			(size 1.5 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_DP_CONNECTOR")
+			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_CONNECTOR_P")
 			(uuid "4b06ee83-e370-5f5e-a5c0-f9f042a94822")
 		)
 		(pad "4" smd roundrect
@@ -26599,7 +26599,7 @@
 			(size 1.5 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_DM_CONNECTOR")
+			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_CONNECTOR_N")
 			(uuid "2d8f8079-f0ee-558c-b22a-9ae3663d4258")
 		)
 		(pad "5" smd roundrect
@@ -26615,7 +26615,7 @@
 			(size 1.5 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_DM_SWITCHED")
+			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_SWITCHED_N")
 			(uuid "589c1426-2b11-562b-b238-680e56d8748c")
 		)
 		(pad "7" smd roundrect
@@ -26623,7 +26623,7 @@
 			(size 1.5 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_DP_SWITCHED")
+			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_SWITCHED_P")
 			(uuid "d1fd680f-19f4-5d5a-82b9-86090e4ac12a")
 		)
 		(pad "8" smd roundrect
@@ -31258,7 +31258,7 @@
 			(size 0.35 1.5)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_10_S3_DISPLAY_TOUCH/S3_USB_DM")
+			(net "/UI_10_S3_DISPLAY_TOUCH/S3_USB_N")
 			(uuid "6b9b4da8-1610-5209-a412-0b618ced3d60")
 		)
 		(pad "30" smd roundrect
@@ -31266,7 +31266,7 @@
 			(size 0.35 1.5)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_10_S3_DISPLAY_TOUCH/S3_USB_DP")
+			(net "/UI_10_S3_DISPLAY_TOUCH/S3_USB_P")
 			(uuid "bd0771cb-c4af-5f2f-bc3e-c48c9ce64e86")
 		)
 		(pad "31" smd roundrect
@@ -39393,7 +39393,7 @@
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_DP_SWITCHED")
+			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_SWITCHED_P")
 			(uuid "53d2346e-305b-5331-ac7e-cd6d88e829ce")
 		)
 		(pad "2" smd roundrect
@@ -39401,7 +39401,7 @@
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_USB_DP")
+			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_USB_P")
 			(uuid "ea3a179a-ecc7-594a-9a76-0f8eeab01a41")
 		)
 		(embedded_fonts no)
@@ -57909,7 +57909,7 @@
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_10_S3_DISPLAY_TOUCH/S3_USB_DP")
+			(net "/UI_10_S3_DISPLAY_TOUCH/S3_USB_P")
 			(uuid "758094f8-8da1-53d5-bef5-0f9726ef6f2c")
 		)
 		(pad "2" smd roundrect
@@ -57917,7 +57917,7 @@
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_10_S3_DISPLAY_TOUCH/S3_USB_DP_LOCAL")
+			(net "/UI_10_S3_DISPLAY_TOUCH/S3_USB_LOCAL_P")
 			(uuid "9fc20f38-9ccf-5a79-a363-eb8133c5a425")
 		)
 		(embedded_fonts no)
@@ -63486,7 +63486,7 @@
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_DM_SWITCHED")
+			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_SWITCHED_N")
 			(uuid "3cd2f16f-b487-50e0-a0c6-90a45102d877")
 		)
 		(pad "2" smd roundrect
@@ -63494,7 +63494,7 @@
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_USB_DM")
+			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_USB_N")
 			(uuid "afcb36d9-725b-576f-af12-cf93bc4272c7")
 		)
 		(embedded_fonts no)
@@ -63655,7 +63655,7 @@
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_DM_BRANCH")
+			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_BRANCH_N")
 			(uuid "2e46296e-257e-5c33-b141-0e5f1287ba92")
 		)
 		(pad "2" smd roundrect
@@ -63663,7 +63663,7 @@
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_DM_CONNECTOR")
+			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_CONNECTOR_N")
 			(uuid "130cc24b-c55d-5eb0-8267-b42e82f08246")
 		)
 		(embedded_fonts no)
@@ -71817,7 +71817,7 @@
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_10_S3_DISPLAY_TOUCH/S3_USB_DM")
+			(net "/UI_10_S3_DISPLAY_TOUCH/S3_USB_N")
 			(uuid "fc4172d2-2969-507e-8d27-65de73f61516")
 		)
 		(pad "2" smd roundrect
@@ -71825,7 +71825,7 @@
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_10_S3_DISPLAY_TOUCH/S3_USB_DM_LOCAL")
+			(net "/UI_10_S3_DISPLAY_TOUCH/S3_USB_LOCAL_N")
 			(uuid "e2704131-a66f-5ab0-860d-00d11af74c38")
 		)
 		(embedded_fonts no)
@@ -75770,14 +75770,14 @@
 			(at -8.75 -6.83)
 			(size 1.5 0.9)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "/UI_10_S3_DISPLAY_TOUCH/S3_USB_DM_LOCAL")
+			(net "/UI_10_S3_DISPLAY_TOUCH/S3_USB_LOCAL_N")
 			(uuid "a4ea8e74-b210-524e-bd07-c5fd6fd2e8de")
 		)
 		(pad "14" smd rect
 			(at -8.75 -8.1 180)
 			(size 1.5 0.9)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "/UI_10_S3_DISPLAY_TOUCH/S3_USB_DP_LOCAL")
+			(net "/UI_10_S3_DISPLAY_TOUCH/S3_USB_LOCAL_P")
 			(uuid "b8a49ec4-2a18-5eb9-8883-138076a1aa51")
 		)
 		(pad "15" smd rect
@@ -79314,7 +79314,7 @@
 			(size 0.2 0.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_USB_DM")
+			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_USB_N")
 			(uuid "531bc1e8-c268-5f7d-aa5d-f4834a827537")
 		)
 		(pad "67" smd roundrect
@@ -79322,7 +79322,7 @@
 			(size 0.2 0.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_USB_DP")
+			(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_USB_P")
 			(uuid "946409f7-00ee-5e54-8a6e-d928e85df52b")
 		)
 		(pad "68" smd roundrect
@@ -86746,7 +86746,7 @@
 			(size 0.3 1.15)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_DP_CONNECTOR")
+			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_CONNECTOR_P")
 			(uuid "c1f28303-de5d-5e2d-812e-42a020888bdf")
 		)
 		(pad "A7" smd roundrect
@@ -86754,7 +86754,7 @@
 			(size 0.3 1.15)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_DM_CONNECTOR")
+			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_CONNECTOR_N")
 			(uuid "b69b637f-ec6e-53cc-ab12-f3ce00db2de5")
 		)
 		(pad "A8" smd roundrect
@@ -86809,7 +86809,7 @@
 			(size 0.3 1.15)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_DP_CONNECTOR")
+			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_CONNECTOR_P")
 			(uuid "91c651ef-97d0-544c-8737-320f1861ac7c")
 		)
 		(pad "B7" smd roundrect
@@ -86817,7 +86817,7 @@
 			(size 0.3 1.15)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_DM_CONNECTOR")
+			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_CONNECTOR_N")
 			(uuid "9bde2451-445d-5992-ae32-029e07b3e3e2")
 		)
 		(pad "B8" smd roundrect
@@ -87548,7 +87548,7 @@
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_DP_BRANCH")
+			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_BRANCH_P")
 			(uuid "f3615968-0069-5d65-9d57-3163ebf33b87")
 		)
 		(pad "2" smd roundrect
@@ -87556,7 +87556,7 @@
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_DP_CONNECTOR")
+			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_CONNECTOR_P")
 			(uuid "73172f7b-5b46-55b1-958e-c1da8cd2fde2")
 		)
 		(embedded_fonts no)

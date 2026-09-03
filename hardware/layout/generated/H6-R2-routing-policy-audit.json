@@ -4,24 +4,69 @@
   "marker": "H6.0.2-R1",
   "status": "pass",
   "source_hashes": {
-    "hardware/layout/h6-r2-routing-policy.json": "b63d79a06cf900fcfc9cff3e60a7308ecefbe0df882416a6fe9fe58ec52520d9",
-    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "af7083e3400191f102e0b11a7fb963d4fa72e3222499e313c56502a0a9940ae3",
+    "hardware/layout/h6-r2-routing-policy.json": "0aa74aba018d4b9437e3308b58ffcad4e2c6d6686de1da8d349bb94c6321bd1f",
+    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "828873273d0e5e0154bb8b5f33fdddb5de8cebd45b44f5b563a8d13e3f26b667",
     "hardware/ecad/generated/H2-R2-native-net-ledger.json": "7c0de54e0faa9e7d4ddef816b592bc18d523138e99bbf1135461f425ae08bf2e",
     "hardware/verification/h3-r2-load-binding-contract.json": "48d2575032bac09bd8ea276e814c16fbb1f76ca6afe0cea0dd36cee2e8c2a384",
-    "hardware/layout/h6-r2-placement-contract.json": "21c741a9eacf3eafb76e5b535ca1037a7e1d99c5de7d161567da2179b7d43a2f"
+    "hardware/layout/h6-r2-placement-contract.json": "03a27c3468d814f84cd959c5ee13ce0c4e7bd11302c732d91121527398ab616c"
   },
   "stackup_binding": {
     "manufacturer": "JLCPCB",
     "official_stackup_id": "JLC06161H-3313",
-    "finished_thickness_mm": 1.6,
+    "order_thickness_mm": 1.6,
+    "calculator_finished_thickness_mm": 1.54,
+    "calculator_finished_thickness_tolerance_percent": 10,
     "outer_copper_mm": 0.035,
     "inner_copper_mm": 0.0152,
     "outer_prepreg_mm": 0.0994,
     "centre_prepreg_mm": 0.1088,
     "core_each_mm": 0.55,
-    "source": "https://jlcpcb.com/impedance",
+    "source": "https://jlcpcb.com/pcb-impedance-calculator/",
     "verified_at": "2026-09-03",
-    "exact_trace_geometry_status": "pending H6.0.4 digital/USB and H6.0.5 RF calculator binding"
+    "calculator_inputs": {
+      "board_type": "Rigid",
+      "layers": 6,
+      "pcb_thickness_mm": 1.6,
+      "inner_copper_oz": 0.5,
+      "outer_copper_oz": 1.0
+    },
+    "outer_layer_geometries": {
+      "RF_50R_CPWG": {
+        "target_impedance_ohm": 50,
+        "calculator_type": "Coplanar Single Ended",
+        "signal_layers": [
+          "F.Cu",
+          "B.Cu"
+        ],
+        "reference_layers": [
+          "In1.Cu",
+          "In4.Cu"
+        ],
+        "trace_width_mil": 5.31,
+        "trace_width_mm": 0.134874,
+        "coplanar_gap_mil": 6.0,
+        "coplanar_gap_mm": 0.1524,
+        "solder_mask": "present"
+      },
+      "USB_90R_DIFFERENTIAL": {
+        "target_impedance_ohm": 90,
+        "calculator_type": "Differential Pair (Non coplanar)",
+        "signal_layers": [
+          "F.Cu",
+          "B.Cu"
+        ],
+        "reference_layers": [
+          "In1.Cu",
+          "In4.Cu"
+        ],
+        "trace_width_mil": 5.31,
+        "trace_width_mm": 0.134874,
+        "pair_gap_mil": 6.0,
+        "pair_gap_mm": 0.1524,
+        "solder_mask": "present"
+      }
+    },
+    "exact_trace_geometry_status": "bound to the current JLCPCB calculator; mandatory order-time recheck remains"
   },
   "summary": {
     "project_net_count": 858,
@@ -4134,7 +4179,7 @@
     {
       "project": "LESHY2-RF-R2",
       "canonical_net": "RF_RP_SERVICE_USB_DM_CONNECTOR",
-      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_DM_CONNECTOR",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_CONNECTOR_N",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -4145,7 +4190,7 @@
     {
       "project": "LESHY2-RF-R2",
       "canonical_net": "RF_RP_SERVICE_USB_DM_SWITCHED",
-      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_DM_SWITCHED",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_SWITCHED_N",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -4156,7 +4201,7 @@
     {
       "project": "LESHY2-RF-R2",
       "canonical_net": "RF_RP_SERVICE_USB_DP_CONNECTOR",
-      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_DP_CONNECTOR",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_CONNECTOR_P",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -4167,7 +4212,7 @@
     {
       "project": "LESHY2-RF-R2",
       "canonical_net": "RF_RP_SERVICE_USB_DP_SWITCHED",
-      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_DP_SWITCHED",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_SWITCHED_P",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -4226,7 +4271,7 @@
     {
       "project": "LESHY2-RF-R2",
       "canonical_net": "RF_RP_USB_DM",
-      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_USB_DM",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_USB_N",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -4238,7 +4283,7 @@
     {
       "project": "LESHY2-RF-R2",
       "canonical_net": "RF_RP_USB_DP",
-      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_USB_DP",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_USB_P",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -4741,7 +4786,7 @@
     {
       "project": "LESHY2-RF-R2",
       "canonical_net": "S3_USB_DM",
-      "kicad_net": "/RF_01_USB_PD_CHARGE/S3_USB_DM",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/S3_USB_N",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -4753,7 +4798,7 @@
     {
       "project": "LESHY2-RF-R2",
       "canonical_net": "S3_USB_DP",
-      "kicad_net": "/RF_01_USB_PD_CHARGE/S3_USB_DP",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/S3_USB_P",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -5574,7 +5619,7 @@
     {
       "project": "LESHY2-RF-R2",
       "canonical_net": "USB2_DM_CONNECTOR",
-      "kicad_net": "/RF_01_USB_PD_CHARGE/USB2_DM_CONNECTOR",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/USB2_CONNECTOR_N",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -5585,7 +5630,7 @@
     {
       "project": "LESHY2-RF-R2",
       "canonical_net": "USB2_DP_CONNECTOR",
-      "kicad_net": "/RF_01_USB_PD_CHARGE/USB2_DP_CONNECTOR",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/USB2_CONNECTOR_P",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -7014,7 +7059,7 @@
     {
       "project": "LESHY2-UI-R2",
       "canonical_net": "C5_SERVICE_USB_DM_BRANCH",
-      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_DM_BRANCH",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_BRANCH_N",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -7025,7 +7070,7 @@
     {
       "project": "LESHY2-UI-R2",
       "canonical_net": "C5_SERVICE_USB_DM_CONNECTOR",
-      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_DM_CONNECTOR",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_CONNECTOR_N",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -7036,7 +7081,7 @@
     {
       "project": "LESHY2-UI-R2",
       "canonical_net": "C5_SERVICE_USB_DP_BRANCH",
-      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_DP_BRANCH",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_BRANCH_P",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -7047,7 +7092,7 @@
     {
       "project": "LESHY2-UI-R2",
       "canonical_net": "C5_SERVICE_USB_DP_CONNECTOR",
-      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_DP_CONNECTOR",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SERVICE_USB_CONNECTOR_P",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -7650,7 +7695,7 @@
     {
       "project": "LESHY2-UI-R2",
       "canonical_net": "HUB_RP_SERVICE_USB_DM_CONNECTOR",
-      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_DM_CONNECTOR",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_CONNECTOR_N",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -7661,7 +7706,7 @@
     {
       "project": "LESHY2-UI-R2",
       "canonical_net": "HUB_RP_SERVICE_USB_DM_SWITCHED",
-      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_DM_SWITCHED",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_SWITCHED_N",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -7672,7 +7717,7 @@
     {
       "project": "LESHY2-UI-R2",
       "canonical_net": "HUB_RP_SERVICE_USB_DP_CONNECTOR",
-      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_DP_CONNECTOR",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_CONNECTOR_P",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -7683,7 +7728,7 @@
     {
       "project": "LESHY2-UI-R2",
       "canonical_net": "HUB_RP_SERVICE_USB_DP_SWITCHED",
-      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_DP_SWITCHED",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_SERVICE_USB_SWITCHED_P",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -7742,7 +7787,7 @@
     {
       "project": "LESHY2-UI-R2",
       "canonical_net": "HUB_RP_USB_DM",
-      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_USB_DM",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_USB_N",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -7754,7 +7799,7 @@
     {
       "project": "LESHY2-UI-R2",
       "canonical_net": "HUB_RP_USB_DP",
-      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_USB_DP",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_USB_P",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -9693,7 +9738,7 @@
     {
       "project": "LESHY2-UI-R2",
       "canonical_net": "S3_USB_DM",
-      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_USB_DM",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_USB_N",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -9705,7 +9750,7 @@
     {
       "project": "LESHY2-UI-R2",
       "canonical_net": "S3_USB_DM_LOCAL",
-      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_USB_DM_LOCAL",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_USB_LOCAL_N",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -9717,7 +9762,7 @@
     {
       "project": "LESHY2-UI-R2",
       "canonical_net": "S3_USB_DP",
-      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_USB_DP",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_USB_P",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",
@@ -9729,7 +9774,7 @@
     {
       "project": "LESHY2-UI-R2",
       "canonical_net": "S3_USB_DP_LOCAL",
-      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_USB_DP_LOCAL",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_USB_LOCAL_P",
       "routing_class": "USB_DIFFERENTIAL",
       "route_mode": "manual_only",
       "geometry_release": "H6.0.4",

@@ -2979,7 +2979,7 @@
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_DM_SWITCHED")
+			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_SWITCHED_N")
 			(uuid "8d7a0670-eb5e-5aa1-b048-789f10a35a92")
 		)
 		(pad "2" smd roundrect
@@ -2987,7 +2987,7 @@
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_USB_DM")
+			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_USB_N")
 			(uuid "3d647d0c-2542-5b84-82da-a5c8699b78c7")
 		)
 		(embedded_fonts no)
@@ -24915,7 +24915,7 @@
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_DP_SWITCHED")
+			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_SWITCHED_P")
 			(uuid "ce7b51b7-e833-5f5c-b2b1-82f9866a0c3c")
 		)
 		(pad "2" smd roundrect
@@ -24923,7 +24923,7 @@
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_USB_DP")
+			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_USB_P")
 			(uuid "9691bbeb-d89a-5503-91c8-2c55f71559ef")
 		)
 		(embedded_fonts no)
@@ -37992,7 +37992,7 @@
 			(size 1.5 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_DP_CONNECTOR")
+			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_CONNECTOR_P")
 			(uuid "4d51992b-2a84-5a38-863a-9bac747cc340")
 		)
 		(pad "4" smd roundrect
@@ -38000,7 +38000,7 @@
 			(size 1.5 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_DM_CONNECTOR")
+			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_CONNECTOR_N")
 			(uuid "a9ecdc65-a9b0-537f-b2a9-f10027396321")
 		)
 		(pad "5" smd roundrect
@@ -38016,7 +38016,7 @@
 			(size 1.5 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_DM_SWITCHED")
+			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_SWITCHED_N")
 			(uuid "019252c8-dfb4-52d1-b909-494eedacb4a7")
 		)
 		(pad "7" smd roundrect
@@ -38024,7 +38024,7 @@
 			(size 1.5 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_DP_SWITCHED")
+			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_SWITCHED_P")
 			(uuid "266a91ae-1758-554e-8b96-c7494e684c53")
 		)
 		(pad "8" smd roundrect
@@ -46552,7 +46552,7 @@
 			(size 0.2 0.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_USB_DM")
+			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_USB_N")
 			(uuid "993d0f8f-0eb0-52c8-84d9-3413f5b2e5ca")
 		)
 		(pad "67" smd roundrect
@@ -46560,7 +46560,7 @@
 			(size 0.2 0.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_USB_DP")
+			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_USB_P")
 			(uuid "25670d0e-123f-5ea4-ad12-fd56852e03d4")
 		)
 		(pad "68" smd roundrect
@@ -84230,7 +84230,7 @@
 			(size 0.3 1.15)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_DP_CONNECTOR")
+			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_CONNECTOR_P")
 			(uuid "3391b643-8380-56b1-9eb1-1a87e9283cd9")
 		)
 		(pad "A7" smd roundrect
@@ -84238,7 +84238,7 @@
 			(size 0.3 1.15)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_DM_CONNECTOR")
+			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_CONNECTOR_N")
 			(uuid "b2b70dc1-9eec-5b58-b8fd-4e7a3a910bbc")
 		)
 		(pad "A8" smd roundrect
@@ -84293,7 +84293,7 @@
 			(size 0.3 1.15)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_DP_CONNECTOR")
+			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_CONNECTOR_P")
 			(uuid "cf3d8dab-1667-5b93-bd2e-fc339f92b4b1")
 		)
 		(pad "B7" smd roundrect
@@ -84301,7 +84301,7 @@
 			(size 0.3 1.15)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_DM_CONNECTOR")
+			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_CONNECTOR_N")
 			(uuid "da3d890b-21d5-5942-9ba0-62296c580199")
 		)
 		(pad "B8" smd roundrect
@@ -99663,7 +99663,7 @@
 			(size 1.475 0.6)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_DP_CONNECTOR")
+			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_CONNECTOR_P")
 			(uuid "da822397-f264-5e62-a011-db26be0b6909")
 		)
 		(pad "2" smd roundrect
@@ -99671,7 +99671,7 @@
 			(size 1.475 0.6)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_DM_CONNECTOR")
+			(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_SERVICE_USB_CONNECTOR_N")
 			(uuid "25bbc53a-0ad1-5abf-8983-d4ebfe70a1c4")
 		)
 		(pad "3" smd roundrect
@@ -127281,7 +127281,7 @@
 			(size 0.27 1)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_01_USB_PD_CHARGE/USB2_DP_CONNECTOR")
+			(net "/RF_01_USB_PD_CHARGE/USB2_CONNECTOR_P")
 			(uuid "59d2ccb1-ce5a-5311-a78f-a09229c4335c")
 		)
 		(pad "A7" smd roundrect
@@ -127289,7 +127289,7 @@
 			(size 0.27 1)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_01_USB_PD_CHARGE/USB2_DM_CONNECTOR")
+			(net "/RF_01_USB_PD_CHARGE/USB2_CONNECTOR_N")
 			(uuid "cf97f7a9-265c-5fdc-9430-e8f8b6a63cfb")
 		)
 		(pad "A8" smd roundrect
@@ -127344,7 +127344,7 @@
 			(size 0.27 1)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_01_USB_PD_CHARGE/USB2_DP_CONNECTOR")
+			(net "/RF_01_USB_PD_CHARGE/USB2_CONNECTOR_P")
 			(uuid "55551673-3498-58f3-9f64-1bc24d2a69aa")
 		)
 		(pad "B7" smd roundrect
@@ -127352,7 +127352,7 @@
 			(size 0.27 1)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_01_USB_PD_CHARGE/USB2_DM_CONNECTOR")
+			(net "/RF_01_USB_PD_CHARGE/USB2_CONNECTOR_N")
 			(uuid "181a1f86-9a9d-52b1-89c9-7a3b11c21412")
 		)
 		(pad "B8" smd roundrect
@@ -139603,7 +139603,7 @@
 			(size 0.7 0.2)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_01_USB_PD_CHARGE/USB2_DP_CONNECTOR")
+			(net "/RF_01_USB_PD_CHARGE/USB2_CONNECTOR_P")
 			(uuid "329a2586-777c-5c6f-bd95-7aa637fbc0c2")
 		)
 		(pad "2" smd roundrect
@@ -139611,7 +139611,7 @@
 			(size 0.7 0.2)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_01_USB_PD_CHARGE/USB2_DM_CONNECTOR")
+			(net "/RF_01_USB_PD_CHARGE/USB2_CONNECTOR_N")
 			(uuid "5e18acdd-f4f8-5796-af0f-8e0599460bbd")
 		)
 		(pad "3" smd roundrect
@@ -139707,7 +139707,7 @@
 			(size 0.7 0.2)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_01_USB_PD_CHARGE/S3_USB_DM")
+			(net "/RF_01_USB_PD_CHARGE/S3_USB_N")
 			(uuid "723d3626-f339-51ff-8f10-8db6637a1b32")
 		)
 		(pad "15" smd roundrect
@@ -139715,7 +139715,7 @@
 			(size 0.7 0.2)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_01_USB_PD_CHARGE/S3_USB_DP")
+			(net "/RF_01_USB_PD_CHARGE/S3_USB_P")
 			(uuid "67578b60-1c32-5e1e-8e93-8adb279e9c13")
 		)
 		(pad "16" smd roundrect
@@ -153158,7 +153158,7 @@
 			(size 0.35 1.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_01_USB_PD_CHARGE/S3_USB_DM")
+			(net "/RF_01_USB_PD_CHARGE/S3_USB_N")
 			(uuid "be4a4b26-c118-5f84-8407-ba7ea43cd3d8")
 		)
 		(pad "30" smd roundrect
@@ -153166,7 +153166,7 @@
 			(size 0.35 1.7)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_01_USB_PD_CHARGE/S3_USB_DP")
+			(net "/RF_01_USB_PD_CHARGE/S3_USB_P")
 			(uuid "44818666-e49a-5e7b-b6ea-ee4e914802ff")
 		)
 		(pad "31" smd roundrect

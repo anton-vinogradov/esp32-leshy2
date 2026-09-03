@@ -1010,13 +1010,13 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "596f976b-cb6d-5bce-be69-816bade53b0f")
 	)
-	(hierarchical_label "S3_USB_DM"
+	(hierarchical_label "S3_USB_N"
 		(shape bidirectional)
 		(at 35.56 119.38 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "509c0c8a-31de-5bfe-9237-6b253362b96f")
 	)
-	(hierarchical_label "S3_USB_DP"
+	(hierarchical_label "S3_USB_P"
 		(shape bidirectional)
 		(at 35.56 121.92 0)
 		(effects (font (size 1.27 1.27)))
