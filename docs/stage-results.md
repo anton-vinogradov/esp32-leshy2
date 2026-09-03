@@ -204,6 +204,23 @@ without changing their canonical `DP/DM` contract identities. The accepted
 652 connections completely; both saved boards pass fresh KiCad 10.0.5 DRC with
 zero violations. Analogue/audio/sense routing remains current.
 
+### Live view of the accepted routing
+
+These are direct SVG exports from the saved `.kicad_pcb` files, not
+illustrative mockups. Blue is front copper and red is back copper. Each file
+embeds the source-board hash, so the H6 check rejects a stale image after any
+PCB change. Open an image for its full-size view; layer details and the
+reproducible export command are in the
+[H6.0.2 routing policy](h6-r2-routing-policy.md#what-the-real-routing-looks-like-now).
+
+**Front UI board**
+
+[![Current real routing of the front UI board](images/h6-r2-routing-ui.svg)](images/h6-r2-routing-ui.svg)
+
+**Rear RF/power board**
+
+[![Current real routing of the rear RF/power board](images/h6-r2-routing-rf.svg)](images/h6-r2-routing-rf.svg)
+
 Expected result: two routed boards with the exact panel connected directly to the UI-board ZIF, and one
 hash-locked fabrication package. H6 closes only after eight reviewable steps:
 
