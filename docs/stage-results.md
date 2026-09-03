@@ -199,7 +199,10 @@ relaxed corridors, five clear tape saddles and ten antenna solder windows with
 823 board-local physical / 789 global canonical nets, native schematic/PCB parity and zero-finding DRC. Its current exact
 marker binds the standard `JLC06161H-3313` outer geometry (50-ohm RF CPWG and
 90-ohm USB at 5.31/6 mil) and gives all 12 USB segments native `_P/_N` names
-without changing their canonical `DP/DM` contract identities.
+without changing their canonical `DP/DM` contract identities. The accepted
+`GENERAL_CONTROL` + `OSCILLATOR` slice now routes 177 nets / 366 connections
+completely; both saved boards pass fresh KiCad 10.0.5 DRC with zero violations.
+Safety-control and analogue/audio/sense routing remain current.
 
 Expected result: two routed boards with the exact panel connected directly to the UI-board ZIF, and one
 hash-locked fabrication package. H6 closes only after eight reviewable steps:

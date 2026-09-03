@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit the accepted H6.0.2 GENERAL_CONTROL routing bootstrap.
+"""Audit the accepted H6.0.2 GENERAL_CONTROL + OSCILLATOR routing bootstrap.
 
 The checked-in PCB files are the routed authority.  This guard regenerates the
 exact unrouted placement in memory, proves that routing did not change it, and
@@ -45,6 +45,7 @@ FREEZE = ROOT / "hardware/layout/h6-r2-placement-freeze.json"
 OUTPUT = ROOT / "hardware/layout/generated/H6-R2-general-routing-audit.json"
 PROJECTS = ("LESHY2-UI-R2", "LESHY2-RF-R2")
 MECHANICAL_REFERENCES = {"MH1", "MH2", "MH3", "MH4"}
+ACCEPTED_CLASSES = ("GENERAL_CONTROL", "OSCILLATOR")
 
 
 def load(path: Path) -> dict:
@@ -213,14 +214,23 @@ def build(ui_drc: Path | None = None, rf_drc: Path | None = None) -> dict:
         if actual_signature != seed_signature:
             errors.append("non-routing board structure differs from the exact placement seed")
 
-        allowed_nets = {
-            row["kicad_net"]
-            for row in policy["rows"]
-            if row["project"] == project and row["routing_class"] == "GENERAL_CONTROL"
+        allowed_by_class = {
+            routing_class: {
+                row["kicad_net"]
+                for row in policy["rows"]
+                if row["project"] == project
+                and row["routing_class"] == routing_class
+            }
+            for routing_class in ACCEPTED_CLASSES
         }
+        allowed_nets = set().union(*allowed_by_class.values())
         metrics, metric_errors = route_metrics(board, allowed_nets)
         errors.extend(f"{project}: {message}" for message in metric_errors)
-        expected_connections = expected_connection_count(board, allowed_nets)
+        expected_connections_by_class = {
+            routing_class: expected_connection_count(board, nets)
+            for routing_class, nets in allowed_by_class.items()
+        }
+        expected_connections = sum(expected_connections_by_class.values())
         candidate_unconnected = unconnected_count(board)
         with tempfile.TemporaryDirectory(prefix="leshy2-general-seed-") as directory:
             seed_path = Path(directory) / f"{project}.kicad_pcb"
@@ -230,7 +240,7 @@ def build(ui_drc: Path | None = None, rf_drc: Path | None = None) -> dict:
         remaining_connections = expected_connections - resolved_connections
         if remaining_connections != 0:
             errors.append(
-                f"{project}: {remaining_connections} GENERAL_CONTROL connections remain"
+                f"{project}: {remaining_connections} accepted H6.0.2 connections remain"
             )
         if metrics["routed_net_count"] != len(allowed_nets):
             errors.append(
@@ -250,8 +260,13 @@ def build(ui_drc: Path | None = None, rf_drc: Path | None = None) -> dict:
             "board_sha256": board_sha,
             "placement_signature_sha256": actual_signature,
             "placement_unchanged": actual_placement == expected_placement,
-            "allowed_class": "GENERAL_CONTROL",
+            "accepted_classes": list(ACCEPTED_CLASSES),
+            "allowed_net_count_by_class": {
+                routing_class: len(nets)
+                for routing_class, nets in allowed_by_class.items()
+            },
             "allowed_net_count": len(allowed_nets),
+            "expected_allowed_connection_count_by_class": expected_connections_by_class,
             "expected_allowed_connection_count": expected_connections,
             "resolved_allowed_connection_count": resolved_connections,
             "remaining_allowed_connection_count": remaining_connections,
@@ -266,7 +281,7 @@ def build(ui_drc: Path | None = None, rf_drc: Path | None = None) -> dict:
 
     return {
         "schema_version": 1,
-        "artifact": "H6-R2 accepted GENERAL_CONTROL routing bootstrap audit",
+        "artifact": "H6-R2 accepted H6.0.2 routing bootstrap audit",
         "marker": "H6.0.2-R1",
         "status": "pass" if not all_errors else "fail",
         "sources": {
@@ -276,8 +291,8 @@ def build(ui_drc: Path | None = None, rf_drc: Path | None = None) -> dict:
             "placement_freeze_sha256": sha256(FREEZE),
         },
         "scope": {
-            "completed": "all GENERAL_CONTROL connections on both boards",
-            "not_completed": ["OSCILLATOR", "SAFETY_CONTROL", "ANALOG_AUDIO_SENSE"],
+            "completed": list(ACCEPTED_CLASSES),
+            "not_completed": ["SAFETY_CONTROL", "ANALOG_AUDIO_SENSE"],
             "reserved_reference_layers": ["In1.Cu", "In4.Cu"],
             "statement": "This is a routing bootstrap inside H6.0.2, not completion of the phase or of either PCB.",
         },
@@ -327,7 +342,7 @@ def main() -> int:
     elif not OUTPUT.exists() or OUTPUT.read_bytes() != data:
         raise SystemExit("stale H6 GENERAL_CONTROL routing audit; rerun --write with fresh DRC reports")
     print(
-        f"H6-R2 GENERAL_CONTROL routing {artifact['status']}: "
+        f"H6-R2 H6.0.2 routing {artifact['status']}: "
         f"{artifact['summary']['resolved_allowed_connection_count']}/"
         f"{artifact['summary']['expected_allowed_connection_count']} connections; "
         f"{artifact['summary']['drc_violation_count']} DRC violations"

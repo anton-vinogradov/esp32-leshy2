@@ -866,7 +866,7 @@ def place_project(
             entry["fp"].Flip(point(0.0, 0.0), pcbnew.FLIP_DIRECTION_LEFT_RIGHT)
         entry["poses"] = {
             rotation: footprint_pose(entry["fp"], entry["side"], rotation)
-            for rotation in (0.0, 90.0)
+            for rotation in (0.0, 90.0, 180.0, 270.0)
         }
         entry["area"] = math.prod(entry["poses"][0.0]["size"])
         entry["hard"] = bool(
@@ -876,6 +876,7 @@ def place_project(
                 or "_external_sma" in entry["row"]["instance"]
                 or target.get("nonphysical_overlap")
                 or target.get("frozen")
+                or target.get("placement_method")
             )
         )
 
@@ -1214,13 +1215,14 @@ def svg_bytes(audit: dict) -> bytes:
         "nearest exact-footprint correction": ("#fff4d6", "#d97706"),
         "connectivity/sheet automatic seed": ("#e7f8ef", "#059669"),
         "reviewed H6.0.2 fan-out correction": ("#f3e8ff", "#7c3aed"),
+        "reviewed H6.0.2 oscillator-locality correction": ("#ecfeff", "#0891b2"),
         "hard H1 datum with conflict": ("#fee2e2", "#dc2626"),
     }
     out = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width_px}" height="{height_px}" viewBox="0 0 {width_px} {height_px}">',
         '<rect width="100%" height="100%" fill="#f8fafc"/>',
         '<text x="60" y="55" font-family="Inter,Arial,sans-serif" font-size="34" font-weight="700" fill="#0f172a">Leshy2 · H6.0.1 exact-footprint placement</text>',
-        '<text x="60" y="88" font-family="Inter,Arial,sans-serif" font-size="17" fill="#475569">Accessible inner faces in shared assembly coordinates · exact KiCad courtyards · routing not started</text>',
+        '<text x="60" y="88" font-family="Inter,Arial,sans-serif" font-size="17" fill="#475569">Accessible inner faces in shared assembly coordinates · exact KiCad courtyards · placement authority for routed boards</text>',
     ]
     for board in audit["boards"]:
         ox, oy = origins[board["project"]]

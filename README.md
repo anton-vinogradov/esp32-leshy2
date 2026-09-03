@@ -41,15 +41,18 @@
 
 > **H6 placement evidence:** the [current exact-footprint result](docs/h6-r2-exact-placement.md)
 > now materializes both native six-layer boards and places all 1,208/1,208 fitted
-> instances with zero hard courtyard conflict or unplaced body. Routing has not
-> started only after the [mechanical stack](docs/h6-r2-mechanical-stack.md) and
+> instances with zero hard courtyard conflict or unplaced body. Routing started
+> only after the [mechanical stack](docs/h6-r2-mechanical-stack.md) and
 > [five microcoax service corridors](docs/h6-r2-microcoax-service.md) passed.
 > The [H6.0.2 routing policy](docs/h6-r2-routing-policy.md) now classifies all
 > 823 board-local net instances / 789 global canonical nets; only ordinary low-rate
 > controls are eligible for automatic route proposals. The standard
 > `JLC06161H-3313` calculator geometry is now enforced in KiCad: outer RF is
 > 50-ohm CPWG at 5.31/6 mil and all 12 USB segments are native `_P/_N` pairs at
-> 90 ohm, 5.31/6 mil. Routing and native net parity remain current.
+> 90 ohm, 5.31/6 mil. The accepted H6.0.2 slice closes all 366/366 connections
+> in 165 `GENERAL_CONTROL` plus 12 `OSCILLATOR` nets; both saved boards pass a
+> fresh KiCad 10.0.5 DRC with zero violations. Safety-control and analogue/audio/sense
+> routing remain current.
 
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
 > controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad
@@ -196,7 +199,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ `H4-R2.3`: the [bilingual global H4 result](docs/h4-r2-acceptance.md) closes the joined pre-layout gate with zero contradiction and transfers all 51 physical residuals to H5/H6/H8.
 - ✅ `H5-R2.1`: the [current bilingual H5 result](docs/h5-r2-current-route.md) revalidates 249 purchasable groups / 1,216 articles with zero unmapped routes; the historical [H5-R1 evidence](docs/h5-r1-acceptance.md) remains available, and `WBC16-1TLC` is an explicit order-time sourcing gate.
 - ✅ **`H6.0.1-R1` complete:** [native placement](docs/h6-r2-exact-placement.md) is reproducible at 1,208/1,208 positions with zero hard conflict; the [exact mechanical stack](docs/h6-r2-mechanical-stack.md) closes enclosure capture plus M2.5 retention; the [microcoax closure](docs/h6-r2-microcoax-service.md) proves five relaxed corridors, five clear saddles and ten antenna solder windows.
-- ▶ **Exact current point `H6.0.2-R1`:** route all 823 board-local physical / 789 global canonical nets, reconcile native schematic/PCB parity and reach zero-finding DRC without invalidating the locked placement/mechanical/cable contract.
+- ▶ **Exact current point `H6.0.2-R1`:** 177/823 board-local nets and 366/366 connections in the accepted `GENERAL_CONTROL` + `OSCILLATOR` slice are routed with zero DRC violations; route the remaining safety-control and analogue/audio/sense nets without invalidating the locked placement/mechanical/cable contract.
 - 🔒 Prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked

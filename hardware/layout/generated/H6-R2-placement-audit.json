@@ -5,9 +5,9 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "699c0ed28932e88560f87048574c000de218c72d282c9d0428d576ba2d4c305c",
+    "contract_sha256": "855570e9f7229fb5c6d0fc465bbc4470617ae47ac1682eb87698775b88a66a0d",
     "placement_freeze": "hardware/layout/h6-r2-placement-freeze.json",
-    "placement_freeze_sha256": "09538c503c54095c08058b5ae60f0ffd0563c231f77e648812c35405ccc52698",
+    "placement_freeze_sha256": "5538f04e998cb1a9dca411dfbd139c42cf4ca8fc0b6be43af050b908567a85e9",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "66321938e7ea53875639ad6841f02209aaf08510054323c0108d8a5077813054",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -58,11 +58,12 @@
         "F.Cu": 20
       },
       "method_counts": {
-        "connectivity/sheet automatic seed": 351,
-        "exact H1 seed": 32,
+        "connectivity/sheet automatic seed": 341,
+        "exact H1 seed": 31,
         "hard H1 datum": 27,
         "nearest exact-footprint correction": 16,
-        "reviewed H6.0.2 fan-out correction": 2
+        "reviewed H6.0.2 fan-out correction": 3,
+        "reviewed H6.0.2 oscillator-locality correction": 10
       },
       "net_count": 307,
       "mechanical": [
@@ -1416,25 +1417,25 @@
           "sheet": "UI_30_HUB_RP_CORE_SERVICE",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              38.1,
-              40.01
+              37.620000000000005,
+              39.53
             ],
             "y": [
-              83.34999900000001,
-              84.359999
+              67.36,
+              68.36999999999999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            39.055,
-            83.855
+            38.575,
+            67.865
           ],
           "footprint_anchor_mm": [
-            39.055,
-            83.855
+            38.575,
+            67.865
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -1445,25 +1446,25 @@
           "sheet": "UI_30_HUB_RP_CORE_SERVICE",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              41.85,
-              43.76
+              45.045,
+              46.955
             ],
             "y": [
-              84.84999900000001,
-              85.859999
+              80.995,
+              82.005
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            42.805,
-            85.355
+            46.0,
+            81.5
           ],
           "footprint_anchor_mm": [
-            42.805,
-            85.355
+            46.0,
+            81.5
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -1474,25 +1475,25 @@
           "sheet": "UI_30_HUB_RP_CORE_SERVICE",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              37.35,
-              39.26
+              41.85,
+              43.76
             ],
             "y": [
-              84.59999900000001,
-              85.609999
+              84.85000000000001,
+              85.86
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            38.305,
-            85.105
+            42.805,
+            85.355
           ],
           "footprint_anchor_mm": [
-            38.305,
-            85.105
+            42.805,
+            85.355
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -3984,24 +3985,24 @@
           "sheet": "UI_20_C5_WIFI_IR_SERVICE",
           "side": "B.Cu",
           "footprint": "Package_TO_SOT_SMD:SOT-23",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 fan-out correction",
           "courtyard_bbox_mm": {
             "x": [
-              48.35,
-              51.839999999999996
+              48.555,
+              52.044999999999995
             ],
             "y": [
-              69.34999900000001,
-              73.299999
+              69.35000000000001,
+              73.3
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            50.095,
+            50.3,
             71.325
           ],
           "footprint_anchor_mm": [
-            50.095,
+            50.3,
             71.325
           ],
           "rotation_deg": 90.0,
@@ -5463,25 +5464,25 @@
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              46.6,
-              47.63
+              47.21,
+              48.24
             ],
             "y": [
-              82.09999900000001,
-              84.049999
+              82.04,
+              83.99
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            47.115,
-            83.075
+            47.725,
+            83.015
           ],
           "footprint_anchor_mm": [
-            47.115,
-            83.075
+            47.725,
+            83.015
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -5579,25 +5580,25 @@
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              44.85,
-              45.88
+              48.535,
+              49.565
             ],
             "y": [
-              82.09999900000001,
-              84.049999
+              82.04,
+              83.99
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            45.365,
-            83.075
+            49.05,
+            83.015
           ],
           "footprint_anchor_mm": [
-            45.365,
-            83.075
+            49.05,
+            83.015
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -5898,25 +5899,25 @@
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              37.6,
-              39.550000000000004
+              25.979999999999997,
+              27.93
             ],
             "y": [
-              67.35,
-              68.38
+              73.24,
+              74.27
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            38.575,
-            67.865
+            26.955,
+            73.755
           ],
           "footprint_anchor_mm": [
-            38.575,
-            67.865
+            26.955,
+            73.755
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -6304,25 +6305,25 @@
           "sheet": "UI_20_C5_WIFI_IR_SERVICE",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              38.1,
-              40.050000000000004
+              32.0,
+              33.95
             ],
             "y": [
-              80.85,
-              81.88
+              86.75,
+              87.78
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            39.075,
-            81.365
+            32.975,
+            87.265
           ],
           "footprint_anchor_mm": [
-            39.075,
-            81.365
+            32.975,
+            87.265
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -6333,25 +6334,25 @@
           "sheet": "UI_20_C5_WIFI_IR_SERVICE",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              44.85,
-              46.800000000000004
+              30.0,
+              31.950000000000003
             ],
             "y": [
-              80.85,
-              81.88
+              82.75,
+              83.78
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            45.825,
-            81.365
+            30.975,
+            83.265
           ],
           "footprint_anchor_mm": [
-            45.825,
-            81.365
+            30.975,
+            83.265
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -7870,7 +7871,7 @@
           "sheet": "UI_30_HUB_RP_CORE_SERVICE",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               38.1,
@@ -7890,7 +7891,7 @@
             39.075,
             82.615
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -12322,7 +12323,7 @@
           "sheet": "UI_30_HUB_RP_CORE_SERVICE",
           "side": "B.Cu",
           "footprint": "Package_DFN_QFN:QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm",
-          "method": "exact H1 seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               36.855000000000004,
@@ -12342,7 +12343,7 @@
             42.5,
             75.0
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -13246,22 +13247,23 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "unrouted_seed_sha256": "04e7f979474224d733a3acc05caa1be93fcec0ab80ac11a5fd86a44664d73f48",
-      "placement_signature_sha256": "1ea1685b2ae596c42063b870ff272b2e1e838dad0151d68f576673bc2f9a0784"
+      "unrouted_seed_sha256": "1ad2794f04364811a5071b2b26a254eb4b8f9beb37b320e0997942eea5d0196d",
+      "placement_signature_sha256": "4c848d25e7c1bee21028519eed3cd3c6f2e2f76dc858107aacfa7fc12de2adbd"
     },
     {
       "project": "LESHY2-RF-R2",
       "schematic_instance_count": 780,
       "placed_instance_count": 780,
       "side_counts": {
-        "B.Cu": 770,
-        "F.Cu": 10
+        "B.Cu": 768,
+        "F.Cu": 12
       },
       "method_counts": {
-        "connectivity/sheet automatic seed": 610,
-        "exact H1 seed": 36,
+        "connectivity/sheet automatic seed": 595,
+        "exact H1 seed": 34,
         "hard H1 datum": 13,
-        "nearest exact-footprint correction": 121
+        "nearest exact-footprint correction": 120,
+        "reviewed H6.0.2 oscillator-locality correction": 18
       },
       "net_count": 516,
       "mechanical": [
@@ -15994,25 +15996,25 @@
           "sheet": "RF_10_RP2354_CORE_SERVICE",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              57.85,
-              59.76
+              62.395,
+              64.305
             ],
             "y": [
-              6.8500000000000005,
-              7.86
+              38.94,
+              39.95
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            58.805,
-            7.355
+            63.35,
+            39.445
           ],
           "footprint_anchor_mm": [
-            58.805,
-            7.355
+            63.35,
+            39.445
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -16023,25 +16025,25 @@
           "sheet": "RF_10_RP2354_CORE_SERVICE",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              66.35000000000001,
-              68.26
+              64.555,
+              66.465
             ],
             "y": [
-              5.6000000000000005,
-              6.61
+              38.94,
+              39.95
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            67.305,
-            6.105
+            65.51,
+            39.445
           ],
           "footprint_anchor_mm": [
-            67.305,
-            6.105
+            65.51,
+            39.445
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -16835,25 +16837,25 @@
           "sheet": "RF_20_CC1101_VOICE_TX",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              34.35,
-              36.26
+              37.120000000000005,
+              39.03
             ],
             "y": [
-              5.1000000000000005,
-              6.11
+              17.36,
+              18.369999999999997
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            35.305,
-            5.605
+            38.075,
+            17.865
           ],
           "footprint_anchor_mm": [
-            35.305,
-            5.605
+            38.075,
+            17.865
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -16864,27 +16866,27 @@
           "sheet": "RF_20_CC1101_VOICE_TX",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              33.099999999999994,
-              34.11
+              34.120000000000005,
+              36.03
             ],
             "y": [
-              4.1,
-              6.01
+              17.86,
+              18.869999999999997
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            33.605,
-            5.055
+            35.075,
+            18.365
           ],
           "footprint_anchor_mm": [
-            33.605,
-            5.055
+            35.075,
+            18.365
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -17123,27 +17125,27 @@
           "instance": "cc_power_input_cap",
           "reference": "C125",
           "sheet": "RF_20_CC1101_VOICE_TX",
-          "side": "B.Cu",
+          "side": "F.Cu",
           "footprint": "Capacitor_SMD:C_0603_1608Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              62.35,
-              65.4
+              0.4750000000000001,
+              3.525
             ],
             "y": [
-              39.1,
-              40.65
+              75.225,
+              76.775
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            63.875,
-            39.875
+            2.0,
+            76.0
           ],
           "footprint_anchor_mm": [
-            63.875,
-            39.875
+            2.0,
+            76.0
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -17674,27 +17676,27 @@
           "instance": "voice_io_power_input_cap",
           "reference": "C144",
           "sheet": "RF_20_CC1101_VOICE_TX",
-          "side": "B.Cu",
+          "side": "F.Cu",
           "footprint": "Capacitor_SMD:C_0603_1608Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              64.85,
-              66.4
+              11.225,
+              12.775
             ],
             "y": [
-              40.85,
-              43.9
+              100.77499999999999,
+              103.825
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            65.625,
-            42.375
+            12.0,
+            102.3
           ],
           "footprint_anchor_mm": [
-            65.625,
-            42.375
+            12.0,
+            102.3
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -18807,27 +18809,27 @@
           "sheet": "RF_21_BROADCAST_AIRBAND_RX",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              2.6,
-              4.51
+              8.12,
+              9.13
             ],
             "y": [
-              5.6000000000000005,
-              6.61
+              17.845000000000002,
+              19.755
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            3.555,
-            6.105
+            8.625,
+            18.8
           ],
           "footprint_anchor_mm": [
-            3.555,
-            6.105
+            8.625,
+            18.8
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -18836,27 +18838,27 @@
           "sheet": "RF_21_BROADCAST_AIRBAND_RX",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              3.0999989999999995,
-              5.009999
+              11.44,
+              12.450000000000001
             ],
             "y": [
-              4.3500000000000005,
-              5.36
+              20.245,
+              22.154999999999998
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            4.055,
-            4.855
+            11.945,
+            21.2
           ],
           "footprint_anchor_mm": [
-            4.055,
-            4.855
+            11.945,
+            21.2
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -19068,11 +19070,11 @@
           "sheet": "RF_21_BROADCAST_AIRBAND_RX",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0603_1608Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              12.35,
-              15.4
+              12.7,
+              15.75
             ],
             "y": [
               20.85,
@@ -19081,11 +19083,11 @@
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            13.875,
+            14.225,
             21.625
           ],
           "footprint_anchor_mm": [
-            13.875,
+            14.225,
             21.625
           ],
           "rotation_deg": 0.0,
@@ -21823,25 +21825,25 @@
           "sheet": "RF_50_TX_SAFETY_EVIDENCE",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0603_1608Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              7.85,
-              9.4
+              2.75,
+              4.3
             ],
             "y": [
-              16.85,
-              19.9
+              3.7500000000000004,
+              6.800000000000001
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            8.625,
-            18.375
+            3.525,
+            5.275
           ],
           "footprint_anchor_mm": [
-            8.625,
-            18.375
+            3.525,
+            5.275
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -26366,27 +26368,27 @@
           "sheet": "RF_10_RP2354_CORE_SERVICE",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              69.6,
-              70.63
+              64.555,
+              66.505
             ],
             "y": [
-              32.6,
-              34.550000000000004
+              40.66,
+              41.69
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            70.115,
-            33.575
+            65.53,
+            41.175
           ],
           "footprint_anchor_mm": [
-            70.115,
-            33.575
+            65.53,
+            41.175
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -27091,25 +27093,25 @@
           "sheet": "RF_20_CC1101_VOICE_TX",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              34.1,
-              36.050000000000004
+              34.33,
+              36.28
             ],
             "y": [
-              17.849999999999998,
-              18.88
+              5.090000000000001,
+              6.12
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            35.075,
-            18.365
+            35.305,
+            5.605
           ],
           "footprint_anchor_mm": [
-            35.075,
-            18.365
+            35.305,
+            5.605
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -28541,27 +28543,27 @@
           "sheet": "RF_21_BROADCAST_AIRBAND_RX",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              37.1,
-              39.050000000000004
+              33.089999999999996,
+              34.12
             ],
             "y": [
-              17.349999999999998,
-              18.38
+              4.08,
+              6.029999999999999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            38.075,
-            17.865
+            33.605,
+            5.055
           ],
           "footprint_anchor_mm": [
-            38.075,
-            17.865
+            33.605,
+            5.055
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -33589,7 +33591,7 @@
           "sheet": "RF_10_RP2354_CORE_SERVICE",
           "side": "B.Cu",
           "footprint": "Package_DFN_QFN:QFN-80-1EP_10x10mm_P0.4mm_EP3.4x3.4mm",
-          "method": "nearest exact-footprint correction",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               50.855000000000004,
@@ -33609,7 +33611,7 @@
             56.5,
             37.0
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": -90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -33705,7 +33707,7 @@
           "sheet": "RF_20_CC1101_VOICE_TX",
           "side": "B.Cu",
           "footprint": "Package_DFN_QFN:Texas_RGP0020D_VQFN-20-1EP_4x4mm_P0.5mm_EP2.7x2.7mm",
-          "method": "exact H1 seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               33.325,
@@ -33725,7 +33727,7 @@
             36.0,
             10.3
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -34488,11 +34490,11 @@
           "sheet": "RF_21_BROADCAST_AIRBAND_RX",
           "side": "B.Cu",
           "footprint": "Package_SO:MSOP-10_3x3mm_P0.5mm",
-          "method": "exact H1 seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              21.855,
-              28.145
+              21.605,
+              27.895
             ],
             "y": [
               8.705,
@@ -34501,14 +34503,14 @@
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            25.0,
+            24.75,
             10.5
           ],
           "footprint_anchor_mm": [
-            25.0,
+            24.75,
             10.5
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -34720,7 +34722,7 @@
           "sheet": "RF_21_BROADCAST_AIRBAND_RX",
           "side": "B.Cu",
           "footprint": "Leshy2:FC-135-Q13FC13500005",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               7.6,
@@ -34740,7 +34742,7 @@
             9.395,
             21.195
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -36866,7 +36868,7 @@
           "sheet": "RF_20_CC1101_VOICE_TX",
           "side": "B.Cu",
           "footprint": "Crystal:Crystal_SMD_Abracon_ABM8G-4Pin_3.2x2.5mm",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               33.849999999999994,
@@ -36886,7 +36888,7 @@
             35.995,
             15.145
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -36920,8 +36922,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "ef70f5c5f5524b42345e3d8f7bfae5a096c7548a9bb8539a90b87c782469097e",
-      "placement_signature_sha256": "faf7a2a5db1c2c73322c787a860f0b17a85f5cf465131b1b190516df7a861112"
+      "unrouted_seed_sha256": "0428f4ed1ddd0a21574814d1fea9ee3b5033c7141989d4f30a54b43e9f70a33f",
+      "placement_signature_sha256": "7a409323f3d68cff0b2b1fb33941c220db0a039d9103012b3823f272f13c6825"
     }
   ],
   "authorization": {

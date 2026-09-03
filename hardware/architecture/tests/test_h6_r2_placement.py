@@ -185,11 +185,11 @@ assert placement.placement_signature_bytes(path.stem, board) != baseline
                 self.assertEqual(0, result.returncode, result.stdout)
                 self.assertTrue(output.is_file(), board["project"])
 
-    def test_preview_is_current_and_states_that_routing_has_not_started(self):
+    def test_preview_is_current_and_states_that_it_remains_the_placement_authority(self):
         self.assertTrue(SVG.is_file())
         text = SVG.read_text(encoding="utf-8")
         self.assertIn("H6.0.1 exact-footprint placement", text)
-        self.assertIn("routing not started", text)
+        self.assertIn("placement authority for routed boards", text)
         self.assertIn("428 positions", text)
         self.assertIn("780 positions", text)
 

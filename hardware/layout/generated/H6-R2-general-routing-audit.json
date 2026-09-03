@@ -1,18 +1,20 @@
 {
   "schema_version": 1,
-  "artifact": "H6-R2 accepted GENERAL_CONTROL routing bootstrap audit",
+  "artifact": "H6-R2 accepted H6.0.2 routing bootstrap audit",
   "marker": "H6.0.2-R1",
   "status": "pass",
   "sources": {
     "routing_policy_audit": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_audit_sha256": "960913eae46b82f4524f93e98ad221b77e96605fbe72ce366a455143f9c51e18",
+    "routing_policy_audit_sha256": "30e4c51ba0a75a20b34d5fa52c34d0a90284541e1e60ef1feba75444131eaded",
     "placement_freeze": "hardware/layout/h6-r2-placement-freeze.json",
-    "placement_freeze_sha256": "09538c503c54095c08058b5ae60f0ffd0563c231f77e648812c35405ccc52698"
+    "placement_freeze_sha256": "5538f04e998cb1a9dca411dfbd139c42cf4ca8fc0b6be43af050b908567a85e9"
   },
   "scope": {
-    "completed": "all GENERAL_CONTROL connections on both boards",
+    "completed": [
+      "GENERAL_CONTROL",
+      "OSCILLATOR"
+    ],
     "not_completed": [
-      "OSCILLATOR",
       "SAFETY_CONTROL",
       "ANALOG_AUDIO_SENSE"
     ],
@@ -24,12 +26,12 @@
   },
   "summary": {
     "board_count": 2,
-    "allowed_net_count": 165,
-    "expected_allowed_connection_count": 346,
-    "resolved_allowed_connection_count": 346,
+    "allowed_net_count": 177,
+    "expected_allowed_connection_count": 366,
+    "resolved_allowed_connection_count": 366,
     "remaining_allowed_connection_count": 0,
-    "track_item_count": 2550,
-    "via_count": 361,
+    "track_item_count": 2626,
+    "via_count": 367,
     "drc_violation_count": 0,
     "error_count": 0
   },
@@ -37,20 +39,31 @@
     {
       "project": "LESHY2-UI-R2",
       "board": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "board_sha256": "2a233c012f4fd62a5944b5c065b1c0bee3551666ff3fb38163079577b5821d3c",
-      "placement_signature_sha256": "1ea1685b2ae596c42063b870ff272b2e1e838dad0151d68f576673bc2f9a0784",
+      "board_sha256": "7afba0a5975685157c9a4afdd5437916c68eb75b49d2fea062d856b4594b6502",
+      "placement_signature_sha256": "4c848d25e7c1bee21028519eed3cd3c6f2e2f76dc858107aacfa7fc12de2adbd",
       "placement_unchanged": true,
-      "allowed_class": "GENERAL_CONTROL",
-      "allowed_net_count": 61,
-      "expected_allowed_connection_count": 142,
-      "resolved_allowed_connection_count": 142,
+      "accepted_classes": [
+        "GENERAL_CONTROL",
+        "OSCILLATOR"
+      ],
+      "allowed_net_count_by_class": {
+        "GENERAL_CONTROL": 61,
+        "OSCILLATOR": 3
+      },
+      "allowed_net_count": 64,
+      "expected_allowed_connection_count_by_class": {
+        "GENERAL_CONTROL": 142,
+        "OSCILLATOR": 5
+      },
+      "expected_allowed_connection_count": 147,
+      "resolved_allowed_connection_count": 147,
       "remaining_allowed_connection_count": 0,
       "seed_total_unconnected_count": 1227,
-      "routed_total_unconnected_count": 1085,
-      "routed_net_count": 61,
-      "track_item_count": 870,
-      "trace_count": 736,
-      "via_count": 134,
+      "routed_total_unconnected_count": 1080,
+      "routed_net_count": 64,
+      "track_item_count": 892,
+      "trace_count": 761,
+      "via_count": 131,
       "used_trace_layers": [
         "B.Cu",
         "F.Cu",
@@ -58,10 +71,10 @@
         "In3.Cu"
       ],
       "trace_length_mm_by_layer": {
-        "B.Cu": 536.8241,
-        "F.Cu": 240.052,
-        "In2.Cu": 997.6798,
-        "In3.Cu": 988.5783
+        "B.Cu": 614.083,
+        "F.Cu": 241.4197,
+        "In2.Cu": 912.4537,
+        "In3.Cu": 980.3151
       },
       "trace_width_counts": [
         {
@@ -70,18 +83,18 @@
         },
         {
           "width_mm": 0.1124,
-          "count": 41
+          "count": 37
         },
         {
           "width_mm": 0.15,
-          "count": 690
+          "count": 719
         }
       ],
       "via_geometry_counts": [
         {
           "diameter_mm": 0.4,
           "drill_mm": 0.2,
-          "count": 134
+          "count": 131
         }
       ],
       "ordinary_copper_zone_count": 0,
@@ -89,7 +102,7 @@
       "drc": {
         "tool": "KiCad CLI pcb drc",
         "kicad_version": "10.0.5",
-        "checked_board_sha256": "2a233c012f4fd62a5944b5c065b1c0bee3551666ff3fb38163079577b5821d3c",
+        "checked_board_sha256": "7afba0a5975685157c9a4afdd5437916c68eb75b49d2fea062d856b4594b6502",
         "violation_count": 0,
         "schematic_parity_error_count": 0,
         "visible_unconnected_item_count": 499,
@@ -100,20 +113,31 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "board_sha256": "e5fb8f8c4284e2f6add3bd68e06608c676592a58e106501e596b960e6f211d7f",
-      "placement_signature_sha256": "faf7a2a5db1c2c73322c787a860f0b17a85f5cf465131b1b190516df7a861112",
+      "board_sha256": "5d9c733d6affd6a1e4ad554064d7f09dcc27371f1574182f3f49b06022d29575",
+      "placement_signature_sha256": "7a409323f3d68cff0b2b1fb33941c220db0a039d9103012b3823f272f13c6825",
       "placement_unchanged": true,
-      "allowed_class": "GENERAL_CONTROL",
-      "allowed_net_count": 104,
-      "expected_allowed_connection_count": 204,
-      "resolved_allowed_connection_count": 204,
+      "accepted_classes": [
+        "GENERAL_CONTROL",
+        "OSCILLATOR"
+      ],
+      "allowed_net_count_by_class": {
+        "GENERAL_CONTROL": 104,
+        "OSCILLATOR": 9
+      },
+      "allowed_net_count": 113,
+      "expected_allowed_connection_count_by_class": {
+        "GENERAL_CONTROL": 204,
+        "OSCILLATOR": 15
+      },
+      "expected_allowed_connection_count": 219,
+      "resolved_allowed_connection_count": 219,
       "remaining_allowed_connection_count": 0,
       "seed_total_unconnected_count": 2038,
-      "routed_total_unconnected_count": 1834,
-      "routed_net_count": 104,
-      "track_item_count": 1680,
-      "trace_count": 1453,
-      "via_count": 227,
+      "routed_total_unconnected_count": 1819,
+      "routed_net_count": 113,
+      "track_item_count": 1734,
+      "trace_count": 1498,
+      "via_count": 236,
       "used_trace_layers": [
         "B.Cu",
         "F.Cu",
@@ -121,30 +145,30 @@
         "In3.Cu"
       ],
       "trace_length_mm_by_layer": {
-        "B.Cu": 1143.9491,
+        "B.Cu": 1198.0979,
         "F.Cu": 3.4332,
-        "In2.Cu": 1766.0204,
-        "In3.Cu": 1553.0987
+        "In2.Cu": 1844.1231,
+        "In3.Cu": 1556.9844
       },
       "trace_width_counts": [
         {
           "width_mm": 0.1,
-          "count": 2
+          "count": 4
         },
         {
           "width_mm": 0.1124,
-          "count": 72
+          "count": 48
         },
         {
           "width_mm": 0.15,
-          "count": 1379
+          "count": 1446
         }
       ],
       "via_geometry_counts": [
         {
           "diameter_mm": 0.4,
           "drill_mm": 0.2,
-          "count": 227
+          "count": 236
         }
       ],
       "ordinary_copper_zone_count": 0,
@@ -152,7 +176,7 @@
       "drc": {
         "tool": "KiCad CLI pcb drc",
         "kicad_version": "10.0.5",
-        "checked_board_sha256": "e5fb8f8c4284e2f6add3bd68e06608c676592a58e106501e596b960e6f211d7f",
+        "checked_board_sha256": "5d9c733d6affd6a1e4ad554064d7f09dcc27371f1574182f3f49b06022d29575",
         "violation_count": 0,
         "schematic_parity_error_count": 0,
         "visible_unconnected_item_count": 499,
