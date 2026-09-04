@@ -10,6 +10,27 @@
 
 </div>
 
+## What it is
+
+Leshy2 is a portable, repairable instrument for radio observation,
+communications, diagnostics and authorized security work. It keeps the user
+interface responsive while active radio groups run on local buses and unused
+interfaces enter a hardware-verifiable quiet state.
+
+| Capability | Finished-device result |
+|---|---|
+| Three nRF24 radios | Concurrent full RX/TX/mixed modes: `3R`, `1T2R`, `2T1R`, `3T` |
+| Native wireless | S3 Wi-Fi/BLE and C5 2.4/5-GHz Wi-Fi, 802.15.4 and IR |
+| Dedicated RF | CC1101 Sub-GHz, independent VHF/UHF voice, FM/AM/SW/LW/Airband RX |
+| Interface | 3.5-inch 320×480 touch IPS `ER-TFT035IPS-6` + `ER-TPC035-6` over direct exact-20-MHz i8080-8, S3-local buttons through `TCA9539PWR`, waterfall, microSD and audio |
+| Expansion | One protected rear Cap slot for U214 LoRa or U219 CC1101+NFC, plus a protected M5 Unit interface |
+| Recovery | Four independent USB paths, recessed per-controller controls and DBG10 fallbacks |
+| Unattended safety | TX evidence, watchdog, thermal supervision, hard power-off and retained fault reason |
+
+Transmission and intrusive laboratory functions are separated from ordinary
+use by the [three-level safety model](docs/safety.md). Installation requires the
+user to accept the non-aggression/authorized-use terms.
+
 > **Current hardware marker: `H6.0.2-R1`.** The complete two-PCB `H1-R2.38`
 > placement was accepted and reviewed on 30 August 2026: exact dual-RP GPIO/M1 map and C5 SDIO/service-mux,
 > the series-produced `ER-TFT035IPS-6` + `ER-TPC035-6` display and its direct
@@ -79,27 +100,6 @@ click either board for the full-size SVG and exact net labels.
 > It cannot authorize firmware, R2 KiCad, fabrication or ordering. The exact
 > dual-RP/C5 electrical authority is the reviewed H1 machine contract; the new
 > native R2 schematics are reviewed logical H2 output, not PCB or fabrication authority.
-
-## What it is
-
-Leshy2 is a portable, repairable instrument for radio observation,
-communications, diagnostics and authorized security work. It keeps the user
-interface responsive while active radio groups run on local buses and unused
-interfaces enter a hardware-verifiable quiet state.
-
-| Capability | Finished-device result |
-|---|---|
-| Three nRF24 radios | Concurrent full RX/TX/mixed modes: `3R`, `1T2R`, `2T1R`, `3T` |
-| Native wireless | S3 Wi-Fi/BLE and C5 2.4/5-GHz Wi-Fi, 802.15.4 and IR |
-| Dedicated RF | CC1101 Sub-GHz, independent VHF/UHF voice, FM/AM/SW/LW/Airband RX |
-| Interface | 3.5-inch 320×480 touch IPS `ER-TFT035IPS-6` + `ER-TPC035-6` over direct exact-20-MHz i8080-8, S3-local buttons through `TCA9539PWR`, waterfall, microSD and audio |
-| Expansion | One protected rear Cap slot for U214 LoRa or U219 CC1101+NFC, plus a protected M5 Unit interface |
-| Recovery | Four independent USB paths, recessed per-controller controls and DBG10 fallbacks |
-| Unattended safety | TX evidence, watchdog, thermal supervision, hard power-off and retained fault reason |
-
-Transmission and intrusive laboratory functions are separated from ordinary
-use by the [three-level safety model](docs/safety.md). Installation requires the
-user to accept the non-aggression/authorized-use terms.
 
 ## Physical mock-up
 
