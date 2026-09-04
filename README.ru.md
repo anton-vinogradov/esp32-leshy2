@@ -54,6 +54,25 @@
 > 111 сетях `SAFETY_CONTROL`; обе сохранённые платы проходят свежий DRC KiCad
 > 10.0.5 без нарушений. Текущей остаётся только трассировка аналоговых/audio/sense-сетей.
 
+## Текущая разводка плат
+
+Изображения ниже генерируются прямо из сохранённых KiCad-плат. Это актуальный
+принятый срез `H6.0.2-R1`, а не иллюстративный мокап; нажмите на любую плату,
+чтобы открыть полноразмерный SVG с точными именами сетей.
+
+<table>
+  <tr>
+    <td width="50%"><a href="docs/images/h6-r2-routing-ui.svg?rev=h6.0.2-r1"><img src="docs/images/h6-r2-routing-ui.svg?rev=h6.0.2-r1" alt="Текущая разводка UI-платы" width="100%"></a></td>
+    <td width="50%"><a href="docs/images/h6-r2-routing-rf.svg?rev=h6.0.2-r1"><img src="docs/images/h6-r2-routing-rf.svg?rev=h6.0.2-r1" alt="Текущая разводка RF/power-платы" width="100%"></a></td>
+  </tr>
+  <tr>
+    <td align="center">UI-плата · принятая живая разводка</td>
+    <td align="center">RF / power-плата · принятая живая разводка</td>
+  </tr>
+</table>
+
+[Открыть подробный результат этапа H6](docs/stage-results.ru.md#h6).
+
 > **Authority-gate R2:** текущие H0/H1 содержат шесть вычислительных доменов и
 > два `SC1512-A4`: передний Hub RP и задний RF RP. Сохранённые G2F/H2/KiCad —
 > историческое single-RP evidence R1, а не authority текущего R2. Оно не разрешает

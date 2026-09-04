@@ -54,6 +54,25 @@
 > saved boards pass a fresh KiCad 10.0.5 DRC with zero violations. Only
 > analogue/audio/sense routing remains current.
 
+## Current PCB routing
+
+The images below are generated directly from the checked-in KiCad boards. They
+show the latest accepted `H6.0.2-R1` routing slice, not an illustrative mock-up;
+click either board for the full-size SVG and exact net labels.
+
+<table>
+  <tr>
+    <td width="50%"><a href="docs/images/h6-r2-routing-ui.svg?rev=h6.0.2-r1"><img src="docs/images/h6-r2-routing-ui.svg?rev=h6.0.2-r1" alt="Current UI PCB routing" width="100%"></a></td>
+    <td width="50%"><a href="docs/images/h6-r2-routing-rf.svg?rev=h6.0.2-r1"><img src="docs/images/h6-r2-routing-rf.svg?rev=h6.0.2-r1" alt="Current RF and power PCB routing" width="100%"></a></td>
+  </tr>
+  <tr>
+    <td align="center">UI PCB · accepted live routing</td>
+    <td align="center">RF / power PCB · accepted live routing</td>
+  </tr>
+</table>
+
+[Open the detailed H6 stage result](docs/stage-results.md#h6).
+
 > **R2 authority gate:** current H0/H1 has six compute domains and two `SC1512-A4`
 > controllers: a front Hub RP and a rear RF RP. The checked-in G2F/H2/KiCad
 > material is preserved historical single-RP R1 evidence, not current R2 authority.
