@@ -308,7 +308,7 @@ def build() -> tuple[dict[Path, str], dict]:
 
     en = f"""# RF electrical verification · H3-R2.5
 
-`H3-R2.5` is reviewed with **{len(checks)} passing machine checks** and no open analytical finding. [`H3-R2.6`](thermal-fault-electrical-verification.md), the H3-R2.7 phase package, global H4-R2 and global H5-R1 are also reviewed; the current marker is `H6.0.2-R1`.
+`H3-R2.5` is reviewed with **{len(checks)} passing machine checks** and no open analytical finding. [`H3-R2.6`](thermal-fault-electrical-verification.md), the H3-R2.7 phase package, global H4-R2 and global H5-R1 are also reviewed; the current marker is `H6.0.3-R1`.
 
 The ten source-to-port paths are local to the PCB that carries their antenna: `5 + 5`, with no RF crossing M1. S3 and C5 retain exact 30-mm jumpers; the three nRF paths use exact 60-mm jumpers. The conservative generated reach test leaves at least **{microcoax['minimum_conservative_slack_mm']:.3f} mm** and bounds every nRF from the farthest corner of the complete module envelope rather than guessing the IPEX axis. Airband is a receive-only selectable branch behind the existing `RX-FM/SW` port.
 
@@ -322,7 +322,7 @@ Machine evidence: [`H3-R2-rf-coexistence.json`](../hardware/verification/generat
 """
     ru = f"""# Электрическая RF-проверка · H3-R2.5
 
-`H3-R2.5` проведён ревью: **{len(checks)} машинных checks проходят**, открытых аналитических findings нет. [`H3-R2.6`](thermal-fault-electrical-verification.ru.md), пакеты фаз H3-R2.7, H4-R2 и H5-R1 также проведены ревью; текущий маркер — `H6.0.2-R1`.
+`H3-R2.5` проведён ревью: **{len(checks)} машинных checks проходят**, открытых аналитических findings нет. [`H3-R2.6`](thermal-fault-electrical-verification.ru.md), пакеты фаз H3-R2.7, H4-R2 и H5-R1 также проведены ревью; текущий маркер — `H6.0.3-R1`.
 
 Все десять source-to-port трактов остаются на плате своего антенного разъёма: `5 + 5`, RF через M1 не проходит. S3 и C5 сохраняют точные 30-мм перемычки, три nRF получают точные 60-мм перемычки. Консервативная проверка оставляет не меньше **{microcoax['minimum_conservative_slack_mm']:.3f} мм** и считает каждый nRF до самого дальнего угла полного корпуса модуля, не угадывая ось IPEX. Airband остаётся только приёмной выбираемой ветвью существующего порта `RX-FM/SW`.
 

@@ -1,24 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="3710" viewBox="0 0 1900 3710" data-marker="H1-R2.38" data-view="both-inner-faces-mirrored" data-inner-silkscreen="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="3710" viewBox="0 0 1900 3710" data-marker="H1-R2.39" data-view="both-inner-faces-mirrored" data-inner-silkscreen="none">
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 <rect width="1900" height="3710" fill="#ffffff"/>
-<text x="30.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.38 complete inner-body map</text>
+<text x="30.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.39 complete inner-body map</text>
 <text x="30.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Each PCB is shown exactly as viewed after turning it over. Numbers are drawing references; inner faces contain no silkscreen.</text>
-<text x="201.9" y="110.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#172033">UI PCB · inner · turned-over view</text>
-<rect x="65.0" y="130.0" width="273.8" height="547.5" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
-<circle cx="320.5" cy="170.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
+<text x="211.0" y="110.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#172033">UI PCB · inner · turned-over view</text>
+<rect x="65.0" y="130.0" width="292.0" height="547.5" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<circle cx="338.8" cy="170.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="83.2" cy="170.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
-<circle cx="320.5" cy="659.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
+<circle cx="338.8" cy="659.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="83.2" cy="659.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
-<rect x="223.78" y="153.00" width="38.32" height="27.38" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="s3_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
-<rect x="140.92" y="153.00" width="37.23" height="27.38" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="c5_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
-<rect x="263.92" y="161.03" width="39.42" height="33.22" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="nrf0_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
-<rect x="194.57" y="179.28" width="39.42" height="28.47" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="nrf1_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
-<rect x="100.41" y="161.03" width="32.12" height="33.22" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="nrf2_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
-<text x="576.9" y="110.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#172033">RF / power PCB · inner · turned-over view</text>
-<rect x="440.0" y="130.0" width="273.8" height="547.5" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
-<circle cx="695.5" cy="170.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
+<rect x="242.03" y="153.00" width="38.32" height="27.38" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="s3_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
+<rect x="159.17" y="153.00" width="37.23" height="27.38" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="c5_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
+<rect x="282.17" y="161.03" width="39.42" height="33.22" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="nrf0_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
+<rect x="212.82" y="179.28" width="39.42" height="28.47" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="nrf1_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
+<rect x="118.66" y="161.03" width="32.12" height="33.22" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="nrf2_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
+<text x="586.0" y="110.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#172033">RF / power PCB · inner · turned-over view</text>
+<rect x="440.0" y="130.0" width="292.0" height="547.5" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+<circle cx="713.8" cy="170.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="458.2" cy="170.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
-<circle cx="695.5" cy="659.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
+<circle cx="713.8" cy="659.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <circle cx="458.2" cy="659.2" r="14.6" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>
 <rect x="549.50" y="158.47" width="41.98" height="20.44" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="cc_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
 <rect x="683.46" y="224.17" width="28.47" height="21.90" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="uhf_tx_evidence_island_reserve" data-feature-kind="placement_reserve"/>
@@ -28,17 +28,17 @@
 <rect x="519.57" y="203.00" width="22.27" height="43.07" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="u219_nfc_evidence_island_reserve" data-feature-kind="placement_reserve"/>
 <rect x="520.30" y="235.85" width="7.67" height="10.22" rx="2" fill="#7c3aed" fill-opacity="0.06" stroke="#7c3aed" stroke-width="1.2" stroke-dasharray="5 3" data-physical-feature="u219_nfc_dnp_tuning_bank" data-feature-kind="placement_reserve"/>
 <g id="antenna-pcb-topology" data-topology-source="r2" data-route-state="pre-ecad-topology-only">
-<polyline points="296.8,168.5 309.2,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="N24-0" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
-<polyline points="255.5,168.5 255.5,156.4 255.5,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="S3-2G4" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
-<polyline points="201.9,186.8 201.9,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="N24-1" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
-<polyline points="148.2,168.5 148.2,156.4 148.2,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="C5-2G4/5" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
-<polyline points="107.0,168.5 94.6,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="N24-2" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
-<polyline points="562.6,283.4 523.2,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="VOICE-VHF" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
-<polyline points="665.2,313.6 469.6,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="VOICE-UHF" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
-<polyline points="582.4,167.6 576.9,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="CC-SUB" data-branch="matched-main" data-medium="matched-rf-pcb-topology"/>
-<polyline points="630.5,130.0 662.8,226.7" fill="none" stroke="#7c3aed" stroke-width="1.9" data-path="RX-AM/LW" data-branch="ami" data-medium="high-impedance-ami-pcb"/>
-<polyline points="684.2,130.0 637.1,168.3 662.8,226.7" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="RX-FM/SW" data-branch="direct-fm-sw" data-medium="direct-fm-sw-pcb"/>
-<polyline points="684.2,130.0 669.0,170.3 651.7,168.3 637.1,168.3" fill="none" stroke="#ea580c" stroke-width="2.0" data-path="RX-FM/SW" data-branch="converted-airband" data-medium="converted-airband-rf-if-pcb"/>
+<polyline points="315.0,168.5 318.3,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="N24-0" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
+<polyline points="273.8,168.5 273.8,156.4 264.7,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="S3-2G4" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
+<polyline points="220.1,186.8 211.0,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="N24-1" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
+<polyline points="166.5,168.5 166.5,156.4 157.3,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="C5-2G4/5" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
+<polyline points="125.2,168.5 103.7,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="N24-2" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
+<polyline points="562.6,283.4 532.3,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="VOICE-VHF" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
+<polyline points="665.2,313.6 478.7,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="VOICE-UHF" data-branch="main" data-medium="controlled-50-ohm-pcb"/>
+<polyline points="582.4,167.6 586.0,130.0" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="CC-SUB" data-branch="matched-main" data-medium="matched-rf-pcb-topology"/>
+<polyline points="639.7,130.0 662.8,226.7" fill="none" stroke="#7c3aed" stroke-width="1.9" data-path="RX-AM/LW" data-branch="ami" data-medium="high-impedance-ami-pcb"/>
+<polyline points="693.3,130.0 637.1,168.3 662.8,226.7" fill="none" stroke="#2563eb" stroke-width="1.7" data-path="RX-FM/SW" data-branch="direct-fm-sw" data-medium="direct-fm-sw-pcb"/>
+<polyline points="693.3,130.0 669.0,170.3 651.7,168.3 637.1,168.3" fill="none" stroke="#ea580c" stroke-width="2.0" data-path="RX-FM/SW" data-branch="converted-airband" data-medium="converted-airband-rf-if-pcb"/>
 <polyline points="622.5,168.3 651.7,168.3" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 3" data-path="RX-FM/SW" data-branch="airband-lo" data-medium="112-mhz-local-oscillator-pcb"/>
 </g>
 <rect x="591.48" y="155.55" width="87.60" height="40.15" rx="2" fill="#fff7ed" stroke="#ea580c" stroke-width="1" stroke-dasharray="6 4" data-instance="airband_filter_reserve" data-mpn="PHYSICAL RESERVE"/>
@@ -57,7 +57,7 @@
 <text x="622.5" y="170.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">7</text>
 <rect x="505.70" y="184.75" width="10.95" height="10.95" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="codec_r2" data-mpn="ES8311"/>
 <text x="511.2" y="192.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">8</text>
-<rect x="490.74" y="184.75" width="11.32" height="18.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="audio_speaker_selector_r2" data-mpn="TMUX1136DGSR"/>
+<rect x="490.74" y="184.75" width="11.31" height="18.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="audio_speaker_selector_r2" data-mpn="TMUX1136DGSR"/>
 <text x="496.4" y="196.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">9</text>
 <rect x="523.40" y="203.91" width="3.65" height="1.82" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="u219_field_input_r_p" data-mpn="0402WGF1001TCE"/>
 <text x="525.2" y="206.4" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">10</text>
@@ -131,7 +131,7 @@
 <text x="705.7" y="337.5" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">44</text>
 <rect x="618.85" y="338.05" width="3.65" height="1.82" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="u214_series_nss" data-mpn="Panasonic ERJ-2RKF22R0X"/>
 <text x="620.7" y="340.6" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">45</text>
-<rect x="702.80" y="339.88" width="10.58" height="5.84" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="u214_supervisor" data-mpn="TPS3808G33DBVR"/>
+<rect x="702.80" y="339.88" width="10.59" height="5.84" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="u214_supervisor" data-mpn="TPS3808G33DBVR"/>
 <text x="708.1" y="345.1" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">46</text>
 <rect x="508.62" y="339.88" width="11.68" height="9.12" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="main_input_cap0_r2" data-mpn="GRM32ER71E226KE15L"/>
 <text x="514.5" y="346.7" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">47</text>
@@ -279,7 +279,7 @@
 <text x="479.6" y="429.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">118</text>
 <rect x="443.65" y="422.00" width="22.26" height="9.82" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="pack_fuse0" data-mpn="Littelfuse 0451005.MRL"/>
 <text x="454.8" y="429.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">119</text>
-<rect x="655.35" y="429.30" width="10.59" height="5.47" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="safe_ptt_or" data-mpn="74LVC1G32GV,125"/>
+<rect x="655.35" y="429.30" width="10.58" height="5.47" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="safe_ptt_or" data-mpn="74LVC1G32GV,125"/>
 <text x="660.6" y="433.6" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">120</text>
 <rect x="640.75" y="429.30" width="7.30" height="4.56" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="safe_reset_sink_b" data-mpn="Diodes Incorporated 2N7002DW-7-F"/>
 <text x="644.4" y="433.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">121</text>
@@ -303,7 +303,7 @@
 <text x="450.9" y="446.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">130</text>
 <rect x="602.42" y="440.25" width="11.32" height="7.30" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="safe_fault_reset_buffer" data-mpn="SN74LVC3G07DCUR"/>
 <text x="608.1" y="446.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">131</text>
-<rect x="651.70" y="443.90" width="10.59" height="4.74" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="evidence_or_2" data-mpn="BAT54ALT1G"/>
+<rect x="651.70" y="443.90" width="10.58" height="4.74" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="evidence_or_2" data-mpn="BAT54ALT1G"/>
 <text x="657.0" y="447.9" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">132</text>
 <rect x="571.40" y="447.55" width="18.62" height="17.89" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="safety_controller" data-mpn="Texas Instruments MSPM0C1106SDGS20R"/>
 <text x="580.7" y="458.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">133</text>
@@ -327,7 +327,7 @@
 <text x="644.4" y="469.7" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">142</text>
 <rect x="666.30" y="471.27" width="10.59" height="4.74" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="evidence_or_1" data-mpn="BAT54ALT1G"/>
 <text x="671.6" y="475.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">143</text>
-<rect x="651.70" y="471.27" width="11.31" height="7.30" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="evidence_main_isolator" data-mpn="SN74LVC3G07DCUR"/>
+<rect x="651.70" y="471.27" width="11.32" height="7.30" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="evidence_main_isolator" data-mpn="SN74LVC3G07DCUR"/>
 <text x="657.4" y="477.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">144</text>
 <rect x="644.40" y="473.10" width="3.65" height="1.82" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="evidence_main_isolator_bypass" data-mpn="Yageo CC0402KRX7R9BB104"/>
 <text x="646.2" y="475.6" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">145</text>
@@ -339,7 +339,7 @@
 <text x="671.6" y="482.5" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">148</text>
 <rect x="644.40" y="478.57" width="3.65" height="1.82" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ext_evidence_input_pullup" data-mpn="Yageo RC0402FR-0710KL"/>
 <text x="646.2" y="481.1" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">149</text>
-<rect x="651.70" y="482.22" width="10.59" height="4.74" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="evidence_or_0" data-mpn="BAT54ALT1G"/>
+<rect x="651.70" y="482.22" width="10.58" height="4.74" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="evidence_or_0" data-mpn="BAT54ALT1G"/>
 <text x="657.0" y="486.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">150</text>
 <rect x="651.70" y="489.52" width="3.65" height="1.82" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ext_evidence_output_pullup" data-mpn="Yageo RC0402FR-0710KL"/>
 <text x="653.5" y="492.0" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">151</text>
@@ -349,8 +349,8 @@
 <text x="603.6" y="522.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">153</text>
 <rect x="440.00" y="516.90" width="12.41" height="16.43" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="rp_reset_button" data-mpn="Alps Alpine SKRTLAE010"/>
 <text x="446.2" y="527.4" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">154</text>
-<rect x="680.17" y="535.15" width="31.02" height="12.78" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="power_command_switch" data-mpn="C&amp;K JS102011SCQN"/>
-<text x="695.7" y="543.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">155</text>
+<rect x="698.42" y="535.15" width="31.02" height="12.78" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="power_command_switch" data-mpn="C&amp;K JS102011SCQN"/>
+<text x="713.9" y="543.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">155</text>
 <rect x="440.00" y="542.45" width="12.41" height="16.43" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="rp_boot_button" data-mpn="Alps Alpine SKRTLAE010"/>
 <text x="446.2" y="552.9" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">156</text>
 <rect x="521.03" y="564.35" width="111.69" height="25.55" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="m1_rf_receptacle" data-mpn="Hirose FX8C-80S-SV5(92)"/>
@@ -383,149 +383,149 @@
 <text x="500.1" y="667.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">170</text>
 <rect x="604.25" y="662.90" width="14.60" height="14.60" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="microphone" data-mpn="Same Sky CMEJ-0413-42-SMT-TR"/>
 <text x="611.5" y="672.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">171</text>
-<rect x="252.61" y="154.82" width="5.84" height="3.07" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="s3_rf_coupler_r2" data-mpn="CP0603Q5425ENTR"/>
-<text x="255.5" y="158.0" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">172</text>
-<rect x="145.30" y="154.82" width="5.84" height="3.07" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="c5_rf_coupler_r2" data-mpn="CP0603Q5425ENTR"/>
-<text x="148.2" y="158.0" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">173</text>
-<rect x="291.30" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(80)"/>
-<text x="296.8" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">174</text>
-<rect x="250.06" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="s3_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(80)"/>
-<text x="255.5" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">175</text>
-<rect x="142.75" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="c5_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(80)"/>
-<text x="148.2" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">176</text>
-<rect x="101.50" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf2_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(80)"/>
-<text x="107.0" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">177</text>
-<rect x="234.36" y="164.68" width="10.58" height="5.84" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="det_s3_r2" data-mpn="LTC5532ES6#TRMPBF"/>
-<text x="239.7" y="169.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">178</text>
-<rect x="158.44" y="164.68" width="10.58" height="5.84" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="det_c5_r2" data-mpn="LTC5532ES6#TRMPBF"/>
-<text x="163.7" y="169.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">179</text>
-<rect x="272.50" y="177.45" width="18.80" height="11.68" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="det_nrf0_r2" data-mpn="AD8314ARMZ-REEL"/>
-<text x="281.9" y="185.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">180</text>
-<rect x="112.63" y="177.45" width="18.80" height="11.68" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="det_nrf2_r2" data-mpn="AD8314ARMZ-REEL"/>
-<text x="122.0" y="185.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">181</text>
-<rect x="294.84" y="178.55" width="7.41" height="4.64" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_coupler_r2" data-mpn="DC2337J5010AHF"/>
-<text x="298.5" y="182.5" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">182</text>
-<rect x="101.39" y="178.55" width="7.41" height="4.64" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf2_coupler_r2" data-mpn="DC2337J5010AHF"/>
-<text x="105.1" y="182.5" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">183</text>
-<rect x="196.40" y="181.10" width="10.95" height="11.32" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf1_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(80)"/>
-<text x="201.9" y="189.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">184</text>
-<rect x="213.37" y="193.15" width="18.80" height="11.68" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="det_nrf1_r2" data-mpn="AD8314ARMZ-REEL"/>
-<text x="222.8" y="201.3" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">185</text>
-<rect x="198.85" y="196.43" width="7.41" height="4.64" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf1_coupler_r2" data-mpn="DC2337J5010AHF"/>
-<text x="202.6" y="200.3" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">186</text>
-<rect x="253.71" y="210.30" width="65.70" height="70.08" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="s3" data-mpn="ESP32-S3-WROOM-1U-N16R8"/>
-<text x="286.6" y="247.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">187</text>
+<rect x="270.86" y="154.82" width="5.84" height="3.07" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="s3_rf_coupler_r2" data-mpn="CP0603Q5425ENTR"/>
+<text x="273.8" y="158.0" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">172</text>
+<rect x="163.55" y="154.82" width="5.84" height="3.07" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="c5_rf_coupler_r2" data-mpn="CP0603Q5425ENTR"/>
+<text x="166.5" y="158.0" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">173</text>
+<rect x="309.55" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(80)"/>
+<text x="315.0" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">174</text>
+<rect x="268.31" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="s3_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(80)"/>
+<text x="273.8" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">175</text>
+<rect x="161.00" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="c5_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(80)"/>
+<text x="166.5" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">176</text>
+<rect x="119.75" y="162.85" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf2_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(80)"/>
+<text x="125.2" y="170.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">177</text>
+<rect x="252.61" y="164.68" width="10.58" height="5.84" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="det_s3_r2" data-mpn="LTC5532ES6#TRMPBF"/>
+<text x="257.9" y="169.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">178</text>
+<rect x="176.69" y="164.68" width="10.58" height="5.84" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="det_c5_r2" data-mpn="LTC5532ES6#TRMPBF"/>
+<text x="182.0" y="169.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">179</text>
+<rect x="290.75" y="177.45" width="18.80" height="11.68" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="det_nrf0_r2" data-mpn="AD8314ARMZ-REEL"/>
+<text x="300.2" y="185.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">180</text>
+<rect x="130.88" y="177.45" width="18.80" height="11.68" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="det_nrf2_r2" data-mpn="AD8314ARMZ-REEL"/>
+<text x="140.3" y="185.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">181</text>
+<rect x="313.09" y="178.55" width="7.41" height="4.64" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_coupler_r2" data-mpn="DC2337J5010AHF"/>
+<text x="316.8" y="182.5" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">182</text>
+<rect x="119.64" y="178.55" width="7.41" height="4.64" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf2_coupler_r2" data-mpn="DC2337J5010AHF"/>
+<text x="123.3" y="182.5" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">183</text>
+<rect x="214.65" y="181.10" width="10.95" height="11.32" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf1_rf_board_connector_r2" data-mpn="U.FL-R-SMT-1(80)"/>
+<text x="220.1" y="189.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">184</text>
+<rect x="231.62" y="193.15" width="18.80" height="11.68" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="det_nrf1_r2" data-mpn="AD8314ARMZ-REEL"/>
+<text x="241.0" y="201.3" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">185</text>
+<rect x="217.10" y="196.43" width="7.41" height="4.64" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf1_coupler_r2" data-mpn="DC2337J5010AHF"/>
+<text x="220.8" y="200.3" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">186</text>
+<rect x="271.96" y="210.30" width="65.70" height="70.08" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="s3" data-mpn="ESP32-S3-WROOM-1U-N16R8"/>
+<text x="304.8" y="247.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">187</text>
 <rect x="84.34" y="210.30" width="65.70" height="77.38" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="c5" data-mpn="ESP32-C5-WROOM-1U-N8R8"/>
 <text x="117.2" y="251.3" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">188</text>
-<rect x="152.60" y="221.25" width="98.55" height="13.87" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="display_connector" data-mpn="Hirose FH34SRJ-50S-0.5SH(50)"/>
-<text x="201.9" y="230.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">189</text>
-<rect x="243.48" y="283.30" width="66.06" height="53.29" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_r2" data-mpn="E01-ML01SP4"/>
-<text x="276.5" y="312.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">190</text>
-<rect x="171.21" y="283.30" width="66.07" height="53.29" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf1_r2" data-mpn="E01-ML01SP4"/>
-<text x="204.2" y="312.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">191</text>
-<rect x="98.94" y="290.60" width="66.06" height="53.29" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf2_r2" data-mpn="E01-ML01SP4"/>
-<text x="132.0" y="319.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">192</text>
-<rect x="298.24" y="356.30" width="18.61" height="16.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_host_buffer_r2" data-mpn="74LVC126APW,118"/>
-<text x="307.5" y="366.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">193</text>
-<rect x="284.00" y="356.30" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_return_buffer_r2" data-mpn="74LVC2G126DP,125"/>
-<text x="289.5" y="364.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">194</text>
-<rect x="261.74" y="356.30" width="18.62" height="16.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf1_host_buffer_r2" data-mpn="74LVC126APW,118"/>
-<text x="271.0" y="366.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">195</text>
-<rect x="247.50" y="356.30" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf1_return_buffer_r2" data-mpn="74LVC2G126DP,125"/>
-<text x="253.0" y="364.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">196</text>
-<rect x="221.58" y="356.30" width="18.62" height="16.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf2_host_buffer_r2" data-mpn="74LVC126APW,118"/>
-<text x="230.9" y="366.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">197</text>
-<rect x="207.35" y="356.30" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf2_return_buffer_r2" data-mpn="74LVC2G126DP,125"/>
-<text x="212.8" y="364.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">198</text>
-<rect x="178.15" y="356.30" width="18.25" height="16.06" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="safe_gate_a_r2" data-mpn="SN74LVC08APWR"/>
-<text x="187.3" y="366.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">199</text>
-<rect x="167.20" y="356.30" width="7.30" height="4.56" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf_backup_gate_r2" data-mpn="SN74LVC1G08DCKR"/>
-<text x="170.8" y="360.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">200</text>
-<rect x="145.30" y="356.30" width="18.25" height="16.06" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf_evidence_cmp_r2" data-mpn="TLV1824PWR"/>
-<text x="154.4" y="366.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">201</text>
-<rect x="232.90" y="378.20" width="18.25" height="18.25" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="slow_io_r2" data-mpn="TCA6424ARGJR"/>
-<text x="242.0" y="389.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">202</text>
-<rect x="113.18" y="378.20" width="28.47" height="16.06" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="ui_matrix_io_r2" data-mpn="TCA9539PWR"/>
-<text x="127.4" y="388.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">203</text>
-<rect x="165.38" y="385.50" width="36.50" height="36.50" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_rp" data-mpn="SC1512-A4"/>
-<text x="183.6" y="406.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">204</text>
-<rect x="313.93" y="403.75" width="24.82" height="10.95" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ir_demod" data-mpn="Vishay TSOP75238TR"/>
-<text x="326.3" y="411.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">205</text>
-<rect x="302.25" y="403.75" width="7.30" height="4.56" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ir_safe_gate" data-mpn="SN74LVC1G08DCKR"/>
-<text x="305.9" y="407.6" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">206</text>
-<rect x="289.11" y="403.75" width="5.84" height="2.92" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ui_zone_ntc" data-mpn="TDK B57332V5103F360"/>
-<text x="292.0" y="406.8" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">207</text>
-<rect x="313.93" y="429.30" width="24.82" height="10.95" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ir_carrier" data-mpn="Vishay TSMP95000TT"/>
-<text x="326.3" y="437.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">208</text>
-<rect x="291.30" y="429.30" width="18.25" height="16.06" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="evidence_cmp_a" data-mpn="TLV1824PWR"/>
-<text x="300.4" y="439.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">209</text>
-<rect x="265.75" y="429.30" width="7.30" height="4.56" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="safe_reset_sink_a" data-mpn="Diodes Incorporated 2N7002DW-7-F"/>
-<text x="269.4" y="433.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">210</text>
-<rect x="251.15" y="429.30" width="7.30" height="4.56" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="safe_c5_reset_buffer" data-mpn="Texas Instruments SN74LVC1G06DCKR"/>
-<text x="254.8" y="433.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">211</text>
-<rect x="240.20" y="429.30" width="7.30" height="4.56" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="safe_c5_fault_reset_buffer" data-mpn="SN74LVC1G07DCKR"/>
-<text x="243.8" y="433.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">212</text>
-<rect x="327.80" y="454.85" width="10.95" height="9.16" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ir_emitter" data-mpn="Vishay VSMY14940"/>
-<text x="333.3" y="461.7" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">213</text>
-<rect x="285.28" y="509.60" width="35.22" height="21.32" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="s3_dbg_header" data-mpn="Samtec FTSH-105-01-L-DV-K-P-TR"/>
-<text x="302.9" y="522.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">214</text>
-<rect x="246.95" y="509.60" width="35.22" height="21.32" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="c5_dbg_header_r2" data-mpn="FTSH-105-01-L-DV-K-P-TR"/>
-<text x="264.6" y="522.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">215</text>
-<rect x="326.34" y="549.75" width="12.41" height="16.43" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="s3_reset_button" data-mpn="Alps Alpine SKRTLAE010"/>
-<text x="332.5" y="560.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">216</text>
+<rect x="161.72" y="221.25" width="98.55" height="13.87" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="display_connector" data-mpn="Hirose FH34SRJ-50S-0.5SH(50)"/>
+<text x="211.0" y="230.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">189</text>
+<rect x="261.74" y="283.30" width="66.06" height="53.29" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_r2" data-mpn="E01-ML01SP4"/>
+<text x="294.8" y="312.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">190</text>
+<rect x="189.46" y="283.30" width="66.07" height="53.29" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf1_r2" data-mpn="E01-ML01SP4"/>
+<text x="222.5" y="312.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">191</text>
+<rect x="117.19" y="290.60" width="66.06" height="53.29" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf2_r2" data-mpn="E01-ML01SP4"/>
+<text x="150.2" y="319.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">192</text>
+<rect x="316.49" y="356.30" width="18.61" height="16.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_host_buffer_r2" data-mpn="74LVC126APW,118"/>
+<text x="325.8" y="366.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">193</text>
+<rect x="302.25" y="356.30" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf0_return_buffer_r2" data-mpn="74LVC2G126DP,125"/>
+<text x="307.7" y="364.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">194</text>
+<rect x="279.99" y="356.30" width="18.62" height="16.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf1_host_buffer_r2" data-mpn="74LVC126APW,118"/>
+<text x="289.3" y="366.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">195</text>
+<rect x="265.75" y="356.30" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf1_return_buffer_r2" data-mpn="74LVC2G126DP,125"/>
+<text x="271.2" y="364.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">196</text>
+<rect x="239.83" y="356.30" width="18.62" height="16.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf2_host_buffer_r2" data-mpn="74LVC126APW,118"/>
+<text x="249.1" y="366.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">197</text>
+<rect x="225.60" y="356.30" width="10.95" height="11.31" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf2_return_buffer_r2" data-mpn="74LVC2G126DP,125"/>
+<text x="231.1" y="364.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">198</text>
+<rect x="196.40" y="356.30" width="18.25" height="16.06" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="safe_gate_a_r2" data-mpn="SN74LVC08APWR"/>
+<text x="205.5" y="366.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">199</text>
+<rect x="185.45" y="356.30" width="7.30" height="4.56" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf_backup_gate_r2" data-mpn="SN74LVC1G08DCKR"/>
+<text x="189.1" y="360.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#2563eb">200</text>
+<rect x="163.55" y="356.30" width="18.25" height="16.06" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="nrf_evidence_cmp_r2" data-mpn="TLV1824PWR"/>
+<text x="172.7" y="366.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">201</text>
+<rect x="251.15" y="378.20" width="18.25" height="18.25" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="slow_io_r2" data-mpn="TCA6424ARGJR"/>
+<text x="260.3" y="389.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">202</text>
+<rect x="131.43" y="378.20" width="28.47" height="16.06" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="ui_matrix_io_r2" data-mpn="TCA9539PWR"/>
+<text x="145.7" y="388.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">203</text>
+<rect x="183.62" y="385.50" width="36.50" height="36.50" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_rp" data-mpn="SC1512-A4"/>
+<text x="201.9" y="406.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">204</text>
+<rect x="332.18" y="403.75" width="24.82" height="10.95" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ir_demod" data-mpn="Vishay TSOP75238TR"/>
+<text x="344.6" y="411.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">205</text>
+<rect x="320.50" y="403.75" width="7.30" height="4.56" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ir_safe_gate" data-mpn="SN74LVC1G08DCKR"/>
+<text x="324.1" y="407.6" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">206</text>
+<rect x="307.36" y="403.75" width="5.84" height="2.92" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ui_zone_ntc" data-mpn="TDK B57332V5103F360"/>
+<text x="310.3" y="406.8" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">207</text>
+<rect x="332.18" y="429.30" width="24.82" height="10.95" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ir_carrier" data-mpn="Vishay TSMP95000TT"/>
+<text x="344.6" y="437.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">208</text>
+<rect x="309.55" y="429.30" width="18.25" height="16.06" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="evidence_cmp_a" data-mpn="TLV1824PWR"/>
+<text x="318.7" y="439.6" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">209</text>
+<rect x="284.00" y="429.30" width="7.30" height="4.56" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="safe_reset_sink_a" data-mpn="Diodes Incorporated 2N7002DW-7-F"/>
+<text x="287.6" y="433.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">210</text>
+<rect x="269.40" y="429.30" width="7.30" height="4.56" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="safe_c5_reset_buffer" data-mpn="Texas Instruments SN74LVC1G06DCKR"/>
+<text x="273.0" y="433.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">211</text>
+<rect x="258.45" y="429.30" width="7.30" height="4.56" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="safe_c5_fault_reset_buffer" data-mpn="SN74LVC1G07DCKR"/>
+<text x="262.1" y="433.2" font-family="sans-serif" font-size="4.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">212</text>
+<rect x="346.05" y="454.85" width="10.95" height="9.16" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="ir_emitter" data-mpn="Vishay VSMY14940"/>
+<text x="351.5" y="461.7" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">213</text>
+<rect x="303.53" y="509.60" width="35.22" height="21.32" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="s3_dbg_header" data-mpn="Samtec FTSH-105-01-L-DV-K-P-TR"/>
+<text x="321.1" y="522.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">214</text>
+<rect x="265.20" y="509.60" width="35.22" height="21.32" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="c5_dbg_header_r2" data-mpn="FTSH-105-01-L-DV-K-P-TR"/>
+<text x="282.8" y="522.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">215</text>
+<rect x="344.59" y="549.75" width="12.41" height="16.43" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="s3_reset_button" data-mpn="Alps Alpine SKRTLAE010"/>
+<text x="350.8" y="560.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">216</text>
 <rect x="65.00" y="549.75" width="12.41" height="16.43" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="c5_reset_button" data-mpn="Alps Alpine SKRTLAE010"/>
 <text x="71.2" y="560.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">217</text>
-<rect x="146.03" y="564.35" width="111.69" height="23.72" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="m1_ui_plug" data-mpn="Hirose FX8C-80P-SV1(92)"/>
-<text x="201.9" y="578.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">218</text>
-<rect x="326.34" y="575.30" width="12.41" height="16.43" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="s3_boot_button" data-mpn="Alps Alpine SKRTLAE010"/>
-<text x="332.5" y="585.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">219</text>
+<rect x="164.28" y="564.35" width="111.69" height="23.72" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="m1_ui_plug" data-mpn="Hirose FX8C-80P-SV1(92)"/>
+<text x="220.1" y="578.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">218</text>
+<rect x="344.59" y="575.30" width="12.41" height="16.43" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="s3_boot_button" data-mpn="Alps Alpine SKRTLAE010"/>
+<text x="350.8" y="585.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">219</text>
 <rect x="65.00" y="575.30" width="12.41" height="16.43" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="c5_boot_button" data-mpn="Alps Alpine SKRTLAE010"/>
 <text x="71.2" y="585.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">220</text>
-<rect x="65.00" y="604.50" width="12.41" height="16.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_reset_button" data-mpn="SKRTLAE010"/>
-<text x="71.2" y="615.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">221</text>
-<rect x="209.72" y="615.45" width="35.22" height="21.32" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_dbg_header" data-mpn="FTSH-105-01-L-DV-K-P-TR"/>
-<text x="227.3" y="628.4" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">222</text>
-<rect x="105.33" y="626.95" width="58.22" height="50.55" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="sd" data-mpn="Hirose DM3AT-SF-PEJM5"/>
-<text x="134.4" y="654.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">223</text>
-<rect x="65.00" y="630.05" width="12.41" height="16.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_boot_button" data-mpn="SKRTLAE010"/>
-<text x="71.2" y="640.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">224</text>
-<rect x="262.32" y="650.67" width="32.63" height="26.83" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_service_usb_connector" data-mpn="USB4105-GF-A"/>
-<text x="278.6" y="666.4" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">225</text>
-<rect x="207.57" y="650.67" width="32.63" height="26.83" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="c5_service_usb_connector" data-mpn="GCT USB4105-GF-A"/>
-<text x="223.9" y="666.4" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">226</text>
+<rect x="83.25" y="604.50" width="12.41" height="16.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_reset_button" data-mpn="SKRTLAE010"/>
+<text x="89.5" y="615.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">221</text>
+<rect x="227.97" y="615.45" width="35.22" height="21.32" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_dbg_header" data-mpn="FTSH-105-01-L-DV-K-P-TR"/>
+<text x="245.6" y="628.4" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">222</text>
+<rect x="123.58" y="626.95" width="58.22" height="50.55" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="sd" data-mpn="Hirose DM3AT-SF-PEJM5"/>
+<text x="152.7" y="654.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">223</text>
+<rect x="83.25" y="630.05" width="12.41" height="16.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_boot_button" data-mpn="SKRTLAE010"/>
+<text x="89.5" y="640.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">224</text>
+<rect x="280.57" y="650.67" width="32.63" height="26.83" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_service_usb_connector" data-mpn="USB4105-GF-A"/>
+<text x="296.9" y="666.4" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">225</text>
+<rect x="225.82" y="650.67" width="32.63" height="26.83" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="c5_service_usb_connector" data-mpn="GCT USB4105-GF-A"/>
+<text x="242.1" y="666.4" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">226</text>
 <g id="antenna-removable-media" data-topology-source="r2">
-<polyline points="276.5,309.9 296.8,168.5" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="N24-0" data-medium="removable-microcoax"/>
-<polyline points="286.6,245.3 255.5,168.5" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="S3-2G4" data-medium="removable-microcoax"/>
-<polyline points="204.2,309.9 201.9,186.8" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="N24-1" data-medium="removable-microcoax"/>
-<polyline points="117.2,249.0 148.2,168.5" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="C5-2G4/5" data-medium="removable-microcoax"/>
-<polyline points="132.0,317.2 107.0,168.5" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="N24-2" data-medium="removable-microcoax"/>
-<circle cx="276.5" cy="309.9" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="N24-0" data-part="module-rf-connector" data-connector-kind="IPEX"/>
-<circle cx="276.5" cy="309.9" r="1.3" fill="#d97706"/>
-<circle cx="296.8" cy="168.5" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="N24-0" data-part="board-ufl" data-connector-kind="U.FL"/>
-<circle cx="296.8" cy="168.5" r="1.3" fill="#d97706"/>
-<circle cx="286.6" cy="245.3" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="S3-2G4" data-part="module-rf-connector" data-connector-kind="U.FL"/>
-<circle cx="286.6" cy="245.3" r="1.3" fill="#d97706"/>
-<circle cx="255.5" cy="168.5" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="S3-2G4" data-part="board-ufl" data-connector-kind="U.FL"/>
-<circle cx="255.5" cy="168.5" r="1.3" fill="#d97706"/>
-<circle cx="204.2" cy="309.9" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="N24-1" data-part="module-rf-connector" data-connector-kind="IPEX"/>
-<circle cx="204.2" cy="309.9" r="1.3" fill="#d97706"/>
-<circle cx="201.9" cy="186.8" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="N24-1" data-part="board-ufl" data-connector-kind="U.FL"/>
-<circle cx="201.9" cy="186.8" r="1.3" fill="#d97706"/>
+<polyline points="294.8,309.9 315.0,168.5" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="N24-0" data-medium="removable-microcoax"/>
+<polyline points="304.8,245.3 273.8,168.5" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="S3-2G4" data-medium="removable-microcoax"/>
+<polyline points="222.5,309.9 220.1,186.8" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="N24-1" data-medium="removable-microcoax"/>
+<polyline points="117.2,249.0 166.5,168.5" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="C5-2G4/5" data-medium="removable-microcoax"/>
+<polyline points="150.2,317.2 125.2,168.5" fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" data-path="N24-2" data-medium="removable-microcoax"/>
+<circle cx="294.8" cy="309.9" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="N24-0" data-part="module-rf-connector" data-connector-kind="IPEX"/>
+<circle cx="294.8" cy="309.9" r="1.3" fill="#d97706"/>
+<circle cx="315.0" cy="168.5" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="N24-0" data-part="board-ufl" data-connector-kind="U.FL"/>
+<circle cx="315.0" cy="168.5" r="1.3" fill="#d97706"/>
+<circle cx="304.8" cy="245.3" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="S3-2G4" data-part="module-rf-connector" data-connector-kind="U.FL"/>
+<circle cx="304.8" cy="245.3" r="1.3" fill="#d97706"/>
+<circle cx="273.8" cy="168.5" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="S3-2G4" data-part="board-ufl" data-connector-kind="U.FL"/>
+<circle cx="273.8" cy="168.5" r="1.3" fill="#d97706"/>
+<circle cx="222.5" cy="309.9" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="N24-1" data-part="module-rf-connector" data-connector-kind="IPEX"/>
+<circle cx="222.5" cy="309.9" r="1.3" fill="#d97706"/>
+<circle cx="220.1" cy="186.8" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="N24-1" data-part="board-ufl" data-connector-kind="U.FL"/>
+<circle cx="220.1" cy="186.8" r="1.3" fill="#d97706"/>
 <circle cx="117.2" cy="249.0" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="C5-2G4/5" data-part="module-rf-connector" data-connector-kind="U.FL"/>
 <circle cx="117.2" cy="249.0" r="1.3" fill="#d97706"/>
-<circle cx="148.2" cy="168.5" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="C5-2G4/5" data-part="board-ufl" data-connector-kind="U.FL"/>
-<circle cx="148.2" cy="168.5" r="1.3" fill="#d97706"/>
-<circle cx="132.0" cy="317.2" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="N24-2" data-part="module-rf-connector" data-connector-kind="IPEX"/>
-<circle cx="132.0" cy="317.2" r="1.3" fill="#d97706"/>
-<circle cx="107.0" cy="168.5" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="N24-2" data-part="board-ufl" data-connector-kind="U.FL"/>
-<circle cx="107.0" cy="168.5" r="1.3" fill="#d97706"/>
+<circle cx="166.5" cy="168.5" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="C5-2G4/5" data-part="board-ufl" data-connector-kind="U.FL"/>
+<circle cx="166.5" cy="168.5" r="1.3" fill="#d97706"/>
+<circle cx="150.2" cy="317.2" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="N24-2" data-part="module-rf-connector" data-connector-kind="IPEX"/>
+<circle cx="150.2" cy="317.2" r="1.3" fill="#d97706"/>
+<circle cx="125.2" cy="168.5" r="4.0" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" data-path="N24-2" data-part="board-ufl" data-connector-kind="U.FL"/>
+<circle cx="125.2" cy="168.5" r="1.3" fill="#d97706"/>
 </g>
-<path d="M338.8 631.8 L367.9 631.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M357.0 631.8 L386.2 631.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M65.0 612.7 L35.8 612.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M65.0 638.3 L35.8 638.3" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M440.0 499.7 L410.8 499.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text x="30.0" y="720.0" font-family="sans-serif" font-size="17" font-weight="bold" text-anchor="start" fill="#172033">Numbered registered bodies · 226 total</text>
-<text x="410.0" y="720.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#166534">R2 structural audit: pass · 0 open H1 geometry gates · 2.59 mm minimum opposing gap</text>
+<text x="410.0" y="720.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#166534">R2 structural audit: pass · 0 open H1 geometry gates · 0.94 mm minimum opposing gap</text>
 <text x="30.0" y="760.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#9a3412">001  PHYSICAL RESERVE</text>
 <text x="58.0" y="773.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">118-137-MHz image-rejection BPF and 6-25-MHz IF cleanup;</text>
 <text x="58.0" y="784.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">individually serial passives close after synthesis</text>
@@ -922,8 +922,8 @@
 <text x="1438.0" y="1523.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">UI, display, storage and audio owner; shifted 0.7 mm</text>
 <text x="1438.0" y="1534.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">outward for the central display ZIF corridor</text>
 <text x="1410.0" y="1560.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">188  ESP32-C5-WROOM-1U-N8R8</text>
-<text x="1438.0" y="1573.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">native 2.4/5-GHz and IR owner; shifted 0.7 mm outward for</text>
-<text x="1438.0" y="1584.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">the central display ZIF corridor</text>
+<text x="1438.0" y="1573.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">native 2.4/5-GHz and IR owner; shifted into the widened</text>
+<text x="1438.0" y="1584.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">right routing field</text>
 <text x="1410.0" y="1610.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">189  Hirose FH34SRJ-50S-0.5SH(50)</text>
 <text x="1438.0" y="1623.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">direct 50-contact dual-contact ZIF behind the folded</text>
 <text x="1438.0" y="1634.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">display FPC slot; pin 1 at world x-min</text>

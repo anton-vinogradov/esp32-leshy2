@@ -3,7 +3,7 @@
   "stage": "H6",
   "baseline": "R2",
   "status": "in_progress",
-  "current_substep": "H6.0.2-R1",
+  "current_substep": "H6.0.3-R1",
   "current_evidence": {
     "exact_footprint_placement": "pass",
     "mechanical_stack_and_m1_load_relief": "pass",
@@ -26,7 +26,7 @@
     "classified_project_nets": 823,
     "classified_canonical_nets": 789,
     "automatic_helper_allowed_classes": ["GENERAL_CONTROL"],
-    "routing_started": false,
+    "routing_started": true,
     "remaining_before_substep_exit": [
       "route all 789 reviewed canonical nets / 823 board-local physical nets or preserve an explicit intentional no-connect",
       "prove native schematic/PCB parity and zero-finding KiCad DRC"
@@ -34,7 +34,7 @@
   },
   "objective": "Produce two routed, mechanically coherent and quoteable R2-EVT1 PCBAs without changing the reviewed H0-H5 functional, safety or exact-component boundary.",
   "accepted_inputs": {
-    "physical_design": "H1-R2.38",
+    "physical_design": "H1-R2.39",
     "production_schematic": "H2-R2.1.5",
     "virtual_electrical_verification": "H3-R2.7",
     "joined_pre_layout_gate": "H4-R2.3",
@@ -89,36 +89,42 @@
     },
     {
       "id": "H6.0.2-R1",
-      "status": "current",
-      "title": "Routing and net parity",
-      "exit": "every reviewed H2 net is routed or intentionally no-connect, and schematic/layout parity plus zero-finding DRC pass"
+      "status": "complete_historical_geometry",
+      "title": "Routing policy and first accepted slice",
+      "exit": "all net classes are fail-closed, controlled-impedance rules are native, and the first GENERAL_CONTROL/OSCILLATOR/SAFETY_CONTROL slice passed on the former 75-mm geometry"
     },
     {
       "id": "H6.0.3-R1",
+      "status": "current",
+      "title": "80-mm routing and net parity",
+      "exit": "both boards retain the reviewed interfaces on the 80 × 150-mm baseline, every reviewed H2 net is routed or intentionally no-connect, and schematic/layout parity plus baseline-matched DRC pass"
+    },
+    {
+      "id": "H6.0.4-R1",
       "status": "waiting",
       "title": "Routed power and thermal verification",
       "exit": "copper, vias, returns, inrush paths, rail drops and thermal estimates retain H3 margins"
     },
     {
-      "id": "H6.0.4-R1",
+      "id": "H6.0.5-R1",
       "status": "waiting",
       "title": "Digital, USB and M1 signal-integrity review",
       "exit": "direct i8080-8, four USB paths, SDIO/SPI/I2C/UART and all 80 M1 contacts retain the reviewed timing, ownership and return paths"
     },
     {
-      "id": "H6.0.5-R1",
+      "id": "H6.0.6-R1",
       "status": "waiting",
       "title": "RF and Airband routed review",
       "exit": "ten permanent antenna paths, five microcoax jumpers, RF keepouts, matching networks and Airband extracted parasitics pass without a cross-board RF feed"
     },
     {
-      "id": "H6.0.6-R1",
+      "id": "H6.0.7-R1",
       "status": "waiting",
       "title": "STEP, enclosure and cable audit",
       "exit": "the full assembled STEP and tolerance stack clear bodies, controls, battery volume, display bend, coax service loops and the one-loose-screw case"
     },
     {
-      "id": "H6.0.7-R1",
+      "id": "H6.0.8-R1",
       "status": "waiting",
       "title": "Manufacturing and bring-up outputs",
       "exit": "Gerber, drill, BOM, CPL, drawings, assembly notes, programming/recovery access and owner first-power-on inputs are complete and hash-manifested"

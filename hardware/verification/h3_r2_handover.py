@@ -81,7 +81,7 @@ Worst-case supplement — `{worst['pack_discharge_a']} А` при лимите `
 
 Логика, токовые пределы и безопасные исходы доказаны аналитически. Абсолютный провал `SYS`, время переключения BATFET и реальные паразитики зависят от собранной платы: их измеряем осциллографом на первом экземпляре в H8. До этого placement, routing, закупка и печать не разрешены.
 
-[`H3-R2.2.3/.4`](power-transition-result.ru.md) завершили проверку inrush, load steps, watchdog и fault display. [`H3-R2.3`](analog-electrical-verification.ru.md), [`H3-R2.4`](digital-electrical-verification.ru.md), [`H3-R2.5`](rf-electrical-verification.ru.md), [`H3-R2.6`](thermal-fault-electrical-verification.ru.md), итоги H3-R2.7, H4-R2 и H5-R1 проведены ревью; **текущий маркер: `H6.0.2-R1`.**
+[`H3-R2.2.3/.4`](power-transition-result.ru.md) завершили проверку inrush, load steps, watchdog и fault display. [`H3-R2.3`](analog-electrical-verification.ru.md), [`H3-R2.4`](digital-electrical-verification.ru.md), [`H3-R2.5`](rf-electrical-verification.ru.md), [`H3-R2.6`](thermal-fault-electrical-verification.ru.md), итоги H3-R2.7, H4-R2 и H5-R1 проведены ревью; **текущий маркер: `H6.0.3-R1`.**
 
 [Полный машинный результат](../hardware/verification/generated/H3-R2-handover.json).
 """
@@ -114,7 +114,7 @@ Worst supplement is `{worst['pack_discharge_a']} A` against the `8.000 A` limit;
 
 Logic, current limits and safe outcomes are proved analytically. Absolute `SYS` droop, BATFET transfer time and routed parasitics depend on the assembled board and are oscilloscope checks on the first unit in H8. Placement, routing, purchasing and fabrication remain unauthorized.
 
-[`H3-R2.2.3/.4`](power-transition-result.md) completed inrush, load-step, watchdog and fault-display review. [`H3-R2.3`](analog-electrical-verification.md), [`H3-R2.4`](digital-electrical-verification.md), [`H3-R2.5`](rf-electrical-verification.md), [`H3-R2.6`](thermal-fault-electrical-verification.md), H3-R2.7, global H4-R2 and global H5-R1 are reviewed; **current marker: `H6.0.2-R1`.**
+[`H3-R2.2.3/.4`](power-transition-result.md) completed inrush, load-step, watchdog and fault-display review. [`H3-R2.3`](analog-electrical-verification.md), [`H3-R2.4`](digital-electrical-verification.md), [`H3-R2.5`](rf-electrical-verification.md), [`H3-R2.6`](thermal-fault-electrical-verification.md), H3-R2.7, global H4-R2 and global H5-R1 are reviewed; **current marker: `H6.0.3-R1`.**
 
 [Complete machine result](../hardware/verification/generated/H3-R2-handover.json).
 """

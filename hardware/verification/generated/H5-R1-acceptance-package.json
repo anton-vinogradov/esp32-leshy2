@@ -12,7 +12,7 @@
     "hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json": "2a4d71b6ebe61b06ff86fa83647e65451a57908c6b030bf00af390f5426f33db",
     "hardware/verification/generated/H5-EVR07-supplier-response-gate.json": "deeaf03d016de83efa30562b570ded50fbb6dc87c7e82072e71aff4ee8ad0757",
     "hardware/verification/generated/H5-EVR08-fallback-factory-readiness.json": "dd8b7b902ad78c1770f7706cee6496e7f5f10ad130dc36bf57b306b7e503c2d4",
-    "hardware/product-design/assembly-coordinate-model.json": "038fcd35f47effe8d3d1b860eb7782f5d8e26eb2de7b0bb4b0991f02e59c4ffe",
+    "hardware/product-design/assembly-coordinate-model.json": "d8790441e6adf94ec1e53546da6d87666ac93c21e5dfb48d8568d4688dbfc82c",
     "hardware/procurement/H5.0.3-R1-supplier-response.json": "6245deba64300c3f0869c8e7264cad5bcecc8214335bfce47832cda1b0323a35"
   },
   "result": {

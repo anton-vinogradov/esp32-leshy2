@@ -14,7 +14,7 @@
     },
     "physical": {
       "path": "hardware/product-design/h1-r2-placement.json",
-      "sha256": "66321938e7ea53875639ad6841f02209aaf08510054323c0108d8a5077813054"
+      "sha256": "2e3cb75934679422de060d92f15521d4c74b1029324e5e915141e323fb5c4818"
     },
     "power_cell": {
       "path": "hardware/product-design/h1-r2-power-thermal.json",
@@ -30,7 +30,7 @@
     },
     "r2_cost_model": {
       "path": "hardware/product-design/h1-r2-cost-review.json",
-      "sha256": "2c237e989d6857641aafcea77ccf92cf881db1eea6f421e9c664f5db1a29e1d2"
+      "sha256": "3a694dd0d13bb96dd9ab343d393d857829a14933fbe2695f90dbf4b7f9bf3744"
     },
     "c5_mux_and_service_vbus": {
       "path": "hardware/architecture/c5-sdio-service-mux-contract.json",
@@ -46,7 +46,7 @@
     },
     "display_mount": {
       "path": "hardware/product-design/display-mount.json",
-      "sha256": "3816662e6866fcd0d3a935bf77bde1625681c01e7e0a4c23738f5e5ded7ad2f8"
+      "sha256": "694a78cddab6883e76403b39fdda55a9a87a7941eb404a480a964fd5e1682c60"
     },
     "airband": {
       "path": "hardware/product-design/h1-airband-filter.json",

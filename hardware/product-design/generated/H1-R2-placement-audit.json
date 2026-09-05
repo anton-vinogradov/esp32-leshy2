@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.38",
+  "marker": "H1-R2.39",
   "status": "pass",
   "structural_status": "pass",
   "base_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -47,7 +47,7 @@
   ],
   "same_face_collisions": [],
   "opposing_overlap_count": 88,
-  "minimum_opposing_clearance_mm": 2.59,
+  "minimum_opposing_clearance_mm": 0.94,
   "required_opposing_clearance_mm": 0.7,
   "opposing_overlaps": [
     {
@@ -150,10 +150,10 @@
     },
     {
       "ui": "c5_service_usb_connector",
-      "rf": "rp_service_usb_connector",
+      "rf": "unit_connector",
       "ui_origin": "retained_base",
       "rf_origin": "retained_base",
-      "clearance_mm": 4.38
+      "clearance_mm": 2.59
     },
     {
       "ui": "display_connector",
@@ -168,13 +168,6 @@
       "ui_origin": "retained_base",
       "rf_origin": "r2",
       "clearance_mm": 8.55
-    },
-    {
-      "ui": "ir_demod",
-      "rf": "evidence_mask",
-      "ui_origin": "retained_base",
-      "rf_origin": "retained_base",
-      "clearance_mm": 6.6
     },
     {
       "ui": "ir_safe_gate",
@@ -205,22 +198,15 @@
       "clearance_mm": 6.7
     },
     {
-      "ui": "safe_c5_fault_reset_buffer",
-      "rf": "safe_supervisor",
-      "ui_origin": "retained_base",
-      "rf_origin": "retained_base",
-      "clearance_mm": 8.45
-    },
-    {
       "ui": "safe_c5_reset_buffer",
-      "rf": "safe_supervisor",
+      "rf": "safe_reset_sink_b",
       "ui_origin": "retained_base",
       "rf_origin": "retained_base",
-      "clearance_mm": 8.45
+      "clearance_mm": 8.8
     },
     {
       "ui": "safe_reset_sink_a",
-      "rf": "safe_reset_sink_b",
+      "rf": "safe_ptt_or",
       "ui_origin": "retained_base",
       "rf_origin": "retained_base",
       "clearance_mm": 8.8
@@ -231,13 +217,6 @@
       "ui_origin": "retained_base",
       "rf_origin": "retained_base",
       "clearance_mm": 7.57
-    },
-    {
-      "ui": "sd",
-      "rf": "pd_controller",
-      "ui_origin": "retained_base",
-      "rf_origin": "retained_base",
-      "clearance_mm": 8.52
     },
     {
       "ui": "sd",
@@ -255,14 +234,21 @@
     },
     {
       "ui": "ui_zone_ntc",
-      "rf": "cc_band_buffer",
+      "rf": "evidence_mask",
       "ui_origin": "retained_base",
       "rf_origin": "retained_base",
-      "clearance_mm": 9.0
+      "clearance_mm": 8.9
     },
     {
       "ui": "hub_rp",
       "rf": "ext_buck_input_cap",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 7.4
+    },
+    {
+      "ui": "hub_rp",
+      "rf": "ext_buck_output_cap0",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
       "clearance_mm": 7.4
@@ -276,21 +262,7 @@
     },
     {
       "ui": "hub_rp",
-      "rf": "voice_input_cap",
-      "ui_origin": "r2",
-      "rf_origin": "retained_base",
-      "clearance_mm": 7.4
-    },
-    {
-      "ui": "hub_rp",
       "rf": "voice_output_cap0",
-      "ui_origin": "r2",
-      "rf_origin": "retained_base",
-      "clearance_mm": 7.4
-    },
-    {
-      "ui": "hub_rp",
-      "rf": "voice_output_cap1",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
       "clearance_mm": 7.4
@@ -303,18 +275,25 @@
       "clearance_mm": 2.59
     },
     {
-      "ui": "s3_rf_board_connector_r2",
-      "rf": "airband_selector",
+      "ui": "hub_dbg_header",
+      "rf": "speaker",
       "ui_origin": "r2",
-      "rf_origin": "r2",
-      "clearance_mm": 7.5
+      "rf_origin": "retained_base",
+      "clearance_mm": 0.94
+    },
+    {
+      "ui": "hub_boot_button",
+      "rf": "product_usb_protector",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 6.9
     },
     {
       "ui": "s3_rf_board_connector_r2",
-      "rf": "airband_lo",
+      "rf": "airband_mixer",
       "ui_origin": "r2",
       "rf_origin": "r2",
-      "clearance_mm": 7.5
+      "clearance_mm": 7.8
     },
     {
       "ui": "s3_rf_board_connector_r2",
@@ -332,6 +311,13 @@
     },
     {
       "ui": "det_s3_r2",
+      "rf": "airband_selector",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 8.9
+    },
+    {
+      "ui": "det_s3_r2",
       "rf": "airband_lo",
       "ui_origin": "r2",
       "rf_origin": "r2",
@@ -345,25 +331,11 @@
       "clearance_mm": 8.8
     },
     {
-      "ui": "nrf0_r2",
-      "rf": "u214_host_buffer_a_bypass",
+      "ui": "det_c5_r2",
+      "rf": "det_cc_r2",
       "ui_origin": "r2",
-      "rf_origin": "retained_base",
-      "clearance_mm": 8.0
-    },
-    {
-      "ui": "nrf0_r2",
-      "rf": "u214_i2c_host_scl_pullup",
-      "ui_origin": "r2",
-      "rf_origin": "retained_base",
-      "clearance_mm": 8.15
-    },
-    {
-      "ui": "nrf0_r2",
-      "rf": "u214_series_rst",
-      "ui_origin": "r2",
-      "rf_origin": "retained_base",
-      "clearance_mm": 8.15
+      "rf_origin": "r2",
+      "clearance_mm": 8.9
     },
     {
       "ui": "nrf0_r2",
@@ -373,11 +345,18 @@
       "clearance_mm": 5.3
     },
     {
-      "ui": "nrf0_r2",
-      "rf": "voice_v",
+      "ui": "nrf1_r2",
+      "rf": "u214_host_buffer_a_bypass",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
-      "clearance_mm": 5.3
+      "clearance_mm": 8.0
+    },
+    {
+      "ui": "nrf1_r2",
+      "rf": "u214_i2c_host_scl_pullup",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.15
     },
     {
       "ui": "nrf1_r2",
@@ -388,10 +367,10 @@
     },
     {
       "ui": "nrf1_r2",
-      "rf": "u214_return_buffer",
+      "rf": "u214_series_rst",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
-      "clearance_mm": 7.4
+      "clearance_mm": 8.15
     },
     {
       "ui": "nrf1_r2",
@@ -399,6 +378,20 @@
       "ui_origin": "r2",
       "rf_origin": "retained_base",
       "clearance_mm": 5.3
+    },
+    {
+      "ui": "nrf2_r2",
+      "rf": "u214_esd_a",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.0
+    },
+    {
+      "ui": "nrf2_r2",
+      "rf": "u214_esd_c",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.0
     },
     {
       "ui": "nrf2_r2",
@@ -420,6 +413,13 @@
       "ui_origin": "r2",
       "rf_origin": "retained_base",
       "clearance_mm": 8.0
+    },
+    {
+      "ui": "nrf2_r2",
+      "rf": "u214_return_buffer",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 7.4
     },
     {
       "ui": "nrf2_r2",
@@ -471,25 +471,11 @@
       "clearance_mm": 5.8
     },
     {
-      "ui": "nrf0_rf_board_connector_r2",
-      "rf": "airband_lna",
-      "ui_origin": "r2",
-      "rf_origin": "r2",
-      "clearance_mm": 7.1
-    },
-    {
-      "ui": "nrf0_rf_board_connector_r2",
+      "ui": "nrf1_rf_board_connector_r2",
       "rf": "airband_filter_reserve",
       "ui_origin": "r2",
       "rf_origin": "r2",
       "clearance_mm": 7.4
-    },
-    {
-      "ui": "nrf0_coupler_r2",
-      "rf": "airband_filter_reserve",
-      "ui_origin": "r2",
-      "rf_origin": "r2",
-      "clearance_mm": 9.25
     },
     {
       "ui": "det_nrf0_r2",
@@ -520,11 +506,25 @@
       "clearance_mm": 9.3
     },
     {
-      "ui": "det_nrf2_r2",
-      "rf": "audio_speaker_selector_r2",
+      "ui": "nrf0_host_buffer_r2",
+      "rf": "u214_supervisor_ct",
       "ui_origin": "r2",
-      "rf_origin": "r2",
-      "clearance_mm": 8.8
+      "rf_origin": "retained_base",
+      "clearance_mm": 9.4
+    },
+    {
+      "ui": "nrf0_host_buffer_r2",
+      "rf": "u214_supervisor_pullup",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 9.5
+    },
+    {
+      "ui": "nrf0_host_buffer_r2",
+      "rf": "u214_supervisor_sense_bottom",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 9.5
     },
     {
       "ui": "nrf0_host_buffer_r2",
@@ -556,13 +556,6 @@
     },
     {
       "ui": "nrf2_host_buffer_r2",
-      "rf": "aon_buck",
-      "ui_origin": "r2",
-      "rf_origin": "retained_base",
-      "clearance_mm": 9.3
-    },
-    {
-      "ui": "nrf2_host_buffer_r2",
       "rf": "aon_inductor",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
@@ -570,24 +563,38 @@
     },
     {
       "ui": "nrf2_host_buffer_r2",
+      "rf": "voice",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 6.7
+    },
+    {
+      "ui": "nrf2_return_buffer_r2",
+      "rf": "aon_buck",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 9.3
+    },
+    {
+      "ui": "nrf2_return_buffer_r2",
+      "rf": "aon_inductor",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 8.7
+    },
+    {
+      "ui": "nrf2_return_buffer_r2",
       "rf": "aon_input_cap",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
       "clearance_mm": 8.3
     },
     {
-      "ui": "nrf2_host_buffer_r2",
-      "rf": "aon_output_cap",
+      "ui": "safe_gate_a_r2",
+      "rf": "ext_buck",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
-      "clearance_mm": 8.3
-    },
-    {
-      "ui": "nrf2_return_buffer_r2",
-      "rf": "ext_inductor",
-      "ui_origin": "r2",
-      "rf_origin": "retained_base",
-      "clearance_mm": 6.9
+      "clearance_mm": 9.2
     },
     {
       "ui": "safe_gate_a_r2",
@@ -597,32 +604,25 @@
       "clearance_mm": 6.8
     },
     {
-      "ui": "safe_gate_a_r2",
+      "ui": "nrf_evidence_cmp_r2",
+      "rf": "voice_buck",
+      "ui_origin": "r2",
+      "rf_origin": "retained_base",
+      "clearance_mm": 9.2
+    },
+    {
+      "ui": "nrf_evidence_cmp_r2",
       "rf": "voice_inductor",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
       "clearance_mm": 6.8
     },
     {
-      "ui": "nrf_backup_gate_r2",
-      "rf": "voice_buck",
-      "ui_origin": "r2",
-      "rf_origin": "retained_base",
-      "clearance_mm": 9.3
-    },
-    {
-      "ui": "nrf_evidence_cmp_r2",
-      "rf": "main_inductor_r2",
-      "ui_origin": "r2",
-      "rf_origin": "r2",
-      "clearance_mm": 4.8
-    },
-    {
       "ui": "slow_io_r2",
-      "rf": "voice_band_io",
+      "rf": "voice",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
-      "clearance_mm": 9.2
+      "clearance_mm": 7.2
     },
     {
       "ui": "slow_io_r2",
@@ -632,18 +632,11 @@
       "clearance_mm": 9.3
     },
     {
-      "ui": "ui_matrix_io_r2",
-      "rf": "charger_pmid_cap1",
+      "ui": "slow_io_r2",
+      "rf": "voice_control_mux_b",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
-      "clearance_mm": 8.2
-    },
-    {
-      "ui": "ui_matrix_io_r2",
-      "rf": "charger_sys_cap2",
-      "ui_origin": "r2",
-      "rf_origin": "retained_base",
-      "clearance_mm": 8.2
+      "clearance_mm": 9.3
     },
     {
       "ui": "ui_matrix_io_r2",
@@ -651,6 +644,13 @@
       "ui_origin": "r2",
       "rf_origin": "r2",
       "clearance_mm": 4.8
+    },
+    {
+      "ui": "ui_matrix_io_r2",
+      "rf": "main_output_cap0_r2",
+      "ui_origin": "r2",
+      "rf_origin": "r2",
+      "clearance_mm": 7.1
     },
     {
       "ui": "ui_matrix_io_r2",
@@ -782,8 +782,8 @@
         "kind": "placement_reserve",
         "world_bbox_mm": {
           "x": [
-            33.5,
-            45.0
+            38.5,
+            50.0
           ],
           "y": [
             7.8,
@@ -801,8 +801,8 @@
         "kind": "placement_reserve",
         "world_bbox_mm": {
           "x": [
-            0.5,
-            8.3
+            5.5,
+            13.3
           ],
           "y": [
             25.8,
@@ -819,8 +819,8 @@
         "kind": "placement_reserve",
         "world_bbox_mm": {
           "x": [
-            59.9,
-            64.3
+            64.9,
+            69.3
           ],
           "y": [
             42.9,
@@ -837,8 +837,8 @@
         "kind": "keepout",
         "world_bbox_mm": {
           "x": [
-            28.61,
-            46.39
+            33.61,
+            51.39
           ],
           "y": [
             27.095,
@@ -853,8 +853,8 @@
         "kind": "placement_reserve",
         "world_bbox_mm": {
           "x": [
-            39.0,
-            45.0
+            44.0,
+            50.0
           ],
           "y": [
             21.5,
@@ -876,8 +876,8 @@
         "kind": "placement_reserve",
         "world_bbox_mm": {
           "x": [
-            47.1,
-            53.2
+            52.1,
+            58.2
           ],
           "y": [
             20.0,
@@ -905,8 +905,8 @@
         "kind": "copper_feature_reserve",
         "world_bbox_mm": {
           "x": [
-            1.5,
-            73.5
+            4.0,
+            76.0
           ],
           "y": [
             17.8,
@@ -921,8 +921,8 @@
         "kind": "external_swept_volume",
         "world_bbox_mm": {
           "x": [
-            65.46,
-            77.46
+            67.96,
+            79.96
           ],
           "y": [
             18.64,
@@ -941,8 +941,8 @@
         "kind": "placement_reserve",
         "world_bbox_mm": {
           "x": [
-            50.9,
-            53.0
+            55.9,
+            58.0
           ],
           "y": [
             29.0,
@@ -1177,8 +1177,8 @@
         "frame": "rf-inner",
         "courtyard_world_bbox_mm": {
           "x": [
-            38.95,
-            44.6
+            43.95,
+            49.6
           ],
           "y": [
             8.25,
@@ -1192,8 +1192,8 @@
         "frame": "rf-inner",
         "courtyard_world_bbox_mm": {
           "x": [
-            0.75,
-            6.4
+            5.75,
+            11.4
           ],
           "y": [
             25.95,
@@ -1207,8 +1207,8 @@
         "frame": "rf-inner",
         "courtyard_world_bbox_mm": {
           "x": [
-            59.95,
-            63.65
+            64.95,
+            68.65
           ],
           "y": [
             42.95,
@@ -1254,7 +1254,7 @@
             13.8
           ]
         },
-        "minimum_compression_stop_clearance_mm": 11.8
+        "minimum_compression_stop_clearance_mm": 16.8
       },
       {
         "id": "nrf0_tx_evidence_island_reserve",
@@ -1311,7 +1311,7 @@
             17.6
           ]
         },
-        "minimum_compression_stop_clearance_mm": 0.7
+        "minimum_compression_stop_clearance_mm": 5.7
       },
       {
         "id": "cc_tx_evidence_island_reserve",
@@ -1321,8 +1321,8 @@
         ],
         "world_bbox_mm": {
           "x": [
-            33.5,
-            45.0
+            38.5,
+            50.0
           ],
           "y": [
             7.8,
@@ -1338,15 +1338,15 @@
         ],
         "world_bbox_mm": {
           "x": [
-            0.5,
-            8.3
+            5.5,
+            13.3
           ],
           "y": [
             25.8,
             31.8
           ]
         },
-        "minimum_compression_stop_clearance_mm": 10.8
+        "minimum_compression_stop_clearance_mm": 10.808
       },
       {
         "id": "vhf_tx_evidence_island_reserve",
@@ -1355,8 +1355,8 @@
         ],
         "world_bbox_mm": {
           "x": [
-            59.9,
-            64.3
+            64.9,
+            69.3
           ],
           "y": [
             42.9,
@@ -1381,8 +1381,8 @@
         ],
         "world_bbox_mm": {
           "x": [
-            -4.5,
-            79.5
+            -2.0,
+            82.0
           ],
           "y": [
             17.0,
@@ -1404,8 +1404,8 @@
         ],
         "world_bbox_mm": {
           "x": [
-            -4.5,
-            79.5
+            -2.0,
+            82.0
           ],
           "y": [
             17.0,
@@ -1850,7 +1850,7 @@
         "mpn": "Samtec HLE-107-02-G-DV-PE-LC",
         "frame": "rear-outer",
         "coordinate_mm": [
-          28.61,
+          31.11,
           26.48
         ],
         "rotation_deg": 0,
@@ -1860,8 +1860,8 @@
         ],
         "placement_courtyard_bbox_mm": {
           "x": [
-            28.26,
-            46.74
+            30.76,
+            49.24
           ],
           "y": [
             26.13,
@@ -2785,8 +2785,8 @@
           "text": "nRF1 · 2G4",
           "box_mm": {
             "x": [
-              8.894594594594595,
-              15.705405405405406
+              11.394594594594595,
+              18.205405405405408
             ],
             "y": [
               7.894594594594594,
@@ -2798,8 +2798,8 @@
           "text": "S3 · 2G4",
           "box_mm": {
             "x": [
-              20.075675675675676,
-              25.524324324324326
+              22.575675675675676,
+              28.024324324324326
             ],
             "y": [
               7.894594594594594,
@@ -2811,8 +2811,8 @@
           "text": "nRF2 · 2G4",
           "box_mm": {
             "x": [
-              34.0945945945946,
-              40.9054054054054
+              36.5945945945946,
+              43.4054054054054
             ],
             "y": [
               7.894594594594594,
@@ -2824,8 +2824,8 @@
           "text": "C5 · 2G4/5G",
           "box_mm": {
             "x": [
-              48.454054054054055,
-              55.94594594594595
+              50.954054054054055,
+              58.44594594594595
             ],
             "y": [
               7.894594594594594,
@@ -2837,8 +2837,8 @@
           "text": "nRF3 · 2G4",
           "box_mm": {
             "x": [
-              59.2945945945946,
-              66.1054054054054
+              61.7945945945946,
+              68.6054054054054
             ],
             "y": [
               7.894594594594594,
@@ -2852,8 +2852,8 @@
           "text": "AIR/FM RX",
           "box_mm": {
             "x": [
-              5.0351351351351346,
-              11.164864864864864
+              7.5351351351351346,
+              13.664864864864864
             ],
             "y": [
               15.094594594594593,
@@ -2865,8 +2865,8 @@
           "text": "AM/LW RX",
           "box_mm": {
             "x": [
-              20.075675675675676,
-              25.524324324324326
+              22.575675675675676,
+              28.024324324324326
             ],
             "y": [
               15.094594594594593,
@@ -2878,8 +2878,8 @@
           "text": "SUB-G TX",
           "box_mm": {
             "x": [
-              34.77567567567568,
-              40.22432432432432
+              37.27567567567568,
+              42.72432432432432
             ],
             "y": [
               15.094594594594593,
@@ -2891,8 +2891,8 @@
           "text": "VHF TX",
           "box_mm": {
             "x": [
-              50.15675675675676,
-              54.24324324324325
+              52.65675675675676,
+              56.74324324324325
             ],
             "y": [
               15.094594594594593,
@@ -2904,8 +2904,8 @@
           "text": "UHF TX",
           "box_mm": {
             "x": [
-              64.85675675675677,
-              68.94324324324324
+              67.35675675675677,
+              71.44324324324324
             ],
             "y": [
               15.094594594594593,
@@ -2921,8 +2921,8 @@
           "text": "Леший",
           "box_mm": {
             "x": [
-              33.24324324324324,
-              41.75675675675676
+              35.74324324324324,
+              44.25675675675676
             ],
             "y": [
               96.23648648648648,
@@ -2934,8 +2934,8 @@
           "text": "ESP32-LESHY2 · UI PCB · R2-EVT1 · REV A",
           "box_mm": {
             "x": [
-              24.21891891891892,
-              50.78108108108108
+              26.71891891891892,
+              53.28108108108108
             ],
             "y": [
               100.8945945945946,
@@ -2949,8 +2949,8 @@
           "text": "ESP32-LESHY2",
           "box_mm": {
             "x": [
-              30.2027027027027,
-              44.7972972972973
+              32.7027027027027,
+              47.2972972972973
             ],
             "y": [
               133.6689189189189,
@@ -2962,8 +2962,8 @@
           "text": "RF/PWR PCB · R2-EVT1 · REV A",
           "box_mm": {
             "x": [
-              27.964864864864865,
-              47.035135135135135
+              30.464864864864865,
+              49.535135135135135
             ],
             "y": [
               137.6945945945946,
@@ -2975,8 +2975,8 @@
           "text": "github.com/anton-vinogradov/esp32-leshy2",
           "box_mm": {
             "x": [
-              21.283783783783786,
-              53.71621621621621
+              23.783783783783786,
+              56.21621621621621
             ],
             "y": [
               140.44594594594594,
@@ -3146,16 +3146,16 @@
           5.0,
           11.0
         ],
-        "clearance_mm": -2.7
+        "clearance_mm": -2.499
       },
       {
         "face": "front",
         "path": "N24-2",
         "compression_stop_axis_mm": [
-          70.0,
+          75.0,
           11.0
         ],
-        "clearance_mm": -2.7
+        "clearance_mm": -2.499
       },
       {
         "face": "rear",
@@ -3164,24 +3164,36 @@
           5.0,
           11.0
         ],
-        "clearance_mm": -2.7
+        "clearance_mm": -2.499
       },
       {
         "face": "rear",
         "path": "VOICE-UHF",
         "compression_stop_axis_mm": [
-          70.0,
+          75.0,
           11.0
         ],
-        "clearance_mm": -2.7
+        "clearance_mm": -2.499
       }
     ],
     "inner_pin_keepout_hits": [
       {
+        "face": "front",
+        "path": "S3-2G4",
+        "body": "s3_rf_coupler_r2",
+        "clearance_to_protected_pin_keepout_mm": -1.5
+      },
+      {
+        "face": "front",
+        "path": "C5-2G4/5",
+        "body": "c5_rf_coupler_r2",
+        "clearance_to_protected_pin_keepout_mm": -1.5
+      },
+      {
         "face": "rear",
         "path": "RX-FM/SW",
         "body": "airband_filter_reserve",
-        "clearance_to_protected_pin_keepout_mm": -1.5
+        "clearance_to_protected_pin_keepout_mm": -0.14
       },
       {
         "face": "rear",
@@ -3193,19 +3205,13 @@
         "face": "rear",
         "path": "CC-SUB",
         "body": "airband_filter_reserve",
-        "clearance_to_protected_pin_keepout_mm": -0.04
+        "clearance_to_protected_pin_keepout_mm": -1.5
       },
       {
         "face": "rear",
         "path": "CC-SUB",
         "body": "cc_r2",
         "clearance_to_protected_pin_keepout_mm": -0.59
-      },
-      {
-        "face": "rear",
-        "path": "CC-SUB",
-        "body": "det_cc_r2",
-        "clearance_to_protected_pin_keepout_mm": -0.39
       }
     ],
     "factory_surface": "Plugin/manualWeld; 13 standard and 12 reverse procurement minima; written Standard-PCBA assembly acceptance and an exact-order quote are absent",
@@ -3233,7 +3239,7 @@
           11.0
         ],
         [
-          70.0,
+          75.0,
           11.0
         ],
         [
@@ -3241,7 +3247,7 @@
           145.0
         ],
         [
-          70.0,
+          75.0,
           145.0
         ]
       ]
@@ -3392,8 +3398,8 @@
       "role": "Airband low-noise gain stage",
       "world_bbox_mm": {
         "x": [
-          10.0,
-          14.5
+          15.0,
+          19.5
         ],
         "y": [
           9.0,
@@ -3413,8 +3419,8 @@
       "role": "118-137 MHz to 6-25 MHz down-converter",
       "world_bbox_mm": {
         "x": [
-          15.5,
-          18.5
+          20.5,
+          23.5
         ],
         "y": [
           9.0,
@@ -3434,8 +3440,8 @@
       "role": "direct FM/SW versus converted Airband selector",
       "world_bbox_mm": {
         "x": [
-          19.5,
-          22.5
+          24.5,
+          27.5
         ],
         "y": [
           9.0,
@@ -3455,8 +3461,8 @@
       "role": "fixed 112-MHz Airband local oscillator",
       "world_bbox_mm": {
         "x": [
-          23.5,
-          26.5
+          28.5,
+          31.5
         ],
         "y": [
           9.0,
@@ -3476,8 +3482,8 @@
       "role": "118-137-MHz image-rejection BPF and 6-25-MHz IF cleanup; individually serial passives close after synthesis",
       "world_bbox_mm": {
         "x": [
-          9.5,
-          33.5
+          14.5,
+          38.5
         ],
         "y": [
           7.0,
@@ -4127,8 +4133,8 @@
       "role": "rear-local FM/AM/SW/LW and converted Airband receiver",
       "world_bbox_mm": {
         "x": [
-          9.0,
-          18.9
+          14.0,
+          23.9
         ],
         "y": [
           23.5,
@@ -4148,8 +4154,8 @@
       "role": "rear-local sub-GHz transceiver aligned with the CC-SUB SMA",
       "world_bbox_mm": {
         "x": [
-          34.0,
-          38.0
+          39.0,
+          43.0
         ],
         "y": [
           8.3,
@@ -4169,8 +4175,8 @@
       "role": "CC1101 actual-TX detector beside the rear-local sub-GHz radio",
       "world_bbox_mm": {
         "x": [
-          39.2,
-          44.35
+          44.2,
+          49.35
         ],
         "y": [
           8.5,
@@ -4190,8 +4196,8 @@
       "role": "UHF voice-radio actual-TX detector immediately above its module",
       "world_bbox_mm": {
         "x": [
-          1.0,
-          6.15
+          6.0,
+          11.15
         ],
         "y": [
           26.2,
@@ -4211,8 +4217,8 @@
       "role": "VHF voice-radio actual-TX detector immediately right of its module",
       "world_bbox_mm": {
         "x": [
-          60.2,
-          63.400000000000006
+          65.2,
+          68.4
         ],
         "y": [
           43.2,
@@ -4232,8 +4238,8 @@
       "role": "rear-local audio capture and playback codec",
       "world_bbox_mm": {
         "x": [
-          54.0,
-          57.0
+          59.0,
+          62.0
         ],
         "y": [
           15.0,
@@ -4253,8 +4259,8 @@
       "role": "rear-local active differential speaker-path selector",
       "world_bbox_mm": {
         "x": [
-          58.0,
-          61.1
+          63.0,
+          66.1
         ],
         "y": [
           15.0,
@@ -4274,8 +4280,8 @@
       "role": "rear-local headset source controller and reserve audio I/O",
       "world_bbox_mm": {
         "x": [
-          54.0,
-          59.0
+          59.0,
+          64.0
         ],
         "y": [
           22.0,
@@ -4295,8 +4301,8 @@
       "role": "rear-local CTIA headset TRRS mid-mount connector with right-side enclosure exit",
       "world_bbox_mm": {
         "x": [
-          60.4,
-          75.0
+          65.4,
+          80.0
         ],
         "y": [
           22.0,
@@ -4316,8 +4322,8 @@
       "role": "rear-local codec readiness and AUDIO_ARM reset-safe gate",
       "world_bbox_mm": {
         "x": [
-          54.0,
-          56.0
+          59.0,
+          61.0
         ],
         "y": [
           28.0,
@@ -4337,8 +4343,8 @@
       "role": "6-A 3V3_MAIN synchronous buck with raw-rail Power-Good",
       "world_bbox_mm": {
         "x": [
-          53.5,
-          55.5
+          58.5,
+          60.5
         ],
         "y": [
           61.0,
@@ -4358,8 +4364,8 @@
       "role": "2.2-uH, 10-A RMS / 15-A saturation 3V3_MAIN inductor",
       "world_bbox_mm": {
         "x": [
-          49.5,
-          56.6
+          54.5,
+          61.6
         ],
         "y": [
           63.2,
@@ -4379,8 +4385,8 @@
       "role": "first local 22-uF / 25-V X7R main-buck input capacitor",
       "world_bbox_mm": {
         "x": [
-          53.0,
-          56.2
+          58.0,
+          61.2
         ],
         "y": [
           57.5,
@@ -4400,8 +4406,8 @@
       "role": "second local 22-uF / 25-V X7R main-buck input capacitor",
       "world_bbox_mm": {
         "x": [
-          56.5,
-          59.7
+          61.5,
+          64.7
         ],
         "y": [
           57.5,
@@ -4421,8 +4427,8 @@
       "role": "third local 22-uF / 25-V X7R main-buck input capacitor",
       "world_bbox_mm": {
         "x": [
-          60.0,
-          63.2
+          65.0,
+          68.2
         ],
         "y": [
           57.5,
@@ -4442,8 +4448,8 @@
       "role": "first local 22-uF / 25-V X7R main-buck output capacitor",
       "world_bbox_mm": {
         "x": [
-          48.5,
-          51.7
+          53.5,
+          56.7
         ],
         "y": [
           70.4,
@@ -4463,8 +4469,8 @@
       "role": "second local 22-uF / 25-V X7R main-buck output capacitor",
       "world_bbox_mm": {
         "x": [
-          52.0,
-          55.2
+          57.0,
+          60.2
         ],
         "y": [
           70.4,
@@ -4484,8 +4490,8 @@
       "role": "third local 22-uF / 25-V X7R main-buck output capacitor",
       "world_bbox_mm": {
         "x": [
-          55.5,
-          58.7
+          60.5,
+          63.7
         ],
         "y": [
           70.4,
@@ -4505,8 +4511,8 @@
       "role": "1-uF TPS566231P VCC decoupling capacitor",
       "world_bbox_mm": {
         "x": [
-          56.0,
-          57.6
+          61.0,
+          62.6
         ],
         "y": [
           61.1,
@@ -4526,8 +4532,8 @@
       "role": "100-nF TPS566231P bootstrap capacitor",
       "world_bbox_mm": {
         "x": [
-          51.4,
-          52.4
+          56.4,
+          57.4
         ],
         "y": [
           61.2,
@@ -4547,8 +4553,8 @@
       "role": "0-ohm serial bootstrap link retained for EMI tuning",
       "world_bbox_mm": {
         "x": [
-          50.0,
-          51.0
+          55.0,
+          56.0
         ],
         "y": [
           61.2,
@@ -4568,8 +4574,8 @@
       "role": "bidirectional contact-10 boundary shared by U214 BUSY input and U219 NFC_CS output",
       "world_bbox_mm": {
         "x": [
-          39.25,
-          41.65
+          44.25,
+          46.65
         ],
         "y": [
           21.75,
@@ -4589,8 +4595,8 @@
       "role": "AON open-drain fail-safe driver for the contact-10 bilateral-switch output enable",
       "world_bbox_mm": {
         "x": [
-          42.15,
-          44.55
+          47.15,
+          49.55
         ],
         "y": [
           21.75,
@@ -4610,8 +4616,8 @@
       "role": "first dual-Schottky package in the balanced full-wave U219 NFC-field evidence bridge",
       "world_bbox_mm": {
         "x": [
-          47.5,
-          50.5
+          52.5,
+          55.5
         ],
         "y": [
           20.5,
@@ -4631,8 +4637,8 @@
       "role": "second dual-Schottky package in the balanced full-wave U219 NFC-field evidence bridge",
       "world_bbox_mm": {
         "x": [
-          47.5,
-          50.5
+          52.5,
+          55.5
         ],
         "y": [
           24.0,
@@ -4652,8 +4658,8 @@
       "role": "open-collector U219 NFC-field envelope comparator driving EV_N9_U219_NFC",
       "world_bbox_mm": {
         "x": [
-          47.35,
-          50.4
+          52.35,
+          55.4
         ],
         "y": [
           27.25,
@@ -4673,8 +4679,8 @@
       "role": "10-kOhm AON pull-up that disables the contact-10 switch by default",
       "world_bbox_mm": {
         "x": [
-          39.25,
-          40.25
+          44.25,
+          45.25
         ],
         "y": [
           24.4,
@@ -4694,8 +4700,8 @@
       "role": "10-kOhm AON command pull-down preserving switch-off state",
       "world_bbox_mm": {
         "x": [
-          40.75,
-          41.75
+          45.75,
+          46.75
         ],
         "y": [
           24.4,
@@ -4715,8 +4721,8 @@
       "role": "100-nF local bypass for the contact-10 bilateral switch",
       "world_bbox_mm": {
         "x": [
-          42.25,
-          43.25
+          47.25,
+          48.25
         ],
         "y": [
           24.4,
@@ -4736,8 +4742,8 @@
       "role": "100-nF local bypass for the AON open-drain driver",
       "world_bbox_mm": {
         "x": [
-          43.75,
-          44.75
+          48.75,
+          49.75
         ],
         "y": [
           24.4,
@@ -4757,8 +4763,8 @@
       "role": "1-kOhm positive pickup input limiter",
       "world_bbox_mm": {
         "x": [
-          51.15,
-          52.15
+          56.15,
+          57.15
         ],
         "y": [
           20.25,
@@ -4778,8 +4784,8 @@
       "role": "1-kOhm negative pickup input limiter",
       "world_bbox_mm": {
         "x": [
-          51.15,
-          52.15
+          56.15,
+          57.15
         ],
         "y": [
           21.25,
@@ -4799,8 +4805,8 @@
       "role": "10-nF rectified NFC-field envelope capacitor",
       "world_bbox_mm": {
         "x": [
-          51.15,
-          52.15
+          56.15,
+          57.15
         ],
         "y": [
           22.25,
@@ -4820,8 +4826,8 @@
       "role": "100-kOhm envelope discharge resistor",
       "world_bbox_mm": {
         "x": [
-          51.15,
-          52.15
+          56.15,
+          57.15
         ],
         "y": [
           23.25,
@@ -4841,8 +4847,8 @@
       "role": "100-kOhm comparator threshold upper leg",
       "world_bbox_mm": {
         "x": [
-          51.15,
-          52.15
+          56.15,
+          57.15
         ],
         "y": [
           24.25,
@@ -4862,8 +4868,8 @@
       "role": "10-kOhm comparator threshold lower leg",
       "world_bbox_mm": {
         "x": [
-          51.15,
-          52.15
+          56.15,
+          57.15
         ],
         "y": [
           25.25,
@@ -4883,8 +4889,8 @@
       "role": "1-MOhm comparator hysteresis feedback",
       "world_bbox_mm": {
         "x": [
-          51.15,
-          52.15
+          56.15,
+          57.15
         ],
         "y": [
           26.25,
@@ -4904,8 +4910,8 @@
       "role": "10-kOhm AON pull-up for active-low NFC field evidence",
       "world_bbox_mm": {
         "x": [
-          51.15,
-          52.15
+          56.15,
+          57.15
         ],
         "y": [
           27.25,
@@ -4925,8 +4931,8 @@
       "role": "100-nF local bypass for the NFC field comparator",
       "world_bbox_mm": {
         "x": [
-          51.15,
-          52.15
+          56.15,
+          57.15
         ],
         "y": [
           28.25,
@@ -4951,7 +4957,7 @@
             10.55
           ],
           [
-            8.1,
+            10.6,
             0.0
           ]
         ],
@@ -4974,7 +4980,7 @@
             7.22
           ],
           [
-            22.8,
+            25.3,
             0.0
           ]
         ],
@@ -4993,7 +4999,7 @@
             15.55
           ],
           [
-            37.5,
+            40.0,
             0.0
           ]
         ],
@@ -5016,7 +5022,7 @@
             7.22
           ],
           [
-            52.2,
+            54.7,
             0.0
           ]
         ],
@@ -5035,7 +5041,7 @@
             10.55
           ],
           [
-            66.9,
+            69.4,
             0.0
           ]
         ],
@@ -5050,11 +5056,11 @@
         "branch": "main",
         "points": [
           [
-            41.400000000000006,
+            46.400000000000006,
             42.02
           ],
           [
-            52.2,
+            54.7,
             0.0
           ]
         ],
@@ -5069,11 +5075,11 @@
         "branch": "main",
         "points": [
           [
-            13.3,
+            18.3,
             50.3
           ],
           [
-            66.9,
+            69.4,
             0.0
           ]
         ],
@@ -5088,11 +5094,11 @@
         "branch": "matched-main",
         "points": [
           [
-            36.0,
+            41.0,
             10.3
           ],
           [
-            37.5,
+            40.0,
             0.0
           ]
         ],
@@ -5107,11 +5113,11 @@
         "branch": "ami",
         "points": [
           [
-            22.8,
+            25.3,
             0.0
           ],
           [
-            13.95,
+            18.95,
             26.5
           ]
         ],
@@ -5126,15 +5132,15 @@
         "branch": "direct-fm-sw",
         "points": [
           [
-            8.1,
+            10.6,
             0.0
           ],
           [
-            21.0,
+            26.0,
             10.5
           ],
           [
-            13.95,
+            18.95,
             26.5
           ]
         ],
@@ -5149,19 +5155,19 @@
         "branch": "converted-airband",
         "points": [
           [
-            8.1,
+            10.6,
             0.0
           ],
           [
-            12.25,
+            17.25,
             11.05
           ],
           [
-            17.0,
+            22.0,
             10.5
           ],
           [
-            21.0,
+            26.0,
             10.5
           ]
         ],
@@ -5176,11 +5182,11 @@
         "branch": "airband-lo",
         "points": [
           [
-            25.0,
+            30.0,
             10.5
           ],
           [
-            17.0,
+            22.0,
             10.5
           ]
         ],
@@ -5256,7 +5262,7 @@
         "path": "C5-2G4/5",
         "points": [
           [
-            60.7,
+            65.7,
             32.6
           ],
           [
@@ -5357,7 +5363,7 @@
         "frame": "ui-inner",
         "path": "C5-2G4/5",
         "point": [
-          60.7,
+          65.7,
           32.6
         ],
         "part": "module-rf-connector",

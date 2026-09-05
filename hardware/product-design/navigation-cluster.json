@@ -14,7 +14,11 @@
     "device_key": "omron_b3s_1100p",
     "mpn": "OMRON B3S-1100P",
     "quantity": 5,
-    "body_mm": [6.6, 6.0, 4.3],
+    "body_mm": [
+      6.6,
+      6.0,
+      4.3
+    ],
     "actuation": "direct finger press; no separate cap, plunger or custom actuator",
     "manufacturer_document": "OMRON B3S Sealed Tactile Switch SMT datasheet A204-E1",
     "manufacturer_url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
@@ -22,15 +26,63 @@
     "checked": "2026-08-23"
   },
   "layout": {
-    "cluster_center_mm": [37.5, 132.4],
+    "cluster_center_mm": [
+      40.0,
+      132.4
+    ],
     "centre_pitch_mm": 9.0,
-    "bounding_box_mm": [25.2, 120.4, 24.6, 24.0],
+    "bounding_box_mm": [
+      27.7,
+      120.4,
+      24.6,
+      24.0
+    ],
     "buttons": [
-      {"instance": "ui_dpad_up", "label": "UP", "symbol": "▲", "position_mm": [34.2, 120.4]},
-      {"instance": "ui_dpad_down", "label": "DOWN", "symbol": "▼", "position_mm": [34.2, 138.4]},
-      {"instance": "ui_dpad_left", "label": "LEFT", "symbol": "◀", "position_mm": [25.2, 129.4]},
-      {"instance": "ui_dpad_right", "label": "RIGHT", "symbol": "▶", "position_mm": [43.2, 129.4]},
-      {"instance": "ui_dpad_ok", "label": "OK", "symbol": "OK", "position_mm": [34.2, 129.4]}
+      {
+        "instance": "ui_dpad_up",
+        "label": "UP",
+        "symbol": "▲",
+        "position_mm": [
+          36.7,
+          120.4
+        ]
+      },
+      {
+        "instance": "ui_dpad_down",
+        "label": "DOWN",
+        "symbol": "▼",
+        "position_mm": [
+          36.7,
+          138.4
+        ]
+      },
+      {
+        "instance": "ui_dpad_left",
+        "label": "LEFT",
+        "symbol": "◀",
+        "position_mm": [
+          27.7,
+          129.4
+        ]
+      },
+      {
+        "instance": "ui_dpad_right",
+        "label": "RIGHT",
+        "symbol": "▶",
+        "position_mm": [
+          45.7,
+          129.4
+        ]
+      },
+      {
+        "instance": "ui_dpad_ok",
+        "label": "OK",
+        "symbol": "OK",
+        "position_mm": [
+          36.7,
+          129.4
+        ]
+      }
     ]
   },
   "electrical_contract": {
@@ -50,8 +102,8 @@
     "excludes": "PCB, assembly, enclosure, freight and tax"
   },
   "paper_checks": {
-    "back_clearance_mm": 7.6,
-    "opt_clearance_mm": 7.6,
+    "back_clearance_mm": 10.1,
+    "opt_clearance_mm": 10.1,
     "bottom_board_margin_mm": 5.6,
     "all_five_bodies_inside_board": true,
     "mounting_keepouts_clear": true,

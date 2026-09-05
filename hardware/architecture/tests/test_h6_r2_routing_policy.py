@@ -257,7 +257,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
             self.skipTest("KiCad bundled pcbnew Python is unavailable")
         for script, expected in (
             (PLACEMENT_FREEZE_SCRIPT, "1208 exact anchors"),
-            (GENERAL_ROUTING_SCRIPT, "652/652 connections"),
+            (GENERAL_ROUTING_SCRIPT, "historical routing evidence preserved; current H6.0.3-R1"),
         ):
             result = subprocess.run(
                 [str(KICAD_PYTHON), str(script), "--check"],

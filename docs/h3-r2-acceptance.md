@@ -16,7 +16,7 @@
 
 ## What is complete
 
-- Every electrical claim calculable before layout has a reproducible result on the exact H1-R2.38 / H2-R2.1.5 boundary.
+- Every electrical claim calculable before layout has a reproducible result on the exact H1-R2.39 / H2-R2.1.5 boundary.
 - All legal power states, transitions, analog corners, digital interfaces, permanent RF paths, thermal profiles and single-fault cases pass their frozen paper rules.
 - Every correction is already present in the current source and all dependent evidence has been regenerated.
 

@@ -31,7 +31,7 @@ Transmission and intrusive laboratory functions are separated from ordinary
 use by the [three-level safety model](docs/safety.md). Installation requires the
 user to accept the non-aggression/authorized-use terms.
 
-> **Current hardware marker: `H6.0.2-R1`.** The complete two-PCB `H1-R2.38`
+> **Current hardware marker: `H6.0.3-R1`.** The complete two-PCB `H1-R2.39`
 > placement was accepted and reviewed on 30 August 2026: exact dual-RP GPIO/M1 map and C5 SDIO/service-mux,
 > the series-produced `ER-TFT035IPS-6` + `ER-TPC035-6` display and its direct
 > 50-contact UI-PCB ZIF, all 18 U219 support bodies, NFC pickup loop and the external volume
@@ -58,37 +58,41 @@ user to accept the non-aggression/authorized-use terms.
 > reviews exact provenance for all 251 R2 groups and 1,208 fitted positions.
 > [H3-R2.0.3](docs/verification-methods.md) freezes nine methods and twelve
 > pass/fail rules. [H3-R2.1.1](docs/power-state-register.md) reviewed all 2,266 legal R2 states;
-> [H3-R2.1.2](docs/power-load-binding.md) binds every load without a hidden aggregate. [H3-R2.1.3](docs/power-rail-margins.md) reviews 224 passing rail profiles. [H3-R2.1.4](docs/power-source-margins.md) owns all 75 source/pack lines and safely admits all 2,266 legal states: maximum pack current is 3.516 A against the 8-A boundary; 9-V/3-A and 15-V/2-A run every profile, while 14 oversized 5-V/3-A USB-only states are explicitly refused. The [H3-R2.1 cross-check](docs/power-dc-source-result.md) is reviewed. The complete [H3-R2.2 power-transition result](docs/power-transition-result.md) is also reviewed: 14 startup/reset/recovery scenarios, 7,316 USB/pack/DPM/brownout/source-loss cases, five protected-rail starts, four load-step envelopes and ten watchdog/fault-display cases pass without automatic restart. [H3-R2.3 analog verification](docs/analog-electrical-verification.md), [H3-R2.4 digital verification](docs/digital-electrical-verification.md), [H3-R2.5 RF verification](docs/rf-electrical-verification.md) and [H3-R2.6 thermal/fault verification](docs/thermal-fault-electrical-verification.md) are reviewed. The [global H3-R2 result](docs/h3-r2-acceptance.md) cross-checks 20 current evidence artifacts and all recorded source hashes with zero mismatch or open analytical finding; 51 physical-only rows remain explicitly owned by H5/H6/H8. [H4-R2.0.1](docs/h4-r2-input-freeze.md) froze 24 exact joined inputs. The [H4 diagnostic](docs/h4-r2-contract-reconciliation.md) found one owned 38-row BSP-generation gap; the [H4-R2.2 correction](docs/h4-r2-correction-closure.md) restored 173/173 controller rows and requalified all 12 target builds. The [global H4-R2 result](docs/h4-r2-acceptance.md) is reviewed with zero cross-domain contradiction. The historical [H5-R1 result](docs/h5-r1-acceptance.md) is now joined by the [current H5-R2 route revalidation](docs/h5-r2-current-route.md): all 249 purchasable groups / 1,216 articles have controlled routes, while `WBC16-1TLC` has one explicit order-time sourcing gate after its JLCPCB stock fell to zero. H6.0.1-R1 is complete: exact placement, the enclosure/fastener stack and all five relaxed microcoax corridors pass. H6.0.2-R1 now owns routing all 823 board-local physical / 789 global canonical nets and native schematic/PCB parity; the real PCBA price still follows Gerber/BOM/CPL. Ordering remains blocked.
+> [H3-R2.1.2](docs/power-load-binding.md) binds every load without a hidden aggregate. [H3-R2.1.3](docs/power-rail-margins.md) reviews 224 passing rail profiles. [H3-R2.1.4](docs/power-source-margins.md) owns all 75 source/pack lines and safely admits all 2,266 legal states: maximum pack current is 3.516 A against the 8-A boundary; 9-V/3-A and 15-V/2-A run every profile, while 14 oversized 5-V/3-A USB-only states are explicitly refused. The [H3-R2.1 cross-check](docs/power-dc-source-result.md) is reviewed. The complete [H3-R2.2 power-transition result](docs/power-transition-result.md) is also reviewed: 14 startup/reset/recovery scenarios, 7,316 USB/pack/DPM/brownout/source-loss cases, five protected-rail starts, four load-step envelopes and ten watchdog/fault-display cases pass without automatic restart. [H3-R2.3 analog verification](docs/analog-electrical-verification.md), [H3-R2.4 digital verification](docs/digital-electrical-verification.md), [H3-R2.5 RF verification](docs/rf-electrical-verification.md) and [H3-R2.6 thermal/fault verification](docs/thermal-fault-electrical-verification.md) are reviewed. The [global H3-R2 result](docs/h3-r2-acceptance.md) cross-checks 20 current evidence artifacts and all recorded source hashes with zero mismatch or open analytical finding; 51 physical-only rows remain explicitly owned by H5/H6/H8. [H4-R2.0.1](docs/h4-r2-input-freeze.md) froze 24 exact joined inputs. The [H4 diagnostic](docs/h4-r2-contract-reconciliation.md) found one owned 38-row BSP-generation gap; the [H4-R2.2 correction](docs/h4-r2-correction-closure.md) restored 173/173 controller rows and requalified all 12 target builds. The [global H4-R2 result](docs/h4-r2-acceptance.md) is reviewed with zero cross-domain contradiction. The historical [H5-R1 result](docs/h5-r1-acceptance.md) is now joined by the [current H5-R2 route revalidation](docs/h5-r2-current-route.md): all 249 purchasable groups / 1,216 articles have controlled routes, while `WBC16-1TLC` has one explicit order-time sourcing gate after its JLCPCB stock fell to zero. H6.0.1-R1 is complete: exact placement, the enclosure/fastener stack and all five relaxed microcoax corridors pass. `H6.0.3-R1` rebaselines both boards to 80 × 150 mm, preserves the external controls and five-plus-five antenna banks, and inserts a real 5-mm inner-face routing corridor. All 1,208 positions remain frozen without hard conflicts; routing requalification is current. The real PCBA price still follows Gerber/BOM/CPL. Ordering remains blocked.
 
 > **H6 placement evidence:** the [current exact-footprint result](docs/h6-r2-exact-placement.md)
 > now materializes both native six-layer boards and places all 1,208/1,208 fitted
 > instances with zero hard courtyard conflict or unplaced body. Routing started
 > only after the [mechanical stack](docs/h6-r2-mechanical-stack.md) and
 > [five microcoax service corridors](docs/h6-r2-microcoax-service.md) passed.
-> The [H6.0.2 routing policy](docs/h6-r2-routing-policy.md) now classifies all
+> The [H6.0.2 routing policy](docs/h6-r2-routing-policy.md) classifies all
 > 823 board-local net instances / 789 global canonical nets; only ordinary low-rate
 > controls are eligible for automatic route proposals. The standard
 > `JLC06161H-3313` calculator geometry is now enforced in KiCad: outer RF is
 > 50-ohm CPWG at 5.31/6 mil and all 12 USB segments are native `_P/_N` pairs at
-> 90 ohm, 5.31/6 mil. The accepted H6.0.2 slice closes all 652/652 connections
-> in 165 `GENERAL_CONTROL`, 12 `OSCILLATOR` and 111 `SAFETY_CONTROL` nets; both
-> saved boards pass a fresh KiCad 10.0.5 DRC with zero violations. Only
-> analogue/audio/sense routing remains current.
+> 90 ohm, 5.31/6 mil. `H6.0.3-R1` widens both physical boards to 80 mm and
+> dedicates x=35…40 mm to useful routing area. The current PCB files retain
+> 3,665 checked track/via items; the formerly blocked
+> `VOICE_EFUSE_BACKUP_EN_N` route now crosses the new corridor with ordinary
+> 0.15-mm tracks and 0.4/0.2-mm vias. Fresh KiCad DRC matches the unrouted
+> 80-mm baseline: zero UI violations and only the two already owned battery-holder
+> exceptions on RF/power. Re-routing the chains released by the geometry change
+> remains current; the former H6.0.2 accepted-slice totals are historical evidence.
 
 ## Current PCB routing
 
 The images below are generated directly from the checked-in KiCad boards. They
-show the latest accepted `H6.0.2-R1` routing slice, not an illustrative mock-up;
+show the live `H6.0.3-R1` rebaseline routing state, not an illustrative mock-up;
 click either board for the full-size SVG and exact net labels.
 
 <table>
   <tr>
-    <td width="50%"><a href="docs/images/h6-r2-routing-ui.svg?rev=h6.0.2-r1"><img src="docs/images/h6-r2-routing-ui.svg?rev=h6.0.2-r1" alt="Current UI PCB routing" width="100%"></a></td>
-    <td width="50%"><a href="docs/images/h6-r2-routing-rf.svg?rev=h6.0.2-r1"><img src="docs/images/h6-r2-routing-rf.svg?rev=h6.0.2-r1" alt="Current RF and power PCB routing" width="100%"></a></td>
+    <td width="50%"><a href="docs/images/h6-r2-routing-ui.svg?rev=h6.0.3-r1"><img src="docs/images/h6-r2-routing-ui.svg?rev=h6.0.3-r1" alt="Current UI PCB routing" width="100%"></a></td>
+    <td width="50%"><a href="docs/images/h6-r2-routing-rf.svg?rev=h6.0.3-r1"><img src="docs/images/h6-r2-routing-rf.svg?rev=h6.0.3-r1" alt="Current RF and power PCB routing" width="100%"></a></td>
   </tr>
   <tr>
-    <td align="center">UI PCB · accepted live routing</td>
-    <td align="center">RF / power PCB · accepted live routing</td>
+    <td align="center">UI PCB · live 80-mm rebaseline</td>
+    <td align="center">RF / power PCB · live 80-mm rebaseline</td>
   </tr>
 </table>
 
@@ -103,16 +107,16 @@ click either board for the full-size SVG and exact net labels.
 
 ## Physical mock-up
 
-![Reviewed four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.38-fpc-slack-1)
+![Reviewed four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.39-80mm-1)
 
-[Open the legend for all 226 numbered references](docs/images/h1-r2-component-legend.svg?rev=h1-r2.38-fpc-slack-1) ·
-[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.38-fpc-slack-1) ·
+[Open the legend for all 226 numbered references](docs/images/h1-r2-component-legend.svg?rev=h1-r2.39-80mm-1) ·
+[detailed exterior](docs/images/h1-r2-external-layout.svg?rev=h1-r2.39-80mm-1) ·
 [front inner face](docs/images/h1-r2-inner-ui.svg) ·
 [rear inner face](docs/images/h1-r2-inner-rf.svg)
 
-![Display PSA, folded FPC, relaxed service loop and direct ZIF](docs/images/display-mount.svg?rev=h1-r2.38-4910sq-1)
+![Display PSA, folded FPC, relaxed service loop and direct ZIF](docs/images/display-mount.svg?rev=h1-r2.39-80mm-1)
 
-![True side sections through the two-board sandwich](docs/images/h1-r2-inner-sections.svg?rev=h1-r2.38-fpc-slack-1)
+![True side sections through the two-board sandwich](docs/images/h1-r2-inner-sections.svg?rev=h1-r2.39-80mm-1)
 
 The exterior silkscreen identifies `UI PCB · R2-EVT1 · REV A` and
 `RF/PWR PCB · R2-EVT1 · REV A`; `H1-R2.xx` remains documentation-only.
@@ -159,12 +163,12 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | Stage | Status | Published result |
 |---|---|---|
 | H0 · Requirements and functional architecture | ✅ Reviewed · R2 | [H0-R2 result](docs/h0-r2-functional-architecture.md) |
-| H1 · Physical product design | ✅ Reviewed · `H1-R2.38` | [Bilingual phase result](docs/h1-r2-acceptance.md) · [placement](docs/h1-r2-physical-layout.md) |
+| H1 · Physical product design | ✅ Reviewed · `H1-R2.39` | [Bilingual phase result](docs/h1-r2-acceptance.md) · [placement](docs/h1-r2-physical-layout.md) |
 | H2 · Production ECAD schematic | ✅ Reviewed · `H2-R2.1.5` | [Bilingual phase result](docs/h2-acceptance.md) · [native KiCad result](docs/h2-r2-native-kicad.md) |
 | H3 · Virtual electrical verification | ✅ Reviewed · `H3-R2.7` | [Bilingual phase result](docs/h3-r2-acceptance.md) · [physical evidence register](docs/physical-evidence-register-r2.md) · [stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ✅ Reviewed · `H4-R2.3` | [global result](docs/h4-r2-acceptance.md) · [BSP correction](docs/h4-r2-correction-closure.md) · [stage page](docs/stage-results.md#h4) |
 | H5 · Component and factory evidence | ✅ Reviewed current R2 routes · `H5-R2.1` | [Current R2 result](docs/h5-r2-current-route.md) · [historical H5-R1](docs/h5-r1-acceptance.md) · [stage page](docs/stage-results.md#h5) |
-| **H6 · KiCad placement, routing and release candidate** | **▶ Current · `H6.0.2-R1`** | [Exact placement](docs/h6-r2-exact-placement.md) · [routing policy](docs/h6-r2-routing-policy.md) · [mechanical stack](docs/h6-r2-mechanical-stack.md) · [microcoax closure](docs/h6-r2-microcoax-service.md) · [stage page](docs/stage-results.md#h6) · [machine checklist](hardware/verification/h6-layout-release-plan.json) |
+| **H6 · KiCad placement, routing and release candidate** | **▶ Current · `H6.0.3-R1`** | [Exact placement](docs/h6-r2-exact-placement.md) · [routing policy](docs/h6-r2-routing-policy.md) · [mechanical stack](docs/h6-r2-mechanical-stack.md) · [microcoax closure](docs/h6-r2-microcoax-service.md) · [stage page](docs/stage-results.md#h6) · [machine checklist](hardware/verification/h6-layout-release-plan.json) |
 | F-PO · First-spin admission | 🔒 Waiting for final H2/H6 and firmware R2 | [Stage page](docs/stage-results.md#f-po) |
 | H7 · Prototype fabrication and bring-up | 🔒 Waiting for H6, F-PO, immutable release and exact-one quote approval | [Stage page](docs/stage-results.md#h7) |
 | H8 · Physical qualification | 🔒 Waiting for H7 | [Stage page](docs/stage-results.md#h8) |
@@ -218,14 +222,14 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ `H4-R2.3`: the [bilingual global H4 result](docs/h4-r2-acceptance.md) closes the joined pre-layout gate with zero contradiction and transfers all 51 physical residuals to H5/H6/H8.
 - ✅ `H5-R2.1`: the [current bilingual H5 result](docs/h5-r2-current-route.md) revalidates 249 purchasable groups / 1,216 articles with zero unmapped routes; the historical [H5-R1 evidence](docs/h5-r1-acceptance.md) remains available, and `WBC16-1TLC` is an explicit order-time sourcing gate.
 - ✅ **`H6.0.1-R1` complete:** [native placement](docs/h6-r2-exact-placement.md) is reproducible at 1,208/1,208 positions with zero hard conflict; the [exact mechanical stack](docs/h6-r2-mechanical-stack.md) closes enclosure capture plus M2.5 retention; the [microcoax closure](docs/h6-r2-microcoax-service.md) proves five relaxed corridors, five clear saddles and ten antenna solder windows.
-- ▶ **Exact current point `H6.0.2-R1`:** 288/823 board-local nets and 652/652 connections in the accepted `GENERAL_CONTROL` + `OSCILLATOR` + `SAFETY_CONTROL` slice are routed with zero DRC violations; route the remaining analogue/audio/sense nets without invalidating the locked placement/mechanical/cable contract.
+- ▶ **Exact current point `H6.0.3-R1`:** both boards are now 80 × 150 mm with a real x=35…40-mm routing corridor; 1,208/1,208 positions, mechanics and all five microcoax paths pass, and routing is being requalified on the new geometry before the remaining analogue/audio/sense work continues.
 - 🔒 Prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked
 from the table. Internal substeps update this exact marker and both repositories,
 but do not pretend that a whole phase has been reviewed.
 
-<!-- current-substep: H6.0.2-R1 -->
+<!-- current-substep: H6.0.3-R1 -->
 
 ## Repository
 

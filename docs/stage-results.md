@@ -25,16 +25,16 @@ power—not primary RF payloads.
 <a id="h1"></a>
 ## H1 · Physical product design
 
-**Status:** ✅ reviewed at **`H1-R2.38`** on 2026-08-30.
+**Status:** ✅ reviewed at **`H1-R2.39`**; the 80-mm geometry rebaseline passed on 2026-09-05.
 
 - [Reviewed H1 phase result](h1-r2-acceptance.md)
 - [Current physical design](h1-r2-physical-layout.md)
-- [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.38-fpc-slack-1)
+- [Outer faces](images/h1-r2-external-layout.svg?rev=h1-r2.39-80mm-1)
 - [Front inner face](images/h1-r2-inner-ui.svg)
 - [Rear inner face](images/h1-r2-inner-rf.svg)
-- [Display PSA, relaxed FPC route and direct ZIF](images/display-mount.svg?rev=h1-r2.38-4910sq-1)
-- [True sandwich sections](images/h1-r2-inner-sections.svg?rev=h1-r2.38-fpc-slack-1)
-- [External service access](images/h1-r2-service-access.svg?rev=h1-r2.38-fpc-slack-1)
+- [Display PSA, relaxed FPC route and direct ZIF](images/display-mount.svg?rev=h1-r2.39-80mm-1)
+- [True sandwich sections](images/h1-r2-inner-sections.svg?rev=h1-r2.39-80mm-1)
+- [External service access](images/h1-r2-service-access.svg?rev=h1-r2.39-80mm-1)
 - [Machine placement audit](../hardware/product-design/generated/H1-R2-placement-audit.json)
 - [Airband receive path](h1-airband-filter.md)
 - [Power and thermal architecture](h1-r2-power-thermal.md)
@@ -183,7 +183,7 @@ recheck remain immediate pre-order gates.
 <a id="h6"></a>
 ## H6 · KiCad placement, routing and release candidate
 
-**Status:** ▶️ current at **`H6.0.2-R1`**.
+**Status:** ▶️ current at **`H6.0.3-R1`**.
 
 The [current exact-footprint placement result](h6-r2-exact-placement.md) now
 contains two native six-layer KiCad boards. All 1,208/1,208 reviewed fitted
@@ -195,16 +195,17 @@ shoulders and independent edge capture; its full tolerance corner preserves
 2.18 mm of nut thread and keeps the screw tip buried without using M1
 structurally. The [microcoax service result](h6-r2-microcoax-service.md) adds five
 relaxed corridors, five clear tape saddles and ten antenna solder windows with
-7.69 mm minimum cable reserve. H6.0.1 is complete; H6.0.2 now owns routing all
-823 board-local physical / 789 global canonical nets, native schematic/PCB parity and zero-finding DRC. Its current exact
-marker binds the standard `JLC06161H-3313` outer geometry (50-ohm RF CPWG and
-90-ohm USB at 5.31/6 mil) and gives all 12 USB segments native `_P/_N` names
-without changing their canonical `DP/DM` contract identities. The accepted
-`GENERAL_CONTROL` + `OSCILLATOR` + `SAFETY_CONTROL` slice now routes 288 nets /
-652 connections completely; both saved boards pass fresh KiCad 10.0.5 DRC with
-zero violations. Analogue/audio/sense routing remains current.
+7.69 mm minimum cable reserve. H6.0.1 is complete; H6.0.3 now rebaselines both
+boards to 80 × 150 mm and dedicates x=35…40 mm to a real inner-face routing
+corridor. All 1,208 positions remain exact, with no hard placement conflict.
+The live boards retain 3,665 DRC-clean track/via items, including a complete
+`VOICE_EFUSE_BACKUP_EN_N` path through the added corridor using ordinary
+0.15-mm tracks and 0.4/0.2-mm vias. Fresh KiCad DRC matches the clean 80-mm
+baseline: zero UI findings and only the two already owned battery-holder
+exceptions on RF/power. H6.0.2 routing totals remain historical evidence;
+requalification and completion of routing are current.
 
-### Live view of the accepted routing
+### Live view of the 80-mm routing rebaseline
 
 These are direct SVG exports from the saved `.kicad_pcb` files, not
 illustrative mockups. Blue is front copper and red is back copper. Each file

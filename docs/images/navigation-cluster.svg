@@ -3,26 +3,26 @@
 <text x="30.0" y="34.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — five-series-button navigation cluster</text>
 <text x="30.0" y="60.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#526076">Every control is an orderable OMRON B3S-1100P; there is no custom cross, cap, plunger or guide.</text>
 <rect x="50.0" y="105.0" width="600.0" height="304.0" rx="6" fill="#f8fafc" stroke="#344054" stroke-width="1.5" data-board-band-mm="75x38"/>
-<text x="350.0" y="133.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#526076">front UI PCB · y=112…150 mm</text>
+<text x="370.0" y="133.0" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle" fill="#526076">front UI PCB · y=112…150 mm</text>
 <circle cx="90.0" cy="369.0" r="32.0" fill="#fff7ed" stroke="#fb923c" stroke-dasharray="5 3"/>
 <circle cx="90.0" cy="369.0" r="10.8" fill="#ffffff" stroke="#475467"/>
-<circle cx="610.0" cy="369.0" r="32.0" fill="#fff7ed" stroke="#fb923c" stroke-dasharray="5 3"/>
-<circle cx="610.0" cy="369.0" r="10.8" fill="#ffffff" stroke="#475467"/>
+<circle cx="650.0" cy="369.0" r="32.0" fill="#fff7ed" stroke="#fb923c" stroke-dasharray="5 3"/>
+<circle cx="650.0" cy="369.0" r="10.8" fill="#ffffff" stroke="#475467"/>
 <rect x="138.0" y="244.2" width="52.8" height="48.0" rx="3" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_back" data-mpn="OMRON B3S-1100P" data-direct-press="true"/>
 <text x="164.4" y="272.2" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#4c1d95">BACK</text>
-<rect x="323.6" y="172.2" width="52.8" height="48.0" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5" data-instance="ui_dpad_up" data-mpn="OMRON B3S-1100P" data-direct-press="true"/>
-<text x="350.0" y="200.2" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#4c1d95">▲</text>
-<rect x="323.6" y="316.2" width="52.8" height="48.0" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5" data-instance="ui_dpad_down" data-mpn="OMRON B3S-1100P" data-direct-press="true"/>
-<text x="350.0" y="344.2" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#4c1d95">▼</text>
-<rect x="251.6" y="244.2" width="52.8" height="48.0" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5" data-instance="ui_dpad_left" data-mpn="OMRON B3S-1100P" data-direct-press="true"/>
-<text x="278.0" y="272.2" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#4c1d95">◀</text>
-<rect x="395.6" y="244.2" width="52.8" height="48.0" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5" data-instance="ui_dpad_right" data-mpn="OMRON B3S-1100P" data-direct-press="true"/>
-<text x="422.0" y="272.2" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#4c1d95">▶</text>
-<rect x="323.6" y="244.2" width="52.8" height="48.0" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5" data-instance="ui_dpad_ok" data-mpn="OMRON B3S-1100P" data-direct-press="true"/>
-<text x="350.0" y="272.2" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#4c1d95">OK</text>
-<rect x="509.2" y="244.2" width="52.8" height="48.0" rx="3" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_opt" data-mpn="OMRON B3S-1100P" data-direct-press="true"/>
-<text x="535.6" y="272.2" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#4c1d95">OPT</text>
-<rect x="251.6" y="172.2" width="196.8" height="192.0" fill="none" stroke="#7c3aed" stroke-width="1.4" stroke-dasharray="6 4" data-cluster-envelope="true"/>
+<rect x="343.6" y="172.2" width="52.8" height="48.0" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5" data-instance="ui_dpad_up" data-mpn="OMRON B3S-1100P" data-direct-press="true"/>
+<text x="370.0" y="200.2" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#4c1d95">▲</text>
+<rect x="343.6" y="316.2" width="52.8" height="48.0" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5" data-instance="ui_dpad_down" data-mpn="OMRON B3S-1100P" data-direct-press="true"/>
+<text x="370.0" y="344.2" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#4c1d95">▼</text>
+<rect x="271.6" y="244.2" width="52.8" height="48.0" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5" data-instance="ui_dpad_left" data-mpn="OMRON B3S-1100P" data-direct-press="true"/>
+<text x="298.0" y="272.2" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#4c1d95">◀</text>
+<rect x="415.6" y="244.2" width="52.8" height="48.0" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5" data-instance="ui_dpad_right" data-mpn="OMRON B3S-1100P" data-direct-press="true"/>
+<text x="442.0" y="272.2" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#4c1d95">▶</text>
+<rect x="343.6" y="244.2" width="52.8" height="48.0" rx="3" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5" data-instance="ui_dpad_ok" data-mpn="OMRON B3S-1100P" data-direct-press="true"/>
+<text x="370.0" y="272.2" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#4c1d95">OK</text>
+<rect x="549.2" y="244.2" width="52.8" height="48.0" rx="3" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ui_switch_opt" data-mpn="OMRON B3S-1100P" data-direct-press="true"/>
+<text x="575.6" y="272.2" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle" fill="#4c1d95">OPT</text>
+<rect x="271.6" y="172.2" width="196.8" height="192.0" fill="none" stroke="#7c3aed" stroke-width="1.4" stroke-dasharray="6 4" data-cluster-envelope="true"/>
 <text x="700.0" y="112.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">Five exact series buttons</text>
 <text x="700.0" y="143.0" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="start" fill="#172033">5× OMRON B3S-1100P · direct finger press</text>
 <text x="700.0" y="169.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">UP · DOWN · LEFT · RIGHT · OK</text>
@@ -31,7 +31,7 @@
 <text x="700.0" y="263.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">Mechanical result</text>
 <text x="700.0" y="294.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Cluster envelope: 24.6×24.0 mm</text>
 <text x="700.0" y="320.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Button-centre pitch: 9.0 mm</text>
-<text x="700.0" y="346.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">BACK/OPT clearance: 7.6 mm each</text>
+<text x="700.0" y="346.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">BACK/OPT clearance: 10.1 mm each</text>
 <text x="700.0" y="372.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Bottom PCB margin: 5.6 mm</text>
 <text x="700.0" y="414.0" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="start" fill="#172033">Quantity-100 component cost</text>
 <text x="700.0" y="445.0" font-family="sans-serif" font-size="11" font-weight="normal" text-anchor="start" fill="#172033">Five selected buttons: $3.2025 per device</text>

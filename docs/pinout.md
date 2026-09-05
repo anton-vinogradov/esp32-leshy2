@@ -4,7 +4,7 @@
 
 This is the exact H1-R2.31 working GPIO map for the two independent RP2354B domains and their five M1 signals. The exact C5 module-pad/IO-mux electrical contract is joined. It still does not authorize fabrication: the live FSUSB42MUX/C11355 route, exact service-VBUS detector/latch/release implementation and TCA9803DGKR/C2687966 Pack/Safety powered-off-Ioff boundary are reviewed and materialized in accepted native R2 ECAD H2-R2.1.5.
 
-> Machine source: `hardware/architecture/h1-r2-dual-rp-pinout.json`. Pin-map artifact marker: **`H1-R2.31`**; current physical-design marker: **`H1-R2.38`**.
+> Machine source: `hardware/architecture/h1-r2-dual-rp-pinout.json`. Pin-map artifact marker: **`H1-R2.31`**; current physical-design marker: **`H1-R2.39`**.
 
 ## Front Hub RP
 

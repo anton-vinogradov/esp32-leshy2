@@ -2,7 +2,7 @@
 
 [Home](../README.md) - [Roadmap](roadmap.md) - [Русский](h6-r2-microcoax-service.ru.md) - [Exact placement](h6-r2-exact-placement.md) - [Mechanical stack](h6-r2-mechanical-stack.md)
 
-**Status:** ✅ all five owner-installed microcoax routes now have exact H6 corridors, clear retention landings, relaxed length reserve and connector/antenna inspection access. This closes `H6.0.1-R1`; **`H6.0.2-R1` routing and net parity are current.** Purchase and fabrication remain unauthorized.
+**Status:** ✅ all five owner-installed microcoax routes have exact H6 corridors, clear retention landings, relaxed length reserve and connector/antenna inspection access on the 80 × 150 mm baseline. This closes `H6.0.1-R1`; **`H6.0.3-R1` routing requalification is current.** Purchase and fabrication remain unauthorized.
 
 ![Five H6 microcoax service corridors](images/h6-r2-microcoax-service.svg)
 

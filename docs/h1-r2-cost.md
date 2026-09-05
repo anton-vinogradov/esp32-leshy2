@@ -1,4 +1,4 @@
-# H1-R2.38 · component cost ranking
+# H1-R2.39 · component cost ranking
 
 [Русский](h1-r2-cost.ru.md) · [English](h1-r2-cost.md) · [Current placement](h1-r2-physical-layout.md)
 
@@ -223,4 +223,4 @@ These positions have an **unknown**, not zero, price. The total remains a lower 
 - Direct ZIF `Hirose FH34SRJ-50S-0.5SH(50)` at `[24.0, 1.8]` passes the current exact-body model: `0` same-face collisions and `10.0 mm` to the opposing PCB plane versus `0.7 mm` required.
 - The adapter PCB and both DF40 parts are removed: stack height falls from `3.8` to `1.0 mm`, and one-prototype component cost falls by `$1.07`. One ready-made 3M (TC) `4910SQ-2(5)` 50.8×50.8-mm PSA square carries the panel; ZIF contacts carry no mechanical load. Its provisional `$22.12` is not added to the frozen BOM until the ≤0.714-mm stack and factory-acceptance gates pass.
 
-> Marker: **H1-R2.38**. Included in the current reviewed H1 result.
+> Marker: **H1-R2.39**. Included in the current reviewed H1 result.

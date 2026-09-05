@@ -34,6 +34,7 @@ class H6R2PlacementTests(unittest.TestCase):
         self.assertEqual(
             {
                 "board_count": 2,
+                "board_outline_mm": [80.0, 150.0],
                 "copper_layers_per_board": 6,
                 "schematic_instance_count": 1208,
                 "placed_instance_count": 1208,
@@ -69,7 +70,7 @@ class H6R2PlacementTests(unittest.TestCase):
             )
 
     def test_user_critical_datums_are_exact_and_symmetric(self):
-        expected_x = [14.0, 25.75, 37.5, 49.25, 61.0]
+        expected_x = [16.5, 28.25, 40.0, 51.75, 63.5]
         for project in ("LESHY2-UI-R2", "LESHY2-RF-R2"):
             self.assertEqual(
                 expected_x,
@@ -79,11 +80,11 @@ class H6R2PlacementTests(unittest.TestCase):
                 all(point[1] == 0.0 for point in self.contract["antenna_ports"][project].values())
             )
         display = self.contract["mechanical"]["display_bed"]
-        self.assertEqual([9.23, 65.77], display["panel_bbox_mm"]["x"])
+        self.assertEqual([11.73, 68.27], display["panel_bbox_mm"]["x"])
         self.assertEqual([19.0, 103.96], display["panel_bbox_mm"]["y"])
         self.assertEqual(5.0, display["minimum_relaxed_slack_mm"])
         self.assertEqual(
-            [37.5, 35.4],
+            [40.0, 35.4],
             self.contract["placement_overrides"]["display_connector"]["centre_mm"],
         )
         self.assertEqual(90.0, self.contract["placement_overrides"]["encoder"]["rotation_deg"])

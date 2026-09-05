@@ -208,7 +208,7 @@
     },
     "leshy2_nfc_pickup_loop_r2": {
       "footprint": "Leshy2_R2:NFC_Pickup_Loop_R2",
-      "manufacturer_source": "H1-R2.38 fixed Leshy2 PCB-copper feature geometry",
+      "manufacturer_source": "H1-R2.39 fixed Leshy2 PCB-copper feature geometry",
       "evidence_checked_at": "2026-09-02",
       "positions": 2,
       "reserve_mm": [72.0, 22.4],

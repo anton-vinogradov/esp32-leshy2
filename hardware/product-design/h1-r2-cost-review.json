@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "marker": "H1-R2.38",
+  "marker": "H1-R2.39",
   "checked_on": "2026-08-29",
   "purpose": "Rank the complete-device component burden, remove avoidable pre-order penalties without functional degradation, and keep small-lot purchasing penalties separate from quantity-100 material cost.",
   "community_cost_target": {

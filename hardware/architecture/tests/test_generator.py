@@ -54,7 +54,7 @@ class ArchitectureValidationTests(unittest.TestCase):
             GENERATOR.REPO_ROOT / "hardware/procurement/pre-kicad-sample-plan.md"
         ).read_text(encoding="utf-8")
         plan_normalized = " ".join(plan.split())
-        self.assertEqual("H6.0.2-R1", roadmap["current_substep"])
+        self.assertEqual("H6.0.3-R1", roadmap["current_substep"])
         self.assertEqual("R2", roadmap["baseline"])
         self.assertIsNone(h5["current_substep"])
         self.assertEqual("reviewed", h5["status"])
@@ -582,15 +582,15 @@ class ArchitectureValidationTests(unittest.TestCase):
             "Murata GRM31CR71E106MA12L",
             'data-zone="cc-reference-rf-network"',
             'data-opposing-pairs="47"',
-            'data-min-z-clearance-mm="3.31"',
+            'data-min-z-clearance-mm="2.59"',
             'data-opposing-cable-pairs="2"',
             'data-rf-pcb-topology-guides="10"',
             'data-route-state="pre-ecad-topology-only"',
             'data-nrf-cable-reserves="3"',
-            'data-nrf-reserve-opposing-pairs="7"',
+            'data-nrf-reserve-opposing-pairs="5"',
             'data-encoder-through-features="7"',
-            'data-voice-v-rf-endpoint-distance-mm="45.59"',
-            'data-voice-u-rf-endpoint-distance-mm="47.33"',
+            'data-voice-v-rf-endpoint-distance-mm="47.37"',
+            'data-voice-u-rf-endpoint-distance-mm="41.29"',
             'data-path="S3-2G4"',
             'data-path="RX-FM/SW"',
             'data-path="RX-AM/LW"',
@@ -2063,7 +2063,7 @@ class ArchitectureValidationTests(unittest.TestCase):
         self.assertIn("pass-through entry", contract["connector_truth"])
         self.assertIn("vertical", contract["connector_truth"])
         self.assertIn("Y=17..41 mm", contract["connector_truth"])
-        self.assertIn("4.5 mm per side", contract["connector_truth"])
+        self.assertIn("2.0 mm per side", contract["connector_truth"])
         self.assertIn("Current-lot post section", contract["connector_truth"])
         self.assertIn("concrete device", contract["high_throughput_boundary"])
 

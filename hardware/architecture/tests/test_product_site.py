@@ -243,12 +243,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: `H6.0.2-R1`", "current H5-R2 route revalidation",
+                "Current hardware boundary: `H6.0.3-R1`", "current H5-R2 route revalidation",
                 "firmware F1-R2 reviewed", "F2-R2.4",
                 "H9 · Manufacturing release", "Production ECAD",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H6.0.2-R1`", "актуальная перепроверка H5-R2",
+                "Текущая аппаратная граница: `H6.0.3-R1`", "актуальная перепроверка H5-R2",
                 "firmware F1-R2 проведено ревью", "F2-R2.4",
                 "H9 · Manufacturing release",
                 "Production ECAD",
@@ -264,8 +264,8 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Current hardware marker: `H6.0.2-R1`", "fabrication"),
-            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H6.0.2-R1`", "печати прототипа"),
+            "README.md": ("Roadmap and current position", "Current hardware marker: `H6.0.3-R1`", "fabrication"),
+            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H6.0.3-R1`", "печати прототипа"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
@@ -378,12 +378,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_public_schematics_describe_current_r2_not_superseded_r1_ecad(self):
         expectations = {
             "docs/schematics.md": (
-                "H0-R2", "H1-R2.38", "two KiCad projects",
+                "H0-R2", "H1-R2.39", "two KiCad projects",
                 "3× nRF24", "six currently uncommitted S3 GPIO", "9 NC reserve",
                 "historical engineering evidence", "must not be used for fabrication",
             ),
             "docs/schematics.ru.md": (
-                "H0-R2", "H1-R2.38", "два KiCad-проекта",
+                "H0-R2", "H1-R2.39", "два KiCad-проекта",
                 "3× nRF24", "шесть текущих свободных GPIO S3", "24 возврата · 9 NC",
                 "историческое инженерное evidence", "печатать по ним нельзя",
             ),
@@ -574,8 +574,8 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual("H6", plan["stage"])
         self.assertEqual("in_progress", plan["status"])
-        self.assertEqual("H6.0.2-R1", plan["current_substep"])
-        self.assertEqual(8, len(plan["substeps"]))
+        self.assertEqual("H6.0.3-R1", plan["current_substep"])
+        self.assertEqual(9, len(plan["substeps"]))
         self.assertEqual(
             "Ettinger 007.02.611",
             plan["mechanical_stack"]["compression_stop"]["mpn"],
@@ -882,12 +882,12 @@ class ProductSiteTests(unittest.TestCase):
     def test_current_mockup_review_scope_is_explicit(self):
         expectations = {
             "docs/roadmap.md": (
-                "H1-R2.38", "Functional-island placement", "RF and antenna locality",
+                "H1-R2.39", "Functional-island placement", "RF and antenna locality",
                 "Interboard transport", "Physical and service audit", "H1 review result",
                 "complete exterior", "accepted on 2026-08-30", "H3-R2.1",
             ),
             "docs/roadmap.ru.md": (
-                "H1-R2.38", "Размещение функциональных островов", "Локальность RF и антенн",
+                "H1-R2.39", "Размещение функциональных островов", "Локальность RF и антенн",
                 "Межплатный transport", "Физический и сервисный аудит", "Итог ревью H1",
                 "Полный внешний вид", "приняты 2026-08-30", "H3-R2.1",
             ),
@@ -900,14 +900,14 @@ class ProductSiteTests(unittest.TestCase):
     def test_h1_r2_32_public_boundary_separates_electrical_and_physical_work(self):
         expectations = {
             "README.md": (
-                "Current hardware marker: `H6.0.2-R1`",
+                "Current hardware marker: `H6.0.3-R1`",
                 "exact dual-RP GPIO/M1 map",
                 "mutually exclusive U214/U219 Cap slot",
                 "native R2 inventory is reviewed at `H2-R2.1.1`",
                 "six compute domains",
             ),
             "README.ru.md": (
-                "Текущий маркер железа: `H6.0.2-R1`",
+                "Текущий маркер железа: `H6.0.3-R1`",
                 "dual-RP GPIO/M1",
                 "взаимоисключающий Cap-слот U214/U219",
                 "Native R2 inventory проведён ревью как `H2-R2.1.1`",
@@ -915,21 +915,21 @@ class ProductSiteTests(unittest.TestCase):
                 "шесть вычислительных доменов",
             ),
             "docs/roadmap.md": (
-                "Current hardware boundary: `H6.0.2-R1`",
+                "Current hardware boundary: `H6.0.3-R1`",
                 "18 exact production",
                 "U219 Cap integration",
-                "H1-R2.38 reviewed",
+                "H1-R2.39 reviewed",
                 "4,302 fitted-instance contacts reconcile",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H6.0.2-R1`",
+                "Текущая аппаратная граница: `H6.0.3-R1`",
                 "18 точных production",
                 "Интеграция U219 Cap",
-                "H1-R2.38 проведено ревью",
+                "H1-R2.39 проведено ревью",
                 "4 302 контакта устанавливаемых экземпляров",
             ),
             "docs/stage-results.md": (
-                "reviewed at **`H1-R2.38`**",
+                "reviewed at **`H1-R2.39`**",
                 "exact dual-RP GPIO/M1 map",
                 "ten main SMA ports are split 5+5",
                 "single coordinate model now registers 226 bodies",
@@ -937,7 +937,7 @@ class ProductSiteTests(unittest.TestCase):
                 "pass ERC with zero errors and zero warnings",
             ),
             "docs/stage-results.ru.md": (
-                "проведено ревью **`H1-R2.38`**",
+                "проведено ревью **`H1-R2.39`**",
                 "Точные dual-RP GPIO/M1",
                 "десять основных SMA разделены 5+5",
                 "координатная модель содержит 226 тел",
@@ -945,14 +945,14 @@ class ProductSiteTests(unittest.TestCase):
                 "проходят ERC без ошибок и предупреждений",
             ),
             "docs/schematics.md": (
-                "H1-R2.38",
+                "H1-R2.39",
                 "C5 SDIO/service-mux electrical join are closed",
                 "all 18 U219 support bodies",
                 "exact EastRising display/direct ZIF",
                 "native R2 production schematic now exists",
             ),
             "docs/schematics.ru.md": (
-                "H1-R2.38",
+                "H1-R2.39",
                 "стык C5 SDIO/service-mux закрыты",
                 "все 18 компонентов U219",
                 "точный дисплей EastRising",
@@ -1147,7 +1147,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIsNone(plan["current_substep"])
         self.assertEqual("H3.7.4", plan["completed_substep"])
         self.assertEqual("H6", state["current_stage"])
-        self.assertEqual("H6.0.2-R1", state["current_substep"])
+        self.assertEqual("H6.0.3-R1", state["current_substep"])
         self.assertEqual("reviewed", r2_plan["status"])
         self.assertIsNone(r2_plan["current_substep"])
         self.assertEqual("H2-R2.1.5", r2_plan["accepted_input"]["stage"])
@@ -1190,10 +1190,10 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual(0, freeze["summary"]["unassigned_virtual_checks"])
         self.assertEqual(0, freeze["summary"]["unassigned_physical_checks"])
         self.assertEqual(1081, inventory["summary"]["registered_instances"])
-        self.assertEqual(218, inventory["summary"]["used_device_types"])
+        self.assertEqual(220, inventory["summary"]["used_device_types"])
         self.assertEqual(0, inventory["summary"]["source_missing"])
-        self.assertEqual(74, inventory["summary"]["used_types_with_structured_electrical_contract"])
-        self.assertEqual(144, inventory["summary"]["used_types_requiring_parameter_extraction"])
+        self.assertEqual(78, inventory["summary"]["used_types_with_structured_electrical_contract"])
+        self.assertEqual(142, inventory["summary"]["used_types_requiring_parameter_extraction"])
         self.assertEqual(2, inventory["summary"]["official_h3_source_overrides"])
         self.assertEqual(1, inventory["summary"]["lifecycle_decisions"])
         self.assertEqual(0, inventory["summary"]["open_decisions"])
@@ -1339,7 +1339,7 @@ class ProductSiteTests(unittest.TestCase):
             page = self.read(name)
             self.assertNotIn("H5-EVR07", page, name)
             self.assertNotIn("H5-EVR08", page, name)
-            self.assertIn("H1-R2.38", page, name)
+            self.assertIn("H1-R2.39", page, name)
         self.assertEqual(
             "source-hash-bound-precommit-revision",
             h4_plan["firmware_f3_evidence"]["revision"],
@@ -2875,9 +2875,9 @@ class ProductSiteTests(unittest.TestCase):
             "Leshy2 — dimensioned external layout",
             "Text on a PCB face but outside component outlines is intended silkscreen",
             'data-coordinate-model="L2-ASM-COORD-001-A"',
-            'data-review-gate="H1-R2.38" data-review-status="ready-for-user-acceptance"',
-            'data-face="front-outer" data-board-mm="75x150"',
-            'data-face="rear-outer" data-board-mm="75x150"',
+            'data-review-gate="H1-R2.39" data-review-status="ready-for-user-acceptance"',
+            'data-face="front-outer" data-board-mm="80x150"',
+            'data-face="rear-outer" data-board-mm="80x150"',
             'data-layer="pcb-silkscreen"',
             "ER-TFT035IPS-6",
             "+ ER-TPC035-6 · DISPLAY / TOUCH",
@@ -3059,20 +3059,20 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("H1.3.1", package["review_gate"])
         self.assertEqual("reviewed", package["status"])
         self.assertEqual("L2-ASM-COORD-001-A", package["coordinate_model"])
-        self.assertEqual([75.0, 150.0], package["front"]["board_outline_mm"])
-        self.assertEqual([75.0, 150.0], package["rear"]["board_outline_mm"])
+        self.assertEqual([80.0, 150.0], package["front"]["board_outline_mm"])
+        self.assertEqual([80.0, 150.0], package["rear"]["board_outline_mm"])
         self.assertEqual(
-            {"text": "Леший", "position_mm": [37.5, 99.5], "font_size_px_at_drawing_scale": 10.5},
+            {"text": "Леший", "position_mm": [40.0, 99.5], "font_size_px_at_drawing_scale": 10.5},
             package["front"]["product_silkscreen"],
         )
         self.assertEqual(
-            {"text": "ESP32-LESHY2", "position_mm": [37.5, 136.0], "font_size_px_at_drawing_scale": 7.5},
+            {"text": "ESP32-LESHY2", "position_mm": [40.0, 136.0], "font_size_px_at_drawing_scale": 7.5},
             package["rear"]["product_silkscreen"],
         )
         self.assertEqual(
             {
                 "text": "github.com/anton-vinogradov/esp32-leshy2",
-                "position_mm": [37.5, 142.0],
+                "position_mm": [40.0, 142.0],
                 "font_size_px_at_drawing_scale": 5.0,
             },
             package["rear"]["project_url_silkscreen"],
@@ -3083,7 +3083,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("OMRON B3S-1100P", function_keys["mpn"])
         self.assertEqual(["F1", "F2", "F3", "F4"], function_keys["left"])
         self.assertEqual(["F5", "F6", "F7", "F8"], function_keys["right"])
-        self.assertEqual(0.83, function_keys["display_clearance_mm"])
+        self.assertEqual(3.33, function_keys["display_clearance_mm"])
         self.assertEqual(4.5, function_keys["top_mounting_keepout_clearance_mm"])
         self.assertEqual(0, function_keys["free_expander_inputs_after_placement"])
         self.assertEqual(5, len(package["front"]["antenna_ports"]))
@@ -3157,7 +3157,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual("paper_geometry_passed", physical["result"])
         self.assertEqual(181, physical["inner_body_count"])
         self.assertEqual(181, physical["total_inner_component_count"])
-        self.assertEqual(3.31, physical["minimum_opposing_pair"]["remaining_z_clearance_mm"])
+        self.assertEqual(2.59, physical["minimum_opposing_pair"]["remaining_z_clearance_mm"])
         self.assertTrue(physical["five_rf_microcoaxes_accounted"])
         self.assertEqual(10, physical["ten_outward_rf_ports"])
         pins = package["pin_resource_fit"]
@@ -3178,7 +3178,7 @@ class ProductSiteTests(unittest.TestCase):
         for name in ("docs/hardware.md", "docs/hardware.ru.md"):
             page = self.read(name)
             self.assertNotIn("H1-cross-view-acceptance.json", page, name)
-            self.assertIn("H1-R2.38", page, name)
+            self.assertIn("H1-R2.39", page, name)
 
     def test_antenna_kit_is_product_facing_and_machine_accounted(self):
         import json
@@ -3325,22 +3325,22 @@ class ProductSiteTests(unittest.TestCase):
             'data-inner-body-count="181"',
             'data-max-inner-height-mm="8.95"',
             'data-min-single-body-clearance-mm="2.05"',
-            'data-display-direct-zif-opposing-pairs="4"',
+            'data-display-direct-zif-opposing-pairs="2"',
             'data-min-display-direct-zif-clearance-mm="7.50"',
             'data-opposing-pairs="47"',
             'data-intentional-mates="1"',
-            'data-min-z-clearance-mm="3.31"',
+            'data-min-z-clearance-mm="2.59"',
             'data-rf-cable-routes="2"',
             'data-rf-pcb-topology-guides="10"',
             'data-route-state="pre-ecad-topology-only"',
             'data-nrf-cable-reserves="3"',
             'data-opposing-cable-pairs="2"',
-            'data-nrf-reserve-opposing-pairs="7"',
+            'data-nrf-reserve-opposing-pairs="5"',
             'data-encoder-through-features="7"',
             'data-cable-od-max-mm="1.37"',
             'data-functional-zones="1"',
-            'data-voice-v-rf-endpoint-distance-mm="45.59"',
-            'data-voice-u-rf-endpoint-distance-mm="47.33"',
+            'data-voice-v-rf-endpoint-distance-mm="47.37"',
+            'data-voice-u-rf-endpoint-distance-mm="41.29"',
             'data-path="S3-2G4"',
             'data-path="RX-FM/SW"',
             'data-path="RX-AM/LW"',
@@ -3363,12 +3363,12 @@ class ProductSiteTests(unittest.TestCase):
             "ring on S3/C5 = module U.FL · ring on nRF = module IPEX · numbered ring = board U.FL",
             "outward RP-SMA · antenna screws on here",
             "all 181 inner bodies checked individually; tallest 8.95 mm; opposite-plane remainder 2.05 mm",
-            "direct 1.00-mm display ZIF: 4 opposing crossings; minimum Z gap 7.50 mm to nrf1",
-            "opposing inner faces: 47 non-mating XY pairs checked; minimum Z gap 3.31 mm",
+            "direct 1.00-mm display ZIF: 2 opposing crossings; minimum Z gap 7.50 mm to nrf1",
+            "opposing inner faces: 47 non-mating XY pairs checked; minimum Z gap 2.59 mm",
             "RF coax: 2 direct exact-endpoint projections + 3 nRF module-face reserves; all five 30-mm assemblies accounted",
-            "nRF reserve crossings: 7; minimum Z gap 5.20 mm",
+            "nRF reserve crossings: 5; minimum Z gap 5.20 mm",
             "EC11E through-board features: 7 checked; 2 opposing crossings; minimum Z gap 4.20 mm",
-            "limiting pair: 23 3.5-mm CTIA headset TRRS mid-mount connector / 157 protected-pack branch fuse #0",
+            "limiting pair: 26 C5 data-only service USB / 77 native M5 Unit HY2.0-4P edge receptacle",
             "TCA9534APWR",
         ):
             self.assertIn(token, layout)
@@ -3433,7 +3433,7 @@ class ProductSiteTests(unittest.TestCase):
             )
         )
         self.assertEqual(47, audit["opposing_non_mating_pair_count"])
-        self.assertEqual(3.31, audit["minimum_opposing_pair"]["remaining_z_clearance_mm"])
+        self.assertEqual(2.59, audit["minimum_opposing_pair"]["remaining_z_clearance_mm"])
         self.assertEqual(47, len(audit["opposing_non_mating_pairs"]))
         self.assertTrue(
             all(
@@ -3443,7 +3443,7 @@ class ProductSiteTests(unittest.TestCase):
         )
         self.assertEqual(11.0, audit["intentional_mate"]["mated_height_mm"])
         self.assertEqual(1.0, audit["display_direct_mount"]["complete_height_from_ui_inner_mm"])
-        self.assertEqual(4, audit["display_direct_mount"]["opposing_pair_count"])
+        self.assertEqual(2, audit["display_direct_mount"]["opposing_pair_count"])
         self.assertEqual(7.5, audit["display_direct_mount"]["minimum_opposing_z_clearance_mm"])
         self.assertFalse(audit["display_direct_mount"]["connector_is_load_bearing"])
         self.assertEqual(
@@ -3546,8 +3546,8 @@ class ProductSiteTests(unittest.TestCase):
             'data-mount-face="rf-pcb-outer"',
             'data-board-gap-mm="11" data-antenna-bodies="none"',
             'data-y-collapsed="true"',
-            "base PCB · 75 mm",
-            "installed U214 worst-case · symmetric 4.5-mm side overhang",
+            "base PCB · 80 mm",
+            "installed U214 worst-case · symmetric 2.0-mm side overhang",
             "FX8C M1 · 11-mm board gap",
             "antenna centre planes are separated by 20.55 mm",
             "EastRising ER-TFT035IPS-6 + ER-TPC035-6",

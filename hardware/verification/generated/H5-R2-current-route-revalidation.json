@@ -5,10 +5,10 @@
   "checked_on": "2026-09-02",
   "status": "reviewed_with_one_order_time_global_sourcing_gate",
   "inputs": {
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "5b59d8dbcf142296f2d299f136987486325e7758b9c2bb76bdd82e824559acaf",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "2af54e1755c4963b7ac9251c05181b19069a80a2c7df6a98f28455b310ed93d8",
     "hardware/architecture/devices.json": "23b5799bc5334f9d02c13635c7f9e4f7503929795c669e98223fc37b95cc1c04",
     "hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json": "2a4d71b6ebe61b06ff86fa83647e65451a57908c6b030bf00af390f5426f33db",
-    "hardware/product-design/generated/H1-R2-cost-audit.json": "2b4d520028a4faff32bbf3f6de1adc06785a52c0f0c923500dbbafb28c21c909"
+    "hardware/product-design/generated/H1-R2-cost-audit.json": "337291fdce4bd6a2a09309ae95b8630378c78459a96e7838f0725d08f4c090bf"
   },
   "summary": {
     "component_groups": 249,

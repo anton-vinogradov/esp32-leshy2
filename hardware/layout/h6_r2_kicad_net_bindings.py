@@ -136,7 +136,7 @@ def build(ui_netlist: Path, rf_netlist: Path) -> dict:
     return {
         "schema_version": 1,
         "artifact": "H6-R2 exact KiCad hierarchical net bindings",
-        "marker": "H6.0.2-R1",
+        "marker": "H6.0.3-R1",
         "status": "pass",
         "method": "KiCad 10 kicadxml export joined by exact reference/pin to the reviewed H2 native net ledger",
         "source_hashes": {
@@ -157,7 +157,7 @@ def check() -> list[str]:
         return ["binding artifact is missing"]
     artifact = load(OUTPUT)
     errors = []
-    if artifact.get("status") != "pass" or artifact.get("marker") != "H6.0.2-R1":
+    if artifact.get("status") != "pass" or artifact.get("marker") != "H6.0.3-R1":
         errors.append("binding identity/status changed")
     for relative, expected in artifact.get("source_hashes", {}).items():
         path = ROOT / relative

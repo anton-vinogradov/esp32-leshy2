@@ -6,18 +6,18 @@
 <rect x="70.0" y="150.0" width="615.0" height="508.4" rx="14" fill="#f8fafc" stroke="#334155" stroke-width="3"/>
 <rect x="194.7" y="200.3" width="160.6" height="166.0" rx="5" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
 <text x="275.0" y="288.2" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#334155">U1</text>
-<rect x="494.0" y="321.0" width="156.5" height="182.8" rx="5" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
-<text x="572.2" y="417.4" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#334155">U14</text>
+<rect x="535.0" y="321.0" width="156.5" height="182.8" rx="5" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+<text x="613.2" y="417.4" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#334155">U14</text>
 <rect x="133.6" y="492.4" width="152.4" height="123.7" rx="5" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
 <text x="209.8" y="559.3" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#334155">U35</text>
-<rect x="296.0" y="492.4" width="152.4" height="123.7" rx="5" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
-<text x="372.2" y="559.3" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#334155">U39</text>
-<rect x="458.3" y="508.8" width="152.4" height="123.7" rx="5" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
-<text x="534.5" y="575.7" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#334155">U43</text>
-<rect x="264.8" y="422.7" width="225.4" height="35.2" rx="5" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
-<text x="377.5" y="445.3" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#991b1b">ZIF</text>
-<rect x="266.8" y="408.3" width="221.4" height="9.8" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="7 5"/>
-<rect x="264.8" y="422.7" width="225.4" height="35.2" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="7 5"/>
+<rect x="337.0" y="492.4" width="152.4" height="123.7" rx="5" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+<text x="413.2" y="559.3" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#334155">U39</text>
+<rect x="499.3" y="508.8" width="152.4" height="123.7" rx="5" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+<text x="575.5" y="575.7" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#334155">U43</text>
+<rect x="285.3" y="422.7" width="225.4" height="35.2" rx="5" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+<text x="398.0" y="445.3" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#991b1b">ZIF</text>
+<rect x="287.3" y="408.3" width="221.4" height="9.8" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="7 5"/>
+<rect x="285.3" y="422.7" width="225.4" height="35.2" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="7 5"/>
 <polyline points="259.0,517.4 238.1,473.9 188.9,383.7 156.1,297.6 156.1,182.8 113.0,184.8" fill="none" stroke="#0f766e" stroke-opacity="0.16" stroke-width="20.5" stroke-linecap="round" stroke-linejoin="round"/>
 <polyline points="259.0,517.4 238.1,473.9 188.9,383.7 156.1,297.6 156.1,182.8 113.0,184.8" fill="none" stroke="#0f766e" stroke-width="9.3" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="238.5" y="496.9" width="41.0" height="41.0" fill="none" stroke="#0f766e" stroke-width="2" stroke-dasharray="5 4"/>
@@ -35,32 +35,32 @@
 <circle cx="199.1" cy="178.7" r="5" fill="#ffffff" stroke="#2563eb" stroke-width="3"/>
 <rect x="283.2" y="166.4" width="41.0" height="24.6" rx="4" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2"/>
 <text x="303.7" y="182.7" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#92400e">T</text>
-<polyline points="421.4,517.4 508.7,473.9 508.7,387.8 447.2,301.7 410.3,244.3" fill="none" stroke="#7c3aed" stroke-opacity="0.16" stroke-width="20.5" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="421.4,517.4 508.7,473.9 508.7,387.8 447.2,301.7 410.3,244.3" fill="none" stroke="#7c3aed" stroke-width="9.3" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="400.9" y="496.9" width="41.0" height="41.0" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="5 4"/>
-<circle cx="421.4" cy="517.4" r="24.6" fill="none" stroke="#7c3aed" stroke-width="1.7" stroke-dasharray="5 4"/>
-<circle cx="421.4" cy="517.4" r="5" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/>
-<circle cx="410.3" cy="244.3" r="24.6" fill="none" stroke="#7c3aed" stroke-width="1.7" stroke-dasharray="5 4"/>
-<circle cx="410.3" cy="244.3" r="5" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/>
-<rect x="426.7" y="289.4" width="41.0" height="24.6" rx="4" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2"/>
-<text x="447.2" y="305.7" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#92400e">T</text>
-<polyline points="611.2,349.9 525.1,305.8 498.0,236.5" fill="none" stroke="#dc2626" stroke-opacity="0.16" stroke-width="20.5" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="611.2,349.9 525.1,305.8 498.0,236.5" fill="none" stroke="#dc2626" stroke-width="9.3" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="611.2" cy="349.9" r="24.6" fill="none" stroke="#dc2626" stroke-width="1.7" stroke-dasharray="5 4"/>
-<circle cx="611.2" cy="349.9" r="5" fill="#ffffff" stroke="#dc2626" stroke-width="3"/>
-<circle cx="498.0" cy="236.5" r="24.6" fill="none" stroke="#dc2626" stroke-width="1.7" stroke-dasharray="5 4"/>
-<circle cx="498.0" cy="236.5" r="5" fill="#ffffff" stroke="#dc2626" stroke-width="3"/>
-<rect x="504.6" y="293.5" width="41.0" height="24.6" rx="4" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2"/>
-<text x="525.1" y="309.8" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#92400e">T</text>
-<polyline points="583.7,533.8 619.4,473.9 619.4,297.6 586.6,232.0" fill="none" stroke="#ea580c" stroke-opacity="0.16" stroke-width="20.5" stroke-linecap="round" stroke-linejoin="round"/>
-<polyline points="583.7,533.8 619.4,473.9 619.4,297.6 586.6,232.0" fill="none" stroke="#ea580c" stroke-width="9.3" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="563.2" y="513.3" width="41.0" height="41.0" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="5 4"/>
-<circle cx="583.7" cy="533.8" r="24.6" fill="none" stroke="#ea580c" stroke-width="1.7" stroke-dasharray="5 4"/>
-<circle cx="583.7" cy="533.8" r="5" fill="#ffffff" stroke="#ea580c" stroke-width="3"/>
-<circle cx="586.6" cy="232.0" r="24.6" fill="none" stroke="#ea580c" stroke-width="1.7" stroke-dasharray="5 4"/>
-<circle cx="586.6" cy="232.0" r="5" fill="#ffffff" stroke="#ea580c" stroke-width="3"/>
-<rect x="598.9" y="285.3" width="41.0" height="24.6" rx="4" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2"/>
-<text x="619.4" y="301.6" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#92400e">T</text>
+<polyline points="462.4,517.4 549.7,473.9 549.7,387.8 488.2,301.7 451.3,244.3" fill="none" stroke="#7c3aed" stroke-opacity="0.16" stroke-width="20.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="462.4,517.4 549.7,473.9 549.7,387.8 488.2,301.7 451.3,244.3" fill="none" stroke="#7c3aed" stroke-width="9.3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="441.9" y="496.9" width="41.0" height="41.0" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="5 4"/>
+<circle cx="462.4" cy="517.4" r="24.6" fill="none" stroke="#7c3aed" stroke-width="1.7" stroke-dasharray="5 4"/>
+<circle cx="462.4" cy="517.4" r="5" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/>
+<circle cx="451.3" cy="244.3" r="24.6" fill="none" stroke="#7c3aed" stroke-width="1.7" stroke-dasharray="5 4"/>
+<circle cx="451.3" cy="244.3" r="5" fill="#ffffff" stroke="#7c3aed" stroke-width="3"/>
+<rect x="467.7" y="289.4" width="41.0" height="24.6" rx="4" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2"/>
+<text x="488.2" y="305.7" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#92400e">T</text>
+<polyline points="652.2,349.9 566.1,305.8 539.0,236.5" fill="none" stroke="#dc2626" stroke-opacity="0.16" stroke-width="20.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="652.2,349.9 566.1,305.8 539.0,236.5" fill="none" stroke="#dc2626" stroke-width="9.3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="652.2" cy="349.9" r="24.6" fill="none" stroke="#dc2626" stroke-width="1.7" stroke-dasharray="5 4"/>
+<circle cx="652.2" cy="349.9" r="5" fill="#ffffff" stroke="#dc2626" stroke-width="3"/>
+<circle cx="539.0" cy="236.5" r="24.6" fill="none" stroke="#dc2626" stroke-width="1.7" stroke-dasharray="5 4"/>
+<circle cx="539.0" cy="236.5" r="5" fill="#ffffff" stroke="#dc2626" stroke-width="3"/>
+<rect x="545.6" y="293.5" width="41.0" height="24.6" rx="4" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2"/>
+<text x="566.1" y="309.8" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#92400e">T</text>
+<polyline points="624.7,533.8 660.4,473.9 660.4,297.6 627.6,232.0" fill="none" stroke="#ea580c" stroke-opacity="0.16" stroke-width="20.5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline points="624.7,533.8 660.4,473.9 660.4,297.6 627.6,232.0" fill="none" stroke="#ea580c" stroke-width="9.3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="604.2" y="513.3" width="41.0" height="41.0" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="5 4"/>
+<circle cx="624.7" cy="533.8" r="24.6" fill="none" stroke="#ea580c" stroke-width="1.7" stroke-dasharray="5 4"/>
+<circle cx="624.7" cy="533.8" r="5" fill="#ffffff" stroke="#ea580c" stroke-width="3"/>
+<circle cx="627.6" cy="232.0" r="24.6" fill="none" stroke="#ea580c" stroke-width="1.7" stroke-dasharray="5 4"/>
+<circle cx="627.6" cy="232.0" r="5" fill="#ffffff" stroke="#ea580c" stroke-width="3"/>
+<rect x="639.9" y="285.3" width="41.0" height="24.6" rx="4" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2"/>
+<text x="660.4" y="301.6" font-family="Inter,Arial,sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#92400e">T</text>
 <text x="100.0" y="690.0" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="600" text-anchor="start" fill="#92400e">T = 5 x 3 mm removable polyimide-tape saddle on a machine-checked clear landing</text>
 <text x="760.0" y="145.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#1d4ed8">DO NOT GUESS AN IPEX AXIS FOR THE THREE LONG PATHS</text>
 <text x="760.0" y="180.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#172033">The Ebyte drawing puts IPEX in one corner but gives no centre dimension.</text>

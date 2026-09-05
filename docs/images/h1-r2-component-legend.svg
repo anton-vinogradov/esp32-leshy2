@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="3117" viewBox="0 0 1900 3117" data-marker="H1-R2.38" data-view="numbered-component-legend">
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="3117" viewBox="0 0 1900 3117" data-marker="H1-R2.39" data-view="numbered-component-legend">
 <rect width="1900" height="3117" fill="#ffffff"/>
-<text x="30.0" y="42.0" font-family="sans-serif" font-size="24" font-weight="bold" fill="#172033">Leshy2 · H1-R2.38 · numbered component legend</text>
+<text x="30.0" y="42.0" font-family="sans-serif" font-size="24" font-weight="bold" fill="#172033">Leshy2 · H1-R2.39 · numbered component legend</text>
 <text x="30.0" y="72.0" font-family="sans-serif" font-size="12" font-weight="normal" fill="#526076">226 unique drawing references · MPN or explicit physical reserve · role in the target device</text>
 <text x="30.0" y="100.0" font-family="sans-serif" font-size="11" font-weight="normal" fill="#526076">Bodies — blue: R2 placement · grey: retained register · orange: physical reserve</text>
 <text x="30.0" y="126.0" font-family="sans-serif" font-size="11" font-weight="normal" fill="#526076">Non-component geometry — red: exact PTH keepout · violet: bounded placement island</text>
@@ -9,15 +9,15 @@
 <text x="30.0" y="184.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">nrf0_tx_evidence_island_reserve · placement_reserve · X 9.7…20.5 · Y 8.5…17.6 mm</text>
 <text x="30.0" y="201.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">nrf1_tx_evidence_island_reserve · placement_reserve · X 28.7…39.5 · Y 13.5…21.3 mm</text>
 <text x="30.0" y="218.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">nrf2_tx_evidence_island_reserve · placement_reserve · X 56.5…65.3 · Y 8.5…17.6 mm</text>
-<text x="30.0" y="235.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">cc_tx_evidence_island_reserve · placement_reserve · X 33.5…45 · Y 7.8…13.4 mm</text>
-<text x="30.0" y="252.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">uhf_tx_evidence_island_reserve · placement_reserve · X 0.5…8.3 · Y 25.8…31.8 mm</text>
-<text x="30.0" y="269.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">vhf_tx_evidence_island_reserve · placement_reserve · X 59.9…64.3 · Y 42.9…49 mm</text>
-<text x="30.0" y="286.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#dc2626">cap_socket_pth_keepout · keepout · X 28.6…46.4 · Y 27.1…30.9 mm</text>
-<text x="30.0" y="303.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">u219_pin10_island_reserve · placement_reserve · X 39…45 · Y 21.5…25.5 mm</text>
-<text x="30.0" y="320.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">u219_nfc_evidence_island_reserve · placement_reserve · X 47.1…53.2 · Y 20…31.8 mm</text>
-<text x="30.0" y="337.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">u219_nfc_pickup_loop · copper_feature_reserve · X 1.5…73.5 · Y 17.8…40.2 mm</text>
-<text x="30.0" y="354.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">u219_installed_antenna_sweep · external_swept_volume · X 65.5…77.5 · Y 18.6…30.6 mm</text>
-<text x="30.0" y="371.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">u219_nfc_dnp_tuning_bank · placement_reserve · X 50.9…53 · Y 29…31.8 mm</text>
+<text x="30.0" y="235.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">cc_tx_evidence_island_reserve · placement_reserve · X 38.5…50 · Y 7.8…13.4 mm</text>
+<text x="30.0" y="252.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">uhf_tx_evidence_island_reserve · placement_reserve · X 5.5…13.3 · Y 25.8…31.8 mm</text>
+<text x="30.0" y="269.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">vhf_tx_evidence_island_reserve · placement_reserve · X 64.9…69.3 · Y 42.9…49 mm</text>
+<text x="30.0" y="286.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#dc2626">cap_socket_pth_keepout · keepout · X 33.6…51.4 · Y 27.1…30.9 mm</text>
+<text x="30.0" y="303.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">u219_pin10_island_reserve · placement_reserve · X 44…50 · Y 21.5…25.5 mm</text>
+<text x="30.0" y="320.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">u219_nfc_evidence_island_reserve · placement_reserve · X 52.1…58.2 · Y 20…31.8 mm</text>
+<text x="30.0" y="337.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">u219_nfc_pickup_loop · copper_feature_reserve · X 4…76 · Y 17.8…40.2 mm</text>
+<text x="30.0" y="354.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">u219_installed_antenna_sweep · external_swept_volume · X 68…80 · Y 18.6…30.6 mm</text>
+<text x="30.0" y="371.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">u219_nfc_dnp_tuning_bank · placement_reserve · X 55.9…58 · Y 29…31.8 mm</text>
 <text x="30.0" y="212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#9a3412">001  PHYSICAL RESERVE</text>
 <text x="58.0" y="226.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">118-137-MHz image-rejection BPF and 6-25-MHz IF cleanup;</text>
 <text x="58.0" y="237.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">individually serial passives close after synthesis</text>
@@ -410,8 +410,8 @@
 <text x="1453.0" y="976.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI, display, storage and audio owner; shifted 0.7 mm outward</text>
 <text x="1453.0" y="987.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">for the central display ZIF corridor</text>
 <text x="1425.0" y="1012.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">188  ESP32-C5-WROOM-1U-N8R8</text>
-<text x="1453.0" y="1026.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">native 2.4/5-GHz and IR owner; shifted 0.7 mm outward for the</text>
-<text x="1453.0" y="1037.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">central display ZIF corridor</text>
+<text x="1453.0" y="1026.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">native 2.4/5-GHz and IR owner; shifted into the widened right</text>
+<text x="1453.0" y="1037.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">routing field</text>
 <text x="1425.0" y="1062.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">189  Hirose FH34SRJ-50S-0.5SH(50)</text>
 <text x="1453.0" y="1076.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">direct 50-contact dual-contact ZIF behind the folded display</text>
 <text x="1453.0" y="1087.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">FPC slot; pin 1 at world x-min</text>

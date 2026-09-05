@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "model_id": "L2-ASM-COORD-001-A",
-  "stage": "H1-R2.38",
+  "stage": "H1-R2.39",
   "status": "reviewed",
   "reviewed_on": "2026-08-30",
   "accepted_by": "user",
@@ -12,7 +12,10 @@
     "y_axis": "from the antenna edge toward the bottom/service edge",
     "z_axis": "from the touch/view plane toward the rear battery face"
   },
-  "board_outline_mm": [75.0, 150.0],
+  "board_outline_mm": [
+    80.0,
+    150.0
+  ],
   "stack": {
     "display_front_z": 0.0,
     "display_depth_mm": 3.76,
@@ -36,17 +39,34 @@
     },
     "rf-inner": {
       "local_view": "authored as seen from the rear exterior",
-      "world_transform": "xw=75-x-width, yw=y, zw=16.36; bodies extend toward -z"
+      "world_transform": "xw=80-x-width, yw=y, zw=16.36; bodies extend toward -z"
     },
     "rear-outer": {
       "local_view": "normal to the rear exterior",
-      "world_transform": "xw=75-x-width for bodies or xw=75-x for axes, yw=y, zw=17.96; outward bodies extend toward +z"
+      "world_transform": "xw=80-x-width for bodies or xw=80-x for axes, yw=y, zw=17.96; outward bodies extend toward +z"
     }
   },
   "mounting_holes": {
     "diameter_mm": 2.7,
     "head_keepout_radius_mm": 4.0,
-    "world_xy": [[5.0, 11.0], [70.0, 11.0], [5.0, 145.0], [70.0, 145.0]],
+    "world_xy": [
+      [
+        5.0,
+        11.0
+      ],
+      [
+        75.0,
+        11.0
+      ],
+      [
+        5.0,
+        145.0
+      ],
+      [
+        75.0,
+        145.0
+      ]
+    ],
     "axis": "parallel to world Z through both PCBs",
     "compression_stops": "four exact 11.00-mm nonconductive sleeves/stops define the interboard gap; screw clamp load closes through the stops, never through M1",
     "one_loose_screw_case": "two enclosure anti-shear datums plus independent PCB capture lips prevent relative board motion when any one screw is loosened by one turn"
@@ -60,23 +80,95 @@
     "mounting": "both GCT connector banks are soldered on outward PCB faces and no connector body enters the 11-mm interboard channel"
   },
   "longitudinal_zones": {
-    "antenna_connector_zone_y_mm": [0.0, 6.0],
-    "u214_cap_y_mm": [17.02, 41.02],
-    "battery_holder_y_mm": [42.0, 128.0],
+    "antenna_connector_zone_y_mm": [
+      0.0,
+      6.0
+    ],
+    "u214_cap_y_mm": [
+      17.02,
+      41.02
+    ],
+    "battery_holder_y_mm": [
+      42.0,
+      128.0
+    ],
     "bottom_service_edge_y_mm": 150.0
   },
   "accessory_envelopes": {
-    "u214": {"x_mm": [-4.5, 79.5], "y_mm": [17.02, 41.02], "z_mm": [17.96, 33.247]},
+    "u214": {
+      "x_mm": [
+        -2.0,
+        82.0
+      ],
+      "y_mm": [
+        17.02,
+        41.02
+      ],
+      "z_mm": [
+        17.96,
+        33.247
+      ]
+    },
     "cap_bus_slot": {
       "population": "exactly_one_of_u214_or_u219",
-      "x_mm": [-4.5, 79.5],
-      "y_mm": [17.02, 41.02],
+      "x_mm": [
+        -2.0,
+        82.0
+      ],
+      "y_mm": [
+        17.02,
+        41.02
+      ],
       "host_outer_plane_z_mm": 17.96,
       "maximum_profile": "u219"
     },
-    "u219": {"x_mm": [-4.5, 79.5], "y_mm": [17.02, 41.02], "z_mm": [17.96, 37.66]},
-    "battery_holder": {"body_x_mm": [17.6, 57.38], "body_y_mm": [46.47, 123.53], "pad_span_y_mm": [42.0, 128.0], "z_mm": [17.96, 38.66], "mounting": "SMT with enclosure cradle/end-stop load path"},
-    "display_direct_zif": {"x_mm": [24.0, 51.0], "y_mm": [25.0, 28.8], "z_mm": [5.36, 6.36]}
+    "u219": {
+      "x_mm": [
+        -2.0,
+        82.0
+      ],
+      "y_mm": [
+        17.02,
+        41.02
+      ],
+      "z_mm": [
+        17.96,
+        37.66
+      ]
+    },
+    "battery_holder": {
+      "body_x_mm": [
+        20.1,
+        59.88
+      ],
+      "body_y_mm": [
+        46.47,
+        123.53
+      ],
+      "pad_span_y_mm": [
+        42.0,
+        128.0
+      ],
+      "z_mm": [
+        17.96,
+        38.66
+      ],
+      "mounting": "SMT with enclosure cradle/end-stop load path"
+    },
+    "display_direct_zif": {
+      "x_mm": [
+        26.5,
+        53.5
+      ],
+      "y_mm": [
+        25.0,
+        28.8
+      ],
+      "z_mm": [
+        5.36,
+        6.36
+      ]
+    }
   },
   "enclosure_reference": {
     "locked": "world datum, PCB outlines, mounting axes, touch plane, external interface directions and component/accessory keep-outs",

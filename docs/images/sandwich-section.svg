@@ -8,20 +8,20 @@
 <text x="60.0" y="140.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#526076">cut plane Y=29 mm · view from antenna edge</text>
 <text x="96.0" y="160.0" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="end" fill="#1d4ed8">FRONT</text>
 <text x="96.0" y="294.7" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="end" fill="#166534">REAR</text>
-<rect x="223.0" y="155.0" width="424.1" height="28.2" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" data-instance="display"/>
-<text x="435.0" y="171.1" font-family="sans-serif" font-size="8.0" font-weight="bold" text-anchor="middle" fill="#1d4ed8">ER-TFT035IPS-6 + ER-TPC035-6</text>
-<rect x="153.8" y="183.2" width="562.5" height="12.0" rx="1" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" data-instance="ui-pcb"/>
-<rect x="153.8" y="195.2" width="562.5" height="82.5" rx="1" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4" data-board-gap-mm="11"/>
-<rect x="153.8" y="277.7" width="562.5" height="12.0" rx="1" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" data-instance="rf-pcb"/>
-<text x="435.0" y="238.7" font-family="sans-serif" font-size="8.3" font-weight="bold" text-anchor="middle" fill="#9d174d">FX8C M1 · exact 11-mm board-to-board gap</text>
+<rect x="241.7" y="155.0" width="424.1" height="28.2" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" data-instance="display"/>
+<text x="453.8" y="171.1" font-family="sans-serif" font-size="8.0" font-weight="bold" text-anchor="middle" fill="#1d4ed8">ER-TFT035IPS-6 + ER-TPC035-6</text>
+<rect x="153.8" y="183.2" width="600.0" height="12.0" rx="1" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" data-instance="ui-pcb"/>
+<rect x="153.8" y="195.2" width="600.0" height="82.5" rx="1" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4" data-board-gap-mm="11"/>
+<rect x="153.8" y="277.7" width="600.0" height="12.0" rx="1" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" data-instance="rf-pcb"/>
+<text x="453.8" y="238.7" font-family="sans-serif" font-size="8.3" font-weight="bold" text-anchor="middle" fill="#9d174d">FX8C M1 · exact 11-mm board-to-board gap</text>
 <line x1="153.8" y1="155.0" x2="153.8" y2="444.9" stroke="#cbd5e1" stroke-width="1.2" stroke-dasharray="3 3"/>
 <line x1="716.2" y1="155.0" x2="716.2" y2="444.9" stroke="#cbd5e1" stroke-width="1.2" stroke-dasharray="3 3"/>
 <g id="section-u214" data-cut-y-mm="29" data-contains="u214-no-battery">
-<rect x="120.0" y="289.7" width="630.0" height="114.7" rx="5" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" fill-opacity="0.75" data-instance="u214"/>
-<rect x="368.3" y="289.7" width="133.4" height="57.1" rx="2" fill="#bae6fd" stroke="#0369a1" stroke-width="1.5" stroke-dasharray="4 2" data-instance="u214-connector"/>
-<text x="435.0" y="324.9" font-family="sans-serif" font-size="7.2" font-weight="bold" text-anchor="middle" fill="#075985">Samtec HLE-107-02-G-DV-PE-LC · pass-through host socket</text>
-<text x="435.0" y="382.7" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="middle" fill="#9a3412">M5Stack U214 worst-case · 84 × 24 × 15.287 mm</text>
-<text x="435.0" y="428.4" font-family="sans-serif" font-size="9.3" font-weight="bold" text-anchor="middle" fill="#166534">No battery appears: its Y=42.0…128.0-mm zone does not cross A–A.</text>
+<rect x="138.8" y="289.7" width="630.0" height="114.7" rx="5" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" fill-opacity="0.75" data-instance="u214"/>
+<rect x="387.1" y="289.7" width="133.4" height="57.1" rx="2" fill="#bae6fd" stroke="#0369a1" stroke-width="1.5" stroke-dasharray="4 2" data-instance="u214-connector"/>
+<text x="453.8" y="324.9" font-family="sans-serif" font-size="7.2" font-weight="bold" text-anchor="middle" fill="#075985">Samtec HLE-107-02-G-DV-PE-LC · pass-through host socket</text>
+<text x="453.8" y="382.7" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="middle" fill="#9a3412">M5Stack U214 worst-case · 84 × 24 × 15.287 mm</text>
+<text x="453.8" y="428.4" font-family="sans-serif" font-size="9.3" font-weight="bold" text-anchor="middle" fill="#166534">No battery appears: its Y=42.0…128.0-mm zone does not cross A–A.</text>
 <line x1="688.8" y1="396.4" x2="688.8" y2="297.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <line x1="698.8" y1="297.7" x2="698.8" y2="396.4" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text transform="rotate(-90 681.8 347.0)" x="681.8" y="347.0" font-family="sans-serif" font-size="7.8" font-weight="bold" text-anchor="middle" fill="#b42318">CAP · INSERT ↑ / REMOVE ↓</text>
@@ -33,29 +33,29 @@
 <line x1="153.8" y1="462.4" x2="716.2" y2="462.4" stroke="#344054" stroke-width="1.2"/>
 <line x1="153.8" y1="456.4" x2="153.8" y2="468.4" stroke="#344054" stroke-width="1.2"/>
 <line x1="716.2" y1="456.4" x2="716.2" y2="468.4" stroke="#344054" stroke-width="1.2"/>
-<text x="435.0" y="455.4" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#344054">base PCB · 75 mm</text>
-<line x1="120.0" y1="492.4" x2="750.0" y2="492.4" stroke="#344054" stroke-width="1.2"/>
-<line x1="120.0" y1="486.4" x2="120.0" y2="498.4" stroke="#344054" stroke-width="1.2"/>
-<line x1="750.0" y1="486.4" x2="750.0" y2="498.4" stroke="#344054" stroke-width="1.2"/>
-<text x="435.0" y="485.4" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="middle" fill="#9a3412">installed U214 worst-case · 84 mm · 4.5-mm overhang per side</text>
+<text x="453.8" y="455.4" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#344054">base PCB · 80 mm</text>
+<line x1="138.8" y1="492.4" x2="768.8" y2="492.4" stroke="#344054" stroke-width="1.2"/>
+<line x1="138.8" y1="486.4" x2="138.8" y2="498.4" stroke="#344054" stroke-width="1.2"/>
+<line x1="768.8" y1="486.4" x2="768.8" y2="498.4" stroke="#344054" stroke-width="1.2"/>
+<text x="453.8" y="485.4" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="middle" fill="#9a3412">installed U214 worst-case · 84 mm · 2.0-mm overhang per side</text>
 <text x="800.0" y="118.0" font-family="sans-serif" font-size="18" font-weight="bold" text-anchor="start" fill="#172033">B–B · battery/control zone</text>
 <text x="800.0" y="140.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#526076">cut plane Y=82 mm · view from antenna edge</text>
 <text x="836.0" y="160.0" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="end" fill="#1d4ed8">FRONT</text>
 <text x="836.0" y="294.7" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="end" fill="#166534">REAR</text>
-<rect x="963.0" y="155.0" width="424.1" height="28.2" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" data-instance="display"/>
-<text x="1175.0" y="171.1" font-family="sans-serif" font-size="8.0" font-weight="bold" text-anchor="middle" fill="#1d4ed8">ER-TFT035IPS-6 + ER-TPC035-6</text>
-<rect x="893.8" y="183.2" width="562.5" height="12.0" rx="1" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" data-instance="ui-pcb"/>
-<rect x="893.8" y="195.2" width="562.5" height="82.5" rx="1" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4" data-board-gap-mm="11"/>
-<rect x="893.8" y="277.7" width="562.5" height="12.0" rx="1" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" data-instance="rf-pcb"/>
-<text x="1175.0" y="238.7" font-family="sans-serif" font-size="8.3" font-weight="bold" text-anchor="middle" fill="#9d174d">FX8C M1 · exact 11-mm board-to-board gap</text>
+<rect x="981.7" y="155.0" width="424.1" height="28.2" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5" data-instance="display"/>
+<text x="1193.8" y="171.1" font-family="sans-serif" font-size="8.0" font-weight="bold" text-anchor="middle" fill="#1d4ed8">ER-TFT035IPS-6 + ER-TPC035-6</text>
+<rect x="893.8" y="183.2" width="600.0" height="12.0" rx="1" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" data-instance="ui-pcb"/>
+<rect x="893.8" y="195.2" width="600.0" height="82.5" rx="1" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4" data-board-gap-mm="11"/>
+<rect x="893.8" y="277.7" width="600.0" height="12.0" rx="1" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" data-instance="rf-pcb"/>
+<text x="1193.8" y="238.7" font-family="sans-serif" font-size="8.3" font-weight="bold" text-anchor="middle" fill="#9d174d">FX8C M1 · exact 11-mm board-to-board gap</text>
 <line x1="893.8" y1="155.0" x2="893.8" y2="444.9" stroke="#cbd5e1" stroke-width="1.2" stroke-dasharray="3 3"/>
 <line x1="1456.2" y1="155.0" x2="1456.2" y2="444.9" stroke="#cbd5e1" stroke-width="1.2" stroke-dasharray="3 3"/>
 <g id="section-battery" data-cut-y-mm="82" data-contains="battery-no-u214">
 <rect x="1025.8" y="289.7" width="298.5" height="155.2" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" data-instance="pack-holder"/>
 <rect x="1034.0" y="297.6" width="139.5" height="139.5" rx="16" fill="#ecfdf3" stroke="#22c55e" stroke-width="1.5" data-instance="cell-left"/>
 <rect x="1176.5" y="297.6" width="139.5" height="139.5" rx="16" fill="#ecfdf3" stroke="#22c55e" stroke-width="1.5" data-instance="cell-right"/>
-<text x="1175.0" y="370.7" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="middle" fill="#166534">Keystone Electronics 1048P + 2× 18650</text>
-<text x="1175.0" y="468.9" font-family="sans-serif" font-size="9.3" font-weight="bold" text-anchor="middle" fill="#9a3412">No installed Cap appears: its Y=17.0…41.0-mm zone does not cross B–B.</text>
+<text x="1193.8" y="370.7" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="middle" fill="#166534">Keystone Electronics 1048P + 2× 18650</text>
+<text x="1193.8" y="468.9" font-family="sans-serif" font-size="9.3" font-weight="bold" text-anchor="middle" fill="#9a3412">No installed Cap appears: its Y=17.0…41.0-mm zone does not cross B–B.</text>
 <line x1="963.8" y1="436.9" x2="963.8" y2="297.7" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <line x1="973.8" y1="297.7" x2="973.8" y2="436.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text transform="rotate(-90 956.8 367.3)" x="956.8" y="367.3" font-family="sans-serif" font-size="7.8" font-weight="bold" text-anchor="middle" fill="#b42318">CELLS · INSERT ↑ / REMOVE ↓</text>
@@ -67,7 +67,7 @@
 <line x1="893.8" y1="502.9" x2="1456.2" y2="502.9" stroke="#344054" stroke-width="1.2"/>
 <line x1="893.8" y1="496.9" x2="893.8" y2="508.9" stroke="#344054" stroke-width="1.2"/>
 <line x1="1456.2" y1="496.9" x2="1456.2" y2="508.9" stroke="#344054" stroke-width="1.2"/>
-<text x="1175.0" y="495.9" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#344054">base PCB · 75 mm</text>
+<text x="1193.8" y="495.9" font-family="sans-serif" font-size="9.5" font-weight="bold" text-anchor="middle" fill="#344054">base PCB · 80 mm</text>
 <line x1="780.0" y1="105.0" x2="780.0" y2="750.0" stroke="#d0d5dd" stroke-width="1.2" stroke-dasharray="6 5"/>
 <text x="60.0" y="750.0" font-family="sans-serif" font-size="10.5" font-weight="bold" text-anchor="start" fill="#172033">Display: EastRising ER-TFT035IPS-6 + ER-TPC035-6 · 3.8-mm LCD/CTP body</text>
 <text x="60.0" y="774.0" font-family="sans-serif" font-size="10.5" font-weight="normal" text-anchor="start" fill="#526076">Complete opposing-body Z clearance—including PUI Audio AS02404PO—is audited in the inner-face view.</text>

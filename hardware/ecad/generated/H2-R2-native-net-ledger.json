@@ -6,12 +6,12 @@
   "sources": {
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "8c0845d155b887c8d799068235b4ef6af44497f86c10c4a9044192dd0baaef00",
+      "sha256": "9c79055ab7d61fff6d8e06b63a9bf1162e7623d16276fb3fb17abf3f4c028ec4",
       "authority": true
     },
     "definitions": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "2ae060f2348e22720bc23fcd169e168693c16db2dfba064036f25bf12bd5e759",
+      "sha256": "b9ddf24206882aff70c66273a7999a84cddca437a5205b9afc152a28a59679e4",
       "authority": true
     },
     "h0": {
@@ -36,7 +36,7 @@
     },
     "display_mount": {
       "path": "hardware/product-design/display-mount.json",
-      "sha256": "3816662e6866fcd0d3a935bf77bde1625681c01e7e0a4c23738f5e5ded7ad2f8",
+      "sha256": "694a78cddab6883e76403b39fdda55a9a87a7941eb404a480a964fd5e1682c60",
       "authority": true
     },
     "main_power_cell": {
@@ -61,7 +61,7 @@
     },
     "historical_route_contract": {
       "path": "hardware/architecture/candidates/G2F-3I.json",
-      "sha256": "1c614996fd626b9ca44a98395c0c01712c347c9ba4ac43e69250db3f2bf2f1df",
+      "sha256": "6df524f1edf8db12ac278e0b5901a598c0ac18262800b09c38dde7b45147ed27",
       "authority": false
     },
     "historical_instance_ledger": {

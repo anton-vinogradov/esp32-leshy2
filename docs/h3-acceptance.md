@@ -4,8 +4,8 @@
 [Roadmap](roadmap.md)
 
 > Historical evidence only. This page closes the former single-RP R1 chain; it
-> is not current dual-RP R2 authority. The current hardware marker is `H1-R2.38`,
-> with R2 H2/H3 still waiting.
+> is not current dual-RP R2 authority. The current hardware marker is
+> `H6.0.3-R1`; the independent R2 H2/H3 chain is reviewed.
 
 **Historical R1 status:** ✅ reviewed and automatically accepted on 26 August 2026. Every electrical check
 available before board fabrication is reproducible and analytically closed.

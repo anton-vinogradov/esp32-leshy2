@@ -2,24 +2,22 @@
 
 [Home](../README.md) · [Русский](hardware.ru.md) · [Pin assignment](pinout.md) · [Schematics](schematics.md) · [Safety](safety.md)
 
-> Current marker: **`H3-R2.1`**. The `H1-R2.38` physical design was accepted
-> and reviewed on 2026-08-30. Nothing on this page authorizes KiCad routing
-> or an order.
+> Current marker: **`H6.0.3-R1`**. The `H1-R2.39` physical design uses two
+> 80 × 150 mm boards and remains reviewed after the 2026-09-05 geometry
+> rebaseline. Nothing on this page authorizes an order or fabrication.
 
-> Current R2 authority is H0/H1: six compute domains with a front Hub RP and a
-> rear RF RP. The [exact dual-RP GPIO/M1 map](pinout.md) is current working H1
-> authority and the exact C5 module-pad/IO-mux electrical contract is joined.
-> G2F/H2/KiCad is historical single-RP R1 evidence only. The live
+> Current R2 authority contains six compute domains with a front Hub RP and a
+> rear RF RP. The [exact dual-RP GPIO/M1 map](pinout.md) and the C5
+> module-pad/IO-mux electrical contract are joined to the reviewed native R2
+> H2 projects; older single-RP material is historical evidence only. The live
 > FSUSB42MUX/C11355 route is reviewed as `H2-R2.0.1`; the exact service-VBUS
 > detector/latch/release implementation is reviewed as `H2-R2.0.2`; the exact
 > `TCA9803DGKR/C2687966` Pack/Safety boundary is reviewed as `H2-R2.0.3`.
 > The native R2 inventory and exact symbol/contact/footprint ledger passed
-> review. Two native KiCad projects now materialize all 1,183 fitted instances
-> and 4,243 physical pins with zero ERC findings. Cross-sheet and HW↔FW
-> reconciliation is reviewed; H3-R2.0.1 freezes those inputs and H3-R2.0.2
-> reviews exact parameter/model provenance for all 238 groups and 1,183 fitted
-> positions. H3-R2.0.3 freezes reproducible verification methods and rules;
-> H3-R2.1 now verifies worst-case power/DC states.
+> review. Two native KiCad projects materialize all 1,208 fitted instances and
+> 4,306 physical pins with zero ERC findings. H3-R2 and the joined H4-R2 gate
+> are reviewed. H6.0.3 keeps all positions fixed without hard conflicts while
+> routing is requalified on the 80-mm baseline.
 
 ## Capabilities
 
@@ -86,11 +84,11 @@ below 0.4 MB/s, so it does not saturate the RP transport.
 
 ## Physical layout
 
-![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.38-fpc-slack-1)
+![Four matched PCB faces](images/h1-r2-four-faces.svg?rev=h1-r2.39-80mm-1)
 
-[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.38-fpc-slack-1).
+[Open the detailed exterior at full scale](images/h1-r2-external-layout.svg?rev=h1-r2.39-80mm-1).
 
-![Display PSA, one-fold relaxed FPC route and direct ZIF](images/display-mount.svg?rev=h1-r2.38-4910sq-1)
+![Display PSA, one-fold relaxed FPC route and direct ZIF](images/display-mount.svg?rev=h1-r2.39-80mm-1)
 
 The ten main antenna ports are split symmetrically:
 
@@ -104,7 +102,7 @@ The ten main antenna ports are split symmetrically:
 
 ### Component legend
 
-![Number, MPN and role of every component](images/h1-r2-component-legend.svg?rev=h1-r2.38-fpc-slack-1)
+![Number, MPN and role of every component](images/h1-r2-component-legend.svg?rev=h1-r2.39-80mm-1)
 
 [Front inner face at full scale](images/h1-r2-inner-ui.svg) ·
 [rear inner face at full scale](images/h1-r2-inner-rf.svg)

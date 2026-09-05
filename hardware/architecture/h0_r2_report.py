@@ -165,7 +165,7 @@ def render_report(data: dict, ru: bool) -> str:
             "на S3, высокоскоростные периферийные тракты разгружены через Hub RP, "
             "бортовой видеотракт удалён, а Airband AM 118–137 МГц теперь обязателен."
         )
-        current = "Текущий точный маркер — **H6.0.2-R1**. Физическая проекция H1-R2.38 с двумя независимыми RP2354B, точными GPIO0..47, M1 и прямым 50-контактным ZIF дисплея принята и прошла ревью 2026-08-30. Native R2 H2 материализует 1 208 schematic-экземпляров, 789 глобальных канонических / 823 локальных для плат nets в двух проектах KiCad без замечаний ERC. H3-R2 полностью проведён ревью: 20 текущих evidence-artifacts и записанные source hashes сведены без mismatch или открытого аналитического finding; 51 физический остаток назначен H5/H6/H8. Глобальные H4-R2 и H5-R1 проведены ревью; H6.0.1 placement/mechanics/cables закрыт, а трассировка H6.0.2 является текущей работой."
+        current = "Текущий точный маркер — **H6.0.3-R1**. Физическая проекция H1-R2.39 использует две платы 80 × 150 мм с двумя независимыми RP2354B, точными GPIO0..47, M1 и прямым 50-контактным ZIF дисплея. Native R2 H2 материализует 1 208 schematic-экземпляров, 789 глобальных канонических / 823 локальных для плат nets в двух проектах KiCad без замечаний ERC. H3-R2 полностью проведён ревью: 20 текущих evidence-artifacts и записанные source hashes сведены без mismatch или открытого аналитического finding; 51 физический остаток назначен H5/H6/H8. Глобальные H4-R2 и H5-R1 проведены ревью; H6.0.1 placement/mechanics/cables закрыт, а повторная квалификация трассировки H6.0.3 на 80-мм базе является текущей работой."
         sections = {
             "result": "Что зафиксировано",
             "air": "Airband RX",
@@ -204,7 +204,7 @@ def render_report(data: dict, ru: bool) -> str:
             "high-throughput peripheral work is offloaded through the Hub RP, the onboard "
             "video path is removed, and 118–137 MHz Airband AM is now mandatory."
         )
-        current = "The exact current marker is **H6.0.2-R1**. The H1-R2.38 physical projection with two independent RP2354B domains, exact GPIO0..47 maps, M1 and the direct 50-contact display ZIF was accepted and reviewed on 2026-08-30. Native R2 H2 materializes 1,208 schematic instances and 789 global canonical / 823 board-local nets in two KiCad projects with zero ERC findings. H3-R2 is fully reviewed: 20 current evidence artifacts and their recorded source hashes reconcile without mismatch or open analytical finding, while 51 physical residuals remain owned by H5/H6/H8. Global H4-R2 and H5-R1 are reviewed; H6.0.1 placement/mechanics/cables are closed and H6.0.2 routing is current."
+        current = "The exact current marker is **H6.0.3-R1**. The H1-R2.39 physical projection uses two 80 × 150 mm PCBs with two independent RP2354B domains, exact GPIO0..47 maps, M1 and the direct 50-contact display ZIF. Native R2 H2 materializes 1,208 schematic instances and 789 global canonical / 823 board-local nets in two KiCad projects with zero ERC findings. H3-R2 is fully reviewed: 20 current evidence artifacts and their recorded source hashes reconcile without mismatch or open analytical finding, while 51 physical residuals remain owned by H5/H6/H8. Global H4-R2 and H5-R1 are reviewed; H6.0.1 placement/mechanics/cables are closed and H6.0.3 routing requalification on the 80-mm baseline is current."
         sections = {
             "result": "Accepted result",
             "air": "Airband RX",

@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "artifact": "H6-R2 mechanical stack audit",
-  "marker": "H6.0.1-R1",
+  "marker": "H6.0.3-R1",
   "status": "pass",
   "source_hashes": {
-    "hardware/layout/h6-r2-mechanical-stack.json": "c37d5b7420e06633185fb7b6be19cd86414817c970fa3aa69f3bc332d7652888",
-    "hardware/layout/generated/H6-R2-placement-audit.json": "2925531c6bea3dd448b20aae44e68235c5f3f5fc242ea9761cf6d12e7aae6408"
+    "hardware/layout/h6-r2-mechanical-stack.json": "eb616b9c591cb828b4a456b526eb531288b2df26720497ddef613ddda5fe6a0e",
+    "hardware/layout/generated/H6-R2-placement-audit.json": "7c62460f3091b7f860db7947c70061c27b9a17eb2ad7ab7ced463cebe63d1fb4"
   },
   "stack": {
     "members": [

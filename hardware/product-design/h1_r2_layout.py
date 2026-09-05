@@ -33,7 +33,7 @@ U219_SOURCE_PATH = REPO / "hardware/architecture/h1-r2-u219-cap.json"
 DUAL_RP_PINOUT_PATH = REPO / "hardware/architecture/h1-r2-dual-rp-pinout.json"
 DEVICES_PATH = REPO / "hardware/architecture/devices.json"
 CANDIDATE_PATH = REPO / "hardware/architecture/candidates/G2F-3I.json"
-PUBLIC_ASSET_REV = "h1-r2.38-4910sq-1"
+PUBLIC_ASSET_REV = "h1-r2.39-80mm-1"
 BOTTOM_SILK_OWNER_BASELINE_MM = 145.1
 BOTTOM_SILK_ROLE_BASELINE_MM = 147.0
 
@@ -192,7 +192,7 @@ def mmcx_service_audit(model: dict, base: dict, placed: list[dict]) -> dict:
     if physical_plug_box["x"][0] < 0 or physical_plug_box["x"][1] > board_w:
         errors.append("MMCX right-angle plug and strain relief leave the rear PCB plan")
     mounting_keepout_clearances = []
-    for hole_x, hole_y in ((5.0, 11.0), (70.0, 11.0)):
+    for hole_x, hole_y in ((5.0, 11.0), (board_w - 5.0, 11.0)):
         clearance = point_to_rectangle_distance(hole_x, hole_y, physical_plug_box) - 4.0
         mounting_keepout_clearances.append(
             {"hole_world_xy_mm": [hole_x, hole_y], "clearance_mm": round(clearance, 3)}
@@ -265,6 +265,8 @@ def silkscreen_audit(model: dict) -> dict:
         nearest_y = min(max(cy, box["y"][0]), box["y"][1])
         return math.hypot(nearest_x - cx, nearest_y - cy) < radius
 
+    board_w, board_h = model["board_mm"]
+    panel_x = (board_w - 56.54) / 2
     rows = {
         "front": model["antenna_silkscreen"]["front"],
         "rear": model["antenna_silkscreen"]["rear"],
@@ -282,23 +284,23 @@ def silkscreen_audit(model: dict) -> dict:
         for row in face_rows:
             box = text_box(row)
             boxes[face].append({"text": row["text"], "box_mm": box})
-            if box["x"][0] < 0 or box["x"][1] > 75 or box["y"][0] < 0 or box["y"][1] > 150:
+            if box["x"][0] < 0 or box["x"][1] > board_w or box["y"][0] < 0 or box["y"][1] > board_h:
                 errors.append(f'{face} silk "{row["text"]}" leaves the PCB outline')
             forbidden = [
-                {"name": "RF body strip", "box": {"x": [0.0, 75.0], "y": [0.0, 6.0]}},
+                {"name": "RF body strip", "box": {"x": [0.0, board_w], "y": [0.0, 6.0]}},
             ]
             if face == "front":
-                forbidden.append({"name": "display", "box": {"x": [9.23, 65.77], "y": [10.5, 95.46]}})
+                forbidden.append({"name": "display", "box": {"x": [panel_x, panel_x + 56.54], "y": [10.5, 95.46]}})
             else:
                 forbidden.extend(
                     [
-                        {"name": "installed U214", "box": {"x": [-4.5, 79.5], "y": [17.0, 41.0]}},
+                        {"name": "installed U214", "box": {"x": [-2.0, 82.0], "y": [17.0, 41.0]}},
                     ]
                 )
             for item in forbidden:
                 if overlaps(box, item["box"]):
                     errors.append(f'{face} silk "{row["text"]}" is hidden by {item["name"]}')
-            for hole_x, hole_y in ((5.0, 11.0), (70.0, 11.0), (5.0, 145.0), (70.0, 145.0)):
+            for hole_x, hole_y in ((5.0, 11.0), (board_w - 5.0, 11.0), (5.0, 145.0), (board_w - 5.0, 145.0)):
                 if hits_circle(box, hole_x, hole_y, 4.0):
                     errors.append(f'{face} silk "{row["text"]}" enters mounting keep-out')
         for index, first in enumerate(boxes[face]):
@@ -312,12 +314,12 @@ def silkscreen_audit(model: dict) -> dict:
     for face, face_rows in identity["silkscreen"].items():
         forbidden = (
             [
-                {"name": "display", "box": {"x": [9.23, 65.77], "y": [10.5, 95.46]}},
-                {"name": "front controls/indicators", "box": {"x": [0.0, 75.0], "y": [104.0, 150.0]}},
+                {"name": "display", "box": {"x": [panel_x, panel_x + 56.54], "y": [10.5, 95.46]}},
+                {"name": "front controls/indicators", "box": {"x": [0.0, board_w], "y": [104.0, board_h]}},
             ]
             if face == "front"
             else [
-                {"name": "rear product bodies", "box": {"x": [0.0, 75.0], "y": [0.0, 132.0]}},
+                {"name": "rear product bodies", "box": {"x": [0.0, board_w], "y": [0.0, 132.0]}},
             ]
         )
         for row in face_rows:
@@ -325,12 +327,12 @@ def silkscreen_audit(model: dict) -> dict:
             identity_boxes[face].append({"text": row["text"], "box_mm": box})
             if model["marker"] in row["text"]:
                 errors.append(f'{face} identity silk prints documentation marker {model["marker"]}')
-            if box["x"][0] < 0 or box["x"][1] > 75 or box["y"][0] < 0 or box["y"][1] > 150:
+            if box["x"][0] < 0 or box["x"][1] > board_w or box["y"][0] < 0 or box["y"][1] > board_h:
                 errors.append(f'{face} identity silk "{row["text"]}" leaves the PCB outline')
             for item in forbidden:
                 if overlaps(box, item["box"]):
                     errors.append(f'{face} identity silk "{row["text"]}" is hidden by {item["name"]}')
-            for hole_x, hole_y in ((5.0, 11.0), (70.0, 11.0), (5.0, 145.0), (70.0, 145.0)):
+            for hole_x, hole_y in ((5.0, 11.0), (board_w - 5.0, 11.0), (5.0, 145.0), (board_w - 5.0, 145.0)):
                 if hits_circle(box, hole_x, hole_y, 4.0):
                     errors.append(f'{face} identity silk "{row["text"]}" enters mounting keep-out')
         for index, first in enumerate(identity_boxes[face]):
@@ -1740,9 +1742,10 @@ def render_complete_inner_svg(model: dict, base: dict, source_table: dict, resul
     rf_origin = origins["rf-inner"]
     # Exact outward interfaces attached to R2 bodies.
     out.append(f'<path d="M{sx(ui,0):.1f} {sy(ui,137.47):.1f} L{sx(ui,-8):.1f} {sy(ui,137.47):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
+    board_w = model["board_mm"][0]
     for cy in (132.25, 139.25):
-        out.append(f'<path d="M{sx(ui,75):.1f} {sy(ui,cy):.1f} L{sx(ui,83):.1f} {sy(ui,cy):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-    out.append(f'<path d="M{sx(rf_origin,75):.1f} {sy(rf_origin,101.3):.1f} L{sx(rf_origin,83):.1f} {sy(rf_origin,101.3):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
+        out.append(f'<path d="M{sx(ui,board_w):.1f} {sy(ui,cy):.1f} L{sx(ui,board_w + 8):.1f} {sy(ui,cy):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
+    out.append(f'<path d="M{sx(rf_origin,board_w):.1f} {sy(rf_origin,101.3):.1f} L{sx(rf_origin,board_w + 8):.1f} {sy(rf_origin,101.3):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
 
     out.extend(
         [
@@ -2057,7 +2060,7 @@ def render_inner_sections_svg(model: dict, base: dict, source_table: dict, resul
                     f'rx="3" fill="{colour}" fill-opacity="0.05" stroke="{colour}" stroke-width="1.5"{dash} '
                     f'data-cap-profile="{profile_name}" data-population="mutually-exclusive"/>'
                 )
-                out.append(t(px(37.5), pz(box["z"][1])-5, f'{profile_name.upper()} · {profile["envelope_mm"][2]:.3f} mm high', 8.0, "bold", "middle", colour))
+                out.append(t(px(board_w / 2), pz(box["z"][1])-5, f'{profile_name.upper()} · {profile["envelope_mm"][2]:.3f} mm high', 8.0, "bold", "middle", colour))
             out.append(t(panel_x, 690, "U219 is +4.413 mm vs U214, yet remains 1.0 mm below the battery holder and 1.3 mm below the rear maximum.", 8.7, "bold", colour="#9a3412"))
         for feature in located_physical_features(model, "rf-inner"):
             box = feature["world_bbox_mm"]
@@ -2088,7 +2091,7 @@ def render_inner_sections_svg(model: dict, base: dict, source_table: dict, resul
                 f'<line x1="{px(0):.1f}" y1="{pz(18.8):.1f}" x2="{px(board_w):.1f}" y2="{pz(18.8):.1f}" stroke="#334155"/>',
                 f'<line x1="{px(0):.1f}" y1="{pz(18.5):.1f}" x2="{px(0):.1f}" y2="{pz(19.1):.1f}" stroke="#334155"/>',
                 f'<line x1="{px(board_w):.1f}" y1="{pz(18.5):.1f}" x2="{px(board_w):.1f}" y2="{pz(19.1):.1f}" stroke="#334155"/>',
-                t(px(board_w/2), pz(18.55), "75-mm PCB", 9, "bold", "middle", "#334155"),
+                t(px(board_w/2), pz(18.55), f"{board_w:g}-mm PCB", 9, "bold", "middle", "#334155"),
             ]
         )
 
@@ -2167,8 +2170,8 @@ def render_mmcx_service_svg_legacy(model: dict, result: dict) -> str:
         f'<text x="32" y="42" font-family="sans-serif" font-size="25" font-weight="700" fill="{ink}">Leshy2 · {esc(model["marker"])} top-edge MMCX proof</text>',
         f'<text x="32" y="70" font-family="sans-serif" font-size="13" fill="{muted}">DL-MMCX-KWE-90 · C2894793 · exact connector; dashed circle is the installation handling envelope.</text>',
         f'<text x="40" y="112" font-family="sans-serif" font-size="16" font-weight="700" fill="{ink}">1 · RF OUTER FACE · looking from the rear</text>',
-        f'<rect x="{plan_x:.1f}" y="{edge_y:.1f}" width="{75*plan_scale:.1f}" height="250" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="2"/>',
-        f'<line x1="{plan_x:.1f}" y1="{edge_y:.1f}" x2="{plan_x+75*plan_scale:.1f}" y2="{edge_y:.1f}" stroke="{ink}" stroke-width="3"/>',
+        f'<rect x="{plan_x:.1f}" y="{edge_y:.1f}" width="{model["board_mm"][0]*plan_scale:.1f}" height="250" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="2"/>',
+        f'<line x1="{plan_x:.1f}" y1="{edge_y:.1f}" x2="{plan_x+model["board_mm"][0]*plan_scale:.1f}" y2="{edge_y:.1f}" stroke="{ink}" stroke-width="3"/>',
         f'<text x="{plan_x+8:.1f}" y="{edge_y+24:.1f}" font-family="sans-serif" font-size="12" fill="{muted}">RF PCB · antenna edge Y=0</text>',
         f'<circle cx="{nrf_x:.1f}" cy="{edge_y+25:.1f}" r="{5.1*plan_scale:.1f}" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6" data-path="N24-1"/>',
         f'<circle cx="{vhf_x:.1f}" cy="{edge_y+25:.1f}" r="{5.1*plan_scale:.1f}" fill="#fff7ed" stroke="#ea580c" stroke-width="1.6" data-path="VOICE-VHF"/>',
@@ -2219,7 +2222,7 @@ def render_mmcx_service_svg(model: dict, result: dict) -> str:
         f'<text x="32" y="42" font-family="sans-serif" font-size="25" font-weight="700" fill="#172033">Leshy2 · {html.escape(model["marker"])} rear-face FPV connector</text>',
         '<text x="32" y="70" font-family="sans-serif" font-size="13" fill="#526076">Molex 73415-2063 · C588480 · vertical SMT MMCX; dashed circle is the Ø12-mm handling envelope.</text>',
         '<text x="80" y="108" font-family="sans-serif" font-size="16" font-weight="700" fill="#172033">1 · REAR OUTER FACE · user looking at the battery side</text>',
-        f'<rect x="{ox}" y="{oy}" width="{75*scale}" height="{54*scale}" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="2"/>',
+        f'<rect x="{ox}" y="{oy}" width="{model["board_mm"][0]*scale}" height="{54*scale}" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="2"/>',
     ]
     for centre, path in zip(
         model["antenna_bank_optimization"]["rear_x_centres_mm"],
@@ -2235,8 +2238,8 @@ def render_mmcx_service_svg(model: dict, result: dict) -> str:
         f'<path d="M{ox+axis_x*scale:.1f} {oy+axis_y*scale:.1f} H{ox+(axis_x-plug["strain_relief_run_max_mm"])*scale:.1f}" stroke="#0f766e" stroke-width="{plug["strain_relief_width_max_mm"]*scale:.1f}" stroke-linecap="round" data-part="controlled-right-angle-plug-envelope"/>',
         f'<circle cx="{ox+axis_x*scale:.1f}" cy="{oy+axis_y*scale:.1f}" r="{plug["connector_head_width_max_mm"]*scale/2:.1f}" fill="#ffffff" stroke="#0f766e" stroke-width="2"/>',
         f'<text x="{ox+axis_x*scale:.1f}" y="{oy+16.0*scale:.1f}" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#1d4ed8">FPV RX · 5.8 GHz</text>',
-        f'<rect x="{ox-4.5*scale:.1f}" y="{oy+17*scale:.1f}" width="{84*scale:.1f}" height="{24*scale:.1f}" rx="8" fill="#fff7ed" fill-opacity="0.72" stroke="#ea580c" stroke-width="2" data-accessory-slot="cap-bus" data-population="u214-or-u219"/>',
-        f'<text x="{ox+37.5*scale:.1f}" y="{oy+30*scale:.1f}" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#9a3412">removable U214 / U219 Cap slot</text>',
+        f'<rect x="{ox-2.0*scale:.1f}" y="{oy+17*scale:.1f}" width="{84*scale:.1f}" height="{24*scale:.1f}" rx="8" fill="#fff7ed" fill-opacity="0.72" stroke="#ea580c" stroke-width="2" data-accessory-slot="cap-bus" data-population="u214-or-u219"/>',
+        f'<text x="{ox+model["board_mm"][0]/2*scale:.1f}" y="{oy+30*scale:.1f}" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#9a3412">removable U214 / U219 Cap slot</text>',
         f'<text x="80" y="530" font-family="sans-serif" font-size="13" fill="#0f766e">✓ static RA plug to nearest SMA: {service["minimum_right_angle_plug_clearance_mm"]:.2f} mm · required {mount["minimum_u214_clearance_mm"]:.1f} mm</text>',
         f'<text x="80" y="560" font-family="sans-serif" font-size="13" fill="#0f766e">✓ static RA plug to shared Cap slot: {service["right_angle_plug_u214_clearance_mm"]:.2f} mm</text>',
         f'<text x="80" y="590" font-family="sans-serif" font-size="13" fill="#9a3412">△ dashed Ø12 is temporary finger approach; overlaps {", ".join(x["path"] for x in service["handling_envelope_overlaps"])}; H7/H8 inspect access after arrival</text>',
@@ -2269,7 +2272,7 @@ def render_four_faces_svg(model: dict, external_svg: str, inner_ui_svg: str, inn
     inner_ui = _prefixed_svg_body(inner_ui_svg, "ui")
     inner_rf = _prefixed_svg_body(inner_rf_svg, "rf")
     # The standalone inner-face drawings carry explanatory legends to the right
-    # of the 75-mm board.  The four-face comparison intentionally embeds only
+    # of the 80-mm board.  The four-face comparison intentionally embeds only
     # the matched physical projection; keeping a clipped legend fragment here
     # makes the source-board comparison harder to read.
     inner_ui = inner_ui.split('<text x="550.0" y="125.0"', 1)[0]
@@ -2294,7 +2297,7 @@ def render_four_faces_svg(model: dict, external_svg: str, inner_ui_svg: str, inn
         text(780, 790, "inner · viewed after turning over · no silkscreen", 12, "bold", "middle", "#526076"),
         f'<svg x="45" y="805" width="450" height="650" viewBox="70 95 440 940" preserveAspectRatio="xMidYMid meet" overflow="hidden">{inner_ui}</svg>',
         f'<svg x="555" y="805" width="450" height="650" viewBox="70 95 440 940" preserveAspectRatio="xMidYMid meet" overflow="hidden">{inner_rf}</svg>',
-        text(525, 1480, "Matched physical columns · 75 × 150 mm PCBs · not authorization for KiCad", 12, "bold", "middle", "#b42318"),
+        text(525, 1480, f'Matched physical columns · {model["board_mm"][0]:g} × {model["board_mm"][1]:g} mm PCBs · not authorization for KiCad', 12, "bold", "middle", "#b42318"),
         '</svg>',
     ]
     return "\n".join(out) + "\n"
@@ -2304,7 +2307,7 @@ def render_doc_legacy(model: dict, result: dict, ru: bool) -> str:
     if ru:
         title = f'# {model["marker"]} · физическая перекомпоновка'
         intro = "Это текущий проверяемый результат H1, а не журнал решений и не разрешение начинать KiCad."
-        state = "В принятую 75×150-мм систему координат добавлены второй Hub RP, его полный независимый внешний recovery-набор, активные корпуса Airband, расширенная 24×11-мм ячейка настройки фильтра, видеодекодер FPV и двойная взаимоисключающая post-PCBA-зона K331/AWM666V."
+        state = "В принятую 80×150-мм систему координат добавлены второй Hub RP, его полный независимый внешний recovery-набор, активные корпуса Airband, расширенная 24×11-мм ячейка настройки фильтра, видеодекодер FPV и двойная взаимоисключающая post-PCBA-зона K331/AWM666V."
         audit_heading = "## Что уже проверено"
         open_heading = "## Что блокирует H1 сейчас"
         dependent_heading = "## Зависимая работа H1"
@@ -2335,7 +2338,7 @@ def render_doc_legacy(model: dict, result: dict, ru: bool) -> str:
     else:
         title = f'# {model["marker"]} · physical re-layout'
         intro = "This is the current verified H1 result, not a decision diary and not authorization to start KiCad."
-        state = "The second Hub RP, its complete independent external recovery set, Airband active bodies, an expanded 24 × 11 mm filter-tuning cell, the FPV video decoder and a mutually exclusive post-PCBA K331/AWM666V bay are placed in the accepted 75 × 150 mm coordinate system."
+        state = "The second Hub RP, its complete independent external recovery set, Airband active bodies, an expanded 24 × 11 mm filter-tuning cell, the FPV video decoder and a mutually exclusive post-PCBA K331/AWM666V bay are placed in the accepted 80 × 150 mm coordinate system."
         audit_heading = "## Already verified"
         open_heading = "## What blocks H1 now"
         dependent_heading = "## Dependent H1 work"
@@ -2413,7 +2416,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
     if ru:
         title = f'# {model["marker"]} · рабочая компоновка целевого устройства'
         intro = (
-            "Полная проверяемая физическая модель двух плат 75×150 мм принята 2026-08-30; H1 закрыто. "
+            "Полная проверяемая физическая модель двух плат 80×150 мм принята 2026-08-30; H1 закрыто. "
             "Все корпуса, Cap-профили, внешний объём U219-антенны и медные резервы сведены без открытых geometry-gates. "
             "Это не разрешает трассировку KiCad: сначала в R2 H2 должны быть закрыты перечисленные ниже электрические prerequisites."
         )
@@ -2436,7 +2439,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "Бортовой видеоприёмник, декодер, MMCX и их резервы удалены: за экраном и между антеннами нет скрытого post-PCBA модуля.",
             "FM/SW/AM/LW/Airband, CC1101, два voice-тракта и аудио локальны задней плате; S3 напрямую ведёт i8080-8, энкодер и USB, а кнопки — через локальный TCA9539PWR. После замыкания reset/service-трактов свободным электрическим резервом остаются шесть GPIO.",
             "Экран физически развёрнут шлейфом к антенному торцу / в направлении -Y платы; шлейф входит прямо в 50-контактный ZIF на UI-плате, а firmware разворачивает изображение и touch на 180°. Шлейф в сторону +Y — стоп-ошибка фабричной сборки. Все линии дисплея и touch остаются локальными S3; C5 к панели не подключён.",
-            "Панель приклеивается одним готовым складским квадратом 3M (TC) 4910SQ-2(5) размером 50,80×50,80×1,016 мм, который сначала ставится на PCB по собственной шелкографической рамке в [12,10; 44,46]. Он поддерживает 2580,64 мм², или около 53,7% площади жёсткой панели; резка, заказная высечка, боковые плечи, верхняя полоска и отдельный прижим не нужны. После прохода хвоста через щель и снятия верхнего лайнера панель ставится по второй рамке DISPLAY 56,54×84,96 мм с меткой FPC↑. Верхняя зона FPC остаётся свободной от клея; только хвост 25,50±0,15 мм проходит через скруглённую щель PCB 27,00×1,20 мм к внутреннему ZIF в позиции [24,0; 25,0]. С учётом допуска 3M ±10% минимальная толщина равна 0,914 мм, поэтому текущий сложенный FPC должен быть не выше 0,714 мм, а реальный dry-fit обязан сохранить минимум 0,20 мм зазора. Пять U.FL заканчиваются на y=17,1 мм, щель начинается на y=23,0 мм, поэтому между ними остаётся 5,9 мм. FPC и ZIF нагрузки панели не несут. Заказная форма допустима только если сама PCBA-фабрика письменно подтвердит её изготовление и установку внутри заказа; внешний конвертер не требуется.",
+            "Панель приклеивается одним готовым складским квадратом 3M (TC) 4910SQ-2(5) размером 50,80×50,80×1,016 мм, который сначала ставится на PCB по собственной шелкографической рамке в [14,60; 44,46]. Он поддерживает 2580,64 мм², или около 53,7% площади жёсткой панели; резка, заказная высечка, боковые плечи, верхняя полоска и отдельный прижим не нужны. После прохода хвоста через щель и снятия верхнего лайнера панель ставится по второй рамке DISPLAY 56,54×84,96 мм с меткой FPC↑. Верхняя зона FPC остаётся свободной от клея; только хвост 25,50±0,15 мм проходит через скруглённую щель PCB 27,00×1,20 мм к внутреннему ZIF в позиции [26,5; 25,0]. С учётом допуска 3M ±10% минимальная толщина равна 0,914 мм, поэтому текущий сложенный FPC должен быть не выше 0,714 мм, а реальный dry-fit обязан сохранить минимум 0,20 мм зазора. Пять U.FL заканчиваются на y=17,1 мм, щель начинается на y=23,0 мм, поэтому между ними остаётся 5,9 мм. FPC и ZIF нагрузки панели не несут. Заказная форма допустима только если сама PCBA-фабрика письменно подтвердит её изготовление и установку внутри заказа; внешний конвертер не требуется.",
             "У ESP32-DIV v2 сырой 2,8-дюймовый дисплей лежит прямо на основной PCB, а 18-контактный FPC припаян к длинным SMD-площадкам без ZIF. Четыре отверстия Ø1,2 мм вокруг зоны дисплея на собранном устройстве пусты и не удерживают панель. Открытые Gerber, PcbDoc, BOM, 3D-модель и фотография не раскрывают фактический способ крепления; скрытый PSA/двусторонний скотч правдоподобен, но не доказан. Поэтому Leshy2 не копирует неизвестную механику DIV и задаёт собственный положительный путь нагрузки с обслуживаемым ненагруженным ZIF.",
         ]
         audit_lines = [
@@ -2457,7 +2460,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
     else:
         title = f'# {model["marker"]} · working target-device placement'
         intro = (
-            "The complete verifiable physical model of the two 75 × 150 mm PCBs was accepted on 2026-08-30; H1 is reviewed. "
+            "The complete verifiable physical model of the two 80 × 150 mm PCBs was accepted on 2026-08-30; H1 is reviewed. "
             "Every body, Cap profile, external U219 antenna volume and copper reserve is registered with no open geometry gate. "
             "This does not authorize KiCad routing: the R2 H2 electrical prerequisites listed below must close first."
         )
@@ -2480,7 +2483,7 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
             "The onboard video receiver, decoder, MMCX and physical reserves are removed: no hidden post-PCBA module remains behind the display or between the antennas.",
             "FM/SW/AM/LW/Airband, CC1101, both voice paths and audio are rear-local; S3 directly owns i8080-8, encoder and USB, with buttons on its local TCA9539PWR path. Six GPIO remain uncommitted electrical reserve after reset and service closure.",
             "The panel is physically turned with its flex toward the antenna edge / board -Y; the tail enters one direct 50-contact ZIF on the UI PCB and firmware rotates display output and touch by 180°. A tail toward +Y is a stop-work factory error. All display and touch lines remain S3-local; C5 has no panel connection.",
-            "The panel bonds through one ready-stock 3M (TC) 4910SQ-2(5) square measuring 50.80×50.80×1.016 mm, first located on the PCB by its own silkscreen frame at [12.10, 44.46]. It supports 2580.64 mm², or about 53.7% of the stiff panel plan; cutting, a custom die-cut, side shoulders, upper tape strip and separate clamp are unnecessary. After the tongue crosses the slot and the upper liner is removed, a second DISPLAY 56.54×84.96-mm frame with an FPC-UP mark locates the panel. The upper FPC zone remains adhesive-free; only its 25.50±0.15-mm tongue crosses one rounded 27.00×1.20-mm PCB slot into the inner ZIF at [24.0, 25.0]. The 3M ±10% tolerance makes the minimum thickness 0.914 mm, so the current-lot folded FPC must be no higher than 0.714 mm and the actual dry fit must preserve at least 0.20 mm clearance. All five U.FL bodies end at y=17.1 mm and the slot begins at y=23.0 mm, leaving 5.9 mm between them. Neither the FPC nor ZIF carries panel load. A custom contour is allowed only if the PCBA factory itself confirms manufacture and installation inside the order; no external converter is required.",
+            "The panel bonds through one ready-stock 3M (TC) 4910SQ-2(5) square measuring 50.80×50.80×1.016 mm, first located on the PCB by its own silkscreen frame at [14.60, 44.46]. It supports 2580.64 mm², or about 53.7% of the stiff panel plan; cutting, a custom die-cut, side shoulders, upper tape strip and separate clamp are unnecessary. After the tongue crosses the slot and the upper liner is removed, a second DISPLAY 56.54×84.96-mm frame with an FPC-UP mark locates the panel. The upper FPC zone remains adhesive-free; only its 25.50±0.15-mm tongue crosses one rounded 27.00×1.20-mm PCB slot into the inner ZIF at [26.5, 25.0]. The 3M ±10% tolerance makes the minimum thickness 0.914 mm, so the current-lot folded FPC must be no higher than 0.714 mm and the actual dry fit must preserve at least 0.20 mm clearance. All five U.FL bodies end at y=17.1 mm and the slot begins at y=23.0 mm, leaving 5.9 mm between them. Neither the FPC nor ZIF carries panel load. A custom contour is allowed only if the PCBA factory itself confirms manufacture and installation inside the order; no external converter is required.",
             "ESP32-DIV v2 seats its raw 2.8-inch display directly on the main PCB while its 18-contact FPC is soldered to long SMD lands without a ZIF. Four 1.2-mm holes around the display zone remain empty on the assembled device and do not retain the panel. The public Gerbers, PcbDoc, BOM, 3D model and photograph do not disclose the actual retention method; hidden PSA or double-sided tape is plausible but unproven. Leshy2 therefore does not copy DIV's unknown mechanics and defines its own positive load path with a serviceable non-load-bearing ZIF.",
         ]
         audit_lines = [

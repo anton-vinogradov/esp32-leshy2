@@ -150,8 +150,8 @@ def build() -> dict:
         errors.append("functional authority is not the exact six-domain R2 model")
     if pins.get("marker") != "H1-R2.31" or pins.get("authority_chain", {}).get("remaining_h2_gates") != []:
         errors.append("pin authority is not the closed H1-R2.31 map")
-    if physical.get("marker") != "H1-R2.38" or physical.get("status") != "reviewed":
-        errors.append("physical authority is not reviewed H1-R2.38")
+    if physical.get("marker") != "H1-R2.39" or physical.get("status") != "reviewed":
+        errors.append("physical authority is not reviewed H1-R2.39")
     if c5.get("production_mux_route", {}).get("selection_status") != "accepted":
         errors.append("H2-R2.0.1 live C5 mux route is not accepted")
     if c5.get("ownership", {}).get("detector_latch_implementation", {}).get("selection_status") != "accepted":

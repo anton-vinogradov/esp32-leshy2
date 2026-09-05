@@ -4,7 +4,7 @@
 
 The exact H2-R2.1.5 input is reviewed: `2` projects, `22` sheets, `1208` fitted symbols, `4306` physical pins and `789` nets. Every input is hash-bound; any change closes reproducibility until regeneration.
 
-Freeze SHA-256: `6c3079a76c1b609bf53107e546b7615f01c2271e43291329e9813e85cd090b27`
+Freeze SHA-256: `a272d4525b429545137db582afc1cb7295173cb8d099f54a1cefb240ac277c54`
 
 | Workstream | Primary scope | Sheets | Pass rule |
 |---|---|---:|---|

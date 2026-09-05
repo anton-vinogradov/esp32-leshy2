@@ -34,15 +34,15 @@ UNIFIED_COORDINATE_TABLE_OUTPUT = REPO / "hardware/product-design/generated/H1-u
 EXTERNAL_ACCEPTANCE_OUTPUT = REPO / "hardware/product-design/generated/H1-external-face-acceptance.json"
 CROSS_VIEW_ACCEPTANCE_OUTPUT = REPO / "hardware/product-design/generated/H1-cross-view-acceptance.json"
 
-BOARD_W = 75.0
+BOARD_W = 80.0
 BOARD_H = 150.0
-DISPLAY_X = 9.23
 DISPLAY_Y = 10.5
 DISPLAY_W = 56.54
 DISPLAY_H = 84.96
+DISPLAY_X = (BOARD_W - DISPLAY_W) / 2
 MOUNT_HOLE_D = 2.7
 MOUNT_KEEPOUT_R = 4.0
-HOLES = ((5.0, 11.0), (70.0, 11.0), (5.0, 145.0), (70.0, 145.0))
+HOLES = ((5.0, 11.0), (BOARD_W - 5.0, 11.0), (5.0, 145.0), (BOARD_W - 5.0, 145.0))
 
 INTERBOARD_GAP_MM = 11.0
 MIN_INTERBOARD_Z_CLEARANCE_MM = 0.7
@@ -50,7 +50,7 @@ INTENTIONAL_INTERBOARD_MATES = {
     ("m1_ui_plug", "m1_rf_receptacle"),
 }
 
-U214_X = -4.5
+U214_X = (BOARD_W - 84.0) / 2
 U214_Y = 17.02
 U214_W = 84.0
 U214_H = 24.0
@@ -86,31 +86,31 @@ RF_BODY_D = 6.0
 RF_BARREL_D = 6.35
 RF_BARREL_OUT = 11.4
 FRONT_RF = (
-    (8.1, "N24-0", "SMA"),
-    (22.8, "S3-2G4", "RP-SMA"),
-    (37.5, "N24-1", "SMA"),
-    (52.2, "C5-2G4/5", "RP-SMA"),
-    (66.9, "N24-2", "SMA"),
+    (10.6, "N24-0", "SMA"),
+    (25.3, "S3-2G4", "RP-SMA"),
+    (40.0, "N24-1", "SMA"),
+    (54.7, "C5-2G4/5", "RP-SMA"),
+    (69.4, "N24-2", "SMA"),
 )
 REAR_RF = (
     # Five 10.2-mm SMA bodies use equal 14.7-mm pitch.
-    (8.1, "RX-FM/SW", "SMA"),
-    (22.8, "RX-AM/LW", "SMA"),
-    (37.5, "CC-SUB", "SMA"),
-    (52.2, "VOICE-VHF", "SMA"),
-    (66.9, "VOICE-UHF", "SMA"),
+    (10.6, "RX-FM/SW", "SMA"),
+    (25.3, "RX-AM/LW", "SMA"),
+    (40.0, "CC-SUB", "SMA"),
+    (54.7, "VOICE-VHF", "SMA"),
+    (69.4, "VOICE-UHF", "SMA"),
 )
-VOICE_V_RF_CORRIDOR = ((52.2, 0.0), (20.25, 32.52))
+VOICE_V_RF_CORRIDOR = ((54.7, 0.0), (20.25, 32.52))
 VOICE_U_RF_CORRIDOR = (
-    (66.9, 0.0),
-    (66.9, 6.0),
-    (61.5, 6.0),
-    (61.5, 30.0),
+    (69.4, 0.0),
+    (69.4, 6.0),
+    (66.5, 6.0),
+    (66.5, 30.0),
     (71.2, 36.95),
 )
 OPPOSITE_FACE_CLEARANCE_MM = 1.5
 
-# H1-R2.38 fail-closed placement scope. These are the already accepted G2F-3I
+# H1-R2.39 fail-closed placement scope. These are the already accepted G2F-3I
 # Cap-Bus protection/control and hardware TX-evidence aggregate bodies. The
 # values bind each instance to its current exact device key: a substitution,
 # omitted coordinate or duplicate projection must fail generation.
@@ -210,10 +210,10 @@ RF_USER_LABEL_LINES = {
 # drawing input lets the geometry audit reject silk hidden by a connector,
 # cable, display, Cap or mounting keep-out instead of relying on hand tuning.
 RF_COMPACT_LABEL_POSITIONS = {
-    "N24-0": (12.3, 7.8),
-    "N24-2": (62.7, 7.8),
-    "RX-FM/SW": (15.5, 7.8),
-    "VOICE-UHF": (59.0, 7.8),
+    "N24-0": (14.8, 7.8),
+    "N24-2": (65.2, 7.8),
+    "RX-FM/SW": (18.0, 7.8),
+    "VOICE-UHF": (64.0, 7.8),
 }
 TX_RF_PATHS = {
     "S3-2G4", "C5-2G4/5", "N24-0", "CC-SUB", "N24-1", "VOICE-VHF", "VOICE-UHF", "N24-2"
@@ -231,22 +231,22 @@ TX_LED_INSTANCES = {
     "N24-2": "nrf2_tx_led",
 }
 FRONT_FACE_INDICATORS = (
-    ("s3_tx_led", "WI-FI/BLE", 5.1, 104.5),
-    ("c5_tx_led", "WI-FI/15.4", 20.9, 104.5),
-    ("nrf0_tx_led", "nRF24-1", 36.7, 104.5),
-    ("nrf1_tx_led", "nRF24-2", 52.5, 104.5),
-    ("nrf2_tx_led", "nRF24-3", 68.3, 104.5),
-    ("cc_tx_led", "SUB-GHz", 5.1, 111.0),
-    ("voice_tx_led", "V/U TX", 20.9, 111.0),
-    ("ir_tx_led", "IR", 36.7, 111.0),
-    ("ext_tx_led", "LORA/EXT", 52.5, 111.0),
-    ("fault_led", "FAULT", 68.3, 111.0),
+    ("s3_tx_led", "WI-FI/BLE", 7.6, 104.5),
+    ("c5_tx_led", "WI-FI/15.4", 23.4, 104.5),
+    ("nrf0_tx_led", "nRF24-1", 39.2, 104.5),
+    ("nrf1_tx_led", "nRF24-2", 55.0, 104.5),
+    ("nrf2_tx_led", "nRF24-3", 70.8, 104.5),
+    ("cc_tx_led", "SUB-GHz", 7.6, 111.0),
+    ("voice_tx_led", "V/U TX", 23.4, 111.0),
+    ("ir_tx_led", "IR", 39.2, 111.0),
+    ("ext_tx_led", "LORA/EXT", 55.0, 111.0),
+    ("fault_led", "FAULT", 70.8, 111.0),
 )
 PROJECT_REPOSITORY_URL = "github.com/anton-vinogradov/esp32-leshy2"
 OUTER_FACE_PRODUCT_MARKS = (
-    ("front", "Леший", 37.5, 99.5, 10.5),
-    ("rear", "ESP32-LESHY2", 37.5, 136.0, 7.5),
-    ("rear", PROJECT_REPOSITORY_URL, 37.5, 142.0, 5.0),
+    ("front", "Леший", BOARD_W / 2, 99.5, 10.5),
+    ("rear", "ESP32-LESHY2", BOARD_W / 2, 136.0, 7.5),
+    ("rear", PROJECT_REPOSITORY_URL, BOARD_W / 2, 142.0, 5.0),
 )
 
 # Every directional interface that crosses the enclosure is rendered here.
@@ -382,12 +382,12 @@ class Reserve:
 
 UI_INNER = (
     Placement("s3_rf_coupler", 15.2, 6.2, "S3 forward-power coupler beside the outward RP-SMA"),
-    Placement("c5_rf_coupler", 58.2, 6.2, "C5 dual-band forward-power coupler beside the outward RP-SMA"),
+    Placement("c5_rf_coupler", 63.2, 6.2, "C5 dual-band forward-power coupler beside the outward RP-SMA"),
     Placement("s3_rf_board_connector", 14.5, 9.0, "S3 30-mm jumper board receptacle"),
-    Placement("c5_rf_board_connector", 57.5, 9.0, "C5 30-mm jumper board receptacle"),
+    Placement("c5_rf_board_connector", 62.5, 9.0, "C5 30-mm jumper board receptacle"),
     Placement("s3", 5.3, 22.0, "UI, display, storage and audio owner; shifted 0.7 mm outward for the central display ZIF corridor"),
-    Placement("c5", 51.7, 22.0, "native 2.4/5-GHz and IR owner; shifted 0.7 mm outward for the central display ZIF corridor"),
-    Placement("display_connector", 24.0, 25.0, "direct 50-contact dual-contact ZIF behind the folded display FPC slot; pin 1 at world x-min"),
+    Placement("c5", 56.7, 22.0, "native 2.4/5-GHz and IR owner; shifted into the widened right routing field"),
+    Placement("display_connector", 26.5, 25.0, "direct 50-contact dual-contact ZIF behind the folded display FPC slot; pin 1 at world x-min"),
     Placement("slow_io", 24.0, 55.0, "24-line slow-control expander"),
     Placement("ui_matrix_io", 33.0, 55.0, "sixteen-line direct-control input expander"),
     Placement("codec", 42.0, 55.0, "audio capture and playback codec"),
@@ -403,7 +403,7 @@ UI_INNER = (
     Placement("safe_reset_sink_a", 18.0, 82.0, "UI-local S3/C5 passive-drain reset sinks"),
     Placement("safe_c5_reset_buffer", 22.0, 82.0, "UI-local RUN_PERMIT C5 reset inverter"),
     Placement("safe_c5_fault_reset_buffer", 25.0, 82.0, "UI-local direct FAULT_ASSERT_N C5 reset sink"),
-    Placement("headphone_jack", 60.4, 76.0, "3.5-mm CTIA headset TRRS mid-mount connector"),
+    Placement("headphone_jack", 65.4, 76.0, "3.5-mm CTIA headset TRRS mid-mount connector"),
     Placement("headset_control_io", 54.2, 77.0, "dedicated 0x39 headset source controller and seven reserve I/O lines"),
     Placement("m1_ui_plug", 22.2, 119.0, "80-contact M1 plug; 11-mm board stack"),
     Placement("c5_service_usb_connector", 27.0, 142.65, "C5 data-only service USB"),
@@ -412,8 +412,8 @@ UI_INNER = (
     Placement("s3_reset_button", 0.0, 115.0, "external left-side S3 RESET service control", 90),
     Placement("s3_boot_button", 0.0, 122.0, "external left-side S3 BOOT service control", 90),
     Placement("c5_dbg_header", 47.0, 104.0, "keyed C5 UART0/RESET/BOOT header"),
-    Placement("c5_reset_button", 71.6, 115.0, "external right-side C5 RESET service control", 270),
-    Placement("c5_boot_button", 71.6, 122.0, "external right-side C5 BOOT service control", 270),
+    Placement("c5_reset_button", 76.6, 115.0, "external right-side C5 RESET service control", 270),
+    Placement("c5_boot_button", 76.6, 122.0, "external right-side C5 BOOT service control", 270),
 )
 
 # Exact module-side axes come from the Espressif package drawings. The visible
@@ -428,7 +428,7 @@ UI_RF_CABLES = (
     ),
     CableRoute(
         "c5_rf_jumper",
-        ((66.7, 24.38), (59.0, 10.55)),
+        ((71.7, 24.38), (64.0, 10.55)),
         "direct C5 U.FL-to-U.FL plan projection; 30-mm assembly slack closes at H5",
     ),
 )
@@ -444,7 +444,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "ui-inner",
         "s3_rf_board_connector",
         "s3_external_rp_sma",
-        ((16.0, 10.55), (22.8, 6.62), (22.8, 0.0)),
+        ((16.0, 10.55), (25.3, 6.62), (25.3, 0.0)),
         "S3 board U.FL through forward coupler to outward S3 RP-SMA",
     ),
     AntennaTopologyGuide(
@@ -453,7 +453,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "ui-inner",
         "c5_rf_board_connector",
         "c5_external_rp_sma",
-        ((59.0, 10.55), (52.2, 6.62), (52.2, 0.0)),
+        ((64.0, 10.55), (54.7, 6.62), (54.7, 0.0)),
         "C5 board U.FL through forward coupler to outward C5 RP-SMA",
     ),
     AntennaTopologyGuide(
@@ -462,7 +462,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "ui-inner",
         "receiver",
         "receiver_fmsw_external_sma",
-        ((51.0, 54.8), (13.5, 49.0), (13.5, 6.0), (8.1, 6.0), (8.1, 0.0)),
+        ((51.0, 54.8), (16.0, 49.0), (16.0, 6.0), (10.6, 6.0), (10.6, 0.0)),
         "Si4732 FMI matching and protection to outward FM/SW SMA",
     ),
     AntennaTopologyGuide(
@@ -471,7 +471,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "ui-inner",
         "receiver",
         "receiver_amlw_external_sma",
-        ((51.0, 56.2), (22.8, 52.0), (22.8, 0.0)),
+        ((51.0, 56.2), (25.3, 52.0), (25.3, 0.0)),
         "Si4732 AMI coupling and protection to outward AM/LW SMA",
     ),
     AntennaTopologyGuide(
@@ -480,7 +480,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "rf-inner",
         "nrf0_rf_board_connector",
         "nrf0_external_sma",
-        ((24.5, 29.55), (9.5, 29.55), (9.5, 5.0), (8.1, 5.0), (8.1, 0.0)),
+        ((24.5, 29.55), (12.0, 29.55), (12.0, 5.0), (10.6, 5.0), (10.6, 0.0)),
         "nRF24 #0 board U.FL through forward coupler to outward SMA",
     ),
     AntennaTopologyGuide(
@@ -489,7 +489,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "rf-inner",
         "nrf1_rf_board_connector",
         "nrf1_external_sma",
-        ((51.5, 29.55), (51.75, 27.0), (51.75, 5.0), (37.5, 5.0), (37.5, 0.0)),
+        ((56.5, 29.55), (56.75, 27.0), (56.75, 5.0), (40.0, 5.0), (40.0, 0.0)),
         "nRF24 #1 board U.FL through forward coupler to outward SMA",
     ),
     AntennaTopologyGuide(
@@ -498,7 +498,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "rf-inner",
         "nrf2_rf_board_connector",
         "nrf2_external_sma",
-        ((71.5, 23.55), (65.2, 27.5), (65.2, 5.0), (66.9, 5.0), (66.9, 0.0)),
+        ((76.5, 23.55), (70.2, 27.5), (70.2, 5.0), (69.4, 5.0), (69.4, 0.0)),
         "nRF24 #2 board U.FL through forward coupler to outward SMA",
     ),
     AntennaTopologyGuide(
@@ -507,7 +507,7 @@ ANTENNA_TOPOLOGY_GUIDES = (
         "rf-inner",
         "cc",
         "cc_external_sma",
-        ((19.0, 10.3), (37.5, 5.0), (37.5, 0.0)),
+        ((24.0, 10.3), (40.0, 5.0), (40.0, 0.0)),
         "CC1101 selected matching branch to outward Sub-GHz SMA",
     ),
     AntennaTopologyGuide(
@@ -532,15 +532,15 @@ ANTENNA_TOPOLOGY_GUIDES = (
 
 RF_INNER = (
     Placement("nrf0_rf_board_connector", 23.0, 28.0, "nRF24 #0 Gen1 jumper board receptacle"),
-    Placement("nrf1_rf_board_connector", 47.9, 28.0, "nRF24 #1 Gen1 jumper board receptacle"),
-    Placement("nrf2_rf_board_connector", 70.0, 22.0, "nRF24 #2 Gen1 jumper board receptacle"),
+    Placement("nrf1_rf_board_connector", 52.9, 28.0, "nRF24 #1 Gen1 jumper board receptacle"),
+    Placement("nrf2_rf_board_connector", 75.0, 22.0, "nRF24 #2 Gen1 jumper board receptacle"),
     Placement("rp", 0.0, 32.2, "deterministic radio owner"),
     Placement("nrf0", 9.0, 7.5, "full-function nRF24 radio #0"),
-    Placement("nrf1", 34.5, 7.5, "full-function nRF24 radio #1; clear of the CC reference zone and U214 socket tails"),
-    Placement("nrf2", 49.9, 7.5, "full-function nRF24 radio #2; clear of the top-right mounting keep-out"),
+    Placement("nrf1", 39.5, 7.5, "full-function nRF24 radio #1; clear of the CC reference zone and U214 socket tails"),
+    Placement("nrf2", 54.9, 7.5, "full-function nRF24 radio #2; clear of the top-right mounting keep-out"),
     Placement("voice_v", 15.8, 32.52, "VHF 134-174-MHz SA818S-V; dedicated contact-12 RF path", 180),
     Placement("voice", 52.2, 32.5, "UHF 400-480-MHz SA818S-U; dedicated contact-12 RF path", 270),
-    Placement("cc", 25.0, 8.3, "multi-band sub-GHz transceiver inside its local reference RF zone"),
+    Placement("cc", 30.0, 8.3, "multi-band sub-GHz transceiver inside its local reference RF zone"),
     Placement("nvdc_charger", 1.0, 63.0, "2S charger and NVDC power path"),
     Placement("pack_gauge", 1.0, 84.0, "2S protection and fuel gauge"),
     Placement("pack_admission", 5.7, 84.0, "fail-closed battery admission MCU"),
@@ -578,7 +578,7 @@ RF_INNER = (
     Placement("rp_dbg_header", 40.0, 104.0, "keyed RP SWD/RUN/USB_BOOT header"),
     Placement("rp_reset_button", 0.0, 106.0, "external left-side RP RUN/RESET service control", 90),
     Placement("rp_boot_button", 0.0, 113.0, "external left-side RP USB_BOOT service control", 90),
-    Placement("power_command_switch", 65.8, 111.0, "single low-current RUN/KILL; charging remains available in KILL"),
+    Placement("power_command_switch", 70.8, 111.0, "single low-current RUN/KILL; charging remains available in KILL"),
 
     Placement("voice_band_io", 44.0, 68.8, "TCA9534A UHF/VHF selector and deterministic reset straps"),
     Placement("voice_control_mux_a", 49.7, 68.8, "selected-module UART multiplexer"),
@@ -707,14 +707,14 @@ RF_NRF_CABLE_RESERVES = (
         "nrf1_rf_jumper",
         "nrf1",
         "nrf1_rf_board_connector",
-        ((34.5, 20.0), (49.4, 29.55)),
+        ((39.5, 20.0), (54.4, 29.55)),
         "direct nRF24 #1 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
     ),
     CableReserve(
         "nrf2_rf_jumper",
         "nrf2",
         "nrf2_rf_board_connector",
-        ((64.5, 23.55), (71.5, 23.55)),
+        ((69.5, 23.55), (76.5, 23.55)),
         "direct nRF24 #2 IPEX-zone-to-board-U.FL projection; module axis closes at H5",
     ),
 )
@@ -724,20 +724,20 @@ SIDE_FUNCTION_CONTROLS = (
     Placement("ui_switch_f2", 1.8, 33.0, "front-left function F2"),
     Placement("ui_switch_f3", 1.8, 46.5, "front-left function F3"),
     Placement("ui_switch_f4", 1.8, 60.0, "front-left function F4"),
-    Placement("ui_switch_f5", 66.6, 19.5, "front-right function F5"),
-    Placement("ui_switch_f6", 66.6, 33.0, "front-right function F6"),
-    Placement("ui_switch_f7", 66.6, 46.5, "front-right function F7"),
-    Placement("ui_switch_f8", 66.6, 60.0, "front-right function F8"),
+    Placement("ui_switch_f5", 71.6, 19.5, "front-right function F5"),
+    Placement("ui_switch_f6", 71.6, 33.0, "front-right function F6"),
+    Placement("ui_switch_f7", 71.6, 46.5, "front-right function F7"),
+    Placement("ui_switch_f8", 71.6, 60.0, "front-right function F8"),
 )
 
 BOTTOM_NAV_CONTROLS = (
     Placement("ui_switch_back", 11.0, 129.4, "direct-press BACK"),
-    Placement("ui_dpad_up", 34.2, 120.4, "direct-press navigation UP"),
-    Placement("ui_dpad_down", 34.2, 138.4, "direct-press navigation DOWN"),
-    Placement("ui_dpad_left", 25.2, 129.4, "direct-press navigation LEFT"),
-    Placement("ui_dpad_right", 43.2, 129.4, "direct-press navigation RIGHT"),
-    Placement("ui_dpad_ok", 34.2, 129.4, "direct-press navigation OK"),
-    Placement("ui_switch_opt", 57.4, 129.4, "direct-press OPT"),
+    Placement("ui_dpad_up", 36.7, 120.4, "direct-press navigation UP"),
+    Placement("ui_dpad_down", 36.7, 138.4, "direct-press navigation DOWN"),
+    Placement("ui_dpad_left", 27.7, 129.4, "direct-press navigation LEFT"),
+    Placement("ui_dpad_right", 45.7, 129.4, "direct-press navigation RIGHT"),
+    Placement("ui_dpad_ok", 36.7, 129.4, "direct-press navigation OK"),
+    Placement("ui_switch_opt", 62.4, 129.4, "direct-press OPT"),
 )
 
 FRONT_CONTROLS = SIDE_FUNCTION_CONTROLS + BOTTOM_NAV_CONTROLS
@@ -746,7 +746,7 @@ DIRECT_PRESS_FRONT_CONTROLS = {item.instance for item in FRONT_CONTROLS}
 
 REAR_CONTROLS = (
     Placement("encoder", 2.15, 44.5, "rear through-hole encoder"),
-    Placement("ptt_switch", 64.2, 63.5, "rear independent PTT"),
+    Placement("ptt_switch", 69.2, 63.5, "rear independent PTT"),
 )
 
 DIRECT_PRESS_REAR_CONTROLS = {"ptt_switch"}
@@ -763,7 +763,7 @@ REAR_SELECTED_ACTUATORS = (
 INTERNAL_RESERVES = (
     Reserve(
         "cc-reference-rf-network",
-        24.3,
+        29.3,
         7.5,
         9.5,
         17.5,
@@ -918,7 +918,7 @@ def load() -> tuple[dict, dict, dict, dict, dict, dict]:
     display_mount_design = json.loads(DISPLAY_MOUNT_DESIGN_PATH.read_text(encoding="utf-8"))
     assembly_coordinate_model = json.loads(ASSEMBLY_COORDINATE_MODEL_PATH.read_text(encoding="utf-8"))
     instances = dict(candidate["instances"])
-    # H1-R2.38 owns the physical display endpoint.  The reviewed G2F-3I
+    # H1-R2.39 owns the physical display endpoint.  The reviewed G2F-3I
     # electrical candidate remains the superseded H2 input until the next
     # phase rewires its display sheet to the accepted direct 50-contact map.
     instances["display"] = "eastrising_er_tft035ips_6_ctp"
@@ -1042,7 +1042,7 @@ def interboard_individual_clearances(
 
 
 def mirrored_x(x: float, width: float = 0.0) -> float:
-    """Mirror a point or left edge across the 75-mm board centreline."""
+    """Mirror a point or left edge across the 80-mm board centreline."""
     return BOARD_W - x - width
 
 
@@ -1390,7 +1390,7 @@ def validate_items(name: str, items: tuple[Placement, ...], devices: dict, insta
         rectangle = (item.x, item.y, w, h)
         rectangles.append((item, rectangle))
         if item.x < 0 or item.y < 0 or item.x + w > BOARD_W + 0.001 or item.y + h > BOARD_H + 0.001:
-            errors.append(f"{name}: {item.instance} is outside the 75x150-mm board")
+            errors.append(f"{name}: {item.instance} is outside the 80x150-mm board")
         for hole in HOLES:
             if hits_hole(rectangle, hole):
                 errors.append(f"{name}: {item.instance} enters the M2.5 keep-out at {hole}")
@@ -1704,7 +1704,7 @@ def validate_reserves(name: str, reserves: tuple[Reserve, ...]) -> list[str]:
             errors.append(f"{name}: {reserve.name} has invalid reserve class {reserve.reserve_class}")
         rectangle = (reserve.x, reserve.y, reserve.w, reserve.h)
         if reserve.x < 0 or reserve.y < 0 or reserve.x + reserve.w > BOARD_W or reserve.y + reserve.h > BOARD_H:
-            errors.append(f"{name}: {reserve.name} is outside the 75x150-mm board")
+            errors.append(f"{name}: {reserve.name} is outside the 80x150-mm board")
         for hole in HOLES:
             if hits_hole(rectangle, hole):
                 errors.append(f"{name}: {reserve.name} enters the M2.5 keep-out at {hole}")
@@ -1871,7 +1871,7 @@ def validate_source_research() -> list[str]:
     errors: list[str] = []
     if data.get("schema_version") != 1 or data.get("stage") != "H1.1.3.3":
         errors.append("source-research: schema/stage mismatch")
-    if data.get("status") != "reviewed" or data.get("current_substep") != "H1-R2.38":
+    if data.get("status") != "reviewed" or data.get("current_substep") != "H1-R2.39":
         errors.append("source-research: exact current substep drifted")
     policy = data.get("policy", {})
     if policy.get("order_authorized") is not False:
@@ -1976,7 +1976,7 @@ def validate_display_mount_design(
     errors: list[str] = []
     if design.get("schema_version") != 1 or design.get("design_id") != "L2-DISP-DIRECT-001-A":
         errors.append("display-mount: schema/design identity mismatch")
-    if design.get("stage") != "H1-R2.38":
+    if design.get("stage") != "H1-R2.39":
         errors.append("display-mount: exact source-research stage drifted")
     rows = design.get("components", [])
     if len(rows) != 1 or rows[0].get("instance") != "display_connector":
@@ -2084,7 +2084,9 @@ def validate_display_mount_design(
         or not math.isclose(float(fpc_route.get("supported_panel_area_fraction", 0)), support_fraction, abs_tol=0.001)
         or support_fraction < 0.50
         or stock_rectangle != [50.8, 50.8]
-        or fpc_route.get("stock_psa_rectangle_position_mm") != [12.1, 44.46]
+        or len(fpc_route.get("stock_psa_rectangle_position_mm", [])) != 2
+        or not math.isclose(float(fpc_route["stock_psa_rectangle_position_mm"][0]), DISPLAY_X + 2.87, abs_tol=1e-9)
+        or not math.isclose(float(fpc_route["stock_psa_rectangle_position_mm"][1]), 44.46, abs_tol=1e-9)
     ):
         errors.append("display-mount: stocked rectangular PSA support geometry drifted")
     manufacturing = design.get("manufacturing_route", {})
@@ -2126,7 +2128,7 @@ def validate_display_mount_design(
         errors.append("display-mount: FPC tongue/slot lateral clearance drifted")
     if worst_lateral < 0.5:
         errors.append("display-mount: worst-case FPC tongue/slot lateral clearance is below 0.5 mm")
-    if not math.isclose(slot_x, 24.0, abs_tol=1e-9) or not math.isclose(slot_y, 23.0, abs_tol=1e-9):
+    if not math.isclose(slot_x, 26.5, abs_tol=1e-9) or not math.isclose(slot_y, 23.0, abs_tol=1e-9):
         errors.append("display-mount: slack-qualified FPC slot position drifted")
     if not math.isclose(x, slot_x, abs_tol=1e-9) or not math.isclose(y, 25.0, abs_tol=1e-9):
         errors.append("display-mount: slack-qualified direct-ZIF position drifted")
@@ -2255,7 +2257,7 @@ def validate_assembly_coordinate_model(
     if (
         model.get("schema_version") != 1
         or model.get("model_id") != "L2-ASM-COORD-001-A"
-        or model.get("stage") != "H1-R2.38"
+        or model.get("stage") != "H1-R2.39"
         or model.get("status") != "reviewed"
     ):
         errors.append("coordinate-model: schema, identity, stage or review status drifted")
@@ -2519,7 +2521,7 @@ def validate() -> list[str]:
     ):
         errors.append("CC1101 reference RF zone must align to SUB-GHz and clear the outer connector land")
     front_path_centres = {path: centre for centre, path, _ in FRONT_RF}
-    if front_path_centres.get("S3-2G4") != 22.8 or front_path_centres.get("C5-2G4/5") != 52.2:
+    if front_path_centres.get("S3-2G4") != 25.3 or front_path_centres.get("C5-2G4/5") != 54.7:
         errors.append("native RF ports must remain aligned to the two exact 30-mm jumper corridors")
     navigation_items = {
         item.instance: item
@@ -2623,7 +2625,7 @@ def validate() -> list[str]:
         ):
             errors.append(f"rear opposite faces: U214 through-hole socket conflicts with {zone.name}")
     if any(x < 0.0 or x > BOARD_W for x in U214_RETENTION_X):
-        errors.append("U214 56-mm retention pitch must remain inside the 75-mm base")
+        errors.append("U214 56-mm retention pitch must remain inside the 80-mm base")
     rear_control_by_instance = {item.instance: item for item in REAR_CONTROLS}
     holder_box = (holder.x, holder.y, holder_w, holder_h)
     for cap in REAR_CAP_RESERVES:
@@ -2939,19 +2941,19 @@ def validate() -> list[str]:
     if external_root.attrib.get("data-coordinate-model") != "L2-ASM-COORD-001-A":
         errors.append("external layout must identify the unified coordinate model")
     if (
-        external_root.attrib.get("data-review-gate") != "H1-R2.38"
+        external_root.attrib.get("data-review-gate") != "H1-R2.39"
         or external_root.attrib.get("data-review-status") != "ready-for-user-acceptance"
     ):
-        errors.append("external layout must identify the current H1-R2.38 acceptance candidate")
+        errors.append("external layout must identify the current H1-R2.39 acceptance candidate")
     face_nodes = {
         element.attrib.get("data-face"): element
         for element in external_root.iter("{http://www.w3.org/2000/svg}rect")
         if element.attrib.get("data-face")
     }
     if set(face_nodes) != {"front-outer", "rear-outer"} or any(
-        node.attrib.get("data-board-mm") != "75x150" for node in face_nodes.values()
+        node.attrib.get("data-board-mm") != "80x150" for node in face_nodes.values()
     ):
-        errors.append("external layout must retain both exact 75x150-mm outward PCB faces")
+        errors.append("external layout must retain both exact 80x150-mm outward PCB faces")
     tx_nodes = [
         element
         for element in external_root.iter("{http://www.w3.org/2000/svg}rect")
@@ -3202,7 +3204,7 @@ def render_external(devices, instances):
 
     front, rear = (80.0, 150.0), (465.0, 150.0)
     out = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790" data-coordinate-model="L2-ASM-COORD-001-A" data-review-gate="H1-R2.38" data-review-status="ready-for-user-acceptance">',
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1370" height="790" viewBox="0 0 1370 790" data-coordinate-model="L2-ASM-COORD-001-A" data-review-gate="H1-R2.39" data-review-status="ready-for-user-acceptance">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         text(30, 32, "Leshy2 — dimensioned external layout", 22, "bold"),
@@ -3210,11 +3212,11 @@ def render_external(devices, instances):
     ]
     out += board(
         front, "Front / UI face", scale, sx, sy, text, rect,
-        ' data-face="front-outer" data-board-mm="75x150"',
+        ' data-face="front-outer" data-board-mm="80x150"',
     )
     out += board(
         rear, "Rear / battery and expansion face", scale, sx, sy, text, rect,
-        ' data-face="rear-outer" data-board-mm="75x150"',
+        ' data-face="rear-outer" data-board-mm="80x150"',
     )
 
     # The raised rail occupies the same plan band as the installed Cap.  The
@@ -3232,9 +3234,9 @@ def render_external(devices, instances):
             f'<circle cx="{sx(rear,retention_x):.1f}" cy="{sy(rear,U214_RETENTION_Y):.1f}" '
             f'r="{1.6*scale:.1f}" fill="#ffffff" stroke="#0369a1" stroke-width="1.2"/>'
         )
-    out.append(text(sx(rear,37.5), sy(rear,U214_Y + 8.0), "M5Stack U214 · installed worst-case · 84×24 mm", 6.3, "bold", "middle", "#9a3412"))
-    out.append(text(sx(rear,37.5), sy(rear,U214_Y + 12.5), "shared Cap-Bus rail · HLE-107-02-G-DV-PE-LC beneath", 5.0, "bold", "middle", "#075985"))
-    out.append(text(sx(rear,37.5), sy(rear,U214_Y + 17.0), "insert ⊗ · remove ⊙", 6.2, anchor="middle", colour="#dc2626"))
+    out.append(text(sx(rear,40.0), sy(rear,U214_Y + 8.0), "M5Stack U214 · installed worst-case · 84×24 mm", 6.3, "bold", "middle", "#9a3412"))
+    out.append(text(sx(rear,40.0), sy(rear,U214_Y + 12.5), "shared Cap-Bus rail · HLE-107-02-G-DV-PE-LC beneath", 5.0, "bold", "middle", "#075985"))
+    out.append(text(sx(rear,40.0), sy(rear,U214_Y + 17.0), "insert ⊗ · remove ⊙", 6.2, anchor="middle", colour="#dc2626"))
     out.append('<g id="rear-outer-rf-bank" data-mount-face="rf-pcb-outer">')
     out += rf_bank(rear, REAR_RF, scale, sx, sy, silk_text, rect, True, True, compact_label_y=7.8)
     out.append('</g>')
@@ -3257,10 +3259,10 @@ def render_external(devices, instances):
     out.append(rect(front, display.x, display.y, dw, dh, "#eff6ff", "#2563eb", rx=5))
     out.append(rect(front, active_x, active_y, active_w, active_h, "#bfdbfe", "#1d4ed8", rx=3))
     out.append(rect(front, view_x, view_y, view_w, view_h, "none", "#60a5fa", "3 2", 3))
-    out.append(text(sx(front,37.5), sy(front,50.5), "ER-TFT035IPS-6", 9, "bold", "middle", "#1d4ed8"))
-    out.append(text(sx(front,37.5), sy(front,55.5), "+ ER-TPC035-6 · DISPLAY / TOUCH", 6.5, "bold", "middle", "#1d4ed8"))
-    out.append(text(sx(front,37.5), sy(front,60.5), "56.54×84.96×3.76 mm · ACTIVE 48.96×73.44", 6.2, anchor="middle", colour="#1d4ed8"))
-    out.append(text(sx(front,37.5), sy(front,65.5), "touch / view ⊗", 6.5, anchor="middle", colour="#dc2626"))
+    out.append(text(sx(front,40.0), sy(front,50.5), "ER-TFT035IPS-6", 9, "bold", "middle", "#1d4ed8"))
+    out.append(text(sx(front,40.0), sy(front,55.5), "+ ER-TPC035-6 · DISPLAY / TOUCH", 6.5, "bold", "middle", "#1d4ed8"))
+    out.append(text(sx(front,40.0), sy(front,60.5), "56.54×84.96×3.76 mm · ACTIVE 48.96×73.44", 6.2, anchor="middle", colour="#1d4ed8"))
+    out.append(text(sx(front,40.0), sy(front,65.5), "touch / view ⊗", 6.5, anchor="middle", colour="#dc2626"))
     out.append('<g id="front-outer-rf-bank" data-mount-face="ui-pcb-outer">')
     out += rf_bank(front, FRONT_RF, scale, sx, sy, silk_text, rect, True, True, compact_label_y=7.8)
     out.append('</g>')
@@ -3304,11 +3306,11 @@ def render_external(devices, instances):
             )
         )
     for label_x, label_y, label in (
-        (37.5, 119.1, "▲"),
-        (37.5, 147.8, "▼"),
-        (23.9, 133.2, "◀"),
-        (51.1, 133.2, "▶"),
-        (33.2, 127.9, "OK"),
+        (40.0, 119.1, "▲"),
+        (40.0, 147.8, "▼"),
+        (26.4, 133.2, "◀"),
+        (53.6, 133.2, "▶"),
+        (35.7, 127.9, "OK"),
     ):
         out.append(silk_text(sx(front,label_x), sy(front,label_y), label, 4.2, "bold", "middle", "#4c1d95"))
     front_control_by_instance = {item.instance: item for item in FRONT_CONTROLS}
@@ -3341,16 +3343,16 @@ def render_external(devices, instances):
         if instance in EXTERNAL_SERVICE_BUTTONS:
             stroke = "#7c3aed"
         if instance in EXTERNAL_SERVICE_BUTTONS:
-            start_x, end_x = (-7.0, SERVICE_BUTTON_RECESS_MM) if side == "left" else (82.0, BOARD_W - SERVICE_BUTTON_RECESS_MM)
+            start_x, end_x = (-7.0, SERVICE_BUTTON_RECESS_MM) if side == "left" else (BOARD_W + 7.0, BOARD_W - SERVICE_BUTTON_RECESS_MM)
         else:
-            start_x, end_x = (0.0, -7.0) if side == "left" else (75.0, 82.0)
+            start_x, end_x = (0.0, -7.0) if side == "left" else (BOARD_W, BOARD_W + 7.0)
         out.append(f'<path d="M{sx(front,start_x):.1f} {sy(front,coordinate):.1f} L{sx(front,end_x):.1f} {sy(front,coordinate):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
         # The selected CTP spans x=9.23..65.77 mm. Side-interface labels use
         # the remaining unobscured outer gutters, never the screen area.
         if instance in EXTERNAL_SERVICE_BUTTONS:
-            label_x = 7.0 if side == "left" else 68.0
+            label_x = 7.0 if side == "left" else BOARD_W - 7.0
         else:
-            label_x = 5.125 if side == "left" else 69.875
+            label_x = 5.125 if side == "left" else BOARD_W - 5.125
         lines = SIDE_INTERFACE_LABEL_LINES[instance]
         first_y = coordinate - 1.3 * (len(lines) - 1)
         for line_index, line in enumerate(lines):
@@ -3361,7 +3363,7 @@ def render_external(devices, instances):
         out.append(f'<path d="M{sx(front,x):.1f} {sy(front,150):.1f} L{sx(front,x):.1f} {sy(front,157):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
         out.append(silk_text(sx(front,x), sy(front,149), label, 4.2, "bold", "middle", "#1d4ed8"))
 
-    holder = Placement("pack_holder", 17.6, PACK_HOLDER_Y, "holder", 90)
+    holder = Placement("pack_holder", 20.1, PACK_HOLDER_Y, "holder", 90)
     hw, hh = placement_size(holder, devices, instances)
     # The manufacturer's plastic body is 77.06 mm long.  The 86.00-mm value
     # is the PCB pad span, not a second body envelope.  Draw both so the SMT
@@ -3383,8 +3385,8 @@ def render_external(devices, instances):
             f'H{sx(rear,cradle_x+cradle_w):.1f}" stroke="#ea580c" stroke-width="2" '
             'data-layer="mechanical-reference" data-part="enclosure-holder-end-stop"/>'
         )
-    out.append(text(sx(rear,37.5), sy(rear,126), "1048P body 77.1 · SMT pad span 86.0", 6.1, "bold", "middle", "#166534"))
-    for cell_instance, cell_x in (("pack_cell0", 28.0), ("pack_cell1", 47.0)):
+    out.append(text(sx(rear,40.0), sy(rear,126), "1048P body 77.1 · SMT pad span 86.0", 6.1, "bold", "middle", "#166534"))
+    for cell_instance, cell_x in (("pack_cell0", 30.5), ("pack_cell1", 49.5)):
         cell = Placement(cell_instance, 0.0, 0.0, "protected 18650 cell", 90)
         cell_w, cell_h = placement_size(cell, devices, instances)
         cell_y = holder.y + (hh - cell_h) / 2
@@ -3435,7 +3437,7 @@ def render_external(devices, instances):
     )
     for reserve in REAR_CAP_RESERVES:
         out.append(rect(rear, reserve.x, reserve.y, reserve.w, reserve.h, "none", "#ea580c", "4 3", 3))
-    for x, y, label in ((7.5, 61.5, "ENC"), (67.5, 74.0, "PTT")):
+    for x, y, label in ((7.5, 61.5, "ENC"), (72.5, 74.0, "PTT")):
         out.append(silk_text(sx(rear,x), sy(rear,y), label, 5.0, "bold", "middle", "#4c1d95"))
 
     for instance, face, side, coordinate, label in EDGE_INTERFACES:
@@ -3445,11 +3447,11 @@ def render_external(devices, instances):
             out += service_button_projection(rear, instance, side)
         stroke = "#7c3aed" if instance in EXTERNAL_SERVICE_BUTTONS else "#ea580c"
         if instance in EXTERNAL_SERVICE_BUTTONS:
-            start_x, end_x = (-7.0, SERVICE_BUTTON_RECESS_MM) if side == "left" else (82.0, BOARD_W - SERVICE_BUTTON_RECESS_MM)
+            start_x, end_x = (-7.0, SERVICE_BUTTON_RECESS_MM) if side == "left" else (BOARD_W + 7.0, BOARD_W - SERVICE_BUTTON_RECESS_MM)
         else:
-            start_x, end_x = (0.0, -7.0) if side == "left" else (75.0, 82.0)
+            start_x, end_x = (0.0, -7.0) if side == "left" else (BOARD_W, BOARD_W + 7.0)
         out.append(f'<path d="M{sx(rear,start_x):.1f} {sy(rear,coordinate):.1f} L{sx(rear,end_x):.1f} {sy(rear,coordinate):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-        label_x = (7.0 if side == "left" else 68.0) if instance in EXTERNAL_SERVICE_BUTTONS else (5.0 if side == "left" else 70.0)
+        label_x = (7.0 if side == "left" else BOARD_W - 7.0) if instance in EXTERNAL_SERVICE_BUTTONS else (5.0 if side == "left" else BOARD_W - 5.0)
         lines = SIDE_INTERFACE_LABEL_LINES[instance]
         first_y = coordinate - 1.3 * (len(lines) - 1)
         for line_index, line in enumerate(lines):
@@ -3481,7 +3483,7 @@ def render_external(devices, instances):
     note_x = 850
     out += [
         text(note_x,105,"What this drawing proves",16,"bold"),
-        text(note_x,135,"• both 75×150-mm panels use the same millimetre scale",11),
+        text(note_x,135,"• both 80×150-mm panels use the same millimetre scale",11),
         text(note_x,158,"• every solid component envelope comes from the MPN register",11),
         text(note_x,181,"• shared Cap-Bus rail, vertical host socket and Keystone holder all fit",11),
         text(note_x,204,"• exact components clear all M2.5 hole/head keep-outs",11),
@@ -3524,7 +3526,7 @@ def render_service_access(devices, instances):
     front = (190.0, 150.0)
     rear = (700.0, 150.0)
     canvas_width = 1300.0
-    note_left = 950.0
+    note_left = 970.0
     note_width = 300.0
     note_centre = note_left + note_width / 2
     rear_right = rear[0] + BOARD_W * scale
@@ -3545,19 +3547,19 @@ def render_service_access(devices, instances):
     ]
     out += board(
         front, "Front / UI face", scale, sx, sy, text, rect,
-        ' data-face="front-outer" data-board-mm="75x150"',
+        ' data-face="front-outer" data-board-mm="80x150"',
     )
     out += board(
         rear, "Rear / battery face", scale, sx, sy, text, rect,
-        ' data-face="rear-outer" data-board-mm="75x150"',
+        ' data-face="rear-outer" data-board-mm="80x150"',
     )
 
     # Orientation cues only: the service drawing intentionally suppresses all
     # unrelated controls and RF parts so each recovery interface is legible.
     out.append(rect(front, DISPLAY_X, DISPLAY_Y, DISPLAY_W, DISPLAY_H, "#eff6ff", "#93c5fd", rx=5))
-    out.append(text(sx(front, 37.5), sy(front, 53.0), "DISPLAY", 11, "bold", "middle", "#60a5fa"))
+    out.append(text(sx(front, 40.0), sy(front, 53.0), "DISPLAY", 11, "bold", "middle", "#60a5fa"))
     out.append(rect(rear, 17.6, PACK_HOLDER_Y, 39.8, PACK_HOLDER_H, "#ecfdf3", "#86efac", rx=10))
-    out.append(text(sx(rear, 37.5), sy(rear, 85.0), "2× 18650", 11, "bold", "middle", "#4ade80"))
+    out.append(text(sx(rear, 40.0), sy(rear, 85.0), "2× 18650", 11, "bold", "middle", "#4ade80"))
 
     def side_control(origin, instance, side, silk):
         item = edge_placements[instance]
@@ -4210,7 +4212,7 @@ def render_rear_face(devices, instances):
     cap_mpn = devices[instances["u214"]]["mpn"]
     socket_mpn = devices[instances["u214_connector"]]["mpn"]
     holder_mpn = devices[instances["pack_holder"]]["mpn"]
-    holder = Placement("pack_holder", 17.6, PACK_HOLDER_Y, "battery holder", 90)
+    holder = Placement("pack_holder", 20.1, PACK_HOLDER_Y, "battery holder", 90)
     holder_w, holder_h = placement_size(holder, devices, instances)
 
     out = [
@@ -4218,7 +4220,7 @@ def render_rear_face(devices, instances):
         '<rect width="100%" height="100%" fill="#ffffff"/>',
         t(30, 34, "Leshy2 — complete rear view", 22, "bold"),
         t(30, 58, "View normal to the rear face; left and right are shown as seen by the user from behind.", 11, colour="#526076"),
-        r(0, 0, BOARD_W, BOARD_H, "#f8fafc", "#344054", rx=8, extra=' data-board-mm="75x150"'),
+        r(0, 0, BOARD_W, BOARD_H, "#f8fafc", "#344054", rx=8, extra=' data-board-mm="80x150"'),
     ]
 
     # Exact rear antenna connector bodies and outward barrels.
@@ -4248,7 +4250,7 @@ def render_rear_face(devices, instances):
     # The rail is part of the base; the Cap is the larger removable orange
     # envelope. The connector and two retention points are below the Cap.
     out += [
-        f'<g id="u214-zone" data-plan-y-mm="{U214_Y:.1f}..{U214_Y + U214_H:.1f}" data-overhang-mm="4.5" data-retention-pitch-mm="56">',
+        f'<g id="u214-zone" data-plan-y-mm="{U214_Y:.1f}..{U214_Y + U214_H:.1f}" data-overhang-mm="2.0" data-retention-pitch-mm="56">',
         r(0, U214_Y, BOARD_W, U214_H, "#e0f2fe", "#0284c7", "5 3", 4, ' data-part="raised-host-rail"'),
         r(U214_X, U214_Y, U214_W, U214_H, "#ffedd5", "#ea580c", "", 6, ' fill-opacity="0.72" data-part="installed-u214"'),
         r(U214_CONNECTOR_X, U214_CONNECTOR_Y, U214_CONNECTOR_W, U214_CONNECTOR_D, "#bae6fd", "#0369a1", "4 2", 2, ' data-part="vertical-host-socket"'),
@@ -4259,9 +4261,9 @@ def render_rear_face(devices, instances):
             'fill="#ffffff" stroke="#0369a1" stroke-width="1.5" data-part="u214-retention"/>'
         )
     out += [
-        t(x(37.5), y(U214_Y + 4.5), "removable U214 Cap · 84×24 mm", 11, "bold", "middle", "#9a3412"),
-        t(x(37.5), y(U214_Y + 9.0), "raised 75-mm rail · vertical socket beneath", 8.5, "bold", "middle", "#075985"),
-        t(x(37.5), y(U214_Y + 17.5), "insert ⊗ / remove ⊙", 8.5, "bold", "middle", "#075985"),
+        t(x(40.0), y(U214_Y + 4.5), "removable U214 Cap · 84×24 mm", 11, "bold", "middle", "#9a3412"),
+        t(x(40.0), y(U214_Y + 9.0), "raised 80-mm rail · vertical socket beneath", 8.5, "bold", "middle", "#075985"),
+        t(x(40.0), y(U214_Y + 17.5), "insert ⊗ / remove ⊙", 8.5, "bold", "middle", "#075985"),
         '</g>',
     ]
 
@@ -4271,11 +4273,11 @@ def render_rear_face(devices, instances):
         f'<g id="battery-zone" data-plan-y-mm="{PACK_HOLDER_Y:.1f}..{PACK_HOLDER_Y + PACK_HOLDER_H:.1f}" data-gap-from-u214-mm="{PACK_HOLDER_Y - U214_Y - U214_H:.1f}">',
         r(holder.x, holder.y, holder_w, holder_h, "#dcfce7", "#16a34a", "", 12, ' data-part="battery-holder"'),
     ]
-    for cell_x in (28.0, 47.0):
+    for cell_x in (30.5, 49.5):
         out.append(r(cell_x-9.3, PACK_CELL_Y, 18.6, 65.0, "#ecfdf3", "#22c55e", "", 20, ' data-part="18650-cell"'))
         out.append(t(x(cell_x), y(PACK_CELL_Y + 34.0), "18650", 10, "bold", "middle", "#166534"))
     out += [
-        t(x(37.5), y(PACK_HOLDER_Y + 82.0), "Keystone 1048P · 39.8×86 mm plan", 9, "bold", "middle", "#166534"),
+        t(x(40.0), y(PACK_HOLDER_Y + 82.0), "Keystone 1048P · 39.8×86 mm plan", 9, "bold", "middle", "#166534"),
         '</g>',
     ]
 
@@ -4299,17 +4301,17 @@ def render_rear_face(devices, instances):
         out.append(r(reserve.x, reserve.y, reserve.w, reserve.h, "#f5f3ff", "#ea580c", "5 3", 3, f' fill-opacity="0.62" data-part="{reserve.name}"'))
     for label_x, label_y, label, colour in (
         (8.0, 61.5, "ENC", "#4c1d95"),
-        (67.5, 74.0, "PTT", "#4c1d95"),
+        (72.5, 74.0, "PTT", "#4c1d95"),
     ):
         out.append(t(x(label_x), y(label_y), label, 7.0, "bold", "middle", colour))
     out.append('</g>')
 
     # Dimensions: base, Cap, overhang, retention and the two non-overlapping
     # longitudinal bands. These are documentation annotations, not silk.
-    out += h_dim(0, BOARD_W, 744, "base PCB · 75 mm")
+    out += h_dim(0, BOARD_W, 744, "base PCB · 80 mm")
     out += h_dim(U214_X, U214_X+U214_W, 773, "installed U214 worst-case · 84 mm")
-    out += h_dim(U214_X, 0, y(U214_Y)-10, "4.5")
-    out += h_dim(BOARD_W, U214_X+U214_W, y(U214_Y)-10, "4.5")
+    out += h_dim(U214_X, 0, y(U214_Y)-10, "2.0")
+    out += h_dim(BOARD_W, U214_X+U214_W, y(U214_Y)-10, "2.0")
     out += h_dim(U214_RETENTION_X[0], U214_RETENTION_X[1], 802, "retention · 56 mm")
     out += v_dim(U214_Y, U214_Y+U214_H, x(U214_X)-30, "24 mm")
     out += v_dim(PACK_HOLDER_Y, PACK_HOLDER_Y + PACK_HOLDER_H, x(BOARD_W)+52, "86 mm holder", rotate_label=True)
@@ -4321,8 +4323,8 @@ def render_rear_face(devices, instances):
         t(note_x, 170, f"✓ U214 occupies Y={U214_Y:.1f}…{U214_Y + U214_H:.1f} mm", 12, "bold", colour="#166534"),
         t(note_x, 197, f"✓ battery holder occupies Y={PACK_HOLDER_Y:.1f}…{PACK_HOLDER_Y + PACK_HOLDER_H:.1f} mm", 12, "bold", colour="#166534"),
         t(note_x, 224, f"✓ the two envelopes have a {PACK_HOLDER_Y - U214_Y - U214_H:.1f}-mm plan gap", 12, "bold", colour="#166534"),
-        t(note_x, 251, "✓ 84-mm Cap overhang is symmetric: 4.5 mm per side", 12, "bold", colour="#166534"),
-        t(note_x, 278, "✓ 56-mm retention pitch remains inside the 75-mm base", 12, "bold", colour="#166534"),
+        t(note_x, 251, "✓ 84-mm Cap overhang is symmetric: 2.0 mm per side", 12, "bold", colour="#166534"),
+        t(note_x, 278, "✓ 56-mm retention pitch remains inside the 80-mm base", 12, "bold", colour="#166534"),
         t(note_x, 305, "✓ direct buttons and exact knob clear the battery and U214", 12, "bold", colour="#166534"),
         t(note_x, 350, "Selected parts", 15, "bold"),
         t(note_x, 378, cap_mpn, 11, "bold", colour="#9a3412"),
@@ -4593,11 +4595,11 @@ def render_sandwich(devices, instances):
             t(px(-4.5) - 24, pz(0) + 5, "FRONT", 9, "bold", "end", "#1d4ed8"),
             t(px(-4.5) - 24, pz(base_rear_z) + 5, "REAR", 9, "bold", "end", "#166534"),
             r(px(DISPLAY_X), pz(0), DISPLAY_W*x_scale, depth("display")*z_scale, "#dbeafe", "#2563eb", rx=4, extra=' data-instance="display"'),
-            t(px(37.5), pz(2.15), "ER-TFT035IPS-6 + ER-TPC035-6", 8.0, "bold", "middle", "#1d4ed8"),
+            t(px(40.0), pz(2.15), "ER-TFT035IPS-6 + ER-TPC035-6", 8.0, "bold", "middle", "#1d4ed8"),
             r(px(0), pz(pcb_front_z), BOARD_W*x_scale, 1.6*z_scale, "#dcfce7", "#16a34a", rx=1, extra=' data-instance="ui-pcb"'),
             r(px(0), pz(ui_rear_z), BOARD_W*x_scale, 11.0*z_scale, "#f8fafc", "#94a3b8", "5 4", 1, ' data-board-gap-mm="11"'),
             r(px(0), pz(rf_front_z), BOARD_W*x_scale, 1.6*z_scale, "#ffedd5", "#ea580c", rx=1, extra=' data-instance="rf-pcb"'),
-            t(px(37.5), pz(ui_rear_z+5.8), "FX8C M1 · exact 11-mm board-to-board gap", 8.3, "bold", "middle", "#9d174d"),
+            t(px(40.0), pz(ui_rear_z+5.8), "FX8C M1 · exact 11-mm board-to-board gap", 8.3, "bold", "middle", "#9d174d"),
             line(px(0), pz(0), px(0), pz(max(battery_rear_z, cap_rear_z)), "#cbd5e1", "3 3"),
             line(px(75), pz(0), px(75), pz(max(battery_rear_z, cap_rear_z)), "#cbd5e1", "3 3"),
         ]
@@ -4607,9 +4609,9 @@ def render_sandwich(devices, instances):
                 f'<g id="section-u214" data-cut-y-mm="{cut_y:.0f}" data-contains="u214-no-battery">',
                 r(px(U214_X), pz(base_rear_z), U214_W*x_scale, depth("u214")*z_scale, "#ffedd5", "#ea580c", rx=5, extra=' fill-opacity="0.75" data-instance="u214"'),
                 r(px(U214_CONNECTOR_X), pz(base_rear_z), U214_CONNECTOR_W*x_scale, depth("u214_connector")*z_scale, "#bae6fd", "#0369a1", "4 2", 2, ' data-instance="u214-connector"'),
-                t(px(37.5), pz(base_rear_z+4.7), "Samtec HLE-107-02-G-DV-PE-LC · pass-through host socket", 7.2, "bold", "middle", "#075985"),
-                t(px(37.5), pz(base_rear_z+12.4), "M5Stack U214 worst-case · 84 × 24 × 15.287 mm", 9.2, "bold", "middle", "#9a3412"),
-                t(px(37.5), pz(cap_rear_z)+24, f"No battery appears: its Y={PACK_HOLDER_Y:.1f}…{PACK_HOLDER_Y + PACK_HOLDER_H:.1f}-mm zone does not cross A–A.", 9.3, "bold", "middle", "#166534"),
+                t(px(40.0), pz(base_rear_z+4.7), "Samtec HLE-107-02-G-DV-PE-LC · pass-through host socket", 7.2, "bold", "middle", "#075985"),
+                t(px(40.0), pz(base_rear_z+12.4), "M5Stack U214 worst-case · 84 × 24 × 15.287 mm", 9.2, "bold", "middle", "#9a3412"),
+                t(px(40.0), pz(cap_rear_z)+24, f"No battery appears: its Y={PACK_HOLDER_Y:.1f}…{PACK_HOLDER_Y + PACK_HOLDER_H:.1f}-mm zone does not cross A–A.", 9.3, "bold", "middle", "#166534"),
                 *service_motion(px(72.0), pz(base_rear_z)+8, pz(cap_rear_z)-8, "CAP"),
                 '</g>',
             ]
@@ -4623,8 +4625,8 @@ def render_sandwich(devices, instances):
                 r(px(holder_x), pz(base_rear_z), holder_w*x_scale, holder_depth*z_scale, "#dcfce7", "#16a34a", rx=12, extra=' data-instance="pack-holder"'),
                 r(px(18.7), pz(base_rear_z+1.05), 18.6*x_scale, 18.6*z_scale, "#ecfdf3", "#22c55e", rx=16, extra=' data-instance="cell-left"'),
                 r(px(37.7), pz(base_rear_z+1.05), 18.6*x_scale, 18.6*z_scale, "#ecfdf3", "#22c55e", rx=16, extra=' data-instance="cell-right"'),
-                t(px(37.5), pz(base_rear_z+10.8), "Keystone Electronics 1048P + 2× 18650", 9.2, "bold", "middle", "#166534"),
-                t(px(37.5), pz(battery_rear_z)+24, f"No installed Cap appears: its Y={U214_Y:.1f}…{U214_Y + U214_H:.1f}-mm zone does not cross B–B.", 9.3, "bold", "middle", "#9a3412"),
+                t(px(40.0), pz(base_rear_z+10.8), "Keystone Electronics 1048P + 2× 18650", 9.2, "bold", "middle", "#166534"),
+                t(px(40.0), pz(battery_rear_z)+24, f"No installed Cap appears: its Y={U214_Y:.1f}…{U214_Y + U214_H:.1f}-mm zone does not cross B–B.", 9.3, "bold", "middle", "#9a3412"),
                 *service_motion(px(10.0), pz(base_rear_z)+8, pz(battery_rear_z)-8, "CELLS"),
                 '</g>',
             ]
@@ -4642,14 +4644,14 @@ def render_sandwich(devices, instances):
             line(px(0), pz(rear_z)+58, px(75), pz(rear_z)+58),
             line(px(0), pz(rear_z)+52, px(0), pz(rear_z)+64),
             line(px(75), pz(rear_z)+52, px(75), pz(rear_z)+64),
-            t(px(37.5), pz(rear_z)+51, "base PCB · 75 mm", 9.5, "bold", "middle", "#344054"),
+            t(px(40.0), pz(rear_z)+51, "base PCB · 80 mm", 9.5, "bold", "middle", "#344054"),
         ]
         if kind == "u214":
             parts += [
                 line(px(U214_X), pz(rear_z)+88, px(U214_X+U214_W), pz(rear_z)+88),
                 line(px(U214_X), pz(rear_z)+82, px(U214_X), pz(rear_z)+94),
                 line(px(U214_X+U214_W), pz(rear_z)+82, px(U214_X+U214_W), pz(rear_z)+94),
-                t(px(37.5), pz(rear_z)+81, "installed U214 worst-case · 84 mm · 4.5-mm overhang per side", 9.2, "bold", "middle", "#9a3412"),
+                t(px(40.0), pz(rear_z)+81, "installed U214 worst-case · 84 mm · 2.0-mm overhang per side", 9.2, "bold", "middle", "#9a3412"),
             ]
         return parts
 
@@ -4723,7 +4725,7 @@ def render_top_edge(devices, instances):
         r(x(0), z(ui_outer_z), BOARD_W*scale_x, 1.6*scale_z, "#dcfce7", "#16a34a", rx=1, extra=' data-instance="ui-pcb"'),
         r(x(0), z(ui_inner_z), BOARD_W*scale_x, 11.0*scale_z, "#f8fafc", "#94a3b8", "5 4", 1, ' data-board-gap-mm="11" data-antenna-bodies="none"'),
         r(x(0), z(rf_inner_z), BOARD_W*scale_x, 1.6*scale_z, "#ffedd5", "#ea580c", rx=1, extra=' data-instance="rf-pcb"'),
-        t(x(37.5), z(ui_inner_z + 5.5), "FX8C M1 · 11-mm board gap", 8.5, "bold", "middle", "#9d174d"),
+        t(x(40.0), z(ui_inner_z + 5.5), "FX8C M1 · 11-mm board gap", 8.5, "bold", "middle", "#9d174d"),
         '<g id="top-edge-rear-envelopes" data-y-collapsed="true">',
         r(x(U214_X), z(base_rear_z), U214_W*scale_x, depth("u214")*scale_z, "#ffedd5", "#ea580c", "7 4", 5, ' fill-opacity="0.45" data-instance="u214"'),
         r(x(17.6), z(base_rear_z), 39.8*scale_x, holder_depth*scale_z, "#dcfce7", "#16a34a", "4 3", 12, ' fill-opacity="0.45" data-instance="pack-holder"'),
@@ -4745,13 +4747,13 @@ def render_top_edge(devices, instances):
         f'<line x1="{x(0):.1f}" y1="{z(max_rear_z)+58:.1f}" x2="{x(75):.1f}" y2="{z(max_rear_z)+58:.1f}" stroke="#344054"/>',
         f'<line x1="{x(0):.1f}" y1="{z(max_rear_z)+52:.1f}" x2="{x(0):.1f}" y2="{z(max_rear_z)+64:.1f}" stroke="#344054"/>',
         f'<line x1="{x(75):.1f}" y1="{z(max_rear_z)+52:.1f}" x2="{x(75):.1f}" y2="{z(max_rear_z)+64:.1f}" stroke="#344054"/>',
-        t(x(37.5), z(max_rear_z)+50, "base PCB · 75 mm", 10, "bold", "middle", "#344054"),
+        t(x(40.0), z(max_rear_z)+50, "base PCB · 80 mm", 10, "bold", "middle", "#344054"),
         f'<line x1="{x(U214_X):.1f}" y1="{z(max_rear_z)+88:.1f}" x2="{x(U214_X+U214_W):.1f}" y2="{z(max_rear_z)+88:.1f}" stroke="#344054"/>',
         f'<line x1="{x(U214_X):.1f}" y1="{z(max_rear_z)+82:.1f}" x2="{x(U214_X):.1f}" y2="{z(max_rear_z)+94:.1f}" stroke="#344054"/>',
         f'<line x1="{x(U214_X+U214_W):.1f}" y1="{z(max_rear_z)+82:.1f}" x2="{x(U214_X+U214_W):.1f}" y2="{z(max_rear_z)+94:.1f}" stroke="#344054"/>',
-        t(x(37.5), z(max_rear_z)+80, "installed U214 worst-case · symmetric 4.5-mm side overhang", 9.5, "bold", "middle", "#9a3412"),
+        t(x(40.0), z(max_rear_z)+80, "installed U214 worst-case · symmetric 2.0-mm side overhang", 9.5, "bold", "middle", "#9a3412"),
         t(920, 150, "What this view proves", 16, "bold"),
-        t(920, 184, "✓ 84-mm Cap overhang is 4.5 mm on each side", 11, "bold", colour="#166534"),
+        t(920, 184, "✓ 84-mm Cap overhang is 2.0 mm on each side", 11, "bold", colour="#166534"),
         t(920, 212, "✓ both antenna banks mount on opposed outward PCB faces", 11, "bold", colour="#166534"),
         t(920, 240, "✓ the exact 11-mm interboard channel contains no antenna body", 11, "bold", colour="#166534"),
         t(920, 268, f"✓ antenna centre planes are separated by {rf_centre_spacing:.2f} mm", 11, "bold", colour="#166534"),
@@ -4806,7 +4808,7 @@ def render_navigation_cluster(design, devices, instances):
         t(30, 34, "Leshy2 — five-series-button navigation cluster", 22, "bold"),
         t(30, 60, "Every control is an orderable OMRON B3S-1100P; there is no custom cross, cap, plunger or guide.", 11, colour="#526076"),
         f'<rect x="{x(0):.1f}" y="{y(112):.1f}" width="{75*scale:.1f}" height="{38*scale:.1f}" rx="6" fill="#f8fafc" stroke="#344054" stroke-width="1.5" data-board-band-mm="75x38"/>',
-        t(x(37.5), y(115.5), "front UI PCB · y=112…150 mm", 10, "bold", "middle", "#526076"),
+        t(x(40.0), y(115.5), "front UI PCB · y=112…150 mm", 10, "bold", "middle", "#526076"),
     ]
     for hx, hy in HOLES:
         if hy < band_y:

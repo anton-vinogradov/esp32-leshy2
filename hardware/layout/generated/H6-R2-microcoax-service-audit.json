@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
   "artifact": "H6-R2 microcoax service audit",
-  "marker": "H6.0.1-R1",
+  "marker": "H6.0.3-R1",
   "status": "pass",
   "source_hashes": {
-    "hardware/layout/h6-r2-microcoax-service.json": "b3da7df95da12e7672955e8a0e23094c61e90a9e02b17513b42349b3faa0f9f9",
-    "hardware/layout/generated/H6-R2-placement-audit.json": "2925531c6bea3dd448b20aae44e68235c5f3f5fc242ea9761cf6d12e7aae6408",
-    "hardware/layout/h6-r2-placement-contract.json": "855570e9f7229fb5c6d0fc465bbc4470617ae47ac1682eb87698775b88a66a0d",
-    "hardware/product-design/h1-r2-placement.json": "66321938e7ea53875639ad6841f02209aaf08510054323c0108d8a5077813054",
-    "hardware/verification/generated/H3-R2-rf-coexistence.json": "3cba80fe77f4e322b924348fa24f75d29e2133b444f9e73c831cfd6e98fbccf3"
+    "hardware/layout/h6-r2-microcoax-service.json": "94aca43c729622b9441a6277834b07de52b1308c6f7bf12374efc7a3eabf2dfd",
+    "hardware/layout/generated/H6-R2-placement-audit.json": "7c62460f3091b7f860db7947c70061c27b9a17eb2ad7ab7ced463cebe63d1fb4",
+    "hardware/layout/h6-r2-placement-contract.json": "580b4af33f9806335d14d7da1e5e7bc36a84b0d80241d68f6e4f2cea2b6ee5aa",
+    "hardware/product-design/h1-r2-placement.json": "2e3cb75934679422de060d92f15521d4c74b1029324e5e915141e323fb5c4818",
+    "hardware/verification/generated/H3-R2-rf-coexistence.json": "c43c030421e6cb4dc1da6f5e6c6d49610b13ba352ccc440b86b86c25209a6a5f"
   },
   "summary": {
     "path_count": 5,
@@ -17,7 +17,7 @@
     "retention_saddles": 5,
     "antenna_solder_windows": 10,
     "minimum_relaxed_reserve_mm": 7.686,
-    "minimum_display_exclusion_distance_mm": 2.255,
+    "minimum_display_exclusion_distance_mm": 3.869,
     "minimum_mechanical_keepout_clearance_mm": 0.25,
     "routing_may_start": true
   },
@@ -37,7 +37,7 @@
       "selected_length_mm": 60.0,
       "conservative_corridor_length_mm": 52.314,
       "minimum_relaxed_reserve_mm": 7.686,
-      "minimum_display_exclusion_distance_mm": 3.794,
+      "minimum_display_exclusion_distance_mm": 6.034,
       "minimum_mechanical_keepout_clearance_mm": 0.25,
       "retention_saddle_centre_mm": [
         14.5,
@@ -78,21 +78,21 @@
       "path": "N24-1",
       "source_basis": "farthest point of published-corner access window",
       "source_reference_mm": [
-        42.85,
+        47.85,
         44.8
       ],
       "board_connector_mm": [
-        41.5,
+        46.5,
         11.5
       ],
       "cable_mpn": "TE Connectivity 1-2118651-0",
       "selected_length_mm": 60.0,
       "conservative_corridor_length_mm": 47.014,
       "minimum_relaxed_reserve_mm": 12.986,
-      "minimum_display_exclusion_distance_mm": 2.255,
+      "minimum_display_exclusion_distance_mm": 3.869,
       "minimum_mechanical_keepout_clearance_mm": 18.639,
       "retention_saddle_centre_mm": [
-        46.0,
+        51.0,
         18.5
       ],
       "retention_landing_clear": true,
@@ -104,21 +104,21 @@
       "path": "C5-2G4/5",
       "source_basis": "exact module connector axis",
       "source_reference_mm": [
-        66.0,
+        71.0,
         24.38
       ],
       "board_connector_mm": [
-        52.2,
+        57.2,
         10.55
       ],
       "cable_mpn": "TE Connectivity 2118651-2",
       "selected_length_mm": 30.0,
       "conservative_corridor_length_mm": 20.87,
       "minimum_relaxed_reserve_mm": 9.13,
-      "minimum_display_exclusion_distance_mm": 13.177,
+      "minimum_display_exclusion_distance_mm": 14.327,
       "minimum_mechanical_keepout_clearance_mm": 8.482,
       "retention_saddle_centre_mm": [
-        55.5,
+        60.5,
         19.0
       ],
       "retention_landing_clear": true,
@@ -130,21 +130,21 @@
       "path": "N24-2",
       "source_basis": "farthest point of published-corner access window",
       "source_reference_mm": [
-        62.65,
+        67.65,
         46.8
       ],
       "board_connector_mm": [
-        63.0,
+        68.0,
         10.0
       ],
       "cable_mpn": "TE Connectivity 1-2118651-0",
       "selected_length_mm": 60.0,
       "conservative_corridor_length_mm": 42.401,
       "minimum_relaxed_reserve_mm": 17.599,
-      "minimum_display_exclusion_distance_mm": 14.535,
+      "minimum_display_exclusion_distance_mm": 16.683,
       "minimum_mechanical_keepout_clearance_mm": 0.564,
       "retention_saddle_centre_mm": [
-        67.0,
+        72.0,
         18.0
       ],
       "retention_landing_clear": true,
@@ -157,52 +157,52 @@
     {
       "board": "LESHY2-UI-R2",
       "instance": "nrf0_external_sma",
-      "centre_x_mm": 14.0
+      "centre_x_mm": 16.5
     },
     {
       "board": "LESHY2-UI-R2",
       "instance": "s3_external_rp_sma",
-      "centre_x_mm": 25.75
+      "centre_x_mm": 28.25
     },
     {
       "board": "LESHY2-UI-R2",
       "instance": "nrf1_external_sma",
-      "centre_x_mm": 37.5
+      "centre_x_mm": 40.0
     },
     {
       "board": "LESHY2-UI-R2",
       "instance": "c5_external_rp_sma",
-      "centre_x_mm": 49.25
+      "centre_x_mm": 51.75
     },
     {
       "board": "LESHY2-UI-R2",
       "instance": "nrf2_external_sma",
-      "centre_x_mm": 61.0
+      "centre_x_mm": 63.5
     },
     {
       "board": "LESHY2-RF-R2",
       "instance": "receiver_fmsw_external_sma",
-      "centre_x_mm": 14.0
+      "centre_x_mm": 16.5
     },
     {
       "board": "LESHY2-RF-R2",
       "instance": "receiver_amlw_external_sma",
-      "centre_x_mm": 25.75
+      "centre_x_mm": 28.25
     },
     {
       "board": "LESHY2-RF-R2",
       "instance": "cc_external_sma",
-      "centre_x_mm": 37.5
+      "centre_x_mm": 40.0
     },
     {
       "board": "LESHY2-RF-R2",
       "instance": "voice_external_sma",
-      "centre_x_mm": 49.25
+      "centre_x_mm": 51.75
     },
     {
       "board": "LESHY2-RF-R2",
       "instance": "voice_v_external_sma",
-      "centre_x_mm": 61.0
+      "centre_x_mm": 63.5
     }
   ],
   "enclosure_clearance": {

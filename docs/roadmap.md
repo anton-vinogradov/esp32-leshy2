@@ -3,12 +3,12 @@
 [Home](../README.md) · [Русский](roadmap.ru.md) ·
 [Firmware roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md)
 
-> **▶ Current hardware boundary: `H6.0.2-R1`.** H0–H4 are reviewed, and the [current H5-R2 route revalidation](h5-r2-current-route.md) controls all 249 purchasable groups / 1,216 articles with zero unmapped route. H6.0.1 is complete: [exact placement](h6-r2-exact-placement.md) materializes 1,208/1,208 fitted positions on two native six-layer boards with zero hard conflict, the [mechanical stack](h6-r2-mechanical-stack.md) locks enclosure capture and M2.5 retention without loading M1, and the [microcoax result](h6-r2-microcoax-service.md) locks five relaxed corridors, five clear saddles and ten antenna solder windows. H6.0.2 now owns all 823 board-local physical / 789 global canonical nets, native schematic/PCB parity and zero-finding DRC; its accepted `GENERAL_CONTROL` + `OSCILLATOR` + `SAFETY_CONTROL` slice routes 288 nets / 652 connections completely with zero native DRC violations on both boards. `WBC16-1TLC` has one explicit order-time sourcing gate. The 51 physical residuals and F5/F6 i8080 obligation retain exact downstream owners.
+> **▶ Current hardware boundary: `H6.0.3-R1`.** H0–H4 are reviewed, and the [current H5-R2 route revalidation](h5-r2-current-route.md) controls all 249 purchasable groups / 1,216 articles with zero unmapped route. H6.0.1 is complete: [exact placement](h6-r2-exact-placement.md), the [mechanical stack](h6-r2-mechanical-stack.md) and the [microcoax result](h6-r2-microcoax-service.md) pass. H6.0.3 rebaselines both six-layer boards to 80 × 150 mm and turns x=35…40 mm into a real inner-face routing corridor without changing controls, the display, M1 or the five-plus-five antenna banks. All 1,208 positions remain frozen with zero hard conflict; five cable paths retain at least 7.69 mm reserve. Current boards retain 3,665 checked copper items, and the formerly blocked `VOICE_EFUSE_BACKUP_EN_N` route now crosses the new corridor. KiCad DRC matches the clean 80-mm baseline: zero UI findings and the two already owned battery-holder exceptions on RF/power. Requalification and completion of routing are current. `WBC16-1TLC` retains one explicit order-time sourcing gate.
 > H6 placement/routing is authorized; quote, reservation, purchase and fabrication are not.
 
 [Current H6 machine checklist](../hardware/verification/h6-layout-release-plan.json).
 
-Status reconciled: **3 September 2026**.
+Status reconciled: **5 September 2026**.
 
 ## Status rules
 
@@ -26,7 +26,7 @@ marker and current checklist; it is never presented as review of the whole phase
 | Area | Current result |
 |---|---|
 | Functional architecture | ✅ [H0-R2 reviewed](h0-r2-functional-architecture.md): front UI/radio and rear RF/power domains, explicit owners, transports, quiet states and safety crossings |
-| Physical design | ✅ [H1-R2.38 reviewed](h1-r2-acceptance.md): the complete two-PCB model, ten permanent antenna assignments, exact EastRising display, U214/U219 slot and all TX-evidence islands are physically coherent; [all 249 purchasable R2 groups are ranked](h1-r2-cost.md) |
+| Physical design | ✅ [H1-R2.39 reviewed](h1-r2-acceptance.md): the complete 80 × 150 mm two-PCB model, ten permanent antenna assignments, exact EastRising display, U214/U219 slot and all TX-evidence islands are physically coherent; [all 249 purchasable R2 groups are ranked](h1-r2-cost.md) |
 | Principle diagrams | Current component/bus map, external mock-up, separate readable inner faces, service map and power/filter diagrams are published |
 | Production ECAD | ✅ [H2-R2.1.5 reviewed](h2-acceptance.md): two native KiCad projects materialize 1,208 instances, 4,306 physical pins and 789 global canonical / 823 board-local nets with zero ERC findings; six-domain cross-sheet/HW↔FW reconciliation passes; retained G2F/H2/KiCad is historical R1 evidence only |
 | Firmware prerequisite | ✅ firmware F1-R2 reviewed; F2-R2.4 qualified all 12 target builds, 60 artifacts, 16 maps and 16 size gates, while F2-R2.5 reproducibility is current on the separate [F0–F11 roadmap](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/docs/roadmap.md); a separate fail-closed `F-PO` requires diagnostics, emulation and recovery before ordering |
@@ -34,10 +34,10 @@ marker and current checklist; it is never presented as review of the whole phase
 
 ## Reviewed H1 · exact composition
 
-<!-- current-substep: H6.0.2-R1 -->
+<!-- current-substep: H6.0.3-R1 -->
 
-**Reviewed marker: `H1-R2.38`.** The placement package was accepted on
-2026-08-31. The current hardware marker is `H6.0.2-R1`.
+**Reviewed marker: `H1-R2.39`.** The placement package was accepted on
+2026-08-31 and rebaselined without feature changes on 2026-09-05. The current hardware marker is `H6.0.3-R1`.
 
 ### 1. Functional-island placement
 
@@ -192,12 +192,12 @@ placement and routing had not started; current H6 progress is recorded above.
 | Phase | Status | Result | Exit criterion |
 |---|---|---|---|
 | H0 · Requirements and functional architecture | ✅ [R2 reviewed](h0-r2-functional-architecture.md) | Product functions, owners, transports, safety and working pin budgets | Every function has one owner and all working budgets close |
-| H1 · Physical product design | ✅ [Reviewed · `H1-R2.38`](h1-r2-acceptance.md) | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
+| H1 · Physical product design | ✅ [Reviewed · `H1-R2.39`](h1-r2-acceptance.md) | Exterior, separate inner faces, sections, exact bodies, RF locality, service access and power envelope | No body/fastener/silkscreen/antenna/accessory/cross-board collision; exact MPN or controlled reserve for every body; mock-up accepted |
 | H2 · Production ECAD schematic | ✅ [Reviewed · `H2-R2.1.5`](h2-acceptance.md) | Exact R2 symbols, contacts, nets, values, protection and footprints | Native KiCad, zero-finding ERC and cross-sheet/HW↔FW reconciliation pass |
 | H3 · Virtual electrical verification | ✅ [Reviewed · `H3-R2.7`](h3-r2-acceptance.md) | Complete power, digital, RF, audio, timing, thermal and fault verification | Every calculable pre-layout claim passes; all physical residuals remain owned |
 | H4 · Joined pre-layout gate | ✅ [Reviewed · `H4-R2.3`](h4-r2-acceptance.md) | One current mechanics/ECAD/electrical/firmware review | No virtual blocker; each physical residual owns a test |
 | H5 · Component and factory evidence | ✅ [Current R2 routes reviewed · `H5-R2.1`](h5-r2-current-route.md) | Exact current factory map over retained [H5-R1 evidence](h5-r1-acceptance.md) | Every purchasable group has a controlled route; order-time sourcing gates remain explicit |
-| **H6 · KiCad placement, routing and release candidate** | **▶ Current · `H6.0.2-R1`** | [Exact placement](h6-r2-exact-placement.md), [routing policy](h6-r2-routing-policy.md), [mechanical stack](h6-r2-mechanical-stack.md) and [microcoax closure](h6-r2-microcoax-service.md); two routed boards, routed re-analysis and hash-locked fabrication candidate | Placement/mechanics/cables pass; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP; outputs and independent DFM/CPL review pass |
+| **H6 · KiCad placement, routing and release candidate** | **▶ Current · `H6.0.3-R1`** | 80 × 150 mm [exact placement](h6-r2-exact-placement.md), [routing policy](h6-r2-routing-policy.md), [mechanical stack](h6-r2-mechanical-stack.md) and [microcoax closure](h6-r2-microcoax-service.md); routing requalification, two routed boards and hash-locked fabrication candidate | Placement/mechanics/cables pass; DRC/ERC parity; power/thermal; SI/returns/USB; RF/extracted parasitics; STEP; outputs and independent DFM/CPL review pass |
 | `F-PO` · First-spin admission | 🔒 Waiting for H2/H6 and firmware R2 | Six diagnostic images, S3 QEMU, fake-HAL/dev-board evidence, flash/recovery and owner bring-up script | `FPO1`–`FPO7` are reviewed against the same H2/H6 candidate hashes; paid factory FCT is not required |
 | H7 · Prototype fabrication and bring-up | 🔒 Waiting for H6, `F-PO`, immutable release and exact-one quote approval | Exactly one factory-assembled `R2-EVT1` and retained owner bring-up log | Released assembly package needs no factory engineering guesses; owner current-limited USB power-on proves rails, recovery, UI, storage, audio, radios and expansion |
 | H8 · Physical qualification | 🔒 Waiting for H7 | HIL, RF, thermal, power, safety and endurance evidence | Concurrent nRF modes, quiet interfaces, coexistence, VNA, watchdog and single-fault tests pass |
@@ -246,11 +246,12 @@ placement and routing had not started; current H6 progress is recorded above.
 21. ✅ [`H5.0.3-R1`](h5-r1-acceptance.md): preserve the historical 210-route / 1,050-placement evidence, owner final assembly and exact `Ettinger 007.02.611` 11-mm stops.
 22. ✅ [`H5-R2.1`](h5-r2-current-route.md): revalidate all 249 current purchasable groups / 1,216 articles with zero unmapped route and expose the one `WBC16-1TLC` order-time sourcing gate.
 23. ✅ `H6.0.1-R1`: [exact-footprint placement](h6-r2-exact-placement.md) passes for 1,208/1,208 positions with zero hard conflict; the [mechanical stack](h6-r2-mechanical-stack.md) locks wall bearings, independent PCB capture, exact 20-mm M2.5 nylon screws/captive nuts and the one-loose-screw load path; the [microcoax service result](h6-r2-microcoax-service.md) locks five relaxed corridors, five clear saddles and ten antenna solder windows.
-24. ▶ `H6.0.2-R1`: the [fail-closed routing policy](h6-r2-routing-policy.md) classifies all 823 board-local net instances / 789 global canonical nets, permits automatic proposals only for ordinary low-rate controls, binds current `JLC06161H-3313` RF/USB geometry and exposes all 12 USB segments as native KiCad `_P/_N` pairs; the accepted `GENERAL_CONTROL` + `OSCILLATOR` + `SAFETY_CONTROL` slice closes 288 nets / 652 connections with zero DRC violations, while analogue/audio/sense routing remains current without violating H6.0.1.
+24. ✅ `H6.0.2-R1`: the [fail-closed routing policy](h6-r2-routing-policy.md) classified all 823 board-local net instances / 789 global canonical nets and proved the first accepted routing slice on the former 75-mm geometry; its counts remain historical evidence after the geometry rebaseline.
+25. ▶ `H6.0.3-R1`: widen both boards to 80 × 150 mm, preserve all 1,208 exact positions and external interfaces, introduce a real x=35…40-mm routing corridor, carry forward only DRC-clean copper, and requalify routing before continuing the remaining analogue/audio/sense nets.
 
 H5-R2.1 is current and reviewed: all 249 purchasable groups / 1,216 articles
 have controlled routes, with one explicit order-time Global Sourcing or
-qualified-replacement gate for `WBC16-1TLC`. H6.0.2-R1 owns routing and native
-net parity; later H6 steps own routed verification, enclosure walls and the
+qualified-replacement gate for `WBC16-1TLC`. H6.0.3-R1 owns the 80-mm routing
+requalification and native net parity; later H6 steps own routed verification, enclosure walls and the
 Gerber/BOM/CPL needed for a real PCBA quote. Final VHF pre-order terms and the complete stock recheck execute
 immediately before the one order; purchase and fabrication remain blocked.

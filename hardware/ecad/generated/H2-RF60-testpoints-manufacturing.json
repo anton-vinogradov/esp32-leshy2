@@ -13,7 +13,7 @@
   "source_hashes": {
     "hardware/ecad/generated/H2-instance-ledger.json": "9705d77158822926ba24182b435ba434794c4cba689f7b5e2529b4363fd2808c",
     "hardware/ecad/H2-sheet-contract.json": "8d793ea3580542f700514ab6fa315a6e27f06503fa1e23b80c07f1b1afda15c2",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "76ea3625a73122d89dbb07e0ba53a41ce84b8a0087d95855a4681ba2f0cd66b0"
+    "hardware/ecad/generated/H2-RF-root-interface.json": "31d49cf095cfd320d165b7e7c7f901ddf9b945be238f24f041d7d616f43a9f44"
   },
   "summary": {
     "ledger_instances": 0,

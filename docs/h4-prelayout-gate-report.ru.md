@@ -36,6 +36,6 @@ flowchart LR
 - Не описывает dual-RP R2, `U219`, текущий C5 SDIO/USB mux или новую точную распиновку.
 - Не разрешает закупку, PCB placement/routing или fabrication.
 
-Текущая позиция проекта — `H1-R2.38`: точная dual-RP GPIO/M1 и C5 SDIO/USB mux база `H1-R2.31`, а также полный текущий реестр Cap/evidence-корпусов закрыты. Новый R2 H2 остаётся закрыт до завершения физических H1-блокеров и всех production-gate. Старый переход к `H5.0.1-R1` отменён сменой архитектуры.
+На момент этого сохранённого отчёта позиция проекта была `H1-R2.38`: точная dual-RP GPIO/M1 и C5 SDIO/USB mux база `H1-R2.31`, а также полный реестр Cap/evidence-корпусов были закрыты. Текущая ветка R2 с тех пор прошла H2–H5 и дошла до `H6.0.3-R1`; старый переход к `H5.0.1-R1` отменён сменой архитектуры.
 
 Машинные evidence: [`H4.1`](../hardware/verification/generated/H4-PLG11-joined-review.json), [`H4.2`](../hardware/verification/generated/H4-PLG12-correction-closure.json), [`H4.3`](../hardware/verification/generated/H4-PLG13-acceptance-package.json).

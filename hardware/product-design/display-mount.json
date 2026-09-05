@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "design_id": "L2-DISP-DIRECT-001-A",
-  "stage": "H1-R2.38",
+  "stage": "H1-R2.39",
   "status": "dimensioned_exact_production_panel_traceable_stock_psa_candidate_folded_fpc_slot_direct_zif_ready_for_h2",
   "purpose": "Apply one traceable stocked 50.80 x 50.80-mm rectangular acrylic-foam PSA pad to the UI PCB by its own silkscreen datum, fold the exact EastRising ER-TFT035IPS-6 plus ER-TPC035-6 component-bearing FPC through the adhesive-free upper zone, pass only its narrow contact tail through one rounded PCB slot, mate it to one serviceable 50-contact ZIF on the UI PCB inner face, then place the panel by a second DISPLAY/FPC-UP silkscreen datum; neither the FPC nor ZIF carries panel load.",
   "components": [
@@ -10,8 +10,15 @@
       "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
       "jlcpcb_part": "C3169104",
       "mount": "UI PCB inner face",
-      "ui_inner_position_mm": [24.0, 25.0],
-      "envelope_mm": [27.0, 3.8, 1.0],
+      "ui_inner_position_mm": [
+        26.5,
+        25.0
+      ],
+      "envelope_mm": [
+        27.0,
+        3.8,
+        1.0
+      ],
       "role": "direct dual-contact 50-position ZIF for the exact 0.30-mm EastRising tail"
     }
   ],
@@ -38,7 +45,11 @@
       "mpn": "4910SQ-2(5)",
       "distributor": "DigiKey",
       "distributor_part": "1067-4910SQ-2(5)-ND",
-      "form_mm": [50.8, 50.8, 1.016],
+      "form_mm": [
+        50.8,
+        50.8,
+        1.016
+      ],
       "series": "3M VHB 4910",
       "status_on_2026_09_01": "active; 16 distributor line items in stock; quantity-one displayed price USD 22.12",
       "jlcpcb_standard_pcba_status_on_2026_09_01": "no exact 4910SQ-2(5) or 3M 4910 result found on the public Standard PCBA parts surface; treat as a customer-supplied J4-F final-assembly consumable pending written acceptance, not as a JLCPCB catalog component",
@@ -55,7 +66,7 @@
   },
   "mechanical_retention": {
     "connector_is_load_bearing": false,
-    "panel_support": "one stocked 50.80 x 50.80-mm rectangular acrylic-foam PSA pad applied to the flat component-free UI-PCB outer face at x=12.10...62.90 mm, y=44.46...95.26 mm; it supports 53.7% of the stiff panel plan while the complete folded-FPC zone above it remains adhesive-free",
+    "panel_support": "one stocked 50.80 x 50.80-mm rectangular acrylic-foam PSA pad applied to the flat component-free UI-PCB outer face at x=14.60...65.40 mm, y=44.46...95.26 mm; it supports 53.7% of the stiff panel plan while the complete folded-FPC zone above it remains adhesive-free",
     "primary_retention": "a single stocked rectangular industrial PSA pad applied to the UI PCB, never to the loose panel; its exact released thickness must exceed the measured folded-FPC maximum stack by at least 0.20 mm",
     "secondary_retention": "none in the assembled stack; PCB assembly datums and a removable placement fixture control alignment without becoming retained parts",
     "flex_strain_relief": "the tail leaves the panel toward board -Y, folds back once without twist into the adhesive-free pocket under the panel, and only the 25.50-mm contact tongue crosses the rounded 27.00 x 1.20-mm PCB slot before entering the inner-face ZIF. The 30.16 +/-0.50-mm source length, slot at y=23.00 mm and ZIF at y=25.00 mm preserve at least 5.00 mm of relaxed service slack after the actual bend/insertion path is proven. The pocket prevents component compression and the bonded panel prevents motion, so no sharp crease, routed-edge bearing, tensile load or peel load reaches the contacts or latch",
@@ -72,7 +83,7 @@
         "id": "display_psa_rectangle",
         "quantity": 1,
         "part_type": "one stocked rectangular double-coated acrylic-foam display-bonding pad; no custom converter contour",
-        "implementation": "apply one 50.80 x 50.80-mm 3M (TC) 4910SQ-2(5) candidate to the PCB at x=12.10...62.90 mm, y=44.46...95.26 mm using its PSA silkscreen datum while the upper release liner remains fitted. It supports 2580.64 mm2 or about 53.7% of the exact panel plan, exceeding the roughly 40% partial-area bond visually inferred from the supplied ESP32-DIV sample photograph. Its 1.016-mm nominal 3M VHB 4910 construction has +/-10% family thickness tolerance, so the released current-lot folded-FPC stack must be <=0.714 mm and the received dry fit must preserve >=0.20 mm actual clearance. No liquid glue, trimming, external converter order, adhesive on the FPC or separate upper strip",
+        "implementation": "apply one 50.80 x 50.80-mm 3M (TC) 4910SQ-2(5) candidate to the PCB at x=14.60...65.40 mm, y=44.46...95.26 mm using its PSA silkscreen datum while the upper release liner remains fitted. It supports 2580.64 mm2 or about 53.7% of the exact panel plan, exceeding the roughly 40% partial-area bond visually inferred from the supplied ESP32-DIV sample photograph. Its 1.016-mm nominal 3M VHB 4910 construction has +/-10% family thickness tolerance, so the released current-lot folded-FPC stack must be <=0.714 mm and the received dry fit must preserve >=0.20 mm actual clearance. No liquid glue, trimming, external converter order, adhesive on the FPC or separate upper strip",
         "load_role": "retains the stiff panel against lift and in-plane shear and supports more than half of its plan without a custom cut or separately positioned shoulders",
         "primary_qualification_mpn": "3M (TC) 4910SQ-2(5); DigiKey 1067-4910SQ-2(5)-ND; active stocked 50.80 x 50.80 x 1.016-mm square. This is a dimensional and sourcing candidate, not an unconditional released production line until the <=0.714-mm FPC-stack and factory-process gates pass",
         "rejected_material_routes": "untraceable reseller 50 x 50 x 1-mm 3M-labelled pads, the 33-m 4910F50 roll and the earlier 0.17-mm 3M 9495LE route are not the one-prototype production selection",
@@ -89,7 +100,7 @@
         "id": "fpc_bend_guide",
         "quantity": 1,
         "part_type": "adhesive-free folded-FPC upper zone, rounded PCB tongue slot and optional removable low-tack polyimide insertion guide",
-        "implementation": "reserve a 47.90-mm-wide adhesive-free zone for the component-bearing FPC under the antenna-edge portion of the panel and one centered 27.00 x 1.20-mm rounded NPTH slot at board x=24.00...51.00 mm, y=23.00...24.20 mm; the 25.50 +/-0.15-mm tongue crosses with 0.75-mm nominal and 0.675-mm worst-case lateral clearance per side. Deburr the routed slot and use a removable low-tack polyimide insertion guide when mating; the folded FPC must not be compressed, bonded, twisted or allowed to bear on the routed edge. Dry fit must show at least 5.00 mm of relaxed path reserve before the PSA liner is removed",
+        "implementation": "reserve a 47.90-mm-wide adhesive-free zone for the component-bearing FPC under the antenna-edge portion of the panel and one centered 27.00 x 1.20-mm rounded NPTH slot at board x=26.50...53.50 mm, y=23.00...24.20 mm; the 25.50 +/-0.15-mm tongue crosses with 0.75-mm nominal and 0.675-mm worst-case lateral clearance per side. Deburr the routed slot and use a removable low-tack polyimide insertion guide when mating; the folded FPC must not be compressed, bonded, twisted or allowed to bear on the routed edge. Dry fit must show at least 5.00 mm of relaxed path reserve before the PSA liner is removed",
         "load_role": "keeps the component-bearing flex unloaded and prevents panel motion from becoming tensile or peel load at the ZIF contacts"
       }
     ],
@@ -107,8 +118,14 @@
       "contact_tail_width_mm": 25.5,
       "contact_tail_width_tolerance_mm": 0.15,
       "component_fpc_pocket_width_mm": 47.9,
-      "stock_psa_rectangle_size_mm": [50.8, 50.8],
-      "stock_psa_rectangle_position_mm": [12.1, 44.46],
+      "stock_psa_rectangle_size_mm": [
+        50.8,
+        50.8
+      ],
+      "stock_psa_rectangle_position_mm": [
+        14.6,
+        44.46
+      ],
       "supported_panel_area_fraction": 0.537,
       "adhesive_piece_count": 1,
       "alignment_silkscreen_datum_count": 2,
@@ -117,7 +134,10 @@
       "upper_support_part_fitted": false,
       "separate_upper_tape_fitted": false,
       "separate_upper_tape_reason": "the stiff panel already has 2580.64 mm2 of primary bond area; observed ESP32-DIV construction suggests that a smaller partial-area bond is adequate, so a second strip or shoulder feature adds assembly work without a demonstrated need",
-      "pcb_slot_position_mm": [24.0, 23.0],
+      "pcb_slot_position_mm": [
+        26.5,
+        23.0
+      ],
       "pcb_slot_width_mm": 27.0,
       "pcb_slot_height_mm": 1.2,
       "tail_under_psa": false,
@@ -259,7 +279,11 @@
     "panel_connector_moq": 1,
     "panel_connector_usd_at_1": 0.5832,
     "configured_panel_usd_at_1": 14.91,
-    "removed_components": ["Hirose DF40C(2.0)-40DS-0.4V(51)", "Hirose DF40C-40DP-0.4V(51)", "L2-DISP-ADP-001-B PCB"]
+    "removed_components": [
+      "Hirose DF40C(2.0)-40DS-0.4V(51)",
+      "Hirose DF40C-40DP-0.4V(51)",
+      "L2-DISP-ADP-001-B PCB"
+    ]
   },
   "evidence": [
     {
@@ -287,5 +311,5 @@
       "finding": "The official ESP32-DIV v2 Gerbers expose eighteen direct-solder FPC lands and four empty 1.2-mm holes around the display zone. The holes do not retain the assembled display, and the public PCB, BOM, 3D model and photograph do not establish the actual retention method; a hidden PSA bond remains an inference, not a documented fact."
     }
   ],
-  "release_boundary": "H1 freezes the exact panel, component-free UI-PCB display bed, mandatory board -Y / antenna-edge FPC direction, 27.00 x 1.20-mm rounded tongue slot at [24.00,23.00], one 3M (TC) 4910SQ-2(5) 50.80 x 50.80-mm stock-pad candidate at [12.10,44.46], both silkscreen datums, direct C3169104 ZIF at [24.00,25.00], 50-contact electrical map, 1-to-1 / 50-to-50 orientation, one-fold/no-twist rule, >=5.00-mm relaxed-slack rule and non-load-bearing connector rule. H2 imports the exact footprint, rotation, slot and keep-outs and routes the display sheet directly on the UI PCB; before order H5 proves current-lot folded stack <=0.714 mm, actual pad-to-FPC clearance >=0.20 mm, bend path and neutral-axis route <=24.66 mm, freezes the 4910 process and obtains written factory acceptance for customer-supplied placement and FPC insertion; H7/H8 inspect the one assembled prototype."
+  "release_boundary": "H1 freezes the exact panel, component-free UI-PCB display bed, mandatory board -Y / antenna-edge FPC direction, 27.00 x 1.20-mm rounded tongue slot at [26.50,23.00], one 3M (TC) 4910SQ-2(5) 50.80 x 50.80-mm stock-pad candidate at [14.60,44.46], both silkscreen datums, direct C3169104 ZIF at [26.50,25.00], 50-contact electrical map, 1-to-1 / 50-to-50 orientation, one-fold/no-twist rule, >=5.00-mm relaxed-slack rule and non-load-bearing connector rule. H2 imports the exact footprint, rotation, slot and keep-outs and routes the display sheet directly on the UI PCB; before order H5 proves current-lot folded stack <=0.714 mm, actual pad-to-FPC clearance >=0.20 mm, bend path and neutral-axis route <=24.66 mm, freezes the 4910 process and obtains written factory acceptance for customer-supplied placement and FPC insertion; H7/H8 inspect the one assembled prototype."
 }

@@ -359,7 +359,7 @@ One separate firmware obligation is intentionally not mislabelled as physical ev
 
 ## What is complete
 
-- Every electrical claim calculable before layout has a reproducible result on the exact H1-R2.38 / H2-R2.1.5 boundary.
+- Every electrical claim calculable before layout has a reproducible result on the exact H1-R2.39 / H2-R2.1.5 boundary.
 - All legal power states, transitions, analog corners, digital interfaces, permanent RF paths, thermal profiles and single-fault cases pass their frozen paper rules.
 - Every correction is already present in the current source and all dependent evidence has been regenerated.
 
@@ -383,7 +383,7 @@ H3 approval does **not** authorize purchasing, PCB placement/routing, fabricatio
 
 ## Что завершено
 
-- Каждое электрическое утверждение, рассчитываемое до разводки, имеет воспроизводимый результат на точной границе H1-R2.38 / H2-R2.1.5.
+- Каждое электрическое утверждение, рассчитываемое до разводки, имеет воспроизводимый результат на точной границе H1-R2.39 / H2-R2.1.5.
 - Все разрешённые состояния питания, переходы, analog corners, цифровые интерфейсы, постоянные RF-тракты, thermal-профили и single-fault cases проходят зафиксированные бумажные правила.
 - Все найденные исправления уже внесены в текущие источники, а зависимое evidence регенерировано.
 

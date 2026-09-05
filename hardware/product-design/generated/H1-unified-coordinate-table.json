@@ -30,7 +30,7 @@
         11.0
       ],
       [
-        70.0,
+        75.0,
         11.0
       ],
       [
@@ -38,7 +38,7 @@
         145.0
       ],
       [
-        70.0,
+        75.0,
         145.0
       ]
     ],
@@ -72,8 +72,8 @@
   "accessory_envelopes": {
     "u214": {
       "x_mm": [
-        -4.5,
-        79.5
+        -2.0,
+        82.0
       ],
       "y_mm": [
         17.02,
@@ -87,8 +87,8 @@
     "cap_bus_slot": {
       "population": "exactly_one_of_u214_or_u219",
       "x_mm": [
-        -4.5,
-        79.5
+        -2.0,
+        82.0
       ],
       "y_mm": [
         17.02,
@@ -99,8 +99,8 @@
     },
     "u219": {
       "x_mm": [
-        -4.5,
-        79.5
+        -2.0,
+        82.0
       ],
       "y_mm": [
         17.02,
@@ -113,8 +113,8 @@
     },
     "battery_holder": {
       "body_x_mm": [
-        17.6,
-        57.38
+        20.1,
+        59.88
       ],
       "body_y_mm": [
         46.47,
@@ -132,8 +132,8 @@
     },
     "display_direct_zif": {
       "x_mm": [
-        24.0,
-        51.0
+        26.5,
+        53.5
       ],
       "y_mm": [
         25.0,
@@ -568,7 +568,7 @@
         "mpn": "Samtec HLE-107-02-G-DV-PE-LC",
         "frame": "rear-outer",
         "coordinate_mm": [
-          28.61,
+          31.11,
           26.48
         ],
         "rotation_deg": 0,
@@ -578,8 +578,8 @@
         ],
         "placement_courtyard_bbox_mm": {
           "x": [
-            28.26,
-            46.74
+            30.76,
+            49.24
           ],
           "y": [
             26.13,
@@ -2787,11 +2787,18 @@
     ],
     "opposing_non_mating_pair_count": 47,
     "minimum_opposing_pair": {
-      "ui_instance": "headphone_jack",
-      "rf_instance": "pack_fuse0",
-      "remaining_z_clearance_mm": 3.31
+      "ui_instance": "c5_service_usb_connector",
+      "rf_instance": "unit_connector",
+      "remaining_z_clearance_mm": 2.59
     },
     "opposing_non_mating_pairs": [
+      {
+        "ui_instance": "c5_service_usb_connector",
+        "rf_instance": "unit_connector",
+        "ui_height_mm": 3.31,
+        "rf_height_mm": 5.1,
+        "remaining_z_clearance_mm": 2.59
+      },
       {
         "ui_instance": "headphone_jack",
         "rf_instance": "pack_fuse0",
@@ -2805,13 +2812,6 @@
         "ui_height_mm": 5.0,
         "rf_height_mm": 2.69,
         "remaining_z_clearance_mm": 3.31
-      },
-      {
-        "ui_instance": "c5_service_usb_connector",
-        "rf_instance": "rp_service_usb_connector",
-        "ui_height_mm": 3.31,
-        "rf_height_mm": 3.31,
-        "remaining_z_clearance_mm": 4.38
       },
       {
         "ui_instance": "c5_reset_button",
@@ -2898,13 +2898,6 @@
         "remaining_z_clearance_mm": 6.6
       },
       {
-        "ui_instance": "ir_demod",
-        "rf_instance": "evidence_mask",
-        "ui_height_mm": 3.2,
-        "rf_height_mm": 1.2,
-        "remaining_z_clearance_mm": 6.6
-      },
-      {
         "ui_instance": "c5",
         "rf_instance": "rp",
         "ui_height_mm": 3.3,
@@ -2913,21 +2906,21 @@
       },
       {
         "ui_instance": "audio_speaker_selector",
-        "rf_instance": "voice_inductor",
+        "rf_instance": "ext_inductor",
         "ui_height_mm": 1.1,
         "rf_height_mm": 3.0,
         "remaining_z_clearance_mm": 6.9
       },
       {
-        "ui_instance": "display_connector",
-        "rf_instance": "nrf1",
-        "ui_height_mm": 1.0,
-        "rf_height_mm": 2.5,
-        "remaining_z_clearance_mm": 7.5
+        "ui_instance": "slow_io",
+        "rf_instance": "voice",
+        "ui_height_mm": 0.6,
+        "rf_height_mm": 3.2,
+        "remaining_z_clearance_mm": 7.2
       },
       {
         "ui_instance": "display_connector",
-        "rf_instance": "nrf2",
+        "rf_instance": "nrf1",
         "ui_height_mm": 1.0,
         "rf_height_mm": 2.5,
         "remaining_z_clearance_mm": 7.5
@@ -2938,13 +2931,6 @@
         "ui_height_mm": 1.68,
         "rf_height_mm": 1.75,
         "remaining_z_clearance_mm": 7.57
-      },
-      {
-        "ui_instance": "display_connector",
-        "rf_instance": "nrf0_rf_board_connector",
-        "ui_height_mm": 1.0,
-        "rf_height_mm": 2.4,
-        "remaining_z_clearance_mm": 7.6
       },
       {
         "ui_instance": "display_connector",
@@ -2968,25 +2954,11 @@
         "remaining_z_clearance_mm": 8.15
       },
       {
-        "ui_instance": "safe_c5_fault_reset_buffer",
-        "rf_instance": "safe_supervisor",
-        "ui_height_mm": 1.1,
-        "rf_height_mm": 1.45,
-        "remaining_z_clearance_mm": 8.45
-      },
-      {
-        "ui_instance": "safe_c5_reset_buffer",
-        "rf_instance": "safe_supervisor",
-        "ui_height_mm": 1.1,
-        "rf_height_mm": 1.45,
-        "remaining_z_clearance_mm": 8.45
-      },
-      {
-        "ui_instance": "sd",
-        "rf_instance": "pd_controller",
-        "ui_height_mm": 1.68,
-        "rf_height_mm": 0.8,
-        "remaining_z_clearance_mm": 8.52
+        "ui_instance": "receiver",
+        "rf_instance": "u214_return_buffer",
+        "ui_height_mm": 1.75,
+        "rf_height_mm": 1.1,
+        "remaining_z_clearance_mm": 8.15
       },
       {
         "ui_instance": "sd",
@@ -3018,21 +2990,49 @@
       },
       {
         "ui_instance": "ui_matrix_io",
-        "rf_instance": "u214_i2c_iso",
+        "rf_instance": "nrf2_host_buffer",
         "ui_height_mm": 1.2,
         "rf_height_mm": 1.1,
         "remaining_z_clearance_mm": 8.7
       },
       {
+        "ui_instance": "receiver",
+        "rf_instance": "u214_esd_c",
+        "ui_height_mm": 1.75,
+        "rf_height_mm": 0.5,
+        "remaining_z_clearance_mm": 8.75
+      },
+      {
+        "ui_instance": "receiver",
+        "rf_instance": "u214_host_buffer_b_bypass",
+        "ui_height_mm": 1.75,
+        "rf_height_mm": 0.5,
+        "remaining_z_clearance_mm": 8.75
+      },
+      {
         "ui_instance": "codec_i2s_din_boot_gate",
-        "rf_instance": "nrf2_return_buffer",
+        "rf_instance": "cc_band_buffer",
+        "ui_height_mm": 1.1,
+        "rf_height_mm": 1.1,
+        "remaining_z_clearance_mm": 8.8
+      },
+      {
+        "ui_instance": "headset_control_io",
+        "rf_instance": "pack_power_fet",
+        "ui_height_mm": 1.2,
+        "rf_height_mm": 1.0,
+        "remaining_z_clearance_mm": 8.8
+      },
+      {
+        "ui_instance": "safe_c5_reset_buffer",
+        "rf_instance": "safe_reset_sink_b",
         "ui_height_mm": 1.1,
         "rf_height_mm": 1.1,
         "remaining_z_clearance_mm": 8.8
       },
       {
         "ui_instance": "safe_reset_sink_a",
-        "rf_instance": "safe_reset_sink_b",
+        "rf_instance": "safe_ptt_or",
         "ui_height_mm": 1.1,
         "rf_height_mm": 1.1,
         "remaining_z_clearance_mm": 8.8
@@ -3046,17 +3046,38 @@
       },
       {
         "ui_instance": "receiver",
+        "rf_instance": "u214_series_busy",
+        "ui_height_mm": 1.75,
+        "rf_height_mm": 0.35,
+        "remaining_z_clearance_mm": 8.9
+      },
+      {
+        "ui_instance": "receiver",
+        "rf_instance": "u214_series_gps_rx",
+        "ui_height_mm": 1.75,
+        "rf_height_mm": 0.35,
+        "remaining_z_clearance_mm": 8.9
+      },
+      {
+        "ui_instance": "receiver",
         "rf_instance": "u214_series_gps_tx",
         "ui_height_mm": 1.75,
         "rf_height_mm": 0.35,
         "remaining_z_clearance_mm": 8.9
       },
       {
+        "ui_instance": "receiver",
+        "rf_instance": "u214_series_sck",
+        "ui_height_mm": 1.75,
+        "rf_height_mm": 0.35,
+        "remaining_z_clearance_mm": 8.9
+      },
+      {
         "ui_instance": "ui_zone_ntc",
-        "rf_instance": "cc_band_buffer",
+        "rf_instance": "evidence_mask",
         "ui_height_mm": 0.9,
-        "rf_height_mm": 1.1,
-        "remaining_z_clearance_mm": 9.0
+        "rf_height_mm": 1.2,
+        "remaining_z_clearance_mm": 8.9
       },
       {
         "ui_instance": "headset_control_io",
@@ -3066,60 +3087,39 @@
         "remaining_z_clearance_mm": 9.165
       },
       {
+        "ui_instance": "audio_speaker_selector",
+        "rf_instance": "ext_buck",
+        "ui_height_mm": 1.1,
+        "rf_height_mm": 0.6,
+        "remaining_z_clearance_mm": 9.3
+      },
+      {
         "ui_instance": "codec",
-        "rf_instance": "u214_return_buffer",
+        "rf_instance": "nrf1_host_buffer",
         "ui_height_mm": 0.6,
         "rf_height_mm": 1.1,
         "remaining_z_clearance_mm": 9.3
       },
       {
-        "ui_instance": "slow_io",
-        "rf_instance": "nrf2_host_buffer",
+        "ui_instance": "codec",
+        "rf_instance": "u214_i2c_iso",
         "ui_height_mm": 0.6,
         "rf_height_mm": 1.1,
         "remaining_z_clearance_mm": 9.3
       },
       {
         "ui_instance": "ui_matrix_io",
-        "rf_instance": "u214_esd_a",
+        "rf_instance": "u214_esd_b",
         "ui_height_mm": 1.2,
         "rf_height_mm": 0.5,
         "remaining_z_clearance_mm": 9.3
       },
       {
-        "ui_instance": "slow_io",
+        "ui_instance": "ui_matrix_io",
         "rf_instance": "u214_return_buffer_bypass",
-        "ui_height_mm": 0.6,
+        "ui_height_mm": 1.2,
         "rf_height_mm": 0.5,
-        "remaining_z_clearance_mm": 9.9
-      },
-      {
-        "ui_instance": "slow_io",
-        "rf_instance": "u214_series_irq",
-        "ui_height_mm": 0.6,
-        "rf_height_mm": 0.35,
-        "remaining_z_clearance_mm": 10.05
-      },
-      {
-        "ui_instance": "slow_io",
-        "rf_instance": "u214_series_miso",
-        "ui_height_mm": 0.6,
-        "rf_height_mm": 0.35,
-        "remaining_z_clearance_mm": 10.05
-      },
-      {
-        "ui_instance": "slow_io",
-        "rf_instance": "u214_series_nss",
-        "ui_height_mm": 0.6,
-        "rf_height_mm": 0.35,
-        "remaining_z_clearance_mm": 10.05
-      },
-      {
-        "ui_instance": "slow_io",
-        "rf_instance": "u214_series_rst",
-        "ui_height_mm": 0.6,
-        "rf_height_mm": 0.35,
-        "remaining_z_clearance_mm": 10.05
+        "remaining_z_clearance_mm": 9.3
       }
     ],
     "display_direct_mount": {
@@ -3133,13 +3133,13 @@
       ],
       "complete_height_from_ui_inner_mm": 1.0,
       "remaining_to_opposite_pcb_plane_mm": 10.0,
-      "opposing_pair_count": 4,
+      "opposing_pair_count": 2,
       "minimum_opposing_body": "nrf1",
       "minimum_opposing_z_clearance_mm": 7.5,
       "connector_is_load_bearing": false,
       "retention": {
         "connector_is_load_bearing": false,
-        "panel_support": "one stocked 50.80 x 50.80-mm rectangular acrylic-foam PSA pad applied to the flat component-free UI-PCB outer face at x=12.10...62.90 mm, y=44.46...95.26 mm; it supports 53.7% of the stiff panel plan while the complete folded-FPC zone above it remains adhesive-free",
+        "panel_support": "one stocked 50.80 x 50.80-mm rectangular acrylic-foam PSA pad applied to the flat component-free UI-PCB outer face at x=14.60...65.40 mm, y=44.46...95.26 mm; it supports 53.7% of the stiff panel plan while the complete folded-FPC zone above it remains adhesive-free",
         "primary_retention": "a single stocked rectangular industrial PSA pad applied to the UI PCB, never to the loose panel; its exact released thickness must exceed the measured folded-FPC maximum stack by at least 0.20 mm",
         "secondary_retention": "none in the assembled stack; PCB assembly datums and a removable placement fixture control alignment without becoming retained parts",
         "flex_strain_relief": "the tail leaves the panel toward board -Y, folds back once without twist into the adhesive-free pocket under the panel, and only the 25.50-mm contact tongue crosses the rounded 27.00 x 1.20-mm PCB slot before entering the inner-face ZIF. The 30.16 +/-0.50-mm source length, slot at y=23.00 mm and ZIF at y=25.00 mm preserve at least 5.00 mm of relaxed service slack after the actual bend/insertion path is proven. The pocket prevents component compression and the bonded panel prevents motion, so no sharp crease, routed-edge bearing, tensile load or peel load reaches the contacts or latch",
@@ -3156,7 +3156,7 @@
             "id": "display_psa_rectangle",
             "quantity": 1,
             "part_type": "one stocked rectangular double-coated acrylic-foam display-bonding pad; no custom converter contour",
-            "implementation": "apply one 50.80 x 50.80-mm 3M (TC) 4910SQ-2(5) candidate to the PCB at x=12.10...62.90 mm, y=44.46...95.26 mm using its PSA silkscreen datum while the upper release liner remains fitted. It supports 2580.64 mm2 or about 53.7% of the exact panel plan, exceeding the roughly 40% partial-area bond visually inferred from the supplied ESP32-DIV sample photograph. Its 1.016-mm nominal 3M VHB 4910 construction has +/-10% family thickness tolerance, so the released current-lot folded-FPC stack must be <=0.714 mm and the received dry fit must preserve >=0.20 mm actual clearance. No liquid glue, trimming, external converter order, adhesive on the FPC or separate upper strip",
+            "implementation": "apply one 50.80 x 50.80-mm 3M (TC) 4910SQ-2(5) candidate to the PCB at x=14.60...65.40 mm, y=44.46...95.26 mm using its PSA silkscreen datum while the upper release liner remains fitted. It supports 2580.64 mm2 or about 53.7% of the exact panel plan, exceeding the roughly 40% partial-area bond visually inferred from the supplied ESP32-DIV sample photograph. Its 1.016-mm nominal 3M VHB 4910 construction has +/-10% family thickness tolerance, so the released current-lot folded-FPC stack must be <=0.714 mm and the received dry fit must preserve >=0.20 mm actual clearance. No liquid glue, trimming, external converter order, adhesive on the FPC or separate upper strip",
             "load_role": "retains the stiff panel against lift and in-plane shear and supports more than half of its plan without a custom cut or separately positioned shoulders",
             "primary_qualification_mpn": "3M (TC) 4910SQ-2(5); DigiKey 1067-4910SQ-2(5)-ND; active stocked 50.80 x 50.80 x 1.016-mm square. This is a dimensional and sourcing candidate, not an unconditional released production line until the <=0.714-mm FPC-stack and factory-process gates pass",
             "rejected_material_routes": "untraceable reseller 50 x 50 x 1-mm 3M-labelled pads, the 33-m 4910F50 roll and the earlier 0.17-mm 3M 9495LE route are not the one-prototype production selection",
@@ -3173,7 +3173,7 @@
             "id": "fpc_bend_guide",
             "quantity": 1,
             "part_type": "adhesive-free folded-FPC upper zone, rounded PCB tongue slot and optional removable low-tack polyimide insertion guide",
-            "implementation": "reserve a 47.90-mm-wide adhesive-free zone for the component-bearing FPC under the antenna-edge portion of the panel and one centered 27.00 x 1.20-mm rounded NPTH slot at board x=24.00...51.00 mm, y=23.00...24.20 mm; the 25.50 +/-0.15-mm tongue crosses with 0.75-mm nominal and 0.675-mm worst-case lateral clearance per side. Deburr the routed slot and use a removable low-tack polyimide insertion guide when mating; the folded FPC must not be compressed, bonded, twisted or allowed to bear on the routed edge. Dry fit must show at least 5.00 mm of relaxed path reserve before the PSA liner is removed",
+            "implementation": "reserve a 47.90-mm-wide adhesive-free zone for the component-bearing FPC under the antenna-edge portion of the panel and one centered 27.00 x 1.20-mm rounded NPTH slot at board x=26.50...53.50 mm, y=23.00...24.20 mm; the 25.50 +/-0.15-mm tongue crosses with 0.75-mm nominal and 0.675-mm worst-case lateral clearance per side. Deburr the routed slot and use a removable low-tack polyimide insertion guide when mating; the folded FPC must not be compressed, bonded, twisted or allowed to bear on the routed edge. Dry fit must show at least 5.00 mm of relaxed path reserve before the PSA liner is removed",
             "load_role": "keeps the component-bearing flex unloaded and prevents panel motion from becoming tensile or peel load at the ZIF contacts"
           }
         ],
@@ -3196,7 +3196,7 @@
             50.8
           ],
           "stock_psa_rectangle_position_mm": [
-            12.1,
+            14.6,
             44.46
           ],
           "supported_panel_area_fraction": 0.537,
@@ -3208,7 +3208,7 @@
           "separate_upper_tape_fitted": false,
           "separate_upper_tape_reason": "the stiff panel already has 2580.64 mm2 of primary bond area; observed ESP32-DIV construction suggests that a smaller partial-area bond is adequate, so a second strip or shoulder feature adds assembly work without a demonstrated need",
           "pcb_slot_position_mm": [
-            24.0,
+            26.5,
             23.0
           ],
           "pcb_slot_width_mm": 27.0,
@@ -3244,16 +3244,6 @@
           "rf_instance": "nrf1",
           "rf_height_mm": 2.5,
           "remaining_z_clearance_mm": 7.5
-        },
-        {
-          "rf_instance": "nrf2",
-          "rf_height_mm": 2.5,
-          "remaining_z_clearance_mm": 7.5
-        },
-        {
-          "rf_instance": "nrf0_rf_board_connector",
-          "rf_height_mm": 2.4,
-          "remaining_z_clearance_mm": 7.6
         },
         {
           "rf_instance": "nrf1_rf_board_connector",
@@ -3329,11 +3319,11 @@
           "cable_instance": "c5_rf_jumper",
           "points_mm": [
             [
-              66.7,
+              71.7,
               24.38
             ],
             [
-              59.0,
+              64.0,
               10.55
             ]
           ],
@@ -3343,7 +3333,7 @@
         }
       ],
       "native_slack_bend_and_retention_status": "H5_open",
-      "nrf_reserve_opposing_crossing_count": 7,
+      "nrf_reserve_opposing_crossing_count": 5,
       "minimum_nrf_reserve_opposing_crossing": {
         "cable_instance": "nrf0_rf_jumper",
         "ui_instance": "c5",
@@ -3379,18 +3369,18 @@
           "module_instance": "nrf1",
           "board_connector_instance": "nrf1_rf_board_connector",
           "module_face_reserve_mm": [
-            34.5,
+            39.5,
             7.5,
             14.6,
             18.1
           ],
           "direct_projection_points_mm": [
             [
-              34.5,
+              39.5,
               20.0
             ],
             [
-              49.4,
+              54.4,
               29.55
             ]
           ],
@@ -3403,18 +3393,18 @@
           "module_instance": "nrf2",
           "board_connector_instance": "nrf2_rf_board_connector",
           "module_face_reserve_mm": [
-            49.9,
+            54.9,
             7.5,
             14.6,
             18.1
           ],
           "direct_projection_points_mm": [
             [
-              64.5,
+              69.5,
               23.55
             ],
             [
-              71.5,
+              76.5,
               23.55
             ]
           ],
@@ -3486,11 +3476,11 @@
               10.55
             ],
             [
-              22.8,
+              25.3,
               6.62
             ],
             [
-              22.8,
+              25.3,
               0.0
             ]
           ],
@@ -3506,15 +3496,15 @@
           "external_connector_mpn": "GCT RFPC-SMA32-FN-175-A",
           "points_mm": [
             [
-              59.0,
+              64.0,
               10.55
             ],
             [
-              52.2,
+              54.7,
               6.62
             ],
             [
-              52.2,
+              54.7,
               0.0
             ]
           ],
@@ -3534,19 +3524,19 @@
               54.8
             ],
             [
-              13.5,
+              16.0,
               49.0
             ],
             [
-              13.5,
+              16.0,
               6.0
             ],
             [
-              8.1,
+              10.6,
               6.0
             ],
             [
-              8.1,
+              10.6,
               0.0
             ]
           ],
@@ -3566,11 +3556,11 @@
               56.2
             ],
             [
-              22.8,
+              25.3,
               52.0
             ],
             [
-              22.8,
+              25.3,
               0.0
             ]
           ],
@@ -3590,19 +3580,19 @@
               29.55
             ],
             [
-              9.5,
+              12.0,
               29.55
             ],
             [
-              9.5,
+              12.0,
               5.0
             ],
             [
-              8.1,
+              10.6,
               5.0
             ],
             [
-              8.1,
+              10.6,
               0.0
             ]
           ],
@@ -3618,23 +3608,23 @@
           "external_connector_mpn": "GCT RFPC-SMA31-FN-175-A",
           "points_mm": [
             [
-              51.5,
+              56.5,
               29.55
             ],
             [
-              51.75,
+              56.75,
               27.0
             ],
             [
-              51.75,
+              56.75,
               5.0
             ],
             [
-              37.5,
+              40.0,
               5.0
             ],
             [
-              37.5,
+              40.0,
               0.0
             ]
           ],
@@ -3650,23 +3640,23 @@
           "external_connector_mpn": "GCT RFPC-SMA31-FN-175-A",
           "points_mm": [
             [
-              71.5,
+              76.5,
               23.55
             ],
             [
-              65.2,
+              70.2,
               27.5
             ],
             [
-              65.2,
+              70.2,
               5.0
             ],
             [
-              66.9,
+              69.4,
               5.0
             ],
             [
-              66.9,
+              69.4,
               0.0
             ]
           ],
@@ -3682,15 +3672,15 @@
           "external_connector_mpn": "GCT RFPC-SMA31-FN-175-A",
           "points_mm": [
             [
-              19.0,
+              24.0,
               10.3
             ],
             [
-              37.5,
+              40.0,
               5.0
             ],
             [
-              37.5,
+              40.0,
               0.0
             ]
           ],
@@ -3710,7 +3700,7 @@
               32.52
             ],
             [
-              52.2,
+              54.7,
               0.0
             ]
           ],
@@ -3730,19 +3720,19 @@
               36.95
             ],
             [
-              61.5,
+              66.5,
               30.0
             ],
             [
-              61.5,
+              66.5,
               6.0
             ],
             [
-              66.9,
+              69.4,
               6.0
             ],
             [
-              66.9,
+              69.4,
               0.0
             ]
           ],
@@ -3783,8 +3773,8 @@
     "pcb_copper_and_vias": {
       "result": "not_yet_proven_pre_kicad",
       "reason": "logical pin and net maps do not prove escape routing, return paths, via fields or DRC clearance through real footprints",
-      "voice_v_rf_endpoint_distance_mm": 45.588956,
-      "voice_u_rf_endpoint_distance_mm": 47.332833,
+      "voice_v_rf_endpoint_distance_mm": 47.374602,
+      "voice_u_rf_endpoint_distance_mm": 41.290024,
       "voice_rf_route_rendering": "two_source_to_two_port_topology_guides_no_claimed_copper_path",
       "closure": "route both boards in KiCad, then pass schematic/ERC, layout DRC, differential/controlled-impedance review and independent manufacturing-rule review"
     },
@@ -3802,8 +3792,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          18.0,
-          19.0
+          23.0,
+          24.0
         ],
         "y": [
           90.5,
@@ -3821,8 +3811,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          30.4,
-          32.0
+          35.4,
+          37.0
         ],
         "y": [
           61.0,
@@ -3840,8 +3830,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          27.0,
-          29.0
+          32.0,
+          34.0
         ],
         "y": [
           64.0,
@@ -3859,8 +3849,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          29.8,
-          33.0
+          34.8,
+          38.0
         ],
         "y": [
           64.0,
@@ -3878,8 +3868,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          29.8,
-          33.0
+          34.8,
+          38.0
         ],
         "y": [
           66.3,
@@ -3916,8 +3906,8 @@
       "source_frame": "ui-inner",
       "world_bbox_mm": {
         "x": [
-          51.7,
-          69.7
+          56.7,
+          74.7
         ],
         "y": [
           22.0,
@@ -3935,8 +3925,8 @@
       "source_frame": "ui-inner",
       "world_bbox_mm": {
         "x": [
-          71.6,
-          75.0
+          76.6,
+          80.0
         ],
         "y": [
           122.0,
@@ -3973,8 +3963,8 @@
       "source_frame": "ui-inner",
       "world_bbox_mm": {
         "x": [
-          71.6,
-          75.0
+          76.6,
+          80.0
         ],
         "y": [
           115.0,
@@ -3992,8 +3982,8 @@
       "source_frame": "ui-inner",
       "world_bbox_mm": {
         "x": [
-          57.5,
-          60.5
+          62.5,
+          65.5
         ],
         "y": [
           9.0,
@@ -4011,8 +4001,8 @@
       "source_frame": "ui-inner",
       "world_bbox_mm": {
         "x": [
-          58.2,
-          59.8
+          63.2,
+          64.8
         ],
         "y": [
           6.2,
@@ -4068,8 +4058,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          16.0,
-          18.0
+          21.0,
+          23.0
         ],
         "y": [
           100.0,
@@ -4087,8 +4077,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          12.6,
-          15.6
+          17.6,
+          20.6
         ],
         "y": [
           74.55,
@@ -4106,8 +4096,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          12.5,
-          17.6
+          17.5,
+          22.6
         ],
         "y": [
           68.8,
@@ -4125,8 +4115,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          6.7,
-          11.8
+          11.7,
+          16.8
         ],
         "y": [
           68.8,
@@ -4144,8 +4134,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          63.0,
-          66.2
+          68.0,
+          71.2
         ],
         "y": [
           73.6,
@@ -4163,8 +4153,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          59.1,
-          62.3
+          64.1,
+          67.3
         ],
         "y": [
           73.6,
@@ -4182,8 +4172,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          63.6,
-          69.0
+          68.6,
+          74.0
         ],
         "y": [
           62.4,
@@ -4201,8 +4191,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          63.0,
-          66.2
+          68.0,
+          71.2
         ],
         "y": [
           69.0,
@@ -4220,8 +4210,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          59.1,
-          62.3
+          64.1,
+          67.3
         ],
         "y": [
           69.0,
@@ -4239,8 +4229,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          70.8,
-          74.0
+          75.8,
+          79.0
         ],
         "y": [
           71.3,
@@ -4258,8 +4248,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          70.8,
-          74.0
+          75.8,
+          79.0
         ],
         "y": [
           75.9,
@@ -4277,8 +4267,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          66.9,
-          70.1
+          71.9,
+          75.1
         ],
         "y": [
           71.3,
@@ -4296,8 +4286,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          63.0,
-          66.2
+          68.0,
+          71.2
         ],
         "y": [
           71.3,
@@ -4315,8 +4305,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          59.1,
-          62.3
+          64.1,
+          67.3
         ],
         "y": [
           71.3,
@@ -4334,8 +4324,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          70.8,
-          74.0
+          75.8,
+          79.0
         ],
         "y": [
           73.6,
@@ -4353,8 +4343,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          66.9,
-          70.1
+          71.9,
+          75.1
         ],
         "y": [
           73.6,
@@ -4372,8 +4362,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          70.8,
-          74.0
+          75.8,
+          79.0
         ],
         "y": [
           69.0,
@@ -4391,8 +4381,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          66.9,
-          70.1
+          71.9,
+          75.1
         ],
         "y": [
           69.0,
@@ -4448,8 +4438,8 @@
       "source_frame": "ui-inner",
       "world_bbox_mm": {
         "x": [
-          24.0,
-          51.0
+          26.5,
+          53.5
         ],
         "y": [
           25.0,
@@ -4467,8 +4457,8 @@
       "source_frame": "rear-outer",
       "world_bbox_mm": {
         "x": [
-          61.15,
-          72.85
+          66.15,
+          77.85
         ],
         "y": [
           44.5,
@@ -4486,8 +4476,8 @@
       "source_frame": "rear-outer",
       "world_bbox_mm": {
         "x": [
-          59.5,
-          74.5
+          64.5,
+          79.5
         ],
         "y": [
           43.0,
@@ -4524,8 +4514,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          12.0,
-          17.0
+          17.0,
+          22.0
         ],
         "y": [
           88.0,
@@ -4543,8 +4533,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          7.0,
-          9.0
+          12.0,
+          14.0
         ],
         "y": [
           88.0,
@@ -4562,8 +4552,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          13.9,
-          17.0
+          18.9,
+          22.0
         ],
         "y": [
           93.5,
@@ -4581,8 +4571,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          18.0,
-          19.0
+          23.0,
+          24.0
         ],
         "y": [
           94.0,
@@ -4600,8 +4590,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          4.05,
-          11.85
+          9.05,
+          16.85
         ],
         "y": [
           74.55,
@@ -4619,8 +4609,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          14.1,
-          17.0
+          19.1,
+          22.0
         ],
         "y": [
           96.5,
@@ -4638,8 +4628,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          10.1,
-          13.0
+          15.1,
+          18.0
         ],
         "y": [
           93.5,
@@ -4657,8 +4647,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          14.1,
-          17.0
+          19.1,
+          22.0
         ],
         "y": [
           86.0,
@@ -4676,8 +4666,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          8.1,
-          11.0
+          13.1,
+          16.0
         ],
         "y": [
           91.5,
@@ -4695,8 +4685,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          10.1,
-          13.0
+          15.1,
+          18.0
         ],
         "y": [
           95.5,
@@ -4714,8 +4704,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          37.4,
-          39.0
+          42.4,
+          44.0
         ],
         "y": [
           61.0,
@@ -4733,8 +4723,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          36.8,
-          40.0
+          41.8,
+          45.0
         ],
         "y": [
           70.0,
@@ -4752,8 +4742,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          32.8,
-          36.0
+          37.8,
+          41.0
         ],
         "y": [
           70.0,
@@ -4771,8 +4761,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          36.8,
-          40.0
+          41.8,
+          45.0
         ],
         "y": [
           73.2,
@@ -4790,8 +4780,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          18.0,
-          20.0
+          23.0,
+          25.0
         ],
         "y": [
           92.0,
@@ -4809,8 +4799,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          18.0,
-          19.0
+          23.0,
+          24.0
         ],
         "y": [
           89.0,
@@ -4828,8 +4818,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          18.0,
-          19.0
+          23.0,
+          24.0
         ],
         "y": [
           95.5,
@@ -4847,8 +4837,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          18.0,
-          19.0
+          23.0,
+          24.0
         ],
         "y": [
           87.5,
@@ -4866,8 +4856,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          16.0,
-          17.0
+          21.0,
+          22.0
         ],
         "y": [
           98.5,
@@ -4885,8 +4875,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          34.6,
-          40.0
+          39.6,
+          45.0
         ],
         "y": [
           64.0,
@@ -4904,8 +4894,8 @@
       "source_frame": "ui-inner",
       "world_bbox_mm": {
         "x": [
-          60.4,
-          75.0
+          65.4,
+          80.0
         ],
         "y": [
           76.0,
@@ -5018,8 +5008,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          22.2,
-          52.8
+          27.2,
+          57.8
         ],
         "y": [
           119.0,
@@ -5056,8 +5046,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          53.4,
-          55.0
+          58.4,
+          60.0
         ],
         "y": [
           61.0,
@@ -5075,8 +5065,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          50.6,
-          56.0
+          55.6,
+          61.0
         ],
         "y": [
           64.0,
@@ -5094,8 +5084,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          52.8,
-          56.0
+          57.8,
+          61.0
         ],
         "y": [
           70.0,
@@ -5113,8 +5103,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          48.9,
-          52.1
+          53.9,
+          57.1
         ],
         "y": [
           70.0,
@@ -5132,8 +5122,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          52.8,
-          56.0
+          57.8,
+          61.0
         ],
         "y": [
           73.2,
@@ -5151,8 +5141,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          26.0,
-          30.0
+          31.0,
+          35.0
         ],
         "y": [
           146.0,
@@ -5170,8 +5160,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          51.4,
-          66.0
+          56.4,
+          71.0
         ],
         "y": [
           7.5,
@@ -5189,8 +5179,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          69.9,
-          75.0
+          74.9,
+          80.0
         ],
         "y": [
           26.8,
@@ -5208,8 +5198,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          66.0,
-          69.0
+          71.0,
+          74.0
         ],
         "y": [
           26.8,
@@ -5227,8 +5217,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          49.0,
-          52.0
+          54.0,
+          57.0
         ],
         "y": [
           28.0,
@@ -5265,8 +5255,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          32.6,
-          37.7
+          37.6,
+          42.7
         ],
         "y": [
           52.55,
@@ -5284,8 +5274,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          32.75,
-          35.75
+          37.75,
+          40.75
         ],
         "y": [
           58.0,
@@ -5341,8 +5331,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          26.8,
-          31.9
+          31.8,
+          36.9
         ],
         "y": [
           52.55,
@@ -5360,8 +5350,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          16.35,
-          19.35
+          21.35,
+          24.35
         ],
         "y": [
           74.55,
@@ -5398,8 +5388,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          19.0,
-          21.0
+          24.0,
+          26.0
         ],
         "y": [
           100.0,
@@ -5417,8 +5407,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          70.0,
-          74.0
+          75.0,
+          79.0
         ],
         "y": [
           63.0,
@@ -5436,8 +5426,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          64.2,
-          69.3
+          69.2,
+          74.3
         ],
         "y": [
           84.0,
@@ -5455,8 +5445,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          57.2,
-          63.5
+          62.2,
+          68.5
         ],
         "y": [
           84.0,
@@ -5474,8 +5464,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          50.2,
-          56.5
+          55.2,
+          61.5
         ],
         "y": [
           84.0,
@@ -5493,8 +5483,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          67.9,
-          74.0
+          72.9,
+          79.0
         ],
         "y": [
           80.0,
@@ -5512,8 +5502,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          61.1,
-          67.2
+          66.1,
+          72.2
         ],
         "y": [
           80.0,
@@ -5531,8 +5521,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          70.0,
-          74.0
+          75.0,
+          79.0
         ],
         "y": [
           84.0,
@@ -5550,8 +5540,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          50.0,
-          53.3
+          55.0,
+          58.3
         ],
         "y": [
           80.0,
@@ -5569,8 +5559,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          54.05,
-          60.4
+          59.05,
+          65.4
         ],
         "y": [
           80.0,
@@ -5588,8 +5578,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          53.8,
-          58.7
+          58.8,
+          63.7
         ],
         "y": [
           134.5,
@@ -5607,8 +5597,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          59.5,
-          63.5
+          64.5,
+          68.5
         ],
         "y": [
           134.5,
@@ -5626,8 +5616,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          70.8,
-          74.0
+          75.8,
+          79.0
         ],
         "y": [
           127.0,
@@ -5645,8 +5635,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          66.9,
-          70.1
+          71.9,
+          75.1
         ],
         "y": [
           127.0,
@@ -5664,8 +5654,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          63.0,
-          66.2
+          68.0,
+          71.2
         ],
         "y": [
           127.0,
@@ -5683,8 +5673,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          59.1,
-          62.3
+          64.1,
+          67.3
         ],
         "y": [
           127.0,
@@ -5702,8 +5692,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          49.8,
-          53.0
+          54.8,
+          58.0
         ],
         "y": [
           134.5,
@@ -5721,8 +5711,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          47.0,
-          49.0
+          52.0,
+          54.0
         ],
         "y": [
           134.5,
@@ -5759,8 +5749,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          47.9,
-          49.5
+          52.9,
+          54.5
         ],
         "y": [
           84.0,
@@ -5778,8 +5768,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          54.06,
-          63.0
+          59.06,
+          68.0
         ],
         "y": [
           143.1,
@@ -5797,8 +5787,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          64.5,
-          67.5
+          69.5,
+          72.5
         ],
         "y": [
           135.0,
@@ -5854,8 +5844,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          1.4,
-          3.0
+          6.4,
+          8.0
         ],
         "y": [
           56.0,
@@ -5873,8 +5863,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          65.0,
-          75.0
+          70.0,
+          80.0
         ],
         "y": [
           32.2,
@@ -5892,8 +5882,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          71.6,
-          75.0
+          76.6,
+          80.0
         ],
         "y": [
           113.0,
@@ -5911,8 +5901,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          25.35,
-          35.0
+          30.35,
+          40.0
         ],
         "y": [
           104.0,
@@ -5930,8 +5920,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          71.6,
-          75.0
+          76.6,
+          80.0
         ],
         "y": [
           106.0,
@@ -5949,8 +5939,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          33.06,
-          42.0
+          38.06,
+          47.0
         ],
         "y": [
           142.65,
@@ -6120,8 +6110,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          30.1,
-          33.0
+          35.1,
+          38.0
         ],
         "y": [
           94.0,
@@ -6139,8 +6129,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          27.4,
-          30.5
+          32.4,
+          35.5
         ],
         "y": [
           85.0,
@@ -6158,8 +6148,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          21.0,
-          26.0
+          26.0,
+          31.0
         ],
         "y": [
           94.0,
@@ -6177,8 +6167,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          21.0,
-          26.0
+          26.0,
+          31.0
         ],
         "y": [
           88.0,
@@ -6196,8 +6186,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          34.9,
-          38.0
+          39.9,
+          43.0
         ],
         "y": [
           82.0,
@@ -6215,8 +6205,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          13.1,
-          16.0
+          18.1,
+          21.0
         ],
         "y": [
           82.0,
@@ -6234,8 +6224,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          29.0,
-          31.0
+          34.0,
+          36.0
         ],
         "y": [
           82.0,
@@ -6253,8 +6243,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          32.0,
-          34.0
+          37.0,
+          39.0
         ],
         "y": [
           82.0,
@@ -6291,8 +6281,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          18.0,
-          20.0
+          23.0,
+          25.0
         ],
         "y": [
           82.0,
@@ -6310,8 +6300,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          23.1,
-          26.0
+          28.1,
+          31.0
         ],
         "y": [
           82.0,
@@ -6329,8 +6319,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          33.9,
-          39.0
+          38.9,
+          44.0
         ],
         "y": [
           87.0,
@@ -6348,8 +6338,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          35.1,
-          38.0
+          40.1,
+          43.0
         ],
         "y": [
           94.0,
@@ -6405,8 +6395,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          1.0,
-          25.0
+          6.0,
+          30.0
         ],
         "y": [
           127.0,
@@ -6424,8 +6414,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          41.0,
-          44.0
+          46.0,
+          49.0
         ],
         "y": [
           87.0,
@@ -6443,8 +6433,8 @@
       "source_frame": "rear-outer",
       "world_bbox_mm": {
         "x": [
-          28.61,
-          46.39
+          31.11,
+          48.89
         ],
         "y": [
           26.48,
@@ -6462,8 +6452,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          40.5,
-          43.0
+          45.5,
+          48.0
         ],
         "y": [
           58.5,
@@ -6481,8 +6471,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          29.5,
-          32.0
+          34.5,
+          37.0
         ],
         "y": [
           58.0,
@@ -6500,8 +6490,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          44.0,
-          46.5
+          49.0,
+          51.5
         ],
         "y": [
           58.0,
@@ -6519,8 +6509,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          53.9,
-          59.0
+          58.9,
+          64.0
         ],
         "y": [
           52.55,
@@ -6538,8 +6528,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          25.0,
-          26.0
+          30.0,
+          31.0
         ],
         "y": [
           54.0,
@@ -6557,8 +6547,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          48.1,
-          53.2
+          53.1,
+          58.2
         ],
         "y": [
           52.55,
@@ -6576,8 +6566,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          47.5,
-          48.5
+          52.5,
+          53.5
         ],
         "y": [
           58.0,
@@ -6595,8 +6585,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          25.0,
-          26.0
+          30.0,
+          31.0
         ],
         "y": [
           52.5,
@@ -6614,8 +6604,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          42.5,
-          43.5
+          47.5,
+          48.5
         ],
         "y": [
           60.5,
@@ -6633,8 +6623,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          38.45,
-          41.55
+          43.45,
+          46.55
         ],
         "y": [
           52.55,
@@ -6652,8 +6642,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          40.5,
-          41.5
+          45.5,
+          46.5
         ],
         "y": [
           60.5,
@@ -6671,8 +6661,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          51.5,
-          52.5
+          56.5,
+          57.5
         ],
         "y": [
           59.5,
@@ -6690,8 +6680,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          42.3,
-          47.4
+          47.3,
+          52.4
         ],
         "y": [
           52.55,
@@ -6709,8 +6699,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          27.5,
-          28.5
+          32.5,
+          33.5
         ],
         "y": [
           58.0,
@@ -6728,8 +6718,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          49.5,
-          50.5
+          54.5,
+          55.5
         ],
         "y": [
           59.5,
@@ -6747,8 +6737,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          47.5,
-          48.5
+          52.5,
+          53.5
         ],
         "y": [
           59.5,
@@ -6766,8 +6756,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          51.5,
-          52.5
+          56.5,
+          57.5
         ],
         "y": [
           58.0,
@@ -6785,8 +6775,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          26.5,
-          27.5
+          31.5,
+          32.5
         ],
         "y": [
           59.5,
@@ -6804,8 +6794,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          24.5,
-          25.5
+          29.5,
+          30.5
         ],
         "y": [
           58.5,
@@ -6823,8 +6813,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          28.5,
-          29.5
+          33.5,
+          34.5
         ],
         "y": [
           60.0,
@@ -6842,8 +6832,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          25.0,
-          26.0
+          30.0,
+          31.0
         ],
         "y": [
           57.0,
@@ -6861,8 +6851,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          25.0,
-          26.0
+          30.0,
+          31.0
         ],
         "y": [
           55.5,
@@ -6880,8 +6870,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          49.5,
-          50.5
+          54.5,
+          55.5
         ],
         "y": [
           58.0,
@@ -6899,8 +6889,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          0.1,
-          3.0
+          5.1,
+          8.0
         ],
         "y": [
           57.5,
@@ -6918,8 +6908,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          2.0,
-          3.0
+          7.0,
+          8.0
         ],
         "y": [
           59.9,
@@ -6937,8 +6927,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          2.0,
-          3.0
+          7.0,
+          8.0
         ],
         "y": [
           63.8,
@@ -6956,8 +6946,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          2.0,
-          3.0
+          7.0,
+          8.0
         ],
         "y": [
           65.1,
@@ -6975,8 +6965,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          2.0,
-          3.0
+          7.0,
+          8.0
         ],
         "y": [
           62.5,
@@ -6994,8 +6984,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          2.0,
-          3.0
+          7.0,
+          8.0
         ],
         "y": [
           61.2,
@@ -7013,8 +7003,8 @@
       "source_frame": "front-outer",
       "world_bbox_mm": {
         "x": [
-          34.2,
-          40.8
+          36.7,
+          43.3
         ],
         "y": [
           138.4,
@@ -7032,8 +7022,8 @@
       "source_frame": "front-outer",
       "world_bbox_mm": {
         "x": [
-          25.2,
-          31.8
+          27.7,
+          34.3
         ],
         "y": [
           129.4,
@@ -7051,8 +7041,8 @@
       "source_frame": "front-outer",
       "world_bbox_mm": {
         "x": [
-          34.2,
-          40.8
+          36.7,
+          43.3
         ],
         "y": [
           129.4,
@@ -7070,8 +7060,8 @@
       "source_frame": "front-outer",
       "world_bbox_mm": {
         "x": [
-          43.2,
-          49.8
+          45.7,
+          52.3
         ],
         "y": [
           129.4,
@@ -7089,8 +7079,8 @@
       "source_frame": "front-outer",
       "world_bbox_mm": {
         "x": [
-          34.2,
-          40.8
+          36.7,
+          43.3
         ],
         "y": [
           120.4,
@@ -7222,8 +7212,8 @@
       "source_frame": "front-outer",
       "world_bbox_mm": {
         "x": [
-          66.6,
-          73.2
+          71.6,
+          78.2
         ],
         "y": [
           19.5,
@@ -7241,8 +7231,8 @@
       "source_frame": "front-outer",
       "world_bbox_mm": {
         "x": [
-          66.6,
-          73.2
+          71.6,
+          78.2
         ],
         "y": [
           33.0,
@@ -7260,8 +7250,8 @@
       "source_frame": "front-outer",
       "world_bbox_mm": {
         "x": [
-          66.6,
-          73.2
+          71.6,
+          78.2
         ],
         "y": [
           46.5,
@@ -7279,8 +7269,8 @@
       "source_frame": "front-outer",
       "world_bbox_mm": {
         "x": [
-          66.6,
-          73.2
+          71.6,
+          78.2
         ],
         "y": [
           60.0,
@@ -7298,8 +7288,8 @@
       "source_frame": "front-outer",
       "world_bbox_mm": {
         "x": [
-          57.4,
-          64.0
+          62.4,
+          69.0
         ],
         "y": [
           129.4,
@@ -7336,8 +7326,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          12.0,
-          24.0
+          17.0,
+          29.0
         ],
         "y": [
           140.9,
@@ -7355,8 +7345,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          3.8,
-          22.8
+          8.8,
+          27.8
         ],
         "y": [
           32.5,
@@ -7374,8 +7364,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          25.95,
-          31.0
+          30.95,
+          36.0
         ],
         "y": [
           74.55,
@@ -7393,8 +7383,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          23.75,
-          25.25
+          28.75,
+          30.25
         ],
         "y": [
           74.55,
@@ -7412,8 +7402,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          26.0,
-          31.0
+          31.0,
+          36.0
         ],
         "y": [
           68.8,
@@ -7431,8 +7421,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          45.4,
-          47.0
+          50.4,
+          52.0
         ],
         "y": [
           61.0,
@@ -7450,8 +7440,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          22.2,
-          25.3
+          27.2,
+          30.3
         ],
         "y": [
           68.8,
@@ -7469,8 +7459,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          18.35,
-          21.45
+          23.35,
+          26.45
         ],
         "y": [
           68.8,
@@ -7488,8 +7478,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          42.6,
-          48.0
+          47.6,
+          53.0
         ],
         "y": [
           64.0,
@@ -7507,8 +7497,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          44.8,
-          48.0
+          49.8,
+          53.0
         ],
         "y": [
           70.0,
@@ -7526,8 +7516,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          40.9,
-          44.1
+          45.9,
+          49.1
         ],
         "y": [
           70.0,
@@ -7545,8 +7535,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          44.8,
-          48.0
+          49.8,
+          53.0
         ],
         "y": [
           73.2,
@@ -7564,8 +7554,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          20.15,
-          22.55
+          25.15,
+          27.55
         ],
         "y": [
           74.55,
@@ -7583,8 +7573,8 @@
       "source_frame": "rf-inner",
       "world_bbox_mm": {
         "x": [
-          23.6,
-          59.2
+          28.6,
+          64.2
         ],
         "y": [
           32.52,

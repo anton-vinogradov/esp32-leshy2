@@ -16,7 +16,7 @@ class PreorderGateTests(unittest.TestCase):
     def test_gate_reports_actual_unfinished_state(self):
         self.assertEqual("LESHY2-PREORDER-R2", self.contract["contract_id"])
         truth = self.contract["current_truth"]
-        self.assertIn("H1-R2.38 is the user-accepted reviewed", truth["mechanical_projection"])
+        self.assertIn("H1-R2.39 is the user-accepted reviewed", truth["mechanical_projection"])
         self.assertIn("H2-R2.1.5 is reviewed", truth["current_ecad"])
         self.assertIn("H3-R2.0.1", truth["current_ecad"])
         self.assertIn("1208 schematic instances", truth["current_ecad"])
@@ -71,7 +71,7 @@ class PreorderGateTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
         plan_normalized = " ".join(plan.split())
         self.assertIn("H1 through H5", index)
-        self.assertIn("H6.0.2-R1 routing and net parity are current", index)
+        self.assertIn("H6.0.3-R1", index)
         self.assertIn("superseded", plan)
         self.assertIn("remain unauthorized", plan)
         self.assertIn("no separate engineering-sample or H5 coupon order", plan_normalized)

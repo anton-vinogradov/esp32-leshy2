@@ -75,6 +75,9 @@ def render(name: str, board: Path, destination: Path) -> None:
     if "<svg" not in svg:
         raise SystemExit(f"{name}: KiCad did not produce an SVG root")
     svg = svg.replace("<svg", f"<svg {metadata(name, board)}", 1)
+    # KiCad's SVG exporter leaves spaces at many line endings.  Normalize only
+    # that presentation detail so generated documentation remains diff-clean.
+    svg = "\n".join(line.rstrip() for line in svg.splitlines()) + "\n"
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text(svg, encoding="utf-8")
 

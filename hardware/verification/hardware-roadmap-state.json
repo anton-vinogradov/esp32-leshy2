@@ -2,8 +2,8 @@
   "schema_version": 1,
   "baseline": "R2",
   "current_stage": "H6",
-  "current_substep": "H6.0.2-R1",
-  "current_detail": "H6.0.1-R1 is complete: 1208 exact footprints, the four-stop/M2.5 enclosure stack and five relaxed microcoax service corridors pass their machine checks. H6.0.2-R1 now owns routing all 789 reviewed canonical nets / 823 board-local physical nets plus native schematic/PCB parity and zero-finding DRC. Purchasing and fabrication remain unauthorized.",
+  "current_substep": "H6.0.3-R1",
+  "current_detail": "H6.0.1-R1 is complete and the former H6.0.2-R1 routing slice remains historical evidence. H6.0.3-R1 widens both boards to 80 × 150 mm, preserves all 1208 exact positions and external interfaces, and owns routing all 789 reviewed canonical nets / 823 board-local physical nets plus native schematic/PCB parity and baseline-matched DRC. Purchasing and fabrication remain unauthorized.",
   "preorder_release": {
     "status": "blocked",
     "assembled_device_quantity": 1,
@@ -14,12 +14,12 @@
   },
   "stages": [
     {"id": "H0", "status": "reviewed", "baseline": "R2"},
-    {"id": "H1", "status": "reviewed", "baseline": "R2", "accepted_by_user": "2026-08-30", "result_marker": "H1-R2.37", "historical_r1_status": "reviewed"},
+    {"id": "H1", "status": "reviewed", "baseline": "R2", "accepted_by_user": "2026-08-30", "result_marker": "H1-R2.39", "historical_r1_status": "reviewed"},
     {"id": "H2", "status": "reviewed", "baseline": "R2", "result_marker": "H2-R2.1.5", "completed_substeps": ["H2-R2.0.1", "H2-R2.0.2", "H2-R2.0.3", "H2-R2.1.1", "H2-R2.1.2", "H2-R2.1.3", "H2-R2.1.4", "H2-R2.1.5"], "historical_r1_status": "reviewed", "historical_r1_accepted_by_user": "2026-08-26"},
     {"id": "H3", "status": "reviewed", "baseline": "R2", "result_marker": "H3-R2.7", "completed_substeps": ["H3-R2.0.1", "H3-R2.0.2", "H3-R2.0.3", "H3-R2.1.1", "H3-R2.1.2", "H3-R2.1.3", "H3-R2.1.4", "H3-R2.1.5", "H3-R2.1", "H3-R2.2.1", "H3-R2.2.2", "H3-R2.2.3", "H3-R2.2.4", "H3-R2.2", "H3-R2.3", "H3-R2.4", "H3-R2.5", "H3-R2.6", "H3-R2.7"], "historical_r1_status": "reviewed"},
     {"id": "H4", "status": "reviewed", "baseline": "R2", "result_marker": "H4-R2.3", "completed_substeps": ["H4-R2.0.1", "H4-R2.0.2", "H4-R2.1", "H4-R2.2", "H4-R2.3"], "historical_r1_status": "reviewed"},
     {"id": "H5", "status": "reviewed", "baseline": "R2", "result_marker": "H5.0.3-R1", "historical_r1_status": "in_progress_at_rebaseline", "superseded_evidence": "single-SA518 baseline"},
-    {"id": "H6", "status": "current", "current_substep": "H6.0.2-R1", "exit": "placement, routed parity, routed electrical/RF/mechanical re-analysis, production outputs and independent DFM/CPL review"},
+    {"id": "H6", "status": "current", "current_substep": "H6.0.3-R1", "exit": "placement, routed parity, routed electrical/RF/mechanical re-analysis, production outputs and independent DFM/CPL review"},
     {"id": "H7", "status": "waiting", "order_quantity": 1},
     {"id": "H8", "status": "waiting"},
     {"id": "H9", "status": "waiting"}

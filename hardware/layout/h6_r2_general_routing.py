@@ -42,6 +42,7 @@ ROOT = Path(__file__).resolve().parents[2]
 POLICY_AUDIT = ROOT / "hardware/layout/generated/H6-R2-routing-policy-audit.json"
 FREEZE = ROOT / "hardware/layout/h6-r2-placement-freeze.json"
 OUTPUT = ROOT / "hardware/layout/generated/H6-R2-general-routing-audit.json"
+H6_PLAN = ROOT / "hardware/verification/h6-layout-release-plan.json"
 PROJECTS = ("LESHY2-UI-R2", "LESHY2-RF-R2")
 MECHANICAL_REFERENCES = {"MH1", "MH2", "MH3", "MH4"}
 ACCEPTED_CLASSES = ("GENERAL_CONTROL", "OSCILLATOR", "SAFETY_CONTROL")
@@ -53,6 +54,36 @@ def load(path: Path) -> dict:
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def historical_audit_errors() -> list[str]:
+    """Validate the immutable 75-mm H6.0.2 evidence after a later rebaseline.
+
+    H6.0.3 deliberately changes board geometry and releases some routes, so the
+    former accepted slice must remain inspectable without being compared to the
+    current PCB hashes or presented as current routing authority.
+    """
+    if not OUTPUT.is_file():
+        return ["historical H6.0.2 routing audit is missing"]
+    artifact = load(OUTPUT)
+    errors: list[str] = []
+    if artifact.get("marker") != "H6.0.2-R1" or artifact.get("status") != "pass":
+        errors.append("historical H6.0.2 identity/status changed")
+    if tuple(artifact.get("scope", {}).get("completed", ())) != ACCEPTED_CLASSES:
+        errors.append("historical accepted routing classes changed")
+    summary = artifact.get("summary", {})
+    if summary.get("board_count") != 2:
+        errors.append("historical audit does not contain both boards")
+    if summary.get("remaining_allowed_connection_count") != 0:
+        errors.append("historical accepted slice was incomplete")
+    if summary.get("drc_violation_count") != 0 or summary.get("error_count") != 0:
+        errors.append("historical accepted slice did not pass cleanly")
+    boards = artifact.get("boards", [])
+    if {row.get("project") for row in boards} != set(PROJECTS):
+        errors.append("historical audit board identities changed")
+    if any(not row.get("placement_unchanged") or row.get("errors") for row in boards):
+        errors.append("historical audit contains a placement or routing error")
+    return errors
 
 
 def board_path(project: str) -> Path:
@@ -330,6 +361,14 @@ def main() -> int:
         parser.error("--write requires --ui-drc and --rf-drc from the current boards")
     if args.check and (args.ui_drc is not None or args.rf_drc is not None):
         parser.error("--check uses board-hash-bound DRC evidence from the generated audit")
+    if args.check:
+        current = load(H6_PLAN).get("current_substep")
+        if current != "H6.0.2-R1":
+            errors = historical_audit_errors()
+            if errors:
+                raise SystemExit("invalid historical H6.0.2 routing audit: " + "; ".join(errors))
+            print(f"H6-R2 H6.0.2 historical routing evidence preserved; current {current}")
+            return 0
     artifact = build(
         args.ui_drc.resolve() if args.ui_drc else None,
         args.rf_drc.resolve() if args.rf_drc else None,

@@ -2,19 +2,19 @@
 
 [Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h1-r2-acceptance.ru.md)
 
-> **Reviewed on 30 August 2026.** The complete `H1-R2.38` physical model was
-> accepted as the working product layout. This closes H1; it does not authorize
-> native R2 KiCad work, component purchase or fabrication.
+> **Reviewed on 30 August 2026 and rebaselined on 5 September 2026.** The complete
+> `H1-R2.39` physical model is the working 80 × 150-mm product layout. H1 remains
+> closed; this report does not authorize component purchase or fabrication.
 
-![Reviewed H1-R2 four-face layout](images/h1-r2-four-faces.svg?rev=h1-r2.38-fpc-slack-1)
+![Reviewed H1-R2 four-face layout](images/h1-r2-four-faces.svg?rev=h1-r2.39-80mm-1)
 
-![Reviewed display PSA, relaxed FPC route and direct ZIF](images/display-mount.svg?rev=h1-r2.38-4910sq-1)
+![Reviewed display PSA, relaxed FPC route and direct ZIF](images/display-mount.svg?rev=h1-r2.39-80mm-1)
 
 ## Finished result
 
 | Property | Reviewed value |
 |---|---:|
-| Product structure | Two 75 × 150 mm PCBs with independently captured interboard stack |
+| Product structure | Two 80 × 150 mm PCBs with independently captured interboard stack |
 | Registered physical bodies | 226 |
 | Same-face collisions | 0 |
 | Minimum opposing-face clearance | 2.59 mm against a 0.70 mm rule |

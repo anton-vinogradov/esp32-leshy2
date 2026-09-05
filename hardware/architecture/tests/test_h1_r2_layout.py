@@ -33,7 +33,7 @@ class H1R2LayoutTest(unittest.TestCase):
             cls.audit["status"] = "fail"
 
     def test_incremental_placement_passes(self):
-        self.assertEqual("H1-R2.38", self.model["marker"])
+        self.assertEqual("H1-R2.39", self.model["marker"])
         self.assertEqual("pass", self.audit["status"])
         self.assertEqual("pass", self.audit["structural_status"])
         self.assertEqual([], self.audit["errors"])
@@ -77,7 +77,7 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual(design["orientation"]["fpc_exit_direction_board_axis"], "-Y")
         route = design["mechanical_retention"]["fpc_route_side_section"]
         self.assertEqual([50.8, 50.8], route["stock_psa_rectangle_size_mm"])
-        self.assertEqual([12.1, 44.46], route["stock_psa_rectangle_position_mm"])
+        self.assertEqual([14.6, 44.46], route["stock_psa_rectangle_position_mm"])
         self.assertFalse(route["tail_under_psa"])
         self.assertFalse(route["tail_bears_on_bare_pcb_edge"])
         self.assertFalse(route["hard_crease_allowed"])
@@ -154,7 +154,7 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual([], self.model["pre_r2_h2_gates_ru"])
         self.assertEqual("reviewed", self.model["status"])
         self.assertEqual([], self.model["dependent_h1_work"])
-        self.assertEqual("2026-08-30", self.model["reviewed_on"])
+        self.assertEqual("2026-09-05", self.model["reviewed_on"])
         self.assertEqual(
             {"H5/H6 then H7"},
             {row["stage"] for row in self.model["downstream_verification"]},
@@ -254,7 +254,7 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual("placement_reserve", by_id["u219_pin10_island_reserve"]["kind"])
         self.assertEqual("placement_reserve", by_id["u219_nfc_evidence_island_reserve"]["kind"])
         self.assertEqual("copper_feature_reserve", by_id["u219_nfc_pickup_loop"]["kind"])
-        self.assertEqual({"x": [1.5, 73.5], "y": [17.8, 40.2]}, by_id["u219_nfc_pickup_loop"]["world_bbox_mm"])
+        self.assertEqual({"x": [4.0, 76.0], "y": [17.8, 40.2]}, by_id["u219_nfc_pickup_loop"]["world_bbox_mm"])
         self.assertEqual([], physical["unresolved_geometry"])
         self.assertEqual("external_swept_volume", by_id["u219_installed_antenna_sweep"]["kind"])
         self.assertGreaterEqual(by_id["cap_socket_pth_keepout"]["minimum_clearance_mm"], 0.7)
@@ -279,7 +279,10 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual([15.5, 104.0], header["world_xy_mm"])
         self.assertEqual("FTSH-105-01-L-DV-K-P-TR", header["mpn"])
         self.assertEqual("c5_dbg_header_r2", self.audit["relocated_c5_dbg_header"])
-        self.assertGreaterEqual(self.audit["minimum_opposing_clearance_mm"], 1.05)
+        self.assertGreaterEqual(
+            self.audit["minimum_opposing_clearance_mm"],
+            self.audit["required_opposing_clearance_mm"],
+        )
 
     def test_factory_rows_include_current_identity(self):
         by_mpn = {row["mpn"]: row for row in self.model["factory_evidence"]}
@@ -320,7 +323,7 @@ class H1R2LayoutTest(unittest.TestCase):
 
     def test_main_sma_rows_are_even_and_no_secondary_video_port_exists(self):
         rear = self.model["antenna_bank_optimization"]["rear_x_centres_mm"]
-        self.assertEqual([8.1, 22.8, 37.5, 52.2, 66.9], rear)
+        self.assertEqual([10.6, 25.3, 40.0, 54.7, 69.4], rear)
         self.assertEqual(
             self.model["antenna_bank_optimization"]["front_x_centres_mm"], rear
         )
@@ -490,7 +493,7 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertIn('226 unique drawing references', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
         self.assertIn('data-physical-feature="cap_socket_pth_keepout"', expected[MODULE.INNER_RF_SVG_PATH])
         self.assertIn('data-physical-feature="u219_nfc_evidence_island_reserve"', expected[MODULE.COMPLETE_INNER_SVG_PATH])
-        self.assertIn('u219_nfc_pickup_loop · copper_feature_reserve · X 1.5…73.5 · Y 17.8…40.2 mm', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
+        self.assertIn('u219_nfc_pickup_loop · copper_feature_reserve · X 4…76 · Y 17.8…40.2 mm', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
         self.assertIn('data-cap-profile="u214"', expected[MODULE.INNER_SECTIONS_SVG_PATH])
         self.assertIn('data-cap-profile="u219"', expected[MODULE.INNER_SECTIONS_SVG_PATH])
         self.assertNotIn('data-physical-feature="u219_nfc_pickup_loop"', expected[MODULE.INNER_RF_SVG_PATH])

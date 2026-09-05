@@ -5,15 +5,15 @@
   "status": "pass",
   "reviewed_on": "2026-09-01",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "1c614996fd626b9ca44a98395c0c01712c347c9ba4ac43e69250db3f2bf2f1df",
+    "hardware/architecture/candidates/G2F-3I.json": "6df524f1edf8db12ac278e0b5901a598c0ac18262800b09c38dde7b45147ed27",
     "hardware/architecture/devices.json": "23b5799bc5334f9d02c13635c7f9e4f7503929795c669e98223fc37b95cc1c04",
-    "hardware/verification/generated/H3-R2-method-contract.json": "d1bf0a2921258745ed546a180422c9d7e024a2628be501500d6125b2ea5756cf",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "7d7b93b48fda583c982af40557a0c30c78c04dd24c38ddc71691f47d17e5bade",
-    "hardware/verification/generated/H3-R2-source-margins.json": "47c4836ebf36453ccdb385688a559f37354e91feac82ffe906c4e2048e1c971f",
-    "hardware/verification/generated/H3-R2-transition-result.json": "6676aab1060286c324634967bb4870625f0142ab561fadb6615c0382787420bf",
-    "hardware/verification/generated/H3-R2-inrush-watchdog.json": "73528b010b0c08d3b8e593c08c2a9c8dba3ea98a8de3df9a6231cea6702e75ea",
-    "hardware/verification/generated/H3-VRF34-battery-analog.json": "03e246f3b82e89d80c91f3754e072173e98d11464f5d9ec202b701051e3f0acc",
-    "hardware/verification/generated/H3-R2-rf-coexistence.json": "3cba80fe77f4e322b924348fa24f75d29e2133b444f9e73c831cfd6e98fbccf3",
+    "hardware/verification/generated/H3-R2-method-contract.json": "a4a6008db1d36345cf076090341216ece95870da2208d4a7f12a44953bea5b7f",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "6d7719da88d9e94f76c985e35f50b592498271541a24fb56cdb3b2577f5faf4d",
+    "hardware/verification/generated/H3-R2-source-margins.json": "541eddd8b8bd910d2a9ed3a1d7dc71c05e3f2db8d15bde4c1f8af0ef260b4a96",
+    "hardware/verification/generated/H3-R2-transition-result.json": "3c86837c27384bf25eaa9dacd45cb6863ac4cccf562609950fb59130b9f65b46",
+    "hardware/verification/generated/H3-R2-inrush-watchdog.json": "dd7bab6735437be2f47db1b61d72ab2efc852cbb9a1b0fa7a0c6b424cb686b3e",
+    "hardware/verification/generated/H3-VRF34-battery-analog.json": "ca2abe4988f1ea6f6e6dd327334fe8badc4c4a44b15f5820e9e96dc379d352ef",
+    "hardware/verification/generated/H3-R2-rf-coexistence.json": "c43c030421e6cb4dc1da6f5e6c6d49610b13ba352ccc440b86b86c25209a6a5f",
     "hardware/ecad/generated/H2-REV55-fault-kill.json": "4f96d41cb2cff48b90de6666dd16c9ecfef9d64bcd9564d68fcbc31b12992058"
   },
   "methods": [

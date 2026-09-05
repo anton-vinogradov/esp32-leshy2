@@ -445,14 +445,16 @@ def add_user_silkscreen(board, project: str, placement: dict, contract: dict) ->
             {"x": [psa["x"][0] - 0.25, psa["x"][1] + 0.25], "y": [psa["y"][0] - 0.25, psa["y"][1] + 0.25]},
             pcbnew.F_SilkS,
         )
-        add_text(board, "DISPLAY · FPC ↑", (37.5, 105.4), pcbnew.F_SilkS, 1.00, 0.15)
-        add_text(board, "Леший", (37.5, 108.0), pcbnew.F_SilkS, 2.35, 0.32)
-        add_text(board, "ESP32-LESHY2 · UI PCB · R2-EVT1 · REV A", (37.5, 110.6), pcbnew.F_SilkS, 1.00, 0.15)
+        centre_x = contract["board"]["width_mm"] / 2
+        add_text(board, "DISPLAY · FPC ↑", (centre_x, 105.4), pcbnew.F_SilkS, 1.00, 0.15)
+        add_text(board, "Леший", (centre_x, 108.0), pcbnew.F_SilkS, 2.35, 0.32)
+        add_text(board, "ESP32-LESHY2 · UI PCB · R2-EVT1 · REV A", (centre_x, 110.6), pcbnew.F_SilkS, 1.00, 0.15)
         antenna_rows = placement["antenna_silkscreen"]["front"]
     else:
-        add_text(board, "ESP32-LESHY2", (37.5, 136.0), pcbnew.F_SilkS, 1.55, 0.23)
-        add_text(board, "RF/PWR PCB · R2-EVT1 · REV A", (37.5, 139.0), pcbnew.F_SilkS, 1.00, 0.15)
-        add_text(board, "github.com/anton-vinogradov/esp32-leshy2", (37.5, 142.0), pcbnew.F_SilkS, 1.00, 0.15)
+        centre_x = contract["board"]["width_mm"] / 2
+        add_text(board, "ESP32-LESHY2", (centre_x, 136.0), pcbnew.F_SilkS, 1.55, 0.23)
+        add_text(board, "RF/PWR PCB · R2-EVT1 · REV A", (centre_x, 139.0), pcbnew.F_SilkS, 1.00, 0.15)
+        add_text(board, "github.com/anton-vinogradov/esp32-leshy2", (centre_x, 142.0), pcbnew.F_SilkS, 1.00, 0.15)
         antenna_rows = placement["antenna_silkscreen"]["rear"]
     antenna_positions = list(contract["antenna_ports"][project].values())
     for row, position in zip(antenna_rows, antenna_positions):
@@ -1207,7 +1209,7 @@ def placement_signature_from_board_bytes(project: str, data: bytes) -> bytes:
 def svg_bytes(audit: dict) -> bytes:
     width_px, height_px = 1680, 1050
     scale = 5.35
-    board_w, board_h = 75.0, 150.0
+    board_w, board_h = audit["summary"]["board_outline_mm"]
     origins = {"LESHY2-UI-R2": (120, 140), "LESHY2-RF-R2": (920, 140)}
     palette = {
         "hard H1 datum": ("#dce8ff", "#2563eb"),
@@ -1296,6 +1298,10 @@ def build() -> tuple[dict[Path, bytes], dict]:
         (row["project"], row["instance"])
         for row in instances
     }
+    released = set(contract.get("placement_policy", {}).get("released_for_repack", []))
+    expected_frozen = {
+        key for key in expected_frozen if key[1] not in released
+    }
     if set(frozen) != expected_frozen:
         missing = sorted(expected_frozen - set(frozen))
         extra = sorted(set(frozen) - expected_frozen)
@@ -1358,6 +1364,10 @@ def build() -> tuple[dict[Path, bytes], dict]:
         },
         "summary": {
             "board_count": len(board_audits),
+            "board_outline_mm": [
+                contract["board"]["width_mm"],
+                contract["board"]["height_mm"],
+            ],
             "copper_layers_per_board": contract["board"]["copper_layers"],
             "schematic_instance_count": sum(row["schematic_instance_count"] for row in board_audits),
             "placed_instance_count": sum(row["placed_instance_count"] for row in board_audits),
@@ -1389,9 +1399,14 @@ def main() -> int:
         action="store_true",
         help="verify placement/setup while preserving and ignoring routed copper",
     )
+    parser.add_argument(
+        "--refresh-derived",
+        action="store_true",
+        help="verify routed PCB placement, then refresh only the audit and SVG",
+    )
     args = parser.parse_args()
-    if args.write == args.check:
-        parser.error("choose exactly one of --write or --check")
+    if sum((args.write, args.check, args.refresh_derived)) != 1:
+        parser.error("choose exactly one of --write, --check or --refresh-derived")
     outputs, audit = build()
     if args.write:
         for path, data in outputs.items():
@@ -1404,6 +1419,8 @@ def main() -> int:
         }
         stale = []
         for path, data in outputs.items():
+            if args.refresh_derived and path.suffix != ".kicad_pcb":
+                continue
             expected = sha256_bytes(data)
             if not path.exists():
                 stale.append((str(path.relative_to(ROOT)), "missing", expected))
@@ -1424,6 +1441,12 @@ def main() -> int:
                 for path, actual, expected in stale
             )
             raise SystemExit("stale H6 placement outputs: " + details)
+        if args.refresh_derived:
+            for path, data in outputs.items():
+                if path.suffix == ".kicad_pcb":
+                    continue
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(data)
     print(
         f"H6-R2 placement {audit['status']}: "
         f"{audit['summary']['placed_instance_count']}/{audit['summary']['schematic_instance_count']} positions; "

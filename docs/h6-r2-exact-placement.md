@@ -5,7 +5,7 @@
 **Status:** ✅ the native-PCB placement slice of H6.0.1 is reproducible and
 collision-free. The [mechanical stack](h6-r2-mechanical-stack.md) and
 [microcoax service closure](h6-r2-microcoax-service.md) now complete H6.0.1.
-**H6.0.2 routing and native net parity are current.** This result does not
+**H6.0.3 routing requalification on the 80 × 150 mm baseline is current.** This result does not
 authorize fabrication or purchase.
 
 ![Exact H6 placement of both accessible inner faces](images/h6-r2-exact-placement.svg)
@@ -18,7 +18,7 @@ authorize fabrication or purchase.
 - all **1,208/1,208** reviewed fitted schematic instances placed using their
   selected KiCad footprints: 428 on UI and 780 on RF/power;
 - all **789** global canonical / **823** board-local H2 nets assigned to their real footprint pads;
-- four M2.5 stop axes on each PCB, the rounded 75 × 150 mm outlines, the exact
+- four M2.5 stop axes on each PCB, the rounded 80 × 150 mm outlines, the exact
   display bed, ready-cut PSA guide and relaxed FPC slot on the UI board;
 - the current 5+5 direct-source antenna bank and user-facing board/screen
   silkscreen in the native boards;
@@ -36,7 +36,8 @@ The deliberately destructive `--write` mode remains only for rebuilding a clean
 unrouted seed. KiCad 10 parses both native boards and exports placement files
 from them.
 
-The freeze also records two reviewed local H6.0.2 corrections: `R59` moved to
+The freeze also records the reviewed local H6.0.2 corrections and the H6.0.3
+80-mm rebaseline: `R59` moved to
 open the encoder-side U12 pin-2/pin-3 fan-out, and `R109` moved to open the U12
 pin-7 C5 service-USB fan-out. All other anchors remain exactly where accepted;
 the regenerated placement still reports 1,208/1,208 positions and zero hard
