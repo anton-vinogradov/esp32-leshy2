@@ -10,13 +10,13 @@
   },
   "summary": {
     "board_count": 2,
-    "track_via_item_count": 5305,
-    "trace_count": 4343,
-    "via_count": 962,
+    "track_via_item_count": 5351,
+    "trace_count": 4374,
+    "via_count": 977,
     "seed_total_unconnected_count": 3265,
-    "current_total_unconnected_count": 2550,
-    "resolved_connection_count": 715,
-    "analog_remaining_connection_count": 20,
+    "current_total_unconnected_count": 2547,
+    "resolved_connection_count": 718,
+    "analog_remaining_connection_count": 17,
     "drc_violation_count": 2,
     "assigned_drc_exception_count": 2
   },
@@ -112,16 +112,16 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "board_sha256": "96666200b207108dce7bbab04893ac3a433572099f4c9b44539c23742b2e3a4e",
+      "board_sha256": "99a75034730608f7d57e5ea3cc7f72a8c426f764aea8b9dc510c9ff68ed72cfc",
       "board_size_mm": [
         80.05,
         150.05
       ],
       "footprint_count": 784,
-      "trace_count": 3211,
-      "via_count": 740,
-      "track_via_item_count": 3951,
-      "routed_net_count": 263,
+      "trace_count": 3242,
+      "via_count": 755,
+      "track_via_item_count": 3997,
+      "routed_net_count": 266,
       "used_trace_layers": [
         "B.Cu",
         "F.Cu",
@@ -129,8 +129,8 @@
         "In3.Cu"
       ],
       "seed_total_unconnected_count": 2038,
-      "current_total_unconnected_count": 1550,
-      "resolved_connection_count": 488,
+      "current_total_unconnected_count": 1547,
+      "resolved_connection_count": 491,
       "classes": {
         "GROUND_REFERENCE": {
           "net_count": 2,
@@ -178,7 +178,7 @@
         },
         "ANALOG_AUDIO_SENSE": {
           "net_count": 122,
-          "remaining_connection_count": 20
+          "remaining_connection_count": 17
         },
         "GENERAL_CONTROL": {
           "net_count": 104,
@@ -186,9 +186,9 @@
         }
       },
       "drc": {
-        "report_sha256": "f0ace0b15ad71bbd9bbd2fa64ca3f0df109cd4c1da81c017d2813c56f34a1032",
+        "report_sha256": "ebfa980fed4a1850f8d4a45dda9f7e6ea3435b2073fd265987f6ef85ea1624f5",
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-05T21:35:24",
+        "checked_at": "2026-09-05T22:00:47",
         "violation_count": 2,
         "violation_types": [
           "hole_clearance",

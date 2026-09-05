@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
  <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg data-h6-board="rf" data-source-sha256="96666200b207108dce7bbab04893ac3a433572099f4c9b44539c23742b2e3a4e" data-layers="F.Cu,B.Cu,F.Silkscreen,B.Silkscreen,Edge.Cuts"
+<svg data-h6-board="rf" data-source-sha256="99a75034730608f7d57e5ea3cc7f72a8c426f764aea8b9dc510c9ff68ed72cfc" data-layers="F.Cu,B.Cu,F.Silkscreen,B.Silkscreen,Edge.Cuts"
   xmlns:svg="http://www.w3.org/2000/svg"
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -431,6 +431,14 @@ L46.8500 149.6900
 <circle cx="67.9153" cy="23.6949" r="0.2000" />
 <circle cx="71.8441" cy="21.2934" r="0.2000" />
 <circle cx="72.6054" cy="36.4570" r="0.2000" />
+<circle cx="61.5950" cy="11.8000" r="0.2000" />
+<circle cx="63.0950" cy="10.8000" r="0.2000" />
+<circle cx="63.8500" cy="17.8000" r="0.2000" />
+<circle cx="61.7500" cy="13.8000" r="0.2000" />
+<circle cx="64.0500" cy="13.9000" r="0.2000" />
+<circle cx="60.0950" cy="10.4250" r="0.2000" />
+<circle cx="63.8950" cy="13.4250" r="0.2000" />
+<circle cx="64.0500" cy="18.7000" r="0.2000" />
 <circle cx="69.5500" cy="14.6250" r="0.2000" />
 <circle cx="63.5500" cy="15.3250" r="0.2000" />
 <circle cx="66.9500" cy="10.8250" r="0.2000" />
@@ -589,10 +597,17 @@ L46.8500 149.6900
 <circle cx="78.4350" cy="47.8800" r="0.2000" />
 <circle cx="70.2000" cy="31.1000" r="0.2000" />
 <circle cx="75.2000" cy="36.1000" r="0.2000" />
+<circle cx="63.3000" cy="16.7000" r="0.2000" />
+<circle cx="57.9000" cy="11.3000" r="0.2000" />
+<circle cx="55.5000" cy="11.2000" r="0.2000" />
 <circle cx="61.3750" cy="16.9000" r="0.2000" />
 <circle cx="57.0750" cy="14.8000" r="0.2000" />
 <circle cx="61.8250" cy="17.6000" r="0.2000" />
 <circle cx="54.4250" cy="14.0000" r="0.2000" />
+<circle cx="73.7000" cy="18.1500" r="0.2000" />
+<circle cx="63.3000" cy="18.2500" r="0.2000" />
+<circle cx="78.8000" cy="19.8000" r="0.2000" />
+<circle cx="65.8000" cy="22.8000" r="0.2000" />
 <circle cx="70.6353" cy="84.6801" r="0.2000" />
 <circle cx="76.5487" cy="96.6116" r="0.2000" />
 <circle cx="61.7042" cy="72.9604" r="0.2000" />
@@ -797,7 +812,7 @@ L46.8500 149.6900
 <circle cx="12.5575" cy="88.2458" r="0.2000" />
 <circle cx="61.8341" cy="52.2682" r="0.2000" />
 <circle cx="18.1679" cy="67.5046" r="0.2000" />
-<circle cx="56.9650" cy="11.4500" r="0.2000" />
+<circle cx="56.5650" cy="11.7500" r="0.2000" />
 <circle cx="62.7650" cy="9.2500" r="0.2000" />
 <circle cx="60.7273" cy="6.4327" r="0.2000" />
 <circle cx="74.7436" cy="51.9325" r="0.2000" />
@@ -1187,6 +1202,15 @@ L69.5450 45.6850
 <path d="M62.4000 46.8000
 L26.4000 46.8000
 " />
+<path d="M60.5950 10.9250
+L60.0950 10.4250
+" />
+<path d="M61.4950 11.0250
+L60.5950 10.9250
+" />
+<path d="M63.8950 13.4250
+L61.4950 11.0250
+" />
 <path d="M63.5500 15.3250
 L69.5500 14.6250
 " />
@@ -1423,6 +1447,15 @@ L68.4650 106.0500
 " />
 <path d="M75.2000 36.1000
 L70.2000 31.1000
+" />
+<path d="M63.3000 18.2500
+L73.7000 18.1500
+" />
+<path d="M65.8000 22.8000
+L77.4000 21.2000
+" />
+<path d="M77.4000 21.2000
+L78.8000 19.8000
 " />
 <path d="M42.4500 89.2250
 L40.4500 91.2250
@@ -1680,9 +1713,6 @@ L73.9950 39.0350
 " />
 <path d="M68.3000 38.8250
 L59.1000 33.0250
-" />
-<path d="M62.7650 9.2500
-L56.9650 11.4500
 " />
 </g>
 <g style="fill:none;
@@ -59101,6 +59131,14 @@ Z" />
 <circle cx="67.9153" cy="23.6949" r="0.2000" />
 <circle cx="71.8441" cy="21.2934" r="0.2000" />
 <circle cx="72.6054" cy="36.4570" r="0.2000" />
+<circle cx="61.5950" cy="11.8000" r="0.2000" />
+<circle cx="63.0950" cy="10.8000" r="0.2000" />
+<circle cx="63.8500" cy="17.8000" r="0.2000" />
+<circle cx="61.7500" cy="13.8000" r="0.2000" />
+<circle cx="64.0500" cy="13.9000" r="0.2000" />
+<circle cx="60.0950" cy="10.4250" r="0.2000" />
+<circle cx="63.8950" cy="13.4250" r="0.2000" />
+<circle cx="64.0500" cy="18.7000" r="0.2000" />
 <circle cx="69.5500" cy="14.6250" r="0.2000" />
 <circle cx="63.5500" cy="15.3250" r="0.2000" />
 <circle cx="66.9500" cy="10.8250" r="0.2000" />
@@ -59259,10 +59297,17 @@ Z" />
 <circle cx="78.4350" cy="47.8800" r="0.2000" />
 <circle cx="70.2000" cy="31.1000" r="0.2000" />
 <circle cx="75.2000" cy="36.1000" r="0.2000" />
+<circle cx="63.3000" cy="16.7000" r="0.2000" />
+<circle cx="57.9000" cy="11.3000" r="0.2000" />
+<circle cx="55.5000" cy="11.2000" r="0.2000" />
 <circle cx="61.3750" cy="16.9000" r="0.2000" />
 <circle cx="57.0750" cy="14.8000" r="0.2000" />
 <circle cx="61.8250" cy="17.6000" r="0.2000" />
 <circle cx="54.4250" cy="14.0000" r="0.2000" />
+<circle cx="73.7000" cy="18.1500" r="0.2000" />
+<circle cx="63.3000" cy="18.2500" r="0.2000" />
+<circle cx="78.8000" cy="19.8000" r="0.2000" />
+<circle cx="65.8000" cy="22.8000" r="0.2000" />
 <circle cx="70.6353" cy="84.6801" r="0.2000" />
 <circle cx="76.5487" cy="96.6116" r="0.2000" />
 <circle cx="61.7042" cy="72.9604" r="0.2000" />
@@ -59467,7 +59512,7 @@ Z" />
 <circle cx="12.5575" cy="88.2458" r="0.2000" />
 <circle cx="61.8341" cy="52.2682" r="0.2000" />
 <circle cx="18.1679" cy="67.5046" r="0.2000" />
-<circle cx="56.9650" cy="11.4500" r="0.2000" />
+<circle cx="56.5650" cy="11.7500" r="0.2000" />
 <circle cx="62.7650" cy="9.2500" r="0.2000" />
 <circle cx="60.7273" cy="6.4327" r="0.2000" />
 <circle cx="74.7436" cy="51.9325" r="0.2000" />
@@ -60220,114 +60265,59 @@ L72.6054 36.4570
 <g style="fill:none;
 stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
 stroke-linecap:round; stroke-linejoin:round;">
-<path d="M63.1194 15.5254
-L63.1194 16.1229
+<path d="M63.1250 10.4000
+L63.0950 10.8000
 " />
-<path d="M61.3950 12.3750
-L62.1110 13.0910
+<path d="M61.4500 15.6000
+L62.0500 15.5000
 " />
-<path d="M62.1110 13.0910
-L62.1110 15.5254
+<path d="M63.9950 11.6000
+L64.1950 11.9000
 " />
-<path d="M62.1110 13.3851
-L65.0349 13.3851
+<path d="M64.9500 18.9000
+L63.8500 17.8000
 " />
-<path d="M65.3750 13.0450
-L63.1250 10.7950
+<path d="M65.0500 19.6750
+L64.9500 18.9000
 " />
-<path d="M65.0349 13.3851
+<path d="M63.0950 10.8000
+L63.9950 11.6000
+" />
+<path d="M64.1950 11.9000
 L65.3750 13.0450
 " />
-</g>
-<g style="fill:none;
-stroke:#4D7FC4; stroke-width:0.1124; stroke-opacity:1;
-stroke-linecap:round; stroke-linejoin:round;">
-<path d="M62.1110 15.5254
-L61.5246 15.5254
+<path d="M62.1500 15.1000
+L61.7500 13.8000
 " />
-</g>
-<g style="fill:none;
-stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
-stroke-linecap:round; stroke-linejoin:round;">
-<path d="M65.0500 18.0535
-L65.0500 19.6750
+<path d="M62.0500 15.5000
+L62.1500 15.1000
 " />
-</g>
-<g style="fill:none;
-stroke:#4D7FC4; stroke-width:0.1124; stroke-opacity:1;
-stroke-linecap:round; stroke-linejoin:round;">
-<path d="M63.1194 15.5254
-L62.1110 15.5254
+<path d="M61.5950 11.8000
+L61.3950 12.3750
 " />
-</g>
-<g style="fill:none;
-stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
-stroke-linecap:round; stroke-linejoin:round;">
-<path d="M63.1250 10.7950
-L63.1250 10.4000
+<path d="M64.0500 13.9000
+L63.4500 13.7000
 " />
-<path d="M63.1194 16.1229
-L65.0500 18.0535
-" />
-</g>
-<g style="fill:none;
-stroke:#4D7FC4; stroke-width:0.1124; stroke-opacity:1;
-stroke-linecap:round; stroke-linejoin:round;">
-<path d="M61.5246 15.5254
-L61.4500 15.6000
-" />
-</g>
-<g style="fill:none;
-stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
-stroke-linecap:round; stroke-linejoin:round;">
-<path d="M57.6450 12.3750
-L57.6450 11.8750
-" />
-<path d="M57.6450 11.8750
-L57.6450 16.7468
-" />
-<path d="M63.1551 18.1036
-L64.0500 18.9985
-" />
-</g>
-<g style="fill:none;
-stroke:#4D7FC4; stroke-width:0.1124; stroke-opacity:1;
-stroke-linecap:round; stroke-linejoin:round;">
-<path d="M62.6180 16.0746
-L61.5246 16.0746
-" />
-</g>
-<g style="fill:none;
-stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
-stroke-linecap:round; stroke-linejoin:round;">
-<path d="M59.3950 10.1250
-L57.6450 11.8750
-" />
-<path d="M59.0018 18.1036
-L62.6180 18.1036
-" />
-<path d="M57.6450 16.7468
-L59.0018 18.1036
-" />
-<path d="M62.6180 16.0746
-L62.6180 18.1036
-" />
-<path d="M62.6180 18.1036
-L63.1551 18.1036
-" />
-</g>
-<g style="fill:none;
-stroke:#4D7FC4; stroke-width:0.1124; stroke-opacity:1;
-stroke-linecap:round; stroke-linejoin:round;">
-<path d="M61.5246 16.0746
+<path d="M62.1500 15.9000
 L61.4500 16.0000
 " />
-</g>
-<g style="fill:none;
-stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
-stroke-linecap:round; stroke-linejoin:round;">
-<path d="M64.0500 18.9985
-L64.0500 19.6750
+<path d="M62.4500 15.6000
+L62.1500 15.9000
+" />
+<path d="M63.4500 13.7000
+L62.4500 14.7000
+" />
+<path d="M62.4500 14.7000
+L62.4500 15.6000
+" />
+<path d="M64.0500 19.6750
+L64.0500 18.7000
+" />
+<path d="M60.0950 10.4250
+L59.3950 10.1250
+" />
+<path d="M57.6450 12.3750
+L59.3950 10.1250
 " />
 <path d="M66.9500 10.8250
 L67.3500 10.6250
@@ -61634,8 +61624,21 @@ L68.9352 52.1739
 " />
 </g>
 <g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1120; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M61.4500 16.4000
+L62.1500 16.4000
+" />
+<path d="M62.1500 16.4000
+L63.3000 16.7000
+" />
+</g>
+<g style="fill:none;
 stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
 stroke-linecap:round; stroke-linejoin:round;">
+<path d="M56.1000 10.3750
+L55.5000 11.2000
+" />
 <path d="M61.4500 16.8000
 L61.3750 16.9000
 " />
@@ -61647,6 +61650,42 @@ L61.8250 17.6000
 " />
 <path d="M54.4250 14.0000
 L54.1250 13.9000
+" />
+<path d="M60.4000 17.4500
+L60.5000 18.0500
+" />
+<path d="M73.7000 18.1500
+L74.0850 18.3650
+" />
+<path d="M60.5000 18.0500
+L61.3000 18.2500
+" />
+<path d="M61.3000 18.2500
+L63.3000 18.2500
+" />
+<path d="M65.2000 21.4000
+L65.8000 22.8000
+" />
+<path d="M62.0000 18.8000
+L63.4000 20.8000
+" />
+<path d="M60.6000 18.6000
+L62.0000 18.8000
+" />
+<path d="M64.4000 21.4000
+L65.2000 21.4000
+" />
+<path d="M63.4000 20.8000
+L64.4000 21.4000
+" />
+<path d="M60.0000 17.4500
+L60.0000 18.0000
+" />
+<path d="M60.0000 18.0000
+L60.6000 18.6000
+" />
+<path d="M78.8000 19.8000
+L78.5850 19.6150
 " />
 <path d="M75.5005 99.9491
 L75.0605 100.3890
@@ -63649,14 +63688,17 @@ L9.3580 84.7268
 <g style="fill:none;
 stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
 stroke-linecap:round; stroke-linejoin:round;">
-<path d="M63.1250 8.8500
-L62.7650 9.2500
+<path d="M53.5650 10.8650
+L54.6650 11.6500
 " />
-<path d="M56.9650 11.4500
-L54.2650 11.4500
+<path d="M62.7650 9.2500
+L63.1250 8.8500
 " />
-<path d="M54.2650 11.4500
-L53.5650 10.8650
+<path d="M56.4650 11.6500
+L56.5650 11.7500
+" />
+<path d="M54.6650 11.6500
+L56.4650 11.6500
 " />
 <path d="M56.0407 8.7655
 L56.5762 8.2300
@@ -76161,6 +76203,14 @@ L80.0000 148.0000
 <circle cx="67.9153" cy="23.6949" r="0.1000" />
 <circle cx="71.8441" cy="21.2934" r="0.1000" />
 <circle cx="72.6054" cy="36.4570" r="0.1000" />
+<circle cx="61.5950" cy="11.8000" r="0.1000" />
+<circle cx="63.0950" cy="10.8000" r="0.1000" />
+<circle cx="63.8500" cy="17.8000" r="0.1000" />
+<circle cx="61.7500" cy="13.8000" r="0.1000" />
+<circle cx="64.0500" cy="13.9000" r="0.1000" />
+<circle cx="60.0950" cy="10.4250" r="0.1000" />
+<circle cx="63.8950" cy="13.4250" r="0.1000" />
+<circle cx="64.0500" cy="18.7000" r="0.1000" />
 <circle cx="69.5500" cy="14.6250" r="0.1000" />
 <circle cx="63.5500" cy="15.3250" r="0.1000" />
 <circle cx="66.9500" cy="10.8250" r="0.1000" />
@@ -76319,10 +76369,17 @@ L80.0000 148.0000
 <circle cx="78.4350" cy="47.8800" r="0.1000" />
 <circle cx="70.2000" cy="31.1000" r="0.1000" />
 <circle cx="75.2000" cy="36.1000" r="0.1000" />
+<circle cx="63.3000" cy="16.7000" r="0.1000" />
+<circle cx="57.9000" cy="11.3000" r="0.1000" />
+<circle cx="55.5000" cy="11.2000" r="0.1000" />
 <circle cx="61.3750" cy="16.9000" r="0.1000" />
 <circle cx="57.0750" cy="14.8000" r="0.1000" />
 <circle cx="61.8250" cy="17.6000" r="0.1000" />
 <circle cx="54.4250" cy="14.0000" r="0.1000" />
+<circle cx="73.7000" cy="18.1500" r="0.1000" />
+<circle cx="63.3000" cy="18.2500" r="0.1000" />
+<circle cx="78.8000" cy="19.8000" r="0.1000" />
+<circle cx="65.8000" cy="22.8000" r="0.1000" />
 <circle cx="70.6353" cy="84.6801" r="0.1000" />
 <circle cx="76.5487" cy="96.6116" r="0.1000" />
 <circle cx="61.7042" cy="72.9604" r="0.1000" />
@@ -76527,7 +76584,7 @@ L80.0000 148.0000
 <circle cx="12.5575" cy="88.2458" r="0.1000" />
 <circle cx="61.8341" cy="52.2682" r="0.1000" />
 <circle cx="18.1679" cy="67.5046" r="0.1000" />
-<circle cx="56.9650" cy="11.4500" r="0.1000" />
+<circle cx="56.5650" cy="11.7500" r="0.1000" />
 <circle cx="62.7650" cy="9.2500" r="0.1000" />
 <circle cx="60.7273" cy="6.4327" r="0.1000" />
 <circle cx="74.7436" cy="51.9325" r="0.1000" />
