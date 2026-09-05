@@ -9,9 +9,9 @@
   },
   "source_sha256": {
     "hardware/verification/h3-r2-rail-margin-contract.json": "19f1035236f409b2a3ba80a65ed6c557d1b4261522a369e4e75fa3de62062914",
-    "hardware/verification/generated/H3-R2-load-binding.json": "e749238d206fe5b98f023cade87835e134f2cbe8f0e429ced906edfde177c360",
-    "hardware/verification/generated/H3-R2-power-state-register.json": "388b5cd6b1d493e9524c367212e7c35d03992a6d865f4a1e1f2ab45885600ec6",
-    "hardware/verification/generated/H3-R2-method-contract.json": "a4a6008db1d36345cf076090341216ece95870da2208d4a7f12a44953bea5b7f"
+    "hardware/verification/generated/H3-R2-load-binding.json": "d70dc92066f1f97f2a7889eab44df71aa4e766aad6bd00d28327e39e0ae554a4",
+    "hardware/verification/generated/H3-R2-power-state-register.json": "202f3133aeec982f81b5a9a4b03f96edf44e86c172c69d7a7158b1193be6b3f5",
+    "hardware/verification/generated/H3-R2-method-contract.json": "f3438f8b4a1727c293c58ff2c88430be437c7a6ac6de60b7776d6165cd8215fa"
   },
   "policy": {
     "steady_current_reserve_minimum_percent": 25,

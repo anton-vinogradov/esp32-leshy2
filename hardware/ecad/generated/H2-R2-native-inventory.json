@@ -14,7 +14,7 @@
     },
     "physical": {
       "path": "hardware/product-design/h1-r2-placement.json",
-      "sha256": "2e3cb75934679422de060d92f15521d4c74b1029324e5e915141e323fb5c4818"
+      "sha256": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0"
     },
     "power_cell": {
       "path": "hardware/product-design/h1-r2-power-thermal.json",

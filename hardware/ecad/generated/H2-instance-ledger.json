@@ -168,7 +168,7 @@
       "project": "LESHY2-UI",
       "device_key": "esp32_c5_wroom_1u_n8r8",
       "mpn": "ESP32-C5-WROOM-1U-N8R8",
-      "role": "native 2.4/5-GHz and IR owner; shifted 0.7 mm outward for the central display ZIF corridor",
+      "role": "native 2.4/5-GHz and IR owner; shifted into the widened right routing field",
       "board": "ui-control-pcb",
       "sheet": "UI_20_C5_RADIO_IR_SERVICE",
       "electrical_disposition": "board_fitted_component",

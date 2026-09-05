@@ -5,19 +5,19 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "580b4af33f9806335d14d7da1e5e7bc36a84b0d80241d68f6e4f2cea2b6ee5aa",
+    "contract_sha256": "a32794bca120d31337d467ba3aba171d4dcc1527a4ed44c34e118a7d83a55245",
     "placement": "hardware/product-design/h1-r2-placement.json",
-    "placement_sha256": "2e3cb75934679422de060d92f15521d4c74b1029324e5e915141e323fb5c4818",
+    "placement_sha256": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
     "coordinate_model_sha256": "84805c6b9f41bde44cc8744a09d4f48e8cc7ccfe82ceb620174e2510c62ab470",
     "instance_ledger": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-    "instance_ledger_sha256": "9c79055ab7d61fff6d8e06b63a9bf1162e7623d16276fb3fb17abf3f4c028ec4",
+    "instance_ledger_sha256": "49ddf4aea56243a3900553245f32f63713b4d29d573af9e631d501998b6dfc02",
     "net_ledger": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-    "net_ledger_sha256": "c13a3751d711d57ba38d185e373736651f2def55cb5632c172fbb623b483b819",
+    "net_ledger_sha256": "b6a74d68e23abd67f8778c87a85c46ca481be347cedf660ace929586033b076f",
     "symbol_library": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-    "symbol_library_sha256": "4942a9f8660aab6f5c3624d0e7199612e1923a60a273a8eb039565e156139729",
+    "symbol_library_sha256": "5f9757b07bfb8d1f2550fdd8015e80e0d5e567597549a10b648b7e02cbbb9fc4",
     "kicad_net_bindings": "hardware/layout/generated/H6-R2-kicad-net-bindings.json",
-    "kicad_net_bindings_sha256": "89628163cd91f4fa7fb3875f91d032a5fe137d0b2b232a34a9ca9016dc1336f7"
+    "kicad_net_bindings_sha256": "287b2ed42a1f32ecafde5705090962ec6c3da362a32f8ee508dba0f8c94c7706"
   },
   "summary": {
     "board_count": 2,
@@ -14973,10 +14973,11 @@
         "F.Cu": 12
       },
       "method_counts": {
-        "connectivity/sheet automatic seed": 595,
+        "connectivity/sheet automatic seed": 594,
         "exact H1 seed": 34,
         "hard H1 datum": 13,
         "nearest exact-footprint correction": 120,
+        "reviewed H6.0.2 fan-out correction": 1,
         "reviewed H6.0.2 oscillator-locality correction": 18
       },
       "net_count": 516,
@@ -29019,31 +29020,31 @@
           "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 fan-out correction",
           "courtyard_bbox_mm": {
             "x": [
-              19.099999999999998,
-              20.13
+              38.985,
+              40.015
             ],
             "y": [
-              82.34999900000001,
-              84.299999
+              73.525,
+              75.475
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            19.615,
-            83.325
+            39.5,
+            74.5
           ],
           "footprint_anchor_mm": [
-            19.615,
-            83.325
+            39.5,
+            74.5
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            19615000,
-            83324999
+            39500000,
+            74500000
           ]
         },
         {
@@ -41756,8 +41757,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "45d6fb299332f75201706a193cd3a6cfb72a2b239fdcac4def256e67f7d71b0b",
-      "placement_signature_sha256": "cea487b2c0446e98b36710458f13103a1c19f716648e766465887e9dc6599bda"
+      "unrouted_seed_sha256": "ed3777f611171de4ce73385c5a61ac9778e39159b544d70b905138d604a8601c",
+      "placement_signature_sha256": "bb52f09d2d24ebc6c06afcc542b4ae64108670cd6239ee00f6757df4fb2d6220"
     }
   ],
   "authorization": {

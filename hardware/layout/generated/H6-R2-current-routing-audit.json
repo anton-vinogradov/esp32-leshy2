@@ -6,17 +6,17 @@
   "phase_complete": false,
   "sources": {
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "19aa387d6f7e24ffdcc43895234af86a5affc087287e89fdd19bd0009cb340d7"
+    "routing_policy_sha256": "6176ed43d81acafdceab5b76e1922c081c2f5d2410a5e2ba7cd7e10eeac4fa6c"
   },
   "summary": {
     "board_count": 2,
-    "track_via_item_count": 5351,
-    "trace_count": 4374,
-    "via_count": 977,
+    "track_via_item_count": 5373,
+    "trace_count": 4392,
+    "via_count": 981,
     "seed_total_unconnected_count": 3265,
-    "current_total_unconnected_count": 2547,
-    "resolved_connection_count": 718,
-    "analog_remaining_connection_count": 17,
+    "current_total_unconnected_count": 2546,
+    "resolved_connection_count": 719,
+    "analog_remaining_connection_count": 16,
     "drc_violation_count": 2,
     "assigned_drc_exception_count": 2
   },
@@ -98,9 +98,9 @@
         }
       },
       "drc": {
-        "report_sha256": "a1f5ea012fcd3e663767f2d574df8b164720049e6cfd0f4f616338388b8cbe0d",
+        "report_sha256": "48aee5227f16fa192237d5014d6839565721ba8a677b3e234f547a85f93a6b78",
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-05T16:38:48",
+        "checked_at": "2026-09-05T23:01:14",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,
@@ -112,15 +112,15 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "board_sha256": "99a75034730608f7d57e5ea3cc7f72a8c426f764aea8b9dc510c9ff68ed72cfc",
+      "board_sha256": "9b0f279a6b37c0f0acb4d5fa536ec96bbdfb4dff4aa20740702becf7388b18e3",
       "board_size_mm": [
         80.05,
         150.05
       ],
       "footprint_count": 784,
-      "trace_count": 3242,
-      "via_count": 755,
-      "track_via_item_count": 3997,
+      "trace_count": 3260,
+      "via_count": 759,
+      "track_via_item_count": 4019,
       "routed_net_count": 266,
       "used_trace_layers": [
         "B.Cu",
@@ -129,8 +129,8 @@
         "In3.Cu"
       ],
       "seed_total_unconnected_count": 2038,
-      "current_total_unconnected_count": 1547,
-      "resolved_connection_count": 491,
+      "current_total_unconnected_count": 1546,
+      "resolved_connection_count": 492,
       "classes": {
         "GROUND_REFERENCE": {
           "net_count": 2,
@@ -178,7 +178,7 @@
         },
         "ANALOG_AUDIO_SENSE": {
           "net_count": 122,
-          "remaining_connection_count": 17
+          "remaining_connection_count": 16
         },
         "GENERAL_CONTROL": {
           "net_count": 104,
@@ -186,9 +186,9 @@
         }
       },
       "drc": {
-        "report_sha256": "ebfa980fed4a1850f8d4a45dda9f7e6ea3435b2073fd265987f6ef85ea1624f5",
+        "report_sha256": "d0271df7ddc207f95b2d408eaa2953d12da82970377c8871c36a32ed28658e87",
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-05T22:00:47",
+        "checked_at": "2026-09-05T23:01:36",
         "violation_count": 2,
         "violation_types": [
           "hole_clearance",

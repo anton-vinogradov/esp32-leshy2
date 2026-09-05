@@ -13,8 +13,8 @@
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "6df524f1edf8db12ac278e0b5901a598c0ac18262800b09c38dde7b45147ed27",
     "hardware/architecture/devices.json": "23b5799bc5334f9d02c13635c7f9e4f7503929795c669e98223fc37b95cc1c04",
-    "hardware/ecad/generated/H2-instance-ledger.json": "9705d77158822926ba24182b435ba434794c4cba689f7b5e2529b4363fd2808c",
-    "hardware/ecad/generated/H2-RF-root-interface.json": "31d49cf095cfd320d165b7e7c7f901ddf9b945be238f24f041d7d616f43a9f44"
+    "hardware/ecad/generated/H2-instance-ledger.json": "31991cd69efe1f471a7ab5292c181009bc34b31135b3a378eeec2f9d394eb652",
+    "hardware/ecad/generated/H2-RF-root-interface.json": "feaa3750ab12da326ccf6cba2d4e1d28db356551f5039d9118daf295f4b89f77"
   },
   "summary": {
     "ledger_instances": 8,

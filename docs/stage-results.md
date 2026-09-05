@@ -198,10 +198,10 @@ relaxed corridors, five clear tape saddles and ten antenna solder windows with
 7.69 mm minimum cable reserve. H6.0.1 is complete; H6.0.3 now rebaselines both
 boards to 80 × 150 mm and dedicates x=35…40 mm to a real inner-face routing
 corridor. All 1,208 positions remain exact, with no hard placement conflict.
-The [live routing checkpoint](h6-r2-current-routing.md) binds 5,351 DRC-clean
-track/via items to the current board hashes: 718 physical connections are
-resolved and 2,547 remain. UI `ANALOG_AUDIO_SENSE` is complete; after 110 new
-DRC-clean connections, RF/power has only 20 remaining in that class. The
+The [live routing checkpoint](h6-r2-current-routing.md) binds 5,373 DRC-clean
+track/via items to the current board hashes: 719 physical connections are
+resolved and 2,546 remain. UI `ANALOG_AUDIO_SENSE` is complete; after 111 new
+DRC-clean connections, RF/power has only 16 remaining in that class. The
 checkpoint also includes a complete `VOICE_EFUSE_BACKUP_EN_N`
 path through the added corridor using ordinary
 0.15-mm tracks and 0.4/0.2-mm vias. Fresh KiCad DRC matches the clean 80-mm

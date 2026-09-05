@@ -266,6 +266,16 @@
     }
   },
   "placement_overrides": {
+    "ext_en_pulldown": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        39.5,
+        74.5
+      ],
+      "rotation_deg": 90.0,
+      "method": "reviewed H6.0.2 fan-out correction",
+      "reason": "move the low-speed EXT_ANY_5V_EN_SAFE pull-down out of the U106 pad-1/pad-2 escape corridor; the new B.Cu site has a clear courtyard and remains a short DC bias connection"
+    },
     "display_connector": {
       "frame": "ui-inner",
       "centre_mm": [

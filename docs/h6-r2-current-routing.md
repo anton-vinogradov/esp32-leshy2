@@ -2,16 +2,16 @@
 
 [Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h6-r2-current-routing.ru.md)
 
-**Status:** ▶️ checked progress snapshot, not H6 closure. The two live PCBs contain 5,351 copper items; native KiCad connectivity reports 2,547 remaining and 718 already resolved physical connections.
+**Status:** ▶️ checked progress snapshot, not H6 closure. The two live PCBs contain 5,373 copper items; native KiCad connectivity reports 2,546 remaining and 719 already resolved physical connections.
 
 | Board | Traces | Vias | Resolved | Remaining | DRC |
 | --- | ---: | ---: | ---: | ---: | --- |
 | UI | 1,132 | 222 | 227 | 1,000 | 0 |
-| RF/power | 3,242 | 755 | 491 | 1,547 | 2 assigned BT1/J12 |
+| RF/power | 3,260 | 759 | 492 | 1,546 | 2 assigned BT1/J12 |
 
 ## What changed in this snapshot
 
-After the 75 → 80 mm transition, conflict-free analogue/audio/sense routing was transferred by exact pad anchors. Old branches that conflicted with the new geometry were discarded rather than forced into the board; the remaining eight UI connections were then rerouted in the live geometry and passed DRC. On RF/power, the U17 and U100 eFuse neighbourhoods were locally opened, five missing analogue connections were added, and the displaced safety/control copper was fully rerouted before acceptance. In the audio cluster, `CODEC_DACVREF` and both ADC inputs are now connected; the neighbouring headphone and `CODEC_TX_AC` routes were fully rerouted while preserving their original connectivity. `ANALOG_AUDIO_SENSE` now has 17 physical connections left: 0 on UI and 17 on RF/power.
+After the 75 → 80 mm transition, conflict-free analogue/audio/sense routing was transferred by exact pad anchors. Old branches that conflicted with the new geometry were discarded rather than forced into the board; the remaining eight UI connections were then rerouted in the live geometry and passed DRC. On RF/power, the U17 and U100 eFuse neighbourhoods were locally opened, five missing analogue connections were added, and the displaced safety/control copper was fully rerouted before acceptance. In the audio cluster, `CODEC_DACVREF` and both ADC inputs are now connected; the neighbouring headphone and `CODEC_TX_AC` routes were fully rerouted while preserving their original connectivity. For `AUDIO_CAPTURE_MIC_SEL`, the low-speed R53 pull-down was moved out of the U106 escape corridor, then both adjacent U106 nets received independent paths without a new DRC finding. `ANALOG_AUDIO_SENSE` now has 16 physical connections left: 0 on UI and 16 on RF/power.
 
 Native KiCad DRC reports zero UI findings. RF/power retains only the two already assigned findings at the single `BT1`/`J12` location: hole clearance and a front-mask aperture bridge. The new routing adds no violation.
 
