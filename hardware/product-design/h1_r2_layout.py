@@ -1274,7 +1274,11 @@ def render_external_svg(model: dict) -> str:
                 f'<rect x="{px(front,78.3):.1f}" y="{py(front,cy-2.5):.1f}" width="{2.5*scale:.1f}" height="{5.0*scale:.1f}" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="{item["id"]}" data-part="protective-recess" data-recess-mm="1.2"/>',
                 f'<path d="M{px(front,78.8):.1f} {py(front,cy-1.4):.1f} V{py(front,cy+1.4):.1f}" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="{item["id"]}" data-part="side-actuator" data-recessed="true"/>',
                 f'<path d="M{px(front,82):.1f} {py(front,cy):.1f} L{px(front,78.8):.1f} {py(front,cy):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>',
-                label(px(front,68), py(front,cy), visible, "middle", 4.2).replace("#1d4ed8", "#7c3aed"),
+                # Match the legacy C5 right-edge silkscreen column exactly.
+                # The former x=68-mm Hub column pushed the longer labels into
+                # the neighbouring OPT control even though all four switches
+                # share the same physical right edge.
+                label(px(front,73), py(front,cy), visible, "middle", 4.2).replace("#1d4ed8", "#7c3aed"),
             ]
         )
     additions.append('</g>')

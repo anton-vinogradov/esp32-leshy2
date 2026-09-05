@@ -258,11 +258,11 @@
 <rect x="369.7" y="622.7" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="hub_reset_button" data-part="protective-recess" data-recess-mm="1.2"/>
 <path d="M371.6 626.7 V637.1" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="hub_reset_button" data-part="side-actuator" data-recessed="true"/>
 <path d="M383.4 631.9 L371.6 631.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="331.6" y="631.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">HUB RST</text>
+<text data-layer="pcb-silkscreen" x="350.1" y="631.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">HUB RST</text>
 <rect x="363.4" y="649.5" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="hub_boot_button" data-mpn="SKRTLAE010" data-projection="inner-mounted-side-switch"/>
 <rect x="369.7" y="648.6" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="hub_boot_button" data-part="protective-recess" data-recess-mm="1.2"/>
 <path d="M371.6 652.6 V663.0" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="hub_boot_button" data-part="side-actuator" data-recessed="true"/>
 <path d="M383.4 657.8 L371.6 657.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="331.6" y="657.8" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">HUB BOOT</text>
+<text data-layer="pcb-silkscreen" x="350.1" y="657.8" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">HUB BOOT</text>
 </g>
 </svg>

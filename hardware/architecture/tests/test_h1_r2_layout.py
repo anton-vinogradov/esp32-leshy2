@@ -2,6 +2,7 @@ import importlib.util
 import copy
 import json
 import unittest
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 
@@ -530,6 +531,17 @@ class H1R2LayoutTest(unittest.TestCase):
             f"h1-r2-service-access.svg?rev={MODULE.PUBLIC_ASSET_REV}",
             expected[MODULE.RU_DOC_PATH],
         )
+
+    def test_right_edge_service_silkscreen_uses_one_column(self):
+        root = ET.fromstring(MODULE.render_external_svg(self.model))
+        namespace = "{http://www.w3.org/2000/svg}"
+        labels = {
+            node.text: node
+            for node in root.iter(f"{namespace}text")
+            if node.text in {"C5 RST", "C5 BOOT", "HUB RST", "HUB BOOT"}
+        }
+        self.assertEqual(4, len(labels))
+        self.assertEqual({350.1}, {float(node.attrib["x"]) for node in labels.values()})
 
 
 if __name__ == "__main__":
