@@ -7,7 +7,7 @@
     "contract": "hardware/layout/h6-r2-placement-contract.json",
     "contract_sha256": "580b4af33f9806335d14d7da1e5e7bc36a84b0d80241d68f6e4f2cea2b6ee5aa",
     "placement_freeze": "hardware/layout/h6-r2-placement-freeze.json",
-    "placement_freeze_sha256": "8016e78138410724f3e5e2a51d86d865650470e49dbff93f83f105e9284a6f39",
+    "placement_freeze_sha256": "c0e775466d307f154eb31ae3fb7565d7ee709e0eafba54a8dbfbecc9394ca8e0",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "2e3cb75934679422de060d92f15521d4c74b1029324e5e915141e323fb5c4818",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",

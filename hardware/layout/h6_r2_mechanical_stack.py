@@ -210,7 +210,7 @@ def render(contract: dict, audit: dict) -> str:
         text(250, 740, "four edge-lip segments retain each PCB independently", 15),
         text(90, 780, "M1", 15, "700", colour="#dc2626"),
         text(250, 780, "electrical mating and alignment only · never used to pull the boards together", 15),
-        text(70, 865, "H6.0.1 is closed by the microcoax service audit; H6.0.2 routing and native net parity are current.", 15, "600", colour="#526076"),
+        text(70, 865, "H6.0.1 is closed by the microcoax service audit; H6.0.3 routing and native net parity are current.", 15, "600", colour="#526076"),
         text(70, 908, f"audit: {audit['status']} · four axes match both native PCBs · no fabrication or purchase authorized", 14, "700", colour="#166534" if audit["status"] == "pass" else "#b91c1c"),
         '</svg>',
     ])

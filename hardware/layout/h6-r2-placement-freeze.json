@@ -5,19 +5,19 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "a4896e4736e47c3bdb523c8514ca714e3ae289bbf7ecf2e0de8c0496d38e4864",
+    "contract_sha256": "580b4af33f9806335d14d7da1e5e7bc36a84b0d80241d68f6e4f2cea2b6ee5aa",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "2e3cb75934679422de060d92f15521d4c74b1029324e5e915141e323fb5c4818",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
     "coordinate_model_sha256": "84805c6b9f41bde44cc8744a09d4f48e8cc7ccfe82ceb620174e2510c62ab470",
     "instance_ledger": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-    "instance_ledger_sha256": "8c0845d155b887c8d799068235b4ef6af44497f86c10c4a9044192dd0baaef00",
+    "instance_ledger_sha256": "9c79055ab7d61fff6d8e06b63a9bf1162e7623d16276fb3fb17abf3f4c028ec4",
     "net_ledger": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-    "net_ledger_sha256": "54f9212e5ac48c26aa1d4001d6c1f50b78cd04c6e1dc9c4f36bcedad1fe9254a",
+    "net_ledger_sha256": "c13a3751d711d57ba38d185e373736651f2def55cb5632c172fbb623b483b819",
     "symbol_library": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-    "symbol_library_sha256": "af13863573b2005e268c4535d0a70937f89b762919fab03655fe94edfc900e8d",
+    "symbol_library_sha256": "4942a9f8660aab6f5c3624d0e7199612e1923a60a273a8eb039565e156139729",
     "kicad_net_bindings": "hardware/layout/generated/H6-R2-kicad-net-bindings.json",
-    "kicad_net_bindings_sha256": "c475863618fd995f45bafd7ce76f71f2bc5dc0c28b65d8c1954ae3110aa87aa2"
+    "kicad_net_bindings_sha256": "89628163cd91f4fa7fb3875f91d032a5fe137d0b2b232a34a9ca9016dc1336f7"
   },
   "summary": {
     "board_count": 2,
@@ -30639,8 +30639,8 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              28.6,
-              29.630000000000003
+              28.599999999999998,
+              29.63
             ],
             "y": [
               54.1,
@@ -34914,7 +34914,7 @@
             31.5
           ],
           "rotation_deg": 0.0,
-          "moved_from_seed_mm": 8.4149,
+          "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             50750000,
             31500000

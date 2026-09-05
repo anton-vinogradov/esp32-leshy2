@@ -130,7 +130,7 @@
       "exit": "Gerber, drill, BOM, CPL, drawings, assembly notes, programming/recovery access and owner first-power-on inputs are complete and hash-manifested"
     },
     {
-      "id": "H6.0.8-R1",
+      "id": "H6.0.9-R1",
       "status": "waiting",
       "title": "Independent DFM/CPL and release-candidate review",
       "exit": "the two-board candidate passes independent file/placement/orientation review, yields a real PCBA quote and is ready for the separate F-PO and immutable exact-one order gates"

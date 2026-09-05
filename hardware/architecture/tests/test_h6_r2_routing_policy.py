@@ -25,6 +25,9 @@ PLACEMENT_FREEZE_SCRIPT = ROOT / "hardware/layout/h6_r2_placement_freeze.py"
 GENERAL_ROUTING_AUDIT = ROOT / "hardware/layout/generated/H6-R2-general-routing-audit.json"
 GENERAL_ROUTING_SCRIPT = ROOT / "hardware/layout/h6_r2_general_routing.py"
 ROUTING_RENDER_SCRIPT = ROOT / "hardware/layout/h6_r2_routing_render.py"
+CURRENT_ROUTING_AUDIT = ROOT / "hardware/layout/generated/H6-R2-current-routing-audit.json"
+CURRENT_ROUTING_SCRIPT = ROOT / "hardware/layout/h6_r2_current_routing.py"
+RELEASE_PLAN = ROOT / "hardware/verification/h6-layout-release-plan.json"
 KICAD_PYTHON = Path(
     "/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/"
     "Versions/3.9/bin/python3"
@@ -155,6 +158,46 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
             self.assertIn("images/h6-r2-routing-ui.svg", text)
             self.assertIn("images/h6-r2-routing-rf.svg", text)
 
+    def test_live_80mm_routing_checkpoint_is_hash_bound_and_non_closing(self):
+        audit = json.loads(CURRENT_ROUTING_AUDIT.read_text(encoding="utf-8"))
+        self.assertEqual("H6.0.3-R1", audit["marker"])
+        self.assertEqual("pass_progress", audit["status"])
+        self.assertFalse(audit["phase_complete"])
+        self.assertEqual(4555, audit["summary"]["track_via_item_count"])
+        self.assertEqual(600, audit["summary"]["resolved_connection_count"])
+        self.assertEqual(2665, audit["summary"]["current_total_unconnected_count"])
+        self.assertEqual(135, audit["summary"]["analog_remaining_connection_count"])
+        boards = {row["project"]: row for row in audit["boards"]}
+        self.assertEqual(0, boards["LESHY2-UI-R2"]["drc"]["violation_count"])
+        self.assertEqual(2, boards["LESHY2-RF-R2"]["drc"]["violation_count"])
+        self.assertEqual(
+            ["hole_clearance", "solder_mask_bridge"],
+            boards["LESHY2-RF-R2"]["drc"]["violation_types"],
+        )
+        for row in boards.values():
+            self.assertEqual([], row["errors"])
+            self.assertEqual(64, len(row["board_sha256"]))
+            self.assertEqual(
+                row["current_total_unconnected_count"],
+                sum(
+                    state["remaining_connection_count"]
+                    for state in row["classes"].values()
+                ),
+            )
+        for document in (
+            ROOT / "docs/h6-r2-current-routing.md",
+            ROOT / "docs/h6-r2-current-routing.ru.md",
+        ):
+            text = document.read_text(encoding="utf-8")
+            self.assertIn("images/h6-r2-routing-ui.svg", text)
+            self.assertIn("images/h6-r2-routing-rf.svg", text)
+
+    def test_h6_release_substep_ids_are_unique_and_end_at_h609(self):
+        plan = json.loads(RELEASE_PLAN.read_text(encoding="utf-8"))
+        ids = [row["id"] for row in plan["substeps"]]
+        self.assertEqual(len(ids), len(set(ids)))
+        self.assertEqual("H6.0.9-R1", ids[-1])
+
     def test_kicad_rules_bind_exact_calculator_geometry(self):
         for project in ("LESHY2-UI-R2", "LESHY2-RF-R2"):
             path = ROOT / f"hardware/ecad/kicad/{project}/{project}.kicad_dru"
@@ -258,6 +301,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         for script, expected in (
             (PLACEMENT_FREEZE_SCRIPT, "1208 exact anchors"),
             (GENERAL_ROUTING_SCRIPT, "historical routing evidence preserved; current H6.0.3-R1"),
+            (CURRENT_ROUTING_SCRIPT, "4555 copper items; 600 resolved; 2665 remain"),
         ):
             result = subprocess.run(
                 [str(KICAD_PYTHON), str(script), "--check"],

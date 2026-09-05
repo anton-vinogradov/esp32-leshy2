@@ -198,8 +198,10 @@ relaxed corridors, five clear tape saddles and ten antenna solder windows with
 7.69 mm minimum cable reserve. H6.0.1 is complete; H6.0.3 now rebaselines both
 boards to 80 × 150 mm and dedicates x=35…40 mm to a real inner-face routing
 corridor. All 1,208 positions remain exact, with no hard placement conflict.
-The live boards retain 3,665 DRC-clean track/via items, including a complete
-`VOICE_EFUSE_BACKUP_EN_N` path through the added corridor using ordinary
+The [live routing checkpoint](h6-r2-current-routing.md) binds 4,555 DRC-clean
+track/via items to the current board hashes: 600 physical connections are
+resolved and 2,665 remain. This includes a complete `VOICE_EFUSE_BACKUP_EN_N`
+path through the added corridor using ordinary
 0.15-mm tracks and 0.4/0.2-mm vias. Fresh KiCad DRC matches the clean 80-mm
 baseline: zero UI findings and only the two already owned battery-holder
 exceptions on RF/power. H6.0.2 routing totals remain historical evidence;
@@ -212,7 +214,7 @@ illustrative mockups. Blue is front copper and red is back copper. Each file
 embeds the source-board hash, so the H6 check rejects a stale image after any
 PCB change. Open an image for its full-size view; layer details and the
 reproducible export command are in the
-[H6.0.2 routing policy](h6-r2-routing-policy.md#what-the-real-routing-looks-like-now).
+[live H6.0.3 routing checkpoint](h6-r2-current-routing.md#live-images).
 
 **Front UI board**
 

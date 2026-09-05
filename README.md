@@ -71,8 +71,10 @@ user to accept the non-aggression/authorized-use terms.
 > `JLC06161H-3313` calculator geometry is now enforced in KiCad: outer RF is
 > 50-ohm CPWG at 5.31/6 mil and all 12 USB segments are native `_P/_N` pairs at
 > 90 ohm, 5.31/6 mil. `H6.0.3-R1` widens both physical boards to 80 mm and
-> dedicates x=35…40 mm to useful routing area. The current PCB files retain
-> 3,665 checked track/via items; the formerly blocked
+> dedicates x=35…40 mm to useful routing area. The [live H6.0.3 routing
+> checkpoint](docs/h6-r2-current-routing.md) binds 4,555 checked track/via
+> items to the current board hashes; native connectivity has 600 resolved and
+> 2,665 remaining physical connections. The formerly blocked
 > `VOICE_EFUSE_BACKUP_EN_N` route now crosses the new corridor with ordinary
 > 0.15-mm tracks and 0.4/0.2-mm vias. Fresh KiCad DRC matches the unrouted
 > 80-mm baseline: zero UI violations and only the two already owned battery-holder
@@ -168,7 +170,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 | H3 · Virtual electrical verification | ✅ Reviewed · `H3-R2.7` | [Bilingual phase result](docs/h3-r2-acceptance.md) · [physical evidence register](docs/physical-evidence-register-r2.md) · [stage page](docs/stage-results.md#h3) |
 | H4 · Joined hardware/firmware pre-layout gate | ✅ Reviewed · `H4-R2.3` | [global result](docs/h4-r2-acceptance.md) · [BSP correction](docs/h4-r2-correction-closure.md) · [stage page](docs/stage-results.md#h4) |
 | H5 · Component and factory evidence | ✅ Reviewed current R2 routes · `H5-R2.1` | [Current R2 result](docs/h5-r2-current-route.md) · [historical H5-R1](docs/h5-r1-acceptance.md) · [stage page](docs/stage-results.md#h5) |
-| **H6 · KiCad placement, routing and release candidate** | **▶ Current · `H6.0.3-R1`** | [Exact placement](docs/h6-r2-exact-placement.md) · [routing policy](docs/h6-r2-routing-policy.md) · [mechanical stack](docs/h6-r2-mechanical-stack.md) · [microcoax closure](docs/h6-r2-microcoax-service.md) · [stage page](docs/stage-results.md#h6) · [machine checklist](hardware/verification/h6-layout-release-plan.json) |
+| **H6 · KiCad placement, routing and release candidate** | **▶ Current · `H6.0.3-R1`** | [Exact placement](docs/h6-r2-exact-placement.md) · [routing policy](docs/h6-r2-routing-policy.md) · [live routing checkpoint](docs/h6-r2-current-routing.md) · [mechanical stack](docs/h6-r2-mechanical-stack.md) · [microcoax closure](docs/h6-r2-microcoax-service.md) · [stage page](docs/stage-results.md#h6) · [machine checklist](hardware/verification/h6-layout-release-plan.json) |
 | F-PO · First-spin admission | 🔒 Waiting for final H2/H6 and firmware R2 | [Stage page](docs/stage-results.md#f-po) |
 | H7 · Prototype fabrication and bring-up | 🔒 Waiting for H6, F-PO, immutable release and exact-one quote approval | [Stage page](docs/stage-results.md#h7) |
 | H8 · Physical qualification | 🔒 Waiting for H7 | [Stage page](docs/stage-results.md#h8) |
@@ -222,7 +224,7 @@ Firmware has its own [independent roadmap](https://github.com/anton-vinogradov/e
 - ✅ `H4-R2.3`: the [bilingual global H4 result](docs/h4-r2-acceptance.md) closes the joined pre-layout gate with zero contradiction and transfers all 51 physical residuals to H5/H6/H8.
 - ✅ `H5-R2.1`: the [current bilingual H5 result](docs/h5-r2-current-route.md) revalidates 249 purchasable groups / 1,216 articles with zero unmapped routes; the historical [H5-R1 evidence](docs/h5-r1-acceptance.md) remains available, and `WBC16-1TLC` is an explicit order-time sourcing gate.
 - ✅ **`H6.0.1-R1` complete:** [native placement](docs/h6-r2-exact-placement.md) is reproducible at 1,208/1,208 positions with zero hard conflict; the [exact mechanical stack](docs/h6-r2-mechanical-stack.md) closes enclosure capture plus M2.5 retention; the [microcoax closure](docs/h6-r2-microcoax-service.md) proves five relaxed corridors, five clear saddles and ten antenna solder windows.
-- ▶ **Exact current point `H6.0.3-R1`:** both boards are now 80 × 150 mm with a real x=35…40-mm routing corridor; 1,208/1,208 positions, mechanics and all five microcoax paths pass, and routing is being requalified on the new geometry before the remaining analogue/audio/sense work continues.
+- ▶ **Exact current point `H6.0.3-R1`:** both boards are now 80 × 150 mm with a real x=35…40-mm routing corridor; 1,208/1,208 positions, mechanics and all five microcoax paths pass. The [current hash-bound routing snapshot](docs/h6-r2-current-routing.md) contains 4,555 DRC-clean copper items, resolves 600 physical connections and leaves 2,665 to route or explicitly no-connect.
 - 🔒 Prototype purchase and fabrication remain unauthorized.
 
 Every closed top-level `H*` phase publishes a bilingual readable report linked

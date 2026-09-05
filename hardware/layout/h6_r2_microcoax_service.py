@@ -404,7 +404,7 @@ def render(contract: dict, placement: dict, audit: dict) -> str:
         text(760, 783, "No rib, stop, screw, adhesive or loose hardware enters a corridor", 14),
         text(760, 808, "or its 6-mm connector inspection circle. The 11-mm sandwich", 14),
         text(760, 833, "must close with no cable pressure; assembled STEP rechecks this in H6.0.6.", 14),
-        text(70, 876, f"audit: {audit['status']} - five paths - five clear saddles - minimum relaxed reserve {audit['summary']['minimum_relaxed_reserve_mm']:.2f} mm - H6.0.2 routing may start", 14, "700", colour="#166534" if audit["status"] == "pass" else "#b91c1c"),
+        text(70, 876, f"audit: {audit['status']} - five paths - five clear saddles - minimum relaxed reserve {audit['summary']['minimum_relaxed_reserve_mm']:.2f} mm - H6.0.3 routing is current", 14, "700", colour="#166534" if audit["status"] == "pass" else "#b91c1c"),
         "</svg>",
     ])
     return "\n".join(parts) + "\n"

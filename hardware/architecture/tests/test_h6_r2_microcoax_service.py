@@ -88,7 +88,7 @@ class H6R2MicrocoaxServiceTests(unittest.TestCase):
         preview = SVG.read_text(encoding="utf-8")
         self.assertIn("five relaxed microcoax service corridors", preview)
         self.assertIn("do not guess an ipex axis", preview.lower())
-        self.assertIn("H6.0.2 routing may start", preview)
+        self.assertIn("H6.0.3 routing is current", preview)
 
 
 if __name__ == "__main__":

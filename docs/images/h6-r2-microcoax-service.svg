@@ -109,5 +109,5 @@
 <text x="760.0" y="783.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#172033">No rib, stop, screw, adhesive or loose hardware enters a corridor</text>
 <text x="760.0" y="808.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#172033">or its 6-mm connector inspection circle. The 11-mm sandwich</text>
 <text x="760.0" y="833.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#172033">must close with no cable pressure; assembled STEP rechecks this in H6.0.6.</text>
-<text x="70.0" y="876.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#166534">audit: pass - five paths - five clear saddles - minimum relaxed reserve 7.69 mm - H6.0.2 routing may start</text>
+<text x="70.0" y="876.0" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#166534">audit: pass - five paths - five clear saddles - minimum relaxed reserve 7.69 mm - H6.0.3 routing is current</text>
 </svg>

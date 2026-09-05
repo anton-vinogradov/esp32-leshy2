@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h6-r2-routing-policy.ru.md)
 
-**Status:** 🟡 all 823 physical nets across both boards (789 canonical) are assigned to 13 classes. The reviewed `GENERAL_CONTROL` set, all 12 crystal/oscillator nets and `SAFETY_CONTROL` are now routed completely; manual H6.0.2 work on analogue/audio/sense nets remains current. RF, USB, power, i8080 and clocked buses remain protected for their later manual releases.
+**Status:** 🟡 all 823 physical nets across both boards (789 canonical) are assigned to 13 classes. This page preserves the accepted `GENERAL_CONTROL`, all 12 crystal/oscillator nets and `SAFETY_CONTROL` slice on the former 75-mm geometry as historical evidence. The live 80-mm board state is published by the separate H6.0.3 checkpoint.
 
 | Class | Nets | Method | Geometry release |
 | --- | ---: | --- | --- |
@@ -37,11 +37,11 @@
 
 The imported `GENERAL_CONTROL` and `SAFETY_CONTROL` proposals were repaired and reviewed in KiCad; oscillator branches were routed manually with short local geometry. The checked-in boards now resolve all **652/652** physical connections across all **288** allowed nets: 231 connections on UI and 421 on RF/power. They contain 5,273 track/via items, including 836 vias, use only the four permitted routing layers, touch zero protected nets and leave `In1.Cu`/`In4.Cu` untouched. Fresh KiCad 10.0.5 DRC reports contain **zero violations** and zero schematic-parity errors on both boards. The exact native unconnected totals are 996 (UI) and 1,617 (RF/power); the 499 rows shown by each JSON report are only KiCad's output cap.
 
-The [accepted-routing audit](../hardware/layout/generated/H6-R2-general-routing-audit.json) binds those results to the exact PCB hashes and to the 1,208-position freeze. This is a slice inside H6.0.2, not completion of the phase: `ANALOG_AUDIO_SENSE` is still routed manually.
+The [accepted-routing audit](../hardware/layout/generated/H6-R2-general-routing-audit.json) binds those results to the former PCB hashes and to the 1,208-position freeze. This is preserved historical evidence inside H6.0.2, not the state of the live 80-mm boards. See the [current H6.0.3 counts and DRC](h6-r2-current-routing.md).
 
 ### What the real routing looks like now
 
-Blue is front copper and red is back copper; holes and vias appear across both layers. These are direct exports from the checked-in `.kicad_pcb` files, not illustrative mockups. Each image carries the source board hash and becomes stale automatically after any PCB change.
+Blue is front copper and red is back copper; holes and vias appear across both layers. Unlike the historical counts above, the images below are direct exports from the live 80-mm `.kicad_pcb` files. Each image carries the source board hash and becomes stale automatically after any PCB change.
 
 **Front/UI board**
 

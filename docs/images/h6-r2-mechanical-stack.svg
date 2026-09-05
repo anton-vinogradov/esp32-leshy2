@@ -51,6 +51,6 @@
 <text x="250" y="740" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="normal" text-anchor="start" fill="#172033">four edge-lip segments retain each PCB independently</text>
 <text x="90" y="780" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#dc2626">M1</text>
 <text x="250" y="780" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="normal" text-anchor="start" fill="#172033">electrical mating and alignment only · never used to pull the boards together</text>
-<text x="70" y="865" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="600" text-anchor="start" fill="#526076">H6.0.1 is closed by the microcoax service audit; H6.0.2 routing and native net parity are current.</text>
+<text x="70" y="865" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="600" text-anchor="start" fill="#526076">H6.0.1 is closed by the microcoax service audit; H6.0.3 routing and native net parity are current.</text>
 <text x="70" y="908" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#166534">audit: pass · four axes match both native PCBs · no fabrication or purchase authorized</text>
 </svg>
