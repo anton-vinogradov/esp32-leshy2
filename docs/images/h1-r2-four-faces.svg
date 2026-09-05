@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1050" height="1500" viewBox="0 0 1050 1500" data-view="four-faces-matched-columns">
-<defs><clipPath id="front-external-content"><rect x="106" y="145" width="328" height="615"/></clipPath><clipPath id="rear-external-content"><rect x="616" y="145" width="328" height="615"/></clipPath></defs>
+<defs><clipPath id="front-external-content"><rect x="45" y="135" width="450" height="625"/></clipPath><clipPath id="rear-external-content"><rect x="555" y="135" width="450" height="625"/></clipPath><clipPath id="front-inner-content"><rect x="45" y="795" width="450" height="660"/></clipPath><clipPath id="rear-inner-content"><rect x="555" y="795" width="450" height="660"/></clipPath></defs>
 <rect width="1050" height="1500" fill="#ffffff"/>
 <text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.39 · four matched PCB faces</text>
 <text x="40" y="70" font-family="sans-serif" font-size="13" font-weight="normal" text-anchor="start" fill="#526076">Outer face above; the inner face is shown exactly as viewed after physically turning the PCB over.</text>
@@ -7,7 +7,7 @@
 <text x="780" y="104" font-family="sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#166534">REAR / RF-POWER PCB</text>
 <text x="270" y="130" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#526076">outer · user-facing silk</text>
 <text x="780" y="130" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#526076">outer · user-facing silk</text>
-<g clip-path="url(#front-external-content)" data-panel="front-external"><svg x="45" y="145" width="450" height="615" viewBox="45 90 350 660" preserveAspectRatio="xMidYMid meet" overflow="hidden">
+<g clip-path="url(#front-external-content)" data-panel="front-external"><g transform="translate(23.513514 -17.162162) scale(1.081081081)">
 <defs><marker id="ext-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 
 <text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.39 current external layout</text>
@@ -263,19 +263,19 @@
 <path d="M603.6 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ext-arrow)" data-instance="rp_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
 <text data-edge="bottom" data-silk-row="owner" data-layer="pcb-silkscreen" x="603.6" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">RF RP</text>
 <text data-edge="bottom" data-silk-row="role" data-layer="pcb-silkscreen" x="603.6" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
-<rect x="344.9" y="631.0" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="hub_reset_button" data-mpn="SKRTLAE010" data-projection="inner-mounted-side-switch"/>
-<rect x="351.2" y="630.1" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="hub_reset_button" data-part="protective-recess" data-recess-mm="1.2"/>
-<path d="M353.1 634.1 V644.5" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="hub_reset_button" data-part="side-actuator" data-recessed="true"/>
-<path d="M383.4 639.3 L353.1 639.3" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ext-arrow)"/>
-<text data-layer="pcb-silkscreen" x="331.6" y="639.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">HUB RST</text>
-<rect x="344.9" y="656.9" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="hub_boot_button" data-mpn="SKRTLAE010" data-projection="inner-mounted-side-switch"/>
-<rect x="351.2" y="656.0" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="hub_boot_button" data-part="protective-recess" data-recess-mm="1.2"/>
-<path d="M353.1 660.0 V670.4" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="hub_boot_button" data-part="side-actuator" data-recessed="true"/>
-<path d="M383.4 665.2 L353.1 665.2" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ext-arrow)"/>
-<text data-layer="pcb-silkscreen" x="331.6" y="665.2" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">HUB BOOT</text>
+<rect x="363.4" y="623.6" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="hub_reset_button" data-mpn="SKRTLAE010" data-projection="inner-mounted-side-switch"/>
+<rect x="369.7" y="622.7" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="hub_reset_button" data-part="protective-recess" data-recess-mm="1.2"/>
+<path d="M371.6 626.7 V637.1" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="hub_reset_button" data-part="side-actuator" data-recessed="true"/>
+<path d="M383.4 631.9 L371.6 631.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ext-arrow)"/>
+<text data-layer="pcb-silkscreen" x="331.6" y="631.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">HUB RST</text>
+<rect x="363.4" y="649.5" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="hub_boot_button" data-mpn="SKRTLAE010" data-projection="inner-mounted-side-switch"/>
+<rect x="369.7" y="648.6" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="hub_boot_button" data-part="protective-recess" data-recess-mm="1.2"/>
+<path d="M371.6 652.6 V663.0" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="hub_boot_button" data-part="side-actuator" data-recessed="true"/>
+<path d="M383.4 657.8 L371.6 657.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ext-arrow)"/>
+<text data-layer="pcb-silkscreen" x="331.6" y="657.8" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">HUB BOOT</text>
 </g>
-</svg></g>
-<g clip-path="url(#rear-external-content)" data-panel="rear-external"><svg x="555" y="145" width="450" height="615" viewBox="430 90 350 660" preserveAspectRatio="xMidYMid meet" overflow="hidden">
+</g></g>
+<g clip-path="url(#rear-external-content)" data-panel="rear-external"><g transform="translate(117.297297 -17.162162) scale(1.081081081)">
 <defs><marker id="ext-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>
 
 <text x="30.0" y="32.0" font-family="sans-serif" font-size="22" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 — H1-R2.39 current external layout</text>
@@ -531,21 +531,21 @@
 <path d="M603.6 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#ext-arrow)" data-instance="rp_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
 <text data-edge="bottom" data-silk-row="owner" data-layer="pcb-silkscreen" x="603.6" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">RF RP</text>
 <text data-edge="bottom" data-silk-row="role" data-layer="pcb-silkscreen" x="603.6" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
-<rect x="344.9" y="631.0" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="hub_reset_button" data-mpn="SKRTLAE010" data-projection="inner-mounted-side-switch"/>
-<rect x="351.2" y="630.1" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="hub_reset_button" data-part="protective-recess" data-recess-mm="1.2"/>
-<path d="M353.1 634.1 V644.5" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="hub_reset_button" data-part="side-actuator" data-recessed="true"/>
-<path d="M383.4 639.3 L353.1 639.3" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ext-arrow)"/>
-<text data-layer="pcb-silkscreen" x="331.6" y="639.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">HUB RST</text>
-<rect x="344.9" y="656.9" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="hub_boot_button" data-mpn="SKRTLAE010" data-projection="inner-mounted-side-switch"/>
-<rect x="351.2" y="656.0" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="hub_boot_button" data-part="protective-recess" data-recess-mm="1.2"/>
-<path d="M353.1 660.0 V670.4" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="hub_boot_button" data-part="side-actuator" data-recessed="true"/>
-<path d="M383.4 665.2 L353.1 665.2" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ext-arrow)"/>
-<text data-layer="pcb-silkscreen" x="331.6" y="665.2" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">HUB BOOT</text>
+<rect x="363.4" y="623.6" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="hub_reset_button" data-mpn="SKRTLAE010" data-projection="inner-mounted-side-switch"/>
+<rect x="369.7" y="622.7" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="hub_reset_button" data-part="protective-recess" data-recess-mm="1.2"/>
+<path d="M371.6 626.7 V637.1" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="hub_reset_button" data-part="side-actuator" data-recessed="true"/>
+<path d="M383.4 631.9 L371.6 631.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ext-arrow)"/>
+<text data-layer="pcb-silkscreen" x="331.6" y="631.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">HUB RST</text>
+<rect x="363.4" y="649.5" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="hub_boot_button" data-mpn="SKRTLAE010" data-projection="inner-mounted-side-switch"/>
+<rect x="369.7" y="648.6" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="hub_boot_button" data-part="protective-recess" data-recess-mm="1.2"/>
+<path d="M371.6 652.6 V663.0" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="hub_boot_button" data-part="side-actuator" data-recessed="true"/>
+<path d="M383.4 657.8 L371.6 657.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#ext-arrow)"/>
+<text data-layer="pcb-silkscreen" x="331.6" y="657.8" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">HUB BOOT</text>
 </g>
-</svg></g>
+</g></g>
 <text x="270" y="790" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#526076">inner · viewed after turning over · no silkscreen</text>
 <text x="780" y="790" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#526076">inner · viewed after turning over · no silkscreen</text>
-<svg x="45" y="805" width="450" height="650" viewBox="70 95 440 940" preserveAspectRatio="xMidYMid meet" overflow="hidden">
+<g clip-path="url(#front-inner-content)" data-panel="front-inner"><g transform="translate(52.857143 727.142857) scale(0.714285714)">
 
 <text x="35.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.39 · UI / radio PCB inner face</text>
 <text x="35.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Direct view after physically turning the PCB over. Numbers are drawing references; this face has no silkscreen.</text>
@@ -676,14 +676,14 @@
 <text x="518.5" y="863.1" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">219</text>
 <rect x="80.00" y="848.20" width="19.04" height="25.20" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="c5_boot_button" data-mpn="Alps Alpine SKRTLAE010"/>
 <text x="89.5" y="863.1" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">220</text>
-<rect x="108.00" y="893.00" width="19.04" height="25.20" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_reset_button" data-mpn="SKRTLAE010"/>
-<text x="117.5" y="907.9" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#2563eb">221</text>
+<rect x="80.00" y="881.80" width="19.04" height="25.20" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_reset_button" data-mpn="SKRTLAE010"/>
+<text x="89.5" y="896.7" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#2563eb">221</text>
 <rect x="330.04" y="909.80" width="54.04" height="32.70" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_dbg_header" data-mpn="FTSH-105-01-L-DV-K-P-TR"/>
 <text x="357.1" y="928.5" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#2563eb">222</text>
+<rect x="80.00" y="921.00" width="19.04" height="25.20" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_boot_button" data-mpn="SKRTLAE010"/>
+<text x="89.5" y="935.9" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#2563eb">223</text>
 <rect x="169.88" y="927.44" width="89.32" height="77.56" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="sd" data-mpn="Hirose DM3AT-SF-PEJM5"/>
-<text x="214.5" y="968.6" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">223</text>
-<rect x="108.00" y="932.20" width="19.04" height="25.20" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_boot_button" data-mpn="SKRTLAE010"/>
-<text x="117.5" y="947.1" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#2563eb">224</text>
+<text x="214.5" y="968.6" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">224</text>
 <rect x="410.74" y="963.84" width="50.06" height="41.16" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_service_usb_connector" data-mpn="USB4105-GF-A"/>
 <text x="435.8" y="986.8" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#2563eb">225</text>
 <rect x="326.74" y="963.84" width="50.06" height="41.16" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="c5_service_usb_connector" data-mpn="GCT USB4105-GF-A"/>
@@ -715,8 +715,8 @@
 <circle cx="172.4" cy="224.1" r="6.3" fill="#ffffff" stroke="#0f766e" stroke-width="2" data-path="N24-2" data-part="board-ufl" data-connector-kind="U.FL" data-mpn="U.FL-R-SMT-1(80)"/>
 <circle cx="172.4" cy="224.1" r="2.0" fill="#d97706"/>
 </g>
-</svg>
-<svg x="555" y="805" width="450" height="650" viewBox="70 95 440 940" preserveAspectRatio="xMidYMid meet" overflow="hidden">
+</g></g>
+<g clip-path="url(#rear-inner-content)" data-panel="rear-inner"><g transform="translate(562.857143 727.142857) scale(0.714285714)">
 
 <text x="35.0" y="40.0" font-family="sans-serif" font-size="24" font-weight="bold" text-anchor="start" fill="#172033">Leshy2 · H1-R2.39 · RF / power PCB inner face</text>
 <text x="35.0" y="68.0" font-family="sans-serif" font-size="12" font-weight="normal" text-anchor="start" fill="#526076">Direct view after physically turning the PCB over. Numbers are drawing references; this face has no silkscreen.</text>
@@ -1096,6 +1096,6 @@
 <text x="343.2" y="996.1" font-family="sans-serif" font-size="7.0" font-weight="bold" text-anchor="middle" fill="#94a3b8">171</text>
 <g id="rf-antenna-removable-media" data-topology-source="r2">
 </g>
-</svg>
+</g></g>
 <text x="525" y="1480" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" fill="#b42318">Matched physical columns · 80 × 150 mm PCBs · not authorization for KiCad</text>
 </svg>

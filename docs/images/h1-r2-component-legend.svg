@@ -490,10 +490,10 @@
 <text x="1425.0" y="2712.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">222  FTSH-105-01-L-DV-K-P-TR</text>
 <text x="1453.0" y="2726.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">Hub RP keyed SWD/RUN/USB_BOOT fallback; accessible only after</text>
 <text x="1453.0" y="2737.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">opening the sandwich</text>
-<text x="1425.0" y="2762.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">223  Hirose DM3AT-SF-PEJM5</text>
-<text x="1453.0" y="2776.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">bottom-access push-push microSD</text>
-<text x="1425.0" y="2812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">224  SKRTLAE010</text>
-<text x="1453.0" y="2826.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">recessed right-side Hub RP USB_BOOT service control</text>
+<text x="1425.0" y="2762.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">223  SKRTLAE010</text>
+<text x="1453.0" y="2776.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">recessed right-side Hub RP USB_BOOT service control</text>
+<text x="1425.0" y="2812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">224  Hirose DM3AT-SF-PEJM5</text>
+<text x="1453.0" y="2826.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">bottom-access push-push microSD</text>
 <text x="1425.0" y="2862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">225  USB4105-GF-A</text>
 <text x="1453.0" y="2876.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">Hub RP independent data-only USB-C; bottom enclosure exit</text>
 <text x="1425.0" y="2912.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">226  GCT USB4105-GF-A</text>

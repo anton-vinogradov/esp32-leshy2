@@ -1263,8 +1263,8 @@
       "mpn": "SKRTLAE010",
       "role": "recessed right-side Hub RP RUN/RESET service control",
       "world_xy_mm": [
-        71.6,
-        130.0
+        76.6,
+        128.0
       ],
       "size_mm": [
         3.4,
@@ -1288,8 +1288,8 @@
       "mpn": "SKRTLAE010",
       "role": "recessed right-side Hub RP USB_BOOT service control",
       "world_xy_mm": [
-        71.6,
-        137.0
+        76.6,
+        135.0
       ],
       "size_mm": [
         3.4,

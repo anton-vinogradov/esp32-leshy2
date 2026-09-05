@@ -254,15 +254,15 @@
 <path d="M603.6 705.0 V734.6" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow)" data-instance="rp_service_usb_connector" data-mpn="USB4105-GF-A" data-port-role="data-only"/>
 <text data-edge="bottom" data-silk-row="owner" data-layer="pcb-silkscreen" x="603.6" y="686.9" font-family="sans-serif" font-size="4.7" font-weight="bold" text-anchor="middle" fill="#2563eb">RF RP</text>
 <text data-edge="bottom" data-silk-row="role" data-layer="pcb-silkscreen" x="603.6" y="693.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#2563eb">DATA USB</text>
-<rect x="344.9" y="631.0" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="hub_reset_button" data-mpn="SKRTLAE010" data-projection="inner-mounted-side-switch"/>
-<rect x="351.2" y="630.1" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="hub_reset_button" data-part="protective-recess" data-recess-mm="1.2"/>
-<path d="M353.1 634.1 V644.5" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="hub_reset_button" data-part="side-actuator" data-recessed="true"/>
-<path d="M383.4 639.3 L353.1 639.3" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="331.6" y="639.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">HUB RST</text>
-<rect x="344.9" y="656.9" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="hub_boot_button" data-mpn="SKRTLAE010" data-projection="inner-mounted-side-switch"/>
-<rect x="351.2" y="656.0" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="hub_boot_button" data-part="protective-recess" data-recess-mm="1.2"/>
-<path d="M353.1 660.0 V670.4" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="hub_boot_button" data-part="side-actuator" data-recessed="true"/>
-<path d="M383.4 665.2 L353.1 665.2" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text data-layer="pcb-silkscreen" x="331.6" y="665.2" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">HUB BOOT</text>
+<rect x="363.4" y="623.6" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="hub_reset_button" data-mpn="SKRTLAE010" data-projection="inner-mounted-side-switch"/>
+<rect x="369.7" y="622.7" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="hub_reset_button" data-part="protective-recess" data-recess-mm="1.2"/>
+<path d="M371.6 626.7 V637.1" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="hub_reset_button" data-part="side-actuator" data-recessed="true"/>
+<path d="M383.4 631.9 L371.6 631.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="331.6" y="631.9" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">HUB RST</text>
+<rect x="363.4" y="649.5" width="12.6" height="16.7" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="hub_boot_button" data-mpn="SKRTLAE010" data-projection="inner-mounted-side-switch"/>
+<rect x="369.7" y="648.6" width="9.2" height="18.5" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="hub_boot_button" data-part="protective-recess" data-recess-mm="1.2"/>
+<path d="M371.6 652.6 V663.0" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="hub_boot_button" data-part="side-actuator" data-recessed="true"/>
+<path d="M383.4 657.8 L371.6 657.8" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text data-layer="pcb-silkscreen" x="331.6" y="657.8" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#7c3aed">HUB BOOT</text>
 </g>
 </svg>

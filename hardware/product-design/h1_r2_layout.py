@@ -1271,9 +1271,9 @@ def render_external_svg(model: dict) -> str:
                 # the exterior does not make one identical MPN look like a
                 # different control: inner-mounted body, recess and actuator.
                 f'<rect x="{px(front,x):.1f}" y="{py(front,y):.1f}" width="{w*scale:.1f}" height="{h*scale:.1f}" rx="1" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="2 2" data-instance="{item["id"]}" data-mpn="SKRTLAE010" data-projection="inner-mounted-side-switch"/>',
-                f'<rect x="{px(front,73.3):.1f}" y="{py(front,cy-2.5):.1f}" width="{2.5*scale:.1f}" height="{5.0*scale:.1f}" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="{item["id"]}" data-part="protective-recess" data-recess-mm="1.2"/>',
-                f'<path d="M{px(front,73.8):.1f} {py(front,cy-1.4):.1f} V{py(front,cy+1.4):.1f}" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="{item["id"]}" data-part="side-actuator" data-recessed="true"/>',
-                f'<path d="M{px(front,82):.1f} {py(front,cy):.1f} L{px(front,73.8):.1f} {py(front,cy):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>',
+                f'<rect x="{px(front,78.3):.1f}" y="{py(front,cy-2.5):.1f}" width="{2.5*scale:.1f}" height="{5.0*scale:.1f}" rx="2" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="3 2" data-instance="{item["id"]}" data-part="protective-recess" data-recess-mm="1.2"/>',
+                f'<path d="M{px(front,78.8):.1f} {py(front,cy-1.4):.1f} V{py(front,cy+1.4):.1f}" stroke="#7c3aed" stroke-width="4" stroke-linecap="square" data-instance="{item["id"]}" data-part="side-actuator" data-recessed="true"/>',
+                f'<path d="M{px(front,82):.1f} {py(front,cy):.1f} L{px(front,78.8):.1f} {py(front,cy):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>',
                 label(px(front,68), py(front,cy), visible, "middle", 4.2).replace("#1d4ed8", "#7c3aed"),
             ]
         )
@@ -1319,7 +1319,7 @@ def render_service_svg(model: dict) -> str:
     controls = [
         (front, "left", 117.25, "S3 RST"), (front, "left", 124.25, "S3 BOOT"),
         (front, "right", 117.25, "C5 RST"), (front, "right", 124.25, "C5 BOOT"),
-        (front, "right", 132.25, "HUB RST"), (front, "right", 139.25, "HUB BOOT"),
+        (front, "right", 130.25, "HUB RST"), (front, "right", 137.25, "HUB BOOT"),
         (rear, "left", 108.25, "RF RP RST"), (rear, "left", 115.25, "RF RP BOOT"),
     ]
     for origin, side, cy, visible in controls:
@@ -2281,9 +2281,21 @@ def render_four_faces_svg(model: dict, external_svg: str, inner_ui_svg: str, inn
     def text(x: float, y: float, value: str, size=18, weight="normal", anchor="start", colour="#172033") -> str:
         return f'<text x="{x}" y="{y}" font-family="sans-serif" font-size="{size}" font-weight="{weight}" text-anchor="{anchor}" fill="{colour}">{html.escape(value)}</text>'
 
+    # Both source drawings use different native pixel scales.  Map their
+    # physical 80 x 150 mm board rectangles to the same 320 x 600 px target
+    # instead of relying on nested SVG viewBoxes with unrelated margins.
+    external_scale = 600.0 / 555.0
+    inner_scale = 600.0 / (150.0 * 5.6)
+    front_external_tx = 110.0 - 80.0 * external_scale
+    rear_external_tx = 620.0 - 465.0 * external_scale
+    external_ty = 145.0 - 150.0 * external_scale
+    front_inner_tx = 110.0 - 80.0 * inner_scale
+    rear_inner_tx = 620.0 - 80.0 * inner_scale
+    inner_ty = 845.0 - 165.0 * inner_scale
+
     out = [
         '<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="1500" viewBox="0 0 1050 1500" data-view="four-faces-matched-columns">',
-        '<defs><clipPath id="front-external-content"><rect x="106" y="145" width="328" height="615"/></clipPath><clipPath id="rear-external-content"><rect x="616" y="145" width="328" height="615"/></clipPath></defs>',
+        '<defs><clipPath id="front-external-content"><rect x="45" y="135" width="450" height="625"/></clipPath><clipPath id="rear-external-content"><rect x="555" y="135" width="450" height="625"/></clipPath><clipPath id="front-inner-content"><rect x="45" y="795" width="450" height="660"/></clipPath><clipPath id="rear-inner-content"><rect x="555" y="795" width="450" height="660"/></clipPath></defs>',
         '<rect width="1050" height="1500" fill="#ffffff"/>',
         text(40, 42, f'Leshy2 · {model["marker"]} · four matched PCB faces', 26, "bold"),
         text(40, 70, "Outer face above; the inner face is shown exactly as viewed after physically turning the PCB over.", 13, colour="#526076"),
@@ -2291,12 +2303,12 @@ def render_four_faces_svg(model: dict, external_svg: str, inner_ui_svg: str, inn
         text(780, 104, "REAR / RF-POWER PCB", 18, "bold", "middle", "#166534"),
         text(270, 130, "outer · user-facing silk", 12, "bold", "middle", "#526076"),
         text(780, 130, "outer · user-facing silk", 12, "bold", "middle", "#526076"),
-        f'<g clip-path="url(#front-external-content)" data-panel="front-external"><svg x="45" y="145" width="450" height="615" viewBox="45 90 350 660" preserveAspectRatio="xMidYMid meet" overflow="hidden">{external}</svg></g>',
-        f'<g clip-path="url(#rear-external-content)" data-panel="rear-external"><svg x="555" y="145" width="450" height="615" viewBox="430 90 350 660" preserveAspectRatio="xMidYMid meet" overflow="hidden">{external}</svg></g>',
+        f'<g clip-path="url(#front-external-content)" data-panel="front-external"><g transform="translate({front_external_tx:.6f} {external_ty:.6f}) scale({external_scale:.9f})">{external}</g></g>',
+        f'<g clip-path="url(#rear-external-content)" data-panel="rear-external"><g transform="translate({rear_external_tx:.6f} {external_ty:.6f}) scale({external_scale:.9f})">{external}</g></g>',
         text(270, 790, "inner · viewed after turning over · no silkscreen", 12, "bold", "middle", "#526076"),
         text(780, 790, "inner · viewed after turning over · no silkscreen", 12, "bold", "middle", "#526076"),
-        f'<svg x="45" y="805" width="450" height="650" viewBox="70 95 440 940" preserveAspectRatio="xMidYMid meet" overflow="hidden">{inner_ui}</svg>',
-        f'<svg x="555" y="805" width="450" height="650" viewBox="70 95 440 940" preserveAspectRatio="xMidYMid meet" overflow="hidden">{inner_rf}</svg>',
+        f'<g clip-path="url(#front-inner-content)" data-panel="front-inner"><g transform="translate({front_inner_tx:.6f} {inner_ty:.6f}) scale({inner_scale:.9f})">{inner_ui}</g></g>',
+        f'<g clip-path="url(#rear-inner-content)" data-panel="rear-inner"><g transform="translate({rear_inner_tx:.6f} {inner_ty:.6f}) scale({inner_scale:.9f})">{inner_rf}</g></g>',
         text(525, 1480, f'Matched physical columns · {model["board_mm"][0]:g} × {model["board_mm"][1]:g} mm PCBs · not authorization for KiCad', 12, "bold", "middle", "#b42318"),
         '</svg>',
     ]

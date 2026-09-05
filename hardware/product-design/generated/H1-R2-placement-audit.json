@@ -282,11 +282,11 @@
       "clearance_mm": 0.94
     },
     {
-      "ui": "hub_boot_button",
-      "rf": "product_usb_protector",
+      "ui": "hub_reset_button",
+      "rf": "pd_pphv_cap0",
       "ui_origin": "r2",
       "rf_origin": "retained_base",
-      "clearance_mm": 6.9
+      "clearance_mm": 5.0
     },
     {
       "ui": "s3_rf_board_connector_r2",
@@ -3356,12 +3356,12 @@
       "role": "recessed right-side Hub RP RUN/RESET service control",
       "world_bbox_mm": {
         "x": [
-          71.6,
-          75.0
+          76.6,
+          80.0
         ],
         "y": [
-          130.0,
-          134.5
+          128.0,
+          132.5
         ],
         "z": [
           5.36,
@@ -3377,12 +3377,12 @@
       "role": "recessed right-side Hub RP USB_BOOT service control",
       "world_bbox_mm": {
         "x": [
-          71.6,
-          75.0
+          76.6,
+          80.0
         ],
         "y": [
-          137.0,
-          141.5
+          135.0,
+          139.5
         ],
         "z": [
           5.36,

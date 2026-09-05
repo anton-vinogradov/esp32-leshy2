@@ -481,14 +481,14 @@
 <text x="350.8" y="585.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">219</text>
 <rect x="65.00" y="575.30" width="12.41" height="16.43" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="c5_boot_button" data-mpn="Alps Alpine SKRTLAE010"/>
 <text x="71.2" y="585.8" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">220</text>
-<rect x="83.25" y="604.50" width="12.41" height="16.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_reset_button" data-mpn="SKRTLAE010"/>
-<text x="89.5" y="615.0" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">221</text>
+<rect x="65.00" y="597.20" width="12.41" height="16.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_reset_button" data-mpn="SKRTLAE010"/>
+<text x="71.2" y="607.7" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">221</text>
 <rect x="227.97" y="615.45" width="35.22" height="21.32" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_dbg_header" data-mpn="FTSH-105-01-L-DV-K-P-TR"/>
 <text x="245.6" y="628.4" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">222</text>
+<rect x="65.00" y="622.75" width="12.41" height="16.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_boot_button" data-mpn="SKRTLAE010"/>
+<text x="71.2" y="633.2" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">223</text>
 <rect x="123.58" y="626.95" width="58.22" height="50.55" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="sd" data-mpn="Hirose DM3AT-SF-PEJM5"/>
-<text x="152.7" y="654.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">223</text>
-<rect x="83.25" y="630.05" width="12.41" height="16.43" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_boot_button" data-mpn="SKRTLAE010"/>
-<text x="89.5" y="640.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">224</text>
+<text x="152.7" y="654.5" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#94a3b8">224</text>
 <rect x="280.57" y="650.67" width="32.63" height="26.83" rx="2" fill="#dbeafe" stroke="#2563eb" stroke-width="1" data-instance="hub_service_usb_connector" data-mpn="USB4105-GF-A"/>
 <text x="296.9" y="666.4" font-family="sans-serif" font-size="6.8" font-weight="bold" text-anchor="middle" fill="#2563eb">225</text>
 <rect x="225.82" y="650.67" width="32.63" height="26.83" rx="2" fill="#eef2f6" stroke="#94a3b8" stroke-width="1" data-instance="c5_service_usb_connector" data-mpn="GCT USB4105-GF-A"/>
@@ -1002,10 +1002,10 @@
 <text x="1410.0" y="3260.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">222  FTSH-105-01-L-DV-K-P-TR</text>
 <text x="1438.0" y="3273.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">Hub RP keyed SWD/RUN/USB_BOOT fallback; accessible only</text>
 <text x="1438.0" y="3284.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">after opening the sandwich</text>
-<text x="1410.0" y="3310.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">223  Hirose DM3AT-SF-PEJM5</text>
-<text x="1438.0" y="3323.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">bottom-access push-push microSD</text>
-<text x="1410.0" y="3360.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">224  SKRTLAE010</text>
-<text x="1438.0" y="3373.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">recessed right-side Hub RP USB_BOOT service control</text>
+<text x="1410.0" y="3310.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">223  SKRTLAE010</text>
+<text x="1438.0" y="3323.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">recessed right-side Hub RP USB_BOOT service control</text>
+<text x="1410.0" y="3360.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">224  Hirose DM3AT-SF-PEJM5</text>
+<text x="1438.0" y="3373.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">bottom-access push-push microSD</text>
 <text x="1410.0" y="3410.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#1d4ed8">225  USB4105-GF-A</text>
 <text x="1438.0" y="3423.0" font-family="sans-serif" font-size="7.4" font-weight="normal" text-anchor="start" fill="#526076">Hub RP independent data-only USB-C; bottom enclosure exit</text>
 <text x="1410.0" y="3460.0" font-family="sans-serif" font-size="8.2" font-weight="bold" text-anchor="start" fill="#172033">226  GCT USB4105-GF-A</text>
