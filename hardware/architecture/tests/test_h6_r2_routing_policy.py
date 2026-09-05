@@ -163,10 +163,10 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual("H6.0.3-R1", audit["marker"])
         self.assertEqual("pass_progress", audit["status"])
         self.assertFalse(audit["phase_complete"])
-        self.assertEqual(4555, audit["summary"]["track_via_item_count"])
-        self.assertEqual(600, audit["summary"]["resolved_connection_count"])
-        self.assertEqual(2665, audit["summary"]["current_total_unconnected_count"])
-        self.assertEqual(135, audit["summary"]["analog_remaining_connection_count"])
+        self.assertEqual(4605, audit["summary"]["track_via_item_count"])
+        self.assertEqual(608, audit["summary"]["resolved_connection_count"])
+        self.assertEqual(2657, audit["summary"]["current_total_unconnected_count"])
+        self.assertEqual(127, audit["summary"]["analog_remaining_connection_count"])
         boards = {row["project"]: row for row in audit["boards"]}
         self.assertEqual(0, boards["LESHY2-UI-R2"]["drc"]["violation_count"])
         self.assertEqual(2, boards["LESHY2-RF-R2"]["drc"]["violation_count"])
@@ -301,7 +301,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         for script, expected in (
             (PLACEMENT_FREEZE_SCRIPT, "1208 exact anchors"),
             (GENERAL_ROUTING_SCRIPT, "historical routing evidence preserved; current H6.0.3-R1"),
-            (CURRENT_ROUTING_SCRIPT, "4555 copper items; 600 resolved; 2665 remain"),
+            (CURRENT_ROUTING_SCRIPT, "4605 copper items; 608 resolved; 2657 remain"),
         ):
             result = subprocess.run(
                 [str(KICAD_PYTHON), str(script), "--check"],

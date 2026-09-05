@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import re
 import subprocess
 import tempfile
 from pathlib import Path
@@ -75,6 +76,15 @@ def render(name: str, board: Path, destination: Path) -> None:
     if "<svg" not in svg:
         raise SystemExit(f"{name}: KiCad did not produce an SVG root")
     svg = svg.replace("<svg", f"<svg {metadata(name, board)}", 1)
+    # KiCad embeds the export wall-clock time in <title>, which dirtied the
+    # unchanged board image on every checkpoint refresh.  Make the title
+    # source-derived so repeated renders are byte-for-byte reproducible.
+    svg = re.sub(
+        r"<title>SVG Image created as .*? date .*?</title>",
+        f"<title>Leshy2 H6 routing · {name.upper()}</title>",
+        svg,
+        count=1,
+    )
     # KiCad's SVG exporter leaves spaces at many line endings.  Normalize only
     # that presentation detail so generated documentation remains diff-clean.
     svg = "\n".join(line.rstrip() for line in svg.splitlines()) + "\n"
@@ -92,6 +102,8 @@ def check(name: str, board: Path, output: Path) -> list[str]:
         errors.append(f"{name}: routing image is stale for {board.relative_to(ROOT)}")
     if "<svg" not in svg or "</svg>" not in svg:
         errors.append(f"{name}: routing image is not a complete SVG")
+    if f"<title>Leshy2 H6 routing · {name.upper()}</title>" not in svg:
+        errors.append(f"{name}: routing image title is not deterministic")
     return errors
 
 
