@@ -22,9 +22,12 @@ placement alone is not sufficient.
   rearrangement.
 - Keep the accepted display bed, ready-cut PSA guide, relaxed FPC slot, four
   M2.5 stop axes per PCB and both five-port antenna banks fixed.
-- Constrain bypass, feedback, bootstrap, clock-load and other electrically
-  local parts to their owners. Critical converter parts use explicit owner and
-  distance limits; the remaining local parts use deterministic owner rules.
+- Constrain bypass, feedback, bootstrap, clock-load, USB-PD, charger, eFuse and
+  battery-protection parts to their owners. Critical converter parts use
+  explicit owner and distance limits; the remaining local parts use
+  deterministic owner rules. Fuses and the current shunt target the relevant
+  electrical pad of the large battery-holder footprint, not its geometric
+  centre.
 - Freeze all 1,208 resulting anchors. Normal placement checks ignore copper so
   they can validate a routed board without moving anything; `--write` remains
   an intentionally destructive unrouted-seed rebuild.
@@ -36,7 +39,8 @@ placement alone is not sufficient.
 - All **789** global canonical / **823** board-local H2 nets bound to real pads.
 - Zero hard same-face courtyard conflicts, zero unplaced bodies and zero
   net/footprint mapping errors.
-- **181/181** local-part → owner pairs within their permitted courtyard gaps;
+- **300/300** local-part → owner pairs within their permitted courtyard or
+  owner-pad gaps;
   zero locality violations.
 - Zero native KiCad DRC findings on both corrected unrouted boards.
 - A deterministic generator, a hash-bearing

@@ -41,7 +41,7 @@ class H6R2PlacementTests(unittest.TestCase):
                 "hard_conflict_count": 0,
                 "placement_failure_count": 0,
                 "net_or_footprint_error_count": 0,
-                "locality_pair_count": 181,
+                "locality_pair_count": 300,
                 "locality_violation_count": 0,
                 "routing_authorized": True,
                 "routing_started": True,
@@ -53,7 +53,7 @@ class H6R2PlacementTests(unittest.TestCase):
         self.assertEqual(780, boards["LESHY2-RF-R2"]["placed_instance_count"])
 
     def test_local_parts_stay_with_their_physical_owners(self):
-        self.assertEqual(181, self.audit["summary"]["locality_pair_count"])
+        self.assertEqual(300, self.audit["summary"]["locality_pair_count"])
         self.assertEqual(0, self.audit["summary"]["locality_violation_count"])
         rows = {}
         for board in self.audit["boards"]:
@@ -67,11 +67,29 @@ class H6R2PlacementTests(unittest.TestCase):
         self.assertEqual("main_fb_top", rows["main_ff_cap"]["owner"])
         self.assertEqual("voice_inductor", rows["voice_output_cap0"]["owner"])
 
+    def test_pack_high_current_parts_target_their_exact_holder_terminals(self):
+        rows = {}
+        for board in self.audit["boards"]:
+            rows.update({row["instance"]: row for row in board["locality"]["rows"]})
+        expected = {
+            "pack_fuse0": ([33.44, 126.0], 2.0),
+            "pack_fuse1": ([52.54, 126.0], 2.0),
+            "pack_shunt": ([33.44, 44.0], 4.0),
+        }
+        for instance, (anchor, limit) in expected.items():
+            self.assertEqual(
+                "owner_shared_pad_anchor_to_child_courtyard",
+                rows[instance]["measurement"],
+            )
+            self.assertEqual(anchor, rows[instance]["owner_shared_pad_anchor_mm"])
+            self.assertLessEqual(rows[instance]["courtyard_gap_mm"], limit)
+
     def test_power_islands_and_touch_buffer_use_reviewed_locality_anchors(self):
         expected = {
             "aon_buck": [51.0, 84.5],
             "ext_buck": [30.5, 132.0],
             "main_buck": [13.0, 126.0],
+            "nvdc_charger": [66.0, 70.5],
             "voice_buck": [66.5, 111.5],
             "touch_irq_buffer": [38.5, 28.0],
         }

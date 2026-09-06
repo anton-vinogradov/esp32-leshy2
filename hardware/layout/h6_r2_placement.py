@@ -113,6 +113,12 @@ def rect_gap(a: dict, b: dict) -> float:
     return math.hypot(dx, dy)
 
 
+def point_rect_gap(anchor: tuple[float, float], rect: dict) -> float:
+    dx = max(rect["x"][0] - anchor[0], anchor[0] - rect["x"][1], 0.0)
+    dy = max(rect["y"][0] - anchor[1], anchor[1] - rect["y"][1], 0.0)
+    return math.hypot(dx, dy)
+
+
 class OccupancyGrid:
     """Fast exact-enough rectangle occupancy on the contract grid."""
 
@@ -636,16 +642,36 @@ def locality_audit(board_audit: dict, contract: dict) -> dict:
     explicit_limits = contract.get("placement_policy", {}).get(
         "locality_max_gap_mm", {}
     )
+    anchor_audit_instances = set(
+        contract.get("placement_policy", {}).get(
+            "locality_anchor_audit_instances", []
+        )
+    )
     violations = []
     result_rows = []
     for instance, owner in pairs:
-        gap = round(
-            rect_gap(
-                rows[instance]["courtyard_bbox_mm"],
-                rows[owner]["courtyard_bbox_mm"],
-            ),
-            4,
+        owner_pad_anchor = (
+            rows[instance].get("locality_owner_pad_anchor_mm")
+            if instance in anchor_audit_instances
+            else None
         )
+        if owner_pad_anchor:
+            gap = round(
+                point_rect_gap(
+                    tuple(owner_pad_anchor), rows[instance]["courtyard_bbox_mm"]
+                ),
+                4,
+            )
+            measurement = "owner_shared_pad_anchor_to_child_courtyard"
+        else:
+            gap = round(
+                rect_gap(
+                    rows[instance]["courtyard_bbox_mm"],
+                    rows[owner]["courtyard_bbox_mm"],
+                ),
+                4,
+            )
+            measurement = "courtyard_to_courtyard"
         limit = float(
             explicit_limits.get(
                 instance,
@@ -659,7 +685,10 @@ def locality_audit(board_audit: dict, contract: dict) -> dict:
             "owner_reference": rows[owner]["reference"],
             "courtyard_gap_mm": gap,
             "maximum_gap_mm": limit,
+            "measurement": measurement,
         }
+        if owner_pad_anchor:
+            row["owner_shared_pad_anchor_mm"] = owner_pad_anchor
         result_rows.append(row)
         if gap > limit + 1e-6:
             violations.append(row)
@@ -897,8 +926,14 @@ def preferred_centre(
     instance_nets: dict[str, set[str]],
     net_members: dict[str, set[str]],
     placed_centres: dict[str, tuple[float, float]],
+    entries_by_instance: dict[str, dict],
 ) -> tuple[float, float]:
     owner = entry.get("locality_owner")
+    if owner in placed_centres and entry.get("locality_pad_aware"):
+        anchor = shared_owner_pad_anchor(entry, entries_by_instance[owner])
+        if anchor is not None:
+            return anchor
+        return placed_centres[owner]
     if owner in placed_centres:
         return placed_centres[owner]
     neighbours = []
@@ -918,6 +953,56 @@ def preferred_centre(
             sum(item[0][1] * item[1] for item in neighbours) / weight,
         )
     return tuple(project_contract["sheet_anchors_mm"][entry["row"]["sheet"]])
+
+
+def shared_owner_pad_anchor(
+    child_entry: dict,
+    owner_entry: dict,
+) -> tuple[float, float] | None:
+    """Return the owner's electrically relevant pad centre for a local child.
+
+    This is also valid across the two PCB faces.  It lets a fuse or Kelvin
+    element target the actual holder terminal instead of the centre of a large
+    mechanical footprint.
+    """
+    preferred_net = child_entry.get("locality_anchor_net")
+    child_net_names = (
+        {preferred_net}
+        if preferred_net
+        else {
+            pad.GetNetname()
+            for pad in child_entry["fp"].Pads()
+            if pad.GetNetname()
+        }
+    )
+    owner_pads = [
+        pad
+        for pad in owner_entry["fp"].Pads()
+        if pad.GetNetname() in child_net_names
+    ]
+    signal_pads = [
+        pad
+        for pad in owner_pads
+        if not any(
+            token in pad.GetNetname().upper()
+            for token in ("GND", "GROUND")
+        )
+    ]
+    if signal_pads:
+        owner_pads = signal_pads
+    if not owner_pads:
+        return None
+    points = sorted(
+        (
+            pcbnew.ToMM(pad.GetPosition().x),
+            pcbnew.ToMM(pad.GetPosition().y),
+        )
+        for pad in owner_pads
+    )
+    return (
+        sum(item[0] for item in points) / len(points),
+        sum(item[1] for item in points) / len(points),
+    )
 
 
 def place_project(
@@ -993,6 +1078,19 @@ def place_project(
             {item["row"]["instance"] for item in entries},
             contract,
         )
+        entry["locality_pad_aware"] = entry["row"]["instance"] in set(
+            contract.get("placement_policy", {}).get(
+                "locality_pad_aware_instances", []
+            )
+        )
+        locality_anchor_net = (
+            contract.get("placement_policy", {})
+            .get("locality_anchor_net_by_instance", {})
+            .get(entry["row"]["instance"])
+        )
+        entry["locality_anchor_net"] = net_bindings.get(
+            locality_anchor_net, locality_anchor_net
+        )
 
     entry_by_instance = {entry["row"]["instance"]: entry for entry in entries}
     owner_instances = {
@@ -1024,25 +1122,32 @@ def place_project(
                 f"{instance}:cross:{index}", cross_rect, "opposite-face copper or hole keepout"
             )
         placed_centres[instance] = centre
-        placed_rows.append(
-            {
-                "instance": instance,
-                "reference": entry["row"]["reference"],
-                "sheet": entry["row"]["sheet"],
-                "side": entry["side"],
-                "footprint": entry["row"]["footprint"],
-                "method": method,
-                "courtyard_bbox_mm": rect,
-                "opposite_face_keepout_bboxes_mm": cross_rects,
-                "courtyard_centre_mm": [round(centre[0], 4), round(centre[1], 4)],
-                "footprint_anchor_mm": [
-                    round(pcbnew.ToMM(entry["fp"].GetPosition().x), 4),
-                    round(pcbnew.ToMM(entry["fp"].GetPosition().y), 4),
-                ],
-                "rotation_deg": round(entry["fp"].GetOrientationDegrees(), 3),
-                "moved_from_seed_mm": round(moved_mm, 4),
-            }
-        )
+        placement_row = {
+            "instance": instance,
+            "reference": entry["row"]["reference"],
+            "sheet": entry["row"]["sheet"],
+            "side": entry["side"],
+            "footprint": entry["row"]["footprint"],
+            "method": method,
+            "courtyard_bbox_mm": rect,
+            "opposite_face_keepout_bboxes_mm": cross_rects,
+            "courtyard_centre_mm": [round(centre[0], 4), round(centre[1], 4)],
+            "footprint_anchor_mm": [
+                round(pcbnew.ToMM(entry["fp"].GetPosition().x), 4),
+                round(pcbnew.ToMM(entry["fp"].GetPosition().y), 4),
+            ],
+            "rotation_deg": round(entry["fp"].GetOrientationDegrees(), 3),
+            "moved_from_seed_mm": round(moved_mm, 4),
+        }
+        owner = entry.get("locality_owner")
+        if entry.get("locality_pad_aware") and owner in placed_centres:
+            anchor = shared_owner_pad_anchor(entry, entry_by_instance[owner])
+            if anchor is not None:
+                placement_row["locality_owner_pad_anchor_mm"] = [
+                    round(anchor[0], 4),
+                    round(anchor[1], 4),
+                ]
+        placed_rows.append(placement_row)
 
     fixed = sorted(
         [entry for entry in entries if entry["target"]],
@@ -1076,6 +1181,11 @@ def place_project(
         owner = entry.get("locality_owner")
         if owner in automatic_by_instance and owner not in scheduled:
             schedule(automatic_by_instance[owner])
+        # The recursive owner call may already have scheduled this entry while
+        # walking the owner's children.  Re-check before appending so an
+        # owner/child subtree can never place one footprint twice.
+        if instance in scheduled:
+            return
         scheduled.add(instance)
         automatic.append(entry)
         for child in sorted(locality_children.get(instance, []), key=child_order):
@@ -1215,6 +1325,7 @@ def place_project(
             instance_nets,
             net_members,
             placed_centres,
+            entry_by_instance,
         )
         slot = nearest_grid_slot(grids[entry["side"]], entry["poses"], desired)
         if slot is not None:
@@ -1387,7 +1498,7 @@ def placement_signature_from_board_bytes(project: str, data: bytes) -> bytes:
 
 
 def svg_bytes(audit: dict) -> bytes:
-    width_px, height_px = 1680, 1050
+    width_px, height_px = 1680, 1100
     scale = 5.35
     board_w, board_h = audit["summary"]["board_outline_mm"]
     origins = {"LESHY2-UI-R2": (120, 140), "LESHY2-RF-R2": (920, 140)}
@@ -1399,6 +1510,7 @@ def svg_bytes(audit: dict) -> bytes:
         "reviewed H6.0.2 fan-out correction": ("#f3e8ff", "#7c3aed"),
         "reviewed H6.0.2 oscillator-locality correction": ("#ecfeff", "#0891b2"),
         "reviewed H6.0.3 power-locality correction": ("#fff7ed", "#ea580c"),
+        "reviewed H6.0.3 charger-locality correction": ("#fefce8", "#ca8a04"),
         "reviewed H6.0.3 signal-locality correction": ("#f0fdf4", "#16a34a"),
         "hard H1 datum with conflict": ("#fee2e2", "#dc2626"),
     }
@@ -1444,14 +1556,21 @@ def svg_bytes(audit: dict) -> bytes:
         out.append(
             f'<text x="{ox + board_w * scale / 2:.1f}" y="{oy + board_h * scale + 30:.1f}" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700" fill="#0f172a">{board["placed_instance_count"]} positions · {board["net_count"]} nets · {board["side_counts"].get("B.Cu", 0)} inner</text>'
         )
+    legend_x = 60
     legend_y = 1025
-    x = 60
-    for label, (fill, stroke) in palette.items():
-        if label == "hard H1 datum with conflict" and not any(b["hard_conflicts"] for b in audit["boards"]):
-            continue
-        out.append(f'<rect x="{x}" y="{legend_y - 13}" width="18" height="12" fill="{fill}" stroke="{stroke}"/>')
-        out.append(f'<text x="{x + 25}" y="{legend_y - 2}" font-family="Inter,Arial,sans-serif" font-size="14" fill="#334155">{label}</text>')
-        x += 250
+    legend_column_width = 320
+    legend_columns = 5
+    visible_palette = [
+        (label, colours)
+        for label, colours in palette.items()
+        if label != "hard H1 datum with conflict"
+        or any(board["hard_conflicts"] for board in audit["boards"])
+    ]
+    for index, (label, (fill, stroke)) in enumerate(visible_palette):
+        x = legend_x + (index % legend_columns) * legend_column_width
+        y = legend_y + (index // legend_columns) * 32
+        out.append(f'<rect x="{x}" y="{y - 13}" width="18" height="12" fill="{fill}" stroke="{stroke}"/>')
+        out.append(f'<text x="{x + 25}" y="{y - 2}" font-family="Inter,Arial,sans-serif" font-size="14" fill="#334155">{label}</text>')
     out.append("</svg>")
     return ("\n".join(out) + "\n").encode()
 
