@@ -5,27 +5,27 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "7080e42236756f6cf3e1263ad14633ee57ce326f449c73af9984b9bfee09392f",
+    "contract_sha256": "f1626ef4ab8adc6c783dda46ea01970f3c1939cd7bdb65f8d4ded0bc19823467",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "b7d311142f39558ed2e452ff501049517972ddaf6750096650c70920c28639ba",
+    "routing_policy_sha256": "9c9cfa520bc8c94b96eca42a76b8ed4ec52ce0f2d10bd1d80010eaadc1178e01",
     "placement_status": "pass"
   },
   "summary": {
-    "route_count": 81,
-    "segment_count": 534,
-    "resolved_connection_count": 152,
+    "route_count": 87,
+    "segment_count": 557,
+    "resolved_connection_count": 162,
     "via_count": 160,
-    "manual_only_route_count": 61,
+    "manual_only_route_count": 67,
     "local_ground_join_route_count": 20
   },
   "boards": [
     {
       "project": "LESHY2-UI-R2",
       "board": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "route_count": 1,
-      "segment_count": 4,
+      "route_count": 4,
+      "segment_count": 17,
       "via_count": 0,
-      "resolved_connection_count": 1,
+      "resolved_connection_count": 6,
       "copper_signature": [
         [
           "track",
@@ -82,16 +82,198 @@
             44.5,
             70.05
           ]
+        ],
+        [
+          "track",
+          "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XIN",
+          "B.Cu",
+          0.15,
+          [
+            47.7,
+            79.95
+          ],
+          [
+            47.7,
+            80.7
+          ]
+        ],
+        [
+          "track",
+          "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XIN",
+          "B.Cu",
+          0.15,
+          [
+            47.7,
+            80.7
+          ],
+          [
+            49.55,
+            80.7
+          ]
+        ],
+        [
+          "track",
+          "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XIN",
+          "B.Cu",
+          0.15,
+          [
+            48.595,
+            83.495
+          ],
+          [
+            49.55,
+            83.5
+          ]
+        ],
+        [
+          "track",
+          "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XIN",
+          "B.Cu",
+          0.15,
+          [
+            49.55,
+            80.7
+          ],
+          [
+            49.55,
+            83.5
+          ]
+        ],
+        [
+          "track",
+          "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XIN",
+          "B.Cu",
+          0.15,
+          [
+            49.55,
+            80.7
+          ],
+          [
+            50.52,
+            81.5
+          ]
+        ],
+        [
+          "track",
+          "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XOUT",
+          "B.Cu",
+          0.15,
+          [
+            43.8,
+            81.49
+          ],
+          [
+            45.0,
+            80.65
+          ]
+        ],
+        [
+          "track",
+          "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XOUT",
+          "B.Cu",
+          0.15,
+          [
+            45.0,
+            80.65
+          ],
+          [
+            47.3,
+            80.65
+          ]
+        ],
+        [
+          "track",
+          "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XOUT",
+          "B.Cu",
+          0.15,
+          [
+            47.3,
+            79.95
+          ],
+          [
+            47.3,
+            80.65
+          ]
+        ],
+        [
+          "track",
+          "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XOUT_CRYSTAL",
+          "B.Cu",
+          0.15,
+          [
+            43.8,
+            82.51
+          ],
+          [
+            46.395,
+            81.795
+          ]
+        ],
+        [
+          "track",
+          "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XOUT_CRYSTAL",
+          "B.Cu",
+          0.15,
+          [
+            45.0,
+            82.4
+          ],
+          [
+            45.0,
+            84.5
+          ]
+        ],
+        [
+          "track",
+          "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XOUT_CRYSTAL",
+          "B.Cu",
+          0.15,
+          [
+            45.0,
+            82.4
+          ],
+          [
+            46.395,
+            81.795
+          ]
+        ],
+        [
+          "track",
+          "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XOUT_CRYSTAL",
+          "B.Cu",
+          0.15,
+          [
+            45.0,
+            84.5
+          ],
+          [
+            47.325,
+            84.5
+          ]
+        ],
+        [
+          "track",
+          "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XOUT_CRYSTAL",
+          "B.Cu",
+          0.15,
+          [
+            47.325,
+            84.5
+          ],
+          [
+            47.325,
+            85.355
+          ]
         ]
       ]
     },
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "route_count": 80,
-      "segment_count": 530,
+      "route_count": 83,
+      "segment_count": 540,
       "via_count": 160,
-      "resolved_connection_count": 151,
+      "resolved_connection_count": 156,
       "copper_signature": [
         [
           "track",
@@ -6437,6 +6619,146 @@
         ],
         [
           "track",
+          "/RF_10_RP2354_CORE_SERVICE/RF_RP_XIN",
+          "B.Cu",
+          0.15,
+          [
+            66.45,
+            36.8
+          ],
+          [
+            67.2,
+            36.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_10_RP2354_CORE_SERVICE/RF_RP_XIN",
+          "B.Cu",
+          0.15,
+          [
+            67.2,
+            36.8
+          ],
+          [
+            68.395,
+            36.045
+          ]
+        ],
+        [
+          "track",
+          "/RF_10_RP2354_CORE_SERVICE/RF_RP_XIN",
+          "B.Cu",
+          0.15,
+          [
+            68.395,
+            36.045
+          ],
+          [
+            68.4,
+            35.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_10_RP2354_CORE_SERVICE/RF_RP_XIN",
+          "B.Cu",
+          0.15,
+          [
+            68.4,
+            35.2
+          ],
+          [
+            69.105,
+            34.285
+          ]
+        ],
+        [
+          "track",
+          "/RF_10_RP2354_CORE_SERVICE/RF_RP_XOUT",
+          "B.Cu",
+          0.15,
+          [
+            66.45,
+            37.2
+          ],
+          [
+            67.25,
+            37.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_10_RP2354_CORE_SERVICE/RF_RP_XOUT",
+          "B.Cu",
+          0.15,
+          [
+            67.25,
+            37.2
+          ],
+          [
+            67.25,
+            40.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_10_RP2354_CORE_SERVICE/RF_RP_XOUT",
+          "B.Cu",
+          0.15,
+          [
+            67.25,
+            40.5
+          ],
+          [
+            67.94,
+            41.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_10_RP2354_CORE_SERVICE/RF_RP_XOUT_CRYSTAL",
+          "B.Cu",
+          0.15,
+          [
+            68.96,
+            41.2
+          ],
+          [
+            69.5,
+            40.6
+          ]
+        ],
+        [
+          "track",
+          "/RF_10_RP2354_CORE_SERVICE/RF_RP_XOUT_CRYSTAL",
+          "B.Cu",
+          0.15,
+          [
+            69.5,
+            40.6
+          ],
+          [
+            70.03,
+            39.445
+          ]
+        ],
+        [
+          "track",
+          "/RF_10_RP2354_CORE_SERVICE/RF_RP_XOUT_CRYSTAL",
+          "B.Cu",
+          0.15,
+          [
+            70.03,
+            39.445
+          ],
+          [
+            70.595,
+            37.745
+          ]
+        ],
+        [
+          "track",
           "/RF_20_CC1101_VOICE_TX/VOICE_4V_FB",
           "B.Cu",
           0.15,
@@ -8817,6 +9139,63 @@
       "reason": "Short no-via RP2354 internal-regulator switch path, manually accepted after obstacle-aware proposal and native DRC."
     },
     {
+      "id": "UI-HUB-RP-XIN",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "HUB_RP_XIN",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XIN",
+      "routing_class": "OSCILLATOR",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 5,
+      "via_count": 0,
+      "length_mm": 7.6124,
+      "resolved_connections": 2,
+      "reason": "Via-free Hub RP XIN tree leaves the fine-pitch pad independently, reaches the local load capacitor, then approaches the rotated resonator from its unobstructed right edge."
+    },
+    {
+      "id": "UI-HUB-RP-XOUT",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "HUB_RP_XOUT",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XOUT",
+      "routing_class": "OSCILLATOR",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 3,
+      "via_count": 0,
+      "length_mm": 4.4648,
+      "resolved_connections": 1,
+      "reason": "Short no-via controller-side XOUT escape reaches the repositioned series resistor without crossing XIN."
+    },
+    {
+      "id": "UI-HUB-RP-XOUT-CRYSTAL",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "HUB_RP_XOUT_CRYSTAL",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XOUT_CRYSTAL",
+      "routing_class": "OSCILLATOR",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 5,
+      "via_count": 0,
+      "length_mm": 9.4922,
+      "resolved_connections": 2,
+      "reason": "The crystal-side XOUT tree joins the rotated Y1 terminal directly and reaches its load capacitor around the grounded resonator pad field without vias."
+    },
+    {
       "id": "RF-AON-BUCK-SW",
       "project": "LESHY2-RF-R2",
       "canonical_net": "AON_BUCK_SW",
@@ -10462,6 +10841,63 @@
       "length_mm": 34.7631,
       "resolved_connections": 7,
       "reason": "All seven local voice-eFuse ground terminals join one quiet In1 return island; a single branch reaches the existing eFuse ground skeleton without sharing the raw or protected voice-rail current path."
+    },
+    {
+      "id": "RF-RP-XIN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RF_RP_XIN",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_XIN",
+      "routing_class": "OSCILLATOR",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 4,
+      "via_count": 0,
+      "length_mm": 4.1636,
+      "resolved_connections": 2,
+      "reason": "Via-free RF RP XIN tree uses the narrow quiet corridor between controller and resonator, with a separate local drop into the load capacitor."
+    },
+    {
+      "id": "RF-RP-XOUT",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RF_RP_XOUT",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_XOUT",
+      "routing_class": "OSCILLATOR",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 3,
+      "via_count": 0,
+      "length_mm": 5.0829,
+      "resolved_connections": 1,
+      "reason": "The RF RP controller-side XOUT escape stays left of the XIN load branch and reaches the series resistor without a via."
+    },
+    {
+      "id": "RF-RP-XOUT-CRYSTAL",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RF_RP_XOUT_CRYSTAL",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_XOUT_CRYSTAL",
+      "routing_class": "OSCILLATOR",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 3,
+      "via_count": 0,
+      "length_mm": 3.8694,
+      "resolved_connections": 2,
+      "reason": "Compact no-via crystal-side XOUT chain joins the series resistor, load capacitor and Y1 terminal along one monotonic local path."
     }
   ],
   "authorization": {

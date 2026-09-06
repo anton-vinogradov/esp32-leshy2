@@ -5,9 +5,9 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "40446ff3a28bbaeb9f2bf3987aea643ef0a9fb24b89f4e7420b7585c1186ca97",
+    "contract_sha256": "e9f07ee9c932716a90adb0268e4d15bb94d98ba5c63ad90b5a7e55ec1c7b6b71",
     "placement_freeze": "hardware/layout/h6-r2-placement-freeze.json",
-    "placement_freeze_sha256": "b51c5c18130734b84f0e7c172c57c39347e6cadd25abab9255e6ea70fc62250a",
+    "placement_freeze_sha256": "d777aab5642814450c651426d50315d332feb8a85a9b867dd3124e5801f01b99",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -67,12 +67,12 @@
         "F.Cu": 20
       },
       "method_counts": {
-        "connectivity/sheet automatic seed": 339,
+        "connectivity/sheet automatic seed": 338,
         "exact H1 seed": 30,
         "hard H1 datum": 27,
         "nearest exact-footprint correction": 16,
         "reviewed H6.0.2 fan-out correction": 3,
-        "reviewed H6.0.2 oscillator-locality correction": 10,
+        "reviewed H6.0.2 oscillator-locality correction": 11,
         "reviewed H6.0.3 signal-locality correction": 3
       },
       "net_count": 307,
@@ -7949,24 +7949,24 @@
           "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              43.1,
-              45.050000000000004
+              43.285,
+              44.315
             ],
             "y": [
-              82.1,
-              83.13
+              81.025,
+              82.975
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            44.075,
-            82.615
+            43.8,
+            82.0
           ],
           "footprint_anchor_mm": [
-            44.075,
-            82.615
+            43.8,
+            82.0
           ],
-          "rotation_deg": 180.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -13301,7 +13301,7 @@
           "sheet": "UI_30_HUB_RP_CORE_SERVICE",
           "side": "B.Cu",
           "footprint": "Crystal:Crystal_SMD_Abracon_ABM8G-4Pin_3.2x2.5mm",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               45.349999999999994,
@@ -13321,13 +13321,13 @@
             47.495,
             82.645
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "unrouted_seed_sha256": "e1276ed06306b83b513d7fbbfc049071f878b1bc0c5a49bbe7b134c501db60fc",
-      "placement_signature_sha256": "f70e16d8e559aeb0a9b04a3afe4745f685c0248818608c9de21d49ae814500e1",
+      "unrouted_seed_sha256": "29c31cfb3d6d9d418972d49c3bacc0a4bddee0d6b80593f3b30208744996639b",
+      "placement_signature_sha256": "9edd677fff86f2e6a0479e7ecc910cb281e3ca880ddbe0694442eb95db68b9e4",
       "locality": {
         "status": "pass",
         "pair_count": 52,
@@ -13815,12 +13815,12 @@
         "F.Cu": 14
       },
       "method_counts": {
-        "connectivity/sheet automatic seed": 658,
+        "connectivity/sheet automatic seed": 657,
         "exact H1 seed": 28,
         "hard H1 datum": 12,
         "nearest exact-footprint correction": 34,
         "reviewed H6.0.2 fan-out correction": 1,
-        "reviewed H6.0.2 oscillator-locality correction": 18,
+        "reviewed H6.0.2 oscillator-locality correction": 19,
         "reviewed H6.0.3 charger-locality correction": 6,
         "reviewed H6.0.3 direct-cell thermal-contact placement": 2,
         "reviewed H6.0.3 mechanical-clearance correction": 1,
@@ -16968,24 +16968,24 @@
           "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              67.395,
-              69.30499999999999
+              68.60000000000001,
+              69.61
             ],
             "y": [
-              38.94,
-              39.95
+              32.85,
+              34.76
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            68.35,
-            39.445
+            69.105,
+            33.805
           ],
           "footprint_anchor_mm": [
-            68.35,
-            39.445
+            69.105,
+            33.805
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -17197,27 +17197,27 @@
           "sheet": "RF_10_RP2354_CORE_SERVICE",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              68.59999900000001,
-              69.609999
+              67.395,
+              69.30499999999999
             ],
             "y": [
-              32.85,
-              34.76
+              38.94,
+              39.95
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            69.105,
-            33.805
+            68.35,
+            39.445
           ],
           "footprint_anchor_mm": [
-            69.105,
-            33.805
+            68.35,
+            39.445
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -27484,24 +27484,24 @@
           "method": "reviewed H6.0.2 oscillator-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              69.555,
-              71.505
+              67.47500000000001,
+              69.425
             ],
             "y": [
-              40.66,
-              41.69
+              40.685,
+              41.715
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            70.53,
-            41.175
+            68.45,
+            41.2
           ],
           "footprint_anchor_mm": [
-            70.53,
-            41.175
+            68.45,
+            41.2
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -38051,8 +38051,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "5d4058aa09fc27cf15315f3aa267d0e3f071a6d1b15d70d8b26f943c14f010ed",
-      "placement_signature_sha256": "b4adcf4d372ffca4deb635be0f92a7c2bf033910a71e112ba502968e479661b7",
+      "unrouted_seed_sha256": "47393e34e70d33dd0f4bb49e4050c81853176d84a41a1860942fac18e348f09c",
+      "placement_signature_sha256": "00dfa70b5de2853e493fffc3473eec53bf9d2ff4be0e3bc10d20eb954e042780",
       "locality": {
         "status": "pass",
         "pair_count": 258,
@@ -39715,7 +39715,7 @@
             "reference": "C86",
             "owner": "rf_rp_clock",
             "owner_reference": "Y1",
-            "courtyard_gap_mm": 0.25,
+            "courtyard_gap_mm": 0.34,
             "maximum_gap_mm": 1.0,
             "measurement": "courtyard_to_courtyard"
           },
@@ -39778,7 +39778,7 @@
             "reference": "C94",
             "owner": "rf_rp",
             "owner_reference": "U23",
-            "courtyard_gap_mm": 1.455,
+            "courtyard_gap_mm": 0.25,
             "maximum_gap_mm": 3.0,
             "measurement": "courtyard_to_courtyard"
           },

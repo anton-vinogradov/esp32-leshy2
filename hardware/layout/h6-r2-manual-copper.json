@@ -1701,6 +1701,95 @@
       ],
       "expected_resolved_connections": 7,
       "reason": "All seven local voice-eFuse ground terminals join one quiet In1 return island; a single branch reaches the existing eFuse ground skeleton without sharing the raw or protected voice-rail current path."
+    },
+    {
+      "id": "UI-HUB-RP-XIN",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "HUB_RP_XIN",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XIN",
+      "routing_class": "OSCILLATOR",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [47.7, 79.95], "end_mm": [47.7, 80.7]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [47.7, 80.7], "end_mm": [49.55, 80.7]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [49.55, 80.7], "end_mm": [50.52, 81.5]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [49.55, 80.7], "end_mm": [49.55, 83.5]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [49.55, 83.5], "end_mm": [48.595, 83.495]}
+      ],
+      "expected_resolved_connections": 2,
+      "reason": "Via-free Hub RP XIN tree leaves the fine-pitch pad independently, reaches the local load capacitor, then approaches the rotated resonator from its unobstructed right edge."
+    },
+    {
+      "id": "UI-HUB-RP-XOUT",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "HUB_RP_XOUT",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XOUT",
+      "routing_class": "OSCILLATOR",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [47.3, 79.95], "end_mm": [47.3, 80.65]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [47.3, 80.65], "end_mm": [45.0, 80.65]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [45.0, 80.65], "end_mm": [43.8, 81.49]}
+      ],
+      "expected_resolved_connections": 1,
+      "reason": "Short no-via controller-side XOUT escape reaches the repositioned series resistor without crossing XIN."
+    },
+    {
+      "id": "UI-HUB-RP-XOUT-CRYSTAL",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "HUB_RP_XOUT_CRYSTAL",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XOUT_CRYSTAL",
+      "routing_class": "OSCILLATOR",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [43.8, 82.51], "end_mm": [46.395, 81.795]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [46.395, 81.795], "end_mm": [45.0, 82.4]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [45.0, 82.4], "end_mm": [45.0, 84.5]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [45.0, 84.5], "end_mm": [47.325, 84.5]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [47.325, 84.5], "end_mm": [47.325, 85.355]}
+      ],
+      "expected_resolved_connections": 2,
+      "reason": "The crystal-side XOUT tree joins the rotated Y1 terminal directly and reaches its load capacitor around the grounded resonator pad field without vias."
+    },
+    {
+      "id": "RF-RP-XIN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RF_RP_XIN",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_XIN",
+      "routing_class": "OSCILLATOR",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [66.45, 36.8], "end_mm": [67.2, 36.8]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [67.2, 36.8], "end_mm": [68.395, 36.045]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [68.395, 36.045], "end_mm": [68.4, 35.2]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [68.4, 35.2], "end_mm": [69.105, 34.285]}
+      ],
+      "expected_resolved_connections": 2,
+      "reason": "Via-free RF RP XIN tree uses the narrow quiet corridor between controller and resonator, with a separate local drop into the load capacitor."
+    },
+    {
+      "id": "RF-RP-XOUT",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RF_RP_XOUT",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_XOUT",
+      "routing_class": "OSCILLATOR",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [66.45, 37.2], "end_mm": [67.25, 37.2]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [67.25, 37.2], "end_mm": [67.25, 40.5]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [67.25, 40.5], "end_mm": [67.94, 41.2]}
+      ],
+      "expected_resolved_connections": 1,
+      "reason": "The RF RP controller-side XOUT escape stays left of the XIN load branch and reaches the series resistor without a via."
+    },
+    {
+      "id": "RF-RP-XOUT-CRYSTAL",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RF_RP_XOUT_CRYSTAL",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_XOUT_CRYSTAL",
+      "routing_class": "OSCILLATOR",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [68.96, 41.2], "end_mm": [69.5, 40.6]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [69.5, 40.6], "end_mm": [70.03, 39.445]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [70.03, 39.445], "end_mm": [70.595, 37.745]}
+      ],
+      "expected_resolved_connections": 2,
+      "reason": "Compact no-via crystal-side XOUT chain joins the series resistor, load capacitor and Y1 terminal along one monotonic local path."
     }
   ],
   "authorization": {

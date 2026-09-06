@@ -166,9 +166,9 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual("H6.0.3-R1", audit["marker"])
         self.assertEqual("pass_progress", audit["status"])
         self.assertFalse(audit["phase_complete"])
-        self.assertEqual(694, audit["summary"]["track_via_item_count"])
-        self.assertEqual(152, audit["summary"]["resolved_connection_count"])
-        self.assertEqual(3113, audit["summary"]["current_total_unconnected_count"])
+        self.assertEqual(717, audit["summary"]["track_via_item_count"])
+        self.assertEqual(162, audit["summary"]["resolved_connection_count"])
+        self.assertEqual(3103, audit["summary"]["current_total_unconnected_count"])
         self.assertEqual(232, audit["summary"]["analog_remaining_connection_count"])
         self.assertEqual(310, audit["summary"]["placement_locality_pair_count"])
         self.assertEqual(0, audit["summary"]["placement_locality_violation_count"])
@@ -206,17 +206,18 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual("in_progress", contract["status"])
         self.assertEqual("pass", audit["status"])
         self.assertEqual([], audit["errors"])
-        self.assertEqual(81, audit["summary"]["route_count"])
-        self.assertEqual(534, audit["summary"]["segment_count"])
-        self.assertEqual(152, audit["summary"]["resolved_connection_count"])
+        self.assertEqual(87, audit["summary"]["route_count"])
+        self.assertEqual(557, audit["summary"]["segment_count"])
+        self.assertEqual(162, audit["summary"]["resolved_connection_count"])
         self.assertEqual(160, audit["summary"]["via_count"])
-        self.assertEqual(61, audit["summary"]["manual_only_route_count"])
+        self.assertEqual(67, audit["summary"]["manual_only_route_count"])
         self.assertEqual(20, audit["summary"]["local_ground_join_route_count"])
         self.assertTrue(
             {row["routing_class"] for row in audit["routes"]}
             == {
                 "ANALOG_AUDIO_SENSE",
                 "GROUND_REFERENCE",
+                "OSCILLATOR",
                 "POWER_BRANCH",
                 "PRIMARY_POWER",
                 "SWITCHING_NODE",
@@ -237,7 +238,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
                 stderr=subprocess.STDOUT,
             )
             self.assertEqual(0, result.returncode, result.stdout)
-            self.assertIn("81 routes; 534 segments; 152 resolved connections", result.stdout)
+            self.assertIn("87 routes; 557 segments; 162 resolved connections", result.stdout)
 
     def test_h6_release_substep_ids_are_unique_and_end_at_h609(self):
         plan = json.loads(RELEASE_PLAN.read_text(encoding="utf-8"))
@@ -348,7 +349,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         for script, expected in (
             (PLACEMENT_FREEZE_SCRIPT, "1208 exact anchors"),
             (GENERAL_ROUTING_SCRIPT, "historical routing evidence preserved; current H6.0.3-R1"),
-            (CURRENT_ROUTING_SCRIPT, "694 copper items; 152 resolved; 3113 remain"),
+            (CURRENT_ROUTING_SCRIPT, "717 copper items; 162 resolved; 3103 remain"),
         ):
             result = subprocess.run(
                 [str(KICAD_PYTHON), str(script), "--check"],

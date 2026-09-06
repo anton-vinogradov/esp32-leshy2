@@ -66147,10 +66147,10 @@
 	(footprint "Crystal:Crystal_SMD_Abracon_ABM8G-4Pin_3.2x2.5mm"
 		(layer "B.Cu")
 		(uuid "c1b0b7ed-8ca5-5978-b92e-031c26384f5c")
-		(at 47.495 82.645)
+		(at 47.495 82.645 180)
 		(descr "Abracon ABM8G, Miniature Ceramic Crystal, 3.2x2.5mm package, SMD, http://www.abracon.com/Resonators/ABM8G.pdf")
 		(property "Reference" "Y1"
-			(at 0 2.45 180)
+			(at 0 2.45 0)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "3d18ea91-f4d4-5902-912b-e6d8d04dd110")
@@ -66163,7 +66163,7 @@
 			)
 		)
 		(property "Value" "Abracon ABM8-272-T3"
-			(at 0 -2.45 180)
+			(at 0 -2.45 0)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "83b0d972-8834-5f2f-a902-59eeed3cb359")
@@ -66176,7 +66176,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "0471357a-c964-5a93-98ff-b756e500ea76")
@@ -66188,7 +66188,7 @@
 			)
 		)
 		(property "Description" "abracon_abm8_272_t3"
-			(at 0 0 180)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "b4a2eaa5-b66d-56c8-9725-b1b46244b29f")
@@ -66200,7 +66200,7 @@
 			)
 		)
 		(property "KiLib_Generator" "crystal_resonator_oscillator"
-			(at 0 0 180)
+			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "cb192e5c-5eb7-5e63-8349-30c5a44040b2")
@@ -66213,7 +66213,7 @@
 			)
 		)
 		(property "Leshy2Instance" "hub_rp_clock"
-			(at 0 0 180)
+			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "aa473953-9f3d-50fa-a2e5-dcfb0bbf025b")
@@ -66231,8 +66231,8 @@
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
-			(start -2.06 -1.71)
-			(end 2.06 -1.71)
+			(start -2.06 1.71)
+			(end -2.06 -1.71)
 			(stroke
 				(width 0.12)
 				(type solid)
@@ -66241,8 +66241,8 @@
 			(uuid "c4f98d7a-1579-5339-accc-5fa919bdde17")
 		)
 		(fp_line
-			(start -2.06 1.71)
-			(end -2.06 -1.71)
+			(start -2.06 -1.71)
+			(end 2.06 -1.71)
 			(stroke
 				(width 0.12)
 				(type solid)
@@ -66274,7 +66274,7 @@
 			(uuid "bbfd48c7-dce1-5726-aa00-9d55508d1b1a")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 180)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(uuid "3be6dd28-f0e9-5194-a3cb-26b41d4e9690")
 			(effects
@@ -66286,7 +66286,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -1.1 -0.85)
+			(at -1.1 -0.85 180)
 			(size 1.4 1.2)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.208333)
@@ -66294,7 +66294,7 @@
 			(uuid "7862ce1d-d102-523c-a680-3cd2cf217887")
 		)
 		(pad "2" smd roundrect
-			(at 1.1 -0.85)
+			(at 1.1 -0.85 180)
 			(size 1.4 1.2)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.208333)
@@ -66302,7 +66302,7 @@
 			(uuid "40df47dd-a0e5-506b-91a0-2d1ba960d2cf")
 		)
 		(pad "3" smd roundrect
-			(at 1.1 0.85)
+			(at 1.1 0.85 180)
 			(size 1.4 1.2)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.208333)
@@ -66310,7 +66310,7 @@
 			(uuid "1691b1c1-0483-591c-bcc2-571d946ef8da")
 		)
 		(pad "4" smd roundrect
-			(at -1.1 0.85)
+			(at -1.1 0.85 180)
 			(size 1.4 1.2)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.208333)
@@ -69924,11 +69924,11 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "cbad1943-ab0d-5a6c-b755-631ec231cde4")
-		(at 44.075 82.615 180)
+		(at 43.8 82 90)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R131"
-			(at 0 1.17 0)
+			(at 0 1.17 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "82694bf4-d585-5367-9068-c386b66d2cd3")
@@ -69941,7 +69941,7 @@
 			)
 		)
 		(property "Value" "Yageo RC0402FR-071KL"
-			(at 0 -1.17 0)
+			(at 0 -1.17 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "4c3bce95-9986-5f44-a3ff-1eb00d610ecb")
@@ -69954,7 +69954,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 0)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "04a6fc87-245c-56f2-828b-842db401cdb2")
@@ -69966,7 +69966,7 @@
 			)
 		)
 		(property "Description" "yageo_rc0402fr_071kl"
-			(at 0 0 0)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "38ef883d-ba1e-5cf2-a842-92617fc80c9d")
@@ -69978,7 +69978,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 0)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "285358d4-8dff-573e-8fca-a4458a19cfe4")
@@ -69991,7 +69991,7 @@
 			)
 		)
 		(property "Leshy2Instance" "hub_rp_clock_series"
-			(at 0 0 0)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "c1a11003-dd11-5f2d-8ef6-57fffb7651ff")
@@ -70009,8 +70009,8 @@
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
-			(start -0.153641 0.38)
-			(end 0.153641 0.38)
+			(start -0.153641 -0.38)
+			(end 0.153641 -0.38)
 			(stroke
 				(width 0.12)
 				(type solid)
@@ -70019,8 +70019,8 @@
 			(uuid "7df1dbf8-f490-54c6-bb57-635f310edde2")
 		)
 		(fp_line
-			(start -0.153641 -0.38)
-			(end 0.153641 -0.38)
+			(start -0.153641 0.38)
+			(end 0.153641 0.38)
 			(stroke
 				(width 0.12)
 				(type solid)
@@ -70051,7 +70051,7 @@
 			(uuid "314161df-174b-5182-aa8f-821e15db396e")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 0)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(uuid "a9357f15-ad13-5c1c-8564-1288e633699a")
 			(effects
@@ -70063,7 +70063,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.51 0 180)
+			(at -0.51 0 90)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -70071,7 +70071,7 @@
 			(uuid "7a70cf6e-f2ba-5007-b092-bc0e02fa2964")
 		)
 		(pad "2" smd roundrect
-			(at 0.51 0 180)
+			(at 0.51 0 90)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -88309,6 +88309,70 @@
 		)
 	)
 	(segment
+		(start 49.55 80.7)
+		(end 50.52 81.5)
+		(width 0.15)
+		(layer "B.Cu")
+		(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XIN")
+		(uuid "89b78409-531b-43a2-a0a9-1cd8e0ab2743")
+	)
+	(segment
+		(start 47.7 80.7)
+		(end 49.55 80.7)
+		(width 0.15)
+		(layer "B.Cu")
+		(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XIN")
+		(uuid "9545ad12-b984-4a26-9be5-1376f2e535d6")
+	)
+	(segment
+		(start 47.7 79.95)
+		(end 47.7 80.7)
+		(width 0.15)
+		(layer "B.Cu")
+		(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XIN")
+		(uuid "b87647e7-8494-456a-99ca-99c67313e782")
+	)
+	(segment
+		(start 49.55 80.7)
+		(end 49.55 83.5)
+		(width 0.15)
+		(layer "B.Cu")
+		(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XIN")
+		(uuid "c20a2837-cd09-4f82-b5be-8df7da7a2ec2")
+	)
+	(segment
+		(start 49.55 83.5)
+		(end 48.595 83.495)
+		(width 0.15)
+		(layer "B.Cu")
+		(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XIN")
+		(uuid "e8f4c284-91a1-4505-a097-d73218bc8557")
+	)
+	(segment
+		(start 45 80.65)
+		(end 43.8 81.49)
+		(width 0.15)
+		(layer "B.Cu")
+		(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XOUT")
+		(uuid "b8c197f7-d2dc-4e5f-9949-4cd1f7ef7240")
+	)
+	(segment
+		(start 47.3 80.65)
+		(end 45 80.65)
+		(width 0.15)
+		(layer "B.Cu")
+		(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XOUT")
+		(uuid "db41f84a-3e7d-4eb9-9268-32db1e872db9")
+	)
+	(segment
+		(start 47.3 79.95)
+		(end 47.3 80.65)
+		(width 0.15)
+		(layer "B.Cu")
+		(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XOUT")
+		(uuid "e9fdceb5-6d62-4df2-b90d-ccefa6a7097f")
+	)
+	(segment
 		(start 44.45 70.5)
 		(end 44.25 70.7)
 		(width 0.15)
@@ -88339,6 +88403,46 @@
 		(layer "B.Cu")
 		(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_VREG_LX_SW")
 		(uuid "780e2005-6da6-4ff3-b3bd-18b58038e448")
+	)
+	(segment
+		(start 46.395 81.795)
+		(end 45 82.4)
+		(width 0.15)
+		(layer "B.Cu")
+		(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XOUT_CRYSTAL")
+		(uuid "09698254-d759-455f-bed4-f08860db3c23")
+	)
+	(segment
+		(start 47.325 84.5)
+		(end 47.325 85.355)
+		(width 0.15)
+		(layer "B.Cu")
+		(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XOUT_CRYSTAL")
+		(uuid "17f9bebd-cab2-43a5-ae1e-4db9c7213a76")
+	)
+	(segment
+		(start 45 82.4)
+		(end 45 84.5)
+		(width 0.15)
+		(layer "B.Cu")
+		(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XOUT_CRYSTAL")
+		(uuid "636ba608-eb1d-4a48-8584-c04bdafd848a")
+	)
+	(segment
+		(start 45 84.5)
+		(end 47.325 84.5)
+		(width 0.15)
+		(layer "B.Cu")
+		(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XOUT_CRYSTAL")
+		(uuid "65bea6ae-4a11-45c1-af97-c791651fc496")
+	)
+	(segment
+		(start 43.8 82.51)
+		(end 46.395 81.795)
+		(width 0.15)
+		(layer "B.Cu")
+		(net "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_XOUT_CRYSTAL")
+		(uuid "b6ceff42-9745-47d6-aece-30f6401da9a5")
 	)
 	(embedded_fonts no)
 )

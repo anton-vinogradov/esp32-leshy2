@@ -660,6 +660,16 @@
       "method": "reviewed H6.0.2 oscillator-locality correction",
       "reason": "turn the Hub RP crystal pins toward Y1 so both resonator branches stay local and via-free"
     },
+    "hub_rp_clock": {
+      "frame": "ui-inner",
+      "centre_mm": [
+        47.495,
+        82.645
+      ],
+      "rotation_deg": 180.0,
+      "method": "reviewed H6.0.2 oscillator-locality correction",
+      "reason": "turn the resonator so its XOUT terminal faces the series resistor and RP2354 while XIN retains a separate right-hand no-via escape"
+    },
     "sd_host_buffer": {
       "frame": "ui-inner",
       "centre_mm": [
@@ -703,12 +713,12 @@
     "hub_rp_clock_series": {
       "frame": "ui-inner",
       "centre_mm": [
-        44.075,
-        82.615
+        43.8,
+        82.0
       ],
-      "rotation_deg": 180.0,
+      "rotation_deg": 90.0,
       "method": "reviewed H6.0.2 oscillator-locality correction",
-      "reason": "place the XOUT series resistor left of Y1 so the adjacent RP oscillator pins fan out without crossing"
+      "reason": "use the clear pocket left of Y1 to shorten the RP2354 XOUT path while keeping it independent and via-free"
     },
     "sd_host_cs_pullup": {
       "frame": "ui-inner",
@@ -823,12 +833,22 @@
     "rf_rp_clock_load_xin": {
       "frame": "rear-inner",
       "centre_mm": [
+        69.105,
+        33.805
+      ],
+      "rotation_deg": 90.0,
+      "method": "reviewed H6.0.2 oscillator-locality correction",
+      "reason": "exchange sites with an equal-size bypass so the XIN load capacitor sits above Y1 and no longer crosses the XOUT escape"
+    },
+    "rf_rp_iovdd29_bypass": {
+      "frame": "rear-inner",
+      "centre_mm": [
         68.35,
         39.445
       ],
       "rotation_deg": 0.0,
       "method": "reviewed H6.0.2 oscillator-locality correction",
-      "reason": "place the RF RP XIN load capacitor directly below Y1 with 0.25 mm courtyard clearance"
+      "reason": "take the vacated collision-free load-capacitor site while retaining a short supply connection to RP2354 IOVDD29"
     },
     "rf_rp_clock_load_xout": {
       "frame": "rear-inner",
@@ -843,12 +863,12 @@
     "rf_rp_clock_series": {
       "frame": "rear-inner",
       "centre_mm": [
-        70.53,
-        41.175
+        68.45,
+        41.2
       ],
-      "rotation_deg": 0.0,
+      "rotation_deg": 180.0,
       "method": "reviewed H6.0.2 oscillator-locality correction",
-      "reason": "move and orient the RP2354 crystal series resistor directly below its load capacitor instead of leaving a 9 mm high-impedance branch"
+      "reason": "place the XOUT series resistor in the clear corridor below the RP2354 and Y1 so both segments remain independent and via-free"
     },
     "cc_power_input_cap": {
       "frame": "rear-outer",
