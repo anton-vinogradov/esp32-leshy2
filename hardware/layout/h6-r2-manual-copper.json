@@ -995,6 +995,123 @@
       ],
       "expected_resolved_connections": 2,
       "reason": "A narrow Kelvin branch senses the upper output capacitor, crosses below the cell on In3, and feeds both top-divider elements without carrying load current."
+    },
+    {
+      "id": "RF-AON-EFUSE-INPUT",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AON_RAW_3V3",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_RAW_3V3",
+      "routing_class": "PRIMARY_POWER",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [48.445, 83.095], "end_mm": [50.2, 82.8]},
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [50.2, 82.8], "end_mm": [50.2, 81.375]},
+        {"layer": "B.Cu", "width_mm": 0.3, "start_mm": [50.2, 81.375], "end_mm": [49.532, 81.375]},
+        {"layer": "B.Cu", "width_mm": 0.3, "start_mm": [49.532, 81.375], "end_mm": [49.532, 80.725]},
+        {"layer": "B.Cu", "width_mm": 0.3, "start_mm": [45.795, 82.47], "end_mm": [44.3, 82.1]},
+        {"layer": "B.Cu", "width_mm": 0.3, "start_mm": [44.3, 82.1], "end_mm": [43.605, 81.035]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [43.605, 81.035], "end_mm": [43.2, 81.6]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [44.315, 77.615], "end_mm": [43.6, 78.7]},
+        {"layer": "In3.Cu", "width_mm": 0.15, "start_mm": [43.6, 78.7], "end_mm": [43.2, 81.6]}
+      ],
+      "vias": [
+        {"at_mm": [43.6, 78.7], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [43.2, 81.6], "diameter_mm": 0.4, "drill_mm": 0.2}
+      ],
+      "expected_resolved_connections": 4,
+      "reason": "The rotated eFuse input pair now faces the converter output; its direct bypass and OVLO-divider feed join the same raw rail without burdening the quiet divider branch with load current."
+    },
+    {
+      "id": "RF-AON-EFUSE-OUTPUT",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AON_SAFE_3V3",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+      "routing_class": "PRIMARY_POWER",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.35, "start_mm": [47.758, 81.375], "end_mm": [47.9, 82.0]},
+        {"layer": "In2.Cu", "width_mm": 0.5, "start_mm": [47.9, 82.0], "end_mm": [47.5, 82.6]},
+        {"layer": "In2.Cu", "width_mm": 0.5, "start_mm": [47.5, 82.6], "end_mm": [45.0, 82.6]},
+        {"layer": "In2.Cu", "width_mm": 0.5, "start_mm": [45.0, 82.6], "end_mm": [44.5, 80.3]},
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [44.5, 80.3], "end_mm": [45.125, 80.65]}
+      ],
+      "vias": [
+        {"at_mm": [47.9, 82.0], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [44.5, 80.3], "diameter_mm": 0.4, "drill_mm": 0.2}
+      ],
+      "expected_resolved_connections": 1,
+      "reason": "The protected AON output reaches its local bulk capacitor through a short two-via In2 bridge around the ILIM resistor, keeping unlike surface nets separated."
+    },
+    {
+      "id": "RF-AON-EFUSE-OVLO",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AON_EFUSE_OVLO",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_EFUSE_OVLO",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [45.335, 77.615], "end_mm": [46.615, 78.585]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [46.615, 78.585], "end_mm": [47.25, 79.0]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [47.25, 79.0], "end_mm": [47.25, 80.725]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [47.25, 80.725], "end_mm": [47.758, 80.725]}
+      ],
+      "expected_resolved_connections": 2,
+      "reason": "The complete OVLO divider joins the control pin through a narrow In3 bridge so it does not cross the protected-output escape on the component layer."
+    },
+    {
+      "id": "RF-AON-EFUSE-ILIM",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AON_EFUSE_ILIM",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_EFUSE_ILIM",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [47.758, 80.075], "end_mm": [48.0, 79.5]},
+        {"layer": "In3.Cu", "width_mm": 0.15, "start_mm": [48.0, 79.5], "end_mm": [46.0, 81.3]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [46.0, 81.3], "end_mm": [46.615, 80.835]}
+      ],
+      "vias": [
+        {"at_mm": [48.0, 79.5], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [46.0, 81.3], "diameter_mm": 0.4, "drill_mm": 0.2}
+      ],
+      "expected_resolved_connections": 1,
+      "reason": "The current-limit programming resistor has a direct, quiet surface connection after the eFuse orientation correction."
+    },
+    {
+      "id": "RF-AON-EFUSE-GROUND-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "POWER_GROUND",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+      "routing_class": "GROUND_REFERENCE",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.35, "start_mm": [43.605, 80.075], "end_mm": [42.8, 79.6]},
+        {"layer": "B.Cu", "width_mm": 0.35, "start_mm": [43.605, 80.075], "end_mm": [42.8, 80.3]},
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [45.125, 79.1], "end_mm": [44.4, 78.4]},
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [45.125, 79.1], "end_mm": [44.2, 79.2]},
+        {"layer": "B.Cu", "width_mm": 0.25, "start_mm": [46.615, 77.565], "end_mm": [47.2, 76.9]},
+        {"layer": "B.Cu", "width_mm": 0.25, "start_mm": [46.615, 79.815], "end_mm": [45.9, 79.7]},
+        {"layer": "B.Cu", "width_mm": 0.3, "start_mm": [49.532, 80.075], "end_mm": [50.1, 79.4]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [42.8, 79.6], "end_mm": [42.8, 80.3]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [44.4, 78.4], "end_mm": [44.2, 79.2]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [42.8, 80.3], "end_mm": [44.2, 79.2]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [44.2, 79.2], "end_mm": [45.9, 79.7]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [44.4, 78.4], "end_mm": [47.2, 76.9]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [45.9, 79.7], "end_mm": [48.645, 80.35]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [48.645, 80.35], "end_mm": [48.645, 81.1]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [48.645, 80.35], "end_mm": [50.1, 79.4]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [48.645, 81.1], "end_mm": [50.6, 83.0]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [50.6, 83.0], "end_mm": [50.6, 87.5]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [50.6, 87.5], "end_mm": [50.0, 88.2]}
+      ],
+      "vias": [
+        {"at_mm": [42.8, 79.6], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [42.8, 80.3], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [44.4, 78.4], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [44.2, 79.2], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [47.2, 76.9], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [45.9, 79.7], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [50.1, 79.4], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [48.645, 80.35], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [48.645, 81.1], "diameter_mm": 0.4, "drill_mm": 0.2}
+      ],
+      "expected_resolved_connections": 6,
+      "reason": "The eFuse exposed pad and ground pin, both local capacitors and both programming-resistor returns receive a joined ordinary-via In1 return tied into the existing AON converter ground skeleton."
     }
   ],
   "authorization": {

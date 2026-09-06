@@ -126,6 +126,7 @@ class H6R2PlacementTests(unittest.TestCase):
     def test_power_islands_and_touch_buffer_use_reviewed_locality_anchors(self):
         expected = {
             "aon_buck": [50.7, 84.5],
+            "aon_efuse": [48.645, 80.725],
             "aon_input_cap": [50.945, 87.045],
             "aon_output_cap": [45.795, 83.945],
             "charger_pmid_cap0": [71.945, 65.595],
@@ -150,6 +151,10 @@ class H6R2PlacementTests(unittest.TestCase):
         self.assertEqual(
             180.0,
             self.contract["placement_overrides"]["aon_input_cap"]["rotation_deg"],
+        )
+        self.assertEqual(
+            0.0,
+            self.contract["placement_overrides"]["aon_efuse"]["rotation_deg"],
         )
         self.assertEqual(
             270.0,

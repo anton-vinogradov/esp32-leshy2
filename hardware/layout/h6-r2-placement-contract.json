@@ -308,6 +308,16 @@
       "method": "reviewed H6.0.3 power-locality correction",
       "reason": "keep the complete always-on converter loop in one pocket and leave a manufacturable through-via corridor between the converter ground pin and the adjacent slow-I/O package"
     },
+    "aon_efuse": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        48.645,
+        80.725
+      ],
+      "rotation_deg": 0.0,
+      "method": "reviewed H6.0.3 power-locality correction",
+      "reason": "turn the AON_RAW input pair toward the converter output while the protected-output, OVLO and ILIM pins face their local parts; retain the accepted package centre and courtyard"
+    },
     "aon_input_cap": {
       "frame": "rear-inner",
       "centre_mm": [

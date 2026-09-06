@@ -5,18 +5,18 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "fb1a7ae0c61f130e6b0542f8928dba6a6640114e3cdb83fca60c6ba767d59bfa",
+    "contract_sha256": "f4105d0d0ef0bba807b3563a83c0c4d51b9e62fda24ed53a1d2c395c405fa652",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "7d5d54a4ba5079f18a805d941340530f56535a90144261001c3aeca141cf564b",
+    "routing_policy_sha256": "6bc6299515525ee5d4c2f26899acfe07a984df937e6d976ab50d29a403fc87d1",
     "placement_status": "pass"
   },
   "summary": {
-    "route_count": 52,
-    "segment_count": 274,
-    "resolved_connection_count": 85,
-    "via_count": 85,
-    "manual_only_route_count": 36,
-    "local_ground_join_route_count": 16
+    "route_count": 57,
+    "segment_count": 313,
+    "resolved_connection_count": 99,
+    "via_count": 100,
+    "manual_only_route_count": 40,
+    "local_ground_join_route_count": 17
   },
   "boards": [
     {
@@ -88,11 +88,81 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "route_count": 51,
-      "segment_count": 270,
-      "via_count": 85,
-      "resolved_connection_count": 84,
+      "route_count": 56,
+      "segment_count": 309,
+      "via_count": 100,
+      "resolved_connection_count": 98,
       "copper_signature": [
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+          "B.Cu",
+          0.35,
+          [
+            47.758,
+            81.375
+          ],
+          [
+            47.9,
+            82.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+          "B.Cu",
+          0.5,
+          [
+            44.5,
+            80.3
+          ],
+          [
+            45.125,
+            80.65
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+          "In2.Cu",
+          0.5,
+          [
+            44.5,
+            80.3
+          ],
+          [
+            45.0,
+            82.6
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+          "In2.Cu",
+          0.5,
+          [
+            45.0,
+            82.6
+          ],
+          [
+            47.5,
+            82.6
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+          "In2.Cu",
+          0.5,
+          [
+            47.5,
+            82.6
+          ],
+          [
+            47.9,
+            82.0
+          ]
+        ],
         [
           "track",
           "/RF_01_USB_PD_CHARGE/CHARGER_BTST1",
@@ -1429,6 +1499,34 @@
           "B.Cu",
           0.25,
           [
+            45.9,
+            79.7
+          ],
+          [
+            46.615,
+            79.815
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.25,
+          [
+            46.615,
+            77.565
+          ],
+          [
+            47.2,
+            76.9
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.25,
+          [
             51.55,
             83.75
           ],
@@ -1527,6 +1625,20 @@
           "B.Cu",
           0.3,
           [
+            49.532,
+            80.075
+          ],
+          [
+            50.1,
+            79.4
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.3,
+          [
             61.975,
             66.92
           ],
@@ -1603,6 +1715,34 @@
           [
             71.1,
             67.9
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.35,
+          [
+            42.8,
+            79.6
+          ],
+          [
+            43.605,
+            80.075
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.35,
+          [
+            42.8,
+            80.3
+          ],
+          [
+            43.605,
+            80.075
           ]
         ],
         [
@@ -1911,6 +2051,34 @@
           [
             35.7,
             135.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.5,
+          [
+            44.2,
+            79.2
+          ],
+          [
+            45.125,
+            79.1
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.5,
+          [
+            44.4,
+            78.4
+          ],
+          [
+            45.125,
+            79.1
           ]
         ],
         [
@@ -2353,6 +2521,76 @@
           "In1.Cu",
           0.5,
           [
+            42.8,
+            79.6
+          ],
+          [
+            42.8,
+            80.3
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            42.8,
+            80.3
+          ],
+          [
+            44.2,
+            79.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            44.2,
+            79.2
+          ],
+          [
+            44.4,
+            78.4
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            44.2,
+            79.2
+          ],
+          [
+            45.9,
+            79.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            44.4,
+            78.4
+          ],
+          [
+            47.2,
+            76.9
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
             44.8,
             85.0
           ],
@@ -2381,12 +2619,82 @@
           "In1.Cu",
           0.5,
           [
+            45.9,
+            79.7
+          ],
+          [
+            48.645,
+            80.35
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
             47.0,
             88.2
           ],
           [
             50.0,
             88.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            48.645,
+            80.35
+          ],
+          [
+            48.645,
+            81.1
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            48.645,
+            80.35
+          ],
+          [
+            50.1,
+            79.4
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            48.645,
+            81.1
+          ],
+          [
+            50.6,
+            83.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            50.0,
+            88.2
+          ],
+          [
+            50.6,
+            87.5
           ]
         ],
         [
@@ -2415,6 +2723,20 @@
           [
             52.1,
             85.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            50.6,
+            83.0
+          ],
+          [
+            50.6,
+            87.5
           ]
         ],
         [
@@ -2923,6 +3245,104 @@
         ],
         [
           "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_EFUSE_ILIM",
+          "B.Cu",
+          0.15,
+          [
+            46.0,
+            81.3
+          ],
+          [
+            46.615,
+            80.835
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_EFUSE_ILIM",
+          "B.Cu",
+          0.15,
+          [
+            47.758,
+            80.075
+          ],
+          [
+            48.0,
+            79.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_EFUSE_ILIM",
+          "In3.Cu",
+          0.15,
+          [
+            46.0,
+            81.3
+          ],
+          [
+            48.0,
+            79.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_EFUSE_OVLO",
+          "B.Cu",
+          0.15,
+          [
+            45.335,
+            77.615
+          ],
+          [
+            46.615,
+            78.585
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_EFUSE_OVLO",
+          "B.Cu",
+          0.15,
+          [
+            46.615,
+            78.585
+          ],
+          [
+            47.25,
+            79.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_EFUSE_OVLO",
+          "B.Cu",
+          0.15,
+          [
+            47.25,
+            79.0
+          ],
+          [
+            47.25,
+            80.725
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_EFUSE_OVLO",
+          "B.Cu",
+          0.15,
+          [
+            47.25,
+            80.725
+          ],
+          [
+            47.758,
+            80.725
+          ]
+        ],
+        [
+          "track",
           "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_RAW_3V3",
           "B.Cu",
           0.12,
@@ -2953,6 +3373,34 @@
           "track",
           "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_RAW_3V3",
           "B.Cu",
+          0.15,
+          [
+            43.2,
+            81.6
+          ],
+          [
+            43.605,
+            81.035
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_RAW_3V3",
+          "B.Cu",
+          0.15,
+          [
+            43.6,
+            78.7
+          ],
+          [
+            44.315,
+            77.615
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_RAW_3V3",
+          "B.Cu",
           0.2,
           [
             47.4,
@@ -2975,6 +3423,90 @@
           [
             49.3,
             85.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_RAW_3V3",
+          "B.Cu",
+          0.3,
+          [
+            43.605,
+            81.035
+          ],
+          [
+            44.3,
+            82.1
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_RAW_3V3",
+          "B.Cu",
+          0.3,
+          [
+            44.3,
+            82.1
+          ],
+          [
+            45.795,
+            82.47
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_RAW_3V3",
+          "B.Cu",
+          0.3,
+          [
+            49.532,
+            80.725
+          ],
+          [
+            49.532,
+            81.375
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_RAW_3V3",
+          "B.Cu",
+          0.3,
+          [
+            49.532,
+            81.375
+          ],
+          [
+            50.2,
+            81.375
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_RAW_3V3",
+          "B.Cu",
+          0.5,
+          [
+            48.445,
+            83.095
+          ],
+          [
+            50.2,
+            82.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_RAW_3V3",
+          "B.Cu",
+          0.5,
+          [
+            50.2,
+            81.375
+          ],
+          [
+            50.2,
+            82.8
           ]
         ],
         [
@@ -3017,6 +3549,20 @@
           [
             48.445,
             83.095
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_RAW_3V3",
+          "In3.Cu",
+          0.15,
+          [
+            43.2,
+            81.6
+          ],
+          [
+            43.6,
+            78.7
           ]
         ],
         [
@@ -3875,6 +4421,22 @@
         ],
         [
           "via",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+          44.5,
+          80.3,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+          47.9,
+          82.0,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
           "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
           65.15,
           64.0,
@@ -4292,6 +4854,38 @@
         [
           "via",
           "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          42.8,
+          79.6,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          42.8,
+          80.3,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          44.2,
+          79.2,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          44.4,
+          78.4,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
           44.8,
           85.0,
           0.4,
@@ -4308,8 +4902,48 @@
         [
           "via",
           "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          45.9,
+          79.7,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          47.2,
+          76.9,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          48.645,
+          80.35,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          48.645,
+          81.1,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
           50.0,
           88.2,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          50.1,
+          79.4,
           0.4,
           0.2
         ],
@@ -4494,6 +5128,38 @@
           "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
           32.2,
           139.2,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_EFUSE_ILIM",
+          46.0,
+          81.3,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_EFUSE_ILIM",
+          48.0,
+          79.5,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_RAW_3V3",
+          43.2,
+          81.6,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_RAW_3V3",
+          43.6,
+          78.7,
           0.4,
           0.2
         ],
@@ -5618,6 +6284,111 @@
       "length_mm": 13.9447,
       "resolved_connections": 2,
       "reason": "A narrow Kelvin branch senses the upper output capacitor, crosses below the cell on In3, and feeds both top-divider elements without carrying load current."
+    },
+    {
+      "id": "RF-AON-EFUSE-INPUT",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AON_RAW_3V3",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_RAW_3V3",
+      "routing_class": "PRIMARY_POWER",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "In3.Cu"
+      ],
+      "widths_mm": [
+        0.15,
+        0.3,
+        0.5
+      ],
+      "segment_count": 9,
+      "via_count": 2,
+      "length_mm": 12.2565,
+      "resolved_connections": 4,
+      "reason": "The rotated eFuse input pair now faces the converter output; its direct bypass and OVLO-divider feed join the same raw rail without burdening the quiet divider branch with load current."
+    },
+    {
+      "id": "RF-AON-EFUSE-OUTPUT",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AON_SAFE_3V3",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+      "routing_class": "PRIMARY_POWER",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "In2.Cu"
+      ],
+      "widths_mm": [
+        0.35,
+        0.5
+      ],
+      "segment_count": 5,
+      "via_count": 2,
+      "length_mm": 6.9321,
+      "resolved_connections": 1,
+      "reason": "The protected AON output reaches its local bulk capacitor through a short two-via In2 bridge around the ILIM resistor, keeping unlike surface nets separated."
+    },
+    {
+      "id": "RF-AON-EFUSE-OVLO",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AON_EFUSE_OVLO",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_EFUSE_OVLO",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 4,
+      "via_count": 0,
+      "length_mm": 4.5976,
+      "resolved_connections": 2,
+      "reason": "The complete OVLO divider joins the control pin through a narrow In3 bridge so it does not cross the protected-output escape on the component layer."
+    },
+    {
+      "id": "RF-AON-EFUSE-ILIM",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AON_EFUSE_ILIM",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_EFUSE_ILIM",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "In3.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 3,
+      "via_count": 2,
+      "length_mm": 4.0856,
+      "resolved_connections": 1,
+      "reason": "The current-limit programming resistor has a direct, quiet surface connection after the eFuse orientation correction."
+    },
+    {
+      "id": "RF-AON-EFUSE-GROUND-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "POWER_GROUND",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+      "routing_class": "GROUND_REFERENCE",
+      "route_mode": "plane_or_local_pour_manual",
+      "layers": [
+        "B.Cu",
+        "In1.Cu"
+      ],
+      "widths_mm": [
+        0.25,
+        0.3,
+        0.35,
+        0.5
+      ],
+      "segment_count": 18,
+      "via_count": 9,
+      "length_mm": 27.911,
+      "resolved_connections": 6,
+      "reason": "The eFuse exposed pad and ground pin, both local capacitors and both programming-resistor returns receive a joined ordinary-via In1 return tied into the existing AON converter ground skeleton."
     }
   ],
   "authorization": {

@@ -166,10 +166,10 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual("H6.0.3-R1", audit["marker"])
         self.assertEqual("pass_progress", audit["status"])
         self.assertFalse(audit["phase_complete"])
-        self.assertEqual(359, audit["summary"]["track_via_item_count"])
-        self.assertEqual(85, audit["summary"]["resolved_connection_count"])
-        self.assertEqual(3180, audit["summary"]["current_total_unconnected_count"])
-        self.assertEqual(254, audit["summary"]["analog_remaining_connection_count"])
+        self.assertEqual(413, audit["summary"]["track_via_item_count"])
+        self.assertEqual(99, audit["summary"]["resolved_connection_count"])
+        self.assertEqual(3166, audit["summary"]["current_total_unconnected_count"])
+        self.assertEqual(251, audit["summary"]["analog_remaining_connection_count"])
         self.assertEqual(310, audit["summary"]["placement_locality_pair_count"])
         self.assertEqual(0, audit["summary"]["placement_locality_violation_count"])
         size = audit["board_size_review"]
@@ -206,12 +206,12 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual("in_progress", contract["status"])
         self.assertEqual("pass", audit["status"])
         self.assertEqual([], audit["errors"])
-        self.assertEqual(52, audit["summary"]["route_count"])
-        self.assertEqual(274, audit["summary"]["segment_count"])
-        self.assertEqual(85, audit["summary"]["resolved_connection_count"])
-        self.assertEqual(85, audit["summary"]["via_count"])
-        self.assertEqual(36, audit["summary"]["manual_only_route_count"])
-        self.assertEqual(16, audit["summary"]["local_ground_join_route_count"])
+        self.assertEqual(57, audit["summary"]["route_count"])
+        self.assertEqual(313, audit["summary"]["segment_count"])
+        self.assertEqual(99, audit["summary"]["resolved_connection_count"])
+        self.assertEqual(100, audit["summary"]["via_count"])
+        self.assertEqual(40, audit["summary"]["manual_only_route_count"])
+        self.assertEqual(17, audit["summary"]["local_ground_join_route_count"])
         self.assertTrue(
             {row["routing_class"] for row in audit["routes"]}
             == {
@@ -237,7 +237,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
                 stderr=subprocess.STDOUT,
             )
             self.assertEqual(0, result.returncode, result.stdout)
-            self.assertIn("52 routes; 274 segments; 85 resolved connections", result.stdout)
+            self.assertIn("57 routes; 313 segments; 99 resolved connections", result.stdout)
 
     def test_h6_release_substep_ids_are_unique_and_end_at_h609(self):
         plan = json.loads(RELEASE_PLAN.read_text(encoding="utf-8"))
@@ -348,7 +348,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         for script, expected in (
             (PLACEMENT_FREEZE_SCRIPT, "1208 exact anchors"),
             (GENERAL_ROUTING_SCRIPT, "historical routing evidence preserved; current H6.0.3-R1"),
-            (CURRENT_ROUTING_SCRIPT, "359 copper items; 85 resolved; 3180 remain"),
+            (CURRENT_ROUTING_SCRIPT, "413 copper items; 99 resolved; 3166 remain"),
         ):
             result = subprocess.run(
                 [str(KICAD_PYTHON), str(script), "--check"],
