@@ -226,6 +226,15 @@ def footprint_pose(fp, side: str, rotation: float) -> dict:
         ),
         key=lambda rect: (rect["y"][0], rect["x"][0], rect["y"][1], rect["x"][1]),
     )
+    pad_centres_by_net: dict[str, list[tuple[float, float]]] = defaultdict(list)
+    for pad in fp.Pads():
+        if pad.GetNetname():
+            pad_centres_by_net[pad.GetNetname()].append(
+                (
+                    pcbnew.ToMM(pad.GetPosition().x),
+                    pcbnew.ToMM(pad.GetPosition().y),
+                )
+            )
     return {
         "rotation": rotation,
         "local_rect": local,
@@ -233,6 +242,7 @@ def footprint_pose(fp, side: str, rotation: float) -> dict:
         "size": rect_size(local),
         "cross_rects": cross_rects,
         "cross_body_rects": cross_body_rects,
+        "pad_centres_by_net": dict(pad_centres_by_net),
     }
 
 
@@ -726,6 +736,105 @@ def locality_audit(board_audit: dict, contract: dict) -> dict:
     }
 
 
+def critical_pad_pair_audit(
+    project: str,
+    entries_by_instance: dict[str, dict],
+    contract: dict,
+    net_bindings: dict[str, str],
+) -> dict:
+    """Measure the copper length that placement must make physically possible.
+
+    Courtyard proximity prevents a local part from drifting across the board,
+    but it cannot tell whether the electrically relevant pad faces its owner.
+    These explicit pairs cover every switching-node net and selected supply
+    bypasses whose first millimetres dominate the final routing quality.
+    """
+    rows = []
+    violations = []
+    errors = []
+    for pair in contract.get("placement_policy", {}).get(
+        "critical_pad_pairs", []
+    ):
+        if pair["project"] != project:
+            continue
+        first = entries_by_instance.get(pair["first_instance"])
+        second = entries_by_instance.get(pair["second_instance"])
+        if first is None or second is None:
+            errors.append(
+                f"critical pad pair references absent instance: {pair}"
+            )
+            continue
+        canonical_net = pair["canonical_net"]
+        kicad_net = net_bindings.get(canonical_net)
+        if not kicad_net:
+            errors.append(
+                f"critical pad pair has no KiCad binding: {canonical_net}"
+            )
+            continue
+        first_pads = [
+            pad for pad in first["fp"].Pads() if pad.GetNetname() == kicad_net
+        ]
+        second_pads = [
+            pad for pad in second["fp"].Pads() if pad.GetNetname() == kicad_net
+        ]
+        if not first_pads or not second_pads:
+            errors.append(
+                "critical pad pair net is absent from one endpoint: "
+                f"{canonical_net} {pair['first_instance']} -> "
+                f"{pair['second_instance']}"
+            )
+            continue
+        candidates = [
+            (
+                math.dist(
+                    (
+                        pcbnew.ToMM(first_pad.GetPosition().x),
+                        pcbnew.ToMM(first_pad.GetPosition().y),
+                    ),
+                    (
+                        pcbnew.ToMM(second_pad.GetPosition().x),
+                        pcbnew.ToMM(second_pad.GetPosition().y),
+                    ),
+                ),
+                first_pad,
+                second_pad,
+            )
+            for first_pad in first_pads
+            for second_pad in second_pads
+        ]
+        distance, first_pad, second_pad = min(
+            candidates,
+            key=lambda row: (row[0], row[1].GetNumber(), row[2].GetNumber()),
+        )
+        row = {
+            "canonical_net": canonical_net,
+            "kicad_net": kicad_net,
+            "first_instance": pair["first_instance"],
+            "first_reference": first["row"]["reference"],
+            "first_pad": first_pad.GetNumber(),
+            "second_instance": pair["second_instance"],
+            "second_reference": second["row"]["reference"],
+            "second_pad": second_pad.GetNumber(),
+            "pad_centre_distance_mm": round(distance, 4),
+            "maximum_distance_mm": float(pair["maximum_distance_mm"]),
+            "reason": pair["reason"],
+        }
+        rows.append(row)
+        if distance > float(pair["maximum_distance_mm"]) + 1e-6:
+            violations.append(row)
+    return {
+        "status": "pass" if not violations and not errors else "fail",
+        "pair_count": len(rows),
+        "maximum_pad_centre_distance_mm": max(
+            (row["pad_centre_distance_mm"] for row in rows), default=0.0
+        ),
+        "violation_count": len(violations),
+        "violations": violations,
+        "errors": errors,
+        "rows": rows,
+    }
+
+
 def target_side(target: dict | None) -> str:
     if not target:
         return "B.Cu"
@@ -779,13 +888,24 @@ def nearest_grid_slot(
     grid: OccupancyGrid,
     poses: dict[float, dict],
     preferred: tuple[float, float],
+    preferred_by_rotation: dict[float, tuple[float, float]] | None = None,
 ) -> tuple[dict, tuple[float, float], dict] | None:
     """Find the nearest free rectangular cell run without probing pcbnew."""
     full_mask = (1 << grid.columns) - 1
     best = None
     best_score = math.inf
-    for rotation in (0.0, 90.0):
+    rotations = (
+        tuple(sorted(preferred_by_rotation))
+        if preferred_by_rotation
+        else (0.0, 90.0)
+    )
+    for rotation in rotations:
         pose = poses[rotation]
+        rotation_preferred = (
+            preferred_by_rotation.get(rotation, preferred)
+            if preferred_by_rotation
+            else preferred
+        )
         width, height = pose["size"]
         span_x = max(1, math.ceil((width + 2 * grid.gap) / grid.step))
         span_y = max(1, math.ceil((height + 2 * grid.gap) / grid.step))
@@ -793,17 +913,19 @@ def nearest_grid_slot(
             continue
         possible_starts = grid.columns - span_x + 1
         start_mask = (1 << possible_starts) - 1
-        preferred_x0 = int(round((preferred[0] - grid.gap - width / 2) / grid.step))
+        preferred_x0 = int(
+            round((rotation_preferred[0] - grid.gap - width / 2) / grid.step)
+        )
         preferred_x0 = min(max(0, preferred_x0), possible_starts - 1)
         y_starts = list(range(grid.rows - span_y + 1))
         y_starts.sort(
             key=lambda y0: abs(
-                y0 * grid.step + grid.gap + height / 2 - preferred[1]
+                y0 * grid.step + grid.gap + height / 2 - rotation_preferred[1]
             )
         )
         for y0 in y_starts:
             centre_y = y0 * grid.step + grid.gap + height / 2
-            vertical_score = (centre_y - preferred[1]) ** 2
+            vertical_score = (centre_y - rotation_preferred[1]) ** 2
             if vertical_score >= best_score:
                 break
             blocked = 0
@@ -835,7 +957,7 @@ def nearest_grid_slot(
             rect = rect_at_centre(pose, centre)
             if not grid.is_free(rect):
                 continue
-            score = (centre[0] - preferred[0]) ** 2 + vertical_score
+            score = (centre[0] - rotation_preferred[0]) ** 2 + vertical_score
             if score < best_score:
                 best_score = score
                 best = rect, centre, pose
@@ -910,16 +1032,6 @@ def add_nets_and_footprints(
         if fp is None:
             errors.append(f"could not load {row['footprint']} for {row['instance']}")
             continue
-        if project == "LESHY2-RF-R2" and row["instance"] == "pack_holder":
-            # The reusable H2 library keeps the conventional full-body
-            # courtyard.  This exact H6 assembly deliberately nests one NTC in
-            # each documented open 1048P channel, so the current board instance
-            # removes only that misleading enclosing contour.  Full-body
-            # occupancy and the two named overlaps remain machine-enforced by
-            # this placement audit.
-            for item in list(fp.GraphicalItems()):
-                if item.GetLayer() == pcbnew.F_CrtYd:
-                    fp.Remove(item)
         board.Add(fp)
         fp.SetFPIDAsString(row["footprint"])
         fp.SetReference(row["reference"])
@@ -1037,6 +1149,76 @@ def shared_owner_pad_anchor(
     )
 
 
+def shared_pad_alignment_preferences(
+    child_entry: dict,
+    owner_entry: dict,
+) -> dict[float, tuple[float, float]]:
+    """Return per-rotation child centres that align the shared signal pads.
+
+    ``preferred_centre`` deliberately remains a cheap general packing hint.
+    Electrically critical local parts need a stronger datum: the child pad,
+    not the child courtyard centre, should approach the owner's matching pad.
+    The occupancy grid will move the two courtyards apart by the required
+    assembly clearance while this per-rotation target chooses the useful pad
+    orientation instead of an arbitrary 0/90-degree body orientation.
+    """
+    preferred_net = child_entry.get("locality_anchor_net")
+    child_nets = set(child_entry["poses"][0.0]["pad_centres_by_net"])
+    owner_nets = {
+        pad.GetNetname()
+        for pad in owner_entry["fp"].Pads()
+        if pad.GetNetname()
+    }
+    shared_nets = (
+        {preferred_net}
+        if preferred_net and preferred_net in child_nets and preferred_net in owner_nets
+        else child_nets & owner_nets
+    )
+    signal_nets = {
+        net
+        for net in shared_nets
+        if not any(token in net.upper() for token in ("GND", "GROUND"))
+    }
+    if signal_nets:
+        shared_nets = signal_nets
+    if not shared_nets:
+        return {}
+
+    owner_points = [
+        (
+            pcbnew.ToMM(pad.GetPosition().x),
+            pcbnew.ToMM(pad.GetPosition().y),
+        )
+        for pad in owner_entry["fp"].Pads()
+        if pad.GetNetname() in shared_nets
+    ]
+    if not owner_points:
+        return {}
+    owner_anchor = (
+        sum(point[0] for point in owner_points) / len(owner_points),
+        sum(point[1] for point in owner_points) / len(owner_points),
+    )
+
+    preferences = {}
+    for rotation, pose in child_entry["poses"].items():
+        child_points = [
+            point
+            for net in shared_nets
+            for point in pose["pad_centres_by_net"].get(net, [])
+        ]
+        if not child_points:
+            continue
+        child_anchor = (
+            sum(point[0] for point in child_points) / len(child_points),
+            sum(point[1] for point in child_points) / len(child_points),
+        )
+        preferences[rotation] = (
+            owner_anchor[0] - (child_anchor[0] - pose["local_centre"][0]),
+            owner_anchor[1] - (child_anchor[1] - pose["local_centre"][1]),
+        )
+    return preferences
+
+
 def place_project(
     project: str,
     contract: dict,
@@ -1114,6 +1296,11 @@ def place_project(
         entry["locality_pad_aware"] = entry["row"]["instance"] in set(
             contract.get("placement_policy", {}).get(
                 "locality_pad_aware_instances", []
+            )
+        )
+        entry["locality_pad_aligned"] = entry["row"]["instance"] in set(
+            contract.get("placement_policy", {}).get(
+                "locality_pad_aligned_instances", []
             )
         )
         locality_anchor_net = (
@@ -1380,7 +1567,18 @@ def place_project(
             placed_centres,
             entry_by_instance,
         )
-        slot = nearest_grid_slot(grids[entry["side"]], entry["poses"], desired)
+        alignment_preferences = {}
+        owner = entry.get("locality_owner")
+        if entry.get("locality_pad_aligned") and owner in placed_centres:
+            alignment_preferences = shared_pad_alignment_preferences(
+                entry, entry_by_instance[owner]
+            )
+        slot = nearest_grid_slot(
+            grids[entry["side"]],
+            entry["poses"],
+            desired,
+            alignment_preferences,
+        )
         if slot is not None:
             candidate, centre, candidate_pose = slot
             candidate_cross = cross_rects_at_centre(candidate_pose, centre)
@@ -1465,6 +1663,9 @@ def place_project(
 
     placed_rows.sort(key=lambda row: natural_key(row["reference"]))
     add_battery_ntc_silkscreen(board, project, placed_rows)
+    critical_pad_pairs = critical_pad_pair_audit(
+        project, entry_by_instance, contract, net_bindings
+    )
     return board, {
         "project": project,
         "schematic_instance_count": len(instance_rows),
@@ -1478,6 +1679,7 @@ def place_project(
         "hard_conflicts": conflicts,
         "placement_failures": failures,
         "net_or_footprint_errors": errors,
+        "critical_pad_pairs": critical_pad_pairs,
         "placements": placed_rows,
     }
 
@@ -1748,6 +1950,7 @@ def build() -> tuple[dict[Path, bytes], dict]:
             [f"hard placement conflict: {row}" for row in board["hard_conflicts"]]
             + [f"unplaced instance: {row}" for row in board["placement_failures"]]
             + board["net_or_footprint_errors"]
+            + board["critical_pad_pairs"]["errors"]
             + [
                 "locality violation: "
                 f"{row['instance']} -> {row['owner']} is "
@@ -1755,10 +1958,18 @@ def build() -> tuple[dict[Path, bytes], dict]:
                 f"{row['maximum_gap_mm']:.2f} mm"
                 for row in board["locality"]["violations"]
             ]
+            + [
+                "critical pad-pair violation: "
+                f"{row['canonical_net']} {row['first_instance']} -> "
+                f"{row['second_instance']} is "
+                f"{row['pad_centre_distance_mm']:.2f} mm, limit "
+                f"{row['maximum_distance_mm']:.2f} mm"
+                for row in board["critical_pad_pairs"]["violations"]
+            ]
         )
     ]
     audit = {
-        "schema_version": 2,
+        "schema_version": 3,
         "artifact": "H6-R2 exact-footprint placement audit",
         "marker": contract["marker"],
         "status": "pass" if not errors else "fail",
@@ -1794,6 +2005,13 @@ def build() -> tuple[dict[Path, bytes], dict]:
             "net_or_footprint_error_count": sum(len(row["net_or_footprint_errors"]) for row in board_audits),
             "locality_pair_count": sum(row["locality"]["pair_count"] for row in board_audits),
             "locality_violation_count": sum(row["locality"]["violation_count"] for row in board_audits),
+            "critical_pad_pair_count": sum(
+                row["critical_pad_pairs"]["pair_count"] for row in board_audits
+            ),
+            "critical_pad_pair_violation_count": sum(
+                row["critical_pad_pairs"]["violation_count"]
+                for row in board_audits
+            ),
             "accepted_same_face_overlap_count": sum(
                 len(row["accepted_same_face_overlaps"]) for row in board_audits
             ),

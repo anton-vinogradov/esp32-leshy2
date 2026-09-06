@@ -6,7 +6,7 @@
   "sources": {
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "d49e6b18cc5494569b35ea6997dde36257b8cc6492e232e9268821f8636ff4ea"
+      "sha256": "5af6daa34c5b01552eb1e936bf7a8bf5d877357cc1f446ba2c750a88bc80bbdb"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
@@ -9232,7 +9232,7 @@
       "symbol_id": "Leshy2_R2:keystone_1048p",
       "footprint": "Leshy2:Keystone-1048P",
       "footprint_source": "hardware/ecad/libraries/Leshy2.pretty/Keystone-1048P.kicad_mod",
-      "footprint_sha256": "5b905ec629f34c3c0d3a67b02d57e7f898833bad25bc2ebd3cd679cceec09737",
+      "footprint_sha256": "dbcec95dcfe56d7d1e1bd2631640c065c30b064adc02f4f9810d4fc38ee02a9e",
       "logical_contact_count": 4,
       "footprint_named_pad_count": 4,
       "footprint_pad_occurrence_count": 4,

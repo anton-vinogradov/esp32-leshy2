@@ -41,8 +41,10 @@ class H6R2PlacementTests(unittest.TestCase):
                 "hard_conflict_count": 0,
                 "placement_failure_count": 0,
                 "net_or_footprint_error_count": 0,
-                "locality_pair_count": 300,
+                "locality_pair_count": 310,
                 "locality_violation_count": 0,
+                "critical_pad_pair_count": 21,
+                "critical_pad_pair_violation_count": 0,
                 "accepted_same_face_overlap_count": 2,
                 "routing_authorized": True,
                 "routing_started": True,
@@ -54,7 +56,7 @@ class H6R2PlacementTests(unittest.TestCase):
         self.assertEqual(780, boards["LESHY2-RF-R2"]["placed_instance_count"])
 
     def test_local_parts_stay_with_their_physical_owners(self):
-        self.assertEqual(300, self.audit["summary"]["locality_pair_count"])
+        self.assertEqual(310, self.audit["summary"]["locality_pair_count"])
         self.assertEqual(0, self.audit["summary"]["locality_violation_count"])
         rows = {}
         for board in self.audit["boards"]:
@@ -67,6 +69,41 @@ class H6R2PlacementTests(unittest.TestCase):
         self.assertEqual("main_buck", rows["main_buck_bootstrap_cap"]["owner"])
         self.assertEqual("main_fb_top", rows["main_ff_cap"]["owner"])
         self.assertEqual("voice_inductor", rows["voice_output_cap0"]["owner"])
+
+    def test_switching_nodes_and_selected_bypasses_use_actual_pad_distances(self):
+        switching_nodes = {
+            "AON_BUCK_SW",
+            "CHARGER_BTST1",
+            "CHARGER_BTST2",
+            "CHARGER_PMID",
+            "CHARGER_REGN",
+            "CHARGER_SW1",
+            "CHARGER_SW2",
+            "EXT_BUCK_SW",
+            "HUB_RP_VREG_LX_SW",
+            "MAIN_BUCK_BST",
+            "MAIN_BUCK_BST_LINK",
+            "MAIN_BUCK_SW",
+            "PACK_CHARGE_PUMP",
+            "RF_RP_VREG_LX_SW",
+            "VOICE_BUCK_SW",
+        }
+        rows = []
+        for board in self.audit["boards"]:
+            pad_audit = board["critical_pad_pairs"]
+            self.assertEqual("pass", pad_audit["status"])
+            self.assertEqual([], pad_audit["errors"])
+            self.assertEqual([], pad_audit["violations"])
+            rows.extend(pad_audit["rows"])
+        self.assertEqual(21, len(rows))
+        self.assertEqual(
+            switching_nodes,
+            switching_nodes & {row["canonical_net"] for row in rows},
+        )
+        for row in rows:
+            self.assertLessEqual(
+                row["pad_centre_distance_mm"], row["maximum_distance_mm"]
+            )
 
     def test_pack_high_current_parts_target_their_exact_holder_terminals(self):
         rows = {}
@@ -166,7 +203,8 @@ class H6R2PlacementTests(unittest.TestCase):
             ROOT / "hardware/ecad/libraries/Leshy2.pretty/Keystone-1048P.kicad_mod"
         ).read_text(encoding="utf-8")
         self.assertIn('(start -43.000 -19.900) (end 43.000 19.900)', holder_footprint)
-        self.assertIn('layer "F.CrtYd"', holder_footprint)
+        self.assertNotIn('layer "F.CrtYd"', holder_footprint)
+        self.assertIn("H6 placement audit enforces the complete F.Fab body", holder_footprint)
         board_text = (ROOT / rf["output"]).read_text(encoding="utf-8")
         holder_start = board_text.index('(footprint "Leshy2:Keystone-1048P"')
         holder_end = board_text.index("\n\t(footprint ", holder_start + 1)

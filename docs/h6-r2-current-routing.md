@@ -19,7 +19,7 @@ The former collision-free seed was electrically invalid because some bypass, fee
 
 ## What we obtained
 
-All 1,208 bodies are placed; all 300 local-part → owner pairs meet their limits and locality has zero violations. Both boards have zero native DRC findings. The deliberate restart leaves 3,265 physical connections, summarized in the table above.
+All 1,208 bodies are placed; all 310 local-part → owner pairs meet their limits; 21 actual pad-centre pairs cover every switching-node net and selected local bypasses with zero violations. Both boards have zero native DRC findings. The deliberate restart leaves 3,265 physical connections, summarized in the table above.
 
 ## What happens next
 

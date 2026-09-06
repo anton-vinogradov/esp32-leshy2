@@ -188,9 +188,12 @@ def footprint_outputs() -> dict[Path, str]:
     )
 
     # The official drawing controls the complete body and four independent SMT
-    # terminations.  Pad-to-slot polarity still has a received-continuity H5
-    # gate, so the four logical pad identities may not be used for fabrication
-    # release until that gate closes.
+    # terminations.  The ordinary enclosing courtyard is deliberately omitted:
+    # H6 nests one direct-cell NTC in each documented open holder channel and
+    # machine-checks the complete F.Fab body plus those two named overlaps.
+    # Pad-to-slot polarity still has a received-continuity H5 gate, so the four
+    # logical pad identities may not be used for fabrication release until that
+    # gate closes.
     holder = custom_footprint(
         "Keystone-1048P",
         [("1", -41.0, -9.55, 4.0, 6.0, copper, "rect"),
@@ -198,7 +201,8 @@ def footprint_outputs() -> dict[Path, str]:
          ("3", -41.0, 9.55, 4.0, 6.0, copper, "rect"),
          ("4", 41.0, 9.55, 4.0, 6.0, copper, "rect")],
         86.0, 39.8, 87.0, 40.8,
-        "Keystone 1048P manufacturer drawing: 86.0x39.8-mm dual polarized holder and four independent SMT termination reserves; exact slot-polarity continuity remains the declared H5 received-part gate",
+        "Keystone 1048P manufacturer drawing: 86.0x39.8-mm dual polarized holder and four independent SMT termination reserves; F.CrtYd is intentionally omitted because two documented direct-cell NTCs occupy the holder's open channels while the H6 placement audit enforces the complete F.Fab body",
+        include_courtyard=False,
     )
     return {
         FOOTPRINT_DIR / "CSD87313DMS.kicad_mod": csd,

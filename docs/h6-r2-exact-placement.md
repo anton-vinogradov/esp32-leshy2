@@ -39,9 +39,12 @@ placement alone is not sufficient.
 - All **789** global canonical / **823** board-local H2 nets bound to real pads.
 - Zero hard same-face courtyard conflicts, zero unplaced bodies and zero
   net/footprint mapping errors.
-- **300/300** local-part → owner pairs within their permitted courtyard or
+- **310/310** local-part → owner pairs within their permitted courtyard or
   owner-pad gaps;
   zero locality violations.
+- **21/21** electrically critical pad-centre pairs pass their explicit limits.
+  This covers every switching-node net and selected SD, I2S and charger-input
+  bypasses, so useful pad orientation is checked as well as body locality.
 - Zero native KiCad DRC findings on both corrected unrouted boards.
 - A deterministic generator, a hash-bearing
   [machine audit](../hardware/layout/generated/H6-R2-placement-audit.json) and

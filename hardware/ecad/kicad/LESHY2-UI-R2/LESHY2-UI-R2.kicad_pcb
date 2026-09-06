@@ -5931,7 +5931,7 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "17e8b339-ea22-5a2e-b71c-b4c6afbd3eb8")
-		(at 31.365 70.574999 90)
+		(at 31.365 69.574999 90)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R171"
@@ -6100,7 +6100,7 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "01f57dc3-1137-5c3e-9f3d-61683f5e7ffc")
-		(at 31.365 68.324999 90)
+		(at 29.865 69.574999 90)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R157"
@@ -7552,11 +7552,11 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "ca231339-613c-50e0-b244-a874b45b1d39")
-		(at 38.855 77.805 90)
+		(at 50.805 84.104999)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C53"
-			(at 0 1.16 270)
+			(at 0 1.16 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "c80468e3-5e95-57c0-b622-758dc1eebc6e")
@@ -7569,7 +7569,7 @@
 			)
 		)
 		(property "Value" "Yageo CC0402KRX7R9BB104"
-			(at 0 -1.16 270)
+			(at 0 -1.16 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "02092f60-4329-5942-8d41-45307c65f580")
@@ -7582,7 +7582,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "59d970b0-aadf-5ad5-be53-c66107ffae88")
@@ -7594,7 +7594,7 @@
 			)
 		)
 		(property "Description" "yageo_cc0402krx7r9bb104"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "d81f4314-e016-585e-a280-f3c9b7f83f32")
@@ -7606,7 +7606,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "7b79965f-7381-5d3b-890d-ce2f43f537da")
@@ -7619,7 +7619,7 @@
 			)
 		)
 		(property "Leshy2Instance" "hub_rp_qspi_iovdd_bypass"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "ec1310bf-cd8a-5573-8b44-c9a036e86e3e")
@@ -7678,7 +7678,7 @@
 			(uuid "da733751-5477-5c88-9341-c786a6501270")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(uuid "97d42e2a-6e01-5a8b-96f1-8363cd82f4d7")
 			(effects
@@ -7690,7 +7690,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.48 0 90)
+			(at -0.48 0)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -7698,7 +7698,7 @@
 			(uuid "a807aafb-31c7-5fe3-a07b-6f11acfdbf96")
 		)
 		(pad "2" smd roundrect
-			(at 0.48 0 90)
+			(at 0.48 0)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -8325,11 +8325,11 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "7a348773-215c-5ab5-b7e3-7293a81efa58")
-		(at 51.555 67.354999)
+		(at 39.855 69.305 90)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C50"
-			(at 0 1.16 180)
+			(at 0 1.16 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "8bcc6f9a-c5e2-59ec-bf4c-6b137b9b414f")
@@ -8342,7 +8342,7 @@
 			)
 		)
 		(property "Value" "Yageo CC0402KRX7R9BB104"
-			(at 0 -1.16 180)
+			(at 0 -1.16 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "7b11022f-acc0-5030-ba50-4b9a3dd523a2")
@@ -8355,7 +8355,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "4e81bca4-4b7c-5898-acf5-3601e7eff32b")
@@ -8367,7 +8367,7 @@
 			)
 		)
 		(property "Description" "yageo_cc0402krx7r9bb104"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "264331b7-7f3c-5488-8798-9a029cc67433")
@@ -8379,7 +8379,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "fb9468da-d37d-5974-aa5c-60895c11f202")
@@ -8392,7 +8392,7 @@
 			)
 		)
 		(property "Leshy2Instance" "hub_rp_iovdd5_bypass"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "97060a42-4233-5454-a4de-ceb0fd791098")
@@ -8451,7 +8451,7 @@
 			(uuid "51b476c0-ce12-5d79-901a-6817ec8a53c0")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(uuid "40db476b-01a9-5e4e-8af0-917a4e56fde1")
 			(effects
@@ -8463,7 +8463,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.48 0)
+			(at -0.48 0 90)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -8471,7 +8471,7 @@
 			(uuid "9f88a70b-e498-5d65-8994-3e045c3a457c")
 		)
 		(pad "2" smd roundrect
-			(at 0.48 0)
+			(at 0.48 0 90)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -8494,11 +8494,11 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "458cd27e-9656-5b2a-b0f4-42196b60baaf")
-		(at 41.105 72.305 90)
+		(at 53.555 68.604999)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C43"
-			(at 0 1.16 270)
+			(at 0 1.16 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "ba5dbcd9-5131-51e6-bbad-cdf14f58c249")
@@ -8511,7 +8511,7 @@
 			)
 		)
 		(property "Value" "Yageo CC0402KRX7R9BB104"
-			(at 0 -1.16 270)
+			(at 0 -1.16 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "9a209b21-55f9-5d08-a5b3-f9ffca3ffe02")
@@ -8524,7 +8524,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "05db6b52-6cc0-5492-9115-9df394260196")
@@ -8536,7 +8536,7 @@
 			)
 		)
 		(property "Description" "yageo_cc0402krx7r9bb104"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "e3a057c5-9c0d-572a-b25a-d88ecaba1f08")
@@ -8548,7 +8548,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "de31e76e-fca0-5a8b-8a99-3d9f34ea34ea")
@@ -8561,7 +8561,7 @@
 			)
 		)
 		(property "Leshy2Instance" "hub_rp_dvdd51_bypass"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "03f2cffe-e555-5f32-879d-456f0466521e")
@@ -8620,7 +8620,7 @@
 			(uuid "cf6265d3-f863-55f8-a13d-28f7be0b34ce")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(uuid "29514450-fbb5-588f-a4c0-260e2407663b")
 			(effects
@@ -8632,7 +8632,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.48 0 90)
+			(at -0.48 0)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -8640,7 +8640,7 @@
 			(uuid "e39aa4c7-5927-5f5c-85b9-b7cd0e3e9437")
 		)
 		(pad "2" smd roundrect
-			(at 0.48 0 90)
+			(at 0.48 0)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -11396,7 +11396,7 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "d53a25ec-0e5f-5951-a62f-15444269e9e7")
-		(at 38.575 67.365)
+		(at 36.075 67.615)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R195"
@@ -12459,7 +12459,7 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "99c648fc-0941-5a00-a754-40bdc14c7da2")
-		(at 36.865 66.824999 90)
+		(at 36.115 71.824999 90)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R196"
@@ -14760,7 +14760,7 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "36edac1d-088f-5a71-a584-069619fa644d")
-		(at 41.305 68.354999)
+		(at 43.805 83.854999)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C52"
@@ -16942,7 +16942,7 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "95f6525d-7d23-59ab-a31f-39270e626858")
-		(at 37.615 77.324999 90)
+		(at 37.115 75.074999 90)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R93"
@@ -19030,11 +19030,11 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "16955275-9837-50d9-82e0-12b65000ff0c")
-		(at 57.325 74.115)
+		(at 58.115 76.324999 90)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R51"
-			(at 0 1.17 180)
+			(at 0 1.17 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "7f4b0f05-e456-53ad-b15a-d3632e25eb22")
@@ -19047,7 +19047,7 @@
 			)
 		)
 		(property "Value" "Yageo RC0402FR-0710KL"
-			(at 0 -1.17 180)
+			(at 0 -1.17 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "73cca8a2-73fd-5c7b-85d2-8f28900dfe20")
@@ -19060,7 +19060,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "7094ccbe-7b81-54f2-a0ed-c5e90f1c0235")
@@ -19072,7 +19072,7 @@
 			)
 		)
 		(property "Description" "yageo_rc0402fr_0710kl"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "a39f3199-2122-52e4-bfd1-3672b7be6bce")
@@ -19084,7 +19084,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "e545a829-6fb4-5191-b9ff-b9c1f9990723")
@@ -19097,7 +19097,7 @@
 			)
 		)
 		(property "Leshy2Instance" "sd_host_sck_pulldown"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "44142fa6-8249-57c8-a5d2-3ed5bf792f4b")
@@ -19156,7 +19156,7 @@
 			(uuid "ef699910-79aa-5fa1-b248-127aee99cc42")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(uuid "2a24acbe-6ae8-5f7b-96a3-dbfde6a8e0a1")
 			(effects
@@ -19168,7 +19168,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.51 0)
+			(at -0.51 0 90)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -19176,7 +19176,7 @@
 			(uuid "f04ba141-9d8b-5154-a7fa-0a5480cc1d68")
 		)
 		(pad "2" smd roundrect
-			(at 0.51 0)
+			(at 0.51 0 90)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -23169,7 +23169,7 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "71e80231-bf09-568a-81be-f5a54327ad6f")
-		(at 54.115 64.825 90)
+		(at 53.365 64.825 90)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R205"
@@ -23338,11 +23338,11 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "0edafff6-e2ba-56ad-a27b-3cfaa2167455")
-		(at 50.805 82.854999)
+		(at 56.855 76.305 90)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C49"
-			(at 0 1.16 180)
+			(at 0 1.16 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "71a0006a-469f-55ef-a8a3-a39734094960")
@@ -23355,7 +23355,7 @@
 			)
 		)
 		(property "Value" "Yageo CC0402KRX7R9BB104"
-			(at 0 -1.16 180)
+			(at 0 -1.16 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "e4b56d8f-a99b-54a0-8d8c-5418d94e62b4")
@@ -23368,7 +23368,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "a7205f05-7c50-535d-ba94-90faece15553")
@@ -23380,7 +23380,7 @@
 			)
 		)
 		(property "Description" "yageo_cc0402krx7r9bb104"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "03e3279f-8650-5f72-bde4-47ad23627096")
@@ -23392,7 +23392,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "256b5ee9-3446-581a-807b-8cb1c8d3a3c2")
@@ -23405,7 +23405,7 @@
 			)
 		)
 		(property "Leshy2Instance" "hub_rp_iovdd50_bypass"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "89bfb196-69d6-5bde-a664-778f4a7e3c89")
@@ -23464,7 +23464,7 @@
 			(uuid "6dfce3cc-64e1-5415-915a-50f8f34918ed")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(uuid "9e068777-8241-5784-811e-8393f81db8fa")
 			(effects
@@ -23476,7 +23476,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.48 0)
+			(at -0.48 0 90)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -23484,7 +23484,7 @@
 			(uuid "f7330c09-d9bf-5a16-b9e3-bb90e3861ed6")
 		)
 		(pad "2" smd roundrect
-			(at 0.48 0)
+			(at 0.48 0 90)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -26042,11 +26042,11 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "79d0e978-2521-55dd-9087-7d8112e28ae5")
-		(at 55.605 66.804999 90)
+		(at 56.055 67.354999)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C44"
-			(at 0 1.16 270)
+			(at 0 1.16 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "2302befc-1701-534b-bfd1-9a85d67040d3")
@@ -26059,7 +26059,7 @@
 			)
 		)
 		(property "Value" "TDK C1005X5R0J475K050BC"
-			(at 0 -1.16 270)
+			(at 0 -1.16 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "4c79198b-cf8a-5e52-b00a-1d92021fc748")
@@ -26072,7 +26072,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "e0aee00f-2af2-597d-a723-b05755046e81")
@@ -26084,7 +26084,7 @@
 			)
 		)
 		(property "Description" "tdk_c1005x5r0j475k050bc"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "5eea8d9e-c4dc-5df3-9bac-c6633ba24a6b")
@@ -26096,7 +26096,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "e81d5a2a-3a7d-527a-b90a-7fed060c2a56")
@@ -26109,7 +26109,7 @@
 			)
 		)
 		(property "Leshy2Instance" "hub_rp_dvdd_remote_bulk"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "8fce2e87-5bd3-560c-9154-f99076236220")
@@ -26168,7 +26168,7 @@
 			(uuid "c512f8c5-e99d-548a-9eb6-a6edd147ba48")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(uuid "d05230b8-1fb6-5982-89b6-0f82210db067")
 			(effects
@@ -26180,7 +26180,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.48 0 90)
+			(at -0.48 0)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -26188,7 +26188,7 @@
 			(uuid "5853568f-9e3e-5d15-8548-14048476dd63")
 		)
 		(pad "2" smd roundrect
-			(at 0.48 0 90)
+			(at 0.48 0)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -31090,11 +31090,11 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "8af10d76-80c4-572e-8bcd-9c900c53163e")
-		(at 39.855 70.055 90)
+		(at 51.555 67.354999)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C55"
-			(at 0 1.16 270)
+			(at 0 1.16 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "03e8f568-b339-5ba9-a3c9-a4f9af5be926")
@@ -31107,7 +31107,7 @@
 			)
 		)
 		(property "Value" "Yageo CC0402KRX7R9BB104"
-			(at 0 -1.16 270)
+			(at 0 -1.16 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "c5adbda4-18ba-5a86-a45d-9a8a0a297729")
@@ -31120,7 +31120,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "8aa3dfff-7076-5c39-ad7b-fbfeaaaa65af")
@@ -31132,7 +31132,7 @@
 			)
 		)
 		(property "Description" "yageo_cc0402krx7r9bb104"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "090d78f4-9c06-50df-9338-55ee66f36147")
@@ -31144,7 +31144,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "591d2a01-43c0-567e-a83c-8de7f36ae128")
@@ -31157,7 +31157,7 @@
 			)
 		)
 		(property "Leshy2Instance" "hub_rp_usb_otp_vdd_bypass"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "78315a25-f704-50d5-a80d-3dc38e41b8c5")
@@ -31216,7 +31216,7 @@
 			(uuid "a85138fa-7e2e-58fd-a8d2-bfeb5d7ad5f4")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(uuid "9b37689c-0779-596f-a083-c45992032f80")
 			(effects
@@ -31228,7 +31228,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.48 0 90)
+			(at -0.48 0)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -31236,7 +31236,7 @@
 			(uuid "deeeae44-e8c7-55b8-b3c3-e01e7b92ded4")
 		)
 		(pad "2" smd roundrect
-			(at 0.48 0 90)
+			(at 0.48 0)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -32998,11 +32998,11 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "5456a5b4-cf34-5b37-b4eb-5a6666b5e1f0")
-		(at 38.615 71.824999 90)
+		(at 38.075 70.615)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R62"
-			(at 0 1.17 270)
+			(at 0 1.17 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "984e51e2-1d83-58c0-8946-885180b9a079")
@@ -33015,7 +33015,7 @@
 			)
 		)
 		(property "Value" "Yageo RC0402FR-073K32L"
-			(at 0 -1.17 270)
+			(at 0 -1.17 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "a0444fe4-c21b-5abf-b2d1-21b395fedb42")
@@ -33028,7 +33028,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "9bb39c3a-c068-586f-8990-fd8b66936e66")
@@ -33040,7 +33040,7 @@
 			)
 		)
 		(property "Description" "yageo_rc0402fr_073k32l"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "05fdde1f-6385-58de-9831-be4016ad555e")
@@ -33052,7 +33052,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "cf2515f8-a284-5e68-ba5f-ad1887b4cf83")
@@ -33065,7 +33065,7 @@
 			)
 		)
 		(property "Leshy2Instance" "ui_input_f3_pullup"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "ef0973f6-7dda-5e14-9e3d-fc1191157f48")
@@ -33124,7 +33124,7 @@
 			(uuid "f9c00f07-95ed-5e4d-9b90-a174a4847c5e")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(uuid "11c222fc-3d2d-5d63-a596-63e5a386a03a")
 			(effects
@@ -33136,7 +33136,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.51 0 90)
+			(at -0.51 0)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -33144,7 +33144,7 @@
 			(uuid "81006d74-2c7d-5614-abea-28f1f5c6a49b")
 		)
 		(pad "2" smd roundrect
-			(at 0.51 0 90)
+			(at 0.51 0)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -33676,7 +33676,7 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "fca6fd89-300a-5873-a5fc-2a6802f6d754")
-		(at 39.855 72.305 90)
+		(at 38.605 72.305 90)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C48"
@@ -33845,11 +33845,11 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "d352b616-aac6-5cc5-8dde-c31e631a0669")
-		(at 38.575 66.114999)
+		(at 35.865 74.074999 90)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R197"
-			(at 0 1.17 180)
+			(at 0 1.17 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "7101bc03-92c6-53ab-83d5-4801cb0cd31c")
@@ -33862,7 +33862,7 @@
 			)
 		)
 		(property "Value" "Panasonic ERJ-2RKF22R0X"
-			(at 0 -1.17 180)
+			(at 0 -1.17 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "b55d17e8-cce7-5faf-a6ea-b7f6b28200fe")
@@ -33875,7 +33875,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "c23065bc-3cd8-5634-af89-38a50a45dfab")
@@ -33887,7 +33887,7 @@
 			)
 		)
 		(property "Description" "panasonic_erj_2rkf22r0x"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "02fb3954-de2a-5f33-a59b-d442ea44fd9f")
@@ -33899,7 +33899,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "c4b6d89a-8b89-5f90-bd29-2b3ac0b5f838")
@@ -33912,7 +33912,7 @@
 			)
 		)
 		(property "Leshy2Instance" "nrf2_miso_series"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "80d71093-82b4-5705-b108-a62cb2dc855f")
@@ -33971,7 +33971,7 @@
 			(uuid "f97c136f-f3dc-5b90-8036-e4c1d5104572")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(uuid "a1fed325-ead0-5626-83bb-f6bfc2957791")
 			(effects
@@ -33983,7 +33983,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.51 0)
+			(at -0.51 0 90)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -33991,7 +33991,7 @@
 			(uuid "66d32aff-e4f9-5e81-a752-3a970b4a94b1")
 		)
 		(pad "2" smd roundrect
-			(at 0.51 0)
+			(at 0.51 0 90)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -34705,7 +34705,7 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "ba471ba1-b74d-51d3-a2d5-bf17c34e37cb")
-		(at 37.825 69.865)
+		(at 37.825 66.364999)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R176"
@@ -35937,11 +35937,11 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "423713e4-0548-5064-881c-643446732d65")
-		(at 36.825 71.115)
+		(at 36.365 69.574999 90)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R194"
-			(at 0 1.17 180)
+			(at 0 1.17 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "8b736dad-fc39-59f5-8b0e-3adf7e84d200")
@@ -35954,7 +35954,7 @@
 			)
 		)
 		(property "Value" "Yageo RC0402FR-0710KL"
-			(at 0 -1.17 180)
+			(at 0 -1.17 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "380ee10a-735a-50c4-9187-418b89b3b1aa")
@@ -35967,7 +35967,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "a4205dfa-c971-524f-89a8-c28827cea02d")
@@ -35979,7 +35979,7 @@
 			)
 		)
 		(property "Description" "yageo_rc0402fr_0710kl"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "3d757664-26fc-5131-bf15-17cf57b4abfa")
@@ -35991,7 +35991,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "df9cd7ff-f124-5701-82de-96687bec6bb8")
@@ -36004,7 +36004,7 @@
 			)
 		)
 		(property "Leshy2Instance" "nrf2_host_mosi_pulldown"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "6fe16f2f-1d13-54d5-82fd-474f8d4e55d0")
@@ -36063,7 +36063,7 @@
 			(uuid "e4883ac8-0da4-58c3-b4db-fd7313f09fb2")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(uuid "1519d4f9-f06f-562a-81ad-792e7c95c15f")
 			(effects
@@ -36075,7 +36075,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.51 0)
+			(at -0.51 0 90)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -36083,7 +36083,7 @@
 			(uuid "a24c4815-7268-568a-8da6-6e98beff1e4e")
 		)
 		(pad "2" smd roundrect
-			(at 0.51 0)
+			(at 0.51 0 90)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -39253,7 +39253,7 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "742a192c-7383-5d64-8a06-e8302a1fcfdd")
-		(at 38.365 75.074999 90)
+		(at 37.615 77.324999 90)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R53"
@@ -41263,11 +41263,11 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "a478c935-7806-5efd-b035-f63fef5fc391")
-		(at 37.115 75.074999 90)
+		(at 50.075 85.365)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R192"
-			(at 0 1.17 270)
+			(at 0 1.17 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "dc5104b6-a588-5733-9d17-cec57624c8eb")
@@ -41280,7 +41280,7 @@
 			)
 		)
 		(property "Value" "Yageo RC0402FR-0710KL"
-			(at 0 -1.17 270)
+			(at 0 -1.17 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "036a2a52-66bc-5182-ab25-5277b6f1c11e")
@@ -41293,7 +41293,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "8395d168-513a-506e-b4c4-b1dcfacfd62c")
@@ -41305,7 +41305,7 @@
 			)
 		)
 		(property "Description" "yageo_rc0402fr_0710kl"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "61c814c9-e020-59ce-9c9a-01226c4e57fc")
@@ -41317,7 +41317,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "da6028b4-712d-5872-8300-37bfbbe3ac45")
@@ -41330,7 +41330,7 @@
 			)
 		)
 		(property "Leshy2Instance" "nrf2_host_irq_pullup"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "d0a837f5-a40c-5802-a689-b55f57a8e9e1")
@@ -41389,7 +41389,7 @@
 			(uuid "3253b04c-8626-5791-85bf-3cf62e31b4fc")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(uuid "6ee3187a-c26e-532b-a6e4-22e0d1312dab")
 			(effects
@@ -41401,7 +41401,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.51 0 90)
+			(at -0.51 0)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -41409,7 +41409,7 @@
 			(uuid "a560b660-e0bf-5325-8ee6-3dd7fde94c4a")
 		)
 		(pad "2" smd roundrect
-			(at 0.51 0 90)
+			(at 0.51 0)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -43703,7 +43703,7 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "343fb7a2-599c-5236-91c6-ac96661ad498")
-		(at 49.805 68.604999)
+		(at 50.805 82.854999)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C42"
@@ -46788,7 +46788,7 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "3ebb970b-9dff-56dd-bcf2-eb6374390337")
-		(at 43.305 85.104999)
+		(at 41.305 67.604999)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C56"
@@ -48452,7 +48452,7 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "ee118b8e-5dbe-5ab7-bee0-218d112bd039")
-		(at 41.105 70.055 90)
+		(at 38.355 75.055 90)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C47"
@@ -51163,11 +51163,11 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "8ec2b3e7-ac1b-51ec-baad-1c970563c166")
-		(at 56.365 80.324999 90)
+		(at 55.825 68.615)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R172"
-			(at 0 1.17 270)
+			(at 0 1.17 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "d3f0ba9c-bb72-5d73-b28c-bb68ca71fc14")
@@ -51180,7 +51180,7 @@
 			)
 		)
 		(property "Value" "Yageo RC0402FR-0710KL"
-			(at 0 -1.17 270)
+			(at 0 -1.17 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "770da38e-263a-5a0b-90e1-e6b123c8ed60")
@@ -51193,7 +51193,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "e3d5c894-57c8-5f08-8ade-97bd5ad36338")
@@ -51205,7 +51205,7 @@
 			)
 		)
 		(property "Description" "yageo_rc0402fr_0710kl"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "f476b802-0845-50d3-b5f6-e5dd908a675e")
@@ -51217,7 +51217,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "4302e835-98d3-52a7-8fc3-33deadf15003")
@@ -51230,7 +51230,7 @@
 			)
 		)
 		(property "Leshy2Instance" "nrf1_host_irq_pullup"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "dbec147a-cb3d-5fe2-b766-dc37bd8c8a3d")
@@ -51289,7 +51289,7 @@
 			(uuid "c2c3b01b-6980-565d-b34b-e872e1e3105b")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(uuid "41ed509a-3ee6-5002-8efe-2d29b5d204dc")
 			(effects
@@ -51301,7 +51301,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.51 0 90)
+			(at -0.51 0)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -51309,7 +51309,7 @@
 			(uuid "c40900c4-410d-5f38-8201-f44fbe3e23ba")
 		)
 		(pad "2" smd roundrect
-			(at 0.51 0 90)
+			(at 0.51 0)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -53969,11 +53969,11 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "751b802a-f751-525a-b8f7-9d31ff8b915d")
-		(at 30.115 69.574999 90)
+		(at 33.825 72.365)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R175"
-			(at 0 1.17 270)
+			(at 0 1.17 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "62a6db5b-b977-5ce8-8e3d-35fbfedcf058")
@@ -53986,7 +53986,7 @@
 			)
 		)
 		(property "Value" "Yageo RC0402FR-0710KL"
-			(at 0 -1.17 270)
+			(at 0 -1.17 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "9c436ca4-c27e-56b3-966c-2967e7e44b53")
@@ -53999,7 +53999,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "f7a4e114-1739-5c88-a592-ea3a69aa23bd")
@@ -54011,7 +54011,7 @@
 			)
 		)
 		(property "Description" "yageo_rc0402fr_0710kl"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "d30d4af6-3463-5011-bc62-838295342b23")
@@ -54023,7 +54023,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "d997e087-8442-5a5a-bb39-173a1b6fc027")
@@ -54036,7 +54036,7 @@
 			)
 		)
 		(property "Leshy2Instance" "nrf1_host_sck_pulldown"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "c4f9794e-8325-546d-b73a-e40923f63047")
@@ -54095,7 +54095,7 @@
 			(uuid "eaebaebf-d166-54fc-ad1e-50a57213b984")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(uuid "75310e2b-b100-5100-8995-627c0b3ddb2f")
 			(effects
@@ -54107,7 +54107,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.51 0 90)
+			(at -0.51 0)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -54115,7 +54115,7 @@
 			(uuid "37cfe17f-597a-5abf-a7b1-04a21cdfa86e")
 		)
 		(pad "2" smd roundrect
-			(at 0.51 0 90)
+			(at 0.51 0)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -56150,7 +56150,7 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "d067b8a1-173c-5663-bf3e-3cc9dd28c7c6")
-		(at 58.115 75.824999 90)
+		(at 56.615 80.824999 90)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R193"
@@ -56488,11 +56488,11 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "4c079e18-e742-5c5a-87a5-87ec4911fd0a")
-		(at 50.825 84.115)
+		(at 55.365 81.824999 90)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R50"
-			(at 0 1.17 180)
+			(at 0 1.17 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "b54b58c7-cb47-51aa-870c-a4d09c912dd7")
@@ -56505,7 +56505,7 @@
 			)
 		)
 		(property "Value" "Yageo RC0402FR-0710KL"
-			(at 0 -1.17 180)
+			(at 0 -1.17 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "d35e126a-2544-58b4-8963-3d5e494faa05")
@@ -56518,7 +56518,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "c1c96af2-b2ff-5cbc-911a-6b7cb075b25c")
@@ -56530,7 +56530,7 @@
 			)
 		)
 		(property "Description" "yageo_rc0402fr_0710kl"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "2422a552-c371-5492-bee9-81b1148f8edd")
@@ -56542,7 +56542,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "666ef9b0-8bc3-5e69-b638-b031eff9be7f")
@@ -56555,7 +56555,7 @@
 			)
 		)
 		(property "Leshy2Instance" "sd_host_d1_pullup"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "38d77622-9a6f-5a57-b468-7ed574567391")
@@ -56614,7 +56614,7 @@
 			(uuid "8bb0536a-c14c-5db4-a103-b70900e141ed")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(uuid "adf49f2d-22fc-55c0-bcd4-6d445b9518a2")
 			(effects
@@ -56626,7 +56626,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.51 0)
+			(at -0.51 0 90)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -56634,7 +56634,7 @@
 			(uuid "db35a23d-ae84-58b7-8f88-07232c15194e")
 		)
 		(pad "2" smd roundrect
-			(at 0.51 0)
+			(at 0.51 0 90)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -57164,11 +57164,11 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "0dee4ea7-d3b7-519d-bee7-e4eaaed45f75")
-		(at 56.855 75.805 90)
+		(at 57.15 74.525)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C13"
-			(at 0 1.16 270)
+			(at 0 1.16 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "7dfbcc46-a0d7-56ad-bcc5-46c66535d340")
@@ -57181,7 +57181,7 @@
 			)
 		)
 		(property "Value" "Yageo CC0402KRX7R9BB104"
-			(at 0 -1.16 270)
+			(at 0 -1.16 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "08beaf33-86cc-56cf-8a4c-d01ee35aea70")
@@ -57194,7 +57194,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "10bdbf95-f6c4-58c2-bf7c-a15acdd4ff0c")
@@ -57206,7 +57206,7 @@
 			)
 		)
 		(property "Description" "yageo_cc0402krx7r9bb104"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "f9c5fdf2-d7fd-57d7-81ce-4811ec925542")
@@ -57218,7 +57218,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "784e049a-8972-5618-9aba-8390b11c0b74")
@@ -57231,7 +57231,7 @@
 			)
 		)
 		(property "Leshy2Instance" "sd_host_buffer_bypass"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "aca8e75c-2190-5557-b001-1e8f8d978c19")
@@ -57290,7 +57290,7 @@
 			(uuid "e89fa49f-5b61-59ad-a24a-2bc4b74c06e5")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(uuid "758094f8-8da1-53d5-bef5-0f9726ef6f2c")
 			(effects
@@ -57302,7 +57302,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.48 0 90)
+			(at -0.48 0)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -57310,7 +57310,7 @@
 			(uuid "9fc20f38-9ccf-5a79-a363-eb8133c5a425")
 		)
 		(pad "2" smd roundrect
-			(at 0.48 0 90)
+			(at 0.48 0)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -57333,11 +57333,11 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "e2ac7402-efea-552a-8b8c-9fd69abd5099")
-		(at 55.365 62.575 90)
+		(at 51.575 64.364999)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R204"
-			(at 0 1.17 270)
+			(at 0 1.17 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "a750e21d-2b2a-53a5-ae32-5aefdadb67e8")
@@ -57350,7 +57350,7 @@
 			)
 		)
 		(property "Value" "Panasonic ERJ-2RKF22R0X"
-			(at 0 -1.17 270)
+			(at 0 -1.17 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "18e7d80a-b823-52b1-9f7d-d878fddad999")
@@ -57363,7 +57363,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "4507a27f-f6d1-5ef1-ad1d-71b29c6c6c04")
@@ -57375,7 +57375,7 @@
 			)
 		)
 		(property "Description" "panasonic_erj_2rkf22r0x"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "9edac96e-bc3d-5cb6-ba13-a22f41f35659")
@@ -57387,7 +57387,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "e6a20b96-0df8-5130-a193-fcd58e09003d")
@@ -57400,7 +57400,7 @@
 			)
 		)
 		(property "Leshy2Instance" "nrf2_mosi_series"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "59dbf2bf-18be-5f2b-826a-3a0bf857825a")
@@ -57459,7 +57459,7 @@
 			(uuid "fe95ec47-552d-553e-9939-73cf4a641054")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(uuid "9d452603-79ca-5e68-aae0-4afe419a5926")
 			(effects
@@ -57471,7 +57471,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.51 0 90)
+			(at -0.51 0)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -57479,7 +57479,7 @@
 			(uuid "4a808db8-dab9-534f-8a11-3faf6cd93fed")
 		)
 		(pad "2" smd roundrect
-			(at 0.51 0 90)
+			(at 0.51 0)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -59143,11 +59143,11 @@
 	(footprint "Inductor_SMD:L_Murata_DFE201610P"
 		(layer "B.Cu")
 		(uuid "1e54ee8e-25d8-518b-9446-c23450906511")
-		(at 51.895 65.444999)
+		(at 40.445 71.895 90)
 		(descr "Inductor, Murata, DFE201610P, 2.0x1.6x1.0mm, (https://www.murata.com/~/media/webrenewal/products/inductor/chip/tokoproducts/wirewoundmetalalloychiptype/m_dfe201610p.ashx)")
 		(tags "power chip flatwire")
 		(property "Reference" "L1"
-			(at 0 1.75 180)
+			(at 0 1.75 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "8b6f05bf-04e0-5103-adc0-f8e59e17c5c2")
@@ -59160,7 +59160,7 @@
 			)
 		)
 		(property "Value" "Abracon AOTA-B201610S3R3-101-T"
-			(at 0 -1.75 180)
+			(at 0 -1.75 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "a82d7303-486c-57a1-a84e-f433c4dea861")
@@ -59173,7 +59173,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "fe98be19-85e3-5c59-9c73-5e3e72f748ed")
@@ -59185,7 +59185,7 @@
 			)
 		)
 		(property "Description" "abracon_aota_b201610s3r3_101_t"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "f575eba9-82fb-51d2-9278-3e9d3086a304")
@@ -59197,7 +59197,7 @@
 			)
 		)
 		(property "KiLib_Generator" "inductor/SMD"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "5bffa291-c000-5983-a981-a6fbff3c4360")
@@ -59210,7 +59210,7 @@
 			)
 		)
 		(property "Leshy2Instance" "hub_rp_vreg_inductor"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "8e26f932-11e7-54a8-b5f4-26bb4b1acd6e")
@@ -59227,8 +59227,8 @@
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
-			(start -1.11 1.06)
-			(end 1.11 1.06)
+			(start 1.11 -1.06)
+			(end -1.11 -1.06)
 			(stroke
 				(width 0.12)
 				(type solid)
@@ -59237,8 +59237,8 @@
 			(uuid "50195643-5ce8-5c0f-8408-7b322152d455")
 		)
 		(fp_line
-			(start 1.11 -1.06)
-			(end -1.11 -1.06)
+			(start -1.11 1.06)
+			(end 1.11 1.06)
 			(stroke
 				(width 0.12)
 				(type solid)
@@ -59269,7 +59269,7 @@
 			(uuid "6a9510c8-6a63-5f0f-bf6b-984e59cd80d1")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(uuid "63a91729-94f1-5ed7-be6f-0bfda08089cd")
 			(effects
@@ -59281,7 +59281,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.725 0)
+			(at -0.725 0 90)
 			(size 0.55 1.6)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -59289,7 +59289,7 @@
 			(uuid "cb0d266e-75eb-5dd9-bd9d-8dbaa3e2293f")
 		)
 		(pad "2" smd roundrect
-			(at 0.725 0)
+			(at 0.725 0 90)
 			(size 0.55 1.6)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -60211,11 +60211,11 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "a78f1ee2-adc1-5dc6-9b11-5abbd7de9955")
-		(at 43.825 83.865)
+		(at 41.115 69.324999 90)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R145"
-			(at 0 1.17 180)
+			(at 0 1.17 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "def0a1ab-7077-5563-bf21-a37a4d5527fd")
@@ -60228,7 +60228,7 @@
 			)
 		)
 		(property "Value" "Yageo RC0402FR-0733RL"
-			(at 0 -1.17 180)
+			(at 0 -1.17 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "a1546098-bcf7-5fe4-af09-3db967e1512b")
@@ -60241,7 +60241,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "f0e164cf-292f-56d1-8f67-7278a7e2a1d7")
@@ -60253,7 +60253,7 @@
 			)
 		)
 		(property "Description" "yageo_rc0402fr_0733rl"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "b49be82d-0115-572f-9eb5-9c16fd50bfcb")
@@ -60265,7 +60265,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "8b298f84-a1e2-52c3-9afb-3a0c6c29999c")
@@ -60278,7 +60278,7 @@
 			)
 		)
 		(property "Leshy2Instance" "hub_rp_vreg_avdd_filter_res"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "133b014e-eaf1-50b2-a63f-18d8deae2bcb")
@@ -60337,7 +60337,7 @@
 			(uuid "ef758791-0a37-5dc2-b5c1-85c264341118")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(uuid "6e2c6284-4432-522b-aa3c-dbc75262f92f")
 			(effects
@@ -60349,7 +60349,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.51 0)
+			(at -0.51 0 90)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -60357,7 +60357,7 @@
 			(uuid "67b559e1-6282-5e72-9f1b-c5b844beeb52")
 		)
 		(pad "2" smd roundrect
-			(at 0.51 0)
+			(at 0.51 0 90)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -60380,7 +60380,7 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "aecd978e-1150-59a0-a756-c035f2021a42")
-		(at 38.075 68.615)
+		(at 38.075 69.365)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R191"
@@ -62060,7 +62060,7 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "d0cce7b5-9861-5fbe-8cb4-1b0168e99656")
-		(at 51.365 106.074999 90)
+		(at 50.865 105.574999 90)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R134"
@@ -63382,11 +63382,11 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "9ca661d0-a1d1-5f0f-aed3-40fe5e73c3d5")
-		(at 35.615 67.074999 90)
+		(at 38.325 67.615)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R177"
-			(at 0 1.17 270)
+			(at 0 1.17 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "3e1976eb-8635-5438-9a9f-51d1b758f31e")
@@ -63399,7 +63399,7 @@
 			)
 		)
 		(property "Value" "Panasonic ERJ-2RKF22R0X"
-			(at 0 -1.17 270)
+			(at 0 -1.17 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "5eaa34d3-a8ed-5871-948b-af271ffb82bc")
@@ -63412,7 +63412,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "82783bbf-72ca-5e27-b0a7-628e58cd335b")
@@ -63424,7 +63424,7 @@
 			)
 		)
 		(property "Description" "panasonic_erj_2rkf22r0x"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "456e98f4-9edc-5ddb-b630-52984eed6e4a")
@@ -63436,7 +63436,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "f8ff4e43-a2b4-5e49-a9de-69d8157d70aa")
@@ -63449,7 +63449,7 @@
 			)
 		)
 		(property "Leshy2Instance" "nrf1_miso_series"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "51fa3a92-7038-50c0-9f83-b9c6a3c35444")
@@ -63508,7 +63508,7 @@
 			(uuid "b59d1b89-7410-5e7f-9408-00115118e869")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(uuid "b4874c1c-8d0f-5152-9913-49a27ff8862d")
 			(effects
@@ -63520,7 +63520,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.51 0 90)
+			(at -0.51 0)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -63528,7 +63528,7 @@
 			(uuid "9e0de553-a419-597a-9175-ae977bcebf9c")
 		)
 		(pad "2" smd roundrect
-			(at 0.51 0 90)
+			(at 0.51 0)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -67746,7 +67746,7 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "0bc3cee2-acc6-5e61-a47e-eab7a1863170")
-		(at 54.325 68.615)
+		(at 51.575 66.114999)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R130"
@@ -68744,7 +68744,7 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "c3954f46-babc-5893-a2bd-3aa9dec351b1")
-		(at 37.365 72.824999 90)
+		(at 57.865 72.574999 90)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R173"
@@ -70965,11 +70965,11 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "8cb9c5c1-ef88-56cb-ac5c-3430a2a4d8da")
-		(at 41.325 67.115)
+		(at 37.365 72.824999 90)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R153"
-			(at 0 1.17 180)
+			(at 0 1.17 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "c3c3a8a6-12f1-5640-9125-cf5b038e88ac")
@@ -70982,7 +70982,7 @@
 			)
 		)
 		(property "Value" "Yageo RC0402FR-0710KL"
-			(at 0 -1.17 180)
+			(at 0 -1.17 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "f656e050-9ca5-5555-bf83-30ddd0277019")
@@ -70995,7 +70995,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "74195bb9-830e-556d-a179-a533b2d7f3ff")
@@ -71007,7 +71007,7 @@
 			)
 		)
 		(property "Description" "yageo_rc0402fr_0710kl"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "ce9b3c42-ecfa-5eb6-b39f-7d45dc55c2f7")
@@ -71019,7 +71019,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "e911cebb-8b94-595b-ab39-a74afa444b74")
@@ -71032,7 +71032,7 @@
 			)
 		)
 		(property "Leshy2Instance" "nrf0_host_miso_pulldown"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "7b3a4244-2c15-50bb-aa94-09204bd6f685")
@@ -71091,7 +71091,7 @@
 			(uuid "fc4172d2-2969-507e-8d27-65de73f61516")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(uuid "e2704131-a66f-5ab0-860d-00d11af74c38")
 			(effects
@@ -71103,7 +71103,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.51 0)
+			(at -0.51 0 90)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -71111,7 +71111,7 @@
 			(uuid "4bc1e907-fba5-58d9-a2c4-d1f4415e1f88")
 		)
 		(pad "2" smd roundrect
-			(at 0.51 0)
+			(at 0.51 0 90)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -72706,11 +72706,11 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "63326dec-2e7e-5112-afe2-53793ed4cdb9")
-		(at 47.555 68.604999)
+		(at 53.855 79.555 90)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C41"
-			(at 0 1.16 180)
+			(at 0 1.16 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "2fd24223-2871-502a-b086-6fa3ca107ac9")
@@ -72723,7 +72723,7 @@
 			)
 		)
 		(property "Value" "Yageo CC0402KRX7R9BB104"
-			(at 0 -1.16 180)
+			(at 0 -1.16 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "0dbfba12-83f0-5f08-b290-598053d36d96")
@@ -72736,7 +72736,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "694e7b34-f43e-5413-ad62-8c28f3bc45ed")
@@ -72748,7 +72748,7 @@
 			)
 		)
 		(property "Description" "yageo_cc0402krx7r9bb104"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "3b9ab061-ea34-571f-9445-e88dd20b016f")
@@ -72760,7 +72760,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "f236f5ce-4beb-5c0a-98eb-57004a358d90")
@@ -72773,7 +72773,7 @@
 			)
 		)
 		(property "Leshy2Instance" "hub_rp_dvdd10_bypass"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "00fd317b-3276-538f-8556-8e7ffa6a3df8")
@@ -72832,7 +72832,7 @@
 			(uuid "7cfebe8c-c28e-5d8a-b72f-34d240a6d784")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(uuid "8d68a838-38db-549c-a3bb-5fc24c145229")
 			(effects
@@ -72844,7 +72844,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.48 0)
+			(at -0.48 0 90)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -72852,7 +72852,7 @@
 			(uuid "7fcaea09-5c95-59bc-9a20-63816f45a6a1")
 		)
 		(pad "2" smd roundrect
-			(at 0.48 0)
+			(at 0.48 0 90)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -73646,11 +73646,11 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "d0c6fca1-78d0-5b5e-8f81-82010758b5a7")
-		(at 52.055 68.604999)
+		(at 38.855 77.805 90)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C46"
-			(at 0 1.16 180)
+			(at 0 1.16 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "5a87738e-3695-5cd1-af63-2f00fd45be5f")
@@ -73663,7 +73663,7 @@
 			)
 		)
 		(property "Value" "Yageo CC0402KRX7R9BB104"
-			(at 0 -1.16 180)
+			(at 0 -1.16 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "98d49f9e-ffaf-5037-bc17-0efbd04ef4e7")
@@ -73676,7 +73676,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "f8a897f5-a783-58b7-a56a-051bffb8fa29")
@@ -73688,7 +73688,7 @@
 			)
 		)
 		(property "Description" "yageo_cc0402krx7r9bb104"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "18f022aa-57ae-5376-afd5-c7488dcafbc1")
@@ -73700,7 +73700,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "d4d4333d-813d-5089-972c-2243c7e35e38")
@@ -73713,7 +73713,7 @@
 			)
 		)
 		(property "Leshy2Instance" "hub_rp_iovdd24_bypass"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "30fae03f-d63d-5953-a289-4a499db41f7d")
@@ -73772,7 +73772,7 @@
 			(uuid "27d31214-04d2-513b-9bbc-478890f01784")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(uuid "2c93f997-4386-5108-8e1f-80786a514675")
 			(effects
@@ -73784,7 +73784,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.48 0)
+			(at -0.48 0 90)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -73792,7 +73792,7 @@
 			(uuid "47a846cf-27ac-5263-bcb7-3e3f136cf3df")
 		)
 		(pad "2" smd roundrect
-			(at 0.48 0)
+			(at 0.48 0 90)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -74378,7 +74378,7 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "bac390e7-786f-5cbd-a6e1-32f6fedb0bb9")
-		(at 53.855 79.555 90)
+		(at 55.105 79.555 90)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C45"
@@ -78045,7 +78045,7 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "0b6cde28-f760-5452-b56f-f573e87380a4")
-		(at 56.865 78.074999 90)
+		(at 56.865 78.574999 90)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R49"
@@ -78552,11 +78552,11 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "b9d063db-abc2-524a-bf6b-260ba013643c")
-		(at 41.605 85.055 90)
+		(at 49.055 68.604999)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C58"
-			(at 0 1.16 270)
+			(at 0 1.16 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "b2807c1f-e537-5353-80c1-8f1d1671dbfa")
@@ -78569,7 +78569,7 @@
 			)
 		)
 		(property "Value" "TDK C1005X5R0J475K050BC"
-			(at 0 -1.16 270)
+			(at 0 -1.16 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "68693b9c-4df2-5bd1-bb0e-526b73ce3b92")
@@ -78582,7 +78582,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "92cb639b-5c18-575c-a524-338f677f7385")
@@ -78594,7 +78594,7 @@
 			)
 		)
 		(property "Description" "tdk_c1005x5r0j475k050bc"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "73b105b8-a68f-5ad1-9e9d-741e88590b99")
@@ -78606,7 +78606,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "b125db53-e1bb-546c-b50b-bf31d0cc69d1")
@@ -78619,7 +78619,7 @@
 			)
 		)
 		(property "Leshy2Instance" "hub_rp_vreg_vin_bulk"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "6c8980f0-814d-548b-8512-0963aa11c382")
@@ -78678,7 +78678,7 @@
 			(uuid "bd642e7a-3770-579d-95ad-0c8ac9babc64")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(uuid "b7943cf1-0fd9-5d9b-8e49-c0ea23528092")
 			(effects
@@ -78690,7 +78690,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.48 0 90)
+			(at -0.48 0)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -78698,7 +78698,7 @@
 			(uuid "a0db8c2f-7952-5316-85ce-b5b1d7f0c821")
 		)
 		(pad "2" smd roundrect
-			(at 0.48 0 90)
+			(at 0.48 0)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -79486,7 +79486,7 @@
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "cabb7a91-3dcd-5ba6-80a8-fd8a86aac802")
-		(at 33.075 72.365)
+		(at 31.575 71.365)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R174"
@@ -84482,11 +84482,11 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "c4d1a9b4-437e-55b4-a70a-bb997bcdec0a")
-		(at 55.105 79.555 90)
+		(at 51.305 68.604999)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C51"
-			(at 0 1.16 270)
+			(at 0 1.16 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "f49e3a5e-fb22-50a6-9a0e-6ff26789c5d9")
@@ -84499,7 +84499,7 @@
 			)
 		)
 		(property "Value" "Yageo CC0402KRX7R9BB104"
-			(at 0 -1.16 270)
+			(at 0 -1.16 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "1104b980-3218-5353-95e9-8a7f5a535d7f")
@@ -84512,7 +84512,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "a128ac82-066b-5cea-87b2-ede8bb91a41b")
@@ -84524,7 +84524,7 @@
 			)
 		)
 		(property "Description" "yageo_cc0402krx7r9bb104"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "ab1f968b-fd87-5c65-a5a3-91aff5a2835b")
@@ -84536,7 +84536,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "40bf2d7a-a00a-5809-accb-7fd7fc10dd76")
@@ -84549,7 +84549,7 @@
 			)
 		)
 		(property "Leshy2Instance" "hub_rp_iovdd60_bypass"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "c508e555-1f07-5d7b-bf14-811fe8dd31d9")
@@ -84608,7 +84608,7 @@
 			(uuid "7ed18567-d708-5cbd-8312-3eeb5821a0e2")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(uuid "9949b961-e6ad-5a6d-acff-ece9cd3c4702")
 			(effects
@@ -84620,7 +84620,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.48 0 90)
+			(at -0.48 0)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -84628,7 +84628,7 @@
 			(uuid "1f61f2ec-5f13-5037-8b44-8f856abc1b04")
 		)
 		(pad "2" smd roundrect
-			(at 0.48 0 90)
+			(at 0.48 0)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -86352,7 +86352,7 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "18640ba8-ef18-506c-ba16-804fa1538cd0")
-		(at 55.805 65.104999)
+		(at 46.805 68.604999)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C57"

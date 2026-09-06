@@ -6,7 +6,7 @@
   "phase_complete": false,
   "sources": {
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "fca1701ac73ab8f20719ab3c6a92937953bd0f75344ccfe46f010b1d78859f23"
+    "routing_policy_sha256": "b543e99c82fb663927b57280f71b8208a95799af506a8aff38325d8b55f898da"
   },
   "summary": {
     "board_count": 2,
@@ -17,8 +17,10 @@
     "current_total_unconnected_count": 3265,
     "resolved_connection_count": 0,
     "analog_remaining_connection_count": 263,
-    "placement_locality_pair_count": 300,
+    "placement_locality_pair_count": 310,
     "placement_locality_violation_count": 0,
+    "placement_critical_pad_pair_count": 21,
+    "placement_critical_pad_pair_violation_count": 0,
     "drc_violation_count": 0,
     "assigned_drc_exception_count": 0
   },
@@ -26,7 +28,7 @@
     "decision": "retain_80x150_mm",
     "status": "locality_constrained_placement_proven_routing_capacity_open",
     "maximum_same_face_courtyard_occupancy_percent": 61.395,
-    "evidence": "all 1208 exact footprints place without a same-face hard conflict; all 300 local-owner constraints pass; both native DRC reports are clean; the accepted 5-mm routing corridor remains usable",
+    "evidence": "all 1208 exact footprints place without a same-face hard conflict; all 310 local-owner constraints and 21 critical pad-pair limits pass; both native DRC reports are clean; the accepted 5-mm routing corridor remains usable",
     "why_not_expand_now": "the corrected locality-constrained placement fits the current outline and no legal power, RF or digital route has yet demonstrated a capacity blockage; the route restart deliberately removed the old invalid evidence",
     "expansion_candidate_if_triggered_mm": [
       85.0,
@@ -45,7 +47,7 @@
     {
       "project": "LESHY2-UI-R2",
       "board": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "board_sha256": "3ced198153b3ba6749d92b50900869d2bca3e5ba6588aa762183fea0eef5dba5",
+      "board_sha256": "e1276ed06306b83b513d7fbbfc049071f878b1bc0c5a49bbe7b134c501db60fc",
       "board_size_mm": [
         80.05,
         150.05
@@ -118,9 +120,9 @@
         }
       },
       "drc": {
-        "report_sha256": "023edfd995a53e06afcfac0c7a9375d2e8e641b5e2b970e24c782655da1d97fe",
+        "report_sha256": "0243da74493284520df99cc8b6b1f9b1aed03dcd64233e443194c17aa2150bb8",
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-06T07:14:06",
+        "checked_at": "2026-09-06T08:39:10",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,
@@ -132,7 +134,7 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "board_sha256": "298d1563b7c5589d9825f1a7ef246137e3daf5090ce866003a397e0b3baf453f",
+      "board_sha256": "f593df1253087dcb63d5fe4db2254cec1164990d3f3863cd157e612084ea85ab",
       "board_size_mm": [
         80.05,
         150.05
@@ -205,9 +207,9 @@
         }
       },
       "drc": {
-        "report_sha256": "828666831f817fd686a54c5055c9111d6147a5f66c70c22dea882ee5d85db4c3",
+        "report_sha256": "a00ebe1c7302b6deb738e03ad0c295bd221a8140a5c92b1d8b119a2a168c3033",
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-06T07:14:08",
+        "checked_at": "2026-09-06T08:39:13",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,

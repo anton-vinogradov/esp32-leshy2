@@ -348,6 +348,26 @@
       "method": "reviewed H6.0.3 charger-locality correction",
       "reason": "turn the BQ25792 switching pins toward its inductor and move the complete converter island away from the board edge so every high-frequency support part can reach its owning pad directly"
     },
+    "charger_btst1_cap": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        69.355,
+        69.555
+      ],
+      "rotation_deg": 90.0,
+      "method": "reviewed H6.0.3 charger-locality correction",
+      "reason": "freeze the first BQ25792 bootstrap capacitor beside pads 4 and 28 so later charger-support packing cannot displace either hot connection"
+    },
+    "charger_btst2_cap": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        62.605,
+        69.805
+      ],
+      "rotation_deg": 90.0,
+      "method": "reviewed H6.0.3 charger-locality correction",
+      "reason": "freeze the second BQ25792 bootstrap capacitor beside pads 19 and 26 so later charger-support packing cannot displace either hot connection"
+    },
     "ext_en_pulldown": {
       "frame": "rear-inner",
       "centre_mm": [
@@ -480,6 +500,26 @@
       "method": "reviewed H6.0.2 oscillator-locality correction",
       "reason": "turn the Hub RP crystal pins toward Y1 so both resonator branches stay local and via-free"
     },
+    "sd_host_buffer": {
+      "frame": "ui-inner",
+      "centre_mm": [
+        54.645,
+        75.925
+      ],
+      "rotation_deg": 90.0,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "freeze the SD level buffer beside the Hub RP while reserving its right-hand supply-pad escape for the local bypass capacitor"
+    },
+    "sd_host_buffer_bypass": {
+      "frame": "ui-inner",
+      "centre_mm": [
+        57.15,
+        74.525
+      ],
+      "rotation_deg": 0.0,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "put the SD buffer bypass directly beside U8 pad 8 instead of routing its high-frequency return around the surrounding RP bypass bank"
+    },
     "hub_rp_clock_load_xin": {
       "frame": "ui-inner",
       "centre_mm": [
@@ -579,6 +619,26 @@
       "rotation_deg": 270.0,
       "method": "reviewed H6.0.2 oscillator-locality correction",
       "reason": "turn the RF RP crystal pins toward Y1 while retaining the same square courtyard and controller centre"
+    },
+    "codec_i2s_din_iso": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        51.195,
+        32.145
+      ],
+      "rotation_deg": 0.0,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "freeze the I2S isolator in its clear corridor while reserving the left-hand supply-pad escape for its bypass capacitor"
+    },
+    "codec_i2s_din_iso_bypass": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        54.245,
+        32.795
+      ],
+      "rotation_deg": 0.0,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "place the I2S isolator bypass directly beside U77 pad 5, outside the J10 through-hole field, instead of leaving a 6.76 mm supply-pad connection"
     },
     "cc": {
       "frame": "rear-inner",
@@ -1086,7 +1146,7 @@
       "ext_ovlo_top": "ext_efuse",
       "ext_rilm": "ext_efuse",
       "main_buck_bootstrap_cap": "main_buck",
-      "main_buck_bootstrap_link": "main_buck",
+      "main_buck_bootstrap_link": "main_buck_bootstrap_cap",
       "main_buck_vcc_cap": "main_buck",
       "main_fb_bottom": "main_buck",
       "main_fb_top": "main_buck",
@@ -1107,6 +1167,16 @@
       "main_efuse_pg_bottom": "main_efuse",
       "main_efuse_pg_top": "main_efuse",
       "main_efuse_rilm": "main_efuse",
+      "hub_rp_vreg_avdd_filter_cap": "hub_rp",
+      "hub_rp_vreg_avdd_filter_res": "hub_rp",
+      "hub_rp_vreg_inductor": "hub_rp",
+      "hub_rp_vreg_output_bulk": "hub_rp",
+      "hub_rp_vreg_vin_bulk": "hub_rp",
+      "rf_rp_vreg_avdd_filter_cap": "rf_rp",
+      "rf_rp_vreg_avdd_filter_res": "rf_rp",
+      "rf_rp_vreg_inductor": "rf_rp",
+      "rf_rp_vreg_output_bulk": "rf_rp",
+      "rf_rp_vreg_vin_bulk": "rf_rp",
       "voice_fb_bottom": "voice_buck",
       "voice_fb_top": "voice_buck",
       "voice_ff_cap": "voice_fb_top",
@@ -1130,7 +1200,7 @@
       "aon_efuse_output_cap": 0,
       "aon_efuse_ovlo_bottom": 0,
       "aon_efuse_ovlo_top": 0,
-      "aon_efuse_rilim": 0,
+      "aon_efuse_rilim": -60,
       "aon_input_cap": 0,
       "aon_inductor": 10,
       "aon_output_cap": 0,
@@ -1141,7 +1211,7 @@
       "charger_btst2_cap": -40,
       "charger_ilim_bottom": 0,
       "charger_ilim_top": 0,
-      "charger_inductor": -30,
+      "charger_inductor": -100,
       "charger_pmid_cap0": 0,
       "charger_pmid_cap1": 0,
       "charger_pmid_cap2": 0,
@@ -1196,8 +1266,8 @@
       "pack_diag_timer_res": 0,
       "pack_diag_trigger_pulldown": 0,
       "pack_dis_gate_cap": -20,
-      "pack_fuse0": -20,
-      "pack_fuse1": -20,
+      "pack_fuse0": -100,
+      "pack_fuse1": -100,
       "pack_gauge": -30,
       "pack_gauge_scl_pullup": 0,
       "pack_gauge_sda_pullup": 0,
@@ -1232,7 +1302,7 @@
       "ext_buck_ff_cap": 0,
       "ext_buck_hf_input_cap": 0,
       "ext_buck_input_cap": 10,
-      "ext_inductor": 20,
+      "ext_inductor": -100,
       "ext_buck_output_cap0": 0,
       "ext_buck_output_cap1": 0,
       "ext_dvdt_cap": 0,
@@ -1242,8 +1312,8 @@
       "ext_ovlo_bottom": 0,
       "ext_ovlo_top": 0,
       "ext_rilm": 0,
-      "main_buck_bootstrap_cap": 0,
-      "main_buck_bootstrap_link": 0,
+      "main_buck_bootstrap_cap": -90,
+      "main_buck_bootstrap_link": -80,
       "main_buck_vcc_cap": 0,
       "main_fb_bottom": 0,
       "main_fb_top": 0,
@@ -1252,7 +1322,7 @@
       "main_input_cap": 10,
       "main_input_cap_1": 10,
       "main_input_cap_2": 10,
-      "main_inductor": 20,
+      "main_inductor": -100,
       "main_output_cap0": 0,
       "main_output_cap1": 0,
       "main_output_cap2": 0,
@@ -1269,20 +1339,51 @@
       "voice_ff_cap": 0,
       "voice_hf_input_cap": 0,
       "voice_input_cap": 10,
-      "voice_inductor": 20,
+      "voice_inductor": -100,
       "voice_output_cap0": 0,
       "voice_output_cap1": 0,
-      "voice_efuse_dvdt_cap": 0,
+      "voice_efuse_dvdt_cap": -60,
       "voice_efuse_en_pullup": 0,
-      "voice_efuse_itimer_cap": 0,
-      "voice_efuse_output_cap": 10,
+      "voice_efuse_itimer_cap": -60,
+      "voice_efuse_output_cap": -60,
       "voice_efuse_ovlo_bottom": 0,
       "voice_efuse_ovlo_top": 0,
       "voice_efuse_pg_bottom": 0,
       "voice_efuse_pg_top": 0,
-      "voice_efuse_rilm": 0
+      "voice_efuse_rilm": -60,
+      "hub_rp_vreg_inductor": -100,
+      "hub_rp_vreg_output_bulk": -90,
+      "hub_rp_vreg_vin_bulk": -90,
+      "hub_rp_vreg_avdd_filter_cap": -80,
+      "hub_rp_vreg_avdd_filter_res": -80,
+      "rf_rp_vreg_inductor": -100,
+      "rf_rp_vreg_output_bulk": -90,
+      "rf_rp_vreg_vin_bulk": -90,
+      "rf_rp_vreg_avdd_filter_cap": -80,
+      "rf_rp_vreg_avdd_filter_res": -80,
+      "charger_pmid_hf_cap": -90,
+      "charger_regn_cap": -90,
+      "charger_vbus_hf_cap": -90,
+      "codec_i2s_din_iso_bypass": -60,
+      "hub_rp_iovdd60_bypass": -60,
+      "hub_rp_usb_otp_vdd_bypass": -60,
+      "sd_host_buffer_bypass": -60
     },
     "locality_pad_aware_instances": [
+      "hub_rp_vreg_avdd_filter_cap",
+      "hub_rp_vreg_avdd_filter_res",
+      "hub_rp_vreg_inductor",
+      "hub_rp_vreg_output_bulk",
+      "hub_rp_vreg_vin_bulk",
+      "rf_rp_vreg_avdd_filter_cap",
+      "rf_rp_vreg_avdd_filter_res",
+      "rf_rp_vreg_inductor",
+      "rf_rp_vreg_output_bulk",
+      "rf_rp_vreg_vin_bulk",
+      "hub_rp_iovdd60_bypass",
+      "hub_rp_usb_otp_vdd_bypass",
+      "sd_host_buffer_bypass",
+      "codec_i2s_din_iso_bypass",
       "charger_bat_cap0",
       "charger_batp_res",
       "charger_btst1_cap",
@@ -1350,6 +1451,29 @@
       "pack_supply_or",
       "pack_system_diode"
     ],
+    "locality_pad_aligned_instances": [
+      "aon_inductor",
+      "charger_btst1_cap",
+      "charger_btst2_cap",
+      "charger_inductor",
+      "charger_pmid_hf_cap",
+      "charger_regn_cap",
+      "charger_vbus_hf_cap",
+      "codec_i2s_din_iso_bypass",
+      "ext_inductor",
+      "hub_rp_iovdd60_bypass",
+      "hub_rp_usb_otp_vdd_bypass",
+      "hub_rp_vreg_inductor",
+      "main_buck_bootstrap_cap",
+      "main_buck_bootstrap_link",
+      "main_inductor",
+      "pack_cp_cap",
+      "pack_fuse0",
+      "pack_fuse1",
+      "rf_rp_vreg_inductor",
+      "sd_host_buffer_bypass",
+      "voice_inductor"
+    ],
     "locality_anchor_audit_instances": [
       "pack_fuse0",
       "pack_fuse1",
@@ -1361,7 +1485,7 @@
       "pack_shunt": "BATTERY_STACK_NEGATIVE_CELL_SIDE"
     },
     "locality_max_gap_mm": {
-      "aon_efuse_input_cap": 3.0,
+      "aon_efuse_input_cap": 3.5,
       "aon_efuse_output_cap": 3.0,
       "aon_efuse_ovlo_bottom": 2.0,
       "aon_efuse_ovlo_top": 2.0,
@@ -1390,12 +1514,12 @@
       "charger_sys_cap3": 1.0,
       "charger_sys_cap4": 1.0,
       "charger_sys_hf_cap": 1.5,
-      "charger_ts_bottom": 5.0,
+      "charger_ts_bottom": 5.5,
       "charger_ts_ntc": 5.0,
       "charger_ts_top": 5.0,
-      "charger_vbus_cap0": 1.0,
+      "charger_vbus_cap0": 3.25,
       "charger_vbus_cap1": 2.0,
-      "charger_vbus_hf_cap": 1.0,
+      "charger_vbus_hf_cap": 2.0,
       "audio_capture_buffer_bypass": 5.0,
       "pd_cc1_cap": 2.0,
       "pd_cc2_cap": 2.0,
@@ -1412,8 +1536,8 @@
       "product_usb_vpwr_cap": 2.0,
       "pack_admission_bulk_cap": 2.0,
       "pack_admission_bypass": 1.5,
-      "pack_admission_reset_cap": 4.0,
-      "pack_admission_reset_pullup": 2.25,
+      "pack_admission_reset_cap": 6.0,
+      "pack_admission_reset_pullup": 5.5,
       "pack_alrt_pullup": 5.0,
       "pack_aoldo_cap": 1.5,
       "pack_batts_filter_cap": 3.0,
@@ -1423,13 +1547,13 @@
       "pack_chg_gate_cap": 1.5,
       "pack_cp_cap": 1.5,
       "pack_diag_gate_pulldown": 1.5,
-      "pack_diag_lockout_cap": 2.0,
+      "pack_diag_lockout_cap": 2.5,
       "pack_diag_lockout_res": 4.0,
       "pack_diag_switch": 3.0,
       "pack_diag_timer_bypass": 1.5,
       "pack_diag_timer_cap": 6.0,
       "pack_diag_timer_res": 3.5,
-      "pack_diag_trigger_pulldown": 4.0,
+      "pack_diag_trigger_pulldown": 4.25,
       "pack_dis_gate_cap": 1.5,
       "pack_fuse0": 2.0,
       "pack_fuse1": 2.0,
@@ -1466,7 +1590,7 @@
       "ext_buck_fb_top": 0.75,
       "ext_buck_ff_cap": 0.75,
       "ext_buck_hf_input_cap": 0.75,
-      "ext_buck_input_cap": 0.75,
+      "ext_buck_input_cap": 2.0,
       "ext_buck_output_cap0": 0.75,
       "ext_buck_output_cap1": 0.75,
       "ext_inductor": 2.0,
@@ -1486,8 +1610,8 @@
       "main_hf_input_cap": 0.75,
       "main_inductor": 3.0,
       "main_input_cap": 2.25,
-      "main_input_cap_1": 2.25,
-      "main_input_cap_2": 2.25,
+      "main_input_cap_1": 4.0,
+      "main_input_cap_2": 4.0,
       "main_output_cap0": 0.75,
       "main_output_cap1": 0.75,
       "main_output_cap2": 0.75,
@@ -1499,25 +1623,207 @@
       "main_efuse_pg_bottom": 2.0,
       "main_efuse_pg_top": 2.0,
       "main_efuse_rilm": 2.0,
+      "hub_rp_vreg_avdd_filter_cap": 1.5,
+      "hub_rp_vreg_avdd_filter_res": 1.5,
+      "hub_rp_vreg_inductor": 0.75,
+      "hub_rp_vreg_output_bulk": 1.5,
+      "hub_rp_vreg_vin_bulk": 1.5,
+      "hub_rp_iovdd50_bypass": 3.25,
+      "hub_rp_qspi_iovdd_bypass": 3.25,
+      "rf_rp_vreg_avdd_filter_cap": 1.5,
+      "rf_rp_vreg_avdd_filter_res": 1.5,
+      "rf_rp_vreg_inductor": 0.75,
+      "rf_rp_vreg_output_bulk": 1.5,
+      "rf_rp_vreg_vin_bulk": 1.5,
       "voice_fb_bottom": 0.75,
       "voice_fb_top": 0.75,
       "voice_ff_cap": 0.75,
       "voice_hf_input_cap": 0.75,
       "voice_inductor": 2.0,
-      "voice_input_cap": 0.75,
+      "voice_input_cap": 2.0,
       "voice_output_cap0": 0.75,
       "voice_output_cap1": 0.75,
       "voice_efuse_dvdt_cap": 2.0,
       "voice_efuse_en_pullup": 2.0,
       "voice_efuse_itimer_cap": 2.0,
       "voice_efuse_output_cap": 3.0,
-      "voice_efuse_ovlo_bottom": 2.0,
-      "voice_efuse_ovlo_top": 2.0,
-      "voice_efuse_pg_bottom": 2.0,
-      "voice_efuse_pg_top": 2.0,
+      "voice_efuse_ovlo_bottom": 5.0,
+      "voice_efuse_ovlo_top": 5.0,
+      "voice_efuse_pg_bottom": 5.0,
+      "voice_efuse_pg_top": 5.0,
       "voice_efuse_rilm": 2.0,
       "unit_signal_iso_vcca_bypass": 1.5
     },
+    "critical_pad_pairs": [
+      {
+        "project": "LESHY2-UI-R2",
+        "canonical_net": "HUB_RP_VREG_LX_SW",
+        "first_instance": "hub_rp",
+        "second_instance": "hub_rp_vreg_inductor",
+        "maximum_distance_mm": 4.5,
+        "reason": "RP2354 internal-regulator switching loop"
+      },
+      {
+        "project": "LESHY2-UI-R2",
+        "canonical_net": "SD_CARD_3V3",
+        "first_instance": "sd_host_buffer",
+        "second_instance": "sd_host_buffer_bypass",
+        "maximum_distance_mm": 1.5,
+        "reason": "local SD-buffer high-frequency supply bypass"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "AON_BUCK_SW",
+        "first_instance": "aon_buck",
+        "second_instance": "aon_inductor",
+        "maximum_distance_mm": 2.25,
+        "reason": "always-on buck switching loop"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "CHARGER_BTST1",
+        "first_instance": "nvdc_charger",
+        "second_instance": "charger_btst1_cap",
+        "maximum_distance_mm": 2.0,
+        "reason": "BQ25792 first bootstrap loop"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "CHARGER_BTST2",
+        "first_instance": "nvdc_charger",
+        "second_instance": "charger_btst2_cap",
+        "maximum_distance_mm": 2.0,
+        "reason": "BQ25792 second bootstrap loop"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "CHARGER_PMID",
+        "first_instance": "nvdc_charger",
+        "second_instance": "charger_pmid_hf_cap",
+        "maximum_distance_mm": 3.75,
+        "reason": "BQ25792 PMID high-frequency bypass path"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "CHARGER_REGN",
+        "first_instance": "nvdc_charger",
+        "second_instance": "charger_regn_cap",
+        "maximum_distance_mm": 4.75,
+        "reason": "BQ25792 REGN local decoupling path"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "CHARGER_SW1",
+        "first_instance": "nvdc_charger",
+        "second_instance": "charger_inductor",
+        "maximum_distance_mm": 5.0,
+        "reason": "BQ25792 first switch-to-coupled-inductor path"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "CHARGER_SW1",
+        "first_instance": "nvdc_charger",
+        "second_instance": "charger_btst1_cap",
+        "maximum_distance_mm": 3.25,
+        "reason": "BQ25792 first switch-side bootstrap return"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "CHARGER_SW2",
+        "first_instance": "nvdc_charger",
+        "second_instance": "charger_inductor",
+        "maximum_distance_mm": 5.0,
+        "reason": "BQ25792 second switch-to-coupled-inductor path"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "CHARGER_SW2",
+        "first_instance": "nvdc_charger",
+        "second_instance": "charger_btst2_cap",
+        "maximum_distance_mm": 3.25,
+        "reason": "BQ25792 second switch-side bootstrap return"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "EXT_BUCK_SW",
+        "first_instance": "ext_buck",
+        "second_instance": "ext_inductor",
+        "maximum_distance_mm": 3.0,
+        "reason": "external-domain buck switching loop"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "MAIN_BUCK_BST",
+        "first_instance": "main_buck",
+        "second_instance": "main_buck_bootstrap_cap",
+        "maximum_distance_mm": 1.5,
+        "reason": "main buck bootstrap capacitor hot side"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "MAIN_BUCK_BST_LINK",
+        "first_instance": "main_buck_bootstrap_cap",
+        "second_instance": "main_buck_bootstrap_link",
+        "maximum_distance_mm": 1.5,
+        "reason": "main buck bootstrap capacitor series link"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "MAIN_BUCK_SW",
+        "first_instance": "main_buck",
+        "second_instance": "main_inductor",
+        "maximum_distance_mm": 3.25,
+        "reason": "main buck switch-to-inductor path"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "MAIN_BUCK_SW",
+        "first_instance": "main_buck",
+        "second_instance": "main_buck_bootstrap_link",
+        "maximum_distance_mm": 4.25,
+        "reason": "main buck switch-side bootstrap return"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "PACK_CHARGE_PUMP",
+        "first_instance": "pack_gauge",
+        "second_instance": "pack_cp_cap",
+        "maximum_distance_mm": 3.0,
+        "reason": "MAX17320 charge-pump flying capacitor"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "RF_RP_VREG_LX_SW",
+        "first_instance": "rf_rp",
+        "second_instance": "rf_rp_vreg_inductor",
+        "maximum_distance_mm": 4.5,
+        "reason": "RF RP2354 internal-regulator switching loop"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "VOICE_BUCK_SW",
+        "first_instance": "voice_buck",
+        "second_instance": "voice_inductor",
+        "maximum_distance_mm": 2.5,
+        "reason": "voice-domain buck switching loop"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "PD_NEGOTIATED_VBUS",
+        "first_instance": "nvdc_charger",
+        "second_instance": "charger_vbus_hf_cap",
+        "maximum_distance_mm": 3.0,
+        "reason": "BQ25792 VBUS high-frequency input bypass"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "3V3_MAIN",
+        "first_instance": "codec_i2s_din_iso",
+        "second_instance": "codec_i2s_din_iso_bypass",
+        "maximum_distance_mm": 1.75,
+        "reason": "local I2S isolator high-frequency supply bypass"
+      }
+    ],
     "hard_locked": [
       "display_connector",
       "nrf0_rf_board_connector",

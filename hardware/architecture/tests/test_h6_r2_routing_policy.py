@@ -167,7 +167,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual(0, audit["summary"]["resolved_connection_count"])
         self.assertEqual(3265, audit["summary"]["current_total_unconnected_count"])
         self.assertEqual(263, audit["summary"]["analog_remaining_connection_count"])
-        self.assertEqual(300, audit["summary"]["placement_locality_pair_count"])
+        self.assertEqual(310, audit["summary"]["placement_locality_pair_count"])
         self.assertEqual(0, audit["summary"]["placement_locality_violation_count"])
         size = audit["board_size_review"]
         self.assertEqual("retain_80x150_mm", size["decision"])

@@ -4238,7 +4238,7 @@
       "footprint_definition": {
         "status": "existing_manufacturer_derived_definition_reconciled",
         "path": "hardware/ecad/libraries/Leshy2.pretty/Keystone-1048P.kicad_mod",
-        "sha256": "5b905ec629f34c3c0d3a67b02d57e7f898833bad25bc2ebd3cd679cceec09737"
+        "sha256": "dbcec95dcfe56d7d1e1bd2631640c065c30b064adc02f4f9810d4fc38ee02a9e"
       },
       "historical_hint_files": [
         "hardware/ecad/generated/H2-RF02-pack-safety-aon.json"

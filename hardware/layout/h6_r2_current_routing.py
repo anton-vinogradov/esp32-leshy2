@@ -218,6 +218,8 @@ def build(drc_paths: dict[str, Path] | None, existing: dict | None) -> dict:
             ),
             "placement_locality_pair_count": placement_audit["summary"]["locality_pair_count"],
             "placement_locality_violation_count": placement_audit["summary"]["locality_violation_count"],
+            "placement_critical_pad_pair_count": placement_audit["summary"]["critical_pad_pair_count"],
+            "placement_critical_pad_pair_violation_count": placement_audit["summary"]["critical_pad_pair_violation_count"],
             "drc_violation_count": sum(row["drc"]["violation_count"] for row in rows),
             "assigned_drc_exception_count": sum(len(row["drc"]["assigned_exceptions"]) for row in rows),
         },
@@ -229,7 +231,7 @@ def build(drc_paths: dict[str, Path] | None, existing: dict | None) -> dict:
                 for row in rows
                 for value in row["placement_courtyard_occupancy_percent"].values()
             ),
-            "evidence": f"all 1208 exact footprints place without a same-face hard conflict; all {placement_audit['summary']['locality_pair_count']} local-owner constraints pass; both native DRC reports are clean; the accepted 5-mm routing corridor remains usable",
+            "evidence": f"all 1208 exact footprints place without a same-face hard conflict; all {placement_audit['summary']['locality_pair_count']} local-owner constraints and {placement_audit['summary']['critical_pad_pair_count']} critical pad-pair limits pass; both native DRC reports are clean; the accepted 5-mm routing corridor remains usable",
             "why_not_expand_now": "the corrected locality-constrained placement fits the current outline and no legal power, RF or digital route has yet demonstrated a capacity blockage; the route restart deliberately removed the old invalid evidence",
             "expansion_candidate_if_triggered_mm": [85.0, 150.0],
             "expansion_trigger": "after legal component movement and layer use are exhausted, any required power, USB/i8080, clocked-digital or RF path cannot meet the frozen H6 rules, or H6.0.4 through H6.0.7 fails for lack of geometric margin",
@@ -273,7 +275,9 @@ def doc(audit: dict, ru: bool) -> str:
             "компоновка помещается без конфликтов; 85 × 150 мм рассматривается только при доказанном тупике трассировки.\n\n"
             "## Что получили\n\n"
             f"Размещены все 1 208 корпусов; {summary['placement_locality_pair_count']} пар local-part → owner "
-            "проходят свои пределы, нарушений локальности нет. Обе платы имеют нулевой native DRC. "
+            f"проходят свои пределы; {summary['placement_critical_pad_pair_count']} реальная пара центров площадок "
+            "покрывает все импульсные цепи и выбранные локальные bypass-цепи, нарушений нет. "
+            "Обе платы имеют нулевой native DRC. "
             f"После осознанного перезапуска осталось {number(summary['current_total_unconnected_count'])} "
             "физических соединений; их состояние приведено в таблице выше.\n\n"
             "## Что делаем дальше\n\n"
@@ -308,7 +312,8 @@ def doc(audit: dict, ru: bool) -> str:
             "85 × 150 mm is considered only after a demonstrated routing blockage.\n\n"
             "## What we obtained\n\n"
             f"All 1,208 bodies are placed; all {summary['placement_locality_pair_count']} local-part → owner pairs "
-            "meet their limits and locality has zero violations. Both boards have zero native DRC findings. "
+            f"meet their limits; {summary['placement_critical_pad_pair_count']} actual pad-centre pairs cover every "
+            "switching-node net and selected local bypasses with zero violations. Both boards have zero native DRC findings. "
             f"The deliberate restart leaves {number(summary['current_total_unconnected_count'])} physical "
             "connections, summarized in the table above.\n\n"
             "## What happens next\n\n"

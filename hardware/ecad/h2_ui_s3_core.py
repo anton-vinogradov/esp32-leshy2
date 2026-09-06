@@ -352,6 +352,7 @@ def custom_footprint(
     body_y: float = 0.0,
     courtyard_x: float = 0.0,
     courtyard_y: float = 0.0,
+    include_courtyard: bool = True,
 ) -> str:
     lines = [
         f'(footprint "{name}"',
@@ -364,8 +365,11 @@ def custom_footprint(
         f'\t(property "Value" "{name}" (at 0 4 0) (layer "F.Fab") (effects (font (size 1 1) (thickness 0.15))))',
         "\t(attr smd)",
         f'\t(fp_rect (start {body_x-body_width/2:.3f} {body_y-body_height/2:.3f}) (end {body_x+body_width/2:.3f} {body_y+body_height/2:.3f}) (stroke (width 0.10) (type default)) (fill none) (layer "F.Fab"))',
-        f'\t(fp_rect (start {courtyard_x-courtyard_width/2:.3f} {courtyard_y-courtyard_height/2:.3f}) (end {courtyard_x+courtyard_width/2:.3f} {courtyard_y+courtyard_height/2:.3f}) (stroke (width 0.05) (type default)) (fill none) (layer "F.CrtYd"))',
     ]
+    if include_courtyard:
+        lines.append(
+            f'\t(fp_rect (start {courtyard_x-courtyard_width/2:.3f} {courtyard_y-courtyard_height/2:.3f}) (end {courtyard_x+courtyard_width/2:.3f} {courtyard_y+courtyard_height/2:.3f}) (stroke (width 0.05) (type default)) (fill none) (layer "F.CrtYd"))'
+        )
     for pad in pads:
         number, x, y, sx, sy, layers, *shape_row = pad
         shape = shape_row[0] if shape_row else "roundrect"
