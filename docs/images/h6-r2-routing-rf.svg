@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
  <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg data-h6-board="rf" data-source-sha256="050e506ede1676c2652b11ed7f3c06a24498cb8efbbd09174099caaa769c843b" data-layers="F.Cu,B.Cu,F.Silkscreen,B.Silkscreen,Edge.Cuts"
+<svg data-h6-board="rf" data-source-sha256="da0fdf7d94b30bb9002a995fb064b417cd4d2c6af829d4d51617eea5b719dbfb" data-layers="F.Cu,B.Cu,F.Silkscreen,B.Silkscreen,Edge.Cuts"
   xmlns:svg="http://www.w3.org/2000/svg"
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -57380,6 +57380,46 @@ L55.9000 39.7500
 <path d="M13.9250 126.5000
 L15.0750 126.6050
 " />
+<path d="M16.0000 124.8000
+L16.3000 124.8000
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.3000; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M13.2400 127.0000
+L13.2200 127.5000
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M13.6000 125.1500
+L16.0000 124.8000
+" />
+<path d="M13.2500 126.3000
+L13.4500 125.2500
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.8000; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M13.2200 127.5000
+L13.1950 129.3950
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M13.2500 126.3000
+L13.2400 127.0000
+" />
+<path d="M13.4500 125.2500
+L13.6000 125.1500
+" />
+<path d="M16.3000 124.8000
+L17.0850 125.3650
+" />
 <path d="M68.7000 93.0500
 L68.7000 94.0000
 " />
@@ -57392,6 +57432,51 @@ L68.7000 93.0500
 <path d="M69.2125 92.7500
 L68.8000 92.9000
 " />
+<path d="M30.3500 133.2000
+L30.1500 133.5500
+" />
+<path d="M30.5000 132.7400
+L30.3500 133.2000
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.6000; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M29.9000 133.8000
+L28.7450 134.8450
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.3000; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M30.1500 133.5500
+L29.9000 133.8000
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M65.7600 111.5000
+L65.3000 111.5000
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.6000; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M64.9000 111.5000
+L63.4450 111.4950
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.3000; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M65.3000 111.5000
+L64.9000 111.5000
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
 <path d="M16.0350 126.6050
 L16.0650 125.3650
 " />

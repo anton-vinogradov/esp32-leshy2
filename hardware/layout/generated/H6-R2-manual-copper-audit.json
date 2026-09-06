@@ -5,17 +5,17 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "1610aae4999eb44ff71f98a460a86b3011aba4b155eaada07131cb2b64917936",
+    "contract_sha256": "53174254a05c0686821dc36630a287358d45a61d4cffd62ec2dbd2b7a99d224e",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
     "routing_policy_sha256": "b543e99c82fb663927b57280f71b8208a95799af506a8aff38325d8b55f898da",
     "placement_status": "pass"
   },
   "summary": {
-    "route_count": 8,
-    "segment_count": 19,
-    "resolved_connection_count": 8,
+    "route_count": 11,
+    "segment_count": 34,
+    "resolved_connection_count": 12,
     "via_count": 0,
-    "manual_only_route_count": 8
+    "manual_only_route_count": 11
   },
   "boards": [
     {
@@ -86,9 +86,9 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "route_count": 7,
-      "segment_count": 15,
-      "resolved_connection_count": 7,
+      "route_count": 10,
+      "segment_count": 30,
+      "resolved_connection_count": 11,
       "copper_signature": [
         [
           "track",
@@ -218,6 +218,62 @@
         ],
         [
           "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_BUCK_SW",
+          "B.Cu",
+          0.15,
+          [
+            30.15,
+            133.55
+          ],
+          [
+            30.35,
+            133.199999
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_BUCK_SW",
+          "B.Cu",
+          0.15,
+          [
+            30.35,
+            133.199999
+          ],
+          [
+            30.5,
+            132.74
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_BUCK_SW",
+          "B.Cu",
+          0.3,
+          [
+            29.9,
+            133.8
+          ],
+          [
+            30.15,
+            133.55
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_BUCK_SW",
+          "B.Cu",
+          0.6,
+          [
+            28.745,
+            134.845
+          ],
+          [
+            29.9,
+            133.8
+          ]
+        ],
+        [
+          "track",
           "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_BST",
           "B.Cu",
           0.15,
@@ -242,6 +298,118 @@
           [
             16.065,
             125.365
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_SW",
+          "B.Cu",
+          0.15,
+          [
+            13.24,
+            127.0
+          ],
+          [
+            13.25,
+            126.3
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_SW",
+          "B.Cu",
+          0.15,
+          [
+            13.25,
+            126.3
+          ],
+          [
+            13.45,
+            125.25
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_SW",
+          "B.Cu",
+          0.15,
+          [
+            13.45,
+            125.25
+          ],
+          [
+            13.6,
+            125.15
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_SW",
+          "B.Cu",
+          0.15,
+          [
+            13.6,
+            125.15
+          ],
+          [
+            16.0,
+            124.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_SW",
+          "B.Cu",
+          0.15,
+          [
+            16.0,
+            124.8
+          ],
+          [
+            16.3,
+            124.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_SW",
+          "B.Cu",
+          0.15,
+          [
+            16.3,
+            124.8
+          ],
+          [
+            17.085,
+            125.365
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_SW",
+          "B.Cu",
+          0.3,
+          [
+            13.22,
+            127.5
+          ],
+          [
+            13.24,
+            127.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_SW",
+          "B.Cu",
+          0.8,
+          [
+            13.195,
+            129.395
+          ],
+          [
+            13.22,
+            127.5
           ]
         ],
         [
@@ -299,6 +467,48 @@
             56.55,
             40.0
           ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_BUCK_SW",
+          "B.Cu",
+          0.15,
+          [
+            65.3,
+            111.5
+          ],
+          [
+            65.76,
+            111.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_BUCK_SW",
+          "B.Cu",
+          0.3,
+          [
+            64.9,
+            111.5
+          ],
+          [
+            65.3,
+            111.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_BUCK_SW",
+          "B.Cu",
+          0.6,
+          [
+            63.445,
+            111.495
+          ],
+          [
+            64.9,
+            111.5
+          ]
         ]
       ]
     }
@@ -310,8 +520,12 @@
       "canonical_net": "HUB_RP_VREG_LX_SW",
       "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_VREG_LX_SW",
       "routing_class": "SWITCHING_NODE",
-      "layer": "B.Cu",
-      "width_mm": 0.15,
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
       "segment_count": 4,
       "length_mm": 4.6182,
       "resolved_connections": 1,
@@ -323,8 +537,12 @@
       "canonical_net": "AON_BUCK_SW",
       "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_BUCK_SW",
       "routing_class": "SWITCHING_NODE",
-      "layer": "B.Cu",
-      "width_mm": 0.25,
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.25
+      ],
       "segment_count": 2,
       "length_mm": 2.0313,
       "resolved_connections": 1,
@@ -336,8 +554,12 @@
       "canonical_net": "PACK_CHARGE_PUMP",
       "kicad_net": "/RF_02_PACK_SAFETY_AON/PACK_CHARGE_PUMP",
       "routing_class": "SWITCHING_NODE",
-      "layer": "B.Cu",
-      "width_mm": 0.15,
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
       "segment_count": 4,
       "length_mm": 3.0901,
       "resolved_connections": 1,
@@ -349,8 +571,12 @@
       "canonical_net": "RF_RP_VREG_LX_SW",
       "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_VREG_LX_SW",
       "routing_class": "SWITCHING_NODE",
-      "layer": "B.Cu",
-      "width_mm": 0.15,
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
       "segment_count": 4,
       "length_mm": 4.7389,
       "resolved_connections": 1,
@@ -362,8 +588,12 @@
       "canonical_net": "MAIN_BUCK_BST",
       "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_BST",
       "routing_class": "SWITCHING_NODE",
-      "layer": "B.Cu",
-      "width_mm": 0.15,
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
       "segment_count": 1,
       "length_mm": 1.1548,
       "resolved_connections": 1,
@@ -375,8 +605,12 @@
       "canonical_net": "MAIN_BUCK_BST_LINK",
       "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_BST_LINK",
       "routing_class": "SWITCHING_NODE",
-      "layer": "B.Cu",
-      "width_mm": 0.15,
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
       "segment_count": 1,
       "length_mm": 1.2404,
       "resolved_connections": 1,
@@ -388,8 +622,12 @@
       "canonical_net": "CHARGER_BTST1",
       "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_BTST1",
       "routing_class": "SWITCHING_NODE",
-      "layer": "B.Cu",
-      "width_mm": 0.15,
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
       "segment_count": 1,
       "length_mm": 1.4565,
       "resolved_connections": 1,
@@ -401,12 +639,73 @@
       "canonical_net": "CHARGER_BTST2",
       "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_BTST2",
       "routing_class": "SWITCHING_NODE",
-      "layer": "B.Cu",
-      "width_mm": 0.15,
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
       "segment_count": 2,
       "length_mm": 1.6682,
       "resolved_connections": 1,
       "reason": "Short BQ25798 second bootstrap-capacitor hot-side connection with adjacent-pad clearance."
+    },
+    {
+      "id": "RF-EXT-BUCK-SW",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "EXT_BUCK_SW",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_BUCK_SW",
+      "routing_class": "SWITCHING_NODE",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15,
+        0.3,
+        0.6
+      ],
+      "segment_count": 4,
+      "length_mm": 2.7981,
+      "resolved_connections": 1,
+      "reason": "Tapered no-via TPS564252 SW path: fine-pitch escape followed by a short 0.6-mm current section."
+    },
+    {
+      "id": "RF-VOICE-BUCK-SW",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_BUCK_SW",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_BUCK_SW",
+      "routing_class": "SWITCHING_NODE",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15,
+        0.3,
+        0.6
+      ],
+      "segment_count": 3,
+      "length_mm": 2.315,
+      "resolved_connections": 1,
+      "reason": "Tapered no-via TPS564252 SW path, widened after clearing the adjacent 0.5-mm-pitch pins."
+    },
+    {
+      "id": "RF-MAIN-BUCK-SW",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "MAIN_BUCK_SW",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_SW",
+      "routing_class": "SWITCHING_NODE",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15,
+        0.3,
+        0.8
+      ],
+      "segment_count": 8,
+      "length_mm": 8.0374,
+      "resolved_connections": 2,
+      "reason": "TPS566231P current path widens to 0.8 mm at the inductor; the low-current bootstrap return remains a separate narrow branch with minimum hot copper area."
     }
   ],
   "authorization": {

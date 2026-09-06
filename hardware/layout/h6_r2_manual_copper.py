@@ -113,23 +113,47 @@ def add_routes(board, routes: list[dict], policy_rows: dict[tuple[str, str], dic
         net = board.FindNet(net_name)
         if net is None:
             raise ValueError(f"{route['id']}: missing board net {net_name}")
-        layer = board.GetLayerID(route["layer"])
-        if layer < 0:
-            raise ValueError(f"{route['id']}: missing layer {route['layer']}")
-        path = [tuple(map(float, point)) for point in route["path_mm"]]
-        if len(path) < 2:
-            raise ValueError(f"{route['id']}: path needs at least two points")
+        if "segments" in route:
+            segments = route["segments"]
+        else:
+            path = [tuple(map(float, point)) for point in route["path_mm"]]
+            if len(path) < 2:
+                raise ValueError(f"{route['id']}: path needs at least two points")
+            segments = [
+                {
+                    "layer": route["layer"],
+                    "width_mm": route["width_mm"],
+                    "start_mm": start,
+                    "end_mm": end,
+                }
+                for start, end in zip(path, path[1:])
+            ]
+        if not segments:
+            raise ValueError(f"{route['id']}: route has no segments")
         before = remaining_for_net(board, net_name)
-        for start, end in zip(path, path[1:]):
+        lengths = []
+        layers = set()
+        widths = set()
+        for segment in segments:
+            layer_name = segment["layer"]
+            layer = board.GetLayerID(layer_name)
+            if layer < 0:
+                raise ValueError(f"{route['id']}: missing layer {layer_name}")
+            start = tuple(map(float, segment["start_mm"]))
+            end = tuple(map(float, segment["end_mm"]))
             if math.dist(start, end) < 1e-6:
                 raise ValueError(f"{route['id']}: zero-length segment")
+            width = float(segment["width_mm"])
             track = pcbnew.PCB_TRACK(board)
             track.SetNetCode(net.GetNetCode())
             track.SetLayer(layer)
-            track.SetWidth(pcbnew.FromMM(float(route["width_mm"])))
+            track.SetWidth(pcbnew.FromMM(width))
             track.SetStart(pcbnew.VECTOR2I_MM(*start))
             track.SetEnd(pcbnew.VECTOR2I_MM(*end))
             board.Add(track)
+            lengths.append(math.dist(start, end))
+            layers.add(layer_name)
+            widths.add(width)
         after = remaining_for_net(board, net_name)
         resolved = before - after
         expected = route["expected_resolved_connections"]
@@ -144,10 +168,10 @@ def add_routes(board, routes: list[dict], policy_rows: dict[tuple[str, str], dic
                 "canonical_net": route["canonical_net"],
                 "kicad_net": net_name,
                 "routing_class": route["routing_class"],
-                "layer": route["layer"],
-                "width_mm": route["width_mm"],
-                "segment_count": len(path) - 1,
-                "length_mm": round(sum(math.dist(a, b) for a, b in zip(path, path[1:])), 4),
+                "layers": sorted(layers),
+                "widths_mm": sorted(widths),
+                "segment_count": len(segments),
+                "length_mm": round(sum(lengths), 4),
                 "resolved_connections": resolved,
                 "reason": route["reason"],
             }
