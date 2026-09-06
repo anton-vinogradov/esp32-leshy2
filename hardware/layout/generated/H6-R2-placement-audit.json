@@ -5,9 +5,9 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "06ffe014c8551c9d7b6d87157d17d9f518edc786a766ebae5a4d48b5ff0cf2d5",
+    "contract_sha256": "4bd8965bf9108de2788fe951ed8b3a30680365161744a09b364a055342b811de",
     "placement_freeze": "hardware/layout/h6-r2-placement-freeze.json",
-    "placement_freeze_sha256": "2d2637fc395a7420b3029665b1e3f54e8e8d19acb9d73d8db45f5344d2766d49",
+    "placement_freeze_sha256": "b3e453198092deeeb8c01b9ca485c56a10d62965c05ac54123cbab2104181abc",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -13815,7 +13815,7 @@
         "F.Cu": 14
       },
       "method_counts": {
-        "connectivity/sheet automatic seed": 666,
+        "connectivity/sheet automatic seed": 664,
         "exact H1 seed": 28,
         "hard H1 datum": 12,
         "nearest exact-footprint correction": 34,
@@ -13825,7 +13825,7 @@
         "reviewed H6.0.3 direct-cell thermal-contact placement": 2,
         "reviewed H6.0.3 mechanical-clearance correction": 1,
         "reviewed H6.0.3 native-silkscreen-clearance correction": 1,
-        "reviewed H6.0.3 power-locality correction": 9,
+        "reviewed H6.0.3 power-locality correction": 11,
         "reviewed H6.0.3 signal-locality correction": 2
       },
       "net_count": 516,
@@ -18572,27 +18572,27 @@
           "sheet": "RF_20_CC1101_VOICE_TX",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 power-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              68.09999900000001,
-              69.109999
+              64.845,
+              66.755
             ],
             "y": [
-              110.60000000000001,
-              112.51
+              112.94500000000001,
+              113.955
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            68.605,
-            111.555
+            65.8,
+            113.45
           ],
           "footprint_anchor_mm": [
-            68.605,
-            111.555
+            65.8,
+            113.45
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -29109,27 +29109,27 @@
           "sheet": "RF_20_CC1101_VOICE_TX",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 power-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              65.59999900000001,
-              67.549999
+              67.985,
+              69.015
             ],
             "y": [
-              112.85,
-              113.88
+              111.025,
+              112.975
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            66.575,
-            113.365
+            68.5,
+            112.0
           ],
           "footprint_anchor_mm": [
-            66.575,
-            113.365
+            68.5,
+            112.0
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -38051,8 +38051,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "c323fac9f141842cb6c3b4a533e6c3d84b3c83c674402cddb44d084c710c0e70",
-      "placement_signature_sha256": "c97f7397e0a3291b9ceaddb2a2127c743b7ce0bba9f25c907737854b80b103ec",
+      "unrouted_seed_sha256": "c9cc4c8dd5fd83c74d1eb152057fd64cecf58031bbde66803d6e9bb567e6d803",
+      "placement_signature_sha256": "501b505fe574af84bb6ffd8c7ceb5d723ecb971bfa316781c72a37bf77dc6b5b",
       "locality": {
         "status": "pass",
         "pair_count": 258,
@@ -40291,7 +40291,7 @@
             "reference": "R132",
             "owner": "voice_buck",
             "owner_reference": "U43",
-            "courtyard_gap_mm": 0.255,
+            "courtyard_gap_mm": 0.11,
             "maximum_gap_mm": 0.75,
             "measurement": "courtyard_to_courtyard"
           },
@@ -40318,7 +40318,7 @@
             "reference": "C141",
             "owner": "voice_buck",
             "owner_reference": "U43",
-            "courtyard_gap_mm": 0.225,
+            "courtyard_gap_mm": 0.35,
             "maximum_gap_mm": 0.75,
             "measurement": "courtyard_to_courtyard"
           },

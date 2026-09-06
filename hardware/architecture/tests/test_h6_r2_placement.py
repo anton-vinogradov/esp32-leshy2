@@ -138,6 +138,8 @@ class H6R2PlacementTests(unittest.TestCase):
             "main_buck": [13.0, 126.0],
             "nvdc_charger": [66.0, 70.5],
             "voice_buck": [66.5, 111.5],
+            "voice_hf_input_cap": [65.8, 113.45],
+            "voice_fb_bottom": [68.5, 112.0],
             "touch_irq_buffer": [38.5, 28.0],
         }
         for instance, centre in expected.items():
@@ -160,6 +162,14 @@ class H6R2PlacementTests(unittest.TestCase):
         self.assertEqual(
             180.0,
             self.contract["placement_overrides"]["ext_buck_hf_input_cap"]["rotation_deg"],
+        )
+        self.assertEqual(
+            0.0,
+            self.contract["placement_overrides"]["voice_hf_input_cap"]["rotation_deg"],
+        )
+        self.assertEqual(
+            90.0,
+            self.contract["placement_overrides"]["voice_fb_bottom"]["rotation_deg"],
         )
         self.assertEqual([], self.contract["placement_policy"]["released_instances"])
         self.assertEqual(

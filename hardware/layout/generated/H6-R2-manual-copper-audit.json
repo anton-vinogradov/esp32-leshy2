@@ -5,18 +5,18 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "ff4756cfd056d21d1cd79aa37fa0325beefb8f0a117b4921c8de253552150cce",
+    "contract_sha256": "fb1a7ae0c61f130e6b0542f8928dba6a6640114e3cdb83fca60c6ba767d59bfa",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "b27d93b1026df90a7ea071838403bb2cec1aeba354b02f81cd785930e45d65b7",
+    "routing_policy_sha256": "7d5d54a4ba5079f18a805d941340530f56535a90144261001c3aeca141cf564b",
     "placement_status": "pass"
   },
   "summary": {
-    "route_count": 46,
-    "segment_count": 236,
-    "resolved_connection_count": 71,
-    "via_count": 72,
-    "manual_only_route_count": 32,
-    "local_ground_join_route_count": 14
+    "route_count": 52,
+    "segment_count": 274,
+    "resolved_connection_count": 85,
+    "via_count": 85,
+    "manual_only_route_count": 36,
+    "local_ground_join_route_count": 16
   },
   "boards": [
     {
@@ -88,10 +88,10 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "route_count": 45,
-      "segment_count": 232,
-      "via_count": 72,
-      "resolved_connection_count": 70,
+      "route_count": 51,
+      "segment_count": 270,
+      "via_count": 85,
+      "resolved_connection_count": 84,
       "copper_signature": [
         [
           "track",
@@ -811,6 +811,20 @@
           "track",
           "/RF_01_USB_PD_CHARGE/NVDC_SYS",
           "B.Cu",
+          0.3,
+          [
+            65.319999,
+            113.45
+          ],
+          [
+            65.76,
+            112.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "B.Cu",
           0.4,
           [
             14.3,
@@ -1029,6 +1043,20 @@
           [
             61.3,
             68.4
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "B.Cu",
+          0.8,
+          [
+            65.319999,
+            113.45
+          ],
+          [
+            65.97,
+            115.745
           ]
         ],
         [
@@ -1413,6 +1441,20 @@
           "track",
           "/RF_01_USB_PD_CHARGE/POWER_GROUND",
           "B.Cu",
+          0.25,
+          [
+            68.5,
+            111.49
+          ],
+          [
+            68.7,
+            110.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
           0.3,
           [
             13.9,
@@ -1513,6 +1555,34 @@
           "B.Cu",
           0.3,
           [
+            64.8,
+            109.7
+          ],
+          [
+            65.76,
+            111.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.3,
+          [
+            64.8,
+            110.4
+          ],
+          [
+            65.76,
+            111.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.3,
+          [
             70.725,
             67.4
           ],
@@ -1561,6 +1631,34 @@
           [
             27.8,
             130.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.4,
+          [
+            66.28,
+            113.45
+          ],
+          [
+            67.0,
+            113.9
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.4,
+          [
+            66.28,
+            113.45
+          ],
+          [
+            67.6,
+            113.9
           ]
         ],
         [
@@ -1869,6 +1967,90 @@
           [
             50.7,
             88.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.5,
+          [
+            62.92,
+            116.245
+          ],
+          [
+            64.5,
+            115.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.5,
+          [
+            62.92,
+            116.245
+          ],
+          [
+            64.5,
+            116.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.5,
+          [
+            63.8,
+            105.5
+          ],
+          [
+            64.92,
+            106.745
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.5,
+          [
+            63.8,
+            106.2
+          ],
+          [
+            64.92,
+            106.745
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.5,
+          [
+            68.92,
+            115.745
+          ],
+          [
+            70.5,
+            115.3
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.5,
+          [
+            68.92,
+            115.745
+          ],
+          [
+            70.5,
+            116.0
           ]
         ],
         [
@@ -2255,6 +2437,76 @@
           "In1.Cu",
           0.5,
           [
+            63.8,
+            105.5
+          ],
+          [
+            63.8,
+            106.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            64.5,
+            115.8
+          ],
+          [
+            64.5,
+            116.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            64.8,
+            109.7
+          ],
+          [
+            64.8,
+            110.4
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            67.0,
+            113.9
+          ],
+          [
+            67.6,
+            113.9
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            70.5,
+            115.3
+          ],
+          [
+            70.5,
+            116.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
             73.6,
             71.7
           ],
@@ -2373,6 +2625,76 @@
           [
             35.7,
             135.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.8,
+          [
+            63.8,
+            106.2
+          ],
+          [
+            64.8,
+            109.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.8,
+          [
+            64.5,
+            115.8
+          ],
+          [
+            67.0,
+            113.9
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.8,
+          [
+            64.8,
+            110.4
+          ],
+          [
+            67.0,
+            113.9
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.8,
+          [
+            67.6,
+            113.9
+          ],
+          [
+            68.7,
+            110.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.8,
+          [
+            67.6,
+            113.9
+          ],
+          [
+            70.5,
+            115.3
           ]
         ],
         [
@@ -3301,6 +3623,76 @@
         ],
         [
           "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_4V_FB",
+          "B.Cu",
+          0.15,
+          [
+            67.084999,
+            109.615
+          ],
+          [
+            67.535,
+            108.355
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_4V_FB",
+          "B.Cu",
+          0.15,
+          [
+            67.084999,
+            109.615
+          ],
+          [
+            67.8,
+            109.615
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_4V_FB",
+          "B.Cu",
+          0.15,
+          [
+            67.24,
+            112.0
+          ],
+          [
+            67.8,
+            112.1
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_4V_FB",
+          "B.Cu",
+          0.15,
+          [
+            67.8,
+            109.615
+          ],
+          [
+            67.8,
+            112.1
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_4V_FB",
+          "B.Cu",
+          0.15,
+          [
+            67.8,
+            112.1
+          ],
+          [
+            68.5,
+            112.51
+          ]
+        ],
+        [
+          "track",
           "/RF_20_CC1101_VOICE_TX/VOICE_BUCK_SW",
           "B.Cu",
           0.15,
@@ -3339,6 +3731,146 @@
           [
             64.9,
             111.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "B.Cu",
+          0.15,
+          [
+            60.5,
+            106.7
+          ],
+          [
+            61.97,
+            106.745
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "B.Cu",
+          0.15,
+          [
+            66.0,
+            107.4
+          ],
+          [
+            66.575,
+            108.355
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "B.Cu",
+          0.15,
+          [
+            66.065,
+            109.615
+          ],
+          [
+            66.575,
+            108.355
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "B.Cu",
+          0.8,
+          [
+            59.0,
+            108.0
+          ],
+          [
+            59.345,
+            111.495
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "B.Cu",
+          0.8,
+          [
+            59.0,
+            108.0
+          ],
+          [
+            61.97,
+            106.745
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "B.Cu",
+          0.8,
+          [
+            59.0,
+            114.5
+          ],
+          [
+            59.345,
+            111.495
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "B.Cu",
+          0.8,
+          [
+            59.0,
+            114.5
+          ],
+          [
+            59.97,
+            116.245
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "In3.Cu",
+          0.15,
+          [
+            60.5,
+            104.8
+          ],
+          [
+            60.5,
+            106.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "In3.Cu",
+          0.15,
+          [
+            60.5,
+            104.8
+          ],
+          [
+            66.0,
+            104.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "In3.Cu",
+          0.15,
+          [
+            66.0,
+            104.8
+          ],
+          [
+            66.0,
+            107.4
           ]
         ],
         [
@@ -3816,6 +4348,54 @@
         [
           "via",
           "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          63.8,
+          105.5,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          63.8,
+          106.2,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          64.5,
+          115.8,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          64.5,
+          116.5,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          64.8,
+          109.7,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          64.8,
+          110.4,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
           66.45,
           73.15,
           0.4,
@@ -3826,6 +4406,46 @@
           "/RF_01_USB_PD_CHARGE/POWER_GROUND",
           67.0,
           73.15,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          67.0,
+          113.9,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          67.6,
+          113.9,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          68.7,
+          110.7,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          70.5,
+          115.3,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          70.5,
+          116.0,
           0.4,
           0.2
         ],
@@ -3914,6 +4534,22 @@
           "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_VCC",
           12.3,
           124.8,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          60.5,
+          106.7,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          66.0,
+          107.4,
           0.4,
           0.2
         ]
@@ -4859,6 +5495,129 @@
       "length_mm": 18.044,
       "resolved_connections": 2,
       "reason": "A narrow Kelvin branch leaves the right output-capacitor junction, bypasses the unrelated fuse on In3, and feeds both parallel top-divider elements without carrying load current."
+    },
+    {
+      "id": "RF-VOICE-BUCK-INPUT-BANK",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "NVDC_SYS",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+      "routing_class": "PRIMARY_POWER",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.3,
+        0.8
+      ],
+      "segment_count": 2,
+      "via_count": 0,
+      "length_mm": 3.9006,
+      "resolved_connections": 2,
+      "reason": "The relocated 0.1-uF capacitor connects directly to VIN without a via, then widens into the adjacent bulk input capacitor below the regulator."
+    },
+    {
+      "id": "RF-VOICE-BUCK-INPUT-GROUND-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "POWER_GROUND",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+      "routing_class": "GROUND_REFERENCE",
+      "route_mode": "plane_or_local_pour_manual",
+      "layers": [
+        "B.Cu",
+        "In1.Cu"
+      ],
+      "widths_mm": [
+        0.25,
+        0.3,
+        0.4,
+        0.5,
+        0.8
+      ],
+      "segment_count": 13,
+      "via_count": 7,
+      "length_mm": 21.7867,
+      "resolved_connections": 3,
+      "reason": "The regulator, direct input capacitor, bulk capacitor and relocated bottom-divider ground close into one ordinary-via In1 return skeleton."
+    },
+    {
+      "id": "RF-VOICE-BUCK-OUTPUT-BANK",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VVOICE_RAW_4V",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+      "routing_class": "PRIMARY_POWER",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.8
+      ],
+      "segment_count": 4,
+      "via_count": 0,
+      "length_mm": 11.7575,
+      "resolved_connections": 2,
+      "reason": "Two separate 0.8-mm no-via branches leave the inductor output pad for the upper and lower bulk capacitors without entering the switch-node side."
+    },
+    {
+      "id": "RF-VOICE-BUCK-OUTPUT-GROUND-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "POWER_GROUND",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+      "routing_class": "GROUND_REFERENCE",
+      "route_mode": "plane_or_local_pour_manual",
+      "layers": [
+        "B.Cu",
+        "In1.Cu"
+      ],
+      "widths_mm": [
+        0.5,
+        0.8
+      ],
+      "segment_count": 8,
+      "via_count": 4,
+      "length_mm": 14.3422,
+      "resolved_connections": 2,
+      "reason": "Both output capacitors receive paired ordinary ground vias and join the same local In1 return used by the regulator and input bank."
+    },
+    {
+      "id": "RF-VOICE-BUCK-FEEDBACK",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_4V_FB",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_4V_FB",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 5,
+      "via_count": 0,
+      "length_mm": 5.918,
+      "resolved_connections": 3,
+      "reason": "The quiet feedback spine stays on B.Cu, links both divider bottoms, and reaches the relocated bottom resistor without sharing a power-current segment."
+    },
+    {
+      "id": "RF-VOICE-BUCK-FEEDBACK-SENSE",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VVOICE_RAW_4V",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+      "routing_class": "PRIMARY_POWER",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "In3.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 6,
+      "via_count": 2,
+      "length_mm": 13.9447,
+      "resolved_connections": 2,
+      "reason": "A narrow Kelvin branch senses the upper output capacitor, crosses below the cell on In3, and feeds both top-divider elements without carrying load current."
     }
   ],
   "authorization": {

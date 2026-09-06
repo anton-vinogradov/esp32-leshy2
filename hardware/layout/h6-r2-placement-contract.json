@@ -388,6 +388,26 @@
       "method": "reviewed H6.0.3 power-locality correction",
       "reason": "give the independent voice converter a clear local loop near its eFuse and downstream voice rail"
     },
+    "voice_hf_input_cap": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        65.8,
+        113.45
+      ],
+      "rotation_deg": 0.0,
+      "method": "reviewed H6.0.3 power-locality correction",
+      "reason": "move the 0.1-uF input capacitor onto the VIN side of the converter, between the regulator courtyard and the bulk input bank"
+    },
+    "voice_fb_bottom": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        68.5,
+        112.0
+      ],
+      "rotation_deg": 90.0,
+      "method": "reviewed H6.0.3 power-locality correction",
+      "reason": "move the bottom divider into the former input-capacitor pocket so the feedback node can escape outside the control-pin row while its ground receives a local via"
+    },
     "nvdc_charger": {
       "frame": "rear-inner",
       "centre_mm": [

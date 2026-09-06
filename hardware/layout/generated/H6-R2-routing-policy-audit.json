@@ -8,7 +8,7 @@
     "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "287b2ed42a1f32ecafde5705090962ec6c3da362a32f8ee508dba0f8c94c7706",
     "hardware/ecad/generated/H2-R2-native-net-ledger.json": "d7f8bb219dd8a116d626d2dcf3174c357a0d4c5cf8508aee41a39f0232446f55",
     "hardware/verification/h3-r2-load-binding-contract.json": "48d2575032bac09bd8ea276e814c16fbb1f76ca6afe0cea0dd36cee2e8c2a384",
-    "hardware/layout/h6-r2-placement-contract.json": "06ffe014c8551c9d7b6d87157d17d9f518edc786a766ebae5a4d48b5ff0cf2d5"
+    "hardware/layout/h6-r2-placement-contract.json": "4bd8965bf9108de2788fe951ed8b3a30680365161744a09b364a055342b811de"
   },
   "stackup_binding": {
     "manufacturer": "JLCPCB",
