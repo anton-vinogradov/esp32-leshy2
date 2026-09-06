@@ -422,7 +422,7 @@
 <text x="169.49" y="459.99" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">U38</text>
 <rect x="294.17" y="363.39" width="99.46" height="80.73" rx="1.5" fill="#e9eef5" stroke="#64748b" stroke-width="0.65"/>
 <text x="343.90" y="406.75" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">U39</text>
-<rect x="339.88" y="236.27" width="13.00" height="8.99" rx="1.5" fill="#e9eef5" stroke="#64748b" stroke-width="0.65"/>
+<rect x="339.88" y="236.27" width="13.00" height="8.99" rx="1.5" fill="#f0fdf4" stroke="#16a34a" stroke-width="0.65"/>
 <rect x="198.40" y="468.78" width="41.68" height="29.91" rx="1.5" fill="#e9eef5" stroke="#64748b" stroke-width="0.65"/>
 <text x="219.24" y="486.74" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">U41</text>
 <rect x="206.96" y="447.12" width="32.05" height="19.74" rx="1.5" fill="#fff4d6" stroke="#d97706" stroke-width="0.65"/>

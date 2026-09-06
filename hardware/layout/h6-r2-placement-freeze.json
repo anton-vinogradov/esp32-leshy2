@@ -5,7 +5,7 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "178d684f3585a4e2982008b243f164475b27b18052343f0baf12be3579e12e38",
+    "contract_sha256": "310de6fd9761264d611c46fc29b223964ce45920dd900c33f0a5ff11cf8a9ec1",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -66,12 +66,12 @@
       },
       "method_counts": {
         "connectivity/sheet automatic seed": 336,
-        "exact H1 seed": 28,
+        "exact H1 seed": 27,
         "hard H1 datum": 27,
         "nearest exact-footprint correction": 16,
         "reviewed H6.0.2 fan-out correction": 3,
         "reviewed H6.0.2 oscillator-locality correction": 11,
-        "reviewed H6.0.3 signal-locality correction": 7
+        "reviewed H6.0.3 signal-locality correction": 8
       },
       "net_count": 307,
       "mechanical": [
@@ -14380,7 +14380,7 @@
           "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
           "side": "B.Cu",
           "footprint": "Leshy2:DC2337J5010AHF",
-          "method": "exact H1 seed",
+          "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               41.099999999999994,
@@ -14400,7 +14400,7 @@
             42.315,
             18.835
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             42315000,
@@ -15036,8 +15036,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "unrouted_seed_sha256": "f999e302f556e2675bd34f862ddfe72e9af0984de35aef0116a0127b78b5d1e0",
-      "placement_signature_sha256": "f466be79739b017ea1fd1e8768f32e150b18a1d7729c12b06149ba8d5c4bd607",
+      "unrouted_seed_sha256": "40c8d5f0774a56c3b9df12dfbed71bd994c94cafa60bdfa9e3d1be377e557d88",
+      "placement_signature_sha256": "dd4f09ad1c759127a619df7de7117563f227e2323e4ae483658afa2e77760b0c",
       "locality": {
         "status": "pass",
         "pair_count": 52,

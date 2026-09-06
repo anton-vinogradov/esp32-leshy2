@@ -5,7 +5,7 @@
   "status": "pass",
   "source_hashes": {
     "hardware/layout/h6-r2-mechanical-stack.json": "e10b804f93fdb8f0b328844d3225f1a76ce4742da9650d4dd633437be11652a9",
-    "hardware/layout/generated/H6-R2-placement-audit.json": "f33daa5373e53f46b6648606c295cd0f12d5d4f84b0f8c90af3d5c8c06016828"
+    "hardware/layout/generated/H6-R2-placement-audit.json": "866b051870ea4c0d427b4e9447c5f30b8de70e7fd0ee5e6c3d5a5db1e4fd957d"
   },
   "stack": {
     "members": [

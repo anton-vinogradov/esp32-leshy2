@@ -276,6 +276,16 @@
       "method": "reviewed H6.0.3 signal-locality correction",
       "reason": "swap the raw-sample and detector-side pad directions without moving the 0402 body so both S3 coupler sample nets route directly on B.Cu without crossing or adding a signal via"
     },
+    "nrf1_coupler": {
+      "frame": "ui-inner",
+      "centre_mm": [
+        42.315,
+        18.835
+      ],
+      "rotation_deg": 180.0,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "turn the nRF1 module, detector-sample and isolated ports toward their existing local endpoints while the external port receives the single reviewed B-to-F edge-launch transition"
+    },
     "det_nrf2": {
       "frame": "ui-inner",
       "centre_mm": [
