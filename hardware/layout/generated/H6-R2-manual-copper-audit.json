@@ -5,29 +5,29 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "b43ca287bc33b4f1d9f7cb993d440013a7754644a893d8a3de522dab0d2f38c9",
+    "contract_sha256": "2355ea5cf3cad2215599b94b8639c05ea6242d6e320f18945e19c428ef6ae2ff",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "c02db6a8757456df58625736e73b1f6fa222edc69ae879adfe9980fc58cf9a91",
+    "routing_policy_sha256": "caad0006801d591fe8dba6e3a0198c2168e38c0f200861ed8dd89a78e69c711e",
     "routing_contract": "hardware/layout/h6-r2-routing-policy.json",
     "routing_contract_sha256": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
     "placement_status": "pass"
   },
   "summary": {
-    "route_count": 124,
-    "segment_count": 688,
-    "resolved_connection_count": 207,
-    "via_count": 168,
-    "manual_only_route_count": 104,
+    "route_count": 128,
+    "segment_count": 702,
+    "resolved_connection_count": 212,
+    "via_count": 169,
+    "manual_only_route_count": 108,
     "local_ground_join_route_count": 20
   },
   "boards": [
     {
       "project": "LESHY2-UI-R2",
       "board": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "route_count": 22,
-      "segment_count": 86,
-      "via_count": 4,
-      "resolved_connection_count": 26,
+      "route_count": 26,
+      "segment_count": 100,
+      "via_count": 5,
+      "resolved_connection_count": 31,
       "copper_signature": [
         [
           "track",
@@ -787,6 +787,202 @@
         ],
         [
           "track",
+          "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_EXTERNAL_RF_50R",
+          "B.Cu",
+          0.134874,
+          [
+            10.15,
+            7.0
+          ],
+          [
+            10.15,
+            8.51
+          ]
+        ],
+        [
+          "track",
+          "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_EXTERNAL_RF_50R",
+          "F.Cu",
+          0.134874,
+          [
+            10.15,
+            7.0
+          ],
+          [
+            13.5,
+            4.0
+          ]
+        ],
+        [
+          "track",
+          "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_EXTERNAL_RF_50R",
+          "F.Cu",
+          0.134874,
+          [
+            13.5,
+            4.0
+          ],
+          [
+            16.5,
+            1.0
+          ]
+        ],
+        [
+          "track",
+          "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_EXTERNAL_RF_50R",
+          "F.Cu",
+          0.134874,
+          [
+            16.5,
+            -1.65
+          ],
+          [
+            16.5,
+            1.0
+          ]
+        ],
+        [
+          "track",
+          "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_FORWARD_RF_SAMPLE",
+          "B.Cu",
+          0.134874,
+          [
+            10.3,
+            10.8
+          ],
+          [
+            10.3,
+            11.4875
+          ]
+        ],
+        [
+          "track",
+          "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_FORWARD_RF_SAMPLE",
+          "B.Cu",
+          0.134874,
+          [
+            10.3,
+            10.8
+          ],
+          [
+            10.8,
+            10.2
+          ]
+        ],
+        [
+          "track",
+          "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_FORWARD_RF_SAMPLE",
+          "B.Cu",
+          0.134874,
+          [
+            10.3,
+            11.4875
+          ],
+          [
+            10.725,
+            11.4875
+          ]
+        ],
+        [
+          "track",
+          "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_FORWARD_RF_SAMPLE",
+          "B.Cu",
+          0.134874,
+          [
+            10.8,
+            9.49
+          ],
+          [
+            10.8,
+            10.2
+          ]
+        ],
+        [
+          "track",
+          "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_FORWARD_RF_SAMPLE",
+          "B.Cu",
+          0.134874,
+          [
+            10.8,
+            10.2
+          ],
+          [
+            12.59,
+            9.5
+          ]
+        ],
+        [
+          "track",
+          "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_MODULE_RF_50R",
+          "B.Cu",
+          0.134874,
+          [
+            5.25,
+            5.4
+          ],
+          [
+            9.3,
+            6.5
+          ]
+        ],
+        [
+          "track",
+          "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_MODULE_RF_50R",
+          "B.Cu",
+          0.134874,
+          [
+            9.3,
+            6.5
+          ],
+          [
+            9.3,
+            10.5
+          ]
+        ],
+        [
+          "track",
+          "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_MODULE_RF_50R",
+          "B.Cu",
+          0.134874,
+          [
+            9.3,
+            10.5
+          ],
+          [
+            10.15,
+            9.49
+          ]
+        ],
+        [
+          "track",
+          "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_REVERSE_ISOLATED_PORT",
+          "B.Cu",
+          0.134874,
+          [
+            10.8,
+            7.5
+          ],
+          [
+            10.8,
+            8.51
+          ]
+        ],
+        [
+          "track",
+          "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_REVERSE_ISOLATED_PORT",
+          "B.Cu",
+          0.134874,
+          [
+            10.8,
+            7.5
+          ],
+          [
+            12.99,
+            7.5
+          ]
+        ],
+        [
+          "track",
           "/UI_31_NRF24_X3_TX_EVIDENCE/NRF1_EXTERNAL_RF_50R",
           "B.Cu",
           0.134874,
@@ -1246,6 +1442,14 @@
           "/UI_20_C5_WIFI_IR_SERVICE/C5_EXTERNAL_RF_50R",
           56.125,
           7.8,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_EXTERNAL_RF_50R",
+          10.15,
+          7.0,
           0.5,
           0.25
         ],
@@ -11133,6 +11337,83 @@
       "length_mm": 23.6924,
       "resolved_connections": 1,
       "reason": "The nRF1 external path uses its one reviewed B-to-F transition because the inner-face coupler feeds a double-sided edge-launch SMA centre land; the return-via pair remains reserved for the ground-plane pass."
+    },
+    {
+      "id": "UI-NRF0-MODULE-RF",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_MODULE_RF_50R",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_MODULE_RF_50R",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 3,
+      "via_count": 0,
+      "length_mm": 9.5168,
+      "resolved_connections": 1,
+      "reason": "Short via-free nRF0 module-side path leaves the U.FL above the left screw keepout and enters the rotated coupler from its outward-facing module port."
+    },
+    {
+      "id": "UI-NRF0-FORWARD-SAMPLE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_FORWARD_RF_SAMPLE",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_FORWARD_RF_SAMPLE",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 5,
+      "via_count": 0,
+      "length_mm": 4.5255,
+      "resolved_connections": 2,
+      "reason": "The nRF0 forward sample exits left of the coupler ground lands, touches the local 52.3-ohm shunt, then approaches the rotated AD8314 RF input from its unobstructed left edge without a via."
+    },
+    {
+      "id": "UI-NRF0-COUPLER-TERM",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_REVERSE_ISOLATED_PORT",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_REVERSE_ISOLATED_PORT",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 2,
+      "via_count": 0,
+      "length_mm": 3.2,
+      "resolved_connections": 1,
+      "reason": "The reviewed coupler and termination placement provides a direct via-free isolated-port termination with no intervening signal crossing."
+    },
+    {
+      "id": "UI-NRF0-EXTERNAL-RF",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_EXTERNAL_RF_50R",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_EXTERNAL_RF_50R",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "F.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 4,
+      "via_count": 1,
+      "length_mm": 12.8996,
+      "resolved_connections": 1,
+      "reason": "The nRF0 external path uses one reviewed B-to-F transition above the compact coupler bay, then reaches the double-sided edge-launch SMA centre land without crossing another inner-face RF net."
     },
     {
       "id": "UI-NRF2-FORWARD-SAMPLE",

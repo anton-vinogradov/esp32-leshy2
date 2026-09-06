@@ -5,9 +5,9 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "310de6fd9761264d611c46fc29b223964ce45920dd900c33f0a5ff11cf8a9ec1",
+    "contract_sha256": "11a5e8594b6c3db9c4e2216839a2c7decb2305345f77ca704c384fb66d3b1df3",
     "placement_freeze": "hardware/layout/h6-r2-placement-freeze.json",
-    "placement_freeze_sha256": "2a0decead3dccb9c6a9b3fe117fcdd7b588baa672f3272bcfa8ea2cb3c47bbcd",
+    "placement_freeze_sha256": "cedf097cdcb5561039f46832251199276313894fa771eeb7aac2dd77b602ed26",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -67,13 +67,13 @@
         "F.Cu": 20
       },
       "method_counts": {
-        "connectivity/sheet automatic seed": 336,
+        "connectivity/sheet automatic seed": 334,
         "exact H1 seed": 27,
         "hard H1 datum": 27,
-        "nearest exact-footprint correction": 16,
+        "nearest exact-footprint correction": 14,
         "reviewed H6.0.2 fan-out correction": 3,
         "reviewed H6.0.2 oscillator-locality correction": 11,
-        "reviewed H6.0.3 signal-locality correction": 8
+        "reviewed H6.0.3 signal-locality correction": 12
       },
       "net_count": 307,
       "mechanical": [
@@ -8414,25 +8414,25 @@
           "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              7.85,
-              9.799999999999999
+              12.525,
+              14.475
             ],
             "y": [
-              17.349999999999998,
-              18.38
+              6.985,
+              8.015
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            8.825,
-            17.865
+            13.5,
+            7.5
           ],
           "footprint_anchor_mm": [
-            8.825,
-            17.865
+            13.5,
+            7.5
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -8472,27 +8472,27 @@
           "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              9.85,
-              10.88
+              12.125,
+              14.075
             ],
             "y": [
-              13.1,
-              15.049999999999999
+              8.985,
+              10.015
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            10.365,
-            14.075
+            13.1,
+            9.5
           ],
           "footprint_anchor_mm": [
-            10.365,
-            14.075
+            13.1,
+            9.5
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -12518,27 +12518,27 @@
           "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
           "side": "B.Cu",
           "footprint": "Package_SO:MSOP-8_3x3mm_P0.65mm",
-          "method": "nearest exact-footprint correction",
+          "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              11.205,
-              14.795
+              9.905,
+              13.495
             ],
             "y": [
-              8.775,
-              15.225
+              10.375,
+              16.825
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            13.0,
-            12.0
+            11.7,
+            13.6
           ],
           "footprint_anchor_mm": [
-            13.0,
-            12.0
+            11.7,
+            13.6
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": -90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -12634,25 +12634,25 @@
           "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
           "side": "B.Cu",
           "footprint": "Leshy2:DC2337J5010AHF",
-          "method": "nearest exact-footprint correction",
+          "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              7.535,
-              9.965
+              9.585,
+              12.015
             ],
             "y": [
-              15.41,
-              17.09
+              8.16,
+              9.84
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            8.75,
-            16.25
+            10.8,
+            9.0
           ],
           "footprint_anchor_mm": [
-            8.75,
-            16.25
+            10.8,
+            9.0
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -13326,8 +13326,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "unrouted_seed_sha256": "40c8d5f0774a56c3b9df12dfbed71bd994c94cafa60bdfa9e3d1be377e557d88",
-      "placement_signature_sha256": "dd4f09ad1c759127a619df7de7117563f227e2323e4ae483658afa2e77760b0c",
+      "unrouted_seed_sha256": "80862f56cde52db2bce70f768ff077c235b0b591a41488657ac06c1e7c773240",
+      "placement_signature_sha256": "49b334a492d064749b515021517cbd78965e8f734902c60b7e166db5a3b3441d",
       "locality": {
         "status": "pass",
         "pair_count": 52,

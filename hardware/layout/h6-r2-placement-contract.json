@@ -286,6 +286,46 @@
       "method": "reviewed H6.0.3 signal-locality correction",
       "reason": "turn the nRF1 module, detector-sample and isolated ports toward their existing local endpoints while the external port receives the single reviewed B-to-F edge-launch transition"
     },
+    "det_nrf0": {
+      "frame": "ui-inner",
+      "centre_mm": [
+        11.7,
+        13.6
+      ],
+      "rotation_deg": 270.0,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "turn AD8314 RF IN toward the compact nRF0 coupler bay while its narrow orientation preserves real same-face gaps to the left screw keepout, S3 module and S3 bypass capacitor"
+    },
+    "nrf0_coupler": {
+      "frame": "ui-inner",
+      "centre_mm": [
+        10.8,
+        9.0
+      ],
+      "rotation_deg": 0.0,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "move the nRF0 directional coupler into the free bay above its detector while preserving a copper corridor outside the left screw keepout; the four signal ports then fan out without crossings"
+    },
+    "nrf0_coupler_termination": {
+      "frame": "ui-inner",
+      "centre_mm": [
+        13.5,
+        7.5
+      ],
+      "rotation_deg": 0.0,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "place the 49.9-ohm isolated-port termination above and to the right of the compact nRF0 coupler with a positive courtyard gap and an unobstructed two-segment route"
+    },
+    "nrf0_detector_match": {
+      "frame": "ui-inner",
+      "centre_mm": [
+        13.1,
+        9.5
+      ],
+      "rotation_deg": 0.0,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "place the 52.3-ohm detector match in the narrow free strip between the coupler and inward-facing AD8314 input without overlapping either courtyard"
+    },
     "det_nrf2": {
       "frame": "ui-inner",
       "centre_mm": [

@@ -6,18 +6,18 @@
   "phase_complete": false,
   "sources": {
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "c02db6a8757456df58625736e73b1f6fa222edc69ae879adfe9980fc58cf9a91",
+    "routing_policy_sha256": "caad0006801d591fe8dba6e3a0198c2168e38c0f200861ed8dd89a78e69c711e",
     "manual_copper": "hardware/layout/generated/H6-R2-manual-copper-audit.json",
-    "manual_copper_sha256": "a30b7f6abad8f5ae1c14cbdcbef05092d2a428c3f0eea8bb3cafcdac23c44373"
+    "manual_copper_sha256": "c9ef595b02826dd4b7dc9c7d527fe70c388857caa988e9a1892553e348b89336"
   },
   "summary": {
     "board_count": 2,
-    "track_via_item_count": 856,
-    "trace_count": 688,
-    "via_count": 168,
+    "track_via_item_count": 871,
+    "trace_count": 702,
+    "via_count": 169,
     "seed_total_unconnected_count": 3265,
-    "current_total_unconnected_count": 3058,
-    "resolved_connection_count": 207,
+    "current_total_unconnected_count": 3053,
+    "resolved_connection_count": 212,
     "analog_remaining_connection_count": 232,
     "placement_locality_pair_count": 310,
     "placement_locality_violation_count": 0,
@@ -49,16 +49,16 @@
     {
       "project": "LESHY2-UI-R2",
       "board": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "board_sha256": "3839abcb83b51a76131758905cecc780de00416dcd8a24b1cbb5a0fc8a5a8ad5",
+      "board_sha256": "fe607007e6ed895f6f72701d23b2485b0f6984453bdb2591aaaad9e82d5dc145",
       "board_size_mm": [
         80.05,
         150.05
       ],
       "footprint_count": 432,
-      "trace_count": 86,
-      "via_count": 4,
-      "track_via_item_count": 90,
-      "routed_net_count": 22,
+      "trace_count": 100,
+      "via_count": 5,
+      "track_via_item_count": 105,
+      "routed_net_count": 26,
       "used_trace_layers": [
         "B.Cu",
         "F.Cu"
@@ -68,8 +68,8 @@
         "B.Cu": 39.98
       },
       "seed_total_unconnected_count": 1227,
-      "current_total_unconnected_count": 1201,
-      "resolved_connection_count": 26,
+      "current_total_unconnected_count": 1196,
+      "resolved_connection_count": 31,
       "classes": {
         "GROUND_REFERENCE": {
           "net_count": 1,
@@ -89,7 +89,7 @@
         },
         "RF_CONTROLLED": {
           "net_count": 22,
-          "remaining_connection_count": 5
+          "remaining_connection_count": 0
         },
         "USB_DIFFERENTIAL": {
           "net_count": 14,
@@ -125,9 +125,9 @@
         }
       },
       "drc": {
-        "report_sha256": "8a81d63d7cb98eb64d723f0e1d77c1b22d730e0f543226264b33e930fc30d185",
+        "report_sha256": "89cac81c1307a19b9f1c415b837d5db6963632fc2fae273c1dda1bc8e633b31a",
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-06T22:30:08",
+        "checked_at": "2026-09-06T22:50:31",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,
@@ -139,7 +139,7 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "board_sha256": "4b432ad2a3d1431c1b029ee516a8d2b5c835e6d89704942ae95ac4c89b92a243",
+      "board_sha256": "4b39e3cc63a633118ca1a774d4ce606d07d995a499610550620342808cf109d6",
       "board_size_mm": [
         80.05,
         150.05
@@ -218,9 +218,9 @@
         }
       },
       "drc": {
-        "report_sha256": "bd5341a1461427a4be3c7284f6db71cc5cb6d7a807a5d86b4e9c815242a07729",
+        "report_sha256": "58b39e7253d9b78c7ec1f6dddf7e34048bd80188f004111e1269e277abc4ee23",
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-06T22:26:20",
+        "checked_at": "2026-09-06T22:51:02",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,
