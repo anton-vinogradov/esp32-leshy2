@@ -5,18 +5,18 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "3634c06a1bfd726d1440802097d4c0b0320d8332d59534f20b71f82a76ae101b",
+    "contract_sha256": "7080e42236756f6cf3e1263ad14633ee57ce326f449c73af9984b9bfee09392f",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "c6e8d247b8878ebee626686fb3f34600669dd63962212c689e96a4913ae31985",
+    "routing_policy_sha256": "b7d311142f39558ed2e452ff501049517972ddaf6750096650c70920c28639ba",
     "placement_status": "pass"
   },
   "summary": {
-    "route_count": 73,
-    "segment_count": 453,
-    "resolved_connection_count": 133,
-    "via_count": 139,
-    "manual_only_route_count": 54,
-    "local_ground_join_route_count": 19
+    "route_count": 81,
+    "segment_count": 534,
+    "resolved_connection_count": 152,
+    "via_count": 160,
+    "manual_only_route_count": 61,
+    "local_ground_join_route_count": 20
   },
   "boards": [
     {
@@ -88,10 +88,10 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "route_count": 72,
-      "segment_count": 449,
-      "via_count": 139,
-      "resolved_connection_count": 132,
+      "route_count": 80,
+      "segment_count": 530,
+      "via_count": 160,
+      "resolved_connection_count": 151,
       "copper_signature": [
         [
           "track",
@@ -1513,6 +1513,62 @@
           "B.Cu",
           0.25,
           [
+            34.105,
+            88.325
+          ],
+          [
+            34.585,
+            87.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.25,
+          [
+            34.365,
+            90.0
+          ],
+          [
+            34.365,
+            90.565
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.25,
+          [
+            34.585,
+            85.865
+          ],
+          [
+            34.585,
+            87.115
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.25,
+          [
+            34.585,
+            87.115
+          ],
+          [
+            34.585,
+            87.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.25,
+          [
             35.12,
             99.045
           ],
@@ -1547,6 +1603,20 @@
           [
             35.335,
             100.365
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.25,
+          [
+            36.15,
+            89.85
+          ],
+          [
+            36.17,
+            90.245
           ]
         ],
         [
@@ -1765,6 +1835,34 @@
           "B.Cu",
           0.3,
           [
+            32.2,
+            89.825
+          ],
+          [
+            32.854999,
+            89.825
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.3,
+          [
+            33.4,
+            88.325
+          ],
+          [
+            34.105,
+            88.325
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.3,
+          [
             35.285,
             101.605
           ],
@@ -1813,6 +1911,20 @@
           [
             37.0,
             96.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.3,
+          [
+            37.15,
+            88.78
+          ],
+          [
+            37.8,
+            87.8
           ]
         ],
         [
@@ -2885,6 +2997,48 @@
           "In1.Cu",
           0.5,
           [
+            32.2,
+            88.325
+          ],
+          [
+            32.2,
+            89.825
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            32.2,
+            88.325
+          ],
+          [
+            33.4,
+            88.325
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            33.4,
+            88.325
+          ],
+          [
+            34.2,
+            88.3
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
             34.0,
             108.5
           ],
@@ -2899,12 +3053,138 @@
           "In1.Cu",
           0.5,
           [
+            34.2,
+            88.3
+          ],
+          [
+            34.2,
+            90.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            34.2,
+            90.0
+          ],
+          [
+            34.365,
+            90.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            34.365,
+            88.8
+          ],
+          [
+            34.365,
+            90.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            34.365,
+            88.8
+          ],
+          [
+            36.15,
+            88.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
             35.7,
             135.0
           ],
           [
             35.7,
             135.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            36.0,
+            92.0
+          ],
+          [
+            36.0,
+            94.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            36.0,
+            92.0
+          ],
+          [
+            36.15,
+            89.85
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            36.0,
+            94.8
+          ],
+          [
+            37.0,
+            96.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            36.0,
+            94.8
+          ],
+          [
+            40.0,
+            95.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            36.15,
+            88.8
+          ],
+          [
+            36.15,
+            89.85
           ]
         ],
         [
@@ -3017,6 +3297,34 @@
           [
             37.7,
             102.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            37.8,
+            87.8
+          ],
+          [
+            40.0,
+            89.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            40.0,
+            89.0
+          ],
+          [
+            40.0,
+            95.2
           ]
         ],
         [
@@ -6241,6 +6549,692 @@
         ],
         [
           "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_DVDT",
+          "B.Cu",
+          0.15,
+          [
+            33.4,
+            89.285
+          ],
+          [
+            34.105,
+            89.285
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_DVDT",
+          "B.Cu",
+          0.15,
+          [
+            35.45,
+            90.2
+          ],
+          [
+            35.645,
+            90.42
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_DVDT",
+          "In3.Cu",
+          0.15,
+          [
+            33.4,
+            89.285
+          ],
+          [
+            34.7,
+            89.6
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_DVDT",
+          "In3.Cu",
+          0.15,
+          [
+            34.7,
+            89.6
+          ],
+          [
+            35.45,
+            90.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_ILM",
+          "B.Cu",
+          0.15,
+          [
+            33.7,
+            91.585
+          ],
+          [
+            34.365,
+            91.585
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_ILM",
+          "B.Cu",
+          0.15,
+          [
+            36.62,
+            90.245
+          ],
+          [
+            36.75,
+            89.605
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_ILM",
+          "In2.Cu",
+          0.15,
+          [
+            33.7,
+            91.585
+          ],
+          [
+            34.8,
+            92.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_ILM",
+          "In2.Cu",
+          0.15,
+          [
+            34.8,
+            92.5
+          ],
+          [
+            35.0,
+            92.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_ILM",
+          "In2.Cu",
+          0.15,
+          [
+            35.0,
+            92.7
+          ],
+          [
+            36.9,
+            91.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_ILM",
+          "In2.Cu",
+          0.15,
+          [
+            36.75,
+            89.605
+          ],
+          [
+            36.9,
+            91.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_ITIMER",
+          "B.Cu",
+          0.15,
+          [
+            32.854999,
+            90.785
+          ],
+          [
+            32.854999,
+            91.45
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_ITIMER",
+          "B.Cu",
+          0.15,
+          [
+            37.145,
+            90.42
+          ],
+          [
+            37.4,
+            90.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_ITIMER",
+          "F.Cu",
+          0.15,
+          [
+            32.854999,
+            91.45
+          ],
+          [
+            32.854999,
+            92.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_ITIMER",
+          "F.Cu",
+          0.15,
+          [
+            32.854999,
+            92.8
+          ],
+          [
+            37.4,
+            92.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_ITIMER",
+          "F.Cu",
+          0.15,
+          [
+            37.4,
+            90.0
+          ],
+          [
+            37.4,
+            92.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_OVLO",
+          "B.Cu",
+          0.15,
+          [
+            32.9,
+            87.115
+          ],
+          [
+            33.565,
+            87.115
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_OVLO",
+          "B.Cu",
+          0.15,
+          [
+            36.62,
+            92.045
+          ],
+          [
+            36.62,
+            92.6
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_OVLO",
+          "B.Cu",
+          0.15,
+          [
+            36.62,
+            92.6
+          ],
+          [
+            39.0,
+            92.6
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_OVLO",
+          "B.Cu",
+          0.15,
+          [
+            36.835,
+            86.115
+          ],
+          [
+            37.5,
+            86.115
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_OVLO",
+          "In2.Cu",
+          0.15,
+          [
+            30.5,
+            86.7
+          ],
+          [
+            30.5,
+            87.115
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_OVLO",
+          "In2.Cu",
+          0.15,
+          [
+            30.5,
+            86.7
+          ],
+          [
+            37.5,
+            86.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_OVLO",
+          "In2.Cu",
+          0.15,
+          [
+            30.5,
+            87.115
+          ],
+          [
+            30.5,
+            98.05
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_OVLO",
+          "In2.Cu",
+          0.15,
+          [
+            30.5,
+            87.115
+          ],
+          [
+            32.9,
+            87.115
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_OVLO",
+          "In2.Cu",
+          0.15,
+          [
+            30.5,
+            98.05
+          ],
+          [
+            39.0,
+            98.05
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_OVLO",
+          "In2.Cu",
+          0.15,
+          [
+            37.5,
+            86.115
+          ],
+          [
+            37.5,
+            86.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_OVLO",
+          "In2.Cu",
+          0.15,
+          [
+            39.0,
+            92.6
+          ],
+          [
+            39.0,
+            98.05
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_PGTH",
+          "B.Cu",
+          0.15,
+          [
+            31.5,
+            92.8
+          ],
+          [
+            35.645,
+            92.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_PGTH",
+          "B.Cu",
+          0.15,
+          [
+            32.6,
+            85.865
+          ],
+          [
+            33.565,
+            85.865
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_PGTH",
+          "B.Cu",
+          0.15,
+          [
+            35.645,
+            91.87
+          ],
+          [
+            35.645,
+            92.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_PGTH",
+          "B.Cu",
+          0.15,
+          [
+            36.835,
+            84.865
+          ],
+          [
+            37.5,
+            84.865
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_PGTH",
+          "In1.Cu",
+          0.15,
+          [
+            30.7,
+            84.5
+          ],
+          [
+            30.7,
+            85.865
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_PGTH",
+          "In1.Cu",
+          0.15,
+          [
+            30.7,
+            84.5
+          ],
+          [
+            37.5,
+            84.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_PGTH",
+          "In1.Cu",
+          0.15,
+          [
+            30.7,
+            85.865
+          ],
+          [
+            30.7,
+            92.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_PGTH",
+          "In1.Cu",
+          0.15,
+          [
+            30.7,
+            85.865
+          ],
+          [
+            32.6,
+            85.865
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_PGTH",
+          "In1.Cu",
+          0.15,
+          [
+            30.7,
+            92.0
+          ],
+          [
+            31.5,
+            92.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_PGTH",
+          "In1.Cu",
+          0.15,
+          [
+            37.5,
+            84.5
+          ],
+          [
+            37.5,
+            84.865
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_4V",
+          "B.Cu",
+          0.15,
+          [
+            34.95,
+            89.7
+          ],
+          [
+            34.95,
+            90.895
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_4V",
+          "B.Cu",
+          0.15,
+          [
+            34.95,
+            89.7
+          ],
+          [
+            35.6,
+            89.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_4V",
+          "B.Cu",
+          0.15,
+          [
+            34.95,
+            90.895
+          ],
+          [
+            36.395,
+            90.895
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_4V",
+          "B.Cu",
+          0.15,
+          [
+            35.815,
+            84.2
+          ],
+          [
+            35.815,
+            84.865
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_4V",
+          "B.Cu",
+          0.15,
+          [
+            35.815,
+            84.2
+          ],
+          [
+            38.0,
+            84.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_4V",
+          "B.Cu",
+          0.15,
+          [
+            36.395,
+            90.895
+          ],
+          [
+            37.6,
+            90.895
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_4V",
+          "B.Cu",
+          0.15,
+          [
+            37.6,
+            90.895
+          ],
+          [
+            38.05,
+            90.6
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_4V",
+          "B.Cu",
+          0.5,
+          [
+            35.6,
+            88.78
+          ],
+          [
+            35.6,
+            89.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_4V",
+          "In3.Cu",
+          0.15,
+          [
+            38.0,
+            84.2
+          ],
+          [
+            38.5,
+            84.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_4V",
+          "In3.Cu",
+          0.15,
+          [
+            38.05,
+            90.6
+          ],
+          [
+            38.5,
+            90.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_4V",
+          "In3.Cu",
+          0.15,
+          [
+            38.5,
+            84.2
+          ],
+          [
+            38.5,
+            90.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "B.Cu",
+          0.15,
+          [
+            35.815,
+            86.115
+          ],
+          [
+            35.815,
+            87.365
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "B.Cu",
+          0.15,
+          [
+            35.815,
+            87.365
+          ],
+          [
+            35.815,
+            87.9
+          ]
+        ],
+        [
+          "track",
           "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
           "B.Cu",
           0.15,
@@ -6279,6 +7273,34 @@
           [
             66.575,
             108.355
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "B.Cu",
+          0.3,
+          [
+            36.395,
+            91.395
+          ],
+          [
+            37.8,
+            91.395
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "B.Cu",
+          0.3,
+          [
+            37.8,
+            91.395
+          ],
+          [
+            38.1,
+            91.5
           ]
         ],
         [
@@ -6335,6 +7357,118 @@
           [
             59.97,
             116.245
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "In2.Cu",
+          0.3,
+          [
+            35.815,
+            87.9
+          ],
+          [
+            35.815,
+            88.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "In2.Cu",
+          0.3,
+          [
+            35.815,
+            88.5
+          ],
+          [
+            40.5,
+            88.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "In2.Cu",
+          0.3,
+          [
+            40.5,
+            88.5
+          ],
+          [
+            40.5,
+            91.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "In2.Cu",
+          0.8,
+          [
+            38.1,
+            91.5
+          ],
+          [
+            40.5,
+            91.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "In2.Cu",
+          0.8,
+          [
+            40.5,
+            91.5
+          ],
+          [
+            41.5,
+            93.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "In2.Cu",
+          0.8,
+          [
+            41.5,
+            93.0
+          ],
+          [
+            41.5,
+            103.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "In2.Cu",
+          0.8,
+          [
+            41.5,
+            103.0
+          ],
+          [
+            43.0,
+            106.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          "In2.Cu",
+          0.8,
+          [
+            43.0,
+            106.7
+          ],
+          [
+            60.5,
+            106.7
           ]
         ],
         [
@@ -6830,8 +7964,32 @@
         [
           "via",
           "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          32.2,
+          89.825,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
           32.6,
           114.6,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          33.4,
+          88.325,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          34.365,
+          90.0,
           0.4,
           0.2
         ],
@@ -6848,6 +8006,14 @@
           "/RF_01_USB_PD_CHARGE/POWER_GROUND",
           35.7,
           135.7,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          36.15,
+          89.85,
           0.4,
           0.2
         ],
@@ -6872,6 +8038,14 @@
           "/RF_01_USB_PD_CHARGE/POWER_GROUND",
           37.0,
           100.2,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          37.8,
+          87.8,
           0.4,
           0.2
         ],
@@ -7474,6 +8648,134 @@
           111.895,
           0.4,
           0.2
+        ],
+        [
+          "via",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_DVDT",
+          33.4,
+          89.285,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_DVDT",
+          35.45,
+          90.2,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_ILM",
+          33.7,
+          91.585,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_ILM",
+          36.75,
+          89.605,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_ITIMER",
+          32.854999,
+          91.45,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_ITIMER",
+          37.4,
+          90.0,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_OVLO",
+          32.9,
+          87.115,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_OVLO",
+          37.5,
+          86.115,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_OVLO",
+          39.0,
+          92.6,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_PGTH",
+          31.5,
+          92.8,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_PGTH",
+          32.6,
+          85.865,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_PGTH",
+          37.5,
+          84.865,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_4V",
+          38.0,
+          84.2,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_4V",
+          38.05,
+          90.6,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          35.815,
+          87.9,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+          38.1,
+          91.5,
+          0.5,
+          0.25
         ],
         [
           "via",
@@ -8995,6 +10297,171 @@
       "length_mm": 27.911,
       "resolved_connections": 6,
       "reason": "The eFuse exposed pad and ground pin, both local capacitors and both programming-resistor returns receive a joined ordinary-via In1 return tied into the existing AON converter ground skeleton."
+    },
+    {
+      "id": "RF-VOICE-EFUSE-INPUT",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VVOICE_RAW_4V",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
+      "routing_class": "PRIMARY_POWER",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "In2.Cu"
+      ],
+      "widths_mm": [
+        0.15,
+        0.3,
+        0.8
+      ],
+      "segment_count": 12,
+      "via_count": 2,
+      "length_mm": 47.4881,
+      "resolved_connections": 3,
+      "reason": "A dedicated 0.8-mm In2 trunk extends the already joined voice-converter output bank to the eFuse input without crossing the external 5-V In3 spine; a narrow local branch also feeds the enable and OVLO pullups."
+    },
+    {
+      "id": "RF-VOICE-EFUSE-OUTPUT",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VVOICE_4V",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VVOICE_4V",
+      "routing_class": "PRIMARY_POWER",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "In3.Cu"
+      ],
+      "widths_mm": [
+        0.15,
+        0.5
+      ],
+      "segment_count": 11,
+      "via_count": 2,
+      "length_mm": 15.6831,
+      "resolved_connections": 2,
+      "reason": "The protected output bar reaches its local ceramic capacitor through a short two-via In3 bridge, while a separate narrow branch feeds the PG threshold divider without carrying load current."
+    },
+    {
+      "id": "RF-VOICE-EFUSE-DVDT",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_EFUSE_DVDT",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_DVDT",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "In3.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 4,
+      "via_count": 2,
+      "length_mm": 3.2971,
+      "resolved_connections": 1,
+      "reason": "Two ordinary dogbone vias let the slew-control node pass below the protected-output fanout and reach its capacitor without a drilled hole in either small pad."
+    },
+    {
+      "id": "RF-VOICE-EFUSE-ITIMER",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_EFUSE_ITIMER",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_ITIMER",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "F.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 5,
+      "via_count": 2,
+      "length_mm": 9.8514,
+      "resolved_connections": 1,
+      "reason": "A narrow front-layer bridge reaches the remote timer capacitor while staying clear of the adjacent ILM and output escapes."
+    },
+    {
+      "id": "RF-VOICE-EFUSE-ILM",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_EFUSE_ILM",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_ILM",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "In2.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 6,
+      "via_count": 2,
+      "length_mm": 7.0545,
+      "resolved_connections": 1,
+      "reason": "A short In2 dogleg escapes the current-limit pin between the output capacitor and IC, then approaches the programming resistor from its free side."
+    },
+    {
+      "id": "RF-VOICE-EFUSE-OVLO",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_EFUSE_OVLO",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_OVLO",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "In2.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 11,
+      "via_count": 3,
+      "length_mm": 39.55,
+      "resolved_connections": 2,
+      "reason": "The complete OVLO divider uses a quiet In2 branch outside the high-current corridor and approaches both resistor ends from their free sides."
+    },
+    {
+      "id": "RF-VOICE-EFUSE-PGTH",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "VOICE_EFUSE_PGTH",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_PGTH",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "In1.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 10,
+      "via_count": 3,
+      "length_mm": 24.4014,
+      "resolved_connections": 2,
+      "reason": "The complete PG threshold divider uses the otherwise free outer face, remaining separate from OVLO, the eFuse output branch and the voice-rail current path."
+    },
+    {
+      "id": "RF-VOICE-EFUSE-GROUND-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "POWER_GROUND",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+      "routing_class": "GROUND_REFERENCE",
+      "route_mode": "plane_or_local_pour_manual",
+      "layers": [
+        "B.Cu",
+        "In1.Cu"
+      ],
+      "widths_mm": [
+        0.25,
+        0.3,
+        0.5
+      ],
+      "segment_count": 22,
+      "via_count": 5,
+      "length_mm": 34.7631,
+      "resolved_connections": 7,
+      "reason": "All seven local voice-eFuse ground terminals join one quiet In1 return island; a single branch reaches the existing eFuse ground skeleton without sharing the raw or protected voice-rail current path."
     }
   ],
   "authorization": {

@@ -5,7 +5,7 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "9cd1e6fbdf3650e0020b2d781a47c2bdefa965e40c6b1ab442e522c5cb9505f9",
+    "contract_sha256": "40446ff3a28bbaeb9f2bf3987aea643ef0a9fb24b89f4e7420b7585c1186ca97",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -15525,7 +15525,7 @@
         "F.Cu": 14
       },
       "method_counts": {
-        "connectivity/sheet automatic seed": 660,
+        "connectivity/sheet automatic seed": 658,
         "exact H1 seed": 28,
         "hard H1 datum": 12,
         "nearest exact-footprint correction": 34,
@@ -15535,7 +15535,7 @@
         "reviewed H6.0.3 direct-cell thermal-contact placement": 2,
         "reviewed H6.0.3 mechanical-clearance correction": 1,
         "reviewed H6.0.3 native-silkscreen-clearance correction": 1,
-        "reviewed H6.0.3 power-locality correction": 15,
+        "reviewed H6.0.3 power-locality correction": 17,
         "reviewed H6.0.3 signal-locality correction": 2
       },
       "net_count": 516,
@@ -20780,31 +20780,31 @@
           "sheet": "RF_20_CC1101_VOICE_TX",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0603_1608Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 power-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               34.85,
               37.9
             ],
             "y": [
-              88.1,
-              89.65
+              88.005,
+              89.555
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             36.375,
-            88.875
+            88.78
           ],
           "footprint_anchor_mm": [
             36.375,
-            88.875
+            88.78
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             36375000,
-            88875000
+            88780000
           ]
         },
         {
@@ -39849,7 +39849,7 @@
           "sheet": "RF_20_CC1101_VOICE_TX",
           "side": "B.Cu",
           "footprint": "Leshy2:TI-RPW0010A-VQFN-HR-10",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 power-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               35.1,
@@ -39869,7 +39869,7 @@
             36.395,
             91.145
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             36395000,
@@ -42881,8 +42881,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "3c5179bebc113a6f14691f47cd6e5750f8349bda5f9987630453da9af44cb71d",
-      "placement_signature_sha256": "f0ae003b0febff59b185695d5d6c1299cea04e52e2d8ecaf618cdba909d5a272",
+      "unrouted_seed_sha256": "5d4058aa09fc27cf15315f3aa267d0e3f071a6d1b15d70d8b26f943c14f010ed",
+      "placement_signature_sha256": "b4adcf4d372ffca4deb635be0f92a7c2bf033910a71e112ba502968e479661b7",
       "locality": {
         "status": "pass",
         "pair_count": 258,
@@ -45067,7 +45067,7 @@
             "reference": "C139",
             "owner": "voice_efuse",
             "owner_reference": "U46",
-            "courtyard_gap_mm": 0.2,
+            "courtyard_gap_mm": 0.295,
             "maximum_gap_mm": 3.0,
             "measurement": "courtyard_to_courtyard"
           },

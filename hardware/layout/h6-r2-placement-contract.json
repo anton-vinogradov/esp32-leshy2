@@ -428,6 +428,26 @@
       "method": "reviewed H6.0.3 power-locality correction",
       "reason": "give the independent voice converter a clear local loop near its eFuse and downstream voice rail"
     },
+    "voice_efuse": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        36.395,
+        91.145
+      ],
+      "rotation_deg": 90.0,
+      "method": "reviewed H6.0.3 power-locality correction",
+      "reason": "point the voice eFuse input toward the remote converter trunk and its output directly at the local protected-rail capacitor while keeping every low-current side pin accessible"
+    },
+    "voice_efuse_output_cap": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        36.375,
+        88.78
+      ],
+      "rotation_deg": 0.0,
+      "method": "reviewed H6.0.3 power-locality correction",
+      "reason": "open a standards-compliant ordinary-via escape corridor between the protected-rail capacitor and the eFuse ILM and ground pins without enlarging the power cell"
+    },
     "voice_hf_input_cap": {
       "frame": "rear-inner",
       "centre_mm": [
