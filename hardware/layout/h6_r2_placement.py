@@ -107,6 +107,12 @@ def rectangles_overlap(a: dict, b: dict, margin: float = 0.0) -> bool:
     )
 
 
+def rect_gap(a: dict, b: dict) -> float:
+    dx = max(a["x"][0] - b["x"][1], b["x"][0] - a["x"][1], 0.0)
+    dy = max(a["y"][0] - b["y"][1], b["y"][0] - a["y"][1], 0.0)
+    return math.hypot(dx, dy)
+
+
 class OccupancyGrid:
     """Fast exact-enough rectangle occupancy on the contract grid."""
 
@@ -497,6 +503,7 @@ def build_target_index(contract: dict, placement: dict, coordinate: dict) -> dic
 def target_for_instance(
     project: str,
     instance: str,
+    reference: str,
     contract: dict,
     targets: dict[str, dict],
     frozen: dict[tuple[str, str], dict],
@@ -573,7 +580,99 @@ def target_for_instance(
             "direction": "board copper under optional Cap",
             "nonphysical_overlap": True,
         }
+    released_prefixes = contract.get("placement_policy", {}).get(
+        "released_reference_prefixes_by_project", {}
+    ).get(project, [])
+    released_instances = set(
+        contract.get("placement_policy", {}).get("released_instances", [])
+    )
+    if instance in released_instances or any(
+        reference.startswith(prefix) for prefix in released_prefixes
+    ):
+        return None
     return targets.get(instance)
+
+
+def locality_owner(
+    instance: str,
+    instances: set[str],
+    contract: dict,
+) -> str | None:
+    """Return the physical owner that must receive a released local part.
+
+    Named overrides carry electrically critical groups whose instance names do
+    not share a literal prefix.  For ordinary bypass parts the longest exact
+    instance-name prefix is the owner.  This keeps the policy reviewable while
+    avoiding a hand-maintained list for every obvious ``foo_bypass`` pair.
+    """
+    overrides = contract.get("placement_policy", {}).get(
+        "locality_owner_overrides", {}
+    )
+    if instance in overrides:
+        return overrides[instance]
+    if not any(
+        token in instance
+        for token in ("_bypass", "_decoupling", "_clock_load_", "_crystal_load_")
+    ):
+        return None
+    candidates = [
+        candidate
+        for candidate in instances
+        if candidate != instance and instance.startswith(candidate + "_")
+    ]
+    return max(candidates, key=len) if candidates else None
+
+
+def locality_audit(board_audit: dict, contract: dict) -> dict:
+    rows = {row["instance"]: row for row in board_audit["placements"]}
+    instances = set(rows)
+    pairs = []
+    child_counts = Counter()
+    for instance in sorted(instances):
+        owner = locality_owner(instance, instances, contract)
+        if owner and owner in rows and owner != instance:
+            child_counts[owner] += 1
+            pairs.append((instance, owner))
+    explicit_limits = contract.get("placement_policy", {}).get(
+        "locality_max_gap_mm", {}
+    )
+    violations = []
+    result_rows = []
+    for instance, owner in pairs:
+        gap = round(
+            rect_gap(
+                rows[instance]["courtyard_bbox_mm"],
+                rows[owner]["courtyard_bbox_mm"],
+            ),
+            4,
+        )
+        limit = float(
+            explicit_limits.get(
+                instance,
+                3.0 if child_counts[owner] >= 5 else 1.0,
+            )
+        )
+        row = {
+            "instance": instance,
+            "reference": rows[instance]["reference"],
+            "owner": owner,
+            "owner_reference": rows[owner]["reference"],
+            "courtyard_gap_mm": gap,
+            "maximum_gap_mm": limit,
+        }
+        result_rows.append(row)
+        if gap > limit + 1e-6:
+            violations.append(row)
+    return {
+        "status": "pass" if not violations else "fail",
+        "pair_count": len(result_rows),
+        "maximum_courtyard_gap_mm": max(
+            (row["courtyard_gap_mm"] for row in result_rows), default=0.0
+        ),
+        "violation_count": len(violations),
+        "violations": violations,
+        "rows": result_rows,
+    }
 
 
 def target_side(target: dict | None) -> str:
@@ -799,6 +898,9 @@ def preferred_centre(
     net_members: dict[str, set[str]],
     placed_centres: dict[str, tuple[float, float]],
 ) -> tuple[float, float]:
+    owner = entry.get("locality_owner")
+    if owner in placed_centres:
+        return placed_centres[owner]
     neighbours = []
     # Sort set-backed connectivity before floating-point accumulation. Python's
     # per-process hash seed must never move a footprint between two equal grid
@@ -860,7 +962,12 @@ def place_project(
 
     for entry in entries:
         target = target_for_instance(
-            project, entry["row"]["instance"], contract, targets, frozen
+            project,
+            entry["row"]["instance"],
+            entry["row"]["reference"],
+            contract,
+            targets,
+            frozen,
         )
         entry["target"] = target
         entry["side"] = target_side(target)
@@ -881,6 +988,21 @@ def place_project(
                 or target.get("placement_method")
             )
         )
+        entry["locality_owner"] = locality_owner(
+            entry["row"]["instance"],
+            {item["row"]["instance"] for item in entries},
+            contract,
+        )
+
+    entry_by_instance = {entry["row"]["instance"]: entry for entry in entries}
+    owner_instances = {
+        entry["locality_owner"]
+        for entry in entries
+        if entry.get("locality_owner")
+    }
+    locality_order = contract.get("placement_policy", {}).get(
+        "locality_order", {}
+    )
 
     def commit(
         entry: dict,
@@ -926,10 +1048,68 @@ def place_project(
         [entry for entry in entries if entry["target"]],
         key=lambda entry: (not entry["hard"], -entry["area"], natural_key(entry["row"]["reference"])),
     )
-    automatic = sorted(
-        [entry for entry in entries if not entry["target"]],
-        key=lambda entry: (-entry["area"], natural_key(entry["row"]["reference"])),
+    automatic_entries = [entry for entry in entries if not entry["target"]]
+    automatic_by_instance = {
+        entry["row"]["instance"]: entry for entry in automatic_entries
+    }
+    locality_children: dict[str, list[dict]] = defaultdict(list)
+    for entry in automatic_entries:
+        owner = entry.get("locality_owner")
+        if owner:
+            locality_children[owner].append(entry)
+
+    def child_order(entry: dict) -> tuple:
+        instance = entry["row"]["instance"]
+        return (
+            locality_order.get(instance, 50),
+            -entry["area"],
+            natural_key(entry["row"]["reference"]),
+        )
+
+    automatic = []
+    scheduled: set[str] = set()
+
+    def schedule(entry: dict) -> None:
+        instance = entry["row"]["instance"]
+        if instance in scheduled:
+            return
+        owner = entry.get("locality_owner")
+        if owner in automatic_by_instance and owner not in scheduled:
+            schedule(automatic_by_instance[owner])
+        scheduled.add(instance)
+        automatic.append(entry)
+        for child in sorted(locality_children.get(instance, []), key=child_order):
+            schedule(child)
+
+    fixed_locality_owners = sorted(
+        {
+            entry["locality_owner"]
+            for entry in automatic_entries
+            if entry.get("locality_owner")
+            and entry["locality_owner"] not in automatic_by_instance
+        },
+        key=lambda owner: (
+            min(
+                locality_order.get(child["row"]["instance"], 50)
+                for child in locality_children[owner]
+            ),
+            natural_key(entry_by_instance[owner]["row"]["reference"]),
+        ),
     )
+    for owner in fixed_locality_owners:
+        for child in sorted(locality_children[owner], key=child_order):
+            schedule(child)
+
+    roots = sorted(
+        automatic_entries,
+        key=lambda entry: (
+            entry["row"]["instance"] not in owner_instances,
+            -entry["area"],
+            natural_key(entry["row"]["reference"]),
+        ),
+    )
+    for entry in roots:
+        schedule(entry)
 
     for entry in fixed:
         target = entry["target"]
@@ -1218,6 +1398,8 @@ def svg_bytes(audit: dict) -> bytes:
         "connectivity/sheet automatic seed": ("#e7f8ef", "#059669"),
         "reviewed H6.0.2 fan-out correction": ("#f3e8ff", "#7c3aed"),
         "reviewed H6.0.2 oscillator-locality correction": ("#ecfeff", "#0891b2"),
+        "reviewed H6.0.3 power-locality correction": ("#fff7ed", "#ea580c"),
+        "reviewed H6.0.3 signal-locality correction": ("#f0fdf4", "#16a34a"),
         "hard H1 datum with conflict": ("#fee2e2", "#dc2626"),
     }
     out = [
@@ -1293,10 +1475,29 @@ def build() -> tuple[dict[Path, bytes], dict]:
         (board["project"], row["instance"]): row
         for board in freeze["boards"]
         for row in board["placements"]
+        if row["instance"]
+        not in set(contract.get("placement_policy", {}).get("released_instances", []))
+        and not any(
+            row["reference"].startswith(prefix)
+            for prefix in contract.get("placement_policy", {})
+            .get("released_reference_prefixes_by_project", {})
+            .get(board["project"], [])
+        )
     }
+    released_instances = set(
+        contract.get("placement_policy", {}).get("released_instances", [])
+    )
+    released_prefixes = contract.get("placement_policy", {}).get(
+        "released_reference_prefixes_by_project", {}
+    )
     expected_frozen = {
         (row["project"], row["instance"])
         for row in instances
+        if row["instance"] not in released_instances
+        and not any(
+            row["reference"].startswith(prefix)
+            for prefix in released_prefixes.get(row["project"], [])
+        )
     }
     released = set(contract.get("placement_policy", {}).get("released_for_repack", []))
     expected_frozen = {
@@ -1330,6 +1531,8 @@ def build() -> tuple[dict[Path, bytes], dict]:
             placement_signature_from_board_bytes(project, data)
         )
         board_audits.append(audit)
+    for board_audit in board_audits:
+        board_audit["locality"] = locality_audit(board_audit, contract)
     errors = [
         f"{board['project']}: {message}"
         for board in board_audits
@@ -1337,6 +1540,13 @@ def build() -> tuple[dict[Path, bytes], dict]:
             [f"hard placement conflict: {row}" for row in board["hard_conflicts"]]
             + [f"unplaced instance: {row}" for row in board["placement_failures"]]
             + board["net_or_footprint_errors"]
+            + [
+                "locality violation: "
+                f"{row['instance']} -> {row['owner']} is "
+                f"{row['courtyard_gap_mm']:.2f} mm, limit "
+                f"{row['maximum_gap_mm']:.2f} mm"
+                for row in board["locality"]["violations"]
+            ]
         )
     ]
     audit = {
@@ -1374,6 +1584,8 @@ def build() -> tuple[dict[Path, bytes], dict]:
             "hard_conflict_count": sum(len(row["hard_conflicts"]) for row in board_audits),
             "placement_failure_count": sum(len(row["placement_failures"]) for row in board_audits),
             "net_or_footprint_error_count": sum(len(row["net_or_footprint_errors"]) for row in board_audits),
+            "locality_pair_count": sum(row["locality"]["pair_count"] for row in board_audits),
+            "locality_violation_count": sum(row["locality"]["violation_count"] for row in board_audits),
             "routing_authorized": True,
             "routing_started": True,
         },

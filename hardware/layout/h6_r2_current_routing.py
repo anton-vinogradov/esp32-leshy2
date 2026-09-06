@@ -196,7 +196,7 @@ def build(drc_paths: dict[str, Path] | None, existing: dict | None) -> dict:
     resolved_total = sum(row["resolved_connection_count"] for row in rows)
     return {
         "schema_version": 1,
-        "artifact": "H6.0.3 live 80-mm routing checkpoint",
+        "artifact": "H6.0.3 live 80-mm routing checkpoint after locality-constrained repack",
         "marker": "H6.0.3-R1",
         "status": "pass_progress" if not errors else "fail",
         "phase_complete": not errors and remaining_total == 0,
@@ -216,19 +216,21 @@ def build(drc_paths: dict[str, Path] | None, existing: dict | None) -> dict:
                 row["classes"]["ANALOG_AUDIO_SENSE"]["remaining_connection_count"]
                 for row in rows
             ),
+            "placement_locality_pair_count": placement_audit["summary"]["locality_pair_count"],
+            "placement_locality_violation_count": placement_audit["summary"]["locality_violation_count"],
             "drc_violation_count": sum(row["drc"]["violation_count"] for row in rows),
             "assigned_drc_exception_count": sum(len(row["drc"]["assigned_exceptions"]) for row in rows),
         },
         "board_size_review": {
             "decision": "retain_80x150_mm",
-            "status": "sufficient_so_far_not_finally_proven",
+            "status": "locality_constrained_placement_proven_routing_capacity_open",
             "maximum_same_face_courtyard_occupancy_percent": max(
                 value
                 for row in rows
                 for value in row["placement_courtyard_occupancy_percent"].values()
             ),
-            "evidence": f"all 1208 exact footprints still place without a same-face hard conflict; {resolved_total} physical connections are already resolved; both native DRC reports are clean; the accepted 5-mm routing corridor remains usable",
-            "why_not_expand_now": "an outline change would invalidate board anchors, routed copper, mechanical views, enclosure datums and every derived qualification while no current hard routing blockage demonstrates that the extra width is needed",
+            "evidence": f"all 1208 exact footprints place without a same-face hard conflict; all {placement_audit['summary']['locality_pair_count']} local-owner constraints pass; both native DRC reports are clean; the accepted 5-mm routing corridor remains usable",
+            "why_not_expand_now": "the corrected locality-constrained placement fits the current outline and no legal power, RF or digital route has yet demonstrated a capacity blockage; the route restart deliberately removed the old invalid evidence",
             "expansion_candidate_if_triggered_mm": [85.0, 150.0],
             "expansion_trigger": "after legal component movement and layer use are exhausted, any required power, USB/i8080, clocked-digital or RF path cannot meet the frozen H6 rules, or H6.0.4 through H6.0.7 fails for lack of geometric margin",
             "requalification_after_any_outline_or_anchor_change": [
@@ -256,108 +258,71 @@ def doc(audit: dict, ru: bool) -> str:
         title = "# H6.0.3-R1 · Текущая разводка 80-мм плат"
         nav = "[Главная](../README.ru.md) · [Роадмап](roadmap.ru.md) · [English](h6-r2-current-routing.md)"
         lead = (
-            "**Статус:** ▶️ проверенный промежуточный срез, не закрытие H6. "
-            f"В двух текущих PCB {number(summary['track_via_item_count'])} элементов меди; "
-            f"штатная связность KiCad показывает {number(summary['current_total_unconnected_count'])} оставшихся "
-            f"и {number(summary['resolved_connection_count'])} уже замкнутых физических соединений."
+            "**Статус:** ▶️ корректная компоновка принята, разводка начата заново; H6 ещё не закрыт."
         )
         headers = "| Плата | Дорожки | Via | Замкнуто | Осталось | DRC |\n| --- | ---: | ---: | ---: | ---: | --- |"
         labels = ("UI", "RF/power")
         notes = (
-            "## Что изменилось в этом срезе\n\n"
-            "После перехода 75 → 80 мм бесконфликтные аналоговые/audio/sense-трассы перенесены по точным "
-            "якорям площадок. Конфликтующие старые ветви отброшены, а не протащены через новую геометрию; "
-            "оставшиеся восемь UI-связей затем заново проложены в текущей геометрии и прошли DRC. "
-            "На RF/power локально раскрыты eFuse-кластеры U17 и U100, добавлены пять недостающих аналоговых "
-            "связей, а вытесненная safety/control-медь полностью переложена до принятия результата. "
-            "В аудиокластере замкнуты `CODEC_DACVREF` и оба входа ADC; соседние headphone- и `CODEC_TX_AC`-трассы "
-            "полностью переложены и сохранили исходную связность. "
-            "Для `AUDIO_CAPTURE_MIC_SEL` низкоскоростной pull-down R53 перенесён из коридора выхода U106, "
-            "после чего обе соседние цепи U106 получили независимые пути без нового DRC. "
-            "В том же кластере замкнут `CAPTURE_MIC_BIASED`, а три прежде раздельные группы "
-            "`CC_BAND_V1_REQ` объединены одним непрерывным трактом. "
-            "Разнесённые по высоте аудиокластеры теперь также соединяет полный `RX_VOICE_AFOUT_AC` "
-            "с четырьмя переходами и без острых ответвлений. "
-            "В battery-safety кластере замкнут `PACK_PCKP_SENSE`: один лишний переход `PACK_DIS_GATE` "
-            "убран, дальняя ветвь перенесена на внутренние слои, а соседний переход `PACK_FET_OVERRIDE_N` "
-            "сдвинут на 0,08 мм; все три цепи сохранили связность и прошли DRC. "
-            f"В классе `ANALOG_AUDIO_SENSE` осталось {summary['analog_remaining_connection_count']} физических соединений: "
-            f"{ui['classes']['ANALOG_AUDIO_SENSE']['remaining_connection_count']} на UI и "
-            f"{rf['classes']['ANALOG_AUDIO_SENSE']['remaining_connection_count']} на RF/power.\n\n"
-            "Штатный DRC KiCad даёт ноль замечаний на обеих платах. Прежний физический конфликт "
-            "`BT1`/`J12` устранён сдвигом неразведённого SMT-держателя на 3,00 мм; исключений DRC больше нет.\n\n"
-            "## Решение по размеру платы\n\n"
-            f"Размер 80 × 150 мм пока сохраняется. Максимальная сумма непересекающихся courtyard на одной "
-            f"стороне — {audit['board_size_review']['maximum_same_face_courtyard_occupancy_percent']:.3f}% "
-            "(внутренняя сторона RF/power); все footprints размещаются, обе платы имеют чистый DRC, а "
-            f"{number(summary['resolved_connection_count'])} соединения уже проведены. Увеличение сейчас "
-            "уничтожило бы ценное evidence без доказанного тупика. "
-            "Если обязательный power, USB/i8080, clocked-digital или RF-тракт не пройдёт после допустимой "
-            "локальной перестановки, следующий контролируемый вариант — 85 × 150 мм с полной повторной "
-            "квалификацией H1/H6 и обеих test suites.\n\n"
+            "## Что хотим\n\n"
+            "Получить производственно корректные 80 × 150-мм PCB: локальные высокочастотные цепи находятся "
+            "у своих компонентов, после чего вся медь проводится и проверяется без исключений DRC.\n\n"
+            "## Что решили\n\n"
+            "Прежний collision-free seed оказался электрически неверным: часть bypass, feedback и bootstrap "
+            "деталей была удалена от владельцев на десятки миллиметров. Старые дорожки сохранены только в Git; "
+            "рабочие PCB очищены и построены заново. Размер 80 × 150 мм оставлен, потому что исправленная "
+            "компоновка помещается без конфликтов; 85 × 150 мм рассматривается только при доказанном тупике трассировки.\n\n"
+            "## Что получили\n\n"
+            f"Размещены все 1 208 корпусов; {summary['placement_locality_pair_count']} пар local-part → owner "
+            "проходят свои пределы, нарушений локальности нет. Обе платы имеют нулевой native DRC. "
+            f"После осознанного перезапуска осталось {number(summary['current_total_unconnected_count'])} "
+            "физических соединений; их состояние приведено в таблице выше.\n\n"
+            "## Что делаем дальше\n\n"
+            "Порядок: четыре DC/DC-острова и защита питания → RF/clock-кластеры → USB и direct i8080 → "
+            "остальная цифровая и управляющая медь → плоскости/возвраты → полный DRC и release-проверки.\n\n"
             "## Живые изображения\n\n"
-            "Это прямые экспорты из текущих `.kicad_pcb`; hash платы встроен в SVG.\n\n"
+            "Это прямые экспорты текущих `.kicad_pcb`; hash платы встроен в SVG.\n\n"
             "**Передняя/UI-плата**\n\n"
             "[![Текущая разводка UI](images/h6-r2-routing-ui.svg)](images/h6-r2-routing-ui.svg)\n\n"
             "**Задняя RF/power-плата**\n\n"
             "[![Текущая разводка RF/power](images/h6-r2-routing-rf.svg)](images/h6-r2-routing-rf.svg)\n\n"
-            "## Что ещё не доказано\n\n"
-            "Свободная площадь и 5-мм коридор пока достаточны для принятой меди, но запас нельзя считать "
-            "окончательно подтверждённым до завершения питания, USB/i8080/тактируемых шин, RF и плоскостей. "
-            "H6.0.3 закрывается только при нулевом необъяснённом остатке."
+            "## Критерий готовности\n\n"
+            "H6.0.3 закрывается, когда остаток связности равен нулю, все обязательные классы и возвратные "
+            "пути проведены, а native DRC обеих плат повторно даёт ноль."
         )
     else:
         title = "# H6.0.3-R1 · Current 80-mm routing"
         nav = "[Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h6-r2-current-routing.ru.md)"
         lead = (
-            "**Status:** ▶️ checked progress snapshot, not H6 closure. "
-            f"The two live PCBs contain {number(summary['track_via_item_count'])} copper items; native KiCad "
-            f"connectivity reports {number(summary['current_total_unconnected_count'])} remaining and "
-            f"{number(summary['resolved_connection_count'])} already resolved physical connections."
+            "**Status:** ▶️ corrected placement accepted; routing restarted; H6 is not closed."
         )
         headers = "| Board | Traces | Vias | Resolved | Remaining | DRC |\n| --- | ---: | ---: | ---: | ---: | --- |"
         labels = ("UI", "RF/power")
         notes = (
-            "## What changed in this snapshot\n\n"
-            "After the 75 → 80 mm transition, conflict-free analogue/audio/sense routing was transferred by exact "
-            "pad anchors. Old branches that conflicted with the new geometry were discarded rather than forced into "
-            "the board; the remaining eight UI connections were then rerouted in the live geometry and passed DRC. "
-            "On RF/power, the U17 and U100 eFuse neighbourhoods were locally opened, five missing analogue "
-            "connections were added, and the displaced safety/control copper was fully rerouted before acceptance. "
-            "In the audio cluster, `CODEC_DACVREF` and both ADC inputs are now connected; the neighbouring headphone "
-            "and `CODEC_TX_AC` routes were fully rerouted while preserving their original connectivity. "
-            "For `AUDIO_CAPTURE_MIC_SEL`, the low-speed R53 pull-down was moved out of the U106 escape corridor, "
-            "then both adjacent U106 nets received independent paths without a new DRC finding. "
-            "The same cluster now closes `CAPTURE_MIC_BIASED`, while one continuous route joins the three "
-            "previously separate `CC_BAND_V1_REQ` groups. "
-            "A complete four-via `RX_VOICE_AFOUT_AC` path now also joins the vertically separated audio clusters "
-            "without an acute branch. "
-            "In the battery-safety cluster, `PACK_PCKP_SENSE` is now complete: one redundant `PACK_DIS_GATE` "
-            "via was removed, its remote branch was moved to the inner layers, and the neighbouring "
-            "`PACK_FET_OVERRIDE_N` via moved by 0.08 mm; all three nets retain connectivity and pass DRC. "
-            f"`ANALOG_AUDIO_SENSE` now has {summary['analog_remaining_connection_count']} physical connections "
-            f"left: {ui['classes']['ANALOG_AUDIO_SENSE']['remaining_connection_count']} on UI and "
-            f"{rf['classes']['ANALOG_AUDIO_SENSE']['remaining_connection_count']} on RF/power.\n\n"
-            "Native KiCad DRC reports zero findings on both boards. The former physical `BT1`/`J12` conflict was "
-            "removed by shifting the unrouted SMT holder 3.00 mm; no DRC exception remains.\n\n"
-            "## Board-size decision\n\n"
-            f"The 80 × 150-mm outline is retained for now. The highest sum of non-overlapping same-face "
-            f"courtyards is {audit['board_size_review']['maximum_same_face_courtyard_occupancy_percent']:.3f}% "
-            "(RF/power inner face); all footprints place, both boards have clean DRC and "
-            f"{number(summary['resolved_connection_count'])} connections are already routed. Expanding now would "
-            "discard useful evidence without a demonstrated blockage. If a "
-            "required power, USB/i8080, clocked-digital or RF route cannot pass after legal local rearrangement, "
-            "the controlled next candidate is 85 × 150 mm followed by complete H1/H6 and both-suite requalification.\n\n"
+            "## What we want\n\n"
+            "Produce electrically valid 80 × 150-mm PCBs: local high-frequency loops stay at their owning "
+            "devices, then every copper connection is routed and checked without a DRC exception.\n\n"
+            "## What we decided\n\n"
+            "The former collision-free seed was electrically invalid because some bypass, feedback and bootstrap "
+            "parts were tens of millimetres from their owners. The old routes remain available only in Git; the live "
+            "PCBs were cleared and rebuilt. The 80 × 150-mm outline remains because the corrected placement fits; "
+            "85 × 150 mm is considered only after a demonstrated routing blockage.\n\n"
+            "## What we obtained\n\n"
+            f"All 1,208 bodies are placed; all {summary['placement_locality_pair_count']} local-part → owner pairs "
+            "meet their limits and locality has zero violations. Both boards have zero native DRC findings. "
+            f"The deliberate restart leaves {number(summary['current_total_unconnected_count'])} physical "
+            "connections, summarized in the table above.\n\n"
+            "## What happens next\n\n"
+            "Order: four DC/DC islands and power protection → RF/clock clusters → USB and direct i8080 → remaining "
+            "digital/control copper → planes and return paths → full DRC and release checks.\n\n"
             "## Live images\n\n"
-            "These are direct exports from the live `.kicad_pcb` files; each SVG embeds its board hash.\n\n"
+            "These are direct exports from the current `.kicad_pcb` files; each SVG embeds its board hash.\n\n"
             "**Front/UI board**\n\n"
             "[![Current UI routing](images/h6-r2-routing-ui.svg)](images/h6-r2-routing-ui.svg)\n\n"
             "**Rear RF/power board**\n\n"
             "[![Current RF/power routing](images/h6-r2-routing-rf.svg)](images/h6-r2-routing-rf.svg)\n\n"
-            "## What is not proven yet\n\n"
-            "The available area and 5-mm corridor are sufficient for the accepted copper so far, but final margin "
-            "cannot be claimed before power, USB/i8080/clocked buses, RF and reference planes are complete. H6.0.3 "
-            "closes only with no unexplained connectivity residual."
+            "## Completion criterion\n\n"
+            "H6.0.3 closes when connectivity reaches zero, every mandatory class and return path is routed, and "
+            "native DRC is rerun clean on both boards."
         )
     table = [headers]
     for label, row in zip(labels, (ui, rf)):

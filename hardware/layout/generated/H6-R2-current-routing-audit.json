@@ -1,31 +1,33 @@
 {
   "schema_version": 1,
-  "artifact": "H6.0.3 live 80-mm routing checkpoint",
+  "artifact": "H6.0.3 live 80-mm routing checkpoint after locality-constrained repack",
   "marker": "H6.0.3-R1",
   "status": "pass_progress",
   "phase_complete": false,
   "sources": {
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "cb314919f569ea7264e13caa6c88ea4e35f9192849749d01aec3786e78502403"
+    "routing_policy_sha256": "75d74c1fd9ecc71c75aac970cc98d8c4403d2c29dd796abbbc4ea93b577775b8"
   },
   "summary": {
     "board_count": 2,
-    "track_via_item_count": 5453,
-    "trace_count": 4452,
-    "via_count": 1001,
+    "track_via_item_count": 0,
+    "trace_count": 0,
+    "via_count": 0,
     "seed_total_unconnected_count": 3265,
-    "current_total_unconnected_count": 2541,
-    "resolved_connection_count": 724,
-    "analog_remaining_connection_count": 11,
+    "current_total_unconnected_count": 3265,
+    "resolved_connection_count": 0,
+    "analog_remaining_connection_count": 263,
+    "placement_locality_pair_count": 181,
+    "placement_locality_violation_count": 0,
     "drc_violation_count": 0,
     "assigned_drc_exception_count": 0
   },
   "board_size_review": {
     "decision": "retain_80x150_mm",
-    "status": "sufficient_so_far_not_finally_proven",
+    "status": "locality_constrained_placement_proven_routing_capacity_open",
     "maximum_same_face_courtyard_occupancy_percent": 61.474,
-    "evidence": "all 1208 exact footprints still place without a same-face hard conflict; 724 physical connections are already resolved; both native DRC reports are clean; the accepted 5-mm routing corridor remains usable",
-    "why_not_expand_now": "an outline change would invalidate board anchors, routed copper, mechanical views, enclosure datums and every derived qualification while no current hard routing blockage demonstrates that the extra width is needed",
+    "evidence": "all 1208 exact footprints place without a same-face hard conflict; all 181 local-owner constraints pass; both native DRC reports are clean; the accepted 5-mm routing corridor remains usable",
+    "why_not_expand_now": "the corrected locality-constrained placement fits the current outline and no legal power, RF or digital route has yet demonstrated a capacity blockage; the route restart deliberately removed the old invalid evidence",
     "expansion_candidate_if_triggered_mm": [
       85.0,
       150.0
@@ -43,29 +45,24 @@
     {
       "project": "LESHY2-UI-R2",
       "board": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "board_sha256": "94d06ad18cad60261572b9bc17fce745aaa7622488dacaa4f02139a1c145fb01",
+      "board_sha256": "1f4fba898258b2fbfeb8ff6db5522bead8a14143be3d8161e5c28b769d81c4f3",
       "board_size_mm": [
         80.05,
         150.05
       ],
       "footprint_count": 432,
-      "trace_count": 1132,
-      "via_count": 222,
-      "track_via_item_count": 1354,
-      "routed_net_count": 102,
-      "used_trace_layers": [
-        "B.Cu",
-        "F.Cu",
-        "In2.Cu",
-        "In3.Cu"
-      ],
+      "trace_count": 0,
+      "via_count": 0,
+      "track_via_item_count": 0,
+      "routed_net_count": 0,
+      "used_trace_layers": [],
       "placement_courtyard_occupancy_percent": {
         "F.Cu": 17.861,
         "B.Cu": 39.98
       },
       "seed_total_unconnected_count": 1227,
-      "current_total_unconnected_count": 1000,
-      "resolved_connection_count": 227,
+      "current_total_unconnected_count": 1227,
+      "resolved_connection_count": 0,
       "classes": {
         "GROUND_REFERENCE": {
           "net_count": 1,
@@ -97,7 +94,7 @@
         },
         "OSCILLATOR": {
           "net_count": 3,
-          "remaining_connection_count": 0
+          "remaining_connection_count": 5
         },
         "CLOCKED_DIGITAL": {
           "net_count": 99,
@@ -105,7 +102,7 @@
         },
         "SAFETY_CONTROL": {
           "net_count": 33,
-          "remaining_connection_count": 19
+          "remaining_connection_count": 84
         },
         "SERIAL_CONTROL": {
           "net_count": 33,
@@ -113,17 +110,17 @@
         },
         "ANALOG_AUDIO_SENSE": {
           "net_count": 21,
-          "remaining_connection_count": 0
+          "remaining_connection_count": 46
         },
         "GENERAL_CONTROL": {
           "net_count": 61,
-          "remaining_connection_count": 31
+          "remaining_connection_count": 142
         }
       },
       "drc": {
-        "report_sha256": "bae1e6c43f496d69ed2605220a3ddeb585bca1a9a39c7cd2a2ceb2e639669d1d",
+        "report_sha256": "f30a556d4c0dc1eb40c763be4e105a2fc4c1277af273aca447e0f05c41eb47e1",
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-06T04:20:45",
+        "checked_at": "2026-09-06T05:01:11",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,
@@ -135,29 +132,24 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "board_sha256": "e52bea39959bddc73dd76ef059aea735bd9a09b05f7920644656b58bb8c5d0a3",
+      "board_sha256": "a330180c1ce85b8521a85fbc52abf624407a26e001a36606ced4500b59ad3ee0",
       "board_size_mm": [
         80.05,
         150.05
       ],
       "footprint_count": 784,
-      "trace_count": 3320,
-      "via_count": 779,
-      "track_via_item_count": 4099,
-      "routed_net_count": 269,
-      "used_trace_layers": [
-        "B.Cu",
-        "F.Cu",
-        "In2.Cu",
-        "In3.Cu"
-      ],
+      "trace_count": 0,
+      "via_count": 0,
+      "track_via_item_count": 0,
+      "routed_net_count": 0,
+      "used_trace_layers": [],
       "placement_courtyard_occupancy_percent": {
         "F.Cu": 54.146,
         "B.Cu": 61.474
       },
       "seed_total_unconnected_count": 2038,
-      "current_total_unconnected_count": 1541,
-      "resolved_connection_count": 497,
+      "current_total_unconnected_count": 2038,
+      "resolved_connection_count": 0,
       "classes": {
         "GROUND_REFERENCE": {
           "net_count": 2,
@@ -189,7 +181,7 @@
         },
         "OSCILLATOR": {
           "net_count": 9,
-          "remaining_connection_count": 0
+          "remaining_connection_count": 15
         },
         "CLOCKED_DIGITAL": {
           "net_count": 43,
@@ -197,7 +189,7 @@
         },
         "SAFETY_CONTROL": {
           "net_count": 78,
-          "remaining_connection_count": 51
+          "remaining_connection_count": 202
         },
         "SERIAL_CONTROL": {
           "net_count": 41,
@@ -205,17 +197,17 @@
         },
         "ANALOG_AUDIO_SENSE": {
           "net_count": 122,
-          "remaining_connection_count": 11
+          "remaining_connection_count": 217
         },
         "GENERAL_CONTROL": {
           "net_count": 104,
-          "remaining_connection_count": 79
+          "remaining_connection_count": 204
         }
       },
       "drc": {
-        "report_sha256": "67a613e78aa9f0a6fd9b9219d7c269334d0976b37ab51ee41c380cf53a979138",
+        "report_sha256": "fc9dad2cdc4f17b58b9fbac40f623ea34cbf96a668427ab60b919736c8f7671e",
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-06T04:20:47",
+        "checked_at": "2026-09-06T05:01:14",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,

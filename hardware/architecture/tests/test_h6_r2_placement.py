@@ -41,6 +41,8 @@ class H6R2PlacementTests(unittest.TestCase):
                 "hard_conflict_count": 0,
                 "placement_failure_count": 0,
                 "net_or_footprint_error_count": 0,
+                "locality_pair_count": 181,
+                "locality_violation_count": 0,
                 "routing_authorized": True,
                 "routing_started": True,
             },
@@ -49,6 +51,35 @@ class H6R2PlacementTests(unittest.TestCase):
         boards = {row["project"]: row for row in self.audit["boards"]}
         self.assertEqual(428, boards["LESHY2-UI-R2"]["placed_instance_count"])
         self.assertEqual(780, boards["LESHY2-RF-R2"]["placed_instance_count"])
+
+    def test_local_parts_stay_with_their_physical_owners(self):
+        self.assertEqual(181, self.audit["summary"]["locality_pair_count"])
+        self.assertEqual(0, self.audit["summary"]["locality_violation_count"])
+        rows = {}
+        for board in self.audit["boards"]:
+            self.assertEqual("pass", board["locality"]["status"])
+            self.assertEqual([], board["locality"]["violations"])
+            rows.update({row["instance"]: row for row in board["locality"]["rows"]})
+        for instance, limit in self.contract["placement_policy"]["locality_max_gap_mm"].items():
+            self.assertIn(instance, rows)
+            self.assertLessEqual(rows[instance]["courtyard_gap_mm"], limit)
+        self.assertEqual("main_buck", rows["main_buck_bootstrap_cap"]["owner"])
+        self.assertEqual("main_fb_top", rows["main_ff_cap"]["owner"])
+        self.assertEqual("voice_inductor", rows["voice_output_cap0"]["owner"])
+
+    def test_power_islands_and_touch_buffer_use_reviewed_locality_anchors(self):
+        expected = {
+            "aon_buck": [51.0, 84.5],
+            "ext_buck": [30.5, 132.0],
+            "main_buck": [13.0, 126.0],
+            "voice_buck": [66.5, 111.5],
+            "touch_irq_buffer": [38.5, 28.0],
+        }
+        for instance, centre in expected.items():
+            self.assertEqual(
+                centre,
+                self.contract["placement_overrides"][instance]["centre_mm"],
+            )
 
     def test_native_boards_and_six_layer_headers_match_the_placement_audit(self):
         for board in self.audit["boards"]:

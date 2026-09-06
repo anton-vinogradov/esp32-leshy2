@@ -76,9 +76,9 @@ Open either board for the full-size SVG.
 
 - H0–H5 are reviewed on baseline R2, including the H2 native production ECAD; their immutable reports are collected in [one index](docs/stage-results.md).
 - Two native KiCad projects contain 1,208 fitted instances, 4,306 physical pins and 789 canonical nets; ERC closes with zero errors and warnings.
-- Exact placement covers 1,208/1,208 footprints with no hard same-face conflict.
-- After a local shift of the SMT battery holder, both live boards have zero DRC violations and zero accepted exceptions.
-- Live routing contains 5,432 copper items, 723 resolved and 2,542 remaining physical connections. The densest face by summed courtyard area is RF/power inner at 61.474%.
+- Exact placement covers 1,208/1,208 footprints with no hard same-face conflict; all 181 local-part → owner constraints pass.
+- Both corrected unrouted boards have zero DRC violations and zero accepted exceptions.
+- Routing has deliberately restarted from the corrected seed: 0 copper items, 0 resolved and 3,265 remaining physical connections.
 - Full current checkpoint: [H6.0.3-R1](docs/h6-r2-current-routing.md).
 
 ## What remains

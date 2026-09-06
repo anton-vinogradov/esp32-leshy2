@@ -163,10 +163,12 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual("H6.0.3-R1", audit["marker"])
         self.assertEqual("pass_progress", audit["status"])
         self.assertFalse(audit["phase_complete"])
-        self.assertEqual(5453, audit["summary"]["track_via_item_count"])
-        self.assertEqual(724, audit["summary"]["resolved_connection_count"])
-        self.assertEqual(2541, audit["summary"]["current_total_unconnected_count"])
-        self.assertEqual(11, audit["summary"]["analog_remaining_connection_count"])
+        self.assertEqual(0, audit["summary"]["track_via_item_count"])
+        self.assertEqual(0, audit["summary"]["resolved_connection_count"])
+        self.assertEqual(3265, audit["summary"]["current_total_unconnected_count"])
+        self.assertEqual(263, audit["summary"]["analog_remaining_connection_count"])
+        self.assertEqual(181, audit["summary"]["placement_locality_pair_count"])
+        self.assertEqual(0, audit["summary"]["placement_locality_violation_count"])
         size = audit["board_size_review"]
         self.assertEqual("retain_80x150_mm", size["decision"])
         self.assertEqual(61.474, size["maximum_same_face_courtyard_occupancy_percent"])
@@ -304,7 +306,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         for script, expected in (
             (PLACEMENT_FREEZE_SCRIPT, "1208 exact anchors"),
             (GENERAL_ROUTING_SCRIPT, "historical routing evidence preserved; current H6.0.3-R1"),
-            (CURRENT_ROUTING_SCRIPT, "5453 copper items; 724 resolved; 2541 remain"),
+            (CURRENT_ROUTING_SCRIPT, "0 copper items; 0 resolved; 3265 remain"),
         ):
             result = subprocess.run(
                 [str(KICAD_PYTHON), str(script), "--check"],

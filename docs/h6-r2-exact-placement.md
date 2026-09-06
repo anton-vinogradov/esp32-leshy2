@@ -1,84 +1,60 @@
-# H6.0.1-R1 · Exact-footprint placement
+# H6.0.3-R1 · Exact-footprint placement
 
-[Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h6-r2-exact-placement.ru.md)
+[Home](../README.md) · [Current routing](h6-r2-current-routing.md) · [Русский](h6-r2-exact-placement.ru.md)
 
-**Status:** ✅ the native-PCB placement slice of H6.0.1 is reproducible and
-collision-free. The [mechanical stack](h6-r2-mechanical-stack.md) and
-[microcoax service closure](h6-r2-microcoax-service.md) now complete H6.0.1.
-**H6.0.3 routing requalification on the 80 × 150 mm baseline is current.** This result does not
+**Status:** ✅ the corrected 80 × 150-mm placement is accepted as the new
+unrouted H6.0.3 baseline. Routing is still in progress; this page does not
 authorize fabrication or purchase.
 
 ![Exact H6 placement of both accessible inner faces](images/h6-r2-exact-placement.svg)
 
-## What now exists
+## What we want
 
-- two native six-copper-layer KiCad 10 boards beside the reviewed H2
-  schematics: [UI PCB](../hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb)
-  and [RF/power PCB](../hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb);
-- all **1,208/1,208** reviewed fitted schematic instances placed using their
-  selected KiCad footprints: 428 on UI and 780 on RF/power;
-- all **789** global canonical / **823** board-local H2 nets assigned to their real footprint pads;
-- four M2.5 stop axes on each PCB, the rounded 80 × 150 mm outlines, the exact
-  display bed, ready-cut PSA guide and relaxed FPC slot on the UI board;
-- the current 5+5 direct-source antenna bank and user-facing board/screen
-  silkscreen in the native boards;
-- one deterministic unrouted-seed generator, machine contract, hash-bearing
-  placement audit and an exact **1,208-anchor freeze** that prevents a local
-  route-driven correction from repacking unrelated components.
+Fit every selected production footprint on the two fixed-size boards while
+preserving the reviewed mechanical interfaces and keeping electrically local
+parts beside the device or network that owns them. A visually collision-free
+placement alone is not sufficient.
 
-The [machine audit](../hardware/layout/generated/H6-R2-placement-audit.json)
-reports zero hard courtyard conflicts, zero unplaced instances and zero
-net/footprint mapping errors. Unrouted-seed regeneration is byte-for-byte
-reproducible. The routine `--check` uses a routing-insensitive placement
-signature: footprints, pad/net binding, setup, constraints and board geometry
-must still match, while tracks, vias and copper pours are preserved and ignored.
-The deliberately destructive `--write` mode remains only for rebuilding a clean
-unrouted seed. KiCad 10 parses both native boards and exports placement files
-from them.
+## What we decided
 
-The freeze also records the reviewed local H6.0.2 corrections and the H6.0.3
-80-mm rebaseline: `R59` moved to
-open the encoder-side U12 pin-2/pin-3 fan-out, and `R109` moved to open the U12
-pin-7 C5 service-USB fan-out. All other anchors remain exactly where accepted;
-the regenerated placement still reports 1,208/1,208 positions and zero hard
-conflicts.
+- Retain the two 80 × 150-mm, six-copper-layer boards. The 85 × 150-mm fallback
+  is considered only if a required route remains impossible after legal local
+  rearrangement.
+- Keep the accepted display bed, ready-cut PSA guide, relaxed FPC slot, four
+  M2.5 stop axes per PCB and both five-port antenna banks fixed.
+- Constrain bypass, feedback, bootstrap, clock-load and other electrically
+  local parts to their owners. Critical converter parts use explicit owner and
+  distance limits; the remaining local parts use deterministic owner rules.
+- Freeze all 1,208 resulting anchors. Normal placement checks ignore copper so
+  they can validate a routed board without moving anything; `--write` remains
+  an intentionally destructive unrouted-seed rebuild.
 
-## Exact-footprint corrections to the H1 drawing
+## What we obtained
 
-H1 was a physically reviewed body model, not a claim that every illustrative
-rectangle already equalled a KiCad courtyard. Loading the selected production
-footprints exposed and corrected four real issues:
+- Two native KiCad 10 boards containing all **1,208/1,208** fitted schematic
+  instances: 428 on UI and 780 on RF/power.
+- All **789** global canonical / **823** board-local H2 nets bound to real pads.
+- Zero hard same-face courtyard conflicts, zero unplaced bodies and zero
+  net/footprint mapping errors.
+- **181/181** local-part → owner pairs within their permitted courtyard gaps;
+  zero locality violations.
+- Zero native KiCad DRC findings on both corrected unrouted boards.
+- A deterministic generator, a hash-bearing
+  [machine audit](../hardware/layout/generated/H6-R2-placement-audit.json) and
+  an exact 1,208-anchor freeze.
 
-1. each five-port antenna bank moved to symmetric centres
-   **14.00 / 25.75 / 37.50 / 49.25 / 61.00 mm**, clearing the upper screw-head
-   keepouts while keeping all RF feeds on their source PCB;
-2. the complete display, slot and ZIF system moved 8.50 mm away from the exact
-   edge-SMA courtyards; their relative geometry and at least 5 mm relaxed FPC
-   slack are unchanged;
-3. the side function switches rotate 90° and the D-pad pitch becomes 10.5 mm,
-   so the exact OMRON B3S courtyards do not overlap each other or the display;
-4. the encoder land pattern rotates 90° around the same user-visible shaft
-   axis, leaving 0.91 mm to the battery-holder courtyard.
+The previous routed seed is retained only in Git history. It was rejected
+because several converter feedback/bootstrap parts and many bypass capacitors
+were tens of millimetres from their owners. The corrected placement also lowers
+the RF-board minimum-spanning net length from 18,372.9 to 14,687.4 mm; this is
+a placement comparison, not routed-copper performance evidence.
 
-These are production-footprint corrections, not product-function changes.
+## What happens next
 
-## Stack candidate and H6.0.1 closure
-
-The current factory calculator identifies the standard/recommended 1.6-mm
-order option as [`JLC06161H-3313`](https://jlcpcb.com/pcb-impedance-calculator/),
-with a calculated finished thickness of 1.54 mm ±10%: 0.035-mm outer copper,
-0.0152-mm inner copper, 0.0994-mm outer 3313 prepreg, 0.1088-mm centre 2116
-prepreg and two 0.55-mm cores. The current outer-layer geometry is now bound
-in the routing policy; an order-time calculator recheck remains mandatory.
-
-The [mechanical-stack slice](h6-r2-mechanical-stack.md) now locks the enclosure
-capture lips, four pilot datums, wall bearings and exact 20-mm nylon
-screw/captive-nut geometry. Its worst tolerance corner still provides 2.18 mm
-of thread at the nut and keeps the screw tip buried; M1 has no structural role.
-The [five relaxed microcoax service-loop corridors](h6-r2-microcoax-service.md),
-clip positions and enclosure/inspection clearances are now machine-checked.
-They close H6.0.1 and release H6.0.2 routing without changing this placement;
-H6.0.2 owns zero-finding DRC plus schematic/PCB parity.
+Route the four DC/DC islands and protection first, then RF/clock clusters,
+USB/direct-i8080, remaining digital/control nets, planes and return paths. The
+[current-routing page](h6-r2-current-routing.md) is the sole owner of live
+copper counts and routing progress.
 
 ## Reproduce
 
@@ -96,5 +72,5 @@ H6-R2 placement pass: 1208/1208 positions; 0 hard conflicts; 0 unplaced
 H6-R2 placement freeze pass: 1208 exact anchors
 ```
 
-This is safe on a routed board. Do not run `--write` after routing has begun: it
-intentionally replaces each PCB with the reviewed unrouted seed.
+Do not run `--write` after new routing has begun: it intentionally replaces
+each PCB with the accepted unrouted seed.

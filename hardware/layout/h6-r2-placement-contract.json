@@ -276,6 +276,46 @@
       "method": "reviewed H6.0.3 mechanical-clearance correction",
       "reason": "shift the unconnected SMT holder 3.00 mm toward board +X so BT1 pad 1 clears the J12 locator hole and both native DRC findings disappear without moving the routed interboard connector"
     },
+    "aon_buck": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        51.0,
+        84.5
+      ],
+      "rotation_deg": 0.0,
+      "method": "reviewed H6.0.3 power-locality correction",
+      "reason": "reserve an unobstructed inner-face pocket for the complete always-on converter loop instead of leaving its inductor and capacitors distributed across the board"
+    },
+    "ext_buck": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        30.5,
+        132.0
+      ],
+      "rotation_deg": 90.0,
+      "method": "reviewed H6.0.3 power-locality correction",
+      "reason": "place the complete accessory converter beside the system-power region with enough local area for both input and output banks"
+    },
+    "main_buck": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        13.0,
+        126.0
+      ],
+      "rotation_deg": 0.0,
+      "method": "reviewed H6.0.3 power-locality correction",
+      "reason": "give the main converter, its large inductor, three input capacitors and three output capacitors one compact bottom-left power island"
+    },
+    "voice_buck": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        66.5,
+        111.5
+      ],
+      "rotation_deg": 0.0,
+      "method": "reviewed H6.0.3 power-locality correction",
+      "reason": "give the independent voice converter a clear local loop near its eFuse and downstream voice rail"
+    },
     "ext_en_pulldown": {
       "frame": "rear-inner",
       "centre_mm": [
@@ -367,6 +407,16 @@
       "rotation_deg": 90.0,
       "method": "reviewed H6.0.2 fan-out correction",
       "reason": "retain the reset sink beside the Hub RP while restoring printable package-silkscreen clearance after the controller rotation"
+    },
+    "touch_irq_buffer": {
+      "frame": "ui-inner",
+      "centre_mm": [
+        38.5,
+        28.0
+      ],
+      "rotation_deg": 0.0,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "move the touch interrupt buffer and its local bypass into the clear display-tail-side pocket instead of separating the pair in the narrow connector-to-nRF corridor"
     },
     "ui_input_encoder_pullup": {
       "frame": "ui-inner",
@@ -838,6 +888,136 @@
     "air_lo": "airband_lo"
   },
   "placement_policy": {
+    "released_reference_prefixes_by_project": {
+      "LESHY2-UI-R2": [
+        "C",
+        "L",
+        "R"
+      ],
+      "LESHY2-RF-R2": [
+        "C",
+        "L",
+        "R"
+      ]
+    },
+    "released_instances": [
+      "cc_return_buffer",
+      "codec_i2s_bclk_iso",
+      "codec_i2s_din_iso",
+      "codec_supervisor",
+      "evidence_cmp_voice",
+      "main_inductor",
+      "safe_ptt_or",
+      "slow_io",
+      "touch_irq_buffer",
+      "voice_control_mux_b",
+      "voice_pd_gate"
+    ],
+    "locality_owner_overrides": {
+      "aon_input_cap": "aon_buck",
+      "aon_inductor": "aon_buck",
+      "aon_output_cap": "aon_inductor",
+      "ext_buck_fb_bottom": "ext_buck",
+      "ext_buck_fb_top": "ext_buck",
+      "ext_buck_ff_cap": "ext_buck_fb_top",
+      "ext_buck_hf_input_cap": "ext_buck",
+      "ext_buck_input_cap": "ext_buck",
+      "ext_buck_output_cap0": "ext_inductor",
+      "ext_buck_output_cap1": "ext_inductor",
+      "ext_inductor": "ext_buck",
+      "main_buck_bootstrap_cap": "main_buck",
+      "main_buck_bootstrap_link": "main_buck",
+      "main_buck_vcc_cap": "main_buck",
+      "main_fb_bottom": "main_buck",
+      "main_fb_top": "main_buck",
+      "main_ff_cap": "main_fb_top",
+      "main_hf_input_cap": "main_buck",
+      "main_inductor": "main_buck",
+      "main_input_cap": "main_buck",
+      "main_input_cap_1": "main_buck",
+      "main_input_cap_2": "main_buck",
+      "main_output_cap0": "main_inductor",
+      "main_output_cap1": "main_inductor",
+      "main_output_cap2": "main_inductor",
+      "voice_fb_bottom": "voice_buck",
+      "voice_fb_top": "voice_buck",
+      "voice_ff_cap": "voice_fb_top",
+      "voice_hf_input_cap": "voice_buck",
+      "voice_inductor": "voice_buck",
+      "voice_input_cap": "voice_buck",
+      "voice_output_cap0": "voice_inductor",
+      "voice_output_cap1": "voice_inductor"
+    },
+    "locality_order": {
+      "aon_input_cap": 0,
+      "aon_inductor": 10,
+      "aon_output_cap": 0,
+      "ext_buck_fb_bottom": 0,
+      "ext_buck_fb_top": 0,
+      "ext_buck_ff_cap": 0,
+      "ext_buck_hf_input_cap": 0,
+      "ext_buck_input_cap": 10,
+      "ext_inductor": 20,
+      "ext_buck_output_cap0": 0,
+      "ext_buck_output_cap1": 0,
+      "main_buck_bootstrap_cap": 0,
+      "main_buck_bootstrap_link": 0,
+      "main_buck_vcc_cap": 0,
+      "main_fb_bottom": 0,
+      "main_fb_top": 0,
+      "main_ff_cap": 0,
+      "main_hf_input_cap": 0,
+      "main_input_cap": 10,
+      "main_input_cap_1": 10,
+      "main_input_cap_2": 10,
+      "main_inductor": 20,
+      "main_output_cap0": 0,
+      "main_output_cap1": 0,
+      "main_output_cap2": 0,
+      "voice_fb_bottom": 0,
+      "voice_fb_top": 0,
+      "voice_ff_cap": 0,
+      "voice_hf_input_cap": 0,
+      "voice_input_cap": 10,
+      "voice_inductor": 20,
+      "voice_output_cap0": 0,
+      "voice_output_cap1": 0
+    },
+    "locality_max_gap_mm": {
+      "aon_input_cap": 0.75,
+      "aon_inductor": 0.75,
+      "aon_output_cap": 0.75,
+      "ext_buck_fb_bottom": 0.75,
+      "ext_buck_fb_top": 0.75,
+      "ext_buck_ff_cap": 0.75,
+      "ext_buck_hf_input_cap": 0.75,
+      "ext_buck_input_cap": 0.75,
+      "ext_buck_output_cap0": 0.75,
+      "ext_buck_output_cap1": 0.75,
+      "ext_inductor": 2.0,
+      "main_buck_bootstrap_cap": 0.75,
+      "main_buck_bootstrap_link": 0.75,
+      "main_buck_vcc_cap": 0.75,
+      "main_fb_bottom": 0.75,
+      "main_fb_top": 0.75,
+      "main_ff_cap": 0.75,
+      "main_hf_input_cap": 0.75,
+      "main_inductor": 3.0,
+      "main_input_cap": 2.25,
+      "main_input_cap_1": 2.25,
+      "main_input_cap_2": 2.25,
+      "main_output_cap0": 0.75,
+      "main_output_cap1": 0.75,
+      "main_output_cap2": 0.75,
+      "voice_fb_bottom": 0.75,
+      "voice_fb_top": 0.75,
+      "voice_ff_cap": 0.75,
+      "voice_hf_input_cap": 0.75,
+      "voice_inductor": 2.0,
+      "voice_input_cap": 0.75,
+      "voice_output_cap0": 0.75,
+      "voice_output_cap1": 0.75
+    },
     "hard_locked": [
       "display_connector",
       "nrf0_rf_board_connector",
