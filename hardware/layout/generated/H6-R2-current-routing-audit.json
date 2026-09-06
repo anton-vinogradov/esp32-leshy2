@@ -10,12 +10,12 @@
   },
   "summary": {
     "board_count": 2,
-    "track_via_item_count": 80,
-    "trace_count": 66,
-    "via_count": 14,
+    "track_via_item_count": 115,
+    "trace_count": 93,
+    "via_count": 22,
     "seed_total_unconnected_count": 3265,
-    "current_total_unconnected_count": 3247,
-    "resolved_connection_count": 18,
+    "current_total_unconnected_count": 3237,
+    "resolved_connection_count": 28,
     "analog_remaining_connection_count": 263,
     "placement_locality_pair_count": 310,
     "placement_locality_violation_count": 0,
@@ -122,9 +122,9 @@
         }
       },
       "drc": {
-        "report_sha256": "05c374c4fd3bed563a202d14507ef77df4a1b43864806409c8ff561fa0120bd5",
+        "report_sha256": "eba682cd3f203a84ed3561a65375f1023aea66f3e0bcbd9e659aaec25bd7d895",
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-06T10:11:21",
+        "checked_at": "2026-09-06T10:31:16",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,
@@ -136,18 +136,19 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "board_sha256": "b2a77a94b7a1aec377c4d2622b9ca8bc2ca6827eadcbc8b5251eb67212cd79b0",
+      "board_sha256": "da0a1848b66a9484b72d2d0b307338e86915314b19981c4c34267ea50208fbed",
       "board_size_mm": [
         80.05,
         150.05
       ],
       "footprint_count": 784,
-      "trace_count": 62,
-      "via_count": 14,
-      "track_via_item_count": 76,
-      "routed_net_count": 14,
+      "trace_count": 89,
+      "via_count": 22,
+      "track_via_item_count": 111,
+      "routed_net_count": 16,
       "used_trace_layers": [
         "B.Cu",
+        "In1.Cu",
         "In2.Cu",
         "In3.Cu"
       ],
@@ -156,16 +157,16 @@
         "B.Cu": 61.395
       },
       "seed_total_unconnected_count": 2038,
-      "current_total_unconnected_count": 2021,
-      "resolved_connection_count": 17,
+      "current_total_unconnected_count": 2011,
+      "resolved_connection_count": 27,
       "classes": {
         "GROUND_REFERENCE": {
           "net_count": 2,
-          "remaining_connection_count": 622
+          "remaining_connection_count": 621
         },
         "PRIMARY_POWER": {
           "net_count": 20,
-          "remaining_connection_count": 391
+          "remaining_connection_count": 386
         },
         "POWER_BRANCH": {
           "net_count": 15,
@@ -173,7 +174,7 @@
         },
         "SWITCHING_NODE": {
           "net_count": 14,
-          "remaining_connection_count": 7
+          "remaining_connection_count": 3
         },
         "RF_CONTROLLED": {
           "net_count": 58,
@@ -213,9 +214,9 @@
         }
       },
       "drc": {
-        "report_sha256": "69db2c2e44e83abe40826f2f7436bd10345be5852ff7c5e88537c6d9b8021909",
+        "report_sha256": "519b1b615efc3009555311a730cd3f4e711a31e0dace2284f27e406f54ead476",
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-06T10:10:53",
+        "checked_at": "2026-09-06T10:38:26",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,

@@ -5,17 +5,18 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "144663a537999cb74275b2186662839544a38029e6fa520beb1d297c121c06b2",
+    "contract_sha256": "de45244714d9362f9c15575b670c93cf6e5f8c8e4c21f1462c7091faf9c71f13",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
     "routing_policy_sha256": "fb09c92b617bf76809cea13de15e805d118af182f62d4a38fccda7a4776abdc0",
     "placement_status": "pass"
   },
   "summary": {
-    "route_count": 17,
-    "segment_count": 66,
-    "resolved_connection_count": 18,
-    "via_count": 14,
-    "manual_only_route_count": 17
+    "route_count": 24,
+    "segment_count": 93,
+    "resolved_connection_count": 28,
+    "via_count": 22,
+    "manual_only_route_count": 20,
+    "local_ground_join_route_count": 4
   },
   "boards": [
     {
@@ -87,10 +88,10 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "route_count": 16,
-      "segment_count": 62,
-      "via_count": 14,
-      "resolved_connection_count": 17,
+      "route_count": 23,
+      "segment_count": 89,
+      "via_count": 22,
+      "resolved_connection_count": 27,
       "copper_signature": [
         [
           "track",
@@ -188,6 +189,118 @@
           [
             69.765,
             67.4
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_PMID",
+          "B.Cu",
+          0.6,
+          [
+            69.765,
+            65.595
+          ],
+          [
+            69.765,
+            67.4
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_PMID",
+          "B.Cu",
+          0.8,
+          [
+            70.47,
+            65.595
+          ],
+          [
+            71.95,
+            65.595
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_PMID",
+          "B.Cu",
+          0.8,
+          [
+            71.95,
+            65.595
+          ],
+          [
+            71.95,
+            68.545
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_PMID",
+          "B.Cu",
+          0.8,
+          [
+            71.95,
+            68.545
+          ],
+          [
+            72.72,
+            68.545
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_PMID",
+          "B.Cu",
+          1.0,
+          [
+            70.47,
+            63.045
+          ],
+          [
+            70.47,
+            65.595
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_REGN",
+          "B.Cu",
+          0.2,
+          [
+            67.9,
+            70.5
+          ],
+          [
+            68.65,
+            70.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_REGN",
+          "B.Cu",
+          0.25,
+          [
+            68.65,
+            70.5
+          ],
+          [
+            69.72,
+            71.35
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_REGN",
+          "B.Cu",
+          0.4,
+          [
+            69.72,
+            71.35
+          ],
+          [
+            69.72,
+            72.045
           ]
         ],
         [
@@ -580,6 +693,272 @@
           [
             65.099999,
             68.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "B.Cu",
+          0.6,
+          [
+            61.3,
+            68.4
+          ],
+          [
+            61.975,
+            67.88
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "B.Cu",
+          0.8,
+          [
+            59.545,
+            68.92
+          ],
+          [
+            60.3,
+            68.92
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "B.Cu",
+          0.8,
+          [
+            60.3,
+            68.92
+          ],
+          [
+            61.3,
+            68.4
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "B.Cu",
+          1.0,
+          [
+            54.045,
+            68.92
+          ],
+          [
+            56.795,
+            68.92
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "B.Cu",
+          1.0,
+          [
+            56.795,
+            68.92
+          ],
+          [
+            57.72,
+            71.295
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "B.Cu",
+          1.0,
+          [
+            56.795,
+            68.92
+          ],
+          [
+            59.545,
+            68.92
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "B.Cu",
+          1.0,
+          [
+            57.72,
+            71.295
+          ],
+          [
+            57.72,
+            74.045
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.18,
+          [
+            66.45,
+            73.15
+          ],
+          [
+            66.599999,
+            72.4
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.18,
+          [
+            67.0,
+            72.4
+          ],
+          [
+            67.0,
+            73.15
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.3,
+          [
+            61.975,
+            66.92
+          ],
+          [
+            62.6,
+            66.92
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.3,
+          [
+            61.975,
+            66.92
+          ],
+          [
+            63.25,
+            66.92
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.3,
+          [
+            70.725,
+            67.4
+          ],
+          [
+            71.1,
+            66.9
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.3,
+          [
+            70.725,
+            67.4
+          ],
+          [
+            71.1,
+            67.9
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.5,
+          [
+            72.67,
+            72.045
+          ],
+          [
+            73.6,
+            71.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.5,
+          [
+            72.67,
+            72.045
+          ],
+          [
+            73.6,
+            72.4
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.3,
+          [
+            62.6,
+            66.92
+          ],
+          [
+            63.25,
+            66.92
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.3,
+          [
+            66.45,
+            73.15
+          ],
+          [
+            67.0,
+            73.15
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.3,
+          [
+            71.1,
+            66.9
+          ],
+          [
+            71.1,
+            67.9
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            73.6,
+            71.7
+          ],
+          [
+            73.6,
+            72.4
           ]
         ],
         [
@@ -1071,6 +1450,70 @@
           65.5,
           0.5,
           0.25
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          62.6,
+          66.92,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          63.25,
+          66.92,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          66.45,
+          73.15,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          67.0,
+          73.15,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          71.1,
+          66.9,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          71.1,
+          67.9,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          73.6,
+          71.7,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          73.6,
+          72.4,
+          0.4,
+          0.2
         ]
       ]
     }
@@ -1082,6 +1525,7 @@
       "canonical_net": "HUB_RP_VREG_LX_SW",
       "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_VREG_LX_SW",
       "routing_class": "SWITCHING_NODE",
+      "route_mode": "manual_only",
       "layers": [
         "B.Cu"
       ],
@@ -1100,6 +1544,7 @@
       "canonical_net": "AON_BUCK_SW",
       "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_BUCK_SW",
       "routing_class": "SWITCHING_NODE",
+      "route_mode": "manual_only",
       "layers": [
         "B.Cu"
       ],
@@ -1118,6 +1563,7 @@
       "canonical_net": "PACK_CHARGE_PUMP",
       "kicad_net": "/RF_02_PACK_SAFETY_AON/PACK_CHARGE_PUMP",
       "routing_class": "SWITCHING_NODE",
+      "route_mode": "manual_only",
       "layers": [
         "B.Cu"
       ],
@@ -1136,6 +1582,7 @@
       "canonical_net": "RF_RP_VREG_LX_SW",
       "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_VREG_LX_SW",
       "routing_class": "SWITCHING_NODE",
+      "route_mode": "manual_only",
       "layers": [
         "B.Cu"
       ],
@@ -1154,6 +1601,7 @@
       "canonical_net": "MAIN_BUCK_BST",
       "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_BST",
       "routing_class": "SWITCHING_NODE",
+      "route_mode": "manual_only",
       "layers": [
         "B.Cu"
       ],
@@ -1172,6 +1620,7 @@
       "canonical_net": "MAIN_BUCK_BST_LINK",
       "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_BST_LINK",
       "routing_class": "SWITCHING_NODE",
+      "route_mode": "manual_only",
       "layers": [
         "B.Cu"
       ],
@@ -1190,6 +1639,7 @@
       "canonical_net": "CHARGER_BTST1",
       "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_BTST1",
       "routing_class": "SWITCHING_NODE",
+      "route_mode": "manual_only",
       "layers": [
         "B.Cu"
       ],
@@ -1208,6 +1658,7 @@
       "canonical_net": "CHARGER_BTST2",
       "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_BTST2",
       "routing_class": "SWITCHING_NODE",
+      "route_mode": "manual_only",
       "layers": [
         "B.Cu"
       ],
@@ -1226,6 +1677,7 @@
       "canonical_net": "EXT_BUCK_SW",
       "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_BUCK_SW",
       "routing_class": "SWITCHING_NODE",
+      "route_mode": "manual_only",
       "layers": [
         "B.Cu"
       ],
@@ -1246,6 +1698,7 @@
       "canonical_net": "VOICE_BUCK_SW",
       "kicad_net": "/RF_20_CC1101_VOICE_TX/VOICE_BUCK_SW",
       "routing_class": "SWITCHING_NODE",
+      "route_mode": "manual_only",
       "layers": [
         "B.Cu"
       ],
@@ -1266,6 +1719,7 @@
       "canonical_net": "MAIN_BUCK_SW",
       "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_SW",
       "routing_class": "SWITCHING_NODE",
+      "route_mode": "manual_only",
       "layers": [
         "B.Cu"
       ],
@@ -1286,6 +1740,7 @@
       "canonical_net": "CHARGER_SW1",
       "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
       "routing_class": "SWITCHING_NODE",
+      "route_mode": "manual_only",
       "layers": [
         "B.Cu",
         "In2.Cu"
@@ -1308,6 +1763,7 @@
       "canonical_net": "CHARGER_SW2",
       "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
       "routing_class": "SWITCHING_NODE",
+      "route_mode": "manual_only",
       "layers": [
         "B.Cu",
         "In3.Cu"
@@ -1330,6 +1786,7 @@
       "canonical_net": "CHARGER_SW1",
       "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
       "routing_class": "SWITCHING_NODE",
+      "route_mode": "manual_only",
       "layers": [
         "B.Cu",
         "In2.Cu"
@@ -1349,6 +1806,7 @@
       "canonical_net": "CHARGER_SW2",
       "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
       "routing_class": "SWITCHING_NODE",
+      "route_mode": "manual_only",
       "layers": [
         "B.Cu",
         "In3.Cu"
@@ -1368,6 +1826,7 @@
       "canonical_net": "CHARGER_PMID",
       "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_PMID",
       "routing_class": "SWITCHING_NODE",
+      "route_mode": "manual_only",
       "layers": [
         "B.Cu"
       ],
@@ -1387,6 +1846,7 @@
       "canonical_net": "NVDC_SYS",
       "kicad_net": "/RF_01_USB_PD_CHARGE/NVDC_SYS",
       "routing_class": "PRIMARY_POWER",
+      "route_mode": "manual_only",
       "layers": [
         "B.Cu"
       ],
@@ -1399,6 +1859,150 @@
       "length_mm": 3.9369,
       "resolved_connections": 1,
       "reason": "Direct no-via B.Cu connection from BQ25798 SYS to the relocated 0.1-uF C16, symmetric with the PMID high-frequency path."
+    },
+    {
+      "id": "RF-CHARGER-PMID-BULK",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CHARGER_PMID",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_PMID",
+      "routing_class": "SWITCHING_NODE",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.6,
+        0.8,
+        1.0
+      ],
+      "segment_count": 5,
+      "via_count": 0,
+      "length_mm": 9.555,
+      "resolved_connections": 3,
+      "reason": "Same-layer wide copper fans the already local 0.1-uF PMID node into all three bulk capacitors without adding inductive vias to the high-frequency path."
+    },
+    {
+      "id": "RF-CHARGER-SYS-BULK",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "NVDC_SYS",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+      "routing_class": "PRIMARY_POWER",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.6,
+        0.8,
+        1.0
+      ],
+      "segment_count": 7,
+      "via_count": 0,
+      "length_mm": 13.533,
+      "resolved_connections": 5,
+      "reason": "Short same-layer widening connects the SYS high-frequency capacitor to the complete bulk bank before the protected system rail leaves the charger island."
+    },
+    {
+      "id": "RF-CHARGER-REGN-LOCAL",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CHARGER_REGN",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_REGN",
+      "routing_class": "SWITCHING_NODE",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.2,
+        0.25,
+        0.4
+      ],
+      "segment_count": 3,
+      "via_count": 0,
+      "length_mm": 2.8115,
+      "resolved_connections": 1,
+      "reason": "The BQ25798 REGN bypass capacitor is connected directly on B.Cu with a short pad escape that clears the adjacent package pins and widens at the capacitor."
+    },
+    {
+      "id": "RF-CHARGER-PMID-HF-GROUND-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "POWER_GROUND",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+      "routing_class": "GROUND_REFERENCE",
+      "route_mode": "plane_or_local_pour_manual",
+      "layers": [
+        "B.Cu",
+        "In1.Cu"
+      ],
+      "widths_mm": [
+        0.3
+      ],
+      "segment_count": 3,
+      "via_count": 2,
+      "length_mm": 2.25,
+      "resolved_connections": 0,
+      "reason": "Two short standard through vias give the mandatory PMID 0.1-uF capacitor a low-inductance return into the future uninterrupted ground planes without using via-in-pad."
+    },
+    {
+      "id": "RF-CHARGER-SYS-HF-GROUND-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "POWER_GROUND",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+      "routing_class": "GROUND_REFERENCE",
+      "route_mode": "plane_or_local_pour_manual",
+      "layers": [
+        "B.Cu",
+        "In1.Cu"
+      ],
+      "widths_mm": [
+        0.3
+      ],
+      "segment_count": 3,
+      "via_count": 2,
+      "length_mm": 2.55,
+      "resolved_connections": 0,
+      "reason": "Two short standard through vias give the mandatory SYS 0.1-uF capacitor a low-inductance return into the future uninterrupted ground planes without using via-in-pad."
+    },
+    {
+      "id": "RF-CHARGER-REGN-GROUND-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "POWER_GROUND",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+      "routing_class": "GROUND_REFERENCE",
+      "route_mode": "plane_or_local_pour_manual",
+      "layers": [
+        "B.Cu",
+        "In1.Cu"
+      ],
+      "widths_mm": [
+        0.5
+      ],
+      "segment_count": 3,
+      "via_count": 2,
+      "length_mm": 2.6874,
+      "resolved_connections": 0,
+      "reason": "The REGN bypass ground receives two ordinary through-via returns at the outside edge of its large pad, leaving the capacitor replaceable and avoiding filled-via processing."
+    },
+    {
+      "id": "RF-CHARGER-IC-GROUND-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "POWER_GROUND",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+      "routing_class": "GROUND_REFERENCE",
+      "route_mode": "plane_or_local_pour_manual",
+      "layers": [
+        "B.Cu",
+        "In1.Cu"
+      ],
+      "widths_mm": [
+        0.18,
+        0.3
+      ],
+      "segment_count": 3,
+      "via_count": 2,
+      "length_mm": 2.0649,
+      "resolved_connections": 1,
+      "reason": "The two accessible BQ25798 ground pins are joined locally and each receives its own standard through via into the inner reference planes."
     }
   ],
   "authorization": {

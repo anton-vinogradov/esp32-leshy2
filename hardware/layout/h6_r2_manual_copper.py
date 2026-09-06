@@ -108,8 +108,11 @@ def add_routes(board, routes: list[dict], policy_rows: dict[tuple[str, str], dic
             raise ValueError(f"{route['id']}: net is absent from routing policy")
         if policy["routing_class"] != route["routing_class"]:
             raise ValueError(f"{route['id']}: routing-class mismatch")
-        if policy["route_mode"] != "manual_only":
-            raise ValueError(f"{route['id']}: reviewed manifest is only for manual-only routes")
+        if policy["route_mode"] not in {"manual_only", "plane_or_local_pour_manual"}:
+            raise ValueError(
+                f"{route['id']}: reviewed manifest only accepts manual routes and "
+                "explicit local ground joins"
+            )
         net = board.FindNet(net_name)
         if net is None:
             raise ValueError(f"{route['id']}: missing board net {net_name}")
@@ -185,6 +188,7 @@ def add_routes(board, routes: list[dict], policy_rows: dict[tuple[str, str], dic
                 "canonical_net": route["canonical_net"],
                 "kicad_net": net_name,
                 "routing_class": route["routing_class"],
+                "route_mode": policy["route_mode"],
                 "layers": sorted(layers),
                 "widths_mm": sorted(widths),
                 "segment_count": len(segments),
@@ -255,7 +259,13 @@ def build() -> tuple[dict[str, object], dict]:
                 row["resolved_connections"] for row in route_results
             ),
             "via_count": sum(row["via_count"] for row in route_results),
-            "manual_only_route_count": len(route_results),
+            "manual_only_route_count": sum(
+                row["route_mode"] == "manual_only" for row in route_results
+            ),
+            "local_ground_join_route_count": sum(
+                row["route_mode"] == "plane_or_local_pour_manual"
+                for row in route_results
+            ),
         },
         "boards": board_rows,
         "routes": route_results,
