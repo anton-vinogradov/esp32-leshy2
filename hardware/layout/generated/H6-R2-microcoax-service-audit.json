@@ -4,9 +4,9 @@
   "marker": "H6.0.3-R1",
   "status": "pass",
   "source_hashes": {
-    "hardware/layout/h6-r2-microcoax-service.json": "94aca43c729622b9441a6277834b07de52b1308c6f7bf12374efc7a3eabf2dfd",
-    "hardware/layout/generated/H6-R2-placement-audit.json": "e6747d97481cc2163587613ed865db91867eadc4fad2cb783104e762ef8ef9a7",
-    "hardware/layout/h6-r2-placement-contract.json": "54fca16c81fe7b67c4a64f9288af38a8c4aedd65fb8c1dd997a42cdd55d63d51",
+    "hardware/layout/h6-r2-microcoax-service.json": "c2761046e84cf8a24953ddfd9c648571fe591b7510db5fc2d9aa75e1257daab1",
+    "hardware/layout/generated/H6-R2-placement-audit.json": "f33daa5373e53f46b6648606c295cd0f12d5d4f84b0f8c90af3d5c8c06016828",
+    "hardware/layout/h6-r2-placement-contract.json": "178d684f3585a4e2982008b243f164475b27b18052343f0baf12be3579e12e38",
     "hardware/product-design/h1-r2-placement.json": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0",
     "hardware/verification/generated/H3-R2-rf-coexistence.json": "3c66c497bdc54ee2a00debbd3ffa7f17f92ac3175b399c763af01bbba9fd46ba"
   },
@@ -18,7 +18,7 @@
     "antenna_solder_windows": 10,
     "minimum_relaxed_reserve_mm": 7.686,
     "minimum_display_exclusion_distance_mm": 3.869,
-    "minimum_mechanical_keepout_clearance_mm": 0.25,
+    "minimum_mechanical_keepout_clearance_mm": 0.156,
     "routing_may_start": true
   },
   "paths": [
@@ -139,18 +139,18 @@
       ],
       "cable_mpn": "TE Connectivity 1-2118651-0",
       "selected_length_mm": 60.0,
-      "conservative_corridor_length_mm": 42.401,
-      "minimum_relaxed_reserve_mm": 17.599,
-      "minimum_display_exclusion_distance_mm": 16.683,
-      "minimum_mechanical_keepout_clearance_mm": 0.564,
+      "conservative_corridor_length_mm": 43.49,
+      "minimum_relaxed_reserve_mm": 16.51,
+      "minimum_display_exclusion_distance_mm": 16.703,
+      "minimum_mechanical_keepout_clearance_mm": 0.156,
       "retention_saddle_centre_mm": [
-        72.0,
+        73.0,
         18.0
       ],
       "retention_landing_clear": true,
-      "retention_mechanical_keepout_clearance_mm": 1.256,
-      "source_free_length_mm": 29.998,
-      "board_connector_free_length_mm": 8.944
+      "retention_mechanical_keepout_clearance_mm": 1.25,
+      "source_free_length_mm": 30.551,
+      "board_connector_free_length_mm": 9.434
     }
   ],
   "antenna_solder_windows": [

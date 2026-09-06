@@ -1871,9 +1871,56 @@
       "routing_class": "RF_CONTROLLED",
       "layer": "B.Cu",
       "width_mm": 0.134874,
-      "path_mm": [[68.0, 11.15], [67.7, 12.0], [67.7, 14.425], [68.365, 14.425]],
+      "path_mm": [[68.0, 11.15], [67.8, 12.4], [67.8, 13.285], [68.525, 13.285]],
       "expected_resolved_connections": 1,
-      "reason": "Via-free 50-ohm path from the nRF24-2 U.FL to the coupler input; the left-side approach avoids the adjacent external-path coupler pad."
+      "reason": "Via-free 2.4-GHz module-side path keeps the top nRF24 U.FL-to-coupler run on B.Cu and enters the reviewed 270-degree coupler from its outward-facing module port."
+    },
+    {
+      "id": "UI-NRF2-FORWARD-SAMPLE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_FORWARD_RF_SAMPLE",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_FORWARD_RF_SAMPLE",
+      "routing_class": "RF_CONTROLLED",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [68.525, 13.935], "end_mm": [67.55, 13.625]},
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [67.55, 13.625], "end_mm": [66.4875, 13.625]},
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [67.55, 13.625], "end_mm": [67.75, 16.5]},
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [67.75, 16.5], "end_mm": [66.065, 16.5]},
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [66.065, 16.5], "end_mm": [66.065, 17.115]}
+      ],
+      "expected_resolved_connections": 2,
+      "reason": "The reviewed coupler and AD8314 orientations create a short via-free detector feed; one branch reaches the local 52.3-ohm match from below without crossing the isolated-port termination."
+    },
+    {
+      "id": "UI-NRF2-COUPLER-TERM",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_REVERSE_ISOLATED_PORT",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_REVERSE_ISOLATED_PORT",
+      "routing_class": "RF_CONTROLLED",
+      "layer": "B.Cu",
+      "width_mm": 0.134874,
+      "path_mm": [[69.505, 13.935], [70.3, 13.935], [70.3, 16.7], [68.565, 16.7], [68.565, 15.9]],
+      "expected_resolved_connections": 1,
+      "reason": "Via-free isolated-port route exits the coupler outward, clears its ground lands and approaches the shifted 49.9-ohm termination from below."
+    },
+    {
+      "id": "UI-NRF2-EXTERNAL-RF",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_EXTERNAL_RF_50R",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_EXTERNAL_RF_50R",
+      "routing_class": "RF_CONTROLLED",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [69.505, 13.285], "end_mm": [70.2, 13.285]},
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [70.2, 13.285], "end_mm": [70.2, 12.5]},
+        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [70.2, 12.5], "end_mm": [65.5, 12.5]},
+        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [65.5, 12.5], "end_mm": [63.5, 1.0]},
+        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [63.5, 1.0], "end_mm": [63.5, -1.65]}
+      ],
+      "vias": [
+        {"at_mm": [70.2, 12.5], "diameter_mm": 0.5, "drill_mm": 0.25}
+      ],
+      "expected_resolved_connections": 1,
+      "reason": "The nRF2 external path uses its one reviewed B-to-F transition because the coupler is on the inner face while the double-sided edge-launch SMA centre land is on F.Cu; the adjacent return-via pair remains reserved for the ground-plane pass."
     },
     {
       "id": "UI-S3-COUPLER-TERM",

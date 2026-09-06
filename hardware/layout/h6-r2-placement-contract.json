@@ -276,6 +276,36 @@
       "method": "reviewed H6.0.3 signal-locality correction",
       "reason": "swap the raw-sample and detector-side pad directions without moving the 0402 body so both S3 coupler sample nets route directly on B.Cu without crossing or adding a signal via"
     },
+    "det_nrf2": {
+      "frame": "ui-inner",
+      "centre_mm": [
+        64.375,
+        14.6
+      ],
+      "rotation_deg": 180.0,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "turn AD8314 RF IN toward the nRF2 directional-coupler sample while retaining the accepted detector centre and courtyard"
+    },
+    "nrf2_coupler": {
+      "frame": "ui-inner",
+      "centre_mm": [
+        69.015,
+        13.935
+      ],
+      "rotation_deg": 270.0,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "turn the module, external, sample and isolated coupler ports toward their respective endpoints so the complete nRF2 RF cluster routes on the outer layers without crossings"
+    },
+    "nrf2_coupler_termination": {
+      "frame": "ui-inner",
+      "centre_mm": [
+        69.075,
+        15.9
+      ],
+      "rotation_deg": 0.0,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "move the isolated-port termination 0.285 mm toward board +Y to preserve courtyard clearance after the reviewed nRF2 coupler rotation"
+    },
     "pack_holder": {
       "frame": "rear-outer",
       "centre_mm": [

@@ -5,9 +5,9 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "54fca16c81fe7b67c4a64f9288af38a8c4aedd65fb8c1dd997a42cdd55d63d51",
+    "contract_sha256": "178d684f3585a4e2982008b243f164475b27b18052343f0baf12be3579e12e38",
     "placement_freeze": "hardware/layout/h6-r2-placement-freeze.json",
-    "placement_freeze_sha256": "0df5d29a1d8f2879bd599e4a42e06d83f630ec333077cf67cbbd0267010d217c",
+    "placement_freeze_sha256": "db94ae41f4140f6253e9bb0073d9b767d1253ab376e3b3c47062fe0fc6572c9e",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -67,13 +67,13 @@
         "F.Cu": 20
       },
       "method_counts": {
-        "connectivity/sheet automatic seed": 337,
-        "exact H1 seed": 30,
+        "connectivity/sheet automatic seed": 336,
+        "exact H1 seed": 28,
         "hard H1 datum": 27,
         "nearest exact-footprint correction": 16,
         "reviewed H6.0.2 fan-out correction": 3,
         "reviewed H6.0.2 oscillator-locality correction": 11,
-        "reviewed H6.0.3 signal-locality correction": 4
+        "reviewed H6.0.3 signal-locality correction": 7
       },
       "net_count": 307,
       "mechanical": [
@@ -9574,25 +9574,25 @@
           "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              68.09999900000001,
-              70.049999
+              68.10000000000001,
+              70.05
             ],
             "y": [
-              15.1,
-              16.13
+              15.385,
+              16.415
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             69.075,
-            15.615
+            15.9
           ],
           "footprint_anchor_mm": [
             69.075,
-            15.615
+            15.9
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -12576,7 +12576,7 @@
           "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
           "side": "B.Cu",
           "footprint": "Package_SO:MSOP-8_3x3mm_P0.65mm",
-          "method": "exact H1 seed",
+          "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               61.15,
@@ -12596,7 +12596,7 @@
             64.375,
             14.6
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -12866,15 +12866,15 @@
           "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
           "side": "B.Cu",
           "footprint": "Leshy2:DC2337J5010AHF",
-          "method": "exact H1 seed",
+          "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              67.8,
-              70.23
+              68.175,
+              69.855
             ],
             "y": [
-              13.095,
-              14.775
+              12.72,
+              15.15
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
@@ -12886,7 +12886,7 @@
             69.015,
             13.935
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": -90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -13326,8 +13326,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "unrouted_seed_sha256": "7cfb70f3764b0c8c20eb890c84e86cd7b6d441eacdabaeabea6d601ff9289577",
-      "placement_signature_sha256": "86a61e1a757e3014153942f78fd521916ac81dc73d3615838400d2c87cb3ae54",
+      "unrouted_seed_sha256": "f999e302f556e2675bd34f862ddfe72e9af0984de35aef0116a0127b78b5d1e0",
+      "placement_signature_sha256": "f466be79739b017ea1fd1e8768f32e150b18a1d7729c12b06149ba8d5c4bd607",
       "locality": {
         "status": "pass",
         "pair_count": 52,

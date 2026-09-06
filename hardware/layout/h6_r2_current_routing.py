@@ -23,6 +23,7 @@ from h6_r2_placement import build as build_placement
 ROOT = Path(__file__).resolve().parents[2]
 POLICY = ROOT / "hardware/layout/generated/H6-R2-routing-policy-audit.json"
 CONTRACT = ROOT / "hardware/layout/h6-r2-routing-policy.json"
+MANUAL_COPPER_AUDIT = ROOT / "hardware/layout/generated/H6-R2-manual-copper-audit.json"
 OUTPUT = ROOT / "hardware/layout/generated/H6-R2-current-routing-audit.json"
 DOC_EN = ROOT / "docs/h6-r2-current-routing.md"
 DOC_RU = ROOT / "docs/h6-r2-current-routing.ru.md"
@@ -203,6 +204,8 @@ def build(drc_paths: dict[str, Path] | None, existing: dict | None) -> dict:
         "sources": {
             "routing_policy": str(POLICY.relative_to(ROOT)),
             "routing_policy_sha256": sha256(POLICY),
+            "manual_copper": str(MANUAL_COPPER_AUDIT.relative_to(ROOT)),
+            "manual_copper_sha256": sha256(MANUAL_COPPER_AUDIT),
         },
         "summary": {
             "board_count": len(rows),
@@ -249,9 +252,16 @@ def build(drc_paths: dict[str, Path] | None, existing: dict | None) -> dict:
     }
 
 
-def doc(audit: dict, ru: bool) -> str:
+def doc(audit: dict, manual_copper: dict, ru: bool) -> str:
     ui, rf = audit["boards"]
     summary = audit["summary"]
+    controlled_rf = [
+        row for row in manual_copper["routes"] if row["routing_class"] == "RF_CONTROLLED"
+    ]
+    rf_route_count = len(controlled_rf)
+    rf_resolved_count = sum(row["resolved_connections"] for row in controlled_rf)
+    rf_via_route_count = sum(row["via_count"] > 0 for row in controlled_rf)
+    rf_via_free_route_count = rf_route_count - rf_via_route_count
     def number(value: int) -> str:
         rendered = f"{value:,}"
         return rendered.replace(",", " ") if ru else rendered
@@ -279,11 +289,13 @@ def doc(audit: dict, ru: bool) -> str:
             "расстояния между площадками охватывает все импульсные цепи и выбранные локальные bypass-цепи, "
             "нарушений нет. "
             "Все пять oscillator-узлов — два RP2354, CC1101, Si5351A и Si4732 — уже проведены и проходят DRC. "
-            "Двадцать четыре ручных controlled-RF маршрута закрывают 26 соединений: помимо локальных "
-            "цепей CC1101 и Airband полностью проведены S3- и C5-тракты от U.FL до внешнего SMA вместе "
-            "с ответвлениями детекторов. Двадцать два маршрута остаются без via; два проверенных перехода "
-            "0,50/0,25 мм B.Cu → F.Cu нужны только потому, что центральная площадка торцевого SMA находится "
-            "на F.Cu. Их ground-return пары будут добавлены одновременно со сплошными плоскостями, чтобы "
+            f"{number(rf_route_count)} ручных controlled-RF маршрутов закрывают {number(rf_resolved_count)} соединений: "
+            "помимо локальных цепей CC1101 и Airband полностью проведены S3-, C5- и nRF2-тракты от U.FL "
+            "до внешнего SMA вместе с ответвлениями детекторов. "
+            f"Без via остаются {number(rf_via_free_route_count)} маршрута; проверенных переходов "
+            f"0,50/0,25 мм B.Cu → F.Cu — {number(rf_via_route_count)}. Они нужны только потому, что центральная "
+            "площадка торцевого SMA находится на F.Cu. Их ground-return пары будут добавлены одновременно "
+            "со сплошными плоскостями, чтобы "
             "на текущем этапе не создавать плавающие медные острова. "
             "Обе платы имеют нулевой native DRC. "
             f"После осознанного перезапуска осталось {number(summary['current_total_unconnected_count'])} "
@@ -322,10 +334,12 @@ def doc(audit: dict, ru: bool) -> str:
             f"All 1,208 bodies are placed; all {summary['placement_locality_pair_count']} local-part → owner pairs "
             f"meet their limits; {summary['placement_critical_pad_pair_count']} actual pad-centre pairs cover every "
             "switching-node net and selected local bypasses with zero violations. All five oscillator cells — two "
-            "RP2354s, CC1101, Si5351A and Si4732 — are routed and DRC-clean. Twenty-four manual controlled-RF "
-            "routes close 26 connections: in addition to the local CC1101 and Airband networks, the complete S3 "
-            "and C5 paths from U.FL to external SMA and their detector branches are routed. Twenty-two routes remain "
-            "via-free; two reviewed 0.50/0.25-mm B.Cu-to-F.Cu transitions are necessary only because the edge-launch "
+            "RP2354s, CC1101, Si5351A and Si4732 — are routed and DRC-clean. "
+            f"{number(rf_route_count)} manual controlled-RF routes close {number(rf_resolved_count)} connections: "
+            "in addition to the local CC1101 and Airband networks, the complete S3, C5 and nRF2 paths from U.FL "
+            "to external SMA and their detector branches are routed. "
+            f"{number(rf_via_free_route_count)} routes remain via-free; {number(rf_via_route_count)} reviewed "
+            "0.50/0.25-mm B.Cu-to-F.Cu transitions are necessary only because the edge-launch "
             "SMA centre land is on F.Cu. Their ground-return pairs are deferred until the continuous plane fill so "
             "this checkpoint does not create floating copper islands. Both boards have zero native DRC findings. "
             f"The deliberate restart leaves {number(summary['current_total_unconnected_count'])} physical "
@@ -372,10 +386,11 @@ def main() -> int:
             "LESHY2-RF-R2": args.rf_drc.resolve(),
         }
     audit = build(drc_paths, existing)
+    manual_copper = load(MANUAL_COPPER_AUDIT)
     outputs = {
         OUTPUT: json.dumps(audit, indent=2, ensure_ascii=False) + "\n",
-        DOC_EN: doc(audit, ru=False),
-        DOC_RU: doc(audit, ru=True),
+        DOC_EN: doc(audit, manual_copper, ru=False),
+        DOC_RU: doc(audit, manual_copper, ru=True),
     }
     if args.write:
         for path, content in outputs.items():
