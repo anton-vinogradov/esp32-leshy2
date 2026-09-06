@@ -301,12 +301,32 @@
     "aon_buck": {
       "frame": "rear-inner",
       "centre_mm": [
-        51.0,
+        50.7,
         84.5
       ],
       "rotation_deg": 0.0,
       "method": "reviewed H6.0.3 power-locality correction",
-      "reason": "reserve an unobstructed inner-face pocket for the complete always-on converter loop instead of leaving its inductor and capacitors distributed across the board"
+      "reason": "keep the complete always-on converter loop in one pocket and leave a manufacturable through-via corridor between the converter ground pin and the adjacent slow-I/O package"
+    },
+    "aon_input_cap": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        50.945,
+        87.045
+      ],
+      "rotation_deg": 180.0,
+      "method": "reviewed H6.0.3 power-locality correction",
+      "reason": "turn the NVDC_SYS pad toward the TPS629203 VIN pins while retaining the accepted capacitor centre and courtyard"
+    },
+    "aon_output_cap": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        45.795,
+        83.945
+      ],
+      "rotation_deg": 270.0,
+      "method": "reviewed H6.0.3 power-locality correction",
+      "reason": "turn the AON_RAW_3V3 pad toward the inductor output while retaining the accepted capacitor centre and courtyard"
     },
     "ext_buck": {
       "frame": "rear-inner",

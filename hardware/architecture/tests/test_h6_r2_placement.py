@@ -125,7 +125,9 @@ class H6R2PlacementTests(unittest.TestCase):
 
     def test_power_islands_and_touch_buffer_use_reviewed_locality_anchors(self):
         expected = {
-            "aon_buck": [51.0, 84.5],
+            "aon_buck": [50.7, 84.5],
+            "aon_input_cap": [50.945, 87.045],
+            "aon_output_cap": [45.795, 83.945],
             "charger_pmid_cap0": [71.945, 65.595],
             "charger_pmid_hf_cap": [70.245, 67.4],
             "charger_sys_hf_cap": [61.975, 67.4],
@@ -140,6 +142,14 @@ class H6R2PlacementTests(unittest.TestCase):
                 centre,
                 self.contract["placement_overrides"][instance]["centre_mm"],
             )
+        self.assertEqual(
+            180.0,
+            self.contract["placement_overrides"]["aon_input_cap"]["rotation_deg"],
+        )
+        self.assertEqual(
+            270.0,
+            self.contract["placement_overrides"]["aon_output_cap"]["rotation_deg"],
+        )
         self.assertEqual([], self.contract["placement_policy"]["released_instances"])
         self.assertEqual(
             {"LESHY2-UI-R2": [], "LESHY2-RF-R2": []},

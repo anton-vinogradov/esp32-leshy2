@@ -44,10 +44,10 @@
       "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_BUCK_SW",
       "routing_class": "SWITCHING_NODE",
       "layer": "B.Cu",
-      "width_mm": 0.25,
-      "path_mm": [[50.15, 83.75], [49.6, 83.9], [48.445, 84.795]],
+      "width_mm": 0.15,
+      "path_mm": [[49.85, 83.75], [49.2, 83.9], [48.9, 84.3], [48.445, 84.795]],
       "expected_resolved_connections": 1,
-      "reason": "Short no-via TPS629203 300-mA switching path with a wider local trace."
+      "reason": "Short no-via TPS629203 300-mA switching path kept at the minimum practical hot-copper width so the adjacent quiet output-sense escape retains full clearance."
     },
     {
       "id": "RF-PACK-CHARGE-PUMP",
@@ -408,6 +408,94 @@
       ],
       "expected_resolved_connections": 1,
       "reason": "The two accessible BQ25798 ground pins are joined locally and each receives its own standard through via into the inner reference planes."
+    },
+    {
+      "id": "RF-AON-BUCK-INPUT",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "NVDC_SYS",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+      "routing_class": "PRIMARY_POWER",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.25, "start_mm": [51.55, 84.25], "end_mm": [51.55, 84.75]},
+        {"layer": "B.Cu", "width_mm": 0.25, "start_mm": [51.55, 84.75], "end_mm": [52.75, 84.75]},
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [52.75, 84.75], "end_mm": [52.75, 86.3]},
+        {"layer": "B.Cu", "width_mm": 0.8, "start_mm": [52.75, 86.3], "end_mm": [52.42, 87.045]}
+      ],
+      "expected_resolved_connections": 2,
+      "reason": "The rotated input capacitor presents its NVDC_SYS pad directly to both TPS629203 VIN pins; the route widens after clearing MODE/S-CONF."
+    },
+    {
+      "id": "RF-AON-BUCK-OUTPUT",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AON_RAW_3V3",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_RAW_3V3",
+      "routing_class": "PRIMARY_POWER",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.6, "start_mm": [48.445, 83.095], "end_mm": [47.4, 83.095]},
+        {"layer": "B.Cu", "width_mm": 0.6, "start_mm": [47.4, 83.095], "end_mm": [46.5, 82.47]},
+        {"layer": "B.Cu", "width_mm": 0.6, "start_mm": [46.5, 82.47], "end_mm": [45.795, 82.47]},
+        {"layer": "B.Cu", "width_mm": 0.12, "start_mm": [49.85, 84.25], "end_mm": [49.3, 84.25]},
+        {"layer": "B.Cu", "width_mm": 0.12, "start_mm": [49.3, 84.25], "end_mm": [49.3, 85.7]},
+        {"layer": "B.Cu", "width_mm": 0.2, "start_mm": [49.3, 85.7], "end_mm": [47.4, 85.7]},
+        {"layer": "B.Cu", "width_mm": 0.2, "start_mm": [47.4, 85.7], "end_mm": [47.4, 83.095]}
+      ],
+      "expected_resolved_connections": 2,
+      "reason": "Wide copper connects the inductor to the rotated output capacitor; the TPS629203 output-sense pin reaches that quiet capacitor node around, not through, the switch copper."
+    },
+    {
+      "id": "RF-AON-BUCK-IC-GROUND-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "POWER_GROUND",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+      "routing_class": "GROUND_REFERENCE",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.25, "start_mm": [51.55, 83.75], "end_mm": [52.1, 83.3]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [52.1, 83.3], "end_mm": [52.1, 85.5]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [52.1, 85.5], "end_mm": [50.0, 88.2]}
+      ],
+      "vias": [
+        {"at_mm": [52.1, 83.3], "diameter_mm": 0.4, "drill_mm": 0.2}
+      ],
+      "expected_resolved_connections": 0,
+      "reason": "The shifted TPS629203 ground pin reaches one standard through via in the real inter-package corridor; an inner-layer local return continues directly to the input-capacitor via pair."
+    },
+    {
+      "id": "RF-AON-BUCK-INPUT-GROUND-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "POWER_GROUND",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+      "routing_class": "GROUND_REFERENCE",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [49.47, 87.045], "end_mm": [50.0, 88.2]},
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [49.47, 87.045], "end_mm": [50.7, 88.2]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [50.0, 88.2], "end_mm": [50.7, 88.2]}
+      ],
+      "vias": [
+        {"at_mm": [50.0, 88.2], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [50.7, 88.2], "diameter_mm": 0.4, "drill_mm": 0.2}
+      ],
+      "expected_resolved_connections": 1,
+      "reason": "The AON input capacitor ground enters the inner reference plane through two ordinary vias immediately outside its large pad."
+    },
+    {
+      "id": "RF-AON-BUCK-OUTPUT-GROUND-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "POWER_GROUND",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+      "routing_class": "GROUND_REFERENCE",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [45.795, 85.42], "end_mm": [44.8, 85.0]},
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [45.795, 85.42], "end_mm": [44.8, 85.7]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [44.8, 85.0], "end_mm": [44.8, 85.7]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [44.8, 85.7], "end_mm": [47.0, 88.2]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [47.0, 88.2], "end_mm": [50.0, 88.2]}
+      ],
+      "vias": [
+        {"at_mm": [44.8, 85.0], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [44.8, 85.7], "diameter_mm": 0.4, "drill_mm": 0.2}
+      ],
+      "expected_resolved_connections": 1,
+      "reason": "The AON output capacitor ground enters the inner reference plane through two ordinary vias immediately outside its large pad."
     }
   ],
   "authorization": {

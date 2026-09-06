@@ -5,9 +5,9 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "87b66c0e4f1af1a3ff8ca7b2899b7addea494e07cc2362a5b29e8220482f54f8",
+    "contract_sha256": "0da3173705cbb41c32706d3a997fd3315543ad45b8d6ee68af52ce0e9e355a28",
     "placement_freeze": "hardware/layout/h6-r2-placement-freeze.json",
-    "placement_freeze_sha256": "23b34f14281ad0d84d82c03cf281b1b5ff5bcb5938e1a1bd873bb1bd6dbc2c44",
+    "placement_freeze_sha256": "02132ec34b311e9459e62208e836142a28c9ad940fd853d8aabb00cc11164345",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -13815,7 +13815,7 @@
         "F.Cu": 14
       },
       "method_counts": {
-        "connectivity/sheet automatic seed": 671,
+        "connectivity/sheet automatic seed": 669,
         "exact H1 seed": 28,
         "hard H1 datum": 12,
         "nearest exact-footprint correction": 34,
@@ -13825,7 +13825,7 @@
         "reviewed H6.0.3 direct-cell thermal-contact placement": 2,
         "reviewed H6.0.3 mechanical-clearance correction": 1,
         "reviewed H6.0.3 native-silkscreen-clearance correction": 1,
-        "reviewed H6.0.3 power-locality correction": 4,
+        "reviewed H6.0.3 power-locality correction": 6,
         "reviewed H6.0.3 signal-locality correction": 2
       },
       "net_count": 516,
@@ -14087,7 +14087,7 @@
             "second_instance": "aon_inductor",
             "second_reference": "L2",
             "second_pad": "1",
-            "pad_centre_distance_mm": 1.9998,
+            "pad_centre_distance_mm": 1.751,
             "maximum_distance_mm": 2.25,
             "reason": "always-on buck switching loop"
           },
@@ -16095,15 +16095,15 @@
           "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_1206_3216Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 power-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               48.6,
               53.29
             ],
             "y": [
-              85.84999900000001,
-              88.239999
+              85.85000000000001,
+              88.24
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
@@ -16115,7 +16115,7 @@
             50.945,
             87.045
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -16124,7 +16124,7 @@
           "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_1206_3216Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 power-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               44.6,
@@ -16144,7 +16144,7 @@
             45.795,
             83.945
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": -90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -34433,8 +34433,8 @@
           "method": "reviewed H6.0.3 power-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              49.955,
-              52.045
+              49.655,
+              51.745000000000005
             ],
             "y": [
               83.405,
@@ -34443,11 +34443,11 @@
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            51.0,
+            50.7,
             84.5
           ],
           "footprint_anchor_mm": [
-            51.0,
+            50.7,
             84.5
           ],
           "rotation_deg": 0.0,
@@ -38051,8 +38051,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "3e376b677434b8e754ef3df78804a48e5e73ee8f364ad712d07b9e2602962426",
-      "placement_signature_sha256": "f4dfa70ef27959c7d60e53eb0aef3e96a1635c065f828ac6d4cabc52509ce4de",
+      "unrouted_seed_sha256": "c8593725eb1b0f73fe218d57f7720848314e9c348f8e5201fc3f2f612d0a2111",
+      "placement_signature_sha256": "6fce8da30bdc04372af37d849aa7a59fa9f22b02909f8f82c05f9c0e43baa9d1",
       "locality": {
         "status": "pass",
         "pair_count": 258,
@@ -38137,7 +38137,7 @@
             "reference": "L2",
             "owner": "aon_buck",
             "owner_reference": "U13",
-            "courtyard_gap_mm": 0.415,
+            "courtyard_gap_mm": 0.115,
             "maximum_gap_mm": 0.75,
             "measurement": "courtyard_to_courtyard"
           },
