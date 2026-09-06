@@ -51,6 +51,10 @@ PRIMARY_POWER_EXTRA = {
     "PD_DRAIN_COPPER",
 }
 
+LOCAL_POWER_BRANCHES = {
+    "MAIN_BUCK_VCC",
+}
+
 DISPLAY_I8080 = {"LCD_DC", "LCD_WR_N", *(f"LCD_DB{index}" for index in range(8))}
 
 EXTERNAL_USB_PAIR_STEMS = {
@@ -158,7 +162,7 @@ def classify(name: str, primary_power: set[str], all_rails: set[str]) -> str:
         return "GROUND_REFERENCE"
     if name in primary_power or name in PRIMARY_POWER_EXTRA:
         return "PRIMARY_POWER"
-    if name in all_rails:
+    if name in all_rails or name in LOCAL_POWER_BRANCHES:
         return "POWER_BRANCH"
     if name in SWITCHING_NODES:
         return "SWITCHING_NODE"

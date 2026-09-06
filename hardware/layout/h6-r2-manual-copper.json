@@ -160,11 +160,10 @@
         {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [13.25, 126.3], "end_mm": [13.24, 127.0]},
         {"layer": "B.Cu", "width_mm": 0.3, "start_mm": [13.24, 127.0], "end_mm": [13.22, 127.5]},
         {"layer": "B.Cu", "width_mm": 0.8, "start_mm": [13.22, 127.5], "end_mm": [13.195, 129.395]},
-        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [13.25, 126.3], "end_mm": [13.45, 125.25]},
-        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [13.45, 125.25], "end_mm": [13.6, 125.15]},
-        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [13.6, 125.15], "end_mm": [16.0, 124.8]},
-        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [16.0, 124.8], "end_mm": [16.3, 124.8]},
-        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [16.3, 124.8], "end_mm": [17.085, 125.365]}
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [13.25, 126.3], "end_mm": [13.45, 127.2]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [13.45, 127.2], "end_mm": [16.8, 127.2]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [16.8, 127.2], "end_mm": [17.085, 126.5]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [17.085, 126.5], "end_mm": [17.085, 125.365]}
       ],
       "expected_resolved_connections": 2,
       "reason": "TPS566231P current path widens to 0.8 mm at the inductor; the low-current bootstrap return remains a separate narrow branch with minimum hot copper area."
@@ -496,6 +495,236 @@
       ],
       "expected_resolved_connections": 1,
       "reason": "The AON output capacitor ground enters the inner reference plane through two ordinary vias immediately outside its large pad."
+    },
+    {
+      "id": "RF-MAIN-BUCK-HF-INPUT",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "NVDC_SYS",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+      "routing_class": "PRIMARY_POWER",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.25, "start_mm": [13.925, 125.5], "end_mm": [13.925, 126.0]},
+        {"layer": "B.Cu", "width_mm": 0.3, "start_mm": [13.925, 125.5], "end_mm": [14.3, 124.7]},
+        {"layer": "B.Cu", "width_mm": 0.4, "start_mm": [14.3, 124.7], "end_mm": [15.325, 124.105]}
+      ],
+      "expected_resolved_connections": 2,
+      "reason": "Both TPS566231P VIN pins join first, then reach the 0.1-uF input capacitor directly on B.Cu with immediate widening and no via."
+    },
+    {
+      "id": "RF-MAIN-BUCK-OUTPUT-BANK",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "MAIN_RAW_3V3",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_RAW_3V3",
+      "routing_class": "PRIMARY_POWER",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 1.5, "start_mm": [13.195, 134.995], "end_mm": [5.5, 133.67]},
+        {"layer": "B.Cu", "width_mm": 1.5, "start_mm": [5.5, 133.67], "end_mm": [7.745, 133.67]},
+        {"layer": "B.Cu", "width_mm": 1.5, "start_mm": [13.195, 134.995], "end_mm": [16.0, 133.67]},
+        {"layer": "B.Cu", "width_mm": 1.5, "start_mm": [16.0, 133.67], "end_mm": [18.745, 133.67]},
+        {"layer": "B.Cu", "width_mm": 1.0, "start_mm": [7.745, 128.67], "end_mm": [5.5, 128.67]},
+        {"layer": "B.Cu", "width_mm": 1.0, "start_mm": [5.5, 128.67], "end_mm": [5.5, 133.67]}
+      ],
+      "expected_resolved_connections": 3,
+      "reason": "A short 1.5-mm output trunk feeds the two capacitors beside the 6-A inductor; the third capacitor joins through a separate left-side branch that avoids both intervening ground pads."
+    },
+    {
+      "id": "RF-MAIN-BUCK-IC-GROUND-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "POWER_GROUND",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+      "routing_class": "GROUND_REFERENCE",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.25, "start_mm": [12.75, 125.55], "end_mm": [13.5, 124.8]},
+        {"layer": "B.Cu", "width_mm": 0.25, "start_mm": [13.5, 124.8], "end_mm": [13.9, 123.875]},
+        {"layer": "B.Cu", "width_mm": 0.3, "start_mm": [13.9, 123.875], "end_mm": [13.9, 122.8]}
+      ],
+      "vias": [
+        {"at_mm": [13.9, 122.8], "diameter_mm": 0.4, "drill_mm": 0.2}
+      ],
+      "expected_resolved_connections": 1,
+      "reason": "The regulator ground pin joins the VCC bypass return locally and reaches the inner reference plane through a standard via in the gap between the two bulk-input pads."
+    },
+    {
+      "id": "RF-MAIN-BUCK-HF-INPUT-GROUND-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "POWER_GROUND",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+      "routing_class": "GROUND_REFERENCE",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.3, "start_mm": [16.285, 124.105], "end_mm": [16.85, 123.5]},
+        {"layer": "B.Cu", "width_mm": 0.3, "start_mm": [16.285, 124.105], "end_mm": [17.45, 123.5]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [16.85, 123.5], "end_mm": [17.45, 123.5]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [16.85, 123.5], "end_mm": [13.9, 122.8]}
+      ],
+      "vias": [
+        {"at_mm": [16.85, 123.5], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [17.45, 123.5], "diameter_mm": 0.4, "drill_mm": 0.2}
+      ],
+      "expected_resolved_connections": 1,
+      "reason": "The 0.1-uF input capacitor receives two ordinary through-via returns and joins the regulator ground skeleton directly on the first inner layer."
+    },
+    {
+      "id": "RF-MAIN-BUCK-OUTPUT-GROUND-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "POWER_GROUND",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+      "routing_class": "GROUND_REFERENCE",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [7.745, 125.72], "end_mm": [9.6, 125.3]},
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [7.745, 125.72], "end_mm": [9.6, 126.1]},
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [7.745, 130.72], "end_mm": [9.6, 130.3]},
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [7.745, 130.72], "end_mm": [9.6, 131.1]},
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [18.745, 130.72], "end_mm": [16.9, 130.3]},
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [18.745, 130.72], "end_mm": [16.9, 131.1]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [9.6, 125.3], "end_mm": [9.6, 126.1]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [9.6, 130.3], "end_mm": [9.6, 131.1]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [16.9, 130.3], "end_mm": [16.9, 131.1]},
+        {"layer": "In1.Cu", "width_mm": 0.8, "start_mm": [9.6, 126.1], "end_mm": [9.6, 130.3]},
+        {"layer": "In1.Cu", "width_mm": 0.8, "start_mm": [9.6, 130.3], "end_mm": [16.9, 130.3]},
+        {"layer": "In1.Cu", "width_mm": 0.8, "start_mm": [9.6, 126.1], "end_mm": [8.8, 122.8]},
+        {"layer": "In1.Cu", "width_mm": 0.8, "start_mm": [8.8, 122.8], "end_mm": [13.9, 122.8]}
+      ],
+      "vias": [
+        {"at_mm": [9.6, 125.3], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [9.6, 126.1], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [9.6, 130.3], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [9.6, 131.1], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [16.9, 130.3], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [16.9, 131.1], "diameter_mm": 0.4, "drill_mm": 0.2}
+      ],
+      "expected_resolved_connections": 3,
+      "reason": "All three output-capacitor ground pads receive paired ordinary vias; a short inner-layer skeleton joins them to each other and to the same local regulator return."
+    },
+    {
+      "id": "RF-MAIN-BUCK-VCC",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "MAIN_BUCK_VCC",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_VCC",
+      "routing_class": "POWER_BRANCH",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [12.075, 126.5], "end_mm": [12.05, 127.0]},
+        {"layer": "F.Cu", "width_mm": 0.2, "start_mm": [12.05, 127.0], "end_mm": [12.3, 124.8]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [12.3, 124.8], "end_mm": [12.35, 123.875]}
+      ],
+      "vias": [
+        {"at_mm": [12.05, 127.0], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [12.3, 124.8], "diameter_mm": 0.4, "drill_mm": 0.2}
+      ],
+      "expected_resolved_connections": 1,
+      "reason": "The bias supply escapes below the VCC pin, crosses the three left-side pin fan-outs on the outer face, and returns immediately to the dedicated bypass capacitor without entering the switch-node area."
+    },
+    {
+      "id": "RF-MAIN-BUCK-FEEDBACK",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "MAIN_3V3_FB",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_3V3_FB",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [12.075, 126.0], "end_mm": [10.865, 126.585]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [10.865, 126.585], "end_mm": [11.5, 126.9]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [11.5, 126.9], "end_mm": [11.5, 123.315]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [11.5, 123.315], "end_mm": [10.865, 123.315]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [9.605, 123.075], "end_mm": [10.865, 123.315]}
+      ],
+      "expected_resolved_connections": 3,
+      "reason": "The feedback pin, divider midpoint and feed-forward capacitor share one quiet B.Cu branch routed outside the VCC and switch-node fan-outs."
+    },
+    {
+      "id": "RF-MAIN-BUCK-FEEDBACK-SENSE",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "MAIN_RAW_3V3",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_RAW_3V3",
+      "routing_class": "PRIMARY_POWER",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [5.5, 128.67], "end_mm": [5.0, 127.8]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [5.0, 127.8], "end_mm": [5.0, 123.8]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [5.0, 123.8], "end_mm": [9.2, 123.8]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [9.2, 123.8], "end_mm": [9.605, 124.035]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [9.605, 124.035], "end_mm": [10.865, 124.335]}
+      ],
+      "expected_resolved_connections": 2,
+      "reason": "A narrow Kelvin branch senses the output at the left capacitor-bank junction and reaches both parallel top-divider elements without carrying load current."
+    },
+    {
+      "id": "RF-MAIN-BUCK-FEEDBACK-GROUND-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "POWER_GROUND",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+      "routing_class": "GROUND_REFERENCE",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.25, "start_mm": [10.865, 125.565], "end_mm": [10.865, 125.05]},
+        {"layer": "In1.Cu", "width_mm": 0.3, "start_mm": [10.865, 125.05], "end_mm": [9.6, 125.3]}
+      ],
+      "vias": [
+        {"at_mm": [10.865, 125.05], "diameter_mm": 0.4, "drill_mm": 0.2}
+      ],
+      "expected_resolved_connections": 1,
+      "reason": "The bottom-divider resistor receives its own ordinary via and joins the output-capacitor ground skeleton without crossing the feedback trace on B.Cu."
+    },
+    {
+      "id": "RF-MAIN-BUCK-BULK-INPUT-BANK",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "NVDC_SYS",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+      "routing_class": "PRIMARY_POWER",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.6, "start_mm": [7.47, 120.745], "end_mm": [6.1, 120.4]},
+        {"layer": "B.Cu", "width_mm": 0.6, "start_mm": [7.47, 120.745], "end_mm": [6.1, 121.1]},
+        {"layer": "B.Cu", "width_mm": 0.6, "start_mm": [12.47, 121.245], "end_mm": [11.5, 120.9]},
+        {"layer": "B.Cu", "width_mm": 0.6, "start_mm": [12.47, 121.245], "end_mm": [11.5, 121.6]},
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [15.325, 124.105], "end_mm": [15.3, 125.0]},
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [15.325, 124.105], "end_mm": [15.3, 125.6]},
+        {"layer": "B.Cu", "width_mm": 0.6, "start_mm": [19.495, 127.42], "end_mm": [19.1, 128.5]},
+        {"layer": "B.Cu", "width_mm": 0.6, "start_mm": [19.495, 127.42], "end_mm": [19.8, 128.5]},
+        {"layer": "In2.Cu", "width_mm": 1.0, "start_mm": [6.1, 120.4], "end_mm": [6.1, 121.1]},
+        {"layer": "In2.Cu", "width_mm": 1.0, "start_mm": [11.5, 120.9], "end_mm": [11.5, 121.6]},
+        {"layer": "In2.Cu", "width_mm": 1.0, "start_mm": [15.3, 125.0], "end_mm": [15.3, 125.6]},
+        {"layer": "In2.Cu", "width_mm": 1.0, "start_mm": [19.1, 128.5], "end_mm": [19.8, 128.5]},
+        {"layer": "In2.Cu", "width_mm": 1.0, "start_mm": [6.1, 121.1], "end_mm": [11.5, 121.6]},
+        {"layer": "In2.Cu", "width_mm": 1.0, "start_mm": [11.5, 121.6], "end_mm": [15.3, 121.6]},
+        {"layer": "In2.Cu", "width_mm": 1.0, "start_mm": [15.3, 121.6], "end_mm": [15.3, 125.0]},
+        {"layer": "In2.Cu", "width_mm": 1.0, "start_mm": [15.3, 125.6], "end_mm": [19.1, 128.5]}
+      ],
+      "vias": [
+        {"at_mm": [6.1, 120.4], "diameter_mm": 0.5, "drill_mm": 0.25},
+        {"at_mm": [6.1, 121.1], "diameter_mm": 0.5, "drill_mm": 0.25},
+        {"at_mm": [11.5, 120.9], "diameter_mm": 0.5, "drill_mm": 0.25},
+        {"at_mm": [11.5, 121.6], "diameter_mm": 0.5, "drill_mm": 0.25},
+        {"at_mm": [15.3, 125.0], "diameter_mm": 0.5, "drill_mm": 0.25},
+        {"at_mm": [15.3, 125.6], "diameter_mm": 0.5, "drill_mm": 0.25},
+        {"at_mm": [19.1, 128.5], "diameter_mm": 0.5, "drill_mm": 0.25},
+        {"at_mm": [19.8, 128.5], "diameter_mm": 0.5, "drill_mm": 0.25}
+      ],
+      "expected_resolved_connections": 3,
+      "reason": "The three bulk input capacitors join the already-direct high-frequency input node through paired standard vias and a 1.0-mm In2 power spine, keeping load-current copper away from feedback and the switch-node face."
+    },
+    {
+      "id": "RF-MAIN-BUCK-BULK-INPUT-GROUND-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "POWER_GROUND",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+      "routing_class": "GROUND_REFERENCE",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [10.42, 120.745], "end_mm": [10.0, 118.8]},
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [10.42, 120.745], "end_mm": [10.7, 118.8]},
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [15.42, 121.245], "end_mm": [15.0, 118.8]},
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [15.42, 121.245], "end_mm": [15.7, 118.8]},
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [19.495, 124.47], "end_mm": [17.45, 123.5]},
+        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [19.495, 124.47], "end_mm": [16.85, 123.5]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [10.0, 118.8], "end_mm": [10.7, 118.8]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [15.0, 118.8], "end_mm": [15.7, 118.8]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [10.7, 118.8], "end_mm": [13.9, 118.8]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [13.9, 118.8], "end_mm": [13.9, 122.8]},
+        {"layer": "In1.Cu", "width_mm": 0.5, "start_mm": [15.7, 118.8], "end_mm": [16.85, 123.5]}
+      ],
+      "vias": [
+        {"at_mm": [10.0, 118.8], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [10.7, 118.8], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [15.0, 118.8], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [15.7, 118.8], "diameter_mm": 0.4, "drill_mm": 0.2}
+      ],
+      "expected_resolved_connections": 3,
+      "reason": "Both upper bulk capacitors receive paired ordinary ground vias, while the side capacitor joins the existing high-frequency return pair; all three close into the same In1 local ground skeleton."
     }
   ],
   "authorization": {

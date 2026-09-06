@@ -6,17 +6,17 @@
   "phase_complete": false,
   "sources": {
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "72bfd377c840ca5905cac3d72e60df8a7b8a8e12e699fc78597d128f0947dfa4"
+    "routing_policy_sha256": "2ace3d78e877bb529b8e216e602809a35a74f9962d7b72b4003ab14d1cf66b3c"
   },
   "summary": {
     "board_count": 2,
-    "track_via_item_count": 143,
-    "trace_count": 116,
-    "via_count": 27,
+    "track_via_item_count": 237,
+    "trace_count": 186,
+    "via_count": 51,
     "seed_total_unconnected_count": 3265,
-    "current_total_unconnected_count": 3231,
-    "resolved_connection_count": 34,
-    "analog_remaining_connection_count": 263,
+    "current_total_unconnected_count": 3208,
+    "resolved_connection_count": 57,
+    "analog_remaining_connection_count": 260,
     "placement_locality_pair_count": 310,
     "placement_locality_violation_count": 0,
     "placement_critical_pad_pair_count": 22,
@@ -136,18 +136,19 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "board_sha256": "70587f3a127ab99e803d070e5bd820cebc402113cdcd098c044752c63d85ebed",
+      "board_sha256": "286799141fa9fde6e1f3d5876e9ce6e1a8abec9cc01a2ea96df6f4c444e1e033",
       "board_size_mm": [
         80.05,
         150.05
       ],
       "footprint_count": 784,
-      "trace_count": 112,
-      "via_count": 27,
-      "track_via_item_count": 139,
-      "routed_net_count": 17,
+      "trace_count": 182,
+      "via_count": 51,
+      "track_via_item_count": 233,
+      "routed_net_count": 20,
       "used_trace_layers": [
         "B.Cu",
+        "F.Cu",
         "In1.Cu",
         "In2.Cu",
         "In3.Cu"
@@ -157,19 +158,19 @@
         "B.Cu": 61.395
       },
       "seed_total_unconnected_count": 2038,
-      "current_total_unconnected_count": 2005,
-      "resolved_connection_count": 33,
+      "current_total_unconnected_count": 1982,
+      "resolved_connection_count": 56,
       "classes": {
         "GROUND_REFERENCE": {
           "net_count": 2,
-          "remaining_connection_count": 619
+          "remaining_connection_count": 610
         },
         "PRIMARY_POWER": {
           "net_count": 20,
-          "remaining_connection_count": 382
+          "remaining_connection_count": 372
         },
         "POWER_BRANCH": {
-          "net_count": 15,
+          "net_count": 16,
           "remaining_connection_count": 126
         },
         "SWITCHING_NODE": {
@@ -206,17 +207,17 @@
         },
         "ANALOG_AUDIO_SENSE": {
           "net_count": 122,
-          "remaining_connection_count": 217
+          "remaining_connection_count": 214
         },
         "GENERAL_CONTROL": {
-          "net_count": 104,
-          "remaining_connection_count": 204
+          "net_count": 103,
+          "remaining_connection_count": 203
         }
       },
       "drc": {
-        "report_sha256": "ee6bcd295912b05aefa3a27f4e7221219bb3acf2be892efe1ee9226b5435fc04",
+        "report_sha256": "b3aebe09d6929353728dc7e5566308cd5b333f3203926789ca9bac69d54792ed",
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-06T11:11:14",
+        "checked_at": "2026-09-06T11:58:14",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,

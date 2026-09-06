@@ -82,7 +82,7 @@
   "class_counts": {
     "GROUND_REFERENCE": 3,
     "PRIMARY_POWER": 22,
-    "POWER_BRANCH": 22,
+    "POWER_BRANCH": 23,
     "SWITCHING_NODE": 15,
     "RF_CONTROLLED": 80,
     "USB_DIFFERENTIAL": 24,
@@ -92,7 +92,7 @@
     "SAFETY_CONTROL": 111,
     "SERIAL_CONTROL": 74,
     "ANALOG_AUDIO_SENSE": 143,
-    "GENERAL_CONTROL": 165
+    "GENERAL_CONTROL": 164
   },
   "boards": {
     "LESHY2-RF-R2": {
@@ -100,7 +100,7 @@
       "class_counts": {
         "GROUND_REFERENCE": 2,
         "PRIMARY_POWER": 20,
-        "POWER_BRANCH": 15,
+        "POWER_BRANCH": 16,
         "SWITCHING_NODE": 14,
         "RF_CONTROLLED": 58,
         "USB_DIFFERENTIAL": 10,
@@ -110,7 +110,7 @@
         "SAFETY_CONTROL": 78,
         "SERIAL_CONTROL": 41,
         "ANALOG_AUDIO_SENSE": 122,
-        "GENERAL_CONTROL": 104
+        "GENERAL_CONTROL": 103
       }
     },
     "LESHY2-UI-R2": {
@@ -2960,9 +2960,9 @@
       "project": "LESHY2-RF-R2",
       "canonical_net": "MAIN_BUCK_VCC",
       "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_VCC",
-      "routing_class": "GENERAL_CONTROL",
-      "route_mode": "automatic_helper_allowed_then_manual_review",
-      "geometry_release": "H6.0.2",
+      "routing_class": "POWER_BRANCH",
+      "route_mode": "manual_only",
+      "geometry_release": "H6.0.3",
       "endpoint_roles": [
         "power"
       ]
