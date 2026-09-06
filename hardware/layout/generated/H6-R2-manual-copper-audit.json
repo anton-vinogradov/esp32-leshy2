@@ -5,18 +5,18 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "2e120a9d8452de60f358db0d05596bf49709ff1b238910f0314ad3937a98bb5b",
+    "contract_sha256": "ff4756cfd056d21d1cd79aa37fa0325beefb8f0a117b4921c8de253552150cce",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "2ace3d78e877bb529b8e216e602809a35a74f9962d7b72b4003ab14d1cf66b3c",
+    "routing_policy_sha256": "b27d93b1026df90a7ea071838403bb2cec1aeba354b02f81cd785930e45d65b7",
     "placement_status": "pass"
   },
   "summary": {
-    "route_count": 40,
-    "segment_count": 186,
-    "resolved_connection_count": 57,
-    "via_count": 51,
-    "manual_only_route_count": 28,
-    "local_ground_join_route_count": 12
+    "route_count": 46,
+    "segment_count": 236,
+    "resolved_connection_count": 71,
+    "via_count": 72,
+    "manual_only_route_count": 32,
+    "local_ground_join_route_count": 14
   },
   "boards": [
     {
@@ -88,10 +88,10 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "route_count": 39,
-      "segment_count": 182,
-      "via_count": 51,
-      "resolved_connection_count": 56,
+      "route_count": 45,
+      "segment_count": 232,
+      "via_count": 72,
+      "resolved_connection_count": 70,
       "copper_signature": [
         [
           "track",
@@ -715,6 +715,62 @@
           "B.Cu",
           0.3,
           [
+            28.6,
+            129.4
+          ],
+          [
+            28.68,
+            130.199999
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "B.Cu",
+          0.3,
+          [
+            28.68,
+            130.199999
+          ],
+          [
+            29.1,
+            129.4
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "B.Cu",
+          0.3,
+          [
+            29.61,
+            132.5
+          ],
+          [
+            30.2,
+            133.199999
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "B.Cu",
+          0.3,
+          [
+            29.61,
+            132.5
+          ],
+          [
+            30.8,
+            133.199999
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "B.Cu",
+          0.3,
+          [
             61.975,
             67.88
           ],
@@ -897,6 +953,34 @@
           "B.Cu",
           0.6,
           [
+            23.6,
+            132.0
+          ],
+          [
+            25.4,
+            132.419999
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "B.Cu",
+          0.6,
+          [
+            23.6,
+            132.8
+          ],
+          [
+            25.4,
+            132.419999
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "B.Cu",
+          0.6,
+          [
             61.3,
             68.4
           ],
@@ -1001,6 +1085,118 @@
           [
             57.72,
             74.045
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "In2.Cu",
+          0.8,
+          [
+            23.6,
+            132.0
+          ],
+          [
+            23.6,
+            132.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "In2.Cu",
+          0.8,
+          [
+            23.6,
+            132.8
+          ],
+          [
+            26.5,
+            134.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "In2.Cu",
+          0.8,
+          [
+            26.5,
+            134.5
+          ],
+          [
+            30.2,
+            134.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "In2.Cu",
+          0.8,
+          [
+            28.6,
+            129.4
+          ],
+          [
+            29.1,
+            129.4
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "In2.Cu",
+          0.8,
+          [
+            29.1,
+            129.4
+          ],
+          [
+            29.1,
+            133.199999
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "In2.Cu",
+          0.8,
+          [
+            29.1,
+            133.199999
+          ],
+          [
+            30.2,
+            133.199999
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "In2.Cu",
+          0.8,
+          [
+            30.2,
+            133.199999
+          ],
+          [
+            30.2,
+            134.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          "In2.Cu",
+          0.8,
+          [
+            30.2,
+            133.199999
+          ],
+          [
+            30.8,
+            133.199999
           ]
         ],
         [
@@ -1191,6 +1387,20 @@
           "B.Cu",
           0.25,
           [
+            27.8,
+            130.8
+          ],
+          [
+            28.2,
+            131.565
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.25,
+          [
             51.55,
             83.75
           ],
@@ -1247,6 +1457,34 @@
           "B.Cu",
           0.3,
           [
+            29.61,
+            131.5
+          ],
+          [
+            30.2,
+            130.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.3,
+          [
+            29.61,
+            131.5
+          ],
+          [
+            30.8,
+            130.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.3,
+          [
             61.975,
             66.92
           ],
@@ -1295,6 +1533,34 @@
           [
             71.1,
             67.9
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.4,
+          [
+            27.3,
+            130.8
+          ],
+          [
+            27.72,
+            130.199999
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.4,
+          [
+            27.72,
+            130.199999
+          ],
+          [
+            27.8,
+            130.8
           ]
         ],
         [
@@ -1463,6 +1729,90 @@
           [
             19.495,
             124.47
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.5,
+          [
+            22.2,
+            135.0
+          ],
+          [
+            23.995,
+            135.47
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.5,
+          [
+            22.2,
+            135.7
+          ],
+          [
+            23.995,
+            135.47
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.5,
+          [
+            23.6,
+            129.0
+          ],
+          [
+            25.4,
+            129.47
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.5,
+          [
+            23.6,
+            129.699999
+          ],
+          [
+            25.4,
+            129.47
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.5,
+          [
+            33.494999,
+            135.47
+          ],
+          [
+            35.7,
+            135.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.5,
+          [
+            33.494999,
+            135.47
+          ],
+          [
+            35.7,
+            135.7
           ]
         ],
         [
@@ -1751,6 +2101,76 @@
           "In1.Cu",
           0.5,
           [
+            22.2,
+            135.0
+          ],
+          [
+            22.2,
+            135.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            23.6,
+            129.0
+          ],
+          [
+            23.6,
+            129.699999
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            27.3,
+            130.8
+          ],
+          [
+            27.8,
+            130.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            30.2,
+            130.8
+          ],
+          [
+            30.8,
+            130.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            35.7,
+            135.0
+          ],
+          [
+            35.7,
+            135.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
             44.8,
             85.0
           ],
@@ -1901,6 +2321,62 @@
         ],
         [
           "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.8,
+          [
+            22.2,
+            135.7
+          ],
+          [
+            35.7,
+            135.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.8,
+          [
+            23.6,
+            129.699999
+          ],
+          [
+            27.3,
+            130.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.8,
+          [
+            27.8,
+            130.8
+          ],
+          [
+            30.2,
+            130.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.8,
+          [
+            30.8,
+            130.8
+          ],
+          [
+            35.7,
+            135.0
+          ]
+        ],
+        [
+          "track",
           "/RF_02_PACK_SAFETY_AON/PACK_CHARGE_PUMP",
           "B.Cu",
           0.15,
@@ -1953,6 +2429,132 @@
           [
             69.2125,
             92.75
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "B.Cu",
+          0.15,
+          [
+            29.4,
+            128.3
+          ],
+          [
+            30.075,
+            128.604999
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "B.Cu",
+          0.15,
+          [
+            30.065,
+            129.865
+          ],
+          [
+            30.075,
+            128.604999
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "B.Cu",
+          0.15,
+          [
+            31.0,
+            138.42
+          ],
+          [
+            32.2,
+            139.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "B.Cu",
+          1.5,
+          [
+            23.995,
+            138.42
+          ],
+          [
+            26.0,
+            138.42
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "B.Cu",
+          1.5,
+          [
+            26.0,
+            138.42
+          ],
+          [
+            28.745,
+            138.945
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "B.Cu",
+          1.5,
+          [
+            28.745,
+            138.945
+          ],
+          [
+            31.0,
+            138.42
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "B.Cu",
+          1.5,
+          [
+            31.0,
+            138.42
+          ],
+          [
+            33.494999,
+            138.42
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "In3.Cu",
+          0.15,
+          [
+            29.4,
+            128.3
+          ],
+          [
+            32.2,
+            127.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "In3.Cu",
+          0.15,
+          [
+            32.2,
+            127.5
+          ],
+          [
+            32.2,
+            139.2
           ]
         ],
         [
@@ -2097,16 +2699,114 @@
         ],
         [
           "track",
-          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_BUCK_SW",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_5V_FB",
           "B.Cu",
           0.15,
           [
-            30.15,
-            133.55
+            28.2,
+            132.585
           ],
           [
-            30.35,
-            133.199999
+            28.2,
+            133.3
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_5V_FB",
+          "B.Cu",
+          0.15,
+          [
+            31.035,
+            128.604999
+          ],
+          [
+            31.085,
+            129.865
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_5V_FB",
+          "B.Cu",
+          0.15,
+          [
+            31.085,
+            129.865
+          ],
+          [
+            31.6,
+            129.865
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_5V_FB",
+          "B.Cu",
+          0.15,
+          [
+            31.09,
+            132.5
+          ],
+          [
+            31.7,
+            133.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_5V_FB",
+          "F.Cu",
+          0.15,
+          [
+            28.2,
+            133.3
+          ],
+          [
+            28.2,
+            134.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_5V_FB",
+          "F.Cu",
+          0.15,
+          [
+            28.2,
+            134.0
+          ],
+          [
+            31.7,
+            134.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_5V_FB",
+          "F.Cu",
+          0.15,
+          [
+            31.6,
+            129.865
+          ],
+          [
+            31.7,
+            133.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_5V_FB",
+          "F.Cu",
+          0.15,
+          [
+            31.7,
+            133.0
+          ],
+          [
+            31.7,
+            134.0
           ]
         ],
         [
@@ -2115,12 +2815,12 @@
           "B.Cu",
           0.15,
           [
-            30.35,
-            133.199999
+            28.85,
+            132.0
           ],
           [
-            30.5,
-            132.74
+            29.61,
+            132.0
           ]
         ],
         [
@@ -2129,12 +2829,12 @@
           "B.Cu",
           0.3,
           [
-            29.9,
-            133.8
+            28.85,
+            132.0
           ],
           [
-            30.15,
-            133.55
+            28.85,
+            133.5
           ]
         ],
         [
@@ -2147,8 +2847,8 @@
             134.845
           ],
           [
-            29.9,
-            133.8
+            28.85,
+            133.5
           ]
         ],
         [
@@ -2819,6 +3519,54 @@
         ],
         [
           "via",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          23.6,
+          132.0,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          23.6,
+          132.8,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          28.6,
+          129.4,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          29.1,
+          129.4,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          30.2,
+          133.199999,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+          30.8,
+          133.199999,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
           "/RF_01_USB_PD_CHARGE/POWER_GROUND",
           9.6,
           125.3,
@@ -2932,6 +3680,86 @@
         [
           "via",
           "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          22.2,
+          135.0,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          22.2,
+          135.7,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          23.6,
+          129.0,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          23.6,
+          129.699999,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          27.3,
+          130.8,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          27.8,
+          130.8,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          30.2,
+          130.8,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          30.8,
+          130.8,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          35.7,
+          135.0,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          35.7,
+          135.7,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
           44.8,
           85.0,
           0.4,
@@ -3030,6 +3858,46 @@
           "/RF_01_USB_PD_CHARGE/POWER_GROUND",
           73.6,
           72.4,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          29.4,
+          128.3,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          32.2,
+          139.2,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_5V_FB",
+          28.2,
+          133.3,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_5V_FB",
+          31.6,
+          129.865,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_5V_FB",
+          31.7,
+          133.0,
           0.4,
           0.2
         ],
@@ -3220,9 +4088,9 @@
         0.3,
         0.6
       ],
-      "segment_count": 4,
+      "segment_count": 3,
       "via_count": 0,
-      "length_mm": 2.7981,
+      "length_mm": 3.6091,
       "resolved_connections": 1,
       "reason": "Tapered no-via TPS564252 SW path: fine-pitch escape followed by a short 0.6-mm current section."
     },
@@ -3865,6 +4733,132 @@
       "length_mm": 27.416,
       "resolved_connections": 3,
       "reason": "Both upper bulk capacitors receive paired ordinary ground vias, while the side capacitor joins the existing high-frequency return pair; all three close into the same In1 local ground skeleton."
+    },
+    {
+      "id": "RF-EXT-BUCK-INPUT-BANK",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "NVDC_SYS",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+      "routing_class": "PRIMARY_POWER",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "In2.Cu"
+      ],
+      "widths_mm": [
+        0.3,
+        0.6,
+        0.8
+      ],
+      "segment_count": 14,
+      "via_count": 6,
+      "length_mm": 22.8532,
+      "resolved_connections": 2,
+      "reason": "The direct and bulk input capacitors join VIN through paired standard vias and a compact In2 spine; the high-frequency branch stays separate from the switch-node escape on B.Cu."
+    },
+    {
+      "id": "RF-EXT-BUCK-INPUT-GROUND-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "POWER_GROUND",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+      "routing_class": "GROUND_REFERENCE",
+      "route_mode": "plane_or_local_pour_manual",
+      "layers": [
+        "B.Cu",
+        "In1.Cu"
+      ],
+      "widths_mm": [
+        0.25,
+        0.3,
+        0.4,
+        0.5,
+        0.8
+      ],
+      "segment_count": 12,
+      "via_count": 6,
+      "length_mm": 16.2321,
+      "resolved_connections": 3,
+      "reason": "The IC, high-frequency capacitor, bulk capacitor and bottom feedback resistor share one short In1 return skeleton with ordinary, non-via-in-pad stitching."
+    },
+    {
+      "id": "RF-EXT-BUCK-OUTPUT-BANK",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "5V_EXT_PREPROTECT",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+      "routing_class": "PRIMARY_POWER",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        1.5
+      ],
+      "segment_count": 4,
+      "via_count": 0,
+      "length_mm": 9.6101,
+      "resolved_connections": 2,
+      "reason": "A short 1.5-mm output trunk fans directly from the inductor into the two local 22-uF capacitors without a via."
+    },
+    {
+      "id": "RF-EXT-BUCK-OUTPUT-GROUND-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "POWER_GROUND",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+      "routing_class": "GROUND_REFERENCE",
+      "route_mode": "plane_or_local_pour_manual",
+      "layers": [
+        "B.Cu",
+        "In1.Cu"
+      ],
+      "widths_mm": [
+        0.5,
+        0.8
+      ],
+      "segment_count": 8,
+      "via_count": 4,
+      "length_mm": 29.4904,
+      "resolved_connections": 2,
+      "reason": "Both output capacitors receive paired ordinary ground vias and join the input/IC return through the same local In1 skeleton."
+    },
+    {
+      "id": "RF-EXT-BUCK-FEEDBACK",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "EXT_5V_FB",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_5V_FB",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "F.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 8,
+      "via_count": 3,
+      "length_mm": 11.6163,
+      "resolved_connections": 3,
+      "reason": "The divider midpoint crosses the switch-node escape only on F.Cu over the In1 reference, then returns beside the top divider and feed-forward capacitor; no feedback copper shares the In2 power spine."
+    },
+    {
+      "id": "RF-EXT-BUCK-FEEDBACK-SENSE",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "5V_EXT_PREPROTECT",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+      "routing_class": "PRIMARY_POWER",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "In3.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 5,
+      "via_count": 2,
+      "length_mm": 18.044,
+      "resolved_connections": 2,
+      "reason": "A narrow Kelvin branch leaves the right output-capacitor junction, bypasses the unrelated fuse on In3, and feeds both parallel top-divider elements without carrying load current."
     }
   ],
   "authorization": {

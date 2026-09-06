@@ -331,12 +331,42 @@
     "ext_buck": {
       "frame": "rear-inner",
       "centre_mm": [
-        30.5,
+        30.35,
         132.0
+      ],
+      "rotation_deg": 0.0,
+      "method": "reviewed H6.0.3 power-locality correction",
+      "reason": "turn the accessory converter power pins toward its input capacitors and inductor while retaining the accepted compact island between the bus and bottom service edge"
+    },
+    "ext_buck_hf_input_cap": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        28.2,
+        130.2
+      ],
+      "rotation_deg": 180.0,
+      "method": "reviewed H6.0.3 power-locality correction",
+      "reason": "place the 0.1-uF input capacitor directly on the power-pin side with its NVDC pad facing VIN and its ground pad facing the local return vias"
+    },
+    "ext_buck_input_cap": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        25.4,
+        130.945
       ],
       "rotation_deg": 90.0,
       "method": "reviewed H6.0.3 power-locality correction",
-      "reason": "place the complete accessory converter beside the system-power region with enough local area for both input and output banks"
+      "reason": "shift the bulk input capacitor left just enough to preserve independent courtyards for the direct high-frequency capacitor and feedback-bottom resistor"
+    },
+    "ext_buck_fb_bottom": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        28.2,
+        132.075
+      ],
+      "rotation_deg": 90.0,
+      "method": "reviewed H6.0.3 power-locality correction",
+      "reason": "retain the divider beside the converter while opening a real switch-node escape corridor between its pads and the regulator ground pin"
     },
     "main_buck": {
       "frame": "rear-inner",

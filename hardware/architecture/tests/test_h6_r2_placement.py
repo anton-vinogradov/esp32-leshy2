@@ -131,7 +131,10 @@ class H6R2PlacementTests(unittest.TestCase):
             "charger_pmid_cap0": [71.945, 65.595],
             "charger_pmid_hf_cap": [70.245, 67.4],
             "charger_sys_hf_cap": [61.975, 67.4],
-            "ext_buck": [30.5, 132.0],
+            "ext_buck": [30.35, 132.0],
+            "ext_buck_hf_input_cap": [28.2, 130.2],
+            "ext_buck_input_cap": [25.4, 130.945],
+            "ext_buck_fb_bottom": [28.2, 132.075],
             "main_buck": [13.0, 126.0],
             "nvdc_charger": [66.0, 70.5],
             "voice_buck": [66.5, 111.5],
@@ -149,6 +152,14 @@ class H6R2PlacementTests(unittest.TestCase):
         self.assertEqual(
             270.0,
             self.contract["placement_overrides"]["aon_output_cap"]["rotation_deg"],
+        )
+        self.assertEqual(
+            0.0,
+            self.contract["placement_overrides"]["ext_buck"]["rotation_deg"],
+        )
+        self.assertEqual(
+            180.0,
+            self.contract["placement_overrides"]["ext_buck_hf_input_cap"]["rotation_deg"],
         )
         self.assertEqual([], self.contract["placement_policy"]["released_instances"])
         self.assertEqual(
