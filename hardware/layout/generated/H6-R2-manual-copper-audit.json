@@ -5,17 +5,17 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "53174254a05c0686821dc36630a287358d45a61d4cffd62ec2dbd2b7a99d224e",
+    "contract_sha256": "8b71e16f05b29757027c0009d7f8dadcf123e063ec12aeb9f618e22c791e06c5",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
     "routing_policy_sha256": "b543e99c82fb663927b57280f71b8208a95799af506a8aff38325d8b55f898da",
     "placement_status": "pass"
   },
   "summary": {
-    "route_count": 11,
-    "segment_count": 34,
-    "resolved_connection_count": 12,
-    "via_count": 0,
-    "manual_only_route_count": 11
+    "route_count": 13,
+    "segment_count": 56,
+    "resolved_connection_count": 14,
+    "via_count": 12,
+    "manual_only_route_count": 13
   },
   "boards": [
     {
@@ -23,6 +23,7 @@
       "board": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
       "route_count": 1,
       "segment_count": 4,
+      "via_count": 0,
       "resolved_connection_count": 1,
       "copper_signature": [
         [
@@ -86,9 +87,10 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "route_count": 10,
-      "segment_count": 30,
-      "resolved_connection_count": 11,
+      "route_count": 12,
+      "segment_count": 52,
+      "via_count": 12,
+      "resolved_connection_count": 13,
       "copper_signature": [
         [
           "track",
@@ -130,6 +132,314 @@
           [
             64.1375,
             70.9
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
+          "B.Cu",
+          0.18,
+          [
+            66.45,
+            68.1
+          ],
+          [
+            66.45,
+            68.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
+          "B.Cu",
+          0.5,
+          [
+            66.45,
+            67.6
+          ],
+          [
+            66.45,
+            68.1
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
+          "B.Cu",
+          0.5,
+          [
+            66.45,
+            67.6
+          ],
+          [
+            66.9,
+            67.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
+          "B.Cu",
+          0.5,
+          [
+            66.9,
+            67.2
+          ],
+          [
+            67.35,
+            66.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
+          "B.Cu",
+          0.8,
+          [
+            63.845,
+            64.745
+          ],
+          [
+            65.15,
+            64.745
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
+          "B.Cu",
+          0.8,
+          [
+            65.15,
+            64.0
+          ],
+          [
+            65.15,
+            65.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
+          "In2.Cu",
+          0.6,
+          [
+            65.15,
+            64.0
+          ],
+          [
+            65.15,
+            64.75
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
+          "In2.Cu",
+          0.6,
+          [
+            65.15,
+            64.75
+          ],
+          [
+            65.15,
+            65.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
+          "In2.Cu",
+          0.6,
+          [
+            65.15,
+            65.5
+          ],
+          [
+            67.35,
+            66.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
+          "In2.Cu",
+          0.6,
+          [
+            66.45,
+            67.6
+          ],
+          [
+            66.9,
+            67.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
+          "In2.Cu",
+          0.6,
+          [
+            66.9,
+            67.2
+          ],
+          [
+            67.35,
+            66.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
+          "B.Cu",
+          0.18,
+          [
+            65.55,
+            68.1
+          ],
+          [
+            65.55,
+            68.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
+          "B.Cu",
+          0.5,
+          [
+            64.65,
+            66.8
+          ],
+          [
+            65.099999,
+            67.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
+          "B.Cu",
+          0.5,
+          [
+            65.099999,
+            67.2
+          ],
+          [
+            65.55,
+            67.6
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
+          "B.Cu",
+          0.5,
+          [
+            65.55,
+            67.6
+          ],
+          [
+            65.55,
+            68.1
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
+          "B.Cu",
+          0.8,
+          [
+            66.599999,
+            64.0
+          ],
+          [
+            66.599999,
+            65.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
+          "B.Cu",
+          0.8,
+          [
+            66.599999,
+            64.745
+          ],
+          [
+            67.945,
+            64.745
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
+          "In3.Cu",
+          0.6,
+          [
+            64.65,
+            66.8
+          ],
+          [
+            65.099999,
+            67.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
+          "In3.Cu",
+          0.6,
+          [
+            64.65,
+            66.8
+          ],
+          [
+            66.599999,
+            65.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
+          "In3.Cu",
+          0.6,
+          [
+            65.099999,
+            67.2
+          ],
+          [
+            65.55,
+            67.6
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
+          "In3.Cu",
+          0.6,
+          [
+            66.599999,
+            64.0
+          ],
+          [
+            66.599999,
+            64.75
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
+          "In3.Cu",
+          0.6,
+          [
+            66.599999,
+            64.75
+          ],
+          [
+            66.599999,
+            65.5
           ]
         ],
         [
@@ -509,6 +819,102 @@
             64.9,
             111.5
           ]
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
+          65.15,
+          64.0,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
+          65.15,
+          64.75,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
+          65.15,
+          65.5,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
+          66.45,
+          67.6,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
+          66.9,
+          67.2,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
+          67.35,
+          66.8,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
+          64.65,
+          66.8,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
+          65.099999,
+          67.2,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
+          65.55,
+          67.6,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
+          66.599999,
+          64.0,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
+          66.599999,
+          64.75,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
+          66.599999,
+          65.5,
+          0.5,
+          0.25
         ]
       ]
     }
@@ -527,6 +933,7 @@
         0.15
       ],
       "segment_count": 4,
+      "via_count": 0,
       "length_mm": 4.6182,
       "resolved_connections": 1,
       "reason": "Short no-via RP2354 internal-regulator switch path, manually accepted after obstacle-aware proposal and native DRC."
@@ -544,6 +951,7 @@
         0.25
       ],
       "segment_count": 2,
+      "via_count": 0,
       "length_mm": 2.0313,
       "resolved_connections": 1,
       "reason": "Short no-via TPS629203 300-mA switching path with a wider local trace."
@@ -561,6 +969,7 @@
         0.15
       ],
       "segment_count": 4,
+      "via_count": 0,
       "length_mm": 3.0901,
       "resolved_connections": 1,
       "reason": "Short no-via MAX17320 flying-capacitor connection kept inside the gauge island."
@@ -578,6 +987,7 @@
         0.15
       ],
       "segment_count": 4,
+      "via_count": 0,
       "length_mm": 4.7389,
       "resolved_connections": 1,
       "reason": "Short no-via RP2354 internal-regulator switch path."
@@ -595,6 +1005,7 @@
         0.15
       ],
       "segment_count": 1,
+      "via_count": 0,
       "length_mm": 1.1548,
       "resolved_connections": 1,
       "reason": "Direct TPS564252 bootstrap hot-side connection."
@@ -612,6 +1023,7 @@
         0.15
       ],
       "segment_count": 1,
+      "via_count": 0,
       "length_mm": 1.2404,
       "resolved_connections": 1,
       "reason": "Direct bootstrap-capacitor to series-link connection."
@@ -629,6 +1041,7 @@
         0.15
       ],
       "segment_count": 1,
+      "via_count": 0,
       "length_mm": 1.4565,
       "resolved_connections": 1,
       "reason": "Direct BQ25798 first bootstrap-capacitor hot-side connection."
@@ -646,6 +1059,7 @@
         0.15
       ],
       "segment_count": 2,
+      "via_count": 0,
       "length_mm": 1.6682,
       "resolved_connections": 1,
       "reason": "Short BQ25798 second bootstrap-capacitor hot-side connection with adjacent-pad clearance."
@@ -665,6 +1079,7 @@
         0.6
       ],
       "segment_count": 4,
+      "via_count": 0,
       "length_mm": 2.7981,
       "resolved_connections": 1,
       "reason": "Tapered no-via TPS564252 SW path: fine-pitch escape followed by a short 0.6-mm current section."
@@ -684,6 +1099,7 @@
         0.6
       ],
       "segment_count": 3,
+      "via_count": 0,
       "length_mm": 2.315,
       "resolved_connections": 1,
       "reason": "Tapered no-via TPS564252 SW path, widened after clearing the adjacent 0.5-mm-pitch pins."
@@ -703,9 +1119,54 @@
         0.8
       ],
       "segment_count": 8,
+      "via_count": 0,
       "length_mm": 8.0374,
       "resolved_connections": 2,
       "reason": "TPS566231P current path widens to 0.8 mm at the inductor; the low-current bootstrap return remains a separate narrow branch with minimum hot copper area."
+    },
+    {
+      "id": "RF-CHARGER-SW1",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CHARGER_SW1",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
+      "routing_class": "SWITCHING_NODE",
+      "layers": [
+        "B.Cu",
+        "In2.Cu"
+      ],
+      "widths_mm": [
+        0.18,
+        0.5,
+        0.6,
+        0.8
+      ],
+      "segment_count": 11,
+      "via_count": 6,
+      "length_mm": 10.4687,
+      "resolved_connections": 1,
+      "reason": "BQ25798 SW1 leaves the fine pad on B.Cu, fans through three standard vias to a short 0.6-mm In2.Cu crossing, and returns through three vias into a 0.8-mm inductor stub; no via is placed in an SMD pad."
+    },
+    {
+      "id": "RF-CHARGER-SW2",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CHARGER_SW2",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
+      "routing_class": "SWITCHING_NODE",
+      "layers": [
+        "B.Cu",
+        "In3.Cu"
+      ],
+      "widths_mm": [
+        0.18,
+        0.5,
+        0.6,
+        0.8
+      ],
+      "segment_count": 11,
+      "via_count": 6,
+      "length_mm": 10.2969,
+      "resolved_connections": 1,
+      "reason": "BQ25798 SW2 mirrors SW1 on In3.Cu so the two current paths may cross without sharing copper; six standard through vias provide parallel current paths and remain outside the SMD pads."
     }
   ],
   "authorization": {

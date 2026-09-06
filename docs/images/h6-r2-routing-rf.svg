@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
  <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg data-h6-board="rf" data-source-sha256="da0fdf7d94b30bb9002a995fb064b417cd4d2c6af829d4d51617eea5b719dbfb" data-layers="F.Cu,B.Cu,F.Silkscreen,B.Silkscreen,Edge.Cuts"
+<svg data-h6-board="rf" data-source-sha256="5a7a28d426acd0accd95129ae86d590aa7552b90a5e447619765a31220a8e59f" data-layers="F.Cu,B.Cu,F.Silkscreen,B.Silkscreen,Edge.Cuts"
   xmlns:svg="http://www.w3.org/2000/svg"
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -480,6 +480,18 @@ d="M 69.0750,133.6750
 66.9250,133.6750
 Z" />
 <circle cx="69.0750" cy="134.4400" r="0.2500" />
+<circle cx="65.5500" cy="67.6000" r="0.2500" />
+<circle cx="66.6000" cy="64.7500" r="0.2500" />
+<circle cx="65.1000" cy="67.2000" r="0.2500" />
+<circle cx="66.6000" cy="65.5000" r="0.2500" />
+<circle cx="64.6500" cy="66.8000" r="0.2500" />
+<circle cx="66.6000" cy="64.0000" r="0.2500" />
+<circle cx="66.4500" cy="67.6000" r="0.2500" />
+<circle cx="65.1500" cy="64.0000" r="0.2500" />
+<circle cx="65.1500" cy="64.7500" r="0.2500" />
+<circle cx="67.3500" cy="66.8000" r="0.2500" />
+<circle cx="66.9000" cy="67.2000" r="0.2500" />
+<circle cx="65.1500" cy="65.5000" r="0.2500" />
 <path style="fill:#4D7FC4; fill-opacity:1.0000; stroke:none;fill-rule:evenodd;"
 d="M 13.1500,0.0000
 13.1500,-3.3000
@@ -57342,6 +57354,18 @@ d="M 26.0950,109.0450
 25.4950,108.7450
 26.0950,108.7450
 Z" />
+<circle cx="65.5500" cy="67.6000" r="0.2500" />
+<circle cx="66.6000" cy="64.7500" r="0.2500" />
+<circle cx="65.1000" cy="67.2000" r="0.2500" />
+<circle cx="66.6000" cy="65.5000" r="0.2500" />
+<circle cx="64.6500" cy="66.8000" r="0.2500" />
+<circle cx="66.6000" cy="64.0000" r="0.2500" />
+<circle cx="66.4500" cy="67.6000" r="0.2500" />
+<circle cx="65.1500" cy="64.0000" r="0.2500" />
+<circle cx="65.1500" cy="64.7500" r="0.2500" />
+<circle cx="67.3500" cy="66.8000" r="0.2500" />
+<circle cx="66.9000" cy="67.2000" r="0.2500" />
+<circle cx="65.1500" cy="65.5000" r="0.2500" />
 </g>
 <g style="fill:none;
 stroke:#4D7FC4; stroke-width:0.2500; stroke-opacity:1;
@@ -57365,6 +57389,78 @@ L63.4500 70.7500
 <path d="M63.4500 70.7500
 L62.6050 70.2850
 " />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.5000; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M65.5500 67.6000
+L65.1000 67.2000
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.8000; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M67.9450 64.7450
+L66.6000 64.7450
+" />
+<path d="M66.6000 64.0000
+L66.6000 65.5000
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1800; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M65.5500 68.8000
+L65.5500 68.1000
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.5000; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M65.1000 67.2000
+L64.6500 66.8000
+" />
+<path d="M65.5500 68.1000
+L65.5500 67.6000
+" />
+<path d="M66.9000 67.2000
+L67.3500 66.8000
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.8000; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M65.1500 64.0000
+L65.1500 65.5000
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.5000; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M66.4500 68.1000
+L66.4500 67.6000
+" />
+<path d="M66.4500 67.6000
+L66.9000 67.2000
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.8000; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M63.8450 64.7450
+L65.1500 64.7450
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1800; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M66.4500 68.8000
+L66.4500 68.1000
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
 <path d="M55.9000 39.7500
 L55.4500 37.3000
 " />
@@ -67742,6 +67838,20 @@ L2.0000 150.0000
 L80.0000 148.0000
 " />
 <path d="M78.0000 150.0000 A2.0000 2.0000 0.0 0 0 80.0000 148.0000" />
+</g>
+<g style="fill:#FFFFFF; fill-opacity:1.0000; stroke:none;">
+<circle cx="65.5500" cy="67.6000" r="0.1250" />
+<circle cx="66.6000" cy="64.7500" r="0.1250" />
+<circle cx="65.1000" cy="67.2000" r="0.1250" />
+<circle cx="66.6000" cy="65.5000" r="0.1250" />
+<circle cx="64.6500" cy="66.8000" r="0.1250" />
+<circle cx="66.6000" cy="64.0000" r="0.1250" />
+<circle cx="66.4500" cy="67.6000" r="0.1250" />
+<circle cx="65.1500" cy="64.0000" r="0.1250" />
+<circle cx="65.1500" cy="64.7500" r="0.1250" />
+<circle cx="67.3500" cy="66.8000" r="0.1250" />
+<circle cx="66.9000" cy="67.2000" r="0.1250" />
+<circle cx="65.1500" cy="65.5000" r="0.1250" />
 </g>
 <g style="fill:#000000; fill-opacity:1.0000; stroke:none;">
 <circle cx="75.0000" cy="145.0000" r="1.3500" />

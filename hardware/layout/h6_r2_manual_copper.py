@@ -78,7 +78,7 @@ def copper_signature(board) -> list[tuple]:
                     item.GetNetname(),
                     round(pcbnew.ToMM(at.x), 6),
                     round(pcbnew.ToMM(at.y), 6),
-                    round(pcbnew.ToMM(item.GetWidth()), 6),
+                    round(pcbnew.ToMM(item.GetWidth(pcbnew.F_Cu)), 6),
                     round(pcbnew.ToMM(item.GetDrillValue()), 6),
                 )
             )
@@ -130,6 +130,7 @@ def add_routes(board, routes: list[dict], policy_rows: dict[tuple[str, str], dic
             ]
         if not segments:
             raise ValueError(f"{route['id']}: route has no segments")
+        vias = route.get("vias", [])
         before = remaining_for_net(board, net_name)
         lengths = []
         layers = set()
@@ -154,6 +155,22 @@ def add_routes(board, routes: list[dict], policy_rows: dict[tuple[str, str], dic
             lengths.append(math.dist(start, end))
             layers.add(layer_name)
             widths.add(width)
+        for via_row in vias:
+            if via_row.get("type", "through") != "through":
+                raise ValueError(f"{route['id']}: only through vias are supported")
+            at = tuple(map(float, via_row["at_mm"]))
+            diameter = float(via_row["diameter_mm"])
+            drill = float(via_row["drill_mm"])
+            if drill <= 0 or diameter <= drill:
+                raise ValueError(f"{route['id']}: invalid via diameter/drill")
+            via = pcbnew.PCB_VIA(board)
+            via.SetNetCode(net.GetNetCode())
+            via.SetPosition(pcbnew.VECTOR2I_MM(*at))
+            via.SetViaType(pcbnew.VIATYPE_THROUGH)
+            via.SetLayerPair(pcbnew.F_Cu, pcbnew.B_Cu)
+            via.SetWidth(pcbnew.FromMM(diameter))
+            via.SetDrill(pcbnew.FromMM(drill))
+            board.Add(via)
         after = remaining_for_net(board, net_name)
         resolved = before - after
         expected = route["expected_resolved_connections"]
@@ -171,6 +188,7 @@ def add_routes(board, routes: list[dict], policy_rows: dict[tuple[str, str], dic
                 "layers": sorted(layers),
                 "widths_mm": sorted(widths),
                 "segment_count": len(segments),
+                "via_count": len(vias),
                 "length_mm": round(sum(lengths), 4),
                 "resolved_connections": resolved,
                 "reason": route["reason"],
@@ -211,6 +229,7 @@ def build() -> tuple[dict[str, object], dict]:
                     "board": str(output.relative_to(ROOT)),
                     "route_count": len(rows),
                     "segment_count": sum(row["segment_count"] for row in rows),
+                    "via_count": sum(row["via_count"] for row in rows),
                     "resolved_connection_count": sum(
                         row["resolved_connections"] for row in rows
                     ),
@@ -235,7 +254,7 @@ def build() -> tuple[dict[str, object], dict]:
             "resolved_connection_count": sum(
                 row["resolved_connections"] for row in route_results
             ),
-            "via_count": 0,
+            "via_count": sum(row["via_count"] for row in route_results),
             "manual_only_route_count": len(route_results),
         },
         "boards": board_rows,
