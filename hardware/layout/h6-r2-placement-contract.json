@@ -388,6 +388,26 @@
       "method": "reviewed H6.0.3 power-locality correction",
       "reason": "give the main converter, its large inductor, three input capacitors and three output capacitors one compact bottom-left power island"
     },
+    "main_efuse": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        27.395,
+        112.145
+      ],
+      "rotation_deg": 270.0,
+      "method": "reviewed H6.0.3 power-locality correction",
+      "reason": "turn the two long main-rail pads into separate left/right escape channels, place OUT beside its local capacitor and keep the lower analog-pin row accessible"
+    },
+    "main_efuse_pg_bottom": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        31.5,
+        114.6
+      ],
+      "rotation_deg": 0.0,
+      "method": "reviewed H6.0.3 power-locality correction",
+      "reason": "move the low-current PG-divider bottom resistor out of the only direct high-current corridor between the main eFuse output bar and its bulk capacitor"
+    },
     "voice_buck": {
       "frame": "rear-inner",
       "centre_mm": [

@@ -6,12 +6,12 @@
   "sources": {
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "1d24fd10cfeb5c98efb049dd124236178860d6236e2019127091997f00bab0a8",
+      "sha256": "81c6a935c1acd6f47fa08f519cff5b893513c2882b13f880f9cdff6655d245d3",
       "authority": true
     },
     "definitions": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "d49e6b18cc5494569b35ea6997dde36257b8cc6492e232e9268821f8636ff4ea",
+      "sha256": "5af6daa34c5b01552eb1e936bf7a8bf5d877357cc1f446ba2c750a88bc80bbdb",
       "authority": true
     },
     "h0": {

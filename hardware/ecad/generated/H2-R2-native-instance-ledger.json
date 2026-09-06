@@ -11,7 +11,7 @@
     },
     "exact_definition_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "d49e6b18cc5494569b35ea6997dde36257b8cc6492e232e9268821f8636ff4ea",
+      "sha256": "5af6daa34c5b01552eb1e936bf7a8bf5d877357cc1f446ba2c750a88bc80bbdb",
       "authority": true
     },
     "physical_source_table": {
