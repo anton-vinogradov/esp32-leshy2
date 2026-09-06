@@ -10,12 +10,12 @@
   },
   "summary": {
     "board_count": 2,
-    "track_via_item_count": 717,
-    "trace_count": 557,
-    "via_count": 160,
+    "track_via_item_count": 747,
+    "trace_count": 583,
+    "via_count": 164,
     "seed_total_unconnected_count": 3265,
-    "current_total_unconnected_count": 3103,
-    "resolved_connection_count": 162,
+    "current_total_unconnected_count": 3093,
+    "resolved_connection_count": 172,
     "analog_remaining_connection_count": 232,
     "placement_locality_pair_count": 310,
     "placement_locality_violation_count": 0,
@@ -136,16 +136,16 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "board_sha256": "fe7609d9f6db407e335d6d39a09d07bc509f56c56185ace64cf6074674de57db",
+      "board_sha256": "335bbf44487eb0532446851bb511fe8ad3987dbaec2bfaefaa42a9efdd4bb57a",
       "board_size_mm": [
         80.05,
         150.05
       ],
       "footprint_count": 784,
-      "trace_count": 540,
-      "via_count": 160,
-      "track_via_item_count": 700,
-      "routed_net_count": 47,
+      "trace_count": 566,
+      "via_count": 164,
+      "track_via_item_count": 730,
+      "routed_net_count": 53,
       "used_trace_layers": [
         "B.Cu",
         "F.Cu",
@@ -158,8 +158,8 @@
         "B.Cu": 61.395
       },
       "seed_total_unconnected_count": 2038,
-      "current_total_unconnected_count": 1882,
-      "resolved_connection_count": 156,
+      "current_total_unconnected_count": 1872,
+      "resolved_connection_count": 166,
       "classes": {
         "GROUND_REFERENCE": {
           "net_count": 2,
@@ -191,7 +191,7 @@
         },
         "OSCILLATOR": {
           "net_count": 9,
-          "remaining_connection_count": 10
+          "remaining_connection_count": 0
         },
         "CLOCKED_DIGITAL": {
           "net_count": 43,
@@ -215,9 +215,9 @@
         }
       },
       "drc": {
-        "report_sha256": "8bcd37f7e12372203ed0dda248a21e087e801296365c2b0abbe483f8fd7444c1",
+        "report_sha256": "ff8d26b7110fdbc1d49504c3e8d9627cada2b9efddd4f1314eabb6b7aa45da27",
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-06T18:53:30",
+        "checked_at": "2026-09-06T19:23:22",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,

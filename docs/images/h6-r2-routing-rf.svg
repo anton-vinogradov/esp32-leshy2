@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
  <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg data-h6-board="rf" data-source-sha256="fe7609d9f6db407e335d6d39a09d07bc509f56c56185ace64cf6074674de57db" data-layers="F.Cu,B.Cu,F.Silkscreen,B.Silkscreen,Edge.Cuts"
+<svg data-h6-board="rf" data-source-sha256="335bbf44487eb0532446851bb511fe8ad3987dbaec2bfaefaa42a9efdd4bb57a" data-layers="F.Cu,B.Cu,F.Silkscreen,B.Silkscreen,Edge.Cuts"
   xmlns:svg="http://www.w3.org/2000/svg"
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -624,6 +624,8 @@ Z" />
 <circle cx="34.0000" cy="93.4500" r="0.2500" />
 <circle cx="34.0000" cy="94.2000" r="0.2500" />
 <circle cx="34.2000" cy="138.7000" r="0.2500" />
+<circle cx="8.0000" cy="20.2000" r="0.2000" />
+<circle cx="17.1250" cy="29.8000" r="0.2000" />
 <circle cx="28.2000" cy="133.3000" r="0.2000" />
 <circle cx="31.7000" cy="133.0000" r="0.2000" />
 <circle cx="31.6000" cy="129.8650" r="0.2000" />
@@ -640,6 +642,8 @@ Z" />
 <circle cx="26.1000" cy="113.6500" r="0.2000" />
 <circle cx="36.4000" cy="99.2500" r="0.2000" />
 <circle cx="34.0000" cy="102.2000" r="0.2000" />
+<circle cx="24.6450" cy="4.5000" r="0.2000" />
+<circle cx="27.6700" cy="10.0000" r="0.2000" />
 </g>
 <g style="fill:none;
 stroke:#C83434; stroke-width:0.1500; stroke-opacity:1;
@@ -57724,6 +57728,8 @@ Z" />
 <circle cx="34.0000" cy="93.4500" r="0.2500" />
 <circle cx="34.0000" cy="94.2000" r="0.2500" />
 <circle cx="34.2000" cy="138.7000" r="0.2500" />
+<circle cx="8.0000" cy="20.2000" r="0.2000" />
+<circle cx="17.1250" cy="29.8000" r="0.2000" />
 <circle cx="28.2000" cy="133.3000" r="0.2000" />
 <circle cx="31.7000" cy="133.0000" r="0.2000" />
 <circle cx="31.6000" cy="129.8650" r="0.2000" />
@@ -57740,6 +57746,8 @@ Z" />
 <circle cx="26.1000" cy="113.6500" r="0.2000" />
 <circle cx="36.4000" cy="99.2500" r="0.2000" />
 <circle cx="34.0000" cy="102.2000" r="0.2000" />
+<circle cx="24.6450" cy="4.5000" r="0.2000" />
+<circle cx="27.6700" cy="10.0000" r="0.2000" />
 </g>
 <g style="fill:none;
 stroke:#4D7FC4; stroke-width:0.3000; stroke-opacity:1;
@@ -58500,6 +58508,40 @@ L54.0450 68.9200
 " />
 </g>
 <g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M43.1000 16.0000
+L42.0950 15.9950
+" />
+<path d="M41.0000 12.2625
+L41.0000 13.0000
+" />
+<path d="M43.1000 13.0000
+L43.1000 16.0000
+" />
+<path d="M41.0000 13.0000
+L43.1000 13.0000
+" />
+<path d="M43.1000 16.0000
+L42.5950 17.8650
+" />
+<path d="M39.8950 14.2950
+L38.9000 14.7000
+" />
+<path d="M38.9000 14.7000
+L38.9000 17.9000
+" />
+<path d="M40.0000 13.0000
+L39.8950 14.2950
+" />
+<path d="M38.9000 17.9000
+L39.5950 18.3650
+" />
+<path d="M40.0000 12.2625
+L40.0000 13.0000
+" />
+</g>
+<g style="fill:none;
 stroke:#4D7FC4; stroke-width:1.5000; stroke-opacity:1;
 stroke-linecap:round; stroke-linejoin:round;">
 <path d="M13.1950 134.9950
@@ -59246,6 +59288,15 @@ L38.0000 98.6000
 <path d="M30.0750 128.6050
 L30.0650 129.8650
 " />
+<path d="M17.1250 28.9750
+L17.1250 29.8000
+" />
+<path d="M8.0000 20.2000
+L8.1450 21.1950
+" />
+<path d="M8.0000 20.2000
+L8.6250 19.2800
+" />
 <path d="M28.2000 132.5850
 L28.2000 133.3000
 " />
@@ -59305,6 +59356,18 @@ L26.1000 113.6500
 " />
 <path d="M23.5500 113.4400
 L24.1050 112.5350
+" />
+<path d="M11.9450 21.6800
+L10.6450 21.1950
+" />
+<path d="M12.2000 22.7000
+L11.9450 21.6800
+" />
+<path d="M14.5850 22.7000
+L12.2000 22.7000
+" />
+<path d="M14.5850 24.0250
+L14.5850 22.7000
 " />
 </g>
 <g style="fill:none;
@@ -59374,6 +59437,24 @@ L35.6450 99.4000
 " />
 <path d="M35.6450 99.4000
 L36.4000 99.2500
+" />
+<path d="M26.8500 10.0000
+L27.6700 10.0000
+" />
+<path d="M24.6450 4.5000
+L24.6450 5.5450
+" />
+<path d="M28.1000 10.5000
+L28.1000 9.2000
+" />
+<path d="M27.3000 8.4000
+L26.8450 7.2450
+" />
+<path d="M28.1000 9.2000
+L27.3000 8.4000
+" />
+<path d="M26.8500 10.5000
+L28.1000 10.5000
 " />
 </g>
 <g style="fill:none;
@@ -69783,6 +69864,8 @@ L80.0000 148.0000
 <circle cx="34.0000" cy="93.4500" r="0.1250" />
 <circle cx="34.0000" cy="94.2000" r="0.1250" />
 <circle cx="34.2000" cy="138.7000" r="0.1250" />
+<circle cx="8.0000" cy="20.2000" r="0.1000" />
+<circle cx="17.1250" cy="29.8000" r="0.1000" />
 <circle cx="28.2000" cy="133.3000" r="0.1000" />
 <circle cx="31.7000" cy="133.0000" r="0.1000" />
 <circle cx="31.6000" cy="129.8650" r="0.1000" />
@@ -69799,6 +69882,8 @@ L80.0000 148.0000
 <circle cx="26.1000" cy="113.6500" r="0.1000" />
 <circle cx="36.4000" cy="99.2500" r="0.1000" />
 <circle cx="34.0000" cy="102.2000" r="0.1000" />
+<circle cx="24.6450" cy="4.5000" r="0.1000" />
+<circle cx="27.6700" cy="10.0000" r="0.1000" />
 </g>
 <g style="fill:#000000; fill-opacity:1.0000; stroke:none;">
 <circle cx="75.0000" cy="145.0000" r="1.3500" />

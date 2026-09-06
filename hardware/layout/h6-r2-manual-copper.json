@@ -1790,6 +1790,106 @@
       ],
       "expected_resolved_connections": 2,
       "reason": "Compact no-via crystal-side XOUT chain joins the series resistor, load capacitor and Y1 terminal along one monotonic local path."
+    },
+    {
+      "id": "RF-CC1101-XOSC-Q1",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_XOSC_Q1",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_XOSC_Q1",
+      "routing_class": "OSCILLATOR",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [41.0, 12.2625], "end_mm": [41.0, 13.0]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [41.0, 13.0], "end_mm": [43.1, 13.0]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [43.1, 13.0], "end_mm": [43.1, 16.0]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [43.1, 16.0], "end_mm": [42.095, 15.995]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [43.1, 16.0], "end_mm": [42.595, 17.865]}
+      ],
+      "expected_resolved_connections": 2,
+      "reason": "Via-free CC1101 Q1 tree leaves the QFN orthogonally, passes outside the grounded crystal pad, and reaches both resonator and C0G load capacitor."
+    },
+    {
+      "id": "RF-CC1101-XOSC-Q2",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_XOSC_Q2",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_XOSC_Q2",
+      "routing_class": "OSCILLATOR",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [40.0, 12.2625], "end_mm": [40.0, 13.0]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [40.0, 13.0], "end_mm": [39.895, 14.295]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [39.895, 14.295], "end_mm": [38.9, 14.7]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [38.9, 14.7], "end_mm": [38.9, 17.9]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [38.9, 17.9], "end_mm": [39.595, 18.365]}
+      ],
+      "expected_resolved_connections": 2,
+      "reason": "Via-free CC1101 Q2 tree reaches Y2 directly, then skirts the grounded crystal pad on the left before terminating at the matched load capacitor."
+    },
+    {
+      "id": "RF-AIR-LO-XA",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AIR_LO_XA",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_XA",
+      "routing_class": "OSCILLATOR",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [26.85, 10.0], "end_mm": [27.67, 10.0]},
+        {"layer": "In2.Cu", "width_mm": 0.15, "start_mm": [27.67, 10.0], "end_mm": [27.67, 4.5]},
+        {"layer": "In2.Cu", "width_mm": 0.15, "start_mm": [27.67, 4.5], "end_mm": [24.645, 4.5]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [24.645, 4.5], "end_mm": [24.645, 5.545]}
+      ],
+      "vias": [
+        {"at_mm": [27.67, 10.0], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [24.645, 4.5], "diameter_mm": 0.4, "drill_mm": 0.2}
+      ],
+      "expected_resolved_connections": 1,
+      "reason": "The reviewed placement contract's short In2 hop lets Si5351A XA cross beneath the adjacent XB escape, then returns to B.Cu above the grounded crystal pad field."
+    },
+    {
+      "id": "RF-AIR-LO-XB",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AIR_LO_XB",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_XB",
+      "routing_class": "OSCILLATOR",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [26.85, 10.5], "end_mm": [28.1, 10.5]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [28.1, 10.5], "end_mm": [28.1, 9.2]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [28.1, 9.2], "end_mm": [27.3, 8.4]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [27.3, 8.4], "end_mm": [26.845, 7.245]}
+      ],
+      "expected_resolved_connections": 1,
+      "reason": "Short independent Si5351A XB trace uses the adjacent outer corridor and enters the lower crystal terminal directly without a via."
+    },
+    {
+      "id": "RF-SI4732-XTAL-RCLK",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_XTAL_RCLK",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/RX_XTAL_RCLK",
+      "routing_class": "OSCILLATOR",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [14.585, 24.025], "end_mm": [14.585, 22.7]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [14.585, 22.7], "end_mm": [12.2, 22.7]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [12.2, 22.7], "end_mm": [11.945, 21.68]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [11.945, 21.68], "end_mm": [10.645, 21.195]}
+      ],
+      "expected_resolved_connections": 2,
+      "reason": "The 32.768-kHz RCLK branch leaves the SOIC orthogonally, stays above the audio coupling capacitor, and joins the exact load capacitor and crystal without a via."
+    },
+    {
+      "id": "RF-SI4732-XTAL-GPO3",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_XTAL_GPO3",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/RX_XTAL_GPO3",
+      "routing_class": "OSCILLATOR",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [17.125, 28.975], "end_mm": [17.125, 29.8]},
+        {"layer": "In3.Cu", "width_mm": 0.15, "start_mm": [17.125, 29.8], "end_mm": [8.0, 20.2]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [8.0, 20.2], "end_mm": [8.625, 19.28]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [8.0, 20.2], "end_mm": [8.145, 21.195]}
+      ],
+      "vias": [
+        {"at_mm": [17.125, 29.8], "diameter_mm": 0.4, "drill_mm": 0.2},
+        {"at_mm": [8.0, 20.2], "diameter_mm": 0.4, "drill_mm": 0.2}
+      ],
+      "expected_resolved_connections": 2,
+      "reason": "A short reviewed In3 diagonal avoids the SOIC body and crowded left-edge controls; local B.Cu branches then reach the GPO3 crystal terminal and matched load capacitor."
     }
   ],
   "authorization": {

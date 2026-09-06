@@ -5,17 +5,17 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "f1626ef4ab8adc6c783dda46ea01970f3c1939cd7bdb65f8d4ded0bc19823467",
+    "contract_sha256": "83293a588d627520899da373027f940222cff2dc10afb03bdee44c13f37bcbc5",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
     "routing_policy_sha256": "9c9cfa520bc8c94b96eca42a76b8ed4ec52ce0f2d10bd1d80010eaadc1178e01",
     "placement_status": "pass"
   },
   "summary": {
-    "route_count": 87,
-    "segment_count": 557,
-    "resolved_connection_count": 162,
-    "via_count": 160,
-    "manual_only_route_count": 67,
+    "route_count": 93,
+    "segment_count": 583,
+    "resolved_connection_count": 172,
+    "via_count": 164,
+    "manual_only_route_count": 73,
     "local_ground_join_route_count": 20
   },
   "boards": [
@@ -270,10 +270,10 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "route_count": 83,
-      "segment_count": 540,
-      "via_count": 160,
-      "resolved_connection_count": 156,
+      "route_count": 89,
+      "segment_count": 566,
+      "via_count": 164,
+      "resolved_connection_count": 166,
       "copper_signature": [
         [
           "track",
@@ -6759,6 +6759,146 @@
         ],
         [
           "track",
+          "/RF_20_CC1101_VOICE_TX/CC_XOSC_Q1",
+          "B.Cu",
+          0.15,
+          [
+            41.0,
+            12.2625
+          ],
+          [
+            41.0,
+            13.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_XOSC_Q1",
+          "B.Cu",
+          0.15,
+          [
+            41.0,
+            13.0
+          ],
+          [
+            43.1,
+            13.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_XOSC_Q1",
+          "B.Cu",
+          0.15,
+          [
+            42.095,
+            15.995
+          ],
+          [
+            43.1,
+            16.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_XOSC_Q1",
+          "B.Cu",
+          0.15,
+          [
+            42.595,
+            17.865
+          ],
+          [
+            43.1,
+            16.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_XOSC_Q1",
+          "B.Cu",
+          0.15,
+          [
+            43.1,
+            13.0
+          ],
+          [
+            43.1,
+            16.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_XOSC_Q2",
+          "B.Cu",
+          0.15,
+          [
+            38.9,
+            14.7
+          ],
+          [
+            38.9,
+            17.9
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_XOSC_Q2",
+          "B.Cu",
+          0.15,
+          [
+            38.9,
+            14.7
+          ],
+          [
+            39.895,
+            14.295
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_XOSC_Q2",
+          "B.Cu",
+          0.15,
+          [
+            38.9,
+            17.9
+          ],
+          [
+            39.595,
+            18.365
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_XOSC_Q2",
+          "B.Cu",
+          0.15,
+          [
+            39.895,
+            14.295
+          ],
+          [
+            40.0,
+            13.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_XOSC_Q2",
+          "B.Cu",
+          0.15,
+          [
+            40.0,
+            12.2625
+          ],
+          [
+            40.0,
+            13.0
+          ]
+        ],
+        [
+          "track",
           "/RF_20_CC1101_VOICE_TX/VOICE_4V_FB",
           "B.Cu",
           0.15,
@@ -7833,6 +7973,230 @@
           [
             66.0,
             107.4
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_XA",
+          "B.Cu",
+          0.15,
+          [
+            24.645,
+            4.5
+          ],
+          [
+            24.645,
+            5.545
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_XA",
+          "B.Cu",
+          0.15,
+          [
+            26.85,
+            10.0
+          ],
+          [
+            27.67,
+            10.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_XA",
+          "In2.Cu",
+          0.15,
+          [
+            24.645,
+            4.5
+          ],
+          [
+            27.67,
+            4.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_XA",
+          "In2.Cu",
+          0.15,
+          [
+            27.67,
+            4.5
+          ],
+          [
+            27.67,
+            10.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_XB",
+          "B.Cu",
+          0.15,
+          [
+            26.845,
+            7.245
+          ],
+          [
+            27.3,
+            8.4
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_XB",
+          "B.Cu",
+          0.15,
+          [
+            26.85,
+            10.5
+          ],
+          [
+            28.1,
+            10.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_XB",
+          "B.Cu",
+          0.15,
+          [
+            27.3,
+            8.4
+          ],
+          [
+            28.1,
+            9.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_XB",
+          "B.Cu",
+          0.15,
+          [
+            28.1,
+            9.2
+          ],
+          [
+            28.1,
+            10.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/RX_XTAL_GPO3",
+          "B.Cu",
+          0.15,
+          [
+            8.0,
+            20.2
+          ],
+          [
+            8.145,
+            21.195
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/RX_XTAL_GPO3",
+          "B.Cu",
+          0.15,
+          [
+            8.0,
+            20.2
+          ],
+          [
+            8.625,
+            19.28
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/RX_XTAL_GPO3",
+          "B.Cu",
+          0.15,
+          [
+            17.125,
+            28.975
+          ],
+          [
+            17.125,
+            29.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/RX_XTAL_GPO3",
+          "In3.Cu",
+          0.15,
+          [
+            8.0,
+            20.2
+          ],
+          [
+            17.125,
+            29.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/RX_XTAL_RCLK",
+          "B.Cu",
+          0.15,
+          [
+            10.645,
+            21.195
+          ],
+          [
+            11.945,
+            21.68
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/RX_XTAL_RCLK",
+          "B.Cu",
+          0.15,
+          [
+            11.945,
+            21.68
+          ],
+          [
+            12.2,
+            22.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/RX_XTAL_RCLK",
+          "B.Cu",
+          0.15,
+          [
+            12.2,
+            22.7
+          ],
+          [
+            14.585,
+            22.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/RX_XTAL_RCLK",
+          "B.Cu",
+          0.15,
+          [
+            14.585,
+            22.7
+          ],
+          [
+            14.585,
+            24.025
           ]
         ],
         [
@@ -9112,6 +9476,38 @@
           "/RF_20_CC1101_VOICE_TX/VVOICE_RAW_4V",
           66.0,
           107.4,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_XA",
+          24.645,
+          4.5,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_XA",
+          27.67,
+          10.0,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_21_BROADCAST_AIRBAND_RX/RX_XTAL_GPO3",
+          8.0,
+          20.2,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_21_BROADCAST_AIRBAND_RX/RX_XTAL_GPO3",
+          17.125,
+          29.8,
           0.4,
           0.2
         ]
@@ -10898,6 +11294,122 @@
       "length_mm": 3.8694,
       "resolved_connections": 2,
       "reason": "Compact no-via crystal-side XOUT chain joins the series resistor, load capacitor and Y1 terminal along one monotonic local path."
+    },
+    {
+      "id": "RF-CC1101-XOSC-Q1",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_XOSC_Q1",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_XOSC_Q1",
+      "routing_class": "OSCILLATOR",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 5,
+      "via_count": 0,
+      "length_mm": 8.7747,
+      "resolved_connections": 2,
+      "reason": "Via-free CC1101 Q1 tree leaves the QFN orthogonally, passes outside the grounded crystal pad, and reaches both resonator and C0G load capacitor."
+    },
+    {
+      "id": "RF-CC1101-XOSC-Q2",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_XOSC_Q2",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_XOSC_Q2",
+      "routing_class": "OSCILLATOR",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 5,
+      "via_count": 0,
+      "length_mm": 7.1472,
+      "resolved_connections": 2,
+      "reason": "Via-free CC1101 Q2 tree reaches Y2 directly, then skirts the grounded crystal pad on the left before terminating at the matched load capacitor."
+    },
+    {
+      "id": "RF-AIR-LO-XA",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AIR_LO_XA",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_XA",
+      "routing_class": "OSCILLATOR",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "In2.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 4,
+      "via_count": 2,
+      "length_mm": 10.39,
+      "resolved_connections": 1,
+      "reason": "The reviewed placement contract's short In2 hop lets Si5351A XA cross beneath the adjacent XB escape, then returns to B.Cu above the grounded crystal pad field."
+    },
+    {
+      "id": "RF-AIR-LO-XB",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AIR_LO_XB",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_XB",
+      "routing_class": "OSCILLATOR",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 4,
+      "via_count": 0,
+      "length_mm": 4.9228,
+      "resolved_connections": 1,
+      "reason": "Short independent Si5351A XB trace uses the adjacent outer corridor and enters the lower crystal terminal directly without a via."
+    },
+    {
+      "id": "RF-SI4732-XTAL-RCLK",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_XTAL_RCLK",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/RX_XTAL_RCLK",
+      "routing_class": "OSCILLATOR",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 4,
+      "via_count": 0,
+      "length_mm": 6.1489,
+      "resolved_connections": 2,
+      "reason": "The 32.768-kHz RCLK branch leaves the SOIC orthogonally, stays above the audio coupling capacitor, and joins the exact load capacitor and crystal without a via."
+    },
+    {
+      "id": "RF-SI4732-XTAL-GPO3",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_XTAL_GPO3",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/RX_XTAL_GPO3",
+      "routing_class": "OSCILLATOR",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "In3.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 4,
+      "via_count": 2,
+      "length_mm": 16.1876,
+      "resolved_connections": 2,
+      "reason": "A short reviewed In3 diagonal avoids the SOIC body and crowded left-edge controls; local B.Cu branches then reach the GPO3 crystal terminal and matched load capacitor."
     }
   ],
   "authorization": {

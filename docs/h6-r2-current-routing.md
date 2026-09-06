@@ -7,7 +7,7 @@
 | Board | Traces | Vias | Resolved | Remaining | DRC |
 | --- | ---: | ---: | ---: | ---: | --- |
 | UI | 17 | 0 | 6 | 1,221 | 0 |
-| RF/power | 540 | 160 | 156 | 1,882 | 0 |
+| RF/power | 566 | 164 | 166 | 1,872 | 0 |
 
 ## What we want
 
@@ -19,7 +19,7 @@ The former collision-free seed was electrically invalid because some bypass, fee
 
 ## What we obtained
 
-All 1,208 bodies are placed; all 310 local-part → owner pairs meet their limits; 22 actual pad-centre pairs cover every switching-node net and selected local bypasses with zero violations. Both RP2354 crystal networks are already routed independently and without vias. Both boards have zero native DRC findings. The deliberate restart leaves 3,103 physical connections, summarized in the table above.
+All 1,208 bodies are placed; all 310 local-part → owner pairs meet their limits; 22 actual pad-centre pairs cover every switching-node net and selected local bypasses with zero violations. All five oscillator cells — two RP2354s, CC1101, Si5351A and Si4732 — are routed and DRC-clean. Both boards have zero native DRC findings. The deliberate restart leaves 3,093 physical connections, summarized in the table above.
 
 ## What happens next
 
