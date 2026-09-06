@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """Generate the H5.0.3 sole-prototype article manifest and H7/H8 contracts."""
 
 from __future__ import annotations

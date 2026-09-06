@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """Validate and render the incremental H1-R2 physical placement."""
 
 from __future__ import annotations

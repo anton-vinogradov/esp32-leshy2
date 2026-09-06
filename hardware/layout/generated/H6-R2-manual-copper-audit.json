@@ -5,17 +5,17 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "83293a588d627520899da373027f940222cff2dc10afb03bdee44c13f37bcbc5",
+    "contract_sha256": "2748277cf64ec5462f80fa1e4694a460e8aa950cfd3472cf1903ddbb39d762bb",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
     "routing_policy_sha256": "9c9cfa520bc8c94b96eca42a76b8ed4ec52ce0f2d10bd1d80010eaadc1178e01",
     "placement_status": "pass"
   },
   "summary": {
-    "route_count": 93,
-    "segment_count": 583,
-    "resolved_connection_count": 172,
+    "route_count": 103,
+    "segment_count": 605,
+    "resolved_connection_count": 183,
     "via_count": 164,
-    "manual_only_route_count": 73,
+    "manual_only_route_count": 83,
     "local_ground_join_route_count": 20
   },
   "boards": [
@@ -270,10 +270,10 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "route_count": 89,
-      "segment_count": 566,
+      "route_count": 99,
+      "segment_count": 588,
       "via_count": 164,
-      "resolved_connection_count": 166,
+      "resolved_connection_count": 177,
       "copper_signature": [
         [
           "track",
@@ -6759,6 +6759,174 @@
         ],
         [
           "track",
+          "/RF_20_CC1101_VOICE_TX/CC_RF_315_MID",
+          "B.Cu",
+          0.134874,
+          [
+            70.365,
+            43.09
+          ],
+          [
+            70.4,
+            41.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_RF_315_MID",
+          "B.Cu",
+          0.134874,
+          [
+            70.365,
+            43.09
+          ],
+          [
+            71.615,
+            43.56
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_RF_315_MID",
+          "B.Cu",
+          0.134874,
+          [
+            70.4,
+            41.8
+          ],
+          [
+            74.7,
+            41.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_RF_315_MID",
+          "B.Cu",
+          0.134874,
+          [
+            74.7,
+            41.8
+          ],
+          [
+            74.75,
+            42.81
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_RF_315_MID",
+          "B.Cu",
+          0.134874,
+          [
+            74.75,
+            42.81
+          ],
+          [
+            75.365,
+            42.81
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_RF_315_OUT",
+          "B.Cu",
+          0.134874,
+          [
+            75.365,
+            41.84
+          ],
+          [
+            76.45,
+            42.1
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_RF_315_OUT",
+          "B.Cu",
+          0.134874,
+          [
+            75.995,
+            40.745
+          ],
+          [
+            76.45,
+            40.745
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_RF_315_OUT",
+          "B.Cu",
+          0.134874,
+          [
+            76.45,
+            40.745
+          ],
+          [
+            76.45,
+            42.1
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_RF_SAMPLE",
+          "B.Cu",
+          0.134874,
+          [
+            47.725,
+            12.1125
+          ],
+          [
+            48.5,
+            12.1125
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_RF_SAMPLE",
+          "B.Cu",
+          0.134874,
+          [
+            48.5,
+            9.575
+          ],
+          [
+            48.5,
+            12.1125
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_RF_SAMPLE",
+          "B.Cu",
+          0.134874,
+          [
+            48.5,
+            9.575
+          ],
+          [
+            49.355,
+            9.575
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_RF_UNBALANCED",
+          "B.Cu",
+          0.134874,
+          [
+            72.68,
+            33.965
+          ],
+          [
+            73.865,
+            33.81
+          ]
+        ],
+        [
+          "track",
           "/RF_20_CC1101_VOICE_TX/CC_XOSC_Q1",
           "B.Cu",
           0.15,
@@ -7977,6 +8145,132 @@
         ],
         [
           "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_IN_RF",
+          "B.Cu",
+          0.134874,
+          [
+            31.045,
+            12.3325
+          ],
+          [
+            32.994999,
+            12.2075
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_OUT_RF",
+          "B.Cu",
+          0.134874,
+          [
+            7.6,
+            2.8
+          ],
+          [
+            7.6,
+            4.105
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_OUT_RF",
+          "B.Cu",
+          0.134874,
+          [
+            7.6,
+            2.8
+          ],
+          [
+            12.2,
+            2.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_OUT_RF",
+          "B.Cu",
+          0.134874,
+          [
+            7.6,
+            4.105
+          ],
+          [
+            8.324999,
+            4.105
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_OUT_RF",
+          "B.Cu",
+          0.134874,
+          [
+            11.535,
+            3.605
+          ],
+          [
+            12.2,
+            3.605
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_OUT_RF",
+          "B.Cu",
+          0.134874,
+          [
+            12.2,
+            2.8
+          ],
+          [
+            12.2,
+            3.605
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_S1_L_MID",
+          "B.Cu",
+          0.134874,
+          [
+            32.994999,
+            10.0825
+          ],
+          [
+            34.995,
+            12.2075
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_S3_LC",
+          "B.Cu",
+          0.134874,
+          [
+            10.575,
+            3.605
+          ],
+          [
+            11.995,
+            5.0825
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_S3_L_MID",
+          "B.Cu",
+          0.134874,
+          [
+            11.995,
+            7.2075
+          ],
+          [
+            13.995,
+            5.0825
+          ]
+        ],
+        [
+          "track",
           "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_XA",
           "B.Cu",
           0.15,
@@ -8085,6 +8379,20 @@
           [
             28.1,
             10.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_T1_SEC_N",
+          "B.Cu",
+          0.134874,
+          [
+            14.34,
+            14.615
+          ],
+          [
+            15.76,
+            16.425
           ]
         ],
         [
@@ -11237,6 +11545,196 @@
       "length_mm": 34.7631,
       "resolved_connections": 7,
       "reason": "All seven local voice-eFuse ground terminals join one quiet In1 return island; a single branch reaches the existing eFuse ground skeleton without sharing the raw or protected voice-rail current path."
+    },
+    {
+      "id": "RF-CC1101-UNBALANCED-MATCH",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_RF_UNBALANCED",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_RF_UNBALANCED",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 1,
+      "via_count": 0,
+      "length_mm": 1.1951,
+      "resolved_connections": 1,
+      "reason": "Direct via-free 50-ohm interconnect from the CC1101 balun to the first exact matching inductor; its 1.2-mm span uses the controlled-impedance width without a tuning stub."
+    },
+    {
+      "id": "RF-CC1101-315-OUT",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_RF_315_OUT",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_RF_315_OUT",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 3,
+      "via_count": 0,
+      "length_mm": 2.9257,
+      "resolved_connections": 1,
+      "reason": "Direct via-free 315-MHz branch connection from the final series inductor into RF1 of the antenna-side switch."
+    },
+    {
+      "id": "RF-CC1101-315-MID",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_RF_315_MID",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_RF_315_MID",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 5,
+      "via_count": 0,
+      "length_mm": 8.5522,
+      "resolved_connections": 2,
+      "reason": "Via-free 315-MHz branch midpoint joins the input inductor, shunt-trap inductor and final series inductor in their physical order without a dangling tuning stub."
+    },
+    {
+      "id": "RF-AIRBAND-BPF-IN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AIR_BPF_IN_RF",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_IN_RF",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 1,
+      "via_count": 0,
+      "length_mm": 1.954,
+      "resolved_connections": 1,
+      "reason": "Direct via-free 50-ohm connection from the Airband path selector into the first 118-137-MHz BPF inductor."
+    },
+    {
+      "id": "RF-AIRBAND-BPF-S1-MID",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AIR_BPF_S1_L_MID",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_S1_L_MID",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 1,
+      "via_count": 0,
+      "length_mm": 2.9182,
+      "resolved_connections": 1,
+      "reason": "Via-free interstage connection between the first two Airband BPF inductors, with no unused branch or tuning stub."
+    },
+    {
+      "id": "RF-AIRBAND-BPF-S3-LC",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AIR_BPF_S3_LC",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_S3_LC",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 1,
+      "via_count": 0,
+      "length_mm": 2.0492,
+      "resolved_connections": 1,
+      "reason": "Short via-free connection from the third Airband BPF series inductor into its exact shunt capacitor."
+    },
+    {
+      "id": "RF-AIRBAND-BPF-S3-MID",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AIR_BPF_S3_L_MID",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_S3_L_MID",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 1,
+      "via_count": 0,
+      "length_mm": 2.9182,
+      "resolved_connections": 1,
+      "reason": "Via-free interstage connection between the final two Airband BPF inductors."
+    },
+    {
+      "id": "RF-AIRBAND-T1-SEC-N",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AIR_T1_SEC_N",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_T1_SEC_N",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 1,
+      "via_count": 0,
+      "length_mm": 2.3005,
+      "resolved_connections": 1,
+      "reason": "Short via-free negative secondary connection from the input transformer into the exact 12-nH mixer-matching inductor."
+    },
+    {
+      "id": "RF-CC1101-DETECTOR-SAMPLE",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_RF_SAMPLE",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_RF_SAMPLE",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 3,
+      "via_count": 0,
+      "length_mm": 4.1675,
+      "resolved_connections": 1,
+      "reason": "Via-free detector sample route approaches the vertical coupling capacitor from the side, avoiding its adjacent through-path pad."
+    },
+    {
+      "id": "RF-AIRBAND-BPF-OUT",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AIR_BPF_OUT_RF",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_OUT_RF",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 5,
+      "via_count": 0,
+      "length_mm": 8.1,
+      "resolved_connections": 1,
+      "reason": "Short via-free output link from the Airband BPF shunt node into the LNA coupling capacitor."
     },
     {
       "id": "RF-RP-XIN",

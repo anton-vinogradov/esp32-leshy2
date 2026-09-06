@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
  <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg data-h6-board="rf" data-source-sha256="335bbf44487eb0532446851bb511fe8ad3987dbaec2bfaefaa42a9efdd4bb57a" data-layers="F.Cu,B.Cu,F.Silkscreen,B.Silkscreen,Edge.Cuts"
+<svg data-h6-board="rf" data-source-sha256="ef83f347f5ad42a1b694d11b88b0d6d23e733ca93859018ebf1bdd44dd0ebfcf" data-layers="F.Cu,B.Cu,F.Silkscreen,B.Silkscreen,Edge.Cuts"
   xmlns:svg="http://www.w3.org/2000/svg"
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -58510,17 +58510,17 @@ L54.0450 68.9200
 <g style="fill:none;
 stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
 stroke-linecap:round; stroke-linejoin:round;">
+<path d="M41.0000 13.0000
+L43.1000 13.0000
+" />
 <path d="M43.1000 16.0000
 L42.0950 15.9950
-" />
-<path d="M41.0000 12.2625
-L41.0000 13.0000
 " />
 <path d="M43.1000 13.0000
 L43.1000 16.0000
 " />
-<path d="M41.0000 13.0000
-L43.1000 13.0000
+<path d="M41.0000 12.2625
+L41.0000 13.0000
 " />
 <path d="M43.1000 16.0000
 L42.5950 17.8650
@@ -58528,17 +58528,17 @@ L42.5950 17.8650
 <path d="M39.8950 14.2950
 L38.9000 14.7000
 " />
-<path d="M38.9000 14.7000
-L38.9000 17.9000
+<path d="M40.0000 12.2625
+L40.0000 13.0000
 " />
 <path d="M40.0000 13.0000
 L39.8950 14.2950
 " />
+<path d="M38.9000 14.7000
+L38.9000 17.9000
+" />
 <path d="M38.9000 17.9000
 L39.5950 18.3650
-" />
-<path d="M40.0000 12.2625
-L40.0000 13.0000
 " />
 </g>
 <g style="fill:none;
@@ -58925,26 +58925,26 @@ L32.8550 90.7850
 <path d="M37.1450 90.4200
 L37.4000 90.0000
 " />
-<path d="M68.4000 35.2000
-L69.1050 34.2850
-" />
 <path d="M66.4500 36.8000
 L67.2000 36.8000
 " />
-<path d="M68.3950 36.0450
-L68.4000 35.2000
+<path d="M68.4000 35.2000
+L69.1050 34.2850
 " />
 <path d="M67.2000 36.8000
 L68.3950 36.0450
 " />
-<path d="M69.5000 40.6000
-L70.0300 39.4450
+<path d="M68.3950 36.0450
+L68.4000 35.2000
 " />
 <path d="M70.0300 39.4450
 L70.5950 37.7450
 " />
 <path d="M68.9600 41.2000
 L69.5000 40.6000
+" />
+<path d="M69.5000 40.6000
+L70.0300 39.4450
 " />
 </g>
 <g style="fill:none;
@@ -59119,14 +59119,14 @@ L72.7200 68.5450
 <g style="fill:none;
 stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
 stroke-linecap:round; stroke-linejoin:round;">
+<path d="M67.2500 37.2000
+L67.2500 40.5000
+" />
 <path d="M67.2500 40.5000
 L67.9400 41.2000
 " />
 <path d="M66.4500 37.2000
 L67.2500 37.2000
-" />
-<path d="M67.2500 37.2000
-L67.2500 40.5000
 " />
 <path d="M56.1000 39.9500
 L55.9000 39.7500
@@ -59149,6 +59149,20 @@ L34.5500 99.6500
 <path d="M34.6700 99.0450
 L34.6700 99.5500
 " />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1349; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M11.9950 7.2075
+L13.9950 5.0825
+" />
+<path d="M11.9950 5.0825
+L10.5750 3.6050
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
 <path d="M12.0750 126.5000
 L12.0500 127.0000
 " />
@@ -59288,15 +59302,44 @@ L38.0000 98.6000
 <path d="M30.0750 128.6050
 L30.0650 129.8650
 " />
-<path d="M17.1250 28.9750
-L17.1250 29.8000
+<path d="M8.0000 20.2000
+L8.6250 19.2800
 " />
 <path d="M8.0000 20.2000
 L8.1450 21.1950
 " />
-<path d="M8.0000 20.2000
-L8.6250 19.2800
+<path d="M17.1250 28.9750
+L17.1250 29.8000
 " />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1349; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M31.0450 12.3325
+L32.9950 12.2075
+" />
+<path d="M32.9950 10.0825
+L34.9950 12.2075
+" />
+<path d="M74.7500 42.8100
+L75.3650 42.8100
+" />
+<path d="M70.4000 41.8000
+L74.7000 41.8000
+" />
+<path d="M74.7000 41.8000
+L74.7500 42.8100
+" />
+<path d="M70.3650 43.0900
+L71.6150 43.5600
+" />
+<path d="M70.3650 43.0900
+L70.4000 41.8000
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
 <path d="M28.2000 132.5850
 L28.2000 133.3000
 " />
@@ -59309,6 +59352,17 @@ L31.0350 128.6050
 <path d="M31.0900 132.5000
 L31.7000 133.0000
 " />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1349; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M72.6800 33.9650
+L73.8650 33.8100
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
 <path d="M68.7000 94.0000
 L69.3500 95.3750
 " />
@@ -59327,6 +59381,17 @@ L34.8500 95.1000
 <path d="M34.1450 98.8700
 L34.0000 99.5000
 " />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1349; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M14.3400 14.6150
+L15.7600 16.4250
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
 <path d="M34.6700 96.6000
 L36.5000 96.7500
 " />
@@ -59357,17 +59422,17 @@ L26.1000 113.6500
 <path d="M23.5500 113.4400
 L24.1050 112.5350
 " />
-<path d="M11.9450 21.6800
-L10.6450 21.1950
-" />
 <path d="M12.2000 22.7000
 L11.9450 21.6800
+" />
+<path d="M14.5850 24.0250
+L14.5850 22.7000
 " />
 <path d="M14.5850 22.7000
 L12.2000 22.7000
 " />
-<path d="M14.5850 24.0250
-L14.5850 22.7000
+<path d="M11.9450 21.6800
+L10.6450 21.1950
 " />
 </g>
 <g style="fill:none;
@@ -59426,9 +59491,43 @@ L68.5000 112.5100
 <path d="M67.0850 109.6150
 L67.5350 108.3550
 " />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1349; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M76.4500 40.7450
+L75.9950 40.7450
+" />
+<path d="M76.4500 42.1000
+L76.4500 40.7450
+" />
+<path d="M75.3650 41.8400
+L76.4500 42.1000
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
 <path d="M16.0350 126.6050
 L16.0650 125.3650
 " />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1349; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M48.5000 9.5750
+L49.3550 9.5750
+" />
+<path d="M47.7250 12.1125
+L48.5000 12.1125
+" />
+<path d="M48.5000 12.1125
+L48.5000 9.5750
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
 <path d="M34.3250 101.6050
 L34.0000 102.2000
 " />
@@ -59438,11 +59537,37 @@ L35.6450 99.4000
 <path d="M35.6450 99.4000
 L36.4000 99.2500
 " />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1349; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M8.3250 4.1050
+L7.6000 4.1050
+" />
+<path d="M12.2000 2.8000
+L12.2000 3.6050
+" />
+<path d="M12.2000 3.6050
+L11.5350 3.6050
+" />
+<path d="M7.6000 4.1050
+L7.6000 2.8000
+" />
+<path d="M7.6000 2.8000
+L12.2000 2.8000
+" />
+</g>
+<g style="fill:none;
+stroke:#4D7FC4; stroke-width:0.1500; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;">
+<path d="M24.6450 4.5000
+L24.6450 5.5450
+" />
 <path d="M26.8500 10.0000
 L27.6700 10.0000
 " />
-<path d="M24.6450 4.5000
-L24.6450 5.5450
+<path d="M26.8500 10.5000
+L28.1000 10.5000
 " />
 <path d="M28.1000 10.5000
 L28.1000 9.2000
@@ -59452,9 +59577,6 @@ L26.8450 7.2450
 " />
 <path d="M28.1000 9.2000
 L27.3000 8.4000
-" />
-<path d="M26.8500 10.5000
-L28.1000 10.5000
 " />
 </g>
 <g style="fill:none;

@@ -90,12 +90,13 @@ def build() -> tuple[dict[Path, str], dict]:
         pin_x, pin_y = x + px, y - py
         angle = 0 if side == "left" else 180
         justify = None if side == "left" else "right bottom"
+        label_uuid = stable_uuid(f"label:{point['id']}:{point['net']}")
         lines += [
             f'\t(hierarchical_label "{escaped(point["net"])}"',
             "\t\t(shape bidirectional)",
             f"\t\t(at {pin_x:.2f} {pin_y:.2f} {angle})",
             f"\t\t{effects(justify)}",
-            f'\t\t(uuid "{stable_uuid(f"label:{point["id"]}:{point["net"]}")}")',
+            f'\t\t(uuid "{label_uuid}")',
             "\t)",
         ]
     lines += [
