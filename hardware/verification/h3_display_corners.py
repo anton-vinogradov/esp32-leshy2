@@ -66,7 +66,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "main_fb_bottom": "vishay_tnpw040210k0beed",
         "backlight_efuse": "ti_tps2553drvr_1",
         "backlight_efuse_ilim": "uniroyal_0402wgf1333tce",
-        "backlight_series_resistor": "yageo_rc0402jr_070rl",
+        "backlight_series_resistor": "fh_rs_06l2r70ft",
         "backlight_mosfet": "diodes_dmn2056u_7",
         "backlight_gate_series": "yageo_rc0402fr_07100rl",
     }
@@ -161,7 +161,7 @@ def build() -> tuple[dict[Path, str], dict]:
         for key in ("yageo_rc0402fr_0745k3l", "yageo_rc0402fr_0710kl", "panasonic_erj_p08f10r0v")
     )
     new_cost = sum(d(devices[key]["cost"]["unit_price_usd"]) for key in exact_parts.values() if key in {
-        "vishay_tnpw040243k7beed", "vishay_tnpw040210k0beed", "yageo_rc0402jr_070rl"
+        "vishay_tnpw040243k7beed", "vishay_tnpw040210k0beed", "fh_rs_06l2r70ft"
     })
 
     manifest = {
@@ -232,8 +232,8 @@ def build() -> tuple[dict[Path, str], dict]:
             {
                 "id": "H3.3.1-F02",
                 "finding": "the donor 10-Ohm gate resistor was previously misread as a 10-Ohm series LEDK power resistor, which would drop about 1.2 V at 120 mA",
-                "correction": "use the donor-equivalent 0-Ohm R31 LEDK link and retain the Leshy2 100-Ohm MOSFET gate-damping resistor",
-                "functional_effect": "the artificial backlight voltage loss is removed while the independent latch-off fault bound remains",
+                "correction": "use the current 2.7-Ohm 250-mW LEDK softening resistor and retain the Leshy2 100-Ohm MOSFET gate-damping resistor",
+                "functional_effect": "the accidental 10-Ohm loss is removed, while the current 2.7-Ohm value and independent latch-off bound are verified by H3-R2.3",
             },
         ],
         "cost_delta_usd_at_100": {

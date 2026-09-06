@@ -3158,9 +3158,9 @@
             "part_type": "one stocked rectangular double-coated acrylic-foam display-bonding pad; no custom converter contour",
             "implementation": "apply one 50.80 x 50.80-mm 3M (TC) 4910SQ-2(5) candidate to the PCB at x=14.60...65.40 mm, y=44.46...95.26 mm using its PSA silkscreen datum while the upper release liner remains fitted. It supports 2580.64 mm2 or about 53.7% of the exact panel plan, exceeding the roughly 40% partial-area bond visually inferred from the supplied ESP32-DIV sample photograph. Its 1.016-mm nominal 3M VHB 4910 construction has +/-10% family thickness tolerance, so the released current-lot folded-FPC stack must be <=0.714 mm and the received dry fit must preserve >=0.20 mm actual clearance. No liquid glue, trimming, external converter order, adhesive on the FPC or separate upper strip",
             "load_role": "retains the stiff panel against lift and in-plane shear and supports more than half of its plan without a custom cut or separately positioned shoulders",
-            "primary_qualification_mpn": "3M (TC) 4910SQ-2(5); DigiKey 1067-4910SQ-2(5)-ND; active stocked 50.80 x 50.80 x 1.016-mm square. This is a dimensional and sourcing candidate, not an unconditional released production line until the <=0.714-mm FPC-stack and factory-process gates pass",
+            "primary_qualification_mpn": "3M (TC) 4910SQ-2(5); DigiKey 1067-4910SQ-2(5)-ND; active stocked 50.80 x 50.80 x 1.016-mm square. This is a dimensional and sourcing candidate, not an unconditional released production line until the <=0.714-mm FPC-stack and owner-assembly process gates pass",
             "rejected_material_routes": "untraceable reseller 50 x 50 x 1-mm 3M-labelled pads, the 33-m 4910F50 roll and the earlier 0.17-mm 3M 9495LE route are not the one-prototype production selection",
-            "release_gate": "measure the current-lot folded-FPC stack <=0.714 mm, verify >=0.20 mm actual clearance with the received 4910SQ-2(5), freeze its cleaning/pressure/dwell process and obtain written one-prototype assembler acceptance before order. A custom contour is allowed only if the same PCBA factory confirms in writing that it will manufacture and install it inside the order; an external converter order is not allowed"
+            "release_gate": "measure the current-lot folded-FPC stack <=0.714 mm, verify >=0.20 mm actual clearance with the received 4910SQ-2(5), and freeze its owner cleaning/pressure/dwell process before final bonding. A custom contour is allowed only if the same PCBA factory confirms in writing that it will manufacture and install it inside the order; an external converter order is not allowed"
           },
           {
             "id": "display_alignment_silkscreen",
@@ -3780,7 +3780,7 @@
     },
     "remaining_gates": [
       "H5 received E01-ML01SP4 mate-fit and cable bend/retention coupons against the published connector locations",
-      "H5 current-lot ER-TFT035IPS-6/ER-TPC035-6 FPC conformity and factory insertion acceptance",
+      "H5 current-lot ER-TFT035IPS-6/ER-TPC035-6 FPC conformity and owner dry-fit/insertion evidence",
       "KiCad footprint-level copper/via routing and DRC",
       "assembled tolerance stack and HIL"
     ]

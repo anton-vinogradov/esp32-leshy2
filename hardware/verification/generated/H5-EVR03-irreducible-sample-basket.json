@@ -26,7 +26,7 @@
     },
     "source_research": {
       "path": "hardware/verification/generated/H5-EVR02-source-research.json",
-      "sha256": "4671fd16e268150f8c9ad4c606f2f5f427bbdd75436fc43b37f11e1cbe105b48"
+      "sha256": "4ef7cbd65b9207dac3960d2e249fde3f200df9912b5c93ed2c35863dad636b91"
     }
   },
   "summary": {

@@ -3,9 +3,9 @@
   "stage": "H3.3.1",
   "status": "reviewed_display_supply_backlight_and_direct_qspi",
   "source_hashes": {
-    "hardware/architecture/candidates/G2F-3I.json": "edce4ca3aed56ed1a58b9ec85d19f7c9db624869f54797e0c2dc329e9816007d",
-    "hardware/architecture/devices.json": "7b1d0574b389bbf1a87a5b70aabd715c3cb49ce494502bf743d452424a762722",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "0d50b8e4a917d6f07d22186a28020e18414afbecbf476b6566785d86c6f12768"
+    "hardware/architecture/candidates/G2F-3I.json": "6df524f1edf8db12ac278e0b5901a598c0ac18262800b09c38dde7b45147ed27",
+    "hardware/architecture/devices.json": "a11701b3df0156dbd533867d3e4bd0d57b731623c12b083cccf493b03775d0fa",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "36ec849677ba5f1ac0721aa700092f73179fa11982434e4c44d73f8e69ba64c8"
   },
   "provenance": {
     "display_controller": "https://dl.espressif.com/AE/esp-iot-solution/ST77922_SPEC_V0.1.pdf",
@@ -82,7 +82,7 @@
   "backlight_corner": {
     "donor_reference_current_ma": "120.000",
     "power_path_reference_correction": "QDtech R31 is 0R in the joined LEDK path; R33=10R is the donor Q4 gate resistor",
-    "selected_ledk_link": "Yageo RC0402JR-070RL",
+    "selected_ledk_link": "FH RS-06L2R70FT",
     "selected_gate_resistor_ohm": 100,
     "tps2553_latched_current_limit_ma": {
       "min": "174.000",
@@ -152,14 +152,14 @@
     {
       "id": "H3.3.1-F02",
       "finding": "the donor 10-Ohm gate resistor was previously misread as a 10-Ohm series LEDK power resistor, which would drop about 1.2 V at 120 mA",
-      "correction": "use the donor-equivalent 0-Ohm R31 LEDK link and retain the Leshy2 100-Ohm MOSFET gate-damping resistor",
-      "functional_effect": "the artificial backlight voltage loss is removed while the independent latch-off fault bound remains"
+      "correction": "use the current 2.7-Ohm 250-mW LEDK softening resistor and retain the Leshy2 100-Ohm MOSFET gate-damping resistor",
+      "functional_effect": "the accidental 10-Ohm loss is removed, while the current 2.7-Ohm value and independent latch-off bound are verified by H3-R2.3"
     }
   ],
   "cost_delta_usd_at_100": {
     "old_three_instances": "0.0883",
-    "new_three_instances": "0.5335",
-    "delta_per_board": "0.4452",
+    "new_three_instances": "0.5371",
+    "delta_per_board": "0.4488",
     "scope": "two precision main-feedback resistors plus the corrected LEDK link; distribution, tax and assembly excluded"
   },
   "residual_physical_only": [

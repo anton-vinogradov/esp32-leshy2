@@ -19,6 +19,18 @@ CHECKED_ON = "2026-08-26"
 
 
 SOURCES = {
+    "eastrising_display": {
+        "owner": "EastRising / BuyDisplay",
+        "title": "ER-TFT035IPS-6 configured display product page",
+        "url": "https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen",
+        "supports": "exact orderable ER-TFT035IPS-6 plus ER-TPC035-6 option 5344, current stock and quantity-one pricing",
+    },
+    "eastrising_display_datasheet": {
+        "owner": "EastRising / BuyDisplay",
+        "title": "ER-TFT035IPS-6 revision-B1 datasheet",
+        "url": "https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf",
+        "supports": "exact panel, 50-contact FPC, ILI9488, i8080-8 and mechanical dimensions",
+    },
     "ebyte_e01": {
         "owner": "Chengdu Ebyte",
         "title": "E01-ML01SP4 product page",
@@ -156,12 +168,12 @@ SOURCES = {
 
 RESIDUAL_FINDINGS = {
     "H3-PHY-017": {
-        "disposition": "superseded_by_unresolved_production_panel_gate",
-        "sources": ["lcdwiki_es3c35p", "lcdwiki_es3c35p_spec"],
-        "finding": "ES3C35P and HMX035CTFT-001 remain legacy electrical and mechanical evidence only. Complete-donor procurement is rejected because no standalone production-panel order identity, current-lot FPC drawing or factory-placeable route was proven.",
-        "finding_ru": "ES3C35P и HMX035CTFT-001 остаются только прежними электрическими и механическими свидетельствами. Закупка полной donor-сборки отклонена: не доказаны самостоятельный production-panel order identity, чертёж FPC текущей партии и factory-placeable route.",
-        "remaining": "select one exact documented production panel, obtain written factory mating/final-assembly feasibility, and release deterministic assembly instructions for the sole prototype",
-        "remaining_ru": "выбрать одну точную документированную серийную панель, письменно подтвердить factory mating/final assembly и выпустить однозначную инструкцию сборки единственного прототипа",
+        "disposition": "production_part_selected_owner_installation_open",
+        "sources": ["eastrising_display", "eastrising_display_datasheet"],
+        "finding": "The exact in-stock ER-TFT035IPS-6 plus ER-TPC035-6 option 5344 is selected with a documented 50-contact FPC and direct UI-PCB ZIF. ES3C35P and HMX035CTFT-001 remain legacy evidence only; donor procurement and factory display installation are not part of the release path.",
+        "finding_ru": "Выбран точный складской ER-TFT035IPS-6 + ER-TPC035-6 option 5344 с документированным 50-контактным FPC и прямым ZIF UI-платы. ES3C35P и HMX035CTFT-001 остаются только прежним evidence; donor-закупка и фабричная установка дисплея не входят в release-путь.",
+        "remaining": "recheck the exact current lot and stock PSA before order, then record the owner's relaxed-slack/orientation dry fit, image/backlight/touch check and final bond on the sole prototype",
+        "remaining_ru": "перед заказом перепроверить точную текущую партию и stock PSA, затем записать owner dry-fit запаса/ориентации, проверку image/backlight/touch и финальную приклейку единственного прототипа",
     },
     "H3-PHY-024": {
         "disposition": "production_part_selected_owner_bringup_open",
@@ -473,7 +485,7 @@ flowchart LR
 - Эталонная microSD: `SDSQQNR-032G-GN6IA`.
 - Набор M5-проводов: `A034-G`, `A034-B`, `A096`.
 - Для robust IR выбран factory-stocked `TSOP75238TR` (`C511498`) без изменения footprint, контактов, GPIO или интерфейса прошивки; перед заказом обязательны проверка остатка, CPL rotation и feeder presentation.
-- `ES3C35P` и `HMX035CTFT-001` сохранены только как прежние electrical/mechanical evidence; закупка donor-сборки отклонена, а точная серийная панель и factory mating остаются открытым production gate.
+- Выбран точный складской `ER-TFT035IPS-6 + ER-TPC035-6` option 5344; donor-сборка и фабричная установка дисплея не нужны, а owner dry-fit и проверка остаются H7/H8 evidence.
 - `TE 2118651-2` подтверждён как active и документированный; менять его нет оснований.
 - Для stock `U214` и `E01-ML01SP4` производители действительно не раскрывают MPN установленных connector subparts.
 - `SA818S-U` и `SA818S-V` подтверждены как два независимых серийных модуля с общим официальным 18-land package. JLCPCB: U — `C3001549`, stock 68/available 60, `$9.7347`; V — `C51897911`, stock 0, `pre-order`, `$10.0710`, MOQ 1 и типичные 8–15 рабочих дней по частичному ответу фабрики от 26 августа.
@@ -523,7 +535,7 @@ flowchart LR
 - Reference microSD: `SDSQQNR-032G-GN6IA`.
 - M5 interconnect set: `A034-G`, `A034-B`, `A096`.
 - Robust IR now uses factory-stocked `TSOP75238TR` (`C511498`) without a footprint, contact, GPIO or firmware-interface change; stock, CPL rotation and feeder presentation are mandatory pre-order checks.
-- `ES3C35P` and `HMX035CTFT-001` are retained only as legacy electrical/mechanical evidence; donor procurement is rejected, while exact production-panel identity and factory mating remain an open production gate.
+- Exact in-stock `ER-TFT035IPS-6 + ER-TPC035-6` option 5344 is selected; neither a donor nor factory display installation is required, while owner dry-fit and verification remain H7/H8 evidence.
 - `TE 2118651-2` is confirmed active and documented; replacement has no demonstrated benefit.
 - The makers of stock `U214` and `E01-ML01SP4` genuinely do not disclose the fitted connector-subpart MPNs.
 - `SA818S-U` and `SA818S-V` are confirmed as two independent serial modules with one official 18-land package. JLCPCB: U is `C3001549`, stock 68/available 60 at `$9.7347`; V is `C51897911`, stock 0 and `pre-order` at `$10.0710`, MOQ 1 and a typical 8–15-working-day lead per the factory's partial 26 August response.

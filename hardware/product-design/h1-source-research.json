@@ -51,7 +51,7 @@
           "finding": "Exact HRS FH34SRJ-50S-0.5SH(50), C3169104, is an Extended SMT Economic/Standard-PCBA part with 2,614 orderable, MOQ 1 and USD 0.5832 quantity-one price on 2026-08-29."
         }
       ],
-      "remaining_gap": "No display geometry or order identity remains open. H5 must obtain written factory acceptance for customer-supplied panel handling, adhesive placement, FPC insertion and final mating; this is a process/quote gate, not a layout ambiguity.",
+      "remaining_gap": "No display geometry or order identity remains open. Before order the exact current lot and stock PSA must be available; the owner then performs the documented dry-fit, orientation, FPC insertion, image/backlight/touch check and final bond. This is an incoming/bring-up gate, not a factory-assembly or layout ambiguity.",
       "replacement_review": [
         {
           "candidate": "Waveshare 3.5inch Capacitive Touch LCD, SKU 29318",

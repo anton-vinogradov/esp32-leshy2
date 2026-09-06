@@ -245,15 +245,15 @@ class ProductSiteTests(unittest.TestCase):
     def test_roadmap_reports_current_truth_and_complete_route(self):
         pages = {
             "docs/roadmap.md": (
-                "Current hardware boundary: `H6.0.3-R1`", "current H5-R2 route revalidation",
-                "firmware F1-R2 reviewed", "F2-R2.4",
+                "Current hardware boundary: `H6.0.3-R1`",
                 "H9 · Manufacturing release", "Production ECAD",
+                "85 × 150 mm", "all H1/H6, ERC/DRC, electrical and firmware checks repeat",
             ),
             "docs/roadmap.ru.md": (
-                "Текущая аппаратная граница: `H6.0.3-R1`", "актуальная перепроверка H5-R2",
-                "firmware F1-R2 проведено ревью", "F2-R2.4",
+                "Текущая аппаратная граница: `H6.0.3-R1`",
                 "H9 · Manufacturing release",
-                "Production ECAD",
+                "Production ECAD", "85 × 150 мм",
+                "повторяются все H1/H6, ERC/DRC, электрические и firmware-проверки",
             ),
         }
         for name, tokens in pages.items():
@@ -266,15 +266,14 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("docs/roadmap.md", self.read("README.md"))
         self.assertIn("docs/roadmap.ru.md", self.read("README.ru.md"))
         landing_pages = {
-            "README.md": ("Roadmap and current position", "Current hardware marker: `H6.0.3-R1`", "fabrication"),
-            "README.ru.md": ("Роадмап и текущее положение", "Текущий маркер железа: `H6.0.3-R1`", "печати прототипа"),
+            "README.md": ("What we want", "Current hardware marker: `H6.0.3-R1`", "Ordering and fabrication remain blocked"),
+            "README.ru.md": ("Что хотим", "Текущий маркер железа: `H6.0.3-R1`", "Заказ и печать пока не разрешены"),
         }
         for name, tokens in landing_pages.items():
             page = self.read(name)
             for token in tokens:
                 self.assertIn(token, page, f"{name}: {token}")
-            for stage in range(10):
-                self.assertIn(f"H{stage} ·", page, f"{name}: missing H{stage}")
+            self.assertNotIn("| H0 ·", page, f"{name}: the roadmap must own the stage table")
 
     def test_superseded_r1_h3_report_is_retained_but_not_advertised_as_current(self):
         reports = {
@@ -351,19 +350,23 @@ class ProductSiteTests(unittest.TestCase):
         expectations = {
             "README.md": (
                 "# Leshy2 ⭐",
-                "What it is",
+                "What we want",
+                "What we decided",
+                "What is designed",
+                "What we obtained and verified",
+                "What remains",
+                "How the documentation is organised",
                 "Reviewed four-face Leshy2 mock-up",
-                "Roadmap and current position",
-                "Schematics and interfaces",
-                "Published result",
             ),
             "README.ru.md": (
                 "# Леший2 ⭐",
-                "Что это",
+                "Что хотим",
+                "Что решили",
+                "Что спроектировано",
+                "Что получили и проверили",
+                "Что осталось",
+                "Как читать документацию",
                 "Принятый четырёхсторонний мокап Лешего2",
-                "Роадмап и текущее положение",
-                "Схемы и интерфейсы",
-                "Опубликованный результат",
             ),
         }
         for name, tokens in expectations.items():
@@ -371,11 +374,17 @@ class ProductSiteTests(unittest.TestCase):
             page = " ".join(raw_page.split())
             self.assertEqual(1, page.count("⭐"), name)
             self.assertIn("docs/images/h1-r2-four-faces.svg", page, name)
-            intro_heading = "## Что это" if name.endswith(".ru.md") else "## What it is"
+            intro_heading = "## Что хотим" if name.endswith(".ru.md") else "## What we want"
             self.assertLess(raw_page.index(intro_heading), raw_page.index("h1-r2-four-faces.svg"), name)
             self.assertIn("docs/images/h1-r2-component-legend.svg", raw_page, name)
             for token in tokens:
                 self.assertIn(token, page, f"{name}: {token}")
+            headings = (
+                ("## Что хотим", "## Что решили", "## Что спроектировано", "## Что получили и проверили", "## Что осталось")
+                if name.endswith(".ru.md")
+                else ("## What we want", "## What we decided", "## What is designed", "## What we obtained and verified", "## What remains")
+            )
+            self.assertEqual(sorted(raw_page.index(heading) for heading in headings), [raw_page.index(heading) for heading in headings])
 
     def test_public_schematics_describe_current_r2_not_superseded_r1_ecad(self):
         expectations = {
@@ -812,8 +821,8 @@ class ProductSiteTests(unittest.TestCase):
         )
         expected = {int(row["id"][1:]): row["status"] for row in state["stages"]}
         for name, reviewed in (
-            ("README.md", "Reviewed"),
-            ("README.ru.md", "Проведено ревью"),
+            ("docs/roadmap.md", "Reviewed"),
+            ("docs/roadmap.ru.md", "Проведено ревью"),
         ):
             page = self.read(name)
             rows = {
@@ -828,7 +837,7 @@ class ProductSiteTests(unittest.TestCase):
                     self.assertIn(reviewed, rows[stage], f"{name}: H{stage}")
                 elif status == "current":
                     self.assertIn(
-                        "Current" if name == "README.md" else "Сейчас",
+                        "Current" if name == "docs/roadmap.md" else "Сейчас",
                         rows[stage],
                         f"{name}: H{stage}",
                     )
@@ -884,18 +893,18 @@ class ProductSiteTests(unittest.TestCase):
     def test_current_mockup_review_scope_is_explicit(self):
         expectations = {
             "docs/roadmap.md": (
-                "H1-R2.39", "Functional-island placement", "RF and antenna locality",
-                "Interboard transport", "Physical and service audit", "H1 review result",
-                "complete exterior", "accepted on 2026-08-30", "H3-R2.1",
+                "This page owns only work order and transition criteria",
+                "Product decisions live on the", "completed results live in the",
+                "H1-R2.39", "H3-R2.7", "H6.0.9-R1",
             ),
             "docs/roadmap.ru.md": (
-                "H1-R2.39", "Размещение функциональных островов", "Локальность RF и антенн",
-                "Межплатный transport", "Физический и сервисный аудит", "Итог ревью H1",
-                "Полный внешний вид", "приняты 2026-08-30", "H3-R2.1",
+                "Эта страница отвечает только за порядок работ и критерии перехода",
+                "Решения по", "завершённые результаты",
+                "H1-R2.39", "H3-R2.7", "H6.0.9-R1",
             ),
         }
         for name, tokens in expectations.items():
-            page = self.read(name)
+            page = " ".join(self.read(name).split())
             for token in tokens:
                 self.assertIn(token, page, f"{name}: {token}")
 
@@ -903,48 +912,33 @@ class ProductSiteTests(unittest.TestCase):
         expectations = {
             "README.md": (
                 "Current hardware marker: `H6.0.3-R1`",
-                "exact dual-RP GPIO/M1 map",
-                "mutually exclusive U214/U219 Cap slot",
-                "native R2 inventory is reviewed at `H2-R2.1.1`",
-                "six compute domains",
+                "Six compute domains",
+                "Ten permanent antenna ports are split 5+5",
+                "zero DRC violations and zero accepted exceptions",
             ),
             "README.ru.md": (
                 "Текущий маркер железа: `H6.0.3-R1`",
-                "dual-RP GPIO/M1",
-                "взаимоисключающий Cap-слот U214/U219",
-                "Native R2 inventory проведён ревью как `H2-R2.1.1`",
-                "4 302 ledger-endpoints сведены",
-                "шесть вычислительных доменов",
+                "Шесть вычислительных доменов",
+                "Десять постоянных антенных портов разделены 5+5",
+                "ноль DRC-нарушений и ноль разрешённых исключений",
             ),
             "docs/roadmap.md": (
                 "Current hardware boundary: `H6.0.3-R1`",
-                "18 exact production",
-                "U219 Cap integration",
-                "H1-R2.39 reviewed",
-                "4,302 fitted-instance contacts reconcile",
+                "H1-R2.39", "H2-R2.1.5", "H5-R2.1",
             ),
             "docs/roadmap.ru.md": (
                 "Текущая аппаратная граница: `H6.0.3-R1`",
-                "18 точных production",
-                "Интеграция U219 Cap",
-                "H1-R2.39 проведено ревью",
-                "4 302 контакта устанавливаемых экземпляров",
+                "H1-R2.39", "H2-R2.1.5", "H5-R2.1",
             ),
             "docs/stage-results.md": (
-                "reviewed at **`H1-R2.39`**",
-                "exact dual-RP GPIO/M1 map",
-                "ten main SMA ports are split 5+5",
-                "single coordinate model now registers 226 bodies",
-                "`H2-R2.1.3`",
-                "pass ERC with zero errors and zero warnings",
+                "index of immutable final reports",
+                "`H1-R2.39`", "`H2-R2.1.5`", "`H3-R2.7`", "`H5-R2.1`",
+                "H6 is not complete",
             ),
             "docs/stage-results.ru.md": (
-                "проведено ревью **`H1-R2.39`**",
-                "Точные dual-RP GPIO/M1",
-                "десять основных SMA разделены 5+5",
-                "координатная модель содержит 226 тел",
-                "`H2-R2.1.3`",
-                "проходят ERC без ошибок и предупреждений",
+                "индекс неизменяемых итоговых отчётов",
+                "`H1-R2.39`", "`H2-R2.1.5`", "`H3-R2.7`", "`H5-R2.1`",
+                "H6 ещё не завершён",
             ),
             "docs/schematics.md": (
                 "H1-R2.39",
@@ -3173,7 +3167,7 @@ class ProductSiteTests(unittest.TestCase):
         self.assertEqual({"positions": 80, "assigned": 80, "reserved_no_connect": 0}, pins["m1"])
         self.assertFalse(package["not_claimed"]["production_schematic_complete"])
         self.assertTrue(package["not_claimed"]["production_schematic_authorized"])
-        self.assertFalse(
+        self.assertTrue(
             package["not_claimed"]["pcb_placement_and_routing_authorized"]
         )
         self.assertFalse(package["not_claimed"]["purchase_authorized"])

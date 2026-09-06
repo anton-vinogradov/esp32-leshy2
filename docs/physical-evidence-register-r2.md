@@ -2,16 +2,16 @@
 
 [Русский](physical-evidence-register-r2.ru.md) · [H3 report](h3-r2-acceptance.md) · [Roadmap](roadmap.md)
 
-H3 leaves `51` physical-only evidence rows: `1` involve H5 received-part evidence, `5` involve H6 routed-design evidence and `46` involve H8 measurements on the one assembled prototype. A row may intentionally have more than one owner when received identity and assembled behavior are distinct gates.
+H3 leaves `51` physical-only evidence rows: `2` involve H5 received-part evidence, `8` involve H6 routed-design evidence and `42` involve H8 measurements on the one assembled prototype. A row may intentionally have more than one owner when received identity and assembled behavior are distinct gates.
 
 Nothing below is called passed. The registry requires no sacrificial assembled unit, drop test, vibration campaign or arbitrary connector-cycle campaign. Safe electrical faults use current-limited fixtures or emulators; real cells and the one MAX17320 remain inside their declared limits.
 
 | ID | Owner | Source | Remaining physical evidence |
 |---|---|---|---|
-| `H3-R2-PHY-001` | `H8` | `H3-R2.1` | H6 must realize converter/eFuse copper and vias at least as good as the modeled published EVM/package boundary |
+| `H3-R2-PHY-001` | `H6` | `H3-R2.1` | H6 must realize converter/eFuse copper and vias at least as good as the modeled published EVM/package boundary |
 | `H3-R2-PHY-002` | `H8` | `H3-R2.1` | H8 must measure rail endpoints, current and temperature for each named sustained profile and reject any profile outside the generated envelope |
 | `H3-R2-PHY-003` | `H8` | `H3-R2.1` | H8 may raise the 1.00-A sustained external admission only after measured 35-C margin remains at least 20 C |
-| `H3-R2-PHY-004` | `H8` | `H3-R2.1` | H6 routed source/pack resistance extraction |
+| `H3-R2-PHY-004` | `H6` | `H3-R2.1` | H6 routed source/pack resistance extraction |
 | `H3-R2-PHY-005` | `H8` | `H3-R2.1` | H8 measured efficiency, current and pack temperature |
 | `H3-R2-PHY-006` | `H8` | `H3-R2.2` | H8 measures real switch bounce and break-before-make interval. |
 | `H3-R2-PHY-007` | `H8` | `H3-R2.2` | H8 measures the populated 100-kohm/2.2-uF RC under DC bias and temperature; startup safety does not depend solely on this number. |
@@ -25,7 +25,7 @@ Nothing below is called passed. The registry requires no sacrificial assembled u
 | `H3-R2-PHY-015` | `H8` | `H3-R2.2` | H8 injects missing and stuck watchdog service, captures WDO/FAULT_ASSERT_N/FAULT_KILL and proves that source recovery cannot restart the product |
 | `H3-R2-PHY-016` | `H8` | `H3-R2.2` | H8 interrupts every fault-journal write boundary and verifies valid-slot or explicit generic-fallback selection |
 | `H3-R2-PHY-017` | `H8` | `H3-R2.2` | H8 proves the fault-only UI cannot enable C5, either RP2354B, RF/IR, voice PTT or either external 5-V branch |
-| `H3-R2-PHY-018` | `H8` | `H3-R2.3` | H6 preserves the 1206 series-resistor land as a controlled brightness trim point and routes the LED loop compactly |
+| `H3-R2-PHY-018` | `H6` | `H3-R2.3` | H6 preserves the 1206 series-resistor land as a controlled brightness trim point and routes the LED loop compactly |
 | `H3-R2-PHY-019` | `H8` | `H3-R2.3` | H8 measures panel current, luminance, PWM noise and visible boot at the received panel Vf; the manufacturer publishes no minimum Vf, so paper analysis cannot prove minimum luminance at the simultaneous low-rail/high-Vf endpoint |
 | `H3-R2-PHY-020` | `H8` | `H3-R2.3` | measure microphone/headset sensitivity, codec clipping/ALC/noise, channel phase perception, crosstalk, insertion pop and RF immunity on routed hardware |
 | `H3-R2-PHY-021` | `H8` | `H3-R2.3` | measure PAM8302A current, output EMI, speaker temperature/excursion and enclosure response; enforce the 50 C speaker-local mute rule |
@@ -45,7 +45,7 @@ Nothing below is called passed. The registry requires no sacrificial assembled u
 | `H3-R2-PHY-035` | `H8` | `H3-R2.3` | H8 records Si5351 startup and output-frequency calibration; the exact crystal start limits pass, while long-term aging is calibrated rather than guessed from an unpublished exact-code aging row |
 | `H3-R2-PHY-036` | `H6` | `H3-R2.4` | route i8080, S3-Hub, Hub-C5 SDIO, Hub-RF SPI and USB as length/return/impedance constrained groups; prove extracted delay/skew and UI-I2C capacitance <=120 pF |
 | `H3-R2-PHY-037` | `H8` | `H3-R2.4` | measure i8080 WR/data edges at the panel, USB eyes/ enumeration, SDIO/SPI far-end setup-hold and sustained qualified payload floors |
-| `H3-R2-PHY-038` | `H8` | `H3-R2.5` | H5/J4-F: inspect exact received cable/receptacle mating, gentle service loop, bend radius, retention and strain routing for all five paths |
+| `H3-R2-PHY-038` | `H5` | `H3-R2.5` | H5/J4-F: inspect exact received cable/receptacle mating, gentle service loop, bend radius, retention and strain routing for all five paths |
 | `H3-R2-PHY-039` | `H6` | `H3-R2.5` | H6: field-solve and coupon-correlate every ordinary 50-ohm mainline, launch, reference plane, return path and via fence; extract RX-AM/LW capacitance separately |
 | `H3-R2-PHY-040` | `H8` | `H3-R2.5` | H8: VNA-test insertion loss and return loss for all ten complete assembled feeds at every admitted band edge |
 | `H3-R2-PHY-041` | `H8` | `H3-R2.5` | H8: calibrate every actual-TX detector and prove no false negative at minimum qualified output; inbound false positives may only delay |

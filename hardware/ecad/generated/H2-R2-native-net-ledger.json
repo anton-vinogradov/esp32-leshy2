@@ -6,12 +6,12 @@
   "sources": {
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "49ddf4aea56243a3900553245f32f63713b4d29d573af9e631d501998b6dfc02",
+      "sha256": "1d24fd10cfeb5c98efb049dd124236178860d6236e2019127091997f00bab0a8",
       "authority": true
     },
     "definitions": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "3dd280a3247fe737160827530012148dad5286adde277af18d27ceb2559bd6da",
+      "sha256": "d49e6b18cc5494569b35ea6997dde36257b8cc6492e232e9268821f8636ff4ea",
       "authority": true
     },
     "h0": {
@@ -36,7 +36,7 @@
     },
     "display_mount": {
       "path": "hardware/product-design/display-mount.json",
-      "sha256": "694a78cddab6883e76403b39fdda55a9a87a7941eb404a480a964fd5e1682c60",
+      "sha256": "5901b314c630efdf278e0b923c22eba8c49ebfa1508329c37860e9256930c90f",
       "authority": true
     },
     "main_power_cell": {

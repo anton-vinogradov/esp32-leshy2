@@ -4,10 +4,10 @@
   "status": "reviewed_all_rail_loads_and_protection_margins_pass_after_ext_5v_and_audio_source_corrections",
   "method": "dc_network plus Decimal interval corners; PF-02 >=25% steady hardware reserve",
   "source_hashes": {
-    "hardware/verification/generated/H3-VRF11-power-state-register.json": "b9242783fd310b3aaf74eb237ccd523e79c8f063fdb25645361e8c80f4ec8303",
-    "hardware/verification/generated/H3-VRF03-method-contract.json": "0d50b8e4a917d6f07d22186a28020e18414afbecbf476b6566785d86c6f12768",
+    "hardware/verification/generated/H3-VRF11-power-state-register.json": "be4633043597b4bfb71ea502825420a3071dc9db2b3bbaf987906dfa413232e1",
+    "hardware/verification/generated/H3-VRF03-method-contract.json": "36ec849677ba5f1ac0721aa700092f73179fa11982434e4c44d73f8e69ba64c8",
     "hardware/architecture/candidates/G2F-3I.json": "6df524f1edf8db12ac278e0b5901a598c0ac18262800b09c38dde7b45147ed27",
-    "hardware/architecture/devices.json": "23b5799bc5334f9d02c13635c7f9e4f7503929795c669e98223fc37b95cc1c04",
+    "hardware/architecture/devices.json": "a11701b3df0156dbd533867d3e4bd0d57b731623c12b083cccf493b03775d0fa",
     "hardware/ecad/generated/H2-REV51-power-paths.json": "375ababc428c758095740b17d01ff4cc358d16702c2aec99950b7425a14d0f0f"
   },
   "provenance": [

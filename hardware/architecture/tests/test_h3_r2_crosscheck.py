@@ -39,6 +39,20 @@ class H3R2CrosscheckTest(unittest.TestCase):
         self.assertTrue(all(set(row["closure_stages"]) <= {"H5", "H6", "H8"} for row in registry))
         self.assertEqual(0, self.residuals["summary"]["unassigned"])
 
+    def test_plain_language_h6_prefixes_are_not_silently_reassigned_to_h8(self):
+        rows = {
+            row["residual"]: row["closure_stages"]
+            for row in self.residuals["registry"]
+        }
+        expected = [
+            text
+            for text in rows
+            if text.startswith("H6 ")
+        ]
+        self.assertGreaterEqual(len(expected), 3)
+        for text in expected:
+            self.assertEqual(["H6"], rows[text], text)
+
     def test_firmware_obligation_is_not_hidden_in_physical_registry(self):
         obligations = self.crosscheck["firmware_obligations"]
         self.assertEqual(1, len(obligations))

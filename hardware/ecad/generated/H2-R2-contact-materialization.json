@@ -6,11 +6,11 @@
   "sources": {
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "3dd280a3247fe737160827530012148dad5286adde277af18d27ceb2559bd6da"
+      "sha256": "d49e6b18cc5494569b35ea6997dde36257b8cc6492e232e9268821f8636ff4ea"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "23b5799bc5334f9d02c13635c7f9e4f7503929795c669e98223fc37b95cc1c04"
+      "sha256": "a11701b3df0156dbd533867d3e4bd0d57b731623c12b083cccf493b03775d0fa"
     }
   },
   "kicad_reference_version": "10.0.5",

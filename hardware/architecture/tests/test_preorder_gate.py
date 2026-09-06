@@ -23,6 +23,7 @@ class PreorderGateTests(unittest.TestCase):
         self.assertIn("789 canonical nets", truth["current_ecad"])
         self.assertIn("both pass ERC", truth["current_ecad"])
         self.assertIn("173 controller pins", truth["current_ecad"])
+        self.assertIn("H6 placement and routing are in progress", truth["current_ecad"])
         self.assertIn("F2-R2.5 is in progress", truth["executable_firmware"])
         self.assertIn("F3-R2 and F-PO remain blocked", truth["instruction_emulation"])
         self.assertIn("H6 routed release candidate", truth["joined_release"])
@@ -48,6 +49,8 @@ class PreorderGateTests(unittest.TestCase):
         boundary = self.contract["procurement_boundary"]
         self.assertEqual(1, boundary["assembled_device_quantity"])
         self.assertIn("optional", boundary["factory_powered_function_test"])
+        self.assertIn("fabricate and populate", boundary["factory_role"])
+        self.assertIn("owner performs display", boundary["factory_role"])
         self.assertIn("owner", boundary["first_full_power_on"])
 
     def test_legacy_ecad_cannot_be_mistaken_for_current(self):

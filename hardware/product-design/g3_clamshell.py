@@ -75,7 +75,11 @@ PACK_HOLDER_H = 86.0
 PACK_CELL_Y = PACK_HOLDER_Y + 10.0
 PACK_HOLDER_BODY_W = 39.78
 PACK_HOLDER_BODY_H = 77.06
-PACK_HOLDER_BODY_X = (BOARD_W - PACK_HOLDER_BODY_W) / 2
+PACK_HOLDER_X_OFFSET = 3.0
+PACK_HOLDER_PAD_X = 20.1 + PACK_HOLDER_X_OFFSET
+PACK_HOLDER_DRAWING_X = 17.6 + PACK_HOLDER_X_OFFSET
+PACK_HOLDER_CENTRE_X = 39.99 + PACK_HOLDER_X_OFFSET
+PACK_HOLDER_BODY_X = (BOARD_W - PACK_HOLDER_BODY_W) / 2 + PACK_HOLDER_X_OFFSET
 PACK_HOLDER_BODY_Y = PACK_HOLDER_Y + (PACK_HOLDER_H - PACK_HOLDER_BODY_H) / 2
 
 # Exact GCT RFPC-SMA31/SMA32 1.6-mm edge-launch family. The 10.2-mm
@@ -1307,7 +1311,7 @@ def validate_external_silkscreen(svg: str, devices: dict, instances: dict) -> li
         return origin[0] + x * scale, origin[1] + y * scale, w * scale, h * scale
 
     display = Placement("display", DISPLAY_X, DISPLAY_Y, "display")
-    holder = Placement("pack_holder", 17.6, PACK_HOLDER_Y, "holder", 90)
+    holder = Placement("pack_holder", PACK_HOLDER_DRAWING_X, PACK_HOLDER_Y, "holder", 90)
     knob = REAR_SELECTED_ACTUATORS[0]
     visible = {
         "front": [
@@ -2211,7 +2215,7 @@ def validate_display_mount_design(
     if orientation.get("fpc_exit_direction_board_axis") != "-Y":
         errors.append("display-mount: panel FPC must exit toward board -Y / the antenna edge")
     if "stop-work" not in orientation.get("factory_orientation_check", ""):
-        errors.append("display-mount: factory orientation check must fail closed before PSA pressing")
+        errors.append("display-mount: owner orientation check must fail closed before PSA pressing")
     if orientation.get("connector_contact_orientation") != "top and bottom contact":
         errors.append("display-mount: exact FH34SRJ dual-contact orientation was lost")
     if orientation.get("tail_pin_1_world_side_after_rotation_and_fold") != "board left / world x-min":
@@ -2558,7 +2562,7 @@ def validate() -> list[str]:
     if direct_mechanical.get("nominal_height_mm") != 4.3:
         errors.append("B3S-1100P nominal direct-press height must remain 4.3 mm")
     display = Placement("display", DISPLAY_X, DISPLAY_Y, "display")
-    holder = Placement("pack_holder", 17.6, PACK_HOLDER_Y, "battery holder", 90)
+    holder = Placement("pack_holder", PACK_HOLDER_DRAWING_X, PACK_HOLDER_Y, "battery holder", 90)
     errors += validate_items("front-display", (display,), devices, instances)
     errors += validate_items("rear-exact", (holder,), devices, instances)
     ui_instances = {item.instance for item in UI_INNER}
@@ -2657,7 +2661,7 @@ def validate() -> list[str]:
     if overlaps(knob_box, u214_box, U214_CLEARANCE):
         errors.append("rear: exact encoder knob lacks installed-U214 clearance")
     cell_boxes = []
-    for instance, centre_x in (("pack_cell0", 28.0), ("pack_cell1", 47.0)):
+    for instance, centre_x in (("pack_cell0", 28.0 + PACK_HOLDER_X_OFFSET), ("pack_cell1", 47.0 + PACK_HOLDER_X_OFFSET)):
         cell = Placement(instance, 0.0, 0.0, "protected 18650 cell", 90)
         cell_w, cell_h = placement_size(cell, devices, instances)
         cell_box = (
@@ -3363,7 +3367,7 @@ def render_external(devices, instances):
         out.append(f'<path d="M{sx(front,x):.1f} {sy(front,150):.1f} L{sx(front,x):.1f} {sy(front,157):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
         out.append(silk_text(sx(front,x), sy(front,149), label, 4.2, "bold", "middle", "#1d4ed8"))
 
-    holder = Placement("pack_holder", 20.1, PACK_HOLDER_Y, "holder", 90)
+    holder = Placement("pack_holder", PACK_HOLDER_PAD_X, PACK_HOLDER_Y, "holder", 90)
     hw, hh = placement_size(holder, devices, instances)
     # The manufacturer's plastic body is 77.06 mm long.  The 86.00-mm value
     # is the PCB pad span, not a second body envelope.  Draw both so the SMT
@@ -3385,8 +3389,8 @@ def render_external(devices, instances):
             f'H{sx(rear,cradle_x+cradle_w):.1f}" stroke="#ea580c" stroke-width="2" '
             'data-layer="mechanical-reference" data-part="enclosure-holder-end-stop"/>'
         )
-    out.append(text(sx(rear,40.0), sy(rear,126), "1048P body 77.1 · SMT pad span 86.0", 6.1, "bold", "middle", "#166534"))
-    for cell_instance, cell_x in (("pack_cell0", 30.5), ("pack_cell1", 49.5)):
+    out.append(text(sx(rear,PACK_HOLDER_CENTRE_X), sy(rear,126), "1048P body 77.1 · SMT pad span 86.0", 6.1, "bold", "middle", "#166534"))
+    for cell_instance, cell_x in (("pack_cell0", 30.5 + PACK_HOLDER_X_OFFSET), ("pack_cell1", 49.5 + PACK_HOLDER_X_OFFSET)):
         cell = Placement(cell_instance, 0.0, 0.0, "protected 18650 cell", 90)
         cell_w, cell_h = placement_size(cell, devices, instances)
         cell_y = holder.y + (hh - cell_h) / 2
@@ -3558,7 +3562,7 @@ def render_service_access(devices, instances):
     # unrelated controls and RF parts so each recovery interface is legible.
     out.append(rect(front, DISPLAY_X, DISPLAY_Y, DISPLAY_W, DISPLAY_H, "#eff6ff", "#93c5fd", rx=5))
     out.append(text(sx(front, 40.0), sy(front, 53.0), "DISPLAY", 11, "bold", "middle", "#60a5fa"))
-    out.append(rect(rear, 17.6, PACK_HOLDER_Y, 39.8, PACK_HOLDER_H, "#ecfdf3", "#86efac", rx=10))
+    out.append(rect(rear, PACK_HOLDER_DRAWING_X, PACK_HOLDER_Y, 39.8, PACK_HOLDER_H, "#ecfdf3", "#86efac", rx=10))
     out.append(text(sx(rear, 40.0), sy(rear, 85.0), "2× 18650", 11, "bold", "middle", "#4ade80"))
 
     def side_control(origin, instance, side, silk):
@@ -4212,7 +4216,7 @@ def render_rear_face(devices, instances):
     cap_mpn = devices[instances["u214"]]["mpn"]
     socket_mpn = devices[instances["u214_connector"]]["mpn"]
     holder_mpn = devices[instances["pack_holder"]]["mpn"]
-    holder = Placement("pack_holder", 20.1, PACK_HOLDER_Y, "battery holder", 90)
+    holder = Placement("pack_holder", PACK_HOLDER_PAD_X, PACK_HOLDER_Y, "battery holder", 90)
     holder_w, holder_h = placement_size(holder, devices, instances)
 
     out = [
@@ -4273,11 +4277,11 @@ def render_rear_face(devices, instances):
         f'<g id="battery-zone" data-plan-y-mm="{PACK_HOLDER_Y:.1f}..{PACK_HOLDER_Y + PACK_HOLDER_H:.1f}" data-gap-from-u214-mm="{PACK_HOLDER_Y - U214_Y - U214_H:.1f}">',
         r(holder.x, holder.y, holder_w, holder_h, "#dcfce7", "#16a34a", "", 12, ' data-part="battery-holder"'),
     ]
-    for cell_x in (30.5, 49.5):
+    for cell_x in (30.5 + PACK_HOLDER_X_OFFSET, 49.5 + PACK_HOLDER_X_OFFSET):
         out.append(r(cell_x-9.3, PACK_CELL_Y, 18.6, 65.0, "#ecfdf3", "#22c55e", "", 20, ' data-part="18650-cell"'))
         out.append(t(x(cell_x), y(PACK_CELL_Y + 34.0), "18650", 10, "bold", "middle", "#166534"))
     out += [
-        t(x(40.0), y(PACK_HOLDER_Y + 82.0), "Keystone 1048P · 39.8×86 mm plan", 9, "bold", "middle", "#166534"),
+        t(x(PACK_HOLDER_CENTRE_X), y(PACK_HOLDER_Y + 82.0), "Keystone 1048P · 39.8×86 mm plan", 9, "bold", "middle", "#166534"),
         '</g>',
     ]
 
@@ -4618,14 +4622,14 @@ def render_sandwich(devices, instances):
             rear_z = cap_rear_z
             rear_label = f"base + U214 = {rear_z:.3f} mm"
         else:
-            holder_x = 17.6
+            holder_x = PACK_HOLDER_DRAWING_X
             holder_w = 39.8
             parts += [
                 f'<g id="section-battery" data-cut-y-mm="{cut_y:.0f}" data-contains="battery-no-u214">',
                 r(px(holder_x), pz(base_rear_z), holder_w*x_scale, holder_depth*z_scale, "#dcfce7", "#16a34a", rx=12, extra=' data-instance="pack-holder"'),
-                r(px(18.7), pz(base_rear_z+1.05), 18.6*x_scale, 18.6*z_scale, "#ecfdf3", "#22c55e", rx=16, extra=' data-instance="cell-left"'),
-                r(px(37.7), pz(base_rear_z+1.05), 18.6*x_scale, 18.6*z_scale, "#ecfdf3", "#22c55e", rx=16, extra=' data-instance="cell-right"'),
-                t(px(40.0), pz(base_rear_z+10.8), "Keystone Electronics 1048P + 2× 18650", 9.2, "bold", "middle", "#166534"),
+                r(px(18.7 + PACK_HOLDER_X_OFFSET), pz(base_rear_z+1.05), 18.6*x_scale, 18.6*z_scale, "#ecfdf3", "#22c55e", rx=16, extra=' data-instance="cell-left"'),
+                r(px(37.7 + PACK_HOLDER_X_OFFSET), pz(base_rear_z+1.05), 18.6*x_scale, 18.6*z_scale, "#ecfdf3", "#22c55e", rx=16, extra=' data-instance="cell-right"'),
+                t(px(PACK_HOLDER_CENTRE_X), pz(base_rear_z+10.8), "Keystone Electronics 1048P + 2× 18650", 9.2, "bold", "middle", "#166534"),
                 t(px(40.0), pz(battery_rear_z)+24, f"No installed Cap appears: its Y={U214_Y:.1f}…{U214_Y + U214_H:.1f}-mm zone does not cross B–B.", 9.3, "bold", "middle", "#9a3412"),
                 *service_motion(px(10.0), pz(base_rear_z)+8, pz(battery_rear_z)-8, "CELLS"),
                 '</g>',
@@ -4728,7 +4732,7 @@ def render_top_edge(devices, instances):
         t(x(40.0), z(ui_inner_z + 5.5), "FX8C M1 · 11-mm board gap", 8.5, "bold", "middle", "#9d174d"),
         '<g id="top-edge-rear-envelopes" data-y-collapsed="true">',
         r(x(U214_X), z(base_rear_z), U214_W*scale_x, depth("u214")*scale_z, "#ffedd5", "#ea580c", "7 4", 5, ' fill-opacity="0.45" data-instance="u214"'),
-        r(x(17.6), z(base_rear_z), 39.8*scale_x, holder_depth*scale_z, "#dcfce7", "#16a34a", "4 3", 12, ' fill-opacity="0.45" data-instance="pack-holder"'),
+        r(x(PACK_HOLDER_DRAWING_X), z(base_rear_z), 39.8*scale_x, holder_depth*scale_z, "#dcfce7", "#16a34a", "4 3", 12, ' fill-opacity="0.45" data-instance="pack-holder"'),
         '</g>',
         f'<g id="front-antenna-bank" data-count="{len(FRONT_RF)}" data-mount-face="ui-pcb-outer">',
     ]
@@ -4954,10 +4958,10 @@ def render_display_mount(design):
         label(1018, 502, "Open H5 evidence", 12.5, "bold", colour="#92400e"),
         label(1018, 527, "• actual bend radius / stack", 9.5),
         label(1018, 548, "• dry-fit path ≤24.66 mm", 9.5),
-        label(1018, 569, "• factory accepts supplied PSA", 9.5),
+        label(1018, 569, "• owner installs supplied PSA after dry-fit", 9.5),
         label(1018, 608, f"4910SQ nominal {route['drawing_stock_pad_envelope_mm']:.3f} mm", 9.2, "bold", colour="#92400e"),
         label(1018, 629, "release only after ≤0.714-mm stack fit", 9.2, "bold", colour="#92400e"),
-        label(40, 682, "Factory: liner on → one untwisted fold → dry-fit 1↔1 / 50↔50 → prove ≥5-mm relaxed slack → latch → peel liner → align → press once.", 9.7, "bold", colour="#166534"),
+        label(40, 682, "Owner: liner on → one untwisted fold → dry-fit 1↔1 / 50↔50 → prove ≥5-mm relaxed slack → latch → peel liner → align → press once.", 9.7, "bold", colour="#166534"),
         label(40, 712, "Stop if taut, twisted, pin order is reversed or the measured neutral-axis route exceeds 24.66 mm. PSA pressing comes last.", 9.7, "bold", colour="#b42318"),
         '</svg>',
     ]
@@ -5449,7 +5453,7 @@ def build_unified_coordinate_table(
             },
             "remaining_gates": [
                 "H5 received E01-ML01SP4 mate-fit and cable bend/retention coupons against the published connector locations",
-                "H5 current-lot ER-TFT035IPS-6/ER-TPC035-6 FPC conformity and factory insertion acceptance",
+                "H5 current-lot ER-TFT035IPS-6/ER-TPC035-6 FPC conformity and owner dry-fit/insertion evidence",
                 "KiCad footprint-level copper/via routing and DRC",
                 "assembled tolerance stack and HIL",
             ],
@@ -5647,7 +5651,7 @@ def build_external_face_acceptance(devices: dict, instances: dict, model: dict) 
             },
             "battery_holder": {
                 "mpn": devices[instances["pack_holder"]]["mpn"],
-                "position_mm": [17.6, PACK_HOLDER_Y],
+                "position_mm": [PACK_HOLDER_DRAWING_X, PACK_HOLDER_Y],
                 "orientation_deg": 90,
                 "cells": ["pack_cell0", "pack_cell1"],
             },
@@ -5796,7 +5800,7 @@ def build_cross_view_acceptance(
             "production_schematic_complete": False,
             "production_schematic_authorized": True,
             "pcb_copper_and_vias": passage["pcb_copper_and_vias"]["result"],
-            "pcb_placement_and_routing_authorized": False,
+            "pcb_placement_and_routing_authorized": True,
             "purchase_authorized": False,
         },
         "remaining_gates": passage["remaining_gates"],

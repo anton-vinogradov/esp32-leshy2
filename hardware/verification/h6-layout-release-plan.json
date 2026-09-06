@@ -27,6 +27,9 @@
     "classified_canonical_nets": 789,
     "automatic_helper_allowed_classes": ["GENERAL_CONTROL"],
     "routing_started": true,
+    "board_size_decision": "retain 80 x 150 mm while the live H6.0.3 audit remains clean; 85 x 150 mm is permitted only after the audit's explicit routing-capacity trigger",
+    "board_size_evidence": "hardware/layout/generated/H6-R2-current-routing-audit.json",
+    "geometry_change_rule": "any board-outline or frozen-anchor change invalidates the dependent H1/H6 geometry, routing, ERC/DRC, electrical re-analysis and firmware-BSP evidence and requires the complete listed requalification before release",
     "remaining_before_substep_exit": [
       "route all 789 reviewed canonical nets / 823 board-local physical nets or preserve an explicit intentional no-connect",
       "prove native schematic/PCB parity and zero-finding KiCad DRC"

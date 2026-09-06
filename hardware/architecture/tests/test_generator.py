@@ -351,9 +351,10 @@ class ArchitectureValidationTests(unittest.TestCase):
         display = self.database["devices"]["qdtech_hmx035ctft_001"]
         self.assertEqual(2, len(display["prototype_specimen_sources"]))
         self.assertEqual(
-            "unresolved_production_panel_factory_quote_required",
+            "superseded_by_selected_eastrising_owner_installed_endpoint",
             display["procurement_gate"]["status"],
         )
+        self.assertIn("absent from the released product", display["cost_gate"]["reason"])
         self.assertIn(
             "no_drop_in_substitute",
             display["alternates"]["disposition"],

@@ -6034,7 +6034,7 @@
     "deliverable": "one fully assembled Leshy2 prototype",
     "device_batch": false,
     "batteries_included": false,
-    "production_display": "EastRising ER-TFT035IPS-6 + ER-TPC035-6; factory-installed from the documented production package",
+    "production_display": "EastRising ER-TFT035IPS-6 + ER-TPC035-6; owner-installed through the factory-populated direct ZIF using the documented stock-PSA procedure",
     "hmx_donor_route": "rejected procurement route; legacy evidence only",
     "factory_function_test": "optional quote-only insurance; first full power-on and USB bring-up belong to the owner"
   },
@@ -6396,7 +6396,7 @@
       "market_result": "serial_quantity_one_documented_display",
       "best_mass_market_route": "retain the documented EastRising panel and touch pair",
       "availability": "direct serial quantity-one route; USD 14.91",
-      "functional_delta": "cheaper generic 3.5-inch listings do not preserve the controlled FPC, i8080-8 pin map, ILI9488/FT6236 identity and factory-installable mechanical package",
+      "functional_delta": "cheaper generic 3.5-inch listings do not preserve the controlled FPC, i8080-8 pin map, ILI9488/FT6236 identity and owner-installable mechanical package",
       "paper_saving_usd": 0.0,
       "verdict": "retain_already_value_optimized",
       "current_source": "https://www.buydisplay.com/3-5-inch-tft-lcd-display-capacitive-touch-screen-ips-320x480",
@@ -6663,7 +6663,7 @@
       "direct_zif_height_mm": 1.0,
       "firmware_change": "ILI9488 display-memory rotation plus FT6236 touch-coordinate transform only"
     },
-    "remaining_gate": "The exact direct-ZIF geometry is closed; only written factory acceptance of customer-supplied panel PSA/FPC insertion plus incoming-lot conformity remain open."
+    "remaining_gate": "The exact direct-ZIF geometry is closed; only incoming-lot conformity, stock-PSA availability and the documented owner dry-fit/image/backlight/touch check remain open."
   },
   "accepted_cost_reduction_policy": {
     "accepted_on": "2026-08-28",

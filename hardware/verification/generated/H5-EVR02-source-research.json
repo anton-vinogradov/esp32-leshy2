@@ -6,7 +6,7 @@
   "purpose": "exhaust primary documentary evidence and fully documented serial alternatives before fixing the sole-prototype order manifest",
   "inputs": {
     "hardware/verification/generated/H5-EVR01-residual-map.json": "150f4d0fbbace3210ef276b3bbd9cc1d60bfb210db14d1cbe37380565af67906",
-    "hardware/architecture/devices.json": "2caf023fb65a15be416b66686f7bcbd9ce199f8c8a55c4d37457782e73ceb6ef"
+    "hardware/architecture/devices.json": "a11701b3df0156dbd533867d3e4bd0d57b731623c12b083cccf493b03775d0fa"
   },
   "summary": {
     "h5_residuals_researched": 9,
@@ -25,6 +25,18 @@
       "title": "2118651-2 authorized-distributor listing",
       "url": "https://www.digikey.com/en/products/detail/te-connectivity-amp-connectors/2118651-2/16538824",
       "supports": "current authorized-distributor lifecycle, stock and price evidence at review time"
+    },
+    "eastrising_display": {
+      "owner": "EastRising / BuyDisplay",
+      "title": "ER-TFT035IPS-6 configured display product page",
+      "url": "https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen",
+      "supports": "exact orderable ER-TFT035IPS-6 plus ER-TPC035-6 option 5344, current stock and quantity-one pricing"
+    },
+    "eastrising_display_datasheet": {
+      "owner": "EastRising / BuyDisplay",
+      "title": "ER-TFT035IPS-6 revision-B1 datasheet",
+      "url": "https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf",
+      "supports": "exact panel, 50-contact FPC, ILI9488, i8080-8 and mechanical dimensions"
     },
     "ebyte_cable": {
       "owner": "Chengdu Ebyte",
@@ -157,15 +169,15 @@
     {
       "id": "H3-PHY-017",
       "source_group": "display",
-      "disposition": "superseded_by_unresolved_production_panel_gate",
+      "disposition": "production_part_selected_owner_installation_open",
       "sources": [
-        "lcdwiki_es3c35p",
-        "lcdwiki_es3c35p_spec"
+        "eastrising_display",
+        "eastrising_display_datasheet"
       ],
-      "finding": "ES3C35P and HMX035CTFT-001 remain legacy electrical and mechanical evidence only. Complete-donor procurement is rejected because no standalone production-panel order identity, current-lot FPC drawing or factory-placeable route was proven.",
-      "finding_ru": "ES3C35P и HMX035CTFT-001 остаются только прежними электрическими и механическими свидетельствами. Закупка полной donor-сборки отклонена: не доказаны самостоятельный production-panel order identity, чертёж FPC текущей партии и factory-placeable route.",
-      "remaining": "select one exact documented production panel, obtain written factory mating/final-assembly feasibility, and release deterministic assembly instructions for the sole prototype",
-      "remaining_ru": "выбрать одну точную документированную серийную панель, письменно подтвердить factory mating/final assembly и выпустить однозначную инструкцию сборки единственного прототипа",
+      "finding": "The exact in-stock ER-TFT035IPS-6 plus ER-TPC035-6 option 5344 is selected with a documented 50-contact FPC and direct UI-PCB ZIF. ES3C35P and HMX035CTFT-001 remain legacy evidence only; donor procurement and factory display installation are not part of the release path.",
+      "finding_ru": "Выбран точный складской ER-TFT035IPS-6 + ER-TPC035-6 option 5344 с документированным 50-контактным FPC и прямым ZIF UI-платы. ES3C35P и HMX035CTFT-001 остаются только прежним evidence; donor-закупка и фабричная установка дисплея не входят в release-путь.",
+      "remaining": "recheck the exact current lot and stock PSA before order, then record the owner's relaxed-slack/orientation dry fit, image/backlight/touch check and final bond on the sole prototype",
+      "remaining_ru": "перед заказом перепроверить точную текущую партию и stock PSA, затем записать owner dry-fit запаса/ориентации, проверку image/backlight/touch и финальную приклейку единственного прототипа",
       "physical_claim_closed": false,
       "purchase_authorized": false
     },

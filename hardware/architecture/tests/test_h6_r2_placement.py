@@ -41,8 +41,8 @@ class H6R2PlacementTests(unittest.TestCase):
                 "hard_conflict_count": 0,
                 "placement_failure_count": 0,
                 "net_or_footprint_error_count": 0,
-                "routing_authorized": False,
-                "routing_started": False,
+                "routing_authorized": True,
+                "routing_started": True,
             },
             self.audit["summary"],
         )
@@ -88,6 +88,15 @@ class H6R2PlacementTests(unittest.TestCase):
             self.contract["placement_overrides"]["display_connector"]["centre_mm"],
         )
         self.assertEqual(90.0, self.contract["placement_overrides"]["encoder"]["rotation_deg"])
+
+    def test_battery_holder_is_shifted_clear_of_the_interboard_locator(self):
+        self.assertEqual(
+            [42.99, 85.0],
+            self.contract["mechanical"]["rear_battery_holder"]["centre_mm"],
+        )
+        rf = next(row for row in self.audit["boards"] if row["project"] == "LESHY2-RF-R2")
+        holder = next(row for row in rf["placements"] if row["reference"] == "BT1")
+        self.assertEqual([42.99, 85.0], holder["footprint_anchor_mm"])
 
     def test_factory_stack_candidate_is_the_current_1p6_mm_six_layer_stack(self):
         stack = self.contract["board"]["factory_stack_candidate"]

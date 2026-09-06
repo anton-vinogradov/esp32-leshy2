@@ -18,7 +18,7 @@ flowchart LR
 - Reference microSD: `SDSQQNR-032G-GN6IA`.
 - M5 interconnect set: `A034-G`, `A034-B`, `A096`.
 - Robust IR now uses factory-stocked `TSOP75238TR` (`C511498`) without a footprint, contact, GPIO or firmware-interface change; stock, CPL rotation and feeder presentation are mandatory pre-order checks.
-- `ES3C35P` and `HMX035CTFT-001` are retained only as legacy electrical/mechanical evidence; donor procurement is rejected, while exact production-panel identity and factory mating remain an open production gate.
+- Exact in-stock `ER-TFT035IPS-6 + ER-TPC035-6` option 5344 is selected; neither a donor nor factory display installation is required, while owner dry-fit and verification remain H7/H8 evidence.
 - `TE 2118651-2` is confirmed active and documented; replacement has no demonstrated benefit.
 - The makers of stock `U214` and `E01-ML01SP4` genuinely do not disclose the fitted connector-subpart MPNs.
 - `SA818S-U` and `SA818S-V` are confirmed as two independent serial modules with one official 18-land package. JLCPCB: U is `C3001549`, stock 68/available 60 at `$9.7347`; V is `C51897911`, stock 0 and `pre-order` at `$10.0710`, MOQ 1 and a typical 8–15-working-day lead per the factory's partial 26 August response.
@@ -28,9 +28,9 @@ flowchart LR
 
 ### `H3-PHY-017` · `display`
 
-- Outcome: ES3C35P and HMX035CTFT-001 remain legacy electrical and mechanical evidence only. Complete-donor procurement is rejected because no standalone production-panel order identity, current-lot FPC drawing or factory-placeable route was proven.
-- Sources: [LCDWiki](https://www.lcdwiki.com/3.5inch_ESP32-S3_Display), [LCDWiki](https://www.lcdwiki.com/res/ES3C35P/3.5inch_IPS_ESP32-S3_Specification_V1.0.pdf).
-- After the sole prototype arrives: select one exact documented production panel, obtain written factory mating/final-assembly feasibility, and release deterministic assembly instructions for the sole prototype.
+- Outcome: The exact in-stock ER-TFT035IPS-6 plus ER-TPC035-6 option 5344 is selected with a documented 50-contact FPC and direct UI-PCB ZIF. ES3C35P and HMX035CTFT-001 remain legacy evidence only; donor procurement and factory display installation are not part of the release path.
+- Sources: [EastRising / BuyDisplay](https://www.buydisplay.com/3-5-inch-ips-320x480-tft-lcd-display-capacitive-touch-screen), [EastRising / BuyDisplay](https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf).
+- After the sole prototype arrives: recheck the exact current lot and stock PSA before order, then record the owner's relaxed-slack/orientation dry fit, image/backlight/touch check and final bond on the sole prototype.
 
 ### `H3-PHY-024` · `ir`
 

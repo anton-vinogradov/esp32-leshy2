@@ -199,7 +199,7 @@
       "instance": "pack_holder",
       "side": "F.Cu",
       "centre_mm": [
-        39.99,
+        42.99,
         85.0
       ],
       "rotation_deg": 90.0
@@ -266,6 +266,16 @@
     }
   },
   "placement_overrides": {
+    "pack_holder": {
+      "frame": "rear-outer",
+      "centre_mm": [
+        42.99,
+        85.0
+      ],
+      "rotation_deg": 90.0,
+      "method": "reviewed H6.0.3 mechanical-clearance correction",
+      "reason": "shift the unconnected SMT holder 3.00 mm toward board +X so BT1 pad 1 clears the J12 locator hole and both native DRC findings disappear without moving the routed interboard connector"
+    },
     "ext_en_pulldown": {
       "frame": "rear-inner",
       "centre_mm": [

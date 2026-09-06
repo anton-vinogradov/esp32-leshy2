@@ -151,5 +151,5 @@
       "finding": "DF40C-40DP-0.4V(51) is the exact 40-position mating plug."
     }
   ],
-  "release_boundary": "H1 freezes the 30.5x12.0-mm antenna-edge adapter bay, exact ER-TFT035IPS-6 plus ER-TPC035-6 panel stack, C3169104 panel mate, passive 40-to-50 electrical map and cable-to-antenna orientation. H2 imports the exact footprints and rewires the superseded display sheet; H5 confirms current-lot conformity and written factory acceptance for adhesive placement, FPC insertion and one-prototype final mating."
+  "release_boundary": "H1 freezes the 30.5x12.0-mm antenna-edge adapter bay, exact ER-TFT035IPS-6 plus ER-TPC035-6 panel stack, C3169104 panel mate, passive 40-to-50 electrical map and cable-to-antenna orientation. H2 imports the exact footprints and rewires the superseded display sheet; H5 confirms current-lot conformity. The factory populates the ZIF only; deterministic dry-fit, FPC insertion, image/backlight/touch verification and PSA bonding belong to owner final assembly."
 }

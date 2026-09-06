@@ -5,17 +5,17 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "a32794bca120d31337d467ba3aba171d4dcc1527a4ed44c34e118a7d83a55245",
+    "contract_sha256": "e1e408b142da630aac5aad36323c592e8ed22704b3ae65f73421412df712113d",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
-    "coordinate_model_sha256": "84805c6b9f41bde44cc8744a09d4f48e8cc7ccfe82ceb620174e2510c62ab470",
+    "coordinate_model_sha256": "cc2aaeacd6de560fb728ef82767184738e24bbf831a6cc706c70299cf2077636",
     "instance_ledger": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-    "instance_ledger_sha256": "49ddf4aea56243a3900553245f32f63713b4d29d573af9e631d501998b6dfc02",
+    "instance_ledger_sha256": "1d24fd10cfeb5c98efb049dd124236178860d6236e2019127091997f00bab0a8",
     "net_ledger": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-    "net_ledger_sha256": "b6a74d68e23abd67f8778c87a85c46ca481be347cedf660ace929586033b076f",
+    "net_ledger_sha256": "d7f8bb219dd8a116d626d2dcf3174c357a0d4c5cf8508aee41a39f0232446f55",
     "symbol_library": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-    "symbol_library_sha256": "5f9757b07bfb8d1f2550fdd8015e80e0d5e567597549a10b648b7e02cbbb9fc4",
+    "symbol_library_sha256": "8aa7c695de0ce1fa64acba6dbb0278dae582e47b390331df425cdce1c8be2f9a",
     "kicad_net_bindings": "hardware/layout/generated/H6-R2-kicad-net-bindings.json",
     "kicad_net_bindings_sha256": "287b2ed42a1f32ecafde5705090962ec6c3da362a32f8ee508dba0f8c94c7706"
   },
@@ -31,8 +31,8 @@
     "hard_conflict_count": 0,
     "placement_failure_count": 0,
     "net_or_footprint_error_count": 0,
-    "routing_authorized": false,
-    "routing_started": false
+    "routing_authorized": true,
+    "routing_started": true
   },
   "stackup": {
     "manufacturer": "JLCPCB",
@@ -14975,10 +14975,11 @@
       "method_counts": {
         "connectivity/sheet automatic seed": 594,
         "exact H1 seed": 34,
-        "hard H1 datum": 13,
+        "hard H1 datum": 12,
         "nearest exact-footprint correction": 120,
         "reviewed H6.0.2 fan-out correction": 1,
-        "reviewed H6.0.2 oscillator-locality correction": 18
+        "reviewed H6.0.2 oscillator-locality correction": 18,
+        "reviewed H6.0.3 mechanical-clearance correction": 1
       },
       "net_count": 516,
       "mechanical": [
@@ -15217,11 +15218,11 @@
           "sheet": "RF_02_PACK_SAFETY_AON",
           "side": "F.Cu",
           "footprint": "Leshy2:Keystone-1048P",
-          "method": "hard H1 datum",
+          "method": "reviewed H6.0.3 mechanical-clearance correction",
           "courtyard_bbox_mm": {
             "x": [
-              19.545,
-              60.435
+              22.545,
+              63.435
             ],
             "y": [
               41.455,
@@ -15230,17 +15231,17 @@
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            39.99,
+            42.99,
             85.0
           ],
           "footprint_anchor_mm": [
-            39.99,
+            42.99,
             85.0
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            39990000,
+            42990000,
             85000000
           ]
         },
@@ -41757,8 +41758,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "ed3777f611171de4ce73385c5a61ac9778e39159b544d70b905138d604a8601c",
-      "placement_signature_sha256": "bb52f09d2d24ebc6c06afcc542b4ae64108670cd6239ee00f6757df4fb2d6220"
+      "unrouted_seed_sha256": "cf73f3f3b304ae3de9846c50e8b5982e750554435f93e8a63529f9986f00b8ac",
+      "placement_signature_sha256": "434a32173bc2c55d721c5b532c6c42e50ce07095a2419edd12ce77180be391fd"
     }
   ],
   "authorization": {

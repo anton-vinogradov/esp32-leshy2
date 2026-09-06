@@ -12,7 +12,7 @@
 <text x="476.0" y="231.9" font-family="sans-serif" font-size="8.5" font-weight="bold" text-anchor="middle" fill="#9d174d">FX8C M1 · 11-mm board gap</text>
 <g id="top-edge-rear-envelopes" data-y-collapsed="true">
 <rect x="140.0" y="288.7" width="672.0" height="122.3" rx="5" fill="#ffedd5" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="7 4" fill-opacity="0.45" data-instance="u214"/>
-<rect x="296.8" y="288.7" width="318.4" height="165.6" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="4 3" fill-opacity="0.45" data-instance="pack-holder"/>
+<rect x="320.8" y="288.7" width="318.4" height="165.6" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="4 3" fill-opacity="0.45" data-instance="pack-holder"/>
 </g>
 <g id="front-antenna-bank" data-count="5" data-mount-face="ui-pcb-outer">
 <ellipse cx="240.8" cy="149.7" rx="25.4" ry="25.4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" data-path="N24-0"/>

@@ -74,9 +74,9 @@
 <text x="1018.0" y="502.0" font-family="sans-serif" font-size="12.5" font-weight="bold" text-anchor="start" fill="#92400e">Open H5 evidence</text>
 <text x="1018.0" y="527.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• actual bend radius / stack</text>
 <text x="1018.0" y="548.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• dry-fit path ≤24.66 mm</text>
-<text x="1018.0" y="569.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• factory accepts supplied PSA</text>
+<text x="1018.0" y="569.0" font-family="sans-serif" font-size="9.5" font-weight="normal" text-anchor="start" fill="#172033">• owner installs supplied PSA after dry-fit</text>
 <text x="1018.0" y="608.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#92400e">4910SQ nominal 1.016 mm</text>
 <text x="1018.0" y="629.0" font-family="sans-serif" font-size="9.2" font-weight="bold" text-anchor="start" fill="#92400e">release only after ≤0.714-mm stack fit</text>
-<text x="40.0" y="682.0" font-family="sans-serif" font-size="9.7" font-weight="bold" text-anchor="start" fill="#166534">Factory: liner on → one untwisted fold → dry-fit 1↔1 / 50↔50 → prove ≥5-mm relaxed slack → latch → peel liner → align → press once.</text>
+<text x="40.0" y="682.0" font-family="sans-serif" font-size="9.7" font-weight="bold" text-anchor="start" fill="#166534">Owner: liner on → one untwisted fold → dry-fit 1↔1 / 50↔50 → prove ≥5-mm relaxed slack → latch → peel liner → align → press once.</text>
 <text x="40.0" y="712.0" font-family="sans-serif" font-size="9.7" font-weight="bold" text-anchor="start" fill="#b42318">Stop if taut, twisted, pin order is reversed or the measured neutral-axis route exceeds 24.66 mm. PSA pressing comes last.</text>
 </svg>

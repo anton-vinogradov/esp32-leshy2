@@ -167,13 +167,16 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual(723, audit["summary"]["resolved_connection_count"])
         self.assertEqual(2542, audit["summary"]["current_total_unconnected_count"])
         self.assertEqual(12, audit["summary"]["analog_remaining_connection_count"])
+        size = audit["board_size_review"]
+        self.assertEqual("retain_80x150_mm", size["decision"])
+        self.assertEqual(61.474, size["maximum_same_face_courtyard_occupancy_percent"])
+        self.assertEqual([85.0, 150.0], size["expansion_candidate_if_triggered_mm"])
+        self.assertEqual(5, len(size["requalification_after_any_outline_or_anchor_change"]))
         boards = {row["project"]: row for row in audit["boards"]}
         self.assertEqual(0, boards["LESHY2-UI-R2"]["drc"]["violation_count"])
-        self.assertEqual(2, boards["LESHY2-RF-R2"]["drc"]["violation_count"])
-        self.assertEqual(
-            ["hole_clearance", "solder_mask_bridge"],
-            boards["LESHY2-RF-R2"]["drc"]["violation_types"],
-        )
+        self.assertEqual(0, boards["LESHY2-RF-R2"]["drc"]["violation_count"])
+        self.assertEqual([], boards["LESHY2-RF-R2"]["drc"]["violation_types"])
+        self.assertEqual(0, audit["summary"]["assigned_drc_exception_count"])
         for row in boards.values():
             self.assertEqual([], row["errors"])
             self.assertEqual(64, len(row["board_sha256"]))

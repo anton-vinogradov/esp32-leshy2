@@ -5,10 +5,10 @@
   "status": "pass",
   "source_hashes": {
     "hardware/layout/h6-r2-microcoax-service.json": "94aca43c729622b9441a6277834b07de52b1308c6f7bf12374efc7a3eabf2dfd",
-    "hardware/layout/generated/H6-R2-placement-audit.json": "0fbd19ac2da9db896df0fd2e074006c28860846499bc31342bca7b438ee12d2e",
-    "hardware/layout/h6-r2-placement-contract.json": "a32794bca120d31337d467ba3aba171d4dcc1527a4ed44c34e118a7d83a55245",
+    "hardware/layout/generated/H6-R2-placement-audit.json": "4031b3df3835fec8517325f288d2233aa64eaf6e6f60c5333fda5efbe48a5e4b",
+    "hardware/layout/h6-r2-placement-contract.json": "e1e408b142da630aac5aad36323c592e8ed22704b3ae65f73421412df712113d",
     "hardware/product-design/h1-r2-placement.json": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0",
-    "hardware/verification/generated/H3-R2-rf-coexistence.json": "85cde452e6f770e7ecc378c930d0534cfefc35acc5ed593c4d6f7c45b27e77c5"
+    "hardware/verification/generated/H3-R2-rf-coexistence.json": "fd8acfb5d0c962cda7bd44127d5b280265006ac2566b69e7b64b62d3c15849aa"
   },
   "summary": {
     "path_count": 5,

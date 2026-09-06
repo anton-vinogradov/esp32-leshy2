@@ -82,24 +82,9 @@ def drc_evidence(path: Path, project: str) -> dict:
         errors.append("DRC source filename does not match the project")
     if parity:
         errors.append(f"schematic parity has {len(parity)} findings")
-    if project == "LESHY2-UI-R2":
-        if violations:
-            errors.append(f"UI DRC has {len(violations)} findings")
-        assigned = []
-    else:
-        types = sorted(row.get("type") for row in violations)
-        descriptions = " ".join(
-            item.get("description", "")
-            for row in violations
-            for item in row.get("items", [])
-        )
-        expected = ["hole_clearance", "solder_mask_bridge"]
-        if types != expected or "BT1" not in descriptions or "J12" not in descriptions:
-            errors.append("RF DRC differs from the two assigned BT1/J12 exceptions")
-        assigned = [
-            "BT1 pad 1 versus J12 NPTH hole clearance",
-            "BT1 pad 1 versus J12 front-mask bridge",
-        ]
+    if violations:
+        errors.append(f"{project} DRC has {len(violations)} findings")
+    assigned = []
     return {
         "report_sha256": sha256(path),
         "kicad_version": report.get("kicad_version"),
@@ -124,7 +109,10 @@ def seed_unconnected(project: str, seed_bytes: bytes) -> int:
 def build(drc_paths: dict[str, Path] | None, existing: dict | None) -> dict:
     policy = load(POLICY)
     class_order = load(CONTRACT)["class_order"]
-    placement_outputs, _ = build_placement()
+    placement_outputs, placement_audit = build_placement()
+    placement_by_project = {
+        row["project"]: row for row in placement_audit["boards"]
+    }
     rows = []
     errors = []
     existing_rows = {
@@ -155,6 +143,19 @@ def build(drc_paths: dict[str, Path] | None, existing: dict | None) -> dict:
             }
         native_remaining = connectivity.GetUnconnectedCount(False)
         seed_remaining = seed_unconnected(project, placement_outputs[path])
+        board_area = (
+            placement_audit["summary"]["board_outline_mm"][0]
+            * placement_audit["summary"]["board_outline_mm"][1]
+        )
+        courtyard_occupancy = {}
+        for side in ("F.Cu", "B.Cu"):
+            area = sum(
+                (item["courtyard_bbox_mm"]["x"][1] - item["courtyard_bbox_mm"]["x"][0])
+                * (item["courtyard_bbox_mm"]["y"][1] - item["courtyard_bbox_mm"]["y"][0])
+                for item in placement_by_project[project]["placements"]
+                if item["side"] == side
+            )
+            courtyard_occupancy[side] = round(100.0 * area / board_area, 3)
         if drc_paths is not None:
             drc = drc_evidence(drc_paths[project], project)
         else:
@@ -181,6 +182,7 @@ def build(drc_paths: dict[str, Path] | None, existing: dict | None) -> dict:
             "used_trace_layers": sorted(
                 {board.GetLayerName(item.GetLayer()) for item in traces}
             ),
+            "placement_courtyard_occupancy_percent": courtyard_occupancy,
             "seed_total_unconnected_count": seed_remaining,
             "current_total_unconnected_count": native_remaining,
             "resolved_connection_count": seed_remaining - native_remaining,
@@ -215,6 +217,26 @@ def build(drc_paths: dict[str, Path] | None, existing: dict | None) -> dict:
             ),
             "drc_violation_count": sum(row["drc"]["violation_count"] for row in rows),
             "assigned_drc_exception_count": sum(len(row["drc"]["assigned_exceptions"]) for row in rows),
+        },
+        "board_size_review": {
+            "decision": "retain_80x150_mm",
+            "status": "sufficient_so_far_not_finally_proven",
+            "maximum_same_face_courtyard_occupancy_percent": max(
+                value
+                for row in rows
+                for value in row["placement_courtyard_occupancy_percent"].values()
+            ),
+            "evidence": "all 1208 exact footprints still place without a same-face hard conflict; 723 physical connections are already resolved; both native DRC reports are clean; the accepted 5-mm routing corridor remains usable",
+            "why_not_expand_now": "an outline change would invalidate board anchors, routed copper, mechanical views, enclosure datums and every derived qualification while no current hard routing blockage demonstrates that the extra width is needed",
+            "expansion_candidate_if_triggered_mm": [85.0, 150.0],
+            "expansion_trigger": "after legal component movement and layer use are exhausted, any required power, USB/i8080, clocked-digital or RF path cannot meet the frozen H6 rules, or H6.0.4 through H6.0.7 fails for lack of geometric margin",
+            "requalification_after_any_outline_or_anchor_change": [
+                "regenerate every H1/H6 view and machine placement artifact",
+                "repeat exact-footprint placement, opposing-face, cable, display, antenna and enclosure checks",
+                "repeat ERC, schematic-to-PCB parity and native DRC on both boards",
+                "repeat routed power/thermal, USB/i8080/digital-SI, RF/return-path and plane checks",
+                "refresh the firmware BSP and rerun all hardware and firmware test suites against the new hashes"
+            ]
         },
         "boards": rows,
         "next_exit_condition": "route or explicitly no-connect every remaining H2 connection, then pass schematic parity and final DRC",
@@ -258,9 +280,16 @@ def doc(audit: dict, ru: bool) -> str:
             f"В классе `ANALOG_AUDIO_SENSE` осталось {summary['analog_remaining_connection_count']} физических соединений: "
             f"{ui['classes']['ANALOG_AUDIO_SENSE']['remaining_connection_count']} на UI и "
             f"{rf['classes']['ANALOG_AUDIO_SENSE']['remaining_connection_count']} на RF/power.\n\n"
-            "Штатный DRC KiCad даёт ноль замечаний на UI. На RF/power остаются только два уже назначенных "
-            "исключения одного места `BT1`/`J12`: зазор отверстий и объединение апертур передней маски. "
-            "Новых нарушений разводка не добавляет.\n\n"
+            "Штатный DRC KiCad даёт ноль замечаний на обеих платах. Прежний физический конфликт "
+            "`BT1`/`J12` устранён сдвигом неразведённого SMT-держателя на 3,00 мм; исключений DRC больше нет.\n\n"
+            "## Решение по размеру платы\n\n"
+            f"Размер 80 × 150 мм пока сохраняется. Максимальная сумма непересекающихся courtyard на одной "
+            f"стороне — {audit['board_size_review']['maximum_same_face_courtyard_occupancy_percent']:.3f}% "
+            "(внутренняя сторона RF/power); все footprints размещаются, обе платы имеют чистый DRC, а 723 "
+            "соединения уже проведены. Увеличение сейчас уничтожило бы ценное evidence без доказанного тупика. "
+            "Если обязательный power, USB/i8080, clocked-digital или RF-тракт не пройдёт после допустимой "
+            "локальной перестановки, следующий контролируемый вариант — 85 × 150 мм с полной повторной "
+            "квалификацией H1/H6 и обеих test suites.\n\n"
             "## Живые изображения\n\n"
             "Это прямые экспорты из текущих `.kicad_pcb`; hash платы встроен в SVG.\n\n"
             "**Передняя/UI-плата**\n\n"
@@ -301,8 +330,15 @@ def doc(audit: dict, ru: bool) -> str:
             f"`ANALOG_AUDIO_SENSE` now has {summary['analog_remaining_connection_count']} physical connections "
             f"left: {ui['classes']['ANALOG_AUDIO_SENSE']['remaining_connection_count']} on UI and "
             f"{rf['classes']['ANALOG_AUDIO_SENSE']['remaining_connection_count']} on RF/power.\n\n"
-            "Native KiCad DRC reports zero UI findings. RF/power retains only the two already assigned findings at "
-            "the single `BT1`/`J12` location: hole clearance and a front-mask aperture bridge. The new routing adds no violation.\n\n"
+            "Native KiCad DRC reports zero findings on both boards. The former physical `BT1`/`J12` conflict was "
+            "removed by shifting the unrouted SMT holder 3.00 mm; no DRC exception remains.\n\n"
+            "## Board-size decision\n\n"
+            f"The 80 × 150-mm outline is retained for now. The highest sum of non-overlapping same-face "
+            f"courtyards is {audit['board_size_review']['maximum_same_face_courtyard_occupancy_percent']:.3f}% "
+            "(RF/power inner face); all footprints place, both boards have clean DRC and 723 connections are "
+            "already routed. Expanding now would discard useful evidence without a demonstrated blockage. If a "
+            "required power, USB/i8080, clocked-digital or RF route cannot pass after legal local rearrangement, "
+            "the controlled next candidate is 85 × 150 mm followed by complete H1/H6 and both-suite requalification.\n\n"
             "## Live images\n\n"
             "These are direct exports from the live `.kicad_pcb` files; each SVG embeds its board hash.\n\n"
             "**Front/UI board**\n\n"
@@ -316,14 +352,12 @@ def doc(audit: dict, ru: bool) -> str:
         )
     table = [headers]
     for label, row in zip(labels, (ui, rf)):
-        drc = "0" if row["drc"]["violation_count"] == 0 else "2 assigned BT1/J12"
+        drc = str(row["drc"]["violation_count"])
         table.append(
             f"| {label} | {number(row['trace_count'])} | {number(row['via_count'])} | "
             f"{number(row['resolved_connection_count'])} | {number(row['current_total_unconnected_count'])} | {drc} |"
         )
     rendered = "\n\n".join((title, nav, lead, "\n".join(table), notes)) + "\n"
-    if ru:
-        rendered = rendered.replace("2 assigned BT1/J12", "2 назначенных BT1/J12")
     return rendered
 
 

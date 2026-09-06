@@ -12,7 +12,7 @@ H3.3.1 checks one complete chain: ST77922 supply → backlight power path → di
 
 ## Backlight
 
-The donor schematic had been misread: `R31=0R` is in the common LEDK path while `R33=10R` is in Q4's gate. The power path now uses `Yageo RC0402JR-070RL`. TPS2553 does not regulate brightness: it latches a fault at `174.000…234.000 mA`, retaining at least `45.000%` over the donor's 120-mA mode. Actual current and brightness remain specimen measurements.
+The donor schematic had been misread: `R31=0R` is in the common LEDK path while `R33=10R` is in Q4's gate. The power path now uses `FH RS-06L2R70FT`. TPS2553 does not regulate brightness: it latches a fault at `174.000…234.000 mA`, retaining at least `45.000%` over the donor's 120-mA mode. Actual current and brightness remain specimen measurements.
 
 ## Direct QSPI and touch
 
@@ -30,6 +30,6 @@ The initial cap is `40 MHz`: `25.000 ns` period versus 16 ns minimum; `12.500 ns
 - measure QSPI edges, CS-high high-Z/contention and shared-microSD throughput before raising the 40-MHz initial cap
 - measure actual panel backlight current, brightness, PWM EMI, temperature and TPS2553 latch recovery
 
-The three replacements add `0.4452 USD` per unit at quantity 100. **H3.3.1 is reviewed; the historical R1 progression marker is `H3.6.1`.**
+The three replacements add `0.4488 USD` per unit at quantity 100. **H3.3.1 is reviewed; the historical R1 progression marker is `H3.6.1`.**
 
 [Machine H3-VRF31 package](../hardware/verification/generated/H3-VRF31-display.json).

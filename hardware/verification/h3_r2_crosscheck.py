@@ -67,9 +67,9 @@ def recorded_hashes(value: object) -> list[tuple[str, str]]:
 
 
 def stages_from_prefix(text: str, default: tuple[str, ...] = ("H8",)) -> list[str]:
-    prefix = text.split(":", 1)[0].upper()
-    if prefix in {"H5", "H6", "H8"}:
-        return [prefix]
+    match = re.match(r"^\s*(H5|H6|H8)(?=\b|:)", text, flags=re.IGNORECASE)
+    if match:
+        return [match.group(1).upper()]
     return list(default)
 
 

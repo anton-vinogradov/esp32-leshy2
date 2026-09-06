@@ -125,7 +125,7 @@
   "expected_group_count": 251,
     "expected_quantity_per_product": 1218,
     "non_pcba_dispositions": {
-      "eastrising_er_tft035ips_6_ctp": "factory-final-mated display assembly represented by its controlled connector endpoint",
+      "eastrising_er_tft035ips_6_ctp": "owner-final-installed display assembly represented in ECAD by its controlled connector endpoint",
       "m5_u214": "optional removable external accessory; host receptacle remains in ECAD",
     "te_2118651_2": "two removable 30-mm off-board U.FL-to-U.FL cable assemblies; only their board connectors are represented in ECAD",
     "te_1_2118651_0": "three removable 60-mm off-board U.FL-to-U.FL cable assemblies; only their board connectors are represented in ECAD",

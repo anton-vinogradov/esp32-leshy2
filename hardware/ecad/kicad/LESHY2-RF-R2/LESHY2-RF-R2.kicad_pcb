@@ -99,7 +99,7 @@
 	(footprint "Leshy2:Keystone-1048P"
 		(layer "F.Cu")
 		(uuid "02cacee4-8911-5f9d-927e-f6d31bf98c31")
-		(at 39.99 85 90)
+		(at 42.99 85 90)
 		(descr "Keystone 1048P manufacturer drawing: 86.0x39.8-mm dual polarized holder and four independent SMT termination reserves; exact slot-polarity continuity remains the declared H5 received-part gate")
 		(property "Reference" "BT1"
 			(at 0 -4 90)

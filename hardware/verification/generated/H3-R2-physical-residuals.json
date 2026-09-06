@@ -4,14 +4,14 @@
   "marker": "H3-R2.7",
   "status": "reviewed_physical_only_residual_register",
   "source_sha256": {
-    "hardware/verification/generated/H3-R2-crosscheck.json": "2ad6e5b82a030cb4903976583ab426f3962927ba20cd284c9fb87620c6fbeee0"
+    "hardware/verification/generated/H3-R2-crosscheck.json": "b80b0dbb01f2e6c14f9f1f871a862cd8211d36912a61ff8d78253633c76d5034"
   },
   "summary": {
     "physical_evidence_rows": 51,
     "by_closure_stage": {
-      "H5": 1,
-      "H6": 5,
-      "H8": 46
+      "H5": 2,
+      "H6": 8,
+      "H8": 42
     },
     "by_source_workstream": {
       "H3-R2.1": 5,
@@ -38,13 +38,13 @@
       "residual": "H6 must realize converter/eFuse copper and vias at least as good as the modeled published EVM/package boundary",
       "classification": "ordinary_non_destructive",
       "closure_stages": [
-        "H8"
+        "H6"
       ],
       "evidence_contracts": {
-        "H8": {
-          "owner": "H8 assembled-prototype qualification",
-          "artifact": "versioned non-destructive procedure, exact DUT/firmware identity, calibrated raw data and retained limit comparison",
-          "pass_rule": "the one assembled prototype passes this item at every admitted corner: H6 must realize converter/eFuse copper and vias at least as good as the modeled published EVM/package boundary"
+        "H6": {
+          "owner": "H6 routed-design review",
+          "artifact": "revision-bound placement/routing export, extracted values, DRC/solver output and reviewer sign-off",
+          "pass_rule": "the final routed geometry demonstrates this item without a waiver: H6 must realize converter/eFuse copper and vias at least as good as the modeled published EVM/package boundary"
         }
       },
       "status": "physical_evidence_required"
@@ -92,13 +92,13 @@
       "residual": "H6 routed source/pack resistance extraction",
       "classification": "ordinary_non_destructive",
       "closure_stages": [
-        "H8"
+        "H6"
       ],
       "evidence_contracts": {
-        "H8": {
-          "owner": "H8 assembled-prototype qualification",
-          "artifact": "versioned non-destructive procedure, exact DUT/firmware identity, calibrated raw data and retained limit comparison",
-          "pass_rule": "the one assembled prototype passes this item at every admitted corner: H6 routed source/pack resistance extraction"
+        "H6": {
+          "owner": "H6 routed-design review",
+          "artifact": "revision-bound placement/routing export, extracted values, DRC/solver output and reviewer sign-off",
+          "pass_rule": "the final routed geometry demonstrates this item without a waiver: H6 routed source/pack resistance extraction"
         }
       },
       "status": "physical_evidence_required"
@@ -344,13 +344,13 @@
       "residual": "H6 preserves the 1206 series-resistor land as a controlled brightness trim point and routes the LED loop compactly",
       "classification": "ordinary_non_destructive",
       "closure_stages": [
-        "H8"
+        "H6"
       ],
       "evidence_contracts": {
-        "H8": {
-          "owner": "H8 assembled-prototype qualification",
-          "artifact": "versioned non-destructive procedure, exact DUT/firmware identity, calibrated raw data and retained limit comparison",
-          "pass_rule": "the one assembled prototype passes this item at every admitted corner: H6 preserves the 1206 series-resistor land as a controlled brightness trim point and routes the LED loop compactly"
+        "H6": {
+          "owner": "H6 routed-design review",
+          "artifact": "revision-bound placement/routing export, extracted values, DRC/solver output and reviewer sign-off",
+          "pass_rule": "the final routed geometry demonstrates this item without a waiver: H6 preserves the 1206 series-resistor land as a controlled brightness trim point and routes the LED loop compactly"
         }
       },
       "status": "physical_evidence_required"
@@ -710,13 +710,13 @@
       "residual": "H5/J4-F: inspect exact received cable/receptacle mating, gentle service loop, bend radius, retention and strain routing for all five paths",
       "classification": "ordinary_non_destructive",
       "closure_stages": [
-        "H8"
+        "H5"
       ],
       "evidence_contracts": {
-        "H8": {
-          "owner": "H8 assembled-prototype qualification",
-          "artifact": "versioned non-destructive procedure, exact DUT/firmware identity, calibrated raw data and retained limit comparison",
-          "pass_rule": "the one assembled prototype passes this item at every admitted corner: H5/J4-F: inspect exact received cable/receptacle mating, gentle service loop, bend radius, retention and strain routing for all five paths"
+        "H5": {
+          "owner": "H5 exact received-part evidence",
+          "artifact": "lot-identified photographs, dimensions, orientation and mating record for the exact received MPN",
+          "pass_rule": "the received item matches the selected identity and physical contract needed by: H5/J4-F: inspect exact received cable/receptacle mating, gentle service loop, bend radius, retention and strain routing for all five paths"
         }
       },
       "status": "physical_evidence_required"

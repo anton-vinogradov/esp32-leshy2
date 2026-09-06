@@ -38,7 +38,7 @@ ROLE_OVERRIDES = {
     "nicerf_sa818s_u_v18": "UHF voice transceiver / UHF голосовой трансивер",
     "nicerf_sa818s_v_v18": "VHF voice transceiver / VHF голосовой трансивер",
     "omron_b3s_1100p": "sixteen ordinary user keys / шестнадцать обычных клавиш",
-    "qdtech_hmx035ctft_001": "unresolved production display gate / незакрытый production-display gate",
+    "qdtech_hmx035ctft_001": "superseded display reference only / только заменённый display-reference",
     "samtec_ftsh_105_01_l_dv_k_p_tr": "four internal recovery headers / четыре внутренних recovery-разъёма",
     "te_2118651_2": "two 30-mm S3/C5 RF jumpers / два 30-мм RF-кабеля S3/C5",
     "te_1_2118651_0": "three 60-mm nRF RF jumpers / три 60-мм RF-кабеля nRF",

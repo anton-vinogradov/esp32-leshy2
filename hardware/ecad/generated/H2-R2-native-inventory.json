@@ -22,7 +22,7 @@
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "23b5799bc5334f9d02c13635c7f9e4f7503929795c669e98223fc37b95cc1c04"
+      "sha256": "a11701b3df0156dbd533867d3e4bd0d57b731623c12b083cccf493b03775d0fa"
     },
     "component_groups": {
       "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
@@ -30,7 +30,7 @@
     },
     "r2_cost_model": {
       "path": "hardware/product-design/h1-r2-cost-review.json",
-      "sha256": "3a694dd0d13bb96dd9ab343d393d857829a14933fbe2695f90dbf4b7f9bf3744"
+      "sha256": "a5cda262354cdc99ea2208912442acc764a924f50d9358016a54ae8639e234fd"
     },
     "c5_mux_and_service_vbus": {
       "path": "hardware/architecture/c5-sdio-service-mux-contract.json",
@@ -46,7 +46,7 @@
     },
     "display_mount": {
       "path": "hardware/product-design/display-mount.json",
-      "sha256": "694a78cddab6883e76403b39fdda55a9a87a7941eb404a480a964fd5e1682c60"
+      "sha256": "5901b314c630efdf278e0b923c22eba8c49ebfa1508329c37860e9256930c90f"
     },
     "airband": {
       "path": "hardware/product-design/h1-airband-filter.json",
@@ -629,7 +629,7 @@
       "quantity_per_product": 1,
       "scope": "base_product",
       "role": "display",
-      "ecad_disposition": "factory-final-mated display assembly represented by its controlled connector endpoint",
+      "ecad_disposition": "owner-final-installed display assembly represented in ECAD by its controlled connector endpoint",
       "qualification": "selected_exact_documented_production_display_for_h1_layout",
       "lifecycle": "manufacturer promises at least ten years continuity from 2023 for ER-TFT035IPS-6 and from 2015 for ER-TPC035-6; both exact lines are currently in stock",
       "contact_evidence": true,
