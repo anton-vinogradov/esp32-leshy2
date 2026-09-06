@@ -10,12 +10,12 @@
   },
   "summary": {
     "board_count": 2,
-    "track_via_item_count": 0,
-    "trace_count": 0,
+    "track_via_item_count": 19,
+    "trace_count": 19,
     "via_count": 0,
     "seed_total_unconnected_count": 3265,
-    "current_total_unconnected_count": 3265,
-    "resolved_connection_count": 0,
+    "current_total_unconnected_count": 3257,
+    "resolved_connection_count": 8,
     "analog_remaining_connection_count": 263,
     "placement_locality_pair_count": 310,
     "placement_locality_violation_count": 0,
@@ -47,24 +47,26 @@
     {
       "project": "LESHY2-UI-R2",
       "board": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "board_sha256": "e1276ed06306b83b513d7fbbfc049071f878b1bc0c5a49bbe7b134c501db60fc",
+      "board_sha256": "9085e7708a0f8ce53ac7d9eba589cdb952420ce64b1fb42dbdeb295a2e24afaa",
       "board_size_mm": [
         80.05,
         150.05
       ],
       "footprint_count": 432,
-      "trace_count": 0,
+      "trace_count": 4,
       "via_count": 0,
-      "track_via_item_count": 0,
-      "routed_net_count": 0,
-      "used_trace_layers": [],
+      "track_via_item_count": 4,
+      "routed_net_count": 1,
+      "used_trace_layers": [
+        "B.Cu"
+      ],
       "placement_courtyard_occupancy_percent": {
         "F.Cu": 17.861,
         "B.Cu": 39.98
       },
       "seed_total_unconnected_count": 1227,
-      "current_total_unconnected_count": 1227,
-      "resolved_connection_count": 0,
+      "current_total_unconnected_count": 1226,
+      "resolved_connection_count": 1,
       "classes": {
         "GROUND_REFERENCE": {
           "net_count": 1,
@@ -80,7 +82,7 @@
         },
         "SWITCHING_NODE": {
           "net_count": 1,
-          "remaining_connection_count": 1
+          "remaining_connection_count": 0
         },
         "RF_CONTROLLED": {
           "net_count": 22,
@@ -120,9 +122,9 @@
         }
       },
       "drc": {
-        "report_sha256": "0243da74493284520df99cc8b6b1f9b1aed03dcd64233e443194c17aa2150bb8",
+        "report_sha256": "6e5e7c2cd39dc9abebb12310fa2aed88007dc8bbe174f68b28e826ce59d7c237",
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-06T08:39:10",
+        "checked_at": "2026-09-06T08:58:10",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,
@@ -134,24 +136,26 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "board_sha256": "f593df1253087dcb63d5fe4db2254cec1164990d3f3863cd157e612084ea85ab",
+      "board_sha256": "050e506ede1676c2652b11ed7f3c06a24498cb8efbbd09174099caaa769c843b",
       "board_size_mm": [
         80.05,
         150.05
       ],
       "footprint_count": 784,
-      "trace_count": 0,
+      "trace_count": 15,
       "via_count": 0,
-      "track_via_item_count": 0,
-      "routed_net_count": 0,
-      "used_trace_layers": [],
+      "track_via_item_count": 15,
+      "routed_net_count": 7,
+      "used_trace_layers": [
+        "B.Cu"
+      ],
       "placement_courtyard_occupancy_percent": {
         "F.Cu": 53.177,
         "B.Cu": 61.395
       },
       "seed_total_unconnected_count": 2038,
-      "current_total_unconnected_count": 2038,
-      "resolved_connection_count": 0,
+      "current_total_unconnected_count": 2031,
+      "resolved_connection_count": 7,
       "classes": {
         "GROUND_REFERENCE": {
           "net_count": 2,
@@ -167,7 +171,7 @@
         },
         "SWITCHING_NODE": {
           "net_count": 14,
-          "remaining_connection_count": 23
+          "remaining_connection_count": 16
         },
         "RF_CONTROLLED": {
           "net_count": 58,
@@ -207,9 +211,9 @@
         }
       },
       "drc": {
-        "report_sha256": "a00ebe1c7302b6deb738e03ad0c295bd221a8140a5c92b1d8b119a2a168c3033",
+        "report_sha256": "b0700691e45551def46561bf94c45cdb3a3adf2d6e2c4633a951ab3986f57a30",
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-06T08:39:13",
+        "checked_at": "2026-09-06T08:58:16",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,

@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "id": "L2-H6-R2-MANUAL-COPPER-001",
+  "marker": "H6.0.3-R1",
+  "status": "in_progress",
+  "purpose": "Own the reviewed manual copper added after the deterministic 80 x 150 mm placement seed.",
+  "routes": [
+    {
+      "id": "UI-HUB-RP-VREG-LX",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "HUB_RP_VREG_LX_SW",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_VREG_LX_SW",
+      "routing_class": "SWITCHING_NODE",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "path_mm": [[44.5, 70.05], [44.45, 70.5], [44.25, 70.7], [41.55, 70.75], [40.445, 71.17]],
+      "expected_resolved_connections": 1,
+      "reason": "Short no-via RP2354 internal-regulator switch path, manually accepted after obstacle-aware proposal and native DRC."
+    },
+    {
+      "id": "RF-AON-BUCK-SW",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AON_BUCK_SW",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_BUCK_SW",
+      "routing_class": "SWITCHING_NODE",
+      "layer": "B.Cu",
+      "width_mm": 0.25,
+      "path_mm": [[50.15, 83.75], [49.6, 83.9], [48.445, 84.795]],
+      "expected_resolved_connections": 1,
+      "reason": "Short no-via TPS629203 300-mA switching path with a wider local trace."
+    },
+    {
+      "id": "RF-PACK-CHARGE-PUMP",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "PACK_CHARGE_PUMP",
+      "kicad_net": "/RF_02_PACK_SAFETY_AON/PACK_CHARGE_PUMP",
+      "routing_class": "SWITCHING_NODE",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "path_mm": [[69.2125, 92.75], [68.8, 92.9], [68.7, 93.05], [68.7, 94.0], [69.35, 95.375]],
+      "expected_resolved_connections": 1,
+      "reason": "Short no-via MAX17320 flying-capacitor connection kept inside the gauge island."
+    },
+    {
+      "id": "RF-RP-VREG-LX",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RF_RP_VREG_LX_SW",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_VREG_LX_SW",
+      "routing_class": "SWITCHING_NODE",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "path_mm": [[56.55, 40.0], [56.1, 39.95], [55.9, 39.75], [55.45, 37.3], [54.445, 36.17]],
+      "expected_resolved_connections": 1,
+      "reason": "Short no-via RP2354 internal-regulator switch path."
+    },
+    {
+      "id": "RF-MAIN-BUCK-BST",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "MAIN_BUCK_BST",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_BST",
+      "routing_class": "SWITCHING_NODE",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "path_mm": [[13.925, 126.5], [15.075, 126.605]],
+      "expected_resolved_connections": 1,
+      "reason": "Direct TPS564252 bootstrap hot-side connection."
+    },
+    {
+      "id": "RF-MAIN-BUCK-BST-LINK",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "MAIN_BUCK_BST_LINK",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_BST_LINK",
+      "routing_class": "SWITCHING_NODE",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "path_mm": [[16.035, 126.605], [16.065, 125.365]],
+      "expected_resolved_connections": 1,
+      "reason": "Direct bootstrap-capacitor to series-link connection."
+    },
+    {
+      "id": "RF-CHARGER-BTST1",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CHARGER_BTST1",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_BTST1",
+      "routing_class": "SWITCHING_NODE",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "path_mm": [[67.9, 70.1], [69.355, 70.035]],
+      "expected_resolved_connections": 1,
+      "reason": "Direct BQ25798 first bootstrap-capacitor hot-side connection."
+    },
+    {
+      "id": "RF-CHARGER-BTST2",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CHARGER_BTST2",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_BTST2",
+      "routing_class": "SWITCHING_NODE",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "path_mm": [[64.1375, 70.9], [63.45, 70.75], [62.605, 70.285]],
+      "expected_resolved_connections": 1,
+      "reason": "Short BQ25798 second bootstrap-capacitor hot-side connection with adjacent-pad clearance."
+    }
+  ],
+  "authorization": {
+    "routing_in_progress": true,
+    "fabrication": false,
+    "ordering": false
+  }
+}

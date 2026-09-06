@@ -1,0 +1,418 @@
+{
+  "schema_version": 1,
+  "artifact": "H6.0.3 reviewed manual-copper audit",
+  "marker": "H6.0.3-R1",
+  "status": "pass",
+  "sources": {
+    "contract": "hardware/layout/h6-r2-manual-copper.json",
+    "contract_sha256": "1610aae4999eb44ff71f98a460a86b3011aba4b155eaada07131cb2b64917936",
+    "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
+    "routing_policy_sha256": "b543e99c82fb663927b57280f71b8208a95799af506a8aff38325d8b55f898da",
+    "placement_status": "pass"
+  },
+  "summary": {
+    "route_count": 8,
+    "segment_count": 19,
+    "resolved_connection_count": 8,
+    "via_count": 0,
+    "manual_only_route_count": 8
+  },
+  "boards": [
+    {
+      "project": "LESHY2-UI-R2",
+      "board": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
+      "route_count": 1,
+      "segment_count": 4,
+      "resolved_connection_count": 1,
+      "copper_signature": [
+        [
+          "track",
+          "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_VREG_LX_SW",
+          "B.Cu",
+          0.15,
+          [
+            40.445,
+            71.17
+          ],
+          [
+            41.55,
+            70.75
+          ]
+        ],
+        [
+          "track",
+          "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_VREG_LX_SW",
+          "B.Cu",
+          0.15,
+          [
+            41.55,
+            70.75
+          ],
+          [
+            44.25,
+            70.7
+          ]
+        ],
+        [
+          "track",
+          "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_VREG_LX_SW",
+          "B.Cu",
+          0.15,
+          [
+            44.25,
+            70.7
+          ],
+          [
+            44.45,
+            70.5
+          ]
+        ],
+        [
+          "track",
+          "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_VREG_LX_SW",
+          "B.Cu",
+          0.15,
+          [
+            44.45,
+            70.5
+          ],
+          [
+            44.5,
+            70.05
+          ]
+        ]
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
+      "route_count": 7,
+      "segment_count": 15,
+      "resolved_connection_count": 7,
+      "copper_signature": [
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_BTST1",
+          "B.Cu",
+          0.15,
+          [
+            67.9,
+            70.1
+          ],
+          [
+            69.355,
+            70.035
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_BTST2",
+          "B.Cu",
+          0.15,
+          [
+            62.605,
+            70.285
+          ],
+          [
+            63.45,
+            70.75
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/CHARGER_BTST2",
+          "B.Cu",
+          0.15,
+          [
+            63.45,
+            70.75
+          ],
+          [
+            64.1375,
+            70.9
+          ]
+        ],
+        [
+          "track",
+          "/RF_02_PACK_SAFETY_AON/PACK_CHARGE_PUMP",
+          "B.Cu",
+          0.15,
+          [
+            68.7,
+            93.05
+          ],
+          [
+            68.7,
+            94.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_02_PACK_SAFETY_AON/PACK_CHARGE_PUMP",
+          "B.Cu",
+          0.15,
+          [
+            68.7,
+            93.05
+          ],
+          [
+            68.8,
+            92.9
+          ]
+        ],
+        [
+          "track",
+          "/RF_02_PACK_SAFETY_AON/PACK_CHARGE_PUMP",
+          "B.Cu",
+          0.15,
+          [
+            68.7,
+            94.0
+          ],
+          [
+            69.35,
+            95.375
+          ]
+        ],
+        [
+          "track",
+          "/RF_02_PACK_SAFETY_AON/PACK_CHARGE_PUMP",
+          "B.Cu",
+          0.15,
+          [
+            68.8,
+            92.9
+          ],
+          [
+            69.2125,
+            92.75
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_BUCK_SW",
+          "B.Cu",
+          0.25,
+          [
+            48.445,
+            84.795
+          ],
+          [
+            49.6,
+            83.9
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_BUCK_SW",
+          "B.Cu",
+          0.25,
+          [
+            49.6,
+            83.9
+          ],
+          [
+            50.15,
+            83.75
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_BST",
+          "B.Cu",
+          0.15,
+          [
+            13.925,
+            126.5
+          ],
+          [
+            15.075,
+            126.605
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_BST_LINK",
+          "B.Cu",
+          0.15,
+          [
+            16.035,
+            126.605
+          ],
+          [
+            16.065,
+            125.365
+          ]
+        ],
+        [
+          "track",
+          "/RF_10_RP2354_CORE_SERVICE/RF_RP_VREG_LX_SW",
+          "B.Cu",
+          0.15,
+          [
+            54.445,
+            36.17
+          ],
+          [
+            55.45,
+            37.3
+          ]
+        ],
+        [
+          "track",
+          "/RF_10_RP2354_CORE_SERVICE/RF_RP_VREG_LX_SW",
+          "B.Cu",
+          0.15,
+          [
+            55.45,
+            37.3
+          ],
+          [
+            55.9,
+            39.75
+          ]
+        ],
+        [
+          "track",
+          "/RF_10_RP2354_CORE_SERVICE/RF_RP_VREG_LX_SW",
+          "B.Cu",
+          0.15,
+          [
+            55.9,
+            39.75
+          ],
+          [
+            56.1,
+            39.95
+          ]
+        ],
+        [
+          "track",
+          "/RF_10_RP2354_CORE_SERVICE/RF_RP_VREG_LX_SW",
+          "B.Cu",
+          0.15,
+          [
+            56.1,
+            39.95
+          ],
+          [
+            56.55,
+            40.0
+          ]
+        ]
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "id": "UI-HUB-RP-VREG-LX",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "HUB_RP_VREG_LX_SW",
+      "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_VREG_LX_SW",
+      "routing_class": "SWITCHING_NODE",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "segment_count": 4,
+      "length_mm": 4.6182,
+      "resolved_connections": 1,
+      "reason": "Short no-via RP2354 internal-regulator switch path, manually accepted after obstacle-aware proposal and native DRC."
+    },
+    {
+      "id": "RF-AON-BUCK-SW",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AON_BUCK_SW",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_BUCK_SW",
+      "routing_class": "SWITCHING_NODE",
+      "layer": "B.Cu",
+      "width_mm": 0.25,
+      "segment_count": 2,
+      "length_mm": 2.0313,
+      "resolved_connections": 1,
+      "reason": "Short no-via TPS629203 300-mA switching path with a wider local trace."
+    },
+    {
+      "id": "RF-PACK-CHARGE-PUMP",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "PACK_CHARGE_PUMP",
+      "kicad_net": "/RF_02_PACK_SAFETY_AON/PACK_CHARGE_PUMP",
+      "routing_class": "SWITCHING_NODE",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "segment_count": 4,
+      "length_mm": 3.0901,
+      "resolved_connections": 1,
+      "reason": "Short no-via MAX17320 flying-capacitor connection kept inside the gauge island."
+    },
+    {
+      "id": "RF-RP-VREG-LX",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RF_RP_VREG_LX_SW",
+      "kicad_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_VREG_LX_SW",
+      "routing_class": "SWITCHING_NODE",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "segment_count": 4,
+      "length_mm": 4.7389,
+      "resolved_connections": 1,
+      "reason": "Short no-via RP2354 internal-regulator switch path."
+    },
+    {
+      "id": "RF-MAIN-BUCK-BST",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "MAIN_BUCK_BST",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_BST",
+      "routing_class": "SWITCHING_NODE",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "segment_count": 1,
+      "length_mm": 1.1548,
+      "resolved_connections": 1,
+      "reason": "Direct TPS564252 bootstrap hot-side connection."
+    },
+    {
+      "id": "RF-MAIN-BUCK-BST-LINK",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "MAIN_BUCK_BST_LINK",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/MAIN_BUCK_BST_LINK",
+      "routing_class": "SWITCHING_NODE",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "segment_count": 1,
+      "length_mm": 1.2404,
+      "resolved_connections": 1,
+      "reason": "Direct bootstrap-capacitor to series-link connection."
+    },
+    {
+      "id": "RF-CHARGER-BTST1",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CHARGER_BTST1",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_BTST1",
+      "routing_class": "SWITCHING_NODE",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "segment_count": 1,
+      "length_mm": 1.4565,
+      "resolved_connections": 1,
+      "reason": "Direct BQ25798 first bootstrap-capacitor hot-side connection."
+    },
+    {
+      "id": "RF-CHARGER-BTST2",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CHARGER_BTST2",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_BTST2",
+      "routing_class": "SWITCHING_NODE",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "segment_count": 2,
+      "length_mm": 1.6682,
+      "resolved_connections": 1,
+      "reason": "Short BQ25798 second bootstrap-capacitor hot-side connection with adjacent-pad clearance."
+    }
+  ],
+  "authorization": {
+    "routing_in_progress": true,
+    "fabrication": false,
+    "ordering": false
+  },
+  "errors": []
+}

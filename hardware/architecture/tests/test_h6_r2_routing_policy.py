@@ -27,6 +27,9 @@ GENERAL_ROUTING_SCRIPT = ROOT / "hardware/layout/h6_r2_general_routing.py"
 ROUTING_RENDER_SCRIPT = ROOT / "hardware/layout/h6_r2_routing_render.py"
 CURRENT_ROUTING_AUDIT = ROOT / "hardware/layout/generated/H6-R2-current-routing-audit.json"
 CURRENT_ROUTING_SCRIPT = ROOT / "hardware/layout/h6_r2_current_routing.py"
+MANUAL_COPPER_CONTRACT = ROOT / "hardware/layout/h6-r2-manual-copper.json"
+MANUAL_COPPER_AUDIT = ROOT / "hardware/layout/generated/H6-R2-manual-copper-audit.json"
+MANUAL_COPPER_SCRIPT = ROOT / "hardware/layout/h6_r2_manual_copper.py"
 RELEASE_PLAN = ROOT / "hardware/verification/h6-layout-release-plan.json"
 KICAD_PYTHON = Path(
     "/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/"
@@ -163,9 +166,9 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual("H6.0.3-R1", audit["marker"])
         self.assertEqual("pass_progress", audit["status"])
         self.assertFalse(audit["phase_complete"])
-        self.assertEqual(0, audit["summary"]["track_via_item_count"])
-        self.assertEqual(0, audit["summary"]["resolved_connection_count"])
-        self.assertEqual(3265, audit["summary"]["current_total_unconnected_count"])
+        self.assertEqual(19, audit["summary"]["track_via_item_count"])
+        self.assertEqual(8, audit["summary"]["resolved_connection_count"])
+        self.assertEqual(3257, audit["summary"]["current_total_unconnected_count"])
         self.assertEqual(263, audit["summary"]["analog_remaining_connection_count"])
         self.assertEqual(310, audit["summary"]["placement_locality_pair_count"])
         self.assertEqual(0, audit["summary"]["placement_locality_violation_count"])
@@ -196,6 +199,36 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
             text = document.read_text(encoding="utf-8")
             self.assertIn("images/h6-r2-routing-ui.svg", text)
             self.assertIn("images/h6-r2-routing-rf.svg", text)
+
+    def test_first_manual_switching_routes_are_reproducible_and_drc_bound(self):
+        contract = json.loads(MANUAL_COPPER_CONTRACT.read_text(encoding="utf-8"))
+        audit = json.loads(MANUAL_COPPER_AUDIT.read_text(encoding="utf-8"))
+        self.assertEqual("in_progress", contract["status"])
+        self.assertEqual("pass", audit["status"])
+        self.assertEqual([], audit["errors"])
+        self.assertEqual(8, audit["summary"]["route_count"])
+        self.assertEqual(19, audit["summary"]["segment_count"])
+        self.assertEqual(8, audit["summary"]["resolved_connection_count"])
+        self.assertEqual(0, audit["summary"]["via_count"])
+        self.assertTrue(
+            all(row["routing_class"] == "SWITCHING_NODE" for row in audit["routes"])
+        )
+        self.assertEqual(
+            {"B.Cu"},
+            {row["layer"] for row in audit["routes"]},
+        )
+        current = json.loads(CURRENT_ROUTING_AUDIT.read_text(encoding="utf-8"))
+        self.assertEqual(0, current["summary"]["drc_violation_count"])
+        if KICAD_PYTHON.is_file():
+            result = subprocess.run(
+                [str(KICAD_PYTHON), str(MANUAL_COPPER_SCRIPT), "--check"],
+                cwd=ROOT,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+            )
+            self.assertEqual(0, result.returncode, result.stdout)
+            self.assertIn("8 routes; 19 segments; 8 resolved connections", result.stdout)
 
     def test_h6_release_substep_ids_are_unique_and_end_at_h609(self):
         plan = json.loads(RELEASE_PLAN.read_text(encoding="utf-8"))
@@ -306,7 +339,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         for script, expected in (
             (PLACEMENT_FREEZE_SCRIPT, "1208 exact anchors"),
             (GENERAL_ROUTING_SCRIPT, "historical routing evidence preserved; current H6.0.3-R1"),
-            (CURRENT_ROUTING_SCRIPT, "0 copper items; 0 resolved; 3265 remain"),
+            (CURRENT_ROUTING_SCRIPT, "19 copper items; 8 resolved; 3257 remain"),
         ):
             result = subprocess.run(
                 [str(KICAD_PYTHON), str(script), "--check"],
