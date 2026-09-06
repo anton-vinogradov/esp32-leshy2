@@ -266,6 +266,16 @@
     }
   },
   "placement_overrides": {
+    "s3_detector_input_cap": {
+      "frame": "ui-inner",
+      "centre_mm": [
+        24.305,
+        2.105
+      ],
+      "rotation_deg": 180.0,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "swap the raw-sample and detector-side pad directions without moving the 0402 body so both S3 coupler sample nets route directly on B.Cu without crossing or adding a signal via"
+    },
     "pack_holder": {
       "frame": "rear-outer",
       "centre_mm": [

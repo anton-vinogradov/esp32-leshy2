@@ -5,7 +5,7 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "e9f07ee9c932716a90adb0268e4d15bb94d98ba5c63ad90b5a7e55ec1c7b6b71",
+    "contract_sha256": "54fca16c81fe7b67c4a64f9288af38a8c4aedd65fb8c1dd997a42cdd55d63d51",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -65,13 +65,13 @@
         "F.Cu": 20
       },
       "method_counts": {
-        "connectivity/sheet automatic seed": 338,
+        "connectivity/sheet automatic seed": 337,
         "exact H1 seed": 30,
         "hard H1 datum": 27,
         "nearest exact-footprint correction": 16,
         "reviewed H6.0.2 fan-out correction": 3,
         "reviewed H6.0.2 oscillator-locality correction": 11,
-        "reviewed H6.0.3 signal-locality correction": 3
+        "reviewed H6.0.3 signal-locality correction": 4
       },
       "net_count": 307,
       "mechanical": [
@@ -422,7 +422,7 @@
           "sheet": "UI_10_S3_DISPLAY_TOUCH",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               23.35,
@@ -442,7 +442,7 @@
             24.305,
             2.105
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             24305000,
@@ -15036,8 +15036,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "unrouted_seed_sha256": "29c31cfb3d6d9d418972d49c3bacc0a4bddee0d6b80593f3b30208744996639b",
-      "placement_signature_sha256": "9edd677fff86f2e6a0479e7ecc910cb281e3ca880ddbe0694442eb95db68b9e4",
+      "unrouted_seed_sha256": "7cfb70f3764b0c8c20eb890c84e86cd7b6d441eacdabaeabea6d601ff9289577",
+      "placement_signature_sha256": "86a61e1a757e3014153942f78fd521916ac81dc73d3615838400d2c87cb3ae54",
       "locality": {
         "status": "pass",
         "pair_count": 52,

@@ -1744,6 +1744,18 @@
       "reason": "Via-free 315-MHz branch midpoint joins the input inductor, shunt-trap inductor and final series inductor in their physical order without a dangling tuning stub."
     },
     {
+      "id": "RF-CC1101-315-IN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_RF_315_IN",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_RF_315_IN",
+      "routing_class": "RF_CONTROLLED",
+      "layer": "B.Cu",
+      "width_mm": 0.134874,
+      "path_mm": [[65.745, 43.995], [66.1, 44.65], [69.75, 44.65], [70.365, 44.06]],
+      "expected_resolved_connections": 1,
+      "reason": "Via-free 315-MHz input branch leaves RF1 orthogonally, then passes below the encoder push-switch ground post before entering the first series inductor."
+    },
+    {
       "id": "RF-AIRBAND-BPF-IN",
       "project": "LESHY2-RF-R2",
       "canonical_net": "AIR_BPF_IN_RF",
@@ -1804,6 +1816,30 @@
       "reason": "Short via-free negative secondary connection from the input transformer into the exact 12-nH mixer-matching inductor."
     },
     {
+      "id": "RF-AIRBAND-T1-SEC-CT",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AIR_T1_SEC_CT",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_T1_SEC_CT",
+      "routing_class": "RF_CONTROLLED",
+      "layer": "B.Cu",
+      "width_mm": 0.134874,
+      "path_mm": [[10.615, 15.335], [9.7, 15.335], [9.7, 13.3], [17.6, 13.3], [17.6, 17.945], [15.76, 17.945]],
+      "expected_resolved_connections": 1,
+      "reason": "Via-free transformer centre-tap feed crosses above the broad BPF inductor pads and approaches the WBC1-1TLC centre pad laterally."
+    },
+    {
+      "id": "RF-AIRBAND-LO-PAD",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AIR_LO_PAD",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_PAD",
+      "routing_class": "RF_CONTROLLED",
+      "layer": "B.Cu",
+      "width_mm": 0.134874,
+      "path_mm": [[23.855, 3.785], [23.2, 3.785], [23.2, 1.7], [28.0, 1.7], [28.0, 6.115], [28.565, 6.115], [28.615, 7.315]],
+      "expected_resolved_connections": 2,
+      "reason": "Via-free LO attenuation node passes above the ESD and crystal fields, then joins both shunt resistors without crossing the already routed Si5351A crystal nets."
+    },
+    {
       "id": "RF-CC1101-DETECTOR-SAMPLE",
       "project": "LESHY2-RF-R2",
       "canonical_net": "CC_RF_SAMPLE",
@@ -1826,6 +1862,150 @@
       "path_mm": [[8.325, 4.105], [7.6, 4.105], [7.6, 2.8], [12.2, 2.8], [12.2, 3.605], [11.535, 3.605]],
       "expected_resolved_connections": 1,
       "reason": "Short via-free output link from the Airband BPF shunt node into the LNA coupling capacitor."
+    },
+    {
+      "id": "UI-NRF2-MODULE-RF",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_MODULE_RF_50R",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_MODULE_RF_50R",
+      "routing_class": "RF_CONTROLLED",
+      "layer": "B.Cu",
+      "width_mm": 0.134874,
+      "path_mm": [[68.0, 11.15], [67.7, 12.0], [67.7, 14.425], [68.365, 14.425]],
+      "expected_resolved_connections": 1,
+      "reason": "Via-free 50-ohm path from the nRF24-2 U.FL to the coupler input; the left-side approach avoids the adjacent external-path coupler pad."
+    },
+    {
+      "id": "UI-S3-COUPLER-TERM",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_COUPLER_TERMINATION",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_COUPLER_TERMINATION",
+      "routing_class": "RF_CONTROLLED",
+      "layer": "B.Cu",
+      "width_mm": 0.134874,
+      "path_mm": [[25.125, 5.35], [24.5, 5.35], [24.5, 4.0], [24.065, 4.0], [24.065, 3.365]],
+      "expected_resolved_connections": 1,
+      "reason": "Via-free isolated-port termination leaves the coupler to the left and approaches the 49.9-ohm resistor from above, keeping both sampling-capacitor exits independent."
+    },
+    {
+      "id": "UI-C5-COUPLER-TERM",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_COUPLER_TERMINATION",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_COUPLER_TERMINATION",
+      "routing_class": "RF_CONTROLLED",
+      "layer": "B.Cu",
+      "width_mm": 0.134874,
+      "path_mm": [[57.375, 7.1], [58.05, 7.1], [58.05, 3.8], [55.5, 3.8], [55.5, 5.115], [56.315, 5.115]],
+      "expected_resolved_connections": 1,
+      "reason": "Via-free isolated-port termination exits away from the adjacent coupled pad and approaches the 49.9-ohm resistor from its unblocked side."
+    },
+    {
+      "id": "UI-C5-MODULE-RF",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_MODULE_RF_50R",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_MODULE_RF_50R",
+      "routing_class": "RF_CONTROLLED",
+      "layer": "B.Cu",
+      "width_mm": 0.134874,
+      "path_mm": [[56.05, 10.55], [55.45, 9.8], [55.45, 6.4], [56.125, 6.4]],
+      "expected_resolved_connections": 1,
+      "reason": "Via-free 50-ohm path from the C5 U.FL to the coupler input uses the narrow verified corridor between the sampling capacitor and adjacent through-path pad."
+    },
+    {
+      "id": "UI-C5-DETECTOR-SAMPLE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_FORWARD_RF_SAMPLE",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_FORWARD_RF_SAMPLE",
+      "routing_class": "RF_CONTROLLED",
+      "layer": "B.Cu",
+      "width_mm": 0.134874,
+      "path_mm": [[54.785, 7.105], [54.65, 7.6], [54.65, 11.1375], [53.7, 11.1375]],
+      "expected_resolved_connections": 1,
+      "reason": "Via-free forward detector route stays just outside the LTC5532 supply-pad field and enters RF IN laterally."
+    },
+    {
+      "id": "UI-C5-COUPLED-SAMPLE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_FORWARD_RF_SAMPLE_RAW",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_FORWARD_RF_SAMPLE_RAW",
+      "routing_class": "RF_CONTROLLED",
+      "layer": "B.Cu",
+      "width_mm": 0.134874,
+      "path_mm": [[57.375, 6.4], [57.375, 5.75], [53.2, 5.75], [53.2, 7.105], [53.825, 7.105]],
+      "expected_resolved_connections": 1,
+      "reason": "Via-free coupled-port sample exits above the coupler, clears its termination resistor and enters the series sampling capacitor from the left."
+    },
+    {
+      "id": "UI-C5-EXTERNAL-RF",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_EXTERNAL_RF_50R",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_EXTERNAL_RF_50R",
+      "routing_class": "RF_CONTROLLED",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [56.125, 7.1], "end_mm": [56.125, 7.8]},
+        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [56.125, 7.8], "end_mm": [52.5, 7.8]},
+        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [52.5, 7.8], "end_mm": [51.75, 1.0]},
+        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [51.75, 1.0], "end_mm": [51.75, -1.65]}
+      ],
+      "vias": [
+        {"at_mm": [56.125, 7.8], "diameter_mm": 0.5, "drill_mm": 0.25}
+      ],
+      "expected_resolved_connections": 1,
+      "reason": "The C5 through path uses one necessary B-to-F transition because the coupler is on the inner face while the double-sided edge-launch SMA centre pad is on F.Cu; the top-side run remains obstacle-free and its adjacent return-via pair is reserved for the ground-plane pass."
+    },
+    {
+      "id": "UI-S3-EXTERNAL-RF",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_EXTERNAL_RF_50R",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_EXTERNAL_RF_50R",
+      "routing_class": "RF_CONTROLLED",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [23.875, 5.35], "end_mm": [23.875, 5.7]},
+        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [23.875, 5.7], "end_mm": [27.5, 5.7]},
+        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [27.5, 5.7], "end_mm": [28.25, 1.0]},
+        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [28.25, 1.0], "end_mm": [28.25, -1.65]}
+      ],
+      "vias": [
+        {"at_mm": [23.875, 5.7], "diameter_mm": 0.5, "drill_mm": 0.25}
+      ],
+      "expected_resolved_connections": 1,
+      "reason": "The S3 through path uses the one reviewed B-to-F edge-launch transition; the top-side run is free of components and its adjacent return-via pair is reserved for the ground-plane pass."
+    },
+    {
+      "id": "UI-S3-MODULE-RF",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_MODULE_RF_50R",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_MODULE_RF_50R",
+      "routing_class": "RF_CONTROLLED",
+      "layer": "B.Cu",
+      "width_mm": 0.134874,
+      "path_mm": [[15.75, 4.65], [15.75, 5.85], [23.2, 5.85], [23.2, 4.65], [23.875, 4.65]],
+      "expected_resolved_connections": 1,
+      "reason": "Via-free S3 U.FL path passes below the LTC5532 pad field and approaches the coupler input from its unobstructed left side."
+    },
+    {
+      "id": "UI-S3-COUPLED-SAMPLE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_FORWARD_RF_SAMPLE_RAW",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_FORWARD_RF_SAMPLE_RAW",
+      "routing_class": "RF_CONTROLLED",
+      "layer": "B.Cu",
+      "width_mm": 0.134874,
+      "path_mm": [[25.125, 4.65], [25.6, 4.05], [25.6, 2.105], [24.785, 2.105]],
+      "expected_resolved_connections": 1,
+      "reason": "Via-free coupled sample leaves the coupler to the right and enters the outward-facing raw-sample pad of the reviewed 180-degree capacitor orientation without crossing the detector side."
+    },
+    {
+      "id": "UI-S3-DETECTOR-SAMPLE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_FORWARD_RF_SAMPLE",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_FORWARD_RF_SAMPLE",
+      "routing_class": "RF_CONTROLLED",
+      "layer": "B.Cu",
+      "width_mm": 0.134874,
+      "path_mm": [[23.825, 2.105], [18.6, 2.105], [18.6, 4.95], [19.8625, 4.95]],
+      "expected_resolved_connections": 1,
+      "reason": "Via-free detector input leaves the inward-facing sampling-capacitor pad toward LTC5532 RF IN; the 180-degree capacitor orientation removes the previous planar crossing."
     },
     {
       "id": "UI-HUB-RP-XIN",

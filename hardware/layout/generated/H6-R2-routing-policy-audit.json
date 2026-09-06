@@ -4,11 +4,11 @@
   "marker": "H6.0.2-R1",
   "status": "pass",
   "source_hashes": {
-    "hardware/layout/h6-r2-routing-policy.json": "0aa74aba018d4b9437e3308b58ffcad4e2c6d6686de1da8d349bb94c6321bd1f",
+    "hardware/layout/h6-r2-routing-policy.json": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
     "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "287b2ed42a1f32ecafde5705090962ec6c3da362a32f8ee508dba0f8c94c7706",
     "hardware/ecad/generated/H2-R2-native-net-ledger.json": "e490be3e8d81e65098684467654980cf4a21fb3a166213a29163d4d3661766be",
     "hardware/verification/h3-r2-load-binding-contract.json": "48d2575032bac09bd8ea276e814c16fbb1f76ca6afe0cea0dd36cee2e8c2a384",
-    "hardware/layout/h6-r2-placement-contract.json": "e9f07ee9c932716a90adb0268e4d15bb94d98ba5c63ad90b5a7e55ec1c7b6b71"
+    "hardware/layout/h6-r2-placement-contract.json": "54fca16c81fe7b67c4a64f9288af38a8c4aedd65fb8c1dd997a42cdd55d63d51"
   },
   "stackup_binding": {
     "manufacturer": "JLCPCB",
@@ -76,6 +76,7 @@
     "external_usb_port_count": 4,
     "display_i8080_net_count": 10,
     "automatic_helper_class_count": 1,
+    "reviewed_rf_edge_transition_count": 10,
     "unclassified_net_count": 0,
     "unexpected_net_count": 0
   },

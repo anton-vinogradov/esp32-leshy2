@@ -24,6 +24,7 @@ from h6_r2_placement import build as build_placement
 ROOT = Path(__file__).resolve().parents[2]
 CONTRACT_PATH = ROOT / "hardware/layout/h6-r2-manual-copper.json"
 POLICY_PATH = ROOT / "hardware/layout/generated/H6-R2-routing-policy-audit.json"
+ROUTING_CONTRACT_PATH = ROOT / "hardware/layout/h6-r2-routing-policy.json"
 AUDIT_PATH = ROOT / "hardware/layout/generated/H6-R2-manual-copper-audit.json"
 PROJECTS = ("LESHY2-UI-R2", "LESHY2-RF-R2")
 
@@ -99,7 +100,13 @@ def copper_signature(board) -> list[tuple]:
     return sorted(rows)
 
 
-def add_routes(board, routes: list[dict], policy_rows: dict[tuple[str, str], dict], project: str) -> list[dict]:
+def add_routes(
+    board,
+    routes: list[dict],
+    policy_rows: dict[tuple[str, str], dict],
+    project: str,
+    rf_transitions: dict,
+) -> list[dict]:
     results = []
     for route in routes:
         net_name = route["kicad_net"]
@@ -134,6 +141,31 @@ def add_routes(board, routes: list[dict], policy_rows: dict[tuple[str, str], dic
         if not segments:
             raise ValueError(f"{route['id']}: route has no segments")
         vias = route.get("vias", [])
+        if route["routing_class"] in {"RF_CONTROLLED", "USB_DIFFERENTIAL"} and vias:
+            allowed = set(rf_transitions["allowed_canonical_nets"])
+            if route["canonical_net"] not in allowed:
+                raise ValueError(
+                    f"{route['id']}: controlled-impedance via is not an approved edge-launch transition"
+                )
+            maximum = int(rf_transitions["maximum_through_vias_per_net"])
+            if len(vias) > maximum:
+                raise ValueError(
+                    f"{route['id']}: {len(vias)} signal vias exceed the approved maximum {maximum}"
+                )
+            expected_geometry = (
+                float(rf_transitions["signal_via_diameter_mm"]),
+                float(rf_transitions["signal_via_drill_mm"]),
+            )
+            for via_row in vias:
+                geometry = (
+                    float(via_row["diameter_mm"]),
+                    float(via_row["drill_mm"]),
+                )
+                if geometry != expected_geometry:
+                    raise ValueError(
+                        f"{route['id']}: controlled-impedance via {geometry} does not match "
+                        f"approved {expected_geometry} geometry"
+                    )
         before = remaining_for_net(board, net_name)
         lengths = []
         layers = set()
@@ -204,6 +236,8 @@ def add_routes(board, routes: list[dict], policy_rows: dict[tuple[str, str], dic
 def build() -> tuple[dict[str, object], dict]:
     contract = load(CONTRACT_PATH)
     policy = load(POLICY_PATH)
+    routing_contract = load(ROUTING_CONTRACT_PATH)
+    rf_transitions = routing_contract["classes"]["RF_CONTROLLED"]["reviewed_outer_layer_transitions"]
     policy_rows = {
         (row["project"], row["kicad_net"]): row for row in policy["rows"]
     }
@@ -221,7 +255,7 @@ def build() -> tuple[dict[str, object], dict]:
             project_routes = [
                 route for route in contract["routes"] if route["project"] == project
             ]
-            rows = add_routes(board, project_routes, policy_rows, project)
+            rows = add_routes(board, project_routes, policy_rows, project, rf_transitions)
             route_results.extend(rows)
             if not pcbnew.SaveBoard(str(staged), board):
                 raise SystemExit(f"{project}: save failed")
@@ -250,6 +284,8 @@ def build() -> tuple[dict[str, object], dict]:
             "contract_sha256": sha256(CONTRACT_PATH),
             "routing_policy": str(POLICY_PATH.relative_to(ROOT)),
             "routing_policy_sha256": sha256(POLICY_PATH),
+            "routing_contract": str(ROUTING_CONTRACT_PATH.relative_to(ROOT)),
+            "routing_contract_sha256": sha256(ROUTING_CONTRACT_PATH),
             "placement_status": placement_audit["status"],
         },
         "summary": {

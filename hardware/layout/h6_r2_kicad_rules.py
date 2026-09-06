@@ -81,10 +81,17 @@ def render(project: str, policy: dict, audit: dict) -> str:
     rows = [row for row in audit["rows"] if row["project"] == project]
     rf = sorted(row["kicad_net"] for row in rows if row["routing_class"] == "RF_CONTROLLED")
     usb = sorted(row["kicad_net"] for row in rows if row["routing_class"] == "USB_DIFFERENTIAL")
+    reviewed_transitions = set(
+        policy["classes"]["RF_CONTROLLED"]["reviewed_outer_layer_transitions"]["allowed_canonical_nets"]
+    )
+    edge_rf = sorted(
+        row["kicad_net"] for row in rows if row["canonical_net"] in reviewed_transitions
+    )
     geometries = policy["stackup_binding"]["outer_layer_geometries"]
     rf_geometry = geometries["RF_50R_CPWG"]
     usb_geometry = geometries["USB_90R_DIFFERENTIAL"]
     all_controlled = sorted(rf + usb)
+    via_forbidden = sorted(set(all_controlled) - set(edge_rf))
     return (
         "(version 1)\n\n"
         + BASE_RULES[project].rstrip()
@@ -100,10 +107,19 @@ def render(project: str, policy: dict, audit: dict) -> str:
         + f"  (condition \"{net_condition(usb, track_only=True)}\")\n"
         + f"  (constraint track_width (min {usb_geometry['trace_width_mil']:.2f}mil) (opt {usb_geometry['trace_width_mil']:.2f}mil) (max {usb_geometry['trace_width_mil']:.2f}mil))\n"
         + f"  (constraint diff_pair_gap (min {usb_geometry['pair_gap_mil']:.2f}mil) (opt {usb_geometry['pair_gap_mil']:.2f}mil) (max {usb_geometry['pair_gap_mil']:.2f}mil)))\n\n"
-        + "(rule \"H6 controlled impedance stays on outer layers\"\n"
+        + "# Only the exact edge-launch RF nets may cross Edge.Cuts and use one\n"
+        + "# reviewed B.Cu-to-F.Cu signal via.  The manual-copper generator enforces\n"
+        + "# the one-via count and exact 0.50/0.25-mm geometry.\n"
+        + "(rule \"H6 reviewed RF edge-launch trace reaches centre land\"\n"
+        + f"  (condition \"{net_condition(edge_rf, track_only=True)}\")\n"
+        + "  (constraint edge_clearance (min -3mm)))\n\n"
+        + "(rule \"H6 controlled-impedance tracks stay on outer layers\"\n"
         + "  (layer inner)\n"
-        + f"  (condition \"{net_condition(all_controlled)}\")\n"
-        + "  (constraint disallow track via))\n"
+        + f"  (condition \"{net_condition(all_controlled, track_only=True)}\")\n"
+        + "  (constraint disallow track))\n\n"
+        + "(rule \"H6 controlled-impedance vias only on reviewed edge launches\"\n"
+        + f"  (condition \"A.Type == 'Via' && {net_condition(via_forbidden)}\")\n"
+        + "  (constraint disallow via))\n"
     )
 
 

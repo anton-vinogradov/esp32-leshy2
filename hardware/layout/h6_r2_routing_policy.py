@@ -80,6 +80,19 @@ RF_EXACT = {
     "S3_COUPLER_TERMINATION",
 }
 
+RF_EDGE_LAUNCH_TRANSITIONS = {
+    "C5_EXTERNAL_RF_50R",
+    "CC_EXTERNAL_RF_50R",
+    "NRF0_EXTERNAL_RF_50R",
+    "NRF1_EXTERNAL_RF_50R",
+    "NRF2_EXTERNAL_RF_50R",
+    "RX_AMLW_BOUNDARY_RF",
+    "RX_FMSW_BOUNDARY_RF",
+    "S3_EXTERNAL_RF_50R",
+    "VOICE_U_EXTERNAL_RF_50R",
+    "VOICE_V_EXTERNAL_RF_50R",
+}
+
 
 def is_ground(name: str) -> bool:
     return "GROUND" in name or name.endswith("_GND")
@@ -283,6 +296,16 @@ def build() -> dict:
     external_pair_stems = {stem for _project, stem in pair_members if stem in EXTERNAL_USB_PAIR_STEMS}
     if external_pair_stems != EXTERNAL_USB_PAIR_STEMS:
         errors.append("the four external USB connector pairs are not all present")
+    rf_transitions = contract["classes"]["RF_CONTROLLED"]["reviewed_outer_layer_transitions"]
+    if set(rf_transitions["allowed_canonical_nets"]) != RF_EDGE_LAUNCH_TRANSITIONS:
+        errors.append("reviewed RF edge-launch transition allow-list is not the exact ten-port set")
+    if rf_transitions["maximum_through_vias_per_net"] != 1:
+        errors.append("reviewed RF edge-launch transitions do not enforce one signal via per net")
+    if (
+        rf_transitions["signal_via_diameter_mm"],
+        rf_transitions["signal_via_drill_mm"],
+    ) != (0.5, 0.25):
+        errors.append("reviewed RF edge-launch transition via geometry changed")
 
     total_counts = Counter(row["routing_class"] for row in rows)
     return {
@@ -303,6 +326,7 @@ def build() -> dict:
             "external_usb_port_count": len(external_pair_stems),
             "display_i8080_net_count": len(display_rows),
             "automatic_helper_class_count": len(automatic_classes),
+            "reviewed_rf_edge_transition_count": len(RF_EDGE_LAUNCH_TRANSITIONS),
             "unclassified_net_count": len(missing),
             "unexpected_net_count": len(unexpected),
         },
@@ -339,6 +363,7 @@ def doc(audit: dict, bootstrap: dict, *, ru: bool) -> str:
             f"- четыре внешних USB-порта разворачиваются в `{audit['summary']['usb_pair_count']}` полных сегментов диффпар, и ровно 10 линий прямого i8080-8 найдены автоматически;\n"
             "- абстрактные RF-, safety-, ESD- и силовые ground-якоря физически сведены в сплошной `POWER_GROUND`; отдельной остаётся только `AUDIO_GROUND`, соединённая с ним явной 0-Ω перемычкой `R172`;\n"
             "- текущий калькулятор JLCPCB задаёт внешнюю RF CPWG 50 Ом как 5,31 mil ширины / 6 mil до боковой меди, а USB 90 Ом — как 5,31 mil ширины / 6 mil между линиями;\n"
+            f"- ровно {audit['summary']['reviewed_rf_edge_transition_count']} внешних RF-трактов могут иметь по одному переходу 0,50/0,25 мм между внутренней B.Cu цепью и RF-пятой торцевого SMA на F.Cu; для всех остальных controlled-RF сетей via запрещены;\n"
             "- канонические `DP/DM` сохранены в контрактах, но физические KiCad-сети заканчиваются на `_P/_N`, поэтому штатный дифференциальный роутер видит все 12 пар;\n"
             "- результат автотрассировки не принимается без импорта в KiCad, визуального ревью и штатного DRC; полнота соединений проверяется полным native connectivity count, а не ограниченным 499 строками JSON-списком DRC.\n\n"
             "## Одноразовая рабочая область помощника\n\n"
@@ -402,6 +427,7 @@ def doc(audit: dict, bootstrap: dict, *, ru: bool) -> str:
             f"- four external USB ports expand to `{audit['summary']['usb_pair_count']}` complete differential-pair segments, and exactly ten direct i8080-8 nets are detected automatically;\n"
             "- abstract RF, safety, ESD and power-ground anchors are physically canonicalized onto the solid `POWER_GROUND`; only `AUDIO_GROUND` remains local and joins it through explicit 0-ohm link `R172`;\n"
             "- the current JLCPCB calculator sets outer 50-ohm RF CPWG to 5.31-mil width / 6-mil lateral copper gap and 90-ohm USB to 5.31-mil width / 6-mil pair gap;\n"
+            f"- exactly {audit['summary']['reviewed_rf_edge_transition_count']} external RF paths may use one 0.50/0.25-mm transition between the inner-face B.Cu chain and the edge-launch SMA RF land on F.Cu; vias remain forbidden on every other controlled-RF net;\n"
             "- canonical `DP/DM` identities remain in the contracts, while physical KiCad net names end in `_P/_N`, allowing the native differential router to discover all 12 pairs;\n"
             "- no automatic result is accepted before KiCad import, visual review and native DRC; completeness uses the full native connectivity count rather than the DRC JSON list capped at 499 rows.\n\n"
             "## Disposable helper workspace\n\n"

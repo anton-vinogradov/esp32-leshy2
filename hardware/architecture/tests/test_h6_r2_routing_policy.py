@@ -73,6 +73,26 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual(12, self.audit["summary"]["usb_pair_count"])
         self.assertEqual(4, self.audit["summary"]["external_usb_port_count"])
         self.assertEqual(10, self.audit["summary"]["display_i8080_net_count"])
+        self.assertEqual(10, self.audit["summary"]["reviewed_rf_edge_transition_count"])
+        transitions = self.contract["classes"]["RF_CONTROLLED"]["reviewed_outer_layer_transitions"]
+        self.assertEqual(1, transitions["maximum_through_vias_per_net"])
+        self.assertEqual(0.5, transitions["signal_via_diameter_mm"])
+        self.assertEqual(0.25, transitions["signal_via_drill_mm"])
+        self.assertEqual(
+            {
+                "C5_EXTERNAL_RF_50R",
+                "CC_EXTERNAL_RF_50R",
+                "NRF0_EXTERNAL_RF_50R",
+                "NRF1_EXTERNAL_RF_50R",
+                "NRF2_EXTERNAL_RF_50R",
+                "RX_AMLW_BOUNDARY_RF",
+                "RX_FMSW_BOUNDARY_RF",
+                "S3_EXTERNAL_RF_50R",
+                "VOICE_U_EXTERNAL_RF_50R",
+                "VOICE_V_EXTERNAL_RF_50R",
+            },
+            set(transitions["allowed_canonical_nets"]),
+        )
         display = {row["canonical_net"] for row in self.audit["rows"] if row["routing_class"] == "DISPLAY_I8080"}
         self.assertEqual({"LCD_DC", "LCD_WR_N", *(f"LCD_DB{i}" for i in range(8))}, display)
         self.assertTrue(all(row["routing_class"] == "USB_DIFFERENTIAL" for row in self.audit["rows"] if "USB_DM" in row["canonical_net"] or "USB_DP" in row["canonical_net"] or row["canonical_net"].startswith(("USB2_DM", "USB2_DP"))))
@@ -166,9 +186,9 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual("H6.0.3-R1", audit["marker"])
         self.assertEqual("pass_progress", audit["status"])
         self.assertFalse(audit["phase_complete"])
-        self.assertEqual(769, audit["summary"]["track_via_item_count"])
-        self.assertEqual(183, audit["summary"]["resolved_connection_count"])
-        self.assertEqual(3082, audit["summary"]["current_total_unconnected_count"])
+        self.assertEqual(825, audit["summary"]["track_via_item_count"])
+        self.assertEqual(198, audit["summary"]["resolved_connection_count"])
+        self.assertEqual(3067, audit["summary"]["current_total_unconnected_count"])
         self.assertEqual(232, audit["summary"]["analog_remaining_connection_count"])
         self.assertEqual(310, audit["summary"]["placement_locality_pair_count"])
         self.assertEqual(0, audit["summary"]["placement_locality_violation_count"])
@@ -206,11 +226,11 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual("in_progress", contract["status"])
         self.assertEqual("pass", audit["status"])
         self.assertEqual([], audit["errors"])
-        self.assertEqual(103, audit["summary"]["route_count"])
-        self.assertEqual(605, audit["summary"]["segment_count"])
-        self.assertEqual(183, audit["summary"]["resolved_connection_count"])
-        self.assertEqual(164, audit["summary"]["via_count"])
-        self.assertEqual(83, audit["summary"]["manual_only_route_count"])
+        self.assertEqual(117, audit["summary"]["route_count"])
+        self.assertEqual(659, audit["summary"]["segment_count"])
+        self.assertEqual(198, audit["summary"]["resolved_connection_count"])
+        self.assertEqual(166, audit["summary"]["via_count"])
+        self.assertEqual(97, audit["summary"]["manual_only_route_count"])
         self.assertEqual(20, audit["summary"]["local_ground_join_route_count"])
         self.assertTrue(
             {row["routing_class"] for row in audit["routes"]}
@@ -239,7 +259,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
                 stderr=subprocess.STDOUT,
             )
             self.assertEqual(0, result.returncode, result.stdout)
-            self.assertIn("103 routes; 605 segments; 183 resolved connections", result.stdout)
+            self.assertIn("117 routes; 659 segments; 198 resolved connections", result.stdout)
 
     def test_h6_release_substep_ids_are_unique_and_end_at_h609(self):
         plan = json.loads(RELEASE_PLAN.read_text(encoding="utf-8"))
@@ -256,7 +276,11 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
             self.assertIn("(constraint track_width (min 5.31mil) (opt 5.31mil) (max 5.31mil))", text)
             self.assertIn("(constraint diff_pair_gap (min 6.00mil) (opt 6.00mil) (max 6.00mil))", text)
             self.assertIn('(layer inner)', text)
-            self.assertIn('(constraint disallow track via)', text)
+            self.assertIn('H6 reviewed RF edge-launch trace reaches centre land', text)
+            self.assertIn('H6 controlled-impedance vias only on reviewed edge launches', text)
+            self.assertIn('(constraint disallow track)', text)
+            self.assertIn('(constraint disallow via)', text)
+            self.assertNotIn('(constraint disallow track via)', text)
 
     def test_session_and_drc_guards_parse_machine_artifacts(self):
         self.assertEqual(
@@ -319,6 +343,15 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual(1208, len(rows))
         self.assertTrue(all(len(row["footprint_anchor_nm"]) == 2 for row in rows))
         self.assertNotIn("placement_freeze_sha256", freeze["sources"])
+        s3_detector_cap = next(
+            row
+            for board in freeze["boards"]
+            if board["project"] == "LESHY2-UI-R2"
+            for row in board["placements"]
+            if row["instance"] == "s3_detector_input_cap"
+        )
+        self.assertEqual([24.305, 2.105], s3_detector_cap["footprint_anchor_mm"])
+        self.assertEqual(180.0, s3_detector_cap["rotation_deg"])
 
         routing = json.loads(GENERAL_ROUTING_AUDIT.read_text(encoding="utf-8"))
         self.assertEqual("pass", routing["status"])
@@ -350,7 +383,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         for script, expected in (
             (PLACEMENT_FREEZE_SCRIPT, "1208 exact anchors"),
             (GENERAL_ROUTING_SCRIPT, "historical routing evidence preserved; current H6.0.3-R1"),
-            (CURRENT_ROUTING_SCRIPT, "769 copper items; 183 resolved; 3082 remain"),
+            (CURRENT_ROUTING_SCRIPT, "825 copper items; 198 resolved; 3067 remain"),
         ):
             result = subprocess.run(
                 [str(KICAD_PYTHON), str(script), "--check"],

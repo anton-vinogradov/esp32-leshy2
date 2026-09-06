@@ -5,28 +5,548 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "2748277cf64ec5462f80fa1e4694a460e8aa950cfd3472cf1903ddbb39d762bb",
+    "contract_sha256": "74dea355db17d94bb9c4a7b3dfd5323fe65f853cc34ac882a7bf2c1eba6b1d2b",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "9c9cfa520bc8c94b96eca42a76b8ed4ec52ce0f2d10bd1d80010eaadc1178e01",
+    "routing_policy_sha256": "07c68513aa09fe9898ff9539b6a2e330d0d47ec229c39b987b10963d4419f6a1",
+    "routing_contract": "hardware/layout/h6-r2-routing-policy.json",
+    "routing_contract_sha256": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
     "placement_status": "pass"
   },
   "summary": {
-    "route_count": 103,
-    "segment_count": 605,
-    "resolved_connection_count": 183,
-    "via_count": 164,
-    "manual_only_route_count": 83,
+    "route_count": 117,
+    "segment_count": 659,
+    "resolved_connection_count": 198,
+    "via_count": 166,
+    "manual_only_route_count": 97,
     "local_ground_join_route_count": 20
   },
   "boards": [
     {
       "project": "LESHY2-UI-R2",
       "board": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "route_count": 4,
-      "segment_count": 17,
-      "via_count": 0,
-      "resolved_connection_count": 6,
+      "route_count": 15,
+      "segment_count": 57,
+      "via_count": 2,
+      "resolved_connection_count": 17,
       "copper_signature": [
+        [
+          "track",
+          "/UI_10_S3_DISPLAY_TOUCH/S3_COUPLER_TERMINATION",
+          "B.Cu",
+          0.134874,
+          [
+            24.065,
+            3.365
+          ],
+          [
+            24.065,
+            4.0
+          ]
+        ],
+        [
+          "track",
+          "/UI_10_S3_DISPLAY_TOUCH/S3_COUPLER_TERMINATION",
+          "B.Cu",
+          0.134874,
+          [
+            24.065,
+            4.0
+          ],
+          [
+            24.5,
+            4.0
+          ]
+        ],
+        [
+          "track",
+          "/UI_10_S3_DISPLAY_TOUCH/S3_COUPLER_TERMINATION",
+          "B.Cu",
+          0.134874,
+          [
+            24.5,
+            4.0
+          ],
+          [
+            24.5,
+            5.35
+          ]
+        ],
+        [
+          "track",
+          "/UI_10_S3_DISPLAY_TOUCH/S3_COUPLER_TERMINATION",
+          "B.Cu",
+          0.134874,
+          [
+            24.5,
+            5.35
+          ],
+          [
+            25.125,
+            5.35
+          ]
+        ],
+        [
+          "track",
+          "/UI_10_S3_DISPLAY_TOUCH/S3_EXTERNAL_RF_50R",
+          "B.Cu",
+          0.134874,
+          [
+            23.875,
+            5.35
+          ],
+          [
+            23.875,
+            5.7
+          ]
+        ],
+        [
+          "track",
+          "/UI_10_S3_DISPLAY_TOUCH/S3_EXTERNAL_RF_50R",
+          "F.Cu",
+          0.134874,
+          [
+            23.875,
+            5.7
+          ],
+          [
+            27.5,
+            5.7
+          ]
+        ],
+        [
+          "track",
+          "/UI_10_S3_DISPLAY_TOUCH/S3_EXTERNAL_RF_50R",
+          "F.Cu",
+          0.134874,
+          [
+            27.5,
+            5.7
+          ],
+          [
+            28.25,
+            1.0
+          ]
+        ],
+        [
+          "track",
+          "/UI_10_S3_DISPLAY_TOUCH/S3_EXTERNAL_RF_50R",
+          "F.Cu",
+          0.134874,
+          [
+            28.25,
+            -1.65
+          ],
+          [
+            28.25,
+            1.0
+          ]
+        ],
+        [
+          "track",
+          "/UI_10_S3_DISPLAY_TOUCH/S3_FORWARD_RF_SAMPLE",
+          "B.Cu",
+          0.134874,
+          [
+            18.6,
+            2.105
+          ],
+          [
+            18.6,
+            4.95
+          ]
+        ],
+        [
+          "track",
+          "/UI_10_S3_DISPLAY_TOUCH/S3_FORWARD_RF_SAMPLE",
+          "B.Cu",
+          0.134874,
+          [
+            18.6,
+            2.105
+          ],
+          [
+            23.825,
+            2.105
+          ]
+        ],
+        [
+          "track",
+          "/UI_10_S3_DISPLAY_TOUCH/S3_FORWARD_RF_SAMPLE",
+          "B.Cu",
+          0.134874,
+          [
+            18.6,
+            4.95
+          ],
+          [
+            19.8625,
+            4.95
+          ]
+        ],
+        [
+          "track",
+          "/UI_10_S3_DISPLAY_TOUCH/S3_FORWARD_RF_SAMPLE_RAW",
+          "B.Cu",
+          0.134874,
+          [
+            24.785,
+            2.105
+          ],
+          [
+            25.6,
+            2.105
+          ]
+        ],
+        [
+          "track",
+          "/UI_10_S3_DISPLAY_TOUCH/S3_FORWARD_RF_SAMPLE_RAW",
+          "B.Cu",
+          0.134874,
+          [
+            25.125,
+            4.65
+          ],
+          [
+            25.6,
+            4.05
+          ]
+        ],
+        [
+          "track",
+          "/UI_10_S3_DISPLAY_TOUCH/S3_FORWARD_RF_SAMPLE_RAW",
+          "B.Cu",
+          0.134874,
+          [
+            25.6,
+            2.105
+          ],
+          [
+            25.6,
+            4.05
+          ]
+        ],
+        [
+          "track",
+          "/UI_10_S3_DISPLAY_TOUCH/S3_MODULE_RF_50R",
+          "B.Cu",
+          0.134874,
+          [
+            15.75,
+            4.65
+          ],
+          [
+            15.75,
+            5.85
+          ]
+        ],
+        [
+          "track",
+          "/UI_10_S3_DISPLAY_TOUCH/S3_MODULE_RF_50R",
+          "B.Cu",
+          0.134874,
+          [
+            15.75,
+            5.85
+          ],
+          [
+            23.2,
+            5.85
+          ]
+        ],
+        [
+          "track",
+          "/UI_10_S3_DISPLAY_TOUCH/S3_MODULE_RF_50R",
+          "B.Cu",
+          0.134874,
+          [
+            23.2,
+            4.65
+          ],
+          [
+            23.2,
+            5.85
+          ]
+        ],
+        [
+          "track",
+          "/UI_10_S3_DISPLAY_TOUCH/S3_MODULE_RF_50R",
+          "B.Cu",
+          0.134874,
+          [
+            23.2,
+            4.65
+          ],
+          [
+            23.875,
+            4.65
+          ]
+        ],
+        [
+          "track",
+          "/UI_20_C5_WIFI_IR_SERVICE/C5_COUPLER_TERMINATION",
+          "B.Cu",
+          0.134874,
+          [
+            55.5,
+            3.8
+          ],
+          [
+            55.5,
+            5.115
+          ]
+        ],
+        [
+          "track",
+          "/UI_20_C5_WIFI_IR_SERVICE/C5_COUPLER_TERMINATION",
+          "B.Cu",
+          0.134874,
+          [
+            55.5,
+            3.8
+          ],
+          [
+            58.05,
+            3.8
+          ]
+        ],
+        [
+          "track",
+          "/UI_20_C5_WIFI_IR_SERVICE/C5_COUPLER_TERMINATION",
+          "B.Cu",
+          0.134874,
+          [
+            55.5,
+            5.115
+          ],
+          [
+            56.315,
+            5.115
+          ]
+        ],
+        [
+          "track",
+          "/UI_20_C5_WIFI_IR_SERVICE/C5_COUPLER_TERMINATION",
+          "B.Cu",
+          0.134874,
+          [
+            57.375,
+            7.1
+          ],
+          [
+            58.05,
+            7.1
+          ]
+        ],
+        [
+          "track",
+          "/UI_20_C5_WIFI_IR_SERVICE/C5_COUPLER_TERMINATION",
+          "B.Cu",
+          0.134874,
+          [
+            58.05,
+            3.8
+          ],
+          [
+            58.05,
+            7.1
+          ]
+        ],
+        [
+          "track",
+          "/UI_20_C5_WIFI_IR_SERVICE/C5_EXTERNAL_RF_50R",
+          "B.Cu",
+          0.134874,
+          [
+            56.125,
+            7.1
+          ],
+          [
+            56.125,
+            7.8
+          ]
+        ],
+        [
+          "track",
+          "/UI_20_C5_WIFI_IR_SERVICE/C5_EXTERNAL_RF_50R",
+          "F.Cu",
+          0.134874,
+          [
+            51.75,
+            -1.65
+          ],
+          [
+            51.75,
+            1.0
+          ]
+        ],
+        [
+          "track",
+          "/UI_20_C5_WIFI_IR_SERVICE/C5_EXTERNAL_RF_50R",
+          "F.Cu",
+          0.134874,
+          [
+            51.75,
+            1.0
+          ],
+          [
+            52.5,
+            7.8
+          ]
+        ],
+        [
+          "track",
+          "/UI_20_C5_WIFI_IR_SERVICE/C5_EXTERNAL_RF_50R",
+          "F.Cu",
+          0.134874,
+          [
+            52.5,
+            7.8
+          ],
+          [
+            56.125,
+            7.8
+          ]
+        ],
+        [
+          "track",
+          "/UI_20_C5_WIFI_IR_SERVICE/C5_FORWARD_RF_SAMPLE",
+          "B.Cu",
+          0.134874,
+          [
+            53.7,
+            11.1375
+          ],
+          [
+            54.65,
+            11.1375
+          ]
+        ],
+        [
+          "track",
+          "/UI_20_C5_WIFI_IR_SERVICE/C5_FORWARD_RF_SAMPLE",
+          "B.Cu",
+          0.134874,
+          [
+            54.65,
+            7.6
+          ],
+          [
+            54.65,
+            11.1375
+          ]
+        ],
+        [
+          "track",
+          "/UI_20_C5_WIFI_IR_SERVICE/C5_FORWARD_RF_SAMPLE",
+          "B.Cu",
+          0.134874,
+          [
+            54.65,
+            7.6
+          ],
+          [
+            54.785,
+            7.105
+          ]
+        ],
+        [
+          "track",
+          "/UI_20_C5_WIFI_IR_SERVICE/C5_FORWARD_RF_SAMPLE_RAW",
+          "B.Cu",
+          0.134874,
+          [
+            53.2,
+            5.75
+          ],
+          [
+            53.2,
+            7.105
+          ]
+        ],
+        [
+          "track",
+          "/UI_20_C5_WIFI_IR_SERVICE/C5_FORWARD_RF_SAMPLE_RAW",
+          "B.Cu",
+          0.134874,
+          [
+            53.2,
+            5.75
+          ],
+          [
+            57.375,
+            5.75
+          ]
+        ],
+        [
+          "track",
+          "/UI_20_C5_WIFI_IR_SERVICE/C5_FORWARD_RF_SAMPLE_RAW",
+          "B.Cu",
+          0.134874,
+          [
+            53.2,
+            7.105
+          ],
+          [
+            53.825,
+            7.105
+          ]
+        ],
+        [
+          "track",
+          "/UI_20_C5_WIFI_IR_SERVICE/C5_FORWARD_RF_SAMPLE_RAW",
+          "B.Cu",
+          0.134874,
+          [
+            57.375,
+            5.75
+          ],
+          [
+            57.375,
+            6.4
+          ]
+        ],
+        [
+          "track",
+          "/UI_20_C5_WIFI_IR_SERVICE/C5_MODULE_RF_50R",
+          "B.Cu",
+          0.134874,
+          [
+            55.45,
+            6.4
+          ],
+          [
+            55.45,
+            9.8
+          ]
+        ],
+        [
+          "track",
+          "/UI_20_C5_WIFI_IR_SERVICE/C5_MODULE_RF_50R",
+          "B.Cu",
+          0.134874,
+          [
+            55.45,
+            6.4
+          ],
+          [
+            56.125,
+            6.4
+          ]
+        ],
+        [
+          "track",
+          "/UI_20_C5_WIFI_IR_SERVICE/C5_MODULE_RF_50R",
+          "B.Cu",
+          0.134874,
+          [
+            55.45,
+            9.8
+          ],
+          [
+            56.05,
+            10.55
+          ]
+        ],
         [
           "track",
           "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_VREG_LX_SW",
@@ -264,16 +784,74 @@
             47.325,
             85.355
           ]
+        ],
+        [
+          "track",
+          "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_MODULE_RF_50R",
+          "B.Cu",
+          0.134874,
+          [
+            67.7,
+            12.0
+          ],
+          [
+            67.7,
+            14.425
+          ]
+        ],
+        [
+          "track",
+          "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_MODULE_RF_50R",
+          "B.Cu",
+          0.134874,
+          [
+            67.7,
+            12.0
+          ],
+          [
+            68.0,
+            11.15
+          ]
+        ],
+        [
+          "track",
+          "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_MODULE_RF_50R",
+          "B.Cu",
+          0.134874,
+          [
+            67.7,
+            14.425
+          ],
+          [
+            68.365,
+            14.425
+          ]
+        ],
+        [
+          "via",
+          "/UI_10_S3_DISPLAY_TOUCH/S3_EXTERNAL_RF_50R",
+          23.875,
+          5.7,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/UI_20_C5_WIFI_IR_SERVICE/C5_EXTERNAL_RF_50R",
+          56.125,
+          7.8,
+          0.5,
+          0.25
         ]
       ]
     },
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "route_count": 99,
-      "segment_count": 588,
+      "route_count": 102,
+      "segment_count": 602,
       "via_count": 164,
-      "resolved_connection_count": 177,
+      "resolved_connection_count": 181,
       "copper_signature": [
         [
           "track",
@@ -6759,6 +7337,48 @@
         ],
         [
           "track",
+          "/RF_20_CC1101_VOICE_TX/CC_RF_315_IN",
+          "B.Cu",
+          0.134874,
+          [
+            65.745,
+            43.995
+          ],
+          [
+            66.099999,
+            44.65
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_RF_315_IN",
+          "B.Cu",
+          0.134874,
+          [
+            66.099999,
+            44.65
+          ],
+          [
+            69.75,
+            44.65
+          ]
+        ],
+        [
+          "track",
+          "/RF_20_CC1101_VOICE_TX/CC_RF_315_IN",
+          "B.Cu",
+          0.134874,
+          [
+            69.75,
+            44.65
+          ],
+          [
+            70.365,
+            44.06
+          ]
+        ],
+        [
+          "track",
           "/RF_20_CC1101_VOICE_TX/CC_RF_315_MID",
           "B.Cu",
           0.134874,
@@ -8271,6 +8891,90 @@
         ],
         [
           "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_PAD",
+          "B.Cu",
+          0.134874,
+          [
+            23.2,
+            1.7
+          ],
+          [
+            23.2,
+            3.785
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_PAD",
+          "B.Cu",
+          0.134874,
+          [
+            23.2,
+            1.7
+          ],
+          [
+            28.0,
+            1.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_PAD",
+          "B.Cu",
+          0.134874,
+          [
+            23.2,
+            3.785
+          ],
+          [
+            23.855,
+            3.785
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_PAD",
+          "B.Cu",
+          0.134874,
+          [
+            28.0,
+            1.7
+          ],
+          [
+            28.0,
+            6.115
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_PAD",
+          "B.Cu",
+          0.134874,
+          [
+            28.0,
+            6.115
+          ],
+          [
+            28.565,
+            6.115
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_PAD",
+          "B.Cu",
+          0.134874,
+          [
+            28.565,
+            6.115
+          ],
+          [
+            28.615,
+            7.315
+          ]
+        ],
+        [
+          "track",
           "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_XA",
           "B.Cu",
           0.15,
@@ -8379,6 +9083,76 @@
           [
             28.1,
             10.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_T1_SEC_CT",
+          "B.Cu",
+          0.134874,
+          [
+            9.7,
+            13.3
+          ],
+          [
+            9.7,
+            15.335
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_T1_SEC_CT",
+          "B.Cu",
+          0.134874,
+          [
+            9.7,
+            13.3
+          ],
+          [
+            17.6,
+            13.3
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_T1_SEC_CT",
+          "B.Cu",
+          0.134874,
+          [
+            9.7,
+            15.335
+          ],
+          [
+            10.615,
+            15.335
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_T1_SEC_CT",
+          "B.Cu",
+          0.134874,
+          [
+            15.76,
+            17.945
+          ],
+          [
+            17.6,
+            17.945
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_T1_SEC_CT",
+          "B.Cu",
+          0.134874,
+          [
+            17.6,
+            13.3
+          ],
+          [
+            17.6,
+            17.945
           ]
         ],
         [
@@ -9841,6 +10615,217 @@
       "length_mm": 4.6182,
       "resolved_connections": 1,
       "reason": "Short no-via RP2354 internal-regulator switch path, manually accepted after obstacle-aware proposal and native DRC."
+    },
+    {
+      "id": "UI-NRF2-MODULE-RF",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_MODULE_RF_50R",
+      "kicad_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_MODULE_RF_50R",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 3,
+      "via_count": 0,
+      "length_mm": 3.9914,
+      "resolved_connections": 1,
+      "reason": "Via-free 50-ohm path from the nRF24-2 U.FL to the coupler input; the left-side approach avoids the adjacent external-path coupler pad."
+    },
+    {
+      "id": "UI-S3-COUPLER-TERM",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_COUPLER_TERMINATION",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_COUPLER_TERMINATION",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 4,
+      "via_count": 0,
+      "length_mm": 3.045,
+      "resolved_connections": 1,
+      "reason": "Via-free isolated-port termination leaves the coupler to the left and approaches the 49.9-ohm resistor from above, keeping both sampling-capacitor exits independent."
+    },
+    {
+      "id": "UI-C5-COUPLER-TERM",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_COUPLER_TERMINATION",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_COUPLER_TERMINATION",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 5,
+      "via_count": 0,
+      "length_mm": 8.655,
+      "resolved_connections": 1,
+      "reason": "Via-free isolated-port termination exits away from the adjacent coupled pad and approaches the 49.9-ohm resistor from its unblocked side."
+    },
+    {
+      "id": "UI-C5-MODULE-RF",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_MODULE_RF_50R",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_MODULE_RF_50R",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 3,
+      "via_count": 0,
+      "length_mm": 5.0355,
+      "resolved_connections": 1,
+      "reason": "Via-free 50-ohm path from the C5 U.FL to the coupler input uses the narrow verified corridor between the sampling capacitor and adjacent through-path pad."
+    },
+    {
+      "id": "UI-C5-DETECTOR-SAMPLE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_FORWARD_RF_SAMPLE",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_FORWARD_RF_SAMPLE",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 3,
+      "via_count": 0,
+      "length_mm": 5.0006,
+      "resolved_connections": 1,
+      "reason": "Via-free forward detector route stays just outside the LTC5532 supply-pad field and enters RF IN laterally."
+    },
+    {
+      "id": "UI-C5-COUPLED-SAMPLE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_FORWARD_RF_SAMPLE_RAW",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_FORWARD_RF_SAMPLE_RAW",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 4,
+      "via_count": 0,
+      "length_mm": 6.805,
+      "resolved_connections": 1,
+      "reason": "Via-free coupled-port sample exits above the coupler, clears its termination resistor and enters the series sampling capacitor from the left."
+    },
+    {
+      "id": "UI-C5-EXTERNAL-RF",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_EXTERNAL_RF_50R",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_EXTERNAL_RF_50R",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "F.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 4,
+      "via_count": 1,
+      "length_mm": 13.8162,
+      "resolved_connections": 1,
+      "reason": "The C5 through path uses one necessary B-to-F transition because the coupler is on the inner face while the double-sided edge-launch SMA centre pad is on F.Cu; the top-side run remains obstacle-free and its adjacent return-via pair is reserved for the ground-plane pass."
+    },
+    {
+      "id": "UI-S3-EXTERNAL-RF",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_EXTERNAL_RF_50R",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_EXTERNAL_RF_50R",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "F.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 4,
+      "via_count": 1,
+      "length_mm": 11.3845,
+      "resolved_connections": 1,
+      "reason": "The S3 through path uses the one reviewed B-to-F edge-launch transition; the top-side run is free of components and its adjacent return-via pair is reserved for the ground-plane pass."
+    },
+    {
+      "id": "UI-S3-MODULE-RF",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_MODULE_RF_50R",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_MODULE_RF_50R",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 4,
+      "via_count": 0,
+      "length_mm": 10.525,
+      "resolved_connections": 1,
+      "reason": "Via-free S3 U.FL path passes below the LTC5532 pad field and approaches the coupler input from its unobstructed left side."
+    },
+    {
+      "id": "UI-S3-COUPLED-SAMPLE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_FORWARD_RF_SAMPLE_RAW",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_FORWARD_RF_SAMPLE_RAW",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 3,
+      "via_count": 0,
+      "length_mm": 3.5253,
+      "resolved_connections": 1,
+      "reason": "Via-free coupled sample leaves the coupler to the right and enters the outward-facing raw-sample pad of the reviewed 180-degree capacitor orientation without crossing the detector side."
+    },
+    {
+      "id": "UI-S3-DETECTOR-SAMPLE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_FORWARD_RF_SAMPLE",
+      "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_FORWARD_RF_SAMPLE",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 3,
+      "via_count": 0,
+      "length_mm": 9.3325,
+      "resolved_connections": 1,
+      "reason": "Via-free detector input leaves the inward-facing sampling-capacitor pad toward LTC5532 RF IN; the 180-degree capacitor orientation removes the previous planar crossing."
     },
     {
       "id": "UI-HUB-RP-XIN",
@@ -11604,6 +12589,25 @@
       "reason": "Via-free 315-MHz branch midpoint joins the input inductor, shunt-trap inductor and final series inductor in their physical order without a dangling tuning stub."
     },
     {
+      "id": "RF-CC1101-315-IN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CC_RF_315_IN",
+      "kicad_net": "/RF_20_CC1101_VOICE_TX/CC_RF_315_IN",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 3,
+      "via_count": 0,
+      "length_mm": 5.2473,
+      "resolved_connections": 1,
+      "reason": "Via-free 315-MHz input branch leaves RF1 orthogonally, then passes below the encoder push-switch ground post before entering the first series inductor."
+    },
+    {
       "id": "RF-AIRBAND-BPF-IN",
       "project": "LESHY2-RF-R2",
       "canonical_net": "AIR_BPF_IN_RF",
@@ -11697,6 +12701,44 @@
       "length_mm": 2.3005,
       "resolved_connections": 1,
       "reason": "Short via-free negative secondary connection from the input transformer into the exact 12-nH mixer-matching inductor."
+    },
+    {
+      "id": "RF-AIRBAND-T1-SEC-CT",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AIR_T1_SEC_CT",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_T1_SEC_CT",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 5,
+      "via_count": 0,
+      "length_mm": 17.335,
+      "resolved_connections": 1,
+      "reason": "Via-free transformer centre-tap feed crosses above the broad BPF inductor pads and approaches the WBC1-1TLC centre pad laterally."
+    },
+    {
+      "id": "RF-AIRBAND-LO-PAD",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "AIR_LO_PAD",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_PAD",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 6,
+      "via_count": 0,
+      "length_mm": 13.721,
+      "resolved_connections": 2,
+      "reason": "Via-free LO attenuation node passes above the ESD and crystal fields, then joins both shunt resistors without crossing the already routed Si5351A crystal nets."
     },
     {
       "id": "RF-CC1101-DETECTOR-SAMPLE",

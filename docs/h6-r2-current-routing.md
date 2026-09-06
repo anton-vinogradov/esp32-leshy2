@@ -6,8 +6,8 @@
 
 | Board | Traces | Vias | Resolved | Remaining | DRC |
 | --- | ---: | ---: | ---: | ---: | --- |
-| UI | 17 | 0 | 6 | 1,221 | 0 |
-| RF/power | 588 | 164 | 177 | 1,861 | 0 |
+| UI | 57 | 2 | 17 | 1,210 | 0 |
+| RF/power | 602 | 164 | 181 | 1,857 | 0 |
 
 ## What we want
 
@@ -19,7 +19,7 @@ The former collision-free seed was electrically invalid because some bypass, fee
 
 ## What we obtained
 
-All 1,208 bodies are placed; all 310 local-part → owner pairs meet their limits; 22 actual pad-centre pairs cover every switching-node net and selected local bypasses with zero violations. All five oscillator cells — two RP2354s, CC1101, Si5351A and Si4732 — are routed and DRC-clean. The first ten via-free controlled-RF routes close 11 connections in the local CC1101 and Airband networks, including the 315-MHz branch, BPF input/output and detector sample. Both boards have zero native DRC findings. The deliberate restart leaves 3,082 physical connections, summarized in the table above.
+All 1,208 bodies are placed; all 310 local-part → owner pairs meet their limits; 22 actual pad-centre pairs cover every switching-node net and selected local bypasses with zero violations. All five oscillator cells — two RP2354s, CC1101, Si5351A and Si4732 — are routed and DRC-clean. Twenty-four manual controlled-RF routes close 26 connections: in addition to the local CC1101 and Airband networks, the complete S3 and C5 paths from U.FL to external SMA and their detector branches are routed. Twenty-two routes remain via-free; two reviewed 0.50/0.25-mm B.Cu-to-F.Cu transitions are necessary only because the edge-launch SMA centre land is on F.Cu. Their ground-return pairs are deferred until the continuous plane fill so this checkpoint does not create floating copper islands. Both boards have zero native DRC findings. The deliberate restart leaves 3,067 physical connections, summarized in the table above.
 
 ## What happens next
 
