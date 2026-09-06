@@ -193,6 +193,7 @@ def build(drc_paths: dict[str, Path] | None, existing: dict | None) -> dict:
         rows.append(row)
         errors.extend(f"{project}: {error}" for error in board_errors)
     remaining_total = sum(row["current_total_unconnected_count"] for row in rows)
+    resolved_total = sum(row["resolved_connection_count"] for row in rows)
     return {
         "schema_version": 1,
         "artifact": "H6.0.3 live 80-mm routing checkpoint",
@@ -210,7 +211,7 @@ def build(drc_paths: dict[str, Path] | None, existing: dict | None) -> dict:
             "via_count": sum(row["via_count"] for row in rows),
             "seed_total_unconnected_count": sum(row["seed_total_unconnected_count"] for row in rows),
             "current_total_unconnected_count": remaining_total,
-            "resolved_connection_count": sum(row["resolved_connection_count"] for row in rows),
+            "resolved_connection_count": resolved_total,
             "analog_remaining_connection_count": sum(
                 row["classes"]["ANALOG_AUDIO_SENSE"]["remaining_connection_count"]
                 for row in rows
@@ -226,7 +227,7 @@ def build(drc_paths: dict[str, Path] | None, existing: dict | None) -> dict:
                 for row in rows
                 for value in row["placement_courtyard_occupancy_percent"].values()
             ),
-            "evidence": "all 1208 exact footprints still place without a same-face hard conflict; 723 physical connections are already resolved; both native DRC reports are clean; the accepted 5-mm routing corridor remains usable",
+            "evidence": f"all 1208 exact footprints still place without a same-face hard conflict; {resolved_total} physical connections are already resolved; both native DRC reports are clean; the accepted 5-mm routing corridor remains usable",
             "why_not_expand_now": "an outline change would invalidate board anchors, routed copper, mechanical views, enclosure datums and every derived qualification while no current hard routing blockage demonstrates that the extra width is needed",
             "expansion_candidate_if_triggered_mm": [85.0, 150.0],
             "expansion_trigger": "after legal component movement and layer use are exhausted, any required power, USB/i8080, clocked-digital or RF path cannot meet the frozen H6 rules, or H6.0.4 through H6.0.7 fails for lack of geometric margin",
@@ -277,6 +278,9 @@ def doc(audit: dict, ru: bool) -> str:
             "`CC_BAND_V1_REQ` объединены одним непрерывным трактом. "
             "Разнесённые по высоте аудиокластеры теперь также соединяет полный `RX_VOICE_AFOUT_AC` "
             "с четырьмя переходами и без острых ответвлений. "
+            "В battery-safety кластере замкнут `PACK_PCKP_SENSE`: один лишний переход `PACK_DIS_GATE` "
+            "убран, дальняя ветвь перенесена на внутренние слои, а соседний переход `PACK_FET_OVERRIDE_N` "
+            "сдвинут на 0,08 мм; все три цепи сохранили связность и прошли DRC. "
             f"В классе `ANALOG_AUDIO_SENSE` осталось {summary['analog_remaining_connection_count']} физических соединений: "
             f"{ui['classes']['ANALOG_AUDIO_SENSE']['remaining_connection_count']} на UI и "
             f"{rf['classes']['ANALOG_AUDIO_SENSE']['remaining_connection_count']} на RF/power.\n\n"
@@ -285,8 +289,9 @@ def doc(audit: dict, ru: bool) -> str:
             "## Решение по размеру платы\n\n"
             f"Размер 80 × 150 мм пока сохраняется. Максимальная сумма непересекающихся courtyard на одной "
             f"стороне — {audit['board_size_review']['maximum_same_face_courtyard_occupancy_percent']:.3f}% "
-            "(внутренняя сторона RF/power); все footprints размещаются, обе платы имеют чистый DRC, а 723 "
-            "соединения уже проведены. Увеличение сейчас уничтожило бы ценное evidence без доказанного тупика. "
+            "(внутренняя сторона RF/power); все footprints размещаются, обе платы имеют чистый DRC, а "
+            f"{number(summary['resolved_connection_count'])} соединения уже проведены. Увеличение сейчас "
+            "уничтожило бы ценное evidence без доказанного тупика. "
             "Если обязательный power, USB/i8080, clocked-digital или RF-тракт не пройдёт после допустимой "
             "локальной перестановки, следующий контролируемый вариант — 85 × 150 мм с полной повторной "
             "квалификацией H1/H6 и обеих test suites.\n\n"
@@ -327,6 +332,9 @@ def doc(audit: dict, ru: bool) -> str:
             "previously separate `CC_BAND_V1_REQ` groups. "
             "A complete four-via `RX_VOICE_AFOUT_AC` path now also joins the vertically separated audio clusters "
             "without an acute branch. "
+            "In the battery-safety cluster, `PACK_PCKP_SENSE` is now complete: one redundant `PACK_DIS_GATE` "
+            "via was removed, its remote branch was moved to the inner layers, and the neighbouring "
+            "`PACK_FET_OVERRIDE_N` via moved by 0.08 mm; all three nets retain connectivity and pass DRC. "
             f"`ANALOG_AUDIO_SENSE` now has {summary['analog_remaining_connection_count']} physical connections "
             f"left: {ui['classes']['ANALOG_AUDIO_SENSE']['remaining_connection_count']} on UI and "
             f"{rf['classes']['ANALOG_AUDIO_SENSE']['remaining_connection_count']} on RF/power.\n\n"
@@ -335,8 +343,9 @@ def doc(audit: dict, ru: bool) -> str:
             "## Board-size decision\n\n"
             f"The 80 × 150-mm outline is retained for now. The highest sum of non-overlapping same-face "
             f"courtyards is {audit['board_size_review']['maximum_same_face_courtyard_occupancy_percent']:.3f}% "
-            "(RF/power inner face); all footprints place, both boards have clean DRC and 723 connections are "
-            "already routed. Expanding now would discard useful evidence without a demonstrated blockage. If a "
+            "(RF/power inner face); all footprints place, both boards have clean DRC and "
+            f"{number(summary['resolved_connection_count'])} connections are already routed. Expanding now would "
+            "discard useful evidence without a demonstrated blockage. If a "
             "required power, USB/i8080, clocked-digital or RF route cannot pass after legal local rearrangement, "
             "the controlled next candidate is 85 × 150 mm followed by complete H1/H6 and both-suite requalification.\n\n"
             "## Live images\n\n"

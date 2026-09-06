@@ -10,13 +10,13 @@
   },
   "summary": {
     "board_count": 2,
-    "track_via_item_count": 5432,
-    "trace_count": 4437,
-    "via_count": 995,
+    "track_via_item_count": 5453,
+    "trace_count": 4452,
+    "via_count": 1001,
     "seed_total_unconnected_count": 3265,
-    "current_total_unconnected_count": 2542,
-    "resolved_connection_count": 723,
-    "analog_remaining_connection_count": 12,
+    "current_total_unconnected_count": 2541,
+    "resolved_connection_count": 724,
+    "analog_remaining_connection_count": 11,
     "drc_violation_count": 0,
     "assigned_drc_exception_count": 0
   },
@@ -24,7 +24,7 @@
     "decision": "retain_80x150_mm",
     "status": "sufficient_so_far_not_finally_proven",
     "maximum_same_face_courtyard_occupancy_percent": 61.474,
-    "evidence": "all 1208 exact footprints still place without a same-face hard conflict; 723 physical connections are already resolved; both native DRC reports are clean; the accepted 5-mm routing corridor remains usable",
+    "evidence": "all 1208 exact footprints still place without a same-face hard conflict; 724 physical connections are already resolved; both native DRC reports are clean; the accepted 5-mm routing corridor remains usable",
     "why_not_expand_now": "an outline change would invalidate board anchors, routed copper, mechanical views, enclosure datums and every derived qualification while no current hard routing blockage demonstrates that the extra width is needed",
     "expansion_candidate_if_triggered_mm": [
       85.0,
@@ -121,9 +121,9 @@
         }
       },
       "drc": {
-        "report_sha256": "f13b67fd486fa4d8e5638896977054415a431e67e77b040114732992efddb69f",
+        "report_sha256": "bae1e6c43f496d69ed2605220a3ddeb585bca1a9a39c7cd2a2ceb2e639669d1d",
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-06T03:22:56",
+        "checked_at": "2026-09-06T04:20:45",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,
@@ -135,16 +135,16 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "board_sha256": "3193232ef46ac3fee228c978b05104c652150aec1df61e14ef90dbfc7f9798bf",
+      "board_sha256": "e52bea39959bddc73dd76ef059aea735bd9a09b05f7920644656b58bb8c5d0a3",
       "board_size_mm": [
         80.05,
         150.05
       ],
       "footprint_count": 784,
-      "trace_count": 3305,
-      "via_count": 773,
-      "track_via_item_count": 4078,
-      "routed_net_count": 268,
+      "trace_count": 3320,
+      "via_count": 779,
+      "track_via_item_count": 4099,
+      "routed_net_count": 269,
       "used_trace_layers": [
         "B.Cu",
         "F.Cu",
@@ -156,8 +156,8 @@
         "B.Cu": 61.474
       },
       "seed_total_unconnected_count": 2038,
-      "current_total_unconnected_count": 1542,
-      "resolved_connection_count": 496,
+      "current_total_unconnected_count": 1541,
+      "resolved_connection_count": 497,
       "classes": {
         "GROUND_REFERENCE": {
           "net_count": 2,
@@ -205,7 +205,7 @@
         },
         "ANALOG_AUDIO_SENSE": {
           "net_count": 122,
-          "remaining_connection_count": 12
+          "remaining_connection_count": 11
         },
         "GENERAL_CONTROL": {
           "net_count": 104,
@@ -213,9 +213,9 @@
         }
       },
       "drc": {
-        "report_sha256": "7d45784cc5a88cd541a621cdf9fe9ee8a1586f57b29cba037daf730278391a01",
+        "report_sha256": "67a613e78aa9f0a6fd9b9219d7c269334d0976b37ab51ee41c380cf53a979138",
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-06T03:23:05",
+        "checked_at": "2026-09-06T04:20:47",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,
