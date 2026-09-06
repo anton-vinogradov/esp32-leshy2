@@ -1835,7 +1835,7 @@
       "routing_class": "RF_CONTROLLED",
       "layer": "B.Cu",
       "width_mm": 0.134874,
-      "path_mm": [[23.855, 3.785], [23.2, 3.785], [23.2, 1.7], [28.0, 1.7], [28.0, 6.115], [28.565, 6.115], [28.615, 7.315]],
+      "path_mm": [[23.855, 3.785], [23.2, 3.785], [23.2, 0.5], [28.0, 0.5], [28.0, 6.115], [28.565, 6.115], [28.615, 7.315]],
       "expected_resolved_connections": 2,
       "reason": "Via-free LO attenuation node passes above the ESD and crystal fields, then joins both shunt resistors without crossing the already routed Si5351A crystal nets."
     },
@@ -1989,6 +1989,25 @@
       ],
       "expected_resolved_connections": 1,
       "reason": "The nRF0 external path uses one reviewed B-to-F transition above the compact coupler bay, then reaches the double-sided edge-launch SMA centre land without crossing another inner-face RF net."
+    },
+    {
+      "id": "RF-RX-AM-LW-BOUNDARY",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_AMLW_BOUNDARY_RF",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_BOUNDARY_RF",
+      "routing_class": "RF_CONTROLLED",
+      "segments": [
+        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [28.25, -1.65], "end_mm": [28.25, 0.5]},
+        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [28.25, 0.5], "end_mm": [24.0, 1.2]},
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [24.0, 1.2], "end_mm": [25.075, 2.605]},
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [25.075, 2.605], "end_mm": [25.075, 3.865]},
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [25.075, 3.865], "end_mm": [25.34, 3.865]}
+      ],
+      "vias": [
+        {"at_mm": [24.0, 1.2], "diameter_mm": 0.5, "drill_mm": 0.25}
+      ],
+      "expected_resolved_connections": 2,
+      "reason": "The receive-only AM/LW boundary uses its single reviewed edge-launch transition, reaches the series coupling capacitor from its outer pad, and branches locally to the dedicated low-capacitance ESD shunt without crossing the adjacent LO network."
     },
     {
       "id": "UI-NRF2-FORWARD-SAMPLE",

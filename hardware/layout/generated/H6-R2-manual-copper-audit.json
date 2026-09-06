@@ -5,7 +5,7 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "2355ea5cf3cad2215599b94b8639c05ea6242d6e320f18945e19c428ef6ae2ff",
+    "contract_sha256": "2af33328a3defa192572c1abc4b3fcb4a727e73ad0b0c7b0a8999fbd2c6b6ed2",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
     "routing_policy_sha256": "caad0006801d591fe8dba6e3a0198c2168e38c0f200861ed8dd89a78e69c711e",
     "routing_contract": "hardware/layout/h6-r2-routing-policy.json",
@@ -13,11 +13,11 @@
     "placement_status": "pass"
   },
   "summary": {
-    "route_count": 128,
-    "segment_count": 702,
-    "resolved_connection_count": 212,
-    "via_count": 169,
-    "manual_only_route_count": 108,
+    "route_count": 129,
+    "segment_count": 707,
+    "resolved_connection_count": 214,
+    "via_count": 170,
+    "manual_only_route_count": 109,
     "local_ground_join_route_count": 20
   },
   "boards": [
@@ -1474,10 +1474,10 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "route_count": 102,
-      "segment_count": 602,
-      "via_count": 164,
-      "resolved_connection_count": 181,
+      "route_count": 103,
+      "segment_count": 607,
+      "via_count": 165,
+      "resolved_connection_count": 183,
       "copper_signature": [
         [
           "track",
@@ -9522,7 +9522,7 @@
           0.134874,
           [
             23.2,
-            1.7
+            0.5
           ],
           [
             23.2,
@@ -9536,11 +9536,11 @@
           0.134874,
           [
             23.2,
-            1.7
+            0.5
           ],
           [
             28.0,
-            1.7
+            0.5
           ]
         ],
         [
@@ -9564,7 +9564,7 @@
           0.134874,
           [
             28.0,
-            1.7
+            0.5
           ],
           [
             28.0,
@@ -9793,6 +9793,76 @@
           [
             15.76,
             16.425
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_BOUNDARY_RF",
+          "B.Cu",
+          0.134874,
+          [
+            24.0,
+            1.2
+          ],
+          [
+            25.075,
+            2.605
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_BOUNDARY_RF",
+          "B.Cu",
+          0.134874,
+          [
+            25.075,
+            2.605
+          ],
+          [
+            25.075,
+            3.865
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_BOUNDARY_RF",
+          "B.Cu",
+          0.134874,
+          [
+            25.075,
+            3.865
+          ],
+          [
+            25.34,
+            3.865
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_BOUNDARY_RF",
+          "F.Cu",
+          0.134874,
+          [
+            24.0,
+            1.2
+          ],
+          [
+            28.25,
+            0.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_BOUNDARY_RF",
+          "F.Cu",
+          0.134874,
+          [
+            28.25,
+            -1.65
+          ],
+          [
+            28.25,
+            0.5
           ]
         ],
         [
@@ -11202,6 +11272,14 @@
           10.0,
           0.4,
           0.2
+        ],
+        [
+          "via",
+          "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_BOUNDARY_RF",
+          24.0,
+          1.2,
+          0.5,
+          0.25
         ],
         [
           "via",
@@ -13574,7 +13652,7 @@
       ],
       "segment_count": 6,
       "via_count": 0,
-      "length_mm": 13.721,
+      "length_mm": 16.121,
       "resolved_connections": 2,
       "reason": "Via-free LO attenuation node passes above the ESD and crystal fields, then joins both shunt resistors without crossing the already routed Si5351A crystal nets."
     },
@@ -13615,6 +13693,26 @@
       "length_mm": 8.1,
       "resolved_connections": 1,
       "reason": "Short via-free output link from the Airband BPF shunt node into the LNA coupling capacitor."
+    },
+    {
+      "id": "RF-RX-AM-LW-BOUNDARY",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "RX_AMLW_BOUNDARY_RF",
+      "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_BOUNDARY_RF",
+      "routing_class": "RF_CONTROLLED",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "F.Cu"
+      ],
+      "widths_mm": [
+        0.134874
+      ],
+      "segment_count": 5,
+      "via_count": 1,
+      "length_mm": 9.7513,
+      "resolved_connections": 2,
+      "reason": "The receive-only AM/LW boundary uses its single reviewed edge-launch transition, reaches the series coupling capacitor from its outer pad, and branches locally to the dedicated low-capacitance ESD shunt without crossing the adjacent LO network."
     },
     {
       "id": "RF-RP-XIN",
