@@ -808,7 +808,7 @@
 <text x="1233.75" y="571.78" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">LS1</text>
 <rect x="1057.52" y="919.51" width="24.57" height="24.57" rx="1.5" fill="#e9eef5" stroke="#64748b" stroke-width="0.65"/>
 <rect x="1226.82" y="643.43" width="21.13" height="18.67" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
-<rect x="1323.12" y="605.98" width="16.00" height="12.25" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
+<rect x="1323.12" y="605.72" width="16.00" height="12.25" rx="1.5" fill="#fdf2f8" stroke="#db2777" stroke-width="0.65"/>
 <rect x="1331.15" y="639.42" width="12.25" height="16.00" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <rect x="1201.41" y="644.77" width="21.13" height="18.67" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <rect x="1169.31" y="664.83" width="21.13" height="18.67" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
@@ -846,8 +846,6 @@
 <rect x="1325.80" y="580.57" width="5.51" height="10.43" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <rect x="1335.16" y="587.26" width="10.43" height="5.51" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <rect x="1336.50" y="593.95" width="5.51" height="10.43" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
-<rect x="1312.42" y="683.56" width="16.32" height="8.29" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
-<rect x="1331.15" y="679.55" width="16.32" height="8.29" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <rect x="1273.63" y="584.58" width="10.43" height="5.51" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <rect x="1325.80" y="656.81" width="5.51" height="10.43" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <rect x="1056.96" y="354.53" width="21.13" height="41.46" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
@@ -1272,7 +1270,7 @@
 <rect x="1280.32" y="327.78" width="22.95" height="19.21" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <rect x="1127.85" y="211.42" width="22.95" height="19.21" rx="1.5" fill="#ecfeff" stroke="#0891b2" stroke-width="0.65"/>
 <rect x="1046.26" y="164.61" width="22.95" height="19.21" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
-<text x="1134.0" y="972.5" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700" fill="#0f172a">780 positions · 516 nets · 768 inner</text>
+<text x="1134.0" y="972.5" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700" fill="#0f172a">780 positions · 516 nets · 766 inner</text>
 <rect x="60" y="1012" width="18" height="12" fill="#dce8ff" stroke="#2563eb"/>
 <text x="85" y="1023" font-family="Inter,Arial,sans-serif" font-size="14" fill="#334155">hard H1 datum</text>
 <rect x="380" y="1012" width="18" height="12" fill="#e9eef5" stroke="#64748b"/>
@@ -1291,4 +1289,6 @@
 <text x="725" y="1055" font-family="Inter,Arial,sans-serif" font-size="14" fill="#334155">reviewed H6.0.3 charger-locality correction</text>
 <rect x="1020" y="1044" width="18" height="12" fill="#f0fdf4" stroke="#16a34a"/>
 <text x="1045" y="1055" font-family="Inter,Arial,sans-serif" font-size="14" fill="#334155">reviewed H6.0.3 signal-locality correction</text>
+<rect x="1340" y="1044" width="18" height="12" fill="#fdf2f8" stroke="#db2777"/>
+<text x="1365" y="1055" font-family="Inter,Arial,sans-serif" font-size="14" fill="#334155">reviewed H6.0.3 native-silkscreen-clearance correction</text>
 </svg>

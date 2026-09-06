@@ -276,6 +276,28 @@
       "method": "reviewed H6.0.3 mechanical-clearance correction",
       "reason": "shift the unconnected SMT holder 3.00 mm toward board +X so BT1 pad 1 clears the J12 locator hole and both native DRC findings disappear without moving the routed interboard connector"
     },
+    "pack_ntc0": {
+      "frame": "rear-outer",
+      "centre_mm": [
+        33.44,
+        85.0
+      ],
+      "rotation_deg": 90.0,
+      "allowed_same_face_overlap_owner": "pack_holder",
+      "method": "reviewed H6.0.3 direct-cell thermal-contact placement",
+      "reason": "centre the first 0603 NTC in the open 1048P channel below cell 0 so a 5x5x3-mm electrically insulating compliant pad directly couples the cell to the sensor"
+    },
+    "pack_ntc1": {
+      "frame": "rear-outer",
+      "centre_mm": [
+        52.54,
+        85.0
+      ],
+      "rotation_deg": 90.0,
+      "allowed_same_face_overlap_owner": "pack_holder",
+      "method": "reviewed H6.0.3 direct-cell thermal-contact placement",
+      "reason": "centre the second 0603 NTC in the open 1048P channel below cell 1 so a 5x5x3-mm electrically insulating compliant pad directly couples the cell to the sensor"
+    },
     "aon_buck": {
       "frame": "rear-inner",
       "centre_mm": [
@@ -880,6 +902,16 @@
       ],
       "rotation_deg": 0.0,
       "reason": "increase exact B3S courtyard pitch"
+    }
+  },
+  "post_placement_corrections": {
+    "pack_hold": {
+      "centre_mm": [
+        76.845,
+        88.195
+      ],
+      "method": "reviewed H6.0.3 native-silkscreen-clearance correction",
+      "reason": "clear the adjacent audio buffer silkscreen without changing automatic locality scheduling"
     }
   },
   "instance_aliases": {

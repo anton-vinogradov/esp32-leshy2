@@ -2,7 +2,7 @@
 
 [Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h6-r2-mechanical-stack.ru.md) · [Exact placement](h6-r2-exact-placement.md)
 
-**Status:** ✅ the local screw, stop, enclosure-bearing and independent PCB-capture geometry is locked and machine-checked. The [five microcoax service loops](h6-r2-microcoax-service.md) now close H6.0.1; **H6.0.2 routing is current.** Purchase and fabrication remain unauthorized.
+**Status:** ✅ the local screw, stop, enclosure-bearing, independent PCB-capture and direct two-cell thermal-contact geometry is locked and machine-checked. The [five microcoax service loops](h6-r2-microcoax-service.md) close H6.0.1; **H6.0.3 routing is current.** Purchase and fabrication remain unauthorized.
 
 ![H6 mechanical stack](images/h6-r2-mechanical-stack.svg)
 
@@ -17,6 +17,14 @@ The four existing M2.5 axes now use one exact, serviceable stack:
 - four 2.45-mm shell pilot shoulders locate each PCB in the existing 2.70-mm holes, while four short edge-lip segments retain each PCB independently.
 
 M1 is not used as a clamp, stop or shear pin. The assembly procedure first seats both boards and all four exact stops, mates M1 in a parallel fixture, and only then tightens the screws diagonally to the low **0.05 N·m** seating target. The **0.09 N·m** limit is a conservative ceiling for the nylon fasteners, not an invitation to add preload after the stops touch.
+
+## Cell-temperature contact
+
+**What is required.** Each of the two NTCs must measure its own cell rather than air or FR-4 temperature, while neither PCB copper nor a sensor electrode may touch the cell can.
+
+**Decision.** The factory fits the `TDK B57332V5103F360` sensors and `Keystone 1048P` holder in the ordinary PCBA process. Both NTCs now sit on the RF PCB outer face, exactly on their cell axes at `(33.44, 85.00)` and `(52.54, 85.00)` mm, in the middle of the holder's open longitudinal channels. Before fitting the cells, the owner inserts one ready-cut, electrically insulating, naturally tacky [`t-Global TG-A3500-5-5-3.0`](https://www.digikey.com/en/products/detail/t-global-technology/TG-A3500-5-5-3-0/11201393) 5×5×3-mm pad through each channel. No silkscreen lies below the adhesive area; four corner marks and `NTC0 PAD` / `NTC1 PAD` labels identify each bed.
+
+**Obtained result.** The [`1048P` drawing](https://www.keyelco.com/userAssets/file/K75p29.pdf) places the cell bottom nominally 3.3 mm above the PCB, while the [exact TDK NTC](https://product.tdk.com/en/search/sensor/ntc/chip-ntc-thermistor/info?part_no=B57332V5103F360) has a 0.9-mm maximum height. The 3.0-mm pad therefore has **20% nominal compression** and transfers cell temperature directly to the sensor. Its material provides 3.5 W/(m·K) conductivity and at least 13 kV/mm dielectric breakdown according to the [manufacturer](https://www.tglobalcorp.com/products-detail/tg-a3500/). The machine audit checks PCB side, both axes, NTC-courtyard containment and exactly two permitted holder-window nestings. Because the drawing does not separately dimension the open-channel width, receipt of the first `1048P` includes a dry pass of the exact 5-mm pad and confirmation of light compression without rocking a cell.
 
 ## Worst-case stack
 
@@ -53,7 +61,7 @@ Before final assembly, measure the four screws, nuts and stops against the recei
 
 ## H6.0.1 closure
 
-The [microcoax service result](h6-r2-microcoax-service.md) replaces the old illustrative cable lines with five exact H6 corridors and tape-saddle positions. It proves relaxed cable length, connector inspection access, the display/FPC pocket and 2D mechanical keepout clearance. H6.0.1 is closed; H6.0.2 now routes the boards, while the assembled STEP repeats exact opposing-body clearance in H6.0.6.
+The [microcoax service result](h6-r2-microcoax-service.md) replaces the old illustrative cable lines with five exact H6 corridors and tape-saddle positions. It proves relaxed cable length, connector inspection access, the display/FPC pocket and 2D mechanical keepout clearance. H6.0.1 is closed; current H6.0.3 continues board routing, while the assembled STEP repeats exact opposing-body clearance in H6.0.6.
 
 ## Reproduce
 
@@ -64,5 +72,5 @@ python3 hardware/layout/h6_r2_mechanical_stack.py --check
 Expected result:
 
 ```text
-H6-R2 mechanical stack pass: 4 axes; 2.18 mm minimum nut thread; 0.38 mm tip clearance
+H6-R2 mechanical stack pass: 4 axes; 2 direct cell contacts; 2.18 mm minimum nut thread; 0.38 mm tip clearance
 ```

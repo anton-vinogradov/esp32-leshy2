@@ -5,7 +5,7 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "1cb0422545b15dd3645f1ca5de98fe3bdcde1e86837c78ce3834220200cdad91",
+    "contract_sha256": "29f435b649344f99320130259026e434509258992ee0e70fa254110ac3385bd9",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -33,6 +33,7 @@
     "net_or_footprint_error_count": 0,
     "locality_pair_count": 300,
     "locality_violation_count": 0,
+    "accepted_same_face_overlap_count": 2,
     "routing_authorized": true,
     "routing_started": true
   },
@@ -339,6 +340,7 @@
           }
         }
       ],
+      "accepted_same_face_overlaps": [],
       "hard_conflicts": [],
       "placement_failures": [],
       "net_or_footprint_errors": [],
@@ -14964,7 +14966,7 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "unrouted_seed_sha256": "1f4fba898258b2fbfeb8ff6db5522bead8a14143be3d8161e5c28b769d81c4f3",
+      "unrouted_seed_sha256": "3ced198153b3ba6749d92b50900869d2bca3e5ba6588aa762183fea0eef5dba5",
       "placement_signature_sha256": "7b0ba8d228ab09bd93808125f3d4521b680ae2b43da243c8dbb0c768933a17db",
       "locality": {
         "status": "pass",
@@ -15404,18 +15406,20 @@
       "schematic_instance_count": 780,
       "placed_instance_count": 780,
       "side_counts": {
-        "B.Cu": 768,
-        "F.Cu": 12
+        "B.Cu": 766,
+        "F.Cu": 14
       },
       "method_counts": {
-        "connectivity/sheet automatic seed": 681,
+        "connectivity/sheet automatic seed": 678,
         "exact H1 seed": 28,
         "hard H1 datum": 12,
         "nearest exact-footprint correction": 34,
         "reviewed H6.0.2 fan-out correction": 1,
         "reviewed H6.0.2 oscillator-locality correction": 18,
         "reviewed H6.0.3 charger-locality correction": 1,
+        "reviewed H6.0.3 direct-cell thermal-contact placement": 2,
         "reviewed H6.0.3 mechanical-clearance correction": 1,
+        "reviewed H6.0.3 native-silkscreen-clearance correction": 1,
         "reviewed H6.0.3 power-locality correction": 4
       },
       "net_count": 516,
@@ -15645,6 +15649,18 @@
           }
         }
       ],
+      "accepted_same_face_overlaps": [
+        {
+          "instance": "pack_ntc0",
+          "owner": "pack_holder",
+          "reason": "centre the first 0603 NTC in the open 1048P channel below cell 0 so a 5x5x3-mm electrically insulating compliant pad directly couples the cell to the sensor"
+        },
+        {
+          "instance": "pack_ntc1",
+          "owner": "pack_holder",
+          "reason": "centre the second 0603 NTC in the open 1048P channel below cell 1 so a 5x5x3-mm electrically insulating compliant pad directly couples the cell to the sensor"
+        }
+      ],
       "hard_conflicts": [],
       "placement_failures": [],
       "net_or_footprint_errors": [],
@@ -15658,12 +15674,12 @@
           "method": "reviewed H6.0.3 mechanical-clearance correction",
           "courtyard_bbox_mm": {
             "x": [
-              22.545,
-              63.435
+              23.040000000000003,
+              62.94
             ],
             "y": [
-              41.455,
-              128.54500000000002
+              41.95,
+              128.05
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
@@ -27717,25 +27733,25 @@
           "sheet": "RF_02_PACK_SAFETY_AON",
           "side": "B.Cu",
           "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 native-silkscreen-clearance correction",
           "courtyard_bbox_mm": {
             "x": [
               75.35,
               78.34
             ],
             "y": [
-              87.1,
-              89.38999999999999
+              87.05,
+              89.33999999999999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             76.845,
-            88.245
+            88.195
           ],
           "footprint_anchor_mm": [
             76.845,
-            88.245
+            88.195
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
@@ -27745,7 +27761,7 @@
           ],
           "footprint_anchor_nm": [
             76845000,
-            88244999
+            88195000
           ]
         },
         {
@@ -29028,66 +29044,66 @@
           "instance": "pack_ntc0",
           "reference": "R33",
           "sheet": "RF_02_PACK_SAFETY_AON",
-          "side": "B.Cu",
+          "side": "F.Cu",
           "footprint": "Resistor_SMD:R_0603_1608Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 direct-cell thermal-contact placement",
           "courtyard_bbox_mm": {
             "x": [
-              73.35,
-              76.4
+              32.665,
+              34.214999999999996
             ],
             "y": [
-              101.6,
-              103.15
+              83.475,
+              86.525
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            74.875,
-            102.375
+            33.44,
+            85.0
           ],
           "footprint_anchor_mm": [
-            74.875,
-            102.375
+            33.44,
+            85.0
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            74875000,
-            102375000
+            33439999,
+            85000000
           ]
         },
         {
           "instance": "pack_ntc1",
           "reference": "R34",
           "sheet": "RF_02_PACK_SAFETY_AON",
-          "side": "B.Cu",
+          "side": "F.Cu",
           "footprint": "Resistor_SMD:R_0603_1608Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 direct-cell thermal-contact placement",
           "courtyard_bbox_mm": {
             "x": [
-              76.85,
-              79.9
+              51.765,
+              53.315
             ],
             "y": [
-              100.85,
-              102.4
+              83.475,
+              86.525
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            78.375,
-            101.625
+            52.54,
+            85.0
           ],
           "footprint_anchor_mm": [
-            78.375,
-            101.625
+            52.54,
+            85.0
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            78375000,
-            101625000
+            52540000,
+            85000000
           ]
         },
         {
@@ -42459,8 +42475,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "7fce94b8f505e0abdc8e6dc17b4945e7db64be6f5520fa060f486bf1d28edd0c",
-      "placement_signature_sha256": "79f66f74a27021008f4fee16e07a5c3a8c70a29af29df7f1b160640af988c228",
+      "unrouted_seed_sha256": "298d1563b7c5589d9825f1a7ef246137e3daf5090ce866003a397e0b3baf453f",
+      "placement_signature_sha256": "b6c76f4422fe82ede2b82a23e3552e235ed968d79e97cdfa5aaa58dbd2b9d78f",
       "locality": {
         "status": "pass",
         "pair_count": 253,
@@ -43723,7 +43739,7 @@
             "reference": "Q2",
             "owner": "pack_gauge",
             "owner_reference": "U9",
-            "courtyard_gap_mm": 1.9889,
+            "courtyard_gap_mm": 1.9955,
             "maximum_gap_mm": 2.0,
             "measurement": "courtyard_to_courtyard"
           },
@@ -43741,7 +43757,7 @@
             "reference": "R27",
             "owner": "pack_hold",
             "owner_reference": "Q2",
-            "courtyard_gap_mm": 0.22,
+            "courtyard_gap_mm": 0.17,
             "maximum_gap_mm": 1.5,
             "measurement": "courtyard_to_courtyard"
           },

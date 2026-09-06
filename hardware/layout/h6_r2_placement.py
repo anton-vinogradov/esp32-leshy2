@@ -473,6 +473,23 @@ def add_user_silkscreen(board, project: str, placement: dict, contract: dict) ->
         add_text(board, row["text"], (position[0], 15.2), pcbnew.F_SilkS, 1.00, 0.15)
 
 
+def add_battery_ntc_silkscreen(board, project: str, placed_rows: list[dict]) -> None:
+    """Mark the two 5x5-mm pad beds without printing below the adhesive."""
+    if project != "LESHY2-RF-R2":
+        return
+    rows = {row["instance"]: row for row in placed_rows}
+    half = 2.7
+    arm = 0.8
+    for index, instance in enumerate(("pack_ntc0", "pack_ntc1")):
+        cx, cy = rows[instance]["courtyard_centre_mm"]
+        for sx, sy in ((-1, -1), (1, -1), (1, 1), (-1, 1)):
+            x = cx + sx * half
+            y = cy + sy * half
+            add_segment(board, pcbnew.F_SilkS, (x, y), (x - sx * arm, y), 0.15)
+            add_segment(board, pcbnew.F_SilkS, (x, y), (x, y - sy * arm), 0.15)
+        add_text(board, f"NTC{index} PAD", (cx, cy + 4.1), pcbnew.F_SilkS, 1.00, 0.15)
+
+
 def build_target_index(contract: dict, placement: dict, coordinate: dict) -> dict[str, dict]:
     targets: dict[str, dict] = {}
     for row in coordinate["rows"]:
@@ -516,7 +533,7 @@ def target_for_instance(
 ) -> dict | None:
     override = contract.get("placement_overrides", {}).get(instance)
     if override:
-        return {
+        target = {
             "source": "H6 exact-courtyard correction",
             "frame": override["frame"],
             "centre": override["centre_mm"],
@@ -524,6 +541,11 @@ def target_for_instance(
             "direction": override["reason"],
             "placement_method": override.get("method"),
         }
+        if override.get("allowed_same_face_overlap_owner"):
+            target["allowed_same_face_overlap_owner"] = override[
+                "allowed_same_face_overlap_owner"
+            ]
+        return target
     row = frozen.get((project, instance))
     if row:
         frame = (
@@ -888,6 +910,16 @@ def add_nets_and_footprints(
         if fp is None:
             errors.append(f"could not load {row['footprint']} for {row['instance']}")
             continue
+        if project == "LESHY2-RF-R2" and row["instance"] == "pack_holder":
+            # The reusable H2 library keeps the conventional full-body
+            # courtyard.  This exact H6 assembly deliberately nests one NTC in
+            # each documented open 1048P channel, so the current board instance
+            # removes only that misleading enclosing contour.  Full-body
+            # occupancy and the two named overlaps remain machine-enforced by
+            # this placement audit.
+            for item in list(fp.GraphicalItems()):
+                if item.GetLayer() == pcbnew.F_CrtYd:
+                    fp.Remove(item)
         board.Add(fp)
         fp.SetFPIDAsString(row["footprint"])
         fp.SetReference(row["reference"])
@@ -1043,6 +1075,7 @@ def place_project(
     placed_rows = []
     conflicts = []
     boundary_exceptions = []
+    accepted_same_face_overlaps = []
     failures = []
 
     for entry in entries:
@@ -1256,6 +1289,26 @@ def place_project(
             if target.get("nonphysical_overlap")
             else grids[side].conflicts(rect, allow_outside=allow_outside)
         )
+        allowed_overlap_owner = target.get("allowed_same_face_overlap_owner")
+        if allowed_overlap_owner:
+            accepted = [row for row in collisions if row["id"] == allowed_overlap_owner]
+            collisions = [row for row in collisions if row["id"] != allowed_overlap_owner]
+            if accepted:
+                accepted_same_face_overlaps.append(
+                    {
+                        "instance": entry["row"]["instance"],
+                        "owner": allowed_overlap_owner,
+                        "reason": target["direction"],
+                    }
+                )
+            else:
+                collisions.append(
+                    {
+                        "id": f"MISSING_ALLOWED_OWNER:{allowed_overlap_owner}",
+                        "kind": "contract_error",
+                        "rect": rect,
+                    }
+                )
         for cross_rect in cross_body_rects:
             collisions += grids[opposite_side(side)].conflicts(
                 cross_rect, allow_outside=allow_outside
@@ -1377,7 +1430,41 @@ def place_project(
             cross_rects=candidate_cross,
         )
 
+    for instance, correction in contract.get("post_placement_corrections", {}).items():
+        if instance not in entry_by_instance:
+            continue
+        entry = entry_by_instance[instance]
+        row = next(row for row in placed_rows if row["instance"] == instance)
+        centre = tuple(correction["centre_mm"])
+        pose = entry["poses"][row["rotation_deg"]]
+        rect = rect_at_centre(pose, centre)
+        blockers = [
+            other["instance"]
+            for other in placed_rows
+            if other["instance"] != instance
+            and other["side"] == row["side"]
+            and rectangles_overlap(
+                rect,
+                other["courtyard_bbox_mm"],
+                geometry["minimum_courtyard_gap_mm"],
+            )
+        ]
+        if blockers:
+            failures.append(instance)
+            errors.append(f"post-placement correction for {instance} hits {blockers}")
+            continue
+        apply_centre(entry["fp"], pose, centre)
+        row["courtyard_bbox_mm"] = rect
+        row["courtyard_centre_mm"] = [round(centre[0], 4), round(centre[1], 4)]
+        row["footprint_anchor_mm"] = [
+            round(pcbnew.ToMM(entry["fp"].GetPosition().x), 4),
+            round(pcbnew.ToMM(entry["fp"].GetPosition().y), 4),
+        ]
+        row["opposite_face_keepout_bboxes_mm"] = cross_rects_at_centre(pose, centre)
+        row["method"] = correction["method"]
+
     placed_rows.sort(key=lambda row: natural_key(row["reference"]))
+    add_battery_ntc_silkscreen(board, project, placed_rows)
     return board, {
         "project": project,
         "schematic_instance_count": len(instance_rows),
@@ -1387,6 +1474,7 @@ def place_project(
         "net_count": len({net for nets in instance_nets.values() for net in nets}),
         "mechanical": mechanics,
         "boundary_exceptions": boundary_exceptions,
+        "accepted_same_face_overlaps": accepted_same_face_overlaps,
         "hard_conflicts": conflicts,
         "placement_failures": failures,
         "net_or_footprint_errors": errors,
@@ -1512,6 +1600,7 @@ def svg_bytes(audit: dict) -> bytes:
         "reviewed H6.0.3 power-locality correction": ("#fff7ed", "#ea580c"),
         "reviewed H6.0.3 charger-locality correction": ("#fefce8", "#ca8a04"),
         "reviewed H6.0.3 signal-locality correction": ("#f0fdf4", "#16a34a"),
+        "reviewed H6.0.3 native-silkscreen-clearance correction": ("#fdf2f8", "#db2777"),
         "hard H1 datum with conflict": ("#fee2e2", "#dc2626"),
     }
     out = [
@@ -1705,6 +1794,9 @@ def build() -> tuple[dict[Path, bytes], dict]:
             "net_or_footprint_error_count": sum(len(row["net_or_footprint_errors"]) for row in board_audits),
             "locality_pair_count": sum(row["locality"]["pair_count"] for row in board_audits),
             "locality_violation_count": sum(row["locality"]["violation_count"] for row in board_audits),
+            "accepted_same_face_overlap_count": sum(
+                len(row["accepted_same_face_overlaps"]) for row in board_audits
+            ),
             "routing_authorized": True,
             "routing_started": True,
         },

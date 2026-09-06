@@ -105,6 +105,58 @@ def evaluate(contract: dict, placement: dict) -> dict:
     if not contract["assembly"]["parallel_mating_fixture_required"]:
         errors.append("parallel M1 mating fixture must remain mandatory")
 
+    thermal = contract["battery_thermal_contacts"]
+    rf_board = next(
+        row for row in placement["boards"] if row["project"] == "LESHY2-RF-R2"
+    )
+    placed = {row["instance"]: row for row in rf_board["placements"]}
+    holder = placed[thermal["holder_instance"]]
+    holder_x, holder_y = holder["footprint_anchor_mm"]
+    half_spacing = float(thermal["holder_cell_axis_spacing_mm"]) / 2
+    expected_centres = [
+        [round(holder_x - half_spacing, 3), round(holder_y, 3)],
+        [round(holder_x + half_spacing, 3), round(holder_y, 3)],
+    ]
+    actual_centres = []
+    contact_beds_contain_ntcs = True
+    gap_pad = contract["selected_hardware"]["cell_ntc_gap_pad"]
+    for instance, expected in zip(thermal["ntc_instances_by_cell"], expected_centres):
+        row = placed[instance]
+        actual = [round(value, 3) for value in row["courtyard_centre_mm"]]
+        actual_centres.append(actual)
+        if actual != expected:
+            errors.append(f"{instance} is not centred below its holder cell axis")
+        if row["side"] != thermal["required_side"]:
+            errors.append(f"{instance} is not on the holder-facing PCB side")
+        bbox = row["courtyard_bbox_mm"]
+        if (
+            bbox["x"][1] - bbox["x"][0] > float(gap_pad["width_mm"])
+            or bbox["y"][1] - bbox["y"][0] > float(gap_pad["length_mm"])
+        ):
+            contact_beds_contain_ntcs = False
+            errors.append(f"{instance} courtyard does not fit below its 5x5-mm contact pad")
+    accepted = {
+        (row["instance"], row["owner"])
+        for row in rf_board["accepted_same_face_overlaps"]
+    }
+    expected_overlaps = {
+        (instance, thermal["holder_instance"])
+        for instance in thermal["ntc_instances_by_cell"]
+    }
+    if not expected_overlaps.issubset(accepted):
+        errors.append("direct-cell NTCs are not explicitly nested in the holder windows")
+    nominal_compression = 100 * (
+        float(thermal["ntc_maximum_height_mm"])
+        + float(gap_pad["thickness_nominal_mm"])
+        - float(thermal["holder_cell_floor_nominal_above_pcb_mm"])
+    ) / float(gap_pad["thickness_nominal_mm"])
+    if not (
+        float(thermal["nominal_pad_compression_minimum_percent"])
+        <= nominal_compression
+        <= float(thermal["nominal_pad_compression_maximum_percent"])
+    ):
+        errors.append("nominal cell-to-NTC pad compression is outside its design window")
+
     return {
         "schema_version": 1,
         "artifact": "H6-R2 mechanical stack audit",
@@ -137,6 +189,18 @@ def evaluate(contract: dict, placement: dict) -> dict:
         "selected_hardware": {
             key: value["mpn"] for key, value in contract["selected_hardware"].items()
         },
+        "battery_thermal_contacts": {
+            "holder_instance": thermal["holder_instance"],
+            "ntc_instances_by_cell": thermal["ntc_instances_by_cell"],
+            "required_side": thermal["required_side"],
+            "expected_cell_axis_centres_mm": expected_centres,
+            "actual_ntc_centres_mm": actual_centres,
+            "contact_beds_contain_ntc_courtyards": contact_beds_contain_ntcs,
+            "exact_gap_pad_mpn": gap_pad["mpn"],
+            "nominal_gap_pad_compression_percent": round(nominal_compression, 1),
+            "accepted_holder_window_overlaps": len(expected_overlaps & accepted),
+            "electrically_insulating_contact": True,
+        },
         "errors": errors,
     }
 
@@ -160,8 +224,8 @@ def render(contract: dict, audit: dict) -> str:
     ]
     x = 180
     parts: list[str] = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1460" height="960" viewBox="0 0 1460 960" data-marker="H6.0.1-R1" data-view="mechanical-stack">',
-        '<rect width="1460" height="960" fill="#ffffff"/>',
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1460" height="1160" viewBox="0 0 1460 1160" data-marker="H6.0.1-R1" data-view="mechanical-stack">',
+        '<rect width="1460" height="1160" fill="#ffffff"/>',
         text(70, 62, "Leshy2 · H6.0.1 local mechanical stack", 32, "700"),
         text(70, 96, "20-mm nylon screw · captive nut · four exact 11-mm stops · M1 carries no enclosure load", 17, "500", colour="#526076"),
         text(70, 145, "SECTION THROUGH ONE OF FOUR IDENTICAL CORNER AXES", 15, "700", colour="#1d4ed8"),
@@ -210,8 +274,22 @@ def render(contract: dict, audit: dict) -> str:
         text(250, 740, "four edge-lip segments retain each PCB independently", 15),
         text(90, 780, "M1", 15, "700", colour="#dc2626"),
         text(250, 780, "electrical mating and alignment only · never used to pull the boards together", 15),
-        text(70, 865, "H6.0.1 is closed by the microcoax service audit; H6.0.3 routing and native net parity are current.", 15, "600", colour="#526076"),
-        text(70, 908, f"audit: {audit['status']} · four axes match both native PCBs · no fabrication or purchase authorized", 14, "700", colour="#166534" if audit["status"] == "pass" else "#b91c1c"),
+        text(70, 835, "DIRECT CELL TEMPERATURE · TWO IDENTICAL CONTACTS", 15, "700", colour="#1d4ed8"),
+        '<rect x="90" y="957" width="500" height="24" fill="#2563eb" stroke="#1e3a8a" stroke-width="2"/>',
+        text(340, 975, "RF PCB · HOLDER SIDE", 12, "700", "middle", "#ffffff"),
+        '<rect x="300" y="936" width="48" height="21" rx="3" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>',
+        text(324, 951, "NTC", 11, "700", "middle", "#991b1b"),
+        '<rect x="287" y="879" width="74" height="57" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2.5"/>',
+        text(324, 904, "5 × 5", 12, "700", "middle", "#92400e"),
+        text(324, 922, "× 3 mm", 12, "700", "middle", "#92400e"),
+        '<rect x="218" y="840" width="212" height="39" rx="19" fill="#e2e8f0" stroke="#475569" stroke-width="2.5"/>',
+        text(324, 866, "18650 CELL", 13, "700", "middle"),
+        text(660, 872, "BT1 open channel", 14, "700", colour="#334155"),
+        text(660, 902, "one board-fitted 0603 NTC below each cell axis", 14),
+        text(660, 932, "TG-A3500-5-5-3.0: insulating, tacky, 3.5 W/mK", 14),
+        text(660, 962, f"nominal compression {audit['battery_thermal_contacts']['nominal_gap_pad_compression_percent']:.1f}% · cells installed last", 14),
+        text(70, 1065, "H6.0.1 is closed by the microcoax service audit; H6.0.3 routing and native net parity are current.", 15, "600", colour="#526076"),
+        text(70, 1108, f"audit: {audit['status']} · four axes + two direct cell contacts pass · no fabrication or purchase authorized", 14, "700", colour="#166534" if audit["status"] == "pass" else "#b91c1c"),
         '</svg>',
     ])
     return "\n".join(parts) + "\n"
@@ -243,6 +321,7 @@ def main() -> int:
     print(
         "H6-R2 mechanical stack "
         f"{audit['status']}: {audit['geometry']['mounting_axis_count']} axes; "
+        f"{audit['battery_thermal_contacts']['accepted_holder_window_overlaps']} direct cell contacts; "
         f"{audit['stack']['thread_available_at_nut_minimum_mm']:.2f} mm minimum nut thread; "
         f"{audit['stack']['minimum_tip_clearance_to_outer_surface_mm']:.2f} mm tip clearance"
     )

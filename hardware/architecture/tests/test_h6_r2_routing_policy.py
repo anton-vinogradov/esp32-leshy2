@@ -171,7 +171,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual(0, audit["summary"]["placement_locality_violation_count"])
         size = audit["board_size_review"]
         self.assertEqual("retain_80x150_mm", size["decision"])
-        self.assertEqual(61.474, size["maximum_same_face_courtyard_occupancy_percent"])
+        self.assertEqual(61.395, size["maximum_same_face_courtyard_occupancy_percent"])
         self.assertEqual([85.0, 150.0], size["expansion_candidate_if_triggered_mm"])
         self.assertEqual(5, len(size["requalification_after_any_outline_or_anchor_change"]))
         boards = {row["project"]: row for row in audit["boards"]}

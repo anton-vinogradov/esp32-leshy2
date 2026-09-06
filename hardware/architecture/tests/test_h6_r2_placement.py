@@ -43,6 +43,7 @@ class H6R2PlacementTests(unittest.TestCase):
                 "net_or_footprint_error_count": 0,
                 "locality_pair_count": 300,
                 "locality_violation_count": 0,
+                "accepted_same_face_overlap_count": 2,
                 "routing_authorized": True,
                 "routing_started": True,
             },
@@ -146,6 +147,32 @@ class H6R2PlacementTests(unittest.TestCase):
         rf = next(row for row in self.audit["boards"] if row["project"] == "LESHY2-RF-R2")
         holder = next(row for row in rf["placements"] if row["reference"] == "BT1")
         self.assertEqual([42.99, 85.0], holder["footprint_anchor_mm"])
+
+    def test_each_pack_ntc_is_directly_below_its_own_cell(self):
+        rf = next(row for row in self.audit["boards"] if row["project"] == "LESHY2-RF-R2")
+        placements = {row["instance"]: row for row in rf["placements"]}
+        self.assertEqual([33.44, 85.0], placements["pack_ntc0"]["courtyard_centre_mm"])
+        self.assertEqual([52.54, 85.0], placements["pack_ntc1"]["courtyard_centre_mm"])
+        self.assertEqual("F.Cu", placements["pack_ntc0"]["side"])
+        self.assertEqual("F.Cu", placements["pack_ntc1"]["side"])
+        self.assertEqual(
+            {("pack_ntc0", "pack_holder"), ("pack_ntc1", "pack_holder")},
+            {
+                (row["instance"], row["owner"])
+                for row in rf["accepted_same_face_overlaps"]
+            },
+        )
+        holder_footprint = (
+            ROOT / "hardware/ecad/libraries/Leshy2.pretty/Keystone-1048P.kicad_mod"
+        ).read_text(encoding="utf-8")
+        self.assertIn('(start -43.000 -19.900) (end 43.000 19.900)', holder_footprint)
+        self.assertIn('layer "F.CrtYd"', holder_footprint)
+        board_text = (ROOT / rf["output"]).read_text(encoding="utf-8")
+        holder_start = board_text.index('(footprint "Leshy2:Keystone-1048P"')
+        holder_end = board_text.index("\n\t(footprint ", holder_start + 1)
+        self.assertNotIn('layer "F.CrtYd"', board_text[holder_start:holder_end])
+        self.assertIn('(gr_text "NTC0 PAD"', board_text)
+        self.assertIn('(gr_text "NTC1 PAD"', board_text)
 
     def test_factory_stack_candidate_is_the_current_1p6_mm_six_layer_stack(self):
         stack = self.contract["board"]["factory_stack_candidate"]

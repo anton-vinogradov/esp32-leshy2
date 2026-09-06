@@ -37,6 +37,10 @@ class H6R2MechanicalStackTests(unittest.TestCase):
         self.assertEqual("50M025045P020", self.audit["selected_hardware"]["screw"])
         self.assertEqual("04M025045HN", self.audit["selected_hardware"]["nut"])
         self.assertEqual("007.02.611", self.audit["selected_hardware"]["compression_stop"])
+        self.assertEqual(
+            "TG-A3500-5-5-3.0",
+            self.audit["selected_hardware"]["cell_ntc_gap_pad"],
+        )
         self.assertTrue(self.audit["geometry"]["mounting_axes_match_native_pcbs"])
         self.assertEqual(4, self.audit["geometry"]["mounting_axis_count"])
 
@@ -47,6 +51,23 @@ class H6R2MechanicalStackTests(unittest.TestCase):
             self.audit["geometry"]["calculated_minimum_pilot_diametral_clearance_mm"],
             0.15,
         )
+
+    def test_each_cell_has_a_direct_insulated_ntc_contact(self):
+        thermal = self.audit["battery_thermal_contacts"]
+        self.assertEqual(
+            [[33.44, 85.0], [52.54, 85.0]],
+            thermal["actual_ntc_centres_mm"],
+        )
+        self.assertEqual(
+            thermal["expected_cell_axis_centres_mm"],
+            thermal["actual_ntc_centres_mm"],
+        )
+        self.assertEqual("F.Cu", thermal["required_side"])
+        self.assertEqual(2, thermal["accepted_holder_window_overlaps"])
+        self.assertTrue(thermal["contact_beds_contain_ntc_courtyards"])
+        self.assertTrue(thermal["electrically_insulating_contact"])
+        self.assertGreaterEqual(thermal["nominal_gap_pad_compression_percent"], 10.0)
+        self.assertLessEqual(thermal["nominal_gap_pad_compression_percent"], 30.0)
 
     def test_outputs_are_reproducible(self):
         result = subprocess.run(
@@ -63,6 +84,9 @@ class H6R2MechanicalStackTests(unittest.TestCase):
         self.assertIn("WHAT HOLDS WHAT", text)
         self.assertIn("M1 carries no enclosure load", text)
         self.assertIn("one loose screw does not load M1", text)
+        self.assertIn("DIRECT CELL TEMPERATURE", text)
+        self.assertIn("TG-A3500-5-5-3.0", text)
+        self.assertIn("nominal compression 20.0%", text)
 
 
 if __name__ == "__main__":

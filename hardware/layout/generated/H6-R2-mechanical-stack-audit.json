@@ -4,8 +4,8 @@
   "marker": "H6.0.3-R1",
   "status": "pass",
   "source_hashes": {
-    "hardware/layout/h6-r2-mechanical-stack.json": "eb616b9c591cb828b4a456b526eb531288b2df26720497ddef613ddda5fe6a0e",
-    "hardware/layout/generated/H6-R2-placement-audit.json": "b912ffa5cbbd547bb9510216be918f4a3d6290ae1aa11210cfffe43836fc1769"
+    "hardware/layout/h6-r2-mechanical-stack.json": "e10b804f93fdb8f0b328844d3225f1a76ce4742da9650d4dd633437be11652a9",
+    "hardware/layout/generated/H6-R2-placement-audit.json": "f501f0c121f7febc843f19fd29816436083d04f949fa994fa7a64ff97f4fcb2a"
   },
   "stack": {
     "members": [
@@ -36,7 +36,41 @@
   "selected_hardware": {
     "compression_stop": "007.02.611",
     "screw": "50M025045P020",
-    "nut": "04M025045HN"
+    "nut": "04M025045HN",
+    "cell_ntc_gap_pad": "TG-A3500-5-5-3.0"
+  },
+  "battery_thermal_contacts": {
+    "holder_instance": "pack_holder",
+    "ntc_instances_by_cell": [
+      "pack_ntc0",
+      "pack_ntc1"
+    ],
+    "required_side": "F.Cu",
+    "expected_cell_axis_centres_mm": [
+      [
+        33.44,
+        85.0
+      ],
+      [
+        52.54,
+        85.0
+      ]
+    ],
+    "actual_ntc_centres_mm": [
+      [
+        33.44,
+        85.0
+      ],
+      [
+        52.54,
+        85.0
+      ]
+    ],
+    "contact_beds_contain_ntc_courtyards": true,
+    "exact_gap_pad_mpn": "TG-A3500-5-5-3.0",
+    "nominal_gap_pad_compression_percent": 20.0,
+    "accepted_holder_window_overlaps": 2,
+    "electrically_insulating_contact": true
   },
   "errors": []
 }
