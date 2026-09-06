@@ -378,6 +378,16 @@
       "method": "reviewed H6.0.3 power-locality correction",
       "reason": "retain the divider beside the converter while opening a real switch-node escape corridor between its pads and the regulator ground pin"
     },
+    "ext_efuse": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        34.895,
+        98.145
+      ],
+      "rotation_deg": 270.0,
+      "method": "reviewed H6.0.3 power-locality correction",
+      "reason": "point the eFuse input directly at its upper pre-protection capacitor and its output directly at the lower protected-rail capacitor while keeping every low-current side pin accessible"
+    },
     "main_buck": {
       "frame": "rear-inner",
       "centre_mm": [

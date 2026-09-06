@@ -5,17 +5,17 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "8ff037e880aced004295e7047e4ae3039aa00bb8dda37ff33f68c56a17f751e9",
+    "contract_sha256": "9cd1e6fbdf3650e0020b2d781a47c2bdefa965e40c6b1ab442e522c5cb9505f9",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
     "coordinate_model_sha256": "cc2aaeacd6de560fb728ef82767184738e24bbf831a6cc706c70299cf2077636",
     "instance_ledger": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-    "instance_ledger_sha256": "1d24fd10cfeb5c98efb049dd124236178860d6236e2019127091997f00bab0a8",
+    "instance_ledger_sha256": "81c6a935c1acd6f47fa08f519cff5b893513c2882b13f880f9cdff6655d245d3",
     "net_ledger": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-    "net_ledger_sha256": "d7f8bb219dd8a116d626d2dcf3174c357a0d4c5cf8508aee41a39f0232446f55",
+    "net_ledger_sha256": "e490be3e8d81e65098684467654980cf4a21fb3a166213a29163d4d3661766be",
     "symbol_library": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-    "symbol_library_sha256": "8aa7c695de0ce1fa64acba6dbb0278dae582e47b390331df425cdce1c8be2f9a",
+    "symbol_library_sha256": "ff16df09b1fe13ec53514816150f9bdbf438a365be08ce7f3782e12f5671dea7",
     "kicad_net_bindings": "hardware/layout/generated/H6-R2-kicad-net-bindings.json",
     "kicad_net_bindings_sha256": "287b2ed42a1f32ecafde5705090962ec6c3da362a32f8ee508dba0f8c94c7706"
   },
@@ -15525,7 +15525,7 @@
         "F.Cu": 14
       },
       "method_counts": {
-        "connectivity/sheet automatic seed": 661,
+        "connectivity/sheet automatic seed": 660,
         "exact H1 seed": 28,
         "hard H1 datum": 12,
         "nearest exact-footprint correction": 34,
@@ -15535,7 +15535,7 @@
         "reviewed H6.0.3 direct-cell thermal-contact placement": 2,
         "reviewed H6.0.3 mechanical-clearance correction": 1,
         "reviewed H6.0.3 native-silkscreen-clearance correction": 1,
-        "reviewed H6.0.3 power-locality correction": 14,
+        "reviewed H6.0.3 power-locality correction": 15,
         "reviewed H6.0.3 signal-locality correction": 2
       },
       "net_count": 516,
@@ -38892,7 +38892,7 @@
           "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES",
           "side": "B.Cu",
           "footprint": "Leshy2:TI-RPW0010A-VQFN-HR-10",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 power-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               33.6,
@@ -38912,7 +38912,7 @@
             34.895,
             98.145
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": -90.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             34895000,
@@ -42881,8 +42881,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "d9fb2d2e3007b0c3ad9d99f37b663adc9286e5499863802c867ce9adc54d3f94",
-      "placement_signature_sha256": "c2c876d4eb11d9ed0acda77b3994fcdfbdc570b19c66aaffc6cf07f85a6c44f9",
+      "unrouted_seed_sha256": "3c5179bebc113a6f14691f47cd6e5750f8349bda5f9987630453da9af44cb71d",
+      "placement_signature_sha256": "f0ae003b0febff59b185695d5d6c1299cea04e52e2d8ecaf618cdba909d5a272",
       "locality": {
         "status": "pass",
         "pair_count": 258,

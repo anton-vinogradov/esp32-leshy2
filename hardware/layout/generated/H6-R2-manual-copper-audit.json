@@ -5,18 +5,18 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "783b8b15d2994d7cd8c69a65948cc61ba1a4a4b1aa5ccc594a46ed8c74d76102",
+    "contract_sha256": "3634c06a1bfd726d1440802097d4c0b0320d8332d59534f20b71f82a76ae101b",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "7888aae1f6fd58b4d69092c51928df1499b4ab01dd0ec43d14e4953e72893146",
+    "routing_policy_sha256": "c6e8d247b8878ebee626686fb3f34600669dd63962212c689e96a4913ae31985",
     "placement_status": "pass"
   },
   "summary": {
-    "route_count": 65,
-    "segment_count": 389,
-    "resolved_connection_count": 117,
-    "via_count": 122,
-    "manual_only_route_count": 47,
-    "local_ground_join_route_count": 18
+    "route_count": 73,
+    "segment_count": 453,
+    "resolved_connection_count": 133,
+    "via_count": 139,
+    "manual_only_route_count": 54,
+    "local_ground_join_route_count": 19
   },
   "boards": [
     {
@@ -88,10 +88,10 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "route_count": 64,
-      "segment_count": 385,
-      "via_count": 122,
-      "resolved_connection_count": 116,
+      "route_count": 72,
+      "segment_count": 449,
+      "via_count": 139,
+      "resolved_connection_count": 132,
       "copper_signature": [
         [
           "track",
@@ -1513,6 +1513,62 @@
           "B.Cu",
           0.25,
           [
+            35.12,
+            99.045
+          ],
+          [
+            35.12,
+            99.55
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.25,
+          [
+            35.12,
+            99.55
+          ],
+          [
+            35.335,
+            100.365
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.25,
+          [
+            35.285,
+            101.605
+          ],
+          [
+            35.335,
+            100.365
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.25,
+          [
+            37.0,
+            100.2
+          ],
+          [
+            37.115,
+            99.815
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.25,
+          [
             45.9,
             79.7
           ],
@@ -1701,6 +1757,62 @@
           [
             32.6,
             114.6
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.3,
+          [
+            35.285,
+            101.605
+          ],
+          [
+            36.2,
+            102.3
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.3,
+          [
+            36.2,
+            102.3
+          ],
+          [
+            36.795,
+            103.375
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.3,
+          [
+            36.4,
+            95.875
+          ],
+          [
+            36.795,
+            93.875
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "B.Cu",
+          0.3,
+          [
+            36.4,
+            95.875
+          ],
+          [
+            37.0,
+            96.0
           ]
         ],
         [
@@ -2731,6 +2843,20 @@
           "In1.Cu",
           0.5,
           [
+            30.8,
+            108.8
+          ],
+          [
+            34.0,
+            108.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
             31.3,
             113.8
           ],
@@ -2759,12 +2885,138 @@
           "In1.Cu",
           0.5,
           [
+            34.0,
+            108.5
+          ],
+          [
+            37.0,
+            107.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
             35.7,
             135.0
           ],
           [
             35.7,
             135.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            36.2,
+            102.3
+          ],
+          [
+            37.0,
+            104.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            36.2,
+            102.3
+          ],
+          [
+            37.7,
+            102.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            37.0,
+            96.0
+          ],
+          [
+            37.45,
+            97.6
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            37.0,
+            99.2
+          ],
+          [
+            37.0,
+            100.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            37.0,
+            99.2
+          ],
+          [
+            37.45,
+            97.6
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            37.0,
+            100.2
+          ],
+          [
+            37.7,
+            101.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            37.0,
+            104.5
+          ],
+          [
+            37.0,
+            107.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "In1.Cu",
+          0.5,
+          [
+            37.7,
+            101.0
+          ],
+          [
+            37.7,
+            102.5
           ]
         ],
         [
@@ -3471,6 +3723,132 @@
           "track",
           "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
           "B.Cu",
+          0.15,
+          [
+            33.45,
+            96.9
+          ],
+          [
+            33.45,
+            97.895
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "B.Cu",
+          0.15,
+          [
+            33.45,
+            97.895
+          ],
+          [
+            34.895,
+            97.895
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "B.Cu",
+          0.15,
+          [
+            37.115,
+            98.585
+          ],
+          [
+            38.0,
+            98.6
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "B.Cu",
+          0.3,
+          [
+            33.45,
+            96.9
+          ],
+          [
+            33.9,
+            96.65
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "B.Cu",
+          0.3,
+          [
+            33.9,
+            94.2
+          ],
+          [
+            33.9,
+            96.65
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "B.Cu",
+          0.3,
+          [
+            33.9,
+            94.2
+          ],
+          [
+            34.895,
+            93.875
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "B.Cu",
+          0.3,
+          [
+            34.0,
+            93.45
+          ],
+          [
+            34.895,
+            93.875
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "B.Cu",
+          0.8,
+          [
+            33.494999,
+            138.42
+          ],
+          [
+            34.2,
+            138.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "B.Cu",
+          0.8,
+          [
+            33.494999,
+            138.42
+          ],
+          [
+            34.2,
+            138.7
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "B.Cu",
           1.5,
           [
             23.995,
@@ -3549,6 +3927,202 @@
           [
             32.2,
             139.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "In3.Cu",
+          0.8,
+          [
+            34.0,
+            93.45
+          ],
+          [
+            34.0,
+            94.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "In3.Cu",
+          0.8,
+          [
+            34.0,
+            94.0
+          ],
+          [
+            34.0,
+            94.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "In3.Cu",
+          0.8,
+          [
+            34.2,
+            138.0
+          ],
+          [
+            34.6,
+            137.9
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "In3.Cu",
+          0.8,
+          [
+            34.2,
+            138.7
+          ],
+          [
+            34.6,
+            137.9
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "In3.Cu",
+          1.2,
+          [
+            34.0,
+            92.5
+          ],
+          [
+            34.0,
+            94.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "In3.Cu",
+          1.2,
+          [
+            34.0,
+            92.5
+          ],
+          [
+            38.0,
+            92.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "In3.Cu",
+          1.2,
+          [
+            34.6,
+            132.0
+          ],
+          [
+            34.6,
+            137.9
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "In3.Cu",
+          1.2,
+          [
+            34.6,
+            132.0
+          ],
+          [
+            38.0,
+            127.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          "In3.Cu",
+          1.2,
+          [
+            38.0,
+            92.5
+          ],
+          [
+            38.0,
+            127.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_U214_PROTECTED",
+          "B.Cu",
+          0.15,
+          [
+            33.299999,
+            98.395
+          ],
+          [
+            33.299999,
+            100.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_U214_PROTECTED",
+          "B.Cu",
+          0.15,
+          [
+            33.299999,
+            98.395
+          ],
+          [
+            34.895,
+            98.395
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_U214_PROTECTED",
+          "B.Cu",
+          0.15,
+          [
+            33.299999,
+            100.2
+          ],
+          [
+            33.45,
+            100.45
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_U214_PROTECTED",
+          "B.Cu",
+          0.3,
+          [
+            33.45,
+            100.45
+          ],
+          [
+            33.45,
+            103.375
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_U214_PROTECTED",
+          "B.Cu",
+          0.5,
+          [
+            33.45,
+            103.375
+          ],
+          [
+            34.895,
+            103.375
           ]
         ],
         [
@@ -4067,6 +4641,328 @@
           [
             28.85,
             133.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_DVDT",
+          "B.Cu",
+          0.15,
+          [
+            34.0,
+            102.2
+          ],
+          [
+            34.325,
+            101.605
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_DVDT",
+          "B.Cu",
+          0.15,
+          [
+            35.645,
+            98.87
+          ],
+          [
+            35.645,
+            99.4
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_DVDT",
+          "B.Cu",
+          0.15,
+          [
+            35.645,
+            99.4
+          ],
+          [
+            36.4,
+            99.25
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_DVDT",
+          "In2.Cu",
+          0.15,
+          [
+            34.0,
+            102.2
+          ],
+          [
+            36.4,
+            101.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_DVDT",
+          "In2.Cu",
+          0.15,
+          [
+            36.4,
+            99.25
+          ],
+          [
+            36.4,
+            101.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_ILM_SET",
+          "B.Cu",
+          0.15,
+          [
+            34.55,
+            99.65
+          ],
+          [
+            34.67,
+            99.55
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_ILM_SET",
+          "B.Cu",
+          0.15,
+          [
+            34.67,
+            99.045
+          ],
+          [
+            34.67,
+            99.55
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_ILM_SET",
+          "B.Cu",
+          0.15,
+          [
+            37.0,
+            101.5
+          ],
+          [
+            37.115,
+            100.835
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_ILM_SET",
+          "F.Cu",
+          0.15,
+          [
+            34.55,
+            99.65
+          ],
+          [
+            36.5,
+            100.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_ILM_SET",
+          "F.Cu",
+          0.15,
+          [
+            36.5,
+            100.5
+          ],
+          [
+            37.0,
+            101.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_ITIMER",
+          "B.Cu",
+          0.15,
+          [
+            34.0,
+            99.5
+          ],
+          [
+            34.145,
+            98.87
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_ITIMER",
+          "B.Cu",
+          0.15,
+          [
+            34.85,
+            95.1
+          ],
+          [
+            34.85,
+            95.875
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_ITIMER",
+          "F.Cu",
+          0.15,
+          [
+            33.4,
+            97.4
+          ],
+          [
+            34.0,
+            99.5
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_ITIMER",
+          "F.Cu",
+          0.15,
+          [
+            33.4,
+            97.4
+          ],
+          [
+            34.2,
+            95.1
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_ITIMER",
+          "F.Cu",
+          0.15,
+          [
+            34.2,
+            95.1
+          ],
+          [
+            34.85,
+            95.1
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_OVLO_SENSE",
+          "B.Cu",
+          0.15,
+          [
+            34.0,
+            100.9
+          ],
+          [
+            34.315,
+            100.365
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_OVLO_SENSE",
+          "B.Cu",
+          0.15,
+          [
+            34.67,
+            96.6
+          ],
+          [
+            34.67,
+            97.245
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_OVLO_SENSE",
+          "B.Cu",
+          0.15,
+          [
+            34.67,
+            96.6
+          ],
+          [
+            36.5,
+            96.75
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_OVLO_SENSE",
+          "B.Cu",
+          0.15,
+          [
+            36.5,
+            97.565
+          ],
+          [
+            37.115,
+            97.565
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_OVLO_SENSE",
+          "In1.Cu",
+          0.15,
+          [
+            34.0,
+            100.9
+          ],
+          [
+            35.6,
+            101.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_OVLO_SENSE",
+          "In1.Cu",
+          0.15,
+          [
+            35.6,
+            98.0
+          ],
+          [
+            35.6,
+            101.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_OVLO_SENSE",
+          "In1.Cu",
+          0.15,
+          [
+            35.6,
+            98.0
+          ],
+          [
+            36.5,
+            96.75
+          ]
+        ],
+        [
+          "track",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_OVLO_SENSE",
+          "In1.Cu",
+          0.15,
+          [
+            36.5,
+            96.75
+          ],
+          [
+            36.5,
+            97.565
           ]
         ],
         [
@@ -5958,6 +6854,30 @@
         [
           "via",
           "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          36.2,
+          102.3,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          37.0,
+          96.0,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          37.0,
+          100.2,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND",
           42.8,
           79.6,
           0.4,
@@ -6237,6 +7157,46 @@
         ],
         [
           "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          34.0,
+          93.45,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          34.0,
+          94.2,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          34.2,
+          138.0,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          34.2,
+          138.7,
+          0.5,
+          0.25
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+          38.0,
+          98.6,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
           "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_EFUSE_ILIM",
           46.0,
           81.3,
@@ -6288,6 +7248,78 @@
           "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_5V_FB",
           31.7,
           133.0,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_DVDT",
+          34.0,
+          102.2,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_DVDT",
+          36.4,
+          99.25,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_ILM_SET",
+          34.55,
+          99.65,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_ILM_SET",
+          37.0,
+          101.5,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_ITIMER",
+          34.0,
+          99.5,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_ITIMER",
+          34.85,
+          95.1,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_OVLO_SENSE",
+          34.0,
+          100.9,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_OVLO_SENSE",
+          36.5,
+          96.75,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_OVLO_SENSE",
+          36.5,
+          97.565,
           0.4,
           0.2
         ],
@@ -7693,6 +8725,171 @@
       "length_mm": 51.2998,
       "resolved_connections": 7,
       "reason": "All seven local eFuse ground terminals join a quiet In1 island; one 0.8-mm star branch reaches the existing system-ground skeleton below the mezzanine without carrying main-rail load current."
+    },
+    {
+      "id": "RF-EXT-EFUSE-INPUT",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "5V_EXT_PREPROTECT",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+      "routing_class": "PRIMARY_POWER",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "In3.Cu"
+      ],
+      "widths_mm": [
+        0.15,
+        0.3,
+        0.8,
+        1.2
+      ],
+      "segment_count": 17,
+      "via_count": 4,
+      "length_mm": 63.1183,
+      "resolved_connections": 2,
+      "reason": "A paired-via 1.2-mm In3 trunk carries the external 5-V rail from the buck output bank to the local eFuse input capacitor; the eFuse bar itself reaches that capacitor through a short surface dogleg which stays clear of the programming pins."
+    },
+    {
+      "id": "RF-EXT-EFUSE-OUTPUT",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "5V_U214_PROTECTED",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_U214_PROTECTED",
+      "routing_class": "PRIMARY_POWER",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15,
+        0.3,
+        0.5
+      ],
+      "segment_count": 5,
+      "via_count": 0,
+      "length_mm": 8.0615,
+      "resolved_connections": 1,
+      "reason": "The protected output bar turns around the quiet programming network on the component layer and widens immediately into its local 2.2-uF capacitor."
+    },
+    {
+      "id": "RF-EXT-EFUSE-ITIMER",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "EXT_EFUSE_ITIMER",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_ITIMER",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "F.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 5,
+      "via_count": 2,
+      "length_mm": 6.6907,
+      "resolved_connections": 1,
+      "reason": "The timer pin and its capacitor use a narrow front-layer bridge, isolated from both the protected-output escape and the internal 5-V trunk."
+    },
+    {
+      "id": "RF-EXT-EFUSE-DVDT",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "EXT_EFUSE_DVDT",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_DVDT",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "In2.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 5,
+      "via_count": 2,
+      "length_mm": 6.7277,
+      "resolved_connections": 1,
+      "reason": "The slew-rate capacitor returns to DVDT over a dedicated front-layer path which stays outside the OVLO and current-limit programming loops."
+    },
+    {
+      "id": "RF-EXT-EFUSE-ILM",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "EXT_EFUSE_ILM_SET",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_ILM_SET",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "F.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 5,
+      "via_count": 2,
+      "length_mm": 4.5813,
+      "resolved_connections": 1,
+      "reason": "The current-limit resistor uses a private In2 bridge reached only after the pad clears the adjacent eFuse ground terminal."
+    },
+    {
+      "id": "RF-EXT-EFUSE-OVLO",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "EXT_EFUSE_OVLO_SENSE",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/EXT_EFUSE_OVLO_SENSE",
+      "routing_class": "ANALOG_AUDIO_SENSE",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu",
+        "In1.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 8,
+      "via_count": 3,
+      "length_mm": 11.708,
+      "resolved_connections": 2,
+      "reason": "Both OVLO divider resistors join the sense pin on a dedicated In1 tree; the source-side resistor is fed separately by the Kelvin input branch."
+    },
+    {
+      "id": "RF-EXT-EFUSE-GROUND-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "POWER_GROUND",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+      "routing_class": "GROUND_REFERENCE",
+      "route_mode": "plane_or_local_pour_manual",
+      "layers": [
+        "B.Cu",
+        "In1.Cu"
+      ],
+      "widths_mm": [
+        0.25,
+        0.3,
+        0.5
+      ],
+      "segment_count": 18,
+      "via_count": 3,
+      "length_mm": 27.8294,
+      "resolved_connections": 7,
+      "reason": "The input and timer capacitors, eFuse ground pin, both programming returns, slew capacitor and protected-output capacitor join one local In1 return which reaches the existing system-ground skeleton at a single branch."
+    },
+    {
+      "id": "RF-EXT-EFUSE-INPUT-DIVIDER",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "5V_EXT_PREPROTECT",
+      "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
+      "routing_class": "PRIMARY_POWER",
+      "route_mode": "manual_only",
+      "layers": [
+        "B.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 1,
+      "via_count": 1,
+      "length_mm": 0.8851,
+      "resolved_connections": 1,
+      "reason": "The OVLO upper resistor receives a Kelvin-width branch from the already-routed In3 input trunk instead of sharing the load-current surface escape."
     },
     {
       "id": "RF-AON-EFUSE-INPUT",

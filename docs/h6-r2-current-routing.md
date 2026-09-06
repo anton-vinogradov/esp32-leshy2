@@ -7,7 +7,7 @@
 | Board | Traces | Vias | Resolved | Remaining | DRC |
 | --- | ---: | ---: | ---: | ---: | --- |
 | UI | 4 | 0 | 1 | 1,226 | 0 |
-| RF/power | 385 | 122 | 116 | 1,922 | 0 |
+| RF/power | 449 | 139 | 132 | 1,906 | 0 |
 
 ## What we want
 
@@ -19,7 +19,7 @@ The former collision-free seed was electrically invalid because some bypass, fee
 
 ## What we obtained
 
-All 1,208 bodies are placed; all 310 local-part → owner pairs meet their limits; 22 actual pad-centre pairs cover every switching-node net and selected local bypasses with zero violations. Both boards have zero native DRC findings. The deliberate restart leaves 3,148 physical connections, summarized in the table above.
+All 1,208 bodies are placed; all 310 local-part → owner pairs meet their limits; 22 actual pad-centre pairs cover every switching-node net and selected local bypasses with zero violations. Both boards have zero native DRC findings. The deliberate restart leaves 3,132 physical connections, summarized in the table above.
 
 ## What happens next
 
