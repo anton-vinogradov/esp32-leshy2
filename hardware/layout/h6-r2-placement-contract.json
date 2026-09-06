@@ -346,7 +346,7 @@
       ],
       "rotation_deg": 180.0,
       "method": "reviewed H6.0.3 charger-locality correction",
-      "reason": "turn the BQ25792 switching pins toward its inductor and move the complete converter island away from the board edge so every high-frequency support part can reach its owning pad directly"
+      "reason": "turn the BQ25798 switching pins toward its inductor and move the complete converter island away from the board edge so every high-frequency support part can reach its owning pad directly"
     },
     "charger_btst1_cap": {
       "frame": "rear-inner",
@@ -356,7 +356,7 @@
       ],
       "rotation_deg": 90.0,
       "method": "reviewed H6.0.3 charger-locality correction",
-      "reason": "freeze the first BQ25792 bootstrap capacitor beside pads 4 and 28 so later charger-support packing cannot displace either hot connection"
+      "reason": "freeze the first BQ25798 bootstrap capacitor beside pads 4 and 28 so later charger-support packing cannot displace either hot connection"
     },
     "charger_btst2_cap": {
       "frame": "rear-inner",
@@ -366,7 +366,37 @@
       ],
       "rotation_deg": 90.0,
       "method": "reviewed H6.0.3 charger-locality correction",
-      "reason": "freeze the second BQ25792 bootstrap capacitor beside pads 19 and 26 so later charger-support packing cannot displace either hot connection"
+      "reason": "freeze the second BQ25798 bootstrap capacitor beside pads 19 and 26 so later charger-support packing cannot displace either hot connection"
+    },
+    "charger_pmid_hf_cap": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        70.245,
+        67.4
+      ],
+      "rotation_deg": 0.0,
+      "method": "reviewed H6.0.3 charger-locality correction",
+      "reason": "place the 0.1-uF PMID capacitor at the closest collision-free same-layer site beside the charger and inductor, preserving the mandatory no-via high-frequency path"
+    },
+    "charger_pmid_cap0": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        71.945,
+        65.595
+      ],
+      "rotation_deg": 0.0,
+      "method": "reviewed H6.0.3 charger-locality correction",
+      "reason": "move the first bulk PMID capacitor 0.20 mm toward its existing capacitor bank so the higher-priority 0.1-uF capacitor fits with a real courtyard gap"
+    },
+    "charger_sys_hf_cap": {
+      "frame": "rear-inner",
+      "centre_mm": [
+        61.975,
+        67.4
+      ],
+      "rotation_deg": 90.0,
+      "method": "reviewed H6.0.3 charger-locality correction",
+      "reason": "place the 0.1-uF SYS capacitor at the closest collision-free same-layer site beside the charger and inductor, preserving the mandatory no-via high-frequency path"
     },
     "ext_en_pulldown": {
       "frame": "rear-inner",
@@ -991,44 +1021,10 @@
   },
   "placement_policy": {
     "released_reference_prefixes_by_project": {
-      "LESHY2-UI-R2": [
-        "C",
-        "L",
-        "R"
-      ],
-      "LESHY2-RF-R2": [
-        "C",
-        "L",
-        "R"
-      ]
+      "LESHY2-UI-R2": [],
+      "LESHY2-RF-R2": []
     },
-    "released_instances": [
-      "aon_efuse",
-      "cc_return_buffer",
-      "codec_i2s_bclk_iso",
-      "codec_i2s_din_iso",
-      "codec_supervisor",
-      "evidence_cmp_voice",
-      "ext_efuse",
-      "main_inductor",
-      "main_efuse",
-      "pack_diag_switch",
-      "pack_diag_timer",
-      "pack_fuse0",
-      "pack_fuse1",
-      "pack_hold",
-      "pack_power_fet",
-      "pack_status_buffer",
-      "pack_supply_or",
-      "pack_system_diode",
-      "safe_ptt_or",
-      "slow_io",
-      "touch_irq_buffer",
-      "u214_return_buffer",
-      "voice_control_mux_b",
-      "voice_efuse",
-      "voice_pd_gate"
-    ],
+    "released_instances": [],
     "locality_owner_overrides": {
       "aon_efuse_input_cap": "aon_efuse",
       "aon_efuse_output_cap": "aon_efuse",
@@ -1458,6 +1454,7 @@
       "charger_inductor",
       "charger_pmid_hf_cap",
       "charger_regn_cap",
+      "charger_sys_hf_cap",
       "charger_vbus_hf_cap",
       "codec_i2s_din_iso_bypass",
       "ext_inductor",
@@ -1685,7 +1682,7 @@
         "first_instance": "nvdc_charger",
         "second_instance": "charger_btst1_cap",
         "maximum_distance_mm": 2.0,
-        "reason": "BQ25792 first bootstrap loop"
+        "reason": "BQ25798 first bootstrap loop"
       },
       {
         "project": "LESHY2-RF-R2",
@@ -1693,7 +1690,7 @@
         "first_instance": "nvdc_charger",
         "second_instance": "charger_btst2_cap",
         "maximum_distance_mm": 2.0,
-        "reason": "BQ25792 second bootstrap loop"
+        "reason": "BQ25798 second bootstrap loop"
       },
       {
         "project": "LESHY2-RF-R2",
@@ -1701,7 +1698,15 @@
         "first_instance": "nvdc_charger",
         "second_instance": "charger_pmid_hf_cap",
         "maximum_distance_mm": 3.75,
-        "reason": "BQ25792 PMID high-frequency bypass path"
+        "reason": "BQ25798 PMID high-frequency bypass path"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "NVDC_SYS",
+        "first_instance": "nvdc_charger",
+        "second_instance": "charger_sys_hf_cap",
+        "maximum_distance_mm": 3.75,
+        "reason": "BQ25798 SYS high-frequency bypass path"
       },
       {
         "project": "LESHY2-RF-R2",
@@ -1709,7 +1714,7 @@
         "first_instance": "nvdc_charger",
         "second_instance": "charger_regn_cap",
         "maximum_distance_mm": 4.75,
-        "reason": "BQ25792 REGN local decoupling path"
+        "reason": "BQ25798 REGN local decoupling path"
       },
       {
         "project": "LESHY2-RF-R2",
@@ -1717,7 +1722,7 @@
         "first_instance": "nvdc_charger",
         "second_instance": "charger_inductor",
         "maximum_distance_mm": 5.0,
-        "reason": "BQ25792 first switch-to-coupled-inductor path"
+        "reason": "BQ25798 first switch-to-coupled-inductor path"
       },
       {
         "project": "LESHY2-RF-R2",
@@ -1725,7 +1730,7 @@
         "first_instance": "nvdc_charger",
         "second_instance": "charger_btst1_cap",
         "maximum_distance_mm": 3.25,
-        "reason": "BQ25792 first switch-side bootstrap return"
+        "reason": "BQ25798 first switch-side bootstrap return"
       },
       {
         "project": "LESHY2-RF-R2",
@@ -1733,7 +1738,7 @@
         "first_instance": "nvdc_charger",
         "second_instance": "charger_inductor",
         "maximum_distance_mm": 5.0,
-        "reason": "BQ25792 second switch-to-coupled-inductor path"
+        "reason": "BQ25798 second switch-to-coupled-inductor path"
       },
       {
         "project": "LESHY2-RF-R2",
@@ -1741,7 +1746,7 @@
         "first_instance": "nvdc_charger",
         "second_instance": "charger_btst2_cap",
         "maximum_distance_mm": 3.25,
-        "reason": "BQ25792 second switch-side bootstrap return"
+        "reason": "BQ25798 second switch-side bootstrap return"
       },
       {
         "project": "LESHY2-RF-R2",
@@ -1813,7 +1818,7 @@
         "first_instance": "nvdc_charger",
         "second_instance": "charger_vbus_hf_cap",
         "maximum_distance_mm": 3.0,
-        "reason": "BQ25792 VBUS high-frequency input bypass"
+        "reason": "BQ25798 VBUS high-frequency input bypass"
       },
       {
         "project": "LESHY2-RF-R2",

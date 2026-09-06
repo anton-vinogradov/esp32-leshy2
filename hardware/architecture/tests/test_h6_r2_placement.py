@@ -43,7 +43,7 @@ class H6R2PlacementTests(unittest.TestCase):
                 "net_or_footprint_error_count": 0,
                 "locality_pair_count": 310,
                 "locality_violation_count": 0,
-                "critical_pad_pair_count": 21,
+                "critical_pad_pair_count": 22,
                 "critical_pad_pair_violation_count": 0,
                 "accepted_same_face_overlap_count": 2,
                 "routing_authorized": True,
@@ -84,6 +84,7 @@ class H6R2PlacementTests(unittest.TestCase):
             "MAIN_BUCK_BST",
             "MAIN_BUCK_BST_LINK",
             "MAIN_BUCK_SW",
+            "NVDC_SYS",
             "PACK_CHARGE_PUMP",
             "RF_RP_VREG_LX_SW",
             "VOICE_BUCK_SW",
@@ -95,7 +96,7 @@ class H6R2PlacementTests(unittest.TestCase):
             self.assertEqual([], pad_audit["errors"])
             self.assertEqual([], pad_audit["violations"])
             rows.extend(pad_audit["rows"])
-        self.assertEqual(21, len(rows))
+        self.assertEqual(22, len(rows))
         self.assertEqual(
             switching_nodes,
             switching_nodes & {row["canonical_net"] for row in rows},
@@ -125,6 +126,9 @@ class H6R2PlacementTests(unittest.TestCase):
     def test_power_islands_and_touch_buffer_use_reviewed_locality_anchors(self):
         expected = {
             "aon_buck": [51.0, 84.5],
+            "charger_pmid_cap0": [71.945, 65.595],
+            "charger_pmid_hf_cap": [70.245, 67.4],
+            "charger_sys_hf_cap": [61.975, 67.4],
             "ext_buck": [30.5, 132.0],
             "main_buck": [13.0, 126.0],
             "nvdc_charger": [66.0, 70.5],
@@ -136,6 +140,11 @@ class H6R2PlacementTests(unittest.TestCase):
                 centre,
                 self.contract["placement_overrides"][instance]["centre_mm"],
             )
+        self.assertEqual([], self.contract["placement_policy"]["released_instances"])
+        self.assertEqual(
+            {"LESHY2-UI-R2": [], "LESHY2-RF-R2": []},
+            self.contract["placement_policy"]["released_reference_prefixes_by_project"],
+        )
 
     def test_native_boards_and_six_layer_headers_match_the_placement_audit(self):
         for board in self.audit["boards"]:

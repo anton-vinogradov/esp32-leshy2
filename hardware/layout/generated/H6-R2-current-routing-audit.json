@@ -6,20 +6,20 @@
   "phase_complete": false,
   "sources": {
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "b543e99c82fb663927b57280f71b8208a95799af506a8aff38325d8b55f898da"
+    "routing_policy_sha256": "fb09c92b617bf76809cea13de15e805d118af182f62d4a38fccda7a4776abdc0"
   },
   "summary": {
     "board_count": 2,
-    "track_via_item_count": 68,
-    "trace_count": 56,
-    "via_count": 12,
+    "track_via_item_count": 80,
+    "trace_count": 66,
+    "via_count": 14,
     "seed_total_unconnected_count": 3265,
-    "current_total_unconnected_count": 3251,
-    "resolved_connection_count": 14,
+    "current_total_unconnected_count": 3247,
+    "resolved_connection_count": 18,
     "analog_remaining_connection_count": 263,
     "placement_locality_pair_count": 310,
     "placement_locality_violation_count": 0,
-    "placement_critical_pad_pair_count": 21,
+    "placement_critical_pad_pair_count": 22,
     "placement_critical_pad_pair_violation_count": 0,
     "drc_violation_count": 0,
     "assigned_drc_exception_count": 0
@@ -28,7 +28,7 @@
     "decision": "retain_80x150_mm",
     "status": "locality_constrained_placement_proven_routing_capacity_open",
     "maximum_same_face_courtyard_occupancy_percent": 61.395,
-    "evidence": "all 1208 exact footprints place without a same-face hard conflict; all 310 local-owner constraints and 21 critical pad-pair limits pass; both native DRC reports are clean; the accepted 5-mm routing corridor remains usable",
+    "evidence": "all 1208 exact footprints place without a same-face hard conflict; all 310 local-owner constraints and 22 critical pad-pair limits pass; both native DRC reports are clean; the accepted 5-mm routing corridor remains usable",
     "why_not_expand_now": "the corrected locality-constrained placement fits the current outline and no legal power, RF or digital route has yet demonstrated a capacity blockage; the route restart deliberately removed the old invalid evidence",
     "expansion_candidate_if_triggered_mm": [
       85.0,
@@ -122,9 +122,9 @@
         }
       },
       "drc": {
-        "report_sha256": "caf04d3c73047752fca8275005c59f2294a4c457c976fb25475f734918068242",
+        "report_sha256": "05c374c4fd3bed563a202d14507ef77df4a1b43864806409c8ff561fa0120bd5",
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-06T09:30:02",
+        "checked_at": "2026-09-06T10:11:21",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,
@@ -136,16 +136,16 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "board_sha256": "5a7a28d426acd0accd95129ae86d590aa7552b90a5e447619765a31220a8e59f",
+      "board_sha256": "b2a77a94b7a1aec377c4d2622b9ca8bc2ca6827eadcbc8b5251eb67212cd79b0",
       "board_size_mm": [
         80.05,
         150.05
       ],
       "footprint_count": 784,
-      "trace_count": 52,
-      "via_count": 12,
-      "track_via_item_count": 64,
-      "routed_net_count": 12,
+      "trace_count": 62,
+      "via_count": 14,
+      "track_via_item_count": 76,
+      "routed_net_count": 14,
       "used_trace_layers": [
         "B.Cu",
         "In2.Cu",
@@ -156,8 +156,8 @@
         "B.Cu": 61.395
       },
       "seed_total_unconnected_count": 2038,
-      "current_total_unconnected_count": 2025,
-      "resolved_connection_count": 13,
+      "current_total_unconnected_count": 2021,
+      "resolved_connection_count": 17,
       "classes": {
         "GROUND_REFERENCE": {
           "net_count": 2,
@@ -165,7 +165,7 @@
         },
         "PRIMARY_POWER": {
           "net_count": 20,
-          "remaining_connection_count": 392
+          "remaining_connection_count": 391
         },
         "POWER_BRANCH": {
           "net_count": 15,
@@ -173,7 +173,7 @@
         },
         "SWITCHING_NODE": {
           "net_count": 14,
-          "remaining_connection_count": 10
+          "remaining_connection_count": 7
         },
         "RF_CONTROLLED": {
           "net_count": 58,
@@ -213,9 +213,9 @@
         }
       },
       "drc": {
-        "report_sha256": "f09f57f893e24310b871bc117d087970efdbe904fdf9079fa159d155db35cb33",
+        "report_sha256": "69db2c2e44e83abe40826f2f7436bd10345be5852ff7c5e88537c6d9b8021909",
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-06T09:30:12",
+        "checked_at": "2026-09-06T10:10:53",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,

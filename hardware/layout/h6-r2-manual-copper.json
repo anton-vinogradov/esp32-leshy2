@@ -21,7 +21,7 @@
       "mpn": "Texas Instruments BQ25798RQMR",
       "source": "https://www.ti.com/lit/ds/symlink/bq25798.pdf",
       "checked": "2026-09-06",
-      "applied_guidance": "Route SW1 and SW2 with minimum practical copper area, sufficient current width, and short parallel through-via fans to separate inner signal layers; keep the high-frequency PMID/SYS capacitors and bootstrap parts local."
+      "applied_guidance": "Route SW1 and SW2 with minimum practical copper area, sufficient current width, and short parallel through-via fans to separate inner signal layers; connect the 0.1-uF PMID/SYS capacitors on the component layer without vias; bootstrap capacitors may use a via on the SW side."
     }
   ],
   "routes": [
@@ -176,8 +176,7 @@
       "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
       "routing_class": "SWITCHING_NODE",
       "segments": [
-        {"layer": "B.Cu", "width_mm": 0.18, "start_mm": [66.45, 68.8], "end_mm": [66.45, 68.1]},
-        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [66.45, 68.1], "end_mm": [66.45, 67.6]},
+        {"layer": "B.Cu", "width_mm": 0.18, "start_mm": [66.45, 68.8], "end_mm": [66.45, 67.6]},
         {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [66.45, 67.6], "end_mm": [66.9, 67.2]},
         {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [66.9, 67.2], "end_mm": [67.35, 66.8]},
         {"layer": "In2.Cu", "width_mm": 0.6, "start_mm": [66.45, 67.6], "end_mm": [66.9, 67.2]},
@@ -206,8 +205,7 @@
       "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
       "routing_class": "SWITCHING_NODE",
       "segments": [
-        {"layer": "B.Cu", "width_mm": 0.18, "start_mm": [65.55, 68.8], "end_mm": [65.55, 68.1]},
-        {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [65.55, 68.1], "end_mm": [65.55, 67.6]},
+        {"layer": "B.Cu", "width_mm": 0.18, "start_mm": [65.55, 68.8], "end_mm": [65.55, 67.6]},
         {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [65.55, 67.6], "end_mm": [65.1, 67.2]},
         {"layer": "B.Cu", "width_mm": 0.5, "start_mm": [65.1, 67.2], "end_mm": [64.65, 66.8]},
         {"layer": "In3.Cu", "width_mm": 0.6, "start_mm": [65.55, 67.6], "end_mm": [65.1, 67.2]},
@@ -228,6 +226,68 @@
       ],
       "expected_resolved_connections": 1,
       "reason": "BQ25798 SW2 mirrors SW1 on In3.Cu so the two current paths may cross without sharing copper; six standard through vias provide parallel current paths and remain outside the SMD pads."
+    },
+    {
+      "id": "RF-CHARGER-SW1-BOOTSTRAP-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CHARGER_SW1",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_SW1",
+      "routing_class": "SWITCHING_NODE",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [69.355, 69.075], "end_mm": [69.355, 68.4]},
+        {"layer": "In2.Cu", "width_mm": 0.15, "start_mm": [69.355, 68.4], "end_mm": [67.35, 66.8]}
+      ],
+      "vias": [
+        {"at_mm": [69.355, 68.4], "diameter_mm": 0.4, "drill_mm": 0.2}
+      ],
+      "expected_resolved_connections": 1,
+      "reason": "The low-current BTST1 capacitor return uses one standard via to join the already reviewed In2.Cu SW1 branch, as allowed by the BQ25798 layout guidance."
+    },
+    {
+      "id": "RF-CHARGER-SW2-BOOTSTRAP-RETURN",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CHARGER_SW2",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_SW2",
+      "routing_class": "SWITCHING_NODE",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [62.605, 69.325], "end_mm": [62.605, 68.65]},
+        {"layer": "In3.Cu", "width_mm": 0.15, "start_mm": [62.605, 68.65], "end_mm": [64.65, 66.8]}
+      ],
+      "vias": [
+        {"at_mm": [62.605, 68.65], "diameter_mm": 0.4, "drill_mm": 0.2}
+      ],
+      "expected_resolved_connections": 1,
+      "reason": "The low-current BTST2 capacitor return uses one standard via to join the already reviewed In3.Cu SW2 branch, as allowed by the BQ25798 layout guidance."
+    },
+    {
+      "id": "RF-CHARGER-PMID-HF",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "CHARGER_PMID",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/CHARGER_PMID",
+      "routing_class": "SWITCHING_NODE",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.18, "start_mm": [66.9, 68.775], "end_mm": [66.9, 68.0]},
+        {"layer": "B.Cu", "width_mm": 0.3, "start_mm": [66.9, 68.0], "end_mm": [67.5, 67.5]},
+        {"layer": "B.Cu", "width_mm": 0.3, "start_mm": [67.5, 67.5], "end_mm": [69.0, 67.5]},
+        {"layer": "B.Cu", "width_mm": 0.3, "start_mm": [69.0, 67.5], "end_mm": [69.765, 67.4]}
+      ],
+      "expected_resolved_connections": 1,
+      "reason": "Direct no-via B.Cu connection from BQ25798 PMID to the relocated 0.1-uF C8; the narrow pad escape widens immediately while staying below the package corner pad."
+    },
+    {
+      "id": "RF-CHARGER-SYS-HF",
+      "project": "LESHY2-RF-R2",
+      "canonical_net": "NVDC_SYS",
+      "kicad_net": "/RF_01_USB_PD_CHARGE/NVDC_SYS",
+      "routing_class": "PRIMARY_POWER",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.18, "start_mm": [65.1, 68.8], "end_mm": [65.1, 68.0]},
+        {"layer": "B.Cu", "width_mm": 0.3, "start_mm": [65.1, 68.0], "end_mm": [64.5, 67.88]},
+        {"layer": "B.Cu", "width_mm": 0.3, "start_mm": [64.5, 67.88], "end_mm": [62.6, 67.88]},
+        {"layer": "B.Cu", "width_mm": 0.3, "start_mm": [62.6, 67.88], "end_mm": [61.975, 67.88]}
+      ],
+      "expected_resolved_connections": 1,
+      "reason": "Direct no-via B.Cu connection from BQ25798 SYS to the relocated 0.1-uF C16, symmetric with the PMID high-frequency path."
     }
   ],
   "authorization": {

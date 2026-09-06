@@ -572,7 +572,7 @@ def target_for_instance(
             "frame": frame,
             "centre": row["courtyard_centre_mm"],
             "exact_anchor_nm": row.get("footprint_anchor_nm"),
-            "rotation": row["rotation_deg"],
+            "rotation": float(row["rotation_deg"]) % 360.0,
             "direction": "frozen before routed copper",
             "frozen": True,
             "placement_method": row["method"],
