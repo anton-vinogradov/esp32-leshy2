@@ -906,7 +906,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "ManufacturerEvidenceChecked" "2026-08-17"
+			(property "ManufacturerEvidenceChecked" "2026-09-07"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -932,13 +932,13 @@
 				(pin passive line
 					(at -20.32 2.54 0)
 					(length 5.08)
-					(name "1A" (effects (font (size 1.27 1.27))))
+					(name "1B" (effects (font (size 1.27 1.27))))
 					(number "1" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at -20.32 0.00 0)
 					(length 5.08)
-					(name "1B" (effects (font (size 1.27 1.27))))
+					(name "1A" (effects (font (size 1.27 1.27))))
 					(number "2" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
@@ -9976,15 +9976,15 @@
 			)
 		)
 	)
-	(label "U214_5V_REQ"
+	(label "UNIT_5V_REQ"
 		(at 35.56 262.89 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "cea3b693-f8e4-580b-bac3-8bfd0134157e")
+		(uuid "4187a5a9-874d-51ce-bac3-85db9d1ec6d4")
 	)
-	(label "UNIT_5V_REQ"
+	(label "U214_5V_REQ"
 		(at 35.56 265.43 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "db41138d-5c7d-5935-b3e8-6505f54b2ae7")
+		(uuid "a5527894-de04-5b2b-8206-aec1b9c42625")
 	)
 	(label "POWER_GROUND"
 		(at 35.56 267.97 0)

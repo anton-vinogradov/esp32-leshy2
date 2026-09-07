@@ -1,0 +1,1143 @@
+{
+  "schema_version": 1,
+  "scope": "Manufacturer-level electrical capabilities for nine digital/MCU/RF/codec groups: 245 verified physical PCB pad types out of 252 materialized pads. Seven uncertain pad types are omitted from pins and recorded in unresolved, never counted as verified passive placeholders. Not configuration-aware, not production ERC acceptance. On-module antenna receptacles without carrier PCB pad numbers are outside this physical-pad map. Unresolved entries are review gates, not implicit approvals.",
+  "devices": [
+    {
+      "device_id": "cc1101rgpr",
+      "mpn": "CC1101RGPR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/cc1101.pdf",
+          "section": "SWRS061I, Table 19, section 11.2, section 26/Table 41; ground EP note",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "SPI SCLK"
+        },
+        "2": {
+          "type": "tri_state",
+          "reason": "SO/GDO1 output; default high-Z when deselected"
+        },
+        "3": {
+          "type": "tri_state",
+          "reason": "GDO2 configurable output including high-Z"
+        },
+        "4": {
+          "type": "power_in",
+          "reason": "DVDD supply"
+        },
+        "5": {
+          "type": "power_out",
+          "reason": "DCOUPL internal core regulator output; own decoupler only, not external loads"
+        },
+        "6": {
+          "type": "bidirectional",
+          "reason": "GDO0 RX/status output or serial TX data input; analog test I/O"
+        },
+        "7": {
+          "type": "input",
+          "reason": "SPI CSn"
+        },
+        "8": {
+          "type": "bidirectional",
+          "reason": "XOSC_Q1 analog oscillator I/O or external clock input"
+        },
+        "9": {
+          "type": "power_in",
+          "reason": "AVDD"
+        },
+        "10": {
+          "type": "bidirectional",
+          "reason": "XOSC_Q2 analog oscillator I/O"
+        },
+        "11": {
+          "type": "power_in",
+          "reason": "AVDD"
+        },
+        "12": {
+          "type": "bidirectional",
+          "reason": "RF_P differential RX input/TX output"
+        },
+        "13": {
+          "type": "bidirectional",
+          "reason": "RF_N differential RX input/TX output"
+        },
+        "14": {
+          "type": "power_in",
+          "reason": "AVDD"
+        },
+        "15": {
+          "type": "power_in",
+          "reason": "AVDD"
+        },
+        "16": {
+          "type": "power_in",
+          "reason": "Analog ground"
+        },
+        "17": {
+          "type": "bidirectional",
+          "reason": "RBIAS analog I/O; reference-current resistor only"
+        },
+        "18": {
+          "type": "power_in",
+          "reason": "DGUARD digital isolation supply/ground connection; not signal driver"
+        },
+        "19": {
+          "type": "power_in",
+          "reason": "Digital isolation ground"
+        },
+        "20": {
+          "type": "input",
+          "reason": "SPI SI"
+        },
+        "21": {
+          "type": "power_in",
+          "reason": "Exposed die-attach main ground"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ebyte_e01_ml01sp4",
+      "mpn": "Ebyte E01-ML01SP4",
+      "evidence": [
+        {
+          "url": "https://www.ebyte.com/downpdf/49.html",
+          "section": "E01-ML01SP4 v1.9, chapter 3 pin directions, chapter 4.2 nRF24L01+ interface",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "power_in",
+          "reason": "VCC"
+        },
+        "2": {
+          "type": "input",
+          "reason": "CE"
+        },
+        "3": {
+          "type": "input",
+          "reason": "CSN"
+        },
+        "4": {
+          "type": "input",
+          "reason": "SCK"
+        },
+        "5": {
+          "type": "input",
+          "reason": "MOSI"
+        },
+        "6": {
+          "type": "output",
+          "reason": "MISO; manufacturer module table specifies output"
+        },
+        "7": {
+          "type": "output",
+          "reason": "IRQ active-low; manufacturer table specifies output, not open-drain"
+        },
+        "8": {
+          "type": "power_in",
+          "reason": "GND"
+        },
+        "9": {
+          "type": "power_in",
+          "reason": "GND"
+        },
+        "10": {
+          "type": "power_in",
+          "reason": "GND"
+        }
+      },
+      "unresolved": [
+        "Manufacturer table defines MISO/IRQ as outputs but does not prove MISO deselected high-Z behavior or IRQ open-drain topology at module level. Keep output classification until the module implementation/underlying nRF24L01+ interface is cross-checked; do not permit shared push-pull IRQ wiring by assumption."
+      ]
+    },
+    {
+      "device_id": "esp32_c5_wroom_1u_n8r8",
+      "mpn": "ESP32-C5-WROOM-1U-N8R8",
+      "evidence": [
+        {
+          "url": "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf",
+          "section": "v1.3, Table 3-2 including notes 3 and 4",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "power_in",
+          "reason": "GND including exposed pad29"
+        },
+        "2": {
+          "type": "power_in",
+          "reason": "3V3 module supply"
+        },
+        "3": {
+          "type": "input",
+          "reason": "EN enable/reset"
+        },
+        "4": {
+          "type": "bidirectional",
+          "reason": "GPIO2 module GPIO / peripheral I/O/T"
+        },
+        "5": {
+          "type": "bidirectional",
+          "reason": "GPIO3 module GPIO / peripheral I/O/T"
+        },
+        "6": {
+          "type": "bidirectional",
+          "reason": "GPIO0 module GPIO / peripheral I/O/T"
+        },
+        "7": {
+          "type": "bidirectional",
+          "reason": "GPIO1 module GPIO / peripheral I/O/T"
+        },
+        "8": {
+          "type": "bidirectional",
+          "reason": "GPIO6 module GPIO / peripheral I/O/T"
+        },
+        "9": {
+          "type": "bidirectional",
+          "reason": "GPIO7 module GPIO / peripheral I/O/T"
+        },
+        "10": {
+          "type": "bidirectional",
+          "reason": "GPIO8 module GPIO / peripheral I/O/T"
+        },
+        "11": {
+          "type": "bidirectional",
+          "reason": "GPIO9 module GPIO / peripheral I/O/T"
+        },
+        "12": {
+          "type": "bidirectional",
+          "reason": "GPIO10 module GPIO / peripheral I/O/T"
+        },
+        "13": {
+          "type": "bidirectional",
+          "reason": "GPIO13 module GPIO / peripheral I/O/T"
+        },
+        "14": {
+          "type": "bidirectional",
+          "reason": "GPIO14 module GPIO / peripheral I/O/T"
+        },
+        "15": {
+          "type": "bidirectional",
+          "reason": "GPIO28 module GPIO / peripheral I/O/T"
+        },
+        "16": {
+          "type": "bidirectional",
+          "reason": "GPIO5 module GPIO / peripheral I/O/T"
+        },
+        "17": {
+          "type": "bidirectional",
+          "reason": "GPIO4 module GPIO / peripheral I/O/T"
+        },
+        "18": {
+          "type": "bidirectional",
+          "reason": "GPIO27 module GPIO / peripheral I/O/T"
+        },
+        "19": {
+          "type": "output",
+          "reason": "Internal PSRAM SPICS1 on N8R8; unavailable as GPIO; must remain externally unconnected"
+        },
+        "20": {
+          "type": "no_connect",
+          "reason": "Manufacturer NC"
+        },
+        "21": {
+          "type": "bidirectional",
+          "reason": "GPIO23 module GPIO / peripheral I/O/T"
+        },
+        "22": {
+          "type": "no_connect",
+          "reason": "Manufacturer NC"
+        },
+        "23": {
+          "type": "bidirectional",
+          "reason": "GPIO24 module GPIO / peripheral I/O/T"
+        },
+        "24": {
+          "type": "bidirectional",
+          "reason": "GPIO12 module GPIO / peripheral I/O/T"
+        },
+        "25": {
+          "type": "bidirectional",
+          "reason": "GPIO11 module GPIO / peripheral I/O/T"
+        },
+        "26": {
+          "type": "bidirectional",
+          "reason": "GPIO25 module GPIO / peripheral I/O/T"
+        },
+        "27": {
+          "type": "bidirectional",
+          "reason": "GPIO26 module GPIO / peripheral I/O/T"
+        },
+        "28": {
+          "type": "power_in",
+          "reason": "GND including exposed pad29"
+        },
+        "29": {
+          "type": "power_in",
+          "reason": "GND including exposed pad29"
+        },
+        "30": {
+          "type": "power_in",
+          "reason": "GND including exposed pad29"
+        },
+        "31": {
+          "type": "bidirectional",
+          "reason": "ANT2 RF port; disabled in default ANT1 assembly"
+        },
+        "32": {
+          "type": "power_in",
+          "reason": "GND including exposed pad29"
+        }
+      },
+      "unresolved": [
+        "Pad19 is an internal PSRAM chip-select output, not a free GPIO or a physically absent connection. Exact N8R8 endpoint policy must require no external connection. ANT2 pad31 is disabled by default; bidirectional capability does not authorize changing the populated antenna path."
+      ]
+    },
+    {
+      "device_id": "esp32_s3_wroom_1u_n16r8",
+      "mpn": "ESP32-S3-WROOM-1U-N16R8",
+      "evidence": [
+        {
+          "url": "https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf",
+          "section": "v1.8, Table 3-1 and memory footnotes; Figure 8-2",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "power_in",
+          "reason": "GND including exposed pad41"
+        },
+        "2": {
+          "type": "power_in",
+          "reason": "3V3 module supply"
+        },
+        "3": {
+          "type": "input",
+          "reason": "EN enable/reset"
+        },
+        "4": {
+          "type": "bidirectional",
+          "reason": "GPIO4 I/O/T capability per module table"
+        },
+        "5": {
+          "type": "bidirectional",
+          "reason": "GPIO5 I/O/T capability per module table"
+        },
+        "6": {
+          "type": "bidirectional",
+          "reason": "GPIO6 I/O/T capability per module table"
+        },
+        "7": {
+          "type": "bidirectional",
+          "reason": "GPIO7 I/O/T capability per module table"
+        },
+        "8": {
+          "type": "bidirectional",
+          "reason": "GPIO15 I/O/T capability per module table"
+        },
+        "9": {
+          "type": "bidirectional",
+          "reason": "GPIO16 I/O/T capability per module table"
+        },
+        "10": {
+          "type": "bidirectional",
+          "reason": "GPIO17 I/O/T capability per module table"
+        },
+        "11": {
+          "type": "bidirectional",
+          "reason": "GPIO18 I/O/T capability per module table"
+        },
+        "12": {
+          "type": "bidirectional",
+          "reason": "GPIO8 I/O/T capability per module table"
+        },
+        "13": {
+          "type": "bidirectional",
+          "reason": "GPIO19 I/O/T capability per module table"
+        },
+        "14": {
+          "type": "bidirectional",
+          "reason": "GPIO20 I/O/T capability per module table"
+        },
+        "15": {
+          "type": "bidirectional",
+          "reason": "GPIO3 I/O/T capability per module table"
+        },
+        "16": {
+          "type": "bidirectional",
+          "reason": "GPIO46 I/O/T capability per module table"
+        },
+        "17": {
+          "type": "bidirectional",
+          "reason": "GPIO9 I/O/T capability per module table"
+        },
+        "18": {
+          "type": "bidirectional",
+          "reason": "GPIO10 I/O/T capability per module table"
+        },
+        "19": {
+          "type": "bidirectional",
+          "reason": "GPIO11 I/O/T capability per module table"
+        },
+        "20": {
+          "type": "bidirectional",
+          "reason": "GPIO12 I/O/T capability per module table"
+        },
+        "21": {
+          "type": "bidirectional",
+          "reason": "GPIO13 I/O/T capability per module table"
+        },
+        "22": {
+          "type": "bidirectional",
+          "reason": "GPIO14 I/O/T capability per module table"
+        },
+        "23": {
+          "type": "bidirectional",
+          "reason": "GPIO21 I/O/T capability per module table"
+        },
+        "24": {
+          "type": "bidirectional",
+          "reason": "GPIO47 I/O/T capability per module table"
+        },
+        "25": {
+          "type": "bidirectional",
+          "reason": "GPIO48 I/O/T capability per module table"
+        },
+        "26": {
+          "type": "bidirectional",
+          "reason": "GPIO45 I/O/T capability per module table"
+        },
+        "27": {
+          "type": "bidirectional",
+          "reason": "GPIO0 I/O/T capability per module table"
+        },
+        "28": {
+          "type": "bidirectional",
+          "reason": "IO35 electrically connects internal octal PSRAM on N16R8; forbidden as user GPIO"
+        },
+        "29": {
+          "type": "bidirectional",
+          "reason": "IO36 electrically connects internal octal PSRAM on N16R8; forbidden as user GPIO"
+        },
+        "30": {
+          "type": "bidirectional",
+          "reason": "IO37 electrically connects internal octal PSRAM on N16R8; forbidden as user GPIO"
+        },
+        "31": {
+          "type": "bidirectional",
+          "reason": "GPIO38 I/O/T capability per module table"
+        },
+        "32": {
+          "type": "bidirectional",
+          "reason": "GPIO39 I/O/T capability per module table"
+        },
+        "33": {
+          "type": "bidirectional",
+          "reason": "GPIO40 I/O/T capability per module table"
+        },
+        "34": {
+          "type": "bidirectional",
+          "reason": "GPIO41 I/O/T capability per module table"
+        },
+        "35": {
+          "type": "bidirectional",
+          "reason": "GPIO42 I/O/T capability per module table"
+        },
+        "36": {
+          "type": "bidirectional",
+          "reason": "GPIO44 I/O/T capability per module table"
+        },
+        "37": {
+          "type": "bidirectional",
+          "reason": "GPIO43 I/O/T capability per module table"
+        },
+        "38": {
+          "type": "bidirectional",
+          "reason": "GPIO2 I/O/T capability per module table"
+        },
+        "39": {
+          "type": "bidirectional",
+          "reason": "GPIO1 I/O/T capability per module table"
+        },
+        "40": {
+          "type": "power_in",
+          "reason": "GND including exposed pad41"
+        },
+        "41": {
+          "type": "power_in",
+          "reason": "GND including exposed pad41"
+        }
+      },
+      "unresolved": [
+        "Pad28/29/30 actual internal PSRAM connections are not electrically NC; exact N16R8 board-use policy must still require no external connections. Broad GPIO bidirectional types do not authorize use of reserved pins or prove boot strap levels."
+      ]
+    },
+    {
+      "device_id": "everest_es8311_qfn20",
+      "mpn": "Everest Semiconductor ES8311",
+      "evidence": [
+        {
+          "url": "https://files.waveshare.com/wiki/common/ES8311.DS.pdf",
+          "section": "Everest-authored datasheet Rev10.0 January2021, section2 pin types; section3 EP21; reg0x01 MCLK_SEL. Manufacturer original served by Waveshare.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://files.waveshare.com/wiki/common/ES8311.user.Guide.pdf",
+          "section": "Everest-authored User Guide Rev1.11 September2018, section5.1 thermal pad must join audio ground; manufacturer original served by Waveshare.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "CCLK I2C clock"
+        },
+        "2": {
+          "type": "input",
+          "reason": "MCLK; may be unused only with proven BCLK-derived clock setup"
+        },
+        "3": {
+          "type": "power_in",
+          "reason": "PVDD digital I/O supply"
+        },
+        "4": {
+          "type": "power_in",
+          "reason": "DVDD digital supply, externally supplied"
+        },
+        "5": {
+          "type": "power_in",
+          "reason": "DGND"
+        },
+        "6": {
+          "type": "bidirectional",
+          "reason": "SCLK/DMIC_SCL bit clock, master/slave dependent"
+        },
+        "7": {
+          "type": "output",
+          "reason": "ASDOUT ADC data"
+        },
+        "8": {
+          "type": "bidirectional",
+          "reason": "LRCK master/slave frame clock"
+        },
+        "9": {
+          "type": "input",
+          "reason": "DSDIN DAC data"
+        },
+        "10": {
+          "type": "power_in",
+          "reason": "AGND"
+        },
+        "11": {
+          "type": "power_in",
+          "reason": "AVDD analog supply, externally supplied"
+        },
+        "12": {
+          "type": "output",
+          "reason": "OUTP differential analog output"
+        },
+        "13": {
+          "type": "output",
+          "reason": "OUTN differential analog output"
+        },
+        "17": {
+          "type": "input",
+          "reason": "MIC1N analog input"
+        },
+        "18": {
+          "type": "input",
+          "reason": "MIC1P analog / DMIC_SDA digital microphone input"
+        },
+        "19": {
+          "type": "bidirectional",
+          "reason": "CDATA I2C data"
+        },
+        "20": {
+          "type": "input",
+          "reason": "CE I2C address select"
+        },
+        "21": {
+          "type": "power_in",
+          "reason": "Exposed thermal pad to audio ground"
+        }
+      },
+      "unresolved": [
+        "Manufacturer-hosted current Rev17 product-brief retrieval failed (502/connection refused); types use Everest-authored Rev10 datasheet and Rev1.11 user guide mirrored by Waveshare. Reconcile against current manufacturer revision before production acceptance.",
+        "Pads14 DACVREF, 15 ADCVREF and 16 VMID are omitted from pins: the primary table labels these capacitor-only analog references Analog/filtering capacitor connection without an ERC direction. Do not count them as verified passive pins or infer that they can supply external loads.",
+        "Current codec.MCLK is deliberate NC; register0x01[7] can select BCLK. Correct BCLK-derived configuration and timing remain a separate firmware/electrical obligation, not proven by this pin map.",
+        "SCLK and LRCK need current slave-mode endpoint overrides before detecting host-output conflicts; broad bidirectional device capability is not a chosen operating mode."
+      ]
+    },
+    {
+      "device_id": "rp2354b_a4",
+      "mpn": "SC1512-A4",
+      "evidence": [
+        {
+          "url": "https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf",
+          "section": "2025-07-29 build d126e9e, sections 1.2.2, 6.3, 14.3; Tables 1426-1432",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "bidirectional",
+          "reason": "GPIO4 digital I/O capability; flash pins also connect internal flash"
+        },
+        "2": {
+          "type": "bidirectional",
+          "reason": "GPIO5 digital I/O capability; flash pins also connect internal flash"
+        },
+        "3": {
+          "type": "bidirectional",
+          "reason": "GPIO6 digital I/O capability; flash pins also connect internal flash"
+        },
+        "4": {
+          "type": "bidirectional",
+          "reason": "GPIO7 digital I/O capability; flash pins also connect internal flash"
+        },
+        "5": {
+          "type": "power_in",
+          "reason": "IOVDD_5 supply/ground"
+        },
+        "6": {
+          "type": "bidirectional",
+          "reason": "GPIO8 digital I/O capability; flash pins also connect internal flash"
+        },
+        "7": {
+          "type": "bidirectional",
+          "reason": "GPIO9 digital I/O capability; flash pins also connect internal flash"
+        },
+        "8": {
+          "type": "bidirectional",
+          "reason": "GPIO10 digital I/O capability; flash pins also connect internal flash"
+        },
+        "9": {
+          "type": "bidirectional",
+          "reason": "GPIO11 digital I/O capability; flash pins also connect internal flash"
+        },
+        "10": {
+          "type": "power_in",
+          "reason": "DVDD_10 supply/ground"
+        },
+        "11": {
+          "type": "bidirectional",
+          "reason": "GPIO12 digital I/O capability; flash pins also connect internal flash"
+        },
+        "12": {
+          "type": "bidirectional",
+          "reason": "GPIO13 digital I/O capability; flash pins also connect internal flash"
+        },
+        "13": {
+          "type": "bidirectional",
+          "reason": "GPIO14 digital I/O capability; flash pins also connect internal flash"
+        },
+        "14": {
+          "type": "bidirectional",
+          "reason": "GPIO15 digital I/O capability; flash pins also connect internal flash"
+        },
+        "15": {
+          "type": "power_in",
+          "reason": "IOVDD_15 supply/ground"
+        },
+        "16": {
+          "type": "bidirectional",
+          "reason": "GPIO16 digital I/O capability; flash pins also connect internal flash"
+        },
+        "17": {
+          "type": "bidirectional",
+          "reason": "GPIO17 digital I/O capability; flash pins also connect internal flash"
+        },
+        "18": {
+          "type": "bidirectional",
+          "reason": "GPIO18 digital I/O capability; flash pins also connect internal flash"
+        },
+        "19": {
+          "type": "bidirectional",
+          "reason": "GPIO19 digital I/O capability; flash pins also connect internal flash"
+        },
+        "20": {
+          "type": "bidirectional",
+          "reason": "GPIO20 digital I/O capability; flash pins also connect internal flash"
+        },
+        "21": {
+          "type": "bidirectional",
+          "reason": "GPIO21 digital I/O capability; flash pins also connect internal flash"
+        },
+        "22": {
+          "type": "bidirectional",
+          "reason": "GPIO22 digital I/O capability; flash pins also connect internal flash"
+        },
+        "23": {
+          "type": "bidirectional",
+          "reason": "GPIO23 digital I/O capability; flash pins also connect internal flash"
+        },
+        "24": {
+          "type": "power_in",
+          "reason": "IOVDD_24 supply/ground"
+        },
+        "25": {
+          "type": "bidirectional",
+          "reason": "GPIO24 digital I/O capability; flash pins also connect internal flash"
+        },
+        "26": {
+          "type": "bidirectional",
+          "reason": "GPIO25 digital I/O capability; flash pins also connect internal flash"
+        },
+        "27": {
+          "type": "bidirectional",
+          "reason": "GPIO26 digital I/O capability; flash pins also connect internal flash"
+        },
+        "28": {
+          "type": "bidirectional",
+          "reason": "GPIO27 digital I/O capability; flash pins also connect internal flash"
+        },
+        "29": {
+          "type": "power_in",
+          "reason": "IOVDD_29 supply/ground"
+        },
+        "30": {
+          "type": "input",
+          "reason": "Oscillator input; external square-wave input permitted"
+        },
+        "32": {
+          "type": "power_in",
+          "reason": "DVDD_32 supply/ground"
+        },
+        "33": {
+          "type": "input",
+          "reason": "SWCLK fixed digital input"
+        },
+        "34": {
+          "type": "bidirectional",
+          "reason": "SWDIO digital I/O capability; flash pins also connect internal flash"
+        },
+        "35": {
+          "type": "input",
+          "reason": "RUN fixed digital input"
+        },
+        "36": {
+          "type": "bidirectional",
+          "reason": "GPIO28 digital I/O capability; flash pins also connect internal flash"
+        },
+        "37": {
+          "type": "bidirectional",
+          "reason": "GPIO29 digital I/O capability; flash pins also connect internal flash"
+        },
+        "38": {
+          "type": "bidirectional",
+          "reason": "GPIO30 digital I/O capability; flash pins also connect internal flash"
+        },
+        "39": {
+          "type": "bidirectional",
+          "reason": "GPIO31 digital I/O capability; flash pins also connect internal flash"
+        },
+        "40": {
+          "type": "bidirectional",
+          "reason": "GPIO32 digital I/O capability; flash pins also connect internal flash"
+        },
+        "41": {
+          "type": "power_in",
+          "reason": "IOVDD_41 supply/ground"
+        },
+        "42": {
+          "type": "bidirectional",
+          "reason": "GPIO33 digital I/O capability; flash pins also connect internal flash"
+        },
+        "43": {
+          "type": "bidirectional",
+          "reason": "GPIO34 digital I/O capability; flash pins also connect internal flash"
+        },
+        "44": {
+          "type": "bidirectional",
+          "reason": "GPIO35 digital I/O capability; flash pins also connect internal flash"
+        },
+        "45": {
+          "type": "bidirectional",
+          "reason": "GPIO36 digital I/O capability; flash pins also connect internal flash"
+        },
+        "46": {
+          "type": "bidirectional",
+          "reason": "GPIO37 digital I/O capability; flash pins also connect internal flash"
+        },
+        "47": {
+          "type": "bidirectional",
+          "reason": "GPIO38 digital I/O capability; flash pins also connect internal flash"
+        },
+        "48": {
+          "type": "bidirectional",
+          "reason": "GPIO39 digital I/O capability; flash pins also connect internal flash"
+        },
+        "49": {
+          "type": "bidirectional",
+          "reason": "GPIO40 digital I/O capability; flash pins also connect internal flash"
+        },
+        "50": {
+          "type": "power_in",
+          "reason": "IOVDD_50 supply/ground"
+        },
+        "51": {
+          "type": "power_in",
+          "reason": "DVDD_51 supply/ground"
+        },
+        "52": {
+          "type": "bidirectional",
+          "reason": "GPIO41 digital I/O capability; flash pins also connect internal flash"
+        },
+        "53": {
+          "type": "bidirectional",
+          "reason": "GPIO42 digital I/O capability; flash pins also connect internal flash"
+        },
+        "54": {
+          "type": "bidirectional",
+          "reason": "GPIO43 digital I/O capability; flash pins also connect internal flash"
+        },
+        "55": {
+          "type": "bidirectional",
+          "reason": "GPIO44 digital I/O capability; flash pins also connect internal flash"
+        },
+        "56": {
+          "type": "bidirectional",
+          "reason": "GPIO45 digital I/O capability; flash pins also connect internal flash"
+        },
+        "57": {
+          "type": "bidirectional",
+          "reason": "GPIO46 digital I/O capability; flash pins also connect internal flash"
+        },
+        "58": {
+          "type": "bidirectional",
+          "reason": "GPIO47 digital I/O capability; flash pins also connect internal flash"
+        },
+        "59": {
+          "type": "power_in",
+          "reason": "ADC_AVDD supply/ground"
+        },
+        "60": {
+          "type": "power_in",
+          "reason": "IOVDD_60 supply/ground"
+        },
+        "61": {
+          "type": "power_in",
+          "reason": "VREG_AVDD supply/ground"
+        },
+        "62": {
+          "type": "power_in",
+          "reason": "VREG_PGND supply/ground"
+        },
+        "63": {
+          "type": "output",
+          "reason": "VREG_LX buck switching output, not a regulated DC source; external LC and supplied VREG_VIN/AVDD are required"
+        },
+        "64": {
+          "type": "power_in",
+          "reason": "VREG_VIN supply/ground"
+        },
+        "65": {
+          "type": "input",
+          "reason": "Feedback sense of externally filtered core rail"
+        },
+        "66": {
+          "type": "bidirectional",
+          "reason": "USB_DM digital I/O capability; flash pins also connect internal flash"
+        },
+        "67": {
+          "type": "bidirectional",
+          "reason": "USB_DP digital I/O capability; flash pins also connect internal flash"
+        },
+        "68": {
+          "type": "power_in",
+          "reason": "USB_OTP_VDD supply/ground"
+        },
+        "69": {
+          "type": "power_in",
+          "reason": "QSPI I/O and internal RP2354 flash supply, must be 2.7-3.6V"
+        },
+        "70": {
+          "type": "bidirectional",
+          "reason": "QSPI_SD3 digital I/O capability; flash pins also connect internal flash"
+        },
+        "71": {
+          "type": "bidirectional",
+          "reason": "QSPI_SCLK digital I/O capability; flash pins also connect internal flash"
+        },
+        "72": {
+          "type": "bidirectional",
+          "reason": "QSPI_SD0 digital I/O capability; flash pins also connect internal flash"
+        },
+        "73": {
+          "type": "bidirectional",
+          "reason": "QSPI_SD2 digital I/O capability; flash pins also connect internal flash"
+        },
+        "74": {
+          "type": "bidirectional",
+          "reason": "QSPI_SD1 digital I/O capability; flash pins also connect internal flash"
+        },
+        "75": {
+          "type": "bidirectional",
+          "reason": "QSPI_SS_USB_BOOT digital I/O capability; flash pins also connect internal flash"
+        },
+        "76": {
+          "type": "power_in",
+          "reason": "IOVDD_76 supply/ground"
+        },
+        "77": {
+          "type": "bidirectional",
+          "reason": "GPIO0 digital I/O capability; flash pins also connect internal flash"
+        },
+        "78": {
+          "type": "bidirectional",
+          "reason": "GPIO1 digital I/O capability; flash pins also connect internal flash"
+        },
+        "79": {
+          "type": "bidirectional",
+          "reason": "GPIO2 digital I/O capability; flash pins also connect internal flash"
+        },
+        "80": {
+          "type": "bidirectional",
+          "reason": "GPIO3 digital I/O capability; flash pins also connect internal flash"
+        },
+        "81": {
+          "type": "power_in",
+          "reason": "GND_EP supply/ground"
+        }
+      },
+      "unresolved": [
+        "Pad31 XOUT is omitted from pins because its ERC direction is unresolved. The manufacturer table calls both crystal terminals Analogue(XOSC); evaluate a dedicated oscillator-pair rule rather than count a passive placeholder as verified coverage.",
+        "Endpoint policy must preserve actual QSPI bus electrical capability while forbidding unwanted external loads; broad QSPI_* no-connect matching must never capture the supply.",
+        "Power reachability must model VREG_LX through its inductor only when VREG_VIN and VREG_AVDD are supplied; a power_out label alone does not prove a powered core."
+      ],
+      "source_mapping_corrections": [
+        {
+          "source": "hardware/ecad/h2_r2_net_ledger.py",
+          "correction": "QSPI_IOVDD pad69 of hub_rp and rf_rp was incorrectly captured by broad QSPI_* no-connect matching. Corrected to 3V3_MAIN: RP2354 section14.3 requires 2.7-3.6V here for its internal flash. Dedicated local bypasses C53/UI and C100/RF already connect to that rail. Corrected H2 has 4070 connected physical pins and 236 explicit no-connects."
+        }
+      ]
+    },
+    {
+      "device_id": "skyworks_si4732_a10_gsr",
+      "mpn": "Si4732-A10-GSR",
+      "evidence": [
+        {
+          "url": "https://www.skyworksinc.com/-/media/Skyworks/SL/documents/public/data-shorts/Si4732-A10-short.pdf",
+          "section": "2021-09-13, block diagram and SOIC16 pin assignments; full mode-specific direction table not supplied",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "4": {
+          "type": "output",
+          "reason": "GPO1"
+        },
+        "5": {
+          "type": "no_connect",
+          "reason": "Manufacturer NC"
+        },
+        "6": {
+          "type": "input",
+          "reason": "FMI RF receive input"
+        },
+        "7": {
+          "type": "power_in",
+          "reason": "RFGND"
+        },
+        "8": {
+          "type": "input",
+          "reason": "AMI RF receive input"
+        },
+        "9": {
+          "type": "input",
+          "reason": "RST"
+        },
+        "10": {
+          "type": "input",
+          "reason": "SENB serial interface select"
+        },
+        "11": {
+          "type": "input",
+          "reason": "SCLK control clock"
+        },
+        "12": {
+          "type": "bidirectional",
+          "reason": "SDIO control data"
+        },
+        "13": {
+          "type": "input",
+          "reason": "RCLK reference clock"
+        },
+        "14": {
+          "type": "power_in",
+          "reason": "VDD"
+        },
+        "15": {
+          "type": "power_in",
+          "reason": "GND"
+        },
+        "16": {
+          "type": "output",
+          "reason": "ROUT analog / DOUT digital output"
+        }
+      },
+      "unresolved": [
+        "Pins1 LOUT/DFS, 2 GPO3/DCLK and 3 GPO2/INTB are omitted from pins. The public manufacturer data short confirms assignments and basic functions, but not complete mode-dependent directions: digital-audio/oscillator behavior on 1/2 and output versus open-drain/tri-state topology on 3 require exact evidence. These three pins are not verified electrical coverage.",
+        "Pin13 RCLK as crystal oscillator input requires paired-pin and mode constraints; pin9 reset can configure multiplexed pad behavior. Full exact Si4732-A10 documentation is still required before ERC acceptance."
+      ]
+    },
+    {
+      "device_id": "skyworks_si5351a_b_gtr",
+      "mpn": "SI5351A-B-GTR",
+      "evidence": [
+        {
+          "url": "https://www.skyworksinc.com/-/media/SkyWorks/SL/documents/public/data-sheets/Si5351-B.pdf",
+          "section": "Rev1.3, section 10.7/Table 20, exact 10-MSOP",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "power_in",
+          "reason": "VDD core supply"
+        },
+        "2": {
+          "type": "input",
+          "reason": "XA crystal input per Table20"
+        },
+        "3": {
+          "type": "input",
+          "reason": "XB crystal input per Table20"
+        },
+        "4": {
+          "type": "input",
+          "reason": "SCL; external pullup required"
+        },
+        "5": {
+          "type": "bidirectional",
+          "reason": "SDA I2C data, external pullup required"
+        },
+        "6": {
+          "type": "output",
+          "reason": "CLK2"
+        },
+        "7": {
+          "type": "power_in",
+          "reason": "VDDO supplies output buffers; not regulator output"
+        },
+        "8": {
+          "type": "power_in",
+          "reason": "GND"
+        },
+        "9": {
+          "type": "output",
+          "reason": "CLK1"
+        },
+        "10": {
+          "type": "output",
+          "reason": "CLK0"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_mspm0c1106_sdgs20r",
+      "mpn": "Texas Instruments MSPM0C1106SDGS20R",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/mspm0c1106.pdf",
+          "section": "SLASFJ6B, Figure 6-8 DGS20; Table 6-2 GPIO and supply types",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "bidirectional",
+          "reason": "PA26 GPIO capability; alternate reset/debug direction requires endpoint override"
+        },
+        "2": {
+          "type": "bidirectional",
+          "reason": "PA27 GPIO capability; alternate reset/debug direction requires endpoint override"
+        },
+        "3": {
+          "type": "bidirectional",
+          "reason": "PA30 GPIO capability; alternate reset/debug direction requires endpoint override"
+        },
+        "4": {
+          "type": "bidirectional",
+          "reason": "PA0 GPIO capability; alternate reset/debug direction requires endpoint override"
+        },
+        "5": {
+          "type": "bidirectional",
+          "reason": "PA1_NRST GPIO capability; alternate reset/debug direction requires endpoint override"
+        },
+        "6": {
+          "type": "power_in",
+          "reason": "VDD"
+        },
+        "7": {
+          "type": "power_in",
+          "reason": "VSS"
+        },
+        "8": {
+          "type": "bidirectional",
+          "reason": "PA2 GPIO capability; alternate reset/debug direction requires endpoint override"
+        },
+        "9": {
+          "type": "bidirectional",
+          "reason": "PA4 GPIO capability; alternate reset/debug direction requires endpoint override"
+        },
+        "10": {
+          "type": "bidirectional",
+          "reason": "PA6 GPIO capability; alternate reset/debug direction requires endpoint override"
+        },
+        "11": {
+          "type": "bidirectional",
+          "reason": "PA11 GPIO capability; alternate reset/debug direction requires endpoint override"
+        },
+        "12": {
+          "type": "bidirectional",
+          "reason": "PA16 GPIO capability; alternate reset/debug direction requires endpoint override"
+        },
+        "13": {
+          "type": "bidirectional",
+          "reason": "PA17 GPIO capability; alternate reset/debug direction requires endpoint override"
+        },
+        "14": {
+          "type": "bidirectional",
+          "reason": "PA18 GPIO capability; alternate reset/debug direction requires endpoint override"
+        },
+        "15": {
+          "type": "bidirectional",
+          "reason": "PA19_SWDIO GPIO capability; alternate reset/debug direction requires endpoint override"
+        },
+        "16": {
+          "type": "bidirectional",
+          "reason": "PA20_SWCLK GPIO capability; alternate reset/debug direction requires endpoint override"
+        },
+        "17": {
+          "type": "bidirectional",
+          "reason": "PA22 GPIO capability; alternate reset/debug direction requires endpoint override"
+        },
+        "18": {
+          "type": "bidirectional",
+          "reason": "PA23 GPIO capability; alternate reset/debug direction requires endpoint override"
+        },
+        "19": {
+          "type": "bidirectional",
+          "reason": "PA24 GPIO capability; alternate reset/debug direction requires endpoint override"
+        },
+        "20": {
+          "type": "bidirectional",
+          "reason": "PA25 GPIO capability; alternate reset/debug direction requires endpoint override"
+        }
+      },
+      "unresolved": [
+        "PA1/NRST, PA19/SWDIO and PA20/SWCLK are GPIO-capable at device level. Current safety/reset/debug configuration must narrow direction separately; map does not prove safe boot configuration."
+      ]
+    }
+  ]
+}

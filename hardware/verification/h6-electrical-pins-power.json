@@ -1,0 +1,830 @@
+{
+  "schema_version": 1,
+  "scope": "H6-NATIVE-ELECTRICAL-SEMANTICS bounded power-device pin review; candidate evidence only, not production symbol updates. Ground uses power_in; switched/DC sources remain conditional; unresolved pads are omitted rather than guessed.",
+  "devices": [
+    {
+      "device_id": "ti_bq25798_rqmr",
+      "mpn": "Texas Instruments BQ25798RQMR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/bq25798.pdf",
+          "section": "Table5-1 pp4-6; charger/OTG/backup power paths",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "open_collector",
+          "reason": "STAT open-drain status"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "VBUS charging input or OTG output"
+        },
+        "3": {
+          "type": "passive",
+          "reason": "VBUS charging input or OTG output"
+        },
+        "4": {
+          "type": "power_in",
+          "reason": "Bootstrap gate-driver supply; capacitor-fed"
+        },
+        "5": {
+          "type": "power_out",
+          "reason": "REGN internal LDO; needs VBUS/BAT"
+        },
+        "6": {
+          "type": "bidirectional",
+          "reason": "USB charger-detection analog I/O"
+        },
+        "7": {
+          "type": "bidirectional",
+          "reason": "USB charger-detection analog I/O"
+        },
+        "8": {
+          "type": "input",
+          "reason": "VAC input-voltage detection"
+        },
+        "9": {
+          "type": "input",
+          "reason": "VAC input-voltage detection"
+        },
+        "10": {
+          "type": "output",
+          "reason": "ACDRV charge-pump gate drive; unused grounded"
+        },
+        "11": {
+          "type": "output",
+          "reason": "ACDRV charge-pump gate drive; unused grounded"
+        },
+        "12": {
+          "type": "input",
+          "reason": "QON reset/ship control"
+        },
+        "13": {
+          "type": "input",
+          "reason": "CE active-low charge enable"
+        },
+        "14": {
+          "type": "input",
+          "reason": "SCL target clock"
+        },
+        "15": {
+          "type": "bidirectional",
+          "reason": "SDA open-drain I2C data"
+        },
+        "16": {
+          "type": "input",
+          "reason": "TS temperature sensing"
+        },
+        "17": {
+          "type": "input",
+          "reason": "ILIM_HIZ threshold/control"
+        },
+        "18": {
+          "type": "input",
+          "reason": "BATP battery-voltage sense"
+        },
+        "19": {
+          "type": "power_in",
+          "reason": "Bootstrap gate-driver supply; capacitor-fed"
+        },
+        "20": {
+          "type": "input",
+          "reason": "PROG resistor setting"
+        },
+        "21": {
+          "type": "open_collector",
+          "reason": "INT interrupt"
+        },
+        "22": {
+          "type": "passive",
+          "reason": "BAT charging/discharging power path"
+        },
+        "23": {
+          "type": "passive",
+          "reason": "BAT charging/discharging power path"
+        },
+        "24": {
+          "type": "output",
+          "reason": "SDRV external ship-FET gate drive"
+        },
+        "25": {
+          "type": "power_out",
+          "reason": "SYS conditional system supply; needs VBUS/BAT"
+        },
+        "26": {
+          "type": "output",
+          "reason": "SW half-bridge switching; not regulated supply"
+        },
+        "27": {
+          "type": "power_in",
+          "reason": "Ground return"
+        },
+        "28": {
+          "type": "output",
+          "reason": "SW half-bridge switching; not regulated supply"
+        },
+        "29": {
+          "type": "passive",
+          "reason": "PMID Q1 drain/intermediate power path"
+        }
+      },
+      "unresolved": [
+        "Static ERC cannot establish charging/OTG/backup direction or startup rail availability.",
+        "Grounded ACDRV1/2 are explicitly permitted without input FETs; require configuration-specific exception.",
+        "Bootstrap power_in is capacitor-fed, not an independent DC rail."
+      ]
+    },
+    {
+      "device_id": "ti_tps564252_drlr",
+      "mpn": "Texas Instruments TPS564252DRLR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/tps564252.pdf",
+          "section": "Table5-1 p3",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "power_in",
+          "reason": "VIN supply"
+        },
+        "2": {
+          "type": "output",
+          "reason": "SW switching node; not regulated output"
+        },
+        "3": {
+          "type": "power_in",
+          "reason": "Ground"
+        },
+        "4": {
+          "type": "open_collector",
+          "reason": "PG power-good"
+        },
+        "5": {
+          "type": "input",
+          "reason": "EN enable"
+        },
+        "6": {
+          "type": "input",
+          "reason": "FB feedback"
+        }
+      },
+      "unresolved": [
+        "Regulated rail exists after the external LC network, not directly at SW."
+      ]
+    },
+    {
+      "device_id": "ti_tps566231p_rqfr",
+      "mpn": "TPS566231PRQFR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/gpn/TPS566231",
+          "section": "Table4-1 p3; TPS566231P pin9 variant",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "power_out",
+          "reason": "VCC internal LDO; depends on VIN"
+        },
+        "2": {
+          "type": "input",
+          "reason": "FB feedback"
+        },
+        "3": {
+          "type": "input",
+          "reason": "EN enable"
+        },
+        "4": {
+          "type": "power_in",
+          "reason": "PGND return"
+        },
+        "5": {
+          "type": "power_in",
+          "reason": "VIN input"
+        },
+        "6": {
+          "type": "power_in",
+          "reason": "VIN input"
+        },
+        "7": {
+          "type": "power_in",
+          "reason": "BST capacitor-fed high-side driver supply"
+        },
+        "8": {
+          "type": "output",
+          "reason": "SW switching node; not regulated output"
+        },
+        "9": {
+          "type": "open_collector",
+          "reason": "PG power-good, P variant"
+        }
+      },
+      "unresolved": [
+        "BST table type O conflicts with description 'supply input'; power_in reflects capacitor-fed driver semantics, not a DC source.",
+        "VCC must not be treated as an externally driven VIN input."
+      ]
+    },
+    {
+      "device_id": "ti_tps629203_drlr",
+      "mpn": "Texas Instruments TPS629203DRLR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/tps629203.pdf",
+          "section": "Table6-1 p3; Tables8-1/8-2 pp11-13",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "FB feedback or VSET strap"
+        },
+        "2": {
+          "type": "open_collector",
+          "reason": "PG power-good"
+        },
+        "3": {
+          "type": "input",
+          "reason": "VOS output-voltage sense"
+        },
+        "4": {
+          "type": "output",
+          "reason": "SW switching node; not regulated output"
+        },
+        "5": {
+          "type": "power_in",
+          "reason": "Ground"
+        },
+        "6": {
+          "type": "power_in",
+          "reason": "VIN input"
+        },
+        "7": {
+          "type": "input",
+          "reason": "EN enable"
+        },
+        "8": {
+          "type": "input",
+          "reason": "MODE/S-CONF resistor strap"
+        }
+      },
+      "unresolved": [
+        "H2 aon_buck.FB_VSET is intentionally open: 42.2kohm MODE resistor selects VSET; open VSET selects 3.3V (Tables8-1/8-2)."
+      ]
+    },
+    {
+      "device_id": "ti_tps25751d_refr",
+      "mpn": "Texas Instruments TPS25751DREFR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/tps25751.pdf",
+          "section": "Table5-1 p5; Figure5-1 p4; conditional USB power paths",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "power_out",
+          "reason": "LDO_3V3 from VIN_3V3/VBUS"
+        },
+        "2": {
+          "type": "input",
+          "reason": "ADC configuration input"
+        },
+        "3": {
+          "type": "input",
+          "reason": "ADC configuration input"
+        },
+        "4": {
+          "type": "power_out",
+          "reason": "LDO_1V5 internal-only; no external loads"
+        },
+        "5": {
+          "type": "bidirectional",
+          "reason": "Configurable GPIO; review applied configuration"
+        },
+        "6": {
+          "type": "bidirectional",
+          "reason": "Configurable GPIO; review applied configuration"
+        },
+        "7": {
+          "type": "bidirectional",
+          "reason": "Configurable GPIO; review applied configuration"
+        },
+        "8": {
+          "type": "bidirectional",
+          "reason": "I2C open-drain data"
+        },
+        "9": {
+          "type": "input",
+          "reason": "I2Ct target clock"
+        },
+        "10": {
+          "type": "open_collector",
+          "reason": "I2Ct IRQ; GPIO10 alternative"
+        },
+        "11": {
+          "type": "power_in",
+          "reason": "Ground including materialized thermal pad"
+        },
+        "12": {
+          "type": "power_in",
+          "reason": "Ground including materialized thermal pad"
+        },
+        "13": {
+          "type": "bidirectional",
+          "reason": "Configurable GPIO; review applied configuration"
+        },
+        "14": {
+          "type": "power_in",
+          "reason": "Ground including materialized thermal pad"
+        },
+        "15": {
+          "type": "passive",
+          "reason": "Internal FET drain/thermal metal"
+        },
+        "16": {
+          "type": "bidirectional",
+          "reason": "I2C open-drain data"
+        },
+        "17": {
+          "type": "open_collector",
+          "reason": "I2Cc controller clock"
+        },
+        "18": {
+          "type": "input",
+          "reason": "I2Cc interrupt; GPIO12 alternative"
+        },
+        "19": {
+          "type": "bidirectional",
+          "reason": "Configurable GPIO; review applied configuration"
+        },
+        "20": {
+          "type": "passive",
+          "reason": "PPHV bidirectional power-switch node"
+        },
+        "23": {
+          "type": "passive",
+          "reason": "VBUS_IN bidirectional external power node"
+        },
+        "26": {
+          "type": "bidirectional",
+          "reason": "Configurable GPIO; review applied configuration"
+        },
+        "27": {
+          "type": "bidirectional",
+          "reason": "Configurable GPIO; review applied configuration"
+        },
+        "28": {
+          "type": "bidirectional",
+          "reason": "CC Type-C analog/protocol I/O"
+        },
+        "29": {
+          "type": "bidirectional",
+          "reason": "CC Type-C analog/protocol I/O"
+        },
+        "30": {
+          "type": "passive",
+          "reason": "Internal FET drain/thermal metal"
+        },
+        "31": {
+          "type": "power_in",
+          "reason": "Ground including materialized thermal pad"
+        },
+        "32": {
+          "type": "passive",
+          "reason": "VBUS source path and dead-battery input"
+        },
+        "34": {
+          "type": "power_in",
+          "reason": "PP5V source-path input"
+        },
+        "36": {
+          "type": "bidirectional",
+          "reason": "Configurable GPIO; review applied configuration"
+        },
+        "37": {
+          "type": "bidirectional",
+          "reason": "Configurable GPIO; review applied configuration"
+        },
+        "38": {
+          "type": "power_in",
+          "reason": "VIN_3V3 device supply"
+        },
+        "39": {
+          "type": "power_in",
+          "reason": "Ground including materialized thermal pad"
+        },
+        "40": {
+          "type": "passive",
+          "reason": "Internal FET drain/thermal metal"
+        }
+      },
+      "unresolved": [
+        "Materialized wide lands20/23/32/34 represent manufacturer pin groups20-22/23-25/32-33/34-35; no missing-land inference.",
+        "H2 PP5V grounded and GPIOs grounded require verified sink-only configuration; do not infer power readiness from passive power-path pins.",
+        "I2Ct_IRQ type assumes IRQ function; final GPIO/PD configuration must be checked."
+      ]
+    },
+    {
+      "device_id": "ti_tps22919_dckr",
+      "mpn": "Texas Instruments TPS22919DCKR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/tps22919.pdf",
+          "section": "Section5 pp3-4; QOD operation",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "power_in",
+          "reason": "IN switch supply"
+        },
+        "2": {
+          "type": "power_in",
+          "reason": "Ground"
+        },
+        "3": {
+          "type": "input",
+          "reason": "ON enable"
+        },
+        "4": {
+          "type": "no_connect",
+          "reason": "NC must float"
+        },
+        "5": {
+          "type": "passive",
+          "reason": "QOD switched resistive discharge, not rail source"
+        },
+        "6": {
+          "type": "power_out",
+          "reason": "VOUT follows IN only when enabled"
+        }
+      },
+      "unresolved": [
+        "H2 direct QOD-to-VOUT ties are explicitly allowed; passive models resistive switched discharge without false output contention."
+      ]
+    },
+    {
+      "device_id": "ti_tps2553drvr_1",
+      "mpn": "Texas Instruments TPS2553DRVR-1",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/tps2553.pdf",
+          "section": "Section6 Pin Functions p5; WSON latch-off variant",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "power_out",
+          "reason": "OUT switched input; EN/fault dependent"
+        },
+        "2": {
+          "type": "output",
+          "reason": "ILIM current-source resistor programming"
+        },
+        "3": {
+          "type": "open_collector",
+          "reason": "FAULT active-low"
+        },
+        "4": {
+          "type": "input",
+          "reason": "EN active-high"
+        },
+        "5": {
+          "type": "power_in",
+          "reason": "Ground and thermal pad"
+        },
+        "6": {
+          "type": "power_in",
+          "reason": "IN supply"
+        },
+        "7": {
+          "type": "power_in",
+          "reason": "Ground and thermal pad"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_tps259470l_rpwr",
+      "mpn": "Texas Instruments TPS259470LRPWR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/tps25947.pdf",
+          "section": "Table4 variant matrix; Table5-1 pp5-6",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "EN/UVLO threshold"
+        },
+        "2": {
+          "type": "input",
+          "reason": "OVLO threshold"
+        },
+        "3": {
+          "type": "open_collector",
+          "reason": "AUXOFF auxiliary control"
+        },
+        "4": {
+          "type": "open_collector",
+          "reason": "FLT fault"
+        },
+        "5": {
+          "type": "power_in",
+          "reason": "IN source"
+        },
+        "6": {
+          "type": "power_out",
+          "reason": "OUT follows IN subject to enable/protection"
+        },
+        "7": {
+          "type": "output",
+          "reason": "DVDT capacitor current source"
+        },
+        "8": {
+          "type": "power_in",
+          "reason": "Ground"
+        },
+        "9": {
+          "type": "output",
+          "reason": "ILM current monitor/programming"
+        },
+        "10": {
+          "type": "output",
+          "reason": "ITIMER capacitor current source"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_tps25961_drvr",
+      "mpn": "Texas Instruments TPS25961DRVR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/tps25961.pdf",
+          "section": "Table5-1 p3",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "power_out",
+          "reason": "OUT follows IN subject to enable/protection"
+        },
+        "2": {
+          "type": "input",
+          "reason": "OVLO threshold"
+        },
+        "3": {
+          "type": "output",
+          "reason": "ILIM current-source programming"
+        },
+        "4": {
+          "type": "power_in",
+          "reason": "Ground and thermal pad"
+        },
+        "5": {
+          "type": "input",
+          "reason": "EN/UVLO threshold"
+        },
+        "6": {
+          "type": "power_in",
+          "reason": "IN supply"
+        },
+        "7": {
+          "type": "power_in",
+          "reason": "Ground and thermal pad"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_tps25974l_rpwr",
+      "mpn": "Texas Instruments TPS25974LRPWR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/tps2597.pdf",
+          "section": "Table4 variant matrix; Table5-1 p4",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "EN/UVLO threshold"
+        },
+        "2": {
+          "type": "input",
+          "reason": "OVLO threshold"
+        },
+        "3": {
+          "type": "open_collector",
+          "reason": "PG power-good"
+        },
+        "4": {
+          "type": "input",
+          "reason": "PGTH threshold"
+        },
+        "5": {
+          "type": "power_in",
+          "reason": "IN supply"
+        },
+        "6": {
+          "type": "power_out",
+          "reason": "OUT follows IN subject to enable/protection"
+        },
+        "7": {
+          "type": "output",
+          "reason": "DVDT capacitor current source"
+        },
+        "8": {
+          "type": "power_in",
+          "reason": "Ground"
+        },
+        "9": {
+          "type": "output",
+          "reason": "ILM current monitor/programming"
+        },
+        "10": {
+          "type": "output",
+          "reason": "ITIMER capacitor current source"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "adi_max17320_g20_t",
+      "mpn": "Analog Devices MAX17320G20+T",
+      "evidence": [
+        {
+          "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/MAX17320.pdf",
+          "section": "TQFN Pin Description pp31-32; FET override p53; Alert Function p122",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "power_in",
+          "reason": "IN stack supply"
+        },
+        "2": {
+          "type": "power_out",
+          "reason": "CP charge pump; depends on IN"
+        },
+        "3": {
+          "type": "output",
+          "reason": "CHG high-side gate drive"
+        },
+        "4": {
+          "type": "output",
+          "reason": "DIS high-side gate drive"
+        },
+        "5": {
+          "type": "passive",
+          "reason": "ZVC resistor-limited recovery-charge path"
+        },
+        "6": {
+          "type": "input",
+          "reason": "PCKP connector-voltage sensing"
+        },
+        "7": {
+          "type": "bidirectional",
+          "reason": "ALRT open-drain alert or override input"
+        },
+        "8": {
+          "type": "input",
+          "reason": "SCL I2C clock"
+        },
+        "9": {
+          "type": "bidirectional",
+          "reason": "SDA open-drain data"
+        },
+        "10": {
+          "type": "input",
+          "reason": "TH thermistor sense with switched bias"
+        },
+        "11": {
+          "type": "output",
+          "reason": "PFAIL fuse control"
+        },
+        "12": {
+          "type": "power_out",
+          "reason": "AOLDO conditional always-on regulator"
+        },
+        "13": {
+          "type": "power_out",
+          "reason": "REG3 internal regulator"
+        },
+        "14": {
+          "type": "input",
+          "reason": "CSN load-side Kelvin sense"
+        },
+        "15": {
+          "type": "input",
+          "reason": "CSP cell-side Kelvin sense"
+        },
+        "16": {
+          "type": "input",
+          "reason": "TH thermistor sense with switched bias"
+        },
+        "17": {
+          "type": "power_out",
+          "reason": "REG2 internal regulator"
+        },
+        "18": {
+          "type": "input",
+          "reason": "TH thermistor sense with switched bias"
+        },
+        "19": {
+          "type": "input",
+          "reason": "TH thermistor sense with switched bias"
+        },
+        "20": {
+          "type": "power_in",
+          "reason": "Device-ground return"
+        },
+        "21": {
+          "type": "passive",
+          "reason": "Cell sensing plus balancing-current terminal"
+        },
+        "22": {
+          "type": "passive",
+          "reason": "Cell sensing plus balancing-current terminal"
+        },
+        "23": {
+          "type": "passive",
+          "reason": "Cell sensing plus balancing-current terminal"
+        },
+        "24": {
+          "type": "passive",
+          "reason": "Cell sensing plus balancing-current terminal"
+        }
+      },
+      "unresolved": [
+        "Pad25 materialized EP_GND requires explicit manufacturer exposed-pad electrical tie verification; intentionally unreviewed and omitted.",
+        "ALRT role depends on OvrdEn; H2 uses PACK_FET_OVERRIDE_N. Verify programmed override mode.",
+        "PFAIL output subtype and PCKP pulldown behavior require richer electrical modeling if conflict rules depend on output impedance."
+      ]
+    },
+    {
+      "device_id": "ti_csd87313dms",
+      "mpn": "Texas Instruments CSD87313DMS",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/csd87313dms.pdf?ts=1778512580573",
+          "section": "Table1 pin configuration p9; dual-MOSFET circuit",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "G1 MOSFET gate"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "Common drain"
+        },
+        "3": {
+          "type": "passive",
+          "reason": "Common drain"
+        },
+        "4": {
+          "type": "input",
+          "reason": "G2 MOSFET gate"
+        },
+        "5": {
+          "type": "passive",
+          "reason": "S2 channel terminal"
+        },
+        "6": {
+          "type": "passive",
+          "reason": "S2 channel terminal"
+        },
+        "7": {
+          "type": "passive",
+          "reason": "S1 channel terminal"
+        },
+        "8": {
+          "type": "passive",
+          "reason": "S1 channel terminal"
+        }
+      },
+      "unresolved": [
+        "Materialized pad9 thermal-metal/common-drain assignment requires explicit electrical verification beyond numbered terminal table; intentionally unreviewed and omitted.",
+        "FET channel/body-diode connectivity needs graph modeling; passive does not establish an enabled power source."
+      ]
+    }
+  ]
+}

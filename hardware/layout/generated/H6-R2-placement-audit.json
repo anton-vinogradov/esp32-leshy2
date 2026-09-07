@@ -5,21 +5,21 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "cc4c1c3da983ec33bc7438032422093158d2937600427400dcc49711e0afb04a",
+    "contract_sha256": "52c4deffb903282ae221e4ee9e700e8269182098a7759da9eeee6835ae09f6e9",
     "placement_freeze": "hardware/layout/h6-r2-placement-freeze.json",
-    "placement_freeze_sha256": "5147521aa56700363ff5fdd022da088994ff92e893a212c83106433ba6aa6c5b",
+    "placement_freeze_sha256": "0c5adfc4224e115c6e61835257ae653f7c34d0c7b35e7148f1057ee08d46dce1",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
     "coordinate_model_sha256": "cc2aaeacd6de560fb728ef82767184738e24bbf831a6cc706c70299cf2077636",
     "instance_ledger": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-    "instance_ledger_sha256": "8662e0fa866bf8fab57b7d3799b312b3f67bca179da2732571be27995e19c88d",
+    "instance_ledger_sha256": "13c60bf11df73419f6321039378b68f3d55be34a3a033833d7fb477e047e3d14",
     "net_ledger": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-    "net_ledger_sha256": "a4d01ad42040f5d7b4be6f138efbef7c5230f7500c37c7bed795d25d05d24e72",
+    "net_ledger_sha256": "12019fb538309b2d19051e97409cbe9d88d0e6cb5bf1b2911dcc85fe52cdc6a7",
     "symbol_library": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-    "symbol_library_sha256": "409671bdfaa7674d2dab5455154a4a636128f23de3e4f46788ad8071faed0600",
+    "symbol_library_sha256": "adff01bda89874c138e98b38d66695647548297123567aff41e95991329421a6",
     "kicad_net_bindings": "hardware/layout/generated/H6-R2-kicad-net-bindings.json",
-    "kicad_net_bindings_sha256": "7fbecfcfc5f5f65e8833f874d1e87b1d755714d538065dec3335c079f8691dd3"
+    "kicad_net_bindings_sha256": "f2bdfc717d7d0ad357140b99b2154799d4d9332883317f84183b47382e4061ae"
   },
   "summary": {
     "board_count": 2,
@@ -35,7 +35,7 @@
     "net_or_footprint_error_count": 0,
     "locality_pair_count": 311,
     "locality_violation_count": 0,
-    "critical_pad_pair_count": 34,
+    "critical_pad_pair_count": 36,
     "critical_pad_pair_violation_count": 0,
     "accepted_same_face_overlap_count": 2,
     "routing_authorized": true,
@@ -67,13 +67,14 @@
         "F.Cu": 20
       },
       "method_counts": {
-        "connectivity/sheet automatic seed": 333,
+        "connectivity/sheet automatic seed": 332,
         "exact H1 seed": 24,
         "hard H1 datum": 26,
         "nearest exact-footprint correction": 11,
         "reviewed H6.0.2 fan-out correction": 3,
         "reviewed H6.0.2 oscillator-locality correction": 11,
         "reviewed H6.0.3 edge-launch-land clearance correction": 5,
+        "reviewed H6.0.3 power-locality correction": 1,
         "reviewed H6.0.3 signal-locality correction": 15
       },
       "net_count": 306,
@@ -351,12 +352,25 @@
       "net_or_footprint_errors": [],
       "critical_pad_pairs": {
         "status": "pass",
-        "pair_count": 10,
+        "pair_count": 11,
         "maximum_pad_centre_distance_mm": 4.2068,
         "violation_count": 0,
         "violations": [],
         "errors": [],
         "rows": [
+          {
+            "canonical_net": "3V3_MAIN",
+            "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/3V3_MAIN",
+            "first_instance": "hub_rp",
+            "first_reference": "U28",
+            "first_pad": "69",
+            "second_instance": "hub_rp_qspi_iovdd_bypass",
+            "second_reference": "C53",
+            "second_pad": "1",
+            "pad_centre_distance_mm": 2.1523,
+            "maximum_distance_mm": 3.0,
+            "reason": "RP2354 internal flash needs externally supplied QSPI_IOVDD; measure its exact pad69, not another nearby IOVDD pin"
+          },
           {
             "canonical_net": "3V3_MAIN",
             "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/3V3_MAIN",
@@ -1989,8 +2003,8 @@
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "locality_owner_pad_anchor_mm": [
-            46.7636,
-            74.2227
+            46.775,
+            73.875
           ]
         },
         {
@@ -2028,27 +2042,27 @@
           "sheet": "UI_30_HUB_RP_CORE_SERVICE",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 power-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              49.85,
-              51.76
+              44.695,
+              45.705000000000005
             ],
             "y": [
-              83.59999900000001,
-              84.609999
+              67.295,
+              69.205
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            50.805,
-            84.105
+            45.2,
+            68.25
           ],
           "footprint_anchor_mm": [
-            50.805,
-            84.105
+            45.2,
+            68.25
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -2109,8 +2123,8 @@
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "locality_owner_pad_anchor_mm": [
-            46.7636,
-            74.2227
+            46.775,
+            73.875
           ]
         },
         {
@@ -2208,8 +2222,8 @@
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "locality_owner_pad_anchor_mm": [
-            46.7636,
-            74.2227
+            46.775,
+            73.875
           ]
         },
         {
@@ -8508,8 +8522,8 @@
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0,
           "locality_owner_pad_anchor_mm": [
-            46.5083,
-            73.875
+            46.5385,
+            73.5808
           ]
         },
         {
@@ -13459,8 +13473,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "unrouted_seed_sha256": "d0285ff2dcbd6c6645dcdb13aeebc3af31238312a1fbabc1e840d0d9300ae015",
-      "placement_signature_sha256": "7bebd952ad11e3779b375d2f63e7139f21270cc01221c19fea006f825ae5a697",
+      "unrouted_seed_sha256": "71d940d063495de63751741786b359089ca2cc46faf942efc63ea15d456e1872",
+      "placement_signature_sha256": "e8a84ff652ea994cc0a7f7d35af6c9aa77115f32337f5776e82108fc86551ca0",
       "locality": {
         "status": "pass",
         "pair_count": 52,
@@ -13671,7 +13685,7 @@
             "reference": "C53",
             "owner": "hub_rp",
             "owner_reference": "U28",
-            "courtyard_gap_mm": 2.955,
+            "courtyard_gap_mm": 0.15,
             "maximum_gap_mm": 3.25,
             "measurement": "courtyard_to_courtyard"
           },
@@ -13948,18 +13962,18 @@
         "F.Cu": 14
       },
       "method_counts": {
-        "connectivity/sheet automatic seed": 654,
+        "connectivity/sheet automatic seed": 652,
         "exact H1 seed": 27,
         "hard H1 datum": 12,
-        "nearest exact-footprint correction": 33,
+        "nearest exact-footprint correction": 32,
         "reviewed H6.0.2 fan-out correction": 1,
         "reviewed H6.0.2 oscillator-locality correction": 19,
         "reviewed H6.0.3 charger-locality correction": 6,
         "reviewed H6.0.3 direct-cell thermal-contact placement": 2,
         "reviewed H6.0.3 mechanical-clearance correction": 1,
         "reviewed H6.0.3 native-silkscreen-clearance correction": 1,
-        "reviewed H6.0.3 power-locality correction": 17,
-        "reviewed H6.0.3 signal-locality correction": 7
+        "reviewed H6.0.3 power-locality correction": 19,
+        "reviewed H6.0.3 signal-locality correction": 8
       },
       "net_count": 516,
       "mechanical": [
@@ -14205,12 +14219,25 @@
       "net_or_footprint_errors": [],
       "critical_pad_pairs": {
         "status": "pass",
-        "pair_count": 24,
+        "pair_count": 25,
         "maximum_pad_centre_distance_mm": 4.8197,
         "violation_count": 0,
         "violations": [],
         "errors": [],
         "rows": [
+          {
+            "canonical_net": "3V3_MAIN",
+            "kicad_net": "/RF_02_PACK_SAFETY_AON/3V3_MAIN",
+            "first_instance": "rf_rp",
+            "first_reference": "U23",
+            "first_pad": "69",
+            "second_instance": "rf_rp_qspi_iovdd_bypass",
+            "second_reference": "C100",
+            "second_pad": "1",
+            "pad_centre_distance_mm": 2.0875,
+            "maximum_distance_mm": 3.0,
+            "reason": "RP2354 internal flash needs externally supplied QSPI_IOVDD; measure its exact pad69, not another nearby IOVDD pin"
+          },
           {
             "canonical_net": "3V3_AIR_SWITCHED",
             "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/3V3_AIR_SWITCHED",
@@ -14480,7 +14507,7 @@
             "second_instance": "rf_rp_vreg_inductor",
             "second_reference": "L4",
             "second_pad": "2",
-            "pad_centre_distance_mm": 4.3703,
+            "pad_centre_distance_mm": 3.1806,
             "maximum_distance_mm": 4.5,
             "reason": "RF RP2354 internal-regulator switching loop"
           },
@@ -17556,27 +17583,27 @@
           "sheet": "RF_10_RP2354_CORE_SERVICE",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 power-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              69.84999900000001,
-              70.859999
+              53.745000000000005,
+              55.655
             ],
             "y": [
-              32.85,
-              34.76
+              38.669999999999995,
+              39.68
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            70.355,
-            33.805
+            54.7,
+            39.175
           ],
           "footprint_anchor_mm": [
-            70.355,
-            33.805
+            54.7,
+            39.175
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -17732,8 +17759,8 @@
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "locality_owner_pad_anchor_mm": [
-            60.7227,
-            37.7364
+            60.375,
+            37.725
           ]
         },
         {
@@ -24297,27 +24324,27 @@
           "sheet": "RF_10_RP2354_CORE_SERVICE",
           "side": "B.Cu",
           "footprint": "Inductor_SMD:L_Murata_DFE201610P",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 power-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              53.35,
-              55.54
+              52.925,
+              55.515
             ],
             "y": [
-              35.6,
-              38.190000000000005
+              39.79,
+              41.98
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            54.445,
-            36.895
+            54.22,
+            40.885
           ],
           "footprint_anchor_mm": [
-            54.445,
-            36.895
+            54.22,
+            40.885
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0,
           "locality_owner_pad_anchor_mm": [
             60.43,
@@ -28111,8 +28138,8 @@
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "locality_owner_pad_anchor_mm": [
-            60.375,
-            37.9917
+            60.0808,
+            37.9615
           ]
         },
         {
@@ -36806,25 +36833,25 @@
           "sheet": "RF_30_U214_U219_M5_EXT",
           "side": "B.Cu",
           "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
-          "method": "nearest exact-footprint correction",
+          "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              53.045,
-              54.955
+              53.835,
+              55.745
             ],
             "y": [
-              38.705,
-              41.795
+              35.47,
+              38.56
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            54.0,
-            40.25
+            54.79,
+            37.015
           ],
           "footprint_anchor_mm": [
-            54.0,
-            40.25
+            54.79,
+            37.015
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -38252,8 +38279,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "71d02e174a5db6d78f975ca09b74df198b64576450d3c19b2f3c0cf61aab9f26",
-      "placement_signature_sha256": "519fd691de3b49f5cc7c15265d0fad1d209415397a8bc1ef3f42c6c5cefbdff3",
+      "unrouted_seed_sha256": "5a0e15ee8c6510268d0fb9500e49546c8cc52476586504c806ed3caadf2ed834",
+      "placement_signature_sha256": "91162580dd7bda57d1ca3ceb1ff16ebda486a167b0f979b0cf4d1a98ee54bd75",
       "locality": {
         "status": "pass",
         "pair_count": 259,
@@ -40042,7 +40069,7 @@
             "reference": "C100",
             "owner": "rf_rp",
             "owner_reference": "U23",
-            "courtyard_gap_mm": 2.705,
+            "courtyard_gap_mm": 0.2,
             "maximum_gap_mm": 3.0,
             "measurement": "courtyard_to_courtyard"
           },
@@ -40087,7 +40114,7 @@
             "reference": "L4",
             "owner": "rf_rp",
             "owner_reference": "U23",
-            "courtyard_gap_mm": 0.315,
+            "courtyard_gap_mm": 0.34,
             "maximum_gap_mm": 0.75,
             "measurement": "courtyard_to_courtyard"
           },

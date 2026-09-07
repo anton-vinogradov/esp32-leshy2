@@ -4969,7 +4969,7 @@
         "document": "TXS0102 2-bit bidirectional voltage-level translator datasheet",
         "version": "SCES640L, revised January 2026",
         "url": "https://www.ti.com/lit/ds/symlink/txs0102.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-09-07"
       },
       "orderable_source": {
         "document": "TXS0102DCUR active authorized-distributor stock page; 91,204 shown in stock",
@@ -4991,14 +4991,14 @@
       },
       "programmable": false,
       "contacts": {
-        "VCCA": {"physical": "1", "role": "power"},
-        "A1": {"physical": "2", "role": "signal"},
-        "A2": {"physical": "3", "role": "signal"},
-        "GND": {"physical": "4", "role": "power"},
-        "B2": {"physical": "5", "role": "signal"},
-        "B1": {"physical": "6", "role": "signal"},
+        "VCCA": {"physical": "3", "role": "power"},
+        "A1": {"physical": "5", "role": "signal"},
+        "A2": {"physical": "4", "role": "signal"},
+        "GND": {"physical": "2", "role": "power"},
+        "B2": {"physical": "1", "role": "signal"},
+        "B1": {"physical": "8", "role": "signal"},
         "VCCB": {"physical": "7", "role": "power"},
-        "OE": {"physical": "8", "role": "signal"}
+        "OE": {"physical": "6", "role": "signal"}
       }
     },
     "ti_tps3808g33_dbvr": {
@@ -5086,7 +5086,7 @@
         "document": "74LVC1G32 Single 2-input OR gate datasheet",
         "version": "2024-09-03",
         "url": "https://assets.nexperia.com/documents/data-sheet/74LVC1G32.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-09-07"
       },
       "orderable_source": {
         "document": "74LVC1G32GV,125 active authorized-distributor exact order-code page; 23,078 shown in stock",
@@ -5096,8 +5096,8 @@
       "cost": {"currency": "USD", "target_quantity": 100, "unit_price_usd": 0.0523, "price_break": "DigiKey cut-tape quantity-100 tier", "source": {"document": "DigiKey exact-MPN published price table", "url": "https://www.digikey.com/en/products/detail/nexperia-usa-inc/74LVC1G32GV-125/946687", "checked": "2026-08-19"}},
       "programmable": false,
       "contacts": {
-        "1A": {"physical": "1", "role": "signal"},
-        "1B": {"physical": "2", "role": "signal"},
+        "1A": {"physical": "2", "role": "signal"},
+        "1B": {"physical": "1", "role": "signal"},
         "GND": {"physical": "3", "role": "power"},
         "1Y": {"physical": "4", "role": "signal"},
         "VCC": {"physical": "5", "role": "power"}
@@ -5271,7 +5271,7 @@
         "document": "SN74LVC1G17 Single Schmitt-Trigger Buffer datasheet",
         "version": "Rev. Y, revised October 2025",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
-        "checked": "2026-08-31"
+        "checked": "2026-09-07"
       },
       "orderable_source": {
         "document": "SN74LVC1G17DCKR ACTIVE exact TI order page",
@@ -5294,11 +5294,11 @@
       },
       "programmable": false,
       "contacts": {
-        "A": {"physical": "1", "role": "signal"},
+        "A": {"physical": "2", "role": "signal"},
         "GND": {"physical": "3", "role": "power"},
         "Y": {"physical": "4", "role": "signal"},
         "VCC": {"physical": "5", "role": "power"},
-        "NC": {"physical": "2", "role": "nc"}
+        "NC": {"physical": "1", "role": "nc"}
       }
     },
     "ti_sn74lvc3g34_dcur": {

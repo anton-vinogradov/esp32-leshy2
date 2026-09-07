@@ -4,15 +4,15 @@
   "marker": "H3-R2.0.2",
   "status": "pass",
   "accepted_input": "H3-R2.0.1",
-  "input_freeze_sha256": "48f6ef408f796d6657972130521dd94dcd2650a5d86dade4247a6eb8731dff30",
-  "register_sha256": "18f554ff951b32dfb83d3ef19dd3b544508c9696a35eaaba0fdd21330102f81d",
+  "input_freeze_sha256": "bf5c7f608aa9cac807a92ce4f67fc5b389b2684dfccd25d24e34f93b6e8cb24d",
+  "register_sha256": "d0b8de87fbdc6ae45881c005cd76deb3cf401d78990ee4897639f815f8ae3569",
   "source_sha256": {
     "hardware/verification/h3-r2-parameter-provenance-contract.json": "fb26cd78c18234ef1c02ce4ea6af5d4a21b0206229a5034e55c065b08f5d0346",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "9d97b50f8cdb996a78d86aac0494790b3e1b3017cc60c58acaee55de991f0157",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "ee4b89ba81443d29e3abb226300374cc755fbfc9240cda293427fc178ec69659",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "8662e0fa866bf8fab57b7d3799b312b3f67bca179da2732571be27995e19c88d",
-    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "a592c4a6700dd4f572197c65c755eb2a5257baab720227383492aa080d4b0636",
-    "hardware/architecture/devices.json": "a11701b3df0156dbd533867d3e4bd0d57b731623c12b083cccf493b03775d0fa"
+    "hardware/verification/generated/H3-R2-input-freeze.json": "6af6d937a9a0adf62e312d2a175dd0598d5a3b14de990f6ba05933726277ea5c",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "42a990c7240e692569cd7c23c67cd92cf657f08c6a3dfe2a79ca4fa8340f2717",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "13c60bf11df73419f6321039378b68f3d55be34a3a033833d7fb477e047e3d14",
+    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "f59ed6290eed183d8c191aab535647aab3ef3694709fed0f6144ec0e1ad6e761",
+    "hardware/architecture/devices.json": "2a4f7944f69705a6361a3f71b315041b7eb08d884a4508eb060d0bcf9affb4c7"
   },
   "policy": {
     "accepted_h2_identity_is_immutable": true,
@@ -6173,14 +6173,14 @@
         "document": "74LVC1G32 Single 2-input OR gate datasheet",
         "version": "2024-09-03",
         "url": "https://assets.nexperia.com/documents/data-sheet/74LVC1G32.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-09-07"
       },
       "source_tier": "manufacturer_primary_accepted_h2",
       "accepted_h2_source_preserved": {
         "document": "74LVC1G32 Single 2-input OR gate datasheet",
         "version": "2024-09-03",
         "url": "https://assets.nexperia.com/documents/data-sheet/74LVC1G32.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-09-07"
       },
       "source_host": "assets.nexperia.com",
       "parameter_class": "digital_interface",
@@ -6202,7 +6202,7 @@
         "H3-R2.6"
       ],
       "factory_catalog_parameter_gap": null,
-      "symbol_contact_map_sha256": "03d50b591a38e96d84ada5290ecd3ff69e196420dfa13fcc7460d37f53ac77df",
+      "symbol_contact_map_sha256": "b07c27b586f856992dc24b2b4de091afa030319bcd31a731d4e66a101b5f1718",
       "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
@@ -9635,14 +9635,14 @@
         "document": "SN74LVC1G17 Single Schmitt-Trigger Buffer datasheet",
         "version": "Rev. Y, revised October 2025",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
-        "checked": "2026-08-31"
+        "checked": "2026-09-07"
       },
       "source_tier": "manufacturer_primary_accepted_h2",
       "accepted_h2_source_preserved": {
         "document": "SN74LVC1G17 Single Schmitt-Trigger Buffer datasheet",
         "version": "Rev. Y, revised October 2025",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
-        "checked": "2026-08-31"
+        "checked": "2026-09-07"
       },
       "source_host": "www.ti.com",
       "parameter_class": "digital_interface",
@@ -9679,7 +9679,7 @@
         "H3-R2.6"
       ],
       "factory_catalog_parameter_gap": null,
-      "symbol_contact_map_sha256": "24cdff00bc383f6279ef73bc3656b988d94e62b77e8aac658b5e90e65facedd4",
+      "symbol_contact_map_sha256": "1b6a7bd3e4aeb7d44c2ad76d2738dff136dd85a4f83df2b0a699a5e916f68407",
       "symbol_electrical_contract_sha256": "3dee205fec1cb0ebfc1f8ef548dba2ffe38292fd1f00eef67e673988203b260d"
     },
     {
@@ -11769,14 +11769,14 @@
         "document": "TXS0102 2-bit bidirectional voltage-level translator datasheet",
         "version": "SCES640L, revised January 2026",
         "url": "https://www.ti.com/lit/ds/symlink/txs0102.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-09-07"
       },
       "source_tier": "manufacturer_primary_accepted_h2",
       "accepted_h2_source_preserved": {
         "document": "TXS0102 2-bit bidirectional voltage-level translator datasheet",
         "version": "SCES640L, revised January 2026",
         "url": "https://www.ti.com/lit/ds/symlink/txs0102.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-09-07"
       },
       "source_host": "www.ti.com",
       "parameter_class": "general_component",
@@ -11809,7 +11809,7 @@
         "H3-R2.5"
       ],
       "factory_catalog_parameter_gap": null,
-      "symbol_contact_map_sha256": "211f0acd15d288c4890db12ce2c74bc33bc5ff82d27879a5cfe516e2fb20dd07",
+      "symbol_contact_map_sha256": "2dcb658e53fcf02e35632df8460b4b7a726ef53bba817093ec0e0260d77ad69b",
       "symbol_electrical_contract_sha256": "3e86399a989a3bd8266d94070cc253fc0a7fdd979385d590d87392248a1a1396"
     },
     {

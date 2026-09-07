@@ -6321,8 +6321,10 @@
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "6aa5791f-a411-5c84-82f4-f4294af6a6e1")
 	)
-	(no_connect (at 624.84 223.52)
-		(uuid "dbc14af0-f059-5e34-9746-acc5379011f1")
+	(label "3V3_MAIN"
+		(at 624.84 223.52 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "6bc1ba06-045f-5be0-ad94-2d734991a147")
 	)
 	(no_connect (at 624.84 226.06)
 		(uuid "bbdbdb53-eb82-556a-a6a9-0c9f5167fa72")

@@ -6,11 +6,11 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "ee4b89ba81443d29e3abb226300374cc755fbfc9240cda293427fc178ec69659"
+      "sha256": "42a990c7240e692569cd7c23c67cd92cf657f08c6a3dfe2a79ca4fa8340f2717"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "a11701b3df0156dbd533867d3e4bd0d57b731623c12b083cccf493b03775d0fa"
+      "sha256": "2a4f7944f69705a6361a3f71b315041b7eb08d884a4508eb060d0bcf9affb4c7"
     }
   },
   "historical_hint_sources": [
@@ -7367,11 +7367,11 @@
       },
       "contact_map": {
         "1A": {
-          "physical": "1",
+          "physical": "2",
           "role": "signal"
         },
         "1B": {
-          "physical": "2",
+          "physical": "1",
           "role": "signal"
         },
         "GND": {
@@ -7387,13 +7387,13 @@
           "role": "power"
         }
       },
-      "contact_map_sha256": "03d50b591a38e96d84ada5290ecd3ff69e196420dfa13fcc7460d37f53ac77df",
+      "contact_map_sha256": "b07c27b586f856992dc24b2b4de091afa030319bcd31a731d4e66a101b5f1718",
       "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
       "manufacturer_evidence": {
         "document": "74LVC1G32 Single 2-input OR gate datasheet",
         "version": "2024-09-03",
         "url": "https://assets.nexperia.com/documents/data-sheet/74LVC1G32.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-09-07"
       },
       "footprint": "Package_TO_SOT_SMD:SC-74A-5_1.55x2.9mm_P0.95mm",
       "footprint_resolution": "explicit_current_override",
@@ -11446,7 +11446,7 @@
       },
       "contact_map": {
         "A": {
-          "physical": "1",
+          "physical": "2",
           "role": "signal"
         },
         "GND": {
@@ -11462,17 +11462,17 @@
           "role": "power"
         },
         "NC": {
-          "physical": "2",
+          "physical": "1",
           "role": "nc"
         }
       },
-      "contact_map_sha256": "24cdff00bc383f6279ef73bc3656b988d94e62b77e8aac658b5e90e65facedd4",
+      "contact_map_sha256": "1b6a7bd3e4aeb7d44c2ad76d2738dff136dd85a4f83df2b0a699a5e916f68407",
       "electrical_contract_sha256": "3dee205fec1cb0ebfc1f8ef548dba2ffe38292fd1f00eef67e673988203b260d",
       "manufacturer_evidence": {
         "document": "SN74LVC1G17 Single Schmitt-Trigger Buffer datasheet",
         "version": "Rev. Y, revised October 2025",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
-        "checked": "2026-08-31"
+        "checked": "2026-09-07"
       },
       "footprint": "Package_TO_SOT_SMD:SOT-353_SC-70-5",
       "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",
@@ -14341,27 +14341,27 @@
       },
       "contact_map": {
         "VCCA": {
-          "physical": "1",
+          "physical": "3",
           "role": "power"
         },
         "A1": {
-          "physical": "2",
-          "role": "signal"
-        },
-        "A2": {
-          "physical": "3",
-          "role": "signal"
-        },
-        "GND": {
-          "physical": "4",
-          "role": "power"
-        },
-        "B2": {
           "physical": "5",
           "role": "signal"
         },
+        "A2": {
+          "physical": "4",
+          "role": "signal"
+        },
+        "GND": {
+          "physical": "2",
+          "role": "power"
+        },
+        "B2": {
+          "physical": "1",
+          "role": "signal"
+        },
         "B1": {
-          "physical": "6",
+          "physical": "8",
           "role": "signal"
         },
         "VCCB": {
@@ -14369,17 +14369,17 @@
           "role": "power"
         },
         "OE": {
-          "physical": "8",
+          "physical": "6",
           "role": "signal"
         }
       },
-      "contact_map_sha256": "211f0acd15d288c4890db12ce2c74bc33bc5ff82d27879a5cfe516e2fb20dd07",
+      "contact_map_sha256": "2dcb658e53fcf02e35632df8460b4b7a726ef53bba817093ec0e0260d77ad69b",
       "electrical_contract_sha256": "3e86399a989a3bd8266d94070cc253fc0a7fdd979385d590d87392248a1a1396",
       "manufacturer_evidence": {
         "document": "TXS0102 2-bit bidirectional voltage-level translator datasheet",
         "version": "SCES640L, revised January 2026",
         "url": "https://www.ti.com/lit/ds/symlink/txs0102.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-09-07"
       },
       "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
       "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",

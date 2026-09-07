@@ -10,19 +10,19 @@
     },
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "8662e0fa866bf8fab57b7d3799b312b3f67bca179da2732571be27995e19c88d"
+      "sha256": "13c60bf11df73419f6321039378b68f3d55be34a3a033833d7fb477e047e3d14"
     },
     "nets": {
       "path": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "sha256": "a4d01ad42040f5d7b4be6f138efbef7c5230f7500c37c7bed795d25d05d24e72"
+      "sha256": "12019fb538309b2d19051e97409cbe9d88d0e6cb5bf1b2911dcc85fe52cdc6a7"
     },
     "symbols": {
       "path": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-      "sha256": "409671bdfaa7674d2dab5455154a4a636128f23de3e4f46788ad8071faed0600"
+      "sha256": "adff01bda89874c138e98b38d66695647548297123567aff41e95991329421a6"
     },
     "symbol_library": {
       "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-      "sha256": "9cb2f1c69ae8c1ee6be359e202edd504ea4d9fa9ab7bb38460921d55c91ec017"
+      "sha256": "79e506353cf0ed561e54d1b7ca7424baa7eaad06f7085b5fe17e45e09d347b55"
     }
   },
   "summary": {
@@ -31,8 +31,8 @@
     "populated_sheet_count": 18,
     "fitted_symbol_instance_count": 1208,
     "physical_symbol_pin_count": 4306,
-    "connected_physical_pin_count": 4068,
-    "explicit_no_connect_physical_pin_count": 238,
+    "connected_physical_pin_count": 4070,
+    "explicit_no_connect_physical_pin_count": 236,
     "external_module_interface_annotation_count": 5,
     "canonical_net_count": 788,
     "generated_file_count": 28,
@@ -116,8 +116,8 @@
       "role": "front Hub RP2354B core, flash, reset, USB, DBG10 and local transport fan-out",
       "instance_count": 47,
       "physical_symbol_pin_count": 215,
-      "connected_physical_pin_count": 199,
-      "explicit_no_connect_physical_pin_count": 16,
+      "connected_physical_pin_count": 200,
+      "explicit_no_connect_physical_pin_count": 15,
       "hierarchical_interface_count": 49,
       "external_module_interface_count": 0,
       "external_module_interfaces": [],
@@ -228,8 +228,8 @@
       "role": "rear RF RP2354B core, flash, reset, USB and DBG10",
       "instance_count": 48,
       "physical_symbol_pin_count": 217,
-      "connected_physical_pin_count": 198,
-      "explicit_no_connect_physical_pin_count": 19,
+      "connected_physical_pin_count": 199,
+      "explicit_no_connect_physical_pin_count": 18,
       "hierarchical_interface_count": 46,
       "external_module_interface_count": 0,
       "external_module_interfaces": [],
@@ -351,11 +351,11 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch",
-      "sha256": "cac165667efd675ec087ab2fcfc83c29fca395f19fb62a9701f20564cabc5b1a"
+      "sha256": "ba4c5f515a372d136efc4226129b84984f470d179b3d194d48565dafefc96a1d"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_10_RP2354_CORE_SERVICE.kicad_sch",
-      "sha256": "1fb9f2a6460b079c6b5c1fa9e0dfa9abecad9b50f038b1c2e95313a0528f35c6"
+      "sha256": "e2a1674173fc70e58e9f6e0fb8ec663cd91a47dc31bb459b11bc239f1469042c"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_20_CC1101_VOICE_TX.kicad_sch",
@@ -371,7 +371,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_30_U214_U219_M5_EXT.kicad_sch",
-      "sha256": "d116b8fd7a7f1d6e13e63fddd28b726948be87a894368271248d582e7621b606"
+      "sha256": "e353a1a095600332751b857915ea7b003a80d4b1d846d6e4d257ab10573d414e"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_31_REAR_CONTROLS.kicad_sch",
@@ -383,7 +383,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_50_TX_SAFETY_EVIDENCE.kicad_sch",
-      "sha256": "b7ebc021f1a170b3493ac2fe7cf33d3a09c02eaf9061f3860bdb0d015c7ba8b7"
+      "sha256": "67cda2eb3cbf423ae77fae65b4773649f4a5196c54609ff58c8d55b4c560a9bd"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch",
@@ -419,7 +419,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_30_HUB_RP_CORE_SERVICE.kicad_sch",
-      "sha256": "28fbd646c861f82230a1d400f0628048233d748c470213864f19a8eb5e0b3e07"
+      "sha256": "189c66b4dcc78656ac49ee37eed514e6f09e1388bbef91ee77510ed3a9aa72dd"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_31_NRF24_X3_TX_EVIDENCE.kicad_sch",

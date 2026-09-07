@@ -7825,7 +7825,7 @@
 			(size 1.25 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_02_PACK_SAFETY_AON/3V3_MAIN")
+			(net "/RF_30_U214_U219_M5_EXT/UNIT_CONNECTOR_SIG1")
 			(uuid "f1bc610d-4167-57c3-a986-2716bef2e048")
 		)
 		(pad "2" smd roundrect
@@ -7833,7 +7833,7 @@
 			(size 1.25 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_10_RP2354_CORE_SERVICE/M5_UNIT_SIG0")
+			(net "/RF_01_USB_PD_CHARGE/POWER_GROUND")
 			(uuid "7097639d-1897-5963-8620-668458dafbaa")
 		)
 		(pad "3" smd roundrect
@@ -7841,7 +7841,7 @@
 			(size 1.25 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_10_RP2354_CORE_SERVICE/M5_UNIT_SIG1")
+			(net "/RF_02_PACK_SAFETY_AON/3V3_MAIN")
 			(uuid "0c6323dd-099c-50b6-a6f0-8f31cdbddebb")
 		)
 		(pad "4" smd roundrect
@@ -7849,7 +7849,7 @@
 			(size 1.25 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_01_USB_PD_CHARGE/POWER_GROUND")
+			(net "/RF_10_RP2354_CORE_SERVICE/M5_UNIT_SIG1")
 			(uuid "cc64106f-2187-559a-b40e-d0ba9a17034b")
 		)
 		(pad "5" smd roundrect
@@ -7857,7 +7857,7 @@
 			(size 1.25 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_30_U214_U219_M5_EXT/UNIT_CONNECTOR_SIG1")
+			(net "/RF_10_RP2354_CORE_SERVICE/M5_UNIT_SIG0")
 			(uuid "fdeb3cbb-c798-5a9d-a92a-21a5470eebd5")
 		)
 		(pad "6" smd roundrect
@@ -7865,7 +7865,7 @@
 			(size 1.25 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_30_U214_U219_M5_EXT/UNIT_CONNECTOR_SIG0")
+			(net "/RF_30_U214_U219_M5_EXT/UNIT_READY")
 			(uuid "e51f7c04-b425-5196-82e2-893996b32124")
 		)
 		(pad "7" smd roundrect
@@ -7881,7 +7881,7 @@
 			(size 1.25 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_30_U214_U219_M5_EXT/UNIT_READY")
+			(net "/RF_30_U214_U219_M5_EXT/UNIT_CONNECTOR_SIG0")
 			(uuid "b6bf5bc7-4b8b-54b2-bb5a-e479a8a86b61")
 		)
 		(embedded_fonts no)
@@ -12165,7 +12165,7 @@
 			(size 1.6 0.6)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_03_MAIN_RAILS_DOMAIN_GATES/U214_5V_REQ")
+			(net "/RF_03_MAIN_RAILS_DOMAIN_GATES/UNIT_5V_REQ")
 			(uuid "eddd7f0b-7240-593a-8bdf-236a83879282")
 		)
 		(pad "2" smd roundrect
@@ -12173,7 +12173,7 @@
 			(size 1.6 0.6)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_03_MAIN_RAILS_DOMAIN_GATES/UNIT_5V_REQ")
+			(net "/RF_03_MAIN_RAILS_DOMAIN_GATES/U214_5V_REQ")
 			(uuid "717445cb-7d16-52d9-8b47-0f130b5a4902")
 		)
 		(pad "3" smd roundrect
@@ -21177,7 +21177,7 @@
 	(footprint "Package_SON:USON-10_2.5x1.0mm_P0.5mm"
 		(layer "B.Cu")
 		(uuid "20bd8dda-ec74-5488-bb6f-44b42174b7d1")
-		(at 54 40.25)
+		(at 54.79 37.015)
 		(descr "USON-10 2.5x1.0mm_ Pitch 0.5mm http://www.ti.com/lit/ds/symlink/tpd4e02b04.pdf")
 		(tags "USON-10 2.5x1.0mm Pitch 0.5mm")
 		(property "Reference" "U88"
@@ -31039,7 +31039,6 @@
 			(size 1.025 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_50_TX_SAFETY_EVIDENCE/SAFE_REARM_DELAY")
 			(uuid "d90eaca8-4bef-525d-9b3d-99a742945e8d")
 		)
 		(pad "2" smd roundrect
@@ -31047,6 +31046,7 @@
 			(size 1.025 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
+			(net "/RF_50_TX_SAFETY_EVIDENCE/SAFE_REARM_DELAY")
 			(uuid "97417bff-920c-5e97-90e2-c24423243b76")
 		)
 		(pad "3" smd roundrect
@@ -32642,11 +32642,11 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "32f7f21d-abc0-55f4-8a9c-50acc6cdcdd7")
-		(at 70.354999 33.805 90)
+		(at 54.7 39.175 180)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C100"
-			(at 0 1.16 270)
+			(at 0 1.16 0)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "692c737b-b97f-5210-a32e-7f4c2189032c")
@@ -32659,7 +32659,7 @@
 			)
 		)
 		(property "Value" "Yageo CC0402KRX7R9BB104"
-			(at 0 -1.16 270)
+			(at 0 -1.16 0)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "6dd01a15-9abc-5ec7-8d52-685ff2806e6b")
@@ -32672,7 +32672,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "72ee91a4-aec4-5d1e-ae2c-f872af3ff04e")
@@ -32684,7 +32684,7 @@
 			)
 		)
 		(property "Description" "yageo_cc0402krx7r9bb104"
-			(at 0 0 270)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "daf9c8d0-c1b6-5dc1-aa6a-a682a7515629")
@@ -32696,7 +32696,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 270)
+			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "db7370ed-8951-54f8-b939-81faba970e39")
@@ -32709,7 +32709,7 @@
 			)
 		)
 		(property "Leshy2Instance" "rf_rp_qspi_iovdd_bypass"
-			(at 0 0 270)
+			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "c4076add-fb1a-525b-bbc6-f67a5fc92bae")
@@ -32727,8 +32727,8 @@
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
-			(start -0.107836 -0.36)
-			(end 0.107836 -0.36)
+			(start -0.107836 0.36)
+			(end 0.107836 0.36)
 			(stroke
 				(width 0.12)
 				(type solid)
@@ -32737,8 +32737,8 @@
 			(uuid "c1118882-7e6f-5048-a1a3-27039c57d541")
 		)
 		(fp_line
-			(start -0.107836 0.36)
-			(end 0.107836 0.36)
+			(start -0.107836 -0.36)
+			(end 0.107836 -0.36)
 			(stroke
 				(width 0.12)
 				(type solid)
@@ -32769,7 +32769,7 @@
 			(uuid "94d26333-92ca-5df6-ad92-8412dadb4851")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(uuid "defd8d9f-4912-5682-a23a-29ab857aa308")
 			(effects
@@ -32781,7 +32781,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.48 0 90)
+			(at -0.48 0 180)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -32789,7 +32789,7 @@
 			(uuid "d04634d4-802e-5200-bee3-139a6cd5968e")
 		)
 		(pad "2" smd roundrect
-			(at 0.48 0 90)
+			(at 0.48 0 180)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -64806,6 +64806,7 @@
 			(size 0.2 0.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
+			(net "/RF_02_PACK_SAFETY_AON/3V3_MAIN")
 			(uuid "a038e5a6-f594-52ac-a521-5caf8c7cd3c2")
 		)
 		(pad "70" smd roundrect
@@ -95391,11 +95392,11 @@
 	(footprint "Inductor_SMD:L_Murata_DFE201610P"
 		(layer "B.Cu")
 		(uuid "923494ad-84e7-5f59-90b7-8bbc6d5ef800")
-		(at 54.445 36.895 90)
+		(at 54.22 40.885 180)
 		(descr "Inductor, Murata, DFE201610P, 2.0x1.6x1.0mm, (https://www.murata.com/~/media/webrenewal/products/inductor/chip/tokoproducts/wirewoundmetalalloychiptype/m_dfe201610p.ashx)")
 		(tags "power chip flatwire")
 		(property "Reference" "L4"
-			(at 0 1.75 270)
+			(at 0 1.75 0)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "5f38e984-5244-5ed5-afff-1c423ea7ef79")
@@ -95408,7 +95409,7 @@
 			)
 		)
 		(property "Value" "Abracon AOTA-B201610S3R3-101-T"
-			(at 0 -1.75 270)
+			(at 0 -1.75 0)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "4f50ddaf-4840-5c1b-9d28-a655d463ab6c")
@@ -95421,7 +95422,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "13cf8951-fe9c-58c7-a090-bee250b04892")
@@ -95433,7 +95434,7 @@
 			)
 		)
 		(property "Description" "abracon_aota_b201610s3r3_101_t"
-			(at 0 0 270)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "d8067e23-fec4-5eed-b25a-4231fc082c5d")
@@ -95445,7 +95446,7 @@
 			)
 		)
 		(property "KiLib_Generator" "inductor/SMD"
-			(at 0 0 270)
+			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "4183f4a7-6166-5a44-a0bc-089365aa916d")
@@ -95458,7 +95459,7 @@
 			)
 		)
 		(property "Leshy2Instance" "rf_rp_vreg_inductor"
-			(at 0 0 270)
+			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "d7666448-cf36-590f-af7d-c4f01cdc3c7a")
@@ -95518,7 +95519,7 @@
 			(uuid "cf92344a-7c39-57ed-9ea8-9c11e075c42f")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(uuid "e5808929-1c05-512a-b78e-04c9bf9cec56")
 			(effects
@@ -95530,7 +95531,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.725 0 90)
+			(at -0.725 0 180)
 			(size 0.55 1.6)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -95538,7 +95539,7 @@
 			(uuid "912064b9-0fff-5a45-8680-22de58ec5a93")
 		)
 		(pad "2" smd roundrect
-			(at 0.725 0 90)
+			(at 0.725 0 180)
 			(size 0.55 1.6)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -148314,7 +148315,7 @@
 			(size 1.6 0.6)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_10_RP2354_CORE_SERVICE/VOICE_PTT_REQ_N")
+			(net "/RF_50_TX_SAFETY_EVIDENCE/FAULT_KILL")
 			(uuid "0654d640-7e3d-51f9-ba3a-3680f5c1c1a5")
 		)
 		(pad "2" smd roundrect
@@ -148322,7 +148323,7 @@
 			(size 1.6 0.6)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/RF_50_TX_SAFETY_EVIDENCE/FAULT_KILL")
+			(net "/RF_10_RP2354_CORE_SERVICE/VOICE_PTT_REQ_N")
 			(uuid "b2a4b06b-66fd-5a81-8abb-e67fcfce4189")
 		)
 		(pad "3" smd roundrect
@@ -163693,16 +163694,16 @@
 		(uuid "d20676aa-0153-4ee4-9d35-5062fced1958")
 	)
 	(segment
-		(start 55.9 39.75)
-		(end 55.45 37.3)
+		(start 55.7 39.8)
+		(end 53.495 39.8)
 		(width 0.15)
 		(layer "B.Cu")
 		(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_VREG_LX_SW")
 		(uuid "5e6137c7-adef-4a98-9b51-a14fe1577384")
 	)
 	(segment
-		(start 55.45 37.3)
-		(end 54.445 36.17)
+		(start 53.495 39.8)
+		(end 53.495 40.885)
 		(width 0.15)
 		(layer "B.Cu")
 		(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_VREG_LX_SW")
@@ -163710,15 +163711,15 @@
 	)
 	(segment
 		(start 56.55 40)
-		(end 56.1 39.95)
+		(end 55.9 40)
 		(width 0.15)
 		(layer "B.Cu")
 		(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_VREG_LX_SW")
 		(uuid "b61f8ec8-8a02-4d73-9b30-1c5230101d25")
 	)
 	(segment
-		(start 56.1 39.95)
-		(end 55.9 39.75)
+		(start 55.9 40)
+		(end 55.7 39.8)
 		(width 0.15)
 		(layer "B.Cu")
 		(net "/RF_10_RP2354_CORE_SERVICE/RF_RP_VREG_LX_SW")

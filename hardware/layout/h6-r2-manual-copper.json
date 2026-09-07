@@ -69,9 +69,9 @@
       "routing_class": "SWITCHING_NODE",
       "layer": "B.Cu",
       "width_mm": 0.15,
-      "path_mm": [[56.55, 40.0], [56.1, 39.95], [55.9, 39.75], [55.45, 37.3], [54.445, 36.17]],
+      "path_mm": [[56.55, 40.0], [55.9, 40.0], [55.7, 39.8], [53.495, 39.8], [53.495, 40.885]],
       "expected_resolved_connections": 1,
-      "reason": "Short no-via RP2354 internal-regulator switch path."
+      "reason": "Short no-via RP2354 internal-regulator switch path, rerouted between C100 and L4 after the flash-supply bypass relocation; approach L4 pad 2 without crossing its quiet output pad."
     },
     {
       "id": "RF-MAIN-BUCK-BST",

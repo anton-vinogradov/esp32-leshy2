@@ -1873,7 +1873,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "ManufacturerEvidenceChecked" "2026-08-18"
+			(property "ManufacturerEvidenceChecked" "2026-09-07"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1899,37 +1899,37 @@
 				(pin passive line
 					(at -20.32 3.81 0)
 					(length 5.08)
-					(name "VCCA" (effects (font (size 1.27 1.27))))
+					(name "B2" (effects (font (size 1.27 1.27))))
 					(number "1" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at -20.32 1.27 0)
 					(length 5.08)
-					(name "A1" (effects (font (size 1.27 1.27))))
+					(name "GND" (effects (font (size 1.27 1.27))))
 					(number "2" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at -20.32 -1.27 0)
 					(length 5.08)
-					(name "A2" (effects (font (size 1.27 1.27))))
+					(name "VCCA" (effects (font (size 1.27 1.27))))
 					(number "3" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at -20.32 -3.81 0)
 					(length 5.08)
-					(name "GND" (effects (font (size 1.27 1.27))))
+					(name "A2" (effects (font (size 1.27 1.27))))
 					(number "4" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at 20.32 3.81 180)
 					(length 5.08)
-					(name "B2" (effects (font (size 1.27 1.27))))
+					(name "A1" (effects (font (size 1.27 1.27))))
 					(number "5" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at 20.32 1.27 180)
 					(length 5.08)
-					(name "B1" (effects (font (size 1.27 1.27))))
+					(name "OE" (effects (font (size 1.27 1.27))))
 					(number "6" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
@@ -1941,7 +1941,7 @@
 				(pin passive line
 					(at 20.32 -3.81 180)
 					(length 5.08)
-					(name "OE" (effects (font (size 1.27 1.27))))
+					(name "B1" (effects (font (size 1.27 1.27))))
 					(number "8" (effects (font (size 1.27 1.27))))
 				)
 			)
@@ -9032,47 +9032,47 @@
 			)
 		)
 	)
-	(label "3V3_MAIN"
+	(label "UNIT_CONNECTOR_SIG1"
 		(at 767.08 228.60 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "fb794913-a4a2-5af9-b3b9-64cb5564f71f")
+		(uuid "78a6a682-24ca-5c3d-af0a-a8de789de24c")
 	)
-	(hierarchical_label "M5_UNIT_SIG0"
-		(shape bidirectional)
+	(label "POWER_GROUND"
 		(at 767.08 231.14 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "a46640e6-4381-550e-8c1c-c8127294ae2b")
+		(uuid "af80fc16-3349-5e34-9daa-7c181073e6fd")
+	)
+	(label "3V3_MAIN"
+		(at 767.08 233.68 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "c8651d9c-a3bc-5611-882b-06912cac9dea")
 	)
 	(hierarchical_label "M5_UNIT_SIG1"
 		(shape bidirectional)
-		(at 767.08 233.68 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "a6c0ce97-3515-5cd6-9cf2-1658119ee038")
-	)
-	(label "POWER_GROUND"
 		(at 767.08 236.22 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "06425921-0009-51a9-9616-822ab7b9b504")
+		(uuid "752c7778-0f7f-5cc1-a253-127a2db08513")
 	)
-	(label "UNIT_CONNECTOR_SIG1"
+	(hierarchical_label "M5_UNIT_SIG0"
+		(shape bidirectional)
 		(at 807.72 228.60 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "6637f8a2-38f5-51fe-ad57-7771a1459146")
+		(uuid "92d50e62-ffbd-565c-b50f-9cb20bc770de")
 	)
-	(label "UNIT_CONNECTOR_SIG0"
+	(label "UNIT_READY"
 		(at 807.72 231.14 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "ebfbaefe-1009-5c7f-9ecc-f9138e73b8d4")
+		(uuid "568d4548-b3f6-5165-9001-f9b6c51274e2")
 	)
 	(label "3V3_MAIN"
 		(at 807.72 233.68 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "5e3a53a4-22b8-5861-a125-073a46aa8297")
 	)
-	(label "UNIT_READY"
+	(label "UNIT_CONNECTOR_SIG0"
 		(at 807.72 236.22 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "bdfe8dd9-64d1-5f58-b7f5-6787230b4029")
+		(uuid "46f163e7-a17f-5090-a6de-3e71bf0c716d")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:ti_tps3808g33_dbvr")

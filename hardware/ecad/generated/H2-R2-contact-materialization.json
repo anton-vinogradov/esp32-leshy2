@@ -6,11 +6,11 @@
   "sources": {
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "a592c4a6700dd4f572197c65c755eb2a5257baab720227383492aa080d4b0636"
+      "sha256": "f59ed6290eed183d8c191aab535647aab3ef3694709fed0f6144ec0e1ad6e761"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "a11701b3df0156dbd533867d3e4bd0d57b731623c12b083cccf493b03775d0fa"
+      "sha256": "2a4f7944f69705a6361a3f71b315041b7eb08d884a4508eb060d0bcf9affb4c7"
     }
   },
   "kicad_reference_version": "10.0.5",
@@ -12745,20 +12745,20 @@
         {
           "contact": "1A",
           "role": "signal",
-          "physical": "1",
+          "physical": "2",
           "disposition": "pcb_footprint_pad",
           "pads": [
-            "1"
+            "2"
           ],
           "resolution": "exact_physical_pad_name"
         },
         {
           "contact": "1B",
           "role": "signal",
-          "physical": "2",
+          "physical": "1",
           "disposition": "pcb_footprint_pad",
           "pads": [
-            "2"
+            "1"
           ],
           "resolution": "exact_physical_pad_name"
         },
@@ -20450,10 +20450,10 @@
         {
           "contact": "A",
           "role": "signal",
-          "physical": "1",
+          "physical": "2",
           "disposition": "pcb_footprint_pad",
           "pads": [
-            "1"
+            "2"
           ],
           "resolution": "exact_physical_pad_name"
         },
@@ -20490,10 +20490,10 @@
         {
           "contact": "NC",
           "role": "nc",
-          "physical": "2",
+          "physical": "1",
           "disposition": "pcb_footprint_pad",
           "pads": [
-            "2"
+            "1"
           ],
           "resolution": "exact_physical_pad_name"
         }
@@ -26566,26 +26566,6 @@
         {
           "contact": "VCCA",
           "role": "power",
-          "physical": "1",
-          "disposition": "pcb_footprint_pad",
-          "pads": [
-            "1"
-          ],
-          "resolution": "exact_physical_pad_name"
-        },
-        {
-          "contact": "A1",
-          "role": "signal",
-          "physical": "2",
-          "disposition": "pcb_footprint_pad",
-          "pads": [
-            "2"
-          ],
-          "resolution": "exact_physical_pad_name"
-        },
-        {
-          "contact": "A2",
-          "role": "signal",
           "physical": "3",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -26594,17 +26574,7 @@
           "resolution": "exact_physical_pad_name"
         },
         {
-          "contact": "GND",
-          "role": "power",
-          "physical": "4",
-          "disposition": "pcb_footprint_pad",
-          "pads": [
-            "4"
-          ],
-          "resolution": "exact_physical_pad_name"
-        },
-        {
-          "contact": "B2",
+          "contact": "A1",
           "role": "signal",
           "physical": "5",
           "disposition": "pcb_footprint_pad",
@@ -26614,12 +26584,42 @@
           "resolution": "exact_physical_pad_name"
         },
         {
-          "contact": "B1",
+          "contact": "A2",
           "role": "signal",
-          "physical": "6",
+          "physical": "4",
           "disposition": "pcb_footprint_pad",
           "pads": [
-            "6"
+            "4"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "GND",
+          "role": "power",
+          "physical": "2",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "2"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "B2",
+          "role": "signal",
+          "physical": "1",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "1"
+          ],
+          "resolution": "exact_physical_pad_name"
+        },
+        {
+          "contact": "B1",
+          "role": "signal",
+          "physical": "8",
+          "disposition": "pcb_footprint_pad",
+          "pads": [
+            "8"
           ],
           "resolution": "exact_physical_pad_name"
         },
@@ -26636,10 +26636,10 @@
         {
           "contact": "OE",
           "role": "signal",
-          "physical": "8",
+          "physical": "6",
           "disposition": "pcb_footprint_pad",
           "pads": [
-            "8"
+            "6"
           ],
           "resolution": "exact_physical_pad_name"
         }

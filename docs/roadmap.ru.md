@@ -31,7 +31,7 @@
 |---|---|---|
 | H6.0.1-R1 · Placement и механический стек | ✅ | 1 208/1 208 footprints, крепёж и microcoax помещаются |
 | H6.0.2-R1 · Правила трассировки | ✅ историческая геометрия | классы и native KiCad rules зафиксированы |
-| **H6.0.3-R1 · 80-мм разводка и parity** | **▶ Сейчас** | все nets проведены или явно NC; DRC и parity равны нулю |
+| **H6.0.3-R1 · 80-мм разводка и parity** | **▶ Сейчас** | [H6-NATIVE-ELECTRICAL-SEMANTICS](h6-r2-electrical-semantics.ru.md) проходит; все nets проведены или явно NC; DRC и parity равны нулю |
 | H6.0.4-R1 · Питание и тепло по меди | ⏳ | реальные copper/via/rail margins проходят |
 | H6.0.5-R1 · Digital, USB и M1 SI | ⏳ | i8080‑8, USB и шины проходят |
 | H6.0.6-R1 · RF и Airband | ⏳ | десять путей, matching, isolation и parasitics проходят |

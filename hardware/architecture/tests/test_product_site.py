@@ -1,10 +1,14 @@
 import csv
+import hashlib
 import json
 import re
 import subprocess
 import sys
 import unittest
 from pathlib import Path
+from unittest import mock
+
+from hardware.ecad import h2_legacy_device_basis as legacy_basis
 
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -148,6 +152,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/h6-r2-routing-policy.ru.md",
         "docs/h6-r2-current-routing.md",
         "docs/h6-r2-current-routing.ru.md",
+        "docs/h6-r2-electrical-semantics.md",
+        "docs/h6-r2-electrical-semantics.ru.md",
         "docs/h6-r2-mechanical-stack.md",
         "docs/h6-r2-mechanical-stack.ru.md",
         "docs/h6-r2-microcoax-service.md",
@@ -224,6 +230,98 @@ class ProductSiteTests(unittest.TestCase):
 
     def read(self, relative: str) -> str:
         return (REPO_ROOT / relative).read_text(encoding="utf-8")
+
+    def test_legacy_device_basis_is_hash_bound_and_independent_of_live_register(self):
+        self.assertEqual(
+            "b450e56d0688283a49843856e910db0145d2bba5", legacy_basis.SOURCE_COMMIT
+        )
+        original_read = Path.read_bytes
+
+        def no_live_register(path):
+            if path.resolve() == legacy_basis.SOURCE_PATH.resolve():
+                raise AssertionError("historical check read today's production register")
+            return original_read(path)
+
+        with mock.patch.object(Path, "read_bytes", no_live_register):
+            devices = legacy_basis.load_historical_devices()
+            self.assertEqual(
+                legacy_basis.SOURCE_SHA256,
+                legacy_basis.source_sha256(legacy_basis.SOURCE_PATH),
+            )
+        self.assertEqual("1", devices["ti_sn74lvc1g17_dckr"]["contacts"]["A"]["physical"])
+        self.assertEqual(
+            hashlib.sha256((REPO_ROOT / "hardware/ecad/H2-sheet-contract.json").read_bytes()).hexdigest(),
+            legacy_basis.source_sha256(REPO_ROOT / "hardware/ecad/H2-sheet-contract.json"),
+        )
+
+    def test_legacy_device_basis_rejects_modified_snapshot(self):
+        corrupted = legacy_basis.snapshot_bytes() + b" "
+        with mock.patch.object(Path, "read_bytes", return_value=corrupted):
+            with self.assertRaisesRegex(ValueError, "immutable SHA256"):
+                legacy_basis.load_historical_devices()
+            with self.assertRaisesRegex(ValueError, "immutable SHA256"):
+                legacy_basis.source_sha256(legacy_basis.SOURCE_PATH)
+
+    def test_legacy_device_basis_rejects_missing_snapshot(self):
+        with mock.patch.object(Path, "read_bytes", side_effect=FileNotFoundError):
+            with self.assertRaises(FileNotFoundError):
+                legacy_basis.load_historical_devices()
+
+    def test_legacy_input_cannot_be_promoted_to_current_r2_authority(self):
+        manifest = json.loads(self.read("hardware/ecad/generated/H2-UI10-S3-core.json"))
+        legacy_basis.verify_historical_scope(manifest)
+        manifest["authority"]["allowed_as_r2_authority"] = True
+        with self.assertRaisesRegex(ValueError, "current R2 authority"):
+            legacy_basis.verify_historical_scope(manifest)
+        manifest["authority"]["allowed_as_r2_authority"] = False
+        manifest["source_hashes"]["hardware/architecture/devices.json"] = "0" * 64
+        with self.assertRaisesRegex(ValueError, "different device input basis"):
+            legacy_basis.verify_historical_scope(manifest)
+
+    def test_nineteen_historical_device_generators_reject_write(self):
+        scripts = sorted(
+            p for p in (REPO_ROOT / "hardware/ecad").glob("h2_*.py")
+            if p.name != "h2_legacy_device_basis.py"
+            and "from h2_legacy_device_basis import" in p.read_text()
+        )
+        self.assertEqual(19, len(scripts))
+        for script in scripts:
+            with self.subTest(script=script.name):
+                result = subprocess.run(
+                    [sys.executable, str(script), "--write"], cwd=REPO_ROOT,
+                    text=True, capture_output=True, check=False,
+                )
+                self.assertEqual(2, result.returncode, result.stdout + result.stderr)
+                self.assertIn("historical R1 sheets are immutable", result.stderr)
+                self.assertNotIn("wrote ", result.stdout)
+
+    def test_current_native_r2_keeps_corrected_maps_not_legacy_input(self):
+        for script in (REPO_ROOT / "hardware/ecad").glob("h2_r2_*.py"):
+            source = script.read_text()
+            self.assertNotIn("h2_legacy_device_basis", source, script.name)
+            self.assertNotIn("legacy-inputs", source, script.name)
+            self.assertNotRegex(source, r"(?:from|import) h2_(?:ui|rf)_", script.name)
+        symbols = json.loads(self.read("hardware/ecad/generated/H2-R2-controlled-symbol-library.json"))
+        maps = {
+            row["device_id"]: {p["name"]: p["number"] for p in row["pin_map"]}
+            for row in symbols["symbols"]
+        }
+        self.assertEqual("2", maps["ti_sn74lvc1g17_dckr"]["A"])
+        self.assertEqual("1", maps["ti_sn74lvc1g17_dckr"]["NC"])
+        self.assertEqual("2", maps["ti_txs0102_dcur"]["GND"])
+        self.assertEqual("3", maps["ti_txs0102_dcur"]["VCCA"])
+        self.assertEqual("2", maps["nexperia_74lvc1g32gv_125"]["1A"])
+        self.assertEqual("1", maps["nexperia_74lvc1g32gv_125"]["1B"])
+
+    def test_electrical_semantics_report_keeps_partial_review_and_open_exit(self):
+        for suffix, home in (("", "README.md"), (".ru", "README.ru.md")):
+            report = f"docs/h6-r2-electrical-semantics{suffix}.md"
+            self.assertIn(report, self.read(home))
+            self.assertIn("H6-NATIVE-ELECTRICAL-SEMANTICS", self.read(report))
+            self.assertIn("h6-electrical-source-triage.json", self.read(report))
+            self.assertIn("H6-NATIVE-ELECTRICAL-SEMANTICS", self.read(f"docs/roadmap{suffix}.md"))
+        self.assertIn("partial review; release blocked", self.read("docs/h6-r2-electrical-semantics.md"))
+        self.assertIn("частичное ревью; выпуск заблокирован", self.read("docs/h6-r2-electrical-semantics.ru.md"))
 
     def test_public_site_contains_only_product_pages(self):
         docs_markdown = {
@@ -924,7 +1022,8 @@ class ProductSiteTests(unittest.TestCase):
                 "Десять постоянных антенных портов разделены 5+5",
                 "docs/h6-r2-current-routing.ru.md",
                 "Пока выводы символов в ERC пассивные",
-                "Этот пробел электрической проверки блокирует выпуск",
+                "Этот пробел блокирует выпуск",
+                "docs/h6-r2-electrical-semantics.ru.md",
             ),
             "docs/roadmap.md": (
                 "Current hardware boundary: `H6.0.3-R1`",

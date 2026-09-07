@@ -43,7 +43,7 @@ class H6R2PlacementTests(unittest.TestCase):
                 "net_or_footprint_error_count": 0,
                 "locality_pair_count": 311,
                 "locality_violation_count": 0,
-                "critical_pad_pair_count": 34,
+                "critical_pad_pair_count": 36,
                 "critical_pad_pair_violation_count": 0,
                 "accepted_same_face_overlap_count": 2,
                 "routing_authorized": True,
@@ -96,7 +96,7 @@ class H6R2PlacementTests(unittest.TestCase):
             self.assertEqual([], pad_audit["errors"])
             self.assertEqual([], pad_audit["violations"])
             rows.extend(pad_audit["rows"])
-        self.assertEqual(34, len(rows))
+        self.assertEqual(36, len(rows))
         self.assertEqual(
             switching_nodes,
             switching_nodes & {row["canonical_net"] for row in rows},

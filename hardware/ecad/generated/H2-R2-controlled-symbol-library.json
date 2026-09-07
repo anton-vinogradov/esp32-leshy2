@@ -6,17 +6,17 @@
   "sources": {
     "contact_materialization": {
       "path": "hardware/ecad/generated/H2-R2-contact-materialization.json",
-      "sha256": "db51e97d801e4317891aca2d5f98231ac395f1ca920d9fd50606a0be85f9ee45"
+      "sha256": "24ac84d42a02507ba71932731f32b303f76280e13713d46313de10b28ba07cdb"
     },
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "a592c4a6700dd4f572197c65c755eb2a5257baab720227383492aa080d4b0636"
+      "sha256": "f59ed6290eed183d8c191aab535647aab3ef3694709fed0f6144ec0e1ad6e761"
     }
   },
   "library": {
     "id": "Leshy2_R2",
     "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-    "sha256": "9cb2f1c69ae8c1ee6be359e202edd504ea4d9fa9ab7bb38460921d55c91ec017",
+    "sha256": "79e506353cf0ed561e54d1b7ca7424baa7eaad06f7085b5fe17e45e09d347b55",
     "symbol_count": 245,
     "pin_count": 1571,
     "external_interface_metadata_count": 3
@@ -8653,9 +8653,9 @@
       "pin_map": [
         {
           "number": "1",
-          "name": "1A",
+          "name": "1B",
           "contacts": [
-            "1A"
+            "1B"
           ],
           "roles": [
             "signal"
@@ -8664,9 +8664,9 @@
         },
         {
           "number": "2",
-          "name": "1B",
+          "name": "1A",
           "contacts": [
-            "1B"
+            "1A"
           ],
           "roles": [
             "signal"
@@ -13984,17 +13984,6 @@
       "pin_map": [
         {
           "number": "1",
-          "name": "A",
-          "contacts": [
-            "A"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "2",
           "name": "NC",
           "contacts": [
             "NC"
@@ -14003,6 +13992,17 @@
             "nc"
           ],
           "type": "no_connect"
+        },
+        {
+          "number": "2",
+          "name": "A",
+          "contacts": [
+            "A"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
         },
         {
           "number": "3",
@@ -18210,50 +18210,6 @@
       "pin_map": [
         {
           "number": "1",
-          "name": "VCCA",
-          "contacts": [
-            "VCCA"
-          ],
-          "roles": [
-            "power"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "2",
-          "name": "A1",
-          "contacts": [
-            "A1"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "3",
-          "name": "A2",
-          "contacts": [
-            "A2"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "4",
-          "name": "GND",
-          "contacts": [
-            "GND"
-          ],
-          "roles": [
-            "power"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "5",
           "name": "B2",
           "contacts": [
             "B2"
@@ -18264,10 +18220,54 @@
           "type": "passive"
         },
         {
-          "number": "6",
-          "name": "B1",
+          "number": "2",
+          "name": "GND",
           "contacts": [
-            "B1"
+            "GND"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "3",
+          "name": "VCCA",
+          "contacts": [
+            "VCCA"
+          ],
+          "roles": [
+            "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "4",
+          "name": "A2",
+          "contacts": [
+            "A2"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "5",
+          "name": "A1",
+          "contacts": [
+            "A1"
+          ],
+          "roles": [
+            "signal"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "6",
+          "name": "OE",
+          "contacts": [
+            "OE"
           ],
           "roles": [
             "signal"
@@ -18287,9 +18287,9 @@
         },
         {
           "number": "8",
-          "name": "OE",
+          "name": "B1",
           "contacts": [
-            "OE"
+            "B1"
           ],
           "roles": [
             "signal"

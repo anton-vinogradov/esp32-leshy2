@@ -4,11 +4,15 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import shutil
 import subprocess
 from pathlib import Path
+
+from h2_legacy_device_basis import (
+    load_historical_devices, require_historical_check,
+    source_sha256 as sha256, verify_historical_scope,
+)
 
 from h2_symbol_library import build as build_symbol_library
 from h2_ui_s3_core import Pin, effects, escaped, library_symbol, schematic_symbol, scoped_reference, stable_uuid
@@ -30,13 +34,9 @@ SYMBOL_NAMESPACE = "UI40"
 FOOTPRINT = "Connector_Hirose_FX8:Hirose_FX8-80P-SV_2x40_P0.6mm"
 
 
-def sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
-
-
 def build() -> tuple[dict[Path, str], dict]:
     candidate = json.loads(CANDIDATE_PATH.read_text(encoding="utf-8"))
-    devices = json.loads(DEVICES_PATH.read_text(encoding="utf-8"))["devices"]
+    devices = load_historical_devices()
     ledger = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
     root_manifest = json.loads(ROOT_INTERFACE_PATH.read_text(encoding="utf-8"))
     rows = [
@@ -228,7 +228,9 @@ def main() -> int:
     mode.add_argument("--check", action="store_true")
     parser.add_argument("--kicad-check", action="store_true")
     args = parser.parse_args()
+    require_historical_check(parser, args)
     generated, manifest = build()
+    verify_historical_scope(manifest)
     structural_check(generated, manifest)
     if args.write:
         for path, content in generated.items():
@@ -251,7 +253,7 @@ def main() -> int:
             for path in stale:
                 print(f"stale: {path.relative_to(REPO)}")
             return 1
-        print("ok: H2.2.8 UI-side M1 sheet is current")
+        print("ok: H2.2.8 UI-side M1 sheet reproduces its historical R1 input (not current R2 evidence)")
     if args.kicad_check:
         kicad_check()
     return 0

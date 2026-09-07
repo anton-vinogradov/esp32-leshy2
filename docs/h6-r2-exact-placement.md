@@ -43,11 +43,15 @@ placement alone is not sufficient.
 - **311/311** local-part → owner pairs within their permitted courtyard or
   owner-pad gaps;
   zero locality violations.
-- **34/34** electrically critical pad-centre pairs pass their explicit limits.
+- **36/36** electrically critical pad-centre pairs pass their explicit limits.
   This covers every switching-node net and selected local bypasses, including
   the detector and service-logic ICs, S3 supply and the supply side of the
   Airband LNA bias choke. Useful pad orientation is checked as well as body
   locality; these distances do not certify the final routed current loops.
+- Both RP2354 flash-supply bypasses now sit within 3 mm of the exact supply
+  pad 69: 2.1523 mm on UI and 2.0875 mm on RF. These checks cannot select a
+  nearer, unrelated supply pad; [electrical review](h6-r2-electrical-semantics.md)
+  records the associated schematic correction.
 - A deterministic generator, a hash-bearing
   [machine audit](../hardware/layout/generated/H6-R2-placement-audit.json) and
   an exact 1,208-anchor freeze.
@@ -62,7 +66,7 @@ the electrical-semantics gate remains required.
 
 ## What happens next
 
-First close [`H6-NATIVE-ELECTRICAL-SEMANTICS`](h6-r2-current-routing.md): review
+First close [`H6-NATIVE-ELECTRICAL-SEMANTICS`](h6-r2-electrical-semantics.md): review
 physical-pin types, rail sources and output conflicts, then rerun ERC. Resume
 routing and final return-path checks in the sequence maintained on the
 current-routing page, the sole owner of live copper counts and routing progress.

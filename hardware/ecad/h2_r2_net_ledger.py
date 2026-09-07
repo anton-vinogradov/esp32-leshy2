@@ -310,7 +310,9 @@ def current_override(instance: str, contact: str, sources: dict[str, dict], alia
         if text.startswith("OPEN "):
             return None, "current_display_direct_explicit_nc"
         return aliases.get(text, text), "current_display_direct_map"
-    if instance in {"hub_rp", "rf_rp"} and contact.startswith("QSPI_") and contact != "QSPI_SS_USB_BOOT":
+    # RP2354 internal flash still needs QSPI_IOVDD (datasheet section 14.3).
+    # Only the unused external data/clock lands are NC, never the supply.
+    if instance in {"hub_rp", "rf_rp"} and contact in {"QSPI_SCLK", "QSPI_SD0", "QSPI_SD1", "QSPI_SD2", "QSPI_SD3"}:
         return None, "current_exact_stacked_flash_no_connect"
     controller_gpio = instance in {"s3", "c5", "hub_rp", "rf_rp"} and contact.startswith("GPIO")
     if not controller_gpio:

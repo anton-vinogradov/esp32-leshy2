@@ -266,6 +266,34 @@
     }
   },
   "placement_overrides": {
+    "hub_rp_qspi_iovdd_bypass": {
+      "frame": "ui-inner",
+      "centre_mm": [45.2, 68.25],
+      "rotation_deg": 90.0,
+      "method": "reviewed H6.0.3 power-locality correction",
+      "reason": "place the existing flash-supply capacitor at exact RP2354 pad69, not another supply pin"
+    },
+    "rf_rp_qspi_iovdd_bypass": {
+      "frame": "rear-inner",
+      "centre_mm": [54.7, 39.175],
+      "rotation_deg": 180.0,
+      "method": "reviewed H6.0.3 power-locality correction",
+      "reason": "restore short QSPI_IOVDD pad69 decoupling using the existing capacitor"
+    },
+    "rf_rp_vreg_inductor": {
+      "frame": "rear-inner",
+      "centre_mm": [54.22, 40.885],
+      "rotation_deg": 180.0,
+      "method": "reviewed H6.0.3 power-locality correction",
+      "reason": "make room for pad69 bypass while shortening both the VREG_LX and feedback-side pad distances"
+    },
+    "u214_esd_b": {
+      "frame": "rear-inner",
+      "centre_mm": [54.79, 37.015],
+      "rotation_deg": 0.0,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "clear the relocated core inductor; all eight signal pad distances and both nearest ground-pad distances improve"
+    },
     "det_voice": {
       "frame": "rf-inner",
       "centre_mm": [3.575, 27.8],
@@ -2017,6 +2045,26 @@
       "unit_signal_iso_vcca_bypass": 1.5
     },
     "critical_pad_pairs": [
+      {
+        "project": "LESHY2-UI-R2",
+        "canonical_net": "3V3_MAIN",
+        "first_instance": "hub_rp",
+        "first_pad_number": "69",
+        "second_instance": "hub_rp_qspi_iovdd_bypass",
+        "second_pad_number": "1",
+        "maximum_distance_mm": 3.0,
+        "reason": "RP2354 internal flash needs externally supplied QSPI_IOVDD; measure its exact pad69, not another nearby IOVDD pin"
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "3V3_MAIN",
+        "first_instance": "rf_rp",
+        "first_pad_number": "69",
+        "second_instance": "rf_rp_qspi_iovdd_bypass",
+        "second_pad_number": "1",
+        "maximum_distance_mm": 3.0,
+        "reason": "RP2354 internal flash needs externally supplied QSPI_IOVDD; measure its exact pad69, not another nearby IOVDD pin"
+      },
       {
         "project": "LESHY2-RF-R2",
         "canonical_net": "3V3_AIR_SWITCHED",

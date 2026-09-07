@@ -602,7 +602,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "ManufacturerEvidenceChecked" "2026-08-17"
+			(property "ManufacturerEvidenceChecked" "2026-09-07"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -628,13 +628,13 @@
 				(pin passive line
 					(at -20.32 2.54 0)
 					(length 5.08)
-					(name "1A" (effects (font (size 1.27 1.27))))
+					(name "1B" (effects (font (size 1.27 1.27))))
 					(number "1" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at -20.32 0.00 0)
 					(length 5.08)
-					(name "1B" (effects (font (size 1.27 1.27))))
+					(name "1A" (effects (font (size 1.27 1.27))))
 					(number "2" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
@@ -1679,7 +1679,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "ManufacturerEvidenceChecked" "2026-08-31"
+			(property "ManufacturerEvidenceChecked" "2026-09-07"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1702,16 +1702,16 @@
 				)
 			)
 			(symbol "ti_sn74lvc1g17_dckr_1_1"
-				(pin passive line
+				(pin no_connect line
 					(at -20.32 2.54 0)
 					(length 5.08)
-					(name "A" (effects (font (size 1.27 1.27))))
+					(name "NC" (effects (font (size 1.27 1.27))))
 					(number "1" (effects (font (size 1.27 1.27))))
 				)
-				(pin no_connect line
+				(pin passive line
 					(at -20.32 0.00 0)
 					(length 5.08)
-					(name "NC" (effects (font (size 1.27 1.27))))
+					(name "A" (effects (font (size 1.27 1.27))))
 					(number "2" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
@@ -10034,16 +10034,16 @@
 			)
 		)
 	)
-	(hierarchical_label "VOICE_PTT_REQ_N"
-		(shape bidirectional)
+	(label "FAULT_KILL"
 		(at 35.56 298.45 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "f2a5599d-5bfa-5555-aa77-c0d6ca528980")
+		(uuid "e11b7a36-3c0c-5732-a23e-ae6143c6dbfc")
 	)
-	(label "FAULT_KILL"
+	(hierarchical_label "VOICE_PTT_REQ_N"
+		(shape bidirectional)
 		(at 35.56 300.99 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "9d2251bd-d4a4-5138-bbd7-4e9a067366fc")
+		(uuid "9c65c0e6-26d3-5c16-8fb8-eccba4456201")
 	)
 	(label "POWER_GROUND"
 		(at 35.56 303.53 0)
@@ -10134,13 +10134,13 @@
 			)
 		)
 	)
-	(label "SAFE_REARM_DELAY"
-		(at 127.00 298.45 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "787f2a5b-3e9c-5506-8abd-5bd4bde65f51")
+	(no_connect (at 127.00 298.45)
+		(uuid "a976b645-8246-51ac-adfb-923c180e2d84")
 	)
-	(no_connect (at 127.00 300.99)
-		(uuid "01c1008b-4ac3-54f0-86e8-57a1e52e65cb")
+	(label "SAFE_REARM_DELAY"
+		(at 127.00 300.99 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "45fb1512-1d2e-5508-9cc7-c11ecd345732")
 	)
 	(label "POWER_GROUND"
 		(at 127.00 303.53 0)

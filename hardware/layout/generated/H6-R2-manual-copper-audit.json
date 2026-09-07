@@ -5,9 +5,9 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "b461db22b02fa1dd803074930548f0bf3ac1d6335a06826440668fb72b00702c",
+    "contract_sha256": "35c23ecf0f7eec44a1d5457bddab3f57b2c60e7bd69cc960ae69f2cef4c472c0",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "c60a94206e319195b4ce23f9f9836f982817ea5ad52e6b65197960c71b911847",
+    "routing_policy_sha256": "aec86a765b775cb072d9737f8262b53892201c5db8b6e1544534059b8ace83cb",
     "routing_contract": "hardware/layout/h6-r2-routing-policy.json",
     "routing_contract_sha256": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
     "placement_status": "pass"
@@ -7645,12 +7645,12 @@
           "B.Cu",
           0.15,
           [
-            54.445,
-            36.17
+            53.495,
+            39.8
           ],
           [
-            55.45,
-            37.3
+            53.495,
+            40.885
           ]
         ],
         [
@@ -7659,12 +7659,26 @@
           "B.Cu",
           0.15,
           [
-            55.45,
-            37.3
+            53.495,
+            39.8
+          ],
+          [
+            55.7,
+            39.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_10_RP2354_CORE_SERVICE/RF_RP_VREG_LX_SW",
+          "B.Cu",
+          0.15,
+          [
+            55.7,
+            39.8
           ],
           [
             55.9,
-            39.75
+            40.0
           ]
         ],
         [
@@ -7674,21 +7688,7 @@
           0.15,
           [
             55.9,
-            39.75
-          ],
-          [
-            56.1,
-            39.95
-          ]
-        ],
-        [
-          "track",
-          "/RF_10_RP2354_CORE_SERVICE/RF_RP_VREG_LX_SW",
-          "B.Cu",
-          0.15,
-          [
-            56.1,
-            39.95
+            40.0
           ],
           [
             56.55,
@@ -11741,9 +11741,9 @@
       ],
       "segment_count": 4,
       "via_count": 0,
-      "length_mm": 4.7389,
+      "length_mm": 4.2228,
       "resolved_connections": 1,
-      "reason": "Short no-via RP2354 internal-regulator switch path."
+      "reason": "Short no-via RP2354 internal-regulator switch path, rerouted between C100 and L4 after the flash-supply bypass relocation; approach L4 pad 2 without crossing its quiet output pad."
     },
     {
       "id": "RF-MAIN-BUCK-BST",

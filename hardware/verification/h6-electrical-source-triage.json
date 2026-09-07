@@ -1,0 +1,1680 @@
+{
+  "schema_version": 1,
+  "checked": "2026-09-07",
+  "scope": "Bounded triage of the 21 power_pin_not_driven findings from the isolated native typed ERC. Exact reported pins are representatives of their connected nets, not an exhaustive consumer list.",
+  "status": "triaged_not_cleared",
+  "source_sha256": {
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "12019fb538309b2d19051e97409cbe9d88d0e6cb5bf1b2911dcc85fe52cdc6a7",
+    "hardware/ecad/generated/H2-R2-contact-materialization.json": "24ac84d42a02507ba71932731f32b303f76280e13713d46313de10b28ba07cdb",
+    "hardware/verification/h6-electrical-pins-power.json": "065011f2fd529cdd053255a20cb4202755dd65231b1ac0f27e2ddb917a065310",
+    "hardware/verification/h6-electrical-pins-digital.json": "b061c58cebee24f0b0369b5a26b595e0cda0ecd6d8c3b0f7cb0c7c86d4f9f6b4",
+    "hardware/verification/h6-electrical-pins-logic.json": "30a7d8e950ecd8797ad88faef29f2286d087d297d43f0460961509f12560795e"
+  },
+  "observation_source": "hardware/verification/generated/H6-R2-electrical-semantics.json",
+  "method": "Join each reported native ERC reference/pin to the current H2 physical contact materialization and native net ledger, then inspect the bounded local source path. Paths shown are observed connectivity, not a full rail-state graph. No production changes, PWR_FLAG additions, exclusions or ERC suppressions.",
+  "summary": {
+    "native_power_findings": 21,
+    "ui_findings": 5,
+    "rf_findings": 16,
+    "classification_counts": {
+      "external_return_boundary": 3,
+      "interboard_source_boundary": 2,
+      "post_inductor_converter_model_gap": 6,
+      "series_resistor_feed_model_gap": 3,
+      "bootstrap_supply_model_gap": 3,
+      "diode_or_source_model_gap": 1,
+      "passive_return_link_model_gap": 1,
+      "ferrite_feed_model_gap": 2
+    },
+    "unlocated_reported_pins": 0,
+    "confirmed_missing_source_from_this_bounded_review": 0,
+    "whole_electrical_gate_pass": false
+  },
+  "limits": [
+    "No new proven missing-driver defect was found among these 21 reports; that is not proof that every rail works.",
+    "Converter start-up, switched paths, external-source presence, diode voltage drops and bootstrap behavior remain conditional obligations.",
+    "The native ERC errors are not cleared by this triage. A typed source-path or configuration-specific rule is required before accepting an exception.",
+    "The separate ACDRV output conflict has a manufacturer-supported VBUS-only configuration explanation below, but remains visible in native ERC and is not globally waived."
+  ],
+  "authorization": {"fabrication": false, "gate_closed": false},
+  "conflicts": [
+    {
+      "project": "LESHY2-RF-R2",
+      "net": "POWER_GROUND",
+      "type": "pin_to_pin",
+      "pins": [
+        {
+          "reference": "U1",
+          "pin": "10",
+          "instance": "nvdc_charger",
+          "contact": "ACDRV2",
+          "device_id": "ti_bq25798_rqmr",
+          "uuid": "3a8d6f30-89f1-5677-8729-9535678c8078"
+        },
+        {
+          "reference": "U1",
+          "pin": "11",
+          "instance": "nvdc_charger",
+          "contact": "ACDRV1",
+          "device_id": "ti_bq25798_rqmr",
+          "uuid": "f7f9e4d9-8cfe-51b0-b2e8-c4fe57c38e60"
+        }
+      ],
+      "classification": "manufacturer_permitted_unused_driver_grounding",
+      "disposition": "explanation_only_no_erc_suppression",
+      "reason": "BQ25798 VBUS-only mode explicitly ties unused ACDRV1/2 to GND and VAC1/VAC2 to VBUS. Those exact nets are present here; the generic output-output ERC types do not express this configuration. This explanation does not suppress the native conflict or accept the whole electrical gate.",
+      "source_path": [
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U1",
+          "instance": "nvdc_charger",
+          "contact": "VBUS",
+          "net": "PD_NEGOTIATED_VBUS",
+          "pads": [
+            "2",
+            "3"
+          ]
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U1",
+          "instance": "nvdc_charger",
+          "contact": "VAC2",
+          "net": "PD_NEGOTIATED_VBUS",
+          "pads": [
+            "8"
+          ]
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U1",
+          "instance": "nvdc_charger",
+          "contact": "VAC1",
+          "net": "PD_NEGOTIATED_VBUS",
+          "pads": [
+            "9"
+          ]
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U1",
+          "instance": "nvdc_charger",
+          "contact": "ACDRV2",
+          "net": "POWER_GROUND",
+          "pads": [
+            "10"
+          ]
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U1",
+          "instance": "nvdc_charger",
+          "contact": "ACDRV1",
+          "net": "POWER_GROUND",
+          "pads": [
+            "11"
+          ]
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U1",
+          "instance": "nvdc_charger",
+          "contact": "GND",
+          "net": "POWER_GROUND",
+          "pads": [
+            "27"
+          ]
+        }
+      ],
+      "remaining_obligations": [
+        "Preserve the VBUS-only topology; adding input-mux FETs or moving VAC/ACDRV nets invalidates this explanation.",
+        "Implement an exact configuration-scoped check before accepting an ERC exception; never globally suppress output-output conflicts."
+      ],
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/bq25798.pdf",
+          "section": "Table 5-1 ACDRV1/2; section 7.3.5.2 VBUS Input Only; Figure 7-2 and Table 7-5",
+          "checked": "2026-09-07"
+        },
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "nvdc_charger ACDRV1/2=POWER_GROUND; VAC1/VAC2/VBUS=PD_NEGOTIATED_VBUS"
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "project": "LESHY2-UI-R2",
+      "net": "POWER_GROUND",
+      "pins": [
+        {
+          "reference": "U1",
+          "pin": "1",
+          "instance": "s3",
+          "contact": "GND",
+          "device_id": "esp32_s3_wroom_1u_n16r8",
+          "uuid": "b64a0211-de30-5504-9b68-bf5fa8132bb5"
+        }
+      ],
+      "classification": "external_return_boundary",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "UI return is carried by passive M1 contacts to RF POWER_GROUND; neither a ground pin nor a passive connector is a KiCad power_out. The named return exists, but is not a standalone driven supply.",
+      "source_path": [
+        {
+          "project": "LESHY2-UI-R2",
+          "reference": "J18",
+          "instance": "m1_ui_plug",
+          "contact": "P1",
+          "pads": [
+            "1"
+          ],
+          "net": "POWER_GROUND"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "J12",
+          "instance": "m1_rf_receptacle",
+          "contact": "P1",
+          "pads": [
+            "1"
+          ],
+          "net": "POWER_GROUND"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "R37",
+          "instance": "pack_shunt",
+          "contact": "END_1",
+          "pads": [
+            "1"
+          ],
+          "net": "BATTERY_STACK_NEGATIVE_CELL_SIDE"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "R37",
+          "instance": "pack_shunt",
+          "contact": "END_2",
+          "pads": [
+            "2"
+          ],
+          "net": "POWER_GROUND"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "BT1",
+          "instance": "pack_holder",
+          "contact": "SLOT0_NEG",
+          "pads": [
+            "2"
+          ],
+          "net": "BATTERY_STACK_NEGATIVE_CELL_SIDE"
+        }
+      ],
+      "remaining_obligations": [
+        "Verify assembled M1 return continuity and installed-source return; do not add unconditional whole-rail power flags."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-UI-R2; net=POWER_GROUND; source_path exact endpoint tuples"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "net": "3V3_MAIN",
+      "pins": [
+        {
+          "reference": "U1",
+          "pin": "2",
+          "instance": "s3",
+          "contact": "3V3",
+          "device_id": "esp32_s3_wroom_1u_n16r8",
+          "uuid": "da98f5d6-2f83-53c6-b467-73047bc84ae4"
+        }
+      ],
+      "classification": "interboard_source_boundary",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "The UI project receives this rail over M1; the source output exists in the separately ERC-checked RF project.",
+      "source_path": [
+        {
+          "project": "LESHY2-UI-R2",
+          "reference": "J18",
+          "instance": "m1_ui_plug",
+          "contact": "P2",
+          "pads": [
+            "2"
+          ],
+          "net": "3V3_MAIN"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "J12",
+          "instance": "m1_rf_receptacle",
+          "contact": "P2",
+          "pads": [
+            "2"
+          ],
+          "net": "3V3_MAIN"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U21",
+          "instance": "main_efuse",
+          "contact": "IN",
+          "pads": [
+            "5"
+          ],
+          "net": "MAIN_RAW_3V3"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U21",
+          "instance": "main_efuse",
+          "contact": "OUT",
+          "pads": [
+            "6"
+          ],
+          "net": "3V3_MAIN"
+        }
+      ],
+      "remaining_obligations": [
+        "Establish MAIN_RAW_3V3 source availability, main eFuse state and mating M1 current/voltage conditions."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-UI-R2; net=3V3_MAIN; source_path exact endpoint tuples"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "net": "AON_SAFE_3V3",
+      "pins": [
+        {
+          "reference": "U17",
+          "pin": "5",
+          "instance": "c5_service_mux_logic_inverters",
+          "contact": "VCC",
+          "device_id": "nexperia_74lvc2g14gv_125",
+          "uuid": "2fbd000d-f74a-5967-8543-0e31aac6ce92"
+        }
+      ],
+      "classification": "interboard_source_boundary",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "M1 pins 17/19 carry this rail from the RF AON eFuse. A project-local ERC cannot follow the physical mating connector.",
+      "source_path": [
+        {
+          "project": "LESHY2-UI-R2",
+          "reference": "J18",
+          "instance": "m1_ui_plug",
+          "contact": "P17",
+          "pads": [
+            "17"
+          ],
+          "net": "AON_SAFE_3V3"
+        },
+        {
+          "project": "LESHY2-UI-R2",
+          "reference": "J18",
+          "instance": "m1_ui_plug",
+          "contact": "P19",
+          "pads": [
+            "19"
+          ],
+          "net": "AON_SAFE_3V3"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "J12",
+          "instance": "m1_rf_receptacle",
+          "contact": "P17",
+          "pads": [
+            "17"
+          ],
+          "net": "AON_SAFE_3V3"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "J12",
+          "instance": "m1_rf_receptacle",
+          "contact": "P19",
+          "pads": [
+            "19"
+          ],
+          "net": "AON_SAFE_3V3"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U14",
+          "instance": "aon_efuse",
+          "contact": "OUT",
+          "pads": [
+            "1"
+          ],
+          "net": "AON_SAFE_3V3"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U14",
+          "instance": "aon_efuse",
+          "contact": "IN",
+          "pads": [
+            "6"
+          ],
+          "net": "AON_RAW_3V3"
+        }
+      ],
+      "remaining_obligations": [
+        "Establish upstream AON buck/eFuse supply and start-up state; confirm M1 assembly."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-UI-R2; net=AON_SAFE_3V3; source_path exact endpoint tuples"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "net": "HUB_RP_CORE_1V1",
+      "pins": [
+        {
+          "reference": "U28",
+          "pin": "10",
+          "instance": "hub_rp",
+          "contact": "DVDD_10",
+          "device_id": "rp2354b_a4",
+          "uuid": "2b9c6be8-54b0-55cb-9ac9-6ba9f16a6d1d"
+        }
+      ],
+      "classification": "post_inductor_converter_model_gap",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "The RP core rail and feedback are connected to the opposite side of the local VREG_LX inductor. ERC does not propagate a switching converter's regulated output across that passive element.",
+      "source_path": [
+        {
+          "project": "LESHY2-UI-R2",
+          "reference": "U28",
+          "instance": "hub_rp",
+          "contact": "VREG_AVDD",
+          "pads": [
+            "61"
+          ],
+          "net": "HUB_RP_VREG_AVDD_FILTERED"
+        },
+        {
+          "project": "LESHY2-UI-R2",
+          "reference": "U28",
+          "instance": "hub_rp",
+          "contact": "VREG_LX",
+          "pads": [
+            "63"
+          ],
+          "net": "HUB_RP_VREG_LX_SW"
+        },
+        {
+          "project": "LESHY2-UI-R2",
+          "reference": "U28",
+          "instance": "hub_rp",
+          "contact": "VREG_VIN",
+          "pads": [
+            "64"
+          ],
+          "net": "3V3_MAIN"
+        },
+        {
+          "project": "LESHY2-UI-R2",
+          "reference": "L1",
+          "instance": "hub_rp_vreg_inductor",
+          "contact": "END_1",
+          "pads": [
+            "1"
+          ],
+          "net": "HUB_RP_CORE_1V1"
+        },
+        {
+          "project": "LESHY2-UI-R2",
+          "reference": "L1",
+          "instance": "hub_rp_vreg_inductor",
+          "contact": "END_2",
+          "pads": [
+            "2"
+          ],
+          "net": "HUB_RP_VREG_LX_SW"
+        }
+      ],
+      "remaining_obligations": [
+        "Validate regulator start-up with supplied VREG_VIN and filtered VREG_AVDD, feedback, inductor and actual core loading; connectivity is not a powered-state proof."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-UI-R2; net=HUB_RP_CORE_1V1; source_path exact endpoint tuples"
+        },
+        {
+          "source": "hardware/verification/h6-electrical-pins-digital.json",
+          "selector": "rp2354b_a4 pins61/63/64 and power-reachability unresolved note"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "net": "HUB_RP_VREG_AVDD_FILTERED",
+      "pins": [
+        {
+          "reference": "U28",
+          "pin": "61",
+          "instance": "hub_rp",
+          "contact": "VREG_AVDD",
+          "device_id": "rp2354b_a4",
+          "uuid": "ce4f2a6f-e26f-5947-b076-2e08e9e88d9b"
+        }
+      ],
+      "classification": "series_resistor_feed_model_gap",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "VREG_AVDD is connected to 3V3_MAIN through the local 33-ohm filter resistor. A passive series resistor separates the ERC nets.",
+      "source_path": [
+        {
+          "project": "LESHY2-UI-R2",
+          "reference": "U28",
+          "instance": "hub_rp",
+          "contact": "VREG_AVDD",
+          "pads": [
+            "61"
+          ],
+          "net": "HUB_RP_VREG_AVDD_FILTERED"
+        },
+        {
+          "project": "LESHY2-UI-R2",
+          "reference": "U28",
+          "instance": "hub_rp",
+          "contact": "VREG_VIN",
+          "pads": [
+            "64"
+          ],
+          "net": "3V3_MAIN"
+        },
+        {
+          "project": "LESHY2-UI-R2",
+          "reference": "R145",
+          "instance": "hub_rp_vreg_avdd_filter_res",
+          "contact": "END_1",
+          "pads": [
+            "1"
+          ],
+          "net": "3V3_MAIN"
+        },
+        {
+          "project": "LESHY2-UI-R2",
+          "reference": "R145",
+          "instance": "hub_rp_vreg_avdd_filter_res",
+          "contact": "END_2",
+          "pads": [
+            "2"
+          ],
+          "net": "HUB_RP_VREG_AVDD_FILTERED"
+        }
+      ],
+      "remaining_obligations": [
+        "Verify filter resistance, capacitor, current-dependent drop and start-up timing; source rail availability remains conditional."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-UI-R2; net=HUB_RP_VREG_AVDD_FILTERED; source_path exact endpoint tuples"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "net": "CHARGER_BTST1",
+      "pins": [
+        {
+          "reference": "U1",
+          "pin": "4",
+          "instance": "nvdc_charger",
+          "contact": "BTST1",
+          "device_id": "ti_bq25798_rqmr",
+          "uuid": "38df80bf-5066-5b55-a4a5-603cb904dcf0"
+        }
+      ],
+      "classification": "bootstrap_supply_model_gap",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "This is a floating high-side gate-driver supply, not an independent DC rail; the native net contains the specified bootstrap capacitor to the corresponding SW node.",
+      "source_path": [
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U1",
+          "instance": "nvdc_charger",
+          "contact": "SW1",
+          "pads": [
+            "28"
+          ],
+          "net": "CHARGER_SW1"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "C3",
+          "instance": "charger_btst1_cap",
+          "contact": "END_1",
+          "pads": [
+            "1"
+          ],
+          "net": "CHARGER_BTST1"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "C3",
+          "instance": "charger_btst1_cap",
+          "contact": "END_2",
+          "pads": [
+            "2"
+          ],
+          "net": "CHARGER_SW1"
+        }
+      ],
+      "remaining_obligations": [
+        "Check capacitor value/rating/placement and the IC's bootstrap charging/start-up conditions; do not mark the capacitor as a DC source."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-RF-R2; net=CHARGER_BTST1; source_path exact endpoint tuples"
+        },
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/bq25798.pdf",
+          "section": "Table 5-1 BTST1/BTST2; Figure 8-1 bootstrap capacitors",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "net": "CHARGER_BTST2",
+      "pins": [
+        {
+          "reference": "U1",
+          "pin": "19",
+          "instance": "nvdc_charger",
+          "contact": "BTST2",
+          "device_id": "ti_bq25798_rqmr",
+          "uuid": "4b9e5c02-e9f0-5259-b212-4c404f8b0842"
+        }
+      ],
+      "classification": "bootstrap_supply_model_gap",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "This is a floating high-side gate-driver supply, not an independent DC rail; the native net contains the specified bootstrap capacitor to the corresponding SW node.",
+      "source_path": [
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U1",
+          "instance": "nvdc_charger",
+          "contact": "SW2",
+          "pads": [
+            "26"
+          ],
+          "net": "CHARGER_SW2"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "C4",
+          "instance": "charger_btst2_cap",
+          "contact": "END_1",
+          "pads": [
+            "1"
+          ],
+          "net": "CHARGER_BTST2"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "C4",
+          "instance": "charger_btst2_cap",
+          "contact": "END_2",
+          "pads": [
+            "2"
+          ],
+          "net": "CHARGER_SW2"
+        }
+      ],
+      "remaining_obligations": [
+        "Check capacitor value/rating/placement and the IC's bootstrap charging/start-up conditions; do not mark the capacitor as a DC source."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-RF-R2; net=CHARGER_BTST2; source_path exact endpoint tuples"
+        },
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/bq25798.pdf",
+          "section": "Table 5-1 BTST1/BTST2; Figure 8-1 bootstrap capacitors",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "net": "POWER_GROUND",
+      "pins": [
+        {
+          "reference": "U1",
+          "pin": "27",
+          "instance": "nvdc_charger",
+          "contact": "GND",
+          "device_id": "ti_bq25798_rqmr",
+          "uuid": "a675b6f8-09ad-5a66-9dee-37eb01608616"
+        }
+      ],
+      "classification": "external_return_boundary",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "RF system return connects through R37 current shunt to the cell-negative return. Passive returns and the installed battery are not local KiCad power_out pins.",
+      "source_path": [
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "R37",
+          "instance": "pack_shunt",
+          "contact": "END_1",
+          "pads": [
+            "1"
+          ],
+          "net": "BATTERY_STACK_NEGATIVE_CELL_SIDE"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "R37",
+          "instance": "pack_shunt",
+          "contact": "END_2",
+          "pads": [
+            "2"
+          ],
+          "net": "POWER_GROUND"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "BT1",
+          "instance": "pack_holder",
+          "contact": "SLOT0_NEG",
+          "pads": [
+            "2"
+          ],
+          "net": "BATTERY_STACK_NEGATIVE_CELL_SIDE"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U1",
+          "instance": "nvdc_charger",
+          "contact": "GND",
+          "pads": [
+            "27"
+          ],
+          "net": "POWER_GROUND"
+        }
+      ],
+      "remaining_obligations": [
+        "Verify actual battery/USB return, shunt and assembled topology for each operating mode; do not merge cell-side and system returns by naming convention."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-RF-R2; net=POWER_GROUND; source_path exact endpoint tuples"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "net": "PACK_ADMISSION_VDD",
+      "pins": [
+        {
+          "reference": "U7",
+          "pin": "6",
+          "instance": "pack_admission",
+          "contact": "VDD",
+          "device_id": "ti_mspm0c1106_sdgs20r",
+          "uuid": "3dc012c8-1c33-53e8-8f9e-63003378a84d"
+        }
+      ],
+      "classification": "diode_or_source_model_gap",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "U11 common cathode receives candidate power from PACK_AOLDO or PACK_FIXTURE_3V3; U12 cathode adds the 3V3_MAIN path. Static net typing does not follow these directional diode paths.",
+      "source_path": [
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U11",
+          "instance": "pack_supply_or",
+          "contact": "A1",
+          "pads": [
+            "1"
+          ],
+          "net": "PACK_AOLDO"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U11",
+          "instance": "pack_supply_or",
+          "contact": "A2",
+          "pads": [
+            "2"
+          ],
+          "net": "PACK_FIXTURE_3V3"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U11",
+          "instance": "pack_supply_or",
+          "contact": "K_COMMON",
+          "pads": [
+            "3"
+          ],
+          "net": "PACK_ADMISSION_VDD"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U12",
+          "instance": "pack_system_diode",
+          "contact": "A",
+          "pads": [
+            "1"
+          ],
+          "net": "3V3_MAIN"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U12",
+          "instance": "pack_system_diode",
+          "contact": "K",
+          "pads": [
+            "3"
+          ],
+          "net": "PACK_ADMISSION_VDD"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U9",
+          "instance": "pack_gauge",
+          "contact": "IN",
+          "pads": [
+            "1"
+          ],
+          "net": "PACK_GAUGE_IN"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U9",
+          "instance": "pack_gauge",
+          "contact": "AOLDO",
+          "pads": [
+            "12"
+          ],
+          "net": "PACK_AOLDO"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U21",
+          "instance": "main_efuse",
+          "contact": "OUT",
+          "pads": [
+            "6"
+          ],
+          "net": "3V3_MAIN"
+        }
+      ],
+      "remaining_obligations": [
+        "Verify diode polarities, forward drops, available current and start-up dependencies; the optional fixture source must not be assumed installed.",
+        "Confirm the admission MCU/timer minimum voltage under the actually available source and battery state."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-RF-R2; net=PACK_ADMISSION_VDD; source_path exact endpoint tuples"
+        },
+        {
+          "source": "hardware/verification/h6-electrical-pins-power.json",
+          "selector": "adi_max17320_g20_t pin12 conditional AOLDO output; diode part contacts from native ledger"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "net": "BATTERY_STACK_NEGATIVE_CELL_SIDE",
+      "pins": [
+        {
+          "reference": "U7",
+          "pin": "7",
+          "instance": "pack_admission",
+          "contact": "VSS",
+          "device_id": "ti_mspm0c1106_sdgs20r",
+          "uuid": "3bc814f6-5d38-5adf-9e04-156ce7a1c56c"
+        }
+      ],
+      "classification": "external_return_boundary",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "This is the physical holder's cell-negative node, joined to POWER_GROUND through the current shunt. Lack of a local output-power pin is expected for an external passive source boundary.",
+      "source_path": [
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "BT1",
+          "instance": "pack_holder",
+          "contact": "SLOT0_NEG",
+          "pads": [
+            "2"
+          ],
+          "net": "BATTERY_STACK_NEGATIVE_CELL_SIDE"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "R37",
+          "instance": "pack_shunt",
+          "contact": "END_1",
+          "pads": [
+            "1"
+          ],
+          "net": "BATTERY_STACK_NEGATIVE_CELL_SIDE"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "R37",
+          "instance": "pack_shunt",
+          "contact": "END_2",
+          "pads": [
+            "2"
+          ],
+          "net": "POWER_GROUND"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U9",
+          "instance": "pack_gauge",
+          "contact": "GND",
+          "pads": [
+            "20"
+          ],
+          "net": "BATTERY_STACK_NEGATIVE_CELL_SIDE"
+        }
+      ],
+      "remaining_obligations": [
+        "Verify installed cell polarity, holder terminals and shunt continuity; an empty holder does not supply or reference the circuit."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-RF-R2; net=BATTERY_STACK_NEGATIVE_CELL_SIDE; source_path exact endpoint tuples"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "net": "PACK_GAUGE_IN",
+      "pins": [
+        {
+          "reference": "U9",
+          "pin": "1",
+          "instance": "pack_gauge",
+          "contact": "IN",
+          "device_id": "adi_max17320_g20_t",
+          "uuid": "fa282240-ea60-58b0-98ed-e39470451dbd"
+        }
+      ],
+      "classification": "series_resistor_feed_model_gap",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "U9.IN is supplied from BATTERY_STACK_POSITIVE through R28, with local bypass and charge-pump capacitor. The series resistor separates the direct power-source net from IN.",
+      "source_path": [
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "R28",
+          "instance": "pack_in_res",
+          "contact": "END_1",
+          "pads": [
+            "1"
+          ],
+          "net": "BATTERY_STACK_POSITIVE"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "R28",
+          "instance": "pack_in_res",
+          "contact": "END_2",
+          "pads": [
+            "2"
+          ],
+          "net": "PACK_GAUGE_IN"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U9",
+          "instance": "pack_gauge",
+          "contact": "IN",
+          "pads": [
+            "1"
+          ],
+          "net": "PACK_GAUGE_IN"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "BT1",
+          "instance": "pack_holder",
+          "contact": "SLOT1_POS",
+          "pads": [
+            "3"
+          ],
+          "net": "PACK_SLOT1_POSITIVE_RAW"
+        }
+      ],
+      "remaining_obligations": [
+        "Verify the protected/series path from holder positive to BATTERY_STACK_POSITIVE separately; this bounded trace only proves R28 reaches that named stack net.",
+        "Check IN voltage, resistor drop/rating and charge-pump capacitor connection in all pack states."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-RF-R2; net=PACK_GAUGE_IN; source_path exact endpoint tuples"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "net": "MAIN_BUCK_BST",
+      "pins": [
+        {
+          "reference": "U20",
+          "pin": "7",
+          "instance": "main_buck",
+          "contact": "BST",
+          "device_id": "ti_tps566231p_rqfr",
+          "uuid": "97be6072-801d-5d72-88ce-da7de95553ce"
+        }
+      ],
+      "classification": "bootstrap_supply_model_gap",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "U20.BST connects via C70 and the zero-ohm bootstrap link R62 to MAIN_BUCK_SW. This capacitor-fed driver supply has no independent DC output-power pin.",
+      "source_path": [
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U20",
+          "instance": "main_buck",
+          "contact": "VCC",
+          "pads": [
+            "1"
+          ],
+          "net": "MAIN_BUCK_VCC"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U20",
+          "instance": "main_buck",
+          "contact": "BST",
+          "pads": [
+            "7"
+          ],
+          "net": "MAIN_BUCK_BST"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U20",
+          "instance": "main_buck",
+          "contact": "SW",
+          "pads": [
+            "8"
+          ],
+          "net": "MAIN_BUCK_SW"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "C70",
+          "instance": "main_buck_bootstrap_cap",
+          "contact": "END_1",
+          "pads": [
+            "1"
+          ],
+          "net": "MAIN_BUCK_BST"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "C70",
+          "instance": "main_buck_bootstrap_cap",
+          "contact": "END_2",
+          "pads": [
+            "2"
+          ],
+          "net": "MAIN_BUCK_BST_LINK"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "R62",
+          "instance": "main_buck_bootstrap_link",
+          "contact": "END_1",
+          "pads": [
+            "1"
+          ],
+          "net": "MAIN_BUCK_BST_LINK"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "R62",
+          "instance": "main_buck_bootstrap_link",
+          "contact": "END_2",
+          "pads": [
+            "2"
+          ],
+          "net": "MAIN_BUCK_SW"
+        }
+      ],
+      "remaining_obligations": [
+        "Check the bootstrap charging mechanism, capacitor, link and VIN/start-up conditions; do not turn the capacitor into a DC connectivity edge."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-RF-R2; net=MAIN_BUCK_BST; source_path exact endpoint tuples"
+        },
+        {
+          "source": "hardware/verification/h6-electrical-pins-power.json",
+          "selector": "ti_tps566231p_rqfr pin7 supply-description interpretation and unresolved table-type discrepancy"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "net": "MAIN_RAW_3V3",
+      "pins": [
+        {
+          "reference": "U21",
+          "pin": "5",
+          "instance": "main_efuse",
+          "contact": "IN",
+          "device_id": "ti_tps25974l_rpwr",
+          "uuid": "3ff085c9-d96c-5666-9f80-f38499792eb8"
+        }
+      ],
+      "classification": "post_inductor_converter_model_gap",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "The rail is connected to the output side of its buck inductor; the IC switching node is on the other side. Static ERC neither models the buck conversion nor propagates source authority through the inductor.",
+      "source_path": [
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U20",
+          "instance": "main_buck",
+          "contact": "SW",
+          "pads": [
+            "8"
+          ],
+          "net": "MAIN_BUCK_SW"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U22",
+          "instance": "main_inductor",
+          "contact": "END_1",
+          "pads": [
+            "1"
+          ],
+          "net": "MAIN_BUCK_SW"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U22",
+          "instance": "main_inductor",
+          "contact": "END_2",
+          "pads": [
+            "2"
+          ],
+          "net": "MAIN_RAW_3V3"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U21",
+          "instance": "main_efuse",
+          "contact": "IN",
+          "pads": [
+            "5"
+          ],
+          "net": "MAIN_RAW_3V3"
+        }
+      ],
+      "remaining_obligations": [
+        "Verify VIN, enable/UVLO, feedback, start-up, inductor/capacitor values and load limits before recognizing a conditional regulated source."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-RF-R2; net=MAIN_RAW_3V3; source_path exact endpoint tuples"
+        },
+        {
+          "source": "hardware/verification/h6-electrical-pins-power.json",
+          "selector": "main_buck switching-node semantics; converter-specific evidence in checked power map"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "net": "AON_RAW_3V3",
+      "pins": [
+        {
+          "reference": "U14",
+          "pin": "6",
+          "instance": "aon_efuse",
+          "contact": "IN",
+          "device_id": "ti_tps25961_drvr",
+          "uuid": "62fbcb08-7d10-5d88-8776-f2d22af482d6"
+        }
+      ],
+      "classification": "post_inductor_converter_model_gap",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "The rail is connected to the output side of its buck inductor; the IC switching node is on the other side. Static ERC neither models the buck conversion nor propagates source authority through the inductor.",
+      "source_path": [
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U13",
+          "instance": "aon_buck",
+          "contact": "SW",
+          "pads": [
+            "4"
+          ],
+          "net": "AON_BUCK_SW"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "L2",
+          "instance": "aon_inductor",
+          "contact": "END_1",
+          "pads": [
+            "1"
+          ],
+          "net": "AON_BUCK_SW"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "L2",
+          "instance": "aon_inductor",
+          "contact": "END_2",
+          "pads": [
+            "2"
+          ],
+          "net": "AON_RAW_3V3"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U14",
+          "instance": "aon_efuse",
+          "contact": "IN",
+          "pads": [
+            "6"
+          ],
+          "net": "AON_RAW_3V3"
+        }
+      ],
+      "remaining_obligations": [
+        "Verify VIN, enable/UVLO, feedback, start-up, inductor/capacitor values and load limits before recognizing a conditional regulated source."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-RF-R2; net=AON_RAW_3V3; source_path exact endpoint tuples"
+        },
+        {
+          "source": "hardware/verification/h6-electrical-pins-power.json",
+          "selector": "aon_buck switching-node semantics; converter-specific evidence in checked power map"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "net": "5V_EXT_PREPROTECT",
+      "pins": [
+        {
+          "reference": "U17",
+          "pin": "5",
+          "instance": "ext_efuse",
+          "contact": "IN",
+          "device_id": "ti_tps259470l_rpwr",
+          "uuid": "5f18de04-0ad3-5519-955a-9e15234216e9"
+        }
+      ],
+      "classification": "post_inductor_converter_model_gap",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "The rail is connected to the output side of its buck inductor; the IC switching node is on the other side. Static ERC neither models the buck conversion nor propagates source authority through the inductor.",
+      "source_path": [
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U16",
+          "instance": "ext_buck",
+          "contact": "SW",
+          "pads": [
+            "2"
+          ],
+          "net": "EXT_BUCK_SW"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "L3",
+          "instance": "ext_inductor",
+          "contact": "END_1",
+          "pads": [
+            "1"
+          ],
+          "net": "EXT_BUCK_SW"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "L3",
+          "instance": "ext_inductor",
+          "contact": "END_2",
+          "pads": [
+            "2"
+          ],
+          "net": "5V_EXT_PREPROTECT"
+        }
+      ],
+      "remaining_obligations": [
+        "Verify VIN, enable/UVLO, feedback, start-up, inductor/capacitor values and load limits before recognizing a conditional regulated source."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-RF-R2; net=5V_EXT_PREPROTECT; source_path exact endpoint tuples"
+        },
+        {
+          "source": "hardware/verification/h6-electrical-pins-power.json",
+          "selector": "ext_buck switching-node semantics; converter-specific evidence in checked power map"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "net": "RF_RP_CORE_1V1",
+      "pins": [
+        {
+          "reference": "U23",
+          "pin": "10",
+          "instance": "rf_rp",
+          "contact": "DVDD_10",
+          "device_id": "rp2354b_a4",
+          "uuid": "95d3c909-f0ce-54d8-8549-e8cde9a5a9ac"
+        }
+      ],
+      "classification": "post_inductor_converter_model_gap",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "The RP core rail and feedback are connected to the opposite side of the local VREG_LX inductor. ERC does not propagate a switching converter's regulated output across that passive element.",
+      "source_path": [
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U23",
+          "instance": "rf_rp",
+          "contact": "VREG_AVDD",
+          "pads": [
+            "61"
+          ],
+          "net": "RF_RP_VREG_AVDD_FILTERED"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U23",
+          "instance": "rf_rp",
+          "contact": "VREG_LX",
+          "pads": [
+            "63"
+          ],
+          "net": "RF_RP_VREG_LX_SW"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U23",
+          "instance": "rf_rp",
+          "contact": "VREG_VIN",
+          "pads": [
+            "64"
+          ],
+          "net": "3V3_MAIN"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "L4",
+          "instance": "rf_rp_vreg_inductor",
+          "contact": "END_1",
+          "pads": [
+            "1"
+          ],
+          "net": "RF_RP_CORE_1V1"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "L4",
+          "instance": "rf_rp_vreg_inductor",
+          "contact": "END_2",
+          "pads": [
+            "2"
+          ],
+          "net": "RF_RP_VREG_LX_SW"
+        }
+      ],
+      "remaining_obligations": [
+        "Validate regulator start-up with supplied VREG_VIN and filtered VREG_AVDD, feedback, inductor and actual core loading; connectivity is not a powered-state proof."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-RF-R2; net=RF_RP_CORE_1V1; source_path exact endpoint tuples"
+        },
+        {
+          "source": "hardware/verification/h6-electrical-pins-digital.json",
+          "selector": "rp2354b_a4 pins61/63/64 and power-reachability unresolved note"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "net": "RF_RP_VREG_AVDD_FILTERED",
+      "pins": [
+        {
+          "reference": "U23",
+          "pin": "61",
+          "instance": "rf_rp",
+          "contact": "VREG_AVDD",
+          "device_id": "rp2354b_a4",
+          "uuid": "acebb2ec-875b-5d8f-950d-0d1b12563127"
+        }
+      ],
+      "classification": "series_resistor_feed_model_gap",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "VREG_AVDD is connected to 3V3_MAIN through the local 33-ohm filter resistor. A passive series resistor separates the ERC nets.",
+      "source_path": [
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U23",
+          "instance": "rf_rp",
+          "contact": "VREG_AVDD",
+          "pads": [
+            "61"
+          ],
+          "net": "RF_RP_VREG_AVDD_FILTERED"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U23",
+          "instance": "rf_rp",
+          "contact": "VREG_VIN",
+          "pads": [
+            "64"
+          ],
+          "net": "3V3_MAIN"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "R90",
+          "instance": "rf_rp_vreg_avdd_filter_res",
+          "contact": "END_1",
+          "pads": [
+            "1"
+          ],
+          "net": "3V3_MAIN"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "R90",
+          "instance": "rf_rp_vreg_avdd_filter_res",
+          "contact": "END_2",
+          "pads": [
+            "2"
+          ],
+          "net": "RF_RP_VREG_AVDD_FILTERED"
+        }
+      ],
+      "remaining_obligations": [
+        "Verify filter resistance, capacitor, current-dependent drop and start-up timing; source rail availability remains conditional."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-RF-R2; net=RF_RP_VREG_AVDD_FILTERED; source_path exact endpoint tuples"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "net": "VVOICE_RAW_4V",
+      "pins": [
+        {
+          "reference": "U46",
+          "pin": "5",
+          "instance": "voice_efuse",
+          "contact": "IN",
+          "device_id": "ti_tps25974l_rpwr",
+          "uuid": "8bfb1ee4-0b4f-57f0-8b20-3f29cfd3926e"
+        }
+      ],
+      "classification": "post_inductor_converter_model_gap",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "The rail is connected to the output side of its buck inductor; the IC switching node is on the other side. Static ERC neither models the buck conversion nor propagates source authority through the inductor.",
+      "source_path": [
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U43",
+          "instance": "voice_buck",
+          "contact": "SW",
+          "pads": [
+            "2"
+          ],
+          "net": "VOICE_BUCK_SW"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "L13",
+          "instance": "voice_inductor",
+          "contact": "END_1",
+          "pads": [
+            "1"
+          ],
+          "net": "VOICE_BUCK_SW"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "L13",
+          "instance": "voice_inductor",
+          "contact": "END_2",
+          "pads": [
+            "2"
+          ],
+          "net": "VVOICE_RAW_4V"
+        }
+      ],
+      "remaining_obligations": [
+        "Verify VIN, enable/UVLO, feedback, start-up, inductor/capacitor values and load limits before recognizing a conditional regulated source."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-RF-R2; net=VVOICE_RAW_4V; source_path exact endpoint tuples"
+        },
+        {
+          "source": "hardware/verification/h6-electrical-pins-power.json",
+          "selector": "voice_buck switching-node semantics; converter-specific evidence in checked power map"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "net": "AUDIO_GROUND",
+      "pins": [
+        {
+          "reference": "U69",
+          "pin": "2",
+          "instance": "audio_rx_mux",
+          "contact": "GND",
+          "device_id": "ti_sn74lvc1g3157_dbvr",
+          "uuid": "b0ba5aa8-ccd7-5780-9d2a-f785a2abe200"
+        }
+      ],
+      "classification": "passive_return_link_model_gap",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "AUDIO_GROUND connects through R172 audio_ground_link to POWER_GROUND; this is a deliberate passive return connection, not a voltage-source output.",
+      "source_path": [
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "R172",
+          "instance": "audio_ground_link",
+          "contact": "END_1",
+          "pads": [
+            "1"
+          ],
+          "net": "POWER_GROUND"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "R172",
+          "instance": "audio_ground_link",
+          "contact": "END_2",
+          "pads": [
+            "2"
+          ],
+          "net": "AUDIO_GROUND"
+        }
+      ],
+      "remaining_obligations": [
+        "Verify the fitted link and physical return/layout arrangement; do not infer analog noise performance from connectivity."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-RF-R2; net=AUDIO_GROUND; source_path exact endpoint tuples"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "net": "CODEC_DVDD",
+      "pins": [
+        {
+          "reference": "U73",
+          "pin": "4",
+          "instance": "codec",
+          "contact": "DVDD",
+          "device_id": "everest_es8311_qfn20",
+          "uuid": "16444674-742a-5e71-97d8-3e3038baebb7"
+        }
+      ],
+      "classification": "ferrite_feed_model_gap",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "The codec supply reaches 3V3_CODEC_SWITCHED through its dedicated ferrite bead. The upstream switch has VOUT on that common switched rail.",
+      "source_path": [
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "L29",
+          "instance": "codec_dvdd_bead",
+          "contact": "END_1",
+          "pads": [
+            "1"
+          ],
+          "net": "3V3_CODEC_SWITCHED"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "L29",
+          "instance": "codec_dvdd_bead",
+          "contact": "END_2",
+          "pads": [
+            "2"
+          ],
+          "net": "CODEC_DVDD"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U80",
+          "instance": "codec_power_switch",
+          "contact": "IN",
+          "pads": [
+            "1"
+          ],
+          "net": "3V3_MAIN"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U80",
+          "instance": "codec_power_switch",
+          "contact": "VOUT",
+          "pads": [
+            "6"
+          ],
+          "net": "3V3_CODEC_SWITCHED"
+        }
+      ],
+      "remaining_obligations": [
+        "Verify codec-switch enable/input supply, bead DC resistance and supply decoupling/voltage under load; ferrite connectivity is not a noise or transient proof."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-RF-R2; net=CODEC_DVDD; source_path exact endpoint tuples"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "net": "CODEC_AVDD",
+      "pins": [
+        {
+          "reference": "U73",
+          "pin": "11",
+          "instance": "codec",
+          "contact": "AVDD",
+          "device_id": "everest_es8311_qfn20",
+          "uuid": "ef2f8b2d-ffca-51d4-bdf1-941db1d5e8e9"
+        }
+      ],
+      "classification": "ferrite_feed_model_gap",
+      "disposition": "source_path_observed_not_electrically_cleared",
+      "reason": "The codec supply reaches 3V3_CODEC_SWITCHED through its dedicated ferrite bead. The upstream switch has VOUT on that common switched rail.",
+      "source_path": [
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "L28",
+          "instance": "codec_avdd_bead",
+          "contact": "END_1",
+          "pads": [
+            "1"
+          ],
+          "net": "3V3_CODEC_SWITCHED"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "L28",
+          "instance": "codec_avdd_bead",
+          "contact": "END_2",
+          "pads": [
+            "2"
+          ],
+          "net": "CODEC_AVDD"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U80",
+          "instance": "codec_power_switch",
+          "contact": "IN",
+          "pads": [
+            "1"
+          ],
+          "net": "3V3_MAIN"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U80",
+          "instance": "codec_power_switch",
+          "contact": "VOUT",
+          "pads": [
+            "6"
+          ],
+          "net": "3V3_CODEC_SWITCHED"
+        }
+      ],
+      "remaining_obligations": [
+        "Verify codec-switch enable/input supply, bead DC resistance and supply decoupling/voltage under load; ferrite connectivity is not a noise or transient proof."
+      ],
+      "evidence": [
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "project=LESHY2-RF-R2; net=CODEC_AVDD; source_path exact endpoint tuples"
+        }
+      ]
+    }
+  ]
+}

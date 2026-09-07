@@ -773,9 +773,11 @@ def critical_pad_pair_audit(
             continue
         first_pads = [
             pad for pad in first["fp"].Pads() if pad.GetNetname() == kicad_net
+            and ("first_pad_number" not in pair or pad.GetNumber() == pair["first_pad_number"])
         ]
         second_pads = [
             pad for pad in second["fp"].Pads() if pad.GetNetname() == kicad_net
+            and ("second_pad_number" not in pair or pad.GetNumber() == pair["second_pad_number"])
         ]
         if not first_pads or not second_pads:
             errors.append(

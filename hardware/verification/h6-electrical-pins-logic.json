@@ -1,0 +1,1542 @@
+{
+  "schema_version": 1,
+  "scope": "H6 manufacturer-verified physical pin electrical semantics for 27 logic, timer, translator and GPIO/bus-buffer device groups. Independent of H2 logical role; package-specific physical pin numbers are authoritative. open_collector denotes MOS open-drain outputs. GPIO direction and translator drive ownership require later circuit/configuration checks. Native exposed-pad numbers 17/33 identify optional grounded thermal pads; grounded timing-capacitor returns are passive, not independent supply inputs. This file neither changes production parts nor certifies whole-circuit ERC.",
+  "devices": [
+    {
+      "device_id": "nexperia_74hc20pw_118",
+      "mpn": "74HC20PW,118",
+      "evidence": [
+        {
+          "url": "https://assets.nexperia.com/documents/data-sheet/74HC20.pdf",
+          "section": "Rev 7, Table 2 pin description; Table 3 NAND function; PW/TSSOP14",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "1A: data input"
+        },
+        "2": {
+          "type": "input",
+          "reason": "1B: data input"
+        },
+        "3": {
+          "type": "no_connect",
+          "reason": "NC: internally unconnected"
+        },
+        "4": {
+          "type": "input",
+          "reason": "1C: data input"
+        },
+        "5": {
+          "type": "input",
+          "reason": "1D: data input"
+        },
+        "6": {
+          "type": "output",
+          "reason": "1Y: push-pull NAND result"
+        },
+        "7": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "8": {
+          "type": "output",
+          "reason": "2Y: push-pull NAND result"
+        },
+        "9": {
+          "type": "input",
+          "reason": "2A: data input"
+        },
+        "10": {
+          "type": "input",
+          "reason": "2B: data input"
+        },
+        "11": {
+          "type": "no_connect",
+          "reason": "NC: internally unconnected"
+        },
+        "12": {
+          "type": "input",
+          "reason": "2C: data input"
+        },
+        "13": {
+          "type": "input",
+          "reason": "2D: data input"
+        },
+        "14": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "nexperia_74lvc126apw_118",
+      "mpn": "Nexperia 74LVC126APW,118",
+      "evidence": [
+        {
+          "url": "https://assets.nexperia.com/documents/data-sheet/74LVC126A.pdf",
+          "section": "Rev 14, Tables 2 and 3; PW/TSSOP14",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "1OE: active-high enable"
+        },
+        "2": {
+          "type": "input",
+          "reason": "1A: data input"
+        },
+        "3": {
+          "type": "tri_state",
+          "reason": "1Y: buffer output; high impedance when 1OE=0"
+        },
+        "4": {
+          "type": "input",
+          "reason": "2OE: active-high enable"
+        },
+        "5": {
+          "type": "input",
+          "reason": "2A: data input"
+        },
+        "6": {
+          "type": "tri_state",
+          "reason": "2Y: buffer output; high impedance when 2OE=0"
+        },
+        "7": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "8": {
+          "type": "tri_state",
+          "reason": "3Y: buffer output; high impedance when 3OE=0"
+        },
+        "9": {
+          "type": "input",
+          "reason": "3A: data input"
+        },
+        "10": {
+          "type": "input",
+          "reason": "3OE: active-high enable"
+        },
+        "11": {
+          "type": "tri_state",
+          "reason": "4Y: buffer output; high impedance when 4OE=0"
+        },
+        "12": {
+          "type": "input",
+          "reason": "4A: data input"
+        },
+        "13": {
+          "type": "input",
+          "reason": "4OE: active-high enable"
+        },
+        "14": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "nexperia_74lvc1g32gv_125",
+      "mpn": "74LVC1G32GV,125",
+      "evidence": [
+        {
+          "url": "https://assets.nexperia.com/documents/data-sheet/74LVC1G32.pdf",
+          "section": "Rev 16.1, Table 3 TSSOP5 column; Table 4 OR function",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "B: data input"
+        },
+        "2": {
+          "type": "input",
+          "reason": "A: data input"
+        },
+        "3": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "4": {
+          "type": "output",
+          "reason": "Y: push-pull OR result"
+        },
+        "5": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": [],
+      "source_mapping_corrections": [
+        {
+          "source": "hardware/architecture/devices.json",
+          "correction": "GV B1,A2 replaces commutative OR labels A1,B2"
+        }
+      ]
+    },
+    {
+      "device_id": "nexperia_74lvc2g126dp_125",
+      "mpn": "Nexperia 74LVC2G126DP,125",
+      "evidence": [
+        {
+          "url": "https://assets.nexperia.com/documents/data-sheet/74LVC2G126.pdf",
+          "section": "Tables 3 and 4; DP/TSSOP8",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "1OE: active-high enable"
+        },
+        "2": {
+          "type": "input",
+          "reason": "1A: data input"
+        },
+        "3": {
+          "type": "tri_state",
+          "reason": "2Y: buffer output; high impedance when 2OE=0"
+        },
+        "4": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "5": {
+          "type": "input",
+          "reason": "2A: data input"
+        },
+        "6": {
+          "type": "tri_state",
+          "reason": "1Y: buffer output; high impedance when 1OE=0"
+        },
+        "7": {
+          "type": "input",
+          "reason": "2OE: active-high enable"
+        },
+        "8": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "nexperia_74lvc2g14gv_125",
+      "mpn": "74LVC2G14GV,125",
+      "evidence": [
+        {
+          "url": "https://assets.nexperia.com/documents/data-sheet/74LVC2G14.pdf",
+          "section": "Tables 3 and 4; GV/TSOP6",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "1A: Schmitt-trigger input"
+        },
+        "2": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "3": {
+          "type": "input",
+          "reason": "2A: Schmitt-trigger input"
+        },
+        "4": {
+          "type": "output",
+          "reason": "2Y: push-pull inversion"
+        },
+        "5": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        },
+        "6": {
+          "type": "output",
+          "reason": "1Y: push-pull inversion"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "tca4307dgkr",
+      "mpn": "TCA4307DGKR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/gpn/tca4307",
+          "section": "SCPS270B, section 4 pin table; description READY open drain; DGK/VSSOP8",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "EN: active-high enable"
+        },
+        "2": {
+          "type": "bidirectional",
+          "reason": "SCLOUT: card-side I2C clock"
+        },
+        "3": {
+          "type": "bidirectional",
+          "reason": "SCLIN: backplane-side I2C clock"
+        },
+        "4": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "5": {
+          "type": "open_collector",
+          "reason": "READY: open-drain connection-status flag"
+        },
+        "6": {
+          "type": "bidirectional",
+          "reason": "SDAIN: backplane-side I2C data"
+        },
+        "7": {
+          "type": "bidirectional",
+          "reason": "SDAOUT: card-side I2C data"
+        },
+        "8": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "tca6424argjr",
+      "mpn": "TCA6424ARGJR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/tca6424a.pdf",
+          "section": "Table 5-1 and Figure 5-1 RGJ exposed-pad note",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "bidirectional",
+          "reason": "P00: configurable GPIO; initially input"
+        },
+        "2": {
+          "type": "bidirectional",
+          "reason": "P01: configurable GPIO; initially input"
+        },
+        "3": {
+          "type": "bidirectional",
+          "reason": "P02: configurable GPIO; initially input"
+        },
+        "4": {
+          "type": "bidirectional",
+          "reason": "P03: configurable GPIO; initially input"
+        },
+        "5": {
+          "type": "bidirectional",
+          "reason": "P04: configurable GPIO; initially input"
+        },
+        "6": {
+          "type": "bidirectional",
+          "reason": "P05: configurable GPIO; initially input"
+        },
+        "7": {
+          "type": "bidirectional",
+          "reason": "P06: configurable GPIO; initially input"
+        },
+        "8": {
+          "type": "bidirectional",
+          "reason": "P07: configurable GPIO; initially input"
+        },
+        "9": {
+          "type": "bidirectional",
+          "reason": "P10: configurable GPIO; initially input"
+        },
+        "10": {
+          "type": "bidirectional",
+          "reason": "P11: configurable GPIO; initially input"
+        },
+        "11": {
+          "type": "bidirectional",
+          "reason": "P12: configurable GPIO; initially input"
+        },
+        "12": {
+          "type": "bidirectional",
+          "reason": "P13: configurable GPIO; initially input"
+        },
+        "13": {
+          "type": "bidirectional",
+          "reason": "P14: configurable GPIO; initially input"
+        },
+        "14": {
+          "type": "bidirectional",
+          "reason": "P15: configurable GPIO; initially input"
+        },
+        "15": {
+          "type": "bidirectional",
+          "reason": "P16: configurable GPIO; initially input"
+        },
+        "16": {
+          "type": "bidirectional",
+          "reason": "P17: configurable GPIO; initially input"
+        },
+        "17": {
+          "type": "bidirectional",
+          "reason": "P20: configurable GPIO; initially input"
+        },
+        "18": {
+          "type": "bidirectional",
+          "reason": "P21: configurable GPIO; initially input"
+        },
+        "19": {
+          "type": "bidirectional",
+          "reason": "P22: configurable GPIO; initially input"
+        },
+        "20": {
+          "type": "bidirectional",
+          "reason": "P23: configurable GPIO; initially input"
+        },
+        "21": {
+          "type": "bidirectional",
+          "reason": "P24: configurable GPIO; initially input"
+        },
+        "22": {
+          "type": "bidirectional",
+          "reason": "P25: configurable GPIO; initially input"
+        },
+        "23": {
+          "type": "bidirectional",
+          "reason": "P26: configurable GPIO; initially input"
+        },
+        "24": {
+          "type": "bidirectional",
+          "reason": "P27: configurable GPIO; initially input"
+        },
+        "25": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "26": {
+          "type": "input",
+          "reason": "ADDR: I2C address strap"
+        },
+        "27": {
+          "type": "power_in",
+          "reason": "VCCP: supply input"
+        },
+        "28": {
+          "type": "input",
+          "reason": "RESET_N: active-low reset"
+        },
+        "29": {
+          "type": "input",
+          "reason": "SCL: I2C clock"
+        },
+        "30": {
+          "type": "bidirectional",
+          "reason": "SDA: I2C data"
+        },
+        "31": {
+          "type": "power_in",
+          "reason": "VCCI: supply input"
+        },
+        "32": {
+          "type": "open_collector",
+          "reason": "INT_N: open-drain interrupt"
+        },
+        "33": {
+          "type": "passive",
+          "reason": "EP (native pad 33): secondary ground or floating"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_sn74cbtlv1g125_dckr",
+      "mpn": "SN74CBTLV1G125DCKR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/sn74cbtlv1g125.pdf",
+          "section": "DCK pinout and function table; single FET bus switch",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "OE_N: active-low switch enable"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "A: bidirectional switch terminal"
+        },
+        "3": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "4": {
+          "type": "passive",
+          "reason": "B: bidirectional switch terminal"
+        },
+        "5": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_sn74lvc08a_pwr",
+      "mpn": "SN74LVC08APWR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/sn74lvc08a.pdf",
+          "section": "Table 4-1 PW/TSSOP column; AND function",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "1A: data input"
+        },
+        "2": {
+          "type": "input",
+          "reason": "1B: data input"
+        },
+        "3": {
+          "type": "output",
+          "reason": "1Y: push-pull AND result"
+        },
+        "4": {
+          "type": "input",
+          "reason": "2A: data input"
+        },
+        "5": {
+          "type": "input",
+          "reason": "2B: data input"
+        },
+        "6": {
+          "type": "output",
+          "reason": "2Y: push-pull AND result"
+        },
+        "7": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "8": {
+          "type": "output",
+          "reason": "3Y: push-pull AND result"
+        },
+        "9": {
+          "type": "input",
+          "reason": "3A: data input"
+        },
+        "10": {
+          "type": "input",
+          "reason": "3B: data input"
+        },
+        "11": {
+          "type": "output",
+          "reason": "4Y: push-pull AND result"
+        },
+        "12": {
+          "type": "input",
+          "reason": "4A: data input"
+        },
+        "13": {
+          "type": "input",
+          "reason": "4B: data input"
+        },
+        "14": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_sn74lvc1g06_dckr",
+      "mpn": "Texas Instruments SN74LVC1G06DCKR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g06.pdf",
+          "section": "Pin Functions DCK column; open-drain inverter",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "no_connect",
+          "reason": "NC: internally unconnected"
+        },
+        "2": {
+          "type": "input",
+          "reason": "A: data input"
+        },
+        "3": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "4": {
+          "type": "open_collector",
+          "reason": "Y: open-drain inverting output"
+        },
+        "5": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_sn74lvc1g07_dckr",
+      "mpn": "SN74LVC1G07DCKR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g07.pdf",
+          "section": "Pin Functions DCK column; open-drain buffer",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "no_connect",
+          "reason": "NC: internally unconnected"
+        },
+        "2": {
+          "type": "input",
+          "reason": "A: data input"
+        },
+        "3": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "4": {
+          "type": "open_collector",
+          "reason": "Y: open-drain noninverting output"
+        },
+        "5": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_sn74lvc1g08_dckr",
+      "mpn": "SN74LVC1G08DCKR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g08.pdf",
+          "section": "Pin Functions DCK column; AND function",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "A: data input"
+        },
+        "2": {
+          "type": "input",
+          "reason": "B: data input"
+        },
+        "3": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "4": {
+          "type": "output",
+          "reason": "Y: push-pull AND result"
+        },
+        "5": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_sn74lvc1g125_dckr",
+      "mpn": "Texas Instruments SN74LVC1G125DCKR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g125.pdf",
+          "section": "Pin Functions DCK column; active-low OE function",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "OE_N: active-low enable"
+        },
+        "2": {
+          "type": "input",
+          "reason": "A: data input"
+        },
+        "3": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "4": {
+          "type": "tri_state",
+          "reason": "Y: buffer output; high impedance when OE_N=1"
+        },
+        "5": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_sn74lvc1g126_dckr",
+      "mpn": "Texas Instruments SN74LVC1G126DCKR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g126.pdf",
+          "section": "Pin Functions DCK column; active-high OE function",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "OE: active-high enable"
+        },
+        "2": {
+          "type": "input",
+          "reason": "A: data input"
+        },
+        "3": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "4": {
+          "type": "tri_state",
+          "reason": "Y: buffer output; high impedance when OE=0"
+        },
+        "5": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_sn74lvc1g17_dckr",
+      "mpn": "SN74LVC1G17DCKR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
+          "section": "Pin Functions DCK column; Schmitt-trigger buffer",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "no_connect",
+          "reason": "NC: internally unconnected"
+        },
+        "2": {
+          "type": "input",
+          "reason": "A: Schmitt-trigger input"
+        },
+        "3": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "4": {
+          "type": "output",
+          "reason": "Y: push-pull noninverting result"
+        },
+        "5": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": [],
+      "source_mapping_corrections": [
+        {
+          "source": "hardware/architecture/devices.json",
+          "correction": "DCK NC1,A2 replaces mistaken A1,NC2",
+          "affected_instances": [
+            "LESHY2-RF-R2 U122 safe_rearm_buffer"
+          ],
+          "prior_nets": {
+            "1": "SAFE_REARM_DELAY (actual NC)",
+            "2": "no_connect (actual A)"
+          }
+        }
+      ]
+    },
+    {
+      "device_id": "ti_sn74lvc1g3157_dbvr",
+      "mpn": "Texas Instruments SN74LVC1G3157DBVR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g3157.pdf",
+          "section": "Table 4-1 DBV; SPDT analog switch",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "B2: switched terminal"
+        },
+        "2": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "3": {
+          "type": "passive",
+          "reason": "B1: switched terminal"
+        },
+        "4": {
+          "type": "passive",
+          "reason": "A: common switch terminal"
+        },
+        "5": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        },
+        "6": {
+          "type": "input",
+          "reason": "S: switch select"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_sn74lvc1g74_dcur",
+      "mpn": "SN74LVC1G74DCUR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf",
+          "section": "Pin Functions DCU; D flip-flop",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "CLK: rising-edge clock"
+        },
+        "2": {
+          "type": "input",
+          "reason": "D: data input"
+        },
+        "3": {
+          "type": "output",
+          "reason": "Q_N: push-pull complementary state"
+        },
+        "4": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "5": {
+          "type": "output",
+          "reason": "Q: push-pull state"
+        },
+        "6": {
+          "type": "input",
+          "reason": "CLR_N: asynchronous active-low clear"
+        },
+        "7": {
+          "type": "input",
+          "reason": "PRE_N: asynchronous active-low preset"
+        },
+        "8": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_sn74lvc2g08_dcur",
+      "mpn": "Texas Instruments SN74LVC2G08DCUR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/sn74lvc2g08.pdf",
+          "section": "Pin Functions DCU; dual AND",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "1A: data input"
+        },
+        "2": {
+          "type": "input",
+          "reason": "1B: data input"
+        },
+        "3": {
+          "type": "output",
+          "reason": "2Y: push-pull AND result"
+        },
+        "4": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "5": {
+          "type": "input",
+          "reason": "2A: data input"
+        },
+        "6": {
+          "type": "input",
+          "reason": "2B: data input"
+        },
+        "7": {
+          "type": "output",
+          "reason": "1Y: push-pull AND result"
+        },
+        "8": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_sn74lvc2g66_dcur",
+      "mpn": "Texas Instruments SN74LVC2G66DCUR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/sn74lvc2g66.pdf",
+          "section": "Pin Functions DCU; bilateral switch function",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "1A: channel-1 switch terminal"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "1B: channel-1 switch terminal"
+        },
+        "3": {
+          "type": "input",
+          "reason": "2C: channel-2 active-high enable"
+        },
+        "4": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "5": {
+          "type": "passive",
+          "reason": "2A: channel-2 switch terminal"
+        },
+        "6": {
+          "type": "passive",
+          "reason": "2B: channel-2 switch terminal"
+        },
+        "7": {
+          "type": "input",
+          "reason": "1C: channel-1 active-high enable"
+        },
+        "8": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_sn74lvc3g07_dcur",
+      "mpn": "SN74LVC3G07DCUR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/sn74lvc3g07.pdf",
+          "section": "DCU pinout p1, logic diagram p2; open-drain description",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "1A: data input"
+        },
+        "2": {
+          "type": "open_collector",
+          "reason": "3Y: open-drain buffer output"
+        },
+        "3": {
+          "type": "input",
+          "reason": "2A: data input"
+        },
+        "4": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "5": {
+          "type": "open_collector",
+          "reason": "2Y: open-drain buffer output"
+        },
+        "6": {
+          "type": "input",
+          "reason": "3A: data input"
+        },
+        "7": {
+          "type": "open_collector",
+          "reason": "1Y: open-drain buffer output"
+        },
+        "8": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_sn74lvc3g34_dcur",
+      "mpn": "SN74LVC3G34DCUR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/sn74lvc3g34.pdf",
+          "section": "Pin Functions DCU; triple buffer",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "1A: data input"
+        },
+        "2": {
+          "type": "output",
+          "reason": "3Y: push-pull buffer output"
+        },
+        "3": {
+          "type": "input",
+          "reason": "2A: data input"
+        },
+        "4": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "5": {
+          "type": "output",
+          "reason": "2Y: push-pull buffer output"
+        },
+        "6": {
+          "type": "input",
+          "reason": "3A: data input"
+        },
+        "7": {
+          "type": "output",
+          "reason": "1Y: push-pull buffer output"
+        },
+        "8": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_tca9534a_pwr",
+      "mpn": "TCA9534APWR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/tca9534a.pdf",
+          "section": "Pin Functions PW/TSSOP16; GPIO direction and interrupt",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "A0: address strap"
+        },
+        "2": {
+          "type": "input",
+          "reason": "A1: address strap"
+        },
+        "3": {
+          "type": "input",
+          "reason": "A2: address strap"
+        },
+        "4": {
+          "type": "bidirectional",
+          "reason": "P0: configurable GPIO; initially input"
+        },
+        "5": {
+          "type": "bidirectional",
+          "reason": "P1: configurable GPIO; initially input"
+        },
+        "6": {
+          "type": "bidirectional",
+          "reason": "P2: configurable GPIO; initially input"
+        },
+        "7": {
+          "type": "bidirectional",
+          "reason": "P3: configurable GPIO; initially input"
+        },
+        "8": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "9": {
+          "type": "bidirectional",
+          "reason": "P4: configurable GPIO; initially input"
+        },
+        "10": {
+          "type": "bidirectional",
+          "reason": "P5: configurable GPIO; initially input"
+        },
+        "11": {
+          "type": "bidirectional",
+          "reason": "P6: configurable GPIO; initially input"
+        },
+        "12": {
+          "type": "bidirectional",
+          "reason": "P7: configurable GPIO; initially input"
+        },
+        "13": {
+          "type": "open_collector",
+          "reason": "INT_N: open-drain interrupt"
+        },
+        "14": {
+          "type": "input",
+          "reason": "SCL: I2C clock"
+        },
+        "15": {
+          "type": "bidirectional",
+          "reason": "SDA: I2C data"
+        },
+        "16": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_tca9535_pwr",
+      "mpn": "TCA9535PWR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/tca9535.pdf",
+          "section": "Pin Functions PW/TSSOP24; GPIO direction and interrupt",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "open_collector",
+          "reason": "INT_N: open-drain interrupt"
+        },
+        "2": {
+          "type": "input",
+          "reason": "A1: address strap"
+        },
+        "3": {
+          "type": "input",
+          "reason": "A2: address strap"
+        },
+        "4": {
+          "type": "bidirectional",
+          "reason": "P00: configurable GPIO; initially input"
+        },
+        "5": {
+          "type": "bidirectional",
+          "reason": "P01: configurable GPIO; initially input"
+        },
+        "6": {
+          "type": "bidirectional",
+          "reason": "P02: configurable GPIO; initially input"
+        },
+        "7": {
+          "type": "bidirectional",
+          "reason": "P03: configurable GPIO; initially input"
+        },
+        "8": {
+          "type": "bidirectional",
+          "reason": "P04: configurable GPIO; initially input"
+        },
+        "9": {
+          "type": "bidirectional",
+          "reason": "P05: configurable GPIO; initially input"
+        },
+        "10": {
+          "type": "bidirectional",
+          "reason": "P06: configurable GPIO; initially input"
+        },
+        "11": {
+          "type": "bidirectional",
+          "reason": "P07: configurable GPIO; initially input"
+        },
+        "12": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "13": {
+          "type": "bidirectional",
+          "reason": "P10: configurable GPIO; initially input"
+        },
+        "14": {
+          "type": "bidirectional",
+          "reason": "P11: configurable GPIO; initially input"
+        },
+        "15": {
+          "type": "bidirectional",
+          "reason": "P12: configurable GPIO; initially input"
+        },
+        "16": {
+          "type": "bidirectional",
+          "reason": "P13: configurable GPIO; initially input"
+        },
+        "17": {
+          "type": "bidirectional",
+          "reason": "P14: configurable GPIO; initially input"
+        },
+        "18": {
+          "type": "bidirectional",
+          "reason": "P15: configurable GPIO; initially input"
+        },
+        "19": {
+          "type": "bidirectional",
+          "reason": "P16: configurable GPIO; initially input"
+        },
+        "20": {
+          "type": "bidirectional",
+          "reason": "P17: configurable GPIO; initially input"
+        },
+        "21": {
+          "type": "input",
+          "reason": "A0: address strap"
+        },
+        "22": {
+          "type": "input",
+          "reason": "SCL: I2C clock"
+        },
+        "23": {
+          "type": "bidirectional",
+          "reason": "SDA: I2C data"
+        },
+        "24": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_tca9539_pwr",
+      "mpn": "TCA9539PWR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/tca9539.pdf",
+          "section": "Pin Functions PW/TSSOP24; GPIO direction and interrupt",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "open_collector",
+          "reason": "INT_N: open-drain interrupt"
+        },
+        "2": {
+          "type": "input",
+          "reason": "A1: address strap"
+        },
+        "3": {
+          "type": "input",
+          "reason": "RESET_N: active-low reset"
+        },
+        "4": {
+          "type": "bidirectional",
+          "reason": "P00: configurable GPIO; initially input"
+        },
+        "5": {
+          "type": "bidirectional",
+          "reason": "P01: configurable GPIO; initially input"
+        },
+        "6": {
+          "type": "bidirectional",
+          "reason": "P02: configurable GPIO; initially input"
+        },
+        "7": {
+          "type": "bidirectional",
+          "reason": "P03: configurable GPIO; initially input"
+        },
+        "8": {
+          "type": "bidirectional",
+          "reason": "P04: configurable GPIO; initially input"
+        },
+        "9": {
+          "type": "bidirectional",
+          "reason": "P05: configurable GPIO; initially input"
+        },
+        "10": {
+          "type": "bidirectional",
+          "reason": "P06: configurable GPIO; initially input"
+        },
+        "11": {
+          "type": "bidirectional",
+          "reason": "P07: configurable GPIO; initially input"
+        },
+        "12": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "13": {
+          "type": "bidirectional",
+          "reason": "P10: configurable GPIO; initially input"
+        },
+        "14": {
+          "type": "bidirectional",
+          "reason": "P11: configurable GPIO; initially input"
+        },
+        "15": {
+          "type": "bidirectional",
+          "reason": "P12: configurable GPIO; initially input"
+        },
+        "16": {
+          "type": "bidirectional",
+          "reason": "P13: configurable GPIO; initially input"
+        },
+        "17": {
+          "type": "bidirectional",
+          "reason": "P14: configurable GPIO; initially input"
+        },
+        "18": {
+          "type": "bidirectional",
+          "reason": "P15: configurable GPIO; initially input"
+        },
+        "19": {
+          "type": "bidirectional",
+          "reason": "P16: configurable GPIO; initially input"
+        },
+        "20": {
+          "type": "bidirectional",
+          "reason": "P17: configurable GPIO; initially input"
+        },
+        "21": {
+          "type": "input",
+          "reason": "A0: address strap"
+        },
+        "22": {
+          "type": "input",
+          "reason": "SCL: I2C clock"
+        },
+        "23": {
+          "type": "bidirectional",
+          "reason": "SDA: I2C data"
+        },
+        "24": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_tca9803_dgkr",
+      "mpn": "TCA9803DGKR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/tca9803.pdf",
+          "section": "Pin Functions DGK; section 8 bus-side pullup requirements",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "power_in",
+          "reason": "VCCA: supply input"
+        },
+        "2": {
+          "type": "bidirectional",
+          "reason": "SCLA: A-side I2C clock; external pullup"
+        },
+        "3": {
+          "type": "bidirectional",
+          "reason": "SDAA: A-side I2C data; external pullup"
+        },
+        "4": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "5": {
+          "type": "input",
+          "reason": "EN: active-high enable, VCCA domain"
+        },
+        "6": {
+          "type": "bidirectional",
+          "reason": "SDAB: B-side I2C data; internal current source"
+        },
+        "7": {
+          "type": "bidirectional",
+          "reason": "SCLB: B-side I2C clock; internal current source"
+        },
+        "8": {
+          "type": "power_in",
+          "reason": "VCCB: supply input"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_tpul2g223_bqbr",
+      "mpn": "Texas Instruments TPUL2G223BQBR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/tpul2g223.pdf?ts=1780586369516",
+          "section": "SLVSL08, Table 4-1 BQB; Table 7-2; thermal-pad note",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "input",
+          "reason": "1T_N: falling-edge trigger"
+        },
+        "2": {
+          "type": "input",
+          "reason": "1T: rising-edge trigger"
+        },
+        "3": {
+          "type": "input",
+          "reason": "1CLR_N: asynchronous active-low clear"
+        },
+        "4": {
+          "type": "output",
+          "reason": "1Q_N: push-pull inverted pulse"
+        },
+        "5": {
+          "type": "output",
+          "reason": "2Q: push-pull pulse"
+        },
+        "6": {
+          "type": "passive",
+          "reason": "2C: internally grounded timing-capacitor return"
+        },
+        "7": {
+          "type": "bidirectional",
+          "reason": "2RC: analog timing node"
+        },
+        "8": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "9": {
+          "type": "input",
+          "reason": "2T_N: falling-edge trigger"
+        },
+        "10": {
+          "type": "input",
+          "reason": "2T: rising-edge trigger"
+        },
+        "11": {
+          "type": "input",
+          "reason": "2CLR_N: asynchronous active-low clear"
+        },
+        "12": {
+          "type": "output",
+          "reason": "2Q_N: push-pull inverted pulse"
+        },
+        "13": {
+          "type": "output",
+          "reason": "1Q: push-pull pulse"
+        },
+        "14": {
+          "type": "passive",
+          "reason": "1C: internally grounded timing-capacitor return"
+        },
+        "15": {
+          "type": "bidirectional",
+          "reason": "1RC: analog timing node"
+        },
+        "16": {
+          "type": "power_in",
+          "reason": "VCC: supply input"
+        },
+        "17": {
+          "type": "passive",
+          "reason": "EP (native pad 17): ground or floating only"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_txs0102_dcur",
+      "mpn": "Texas Instruments TXS0102DCUR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/txs0102.pdf",
+          "section": "Table 4-1 DCT/DCU/DTT column; bidirectional translator",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "bidirectional",
+          "reason": "B2: channel-2 B-side port"
+        },
+        "2": {
+          "type": "power_in",
+          "reason": "GND: supply return"
+        },
+        "3": {
+          "type": "power_in",
+          "reason": "VCCA: supply input"
+        },
+        "4": {
+          "type": "bidirectional",
+          "reason": "A2: channel-2 A-side port"
+        },
+        "5": {
+          "type": "bidirectional",
+          "reason": "A1: channel-1 A-side port"
+        },
+        "6": {
+          "type": "input",
+          "reason": "OE: active-high enable, VCCA domain"
+        },
+        "7": {
+          "type": "power_in",
+          "reason": "VCCB: supply input"
+        },
+        "8": {
+          "type": "bidirectional",
+          "reason": "B1: channel-1 B-side port"
+        }
+      },
+      "unresolved": [],
+      "source_mapping_corrections": [
+        {
+          "source": "hardware/architecture/devices.json",
+          "correction": "DCU B2=1,GND=2,VCCA=3,A2=4,A1=5,OE=6,VCCB=7,B1=8",
+          "affected_instances": [
+            "LESHY2-RF-R2 U102 unit_signal_iso"
+          ],
+          "prior_nets": {
+            "1": "3V3_MAIN",
+            "2": "M5_UNIT_SIG0 (actual GND)",
+            "3": "M5_UNIT_SIG1 (actual VCCA)",
+            "4": "POWER_GROUND",
+            "5": "UNIT_CONNECTOR_SIG1",
+            "6": "UNIT_CONNECTOR_SIG0",
+            "7": "3V3_MAIN",
+            "8": "UNIT_READY"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -31,7 +31,7 @@ and completed results live in the [report index](stage-results.md).
 |---|---|---|
 | H6.0.1-R1 · Placement and mechanical stack | ✅ | 1,208/1,208 footprints, fasteners and microcoax fit |
 | H6.0.2-R1 · Routing policy | ✅ historical geometry | classes and native KiCad rules are frozen |
-| **H6.0.3-R1 · 80-mm routing and parity** | **▶ Current** | every net is routed or explicitly NC; DRC and parity are zero |
+| **H6.0.3-R1 · 80-mm routing and parity** | **▶ Current** | [H6-NATIVE-ELECTRICAL-SEMANTICS](h6-r2-electrical-semantics.md) passes; every net is routed or explicitly NC; DRC and parity are zero |
 | H6.0.4-R1 · Routed power and thermal | ⏳ | actual copper/via/rail margins pass |
 | H6.0.5-R1 · Digital, USB and M1 SI | ⏳ | i8080‑8, USB and buses pass |
 | H6.0.6-R1 · RF and Airband | ⏳ | ten paths, matching, isolation and parasitics pass |

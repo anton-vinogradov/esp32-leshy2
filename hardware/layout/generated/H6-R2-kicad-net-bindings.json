@@ -5,9 +5,9 @@
   "status": "pass",
   "method": "KiCad 10 kicadxml export joined by exact reference/pin to the reviewed H2 native net ledger",
   "source_hashes": {
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "8662e0fa866bf8fab57b7d3799b312b3f67bca179da2732571be27995e19c88d",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "a4d01ad42040f5d7b4be6f138efbef7c5230f7500c37c7bed795d25d05d24e72",
-    "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "409671bdfaa7674d2dab5455154a4a636128f23de3e4f46788ad8071faed0600",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "13c60bf11df73419f6321039378b68f3d55be34a3a033833d7fb477e047e3d14",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "12019fb538309b2d19051e97409cbe9d88d0e6cb5bf1b2911dcc85fe52cdc6a7",
+    "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "adff01bda89874c138e98b38d66695647548297123567aff41e95991329421a6",
     "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch": "43910ab937fd3f95a140f664d6fbaca72d8dc6e9bf60cf46e5eae24158eddf50",
     "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_sch": "2d20cc84e34a33e8f6339a846a21ef9c2b3c9d2d53aeaad744f87fadc9a82069"
   },
@@ -15,10 +15,10 @@
     "LESHY2-UI-R2": {
       "schematic": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch",
       "schematic_sha256": "43910ab937fd3f95a140f664d6fbaca72d8dc6e9bf60cf46e5eae24158eddf50",
-      "exported_net_count": 390,
+      "exported_net_count": 389,
       "canonical_physical_net_count": 306,
-      "connected_physical_node_count": 1514,
-      "explicit_no_connect_node_count": 84,
+      "connected_physical_node_count": 1515,
+      "explicit_no_connect_node_count": 83,
       "canonical_to_kicad": {
         "3V3_IR_SWITCHED": "/UI_20_C5_WIFI_IR_SERVICE/3V3_IR_SWITCHED",
         "3V3_MAIN": "/UI_10_S3_DISPLAY_TOUCH/3V3_MAIN",
@@ -331,10 +331,10 @@
     "LESHY2-RF-R2": {
       "schematic": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_sch",
       "schematic_sha256": "2d20cc84e34a33e8f6339a846a21ef9c2b3c9d2d53aeaad744f87fadc9a82069",
-      "exported_net_count": 670,
+      "exported_net_count": 669,
       "canonical_physical_net_count": 516,
-      "connected_physical_node_count": 2554,
-      "explicit_no_connect_node_count": 154,
+      "connected_physical_node_count": 2555,
+      "explicit_no_connect_node_count": 153,
       "canonical_to_kicad": {
         "3V3_AIR_SWITCHED": "/RF_21_BROADCAST_AIRBAND_RX/3V3_AIR_SWITCHED",
         "3V3_CC_SWITCHED": "/RF_20_CC1101_VOICE_TX/3V3_CC_SWITCHED",

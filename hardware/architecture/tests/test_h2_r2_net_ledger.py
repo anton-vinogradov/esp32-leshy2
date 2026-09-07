@@ -52,8 +52,8 @@ class H2R2NetLedgerTests(unittest.TestCase):
         self.assertEqual("pass", self.ledger["status"])
         self.assertEqual([], self.ledger["errors"])
         self.assertEqual(4302, summary["endpoint_count"])
-        self.assertEqual(4064, summary["connected_endpoint_count"])
-        self.assertEqual(238, summary["no_connect_endpoint_count"])
+        self.assertEqual(4066, summary["connected_endpoint_count"])
+        self.assertEqual(236, summary["no_connect_endpoint_count"])
         self.assertEqual(0, summary["external_interface_endpoint_count"])
         self.assertEqual(0, summary["unresolved_endpoint_count"])
         self.assertEqual(788, summary["unique_net_count"])
@@ -214,7 +214,7 @@ class H2R2NetLedgerTests(unittest.TestCase):
         historical = [row for row in self.rows if row["origin"].startswith("reconciled_historical")]
         self.assertEqual(2197, len(historical))
         self.assertEqual(
-            1094,
+            1096,
             self.ledger["summary"]["origin_counts"]["current_abstract_endpoint_canonical"],
         )
         self.assertTrue(all(row["historical_topology_authority"] is False for row in historical))

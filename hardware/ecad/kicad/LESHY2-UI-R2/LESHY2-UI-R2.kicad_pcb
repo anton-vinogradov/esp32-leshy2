@@ -38264,6 +38264,7 @@
 			(size 0.2 0.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
+			(net "/UI_10_S3_DISPLAY_TOUCH/3V3_MAIN")
 			(uuid "599c324d-916f-5801-8435-56567ab98c77")
 		)
 		(pad "70" smd roundrect
@@ -42546,11 +42547,11 @@
 	(footprint "Capacitor_SMD:C_0402_1005Metric"
 		(layer "B.Cu")
 		(uuid "6fafc368-5354-591b-935f-00a5aa894d20")
-		(at 50.805 84.104999)
+		(at 45.2 68.25 90)
 		(descr "Capacitor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C53"
-			(at 0 1.16 180)
+			(at 0 1.16 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "9709b08a-4647-5174-a284-130daa4e5ebd")
@@ -42563,7 +42564,7 @@
 			)
 		)
 		(property "Value" "Yageo CC0402KRX7R9BB104"
-			(at 0 -1.16 180)
+			(at 0 -1.16 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "cc67e14f-59c8-5cda-ac86-c013dca92b28")
@@ -42576,7 +42577,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "767c003c-fd19-5ae1-9795-49ae3668c335")
@@ -42588,7 +42589,7 @@
 			)
 		)
 		(property "Description" "yageo_cc0402krx7r9bb104"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
 			(uuid "0440aa13-078c-501e-a7e5-170980c377d2")
@@ -42600,7 +42601,7 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "a5147b1f-8125-55c8-8b97-8067ec5e4b1d")
@@ -42613,7 +42614,7 @@
 			)
 		)
 		(property "Leshy2Instance" "hub_rp_qspi_iovdd_bypass"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "aeb09939-26ee-5c9e-8f83-ad55bd8ef8af")
@@ -42673,7 +42674,7 @@
 			(uuid "257bf7e5-a95f-5d12-94a5-7f5bba14a4ae")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(uuid "f8e97d52-fd10-551b-ad78-d1f9e5944951")
 			(effects
@@ -42685,7 +42686,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.48 0)
+			(at -0.48 0 90)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
@@ -42693,7 +42694,7 @@
 			(uuid "6b7e6115-a512-5e87-a3b6-f81d1481a857")
 		)
 		(pad "2" smd roundrect
-			(at 0.48 0)
+			(at 0.48 0 90)
 			(size 0.56 0.62)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)

@@ -6,13 +6,13 @@
   "source_sha256": {
     "hardware/verification/h3-r2-transition-sequence-contract.json": "3c68bdd74fcb6be83f9a014822db1e1bb88c3180b7c477d78b5a4bcf95f5443b",
     "hardware/verification/h3-r2-verification-plan.json": "54143b22eeddf73fbe05ea5f0996c363e22bf7830c49e13ced6f3dcca8c7d16c",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "9d97b50f8cdb996a78d86aac0494790b3e1b3017cc60c58acaee55de991f0157",
-    "hardware/verification/generated/H3-R2-method-contract.json": "1cfa02b20fd116865bd5286e14949957410448cec59c82e1f2b9b38b5a475c6c",
-    "hardware/verification/generated/H3-R2-dc-source-crosscheck.json": "fd8869c09c48198624df2c0f3cd74c20dc7fe2a74daced2d0ea6c866b846103a",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "a4d01ad42040f5d7b4be6f138efbef7c5230f7500c37c7bed795d25d05d24e72",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "8662e0fa866bf8fab57b7d3799b312b3f67bca179da2732571be27995e19c88d",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "6af6d937a9a0adf62e312d2a175dd0598d5a3b14de990f6ba05933726277ea5c",
+    "hardware/verification/generated/H3-R2-method-contract.json": "f5437468dadc2753bd9cc439e0cfbfe5a83ee3f7ece920338c0dc8c2f71cb0e5",
+    "hardware/verification/generated/H3-R2-dc-source-crosscheck.json": "2044d7a8bc8c94445f052f8edc9a0ef8631d0bda6eb71799ac4d9c86f50511fa",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "12019fb538309b2d19051e97409cbe9d88d0e6cb5bf1b2911dcc85fe52cdc6a7",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "13c60bf11df73419f6321039378b68f3d55be34a3a033833d7fb477e047e3d14",
     "hardware/ecad/generated/H2-R2-interboard-m1.json": "127965ec1e68cbf8c57d028fd067c56a724a3259248bab4ba5c86c8f9307b6fd",
-    "hardware/architecture/devices.json": "a11701b3df0156dbd533867d3e4bd0d57b731623c12b083cccf493b03775d0fa"
+    "hardware/architecture/devices.json": "2a4f7944f69705a6361a3f71b315041b7eb08d884a4508eb060d0bcf9affb4c7"
   },
   "exact_devices": {
     "supervisor": {
@@ -42,7 +42,7 @@
         "document": "SN74LVC1G17 Single Schmitt-Trigger Buffer datasheet",
         "version": "Rev. Y, revised October 2025",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
-        "checked": "2026-08-31"
+        "checked": "2026-09-07"
       }
     },
     "latch": {
