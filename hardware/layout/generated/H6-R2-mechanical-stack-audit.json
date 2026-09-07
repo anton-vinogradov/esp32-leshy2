@@ -6,7 +6,7 @@
   "status_scope": "fasteners, enclosure capture and direct cell thermal contacts; connector fit is reported separately",
   "source_hashes": {
     "hardware/layout/h6-r2-mechanical-stack.json": "28e9588f17a7e53730f901d22cc470b0cbd5d2a17a307cec2bac2c309ff88cc7",
-    "hardware/layout/generated/H6-R2-placement-audit.json": "beba9ca33c5cfe16afb881a7a218c60e39aa982f0e7b2af0627077c0c7433468"
+    "hardware/layout/generated/H6-R2-placement-audit.json": "7adeff83d7e874d6a5ccb1f64efa829640411bdd95714d79a5331ae567179922"
   },
   "stack": {
     "members": [
@@ -29,6 +29,57 @@
   "geometry": {
     "mounting_axis_count": 4,
     "mounting_axes_match_native_pcbs": true,
+    "mounting_axes_by_board": [
+      {
+        "project": "LESHY2-UI-R2",
+        "native_to_assembly": "xw=x, yw=y",
+        "hole_count": 4,
+        "world_axes_mm": [
+          [
+            5.0,
+            11.0
+          ],
+          [
+            5.0,
+            145.0
+          ],
+          [
+            75.0,
+            11.0
+          ],
+          [
+            75.0,
+            145.0
+          ]
+        ],
+        "matches_assembly_axes": true
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "native_to_assembly": "xw=width-x, yw=y",
+        "hole_count": 4,
+        "world_axes_mm": [
+          [
+            5.0,
+            11.0
+          ],
+          [
+            5.0,
+            145.0
+          ],
+          [
+            75.0,
+            11.0
+          ],
+          [
+            75.0,
+            145.0
+          ]
+        ],
+        "matches_assembly_axes": true
+      }
+    ],
+    "mounting_axis_scope": "each native placement report transformed to assembly coordinates; current PCB binding requires the separate native placement-signature check",
     "bearing_annulus_inside_8mm_keepout": true,
     "calculated_minimum_pilot_diametral_clearance_mm": 0.2,
     "capture_segments_per_board": 4,

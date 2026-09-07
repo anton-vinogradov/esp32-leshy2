@@ -481,16 +481,13 @@ def add_user_silkscreen(board, project: str, placement: dict, contract: dict) ->
         # exterior strip below the panel belongs to the ten visible indicators.
         add_text(board, "DISPLAY · FPC ↑", (centre_x, 21.0), pcbnew.F_SilkS, 1.00, 0.15)
         add_text(board, "Леший · UI · R2-EVT1 · REV A", (centre_x, 116.0), pcbnew.F_SilkS, 1.00, 0.15)
-        antenna_rows = placement["antenna_silkscreen"]["front"]
     else:
         centre_x = contract["board"]["width_mm"] / 2
         add_text(board, "ESP32-LESHY2", (centre_x, 130.5), pcbnew.F_SilkS, 1.55, 0.23)
         add_text(board, "RF/PWR PCB · R2-EVT1 · REV A", (centre_x, 133.0), pcbnew.F_SilkS, 1.00, 0.15)
         add_text(board, "github.com/anton-vinogradov/esp32-leshy2", (centre_x, 135.5), pcbnew.F_SilkS, 1.00, 0.15)
-        antenna_rows = placement["antenna_silkscreen"]["rear"]
-    antenna_positions = list(contract["antenna_ports"][project].values())
-    for row, position in zip(antenna_rows, antenna_positions):
-        add_text(board, row["text"], (position[0], 15.2), pcbnew.F_SilkS, 1.00, 0.15)
+    # Antenna labels are added with the other interface labels after placement,
+    # keyed by instance and verified against the native signal-pad net.
 
 
 def add_battery_ntc_silkscreen(board, project: str, placed_rows: list[dict]) -> None:

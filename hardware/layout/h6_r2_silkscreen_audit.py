@@ -15,7 +15,7 @@ import math
 from pathlib import Path
 import tempfile
 
-from h6_r2_user_silkscreen import labels
+from h6_r2_user_silkscreen import ANTENNA_INTERFACES, antenna_signal_findings, labels
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -138,6 +138,7 @@ def audit_snapshot(snapshot, contract):
     project = snapshot["project"]
     required = labels(project, snapshot["placements"], contract)
     errors, matched = required_label_findings(required, snapshot["texts"])
+    errors.extend(antenna_signal_findings(project, snapshot["placements"], contract))
     rows = {row["instance"]: row for row in snapshot["placements"]}
     assembly_texts = {"DISPLAY · FPC ↑": [contract["board"]["width_mm"] / 2, 21.0]} if project == "LESHY2-UI-R2" else {
         f"NTC{index} PAD": [rows[instance]["courtyard_centre_mm"][0], rows[instance]["courtyard_centre_mm"][1] + 4.1]
@@ -217,7 +218,12 @@ def native_snapshot(board, project, ledger_rows, contract, pcbnew):
         layer = pcbnew.F_CrtYd if fp.GetLayer() == pcbnew.F_Cu else pcbnew.B_CrtYd
         courtyard = fp.GetCourtyard(layer).BBox()
         centre = point_mm(courtyard.GetCenter()) if courtyard.GetWidth() > 0 and courtyard.GetHeight() > 0 else point_mm(fp.GetPosition())
-        placements.append({"instance": row["instance"], "reference": row["reference"], "courtyard_centre_mm": centre})
+        placement = {"instance": row["instance"], "reference": row["reference"],
+                     "courtyard_centre_mm": centre, "footprint_anchor_mm": point_mm(fp.GetPosition())}
+        if row["instance"] in ANTENNA_INTERFACES:
+            placement["signal_pad_nets"] = sorted(
+                pad.GetNetname().rsplit("/", 1)[-1] for pad in fp.Pads() if pad.GetNumber() == "1")
+        placements.append(placement)
     for graphic in board.GetDrawings():
         if isinstance(graphic, pcbnew.PCB_TEXT):
             texts.append({"id": graphic.m_Uuid.AsString(), "text": graphic.GetText(),

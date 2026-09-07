@@ -13503,7 +13503,7 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "unrouted_seed_sha256": "9a0422d407bcdb6fbc12b06286f7d28edd801c03a374f366e621a2c81542502a",
+      "unrouted_seed_sha256": "e3e851a782efe26c0db6fc6be0c7d4c1b5bfb8b411b3d784853c3bc660aba505",
       "placement_signature_sha256": "123c5c87bb5317737b9780c94f979e06e68c1ce744ecf92deed3df20dc1d9155",
       "locality": {
         "status": "pass",
@@ -38310,8 +38310,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "fdaca9e9d1839b46c5fa550667c7dd19996d9d68aa8dcd4ef73c45ccba17e3f5",
-      "placement_signature_sha256": "7b7de8218bd95d42d3fbe0c594ed8585cc41c16523e6232415e1ffe3aeb6b7e4",
+      "unrouted_seed_sha256": "a52f4cdadde91419c4368b6f8283369f8ed8cade74cede712ee741b70279a02f",
+      "placement_signature_sha256": "dae8d9c01e2ba218d31b89e4489f94415fa2dc866339bf9b0909914cd01b557c",
       "locality": {
         "status": "pass",
         "pair_count": 259,

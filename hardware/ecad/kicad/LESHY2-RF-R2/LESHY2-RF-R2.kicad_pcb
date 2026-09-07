@@ -160338,7 +160338,7 @@
 			)
 		)
 	)
-	(gr_text "VHF TX"
+	(gr_text "UHF TX"
 		(at 51.75 15.2 0)
 		(layer "F.SilkS")
 		(uuid "af113f72-2a38-4e43-8962-6dd9303d95f8")
@@ -160360,7 +160360,7 @@
 			)
 		)
 	)
-	(gr_text "UHF TX"
+	(gr_text "VHF TX"
 		(at 63.5 15.2 0)
 		(layer "F.SilkS")
 		(uuid "ad1f3c30-1871-4566-adbc-b8c9314fef06")

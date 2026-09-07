@@ -92,11 +92,21 @@ observations or mark the whole interface review as passed.
   5.6 mm. These are explicit access envelopes, not extra body courtyard.
   Only its four local support parts U6/U7/R39/R41 were repositioned to clear
   the corrected socket; their side, rotation, nets and MPNs were preserved.
-- Native user silkscreen now has 53 labels tied to actual controls
+- Native user silkscreen now has 63 labels tied to actual controls
   and port roles, including distinct **UP** and **OK**. Text presence does not
   by itself prove readability or solder-mask clearance. DISPLAY/PSA borders
   use corner markers instead of continuous lines; their placement envelopes
   are unchanged.
+- The follow-up antenna identity review corrected RF J6 to **UHF TX** and
+  RF J7 to **VHF TX**. The former positional zip of H1 labels and H6 ports
+  reversed these two names. All ten labels now follow their physical instance;
+  the native audit also checks each signal pad 1 against its expected RF net.
+  No antenna, net, footprint or copper geometry moved in this correction.
+- Mounting-axis validation now requires all four distinct holes on **each**
+  PCB, transformed separately into assembly coordinates. The former union
+  could hide missing RF holes behind the UI set. Negative tests remove,
+  duplicate and shift holes. A native M1 check reads all 80 pad pairs and
+  rejects an in-memory RF rotation or offset without saving either board.
 - The M1 correction is now native: RF J12 B180 [37.5,122.25], keeping UI J18
   unchanged. Only RF R235 [25.25,127.5], B0, and C253 [22.30,128.5], B90, were
   repositioned locally for clearance. Twelve regressions check all 80 contact
@@ -118,7 +128,7 @@ Current verification is deliberately scoped:
 
 | Check | Latest result / boundary |
 | --- | --- |
-| Native user-label audit | `pass_scoped`, 53 labels; UI control-label layout was also visually inspected. Not a complete package-silkscreen or closed-device readability pass. |
+| Native user-label audit | `pass_scoped`, 63 labels including all ten RF identities and signal-pad nets; UI control-label layout was also visually inspected. Not a complete package-silkscreen or closed-device readability pass. |
 | UI native DRC | 0 violations, 0 schematic parity findings after integration. |
 | RF native DRC | 0 violations, 0 schematic parity findings after integration; JAE EdgeSilk matches its controlled library without exceptions. |
 | M1 | Native correction applied; 12 source regressions pass. All 80 contact assignments and planar assembly transform checked; exact 3D/Z remains open. |
@@ -129,7 +139,7 @@ cutout; holder drills/lands; SMA thickness fit; exact 3D bodies and assembled
 clearances, acoustics and FPC folds. The 74-row inventory is exhaustive within
 its stated scope, not 74 completed dimensional or functional verifications.
 Labels for the still-moving Grove, audio, IR and RUN/KILL interfaces must be
-finalized after their footprints and placement are corrected; the 53-label
+finalized after their footprints and placement are corrected; the 63-label
 result does not close that remaining work.
 The placement
 targets and test scope are recorded in the

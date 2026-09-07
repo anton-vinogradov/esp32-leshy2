@@ -24,6 +24,36 @@ INDICATORS = {
     "ext_tx_led": "LORA/EXT", "fault_led": "FAULT",
 }
 
+# Electrical identity is independent of dictionary/list order or XY position.
+# Each tuple is (H1 path identity, user label, signal-pad canonical net).
+ANTENNA_INTERFACES = {
+    "nrf0_external_sma": ("N24-0", "nRF1 · 2G4", "NRF0_EXTERNAL_RF_50R"),
+    "s3_external_rp_sma": ("S3-2G4", "S3 · 2G4", "S3_EXTERNAL_RF_50R"),
+    "nrf1_external_sma": ("N24-1", "nRF2 · 2G4", "NRF1_EXTERNAL_RF_50R"),
+    "c5_external_rp_sma": ("C5-2G4/5", "C5 · 2G4/5G", "C5_EXTERNAL_RF_50R"),
+    "nrf2_external_sma": ("N24-2", "nRF3 · 2G4", "NRF2_EXTERNAL_RF_50R"),
+    "receiver_fmsw_external_sma": ("RX-FM/SW", "AIR/FM RX", "RX_FMSW_BOUNDARY_RF"),
+    "receiver_amlw_external_sma": ("RX-AM/LW", "AM/LW RX", "RX_AMLW_BOUNDARY_RF"),
+    "cc_external_sma": ("CC-SUB", "SUB-G TX", "CC_EXTERNAL_RF_50R"),
+    "voice_external_sma": ("VOICE-UHF", "UHF TX", "VOICE_U_EXTERNAL_RF_50R"),
+    "voice_v_external_sma": ("VOICE-VHF", "VHF TX", "VOICE_V_EXTERNAL_RF_50R"),
+}
+
+
+def antenna_signal_findings(project: str, placed_rows: list[dict], contract: dict) -> list[dict]:
+    """Validate actual pad nets; a correct label alone does not prove identity."""
+    rows = {row["instance"]: row for row in placed_rows}
+    errors = []
+    for instance in contract.get("antenna_ports", {}).get(project, {}):
+        path, _, expected = ANTENNA_INTERFACES[instance]
+        row = rows.get(instance, {})
+        actual = row.get("signal_pad_nets", [])
+        if actual != [expected]:
+            errors.append({"kind": "antenna_signal_identity_mismatch", "instance": instance,
+                           "reference": row.get("reference"), "path": path,
+                           "signal_pad": "1", "expected": expected, "actual": actual})
+    return errors
+
 
 def labels(project: str, placed_rows: list[dict], contract: dict) -> list[dict]:
     rows = {row["instance"]: row for row in placed_rows}
@@ -39,6 +69,13 @@ def labels(project: str, placed_rows: list[dict], contract: dict) -> list[dict]:
         })
 
     width = contract["board"]["width_mm"]
+    for instance in contract.get("antenna_ports", {}).get(project, {}):
+        _, text, _ = ANTENNA_INTERFACES[instance]
+        # Bind to the physical RF port, not the independently ordered H1 silk
+        # list. The native extractor supplies the actual footprint anchor.
+        x = rows[instance]["footprint_anchor_mm"][0]
+        add(instance, text, x, 15.2, role="antenna")
+
     for instance, spec in contract["service_buttons"]["by_project"][project].items():
         row = rows[instance]
         owner, action, _ = instance.rsplit("_", 2)

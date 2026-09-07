@@ -6,17 +6,17 @@
   "inputs_sha256": {
     "hardware/layout/h6-r2-placement-contract.json": "ab9f53ce43da72426dacd377769738a8074c3c0ae5bb0b4d8c1f9a9402a2dc77",
     "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "8a3fc89754a0f5ce8f8cf0d44a0b3fa9bbf3dcb99ededab9d95d3bd48f3d23f9",
-    "hardware/layout/h6_r2_silkscreen_audit.py": "dd1a8e74ea142b8afcd5d2e0589844845bae67356f425c1059bae454d7faa484",
-    "hardware/layout/h6_r2_user_silkscreen.py": "7dd80fc33aadf959f16cc5dbf6430ab23fbb3221596f14300ff4cf9c468cceff",
+    "hardware/layout/h6_r2_silkscreen_audit.py": "4cdb12d2587601e794ea14285b337906609bf1738825f55a2232076c878a2627",
+    "hardware/layout/h6_r2_user_silkscreen.py": "22ee01da7f310951dbe029d31ff22fc7add9d343f6fecf456b53c58626e28305",
     "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "ced019b77a4b1fc4437f9c692f0feeaf38aca149cebfc6d6e8fe3fa70a3f347c",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "fd08e60a9bd86c9c902b51d77103e4b6963cda549a90382a7c4f1cfa5529585f"
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "3dd3862acf37ce7b0879093be5c0dc8c98482455c3c508a68b9f92c5b606d0b5"
   },
   "boards": [
     {
       "project": "LESHY2-UI-R2",
       "status": "pass_scoped",
-      "required_count": 42,
-      "matched_count": 42,
+      "required_count": 47,
+      "matched_count": 47,
       "free_front_text_count": 49,
       "errors": [],
       "geometry_candidates": [],
@@ -69,6 +69,86 @@
         }
       ],
       "required_bindings": [
+        {
+          "expected": {
+            "instance": "nrf0_external_sma",
+            "reference": "J12",
+            "text": "nRF1 · 2G4",
+            "at_mm": [
+              16.5,
+              15.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "antenna"
+          },
+          "actual_id": "d495314c-ac9f-47f7-984f-10b4d1a4a532"
+        },
+        {
+          "expected": {
+            "instance": "s3_external_rp_sma",
+            "reference": "J3",
+            "text": "S3 · 2G4",
+            "at_mm": [
+              28.25,
+              15.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "antenna"
+          },
+          "actual_id": "fc8159c8-c0b9-45b0-964c-b9291d2fe7c5"
+        },
+        {
+          "expected": {
+            "instance": "nrf1_external_sma",
+            "reference": "J14",
+            "text": "nRF2 · 2G4",
+            "at_mm": [
+              40.0,
+              15.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "antenna"
+          },
+          "actual_id": "8a27d344-06eb-48ba-9b96-384abffc00fc"
+        },
+        {
+          "expected": {
+            "instance": "c5_external_rp_sma",
+            "reference": "J7",
+            "text": "C5 · 2G4/5G",
+            "at_mm": [
+              51.75,
+              15.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "antenna"
+          },
+          "actual_id": "255a4e61-6e81-4497-b5ec-b3c9643917e1"
+        },
+        {
+          "expected": {
+            "instance": "nrf2_external_sma",
+            "reference": "J16",
+            "text": "nRF3 · 2G4",
+            "at_mm": [
+              63.5,
+              15.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "antenna"
+          },
+          "actual_id": "563c6763-10e8-451d-be20-e1553f676206"
+        },
         {
           "expected": {
             "instance": "s3_reset_button",
@@ -746,8 +826,8 @@
     {
       "project": "LESHY2-RF-R2",
       "status": "pass_scoped",
-      "required_count": 11,
-      "matched_count": 11,
+      "required_count": 16,
+      "matched_count": 16,
       "free_front_text_count": 21,
       "errors": [],
       "geometry_candidates": [],
@@ -1522,6 +1602,86 @@
         }
       ],
       "required_bindings": [
+        {
+          "expected": {
+            "instance": "receiver_fmsw_external_sma",
+            "reference": "J9",
+            "text": "AIR/FM RX",
+            "at_mm": [
+              16.5,
+              15.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "antenna"
+          },
+          "actual_id": "b61f02d0-a182-45f0-a763-d30e01dee838"
+        },
+        {
+          "expected": {
+            "instance": "receiver_amlw_external_sma",
+            "reference": "J8",
+            "text": "AM/LW RX",
+            "at_mm": [
+              28.25,
+              15.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "antenna"
+          },
+          "actual_id": "67f1ef76-20d4-47f9-9811-83f5742e5868"
+        },
+        {
+          "expected": {
+            "instance": "cc_external_sma",
+            "reference": "J5",
+            "text": "SUB-G TX",
+            "at_mm": [
+              40.0,
+              15.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "antenna"
+          },
+          "actual_id": "2eef5c91-3755-4b72-be01-1d79a9c313f1"
+        },
+        {
+          "expected": {
+            "instance": "voice_external_sma",
+            "reference": "J6",
+            "text": "UHF TX",
+            "at_mm": [
+              51.75,
+              15.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "antenna"
+          },
+          "actual_id": "af113f72-2a38-4e43-8962-6dd9303d95f8"
+        },
+        {
+          "expected": {
+            "instance": "voice_v_external_sma",
+            "reference": "J7",
+            "text": "VHF TX",
+            "at_mm": [
+              63.5,
+              15.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "antenna"
+          },
+          "actual_id": "ad1f3c30-1871-4566-adbc-b8c9314fef06"
+        },
         {
           "expected": {
             "instance": "rf_rp_reset_button",

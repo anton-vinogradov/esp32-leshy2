@@ -124,18 +124,18 @@
         }
       },
       "drc": {
-        "report_sha256": "4c0708d87108b2fe81ffda197cd282f3c06b0a6f2a964d40909b3e2e7a309ba4",
+        "report_sha256": "a1e8cbc68a79940bed0bbd98937baf37c42af450a21ee879d0b4bcfa67e8ce37",
         "provenance": {
           "schema_version": 1,
           "project": "LESHY2-UI-R2",
-          "started_at_utc": "2026-09-07T17:31:37+00:00",
-          "completed_at_utc": "2026-09-07T17:31:39+00:00",
+          "started_at_utc": "2026-09-07T19:12:23+00:00",
+          "completed_at_utc": "2026-09-07T19:12:24+00:00",
           "inputs_sha256": {
             "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "ced019b77a4b1fc4437f9c692f0feeaf38aca149cebfc6d6e8fe3fa70a3f347c",
             "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pro": "da3ee7fd223b0d7a7d0f4d443996fdef1edfca396e6b4f42165524c1fc5036c9",
             "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_dru": "ae23b1e0695647d7285e154d5c316004a212c0e49b71cd5349b0c16bc031d616"
           },
-          "report_sha256": "4c0708d87108b2fe81ffda197cd282f3c06b0a6f2a964d40909b3e2e7a309ba4",
+          "report_sha256": "a1e8cbc68a79940bed0bbd98937baf37c42af450a21ee879d0b4bcfa67e8ce37",
           "command": [
             "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
             "pcb",
@@ -144,14 +144,14 @@
             "json",
             "--severity-all",
             "-o",
-            "/private/tmp/leshy2-interface-review.oaCyj3/.h6-drc-orpp4d4k/ui-drc.json",
+            "/private/tmp/.h6-drc-663q89fv/leshy2-antenna-label-ui-drc.json",
             "/Users/randoom/Documents/Codex/2026-08-15/nt/esp32-leshy2/hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb"
           ],
           "exit_code": 0,
           "kicad_version": "10.0.5"
         },
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-07T20:31:39",
+        "checked_at": "2026-09-07T22:12:24",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,
@@ -163,7 +163,7 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "board_sha256": "fd08e60a9bd86c9c902b51d77103e4b6963cda549a90382a7c4f1cfa5529585f",
+      "board_sha256": "3dd3862acf37ce7b0879093be5c0dc8c98482455c3c508a68b9f92c5b606d0b5",
       "board_size_mm": [
         80.05,
         150.05
@@ -242,18 +242,18 @@
         }
       },
       "drc": {
-        "report_sha256": "fe412977e7ea8639936b2764097a2ec0b1fc67c4f981b5aa6ed45b15a64c67f4",
+        "report_sha256": "2197efc1b711839905a95102558a7c8a0f35c65b23397c3cb6bd66786098ca5e",
         "provenance": {
           "schema_version": 1,
           "project": "LESHY2-RF-R2",
-          "started_at_utc": "2026-09-07T17:12:41+00:00",
-          "completed_at_utc": "2026-09-07T17:12:47+00:00",
+          "started_at_utc": "2026-09-07T19:12:18+00:00",
+          "completed_at_utc": "2026-09-07T19:12:22+00:00",
           "inputs_sha256": {
-            "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "fd08e60a9bd86c9c902b51d77103e4b6963cda549a90382a7c4f1cfa5529585f",
+            "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "3dd3862acf37ce7b0879093be5c0dc8c98482455c3c508a68b9f92c5b606d0b5",
             "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pro": "0d6281e49949a3d865033e795659b4ae1ec8e066aab2b2d1f7f5ac8aa824235f",
             "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_dru": "7cf89d80b417a824503f6f41f954d6f38e65978ce8ca207aab9a30318abd6bb9"
           },
-          "report_sha256": "fe412977e7ea8639936b2764097a2ec0b1fc67c4f981b5aa6ed45b15a64c67f4",
+          "report_sha256": "2197efc1b711839905a95102558a7c8a0f35c65b23397c3cb6bd66786098ca5e",
           "command": [
             "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
             "pcb",
@@ -262,14 +262,14 @@
             "json",
             "--severity-all",
             "-o",
-            "/private/tmp/leshy2-interface-review.oaCyj3/.h6-drc-gmx0yb3v/rf-drc.json",
+            "/private/tmp/.h6-drc-73x2hwvy/leshy2-antenna-label-rf-drc.json",
             "/Users/randoom/Documents/Codex/2026-08-15/nt/esp32-leshy2/hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb"
           ],
           "exit_code": 0,
           "kicad_version": "10.0.5"
         },
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-07T20:12:46",
+        "checked_at": "2026-09-07T22:12:22",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,

@@ -316,6 +316,8 @@ def main() -> int:
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--write", action="store_true")
     mode.add_argument("--check", action="store_true")
+    mode.add_argument("--refresh-derived", action="store_true",
+                      help="verify native copper, then refresh only the derived audit; never rewrite a PCB")
     args = parser.parse_args()
     outputs, audit = build()
     if args.write:
@@ -336,10 +338,12 @@ def main() -> int:
             if actual != [tuple(row) for row in expected]:
                 stale.append(f"{relative}: copper signature differs")
         expected_audit = outputs[AUDIT_PATH]
-        if not AUDIT_PATH.exists() or AUDIT_PATH.read_bytes() != expected_audit:
+        if not args.refresh_derived and (not AUDIT_PATH.exists() or AUDIT_PATH.read_bytes() != expected_audit):
             stale.append(str(AUDIT_PATH.relative_to(ROOT)))
         if stale:
             raise SystemExit("stale H6 manual-copper outputs: " + ", ".join(stale))
+        if args.refresh_derived:
+            AUDIT_PATH.write_bytes(expected_audit)
     print(
         f"H6-R2 manual copper {audit['status']}: "
         f"{audit['summary']['route_count']} routes; "

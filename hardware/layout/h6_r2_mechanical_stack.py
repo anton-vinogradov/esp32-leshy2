@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import html
 import json
+import math
 from pathlib import Path
 
 
@@ -28,6 +29,66 @@ def sha256(path: Path) -> str:
 def bounds(row: dict) -> tuple[float, float, float]:
     nominal = float(row["nominal"])
     return nominal, nominal - float(row["minus"]), nominal + float(row["plus"])
+
+
+def evaluate_mounting_axes(contract: dict, placement: dict) -> dict:
+    """Require all four axes on EACH PCB in the assembled front-view frame.
+
+    Native UI X is world X. Native RF X is viewed from the rear exterior and
+    maps to width-X when the two B sides face one another. A union of native
+    axes cannot establish this: the other PCB would hide a missing hole.
+    These are placement-audit observations; the native placement-signature
+    check remains responsible for binding that report to the actual boards.
+    """
+    errors = []
+    projects = ("LESHY2-UI-R2", "LESHY2-RF-R2")
+    width = contract["coordinate_system"]["board_outline_mm"][0]
+
+    def point(value):
+        if (not isinstance(value, (list, tuple)) or len(value) != 2
+                or any(isinstance(v, bool) or not isinstance(v, (int, float))
+                       or not math.isfinite(v) for v in value)):
+            return None
+        return tuple(value)
+
+    expected_rows = contract["coordinate_system"].get("mounting_axes_mm", [])
+    expected = [point(row) for row in expected_rows]
+    valid_expected = (len(expected) == 4 and None not in expected
+                      and len(set(expected)) == 4)
+    if not valid_expected:
+        errors.append("exactly four finite distinct assembly mounting axes are required")
+    valid_width = (not isinstance(width, bool) and isinstance(width, (int, float))
+                   and math.isfinite(width) and width > 0)
+    if not valid_width:
+        errors.append("assembly board width must be finite and positive")
+
+    boards = placement.get("boards", [])
+    if len(boards) != 2 or sorted(b.get("project", "") for b in boards) != sorted(projects):
+        errors.append("mounting axes require exactly one UI and one RF placement report")
+    results = []
+    for project in projects:
+        found = [b for b in boards if b.get("project") == project]
+        rows = found[0].get("mechanical", []) if len(found) == 1 else []
+        ids = [row.get("id") for row in rows]
+        native = [point(row.get("centre_mm")) for row in rows]
+        valid_native = (len(rows) == 4 and set(ids) == {"MH1", "MH2", "MH3", "MH4"}
+                        and None not in native and len(set(native)) == 4)
+        world = [
+            (width - xy[0], xy[1]) if project == "LESHY2-RF-R2" else xy
+            for xy in native
+        ] if valid_native and valid_width else []
+        matches = bool(valid_expected and valid_native and valid_width
+                       and set(world) == set(expected))
+        if not matches:
+            errors.append(f"{project}: four unique mounting holes do not match the assembly axes")
+        results.append({
+            "project": project,
+            "native_to_assembly": "xw=width-x, yw=y" if project == "LESHY2-RF-R2" else "xw=x, yw=y",
+            "hole_count": len(rows),
+            "world_axes_mm": [list(xy) for xy in sorted(world)],
+            "matches_assembly_axes": matches,
+        })
+    return {"status": "fail" if errors else "pass", "boards": results, "errors": errors}
 
 
 def evaluate_connector_fit(contract: dict) -> dict:
@@ -126,16 +187,9 @@ def evaluate(contract: dict, placement: dict) -> dict:
     if tip_clearance_min < float(nut_recess["minimum_tip_clearance_to_outer_surface_mm"]):
         errors.append("screw tip can reach the rear exterior")
 
-    placement_axes = {
-        tuple(row["centre_mm"])
-        for board in placement["boards"]
-        for row in board["mechanical"]
-    }
+    mounting = evaluate_mounting_axes(contract, placement)
+    errors.extend(mounting["errors"])
     contract_axes = {tuple(row) for row in contract["coordinate_system"]["mounting_axes_mm"]}
-    if placement_axes != contract_axes:
-        errors.append("mechanical axes differ from the two native H6 PCB files")
-    if len(contract_axes) != 4:
-        errors.append("exactly four distinct mounting axes are required")
 
     capture = mechanical["edge_capture"]
     if capture["segments_per_board"] != 4 or len(capture["y_segments_mm"]) != 2:
@@ -221,7 +275,9 @@ def evaluate(contract: dict, placement: dict) -> dict:
         },
         "geometry": {
             "mounting_axis_count": len(contract_axes),
-            "mounting_axes_match_native_pcbs": placement_axes == contract_axes,
+            "mounting_axes_match_native_pcbs": mounting["status"] == "pass",
+            "mounting_axes_by_board": mounting["boards"],
+            "mounting_axis_scope": "each native placement report transformed to assembly coordinates; current PCB binding requires the separate native placement-signature check",
             "bearing_annulus_inside_8mm_keepout": mechanical["bearing_annulus_outside_diameter_mm"] <= 8.0,
             "calculated_minimum_pilot_diametral_clearance_mm": round(calculated_pilot_clearance, 3),
             "capture_segments_per_board": capture["segments_per_board"],

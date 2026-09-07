@@ -1,4 +1,5 @@
 import importlib.util
+import copy
 import json
 import unittest
 from pathlib import Path
@@ -15,6 +16,43 @@ class UserSilkscreenTests(unittest.TestCase):
     def setUpClass(cls):
         cls.contract = json.loads((ROOT / "hardware/layout/h6-r2-placement-contract.json").read_text())
         cls.boards = json.loads((ROOT / "hardware/layout/generated/H6-R2-placement-audit.json").read_text())["boards"]
+
+    def test_antenna_labels_follow_identity_not_list_or_dictionary_order(self):
+        board = next(b for b in self.boards if b["project"] == "LESHY2-RF-R2")
+        contract = copy.deepcopy(self.contract)
+        ports = contract["antenna_ports"][board["project"]]
+        contract["antenna_ports"][board["project"]] = dict(reversed(list(ports.items())))
+        found = {r["instance"]: r for r in SILK.labels(board["project"], list(reversed(board["placements"])), contract)
+                 if r["role"] == "antenna"}
+        self.assertEqual(("UHF TX", [51.75, 15.2]),
+                         (found["voice_external_sma"]["text"], found["voice_external_sma"]["at_mm"]))
+        self.assertEqual(("VHF TX", [63.5, 15.2]),
+                         (found["voice_v_external_sma"]["text"], found["voice_v_external_sma"]["at_mm"]))
+        rows = copy.deepcopy(board["placements"])
+        next(r for r in rows if r["instance"] == "voice_external_sma")["footprint_anchor_mm"][0] = 52.0
+        label = next(r for r in SILK.labels(board["project"], rows, contract) if r["instance"] == "voice_external_sma")
+        self.assertEqual([52.0, 15.2], label["at_mm"])
+
+    def test_all_ten_path_names_agree_with_the_h1_identity_not_position(self):
+        placement = json.loads((ROOT / "hardware/product-design/h1-r2-placement.json").read_text())
+        h1 = {r["path"]: r["text"] for face in ("front", "rear") for r in placement["antenna_silkscreen"][face]}
+        self.assertEqual(10, len(SILK.ANTENNA_INTERFACES))
+        self.assertEqual(h1, {path: text for path, text, _ in SILK.ANTENNA_INTERFACES.values()})
+
+    def test_signal_identity_requires_the_actual_pad_not_just_label(self):
+        board = next(b for b in self.boards if b["project"] == "LESHY2-RF-R2")
+        rows = copy.deepcopy(board["placements"])
+        for row in rows:
+            if row["instance"] in SILK.ANTENNA_INTERFACES:
+                row["signal_pad_nets"] = [SILK.ANTENNA_INTERFACES[row["instance"]][2]]
+        self.assertEqual([], SILK.antenna_signal_findings(board["project"], rows, self.contract))
+        uhf = next(r for r in rows if r["instance"] == "voice_external_sma")
+        for wrong in ([], ["VOICE_V_EXTERNAL_RF_50R"], ["POWER_GROUND"], ["VOICE_U_EXTERNAL_RF_50R"] * 2):
+            uhf["signal_pad_nets"] = wrong
+            found = SILK.antenna_signal_findings(board["project"], rows, self.contract)
+            self.assertEqual(1, len(found))
+            self.assertEqual("antenna_signal_identity_mismatch", found[0]["kind"])
+
 
     def test_every_service_button_has_two_outer_face_labels(self):
         for board in self.boards:
