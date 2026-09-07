@@ -17,7 +17,7 @@ and completed results live in the [report index](stage-results.md).
 | H0 · Requirements and architecture | ✅ Reviewed · R2 | functions, owners and safety boundary are coherent | [H0-R2](h0-r2-functional-architecture.md) |
 | H1 · Physical design | ✅ Reviewed · `H1-R2.39` | exterior, exact bodies, cables and assembly fit | [H1-R2](h1-r2-acceptance.md) |
 | H2 · Production ECAD | ✅ Reviewed · `H2-R2.1.5` | two native schematics, pin/net parity and ERC pass | [H2-R2](h2-acceptance.md) |
-| H3 · Virtual electrical verification | ✅ Reviewed · `H3-R2.7` | every pre-layout calculable corner passes and physical residuals are owned | [H3-R2](h3-r2-acceptance.md) |
+| H3 · Virtual electrical verification | Reviewed analytical baseline · `H3-R2.7`; current native power [reopened in H6](h6-r2-electrical-semantics.md#native-power-prerequisites--reopened) | every pre-layout calculable corner passes against the fitted circuit and physical residuals are owned; retained calculations do not yet qualify current power | [H3-R2](h3-r2-acceptance.md) |
 | H4 · Joined pre-layout gate | ✅ Reviewed · `H4-R2.3` | hardware and firmware boundaries reconcile | [H4-R2](h4-r2-acceptance.md) |
 | H5 · Components and procurement routes | ✅ Reviewed · `H5-R2.1` | every group has a controlled route; order-time recheck remains mandatory | [H5-R2](h5-r2-current-route.md) |
 | **H6 · Placement, routing and release candidate** | **▶ Current · `H6.0.3-R1`** | all copper, repeated electrical/mechanical checks and production outputs pass | [Current checkpoint](h6-r2-current-routing.md) |

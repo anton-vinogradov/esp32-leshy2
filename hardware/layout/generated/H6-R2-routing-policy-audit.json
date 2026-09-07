@@ -5,8 +5,8 @@
   "status": "pass",
   "source_hashes": {
     "hardware/layout/h6-r2-routing-policy.json": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
-    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "72f8547ebaba32fb5c0a8ee6bdc88404e5ec00465f20f6ed1c1b2fafae5ee9be",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "023e37751cb0fa15e2b71a9cf798f7e078577877465e98af64fb7c470aa80c14",
+    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "9adab0254480b69da2e1a33c875cafc1b7d9680543e1876e9468ee1e979cbfc7",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "c51d4666ffea0be2006d1c85931fadc97feeaaec2d65d6efc342a5974cf4857d",
     "hardware/verification/h3-r2-load-binding-contract.json": "48d2575032bac09bd8ea276e814c16fbb1f76ca6afe0cea0dd36cee2e8c2a384",
     "hardware/layout/h6-r2-placement-contract.json": "52c4deffb903282ae221e4ee9e700e8269182098a7759da9eeee6835ae09f6e9"
   },

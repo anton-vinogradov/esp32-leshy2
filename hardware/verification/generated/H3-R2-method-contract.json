@@ -4,13 +4,13 @@
   "marker": "H3-R2.0.3",
   "status": "pass",
   "accepted_input": "H3-R2.0.2",
-  "input_freeze_sha256": "f54647af1bf3bd9035cfbbc3c3606684b101b724acd649dc05b378524b9c0347",
-  "parameter_register_sha256": "7fd90f451aac862276275f95710e80af76daabf15fde50677024cab7b666e89d",
-  "method_contract_sha256": "8bb4af4ae73ea697f41f966a238d4d9ba592fa66186cb09bf5412b2dedc9eb5b",
+  "input_freeze_sha256": "fcfb89d595820557f182b2d0c741fb483328bf5ab61d9581e704adeb862ab3f1",
+  "parameter_register_sha256": "1b1081ca9b85f43b467e84b13c3012e991463b88d0bdab0a42d1bab93196f301",
+  "method_contract_sha256": "4ed7f08c4dc322c2d98ee90398d53553ebeddeedc2f50916ffb90bbfc5906c60",
   "source_sha256": {
     "hardware/verification/h3-r2-method-contract.json": "658b4d1e4e64d62c7000b3bd764daac90c019b62bd389ae4cadcc44aa4622eed",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "51a9bc53ab14d7ef4af74325940b3dae08b0f934d1df0499ba0f2efb41b51764",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "14814114d5546a875d721bebf3876e1b56784d5ff5e3dba824c45c6b6157c2d6"
+    "hardware/verification/generated/H3-R2-input-freeze.json": "47f311aa8f3b4a3ac1d34ffd33c455f1c949a565dc4fc1c02ea887df31281153",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "f42e83d1f105bf532e7cae0f4203f161d3fcc3ee82970dfb5912ec8c0ec1c3b4"
   },
   "toolchain": {
     "python": ">=3.12,<3.15",
@@ -399,8 +399,8 @@
         "M-THERMAL",
         "M-TRANS"
       ],
-      "parameter_state": "explicit_extraction_queue",
-      "missing_parameter_disposition": "unresolved_fail"
+      "parameter_state": "structured_seed_present",
+      "missing_parameter_disposition": "evaluate_authoritative_corners"
     },
     {
       "device_id": "coilcraft_wbc1_1tlc",
@@ -415,8 +415,8 @@
         "M-THERMAL",
         "M-TRANS"
       ],
-      "parameter_state": "explicit_extraction_queue",
-      "missing_parameter_disposition": "unresolved_fail"
+      "parameter_state": "structured_seed_present",
+      "missing_parameter_disposition": "evaluate_authoritative_corners"
     },
     {
       "device_id": "davies_1227_j",
@@ -4114,7 +4114,7 @@
       "M-THERMAL": 113,
       "M-TRANS": 126
     },
-    "explicit_unresolved_until_extraction": 176,
+    "explicit_unresolved_until_extraction": 174,
     "open_method_questions": 0,
     "errors": 0
   },

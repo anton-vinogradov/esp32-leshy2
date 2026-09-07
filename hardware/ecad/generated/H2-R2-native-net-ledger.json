@@ -6,12 +6,12 @@
   "sources": {
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "f882612f3e2cc2fdc12f4b675cbdff9f8009e915697126847104e706a937f39c",
+      "sha256": "eef222700cf5874f2896bed964a68899a1d2025651d0e41f589fd1755f3493b0",
       "authority": true
     },
     "definitions": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "5a1163d97118354937e45a6f0da38837d25539171fd20dddd39ffdf8f484fbbb",
+      "sha256": "b76e512e7544e6ad9ac5a6bbf58ee7d20348ae1198b4be80ccce0efbcc0a5407",
       "authority": true
     },
     "h0": {
@@ -56,7 +56,7 @@
     },
     "topology": {
       "path": "hardware/ecad/h2-r2-topology-overrides.json",
-      "sha256": "f9a3b74c8e1550158335b103c4ffe16d8c7782087a588144c8595bfdf46fb3ae",
+      "sha256": "f34c29f73a1c91ddc8def7d31e6770ddfba442e732e9fd087cb4a77f5a0789e3",
       "authority": true
     },
     "historical_route_contract": {
@@ -21972,15 +21972,15 @@
       "historical_topology_authority": false
     },
     {
-      "endpoint": "air_mixer_input_transformer.PRI_CT",
+      "endpoint": "air_mixer_input_transformer.NC_5",
       "instance": "air_mixer_input_transformer",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_21_BROADCAST_AIRBAND_RX",
       "reference": "U56",
       "device_id": "coilcraft_wbc1_1tlc",
-      "contact": "PRI_CT",
+      "contact": "NC_5",
       "physical": "5",
-      "role": "rf",
+      "role": "nc",
       "disposition": "no_connect",
       "net": null,
       "origin": "current_r2_board_local_topology",
@@ -22122,15 +22122,15 @@
       "historical_topology_authority": false
     },
     {
-      "endpoint": "air_mixer_output_transformer.PRI_CT",
+      "endpoint": "air_mixer_output_transformer.NC_5",
       "instance": "air_mixer_output_transformer",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_21_BROADCAST_AIRBAND_RX",
       "reference": "U57",
       "device_id": "coilcraft_wbc16_1tlc",
-      "contact": "PRI_CT",
+      "contact": "NC_5",
       "physical": "5",
-      "role": "rf",
+      "role": "nc",
       "disposition": "no_connect",
       "net": null,
       "origin": "current_r2_board_local_topology",

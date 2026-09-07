@@ -5,9 +5,9 @@
   "status": "pass",
   "method": "KiCad 10 kicadxml export joined by exact reference/pin to the reviewed H2 native net ledger",
   "source_hashes": {
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "f882612f3e2cc2fdc12f4b675cbdff9f8009e915697126847104e706a937f39c",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "023e37751cb0fa15e2b71a9cf798f7e078577877465e98af64fb7c470aa80c14",
-    "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "76a840434d9bf7ce69376d9d6fcb4070f046ba35aabbabdd4fccc7e90279dba9",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "eef222700cf5874f2896bed964a68899a1d2025651d0e41f589fd1755f3493b0",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "c51d4666ffea0be2006d1c85931fadc97feeaaec2d65d6efc342a5974cf4857d",
+    "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "3792b8ac6d3bf9234c08e9da0587e7fc710545204b3e7e8aced54dfb23fadb39",
     "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch": "43910ab937fd3f95a140f664d6fbaca72d8dc6e9bf60cf46e5eae24158eddf50",
     "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_sch": "2d20cc84e34a33e8f6339a846a21ef9c2b3c9d2d53aeaad744f87fadc9a82069"
   },

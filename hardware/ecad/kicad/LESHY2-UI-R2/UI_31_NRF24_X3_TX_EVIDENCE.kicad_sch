@@ -1391,7 +1391,7 @@
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Footprint" "Leshy2:DC2337J5010AHF"
+			(property "Footprint" "Leshy2_R2:DC2337J5010AHF"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -9029,7 +9029,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Leshy2:DC2337J5010AHF"
+		(property "Footprint" "Leshy2_R2:DC2337J5010AHF"
 			(at 878.84 300.99 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9571,7 +9571,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Leshy2:DC2337J5010AHF"
+		(property "Footprint" "Leshy2_R2:DC2337J5010AHF"
 			(at 147.32 336.55 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10113,7 +10113,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Leshy2:DC2337J5010AHF"
+		(property "Footprint" "Leshy2_R2:DC2337J5010AHF"
 			(at 513.08 336.55 0)
 			(show_name no)
 			(do_not_autoplace no)

@@ -7,19 +7,19 @@
     "contract": "hardware/layout/h6-r2-placement-contract.json",
     "contract_sha256": "52c4deffb903282ae221e4ee9e700e8269182098a7759da9eeee6835ae09f6e9",
     "placement_freeze": "hardware/layout/h6-r2-placement-freeze.json",
-    "placement_freeze_sha256": "23a27192452dbd383c2fa3178d501b4f00583445332fba40f632820a2b06dcd2",
+    "placement_freeze_sha256": "77e508609938b1ca0812c88b7914893024bb0eff04579ec7e04845d28442f620",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
     "coordinate_model_sha256": "cc2aaeacd6de560fb728ef82767184738e24bbf831a6cc706c70299cf2077636",
     "instance_ledger": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-    "instance_ledger_sha256": "f882612f3e2cc2fdc12f4b675cbdff9f8009e915697126847104e706a937f39c",
+    "instance_ledger_sha256": "eef222700cf5874f2896bed964a68899a1d2025651d0e41f589fd1755f3493b0",
     "net_ledger": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-    "net_ledger_sha256": "023e37751cb0fa15e2b71a9cf798f7e078577877465e98af64fb7c470aa80c14",
+    "net_ledger_sha256": "c51d4666ffea0be2006d1c85931fadc97feeaaec2d65d6efc342a5974cf4857d",
     "symbol_library": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-    "symbol_library_sha256": "76a840434d9bf7ce69376d9d6fcb4070f046ba35aabbabdd4fccc7e90279dba9",
+    "symbol_library_sha256": "3792b8ac6d3bf9234c08e9da0587e7fc710545204b3e7e8aced54dfb23fadb39",
     "kicad_net_bindings": "hardware/layout/generated/H6-R2-kicad-net-bindings.json",
-    "kicad_net_bindings_sha256": "72f8547ebaba32fb5c0a8ee6bdc88404e5ec00465f20f6ed1c1b2fafae5ee9be"
+    "kicad_net_bindings_sha256": "9adab0254480b69da2e1a33c875cafc1b7d9680543e1876e9468ee1e979cbfc7"
   },
   "summary": {
     "board_count": 2,
@@ -11823,16 +11823,16 @@
           "reference": "U3",
           "sheet": "UI_10_S3_DISPLAY_TOUCH",
           "side": "B.Cu",
-          "footprint": "Leshy2:CP0603Q5425ENTR",
+          "footprint": "Leshy2_R2:CP0603Q5425ENTR",
           "method": "reviewed H6.0.3 edge-launch-land clearance correction",
           "courtyard_bbox_mm": {
             "x": [
-              27.23,
-              29.27
+              27.18,
+              29.32
             ],
             "y": [
-              4.1049999999999995,
-              5.495
+              4.055,
+              5.545
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
@@ -12200,16 +12200,16 @@
           "reference": "U16",
           "sheet": "UI_20_C5_WIFI_IR_SERVICE",
           "side": "B.Cu",
-          "footprint": "Leshy2:CP0603Q5425ENTR",
+          "footprint": "Leshy2_R2:CP0603Q5425ENTR",
           "method": "nearest exact-footprint correction",
           "courtyard_bbox_mm": {
             "x": [
-              55.73,
-              57.77
+              55.68,
+              57.82
             ],
             "y": [
-              6.055,
-              7.445
+              6.005,
+              7.495
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
@@ -12780,7 +12780,7 @@
           "reference": "U36",
           "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
           "side": "B.Cu",
-          "footprint": "Leshy2:DC2337J5010AHF",
+          "footprint": "Leshy2_R2:DC2337J5010AHF",
           "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
@@ -12788,8 +12788,8 @@
               12.015
             ],
             "y": [
-              8.16,
-              9.84
+              8.14,
+              9.86
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
@@ -12896,7 +12896,7 @@
           "reference": "U40",
           "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
           "side": "B.Cu",
-          "footprint": "Leshy2:DC2337J5010AHF",
+          "footprint": "Leshy2_R2:DC2337J5010AHF",
           "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
@@ -12904,8 +12904,8 @@
               43.53
             ],
             "y": [
-              17.995,
-              19.675
+              17.975,
+              19.695
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
@@ -13012,12 +13012,12 @@
           "reference": "U44",
           "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
           "side": "B.Cu",
-          "footprint": "Leshy2:DC2337J5010AHF",
+          "footprint": "Leshy2_R2:DC2337J5010AHF",
           "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              68.175,
-              69.855
+              68.155,
+              69.875
             ],
             "y": [
               12.72,
@@ -13473,8 +13473,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "unrouted_seed_sha256": "de2189f9feff0e89c6d4b3214baf610aba27641f009ad0b6e8a45ebd68b31d3e",
-      "placement_signature_sha256": "7c5fc5ccab9f6408dc8152360d175da6810c65b10adef76bd1289c6e560de3e0",
+      "unrouted_seed_sha256": "f48d6cf9aa6493b9ef2ea2cc63bfab6f2c5fca4244df0428064a82874a425a25",
+      "placement_signature_sha256": "b6ba51d138fb586cc09accf64f2bd65d53087c41802c9e628a83e205cf3abf8d",
       "locality": {
         "status": "pass",
         "pair_count": 52,
@@ -35121,12 +35121,12 @@
           "reference": "U29",
           "sheet": "RF_20_CC1101_VOICE_TX",
           "side": "B.Cu",
-          "footprint": "Leshy2:B0310J50100AHF",
+          "footprint": "Leshy2_R2:B0310J50100AHF",
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              71.35,
-              73.03
+              71.335,
+              73.045
             ],
             "y": [
               32.099999999999994,
@@ -35904,16 +35904,16 @@
           "reference": "U56",
           "sheet": "RF_21_BROADCAST_AIRBAND_RX",
           "side": "B.Cu",
-          "footprint": "Leshy2_R2:Coilcraft_WBC_6P_4.45x4.19mm",
+          "footprint": "Leshy2_R2:WBC1-1TLC",
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              14.850000000000001,
-              21.240000000000002
+              15.525000000000002,
+              20.565
             ],
             "y": [
-              15.35,
-              20.54
+              15.555,
+              20.335
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
@@ -35933,16 +35933,16 @@
           "reference": "U57",
           "sheet": "RF_21_BROADCAST_AIRBAND_RX",
           "side": "B.Cu",
-          "footprint": "Leshy2_R2:Coilcraft_WBC_6P_4.45x4.19mm",
+          "footprint": "Leshy2_R2:WBC16-1TLC",
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              21.6,
-              26.79
+              21.805,
+              26.585
             ],
             "y": [
-              14.850000000000001,
-              21.240000000000002
+              15.525000000000002,
+              20.565
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
@@ -38279,8 +38279,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "68b9f0ec3ff5f047c63eb2b74ef1282743eced4b8248b943f29ef5e1dc5f3b23",
-      "placement_signature_sha256": "e62ef610a99c7f7e7605cb4c247f22eb5398adeb4c7d60f07fce90923bee16ce",
+      "unrouted_seed_sha256": "a2552823d505122d7453914a8f14cd940e50b8bf0450b0cd86653cb7e085e7d9",
+      "placement_signature_sha256": "12e1599fea20db4b9cc32475251ced33836947a79c80d8152535b4545b377815",
       "locality": {
         "status": "pass",
         "pair_count": 259,

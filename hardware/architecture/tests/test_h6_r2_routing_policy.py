@@ -186,16 +186,16 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual("H6.0.3-R1", audit["marker"])
         self.assertEqual("pass_progress", audit["status"])
         self.assertFalse(audit["phase_complete"])
-        self.assertEqual(869, audit["summary"]["track_via_item_count"])
-        self.assertEqual(214, audit["summary"]["resolved_connection_count"])
-        self.assertEqual(3054, audit["summary"]["current_total_unconnected_count"])
+        self.assertEqual(787, audit["summary"]["track_via_item_count"])
+        self.assertEqual(188, audit["summary"]["resolved_connection_count"])
+        self.assertEqual(3080, audit["summary"]["current_total_unconnected_count"])
         self.assertEqual(232, audit["summary"]["analog_remaining_connection_count"])
         self.assertEqual(311, audit["summary"]["placement_locality_pair_count"])
         self.assertEqual(0, audit["summary"]["placement_locality_violation_count"])
         size = audit["board_size_review"]
         self.assertEqual("retain_80x150_mm", size["decision"])
-        # Exact DRT-3 replaces oversized SOT-23 at three existing anchors.
-        self.assertEqual(61.301, size["maximum_same_face_courtyard_occupancy_percent"])
+        # Corrected exact RF package courtyards preserve the accepted anchors.
+        self.assertEqual(61.15, size["maximum_same_face_courtyard_occupancy_percent"])
         self.assertEqual([85.0, 150.0], size["expansion_candidate_if_triggered_mm"])
         self.assertEqual(5, len(size["requalification_after_any_outline_or_anchor_change"]))
         boards = {row["project"]: row for row in audit["boards"]}
@@ -227,11 +227,11 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual("in_progress", contract["status"])
         self.assertEqual("pass", audit["status"])
         self.assertEqual([], audit["errors"])
-        self.assertEqual(129, audit["summary"]["route_count"])
-        self.assertEqual(699, audit["summary"]["segment_count"])
-        self.assertEqual(214, audit["summary"]["resolved_connection_count"])
-        self.assertEqual(170, audit["summary"]["via_count"])
-        self.assertEqual(109, audit["summary"]["manual_only_route_count"])
+        self.assertEqual(106, audit["summary"]["route_count"])
+        self.assertEqual(622, audit["summary"]["segment_count"])
+        self.assertEqual(188, audit["summary"]["resolved_connection_count"])
+        self.assertEqual(165, audit["summary"]["via_count"])
+        self.assertEqual(86, audit["summary"]["manual_only_route_count"])
         self.assertEqual(20, audit["summary"]["local_ground_join_route_count"])
         self.assertTrue(
             {row["routing_class"] for row in audit["routes"]}
@@ -260,7 +260,44 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
                 stderr=subprocess.STDOUT,
             )
             self.assertEqual(0, result.returncode, result.stdout)
-            self.assertIn("129 routes; 699 segments; 214 resolved connections", result.stdout)
+            self.assertIn("106 routes; 622 segments; 188 resolved connections", result.stdout)
+
+    def test_corrected_rf_packages_withdraw_only_the_exact_invalidated_routes(self):
+        contract = json.loads(MANUAL_COPPER_CONTRACT.read_text(encoding="utf-8"))
+        audit = json.loads(MANUAL_COPPER_AUDIT.read_text(encoding="utf-8"))
+        rework = contract["rf_package_rework"]
+        expected = {
+            "RF-AIRBAND-T1-SEC-CT",
+            "RF-AIRBAND-T1-SEC-N",
+            "RF-CC1101-UNBALANCED-MATCH",
+            *(f"UI-{module}-{suffix}" for module in ("C5", "S3")
+              for suffix in ("COUPLED-SAMPLE", "COUPLER-TERM", "EXTERNAL-RF", "MODULE-RF")),
+            *(f"UI-NRF{index}-{suffix}" for index in range(3)
+              for suffix in ("COUPLER-TERM", "EXTERNAL-RF", "FORWARD-SAMPLE", "MODULE-RF")),
+        }
+        withdrawn = rework["withdrawn_route_ids"]
+        self.assertEqual(23, len(withdrawn))
+        self.assertEqual(expected, set(withdrawn))
+        self.assertEqual(
+            {"LESHY2-UI-R2": {"U3", "U16", "U36", "U40", "U44"},
+             "LESHY2-RF-R2": {"U29", "U56", "U57"}},
+            {project: set(refs) for project, refs in rework["affected_references"].items()},
+        )
+        self.assertEqual(8, sum(len(refs) for refs in rework["affected_references"].values()))
+        active = [row["id"] for row in contract["routes"]]
+        replayed = [row["id"] for row in audit["routes"]]
+        self.assertEqual(106, len(active))
+        self.assertEqual(106, len(set(active)))
+        self.assertEqual(106, len(replayed))
+        self.assertEqual(set(active), set(replayed))
+        self.assertTrue(expected.isdisjoint(active))
+        self.assertTrue(expected.isdisjoint(replayed))
+        self.assertIs(False, rework["release_authorized"])
+        for document in (contract, audit):
+            self.assertEqual(
+                {"routing_in_progress": True, "fabrication": False, "ordering": False},
+                document["authorization"],
+            )
 
     def test_h6_release_substep_ids_are_unique_and_end_at_h609(self):
         plan = json.loads(RELEASE_PLAN.read_text(encoding="utf-8"))
@@ -419,7 +456,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         for script, expected in (
             (PLACEMENT_FREEZE_SCRIPT, "1208 exact anchors"),
             (GENERAL_ROUTING_SCRIPT, "historical routing evidence preserved; current H6.0.3-R1"),
-            (CURRENT_ROUTING_SCRIPT, "869 copper items; 214 resolved; 3054 remain"),
+            (CURRENT_ROUTING_SCRIPT, "787 copper items; 188 resolved; 3080 remain"),
         ):
             result = subprocess.run(
                 [str(KICAD_PYTHON), str(script), "--check"],

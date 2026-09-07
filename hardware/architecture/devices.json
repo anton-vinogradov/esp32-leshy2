@@ -5403,7 +5403,7 @@
         "directivity_min_db": 20,
         "return_loss_min_db": {"2400_2496": 30, "4900_5950": 25},
         "continuous_power_w": 5,
-        "orientation_rule": "manufacturer names the four lands by top-view function rather than numeric pin; footprint must preserve IN/OUT/COUPLING/50-OHM orientation from the exact drawing"
+        "orientation_rule": "TDS-RFM-0055 Rev.2 p69 top view numbers 1=IN, 2=OUT, 3=COUPLING, 4=50 OHM. Current footprint uses these functional pad aliases and rotates the portrait terminal diagram onto its long-X land pattern; IN/OUT run along the long body axis."
       },
       "programmable": false,
       "contacts": {
@@ -9300,7 +9300,7 @@
       "electrical_contract": {
         "operating_band_mhz": [2000, 4000],
         "nrf_channel_0_to_125_coverage_mhz": [2400, 2525],
-        "configuration": "datasheet configuration 2: pin 1 input, pin 6 direct output, pin 2 forward coupled, pin 5 isolated/reverse termination",
+        "configuration": "datasheet configuration 1: pin 1 input, pin 6 direct output, pin 2 forward coupled, pin 5 isolated/reverse termination",
         "coupling_db_2400_2500_min_max": [10.0, 11.1],
         "coupling_db_2500_3300_min_max": [10.0, 11.2],
         "mainline_insertion_loss_db_max_2400_2500": 0.22,
@@ -10342,7 +10342,8 @@
       "orderable_source": {"document": "JLCPCB exact Coilcraft card C19191631; SMT, Economic and Standard PCBA, 1,071 in stock, 1,064 available, MOQ 1", "url": "https://jlcpcb.com/partdetail/Coilcraft-WBC11TLC/C19191631", "checked": "2026-09-02"},
       "cost": {"currency": "USD", "target_quantity": 1, "unit_price_usd": 4.2829, "price_break": "JLCPCB one-piece tier", "source": {"document": "JLCPCB C19191631 live price table", "url": "https://jlcpcb.com/partdetail/Coilcraft-WBC11TLC/C19191631", "checked": "2026-09-02"}},
       "programmable": false,
-      "contacts": {"SEC_A": {"physical": "1", "role": "rf"}, "SEC_CT": {"physical": "2", "role": "rf"}, "SEC_B": {"physical": "3", "role": "rf"}, "PRI_A": {"physical": "4", "role": "rf"}, "PRI_CT": {"physical": "5", "role": "rf"}, "PRI_B": {"physical": "6", "role": "rf"}}
+      "electrical_contract": {"manufacturer_schematic": "Coilcraft Document 424-1, schematic B", "secondary_winding_pins": ["1", "2", "3"], "primary_winding_pins": ["4", "6"], "unconnected_pin": "5", "note": "Only the secondary has a centre tap. Do not infer a primary centre tap or a DC connection through pin 5 from schematic C."},
+      "contacts": {"SEC_A": {"physical": "1", "role": "rf"}, "SEC_CT": {"physical": "2", "role": "rf"}, "SEC_B": {"physical": "3", "role": "rf"}, "PRI_A": {"physical": "4", "role": "rf"}, "NC_5": {"physical": "5", "role": "nc"}, "PRI_B": {"physical": "6", "role": "rf"}}
     },
     "coilcraft_wbc16_1tlc": {
       "mpn": "WBC16-1TLC", "manufacturer": "Coilcraft", "kind": "one_to_sixteen_wideband_rf_transformer_smd6",
@@ -10353,7 +10354,8 @@
       "cost": {"currency": "USD", "target_quantity": 1, "unit_price_usd": 10.2728, "price_break": "last displayed JLCPCB one-piece tier; not a live-stock quotation", "source": {"document": "JLCPCB C22402290 zero-stock price table", "url": "https://jlcpcb.com/partdetail/Coilcraft-WBC161TLC/C22402290", "checked": "2026-09-02"}},
       "replacement_candidate": {"mpn": "H3-TC16-161T+", "manufacturer": "HenryTech", "lcsc_part": "C22383426", "qualification": "official manufacturer positions it as a TC16-161T+ equivalent; 1:16, 0.6-160 MHz, 50 ohm, SMT; exact JLCPCB Standard-PCBA route still to be confirmed before BOM replacement", "source": {"document": "HenryTech product catalogue and LCSC exact product record", "url": "https://www.hltchips.com/en/product.html?cid=121&page=3", "checked": "2026-09-02"}},
       "programmable": false,
-      "contacts": {"SEC_A": {"physical": "1", "role": "rf"}, "SEC_CT": {"physical": "2", "role": "rf"}, "SEC_B": {"physical": "3", "role": "rf"}, "PRI_A": {"physical": "4", "role": "rf"}, "PRI_CT": {"physical": "5", "role": "rf"}, "PRI_B": {"physical": "6", "role": "rf"}}
+      "electrical_contract": {"manufacturer_schematic": "Coilcraft Document 424-1, schematic B", "secondary_winding_pins": ["1", "2", "3"], "primary_winding_pins": ["4", "6"], "unconnected_pin": "5", "note": "Only the secondary has a centre tap. Do not infer a primary centre tap or a DC connection through pin 5 from schematic C."},
+      "contacts": {"SEC_A": {"physical": "1", "role": "rf"}, "SEC_CT": {"physical": "2", "role": "rf"}, "SEC_B": {"physical": "3", "role": "rf"}, "PRI_A": {"physical": "4", "role": "rf"}, "NC_5": {"physical": "5", "role": "nc"}, "PRI_B": {"physical": "6", "role": "rf"}}
     },
     "suzhou_liming_3225_27_00_10_10_10_a": {
       "mpn": "3225-27.00-10-10-10/A", "manufacturer": "Suzhou Liming Electronic", "kind": "27mhz_10pf_10ppm_crystal_3225",

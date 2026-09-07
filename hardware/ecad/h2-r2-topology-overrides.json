@@ -548,7 +548,7 @@
     "air_lna_to_t1_dc_block.END_2": "AIR_T1_PRI",
 
     "air_mixer_input_transformer.PRI_A": "POWER_GROUND",
-    "air_mixer_input_transformer.PRI_CT": null,
+    "air_mixer_input_transformer.NC_5": null,
     "air_mixer_input_transformer.PRI_B": "AIR_T1_PRI",
     "air_mixer_input_transformer.SEC_A": "AIR_T1_SEC_P",
     "air_mixer_input_transformer.SEC_CT": "AIR_T1_SEC_CT",
@@ -583,7 +583,7 @@
     "air_mixer_output_transformer.SEC_CT": null,
     "air_mixer_output_transformer.SEC_B": "AIR_T2_SEC_B",
     "air_mixer_output_transformer.PRI_A": "AIR_CONVERTED_RAW_RF",
-    "air_mixer_output_transformer.PRI_CT": null,
+    "air_mixer_output_transformer.NC_5": null,
     "air_mixer_output_transformer.PRI_B": "POWER_GROUND",
     "air_t2_to_selector_dc_block.END_1": "AIR_CONVERTED_RAW_RF",
     "air_t2_to_selector_dc_block.END_2": "AIR_CONVERTED_RF",

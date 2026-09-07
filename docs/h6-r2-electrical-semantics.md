@@ -64,14 +64,34 @@ reports own the geometry and copper counts.
 
 ## What we obtained
 
-The final hardware regression run passed all **616 tests**. Visual inspection
+### RF package-view corrections
+
+The next visual drawing review found five affected exact-part groups, fitted
+at eight locations. Current-only footprints replace the incorrect geometry;
+the historical library remains unchanged.
+
+| Part / native references | Corrected physical interpretation | Primary drawing |
+| --- | --- | --- |
+| `B0310J50100AHF`, RF U29 | Mirror the manufacturer's **bottom** view to the component-side footprint; use the recommended PCB lands, not body-terminal dimensions. | [TTM Rev. F, pp1/4](https://cdn.ttm.com/repository/products/wireless-xinger/balun-transformers/B0310J50100AHF/B0310J50100AHF.pdf) |
+| `DC2337J5010AHF`, UI U36/U40/U44 | Same view correction; exact mounting-DXF lands and pin-location mark. The existing function map is configuration **1**, not 2. | [TTM Rev. H, p2](https://cdn.ttm.com/repository/products/wireless-xinger/10-20-30-dB-directional-couplers/DC2337J5010AHF/DC2337J5010AHF.pdf), [mounting DXF](https://cdn.ttm.com/repository/products/wireless-xinger/footprints/DCxxJ5010_15_20x.dxf) |
+| `CP0603Q5425ENTR`, UI U3/U16 | Rotate the portrait terminal diagram onto the landscape footprint. IN→OUT runs along the **long** axis; aliases retain manufacturer 1=IN, 2=OUT, 3=CPL, 4=TERM. | [KYOCERA AVX Rev. 2, printed p69](https://datasheets.kyocera-avx.com/cp0302.pdf) |
+| `WBC1-1TLC` / `WBC16-1TLC`, RF U56/U57 | Correct handedness and recommended lands: 1.14×0.76 mm, column spacing 3.05 mm instead of 4.57 mm. Schematic B has secondary tap 2, primary 4–6 and **no primary tap at 5**; the already-unconnected contact is renamed NC_5. | [Coilcraft Document 424-1/2](https://www.coilcraft.com/getmedia/f685d903-2563-4c96-8ba6-f82a58883aeb/wbc.pdf) |
+
+Component poses and intended net functions stay fixed, but the physical lands
+move. Copper attached to the old lands must be withdrawn or rerouted; it cannot
+be preserved as a verified route merely to keep progress counts unchanged.
+The [current routing report](h6-r2-current-routing.md) owns that revised count.
+These corrections do not qualify RF launches, return vias, matching or assembly
+stencil parameters.
+
+The final hardware regression run passed all **662 tests**. Visual inspection
 of the manufacturer PDF drawings resolved the package/view ambiguities;
 independent pad-map and native-connectivity tests now guard these corrections.
 
 The [hash-bound electrical audit](../hardware/verification/generated/H6-R2-electrical-semantics.json)
-now draws on **seven source maps with 1,289 reviewed pin types across 158
-exact-part groups**: digital, logic, power, analog/RF, protection, interfaces
-and selected passives. This is not a percentage of completed electrical
+now draws on **eight source maps with 1,333 reviewed pin types across 161
+exact-part groups**: digital, logic, power, analog/RF, protection, interfaces,
+selected passives, SA818S-U/V and the PD EEPROM. This is not a percentage of completed electrical
 verification. Mechanical pads, unreviewed parts and unresolved electrical pins
 remain in the inventory; uncertain types are not counted as verified passive
 pins. A passive RF terminal or connector contact proves neither matching/bias
@@ -85,10 +105,15 @@ original and typed XML exports. Their fresh isolated ERC reports:
 - RF/power: 17 `power_pin_not_driven` findings and one output-to-output finding
   on charger ACDRV1/ACDRV2, which share the ground net in the unused-driver
   configuration.
+- RF/power also has one `pin_not_driven` on the SA818S H/L net: the reviewed
+  open-drain driver deliberately permits low or floating, without a pull-up.
+  Exact three-endpoint/no-pull-up checks retain the finding, not suppress it.
 
 The additional RF supply finding comes from reviewing the PGA-103+ shared
 RF-output/DC-input pad: its external DC bias is a supply obligation, not a
-power source. In total, 22 power findings and one output conflict remain.
+power source. In total, 22 power findings, one output conflict and one input
+finding remain (24 native findings). SA818 DC-level/leakage limits and the
+required RXD-low-before-PD sequence still need verification.
 The linked audit owns the per-board results and membership-parity evidence;
 the electrical release gate remains open.
 
@@ -113,6 +138,29 @@ Their old outputs remain unchanged and cannot authorize R2; current native R2
 checks use the corrected live register.
 
 ## What remains
+
+### Native power prerequisites — reopened
+
+The [native-pin-bound power audit](../hardware/verification/h6_r2_power_startup.py)
+reports `review_required`. Its integrity tests pass; the power design does not
+thereby pass electrical acceptance. Existing H3 algebraic results are **not yet
+qualified against the current native power cell**:
+
+- RF R67 is 1.65 kΩ, while H3 uses the 1.18-kΩ protection envelope. Scaling
+  the 3.2-A datasheet row inversely for +1% resistor tolerance estimates
+  3.168 A against a 3.046-A modeled peak: about 4% reserve, not 25%. This is
+  a resistor-tolerance-only estimate, not a new TI guarantee across arbitrary
+  R/PVT. It also does not restore H0's 3.75-A continuous / 4.25-A step envelope.
+- H3 cites TPS564252 although RF U20 is TPS566231P.
+- The main Power-Good divider can require 3.171 V to assert, above the modeled
+  minimum protected rail of 3.109 V.
+- AON eFuse on-resistance was bounded using a different RILIM test condition.
+
+No production resistor is changed. The [stock-checked 1.18-kΩ candidate](../hardware/procurement/main-efuse-rilm-1180ohm-candidate.md)
+is not accepted until the complete current/voltage/thermal envelope, PGTH and
+AON startup margins are reconciled. Dependent H3 evidence must then be rerun.
+These checks do not prove NVDC cold-start, active-load transients, IC slew-rate
+spread or physical thermal performance. Connectivity does not prove startup.
 
 One exact-package question needs manufacturer clarification: `PAM8302AAYCR`
 (U-DFN3030-8 Type E) has a centre exposed pad drawn in
@@ -143,7 +191,8 @@ the exposed-pad connection remains unresolved.
 ```bash
 python3 hardware/verification/h6_r2_electrical_semantics.py --check
 python3 hardware/verification/h6_r2_electrical_source_triage.py --check
-python3 -m unittest hardware.architecture.tests.test_h6_r2_pinmap_corrections hardware.architecture.tests.test_h6_r2_electrical_semantics hardware.architecture.tests.test_h6_r2_electrical_source_triage
+python3 hardware/verification/h6_r2_power_startup.py --check
+python3 -m unittest discover -s hardware/architecture/tests -q
 ```
 
 These checks validate the partial evidence and its limitations, not a clean

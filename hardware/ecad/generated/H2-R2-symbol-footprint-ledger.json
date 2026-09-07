@@ -6,11 +6,11 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "e0e857536f50036753bcd9a55a161ff8779eaee83c6b46887abe98a75ea4e22d"
+      "sha256": "3beceada2ae6b2a21f419c72332fffd2ba0dda2d118ec774a5fae115c558a858"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "0abf082483aed8c2eca8c6ddfd43684bd1664266d5f0e06873554df05da5b767"
+      "sha256": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76"
     }
   },
   "historical_hint_sources": [
@@ -166,12 +166,12 @@
     "symbol_identity_count": 245,
     "footprint_identity_count": 245,
     "logical_contact_count": 1617,
-    "historical_package_hints_reconciled": 192,
+    "historical_package_hints_reconciled": 189,
     "historical_package_conflicts_resolved": 5,
-    "explicit_current_footprint_overrides": 53,
+    "explicit_current_footprint_overrides": 56,
     "standard_kicad_footprint_identities": 206,
-    "reconciled_local_footprint_definitions": 31,
-    "new_exact_footprint_geometries_materialized": 8,
+    "reconciled_local_footprint_definitions": 28,
+    "new_exact_footprint_geometries_materialized": 11,
     "schematic_symbols_or_footprint_files_created": 0,
     "native_schematic_nets_created": 0,
     "unresolved_groups": 0
@@ -1146,7 +1146,8 @@
       "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
       "logical_contact_count": 6,
       "contact_role_counts": {
-        "rf": 6
+        "nc": 1,
+        "rf": 5
       },
       "contact_map": {
         "SEC_A": {
@@ -1165,28 +1166,28 @@
           "physical": "4",
           "role": "rf"
         },
-        "PRI_CT": {
+        "NC_5": {
           "physical": "5",
-          "role": "rf"
+          "role": "nc"
         },
         "PRI_B": {
           "physical": "6",
           "role": "rf"
         }
       },
-      "contact_map_sha256": "b6035835a67e53bae8dff9d063be42b02ac60a7780ba126fa124e6748063c65d",
-      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contact_map_sha256": "5a3e0d631645b4eff63a594b739d9efba350e6ed37c8022187972bf7b75bb616",
+      "electrical_contract_sha256": "5409ef9812b648cdcc166e77d77a6e5494317c984c9b24cd2b66b6a7b047b4e3",
       "manufacturer_evidence": {
         "document": "Coilcraft WBC series official data sheet",
         "url": "https://www.coilcraft.com/getmedia/f685d903-2563-4c96-8ba6-f82a58883aeb/wbc.pdf",
         "checked": "2026-08-31"
       },
-      "footprint": "Leshy2_R2:Coilcraft_WBC_6P_4.45x4.19mm",
+      "footprint": "Leshy2_R2:WBC16-1TLC",
       "footprint_resolution": "explicit_current_override",
       "footprint_definition": {
         "status": "current_exact_local_definition_materialized",
-        "path": "hardware/ecad/libraries/Leshy2_R2.pretty/Coilcraft_WBC_6P_4.45x4.19mm.kicad_mod",
-        "sha256": "dadb60f46fb46be2afd795bc2746337c25f8006e082ceb2a27b8ba73176a860e"
+        "path": "hardware/ecad/libraries/Leshy2_R2.pretty/WBC16-1TLC.kicad_mod",
+        "sha256": "bda6f8dbda7e5b5d3bbfc98fe6be8312f39440d92b9f80bb1788b0112029feec"
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
@@ -1207,7 +1208,8 @@
       "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
       "logical_contact_count": 6,
       "contact_role_counts": {
-        "rf": 6
+        "nc": 1,
+        "rf": 5
       },
       "contact_map": {
         "SEC_A": {
@@ -1226,28 +1228,28 @@
           "physical": "4",
           "role": "rf"
         },
-        "PRI_CT": {
+        "NC_5": {
           "physical": "5",
-          "role": "rf"
+          "role": "nc"
         },
         "PRI_B": {
           "physical": "6",
           "role": "rf"
         }
       },
-      "contact_map_sha256": "b6035835a67e53bae8dff9d063be42b02ac60a7780ba126fa124e6748063c65d",
-      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "contact_map_sha256": "5a3e0d631645b4eff63a594b739d9efba350e6ed37c8022187972bf7b75bb616",
+      "electrical_contract_sha256": "5409ef9812b648cdcc166e77d77a6e5494317c984c9b24cd2b66b6a7b047b4e3",
       "manufacturer_evidence": {
         "document": "Coilcraft WBC series official data sheet",
         "url": "https://www.coilcraft.com/getmedia/f685d903-2563-4c96-8ba6-f82a58883aeb/wbc.pdf",
         "checked": "2026-08-31"
       },
-      "footprint": "Leshy2_R2:Coilcraft_WBC_6P_4.45x4.19mm",
+      "footprint": "Leshy2_R2:WBC1-1TLC",
       "footprint_resolution": "explicit_current_override",
       "footprint_definition": {
         "status": "current_exact_local_definition_materialized",
-        "path": "hardware/ecad/libraries/Leshy2_R2.pretty/Coilcraft_WBC_6P_4.45x4.19mm.kicad_mod",
-        "sha256": "dadb60f46fb46be2afd795bc2746337c25f8006e082ceb2a27b8ba73176a860e"
+        "path": "hardware/ecad/libraries/Leshy2_R2.pretty/WBC1-1TLC.kicad_mod",
+        "sha256": "b565d7ca421b2d4137a20b294e5f24f48c7ad1470ca138e96e839ed55b824e15"
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
@@ -4281,19 +4283,19 @@
         }
       },
       "contact_map_sha256": "4f3de26026f1842d68c8991b2ec0da3f7a1beaf7e14eacefa39fa91158f469df",
-      "electrical_contract_sha256": "2254fd5a8725897a723e461a44d8e5bdbb0030eda962b0bb93595f20468a6f97",
+      "electrical_contract_sha256": "a274166cd435b0132152df5baedd777eb730dfe76ea623aa0e912c54c810671c",
       "manufacturer_evidence": {
         "document": "CP0302/CP0402/CP0603 High Directivity Directional Couplers for WiFi Bands",
         "version": "TDS-RFM-0055 Rev. 2",
         "url": "https://datasheets.kyocera-avx.com/cp0302.pdf",
         "checked": "2026-08-18"
       },
-      "footprint": "Leshy2:CP0603Q5425ENTR",
-      "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",
+      "footprint": "Leshy2_R2:CP0603Q5425ENTR",
+      "footprint_resolution": "explicit_current_override",
       "footprint_definition": {
-        "status": "existing_manufacturer_derived_definition_reconciled",
-        "path": "hardware/ecad/libraries/Leshy2.pretty/CP0603Q5425ENTR.kicad_mod",
-        "sha256": "bf098242fb9348698d3a213851af9b1fcdb66438325a11eb2fcca729a514d195"
+        "status": "current_exact_local_definition_materialized",
+        "path": "hardware/ecad/libraries/Leshy2_R2.pretty/CP0603Q5425ENTR.kicad_mod",
+        "sha256": "89dfe4ff666211c3de823ac6fc5be7301f1d7e8785b44b700565be3efb25fb17"
       },
       "historical_hint_files": [
         "hardware/ecad/generated/H2-UI10-S3-core.json",
@@ -14445,12 +14447,12 @@
         "url": "https://cdn.ttm.com/repository/products/wireless-xinger/balun-transformers/B0310J50100AHF/B0310J50100AHF.pdf",
         "checked": "2026-08-18"
       },
-      "footprint": "Leshy2:B0310J50100AHF",
-      "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",
+      "footprint": "Leshy2_R2:B0310J50100AHF",
+      "footprint_resolution": "explicit_current_override",
       "footprint_definition": {
-        "status": "existing_manufacturer_derived_definition_reconciled",
-        "path": "hardware/ecad/libraries/Leshy2.pretty/B0310J50100AHF.kicad_mod",
-        "sha256": "b1bd2b6d78bda7bfac05479c2e41a9f65420b30217ed1f08a3291f66e03781a6"
+        "status": "current_exact_local_definition_materialized",
+        "path": "hardware/ecad/libraries/Leshy2_R2.pretty/B0310J50100AHF.kicad_mod",
+        "sha256": "eaa882b17b299176ac7e07a5ca13b8f510ba44307020c10987516b8cec540919"
       },
       "historical_hint_files": [
         "hardware/ecad/generated/H2-RF32-subghz-voice.json"
@@ -14505,19 +14507,19 @@
         }
       },
       "contact_map_sha256": "28e80f9e3357641d4be03c540f691de1dceb3c9ca6b00082d10b05035a73623c",
-      "electrical_contract_sha256": "815d6cdd0d48d8d6f4e70c26b29c75703b9b43fd51d81ed31e5a3a108c49472c",
+      "electrical_contract_sha256": "076b000474f345eed71fd3ea47e4e36069ec48771a999c68a8f4539f3ed66800",
       "manufacturer_evidence": {
         "document": "DC2337J5010AHF 10-dB directional coupler datasheet",
         "version": "Rev. H",
         "url": "https://cdn.ttm.com/repository/products/wireless-xinger/10-20-30-dB-directional-couplers/DC2337J5010AHF/DC2337J5010AHF.pdf",
         "checked": "2026-08-18"
       },
-      "footprint": "Leshy2:DC2337J5010AHF",
-      "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",
+      "footprint": "Leshy2_R2:DC2337J5010AHF",
+      "footprint_resolution": "explicit_current_override",
       "footprint_definition": {
-        "status": "existing_manufacturer_derived_definition_reconciled",
-        "path": "hardware/ecad/libraries/Leshy2.pretty/DC2337J5010AHF.kicad_mod",
-        "sha256": "c0acbca80a631dcecf7d23e860d2c0904acacbf2946f088d92553d8070d64555"
+        "status": "current_exact_local_definition_materialized",
+        "path": "hardware/ecad/libraries/Leshy2_R2.pretty/DC2337J5010AHF.kicad_mod",
+        "sha256": "25d0080800dfc7a657b2bae2be50e543896d34ece202f5b65a36816708040270"
       },
       "historical_hint_files": [
         "hardware/ecad/generated/H2-RF31-nrf24-x3.json"

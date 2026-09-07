@@ -105,7 +105,7 @@ class H2R2ContactMaterializationTests(unittest.TestCase):
             self.assertEqual(6, group["footprint_named_pad_count"])
             self.assertEqual(6, group["footprint_pad_occurrence_count"])
             for number, contact in enumerate(
-                ("SEC_A", "SEC_CT", "SEC_B", "PRI_A", "PRI_CT", "PRI_B"), start=1
+                ("SEC_A", "SEC_CT", "SEC_B", "PRI_A", "NC_5", "PRI_B"), start=1
             ):
                 self.assertEqual([str(number)], self.contact(device_id, contact)["pads"])
             geometry = self.artifact["new_local_footprint_geometry"][device_id]

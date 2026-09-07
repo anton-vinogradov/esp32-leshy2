@@ -8,7 +8,7 @@
 
 - `251` component groups: `245` on-board and `6` explicitly external/final-installed.
 - `1208` fitted positions; all `251` groups have an H3 owner.
-- `75` groups already contain structured parameters; `176` are in an explicit extraction queue rather than receiving invented values.
+- `77` groups already contain structured parameters; `174` are in an explicit extraction queue rather than receiving invented values.
 - `251` method candidates are assigned; exact methods, tolerances and applicability are frozen next in `H3-R2.0.3`.
 
 ## Model classes
@@ -23,7 +23,7 @@
 | `passive_corner` | 124 | 19 | 105 |
 | `power_safety_active` | 13 | 3 | 10 |
 | `programmable_controller` | 2 | 0 | 2 |
-| `radio_rf` | 13 | 8 | 5 |
+| `radio_rf` | 13 | 10 | 3 |
 
 ## Bounded source findings
 

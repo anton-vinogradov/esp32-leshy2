@@ -4723,7 +4723,7 @@
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Footprint" "Leshy2:B0310J50100AHF"
+			(property "Footprint" "Leshy2_R2:B0310J50100AHF"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -15249,7 +15249,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Leshy2:B0310J50100AHF"
+		(property "Footprint" "Leshy2_R2:B0310J50100AHF"
 			(at 238.76 407.67 0)
 			(show_name no)
 			(do_not_autoplace no)

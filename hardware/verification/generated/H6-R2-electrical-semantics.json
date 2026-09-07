@@ -4,9 +4,9 @@
   "gate": "H6-NATIVE-ELECTRICAL-SEMANTICS",
   "status": "review_required",
   "source_hashes": {
-    "hardware/verification/h6_r2_electrical_semantics.py": "ffcb7db4ca1c6878eada732b2f27bb4e0e2c826bef6a35926625a867265cf8c6",
-    "hardware/ecad/generated/H2-R2-contact-materialization.json": "cfe9e63cd008135cae9d7f1703aee31e8e85bbb6ba1327c661c45ce247721b97",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "f882612f3e2cc2fdc12f4b675cbdff9f8009e915697126847104e706a937f39c",
+    "hardware/verification/h6_r2_electrical_semantics.py": "ec39f702af3ad2ccd800ad1a0f7e4af80d954b9bf17868756282cd5a44d5bc68",
+    "hardware/ecad/generated/H2-R2-contact-materialization.json": "b1775c9228909f4f3f55d28714faf7831f6c998df5a93828b7378575b1cc7b4f",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "eef222700cf5874f2896bed964a68899a1d2025651d0e41f589fd1755f3493b0",
     "hardware/verification/h6-electrical-pins-power.json": "065011f2fd529cdd053255a20cb4202755dd65231b1ac0f27e2ddb917a065310",
     "hardware/verification/h6-electrical-pins-digital.json": "b061c58cebee24f0b0369b5a26b595e0cda0ecd6d8c3b0f7cb0c7c86d4f9f6b4",
     "hardware/verification/h6-electrical-pins-logic.json": "30a7d8e950ecd8797ad88faef29f2286d087d297d43f0460961509f12560795e",
@@ -14,13 +14,14 @@
     "hardware/verification/h6-electrical-pins-protection.json": "f5fb2858de93401873634abf67b8cc120b7b3adfa2f66f04164c1a7168b134f5",
     "hardware/verification/h6-electrical-pins-interfaces.json": "b69a99f5d43fa3635ea59847a95fbf00409a7a0ce3e205946b7de1d425175491",
     "hardware/verification/h6-electrical-pins-passives.json": "3e06305650139090fdfda739160ca45071d6bc068fbe24e74779c8e0f62a8a55",
-    "hardware/ecad/libraries/leshy2_r2.kicad_sym": "b0a8943d7f492adb4291695fb8fc14b14feacb55a9177f70f61137546d5a4399",
+    "hardware/verification/h6-electrical-pins-peripherals.json": "77e60da1c87dcd429dd78f488fb25913d223d3f2c5e8068b9d54b5b17ede426b",
+    "hardware/ecad/libraries/leshy2_r2.kicad_sym": "7617ce9f3e40cc0a16e6551b664183102a18ce51aa2a38c36e87055b24c961ad",
     "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch": "43910ab937fd3f95a140f664d6fbaca72d8dc6e9bf60cf46e5eae24158eddf50",
-    "hardware/ecad/kicad/LESHY2-UI-R2/UI_10_S3_DISPLAY_TOUCH.kicad_sch": "79ccbf793f1ae63f4f3dad04cd138f58f72db13de1004392ee909dd7b6bd0f94",
+    "hardware/ecad/kicad/LESHY2-UI-R2/UI_10_S3_DISPLAY_TOUCH.kicad_sch": "b1649b1fa5f5fef7556dbd3268846828abd7f80b5c28350da6cf1000ddad7a06",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_11_STORAGE_CONTROLS_INDICATORS.kicad_sch": "4a171483c25661211bfd102198ff44a9492dbe93947b4638816d2bf1ebb78396",
-    "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch": "5495f6d9ceb6291196eb3531900f34e1bd35348ef74b9e2c85d48dd18223c002",
+    "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch": "0b1e07f905f709e098a66953894990da7a925de23177947e30ca27b9ad4f8e03",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_30_HUB_RP_CORE_SERVICE.kicad_sch": "278e35c95ecc151f2e15b1d80311a28715603448e639181eeef9aba08f153bc3",
-    "hardware/ecad/kicad/LESHY2-UI-R2/UI_31_NRF24_X3_TX_EVIDENCE.kicad_sch": "c907efd07ac4a9918dfbde7d38925f294c1b3c017972f23796c0b91149082bc4",
+    "hardware/ecad/kicad/LESHY2-UI-R2/UI_31_NRF24_X3_TX_EVIDENCE.kicad_sch": "070ac7857d6c10260ea8ae38d3b86f2ee6d8a8001ec370a575fb83ddddc1d4bb",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_40_INTERBOARD_M1.kicad_sch": "424390520ba25ce5ae9c4466c4a54c014fd17a53cb7b58fda7734d31e2e95a17",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_50_FRONT_POWER_SAFETY.kicad_sch": "5c1befee1751e1dfb882c1ee86d04ce19312095f527a901bcbae75691ef1b15b",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch": "87b5812e879ba11abca135470a681c9909148ff398d7dc9153d50d258adae3b1",
@@ -32,8 +33,8 @@
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_02_PACK_SAFETY_AON.kicad_sch": "f9cf9450968cdb2fa3ec562f75987b0b47b6043c61ac90164672caee16dc7b55",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch": "ba4c5f515a372d136efc4226129b84984f470d179b3d194d48565dafefc96a1d",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_10_RP2354_CORE_SERVICE.kicad_sch": "357fc5053fa4b5969fba19faf7fa703b4825ff1563b7880f4579d8c8a63f85b0",
-    "hardware/ecad/kicad/LESHY2-RF-R2/RF_20_CC1101_VOICE_TX.kicad_sch": "ce7d3ac9fd01b75fe9f2fe6955daa2d6223484877749e9459ebe707408cfba18",
-    "hardware/ecad/kicad/LESHY2-RF-R2/RF_21_BROADCAST_AIRBAND_RX.kicad_sch": "fc5570e5760bf3ad52ee084fa2a2bde43660425ab579f9bff4ad9fdc45263cb0",
+    "hardware/ecad/kicad/LESHY2-RF-R2/RF_20_CC1101_VOICE_TX.kicad_sch": "4cd9c585fa32e5ea66cf1d44efa6bdc6bf6251004fa7a7b66f308a295523256c",
+    "hardware/ecad/kicad/LESHY2-RF-R2/RF_21_BROADCAST_AIRBAND_RX.kicad_sch": "1ccb3c6c4c03896ce95c8201840405eccec5f67d5cea8ca49e1d873246319295",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_22_AUDIO_CODEC_IO.kicad_sch": "55ae508cbc80c5db03392a9208dd033938a9522536fa73966e55893392dafc19",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_30_U214_U219_M5_EXT.kicad_sch": "e353a1a095600332751b857915ea7b003a80d4b1d846d6e4d257ab10573d414e",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_31_REAR_CONTROLS.kicad_sch": "cc43f7b6aa1d4b16ec599893f672a4300709a37f6225028a0b4b9d3cac510898",
@@ -46,9 +47,9 @@
   },
   "method": "reviewed exact-part pin types applied only to isolated native KiCad copies; original and typed XML memberships must be identical; native ERC findings retained without suppression",
   "coverage": {
-    "reviewed_devices": 158,
+    "reviewed_devices": 161,
     "device_count": 245,
-    "reviewed_unique_pins": 1289,
+    "reviewed_unique_pins": 1333,
     "unreviewed": [
       {
         "device_id": "abracon_abm8_26mhz_10_d_1_g_t",
@@ -360,65 +361,6 @@
         "pins": [
           "1",
           "2"
-        ]
-      },
-      {
-        "device_id": "nicerf_sa818s_u_v18",
-        "pins": [
-          "1",
-          "10",
-          "11",
-          "12",
-          "13",
-          "14",
-          "15",
-          "16",
-          "17",
-          "18",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9"
-        ]
-      },
-      {
-        "device_id": "nicerf_sa818s_v_v18",
-        "pins": [
-          "1",
-          "10",
-          "11",
-          "12",
-          "13",
-          "14",
-          "15",
-          "16",
-          "17",
-          "18",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9"
-        ]
-      },
-      {
-        "device_id": "onsemi_cat24c512wi_gt3",
-        "pins": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8"
         ]
       },
       {
@@ -1076,6 +1018,38 @@
     {
       "device_id": "alps_ec11e18244au",
       "finding": "The switch is a symmetric isolated D/E pair; current H2 D->S1/E->S2 aliases were not accepted as manufacturer-position proof in this pass. Final D/E-to-native-S1/S2 positional review is separate from the verified passive push-switch type."
+    },
+    {
+      "device_id": "nicerf_sa818s_u_v18",
+      "finding": "The manufacturer establishes signal directions but does not publish complete DC VIH/VIL/VOH/VOL or output-stage topology for these module pins. Generic output typing is not proof of push-pull construction or compatibility with the VVOICE_IO_3V3 TMUX/RP2354 domain at every supply/state."
+    },
+    {
+      "device_id": "nicerf_sa818s_u_v18",
+      "finding": "Before PD is driven low, RXD must already be low. The R141 pull-down does not override an actively high selected UART transmitter; normal sleep, deselection and fault-driven shutdown sequences still require explicit verification."
+    },
+    {
+      "device_id": "nicerf_sa818s_u_v18",
+      "finding": "H/L must remain low or floating. Shared open-drain connectivity is observed, but this pin map does not prove inter-module leakage limits, high-power selection, one-hot PD/PTT behavior, supply margins or RF/thermal performance."
+    },
+    {
+      "device_id": "nicerf_sa818s_v_v18",
+      "finding": "The module-pin DC levels and output-stage topology are not fully characterized by the published specification; the same voltage-domain caveat as U39 remains for U51."
+    },
+    {
+      "device_id": "nicerf_sa818s_v_v18",
+      "finding": "RXD-low-before-PD sequencing must also be proved for the VHF module, including deselection and fault-driven shutdown; R146 alone cannot force a live UART driver low."
+    },
+    {
+      "device_id": "nicerf_sa818s_v_v18",
+      "finding": "Common pin numbering does not prove VHF RF matching, TX power, one-hot control, leakage, supply/current margins or thermal performance."
+    },
+    {
+      "device_id": "onsemi_cat24c512wi_gt3",
+      "finding": "This map does not prove the programmed PD EEPROM image, TPS25751 boot/read/write sequence, GPIO0 configuration, power-up timing or I2C timing margins. The memory's shipped erased state is not a usable PD configuration image."
+    },
+    {
+      "device_id": "onsemi_cat24c512wi_gt3",
+      "finding": "WP pull-up versus the internal pull-down, actual voltage corners and behavior while the PD rail is absent require their existing state/corner checks; generic input/bidirectional pin types do not clear those obligations."
     }
   ],
   "projects": [
@@ -1084,14 +1058,14 @@
       "cached_pin_types_reviewed": 741,
       "native_connectivity_unchanged": true,
       "physical_netlist_nodes": 1598,
-      "native_xml_sha256": "b57c3fc4e50cdf56634a208548544dc026883586e07942e9f3d319bc6290ad6c",
-      "typed_xml_sha256": "b048131dff1939fb360dfe707113c788155b4cf16c6e728c7a9b20c78516ebbf",
-      "erc_report_sha256": "f0bd2a43b78942b696305363829e4c7eec61f7f2e239ea8f9b449174a8b6a400",
-      "erc_content_sha256": "1bde7b67469ae7dbb9d4cbaf8d74c135a3f5b63b36819f300103fb415b61cd29",
+      "native_xml_sha256": "4f4fd6369cdd73c6d97b2ddb73a8daa0ece5bc4f92a5f09646d645430f5abc3a",
+      "typed_xml_sha256": "17f3d821f9cb69d8ec1056841557239ca59d4e0fc8d26e37d5f1cdb632e5d847",
+      "erc_report_sha256": "2f38909734e4c4f71295ee75139e70aeeb32da22c3f4c25e2334dd629619d72a",
+      "erc_content_sha256": "1dfa42f50817e529e4a958402f2709e118cad85102c1bd8f7dcaa4d4053619a2",
       "native_erc": {
         "$schema": "https://schemas.kicad.org/erc.v1.json",
         "coordinate_units": "mm",
-        "date": "2026-09-07T14:53:56",
+        "date": "2026-09-07T17:55:24",
         "ignored_checks": [
           {
             "description": "Global label only appears once in the schematic",
@@ -2067,17 +2041,17 @@
     },
     {
       "project": "LESHY2-RF-R2",
-      "cached_pin_types_reviewed": 1309,
+      "cached_pin_types_reviewed": 1353,
       "native_connectivity_unchanged": true,
       "physical_netlist_nodes": 2708,
-      "native_xml_sha256": "67747b19bfecb64ed5a0d1e8056a5a737bca97206a9a8b7c7eb1cb93a4514d0b",
-      "typed_xml_sha256": "251f92ab4f56b11706f56f6ab49b48d5f1843a64911d85339549ba8e0c539230",
-      "erc_report_sha256": "64157a7110f835107f7c89048476f4355ae6024f9b69091fa233e47a868d73c9",
-      "erc_content_sha256": "7fa9f89d935cd2501827aa0a60a078c9b4060d9ddf4fea00dbe651bd1d1e1e1a",
+      "native_xml_sha256": "1fd65dce889f1b0c964db9a2bc7136c5401a10ba932f4a354ef92db39a664aa1",
+      "typed_xml_sha256": "eedb9a3f29e955a314d34f44a664694d8a9fd1b641a814d383c5b6824e1b3327",
+      "erc_report_sha256": "e5a10af0b0007b030b9c6a82cb7d2f4c8199f15e09d5a0752a37fee162c841b2",
+      "erc_content_sha256": "8ef4e21d6980c40e7be3dbc176f0a85299988587acd18abd292fbf630eec3301",
       "native_erc": {
         "$schema": "https://schemas.kicad.org/erc.v1.json",
         "coordinate_units": "mm",
-        "date": "2026-09-07T14:54:00",
+        "date": "2026-09-07T17:55:28",
         "ignored_checks": [
           {
             "description": "Global label only appears once in the schematic",
@@ -2344,6 +2318,21 @@
             "uuid_path": "/5e549a42-c087-52ca-add4-6f2c9a090399/d0833c54-45d6-55c8-85a9-546fb2144efd",
             "violations": [
               {
+                "description": "Input pin not driven by any Output pins",
+                "items": [
+                  {
+                    "description": "Symbol U39 Вывод 7 [HL, Вход, Линия]",
+                    "pos": {
+                      "x": 1.27,
+                      "y": 4.5466
+                    },
+                    "uuid": "feb63869-847e-570c-9e24-d4ee061210c0"
+                  }
+                ],
+                "severity": "error",
+                "type": "pin_not_driven"
+              },
+              {
                 "description": "Input Power pin not driven by any Output Power pins",
                 "items": [
                   {
@@ -2461,6 +2450,7 @@
         "source": "LESHY2-RF-R2.kicad_sch"
       },
       "erc_count_by_type": {
+        "pin_not_driven": 1,
         "pin_to_pin": 1,
         "power_pin_not_driven": 17
       },
@@ -2799,6 +2789,13 @@
               "reason": "GND: supply return"
             },
             {
+              "reference": "U2",
+              "instance": "pd_config_eeprom",
+              "pin": "4",
+              "type": "power_in",
+              "reason": "VSS ground return."
+            },
+            {
               "reference": "U20",
               "instance": "main_buck",
               "pin": "4",
@@ -2995,6 +2992,20 @@
               "reason": "COMM device supply return."
             },
             {
+              "reference": "U39",
+              "instance": "voice",
+              "pin": "10",
+              "type": "power_in",
+              "reason": "GND supply return."
+            },
+            {
+              "reference": "U39",
+              "instance": "voice",
+              "pin": "9",
+              "type": "power_in",
+              "reason": "GND supply return."
+            },
+            {
               "reference": "U4",
               "instance": "pd_vbus_tvs",
               "pin": "1",
@@ -3105,6 +3116,20 @@
               "pin": "2",
               "type": "power_in",
               "reason": "Ground return"
+            },
+            {
+              "reference": "U51",
+              "instance": "voice_v",
+              "pin": "10",
+              "type": "power_in",
+              "reason": "GND supply return."
+            },
+            {
+              "reference": "U51",
+              "instance": "voice_v",
+              "pin": "9",
+              "type": "power_in",
+              "reason": "GND supply return."
             },
             {
               "reference": "U52",

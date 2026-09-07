@@ -4,15 +4,15 @@
   "marker": "H3-R2.0.2",
   "status": "pass",
   "accepted_input": "H3-R2.0.1",
-  "input_freeze_sha256": "f54647af1bf3bd9035cfbbc3c3606684b101b724acd649dc05b378524b9c0347",
-  "register_sha256": "7fd90f451aac862276275f95710e80af76daabf15fde50677024cab7b666e89d",
+  "input_freeze_sha256": "fcfb89d595820557f182b2d0c741fb483328bf5ab61d9581e704adeb862ab3f1",
+  "register_sha256": "1b1081ca9b85f43b467e84b13c3012e991463b88d0bdab0a42d1bab93196f301",
   "source_sha256": {
     "hardware/verification/h3-r2-parameter-provenance-contract.json": "fb26cd78c18234ef1c02ce4ea6af5d4a21b0206229a5034e55c065b08f5d0346",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "51a9bc53ab14d7ef4af74325940b3dae08b0f934d1df0499ba0f2efb41b51764",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "e0e857536f50036753bcd9a55a161ff8779eaee83c6b46887abe98a75ea4e22d",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "f882612f3e2cc2fdc12f4b675cbdff9f8009e915697126847104e706a937f39c",
-    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "5a1163d97118354937e45a6f0da38837d25539171fd20dddd39ffdf8f484fbbb",
-    "hardware/architecture/devices.json": "0abf082483aed8c2eca8c6ddfd43684bd1664266d5f0e06873554df05da5b767"
+    "hardware/verification/generated/H3-R2-input-freeze.json": "47f311aa8f3b4a3ac1d34ffd33c455f1c949a565dc4fc1c02ea887df31281153",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "3beceada2ae6b2a21f419c72332fffd2ba0dda2d118ec774a5fae115c558a858",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "eef222700cf5874f2896bed964a68899a1d2025651d0e41f589fd1755f3493b0",
+    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "b76e512e7544e6ad9ac5a6bbf58ee7d20348ae1198b4be80ccce0efbcc0a5407",
+    "hardware/architecture/devices.json": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76"
   },
   "policy": {
     "accepted_h2_identity_is_immutable": true,
@@ -28,8 +28,8 @@
     "fitted_board_instances": 1208,
     "source_missing": 0,
     "factory_catalog_only_parameter_sources": 0,
-    "groups_with_structured_parameter_seeds": 75,
-    "groups_in_explicit_parameter_extraction_queue": 176,
+    "groups_with_structured_parameter_seeds": 77,
+    "groups_in_explicit_parameter_extraction_queue": 174,
     "manufacturer_primary_sources": 251,
     "model_method_candidates": 251,
     "owned_component_groups": 251,
@@ -51,7 +51,7 @@
       "general_component": 17,
       "passive_corner": 19,
       "power_safety_active": 3,
-      "radio_rf": 8
+      "radio_rf": 10
     },
     "bounded_source_findings": 0,
     "open_decisions": 0,
@@ -941,17 +941,30 @@
         "impedance_loss_matching",
         "temperature"
       ],
-      "structured_parameters": {},
-      "structured_parameter_count": 0,
-      "parameter_state": "explicit_extraction_queue",
+      "structured_parameters": {
+        "manufacturer_schematic": "Coilcraft Document 424-1, schematic B",
+        "secondary_winding_pins": [
+          "1",
+          "2",
+          "3"
+        ],
+        "primary_winding_pins": [
+          "4",
+          "6"
+        ],
+        "unconnected_pin": "5",
+        "note": "Only the secondary has a centre tap. Do not infer a primary centre tap or a DC connection through pin 5 from schematic C."
+      },
+      "structured_parameter_count": 5,
+      "parameter_state": "structured_seed_present",
       "model_method_candidate": "datasheet_behavioral_and_rf_budget",
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
         "H3-R2.3"
       ],
       "factory_catalog_parameter_gap": null,
-      "symbol_contact_map_sha256": "b6035835a67e53bae8dff9d063be42b02ac60a7780ba126fa124e6748063c65d",
-      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      "symbol_contact_map_sha256": "5a3e0d631645b4eff63a594b739d9efba350e6ed37c8022187972bf7b75bb616",
+      "symbol_electrical_contract_sha256": "5409ef9812b648cdcc166e77d77a6e5494317c984c9b24cd2b66b6a7b047b4e3"
     },
     {
       "device_id": "coilcraft_wbc1_1tlc",
@@ -995,17 +1008,30 @@
         "impedance_loss_matching",
         "temperature"
       ],
-      "structured_parameters": {},
-      "structured_parameter_count": 0,
-      "parameter_state": "explicit_extraction_queue",
+      "structured_parameters": {
+        "manufacturer_schematic": "Coilcraft Document 424-1, schematic B",
+        "secondary_winding_pins": [
+          "1",
+          "2",
+          "3"
+        ],
+        "primary_winding_pins": [
+          "4",
+          "6"
+        ],
+        "unconnected_pin": "5",
+        "note": "Only the secondary has a centre tap. Do not infer a primary centre tap or a DC connection through pin 5 from schematic C."
+      },
+      "structured_parameter_count": 5,
+      "parameter_state": "structured_seed_present",
       "model_method_candidate": "datasheet_behavioral_and_rf_budget",
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
         "H3-R2.3"
       ],
       "factory_catalog_parameter_gap": null,
-      "symbol_contact_map_sha256": "b6035835a67e53bae8dff9d063be42b02ac60a7780ba126fa124e6748063c65d",
-      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      "symbol_contact_map_sha256": "5a3e0d631645b4eff63a594b739d9efba350e6ed37c8022187972bf7b75bb616",
+      "symbol_electrical_contract_sha256": "5409ef9812b648cdcc166e77d77a6e5494317c984c9b24cd2b66b6a7b047b4e3"
     },
     {
       "device_id": "davies_1227_j",
@@ -2753,7 +2779,7 @@
           "4900_5950": 25
         },
         "continuous_power_w": 5,
-        "orientation_rule": "manufacturer names the four lands by top-view function rather than numeric pin; footprint must preserve IN/OUT/COUPLING/50-OHM orientation from the exact drawing"
+        "orientation_rule": "TDS-RFM-0055 Rev.2 p69 top view numbers 1=IN, 2=OUT, 3=COUPLING, 4=50 OHM. Current footprint uses these functional pad aliases and rotates the portrait terminal diagram onto its long-X land pattern; IN/OUT run along the long body axis."
       },
       "structured_parameter_count": 7,
       "parameter_state": "structured_seed_present",
@@ -2765,7 +2791,7 @@
       ],
       "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "4f3de26026f1842d68c8991b2ec0da3f7a1beaf7e14eacefa39fa91158f469df",
-      "symbol_electrical_contract_sha256": "2254fd5a8725897a723e461a44d8e5bdbb0030eda962b0bb93595f20468a6f97"
+      "symbol_electrical_contract_sha256": "a274166cd435b0132152df5baedd777eb730dfe76ea623aa0e912c54c810671c"
     },
     {
       "device_id": "leshy2_nfc_pickup_loop_r2",
@@ -11933,7 +11959,7 @@
           2400,
           2525
         ],
-        "configuration": "datasheet configuration 2: pin 1 input, pin 6 direct output, pin 2 forward coupled, pin 5 isolated/reverse termination",
+        "configuration": "datasheet configuration 1: pin 1 input, pin 6 direct output, pin 2 forward coupled, pin 5 isolated/reverse termination",
         "coupling_db_2400_2500_min_max": [
           10.0,
           11.1
@@ -11956,7 +11982,7 @@
       ],
       "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "28e80f9e3357641d4be03c540f691de1dceb3c9ca6b00082d10b05035a73623c",
-      "symbol_electrical_contract_sha256": "815d6cdd0d48d8d6f4e70c26b29c75703b9b43fd51d81ed31e5a3a108c49472c"
+      "symbol_electrical_contract_sha256": "076b000474f345eed71fd3ea47e4e36069ec48771a999c68a8f4539f3ed66800"
     },
     {
       "device_id": "uniroyal_0402wgf1001tce",

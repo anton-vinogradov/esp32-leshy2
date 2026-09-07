@@ -18,7 +18,7 @@ TRIAGE = "hardware/verification/h6-electrical-source-triage.json"
 AUDIT = "hardware/verification/generated/H6-R2-electrical-semantics.json"
 LEDGER = "hardware/ecad/generated/H2-R2-native-net-ledger.json"
 MATERIAL = "hardware/ecad/generated/H2-R2-contact-materialization.json"
-MAPS = {f"hardware/verification/h6-electrical-pins-{name}.json" for name in ("power", "digital", "logic", "analog", "protection", "interfaces", "passives")}
+MAPS = {f"hardware/verification/h6-electrical-pins-{name}.json" for name in ("power", "digital", "logic", "analog", "protection", "interfaces", "passives", "peripherals")}
 REQUIRED_SOURCES = {LEDGER, MATERIAL, *MAPS}
 PROJECT_COUNTS = {"LESHY2-UI-R2": 5, "LESHY2-RF-R2": 17}
 CLASSIFICATIONS = {
@@ -29,6 +29,15 @@ CLASSIFICATIONS = {
     "rf_bias_choke_feed_model_gap",
 }
 AUTHORIZATION = {"fabrication": False, "gate_closed": False}
+FINDING_GROUPS = (("findings", "power_pin_not_driven"), ("conflicts", "pin_to_pin"), ("input_findings", "pin_not_driven"))
+HL_PROJECT = "LESHY2-RF-R2"
+HL_NET = "VOICE_HL_OPEN_DRAIN"
+HL_ENDPOINTS = {
+    ("U39", "voice", "HL", "nicerf_sa818s_u_v18", ("7",)),
+    ("U51", "voice_v", "HL", "nicerf_sa818s_v_v18", ("7",)),
+    ("U47", "voice_hl_driver", "Y", "ti_sn74lvc1g07_dckr", ("4",)),
+}
+HL_OPEN_OBLIGATIONS = {"dc_domains_and_leakage", "rxd_low_before_pd_including_sleep_and_fault", "one_hot_pd_ptt_and_driver_power_states"}
 PIN_PATTERN = re.compile(r"Symbol\s+(\S+)\s+(?:Вывод|Pin)\s+(\S+)\s+\[", re.IGNORECASE)
 
 
@@ -174,8 +183,8 @@ def refresh_observations(triage, audit, ledger, material, current_hashes):
     physical, endpoints = indexes(ledger, material)
     observations = native_net_observations(audit, physical)
     existing = {}
-    for rows, kind in ((triage.get("findings", []), "power_pin_not_driven"), (triage.get("conflicts", []), "pin_to_pin")):
-        for row in rows:
+    for group, kind in FINDING_GROUPS:
+        for row in triage.get(group, []):
             key = (row["project"], kind, row["net"])
             require(key not in existing, "duplicate reviewed project/type/net")
             validate_path(row, endpoints)
@@ -183,13 +192,39 @@ def refresh_observations(triage, audit, ledger, material, current_hashes):
     require(set(observations) == set(existing), "native project/type/net set changed; explicit source triage required")
     refreshed = copy.deepcopy(triage)
     refreshed["source_sha256"] = {path: current_hashes[path] for path in triage["source_sha256"]}
-    for rows, kind in ((refreshed["findings"], "power_pin_not_driven"), (refreshed["conflicts"], "pin_to_pin")):
-        for row in rows:
+    for group, kind in FINDING_GROUPS:
+        for row in refreshed[group]:
             row["pins"] = observations[(row["project"], kind, row["net"])]
-    # The full validator additionally fixes the 22+1 scope and exact ACDRV
+    # The full validator additionally fixes the 22+1+1 scope and exact ACDRV/HL
     # configuration; changing only the two permitted fields cannot waive it.
     validate(refreshed, audit, ledger, material, current_hashes)
     return refreshed
+
+
+def validate_hl_input(triage, native, physical, endpoints):
+    """Explain the exact low-or-float net without treating open drain as push-pull."""
+    rows = triage.get("input_findings", [])
+    require(len(rows) == 1, "exact HL input explanation missing")
+    row = rows[0]
+    require((row.get("project"), row.get("net"), row.get("type")) == (HL_PROJECT, HL_NET, "pin_not_driven"), "HL input explanation scope changed")
+    require(row.get("classification") == "manufacturer_required_low_or_float_input" and row.get("disposition") == "explanation_only_no_erc_suppression", "HL explanation must not suppress ERC")
+    pins = row.get("pins", [])
+    require(len(pins) == 1 and (pins[0].get("reference"), pins[0].get("instance"), pins[0].get("contact"), pins[0].get("device_id"), (pins[0].get("pin"),)) in HL_ENDPOINTS - {("U47", "voice_hl_driver", "Y", "ti_sn74lvc1g07_dckr", ("4",))}, "HL exact receiver pin changed")
+    for pin in pins:
+        validate_pin(HL_PROJECT, HL_NET, pin, physical)
+    signature = (HL_PROJECT, "pin_not_driven", tuple(sorted((p["reference"], p["pin"], p["uuid"]) for p in pins)))
+    require(Counter(x for x in native if x[1] == "pin_not_driven") == Counter([signature]), "triage/native HL input-warning coverage mismatch")
+    validate_path(row, endpoints)
+    identity = lambda n: (n["reference"], n["instance"], n["contact"], n["device_id"], tuple(n["pads"]))
+    require(Counter(identity(n) for n in row["source_path"]) == Counter(HL_ENDPOINTS) and all(n["project"] == HL_PROJECT and n["net"] == HL_NET for n in row["source_path"]), "HL exact reviewed endpoint set changed")
+    # Inspect the entire actual net, not just the claimed three-node path: a new
+    # pull-up must not be hidden by retaining the old explanatory source_path.
+    actual = [n for n in endpoints.values() if n["project"] == HL_PROJECT and n["net"] == HL_NET]
+    require(Counter(identity(n) for n in actual) == Counter(HL_ENDPOINTS), "HL actual net endpoint set changed; added pull-up/driver or missing receiver requires explicit review")
+    require(set(row.get("open_obligations", [])) == HL_OPEN_OBLIGATIONS and len(row["open_obligations"]) == len(HL_OPEN_OBLIGATIONS), "HL DC-domain/sleep/state obligations must remain open")
+    require(any(e.get("url") == "https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf" and "section 9" in e.get("section", "") for e in row["evidence"]), "HL manufacturer low-or-float evidence missing")
+    require(any(e.get("url") == "https://www.ti.com/lit/ds/symlink/sn74lvc1g07.pdf" and "open-drain" in e.get("section", "") for e in row["evidence"]), "HL manufacturer open-drain driver evidence missing")
+    return signature
 
 
 def validate(triage, audit, ledger, material, current_hashes):
@@ -228,6 +263,9 @@ def validate(triage, audit, ledger, material, current_hashes):
         require(type(summary.get(key)) is int and summary[key] == value, f"triage summary mismatch: {key}")
     require(summary.get("whole_electrical_gate_pass") is False, "triage cannot claim whole gate pass")
     require(summary.get("classification_counts") == dict(Counter(r["classification"] for r in rows)), "classification counts mismatch")
+    for key, value in (("native_input_findings", 1), ("native_conflicts", 1), ("native_total_findings", 24)):
+        require(type(summary.get(key)) is int and summary[key] == value, f"triage summary mismatch: {key}")
+    input_signature = validate_hl_input(triage, native, physical, endpoints)
 
     # This is a documented explanation, not an ERC waiver. Any new conflict fails closed.
     conflicts = triage.get("conflicts", [])
@@ -239,13 +277,13 @@ def validate(triage, audit, ledger, material, current_hashes):
     for pin in conflict["pins"]:
         validate_pin(conflict["project"], conflict["net"], pin, physical)
     signature = (conflict["project"], conflict["type"], tuple(sorted((p["reference"], p["pin"], p["uuid"]) for p in conflict["pins"])))
-    require(Counter(x for x in native if x[1] != "power_pin_not_driven") == Counter([signature]), "unexplained or changed native non-power conflict")
+    require(Counter(x for x in native if x[1] != "power_pin_not_driven") == Counter([signature, input_signature]), "unexplained or changed native non-power conflict")
     validate_path(conflict, endpoints)
     expected_config = {"ACDRV1": "POWER_GROUND", "ACDRV2": "POWER_GROUND", "GND": "POWER_GROUND", "VAC1": "PD_NEGOTIATED_VBUS", "VAC2": "PD_NEGOTIATED_VBUS", "VBUS": "PD_NEGOTIATED_VBUS"}
     actual_config = {n["contact"]: n["net"] for n in conflict["source_path"] if n["project"] == "LESHY2-RF-R2" and n["reference"] == "U1" and n["instance"] == "nvdc_charger"}
     require(actual_config == expected_config and len(conflict["source_path"]) == len(expected_config), "ACDRV VBUS-only configuration evidence incomplete")
     require(any(e.get("url") == "https://www.ti.com/lit/ds/symlink/bq25798.pdf" and "7.3.5.2" in e.get("section", "") for e in conflict["evidence"]), "ACDRV manufacturer configuration evidence missing")
-    return {"power_findings": len(rows), "explained_conflicts": 1, "source_path_endpoints": sum(len(r["source_path"]) for r in [*rows, conflict]), "gate_closed": False}
+    return {"power_findings": len(rows), "explained_conflicts": 1, "input_findings": 1, "source_path_endpoints": sum(len(r["source_path"]) for r in [*rows, conflict, *triage["input_findings"]]), "gate_closed": False}
 
 
 def validate_native_audit(module, audit, native_hashes, material):
@@ -286,7 +324,7 @@ def main():
     require(all(digest_relative(path) == value for path, value in {**current_hashes, **original_digests}.items()), "inputs changed during triage validation; no observations written")
     if args.refresh_observations:
         (ROOT / TRIAGE).write_text(json.dumps(triage, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"H6 source triage current: {result['power_findings']} power warnings, {result['explained_conflicts']} conflict explanation, {result['source_path_endpoints']} exact path endpoints; ERC and production gate remain open")
+    print(f"H6 source triage current: {result['power_findings']} power warnings, {result['explained_conflicts']} conflict explanation, {result['input_findings']} input explanation, {result['source_path_endpoints']} exact path endpoints; all 24 native ERC findings and production gate remain open")
     return 0
 
 

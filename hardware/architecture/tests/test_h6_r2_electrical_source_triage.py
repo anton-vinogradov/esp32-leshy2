@@ -20,7 +20,7 @@ class ElectricalSourceTriageTests(unittest.TestCase):
         self.review, self.audit, self.ledger, self.material = copy.deepcopy(self.documents)
         # Unit fixtures model a matching filesystem. The read-only --check CLI
         # independently computes actual file digests rather than trusting these.
-        # Source regeneration may be in progress; model the seven-map hash
+        # Source regeneration may be in progress; model the eight-map hash
         # surface here without mutating or claiming freshness of the real audit.
         self.audit["source_hashes"].update({p: value for p, value in self.review["source_sha256"].items() if p != triage.LEDGER})
         self.hashes = {**self.review["source_sha256"], **self.audit["source_hashes"]}
@@ -48,7 +48,8 @@ class ElectricalSourceTriageTests(unittest.TestCase):
         result = self.check()
         self.assertEqual(22, result["power_findings"])
         self.assertEqual(1, result["explained_conflicts"])
-        self.assertEqual(102, result["source_path_endpoints"])
+        self.assertEqual(1, result["input_findings"])
+        self.assertEqual(105, result["source_path_endpoints"])
         self.assertIs(False, result["gate_closed"])
 
     def test_stale_or_missing_source_digest_is_rejected(self):
@@ -175,8 +176,8 @@ class ElectricalSourceTriageTests(unittest.TestCase):
             with self.subTest(path=path), self.assertRaisesRegex(ValueError, "unsafe source"):
                 triage.digest_relative(path)
 
-    def test_all_seven_reviewed_maps_are_required(self):
-        expected = {f"hardware/verification/h6-electrical-pins-{name}.json" for name in ("power", "digital", "logic", "analog", "protection", "interfaces", "passives")}
+    def test_all_eight_reviewed_maps_are_required(self):
+        expected = {f"hardware/verification/h6-electrical-pins-{name}.json" for name in ("power", "digital", "logic", "analog", "protection", "interfaces", "passives", "peripherals")}
         self.assertEqual(expected, triage.MAPS)
         for path in expected:
             with self.subTest(path=path):
@@ -213,7 +214,7 @@ class ElectricalSourceTriageTests(unittest.TestCase):
         observed = next(r for r in refreshed["findings"] if r["net"] == "AUDIO_GROUND")["pins"][0]
         self.assertEqual(("U40", "3", "voice_audio_mux"), tuple(observed[k] for k in ("reference", "pin", "instance")))
         refreshed["source_sha256"] = before["source_sha256"]
-        for key in ("findings", "conflicts"):
+        for key in ("findings", "conflicts", "input_findings"):
             for old, new in zip(before[key], refreshed[key]):
                 new["pins"] = old["pins"]
         self.assertEqual(before, refreshed, "no paths, explanations, obligations, metadata or gate decisions may change")
@@ -251,8 +252,8 @@ class ElectricalSourceTriageTests(unittest.TestCase):
 
     def test_all_source_path_nodes_bind_exact_device_and_mpn(self):
         _, endpoints = triage.indexes(self.ledger, self.material)
-        nodes = [n for row in [*self.review["findings"], *self.review["conflicts"]] for n in row["source_path"]]
-        self.assertEqual(102, len(nodes))
+        nodes = [n for row in [*self.review["findings"], *self.review["conflicts"], *self.review["input_findings"]] for n in row["source_path"]]
+        self.assertEqual(105, len(nodes))
         for node in nodes:
             key = tuple(node[k] for k in ("project", "reference", "instance", "contact"))
             self.assertEqual((endpoints[key]["device_id"], endpoints[key]["mpn"]), (node["device_id"], node["mpn"]))
@@ -337,6 +338,86 @@ class ElectricalSourceTriageTests(unittest.TestCase):
         self.review["findings"][0]["reason"] = ""
         with self.assertRaisesRegex(ValueError, "missing triage reason"):
             self.refresh()
+
+    def test_hl_explanation_cannot_be_removed_or_cleared(self):
+        self.review["input_findings"] = []
+        self.assert_rejected("exact HL input explanation missing")
+        self.review["input_findings"] = copy.deepcopy(self.documents[0]["input_findings"])
+        self.review["input_findings"][0]["disposition"] = "erc_waived"
+        self.assert_rejected("HL explanation must not suppress")
+
+    def test_hl_requires_complete_three_endpoint_reviewed_path(self):
+        self.review["input_findings"][0]["source_path"].pop()
+        self.assert_rejected("HL exact reviewed endpoint set changed")
+
+    def test_hl_missing_receiver_and_wrong_net_reject_validate_and_refresh(self):
+        for instance in ("voice", "voice_v", "voice_hl_driver"):
+            with self.subTest(instance=instance):
+                endpoint = next(r for r in self.ledger["rows"] if r["instance"] == instance and r["contact"] in ("HL", "Y"))
+                old = endpoint["net"]
+                endpoint["net"] = "WRONG_HL_NET"
+                self.assert_rejected("pin/net mismatch")
+                with self.assertRaisesRegex(ValueError, "source-path pin/net mismatch"):
+                    self.refresh()
+                endpoint["net"] = old
+
+    def test_hl_added_pullup_is_not_hidden_by_unchanged_explanation(self):
+        # Connect a real resistor between HL and 3V3; the original three-node
+        # path stays true, so only a whole-net check catches the new pull-up.
+        endpoint = next(r for r in self.ledger["rows"] if r["instance"] == "voice_hl_req_pulldown" and r["contact"] == "END_1")
+        endpoint["net"] = triage.HL_NET
+        other_end = next(r for r in self.ledger["rows"] if r["instance"] == "voice_hl_req_pulldown" and r["contact"] == "END_2")
+        other_end["net"] = "3V3_MAIN"
+        self.assert_rejected("HL actual net endpoint set changed")
+        with self.assertRaisesRegex(ValueError, "HL actual net endpoint set changed"):
+            self.refresh()
+
+    def test_hl_added_pullup_cannot_be_reviewed_automatically_by_extending_path(self):
+        endpoint = next(r for r in self.ledger["rows"] if r["instance"] == "voice_hl_req_pulldown" and r["contact"] == "END_1")
+        endpoint["net"] = triage.HL_NET
+        other_end = next(r for r in self.ledger["rows"] if r["instance"] == "voice_hl_req_pulldown" and r["contact"] == "END_2")
+        other_end["net"] = "3V3_MAIN"
+        _, endpoints = triage.indexes(self.ledger, self.material)
+        actual = endpoints[(triage.HL_PROJECT, endpoint["reference"], endpoint["instance"], endpoint["contact"])]
+        self.review["input_findings"][0]["source_path"].append({k: actual[k] for k in ("project", "reference", "instance", "contact", "device_id", "mpn", "pads", "net")})
+        self.assert_rejected("HL exact reviewed endpoint set changed")
+
+    def test_hl_removed_actual_endpoint_rejects_refresh(self):
+        endpoint = next(r for r in self.ledger["rows"] if r["instance"] == "voice_v" and r["contact"] == "HL")
+        self.ledger["rows"].remove(endpoint)
+        self.assert_rejected("unknown source-path endpoint")
+        with self.assertRaisesRegex(ValueError, "unknown source-path endpoint"):
+            self.refresh()
+
+    def test_hl_native_finding_cannot_be_hidden_or_retyped(self):
+        project = next(p for p in self.audit["projects"] if p["project"] == triage.HL_PROJECT)
+        sheet = next(s for s in project["native_erc"]["sheets"] if any(v["type"] == "pin_not_driven" for v in s.get("violations", [])))
+        violation = next(v for v in sheet["violations"] if v["type"] == "pin_not_driven")
+        sheet["violations"].remove(violation)
+        del project["erc_count_by_type"]["pin_not_driven"]
+        self.update_fixture_native_content_digest(project)
+        self.assert_rejected("HL input-warning coverage mismatch")
+        with self.assertRaisesRegex(ValueError, "project/type/net set changed"):
+            self.refresh()
+
+    def test_hl_dc_and_sleep_obligations_and_primary_evidence_stay_open(self):
+        row = self.review["input_findings"][0]
+        for code in tuple(row["open_obligations"]):
+            with self.subTest(code=code):
+                row["open_obligations"].remove(code)
+                self.assert_rejected("HL DC-domain/sleep/state obligations must remain open")
+                row["open_obligations"].append(code)
+        row["evidence"] = [e for e in row["evidence"] if "nicerf.com" not in e.get("url", "")]
+        self.assert_rejected("HL manufacturer low-or-float evidence missing")
+
+    def test_hl_refresh_only_updates_native_representative_not_topology(self):
+        row = self.review["input_findings"][0]
+        row["pins"] = [{"reference": "old-representative", "uuid": "old-observation"}]
+        before = copy.deepcopy(row)
+        refreshed = self.refresh()["input_findings"][0]
+        self.assertEqual(("U39", "7", "voice"), tuple(refreshed["pins"][0][k] for k in ("reference", "pin", "instance")))
+        refreshed["pins"] = before["pins"]
+        self.assertEqual(before, refreshed)
 
 
 if __name__ == "__main__":

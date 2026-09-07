@@ -10,10 +10,10 @@
   },
   "source_sha256": {
     "hardware/verification/h3-r2-source-margin-contract.json": "a5b2b4682b475e0f58ecfd2b2e4d197718d25197d9b315fe765f9b7676b0cf28",
-    "hardware/verification/generated/H3-R2-power-state-register.json": "5ca9ce0804135ddc4d8b6c2859944ad191bb1426faadcb8ec6292e781f3b0642",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "9f03ba6366cd81d04d15c2830b6ccecfbe82457047f068ca8a7bd9b0bdfca81f",
-    "hardware/verification/generated/H3-R2-load-binding.json": "66b652c68e660f6381768fe1f662cfcca6c2d5926e71e4e13f0182b1be563b04",
-    "hardware/verification/generated/H3-R2-method-contract.json": "d1afe9ee9d38c78036b42149680bf9a4b25aa9e09df1f1fbd71f3d3997b2dab9"
+    "hardware/verification/generated/H3-R2-power-state-register.json": "a103c6e61fa8603f5b5f6f4d2cca30cf36bc1fe6a0d223f533edf0cffdba5bfd",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "d68dd3136ae9a31646073c38393b9335ed861e71140c0c8f1bc4a7ffe1634dff",
+    "hardware/verification/generated/H3-R2-load-binding.json": "28a8e14cb7fe64cdd8b59102d6003a02ef761d07b38044785166b913b49f399a",
+    "hardware/verification/generated/H3-R2-method-contract.json": "46f8ae52881d9e8b3817219ba2d74b2bc5a3db41bd8d6fb9c0eb2e0f3760be66"
   },
   "policy": {
     "minimum_source_to_sys_efficiency": 0.85,

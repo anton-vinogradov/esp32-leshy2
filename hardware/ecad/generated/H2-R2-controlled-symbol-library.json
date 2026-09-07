@@ -6,17 +6,17 @@
   "sources": {
     "contact_materialization": {
       "path": "hardware/ecad/generated/H2-R2-contact-materialization.json",
-      "sha256": "cfe9e63cd008135cae9d7f1703aee31e8e85bbb6ba1327c661c45ce247721b97"
+      "sha256": "b1775c9228909f4f3f55d28714faf7831f6c998df5a93828b7378575b1cc7b4f"
     },
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "5a1163d97118354937e45a6f0da38837d25539171fd20dddd39ffdf8f484fbbb"
+      "sha256": "b76e512e7544e6ad9ac5a6bbf58ee7d20348ae1198b4be80ccce0efbcc0a5407"
     }
   },
   "library": {
     "id": "Leshy2_R2",
     "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-    "sha256": "b0a8943d7f492adb4291695fb8fc14b14feacb55a9177f70f61137546d5a4399",
+    "sha256": "7617ce9f3e40cc0a16e6551b664183102a18ce51aa2a38c36e87055b24c961ad",
     "symbol_count": 245,
     "pin_count": 1571,
     "external_interface_metadata_count": 3
@@ -1264,9 +1264,9 @@
       "symbol_id": "Leshy2_R2:coilcraft_wbc16_1tlc",
       "reference_prefix": "U",
       "value": "WBC16-1TLC",
-      "footprint": "Leshy2_R2:Coilcraft_WBC_6P_4.45x4.19mm",
+      "footprint": "Leshy2_R2:WBC16-1TLC",
       "pin_count": 6,
-      "no_connect_pin_count": 0,
+      "no_connect_pin_count": 1,
       "external_interfaces": [],
       "pin_map": [
         {
@@ -1315,14 +1315,14 @@
         },
         {
           "number": "5",
-          "name": "PRI_CT",
+          "name": "NC_5",
           "contacts": [
-            "PRI_CT"
+            "NC_5"
           ],
           "roles": [
-            "rf"
+            "nc"
           ],
-          "type": "passive"
+          "type": "no_connect"
         },
         {
           "number": "6",
@@ -1343,9 +1343,9 @@
       "symbol_id": "Leshy2_R2:coilcraft_wbc1_1tlc",
       "reference_prefix": "U",
       "value": "WBC1-1TLC",
-      "footprint": "Leshy2_R2:Coilcraft_WBC_6P_4.45x4.19mm",
+      "footprint": "Leshy2_R2:WBC1-1TLC",
       "pin_count": 6,
-      "no_connect_pin_count": 0,
+      "no_connect_pin_count": 1,
       "external_interfaces": [],
       "pin_map": [
         {
@@ -1394,14 +1394,14 @@
         },
         {
           "number": "5",
-          "name": "PRI_CT",
+          "name": "NC_5",
           "contacts": [
-            "PRI_CT"
+            "NC_5"
           ],
           "roles": [
-            "rf"
+            "nc"
           ],
-          "type": "passive"
+          "type": "no_connect"
         },
         {
           "number": "6",
@@ -6329,7 +6329,7 @@
       "symbol_id": "Leshy2_R2:kyocera_avx_cp0603q5425entr",
       "reference_prefix": "U",
       "value": "KYOCERA AVX CP0603Q5425ENTR",
-      "footprint": "Leshy2:CP0603Q5425ENTR",
+      "footprint": "Leshy2_R2:CP0603Q5425ENTR",
       "pin_count": 4,
       "no_connect_pin_count": 0,
       "external_interfaces": [],
@@ -18304,7 +18304,7 @@
       "symbol_id": "Leshy2_R2:ttm_b0310j50100ahf",
       "reference_prefix": "U",
       "value": "TTM Technologies B0310J50100AHF",
-      "footprint": "Leshy2:B0310J50100AHF",
+      "footprint": "Leshy2_R2:B0310J50100AHF",
       "pin_count": 6,
       "no_connect_pin_count": 2,
       "external_interfaces": [],
@@ -18383,7 +18383,7 @@
       "symbol_id": "Leshy2_R2:ttm_dc2337j5010ahf",
       "reference_prefix": "U",
       "value": "TTM Technologies DC2337J5010AHF",
-      "footprint": "Leshy2:DC2337J5010AHF",
+      "footprint": "Leshy2_R2:DC2337J5010AHF",
       "pin_count": 6,
       "no_connect_pin_count": 0,
       "external_interfaces": [],

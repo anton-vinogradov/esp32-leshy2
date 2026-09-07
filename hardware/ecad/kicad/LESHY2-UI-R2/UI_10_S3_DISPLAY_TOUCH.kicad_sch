@@ -1078,7 +1078,7 @@
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Footprint" "Leshy2:CP0603Q5425ENTR"
+			(property "Footprint" "Leshy2_R2:CP0603Q5425ENTR"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -5653,7 +5653,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Leshy2:CP0603Q5425ENTR"
+		(property "Footprint" "Leshy2_R2:CP0603Q5425ENTR"
 			(at 604.52 140.97 0)
 			(show_name no)
 			(do_not_autoplace no)

@@ -6,11 +6,11 @@
   "sources": {
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "5a1163d97118354937e45a6f0da38837d25539171fd20dddd39ffdf8f484fbbb"
+      "sha256": "b76e512e7544e6ad9ac5a6bbf58ee7d20348ae1198b4be80ccce0efbcc0a5407"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "0abf082483aed8c2eca8c6ddfd43684bd1664266d5f0e06873554df05da5b767"
+      "sha256": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76"
     }
   },
   "kicad_reference_version": "10.0.5",
@@ -1963,9 +1963,9 @@
       "device_id": "coilcraft_wbc16_1tlc",
       "mpn": "WBC16-1TLC",
       "symbol_id": "Leshy2_R2:coilcraft_wbc16_1tlc",
-      "footprint": "Leshy2_R2:Coilcraft_WBC_6P_4.45x4.19mm",
-      "footprint_source": "hardware/ecad/libraries/Leshy2_R2.pretty/Coilcraft_WBC_6P_4.45x4.19mm.kicad_mod",
-      "footprint_sha256": "dadb60f46fb46be2afd795bc2746337c25f8006e082ceb2a27b8ba73176a860e",
+      "footprint": "Leshy2_R2:WBC16-1TLC",
+      "footprint_source": "hardware/ecad/libraries/Leshy2_R2.pretty/WBC16-1TLC.kicad_mod",
+      "footprint_sha256": "bda6f8dbda7e5b5d3bbfc98fe6be8312f39440d92b9f80bb1788b0112029feec",
       "logical_contact_count": 6,
       "footprint_named_pad_count": 6,
       "footprint_pad_occurrence_count": 6,
@@ -2050,8 +2050,8 @@
           "resolution": "exact_physical_pad_name"
         },
         {
-          "contact": "PRI_CT",
-          "role": "rf",
+          "contact": "NC_5",
+          "role": "nc",
           "physical": "5",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -2078,9 +2078,9 @@
       "device_id": "coilcraft_wbc1_1tlc",
       "mpn": "WBC1-1TLC",
       "symbol_id": "Leshy2_R2:coilcraft_wbc1_1tlc",
-      "footprint": "Leshy2_R2:Coilcraft_WBC_6P_4.45x4.19mm",
-      "footprint_source": "hardware/ecad/libraries/Leshy2_R2.pretty/Coilcraft_WBC_6P_4.45x4.19mm.kicad_mod",
-      "footprint_sha256": "dadb60f46fb46be2afd795bc2746337c25f8006e082ceb2a27b8ba73176a860e",
+      "footprint": "Leshy2_R2:WBC1-1TLC",
+      "footprint_source": "hardware/ecad/libraries/Leshy2_R2.pretty/WBC1-1TLC.kicad_mod",
+      "footprint_sha256": "b565d7ca421b2d4137a20b294e5f24f48c7ad1470ca138e96e839ed55b824e15",
       "logical_contact_count": 6,
       "footprint_named_pad_count": 6,
       "footprint_pad_occurrence_count": 6,
@@ -2165,8 +2165,8 @@
           "resolution": "exact_physical_pad_name"
         },
         {
-          "contact": "PRI_CT",
-          "role": "rf",
+          "contact": "NC_5",
+          "role": "nc",
           "physical": "5",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -9313,9 +9313,9 @@
       "device_id": "kyocera_avx_cp0603q5425entr",
       "mpn": "KYOCERA AVX CP0603Q5425ENTR",
       "symbol_id": "Leshy2_R2:kyocera_avx_cp0603q5425entr",
-      "footprint": "Leshy2:CP0603Q5425ENTR",
-      "footprint_source": "hardware/ecad/libraries/Leshy2.pretty/CP0603Q5425ENTR.kicad_mod",
-      "footprint_sha256": "bf098242fb9348698d3a213851af9b1fcdb66438325a11eb2fcca729a514d195",
+      "footprint": "Leshy2_R2:CP0603Q5425ENTR",
+      "footprint_source": "hardware/ecad/libraries/Leshy2_R2.pretty/CP0603Q5425ENTR.kicad_mod",
+      "footprint_sha256": "89dfe4ff666211c3de823ac6fc5be7301f1d7e8785b44b700565be3efb25fb17",
       "logical_contact_count": 4,
       "footprint_named_pad_count": 4,
       "footprint_pad_occurrence_count": 4,
@@ -26652,9 +26652,9 @@
       "device_id": "ttm_b0310j50100ahf",
       "mpn": "TTM Technologies B0310J50100AHF",
       "symbol_id": "Leshy2_R2:ttm_b0310j50100ahf",
-      "footprint": "Leshy2:B0310J50100AHF",
-      "footprint_source": "hardware/ecad/libraries/Leshy2.pretty/B0310J50100AHF.kicad_mod",
-      "footprint_sha256": "b1bd2b6d78bda7bfac05479c2e41a9f65420b30217ed1f08a3291f66e03781a6",
+      "footprint": "Leshy2_R2:B0310J50100AHF",
+      "footprint_source": "hardware/ecad/libraries/Leshy2_R2.pretty/B0310J50100AHF.kicad_mod",
+      "footprint_sha256": "eaa882b17b299176ac7e07a5ca13b8f510ba44307020c10987516b8cec540919",
       "logical_contact_count": 6,
       "footprint_named_pad_count": 6,
       "footprint_pad_occurrence_count": 6,
@@ -26767,9 +26767,9 @@
       "device_id": "ttm_dc2337j5010ahf",
       "mpn": "TTM Technologies DC2337J5010AHF",
       "symbol_id": "Leshy2_R2:ttm_dc2337j5010ahf",
-      "footprint": "Leshy2:DC2337J5010AHF",
-      "footprint_source": "hardware/ecad/libraries/Leshy2.pretty/DC2337J5010AHF.kicad_mod",
-      "footprint_sha256": "c0acbca80a631dcecf7d23e860d2c0904acacbf2946f088d92553d8070d64555",
+      "footprint": "Leshy2_R2:DC2337J5010AHF",
+      "footprint_source": "hardware/ecad/libraries/Leshy2_R2.pretty/DC2337J5010AHF.kicad_mod",
+      "footprint_sha256": "25d0080800dfc7a657b2bae2be50e543896d34ece202f5b65a36816708040270",
       "logical_contact_count": 6,
       "footprint_named_pad_count": 6,
       "footprint_pad_occurrence_count": 6,

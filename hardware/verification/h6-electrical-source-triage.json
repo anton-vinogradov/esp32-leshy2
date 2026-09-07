@@ -1,18 +1,19 @@
 {
   "schema_version": 1,
   "checked": "2026-09-07",
-  "scope": "Bounded triage of the 22 power_pin_not_driven findings from the isolated native typed ERC. Exact reported pins are representatives of their connected nets, not an exhaustive consumer list.",
+  "scope": "Bounded triage of 22 power_pin_not_driven findings, one ACDRV pin_to_pin conflict and one low-or-float H/L pin_not_driven finding from the isolated native typed ERC. All 24 native findings remain unsuppressed. Exact reported pins are representatives of their connected nets, not an exhaustive consumer list.",
   "status": "triaged_not_cleared",
   "source_sha256": {
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "023e37751cb0fa15e2b71a9cf798f7e078577877465e98af64fb7c470aa80c14",
-    "hardware/ecad/generated/H2-R2-contact-materialization.json": "cfe9e63cd008135cae9d7f1703aee31e8e85bbb6ba1327c661c45ce247721b97",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "c51d4666ffea0be2006d1c85931fadc97feeaaec2d65d6efc342a5974cf4857d",
+    "hardware/ecad/generated/H2-R2-contact-materialization.json": "b1775c9228909f4f3f55d28714faf7831f6c998df5a93828b7378575b1cc7b4f",
     "hardware/verification/h6-electrical-pins-power.json": "065011f2fd529cdd053255a20cb4202755dd65231b1ac0f27e2ddb917a065310",
     "hardware/verification/h6-electrical-pins-digital.json": "b061c58cebee24f0b0369b5a26b595e0cda0ecd6d8c3b0f7cb0c7c86d4f9f6b4",
     "hardware/verification/h6-electrical-pins-logic.json": "30a7d8e950ecd8797ad88faef29f2286d087d297d43f0460961509f12560795e",
     "hardware/verification/h6-electrical-pins-analog.json": "df58a02807801f4efa1bb1b9f1153b4cff40d57e4836ed598cba8860adf82ddb",
     "hardware/verification/h6-electrical-pins-protection.json": "f5fb2858de93401873634abf67b8cc120b7b3adfa2f66f04164c1a7168b134f5",
     "hardware/verification/h6-electrical-pins-interfaces.json": "b69a99f5d43fa3635ea59847a95fbf00409a7a0ce3e205946b7de1d425175491",
-    "hardware/verification/h6-electrical-pins-passives.json": "3e06305650139090fdfda739160ca45071d6bc068fbe24e74779c8e0f62a8a55"
+    "hardware/verification/h6-electrical-pins-passives.json": "3e06305650139090fdfda739160ca45071d6bc068fbe24e74779c8e0f62a8a55",
+    "hardware/verification/h6-electrical-pins-peripherals.json": "77e60da1c87dcd429dd78f488fb25913d223d3f2c5e8068b9d54b5b17ede426b"
   },
   "observation_source": "hardware/verification/generated/H6-R2-electrical-semantics.json",
   "method": "Join each reported native ERC reference/pin to the current H2 physical contact materialization and native net ledger, then inspect the bounded local source path. Paths shown are observed connectivity, not a full rail-state graph. No production changes, PWR_FLAG additions, exclusions or ERC suppressions.",
@@ -20,6 +21,9 @@
     "native_power_findings": 22,
     "ui_findings": 5,
     "rf_findings": 17,
+    "native_input_findings": 1,
+    "native_conflicts": 1,
+    "native_total_findings": 24,
     "classification_counts": {
       "external_return_boundary": 3,
       "interboard_source_boundary": 2,
@@ -39,12 +43,97 @@
     "No new proven missing-driver defect was found among these 22 reports; that is not proof that every rail works.",
     "Converter start-up, switched paths, external-source presence, diode voltage drops and bootstrap behavior remain conditional obligations.",
     "The native ERC errors are not cleared by this triage. A typed source-path or configuration-specific rule is required before accepting an exception.",
-    "The separate ACDRV output conflict has a manufacturer-supported VBUS-only configuration explanation below, but remains visible in native ERC and is not globally waived."
+    "The separate ACDRV output conflict has a manufacturer-supported VBUS-only configuration explanation below, but remains visible in native ERC and is not globally waived.",
+    "The H/L input finding has a manufacturer-supported low-or-floating topology explanation, not a missing pull-up prescription. Shared-module leakage/DC domains, RXD-before-PD sleep/fault sequencing and one-hot control remain unverified by this triage."
   ],
   "authorization": {
     "fabrication": false,
     "gate_closed": false
   },
+  "input_findings": [
+    {
+      "project": "LESHY2-RF-R2",
+      "net": "VOICE_HL_OPEN_DRAIN",
+      "type": "pin_not_driven",
+      "pins": [
+        {
+          "reference": "U39",
+          "pin": "7",
+          "instance": "voice",
+          "contact": "HL",
+          "device_id": "nicerf_sa818s_u_v18",
+          "uuid": "feb63869-847e-570c-9e24-d4ee061210c0"
+        }
+      ],
+      "classification": "manufacturer_required_low_or_float_input",
+      "disposition": "explanation_only_no_erc_suppression",
+      "reason": "SA818S H/L pin7 must be pulled low or left floating, never driven high. The actual net has exactly U39.7 and U51.7 receiver inputs plus SN74LVC1G07 U47.4 open-drain Y; there is no external pull-up or push-pull high driver. Generic native input-not-driven ERC does not establish the intended low-or-floating state. This explanation neither changes the input/open-collector types nor suppresses the error, adds a pull-up or qualifies the complete interface.",
+      "source_path": [
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U39",
+          "instance": "voice",
+          "contact": "HL",
+          "device_id": "nicerf_sa818s_u_v18",
+          "mpn": "G-NiceRF SA818S-U",
+          "pads": [
+            "7"
+          ],
+          "net": "VOICE_HL_OPEN_DRAIN"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U51",
+          "instance": "voice_v",
+          "contact": "HL",
+          "device_id": "nicerf_sa818s_v_v18",
+          "mpn": "G-NiceRF SA818S-V",
+          "pads": [
+            "7"
+          ],
+          "net": "VOICE_HL_OPEN_DRAIN"
+        },
+        {
+          "project": "LESHY2-RF-R2",
+          "reference": "U47",
+          "instance": "voice_hl_driver",
+          "contact": "Y",
+          "device_id": "ti_sn74lvc1g07_dckr",
+          "mpn": "SN74LVC1G07DCKR",
+          "pads": [
+            "4"
+          ],
+          "net": "VOICE_HL_OPEN_DRAIN"
+        }
+      ],
+      "open_obligations": [
+        "dc_domains_and_leakage",
+        "rxd_low_before_pd_including_sleep_and_fault",
+        "one_hot_pd_ptt_and_driver_power_states"
+      ],
+      "remaining_obligations": [
+        "Verify H/L input and inter-module leakage, the released state with either module powered or unpowered, driver sink limits and all signal voltage domains; the module datasheet does not fully characterize DC VIH/VIL/VOH/VOL or internal input circuitry.",
+        "Verify RXD is low before PD becomes low for each module during normal sleep, deselection and fault shutdown. An RXD pull-down cannot override an actively high UART transmitter.",
+        "Verify one-hot PD/PTT behavior, U47 supply/input/default states and the intended H/L power selection in every transition; this three-endpoint net observation does not prove those states."
+      ],
+      "evidence": [
+        {
+          "url": "https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf",
+          "section": "Rev1.8 section 9, page10, H/L pin7 low-or-floating control and RXD pin16 low-before-sleep requirement; shared SA818S-U/V interface.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g07.pdf",
+          "section": "DCK Pin Functions and function table: A pin2, open-drain noninverting Y pin4; no push-pull high drive.",
+          "checked": "2026-09-07"
+        },
+        {
+          "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+          "selector": "Complete LESHY2-RF-R2 VOICE_HL_OPEN_DRAIN endpoint set: voice.HL=U39.7; voice_v.HL=U51.7; voice_hl_driver.Y=U47.4; no extra contact or pull-up."
+        }
+      ]
+    }
+  ],
   "conflicts": [
     {
       "project": "LESHY2-RF-R2",

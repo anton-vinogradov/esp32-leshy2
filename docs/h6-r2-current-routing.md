@@ -6,8 +6,8 @@
 
 | Board | Traces | Vias | Resolved | Remaining | DRC |
 | --- | ---: | ---: | ---: | ---: | --- |
-| UI | 91 | 5 | 31 | 1,198 | 0 |
-| RF/power | 608 | 165 | 183 | 1,856 | 0 |
+| UI | 21 | 0 | 8 | 1,221 | 0 |
+| RF/power | 601 | 165 | 180 | 1,859 | 0 |
 
 ## What we want
 
@@ -19,7 +19,9 @@ The former collision-free seed was electrically invalid because some bypass, fee
 
 ## What we obtained
 
-All 1,208 bodies are placed; all 311 local-part → owner pairs meet their limits; 36 actual pad-centre pairs cover every switching-node net and selected local bypasses with zero violations. All ten edge-launch SMA bodies face outward; their F.Cu and B.Cu solder lands remain inside the PCB outline, and the corrected placement is frozen again. The PCB-thickness and SMA-slot tolerance fit remains an open item in the [mechanical stack](h6-r2-mechanical-stack.md). The historical S3/C5 power aliases are corrected: both domains now use `3V3_MAIN`; ten bypass parts were returned to their owners and the LNA choke locality was corrected. These electrical-realization and placement fixes do not change product functionality. All five oscillator cells — two RP2354s, CC1101, Si5351A and Si4732 — are routed and DRC-clean. 36 manual controlled-RF routes close 42 connections: in addition to the local CC1101 and Airband networks plus the AM/LW input boundary, the signal copper of the S3, C5 and all three nRF24 paths from U.FL to external SMA and their detector branches are routed. 30 routes remain via-free; 6 reviewed 0.50/0.25-mm B.Cu-to-F.Cu transitions are necessary only because the edge-launch SMA centre land is on F.Cu. Their ground-return pairs are deferred until the continuous plane fill so this checkpoint does not create floating copper islands. Both boards have zero native DRC findings. The deliberate restart leaves 3,054 physical connections, summarized in the table above.
+All 1,208 bodies are placed; all 311 local-part → owner pairs meet their limits; 36 actual pad-centre pairs cover every switching-node net and selected local bypasses with zero violations. All ten edge-launch SMA bodies face outward; their F.Cu and B.Cu solder lands remain inside the PCB outline, and the corrected placement is frozen again. The PCB-thickness and SMA-slot tolerance fit remains an open item in the [mechanical stack](h6-r2-mechanical-stack.md). The historical S3/C5 power aliases are corrected: both domains now use `3V3_MAIN`; ten bypass parts were returned to their owners and the LNA choke locality was corrected. These electrical-realization and placement fixes do not change product functionality. All five oscillator cells — two RP2354s, CC1101, Si5351A and Si4732 — remain routed and DRC-clean; the RF-package correction did not change them.
+
+Primary-drawing review found TTM top/bottom-view numbering errors, CP0603 port-orientation errors and incorrect WBC lands. After correcting the footprints, 23 affected RF routes were withdrawn from the current routing: they no longer count as complete, and their former copper remains available in Git. The exact list and reason are recorded in the [manual-copper contract](../hardware/layout/h6-r2-manual-copper.json). The current audit contains 106 active manual routes across all classes; the withdrawn routes are already excluded from these counts and the connectivity table. The remaining 13 controlled-RF routes close 16 connections; 12 are via-free and 1 use vias. The S3, C5, three nRF24, CC1101 and Airband paths are not claimed to be fully routed: the affected RF interconnects and detector branches must be rerouted to the corrected pads. RF launches, continuous planes and return paths still require completion and verification. Both boards have zero native DRC findings. The deliberate restart leaves 3,080 physical connections, summarized in the table above.
 
 ## Current ERC limitation
 

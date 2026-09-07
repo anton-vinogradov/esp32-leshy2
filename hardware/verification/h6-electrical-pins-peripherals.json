@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "scope": "Bounded exact-pin review of the two installed SA818S voice variants and the PD configuration EEPROM, checked 2026-09-07. All 44 numbered electrical functions were compared with devices.json, H2 contact materialization and the native RF PCB through its canonical-to-KiCad net binding. This map neither changes production nor clears RF, voltage-domain, sequencing, firmware-image, assembly or manufacturing gates. Bidirectional RF denotes a shared receive/transmit port; bidirectional SDA includes an open-drain transmit state.",
+  "devices": [
+    {
+      "device_id": "nicerf_sa818s_u_v18",
+      "mpn": "G-NiceRF SA818S-U",
+      "evidence": [
+        {
+          "url": "https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf",
+          "section": "Rev 1.8, June 2026: section 9 numbered pin drawing/table, page 10; section 11 identifies SA818S-U, page 11; sections 5-7 supply/audio/serial interface. Pin and dimensional pages visually inspected.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.nicerf.com/upload/20240508/15920bc3c0d003841f4af8edad4e7b29.zip",
+          "section": "Official SA818S package.zip, sa818s.asc PARTDECAL terminal order and PARTTYPE's 18 named electrical contacts. Cross-check of host-pattern versus module-underface numbering, not a new land-pattern qualification.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {"type": "output", "reason": "AUDIO_ON amplifier-control output, active low."},
+        "2": {"type": "no_connect", "reason": "NC; manufacturer specifies no connection."},
+        "3": {"type": "output", "reason": "AF_OUT received-audio output."},
+        "4": {"type": "no_connect", "reason": "NC; manufacturer specifies no connection."},
+        "5": {"type": "input", "reason": "PTT input: low selects transmit, high receive."},
+        "6": {"type": "input", "reason": "PD input: low selects shutdown, high operation."},
+        "7": {"type": "input", "reason": "H/L power-control input: float or pull low; never drive high."},
+        "8": {"type": "power_in", "reason": "VBAT positive supply; current VCC alias."},
+        "9": {"type": "power_in", "reason": "GND supply return."},
+        "10": {"type": "power_in", "reason": "GND supply return."},
+        "11": {"type": "no_connect", "reason": "NC; manufacturer specifies no connection."},
+        "12": {"type": "bidirectional", "reason": "ANT shared 50-ohm RF transmit/receive port."},
+        "13": {"type": "no_connect", "reason": "NC; manufacturer specifies no connection."},
+        "14": {"type": "no_connect", "reason": "NC; manufacturer specifies no connection."},
+        "15": {"type": "no_connect", "reason": "NC; manufacturer specifies no connection."},
+        "16": {"type": "input", "reason": "RXD module UART input; must be low before sleep."},
+        "17": {"type": "output", "reason": "TXD module UART output."},
+        "18": {"type": "input", "reason": "MIC_IN analog microphone/line input."}
+      },
+      "physical_map_review": "All 18 functions agree with the current U39/voice device, materialized contacts and native RF PCB pads. The module-underface drawing has 7..1 across its upper edge; the official host-PADS terminal order and current F-local footprint have 1..7 left-to-right, with 8..11 at the right edge. These are opposite physical views, not grounds for silently mirroring the accepted host footprint. The official PARTTYPE declares 18 electrical contacts; no extra electrical terminal is inferred from graphical/mechanical package content.",
+      "board_level_review": {
+        "result": "no_hard_tie_defect_identified_in_this_bounded_review",
+        "observed": [
+          "U39 pads 2,4,11,13,14,15 are explicitly unconnected. Pad8 is VVOICE_4V; pads9/10 are POWER_GROUND.",
+          "VOICE_HL_OPEN_DRAIN joins only U39.7, U51.7 and U47.4 (SN74LVC1G07 open-drain Y). No external pull-up or push-pull high driver is on this net.",
+          "PTT and UART connections enter separate TMUX1136 channels; U39 and U51 AUDIO_ON/TXD outputs are not directly shorted together. R137 gives the UHF PTT input a 10-kohm pull-up to VVOICE_IO_3V3; R141 gives its RXD a 100-kohm pull-down to AUDIO_GROUND.",
+          "The ANT net has its dedicated SMA and RF detector/protection branch; MIC_IN is reached through the coupling capacitor. This connectivity observation does not qualify RF loading or audio bias."
+        ]
+      },
+      "unresolved": [
+        "The manufacturer establishes signal directions but does not publish complete DC VIH/VIL/VOH/VOL or output-stage topology for these module pins. Generic output typing is not proof of push-pull construction or compatibility with the VVOICE_IO_3V3 TMUX/RP2354 domain at every supply/state.",
+        "Before PD is driven low, RXD must already be low. The R141 pull-down does not override an actively high selected UART transmitter; normal sleep, deselection and fault-driven shutdown sequences still require explicit verification.",
+        "H/L must remain low or floating. Shared open-drain connectivity is observed, but this pin map does not prove inter-module leakage limits, high-power selection, one-hot PD/PTT behavior, supply margins or RF/thermal performance."
+      ]
+    },
+    {
+      "device_id": "nicerf_sa818s_v_v18",
+      "mpn": "G-NiceRF SA818S-V",
+      "evidence": [
+        {
+          "url": "https://www.nicerf.com/pdf/sa818s-1w-embedded-walkie-talkie-module-v1.8.pdf",
+          "section": "Rev 1.8, June 2026: section 9 common SA818S pin definition, page 10; section 11 explicitly identifies the SA818S-V variant, page 11. Same numbered interface, distinct VHF RF variant.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.nicerf.com/upload/20240508/15920bc3c0d003841f4af8edad4e7b29.zip",
+          "section": "Official SA818S package.zip, sa818s.asc PARTDECAL and PARTTYPE terminal order, shared by the documented U/V module interface.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {"type": "output", "reason": "AUDIO_ON active-low output; common SA818S interface."},
+        "2": {"type": "no_connect", "reason": "NC; common SA818S interface."},
+        "3": {"type": "output", "reason": "AF_OUT audio output; common SA818S interface."},
+        "4": {"type": "no_connect", "reason": "NC; common SA818S interface."},
+        "5": {"type": "input", "reason": "PTT transmit/receive input; common SA818S interface."},
+        "6": {"type": "input", "reason": "PD shutdown input; common SA818S interface."},
+        "7": {"type": "input", "reason": "H/L low-or-floating input; common SA818S interface."},
+        "8": {"type": "power_in", "reason": "VBAT supply; current VCC alias."},
+        "9": {"type": "power_in", "reason": "GND supply return."},
+        "10": {"type": "power_in", "reason": "GND supply return."},
+        "11": {"type": "no_connect", "reason": "NC; common SA818S interface."},
+        "12": {"type": "bidirectional", "reason": "ANT shared VHF transmit/receive port."},
+        "13": {"type": "no_connect", "reason": "NC; common SA818S interface."},
+        "14": {"type": "no_connect", "reason": "NC; common SA818S interface."},
+        "15": {"type": "no_connect", "reason": "NC; common SA818S interface."},
+        "16": {"type": "input", "reason": "RXD UART input; common SA818S interface."},
+        "17": {"type": "output", "reason": "TXD UART output; common SA818S interface."},
+        "18": {"type": "input", "reason": "MIC_IN audio input; common SA818S interface."}
+      },
+      "physical_map_review": "All 18 U51/voice_v functions agree with current devices.json, H2 materialization and native RF PCB pads. The common physical package is checked independently of band-specific RF performance; the UHF part is not substituted for this VHF instance.",
+      "board_level_review": {
+        "result": "no_hard_tie_defect_identified_in_this_bounded_review",
+        "observed": [
+          "U51 pads 2,4,11,13,14,15 are explicitly unconnected; supply and returns match U39. Shared H/L has only the permitted open-drain driver plus two module inputs.",
+          "PTT, AUDIO_ON and UART use the V-side TMUX1136 channels, separate from U39. R145 is the VHF PTT 10-kohm pull-up to VVOICE_IO_3V3; R146 is its RXD 100-kohm pull-down to AUDIO_GROUND.",
+          "The VHF antenna and microphone coupling use their own dedicated nets; this is a connectivity check, not a matched-RF, audio or switching-state sign-off."
+        ]
+      },
+      "unresolved": [
+        "The module-pin DC levels and output-stage topology are not fully characterized by the published specification; the same voltage-domain caveat as U39 remains for U51.",
+        "RXD-low-before-PD sequencing must also be proved for the VHF module, including deselection and fault-driven shutdown; R146 alone cannot force a live UART driver low.",
+        "Common pin numbering does not prove VHF RF matching, TX power, one-hot control, leakage, supply/current margins or thermal performance."
+      ]
+    },
+    {
+      "device_id": "onsemi_cat24c512wi_gt3",
+      "mpn": "onsemi CAT24C512WI-GT3",
+      "evidence": [
+        {
+          "url": "https://www.onsemi.com/pdf/datasheet/cat24c512-d.pdf",
+          "section": "CAT24C512/D Rev.10, July 2023: page1 SOIC(W) top-view pin diagram; page5 Pin Description and I2C Bus Protocol; pages3-4 DC/pull-down and timing limits; page7 Write Protection/Delivery State; page10 exact CAT24C512WI-GT3 SOIC-8 JEDEC ordering row. Pin diagram visually inspected.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {"type": "input", "reason": "A0 device-address input with internal pull-down."},
+        "2": {"type": "input", "reason": "A1 device-address input with internal pull-down."},
+        "3": {"type": "input", "reason": "A2 device-address input with internal pull-down."},
+        "4": {"type": "power_in", "reason": "VSS ground return."},
+        "5": {"type": "bidirectional", "reason": "SDA receives and transmits I2C data; transmit driver is open-drain."},
+        "6": {"type": "input", "reason": "SCL clock input from the I2C controller."},
+        "7": {"type": "input", "reason": "WP write-protect input, active high, internally pulled down."},
+        "8": {"type": "power_in", "reason": "VCC positive supply input."}
+      },
+      "physical_map_review": "All eight numbered functions match RF U2/pd_config_eeprom in devices.json, H2 materialization and the native PCB. WI selects SOIC-8 JEDEC rather than the wider XI/EIAJ package. The current primary PDF is Rev.10; devices.json still cites Rev.9. No pin-map or MPN change is implied by this metadata difference.",
+      "board_level_review": {
+        "result": "no_hard_tie_defect_identified_in_this_bounded_review",
+        "observed": [
+          "A0/A1/A2 and VSS are tied to POWER_GROUND, selecting the zero address-bit configuration. None is an output.",
+          "VCC is PD_LOCAL_3V3 from TPS25751 LDO_3V3. SDA/SCL have their own 2.2-kohm pull-ups R12/R11 to this same rail; the EEPROM SCL is not a second clock driver.",
+          "WP is connected to TPS25751 GPIO0 and R10's 10-kohm pull-up to PD_LOCAL_3V3. It is an input, not an output-output conflict; active drive state remains configuration-dependent."
+        ]
+      },
+      "unresolved": [
+        "This map does not prove the programmed PD EEPROM image, TPS25751 boot/read/write sequence, GPIO0 configuration, power-up timing or I2C timing margins. The memory's shipped erased state is not a usable PD configuration image.",
+        "WP pull-up versus the internal pull-down, actual voltage corners and behavior while the PD rail is absent require their existing state/corner checks; generic input/bidirectional pin types do not clear those obligations."
+      ]
+    }
+  ]
+}

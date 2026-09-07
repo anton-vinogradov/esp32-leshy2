@@ -930,6 +930,15 @@ class ProductSiteTests(unittest.TestCase):
                 )
             }
             self.assertEqual(set(range(10)), set(rows), name)
+            # A reviewed historical model cannot silently authorize the fitted
+            # power cell while the native-pin-bound review has open findings.
+            self.assertIn(
+                "retained calculations do not yet qualify current power"
+                if name.endswith("roadmap.md")
+                else "сохранённые расчёты пока не подтверждают текущее питание",
+                rows[3], name,
+            )
+            self.assertIn("h6-r2-electrical-semantics", rows[3], name)
             for stage, status in expected.items():
                 if status == "reviewed":
                     self.assertIn(reviewed, rows[stage], f"{name}: H{stage}")

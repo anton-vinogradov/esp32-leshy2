@@ -22,7 +22,7 @@
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "0abf082483aed8c2eca8c6ddfd43684bd1664266d5f0e06873554df05da5b767"
+      "sha256": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76"
     },
     "component_groups": {
       "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
