@@ -39,7 +39,7 @@ class H1R2LayoutTest(unittest.TestCase):
         self.assertEqual("pass", self.audit["structural_status"])
         self.assertEqual([], self.audit["errors"])
         self.assertEqual([], self.audit["same_face_collisions"])
-        self.assertEqual(88, len(self.audit["opposing_overlaps"]))
+        self.assertEqual(86, len(self.audit["opposing_overlaps"]))
         self.assertEqual(
             [{"ui": "m1_ui_plug", "rf": "m1_rf_receptacle", "overlap_mm": 3.8}],
             self.audit["intentional_opposing_mates"],
@@ -485,13 +485,13 @@ class H1R2LayoutTest(unittest.TestCase):
                 'data-recessed="true"',
                 expected[MODULE.EXTERNAL_SVG_PATH],
             )
-        self.assertIn('data-view="both-inner-faces-mirrored"', expected[MODULE.COMPLETE_INNER_SVG_PATH])
+        self.assertIn('data-view="both-inner-faces-direct"', expected[MODULE.COMPLETE_INNER_SVG_PATH])
         self.assertIn('data-inner-silkscreen="none"', expected[MODULE.COMPLETE_INNER_SVG_PATH])
         self.assertIn('data-view="four-faces-matched-columns"', expected[MODULE.FOUR_FACES_SVG_PATH])
         self.assertIn('clip-path="url(#front-external-content)"', expected[MODULE.FOUR_FACES_SVG_PATH])
         self.assertIn('clip-path="url(#rear-external-content)"', expected[MODULE.FOUR_FACES_SVG_PATH])
         self.assertIn('data-view="numbered-component-legend"', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
-        self.assertIn('226 unique drawing references', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
+        self.assertIn('223 unique drawing references', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])
         self.assertIn('data-physical-feature="cap_socket_pth_keepout"', expected[MODULE.INNER_RF_SVG_PATH])
         self.assertIn('data-physical-feature="u219_nfc_evidence_island_reserve"', expected[MODULE.COMPLETE_INNER_SVG_PATH])
         self.assertIn('u219_nfc_pickup_loop · copper_feature_reserve · X 4…76 · Y 17.8…40.2 mm', expected[MODULE.COMPONENT_LEGEND_SVG_PATH])

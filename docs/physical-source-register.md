@@ -2,10 +2,13 @@
 
 [Hardware](hardware.md) · [Roadmap](roadmap.md) · [Русский](physical-source-register.ru.md)
 
-Every body drawn in the product views is generated from one machine row with
+This is the retained H1 concept source register, not the current H6 native-PCB inventory.
+R2 replacements and retirements are applied by the [H1 concept model](h1-r2-physical-layout.md);
+use the [native H6 views](h6-r2-component-views.md) and [interface review](h6-r2-interface-review.md) for current geometry and open findings.
+Each body in this historical source register has one machine row with
 an exact selected MPN (or an explicit TBD), manufacturer-backed envelope, named
-coordinate frame, orientation and interface direction. No H1 geometry blocker
-remains; H5 locks deterministic pre-order evidence, while received fit, RF, acoustic, thermal and ordinary-operation checks run in H7/H8 after arrival without artificial ageing.
+coordinate frame, orientation and interface direction. Historical H1 closure does not prove current
+PCB correspondence, close H6 geometry gates or authorize manufacture; received fit, RF, acoustic, thermal and ordinary-operation checks remain separate.
 
 | Coverage | Result |
 |---|---:|
@@ -29,6 +32,6 @@ remains; H5 locks deterministic pre-order evidence, while received fit, RF, acou
 
 The complete per-instance table is retained as
 [`H1-physical-source-table.json`](../hardware/product-design/generated/H1-physical-source-table.json)
-for deterministic rendering, review and later ECAD transfer. The resolved
+as the historical rendering seed, not as authority to move current native components. The resolved
 front-facing X/Y/Z projection is
 [`H1-unified-coordinate-table.json`](../hardware/product-design/generated/H1-unified-coordinate-table.json).

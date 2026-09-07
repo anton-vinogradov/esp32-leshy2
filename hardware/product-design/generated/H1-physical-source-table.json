@@ -2450,7 +2450,7 @@
       "instance": "display_connector",
       "device_key": "hirose_fh34srj_50s_0_5sh_50",
       "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
-      "role": "direct 50-contact dual-contact ZIF behind the folded display FPC slot; pin 1 at world x-min",
+      "role": "direct 50-contact dual-contact ZIF behind the folded display FPC slot; connector pin 1 at world x-max, tail pin 1 mates connector pin 50 at world x-min",
       "frame": "ui-inner",
       "frame_datum": "UI PCB top-left, viewed from the front/exterior",
       "rotation_deg": 0,
@@ -5018,9 +5018,9 @@
       "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
       "source": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
-        "version": "A204-E1",
-        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
-        "checked": "2026-08-19"
+        "version": "B3S p2 terminal arrangement/internal connections, TOP view: 4/3 top, 2/1 bottom, ground 5; visually checked 2026-09-07",
+        "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+        "checked": "2026-09-07"
       },
       "evidence_gates": [
         {
@@ -5727,7 +5727,7 @@
         "document": "74LVC1G32 Single 2-input OR gate datasheet",
         "version": "2024-09-03",
         "url": "https://assets.nexperia.com/documents/data-sheet/74LVC1G32.pdf",
-        "checked": "2026-08-17"
+        "checked": "2026-09-07"
       },
       "evidence_gates": [],
       "position_mm": [
@@ -5754,7 +5754,7 @@
         "document": "SN74LVC1G17 Single Schmitt-Trigger Buffer datasheet",
         "version": "Rev. Y, revised October 2025",
         "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf",
-        "checked": "2026-08-31"
+        "checked": "2026-09-07"
       },
       "evidence_gates": [],
       "position_mm": [
@@ -6897,9 +6897,9 @@
       "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
       "source": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
-        "version": "A204-E1",
-        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
-        "checked": "2026-08-19"
+        "version": "B3S p2 terminal arrangement/internal connections, TOP view: 4/3 top, 2/1 bottom, ground 5; visually checked 2026-09-07",
+        "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+        "checked": "2026-09-07"
       },
       "evidence_gates": [
         {
@@ -6929,9 +6929,9 @@
       "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
       "source": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
-        "version": "A204-E1",
-        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
-        "checked": "2026-08-19"
+        "version": "B3S p2 terminal arrangement/internal connections, TOP view: 4/3 top, 2/1 bottom, ground 5; visually checked 2026-09-07",
+        "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+        "checked": "2026-09-07"
       },
       "evidence_gates": [
         {
@@ -6961,9 +6961,9 @@
       "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
       "source": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
-        "version": "A204-E1",
-        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
-        "checked": "2026-08-19"
+        "version": "B3S p2 terminal arrangement/internal connections, TOP view: 4/3 top, 2/1 bottom, ground 5; visually checked 2026-09-07",
+        "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+        "checked": "2026-09-07"
       },
       "evidence_gates": [
         {
@@ -6993,9 +6993,9 @@
       "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
       "source": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
-        "version": "A204-E1",
-        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
-        "checked": "2026-08-19"
+        "version": "B3S p2 terminal arrangement/internal connections, TOP view: 4/3 top, 2/1 bottom, ground 5; visually checked 2026-09-07",
+        "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+        "checked": "2026-09-07"
       },
       "evidence_gates": [
         {
@@ -7025,9 +7025,9 @@
       "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
       "source": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
-        "version": "A204-E1",
-        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
-        "checked": "2026-08-19"
+        "version": "B3S p2 terminal arrangement/internal connections, TOP view: 4/3 top, 2/1 bottom, ground 5; visually checked 2026-09-07",
+        "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+        "checked": "2026-09-07"
       },
       "evidence_gates": [
         {
@@ -7084,9 +7084,9 @@
       "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
       "source": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
-        "version": "A204-E1",
-        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
-        "checked": "2026-08-19"
+        "version": "B3S p2 terminal arrangement/internal connections, TOP view: 4/3 top, 2/1 bottom, ground 5; visually checked 2026-09-07",
+        "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+        "checked": "2026-09-07"
       },
       "evidence_gates": [
         {
@@ -7116,9 +7116,9 @@
       "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
       "source": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
-        "version": "A204-E1",
-        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
-        "checked": "2026-08-19"
+        "version": "B3S p2 terminal arrangement/internal connections, TOP view: 4/3 top, 2/1 bottom, ground 5; visually checked 2026-09-07",
+        "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+        "checked": "2026-09-07"
       },
       "evidence_gates": [
         {
@@ -7148,9 +7148,9 @@
       "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
       "source": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
-        "version": "A204-E1",
-        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
-        "checked": "2026-08-19"
+        "version": "B3S p2 terminal arrangement/internal connections, TOP view: 4/3 top, 2/1 bottom, ground 5; visually checked 2026-09-07",
+        "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+        "checked": "2026-09-07"
       },
       "evidence_gates": [
         {
@@ -7180,9 +7180,9 @@
       "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
       "source": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
-        "version": "A204-E1",
-        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
-        "checked": "2026-08-19"
+        "version": "B3S p2 terminal arrangement/internal connections, TOP view: 4/3 top, 2/1 bottom, ground 5; visually checked 2026-09-07",
+        "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+        "checked": "2026-09-07"
       },
       "evidence_gates": [
         {
@@ -7212,9 +7212,9 @@
       "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
       "source": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
-        "version": "A204-E1",
-        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
-        "checked": "2026-08-19"
+        "version": "B3S p2 terminal arrangement/internal connections, TOP view: 4/3 top, 2/1 bottom, ground 5; visually checked 2026-09-07",
+        "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+        "checked": "2026-09-07"
       },
       "evidence_gates": [
         {
@@ -7244,9 +7244,9 @@
       "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
       "source": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
-        "version": "A204-E1",
-        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
-        "checked": "2026-08-19"
+        "version": "B3S p2 terminal arrangement/internal connections, TOP view: 4/3 top, 2/1 bottom, ground 5; visually checked 2026-09-07",
+        "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+        "checked": "2026-09-07"
       },
       "evidence_gates": [
         {
@@ -7276,9 +7276,9 @@
       "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
       "source": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
-        "version": "A204-E1",
-        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
-        "checked": "2026-08-19"
+        "version": "B3S p2 terminal arrangement/internal connections, TOP view: 4/3 top, 2/1 bottom, ground 5; visually checked 2026-09-07",
+        "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+        "checked": "2026-09-07"
       },
       "evidence_gates": [
         {
@@ -7308,9 +7308,9 @@
       "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
       "source": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
-        "version": "A204-E1",
-        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
-        "checked": "2026-08-19"
+        "version": "B3S p2 terminal arrangement/internal connections, TOP view: 4/3 top, 2/1 bottom, ground 5; visually checked 2026-09-07",
+        "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+        "checked": "2026-09-07"
       },
       "evidence_gates": [
         {
@@ -7340,9 +7340,9 @@
       "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
       "source": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
-        "version": "A204-E1",
-        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
-        "checked": "2026-08-19"
+        "version": "B3S p2 terminal arrangement/internal connections, TOP view: 4/3 top, 2/1 bottom, ground 5; visually checked 2026-09-07",
+        "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+        "checked": "2026-09-07"
       },
       "evidence_gates": [
         {
@@ -7372,9 +7372,9 @@
       "qualification": "verified_exact_direct_press_control_mechanical_hil_open",
       "source": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
-        "version": "A204-E1",
-        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
-        "checked": "2026-08-19"
+        "version": "B3S p2 terminal arrangement/internal connections, TOP view: 4/3 top, 2/1 bottom, ground 5; visually checked 2026-09-07",
+        "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+        "checked": "2026-09-07"
       },
       "evidence_gates": [
         {

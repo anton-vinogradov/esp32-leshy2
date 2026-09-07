@@ -1,6 +1,8 @@
 """Negative coverage for the native free-board user-silkscreen audit."""
 
 import importlib.util
+import copy
+import json
 from pathlib import Path
 import sys
 import unittest
@@ -65,7 +67,8 @@ class SilkscreenContractTests(unittest.TestCase):
                     "obstacles": [{"kind": "front_courtyard_bbox", "reference": "SW3",
                                    "bbox_mm": {"x": [5, 7], "y": [11, 13]}}]}
         contract = {"board": {"width_mm": 80, "height_mm": 150, "corner_radius_mm": 2}}
-        with patch.object(audit, "labels", return_value=[expected()]):
+        with patch.object(audit, "labels", return_value=[expected()]), \
+                patch.object(audit, "antenna_signal_findings", return_value=[]):
             result = audit.audit_snapshot(snapshot, contract)
             self.assertEqual("review_required", result["status"])
             self.assertEqual([], result["errors"])
@@ -77,10 +80,55 @@ class SilkscreenContractTests(unittest.TestCase):
         snapshot = {"project": "LESHY2-UI-R2", "placements": [], "texts": [actual()],
                     "obstacles": [], "native_outline_bbox_mm": {"x": [0, 75], "y": [0, 150]}}
         contract = {"board": {"width_mm": 80, "height_mm": 150, "corner_radius_mm": 2}}
-        with patch.object(audit, "labels", return_value=[expected()]):
+        with patch.object(audit, "labels", return_value=[expected()]), \
+                patch.object(audit, "antenna_signal_findings", return_value=[]):
             result = audit.audit_snapshot(snapshot, contract)
         self.assertEqual("fail", result["status"])
         self.assertEqual("native_outline_envelope_mismatch", result["errors"][0]["kind"])
+
+    def test_missing_contract_antenna_and_its_label_do_not_reduce_audit_scope(self):
+        contract = json.loads(audit.CONTRACT.read_text())
+        del contract["antenna_ports"]["LESHY2-RF-R2"]["voice_external_sma"]
+        snapshot = {"project": "LESHY2-RF-R2", "placements": [], "texts": [], "obstacles": []}
+        bindings = audit.checked_net_bindings()["projects"][snapshot["project"]]["canonical_to_kicad"]
+        result = audit.audit_snapshot(snapshot, contract, bindings)
+        self.assertEqual("fail", result["status"])
+        self.assertIn("antenna_scope_mismatch", {row["kind"] for row in result["errors"]})
+        self.assertIn("required_label_binding_unavailable", {row["kind"] for row in result["errors"]})
+
+
+class NetBindingAuthorityTests(unittest.TestCase):
+    def test_current_authority_is_complete_and_hash_bound(self):
+        bindings = audit.checked_net_bindings()
+        self.assertEqual({"LESHY2-UI-R2", "LESHY2-RF-R2"}, set(bindings["projects"]))
+        self.assertEqual(5, len(bindings["source_hashes"]))
+
+    def test_stale_or_incomplete_authority_is_not_used(self):
+        original = json.loads(audit.NET_BINDINGS.read_text())
+        for case in ("status", "errors", "source", "stale", "project", "empty", "duplicate", "empty_net"):
+            artifact = copy.deepcopy(original)
+            if case == "status":
+                artifact["status"] = "fail"
+            elif case == "errors":
+                artifact["errors"] = ["unresolved"]
+            elif case == "source":
+                artifact["source_hashes"].pop(next(iter(artifact["source_hashes"])))
+            elif case == "stale":
+                artifact["source_hashes"][next(iter(artifact["source_hashes"]))] = "0" * 64
+            elif case == "project":
+                del artifact["projects"]["LESHY2-RF-R2"]
+            else:
+                mapping = artifact["projects"]["LESHY2-RF-R2"]["canonical_to_kicad"]
+                if case == "empty":
+                    mapping.clear()
+                elif case == "empty_net":
+                    mapping[next(iter(mapping))] = ""
+                else:
+                    first, second = list(mapping)[:2]
+                    mapping[second] = mapping[first]
+            with self.subTest(case=case), patch.object(audit.json, "loads", return_value=artifact):
+                with self.assertRaises(ValueError):
+                    audit.checked_net_bindings()
 
 
 class SilkscreenGeometryTests(unittest.TestCase):
@@ -159,6 +207,31 @@ class SilkscreenGeometryTests(unittest.TestCase):
 
 @unittest.skipUnless(importlib.util.find_spec("pcbnew"), "Native extraction tests require KiCad Python")
 class NativeSilkscreenExtractionTests(unittest.TestCase):
+    def test_wrong_hierarchy_with_correct_leaf_name_fails_from_real_pad(self):
+        import pcbnew
+        project = "LESHY2-RF-R2"
+        contract = json.loads(audit.CONTRACT.read_text())
+        ledger = json.loads(audit.LEDGER.read_text())["rows"]
+        bindings = audit.checked_net_bindings()["projects"][project]["canonical_to_kicad"]
+        board = pcbnew.LoadBoard(str(ROOT / contract["boards"][project]["output"]))
+        reference = next(row["reference"] for row in ledger
+                         if row["project"] == project and row["instance"] == "voice_external_sma")
+        footprint = next(fp for fp in board.GetFootprints() if fp.GetReference() == reference)
+        pad = next(p for p in footprint.Pads() if p.GetNumber() == "1")
+        wrong_name = "/WRONG/VOICE_U_EXTERNAL_RF_50R"
+        wrong_net = pcbnew.NETINFO_ITEM(board, wrong_name)
+        board.Add(wrong_net)
+        pad.SetNet(wrong_net)
+        snapshot = audit.native_snapshot(board, project, ledger, contract, pcbnew)
+        row = next(row for row in snapshot["placements"] if row["instance"] == "voice_external_sma")
+        self.assertEqual([wrong_name], row["signal_pad_nets"])
+        result = audit.audit_snapshot(snapshot, contract, bindings)
+        self.assertEqual("fail", result["status"])
+        errors = [row for row in result["errors"] if row["kind"] == "antenna_signal_identity_mismatch"]
+        self.assertEqual(1, len(errors))
+        self.assertEqual([wrong_name], errors[0]["actual"])
+        self.assertEqual(bindings["VOICE_U_EXTERNAL_RF_50R"], errors[0]["expected"])
+
     def test_native_object_properties_not_mockup_or_generated_audit(self):
         import pcbnew
         board = pcbnew.BOARD()

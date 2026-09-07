@@ -34,6 +34,7 @@ U219_SOURCE_PATH = REPO / "hardware/architecture/h1-r2-u219-cap.json"
 DUAL_RP_PINOUT_PATH = REPO / "hardware/architecture/h1-r2-dual-rp-pinout.json"
 DEVICES_PATH = REPO / "hardware/architecture/devices.json"
 CANDIDATE_PATH = REPO / "hardware/architecture/candidates/G2F-3I.json"
+DISPLAY_MOUNT_PATH = REPO / "hardware/product-design/display-mount.json"
 PUBLIC_ASSET_REV = "h1-r2.39-80mm-1"
 BOTTOM_SILK_OWNER_BASELINE_MM = 145.1
 BOTTOM_SILK_ROLE_BASELINE_MM = 147.0
@@ -41,6 +42,50 @@ BOTTOM_SILK_ROLE_BASELINE_MM = 147.0
 
 def load(path: Path) -> dict:
     return json.loads(path.read_text())
+
+
+def inner_view_x(frame: str, world_x: float, width: float, board_width: float) -> float:
+    """Project the shared assembly datum into a directly viewed PCB inner face.
+
+    Assembly world is the UI exterior view.  Looking at UI B reverses X;
+    looking at the facing RF B does not.  Never feed rear-exterior-local
+    coordinates to this function without the explicit conversion below.
+    """
+    if frame == "ui-inner":
+        return board_width - world_x - width
+    if frame == "rf-inner":
+        return world_x
+    raise ValueError(f"unsupported inner-view frame: {frame}")
+
+
+def exterior_x_to_world(frame: str, local_x: float, width: float, board_width: float) -> float:
+    """Legacy holes and SMA-bank centres are authored in each PCB's exterior view."""
+    if frame == "ui-inner":
+        return local_x
+    if frame == "rf-inner":
+        return board_width - local_x - width
+    raise ValueError(f"unsupported exterior-coordinate frame: {frame}")
+
+
+def inner_mechanical_svg(model: dict, frame: str, origin: tuple[float, float], scale: float) -> list[str]:
+    """Draw physical openings, separately from non-cutting assembly keep-outs."""
+    legacy = legacy_generator()
+    board_width = model["board_mm"][0]
+    out = []
+    for index, (local_x, y) in enumerate(legacy.HOLES, 1):
+        world_x = exterior_x_to_world(frame, local_x, 0.0, board_width)
+        x = origin[0] + inner_view_x(frame, world_x, 0.0, board_width) * scale
+        cy = origin[1] + y * scale
+        out.append(f'<circle cx="{x:.2f}" cy="{cy:.2f}" r="{legacy.MOUNT_KEEPOUT_R*scale:.2f}" fill="none" stroke="#f97316" stroke-dasharray="5 3" data-mechanical-feature="mounting-keepout" data-hole="MH{index}"/>')
+        out.append(f'<circle cx="{x:.2f}" cy="{cy:.2f}" r="{legacy.MOUNT_HOLE_D*scale/2:.2f}" fill="#ffffff" stroke="#475467" stroke-width="1.2" data-mechanical-feature="mounting-hole" data-hole="MH{index}" data-source-frame="pcb-exterior-local"/>')
+    if frame == "ui-inner":
+        # Use the H1 display contract, not later H6 placement refinements.
+        route = load(DISPLAY_MOUNT_PATH)["mechanical_retention"]["fpc_route_side_section"]
+        world_x, y = route["pcb_slot_position_mm"]
+        w, h = route["pcb_slot_width_mm"], route["pcb_slot_height_mm"]
+        x = origin[0] + inner_view_x(frame, world_x, w, board_width) * scale
+        out.append(f'<rect x="{x:.2f}" y="{origin[1]+y*scale:.2f}" width="{w*scale:.2f}" height="{h*scale:.2f}" rx="{h*scale/2:.2f}" fill="#ffffff" stroke="#475467" stroke-width="1.2" data-mechanical-feature="display-fpc-slot" data-source-frame="assembly-world"/>')
+    return out
 
 
 def legacy_generator():
@@ -348,13 +393,22 @@ def silkscreen_audit(model: dict) -> dict:
     }
 
 
+def excluded_seed_instances(model: dict) -> set[str]:
+    """One exclusion rule for collision, geometry, drawing and legend populations.
+
+    A replacement still has a current body; a retirement intentionally does not.
+    Both remain recorded separately in the audit, never erased from the R1 input.
+    """
+    return set(model.get("retired_seed_instances", [])) | {
+        instance
+        for item in model["placements"]
+        for instance in item.get("replaces", [])
+    }
+
+
 def effective_inner_entries(model: dict, base: dict, placed: list[dict]) -> list[dict]:
     """Return the retained seed and R2 placements as one collision population."""
-    replaced = {
-        instance
-        for entry in placed
-        for instance in entry["item"].get("replaces", [])
-    }
+    excluded = excluded_seed_instances(model)
     entries = [
         {
             "id": row["instance"],
@@ -365,7 +419,7 @@ def effective_inner_entries(model: dict, base: dict, placed: list[dict]) -> list
         }
         for row in base["rows"]
         if row["source_frame"] in {"ui-inner", "rf-inner"}
-        and row["instance"] not in replaced
+        and row["instance"] not in excluded
     ]
     entries.extend(
         {
@@ -842,6 +896,17 @@ def audit(model: dict, base: dict) -> dict:
         for entry in new
         for instance in entry["item"].get("replaces", [])
     }
+    retired = model.get("retired_seed_instances", [])
+    known_seed = {row["instance"] for row in base["rows"]}
+    if len(retired) != len(set(retired)):
+        errors.append("retired seed instances contain duplicates")
+    if set(retired) - known_seed:
+        errors.append(f"unknown retired seed instances: {sorted(set(retired) - known_seed)}")
+    if set(retired) & replaced:
+        errors.append("a seed instance cannot be both retired and replaced")
+    if set(retired) & {item["id"] for item in model["placements"]}:
+        errors.append("a retired seed instance cannot remain an active placement")
+    excluded = excluded_seed_instances(model)
     same_face = []
     for entry in physical_bodies:
         item, b = entry["item"], entry["bbox"]
@@ -849,7 +914,7 @@ def audit(model: dict, base: dict) -> dict:
         for row in base["rows"]:
             if row["source_frame"] != item["frame"]:
                 continue
-            if row["instance"] in replaced:
+            if row["instance"] in excluded:
                 continue
             if row["instance"] in allowed:
                 continue
@@ -1000,6 +1065,9 @@ def audit(model: dict, base: dict) -> dict:
         "placement_drawing_reference_count": len(drawing_refs),
         "duplicate_placement_drawing_references": duplicate_refs,
         "replaced_seed_instances": sorted(replaced),
+        "retired_seed_instances": sorted(retired),
+        "representation_scope": "H1 concept geometry; not a current H6 native-PCB correspondence or release check",
+        "native_pcb_correspondence_verified": False,
         "same_face_collisions": same_face,
         "opposing_overlap_count": len(cross),
         "minimum_opposing_clearance_mm": min_cross,
@@ -1064,26 +1132,26 @@ def render_svg(model: dict, base: dict, result: dict) -> str:
         x0 = ox[frame]
         out.append(f'<text x="{x0 + board_w * scale / 2:.2f}" y="96" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">{esc(title)}</text>')
         out.append(rect(x0, oy, board_w * scale, board_h * scale, fill="#f8fafc", stroke="#334155", stroke_width="2"))
+        out.extend(inner_mechanical_svg(model, frame, (x0, oy), scale))
         for row in base["rows"]:
             if row["source_frame"] != frame:
                 continue
-            if row["instance"] in set(result["replaced_seed_instances"]):
+            if row["instance"] in excluded_seed_instances(model):
                 continue
             b = row["world_bbox_mm"]
-            x = b["x"][0]
-            x = board_w - b["x"][1]
-            out.append(rect(x0 + x * scale, oy + b["y"][0] * scale, (b["x"][1] - b["x"][0]) * scale, (b["y"][1] - b["y"][0]) * scale, fill="#e2e8f0", stroke="#cbd5e1", stroke_width="0.7"))
+            x = inner_view_x(frame, b["x"][0], b["x"][1] - b["x"][0], board_w)
+            out.append(rect(x0 + x * scale, oy + b["y"][0] * scale, (b["x"][1] - b["x"][0]) * scale, (b["y"][1] - b["y"][0]) * scale, fill="#e2e8f0", stroke="#cbd5e1", stroke_width="0.7", data_instance=row["instance"]))
 
         for item in model["placements"]:
             if item["frame"] != frame:
                 continue
             x, y = item["world_xy_mm"]
             w, h, _ = item["size_mm"]
-            x = board_w - x - w
+            x = inner_view_x(frame, x, w, board_w)
             family = "airband" if item["id"].startswith("airband") else "hub_rp"
             fill, stroke = colours[family]
             dash = "6 4" if item["kind"] == "reserve" else "none"
-            out.append(rect(x0 + x * scale, oy + y * scale, w * scale, h * scale, rx="3", fill=fill, fill_opacity="0.92", stroke=stroke, stroke_width="2", stroke_dasharray=dash))
+            out.append(rect(x0 + x * scale, oy + y * scale, w * scale, h * scale, rx="3", fill=fill, fill_opacity="0.92", stroke=stroke, stroke_width="2", stroke_dasharray=dash, data_instance=item["id"]))
             label = item["drawing_ref"]
             tx = x0 + (x + w / 2) * scale
             ty = oy + (y + h / 2) * scale
@@ -1183,10 +1251,10 @@ def render_external_svg(model: dict) -> str:
         'data-review-status="reviewed"',
     ).replace(
         "Leshy2 — dimensioned external layout",
-        f"Leshy2 — {marker} current external layout",
+        f"Leshy2 — {marker} concept external layout",
     ).replace(
         "Text on a PCB face but outside component outlines is intended silkscreen; text outside PCB faces or inside outlines is drawing annotation.",
-        "Reviewed R2 exterior. PCB-face free text is silkscreen; drawing notes and arrows are annotations.",
+        "H1 concept, not current H6 PCB geometry. PCB-face text specifies intended silk; notes/arrows are annotations.",
     ).replace(
         "M5Stack U214 · installed worst-case · 84×24 mm",
         "Cap-Bus slot · U214 / U219 · 84×24 mm",
@@ -1379,12 +1447,12 @@ def render_service_svg(model: dict) -> str:
 def complete_inner_rows(model: dict, base: dict, source_table: dict, result: dict) -> list[dict]:
     """Merge unchanged registered R1 bodies with every explicit R2 body/reserve."""
     sources = {row["instance"]: row for row in source_table["rows"]}
-    replaced = set(result["replaced_seed_instances"])
+    excluded = excluded_seed_instances(model)
     rows: list[dict] = []
     for row in base["rows"]:
         if row["source_frame"] not in {"ui-inner", "rf-inner"}:
             continue
-        if row["instance"] in replaced:
+        if row["instance"] in excluded:
             continue
         source = sources[row["instance"]]
         rows.append(
@@ -1395,7 +1463,7 @@ def complete_inner_rows(model: dict, base: dict, source_table: dict, result: dic
                 "mpn": source["mpn"],
                 "role": source["role"],
                 "kind": "fixed_body",
-                "origin": "current registered body",
+                "origin": "retained H1 concept body",
             }
         )
     for item in model["placements"]:
@@ -1431,15 +1499,15 @@ def r2_antenna_topology(model: dict, rows: list[dict]) -> dict:
     never finished KiCad geometry.  Removable microcoaxes are separate objects.
     """
     row_by_id = {row["id"]: row for row in rows}
-    port_centres = {
-        path: (centre, 0.0)
-        for path, centre in zip(
-            model["antenna_bank_optimization"]["front_paths"]
-            + model["antenna_bank_optimization"]["rear_paths"],
-            model["antenna_bank_optimization"]["front_x_centres_mm"]
-            + model["antenna_bank_optimization"]["rear_x_centres_mm"],
-        )
-    }
+    # Bodies below already use assembly world; antenna banks alone retain
+    # exterior-local centres so their accepted outward identity/order is fixed.
+    bank = model["antenna_bank_optimization"]
+    port_centres = {}
+    for face, frame in (("front", "ui-inner"), ("rear", "rf-inner")):
+        for path, centre in zip(bank[f"{face}_paths"], bank[f"{face}_x_centres_mm"]):
+            port_centres[path] = (
+                exterior_x_to_world(frame, centre, 0.0, model["board_mm"][0]), 0.0
+            )
 
     def centre(instance: str) -> tuple[float, float]:
         box = row_by_id[instance]["bbox"]
@@ -1649,6 +1717,7 @@ def render_complete_inner_svg(model: dict, base: dict, source_table: dict, resul
     ui = (65.0, 130.0)
     rf = (440.0, 130.0)
     origins = {"ui-inner": ui, "rf-inner": rf}
+    frames_by_origin = {origin: frame for frame, origin in origins.items()}
     columns = 4
     legend_rows = math.ceil(len(rows) / columns)
     row_h = 50
@@ -1658,7 +1727,7 @@ def render_complete_inner_svg(model: dict, base: dict, source_table: dict, resul
     esc = html.escape
 
     def sx(origin: tuple[float, float], world_x: float, body_w: float = 0.0) -> float:
-        return origin[0] + (board_w - world_x - body_w) * scale
+        return origin[0] + inner_view_x(frames_by_origin[origin], world_x, body_w, board_w) * scale
 
     def sy(origin: tuple[float, float], world_y: float) -> float:
         return origin[1] + world_y * scale
@@ -1667,7 +1736,7 @@ def render_complete_inner_svg(model: dict, base: dict, source_table: dict, resul
         return f'<text x="{x:.1f}" y="{y:.1f}" font-family="sans-serif" font-size="{size}" font-weight="{weight}" text-anchor="{anchor}" fill="{colour}">{esc(value)}</text>'
 
     out = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" data-marker="{esc(model["marker"])}" data-view="both-inner-faces-mirrored" data-inner-silkscreen="none">',
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" data-marker="{esc(model["marker"])}" data-view="both-inner-faces-direct" data-inner-silkscreen="none">',
         '<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#dc2626"/></marker></defs>',
         f'<rect width="{width}" height="{height}" fill="#ffffff"/>',
         t(30, 40, f'Leshy2 — {model["marker"]} complete inner-body map', 24, "bold"),
@@ -1677,8 +1746,7 @@ def render_complete_inner_svg(model: dict, base: dict, source_table: dict, resul
         origin = origins[frame]
         out.append(t(origin[0] + board_w*scale/2, 110, title, 16, "bold", "middle"))
         out.append(f'<rect x="{origin[0]:.1f}" y="{origin[1]:.1f}" width="{board_w*scale:.1f}" height="{board_h*scale:.1f}" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>')
-        for hole_x, hole_y in legacy.HOLES:
-            out.append(f'<circle cx="{sx(origin,hole_x):.1f}" cy="{sy(origin,hole_y):.1f}" r="{legacy.MOUNT_KEEPOUT_R*scale:.1f}" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>')
+        out.extend(inner_mechanical_svg(model, frame, origin, scale))
         for feature in located_physical_features(model, frame):
             box = feature["world_bbox_mm"]
             feature_w = box["x"][1] - box["x"][0]
@@ -1744,18 +1812,13 @@ def render_complete_inner_svg(model: dict, base: dict, source_table: dict, resul
         out.append(f'<circle cx="{sx(origin,x):.1f}" cy="{sy(origin,y):.1f}" r="1.3" fill="#d97706"/>')
     out.append('</g>')
 
-    rf_origin = origins["rf-inner"]
-    # Exact outward interfaces attached to R2 bodies.
-    out.append(f'<path d="M{sx(ui,0):.1f} {sy(ui,137.47):.1f} L{sx(ui,-8):.1f} {sy(ui,137.47):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-    board_w = model["board_mm"][0]
-    for cy in (132.25, 139.25):
-        out.append(f'<path d="M{sx(ui,board_w):.1f} {sy(ui,cy):.1f} L{sx(ui,board_w + 8):.1f} {sy(ui,cy):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
-    out.append(f'<path d="M{sx(rf_origin,board_w):.1f} {sy(rf_origin,101.3):.1f} L{sx(rf_origin,board_w + 8):.1f} {sy(rf_origin,101.3):.1f}" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>')
+    # Exterior/service renderers own interface arrows.  Do not reintroduce
+    # unbound legacy side arrows here: every current USB mouth faces bottom.
 
     out.extend(
         [
             t(30, 720, f'Numbered registered bodies · {len(rows)} total', 17, "bold"),
-            t(410, 720, f'R2 structural audit: pass · {len(model["current_h1_blockers"])} open H1 geometry gates · {result["minimum_opposing_clearance_mm"]:.2f} mm minimum opposing gap', 12, "bold", colour="#166534"),
+            t(410, 720, f'H1 concept audit: {result["structural_status"]} · native H6 correspondence not verified · {result["minimum_opposing_clearance_mm"]:.2f} mm concept gap', 12, "bold", colour="#9a3412"),
         ]
     )
     column_width = 460
@@ -1850,7 +1913,7 @@ def render_inner_face_svg(
     centres = model["antenna_bank_optimization"]["front_x_centres_mm" if is_ui else "rear_x_centres_mm"]
 
     def sx(world_x: float, body_w: float = 0.0) -> float:
-        return ox + (board_w - world_x - body_w) * scale
+        return ox + inner_view_x(frame, world_x, body_w, board_w) * scale
 
     def sy(world_y: float) -> float:
         return oy + world_y * scale
@@ -1867,13 +1930,12 @@ def render_inner_face_svg(
         f'<rect x="{ox}" y="{oy}" width="{board_w*scale:.1f}" height="{board_h*scale:.1f}" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="2"/>',
     ]
     for centre, path in zip(centres, paths):
-        port_x = sx(centre)
+        port_x = sx(exterior_x_to_world(frame, centre, 0.0, board_w))
         out.extend([
             f'<rect x="{port_x-5.1*scale:.1f}" y="{oy-6*scale:.1f}" width="{10.2*scale:.1f}" height="{6*scale:.1f}" rx="3" fill="#eef2f6" stroke="#667085" stroke-width="1.5"/>',
             text(port_x, oy-7*scale, path, 8.2, "bold", "middle", "#1d4ed8" if is_ui else "#9a3412"),
         ])
-    for hole_x, hole_y in legacy.HOLES:
-        out.append(f'<circle cx="{sx(hole_x):.1f}" cy="{sy(hole_y):.1f}" r="{legacy.MOUNT_KEEPOUT_R*scale:.1f}" fill="none" stroke="#f97316" stroke-dasharray="5 3"/>')
+    out.extend(inner_mechanical_svg(model, frame, (ox, oy), scale))
     for feature in located_physical_features(model, frame):
         box = feature["world_bbox_mm"]
         feature_w = box["x"][1] - box["x"][0]
@@ -1952,7 +2014,8 @@ def render_inner_face_svg(
     island_rows = model["functional_partition"]["ui_board" if is_ui else "rf_power_board"]
     out.extend([
         text(note_x, 125, "Functional islands on this PCB", 18, "bold"),
-        text(note_x, 158, f'{len(rows)} registered bodies · zero same-face collisions', 12, "bold", colour="#166534"),
+        text(note_x, 158, f'{len(rows)} H1 concept bodies · {len(result["same_face_collisions"])} concept collisions', 12, "bold", colour="#166534"),
+        text(note_x, 180, 'Not a current native-PCB geometry or release check; see H6 views.', 10, colour="#9a3412"),
     ])
     note_y = 196
     for island in island_rows:
@@ -2103,7 +2166,7 @@ def render_inner_sections_svg(model: dict, base: dict, source_table: dict, resul
     out.extend(
         [
             t(35, legend_y-35, "Bodies crossed by the three planes", 17, "bold"),
-            t(500, legend_y-35, f'Structural audit: pass · {result["minimum_opposing_clearance_mm"]:.2f} mm minimum opposing gap · {len(model["current_h1_blockers"])} explicit H1 geometry gates remain', 11, "bold", colour="#166534"),
+            t(500, legend_y-35, f'H1 concept audit: {result["structural_status"]} · {result["minimum_opposing_clearance_mm"]:.2f} mm concept gap · not current H6 native geometry', 11, "bold", colour="#9a3412"),
         ]
     )
     per_col = math.ceil(len(legend_entries)/4)
@@ -2293,16 +2356,18 @@ def render_four_faces_svg(model: dict, external_svg: str, inner_ui_svg: str, inn
     inner_scale = 600.0 / (150.0 * 5.6)
     front_external_tx = 110.0 - 80.0 * external_scale
     rear_external_tx = 620.0 - 465.0 * external_scale
-    external_ty = 145.0 - 150.0 * external_scale
+    # Keep room for the complete 11.4-mm SMA barrels plus their arrows, and
+    # bottom-edge arrows.  The old 2.5/3.75-mm margins clipped both ends.
+    external_ty = 195.0 - 150.0 * external_scale
     front_inner_tx = 110.0 - 80.0 * inner_scale
     rear_inner_tx = 620.0 - 80.0 * inner_scale
-    inner_ty = 845.0 - 165.0 * inner_scale
+    inner_ty = 920.0 - 165.0 * inner_scale
 
     out = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="1500" viewBox="0 0 1050 1500" data-view="four-faces-matched-columns">',
-        '<defs><clipPath id="front-external-content"><rect x="45" y="135" width="450" height="625"/></clipPath><clipPath id="rear-external-content"><rect x="555" y="135" width="450" height="625"/></clipPath><clipPath id="front-inner-content"><rect x="45" y="795" width="450" height="660"/></clipPath><clipPath id="rear-inner-content"><rect x="555" y="795" width="450" height="660"/></clipPath></defs>',
-        '<rect width="1050" height="1500" fill="#ffffff"/>',
-        text(40, 42, f'Leshy2 · {model["marker"]} · four matched PCB faces', 26, "bold"),
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="1580" viewBox="0 0 1050 1580" data-view="four-faces-matched-columns">',
+        '<defs><clipPath id="front-external-content"><rect x="45" y="134" width="450" height="706"/></clipPath><clipPath id="rear-external-content"><rect x="555" y="134" width="450" height="706"/></clipPath><clipPath id="front-inner-content"><rect x="45" y="870" width="450" height="660"/></clipPath><clipPath id="rear-inner-content"><rect x="555" y="870" width="450" height="660"/></clipPath></defs>',
+        '<rect width="1050" height="1580" fill="#ffffff"/>',
+        text(40, 42, f'Leshy2 · {model["marker"]} · four concept PCB faces', 26, "bold"),
         text(40, 70, "Outer face above; the inner face is shown exactly as viewed after physically turning the PCB over.", 13, colour="#526076"),
         text(270, 104, "FRONT / UI PCB", 18, "bold", "middle", "#1d4ed8"),
         text(780, 104, "REAR / RF-POWER PCB", 18, "bold", "middle", "#166534"),
@@ -2310,11 +2375,11 @@ def render_four_faces_svg(model: dict, external_svg: str, inner_ui_svg: str, inn
         text(780, 130, "outer · user-facing silk", 12, "bold", "middle", "#526076"),
         f'<g clip-path="url(#front-external-content)" data-panel="front-external"><g transform="translate({front_external_tx:.6f} {external_ty:.6f}) scale({external_scale:.9f})">{external}</g></g>',
         f'<g clip-path="url(#rear-external-content)" data-panel="rear-external"><g transform="translate({rear_external_tx:.6f} {external_ty:.6f}) scale({external_scale:.9f})">{external}</g></g>',
-        text(270, 790, "inner · viewed after turning over · no silkscreen", 12, "bold", "middle", "#526076"),
-        text(780, 790, "inner · viewed after turning over · no silkscreen", 12, "bold", "middle", "#526076"),
+        text(270, 865, "inner · viewed after turning over · no silkscreen", 12, "bold", "middle", "#526076"),
+        text(780, 865, "inner · viewed after turning over · no silkscreen", 12, "bold", "middle", "#526076"),
         f'<g clip-path="url(#front-inner-content)" data-panel="front-inner"><g transform="translate({front_inner_tx:.6f} {inner_ty:.6f}) scale({inner_scale:.9f})">{inner_ui}</g></g>',
         f'<g clip-path="url(#rear-inner-content)" data-panel="rear-inner"><g transform="translate({rear_inner_tx:.6f} {inner_ty:.6f}) scale({inner_scale:.9f})">{inner_rf}</g></g>',
-        text(525, 1480, f'Matched physical columns · {model["board_mm"][0]:g} × {model["board_mm"][1]:g} mm PCBs · not authorization for KiCad', 12, "bold", "middle", "#b42318"),
+        text(525, 1555, f'H1 concept / концепт · {model["board_mm"][0]:g} × {model["board_mm"][1]:g} mm · not current H6 PCB geometry / не текущая геометрия PCB', 12, "bold", "middle", "#b42318"),
         '</svg>',
     ]
     return "\n".join(out) + "\n"
@@ -2429,18 +2494,20 @@ def render_doc_legacy(model: dict, result: dict, ru: bool) -> str:
 
 
 def render_doc(model: dict, result: dict, ru: bool) -> str:
-    """Publish the present product state without the design-decision diary."""
+    """Publish the H1 concept and distinguish it from current native H6 evidence."""
     if ru:
-        title = f'# {model["marker"]} · рабочая компоновка целевого устройства'
+        title = f'# {model["marker"]} · концептуальная компоновка H1'
         intro = (
-            "Полная проверяемая физическая модель двух плат 80×150 мм принята 2026-08-30; H1 закрыто. "
-            "Все корпуса, Cap-профили, внешний объём U219-антенны и медные резервы сведены без открытых geometry-gates. "
-            "Это не разрешает трассировку KiCad: сначала в R2 H2 должны быть закрыты перечисленные ниже электрические prerequisites."
+            "Концептуальная модель двух плат 80×150 мм принята 2026-08-30; историческое закрытие H1 сохраняется. "
+            "Эти мокапы показывают замысел и зарегистрированные корпуса H1, а не точную текущую компоновку KiCad. "
+            "Актуальные платы показаны в [нативных видах компонентов H6](h6-r2-component-views.ru.md); "
+            "неустранённые расхождения интерфейсов, прорезей и доступности — в [проверке H6](h6-r2-interface-review.ru.md). "
+            "Нулевые коллизии этого концепта не закрывают геометрические проверки H6 и не означают готовность к производству."
         )
         outside = "## Что увидит пользователь"
         inside = "## Что находится внутри"
-        verified = "## Проверено генератором"
-        factory = "## Точные фабричные позиции"
+        verified = "## Что проверяет генератор концепта H1"
+        factory = "## Фабричные позиции на дату фиксации H1"
         blocker = "## Итог H1"
         component_legend_heading = "## Легенда компонентов"
         board_names = ("Передняя UI/radio-плата", "Задняя RF/power-плата")
@@ -2475,16 +2542,18 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         ]
         route_col = "Текущая доступность/маршрут"
     else:
-        title = f'# {model["marker"]} · working target-device placement'
+        title = f'# {model["marker"]} · H1 concept placement'
         intro = (
-            "The complete verifiable physical model of the two 80 × 150 mm PCBs was accepted on 2026-08-30; H1 is reviewed. "
-            "Every body, Cap profile, external U219 antenna volume and copper reserve is registered with no open geometry gate. "
-            "This does not authorize KiCad routing: the R2 H2 electrical prerequisites listed below must close first."
+            "The two-board 80 × 150 mm concept was accepted on 2026-08-30; the historical H1 closure is retained. "
+            "These mockups show the H1 intent and registered bodies, not the exact current KiCad placement. "
+            "See the [native H6 component views](h6-r2-component-views.md) for the current PCBs and the "
+            "[H6 interface review](h6-r2-interface-review.md) for unresolved interface, slot and accessibility discrepancies. "
+            "Zero collisions in this concept do not close H6 geometry checks or imply production readiness."
         )
         outside = "## What the user sees"
         inside = "## What is inside"
-        verified = "## Generator-verified"
-        factory = "## Exact factory parts"
+        verified = "## What the H1 concept generator checks"
+        factory = "## Factory parts at the H1 evidence date"
         blocker = "## H1 result"
         component_legend_heading = "## Component legend"
         board_names = ("Front UI/radio PCB", "Rear RF/power PCB")
@@ -2519,7 +2588,12 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
         ]
         route_col = "Current availability/route"
     lines = [
-        title, "", intro, "", outside, "",
+        title, "", intro, "",
+        (
+            "> Граница применения: ниже — требования и расчёты концепта H1. Точные положения портов, FPC/ZIF, Cap-разъёма и акустических выходов, а также живые остатки деталей нельзя брать отсюда для заказа или сборки. Результаты H6 имеют приоритет."
+            if ru else
+            "> Scope: the requirements and calculations below belong to the H1 concept. Do not use its port, FPC/ZIF, Cap-socket or acoustic-opening positions, or historical stock counts, for ordering or assembly. Current H6 evidence takes precedence."
+        ), "", outside, "",
         f"![Four matched PCB faces](images/h1-r2-four-faces.svg?rev={PUBLIC_ASSET_REV})", "",
         component_legend_heading, "",
         f"![Numbered component legend](images/h1-r2-component-legend.svg?rev={PUBLIC_ASSET_REV})", "",
@@ -2545,10 +2619,10 @@ def render_doc(model: dict, result: dict, ru: bool) -> str:
     if blockers:
         lines.extend(f"- {row}" for row in blockers)
     else:
-        lines.append("- Новых блокеров геометрии корпусов нет." if ru else "- No additional physical-body geometry blockers remain.")
+        lines.append("- В историческом реестре H1 дополнительных блокеров не осталось; это не закрывает расхождения текущих PCB, перечисленные в H6." if ru else "- No additional blockers remain in the historical H1 register; this does not clear the current-PCB discrepancies recorded in H6.")
     lines.extend(f"- {row}" for row in acceptance)
     r2_gates = model["pre_r2_h2_gates_ru"] if ru else model["pre_r2_h2_gates"]
-    lines.extend(["", "### Preconditions before R2 H2 / KiCad" if not ru else "### Preconditions до R2 H2 / KiCad", ""])
+    lines.extend(["", "### Historical preconditions before R2 H2 / KiCad" if not ru else "### Исторические prerequisites перед R2 H2 / KiCad", ""])
     lines.extend(f"- {row}" for row in r2_gates)
     marker = f'> Итоговый маркер: **{model["marker"]}**. H1 принято 2026-08-30.' if ru else f'> Final result marker: **{model["marker"]}**. H1 was reviewed on 2026-08-30.'
     lines.extend(["", marker, ""])

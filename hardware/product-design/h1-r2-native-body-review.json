@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "checked": "2026-09-07",
+  "scope": "Two H1 concept bodies reconciled to already-placed native RF components; no PCB, MPN, net or firmware change.",
+  "status": "scoped_body_pose_reconciliation",
+  "source_snapshot": {
+    "commit": "205a6e300934497e43744720a67f545222e7bb7c",
+    "pcb": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
+    "pcb_sha256": "3dd3862acf37ce7b0879093be5c0dc8c98482455c3c508a68b9f92c5b606d0b5",
+    "instance_ledger": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
+    "instance_ledger_sha256": "8a3fc89754a0f5ce8f8cf0d44a0b3fa9bbf3dcb99ededab9d95d3bd48f3d23f9",
+    "hash_meaning": "Immutable measurement snapshot, not a claim that all later PCB bytes remain unchanged. Tests compare these exact native reference poses and body geometry with the H1 replacements."
+  },
+  "coordinate_rule": "RF native XY is rear-exterior-local. Assembly world X=80-native X, Y=native Y. Native B.Cu pose reflects footprint-local Y before rotation by negative KiCad angle. Fab centreline geometry excludes drawing stroke width.",
+  "bodies": [
+    {
+      "id": "slow_io_r2",
+      "instance": "slow_io",
+      "reference": "U106",
+      "project": "LESHY2-RF-R2",
+      "mpn": "TCA6424ARGJR",
+      "footprint": "Leshy2:TCA6424ARGJR",
+      "native_side": "B.Cu",
+      "native_rotation_deg": 0,
+      "native_anchor_mm": [55.345, 82.095],
+      "native_body_bbox_mm": {"x": [52.845, 57.845], "y": [79.595, 84.595]},
+      "world_xy_mm": [22.155, 79.595],
+      "body_size_mm": [5.0, 5.0, 0.6],
+      "previous_h1_frame": "ui-inner",
+      "previous_h1_world_xy_mm": [24.0, 68.0],
+      "replaces": ["slow_io"]
+    },
+    {
+      "id": "safe_reset_sink_b_r2",
+      "instance": "safe_reset_sink_b",
+      "reference": "Q6",
+      "project": "LESHY2-RF-R2",
+      "mpn": "2N7002DW-7-F",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "native_side": "B.Cu",
+      "native_rotation_deg": 0,
+      "native_anchor_mm": [7.5, 91.0],
+      "native_body_bbox_mm": {"x": [6.875, 8.125], "y": [90.0, 92.0]},
+      "world_xy_mm": [71.875, 90.0],
+      "body_size_mm": [1.25, 2.0, 1.1],
+      "previous_h1_frame": "rf-inner",
+      "previous_h1_world_xy_mm": [23.0, 82.0],
+      "replaces": ["safe_reset_sink_b"]
+    }
+  ],
+  "concept_collision_review": {
+    "partial_slow_io_only_result": "same-face collision with stale seed safe_reset_sink_b",
+    "accepted_pair_result": "both exact native body poses pass the H1 same-face and opposing-body checks without an allowed-overlap exception",
+    "native_pcb_geometry_verified_as_a_whole": false,
+    "production_release_authorized": false
+  }
+}

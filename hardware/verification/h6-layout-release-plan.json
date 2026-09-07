@@ -31,9 +31,30 @@
     "board_size_decision": "retain 80 x 150 mm while the live H6.0.3 audit remains clean; 85 x 150 mm is permitted only after the audit's explicit routing-capacity trigger",
     "board_size_evidence": "hardware/layout/generated/H6-R2-current-routing-audit.json",
     "geometry_change_rule": "any board-outline or frozen-anchor change invalidates the dependent H1/H6 geometry, routing, ERC/DRC, electrical re-analysis and firmware-BSP evidence and requires the complete listed requalification before release",
+    "reopened_interface_findings": [
+      {
+        "id": "H6-CAP-PHYSICAL-MATING",
+        "status": "blocked_on_unambiguous_manufacturer_contact_view_and_header_datum",
+        "evidence": "hardware/layout/h6-r2-cap-mating-review.json",
+        "release_requirement": "replace the current numeric PIN_n-to-pad_n passthrough with a physically proven Cap-to-Samtec mapping, propagate through schematics and PCB, and validate the installed header-to-body datum; none of the conditional maps is accepted"
+      },
+      {
+        "id": "H6-HOLDER-ENCODER-EXACT-GEOMETRY",
+        "status": "open_primary_geometry_and_finished_slot_qualification",
+        "evidence": "hardware/layout/h6-r2-holder-encoder-geometry-evidence.json",
+        "release_requirement": "correct EC11E18244AU mounting-lug geometry and finished apertures, and establish the complete Keystone1048P land/hole pattern before centering and opposite-face requalification; the encoder candidate is not a production footprint"
+      },
+      {
+        "id": "H6-MOCKUP-NATIVE-REGISTRATION",
+        "status": "partial_correction_not_whole_board_correspondence",
+        "evidence": "docs/h6-r2-interface-review.md",
+        "release_requirement": "reconcile accepted RF exterior ergonomics and all interface bodies, labels, slots and physical contact datums with both native boards; fixed seed conversion must not re-mirror native M1 or already-frozen routing"
+      }
+    ],
     "remaining_before_substep_exit": [
       "route all 788 reviewed canonical nets / 822 board-local physical nets or preserve an explicit intentional no-connect",
       "prove native schematic/PCB parity and zero-finding KiCad DRC",
+      "close all reopened_interface_findings; H1 illustration checks and native courtyard checks do not close missing contact maps or exact mechanical geometry",
       "close H6-NATIVE-ELECTRICAL-SEMANTICS: validate physical-pin electrical types and rail-driver/output compatibility against exact device pin functions; passive-only ERC is insufficient"
     ]
   },

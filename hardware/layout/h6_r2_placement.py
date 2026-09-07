@@ -20,6 +20,8 @@ import uuid
 from collections import Counter, defaultdict
 from pathlib import Path
 
+from h6_r2_coordinates import world_bbox_to_native
+
 try:
     import pcbnew  # type: ignore
 except ModuleNotFoundError as exc:  # pragma: no cover - exercised by the wrapper command
@@ -509,11 +511,14 @@ def add_battery_ntc_silkscreen(board, project: str, placed_rows: list[dict]) -> 
 
 def build_target_index(contract: dict, placement: dict, coordinate: dict) -> dict[str, dict]:
     targets: dict[str, dict] = {}
+    board_width = contract["board"]["width_mm"]
     for row in coordinate["rows"]:
         targets[row["instance"]] = {
             "source": "H1 coordinate seed",
             "frame": row["source_frame"],
-            "bbox": row["world_bbox_mm"],
+            "bbox": world_bbox_to_native(row["source_frame"], row["world_bbox_mm"], board_width),
+            "input_coordinates": "assembly-world",
+            "coordinates": "native-pcb",
             "direction": row.get("direction", "not applicable"),
         }
     for row in placement["placements"]:
@@ -524,7 +529,12 @@ def build_target_index(contract: dict, placement: dict, coordinate: dict) -> dic
         target = {
             "source": "H1-R2 exact body seed",
             "frame": row["frame"],
-            "bbox": {"x": [x, x + width], "y": [y, y + height]},
+            "bbox": world_bbox_to_native(
+                row["frame"], {"x": [x, x + width], "y": [y, y + height]},
+                board_width,
+            ),
+            "input_coordinates": "assembly-world",
+            "coordinates": "native-pcb",
             "direction": row.get("role", "not applicable"),
         }
         aliases = {row["id"]}

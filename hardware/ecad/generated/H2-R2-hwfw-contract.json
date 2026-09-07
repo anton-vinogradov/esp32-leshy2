@@ -16,11 +16,11 @@
     "hardware/architecture/pack-safety-i2c-boundary-contract.json": "5460c97ab81e9f58c41a042a5f024f5f83e5913099e11743b9ad72414eb5782c",
     "hardware/architecture/candidates/G2F-3I.json": "6df524f1edf8db12ac278e0b5901a598c0ac18262800b09c38dde7b45147ed27",
     "hardware/architecture/h1-r2-u219-cap.json": "ab14f5e4e9fbc2c360f44defdd45b8c16922ada108085239463aac1603cf7f2e",
-    "hardware/product-design/h1-r2-placement.json": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "3beceada2ae6b2a21f419c72332fffd2ba0dda2d118ec774a5fae115c558a858",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "8a3fc89754a0f5ce8f8cf0d44a0b3fa9bbf3dcb99ededab9d95d3bd48f3d23f9",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "454c2143a455d3043cefeaa0feed8ec1a5134bd7d78ad8cc6d91617c71bebd13",
-    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "38311d552d9958cc02980da9395bc26f88be9124a66b359c951ccdd9f9db5555",
+    "hardware/product-design/h1-r2-placement.json": "3cefd845934ca2d17be9f7e5876266deaf885fd0c37b8330a2637c38e6193ffb",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "c196c8114e00b96c9840f0c85533e800c1d50b9cecb6a84ea194e07b04cba43f",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "c6a155915d1b64598fb3d24f708070d39c68c75c8bd6094ed871a9a57f53fd88",
+    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "7de56071c7ba22c27ea16b16023db6b38c86284b2939132bb48a56ceff98b421",
     "hardware/ecad/h2-r2-hwfw-reconciliation-contract.json": "a670e5e735f0c3631c7c9dcd13e8f4edbe7ff83c9b43c10ec2e46b56742aedc3"
   },
   "bsp": {
@@ -6272,7 +6272,7 @@
       "hardware/architecture/pack-safety-i2c-boundary-contract.json": "5460c97ab81e9f58c41a042a5f024f5f83e5913099e11743b9ad72414eb5782c",
       "hardware/architecture/candidates/G2F-3I.json": "6df524f1edf8db12ac278e0b5901a598c0ac18262800b09c38dde7b45147ed27",
       "hardware/architecture/h1-r2-u219-cap.json": "ab14f5e4e9fbc2c360f44defdd45b8c16922ada108085239463aac1603cf7f2e",
-      "hardware/product-design/h1-r2-placement.json": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0"
+      "hardware/product-design/h1-r2-placement.json": "3cefd845934ca2d17be9f7e5876266deaf885fd0c37b8330a2637c38e6193ffb"
     },
     "interboard": {
       "connector": "FX8C-80P-SV1(92) / FX8C-80S-SV5(92), straight SMT, 80 contacts, 11-mm working gap",
@@ -6690,7 +6690,7 @@
     "pre_h2_gates": [],
     "physical_h1": {
       "source": "hardware/product-design/h1-r2-placement.json",
-      "sha256": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0",
+      "sha256": "3cefd845934ca2d17be9f7e5876266deaf885fd0c37b8330a2637c38e6193ffb",
       "marker": "H1-R2.39",
       "pin_authority_marker": "H1-R2.31",
       "status": "reviewed",

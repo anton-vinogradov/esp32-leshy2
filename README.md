@@ -47,9 +47,11 @@ system owner's permission.
 
 The H1 mock-up explains the mechanical concept. For visual inspection, open [all four current component faces at the same scale](docs/h6-r2-component-views.md). Component coordinates and cable paths are also available in the [exact-placement](docs/h6-r2-exact-placement.md) and [microcoax](docs/h6-r2-microcoax-service.md) views; the live routing exports follow below.
 
-![Reviewed four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.39-80mm-2)
+H1-to-native correspondence is not fully verified; [open H6 interface findings](docs/h6-r2-interface-review.md) take precedence over the concept mock-up.
 
-[Legend for all 226 bodies](docs/images/h1-r2-component-legend.svg) ·
+![H1 concept four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.39-views-20260907)
+
+[Legend for 223 H1 concept bodies](docs/images/h1-r2-component-legend.svg?rev=h1-r2.39-views-20260907) ·
 [physical-design report](docs/h1-r2-physical-layout.md) ·
 [functional-architecture report](docs/h0-r2-functional-architecture.md) ·
 [front inner face](docs/images/h1-r2-inner-ui.svg) ·

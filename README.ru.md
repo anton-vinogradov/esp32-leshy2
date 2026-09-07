@@ -47,9 +47,11 @@
 
 Мокап H1 поясняет механическую концепцию. Для визуальной проверки откройте [четыре текущих вида компонентов в одном масштабе](docs/h6-r2-component-views.ru.md). Координаты компонентов и пути кабелей также находятся на видах [точного размещения](docs/h6-r2-exact-placement.ru.md) и [microcoax](docs/h6-r2-microcoax-service.ru.md); экспорты текущей разводки — ниже.
 
-![Принятый четырёхсторонний мокап Лешего2](docs/images/h1-r2-four-faces.svg?rev=h1-r2.39-80mm-2)
+Соответствие H1 нативным платам ещё не проверено полностью; [открытые замечания H6](docs/h6-r2-interface-review.ru.md) имеют приоритет над концептуальным мокапом.
 
-[Легенда 226 тел](docs/images/h1-r2-component-legend.svg) ·
+![Концептуальный четырёхсторонний мокап H1 Лешего2](docs/images/h1-r2-four-faces.svg?rev=h1-r2.39-views-20260907)
+
+[Легенда 223 тел концепта H1](docs/images/h1-r2-component-legend.svg?rev=h1-r2.39-views-20260907) ·
 [отчёт физического дизайна](docs/h1-r2-physical-layout.ru.md) ·
 [отчёт функциональной архитектуры](docs/h0-r2-functional-architecture.ru.md) ·
 [передняя внутренняя сторона](docs/images/h1-r2-inner-ui.svg) ·

@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "checked": "2026-09-07",
+  "scope": "Dimensioned primary geometry review; no production binding, PCB, MPN or fabrication authorization changed",
+  "fabrication_ready": false,
+  "summary_en": "The existing encoder footprint has the wrong mounting-lug pitch. A dimension fixture and explicitly unqualified slot candidate preserve the evidence; they do not close the mounting gate. The holder has undersized SMT reserves and missing mechanical apertures; the complete registered hole pattern remains unresolved.",
+  "summary_ru": "У текущего footprint энкодера неверный шаг корпусных лапок. Размерный эталон и явно непринятый кандидат прорезей сохраняют доказательства, но не закрывают проверку монтажа. У держателя слишком малы резервы SMT-площадок и отсутствуют механические отверстия; полный привязанный к корпусу рисунок отверстий пока не подтверждён.",
+  "devices": [
+    {
+      "device_id": "alps_ec11e18244au",
+      "mpn": "Alps Alpine EC11E18244AU",
+      "project": "LESHY2-RF-R2",
+      "instance": "encoder",
+      "reference": "SW3",
+      "status": "confirmed_existing_footprint_mismatch_candidate_not_accepted",
+      "evidence": [
+        {
+          "url": "https://tech.alpsalpine.com/e/products/detail/EC11E18244AU/",
+          "section": "Exact product; Dimensions and Mounting Hole Dimensions; catalog link",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://tech.alpsalpine.com/cms.media/product_catalog_ec_01_ec11e_en_611f078659.pdf",
+          "section": "Catalog update2510: p1 exact MPN maps to Drawing No.2; p2 Drawing No.2, viewed from mounting side",
+          "checked": "2026-09-07",
+          "pdf_sha256": "08dae9fa97a2a97d9c9954e87455aff6f0cc557be1fb84fcb0f11608937ba241",
+          "review_local_pdf_filename": "ec11.pdf",
+          "review_local_render_filename": "ec11-detail-350.png"
+        }
+      ],
+      "dimension_fixture": {
+        "units": "mm",
+        "coordinate_frame": "Manufacturer mounting-side drawing, shaft axis at [0,0], +X right and +Y down; A-C-B below shaft, D-E above. Coordinates are not a rear-board world projection.",
+        "signal_centres_mm": {"A": [-2.5, 7.5], "C": [0, 7.5], "B": [2.5, 7.5], "D": [-2.5, -7.0], "E": [2.5, -7.0]},
+        "mounting_lug_centres_mm": [[-6.25, 0.0], [6.25, 0.0]],
+        "mounting_lug_pitch_mm": {"nominal": 12.5, "minus": 0.05, "plus": 0.05},
+        "signal_hole_diameter_mm": {"nominal": 1.0, "minus": 0.0, "plus": 0.1},
+        "mounting_aperture_shape_drawn": "rectangle; corner radius is not specified",
+        "mounting_aperture_width_mm": {"nominal": 1.5, "minus": 0.0, "plus": 0.1},
+        "mounting_aperture_height_mm": {"nominal": 2.6, "minus": 0.0, "plus": 0.1},
+        "general_drawing_tolerance_mm": 0.1,
+        "body_width_mm": 11.7,
+        "body_height_mm": 12.0,
+        "shaft_diameter_mm": {"nominal": 6.0, "minus": 0.05, "plus": 0.0},
+        "nominal_terminal_projection_mm": 3.5
+      },
+      "existing_footprint_observation": {
+        "footprint": "Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm_MountingHoles",
+        "library_source_mpn_in_description": "EC11E09444A8",
+        "mounting_lug_centres_local_mm": [[7.5, -3.1], [7.5, 8.1]],
+        "mounting_lug_pitch_mm": 11.2,
+        "mounting_drill_oval_mm": [2.8, 1.5],
+        "unsupported_extra_npth_local_mm": [[3.0, 2.5], [7.5, 2.5]],
+        "signal_geometry_relation": "Library (x,y) = (7.5 - drawing_y, 2.5 + drawing_x) preserves A/C/B. Its S1 is physical E and S2 is physical D; the push contact is electrically symmetric but exact terminal naming must not be inferred from S1/S2.",
+        "correction_required_en": "Do not reuse the library's 11.2-mm lug pitch or undocumented locating NPTH for this exact MPN. Resolve the finished plated-slot profile before adopting a replacement footprint.",
+        "correction_required_ru": "Не переносить шаг лапок 11,2 мм и неподтверждённые направляющие NPTH из штатной библиотеки на этот артикул. До принятия нового footprint подтвердить форму готовой металлизированной прорези."
+      },
+      "candidate": {
+        "path": "hardware/layout/candidates/EC11E18244AU-UNQUALIFIED-SLOTS.kicad_mod",
+        "accepted_for_production": false,
+        "binding_changed": false,
+        "signal_finished_hole_target_mm": 1.1,
+        "engineering_mp_oval_drill_mm": [1.6, 2.7],
+        "engineering_signal_copper_diameter_mm": 2.0,
+        "engineering_mp_copper_size_mm": [2.6, 3.7],
+        "slot_profile_qualification": "open",
+        "why_open_en": "An obround with the rectangle's bounding dimensions does not contain every rectangle corner. The primary drawing does not dimension lug thickness or its corner radii, so tab clearance cannot be proved from width alone. Finished-hole plating and factory tolerance also need an explicit process target.",
+        "why_open_ru": "Овал с габаритами прямоугольника не содержит все его углы. В первичном чертеже не заданы толщина лапки и радиусы её углов, поэтому одной ширины недостаточно для доказательства свободной посадки. Также нужен явный технологический допуск готового отверстия после металлизации."
+      },
+      "unresolved": [
+        "Finished plated slot profile versus exact lug thickness/radii; catalog outline alone is insufficient",
+        "Factory finished-hole tolerance around the selected 1.1-mm round-hole target",
+        "Independent body/terminal 3D verification and installation clearance after eventual production integration"
+      ]
+    },
+    {
+      "device_id": "keystone_1048p",
+      "mpn": "Keystone Electronics 1048P",
+      "project": "LESHY2-RF-R2",
+      "instance": "pack_holder",
+      "reference": "BT1",
+      "status": "confirmed_incomplete_footprint_registered_pattern_unresolved",
+      "evidence": [
+        {
+          "url": "https://www.keyelco.com/userAssets/file/K75p29.pdf",
+          "section": "K75 p29, dual-cell surface-mount holder / 1048P table / Pad Layout",
+          "checked": "2026-09-07",
+          "pdf_sha256": "47ea3292a9c2e3c47b21f13c84777ec069dbf50b46d3f426d790416bb143da4c",
+          "review_local_pdf_filename": "K75p29.pdf",
+          "review_local_render_filename": "1048-k75-full-detail.png"
+        },
+        {
+          "url": "https://www.keyelco.com/product.cfm/product_id/13959",
+          "section": "Exact 1048P product and individual drawing link",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.keyelco.com/product-pdf.cfm?p=13959",
+          "section": "Indexed primary individual drawing title: 1048P_c_rev_B Layout1 (1)",
+          "checked": "2026-09-07",
+          "visually_reviewed": false,
+          "access_limit": "Primary web index resolves a one-page PDF, but exposes no drawing text; local HTTP download returned403. Background in-app browser unavailable. No geometry inferred from the inaccessible drawing."
+        }
+      ],
+      "dimensioned_catalog_constraints": {
+        "units": "mm",
+        "four_smt_land_minimum_size_mm": [7.3, 6.4],
+        "smt_land_outer_span_minimum_mm": 86.0,
+        "battery_row_axis_pitch_mm": 19.1,
+        "retaining_hole_diameter_mm": 3.5,
+        "retaining_hole_count": 2,
+        "retaining_hole_longitudinal_axis_separation_mm": 55.2,
+        "retaining_hole_transverse_axis_separation_mm": 35.0,
+        "fastener_hole_diameter_mm": 3.2,
+        "fastener_hole_count": 2,
+        "small_locator_hole_diameter_mm": 2.4,
+        "small_locator_hole_count": 1,
+        "small_locator_longitudinal_coordinate_mm": null,
+        "full_body_registered_hole_coordinate_set": null,
+        "retaining_post_diameter_mm": 3.7,
+        "retaining_post_projection_mm": 3.3,
+        "small_locator_post_diameter_mm": 1.57,
+        "small_locator_post_projection_mm": 1.57,
+        "holder_plastic_body_length_mm": 77.1,
+        "holder_body_width_mm": 39.8,
+        "interpretation_limit": "Catalog pairs rounded inch and mm dimensions. Recorded values above are printed metric labels, not a new process tolerance or an exact all-hole coordinate table. Pair separations do not locate the complete pattern relative to the footprint body/polarity datum."
+      },
+      "existing_footprint_observation": {
+        "path": "hardware/ecad/libraries/Leshy2.pretty/Keystone-1048P.kicad_mod",
+        "source_generator": "hardware/ecad/h2_rf_pack_safety_aon.py:footprint_outputs",
+        "smt_land_size_mm": [4.0, 6.0],
+        "smt_land_centres_local_mm": [[-41.0, -9.55], [41.0, -9.55], [-41.0, 9.55], [41.0, 9.55]],
+        "mechanical_hole_count": 0,
+        "correction_required_en": "Replace the four undersized SMT reserves with a justified land pattern and add the complete primary-dimensioned mechanical hole set. Do not guess the small locator X from the picture, from another holder MPN, or from unverified third-party CAD.",
+        "correction_required_ru": "Заменить четыре малых SMT-резерва обоснованным рисунком площадок и добавить полный размерно подтверждённый набор механических отверстий. Не угадывать X маленького направляющего отверстия по картинке, другому артикулу или непроверенной сторонней CAD-модели."
+      },
+      "candidate_created": false,
+      "unresolved": [
+        "Small locator hole diameter2.4mm: longitudinal X is not dimensioned in the visually reviewed K75 pad layout",
+        "Complete pattern registration to body and polarity datum, including optional fastener through-path, requires the exact individual drawing or manufacturer CAD",
+        "Finished hole tolerances and retaining-post installation method cannot be derived from nominal hole/post diameter subtraction alone",
+        "Recheck all opposite-face component clearances and battery NTC nesting after a proven hole/pad pattern is integrated"
+      ]
+    }
+  ]
+}

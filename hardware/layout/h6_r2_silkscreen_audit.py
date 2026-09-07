@@ -21,6 +21,7 @@ from h6_r2_user_silkscreen import ANTENNA_INTERFACES, antenna_signal_findings, l
 ROOT = Path(__file__).resolve().parents[2]
 CONTRACT = ROOT / "hardware/layout/h6-r2-placement-contract.json"
 LEDGER = ROOT / "hardware/ecad/generated/H2-R2-native-instance-ledger.json"
+NET_BINDINGS = ROOT / "hardware/layout/generated/H6-R2-kicad-net-bindings.json"
 OUTPUT = ROOT / "hardware/layout/generated/H6-R2-user-silkscreen-audit.json"
 POSITION_TOLERANCE_MM = 0.01
 DIMENSION_TOLERANCE_MM = 0.001
@@ -134,11 +135,17 @@ def geometry_candidates(texts, obstacles, width, height, radius=0.0, assembly_te
     return candidates, exemptions
 
 
-def audit_snapshot(snapshot, contract):
+def audit_snapshot(snapshot, contract, canonical_to_kicad=None):
     project = snapshot["project"]
-    required = labels(project, snapshot["placements"], contract)
-    errors, matched = required_label_findings(required, snapshot["texts"])
-    errors.extend(antenna_signal_findings(project, snapshot["placements"], contract))
+    errors = antenna_signal_findings(project, snapshot["placements"], contract,
+                                     canonical_to_kicad or {})
+    try:
+        required = labels(project, snapshot["placements"], contract)
+    except (KeyError, ValueError) as exc:
+        errors.append({"kind": "required_label_binding_unavailable", "detail": str(exc)})
+        required = []
+    label_errors, matched = required_label_findings(required, snapshot["texts"])
+    errors.extend(label_errors)
     rows = {row["instance"]: row for row in snapshot["placements"]}
     assembly_texts = {"DISPLAY · FPC ↑": [contract["board"]["width_mm"] / 2, 21.0]} if project == "LESHY2-UI-R2" else {
         f"NTC{index} PAD": [rows[instance]["courtyard_centre_mm"][0], rows[instance]["courtyard_centre_mm"][1] + 4.1]
@@ -222,7 +229,7 @@ def native_snapshot(board, project, ledger_rows, contract, pcbnew):
                      "courtyard_centre_mm": centre, "footprint_anchor_mm": point_mm(fp.GetPosition())}
         if row["instance"] in ANTENNA_INTERFACES:
             placement["signal_pad_nets"] = sorted(
-                pad.GetNetname().rsplit("/", 1)[-1] for pad in fp.Pads() if pad.GetNumber() == "1")
+                pad.GetNetname() for pad in fp.Pads() if pad.GetNumber() == "1")
         placements.append(placement)
     for graphic in board.GetDrawings():
         if isinstance(graphic, pcbnew.PCB_TEXT):
@@ -251,20 +258,59 @@ def native_snapshot(board, project, ledger_rows, contract, pcbnew):
             "native_outline_bbox_mm": box_mm(board.GetBoardEdgesBoundingBox()), "extraction_errors": errors}
 
 
+def checked_net_bindings(root=ROOT):
+    """Load current H2-to-KiCad authority; stale/missing source proof is fatal."""
+    path = root / NET_BINDINGS.relative_to(ROOT)
+    artifact = json.loads(path.read_text())
+    if (artifact.get("schema_version") != 1 or artifact.get("status") != "pass"
+            or artifact.get("artifact") != "H6-R2 exact KiCad hierarchical net bindings"
+            or artifact.get("errors") != []):
+        raise ValueError("KiCad net-binding authority is not a passing artifact")
+    expected_sources = {
+        "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
+        "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+        "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
+        "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch",
+        "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_sch",
+    }
+    sources = artifact.get("source_hashes", {})
+    if set(sources) != expected_sources:
+        raise ValueError("KiCad net-binding source coverage changed")
+    for relative, expected in sources.items():
+        if not (root / relative).is_file() or sha256(root / relative) != expected:
+            raise ValueError(f"Stale KiCad net-binding source: {relative}")
+    if set(artifact.get("projects", {})) != {"LESHY2-UI-R2", "LESHY2-RF-R2"}:
+        raise ValueError("KiCad net-binding project coverage changed")
+    for project, spec in artifact["projects"].items():
+        mapping = spec.get("canonical_to_kicad", {})
+        if (not mapping or any(not isinstance(v, str) or not v for v in mapping.values())
+                or len(set(mapping.values())) != len(mapping)):
+            raise ValueError(f"Invalid or non-unique KiCad net bindings: {project}")
+    return artifact
+
+
 def build(root=ROOT):
     import pcbnew
     contract_path = root / CONTRACT.relative_to(ROOT)
     ledger_path = root / LEDGER.relative_to(ROOT)
     contract = json.loads(contract_path.read_text())
     ledger = json.loads(ledger_path.read_text())["rows"]
-    inputs = [contract_path, ledger_path, Path(__file__), Path(__file__).with_name("h6_r2_user_silkscreen.py")]
+    binding_path = root / NET_BINDINGS.relative_to(ROOT)
+    binding_hash = sha256(binding_path)
+    bindings = checked_net_bindings(root)
+    inputs = [contract_path, ledger_path, binding_path, Path(__file__), Path(__file__).with_name("h6_r2_user_silkscreen.py")]
+    inputs += [root / relative for relative in bindings["source_hashes"]]
     inputs += [root / spec["output"] for spec in contract["boards"].values()]
     hashes = {str(path): sha256(path) for path in inputs}
+    if hashes[str(binding_path)] != binding_hash:
+        raise ValueError("KiCad net bindings changed during validation; rerun on a stable checkpoint")
+    if any(hashes[str(root / relative)] != digest for relative, digest in bindings["source_hashes"].items()):
+        raise ValueError("KiCad net-binding source changed during validation; rerun on a stable checkpoint")
     boards = []
     for project, spec in contract["boards"].items():
         native = pcbnew.LoadBoard(str(root / spec["output"]))
         snapshot = native_snapshot(native, project, ledger, contract, pcbnew)
-        boards.append(audit_snapshot(snapshot, contract))
+        boards.append(audit_snapshot(snapshot, contract, bindings["projects"][project]["canonical_to_kicad"]))
     if any(sha256(Path(path)) != digest for path, digest in hashes.items()):
         raise ValueError("Native board or audit input changed during read-only inspection; rerun on a stable checkpoint")
     return {"schema_version": 1, "scope": "native free-board user text; required interface bindings plus conservative geometry screening",

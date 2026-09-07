@@ -6,7 +6,7 @@
   "status_scope": "fasteners, enclosure capture and direct cell thermal contacts; connector fit is reported separately",
   "source_hashes": {
     "hardware/layout/h6-r2-mechanical-stack.json": "28e9588f17a7e53730f901d22cc470b0cbd5d2a17a307cec2bac2c309ff88cc7",
-    "hardware/layout/generated/H6-R2-placement-audit.json": "7adeff83d7e874d6a5ccb1f64efa829640411bdd95714d79a5331ae567179922"
+    "hardware/layout/generated/H6-R2-placement-audit.json": "c1c1bfa2122b9f5fcdfcfcd99e1861b7d2cd493359802fd6800690d7e89155e6"
   },
   "stack": {
     "members": [

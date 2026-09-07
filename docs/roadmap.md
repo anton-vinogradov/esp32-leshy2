@@ -15,7 +15,7 @@ and completed results live in the [report index](stage-results.md).
 | Stage | Status | Exit criterion | Report |
 |---|---|---|---|
 | H0 · Requirements and architecture | ✅ Reviewed · R2 | functions, owners and safety boundary are coherent | [H0-R2](h0-r2-functional-architecture.md) |
-| H1 · Physical design | ✅ Reviewed · `H1-R2.39` | exterior, exact bodies, cables and assembly fit | [H1-R2](h1-r2-acceptance.md) |
+| H1 · Physical design | Reviewed concept · `H1-R2.39`; native correspondence reopened | 223 concept bodies and four views; exact native mounting and assembled fit remain [open](h6-r2-interface-review.md) | [H1-R2](h1-r2-acceptance.md) |
 | H2 · Production ECAD | ✅ Reviewed · `H2-R2.1.5` | two native schematics, pin/net parity and ERC pass | [H2-R2](h2-acceptance.md) |
 | H3 · Virtual electrical verification | Reviewed analytical baseline · `H3-R2.7`; current native power [reopened in H6](h6-r2-electrical-semantics.md#native-power-prerequisites--reopened) | every pre-layout calculable corner passes against the fitted circuit and physical residuals are owned; retained calculations do not yet qualify current power | [H3-R2](h3-r2-acceptance.md) |
 | H4 · Joined pre-layout gate | ✅ Reviewed · `H4-R2.3` | hardware and firmware boundaries reconcile | [H4-R2](h4-r2-acceptance.md) |

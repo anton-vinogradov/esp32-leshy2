@@ -4,7 +4,7 @@
   "status": "reviewed",
   "reviewed_on": "2026-09-05",
   "accepted_by": "user",
-  "acceptance_scope": "Accepted 80 x 150-mm dual-board baseline, complete exterior, both directly viewed inner faces, service access, antenna-edge locality and real sandwich sections.",
+  "acceptance_scope": "Historical H1 concept acceptance of the 80 x 150-mm dual-board baseline; not current H6 native-PCB geometry or release acceptance.",
   "marker": "H1-R2.39",
   "pin_authority_marker": "H1-R2.31",
   "checked_on": "2026-09-05",
@@ -23,13 +23,18 @@
     "minimum_opposing_clearance_mm": 0.7
   },
   "policy": {
-    "coordinates": "world X/Y from the accepted assembly-coordinate model; RF-inner drawing is mirrored only for the viewer",
+    "coordinates": "Shared assembly world X/Y follows the UI exterior: UI inner view mirrors world X once; RF inner view uses world X directly. Exterior-local SMA and mounting-hole inputs are explicitly converted before projection.",
     "base_geometry": "R1 bodies are retained only as a collision-tested placement seed and may move during complete R2 optimisation",
     "fixed_body": "one exact serial device per rectangle",
     "reserve": "a dashed physical allocation, never a component or accepted MPN",
     "silkscreen": "none of the inner-face annotations in the generated engineering drawing are PCB silkscreen; every outer-face label must pass a generated no-overlap audit against component bodies, installed cables, mounting keep-outs and covered accessory zones",
     "antenna_identification": "Every outward RF port keeps a readable role/band label and gains a compact kit code. A post-assembly colour collar around the connector base and a durable heat-shrink flag on the matching antenna repeat that code; colour is redundant and is never the sole identifier."
   },
+  "retired_seed_instances": [
+    "evidence_main_isolator",
+    "evidence_main_isolator_bypass"
+  ],
+  "retired_seed_reason": "The current R2 native allocation no longer contains this historical cross-board evidence isolator or its bypass. Exclude both from every current H1 body, collision and legend population; retain the historical source register unchanged.",
   "antenna_bank_optimization": {
     "previous_distribution": [
       4,
@@ -2090,18 +2095,21 @@
         5.0,
         4.4,
         1.2
+      ],
+      "replaces": [
+        "evidence_cmp_b"
       ]
     },
     {
       "id": "slow_io_r2",
       "drawing_ref": "68",
       "kind": "fixed_body",
-      "frame": "ui-inner",
+      "frame": "rf-inner",
       "mpn": "TCA6424ARGJR",
-      "role": "relocated 24-line slow-control expander clear of the larger full-power nRF24 modules",
+      "role": "RF-local 24-line slow-control expander; H1 body reconciled with current native RF U106",
       "world_xy_mm": [
-        24.0,
-        68.0
+        22.155,
+        79.595
       ],
       "size_mm": [
         5.0,
@@ -2110,7 +2118,20 @@
       ],
       "replaces": [
         "slow_io"
-      ]
+      ],
+      "native_body_review": "hardware/product-design/h1-r2-native-body-review.json#slow_io_r2"
+    },
+    {
+      "id": "safe_reset_sink_b_r2",
+      "drawing_ref": "81",
+      "kind": "fixed_body",
+      "frame": "rf-inner",
+      "mpn": "2N7002DW-7-F",
+      "role": "RF RP reset sink; H1 body reconciled with current native RF Q6",
+      "world_xy_mm": [71.875, 90.0],
+      "size_mm": [1.25, 2.0, 1.1],
+      "replaces": ["safe_reset_sink_b"],
+      "native_body_review": "hardware/product-design/h1-r2-native-body-review.json#safe_reset_sink_b_r2"
     },
     {
       "id": "ui_matrix_io_r2",

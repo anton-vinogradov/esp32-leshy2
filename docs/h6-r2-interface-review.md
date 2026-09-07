@@ -10,6 +10,30 @@ Grove, IR, RUN/KILL, the headset cutout and battery-holder geometry still need
 work, alongside assembled 3D access and display-fold verification. A clean
 electrical DRC does not establish that a plug fits or that a required cutout exists.
 
+## What remains unresolved after the follow-up
+
+The [Cap mating review](../hardware/layout/h6-r2-cap-mating-review.json)
+found that logical M5 numbering was copied directly onto Samtec's alternating
+odd/even rows. An explicit physical permutation is required. The published
+U214/U219 callouts do not establish which mating face is shown and disagree
+with one another; **no candidate map has been applied**. Header-to-housing
+registration is also unresolved. [Two questions for M5, not yet sent](../drafts/h6-cap-pinout-question.md).
+
+The [holder/encoder drawing review](../hardware/layout/h6-r2-holder-encoder-geometry-evidence.json)
+confirms an encoder mounting-lug pitch of 12.5 mm, versus 11.2 mm in the
+currently bound generic footprint. A separate dimension fixture exists, but
+its proposed oval slots are not qualified or bound to production. The holder's
+SMT lands and mechanical holes also need correction; the small locator's
+longitudinal position has not been established. These are explicit release
+blockers, not issues waived by a zero-finding DRC.
+
+The H1-world → native-PCB seed conversion is now explicit: UI preserves X;
+RF transforms the whole box as `x_native = board_width - x_world - width`.
+Native overrides, antenna anchors and frozen poses bypass that conversion.
+This prevents another double mirror of M1, but does **not** relocate existing
+RF controls or establish full H1/native correspondence. That reconciliation
+remains open alongside the exact mechanical corrections.
+
 ## What we want
 
 External ports and controls must be accessible in the assembled device; both

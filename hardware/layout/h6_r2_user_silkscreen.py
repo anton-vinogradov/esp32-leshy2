@@ -39,19 +39,55 @@ ANTENNA_INTERFACES = {
     "voice_v_external_sma": ("VOICE-VHF", "VHF TX", "VOICE_V_EXTERNAL_RF_50R"),
 }
 
+# This reviewed 5+5 interface scope must not shrink when a placement entry is
+# accidentally removed. It is deliberately independent of antenna_ports.
+ANTENNA_INSTANCES_BY_PROJECT = {
+    "LESHY2-UI-R2": (
+        "nrf0_external_sma", "s3_external_rp_sma", "nrf1_external_sma",
+        "c5_external_rp_sma", "nrf2_external_sma",
+    ),
+    "LESHY2-RF-R2": (
+        "receiver_fmsw_external_sma", "receiver_amlw_external_sma", "cc_external_sma",
+        "voice_external_sma", "voice_v_external_sma",
+    ),
+}
 
-def antenna_signal_findings(project: str, placed_rows: list[dict], contract: dict) -> list[dict]:
-    """Validate actual pad nets; a correct label alone does not prove identity."""
+
+def antenna_instances(project: str, contract: dict) -> tuple[str, ...]:
+    """Require the complete reviewed bank, independent of placement ordering."""
+    if project not in ANTENNA_INSTANCES_BY_PROJECT:
+        raise ValueError(f"unknown antenna project: {project}")
+    expected = ANTENNA_INSTANCES_BY_PROJECT[project]
+    actual = contract.get("antenna_ports", {}).get(project)
+    if not isinstance(actual, dict) or set(actual) != set(expected):
+        raise ValueError(f"antenna scope mismatch for {project}: expected {list(expected)}, actual {actual}")
+    return expected
+
+
+def antenna_signal_findings(project: str, placed_rows: list[dict], contract: dict,
+                            canonical_to_kicad: dict) -> list[dict]:
+    """Compare unmodified native pad nets with authoritative full-name bindings."""
     rows = {row["instance"]: row for row in placed_rows}
     errors = []
-    for instance in contract.get("antenna_ports", {}).get(project, {}):
-        path, _, expected = ANTENNA_INTERFACES[instance]
+    try:
+        instances = antenna_instances(project, contract)
+    except ValueError as exc:
+        errors.append({"kind": "antenna_scope_mismatch", "project": project, "detail": str(exc)})
+        instances = ANTENNA_INSTANCES_BY_PROJECT.get(project, ())
+    for instance in instances:
+        path, _, canonical = ANTENNA_INTERFACES[instance]
+        expected = canonical_to_kicad.get(canonical)
+        if not isinstance(expected, str) or not expected:
+            errors.append({"kind": "missing_antenna_net_binding", "instance": instance,
+                           "canonical_net": canonical})
+            continue
         row = rows.get(instance, {})
         actual = row.get("signal_pad_nets", [])
         if actual != [expected]:
             errors.append({"kind": "antenna_signal_identity_mismatch", "instance": instance,
                            "reference": row.get("reference"), "path": path,
-                           "signal_pad": "1", "expected": expected, "actual": actual})
+                           "signal_pad": "1", "canonical_net": canonical,
+                           "expected": expected, "actual": actual})
     return errors
 
 
@@ -69,7 +105,7 @@ def labels(project: str, placed_rows: list[dict], contract: dict) -> list[dict]:
         })
 
     width = contract["board"]["width_mm"]
-    for instance in contract.get("antenna_ports", {}).get(project, {}):
+    for instance in antenna_instances(project, contract):
         _, text, _ = ANTENNA_INTERFACES[instance]
         # Bind to the physical RF port, not the independently ordered H1 silk
         # list. The native extractor supplies the actual footprint anchor.

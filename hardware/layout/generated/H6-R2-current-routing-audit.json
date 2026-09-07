@@ -6,9 +6,9 @@
   "phase_complete": false,
   "sources": {
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "f987beafa87b990e7e1b39093c9b894b33b02731104bfd0f6ea68680a5e04ba4",
+    "routing_policy_sha256": "3552c79bdfeebbb2460f3ccbe1746406fc884abc765565ac6fa83e6bcb65596a",
     "manual_copper": "hardware/layout/generated/H6-R2-manual-copper-audit.json",
-    "manual_copper_sha256": "de65324aece6f85eb9794d1787777281e00f3c3a24c473795c25b76a91f3e049"
+    "manual_copper_sha256": "a1b46acd66b433856a3ed0beb666d10c7e26d4c3f7aba496304eff6632e2937d"
   },
   "summary": {
     "board_count": 2,

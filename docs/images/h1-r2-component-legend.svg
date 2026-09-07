@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="3117" viewBox="0 0 1900 3117" data-marker="H1-R2.39" data-view="numbered-component-legend">
-<rect width="1900" height="3117" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="3067" viewBox="0 0 1900 3067" data-marker="H1-R2.39" data-view="numbered-component-legend">
+<rect width="1900" height="3067" fill="#ffffff"/>
 <text x="30.0" y="42.0" font-family="sans-serif" font-size="24" font-weight="bold" fill="#172033">Leshy2 · H1-R2.39 · numbered component legend</text>
-<text x="30.0" y="72.0" font-family="sans-serif" font-size="12" font-weight="normal" fill="#526076">226 unique drawing references · MPN or explicit physical reserve · role in the target device</text>
+<text x="30.0" y="72.0" font-family="sans-serif" font-size="12" font-weight="normal" fill="#526076">223 unique drawing references · MPN or explicit physical reserve · role in the target device</text>
 <text x="30.0" y="100.0" font-family="sans-serif" font-size="11" font-weight="normal" fill="#526076">Bodies — blue: R2 placement · grey: retained register · orange: physical reserve</text>
 <text x="30.0" y="126.0" font-family="sans-serif" font-size="11" font-weight="normal" fill="#526076">Non-component geometry — red: exact PTH keepout · violet: bounded placement island</text>
 <text x="30.0" y="150.0" font-family="sans-serif" font-size="9.0" font-weight="bold" fill="#7c3aed">s3_tx_evidence_island_reserve · placement_reserve · X 21…31.5 · Y 6.3…13.8 mm</text>
@@ -140,362 +140,357 @@
 <text x="58.0" y="2926.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 GPS_TX 22-ohm source series</text>
 <text x="30.0" y="2962.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">056  Panasonic ERJ-2RKF22R0X</text>
 <text x="58.0" y="2976.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 MISO 22-ohm source series</text>
-<text x="30.0" y="3012.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">057  Texas Instruments TPD4E05U06DQAR</text>
-<text x="58.0" y="3026.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 connector-side ESD array A</text>
-<text x="495.0" y="212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">058  Panasonic ERJ-2RKF22R0X</text>
-<text x="523.0" y="226.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 IRQ 22-ohm source series</text>
-<text x="495.0" y="262.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">059  Panasonic ERJ-2RKF22R0X</text>
-<text x="523.0" y="276.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 GPS_RX 22-ohm source series</text>
-<text x="495.0" y="312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">060  Yageo RC0402FR-0710KL</text>
-<text x="523.0" y="326.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 request-line fail-safe pull-down</text>
-<text x="495.0" y="362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">061  Yageo CC0402KRX7R9BB104</text>
-<text x="523.0" y="376.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 supervisor local bypass</text>
-<text x="495.0" y="412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">062  Panasonic ERJ-2RKF22R0X</text>
-<text x="523.0" y="426.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 MOSI 22-ohm source series</text>
-<text x="495.0" y="462.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">063  Yageo CC0402KRX7R9BB104</text>
-<text x="523.0" y="476.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 I2C isolator local bypass</text>
-<text x="495.0" y="512.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">064  UNI-ROYAL 0402WGF2201TCE</text>
-<text x="523.0" y="526.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 host-side SDA pull-up</text>
-<text x="495.0" y="562.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">065  Texas Instruments TPS629203DRLR</text>
-<text x="523.0" y="576.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">always-on 3.3-V converter</text>
-<text x="495.0" y="612.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">066  Texas Instruments TPS564252DRLR</text>
-<text x="523.0" y="626.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">accessory 5.0-V converter</text>
-<text x="495.0" y="662.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">067  Texas Instruments TPS564252DRLR</text>
-<text x="523.0" y="676.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">voice 4.0-V converter</text>
-<text x="495.0" y="712.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">068  TPS566231PRQFR</text>
-<text x="523.0" y="726.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">6-A 3V3_MAIN synchronous buck with raw-rail Power-Good</text>
-<text x="495.0" y="762.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">069  CL10B105KO8NNNC</text>
-<text x="523.0" y="776.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">1-uF TPS566231P VCC decoupling capacitor</text>
-<text x="495.0" y="812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">070  Yageo RC0402FR-07110KL</text>
-<text x="523.0" y="826.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 supervisor upper sense leg</text>
-<text x="495.0" y="862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">071  RC0402JR-070RL</text>
-<text x="523.0" y="876.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">0-ohm serial bootstrap link retained for EMI tuning</text>
-<text x="495.0" y="912.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">072  CL05B104KB5NNNC</text>
-<text x="523.0" y="926.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">100-nF TPS566231P bootstrap capacitor</text>
-<text x="495.0" y="962.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">073  Sunlord MWSA0503S-2R2MT</text>
-<text x="523.0" y="976.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 2.2-uH switching inductor</text>
-<text x="495.0" y="1012.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">074  Yageo RC0402FR-07220KL</text>
-<text x="523.0" y="1026.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 supervisor lower sense leg</text>
-<text x="495.0" y="1062.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">075  Texas Instruments BQ25798RQMR</text>
-<text x="523.0" y="1076.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">2S charger and NVDC power path</text>
-<text x="495.0" y="1112.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">076  PSPMAA0605H-2R2M-ANP</text>
-<text x="523.0" y="1126.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">2.2-uH, 10-A RMS / 15-A saturation 3V3_MAIN inductor</text>
-<text x="495.0" y="1162.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">077  Murata GRM155R71H103KA88D</text>
-<text x="523.0" y="1176.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 supervisor delay capacitor</text>
-<text x="495.0" y="1212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">078  Sunlord WPN201612H2R2MT</text>
-<text x="523.0" y="1226.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">always-on 3.3-V 2.2-uH switching inductor</text>
-<text x="495.0" y="1262.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">079  TDK CGA5L1X7R1E475K160AC</text>
-<text x="523.0" y="1276.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">always-on 3.3-V input capacitor</text>
-<text x="495.0" y="1312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">080  Sunlord MWSA0503S-4R7MT</text>
-<text x="523.0" y="1326.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">accessory 5.0-V 4.7-uH switching inductor</text>
-<text x="495.0" y="1362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">081  Sunlord MWSA0503S-3R3MT</text>
-<text x="523.0" y="1376.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">voice 4.0-V 3.3-uH switching inductor</text>
-<text x="495.0" y="1412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">082  Yageo RC0402FR-0710KL</text>
-<text x="523.0" y="1426.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 supervisor output pull-up</text>
-<text x="495.0" y="1462.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">083  Murata GRM31CR71A226KE15L</text>
-<text x="523.0" y="1476.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">always-on 3.3-V output capacitor</text>
-<text x="495.0" y="1512.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">084  Nexperia 74LVC126APW,118</text>
-<text x="523.0" y="1526.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">CC1101 return-path buffer</text>
-<text x="495.0" y="1562.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">085  Nexperia 74LVC126APW,118</text>
-<text x="523.0" y="1576.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">CC1101 host-command buffer</text>
-<text x="495.0" y="1612.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">086  Texas Instruments TMUX1136DGSR</text>
-<text x="523.0" y="1626.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">selected-module PTT and AUDIO_ON multiplexer</text>
-<text x="495.0" y="1662.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">087  Texas Instruments TMUX1136DGSR</text>
-<text x="523.0" y="1676.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">selected-module UART multiplexer</text>
-<text x="495.0" y="1712.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">088  TCA9534APWR</text>
-<text x="523.0" y="1726.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">TCA9534A UHF/VHF selector and deterministic reset straps</text>
-<text x="495.0" y="1762.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">089  Murata GRM31CR71E106MA12L</text>
-<text x="523.0" y="1776.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 PMID bulk capacitor #1</text>
-<text x="495.0" y="1812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">090  Murata GRM31CR71E106MA12L</text>
-<text x="523.0" y="1826.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 PMID bulk capacitor #0</text>
-<text x="495.0" y="1862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">091  Murata GRM31CR71E106MA12L</text>
-<text x="523.0" y="1876.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 VBUS bulk capacitor #1</text>
-<text x="495.0" y="1912.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">092  Murata GRM31CR71E106MA12L</text>
-<text x="523.0" y="1926.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 VBUS bulk capacitor #0</text>
-<text x="495.0" y="1962.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">093  Murata GRM32ER71E226KE15L</text>
-<text x="523.0" y="1976.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">accessory 5.0-V output bulk capacitor #0</text>
-<text x="495.0" y="2012.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">094  Murata GRM32ER71E226KE15L</text>
-<text x="523.0" y="2026.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">accessory 5.0-V input bulk capacitor</text>
-<text x="495.0" y="2062.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">095  Murata GRM32ER71E226KE15L</text>
-<text x="523.0" y="2076.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">voice 4.0-V output bulk capacitor #0</text>
-<text x="495.0" y="2112.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">096  Murata GRM32ER71E226KE15L</text>
-<text x="523.0" y="2126.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">voice 4.0-V input bulk capacitor</text>
-<text x="495.0" y="2162.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">097  GRM32ER71E226KE15L</text>
-<text x="523.0" y="2176.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">first local 22-uF / 25-V X7R main-buck output capacitor</text>
-<text x="495.0" y="2212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">098  GRM32ER71E226KE15L</text>
-<text x="523.0" y="2226.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">second local 22-uF / 25-V X7R main-buck output capacitor</text>
-<text x="495.0" y="2262.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">099  GRM32ER71E226KE15L</text>
-<text x="523.0" y="2276.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">third local 22-uF / 25-V X7R main-buck output capacitor</text>
-<text x="495.0" y="2312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">100  Murata GRM31CR71E106MA12L</text>
-<text x="523.0" y="2326.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 SYS bulk capacitor #2</text>
-<text x="495.0" y="2362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">101  Murata GRM31CR71E106MA12L</text>
-<text x="523.0" y="2376.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 SYS bulk capacitor #1</text>
-<text x="495.0" y="2412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">102  Murata GRM31CR71E106MA12L</text>
-<text x="523.0" y="2426.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 SYS bulk capacitor #0</text>
-<text x="495.0" y="2462.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">103  Murata GRM31CR71E106MA12L</text>
-<text x="523.0" y="2476.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 PMID bulk capacitor #2</text>
-<text x="495.0" y="2512.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">104  Murata GRM32ER71E226KE15L</text>
-<text x="523.0" y="2526.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">accessory 5.0-V output bulk capacitor #1</text>
-<text x="495.0" y="2562.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">105  Murata GRM32ER71E226KE15L</text>
-<text x="523.0" y="2576.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">voice 4.0-V output bulk capacitor #1</text>
-<text x="495.0" y="2612.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">106  Murata GRM31CR71E106MA12L</text>
-<text x="523.0" y="2626.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 BAT bulk capacitor #1</text>
-<text x="495.0" y="2662.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">107  Murata GRM31CR71E106MA12L</text>
-<text x="523.0" y="2676.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 BAT bulk capacitor #0</text>
-<text x="495.0" y="2712.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">108  Murata GRM31CR71E106MA12L</text>
-<text x="523.0" y="2726.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 SYS bulk capacitor #4</text>
-<text x="495.0" y="2762.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">109  Murata GRM31CR71E106MA12L</text>
-<text x="523.0" y="2776.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 SYS bulk capacitor #3</text>
-<text x="495.0" y="2812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">110  TCA9535PWR</text>
-<text x="523.0" y="2826.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">AON evidence-source mask expander</text>
-<text x="495.0" y="2862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">111  Nexperia 74LVC2G126DP,125</text>
-<text x="523.0" y="2876.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">CC1101 band-select buffer</text>
-<text x="495.0" y="2912.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">112  Texas Instruments SN74LVC2G08DCUR</text>
-<text x="523.0" y="2926.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">AON mutually-exclusive voice PD gate</text>
-<text x="495.0" y="2962.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">113  74LVC2G14GV,125</text>
-<text x="523.0" y="2976.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">AON complement for one-hot voice selection; TSOP6 rotated for</text>
-<text x="523.0" y="2987.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">local clearance</text>
-<text x="495.0" y="3012.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">114  Texas Instruments TMUX1136DGSR</text>
-<text x="523.0" y="3026.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">selected-module AFOUT and microphone multiplexer</text>
-<text x="960.0" y="212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">115  TDK CGA5L1X7R1E475K160AC</text>
-<text x="988.0" y="226.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 REGN local capacitor</text>
-<text x="960.0" y="262.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">116  Texas Instruments CSD87313DMS</text>
-<text x="988.0" y="276.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">back-to-back pack admission FET</text>
-<text x="960.0" y="312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">117  Vishay WSL25125L000FEA</text>
-<text x="988.0" y="326.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">Kelvin pack-current shunt</text>
-<text x="960.0" y="362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">118  Littelfuse 0451005.MRL</text>
-<text x="988.0" y="376.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">protected-pack branch fuse #1</text>
-<text x="960.0" y="412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">119  Littelfuse 0451005.MRL</text>
-<text x="988.0" y="426.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">protected-pack branch fuse #0</text>
-<text x="960.0" y="462.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">120  74LVC1G32GV,125</text>
-<text x="988.0" y="476.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">FAULT_KILL-dominant voice PTT gate</text>
-<text x="960.0" y="512.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">121  Diodes Incorporated 2N7002DW-7-F</text>
-<text x="988.0" y="526.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">RP reset sink</text>
-<text x="960.0" y="562.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">122  TPS3808G33DBVR</text>
-<text x="988.0" y="576.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">always-on safety supervisor</text>
-<text x="960.0" y="612.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">123  SN74LVC1G17DCKR</text>
-<text x="988.0" y="626.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">delayed physical re-arm Schmitt buffer</text>
-<text x="960.0" y="662.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">124  Texas Instruments SN74LVC1G06DCKR</text>
-<text x="988.0" y="676.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5/RP fault-reset buffer</text>
-<text x="960.0" y="712.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">125  SN74LVC1G74DCUR</text>
-<text x="988.0" y="726.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">asynchronous RUN_PERMIT / FAULT_KILL latch</text>
-<text x="960.0" y="762.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">126  TDK B57332V5103F360</text>
-<text x="988.0" y="776.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">power-conversion hotspot safety sensor</text>
-<text x="960.0" y="812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">127  Bourns CRM2512-FX-20R0ELF</text>
-<text x="988.0" y="826.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">pack diagnostic pulse resistor #1</text>
-<text x="960.0" y="862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">128  Bourns CRM2512-FX-20R0ELF</text>
-<text x="988.0" y="876.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">pack diagnostic pulse resistor #0</text>
-<text x="960.0" y="912.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">129  Texas Instruments MSPM0C1106SDGS20R</text>
-<text x="988.0" y="926.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">fail-closed battery admission MCU</text>
-<text x="960.0" y="962.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">130  Analog Devices MAX17320G20+T</text>
-<text x="988.0" y="976.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">2S protection and fuel gauge</text>
-<text x="960.0" y="1012.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">131  SN74LVC3G07DCUR</text>
-<text x="988.0" y="1026.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">direct FAULT_ASSERT_N C5/RP reset and voice eFuse clamp</text>
-<text x="960.0" y="1062.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">132  BAT54ALT1G</text>
-<text x="988.0" y="1076.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">evidence diode OR for nRF24 #2 / CC</text>
-<text x="960.0" y="1112.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">133  Texas Instruments MSPM0C1106SDGS20R</text>
-<text x="988.0" y="1126.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">independent watchdog, thermal and TX-lease controller</text>
-<text x="960.0" y="1162.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">134  Diodes Incorporated PAM8302AAYCR</text>
-<text x="988.0" y="1176.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">rear-local differential speaker amplifier</text>
-<text x="960.0" y="1212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">135  Yageo RC0402FR-071KL</text>
-<text x="988.0" y="1226.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 pin-5 evidence input series resistor</text>
-<text x="960.0" y="1262.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">136  TLV1821DCKR</text>
-<text x="988.0" y="1276.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">RF-local voice TX evidence comparator</text>
-<text x="960.0" y="1312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">137  TLV1824PWR</text>
-<text x="988.0" y="1326.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">RF-local nRF/CC TX evidence comparator</text>
-<text x="960.0" y="1362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">138  SN74LVC08APWR</text>
-<text x="988.0" y="1376.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">rear-domain transmit safety gates</text>
-<text x="960.0" y="1412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">139  Yageo CC0402KRX7R9BB104</text>
-<text x="988.0" y="1426.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 evidence-buffer local bypass</text>
-<text x="960.0" y="1462.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">140  Yageo RC0402FR-0710KL</text>
-<text x="988.0" y="1476.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">AON pull-up for hardware ANY_TX aggregate</text>
-<text x="960.0" y="1512.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">141  BAT54ALT1G</text>
-<text x="988.0" y="1526.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">evidence diode OR for voice / IR</text>
-<text x="960.0" y="1562.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">142  SN74LVC1G07DCKR</text>
-<text x="988.0" y="1576.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">5-V-tolerant U214 pin-5 evidence boundary</text>
-<text x="960.0" y="1612.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">143  BAT54ALT1G</text>
-<text x="988.0" y="1626.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">evidence diode OR for nRF24 #0 / #1</text>
-<text x="960.0" y="1662.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">144  SN74LVC3G07DCUR</text>
-<text x="988.0" y="1676.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">AON-to-main hardware evidence isolator</text>
-<text x="960.0" y="1712.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">145  Yageo CC0402KRX7R9BB104</text>
-<text x="988.0" y="1726.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">main evidence-isolator bypass</text>
-<text x="960.0" y="1762.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">146  74LVC2G14GV,125</text>
+<text x="495.0" y="212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">057  Texas Instruments TPD4E05U06DQAR</text>
+<text x="523.0" y="226.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 connector-side ESD array A</text>
+<text x="495.0" y="262.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">058  Panasonic ERJ-2RKF22R0X</text>
+<text x="523.0" y="276.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 IRQ 22-ohm source series</text>
+<text x="495.0" y="312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">059  Panasonic ERJ-2RKF22R0X</text>
+<text x="523.0" y="326.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 GPS_RX 22-ohm source series</text>
+<text x="495.0" y="362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">060  Yageo RC0402FR-0710KL</text>
+<text x="523.0" y="376.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 request-line fail-safe pull-down</text>
+<text x="495.0" y="412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">061  Yageo CC0402KRX7R9BB104</text>
+<text x="523.0" y="426.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 supervisor local bypass</text>
+<text x="495.0" y="462.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">062  Panasonic ERJ-2RKF22R0X</text>
+<text x="523.0" y="476.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 MOSI 22-ohm source series</text>
+<text x="495.0" y="512.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">063  Yageo CC0402KRX7R9BB104</text>
+<text x="523.0" y="526.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 I2C isolator local bypass</text>
+<text x="495.0" y="562.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">064  UNI-ROYAL 0402WGF2201TCE</text>
+<text x="523.0" y="576.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 host-side SDA pull-up</text>
+<text x="495.0" y="612.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">065  Texas Instruments TPS629203DRLR</text>
+<text x="523.0" y="626.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">always-on 3.3-V converter</text>
+<text x="495.0" y="662.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">066  Texas Instruments TPS564252DRLR</text>
+<text x="523.0" y="676.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">accessory 5.0-V converter</text>
+<text x="495.0" y="712.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">067  Texas Instruments TPS564252DRLR</text>
+<text x="523.0" y="726.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">voice 4.0-V converter</text>
+<text x="495.0" y="762.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">068  TPS566231PRQFR</text>
+<text x="523.0" y="776.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">6-A 3V3_MAIN synchronous buck with raw-rail Power-Good</text>
+<text x="495.0" y="812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">069  CL10B105KO8NNNC</text>
+<text x="523.0" y="826.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">1-uF TPS566231P VCC decoupling capacitor</text>
+<text x="495.0" y="862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">070  Yageo RC0402FR-07110KL</text>
+<text x="523.0" y="876.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 supervisor upper sense leg</text>
+<text x="495.0" y="912.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">071  RC0402JR-070RL</text>
+<text x="523.0" y="926.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">0-ohm serial bootstrap link retained for EMI tuning</text>
+<text x="495.0" y="962.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">072  CL05B104KB5NNNC</text>
+<text x="523.0" y="976.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">100-nF TPS566231P bootstrap capacitor</text>
+<text x="495.0" y="1012.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">073  Sunlord MWSA0503S-2R2MT</text>
+<text x="523.0" y="1026.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 2.2-uH switching inductor</text>
+<text x="495.0" y="1062.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">074  Yageo RC0402FR-07220KL</text>
+<text x="523.0" y="1076.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 supervisor lower sense leg</text>
+<text x="495.0" y="1112.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">075  Texas Instruments BQ25798RQMR</text>
+<text x="523.0" y="1126.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">2S charger and NVDC power path</text>
+<text x="495.0" y="1162.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">076  PSPMAA0605H-2R2M-ANP</text>
+<text x="523.0" y="1176.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">2.2-uH, 10-A RMS / 15-A saturation 3V3_MAIN inductor</text>
+<text x="495.0" y="1212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">077  Murata GRM155R71H103KA88D</text>
+<text x="523.0" y="1226.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 supervisor delay capacitor</text>
+<text x="495.0" y="1262.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">078  Sunlord WPN201612H2R2MT</text>
+<text x="523.0" y="1276.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">always-on 3.3-V 2.2-uH switching inductor</text>
+<text x="495.0" y="1312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">079  TDK CGA5L1X7R1E475K160AC</text>
+<text x="523.0" y="1326.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">always-on 3.3-V input capacitor</text>
+<text x="495.0" y="1362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">080  Sunlord MWSA0503S-4R7MT</text>
+<text x="523.0" y="1376.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">accessory 5.0-V 4.7-uH switching inductor</text>
+<text x="495.0" y="1412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">081  Sunlord MWSA0503S-3R3MT</text>
+<text x="523.0" y="1426.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">voice 4.0-V 3.3-uH switching inductor</text>
+<text x="495.0" y="1462.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">082  Yageo RC0402FR-0710KL</text>
+<text x="523.0" y="1476.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 supervisor output pull-up</text>
+<text x="495.0" y="1512.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">083  Murata GRM31CR71A226KE15L</text>
+<text x="523.0" y="1526.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">always-on 3.3-V output capacitor</text>
+<text x="495.0" y="1562.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">084  Nexperia 74LVC126APW,118</text>
+<text x="523.0" y="1576.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">CC1101 return-path buffer</text>
+<text x="495.0" y="1612.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">085  Nexperia 74LVC126APW,118</text>
+<text x="523.0" y="1626.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">CC1101 host-command buffer</text>
+<text x="495.0" y="1662.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">086  Texas Instruments TMUX1136DGSR</text>
+<text x="523.0" y="1676.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">selected-module PTT and AUDIO_ON multiplexer</text>
+<text x="495.0" y="1712.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">087  Texas Instruments TMUX1136DGSR</text>
+<text x="523.0" y="1726.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">selected-module UART multiplexer</text>
+<text x="495.0" y="1762.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">088  TCA9534APWR</text>
+<text x="523.0" y="1776.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">TCA9534A UHF/VHF selector and deterministic reset straps</text>
+<text x="495.0" y="1812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">089  Murata GRM31CR71E106MA12L</text>
+<text x="523.0" y="1826.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 PMID bulk capacitor #1</text>
+<text x="495.0" y="1862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">090  Murata GRM31CR71E106MA12L</text>
+<text x="523.0" y="1876.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 PMID bulk capacitor #0</text>
+<text x="495.0" y="1912.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">091  Murata GRM31CR71E106MA12L</text>
+<text x="523.0" y="1926.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 VBUS bulk capacitor #1</text>
+<text x="495.0" y="1962.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">092  Murata GRM31CR71E106MA12L</text>
+<text x="523.0" y="1976.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 VBUS bulk capacitor #0</text>
+<text x="495.0" y="2012.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">093  Murata GRM32ER71E226KE15L</text>
+<text x="523.0" y="2026.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">accessory 5.0-V output bulk capacitor #0</text>
+<text x="495.0" y="2062.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">094  Murata GRM32ER71E226KE15L</text>
+<text x="523.0" y="2076.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">accessory 5.0-V input bulk capacitor</text>
+<text x="495.0" y="2112.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">095  Murata GRM32ER71E226KE15L</text>
+<text x="523.0" y="2126.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">voice 4.0-V output bulk capacitor #0</text>
+<text x="495.0" y="2162.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">096  Murata GRM32ER71E226KE15L</text>
+<text x="523.0" y="2176.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">voice 4.0-V input bulk capacitor</text>
+<text x="495.0" y="2212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">097  GRM32ER71E226KE15L</text>
+<text x="523.0" y="2226.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">first local 22-uF / 25-V X7R main-buck output capacitor</text>
+<text x="495.0" y="2262.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">098  GRM32ER71E226KE15L</text>
+<text x="523.0" y="2276.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">second local 22-uF / 25-V X7R main-buck output capacitor</text>
+<text x="495.0" y="2312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">099  GRM32ER71E226KE15L</text>
+<text x="523.0" y="2326.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">third local 22-uF / 25-V X7R main-buck output capacitor</text>
+<text x="495.0" y="2362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">100  Murata GRM31CR71E106MA12L</text>
+<text x="523.0" y="2376.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 SYS bulk capacitor #2</text>
+<text x="495.0" y="2412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">101  Murata GRM31CR71E106MA12L</text>
+<text x="523.0" y="2426.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 SYS bulk capacitor #1</text>
+<text x="495.0" y="2462.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">102  Murata GRM31CR71E106MA12L</text>
+<text x="523.0" y="2476.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 SYS bulk capacitor #0</text>
+<text x="495.0" y="2512.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">103  Murata GRM31CR71E106MA12L</text>
+<text x="523.0" y="2526.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 PMID bulk capacitor #2</text>
+<text x="495.0" y="2562.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">104  Murata GRM32ER71E226KE15L</text>
+<text x="523.0" y="2576.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">accessory 5.0-V output bulk capacitor #1</text>
+<text x="495.0" y="2612.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">105  Murata GRM32ER71E226KE15L</text>
+<text x="523.0" y="2626.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">voice 4.0-V output bulk capacitor #1</text>
+<text x="495.0" y="2662.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">106  Murata GRM31CR71E106MA12L</text>
+<text x="523.0" y="2676.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 BAT bulk capacitor #1</text>
+<text x="495.0" y="2712.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">107  Murata GRM31CR71E106MA12L</text>
+<text x="523.0" y="2726.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 BAT bulk capacitor #0</text>
+<text x="495.0" y="2762.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">108  Murata GRM31CR71E106MA12L</text>
+<text x="523.0" y="2776.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 SYS bulk capacitor #4</text>
+<text x="495.0" y="2812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">109  Murata GRM31CR71E106MA12L</text>
+<text x="523.0" y="2826.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 SYS bulk capacitor #3</text>
+<text x="495.0" y="2862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">110  TCA9535PWR</text>
+<text x="523.0" y="2876.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">AON evidence-source mask expander</text>
+<text x="495.0" y="2912.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">111  Nexperia 74LVC2G126DP,125</text>
+<text x="523.0" y="2926.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">CC1101 band-select buffer</text>
+<text x="495.0" y="2962.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">112  Texas Instruments SN74LVC2G08DCUR</text>
+<text x="523.0" y="2976.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">AON mutually-exclusive voice PD gate</text>
+<text x="960.0" y="212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">113  74LVC2G14GV,125</text>
+<text x="988.0" y="226.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">AON complement for one-hot voice selection; TSOP6 rotated for</text>
+<text x="988.0" y="237.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">local clearance</text>
+<text x="960.0" y="262.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">114  Texas Instruments TMUX1136DGSR</text>
+<text x="988.0" y="276.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">selected-module AFOUT and microphone multiplexer</text>
+<text x="960.0" y="312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">115  TDK CGA5L1X7R1E475K160AC</text>
+<text x="988.0" y="326.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">BQ25798 REGN local capacitor</text>
+<text x="960.0" y="362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">116  TCA6424ARGJR</text>
+<text x="988.0" y="376.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">RF-local 24-line slow-control expander; H1 body reconciled</text>
+<text x="988.0" y="387.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">with current native RF U106</text>
+<text x="960.0" y="412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">117  Texas Instruments CSD87313DMS</text>
+<text x="988.0" y="426.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">back-to-back pack admission FET</text>
+<text x="960.0" y="462.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">118  Vishay WSL25125L000FEA</text>
+<text x="988.0" y="476.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">Kelvin pack-current shunt</text>
+<text x="960.0" y="512.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">119  Littelfuse 0451005.MRL</text>
+<text x="988.0" y="526.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">protected-pack branch fuse #1</text>
+<text x="960.0" y="562.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">120  Littelfuse 0451005.MRL</text>
+<text x="988.0" y="576.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">protected-pack branch fuse #0</text>
+<text x="960.0" y="612.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">121  74LVC1G32GV,125</text>
+<text x="988.0" y="626.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">FAULT_KILL-dominant voice PTT gate</text>
+<text x="960.0" y="662.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">122  TPS3808G33DBVR</text>
+<text x="988.0" y="676.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">always-on safety supervisor</text>
+<text x="960.0" y="712.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">123  SN74LVC1G17DCKR</text>
+<text x="988.0" y="726.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">delayed physical re-arm Schmitt buffer</text>
+<text x="960.0" y="762.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">124  Texas Instruments SN74LVC1G06DCKR</text>
+<text x="988.0" y="776.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5/RP fault-reset buffer</text>
+<text x="960.0" y="812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">125  SN74LVC1G74DCUR</text>
+<text x="988.0" y="826.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">asynchronous RUN_PERMIT / FAULT_KILL latch</text>
+<text x="960.0" y="862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">126  TDK B57332V5103F360</text>
+<text x="988.0" y="876.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">power-conversion hotspot safety sensor</text>
+<text x="960.0" y="912.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">127  Bourns CRM2512-FX-20R0ELF</text>
+<text x="988.0" y="926.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">pack diagnostic pulse resistor #1</text>
+<text x="960.0" y="962.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">128  Bourns CRM2512-FX-20R0ELF</text>
+<text x="988.0" y="976.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">pack diagnostic pulse resistor #0</text>
+<text x="960.0" y="1012.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">129  Texas Instruments MSPM0C1106SDGS20R</text>
+<text x="988.0" y="1026.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">fail-closed battery admission MCU</text>
+<text x="960.0" y="1062.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">130  Analog Devices MAX17320G20+T</text>
+<text x="988.0" y="1076.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">2S protection and fuel gauge</text>
+<text x="960.0" y="1112.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">131  SN74LVC3G07DCUR</text>
+<text x="988.0" y="1126.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">direct FAULT_ASSERT_N C5/RP reset and voice eFuse clamp</text>
+<text x="960.0" y="1162.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">132  BAT54ALT1G</text>
+<text x="988.0" y="1176.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">evidence diode OR for nRF24 #2 / CC</text>
+<text x="960.0" y="1212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">133  Texas Instruments MSPM0C1106SDGS20R</text>
+<text x="988.0" y="1226.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">independent watchdog, thermal and TX-lease controller</text>
+<text x="960.0" y="1262.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">134  Diodes Incorporated PAM8302AAYCR</text>
+<text x="988.0" y="1276.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">rear-local differential speaker amplifier</text>
+<text x="960.0" y="1312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">135  Yageo RC0402FR-071KL</text>
+<text x="988.0" y="1326.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 pin-5 evidence input series resistor</text>
+<text x="960.0" y="1362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">136  TLV1821DCKR</text>
+<text x="988.0" y="1376.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">RF-local voice TX evidence comparator</text>
+<text x="960.0" y="1412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">137  SN74LVC08APWR</text>
+<text x="988.0" y="1426.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">rear-domain transmit safety gates</text>
+<text x="960.0" y="1462.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">138  Yageo CC0402KRX7R9BB104</text>
+<text x="988.0" y="1476.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 evidence-buffer local bypass</text>
+<text x="960.0" y="1512.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">139  2N7002DW-7-F</text>
+<text x="988.0" y="1526.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">RF RP reset sink; H1 body reconciled with current native RF</text>
+<text x="988.0" y="1537.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">Q6</text>
+<text x="960.0" y="1562.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">140  Yageo RC0402FR-0710KL</text>
+<text x="988.0" y="1576.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">AON pull-up for hardware ANY_TX aggregate</text>
+<text x="960.0" y="1612.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">141  BAT54ALT1G</text>
+<text x="988.0" y="1626.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">evidence diode OR for voice / IR</text>
+<text x="960.0" y="1662.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">142  SN74LVC1G07DCKR</text>
+<text x="988.0" y="1676.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">5-V-tolerant U214 pin-5 evidence boundary</text>
+<text x="960.0" y="1712.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">143  BAT54ALT1G</text>
+<text x="988.0" y="1726.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">evidence diode OR for nRF24 #0 / #1</text>
+<text x="960.0" y="1762.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">144  74LVC2G14GV,125</text>
 <text x="988.0" y="1776.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">RUN and S3 fault-reset conditioner</text>
-<text x="960.0" y="1812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">147  Texas Instruments TPS3435CAKAGDDFR</text>
+<text x="960.0" y="1812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">145  Texas Instruments TPS3435CAKAGDDFR</text>
 <text x="988.0" y="1826.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">independent 1.6-s timeout watchdog</text>
-<text x="960.0" y="1862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">148  BAT54ALT1G</text>
+<text x="960.0" y="1862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">146  BAT54ALT1G</text>
 <text x="988.0" y="1876.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">evidence diode OR for external Cap evidence</text>
-<text x="960.0" y="1912.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">149  Yageo RC0402FR-0710KL</text>
+<text x="960.0" y="1912.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">147  Yageo RC0402FR-0710KL</text>
 <text x="988.0" y="1926.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">U214 pin-5 fail-safe input pull-up</text>
-<text x="960.0" y="1962.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">150  BAT54ALT1G</text>
+<text x="960.0" y="1962.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">148  BAT54ALT1G</text>
 <text x="988.0" y="1976.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">evidence diode OR for S3 / C5</text>
-<text x="960.0" y="2012.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">151  Yageo RC0402FR-0710KL</text>
+<text x="960.0" y="2012.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">149  Yageo RC0402FR-0710KL</text>
 <text x="988.0" y="2026.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">isolated U214 evidence output pull-up</text>
-<text x="960.0" y="2062.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">152  SN74LVC1G08DCKR</text>
+<text x="960.0" y="2062.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">150  SN74LVC1G08DCKR</text>
 <text x="988.0" y="2076.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">independent FAULT_ASSERT_N CC1101 rail qualifier</text>
-<text x="960.0" y="2112.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">153  Samtec FTSH-105-01-L-DV-K-P-TR</text>
+<text x="960.0" y="2112.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">151  Samtec FTSH-105-01-L-DV-K-P-TR</text>
 <text x="988.0" y="2126.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">keyed RP SWD/RUN/USB_BOOT header</text>
-<text x="960.0" y="2162.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">154  Alps Alpine SKRTLAE010</text>
+<text x="960.0" y="2162.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">152  Alps Alpine SKRTLAE010</text>
 <text x="988.0" y="2176.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">external left-side RP RUN/RESET service control</text>
-<text x="960.0" y="2212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">155  C&amp;K JS102011SCQN</text>
+<text x="960.0" y="2212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">153  C&amp;K JS102011SCQN</text>
 <text x="988.0" y="2226.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">single low-current RUN/KILL; charging remains available in</text>
 <text x="988.0" y="2237.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">KILL</text>
-<text x="960.0" y="2262.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">156  Alps Alpine SKRTLAE010</text>
+<text x="960.0" y="2262.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">154  Alps Alpine SKRTLAE010</text>
 <text x="988.0" y="2276.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">external left-side RP USB_BOOT service control</text>
-<text x="960.0" y="2312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">157  Hirose FX8C-80S-SV5(92)</text>
+<text x="960.0" y="2312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">155  Hirose FX8C-80S-SV5(92)</text>
 <text x="988.0" y="2326.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">80-contact M1 receptacle; 11-mm board stack</text>
-<text x="960.0" y="2362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">158  PUI Audio AS02404PO</text>
+<text x="960.0" y="2362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">156  PUI Audio AS02404PO</text>
 <text x="988.0" y="2376.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">internal 4-Ohm differential speaker</text>
-<text x="960.0" y="2412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">159  Murata GRM32ER71E226KE15L</text>
+<text x="960.0" y="2412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">157  Murata GRM32ER71E226KE15L</text>
 <text x="988.0" y="2426.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">USB-PD high-voltage bulk capacitor #3</text>
-<text x="960.0" y="2462.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">160  Murata GRM32ER71E226KE15L</text>
+<text x="960.0" y="2462.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">158  Murata GRM32ER71E226KE15L</text>
 <text x="988.0" y="2476.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">USB-PD high-voltage bulk capacitor #2</text>
-<text x="960.0" y="2512.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">161  Murata GRM32ER71E226KE15L</text>
+<text x="960.0" y="2512.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">159  Murata GRM32ER71E226KE15L</text>
 <text x="988.0" y="2526.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">USB-PD high-voltage bulk capacitor #1</text>
-<text x="960.0" y="2562.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">162  Murata GRM32ER71E226KE15L</text>
+<text x="960.0" y="2562.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">160  Murata GRM32ER71E226KE15L</text>
 <text x="988.0" y="2576.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">USB-PD high-voltage bulk capacitor #0</text>
-<text x="960.0" y="2612.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">163  Texas Instruments TVS2200DRVR</text>
+<text x="960.0" y="2612.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">161  Texas Instruments TVS2200DRVR</text>
 <text x="988.0" y="2626.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">raw VBUS flat-clamp TVS</text>
-<text x="960.0" y="2662.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">164  TDK CGA5L1X7R1E475K160AC</text>
+<text x="960.0" y="2662.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">162  TDK CGA5L1X7R1E475K160AC</text>
 <text x="988.0" y="2676.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">raw VBUS local capacitor</text>
-<text x="960.0" y="2712.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">165  onsemi CAT24C512WI-GT3</text>
+<text x="960.0" y="2712.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">163  onsemi CAT24C512WI-GT3</text>
 <text x="988.0" y="2726.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">TPS25751 configuration EEPROM</text>
-<text x="960.0" y="2762.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">166  Texas Instruments TPS25751DREFR</text>
+<text x="960.0" y="2762.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">164  Texas Instruments TPS25751DREFR</text>
 <text x="988.0" y="2776.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">sink-only USB-PD controller</text>
-<text x="960.0" y="2812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">167  Texas Instruments TPD4S201RUKR</text>
+<text x="960.0" y="2812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">165  Texas Instruments TPD4S201RUKR</text>
 <text x="988.0" y="2826.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">product USB CC/USB2 protector</text>
-<text x="960.0" y="2862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">168  1125R-SMT-4P</text>
+<text x="960.0" y="2862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">166  1125R-SMT-4P</text>
 <text x="988.0" y="2876.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">native M5 Unit HY2.0-4P edge receptacle</text>
-<text x="960.0" y="2912.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">169  GCT USB4105-GF-A</text>
+<text x="960.0" y="2912.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">167  GCT USB4105-GF-A</text>
 <text x="988.0" y="2926.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">RP data-only service USB</text>
-<text x="960.0" y="2962.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">170  JAE DX07S016JA1R1500</text>
+<text x="960.0" y="2962.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">168  JAE DX07S016JA1R1500</text>
 <text x="988.0" y="2976.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">product USB-C data and sink</text>
-<text x="960.0" y="3012.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">171  Same Sky CMEJ-0413-42-SMT-TR</text>
-<text x="988.0" y="3026.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">rear bottom-facing microphone</text>
-<text x="1425.0" y="212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">172  CP0603Q5425ENTR</text>
-<text x="1453.0" y="226.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">S3 forward-power evidence coupler aligned with the S3-2G4</text>
-<text x="1453.0" y="237.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front SMA</text>
-<text x="1425.0" y="262.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">173  CP0603Q5425ENTR</text>
-<text x="1453.0" y="276.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5 dual-band forward-power evidence coupler aligned with the</text>
-<text x="1453.0" y="287.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5-2G4/5 front SMA</text>
-<text x="1425.0" y="312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">174  U.FL-R-SMT-1(80)</text>
-<text x="1453.0" y="326.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #0 module-to-board microcoax termination</text>
-<text x="1425.0" y="362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">175  U.FL-R-SMT-1(80)</text>
-<text x="1453.0" y="376.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">S3 module microcoax termination beside the S3-2G4 front SMA</text>
-<text x="1453.0" y="387.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">path</text>
-<text x="1425.0" y="412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">176  U.FL-R-SMT-1(80)</text>
-<text x="1453.0" y="426.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5 module microcoax termination beside the C5-2G4/5 front SMA</text>
+<text x="1425.0" y="212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">169  Same Sky CMEJ-0413-42-SMT-TR</text>
+<text x="1453.0" y="226.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">rear bottom-facing microphone</text>
+<text x="1425.0" y="262.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">170  CP0603Q5425ENTR</text>
+<text x="1453.0" y="276.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">S3 forward-power evidence coupler aligned with the S3-2G4</text>
+<text x="1453.0" y="287.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front SMA</text>
+<text x="1425.0" y="312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">171  CP0603Q5425ENTR</text>
+<text x="1453.0" y="326.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5 dual-band forward-power evidence coupler aligned with the</text>
+<text x="1453.0" y="337.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5-2G4/5 front SMA</text>
+<text x="1425.0" y="362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">172  U.FL-R-SMT-1(80)</text>
+<text x="1453.0" y="376.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #0 module-to-board microcoax termination</text>
+<text x="1425.0" y="412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">173  U.FL-R-SMT-1(80)</text>
+<text x="1453.0" y="426.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">S3 module microcoax termination beside the S3-2G4 front SMA</text>
 <text x="1453.0" y="437.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">path</text>
-<text x="1425.0" y="462.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">177  U.FL-R-SMT-1(80)</text>
-<text x="1453.0" y="476.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #2 module-to-board microcoax termination</text>
-<text x="1425.0" y="512.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">178  LTC5532ES6#TRMPBF</text>
-<text x="1453.0" y="526.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">S3 dual-band actual-TX detector beside its forward coupler</text>
-<text x="1425.0" y="562.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">179  LTC5532ES6#TRMPBF</text>
-<text x="1453.0" y="576.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5 dual-band actual-TX detector beside its forward coupler</text>
-<text x="1425.0" y="612.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">180  AD8314ARMZ-REEL</text>
-<text x="1453.0" y="626.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #0 actual-TX detector in the same front-board RF island</text>
-<text x="1425.0" y="662.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">181  AD8314ARMZ-REEL</text>
-<text x="1453.0" y="676.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #2 actual-TX detector in the same front-board RF island</text>
-<text x="1425.0" y="712.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">182  DC2337J5010AHF</text>
-<text x="1453.0" y="726.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #0 10-dB forward-power coupler</text>
-<text x="1425.0" y="762.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">183  DC2337J5010AHF</text>
-<text x="1453.0" y="776.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #2 10-dB forward-power coupler</text>
-<text x="1425.0" y="812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">184  U.FL-R-SMT-1(80)</text>
-<text x="1453.0" y="826.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #1 module-to-board microcoax termination</text>
-<text x="1425.0" y="862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">185  AD8314ARMZ-REEL</text>
-<text x="1453.0" y="876.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #1 actual-TX detector in the same front-board RF island</text>
-<text x="1425.0" y="912.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">186  DC2337J5010AHF</text>
-<text x="1453.0" y="926.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #1 10-dB forward-power coupler</text>
-<text x="1425.0" y="962.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">187  ESP32-S3-WROOM-1U-N16R8</text>
-<text x="1453.0" y="976.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI, display, storage and audio owner; shifted 0.7 mm outward</text>
-<text x="1453.0" y="987.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">for the central display ZIF corridor</text>
-<text x="1425.0" y="1012.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">188  ESP32-C5-WROOM-1U-N8R8</text>
-<text x="1453.0" y="1026.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">native 2.4/5-GHz and IR owner; shifted into the widened right</text>
-<text x="1453.0" y="1037.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">routing field</text>
-<text x="1425.0" y="1062.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">189  Hirose FH34SRJ-50S-0.5SH(50)</text>
-<text x="1453.0" y="1076.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">direct 50-contact dual-contact ZIF behind the folded display</text>
-<text x="1453.0" y="1087.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">FPC slot; pin 1 at world x-min</text>
-<text x="1425.0" y="1112.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">190  E01-ML01SP4</text>
-<text x="1453.0" y="1126.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">factory-stocked 20-dBm PA/LNA full-function nRF24 radio #0 on</text>
-<text x="1453.0" y="1137.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">the front radio/UI domain</text>
-<text x="1425.0" y="1162.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">191  E01-ML01SP4</text>
-<text x="1453.0" y="1176.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">factory-stocked 20-dBm PA/LNA full-function nRF24 radio #1 on</text>
+<text x="1425.0" y="462.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">174  U.FL-R-SMT-1(80)</text>
+<text x="1453.0" y="476.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5 module microcoax termination beside the C5-2G4/5 front SMA</text>
+<text x="1453.0" y="487.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">path</text>
+<text x="1425.0" y="512.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">175  U.FL-R-SMT-1(80)</text>
+<text x="1453.0" y="526.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #2 module-to-board microcoax termination</text>
+<text x="1425.0" y="562.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">176  LTC5532ES6#TRMPBF</text>
+<text x="1453.0" y="576.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">S3 dual-band actual-TX detector beside its forward coupler</text>
+<text x="1425.0" y="612.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">177  LTC5532ES6#TRMPBF</text>
+<text x="1453.0" y="626.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5 dual-band actual-TX detector beside its forward coupler</text>
+<text x="1425.0" y="662.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">178  AD8314ARMZ-REEL</text>
+<text x="1453.0" y="676.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #0 actual-TX detector in the same front-board RF island</text>
+<text x="1425.0" y="712.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">179  AD8314ARMZ-REEL</text>
+<text x="1453.0" y="726.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #2 actual-TX detector in the same front-board RF island</text>
+<text x="1425.0" y="762.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">180  DC2337J5010AHF</text>
+<text x="1453.0" y="776.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #0 10-dB forward-power coupler</text>
+<text x="1425.0" y="812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">181  DC2337J5010AHF</text>
+<text x="1453.0" y="826.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #2 10-dB forward-power coupler</text>
+<text x="1425.0" y="862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">182  U.FL-R-SMT-1(80)</text>
+<text x="1453.0" y="876.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #1 module-to-board microcoax termination</text>
+<text x="1425.0" y="912.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">183  AD8314ARMZ-REEL</text>
+<text x="1453.0" y="926.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #1 actual-TX detector in the same front-board RF island</text>
+<text x="1425.0" y="962.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">184  DC2337J5010AHF</text>
+<text x="1453.0" y="976.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 #1 10-dB forward-power coupler</text>
+<text x="1425.0" y="1012.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">185  ESP32-S3-WROOM-1U-N16R8</text>
+<text x="1453.0" y="1026.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI, display, storage and audio owner; shifted 0.7 mm outward</text>
+<text x="1453.0" y="1037.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">for the central display ZIF corridor</text>
+<text x="1425.0" y="1062.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">186  ESP32-C5-WROOM-1U-N8R8</text>
+<text x="1453.0" y="1076.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">native 2.4/5-GHz and IR owner; shifted into the widened right</text>
+<text x="1453.0" y="1087.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">routing field</text>
+<text x="1425.0" y="1112.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">187  Hirose FH34SRJ-50S-0.5SH(50)</text>
+<text x="1453.0" y="1126.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">direct 50-contact dual-contact ZIF behind the folded display</text>
+<text x="1453.0" y="1137.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">FPC slot; connector pin 1 at world x-max, tail pin 1 mates</text>
+<text x="1425.0" y="1162.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">188  E01-ML01SP4</text>
+<text x="1453.0" y="1176.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">factory-stocked 20-dBm PA/LNA full-function nRF24 radio #0 on</text>
 <text x="1453.0" y="1187.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">the front radio/UI domain</text>
-<text x="1425.0" y="1212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">192  E01-ML01SP4</text>
-<text x="1453.0" y="1226.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">factory-stocked 20-dBm PA/LNA full-function nRF24 radio #2 on</text>
+<text x="1425.0" y="1212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">189  E01-ML01SP4</text>
+<text x="1453.0" y="1226.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">factory-stocked 20-dBm PA/LNA full-function nRF24 radio #1 on</text>
 <text x="1453.0" y="1237.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">the front radio/UI domain</text>
-<text x="1425.0" y="1262.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">193  74LVC126APW,118</text>
-<text x="1453.0" y="1276.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #0 full-rate host-command buffer</text>
-<text x="1425.0" y="1312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">194  74LVC2G126DP,125</text>
-<text x="1453.0" y="1326.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #0 full-rate return buffer</text>
-<text x="1425.0" y="1362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">195  74LVC126APW,118</text>
-<text x="1453.0" y="1376.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #1 full-rate host-command buffer</text>
-<text x="1425.0" y="1412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">196  74LVC2G126DP,125</text>
-<text x="1453.0" y="1426.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #1 full-rate return buffer</text>
-<text x="1425.0" y="1462.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">197  74LVC126APW,118</text>
-<text x="1453.0" y="1476.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #2 full-rate host-command buffer</text>
-<text x="1425.0" y="1512.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">198  74LVC2G126DP,125</text>
-<text x="1453.0" y="1526.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #2 full-rate return buffer</text>
-<text x="1425.0" y="1562.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">199  SN74LVC08APWR</text>
-<text x="1453.0" y="1576.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF transmit safety gates</text>
-<text x="1425.0" y="1612.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">200  SN74LVC1G08DCKR</text>
-<text x="1453.0" y="1626.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local independent FAULT_ASSERT_N nRF rail qualifier</text>
-<text x="1425.0" y="1662.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">201  TLV1824PWR</text>
-<text x="1453.0" y="1676.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">second accepted quad comparator dedicated to the three</text>
-<text x="1453.0" y="1687.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF TX-evidence channels</text>
-<text x="1425.0" y="1712.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">202  TCA6424ARGJR</text>
-<text x="1453.0" y="1726.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">relocated 24-line slow-control expander clear of the larger</text>
-<text x="1453.0" y="1737.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">full-power nRF24 modules</text>
-<text x="1425.0" y="1762.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">203  TCA9539PWR</text>
+<text x="1425.0" y="1262.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">190  E01-ML01SP4</text>
+<text x="1453.0" y="1276.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">factory-stocked 20-dBm PA/LNA full-function nRF24 radio #2 on</text>
+<text x="1453.0" y="1287.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">the front radio/UI domain</text>
+<text x="1425.0" y="1312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">191  74LVC126APW,118</text>
+<text x="1453.0" y="1326.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #0 full-rate host-command buffer</text>
+<text x="1425.0" y="1362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">192  74LVC2G126DP,125</text>
+<text x="1453.0" y="1376.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #0 full-rate return buffer</text>
+<text x="1425.0" y="1412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">193  74LVC126APW,118</text>
+<text x="1453.0" y="1426.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #1 full-rate host-command buffer</text>
+<text x="1425.0" y="1462.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">194  74LVC2G126DP,125</text>
+<text x="1453.0" y="1476.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #1 full-rate return buffer</text>
+<text x="1425.0" y="1512.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">195  74LVC126APW,118</text>
+<text x="1453.0" y="1526.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #2 full-rate host-command buffer</text>
+<text x="1425.0" y="1562.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">196  74LVC2G126DP,125</text>
+<text x="1453.0" y="1576.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF24 #2 full-rate return buffer</text>
+<text x="1425.0" y="1612.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">197  SN74LVC08APWR</text>
+<text x="1453.0" y="1626.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF transmit safety gates</text>
+<text x="1425.0" y="1662.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">198  SN74LVC1G08DCKR</text>
+<text x="1453.0" y="1676.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local independent FAULT_ASSERT_N nRF rail qualifier</text>
+<text x="1425.0" y="1712.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">199  TLV1824PWR</text>
+<text x="1453.0" y="1726.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">second accepted quad comparator dedicated to the three</text>
+<text x="1453.0" y="1737.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">front-local nRF TX-evidence channels</text>
+<text x="1425.0" y="1762.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">200  TCA9539PWR</text>
 <text x="1453.0" y="1776.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">relocated sixteen-line direct-control input expander clear of</text>
 <text x="1453.0" y="1787.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">the larger full-power nRF24 modules</text>
-<text x="1425.0" y="1812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">204  SC1512-A4</text>
+<text x="1425.0" y="1812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">201  SC1512-A4</text>
 <text x="1453.0" y="1826.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">Front Hub RP2354B; S3/C5/rear-RP fan-out, three independent</text>
 <text x="1453.0" y="1837.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">nRF24 paths and microSD</text>
-<text x="1425.0" y="1862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">205  Vishay TSOP75238TR</text>
+<text x="1425.0" y="1862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">202  Vishay TSOP75238TR</text>
 <text x="1453.0" y="1876.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">38-kHz IR receiver</text>
-<text x="1425.0" y="1912.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">206  SN74LVC1G08DCKR</text>
+<text x="1425.0" y="1912.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">203  SN74LVC1G08DCKR</text>
 <text x="1453.0" y="1926.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI-local FAULT_KILL-qualified IR carrier gate</text>
-<text x="1425.0" y="1962.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">207  TDK B57332V5103F360</text>
+<text x="1425.0" y="1962.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">204  TDK B57332V5103F360</text>
 <text x="1453.0" y="1976.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI/display hotspot safety sensor</text>
-<text x="1425.0" y="2012.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">208  Vishay TSMP95000TT</text>
+<text x="1425.0" y="2012.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">205  Vishay TSMP95000TT</text>
 <text x="1453.0" y="2026.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">carrier-learning IR receiver</text>
-<text x="1425.0" y="2062.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">209  TLV1824PWR</text>
+<text x="1425.0" y="2062.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">206  TLV1824PWR</text>
 <text x="1453.0" y="2076.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI-local S3/C5/IR TX evidence comparator</text>
-<text x="1425.0" y="2112.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">210  Diodes Incorporated 2N7002DW-7-F</text>
+<text x="1425.0" y="2112.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">207  Diodes Incorporated 2N7002DW-7-F</text>
 <text x="1453.0" y="2126.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI-local S3/C5 passive-drain reset sinks</text>
-<text x="1425.0" y="2162.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">211  Texas Instruments SN74LVC1G06DCKR</text>
+<text x="1425.0" y="2162.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">208  Texas Instruments SN74LVC1G06DCKR</text>
 <text x="1453.0" y="2176.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI-local RUN_PERMIT C5 reset inverter</text>
-<text x="1425.0" y="2212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">212  SN74LVC1G07DCKR</text>
+<text x="1425.0" y="2212.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">209  SN74LVC1G07DCKR</text>
 <text x="1453.0" y="2226.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">UI-local direct FAULT_ASSERT_N C5 reset sink</text>
-<text x="1425.0" y="2262.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">213  Vishay VSMY14940</text>
+<text x="1425.0" y="2262.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">210  Vishay VSMY14940</text>
 <text x="1453.0" y="2276.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">940-nm IR transmitter</text>
-<text x="1425.0" y="2312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">214  Samtec FTSH-105-01-L-DV-K-P-TR</text>
+<text x="1425.0" y="2312.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">211  Samtec FTSH-105-01-L-DV-K-P-TR</text>
 <text x="1453.0" y="2326.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">keyed S3 UART0/RESET/BOOT header</text>
-<text x="1425.0" y="2362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">215  FTSH-105-01-L-DV-K-P-TR</text>
+<text x="1425.0" y="2362.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">212  FTSH-105-01-L-DV-K-P-TR</text>
 <text x="1453.0" y="2376.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">relocated keyed C5 UART0/RESET/BOOT DBG10 header with direct</text>
 <text x="1453.0" y="2387.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">opened-sandwich access</text>
-<text x="1425.0" y="2412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">216  Alps Alpine SKRTLAE010</text>
+<text x="1425.0" y="2412.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">213  Alps Alpine SKRTLAE010</text>
 <text x="1453.0" y="2426.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">external left-side S3 RESET service control</text>
-<text x="1425.0" y="2462.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">217  Alps Alpine SKRTLAE010</text>
+<text x="1425.0" y="2462.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">214  Alps Alpine SKRTLAE010</text>
 <text x="1453.0" y="2476.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">external right-side C5 RESET service control</text>
-<text x="1425.0" y="2512.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">218  Hirose FX8C-80P-SV1(92)</text>
+<text x="1425.0" y="2512.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">215  Hirose FX8C-80P-SV1(92)</text>
 <text x="1453.0" y="2526.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">80-contact M1 plug; 11-mm board stack</text>
-<text x="1425.0" y="2562.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">219  Alps Alpine SKRTLAE010</text>
+<text x="1425.0" y="2562.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">216  Alps Alpine SKRTLAE010</text>
 <text x="1453.0" y="2576.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">external left-side S3 BOOT service control</text>
-<text x="1425.0" y="2612.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">220  Alps Alpine SKRTLAE010</text>
+<text x="1425.0" y="2612.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">217  Alps Alpine SKRTLAE010</text>
 <text x="1453.0" y="2626.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">external right-side C5 BOOT service control</text>
-<text x="1425.0" y="2662.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">221  SKRTLAE010</text>
+<text x="1425.0" y="2662.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">218  SKRTLAE010</text>
 <text x="1453.0" y="2676.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">recessed right-side Hub RP RUN/RESET service control</text>
-<text x="1425.0" y="2712.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">222  FTSH-105-01-L-DV-K-P-TR</text>
+<text x="1425.0" y="2712.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">219  FTSH-105-01-L-DV-K-P-TR</text>
 <text x="1453.0" y="2726.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">Hub RP keyed SWD/RUN/USB_BOOT fallback; accessible only after</text>
 <text x="1453.0" y="2737.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">opening the sandwich</text>
-<text x="1425.0" y="2762.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">223  SKRTLAE010</text>
+<text x="1425.0" y="2762.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">220  SKRTLAE010</text>
 <text x="1453.0" y="2776.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">recessed right-side Hub RP USB_BOOT service control</text>
-<text x="1425.0" y="2812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">224  Hirose DM3AT-SF-PEJM5</text>
+<text x="1425.0" y="2812.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">221  Hirose DM3AT-SF-PEJM5</text>
 <text x="1453.0" y="2826.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">bottom-access push-push microSD</text>
-<text x="1425.0" y="2862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">225  USB4105-GF-A</text>
+<text x="1425.0" y="2862.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#1d4ed8">222  USB4105-GF-A</text>
 <text x="1453.0" y="2876.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">Hub RP independent data-only USB-C; bottom enclosure exit</text>
-<text x="1425.0" y="2912.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">226  GCT USB4105-GF-A</text>
+<text x="1425.0" y="2912.0" font-family="sans-serif" font-size="8.5" font-weight="bold" fill="#172033">223  GCT USB4105-GF-A</text>
 <text x="1453.0" y="2926.0" font-family="sans-serif" font-size="7.4" font-weight="normal" fill="#526076">C5 data-only service USB</text>
 </svg>

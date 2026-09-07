@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "id": "LESHY2-H6-R2-CAP-MATING-REVIEW",
+  "checked": "2026-09-07",
+  "status": "unresolved_mating_view_handedness",
+  "scope": "Read-only physical contact-numbering review of the existing U214/U219 Cap slot. This evidence is not an approved contact map, placement instruction, or fabrication release.",
+  "production_map_modified": false,
+  "materializer_guard_added": false,
+  "selected_connector": {
+    "device_id": "samtec_hle_107_02_g_dv_pe_lc",
+    "mpn": "Samtec HLE-107-02-G-DV-PE-LC",
+    "instance": "u214_connector",
+    "native_reference": "J10",
+    "project": "LESHY2-RF-R2",
+    "footprint": "Connector_Samtec_HLE_THT:Samtec_HLE-107-02-xx-DV-PE-LC_2x07_P2.54mm_Horizontal",
+    "reviewed_native_pose": {
+      "side": "F.Cu",
+      "rotation_deg": 0,
+      "anchor_mm": [32.375, 25.21],
+      "tail_row_y_mm": [25.21, 32.83],
+      "mating_cavity_row_y_mm": [27.75, 30.29],
+      "column_x_mm": [32.375, 34.915, 37.455, 39.995, 42.535, 45.075, 47.615],
+      "upper_row_pad_numbers_left_to_right": [1, 3, 5, 7, 9, 11, 13],
+      "lower_row_pad_numbers_left_to_right": [2, 4, 6, 8, 10, 12, 14],
+      "view": "Native PCB F-side, increasing X right, increasing Y down. Cavity and its corresponding outer solder tail retain the same physical number."
+    },
+    "manufacturer_facts": [
+      "Samtec drawing HLE-1XX-02-XX-DV-XE-XX revision AI, sheet 1 Figure 1 numbers adjacent rows 01/02 and successive columns as odd/even pairs.",
+      "Section A-A shows each contact continuing from its own cavity to its same-side outward tail; no internal row crossover is shown.",
+      "The -DV option is double vertical and -PE is pass-through entry. Mating is normal to the carrier PCB, despite the historical KiCad footprint name ending in Horizontal.",
+      "Mating cavity row separation is 0.100 inch (2.54 mm); outer tail-row separation is 0.300 inch (7.62 mm)."
+    ]
+  },
+  "u214_logical_contact_functions": {
+    "1": "GPS_TX",
+    "2": "GPS_RX",
+    "3": "SCL",
+    "4": "SDA",
+    "5": "5V_OUT",
+    "6": "GND",
+    "7": "5V_IN",
+    "8": "LoRa_RST",
+    "9": "LoRa_IRQ",
+    "10": "LoRa_BUSY",
+    "11": "LoRa_SCK",
+    "12": "LoRa_MOSI",
+    "13": "LoRa_MISO",
+    "14": "LoRa_NSS"
+  },
+  "current_contact_materialization": {
+    "source": "hardware/ecad/generated/H2-R2-contact-materialization.json",
+    "mapping_logical_1_through_14_to_samtec_pads": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+    "resolution": "normalized_logical_pin_number",
+    "finding": "Numeric passthrough does not preserve the two sequential Cap rows represented in the M5 documentation when applied to Samtec alternating odd/even rows. An explicit map is required, but the correct handedness and physical assembly pose must first be established."
+  },
+  "physical_view_evidence": {
+    "u214_product_page_1_gpio_ext_callout": {
+      "upper_row_logical_contacts_left_to_right": [8, 9, 10, 11, 12, 13, 14],
+      "lower_row_logical_contacts_left_to_right": [7, 6, 5, 4, 3, 2, 1],
+      "limitation": "An arrow identifies the underside male header, but the diagram does not label a mating-side view or tie one named function to an individually identified metal contact. The same grid is printed on the module's opposite, outward-facing sticker."
+    },
+    "cardputer_adv_documentation_cross_check": {
+      "web_table_host_pin_number_for_u214_logical_1_through_14": [14, 12, 10, 8, 6, 4, 2, 1, 3, 5, 7, 9, 11, 13],
+      "limitation": "This function-to-function bridge uses the documentation's odd/even host table, not a demonstrated Samtec pose. Cardputer's own schematic P3 uses a third sequential numbering convention: RESET1 through CS7 and GPS_TX8 through 5VIN14. Its product callout repeats the U214 grid despite the opposite mating face, so these numbers alone do not prove physical view handedness."
+    },
+    "u219_product_page_1_inconsistency": {
+      "upper_row_functions_left_to_right": ["5VIN", "GND", "5VOUT", "SDA", "SCL", "RF_SW0", "GDO0"],
+      "lower_row_functions_left_to_right": ["RST", "NFC_IRQ", "CC_CS", "SCK", "MOSI", "MISO", "NFC_CS"],
+      "finding": "The analogous GPIO.EXT callout reverses the upper/lower row order relative to U214 and swaps CC_CS/NFC_CS relative to its own schematic and web pin table. It is not sufficient independent evidence for a production mating-face map."
+    }
+  },
+  "conditional_maps_not_approved": {
+    "coordinate_rule": "All arrays map logical U214 PIN_1 through PIN_14 to Samtec physical pad numbers at the reviewed F0 pose. A 180-degree rotation rotates the whole Cap, not the Samtec footprint. No candidate is selected.",
+    "C_front_sticker_grid_hypothesis": {
+      "condition": "Assume the U214 outward sticker grid describes the contact positions viewed through the Cap from its outward face, with SMA on the left, exactly as the outward product photograph.",
+      "visible_sma_side": "left, conditional on this view hypothesis",
+      "upper_native_cavity_row_logical_contacts": [8, 9, 10, 11, 12, 13, 14],
+      "lower_native_cavity_row_logical_contacts": [7, 6, 5, 4, 3, 2, 1],
+      "logical_to_pad": [14, 12, 10, 8, 6, 4, 2, 1, 3, 5, 7, 9, 11, 13]
+    },
+    "D_C_rotated_180": {
+      "visible_sma_side": "right, conditional on the same view hypothesis as C",
+      "upper_native_cavity_row_logical_contacts": [1, 2, 3, 4, 5, 6, 7],
+      "lower_native_cavity_row_logical_contacts": [14, 13, 12, 11, 10, 9, 8],
+      "logical_to_pad": [1, 3, 5, 7, 9, 11, 13, 14, 12, 10, 8, 6, 4, 2]
+    },
+    "A_opposite_view_handedness": {
+      "condition": "If the U214 grid instead describes a direct male mating-face view, an additional reflection is necessary when converting it to the carrier female view. This row-reflected example and its 180-degree partner cannot be distinguished from C/D solely by choosing which way the Cap is rotated.",
+      "visible_sma_side": "not established from the unlabelled mating-view callout",
+      "upper_native_cavity_row_logical_contacts": [7, 6, 5, 4, 3, 2, 1],
+      "lower_native_cavity_row_logical_contacts": [8, 9, 10, 11, 12, 13, 14],
+      "logical_to_pad": [13, 11, 9, 7, 5, 3, 1, 2, 4, 6, 8, 10, 12, 14]
+    },
+    "B_A_rotated_180": {
+      "visible_sma_side": "opposite A; absolute SMA side not established",
+      "upper_native_cavity_row_logical_contacts": [14, 13, 12, 11, 10, 9, 8],
+      "lower_native_cavity_row_logical_contacts": [1, 2, 3, 4, 5, 6, 7],
+      "logical_to_pad": [2, 4, 6, 8, 10, 12, 14, 13, 11, 9, 7, 5, 3, 1]
+    }
+  },
+  "mechanical_datum_separate_from_electrical_map": {
+    "official_structure_commit": "028a350afeb15bc851cf9adfcde19630d9db7206",
+    "official_structure_commit_date": "2026-07-31T03:45:36Z",
+    "official_structure_file": "Products/U214_Cap_LoRa-1262/Structures/Cap_LoRa-1262.stl",
+    "official_structure_git_blob": "2b2272c002e0b87170f3911106f200e18100c5d5",
+    "review": "The published binary STL has 10480 triangles and four shell components: assembled and exploded upper/lower housing. It contains no fourteen metal contacts or numbered connector component. Public U214 product directory contains Structures only; no STEP or PCB CAD was present on the inspection date.",
+    "established": "84 x 24 mm housing and a header aperture displaced toward a long edge. Header contacts are not centered across the 24-mm housing dimension.",
+    "unresolved": "Exact contact-row center to housing-edge Y datum and tolerance. Housing aperture edges are not a substitute for the undocumented contact-axis datum; dimensions must not be inferred by scaling the rendered image.",
+    "release_scope": "This missing mechanical datum does not itself forbid choosing a proven electrical assembly orientation. It remains a separate mechanical-fit obligation."
+  },
+  "minimum_evidence_needed": {
+    "electrical": "Identify one actual asymmetric supply contact, preferably GND or 5VIN, in a direct view of the U214 male contacts, explicitly giving the row, the SMA end, and the NRST or housing-edge direction. A manufacturer annotated contact drawing, PCB CAD, or an unambiguous manufacturer photo is sufficient; STEP is not mandatory.",
+    "mechanical": "Provide X/Y coordinates and tolerances of the header mating-row center and the retention features relative to the 84 x 24 mm housing for the selected assembly orientation.",
+    "external_question_en": "For U214, viewed directly at the underside male contacts, with the SMA end explicitly indicated: please identify the physical location of GND (schematic pin 6) and 5VIN (pin 7), and clarify whether the GPIO.EXT diagram is a mating-side view or a view through the front label. Please also provide the contact-row center relative to the housing edges."
+  },
+  "sources": [
+    {
+      "url": "https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/docs/static/pdf/static/en/cap/Cap_LoRa-1262.pdf",
+      "section": "Product page 1, outward sticker and underside GPIO.EXT photograph; Cap-Bus pin table",
+      "sha256": "c48d056c536a7cf452daaec9393a25d83f7b5206fa73bb9d3ba095077eff55fe"
+    },
+    {
+      "url": "https://m5stack-doc.oss-cn-shenzhen.aliyuncs.com/1208/U214-sche-Cap-LoRa1262_SCH_V1.1_20251029_2025_11_07_22_53_19.pdf",
+      "section": "Sheet 1, HDR-SMD_14P-P2.54 logical contact functions",
+      "sha256": "dbc5266d7015cf2e71f2a7ebe13fd88732bf260febced1659f42712fcd94ac8c"
+    },
+    {
+      "url": "https://suddendocs.samtec.com/prints/hle-1xx-02-xx-dv-xe-xx-mkt.pdf",
+      "section": "Revision AI, sheet 1, Figure 1 and section A-A",
+      "sha256": "5495a24eee9d949aa74a1728c46a2eb069ae26e457a3bd67eaee4df7666a2a7d"
+    },
+    {
+      "url": "https://docs.m5stack.com/en/core/Cardputer-Adv",
+      "section": "PinMap / EXT 2.54-14P; functional correspondence only"
+    },
+    {
+      "url": "https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/docs/static/pdf/static/en/core/Cardputer-Adv.pdf",
+      "section": "Product pages 1-2, host socket photographs and GPIO.EXT callout; page 10 EXT pin table",
+      "sha256": "b809c7d24fce165f083106815368bb15c5e57e57b62ec108c9a9817eaa256d47"
+    },
+    {
+      "url": "https://m5stack-doc.oss-cn-shenzhen.aliyuncs.com/1178/Sch_M5CardputerAdv_v1.0_2025_06_20_17_19_58.pdf",
+      "section": "Sheet 4, P3 sequential schematic numbering differs from webpage host numbering"
+    },
+    {
+      "url": "https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/docs/static/pdf/static/en/cap/Cap_CC1101.pdf",
+      "section": "Product page 1 GPIO.EXT callout discrepancy versus the U214 callout and U219 electrical schematic",
+      "sha256": "84c7f373cc5e073dac9c866ca5237ea5d4ff0a3019768d373cd8e6cbe32c38f6"
+    },
+    {
+      "url": "https://m5stack-doc.oss-cn-shenzhen.aliyuncs.com/1250/SCH_Cap_CC1101_SCH_V0.3_20260528.pdf",
+      "section": "Sheet 1, P1 NFC_CS logical pin 10 and CC_CS pin 14",
+      "sha256": "2c24e78ff5fff44ca2ddb274ad4a514fb736caefb5c8969dacf57f481a965e0b"
+    },
+    {
+      "url": "https://m5stack-doc.oss-cn-shenzhen.aliyuncs.com/1208/U214-00-cap1262-model-size.pdf",
+      "section": "Full sheet 1; housing and retention geometry, no explicit contact-row center datum",
+      "sha256": "54f765a2f74bf922d65c9c6b38e7354e008a7ff4c7a96426c4d02259b6c3cb8e"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/m5stack/M5_Hardware/028a350afeb15bc851cf9adfcde19630d9db7206/Products/U214_Cap_LoRa-1262/Structures/Cap_LoRa-1262.stl",
+      "section": "Pinned official housing STL, not an electrical contact assembly",
+      "sha256": "a9233c33be59bbec768726f85649f46d6e1c995170bc63e539875c2d189b4bab"
+    }
+  ]
+}

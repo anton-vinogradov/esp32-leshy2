@@ -32,7 +32,7 @@
 <text x="70.0" y="512.0" font-family="sans-serif" font-size="9.8" font-weight="bold" text-anchor="start" fill="#92400e">4910 worst-case 0.914 mm: folded-FPC stack ≤0.714 mm and actual clearance ≥0.20 mm.</text>
 <text x="70.0" y="544.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#166534">What crosses the PCB</text>
 <text x="70.0" y="568.0" font-family="sans-serif" font-size="9.8" font-weight="normal" text-anchor="start" fill="#172033">Tail 30.16 ±0.50 mm; measured exit→contact-stop route ≤24.66 mm; relaxed reserve ≥5.00 mm.</text>
-<text x="70.0" y="586.0" font-family="sans-serif" font-size="9.4" font-weight="bold" text-anchor="start" fill="#0f766e">One 180° fold, no twist: panel pin 1 → connector pin 1; panel pin 50 → connector pin 50.</text>
+<text x="70.0" y="586.0" font-family="sans-serif" font-size="9.4" font-weight="bold" text-anchor="start" fill="#0f766e">One 180° fold, no twist: panel 1 → FH34 contact 50; panel 50 → FH34 contact 1.</text>
 <text x="70.0" y="612.0" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="start" fill="#166534">Load path</text>
 <text x="70.0" y="638.0" font-family="sans-serif" font-size="9.8" font-weight="normal" text-anchor="start" fill="#172033">finger / handling → stiff panel → stock PSA rectangle → UI PCB; never through FPC or ZIF</text>
 <text x="650.0" y="108.0" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="start" fill="#7c3aed">UI PCB before panel placement · both alignment frames visible</text>

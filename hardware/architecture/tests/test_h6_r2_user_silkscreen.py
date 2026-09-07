@@ -16,6 +16,7 @@ class UserSilkscreenTests(unittest.TestCase):
     def setUpClass(cls):
         cls.contract = json.loads((ROOT / "hardware/layout/h6-r2-placement-contract.json").read_text())
         cls.boards = json.loads((ROOT / "hardware/layout/generated/H6-R2-placement-audit.json").read_text())["boards"]
+        cls.bindings = json.loads((ROOT / "hardware/layout/generated/H6-R2-kicad-net-bindings.json").read_text())["projects"]
 
     def test_antenna_labels_follow_identity_not_list_or_dictionary_order(self):
         board = next(b for b in self.boards if b["project"] == "LESHY2-RF-R2")
@@ -42,16 +43,61 @@ class UserSilkscreenTests(unittest.TestCase):
     def test_signal_identity_requires_the_actual_pad_not_just_label(self):
         board = next(b for b in self.boards if b["project"] == "LESHY2-RF-R2")
         rows = copy.deepcopy(board["placements"])
+        binding = self.bindings[board["project"]]["canonical_to_kicad"]
         for row in rows:
             if row["instance"] in SILK.ANTENNA_INTERFACES:
-                row["signal_pad_nets"] = [SILK.ANTENNA_INTERFACES[row["instance"]][2]]
-        self.assertEqual([], SILK.antenna_signal_findings(board["project"], rows, self.contract))
+                row["signal_pad_nets"] = [binding[SILK.ANTENNA_INTERFACES[row["instance"]][2]]]
+        self.assertEqual([], SILK.antenna_signal_findings(board["project"], rows, self.contract, binding))
         uhf = next(r for r in rows if r["instance"] == "voice_external_sma")
-        for wrong in ([], ["VOICE_V_EXTERNAL_RF_50R"], ["POWER_GROUND"], ["VOICE_U_EXTERNAL_RF_50R"] * 2):
+        expected = binding["VOICE_U_EXTERNAL_RF_50R"]
+        for wrong in ([], [binding["VOICE_V_EXTERNAL_RF_50R"]], ["POWER_GROUND"], [expected] * 2,
+                      ["VOICE_U_EXTERNAL_RF_50R"], ["/WRONG/VOICE_U_EXTERNAL_RF_50R"]):
             uhf["signal_pad_nets"] = wrong
-            found = SILK.antenna_signal_findings(board["project"], rows, self.contract)
+            found = SILK.antenna_signal_findings(board["project"], rows, self.contract, binding)
             self.assertEqual(1, len(found))
             self.assertEqual("antenna_signal_identity_mismatch", found[0]["kind"])
+
+    def test_antenna_scope_cannot_be_shrunk_by_empty_or_omitted_contract_entries(self):
+        self.assertEqual({"LESHY2-UI-R2", "LESHY2-RF-R2"}, set(SILK.ANTENNA_INSTANCES_BY_PROJECT))
+        for project, instances in SILK.ANTENNA_INSTANCES_BY_PROJECT.items():
+            self.assertEqual(5, len(instances))
+            self.assertEqual(5, len(set(instances)))
+            for mutation in ("one", "empty", "project", "all", "extra"):
+                contract = copy.deepcopy(self.contract)
+                if mutation == "one":
+                    del contract["antenna_ports"][project][instances[0]]
+                elif mutation == "empty":
+                    contract["antenna_ports"][project] = {}
+                elif mutation == "project":
+                    del contract["antenna_ports"][project]
+                elif mutation == "all":
+                    del contract["antenna_ports"]
+                else:
+                    contract["antenna_ports"][project]["unexpected_sma"] = [1, 0]
+                with self.subTest(project=project, mutation=mutation):
+                    found = SILK.antenna_signal_findings(project, [], contract, {})
+                    self.assertIn("antenna_scope_mismatch", {row["kind"] for row in found})
+                    with self.assertRaises(ValueError):
+                        SILK.labels(project, [], contract)
+        found = SILK.antenna_signal_findings("UNKNOWN", [], self.contract, {})
+        self.assertEqual("antenna_scope_mismatch", found[0]["kind"])
+
+    def test_missing_antenna_or_authoritative_full_net_binding_fails(self):
+        project = "LESHY2-RF-R2"
+        binding = self.bindings[project]["canonical_to_kicad"]
+        rows = [{"instance": instance, "signal_pad_nets": [binding[SILK.ANTENNA_INTERFACES[instance][2]]]}
+                for instance in SILK.ANTENNA_INSTANCES_BY_PROJECT[project]]
+        for instance in SILK.ANTENNA_INSTANCES_BY_PROJECT[project]:
+            found = SILK.antenna_signal_findings(project, [r for r in rows if r["instance"] != instance],
+                                               self.contract, binding)
+            self.assertEqual(1, len(found))
+            self.assertEqual(instance, found[0]["instance"])
+        missing = dict(binding)
+        del missing["VOICE_U_EXTERNAL_RF_50R"]
+        found = SILK.antenna_signal_findings(project, rows, self.contract, missing)
+        self.assertEqual(["missing_antenna_net_binding"], [row["kind"] for row in found])
+        self.assertEqual(set(SILK.ANTENNA_INTERFACES),
+                         {instance for bank in SILK.ANTENNA_INSTANCES_BY_PROJECT.values() for instance in bank})
 
 
     def test_every_service_button_has_two_outer_face_labels(self):

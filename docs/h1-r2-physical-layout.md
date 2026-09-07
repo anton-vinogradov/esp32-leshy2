@@ -1,6 +1,8 @@
-# H1-R2.39 · working target-device placement
+# H1-R2.39 · H1 concept placement
 
-The complete verifiable physical model of the two 80 × 150 mm PCBs was accepted on 2026-08-30; H1 is reviewed. Every body, Cap profile, external U219 antenna volume and copper reserve is registered with no open geometry gate. This does not authorize KiCad routing: the R2 H2 electrical prerequisites listed below must close first.
+The two-board 80 × 150 mm concept was accepted on 2026-08-30; the historical H1 closure is retained. These mockups show the H1 intent and registered bodies, not the exact current KiCad placement. See the [native H6 component views](h6-r2-component-views.md) for the current PCBs and the [H6 interface review](h6-r2-interface-review.md) for unresolved interface, slot and accessibility discrepancies. Zero collisions in this concept do not close H6 geometry checks or imply production readiness.
+
+> Scope: the requirements and calculations below belong to the H1 concept. Do not use its port, FPC/ZIF, Cap-socket or acoustic-opening positions, or historical stock counts, for ordering or assembly. Current H6 evidence takes precedence.
 
 ## What the user sees
 
@@ -38,7 +40,7 @@ The complete verifiable physical model of the two 80 × 150 mm PCBs was accepted
 
 ![True inner sandwich sections](images/h1-r2-inner-sections.svg)
 
-## Generator-verified
+## What the H1 concept generator checks
 
 - Same-face body collisions: `0`.
 - Minimum opposing Z clearance: `0.94 mm` against `0.70 mm` required.
@@ -53,7 +55,7 @@ The complete verifiable physical model of the two 80 × 150 mm PCBs was accepted
 - Cap-Bus: mutually exclusive U214/U219 profiles and all eight target clearances pass; all 18 exact U219 bodies, their source-backed courtyards, the NFC pickup loop and the external swept volume of the supplied 108-mm antenna are registered fail-closed. Open H1 geometry gates: `0`.
 - The `ER-TFT035IPS-6` + `ER-TPC035-6` assembly and direct UI-board `FH34SRJ-50S-0.5SH(50)` are fixed; the 1.00-mm ZIF leaves 10.00 mm to the opposing PCB plane, both DF40 parts and the adapter PCB are removed, and the connector carries no panel load.
 
-## Exact factory parts
+## Factory parts at the H1 evidence date
 
 | Role | MPN | JLCPCB | Current availability/route |
 |---|---|---|---|
@@ -79,9 +81,9 @@ The complete verifiable physical model of the two 80 × 150 mm PCBs was accepted
 
 ## H1 result
 
-- No additional physical-body geometry blockers remain.
+- No additional blockers remain in the historical H1 register; this does not clear the current-PCB discrepancies recorded in H6.
 
-### Preconditions before R2 H2 / KiCad
+### Historical preconditions before R2 H2 / KiCad
 
 
 > Final result marker: **H1-R2.39**. H1 was reviewed on 2026-08-30.

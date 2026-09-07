@@ -1,316 +1,331 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1380" height="4881" viewBox="0 0 1380 4881">
-<rect width="1380" height="4881" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1380" height="4940" viewBox="0 0 1380 4940">
+<rect width="1380" height="4940" fill="#ffffff"/>
 <text x="40" y="42" font-family="sans-serif" font-size="26" font-weight="700" fill="#172033">Leshy2 · H1-R2.39 inner placement</text>
 <text x="40" y="70" font-family="sans-serif" font-size="13" fill="#526076">World-scale engineering view · both inner faces are shown directly after turning each PCB over · numbered marks are documentation, never inner-face silkscreen.</text>
 <text x="198.00" y="96" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">UI PCB · inner · turned-over view</text>
 <rect x="70.00" y="122.00" width="256.00" height="480.00" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
-<rect x="86.96" y="192.40" width="57.60" height="67.84" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="70.00" y="512.40" width="10.88" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="70.00" y="490.00" width="10.88" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="210.99" y="578.48" width="28.61" height="23.52" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="154.80" y="202.00" width="86.40" height="12.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="284.40" y="384.40" width="16.00" height="14.08" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="304.24" y="384.40" width="21.76" height="9.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="304.24" y="362.00" width="21.76" height="9.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="316.40" y="406.80" width="9.60" height="8.03" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="294.00" y="362.00" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="157.04" y="502.80" width="97.92" height="20.80" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="251.44" y="192.40" width="57.60" height="61.44" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="315.12" y="512.40" width="10.88" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="279.12" y="454.80" width="30.88" height="18.69" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="315.12" y="490.00" width="10.88" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="239.60" y="384.40" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="249.20" y="384.40" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="262.00" y="384.40" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="121.36" y="557.68" width="51.04" height="44.32" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="282.48" y="362.00" width="5.12" height="2.56" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="174.00" y="346.00" width="32.00" height="32.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<circle cx="310.00" cy="157.20" r="12.80" fill="none" stroke="#f97316" stroke-dasharray="5 3" data-mechanical-feature="mounting-keepout" data-hole="MH1"/>
+<circle cx="310.00" cy="157.20" r="4.32" fill="#ffffff" stroke="#475467" stroke-width="1.2" data-mechanical-feature="mounting-hole" data-hole="MH1" data-source-frame="pcb-exterior-local"/>
+<circle cx="86.00" cy="157.20" r="12.80" fill="none" stroke="#f97316" stroke-dasharray="5 3" data-mechanical-feature="mounting-keepout" data-hole="MH2"/>
+<circle cx="86.00" cy="157.20" r="4.32" fill="#ffffff" stroke="#475467" stroke-width="1.2" data-mechanical-feature="mounting-hole" data-hole="MH2" data-source-frame="pcb-exterior-local"/>
+<circle cx="310.00" cy="586.00" r="12.80" fill="none" stroke="#f97316" stroke-dasharray="5 3" data-mechanical-feature="mounting-keepout" data-hole="MH3"/>
+<circle cx="310.00" cy="586.00" r="4.32" fill="#ffffff" stroke="#475467" stroke-width="1.2" data-mechanical-feature="mounting-hole" data-hole="MH3" data-source-frame="pcb-exterior-local"/>
+<circle cx="86.00" cy="586.00" r="12.80" fill="none" stroke="#f97316" stroke-dasharray="5 3" data-mechanical-feature="mounting-keepout" data-hole="MH4"/>
+<circle cx="86.00" cy="586.00" r="4.32" fill="#ffffff" stroke="#475467" stroke-width="1.2" data-mechanical-feature="mounting-hole" data-hole="MH4" data-source-frame="pcb-exterior-local"/>
+<rect x="154.80" y="195.60" width="86.40" height="3.84" rx="1.92" fill="#ffffff" stroke="#475467" stroke-width="1.2" data-mechanical-feature="display-fpc-slot" data-source-frame="assembly-world"/>
+<rect x="86.96" y="192.40" width="57.60" height="67.84" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="c5"/>
+<rect x="70.00" y="512.40" width="10.88" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="c5_boot_button"/>
+<rect x="70.00" y="490.00" width="10.88" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="c5_reset_button"/>
+<rect x="210.99" y="578.48" width="28.61" height="23.52" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="c5_service_usb_connector"/>
+<rect x="154.80" y="202.00" width="86.40" height="12.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="display_connector"/>
+<rect x="284.40" y="384.40" width="16.00" height="14.08" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="evidence_cmp_a"/>
+<rect x="304.24" y="384.40" width="21.76" height="9.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="ir_carrier"/>
+<rect x="304.24" y="362.00" width="21.76" height="9.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="ir_demod"/>
+<rect x="316.40" y="406.80" width="9.60" height="8.03" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="ir_emitter"/>
+<rect x="294.00" y="362.00" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="ir_safe_gate"/>
+<rect x="157.04" y="502.80" width="97.92" height="20.80" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="m1_ui_plug"/>
+<rect x="251.44" y="192.40" width="57.60" height="61.44" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="s3"/>
+<rect x="315.12" y="512.40" width="10.88" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="s3_boot_button"/>
+<rect x="279.12" y="454.80" width="30.88" height="18.69" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="s3_dbg_header"/>
+<rect x="315.12" y="490.00" width="10.88" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="s3_reset_button"/>
+<rect x="239.60" y="384.40" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="safe_c5_fault_reset_buffer"/>
+<rect x="249.20" y="384.40" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="safe_c5_reset_buffer"/>
+<rect x="262.00" y="384.40" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="safe_reset_sink_a"/>
+<rect x="121.36" y="557.68" width="51.04" height="44.32" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="sd"/>
+<rect x="282.48" y="362.00" width="5.12" height="2.56" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="ui_zone_ntc"/>
+<rect x="174.00" y="346.00" width="32.00" height="32.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="hub_rp"/>
 <text x="190.00" y="362.00" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">1</text>
-<rect x="258.99" y="578.48" width="28.61" height="23.52" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="258.99" y="578.48" width="28.61" height="23.52" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="hub_service_usb_connector"/>
 <text x="273.30" y="590.24" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">19</text>
-<rect x="212.88" y="547.60" width="30.88" height="18.69" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="212.88" y="547.60" width="30.88" height="18.69" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="hub_dbg_header"/>
 <text x="228.32" y="556.94" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">20</text>
-<rect x="70.00" y="531.60" width="10.88" height="14.40" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="70.00" y="531.60" width="10.88" height="14.40" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="hub_reset_button"/>
 <text x="75.44" y="538.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">21</text>
-<rect x="70.00" y="554.00" width="10.88" height="14.40" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="70.00" y="554.00" width="10.88" height="14.40" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="hub_boot_button"/>
 <text x="75.44" y="561.20" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">22</text>
-<rect x="245.52" y="454.80" width="30.88" height="18.69" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="245.52" y="454.80" width="30.88" height="18.69" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="c5_dbg_header_r2"/>
 <text x="260.96" y="464.14" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">49</text>
-<rect x="248.24" y="150.80" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="248.24" y="150.80" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="s3_rf_board_connector_r2"/>
 <text x="253.04" y="155.76" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">23</text>
-<rect x="250.48" y="143.76" width="5.12" height="2.69" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="250.48" y="143.76" width="5.12" height="2.69" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="s3_rf_coupler_r2"/>
 <text x="253.04" y="145.10" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">24</text>
-<rect x="234.48" y="152.40" width="9.28" height="5.12" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="234.48" y="152.40" width="9.28" height="5.12" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="det_s3_r2"/>
 <text x="239.12" y="154.96" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">70</text>
-<rect x="154.16" y="150.80" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="154.16" y="150.80" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="c5_rf_board_connector_r2"/>
 <text x="158.96" y="155.76" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">25</text>
-<rect x="156.40" y="143.76" width="5.12" height="2.69" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="156.40" y="143.76" width="5.12" height="2.69" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="c5_rf_coupler_r2"/>
 <text x="158.96" y="145.10" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">26</text>
-<rect x="167.92" y="152.40" width="9.28" height="5.12" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="167.92" y="152.40" width="9.28" height="5.12" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="det_c5_r2"/>
 <text x="172.56" y="154.96" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">71</text>
-<rect x="242.48" y="256.40" width="57.92" height="46.72" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="242.48" y="256.40" width="57.92" height="46.72" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="nrf0_r2"/>
 <text x="271.44" y="279.76" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">27</text>
-<rect x="179.12" y="256.40" width="57.92" height="46.72" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="179.12" y="256.40" width="57.92" height="46.72" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="nrf1_r2"/>
 <text x="208.08" y="279.76" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">28</text>
-<rect x="115.76" y="262.80" width="57.92" height="46.72" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="115.76" y="262.80" width="57.92" height="46.72" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="nrf2_r2"/>
 <text x="144.72" y="286.16" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">29</text>
-<rect x="284.40" y="150.80" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="284.40" y="150.80" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="nrf0_rf_board_connector_r2"/>
 <text x="289.20" y="155.76" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">30</text>
-<rect x="201.20" y="166.80" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="201.20" y="166.80" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="nrf1_rf_board_connector_r2"/>
 <text x="206.00" y="171.76" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">31</text>
-<rect x="118.00" y="150.80" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="118.00" y="150.80" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="nrf2_rf_board_connector_r2"/>
 <text x="122.80" y="155.76" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">32</text>
-<rect x="287.50" y="164.56" width="6.50" height="4.06" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="287.50" y="164.56" width="6.50" height="4.06" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="nrf0_coupler_r2"/>
 <text x="290.75" y="166.59" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">72</text>
-<rect x="267.92" y="163.60" width="16.48" height="10.24" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="267.92" y="163.60" width="16.48" height="10.24" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="det_nrf0_r2"/>
 <text x="276.16" y="168.72" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">73</text>
-<rect x="203.34" y="180.24" width="6.50" height="4.06" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="203.34" y="180.24" width="6.50" height="4.06" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="nrf1_coupler_r2"/>
 <text x="206.59" y="182.27" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">74</text>
-<rect x="216.08" y="177.36" width="16.48" height="10.24" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="216.08" y="177.36" width="16.48" height="10.24" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="det_nrf1_r2"/>
 <text x="224.32" y="182.48" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">75</text>
-<rect x="117.90" y="164.56" width="6.50" height="4.06" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="117.90" y="164.56" width="6.50" height="4.06" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="nrf2_coupler_r2"/>
 <text x="121.15" y="166.59" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">76</text>
-<rect x="127.76" y="163.60" width="16.48" height="10.24" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="127.76" y="163.60" width="16.48" height="10.24" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="det_nrf2_r2"/>
 <text x="136.00" y="168.72" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">77</text>
-<rect x="290.48" y="320.40" width="16.32" height="14.40" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="290.48" y="320.40" width="16.32" height="14.40" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="nrf0_host_buffer_r2"/>
 <text x="298.64" y="327.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">33</text>
-<rect x="278.00" y="320.40" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="278.00" y="320.40" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="nrf0_return_buffer_r2"/>
 <text x="282.80" y="325.36" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">34</text>
-<rect x="258.48" y="320.40" width="16.32" height="14.40" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="258.48" y="320.40" width="16.32" height="14.40" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="nrf1_host_buffer_r2"/>
 <text x="266.64" y="327.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">35</text>
-<rect x="246.00" y="320.40" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="246.00" y="320.40" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="nrf1_return_buffer_r2"/>
 <text x="250.80" y="325.36" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">36</text>
-<rect x="223.28" y="320.40" width="16.32" height="14.40" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="223.28" y="320.40" width="16.32" height="14.40" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="nrf2_host_buffer_r2"/>
 <text x="231.44" y="327.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">37</text>
-<rect x="210.80" y="320.40" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="210.80" y="320.40" width="9.60" height="9.92" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="nrf2_return_buffer_r2"/>
 <text x="215.60" y="325.36" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">38</text>
-<rect x="185.20" y="320.40" width="16.00" height="14.08" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="185.20" y="320.40" width="16.00" height="14.08" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="safe_gate_a_r2"/>
 <text x="193.20" y="327.44" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">39</text>
-<rect x="175.60" y="320.40" width="6.40" height="4.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="175.60" y="320.40" width="6.40" height="4.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="nrf_backup_gate_r2"/>
 <text x="178.80" y="322.40" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">40</text>
-<rect x="156.40" y="320.40" width="16.00" height="14.08" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="156.40" y="320.40" width="16.00" height="14.08" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="nrf_evidence_cmp_r2"/>
 <text x="164.40" y="327.44" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">41</text>
-<rect x="233.20" y="339.60" width="16.00" height="16.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="241.20" y="347.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">68</text>
-<rect x="128.24" y="339.60" width="24.96" height="14.08" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
+<rect x="128.24" y="339.60" width="24.96" height="14.08" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="ui_matrix_io_r2"/>
 <text x="140.72" y="346.64" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">69</text>
 <text x="538.00" y="96" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">RF / power PCB · inner · turned-over view</text>
 <rect x="410.00" y="122.00" width="256.00" height="480.00" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
-<rect x="589.20" y="411.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="547.60" y="317.20" width="5.12" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="557.20" y="326.80" width="6.40" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="544.40" y="326.80" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="544.40" y="334.16" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="592.40" y="442.00" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="600.08" y="360.56" width="9.60" height="9.92" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="593.68" y="342.16" width="16.32" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="612.24" y="342.16" width="16.32" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="438.16" y="357.52" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="450.64" y="357.52" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="429.20" y="321.68" width="17.28" height="16.64" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="438.16" y="342.80" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="450.64" y="342.80" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="413.20" y="350.16" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="413.20" y="364.88" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="425.68" y="350.16" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="438.16" y="350.16" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="450.64" y="350.16" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="413.20" y="357.52" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="425.68" y="357.52" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="413.20" y="342.80" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="425.68" y="342.80" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="595.60" y="403.60" width="16.00" height="14.08" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="621.20" y="403.60" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="595.60" y="421.20" width="9.92" height="6.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="589.20" y="422.80" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="612.08" y="360.56" width="24.96" height="14.08" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="595.60" y="430.80" width="9.28" height="4.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="608.40" y="421.20" width="9.28" height="4.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="595.60" y="397.20" width="9.28" height="4.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="614.80" y="414.80" width="9.28" height="4.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="608.40" y="427.60" width="9.28" height="4.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="525.20" y="317.20" width="5.12" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="522.00" y="346.00" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="534.80" y="346.00" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="522.00" y="356.24" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="586.00" y="416.40" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="589.20" y="406.80" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="589.20" y="427.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="589.20" y="402.00" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="595.60" y="437.20" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="522.00" y="326.80" width="17.28" height="16.64" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="481.04" y="502.80" width="97.92" height="22.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="554.00" y="589.20" width="12.80" height="12.80" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="413.20" y="323.60" width="12.80" height="12.80" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="428.24" y="390.80" width="16.32" height="15.68" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="446.80" y="390.80" width="20.16" height="9.92" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="469.20" y="390.80" width="20.16" height="9.92" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="413.20" y="378.00" width="19.52" height="8.61" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="434.96" y="378.00" width="19.52" height="8.61" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="413.20" y="390.80" width="12.80" height="12.80" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="479.44" y="378.00" width="10.56" height="10.56" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="456.72" y="378.00" width="20.32" height="10.18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="462.16" y="552.40" width="15.68" height="12.48" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="446.80" y="552.40" width="12.80" height="19.20" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="413.20" y="528.40" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="425.68" y="528.40" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="438.16" y="528.40" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="450.64" y="528.40" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="480.40" y="552.40" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="493.20" y="552.40" width="6.40" height="6.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="636.56" y="477.20" width="27.20" height="11.20" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="491.60" y="390.80" width="5.12" height="2.56" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="448.40" y="579.92" width="28.61" height="22.08" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="434.00" y="554.00" width="9.60" height="9.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="640.40" y="301.20" width="5.12" height="2.56" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="410.00" y="225.04" width="32.00" height="32.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="410.00" y="483.60" width="10.88" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="538.00" y="454.80" width="30.88" height="18.69" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="410.00" y="461.20" width="10.88" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="515.60" y="578.48" width="28.61" height="23.52" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="544.40" y="422.80" width="9.28" height="4.80" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="552.40" y="394.00" width="9.92" height="6.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="566.80" y="403.60" width="16.00" height="14.08" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="528.40" y="384.40" width="9.92" height="6.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="598.80" y="384.40" width="9.28" height="4.80" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="550.80" y="384.40" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="541.20" y="384.40" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="586.00" y="384.40" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="566.80" y="384.40" width="9.28" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="525.20" y="400.40" width="16.32" height="15.68" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="528.40" y="422.80" width="9.28" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="570.00" y="528.40" width="76.80" height="38.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="509.20" y="400.40" width="9.60" height="9.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="512.40" y="309.20" width="8.00" height="3.20" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="547.60" y="307.60" width="8.00" height="3.20" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="501.20" y="307.60" width="8.00" height="3.20" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="461.20" y="290.16" width="16.32" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="566.80" y="294.80" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="479.76" y="290.16" width="16.32" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="494.80" y="307.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="566.80" y="290.00" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="510.80" y="315.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="517.04" y="290.16" width="9.92" height="16.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="517.20" y="315.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="482.00" y="312.40" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="498.32" y="290.16" width="16.32" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="558.80" y="307.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="494.80" y="312.40" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="482.00" y="307.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="562.00" y="312.40" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="568.40" y="309.20" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="555.60" y="314.00" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="566.80" y="304.40" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="566.80" y="299.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="488.40" y="307.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="640.40" y="306.00" width="9.28" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="640.40" y="313.68" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="640.40" y="326.16" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="640.40" y="330.32" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="640.40" y="322.00" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="640.40" y="317.84" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="573.20" y="572.88" width="38.40" height="29.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="577.04" y="226.00" width="60.80" height="113.92" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="550.80" y="360.56" width="16.16" height="9.92" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="569.20" y="360.56" width="4.80" height="9.28" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="550.80" y="342.16" width="16.00" height="14.08" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="499.60" y="317.20" width="5.12" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="569.04" y="342.16" width="9.92" height="16.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="581.36" y="342.16" width="9.92" height="16.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="496.40" y="326.80" width="17.28" height="16.64" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="496.40" y="346.00" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="508.88" y="346.00" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="496.40" y="356.24" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="577.84" y="360.56" width="7.68" height="6.72" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="460.56" y="226.06" width="113.92" height="60.80" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7"/>
-<rect x="603.60" y="150.80" width="14.40" height="13.12" rx="3" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2" stroke-dasharray="none"/>
-<text x="610.80" y="157.36" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#b45309">2</text>
-<rect x="590.80" y="150.80" width="9.60" height="9.60" rx="3" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2" stroke-dasharray="none"/>
-<text x="595.60" y="155.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#b45309">3</text>
-<rect x="578.00" y="150.80" width="9.60" height="9.60" rx="3" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2" stroke-dasharray="none"/>
-<text x="582.80" y="155.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#b45309">4</text>
-<rect x="565.20" y="150.80" width="9.60" height="9.60" rx="3" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2" stroke-dasharray="none"/>
-<text x="570.00" y="155.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#b45309">5</text>
-<rect x="542.80" y="144.40" width="76.80" height="35.20" rx="3" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2" stroke-dasharray="6 4"/>
-<text x="581.20" y="162.00" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#b45309">R1</text>
-<rect x="589.52" y="197.20" width="31.68" height="19.20" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="605.36" y="206.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">42</text>
-<rect x="528.40" y="148.56" width="12.80" height="12.80" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="534.80" y="154.96" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">43</text>
-<rect x="508.08" y="149.20" width="16.48" height="10.24" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="516.32" y="154.32" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">78</text>
-<rect x="630.32" y="205.84" width="16.48" height="10.24" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="638.56" y="210.96" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">79</text>
-<rect x="447.12" y="260.24" width="10.24" height="16.48" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="452.24" y="268.48" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">80</text>
-<rect x="467.60" y="170.00" width="9.60" height="9.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="472.40" y="174.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">44</text>
-<rect x="454.48" y="170.00" width="9.92" height="16.16" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="459.44" y="178.08" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">45</text>
-<rect x="461.20" y="192.40" width="16.00" height="14.08" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="469.20" y="199.44" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">46</text>
-<rect x="410.00" y="192.40" width="46.72" height="24.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="433.36" y="204.40" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">47</text>
-<rect x="470.80" y="211.60" width="6.40" height="4.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="474.00" y="213.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">48</text>
-<rect x="472.40" y="317.20" width="6.40" height="4.80" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="475.60" y="319.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">8</text>
-<rect x="468.88" y="324.24" width="22.72" height="21.12" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="480.24" y="334.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">9</text>
-<rect x="470.16" y="306.00" width="10.24" height="8.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="475.28" y="310.00" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">10</text>
-<rect x="458.96" y="306.00" width="10.24" height="8.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="464.08" y="310.00" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">11</text>
-<rect x="447.76" y="306.00" width="10.24" height="8.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="452.88" y="310.00" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">12</text>
-<rect x="484.56" y="347.28" width="10.24" height="8.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="489.68" y="351.28" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">13</text>
-<rect x="473.36" y="347.28" width="10.24" height="8.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="478.48" y="351.28" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">14</text>
-<rect x="462.16" y="347.28" width="10.24" height="8.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="467.28" y="351.28" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">15</text>
-<rect x="465.68" y="317.52" width="5.12" height="2.56" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="468.24" y="318.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">16</text>
-<rect x="482.32" y="317.84" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="483.92" y="318.64" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">17</text>
-<rect x="486.80" y="317.84" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="488.40" y="318.64" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">18</text>
-<rect x="516.72" y="191.60" width="7.68" height="6.88" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="520.56" y="195.04" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">50</text>
-<rect x="507.44" y="191.60" width="7.68" height="6.88" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="511.28" y="195.04" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">51</text>
-<rect x="488.40" y="187.60" width="9.60" height="8.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="493.20" y="191.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">52</text>
-<rect x="488.40" y="198.80" width="9.60" height="8.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="493.20" y="202.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">53</text>
-<rect x="488.72" y="209.20" width="9.76" height="9.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="493.60" y="214.00" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">54</text>
-<rect x="521.20" y="200.08" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="522.80" y="200.88" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">55</text>
-<rect x="516.40" y="200.08" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="518.00" y="200.88" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">56</text>
-<rect x="511.60" y="200.08" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="513.20" y="200.88" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">57</text>
-<rect x="506.80" y="200.08" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="508.40" y="200.88" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">58</text>
-<rect x="483.12" y="186.80" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="484.72" y="187.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">59</text>
-<rect x="483.12" y="190.00" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="484.72" y="190.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">60</text>
-<rect x="483.12" y="193.20" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="484.72" y="194.00" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">61</text>
-<rect x="483.12" y="196.40" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="484.72" y="197.20" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">62</text>
-<rect x="483.12" y="199.60" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="484.72" y="200.40" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">63</text>
-<rect x="483.12" y="202.80" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="484.72" y="203.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">64</text>
-<rect x="483.12" y="206.00" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="484.72" y="206.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">65</text>
-<rect x="483.12" y="209.20" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="484.72" y="210.00" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">66</text>
-<rect x="483.12" y="212.40" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none"/>
-<text x="484.72" y="213.20" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">67</text>
+<circle cx="650.00" cy="157.20" r="12.80" fill="none" stroke="#f97316" stroke-dasharray="5 3" data-mechanical-feature="mounting-keepout" data-hole="MH1"/>
+<circle cx="650.00" cy="157.20" r="4.32" fill="#ffffff" stroke="#475467" stroke-width="1.2" data-mechanical-feature="mounting-hole" data-hole="MH1" data-source-frame="pcb-exterior-local"/>
+<circle cx="426.00" cy="157.20" r="12.80" fill="none" stroke="#f97316" stroke-dasharray="5 3" data-mechanical-feature="mounting-keepout" data-hole="MH2"/>
+<circle cx="426.00" cy="157.20" r="4.32" fill="#ffffff" stroke="#475467" stroke-width="1.2" data-mechanical-feature="mounting-hole" data-hole="MH2" data-source-frame="pcb-exterior-local"/>
+<circle cx="650.00" cy="586.00" r="12.80" fill="none" stroke="#f97316" stroke-dasharray="5 3" data-mechanical-feature="mounting-keepout" data-hole="MH3"/>
+<circle cx="650.00" cy="586.00" r="4.32" fill="#ffffff" stroke="#475467" stroke-width="1.2" data-mechanical-feature="mounting-hole" data-hole="MH3" data-source-frame="pcb-exterior-local"/>
+<circle cx="426.00" cy="586.00" r="12.80" fill="none" stroke="#f97316" stroke-dasharray="5 3" data-mechanical-feature="mounting-keepout" data-hole="MH4"/>
+<circle cx="426.00" cy="586.00" r="4.32" fill="#ffffff" stroke="#475467" stroke-width="1.2" data-mechanical-feature="mounting-hole" data-hole="MH4" data-source-frame="pcb-exterior-local"/>
+<rect x="483.60" y="411.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="any_tx_aon_pullup"/>
+<rect x="523.28" y="317.20" width="5.12" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="aon_buck"/>
+<rect x="512.40" y="326.80" width="6.40" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="aon_inductor"/>
+<rect x="521.36" y="326.80" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="aon_input_cap"/>
+<rect x="521.36" y="334.16" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="aon_output_cap"/>
+<rect x="477.20" y="442.00" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="cc_backup_gate"/>
+<rect x="466.32" y="360.56" width="9.60" height="9.92" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="cc_band_buffer"/>
+<rect x="466.00" y="342.16" width="16.32" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="cc_host_buffer"/>
+<rect x="447.44" y="342.16" width="16.32" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="cc_return_buffer"/>
+<rect x="627.60" y="357.52" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="charger_bat_cap0"/>
+<rect x="615.12" y="357.52" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="charger_bat_cap1"/>
+<rect x="629.52" y="321.68" width="17.28" height="16.64" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="charger_inductor"/>
+<rect x="627.60" y="342.80" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="charger_pmid_cap0"/>
+<rect x="615.12" y="342.80" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="charger_pmid_cap1"/>
+<rect x="652.56" y="350.16" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="charger_pmid_cap2"/>
+<rect x="652.56" y="364.88" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="charger_regn_cap"/>
+<rect x="640.08" y="350.16" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="charger_sys_cap0"/>
+<rect x="627.60" y="350.16" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="charger_sys_cap1"/>
+<rect x="615.12" y="350.16" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="charger_sys_cap2"/>
+<rect x="652.56" y="357.52" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="charger_sys_cap3"/>
+<rect x="640.08" y="357.52" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="charger_sys_cap4"/>
+<rect x="652.56" y="342.80" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="charger_vbus_cap0"/>
+<rect x="640.08" y="342.80" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="charger_vbus_cap1"/>
+<rect x="448.40" y="403.60" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="evidence_cmp_voice"/>
+<rect x="438.96" y="360.56" width="24.96" height="14.08" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="evidence_mask"/>
+<rect x="471.12" y="430.80" width="9.28" height="4.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="evidence_or_0"/>
+<rect x="458.32" y="421.20" width="9.28" height="4.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="evidence_or_1"/>
+<rect x="471.12" y="397.20" width="9.28" height="4.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="evidence_or_2"/>
+<rect x="451.92" y="414.80" width="9.28" height="4.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="evidence_or_3"/>
+<rect x="458.32" y="427.60" width="9.28" height="4.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="evidence_or_4"/>
+<rect x="545.68" y="317.20" width="5.12" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="ext_buck"/>
+<rect x="543.76" y="346.00" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="ext_buck_input_cap"/>
+<rect x="530.96" y="346.00" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="ext_buck_output_cap0"/>
+<rect x="543.76" y="356.24" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="ext_buck_output_cap1"/>
+<rect x="483.60" y="416.40" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="ext_evidence_buffer"/>
+<rect x="483.60" y="406.80" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="ext_evidence_buffer_bypass"/>
+<rect x="483.60" y="427.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="ext_evidence_input_pullup"/>
+<rect x="483.60" y="402.00" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="ext_evidence_input_series"/>
+<rect x="477.20" y="437.20" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="ext_evidence_output_pullup"/>
+<rect x="536.72" y="326.80" width="17.28" height="16.64" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="ext_inductor"/>
+<rect x="497.04" y="502.80" width="97.92" height="22.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="m1_rf_receptacle"/>
+<rect x="509.20" y="589.20" width="12.80" height="12.80" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="microphone"/>
+<rect x="650.00" y="323.60" width="12.80" height="12.80" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="nvdc_charger"/>
+<rect x="631.44" y="390.80" width="16.32" height="15.68" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="pack_admission"/>
+<rect x="609.04" y="390.80" width="20.16" height="9.92" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="pack_diag_res0"/>
+<rect x="586.64" y="390.80" width="20.16" height="9.92" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="pack_diag_res1"/>
+<rect x="643.28" y="378.00" width="19.52" height="8.61" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="pack_fuse0"/>
+<rect x="621.52" y="378.00" width="19.52" height="8.61" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="pack_fuse1"/>
+<rect x="650.00" y="390.80" width="12.80" height="12.80" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="pack_gauge"/>
+<rect x="586.00" y="378.00" width="10.56" height="10.56" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="pack_power_fet"/>
+<rect x="598.96" y="378.00" width="20.32" height="10.18" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="pack_shunt"/>
+<rect x="598.16" y="552.40" width="15.68" height="12.48" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="pd_config_eeprom"/>
+<rect x="616.40" y="552.40" width="12.80" height="19.20" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="pd_controller"/>
+<rect x="652.56" y="528.40" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="pd_pphv_cap0"/>
+<rect x="640.08" y="528.40" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="pd_pphv_cap1"/>
+<rect x="627.60" y="528.40" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="pd_pphv_cap2"/>
+<rect x="615.12" y="528.40" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="pd_pphv_cap3"/>
+<rect x="585.36" y="552.40" width="10.24" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="pd_vbus_cap"/>
+<rect x="576.40" y="552.40" width="6.40" height="6.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="pd_vbus_tvs"/>
+<rect x="412.24" y="477.20" width="27.20" height="11.20" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="power_command_switch"/>
+<rect x="579.28" y="390.80" width="5.12" height="2.56" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="power_zone_ntc"/>
+<rect x="598.99" y="579.92" width="28.61" height="22.08" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="product_usb_connector"/>
+<rect x="632.40" y="554.00" width="9.60" height="9.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="product_usb_protector"/>
+<rect x="430.48" y="301.20" width="5.12" height="2.56" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="rf_zone_ntc"/>
+<rect x="634.00" y="225.04" width="32.00" height="32.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="rp"/>
+<rect x="655.12" y="483.60" width="10.88" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="rp_boot_button"/>
+<rect x="507.12" y="454.80" width="30.88" height="18.69" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="rp_dbg_header"/>
+<rect x="655.12" y="461.20" width="10.88" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="rp_reset_button"/>
+<rect x="531.79" y="578.48" width="28.61" height="23.52" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="rp_service_usb_connector"/>
+<rect x="522.32" y="422.80" width="9.28" height="4.80" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="safe_conditioner"/>
+<rect x="513.68" y="394.00" width="9.92" height="6.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="safe_fault_reset_buffer"/>
+<rect x="493.20" y="403.60" width="16.00" height="14.08" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="safe_gate_b"/>
+<rect x="537.68" y="384.40" width="9.92" height="6.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="safe_latch"/>
+<rect x="467.92" y="384.40" width="9.28" height="4.80" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="safe_ptt_or"/>
+<rect x="518.80" y="384.40" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="safe_rearm_buffer"/>
+<rect x="528.40" y="384.40" width="6.40" height="4.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="safe_reset_buffer"/>
+<rect x="499.92" y="384.40" width="9.28" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="safe_supervisor"/>
+<rect x="534.48" y="400.40" width="16.32" height="15.68" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="safety_controller"/>
+<rect x="538.32" y="422.80" width="9.28" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="safety_watchdog"/>
+<rect x="429.20" y="528.40" width="76.80" height="38.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="speaker"/>
+<rect x="557.20" y="400.40" width="9.60" height="9.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="speaker_amp"/>
+<rect x="555.60" y="309.20" width="8.00" height="3.20" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_esd_a"/>
+<rect x="520.40" y="307.60" width="8.00" height="3.20" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_esd_b"/>
+<rect x="566.80" y="307.60" width="8.00" height="3.20" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_esd_c"/>
+<rect x="598.48" y="290.16" width="16.32" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_host_buffer_a"/>
+<rect x="506.00" y="294.80" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_host_buffer_a_bypass"/>
+<rect x="579.92" y="290.16" width="16.32" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_host_buffer_b"/>
+<rect x="578.00" y="307.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_host_buffer_b_bypass"/>
+<rect x="506.00" y="290.00" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_i2c_host_scl_pullup"/>
+<rect x="562.00" y="315.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_i2c_host_sda_pullup"/>
+<rect x="549.04" y="290.16" width="9.92" height="16.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_i2c_iso"/>
+<rect x="555.60" y="315.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_i2c_iso_bypass"/>
+<rect x="590.80" y="312.40" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_req_pulldown"/>
+<rect x="561.36" y="290.16" width="16.32" height="14.40" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_return_buffer"/>
+<rect x="514.00" y="307.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_return_buffer_bypass"/>
+<rect x="578.00" y="312.40" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_series_gps_rx"/>
+<rect x="590.80" y="307.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_series_gps_tx"/>
+<rect x="510.80" y="312.40" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_series_irq"/>
+<rect x="504.40" y="309.20" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_series_miso"/>
+<rect x="517.20" y="314.00" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_series_mosi"/>
+<rect x="506.00" y="304.40" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_series_nss"/>
+<rect x="506.00" y="299.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_series_rst"/>
+<rect x="584.40" y="307.60" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_series_sck"/>
+<rect x="426.32" y="306.00" width="9.28" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_supervisor"/>
+<rect x="432.40" y="313.68" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_supervisor_bypass"/>
+<rect x="432.40" y="326.16" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_supervisor_ct"/>
+<rect x="432.40" y="330.32" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_supervisor_pullup"/>
+<rect x="432.40" y="322.00" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_supervisor_sense_bottom"/>
+<rect x="432.40" y="317.84" width="3.20" height="1.60" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="u214_supervisor_sense_top"/>
+<rect x="464.40" y="572.88" width="38.40" height="29.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="unit_connector"/>
+<rect x="438.16" y="226.00" width="60.80" height="113.92" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="voice"/>
+<rect x="509.04" y="360.56" width="16.16" height="9.92" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="voice_audio_mux"/>
+<rect x="502.00" y="360.56" width="4.80" height="9.28" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="voice_band_inverter"/>
+<rect x="509.20" y="342.16" width="16.00" height="14.08" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="voice_band_io"/>
+<rect x="571.28" y="317.20" width="5.12" height="5.12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="voice_buck"/>
+<rect x="497.04" y="342.16" width="9.92" height="16.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="voice_control_mux_a"/>
+<rect x="484.72" y="342.16" width="9.92" height="16.16" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="voice_control_mux_b"/>
+<rect x="562.32" y="326.80" width="17.28" height="16.64" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="voice_inductor"/>
+<rect x="569.36" y="346.00" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="voice_input_cap"/>
+<rect x="556.88" y="346.00" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="voice_output_cap0"/>
+<rect x="569.36" y="356.24" width="10.24" height="8.00" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="voice_output_cap1"/>
+<rect x="490.48" y="360.56" width="7.68" height="6.72" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="voice_pd_gate"/>
+<rect x="501.52" y="226.06" width="113.92" height="60.80" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="0.7" data-instance="voice_v"/>
+<rect x="458.00" y="150.80" width="14.40" height="13.12" rx="3" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2" stroke-dasharray="none" data-instance="airband_lna"/>
+<text x="465.20" y="157.36" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#b45309">2</text>
+<rect x="475.60" y="150.80" width="9.60" height="9.60" rx="3" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2" stroke-dasharray="none" data-instance="airband_mixer"/>
+<text x="480.40" y="155.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#b45309">3</text>
+<rect x="488.40" y="150.80" width="9.60" height="9.60" rx="3" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2" stroke-dasharray="none" data-instance="airband_selector"/>
+<text x="493.20" y="155.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#b45309">4</text>
+<rect x="501.20" y="150.80" width="9.60" height="9.60" rx="3" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2" stroke-dasharray="none" data-instance="airband_lo"/>
+<text x="506.00" y="155.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#b45309">5</text>
+<rect x="456.40" y="144.40" width="76.80" height="35.20" rx="3" fill="#fef3c7" fill-opacity="0.92" stroke="#b45309" stroke-width="2" stroke-dasharray="6 4" data-instance="airband_filter_reserve"/>
+<text x="494.80" y="162.00" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#b45309">R1</text>
+<rect x="480.90" y="376.70" width="16.00" height="16.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="slow_io_r2"/>
+<text x="488.90" y="384.70" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">68</text>
+<rect x="640.00" y="410.00" width="4.00" height="6.40" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="safe_reset_sink_b_r2"/>
+<text x="642.00" y="413.20" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">81</text>
+<rect x="454.80" y="197.20" width="31.68" height="19.20" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="receiver_r2"/>
+<text x="470.64" y="206.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">42</text>
+<rect x="534.80" y="148.56" width="12.80" height="12.80" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="cc_r2"/>
+<text x="541.20" y="154.96" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">43</text>
+<rect x="551.44" y="149.20" width="16.48" height="10.24" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="det_cc_r2"/>
+<text x="559.68" y="154.32" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">78</text>
+<rect x="429.20" y="205.84" width="16.48" height="10.24" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="det_voice_r2"/>
+<text x="437.44" y="210.96" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">79</text>
+<rect x="618.64" y="260.24" width="10.24" height="16.48" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="det_voice_v_r2"/>
+<text x="623.76" y="268.48" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">80</text>
+<rect x="598.80" y="170.00" width="9.60" height="9.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="codec_r2"/>
+<text x="603.60" y="174.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">44</text>
+<rect x="611.60" y="170.00" width="9.92" height="16.16" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="audio_speaker_selector_r2"/>
+<text x="616.56" y="178.08" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">45</text>
+<rect x="598.80" y="192.40" width="16.00" height="14.08" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="headset_control_io_r2"/>
+<text x="606.80" y="199.44" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">46</text>
+<rect x="619.28" y="192.40" width="46.72" height="24.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="headphone_jack_r2"/>
+<text x="642.64" y="204.40" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">47</text>
+<rect x="598.80" y="211.60" width="6.40" height="4.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="codec_i2s_din_boot_gate_r2"/>
+<text x="602.00" y="213.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">48</text>
+<rect x="597.20" y="317.20" width="6.40" height="4.80" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="main_buck_r2"/>
+<text x="600.40" y="319.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">8</text>
+<rect x="584.40" y="324.24" width="22.72" height="21.12" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="main_inductor_r2"/>
+<text x="595.76" y="334.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="11" font-weight="700" fill="#15803d">9</text>
+<rect x="595.60" y="306.00" width="10.24" height="8.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="main_input_cap0_r2"/>
+<text x="600.72" y="310.00" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">10</text>
+<rect x="606.80" y="306.00" width="10.24" height="8.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="main_input_cap1_r2"/>
+<text x="611.92" y="310.00" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">11</text>
+<rect x="618.00" y="306.00" width="10.24" height="8.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="main_input_cap2_r2"/>
+<text x="623.12" y="310.00" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">12</text>
+<rect x="581.20" y="347.28" width="10.24" height="8.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="main_output_cap0_r2"/>
+<text x="586.32" y="351.28" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">13</text>
+<rect x="592.40" y="347.28" width="10.24" height="8.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="main_output_cap1_r2"/>
+<text x="597.52" y="351.28" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">14</text>
+<rect x="603.60" y="347.28" width="10.24" height="8.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="main_output_cap2_r2"/>
+<text x="608.72" y="351.28" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">15</text>
+<rect x="605.20" y="317.52" width="5.12" height="2.56" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="main_vcc_cap_r2"/>
+<text x="607.76" y="318.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">16</text>
+<rect x="590.48" y="317.84" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="main_bst_cap_r2"/>
+<text x="592.08" y="318.64" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">17</text>
+<rect x="586.00" y="317.84" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="main_bst_resistor_r2"/>
+<text x="587.60" y="318.64" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">18</text>
+<rect x="551.60" y="191.60" width="7.68" height="6.88" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="u219_pin10_switch"/>
+<text x="555.44" y="195.04" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">50</text>
+<rect x="560.88" y="191.60" width="7.68" height="6.88" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="u219_pin10_oe_driver"/>
+<text x="564.72" y="195.04" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">51</text>
+<rect x="578.00" y="187.60" width="9.60" height="8.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="u219_field_bridge_a"/>
+<text x="582.80" y="191.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">52</text>
+<rect x="578.00" y="198.80" width="9.60" height="8.00" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="u219_field_bridge_b"/>
+<text x="582.80" y="202.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">53</text>
+<rect x="577.52" y="209.20" width="9.76" height="9.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="u219_field_comparator"/>
+<text x="582.40" y="214.00" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">54</text>
+<rect x="551.60" y="200.08" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="u219_pin10_oe_pullup"/>
+<text x="553.20" y="200.88" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">55</text>
+<rect x="556.40" y="200.08" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="u219_pin10_command_pulldown"/>
+<text x="558.00" y="200.88" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">56</text>
+<rect x="561.20" y="200.08" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="u219_pin10_switch_bypass"/>
+<text x="562.80" y="200.88" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">57</text>
+<rect x="566.00" y="200.08" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="u219_pin10_driver_bypass"/>
+<text x="567.60" y="200.88" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">58</text>
+<rect x="589.68" y="186.80" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="u219_field_input_r_p"/>
+<text x="591.28" y="187.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">59</text>
+<rect x="589.68" y="190.00" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="u219_field_input_r_n"/>
+<text x="591.28" y="190.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">60</text>
+<rect x="589.68" y="193.20" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="u219_field_env_cap"/>
+<text x="591.28" y="194.00" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">61</text>
+<rect x="589.68" y="196.40" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="u219_field_discharge"/>
+<text x="591.28" y="197.20" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">62</text>
+<rect x="589.68" y="199.60" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="u219_field_threshold_top"/>
+<text x="591.28" y="200.40" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">63</text>
+<rect x="589.68" y="202.80" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="u219_field_threshold_bottom"/>
+<text x="591.28" y="203.60" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">64</text>
+<rect x="589.68" y="206.00" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="u219_field_hysteresis"/>
+<text x="591.28" y="206.80" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">65</text>
+<rect x="589.68" y="209.20" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="u219_field_output_pullup"/>
+<text x="591.28" y="210.00" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">66</text>
+<rect x="589.68" y="212.40" width="3.20" height="1.60" rx="3" fill="#dcfce7" fill-opacity="0.92" stroke="#15803d" stroke-width="2" stroke-dasharray="none" data-instance="u219_field_comparator_bypass"/>
+<text x="591.28" y="213.20" text-anchor="middle" dominant-baseline="middle" font-family="sans-serif" font-size="8.5" font-weight="700" fill="#15803d">67</text>
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#dc2626"/></marker></defs>
 <text x="730" y="112" font-family="sans-serif" font-size="17" font-weight="700" fill="#172033">Placed devices and allocations</text>
 <text x="730" y="140" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">1 · SC1512-A4</text>
@@ -420,122 +435,125 @@
 <text x="755" y="2228" font-family="sans-serif" font-size="10.5" fill="#526076">the three front-local nRF TX-evidence</text>
 <text x="755" y="2242" font-family="sans-serif" font-size="10.5" fill="#526076">channels</text>
 <text x="730" y="2270" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">68 · TCA6424ARGJR</text>
-<text x="755" y="2287" font-family="sans-serif" font-size="10.5" fill="#526076">relocated 24-line slow-control expander</text>
-<text x="755" y="2301" font-family="sans-serif" font-size="10.5" fill="#526076">clear of the larger full-power nRF24 modules</text>
-<text x="730" y="2329" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">69 · TCA9539PWR</text>
-<text x="755" y="2346" font-family="sans-serif" font-size="10.5" fill="#526076">relocated sixteen-line direct-control input</text>
-<text x="755" y="2360" font-family="sans-serif" font-size="10.5" fill="#526076">expander clear of the larger full-power</text>
-<text x="755" y="2374" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 modules</text>
-<text x="730" y="2402" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">42 · SI4732-A10-GSR</text>
-<text x="755" y="2419" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local FM/AM/SW/LW and converted Airband</text>
-<text x="755" y="2433" font-family="sans-serif" font-size="10.5" fill="#526076">receiver</text>
-<text x="730" y="2461" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">43 · CC1101RGPR</text>
-<text x="755" y="2478" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local sub-GHz transceiver aligned with</text>
-<text x="755" y="2492" font-family="sans-serif" font-size="10.5" fill="#526076">the CC-SUB SMA</text>
-<text x="730" y="2520" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">78 · AD8314ARMZ-REEL</text>
-<text x="755" y="2537" font-family="sans-serif" font-size="10.5" fill="#526076">CC1101 actual-TX detector beside the</text>
-<text x="755" y="2551" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local sub-GHz radio</text>
-<text x="730" y="2579" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">79 · AD8314ARMZ-REEL</text>
-<text x="755" y="2596" font-family="sans-serif" font-size="10.5" fill="#526076">UHF voice-radio actual-TX detector</text>
-<text x="755" y="2610" font-family="sans-serif" font-size="10.5" fill="#526076">immediately above its module</text>
-<text x="730" y="2638" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">80 · AD8314ARMZ-REEL</text>
-<text x="755" y="2655" font-family="sans-serif" font-size="10.5" fill="#526076">VHF voice-radio actual-TX detector</text>
-<text x="755" y="2669" font-family="sans-serif" font-size="10.5" fill="#526076">immediately right of its module</text>
-<text x="730" y="2697" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">44 · ES8311</text>
-<text x="755" y="2714" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local audio capture and playback codec</text>
-<text x="730" y="2742" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">45 · TMUX1136DGSR</text>
-<text x="755" y="2759" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local active differential speaker-path</text>
-<text x="755" y="2773" font-family="sans-serif" font-size="10.5" fill="#526076">selector</text>
-<text x="730" y="2801" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">46 · TCA9534APWR</text>
-<text x="755" y="2818" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local headset source controller and</text>
-<text x="755" y="2832" font-family="sans-serif" font-size="10.5" fill="#526076">reserve audio I/O</text>
-<text x="730" y="2860" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">47 · SJ-43504-SMT-TR</text>
-<text x="755" y="2877" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local CTIA headset TRRS mid-mount</text>
-<text x="755" y="2891" font-family="sans-serif" font-size="10.5" fill="#526076">connector with right-side enclosure exit</text>
-<text x="730" y="2919" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">48 · SN74LVC1G08DCKR</text>
-<text x="755" y="2936" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local codec readiness and AUDIO_ARM</text>
-<text x="755" y="2950" font-family="sans-serif" font-size="10.5" fill="#526076">reset-safe gate</text>
-<text x="730" y="2978" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">8 · TPS566231PRQFR</text>
-<text x="755" y="2995" font-family="sans-serif" font-size="10.5" fill="#526076">6-A 3V3_MAIN synchronous buck with raw-rail</text>
-<text x="755" y="3009" font-family="sans-serif" font-size="10.5" fill="#526076">Power-Good</text>
-<text x="730" y="3037" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">9 · PSPMAA0605H-2R2M-ANP</text>
-<text x="755" y="3054" font-family="sans-serif" font-size="10.5" fill="#526076">2.2-uH, 10-A RMS / 15-A saturation 3V3_MAIN</text>
-<text x="755" y="3068" font-family="sans-serif" font-size="10.5" fill="#526076">inductor</text>
-<text x="730" y="3096" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">10 · GRM32ER71E226KE15L</text>
-<text x="755" y="3113" font-family="sans-serif" font-size="10.5" fill="#526076">first local 22-uF / 25-V X7R main-buck input</text>
-<text x="755" y="3127" font-family="sans-serif" font-size="10.5" fill="#526076">capacitor</text>
-<text x="730" y="3155" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">11 · GRM32ER71E226KE15L</text>
-<text x="755" y="3172" font-family="sans-serif" font-size="10.5" fill="#526076">second local 22-uF / 25-V X7R main-buck</text>
-<text x="755" y="3186" font-family="sans-serif" font-size="10.5" fill="#526076">input capacitor</text>
-<text x="730" y="3214" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">12 · GRM32ER71E226KE15L</text>
-<text x="755" y="3231" font-family="sans-serif" font-size="10.5" fill="#526076">third local 22-uF / 25-V X7R main-buck input</text>
-<text x="755" y="3245" font-family="sans-serif" font-size="10.5" fill="#526076">capacitor</text>
-<text x="730" y="3273" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">13 · GRM32ER71E226KE15L</text>
-<text x="755" y="3290" font-family="sans-serif" font-size="10.5" fill="#526076">first local 22-uF / 25-V X7R main-buck</text>
-<text x="755" y="3304" font-family="sans-serif" font-size="10.5" fill="#526076">output capacitor</text>
-<text x="730" y="3332" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">14 · GRM32ER71E226KE15L</text>
-<text x="755" y="3349" font-family="sans-serif" font-size="10.5" fill="#526076">second local 22-uF / 25-V X7R main-buck</text>
+<text x="755" y="2287" font-family="sans-serif" font-size="10.5" fill="#526076">RF-local 24-line slow-control expander; H1</text>
+<text x="755" y="2301" font-family="sans-serif" font-size="10.5" fill="#526076">body reconciled with current native RF U106</text>
+<text x="730" y="2329" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">81 · 2N7002DW-7-F</text>
+<text x="755" y="2346" font-family="sans-serif" font-size="10.5" fill="#526076">RF RP reset sink; H1 body reconciled with</text>
+<text x="755" y="2360" font-family="sans-serif" font-size="10.5" fill="#526076">current native RF Q6</text>
+<text x="730" y="2388" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">69 · TCA9539PWR</text>
+<text x="755" y="2405" font-family="sans-serif" font-size="10.5" fill="#526076">relocated sixteen-line direct-control input</text>
+<text x="755" y="2419" font-family="sans-serif" font-size="10.5" fill="#526076">expander clear of the larger full-power</text>
+<text x="755" y="2433" font-family="sans-serif" font-size="10.5" fill="#526076">nRF24 modules</text>
+<text x="730" y="2461" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">42 · SI4732-A10-GSR</text>
+<text x="755" y="2478" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local FM/AM/SW/LW and converted Airband</text>
+<text x="755" y="2492" font-family="sans-serif" font-size="10.5" fill="#526076">receiver</text>
+<text x="730" y="2520" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">43 · CC1101RGPR</text>
+<text x="755" y="2537" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local sub-GHz transceiver aligned with</text>
+<text x="755" y="2551" font-family="sans-serif" font-size="10.5" fill="#526076">the CC-SUB SMA</text>
+<text x="730" y="2579" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">78 · AD8314ARMZ-REEL</text>
+<text x="755" y="2596" font-family="sans-serif" font-size="10.5" fill="#526076">CC1101 actual-TX detector beside the</text>
+<text x="755" y="2610" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local sub-GHz radio</text>
+<text x="730" y="2638" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">79 · AD8314ARMZ-REEL</text>
+<text x="755" y="2655" font-family="sans-serif" font-size="10.5" fill="#526076">UHF voice-radio actual-TX detector</text>
+<text x="755" y="2669" font-family="sans-serif" font-size="10.5" fill="#526076">immediately above its module</text>
+<text x="730" y="2697" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">80 · AD8314ARMZ-REEL</text>
+<text x="755" y="2714" font-family="sans-serif" font-size="10.5" fill="#526076">VHF voice-radio actual-TX detector</text>
+<text x="755" y="2728" font-family="sans-serif" font-size="10.5" fill="#526076">immediately right of its module</text>
+<text x="730" y="2756" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">44 · ES8311</text>
+<text x="755" y="2773" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local audio capture and playback codec</text>
+<text x="730" y="2801" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">45 · TMUX1136DGSR</text>
+<text x="755" y="2818" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local active differential speaker-path</text>
+<text x="755" y="2832" font-family="sans-serif" font-size="10.5" fill="#526076">selector</text>
+<text x="730" y="2860" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">46 · TCA9534APWR</text>
+<text x="755" y="2877" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local headset source controller and</text>
+<text x="755" y="2891" font-family="sans-serif" font-size="10.5" fill="#526076">reserve audio I/O</text>
+<text x="730" y="2919" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">47 · SJ-43504-SMT-TR</text>
+<text x="755" y="2936" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local CTIA headset TRRS mid-mount</text>
+<text x="755" y="2950" font-family="sans-serif" font-size="10.5" fill="#526076">connector with right-side enclosure exit</text>
+<text x="730" y="2978" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">48 · SN74LVC1G08DCKR</text>
+<text x="755" y="2995" font-family="sans-serif" font-size="10.5" fill="#526076">rear-local codec readiness and AUDIO_ARM</text>
+<text x="755" y="3009" font-family="sans-serif" font-size="10.5" fill="#526076">reset-safe gate</text>
+<text x="730" y="3037" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">8 · TPS566231PRQFR</text>
+<text x="755" y="3054" font-family="sans-serif" font-size="10.5" fill="#526076">6-A 3V3_MAIN synchronous buck with raw-rail</text>
+<text x="755" y="3068" font-family="sans-serif" font-size="10.5" fill="#526076">Power-Good</text>
+<text x="730" y="3096" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">9 · PSPMAA0605H-2R2M-ANP</text>
+<text x="755" y="3113" font-family="sans-serif" font-size="10.5" fill="#526076">2.2-uH, 10-A RMS / 15-A saturation 3V3_MAIN</text>
+<text x="755" y="3127" font-family="sans-serif" font-size="10.5" fill="#526076">inductor</text>
+<text x="730" y="3155" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">10 · GRM32ER71E226KE15L</text>
+<text x="755" y="3172" font-family="sans-serif" font-size="10.5" fill="#526076">first local 22-uF / 25-V X7R main-buck input</text>
+<text x="755" y="3186" font-family="sans-serif" font-size="10.5" fill="#526076">capacitor</text>
+<text x="730" y="3214" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">11 · GRM32ER71E226KE15L</text>
+<text x="755" y="3231" font-family="sans-serif" font-size="10.5" fill="#526076">second local 22-uF / 25-V X7R main-buck</text>
+<text x="755" y="3245" font-family="sans-serif" font-size="10.5" fill="#526076">input capacitor</text>
+<text x="730" y="3273" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">12 · GRM32ER71E226KE15L</text>
+<text x="755" y="3290" font-family="sans-serif" font-size="10.5" fill="#526076">third local 22-uF / 25-V X7R main-buck input</text>
+<text x="755" y="3304" font-family="sans-serif" font-size="10.5" fill="#526076">capacitor</text>
+<text x="730" y="3332" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">13 · GRM32ER71E226KE15L</text>
+<text x="755" y="3349" font-family="sans-serif" font-size="10.5" fill="#526076">first local 22-uF / 25-V X7R main-buck</text>
 <text x="755" y="3363" font-family="sans-serif" font-size="10.5" fill="#526076">output capacitor</text>
-<text x="730" y="3391" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">15 · GRM32ER71E226KE15L</text>
-<text x="755" y="3408" font-family="sans-serif" font-size="10.5" fill="#526076">third local 22-uF / 25-V X7R main-buck</text>
+<text x="730" y="3391" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">14 · GRM32ER71E226KE15L</text>
+<text x="755" y="3408" font-family="sans-serif" font-size="10.5" fill="#526076">second local 22-uF / 25-V X7R main-buck</text>
 <text x="755" y="3422" font-family="sans-serif" font-size="10.5" fill="#526076">output capacitor</text>
-<text x="730" y="3450" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">16 · CL10B105KO8NNNC</text>
-<text x="755" y="3467" font-family="sans-serif" font-size="10.5" fill="#526076">1-uF TPS566231P VCC decoupling capacitor</text>
-<text x="730" y="3495" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">17 · CL05B104KB5NNNC</text>
-<text x="755" y="3512" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF TPS566231P bootstrap capacitor</text>
-<text x="730" y="3540" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">18 · RC0402JR-070RL</text>
-<text x="755" y="3557" font-family="sans-serif" font-size="10.5" fill="#526076">0-ohm serial bootstrap link retained for EMI</text>
-<text x="755" y="3571" font-family="sans-serif" font-size="10.5" fill="#526076">tuning</text>
-<text x="730" y="3599" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">50 · SN74CBTLV1G125DCKR</text>
-<text x="755" y="3616" font-family="sans-serif" font-size="10.5" fill="#526076">bidirectional contact-10 boundary shared by</text>
-<text x="755" y="3630" font-family="sans-serif" font-size="10.5" fill="#526076">U214 BUSY input and U219 NFC_CS output</text>
-<text x="730" y="3658" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">51 · SN74LVC1G06DCKR</text>
-<text x="755" y="3675" font-family="sans-serif" font-size="10.5" fill="#526076">AON open-drain fail-safe driver for the</text>
-<text x="755" y="3689" font-family="sans-serif" font-size="10.5" fill="#526076">contact-10 bilateral-switch output enable</text>
-<text x="730" y="3717" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">52 · BAT54S,215</text>
-<text x="755" y="3734" font-family="sans-serif" font-size="10.5" fill="#526076">first dual-Schottky package in the balanced</text>
-<text x="755" y="3748" font-family="sans-serif" font-size="10.5" fill="#526076">full-wave U219 NFC-field evidence bridge</text>
-<text x="730" y="3776" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">53 · BAT54S,215</text>
-<text x="755" y="3793" font-family="sans-serif" font-size="10.5" fill="#526076">second dual-Schottky package in the balanced</text>
+<text x="730" y="3450" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">15 · GRM32ER71E226KE15L</text>
+<text x="755" y="3467" font-family="sans-serif" font-size="10.5" fill="#526076">third local 22-uF / 25-V X7R main-buck</text>
+<text x="755" y="3481" font-family="sans-serif" font-size="10.5" fill="#526076">output capacitor</text>
+<text x="730" y="3509" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">16 · CL10B105KO8NNNC</text>
+<text x="755" y="3526" font-family="sans-serif" font-size="10.5" fill="#526076">1-uF TPS566231P VCC decoupling capacitor</text>
+<text x="730" y="3554" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">17 · CL05B104KB5NNNC</text>
+<text x="755" y="3571" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF TPS566231P bootstrap capacitor</text>
+<text x="730" y="3599" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">18 · RC0402JR-070RL</text>
+<text x="755" y="3616" font-family="sans-serif" font-size="10.5" fill="#526076">0-ohm serial bootstrap link retained for EMI</text>
+<text x="755" y="3630" font-family="sans-serif" font-size="10.5" fill="#526076">tuning</text>
+<text x="730" y="3658" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">50 · SN74CBTLV1G125DCKR</text>
+<text x="755" y="3675" font-family="sans-serif" font-size="10.5" fill="#526076">bidirectional contact-10 boundary shared by</text>
+<text x="755" y="3689" font-family="sans-serif" font-size="10.5" fill="#526076">U214 BUSY input and U219 NFC_CS output</text>
+<text x="730" y="3717" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">51 · SN74LVC1G06DCKR</text>
+<text x="755" y="3734" font-family="sans-serif" font-size="10.5" fill="#526076">AON open-drain fail-safe driver for the</text>
+<text x="755" y="3748" font-family="sans-serif" font-size="10.5" fill="#526076">contact-10 bilateral-switch output enable</text>
+<text x="730" y="3776" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">52 · BAT54S,215</text>
+<text x="755" y="3793" font-family="sans-serif" font-size="10.5" fill="#526076">first dual-Schottky package in the balanced</text>
 <text x="755" y="3807" font-family="sans-serif" font-size="10.5" fill="#526076">full-wave U219 NFC-field evidence bridge</text>
-<text x="730" y="3835" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">54 · LMV331IDBVR</text>
-<text x="755" y="3852" font-family="sans-serif" font-size="10.5" fill="#526076">open-collector U219 NFC-field envelope</text>
-<text x="755" y="3866" font-family="sans-serif" font-size="10.5" fill="#526076">comparator driving EV_N9_U219_NFC</text>
-<text x="730" y="3894" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">55 · 0402WGF1002TCE</text>
-<text x="755" y="3911" font-family="sans-serif" font-size="10.5" fill="#526076">10-kOhm AON pull-up that disables the</text>
-<text x="755" y="3925" font-family="sans-serif" font-size="10.5" fill="#526076">contact-10 switch by default</text>
-<text x="730" y="3953" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">56 · 0402WGF1002TCE</text>
-<text x="755" y="3970" font-family="sans-serif" font-size="10.5" fill="#526076">10-kOhm AON command pull-down preserving</text>
-<text x="755" y="3984" font-family="sans-serif" font-size="10.5" fill="#526076">switch-off state</text>
-<text x="730" y="4012" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">57 · Yageo CC0402KRX7R9BB104</text>
-<text x="755" y="4029" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF local bypass for the contact-10</text>
-<text x="755" y="4043" font-family="sans-serif" font-size="10.5" fill="#526076">bilateral switch</text>
-<text x="730" y="4071" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">58 · Yageo CC0402KRX7R9BB104</text>
-<text x="755" y="4088" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF local bypass for the AON open-drain</text>
-<text x="755" y="4102" font-family="sans-serif" font-size="10.5" fill="#526076">driver</text>
-<text x="730" y="4130" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">59 · 0402WGF1001TCE</text>
-<text x="755" y="4147" font-family="sans-serif" font-size="10.5" fill="#526076">1-kOhm positive pickup input limiter</text>
-<text x="730" y="4175" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">60 · 0402WGF1001TCE</text>
-<text x="755" y="4192" font-family="sans-serif" font-size="10.5" fill="#526076">1-kOhm negative pickup input limiter</text>
-<text x="730" y="4220" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">61 · Murata GRM155R71H103KA88D</text>
-<text x="755" y="4237" font-family="sans-serif" font-size="10.5" fill="#526076">10-nF rectified NFC-field envelope capacitor</text>
-<text x="730" y="4265" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">62 · 0402WGF1003TCE</text>
-<text x="755" y="4282" font-family="sans-serif" font-size="10.5" fill="#526076">100-kOhm envelope discharge resistor</text>
-<text x="730" y="4310" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">63 · 0402WGF1003TCE</text>
-<text x="755" y="4327" font-family="sans-serif" font-size="10.5" fill="#526076">100-kOhm comparator threshold upper leg</text>
-<text x="730" y="4355" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">64 · 0402WGF1002TCE</text>
-<text x="755" y="4372" font-family="sans-serif" font-size="10.5" fill="#526076">10-kOhm comparator threshold lower leg</text>
-<text x="730" y="4400" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">65 · 0402WGF1004TCE</text>
-<text x="755" y="4417" font-family="sans-serif" font-size="10.5" fill="#526076">1-MOhm comparator hysteresis feedback</text>
-<text x="730" y="4445" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">66 · 0402WGF1002TCE</text>
-<text x="755" y="4462" font-family="sans-serif" font-size="10.5" fill="#526076">10-kOhm AON pull-up for active-low NFC field</text>
-<text x="755" y="4476" font-family="sans-serif" font-size="10.5" fill="#526076">evidence</text>
-<text x="730" y="4504" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">67 · Yageo CC0402KRX7R9BB104</text>
-<text x="755" y="4521" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF local bypass for the NFC field</text>
-<text x="755" y="4535" font-family="sans-serif" font-size="10.5" fill="#526076">comparator</text>
+<text x="730" y="3835" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">53 · BAT54S,215</text>
+<text x="755" y="3852" font-family="sans-serif" font-size="10.5" fill="#526076">second dual-Schottky package in the balanced</text>
+<text x="755" y="3866" font-family="sans-serif" font-size="10.5" fill="#526076">full-wave U219 NFC-field evidence bridge</text>
+<text x="730" y="3894" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">54 · LMV331IDBVR</text>
+<text x="755" y="3911" font-family="sans-serif" font-size="10.5" fill="#526076">open-collector U219 NFC-field envelope</text>
+<text x="755" y="3925" font-family="sans-serif" font-size="10.5" fill="#526076">comparator driving EV_N9_U219_NFC</text>
+<text x="730" y="3953" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">55 · 0402WGF1002TCE</text>
+<text x="755" y="3970" font-family="sans-serif" font-size="10.5" fill="#526076">10-kOhm AON pull-up that disables the</text>
+<text x="755" y="3984" font-family="sans-serif" font-size="10.5" fill="#526076">contact-10 switch by default</text>
+<text x="730" y="4012" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">56 · 0402WGF1002TCE</text>
+<text x="755" y="4029" font-family="sans-serif" font-size="10.5" fill="#526076">10-kOhm AON command pull-down preserving</text>
+<text x="755" y="4043" font-family="sans-serif" font-size="10.5" fill="#526076">switch-off state</text>
+<text x="730" y="4071" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">57 · Yageo CC0402KRX7R9BB104</text>
+<text x="755" y="4088" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF local bypass for the contact-10</text>
+<text x="755" y="4102" font-family="sans-serif" font-size="10.5" fill="#526076">bilateral switch</text>
+<text x="730" y="4130" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">58 · Yageo CC0402KRX7R9BB104</text>
+<text x="755" y="4147" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF local bypass for the AON open-drain</text>
+<text x="755" y="4161" font-family="sans-serif" font-size="10.5" fill="#526076">driver</text>
+<text x="730" y="4189" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">59 · 0402WGF1001TCE</text>
+<text x="755" y="4206" font-family="sans-serif" font-size="10.5" fill="#526076">1-kOhm positive pickup input limiter</text>
+<text x="730" y="4234" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">60 · 0402WGF1001TCE</text>
+<text x="755" y="4251" font-family="sans-serif" font-size="10.5" fill="#526076">1-kOhm negative pickup input limiter</text>
+<text x="730" y="4279" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">61 · Murata GRM155R71H103KA88D</text>
+<text x="755" y="4296" font-family="sans-serif" font-size="10.5" fill="#526076">10-nF rectified NFC-field envelope capacitor</text>
+<text x="730" y="4324" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">62 · 0402WGF1003TCE</text>
+<text x="755" y="4341" font-family="sans-serif" font-size="10.5" fill="#526076">100-kOhm envelope discharge resistor</text>
+<text x="730" y="4369" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">63 · 0402WGF1003TCE</text>
+<text x="755" y="4386" font-family="sans-serif" font-size="10.5" fill="#526076">100-kOhm comparator threshold upper leg</text>
+<text x="730" y="4414" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">64 · 0402WGF1002TCE</text>
+<text x="755" y="4431" font-family="sans-serif" font-size="10.5" fill="#526076">10-kOhm comparator threshold lower leg</text>
+<text x="730" y="4459" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">65 · 0402WGF1004TCE</text>
+<text x="755" y="4476" font-family="sans-serif" font-size="10.5" fill="#526076">1-MOhm comparator hysteresis feedback</text>
+<text x="730" y="4504" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">66 · 0402WGF1002TCE</text>
+<text x="755" y="4521" font-family="sans-serif" font-size="10.5" fill="#526076">10-kOhm AON pull-up for active-low NFC field</text>
+<text x="755" y="4535" font-family="sans-serif" font-size="10.5" fill="#526076">evidence</text>
+<text x="730" y="4563" font-family="sans-serif" font-size="11.5" font-weight="700" fill="#172033">67 · Yageo CC0402KRX7R9BB104</text>
+<text x="755" y="4580" font-family="sans-serif" font-size="10.5" fill="#526076">100-nF local bypass for the NFC field</text>
+<text x="755" y="4594" font-family="sans-serif" font-size="10.5" fill="#526076">comparator</text>
 <text x="1100" y="112" font-family="sans-serif" font-size="17" font-weight="700" fill="#172033">Machine audit</text>
 <text x="1100" y="142" font-family="sans-serif" font-size="12" fill="#166534">✓ same-face collisions: 0</text>
-<text x="1100" y="164" font-family="sans-serif" font-size="12" fill="#166534">✓ opposing crossings: 88</text>
+<text x="1100" y="164" font-family="sans-serif" font-size="12" fill="#166534">✓ opposing crossings: 86</text>
 <text x="1100" y="186" font-family="sans-serif" font-size="12" fill="#166534">✓ minimum Z clearance: 0.94 mm</text>
 <text x="1100" y="208" font-family="sans-serif" font-size="12" fill="#526076">required: 0.70 mm</text>
 <text x="1100" y="248" font-family="sans-serif" font-size="15" font-weight="700" fill="#172033">Line key</text>

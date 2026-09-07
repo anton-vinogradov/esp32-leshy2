@@ -477,7 +477,9 @@ class ProductSiteTests(unittest.TestCase):
                 "What we obtained and verified",
                 "What remains",
                 "How the documentation is organised",
-                "Reviewed four-face Leshy2 mock-up",
+                "H1 concept four-face Leshy2 mock-up",
+                "Legend for 223 H1 concept bodies",
+                "H1-to-native correspondence is not fully verified",
             ),
             "README.ru.md": (
                 "# Леший2 ⭐",
@@ -487,7 +489,9 @@ class ProductSiteTests(unittest.TestCase):
                 "Что получили и проверили",
                 "Что осталось",
                 "Как читать документацию",
-                "Принятый четырёхсторонний мокап Лешего2",
+                "Концептуальный четырёхсторонний мокап H1 Лешего2",
+                "Легенда 223 тел концепта H1",
+                "Соответствие H1 нативным платам ещё не проверено полностью",
             ),
         }
         for name, tokens in expectations.items():
@@ -498,6 +502,7 @@ class ProductSiteTests(unittest.TestCase):
             intro_heading = "## Что хотим" if name.endswith(".ru.md") else "## What we want"
             self.assertLess(raw_page.index(intro_heading), raw_page.index("h1-r2-four-faces.svg"), name)
             self.assertIn("docs/images/h1-r2-component-legend.svg", raw_page, name)
+            self.assertNotIn("226", raw_page, name)
             for token in tokens:
                 self.assertIn(token, page, f"{name}: {token}")
             headings = (

@@ -4,7 +4,7 @@
   "marker": "H3-R2.7",
   "status": "reviewed_physical_only_residual_register",
   "source_sha256": {
-    "hardware/verification/generated/H3-R2-crosscheck.json": "2036883c011721520b1f4c6634617e83222ab475de9850ce4589f5a51b5b2741"
+    "hardware/verification/generated/H3-R2-crosscheck.json": "bcae6d69ae1363dee9d9a2cbae2eff29b29c4488e6be65087aee333bd9e9d9ed"
   },
   "summary": {
     "physical_evidence_rows": 51,
