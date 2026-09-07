@@ -154,6 +154,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/h6-r2-current-routing.ru.md",
         "docs/h6-r2-interface-review.md",
         "docs/h6-r2-interface-review.ru.md",
+        "docs/h6-r2-component-views.md",
+        "docs/h6-r2-component-views.ru.md",
         "docs/h6-r2-electrical-semantics.md",
         "docs/h6-r2-electrical-semantics.ru.md",
         "docs/h6-r2-mechanical-stack.md",
