@@ -1,8 +1,15 @@
 # PAM8302AAYCR — exposed-pad clarification / уточнение центральной площадки
 
-Status: draft, not sent. No order, component substitution or assembly release.
+Status (2026-09-07): prepared, not submitted. The official
+[Diodes Technical Support form](https://www.diodes.com/about/contact-us/technical-support)
+requires Country and Phone Number; awaiting user-provided contact values.
+No submission confirmation or manufacturer answer has been received.
+No order, component substitution or assembly release.
 
-Статус: черновик, не отправлен. Заказ, замена компонента и выпуск сборки не разрешаются.
+Статус (2026-09-07): подготовлен, не отправлен. Официальная форма
+технической поддержки Diodes требует страну и телефон; ожидаются контактные
+данные от пользователя. Подтверждения отправки и ответа производителя нет.
+Заказ, замена компонента и выпуск сборки не разрешаются.
 
 ## English draft
 

@@ -122,8 +122,9 @@ the document does not assign it an electrical net. The official
 uses a leaded package and does not establish the DFN pad connection. Neither
 ground nor a thermal-only, isolated pad is assumed. Diodes needs to confirm
 whether it is internally connected or isolated, which net is permitted or
-required, and whether solder attachment or thermal vias are mandatory. No
-inquiry has been sent at this checkpoint; a [short draft is ready](../hardware/procurement/PAM8302AAYCR-exposed-pad-clarification.md).
+required, and whether solder attachment or thermal vias are mandatory. The
+[inquiry is prepared but not submitted](../hardware/procurement/PAM8302AAYCR-exposed-pad-clarification.md):
+the official support form requires country and phone details from the user.
 
 1. Complete the missing exact-pin review and model configuration-dependent GPIO,
    open-drain pull-ups, tri-state enables and unused outputs.
