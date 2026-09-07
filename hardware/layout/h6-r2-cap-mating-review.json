@@ -6,6 +6,17 @@
   "scope": "Read-only physical contact-numbering review of the existing U214/U219 Cap slot. This evidence is not an approved contact map, placement instruction, or fabrication release.",
   "production_map_modified": false,
   "materializer_guard_added": false,
+  "technical_inquiry": {
+    "status": "sent_clarification_pending",
+    "sent_on": "2026-09-07",
+    "recipient": "support@m5stack.com",
+    "recipient_authority": "https://shop.m5stack.com/pages/contact-us",
+    "public_message": "drafts/h6-cap-pinout-question.md",
+    "submission_evidence": "Gmail displayed the explicit message-sent confirmation",
+    "order_or_purchase_requested": false,
+    "contact_map_approved": false,
+    "mechanical_gate_closed": false
+  },
   "selected_connector": {
     "device_id": "samtec_hle_107_02_g_dv_pe_lc",
     "mpn": "Samtec HLE-107-02-G-DV-PE-LC",

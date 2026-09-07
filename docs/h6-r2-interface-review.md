@@ -17,7 +17,8 @@ found that logical M5 numbering was copied directly onto Samtec's alternating
 odd/even rows. An explicit physical permutation is required. The published
 U214/U219 callouts do not establish which mating face is shown and disagree
 with one another; **no candidate map has been applied**. Header-to-housing
-registration is also unresolved. [Two questions for M5, not yet sent](../drafts/h6-cap-pinout-question.md).
+registration is also unresolved. [Two questions sent to M5Stack on 2026-09-07](../drafts/h6-cap-pinout-question.md);
+technical clarification is pending. Sending the inquiry does not approve any map or close the gate.
 
 The [holder/encoder drawing review](../hardware/layout/h6-r2-holder-encoder-geometry-evidence.json)
 confirms an encoder mounting-lug pitch of 12.5 mm, versus 11.2 mm in the
