@@ -72,6 +72,29 @@ Open either board for the full-size SVG.
   <tr><td align="center">UI PCB</td><td align="center">RF / power PCB</td></tr>
 </table>
 
+### Current components · both faces
+
+All four views use the same scale. Outer faces are above; inner faces below
+are viewed after turning each board over, with the antenna edge still at the top.
+Grey shows component outlines/references; blue is actual silkscreen.
+Known footprint defects remain visible — these views do not certify assembly.
+[Full-size views and legend](docs/h6-r2-component-views.md).
+
+<table>
+  <tr><th width="50%">Front / UI</th><th width="50%">Rear / RF-power</th></tr>
+  <tr>
+    <td><a href="docs/images/h6-r2-components-ui-outer.svg"><img src="docs/images/h6-r2-components-ui-outer.svg" alt="UI components, outer face" width="100%"></a></td>
+    <td><a href="docs/images/h6-r2-components-rf-outer.svg"><img src="docs/images/h6-r2-components-rf-outer.svg" alt="RF components, outer face" width="100%"></a></td>
+  </tr>
+  <tr>
+    <td><a href="docs/images/h6-r2-components-ui-inner.svg"><img src="docs/images/h6-r2-components-ui-inner.svg" alt="UI components, inner face after turning over" width="100%"></a></td>
+    <td><a href="docs/images/h6-r2-components-rf-inner.svg"><img src="docs/images/h6-r2-components-rf-inner.svg" alt="RF components, inner face after turning over" width="100%"></a></td>
+  </tr>
+</table>
+
+Component views refresh together with routing exports; the common freshness
+check rejects images that no longer match the PCB files.
+
 ## What we obtained and verified
 
 **Current hardware marker: `H6.0.3-R1`.**

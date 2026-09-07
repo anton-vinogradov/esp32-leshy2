@@ -41,11 +41,18 @@ is not a qualified 3D model of every component.
 
 Hashes of both source PCBs, the renderer and all five SVGs are recorded in the
 [visualization snapshot](../hardware/layout/generated/H6-R2-component-views.json).
-Rendering does not change PCB files. Regenerate using KiCad's Python:
+Rendering does not change PCB files. The normal routing-image command now
+refreshes both routing exports and these five component SVGs:
 
 ```sh
-python3 hardware/layout/h6_r2_component_render.py --write
-python3 hardware/layout/h6_r2_component_render.py --check
+python3 hardware/layout/h6_r2_routing_render.py --write
+python3 hardware/layout/h6_r2_routing_render.py --check
 ```
 
-`--check` needs only ordinary Python; `--write` requires `pcbnew` and KiCad CLI.
+The common check fails if either image group is stale. It is also run by the
+architecture regression suite, including CI. Refresh after PCB changes before
+publishing a checkpoint; this is not a background watcher of an open editor.
+
+The dedicated `h6_r2_component_render.py --write/--check` commands remain
+available. Dedicated writes require KiCad's Python (`pcbnew`) and KiCad CLI;
+checks require only ordinary Python.

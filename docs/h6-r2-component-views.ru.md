@@ -41,11 +41,19 @@ footprint. Экран, аккумуляторы, внешние антенны, 
 
 Хеши обеих исходных PCB, генератора и пяти SVG находятся в
 [снимке визуализации](../hardware/layout/generated/H6-R2-component-views.json).
-Генерация не изменяет PCB. Обновление под Python из KiCad:
+Генерация не изменяет PCB. Обычная команда обновления изображений разводки
+теперь обновляет и разводку, и эти пять SVG с компонентами:
 
 ```sh
-python3 hardware/layout/h6_r2_component_render.py --write
-python3 hardware/layout/h6_r2_component_render.py --check
+python3 hardware/layout/h6_r2_routing_render.py --write
+python3 hardware/layout/h6_r2_routing_render.py --check
 ```
 
-Для `--check` достаточно обычного Python; для `--write` нужны `pcbnew` и KiCad CLI.
+Общая проверка завершается ошибкой, если устарела любая группа изображений.
+Она включена в архитектурные регрессии, в том числе CI. После изменения PCB
+обновляйте виды перед публикацией контрольного среза; это не фоновое наблюдение
+за открытым редактором.
+
+Отдельные команды `h6_r2_component_render.py --write/--check` тоже сохранены.
+Для отдельной генерации нужны Python из KiCad (`pcbnew`) и KiCad CLI;
+для проверки достаточно обычного Python.

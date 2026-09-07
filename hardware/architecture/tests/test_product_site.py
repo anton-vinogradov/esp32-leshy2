@@ -235,6 +235,25 @@ class ProductSiteTests(unittest.TestCase):
     def read(self, relative: str) -> str:
         return (REPO_ROOT / relative).read_text(encoding="utf-8")
 
+    def test_landing_pages_embed_all_component_faces_beside_routing(self):
+        for filename, routing_title, component_title, result_title in (
+            ("README.md", "### Current routing", "### Current components", "## What we obtained"),
+            ("README.ru.md", "### Текущая разводка", "### Текущие компоненты", "## Что получили"),
+        ):
+            page = self.read(filename)
+            with self.subTest(page=filename):
+                self.assertLess(page.index(routing_title), page.index(component_title))
+                self.assertLess(page.index(component_title), page.index(result_title))
+                section = page[page.index(component_title):page.index(result_title)]
+                expected = [f"docs/images/h6-r2-components-{board}-{face}.svg"
+                            for face in ("outer", "inner") for board in ("ui", "rf")]
+                images = re.findall(r'<img src="([^"]+)"', section)
+                self.assertEqual(expected, images)
+                for path in expected:
+                    self.assertIn(f'href="{path}"', section)
+                for board in ("ui", "rf"):
+                    self.assertIn(f'<img src="docs/images/h6-r2-routing-{board}.svg"', page)
+
     def test_legacy_device_basis_is_hash_bound_and_independent_of_live_register(self):
         self.assertEqual(
             "b450e56d0688283a49843856e910db0145d2bba5", legacy_basis.SOURCE_COMMIT

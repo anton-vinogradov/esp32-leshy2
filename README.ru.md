@@ -72,6 +72,29 @@
   <tr><td align="center">UI PCB</td><td align="center">RF / power PCB</td></tr>
 </table>
 
+### Текущие компоненты · обе стороны
+
+Все четыре вида — в одном масштабе. Сверху наружные стороны, снизу внутренние
+после переворота каждой платы; антенный край остаётся наверху.
+Серый — контуры и обозначения компонентов, синий — фактическая шелкография.
+Известные ошибки посадочных мест ещё видны; это не подтверждение готовности сборки.
+[Полноразмерные виды и легенда](docs/h6-r2-component-views.ru.md).
+
+<table>
+  <tr><th width="50%">Передняя / UI</th><th width="50%">Задняя / RF-power</th></tr>
+  <tr>
+    <td><a href="docs/images/h6-r2-components-ui-outer.svg"><img src="docs/images/h6-r2-components-ui-outer.svg" alt="Компоненты UI, наружная сторона" width="100%"></a></td>
+    <td><a href="docs/images/h6-r2-components-rf-outer.svg"><img src="docs/images/h6-r2-components-rf-outer.svg" alt="Компоненты RF, наружная сторона" width="100%"></a></td>
+  </tr>
+  <tr>
+    <td><a href="docs/images/h6-r2-components-ui-inner.svg"><img src="docs/images/h6-r2-components-ui-inner.svg" alt="Компоненты UI, внутренняя сторона после переворота" width="100%"></a></td>
+    <td><a href="docs/images/h6-r2-components-rf-inner.svg"><img src="docs/images/h6-r2-components-rf-inner.svg" alt="Компоненты RF, внутренняя сторона после переворота" width="100%"></a></td>
+  </tr>
+</table>
+
+Виды компонентов обновляются вместе с экспортами разводки; общая проверка
+актуальности не пропускает изображения, не соответствующие текущим PCB.
+
 ## Что получили и проверили
 
 **Текущий маркер железа: `H6.0.3-R1`.**

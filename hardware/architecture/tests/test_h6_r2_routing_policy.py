@@ -170,7 +170,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
             stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, renders.returncode, renders.stdout)
-        self.assertIn("2 current board-linked SVG views", renders.stdout)
+        self.assertIn("2 routing SVGs + 4 component faces and overview are current", renders.stdout)
 
     def test_routing_report_embeds_both_real_board_views(self):
         for document in (

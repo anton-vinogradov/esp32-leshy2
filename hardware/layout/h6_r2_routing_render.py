@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Render and freshness-check the public H6 routing progress images."""
+"""Refresh/check routing images and the four-face component views together.
+
+Only visualization artifacts are written. Component writes need pcbnew, so a
+plain system-Python invocation delegates them to an available KiCad runtime.
+Both freshness checks remain usable without importing pcbnew.
+"""
 
 from __future__ import annotations
 
@@ -7,6 +12,7 @@ import argparse
 import hashlib
 import re
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
 
@@ -17,6 +23,13 @@ KICAD_CLI_CANDIDATES = (
     Path("/usr/bin/kicad-cli"),
     Path("/usr/local/bin/kicad-cli"),
 )
+KICAD_PYTHON_CANDIDATES = (
+    # Same bundled runtime used by the native placement and routing checks.
+    Path("/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3"),
+    Path("/usr/bin/python3"),
+    Path("/usr/local/bin/python3"),
+)
+COMPONENT_RENDER_SCRIPT = ROOT / "hardware/layout/h6_r2_component_render.py"
 LAYERS = "F.Cu,B.Cu,F.Silkscreen,B.Silkscreen,Edge.Cuts"
 BOARDS = {
     "ui": ROOT / "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
@@ -107,6 +120,47 @@ def check(name: str, board: Path, output: Path) -> list[str]:
     return errors
 
 
+def component_python() -> str:
+    """Find an already installed pcbnew runtime; never install or alter one."""
+    failures = []
+    candidates = dict.fromkeys((Path(sys.executable), *KICAD_PYTHON_CANDIDATES))
+    for candidate in candidates:
+        if not candidate.is_file():
+            continue
+        try:
+            result = subprocess.run(
+                [str(candidate), "-c", "import pcbnew; assert hasattr(pcbnew, 'LoadBoard')"],
+                cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                timeout=15,
+            )
+        except (OSError, subprocess.TimeoutExpired) as exc:
+            failures.append(f"{candidate}: {exc}")
+            continue
+        if result.returncode == 0:
+            return str(candidate)
+        failures.append(f"{candidate}: {(result.stdout or '').strip()}")
+    details = "; ".join(failures) or "no candidate interpreter exists"
+    raise RuntimeError(f"No installed Python with pcbnew; cannot refresh component views: {details}")
+
+
+def component_views(mode: str, python: str | None = None) -> list[str]:
+    """Delegate to the existing component writer/checker and preserve failures."""
+    if mode not in {"--write", "--check"}:
+        raise ValueError(f"unsupported component-view mode: {mode}")
+    if python is None:
+        python = component_python() if mode == "--write" else sys.executable
+    try:
+        result = subprocess.run(
+            [str(python), str(COMPONENT_RENDER_SCRIPT), mode], cwd=ROOT, text=True,
+            stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+        )
+    except OSError as exc:
+        return [f"component views {mode} could not run: {exc}"]
+    if result.returncode:
+        return [f"component views {mode} failed (exit {result.returncode}):\n{(result.stdout or '').strip()}"]
+    return []
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     mode = parser.add_mutually_exclusive_group(required=True)
@@ -115,19 +169,31 @@ def main() -> int:
     args = parser.parse_args()
 
     if args.write:
+        # Fail before writing either image group when pcbnew is unavailable.
+        try:
+            python = component_python()
+        except RuntimeError as exc:
+            print("- " + str(exc))
+            return 1
         for name, board in BOARDS.items():
             render(name, board, OUTPUTS[name])
+        errors = component_views("--write", python)
+        if errors:
+            for error in errors:
+                print("- " + error)
+            return 1
 
     errors = [
         error
         for name, board in BOARDS.items()
         for error in check(name, board, OUTPUTS[name])
     ]
+    errors.extend(component_views("--check"))
     if errors:
         for error in errors:
             print("- " + error)
         return 1
-    print("H6-R2 routing renders pass: 2 current board-linked SVG views")
+    print("H6-R2 routing renders pass: 2 routing SVGs + 4 component faces and overview are current")
     return 0
 
 
