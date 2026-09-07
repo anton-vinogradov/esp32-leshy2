@@ -11,7 +11,7 @@
     },
     "exact_definition_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "b76e512e7544e6ad9ac5a6bbf58ee7d20348ae1198b4be80ccce0efbcc0a5407",
+      "sha256": "8f9b33f4e7725a4e22f8a52b0906745d4b76d10786fccbd1e0257edfd89dcf54",
       "authority": true
     },
     "physical_source_table": {
@@ -778,7 +778,7 @@
       "device_id": "jae_dx07s016ja1r1500",
       "mpn": "JAE DX07S016JA1R1500",
       "symbol_id": "Leshy2_R2:jae_dx07s016ja1r1500",
-      "footprint": "Connector_USB:USB_C_Receptacle_JAE_DX07S016JA1R1500",
+      "footprint": "Leshy2_R2:USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk",
       "reference_prefix": "J",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,

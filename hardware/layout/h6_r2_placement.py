@@ -373,6 +373,15 @@ def add_silk_rect(board, rect: dict, layer: int, width: float = 0.15) -> None:
     add_segment(board, layer, (x0, y1), (x0, y0), width)
 
 
+def add_alignment_corners(board, rect: dict, layer: int) -> None:
+    """Keep the exact alignment envelope without silk crossing nearby LEDs."""
+    for ix, sx in ((0, 1), (1, -1)):
+        for iy, sy in ((0, 1), (1, -1)):
+            x, y = rect["x"][ix], rect["y"][iy]
+            add_segment(board, layer, (x, y), (x + sx * 2.0, y), 0.15)
+            add_segment(board, layer, (x, y), (x, y + sy * 2.0), 0.15)
+
+
 def add_text(
     board,
     value: str,
@@ -457,26 +466,27 @@ def add_user_silkscreen(board, project: str, placement: dict, contract: dict) ->
     if project == "LESHY2-UI-R2":
         panel = contract["mechanical"]["display_bed"]["panel_bbox_mm"]
         psa = contract["mechanical"]["display_bed"]["psa_bbox_mm"]
-        add_silk_rect(
+        add_alignment_corners(
             board,
             {"x": [panel["x"][0] - 0.30, panel["x"][1] + 0.30], "y": [panel["y"][0] - 0.30, panel["y"][1] + 0.30]},
             pcbnew.F_SilkS,
         )
-        add_silk_rect(
+        add_alignment_corners(
             board,
             {"x": [psa["x"][0] - 0.25, psa["x"][1] + 0.25], "y": [psa["y"][0] - 0.25, psa["y"][1] + 0.25]},
             pcbnew.F_SilkS,
         )
         centre_x = contract["board"]["width_mm"] / 2
-        add_text(board, "DISPLAY · FPC ↑", (centre_x, 105.4), pcbnew.F_SilkS, 1.00, 0.15)
-        add_text(board, "Леший", (centre_x, 108.0), pcbnew.F_SilkS, 2.35, 0.32)
-        add_text(board, "ESP32-LESHY2 · UI PCB · R2-EVT1 · REV A", (centre_x, 110.6), pcbnew.F_SilkS, 1.00, 0.15)
+        # Assembly-only marking inside the display alignment frame. The free
+        # exterior strip below the panel belongs to the ten visible indicators.
+        add_text(board, "DISPLAY · FPC ↑", (centre_x, 21.0), pcbnew.F_SilkS, 1.00, 0.15)
+        add_text(board, "Леший · UI · R2-EVT1 · REV A", (centre_x, 116.0), pcbnew.F_SilkS, 1.00, 0.15)
         antenna_rows = placement["antenna_silkscreen"]["front"]
     else:
         centre_x = contract["board"]["width_mm"] / 2
-        add_text(board, "ESP32-LESHY2", (centre_x, 136.0), pcbnew.F_SilkS, 1.55, 0.23)
-        add_text(board, "RF/PWR PCB · R2-EVT1 · REV A", (centre_x, 139.0), pcbnew.F_SilkS, 1.00, 0.15)
-        add_text(board, "github.com/anton-vinogradov/esp32-leshy2", (centre_x, 142.0), pcbnew.F_SilkS, 1.00, 0.15)
+        add_text(board, "ESP32-LESHY2", (centre_x, 130.5), pcbnew.F_SilkS, 1.55, 0.23)
+        add_text(board, "RF/PWR PCB · R2-EVT1 · REV A", (centre_x, 133.0), pcbnew.F_SilkS, 1.00, 0.15)
+        add_text(board, "github.com/anton-vinogradov/esp32-leshy2", (centre_x, 135.5), pcbnew.F_SilkS, 1.00, 0.15)
         antenna_rows = placement["antenna_silkscreen"]["rear"]
     antenna_positions = list(contract["antenna_ports"][project].values())
     for row, position in zip(antenna_rows, antenna_positions):
@@ -533,6 +543,84 @@ def build_target_index(contract: dict, placement: dict, coordinate: dict) -> dic
     return targets
 
 
+def service_button_target(project: str, instance: str, contract: dict, frozen: dict) -> dict | None:
+    """An edge actuator is a mechanical datum, never a rectangle to rotate to fit.
+
+    The exact Alps footprint points along +Y on F.Cu.  KiCad's B.Cu flip
+    reverses that axis; 90 degrees points left and 270 degrees points right.
+    Only a bounded correction parallel to the assigned edge is permitted.
+    """
+    policy = contract.get("service_buttons", {})
+    spec = policy.get("by_project", {}).get(project, {}).get(instance)
+    if spec is None:
+        return None
+    if policy.get("side") != "B.Cu" or spec["edge"] not in {"left", "right"}:
+        raise ValueError(f"unsupported service-button actuator policy: {project}:{instance}")
+    inset = policy["courtyard_edge_inset_mm"]
+    centre = [
+        inset if spec["edge"] == "left" else contract["board"]["width_mm"] - inset,
+        spec["centre_y_mm"],
+    ]
+    rotation = 90.0 if spec["edge"] == "left" else 270.0
+    target = {
+        "source": "H6 exact service-button actuator datum",
+        "frame": "ui-inner" if project == "LESHY2-UI-R2" else "rear-inner",
+        "centre": centre,
+        "rotation": rotation,
+        "rotation_locked": True,
+        "translation_axis": "y",
+        "maximum_translation_mm": policy["maximum_along_edge_correction_mm"],
+        "allow_outside": True,
+        "direction": f"board-edge service actuator faces outward through the {spec['edge']} side",
+    }
+    override = contract.get("placement_overrides", {}).get(instance)
+    if override:
+        if (
+            override["frame"] != target["frame"]
+            or float(override["rotation_deg"]) % 360 != rotation
+            or abs(override["centre_mm"][0] - centre[0]) > 0.0001
+            or abs(override["centre_mm"][1] - centre[1]) > target["maximum_translation_mm"]
+        ):
+            raise ValueError(f"service-button override violates the edge actuator datum: {instance}")
+        target["centre"] = list(override["centre_mm"])
+    row = frozen.get((project, instance))
+    if row and (
+        row["side"] == policy["side"]
+        and float(row["rotation_deg"]) % 360 == rotation
+        and abs(row["courtyard_centre_mm"][0] - centre[0]) <= 0.0001
+        and abs(row["courtyard_centre_mm"][1] - centre[1]) <= target["maximum_translation_mm"]
+        and not override
+    ):
+        target.update({
+            "centre": row["courtyard_centre_mm"],
+            "exact_anchor_nm": row.get("footprint_anchor_nm"),
+            "frozen": True,
+            "placement_method": row["method"],
+        })
+    return target
+
+
+def service_button_placement_errors(project: str, rows: list[dict], contract: dict) -> list[str]:
+    """Fail closed if a later correction bypasses the actuator orientation rule."""
+    policy = contract.get("service_buttons", {})
+    expected = policy.get("by_project", {}).get(project, {})
+    actual = {row["instance"]: row for row in rows}
+    errors = []
+    for instance in expected:
+        target = service_button_target(project, instance, contract, {})
+        row = actual.get(instance)
+        if row is None or (
+            row["footprint"] != policy["footprint"]
+            or row["side"] != policy["side"]
+            or float(row["rotation_deg"]) % 360 != target["rotation"]
+            or abs(row["courtyard_centre_mm"][0] - target["centre"][0]) > 0.0001
+            or abs(row["courtyard_centre_mm"][1] - expected[instance]["centre_y_mm"])
+            > policy["maximum_along_edge_correction_mm"] + 0.0001
+        ):
+            errors.append(f"service-button actuator is missing or violates its outward edge datum: {instance}")
+    return errors
+
+
 def target_for_instance(
     project: str,
     instance: str,
@@ -541,16 +629,27 @@ def target_for_instance(
     targets: dict[str, dict],
     frozen: dict[tuple[str, str], dict],
 ) -> dict | None:
+    service_target = service_button_target(project, instance, contract, frozen)
+    if service_target is not None:
+        return service_target
     override = contract.get("placement_overrides", {}).get(instance)
     if override:
         target = {
             "source": "H6 exact-courtyard correction",
             "frame": override["frame"],
-            "centre": override["centre_mm"],
             "rotation": override["rotation_deg"],
             "direction": override["reason"],
             "placement_method": override.get("method"),
         }
+        if ("anchor_mm" in override) == ("centre_mm" in override):
+            raise ValueError(f"placement override needs exactly one anchor or centre: {instance}")
+        if "anchor_mm" in override:
+            target["anchor"] = override["anchor_mm"]
+        else:
+            target["centre"] = override["centre_mm"]
+        if override.get("mechanical_locked"):
+            target["mechanical_locked"] = True
+            target["rotation_locked"] = True
         if override.get("allowed_same_face_overlap_owner"):
             target["allowed_same_face_overlap_owner"] = override[
                 "allowed_same_face_overlap_owner"
@@ -858,6 +957,26 @@ def desired_rotation(poses: dict[float, dict], target: dict) -> float:
     zerror = abs(zsize[0] - wanted[0]) + abs(zsize[1] - wanted[1])
     nerror = abs(nsize[0] - wanted[0]) + abs(nsize[1] - wanted[1])
     return 0.0 if zerror <= nerror else 90.0
+
+
+def correction_rotations(rotation: float, target: dict) -> tuple[float, ...]:
+    if target.get("rotation_locked"):
+        return (rotation,)
+    return (rotation, (rotation + 90.0) % 180.0)
+
+
+def correction_centres(preferred: tuple[float, float], target: dict, geometry: dict):
+    if target.get("translation_axis") == "y":
+        yield preferred
+        limit = target["maximum_translation_mm"]
+        step = geometry["packing_grid_mm"]
+        for index in range(1, int(math.floor(limit / step)) + 1):
+            yield (preferred[0], preferred[1] - index * step)
+            yield (preferred[0], preferred[1] + index * step)
+        return
+    yield from candidate_centres(
+        preferred, geometry["packing_grid_mm"], geometry["width_mm"], geometry["height_mm"]
+    )
 
 
 def candidate_centres(preferred: tuple[float, float], step: float, width: float, height: float):
@@ -1287,6 +1406,7 @@ def place_project(
                 or "_external_sma" in entry["row"]["instance"]
                 or target.get("nonphysical_overlap")
                 or target.get("frozen")
+                or target.get("mechanical_locked")
                 or target.get("placement_method")
             )
         )
@@ -1528,18 +1648,19 @@ def place_project(
             commit(entry, rect, pose, "hard H1 datum with conflict", cross_rects=cross_rects)
             continue
         placed = False
-        for centre in candidate_centres(desired, geometry["packing_grid_mm"], geometry["width_mm"], geometry["height_mm"]):
-            for candidate_rotation in (rotation, (rotation + 90.0) % 180.0):
+        correction_allow_outside = allow_outside and target.get("rotation_locked", False)
+        for centre in correction_centres(desired, target, geometry):
+            for candidate_rotation in correction_rotations(rotation, target):
                 candidate_pose = entry["poses"][candidate_rotation]
                 candidate = rect_at_centre(candidate_pose, centre)
                 candidate_cross = cross_rects_at_centre(candidate_pose, centre)
                 candidate_cross_body = cross_rects_at_centre(
                     candidate_pose, centre, "cross_body_rects"
                 )
-                if grids[side].is_free(candidate) and (
+                if not grids[side].conflicts(candidate, allow_outside=correction_allow_outside) and (
                     not candidate_cross_body
                     or not any(
-                        grids[opposite_side(side)].conflicts(rect)
+                        grids[opposite_side(side)].conflicts(rect, allow_outside=correction_allow_outside)
                         for rect in candidate_cross_body
                     )
                 ):
@@ -1664,7 +1785,10 @@ def place_project(
         row["method"] = correction["method"]
 
     placed_rows.sort(key=lambda row: natural_key(row["reference"]))
+    errors.extend(service_button_placement_errors(project, placed_rows, contract))
     add_battery_ntc_silkscreen(board, project, placed_rows)
+    from h6_r2_user_silkscreen import add_to_board as add_interface_labels
+    add_interface_labels(board, project, placed_rows, contract, add_text, pcbnew)
     critical_pad_pairs = critical_pad_pair_audit(
         project, entry_by_instance, contract, net_bindings
     )
@@ -1806,6 +1930,7 @@ def svg_bytes(audit: dict) -> bytes:
         "reviewed H6.0.3 signal-locality correction": ("#f0fdf4", "#16a34a"),
         "reviewed H6.0.3 edge-launch-land clearance correction": ("#eff6ff", "#1d4ed8"),
         "reviewed H6.0.3 native-silkscreen-clearance correction": ("#fdf2f8", "#db2777"),
+        "reviewed outward connector mouth datum": ("#ecfdf5", "#047857"),
         "hard H1 datum with conflict": ("#fee2e2", "#dc2626"),
     }
     out = [

@@ -10,19 +10,19 @@
     },
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "eef222700cf5874f2896bed964a68899a1d2025651d0e41f589fd1755f3493b0"
+      "sha256": "8a3fc89754a0f5ce8f8cf0d44a0b3fa9bbf3dcb99ededab9d95d3bd48f3d23f9"
     },
     "nets": {
       "path": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "sha256": "c51d4666ffea0be2006d1c85931fadc97feeaaec2d65d6efc342a5974cf4857d"
+      "sha256": "454c2143a455d3043cefeaa0feed8ec1a5134bd7d78ad8cc6d91617c71bebd13"
     },
     "symbols": {
       "path": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-      "sha256": "3792b8ac6d3bf9234c08e9da0587e7fc710545204b3e7e8aced54dfb23fadb39"
+      "sha256": "45a34fe7fafa6cee1dce236bee0b9b1c55c25ea53b9df3bb5857e56e140a08c5"
     },
     "symbol_library": {
       "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-      "sha256": "7617ce9f3e40cc0a16e6551b664183102a18ce51aa2a38c36e87055b24c961ad"
+      "sha256": "c7cba29ebef5a52d22ea6db0b2d32c77ff7d914fa73c631061c56f054011c042"
     }
   },
   "summary": {
@@ -343,7 +343,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_01_USB_PD_CHARGE.kicad_sch",
-      "sha256": "409320258afdc4336c3e0df4f5de3860abec1ee6b100a2c256cfd5b4656f6cc3"
+      "sha256": "d14e17acd7ab4e58b975f5ca176d9165c09571907b0112f68bd11ac0caf0c3b4"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_02_PACK_SAFETY_AON.kicad_sch",

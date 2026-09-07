@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "review_id": "H6-R2-NATIVE-MECHANICAL-INTERFACE-REVIEW-2026-09-07",
+  "checked_at_utc": "2026-09-07T16:21:55Z",
+  "scope": "Read-only review of both actual native PCBs, all board and footprint Edge.Cuts, drilled pads, the display slot/ZIF path, M1 mating and the battery holder. This snapshot is not a manufacturing release, a completed whole-device interface audit or an ERC/DRC waiver. Concurrent service-button and LED corrections are not represented by these native board hashes.",
+  "production_modified_by_this_review": false,
+  "manufacturing_released": false,
+  "sources": {
+    "ui_native": {
+      "path": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
+      "sha256": "426a3d0edbe043f447c2c2bdbddd66be46e7dd2d25897209a7f00c00fe25d410"
+    },
+    "rf_native": {
+      "path": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
+      "sha256": "4af37ef6fffdcb7ab38edbec0f9bb1fcc900e58edfab3404389b0e07333b825a"
+    },
+    "assembly_coordinate_model": {
+      "path": "hardware/product-design/assembly-coordinate-model.json",
+      "sha256": "d8790441e6adf94ec1e53546da6d87666ac93c21e5dfb48d8568d4688dbfc82c"
+    },
+    "display_mount": {
+      "path": "hardware/product-design/display-mount.json",
+      "sha256": "71bba240dfa5c3c8cb4f9ac269c4a9874f460981da7c196d072086c0dc3cc343"
+    },
+    "headset_footprint": {
+      "path": "hardware/ecad/libraries/Leshy2.pretty/SJ-43504-SMT-TR.kicad_mod",
+      "sha256": "db578dfdc43d6fe1a92f5ec649a19e6330b2dffd3f6e13b2037c249a8d18f5e4"
+    },
+    "holder_footprint": {
+      "path": "hardware/ecad/libraries/Leshy2.pretty/Keystone-1048P.kicad_mod",
+      "sha256": "dbcec95dcfe56d7d1e1bd2631640c065c30b064adc02f4f9810d4fc38ee02a9e"
+    }
+  },
+  "native_observations": {
+    "method": "KiCad pcbnew.LoadBoard read-only; GetDrawings plus every footprint GraphicalItems for Edge.Cuts; all pad attributes, positions and drill dimensions inspected. No PCB saved and no generator run.",
+    "outline": {
+      "both_boards_mm": [80.0, 150.0],
+      "both_board_thickness_mm": 1.6,
+      "corner_radius_mm": 2.0,
+      "ui_board_edge_items": 12,
+      "rf_board_edge_items": 8,
+      "footprint_edge_items_both_boards": 0,
+      "ui_only_internal_cutout": "27.0 x 1.2 mm display capsule, x[26.5,53.5], y[31.5,32.7], R0.6",
+      "rf_internal_or_side_cutouts": "none"
+    },
+    "mounting_axes": {
+      "both_projects": ["LESHY2-UI-R2", "LESHY2-RF-R2"],
+      "references": ["MH1", "MH2", "MH3", "MH4"],
+      "axes_mm": [[5.0, 11.0], [75.0, 11.0], [5.0, 145.0], [75.0, 145.0]],
+      "native_drill_diameter_mm": 2.7,
+      "native_drill_kind": "NPTH, not plated screw holes",
+      "declared_head_keepout_radius_mm": 4.0,
+      "minimum_pad_bbox_distance_outside_head_keepout_mm": {"LESHY2-UI-R2": 1.0076, "LESHY2-RF-R2": 0.6098},
+      "distance_scope": "Direct native pad-bounding-box XY check only; not exact component bodies, silkscreen glyphs, solder heights or final enclosure tolerance proof. Root owns the separate silkscreen review."
+    },
+    "drilled_pads": {
+      "LESHY2-UI-R2": {
+        "pth_count": 20,
+        "npth_count": 22,
+        "pth_references": ["J9", "J11", "U1"],
+        "npth_references": ["J9", "J11", "J18", "MH1", "MH2", "MH3", "MH4", "SW1", "SW2", "SW18", "SW19", "SW20", "SW21"],
+        "meaning": "USB shell tabs are soldered PTH; S3 pad41 has plated thermal vias, not lead tails. M1 and side-button guide holes are unplated plastic-post locations. No M1 electrical contact is through-hole."
+      },
+      "LESHY2-RF-R2": {
+        "pth_count": 39,
+        "npth_count": 32,
+        "pth_references": ["J1", "J4", "J10", "L32", "SW3", "U3"],
+        "npth_references": ["J1", "J4", "J10", "J12", "MH1", "MH2", "MH3", "MH4", "SW1", "SW2", "SW3"],
+        "meaning": "USB shell tabs, Cap socket J10 and encoder SW3 include real PTH terminals; L32 and U3 drilled electrical pads are vias. BT1 has no drill despite the holder locating features."
+      }
+    },
+    "display": {
+      "project": "LESHY2-UI-R2",
+      "instance": "display_connector",
+      "reference": "J1",
+      "side": "B.Cu",
+      "rotation_deg": 0.0,
+      "anchor_mm": [40.0, 35.4],
+      "body_bbox_mm": {"x": [26.5, 53.5], "y": [33.5, 37.3]},
+      "solder_contact_row_y_mm": 37.05,
+      "manufacturer_contact_1_mm": [52.25, 37.05],
+      "manufacturer_contact_50_mm": [27.75, 37.05],
+      "fitting_pad_centres_mm": [[26.95, 33.75], [53.05, 33.75]],
+      "mouth_direction": "board -Y, toward slot; opposite the solder-contact row in Hirose section Q",
+      "nominal_slot_to_body_mouth_gap_mm": 0.8,
+      "mating_numbering": "panel tail n -> manufacturer FH34 contact 51-n; all 50 entries explicit in display-mount.json",
+      "panel_bbox_mm": {"x": [11.73, 68.27], "y": [19.0, 103.96]},
+      "psa_bbox_mm": {"x": [14.6, 65.4], "y": [52.96, 103.76]},
+      "fpc_exit_direction": "board -Y, toward antenna bank",
+      "native_via_centres_in_psa_bbox": 0,
+      "native_front_copper_pads_in_psa_bbox": 0,
+      "coordinate_note": "H6 moves the complete H1 display/FPC/PSA construction by +8.50 mm in Y. H1 display-mount coordinates are historical source positions, not direct native coordinates. Relative slot/mouth geometry is unchanged."
+    }
+  },
+  "findings": {
+    "H6-MECH-M1-NATIVE-MATING": {
+      "status": "unresolved",
+      "affected": [
+        {"project": "LESHY2-UI-R2", "instance": "m1_ui_plug", "reference": "J18", "mpn": "Hirose FX8C-80P-SV1(92)"},
+        {"project": "LESHY2-RF-R2", "instance": "m1_rf_receptacle", "reference": "J12", "mpn": "Hirose FX8C-80S-SV5(92)"}
+      ],
+      "native_source_keys": ["ui_native", "rf_native", "assembly_coordinate_model"],
+      "native_evidence": {
+        "ui_anchor_mm": [42.5, 122.25],
+        "rf_anchor_mm": [42.5, 122.5],
+        "both_sides": "B.Cu",
+        "both_rotations_deg": 0.0,
+        "ui_pin_1_mm": [30.8, 119.55],
+        "rf_pin_1_mm": [30.8, 125.35],
+        "ui_pin_79_mm": [54.2, 119.55],
+        "rf_pin_79_mm": [54.2, 125.35],
+        "physical_stack_transform": "With both antenna edges at the top, turning the rear PCB so its B.Cu faces UI B.Cu reverses X: x_world=80-x_RF, y_world=y_RF. This is also the explicit rear-outer/rf-inner transform in assembly-coordinate-model.json.",
+        "rf_anchor_under_declared_physical_transform_mm": [37.5, 122.5],
+        "offset_from_ui_under_that_transform_mm": [-5.0, 0.25],
+        "polarization_observation": "Primary mounting-side patterns put the plug polarization mark at lower left and socket mark at upper left. KiCad local pad1 follows these corners. Merely centring the current B0/B0 footprints would still place the socket opposite the wrong contact end after physical X reflection.",
+        "frame_ambiguity": "H6 build_target_index mixes world_bbox seeds with frame labels, so existing same-coordinate native anchors are not independent proof of physical registration. Do not declare a mating pass until a single native-to-assembly transform and both keyed contact arrays are checked."
+      },
+      "primary": [
+        {"url": "https://www.hirose.com/en/product/document?clcode=CL0578-0523-1-92&documentid=0000988829&documenttype=2DDrawing&lang=en&productname=FX8C-80P-SV1%2892%29&series=FX8C", "page": 1, "document": "EDC3-151087-22, FX8C-80P-SV1(92)", "evidence_file": "fx8p.pdf", "sha256": "284ff7722246ed27f25046937087f56d0552a50bad4e83e534476cd193728cc1"},
+        {"url": "https://www.hirose.com/en/product/document?clcode=CL0578-0823-5-92&documentid=0000988573&documenttype=2DDrawing&lang=en&productname=FX8C-80S-SV5%2892%29&series=FX8C", "page": 1, "document": "EDC3-151023-22, FX8C-80S-SV5(92)", "evidence_file": "fx8s.pdf", "sha256": "b86b3bb83465ff96e88d8acfa9462075d524ae4e448bd74abb927b7455c05f1e"}
+      ],
+      "correction_needed": "Resolve the H6 frame explicitly, align the exact physical body axes and polarization, verify every M1 mating contact/net, then collision-check, reroute and repeat native DRC. Conditional geometry candidate, not an adopted placement: preserve UI B0/[42.5,122.25] and use RF B180/[37.5,122.25]. Different SMT tail-row offsets on P/S are not errors if their physical mating axes agree.",
+      "not_ready": true
+    },
+    "H6-MECH-SJ43504-MISSING-CUTOUT": {
+      "status": "confirmed_defect",
+      "affected": [{"project": "LESHY2-RF-R2", "instance": "headphone_jack", "reference": "U83", "mpn": "Same Sky SJ-43504-SMT-TR"}],
+      "native_source_keys": ["rf_native", "headset_footprint"],
+      "native_evidence": {
+        "side": "B.Cu", "rotation_deg": 90.0, "anchor_mm": [72.7, 25.75],
+        "current_fab_bbox_mm": {"x": [66.95, 78.45], "y": [22.35, 29.15]},
+        "rf_edge_geometry": "Only the outer 80x150 rounded rectangle; no internal/edge cutout exists in board or footprint items.",
+        "footprint_geometry": "Six SMD lands and rectangular F.Fab/F.CrtYd geometry; no Edge.Cuts."
+      },
+      "primary": [{"url": "https://www.sameskydevices.com/product/resource/sj-43504-smt-tr.pdf", "page": 2, "document": "Rev 1.06, 2024-09-12, Recommended PCB Layout Top View", "evidence_file": "sj.pdf", "sha256": "19185e4d177a65326b6b9739a58ecb26e133c1a60a3077a1a417da75f9d90b16", "geometry": "Mid-mount body requires the illustrated PCB cutout, 6.80-mm basic width and 11.50-mm basic depth with asymmetric 3.35/3.45 sides and R0.30 side reliefs. PCB tolerance is +/-0.05 mm. The illustrated profile cannot be replaced by a guessed F.Fab rectangle."}],
+      "correction_needed": "Materialize the exact manufacturer cutout and transform it with the accepted connector pose. Cutout-to-edge closure, drill/router capability, all-layer copper clearance, neighbouring footprints and opposite-face body intrusion must be checked. Repeat native DRC after the board outline changes.",
+      "not_ready": true
+    },
+    "H6-MECH-1048P-LOCATOR-HOLES": {
+      "status": "confirmed_defect",
+      "affected": [{"project": "LESHY2-RF-R2", "instance": "pack_holder", "reference": "BT1", "mpn": "Keystone 1048P"}],
+      "native_source_keys": ["rf_native", "holder_footprint"],
+      "native_evidence": {"side": "F.Cu", "rotation_deg": 90.0, "anchor_mm": [42.99, 85.0], "holder_pad_count": 4, "holder_drill_count": 0, "holder_edge_cut_count": 0},
+      "primary": [{"url": "https://www.keyelco.com/userAssets/file/K75p29.pdf", "page": 29, "document": "Keystone K75 2025 catalogue, DUAL CELL / SURFACE MOUNT / Pad Layout", "evidence_file": "K75p29.pdf", "sha256": "47ea3292a9c2e3c47b21f13c84777ec069dbf50b46d3f426d790416bb143da4c", "detail_render": "1048-catalog-detail.png", "geometry": "The holder side view includes protruding 3.7-mm-diameter retaining feet and a 1.57-mm-diameter, 1.57-mm-long locator. The pad layout specifies two diameter3.5-mm holes on opposite corners, a diameter2.4-mm locator hole and two diameter3.2-mm body-mount holes. Retaining-feature centre pitch is55.2mm longitudinal and35.0mm transverse."}],
+      "correction_needed": "Add the source-backed non-electrical hole geometry and register the asymmetric locator to the exact holder orientation. Verify which two3.2-mm body-mount holes are optional fastener clearances instead of treating them as required electrical vias. Obtain the exact part drawing/CAD to bind the small locator axis before manufacture, then clear every layer and inner-face component. Do not clip the moulded features or silently increase the holder Z to bypass missing holes.",
+      "orientation_candidate_not_release_data": {"two_diagonal_3_5mm_holes_if_catalogue_layout_is_the_footprint_top_view_mm": [[25.49, 57.4], [60.49, 112.6]], "axis_registration_status": "Must be independently tied to the accepted asymmetric holder orientation; not yet an adopted drill placement."},
+      "not_ready": true
+    },
+    "H6-MECH-1048P-SMT-LAND-SIZE": {
+      "status": "confirmed_defect",
+      "affected": [{"project": "LESHY2-RF-R2", "instance": "pack_holder", "reference": "BT1", "mpn": "Keystone 1048P"}],
+      "native_source_keys": ["rf_native", "holder_footprint"],
+      "native_evidence": {"local_pad_size_mm": [4.0, 6.0], "local_pad_centres_mm": [[-41.0, -9.55], [41.0, -9.55], [-41.0, 9.55], [41.0, 9.55]], "world_centres_mm": [[33.44, 126.0], [33.44, 44.0], [52.54, 126.0], [52.54, 44.0]]},
+      "primary": [{"url": "https://www.keyelco.com/userAssets/file/K75p29.pdf", "page": 29, "section": "DUAL CELL / SURFACE MOUNT / Pad Layout", "evidence_file": "K75p29.pdf", "sha256": "47ea3292a9c2e3c47b21f13c84777ec069dbf50b46d3f426d790416bb143da4c", "minimum_land_dimensions_mm": [7.3, 6.4], "minimum_outer_span_mm": 86.0}],
+      "correction_needed": "Rebuild the holder's exact recommended land pattern, not just enlarge around the current pad centres blindly. Check outer-span datum, cell axes/polarity, M1 locator clearance, full copper/net changes and native DRC. The present 4x6 lands do not meet the published7.3x6.4 minimum.",
+      "not_ready": true
+    },
+    "H6-MECH-DISPLAY-FPC-FOLD-ENVELOPE": {
+      "status": "unresolved",
+      "affected": [{"project": "LESHY2-UI-R2", "instance": "display", "reference": null, "mpn": "EastRising ER-TFT035IPS-6 + ER-TPC035-6"}, {"project": "LESHY2-UI-R2", "instance": "display_connector", "reference": "J1", "mpn": "Hirose FH34SRJ-50S-0.5SH(50)"}],
+      "native_source_keys": ["ui_native", "display_mount"],
+      "native_evidence": "The actual Edge.Cuts slot and J1 B.Cu/0-degree mouth direction are consistent with the no-twist upper-edge fold and inverse50-contact numbering. This establishes the planar path and orientation, not a proven folded 3D envelope.",
+      "primary": [
+        {"url": "https://www.buydisplay.com/download/manual/ER-TFT035IPS-6_Datasheet.pdf", "section": "Mechanical drawing of exact configured panel and FPC", "geometry": "Tail length30.16+/-0.50mm, width25.50+/-0.15mm, stiffener0.30mm; the drawing does not alone close bend radius or component-bearing folded stack height."},
+        {"url": "https://www.hirose.com/en/product/document?clcode=CL0580-1266-2-50&documentid=0001483059&documenttype=2DDrawing&lang=en&productname=FH34SRJ-50S-0.5SH%2850%29&series=FH34SRJ", "page": 1, "document": "EDC-159714-50-08, section Q and mounting-side pattern", "evidence_file": "fh34.pdf", "sha256": "a0bb95cc2f312e07d5dbc679f2051e23e0ce90c6d740d52d6f50edc6be9d46ea"}
+      ],
+      "correction_needed": "Retain the explicit unclosed construction gates: actual neutral-axis route at most24.66mm, at least5mm relaxed reserve versus29.66mm minimum tail, folded component stack at most0.714mm with selected stock PSA, actual clearance at least0.20mm and a supplier/lot-supported bend radius. Neither a flat drawing nor dual-contact ZIF proves that the assembled flex can be creased, stretched or compressed. Validate before irreversible panel bonding; source-backed feasibility remains required before a manufacturing release.",
+      "not_ready": true
+    },
+    "H6-MECH-OPPOSING-BODY-AND-TAIL-Z": {
+      "status": "unresolved",
+      "affected": [{"project": "LESHY2-UI-R2", "instance": "m1_ui_plug", "reference": "J18"}, {"project": "LESHY2-RF-R2", "instance": "m1_rf_receptacle", "reference": "J12"}, {"project": "LESHY2-RF-R2", "instance": "u214_connector", "reference": "J10"}, {"project": "LESHY2-RF-R2", "instance": "encoder", "reference": "SW3"}, {"project": "LESHY2-RF-R2", "instance": "pack_holder", "reference": "BT1"}],
+      "native_source_keys": ["ui_native", "rf_native"],
+      "native_evidence": "Both native boards use B.Cu as inner face with an intended11mm gap. The existing placement cross-face reserves account for pad/drill XY boxes, not fully tolerance-bounded lead protrusion, solder fillets, moulded posts, counterpart bodies or inserted Cap pins. After the missing holder holes and M1 pose are corrected, these quantities change materially.",
+      "primary": [],
+      "correction_needed": "Keep H6.0.7 assembled-body verification open. Bind the exact board-to-world transform, populated body and through-hole tail maximums and actual hole/stop tolerances; rerun opposing-body and cable/FPC clearance after these interface corrections. Current2D DRC cannot certify this volume.",
+      "not_ready": true
+    },
+    "H6-MECH-SMA-FINISHED-THICKNESS-FIT": {
+      "status": "unresolved",
+      "affected": [{"project": "LESHY2-UI-R2", "instance": "all_five_external_sma_ports", "reference": null}, {"project": "LESHY2-RF-R2", "instance": "all_five_external_sma_ports", "reference": null}],
+      "native_source_keys": ["ui_native", "rf_native"],
+      "native_evidence": {"both_nominal_pcb_thickness_mm": 1.6, "declared_pcb_finished_range_mm": [1.44, 1.76], "exact175_slot_range_mm": [1.65, 1.85], "worst_undeformed_clearance_mm": -0.11},
+      "primary": [{"url": "https://www.mouser.com/datasheet/3/1507/1/RFPC-SMA31-FN.pdf", "page": 1, "section": "G=1.75+/-0.10mm,175 option"}, {"url": "https://www.mouser.com/datasheet/3/1507/1/RFPC_SMA32_FN.pdf", "page": 1, "section": "G=1.75+/-0.10mm,175 option"}, {"url": "https://jlcpcb.com/capabilities/pcb-capabilities", "section": "Finished PCB thickness tolerance"}],
+      "correction_needed": "Preserve the existing supplier-confirmation gate in h6-r2-mechanical-stack.json. Obtain a supported finished-thickness range or explicit acceptance of full declared fit; do not credit unverified prong spreading. No MPN/stack substitution is adopted by this review.",
+      "not_ready": true
+    }
+  }
+}

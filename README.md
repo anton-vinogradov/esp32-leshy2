@@ -78,12 +78,13 @@ Open either board for the full-size SVG.
 
 - H0–H5 are reviewed on baseline R2, including the H2 native production ECAD; their immutable reports are collected in [one index](docs/stage-results.md).
 - Both native KiCad boards pass the current [exact-placement checks](docs/h6-r2-exact-placement.md).
+- The [native interface review](docs/h6-r2-interface-review.md) reopened connector orientation, mating, required cutouts and silkscreen checks. A collision-free layout is not yet a physically assembleable device.
 - Routing is in progress. Live copper/connectivity counts, hash-bound DRC results and the electrical-review limitations have one owner: [H6.0.3-R1](docs/h6-r2-current-routing.md).
 - Native ERC currently uses passive symbol pins; zero findings do not prove correct rail sources or compatible outputs. This electrical-semantics gap blocks release; [corrected pin mappings and partial typed-ERC review](docs/h6-r2-electrical-semantics.md) describe the current evidence and remaining work.
 
 ## What remains
 
-1. Close the electrical-pin/rail-source review gap, then finish every connection and zero schematic-to-PCB parity in H6.0.3.
+1. Correct the native interface/assembly findings and close the electrical-pin/rail-source review gap, then finish every connection and zero schematic-to-PCB parity in H6.0.3.
 2. Re-run power/thermal, USB/i8080/M1, RF/Airband, plane and return-current checks on the actual copper.
 3. Check STEP, enclosure, cables and final assembly; produce Gerber/BOM/CPL and complete independent DFM/CPL review.
 4. Build the first-spin firmware package: reproducible images, fake HAL, available emulation, display test patterns and a safe first-power-on procedure.

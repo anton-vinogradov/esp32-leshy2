@@ -6,17 +6,17 @@
   "sources": {
     "contact_materialization": {
       "path": "hardware/ecad/generated/H2-R2-contact-materialization.json",
-      "sha256": "b1775c9228909f4f3f55d28714faf7831f6c998df5a93828b7378575b1cc7b4f"
+      "sha256": "b7e65ebb7b97441c100ea905e711a9a618068a398576d9fddba4e0c2e6929047"
     },
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "b76e512e7544e6ad9ac5a6bbf58ee7d20348ae1198b4be80ccce0efbcc0a5407"
+      "sha256": "8f9b33f4e7725a4e22f8a52b0906745d4b76d10786fccbd1e0257edfd89dcf54"
     }
   },
   "library": {
     "id": "Leshy2_R2",
     "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-    "sha256": "7617ce9f3e40cc0a16e6551b664183102a18ce51aa2a38c36e87055b24c961ad",
+    "sha256": "c7cba29ebef5a52d22ea6db0b2d32c77ff7d914fa73c631061c56f054011c042",
     "symbol_count": 245,
     "pin_count": 1571,
     "external_interface_metadata_count": 3
@@ -6002,7 +6002,7 @@
       "symbol_id": "Leshy2_R2:jae_dx07s016ja1r1500",
       "reference_prefix": "J",
       "value": "JAE DX07S016JA1R1500",
-      "footprint": "Connector_USB:USB_C_Receptacle_JAE_DX07S016JA1R1500",
+      "footprint": "Leshy2_R2:USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk",
       "pin_count": 17,
       "no_connect_pin_count": 0,
       "external_interfaces": [],

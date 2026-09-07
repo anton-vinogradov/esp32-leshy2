@@ -166,12 +166,12 @@
     "symbol_identity_count": 245,
     "footprint_identity_count": 245,
     "logical_contact_count": 1617,
-    "historical_package_hints_reconciled": 189,
+    "historical_package_hints_reconciled": 188,
     "historical_package_conflicts_resolved": 5,
-    "explicit_current_footprint_overrides": 56,
-    "standard_kicad_footprint_identities": 206,
+    "explicit_current_footprint_overrides": 57,
+    "standard_kicad_footprint_identities": 205,
     "reconciled_local_footprint_definitions": 28,
-    "new_exact_footprint_geometries_materialized": 11,
+    "new_exact_footprint_geometries_materialized": 12,
     "schematic_symbols_or_footprint_files_created": 0,
     "native_schematic_nets_created": 0,
     "unresolved_groups": 0
@@ -4065,12 +4065,12 @@
         "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8440/MB-0350E_DX07_16-POS_RECEPTACLE.pdf",
         "checked": "2026-08-18"
       },
-      "footprint": "Connector_USB:USB_C_Receptacle_JAE_DX07S016JA1R1500",
-      "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",
+      "footprint": "Leshy2_R2:USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk",
+      "footprint_resolution": "explicit_current_override",
       "footprint_definition": {
-        "status": "exact_package_identity_mapped_to_standard_kicad_library",
-        "path": null,
-        "sha256": null
+        "status": "current_exact_local_definition_materialized",
+        "path": "hardware/ecad/libraries/Leshy2_R2.pretty/USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk.kicad_mod",
+        "sha256": "98a0ff7cc61bfbbea33bb47eeae879de994bf6b1b2b6d253190f03bf58bc8b98"
       },
       "historical_hint_files": [
         "hardware/ecad/generated/H2-RF01-usb-pd-charge.json"

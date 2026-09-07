@@ -3,7 +3,14 @@
   "baseline": "R2",
   "current_stage": "H6",
   "current_substep": "H6.0.3-R1",
-  "current_detail": "H6.0.1-R1 is complete and the former H6.0.2-R1 routing slice remains historical evidence. H6.0.3-R1 widens both boards to 80 × 150 mm, preserves all 1208 exact positions and external interfaces, and owns routing all 789 reviewed canonical nets / 823 board-local physical nets plus native schematic/PCB parity and baseline-matched DRC. Purchasing and fabrication remain unauthorized.",
+  "current_detail": "H6.0.1-R1 and the former H6.0.2-R1 routing slice remain historical evidence, not proof of current physical assembly. The native interface review reopened connector orientation/mating, holder and audio cutouts, indicator faces and user silkscreen. H6.0.3-R1 owns correcting these findings on both 80 × 150 mm boards, all current native connectivity and fresh parity/DRC; exact live counts belong to H6-R2-current-routing-audit.json. Purchasing and fabrication remain unauthorized.",
+  "native_interface_review": {
+    "status": "review_required",
+    "report": "docs/h6-r2-interface-review.md",
+    "connector_observations": "hardware/layout/h6-r2-connector-review-findings.json",
+    "mechanical_observations": "hardware/layout/h6-r2-interface-review-findings.json",
+    "assembled_interface_gate_pass": false
+  },
   "preorder_release": {
     "status": "blocked",
     "assembled_device_quantity": 1,

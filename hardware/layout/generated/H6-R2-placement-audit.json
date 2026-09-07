@@ -5,21 +5,21 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "52c4deffb903282ae221e4ee9e700e8269182098a7759da9eeee6835ae09f6e9",
+    "contract_sha256": "ab9f53ce43da72426dacd377769738a8074c3c0ae5bb0b4d8c1f9a9402a2dc77",
     "placement_freeze": "hardware/layout/h6-r2-placement-freeze.json",
-    "placement_freeze_sha256": "77e508609938b1ca0812c88b7914893024bb0eff04579ec7e04845d28442f620",
+    "placement_freeze_sha256": "4beba8d0afa87db825898a0ba14ca2d1f4fa79de36aecf8d0720626b59993109",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
     "coordinate_model_sha256": "cc2aaeacd6de560fb728ef82767184738e24bbf831a6cc706c70299cf2077636",
     "instance_ledger": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-    "instance_ledger_sha256": "eef222700cf5874f2896bed964a68899a1d2025651d0e41f589fd1755f3493b0",
+    "instance_ledger_sha256": "8a3fc89754a0f5ce8f8cf0d44a0b3fa9bbf3dcb99ededab9d95d3bd48f3d23f9",
     "net_ledger": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-    "net_ledger_sha256": "c51d4666ffea0be2006d1c85931fadc97feeaaec2d65d6efc342a5974cf4857d",
+    "net_ledger_sha256": "454c2143a455d3043cefeaa0feed8ec1a5134bd7d78ad8cc6d91617c71bebd13",
     "symbol_library": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-    "symbol_library_sha256": "3792b8ac6d3bf9234c08e9da0587e7fc710545204b3e7e8aced54dfb23fadb39",
+    "symbol_library_sha256": "45a34fe7fafa6cee1dce236bee0b9b1c55c25ea53b9df3bb5857e56e140a08c5",
     "kicad_net_bindings": "hardware/layout/generated/H6-R2-kicad-net-bindings.json",
-    "kicad_net_bindings_sha256": "9adab0254480b69da2e1a33c875cafc1b7d9680543e1876e9468ee1e979cbfc7"
+    "kicad_net_bindings_sha256": "c4b8747a8472fbdcaa8a57da8ecaf43d54e8a1bce13f77752f05efd4d0d6bfa1"
   },
   "summary": {
     "board_count": 2,
@@ -63,19 +63,21 @@
       "schematic_instance_count": 428,
       "placed_instance_count": 428,
       "side_counts": {
-        "B.Cu": 408,
-        "F.Cu": 20
+        "B.Cu": 398,
+        "F.Cu": 30
       },
       "method_counts": {
-        "connectivity/sheet automatic seed": 332,
+        "connectivity/sheet automatic seed": 319,
         "exact H1 seed": 24,
-        "hard H1 datum": 26,
-        "nearest exact-footprint correction": 11,
+        "hard H1 datum": 24,
+        "nearest exact-footprint correction": 9,
         "reviewed H6.0.2 fan-out correction": 3,
         "reviewed H6.0.2 oscillator-locality correction": 11,
         "reviewed H6.0.3 edge-launch-land clearance correction": 5,
         "reviewed H6.0.3 power-locality correction": 1,
-        "reviewed H6.0.3 signal-locality correction": 15
+        "reviewed H6.0.3 signal-locality correction": 15,
+        "reviewed outward connector mouth datum": 7,
+        "reviewed outward user-indicator datum": 10
       },
       "net_count": 306,
       "mechanical": [
@@ -151,15 +153,15 @@
       "boundary_exceptions": [
         {
           "instance": "sd",
-          "reason": "frozen before routed copper",
+          "reason": "board-edge DM3AT card entrance faces bottom +Y; register the actual local +8.125-mm shell mouth flush with native y=150 and preserve the complete push/eject access envelope",
           "bbox_mm": {
             "x": [
-              52.08,
-              69.87
+              53.080000000000005,
+              68.87
             ],
             "y": [
-              135.17999999999998,
-              150.97
+              133.01,
+              150.8
             ]
           }
         },
@@ -207,29 +209,29 @@
         },
         {
           "instance": "c5_service_usb_connector",
-          "reason": "move the inner-side USB-C shield stakes fully clear of the front-side DOWN switch without changing the bottom-edge service role",
+          "reason": "board-edge GCT USB4105 entrance faces bottom +Y; exact manufacturer PCB-edge datum local +3.675 mm lands on native y=150, not the courtyard centre",
           "bbox_mm": {
             "x": [
               20.735,
               31.465000000000003
             ],
             "y": [
-              141.81,
-              150.83999999999997
+              141.51999999999998,
+              150.54999999999998
             ]
           }
         },
         {
           "instance": "hub_rp_service_usb_connector",
-          "reason": "retain 0.50 mm exact-courtyard clearance from the lower-left screw-head keepout while opening a 0.50 mm assembly gap to C5 USB",
+          "reason": "board-edge GCT USB4105 entrance faces bottom +Y; exact manufacturer PCB-edge datum local +3.675 mm lands on native y=150, not the courtyard centre",
           "bbox_mm": {
             "x": [
               9.504999999999999,
               20.235
             ],
             "y": [
-              141.81,
-              150.83999999999997
+              141.51999999999998,
+              150.54999999999998
             ]
           }
         },
@@ -249,7 +251,7 @@
         },
         {
           "instance": "s3_boot_button",
-          "reason": "frozen before routed copper",
+          "reason": "board-edge service actuator faces outward through the left side",
           "bbox_mm": {
             "x": [
               -0.5200000000000002,
@@ -263,7 +265,7 @@
         },
         {
           "instance": "s3_reset_button",
-          "reason": "frozen before routed copper",
+          "reason": "board-edge service actuator faces outward through the left side",
           "bbox_mm": {
             "x": [
               -0.5200000000000002,
@@ -277,7 +279,7 @@
         },
         {
           "instance": "c5_boot_button",
-          "reason": "frozen before routed copper",
+          "reason": "board-edge service actuator faces outward through the right side",
           "bbox_mm": {
             "x": [
               76.08,
@@ -291,7 +293,7 @@
         },
         {
           "instance": "c5_reset_button",
-          "reason": "frozen before routed copper",
+          "reason": "board-edge service actuator faces outward through the right side",
           "bbox_mm": {
             "x": [
               76.08,
@@ -300,6 +302,34 @@
             "y": [
               114.375,
               120.125
+            ]
+          }
+        },
+        {
+          "instance": "hub_rp_boot_button",
+          "reason": "board-edge service actuator faces outward through the right side",
+          "bbox_mm": {
+            "x": [
+              76.08,
+              80.52
+            ],
+            "y": [
+              135.125,
+              140.875
+            ]
+          }
+        },
+        {
+          "instance": "hub_rp_reset_button",
+          "reason": "board-edge service actuator faces outward through the right side",
+          "bbox_mm": {
+            "x": [
+              76.08,
+              80.52
+            ],
+            "y": [
+              128.625,
+              134.375
             ]
           }
         },
@@ -3025,56 +3055,56 @@
           "instance": "c5_tx_led",
           "reference": "D1",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
-          "side": "B.Cu",
+          "side": "F.Cu",
           "footprint": "LED_SMD:LED_0603_1608Metric",
-          "method": "exact H1 seed",
+          "method": "reviewed outward user-indicator datum",
           "courtyard_bbox_mm": {
             "x": [
-              39.725,
-              41.275
+              22.675,
+              25.724999999999998
             ],
             "y": [
-              77.85,
-              80.9
+              104.125,
+              105.67500000000001
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            40.5,
-            79.375
+            24.2,
+            104.9
           ],
           "footprint_anchor_mm": [
-            40.5,
-            79.375
+            24.2,
+            104.9
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
           "instance": "cc_tx_led",
           "reference": "D2",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
-          "side": "B.Cu",
+          "side": "F.Cu",
           "footprint": "LED_SMD:LED_0603_1608Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed outward user-indicator datum",
           "courtyard_bbox_mm": {
             "x": [
-              41.1,
-              44.15
+              6.875,
+              9.925
             ],
             "y": [
-              126.6,
-              128.15
+              110.625,
+              112.17500000000001
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            42.625,
-            127.375
+            8.4,
+            111.4
           ],
           "footprint_anchor_mm": [
-            42.625,
-            127.375
+            8.4,
+            111.4
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -3083,27 +3113,27 @@
           "instance": "ext_tx_led",
           "reference": "D3",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
-          "side": "B.Cu",
+          "side": "F.Cu",
           "footprint": "LED_SMD:LED_0603_1608Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed outward user-indicator datum",
           "courtyard_bbox_mm": {
             "x": [
-              32.85,
-              35.9
+              54.275,
+              57.324999999999996
             ],
             "y": [
-              126.6,
-              128.15
+              110.625,
+              112.17500000000001
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            34.375,
-            127.375
+            55.8,
+            111.4
           ],
           "footprint_anchor_mm": [
-            34.375,
-            127.375
+            55.8,
+            111.4
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -3112,27 +3142,27 @@
           "instance": "fault_led",
           "reference": "D4",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
-          "side": "B.Cu",
+          "side": "F.Cu",
           "footprint": "LED_SMD:LED_0603_1608Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed outward user-indicator datum",
           "courtyard_bbox_mm": {
             "x": [
-              32.85,
-              35.9
+              70.07499999999999,
+              73.125
             ],
             "y": [
-              88.35,
-              89.9
+              110.625,
+              112.17500000000001
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            34.375,
-            89.125
+            71.6,
+            111.4
           ],
           "footprint_anchor_mm": [
-            34.375,
-            89.125
+            71.6,
+            111.4
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -3141,27 +3171,27 @@
           "instance": "ir_tx_led",
           "reference": "D5",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
-          "side": "B.Cu",
+          "side": "F.Cu",
           "footprint": "LED_SMD:LED_0603_1608Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed outward user-indicator datum",
           "courtyard_bbox_mm": {
             "x": [
-              39.85,
-              42.9
+              38.475,
+              41.525
             ],
             "y": [
-              81.1,
-              82.65
+              110.625,
+              112.17500000000001
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            41.375,
-            81.875
+            40.0,
+            111.4
           ],
           "footprint_anchor_mm": [
-            41.375,
-            81.875
+            40.0,
+            111.4
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -3170,27 +3200,27 @@
           "instance": "nrf0_tx_led",
           "reference": "D6",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
-          "side": "B.Cu",
+          "side": "F.Cu",
           "footprint": "LED_SMD:LED_0603_1608Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed outward user-indicator datum",
           "courtyard_bbox_mm": {
             "x": [
-              24.6,
-              27.65
+              38.475,
+              41.525
             ],
             "y": [
-              105.35,
-              106.9
+              104.125,
+              105.67500000000001
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            26.125,
-            106.125
+            40.0,
+            104.9
           ],
           "footprint_anchor_mm": [
-            26.125,
-            106.125
+            40.0,
+            104.9
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -3199,27 +3229,27 @@
           "instance": "nrf1_tx_led",
           "reference": "D7",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
-          "side": "B.Cu",
+          "side": "F.Cu",
           "footprint": "LED_SMD:LED_0603_1608Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed outward user-indicator datum",
           "courtyard_bbox_mm": {
             "x": [
-              24.6,
-              27.65
+              54.275,
+              57.324999999999996
             ],
             "y": [
-              107.1,
-              108.65
+              104.125,
+              105.67500000000001
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            26.125,
-            107.875
+            55.8,
+            104.9
           ],
           "footprint_anchor_mm": [
-            26.125,
-            107.875
+            55.8,
+            104.9
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -3228,27 +3258,27 @@
           "instance": "nrf2_tx_led",
           "reference": "D8",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
-          "side": "B.Cu",
+          "side": "F.Cu",
           "footprint": "LED_SMD:LED_0603_1608Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed outward user-indicator datum",
           "courtyard_bbox_mm": {
             "x": [
-              24.6,
-              27.65
+              70.07499999999999,
+              73.125
             ],
             "y": [
-              103.6,
-              105.15
+              104.125,
+              105.67500000000001
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            26.125,
-            104.375
+            71.6,
+            104.9
           ],
           "footprint_anchor_mm": [
-            26.125,
-            104.375
+            71.6,
+            104.9
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -3257,27 +3287,27 @@
           "instance": "s3_tx_led",
           "reference": "D9",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
-          "side": "B.Cu",
+          "side": "F.Cu",
           "footprint": "LED_SMD:LED_0603_1608Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed outward user-indicator datum",
           "courtyard_bbox_mm": {
             "x": [
-              22.35,
-              25.4
+              6.875,
+              9.925
             ],
             "y": [
-              101.85,
-              103.4
+              104.125,
+              105.67500000000001
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            23.875,
-            102.625
+            8.4,
+            104.9
           ],
           "footprint_anchor_mm": [
-            23.875,
-            102.625
+            8.4,
+            104.9
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -3286,27 +3316,27 @@
           "instance": "voice_tx_led",
           "reference": "D10",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
-          "side": "B.Cu",
+          "side": "F.Cu",
           "footprint": "LED_SMD:LED_0603_1608Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed outward user-indicator datum",
           "courtyard_bbox_mm": {
             "x": [
-              44.35,
-              47.4
+              22.675,
+              25.724999999999998
             ],
             "y": [
-              126.6,
-              128.15
+              110.625,
+              112.17500000000001
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            45.875,
-            127.375
+            24.2,
+            111.4
           ],
           "footprint_anchor_mm": [
-            45.875,
-            127.375
+            24.2,
+            111.4
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -3483,27 +3513,27 @@
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "B.Cu",
           "footprint": "Connector_Card:microSD_HC_Hirose_DM3AT-SF-PEJM5",
-          "method": "exact H1 seed",
+          "method": "reviewed outward connector mouth datum",
           "courtyard_bbox_mm": {
             "x": [
-              52.08,
-              69.87
+              53.080000000000005,
+              68.87
             ],
             "y": [
-              135.17999999999998,
-              150.97
+              133.01,
+              150.8
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             60.975,
-            143.075
+            141.905
           ],
           "footprint_anchor_mm": [
             61.005,
-            143.105
+            141.875
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -3620,15 +3650,15 @@
           "sheet": "UI_20_C5_WIFI_IR_SERVICE",
           "side": "B.Cu",
           "footprint": "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
-          "method": "hard H1 datum",
+          "method": "reviewed outward connector mouth datum",
           "courtyard_bbox_mm": {
             "x": [
               20.735,
               31.465000000000003
             ],
             "y": [
-              141.81,
-              150.83999999999997
+              141.51999999999998,
+              150.54999999999998
             ]
           },
           "opposite_face_keepout_bboxes_mm": [
@@ -3638,8 +3668,8 @@
                 22.28
               ],
               "y": [
-                144.06,
-                145.85999999999999
+                142.17,
+                144.26999999999998
               ]
             },
             {
@@ -3648,28 +3678,8 @@
                 30.92
               ],
               "y": [
-                144.06,
-                145.85999999999999
-              ]
-            },
-            {
-              "x": [
-                21.28,
-                22.28
-              ],
-              "y": [
-                148.09,
-                150.19
-              ]
-            },
-            {
-              "x": [
-                29.92,
-                30.92
-              ],
-              "y": [
-                148.09,
-                150.19
+                142.17,
+                144.26999999999998
               ]
             },
             {
@@ -3678,8 +3688,8 @@
                 23.535
               ],
               "y": [
-                148.315,
-                148.965
+                143.39499999999998,
+                144.045
               ]
             },
             {
@@ -3688,20 +3698,40 @@
                 29.315
               ],
               "y": [
-                148.315,
-                148.965
+                143.39499999999998,
+                144.045
+              ]
+            },
+            {
+              "x": [
+                21.28,
+                22.28
+              ],
+              "y": [
+                146.5,
+                148.29999999999998
+              ]
+            },
+            {
+              "x": [
+                29.92,
+                30.92
+              ],
+              "y": [
+                146.5,
+                148.29999999999998
               ]
             }
           ],
           "courtyard_centre_mm": [
             26.1,
-            146.325
+            146.035
           ],
           "footprint_anchor_mm": [
             26.1,
-            146.035
+            146.325
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -3739,15 +3769,15 @@
           "sheet": "UI_30_HUB_RP_CORE_SERVICE",
           "side": "B.Cu",
           "footprint": "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
-          "method": "hard H1 datum",
+          "method": "reviewed outward connector mouth datum",
           "courtyard_bbox_mm": {
             "x": [
               9.504999999999999,
               20.235
             ],
             "y": [
-              141.81,
-              150.83999999999997
+              141.51999999999998,
+              150.54999999999998
             ]
           },
           "opposite_face_keepout_bboxes_mm": [
@@ -3757,8 +3787,8 @@
                 11.049999999999999
               ],
               "y": [
-                144.06,
-                145.85999999999999
+                142.17,
+                144.26999999999998
               ]
             },
             {
@@ -3767,28 +3797,8 @@
                 19.689999999999998
               ],
               "y": [
-                144.06,
-                145.85999999999999
-              ]
-            },
-            {
-              "x": [
-                10.049999999999999,
-                11.049999999999999
-              ],
-              "y": [
-                148.09,
-                150.19
-              ]
-            },
-            {
-              "x": [
-                18.689999999999998,
-                19.689999999999998
-              ],
-              "y": [
-                148.09,
-                150.19
+                142.17,
+                144.26999999999998
               ]
             },
             {
@@ -3797,8 +3807,8 @@
                 12.305
               ],
               "y": [
-                148.315,
-                148.965
+                143.39499999999998,
+                144.045
               ]
             },
             {
@@ -3807,20 +3817,40 @@
                 18.085
               ],
               "y": [
-                148.315,
-                148.965
+                143.39499999999998,
+                144.045
+              ]
+            },
+            {
+              "x": [
+                10.049999999999999,
+                11.049999999999999
+              ],
+              "y": [
+                146.5,
+                148.29999999999998
+              ]
+            },
+            {
+              "x": [
+                18.689999999999998,
+                19.689999999999998
+              ],
+              "y": [
+                146.5,
+                148.29999999999998
               ]
             }
           ],
           "courtyard_centre_mm": [
             14.87,
-            146.325
+            146.035
           ],
           "footprint_anchor_mm": [
             14.87,
-            146.035
+            146.325
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -5425,25 +5455,25 @@
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed outward connector mouth datum",
           "courtyard_bbox_mm": {
             "x": [
               55.85,
               57.800000000000004
             ],
             "y": [
-              133.84999900000003,
-              134.879999
+              131.485,
+              132.515
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             56.825,
-            134.365
+            132.0
           ],
           "footprint_anchor_mm": [
             56.825,
-            134.365
+            132.0
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -5483,25 +5513,25 @@
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed outward connector mouth datum",
           "courtyard_bbox_mm": {
             "x": [
-              65.09999900000001,
-              67.049999
+              65.10000000000001,
+              67.05
             ],
             "y": [
-              133.84999900000003,
-              134.879999
+              131.485,
+              132.515
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             66.075,
-            134.365
+            132.0
           ],
           "footprint_anchor_mm": [
             66.075,
-            134.365
+            132.0
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
@@ -11459,8 +11489,8 @@
           "opposite_face_keepout_bboxes_mm": [
             {
               "x": [
-                77.975,
-                78.875
+                77.725,
+                78.625
               ],
               "y": [
                 121.675,
@@ -11469,8 +11499,8 @@
             },
             {
               "x": [
-                77.975,
-                78.875
+                77.725,
+                78.625
               ],
               "y": [
                 125.925,
@@ -11483,10 +11513,10 @@
             124.25
           ],
           "footprint_anchor_mm": [
-            78.425,
+            78.175,
             124.25
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": -90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -11509,8 +11539,8 @@
           "opposite_face_keepout_bboxes_mm": [
             {
               "x": [
-                77.975,
-                78.875
+                77.725,
+                78.625
               ],
               "y": [
                 114.675,
@@ -11519,8 +11549,8 @@
             },
             {
               "x": [
-                77.975,
-                78.875
+                77.725,
+                78.625
               ],
               "y": [
                 118.925,
@@ -11533,10 +11563,10 @@
             117.25
           ],
           "footprint_anchor_mm": [
-            78.425,
+            78.175,
             117.25
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": -90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -11545,48 +11575,48 @@
           "sheet": "UI_30_HUB_RP_CORE_SERVICE",
           "side": "B.Cu",
           "footprint": "Button_Switch_SMD:SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010",
-          "method": "nearest exact-footprint correction",
+          "method": "exact H1 seed",
           "courtyard_bbox_mm": {
             "x": [
-              74.125,
-              79.875
+              76.08,
+              80.52
             ],
             "y": [
-              135.78,
-              140.22
+              135.125,
+              140.875
             ]
           },
           "opposite_face_keepout_bboxes_mm": [
             {
               "x": [
-                74.425,
-                75.325
+                77.725,
+                78.625
               ],
               "y": [
-                137.675,
-                138.575
+                135.425,
+                136.325
               ]
             },
             {
               "x": [
-                78.675,
-                79.575
+                77.725,
+                78.625
               ],
               "y": [
-                137.675,
-                138.575
+                139.675,
+                140.575
               ]
             }
           ],
           "courtyard_centre_mm": [
-            77.0,
+            78.3,
             138.0
           ],
           "footprint_anchor_mm": [
-            77.0,
-            138.125
+            78.175,
+            138.0
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": -90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -11595,11 +11625,11 @@
           "sheet": "UI_30_HUB_RP_CORE_SERVICE",
           "side": "B.Cu",
           "footprint": "Button_Switch_SMD:SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010",
-          "method": "nearest exact-footprint correction",
+          "method": "exact H1 seed",
           "courtyard_bbox_mm": {
             "x": [
-              75.28,
-              79.72
+              76.08,
+              80.52
             ],
             "y": [
               128.625,
@@ -11609,8 +11639,8 @@
           "opposite_face_keepout_bboxes_mm": [
             {
               "x": [
-                77.175,
-                78.075
+                77.725,
+                78.625
               ],
               "y": [
                 128.925,
@@ -11619,8 +11649,8 @@
             },
             {
               "x": [
-                77.175,
-                78.075
+                77.725,
+                78.625
               ],
               "y": [
                 133.175,
@@ -11629,14 +11659,14 @@
             }
           ],
           "courtyard_centre_mm": [
-            77.5,
+            78.3,
             131.5
           ],
           "footprint_anchor_mm": [
-            77.625,
+            78.175,
             131.5
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": -90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -11911,25 +11941,25 @@
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "B.Cu",
           "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed outward connector mouth datum",
           "courtyard_bbox_mm": {
             "x": [
               58.1,
               61.190000000000005
             ],
             "y": [
-              132.85,
-              134.76000000000002
+              129.25,
+              131.16000000000003
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             59.645,
-            133.805
+            130.205
           ],
           "footprint_anchor_mm": [
             59.645,
-            133.805
+            130.205
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -11940,25 +11970,25 @@
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "B.Cu",
           "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed outward connector mouth datum",
           "courtyard_bbox_mm": {
             "x": [
               61.6,
               64.69
             ],
             "y": [
-              132.85,
-              134.76000000000002
+              129.25,
+              131.16000000000003
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             63.145,
-            133.805
+            130.205
           ],
           "footprint_anchor_mm": [
             63.145,
-            133.805
+            130.205
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -13473,8 +13503,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "unrouted_seed_sha256": "f48d6cf9aa6493b9ef2ea2cc63bfab6f2c5fca4244df0428064a82874a425a25",
-      "placement_signature_sha256": "b6ba51d138fb586cc09accf64f2bd65d53087c41802c9e628a83e205cf3abf8d",
+      "unrouted_seed_sha256": "9a0422d407bcdb6fbc12b06286f7d28edd801c03a374f366e621a2c81542502a",
+      "placement_signature_sha256": "123c5c87bb5317737b9780c94f979e06e68c1ce744ecf92deed3df20dc1d9155",
       "locality": {
         "status": "pass",
         "pair_count": 52,
@@ -13962,9 +13992,9 @@
         "F.Cu": 14
       },
       "method_counts": {
-        "connectivity/sheet automatic seed": 652,
+        "connectivity/sheet automatic seed": 650,
         "exact H1 seed": 27,
-        "hard H1 datum": 12,
+        "hard H1 datum": 9,
         "nearest exact-footprint correction": 32,
         "reviewed H6.0.2 fan-out correction": 1,
         "reviewed H6.0.2 oscillator-locality correction": 19,
@@ -13972,8 +14002,9 @@
         "reviewed H6.0.3 direct-cell thermal-contact placement": 2,
         "reviewed H6.0.3 mechanical-clearance correction": 1,
         "reviewed H6.0.3 native-silkscreen-clearance correction": 1,
-        "reviewed H6.0.3 power-locality correction": 19,
-        "reviewed H6.0.3 signal-locality correction": 8
+        "reviewed H6.0.3 power-locality correction": 21,
+        "reviewed H6.0.3 signal-locality correction": 9,
+        "reviewed outward connector mouth datum": 2
       },
       "net_count": 516,
       "mechanical": [
@@ -14133,35 +14164,35 @@
         },
         {
           "instance": "rf_rp_service_usb_connector",
-          "reason": "frozen before routed copper",
+          "reason": "board-edge GCT USB4105 entrance faces bottom +Y; exact manufacturer PCB-edge datum local +3.675 mm lands on native y=150, not the courtyard centre",
           "bbox_mm": {
             "x": [
               37.165,
               47.895
             ],
             "y": [
-              141.81,
-              150.84
+              141.51999999999998,
+              150.54999999999998
             ]
           }
         },
         {
           "instance": "product_usb_connector",
-          "reason": "frozen before routed copper",
+          "reason": "Exact JAE DX07S016JA1R1500 mounting-side board-edge datum puts the PCB edge 3.10 mm beyond the footprint anchor and the shell mouth another 0.50 mm outside; B180 faces the bottom edge while keeping every copper land inboard.",
           "bbox_mm": {
             "x": [
               58.015,
               69.045
             ],
             "y": [
-              142.29,
-              150.81
+              142.525,
+              151.04500000000002
             ]
           }
         },
         {
           "instance": "rf_rp_boot_button",
-          "reason": "frozen before routed copper",
+          "reason": "board-edge service actuator faces outward through the right side",
           "bbox_mm": {
             "x": [
               76.08,
@@ -14175,7 +14206,7 @@
         },
         {
           "instance": "rf_rp_reset_button",
-          "reason": "frozen before routed copper",
+          "reason": "board-edge service actuator faces outward through the right side",
           "bbox_mm": {
             "x": [
               76.08,
@@ -22056,25 +22087,25 @@
           "sheet": "RF_30_U214_U219_M5_EXT",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0805_2012Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 power-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              21.35,
-              23.4
+              21.275000000000002,
+              23.325
             ],
             "y": [
-              125.1,
-              128.59
+              126.755,
+              130.245
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            22.375,
-            126.845
+            22.3,
+            128.5
           ],
           "footprint_anchor_mm": [
-            22.375,
-            126.845
+            22.3,
+            128.5
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -23310,16 +23341,16 @@
           "reference": "J1",
           "sheet": "RF_01_USB_PD_CHARGE",
           "side": "B.Cu",
-          "footprint": "Connector_USB:USB_C_Receptacle_JAE_DX07S016JA1R1500",
-          "method": "hard H1 datum",
+          "footprint": "Leshy2_R2:USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk",
+          "method": "reviewed outward connector mouth datum",
           "courtyard_bbox_mm": {
             "x": [
               58.015,
               69.045
             ],
             "y": [
-              142.29,
-              150.81
+              142.525,
+              151.04500000000002
             ]
           },
           "opposite_face_keepout_bboxes_mm": [
@@ -23329,8 +23360,8 @@
                 59.86
               ],
               "y": [
-                143.985,
-                146.585
+                143.07500000000002,
+                145.375
               ]
             },
             {
@@ -23339,8 +23370,28 @@
                 68.5
               ],
               "y": [
-                143.985,
-                146.585
+                143.07500000000002,
+                145.375
+              ]
+            },
+            {
+              "x": [
+                60.105000000000004,
+                60.955
+              ],
+              "y": [
+                144.65,
+                145.25
+              ]
+            },
+            {
+              "x": [
+                66.23,
+                66.83
+              ],
+              "y": [
+                144.65,
+                145.25
               ]
             },
             {
@@ -23349,8 +23400,8 @@
                 59.86
               ],
               "y": [
-                147.96,
-                150.26
+                146.75,
+                149.35
               ]
             },
             {
@@ -23359,40 +23410,20 @@
                 68.5
               ],
               "y": [
-                147.96,
-                150.26
-              ]
-            },
-            {
-              "x": [
-                60.230000000000004,
-                60.83
-              ],
-              "y": [
-                148.085,
-                148.685
-              ]
-            },
-            {
-              "x": [
-                66.105,
-                66.955
-              ],
-              "y": [
-                148.085,
-                148.685
+                146.75,
+                149.35
               ]
             }
           ],
           "courtyard_centre_mm": [
             63.53,
-            146.55
+            146.785
           ],
           "footprint_anchor_mm": [
             63.53,
-            146.435
+            146.9
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -23459,15 +23490,15 @@
           "sheet": "RF_10_RP2354_CORE_SERVICE",
           "side": "B.Cu",
           "footprint": "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
-          "method": "hard H1 datum",
+          "method": "reviewed outward connector mouth datum",
           "courtyard_bbox_mm": {
             "x": [
               37.165,
               47.895
             ],
             "y": [
-              141.81,
-              150.84
+              141.51999999999998,
+              150.54999999999998
             ]
           },
           "opposite_face_keepout_bboxes_mm": [
@@ -23477,8 +23508,8 @@
                 38.71
               ],
               "y": [
-                144.06,
-                145.85999999999999
+                142.17,
+                144.26999999999998
               ]
             },
             {
@@ -23487,28 +23518,8 @@
                 47.35
               ],
               "y": [
-                144.06,
-                145.85999999999999
-              ]
-            },
-            {
-              "x": [
-                37.71,
-                38.71
-              ],
-              "y": [
-                148.09,
-                150.19
-              ]
-            },
-            {
-              "x": [
-                46.35,
-                47.35
-              ],
-              "y": [
-                148.09,
-                150.19
+                142.17,
+                144.26999999999998
               ]
             },
             {
@@ -23517,8 +23528,8 @@
                 39.965
               ],
               "y": [
-                148.315,
-                148.965
+                143.39499999999998,
+                144.045
               ]
             },
             {
@@ -23527,20 +23538,40 @@
                 45.745000000000005
               ],
               "y": [
-                148.315,
-                148.965
+                143.39499999999998,
+                144.045
+              ]
+            },
+            {
+              "x": [
+                37.71,
+                38.71
+              ],
+              "y": [
+                146.5,
+                148.29999999999998
+              ]
+            },
+            {
+              "x": [
+                46.35,
+                47.35
+              ],
+              "y": [
+                146.5,
+                148.29999999999998
               ]
             }
           ],
           "courtyard_centre_mm": [
             42.53,
-            146.325
+            146.035
           ],
           "footprint_anchor_mm": [
             42.53,
-            146.035
+            146.325
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -24158,48 +24189,48 @@
           "sheet": "RF_40_INTERBOARD_M1",
           "side": "B.Cu",
           "footprint": "Connector_Hirose_FX8:Hirose_FX8-80S-SV_2x40_P0.6mm",
-          "method": "hard H1 datum",
+          "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              26.655,
-              58.345
+              21.655,
+              53.345
             ],
             "y": [
-              118.255,
-              126.745
+              118.005,
+              126.495
             ]
           },
           "opposite_face_keepout_bboxes_mm": [
             {
               "x": [
-                27.85,
-                28.95
+                51.05,
+                52.15
               ],
               "y": [
-                123.75,
-                124.85
+                119.9,
+                121.0
               ]
             },
             {
               "x": [
-                56.25,
-                56.95
+                23.05,
+                23.75
               ],
               "y": [
-                123.95,
-                124.65
+                120.1,
+                120.8
               ]
             }
           ],
           "courtyard_centre_mm": [
-            42.5,
-            122.5
+            37.5,
+            122.25
           ],
           "footprint_anchor_mm": [
-            42.5,
-            122.5
+            37.5,
+            122.25
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -32324,27 +32355,27 @@
           "sheet": "RF_30_U214_U219_M5_EXT",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0603_1608Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 power-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              23.6,
-              25.15
+              23.725,
+              26.775
             ],
             "y": [
-              125.35,
-              128.4
+              126.725,
+              128.275
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            24.375,
-            126.875
+            25.25,
+            127.5
           ],
           "footprint_anchor_mm": [
-            24.375,
-            126.875
+            25.25,
+            127.5
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -33904,8 +33935,8 @@
           "opposite_face_keepout_bboxes_mm": [
             {
               "x": [
-                77.975,
-                78.875
+                77.725,
+                78.625
               ],
               "y": [
                 112.675,
@@ -33914,8 +33945,8 @@
             },
             {
               "x": [
-                77.975,
-                78.875
+                77.725,
+                78.625
               ],
               "y": [
                 116.925,
@@ -33928,10 +33959,10 @@
             115.25
           ],
           "footprint_anchor_mm": [
-            78.425,
+            78.175,
             115.25
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": -90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -33954,8 +33985,8 @@
           "opposite_face_keepout_bboxes_mm": [
             {
               "x": [
-                77.975,
-                78.875
+                77.725,
+                78.625
               ],
               "y": [
                 105.675,
@@ -33964,8 +33995,8 @@
             },
             {
               "x": [
-                77.975,
-                78.875
+                77.725,
+                78.625
               ],
               "y": [
                 109.925,
@@ -33978,10 +34009,10 @@
             108.25
           ],
           "footprint_anchor_mm": [
-            78.425,
+            78.175,
             108.25
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": -90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -38279,8 +38310,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "a2552823d505122d7453914a8f14cd940e50b8bf0450b0cd86653cb7e085e7d9",
-      "placement_signature_sha256": "12e1599fea20db4b9cc32475251ced33836947a79c80d8152535b4545b377815",
+      "unrouted_seed_sha256": "fdaca9e9d1839b46c5fa550667c7dd19996d9d68aa8dcd4ef73c45ccba17e3f5",
+      "placement_signature_sha256": "7b7de8218bd95d42d3fbe0c594ed8585cc41c16523e6232415e1ffe3aeb6b7e4",
       "locality": {
         "status": "pass",
         "pair_count": 259,

@@ -1,0 +1,1710 @@
+{
+  "schema_version": 1,
+  "scope": "native free-board user text; required interface bindings plus conservative geometry screening",
+  "status": "pass_scoped",
+  "production_release_authorized": false,
+  "inputs_sha256": {
+    "hardware/layout/h6-r2-placement-contract.json": "ab9f53ce43da72426dacd377769738a8074c3c0ae5bb0b4d8c1f9a9402a2dc77",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "8a3fc89754a0f5ce8f8cf0d44a0b3fa9bbf3dcb99ededab9d95d3bd48f3d23f9",
+    "hardware/layout/h6_r2_silkscreen_audit.py": "dd1a8e74ea142b8afcd5d2e0589844845bae67356f425c1059bae454d7faa484",
+    "hardware/layout/h6_r2_user_silkscreen.py": "7dd80fc33aadf959f16cc5dbf6430ab23fbb3221596f14300ff4cf9c468cceff",
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "ced019b77a4b1fc4437f9c692f0feeaf38aca149cebfc6d6e8fe3fa70a3f347c",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "fd08e60a9bd86c9c902b51d77103e4b6963cda549a90382a7c4f1cfa5529585f"
+  },
+  "boards": [
+    {
+      "project": "LESHY2-UI-R2",
+      "status": "pass_scoped",
+      "required_count": 42,
+      "matched_count": 42,
+      "free_front_text_count": 49,
+      "errors": [],
+      "geometry_candidates": [],
+      "documented_geometry_exemptions": [
+        {
+          "kind": "display_panel_bbox",
+          "text": {
+            "id": "3a39b00d-5869-4b35-ae70-ab2509332ead",
+            "text": "DISPLAY · FPC ↑",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              40.0,
+              21.0
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "bbox_mm": {
+              "x": [
+                33.327381,
+                46.67262
+              ],
+              "y": [
+                20.15175,
+                21.84825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "display_panel_bbox",
+            "bbox_mm": {
+              "x": [
+                11.73,
+                68.27
+              ],
+              "y": [
+                19.0,
+                103.96
+              ]
+            }
+          },
+          "exemption_reason": "Correctly positioned assembly marking intentionally hidden after final assembly"
+        }
+      ],
+      "required_bindings": [
+        {
+          "expected": {
+            "instance": "s3_reset_button",
+            "reference": "SW2",
+            "text": "S3",
+            "at_mm": [
+              6.0,
+              116.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "a6382c8b-0f75-4efe-a0bc-b03efc2530b4"
+        },
+        {
+          "expected": {
+            "instance": "s3_reset_button",
+            "reference": "SW2",
+            "text": "RST",
+            "at_mm": [
+              6.0,
+              118.3
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "4d3bbf08-d7f0-49d3-b5a2-ef5eede753aa"
+        },
+        {
+          "expected": {
+            "instance": "s3_boot_button",
+            "reference": "SW1",
+            "text": "S3",
+            "at_mm": [
+              6.0,
+              123.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "c2c39b84-85f1-441c-9ca6-03e9656a6adf"
+        },
+        {
+          "expected": {
+            "instance": "s3_boot_button",
+            "reference": "SW1",
+            "text": "BOOT",
+            "at_mm": [
+              6.0,
+              125.3
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "a8ae9b5d-40d7-4649-9a45-267897aadc45"
+        },
+        {
+          "expected": {
+            "instance": "c5_reset_button",
+            "reference": "SW19",
+            "text": "C5",
+            "at_mm": [
+              74.0,
+              116.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "c9f44a3b-0c8a-468b-8715-efb39f774845"
+        },
+        {
+          "expected": {
+            "instance": "c5_reset_button",
+            "reference": "SW19",
+            "text": "RST",
+            "at_mm": [
+              74.0,
+              118.3
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "1766e550-0d2f-4407-9ecc-7270c7b8a505"
+        },
+        {
+          "expected": {
+            "instance": "c5_boot_button",
+            "reference": "SW18",
+            "text": "C5",
+            "at_mm": [
+              74.0,
+              123.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "aca6b078-d74c-4661-9afe-a1d3796da6b2"
+        },
+        {
+          "expected": {
+            "instance": "c5_boot_button",
+            "reference": "SW18",
+            "text": "BOOT",
+            "at_mm": [
+              74.0,
+              125.3
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "05eeb51e-68e8-412d-aad4-e5237bd72b86"
+        },
+        {
+          "expected": {
+            "instance": "hub_rp_reset_button",
+            "reference": "SW21",
+            "text": "HUB",
+            "at_mm": [
+              74.0,
+              130.45
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "133f98d5-8982-4cec-814c-21dfbf955512"
+        },
+        {
+          "expected": {
+            "instance": "hub_rp_reset_button",
+            "reference": "SW21",
+            "text": "RST",
+            "at_mm": [
+              74.0,
+              132.55
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "fcf38fd5-6a37-48b0-abbe-3bb74ed9a345"
+        },
+        {
+          "expected": {
+            "instance": "hub_rp_boot_button",
+            "reference": "SW20",
+            "text": "HUB",
+            "at_mm": [
+              74.0,
+              136.95
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "93025217-d10d-4b27-85ea-b5b396fbef73"
+        },
+        {
+          "expected": {
+            "instance": "hub_rp_boot_button",
+            "reference": "SW20",
+            "text": "BOOT",
+            "at_mm": [
+              74.0,
+              139.05
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "b4c1fea1-e789-4898-84c7-80b10d5a9654"
+        },
+        {
+          "expected": {
+            "instance": "hub_rp_service_usb_connector",
+            "reference": "J11",
+            "text": "HUB RP",
+            "at_mm": [
+              14.87,
+              138.0
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "1c921ab2-52ed-402d-9aa3-ea785cb8c1c6"
+        },
+        {
+          "expected": {
+            "instance": "hub_rp_service_usb_connector",
+            "reference": "J11",
+            "text": "DATA USB",
+            "at_mm": [
+              14.87,
+              140.0
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "2b75eedd-260f-442f-b25d-d3dedb21360b"
+        },
+        {
+          "expected": {
+            "instance": "c5_service_usb_connector",
+            "reference": "J9",
+            "text": "C5",
+            "at_mm": [
+              26.1,
+              138.0
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "0362adf1-f6b3-41d2-8e2b-be45969f236a"
+        },
+        {
+          "expected": {
+            "instance": "c5_service_usb_connector",
+            "reference": "J9",
+            "text": "DATA USB",
+            "at_mm": [
+              26.1,
+              140.0
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "d26e6c24-8320-446a-bcbf-d6b69beafb59"
+        },
+        {
+          "expected": {
+            "instance": "s3_tx_led",
+            "reference": "D9",
+            "text": "Wi-Fi/BLE",
+            "at_mm": [
+              8.4,
+              107.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "30646453-192f-4463-9aab-2dd731ecab9c"
+        },
+        {
+          "expected": {
+            "instance": "c5_tx_led",
+            "reference": "D1",
+            "text": "Wi-Fi/15.4",
+            "at_mm": [
+              24.2,
+              107.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "61803554-2ae6-40b5-953d-ed68c87ea2f4"
+        },
+        {
+          "expected": {
+            "instance": "nrf0_tx_led",
+            "reference": "D6",
+            "text": "nRF24-1",
+            "at_mm": [
+              40.0,
+              107.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "47a87503-aadc-4d34-bb6b-a91777521232"
+        },
+        {
+          "expected": {
+            "instance": "nrf1_tx_led",
+            "reference": "D7",
+            "text": "nRF24-2",
+            "at_mm": [
+              55.8,
+              107.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "07e54c68-19f5-490c-b7a8-c9d38095714b"
+        },
+        {
+          "expected": {
+            "instance": "nrf2_tx_led",
+            "reference": "D8",
+            "text": "nRF24-3",
+            "at_mm": [
+              71.6,
+              107.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "b5850245-da00-4381-a631-cef20f933f18"
+        },
+        {
+          "expected": {
+            "instance": "cc_tx_led",
+            "reference": "D2",
+            "text": "SUB-GHz",
+            "at_mm": [
+              8.4,
+              113.7
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "85ac36bd-e6d8-4d9a-a4f5-199d58260a63"
+        },
+        {
+          "expected": {
+            "instance": "voice_tx_led",
+            "reference": "D10",
+            "text": "V/U TX",
+            "at_mm": [
+              24.2,
+              113.7
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "b7ed98ce-90e1-4dd0-9aa7-aae12794cf54"
+        },
+        {
+          "expected": {
+            "instance": "ir_tx_led",
+            "reference": "D5",
+            "text": "IR",
+            "at_mm": [
+              40.0,
+              113.7
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "f501cccb-2a68-449d-a9d2-b578c5928684"
+        },
+        {
+          "expected": {
+            "instance": "ext_tx_led",
+            "reference": "D3",
+            "text": "LORA/EXT",
+            "at_mm": [
+              55.8,
+              113.7
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "124898dc-5c3e-41fb-9778-3b114b07e855"
+        },
+        {
+          "expected": {
+            "instance": "fault_led",
+            "reference": "D4",
+            "text": "FAULT",
+            "at_mm": [
+              71.6,
+              113.7
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "0b5dd170-0355-4fd4-ba3b-3d8fe6e763b1"
+        },
+        {
+          "expected": {
+            "instance": "ui_switch_f1",
+            "reference": "SW9",
+            "text": "F1",
+            "at_mm": [
+              4.6,
+              29.0
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "985246cb-959b-416a-b042-319d0938263c"
+        },
+        {
+          "expected": {
+            "instance": "ui_switch_f2",
+            "reference": "SW10",
+            "text": "F2",
+            "at_mm": [
+              4.6,
+              42.5
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "d8d87551-70ea-42d8-a3bd-64b3488e3024"
+        },
+        {
+          "expected": {
+            "instance": "ui_switch_f3",
+            "reference": "SW11",
+            "text": "F3",
+            "at_mm": [
+              4.6,
+              56.0
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "aed10058-c994-4049-b732-32fdf0f10995"
+        },
+        {
+          "expected": {
+            "instance": "ui_switch_f4",
+            "reference": "SW12",
+            "text": "F4",
+            "at_mm": [
+              4.6,
+              69.5
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "6dbc720a-7e7b-4199-a71a-d891ea72f279"
+        },
+        {
+          "expected": {
+            "instance": "ui_switch_f5",
+            "reference": "SW13",
+            "text": "F5",
+            "at_mm": [
+              75.4,
+              29.0
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "bb5b2dcf-a444-48c8-a70a-464f1e3437d4"
+        },
+        {
+          "expected": {
+            "instance": "ui_switch_f6",
+            "reference": "SW14",
+            "text": "F6",
+            "at_mm": [
+              75.4,
+              42.5
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "f9b212d8-2a8d-4e90-9ce4-cb78bceebb84"
+        },
+        {
+          "expected": {
+            "instance": "ui_switch_f7",
+            "reference": "SW15",
+            "text": "F7",
+            "at_mm": [
+              75.4,
+              56.0
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "63386bba-6d5d-4913-a69f-1449655455b9"
+        },
+        {
+          "expected": {
+            "instance": "ui_switch_f8",
+            "reference": "SW16",
+            "text": "F8",
+            "at_mm": [
+              75.4,
+              69.5
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "0d372c12-c09b-4167-b341-337a379afb8e"
+        },
+        {
+          "expected": {
+            "instance": "ui_switch_back",
+            "reference": "SW8",
+            "text": "BACK",
+            "at_mm": [
+              14.3,
+              126.25
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "4f64ce18-e1bd-4c01-b21b-6bc1553d76cf"
+        },
+        {
+          "expected": {
+            "instance": "ui_switch_opt",
+            "reference": "SW17",
+            "text": "OPT",
+            "at_mm": [
+              65.7,
+              126.25
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "a6dc290a-33bd-47b3-8886-d37492886157"
+        },
+        {
+          "expected": {
+            "instance": "ui_dpad_left",
+            "reference": "SW4",
+            "text": "LEFT",
+            "at_mm": [
+              29.5,
+              126.25
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "cd4a3705-9bf1-4538-a24f-112bea97e718"
+        },
+        {
+          "expected": {
+            "instance": "ui_dpad_right",
+            "reference": "SW6",
+            "text": "RIGHT",
+            "at_mm": [
+              50.5,
+              126.25
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "215a44a3-1556-445b-9f00-7deb6da055cb"
+        },
+        {
+          "expected": {
+            "instance": "ui_dpad_down",
+            "reference": "SW3",
+            "text": "DOWN",
+            "at_mm": [
+              40.0,
+              148.9
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "42478bb1-f427-483c-9cd4-301fd43c3c31"
+        },
+        {
+          "expected": {
+            "instance": "ui_dpad_up",
+            "reference": "SW7",
+            "text": "UP",
+            "at_mm": [
+              47.5,
+              121.9
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "27e0707e-0416-4f23-8388-38c4510d1e9f"
+        },
+        {
+          "expected": {
+            "instance": "ui_dpad_ok",
+            "reference": "SW5",
+            "text": "OK",
+            "at_mm": [
+              46.5,
+              138.1
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "2e285997-e510-4ad9-be7c-e2ac43c63e0a"
+        },
+        {
+          "expected": {
+            "instance": "sd",
+            "reference": "J5",
+            "text": "microSD",
+            "at_mm": [
+              60.975,
+              140.0
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "f3665050-2751-4770-9ff9-940bf1f66934"
+        }
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "status": "pass_scoped",
+      "required_count": 11,
+      "matched_count": 11,
+      "free_front_text_count": 21,
+      "errors": [],
+      "geometry_candidates": [],
+      "documented_geometry_exemptions": [
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "83da7390-8c7b-4da7-a23f-c7c4e9d52017",
+            "text": "NTC0 PAD",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              33.439999,
+              89.1
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "bbox_mm": {
+              "x": [
+                29.624523,
+                37.255476
+              ],
+              "y": [
+                88.25175,
+                89.94825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "04183973-c590-4198-b03e-e7dc894539b4",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                33.3,
+                33.5
+              ],
+              "y": [
+                88.22500000000001,
+                88.425
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "83da7390-8c7b-4da7-a23f-c7c4e9d52017",
+            "text": "NTC0 PAD",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              33.439999,
+              89.1
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "bbox_mm": {
+              "x": [
+                29.624523,
+                37.255476
+              ],
+              "y": [
+                88.25175,
+                89.94825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "8f7f185a-8825-42bb-819c-6831dd6beb9d",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                36.05,
+                36.25
+              ],
+              "y": [
+                89.75,
+                89.94999999999999
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "83da7390-8c7b-4da7-a23f-c7c4e9d52017",
+            "text": "NTC0 PAD",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              33.439999,
+              89.1
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "bbox_mm": {
+              "x": [
+                29.624523,
+                37.255476
+              ],
+              "y": [
+                88.25175,
+                89.94825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "d166b04d-7425-4fc2-b4af-60d6a02c6fa4",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                34.265,
+                34.465
+              ],
+              "y": [
+                89.9,
+                90.1
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "83da7390-8c7b-4da7-a23f-c7c4e9d52017",
+            "text": "NTC0 PAD",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              33.439999,
+              89.1
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "bbox_mm": {
+              "x": [
+                29.624523,
+                37.255476
+              ],
+              "y": [
+                88.25175,
+                89.94825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "d2e8225f-06ce-4bf9-b2ef-e5e120d7cbd9",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                32.1,
+                32.300000000000004
+              ],
+              "y": [
+                89.72500000000001,
+                89.925
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "83da7390-8c7b-4da7-a23f-c7c4e9d52017",
+            "text": "NTC0 PAD",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              33.439999,
+              89.1
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "bbox_mm": {
+              "x": [
+                29.624523,
+                37.255476
+              ],
+              "y": [
+                88.25175,
+                89.94825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "392da3cb-d5c7-4259-bd4c-1710de1c1385",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                33.3,
+                33.5
+              ],
+              "y": [
+                89.185,
+                89.38499999999999
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "83da7390-8c7b-4da7-a23f-c7c4e9d52017",
+            "text": "NTC0 PAD",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              33.439999,
+              89.1
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "bbox_mm": {
+              "x": [
+                29.624523,
+                37.255476
+              ],
+              "y": [
+                88.25175,
+                89.94825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "6f91fbe3-2f6a-4d8e-aa85-c827f531c613",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                36.65,
+                36.85
+              ],
+              "y": [
+                89.50500000000001,
+                89.705
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "d00b9ccc-42ec-4e42-949a-2ef02be77d5c",
+            "text": "RF/PWR PCB · R2-EVT1 · REV A",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              40.0,
+              133.0
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "bbox_mm": {
+              "x": [
+                27.160713,
+                52.839287
+              ],
+              "y": [
+                132.15175,
+                133.84825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "1be549ea-a7f7-4c59-8f12-fc46507446a1",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                30.075,
+                30.325
+              ],
+              "y": [
+                133.074999,
+                133.324999
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "d00b9ccc-42ec-4e42-949a-2ef02be77d5c",
+            "text": "RF/PWR PCB · R2-EVT1 · REV A",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              40.0,
+              133.0
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "bbox_mm": {
+              "x": [
+                27.160713,
+                52.839287
+              ],
+              "y": [
+                132.15175,
+                133.84825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "6c08aaa1-d5f7-4150-961d-0c6cb5307632",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                30.675,
+                30.925
+              ],
+              "y": [
+                133.074999,
+                133.324999
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "d00b9ccc-42ec-4e42-949a-2ef02be77d5c",
+            "text": "RF/PWR PCB · R2-EVT1 · REV A",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              40.0,
+              133.0
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "bbox_mm": {
+              "x": [
+                27.160713,
+                52.839287
+              ],
+              "y": [
+                132.15175,
+                133.84825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "5c1e152f-2d8a-4a8c-b59e-1a1a7edfb907",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                28.099999999999998,
+                28.3
+              ],
+              "y": [
+                133.20000000000002,
+                133.4
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "d00b9ccc-42ec-4e42-949a-2ef02be77d5c",
+            "text": "RF/PWR PCB · R2-EVT1 · REV A",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              40.0,
+              133.0
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "bbox_mm": {
+              "x": [
+                27.160713,
+                52.839287
+              ],
+              "y": [
+                132.15175,
+                133.84825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "5ef8f8e1-7fc4-4f3c-895f-f34a3a50fdc1",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                31.599999999999998,
+                31.8
+              ],
+              "y": [
+                132.9,
+                133.1
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "255cefd1-0fb7-497b-b9f5-399c239d6322",
+            "text": "github.com/anton-vinogradov/esp32-leshy2",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              40.0,
+              135.5
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "bbox_mm": {
+              "x": [
+                22.708332,
+                57.291668
+              ],
+              "y": [
+                134.65175,
+                136.34825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "9be695e1-37ef-425e-b4f8-f317f9bfa530",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                35.6,
+                35.800000000000004
+              ],
+              "y": [
+                134.9,
+                135.1
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "255cefd1-0fb7-497b-b9f5-399c239d6322",
+            "text": "github.com/anton-vinogradov/esp32-leshy2",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              40.0,
+              135.5
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "bbox_mm": {
+              "x": [
+                22.708332,
+                57.291668
+              ],
+              "y": [
+                134.65175,
+                136.34825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "f34bf9de-2e89-4c63-93dd-e995cad7c2cc",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                35.6,
+                35.800000000000004
+              ],
+              "y": [
+                135.6,
+                135.79999999999998
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "c5d34060-e225-4895-aff4-1e9b08ac1bd8",
+            "text": "NTC1 PAD",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              52.54,
+              89.1
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "bbox_mm": {
+              "x": [
+                48.724524,
+                56.355477
+              ],
+              "y": [
+                88.25175,
+                89.94825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "16ac47fa-4aa7-436a-b34e-2d566d69f14a",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                49.9,
+                50.1
+              ],
+              "y": [
+                88.10000000000001,
+                88.3
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "c5d34060-e225-4895-aff4-1e9b08ac1bd8",
+            "text": "NTC1 PAD",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              52.54,
+              89.1
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "bbox_mm": {
+              "x": [
+                48.724524,
+                56.355477
+              ],
+              "y": [
+                88.25175,
+                89.94825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "aae53468-fb0f-4737-b65d-295ac37bbf58",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                50.6,
+                50.800000000000004
+              ],
+              "y": [
+                88.10000000000001,
+                88.3
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "5b3b33d0-b1e4-475d-9f1a-4e54f4cf2866",
+            "text": "ESP32-LESHY2",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              40.0,
+              130.5
+            ],
+            "size_mm": [
+              1.55,
+              1.55
+            ],
+            "thickness_mm": 0.23,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "bbox_mm": {
+              "x": [
+                30.879049,
+                49.120952
+              ],
+              "y": [
+                129.1896,
+                131.8104
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "5d70333d-ee99-404d-a28e-9c29ad1756bd",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                30.7,
+                30.900000000000002
+              ],
+              "y": [
+                130.70000000000002,
+                130.9
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "5b3b33d0-b1e4-475d-9f1a-4e54f4cf2866",
+            "text": "ESP32-LESHY2",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              40.0,
+              130.5
+            ],
+            "size_mm": [
+              1.55,
+              1.55
+            ],
+            "thickness_mm": 0.23,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "bbox_mm": {
+              "x": [
+                30.879049,
+                49.120952
+              ],
+              "y": [
+                129.1896,
+                131.8104
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "14f075f2-f2cb-4eba-9cd0-c1f6be679b16",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                31.5,
+                31.700000000000003
+              ],
+              "y": [
+                129.76500000000001,
+                129.965
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        }
+      ],
+      "required_bindings": [
+        {
+          "expected": {
+            "instance": "rf_rp_reset_button",
+            "reference": "SW2",
+            "text": "RF RP",
+            "at_mm": [
+              74.0,
+              107.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "fceb9055-01d0-4985-bcd3-e2693ce6294d"
+        },
+        {
+          "expected": {
+            "instance": "rf_rp_reset_button",
+            "reference": "SW2",
+            "text": "RST",
+            "at_mm": [
+              74.0,
+              109.3
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "718187c2-daf4-4376-a08f-338b6d9491af"
+        },
+        {
+          "expected": {
+            "instance": "rf_rp_boot_button",
+            "reference": "SW1",
+            "text": "RF RP",
+            "at_mm": [
+              74.0,
+              114.2
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "289439d2-bb7a-4434-99cd-cc518fc4d187"
+        },
+        {
+          "expected": {
+            "instance": "rf_rp_boot_button",
+            "reference": "SW1",
+            "text": "BOOT",
+            "at_mm": [
+              74.0,
+              116.3
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "3d82e90c-fd54-4379-bd03-0c32ba87ea05"
+        },
+        {
+          "expected": {
+            "instance": "rf_rp_service_usb_connector",
+            "reference": "J4",
+            "text": "RF RP",
+            "at_mm": [
+              42.53,
+              138.0
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "fac6c6a5-29cd-4a13-a112-a14aea0c06c0"
+        },
+        {
+          "expected": {
+            "instance": "rf_rp_service_usb_connector",
+            "reference": "J4",
+            "text": "DATA USB",
+            "at_mm": [
+              42.53,
+              140.0
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "a882324a-91f4-44b9-966b-32a16263981e"
+        },
+        {
+          "expected": {
+            "instance": "product_usb_connector",
+            "reference": "J1",
+            "text": "S3",
+            "at_mm": [
+              63.53,
+              138.0
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "4d43b3f3-1031-4333-b719-dcc4cfc8ae38"
+        },
+        {
+          "expected": {
+            "instance": "product_usb_connector",
+            "reference": "J1",
+            "text": "POWER + USB",
+            "at_mm": [
+              63.53,
+              140.0
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "224de975-85fa-48a4-9b69-e6f627ca5ba6"
+        },
+        {
+          "expected": {
+            "instance": "unit_connector",
+            "reference": "J11",
+            "text": "M5 UNIT",
+            "at_mm": [
+              18.0,
+              140.0
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "dd6a3844-9f0a-4e24-83b3-a9238fd3c419"
+        },
+        {
+          "expected": {
+            "instance": "ptt_switch",
+            "reference": "SW4",
+            "text": "PTT",
+            "at_mm": [
+              7.5,
+              73.0
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "782bea43-5199-4ee4-975f-8a6365dc449e"
+        },
+        {
+          "expected": {
+            "instance": "encoder",
+            "reference": "SW3",
+            "text": "ENC / OK",
+            "at_mm": [
+              71.0,
+              60.5
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user"
+          },
+          "actual_id": "cf2c9b5c-d403-4450-ad85-cabaae4f9685"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Bounding-box candidates require visual inspection and native DRC; they are not proven ink collisions.",
+    "Footprint package graphics/reference/value text are outside this free-board user-text audit.",
+    "Native Edge.Cuts envelope must match the contracted board; text is screened against its rounded envelope. Slot geometry, exact ink outlines and mechanical connector readiness are separate.",
+    "1.0 mm font and 0.15 mm stroke are this label contract's minima, not factory qualification."
+  ]
+}

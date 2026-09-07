@@ -251,7 +251,7 @@ def build(drc_paths: dict[str, Path] | None, existing: dict | None) -> dict:
                 for row in rows
                 for value in row["placement_courtyard_occupancy_percent"].values()
             ),
-            "evidence": f"all 1208 exact footprints place without a same-face hard conflict; all {placement_audit['summary']['locality_pair_count']} local-owner constraints and {placement_audit['summary']['critical_pad_pair_count']} critical pad-pair limits pass; both native DRC reports are clean; the accepted 5-mm routing corridor remains usable",
+            "evidence": f"all 1208 currently modeled footprints place without a same-face hard conflict; all {placement_audit['summary']['locality_pair_count']} local-owner constraints and {placement_audit['summary']['critical_pad_pair_count']} critical pad-pair limits pass; both native DRC reports are clean; the accepted 5-mm routing corridor remains usable. The separate native interface review still contains footprint, cutout and assembly-access findings; these checks do not certify the modeled geometry against every real part",
             "why_not_expand_now": "the corrected locality-constrained placement fits the current outline and no legal power, RF or digital route has yet demonstrated a capacity blockage; the route restart deliberately removed the old invalid evidence",
             "expansion_candidate_if_triggered_mm": [85.0, 150.0],
             "expansion_trigger": "after legal component movement and layer use are exhausted, any required power, USB/i8080, clocked-digital or RF path cannot meet the frozen H6 rules, or H6.0.4 through H6.0.7 fails for lack of geometric margin",
@@ -288,7 +288,8 @@ def doc(audit: dict, manual_copper: dict, ru: bool) -> str:
         title = "# H6.0.3-R1 · Текущая разводка 80-мм плат"
         nav = "[Главная](../README.ru.md) · [Роадмап](roadmap.ru.md) · [English](h6-r2-current-routing.md)"
         lead = (
-            "**Статус:** ▶️ корректная компоновка принята, разводка начата заново; H6 ещё не закрыт."
+            "**Статус:** ▶️ разводка и исправление физических интерфейсов продолжаются; H6 ещё не закрыт. "
+            "[Ревью настоящих PCB](h6-r2-interface-review.ru.md) выявило ошибки ориентации, сочленения и обязательных отверстий; нулевой DRC не означает готовность сборки."
         )
         headers = "| Плата | Дорожки | Via | Замкнуто | Осталось | DRC |\n| --- | ---: | ---: | ---: | ---: | --- |"
         labels = ("UI", "RF/power")
@@ -359,7 +360,8 @@ def doc(audit: dict, manual_copper: dict, ru: bool) -> str:
         title = "# H6.0.3-R1 · Current 80-mm routing"
         nav = "[Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h6-r2-current-routing.ru.md)"
         lead = (
-            "**Status:** ▶️ corrected placement accepted; routing restarted; H6 is not closed."
+            "**Status:** ▶️ routing and physical-interface corrections continue; H6 is not closed. "
+            "The [native PCB review](h6-r2-interface-review.md) found orientation, mating and required-hole defects; clean DRC does not establish assembly readiness."
         )
         headers = "| Board | Traces | Vias | Resolved | Remaining | DRC |\n| --- | ---: | ---: | ---: | ---: | --- |"
         labels = ("UI", "RF/power")

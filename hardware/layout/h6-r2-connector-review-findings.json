@@ -1,0 +1,2347 @@
+{
+  "schema_version": 1,
+  "id": "H6-R2-CONNECTOR-REVIEW-2026-09-07",
+  "marker": "H6.0.3-R1",
+  "status": "review_required",
+  "whole_interface_gate_pass": false,
+  "checked_at_utc": "2026-09-07T16:24:49Z",
+  "scope": "Read-only review of all 31 native J references on both current boards, plus user indicators, optical/acoustic interfaces, battery holder and controls. This is a hash-bound finding snapshot, not a production release or an applied placement correction.",
+  "provenance": {
+    "boards_sha256": {
+      "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "426a3d0edbe043f447c2c2bdbddd66be46e7dd2d25897209a7f00c00fe25d410",
+      "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "4af37ef6fffdcb7ab38edbec0f9bb1fcc900e58edfab3404389b0e07333b825a"
+    },
+    "instance_ledger": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
+    "device_catalog": "hardware/architecture/devices.json",
+    "method": "pcbnew.LoadBoard of both actual native PCB files; local footprint geometry; selected primary manufacturer drawings. Native source-contract edits in progress are not credited until regeneration and reinspection.",
+    "immutable_observation": true,
+    "regenerate_or_supersede_after_board_changes": true
+  },
+  "coordinates": {
+    "units": "mm",
+    "native_board_outline": [
+      80,
+      150
+    ],
+    "native_front": "F.Cu is exterior; B.Cu is interboard interior",
+    "native_B_transform": "Reflect footprint-local Y, then rotate by negative native rotation_deg, then add native anchor.",
+    "assembled_rear_transform": "For comparison in the front assembly frame, rear native x maps to 80-x and y remains y.",
+    "planar_direction_convention": "+Y is bottom edge, -Y antenna edge, -X left native edge, +X right native edge. Front-normal/rear-normal axes are stated separately."
+  },
+  "coverage": {
+    "native_J_count": 31,
+    "other_native_interface_count": 43,
+    "total_rows": 74,
+    "all_J_references_enumerated": true,
+    "full_connector_metrology_complete": false,
+    "electrical_pinmap_revalidated": false,
+    "closed_sandwich_access_proven": false
+  },
+  "sources": {
+    "gct_usb": {
+      "url": "https://gct.co/files/drawings/usb4105.pdf",
+      "section": "Sheet 1, Recommended PCB Layout: As viewed from component side; PCB Edge and mating views",
+      "review": "Fresh official PDF downloaded and visually inspected 2026-09-07. Local signal tails y=-3.68, mating edge y=+3.675."
+    },
+    "jae_usb": {
+      "url": "https://www.jae.com/en/connectors/series/detail/product/id=91780",
+      "section": "Exact product drawing linked by standard KiCad footprint",
+      "review": "Manufacturer page fetch timed out in this review. Actual standard/native footprint inspected: signal tails y=-3.05 and shell front y=+3.6; fresh manufacturer mouth-offset confirmation remains open."
+    },
+    "grove": {
+      "url": "https://statics3.seeedstudio.com/fusion/opl/datasheet/320110032.pdf",
+      "section": "1125R-SMT-4P, 2013-07-25, body/section and PCB land drawing",
+      "review": "Fresh official OPL PDF visually inspected. Socket opening is opposite four rear signal tails; custom footprint tails local y=-3.815, mouth toward +Y. Drawing does not explicitly prescribe board-edge offset."
+    },
+    "microsd": {
+      "url": "https://www.hirose.com/product/en/download_file/key_name/DM3AT-SF-PEJM5/category/Drawing%20(2D)/doc_file_id/44099/?file_category_id=6&item_id=06090031000&is_series=",
+      "section": "EDC-325165-00-00, sheet 1/6, mounting-side layout and card travel",
+      "review": "Existing official PDF page visually inspected against current standard footprint. Contacts at local y=-7.725; mouth toward +Y, shell mouth datum +8.125. Card lock/eject/over-stroke clearances are separate from body courtyard."
+    },
+    "fx8p": {
+      "url": "https://www.hirose.com/product/p/CL0578-0523-1-92",
+      "section": "FX8C-xxP-SV1(92), EDC3-151087-22 sheet 1, mounting-side land pattern and polarization",
+      "review": "Exact primary drawing visually inspected. Local pad1 [-11.7,+2.7]; polarization/large locator at left,+Y."
+    },
+    "fx8s": {
+      "url": "https://www.hirose.com/en/product/p/CL0578-0823-5-92",
+      "section": "FX8C-xxS-SV5(92), EDC3-151023-22 sheet 1, mounting-side land pattern and polarization",
+      "review": "Exact primary drawing visually inspected. Local pad1 [-11.7,-2.85]; polarization/large locator at left,-Y. Unequal solder-tail row offsets must not be mistaken for a body-centre displacement."
+    },
+    "hle": {
+      "url": "https://suddendocs.samtec.com/prints/hle-1xx-02-xx-dv-xe-xx-mkt.pdf",
+      "section": "Revision AI, sheet 1, FIG1 pass-through and section A-A; note10",
+      "review": "Fresh official PDF visually inspected. Actual mating is vertical; formed through-hole tails do not make it a right-angle mating socket. The standard KiCad footprint suffix Horizontal is not evidence of an interface-direction defect. -LC requires manual placement per manufacturer note10."
+    },
+    "ir_emitter": {
+      "url": "https://www.vishay.com/docs/84209/vsmy14940.pdf",
+      "section": "Rev1.6, page5, Package Dimensions and Recommended Solder Pad",
+      "review": "Fresh official PDF visually inspected. Lens points to local -Y for the drawn horizontal pad pair. Recommended lands are 0.90x1.40 mm with 1.80-mm inner gap (2.70-mm centre pitch, 3.60-mm overall span)."
+    },
+    "ir_carrier": {
+      "url": "https://www.vishay.com/docs/82907/tsmp95000.pdf",
+      "section": "Page4 package dimensions and proposed component-side pad layout",
+      "review": "Existing official PDF visually inspected. Lens projects toward +Y from the pin row in the component-side plan. Body/lens offset from the pad row must be preserved; rotation alone is not complete optical-port registration."
+    },
+    "ir_demod": {
+      "url": "https://www.vishay.com/docs/82494/tsop752.pdf",
+      "section": "Exact TSOP752 package/taping drawings",
+      "review": "Primary family source identified and local PDF checked. Current footprint shares Heimdall pad geometry. Final TR feeder presentation and optical body datum require explicit comparison; no new MPN is selected."
+    },
+    "power_switch": {
+      "url": "https://www.littelfuse.com/assetdocs/littelfuse-ck-slide-js-series-datasheet?assetguid=aba42b08-0d2c-423b-813d-a2faa5a3bb14",
+      "section": "VL01/14/26 ordering table and page5 JS102011SCQN",
+      "review": "Primary text retrieved; local PDF download blocked403. Ordering table calls SC Vertical, Gullwing while current device kind says right-angle. Exact actuator axis is not accepted from text alone."
+    }
+  },
+  "findings": [
+    {
+      "id": "CONNECTOR-USB-INWARD",
+      "status": "confirmed_native_orientation_defect",
+      "refs": [
+        "LESHY2-UI-R2:J9",
+        "LESHY2-UI-R2:J11",
+        "LESHY2-RF-R2:J4",
+        "LESHY2-RF-R2:J1"
+      ],
+      "finding": "All four USB connectors are B.Cu/0. Their local +Y mating direction becomes native -Y, toward the PCB interior rather than bottom edge. The three GCT mouths are at y142.360 instead of150. JAE native front is approximately y142.835; its fresh manufacturer datum is still pending.",
+      "sources": [
+        "gct_usb",
+        "jae_usb"
+      ],
+      "remediation": "Rotate to B180 and place from manufacturer mouth/PCB-edge datum, then reroute/check real native pads, shell supports, local collisions and assembled plug access. Do not preserve copper solely to preserve old geometry."
+    },
+    {
+      "id": "CONNECTOR-GROVE-INWARD",
+      "status": "confirmed_orientation_defect",
+      "refs": [
+        "LESHY2-RF-R2:J11"
+      ],
+      "finding": "Local +Y socket entrance maps to -Y on B0. Existing bottom-facing mockup is not the native geometry.",
+      "sources": [
+        "grove"
+      ],
+      "remediation": "B180 gives required +Y direction. Freeze exact board-edge/mating datum and cable envelope before setting anchor; no manufacturer edge offset is guessed."
+    },
+    {
+      "id": "CONNECTOR-SD-SIDEWAYS",
+      "status": "confirmed_orientation_defect",
+      "refs": [
+        "LESHY2-UI-R2:J5"
+      ],
+      "finding": "DM3AT local +Y mouth maps to native -X at B90, facing left into the lower board instead of bottom.",
+      "sources": [
+        "microsd"
+      ],
+      "remediation": "B180 gives +Y. Conditional flush-mouth anchor y141.875 follows local mouth +8.125 and board edge150; verify seating/push/ejection travel, copper keepouts and collisions before acceptance."
+    },
+    {
+      "id": "CONNECTOR-M1-MISMATCH",
+      "status": "confirmed_assembly_registration_defect",
+      "refs": [
+        "LESHY2-UI-R2:J18",
+        "LESHY2-RF-R2:J12"
+      ],
+      "finding": "After physical rear x reflection, current body centres differ by5.0 mm in X and0.25 mm inY. Matching local B0/B0 orientations reverse the longitudinal contact/polarization order in assembled view; simple centre translation is insufficient.",
+      "sources": [
+        "fx8p",
+        "fx8s"
+      ],
+      "remediation": "Geometrically coherent candidate: retain UIJ18 B0 [42.5,122.25], set RFJ12 B180 [37.5,122.25]. This aligns body axes and contact end/polarization under rear mirror. Recheck all80 logical mates and actual body/height/locator geometry; solder-tail row centres differ by0.15 mm by manufacturer design, not a reason to offset body centres."
+    },
+    {
+      "id": "CONNECTOR-AUDIO-CUTOUT",
+      "status": "confirmed_missing_native_cutout",
+      "refs": [
+        "LESHY2-RF-R2:U83"
+      ],
+      "finding": "Selected SJ-43504-SMT-TR is a mid-mount socket; current native RF board has only outer Edge.Cuts and its custom footprint contributes no cutout. A rectangular proxy body does not satisfy the manufacturer installation.",
+      "sources": [
+        "https://www.sameskydevices.com/product/resource/sj-43504-smt-tr.pdf"
+      ],
+      "remediation": "Mechanical-review owner must register exact cutout/mouth to native pose and verify plug approach before accepting placement. Direction and exact slot polygon remain that review's authority.",
+      "evidence_owner": "microcoax_update primary page2 review"
+    },
+    {
+      "id": "CONNECTOR-HOLDER-LOCATORS",
+      "status": "confirmed_missing_feature_reported_by_parallel_review",
+      "refs": [
+        "LESHY2-RF-R2:BT1"
+      ],
+      "finding": "Parallel mechanical review identified manufacturer1048P locator features absent from native footprint; exterior F.Cu mounting alone is not complete installation evidence.",
+      "sources": [
+        "https://www.keyelco.com/product.cfm/product_id/13959"
+      ],
+      "remediation": "Use the dedicated mechanical finding and exact1048P drawing to register locator holes; do not infer a new hole pattern here.",
+      "evidence_owner": "microcoax_update"
+    },
+    {
+      "id": "INTERFACE-LED-INNER",
+      "status": "confirmed_visibility_defect",
+      "refs": [
+        "LESHY2-UI-R2:D1",
+        "LESHY2-UI-R2:D2",
+        "LESHY2-UI-R2:D3",
+        "LESHY2-UI-R2:D4",
+        "LESHY2-UI-R2:D5",
+        "LESHY2-UI-R2:D6",
+        "LESHY2-UI-R2:D7",
+        "LESHY2-UI-R2:D8",
+        "LESHY2-UI-R2:D9",
+        "LESHY2-UI-R2:D10"
+      ],
+      "finding": "All10 user status/TX LEDs are native B.Cu, several underneath the display/interior circuitry. No light-pipe design exists to transfer these indicators to the user-facing exterior.",
+      "sources": [
+        "hardware/product-design/g3_clamshell.py:FRONT_FACE_INDICATORS"
+      ],
+      "remediation": "Place exact10 indicators F.Cu at current approved exterior indicator datums, then inspect labels and obstruction. Parallel controls reviewer owns correction."
+    },
+    {
+      "id": "INTERFACE-IR-EMITTER",
+      "status": "confirmed_orientation_and_recommended_land_mismatch",
+      "refs": [
+        "LESHY2-UI-R2:D11"
+      ],
+      "finding": "Current B0 VSMY14940 points along native +Y instead of out the left edge. Custom footprint claims recommended lands but uses1.2x1.0 atx+/-0.9, whereas primary page5 specifies0.9x1.4 with2.7 centre pitch.",
+      "sources": [
+        "ir_emitter"
+      ],
+      "remediation": "Correct recommended land geometry and polarity/body/lens datum first; B270 directs the demonstrated local -Y lens axis toward native -X. Reposition from lens/edge datum and keep optical tunnel clear; do not accept old copper or symmetric proxy body."
+    },
+    {
+      "id": "INTERFACE-IR-RECEIVER",
+      "status": "orientation_defect_with_body_datum_review",
+      "refs": [
+        "LESHY2-UI-R2:U24",
+        "LESHY2-UI-R2:U23"
+      ],
+      "finding": "For the primary-derived local +Y Heimdall optical direction, U24 B0 points native -Y parallel to left edge; U23 B90 points outward -X. The custom footprint centres its body on the pin row, so optical offset and TR/TT assembly presentation are not fully captured by a rotation-only check.",
+      "sources": [
+        "ir_carrier",
+        "ir_demod"
+      ],
+      "remediation": "Verify exact physical body/pad/lens datum for each accepted MPN; U24 needs outward orientation, nominallyB90. Retain U23 outward direction only after datum/edge clearance inspection. No component substitution authorized."
+    },
+    {
+      "id": "INTERFACE-POWER-ACCESS",
+      "status": "unresolved_actuator_axis",
+      "refs": [
+        "LESHY2-RF-R2:SW5"
+      ],
+      "finding": "RUN/KILL switch B0 near native left edge cannot be declared externally accessible from its rectangular body. Source ordering calls SC vertical gullwing, current catalog kind calls it right-angle; exact lever direction is not yet visually reconciled.",
+      "sources": [
+        "power_switch"
+      ],
+      "remediation": "Inspect exact page5/3D actuator against custom pad geometry, then choose pose or register a real access aperture. No guessed90/180-degree repair or replacement MPN."
+    },
+    {
+      "id": "INTERFACE-ACOUSTICS",
+      "status": "unresolved_physical_acoustic_route",
+      "refs": [
+        "LESHY2-RF-R2:MK1",
+        "LESHY2-RF-R2:LS1"
+      ],
+      "finding": "MK1 is a top-port microphone on B.Cu: its port opens into the interboard gap, not directly through the bottom PCB edge. LS1 is only a two-pad wire termination, not the24x12x4.5-mm speaker body. Native pad placement does not prove sound outlet, diaphragm clearance, strain relief or owner/factory attachment.",
+      "sources": [
+        "https://www.sameskydevices.com/product/resource/cmej-0413-42-smt-tr.pdf",
+        "https://api.puiaudio.com/filename/AS02404PO.pdf"
+      ],
+      "remediation": "Register separate microphone acoustic path and speaker body/grille/wire route to assembled geometry; explicitly retain owner-assembly scope. No guarantee of acoustic performance from connectivity."
+    },
+    {
+      "id": "INTERFACE-CLOSED-STACK",
+      "status": "unresolved_assembled_access",
+      "refs": [],
+      "finding": "IndividualPCB courtyards and inward-facing service headers do not prove access in an11-mm sandwich or clearance from opposing components/fasteners. USB/Grove/card plug and finger envelopes must use corrected assembled transforms.",
+      "remediation": "After source corrections regenerate native poses and evaluate opposing bodies, connector plug sweeps, cable landing/inspection cylinders and user access. Do not use this matrix as a full3D clearance pass."
+    }
+  ],
+  "limitations": [
+    "No production files, MPN selections, native copper or placement contracts were changed by this review.",
+    "All31 J references are inventoried, but complete metrology and manufacturer3D comparison is not claimed for every part.",
+    "Buttons and LED placement are being independently corrected by the controls reviewer; their observed old native snapshot is retained here without claiming the repairs are applied.",
+    "Display FPC slot and fold, headphone cutout and holder locators are owned by the mechanical review; consult its current findings before acceptance.",
+    "Ten SMA axes are outward in this snapshot; PCB finished-thickness fit remains the separately open H6-SMA-FINISHED-THICKNESS-FIT gate.",
+    "U.FL mating is normal to B.Cu, not an outward edge entrance. Existing native-axis/cable-reach contract is useful but does not prove opposing-body clearance or received-cable strain.",
+    "No order/factory readiness, fresh DRC pass, electrical functionality or full interface gate closure follows from this read-only artifact."
+  ],
+  "interfaces": [
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "BT1",
+      "instance": "pack_holder",
+      "mpn": "Keystone Electronics 1048P",
+      "device_id": "keystone_1048p",
+      "footprint": "Keystone-1048P",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          42.99,
+          85
+        ]
+      },
+      "catalog_primary_source": "https://www.keyelco.com/product.cfm/product_id/13959",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "outer_face_verified_locator_review_required",
+      "finding_ids": [
+        "CONNECTOR-HOLDER-LOCATORS"
+      ],
+      "verified_scope": [
+        "F.Cu holder face is externally accessible before enclosure closure."
+      ],
+      "remaining": [
+        "Missing locator features: mechanical review authority; verify cell removal and NTC pad access."
+      ],
+      "native_interface_axis": "rear_normal_cell_access"
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "J1",
+      "instance": "product_usb_connector",
+      "mpn": "JAE DX07S016JA1R1500",
+      "device_id": "jae_dx07s016ja1r1500",
+      "footprint": "USB_C_Receptacle_JAE_DX07S016JA1R1500",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          63.53,
+          146.435
+        ]
+      },
+      "catalog_primary_source": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8440/MB-0350E_DX07_16-POS_RECEPTACLE.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "confirmed_orientation_defect",
+      "finding_ids": [
+        "CONNECTOR-USB-INWARD"
+      ],
+      "verified_scope": [],
+      "remaining": [
+        "Fresh manufacturer drawing mouth datum before accepting new anchor."
+      ],
+      "local_interface_axis": "+Y",
+      "native_interface_axis": "-Y",
+      "sources": [
+        "jae_usb"
+      ],
+      "proposed_orientation": {
+        "side": "B.Cu",
+        "rotation_deg": 180,
+        "accepted": false
+      }
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "J10",
+      "instance": "u214_connector",
+      "mpn": "Samtec HLE-107-02-G-DV-PE-LC",
+      "device_id": "samtec_hle_107_02_g_dv_pe_lc",
+      "footprint": "Samtec_HLE-107-02-xx-DV-PE-LC_2x07_P2.54mm_Horizontal",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          32.375,
+          25.21
+        ]
+      },
+      "catalog_primary_source": "https://www.samtec.com/products/hle-107-02-g-dv-pe-lc",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_mating_axis_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "Actual HLE is vertical pass-through despite KiCad Horizontal suffix; nativeF.Cu is intended removable-Cap exterior."
+      ],
+      "remaining": [
+        "Cap key/pin orientation, full module body and contacts/locator keepouts must be checked in assembled model; LC manual placement remains explicit."
+      ],
+      "native_interface_axis": "rear_normal_outward",
+      "sources": [
+        "hle"
+      ]
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "J11",
+      "instance": "unit_connector",
+      "mpn": "1125R-SMT-4P",
+      "device_id": "seeed_1125r_smt_4p",
+      "footprint": "1125R-SMT-4P",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          18,
+          145.45
+        ]
+      },
+      "catalog_primary_source": "https://statics3.seeedstudio.com/fusion/opl/datasheet/320110032.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "confirmed_orientation_defect",
+      "finding_ids": [
+        "CONNECTOR-GROVE-INWARD"
+      ],
+      "verified_scope": [],
+      "remaining": [
+        "Exact PCB-edge offset is not specified by the inspected primary drawing; freeze an explicit mating datum and cable envelope."
+      ],
+      "local_interface_axis": "+Y",
+      "native_interface_axis": "-Y",
+      "proposed_orientation": {
+        "side": "B.Cu",
+        "rotation_deg": 180,
+        "accepted": false
+      }
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "J12",
+      "instance": "m1_rf_receptacle",
+      "mpn": "Hirose FX8C-80S-SV5(92)",
+      "device_id": "hirose_fx8c_80s_sv5_92",
+      "footprint": "Hirose_FX8-80S-SV_2x40_P0.6mm",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          42.5,
+          122.5
+        ]
+      },
+      "catalog_primary_source": "https://www.hirose.com/en/product/p/CL0578-0823-5-92",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "confirmed_assembly_registration_defect",
+      "finding_ids": [
+        "CONNECTOR-M1-MISMATCH"
+      ],
+      "verified_scope": [],
+      "remaining": [
+        "See CONNECTOR-M1-MISMATCH; verify all80 mates and exact polarization after correction."
+      ],
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "J13",
+      "instance": "safety_dbg_header",
+      "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "device_id": "samtec_ftsh_105_01_l_dv_k_p_tr",
+      "footprint": "FTSH-105-01-L-DV-K-P-TR",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          42.675,
+          100.169999
+        ]
+      },
+      "catalog_primary_source": "https://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-xxx-x-xx-mkt.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_intended_service_face_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "Inner-face vertical service connector; not intended as a closed-device exterior socket."
+      ],
+      "remaining": [
+        "Enclosure/boards opened for access; debug plug key, strain relief and plug sweep not fully revalidated."
+      ],
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "J2",
+      "instance": "pack_dbg_header",
+      "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "device_id": "samtec_ftsh_105_01_l_dv_k_p_tr",
+      "footprint": "FTSH-105-01-L-DV-K-P-TR",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          64.92,
+          93.175
+        ]
+      },
+      "catalog_primary_source": "https://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-xxx-x-xx-mkt.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_intended_service_face_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "Inner-face vertical service connector; not intended as a closed-device exterior socket."
+      ],
+      "remaining": [
+        "Enclosure/boards opened for access; debug plug key, strain relief and plug sweep not fully revalidated."
+      ],
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "J3",
+      "instance": "rf_rp_dbg_header",
+      "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "device_id": "samtec_ftsh_105_01_l_dv_k_p_tr",
+      "footprint": "FTSH-105-01-L-DV-K-P-TR",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          30.175,
+          106.92
+        ]
+      },
+      "catalog_primary_source": "https://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-xxx-x-xx-mkt.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_intended_service_face_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "Inner-face vertical service connector; not intended as a closed-device exterior socket."
+      ],
+      "remaining": [
+        "Enclosure/boards opened for access; debug plug key, strain relief and plug sweep not fully revalidated."
+      ],
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "J4",
+      "instance": "rf_rp_service_usb_connector",
+      "mpn": "GCT USB4105-GF-A",
+      "device_id": "gct_usb4105_gf_a",
+      "footprint": "USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          42.53,
+          146.035
+        ]
+      },
+      "catalog_primary_source": "https://gct.co/files/drawings/usb4105.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "confirmed_orientation_defect",
+      "finding_ids": [
+        "CONNECTOR-USB-INWARD"
+      ],
+      "verified_scope": [],
+      "remaining": [],
+      "local_interface_axis": "+Y",
+      "native_interface_axis": "-Y",
+      "sources": [
+        "gct_usb"
+      ],
+      "proposed_orientation": {
+        "side": "B.Cu",
+        "rotation_deg": 180,
+        "accepted": false
+      },
+      "proposed_pose": {
+        "side": "B.Cu",
+        "rotation_deg": 180,
+        "anchor_mm": [
+          42.53,
+          146.325
+        ],
+        "datum": "Manufacturer PCB edge at footprintlocal+3.675 aligned to boardy150.",
+        "accepted": false,
+        "requires": [
+          "collision/land/copper recheck",
+          "assembled plug access"
+        ]
+      }
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "J5",
+      "instance": "cc_external_sma",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "device_id": "gct_rfpc_sma31_fn_175_a",
+      "footprint": "RFPC-SMA31-FN-175-A",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 180,
+        "anchor_mm": [
+          40,
+          0
+        ]
+      },
+      "catalog_primary_source": "https://gct.co/connector/rfpc-sma31-fn",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_axis_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "F.Cu180 edge-launch body is beyond antenna edge; F/B solder lands remain inboard."
+      ],
+      "remaining": [
+        "Finished PCB thickness vs exact1.75+/-0.10-mm slot tolerance confirmation; antenna/collar hand clearance and opposing assembled connector clearance."
+      ],
+      "local_interface_axis": "+Y",
+      "native_interface_axis": "-Y"
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "J6",
+      "instance": "voice_external_sma",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "device_id": "gct_rfpc_sma31_fn_175_a",
+      "footprint": "RFPC-SMA31-FN-175-A",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 180,
+        "anchor_mm": [
+          51.75,
+          0
+        ]
+      },
+      "catalog_primary_source": "https://gct.co/connector/rfpc-sma31-fn",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_axis_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "F.Cu180 edge-launch body is beyond antenna edge; F/B solder lands remain inboard."
+      ],
+      "remaining": [
+        "Finished PCB thickness vs exact1.75+/-0.10-mm slot tolerance confirmation; antenna/collar hand clearance and opposing assembled connector clearance."
+      ],
+      "local_interface_axis": "+Y",
+      "native_interface_axis": "-Y"
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "J7",
+      "instance": "voice_v_external_sma",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "device_id": "gct_rfpc_sma31_fn_175_a",
+      "footprint": "RFPC-SMA31-FN-175-A",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 180,
+        "anchor_mm": [
+          63.5,
+          0
+        ]
+      },
+      "catalog_primary_source": "https://gct.co/connector/rfpc-sma31-fn",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_axis_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "F.Cu180 edge-launch body is beyond antenna edge; F/B solder lands remain inboard."
+      ],
+      "remaining": [
+        "Finished PCB thickness vs exact1.75+/-0.10-mm slot tolerance confirmation; antenna/collar hand clearance and opposing assembled connector clearance."
+      ],
+      "local_interface_axis": "+Y",
+      "native_interface_axis": "-Y"
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "J8",
+      "instance": "receiver_amlw_external_sma",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "device_id": "gct_rfpc_sma31_fn_175_a",
+      "footprint": "RFPC-SMA31-FN-175-A",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 180,
+        "anchor_mm": [
+          28.25,
+          0
+        ]
+      },
+      "catalog_primary_source": "https://gct.co/connector/rfpc-sma31-fn",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_axis_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "F.Cu180 edge-launch body is beyond antenna edge; F/B solder lands remain inboard."
+      ],
+      "remaining": [
+        "Finished PCB thickness vs exact1.75+/-0.10-mm slot tolerance confirmation; antenna/collar hand clearance and opposing assembled connector clearance."
+      ],
+      "local_interface_axis": "+Y",
+      "native_interface_axis": "-Y"
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "J9",
+      "instance": "receiver_fmsw_external_sma",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "device_id": "gct_rfpc_sma31_fn_175_a",
+      "footprint": "RFPC-SMA31-FN-175-A",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 180,
+        "anchor_mm": [
+          16.5,
+          0
+        ]
+      },
+      "catalog_primary_source": "https://gct.co/connector/rfpc-sma31-fn",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_axis_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "F.Cu180 edge-launch body is beyond antenna edge; F/B solder lands remain inboard."
+      ],
+      "remaining": [
+        "Finished PCB thickness vs exact1.75+/-0.10-mm slot tolerance confirmation; antenna/collar hand clearance and opposing assembled connector clearance."
+      ],
+      "local_interface_axis": "+Y",
+      "native_interface_axis": "-Y"
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "LS1",
+      "instance": "speaker",
+      "mpn": "PUI Audio AS02404PO",
+      "device_id": "pui_as02404po",
+      "footprint": "Speaker-Wire-Termination-2P",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          76.395,
+          63.645
+        ]
+      },
+      "catalog_primary_source": "https://api.puiaudio.com/filename/AS02404PO.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "termination_only_physical_body_unverified",
+      "finding_ids": [
+        "INTERFACE-ACOUSTICS"
+      ],
+      "verified_scope": [
+        "LS1 is fabricated two-pad wire termination, not speakeroutline."
+      ],
+      "remaining": [
+        "Register separate speaker body/outlet, wire route, polarity and strainrelief."
+      ],
+      "native_interface_axis": null
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "MK1",
+      "instance": "microphone",
+      "mpn": "Same Sky CMEJ-0413-42-SMT-TR",
+      "device_id": "same_sky_cmej_0413_42_smt_tr",
+      "footprint": "CMEJ-0413-42-SMT-TR",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          28.00125,
+          148
+        ]
+      },
+      "catalog_primary_source": "https://www.sameskydevices.com/product/resource/cmej-0413-42-smt-tr.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_top_port_unresolved_acoustic_path",
+      "finding_ids": [
+        "INTERFACE-ACOUSTICS"
+      ],
+      "verified_scope": [],
+      "remaining": [
+        "Bottom-edge label is not a physical bottom-facing acousticport."
+      ],
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "SW1",
+      "instance": "rf_rp_boot_button",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "device_id": "alps_skrtlae010",
+      "footprint": "SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          78.425,
+          115.25
+        ]
+      },
+      "catalog_primary_source": "https://tech.alpsalpine.com/e/products/detail/SKRTLAE010/",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "requires_exact_SKRT_actuator_transform"
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "SW2",
+      "instance": "rf_rp_reset_button",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "device_id": "alps_skrtlae010",
+      "footprint": "SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          78.425,
+          108.25
+        ]
+      },
+      "catalog_primary_source": "https://tech.alpsalpine.com/e/products/detail/SKRTLAE010/",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "requires_exact_SKRT_actuator_transform"
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "SW3",
+      "instance": "encoder",
+      "mpn": "Alps Alpine EC11E18244AU",
+      "device_id": "alps_ec11e18244au",
+      "footprint": "RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm_MountingHoles",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          68.5,
+          57.75
+        ]
+      },
+      "catalog_primary_source": "https://tech.alpsalpine.com/cms.media/product_catalog_ec_01_ec11e_en_611f078659.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_shaft_face_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "Vertical encoder on F.Cu projects shaft to exterior."
+      ],
+      "remaining": [
+        "Exact shaft centre vs KiCad anchor, knob swing/access and case opening require mechanicalregistration."
+      ],
+      "native_interface_axis": "rear_normal_outward"
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "SW4",
+      "instance": "ptt_switch",
+      "mpn": "OMRON B3S-1100P",
+      "device_id": "omron_b3s_1100p",
+      "footprint": "B3S-1100P",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          7.5,
+          66.67
+        ]
+      },
+      "catalog_primary_source": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "normal_to_exterior"
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "SW5",
+      "instance": "power_command_switch",
+      "mpn": "C&K JS102011SCQN",
+      "device_id": "ck_js102011scqn",
+      "footprint": "JS102011SCQN",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          4.949999,
+          114.1
+        ]
+      },
+      "catalog_primary_source": "https://www.littelfuse.com/assetdocs/littelfuse-c-k-slide-js-series-datasheet?assetguid=aba42b08-0d2c-423b-813d-a2faa5a3bb14",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "unresolved_actuator_axis",
+      "finding_ids": [
+        "INTERFACE-POWER-ACCESS"
+      ],
+      "verified_scope": [],
+      "remaining": [
+        "Exact SC actuator not proven; do not infer exterior accessibility from nearbyedge."
+      ],
+      "native_interface_axis": null
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "U83",
+      "instance": "headphone_jack",
+      "mpn": "Same Sky SJ-43504-SMT-TR",
+      "device_id": "same_sky_sj_43504_smt_tr",
+      "footprint": "SJ-43504-SMT-TR",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          72.7,
+          25.75
+        ]
+      },
+      "catalog_primary_source": "https://www.sameskydevices.com/product/resource/sj-43504-smt-tr.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "confirmed_missing_native_cutout",
+      "finding_ids": [
+        "CONNECTOR-AUDIO-CUTOUT"
+      ],
+      "verified_scope": [],
+      "remaining": [
+        "Mechanical review owns exact mouth/cutout geometry."
+      ],
+      "native_interface_axis": "pending_exact_cutout_and_mouth_registration_by_mechanical_review"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "D1",
+      "instance": "c5_tx_led",
+      "mpn": "LTST-C190KRKT",
+      "device_id": "liteon_ltst_c190krkt",
+      "footprint": "LED_0603_1608Metric",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          40.5,
+          79.375
+        ]
+      },
+      "catalog_primary_source": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "confirmed_visibility_defect",
+      "finding_ids": [
+        "INTERFACE-LED-INNER"
+      ],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner moving indicators to current accepted F.Cu datums."
+      ],
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "D10",
+      "instance": "voice_tx_led",
+      "mpn": "LTST-C190KRKT",
+      "device_id": "liteon_ltst_c190krkt",
+      "footprint": "LED_0603_1608Metric",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          45.875,
+          127.375
+        ]
+      },
+      "catalog_primary_source": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "confirmed_visibility_defect",
+      "finding_ids": [
+        "INTERFACE-LED-INNER"
+      ],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner moving indicators to current accepted F.Cu datums."
+      ],
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "D11",
+      "instance": "ir_emitter",
+      "mpn": "Vishay VSMY14940",
+      "device_id": "vishay_vsmy14940",
+      "footprint": "VSMY14940",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          1.5,
+          90.255
+        ]
+      },
+      "catalog_primary_source": "https://www.vishay.com/docs/84209/vsmy14940.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "confirmed_orientation_and_land_mismatch",
+      "finding_ids": [
+        "INTERFACE-IR-EMITTER"
+      ],
+      "verified_scope": [],
+      "remaining": [],
+      "local_interface_axis": "-Y",
+      "native_interface_axis": "+Y",
+      "sources": [
+        "ir_emitter"
+      ]
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "D2",
+      "instance": "cc_tx_led",
+      "mpn": "LTST-C190KRKT",
+      "device_id": "liteon_ltst_c190krkt",
+      "footprint": "LED_0603_1608Metric",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          42.625,
+          127.375
+        ]
+      },
+      "catalog_primary_source": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "confirmed_visibility_defect",
+      "finding_ids": [
+        "INTERFACE-LED-INNER"
+      ],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner moving indicators to current accepted F.Cu datums."
+      ],
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "D3",
+      "instance": "ext_tx_led",
+      "mpn": "LTST-C190KRKT",
+      "device_id": "liteon_ltst_c190krkt",
+      "footprint": "LED_0603_1608Metric",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          34.375,
+          127.375
+        ]
+      },
+      "catalog_primary_source": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "confirmed_visibility_defect",
+      "finding_ids": [
+        "INTERFACE-LED-INNER"
+      ],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner moving indicators to current accepted F.Cu datums."
+      ],
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "D4",
+      "instance": "fault_led",
+      "mpn": "LTST-C190KFKT",
+      "device_id": "liteon_ltst_c190kfkt",
+      "footprint": "LED_0603_1608Metric",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          34.375,
+          89.125
+        ]
+      },
+      "catalog_primary_source": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0186/LTST-C190KFKT.PDF",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "confirmed_visibility_defect",
+      "finding_ids": [
+        "INTERFACE-LED-INNER"
+      ],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner moving indicators to current accepted F.Cu datums."
+      ],
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "D5",
+      "instance": "ir_tx_led",
+      "mpn": "LTST-C190KRKT",
+      "device_id": "liteon_ltst_c190krkt",
+      "footprint": "LED_0603_1608Metric",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          41.375,
+          81.875
+        ]
+      },
+      "catalog_primary_source": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "confirmed_visibility_defect",
+      "finding_ids": [
+        "INTERFACE-LED-INNER"
+      ],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner moving indicators to current accepted F.Cu datums."
+      ],
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "D6",
+      "instance": "nrf0_tx_led",
+      "mpn": "LTST-C190KRKT",
+      "device_id": "liteon_ltst_c190krkt",
+      "footprint": "LED_0603_1608Metric",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          26.125,
+          106.125
+        ]
+      },
+      "catalog_primary_source": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "confirmed_visibility_defect",
+      "finding_ids": [
+        "INTERFACE-LED-INNER"
+      ],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner moving indicators to current accepted F.Cu datums."
+      ],
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "D7",
+      "instance": "nrf1_tx_led",
+      "mpn": "LTST-C190KRKT",
+      "device_id": "liteon_ltst_c190krkt",
+      "footprint": "LED_0603_1608Metric",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          26.125,
+          107.875
+        ]
+      },
+      "catalog_primary_source": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "confirmed_visibility_defect",
+      "finding_ids": [
+        "INTERFACE-LED-INNER"
+      ],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner moving indicators to current accepted F.Cu datums."
+      ],
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "D8",
+      "instance": "nrf2_tx_led",
+      "mpn": "LTST-C190KRKT",
+      "device_id": "liteon_ltst_c190krkt",
+      "footprint": "LED_0603_1608Metric",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          26.125,
+          104.375
+        ]
+      },
+      "catalog_primary_source": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "confirmed_visibility_defect",
+      "finding_ids": [
+        "INTERFACE-LED-INNER"
+      ],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner moving indicators to current accepted F.Cu datums."
+      ],
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "D9",
+      "instance": "s3_tx_led",
+      "mpn": "LTST-C190KRKT",
+      "device_id": "liteon_ltst_c190krkt",
+      "footprint": "LED_0603_1608Metric",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          23.875,
+          102.625
+        ]
+      },
+      "catalog_primary_source": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "confirmed_visibility_defect",
+      "finding_ids": [
+        "INTERFACE-LED-INNER"
+      ],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner moving indicators to current accepted F.Cu datums."
+      ],
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "J1",
+      "instance": "display_connector",
+      "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
+      "device_id": "hirose_fh34srj_50s_0_5sh_50",
+      "footprint": "FH34SRJ-50S-0.5SH-50",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          40,
+          35.4
+        ]
+      },
+      "catalog_primary_source": "https://www.hirose.com/en/product/series/FH34SRJ",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_mouth_direction_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "B0 mating entrance faces upper native slot at y31.5..32.7; tail row lies behind toward+y. Previously corrected manufacturer numbering and explicit51-n mating contract are retained."
+      ],
+      "remaining": [
+        "Mechanical owner rechecks slot shape, bend path, contact-facing side and slack against exact panel; latch must be accessible before closing sandwich."
+      ],
+      "local_interface_axis": "+Y",
+      "native_interface_axis": "-Y"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "J10",
+      "instance": "hub_rp_dbg_header",
+      "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "device_id": "samtec_ftsh_105_01_l_dv_k_p_tr",
+      "footprint": "FTSH-105-01-L-DV-K-P-TR",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          30.525,
+          135.92
+        ]
+      },
+      "catalog_primary_source": "https://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-xxx-x-xx-mkt.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_intended_service_face_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "Inner-face vertical service connector; not intended as a closed-device exterior socket."
+      ],
+      "remaining": [
+        "Enclosure/boards opened for access; debug plug key, strain relief and plug sweep not fully revalidated."
+      ],
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "J11",
+      "instance": "hub_rp_service_usb_connector",
+      "mpn": "GCT USB4105-GF-A",
+      "device_id": "gct_usb4105_gf_a",
+      "footprint": "USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          14.87,
+          146.035
+        ]
+      },
+      "catalog_primary_source": "https://gct.co/files/drawings/usb4105.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "confirmed_orientation_defect",
+      "finding_ids": [
+        "CONNECTOR-USB-INWARD"
+      ],
+      "verified_scope": [],
+      "remaining": [],
+      "local_interface_axis": "+Y",
+      "native_interface_axis": "-Y",
+      "sources": [
+        "gct_usb"
+      ],
+      "proposed_orientation": {
+        "side": "B.Cu",
+        "rotation_deg": 180,
+        "accepted": false
+      },
+      "proposed_pose": {
+        "side": "B.Cu",
+        "rotation_deg": 180,
+        "anchor_mm": [
+          14.87,
+          146.325
+        ],
+        "datum": "Manufacturer PCB edge at footprintlocal+3.675 aligned to boardy150.",
+        "accepted": false,
+        "requires": [
+          "collision/land/copper recheck",
+          "assembled plug access"
+        ]
+      }
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "J12",
+      "instance": "nrf0_external_sma",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "device_id": "gct_rfpc_sma31_fn_175_a",
+      "footprint": "RFPC-SMA31-FN-175-A",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 180,
+        "anchor_mm": [
+          16.5,
+          0
+        ]
+      },
+      "catalog_primary_source": "https://gct.co/connector/rfpc-sma31-fn",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_axis_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "F.Cu180 edge-launch body is beyond antenna edge; F/B solder lands remain inboard."
+      ],
+      "remaining": [
+        "Finished PCB thickness vs exact1.75+/-0.10-mm slot tolerance confirmation; antenna/collar hand clearance and opposing assembled connector clearance."
+      ],
+      "local_interface_axis": "+Y",
+      "native_interface_axis": "-Y"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "J13",
+      "instance": "nrf0_rf_board_connector",
+      "mpn": "Hirose U.FL-R-SMT-1(80)",
+      "device_id": "hirose_ufl_r_smt_1_10",
+      "footprint": "U.FL_Hirose_U.FL-R-SMT-1_Vertical",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          5.25,
+          3.875
+        ]
+      },
+      "catalog_primary_source": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_axis_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "Native anchor is U.FL mating centre, not asymmetric courtyard centre; correct inner face."
+      ],
+      "remaining": [
+        "Use h6-r2-microcoax-service.json for exact axes, cable reach/inspection corridors; assembled opposing-component clearance remains open."
+      ],
+      "local_interface_axis": "normal_to_component_side",
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "J14",
+      "instance": "nrf1_external_sma",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "device_id": "gct_rfpc_sma31_fn_175_a",
+      "footprint": "RFPC-SMA31-FN-175-A",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 180,
+        "anchor_mm": [
+          40,
+          0
+        ]
+      },
+      "catalog_primary_source": "https://gct.co/connector/rfpc-sma31-fn",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_axis_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "F.Cu180 edge-launch body is beyond antenna edge; F/B solder lands remain inboard."
+      ],
+      "remaining": [
+        "Finished PCB thickness vs exact1.75+/-0.10-mm slot tolerance confirmation; antenna/collar hand clearance and opposing assembled connector clearance."
+      ],
+      "local_interface_axis": "+Y",
+      "native_interface_axis": "-Y"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "J15",
+      "instance": "nrf1_rf_board_connector",
+      "mpn": "Hirose U.FL-R-SMT-1(80)",
+      "device_id": "hirose_ufl_r_smt_1_10",
+      "footprint": "U.FL_Hirose_U.FL-R-SMT-1_Vertical",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          46.875,
+          11.5
+        ]
+      },
+      "catalog_primary_source": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_axis_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "Native anchor is U.FL mating centre, not asymmetric courtyard centre; correct inner face."
+      ],
+      "remaining": [
+        "Use h6-r2-microcoax-service.json for exact axes, cable reach/inspection corridors; assembled opposing-component clearance remains open."
+      ],
+      "local_interface_axis": "normal_to_component_side",
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "J16",
+      "instance": "nrf2_external_sma",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "device_id": "gct_rfpc_sma31_fn_175_a",
+      "footprint": "RFPC-SMA31-FN-175-A",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 180,
+        "anchor_mm": [
+          63.5,
+          0
+        ]
+      },
+      "catalog_primary_source": "https://gct.co/connector/rfpc-sma31-fn",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_axis_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "F.Cu180 edge-launch body is beyond antenna edge; F/B solder lands remain inboard."
+      ],
+      "remaining": [
+        "Finished PCB thickness vs exact1.75+/-0.10-mm slot tolerance confirmation; antenna/collar hand clearance and opposing assembled connector clearance."
+      ],
+      "local_interface_axis": "+Y",
+      "native_interface_axis": "-Y"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "J17",
+      "instance": "nrf2_rf_board_connector",
+      "mpn": "Hirose U.FL-R-SMT-1(80)",
+      "device_id": "hirose_ufl_r_smt_1_10",
+      "footprint": "U.FL_Hirose_U.FL-R-SMT-1_Vertical",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          68,
+          9.625
+        ]
+      },
+      "catalog_primary_source": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_axis_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "Native anchor is U.FL mating centre, not asymmetric courtyard centre; correct inner face."
+      ],
+      "remaining": [
+        "Use h6-r2-microcoax-service.json for exact axes, cable reach/inspection corridors; assembled opposing-component clearance remains open."
+      ],
+      "local_interface_axis": "normal_to_component_side",
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "J18",
+      "instance": "m1_ui_plug",
+      "mpn": "Hirose FX8C-80P-SV1(92)",
+      "device_id": "hirose_fx8c_80p_sv1_92",
+      "footprint": "Hirose_FX8-80P-SV_2x40_P0.6mm",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          42.5,
+          122.25
+        ]
+      },
+      "catalog_primary_source": "https://www.hirose.com/product/p/CL0578-0523-1-92",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "confirmed_assembly_registration_defect",
+      "finding_ids": [
+        "CONNECTOR-M1-MISMATCH"
+      ],
+      "verified_scope": [],
+      "remaining": [
+        "See CONNECTOR-M1-MISMATCH; verify all80 mates and exact polarization after correction."
+      ],
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "J2",
+      "instance": "s3_dbg_header",
+      "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "device_id": "samtec_ftsh_105_01_l_dv_k_p_tr",
+      "footprint": "FTSH-105-01-L-DV-K-P-TR",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          9.825,
+          106.92
+        ]
+      },
+      "catalog_primary_source": "https://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-xxx-x-xx-mkt.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_intended_service_face_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "Inner-face vertical service connector; not intended as a closed-device exterior socket."
+      ],
+      "remaining": [
+        "Enclosure/boards opened for access; debug plug key, strain relief and plug sweep not fully revalidated."
+      ],
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "J3",
+      "instance": "s3_external_rp_sma",
+      "mpn": "GCT RFPC-SMA32-FN-175-A",
+      "device_id": "gct_rfpc_sma32_fn_175_a",
+      "footprint": "RFPC-SMA32-FN-175-A",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 180,
+        "anchor_mm": [
+          28.25,
+          0
+        ]
+      },
+      "catalog_primary_source": "https://gct.co/connector/rfpc-sma32-fn",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_axis_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "F.Cu180 edge-launch body is beyond antenna edge; F/B solder lands remain inboard."
+      ],
+      "remaining": [
+        "Finished PCB thickness vs exact1.75+/-0.10-mm slot tolerance confirmation; antenna/collar hand clearance and opposing assembled connector clearance."
+      ],
+      "local_interface_axis": "+Y",
+      "native_interface_axis": "-Y"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "J4",
+      "instance": "s3_rf_board_connector",
+      "mpn": "Hirose U.FL-R-SMT-1(80)",
+      "device_id": "hirose_ufl_r_smt_1_10",
+      "footprint": "U.FL_Hirose_U.FL-R-SMT-1_Vertical",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 180,
+        "anchor_mm": [
+          22,
+          3.48
+        ]
+      },
+      "catalog_primary_source": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_axis_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "Native anchor is U.FL mating centre, not asymmetric courtyard centre; correct inner face."
+      ],
+      "remaining": [
+        "Use h6-r2-microcoax-service.json for exact axes, cable reach/inspection corridors; assembled opposing-component clearance remains open."
+      ],
+      "local_interface_axis": "normal_to_component_side",
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "J5",
+      "instance": "sd",
+      "mpn": "Hirose DM3AT-SF-PEJM5",
+      "device_id": "hirose_dm3at_sf_pejm5",
+      "footprint": "microSD_HC_Hirose_DM3AT-SF-PEJM5",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          61.005,
+          143.105
+        ]
+      },
+      "catalog_primary_source": "https://www.hirose.com/product/p/CL0609-0031-0-00",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "confirmed_orientation_defect",
+      "finding_ids": [
+        "CONNECTOR-SD-SIDEWAYS"
+      ],
+      "verified_scope": [],
+      "remaining": [],
+      "local_interface_axis": "+Y",
+      "native_interface_axis": "-X",
+      "proposed_orientation": {
+        "side": "B.Cu",
+        "rotation_deg": 180,
+        "accepted": false
+      },
+      "proposed_pose": {
+        "side": "B.Cu",
+        "rotation_deg": 180,
+        "anchor_mm": [
+          61.005,
+          141.875
+        ],
+        "datum": "Conditional mouth-flush design: local shellmouth+8.125 aligned to boardy150; not manufacturer-mandated flush installation.",
+        "accepted": false,
+        "requires": [
+          "card lock/eject/over-stroke envelope",
+          "native copper/keepouts/collisions",
+          "assembled access"
+        ]
+      }
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "J6",
+      "instance": "c5_dbg_header",
+      "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "device_id": "samtec_ftsh_105_01_l_dv_k_p_tr",
+      "footprint": "FTSH-105-01-L-DV-K-P-TR",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          20.325,
+          106.92
+        ]
+      },
+      "catalog_primary_source": "https://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-xxx-x-xx-mkt.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_intended_service_face_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "Inner-face vertical service connector; not intended as a closed-device exterior socket."
+      ],
+      "remaining": [
+        "Enclosure/boards opened for access; debug plug key, strain relief and plug sweep not fully revalidated."
+      ],
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "J7",
+      "instance": "c5_external_rp_sma",
+      "mpn": "GCT RFPC-SMA32-FN-175-A",
+      "device_id": "gct_rfpc_sma32_fn_175_a",
+      "footprint": "RFPC-SMA32-FN-175-A",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 180,
+        "anchor_mm": [
+          51.75,
+          0
+        ]
+      },
+      "catalog_primary_source": "https://gct.co/connector/rfpc-sma32-fn",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_axis_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "F.Cu180 edge-launch body is beyond antenna edge; F/B solder lands remain inboard."
+      ],
+      "remaining": [
+        "Finished PCB thickness vs exact1.75+/-0.10-mm slot tolerance confirmation; antenna/collar hand clearance and opposing assembled connector clearance."
+      ],
+      "local_interface_axis": "+Y",
+      "native_interface_axis": "-Y"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "J8",
+      "instance": "c5_rf_board_connector",
+      "mpn": "Hirose U.FL-R-SMT-1(80)",
+      "device_id": "hirose_ufl_r_smt_1_10",
+      "footprint": "U.FL_Hirose_U.FL-R-SMT-1_Vertical",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          57.575,
+          10.55
+        ]
+      },
+      "catalog_primary_source": "https://www.hirose.com/en/product/document?clcode=CL0331-2401-0-00&documentid=ed_U.FL_CAT&documenttype=Catalog&lang=en&productname=U.FL%28A%29-LP-IN.OUT&series=U.FL",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "verified_axis_only",
+      "finding_ids": [],
+      "verified_scope": [
+        "Native anchor is U.FL mating centre, not asymmetric courtyard centre; correct inner face."
+      ],
+      "remaining": [
+        "Use h6-r2-microcoax-service.json for exact axes, cable reach/inspection corridors; assembled opposing-component clearance remains open."
+      ],
+      "local_interface_axis": "normal_to_component_side",
+      "native_interface_axis": "normal_to_B.Cu_interboard_gap"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "J9",
+      "instance": "c5_service_usb_connector",
+      "mpn": "GCT USB4105-GF-A",
+      "device_id": "gct_usb4105_gf_a",
+      "footprint": "USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          26.1,
+          146.035
+        ]
+      },
+      "catalog_primary_source": "https://gct.co/files/drawings/usb4105.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "confirmed_orientation_defect",
+      "finding_ids": [
+        "CONNECTOR-USB-INWARD"
+      ],
+      "verified_scope": [],
+      "remaining": [],
+      "local_interface_axis": "+Y",
+      "native_interface_axis": "-Y",
+      "sources": [
+        "gct_usb"
+      ],
+      "proposed_orientation": {
+        "side": "B.Cu",
+        "rotation_deg": 180,
+        "accepted": false
+      },
+      "proposed_pose": {
+        "side": "B.Cu",
+        "rotation_deg": 180,
+        "anchor_mm": [
+          26.1,
+          146.325
+        ],
+        "datum": "Manufacturer PCB edge at footprintlocal+3.675 aligned to boardy150.",
+        "accepted": false,
+        "requires": [
+          "collision/land/copper recheck",
+          "assembled plug access"
+        ]
+      }
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW1",
+      "instance": "s3_boot_button",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "device_id": "alps_skrtlae010",
+      "footprint": "SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          1.825,
+          124.25
+        ]
+      },
+      "catalog_primary_source": "https://tech.alpsalpine.com/e/products/detail/SKRTLAE010/",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "requires_exact_SKRT_actuator_transform"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW10",
+      "instance": "ui_switch_f2",
+      "mpn": "OMRON B3S-1100P",
+      "device_id": "omron_b3s_1100p",
+      "footprint": "B3S-1100P",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          4.77,
+          36
+        ]
+      },
+      "catalog_primary_source": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "normal_to_exterior"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW11",
+      "instance": "ui_switch_f3",
+      "mpn": "OMRON B3S-1100P",
+      "device_id": "omron_b3s_1100p",
+      "footprint": "B3S-1100P",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          4.77,
+          49.5
+        ]
+      },
+      "catalog_primary_source": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "normal_to_exterior"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW12",
+      "instance": "ui_switch_f4",
+      "mpn": "OMRON B3S-1100P",
+      "device_id": "omron_b3s_1100p",
+      "footprint": "B3S-1100P",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          4.77,
+          63
+        ]
+      },
+      "catalog_primary_source": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "normal_to_exterior"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW13",
+      "instance": "ui_switch_f5",
+      "mpn": "OMRON B3S-1100P",
+      "device_id": "omron_b3s_1100p",
+      "footprint": "B3S-1100P",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          75.57,
+          22.5
+        ]
+      },
+      "catalog_primary_source": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "normal_to_exterior"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW14",
+      "instance": "ui_switch_f6",
+      "mpn": "OMRON B3S-1100P",
+      "device_id": "omron_b3s_1100p",
+      "footprint": "B3S-1100P",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          75.57,
+          36
+        ]
+      },
+      "catalog_primary_source": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "normal_to_exterior"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW15",
+      "instance": "ui_switch_f7",
+      "mpn": "OMRON B3S-1100P",
+      "device_id": "omron_b3s_1100p",
+      "footprint": "B3S-1100P",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          75.57,
+          49.5
+        ]
+      },
+      "catalog_primary_source": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "normal_to_exterior"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW16",
+      "instance": "ui_switch_f8",
+      "mpn": "OMRON B3S-1100P",
+      "device_id": "omron_b3s_1100p",
+      "footprint": "B3S-1100P",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          75.57,
+          63
+        ]
+      },
+      "catalog_primary_source": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "normal_to_exterior"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW17",
+      "instance": "ui_switch_opt",
+      "mpn": "OMRON B3S-1100P",
+      "device_id": "omron_b3s_1100p",
+      "footprint": "B3S-1100P",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          65.7,
+          132.57
+        ]
+      },
+      "catalog_primary_source": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "normal_to_exterior"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW18",
+      "instance": "c5_boot_button",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "device_id": "alps_skrtlae010",
+      "footprint": "SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          78.425,
+          124.25
+        ]
+      },
+      "catalog_primary_source": "https://tech.alpsalpine.com/e/products/detail/SKRTLAE010/",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "requires_exact_SKRT_actuator_transform"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW19",
+      "instance": "c5_reset_button",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "device_id": "alps_skrtlae010",
+      "footprint": "SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          78.425,
+          117.25
+        ]
+      },
+      "catalog_primary_source": "https://tech.alpsalpine.com/e/products/detail/SKRTLAE010/",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "requires_exact_SKRT_actuator_transform"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW2",
+      "instance": "s3_reset_button",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "device_id": "alps_skrtlae010",
+      "footprint": "SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          1.825,
+          117.25
+        ]
+      },
+      "catalog_primary_source": "https://tech.alpsalpine.com/e/products/detail/SKRTLAE010/",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "requires_exact_SKRT_actuator_transform"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW20",
+      "instance": "hub_rp_boot_button",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "device_id": "alps_skrtlae010",
+      "footprint": "SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          77,
+          138.125
+        ]
+      },
+      "catalog_primary_source": "https://tech.alpsalpine.com/e/products/detail/SKRTLAE010/",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "requires_exact_SKRT_actuator_transform"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW21",
+      "instance": "hub_rp_reset_button",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "device_id": "alps_skrtlae010",
+      "footprint": "SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          77.625,
+          131.5
+        ]
+      },
+      "catalog_primary_source": "https://tech.alpsalpine.com/e/products/detail/SKRTLAE010/",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "requires_exact_SKRT_actuator_transform"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW3",
+      "instance": "ui_dpad_down",
+      "mpn": "OMRON B3S-1100P",
+      "device_id": "omron_b3s_1100p",
+      "footprint": "B3S-1100P",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          40,
+          143.07
+        ]
+      },
+      "catalog_primary_source": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "normal_to_exterior"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW4",
+      "instance": "ui_dpad_left",
+      "mpn": "OMRON B3S-1100P",
+      "device_id": "omron_b3s_1100p",
+      "footprint": "B3S-1100P",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          29.5,
+          132.57
+        ]
+      },
+      "catalog_primary_source": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "normal_to_exterior"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW5",
+      "instance": "ui_dpad_ok",
+      "mpn": "OMRON B3S-1100P",
+      "device_id": "omron_b3s_1100p",
+      "footprint": "B3S-1100P",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          40,
+          132.57
+        ]
+      },
+      "catalog_primary_source": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "normal_to_exterior"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW6",
+      "instance": "ui_dpad_right",
+      "mpn": "OMRON B3S-1100P",
+      "device_id": "omron_b3s_1100p",
+      "footprint": "B3S-1100P",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          50.5,
+          132.57
+        ]
+      },
+      "catalog_primary_source": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "normal_to_exterior"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW7",
+      "instance": "ui_dpad_up",
+      "mpn": "OMRON B3S-1100P",
+      "device_id": "omron_b3s_1100p",
+      "footprint": "B3S-1100P",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          40,
+          122.07
+        ]
+      },
+      "catalog_primary_source": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "normal_to_exterior"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW8",
+      "instance": "ui_switch_back",
+      "mpn": "OMRON B3S-1100P",
+      "device_id": "omron_b3s_1100p",
+      "footprint": "B3S-1100P",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          14.3,
+          132.57
+        ]
+      },
+      "catalog_primary_source": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "normal_to_exterior"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW9",
+      "instance": "ui_switch_f1",
+      "mpn": "OMRON B3S-1100P",
+      "device_id": "omron_b3s_1100p",
+      "footprint": "B3S-1100P",
+      "native": {
+        "side": "F.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          4.77,
+          22.5
+        ]
+      },
+      "catalog_primary_source": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "delegated_controls_review",
+      "finding_ids": [],
+      "verified_scope": [],
+      "remaining": [
+        "Controls-review owner verifies all native actuation datums; current snapshot is not corrected-placement acceptance."
+      ],
+      "native_interface_axis": "normal_to_exterior"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "U23",
+      "instance": "ir_carrier",
+      "mpn": "Vishay TSMP95000TT",
+      "device_id": "vishay_tsmp95000tt",
+      "footprint": "Vishay-Heimdall-SMD-TT",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          3.5,
+          83.5
+        ]
+      },
+      "catalog_primary_source": "https://www.vishay.com/docs/82907/tsmp95000.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "outward_axis_but_body_datum_not_closed",
+      "finding_ids": [
+        "INTERFACE-IR-RECEIVER"
+      ],
+      "verified_scope": [],
+      "remaining": [],
+      "local_interface_axis": "+Y_from_primary_component_plan",
+      "native_interface_axis": "-X",
+      "sources": [
+        "ir_carrier"
+      ]
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "U24",
+      "instance": "ir_demod",
+      "mpn": "Vishay TSOP75238TR",
+      "device_id": "vishay_tsop75238tr",
+      "footprint": "Vishay-Heimdall-SMD-TT",
+      "native": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          3.4,
+          76.5
+        ]
+      },
+      "catalog_primary_source": "https://www.vishay.com/docs/82494/tsop752.pdf",
+      "source_path": "hardware/architecture/devices.json",
+      "status": "orientation_defect_pending_exact_body_datum",
+      "finding_ids": [
+        "INTERFACE-IR-RECEIVER"
+      ],
+      "verified_scope": [],
+      "remaining": [],
+      "local_interface_axis": "+Y_from_primary_Heimdall_plan",
+      "native_interface_axis": "-Y",
+      "sources": [
+        "ir_demod",
+        "ir_carrier"
+      ]
+    }
+  ]
+}

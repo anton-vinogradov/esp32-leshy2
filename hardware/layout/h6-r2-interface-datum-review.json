@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "artifact": "H6-R2 independent JAE, Grove and RUN/KILL interface datum review",
+  "checked_at_utc": "2026-09-07T16:47:56Z",
+  "run_kill_review_completed_at_utc": "2026-09-07T16:56:21Z",
+  "scope": "Read-only manufacturer drawing and official CAD comparison against existing footprint coordinates; proposed placement arithmetic only",
+  "production_release_authorized": false,
+  "production_files_modified_by_this_review": false,
+  "status": "unresolved_grove_body_datum_and_run_kill_package_access",
+  "evidence": {
+    "jae_exact_drawing_identity": {
+      "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8440/MB-0350E_DX07_16-POS_RECEPTACLE.pdf",
+      "author": "Japan Aviation Electronics Industry, Ltd.",
+      "document": "MB-0350-3, August 2025",
+      "section": "Page 3, Part Numbers and Product Drawings",
+      "fact": "DX07S016JA1R1500 uses product drawing SJ121836; SJ121837 is its packaging drawing"
+    },
+    "jae_drawing": {
+      "url": "https://www.mikrocontroller.net/attachment/650878/SJ121836.pdf",
+      "author": "Japan Aviation Electronics Industry, Ltd.",
+      "document": "SJ121836 revision 3, 06 March 2024, DX07S016JA1",
+      "section": "Sheet 2 of 2, Applicable P.C.B Dimension, Mounting Condition and Mated Condition; sheet 1 body section",
+      "hosting_boundary": "Manufacturer-authored drawing hosted as a third-party attachment. Forum statements are not used as engineering evidence. Exact drawing identity is independently confirmed by the JAE brochure.",
+      "sha256": "c83806896177743b8d6b8b704448a204115206b1b97454c94304e5b43a5e5f85",
+      "local_evidence": "work/interface-datum-review/SJ121836.pdf"
+    },
+    "grove_drawing": {
+      "url": "https://statics3.seeedstudio.com/fusion/opl/datasheet/320110032.pdf",
+      "author": "Shenzhen NS-Tech Co., Ltd.; published by Seeed Studio",
+      "document": "NS-1125-W00010 revision A, 25 July 2013, 1125R-SMT-4P",
+      "section": "Single sheet: body, section and land pattern",
+      "fact": "12.0 mm width and 9.10 mm axial outline are shown. A separate PCB-edge datum is not prescribed. Full longitudinal land coordinates require the associated CAD rather than an assumed centred body."
+    },
+    "grove_official_mapping_and_layout_policy": {
+      "url": "https://www.seeedstudio.com/blog/2022/11/18/seeed-grove-designers-guide-pcb-design-guidelines-and-more/",
+      "author": "Seeed Studio",
+      "section": "Which Grove Connector Should I Use; How to Include the Grove Connector in the Bill of Materials; PCB Layout Tips",
+      "facts": [
+        "PCBA SKU 320110032 maps to MPN 1125R-SMT-4P and multipack SKU 114020164.",
+        "The guide explicitly recommends Seeed's GitHub Eagle/KiCad connector libraries.",
+        "The general placement advice keeps the connector inside the board outline and recommends at least 0.5 mm copper/pad clearance from board edges. This is not an exact connector-specific PCB-edge datum."
+      ]
+    },
+    "run_kill_manufacturer_drawing": {
+      "url": "https://www.littelfuse.com/assetdocs/littelfuse-c-k-slide-js-series-datasheet?assetguid=aba42b08-0d2c-423b-813d-a2faa5a3bb14",
+      "download_mirror_url": "https://static.datasheets.com/doc/3674279-c-k-js202011scqn-ds.pdf",
+      "author": "Littelfuse, Inc., C&K switches",
+      "document": "JS Series Sub-Miniature Slide Switches; revised VL 01/14/26",
+      "section": "Page 1 Ordering Number; page 5 lower Surface Mount JS102011SCQN SPDT drawing and PCB Layout Recommended",
+      "hosting_boundary": "The official URL was read using web retrieval; its direct PDF download returned HTTP 403. A mirror of the same manufacturer-authored 2026 revision was downloaded and visually checked, including its page-5 exact-part heading and revision footer. Distributor product descriptions are not used for actuation or land geometry.",
+      "sha256": "ddb26ebfb6b0f88321f77bbc8f3ca328b3369e1de92cb3bb4d766251cfa4bae4",
+      "local_evidence": "work/interface-datum-review/ck-js-series.pdf"
+    },
+    "grove_official_cad": {
+      "repository": "https://github.com/Seeed-Studio/OPL_Kicad_Library",
+      "commit": "b0035c51eb0348bb3e165fdb2f2765fa3d1d17bd",
+      "footprint_url": "https://raw.githubusercontent.com/Seeed-Studio/OPL_Kicad_Library/b0035c51eb0348bb3e165fdb2f2765fa3d1d17bd/Seeed%20Fusion%20Component%20Libraries%20for%20KiCad/OPL_Connector.pretty/GROVE-HW4-SMD-2.0-90D.kicad_mod",
+      "symbol_url": "https://raw.githubusercontent.com/Seeed-Studio/OPL_Kicad_Library/b0035c51eb0348bb3e165fdb2f2765fa3d1d17bd/Seeed%20Fusion%20Component%20Libraries%20for%20KiCad/OPL_Connector.lib",
+      "symbol_mapping": "GROVE-CONNECTOR-SMD-90D_4+2P-2.0_ has SKU 320110032 and footprint filter *HW4-SMD-2.0-90D*.",
+      "footprint_sha256": "367ead3546d0d010a6fee155dab4b68b623e032c3611ef1572553f680348742a",
+      "symbol_library_sha256": "db04d5625d25fa39bfc2214b84e3bc656392f26b68dcf13dbe2b8174f6829bca",
+      "local_footprint": "work/interface-datum-review/seeed-grove.kicad_mod",
+      "local_symbol_library": "work/interface-datum-review/seeed-connector.lib"
+    }
+  },
+  "interfaces": [
+    {
+      "project": "LESHY2-RF-R2",
+      "reference": "J1",
+      "instance": "product_usb_connector",
+      "mpn": "JAE DX07S016JA1R1500",
+      "footprint": "Connector_USB:USB_C_Receptacle_JAE_DX07S016JA1R1500",
+      "implementation_status": "selected_for_correction_by_parent_and_connector_agent; no native write performed by this review",
+      "drawing_datum": {
+        "native_unflipped_npth_y_mm": -1.95,
+        "npth_datum_to_pcb_edge_mm": 5.05,
+        "native_unflipped_pcb_edge_y_mm": 3.10,
+        "native_unflipped_shell_mouth_y_mm": 3.60,
+        "nominal_shell_overhang_mm": 0.50
+      },
+      "proposed_pose": {
+        "side": "B.Cu",
+        "rotation_deg": 180,
+        "footprint_anchor_mm": [63.53, 146.90],
+        "current_native_courtyard_centre_mm": [63.53, 146.785],
+        "pcb_edge_world_y_mm": 150.0,
+        "shell_mouth_world_y_mm": 150.50,
+        "maximum_copper_world_y_mm": 149.35,
+        "minimum_copper_to_bottom_edge_mm": 0.65,
+        "maximum_npth_world_y_mm": 145.25
+      },
+      "verification": "The current native footprint was rotated and translated in memory only. All pad bounding boxes remained on the 80x150-mm PCB. Native DRC and adjacent-component/cable-access checks belong to integration."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "reference": "J11",
+      "instance": "unit_connector",
+      "mpn": "1125R-SMT-4P",
+      "footprint": "Leshy2:1125R-SMT-4P",
+      "implementation_status": "datum_established_but_generator_footprint_and_native_pcb_not_yet_corrected",
+      "confirmed_defects": [
+        "The current rectangular F.Fab body is centred at the existing pad-frame origin, while the official CAD implies an approximately +0.985-mm longitudinal body offset in that frame.",
+        "Simply rotating the existing native anchor [18.0,145.45] to B.Cu 180 degrees puts both mechanical solder lands out to Y=150.635, beyond the bottom PCB edge."
+      ],
+      "cad_alignment": {
+        "official_signal_row_y_mm": 4.79970,
+        "official_mechanical_row_y_mm": -2.69838,
+        "official_body_front_y_mm": -4.55,
+        "official_body_rear_y_mm": 4.55,
+        "current_signal_row_y_mm": -3.815,
+        "current_mechanical_row_y_mm": 3.685,
+        "transform": "Rotate the official CAD 180 degrees, then translate longitudinally into the existing Leshy2 pad frame.",
+        "translation_from_signal_rows_mm": 0.98470,
+        "translation_from_mechanical_rows_mm": 0.98662,
+        "rounding_disagreement_mm": 0.00192,
+        "recommended_nominal_body_offset_y_mm": 0.985,
+        "recommended_nominal_body_y_mm": [-3.565, 5.535],
+        "precision_boundary": "The 0.00192-mm discrepancy reflects the independently rounded CAD/production land coordinates; these derived decimal places are not a manufacturer dimensional-tolerance guarantee."
+      },
+      "placement_options_not_yet_applied": {
+        "mouth_nominally_flush": {
+          "side": "B.Cu",
+          "rotation_deg": 180,
+          "footprint_anchor_mm": [18.0, 144.4653],
+          "nominal_mouth_world_y_mm": 150.0,
+          "maximum_copper_world_y_mm": 149.6503,
+          "minimum_copper_to_bottom_edge_mm": 0.3497,
+          "qualification": "Derived geometry, but less than the general Seeed 0.5-mm copper-edge advice."
+        },
+        "recommended_inboard_margin": {
+          "side": "B.Cu",
+          "rotation_deg": 180,
+          "footprint_anchor_mm": [18.0, 144.30],
+          "nominal_mouth_world_y_mm": 149.835,
+          "nominal_body_world_y_mm": [140.735, 149.835],
+          "maximum_copper_world_y_mm": 149.485,
+          "minimum_copper_to_bottom_edge_mm": 0.515,
+          "signal_pad_world_y_mm": [139.115, 141.855],
+          "mechanical_pad_world_y_mm": [146.485, 149.485]
+        }
+      },
+      "remaining_implementation_requirements": [
+        "Correct the source footprint body datum without moving its already reconciled electrical pads or changing MPN.",
+        "Recheck and enlarge the front courtyard as needed: existing +5.55 outline is only 0.015 mm beyond corrected nominal body front +5.535. A possible front +5.85 with rear -5.55 gives courtyard-centre offset +0.15 and proposed world centre [18.0,144.45] for anchor [18.0,144.30]. This courtyard is a proposed implementation, not a manufacturer rule.",
+        "Regenerate the controlled library/native instance through the normal dependency chain and rerun mechanical/electrical/DRC checks.",
+        "Verify complete mating-cable clearance and actual received-part fit separately; no connector-specific PCB-edge prescription is inferred from the drawing."
+      ]
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "reference": "SW5",
+      "instance": "power_command_switch",
+      "mpn": "C&K JS102011SCQN",
+      "footprint": "Leshy2:JS102011SCQN",
+      "status": "unresolved_confirmed_native_package_and_access_defects",
+      "implementation_status": "no_device_metadata_footprint_or_native_pcb_changes_performed; no_replacement_mpn_selected",
+      "manufacturer_actuation": {
+        "ordering_code": "SC = Vertical, Gullwing; SA is a different right-angle gullwing termination option and is not the selected MPN",
+        "actuator_extension_direction": "Normal to the mounting PCB, above the package top; not a side-projecting edge actuator",
+        "slide_travel_direction": "Parallel to the package long axis on its top face",
+        "travel_mm": 2.0,
+        "actuator_section_mm": [1.5, 1.5],
+        "actuator_section_tolerance_mm": 0.1,
+        "body_height_from_mounting_plane_mm": 3.5,
+        "actuator_extension_above_body_mm": 2.0,
+        "nominal_total_height_from_mounting_plane_mm": 5.5,
+        "current_metadata_errors": [
+          "devices.json kind calls this exact MPN right_angle_smt, contrary to SC ordering code and the page-5 drawing.",
+          "devices.json dimensions_mm [8.5,3.5,3.6] does not reserve the approximately 5.5-mm total assembled height including the actuator."
+        ]
+      },
+      "current_native_pose_observed": {
+        "side": "B.Cu",
+        "rotation_deg": 0.0,
+        "footprint_anchor_mm": [4.949999, 114.1],
+        "access_implication": "The top actuator projects toward the inner sandwich. In-plane rotation cannot turn this vertical actuator into a side-exiting slider. Accessibility and vertical clearance are not established by placing the body near the left PCB edge."
+      },
+      "current_pad_layout_in_unflipped_library_frame": {
+        "1": {"at_mm": [-2.5, 2.35], "size_mm": [0.8, 3.2]},
+        "2": {"at_mm": [0.0, 2.35], "size_mm": [0.8, 3.2]},
+        "3": {"at_mm": [2.5, 2.35], "size_mm": [0.8, 3.2]}
+      },
+      "manufacturer_recommended_land_layout_body_centre_frame": {
+        "view": "Component-side top view consistent with the exact-part drawing: terminals 1 and 3 below the body, common terminal 2 above it",
+        "1": {"at_mm": [-2.5, 2.75], "size_mm": [1.0, 2.5]},
+        "2": {"at_mm": [0.0, -2.75], "size_mm": [1.0, 2.5]},
+        "3": {"at_mm": [2.5, 2.75], "size_mm": [1.0, 2.5]},
+        "derivation": "Page 5 prints 1-mm pad width, 8-mm total outer axial span, 3-mm gap between opposite pad ends, and 2.5-mm horizontal pitch. Equal recommended pad lengths are (8-3)/2=2.5 mm; centres are at +/-2.75 mm. Terminal 2 is shown on the opposite side, not in a common row with 1 and 3."
+      },
+      "current_native_pad_net_evidence": [
+        {"pad": "1", "at_mm": [2.449999, 111.75], "native_net": "/RF_50_TX_SAFETY_EVIDENCE/RUN_LOOP_RAW"},
+        {"pad": "2", "at_mm": [4.949999, 111.75], "native_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"},
+        {"pad": "3", "at_mm": [7.449999, 111.75], "native_net": "/RF_50_TX_SAFETY_EVIDENCE/POWER_COMMAND_OFF_N"}
+      ],
+      "findings": [
+        "Confirmed assembly defect: current common pad 2 is on the wrong package side; all three current pads are incorrectly in one row.",
+        "Recommended land width/length also differ from the current 0.8x3.2-mm lands; the current footprint description incorrectly claims these are page-5 recommended SMT lands.",
+        "The logical common contact remains manufacturer terminal 2; no logical-function change is proposed. Correct physical landing, native integration and retest remain required.",
+        "A same-MPN placement/access solution or another explicitly reviewed implementation is still needed; this evidence review does not select a replacement or authorize production."
+      ]
+    }
+  ]
+}
