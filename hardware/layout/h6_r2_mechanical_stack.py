@@ -30,6 +30,46 @@ def bounds(row: dict) -> tuple[float, float, float]:
     return nominal, nominal - float(row["minus"]), nominal + float(row["plus"])
 
 
+def evaluate_connector_fit(contract: dict) -> dict:
+    fit = contract["antenna_connector_fit"]
+    slot_nominal, slot_minimum, slot_maximum = bounds(fit["slot_gap_mm"])
+    required = float(fit["minimum_required_assembly_clearance_mm"])
+    rows = []
+    for project, member in fit["pcb_stack_members"].items():
+        pcb_nominal, pcb_minimum, pcb_maximum = bounds(contract["tolerance_stack"][member])
+        minimum_clearance = round(slot_minimum - pcb_maximum, 9)
+        rows.append({
+            "project": project,
+            "pcb_stack_member": member,
+            "pcb_thickness_nominal_mm": pcb_nominal,
+            "pcb_thickness_range_mm": [round(pcb_minimum, 3), round(pcb_maximum, 3)],
+            "assembly_clearance_nominal_mm": round(slot_nominal - pcb_nominal, 3),
+            "assembly_clearance_minimum_mm": round(minimum_clearance, 3),
+            "assembly_clearance_maximum_mm": round(slot_maximum - pcb_minimum, 3),
+            "worst_case_interference_mm": round(max(0.0, -minimum_clearance), 3),
+            "all_declared_corners_fit": minimum_clearance >= required,
+        })
+    unresolved = [row["project"] for row in rows if not row["all_declared_corners_fit"]]
+    return {
+        "status": "requires_confirmation" if unresolved else "pass",
+        "checked_on": fit["checked_on"],
+        "scope": "undeformed SMA slot versus finished PCB thickness; no prong flexibility assumed",
+        "mpns": fit["mpns"],
+        "slot_gap_nominal_mm": slot_nominal,
+        "slot_gap_range_mm": [round(slot_minimum, 3), round(slot_maximum, 3)],
+        "minimum_required_assembly_clearance_mm": required,
+        "rows": rows,
+        "sources": fit["sources"],
+        "release_gate": {
+            **fit["release_gate"],
+            "status": "open" if unresolved else "closed_by_tolerance_geometry",
+            "blocks_production_release": bool(unresolved),
+            "unresolved_projects": unresolved,
+            "routing_may_continue": True,
+        },
+    }
+
+
 def evaluate(contract: dict, placement: dict) -> dict:
     errors: list[str] = []
     stack = contract["tolerance_stack"]
@@ -162,6 +202,7 @@ def evaluate(contract: dict, placement: dict) -> dict:
         "artifact": "H6-R2 mechanical stack audit",
         "marker": contract["marker"],
         "status": "pass" if not errors else "fail",
+        "status_scope": "fasteners, enclosure capture and direct cell thermal contacts; connector fit is reported separately",
         "source_hashes": {
             str(CONTRACT.relative_to(ROOT)): sha256(CONTRACT),
             str(PLACEMENT.relative_to(ROOT)): sha256(PLACEMENT),
@@ -201,6 +242,7 @@ def evaluate(contract: dict, placement: dict) -> dict:
             "accepted_holder_window_overlaps": len(expected_overlaps & accepted),
             "electrically_insulating_contact": True,
         },
+        "connector_fit": evaluate_connector_fit(contract),
         "errors": errors,
     }
 
@@ -209,6 +251,9 @@ def render(contract: dict, audit: dict) -> str:
     esc = html.escape
     stack = audit["stack"]
     hardware = contract["selected_hardware"]
+    fit = audit["connector_fit"]
+    minimum_fit = min(row["assembly_clearance_minimum_mm"] for row in fit["rows"])
+    fit_colour = "#b45309" if fit["release_gate"]["blocks_production_release"] else "#166534"
 
     def text(x: float, y: float, value: str, size: float = 15, weight: str = "normal", anchor: str = "start", colour: str = "#172033") -> str:
         return f'<text x="{x}" y="{y}" font-family="Inter,Arial,sans-serif" font-size="{size}" font-weight="{weight}" text-anchor="{anchor}" fill="{colour}">{esc(value)}</text>'
@@ -224,8 +269,8 @@ def render(contract: dict, audit: dict) -> str:
     ]
     x = 180
     parts: list[str] = [
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1460" height="1160" viewBox="0 0 1460 1160" data-marker="H6.0.1-R1" data-view="mechanical-stack">',
-        '<rect width="1460" height="1160" fill="#ffffff"/>',
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="1460" height="1310" viewBox="0 0 1460 1310" data-marker="{esc(contract["marker"])}" data-view="mechanical-stack">',
+        '<rect width="1460" height="1310" fill="#ffffff"/>',
         text(70, 62, "Leshy2 · H6.0.1 local mechanical stack", 32, "700"),
         text(70, 96, "20-mm nylon screw · captive nut · four exact 11-mm stops · M1 carries no enclosure load", 17, "500", colour="#526076"),
         text(70, 145, "SECTION THROUGH ONE OF FOUR IDENTICAL CORNER AXES", 15, "700", colour="#1d4ed8"),
@@ -288,8 +333,13 @@ def render(contract: dict, audit: dict) -> str:
         text(660, 902, "one board-fitted 0603 NTC below each cell axis", 14),
         text(660, 932, "TG-A3500-5-5-3.0: insulating, tacky, 3.5 W/mK", 14),
         text(660, 962, f"nominal compression {audit['battery_thermal_contacts']['nominal_gap_pad_compression_percent']:.1f}% · cells installed last", 14),
-        text(70, 1065, "H6.0.1 is closed by the microcoax service audit; H6.0.3 routing and native net parity are current.", 15, "600", colour="#526076"),
-        text(70, 1108, f"audit: {audit['status']} · four axes + two direct cell contacts pass · no fabrication or purchase authorized", 14, "700", colour="#166534" if audit["status"] == "pass" else "#b91c1c"),
+        '<rect x="70" y="1020" width="1310" height="164" rx="14" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>',
+        text(95, 1054, f"SMA FIT: {fit['status']} · ПРОВЕРКА ПОСАДКИ SMA", 17, "700", colour=fit_colour),
+        text(95, 1088, f"slot 1.75 ± 0.10 mm · both PCBs 1.60 ± 0.16 mm · worst clearance {minimum_fit:.2f} mm", 16, "600", colour=fit_colour),
+        text(95, 1120, "Negative clearance means possible interference; confirm finished thickness / permitted fit before production release.", 15),
+        text(95, 1152, "Допуски допускают натяг: до выпуска подтвердить конечную толщину PCB или допустимую посадку у поставщика.", 15),
+        text(70, 1225, "H6.0.3 routing continues; SMA fit remains a separate production-release gate.", 15, "600", colour="#526076"),
+        text(70, 1268, f"fastener / cell-contact audit: {audit['status']} · no fabrication or purchase authorized", 14, "700", colour="#166534" if audit["status"] == "pass" else "#b91c1c"),
         '</svg>',
     ])
     return "\n".join(parts) + "\n"
@@ -323,7 +373,8 @@ def main() -> int:
         f"{audit['status']}: {audit['geometry']['mounting_axis_count']} axes; "
         f"{audit['battery_thermal_contacts']['accepted_holder_window_overlaps']} direct cell contacts; "
         f"{audit['stack']['thread_available_at_nut_minimum_mm']:.2f} mm minimum nut thread; "
-        f"{audit['stack']['minimum_tip_clearance_to_outer_surface_mm']:.2f} mm tip clearance"
+        f"{audit['stack']['minimum_tip_clearance_to_outer_surface_mm']:.2f} mm tip clearance; "
+        f"SMA fit {audit['connector_fit']['status']}"
     )
     return 0 if audit["status"] == "pass" else 1
 

@@ -2,11 +2,13 @@
 
 [Русский](h3-r2-acceptance.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Physical evidence register](physical-evidence-register-r2.md)
 
-`H3-R2.7` closes the global H3 phase for the current R2 hardware. All `20` current evidence artifacts and `129` recorded source hashes cross-check with zero mismatch and zero open analytical finding.
+`H3-R2.7` records the result of the implemented H3 analytical scope. All `20` current evidence artifacts and `129` recorded source hashes cross-check with zero mismatch and zero open finding within those model checks.
+
+The current passive-pin symbol library is a separate coverage limit: these models and zero ERC findings do not prove rail-driver completeness or exclude output conflicts. `H6-NATIVE-ELECTRICAL-SEMANTICS` remains a required production gate; re-running this report does not close it.
 
 | Workstream | Reviewed scope | Result |
 |---|---|---|
-| `H3-R2.0` | Inputs, provenance and methods | 2 projects · 22 sheets · 1,208 schematic instances · 789 nets · 251 exact groups · 9 methods |
+| `H3-R2.0` | Inputs, provenance and methods | 2 projects · 22 sheets · 1,208 schematic instances · 788 nets · 251 exact groups · 9 methods |
 | `H3-R2.1` | DC, rails, sources and charge | 2,266 legal states · 224 rail corners · 30.560% minimum reserve · 3.516 A maximum pack current |
 | `H3-R2.2` | Transitions and faults | 14 ordered scenarios · 7,316 handover cases · 5 starts · 4 load steps · 10 watchdog/fault cases |
 | `H3-R2.3` | Analog corners | display, audio, IR, battery and Airband calculations pass; routed Airband tuning remains measured |
@@ -16,9 +18,9 @@
 
 ## What is complete
 
-- Every electrical claim calculable before layout has a reproducible result on the exact H1-R2.39 / H2-R2.1.5 boundary.
+- The implemented pre-layout analytical checks have reproducible results on the exact H1-R2.39 / H2-R2.1.5 boundary.
 - All legal power states, transitions, analog corners, digital interfaces, permanent RF paths, thermal profiles and single-fault cases pass their frozen paper rules.
-- Every correction is already present in the current source and all dependent evidence has been regenerated.
+- The current source corrections are reflected in the repeated analytical checks; this is not a complete native electrical-semantics review.
 
 ## What remains physical
 

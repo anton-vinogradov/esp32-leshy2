@@ -287,7 +287,7 @@ def build() -> dict:
     residuals = [
         {"owner": "H6", "item": "route i8080, S3-Hub, Hub-C5 SDIO, Hub-RF SPI and USB as length/return/impedance constrained groups; prove extracted delay/skew and UI-I2C capacitance <=120 pF"},
         {"owner": "H8", "item": "measure i8080 WR/data edges at the panel, USB eyes/ enumeration, SDIO/SPI far-end setup-hold and sustained qualified payload floors"},
-        {"owner": "F5/F6", "item": "instantiate the locked ESP-IDF i80 config at exact 20 MHz, CS=-1, 8-bit bus and rising-edge panel capture; exercise TE, dirty-region and full-frame fixtures"},
+        {"owner": "F5/F6", "item": "instantiate the locked ESP-IDF i80 config at exact 20 MHz, CS=-1, 8-bit bus and rising-edge panel capture; exercise dirty-region and full-frame fixtures without waiting for TE, because panel contact 39 is deliberately open; no TE-synchronized or tear-free claim"},
     ]
     return {
         "schema_version": 1,

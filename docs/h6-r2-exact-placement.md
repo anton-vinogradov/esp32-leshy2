@@ -2,9 +2,10 @@
 
 [Home](../README.md) · [Current routing](h6-r2-current-routing.md) · [Русский](h6-r2-exact-placement.ru.md)
 
-**Status:** ✅ the corrected 80 × 150-mm placement is accepted as the new
-unrouted H6.0.3 baseline. Routing is still in progress; this page does not
-authorize fabrication or purchase.
+**Status:** ✅ the corrected 80 × 150-mm placement is accepted and its anchors
+are frozen. The live boards are partially routed; placement acceptance is not
+routing completion or electrical sign-off. `H6-NATIVE-ELECTRICAL-SEMANTICS`
+remains open, and fabrication or purchase is not authorized.
 
 ![Exact H6 placement of both accessible inner faces](images/h6-r2-exact-placement.svg)
 
@@ -36,32 +37,35 @@ placement alone is not sufficient.
 
 - Two native KiCad 10 boards containing all **1,208/1,208** fitted schematic
   instances: 428 on UI and 780 on RF/power.
-- All **789** global canonical / **823** board-local H2 nets bound to real pads.
+- All **788** global canonical / **822** board-local H2 nets bound to real pads.
 - Zero hard same-face courtyard conflicts, zero unplaced bodies and zero
   net/footprint mapping errors.
-- **310/310** local-part → owner pairs within their permitted courtyard or
+- **311/311** local-part → owner pairs within their permitted courtyard or
   owner-pad gaps;
   zero locality violations.
-- **21/21** electrically critical pad-centre pairs pass their explicit limits.
-  This covers every switching-node net and selected SD, I2S and charger-input
-  bypasses, so useful pad orientation is checked as well as body locality.
-- Zero native KiCad DRC findings on both corrected unrouted boards.
+- **34/34** electrically critical pad-centre pairs pass their explicit limits.
+  This covers every switching-node net and selected local bypasses, including
+  the detector and service-logic ICs, S3 supply and the supply side of the
+  Airband LNA bias choke. Useful pad orientation is checked as well as body
+  locality; these distances do not certify the final routed current loops.
 - A deterministic generator, a hash-bearing
   [machine audit](../hardware/layout/generated/H6-R2-placement-audit.json) and
   an exact 1,208-anchor freeze.
 
-The previous routed seed is retained only in Git history. It was rejected
-because several converter feedback/bootstrap parts and many bypass capacitors
-were tens of millimetres from their owners. The corrected placement also lowers
-the RF-board minimum-spanning net length from 18,372.9 to 14,687.4 mm; this is
-a placement comparison, not routed-copper performance evidence.
+The rejected seed remains in Git history. The corrected placement is the
+baseline for the live routing; current copper and DRC evidence belong to the
+[current-routing page](h6-r2-current-routing.md).
+
+These placement checks do not establish electrical validity of the schematic.
+The current all-passive symbol-pin typing limits what native ERC can detect;
+the electrical-semantics gate remains required.
 
 ## What happens next
 
-Route the four DC/DC islands and protection first, then RF/clock clusters,
-USB/direct-i8080, remaining digital/control nets, planes and return paths. The
-[current-routing page](h6-r2-current-routing.md) is the sole owner of live
-copper counts and routing progress.
+First close [`H6-NATIVE-ELECTRICAL-SEMANTICS`](h6-r2-current-routing.md): review
+physical-pin types, rail sources and output conflicts, then rerun ERC. Resume
+routing and final return-path checks in the sequence maintained on the
+current-routing page, the sole owner of live copper counts and routing progress.
 
 ## Reproduce
 

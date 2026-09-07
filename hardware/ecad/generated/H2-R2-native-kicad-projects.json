@@ -10,15 +10,15 @@
     },
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "81c6a935c1acd6f47fa08f519cff5b893513c2882b13f880f9cdff6655d245d3"
+      "sha256": "8662e0fa866bf8fab57b7d3799b312b3f67bca179da2732571be27995e19c88d"
     },
     "nets": {
       "path": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "sha256": "e490be3e8d81e65098684467654980cf4a21fb3a166213a29163d4d3661766be"
+      "sha256": "a4d01ad42040f5d7b4be6f138efbef7c5230f7500c37c7bed795d25d05d24e72"
     },
     "symbols": {
       "path": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-      "sha256": "ff16df09b1fe13ec53514816150f9bdbf438a365be08ce7f3782e12f5671dea7"
+      "sha256": "409671bdfaa7674d2dab5455154a4a636128f23de3e4f46788ad8071faed0600"
     },
     "symbol_library": {
       "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
@@ -34,7 +34,7 @@
     "connected_physical_pin_count": 4068,
     "explicit_no_connect_physical_pin_count": 238,
     "external_module_interface_annotation_count": 5,
-    "canonical_net_count": 789,
+    "canonical_net_count": 788,
     "generated_file_count": 28,
     "pcb_file_count": 0
   },
@@ -47,8 +47,8 @@
       "instance_count": 428,
       "physical_symbol_pin_count": 1598,
       "external_module_interface_count": 5,
-      "canonical_net_count": 307,
-      "cross_sheet_net_count": 101
+      "canonical_net_count": 306,
+      "cross_sheet_net_count": 100
     },
     {
       "id": "LESHY2-RF-R2",
@@ -70,7 +70,7 @@
       "physical_symbol_pin_count": 178,
       "connected_physical_pin_count": 159,
       "explicit_no_connect_physical_pin_count": 19,
-      "hierarchical_interface_count": 28,
+      "hierarchical_interface_count": 27,
       "external_module_interface_count": 1,
       "external_module_interfaces": [
         {
@@ -100,7 +100,7 @@
       "physical_symbol_pin_count": 317,
       "connected_physical_pin_count": 297,
       "explicit_no_connect_physical_pin_count": 20,
-      "hierarchical_interface_count": 26,
+      "hierarchical_interface_count": 25,
       "external_module_interface_count": 1,
       "external_module_interfaces": [
         {
@@ -403,11 +403,11 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch",
-      "sha256": "2339718e050747ed73b8442b941b30d3ba631193eeda1eff0bc4fa775e2efa0c"
+      "sha256": "43910ab937fd3f95a140f664d6fbaca72d8dc6e9bf60cf46e5eae24158eddf50"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_10_S3_DISPLAY_TOUCH.kicad_sch",
-      "sha256": "f516590ff84898e120a734aed260f0c41539a557d28b520583f0ae42aa602f52"
+      "sha256": "966d713569042276e82eccee57051ce9e51665ee3d3f542ecb637e1843064d74"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_11_STORAGE_CONTROLS_INDICATORS.kicad_sch",
@@ -415,7 +415,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch",
-      "sha256": "5030da0cf288f227b843672c39e1f3b84c793a64ce837234e637a3e62d395a5c"
+      "sha256": "3b922f294736ce1ce0a7a362d44589d2a01d44b067f0b4f793ae8008fe70e1b5"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_30_HUB_RP_CORE_SERVICE.kicad_sch",

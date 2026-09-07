@@ -6,8 +6,8 @@
   "baseline": "R2",
   "status": "reviewed",
   "source_sha256": {
-    "hardware/verification/generated/H3-R2-crosscheck.json": "c18f667a92159abe64c74afbbb386b8fd39245f501080a11b0ca9003d0ca59ad",
-    "hardware/verification/generated/H3-R2-physical-residuals.json": "234c298a9620b0a18cf10d056cfc19ec3e2e164ceeaf4776a6fc3a16c2d56b53"
+    "hardware/verification/generated/H3-R2-crosscheck.json": "803e868432c6e661415c45ecc4636dad78f40f721d67adc0bb33d56ef1005ad4",
+    "hardware/verification/generated/H3-R2-physical-residuals.json": "4d0d662a7d538c0825bd0d69b5ba1f54e22f6c060d324512a9e5807ec578d55c"
   },
   "result": {
     "analytical_scope_complete": true,
@@ -18,11 +18,16 @@
     "next_marker": "H4-R2.0.1"
   },
   "acceptance_meaning": [
-    "every R2 electrical claim checkable before PCB placement has reproducible current evidence",
-    "all recorded source hashes match and no analytical finding remains open",
-    "every remaining physical uncertainty has an H5, H6 or H8 owner and an evidence contract",
+    "the implemented H3 pre-layout analytical models have reproducible current evidence",
+    "all recorded source hashes match and no finding remains open within those model checks",
+    "each physical uncertainty in the H3 register has an H5, H6 or H8 owner and an evidence contract",
     "firmware implementation work remains explicitly separate and joins at H4-R2"
   ],
+  "coverage_limit": {
+    "native_physical_pin_electrical_semantics_verified": false,
+    "production_gate": "H6-NATIVE-ELECTRICAL-SEMANTICS",
+    "reason": "passive-pin ERC and existing analytical models do not prove rail-driver completeness or exclude output conflicts; a reviewed physical-pin type map and fresh electrical checks are required"
+  },
   "acceptance_does_not_authorize": [
     "component purchase",
     "PCB placement or routing",

@@ -1751,7 +1751,7 @@
       "routing_class": "RF_CONTROLLED",
       "layer": "B.Cu",
       "width_mm": 0.134874,
-      "path_mm": [[65.745, 43.995], [66.1, 44.65], [69.75, 44.65], [70.365, 44.06]],
+      "path_mm": [[66.625, 43.995], [67.1, 44.65], [69.75, 44.65], [70.365, 44.06]],
       "expected_resolved_connections": 1,
       "reason": "Via-free 315-MHz input branch leaves RF1 orthogonally, then passes below the encoder push-switch ground post before entering the first series inductor."
     },
@@ -1835,9 +1835,9 @@
       "routing_class": "RF_CONTROLLED",
       "layer": "B.Cu",
       "width_mm": 0.134874,
-      "path_mm": [[23.855, 3.785], [23.2, 3.785], [23.2, 0.5], [28.0, 0.5], [28.0, 6.115], [28.565, 6.115], [28.615, 7.315]],
+      "path_mm": [[23.855, 3.785], [24.3, 3.9], [25.2, 3.9], [25.65, 4.35], [27.85, 4.35], [27.85, 6.115], [28.565, 6.115], [28.615, 7.315]],
       "expected_resolved_connections": 2,
-      "reason": "Via-free LO attenuation node passes above the ESD and crystal fields, then joins both shunt resistors without crossing the already routed Si5351A crystal nets."
+      "reason": "The via-free LO attenuation node clears the crystal escape on its upper side, passes below the AM/LW coupling capacitor and skirts the crystal ground pads before joining both local shunt resistors."
     },
     {
       "id": "RF-CC1101-DETECTOR-SAMPLE",
@@ -1859,7 +1859,7 @@
       "routing_class": "RF_CONTROLLED",
       "layer": "B.Cu",
       "width_mm": 0.134874,
-      "path_mm": [[8.325, 4.105], [7.6, 4.105], [7.6, 2.8], [12.2, 2.8], [12.2, 3.605], [11.535, 3.605]],
+      "path_mm": [[8.325, 4.105], [7.6, 4.105], [7.6, 2.98], [12.2, 2.98], [12.2, 3.605], [11.535, 3.605]],
       "expected_resolved_connections": 1,
       "reason": "Short via-free output link from the Airband BPF shunt node into the LNA coupling capacitor."
     },
@@ -1924,7 +1924,7 @@
         {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [44.0, 20.0], "end_mm": [44.0, 12.5]},
         {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [44.0, 12.5], "end_mm": [41.5, 8.0]},
         {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [41.5, 8.0], "end_mm": [40.0, 1.0]},
-        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [40.0, 1.0], "end_mm": [40.0, -1.65]}
+        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [40.0, 1.0], "end_mm": [40.0, 1.65]}
       ],
       "vias": [
         {"at_mm": [44.0, 20.0], "diameter_mm": 0.5, "drill_mm": 0.25}
@@ -1980,9 +1980,8 @@
       "routing_class": "RF_CONTROLLED",
       "segments": [
         {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [10.15, 8.51], "end_mm": [10.15, 7.0]},
-        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [10.15, 7.0], "end_mm": [13.5, 4.0]},
-        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [13.5, 4.0], "end_mm": [16.5, 1.0]},
-        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [16.5, 1.0], "end_mm": [16.5, -1.65]}
+        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [10.15, 7.0], "end_mm": [16.5, 4.0]},
+        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [16.5, 4.0], "end_mm": [16.5, 1.65]}
       ],
       "vias": [
         {"at_mm": [10.15, 7.0], "diameter_mm": 0.5, "drill_mm": 0.25}
@@ -1997,14 +1996,14 @@
       "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_BOUNDARY_RF",
       "routing_class": "RF_CONTROLLED",
       "segments": [
-        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [28.25, -1.65], "end_mm": [28.25, 0.5]},
-        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [28.25, 0.5], "end_mm": [24.0, 1.2]},
-        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [24.0, 1.2], "end_mm": [25.075, 2.605]},
-        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [25.075, 2.605], "end_mm": [25.075, 3.865]},
-        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [25.075, 3.865], "end_mm": [25.34, 3.865]}
+        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [28.25, 1.65], "end_mm": [28.4, 3.8]},
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [28.4, 3.8], "end_mm": [27.355, 3.785]},
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [28.4, 3.8], "end_mm": [28.4, 2.0]},
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [28.4, 2.0], "end_mm": [27.84, 1.5]},
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [27.84, 1.5], "end_mm": [27.84, 0.865]}
       ],
       "vias": [
-        {"at_mm": [24.0, 1.2], "diameter_mm": 0.5, "drill_mm": 0.25}
+        {"at_mm": [28.4, 3.8], "diameter_mm": 0.5, "drill_mm": 0.25}
       ],
       "expected_resolved_connections": 2,
       "reason": "The receive-only AM/LW boundary uses its single reviewed edge-launch transition, reaches the series coupling capacitor from its outer pad, and branches locally to the dedicated low-capacitance ESD shunt without crossing the adjacent LO network."
@@ -2048,7 +2047,7 @@
         {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [70.2, 13.285], "end_mm": [70.2, 12.5]},
         {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [70.2, 12.5], "end_mm": [65.5, 12.5]},
         {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [65.5, 12.5], "end_mm": [63.5, 1.0]},
-        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [63.5, 1.0], "end_mm": [63.5, -1.65]}
+        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [63.5, 1.0], "end_mm": [63.5, 1.65]}
       ],
       "vias": [
         {"at_mm": [70.2, 12.5], "diameter_mm": 0.5, "drill_mm": 0.25}
@@ -2064,9 +2063,9 @@
       "routing_class": "RF_CONTROLLED",
       "layer": "B.Cu",
       "width_mm": 0.134874,
-      "path_mm": [[25.125, 5.35], [24.5, 5.35], [24.5, 4.0], [24.065, 4.0], [24.065, 3.365]],
+      "path_mm": [[28.875, 5.15], [28.25, 5.15], [28.25, 3.0], [28.29, 3.0]],
       "expected_resolved_connections": 1,
-      "reason": "Via-free isolated-port termination leaves the coupler to the left and approaches the 49.9-ohm resistor from above, keeping both sampling-capacitor exits independent."
+      "reason": "The isolated-port termination uses the clear centre corridor between the coupler lands to reach its local 49.9-ohm load without crossing the module or sampled RF paths."
     },
     {
       "id": "UI-C5-COUPLER-TERM",
@@ -2126,7 +2125,7 @@
         {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [56.125, 7.1], "end_mm": [56.125, 7.8]},
         {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [56.125, 7.8], "end_mm": [52.5, 7.8]},
         {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [52.5, 7.8], "end_mm": [51.75, 1.0]},
-        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [51.75, 1.0], "end_mm": [51.75, -1.65]}
+        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [51.75, 1.0], "end_mm": [51.75, 1.65]}
       ],
       "vias": [
         {"at_mm": [56.125, 7.8], "diameter_mm": 0.5, "drill_mm": 0.25}
@@ -2141,13 +2140,11 @@
       "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_EXTERNAL_RF_50R",
       "routing_class": "RF_CONTROLLED",
       "segments": [
-        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [23.875, 5.35], "end_mm": [23.875, 5.7]},
-        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [23.875, 5.7], "end_mm": [27.5, 5.7]},
-        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [27.5, 5.7], "end_mm": [28.25, 1.0]},
-        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [28.25, 1.0], "end_mm": [28.25, -1.65]}
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [27.625, 5.15], "end_mm": [27.625, 5.7]},
+        {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [27.625, 5.7], "end_mm": [28.25, 1.65]}
       ],
       "vias": [
-        {"at_mm": [23.875, 5.7], "diameter_mm": 0.5, "drill_mm": 0.25}
+        {"at_mm": [27.625, 5.7], "diameter_mm": 0.5, "drill_mm": 0.25}
       ],
       "expected_resolved_connections": 1,
       "reason": "The S3 through path uses the one reviewed B-to-F edge-launch transition; the top-side run is free of components and its adjacent return-via pair is reserved for the ground-plane pass."
@@ -2160,9 +2157,9 @@
       "routing_class": "RF_CONTROLLED",
       "layer": "B.Cu",
       "width_mm": 0.134874,
-      "path_mm": [[15.75, 4.65], [15.75, 5.85], [23.2, 5.85], [23.2, 4.65], [23.875, 4.65]],
+      "path_mm": [[23.525, 3.48], [24.5, 3.7], [26.7, 3.7], [27.625, 4.45]],
       "expected_resolved_connections": 1,
-      "reason": "Via-free S3 U.FL path passes below the LTC5532 pad field and approaches the coupler input from its unobstructed left side."
+      "reason": "Via-free S3 U.FL path follows the clear strip below the edge-launch lands and approaches the relocated coupler input from the left."
     },
     {
       "id": "UI-S3-COUPLED-SAMPLE",
@@ -2172,9 +2169,9 @@
       "routing_class": "RF_CONTROLLED",
       "layer": "B.Cu",
       "width_mm": 0.134874,
-      "path_mm": [[25.125, 4.65], [25.6, 4.05], [25.6, 2.105], [24.785, 2.105]],
+      "path_mm": [[28.875, 4.45], [30.12, 4.95]],
       "expected_resolved_connections": 1,
-      "reason": "Via-free coupled sample leaves the coupler to the right and enters the outward-facing raw-sample pad of the reviewed 180-degree capacitor orientation without crossing the detector side."
+      "reason": "Via-free coupled sample leaves the relocated coupler to the right and reaches the left raw-sample pad of the zero-degree coupling capacitor."
     },
     {
       "id": "UI-S3-DETECTOR-SAMPLE",
@@ -2184,9 +2181,9 @@
       "routing_class": "RF_CONTROLLED",
       "layer": "B.Cu",
       "width_mm": 0.134874,
-      "path_mm": [[23.825, 2.105], [18.6, 2.105], [18.6, 4.95], [19.8625, 4.95]],
+      "path_mm": [[31.08, 4.95], [32.6625, 4.95]],
       "expected_resolved_connections": 1,
-      "reason": "Via-free detector input leaves the inward-facing sampling-capacitor pad toward LTC5532 RF IN; the 180-degree capacitor orientation removes the previous planar crossing."
+      "reason": "Via-free detector input runs from the coupling capacitor's right pad directly into the relocated LTC5532 RF IN pad."
     },
     {
       "id": "UI-HUB-RP-XIN",

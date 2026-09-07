@@ -6,17 +6,17 @@
   "sources": {
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "81c6a935c1acd6f47fa08f519cff5b893513c2882b13f880f9cdff6655d245d3",
+      "sha256": "8662e0fa866bf8fab57b7d3799b312b3f67bca179da2732571be27995e19c88d",
       "authority": true
     },
     "definitions": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "5af6daa34c5b01552eb1e936bf7a8bf5d877357cc1f446ba2c750a88bc80bbdb",
+      "sha256": "a592c4a6700dd4f572197c65c755eb2a5257baab720227383492aa080d4b0636",
       "authority": true
     },
     "h0": {
       "path": "hardware/architecture/h0-r2-rebaseline.json",
-      "sha256": "e6f4e43ddf9c6839e233cfbb791f6f1ec4da82f1f9e49ea94ded632ca5822cdf",
+      "sha256": "bab7bf6cb3e80842229704169c8b3297bcdff87ec6bb309aad75814701dd3c2b",
       "authority": true
     },
     "dual_rp": {
@@ -56,7 +56,7 @@
     },
     "topology": {
       "path": "hardware/ecad/h2-r2-topology-overrides.json",
-      "sha256": "0f4dde3c80cb253ada01e83e3b7818b70a58ebedf59e8d31118c0287567f56fe",
+      "sha256": "d6f270e8f52f9ca95c73039e6ede1c0bb4139548cf90dd33bac3a26b41cba10a",
       "authority": true
     },
     "historical_route_contract": {
@@ -96,7 +96,7 @@
     "no_connect_endpoint_count": 238,
     "external_interface_endpoint_count": 0,
     "unresolved_endpoint_count": 0,
-    "unique_net_count": 789,
+    "unique_net_count": 788,
     "origin_counts": {
       "current_abstract_endpoint_canonical": 1094,
       "current_c5_fixed_mux_contract": 6,
@@ -112,12 +112,12 @@
       "current_h1_reserved_gpio_explicit_nc": 7,
       "current_pack_safety_boundary": 7,
       "current_pack_safety_decoupling": 8,
-      "current_r2_board_local_topology": 619,
+      "current_r2_board_local_topology": 621,
       "reconciled_historical_controller_allocation_hint": 2,
       "reconciled_historical_explicit_nc_hint": 136,
       "reconciled_historical_reserved_or_free_nc_hint": 6,
       "reconciled_historical_same_endpoint_route_hint": 2051,
-      "reconciled_historical_same_pin_hint": 4
+      "reconciled_historical_same_pin_hint": 2
     },
     "errors": 0
   },
@@ -41572,8 +41572,8 @@
       "physical": "2",
       "role": "power",
       "disposition": "connected",
-      "net": "/UI_10_S3_CORE_MEMORY_BOOT/3V3_MAIN",
-      "origin": "reconciled_historical_same_pin_hint",
+      "net": "3V3_MAIN",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {
@@ -48547,8 +48547,8 @@
       "physical": "2",
       "role": "power",
       "disposition": "connected",
-      "net": "/UI_10_S3_CORE_MEMORY_BOOT/3V3_MAIN",
-      "origin": "reconciled_historical_same_pin_hint",
+      "net": "3V3_MAIN",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {

@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1460" height="1160" viewBox="0 0 1460 1160" data-marker="H6.0.1-R1" data-view="mechanical-stack">
-<rect width="1460" height="1160" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1460" height="1310" viewBox="0 0 1460 1310" data-marker="H6.0.3-R1" data-view="mechanical-stack">
+<rect width="1460" height="1310" fill="#ffffff"/>
 <text x="70" y="62" font-family="Inter,Arial,sans-serif" font-size="32" font-weight="700" text-anchor="start" fill="#172033">Leshy2 · H6.0.1 local mechanical stack</text>
 <text x="70" y="96" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="500" text-anchor="start" fill="#526076">20-mm nylon screw · captive nut · four exact 11-mm stops · M1 carries no enclosure load</text>
 <text x="70" y="145" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1d4ed8">SECTION THROUGH ONE OF FOUR IDENTICAL CORNER AXES</text>
@@ -65,6 +65,11 @@
 <text x="660" y="902" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#172033">one board-fitted 0603 NTC below each cell axis</text>
 <text x="660" y="932" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#172033">TG-A3500-5-5-3.0: insulating, tacky, 3.5 W/mK</text>
 <text x="660" y="962" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#172033">nominal compression 20.0% · cells installed last</text>
-<text x="70" y="1065" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="600" text-anchor="start" fill="#526076">H6.0.1 is closed by the microcoax service audit; H6.0.3 routing and native net parity are current.</text>
-<text x="70" y="1108" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#166534">audit: pass · four axes + two direct cell contacts pass · no fabrication or purchase authorized</text>
+<rect x="70" y="1020" width="1310" height="164" rx="14" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+<text x="95" y="1054" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700" text-anchor="start" fill="#b45309">SMA FIT: requires_confirmation · ПРОВЕРКА ПОСАДКИ SMA</text>
+<text x="95" y="1088" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start" fill="#b45309">slot 1.75 ± 0.10 mm · both PCBs 1.60 ± 0.16 mm · worst clearance -0.11 mm</text>
+<text x="95" y="1120" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="normal" text-anchor="start" fill="#172033">Negative clearance means possible interference; confirm finished thickness / permitted fit before production release.</text>
+<text x="95" y="1152" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="normal" text-anchor="start" fill="#172033">Допуски допускают натяг: до выпуска подтвердить конечную толщину PCB или допустимую посадку у поставщика.</text>
+<text x="70" y="1225" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="600" text-anchor="start" fill="#526076">H6.0.3 routing continues; SMA fit remains a separate production-release gate.</text>
+<text x="70" y="1268" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#166534">fastener / cell-contact audit: pass · no fabrication or purchase authorized</text>
 </svg>

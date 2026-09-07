@@ -32,6 +32,14 @@ class H3R2CrosscheckTest(unittest.TestCase):
         self.assertEqual(0, self.crosscheck["summary"]["hash_mismatches"])
         self.assertTrue(all(self.crosscheck["checks"].values()))
 
+    def test_model_rerun_does_not_close_native_electrical_semantics(self):
+        limit = self.acceptance["coverage_limit"]
+        self.assertFalse(limit["native_physical_pin_electrical_semantics_verified"])
+        self.assertEqual("H6-NATIVE-ELECTRICAL-SEMANTICS", limit["production_gate"])
+        self.assertIn("passive-pin ERC", limit["reason"])
+        for path in (MODULE.DOC_EN, MODULE.DOC_RU):
+            self.assertIn("H6-NATIVE-ELECTRICAL-SEMANTICS", self.outputs[path])
+
     def test_every_remaining_physical_row_is_owned_but_open(self):
         registry = self.residuals["registry"]
         self.assertEqual(51, len(registry))

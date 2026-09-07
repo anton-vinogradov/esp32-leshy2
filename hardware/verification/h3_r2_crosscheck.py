@@ -167,7 +167,7 @@ def build_residual_rows(rows: dict[str, dict]) -> tuple[list[dict], list[dict]]:
 
 def phase_table(russian: bool) -> str:
     rows = [
-        ("H3-R2.0", "Inputs, provenance and methods", "2 projects · 22 sheets · 1,208 schematic instances · 789 nets · 251 exact groups · 9 methods"),
+        ("H3-R2.0", "Inputs, provenance and methods", "2 projects · 22 sheets · 1,208 schematic instances · 788 nets · 251 exact groups · 9 methods"),
         ("H3-R2.1", "DC, rails, sources and charge", "2,266 legal states · 224 rail corners · 30.560% minimum reserve · 3.516 A maximum pack current"),
         ("H3-R2.2", "Transitions and faults", "14 ordered scenarios · 7,316 handover cases · 5 starts · 4 load steps · 10 watchdog/fault cases"),
         ("H3-R2.3", "Analog corners", "display, audio, IR, battery and Airband calculations pass; routed Airband tuning remains measured"),
@@ -310,11 +310,16 @@ def build() -> tuple[dict[Path, str], dict]:
             "next_marker": "H4-R2.0.1",
         },
         "acceptance_meaning": [
-            "every R2 electrical claim checkable before PCB placement has reproducible current evidence",
-            "all recorded source hashes match and no analytical finding remains open",
-            "every remaining physical uncertainty has an H5, H6 or H8 owner and an evidence contract",
+            "the implemented H3 pre-layout analytical models have reproducible current evidence",
+            "all recorded source hashes match and no finding remains open within those model checks",
+            "each physical uncertainty in the H3 register has an H5, H6 or H8 owner and an evidence contract",
             "firmware implementation work remains explicitly separate and joins at H4-R2",
         ],
+        "coverage_limit": {
+            "native_physical_pin_electrical_semantics_verified": False,
+            "production_gate": "H6-NATIVE-ELECTRICAL-SEMANTICS",
+            "reason": "passive-pin ERC and existing analytical models do not prove rail-driver completeness or exclude output conflicts; a reviewed physical-pin type map and fresh electrical checks are required",
+        },
         "acceptance_does_not_authorize": ["component purchase", "PCB placement or routing", "fabrication", "physical performance claims", "unattended-runtime claims"],
         "authorization": {"advance_to_h4_r2": True, "pcb_placement_or_routing": False, "purchasing": False, "fabrication": False},
         "open_findings": [],
@@ -353,15 +358,17 @@ One separate firmware obligation is intentionally not mislabelled as physical ev
 
 [Русский](h3-r2-acceptance.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Physical evidence register](physical-evidence-register-r2.md)
 
-`H3-R2.7` closes the global H3 phase for the current R2 hardware. All `{len(artifact_rows)}` current evidence artifacts and `{len(hash_checks)}` recorded source hashes cross-check with zero mismatch and zero open analytical finding.
+`H3-R2.7` records the result of the implemented H3 analytical scope. All `{len(artifact_rows)}` current evidence artifacts and `{len(hash_checks)}` recorded source hashes cross-check with zero mismatch and zero open finding within those model checks.
+
+The current passive-pin symbol library is a separate coverage limit: these models and zero ERC findings do not prove rail-driver completeness or exclude output conflicts. `H6-NATIVE-ELECTRICAL-SEMANTICS` remains a required production gate; re-running this report does not close it.
 
 {phase_table(False)}
 
 ## What is complete
 
-- Every electrical claim calculable before layout has a reproducible result on the exact H1-R2.39 / H2-R2.1.5 boundary.
+- The implemented pre-layout analytical checks have reproducible results on the exact H1-R2.39 / H2-R2.1.5 boundary.
 - All legal power states, transitions, analog corners, digital interfaces, permanent RF paths, thermal profiles and single-fault cases pass their frozen paper rules.
-- Every correction is already present in the current source and all dependent evidence has been regenerated.
+- The current source corrections are reflected in the repeated analytical checks; this is not a complete native electrical-semantics review.
 
 ## What remains physical
 
@@ -377,15 +384,17 @@ H3 approval does **not** authorize purchasing, PCB placement/routing, fabricatio
 
 [English](h3-r2-acceptance.md) · [Главная](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Реестр физических evidence](physical-evidence-register-r2.ru.md)
 
-`H3-R2.7` закрывает глобальную фазу H3 для текущего железа R2. Все `{len(artifact_rows)}` актуальных evidence-artifacts и `{len(hash_checks)}` записанных source hashes сведены без единого mismatch и без открытого аналитического finding.
+`H3-R2.7` фиксирует результат реализованного аналитического охвата H3. Все `{len(artifact_rows)}` актуальных evidence-artifacts и `{len(hash_checks)}` записанных source hashes сведены без единого mismatch и без открытого finding в пределах этих модельных проверок.
+
+Текущая библиотека passive-выводов — отдельное ограничение охвата: эти модели и нулевой ERC не доказывают наличие источников у всех шин или отсутствие конфликтующих выходов. `H6-NATIVE-ELECTRICAL-SEMANTICS` остаётся обязательной проверкой до производственного выпуска; повтор этого отчёта её не закрывает.
 
 {phase_table(True)}
 
 ## Что завершено
 
-- Каждое электрическое утверждение, рассчитываемое до разводки, имеет воспроизводимый результат на точной границе H1-R2.39 / H2-R2.1.5.
+- Реализованные аналитические проверки до разводки имеют воспроизводимые результаты на точной границе H1-R2.39 / H2-R2.1.5.
 - Все разрешённые состояния питания, переходы, analog corners, цифровые интерфейсы, постоянные RF-тракты, thermal-профили и single-fault cases проходят зафиксированные бумажные правила.
-- Все найденные исправления уже внесены в текущие источники, а зависимое evidence регенерировано.
+- Исправления текущих источников отражены в повторённых аналитических проверках; это не полное ревью электрических типов native-выводов.
 
 ## Что остаётся физическим
 

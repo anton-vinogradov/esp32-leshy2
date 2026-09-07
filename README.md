@@ -45,6 +45,8 @@ system owner's permission.
 
 ### Physical layout
 
+The H1 mock-up explains the mechanical concept. For current component coordinates and cable paths, use the [exact-placement](docs/h6-r2-exact-placement.md) and [microcoax](docs/h6-r2-microcoax-service.md) views; the live PCB exports follow below.
+
 ![Reviewed four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.39-80mm-2)
 
 [Legend for all 226 bodies](docs/images/h1-r2-component-legend.svg) ·
@@ -75,15 +77,13 @@ Open either board for the full-size SVG.
 **Current hardware marker: `H6.0.3-R1`.**
 
 - H0–H5 are reviewed on baseline R2, including the H2 native production ECAD; their immutable reports are collected in [one index](docs/stage-results.md).
-- Two native KiCad projects contain 1,208 fitted instances, 4,306 physical pins and 789 canonical nets; ERC closes with zero errors and warnings.
-- Exact placement covers 1,208/1,208 footprints with no hard same-face conflict; all 310 local-part → owner constraints and all 21 critical pad-pair limits pass.
-- Both corrected unrouted boards have zero DRC violations and zero accepted exceptions.
-- Routing has deliberately restarted from the corrected seed: 0 copper items, 0 resolved and 3,265 remaining physical connections.
-- Full current checkpoint: [H6.0.3-R1](docs/h6-r2-current-routing.md).
+- Both native KiCad boards pass the current [exact-placement checks](docs/h6-r2-exact-placement.md).
+- Routing is in progress. Live copper/connectivity counts, hash-bound DRC results and the electrical-review limitations have one owner: [H6.0.3-R1](docs/h6-r2-current-routing.md).
+- Native ERC currently uses passive symbol pins; zero findings do not prove correct rail sources or compatible outputs. This electrical-semantics gap blocks release.
 
 ## What remains
 
-1. Finish every connection and zero schematic-to-PCB parity in H6.0.3.
+1. Close the electrical-pin/rail-source review gap, then finish every connection and zero schematic-to-PCB parity in H6.0.3.
 2. Re-run power/thermal, USB/i8080/M1, RF/Airband, plane and return-current checks on the actual copper.
 3. Check STEP, enclosure, cables and final assembly; produce Gerber/BOM/CPL and complete independent DFM/CPL review.
 4. Build the first-spin firmware package: reproducible images, fake HAL, available emulation, display test patterns and a safe first-power-on procedure.

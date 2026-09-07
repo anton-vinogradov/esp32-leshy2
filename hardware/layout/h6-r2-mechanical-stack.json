@@ -3,7 +3,7 @@
   "id": "L2-H6-R2-MECHANICAL-STACK-001",
   "marker": "H6.0.3-R1",
   "status": "reviewed_design_constraint",
-  "checked_on": "2026-09-06",
+  "checked_on": "2026-09-07",
   "purpose": "Lock the local enclosure bearing, screw, nut, compression-stop and independent PCB-capture geometry so M1 remains electrical only even if one screw is one turn loose.",
   "authorization": {
     "layout_and_enclosure_design": true,
@@ -95,6 +95,48 @@
       "stock_observed_each": 1544,
       "one_piece_price_usd": 0.1,
       "route": "owner-supplied final-assembly consumable fitted after PCBA and before cells"
+    }
+  },
+  "antenna_connector_fit": {
+    "checked_on": "2026-09-07",
+    "mpns": [
+      "GCT RFPC-SMA31-FN-175-A",
+      "GCT RFPC-SMA32-FN-175-A"
+    ],
+    "slot_gap_mm": {
+      "nominal": 1.75,
+      "minus": 0.1,
+      "plus": 0.1
+    },
+    "pcb_stack_members": {
+      "LESHY2-UI-R2": "ui_pcb_mm",
+      "LESHY2-RF-R2": "rf_pcb_mm"
+    },
+    "minimum_required_assembly_clearance_mm": 0.0,
+    "method": "undeformed connector slot G minus finished PCB thickness at the antenna lands; independent full tolerance corners",
+    "sources": [
+      {
+        "document": "GCT RFPC-SMA31-FN A1 drawing released 2025-04-07",
+        "url": "https://www.mouser.com/datasheet/3/1507/1/RFPC-SMA31-FN.pdf",
+        "evidence": "G is dimensioned +/-0.10 mm; ordering option 175 gives G=1.75 mm for nominal 1.60-mm PCB"
+      },
+      {
+        "document": "GCT RFPC-SMA32-FN A1 drawing released 2025-04-07",
+        "url": "https://www.mouser.com/datasheet/3/1507/1/RFPC_SMA32_FN.pdf",
+        "evidence": "same G=1.75+/-0.10-mm edge slot for ordering option 175"
+      },
+      {
+        "document": "JLCPCB published rigid PCB capabilities",
+        "url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+        "evidence": "finished thickness >=1.0 mm has +/-10% tolerance; explicit 1.60-mm example spans 1.44..1.76 mm; tighter thickness is not a published standard option"
+      }
+    ],
+    "release_gate": {
+      "id": "H6-SMA-FINISHED-THICKNESS-FIT",
+      "required_before": "H6.0.9-R1 release-candidate acceptance",
+      "closure_condition": "obtain factory confirmation of a finished PCB thickness range that fits the exact SMA slot with declared clearance, or documented GCT/factory acceptance of the full current tolerance range; re-evaluate this audit before production release",
+      "unverified_assumption": "elastic spreading or manual forming of the connector prongs is not credited as assembly clearance",
+      "changes_authorized_here": "none; PCB stack, exact MPNs and purchase/fabrication authorization remain unchanged"
     }
   },
   "battery_thermal_contacts": {
@@ -213,6 +255,9 @@
     "one_loose_screw_case": "three screws still clamp the four-stop stack; four pilots and independent edge lips retain both boards, so M1 is not the shear or separation stop"
   },
   "release_boundaries": {
+    "open_before_production_release": [
+      "H6-SMA-FINISHED-THICKNESS-FIT: exact -175 SMA slot and finished PCB thickness ranges overlap by 0.11 mm at their worst corners; supplier-supported fit must be confirmed before H6.0.9 release-candidate acceptance"
+    ],
     "locked_here": [
       "20-mm exact screw MPN",
       "exact nylon nut MPN",

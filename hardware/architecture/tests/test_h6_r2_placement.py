@@ -41,9 +41,9 @@ class H6R2PlacementTests(unittest.TestCase):
                 "hard_conflict_count": 0,
                 "placement_failure_count": 0,
                 "net_or_footprint_error_count": 0,
-                "locality_pair_count": 310,
+                "locality_pair_count": 311,
                 "locality_violation_count": 0,
-                "critical_pad_pair_count": 22,
+                "critical_pad_pair_count": 34,
                 "critical_pad_pair_violation_count": 0,
                 "accepted_same_face_overlap_count": 2,
                 "routing_authorized": True,
@@ -56,7 +56,7 @@ class H6R2PlacementTests(unittest.TestCase):
         self.assertEqual(780, boards["LESHY2-RF-R2"]["placed_instance_count"])
 
     def test_local_parts_stay_with_their_physical_owners(self):
-        self.assertEqual(310, self.audit["summary"]["locality_pair_count"])
+        self.assertEqual(311, self.audit["summary"]["locality_pair_count"])
         self.assertEqual(0, self.audit["summary"]["locality_violation_count"])
         rows = {}
         for board in self.audit["boards"]:
@@ -96,7 +96,7 @@ class H6R2PlacementTests(unittest.TestCase):
             self.assertEqual([], pad_audit["errors"])
             self.assertEqual([], pad_audit["violations"])
             rows.extend(pad_audit["rows"])
-        self.assertEqual(22, len(rows))
+        self.assertEqual(34, len(rows))
         self.assertEqual(
             switching_nodes,
             switching_nodes & {row["canonical_net"] for row in rows},
@@ -176,7 +176,10 @@ class H6R2PlacementTests(unittest.TestCase):
             90.0,
             self.contract["placement_overrides"]["voice_fb_bottom"]["rotation_deg"],
         )
-        self.assertEqual([], self.contract["placement_policy"]["released_instances"])
+        self.assertEqual(
+            set(),
+            set(self.contract["placement_policy"]["released_instances"]),
+        )
         self.assertEqual(
             {"LESHY2-UI-R2": [], "LESHY2-RF-R2": []},
             self.contract["placement_policy"]["released_reference_prefixes_by_project"],
@@ -211,6 +214,35 @@ class H6R2PlacementTests(unittest.TestCase):
             self.assertTrue(
                 all(point[1] == 0.0 for point in self.contract["antenna_ports"][project].values())
             )
+            board = next(row for row in self.audit["boards"] if row["project"] == project)
+            antenna_instances = set(self.contract["antenna_ports"][project])
+            antenna_rows = [
+                row for row in board["placements"] if row["instance"] in antenna_instances
+            ]
+            self.assertEqual(5, len(antenna_rows))
+            self.assertTrue(all(row["rotation_deg"] == 180.0 for row in antenna_rows))
+            self.assertTrue(
+                all(row["courtyard_bbox_mm"]["y"] == [-12.795, 3.195] for row in antenna_rows)
+            )
+            for row in antenna_rows:
+                anchor_x, anchor_y = self.contract["antenna_ports"][project][row["instance"]]
+                self.assertEqual([anchor_x, anchor_y], row["footprint_anchor_mm"])
+                # Both underside shell lands must be reserved.  An empty list
+                # must fail, and x positions matter as much as the inboard y.
+                self.assertEqual(
+                    [
+                        {
+                            "x": [round(anchor_x - 3.35, 4), round(anchor_x - 1.75, 4)],
+                            "y": [0.0, 3.3],
+                        },
+                        {
+                            "x": [round(anchor_x + 1.75, 4), round(anchor_x + 3.35, 4)],
+                            "y": [0.0, 3.3],
+                        },
+                    ],
+                    row["opposite_face_keepout_bboxes_mm"],
+                    row["instance"],
+                )
         display = self.contract["mechanical"]["display_bed"]
         self.assertEqual([11.73, 68.27], display["panel_bbox_mm"]["x"])
         self.assertEqual([19.0, 103.96], display["panel_bbox_mm"]["y"])

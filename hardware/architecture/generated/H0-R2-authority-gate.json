@@ -31,7 +31,7 @@
   },
   "current_h1_physical_authority": {
     "source": "hardware/product-design/h1-r2-placement.json",
-    "marker": "H1-R2.37",
+    "marker": "H1-R2.39",
     "status": "reviewed",
     "open_blockers": 0
   },
@@ -77,7 +77,7 @@
           "net": "LCD_RST_N",
           "peripheral": "GPIO",
           "direction": "out",
-          "gate": "direct display-adapter reset; reset-time pull-down keeps the panel disabled"
+          "gate": "direct ILI9488 panel reset through the 50-contact UI-PCB ZIF; reset-time pull-down keeps the panel disabled"
         },
         {
           "gpio": 6,
@@ -1178,11 +1178,11 @@
         },
         {
           "gpio": 45,
-          "net": "LCD_TE",
-          "direction": "in",
-          "controller": "GPIO_IRQ",
-          "endpoint": "HMX035CTFT-001 TE",
-          "reset": "input; external pull-down while panel reset is asserted"
+          "net": "HUB_RESERVE_45",
+          "direction": "reserve",
+          "controller": "GPIO",
+          "endpoint": "uncommitted electrical reserve; no board connection because the accepted panel TE contact is deliberately open",
+          "reset": "input/high-Z; no external connection; DNP"
         },
         {
           "gpio": 46,

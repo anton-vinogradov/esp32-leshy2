@@ -13,6 +13,8 @@
     "service_mux_changes_only_while_c5_and_hub_are_reset": true
   },
   "endpoint_overrides": {
+    "s3.3V3": "3V3_MAIN",
+    "c5.3V3": "3V3_MAIN",
     "s3_boot_pullup.END_2": "S3_BOOT_N",
     "s3_dbg_boot_series.END_2": "S3_BOOT_N",
     "safe_reset_sink_a.G1": "S3_RESET_KILL_GATE",

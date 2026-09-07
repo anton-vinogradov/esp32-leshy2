@@ -56,7 +56,7 @@ class H2R2NetLedgerTests(unittest.TestCase):
         self.assertEqual(238, summary["no_connect_endpoint_count"])
         self.assertEqual(0, summary["external_interface_endpoint_count"])
         self.assertEqual(0, summary["unresolved_endpoint_count"])
-        self.assertEqual(789, summary["unique_net_count"])
+        self.assertEqual(788, summary["unique_net_count"])
 
     def test_m1_contacts_match_on_both_projects(self):
         for position in range(1, 81):
@@ -212,7 +212,7 @@ class H2R2NetLedgerTests(unittest.TestCase):
             if name.startswith("historical_"):
                 self.assertFalse(source["authority"])
         historical = [row for row in self.rows if row["origin"].startswith("reconciled_historical")]
-        self.assertEqual(2199, len(historical))
+        self.assertEqual(2197, len(historical))
         self.assertEqual(
             1094,
             self.ledger["summary"]["origin_counts"]["current_abstract_endpoint_canonical"],

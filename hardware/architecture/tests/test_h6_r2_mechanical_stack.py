@@ -1,7 +1,10 @@
+import copy
 import json
 import subprocess
 import unittest
 from pathlib import Path
+
+from hardware.layout.h6_r2_mechanical_stack import evaluate_connector_fit
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -69,6 +72,47 @@ class H6R2MechanicalStackTests(unittest.TestCase):
         self.assertGreaterEqual(thermal["nominal_gap_pad_compression_percent"], 10.0)
         self.assertLessEqual(thermal["nominal_gap_pad_compression_percent"], 30.0)
 
+    def test_nominal_sma_fit_does_not_hide_worst_case_interference(self):
+        fit = self.audit["connector_fit"]
+        self.assertEqual("requires_confirmation", fit["status"])
+        self.assertEqual("2026-09-07", fit["checked_on"])
+        self.assertEqual([1.65, 1.85], fit["slot_gap_range_mm"])
+        self.assertEqual(2, len(fit["rows"]))
+        for row in fit["rows"]:
+            self.assertEqual([1.44, 1.76], row["pcb_thickness_range_mm"])
+            self.assertEqual(0.15, row["assembly_clearance_nominal_mm"])
+            self.assertEqual(-0.11, row["assembly_clearance_minimum_mm"])
+            self.assertEqual(0.41, row["assembly_clearance_maximum_mm"])
+            self.assertEqual(0.11, row["worst_case_interference_mm"])
+            self.assertFalse(row["all_declared_corners_fit"])
+        gate = fit["release_gate"]
+        self.assertEqual("H6-SMA-FINISHED-THICKNESS-FIT", gate["id"])
+        self.assertEqual("open", gate["status"])
+        self.assertTrue(gate["blocks_production_release"])
+        self.assertTrue(gate["routing_may_continue"])
+        self.assertEqual(
+            ["LESHY2-UI-R2", "LESHY2-RF-R2"], gate["unresolved_projects"]
+        )
+        self.assertIn("connector fit is reported separately", self.audit["status_scope"])
+        self.assertFalse(self.contract["authorization"]["fabrication"])
+
+    def test_sma_fit_uses_each_pcb_tolerance_independently(self):
+        candidate = copy.deepcopy(self.contract)
+        candidate["tolerance_stack"]["ui_pcb_mm"]["plus"] = 0.02
+        result = evaluate_connector_fit(candidate)
+        rows = {row["project"]: row for row in result["rows"]}
+        self.assertEqual(0.03, rows["LESHY2-UI-R2"]["assembly_clearance_minimum_mm"])
+        self.assertTrue(rows["LESHY2-UI-R2"]["all_declared_corners_fit"])
+        self.assertEqual(-0.11, rows["LESHY2-RF-R2"]["assembly_clearance_minimum_mm"])
+        self.assertEqual(["LESHY2-RF-R2"], result["release_gate"]["unresolved_projects"])
+        self.assertEqual("requires_confirmation", result["status"])
+        self.assertTrue(result["release_gate"]["blocks_production_release"])
+
+        candidate["tolerance_stack"]["ui_pcb_mm"]["plus"] = 0.05
+        boundary = evaluate_connector_fit(candidate)["rows"][0]
+        self.assertEqual(0.0, boundary["assembly_clearance_minimum_mm"])
+        self.assertTrue(boundary["all_declared_corners_fit"])
+
     def test_outputs_are_reproducible(self):
         result = subprocess.run(
             ["python3", str(SCRIPT), "--check"],
@@ -87,6 +131,8 @@ class H6R2MechanicalStackTests(unittest.TestCase):
         self.assertIn("DIRECT CELL TEMPERATURE", text)
         self.assertIn("TG-A3500-5-5-3.0", text)
         self.assertIn("nominal compression 20.0%", text)
+        self.assertIn("SMA FIT: requires_confirmation", text)
+        self.assertIn("worst clearance -0.11 mm", text)
 
 
 if __name__ == "__main__":

@@ -5,19 +5,19 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "11a5e8594b6c3db9c4e2216839a2c7decb2305345f77ca704c384fb66d3b1df3",
+    "contract_sha256": "cc4c1c3da983ec33bc7438032422093158d2937600427400dcc49711e0afb04a",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "76d9de3133ae0744429b2b0a6d44553f81c9b4834aa579aee3548e5889c489d0",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
     "coordinate_model_sha256": "cc2aaeacd6de560fb728ef82767184738e24bbf831a6cc706c70299cf2077636",
     "instance_ledger": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-    "instance_ledger_sha256": "81c6a935c1acd6f47fa08f519cff5b893513c2882b13f880f9cdff6655d245d3",
+    "instance_ledger_sha256": "8662e0fa866bf8fab57b7d3799b312b3f67bca179da2732571be27995e19c88d",
     "net_ledger": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-    "net_ledger_sha256": "e490be3e8d81e65098684467654980cf4a21fb3a166213a29163d4d3661766be",
+    "net_ledger_sha256": "a4d01ad42040f5d7b4be6f138efbef7c5230f7500c37c7bed795d25d05d24e72",
     "symbol_library": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-    "symbol_library_sha256": "ff16df09b1fe13ec53514816150f9bdbf438a365be08ce7f3782e12f5671dea7",
+    "symbol_library_sha256": "409671bdfaa7674d2dab5455154a4a636128f23de3e4f46788ad8071faed0600",
     "kicad_net_bindings": "hardware/layout/generated/H6-R2-kicad-net-bindings.json",
-    "kicad_net_bindings_sha256": "287b2ed42a1f32ecafde5705090962ec6c3da362a32f8ee508dba0f8c94c7706"
+    "kicad_net_bindings_sha256": "7fbecfcfc5f5f65e8833f874d1e87b1d755714d538065dec3335c079f8691dd3"
   },
   "summary": {
     "board_count": 2,
@@ -31,9 +31,9 @@
     "hard_conflict_count": 0,
     "placement_failure_count": 0,
     "net_or_footprint_error_count": 0,
-    "locality_pair_count": 310,
+    "locality_pair_count": 311,
     "locality_violation_count": 0,
-    "critical_pad_pair_count": 22,
+    "critical_pad_pair_count": 34,
     "critical_pad_pair_violation_count": 0,
     "accepted_same_face_overlap_count": 2,
     "routing_authorized": true,
@@ -65,15 +65,16 @@
         "F.Cu": 20
       },
       "method_counts": {
-        "connectivity/sheet automatic seed": 334,
-        "exact H1 seed": 27,
-        "hard H1 datum": 27,
-        "nearest exact-footprint correction": 14,
+        "connectivity/sheet automatic seed": 333,
+        "exact H1 seed": 24,
+        "hard H1 datum": 26,
+        "nearest exact-footprint correction": 11,
         "reviewed H6.0.2 fan-out correction": 3,
         "reviewed H6.0.2 oscillator-locality correction": 11,
-        "reviewed H6.0.3 signal-locality correction": 12
+        "reviewed H6.0.3 edge-launch-land clearance correction": 5,
+        "reviewed H6.0.3 signal-locality correction": 15
       },
-      "net_count": 307,
+      "net_count": 306,
       "mechanical": [
         {
           "id": "MH1",
@@ -160,72 +161,44 @@
           }
         },
         {
-          "instance": "s3_external_rp_sma",
-          "reason": "frozen before routed copper",
-          "bbox_mm": {
-            "x": [
-              23.355,
-              33.144999999999996
-            ],
-            "y": [
-              -3.195,
-              12.795
-            ]
-          }
-        },
-        {
-          "instance": "c5_external_rp_sma",
-          "reason": "frozen before routed copper",
-          "bbox_mm": {
-            "x": [
-              46.855000000000004,
-              56.644999999999996
-            ],
-            "y": [
-              -3.195,
-              12.795
-            ]
-          }
-        },
-        {
           "instance": "nrf0_external_sma",
-          "reason": "frozen before routed copper",
+          "reason": "board-edge antenna port; connector body faces outward and both solder-land rows remain on the PCB",
           "bbox_mm": {
             "x": [
               11.605,
               21.395
             ],
             "y": [
-              -3.195,
-              12.795
+              -12.795,
+              3.195
             ]
           }
         },
         {
           "instance": "nrf1_external_sma",
-          "reason": "frozen before routed copper",
+          "reason": "board-edge antenna port; connector body faces outward and both solder-land rows remain on the PCB",
           "bbox_mm": {
             "x": [
               35.105000000000004,
               44.894999999999996
             ],
             "y": [
-              -3.195,
-              12.795
+              -12.795,
+              3.195
             ]
           }
         },
         {
           "instance": "nrf2_external_sma",
-          "reason": "frozen before routed copper",
+          "reason": "board-edge antenna port; connector body faces outward and both solder-land rows remain on the PCB",
           "bbox_mm": {
             "x": [
               58.605000000000004,
               68.395
             ],
             "y": [
-              -3.195,
-              12.795
+              -12.795,
+              3.195
             ]
           }
         },
@@ -340,6 +313,34 @@
               91.705
             ]
           }
+        },
+        {
+          "instance": "s3_external_rp_sma",
+          "reason": "board-edge antenna port; connector body faces outward and both solder-land rows remain on the PCB",
+          "bbox_mm": {
+            "x": [
+              23.355,
+              33.144999999999996
+            ],
+            "y": [
+              -12.795,
+              3.195
+            ]
+          }
+        },
+        {
+          "instance": "c5_external_rp_sma",
+          "reason": "board-edge antenna port; connector body faces outward and both solder-land rows remain on the PCB",
+          "bbox_mm": {
+            "x": [
+              46.855000000000004,
+              56.644999999999996
+            ],
+            "y": [
+              -12.795,
+              3.195
+            ]
+          }
         }
       ],
       "accepted_same_face_overlaps": [],
@@ -348,12 +349,116 @@
       "net_or_footprint_errors": [],
       "critical_pad_pairs": {
         "status": "pass",
-        "pair_count": 2,
+        "pair_count": 10,
         "maximum_pad_centre_distance_mm": 4.2068,
         "violation_count": 0,
         "violations": [],
         "errors": [],
         "rows": [
+          {
+            "canonical_net": "3V3_MAIN",
+            "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/3V3_MAIN",
+            "first_instance": "s3",
+            "first_reference": "U1",
+            "first_pad": "2",
+            "second_instance": "s3_supply_bypass",
+            "second_reference": "C6",
+            "second_pad": "1",
+            "pad_centre_distance_mm": 1.941,
+            "maximum_distance_mm": 3.0,
+            "reason": "actual module 3V3 pin to local supply capacitor; canonical rail continuity is separately checked in the fresh schematic netlist"
+          },
+          {
+            "canonical_net": "AON_SAFE_3V3",
+            "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/AON_SAFE_3V3",
+            "first_instance": "det_s3",
+            "first_reference": "U52",
+            "first_pad": "6",
+            "second_instance": "s3_detector_bypass",
+            "second_reference": "C1",
+            "second_pad": "1",
+            "pad_centre_distance_mm": 1.7671,
+            "maximum_distance_mm": 3.0,
+            "reason": "owner VCC-to-bypass screening limit; route the high-frequency supply and return locally"
+          },
+          {
+            "canonical_net": "AON_SAFE_3V3",
+            "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/AON_SAFE_3V3",
+            "first_instance": "det_c5",
+            "first_reference": "U50",
+            "first_pad": "6",
+            "second_instance": "c5_detector_bypass",
+            "second_reference": "C21",
+            "second_pad": "1",
+            "pad_centre_distance_mm": 2.7576,
+            "maximum_distance_mm": 3.0,
+            "reason": "owner VCC-to-bypass screening limit; route the high-frequency supply and return locally"
+          },
+          {
+            "canonical_net": "AON_SAFE_3V3",
+            "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/AON_SAFE_3V3",
+            "first_instance": "det_nrf0",
+            "first_reference": "U32",
+            "first_pad": "8",
+            "second_instance": "nrf0_detector_bypass",
+            "second_reference": "C59",
+            "second_pad": "1",
+            "pad_centre_distance_mm": 1.9428,
+            "maximum_distance_mm": 3.0,
+            "reason": "owner VCC-to-bypass screening limit; route the high-frequency supply and return locally"
+          },
+          {
+            "canonical_net": "AON_SAFE_3V3",
+            "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/AON_SAFE_3V3",
+            "first_instance": "det_nrf1",
+            "first_reference": "U33",
+            "first_pad": "8",
+            "second_instance": "nrf1_detector_bypass",
+            "second_reference": "C65",
+            "second_pad": "1",
+            "pad_centre_distance_mm": 2.1339,
+            "maximum_distance_mm": 3.0,
+            "reason": "owner VCC-to-bypass screening limit; route the high-frequency supply and return locally"
+          },
+          {
+            "canonical_net": "AON_SAFE_3V3",
+            "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/AON_SAFE_3V3",
+            "first_instance": "det_nrf2",
+            "first_reference": "U34",
+            "first_pad": "8",
+            "second_instance": "nrf2_detector_bypass",
+            "second_reference": "C71",
+            "second_pad": "1",
+            "pad_centre_distance_mm": 1.8233,
+            "maximum_distance_mm": 3.0,
+            "reason": "owner VCC-to-bypass screening limit; route the high-frequency supply and return locally"
+          },
+          {
+            "canonical_net": "AON_SAFE_3V3",
+            "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/AON_SAFE_3V3",
+            "first_instance": "c5_service_mux_logic_inverters",
+            "first_reference": "U17",
+            "first_pad": "5",
+            "second_instance": "c5_service_mux_logic_bypass",
+            "second_reference": "C24",
+            "second_pad": "1",
+            "pad_centre_distance_mm": 2.5252,
+            "maximum_distance_mm": 3.0,
+            "reason": "owner VCC-to-bypass screening limit; route the high-frequency supply and return locally"
+          },
+          {
+            "canonical_net": "AON_SAFE_3V3",
+            "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/AON_SAFE_3V3",
+            "first_instance": "c5_service_reset_proof_inverters",
+            "first_reference": "U20",
+            "first_pad": "5",
+            "second_instance": "c5_service_reset_proof_bypass",
+            "second_reference": "C27",
+            "second_pad": "1",
+            "pad_centre_distance_mm": 1.9113,
+            "maximum_distance_mm": 3.0,
+            "reason": "owner VCC-to-bypass screening limit; route the high-frequency supply and return locally"
+          },
           {
             "canonical_net": "HUB_RP_VREG_LX_SW",
             "kicad_net": "/UI_30_HUB_RP_CORE_SERVICE/HUB_RP_VREG_LX_SW",
@@ -392,28 +497,32 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              35.099999999999994,
-              36.11
+              36.099999999999994,
+              37.11
             ],
             "y": [
-              15.35,
-              17.259999999999998
+              4.1,
+              6.01
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            35.605,
-            16.305
+            36.605,
+            5.055
           ],
           "footprint_anchor_mm": [
-            35.605,
-            16.305
+            36.605,
+            5.055
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0,
+          "locality_owner_pad_anchor_mm": [
+            34.9375,
+            4.95
+          ],
           "footprint_anchor_nm": [
-            35605000,
-            16305000
+            36605000,
+            5055000
           ]
         },
         {
@@ -422,31 +531,31 @@
           "sheet": "UI_10_S3_DISPLAY_TOUCH",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0402_1005Metric",
-          "method": "reviewed H6.0.3 signal-locality correction",
+          "method": "reviewed H6.0.3 edge-launch-land clearance correction",
           "courtyard_bbox_mm": {
             "x": [
-              23.35,
-              25.259999999999998
+              29.645000000000003,
+              31.555
             ],
             "y": [
-              1.6,
-              2.61
+              4.445,
+              5.455
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            24.305,
-            2.105
+            30.6,
+            4.95
           ],
           "footprint_anchor_mm": [
-            24.305,
-            2.105
+            30.6,
+            4.95
           ],
-          "rotation_deg": 180.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            24305000,
-            2105000
+            30600000,
+            4950000
           ]
         },
         {
@@ -561,24 +670,24 @@
               14.860000000000001
             ],
             "y": [
-              15.6,
-              17.509999999999998
+              22.6,
+              24.509999999999998
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             14.355,
-            16.555
+            23.555
           ],
           "footprint_anchor_mm": [
             14.355,
-            16.555
+            23.555
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             14355000,
-            16555000
+            23555000
           ]
         },
         {
@@ -1056,28 +1165,32 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              55.349999999999994,
-              56.36
+              51.1,
+              53.01
             ],
             "y": [
-              31.1,
-              33.01
+              6.6000000000000005,
+              7.61
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            55.855,
-            32.055
+            52.055,
+            7.105
           ],
           "footprint_anchor_mm": [
-            55.855,
-            32.055
+            52.055,
+            7.105
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
+          "locality_owner_pad_anchor_mm": [
+            53.7,
+            8.8625
+          ],
           "footprint_anchor_nm": [
-            55855000,
-            32055000
+            52055000,
+            7105000
           ]
         },
         {
@@ -1155,28 +1268,32 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              55.349999999999994,
-              56.36
+              47.85,
+              49.76
             ],
             "y": [
-              28.85,
-              30.759999999999998
+              102.09999900000001,
+              103.109999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            55.855,
-            29.805
+            48.805,
+            102.605
           ],
           "footprint_anchor_mm": [
-            55.855,
-            29.805
+            48.805,
+            102.605
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
+          "locality_owner_pad_anchor_mm": [
+            48.745,
+            105.095
+          ],
           "footprint_anchor_nm": [
-            55855000,
-            29805000
+            48805000,
+            102604999
           ]
         },
         {
@@ -1254,28 +1371,32 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              55.349999999999994,
-              56.36
+              45.099999999999994,
+              46.11
             ],
             "y": [
-              33.35,
-              35.26
+              96.10000000000001,
+              98.01
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            55.855,
-            34.305
+            45.605,
+            97.055
           ],
           "footprint_anchor_mm": [
-            55.855,
-            34.305
+            45.605,
+            97.055
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0,
+          "locality_owner_pad_anchor_mm": [
+            43.745,
+            97.095
+          ],
           "footprint_anchor_nm": [
-            55855000,
-            34305000
+            45605000,
+            97055000
           ]
         },
         {
@@ -2330,28 +2451,32 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              16.1,
-              18.009999999999998
+              8.6,
+              9.610000000000001
             ],
             "y": [
-              40.349999999999994,
-              41.36
+              15.35,
+              17.259999999999998
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            17.055,
-            40.855
+            9.105,
+            16.305
           ],
           "footprint_anchor_mm": [
-            17.055,
-            40.855
+            9.105,
+            16.305
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0,
+          "locality_owner_pad_anchor_mm": [
+            10.725,
+            15.7125
+          ],
           "footprint_anchor_nm": [
-            17055000,
-            40855000
+            9105000,
+            16305000
           ]
         },
         {
@@ -2528,28 +2653,32 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              38.35,
-              40.26
+              41.85,
+              43.76
             ],
             "y": [
-              57.099999999999994,
-              58.11
+              9.1,
+              10.110000000000001
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            39.305,
-            57.605
+            42.805,
+            9.605
           ],
           "footprint_anchor_mm": [
-            39.305,
-            57.605
+            42.805,
+            9.605
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
+          "locality_owner_pad_anchor_mm": [
+            42.975,
+            11.6375
+          ],
           "footprint_anchor_nm": [
-            39305000,
-            57605000
+            42805000,
+            9605000
           ]
         },
         {
@@ -2726,28 +2855,32 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              60.6,
-              62.51
+              61.35,
+              63.26
             ],
             "y": [
-              59.099999999999994,
-              60.11
+              11.35,
+              12.360000000000001
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            61.555,
-            59.605
+            62.305,
+            11.855
           ],
           "footprint_anchor_mm": [
-            61.555,
-            59.605
+            62.305,
+            11.855
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
+          "locality_owner_pad_anchor_mm": [
+            62.2625,
+            13.625
+          ],
           "footprint_anchor_nm": [
-            61555000,
-            59605000
+            62305000,
+            11855000
           ]
         },
         {
@@ -3654,8 +3787,8 @@
               33.144999999999996
             ],
             "y": [
-              -3.195,
-              12.795
+              -12.795,
+              3.195
             ]
           },
           "opposite_face_keepout_bboxes_mm": [
@@ -3665,8 +3798,8 @@
                 26.5
               ],
               "y": [
-                -3.3,
-                0.0
+                0.0,
+                3.3
               ]
             },
             {
@@ -3675,20 +3808,20 @@
                 31.6
               ],
               "y": [
-                -3.3,
-                0.0
+                0.0,
+                3.3
               ]
             }
           ],
           "courtyard_centre_mm": [
             28.25,
-            4.8
+            -4.8
           ],
           "footprint_anchor_mm": [
             28.25,
             0.0
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             28250000,
@@ -3701,31 +3834,31 @@
           "sheet": "UI_10_S3_DISPLAY_TOUCH",
           "side": "B.Cu",
           "footprint": "Connector_Coaxial:U.FL_Hirose_U.FL-R-SMT-1_Vertical",
-          "method": "hard H1 datum",
+          "method": "reviewed H6.0.3 edge-launch-land clearance correction",
           "courtyard_bbox_mm": {
             "x": [
-              13.205,
-              18.295
+              20.155,
+              24.595
             ],
             "y": [
-              1.2799999999999998,
-              5.720000000000001
+              0.935,
+              6.025
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            15.75,
-            3.5
+            22.375,
+            3.48
           ],
           "footprint_anchor_mm": [
-            15.75,
-            3.125
+            22.0,
+            3.48
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            15750000,
-            3125000
+            22000000,
+            3480000
           ]
         },
         {
@@ -3807,8 +3940,8 @@
               56.644999999999996
             ],
             "y": [
-              -3.195,
-              12.795
+              -12.795,
+              3.195
             ]
           },
           "opposite_face_keepout_bboxes_mm": [
@@ -3818,8 +3951,8 @@
                 50.0
               ],
               "y": [
-                -3.3,
-                0.0
+                0.0,
+                3.3
               ]
             },
             {
@@ -3828,20 +3961,20 @@
                 55.1
               ],
               "y": [
-                -3.3,
-                0.0
+                0.0,
+                3.3
               ]
             }
           ],
           "courtyard_centre_mm": [
             51.75,
-            4.8
+            -4.8
           ],
           "footprint_anchor_mm": [
             51.75,
             0.0
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             51750000,
@@ -4115,8 +4248,8 @@
               21.395
             ],
             "y": [
-              -3.195,
-              12.795
+              -12.795,
+              3.195
             ]
           },
           "opposite_face_keepout_bboxes_mm": [
@@ -4126,8 +4259,8 @@
                 14.75
               ],
               "y": [
-                -3.3,
-                0.0
+                0.0,
+                3.3
               ]
             },
             {
@@ -4136,20 +4269,20 @@
                 19.85
               ],
               "y": [
-                -3.3,
-                0.0
+                0.0,
+                3.3
               ]
             }
           ],
           "courtyard_centre_mm": [
             16.5,
-            4.8
+            -4.8
           ],
           "footprint_anchor_mm": [
             16.5,
             0.0
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             16500000,
@@ -4202,8 +4335,8 @@
               44.894999999999996
             ],
             "y": [
-              -3.195,
-              12.795
+              -12.795,
+              3.195
             ]
           },
           "opposite_face_keepout_bboxes_mm": [
@@ -4213,8 +4346,8 @@
                 38.25
               ],
               "y": [
-                -3.3,
-                0.0
+                0.0,
+                3.3
               ]
             },
             {
@@ -4223,20 +4356,20 @@
                 43.35
               ],
               "y": [
-                -3.3,
-                0.0
+                0.0,
+                3.3
               ]
             }
           ],
           "courtyard_centre_mm": [
             40.0,
-            4.8
+            -4.8
           ],
           "footprint_anchor_mm": [
             40.0,
             0.0
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             40000000,
@@ -4289,8 +4422,8 @@
               68.395
             ],
             "y": [
-              -3.195,
-              12.795
+              -12.795,
+              3.195
             ]
           },
           "opposite_face_keepout_bboxes_mm": [
@@ -4300,8 +4433,8 @@
                 61.75
               ],
               "y": [
-                -3.3,
-                0.0
+                0.0,
+                3.3
               ]
             },
             {
@@ -4310,20 +4443,20 @@
                 66.85
               ],
               "y": [
-                -3.3,
-                0.0
+                0.0,
+                3.3
               ]
             }
           ],
           "courtyard_centre_mm": [
             63.5,
-            4.8
+            -4.8
           ],
           "footprint_anchor_mm": [
             63.5,
             0.0
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             63500000,
@@ -5186,31 +5319,31 @@
           "sheet": "UI_10_S3_DISPLAY_TOUCH",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 edge-launch-land clearance correction",
           "courtyard_bbox_mm": {
             "x": [
-              23.599999999999998,
-              25.55
+              27.825,
+              29.775000000000002
             ],
             "y": [
-              2.85,
-              3.8800000000000003
+              2.485,
+              3.515
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            24.575,
-            3.365
+            28.8,
+            3.0
           ],
           "footprint_anchor_mm": [
-            24.575,
-            3.365
+            28.8,
+            3.0
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            24575000,
-            3365000
+            28800000,
+            3000000
           ]
         },
         {
@@ -13159,31 +13292,31 @@
           "sheet": "UI_10_S3_DISPLAY_TOUCH",
           "side": "B.Cu",
           "footprint": "Leshy2:CP0603Q5425ENTR",
-          "method": "nearest exact-footprint correction",
+          "method": "reviewed H6.0.3 edge-launch-land clearance correction",
           "courtyard_bbox_mm": {
             "x": [
-              23.48,
-              25.52
+              27.23,
+              29.27
             ],
             "y": [
-              4.305,
-              5.695
+              4.1049999999999995,
+              5.495
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            24.5,
-            5.0
+            28.25,
+            4.8
           ],
           "footprint_anchor_mm": [
-            24.5,
-            5.0
+            28.25,
+            4.8
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            24500000,
-            5000000
+            28250000,
+            4800000
           ]
         },
         {
@@ -13522,7 +13655,7 @@
           "sheet": "UI_20_C5_WIFI_IR_SERVICE",
           "side": "B.Cu",
           "footprint": "Leshy2:ESP32-C5-WROOM-1U",
-          "method": "nearest exact-footprint correction",
+          "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               56.705,
@@ -13542,7 +13675,7 @@
             66.25,
             32.0
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             66250000,
@@ -14215,7 +14348,7 @@
           "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
           "side": "B.Cu",
           "footprint": "Leshy2:Ebyte-E01-ML01SP4",
-          "method": "exact H1 seed",
+          "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               7.755000000000001,
@@ -14235,7 +14368,7 @@
             17.05,
             49.3
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": -90.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             17050000,
@@ -14347,7 +14480,7 @@
           "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
           "side": "B.Cu",
           "footprint": "Leshy2:Ebyte-E01-ML01SP4",
-          "method": "exact H1 seed",
+          "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               32.555,
@@ -14367,7 +14500,7 @@
             41.85,
             49.3
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": -90.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             41850000,
@@ -14479,7 +14612,7 @@
           "sheet": "UI_31_NRF24_X3_TX_EVIDENCE",
           "side": "B.Cu",
           "footprint": "Leshy2:Ebyte-E01-ML01SP4",
-          "method": "exact H1 seed",
+          "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               52.355,
@@ -14499,7 +14632,7 @@
             61.65,
             51.3
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": -90.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             61650000,
@@ -14776,11 +14909,11 @@
           "sheet": "UI_50_FRONT_POWER_SAFETY",
           "side": "B.Cu",
           "footprint": "Package_TO_SOT_SMD:TSOT-23-6",
-          "method": "nearest exact-footprint correction",
+          "method": "reviewed H6.0.3 edge-launch-land clearance correction",
           "courtyard_bbox_mm": {
             "x": [
-              18.905,
-              23.095
+              31.705,
+              35.894999999999996
             ],
             "y": [
               2.255,
@@ -14789,17 +14922,17 @@
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            21.0,
+            33.8,
             4.0
           ],
           "footprint_anchor_mm": [
-            21.0,
+            33.8,
             4.0
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            21000000,
+            33800000,
             4000000
           ]
         },
@@ -15036,8 +15169,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "unrouted_seed_sha256": "80862f56cde52db2bce70f768ff077c235b0b591a41488657ac06c1e7c773240",
-      "placement_signature_sha256": "49b334a492d064749b515021517cbd78965e8f734902c60b7e166db5a3b3441d",
+      "unrouted_seed_sha256": "d0285ff2dcbd6c6645dcdb13aeebc3af31238312a1fbabc1e840d0d9300ae015",
+      "placement_signature_sha256": "7bebd952ad11e3779b375d2f63e7139f21270cc01221c19fea006f825ae5a697",
       "locality": {
         "status": "pass",
         "pair_count": 52,
@@ -15048,18 +15181,18 @@
           {
             "instance": "c5_detector_bypass",
             "reference": "C21",
-            "owner": "c5",
-            "owner_reference": "U14",
-            "courtyard_gap_mm": 0.345,
+            "owner": "det_c5",
+            "owner_reference": "U50",
+            "courtyard_gap_mm": 0.295,
             "maximum_gap_mm": 1.0,
             "measurement": "courtyard_to_courtyard"
           },
           {
             "instance": "c5_service_mux_logic_bypass",
             "reference": "C24",
-            "owner": "c5",
-            "owner_reference": "U14",
-            "courtyard_gap_mm": 0.345,
+            "owner": "c5_service_mux_logic_inverters",
+            "owner_reference": "U17",
+            "courtyard_gap_mm": 0.24,
             "maximum_gap_mm": 1.0,
             "measurement": "courtyard_to_courtyard"
           },
@@ -15084,9 +15217,9 @@
           {
             "instance": "c5_service_reset_proof_bypass",
             "reference": "C27",
-            "owner": "c5",
-            "owner_reference": "U14",
-            "courtyard_gap_mm": 0.345,
+            "owner": "c5_service_reset_proof_inverters",
+            "owner_reference": "U20",
+            "courtyard_gap_mm": 0.26,
             "maximum_gap_mm": 1.0,
             "measurement": "courtyard_to_courtyard"
           },
@@ -15345,9 +15478,9 @@
           {
             "instance": "nrf0_detector_bypass",
             "reference": "C59",
-            "owner": "nrf0",
-            "owner_reference": "U35",
-            "courtyard_gap_mm": 0.395,
+            "owner": "det_nrf0",
+            "owner_reference": "U32",
+            "courtyard_gap_mm": 0.295,
             "maximum_gap_mm": 1.0,
             "measurement": "courtyard_to_courtyard"
           },
@@ -15372,9 +15505,9 @@
           {
             "instance": "nrf1_detector_bypass",
             "reference": "C65",
-            "owner": "nrf1",
-            "owner_reference": "U39",
-            "courtyard_gap_mm": 0.255,
+            "owner": "det_nrf1",
+            "owner_reference": "U33",
+            "courtyard_gap_mm": 0.415,
             "maximum_gap_mm": 1.0,
             "measurement": "courtyard_to_courtyard"
           },
@@ -15399,9 +15532,9 @@
           {
             "instance": "nrf2_detector_bypass",
             "reference": "C71",
-            "owner": "nrf2",
-            "owner_reference": "U43",
-            "courtyard_gap_mm": 0.255,
+            "owner": "det_nrf2",
+            "owner_reference": "U34",
+            "courtyard_gap_mm": 0.445,
             "maximum_gap_mm": 1.0,
             "measurement": "courtyard_to_courtyard"
           },
@@ -15435,9 +15568,9 @@
           {
             "instance": "s3_detector_bypass",
             "reference": "C1",
-            "owner": "s3",
-            "owner_reference": "U1",
-            "courtyard_gap_mm": 0.305,
+            "owner": "det_s3",
+            "owner_reference": "U52",
+            "courtyard_gap_mm": 0.205,
             "maximum_gap_mm": 1.0,
             "measurement": "courtyard_to_courtyard"
           },
@@ -15525,10 +15658,10 @@
         "F.Cu": 14
       },
       "method_counts": {
-        "connectivity/sheet automatic seed": 657,
-        "exact H1 seed": 28,
+        "connectivity/sheet automatic seed": 654,
+        "exact H1 seed": 27,
         "hard H1 datum": 12,
-        "nearest exact-footprint correction": 34,
+        "nearest exact-footprint correction": 33,
         "reviewed H6.0.2 fan-out correction": 1,
         "reviewed H6.0.2 oscillator-locality correction": 19,
         "reviewed H6.0.3 charger-locality correction": 6,
@@ -15536,7 +15669,7 @@
         "reviewed H6.0.3 mechanical-clearance correction": 1,
         "reviewed H6.0.3 native-silkscreen-clearance correction": 1,
         "reviewed H6.0.3 power-locality correction": 17,
-        "reviewed H6.0.3 signal-locality correction": 2
+        "reviewed H6.0.3 signal-locality correction": 7
       },
       "net_count": 516,
       "mechanical": [
@@ -15612,71 +15745,71 @@
       "boundary_exceptions": [
         {
           "instance": "cc_external_sma",
-          "reason": "frozen before routed copper",
+          "reason": "board-edge antenna port; connector body faces outward and both solder-land rows remain on the PCB",
           "bbox_mm": {
             "x": [
               35.105000000000004,
               44.894999999999996
             ],
             "y": [
-              -3.195,
-              12.795
+              -12.795,
+              3.195
             ]
           }
         },
         {
           "instance": "voice_external_sma",
-          "reason": "frozen before routed copper",
+          "reason": "board-edge antenna port; connector body faces outward and both solder-land rows remain on the PCB",
           "bbox_mm": {
             "x": [
               46.855000000000004,
               56.644999999999996
             ],
             "y": [
-              -3.195,
-              12.795
+              -12.795,
+              3.195
             ]
           }
         },
         {
           "instance": "voice_v_external_sma",
-          "reason": "frozen before routed copper",
+          "reason": "board-edge antenna port; connector body faces outward and both solder-land rows remain on the PCB",
           "bbox_mm": {
             "x": [
               58.605000000000004,
               68.395
             ],
             "y": [
-              -3.195,
-              12.795
+              -12.795,
+              3.195
             ]
           }
         },
         {
           "instance": "receiver_amlw_external_sma",
-          "reason": "frozen before routed copper",
+          "reason": "board-edge antenna port; connector body faces outward and both solder-land rows remain on the PCB",
           "bbox_mm": {
             "x": [
               23.355,
               33.144999999999996
             ],
             "y": [
-              -3.195,
-              12.795
+              -12.795,
+              3.195
             ]
           }
         },
         {
           "instance": "receiver_fmsw_external_sma",
-          "reason": "frozen before routed copper",
+          "reason": "board-edge antenna port; connector body faces outward and both solder-land rows remain on the PCB",
           "bbox_mm": {
             "x": [
               11.605,
               21.395
             ],
             "y": [
-              -3.195,
-              12.795
+              -12.795,
+              3.195
             ]
           }
         },
@@ -15782,12 +15915,64 @@
       "net_or_footprint_errors": [],
       "critical_pad_pairs": {
         "status": "pass",
-        "pair_count": 20,
+        "pair_count": 24,
         "maximum_pad_centre_distance_mm": 4.8197,
         "violation_count": 0,
         "violations": [],
         "errors": [],
         "rows": [
+          {
+            "canonical_net": "3V3_AIR_SWITCHED",
+            "kicad_net": "/RF_21_BROADCAST_AIRBAND_RX/3V3_AIR_SWITCHED",
+            "first_instance": "air_lna_bias_choke",
+            "first_reference": "L23",
+            "first_pad": "1",
+            "second_instance": "air_lna_rail_bypass",
+            "second_reference": "C167",
+            "second_pad": "1",
+            "pad_centre_distance_mm": 2.5809,
+            "maximum_distance_mm": 3.0,
+            "reason": "bypass the supply side of the RF bias choke, not the LNA ground pin or DC-biased RF output"
+          },
+          {
+            "canonical_net": "AON_SAFE_3V3",
+            "kicad_net": "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+            "first_instance": "det_cc",
+            "first_reference": "U36",
+            "first_pad": "8",
+            "second_instance": "cc_detector_bypass",
+            "second_reference": "C118",
+            "second_pad": "1",
+            "pad_centre_distance_mm": 1.6778,
+            "maximum_distance_mm": 3.0,
+            "reason": "owner VCC-to-bypass screening limit; route the high-frequency supply and return locally"
+          },
+          {
+            "canonical_net": "AON_SAFE_3V3",
+            "kicad_net": "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+            "first_instance": "det_voice",
+            "first_reference": "U37",
+            "first_pad": "8",
+            "second_instance": "voice_detector_bypass",
+            "second_reference": "C135",
+            "second_pad": "1",
+            "pad_centre_distance_mm": 1.5881,
+            "maximum_distance_mm": 3.0,
+            "reason": "owner VCC-to-bypass screening limit; route the high-frequency supply and return locally"
+          },
+          {
+            "canonical_net": "AON_SAFE_3V3",
+            "kicad_net": "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+            "first_instance": "det_voice_v",
+            "first_reference": "U38",
+            "first_pad": "8",
+            "second_instance": "voice_v_detector_bypass",
+            "second_reference": "C152",
+            "second_pad": "1",
+            "pad_centre_distance_mm": 1.8755,
+            "maximum_distance_mm": 3.0,
+            "reason": "owner VCC-to-bypass screening limit; route the high-frequency supply and return locally"
+          },
           {
             "canonical_net": "AON_BUCK_SW",
             "kicad_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/AON_BUCK_SW",
@@ -20090,28 +20275,32 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              36.849999999999994,
-              37.86
+              48.849999999999994,
+              49.86
             ],
             "y": [
-              11.6,
-              13.51
+              6.85,
+              8.76
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            37.355,
-            12.555
+            49.355,
+            7.805
           ],
           "footprint_anchor_mm": [
-            37.355,
-            12.555
+            49.355,
+            7.805
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0,
+          "locality_owner_pad_anchor_mm": [
+            47.725,
+            7.8875
+          ],
           "footprint_anchor_nm": [
-            37355000,
-            12555000
+            49355000,
+            7805000
           ]
         },
         {
@@ -20354,28 +20543,28 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              48.85,
-              50.76
+              68.60000000000001,
+              70.51
             ],
             "y": [
-              6.3500000000000005,
-              7.36
+              6.8500000000000005,
+              7.86
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            49.805,
-            6.855
+            69.555,
+            7.355
           ],
           "footprint_anchor_mm": [
-            49.805,
-            6.855
+            69.555,
+            7.355
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            49805000,
-            6855000
+            69555000,
+            7355000
           ]
         },
         {
@@ -20648,31 +20837,35 @@
           "sheet": "RF_20_CC1101_VOICE_TX",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              24.85,
-              25.86
+              0.59,
+              1.6
             ],
             "y": [
-              49.35,
-              51.26
+              23.845000000000002,
+              25.755
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            25.355,
-            50.305
+            1.095,
+            24.8
           ],
           "footprint_anchor_mm": [
-            25.355,
-            50.305
+            1.095,
+            24.8
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0,
+          "locality_owner_pad_anchor_mm": [
+            1.4625,
+            26.825
+          ],
           "footprint_anchor_nm": [
-            25355000,
-            50305000
+            1095000,
+            24800000
           ]
         },
         {
@@ -21209,31 +21402,35 @@
           "sheet": "RF_20_CC1101_VOICE_TX",
           "side": "B.Cu",
           "footprint": "Capacitor_SMD:C_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              28.6,
-              29.61
+              63.370000000000005,
+              65.28
             ],
             "y": [
-              52.6,
-              54.51
+              43.144999999999996,
+              44.155
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            29.105,
-            53.555
+            64.325,
+            43.65
           ],
           "footprint_anchor_mm": [
-            29.105,
-            53.555
+            64.325,
+            43.65
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
+          "locality_owner_pad_anchor_mm": [
+            63.8875,
+            45.525
+          ],
           "footprint_anchor_nm": [
-            29105000,
-            53555000
+            64325000,
+            43650000
           ]
         },
         {
@@ -21443,28 +21640,28 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              14.6,
-              16.509999999999998
+              15.6,
+              17.509999999999998
             ],
             "y": [
-              2.6,
-              3.61
+              2.35,
+              3.36
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            15.555,
-            3.105
+            16.555,
+            2.855
           ],
           "footprint_anchor_mm": [
-            15.555,
-            3.105
+            16.555,
+            2.855
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            15555000,
-            3105000
+            16555000,
+            2855000
           ]
         },
         {
@@ -21476,28 +21673,28 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              16.85,
-              18.759999999999998
+              15.6,
+              17.509999999999998
             ],
             "y": [
-              2.35,
-              3.36
+              1.1,
+              2.11
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            17.805,
-            2.855
+            16.555,
+            1.605
           ],
           "footprint_anchor_mm": [
-            17.805,
-            2.855
+            16.555,
+            1.605
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            17805000,
-            2855000
+            16555000,
+            1605000
           ]
         },
         {
@@ -21509,28 +21706,28 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              19.1,
-              20.11
+              10.85,
+              12.76
             ],
             "y": [
-              2.35,
-              4.26
+              1.85,
+              2.86
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            19.605,
-            3.305
+            11.805,
+            2.355
           ],
           "footprint_anchor_mm": [
-            19.605,
-            3.305
+            11.805,
+            2.355
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            19605000,
-            3305000
+            11805000,
+            2355000
           ]
         },
         {
@@ -21542,28 +21739,28 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              12.35,
-              14.26
+              8.6,
+              10.51
             ],
             "y": [
-              3.1,
-              4.11
+              1.85,
+              2.86
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            13.305,
-            3.605
+            9.555,
+            2.355
           ],
           "footprint_anchor_mm": [
-            13.305,
-            3.605
+            9.555,
+            2.355
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            13305000,
-            3605000
+            9555000,
+            2355000
           ]
         },
         {
@@ -21674,28 +21871,28 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              30.35,
-              32.26
+              5.1,
+              7.01
             ],
             "y": [
-              18.6,
-              19.61
+              2.1,
+              3.11
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            31.305,
-            19.105
+            6.055,
+            2.605
           ],
           "footprint_anchor_mm": [
-            31.305,
-            19.105
+            6.055,
+            2.605
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            31305000,
-            19105000
+            6055000,
+            2605000
           ]
         },
         {
@@ -21707,28 +21904,32 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              11.35,
-              13.26
+              5.6,
+              7.51
             ],
             "y": [
-              13.85,
-              14.860000000000001
+              3.35,
+              4.36
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            12.305,
-            14.355
+            6.555,
+            3.855
           ],
           "footprint_anchor_mm": [
-            12.305,
-            14.355
+            6.555,
+            3.855
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
+          "locality_owner_pad_anchor_mm": [
+            7.8325,
+            5.745
+          ],
           "footprint_anchor_nm": [
-            12305000,
-            14355000
+            6555000,
+            3855000
           ]
         },
         {
@@ -21740,28 +21941,28 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              12.35,
-              14.26
+              5.8500000000000005,
+              6.86
             ],
             "y": [
-              1.85,
-              2.86
+              4.6,
+              6.51
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            13.305,
-            2.355
+            6.355,
+            5.555
           ],
           "footprint_anchor_mm": [
-            13.305,
-            2.355
+            6.355,
+            5.555
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            13305000,
-            2355000
+            6355000,
+            5555000
           ]
         },
         {
@@ -21905,28 +22106,28 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              14.6,
-              16.509999999999998
+              20.1,
+              22.009999999999998
             ],
             "y": [
-              1.35,
-              2.36
+              0.85,
+              1.8599999999999999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            15.555,
-            1.855
+            21.055,
+            1.355
           ],
           "footprint_anchor_mm": [
-            15.555,
-            1.855
+            21.055,
+            1.355
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            15555000,
-            1855000
+            21055000,
+            1355000
           ]
         },
         {
@@ -22136,8 +22337,8 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              18.1,
-              20.009999999999998
+              22.6,
+              24.509999999999998
             ],
             "y": [
               1.1,
@@ -22146,17 +22347,17 @@
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            19.055,
+            23.555,
             1.605
           ],
           "footprint_anchor_mm": [
-            19.055,
+            23.555,
             1.605
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            19055000,
+            23555000,
             1605000
           ]
         },
@@ -22202,28 +22403,28 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              24.6,
-              26.509999999999998
+              26.85,
+              27.86
             ],
             "y": [
-              2.1,
-              3.11
+              2.35,
+              4.26
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            25.555,
-            2.605
+            27.355,
+            3.305
           ],
           "footprint_anchor_mm": [
-            25.555,
-            2.605
+            27.355,
+            3.305
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            25555000,
-            2605000
+            27355000,
+            3305000
           ]
         },
         {
@@ -25840,28 +26041,28 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              24.849999999999998,
-              26.8
+              27.349999999999998,
+              29.3
             ],
             "y": [
-              3.35,
-              4.38
+              0.35,
+              1.38
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            25.825,
-            3.865
+            28.325,
+            0.865
           ],
           "footprint_anchor_mm": [
-            25.825,
-            3.865
+            28.325,
+            0.865
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            25825000,
-            3865000
+            28325000,
+            865000
           ]
         },
         {
@@ -26238,8 +26439,8 @@
               44.894999999999996
             ],
             "y": [
-              -3.195,
-              12.795
+              -12.795,
+              3.195
             ]
           },
           "opposite_face_keepout_bboxes_mm": [
@@ -26249,8 +26450,8 @@
                 38.25
               ],
               "y": [
-                -3.3,
-                0.0
+                0.0,
+                3.3
               ]
             },
             {
@@ -26259,20 +26460,20 @@
                 43.35
               ],
               "y": [
-                -3.3,
-                0.0
+                0.0,
+                3.3
               ]
             }
           ],
           "courtyard_centre_mm": [
             40.0,
-            4.8
+            -4.8
           ],
           "footprint_anchor_mm": [
             40.0,
             0.0
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             40000000,
@@ -26292,8 +26493,8 @@
               56.644999999999996
             ],
             "y": [
-              -3.195,
-              12.795
+              -12.795,
+              3.195
             ]
           },
           "opposite_face_keepout_bboxes_mm": [
@@ -26303,8 +26504,8 @@
                 50.0
               ],
               "y": [
-                -3.3,
-                0.0
+                0.0,
+                3.3
               ]
             },
             {
@@ -26313,20 +26514,20 @@
                 55.1
               ],
               "y": [
-                -3.3,
-                0.0
+                0.0,
+                3.3
               ]
             }
           ],
           "courtyard_centre_mm": [
             51.75,
-            4.8
+            -4.8
           ],
           "footprint_anchor_mm": [
             51.75,
             0.0
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             51750000,
@@ -26346,8 +26547,8 @@
               68.395
             ],
             "y": [
-              -3.195,
-              12.795
+              -12.795,
+              3.195
             ]
           },
           "opposite_face_keepout_bboxes_mm": [
@@ -26357,8 +26558,8 @@
                 61.75
               ],
               "y": [
-                -3.3,
-                0.0
+                0.0,
+                3.3
               ]
             },
             {
@@ -26367,20 +26568,20 @@
                 66.85
               ],
               "y": [
-                -3.3,
-                0.0
+                0.0,
+                3.3
               ]
             }
           ],
           "courtyard_centre_mm": [
             63.5,
-            4.8
+            -4.8
           ],
           "footprint_anchor_mm": [
             63.5,
             0.0
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             63500000,
@@ -26400,8 +26601,8 @@
               33.144999999999996
             ],
             "y": [
-              -3.195,
-              12.795
+              -12.795,
+              3.195
             ]
           },
           "opposite_face_keepout_bboxes_mm": [
@@ -26411,8 +26612,8 @@
                 26.5
               ],
               "y": [
-                -3.3,
-                0.0
+                0.0,
+                3.3
               ]
             },
             {
@@ -26421,20 +26622,20 @@
                 31.6
               ],
               "y": [
-                -3.3,
-                0.0
+                0.0,
+                3.3
               ]
             }
           ],
           "courtyard_centre_mm": [
             28.25,
-            4.8
+            -4.8
           ],
           "footprint_anchor_mm": [
             28.25,
             0.0
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             28250000,
@@ -26454,8 +26655,8 @@
               21.395
             ],
             "y": [
-              -3.195,
-              12.795
+              -12.795,
+              3.195
             ]
           },
           "opposite_face_keepout_bboxes_mm": [
@@ -26465,8 +26666,8 @@
                 14.75
               ],
               "y": [
-                -3.3,
-                0.0
+                0.0,
+                3.3
               ]
             },
             {
@@ -26475,20 +26676,20 @@
                 19.85
               ],
               "y": [
-                -3.3,
-                0.0
+                0.0,
+                3.3
               ]
             }
           ],
           "courtyard_centre_mm": [
             16.5,
-            4.8
+            -4.8
           ],
           "footprint_anchor_mm": [
             16.5,
             0.0
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             16500000,
@@ -39423,28 +39624,28 @@
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              43.849999999999994,
-              51.64
+              67.09999900000001,
+              74.889999
             ],
             "y": [
-              0.3500000000000001,
-              5.9399999999999995
+              0.8500000000000001,
+              6.4399999999999995
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            47.745,
-            3.145
+            70.995,
+            3.645
           ],
           "footprint_anchor_mm": [
-            47.745,
-            3.145
+            70.995,
+            3.645
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            47745000,
-            3145000
+            70994999,
+            3645000
           ]
         },
         {
@@ -39453,11 +39654,11 @@
           "sheet": "RF_20_CC1101_VOICE_TX",
           "side": "B.Cu",
           "footprint": "Leshy2:Infineon-PG-TSNP-8-1",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
-              64.6,
-              66.09
+              65.47999999999999,
+              66.97
             ],
             "y": [
               42.85,
@@ -39466,17 +39667,17 @@
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            65.345,
+            66.225,
             43.595
           ],
           "footprint_anchor_mm": [
-            65.345,
+            66.225,
             43.595
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            65345000,
+            66224999,
             43595000
           ]
         },
@@ -39552,15 +39753,15 @@
           "sheet": "RF_20_CC1101_VOICE_TX",
           "side": "B.Cu",
           "footprint": "Package_SO:MSOP-8_3x3mm_P0.65mm",
-          "method": "exact H1 seed",
+          "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               0.3500000000000001,
               6.800000000000001
             ],
             "y": [
-              26.004998999999998,
-              29.594999
+              26.005000000000003,
+              29.595
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
@@ -39572,11 +39773,11 @@
             3.575,
             27.8
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             3575000,
-            27799999
+            27800000
           ]
         },
         {
@@ -39585,7 +39786,7 @@
           "sheet": "RF_20_CC1101_VOICE_TX",
           "side": "B.Cu",
           "footprint": "Package_SO:MSOP-8_3x3mm_P0.65mm",
-          "method": "nearest exact-footprint correction",
+          "method": "reviewed H6.0.3 signal-locality correction",
           "courtyard_bbox_mm": {
             "x": [
               62.775,
@@ -39605,7 +39806,7 @@
             66.0,
             46.5
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             66000000,
@@ -42881,21 +43082,30 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "47393e34e70d33dd0f4bb49e4050c81853176d84a41a1860942fac18e348f09c",
-      "placement_signature_sha256": "00dfa70b5de2853e493fffc3473eec53bf9d2ff4be0e3bc10d20eb954e042780",
+      "unrouted_seed_sha256": "71d02e174a5db6d78f975ca09b74df198b64576450d3c19b2f3c0cf61aab9f26",
+      "placement_signature_sha256": "519fd691de3b49f5cc7c15265d0fad1d209415397a8bc1ef3f42c6c5cefbdff3",
       "locality": {
         "status": "pass",
-        "pair_count": 258,
+        "pair_count": 259,
         "maximum_courtyard_gap_mm": 6.645,
         "violation_count": 0,
         "violations": [],
         "rows": [
           {
+            "instance": "air_lna_rail_bulk",
+            "reference": "C166",
+            "owner": "air_lna_rail_bypass",
+            "owner_reference": "C167",
+            "courtyard_gap_mm": 0.24,
+            "maximum_gap_mm": 1.0,
+            "measurement": "courtyard_to_courtyard"
+          },
+          {
             "instance": "air_lna_rail_bypass",
             "reference": "C167",
-            "owner": "air_lna",
-            "owner_reference": "U53",
-            "courtyard_gap_mm": 0.255,
+            "owner": "air_lna_bias_choke",
+            "owner_reference": "L23",
+            "courtyard_gap_mm": 0.49,
             "maximum_gap_mm": 1.0,
             "measurement": "courtyard_to_courtyard"
           },
@@ -43118,10 +43328,10 @@
           {
             "instance": "cc_detector_bypass",
             "reference": "C118",
-            "owner": "cc",
-            "owner_reference": "U27",
-            "courtyard_gap_mm": 0.465,
-            "maximum_gap_mm": 3.0,
+            "owner": "det_cc",
+            "owner_reference": "U36",
+            "courtyard_gap_mm": 0.305,
+            "maximum_gap_mm": 1.0,
             "measurement": "courtyard_to_courtyard"
           },
           {
@@ -45029,9 +45239,9 @@
           {
             "instance": "voice_detector_bypass",
             "reference": "C135",
-            "owner": "voice",
-            "owner_reference": "U39",
-            "courtyard_gap_mm": 0.205,
+            "owner": "det_voice",
+            "owner_reference": "U37",
+            "courtyard_gap_mm": 0.25,
             "maximum_gap_mm": 1.0,
             "measurement": "courtyard_to_courtyard"
           },
@@ -45218,9 +45428,9 @@
           {
             "instance": "voice_v_detector_bypass",
             "reference": "C152",
-            "owner": "voice_v",
-            "owner_reference": "U51",
-            "courtyard_gap_mm": 0.295,
+            "owner": "det_voice_v",
+            "owner_reference": "U38",
+            "courtyard_gap_mm": 0.55,
             "maximum_gap_mm": 1.0,
             "measurement": "courtyard_to_courtyard"
           }

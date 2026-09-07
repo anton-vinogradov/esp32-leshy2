@@ -2,9 +2,9 @@
 
 [Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h3-r2-input-freeze.ru.md)
 
-The exact H2-R2.1.5 input is reviewed: `2` projects, `22` sheets, `1208` fitted symbols, `4306` physical pins and `789` nets. Every input is hash-bound; any change closes reproducibility until regeneration.
+The exact H2-R2.1.5 input is reviewed: `2` projects, `22` sheets, `1208` fitted symbols, `4306` physical pins and `788` nets. Every input is hash-bound; changes require dependent checks to be repeated. Refreshing this input freeze is not itself an electrical re-verification. The existing analytical models and passive-pin ERC do not prove that every rail has a source or that outputs cannot conflict; that separate review remains mandatory before production release.
 
-Freeze SHA-256: `b407066a335e26692740b4ca55d2e2fb85009f12e761a8dce26d40e57dfe501c`
+Freeze SHA-256: `48f6ef408f796d6657972130521dd94dcd2650a5d86dade4247a6eb8731dff30`
 
 | Workstream | Primary scope | Sheets | Pass rule |
 |---|---|---:|---|

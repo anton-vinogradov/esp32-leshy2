@@ -46,11 +46,11 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
     def test_every_physical_net_is_classified_once(self):
         self.assertEqual("pass", self.audit["status"])
         self.assertEqual([], self.audit["errors"])
-        self.assertEqual(823, self.audit["summary"]["project_net_count"])
-        self.assertEqual(789, self.audit["summary"]["global_canonical_net_count"])
+        self.assertEqual(822, self.audit["summary"]["project_net_count"])
+        self.assertEqual(788, self.audit["summary"]["global_canonical_net_count"])
         self.assertEqual(0, self.audit["summary"]["unclassified_net_count"])
         self.assertEqual(0, self.audit["summary"]["unexpected_net_count"])
-        self.assertEqual(823, sum(self.audit["class_counts"].values()))
+        self.assertEqual(822, sum(self.audit["class_counts"].values()))
 
     def test_automatic_helper_is_fail_closed(self):
         self.assertEqual(["GENERAL_CONTROL"], self.audit["automatic_helper"]["allowed_classes"])
@@ -186,11 +186,11 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual("H6.0.3-R1", audit["marker"])
         self.assertEqual("pass_progress", audit["status"])
         self.assertFalse(audit["phase_complete"])
-        self.assertEqual(877, audit["summary"]["track_via_item_count"])
+        self.assertEqual(869, audit["summary"]["track_via_item_count"])
         self.assertEqual(214, audit["summary"]["resolved_connection_count"])
-        self.assertEqual(3051, audit["summary"]["current_total_unconnected_count"])
+        self.assertEqual(3052, audit["summary"]["current_total_unconnected_count"])
         self.assertEqual(232, audit["summary"]["analog_remaining_connection_count"])
-        self.assertEqual(310, audit["summary"]["placement_locality_pair_count"])
+        self.assertEqual(311, audit["summary"]["placement_locality_pair_count"])
         self.assertEqual(0, audit["summary"]["placement_locality_violation_count"])
         size = audit["board_size_review"]
         self.assertEqual("retain_80x150_mm", size["decision"])
@@ -227,7 +227,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual("pass", audit["status"])
         self.assertEqual([], audit["errors"])
         self.assertEqual(129, audit["summary"]["route_count"])
-        self.assertEqual(707, audit["summary"]["segment_count"])
+        self.assertEqual(699, audit["summary"]["segment_count"])
         self.assertEqual(214, audit["summary"]["resolved_connection_count"])
         self.assertEqual(170, audit["summary"]["via_count"])
         self.assertEqual(109, audit["summary"]["manual_only_route_count"])
@@ -259,7 +259,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
                 stderr=subprocess.STDOUT,
             )
             self.assertEqual(0, result.returncode, result.stdout)
-            self.assertIn("129 routes; 707 segments; 214 resolved connections", result.stdout)
+            self.assertIn("129 routes; 699 segments; 214 resolved connections", result.stdout)
 
     def test_h6_release_substep_ids_are_unique_and_end_at_h609(self):
         plan = json.loads(RELEASE_PLAN.read_text(encoding="utf-8"))
@@ -350,8 +350,8 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
             for row in board["placements"]
             if row["instance"] == "s3_detector_input_cap"
         )
-        self.assertEqual([24.305, 2.105], s3_detector_cap["footprint_anchor_mm"])
-        self.assertEqual(180.0, s3_detector_cap["rotation_deg"])
+        self.assertEqual([30.6, 4.95], s3_detector_cap["footprint_anchor_mm"])
+        self.assertEqual(0.0, s3_detector_cap["rotation_deg"])
         reviewed_nrf0 = {
             row["instance"]: row
             for board in freeze["boards"]
@@ -418,7 +418,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         for script, expected in (
             (PLACEMENT_FREEZE_SCRIPT, "1208 exact anchors"),
             (GENERAL_ROUTING_SCRIPT, "historical routing evidence preserved; current H6.0.3-R1"),
-            (CURRENT_ROUTING_SCRIPT, "877 copper items; 214 resolved; 3051 remain"),
+            (CURRENT_ROUTING_SCRIPT, "869 copper items; 214 resolved; 3052 remain"),
         ):
             result = subprocess.run(
                 [str(KICAD_PYTHON), str(script), "--check"],

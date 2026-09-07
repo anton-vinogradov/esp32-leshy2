@@ -7,7 +7,7 @@
     "source": "hardware/architecture/h1-r2-dual-rp-pinout.json",
     "source_sha256": "28289ca9dcaf2c3af2b133c3fc09223a2737d764f5a9b6e075150d9aef15229a",
     "functional_source": "hardware/architecture/h0-r2-rebaseline.json",
-    "functional_source_sha256": "e6f4e43ddf9c6839e233cfbb791f6f1ec4da82f1f9e49ea94ded632ca5822cdf",
+    "functional_source_sha256": "bab7bf6cb3e80842229704169c8b3297bcdff87ec6bb309aad75814701dd3c2b",
     "c5_mux_source": "hardware/architecture/c5-sdio-service-mux-contract.json",
     "c5_mux_source_sha256": "4bd88ffed2e8ac0b5f6e8856d6ebc21e7cc29aa38045d4a10e068b870e51c7f3",
     "pack_safety_i2c_source": "hardware/architecture/pack-safety-i2c-boundary-contract.json",

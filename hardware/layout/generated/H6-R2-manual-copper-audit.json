@@ -5,16 +5,16 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "2af33328a3defa192572c1abc4b3fcb4a727e73ad0b0c7b0a8999fbd2c6b6ed2",
+    "contract_sha256": "b461db22b02fa1dd803074930548f0bf3ac1d6335a06826440668fb72b00702c",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "caad0006801d591fe8dba6e3a0198c2168e38c0f200861ed8dd89a78e69c711e",
+    "routing_policy_sha256": "c60a94206e319195b4ce23f9f9836f982817ea5ad52e6b65197960c71b911847",
     "routing_contract": "hardware/layout/h6-r2-routing-policy.json",
     "routing_contract_sha256": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
     "placement_status": "pass"
   },
   "summary": {
     "route_count": 129,
-    "segment_count": 707,
+    "segment_count": 699,
     "resolved_connection_count": 214,
     "via_count": 170,
     "manual_only_route_count": 109,
@@ -25,7 +25,7 @@
       "project": "LESHY2-UI-R2",
       "board": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
       "route_count": 26,
-      "segment_count": 100,
+      "segment_count": 91,
       "via_count": 5,
       "resolved_connection_count": 31,
       "copper_signature": [
@@ -35,12 +35,12 @@
           "B.Cu",
           0.134874,
           [
-            24.065,
-            3.365
+            28.25,
+            3.0
           ],
           [
-            24.065,
-            4.0
+            28.25,
+            5.15
           ]
         ],
         [
@@ -49,12 +49,12 @@
           "B.Cu",
           0.134874,
           [
-            24.065,
-            4.0
+            28.25,
+            3.0
           ],
           [
-            24.5,
-            4.0
+            28.29,
+            3.0
           ]
         ],
         [
@@ -63,26 +63,12 @@
           "B.Cu",
           0.134874,
           [
-            24.5,
-            4.0
+            28.25,
+            5.15
           ],
           [
-            24.5,
-            5.35
-          ]
-        ],
-        [
-          "track",
-          "/UI_10_S3_DISPLAY_TOUCH/S3_COUPLER_TERMINATION",
-          "B.Cu",
-          0.134874,
-          [
-            24.5,
-            5.35
-          ],
-          [
-            25.125,
-            5.35
+            28.875,
+            5.15
           ]
         ],
         [
@@ -91,11 +77,11 @@
           "B.Cu",
           0.134874,
           [
-            23.875,
-            5.35
+            27.625,
+            5.15
           ],
           [
-            23.875,
+            27.625,
             5.7
           ]
         ],
@@ -105,40 +91,12 @@
           "F.Cu",
           0.134874,
           [
-            23.875,
-            5.7
-          ],
-          [
-            27.5,
-            5.7
-          ]
-        ],
-        [
-          "track",
-          "/UI_10_S3_DISPLAY_TOUCH/S3_EXTERNAL_RF_50R",
-          "F.Cu",
-          0.134874,
-          [
-            27.5,
+            27.625,
             5.7
           ],
           [
             28.25,
-            1.0
-          ]
-        ],
-        [
-          "track",
-          "/UI_10_S3_DISPLAY_TOUCH/S3_EXTERNAL_RF_50R",
-          "F.Cu",
-          0.134874,
-          [
-            28.25,
-            -1.65
-          ],
-          [
-            28.25,
-            1.0
+            1.65
           ]
         ],
         [
@@ -147,39 +105,11 @@
           "B.Cu",
           0.134874,
           [
-            18.6,
-            2.105
-          ],
-          [
-            18.6,
-            4.95
-          ]
-        ],
-        [
-          "track",
-          "/UI_10_S3_DISPLAY_TOUCH/S3_FORWARD_RF_SAMPLE",
-          "B.Cu",
-          0.134874,
-          [
-            18.6,
-            2.105
-          ],
-          [
-            23.825,
-            2.105
-          ]
-        ],
-        [
-          "track",
-          "/UI_10_S3_DISPLAY_TOUCH/S3_FORWARD_RF_SAMPLE",
-          "B.Cu",
-          0.134874,
-          [
-            18.6,
+            31.08,
             4.95
           ],
           [
-            19.8625,
+            32.6625,
             4.95
           ]
         ],
@@ -189,40 +119,12 @@
           "B.Cu",
           0.134874,
           [
-            24.785,
-            2.105
+            28.875,
+            4.45
           ],
           [
-            25.6,
-            2.105
-          ]
-        ],
-        [
-          "track",
-          "/UI_10_S3_DISPLAY_TOUCH/S3_FORWARD_RF_SAMPLE_RAW",
-          "B.Cu",
-          0.134874,
-          [
-            25.125,
-            4.65
-          ],
-          [
-            25.6,
-            4.05
-          ]
-        ],
-        [
-          "track",
-          "/UI_10_S3_DISPLAY_TOUCH/S3_FORWARD_RF_SAMPLE_RAW",
-          "B.Cu",
-          0.134874,
-          [
-            25.6,
-            2.105
-          ],
-          [
-            25.6,
-            4.05
+            30.12,
+            4.95
           ]
         ],
         [
@@ -231,12 +133,12 @@
           "B.Cu",
           0.134874,
           [
-            15.75,
-            4.65
+            23.525,
+            3.48
           ],
           [
-            15.75,
-            5.85
+            24.5,
+            3.7
           ]
         ],
         [
@@ -245,12 +147,12 @@
           "B.Cu",
           0.134874,
           [
-            15.75,
-            5.85
+            24.5,
+            3.7
           ],
           [
-            23.2,
-            5.85
+            26.7,
+            3.7
           ]
         ],
         [
@@ -259,26 +161,12 @@
           "B.Cu",
           0.134874,
           [
-            23.2,
-            4.65
+            26.7,
+            3.7
           ],
           [
-            23.2,
-            5.85
-          ]
-        ],
-        [
-          "track",
-          "/UI_10_S3_DISPLAY_TOUCH/S3_MODULE_RF_50R",
-          "B.Cu",
-          0.134874,
-          [
-            23.2,
-            4.65
-          ],
-          [
-            23.875,
-            4.65
+            27.625,
+            4.45
           ]
         ],
         [
@@ -372,11 +260,11 @@
           0.134874,
           [
             51.75,
-            -1.65
+            1.0
           ],
           [
             51.75,
-            1.0
+            1.65
           ]
         ],
         [
@@ -809,7 +697,7 @@
             7.0
           ],
           [
-            13.5,
+            16.5,
             4.0
           ]
         ],
@@ -819,26 +707,12 @@
           "F.Cu",
           0.134874,
           [
-            13.5,
+            16.5,
+            1.65
+          ],
+          [
+            16.5,
             4.0
-          ],
-          [
-            16.5,
-            1.0
-          ]
-        ],
-        [
-          "track",
-          "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_EXTERNAL_RF_50R",
-          "F.Cu",
-          0.134874,
-          [
-            16.5,
-            -1.65
-          ],
-          [
-            16.5,
-            1.0
           ]
         ],
         [
@@ -1002,11 +876,11 @@
           0.134874,
           [
             40.0,
-            -1.65
+            1.0
           ],
           [
             40.0,
-            1.0
+            1.65
           ]
         ],
         [
@@ -1226,11 +1100,11 @@
           0.134874,
           [
             63.5,
-            -1.65
+            1.0
           ],
           [
             63.5,
-            1.0
+            1.65
           ]
         ],
         [
@@ -1432,7 +1306,7 @@
         [
           "via",
           "/UI_10_S3_DISPLAY_TOUCH/S3_EXTERNAL_RF_50R",
-          23.875,
+          27.625,
           5.7,
           0.5,
           0.25
@@ -1475,7 +1349,7 @@
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
       "route_count": 103,
-      "segment_count": 607,
+      "segment_count": 608,
       "via_count": 165,
       "resolved_connection_count": 183,
       "copper_signature": [
@@ -7967,11 +7841,11 @@
           "B.Cu",
           0.134874,
           [
-            65.745,
+            66.625,
             43.995
           ],
           [
-            66.099999,
+            67.099999,
             44.65
           ]
         ],
@@ -7981,7 +7855,7 @@
           "B.Cu",
           0.134874,
           [
-            66.099999,
+            67.099999,
             44.65
           ],
           [
@@ -9410,7 +9284,7 @@
           0.134874,
           [
             7.6,
-            2.8
+            2.98
           ],
           [
             7.6,
@@ -9424,11 +9298,11 @@
           0.134874,
           [
             7.6,
-            2.8
+            2.98
           ],
           [
             12.2,
-            2.8
+            2.98
           ]
         ],
         [
@@ -9466,7 +9340,7 @@
           0.134874,
           [
             12.2,
-            2.8
+            2.98
           ],
           [
             12.2,
@@ -9521,40 +9395,12 @@
           "B.Cu",
           0.134874,
           [
-            23.2,
-            0.5
-          ],
-          [
-            23.2,
-            3.785
-          ]
-        ],
-        [
-          "track",
-          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_PAD",
-          "B.Cu",
-          0.134874,
-          [
-            23.2,
-            0.5
-          ],
-          [
-            28.0,
-            0.5
-          ]
-        ],
-        [
-          "track",
-          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_PAD",
-          "B.Cu",
-          0.134874,
-          [
-            23.2,
-            3.785
-          ],
-          [
             23.855,
             3.785
+          ],
+          [
+            24.3,
+            3.9
           ]
         ],
         [
@@ -9563,11 +9409,53 @@
           "B.Cu",
           0.134874,
           [
-            28.0,
-            0.5
+            24.3,
+            3.9
           ],
           [
-            28.0,
+            25.2,
+            3.9
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_PAD",
+          "B.Cu",
+          0.134874,
+          [
+            25.2,
+            3.9
+          ],
+          [
+            25.65,
+            4.35
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_PAD",
+          "B.Cu",
+          0.134874,
+          [
+            25.65,
+            4.35
+          ],
+          [
+            27.85,
+            4.35
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_PAD",
+          "B.Cu",
+          0.134874,
+          [
+            27.85,
+            4.35
+          ],
+          [
+            27.85,
             6.115
           ]
         ],
@@ -9577,7 +9465,7 @@
           "B.Cu",
           0.134874,
           [
-            28.0,
+            27.85,
             6.115
           ],
           [
@@ -9801,12 +9689,12 @@
           "B.Cu",
           0.134874,
           [
-            24.0,
-            1.2
+            27.355,
+            3.785
           ],
           [
-            25.075,
-            2.605
+            28.4,
+            3.8
           ]
         ],
         [
@@ -9815,12 +9703,12 @@
           "B.Cu",
           0.134874,
           [
-            25.075,
-            2.605
+            27.84,
+            0.865
           ],
           [
-            25.075,
-            3.865
+            27.84,
+            1.5
           ]
         ],
         [
@@ -9829,12 +9717,26 @@
           "B.Cu",
           0.134874,
           [
-            25.075,
-            3.865
+            27.84,
+            1.5
           ],
           [
-            25.34,
-            3.865
+            28.4,
+            2.0
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_BOUNDARY_RF",
+          "B.Cu",
+          0.134874,
+          [
+            28.4,
+            2.0
+          ],
+          [
+            28.4,
+            3.8
           ]
         ],
         [
@@ -9843,26 +9745,12 @@
           "F.Cu",
           0.134874,
           [
-            24.0,
-            1.2
+            28.25,
+            1.65
           ],
           [
-            28.25,
-            0.5
-          ]
-        ],
-        [
-          "track",
-          "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_BOUNDARY_RF",
-          "F.Cu",
-          0.134874,
-          [
-            28.25,
-            -1.65
-          ],
-          [
-            28.25,
-            0.5
+            28.4,
+            3.8
           ]
         ],
         [
@@ -11276,8 +11164,8 @@
         [
           "via",
           "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_BOUNDARY_RF",
-          24.0,
-          1.2,
+          28.4,
+          3.8,
           0.5,
           0.25
         ],
@@ -11412,7 +11300,7 @@
       ],
       "segment_count": 5,
       "via_count": 1,
-      "length_mm": 23.6924,
+      "length_mm": 21.6924,
       "resolved_connections": 1,
       "reason": "The nRF1 external path uses its one reviewed B-to-F transition because the inner-face coupler feeds a double-sided edge-launch SMA centre land; the return-via pair remains reserved for the ground-plane pass."
     },
@@ -11487,9 +11375,9 @@
       "widths_mm": [
         0.134874
       ],
-      "segment_count": 4,
+      "segment_count": 3,
       "via_count": 1,
-      "length_mm": 12.8996,
+      "length_mm": 10.883,
       "resolved_connections": 1,
       "reason": "The nRF0 external path uses one reviewed B-to-F transition above the compact coupler bay, then reaches the double-sided edge-launch SMA centre land without crossing another inner-face RF net."
     },
@@ -11547,7 +11435,7 @@
       ],
       "segment_count": 5,
       "via_count": 1,
-      "length_mm": 20.5026,
+      "length_mm": 18.5026,
       "resolved_connections": 1,
       "reason": "The nRF2 external path uses its one reviewed B-to-F transition because the coupler is on the inner face while the double-sided edge-launch SMA centre land is on F.Cu; the adjacent return-via pair remains reserved for the ground-plane pass."
     },
@@ -11564,11 +11452,11 @@
       "widths_mm": [
         0.134874
       ],
-      "segment_count": 4,
+      "segment_count": 3,
       "via_count": 0,
-      "length_mm": 3.045,
+      "length_mm": 2.815,
       "resolved_connections": 1,
-      "reason": "Via-free isolated-port termination leaves the coupler to the left and approaches the 49.9-ohm resistor from above, keeping both sampling-capacitor exits independent."
+      "reason": "The isolated-port termination uses the clear centre corridor between the coupler lands to reach its local 49.9-ohm load without crossing the module or sampled RF paths."
     },
     {
       "id": "UI-C5-COUPLER-TERM",
@@ -11662,7 +11550,7 @@
       ],
       "segment_count": 4,
       "via_count": 1,
-      "length_mm": 13.8162,
+      "length_mm": 11.8162,
       "resolved_connections": 1,
       "reason": "The C5 through path uses one necessary B-to-F transition because the coupler is on the inner face while the double-sided edge-launch SMA centre pad is on F.Cu; the top-side run remains obstacle-free and its adjacent return-via pair is reserved for the ground-plane pass."
     },
@@ -11680,9 +11568,9 @@
       "widths_mm": [
         0.134874
       ],
-      "segment_count": 4,
+      "segment_count": 2,
       "via_count": 1,
-      "length_mm": 11.3845,
+      "length_mm": 4.6479,
       "resolved_connections": 1,
       "reason": "The S3 through path uses the one reviewed B-to-F edge-launch transition; the top-side run is free of components and its adjacent return-via pair is reserved for the ground-plane pass."
     },
@@ -11699,11 +11587,11 @@
       "widths_mm": [
         0.134874
       ],
-      "segment_count": 4,
+      "segment_count": 3,
       "via_count": 0,
-      "length_mm": 10.525,
+      "length_mm": 4.3904,
       "resolved_connections": 1,
-      "reason": "Via-free S3 U.FL path passes below the LTC5532 pad field and approaches the coupler input from its unobstructed left side."
+      "reason": "Via-free S3 U.FL path follows the clear strip below the edge-launch lands and approaches the relocated coupler input from the left."
     },
     {
       "id": "UI-S3-COUPLED-SAMPLE",
@@ -11718,11 +11606,11 @@
       "widths_mm": [
         0.134874
       ],
-      "segment_count": 3,
+      "segment_count": 1,
       "via_count": 0,
-      "length_mm": 3.5253,
+      "length_mm": 1.3417,
       "resolved_connections": 1,
-      "reason": "Via-free coupled sample leaves the coupler to the right and enters the outward-facing raw-sample pad of the reviewed 180-degree capacitor orientation without crossing the detector side."
+      "reason": "Via-free coupled sample leaves the relocated coupler to the right and reaches the left raw-sample pad of the zero-degree coupling capacitor."
     },
     {
       "id": "UI-S3-DETECTOR-SAMPLE",
@@ -11737,11 +11625,11 @@
       "widths_mm": [
         0.134874
       ],
-      "segment_count": 3,
+      "segment_count": 1,
       "via_count": 0,
-      "length_mm": 9.3325,
+      "length_mm": 1.5825,
       "resolved_connections": 1,
-      "reason": "Via-free detector input leaves the inward-facing sampling-capacitor pad toward LTC5532 RF IN; the 180-degree capacitor orientation removes the previous planar crossing."
+      "reason": "Via-free detector input runs from the coupling capacitor's right pad directly into the relocated LTC5532 RF IN pad."
     },
     {
       "id": "UI-HUB-RP-XIN",
@@ -13519,7 +13407,7 @@
       ],
       "segment_count": 3,
       "via_count": 0,
-      "length_mm": 5.2473,
+      "length_mm": 4.3114,
       "resolved_connections": 1,
       "reason": "Via-free 315-MHz input branch leaves RF1 orthogonally, then passes below the encoder push-switch ground post before entering the first series inductor."
     },
@@ -13650,11 +13538,11 @@
       "widths_mm": [
         0.134874
       ],
-      "segment_count": 6,
+      "segment_count": 7,
       "via_count": 0,
-      "length_mm": 16.121,
+      "length_mm": 7.8771,
       "resolved_connections": 2,
-      "reason": "Via-free LO attenuation node passes above the ESD and crystal fields, then joins both shunt resistors without crossing the already routed Si5351A crystal nets."
+      "reason": "The via-free LO attenuation node clears the crystal escape on its upper side, passes below the AM/LW coupling capacitor and skirts the crystal ground pads before joining both local shunt resistors."
     },
     {
       "id": "RF-CC1101-DETECTOR-SAMPLE",
@@ -13690,7 +13578,7 @@
       ],
       "segment_count": 5,
       "via_count": 0,
-      "length_mm": 8.1,
+      "length_mm": 7.74,
       "resolved_connections": 1,
       "reason": "Short via-free output link from the Airband BPF shunt node into the LNA coupling capacitor."
     },
@@ -13710,7 +13598,7 @@
       ],
       "segment_count": 5,
       "via_count": 1,
-      "length_mm": 9.7513,
+      "length_mm": 6.3861,
       "resolved_connections": 2,
       "reason": "The receive-only AM/LW boundary uses its single reviewed edge-launch transition, reaches the series coupling capacitor from its outer pad, and branches locally to the dedicated low-capacitance ESD shunt without crossing the adjacent LO network."
     },

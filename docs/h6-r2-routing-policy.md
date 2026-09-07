@@ -2,13 +2,13 @@
 
 [Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h6-r2-routing-policy.ru.md)
 
-**Status:** 🟡 all 823 physical nets across both boards (789 canonical) are assigned to 13 classes. This page preserves the accepted `GENERAL_CONTROL`, all 12 crystal/oscillator nets and `SAFETY_CONTROL` slice on the former 75-mm geometry as historical evidence. The live 80-mm board state is published by the separate H6.0.3 checkpoint.
+**Status:** 🟡 all 822 physical nets across both boards (788 canonical) are assigned to 13 classes. This page preserves the accepted `GENERAL_CONTROL`, all 12 crystal/oscillator nets and `SAFETY_CONTROL` slice on the former 75-mm geometry as historical evidence. The live 80-mm board state is published by the separate H6.0.3 checkpoint.
 
 | Class | Nets | Method | Geometry release |
 | --- | ---: | --- | --- |
 | `GROUND_REFERENCE` | 3 | manual plane/pour | `H6.0.3` |
 | `PRIMARY_POWER` | 22 | manual | `H6.0.3` |
-| `POWER_BRANCH` | 23 | manual | `H6.0.3` |
+| `POWER_BRANCH` | 22 | manual | `H6.0.3` |
 | `SWITCHING_NODE` | 15 | manual | `H6.0.3` |
 | `RF_CONTROLLED` | 80 | manual | `H6.0.5` |
 | `USB_DIFFERENTIAL` | 24 | manual | `H6.0.4` |

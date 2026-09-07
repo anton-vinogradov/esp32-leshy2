@@ -5307,11 +5307,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "e8c0caac-6062-576e-879f-5ebcbedbc1d2")
 	)
-	(hierarchical_label "/UI_10_S3_CORE_MEMORY_BOOT/3V3_MAIN"
-		(shape bidirectional)
+	(label "3V3_MAIN"
 		(at 1041.40 121.92 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "c0c49b28-5059-5469-97ea-34dc320360f6")
+		(uuid "3d285edf-24c8-59b0-8411-d9c4a4b76ea1")
 	)
 	(label "S3_RESET_N"
 		(at 1041.40 124.46 0)

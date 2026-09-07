@@ -4,6 +4,8 @@
 
 **Status:** ✅ the local screw, stop, enclosure-bearing, independent PCB-capture and direct two-cell thermal-contact geometry is locked and machine-checked. The [five microcoax service loops](h6-r2-microcoax-service.md) close H6.0.1; **H6.0.3 routing is current.** Purchase and fabrication remain unauthorized.
 
+**Open before production release:** the SMA slot / finished PCB thickness fit requires supplier confirmation. The passing fastener and cell-contact audit does not close this separate condition.
+
 ![H6 mechanical stack](images/h6-r2-mechanical-stack.svg)
 
 ## Result
@@ -42,6 +44,14 @@ The [machine audit](../hardware/layout/generated/H6-R2-mechanical-stack-audit.js
 
 Thus even the short-screw/thick-stack corner fully engages the conservative 2.00-mm nut envelope, while the long-screw/thin-stack corner remains buried inside the 4.20-mm rear recess.
 
+## SMA fit before production release
+
+**Checked on 2026-09-07.** The exact GCT `RFPC-SMA31-FN-175-A` and `RFPC-SMA32-FN-175-A` use a **1.75 ± 0.10 mm** PCB slot, according to the [SMA31](https://www.mouser.com/datasheet/3/1507/1/RFPC-SMA31-FN.pdf) and [SMA32](https://www.mouser.com/datasheet/3/1507/1/RFPC_SMA32_FN.pdf) A1 drawings. [JLCPCB's published finished-thickness tolerance](https://jlcpcb.com/capabilities/pcb-capabilities) for the selected nominal 1.60-mm PCB is ±10%, or **1.44…1.76 mm**, matching both existing PCB allowances in this contract.
+
+The nominal assembly clearance is **+0.15 mm**, but the smallest slot and thickest board give **−0.11 mm**: the declared tolerances permit interference. The audit therefore records `H6-SMA-FINISHED-THICKNESS-FIT` as `requires_confirmation`, blocking production release while routing continues. It does not assume that bending the brass prongs is an acceptable assembly operation.
+
+Before H6.0.9 acceptance, obtain a supplier-supported fit: either factory confirmation of a finished-thickness range compatible with the exact slot and declared clearance, or documented GCT/factory acceptance of the full current tolerance range. JLCPCB invites finished-thickness requirements in the order notes or stack-up drawing, but a tighter standard thickness tolerance has not been verified. The selected stack, MPNs and fabrication authorization remain unchanged.
+
 ## If one screw is loose
 
 One screw backed off by one pitch does not transfer the enclosure job to M1:
@@ -61,7 +71,7 @@ Before final assembly, measure the four screws, nuts and stops against the recei
 
 ## H6.0.1 closure
 
-The [microcoax service result](h6-r2-microcoax-service.md) replaces the old illustrative cable lines with five exact H6 corridors and tape-saddle positions. It proves relaxed cable length, connector inspection access, the display/FPC pocket and 2D mechanical keepout clearance. H6.0.1 is closed; current H6.0.3 continues board routing, while the assembled STEP repeats exact opposing-body clearance in H6.0.6.
+The [microcoax service result](h6-r2-microcoax-service.md) replaces the old illustrative cable lines with five exact H6 corridors and tape-saddle positions. It proves relaxed cable length, connector inspection access, the display/FPC pocket and 2D mechanical keepout clearance. H6.0.1 is closed; current H6.0.3 continues board routing, while the assembled STEP repeats exact opposing-body clearance in H6.0.7. Bend-radius verification for every possible Ebyte source position also remains open at that step; the current radius checks cover nominal paths.
 
 ## Reproduce
 
@@ -72,5 +82,5 @@ python3 hardware/layout/h6_r2_mechanical_stack.py --check
 Expected result:
 
 ```text
-H6-R2 mechanical stack pass: 4 axes; 2 direct cell contacts; 2.18 mm minimum nut thread; 0.38 mm tip clearance
+H6-R2 mechanical stack pass: 4 axes; 2 direct cell contacts; 2.18 mm minimum nut thread; 0.38 mm tip clearance; SMA fit requires_confirmation
 ```

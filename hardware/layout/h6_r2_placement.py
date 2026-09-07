@@ -556,6 +556,15 @@ def target_for_instance(
                 "allowed_same_face_overlap_owner"
             ]
         return target
+    antennas = contract["antenna_ports"].get(project, {})
+    if instance in antennas:
+        return {
+            "source": "H1-R2 5+5 antenna bank",
+            "frame": "front-outer" if project == "LESHY2-UI-R2" else "rear-outer",
+            "anchor": antennas[instance],
+            "rotation": 180.0,
+            "direction": "board-edge antenna port; connector body faces outward and both solder-land rows remain on the PCB",
+        }
     row = frozen.get((project, instance))
     if row:
         frame = (
@@ -590,15 +599,6 @@ def target_for_instance(
         ):
             target["nonphysical_overlap"] = True
         return target
-    antennas = contract["antenna_ports"].get(project, {})
-    if instance in antennas:
-        return {
-            "source": "H1-R2 5+5 antenna bank",
-            "frame": "front-outer" if project == "LESHY2-UI-R2" else "rear-outer",
-            "anchor": antennas[instance],
-            "rotation": 0.0,
-            "direction": "board-edge antenna port",
-        }
     if project == "LESHY2-RF-R2" and instance == contract["mechanical"]["rear_battery_holder"]["instance"]:
         holder = contract["mechanical"]["rear_battery_holder"]
         return {
@@ -1802,6 +1802,7 @@ def svg_bytes(audit: dict) -> bytes:
         "reviewed H6.0.3 power-locality correction": ("#fff7ed", "#ea580c"),
         "reviewed H6.0.3 charger-locality correction": ("#fefce8", "#ca8a04"),
         "reviewed H6.0.3 signal-locality correction": ("#f0fdf4", "#16a34a"),
+        "reviewed H6.0.3 edge-launch-land clearance correction": ("#eff6ff", "#1d4ed8"),
         "reviewed H6.0.3 native-silkscreen-clearance correction": ("#fdf2f8", "#db2777"),
         "hard H1 datum with conflict": ("#fee2e2", "#dc2626"),
     }

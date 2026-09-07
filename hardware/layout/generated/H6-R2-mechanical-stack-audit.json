@@ -3,9 +3,10 @@
   "artifact": "H6-R2 mechanical stack audit",
   "marker": "H6.0.3-R1",
   "status": "pass",
+  "status_scope": "fasteners, enclosure capture and direct cell thermal contacts; connector fit is reported separately",
   "source_hashes": {
-    "hardware/layout/h6-r2-mechanical-stack.json": "e10b804f93fdb8f0b328844d3225f1a76ce4742da9650d4dd633437be11652a9",
-    "hardware/layout/generated/H6-R2-placement-audit.json": "4ae39b6a012b868b7d6698023d0b684fedf7c77be8047c0dcacfdd3e71cfe9f9"
+    "hardware/layout/h6-r2-mechanical-stack.json": "28e9588f17a7e53730f901d22cc470b0cbd5d2a17a307cec2bac2c309ff88cc7",
+    "hardware/layout/generated/H6-R2-placement-audit.json": "3c1f95311aaa8485bff46ba21e0517546a4c294fc52c8d8690222579aba95d81"
   },
   "stack": {
     "members": [
@@ -71,6 +72,82 @@
     "nominal_gap_pad_compression_percent": 20.0,
     "accepted_holder_window_overlaps": 2,
     "electrically_insulating_contact": true
+  },
+  "connector_fit": {
+    "status": "requires_confirmation",
+    "checked_on": "2026-09-07",
+    "scope": "undeformed SMA slot versus finished PCB thickness; no prong flexibility assumed",
+    "mpns": [
+      "GCT RFPC-SMA31-FN-175-A",
+      "GCT RFPC-SMA32-FN-175-A"
+    ],
+    "slot_gap_nominal_mm": 1.75,
+    "slot_gap_range_mm": [
+      1.65,
+      1.85
+    ],
+    "minimum_required_assembly_clearance_mm": 0.0,
+    "rows": [
+      {
+        "project": "LESHY2-UI-R2",
+        "pcb_stack_member": "ui_pcb_mm",
+        "pcb_thickness_nominal_mm": 1.6,
+        "pcb_thickness_range_mm": [
+          1.44,
+          1.76
+        ],
+        "assembly_clearance_nominal_mm": 0.15,
+        "assembly_clearance_minimum_mm": -0.11,
+        "assembly_clearance_maximum_mm": 0.41,
+        "worst_case_interference_mm": 0.11,
+        "all_declared_corners_fit": false
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "pcb_stack_member": "rf_pcb_mm",
+        "pcb_thickness_nominal_mm": 1.6,
+        "pcb_thickness_range_mm": [
+          1.44,
+          1.76
+        ],
+        "assembly_clearance_nominal_mm": 0.15,
+        "assembly_clearance_minimum_mm": -0.11,
+        "assembly_clearance_maximum_mm": 0.41,
+        "worst_case_interference_mm": 0.11,
+        "all_declared_corners_fit": false
+      }
+    ],
+    "sources": [
+      {
+        "document": "GCT RFPC-SMA31-FN A1 drawing released 2025-04-07",
+        "url": "https://www.mouser.com/datasheet/3/1507/1/RFPC-SMA31-FN.pdf",
+        "evidence": "G is dimensioned +/-0.10 mm; ordering option 175 gives G=1.75 mm for nominal 1.60-mm PCB"
+      },
+      {
+        "document": "GCT RFPC-SMA32-FN A1 drawing released 2025-04-07",
+        "url": "https://www.mouser.com/datasheet/3/1507/1/RFPC_SMA32_FN.pdf",
+        "evidence": "same G=1.75+/-0.10-mm edge slot for ordering option 175"
+      },
+      {
+        "document": "JLCPCB published rigid PCB capabilities",
+        "url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+        "evidence": "finished thickness >=1.0 mm has +/-10% tolerance; explicit 1.60-mm example spans 1.44..1.76 mm; tighter thickness is not a published standard option"
+      }
+    ],
+    "release_gate": {
+      "id": "H6-SMA-FINISHED-THICKNESS-FIT",
+      "required_before": "H6.0.9-R1 release-candidate acceptance",
+      "closure_condition": "obtain factory confirmation of a finished PCB thickness range that fits the exact SMA slot with declared clearance, or documented GCT/factory acceptance of the full current tolerance range; re-evaluate this audit before production release",
+      "unverified_assumption": "elastic spreading or manual forming of the connector prongs is not credited as assembly clearance",
+      "changes_authorized_here": "none; PCB stack, exact MPNs and purchase/fabrication authorization remain unchanged",
+      "status": "open",
+      "blocks_production_release": true,
+      "unresolved_projects": [
+        "LESHY2-UI-R2",
+        "LESHY2-RF-R2"
+      ],
+      "routing_may_continue": true
+    }
   },
   "errors": []
 }

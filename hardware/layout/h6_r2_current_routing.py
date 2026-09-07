@@ -17,7 +17,9 @@ from pathlib import Path
 
 import pcbnew  # type: ignore
 
-from h6_r2_placement import build as build_placement
+from h6_r2_drc import validate_provenance, validate_receipt
+from h6_r2_manual_copper import build as build_manual_copper, copper_signature
+from h6_r2_placement import build as build_placement, placement_signature_bytes
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -75,6 +77,7 @@ def remaining_by_net(board) -> dict[str, int]:
 
 
 def drc_evidence(path: Path, project: str) -> dict:
+    provenance = validate_provenance(path, project)
     report = load(path)
     violations = report.get("violations", [])
     parity = report.get("schematic_parity", [])
@@ -88,6 +91,7 @@ def drc_evidence(path: Path, project: str) -> dict:
     assigned = []
     return {
         "report_sha256": sha256(path),
+        "provenance": provenance,
         "kicad_version": report.get("kicad_version"),
         "checked_at": report.get("date"),
         "violation_count": len(violations),
@@ -111,6 +115,12 @@ def build(drc_paths: dict[str, Path] | None, existing: dict | None) -> dict:
     policy = load(POLICY)
     class_order = load(CONTRACT)["class_order"]
     placement_outputs, placement_audit = build_placement()
+    if placement_audit["status"] != "pass":
+        raise SystemExit("current-routing publication requires a passing placement audit")
+    manual_outputs, manual_audit = build_manual_copper()
+    if MANUAL_COPPER_AUDIT.read_bytes() != manual_outputs[MANUAL_COPPER_AUDIT]:
+        raise SystemExit("manual copper inputs changed; regenerate successfully before publishing routing")
+    manual_by_project = {row["project"]: row for row in manual_audit["boards"]}
     placement_by_project = {
         row["project"]: row for row in placement_audit["boards"]
     }
@@ -122,6 +132,12 @@ def build(drc_paths: dict[str, Path] | None, existing: dict | None) -> dict:
     for project in PROJECTS:
         path = board_path(project)
         board = pcbnew.LoadBoard(str(path))
+        actual_placement = hashlib.sha256(placement_signature_bytes(project, board)).hexdigest()
+        if actual_placement != placement_by_project[project]["placement_signature_sha256"]:
+            raise SystemExit(f"{project}: board placement differs from the current placement contract")
+        expected_copper = [tuple(row) for row in manual_by_project[project]["copper_signature"]]
+        if copper_signature(board) != expected_copper:
+            raise SystemExit(f"{project}: board copper differs from the current manual routing contract")
         board.BuildConnectivity()
         connectivity = board.GetConnectivity()
         remaining = remaining_by_net(board)
@@ -164,6 +180,7 @@ def build(drc_paths: dict[str, Path] | None, existing: dict | None) -> dict:
             if old.get("board_sha256") != sha256(path):
                 raise SystemExit(f"{project}: board changed; refresh with fresh DRC reports")
             drc = old.get("drc", {})
+            validate_receipt(drc.get("provenance", {}), project, drc.get("report_sha256", ""))
         board_errors = list(drc.get("errors", []))
         if sum(row["remaining_connection_count"] for row in classes.values()) != native_remaining:
             board_errors.append("per-class remaining total differs from native connectivity")
@@ -247,7 +264,7 @@ def build(drc_paths: dict[str, Path] | None, existing: dict | None) -> dict:
             ]
         },
         "boards": rows,
-        "next_exit_condition": "route or explicitly no-connect every remaining H2 connection, then pass schematic parity and final DRC",
+        "next_exit_condition": "close H6-NATIVE-ELECTRICAL-SEMANTICS with reviewed physical-pin types, rail-source/output checks and fresh ERC; route or explicitly no-connect every remaining H2 connection, then pass schematic parity and final DRC",
         "errors": errors,
     }
 
@@ -288,9 +305,16 @@ def doc(audit: dict, manual_copper: dict, ru: bool) -> str:
             f"проходят свои пределы; набор из {summary['placement_critical_pad_pair_count']} точных проверок "
             "расстояния между площадками охватывает все импульсные цепи и выбранные локальные bypass-цепи, "
             "нарушений нет. "
+            "Все десять торцевых SMA развёрнуты корпусом наружу; площадки пайки на F.Cu и B.Cu "
+            "находятся внутри контура PCB, а исправленное размещение повторно зафиксировано. "
+            "Совместимость допусков толщины PCB и посадочного зазора SMA остаётся открытым вопросом "
+            "[механического стека](h6-r2-mechanical-stack.ru.md). "
+            "Исправлены исторические power-alias S3/C5: оба домена теперь подключены к `3V3_MAIN`; "
+            "десять bypass-компонентов возвращены к своим владельцам, уточнена локальность дросселя LNA. "
+            "Это исправление электрического воплощения и компоновки, без изменения функций устройства. "
             "Все пять oscillator-узлов — два RP2354, CC1101, Si5351A и Si4732 — уже проведены и проходят DRC. "
             f"Ручные controlled-RF маршруты: {number(rf_route_count)}; закрыто соединений: {number(rf_resolved_count)}. "
-            "Помимо локальных цепей CC1101 и Airband вместе с входной границей AM/LW полностью проведены S3-, C5- и все три nRF24-тракта от U.FL "
+            "Помимо локальных цепей CC1101 и Airband вместе с входной границей AM/LW проведены сигнальные линии S3-, C5- и всех трёх nRF24-трактов от U.FL "
             "до внешнего SMA вместе с ответвлениями детекторов. "
             f"Маршрутов без via — {number(rf_via_free_route_count)}; проверенных переходов "
             f"0,50/0,25 мм B.Cu → F.Cu — {number(rf_via_route_count)}. Они нужны только потому, что центральная "
@@ -300,8 +324,15 @@ def doc(audit: dict, manual_copper: dict, ru: bool) -> str:
             "Обе платы имеют нулевой native DRC. "
             f"После осознанного перезапуска осталось {number(summary['current_total_unconnected_count'])} "
             "физических соединений; их состояние приведено в таблице выше.\n\n"
+            "## Предел текущего ERC\n\n"
+            "В текущей библиотеке все подключаемые выводы символов имеют тип `passive`. "
+            "Поэтому нулевой ERC не подтверждает наличие источника питания у каждого потребителя "
+            "или отсутствие конфликтующих выходов. До производственного выпуска требуется проверенная "
+            "карта электрических типов физических выводов, проверка источников шин и конфликтов выходов, "
+            "а затем повторный ERC обеих схем.\n\n"
             "## Что делаем дальше\n\n"
-            "Порядок: четыре DC/DC-острова и защита питания → RF/clock-кластеры → USB и direct i8080 → "
+            "Начинаем с `H6-NATIVE-ELECTRICAL-SEMANTICS`: типов физических выводов, источников шин, "
+            "конфликтов выходов и повторного ERC. Затем четыре DC/DC-острова и защита питания → RF/clock-кластеры → USB и direct i8080 → "
             "остальная цифровая и управляющая медь → плоскости/возвраты → полный DRC и release-проверки.\n\n"
             "## Живые изображения\n\n"
             "Это прямые экспорты текущих `.kicad_pcb`; hash платы встроен в SVG.\n\n"
@@ -310,7 +341,8 @@ def doc(audit: dict, manual_copper: dict, ru: bool) -> str:
             "**Задняя RF/power-плата**\n\n"
             "[![Текущая разводка RF/power](images/h6-r2-routing-rf.svg)](images/h6-r2-routing-rf.svg)\n\n"
             "## Критерий готовности\n\n"
-            "H6.0.3 закрывается, когда остаток связности равен нулю, все обязательные классы и возвратные "
+            "H6.0.3 закрывается, когда пройден `H6-NATIVE-ELECTRICAL-SEMANTICS`, "
+            "остаток связности равен нулю, все обязательные классы и возвратные "
             "пути проведены, а native DRC обеих плат повторно даёт ноль."
         )
     else:
@@ -333,10 +365,17 @@ def doc(audit: dict, manual_copper: dict, ru: bool) -> str:
             "## What we obtained\n\n"
             f"All 1,208 bodies are placed; all {summary['placement_locality_pair_count']} local-part → owner pairs "
             f"meet their limits; {summary['placement_critical_pad_pair_count']} actual pad-centre pairs cover every "
-            "switching-node net and selected local bypasses with zero violations. All five oscillator cells — two "
+            "switching-node net and selected local bypasses with zero violations. "
+            "All ten edge-launch SMA bodies face outward; their F.Cu and B.Cu solder lands remain inside "
+            "the PCB outline, and the corrected placement is frozen again. The PCB-thickness and SMA-slot "
+            "tolerance fit remains an open item in the [mechanical stack](h6-r2-mechanical-stack.md). "
+            "The historical S3/C5 power aliases are corrected: both domains now use `3V3_MAIN`; "
+            "ten bypass parts were returned to their owners and the LNA choke locality was corrected. "
+            "These electrical-realization and placement fixes do not change product functionality. "
+            "All five oscillator cells — two "
             "RP2354s, CC1101, Si5351A and Si4732 — are routed and DRC-clean. "
             f"{number(rf_route_count)} manual controlled-RF routes close {number(rf_resolved_count)} connections: "
-            "in addition to the local CC1101 and Airband networks plus the AM/LW input boundary, the complete S3, C5 and all three nRF24 paths from U.FL "
+            "in addition to the local CC1101 and Airband networks plus the AM/LW input boundary, the signal copper of the S3, C5 and all three nRF24 paths from U.FL "
             "to external SMA and their detector branches are routed. "
             f"{number(rf_via_free_route_count)} routes remain via-free; {number(rf_via_route_count)} reviewed "
             "0.50/0.25-mm B.Cu-to-F.Cu transitions are necessary only because the edge-launch "
@@ -344,8 +383,14 @@ def doc(audit: dict, manual_copper: dict, ru: bool) -> str:
             "this checkpoint does not create floating copper islands. Both boards have zero native DRC findings. "
             f"The deliberate restart leaves {number(summary['current_total_unconnected_count'])} physical "
             "connections, summarized in the table above.\n\n"
+            "## Current ERC limitation\n\n"
+            "The current library assigns `passive` to every connectable symbol pin. "
+            "Zero ERC findings therefore do not confirm that every power input has a source or that "
+            "outputs cannot conflict. Production release requires a reviewed electrical-type map for "
+            "the physical pins, rail-source and output-conflict checks, followed by fresh ERC on both schematics.\n\n"
             "## What happens next\n\n"
-            "Order: four DC/DC islands and power protection → RF/clock clusters → USB and direct i8080 → remaining "
+            "Start with `H6-NATIVE-ELECTRICAL-SEMANTICS`: physical-pin types, rail sources, output conflicts "
+            "and fresh ERC. Then four DC/DC islands and power protection → RF/clock clusters → USB and direct i8080 → remaining "
             "digital/control copper → planes and return paths → full DRC and release checks.\n\n"
             "## Live images\n\n"
             "These are direct exports from the current `.kicad_pcb` files; each SVG embeds its board hash.\n\n"
@@ -354,7 +399,8 @@ def doc(audit: dict, manual_copper: dict, ru: bool) -> str:
             "**Rear RF/power board**\n\n"
             "[![Current RF/power routing](images/h6-r2-routing-rf.svg)](images/h6-r2-routing-rf.svg)\n\n"
             "## Completion criterion\n\n"
-            "H6.0.3 closes when connectivity reaches zero, every mandatory class and return path is routed, and "
+            "H6.0.3 closes when `H6-NATIVE-ELECTRICAL-SEMANTICS` passes, connectivity reaches zero, "
+            "every mandatory class and return path is routed, and "
             "native DRC is rerun clean on both boards."
         )
     table = [headers]
@@ -386,6 +432,8 @@ def main() -> int:
             "LESHY2-RF-R2": args.rf_drc.resolve(),
         }
     audit = build(drc_paths, existing)
+    if audit["errors"]:
+        raise SystemExit("current-routing publication failed: " + "; ".join(audit["errors"]))
     manual_copper = load(MANUAL_COPPER_AUDIT)
     outputs = {
         OUTPUT: json.dumps(audit, indent=2, ensure_ascii=False) + "\n",

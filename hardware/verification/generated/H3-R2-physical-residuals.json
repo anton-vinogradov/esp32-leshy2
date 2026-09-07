@@ -4,7 +4,7 @@
   "marker": "H3-R2.7",
   "status": "reviewed_physical_only_residual_register",
   "source_sha256": {
-    "hardware/verification/generated/H3-R2-crosscheck.json": "c18f667a92159abe64c74afbbb386b8fd39245f501080a11b0ca9003d0ca59ad"
+    "hardware/verification/generated/H3-R2-crosscheck.json": "803e868432c6e661415c45ecc4636dad78f40f721d67adc0bb33d56ef1005ad4"
   },
   "summary": {
     "physical_evidence_rows": 51,
@@ -959,7 +959,7 @@
   "firmware_obligations": [
     {
       "owner": "F5/F6",
-      "obligation": "instantiate the locked ESP-IDF i80 config at exact 20 MHz, CS=-1, 8-bit bus and rising-edge panel capture; exercise TE, dirty-region and full-frame fixtures",
+      "obligation": "instantiate the locked ESP-IDF i80 config at exact 20 MHz, CS=-1, 8-bit bus and rising-edge panel capture; exercise dirty-region and full-frame fixtures without waiting for TE, because panel contact 39 is deliberately open; no TE-synchronized or tear-free claim",
       "handoff": "H4-R2 joined review and the owning firmware phase",
       "status": "implementation_evidence_required"
     }

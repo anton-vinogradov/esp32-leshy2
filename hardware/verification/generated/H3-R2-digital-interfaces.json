@@ -4,11 +4,11 @@
   "marker": "H3-R2.4",
   "status": "pass",
   "source_hashes": {
-    "hardware/architecture/h0-r2-rebaseline.json": "e6f4e43ddf9c6839e233cfbb791f6f1ec4da82f1f9e49ea94ded632ca5822cdf",
+    "hardware/architecture/h0-r2-rebaseline.json": "bab7bf6cb3e80842229704169c8b3297bcdff87ec6bb309aad75814701dd3c2b",
     "hardware/architecture/devices.json": "a11701b3df0156dbd533867d3e4bd0d57b731623c12b083cccf493b03775d0fa",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "44b96960b24085af0d2f98c5ff4ad5fe12158e7ad15d0063261dfe11d05a6125",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "e490be3e8d81e65098684467654980cf4a21fb3a166213a29163d4d3661766be",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "81c6a935c1acd6f47fa08f519cff5b893513c2882b13f880f9cdff6655d245d3",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "8814c96b19a6fe90b151ecf528cf8fba4a7961d152d435e698cb330f4e151e47",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "a4d01ad42040f5d7b4be6f138efbef7c5230f7500c37c7bed795d25d05d24e72",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "8662e0fa866bf8fab57b7d3799b312b3f67bca179da2732571be27995e19c88d",
     "hardware/product-design/display-mount.json": "5901b314c630efdf278e0b923c22eba8c49ebfa1508329c37860e9256930c90f"
   },
   "methods": [
@@ -359,7 +359,7 @@
     },
     {
       "owner": "F5/F6",
-      "item": "instantiate the locked ESP-IDF i80 config at exact 20 MHz, CS=-1, 8-bit bus and rising-edge panel capture; exercise TE, dirty-region and full-frame fixtures"
+      "item": "instantiate the locked ESP-IDF i80 config at exact 20 MHz, CS=-1, 8-bit bus and rising-edge panel capture; exercise dirty-region and full-frame fixtures without waiting for TE, because panel contact 39 is deliberately open; no TE-synchronized or tear-free claim"
     }
   ],
   "errors": [],

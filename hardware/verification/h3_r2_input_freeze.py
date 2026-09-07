@@ -176,7 +176,11 @@ def render_doc(result: dict, ru: bool) -> str:
             f"Проведено ревью точного входа H2-R2.1.5: `{summary['projects']}` проекта, "
             f"`{summary['sheets']}` листа, `{summary['fitted_symbols']}` устанавливаемых symbols, "
             f"`{summary['physical_pins']}` физических pins и `{summary['canonical_nets']}` nets. "
-            "Все входы захешированы; любое изменение закрывает воспроизводимость до повторной генерации."
+            "Все входы захешированы; после изменения необходимо повторить зависимые проверки. "
+            "Обновление фиксации входов само по себе не является повторной электрической проверкой. "
+            "Существующие аналитические модели и ERC с passive-выводами не доказывают наличие "
+            "источника у каждой шины или отсутствие конфликтующих выходов; эта отдельная проверка "
+            "остаётся обязательной до производственного выпуска."
         )
         headers = ("Работа", "Основной охват", "Листы", "Критерий")
         boundary = "Этот шаг разрешает только расчёты и симуляцию. Placement, routing, закупка и печать остаются запрещены."
@@ -187,7 +191,11 @@ def render_doc(result: dict, ru: bool) -> str:
             f"The exact H2-R2.1.5 input is reviewed: `{summary['projects']}` projects, "
             f"`{summary['sheets']}` sheets, `{summary['fitted_symbols']}` fitted symbols, "
             f"`{summary['physical_pins']}` physical pins and `{summary['canonical_nets']}` nets. "
-            "Every input is hash-bound; any change closes reproducibility until regeneration."
+            "Every input is hash-bound; changes require dependent checks to be repeated. "
+            "Refreshing this input freeze is not itself an electrical re-verification. "
+            "The existing analytical models and passive-pin ERC do not prove that every rail has "
+            "a source or that outputs cannot conflict; that separate review remains mandatory "
+            "before production release."
         )
         headers = ("Workstream", "Primary scope", "Sheets", "Pass rule")
         boundary = "This step authorizes analysis and simulation only. Placement, routing, purchasing and fabrication remain forbidden."

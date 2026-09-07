@@ -6,22 +6,22 @@
   "phase_complete": false,
   "sources": {
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "caad0006801d591fe8dba6e3a0198c2168e38c0f200861ed8dd89a78e69c711e",
+    "routing_policy_sha256": "c60a94206e319195b4ce23f9f9836f982817ea5ad52e6b65197960c71b911847",
     "manual_copper": "hardware/layout/generated/H6-R2-manual-copper-audit.json",
-    "manual_copper_sha256": "1524ab78eb96af179238bd505aa676368e2cf89cd09215561d041e4a51bb3c68"
+    "manual_copper_sha256": "6f37bb5f96d3ba6e4ccb32e3b3682c4d08ef18db8183d1bdb2b40c89e8593cfa"
   },
   "summary": {
     "board_count": 2,
-    "track_via_item_count": 877,
-    "trace_count": 707,
+    "track_via_item_count": 869,
+    "trace_count": 699,
     "via_count": 170,
-    "seed_total_unconnected_count": 3265,
-    "current_total_unconnected_count": 3051,
+    "seed_total_unconnected_count": 3266,
+    "current_total_unconnected_count": 3052,
     "resolved_connection_count": 214,
     "analog_remaining_connection_count": 232,
-    "placement_locality_pair_count": 310,
+    "placement_locality_pair_count": 311,
     "placement_locality_violation_count": 0,
-    "placement_critical_pad_pair_count": 22,
+    "placement_critical_pad_pair_count": 34,
     "placement_critical_pad_pair_violation_count": 0,
     "drc_violation_count": 0,
     "assigned_drc_exception_count": 0
@@ -30,7 +30,7 @@
     "decision": "retain_80x150_mm",
     "status": "locality_constrained_placement_proven_routing_capacity_open",
     "maximum_same_face_courtyard_occupancy_percent": 61.395,
-    "evidence": "all 1208 exact footprints place without a same-face hard conflict; all 310 local-owner constraints and 22 critical pad-pair limits pass; both native DRC reports are clean; the accepted 5-mm routing corridor remains usable",
+    "evidence": "all 1208 exact footprints place without a same-face hard conflict; all 311 local-owner constraints and 34 critical pad-pair limits pass; both native DRC reports are clean; the accepted 5-mm routing corridor remains usable",
     "why_not_expand_now": "the corrected locality-constrained placement fits the current outline and no legal power, RF or digital route has yet demonstrated a capacity blockage; the route restart deliberately removed the old invalid evidence",
     "expansion_candidate_if_triggered_mm": [
       85.0,
@@ -49,15 +49,15 @@
     {
       "project": "LESHY2-UI-R2",
       "board": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "board_sha256": "fe607007e6ed895f6f72701d23b2485b0f6984453bdb2591aaaad9e82d5dc145",
+      "board_sha256": "9d3dbee8aa6253f36155801900632735be5c51f51aa2c2e9ca19ca20562d8168",
       "board_size_mm": [
         80.05,
         150.05
       ],
       "footprint_count": 432,
-      "trace_count": 100,
+      "trace_count": 91,
       "via_count": 5,
-      "track_via_item_count": 105,
+      "track_via_item_count": 96,
       "routed_net_count": 26,
       "used_trace_layers": [
         "B.Cu",
@@ -67,8 +67,8 @@
         "F.Cu": 17.861,
         "B.Cu": 39.98
       },
-      "seed_total_unconnected_count": 1227,
-      "current_total_unconnected_count": 1196,
+      "seed_total_unconnected_count": 1228,
+      "current_total_unconnected_count": 1197,
       "resolved_connection_count": 31,
       "classes": {
         "GROUND_REFERENCE": {
@@ -77,11 +77,11 @@
         },
         "PRIMARY_POWER": {
           "net_count": 2,
-          "remaining_connection_count": 178
+          "remaining_connection_count": 180
         },
         "POWER_BRANCH": {
-          "net_count": 7,
-          "remaining_connection_count": 85
+          "net_count": 6,
+          "remaining_connection_count": 84
         },
         "SWITCHING_NODE": {
           "net_count": 1,
@@ -125,9 +125,34 @@
         }
       },
       "drc": {
-        "report_sha256": "c1f3c9402f78398692680f0143b7e4016c0890ddbd5311d6a06b699af692a73c",
+        "report_sha256": "f7a16c0f657db43918e1690f25a88acd38a5ec1ce1505f47de35de4732f87ddc",
+        "provenance": {
+          "schema_version": 1,
+          "project": "LESHY2-UI-R2",
+          "started_at_utc": "2026-09-07T10:04:07+00:00",
+          "completed_at_utc": "2026-09-07T10:04:08+00:00",
+          "inputs_sha256": {
+            "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "9d3dbee8aa6253f36155801900632735be5c51f51aa2c2e9ca19ca20562d8168",
+            "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pro": "da3ee7fd223b0d7a7d0f4d443996fdef1edfca396e6b4f42165524c1fc5036c9",
+            "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_dru": "ae23b1e0695647d7285e154d5c316004a212c0e49b71cd5349b0c16bc031d616"
+          },
+          "report_sha256": "f7a16c0f657db43918e1690f25a88acd38a5ec1ce1505f47de35de4732f87ddc",
+          "command": [
+            "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
+            "pcb",
+            "drc",
+            "--format",
+            "json",
+            "--severity-all",
+            "-o",
+            "/private/tmp/.h6-drc-k9v1a82a/leshy2-release-ui-drc.json",
+            "/Users/randoom/Documents/Codex/2026-08-15/nt/esp32-leshy2/hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb"
+          ],
+          "exit_code": 0,
+          "kicad_version": "10.0.5"
+        },
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-06T23:14:56",
+        "checked_at": "2026-09-07T13:04:08",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,
@@ -139,15 +164,15 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "board_sha256": "fb6eb315e2fb80488a231eb1927cdb44f3ed2246c6dd6b79ba7f1b138240276a",
+      "board_sha256": "b2a6ead50173b626b8a84e050fd2e45cdb04ddea0177916eeeb2d776e3b0f533",
       "board_size_mm": [
         80.05,
         150.05
       ],
       "footprint_count": 784,
-      "trace_count": 607,
+      "trace_count": 608,
       "via_count": 165,
-      "track_via_item_count": 772,
+      "track_via_item_count": 773,
       "routed_net_count": 67,
       "used_trace_layers": [
         "B.Cu",
@@ -218,9 +243,34 @@
         }
       },
       "drc": {
-        "report_sha256": "96caf4875b497ac2eacfa500fb682fb82dfee6c754c143276191d3aae141ef6e",
+        "report_sha256": "bfb94ca15fc4388640f9e28b09968023f4cf5947c48cb240721d2a6823be7a66",
+        "provenance": {
+          "schema_version": 1,
+          "project": "LESHY2-RF-R2",
+          "started_at_utc": "2026-09-07T10:04:10+00:00",
+          "completed_at_utc": "2026-09-07T10:04:14+00:00",
+          "inputs_sha256": {
+            "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "b2a6ead50173b626b8a84e050fd2e45cdb04ddea0177916eeeb2d776e3b0f533",
+            "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pro": "0d6281e49949a3d865033e795659b4ae1ec8e066aab2b2d1f7f5ac8aa824235f",
+            "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_dru": "7cf89d80b417a824503f6f41f954d6f38e65978ce8ca207aab9a30318abd6bb9"
+          },
+          "report_sha256": "bfb94ca15fc4388640f9e28b09968023f4cf5947c48cb240721d2a6823be7a66",
+          "command": [
+            "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
+            "pcb",
+            "drc",
+            "--format",
+            "json",
+            "--severity-all",
+            "-o",
+            "/private/tmp/.h6-drc-fs99oisp/leshy2-release-rf-drc.json",
+            "/Users/randoom/Documents/Codex/2026-08-15/nt/esp32-leshy2/hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb"
+          ],
+          "exit_code": 0,
+          "kicad_version": "10.0.5"
+        },
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-06T23:14:35",
+        "checked_at": "2026-09-07T13:04:14",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,
@@ -230,6 +280,6 @@
       "errors": []
     }
   ],
-  "next_exit_condition": "route or explicitly no-connect every remaining H2 connection, then pass schematic parity and final DRC",
+  "next_exit_condition": "close H6-NATIVE-ELECTRICAL-SEMANTICS with reviewed physical-pin types, rail-source/output checks and fresh ERC; route or explicitly no-connect every remaining H2 connection, then pass schematic parity and final DRC",
   "errors": []
 }
