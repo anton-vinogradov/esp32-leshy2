@@ -131,14 +131,14 @@
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Footprint" "Leshy2:B3S-1100P"
+			(property "Footprint" "Leshy2_R2:B3S-1100P"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Datasheet" "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf"
+			(property "Datasheet" "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -159,7 +159,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "ManufacturerEvidenceChecked" "2026-08-19"
+			(property "ManufacturerEvidenceChecked" "2026-09-07"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -185,7 +185,7 @@
 				(pin passive line
 					(at -20.32 2.54 0)
 					(length 5.08)
-					(name "SIDE_A_1" (effects (font (size 1.27 1.27))))
+					(name "SIDE_B_2" (effects (font (size 1.27 1.27))))
 					(number "1" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
@@ -203,7 +203,7 @@
 				(pin passive line
 					(at 20.32 2.54 180)
 					(length 5.08)
-					(name "SIDE_B_2" (effects (font (size 1.27 1.27))))
+					(name "SIDE_A_1" (effects (font (size 1.27 1.27))))
 					(number "4" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
@@ -1838,7 +1838,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Leshy2:B3S-1100P"
+		(property "Footprint" "Leshy2_R2:B3S-1100P"
 			(at 970.28 52.07 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1890,10 +1890,10 @@
 			)
 		)
 	)
-	(label "PTT_BUTTON_RAW_N"
+	(label "POWER_GROUND"
 		(at 949.96 49.53 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "bdc660b3-0ead-5dfa-a9c8-4737c4aabc3e")
+		(uuid "56b1ce7d-ab44-5148-89e5-5f3e862c8949")
 	)
 	(label "POWER_GROUND"
 		(at 949.96 52.07 0)
@@ -1905,10 +1905,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "3b1699c1-393e-5715-9b4c-a764e8eaa79d")
 	)
-	(label "POWER_GROUND"
+	(label "PTT_BUTTON_RAW_N"
 		(at 990.60 49.53 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "fd58dcc4-2c72-5088-8050-7e4c7f3af370")
+		(uuid "600bfc39-2f4e-5159-907a-ec4da2cc761b")
 	)
 	(label "POWER_GROUND"
 		(at 990.60 52.07 180)

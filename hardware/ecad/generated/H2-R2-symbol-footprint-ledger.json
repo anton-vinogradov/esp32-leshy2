@@ -6,11 +6,11 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "42a990c7240e692569cd7c23c67cd92cf657f08c6a3dfe2a79ca4fa8340f2717"
+      "sha256": "e0e857536f50036753bcd9a55a161ff8779eaee83c6b46887abe98a75ea4e22d"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "2a4f7944f69705a6361a3f71b315041b7eb08d884a4508eb060d0bcf9affb4c7"
+      "sha256": "0abf082483aed8c2eca8c6ddfd43684bd1664266d5f0e06873554df05da5b767"
     }
   },
   "historical_hint_sources": [
@@ -166,12 +166,12 @@
     "symbol_identity_count": 245,
     "footprint_identity_count": 245,
     "logical_contact_count": 1617,
-    "historical_package_hints_reconciled": 194,
+    "historical_package_hints_reconciled": 192,
     "historical_package_conflicts_resolved": 5,
-    "explicit_current_footprint_overrides": 51,
+    "explicit_current_footprint_overrides": 53,
     "standard_kicad_footprint_identities": 206,
-    "reconciled_local_footprint_definitions": 32,
-    "new_exact_footprint_geometries_materialized": 7,
+    "reconciled_local_footprint_definitions": 31,
+    "new_exact_footprint_geometries_materialized": 8,
     "schematic_symbols_or_footprint_files_created": 0,
     "native_schematic_nets_created": 0,
     "unresolved_groups": 0
@@ -468,9 +468,9 @@
       "contact_map_sha256": "7dc7844c75a3980faef432d9fecdfd4427dbd462b7b8b88a010e98fe2798179b",
       "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
       "manufacturer_evidence": {
-        "document": "HMC544A official data sheet",
-        "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/hmc544.pdf",
-        "checked": "2026-08-31"
+        "document": "HMC544A official data sheet v00.1212, Pin Descriptions p5; exact A suffix",
+        "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/hmc544ae.pdf",
+        "checked": "2026-09-07"
       },
       "footprint": "Package_TO_SOT_SMD:SOT-23-6",
       "footprint_resolution": "explicit_current_override",
@@ -2889,108 +2889,104 @@
       "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
       "logical_contact_count": 50,
       "contact_role_counts": {
-        "nc": 3,
-        "power": 24,
-        "reset": 2,
-        "signal": 18,
-        "strap": 3
+        "signal": 50
       },
       "contact_map": {
         "PIN_1": {
           "physical": "1",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_2": {
           "physical": "2",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_3": {
           "physical": "3",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_4": {
           "physical": "4",
-          "role": "nc"
+          "role": "signal"
         },
         "PIN_5": {
           "physical": "5",
-          "role": "nc"
+          "role": "signal"
         },
         "PIN_6": {
           "physical": "6",
-          "role": "nc"
+          "role": "signal"
         },
         "PIN_7": {
           "physical": "7",
-          "role": "strap"
+          "role": "signal"
         },
         "PIN_8": {
           "physical": "8",
-          "role": "strap"
+          "role": "signal"
         },
         "PIN_9": {
           "physical": "9",
-          "role": "strap"
+          "role": "signal"
         },
         "PIN_10": {
           "physical": "10",
-          "role": "reset"
+          "role": "signal"
         },
         "PIN_11": {
           "physical": "11",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_12": {
           "physical": "12",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_13": {
           "physical": "13",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_14": {
           "physical": "14",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_15": {
           "physical": "15",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_16": {
           "physical": "16",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_17": {
           "physical": "17",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_18": {
           "physical": "18",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_19": {
           "physical": "19",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_20": {
           "physical": "20",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_21": {
           "physical": "21",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_22": {
           "physical": "22",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_23": {
           "physical": "23",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_24": {
           "physical": "24",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_25": {
           "physical": "25",
@@ -3054,19 +3050,19 @@
         },
         "PIN_40": {
           "physical": "40",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_41": {
           "physical": "41",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_42": {
           "physical": "42",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_43": {
           "physical": "43",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_44": {
           "physical": "44",
@@ -3082,22 +3078,22 @@
         },
         "PIN_47": {
           "physical": "47",
-          "role": "reset"
+          "role": "signal"
         },
         "PIN_48": {
           "physical": "48",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_49": {
           "physical": "49",
-          "role": "power"
+          "role": "signal"
         },
         "PIN_50": {
           "physical": "50",
-          "role": "power"
+          "role": "signal"
         }
       },
-      "contact_map_sha256": "8e07dca86d6a803b71e9be53e0406d6f1442e315e33b490cdc16d27030116567",
+      "contact_map_sha256": "7c2130e44e3ec45f789eed7a2d7de298062e8bd8b724fbb7dd5042b8d3e3811f",
       "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
       "manufacturer_evidence": {
         "document": "Hirose FH34SRJ controlled series drawing; 50-position body uses the 24.5-mm contact span and 27.0-mm overall width",
@@ -3109,7 +3105,7 @@
       "footprint_definition": {
         "status": "current_exact_local_definition_materialized",
         "path": "hardware/ecad/libraries/Leshy2_R2.pretty/FH34SRJ-50S-0.5SH-50.kicad_mod",
-        "sha256": "3e63f78edb8ca34534ca5272586c5789c1492e973e2250b1d641855c88261428"
+        "sha256": "e294307633e4a5a125e949d5e557acb1b0b676b9d0dc7d6bc9312cb90270863c"
       },
       "historical_hint_files": [],
       "historical_hint_pin_counts": [],
@@ -3865,11 +3861,11 @@
           "role": "rf"
         },
         "SHELL": {
-          "physical": "three manufacturer ground lands",
+          "physical": "two manufacturer ground lands (shared native pad 2)",
           "role": "power"
         }
       },
-      "contact_map_sha256": "6fb3b20c4a2498ba8e5febe431e6d1d994ed33b164f61f62afcf130e333deac8",
+      "contact_map_sha256": "2f4d6686e7eb712e1db4c6f911f89d138b7a2459905563aea0700aceee51d57e",
       "electrical_contract_sha256": "dc71ed86d326ae6ce0065456cc108056093a7f00ab0d8f50c34462579c408f9d",
       "manufacturer_evidence": {
         "document": "Hirose U.FL Series connector catalog",
@@ -7919,7 +7915,7 @@
       },
       "contact_map": {
         "SIDE_A_1": {
-          "physical": "1",
+          "physical": "4",
           "role": "switch_contact"
         },
         "SIDE_A_2": {
@@ -7931,7 +7927,7 @@
           "role": "switch_contact"
         },
         "SIDE_B_2": {
-          "physical": "4",
+          "physical": "1",
           "role": "switch_contact"
         },
         "GROUND": {
@@ -7939,20 +7935,20 @@
           "role": "shield_ground"
         }
       },
-      "contact_map_sha256": "c302a0482ba7709bcac29d1e1a6406125f6d3dc4e1790740b3d65887d0df122a",
+      "contact_map_sha256": "a9512d6192b7c6c8ffebb25a71f789f80034953767f20cc2d7a6b4ce95192940",
       "electrical_contract_sha256": "768efd522c3b2073b13de7a155d3d9df733884e54c9857ad54932bb8cf319017",
       "manufacturer_evidence": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
-        "version": "A204-E1",
-        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
-        "checked": "2026-08-19"
+        "version": "B3S p2 terminal arrangement/internal connections, TOP view: 4/3 top, 2/1 bottom, ground 5; visually checked 2026-09-07",
+        "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+        "checked": "2026-09-07"
       },
-      "footprint": "Leshy2:B3S-1100P",
-      "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",
+      "footprint": "Leshy2_R2:B3S-1100P",
+      "footprint_resolution": "explicit_current_override",
       "footprint_definition": {
-        "status": "existing_manufacturer_derived_definition_reconciled",
-        "path": "hardware/ecad/libraries/Leshy2.pretty/B3S-1100P.kicad_mod",
-        "sha256": "b65ab37ad3cb515a1eb6ed8519e45603a00b21d78e9c49f8f7cc000820672c57"
+        "status": "current_exact_local_definition_materialized",
+        "path": "hardware/ecad/libraries/Leshy2_R2.pretty/B3S-1100P.kicad_mod",
+        "sha256": "37b9b1c477a58d9152f7b1cff766be8bf4d27f9e9a1ab43217bf6bd714409a4d"
       },
       "historical_hint_files": [
         "hardware/ecad/generated/H2-RF35-rear-controls.json",
@@ -12760,12 +12756,12 @@
       "electrical_contract_sha256": "0fb02d4739dc7d45f1dd921f7f0e84143f27910ad085ac246fb827ae2b9a7157",
       "manufacturer_evidence": {
         "document": "TPD2EUSB30A two-channel ESD protection datasheet",
-        "version": "SLLSE78E, revised July 2025",
+        "version": "SLVSAC2G, revised June 2021; DRT-3 drawings 4206292-2/D and 4211172/A visually checked; nominal 1.0x0.8-mm body, 0.50-mm maximum height",
         "url": "https://www.ti.com/lit/ds/symlink/tpd2eusb30a.pdf",
-        "checked": "2026-08-19"
+        "checked": "2026-09-07"
       },
-      "footprint": "Package_TO_SOT_SMD:SOT-23",
-      "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",
+      "footprint": "Package_TO_SOT_SMD:Texas_DRT-3",
+      "footprint_resolution": "explicit_current_override",
       "footprint_definition": {
         "status": "exact_package_identity_mapped_to_standard_kicad_library",
         "path": null,
@@ -13837,11 +13833,11 @@
       },
       "contact_map": {
         "RESET_N": {
-          "physical": "1",
+          "physical": "2",
           "role": "signal"
         },
         "GND": {
-          "physical": "2",
+          "physical": "1",
           "role": "power"
         },
         "VDD": {
@@ -13849,13 +13845,13 @@
           "role": "power"
         }
       },
-      "contact_map_sha256": "dc961168ed44bd2dbadb5d2207aa48bbb2b322e3c51ab3b1e9c9ef7bcb2542d5",
+      "contact_map_sha256": "a9eb12172e97f452cf9270e56052918a8384f8351e84c56933ce4676c0952b45",
       "electrical_contract_sha256": "8c769551ba2629c4e1bd9877a3e9c0356da831e54bad8e872d5a10c359c94cc7",
       "manufacturer_evidence": {
         "document": "TPS383x 150-nA Ultralow Power Supply Voltage Monitor datasheet",
-        "version": "SBVS193D and current exact-part page checked 2026-08-18",
+        "version": "SBVS193D, section 6: DBZ top-view GND=1, RESET=2, VDD=3; visually rechecked 2026-09-07",
         "url": "https://www.ti.com/lit/ds/symlink/tps3839.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-09-07"
       },
       "footprint": "Package_TO_SOT_SMD:SOT-23",
       "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",

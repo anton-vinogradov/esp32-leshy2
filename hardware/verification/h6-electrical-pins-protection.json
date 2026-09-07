@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "scope": "H6-NATIVE-ELECTRICAL-SEMANTICS bounded protection, discrete and analog-switch review; candidate overlay only, not production symbol updates or release approval. Passive denotes a verified diode, shunt-clamp, conditional transistor channel or bilateral switch terminal, not an unreviewed default. Static ERC does not prove their conduction, protection ratings or switched rail availability. Ground uses power_in. Named Diodes top-view terminals were geometrically compared with the numbered materialized SOT footprints; these datasheet figures do not print numeric pin tables. Uncertain pad semantics are omitted.",
+  "devices": [
+    {
+      "device_id": "diodes_2n7002dw_7_f",
+      "mpn": "Diodes Incorporated 2N7002DW-7-F",
+      "evidence": [{"url": "https://www.diodes.com/datasheet/download/2N7002DW.pdf", "section": "DS30120 Rev22-2 p1 named top-view internal schematic; SOT363 geometry compared with numbered SOT-363_SC-70-6 lands (same top view after rotation)", "checked": "2026-09-07"}],
+      "pins": {
+        "1": {"type": "passive", "reason": "S2 channel/body-diode terminal; conditional conduction"},
+        "2": {"type": "input", "reason": "G2 insulated gate control"},
+        "3": {"type": "passive", "reason": "D1 channel/body-diode terminal; conditional conduction"},
+        "4": {"type": "passive", "reason": "S1 channel/body-diode terminal; conditional conduction"},
+        "5": {"type": "input", "reason": "G1 insulated gate control"},
+        "6": {"type": "passive", "reason": "D2 channel/body-diode terminal; conditional conduction"}
+      },
+      "unresolved": ["Conduction and level-shifting behavior require circuit-level review; passive D/S types do not imply a permanently connected path."]
+    },
+    {
+      "device_id": "diodes_bat54_7_f",
+      "mpn": "Diodes Incorporated BAT54-7-F",
+      "evidence": [{"url": "https://www.diodes.com/datasheet/download/BAT54.pdf", "section": "DS11005 Rev34 p1 single BAT54 top-view polarity diagram, not A/C/S variants; geometry compared with numbered SOT-23 lands", "checked": "2026-09-07"}],
+      "pins": {
+        "1": {"type": "passive", "reason": "A Schottky anode"},
+        "2": {"type": "no_connect", "reason": "Single BAT54 unused third lead; no internal connection shown"},
+        "3": {"type": "passive", "reason": "K Schottky cathode"}
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "diodes_dmn2056u_7",
+      "mpn": "Diodes Incorporated DMN2056U-7",
+      "evidence": [{"url": "https://www.diodes.com/datasheet/download/DMN2056U.pdf", "section": "DS38480 Rev2-2 p1 named top-view pinout and internal schematic; geometry compared with numbered SOT-23 lands", "checked": "2026-09-07"}],
+      "pins": {
+        "1": {"type": "input", "reason": "G insulated gate control"},
+        "2": {"type": "passive", "reason": "S channel/body-diode terminal; conditional conduction"},
+        "3": {"type": "passive", "reason": "D channel/body-diode terminal; conditional conduction"}
+      },
+      "unresolved": ["A MOSFET channel is not an independent power source; gate bias and body-diode orientation require circuit-level review."]
+    },
+    {
+      "device_id": "diodes_mmbt3904_7_f",
+      "mpn": "Diodes Incorporated MMBT3904-7-F",
+      "evidence": [{"url": "https://www.diodes.com/datasheet/download/MMBT3904.pdf", "section": "DS30036 Rev27-2 p1 named top-view pinout and NPN symbol; geometry compared with numbered SOT-23 lands", "checked": "2026-09-07"}],
+      "pins": {
+        "1": {"type": "input", "reason": "B NPN base control; current-driven junction"},
+        "2": {"type": "passive", "reason": "E emitter terminal; conduction depends on base bias"},
+        "3": {"type": "passive", "reason": "C collector terminal; not inherently a logic open-collector output"}
+      },
+      "unresolved": ["ERC cannot establish transistor bias, gain or whether a particular instance operates as an open-collector stage."]
+    },
+    {
+      "device_id": "nexperia_bat54s_215",
+      "mpn": "BAT54S,215",
+      "evidence": [{"url": "https://assets.nexperia.com/documents/data-sheet/BAT54S.pdf", "section": "2022-07-01 Table2 p1 pinning information and series-diode symbol", "checked": "2026-09-07"}],
+      "pins": {
+        "1": {"type": "passive", "reason": "A1 first Schottky anode"},
+        "2": {"type": "passive", "reason": "K2 second Schottky cathode"},
+        "3": {"type": "passive", "reason": "K1/A2 series junction"}
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "onsemi_bat54alt1g",
+      "mpn": "BAT54ALT1G",
+      "evidence": [{"url": "https://www.onsemi.com/pdf/datasheet/bat54alt1-d.pdf", "section": "BAT54AL Rev16 p1 numbered common-anode diode diagram", "checked": "2026-09-07"}],
+      "pins": {
+        "1": {"type": "passive", "reason": "K1 first Schottky cathode"},
+        "2": {"type": "passive", "reason": "K2 second Schottky cathode"},
+        "3": {"type": "passive", "reason": "Common Schottky anode"}
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "onsemi_bav70lt1g",
+      "mpn": "onsemi BAV70LT1G",
+      "evidence": [{"url": "https://www.onsemi.com/pdf/datasheet/bav70lt1-d.pdf", "section": "BAV70L Rev14 p1 numbered common-cathode diagram; case318 style9 pin list", "checked": "2026-09-07"}],
+      "pins": {
+        "1": {"type": "passive", "reason": "A1 first switching-diode anode"},
+        "2": {"type": "passive", "reason": "A2 second switching-diode anode"},
+        "3": {"type": "passive", "reason": "Common switching-diode cathode"}
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_tpd2eusb30a_drtr",
+      "mpn": "Texas Instruments TPD2EUSB30ADRTR",
+      "evidence": [{"url": "https://www.ti.com/lit/ds/symlink/tpd2eusb30a.pdf", "section": "SLVSAC2G p1 DRT body-size table; p3 Fig5-1 and Table5-1; DRT0003A package/land drawing", "checked": "2026-09-07"}],
+      "pins": {
+        "1": {"type": "passive", "reason": "D+ ESD shunt-protection port; no active USB drive"},
+        "2": {"type": "passive", "reason": "D- ESD shunt-protection port; no active USB drive"},
+        "3": {"type": "power_in", "reason": "ESD ground return"}
+      },
+      "physical_map_review": "Corrected the substituted SOT-23 to exact Texas_DRT-3 on 2026-09-07. Regenerated all three native footprints without moving their anchors; exact TI pad geometry regression and fresh native DRC on both boards pass. Part identity and signal numbering are unchanged.",
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_tpd4e05u06_dqar",
+      "mpn": "Texas Instruments TPD4E05U06DQAR",
+      "evidence": [{"url": "https://www.ti.com/lit/ds/symlink/tpd4e05u06.pdf", "section": "SLVSBO7O p4 Table4-2 for DQA-10; protected I/O versus optional NC routing lands", "checked": "2026-09-07"}],
+      "pins": {
+        "1": {"type": "passive", "reason": "D1+ shunt-protected I/O port"},
+        "2": {"type": "passive", "reason": "D1- shunt-protected I/O port"},
+        "3": {"type": "power_in", "reason": "ESD ground return"},
+        "4": {"type": "passive", "reason": "D2+ shunt-protected I/O port"},
+        "5": {"type": "passive", "reason": "D2- shunt-protected I/O port"},
+        "6": {"type": "passive", "reason": "Internally NC optional straight-through routing land; may float or be grounded"},
+        "7": {"type": "passive", "reason": "Internally NC optional straight-through routing land; may float or be grounded"},
+        "8": {"type": "power_in", "reason": "ESD ground return"},
+        "9": {"type": "passive", "reason": "Internally NC optional straight-through routing land; may float or be grounded"},
+        "10": {"type": "passive", "reason": "Internally NC optional straight-through routing land; may float or be grounded"}
+      },
+      "unresolved": ["NC6/7/9/10 are not internal pass-through connections or additional protected channels; permitted routing connections must not be mistaken for internal continuity."]
+    },
+    {
+      "device_id": "ti_tpd4s201_rukr",
+      "mpn": "Texas Instruments TPD4S201RUKR",
+      "evidence": [{"url": "https://www.ti.com/lit/gpn/TPD4S201", "section": "SLVSIF2 pp3-4 Table4-1 pin functions and grounded thermal pad; Fig4-1 RUK top view", "checked": "2026-09-07"}],
+      "pins": {
+        "1": {"type": "passive", "reason": "C_SBU1 connector-side protected bilateral switch terminal"},
+        "2": {"type": "passive", "reason": "C_SBU2 connector-side protected bilateral switch terminal"},
+        "4": {"type": "passive", "reason": "C_CC1 connector-side protected bilateral switch terminal"},
+        "5": {"type": "passive", "reason": "C_CC2 connector-side protected bilateral switch terminal"},
+        "6": {"type": "passive", "reason": "RPD_G2 switched dead-battery resistor terminal"},
+        "7": {"type": "passive", "reason": "RPD_G1 switched dead-battery resistor terminal"},
+        "8": {"type": "power_in", "reason": "Ground return"},
+        "9": {"type": "open_collector", "reason": "FLT active-low open-drain fault indication"},
+        "10": {"type": "power_in", "reason": "VPWR device supply"},
+        "11": {"type": "passive", "reason": "CC2 system-side bilateral switch terminal"},
+        "12": {"type": "passive", "reason": "CC1 system-side bilateral switch terminal"},
+        "13": {"type": "power_in", "reason": "Ground return"},
+        "14": {"type": "passive", "reason": "SBU2 system-side bilateral switch terminal"},
+        "15": {"type": "passive", "reason": "SBU1 system-side bilateral switch terminal"},
+        "16": {"type": "passive", "reason": "Internally NC; manufacturer permits floating or ground connection"},
+        "17": {"type": "passive", "reason": "Internally NC; manufacturer permits floating or ground connection"},
+        "18": {"type": "power_in", "reason": "Ground return"},
+        "19": {"type": "passive", "reason": "Internally NC; manufacturer permits floating or ground connection"},
+        "20": {"type": "passive", "reason": "Internally NC; manufacturer permits floating or ground connection"},
+        "21": {"type": "power_in", "reason": "Native pad21 represents thermal pad; table explicitly requires ground plane connection"}
+      },
+      "unresolved": ["Pad3 VBIAS is omitted: primary pin table specifies an ESD-support capacitor terminal but does not establish its source/sink direction; needs further primary circuit evidence before typing.", "Protected CC/SBU continuity, dead-battery pull-down configuration and allowed fault conditions are not established by static ERC."]
+    },
+    {
+      "device_id": "ti_tpd8e003_dqdr",
+      "mpn": "Texas Instruments TPD8E003DQDR",
+      "evidence": [{"url": "https://www.ti.com/lit/ds/symlink/tpd8e003.pdf", "section": "SLLSE38B p3 DQD top-view diagram and Pin Functions; central exposed pad is GND", "checked": "2026-09-07"}],
+      "pins": {
+        "1": {"type": "passive", "reason": "IO1 ESD shunt-protection port"},
+        "2": {"type": "passive", "reason": "IO2 ESD shunt-protection port"},
+        "3": {"type": "passive", "reason": "IO3 ESD shunt-protection port"},
+        "4": {"type": "passive", "reason": "IO4 ESD shunt-protection port"},
+        "5": {"type": "passive", "reason": "IO5 ESD shunt-protection port"},
+        "6": {"type": "passive", "reason": "IO6 ESD shunt-protection port"},
+        "7": {"type": "passive", "reason": "IO7 ESD shunt-protection port"},
+        "8": {"type": "passive", "reason": "IO8 ESD shunt-protection port"},
+        "9": {"type": "power_in", "reason": "Native pad9 represents central exposed GND pad"}
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_tps3435cakagddfr",
+      "mpn": "Texas Instruments TPS3435CAKAGDDFR",
+      "evidence": [{"url": "https://www.ti.com/lit/ds/symlink/tps3435.pdf", "section": "SNVSCF7A p3 Table4-1 exact TPS3435CAKAGDDFR open-drain pinout-C row; pp5-6 Table5-1 pinout C column", "checked": "2026-09-07"}],
+      "pins": {
+        "1": {"type": "input", "reason": "SET0 watchdog timing scale selection"},
+        "2": {"type": "input", "reason": "MR active-low manual reset input"},
+        "3": {"type": "input", "reason": "WDI watchdog edge input"},
+        "4": {"type": "power_in", "reason": "Ground return"},
+        "5": {"type": "input", "reason": "SET1 watchdog timing scale selection"},
+        "6": {"type": "input", "reason": "WD-EN watchdog enable input"},
+        "7": {"type": "open_collector", "reason": "WDO active-low open-drain output for exact CAKAG orderable"},
+        "8": {"type": "power_in", "reason": "VDD supply"}
+      },
+      "unresolved": ["Pin typing does not verify watchdog timeout selection, startup sequencing or fault-response logic."]
+    },
+    {
+      "device_id": "ti_tps3808g33_dbvr",
+      "mpn": "TPS3808G33DBVR",
+      "evidence": [{"url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf", "section": "SBVS050N p4 Table5-1 SOT-23 (DBV) column, not WSON; RESET open-drain description", "checked": "2026-09-07"}],
+      "pins": {
+        "1": {"type": "open_collector", "reason": "RESET active-low open-drain output"},
+        "2": {"type": "power_in", "reason": "Ground return"},
+        "3": {"type": "input", "reason": "MR active-low manual reset input"},
+        "4": {"type": "input", "reason": "CT reset-delay capacitor/selection input per pin table"},
+        "5": {"type": "input", "reason": "SENSE monitored supply-voltage input"},
+        "6": {"type": "power_in", "reason": "VDD device supply"}
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_tps3839k33_dbzr",
+      "mpn": "Texas Instruments TPS3839K33DBZR",
+      "evidence": [{"url": "https://www.ti.com/lit/ds/symlink/tps3839.pdf", "section": "SBVS193D p5 TPS3839 SOT23-3 top-view diagram and Pin Functions table; RESET push-pull description", "checked": "2026-09-07"}],
+      "pins": {
+        "1": {"type": "power_in", "reason": "GND; exact DBZ pin1 is ground, not RESET"},
+        "2": {"type": "output", "reason": "RESET active-low push-pull output; not open drain"},
+        "3": {"type": "power_in", "reason": "VDD monitored device supply"}
+      },
+      "physical_map_review": "Corrected source GND1/RESET2 on 2026-09-07; native schematics, XML bindings and both supervisor footprints are regenerated. Independent manufacturer-pad regression and fresh native DRC pass; no new output conflict in the typed shadow ERC.",
+      "unresolved": []
+    },
+    {
+      "device_id": "ti_tvs2200_drvr",
+      "mpn": "Texas Instruments TVS2200DRVR",
+      "evidence": [{"url": "https://www.ti.com/lit/gpn/TVS2200", "section": "SLVSED5C p3 Table6-1 and Fig6-1 DRV bottom view including grounded thermal pad7", "checked": "2026-09-07"}],
+      "pins": {
+        "1": {"type": "power_in", "reason": "Surge-clamp ground return"},
+        "2": {"type": "power_in", "reason": "Surge-clamp ground return"},
+        "3": {"type": "power_in", "reason": "Surge-clamp ground return"},
+        "4": {"type": "passive", "reason": "IN surge-protected shunt-clamp terminal; not a rail source"},
+        "5": {"type": "passive", "reason": "IN surge-protected shunt-clamp terminal; not a rail source"},
+        "6": {"type": "passive", "reason": "IN surge-protected shunt-clamp terminal; not a rail source"},
+        "7": {"type": "power_in", "reason": "Exposed thermal pad is ground"}
+      },
+      "unresolved": ["Clamp voltage, surge current and external source impedance require circuit-level checks, not static ERC."]
+    },
+    {
+      "device_id": "onsemi_fsusb42_mux",
+      "mpn": "onsemi FSUSB42MUX",
+      "evidence": [{"url": "https://www.onsemi.com/pdf/datasheet/fsusb42-d.pdf", "section": "Rev3 p2 Pin Descriptions MSOP column for exact MUX suffix, not UMLP; control truth table", "checked": "2026-09-07"}],
+      "pins": {
+        "1": {"type": "power_in", "reason": "VCC supply"},
+        "2": {"type": "input", "reason": "S channel select"},
+        "3": {"type": "passive", "reason": "D+ common bilateral USB switch terminal"},
+        "4": {"type": "passive", "reason": "D- common bilateral USB switch terminal"},
+        "5": {"type": "power_in", "reason": "Ground return"},
+        "6": {"type": "passive", "reason": "HSD1- bilateral USB switch terminal"},
+        "7": {"type": "passive", "reason": "HSD1+ bilateral USB switch terminal"},
+        "8": {"type": "passive", "reason": "HSD2- bilateral USB switch terminal"},
+        "9": {"type": "passive", "reason": "HSD2+ bilateral USB switch terminal"},
+        "10": {"type": "input", "reason": "OE control: high disconnects both channels; low enables selected channel"}
+      },
+      "unresolved": ["Static ERC does not prove selected-path continuity, USB direction or safe switching sequence."]
+    },
+    {
+      "device_id": "ti_tmux1136_dgsr",
+      "mpn": "Texas Instruments TMUX1136DGSR",
+      "evidence": [{"url": "https://www.ti.com/lit/ds/symlink/tmux1136.pdf", "section": "SCDS402B p3 Table4-1 DGS pin functions; channel-select truth table", "checked": "2026-09-07"}],
+      "pins": {
+        "1": {"type": "input", "reason": "SEL1: high selects S1A; low selects S1B"},
+        "2": {"type": "passive", "reason": "S1A bilateral analog switch terminal"},
+        "3": {"type": "power_in", "reason": "Ground return"},
+        "4": {"type": "passive", "reason": "S2A bilateral analog switch terminal"},
+        "5": {"type": "input", "reason": "SEL2: high selects S2A; low selects S2B"},
+        "6": {"type": "passive", "reason": "D2 common bilateral analog switch terminal"},
+        "7": {"type": "passive", "reason": "S2B bilateral analog switch terminal"},
+        "8": {"type": "power_in", "reason": "VDD supply"},
+        "9": {"type": "passive", "reason": "S1B bilateral analog switch terminal"},
+        "10": {"type": "passive", "reason": "D1 common bilateral analog switch terminal"}
+      },
+      "unresolved": ["Static ERC does not establish conditional analog-path continuity or permitted signal range."]
+    },
+    {
+      "device_id": "ti_ts5a63157_dckr",
+      "mpn": "Texas Instruments TS5A63157DCKR",
+      "evidence": [{"url": "https://www.ti.com/lit/ds/symlink/ts5a63157.pdf", "section": "SCDS203B p3 DCK SC70-6 Pin Functions and top view; switch function table", "checked": "2026-09-07"}],
+      "pins": {
+        "1": {"type": "passive", "reason": "NO normally-open bilateral switch terminal"},
+        "2": {"type": "power_in", "reason": "Ground return"},
+        "3": {"type": "passive", "reason": "NC normally-closed switch terminal; this is not a no-connect pin"},
+        "4": {"type": "passive", "reason": "COM common bilateral switch terminal"},
+        "5": {"type": "power_in", "reason": "VCC supply"},
+        "6": {"type": "input", "reason": "IN high connects COM to NO; low connects COM to NC"}
+      },
+      "unresolved": ["Static ERC does not establish conditional switch continuity or powered-off isolation."]
+    }
+  ]
+}

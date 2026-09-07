@@ -1600,33 +1600,34 @@
         "applicable_fpc_thickness_mm": 0.3,
         "contact_orientation": "top_and_bottom",
         "insertion_direction": "horizontal",
-        "adapter_role": "panel-facing connector on replaceable L2-DISP-ADP-001-B"
+        "adapter_role": "direct UI-PCB inner-face connector; no adapter PCB",
+        "contact_role_rule": "All 50 manufacturer terminals are conductive contacts, not inherent NCs. Panel functions and unused positions belong to display-mount panel_to_connector_pin_map and per-instance net disposition."
       },
       "contacts": {
-        "PIN_1": {"physical": "1", "role": "power"},
-        "PIN_2": {"physical": "2", "role": "power"},
-        "PIN_3": {"physical": "3", "role": "power"},
-        "PIN_4": {"physical": "4", "role": "nc"},
-        "PIN_5": {"physical": "5", "role": "nc"},
-        "PIN_6": {"physical": "6", "role": "nc"},
-        "PIN_7": {"physical": "7", "role": "strap"},
-        "PIN_8": {"physical": "8", "role": "strap"},
-        "PIN_9": {"physical": "9", "role": "strap"},
-        "PIN_10": {"physical": "10", "role": "reset"},
-        "PIN_11": {"physical": "11", "role": "power"},
-        "PIN_12": {"physical": "12", "role": "power"},
-        "PIN_13": {"physical": "13", "role": "power"},
-        "PIN_14": {"physical": "14", "role": "power"},
-        "PIN_15": {"physical": "15", "role": "power"},
-        "PIN_16": {"physical": "16", "role": "power"},
-        "PIN_17": {"physical": "17", "role": "power"},
-        "PIN_18": {"physical": "18", "role": "power"},
-        "PIN_19": {"physical": "19", "role": "power"},
-        "PIN_20": {"physical": "20", "role": "power"},
-        "PIN_21": {"physical": "21", "role": "power"},
-        "PIN_22": {"physical": "22", "role": "power"},
-        "PIN_23": {"physical": "23", "role": "power"},
-        "PIN_24": {"physical": "24", "role": "power"},
+        "PIN_1": {"physical": "1", "role": "signal"},
+        "PIN_2": {"physical": "2", "role": "signal"},
+        "PIN_3": {"physical": "3", "role": "signal"},
+        "PIN_4": {"physical": "4", "role": "signal"},
+        "PIN_5": {"physical": "5", "role": "signal"},
+        "PIN_6": {"physical": "6", "role": "signal"},
+        "PIN_7": {"physical": "7", "role": "signal"},
+        "PIN_8": {"physical": "8", "role": "signal"},
+        "PIN_9": {"physical": "9", "role": "signal"},
+        "PIN_10": {"physical": "10", "role": "signal"},
+        "PIN_11": {"physical": "11", "role": "signal"},
+        "PIN_12": {"physical": "12", "role": "signal"},
+        "PIN_13": {"physical": "13", "role": "signal"},
+        "PIN_14": {"physical": "14", "role": "signal"},
+        "PIN_15": {"physical": "15", "role": "signal"},
+        "PIN_16": {"physical": "16", "role": "signal"},
+        "PIN_17": {"physical": "17", "role": "signal"},
+        "PIN_18": {"physical": "18", "role": "signal"},
+        "PIN_19": {"physical": "19", "role": "signal"},
+        "PIN_20": {"physical": "20", "role": "signal"},
+        "PIN_21": {"physical": "21", "role": "signal"},
+        "PIN_22": {"physical": "22", "role": "signal"},
+        "PIN_23": {"physical": "23", "role": "signal"},
+        "PIN_24": {"physical": "24", "role": "signal"},
         "PIN_25": {"physical": "25", "role": "signal"},
         "PIN_26": {"physical": "26", "role": "signal"},
         "PIN_27": {"physical": "27", "role": "signal"},
@@ -1642,17 +1643,17 @@
         "PIN_37": {"physical": "37", "role": "signal"},
         "PIN_38": {"physical": "38", "role": "signal"},
         "PIN_39": {"physical": "39", "role": "signal"},
-        "PIN_40": {"physical": "40", "role": "power"},
-        "PIN_41": {"physical": "41", "role": "power"},
-        "PIN_42": {"physical": "42", "role": "power"},
-        "PIN_43": {"physical": "43", "role": "power"},
+        "PIN_40": {"physical": "40", "role": "signal"},
+        "PIN_41": {"physical": "41", "role": "signal"},
+        "PIN_42": {"physical": "42", "role": "signal"},
+        "PIN_43": {"physical": "43", "role": "signal"},
         "PIN_44": {"physical": "44", "role": "signal"},
         "PIN_45": {"physical": "45", "role": "signal"},
         "PIN_46": {"physical": "46", "role": "signal"},
-        "PIN_47": {"physical": "47", "role": "reset"},
-        "PIN_48": {"physical": "48", "role": "power"},
-        "PIN_49": {"physical": "49", "role": "power"},
-        "PIN_50": {"physical": "50", "role": "power"}
+        "PIN_47": {"physical": "47", "role": "signal"},
+        "PIN_48": {"physical": "48", "role": "signal"},
+        "PIN_49": {"physical": "49", "role": "signal"},
+        "PIN_50": {"physical": "50", "role": "signal"}
       }
     },
     "hirose_df40c_2_0_40ds_0_4v_51": {
@@ -2053,7 +2054,7 @@
       },
       "factory_route": {
         "status": "owner_final_assembly_selected_factory_populates_zif_only",
-        "route": "order the exact ER-TFT035IPS-6 with ER-TPC035-6 option 5344 from EastRising for delivery with the owner kit; JLCPCB mounts C3169104 on the UI PCB, while the owner dry-fits the panel, checks 1-to-1 orientation and relaxed FPC reserve, inserts the 0.30-mm 50-contact tail and bonds the panel with the released stock PSA rectangle",
+        "route": "order the exact ER-TFT035IPS-6 with ER-TPC035-6 option 5344 from EastRising for delivery with the owner kit; JLCPCB mounts C3169104 on the UI PCB, while the owner dry-fits the panel, checks the explicit panel-tail n to FH34 contact (51-n) mating orientation and relaxed FPC reserve, inserts the 0.30-mm 50-contact tail and bonds the panel with the released stock PSA rectangle",
         "factory_boundary": "the factory fabricates and populates the PCBAs only; deterministic owner installation closes current-lot conformity, FPC insertion, image/backlight/touch dry-fit and final PSA bonding without donor disassembly or electrical guess",
         "jlcpcb_source": "https://jlcpcb.com/help/article/how-to-use-my-own-parts-for-pcb-assembly-order",
         "checked": "2026-08-29"
@@ -2699,9 +2700,9 @@
       "dimensions_mm": [2.9, 1.6, 1.15],
       "source": {
         "document": "TPS383x 150-nA Ultralow Power Supply Voltage Monitor datasheet",
-        "version": "SBVS193D and current exact-part page checked 2026-08-18",
+        "version": "SBVS193D, section 6: DBZ top-view GND=1, RESET=2, VDD=3; visually rechecked 2026-09-07",
         "url": "https://www.ti.com/lit/ds/symlink/tps3839.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-09-07"
       },
       "orderable_source": {
         "document": "TPS3839K33DBZR exact active orderable page",
@@ -2720,8 +2721,8 @@
       },
       "programmable": false,
       "contacts": {
-        "RESET_N": {"physical": "1", "role": "signal"},
-        "GND": {"physical": "2", "role": "power"},
+        "RESET_N": {"physical": "2", "role": "signal"},
+        "GND": {"physical": "1", "role": "power"},
         "VDD": {"physical": "3", "role": "power"}
       }
     },
@@ -4552,9 +4553,9 @@
       "dimensions_mm": [6.6, 6.0, 4.3],
       "source": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
-        "version": "A204-E1",
-        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
-        "checked": "2026-08-19"
+        "version": "B3S p2 terminal arrangement/internal connections, TOP view: 4/3 top, 2/1 bottom, ground 5; visually checked 2026-09-07",
+        "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+        "checked": "2026-09-07"
       },
       "orderable_source": {
         "document": "B3S-1100P authorized-distributor exact order-code page; 30,852 shown in stock",
@@ -4594,10 +4595,10 @@
       },
       "programmable": false,
       "contacts": {
-        "SIDE_A_1": {"physical": "1", "role": "switch_contact"},
+        "SIDE_A_1": {"physical": "4", "role": "switch_contact"},
         "SIDE_A_2": {"physical": "3", "role": "switch_contact"},
         "SIDE_B_1": {"physical": "2", "role": "switch_contact"},
-        "SIDE_B_2": {"physical": "4", "role": "switch_contact"},
+        "SIDE_B_2": {"physical": "1", "role": "switch_contact"},
         "GROUND": {"physical": "5", "role": "shield_ground"}
       },
       "internally_common_contacts": [["SIDE_A_1", "SIDE_A_2"], ["SIDE_B_1", "SIDE_B_2"]]
@@ -5450,7 +5451,7 @@
       "programmable": false,
       "contacts": {
         "CENTER": {"physical": "1", "role": "rf"},
-        "SHELL": {"physical": "three manufacturer ground lands", "role": "power"}
+        "SHELL": {"physical": "two manufacturer ground lands (shared native pad 2)", "role": "power"}
       }
     },
     "te_2118651_2": {
@@ -9700,12 +9701,12 @@
       "kind": "two_channel_low_capacitance_usb_esd_array",
       "qualification": "verified_exact_service_usb_esd",
       "lifecycle": "active_orderable",
-      "dimensions_mm": [2.9, 1.3, 1.1],
+      "dimensions_mm": [1.0, 0.8, 0.5],
       "source": {
         "document": "TPD2EUSB30A two-channel ESD protection datasheet",
-        "version": "SLLSE78E, revised July 2025",
+        "version": "SLVSAC2G, revised June 2021; DRT-3 drawings 4206292-2/D and 4211172/A visually checked; nominal 1.0x0.8-mm body, 0.50-mm maximum height",
         "url": "https://www.ti.com/lit/ds/symlink/tpd2eusb30a.pdf",
-        "checked": "2026-08-19"
+        "checked": "2026-09-07"
       },
       "orderable_source": {
         "document": "TPD2EUSB30ADRTR active authorized-distributor listing; more than 74,000 shown in stock",
@@ -10327,7 +10328,7 @@
       "mpn": "HMC544AETR", "manufacturer": "Analog Devices", "kind": "dc_to_4ghz_spdt_rf_switch_sot23_6",
       "qualification": "verified_exact_airband_direct_converted_selector", "lifecycle": "production_active_factory_stocked_standard_pcba",
       "dimensions_mm": [3.0, 1.7, 1.45],
-      "source": {"document": "HMC544A official data sheet", "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/hmc544.pdf", "checked": "2026-08-31"},
+      "source": {"document": "HMC544A official data sheet v00.1212, Pin Descriptions p5; exact A suffix", "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/hmc544ae.pdf", "checked": "2026-09-07"},
       "orderable_source": {"document": "JLCPCB exact Analog Devices card C579555; SMT, Economic and Standard PCBA, 304 in stock, 268 available, MOQ 1", "url": "https://jlcpcb.com/partdetail/AnalogDevices-HMC544AETR/C579555", "checked": "2026-09-02"},
       "cost": {"currency": "USD", "target_quantity": 1, "unit_price_usd": 1.8112, "price_break": "JLCPCB one-piece tier", "source": {"document": "JLCPCB C579555 live price table", "url": "https://jlcpcb.com/partdetail/AnalogDevices-HMC544AETR/C579555", "checked": "2026-09-02"}},
       "programmable": false,

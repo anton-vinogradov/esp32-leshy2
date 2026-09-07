@@ -4,18 +4,22 @@
   "gate": "H6-NATIVE-ELECTRICAL-SEMANTICS",
   "status": "review_required",
   "source_hashes": {
-    "hardware/verification/h6_r2_electrical_semantics.py": "d5bb81e03bd1fba3b7d047d7871b4726fdd6230eb73579cdc08a097cb767d2ad",
-    "hardware/ecad/generated/H2-R2-contact-materialization.json": "24ac84d42a02507ba71932731f32b303f76280e13713d46313de10b28ba07cdb",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "13c60bf11df73419f6321039378b68f3d55be34a3a033833d7fb477e047e3d14",
+    "hardware/verification/h6_r2_electrical_semantics.py": "ffcb7db4ca1c6878eada732b2f27bb4e0e2c826bef6a35926625a867265cf8c6",
+    "hardware/ecad/generated/H2-R2-contact-materialization.json": "cfe9e63cd008135cae9d7f1703aee31e8e85bbb6ba1327c661c45ce247721b97",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "f882612f3e2cc2fdc12f4b675cbdff9f8009e915697126847104e706a937f39c",
     "hardware/verification/h6-electrical-pins-power.json": "065011f2fd529cdd053255a20cb4202755dd65231b1ac0f27e2ddb917a065310",
     "hardware/verification/h6-electrical-pins-digital.json": "b061c58cebee24f0b0369b5a26b595e0cda0ecd6d8c3b0f7cb0c7c86d4f9f6b4",
     "hardware/verification/h6-electrical-pins-logic.json": "30a7d8e950ecd8797ad88faef29f2286d087d297d43f0460961509f12560795e",
-    "hardware/ecad/libraries/leshy2_r2.kicad_sym": "79e506353cf0ed561e54d1b7ca7424baa7eaad06f7085b5fe17e45e09d347b55",
+    "hardware/verification/h6-electrical-pins-analog.json": "df58a02807801f4efa1bb1b9f1153b4cff40d57e4836ed598cba8860adf82ddb",
+    "hardware/verification/h6-electrical-pins-protection.json": "f5fb2858de93401873634abf67b8cc120b7b3adfa2f66f04164c1a7168b134f5",
+    "hardware/verification/h6-electrical-pins-interfaces.json": "b69a99f5d43fa3635ea59847a95fbf00409a7a0ce3e205946b7de1d425175491",
+    "hardware/verification/h6-electrical-pins-passives.json": "3e06305650139090fdfda739160ca45071d6bc068fbe24e74779c8e0f62a8a55",
+    "hardware/ecad/libraries/leshy2_r2.kicad_sym": "b0a8943d7f492adb4291695fb8fc14b14feacb55a9177f70f61137546d5a4399",
     "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch": "43910ab937fd3f95a140f664d6fbaca72d8dc6e9bf60cf46e5eae24158eddf50",
-    "hardware/ecad/kicad/LESHY2-UI-R2/UI_10_S3_DISPLAY_TOUCH.kicad_sch": "966d713569042276e82eccee57051ce9e51665ee3d3f542ecb637e1843064d74",
-    "hardware/ecad/kicad/LESHY2-UI-R2/UI_11_STORAGE_CONTROLS_INDICATORS.kicad_sch": "db1b49afc18821c967d89ab5782b0417bb3d52195eccfa1bafd63c0e20f7cf2e",
-    "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch": "3b922f294736ce1ce0a7a362d44589d2a01d44b067f0b4f793ae8008fe70e1b5",
-    "hardware/ecad/kicad/LESHY2-UI-R2/UI_30_HUB_RP_CORE_SERVICE.kicad_sch": "189c66b4dcc78656ac49ee37eed514e6f09e1388bbef91ee77510ed3a9aa72dd",
+    "hardware/ecad/kicad/LESHY2-UI-R2/UI_10_S3_DISPLAY_TOUCH.kicad_sch": "79ccbf793f1ae63f4f3dad04cd138f58f72db13de1004392ee909dd7b6bd0f94",
+    "hardware/ecad/kicad/LESHY2-UI-R2/UI_11_STORAGE_CONTROLS_INDICATORS.kicad_sch": "4a171483c25661211bfd102198ff44a9492dbe93947b4638816d2bf1ebb78396",
+    "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch": "5495f6d9ceb6291196eb3531900f34e1bd35348ef74b9e2c85d48dd18223c002",
+    "hardware/ecad/kicad/LESHY2-UI-R2/UI_30_HUB_RP_CORE_SERVICE.kicad_sch": "278e35c95ecc151f2e15b1d80311a28715603448e639181eeef9aba08f153bc3",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_31_NRF24_X3_TX_EVIDENCE.kicad_sch": "c907efd07ac4a9918dfbde7d38925f294c1b3c017972f23796c0b91149082bc4",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_40_INTERBOARD_M1.kicad_sch": "424390520ba25ce5ae9c4466c4a54c014fd17a53cb7b58fda7734d31e2e95a17",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_50_FRONT_POWER_SAFETY.kicad_sch": "5c1befee1751e1dfb882c1ee86d04ce19312095f527a901bcbae75691ef1b15b",
@@ -27,12 +31,12 @@
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_01_USB_PD_CHARGE.kicad_sch": "409320258afdc4336c3e0df4f5de3860abec1ee6b100a2c256cfd5b4656f6cc3",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_02_PACK_SAFETY_AON.kicad_sch": "f9cf9450968cdb2fa3ec562f75987b0b47b6043c61ac90164672caee16dc7b55",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch": "ba4c5f515a372d136efc4226129b84984f470d179b3d194d48565dafefc96a1d",
-    "hardware/ecad/kicad/LESHY2-RF-R2/RF_10_RP2354_CORE_SERVICE.kicad_sch": "e2a1674173fc70e58e9f6e0fb8ec663cd91a47dc31bb459b11bc239f1469042c",
+    "hardware/ecad/kicad/LESHY2-RF-R2/RF_10_RP2354_CORE_SERVICE.kicad_sch": "357fc5053fa4b5969fba19faf7fa703b4825ff1563b7880f4579d8c8a63f85b0",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_20_CC1101_VOICE_TX.kicad_sch": "ce7d3ac9fd01b75fe9f2fe6955daa2d6223484877749e9459ebe707408cfba18",
-    "hardware/ecad/kicad/LESHY2-RF-R2/RF_21_BROADCAST_AIRBAND_RX.kicad_sch": "e7706ce9c6e82a4599c50139eaab5746a64b9c1def28666cdac7c5a84e6876bc",
-    "hardware/ecad/kicad/LESHY2-RF-R2/RF_22_AUDIO_CODEC_IO.kicad_sch": "03c0c715d875f53febd78740512cf0f0966159a234d450fd22df729c834f2f8e",
+    "hardware/ecad/kicad/LESHY2-RF-R2/RF_21_BROADCAST_AIRBAND_RX.kicad_sch": "fc5570e5760bf3ad52ee084fa2a2bde43660425ab579f9bff4ad9fdc45263cb0",
+    "hardware/ecad/kicad/LESHY2-RF-R2/RF_22_AUDIO_CODEC_IO.kicad_sch": "55ae508cbc80c5db03392a9208dd033938a9522536fa73966e55893392dafc19",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_30_U214_U219_M5_EXT.kicad_sch": "e353a1a095600332751b857915ea7b003a80d4b1d846d6e4d257ab10573d414e",
-    "hardware/ecad/kicad/LESHY2-RF-R2/RF_31_REAR_CONTROLS.kicad_sch": "67c7037e8904b2c2cacec90310f510eea7ea490e5ea60f73770da883482b1319",
+    "hardware/ecad/kicad/LESHY2-RF-R2/RF_31_REAR_CONTROLS.kicad_sch": "cc43f7b6aa1d4b16ec599893f672a4300709a37f6225028a0b4b9d3cac510898",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_40_INTERBOARD_M1.kicad_sch": "f404c6fbf72b5e11dcc9f2b191efb8a7d42898aed792709b78f7453011d63aa6",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_50_TX_SAFETY_EVIDENCE.kicad_sch": "67cda2eb3cbf423ae77fae65b4773649f4a5196c54609ff58c8d55b4c560a9bd",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch": "991dca61b7971961ce60b0d8b3aeb6466abdb7338085412e40915002c73ec7a3",
@@ -42,9 +46,9 @@
   },
   "method": "reviewed exact-part pin types applied only to isolated native KiCad copies; original and typed XML memberships must be identical; native ERC findings retained without suppression",
   "coverage": {
-    "reviewed_devices": 48,
+    "reviewed_devices": 158,
     "device_count": 245,
-    "reviewed_unique_pins": 683,
+    "reviewed_unique_pins": 1289,
     "unreviewed": [
       {
         "device_id": "abracon_abm8_26mhz_10_d_1_g_t",
@@ -74,50 +78,7 @@
       {
         "device_id": "adi_ad8314armz_reel",
         "pins": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8"
-        ]
-      },
-      {
-        "device_id": "adi_hmc544aetr",
-        "pins": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6"
-        ]
-      },
-      {
-        "device_id": "adi_lt5560edd_trpbf",
-        "pins": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9"
-        ]
-      },
-      {
-        "device_id": "adi_ltc5532_es6_trmpbf",
-        "pins": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6"
+          "4"
         ]
       },
       {
@@ -129,19 +90,12 @@
       {
         "device_id": "alps_ec11e18244au",
         "pins": [
-          "A",
-          "B",
-          "C",
-          "MP",
-          "S1",
-          "S2"
+          "MP"
         ]
       },
       {
         "device_id": "alps_skrtlae010",
         "pins": [
-          "1",
-          "2",
           "MP"
         ]
       },
@@ -183,54 +137,6 @@
         ]
       },
       {
-        "device_id": "diodes_2n7002dw_7_f",
-        "pins": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6"
-        ]
-      },
-      {
-        "device_id": "diodes_bat54_7_f",
-        "pins": [
-          "1",
-          "2",
-          "3"
-        ]
-      },
-      {
-        "device_id": "diodes_dmn2056u_7",
-        "pins": [
-          "1",
-          "2",
-          "3"
-        ]
-      },
-      {
-        "device_id": "diodes_mmbt3904_7_f",
-        "pins": [
-          "1",
-          "2",
-          "3"
-        ]
-      },
-      {
-        "device_id": "diodes_pam8302a_aycr",
-        "pins": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8"
-        ]
-      },
-      {
         "device_id": "epson_q13fc13500005",
         "pins": [
           "1",
@@ -260,329 +166,23 @@
         ]
       },
       {
-        "device_id": "gct_rfpc_sma31_fn_175_a",
-        "pins": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ]
-      },
-      {
-        "device_id": "gct_rfpc_sma32_fn_175_a",
-        "pins": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ]
-      },
-      {
-        "device_id": "gct_usb4105_gf_a",
-        "pins": [
-          "A1",
-          "A12",
-          "A4",
-          "A5",
-          "A6",
-          "A7",
-          "A8",
-          "A9",
-          "B1",
-          "B12",
-          "B4",
-          "B5",
-          "B6",
-          "B7",
-          "B8",
-          "B9",
-          "SH"
-        ]
-      },
-      {
-        "device_id": "hirose_dm3at_sf_pejm5",
-        "pins": [
-          "1",
-          "10",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "SH"
-        ]
-      },
-      {
         "device_id": "hirose_fh34srj_50s_0_5sh_50",
         "pins": [
-          "1",
-          "10",
-          "11",
-          "12",
-          "13",
-          "14",
-          "15",
-          "16",
-          "17",
-          "18",
-          "19",
-          "2",
-          "20",
-          "21",
-          "22",
-          "23",
-          "24",
-          "25",
-          "26",
-          "27",
-          "28",
-          "29",
-          "3",
-          "30",
-          "31",
-          "32",
-          "33",
-          "34",
-          "35",
-          "36",
-          "37",
-          "38",
-          "39",
-          "4",
-          "40",
-          "41",
-          "42",
-          "43",
-          "44",
-          "45",
-          "46",
-          "47",
-          "48",
-          "49",
-          "5",
-          "50",
-          "6",
-          "7",
-          "8",
-          "9",
           "MP1",
           "MP2"
         ]
       },
       {
-        "device_id": "hirose_fx8c_80p_sv1_92",
-        "pins": [
-          "1",
-          "10",
-          "11",
-          "12",
-          "13",
-          "14",
-          "15",
-          "16",
-          "17",
-          "18",
-          "19",
-          "2",
-          "20",
-          "21",
-          "22",
-          "23",
-          "24",
-          "25",
-          "26",
-          "27",
-          "28",
-          "29",
-          "3",
-          "30",
-          "31",
-          "32",
-          "33",
-          "34",
-          "35",
-          "36",
-          "37",
-          "38",
-          "39",
-          "4",
-          "40",
-          "41",
-          "42",
-          "43",
-          "44",
-          "45",
-          "46",
-          "47",
-          "48",
-          "49",
-          "5",
-          "50",
-          "51",
-          "52",
-          "53",
-          "54",
-          "55",
-          "56",
-          "57",
-          "58",
-          "59",
-          "6",
-          "60",
-          "61",
-          "62",
-          "63",
-          "64",
-          "65",
-          "66",
-          "67",
-          "68",
-          "69",
-          "7",
-          "70",
-          "71",
-          "72",
-          "73",
-          "74",
-          "75",
-          "76",
-          "77",
-          "78",
-          "79",
-          "8",
-          "80",
-          "9"
-        ]
-      },
-      {
-        "device_id": "hirose_fx8c_80s_sv5_92",
-        "pins": [
-          "1",
-          "10",
-          "11",
-          "12",
-          "13",
-          "14",
-          "15",
-          "16",
-          "17",
-          "18",
-          "19",
-          "2",
-          "20",
-          "21",
-          "22",
-          "23",
-          "24",
-          "25",
-          "26",
-          "27",
-          "28",
-          "29",
-          "3",
-          "30",
-          "31",
-          "32",
-          "33",
-          "34",
-          "35",
-          "36",
-          "37",
-          "38",
-          "39",
-          "4",
-          "40",
-          "41",
-          "42",
-          "43",
-          "44",
-          "45",
-          "46",
-          "47",
-          "48",
-          "49",
-          "5",
-          "50",
-          "51",
-          "52",
-          "53",
-          "54",
-          "55",
-          "56",
-          "57",
-          "58",
-          "59",
-          "6",
-          "60",
-          "61",
-          "62",
-          "63",
-          "64",
-          "65",
-          "66",
-          "67",
-          "68",
-          "69",
-          "7",
-          "70",
-          "71",
-          "72",
-          "73",
-          "74",
-          "75",
-          "76",
-          "77",
-          "78",
-          "79",
-          "8",
-          "80",
-          "9"
-        ]
-      },
-      {
-        "device_id": "hirose_ufl_r_smt_1_10",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "infineon_bgs13sn8e6327xtsa1",
-        "pins": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8"
-        ]
-      },
-      {
         "device_id": "jae_dx07s016ja1r1500",
         "pins": [
-          "A1",
-          "A12",
-          "A4",
           "A5",
           "A6",
           "A7",
           "A8",
-          "A9",
-          "B1",
-          "B12",
-          "B4",
           "B5",
           "B6",
           "B7",
           "B8",
-          "B9",
           "SH"
         ]
       },
@@ -598,15 +198,6 @@
         "pins": [
           "1",
           "2"
-        ]
-      },
-      {
-        "device_id": "keystone_1048p",
-        "pins": [
-          "1",
-          "2",
-          "3",
-          "4"
         ]
       },
       {
@@ -660,246 +251,7 @@
         ]
       },
       {
-        "device_id": "minicircuits_pga_103_plus",
-        "pins": [
-          "1",
-          "2",
-          "3"
-        ]
-      },
-      {
         "device_id": "murata_blm18pg181sn1d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_gcm1555c1h121fa16d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_gcm1555c1h200fa16d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_gjm1555c1h100jb01d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_gjm1555c1h101jb01d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_gjm1555c1h150jb01d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_gjm1555c1h1r2bb01d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_gjm1555c1h1r4wb01d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_gjm1555c1h4r7bb01d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_gjm1555c1h5r7wb01d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_gjm1555c1h5r8wb01d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_gjm1555c1h6r2db01d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_gjm1555c1h8r0db01d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_gjm1555c1hr47bb01d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_gjm1555c1hr60bb01d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_grm1555c1h102ja01d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_grm1555c1h121ja01d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_grm1555c1h220ja01d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_grm1555c1h221ja01d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_grm1555c1h390ja01d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_grm155r71a474ke01d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_grm155r71e473ka88d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_grm155r71h103ka88d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_grm155r71h472ka01d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_grm188r60j106me47d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_grm188r71e224ka88d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_grm188r71e474ka12d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_grm188z71a475me15d",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_grm21br60j226me39l",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_grm21br71e225ke11l",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_grm31c5c1h224je02l",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_grm31cr71a226ke15l",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_grm31cr71e106ma12l",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "murata_grm32er71e226ke15l",
         "pins": [
           "1",
           "2"
@@ -1004,14 +356,6 @@
         ]
       },
       {
-        "device_id": "nexperia_bat54s_215",
-        "pins": [
-          "1",
-          "2",
-          "3"
-        ]
-      },
-      {
         "device_id": "nexperia_pesd24vy1bsf",
         "pins": [
           "1",
@@ -1065,32 +409,6 @@
         ]
       },
       {
-        "device_id": "omron_b3s_1100p",
-        "pins": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ]
-      },
-      {
-        "device_id": "onsemi_bat54alt1g",
-        "pins": [
-          "1",
-          "2",
-          "3"
-        ]
-      },
-      {
-        "device_id": "onsemi_bav70lt1g",
-        "pins": [
-          "1",
-          "2",
-          "3"
-        ]
-      },
-      {
         "device_id": "onsemi_cat24c512wi_gt3",
         "pins": [
           "1",
@@ -1101,21 +419,6 @@
           "6",
           "7",
           "8"
-        ]
-      },
-      {
-        "device_id": "onsemi_fsusb42_mux",
-        "pins": [
-          "1",
-          "10",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9"
         ]
       },
       {
@@ -1178,17 +481,6 @@
         "pins": [
           "1",
           "2"
-        ]
-      },
-      {
-        "device_id": "same_sky_sj_43504_smt_tr",
-        "pins": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6"
         ]
       },
       {
@@ -1342,185 +634,9 @@
         ]
       },
       {
-        "device_id": "ti_lmv331_idbvr",
-        "pins": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ]
-      },
-      {
-        "device_id": "ti_tlv1821_dckr",
-        "pins": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ]
-      },
-      {
-        "device_id": "ti_tlv1824_pwr",
-        "pins": [
-          "1",
-          "10",
-          "11",
-          "12",
-          "13",
-          "14",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9"
-        ]
-      },
-      {
-        "device_id": "ti_tlv9061_idbvr",
-        "pins": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ]
-      },
-      {
-        "device_id": "ti_tmux1136_dgsr",
-        "pins": [
-          "1",
-          "10",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9"
-        ]
-      },
-      {
-        "device_id": "ti_tpd2eusb30a_drtr",
-        "pins": [
-          "1",
-          "2",
-          "3"
-        ]
-      },
-      {
-        "device_id": "ti_tpd4e05u06_dqar",
-        "pins": [
-          "1",
-          "10",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9"
-        ]
-      },
-      {
         "device_id": "ti_tpd4s201_rukr",
         "pins": [
-          "1",
-          "10",
-          "11",
-          "12",
-          "13",
-          "14",
-          "15",
-          "16",
-          "17",
-          "18",
-          "19",
-          "2",
-          "20",
-          "21",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9"
-        ]
-      },
-      {
-        "device_id": "ti_tpd8e003_dqdr",
-        "pins": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9"
-        ]
-      },
-      {
-        "device_id": "ti_tps3435cakagddfr",
-        "pins": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8"
-        ]
-      },
-      {
-        "device_id": "ti_tps3808g33_dbvr",
-        "pins": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6"
-        ]
-      },
-      {
-        "device_id": "ti_tps3839k33_dbzr",
-        "pins": [
-          "1",
-          "2",
           "3"
-        ]
-      },
-      {
-        "device_id": "ti_ts5a63157_dckr",
-        "pins": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6"
-        ]
-      },
-      {
-        "device_id": "ti_tvs2200_drvr",
-        "pins": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7"
         ]
       },
       {
@@ -1697,244 +813,6 @@
         ]
       },
       {
-        "device_id": "yageo_rc0402fr_07100kl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_07100rl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_0710kl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_07110kl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_0712kl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_07169kl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_07196kl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_071k82l",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_071kl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_071ml",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_07220kl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_07220rl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_07240kl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_0730k1l",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_0730kl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_0733kl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_0733rl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_073k32l",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_0742k2l",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_0744k2l",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_0745k3l",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_07470rl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_0747kl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_0749r9l",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_074k7l",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_0752r3l",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_0756kl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_075k1l",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_07620kl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_0768kl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_0782rl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402fr_0793r1l",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0402jr_070rl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
-        "device_id": "yageo_rc0603fr_071kl",
-        "pins": [
-          "1",
-          "2"
-        ]
-      },
-      {
         "device_id": "yageo_rt0402brd07100kl",
         "pins": [
           "1",
@@ -2066,22 +944,154 @@
     {
       "device_id": "ti_mspm0c1106_sdgs20r",
       "finding": "PA1/NRST, PA19/SWDIO and PA20/SWCLK are GPIO-capable at device level. Current safety/reset/debug configuration must narrow direction separately; map does not prove safe boot configuration."
+    },
+    {
+      "device_id": "adi_ad8314armz_reel",
+      "finding": "Pin 4 FLTR is the external compensation-capacitor terminal to V_UP. Its function is verified, but a simple input/output electrical direction is not established; it is deliberately omitted from reviewed pins rather than marked passive as a placeholder."
+    },
+    {
+      "device_id": "adi_ad8314armz_reel",
+      "finding": "Detector feedback, filter stability, ADC range, RF loading and disabled-state behavior remain outside this pin-type review."
+    },
+    {
+      "device_id": "adi_hmc544aetr",
+      "finding": "Control-state complementarity, control voltage, RF-port DC isolation and matched transmission-line behavior are not established by passive RF-terminal typing."
+    },
+    {
+      "device_id": "adi_lt5560edd_trpbf",
+      "finding": "Open-collector typing does not prove the analog output load/bias path: both output collectors require the reviewed transformer/inductor or resistor feed, valid common-mode voltage and current limits."
+    },
+    {
+      "device_id": "adi_lt5560edd_trpbf",
+      "finding": "Mixer input bias return, LO level, matching and frequency conversion remain separate analog checks."
+    },
+    {
+      "device_id": "adi_ltc5532_es6_trmpbf",
+      "finding": "Gain/offset feedback, output/ADC loading and RF input DC blocking need circuit-level verification."
+    },
+    {
+      "device_id": "minicircuits_pga_103_plus",
+      "finding": "Pad 3 has simultaneous analog-output and power-input roles; a single KiCad pin type cannot express both. Verify the DC feed through the bias choke and RF output/DC block separately; this pin must never be treated as a self-powered power_out."
+    },
+    {
+      "device_id": "minicircuits_pga_103_plus",
+      "finding": "This pin review is not proof of LNA stability, matching, gain, noise figure, bias current or thermal adequacy."
+    },
+    {
+      "device_id": "infineon_bgs13sn8e6327xtsa1",
+      "finding": "Switch control sequencing, supply state, RF power/DC limits and routing/matching remain circuit-level obligations."
+    },
+    {
+      "device_id": "ti_lmv331_idbvr",
+      "finding": "Input common-mode/differential limits, hysteresis, pull-up rail and current must be checked in the actual powered and unpowered circuit."
+    },
+    {
+      "device_id": "ti_tlv1821_dckr",
+      "finding": "Output pull-up, input range, hysteresis and POR timing require configuration-aware review. The datasheet permits unused open-drain outputs to float or connect to V-, but that is not a general permission for arbitrary output ties."
+    },
+    {
+      "device_id": "ti_tlv1824_pwr",
+      "finding": "Check pull-ups and each channel's actual thresholds/input polarity and POR state. Wired output combinations require deliberate open-drain logic; this type alone does not validate the resulting logic function."
+    },
+    {
+      "device_id": "ti_tlv9061_idbvr",
+      "finding": "Feedback sign, gain, bandwidth, capacitive-load stability, common-mode range and output swing are not proven by input/output pin typing."
+    },
+    {
+      "device_id": "diodes_pam8302a_aycr",
+      "finding": "The exact U-DFN3030-8E has a central exposed pad, shown without a pin number or electrical assignment in DS41333. Current RF U86 speaker_amp footprint has an unnumbered 1.60x2.35-mm copper/paste pad; H2 materialization excludes it from electrical contacts. Its permitted electrical connection and thermal implementation need exact manufacturer/package evidence. Do not invent pad9=GND or count this unnumbered pad as electrically verified."
+    },
+    {
+      "device_id": "diodes_pam8302a_aycr",
+      "finding": "BTL load connection, shutdown level, supply filtering, output EMI and dissipation require circuit/layout verification."
+    },
+    {
+      "device_id": "diodes_2n7002dw_7_f",
+      "finding": "Conduction and level-shifting behavior require circuit-level review; passive D/S types do not imply a permanently connected path."
+    },
+    {
+      "device_id": "diodes_dmn2056u_7",
+      "finding": "A MOSFET channel is not an independent power source; gate bias and body-diode orientation require circuit-level review."
+    },
+    {
+      "device_id": "diodes_mmbt3904_7_f",
+      "finding": "ERC cannot establish transistor bias, gain or whether a particular instance operates as an open-collector stage."
+    },
+    {
+      "device_id": "ti_tpd4e05u06_dqar",
+      "finding": "NC6/7/9/10 are not internal pass-through connections or additional protected channels; permitted routing connections must not be mistaken for internal continuity."
+    },
+    {
+      "device_id": "ti_tpd4s201_rukr",
+      "finding": "Pad3 VBIAS is omitted: primary pin table specifies an ESD-support capacitor terminal but does not establish its source/sink direction; needs further primary circuit evidence before typing."
+    },
+    {
+      "device_id": "ti_tpd4s201_rukr",
+      "finding": "Protected CC/SBU continuity, dead-battery pull-down configuration and allowed fault conditions are not established by static ERC."
+    },
+    {
+      "device_id": "ti_tps3435cakagddfr",
+      "finding": "Pin typing does not verify watchdog timeout selection, startup sequencing or fault-response logic."
+    },
+    {
+      "device_id": "ti_tvs2200_drvr",
+      "finding": "Clamp voltage, surge current and external source impedance require circuit-level checks, not static ERC."
+    },
+    {
+      "device_id": "onsemi_fsusb42_mux",
+      "finding": "Static ERC does not prove selected-path continuity, USB direction or safe switching sequence."
+    },
+    {
+      "device_id": "ti_tmux1136_dgsr",
+      "finding": "Static ERC does not establish conditional analog-path continuity or permitted signal range."
+    },
+    {
+      "device_id": "ti_ts5a63157_dckr",
+      "finding": "Static ERC does not establish conditional switch continuity or powered-off isolation."
+    },
+    {
+      "device_id": "jae_dx07s016ja1r1500",
+      "finding": "SJ121836/SJ121837 full exact contact drawing was not obtained in this review. A5/A6/A7/A8/B5/B6/B7/B8 and SH are deliberately omitted from verified pins; do not infer their full physical mapping from USB family convention or another manufacturer's receptacle."
+    },
+    {
+      "device_id": "hirose_fx8c_80p_sv1_92",
+      "finding": "The inspected controlled sheet establishes 80 identical passive contacts and the polarization mark but does not explicitly enumerate all pin numbers or a plug-to-receptacle numbering table. Native 1..80 labels are a CAD convention here; full M1 mating-order proof remains in the board-to-board interface/geometry contract, not established by this type map alone."
+    },
+    {
+      "device_id": "hirose_fx8c_80s_sv5_92",
+      "finding": "The inspected controlled sheet establishes 80 identical passive contacts and the polarization mark but does not explicitly enumerate all pin numbers or a plug-to-receptacle numbering table. Native 1..80 labels are a CAD convention here; full M1 mating-order proof remains in the board-to-board interface/geometry contract, not established by this type map alone."
+    },
+    {
+      "device_id": "gct_rfpc_sma31_fn_175_a",
+      "finding": "Exact controlled drawing could not be visually re-opened: GCT download returned HTTP403, and a prior local .pdf was HTML rather than PDF. Connector passive function is established by the manufacturer product; native 1..5 launch/shell aliases still need an independent exact drawing-to-footprint positional crosscheck. Do not treat this entry as a released landing-pattern audit."
+    },
+    {
+      "device_id": "gct_rfpc_sma32_fn_175_a",
+      "finding": "Exact controlled drawing could not be visually re-opened: GCT download returned HTTP403, and a prior local .pdf was HTML rather than PDF. Connector passive function is established by the manufacturer product; native 1..5 launch/shell aliases still need an independent exact drawing-to-footprint positional crosscheck. Do not treat this entry as a released landing-pattern audit."
+    },
+    {
+      "device_id": "keystone_1048p",
+      "finding": "The catalog proves the four physical holder contacts but does not legibly establish the exact polarized 1048P slot-to-pad plus/minus assignment. Do not promote current SLOT0_POS/SLOT1_POS labels to independently verified polarity until the exact 1048P drawing or a sufficiently clear manufacturer photo is checked. Cells and system wiring, not the bare holder, establish supply-source semantics."
+    },
+    {
+      "device_id": "alps_ec11e18244au",
+      "finding": "The switch is a symmetric isolated D/E pair; current H2 D->S1/E->S2 aliases were not accepted as manufacturer-position proof in this pass. Final D/E-to-native-S1/S2 positional review is separate from the verified passive push-switch type."
     }
   ],
   "projects": [
     {
       "project": "LESHY2-UI-R2",
-      "cached_pin_types_reviewed": 322,
+      "cached_pin_types_reviewed": 741,
       "native_connectivity_unchanged": true,
       "physical_netlist_nodes": 1598,
-      "native_xml_sha256": "13dbb52baff5f9707463edfc2ad80fcbc2cdd0820c40076b3b40752ad3520089",
-      "typed_xml_sha256": "f5ac3a5382517c638244056e974a77293102513a76a7afbaf34a3c59a322b173",
-      "erc_report_sha256": "36e5f418470709eba8d4434584ce1e6a790b2989b78312efbb2acdfe6f7f35a5",
-      "erc_content_sha256": "8cc88ab62ad88bfde3e83b9ecdc3ec6307163945c6dad0075bb22027de0f4f6c",
+      "native_xml_sha256": "b57c3fc4e50cdf56634a208548544dc026883586e07942e9f3d319bc6290ad6c",
+      "typed_xml_sha256": "b048131dff1939fb360dfe707113c788155b4cf16c6e728c7a9b20c78516ebbf",
+      "erc_report_sha256": "f0bd2a43b78942b696305363829e4c7eec61f7f2e239ea8f9b449174a8b6a400",
+      "erc_content_sha256": "1bde7b67469ae7dbb9d4cbaf8d74c135a3f5b63b36819f300103fb415b61cd29",
       "native_erc": {
         "$schema": "https://schemas.kicad.org/erc.v1.json",
         "coordinate_units": "mm",
-        "date": "2026-09-07T14:06:55",
+        "date": "2026-09-07T14:53:56",
         "ignored_checks": [
           {
             "description": "Global label only appears once in the schematic",
@@ -2281,6 +1291,13 @@
               "reason": "3V3 module supply"
             },
             {
+              "reference": "U22",
+              "instance": "c5_service_usb_switch",
+              "pin": "1",
+              "type": "power_in",
+              "reason": "VCC supply"
+            },
+            {
               "reference": "U25",
               "instance": "ir_power_switch",
               "pin": "1",
@@ -2372,6 +1389,13 @@
               "reason": "IOVDD_76 supply/ground"
             },
             {
+              "reference": "U31",
+              "instance": "hub_rp_service_usb_switch",
+              "pin": "1",
+              "type": "power_in",
+              "reason": "VCC supply"
+            },
+            {
               "reference": "U4",
               "instance": "backlight_efuse",
               "pin": "6",
@@ -2428,11 +1452,67 @@
               "reason": "VCC: supply input"
             },
             {
+              "reference": "U32",
+              "instance": "det_nrf0",
+              "pin": "8",
+              "type": "power_in",
+              "reason": "VPOS positive supply input."
+            },
+            {
+              "reference": "U33",
+              "instance": "det_nrf1",
+              "pin": "8",
+              "type": "power_in",
+              "reason": "VPOS positive supply input."
+            },
+            {
+              "reference": "U34",
+              "instance": "det_nrf2",
+              "pin": "8",
+              "type": "power_in",
+              "reason": "VPOS positive supply input."
+            },
+            {
               "reference": "U47",
               "instance": "nrf_backup_gate",
               "pin": "5",
               "type": "power_in",
               "reason": "VCC: supply input"
+            },
+            {
+              "reference": "U50",
+              "instance": "det_c5",
+              "pin": "6",
+              "type": "power_in",
+              "reason": "VCC positive supply input."
+            },
+            {
+              "reference": "U52",
+              "instance": "det_s3",
+              "pin": "6",
+              "type": "power_in",
+              "reason": "VCC positive supply input."
+            },
+            {
+              "reference": "U53",
+              "instance": "evidence_cmp_a",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "V+ positive supply input."
+            },
+            {
+              "reference": "U54",
+              "instance": "evidence_cmp_b",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "V+ positive supply input."
+            },
+            {
+              "reference": "U55",
+              "instance": "ir_evidence_amp",
+              "pin": "5",
+              "type": "power_in",
+              "reason": "V+ positive supply input."
             },
             {
               "reference": "U56",
@@ -2498,6 +1578,13 @@
               "reason": "GND: supply return"
             },
             {
+              "reference": "U12",
+              "instance": "ui_matrix_esd",
+              "pin": "9",
+              "type": "power_in",
+              "reason": "Native pad9 represents central exposed GND pad"
+            },
+            {
               "reference": "U13",
               "instance": "ui_matrix_io",
               "pin": "12",
@@ -2540,6 +1627,20 @@
               "reason": "GND including exposed pad29"
             },
             {
+              "reference": "U15",
+              "instance": "c5_dbg_esd",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U15",
+              "instance": "c5_dbg_esd",
+              "pin": "8",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
               "reference": "U17",
               "instance": "c5_service_mux_logic_inverters",
               "pin": "2",
@@ -2561,11 +1662,39 @@
               "reason": "GND: supply return"
             },
             {
+              "reference": "U2",
+              "instance": "s3_dbg_esd",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U2",
+              "instance": "s3_dbg_esd",
+              "pin": "8",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
               "reference": "U20",
               "instance": "c5_service_reset_proof_inverters",
               "pin": "2",
               "type": "power_in",
               "reason": "GND: supply return"
+            },
+            {
+              "reference": "U21",
+              "instance": "c5_service_usb_esd",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U22",
+              "instance": "c5_service_usb_switch",
+              "pin": "5",
+              "type": "power_in",
+              "reason": "Ground return"
             },
             {
               "reference": "U25",
@@ -2601,6 +1730,55 @@
               "pin": "81",
               "type": "power_in",
               "reason": "GND_EP supply/ground"
+            },
+            {
+              "reference": "U29",
+              "instance": "hub_rp_dbg_esd",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U29",
+              "instance": "hub_rp_dbg_esd",
+              "pin": "8",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U30",
+              "instance": "hub_rp_service_usb_esd",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U31",
+              "instance": "hub_rp_service_usb_switch",
+              "pin": "5",
+              "type": "power_in",
+              "reason": "Ground return"
+            },
+            {
+              "reference": "U32",
+              "instance": "det_nrf0",
+              "pin": "5",
+              "type": "power_in",
+              "reason": "COMM device supply return."
+            },
+            {
+              "reference": "U33",
+              "instance": "det_nrf1",
+              "pin": "5",
+              "type": "power_in",
+              "reason": "COMM device supply return."
+            },
+            {
+              "reference": "U34",
+              "instance": "det_nrf2",
+              "pin": "5",
+              "type": "power_in",
+              "reason": "COMM device supply return."
             },
             {
               "reference": "U35",
@@ -2736,6 +1914,48 @@
               "reason": "Ground"
             },
             {
+              "reference": "U5",
+              "instance": "front_function_esd",
+              "pin": "9",
+              "type": "power_in",
+              "reason": "Native pad9 represents central exposed GND pad"
+            },
+            {
+              "reference": "U50",
+              "instance": "det_c5",
+              "pin": "2",
+              "type": "power_in",
+              "reason": "GND supply return."
+            },
+            {
+              "reference": "U52",
+              "instance": "det_s3",
+              "pin": "2",
+              "type": "power_in",
+              "reason": "GND supply return."
+            },
+            {
+              "reference": "U53",
+              "instance": "evidence_cmp_a",
+              "pin": "12",
+              "type": "power_in",
+              "reason": "V- negative supply/return."
+            },
+            {
+              "reference": "U54",
+              "instance": "evidence_cmp_b",
+              "pin": "12",
+              "type": "power_in",
+              "reason": "V- negative supply/return."
+            },
+            {
+              "reference": "U55",
+              "instance": "ir_evidence_amp",
+              "pin": "2",
+              "type": "power_in",
+              "reason": "V- negative supply or ground in single-supply operation."
+            },
+            {
               "reference": "U56",
               "instance": "safe_c5_fault_reset_buffer",
               "pin": "3",
@@ -2755,6 +1975,34 @@
               "pin": "7",
               "type": "power_in",
               "reason": "GND: supply return"
+            },
+            {
+              "reference": "U6",
+              "instance": "sd_esd_a",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U6",
+              "instance": "sd_esd_a",
+              "pin": "8",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U7",
+              "instance": "sd_esd_b",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U7",
+              "instance": "sd_esd_b",
+              "pin": "8",
+              "type": "power_in",
+              "reason": "ESD ground return"
             },
             {
               "reference": "U8",
@@ -2819,17 +2067,17 @@
     },
     {
       "project": "LESHY2-RF-R2",
-      "cached_pin_types_reviewed": 696,
+      "cached_pin_types_reviewed": 1309,
       "native_connectivity_unchanged": true,
       "physical_netlist_nodes": 2708,
-      "native_xml_sha256": "66a16340f0ce3758a179ded500bf07e75e56ce4c2e7376f13052c02015d9c831",
-      "typed_xml_sha256": "9fc86e1f7e219fa3773c041681ddc977e21e034de5a0f2d7a29aa5df1277b8e4",
-      "erc_report_sha256": "58c41672cf2e1b62d8428a89efd3bf39f24fcf83e1243a3b9856d317b250e13f",
-      "erc_content_sha256": "4124022254f6a690c0755f1e074460b4d03eed9763cc6a900608528cb28604c8",
+      "native_xml_sha256": "67747b19bfecb64ed5a0d1e8056a5a737bca97206a9a8b7c7eb1cb93a4514d0b",
+      "typed_xml_sha256": "251f92ab4f56b11706f56f6ab49b48d5f1843a64911d85339549ba8e0c539230",
+      "erc_report_sha256": "64157a7110f835107f7c89048476f4355ae6024f9b69091fa233e47a868d73c9",
+      "erc_content_sha256": "7fa9f89d935cd2501827aa0a60a078c9b4060d9ddf4fea00dbe651bd1d1e1e1a",
       "native_erc": {
         "$schema": "https://schemas.kicad.org/erc.v1.json",
         "coordinate_units": "mm",
-        "date": "2026-09-07T14:07:00",
+        "date": "2026-09-07T14:54:00",
         "ignored_checks": [
           {
             "description": "Global label only appears once in the schematic",
@@ -3099,6 +2347,21 @@
                 "description": "Input Power pin not driven by any Output Power pins",
                 "items": [
                   {
+                    "description": "Symbol U40 Вывод 3 [GND, Вход питания, Линия]",
+                    "pos": {
+                      "x": 2.1844,
+                      "y": 4.445
+                    },
+                    "uuid": "44eaf9d3-bdc7-591a-b4dd-d54e5967581c"
+                  }
+                ],
+                "severity": "error",
+                "type": "power_pin_not_driven"
+              },
+              {
+                "description": "Input Power pin not driven by any Output Power pins",
+                "items": [
+                  {
                     "description": "Symbol U46 Вывод 5 [IN, Вход питания, Линия]",
                     "pos": {
                       "x": 9.4996,
@@ -3115,27 +2378,28 @@
           {
             "path": "/RF_21_BROADCAST_AIRBAND_RX/",
             "uuid_path": "/5e549a42-c087-52ca-add4-6f2c9a090399/be6ea75e-8b96-5676-8270-e553d48005c5",
-            "violations": []
-          },
-          {
-            "path": "/RF_22_AUDIO_CODEC_IO/",
-            "uuid_path": "/5e549a42-c087-52ca-add4-6f2c9a090399/920ab1a0-8deb-5392-9ef8-d80703131015",
             "violations": [
               {
                 "description": "Input Power pin not driven by any Output Power pins",
                 "items": [
                   {
-                    "description": "Symbol U69 Вывод 2 [GND, Вход питания, Линия]",
+                    "description": "Symbol U53 Вывод 3 [RF_OUT_DC_IN, Вход питания, Линия]",
                     "pos": {
-                      "x": 4.0132,
-                      "y": 3.3655
+                      "x": 5.334,
+                      "y": 2.6416
                     },
-                    "uuid": "b0ba5aa8-ccd7-5780-9d2a-f785a2abe200"
+                    "uuid": "34eac402-04c9-5ab5-a33b-ee2de2779a73"
                   }
                 ],
                 "severity": "error",
                 "type": "power_pin_not_driven"
-              },
+              }
+            ]
+          },
+          {
+            "path": "/RF_22_AUDIO_CODEC_IO/",
+            "uuid_path": "/5e549a42-c087-52ca-add4-6f2c9a090399/920ab1a0-8deb-5392-9ef8-d80703131015",
+            "violations": [
               {
                 "description": "Input Power pin not driven by any Output Power pins",
                 "items": [
@@ -3198,7 +2462,7 @@
       },
       "erc_count_by_type": {
         "pin_to_pin": 1,
-        "power_pin_not_driven": 16
+        "power_pin_not_driven": 17
       },
       "direct_net_findings": [
         {
@@ -3269,6 +2533,20 @@
               "reason": "Ground"
             },
             {
+              "reference": "U101",
+              "instance": "unit_esd",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U101",
+              "instance": "unit_esd",
+              "pin": "8",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
               "reference": "U102",
               "instance": "unit_signal_iso",
               "pin": "2",
@@ -3276,11 +2554,67 @@
               "reason": "GND: supply return"
             },
             {
+              "reference": "U103",
+              "instance": "unit_supervisor",
+              "pin": "2",
+              "type": "power_in",
+              "reason": "Ground return"
+            },
+            {
+              "reference": "U104",
+              "instance": "encoder_ptt_esd",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U104",
+              "instance": "encoder_ptt_esd",
+              "pin": "8",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U105",
+              "instance": "rear_control_esd",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U105",
+              "instance": "rear_control_esd",
+              "pin": "8",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
               "reference": "U106",
               "instance": "slow_io",
               "pin": "25",
               "type": "power_in",
               "reason": "GND: supply return"
+            },
+            {
+              "reference": "U108",
+              "instance": "evidence_cmp_cc",
+              "pin": "2",
+              "type": "power_in",
+              "reason": "V- negative supply/return."
+            },
+            {
+              "reference": "U109",
+              "instance": "evidence_cmp_voice",
+              "pin": "2",
+              "type": "power_in",
+              "reason": "V- negative supply/return."
+            },
+            {
+              "reference": "U110",
+              "instance": "evidence_cmp_voice_v",
+              "pin": "2",
+              "type": "power_in",
+              "reason": "V- negative supply/return."
             },
             {
               "reference": "U111",
@@ -3346,6 +2680,27 @@
               "reason": "GND: supply return"
             },
             {
+              "reference": "U125",
+              "instance": "safe_supervisor",
+              "pin": "2",
+              "type": "power_in",
+              "reason": "Ground return"
+            },
+            {
+              "reference": "U126",
+              "instance": "safety_control_esd",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U126",
+              "instance": "safety_control_esd",
+              "pin": "8",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
               "reference": "U127",
               "instance": "safety_controller",
               "pin": "7",
@@ -3372,6 +2727,13 @@
               "pin": "5",
               "type": "power_in",
               "reason": "Ground"
+            },
+            {
+              "reference": "U130",
+              "instance": "safety_watchdog",
+              "pin": "4",
+              "type": "power_in",
+              "reason": "Ground return"
             },
             {
               "reference": "U131",
@@ -3463,6 +2825,34 @@
               "pin": "81",
               "type": "power_in",
               "reason": "GND_EP supply/ground"
+            },
+            {
+              "reference": "U24",
+              "instance": "rf_rp_dbg_esd",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U24",
+              "instance": "rf_rp_dbg_esd",
+              "pin": "8",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U25",
+              "instance": "rf_rp_service_usb_esd",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U26",
+              "instance": "rf_rp_service_usb_switch",
+              "pin": "5",
+              "type": "power_in",
+              "reason": "Ground return"
             },
             {
               "reference": "U27",
@@ -3570,6 +2960,69 @@
               "reason": "GND: supply return"
             },
             {
+              "reference": "U34",
+              "instance": "cc_switch_a",
+              "pin": "8",
+              "type": "power_in",
+              "reason": "GND supply and RF return."
+            },
+            {
+              "reference": "U35",
+              "instance": "cc_switch_b",
+              "pin": "8",
+              "type": "power_in",
+              "reason": "GND supply and RF return."
+            },
+            {
+              "reference": "U36",
+              "instance": "det_cc",
+              "pin": "5",
+              "type": "power_in",
+              "reason": "COMM device supply return."
+            },
+            {
+              "reference": "U37",
+              "instance": "det_voice",
+              "pin": "5",
+              "type": "power_in",
+              "reason": "COMM device supply return."
+            },
+            {
+              "reference": "U38",
+              "instance": "det_voice_v",
+              "pin": "5",
+              "type": "power_in",
+              "reason": "COMM device supply return."
+            },
+            {
+              "reference": "U4",
+              "instance": "pd_vbus_tvs",
+              "pin": "1",
+              "type": "power_in",
+              "reason": "Surge-clamp ground return"
+            },
+            {
+              "reference": "U4",
+              "instance": "pd_vbus_tvs",
+              "pin": "2",
+              "type": "power_in",
+              "reason": "Surge-clamp ground return"
+            },
+            {
+              "reference": "U4",
+              "instance": "pd_vbus_tvs",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "Surge-clamp ground return"
+            },
+            {
+              "reference": "U4",
+              "instance": "pd_vbus_tvs",
+              "pin": "7",
+              "type": "power_in",
+              "reason": "Exposed thermal pad is ground"
+            },
+            {
               "reference": "U41",
               "instance": "voice_band_inverter",
               "pin": "2",
@@ -3619,11 +3072,74 @@
               "reason": "GND: supply return"
             },
             {
+              "reference": "U5",
+              "instance": "product_usb_protector",
+              "pin": "13",
+              "type": "power_in",
+              "reason": "Ground return"
+            },
+            {
+              "reference": "U5",
+              "instance": "product_usb_protector",
+              "pin": "18",
+              "type": "power_in",
+              "reason": "Ground return"
+            },
+            {
+              "reference": "U5",
+              "instance": "product_usb_protector",
+              "pin": "21",
+              "type": "power_in",
+              "reason": "Native pad21 represents thermal pad; table explicitly requires ground plane connection"
+            },
+            {
+              "reference": "U5",
+              "instance": "product_usb_protector",
+              "pin": "8",
+              "type": "power_in",
+              "reason": "Ground return"
+            },
+            {
+              "reference": "U50",
+              "instance": "voice_supervisor",
+              "pin": "2",
+              "type": "power_in",
+              "reason": "Ground return"
+            },
+            {
+              "reference": "U52",
+              "instance": "air_input_selector",
+              "pin": "2",
+              "type": "power_in",
+              "reason": "GND RF/DC return."
+            },
+            {
+              "reference": "U53",
+              "instance": "air_lna",
+              "pin": "2",
+              "type": "power_in",
+              "reason": "Ground; H2 materializes manufacturer GND pins 2 and 4 together as SOT-89-3 pad 2."
+            },
+            {
               "reference": "U54",
               "instance": "air_lo",
               "pin": "8",
               "type": "power_in",
               "reason": "GND"
+            },
+            {
+              "reference": "U55",
+              "instance": "air_mixer",
+              "pin": "9",
+              "type": "power_in",
+              "reason": "Exposed DD pad is explicitly GND and must be soldered to PCB."
+            },
+            {
+              "reference": "U58",
+              "instance": "air_path_selector",
+              "pin": "2",
+              "type": "power_in",
+              "reason": "GND RF/DC return."
             },
             {
               "reference": "U59",
@@ -3682,6 +3198,13 @@
               "reason": "Ground"
             },
             {
+              "reference": "U66",
+              "instance": "receiver_supervisor",
+              "pin": "1",
+              "type": "power_in",
+              "reason": "GND; exact DBZ pin1 is ground, not RESET"
+            },
+            {
               "reference": "U74",
               "instance": "codec_i2c_iso",
               "pin": "4",
@@ -3731,6 +3254,62 @@
               "reason": "Ground"
             },
             {
+              "reference": "U82",
+              "instance": "headphone_esd",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U82",
+              "instance": "headphone_esd",
+              "pin": "8",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U87",
+              "instance": "u214_esd_a",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U87",
+              "instance": "u214_esd_a",
+              "pin": "8",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U88",
+              "instance": "u214_esd_b",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U88",
+              "instance": "u214_esd_b",
+              "pin": "8",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U89",
+              "instance": "u214_esd_c",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
+              "reference": "U89",
+              "instance": "u214_esd_c",
+              "pin": "8",
+              "type": "power_in",
+              "reason": "ESD ground return"
+            },
+            {
               "reference": "U90",
               "instance": "u214_host_buffer_a",
               "pin": "7",
@@ -3757,6 +3336,20 @@
               "pin": "7",
               "type": "power_in",
               "reason": "GND: supply return"
+            },
+            {
+              "reference": "U94",
+              "instance": "u214_supervisor",
+              "pin": "2",
+              "type": "power_in",
+              "reason": "Ground return"
+            },
+            {
+              "reference": "U97",
+              "instance": "u219_field_comparator",
+              "pin": "2",
+              "type": "power_in",
+              "reason": "GND negative supply/return."
             },
             {
               "reference": "U98",
@@ -3948,6 +3541,41 @@
           "net": "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND",
           "pins": [
             {
+              "reference": "U40",
+              "instance": "voice_audio_mux",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "Ground return"
+            },
+            {
+              "reference": "U44",
+              "instance": "voice_control_mux_a",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "Ground return"
+            },
+            {
+              "reference": "U45",
+              "instance": "voice_control_mux_b",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "Ground return"
+            },
+            {
+              "reference": "U67",
+              "instance": "audio_capture_buffer",
+              "pin": "2",
+              "type": "power_in",
+              "reason": "V- negative supply or ground in single-supply operation."
+            },
+            {
+              "reference": "U68",
+              "instance": "audio_capture_selector",
+              "pin": "2",
+              "type": "power_in",
+              "reason": "Ground return"
+            },
+            {
               "reference": "U69",
               "instance": "audio_rx_mux",
               "pin": "2",
@@ -3960,6 +3588,20 @@
               "pin": "4",
               "type": "power_in",
               "reason": "GND: supply return"
+            },
+            {
+              "reference": "U71",
+              "instance": "audio_speaker_selector",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "Ground return"
+            },
+            {
+              "reference": "U72",
+              "instance": "audio_tx_selector",
+              "pin": "2",
+              "type": "power_in",
+              "reason": "Ground return"
             },
             {
               "reference": "U73",
@@ -3983,11 +3625,32 @@
               "reason": "DGND"
             },
             {
+              "reference": "U81",
+              "instance": "codec_supervisor",
+              "pin": "1",
+              "type": "power_in",
+              "reason": "GND; exact DBZ pin1 is ground, not RESET"
+            },
+            {
               "reference": "U84",
               "instance": "headset_control_io",
               "pin": "8",
               "type": "power_in",
               "reason": "GND: supply return"
+            },
+            {
+              "reference": "U85",
+              "instance": "headset_mic_selector",
+              "pin": "2",
+              "type": "power_in",
+              "reason": "Ground return"
+            },
+            {
+              "reference": "U86",
+              "instance": "speaker_amp",
+              "pin": "7",
+              "type": "power_in",
+              "reason": "GND supply return."
             }
           ],
           "status": "requires_source_path_review"
@@ -4002,6 +3665,20 @@
               "pin": "5",
               "type": "power_in",
               "reason": "IN supply"
+            }
+          ],
+          "status": "requires_source_path_review"
+        },
+        {
+          "kind": "no_direct_reviewed_power_output",
+          "net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_LNA_OUT_BIASED",
+          "pins": [
+            {
+              "reference": "U53",
+              "instance": "air_lna",
+              "pin": "3",
+              "type": "power_in",
+              "reason": "RF-OUT and DC-IN share this pad. Type records mandatory external DC bias input, not RF-output direction."
             }
           ],
           "status": "requires_source_path_review"

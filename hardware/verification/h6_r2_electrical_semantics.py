@@ -18,7 +18,8 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[2]
 MATERIAL = ROOT / "hardware/ecad/generated/H2-R2-contact-materialization.json"
 INSTANCES = ROOT / "hardware/ecad/generated/H2-R2-native-instance-ledger.json"
-MAPS = [ROOT / f"hardware/verification/h6-electrical-pins-{name}.json" for name in ("power", "digital", "logic")]
+MAP_NAMES = ("power", "digital", "logic", "analog", "protection", "interfaces", "passives")
+MAPS = [ROOT / f"hardware/verification/h6-electrical-pins-{name}.json" for name in MAP_NAMES]
 PROJECTS = ("LESHY2-UI-R2", "LESHY2-RF-R2")
 OUTPUT = ROOT / "hardware/verification/generated/H6-R2-electrical-semantics.json"
 TYPES = {"input", "output", "bidirectional", "tri_state", "passive", "power_in", "power_out", "open_collector", "open_emitter", "no_connect"}

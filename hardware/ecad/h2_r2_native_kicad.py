@@ -238,6 +238,8 @@ def endpoint_target(rows: list[dict], instance: str, pin: dict) -> tuple[str, st
         raise ValueError(f"unsupported endpoint disposition on {instance}.{pin['number']}: {disposition}")
     if disposition == "connected" and not net:
         raise ValueError(f"connected pin lost net: {instance}.{pin['number']}")
+    if disposition == "connected" and pin.get("type") == "no_connect":
+        raise ValueError(f"connected endpoint uses inherent no_connect symbol pin: {instance}.{pin['number']}")
     return disposition, net
 
 

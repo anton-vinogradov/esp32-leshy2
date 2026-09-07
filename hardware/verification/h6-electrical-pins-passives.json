@@ -1,0 +1,1645 @@
+{
+  "schema_version": 1,
+  "scope": "H6-NATIVE-ELECTRICAL-SEMANTICS family-evidenced terminal typing only: 34 exact Yageo RC0402/RC0603 resistor groups and 33 exact Murata GRM/GJM/GCM MLCC groups present in current H2, each checked for native pad inventory exactly1/2 and END_1/END_2 topology. This static allowlist does not include other two-pad devices, ferrite beads, resistor arrays, NFM/LL* capacitors or unknown families. Passive means a verified non-driven component termination, not unknown/unreviewed semantics. Native numbers1/2 identify the two nonpolar terminations; no manufacturer polarity/numbering assignment is claimed. Family evidence establishes only passive electrical type, not orderability, live availability, selected values, voltage/power/temperature ratings, RF suitability, DC bias, footprint dimensions, circuit correctness or production release approval. Candidate overlay only; production symbols are unchanged.",
+  "devices": [
+    {
+      "device_id": "murata_gcm1555c1h121fa16d",
+      "mpn": "GCM1555C1H121FA16D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/gcm",
+          "section": "GCM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GCM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GCM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_gcm1555c1h200fa16d",
+      "mpn": "GCM1555C1H200FA16D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/gcm",
+          "section": "GCM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GCM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GCM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_gjm1555c1h100jb01d",
+      "mpn": "Murata GJM1555C1H100JB01D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/gjm",
+          "section": "GJM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_gjm1555c1h101jb01d",
+      "mpn": "Murata GJM1555C1H101JB01D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/gjm",
+          "section": "GJM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_gjm1555c1h150jb01d",
+      "mpn": "Murata GJM1555C1H150JB01D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/gjm",
+          "section": "GJM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_gjm1555c1h1r2bb01d",
+      "mpn": "Murata GJM1555C1H1R2BB01D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/gjm",
+          "section": "GJM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_gjm1555c1h1r4wb01d",
+      "mpn": "GJM1555C1H1R4WB01D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/gjm",
+          "section": "GJM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_gjm1555c1h4r7bb01d",
+      "mpn": "GJM1555C1H4R7BB01D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/gjm",
+          "section": "GJM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_gjm1555c1h5r7wb01d",
+      "mpn": "GJM1555C1H5R7WB01D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/gjm",
+          "section": "GJM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_gjm1555c1h5r8wb01d",
+      "mpn": "GJM1555C1H5R8WB01D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/gjm",
+          "section": "GJM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_gjm1555c1h6r2db01d",
+      "mpn": "Murata GJM1555C1H6R2DB01D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/gjm",
+          "section": "GJM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_gjm1555c1h8r0db01d",
+      "mpn": "Murata GJM1555C1H8R0DB01D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/gjm",
+          "section": "GJM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_gjm1555c1hr47bb01d",
+      "mpn": "Murata GJM1555C1HR47BB01D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/gjm",
+          "section": "GJM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_gjm1555c1hr60bb01d",
+      "mpn": "Murata GJM1555C1HR60BB01D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/gjm",
+          "section": "GJM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GJM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_grm1555c1h102ja01d",
+      "mpn": "Murata GRM1555C1H102JA01D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/grm",
+          "section": "GRM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_grm1555c1h121ja01d",
+      "mpn": "Murata GRM1555C1H121JA01D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/grm",
+          "section": "GRM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_grm1555c1h220ja01d",
+      "mpn": "Murata GRM1555C1H220JA01D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/grm",
+          "section": "GRM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_grm1555c1h221ja01d",
+      "mpn": "Murata GRM1555C1H221JA01D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/grm",
+          "section": "GRM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_grm1555c1h390ja01d",
+      "mpn": "Murata GRM1555C1H390JA01D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/grm",
+          "section": "GRM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_grm155r71a474ke01d",
+      "mpn": "Murata GRM155R71A474KE01D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/grm",
+          "section": "GRM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_grm155r71e473ka88d",
+      "mpn": "Murata GRM155R71E473KA88D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/grm",
+          "section": "GRM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_grm155r71h103ka88d",
+      "mpn": "Murata GRM155R71H103KA88D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/grm",
+          "section": "GRM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_grm155r71h472ka01d",
+      "mpn": "Murata GRM155R71H472KA01D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/grm",
+          "section": "GRM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_grm188r60j106me47d",
+      "mpn": "Murata GRM188R60J106ME47D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/grm",
+          "section": "GRM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_grm188r71e224ka88d",
+      "mpn": "Murata GRM188R71E224KA88D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/grm",
+          "section": "GRM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_grm188r71e474ka12d",
+      "mpn": "Murata GRM188R71E474KA12D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/grm",
+          "section": "GRM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_grm188z71a475me15d",
+      "mpn": "Murata GRM188Z71A475ME15D",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/grm",
+          "section": "GRM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_grm21br60j226me39l",
+      "mpn": "Murata GRM21BR60J226ME39L",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/grm",
+          "section": "GRM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_grm21br71e225ke11l",
+      "mpn": "Murata GRM21BR71E225KE11L",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/grm",
+          "section": "GRM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_grm31c5c1h224je02l",
+      "mpn": "Murata GRM31C5C1H224JE02L",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/grm",
+          "section": "GRM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_grm31cr71a226ke15l",
+      "mpn": "Murata GRM31CR71A226KE15L",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/grm",
+          "section": "GRM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_grm31cr71e106ma12l",
+      "mpn": "Murata GRM31CR71E106MA12L",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/grm",
+          "section": "GRM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "murata_grm32er71e226ke15l",
+      "mpn": "Murata GRM32ER71E226KE15L",
+      "evidence": [
+        {
+          "url": "https://www.murata.com/en-global/products/capacitor/ceramiccapacitor/overview/lineup/smd/grm",
+          "section": "GRM family identification and Features: chip multilayer ceramic capacitor, external electrodes. Limited to the standard two-terminal family and current exact native pads1/2.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.murata.com/en-eu/support/faqs/capacitor/ceramiccapacitor/mnt/0032",
+          "section": "MLCC polarity FAQ: nonpolar ceramic capacitors; excludes distinct through/ground terminal roles of NFM devices from this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "GRM nonpolar MLCC, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_07100kl",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_07100rl",
+      "mpn": "Yageo RC0402FR-07100RL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_07110kl",
+      "mpn": "Yageo RC0402FR-07110KL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_0712kl",
+      "mpn": "Yageo RC0402FR-0712KL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_07169kl",
+      "mpn": "Yageo RC0402FR-07169KL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_07196kl",
+      "mpn": "Yageo RC0402FR-07196KL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_071k82l",
+      "mpn": "Yageo RC0402FR-071K82L",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_071kl",
+      "mpn": "Yageo RC0402FR-071KL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_071ml",
+      "mpn": "Yageo RC0402FR-071ML",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_07220kl",
+      "mpn": "Yageo RC0402FR-07220KL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_07220rl",
+      "mpn": "Yageo RC0402FR-07220RL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_07240kl",
+      "mpn": "Yageo RC0402FR-07240KL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_0730k1l",
+      "mpn": "Yageo RC0402FR-0730K1L",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_0730kl",
+      "mpn": "Yageo RC0402FR-0730KL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_0733kl",
+      "mpn": "Yageo RC0402FR-0733KL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_0733rl",
+      "mpn": "Yageo RC0402FR-0733RL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_073k32l",
+      "mpn": "Yageo RC0402FR-073K32L",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_0742k2l",
+      "mpn": "Yageo RC0402FR-0742K2L",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_0744k2l",
+      "mpn": "Yageo RC0402FR-0744K2L",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_0745k3l",
+      "mpn": "Yageo RC0402FR-0745K3L",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_07470rl",
+      "mpn": "Yageo RC0402FR-07470RL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_0747kl",
+      "mpn": "Yageo RC0402FR-0747KL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_0749r9l",
+      "mpn": "Yageo RC0402FR-0749R9L",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_074k7l",
+      "mpn": "Yageo RC0402FR-074K7L",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_0752r3l",
+      "mpn": "Yageo RC0402FR-0752R3L",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_0756kl",
+      "mpn": "Yageo RC0402FR-0756KL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_075k1l",
+      "mpn": "Yageo RC0402FR-075K1L",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_07620kl",
+      "mpn": "Yageo RC0402FR-07620KL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_0768kl",
+      "mpn": "Yageo RC0402FR-0768KL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_0782rl",
+      "mpn": "RC0402FR-0782RL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402fr_0793r1l",
+      "mpn": "RC0402FR-0793R1L",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0402jr_070rl",
+      "mpn": "Yageo RC0402JR-070RL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC zero-ohm jumper conductor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC zero-ohm jumper conductor, second external termination"
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "yageo_rc0603fr_071kl",
+      "mpn": "Yageo RC0603FR-071KL",
+      "evidence": [
+        {
+          "url": "https://yageogroup.com/content/datasheet/asset/file/PYU-RC_GROUP_51_ROHS_L",
+          "section": "RC_L series, 2025-11-14 V14: p2 order-code fields; p4 Construction/Fig9 explicitly two external terminations. Family proof only for passive terminal typing.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, first external termination"
+        },
+        "2": {
+          "type": "passive",
+          "reason": "RC thick-film resistor, second external termination"
+        }
+      },
+      "unresolved": []
+    }
+  ]
+}

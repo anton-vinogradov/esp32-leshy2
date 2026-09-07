@@ -6,17 +6,17 @@
   "sources": {
     "contact_materialization": {
       "path": "hardware/ecad/generated/H2-R2-contact-materialization.json",
-      "sha256": "24ac84d42a02507ba71932731f32b303f76280e13713d46313de10b28ba07cdb"
+      "sha256": "cfe9e63cd008135cae9d7f1703aee31e8e85bbb6ba1327c661c45ce247721b97"
     },
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "f59ed6290eed183d8c191aab535647aab3ef3694709fed0f6144ec0e1ad6e761"
+      "sha256": "5a1163d97118354937e45a6f0da38837d25539171fd20dddd39ffdf8f484fbbb"
     }
   },
   "library": {
     "id": "Leshy2_R2",
     "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-    "sha256": "79e506353cf0ed561e54d1b7ca7424baa7eaad06f7085b5fe17e45e09d347b55",
+    "sha256": "b0a8943d7f492adb4291695fb8fc14b14feacb55a9177f70f61137546d5a4399",
     "symbol_count": 245,
     "pin_count": 1571,
     "external_interface_metadata_count": 3
@@ -3478,9 +3478,9 @@
         },
         {
           "number": "9",
-          "name": "DETECT_A",
+          "name": "DETECT_B",
           "contacts": [
-            "DETECT_A"
+            "DETECT_B"
           ],
           "roles": [
             "signal"
@@ -3489,9 +3489,9 @@
         },
         {
           "number": "10",
-          "name": "DETECT_B",
+          "name": "DETECT_A",
           "contacts": [
-            "DETECT_B"
+            "DETECT_A"
           ],
           "roles": [
             "signal"
@@ -3519,7 +3519,7 @@
       "value": "Hirose FH34SRJ-50S-0.5SH(50)",
       "footprint": "Leshy2_R2:FH34SRJ-50S-0.5SH-50",
       "pin_count": 50,
-      "no_connect_pin_count": 3,
+      "no_connect_pin_count": 0,
       "external_interfaces": [],
       "pin_map": [
         {
@@ -3529,7 +3529,7 @@
             "PIN_1"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3540,7 +3540,7 @@
             "PIN_2"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3551,7 +3551,7 @@
             "PIN_3"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3562,9 +3562,9 @@
             "PIN_4"
           ],
           "roles": [
-            "nc"
+            "signal"
           ],
-          "type": "no_connect"
+          "type": "passive"
         },
         {
           "number": "5",
@@ -3573,9 +3573,9 @@
             "PIN_5"
           ],
           "roles": [
-            "nc"
+            "signal"
           ],
-          "type": "no_connect"
+          "type": "passive"
         },
         {
           "number": "6",
@@ -3584,9 +3584,9 @@
             "PIN_6"
           ],
           "roles": [
-            "nc"
+            "signal"
           ],
-          "type": "no_connect"
+          "type": "passive"
         },
         {
           "number": "7",
@@ -3595,7 +3595,7 @@
             "PIN_7"
           ],
           "roles": [
-            "strap"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3606,7 +3606,7 @@
             "PIN_8"
           ],
           "roles": [
-            "strap"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3617,7 +3617,7 @@
             "PIN_9"
           ],
           "roles": [
-            "strap"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3628,7 +3628,7 @@
             "PIN_10"
           ],
           "roles": [
-            "reset"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3639,7 +3639,7 @@
             "PIN_11"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3650,7 +3650,7 @@
             "PIN_12"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3661,7 +3661,7 @@
             "PIN_13"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3672,7 +3672,7 @@
             "PIN_14"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3683,7 +3683,7 @@
             "PIN_15"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3694,7 +3694,7 @@
             "PIN_16"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3705,7 +3705,7 @@
             "PIN_17"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3716,7 +3716,7 @@
             "PIN_18"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3727,7 +3727,7 @@
             "PIN_19"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3738,7 +3738,7 @@
             "PIN_20"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3749,7 +3749,7 @@
             "PIN_21"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3760,7 +3760,7 @@
             "PIN_22"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3771,7 +3771,7 @@
             "PIN_23"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3782,7 +3782,7 @@
             "PIN_24"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3958,7 +3958,7 @@
             "PIN_40"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3969,7 +3969,7 @@
             "PIN_41"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3980,7 +3980,7 @@
             "PIN_42"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -3991,7 +3991,7 @@
             "PIN_43"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -4035,7 +4035,7 @@
             "PIN_47"
           ],
           "roles": [
-            "reset"
+            "signal"
           ],
           "type": "passive"
         },
@@ -4046,7 +4046,7 @@
             "PIN_48"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -4057,7 +4057,7 @@
             "PIN_49"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         },
@@ -4068,7 +4068,7 @@
             "PIN_50"
           ],
           "roles": [
-            "power"
+            "signal"
           ],
           "type": "passive"
         }
@@ -9397,16 +9397,16 @@
       "symbol_id": "Leshy2_R2:omron_b3s_1100p",
       "reference_prefix": "SW",
       "value": "OMRON B3S-1100P",
-      "footprint": "Leshy2:B3S-1100P",
+      "footprint": "Leshy2_R2:B3S-1100P",
       "pin_count": 5,
       "no_connect_pin_count": 0,
       "external_interfaces": [],
       "pin_map": [
         {
           "number": "1",
-          "name": "SIDE_A_1",
+          "name": "SIDE_B_2",
           "contacts": [
-            "SIDE_A_1"
+            "SIDE_B_2"
           ],
           "roles": [
             "switch_contact"
@@ -9437,9 +9437,9 @@
         },
         {
           "number": "4",
-          "name": "SIDE_B_2",
+          "name": "SIDE_A_1",
           "contacts": [
-            "SIDE_B_2"
+            "SIDE_A_1"
           ],
           "roles": [
             "switch_contact"
@@ -15899,7 +15899,7 @@
       "symbol_id": "Leshy2_R2:ti_tpd2eusb30a_drtr",
       "reference_prefix": "U",
       "value": "Texas Instruments TPD2EUSB30ADRTR",
-      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "footprint": "Package_TO_SOT_SMD:Texas_DRT-3",
       "pin_count": 3,
       "no_connect_pin_count": 0,
       "external_interfaces": [],
@@ -17503,23 +17503,23 @@
       "pin_map": [
         {
           "number": "1",
-          "name": "RESET_N",
-          "contacts": [
-            "RESET_N"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "2",
           "name": "GND",
           "contacts": [
             "GND"
           ],
           "roles": [
             "power"
+          ],
+          "type": "passive"
+        },
+        {
+          "number": "2",
+          "name": "RESET_N",
+          "contacts": [
+            "RESET_N"
+          ],
+          "roles": [
+            "signal"
           ],
           "type": "passive"
         },

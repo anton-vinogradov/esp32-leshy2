@@ -11,13 +11,13 @@
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
     "coordinate_model_sha256": "cc2aaeacd6de560fb728ef82767184738e24bbf831a6cc706c70299cf2077636",
     "instance_ledger": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-    "instance_ledger_sha256": "13c60bf11df73419f6321039378b68f3d55be34a3a033833d7fb477e047e3d14",
+    "instance_ledger_sha256": "f882612f3e2cc2fdc12f4b675cbdff9f8009e915697126847104e706a937f39c",
     "net_ledger": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-    "net_ledger_sha256": "12019fb538309b2d19051e97409cbe9d88d0e6cb5bf1b2911dcc85fe52cdc6a7",
+    "net_ledger_sha256": "023e37751cb0fa15e2b71a9cf798f7e078577877465e98af64fb7c470aa80c14",
     "symbol_library": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-    "symbol_library_sha256": "adff01bda89874c138e98b38d66695647548297123567aff41e95991329421a6",
+    "symbol_library_sha256": "76a840434d9bf7ce69376d9d6fcb4070f046ba35aabbabdd4fccc7e90279dba9",
     "kicad_net_bindings": "hardware/layout/generated/H6-R2-kicad-net-bindings.json",
-    "kicad_net_bindings_sha256": "f2bdfc717d7d0ad357140b99b2154799d4d9332883317f84183b47382e4061ae"
+    "kicad_net_bindings_sha256": "72f8547ebaba32fb5c0a8ee6bdc88404e5ec00465f20f6ed1c1b2fafae5ee9be"
   },
   "summary": {
     "board_count": 2,
@@ -12407,7 +12407,7 @@
           "reference": "SW3",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "F.Cu",
-          "footprint": "Leshy2:B3S-1100P",
+          "footprint": "Leshy2_R2:B3S-1100P",
           "method": "hard H1 datum",
           "courtyard_bbox_mm": {
             "x": [
@@ -12440,7 +12440,7 @@
           "reference": "SW4",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "F.Cu",
-          "footprint": "Leshy2:B3S-1100P",
+          "footprint": "Leshy2_R2:B3S-1100P",
           "method": "hard H1 datum",
           "courtyard_bbox_mm": {
             "x": [
@@ -12473,7 +12473,7 @@
           "reference": "SW5",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "F.Cu",
-          "footprint": "Leshy2:B3S-1100P",
+          "footprint": "Leshy2_R2:B3S-1100P",
           "method": "hard H1 datum",
           "courtyard_bbox_mm": {
             "x": [
@@ -12506,7 +12506,7 @@
           "reference": "SW6",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "F.Cu",
-          "footprint": "Leshy2:B3S-1100P",
+          "footprint": "Leshy2_R2:B3S-1100P",
           "method": "hard H1 datum",
           "courtyard_bbox_mm": {
             "x": [
@@ -12539,7 +12539,7 @@
           "reference": "SW7",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "F.Cu",
-          "footprint": "Leshy2:B3S-1100P",
+          "footprint": "Leshy2_R2:B3S-1100P",
           "method": "hard H1 datum",
           "courtyard_bbox_mm": {
             "x": [
@@ -12572,7 +12572,7 @@
           "reference": "SW8",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "F.Cu",
-          "footprint": "Leshy2:B3S-1100P",
+          "footprint": "Leshy2_R2:B3S-1100P",
           "method": "hard H1 datum",
           "courtyard_bbox_mm": {
             "x": [
@@ -12605,7 +12605,7 @@
           "reference": "SW9",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "F.Cu",
-          "footprint": "Leshy2:B3S-1100P",
+          "footprint": "Leshy2_R2:B3S-1100P",
           "method": "hard H1 datum",
           "courtyard_bbox_mm": {
             "x": [
@@ -12638,7 +12638,7 @@
           "reference": "SW10",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "F.Cu",
-          "footprint": "Leshy2:B3S-1100P",
+          "footprint": "Leshy2_R2:B3S-1100P",
           "method": "hard H1 datum",
           "courtyard_bbox_mm": {
             "x": [
@@ -12671,7 +12671,7 @@
           "reference": "SW11",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "F.Cu",
-          "footprint": "Leshy2:B3S-1100P",
+          "footprint": "Leshy2_R2:B3S-1100P",
           "method": "hard H1 datum",
           "courtyard_bbox_mm": {
             "x": [
@@ -12704,7 +12704,7 @@
           "reference": "SW12",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "F.Cu",
-          "footprint": "Leshy2:B3S-1100P",
+          "footprint": "Leshy2_R2:B3S-1100P",
           "method": "hard H1 datum",
           "courtyard_bbox_mm": {
             "x": [
@@ -12737,7 +12737,7 @@
           "reference": "SW13",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "F.Cu",
-          "footprint": "Leshy2:B3S-1100P",
+          "footprint": "Leshy2_R2:B3S-1100P",
           "method": "hard H1 datum",
           "courtyard_bbox_mm": {
             "x": [
@@ -12770,7 +12770,7 @@
           "reference": "SW14",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "F.Cu",
-          "footprint": "Leshy2:B3S-1100P",
+          "footprint": "Leshy2_R2:B3S-1100P",
           "method": "hard H1 datum",
           "courtyard_bbox_mm": {
             "x": [
@@ -12803,7 +12803,7 @@
           "reference": "SW15",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "F.Cu",
-          "footprint": "Leshy2:B3S-1100P",
+          "footprint": "Leshy2_R2:B3S-1100P",
           "method": "hard H1 datum",
           "courtyard_bbox_mm": {
             "x": [
@@ -12836,7 +12836,7 @@
           "reference": "SW16",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "F.Cu",
-          "footprint": "Leshy2:B3S-1100P",
+          "footprint": "Leshy2_R2:B3S-1100P",
           "method": "hard H1 datum",
           "courtyard_bbox_mm": {
             "x": [
@@ -12869,7 +12869,7 @@
           "reference": "SW17",
           "sheet": "UI_11_STORAGE_CONTROLS_INDICATORS",
           "side": "F.Cu",
-          "footprint": "Leshy2:B3S-1100P",
+          "footprint": "Leshy2_R2:B3S-1100P",
           "method": "hard H1 datum",
           "courtyard_bbox_mm": {
             "x": [
@@ -13899,16 +13899,16 @@
           "reference": "U21",
           "sheet": "UI_20_C5_WIFI_IR_SERVICE",
           "side": "B.Cu",
-          "footprint": "Package_TO_SOT_SMD:SOT-23",
+          "footprint": "Package_TO_SOT_SMD:Texas_DRT-3",
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              22.599999999999998,
-              26.55
+              23.73,
+              25.419999999999998
             ],
             "y": [
-              137.85,
-              141.34
+              138.85,
+              140.34
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
@@ -14196,16 +14196,16 @@
           "reference": "U30",
           "sheet": "UI_30_HUB_RP_CORE_SERVICE",
           "side": "B.Cu",
-          "footprint": "Package_TO_SOT_SMD:SOT-23",
+          "footprint": "Package_TO_SOT_SMD:Texas_DRT-3",
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              18.099999999999998,
-              21.59
+              19.099999999999998,
+              20.59
             ],
             "y": [
-              137.35,
-              141.29999999999998
+              138.48,
+              140.17
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
@@ -15183,8 +15183,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "unrouted_seed_sha256": "71d940d063495de63751741786b359089ca2cc46faf942efc63ea15d456e1872",
-      "placement_signature_sha256": "e8a84ff652ea994cc0a7f7d35af6c9aa77115f32337f5776e82108fc86551ca0",
+      "unrouted_seed_sha256": "de2189f9feff0e89c6d4b3214baf610aba27641f009ad0b6e8a45ebd68b31d3e",
+      "placement_signature_sha256": "7c5fc5ccab9f6408dc8152360d175da6810c65b10adef76bd1289c6e560de3e0",
       "locality": {
         "status": "pass",
         "pair_count": 52,
@@ -38379,7 +38379,7 @@
           "reference": "SW4",
           "sheet": "RF_31_REAR_CONTROLS",
           "side": "F.Cu",
-          "footprint": "Leshy2:B3S-1100P",
+          "footprint": "Leshy2_R2:B3S-1100P",
           "method": "hard H1 datum",
           "courtyard_bbox_mm": {
             "x": [
@@ -39383,16 +39383,16 @@
           "reference": "U25",
           "sheet": "RF_10_RP2354_CORE_SERVICE",
           "side": "B.Cu",
-          "footprint": "Package_TO_SOT_SMD:SOT-23",
+          "footprint": "Package_TO_SOT_SMD:Texas_DRT-3",
           "method": "connectivity/sheet automatic seed",
           "courtyard_bbox_mm": {
             "x": [
-              45.85,
-              49.339999999999996
+              46.85,
+              48.339999999999996
             ],
             "y": [
-              137.35,
-              141.29999999999998
+              138.48,
+              140.17
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
@@ -43109,8 +43109,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "5a0e15ee8c6510268d0fb9500e49546c8cc52476586504c806ed3caadf2ed834",
-      "placement_signature_sha256": "91162580dd7bda57d1ca3ceb1ff16ebda486a167b0f979b0cf4d1a98ee54bd75",
+      "unrouted_seed_sha256": "68b9f0ec3ff5f047c63eb2b74ef1282743eced4b8248b943f29ef5e1dc5f3b23",
+      "placement_signature_sha256": "e62ef610a99c7f7e7605cb4c247f22eb5398adeb4c7d60f07fce90923bee16ce",
       "locality": {
         "status": "pass",
         "pair_count": 259,

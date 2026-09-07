@@ -4,7 +4,7 @@
 
 The exact H2-R2.1.5 input is reviewed: `2` projects, `22` sheets, `1208` fitted symbols, `4306` physical pins and `788` nets. Every input is hash-bound; changes require dependent checks to be repeated. Refreshing this input freeze is not itself an electrical re-verification. The existing analytical models and passive-pin ERC do not prove that every rail has a source or that outputs cannot conflict; that separate review remains mandatory before production release.
 
-Freeze SHA-256: `bf5c7f608aa9cac807a92ce4f67fc5b389b2684dfccd25d24e34f93b6e8cb24d`
+Freeze SHA-256: `f54647af1bf3bd9035cfbbc3c3606684b101b724acd649dc05b378524b9c0347`
 
 | Workstream | Primary scope | Sheets | Pass rule |
 |---|---|---:|---|

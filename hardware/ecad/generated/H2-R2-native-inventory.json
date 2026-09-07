@@ -22,7 +22,7 @@
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "2a4f7944f69705a6361a3f71b315041b7eb08d884a4508eb060d0bcf9affb4c7"
+      "sha256": "0abf082483aed8c2eca8c6ddfd43684bd1664266d5f0e06873554df05da5b767"
     },
     "component_groups": {
       "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
@@ -46,7 +46,7 @@
     },
     "display_mount": {
       "path": "hardware/product-design/display-mount.json",
-      "sha256": "5901b314c630efdf278e0b923c22eba8c49ebfa1508329c37860e9256930c90f"
+      "sha256": "71bba240dfa5c3c8cb4f9ac269c4a9874f460981da7c196d072086c0dc3cc343"
     },
     "airband": {
       "path": "hardware/product-design/h1-airband-filter.json",

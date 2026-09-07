@@ -604,19 +604,19 @@
 					(name "PIN_3" (effects (font (size 1.27 1.27))))
 					(number "3" (effects (font (size 1.27 1.27))))
 				)
-				(pin no_connect line
+				(pin passive line
 					(at -20.32 22.86 0)
 					(length 5.08)
 					(name "PIN_4" (effects (font (size 1.27 1.27))))
 					(number "4" (effects (font (size 1.27 1.27))))
 				)
-				(pin no_connect line
+				(pin passive line
 					(at -20.32 20.32 0)
 					(length 5.08)
 					(name "PIN_5" (effects (font (size 1.27 1.27))))
 					(number "5" (effects (font (size 1.27 1.27))))
 				)
-				(pin no_connect line
+				(pin passive line
 					(at -20.32 17.78 0)
 					(length 5.08)
 					(name "PIN_6" (effects (font (size 1.27 1.27))))
@@ -2931,250 +2931,250 @@
 			)
 		)
 	)
-	(hierarchical_label "LCD_LEDA_PROTECTED"
-		(shape bidirectional)
+	(label "POWER_GROUND"
 		(at 584.20 48.26 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "b1e92052-329a-574f-9a29-c396d117290f")
+		(uuid "025d6df2-de2c-52ec-81b8-4f3157ca2d57")
 	)
-	(hierarchical_label "LCD_LEDK"
-		(shape bidirectional)
+	(label "POWER_GROUND"
 		(at 584.20 50.80 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "bc311d79-f5f4-54ad-8dd7-fb605378ac63")
+		(uuid "6a8abbb8-5a2e-593a-a41a-3729c5e393ff")
 	)
-	(label "LCD_LEDK"
+	(label "POWER_GROUND"
 		(at 584.20 53.34 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "dc8ea93c-3f9e-5089-b25f-7339a0919e5f")
+		(uuid "13d06b3c-6bdc-5127-b94b-e270f6dce701")
 	)
-	(no_connect (at 584.20 55.88)
-		(uuid "0ace22e4-815a-5420-925a-362b46645a41")
+	(hierarchical_label "TOUCH_RST_N"
+		(shape bidirectional)
+		(at 584.20 55.88 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "77aedd0e-c4d9-5b53-ab9d-13b0286de407")
 	)
-	(no_connect (at 584.20 58.42)
-		(uuid "2a34a5d6-6b02-55d6-9cad-0c1084f105de")
+	(hierarchical_label "LCD_TOUCH_INT_RAW_N"
+		(shape bidirectional)
+		(at 584.20 58.42 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "d61ed211-36e2-5b2d-b6fd-82e337879e90")
 	)
-	(no_connect (at 584.20 60.96)
-		(uuid "cc5aa9ec-1791-5269-8850-87c97e5119b1")
+	(hierarchical_label "SYS_UI_I2C_SDA"
+		(shape bidirectional)
+		(at 584.20 60.96 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "9b0e448a-2ae6-5611-9264-6927e66982d8")
 	)
-	(label "3V3_MAIN"
+	(hierarchical_label "SYS_UI_I2C_SCL"
+		(shape bidirectional)
 		(at 584.20 63.50 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "fe77c104-0265-5a0a-b19d-5b0403bfa60f")
+		(uuid "77988338-b123-5f9e-b6ae-b037cb754138")
 	)
-	(label "3V3_MAIN"
+	(label "POWER_GROUND"
 		(at 584.20 66.04 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "7954b569-a97f-5da8-aab0-444c3e3e0e74")
+		(uuid "3c760119-b70f-5de7-8ae5-745bf236d5dd")
 	)
-	(label "POWER_GROUND"
+	(label "3V3_MAIN"
 		(at 584.20 68.58 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "90260632-7c9a-5860-ae74-ed90b4b3969e")
+		(uuid "1af4ebed-404f-582c-a1b0-a402fced9d12")
 	)
-	(hierarchical_label "LCD_RST_N"
-		(shape bidirectional)
+	(label "3V3_MAIN"
 		(at 584.20 71.12 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "6a597b30-9515-5e17-98bd-780e2bb2ff0c")
+		(uuid "676c8d1d-2774-58b8-9da1-f8fa17bd2bb2")
 	)
-	(label "POWER_GROUND"
+	(label "3V3_MAIN"
 		(at 584.20 73.66 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "1e5411f7-4631-510d-b4a6-236b5bd8f8ed")
+		(uuid "21d75b67-5eb8-51bc-9e50-1978415400cb")
 	)
-	(label "POWER_GROUND"
-		(at 584.20 76.20 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "0fa8c627-fdef-56a0-912d-63977ff9b239")
+	(no_connect (at 584.20 76.20)
+		(uuid "f7c02bc2-3d7c-5cac-8931-6a844f027dc0")
 	)
 	(label "POWER_GROUND"
 		(at 584.20 78.74 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "b26ed3b5-0b1d-587c-a311-e674dd70ec1a")
 	)
-	(label "POWER_GROUND"
+	(label "LCD_DC"
 		(at 584.20 81.28 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "c4ae8f02-2ad7-5bed-ad35-cd30747bd019")
-	)
-	(label "POWER_GROUND"
-		(at 584.20 83.82 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "13514db6-7ab1-590b-be27-05d942895bf4")
-	)
-	(label "POWER_GROUND"
-		(at 584.20 86.36 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "43fa12de-da17-50c7-9942-6b4dfa9964ab")
-	)
-	(label "POWER_GROUND"
-		(at 584.20 88.90 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "e11bf2d0-042e-54c0-951b-aaa780eb18ee")
-	)
-	(label "POWER_GROUND"
-		(at 584.20 91.44 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "b06d56cf-2e71-5ac5-85ad-28e5f365c947")
-	)
-	(label "POWER_GROUND"
-		(at 584.20 93.98 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "eee2157f-61eb-50e9-8313-f9b3ff08e7ae")
-	)
-	(label "POWER_GROUND"
-		(at 584.20 96.52 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "1596d958-5285-501a-8637-00b5c014f6cb")
-	)
-	(label "POWER_GROUND"
-		(at 584.20 99.06 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "2730ab8f-5f0e-5b15-8505-eaa36d097d5b")
-	)
-	(label "POWER_GROUND"
-		(at 584.20 101.60 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "46c0546d-c8c2-548f-9046-294d5efd12ba")
-	)
-	(label "POWER_GROUND"
-		(at 584.20 104.14 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "bb670fdb-b651-590d-a974-2328e5d5e3d8")
-	)
-	(label "POWER_GROUND"
-		(at 584.20 106.68 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "c85fccf7-7af8-57ac-b75d-b3019875ac30")
-	)
-	(label "LCD_DB7"
-		(at 584.20 109.22 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "9aa0eea4-5062-5b79-80e3-88da2110ae16")
-	)
-	(label "LCD_DB6"
-		(at 624.84 48.26 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "c7d38dc7-5465-5b47-aa03-45c2078d197f")
-	)
-	(label "LCD_DB5"
-		(at 624.84 50.80 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "e2cfe25c-270a-5a20-bf4f-6555be08e600")
-	)
-	(label "LCD_DB4"
-		(at 624.84 53.34 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "9f788dda-c60c-5c19-9bfb-47a5f8eae226")
-	)
-	(label "LCD_DB3"
-		(at 624.84 55.88 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "17a30de9-5c74-5694-8dd9-1063cd3e470c")
-	)
-	(label "LCD_DB2"
-		(at 624.84 58.42 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "3c9bbb3b-1ff9-5e7a-8463-bde5d6297711")
-	)
-	(label "LCD_DB1"
-		(at 624.84 60.96 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "8d9af69a-f150-5979-a422-c936bb4500b2")
-	)
-	(label "LCD_DB0"
-		(at 624.84 63.50 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "174c41a5-309a-553e-84ac-1eca985b9530")
-	)
-	(no_connect (at 624.84 66.04)
-		(uuid "a64fd0a7-9ee8-583c-8e67-41d5be45202a")
-	)
-	(no_connect (at 624.84 68.58)
-		(uuid "819ffc08-e100-5579-8185-edbf846b9ff6")
-	)
-	(label "3V3_MAIN"
-		(at 624.84 71.12 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "ad307d18-e24e-5546-adc1-d4e47547cb02")
+		(uuid "33084243-c7a9-5a83-9d0e-45241791f6ae")
 	)
 	(label "LCD_WR_N"
+		(at 584.20 83.82 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "7173c076-33d1-5cfc-9338-76cf97e4e068")
+	)
+	(label "3V3_MAIN"
+		(at 584.20 86.36 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "bfe6a99a-adcb-5849-b379-9405dd7e59ad")
+	)
+	(no_connect (at 584.20 88.90)
+		(uuid "21d9d850-7732-5c5e-af3f-071e6ec85a13")
+	)
+	(no_connect (at 584.20 91.44)
+		(uuid "1a5ea30a-05a3-5500-9df0-1d8a73135e81")
+	)
+	(label "LCD_DB0"
+		(at 584.20 93.98 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "f7368071-c26f-560c-a832-921c2ea71f46")
+	)
+	(label "LCD_DB1"
+		(at 584.20 96.52 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "887a6248-5a55-5115-a663-706e4c53d4e4")
+	)
+	(label "LCD_DB2"
+		(at 584.20 99.06 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "43cb5d9c-777d-516d-8327-963465e30706")
+	)
+	(label "LCD_DB3"
+		(at 584.20 101.60 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "5936d61e-b46a-5034-8b02-f08e4637a66b")
+	)
+	(label "LCD_DB4"
+		(at 584.20 104.14 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "771000aa-6326-512b-aa39-f78ba0924453")
+	)
+	(label "LCD_DB5"
+		(at 584.20 106.68 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "6cdca25c-961a-5efb-8de0-a49c81c2e78f")
+	)
+	(label "LCD_DB6"
+		(at 584.20 109.22 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "edf27fe1-2493-5664-bed1-fbaf9f55d600")
+	)
+	(label "LCD_DB7"
+		(at 624.84 48.26 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "ba143e28-df36-5c71-be22-54ac39bf2882")
+	)
+	(label "POWER_GROUND"
+		(at 624.84 50.80 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "dba13526-7d1e-5b0b-9285-e1a6ee9ccd22")
+	)
+	(label "POWER_GROUND"
+		(at 624.84 53.34 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "7bf673eb-503f-5e49-9232-331e39a035c5")
+	)
+	(label "POWER_GROUND"
+		(at 624.84 55.88 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "27ad5e43-3aeb-500e-8d31-92d2deafe8ed")
+	)
+	(label "POWER_GROUND"
+		(at 624.84 58.42 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "a16af69b-7258-588d-a0a8-86ae9dc0217c")
+	)
+	(label "POWER_GROUND"
+		(at 624.84 60.96 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "d61b7681-7100-59d3-ab7e-993b6fdf63ef")
+	)
+	(label "POWER_GROUND"
+		(at 624.84 63.50 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "5326bc99-d946-5d71-9dc9-662ab05f3e17")
+	)
+	(label "POWER_GROUND"
+		(at 624.84 66.04 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "35147050-df18-53b6-8b00-63f87c59c276")
+	)
+	(label "POWER_GROUND"
+		(at 624.84 68.58 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "2c78e4b3-8ef1-50a2-91c7-d451f3d73ec1")
+	)
+	(label "POWER_GROUND"
+		(at 624.84 71.12 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "d1d117a5-d385-58b4-bf16-a23ec2c0bf2e")
+	)
+	(label "POWER_GROUND"
 		(at 624.84 73.66 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "97a9c909-59b5-58a9-b36c-e0a8cd37ed07")
+		(uuid "cf5f3528-b15c-5825-80a3-cdab37680d61")
 	)
-	(label "LCD_DC"
+	(label "POWER_GROUND"
 		(at 624.84 76.20 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "292665f9-22dd-5958-89d0-0312be1053dc")
+		(uuid "0c645b2e-fbe9-5cf3-8904-e22f2a5d7e8a")
 	)
 	(label "POWER_GROUND"
 		(at 624.84 78.74 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "5da32e25-c643-5ef8-a636-e8bcce1ea5f0")
 	)
-	(no_connect (at 624.84 81.28)
-		(uuid "f896c5ee-c30b-5359-b1e7-d4e79b2b2541")
+	(label "POWER_GROUND"
+		(at 624.84 81.28 180)
+		(effects (font (size 1.27 1.27)) (justify right bottom))
+		(uuid "61b38c83-8b86-519e-83b8-3a9fdbcc9a50")
 	)
-	(label "3V3_MAIN"
+	(label "POWER_GROUND"
 		(at 624.84 83.82 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "985ae1ce-252d-5dcf-894b-b74afc22ff8e")
+		(uuid "33b9e668-f8cb-5b5b-8f3f-d97d032977ab")
 	)
-	(label "3V3_MAIN"
+	(hierarchical_label "LCD_RST_N"
+		(shape bidirectional)
 		(at 624.84 86.36 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "4996c46a-53fe-5c30-8092-4433bc4ebf98")
+		(uuid "227f7138-802b-5919-8b92-4e658de89350")
 	)
-	(label "3V3_MAIN"
+	(label "POWER_GROUND"
 		(at 624.84 88.90 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "ca5794df-cb4b-5b33-a830-2fe6055cfe5d")
+		(uuid "e1b25bcf-a716-5ea4-be49-4580719d3840")
 	)
-	(label "POWER_GROUND"
+	(label "3V3_MAIN"
 		(at 624.84 91.44 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "6c63e8d2-01d9-5a14-9df5-3a42f8bb2bda")
+		(uuid "6087762e-6084-5e24-9d81-34caf8363aa1")
 	)
-	(hierarchical_label "SYS_UI_I2C_SCL"
-		(shape bidirectional)
+	(label "3V3_MAIN"
 		(at 624.84 93.98 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "ca0b57f5-221a-5334-8dda-444179b26eb2")
+		(uuid "7fcb5e7a-1f47-582d-9831-dc0ea204a388")
 	)
-	(hierarchical_label "SYS_UI_I2C_SDA"
+	(no_connect (at 624.84 96.52)
+		(uuid "c0ac4087-8354-5e91-b5d2-d5d193dcc1f5")
+	)
+	(no_connect (at 624.84 99.06)
+		(uuid "f8903723-5857-5cad-a0cc-58d374ee31b1")
+	)
+	(no_connect (at 624.84 101.60)
+		(uuid "3e397541-fa10-587f-9f40-7c6d50dd3486")
+	)
+	(hierarchical_label "LCD_LEDK"
 		(shape bidirectional)
-		(at 624.84 96.52 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "39ed305e-a3b4-5bf8-bb75-28a7358a0d01")
-	)
-	(hierarchical_label "LCD_TOUCH_INT_RAW_N"
-		(shape bidirectional)
-		(at 624.84 99.06 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "d45a3c43-3030-551c-b7b7-3af557efb354")
-	)
-	(hierarchical_label "TOUCH_RST_N"
-		(shape bidirectional)
-		(at 624.84 101.60 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "9f27e0dc-1e91-537c-b1e1-bf22deab29a7")
-	)
-	(label "POWER_GROUND"
 		(at 624.84 104.14 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "5d99f244-e9bd-5d7a-9875-8c492cc8ab7f")
+		(uuid "62eb5601-99e4-5e91-b175-1271d2151deb")
 	)
-	(label "POWER_GROUND"
+	(label "LCD_LEDK"
 		(at 624.84 106.68 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "6fdf2879-8e9c-5cb5-9c2f-b5e0f12dcf40")
+		(uuid "d10cdc26-27ad-5bdf-b762-4d8409c9800b")
 	)
-	(label "POWER_GROUND"
+	(hierarchical_label "LCD_LEDA_PROTECTED"
+		(shape bidirectional)
 		(at 624.84 109.22 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "1981b9e2-e0a5-5a9d-89e3-13bf915749b5")
+		(uuid "87a56afb-d7c7-5874-8e44-5b9b6e9048c0")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:samtec_ftsh_105_01_l_dv_k_p_tr")

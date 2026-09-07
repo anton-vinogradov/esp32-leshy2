@@ -10,19 +10,19 @@
     },
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "13c60bf11df73419f6321039378b68f3d55be34a3a033833d7fb477e047e3d14"
+      "sha256": "f882612f3e2cc2fdc12f4b675cbdff9f8009e915697126847104e706a937f39c"
     },
     "nets": {
       "path": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "sha256": "12019fb538309b2d19051e97409cbe9d88d0e6cb5bf1b2911dcc85fe52cdc6a7"
+      "sha256": "023e37751cb0fa15e2b71a9cf798f7e078577877465e98af64fb7c470aa80c14"
     },
     "symbols": {
       "path": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-      "sha256": "adff01bda89874c138e98b38d66695647548297123567aff41e95991329421a6"
+      "sha256": "76a840434d9bf7ce69376d9d6fcb4070f046ba35aabbabdd4fccc7e90279dba9"
     },
     "symbol_library": {
       "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-      "sha256": "79e506353cf0ed561e54d1b7ca7424baa7eaad06f7085b5fe17e45e09d347b55"
+      "sha256": "b0a8943d7f492adb4291695fb8fc14b14feacb55a9177f70f61137546d5a4399"
     }
   },
   "summary": {
@@ -355,7 +355,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_10_RP2354_CORE_SERVICE.kicad_sch",
-      "sha256": "e2a1674173fc70e58e9f6e0fb8ec663cd91a47dc31bb459b11bc239f1469042c"
+      "sha256": "357fc5053fa4b5969fba19faf7fa703b4825ff1563b7880f4579d8c8a63f85b0"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_20_CC1101_VOICE_TX.kicad_sch",
@@ -363,11 +363,11 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_21_BROADCAST_AIRBAND_RX.kicad_sch",
-      "sha256": "e7706ce9c6e82a4599c50139eaab5746a64b9c1def28666cdac7c5a84e6876bc"
+      "sha256": "fc5570e5760bf3ad52ee084fa2a2bde43660425ab579f9bff4ad9fdc45263cb0"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_22_AUDIO_CODEC_IO.kicad_sch",
-      "sha256": "03c0c715d875f53febd78740512cf0f0966159a234d450fd22df729c834f2f8e"
+      "sha256": "55ae508cbc80c5db03392a9208dd033938a9522536fa73966e55893392dafc19"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_30_U214_U219_M5_EXT.kicad_sch",
@@ -375,7 +375,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_31_REAR_CONTROLS.kicad_sch",
-      "sha256": "67c7037e8904b2c2cacec90310f510eea7ea490e5ea60f73770da883482b1319"
+      "sha256": "cc43f7b6aa1d4b16ec599893f672a4300709a37f6225028a0b4b9d3cac510898"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_40_INTERBOARD_M1.kicad_sch",
@@ -407,19 +407,19 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_10_S3_DISPLAY_TOUCH.kicad_sch",
-      "sha256": "966d713569042276e82eccee57051ce9e51665ee3d3f542ecb637e1843064d74"
+      "sha256": "79ccbf793f1ae63f4f3dad04cd138f58f72db13de1004392ee909dd7b6bd0f94"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_11_STORAGE_CONTROLS_INDICATORS.kicad_sch",
-      "sha256": "db1b49afc18821c967d89ab5782b0417bb3d52195eccfa1bafd63c0e20f7cf2e"
+      "sha256": "4a171483c25661211bfd102198ff44a9492dbe93947b4638816d2bf1ebb78396"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch",
-      "sha256": "3b922f294736ce1ce0a7a362d44589d2a01d44b067f0b4f793ae8008fe70e1b5"
+      "sha256": "5495f6d9ceb6291196eb3531900f34e1bd35348ef74b9e2c85d48dd18223c002"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_30_HUB_RP_CORE_SERVICE.kicad_sch",
-      "sha256": "189c66b4dcc78656ac49ee37eed514e6f09e1388bbef91ee77510ed3a9aa72dd"
+      "sha256": "278e35c95ecc151f2e15b1d80311a28715603448e639181eeef9aba08f153bc3"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_31_NRF24_X3_TX_EVIDENCE.kicad_sch",

@@ -46,6 +46,8 @@
     "H2-ADP00": ["ADP_00_DISPLAY_ADAPTER"]
   },
   "footprint_overrides": {
+    "OMRON B3S-1100P": "Leshy2_R2:B3S-1100P",
+    "Texas Instruments TPD2EUSB30ADRTR": "Package_TO_SOT_SMD:Texas_DRT-3",
     "Analog Devices AD8314ARMZ-REEL": "Package_SO:MSOP-8_3x3mm_P0.65mm",
     "Murata GRM21BR60J226ME39L": "Capacitor_SMD:C_0805_2012Metric",
     "74LVC1G32GV,125": "Package_TO_SOT_SMD:SC-74A-5_1.55x2.9mm_P0.95mm",

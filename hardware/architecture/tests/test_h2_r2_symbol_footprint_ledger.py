@@ -103,10 +103,11 @@ class H2R2SymbolFootprintLedgerTests(unittest.TestCase):
             if row["footprint_definition"]
             and row["footprint_definition"]["status"] == "current_exact_local_definition_materialized"
         ]
-        self.assertEqual(7, len(materialized))
+        self.assertEqual(8, len(materialized))
         self.assertEqual(
             {
                 "hirose_fh34srj_50s_0_5sh_50",
+                "omron_b3s_1100p",
                 "coilcraft_wbc1_1tlc",
                 "coilcraft_wbc16_1tlc",
                 "prodtech_pspmaa0605h_2r2m_anp",
@@ -120,7 +121,7 @@ class H2R2SymbolFootprintLedgerTests(unittest.TestCase):
             "Leshy2_R2:FH34SRJ-50S-0.5SH-50",
             {row["footprint"] for row in materialized},
         )
-        self.assertEqual(7, self.ledger["summary"]["new_exact_footprint_geometries_materialized"])
+        self.assertEqual(8, self.ledger["summary"]["new_exact_footprint_geometries_materialized"])
 
     def test_authorization_remains_net_and_kicad_free(self):
         self.assertEqual([], self.ledger["errors"])

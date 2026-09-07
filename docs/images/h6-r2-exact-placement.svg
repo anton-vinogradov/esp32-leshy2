@@ -394,7 +394,7 @@
 <rect x="326.51" y="739.73" width="41.68" height="29.91" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <text x="347.35" y="757.69" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">U19</text>
 <rect x="335.87" y="650.12" width="24.02" height="18.67" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
-<rect x="240.91" y="877.50" width="21.13" height="18.67" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
+<rect x="246.96" y="882.85" width="9.04" height="7.97" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <rect x="527.13" y="294.35" width="19.21" height="33.65" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <rect x="128.59" y="567.49" width="20.28" height="38.47" rx="1.5" fill="#fff4d6" stroke="#d97706" stroke-width="0.65"/>
 <rect x="118.96" y="539.14" width="38.47" height="20.28" rx="1.5" fill="#e9eef5" stroke="#64748b" stroke-width="0.65"/>
@@ -406,7 +406,7 @@
 <rect x="343.92" y="511.05" width="60.40" height="60.40" rx="1.5" fill="#ecfeff" stroke="#0891b2" stroke-width="0.65"/>
 <text x="374.12" y="544.25" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">U28</text>
 <rect x="371.99" y="857.43" width="10.22" height="16.53" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
-<rect x="216.83" y="874.82" width="18.67" height="21.13" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
+<rect x="222.19" y="880.87" width="7.97" height="9.04" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <rect x="182.06" y="876.16" width="33.65" height="19.21" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <text x="198.89" y="888.76" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">U31</text>
 <rect x="172.99" y="195.51" width="19.21" height="34.51" rx="1.5" fill="#f0fdf4" stroke="#16a34a" stroke-width="0.65"/>
@@ -1132,7 +1132,7 @@
 <rect x="1218.82" y="307.75" width="60.40" height="60.40" rx="1.5" fill="#ecfeff" stroke="#0891b2" stroke-width="0.65"/>
 <text x="1249.03" y="340.95" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">U23</text>
 <rect x="1169.31" y="714.32" width="16.53" height="10.22" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
-<rect x="1165.30" y="874.82" width="18.67" height="21.13" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
+<rect x="1170.65" y="880.87" width="7.97" height="9.04" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <rect x="1130.52" y="876.16" width="33.65" height="19.21" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <text x="1147.35" y="888.76" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">U26</text>
 <rect x="1125.04" y="180.79" width="28.62" height="28.62" rx="1.5" fill="#ecfeff" stroke="#0891b2" stroke-width="0.65"/>

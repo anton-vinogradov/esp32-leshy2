@@ -7,7 +7,7 @@
     "contract": "hardware/layout/h6-r2-manual-copper.json",
     "contract_sha256": "35c23ecf0f7eec44a1d5457bddab3f57b2c60e7bd69cc960ae69f2cef4c472c0",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "aec86a765b775cb072d9737f8262b53892201c5db8b6e1544534059b8ace83cb",
+    "routing_policy_sha256": "5f42d8351f0c1898f761b401a630abd9ae952e36f2faf4ee1a10d0d84c47d77c",
     "routing_contract": "hardware/layout/h6-r2-routing-policy.json",
     "routing_contract_sha256": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
     "placement_status": "pass"

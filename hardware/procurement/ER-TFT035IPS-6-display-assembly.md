@@ -22,13 +22,16 @@ are rejected historical routes.
 ## Frozen board geometry
 
 - panel body datum: exact `56.54 × 84.96 mm` outline with `FPC-UP` orientation;
-- contact-tongue slot: rounded NPTH `27.00 × 1.20 mm`, board position
-  `[24.00, 23.00] mm`;
-- inner-face ZIF: envelope `27.00 × 3.80 × 1.00 mm`, board position
-  `[24.00, 25.00] mm`;
-- PSA datum: one `50.80 × 50.80 mm` outline at `[12.10, 44.46] mm`;
+- contact-tongue slot: rounded NPTH `27.00 × 1.20 mm`;
+- inner-face ZIF: envelope `27.00 × 3.80 × 1.00 mm`;
+- PSA datum: one `50.80 × 50.80 mm` outline;
 - the upper FPC pocket remains free of adhesive, parts, vias, test points,
   silkscreen and copper-height steps.
+
+Use the current [H6 placement contract](../layout/h6-r2-placement-contract.json)
+and native UI board for final fabrication coordinates; earlier H1 coordinate
+projections are not a second set of assembly datums. Contact-number correction
+changes no physical pad/net position, connector pose, slot or FPC route.
 
 The complete mechanical source and machine checks live in
 [`display-mount.json`](../product-design/display-mount.json). The public
@@ -52,8 +55,13 @@ Pin orientation is not inferred from the dual-contact connector:
 
 - after the released in-plane panel rotation and the single fold, tail pin 1
   is at board/world X-min and tail pin 50 at X-max;
-- the connector footprint must put pin 1 at world X-min and pin 50 at X-max;
-- the owner verifies `1 → 1` and `50 → 50` before closing the latch.
+- manufacturer FH34 contact 50 is at world X-min and contact 1 at X-max;
+- panel-tail contact `n` mates FH34 contact `51 − n`; use the complete
+  `electrical.panel_to_connector_pin_map` in the mechanical source, not an
+  assumption that different manufacturers share numbering;
+- keep the connector at its released B.Cu/0-degree pose, mouth toward the
+  slot/world −Y; do not rotate it or twist the FPC to make numbers match;
+- the owner verifies `panel 1 → FH34 50` and `panel 50 → FH34 1` before closing the latch.
 
 ## Deterministic owner sequence
 
@@ -63,7 +71,7 @@ Pin orientation is not inferred from the dual-contact connector:
 3. Clean the released PCB PSA area with the process below, apply the one exact
    stock square inside its silkscreen datum and keep its upper liner fitted.
 4. Perform the dry fit and record the route length, relaxed reserve and
-   `1 → 1` / `50 → 50` orientation.
+   `panel 1 → FH34 50` / `panel 50 → FH34 1` orientation.
 5. Close the ZIF latch only after the tongue is fully seated and relaxed.
 6. Remove the PSA upper liner, align the panel to the `DISPLAY/FPC-UP` datum,
    apply the released pressure/time process and preserve the released dwell.

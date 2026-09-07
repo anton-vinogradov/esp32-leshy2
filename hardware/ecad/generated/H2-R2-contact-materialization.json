@@ -6,11 +6,11 @@
   "sources": {
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "f59ed6290eed183d8c191aab535647aab3ef3694709fed0f6144ec0e1ad6e761"
+      "sha256": "5a1163d97118354937e45a6f0da38837d25539171fd20dddd39ffdf8f484fbbb"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "2a4f7944f69705a6361a3f71b315041b7eb08d884a4508eb060d0bcf9affb4c7"
+      "sha256": "0abf082483aed8c2eca8c6ddfd43684bd1664266d5f0e06873554df05da5b767"
     }
   },
   "kicad_reference_version": "10.0.5",
@@ -5174,7 +5174,7 @@
           "physical": "switch A",
           "disposition": "pcb_footprint_pad",
           "pads": [
-            "9"
+            "10"
           ],
           "resolution": "explicit_contact_to_pad_override"
         },
@@ -5184,7 +5184,7 @@
           "physical": "switch B",
           "disposition": "pcb_footprint_pad",
           "pads": [
-            "10"
+            "9"
           ],
           "resolution": "explicit_contact_to_pad_override"
         },
@@ -5209,7 +5209,7 @@
       "symbol_id": "Leshy2_R2:hirose_fh34srj_50s_0_5sh_50",
       "footprint": "Leshy2_R2:FH34SRJ-50S-0.5SH-50",
       "footprint_source": "hardware/ecad/libraries/Leshy2_R2.pretty/FH34SRJ-50S-0.5SH-50.kicad_mod",
-      "footprint_sha256": "3e63f78edb8ca34534ca5272586c5789c1492e973e2250b1d641855c88261428",
+      "footprint_sha256": "e294307633e4a5a125e949d5e557acb1b0b676b9d0dc7d6bc9312cb90270863c",
       "logical_contact_count": 50,
       "footprint_named_pad_count": 52,
       "footprint_pad_occurrence_count": 52,
@@ -5531,7 +5531,7 @@
       "contacts": [
         {
           "contact": "PIN_1",
-          "role": "power",
+          "role": "signal",
           "physical": "1",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5541,7 +5541,7 @@
         },
         {
           "contact": "PIN_2",
-          "role": "power",
+          "role": "signal",
           "physical": "2",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5551,7 +5551,7 @@
         },
         {
           "contact": "PIN_3",
-          "role": "power",
+          "role": "signal",
           "physical": "3",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5561,7 +5561,7 @@
         },
         {
           "contact": "PIN_4",
-          "role": "nc",
+          "role": "signal",
           "physical": "4",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5571,7 +5571,7 @@
         },
         {
           "contact": "PIN_5",
-          "role": "nc",
+          "role": "signal",
           "physical": "5",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5581,7 +5581,7 @@
         },
         {
           "contact": "PIN_6",
-          "role": "nc",
+          "role": "signal",
           "physical": "6",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5591,7 +5591,7 @@
         },
         {
           "contact": "PIN_7",
-          "role": "strap",
+          "role": "signal",
           "physical": "7",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5601,7 +5601,7 @@
         },
         {
           "contact": "PIN_8",
-          "role": "strap",
+          "role": "signal",
           "physical": "8",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5611,7 +5611,7 @@
         },
         {
           "contact": "PIN_9",
-          "role": "strap",
+          "role": "signal",
           "physical": "9",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5621,7 +5621,7 @@
         },
         {
           "contact": "PIN_10",
-          "role": "reset",
+          "role": "signal",
           "physical": "10",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5631,7 +5631,7 @@
         },
         {
           "contact": "PIN_11",
-          "role": "power",
+          "role": "signal",
           "physical": "11",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5641,7 +5641,7 @@
         },
         {
           "contact": "PIN_12",
-          "role": "power",
+          "role": "signal",
           "physical": "12",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5651,7 +5651,7 @@
         },
         {
           "contact": "PIN_13",
-          "role": "power",
+          "role": "signal",
           "physical": "13",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5661,7 +5661,7 @@
         },
         {
           "contact": "PIN_14",
-          "role": "power",
+          "role": "signal",
           "physical": "14",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5671,7 +5671,7 @@
         },
         {
           "contact": "PIN_15",
-          "role": "power",
+          "role": "signal",
           "physical": "15",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5681,7 +5681,7 @@
         },
         {
           "contact": "PIN_16",
-          "role": "power",
+          "role": "signal",
           "physical": "16",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5691,7 +5691,7 @@
         },
         {
           "contact": "PIN_17",
-          "role": "power",
+          "role": "signal",
           "physical": "17",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5701,7 +5701,7 @@
         },
         {
           "contact": "PIN_18",
-          "role": "power",
+          "role": "signal",
           "physical": "18",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5711,7 +5711,7 @@
         },
         {
           "contact": "PIN_19",
-          "role": "power",
+          "role": "signal",
           "physical": "19",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5721,7 +5721,7 @@
         },
         {
           "contact": "PIN_20",
-          "role": "power",
+          "role": "signal",
           "physical": "20",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5731,7 +5731,7 @@
         },
         {
           "contact": "PIN_21",
-          "role": "power",
+          "role": "signal",
           "physical": "21",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5741,7 +5741,7 @@
         },
         {
           "contact": "PIN_22",
-          "role": "power",
+          "role": "signal",
           "physical": "22",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5751,7 +5751,7 @@
         },
         {
           "contact": "PIN_23",
-          "role": "power",
+          "role": "signal",
           "physical": "23",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5761,7 +5761,7 @@
         },
         {
           "contact": "PIN_24",
-          "role": "power",
+          "role": "signal",
           "physical": "24",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5921,7 +5921,7 @@
         },
         {
           "contact": "PIN_40",
-          "role": "power",
+          "role": "signal",
           "physical": "40",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5931,7 +5931,7 @@
         },
         {
           "contact": "PIN_41",
-          "role": "power",
+          "role": "signal",
           "physical": "41",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5941,7 +5941,7 @@
         },
         {
           "contact": "PIN_42",
-          "role": "power",
+          "role": "signal",
           "physical": "42",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5951,7 +5951,7 @@
         },
         {
           "contact": "PIN_43",
-          "role": "power",
+          "role": "signal",
           "physical": "43",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -5991,7 +5991,7 @@
         },
         {
           "contact": "PIN_47",
-          "role": "reset",
+          "role": "signal",
           "physical": "47",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -6001,7 +6001,7 @@
         },
         {
           "contact": "PIN_48",
-          "role": "power",
+          "role": "signal",
           "physical": "48",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -6011,7 +6011,7 @@
         },
         {
           "contact": "PIN_49",
-          "role": "power",
+          "role": "signal",
           "physical": "49",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -6021,7 +6021,7 @@
         },
         {
           "contact": "PIN_50",
-          "role": "power",
+          "role": "signal",
           "physical": "50",
           "disposition": "pcb_footprint_pad",
           "pads": [
@@ -8674,7 +8674,7 @@
         {
           "contact": "SHELL",
           "role": "power",
-          "physical": "three manufacturer ground lands",
+          "physical": "two manufacturer ground lands (shared native pad 2)",
           "disposition": "pcb_footprint_pad",
           "pads": [
             "2"
@@ -13795,9 +13795,9 @@
       "device_id": "omron_b3s_1100p",
       "mpn": "OMRON B3S-1100P",
       "symbol_id": "Leshy2_R2:omron_b3s_1100p",
-      "footprint": "Leshy2:B3S-1100P",
-      "footprint_source": "hardware/ecad/libraries/Leshy2.pretty/B3S-1100P.kicad_mod",
-      "footprint_sha256": "b65ab37ad3cb515a1eb6ed8519e45603a00b21d78e9c49f8f7cc000820672c57",
+      "footprint": "Leshy2_R2:B3S-1100P",
+      "footprint_source": "hardware/ecad/libraries/Leshy2_R2.pretty/B3S-1100P.kicad_mod",
+      "footprint_sha256": "37b9b1c477a58d9152f7b1cff766be8bf4d27f9e9a1ab43217bf6bd714409a4d",
       "logical_contact_count": 5,
       "footprint_named_pad_count": 5,
       "footprint_pad_occurrence_count": 5,
@@ -13838,10 +13838,10 @@
         {
           "contact": "SIDE_A_1",
           "role": "switch_contact",
-          "physical": "1",
+          "physical": "4",
           "disposition": "pcb_footprint_pad",
           "pads": [
-            "1"
+            "4"
           ],
           "resolution": "exact_physical_pad_name"
         },
@@ -13868,10 +13868,10 @@
         {
           "contact": "SIDE_B_2",
           "role": "switch_contact",
-          "physical": "4",
+          "physical": "1",
           "disposition": "pcb_footprint_pad",
           "pads": [
-            "4"
+            "1"
           ],
           "resolution": "exact_physical_pad_name"
         },
@@ -23204,9 +23204,9 @@
       "device_id": "ti_tpd2eusb30a_drtr",
       "mpn": "Texas Instruments TPD2EUSB30ADRTR",
       "symbol_id": "Leshy2_R2:ti_tpd2eusb30a_drtr",
-      "footprint": "Package_TO_SOT_SMD:SOT-23",
-      "footprint_source": "${KICAD10_FOOTPRINT_DIR}/Package_TO_SOT_SMD.pretty/SOT-23.kicad_mod",
-      "footprint_sha256": "0d88c86c1b6d8c1aae4aa8c09386264c089d4451a128b6ccd63ed253f4300b15",
+      "footprint": "Package_TO_SOT_SMD:Texas_DRT-3",
+      "footprint_source": "${KICAD10_FOOTPRINT_DIR}/Package_TO_SOT_SMD.pretty/Texas_DRT-3.kicad_mod",
+      "footprint_sha256": "15cde3ee13da0e0426038a0a17ee16c50edc6d100b64582166b4263d4e7cae17",
       "logical_contact_count": 3,
       "footprint_named_pad_count": 3,
       "footprint_pad_occurrence_count": 3,
@@ -25561,20 +25561,20 @@
         {
           "contact": "RESET_N",
           "role": "signal",
-          "physical": "1",
+          "physical": "2",
           "disposition": "pcb_footprint_pad",
           "pads": [
-            "1"
+            "2"
           ],
           "resolution": "exact_physical_pad_name"
         },
         {
           "contact": "GND",
           "role": "power",
-          "physical": "2",
+          "physical": "1",
           "disposition": "pcb_footprint_pad",
           "pads": [
-            "2"
+            "1"
           ],
           "resolution": "exact_physical_pad_name"
         },

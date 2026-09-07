@@ -95,6 +95,37 @@ def all_true(mapping: dict) -> bool:
     return all(value is True for value in mapping.values())
 
 
+def panel_endpoint(display_mount: dict, panel_pin: int) -> str:
+    """Resolve physical mating without borrowing H2's panel-function assignment."""
+    mapping = display_mount["electrical"].get("panel_to_connector_pin_map")
+    if mapping != {str(pin): str(51 - pin) for pin in range(1, 51)}:
+        raise ValueError("display requires the verified complete panel-to-FH34 51-n bijection")
+    if type(panel_pin) is not int or panel_pin not in range(1, 51):
+        raise ValueError("invalid physical display panel pin")
+    return f"display_connector.PIN_{mapping[str(panel_pin)]}"
+
+
+def display_topology_checks(rows: list[dict], display_mount: dict) -> dict:
+    panel = {pin: panel_endpoint(display_mount, pin) for pin in range(1, 51)}
+    expected_s3_lanes = {
+        "LCD_DB0": "s3.GPIO4", "LCD_DB1": "s3.GPIO9", "LCD_DB2": "s3.GPIO18", "LCD_DB3": "s3.GPIO38",
+        "LCD_DB4": "s3.GPIO40", "LCD_DB5": "s3.GPIO41", "LCD_DB6": "s3.GPIO42", "LCD_DB7": "s3.GPIO46",
+    }
+    # Panel pins/functions and S3 GPIO expectations remain independent of H2.
+    return {
+        "all_s3_data_lanes_exact": all(endpoint(rows, pin, net) for net, pin in expected_s3_lanes.items()),
+        "wr_is_direct_gpio17": endpoint(rows, "s3.GPIO17", "LCD_WR_N") and endpoint(rows, panel[36], "LCD_WR_N"),
+        "dc_is_direct_gpio45": endpoint(rows, "s3.GPIO45", "LCD_DC") and endpoint(rows, panel[37], "LCD_DC"),
+        "panel_receives_all_eight_lanes": all(endpoint(rows, panel[32 - lane], f"LCD_DB{lane}") for lane in range(8)),
+        "panel_wr_dc_reach_exact_contacts": endpoint(rows, panel[36], "LCD_WR_N") and endpoint(rows, panel[37], "LCD_DC"),
+        "cs_is_hard_low": endpoint(rows, panel[38], "POWER_GROUND"),
+        "rd_is_hard_high": endpoint(rows, panel[35], "3V3_MAIN"),
+        "im_straps_are_011": endpoint(rows, panel[7], "3V3_MAIN") and endpoint(rows, panel[8], "3V3_MAIN") and endpoint(rows, panel[9], "POWER_GROUND"),
+        "direct_mount_mode_is_exact": display_mount["electrical"]["selected_mode"] == "ILI9488 8080 8-bit with IM2/IM1/IM0 = 0/1/1",
+        "recovery_sda_is_not_populated_on_ui_board": endpoint(rows, panel[34], None),
+    }
+
+
 def level_row(name: str, voh: Decimal, vol: Decimal, vih: Decimal, vil: Decimal) -> dict:
     high = voh - vih
     low = vil - vol
@@ -147,22 +178,7 @@ def build() -> dict:
     if any(row["status"] != "pass" for row in level_margins):
         errors.append("one or more 3V3 logic-family boundaries has non-positive DC margin")
 
-    expected_s3_lanes = {
-        "LCD_DB0": "s3.GPIO4", "LCD_DB1": "s3.GPIO9", "LCD_DB2": "s3.GPIO18", "LCD_DB3": "s3.GPIO38",
-        "LCD_DB4": "s3.GPIO40", "LCD_DB5": "s3.GPIO41", "LCD_DB6": "s3.GPIO42", "LCD_DB7": "s3.GPIO46",
-    }
-    display_topology = {
-        "all_s3_data_lanes_exact": all(endpoint(rows, pin, net) for net, pin in expected_s3_lanes.items()),
-        "wr_is_direct_gpio17": endpoint(rows, "s3.GPIO17", "LCD_WR_N") and endpoint(rows, "display_connector.PIN_36", "LCD_WR_N"),
-        "dc_is_direct_gpio45": endpoint(rows, "s3.GPIO45", "LCD_DC") and endpoint(rows, "display_connector.PIN_37", "LCD_DC"),
-        "panel_receives_all_eight_lanes": all(endpoint(rows, f"display_connector.PIN_{32 - lane}", f"LCD_DB{lane}") for lane in range(8)),
-        "panel_wr_dc_reach_exact_contacts": endpoint(rows, "display_connector.PIN_36", "LCD_WR_N") and endpoint(rows, "display_connector.PIN_37", "LCD_DC"),
-        "cs_is_hard_low": endpoint(rows, "display_connector.PIN_38", "POWER_GROUND"),
-        "rd_is_hard_high": endpoint(rows, "display_connector.PIN_35", "3V3_MAIN"),
-        "im_straps_are_011": endpoint(rows, "display_connector.PIN_7", "3V3_MAIN") and endpoint(rows, "display_connector.PIN_8", "3V3_MAIN") and endpoint(rows, "display_connector.PIN_9", "POWER_GROUND"),
-        "direct_mount_mode_is_exact": display_mount["electrical"]["selected_mode"] == "ILI9488 8080 8-bit with IM2/IM1/IM0 = 0/1/1",
-        "recovery_sda_is_not_populated_on_ui_board": endpoint(rows, "display_connector.PIN_34", None),
-    }
+    display_topology = display_topology_checks(rows, display_mount)
     if not all_true(display_topology):
         errors.append(
             "direct i8080 topology or mode straps drifted: "

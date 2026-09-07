@@ -12,19 +12,19 @@
       "mount": "UI PCB inner face",
       "ui_inner_position_mm": [
         26.5,
-        25.0
+        25
       ],
       "envelope_mm": [
-        27.0,
+        27,
         3.8,
-        1.0
+        1
       ],
       "role": "direct dual-contact 50-position ZIF for the exact 0.30-mm EastRising tail"
     }
   ],
   "stack": {
-    "connector_height_from_ui_inner_mm": 1.0,
-    "available_interboard_gap_mm": 11.0,
+    "connector_height_from_ui_inner_mm": 1,
+    "available_interboard_gap_mm": 11,
     "minimum_reserved_clearance_mm": 0.7,
     "removed_adapter_stack_height_mm": 3.8,
     "height_reduction_mm": 2.8
@@ -109,7 +109,7 @@
       "pcb_thickness_mm": 1.6,
       "drawing_stock_pad_envelope_mm": 1.016,
       "stock_pad_release_rule": "exact stock pad thickness >= measured folded FPC maximum stack + 0.20 mm",
-      "zif_height_mm": 1.0,
+      "zif_height_mm": 1,
       "contact_stiffener_thickness_mm": 0.3,
       "source_tail_length_from_panel_edge_to_tip_mm": 30.16,
       "source_tail_length_tolerance_mm": 0.5,
@@ -136,9 +136,9 @@
       "separate_upper_tape_reason": "the stiff panel already has 2580.64 mm2 of primary bond area; observed ESP32-DIV construction suggests that a smaller partial-area bond is adequate, so a second strip or shoulder feature adds assembly work without a demonstrated need",
       "pcb_slot_position_mm": [
         26.5,
-        23.0
+        23
       ],
-      "pcb_slot_width_mm": 27.0,
+      "pcb_slot_width_mm": 27,
       "pcb_slot_height_mm": 1.2,
       "tail_under_psa": false,
       "tail_bears_on_bare_pcb_edge": false,
@@ -148,7 +148,7 @@
       "fold_count": 1,
       "connector_full_depth_reach_y_mm": 28.8,
       "minimum_raw_length_reserve_mm": 11.36,
-      "minimum_relaxed_service_slack_mm": 5.0,
+      "minimum_relaxed_service_slack_mm": 5,
       "maximum_measured_route_to_contact_stop_mm": 24.66,
       "bend_insertion_and_tolerance_budget_mm": 6.36,
       "slack_release_rule": "with the received panel dry-fitted and the PSA upper liner still installed, the measured neutral-axis route from the panel exit to the connector contact stop must be <= 24.66 mm, leaving >= 5.00 mm against the 29.66-mm minimum source tail; the tongue must show a relaxed bow and must not pull the latch",
@@ -235,32 +235,93 @@
       "serial_recovery": "service-only solder-jumper population links panel SDA pin 34 to S3 LCD_DB7/GPIO46 and moves CS pin 38 from ground to S3 LCD_DB6/GPIO42; the mode-select jumpers are repopulated to the manufacturer 4-wire-serial code",
       "safety": "all recovery pads are on the opened inner face and cannot change mode during normal use"
     },
-    "h2_rule": "H2 places this connector on the UI PCB and routes the accepted panel map directly; no display adapter PCB or board-to-board display connector is populated."
+    "h2_rule": "H2 places this connector on the UI PCB and routes the accepted panel_pin_map through panel_to_connector_pin_map; these are different numbering systems. No display adapter PCB or board-to-board display connector is populated.",
+    "panel_to_connector_pin_map": {
+      "1": "50",
+      "2": "49",
+      "3": "48",
+      "4": "47",
+      "5": "46",
+      "6": "45",
+      "7": "44",
+      "8": "43",
+      "9": "42",
+      "10": "41",
+      "11": "40",
+      "12": "39",
+      "13": "38",
+      "14": "37",
+      "15": "36",
+      "16": "35",
+      "17": "34",
+      "18": "33",
+      "19": "32",
+      "20": "31",
+      "21": "30",
+      "22": "29",
+      "23": "28",
+      "24": "27",
+      "25": "26",
+      "26": "25",
+      "27": "24",
+      "28": "23",
+      "29": "22",
+      "30": "21",
+      "31": "20",
+      "32": "19",
+      "33": "18",
+      "34": "17",
+      "35": "16",
+      "36": "15",
+      "37": "14",
+      "38": "13",
+      "39": "12",
+      "40": "11",
+      "41": "10",
+      "42": "9",
+      "43": "8",
+      "44": "7",
+      "45": "6",
+      "46": "5",
+      "47": "4",
+      "48": "3",
+      "49": "2",
+      "50": "1"
+    },
+    "connector_numbering_contract": {
+      "checked": "2026-09-07",
+      "source": "https://www.hirose.com/en/product/document?clcode=CL0580-1266-2-50&documentid=0001483059&documenttype=2DDrawing&lang=en&productname=FH34SRJ-50S-0.5SH%2850%29&series=FH34SRJ",
+      "section": "EDC-159714-50-08 sheet 1: top view, recommended PCB mounting pattern and section Q",
+      "manufacturer_top_view": "With solder row above the body and mechanical fittings below, contact 1 is at right and contact 50 at left; the mouth is opposite the solder row.",
+      "installed_pose": "B.Cu, rotation 0: the mouth faces world -Y toward the slot; manufacturer contact 1 is at world x-max and contact 50 at x-min.",
+      "mapping_rule": "Panel-tail n mates manufacturer FH34 contact 51-n. This bijection reconciles two different numbering systems; it is not a cable twist or a change of panel signal order.",
+      "geometry_preservation": "Renumber the existing terminal lands only; retain each physical land position and its net, connector pose, slot, no-twist fold and cable-length budget."
+    }
   },
   "orientation": {
     "accepted_on": "2026-09-01",
     "panel_rule": "mount the configured panel with its folded FPC toward the antenna edge (board -Y) so the tail never enters the LED, navigation or function-key zone",
     "fpc_exit_direction_board_axis": "-Y",
-    "factory_orientation_check": "during owner final assembly, before pressing the panel onto the stock PSA rectangle, the panel tail must exit toward the antenna edge, make one untwisted 180-degree fold through the adhesive-free upper zone and align its narrow tongue with the rounded slot and direct ZIF. The dry fit must preserve at least 5.00 mm of relaxed slack, panel pin 1 must meet connector pin 1, and no latch load is allowed; tail toward +Y, any twist, swapped 1/50 ends, FPC trapped under adhesive or a taut tongue is a stop-work assembly error",
+    "factory_orientation_check": "during owner final assembly, before pressing the panel onto the stock PSA rectangle, the panel tail must exit toward the antenna edge, make one untwisted 180-degree fold through the adhesive-free upper zone and align its narrow tongue with the rounded slot and direct ZIF. The dry fit must preserve at least 5.00 mm of relaxed slack: panel-tail pin 1 mates manufacturer FH34 contact 50 at world x-min and panel-tail pin 50 mates FH34 contact 1 at world x-max. Apply the complete panel_to_connector_pin_map; no latch load is allowed. Tail toward +Y, any twist, an identity 1-to-1 assumption, FPC trapped under adhesive or a taut tongue is a stop-work assembly error",
     "source_drawing_pin_order_native_front_view": "pin 50 at drawing left; pin 1 at drawing right",
     "mounted_panel_rotation_deg": 180,
     "fold_axis": "world X; one 180-degree fold changes the contact face but does not reverse left/right pin order",
     "tail_pin_1_world_side_after_rotation_and_fold": "board left / world x-min",
     "tail_pin_50_world_side_after_rotation_and_fold": "board right / world x-max",
     "connector_contact_orientation": "top and bottom contact",
-    "connector_pin_1_world_side": "board left / world x-min",
-    "connector_pin_50_world_side": "board right / world x-max",
-    "connector_footprint_rotation_rule": "orient the exact H2/H6 footprint so connector pin 1 is at world x-min and pin 50 at world x-max; the dual-contact FH34SRJ accepts the contact face produced by the single fold, but it does not excuse a 1-to-50 pin-order reversal",
+    "connector_pin_1_world_side": "board right / world x-max",
+    "connector_pin_50_world_side": "board left / world x-min",
+    "connector_footprint_rotation_rule": "keep the exact H2/H6 connector at B.Cu rotation 0 with its mouth toward world -Y and the slot; manufacturer connector pin 1 is at world x-max and pin 50 at x-min. Panel-tail n mates connector 51-n by the explicit electrical bijection. Dual-contact construction accepts the face produced by the single fold; neither rotating the body nor twisting the FPC is required",
     "display_memory_transform": "rotate ILI9488 output by 180 degrees relative to its cable-down native orientation",
     "touch_transform": "rotate FT6236 coordinates by 180 degrees before UI hit-testing",
-    "tail_contract": "manufacturer drawing controls the 30.16 +/-0.50-mm edge-to-tip length, 50-contact 0.50-mm pitch, 0.30-mm stiffener and native 50-left/1-right drawing order; Hirose controls the top-and-bottom-contact connector. H5 incoming inspection verifies lot conformity, one untwisted fold, 1-to-1 / 50-to-50 orientation, measured route <=24.66 mm, relaxed slack >=5.00 mm and insertion"
+    "tail_contract": "manufacturer drawing controls the 30.16 +/-0.50-mm edge-to-tip length, 50-contact 0.50-mm pitch, 0.30-mm stiffener and native 50-left/1-right drawing order; Hirose controls the top-and-bottom-contact connector and its distinct numbering. H5 incoming inspection verifies lot conformity, one untwisted fold, panel-tail 1 to FH34 50 and panel-tail 50 to FH34 1 using the complete bijection, measured route <=24.66 mm, relaxed slack >=5.00 mm and insertion"
   },
   "paper_checks": {
     "connector_within_ui_outline": true,
     "connector_clear_of_mounting_holes": true,
     "connector_height_within_interboard_gap": true,
     "minimum_same_face_clearance_mm": 0.7,
-    "display_slot_width_mm": 27.0,
+    "display_slot_width_mm": 27,
     "display_slot_height_mm": 1.2,
     "display_tail_width_mm": 25.5,
     "display_tail_width_tolerance_mm": 0.15,
@@ -270,7 +331,7 @@
     "minimum_tail_length_mm": 29.66,
     "panel_edge_to_connector_full_depth_mm": 18.3,
     "minimum_raw_length_reserve_mm": 11.36,
-    "minimum_relaxed_service_slack_mm": 5.0,
+    "minimum_relaxed_service_slack_mm": 5,
     "maximum_measured_route_to_contact_stop_mm": 24.66,
     "bend_insertion_and_tolerance_budget_mm": 6.36,
     "pin_order_and_contact_face_checked": true,
@@ -296,7 +357,7 @@
     },
     {
       "source": "https://www.hirose.com/en/product/p/CL0580-1266-2-50",
-      "finding": "Hirose identifies the exact FH34SRJ-50S-0.5SH(50) as a 50-position, 0.5-mm-pitch, 1.0-mm-high horizontal ZIF with top-and-bottom contacts for 0.30-mm FPC. The dual-contact construction accepts the contact face after the one-fold route; the PCB footprint still must preserve pin 1 to pin 1 and pin 50 to pin 50."
+      "finding": "Hirose identifies the exact FH34SRJ-50S-0.5SH(50) as a 50-position, 0.5-mm-pitch, 1.0-mm-high horizontal ZIF with top-and-bottom contacts for 0.30-mm FPC. EDC-159714-50-08 sheet 1 fixes manufacturer contact 1 at the right with solder row above body. The unchanged B.Cu/0-degree pose accepts the single-fold face; the correct mating order is panel-tail n to connector 51-n, not identity numbering."
     },
     {
       "source": "https://jlcpcb.com/partdetail/HRS_Hirose-FH34SRJ_50S_0_5SH_50/C3169104",
@@ -309,7 +370,11 @@
     {
       "source": "https://github.com/cifertech/ESP32-DIV/tree/9d4d82fe7a12febf554b12e1eca6d434ebe79d39/PCB/v2",
       "finding": "The official ESP32-DIV v2 Gerbers expose eighteen direct-solder FPC lands and four empty 1.2-mm holes around the display zone. The holes do not retain the assembled display, and the public PCB, BOM, 3D model and photograph do not establish the actual retention method; a hidden PSA bond remains an inference, not a documented fact."
+    },
+    {
+      "source": "https://www.hirose.com/en/product/document?clcode=CL0580-1266-2-50&documentid=0001483059&documenttype=2DDrawing&lang=en&productname=FH34SRJ-50S-0.5SH%2850%29&series=FH34SRJ",
+      "finding": "Manufacturer top view and PCB mounting pattern independently fix right-hand Contact No.1; section Q places the FPC mouth opposite the solder terminals. Corrected numbering and the explicit inverse panel-to-connector map preserve all existing physical pad/net positions, the slot and the one-fold route."
     }
   ],
-  "release_boundary": "H1 freezes the exact panel, component-free UI-PCB display bed, mandatory board -Y / antenna-edge FPC direction, 27.00 x 1.20-mm rounded tongue slot at [26.50,23.00], one 3M (TC) 4910SQ-2(5) 50.80 x 50.80-mm stock-pad candidate at [14.60,44.46], both silkscreen datums, direct C3169104 ZIF at [26.50,25.00], 50-contact electrical map, 1-to-1 / 50-to-50 orientation, one-fold/no-twist rule, >=5.00-mm relaxed-slack rule and non-load-bearing connector rule. H2 imports the exact footprint, rotation, slot and keep-outs and routes the display sheet directly on the UI PCB; before order H5 proves current-lot folded stack <=0.714 mm, actual pad-to-FPC clearance >=0.20 mm, bend path and neutral-axis route <=24.66 mm and freezes the 4910 process. The factory populates the ZIF but does not install the panel; the owner dry-fits, electrically verifies and bonds the single supplied panel during final assembly. H7/H8 inspect the one assembled prototype."
+  "release_boundary": "H1 freezes the exact panel, component-free UI-PCB display bed, mandatory board -Y / antenna-edge FPC direction, 27.00 x 1.20-mm rounded tongue slot at [26.50,23.00], one 3M (TC) 4910SQ-2(5) 50.80 x 50.80-mm stock-pad candidate at [14.60,44.46], both silkscreen datums, direct C3169104 ZIF at [26.50,25.00], 50-contact electrical map, explicit panel-tail n to manufacturer FH34 contact 51-n orientation, one-fold/no-twist rule, >=5.00-mm relaxed-slack rule and non-load-bearing connector rule. H2 imports the exact footprint, rotation, slot and keep-outs and routes the display sheet directly on the UI PCB; before order H5 proves current-lot folded stack <=0.714 mm, actual pad-to-FPC clearance >=0.20 mm, bend path and neutral-axis route <=24.66 mm and freezes the 4910 process. The factory populates the ZIF but does not install the panel; the owner dry-fits, electrically verifies and bonds the single supplied panel during final assembly. H7/H8 inspect the one assembled prototype."
 }

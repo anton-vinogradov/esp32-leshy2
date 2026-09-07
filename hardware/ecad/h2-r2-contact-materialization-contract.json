@@ -60,8 +60,8 @@
       "SHIELD": ["SH"]
     },
     "hirose_dm3at_sf_pejm5": {
-      "DETECT_A": ["9"],
-      "DETECT_B": ["10"],
+      "DETECT_A": ["10"],
+      "DETECT_B": ["9"],
       "SHIELD": ["SH"]
     },
     "hirose_ufl_r_smt_1_10": {

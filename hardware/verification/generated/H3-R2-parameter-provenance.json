@@ -4,15 +4,15 @@
   "marker": "H3-R2.0.2",
   "status": "pass",
   "accepted_input": "H3-R2.0.1",
-  "input_freeze_sha256": "bf5c7f608aa9cac807a92ce4f67fc5b389b2684dfccd25d24e34f93b6e8cb24d",
-  "register_sha256": "d0b8de87fbdc6ae45881c005cd76deb3cf401d78990ee4897639f815f8ae3569",
+  "input_freeze_sha256": "f54647af1bf3bd9035cfbbc3c3606684b101b724acd649dc05b378524b9c0347",
+  "register_sha256": "7fd90f451aac862276275f95710e80af76daabf15fde50677024cab7b666e89d",
   "source_sha256": {
     "hardware/verification/h3-r2-parameter-provenance-contract.json": "fb26cd78c18234ef1c02ce4ea6af5d4a21b0206229a5034e55c065b08f5d0346",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "6af6d937a9a0adf62e312d2a175dd0598d5a3b14de990f6ba05933726277ea5c",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "42a990c7240e692569cd7c23c67cd92cf657f08c6a3dfe2a79ca4fa8340f2717",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "13c60bf11df73419f6321039378b68f3d55be34a3a033833d7fb477e047e3d14",
-    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "f59ed6290eed183d8c191aab535647aab3ef3694709fed0f6144ec0e1ad6e761",
-    "hardware/architecture/devices.json": "2a4f7944f69705a6361a3f71b315041b7eb08d884a4508eb060d0bcf9affb4c7"
+    "hardware/verification/generated/H3-R2-input-freeze.json": "51a9bc53ab14d7ef4af74325940b3dae08b0f934d1df0499ba0f2efb41b51764",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "e0e857536f50036753bcd9a55a161ff8779eaee83c6b46887abe98a75ea4e22d",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "f882612f3e2cc2fdc12f4b675cbdff9f8009e915697126847104e706a937f39c",
+    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "5a1163d97118354937e45a6f0da38837d25539171fd20dddd39ffdf8f484fbbb",
+    "hardware/architecture/devices.json": "0abf082483aed8c2eca8c6ddfd43684bd1664266d5f0e06873554df05da5b767"
   },
   "policy": {
     "accepted_h2_identity_is_immutable": true,
@@ -394,15 +394,15 @@
       "lifecycle": "production_active_factory_stocked_standard_pcba",
       "jlcpcb_part_number": "C579555",
       "source": {
-        "document": "HMC544A official data sheet",
-        "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/hmc544.pdf",
-        "checked": "2026-08-31"
+        "document": "HMC544A official data sheet v00.1212, Pin Descriptions p5; exact A suffix",
+        "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/hmc544ae.pdf",
+        "checked": "2026-09-07"
       },
       "source_tier": "manufacturer_primary_accepted_h2",
       "accepted_h2_source_preserved": {
-        "document": "HMC544A official data sheet",
-        "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/hmc544.pdf",
-        "checked": "2026-08-31"
+        "document": "HMC544A official data sheet v00.1212, Pin Descriptions p5; exact A suffix",
+        "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/hmc544ae.pdf",
+        "checked": "2026-09-07"
       },
       "source_host": "www.analog.com",
       "parameter_class": "radio_rf",
@@ -2163,7 +2163,7 @@
         "H3-R2.3"
       ],
       "factory_catalog_parameter_gap": null,
-      "symbol_contact_map_sha256": "8e07dca86d6a803b71e9be53e0406d6f1442e315e33b490cdc16d27030116567",
+      "symbol_contact_map_sha256": "7c2130e44e3ec45f789eed7a2d7de298062e8bd8b724fbb7dd5042b8d3e3811f",
       "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
@@ -2362,7 +2362,7 @@
         "H3-R2.5"
       ],
       "factory_catalog_parameter_gap": null,
-      "symbol_contact_map_sha256": "6fb3b20c4a2498ba8e5febe431e6d1d994ed33b164f61f62afcf130e333deac8",
+      "symbol_contact_map_sha256": "2f4d6686e7eb712e1db4c6f911f89d138b7a2459905563aea0700aceee51d57e",
       "symbol_electrical_contract_sha256": "dc71ed86d326ae6ce0065456cc108056093a7f00ab0d8f50c34462579c408f9d"
     },
     {
@@ -6645,18 +6645,18 @@
       "jlcpcb_part_number": null,
       "source": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
-        "version": "A204-E1",
-        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
-        "checked": "2026-08-19"
+        "version": "B3S p2 terminal arrangement/internal connections, TOP view: 4/3 top, 2/1 bottom, ground 5; visually checked 2026-09-07",
+        "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+        "checked": "2026-09-07"
       },
       "source_tier": "manufacturer_primary_accepted_h2",
       "accepted_h2_source_preserved": {
         "document": "OMRON B3S Sealed Tactile Switch SMT datasheet",
-        "version": "A204-E1",
-        "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
-        "checked": "2026-08-19"
+        "version": "B3S p2 terminal arrangement/internal connections, TOP view: 4/3 top, 2/1 bottom, ground 5; visually checked 2026-09-07",
+        "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+        "checked": "2026-09-07"
       },
-      "source_host": "components.omron.com",
+      "source_host": "omronfs.omron.com",
       "parameter_class": "digital_interface",
       "required_parameter_groups": [
         "supply_current",
@@ -6684,7 +6684,7 @@
         "H3-R2.4"
       ],
       "factory_catalog_parameter_gap": null,
-      "symbol_contact_map_sha256": "c302a0482ba7709bcac29d1e1a6406125f6d3dc4e1790740b3d65887d0df122a",
+      "symbol_contact_map_sha256": "a9512d6192b7c6c8ffebb25a71f789f80034953767f20cc2d7a6b4ce95192940",
       "symbol_electrical_contract_sha256": "768efd522c3b2073b13de7a155d3d9df733884e54c9857ad54932bb8cf319017"
     },
     {
@@ -10602,16 +10602,16 @@
       "jlcpcb_part_number": null,
       "source": {
         "document": "TPD2EUSB30A two-channel ESD protection datasheet",
-        "version": "SLLSE78E, revised July 2025",
+        "version": "SLVSAC2G, revised June 2021; DRT-3 drawings 4206292-2/D and 4211172/A visually checked; nominal 1.0x0.8-mm body, 0.50-mm maximum height",
         "url": "https://www.ti.com/lit/ds/symlink/tpd2eusb30a.pdf",
-        "checked": "2026-08-19"
+        "checked": "2026-09-07"
       },
       "source_tier": "manufacturer_primary_accepted_h2",
       "accepted_h2_source_preserved": {
         "document": "TPD2EUSB30A two-channel ESD protection datasheet",
-        "version": "SLLSE78E, revised July 2025",
+        "version": "SLVSAC2G, revised June 2021; DRT-3 drawings 4206292-2/D and 4211172/A visually checked; nominal 1.0x0.8-mm body, 0.50-mm maximum height",
         "url": "https://www.ti.com/lit/ds/symlink/tpd2eusb30a.pdf",
-        "checked": "2026-08-19"
+        "checked": "2026-09-07"
       },
       "source_host": "www.ti.com",
       "parameter_class": "general_component",
@@ -11375,16 +11375,16 @@
       "jlcpcb_part_number": null,
       "source": {
         "document": "TPS383x 150-nA Ultralow Power Supply Voltage Monitor datasheet",
-        "version": "SBVS193D and current exact-part page checked 2026-08-18",
+        "version": "SBVS193D, section 6: DBZ top-view GND=1, RESET=2, VDD=3; visually rechecked 2026-09-07",
         "url": "https://www.ti.com/lit/ds/symlink/tps3839.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-09-07"
       },
       "source_tier": "manufacturer_primary_accepted_h2",
       "accepted_h2_source_preserved": {
         "document": "TPS383x 150-nA Ultralow Power Supply Voltage Monitor datasheet",
-        "version": "SBVS193D and current exact-part page checked 2026-08-18",
+        "version": "SBVS193D, section 6: DBZ top-view GND=1, RESET=2, VDD=3; visually rechecked 2026-09-07",
         "url": "https://www.ti.com/lit/ds/symlink/tps3839.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-09-07"
       },
       "source_host": "www.ti.com",
       "parameter_class": "general_component",
@@ -11408,7 +11408,7 @@
         "H3-R2.3"
       ],
       "factory_catalog_parameter_gap": null,
-      "symbol_contact_map_sha256": "dc961168ed44bd2dbadb5d2207aa48bbb2b322e3c51ab3b1e9c9ef7bcb2542d5",
+      "symbol_contact_map_sha256": "a9eb12172e97f452cf9270e56052918a8384f8351e84c56933ce4676c0952b45",
       "symbol_electrical_contract_sha256": "8c769551ba2629c4e1bd9877a3e9c0356da831e54bad8e872d5a10c359c94cc7"
     },
     {

@@ -1,0 +1,1419 @@
+{
+  "schema_version": 1,
+  "scope": "H6 bounded manufacturer-primary interface review: physical passive contact types only, without contextual power-source promotion, pin-to-pin forwarding edges, mechanical assembly approval or full mating/polarity proof. Keys identify native electrical pad labels; explicit alias/mapping gaps remain fail-closed in unresolved. Mechanical MP pads are excluded rather than invented as electrical pins.",
+  "devices": [
+    {
+      "device_id": "gct_usb4105_gf_a",
+      "mpn": "GCT USB4105-GF-A",
+      "evidence": [
+        {
+          "url": "https://gct.co/files/drawings/usb4105.pdf",
+          "section": "B4, sheet 1: Pin/Signal table, recommended PCB layout as viewed from component side, shell GND",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "A1": {
+          "type": "passive",
+          "reason": "USB ground conductor A1."
+        },
+        "A4": {
+          "type": "passive",
+          "reason": "USB VBUS conductor A4; the connector is not itself a power source."
+        },
+        "A5": {
+          "type": "passive",
+          "reason": "CC1 conductor."
+        },
+        "A6": {
+          "type": "passive",
+          "reason": "USB Dp1 conductor."
+        },
+        "A7": {
+          "type": "passive",
+          "reason": "USB Dn1 conductor."
+        },
+        "A8": {
+          "type": "passive",
+          "reason": "SBU1 conductor; present contact, not a manufacturer NC pin."
+        },
+        "A9": {
+          "type": "passive",
+          "reason": "USB VBUS conductor A9."
+        },
+        "A12": {
+          "type": "passive",
+          "reason": "USB ground conductor A12."
+        },
+        "B1": {
+          "type": "passive",
+          "reason": "USB ground conductor B1."
+        },
+        "B4": {
+          "type": "passive",
+          "reason": "USB VBUS conductor B4."
+        },
+        "B5": {
+          "type": "passive",
+          "reason": "CC2 conductor."
+        },
+        "B6": {
+          "type": "passive",
+          "reason": "USB Dp2 conductor."
+        },
+        "B7": {
+          "type": "passive",
+          "reason": "USB Dn2 conductor."
+        },
+        "B8": {
+          "type": "passive",
+          "reason": "SBU2 conductor; present contact, not a manufacturer NC pin."
+        },
+        "B9": {
+          "type": "passive",
+          "reason": "USB VBUS conductor B9."
+        },
+        "B12": {
+          "type": "passive",
+          "reason": "USB ground conductor B12."
+        },
+        "SH": {
+          "type": "passive",
+          "reason": "Conductive shell/stakes; SH is the native common-pad alias, not a numbered USB signal."
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "jae_dx07s016ja1r1500",
+      "mpn": "JAE DX07S016JA1R1500",
+      "evidence": [
+        {
+          "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8440/MB-0350E_DX07_16-POS_RECEPTACLE.pdf",
+          "section": "Manufacturer-authored JAE MB-0350-3, Aug 2025, p2 General Specifications: explicit VBUS and GND terminal numbers; p3 exact JA1 part and drawing SJ121836/SJ121837",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://products.jae.com/jp/ja/connectors/category/io/dx07-receptacle/dx07s016ja1r1500/",
+          "section": "Exact manufacturer product identity and drawing number; current rendered page does not expose downloadable drawing",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "A1": {
+          "type": "passive",
+          "reason": "USB ground conductor A1."
+        },
+        "A4": {
+          "type": "passive",
+          "reason": "USB VBUS conductor A4; the connector is not itself a power source."
+        },
+        "A9": {
+          "type": "passive",
+          "reason": "USB VBUS conductor A9."
+        },
+        "A12": {
+          "type": "passive",
+          "reason": "USB ground conductor A12."
+        },
+        "B1": {
+          "type": "passive",
+          "reason": "USB ground conductor B1."
+        },
+        "B4": {
+          "type": "passive",
+          "reason": "USB VBUS conductor B4."
+        },
+        "B9": {
+          "type": "passive",
+          "reason": "USB VBUS conductor B9."
+        },
+        "B12": {
+          "type": "passive",
+          "reason": "USB ground conductor B12."
+        }
+      },
+      "unresolved": [
+        "SJ121836/SJ121837 full exact contact drawing was not obtained in this review. A5/A6/A7/A8/B5/B6/B7/B8 and SH are deliberately omitted from verified pins; do not infer their full physical mapping from USB family convention or another manufacturer's receptacle."
+      ]
+    },
+    {
+      "device_id": "hirose_dm3at_sf_pejm5",
+      "mpn": "Hirose DM3AT-SF-PEJM5",
+      "evidence": [
+        {
+          "url": "https://www.hirose.com/en/product/document?clcode=CL0609-0031-0-00&documentid=0000947170&documenttype=2DDrawing&lang=en&productname=DM3AT-SF-PEJM5&series=DM3",
+          "section": "EDC-325165-00-00, sheet 1/6: numbered card contacts, mounting-side land pattern and note 2 card-detection switch A/B",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "Card DAT2 conductor."
+        },
+        "2": {
+          "type": "passive",
+          "reason": "Card CD/DAT3 conductor."
+        },
+        "3": {
+          "type": "passive",
+          "reason": "Card CMD conductor."
+        },
+        "4": {
+          "type": "passive",
+          "reason": "Card VDD conductor; socket is not itself a supply source."
+        },
+        "5": {
+          "type": "passive",
+          "reason": "Card CLK conductor."
+        },
+        "6": {
+          "type": "passive",
+          "reason": "Card VSS return conductor."
+        },
+        "7": {
+          "type": "passive",
+          "reason": "Card DAT0 conductor."
+        },
+        "8": {
+          "type": "passive",
+          "reason": "Card DAT1 conductor."
+        },
+        "9": {
+          "type": "passive",
+          "reason": "Native pad 9: card-detection contact adjacent to card-contact row; manufacturer switch B, open without card and closed to switch A when inserted."
+        },
+        "10": {
+          "type": "passive",
+          "reason": "Native pad 10: lower side card-detection contact; manufacturer switch A, open without card and closed to switch B when inserted."
+        },
+        "SH": {
+          "type": "passive",
+          "reason": "Native SH groups conductive metal-cover solder lands; no active driver."
+        }
+      },
+      "physical_map_review": "Corrected H2 materialization aliases to manufacturer switch A=native10 and B=native9. The isolated normally-open detection pair is symmetric; no function or footprint geometry changes.",
+      "unresolved": [],
+      "native_pad_aliases": {
+        "9": "manufacturer switch B",
+        "10": "manufacturer switch A",
+        "SH": "metal cover solder lands"
+      }
+    },
+    {
+      "device_id": "hirose_fh34srj_50s_0_5sh_50",
+      "mpn": "Hirose FH34SRJ-50S-0.5SH(50)",
+      "evidence": [
+        {
+          "url": "https://www.hirose.com/en/product/document?clcode=CL0580-1266-2-50&documentid=0001483059&documenttype=2DDrawing&lang=en&productname=FH34SRJ-50S-0.5SH%2850%29&series=FH34SRJ",
+          "section": "EDC-159714-50-08, sheet 1/9: Contact No.1, recommended PCB mounting pattern and section Q contact point; exact 50-position variant table",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.hirose.com/en/product/p/CL0580-1266-2-50",
+          "section": "Exact part: 50 positions, top-and-bottom contact, ZIF, 0.3-mm FPC",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "FPC contact 1; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "2": {
+          "type": "passive",
+          "reason": "FPC contact 2; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "3": {
+          "type": "passive",
+          "reason": "FPC contact 3; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "4": {
+          "type": "passive",
+          "reason": "FPC contact 4; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "5": {
+          "type": "passive",
+          "reason": "FPC contact 5; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "6": {
+          "type": "passive",
+          "reason": "FPC contact 6; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "7": {
+          "type": "passive",
+          "reason": "FPC contact 7; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "8": {
+          "type": "passive",
+          "reason": "FPC contact 8; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "9": {
+          "type": "passive",
+          "reason": "FPC contact 9; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "10": {
+          "type": "passive",
+          "reason": "FPC contact 10; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "11": {
+          "type": "passive",
+          "reason": "FPC contact 11; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "12": {
+          "type": "passive",
+          "reason": "FPC contact 12; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "13": {
+          "type": "passive",
+          "reason": "FPC contact 13; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "14": {
+          "type": "passive",
+          "reason": "FPC contact 14; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "15": {
+          "type": "passive",
+          "reason": "FPC contact 15; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "16": {
+          "type": "passive",
+          "reason": "FPC contact 16; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "17": {
+          "type": "passive",
+          "reason": "FPC contact 17; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "18": {
+          "type": "passive",
+          "reason": "FPC contact 18; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "19": {
+          "type": "passive",
+          "reason": "FPC contact 19; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "20": {
+          "type": "passive",
+          "reason": "FPC contact 20; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "21": {
+          "type": "passive",
+          "reason": "FPC contact 21; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "22": {
+          "type": "passive",
+          "reason": "FPC contact 22; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "23": {
+          "type": "passive",
+          "reason": "FPC contact 23; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "24": {
+          "type": "passive",
+          "reason": "FPC contact 24; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "25": {
+          "type": "passive",
+          "reason": "FPC contact 25; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "26": {
+          "type": "passive",
+          "reason": "FPC contact 26; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "27": {
+          "type": "passive",
+          "reason": "FPC contact 27; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "28": {
+          "type": "passive",
+          "reason": "FPC contact 28; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "29": {
+          "type": "passive",
+          "reason": "FPC contact 29; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "30": {
+          "type": "passive",
+          "reason": "FPC contact 30; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "31": {
+          "type": "passive",
+          "reason": "FPC contact 31; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "32": {
+          "type": "passive",
+          "reason": "FPC contact 32; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "33": {
+          "type": "passive",
+          "reason": "FPC contact 33; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "34": {
+          "type": "passive",
+          "reason": "FPC contact 34; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "35": {
+          "type": "passive",
+          "reason": "FPC contact 35; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "36": {
+          "type": "passive",
+          "reason": "FPC contact 36; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "37": {
+          "type": "passive",
+          "reason": "FPC contact 37; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "38": {
+          "type": "passive",
+          "reason": "FPC contact 38; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "39": {
+          "type": "passive",
+          "reason": "FPC contact 39; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "40": {
+          "type": "passive",
+          "reason": "FPC contact 40; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "41": {
+          "type": "passive",
+          "reason": "FPC contact 41; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "42": {
+          "type": "passive",
+          "reason": "FPC contact 42; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "43": {
+          "type": "passive",
+          "reason": "FPC contact 43; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "44": {
+          "type": "passive",
+          "reason": "FPC contact 44; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "45": {
+          "type": "passive",
+          "reason": "FPC contact 45; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "46": {
+          "type": "passive",
+          "reason": "FPC contact 46; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "47": {
+          "type": "passive",
+          "reason": "FPC contact 47; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "48": {
+          "type": "passive",
+          "reason": "FPC contact 48; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "49": {
+          "type": "passive",
+          "reason": "FPC contact 49; passive metal conductor, with no inherent LCD-signal assignment."
+        },
+        "50": {
+          "type": "passive",
+          "reason": "FPC contact 50; passive metal conductor, with no inherent LCD-signal assignment."
+        }
+      },
+      "unresolved": [],
+      "source_mapping_corrections": [
+        {
+          "kind": "manufacturer_contact_numbering_and_distinct_panel_mating_map",
+          "checked": "2026-09-07",
+          "source_correction": "Controlled footprint terminal labels are corrected to manufacturer contact 1 at right, contact 50 at left. The unchanged B.Cu/0-degree pose mates panel-tail n to FH34 contact 51-n by display-mount.json electrical.panel_to_connector_pin_map; slot, mouth direction and all physical pad/net positions are preserved.",
+          "validation": "test_h2_r2_display_mating.py checks all 50 pre-correction world land/net tuples and rejects incomplete, duplicated, identity or altered maps. Native artifact propagation is checked separately by the H2/H6 regeneration gates; this map is not an assembled-display acceptance."
+        }
+      ],
+      "excluded_mechanical_pads": [
+        "MP1",
+        "MP2"
+      ],
+      "mechanical_pad_reason": "Reinforced metal fittings are specified separately from the 50 FPC contacts. No electrical connection to signal or ground is assumed."
+    },
+    {
+      "device_id": "hirose_fx8c_80p_sv1_92",
+      "mpn": "Hirose FX8C-80P-SV1(92)",
+      "evidence": [
+        {
+          "url": "https://www.hirose.com/en/product/document?clcode=CL0578-0523-1-92&documentid=0000988829&documenttype=2DDrawing&lang=en&productname=FX8C-80P-SV1%2892%29&series=FX8C",
+          "section": "EDC3-151087-22, sheet 1/2: exact 80-contact variant, phosphor-bronze contacts, mounting-side land pattern and polarization mark",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "Native position 1 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "2": {
+          "type": "passive",
+          "reason": "Native position 2 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "3": {
+          "type": "passive",
+          "reason": "Native position 3 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "4": {
+          "type": "passive",
+          "reason": "Native position 4 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "5": {
+          "type": "passive",
+          "reason": "Native position 5 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "6": {
+          "type": "passive",
+          "reason": "Native position 6 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "7": {
+          "type": "passive",
+          "reason": "Native position 7 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "8": {
+          "type": "passive",
+          "reason": "Native position 8 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "9": {
+          "type": "passive",
+          "reason": "Native position 9 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "10": {
+          "type": "passive",
+          "reason": "Native position 10 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "11": {
+          "type": "passive",
+          "reason": "Native position 11 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "12": {
+          "type": "passive",
+          "reason": "Native position 12 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "13": {
+          "type": "passive",
+          "reason": "Native position 13 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "14": {
+          "type": "passive",
+          "reason": "Native position 14 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "15": {
+          "type": "passive",
+          "reason": "Native position 15 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "16": {
+          "type": "passive",
+          "reason": "Native position 16 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "17": {
+          "type": "passive",
+          "reason": "Native position 17 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "18": {
+          "type": "passive",
+          "reason": "Native position 18 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "19": {
+          "type": "passive",
+          "reason": "Native position 19 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "20": {
+          "type": "passive",
+          "reason": "Native position 20 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "21": {
+          "type": "passive",
+          "reason": "Native position 21 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "22": {
+          "type": "passive",
+          "reason": "Native position 22 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "23": {
+          "type": "passive",
+          "reason": "Native position 23 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "24": {
+          "type": "passive",
+          "reason": "Native position 24 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "25": {
+          "type": "passive",
+          "reason": "Native position 25 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "26": {
+          "type": "passive",
+          "reason": "Native position 26 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "27": {
+          "type": "passive",
+          "reason": "Native position 27 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "28": {
+          "type": "passive",
+          "reason": "Native position 28 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "29": {
+          "type": "passive",
+          "reason": "Native position 29 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "30": {
+          "type": "passive",
+          "reason": "Native position 30 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "31": {
+          "type": "passive",
+          "reason": "Native position 31 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "32": {
+          "type": "passive",
+          "reason": "Native position 32 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "33": {
+          "type": "passive",
+          "reason": "Native position 33 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "34": {
+          "type": "passive",
+          "reason": "Native position 34 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "35": {
+          "type": "passive",
+          "reason": "Native position 35 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "36": {
+          "type": "passive",
+          "reason": "Native position 36 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "37": {
+          "type": "passive",
+          "reason": "Native position 37 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "38": {
+          "type": "passive",
+          "reason": "Native position 38 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "39": {
+          "type": "passive",
+          "reason": "Native position 39 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "40": {
+          "type": "passive",
+          "reason": "Native position 40 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "41": {
+          "type": "passive",
+          "reason": "Native position 41 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "42": {
+          "type": "passive",
+          "reason": "Native position 42 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "43": {
+          "type": "passive",
+          "reason": "Native position 43 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "44": {
+          "type": "passive",
+          "reason": "Native position 44 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "45": {
+          "type": "passive",
+          "reason": "Native position 45 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "46": {
+          "type": "passive",
+          "reason": "Native position 46 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "47": {
+          "type": "passive",
+          "reason": "Native position 47 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "48": {
+          "type": "passive",
+          "reason": "Native position 48 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "49": {
+          "type": "passive",
+          "reason": "Native position 49 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "50": {
+          "type": "passive",
+          "reason": "Native position 50 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "51": {
+          "type": "passive",
+          "reason": "Native position 51 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "52": {
+          "type": "passive",
+          "reason": "Native position 52 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "53": {
+          "type": "passive",
+          "reason": "Native position 53 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "54": {
+          "type": "passive",
+          "reason": "Native position 54 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "55": {
+          "type": "passive",
+          "reason": "Native position 55 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "56": {
+          "type": "passive",
+          "reason": "Native position 56 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "57": {
+          "type": "passive",
+          "reason": "Native position 57 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "58": {
+          "type": "passive",
+          "reason": "Native position 58 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "59": {
+          "type": "passive",
+          "reason": "Native position 59 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "60": {
+          "type": "passive",
+          "reason": "Native position 60 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "61": {
+          "type": "passive",
+          "reason": "Native position 61 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "62": {
+          "type": "passive",
+          "reason": "Native position 62 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "63": {
+          "type": "passive",
+          "reason": "Native position 63 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "64": {
+          "type": "passive",
+          "reason": "Native position 64 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "65": {
+          "type": "passive",
+          "reason": "Native position 65 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "66": {
+          "type": "passive",
+          "reason": "Native position 66 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "67": {
+          "type": "passive",
+          "reason": "Native position 67 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "68": {
+          "type": "passive",
+          "reason": "Native position 68 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "69": {
+          "type": "passive",
+          "reason": "Native position 69 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "70": {
+          "type": "passive",
+          "reason": "Native position 70 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "71": {
+          "type": "passive",
+          "reason": "Native position 71 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "72": {
+          "type": "passive",
+          "reason": "Native position 72 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "73": {
+          "type": "passive",
+          "reason": "Native position 73 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "74": {
+          "type": "passive",
+          "reason": "Native position 74 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "75": {
+          "type": "passive",
+          "reason": "Native position 75 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "76": {
+          "type": "passive",
+          "reason": "Native position 76 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "77": {
+          "type": "passive",
+          "reason": "Native position 77 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "78": {
+          "type": "passive",
+          "reason": "Native position 78 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "79": {
+          "type": "passive",
+          "reason": "Native position 79 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        },
+        "80": {
+          "type": "passive",
+          "reason": "Native position 80 in the 80-contact plug; passive conductor, not an independently generated supply or signal."
+        }
+      },
+      "unresolved": [
+        "The inspected controlled sheet establishes 80 identical passive contacts and the polarization mark but does not explicitly enumerate all pin numbers or a plug-to-receptacle numbering table. Native 1..80 labels are a CAD convention here; full M1 mating-order proof remains in the board-to-board interface/geometry contract, not established by this type map alone."
+      ]
+    },
+    {
+      "device_id": "hirose_fx8c_80s_sv5_92",
+      "mpn": "Hirose FX8C-80S-SV5(92)",
+      "evidence": [
+        {
+          "url": "https://www.hirose.com/en/product/document?clcode=CL0578-0823-5-92&documentid=0000988573&documenttype=2DDrawing&lang=en&productname=FX8C-80S-SV5%2892%29&series=FX8C",
+          "section": "EDC3-151023-22, sheet 1/2: exact 80-contact variant, phosphor-bronze contacts, mounting-side land pattern and polarization mark",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "Native position 1 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "2": {
+          "type": "passive",
+          "reason": "Native position 2 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "3": {
+          "type": "passive",
+          "reason": "Native position 3 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "4": {
+          "type": "passive",
+          "reason": "Native position 4 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "5": {
+          "type": "passive",
+          "reason": "Native position 5 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "6": {
+          "type": "passive",
+          "reason": "Native position 6 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "7": {
+          "type": "passive",
+          "reason": "Native position 7 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "8": {
+          "type": "passive",
+          "reason": "Native position 8 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "9": {
+          "type": "passive",
+          "reason": "Native position 9 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "10": {
+          "type": "passive",
+          "reason": "Native position 10 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "11": {
+          "type": "passive",
+          "reason": "Native position 11 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "12": {
+          "type": "passive",
+          "reason": "Native position 12 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "13": {
+          "type": "passive",
+          "reason": "Native position 13 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "14": {
+          "type": "passive",
+          "reason": "Native position 14 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "15": {
+          "type": "passive",
+          "reason": "Native position 15 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "16": {
+          "type": "passive",
+          "reason": "Native position 16 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "17": {
+          "type": "passive",
+          "reason": "Native position 17 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "18": {
+          "type": "passive",
+          "reason": "Native position 18 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "19": {
+          "type": "passive",
+          "reason": "Native position 19 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "20": {
+          "type": "passive",
+          "reason": "Native position 20 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "21": {
+          "type": "passive",
+          "reason": "Native position 21 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "22": {
+          "type": "passive",
+          "reason": "Native position 22 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "23": {
+          "type": "passive",
+          "reason": "Native position 23 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "24": {
+          "type": "passive",
+          "reason": "Native position 24 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "25": {
+          "type": "passive",
+          "reason": "Native position 25 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "26": {
+          "type": "passive",
+          "reason": "Native position 26 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "27": {
+          "type": "passive",
+          "reason": "Native position 27 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "28": {
+          "type": "passive",
+          "reason": "Native position 28 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "29": {
+          "type": "passive",
+          "reason": "Native position 29 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "30": {
+          "type": "passive",
+          "reason": "Native position 30 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "31": {
+          "type": "passive",
+          "reason": "Native position 31 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "32": {
+          "type": "passive",
+          "reason": "Native position 32 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "33": {
+          "type": "passive",
+          "reason": "Native position 33 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "34": {
+          "type": "passive",
+          "reason": "Native position 34 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "35": {
+          "type": "passive",
+          "reason": "Native position 35 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "36": {
+          "type": "passive",
+          "reason": "Native position 36 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "37": {
+          "type": "passive",
+          "reason": "Native position 37 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "38": {
+          "type": "passive",
+          "reason": "Native position 38 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "39": {
+          "type": "passive",
+          "reason": "Native position 39 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "40": {
+          "type": "passive",
+          "reason": "Native position 40 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "41": {
+          "type": "passive",
+          "reason": "Native position 41 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "42": {
+          "type": "passive",
+          "reason": "Native position 42 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "43": {
+          "type": "passive",
+          "reason": "Native position 43 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "44": {
+          "type": "passive",
+          "reason": "Native position 44 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "45": {
+          "type": "passive",
+          "reason": "Native position 45 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "46": {
+          "type": "passive",
+          "reason": "Native position 46 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "47": {
+          "type": "passive",
+          "reason": "Native position 47 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "48": {
+          "type": "passive",
+          "reason": "Native position 48 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "49": {
+          "type": "passive",
+          "reason": "Native position 49 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "50": {
+          "type": "passive",
+          "reason": "Native position 50 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "51": {
+          "type": "passive",
+          "reason": "Native position 51 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "52": {
+          "type": "passive",
+          "reason": "Native position 52 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "53": {
+          "type": "passive",
+          "reason": "Native position 53 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "54": {
+          "type": "passive",
+          "reason": "Native position 54 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "55": {
+          "type": "passive",
+          "reason": "Native position 55 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "56": {
+          "type": "passive",
+          "reason": "Native position 56 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "57": {
+          "type": "passive",
+          "reason": "Native position 57 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "58": {
+          "type": "passive",
+          "reason": "Native position 58 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "59": {
+          "type": "passive",
+          "reason": "Native position 59 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "60": {
+          "type": "passive",
+          "reason": "Native position 60 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "61": {
+          "type": "passive",
+          "reason": "Native position 61 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "62": {
+          "type": "passive",
+          "reason": "Native position 62 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "63": {
+          "type": "passive",
+          "reason": "Native position 63 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "64": {
+          "type": "passive",
+          "reason": "Native position 64 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "65": {
+          "type": "passive",
+          "reason": "Native position 65 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "66": {
+          "type": "passive",
+          "reason": "Native position 66 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "67": {
+          "type": "passive",
+          "reason": "Native position 67 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "68": {
+          "type": "passive",
+          "reason": "Native position 68 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "69": {
+          "type": "passive",
+          "reason": "Native position 69 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "70": {
+          "type": "passive",
+          "reason": "Native position 70 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "71": {
+          "type": "passive",
+          "reason": "Native position 71 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "72": {
+          "type": "passive",
+          "reason": "Native position 72 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "73": {
+          "type": "passive",
+          "reason": "Native position 73 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "74": {
+          "type": "passive",
+          "reason": "Native position 74 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "75": {
+          "type": "passive",
+          "reason": "Native position 75 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "76": {
+          "type": "passive",
+          "reason": "Native position 76 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "77": {
+          "type": "passive",
+          "reason": "Native position 77 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "78": {
+          "type": "passive",
+          "reason": "Native position 78 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "79": {
+          "type": "passive",
+          "reason": "Native position 79 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        },
+        "80": {
+          "type": "passive",
+          "reason": "Native position 80 in the 80-contact receptacle; passive conductor, not an independently generated supply or signal."
+        }
+      },
+      "unresolved": [
+        "The inspected controlled sheet establishes 80 identical passive contacts and the polarization mark but does not explicitly enumerate all pin numbers or a plug-to-receptacle numbering table. Native 1..80 labels are a CAD convention here; full M1 mating-order proof remains in the board-to-board interface/geometry contract, not established by this type map alone."
+      ]
+    },
+    {
+      "device_id": "hirose_ufl_r_smt_1_10",
+      "mpn": "Hirose U.FL-R-SMT-1(80)",
+      "evidence": [
+        {
+          "url": "https://www.hirose.com/en/product/document?clcode=CL0331-0472-2-80&documentid=0001257922&documenttype=2DDrawing&lang=en&productname=U.FL-R-SMT-1%2880%29&series=U.FL",
+          "section": "EDC-302540-80-80, sheet 1/1: CENTER CONTACT(SIG), OUTER CONTACT(GND), recommended PCB layout (mounting surface side)",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "Native pad 1 is the single center-contact SIG solder land; manufacturer SIG is a passive RF conductor."
+        },
+        "2": {
+          "type": "passive",
+          "reason": "Native pad 2 groups the two manufacturer OUTER CONTACT/GND solder lands."
+        }
+      },
+      "physical_map_review": "Corrected SHELL provenance to two ground lands plus one separate SIG land. Native pad inventory and electrical mapping are unchanged.",
+      "unresolved": [],
+      "native_pad_aliases": {
+        "1": "SIG",
+        "2": "two GND lands"
+      }
+    },
+    {
+      "device_id": "gct_rfpc_sma31_fn_175_a",
+      "mpn": "GCT RFPC-SMA31-FN-175-A",
+      "evidence": [
+        {
+          "url": "https://gct.co/connector/rfpc-sma31-fn",
+          "section": "standard-polarity female SMA edge-mount jack, 50-ohm non-isolated body, exact 175-A variant in product resources; product evidence only, controlled PDF download unavailable in this review",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "Native RF launch alias: passive coaxial center conductor."
+        },
+        "2": {
+          "type": "passive",
+          "reason": "Native upper-left shell-land alias: passive coaxial outer conductor."
+        },
+        "3": {
+          "type": "passive",
+          "reason": "Native upper-right shell-land alias: passive coaxial outer conductor."
+        },
+        "4": {
+          "type": "passive",
+          "reason": "Native lower-left shell-land alias: passive coaxial outer conductor."
+        },
+        "5": {
+          "type": "passive",
+          "reason": "Native lower-right shell-land alias: passive coaxial outer conductor."
+        }
+      },
+      "unresolved": [
+        "Exact controlled drawing could not be visually re-opened: GCT download returned HTTP403, and a prior local .pdf was HTML rather than PDF. Connector passive function is established by the manufacturer product; native 1..5 launch/shell aliases still need an independent exact drawing-to-footprint positional crosscheck. Do not treat this entry as a released landing-pattern audit."
+      ],
+      "numbering_basis": "1..5 are project-native pad aliases, not manufacturer-assigned SMA terminal numbers."
+    },
+    {
+      "device_id": "gct_rfpc_sma32_fn_175_a",
+      "mpn": "GCT RFPC-SMA32-FN-175-A",
+      "evidence": [
+        {
+          "url": "https://gct.co/connector/rfpc-sma32-fn",
+          "section": "reverse-polarity female SMA edge-mount jack, 50-ohm non-isolated body, exact 175-A variant in product resources; product evidence only, controlled PDF download unavailable in this review",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "Native RF launch alias: passive coaxial center conductor."
+        },
+        "2": {
+          "type": "passive",
+          "reason": "Native upper-left shell-land alias: passive coaxial outer conductor."
+        },
+        "3": {
+          "type": "passive",
+          "reason": "Native upper-right shell-land alias: passive coaxial outer conductor."
+        },
+        "4": {
+          "type": "passive",
+          "reason": "Native lower-left shell-land alias: passive coaxial outer conductor."
+        },
+        "5": {
+          "type": "passive",
+          "reason": "Native lower-right shell-land alias: passive coaxial outer conductor."
+        }
+      },
+      "unresolved": [
+        "Exact controlled drawing could not be visually re-opened: GCT download returned HTTP403, and a prior local .pdf was HTML rather than PDF. Connector passive function is established by the manufacturer product; native 1..5 launch/shell aliases still need an independent exact drawing-to-footprint positional crosscheck. Do not treat this entry as a released landing-pattern audit."
+      ],
+      "numbering_basis": "1..5 are project-native pad aliases, not manufacturer-assigned SMA terminal numbers."
+    },
+    {
+      "device_id": "keystone_1048p",
+      "mpn": "Keystone Electronics 1048P",
+      "evidence": [
+        {
+          "url": "https://www.keyelco.com/product.cfm/product_id/13959",
+          "section": "Exact 1048P dual 18650 polarized SMT holder identity",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.keyelco.com/userAssets/file/M65p27.pdf",
+          "section": "M65 p27: DUAL CELL / SURFACE MOUNT, 1048P polarized variant and four-terminal pad layout",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "Native slot-0 end contact at negative-X end; passive cell-holder conductor."
+        },
+        "2": {
+          "type": "passive",
+          "reason": "Native slot-0 opposite end contact at positive-X end; passive cell-holder conductor."
+        },
+        "3": {
+          "type": "passive",
+          "reason": "Native slot-1 end contact at negative-X end; passive cell-holder conductor."
+        },
+        "4": {
+          "type": "passive",
+          "reason": "Native slot-1 opposite end contact at positive-X end; passive cell-holder conductor."
+        }
+      },
+      "unresolved": [
+        "The catalog proves the four physical holder contacts but does not legibly establish the exact polarized 1048P slot-to-pad plus/minus assignment. Do not promote current SLOT0_POS/SLOT1_POS labels to independently verified polarity until the exact 1048P drawing or a sufficiently clear manufacturer photo is checked. Cells and system wiring, not the bare holder, establish supply-source semantics."
+      ],
+      "numbering_basis": "Four project-native pad aliases; manufacturer catalog does not number these contacts."
+    },
+    {
+      "device_id": "same_sky_sj_43504_smt_tr",
+      "mpn": "Same Sky SJ-43504-SMT-TR",
+      "evidence": [
+        {
+          "url": "https://www.sameskydevices.com/product/resource/sj-43504-smt-tr.pdf",
+          "section": "Rev 1.06, 09/12/2024, p2: PIN table, schematic, recommended PCB layout (top view)",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "Sleeve conductor."
+        },
+        "2": {
+          "type": "passive",
+          "reason": "Tip conductor, normally closed to switch contact 5 without an inserted plug."
+        },
+        "3": {
+          "type": "passive",
+          "reason": "Ring 1 conductor, normally closed to switch contact 6 without an inserted plug."
+        },
+        "4": {
+          "type": "passive",
+          "reason": "Ring 2 conductor."
+        },
+        "5": {
+          "type": "passive",
+          "reason": "Tip switch contact, opened from tip 2 by plug insertion."
+        },
+        "6": {
+          "type": "passive",
+          "reason": "Ring 1 switch contact, opened from ring 1 contact 3 by plug insertion."
+        }
+      },
+      "unresolved": []
+    },
+    {
+      "device_id": "alps_ec11e18244au",
+      "mpn": "Alps Alpine EC11E18244AU",
+      "evidence": [
+        {
+          "url": "https://tech.alpsalpine.com/cms.media/product_catalog_ec_01_ec11e_en_611f078659.pdf",
+          "section": "EC11E catalog update2510, p1 exact AU model uses Drawing No.2; p2 No.2 terminal A/C/B layout and isolated normally-open D/E push switch",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "A": {
+          "type": "passive",
+          "reason": "Encoder phase A mechanical contact to common C; not a powered logic output."
+        },
+        "B": {
+          "type": "passive",
+          "reason": "Encoder phase B mechanical contact to common C; not a powered logic output."
+        },
+        "C": {
+          "type": "passive",
+          "reason": "Encoder mechanical common contact."
+        },
+        "S1": {
+          "type": "passive",
+          "reason": "One contact of the isolated normally-open D/E push switch; native alias S1."
+        },
+        "S2": {
+          "type": "passive",
+          "reason": "Other contact of the isolated normally-open D/E push switch; native alias S2."
+        }
+      },
+      "unresolved": [
+        "The switch is a symmetric isolated D/E pair; current H2 D->S1/E->S2 aliases were not accepted as manufacturer-position proof in this pass. Final D/E-to-native-S1/S2 positional review is separate from the verified passive push-switch type."
+      ],
+      "excluded_mechanical_pads": [
+        "MP"
+      ],
+      "mechanical_pad_reason": "Unnumbered mounting tabs are mechanical retention. No manufacturer electrical connection is assumed."
+    },
+    {
+      "device_id": "alps_skrtlae010",
+      "mpn": "Alps Alpine SKRTLAE010",
+      "evidence": [
+        {
+          "url": "https://tech.alpsalpine.com/cms.media/product_catalog_ta_02_skrt_en_01ec237785.pdf",
+          "section": "SKRT catalog, p1 exact LAE010 variant; p2 Drawing No.2, numbered 1/2/3 terminals and Circuit Diagram",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "Native shared pad 1 groups manufacturer contacts 1 and 3, which are permanently common."
+        },
+        "2": {
+          "type": "passive",
+          "reason": "Manufacturer switch contact 2; normally open to common manufacturer contacts 1/3."
+        }
+      },
+      "unresolved": [],
+      "native_pad_aliases": {
+        "1": "manufacturer contacts 1 and 3, internally common",
+        "2": "manufacturer contact 2"
+      },
+      "excluded_mechanical_pads": [
+        "MP"
+      ],
+      "mechanical_pad_reason": "Separate mounting tabs are not assigned a signal/ground function in the manufacturer circuit."
+    },
+    {
+      "device_id": "omron_b3s_1100p",
+      "mpn": "OMRON B3S-1100P",
+      "evidence": [
+        {
+          "url": "https://components.omron.com/eu-en/system/files/2024-10/datasheet_pdf/A204-E1.pdf",
+          "section": "A204-E1-05, p1 B3S-1100P ground-terminal variant; p2 Terminal Arrangement/Internal Connections (Top View), text crosscheck",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+          "section": "Manufacturer-hosted B3S drawing, p2 visually reviewed: ground5 at bottom, upper-left4/upper-right3, lower-left2/lower-right1; common pairs 3-4 and1-2",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {
+          "type": "passive",
+          "reason": "Manufacturer terminal 1: normally-open switch side, permanently common to terminal 2."
+        },
+        "2": {
+          "type": "passive",
+          "reason": "Manufacturer terminal 2: permanently common to terminal 1."
+        },
+        "3": {
+          "type": "passive",
+          "reason": "Manufacturer terminal 3: opposite switch side, permanently common to terminal 4."
+        },
+        "4": {
+          "type": "passive",
+          "reason": "Manufacturer terminal 4: permanently common to terminal 3."
+        },
+        "5": {
+          "type": "passive",
+          "reason": "Manufacturer ground terminal connected to conductive cover; passive shield, not active supply."
+        }
+      },
+      "physical_map_review": "Corrected current Leshy2_R2 footprint and devices.json together: TL4/TR3/BL2/BR1, common3-4 and1-2. The same physical land/net grouping and geometry are retained; the historical Leshy2 footprint is immutable and is no longer selected by current R2.",
+      "unresolved": [],
+      "source_mapping_corrections": [
+        {
+          "kind": "physical_numbering_mismatch_with_consistent_local_aliases",
+          "manufacturer_top_view": {
+            "top_left": "4",
+            "top_right": "3",
+            "bottom_left": "2",
+            "bottom_right": "1",
+            "bottom_center_ground": "5"
+          },
+          "manufacturer_common_pairs": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "3",
+              "4"
+            ]
+          ],
+          "required_action": "Coordinated native footprint 1/4 renumber and logical-contact mapping; preserve existing physical land/net positions."
+        }
+      ]
+    }
+  ]
+}

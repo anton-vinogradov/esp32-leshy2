@@ -2454,7 +2454,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "ManufacturerEvidenceChecked" "2026-08-18"
+			(property "ManufacturerEvidenceChecked" "2026-09-07"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2480,13 +2480,13 @@
 				(pin passive line
 					(at -20.32 1.27 0)
 					(length 5.08)
-					(name "RESET_N" (effects (font (size 1.27 1.27))))
+					(name "GND" (effects (font (size 1.27 1.27))))
 					(number "1" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at -20.32 -1.27 0)
 					(length 5.08)
-					(name "GND" (effects (font (size 1.27 1.27))))
+					(name "RESET_N" (effects (font (size 1.27 1.27))))
 					(number "2" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
@@ -12244,15 +12244,15 @@
 			)
 		)
 	)
-	(label "CODEC_READY"
+	(label "AUDIO_GROUND"
 		(at 401.32 370.84 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "6d6b4e13-67d3-5297-9206-3b508e5939a7")
+		(uuid "00584397-b503-5f49-b381-d9da9d21f738")
 	)
-	(label "AUDIO_GROUND"
+	(label "CODEC_READY"
 		(at 401.32 373.38 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "b0430bb8-1761-552a-b631-6f87ec15b003")
+		(uuid "9017fa37-7c83-56f8-a737-80fd257f9d56")
 	)
 	(label "3V3_CODEC_SWITCHED"
 		(at 441.96 370.84 180)

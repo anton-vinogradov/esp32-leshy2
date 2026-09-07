@@ -35,7 +35,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Datasheet" "https://www.analog.com/media/en/technical-documentation/data-sheets/hmc544.pdf"
+			(property "Datasheet" "https://www.analog.com/media/en/technical-documentation/data-sheets/hmc544ae.pdf"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -56,7 +56,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "ManufacturerEvidenceChecked" "2026-08-31"
+			(property "ManufacturerEvidenceChecked" "2026-09-07"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3585,7 +3585,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "ManufacturerEvidenceChecked" "2026-08-18"
+			(property "ManufacturerEvidenceChecked" "2026-09-07"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -3611,13 +3611,13 @@
 				(pin passive line
 					(at -20.32 1.27 0)
 					(length 5.08)
-					(name "RESET_N" (effects (font (size 1.27 1.27))))
+					(name "GND" (effects (font (size 1.27 1.27))))
 					(number "1" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at -20.32 -1.27 0)
 					(length 5.08)
-					(name "GND" (effects (font (size 1.27 1.27))))
+					(name "RESET_N" (effects (font (size 1.27 1.27))))
 					(number "2" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
@@ -11611,15 +11611,15 @@
 			)
 		)
 	)
-	(label "RX_RST_N"
+	(label "POWER_GROUND"
 		(at 767.08 299.72 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "d5759120-d064-55a9-968b-d1f019d20b13")
+		(uuid "b852476a-b817-536e-adc0-cc6714a28299")
 	)
-	(label "POWER_GROUND"
+	(label "RX_RST_N"
 		(at 767.08 302.26 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "59e9a94a-9756-5e21-a0d0-6c635754901d")
+		(uuid "87ab2608-21c8-5075-a826-ef788b0bc693")
 	)
 	(label "3V3_RECEIVER_SWITCHED"
 		(at 807.72 299.72 180)

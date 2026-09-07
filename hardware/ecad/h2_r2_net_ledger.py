@@ -250,6 +250,25 @@ def routed_current_net(
     return next(iter(resolved)), origin
 
 
+def display_panel_position(display: dict, connector_contact: str) -> str:
+    """Resolve manufacturer FH34 numbering to the untwisted panel tongue.
+
+    At the retained B.Cu/0-degree pose the panel and connector number their
+    mating contacts in opposite directions. Validate the entire bijection
+    before even applying topology overrides, so a partial/identity map cannot
+    hide behind the five populated mode straps.
+    """
+    expected = {str(pin): str(51 - pin) for pin in range(1, 51)}
+    mapping = display["electrical"].get("panel_to_connector_pin_map")
+    if mapping != expected:
+        raise ValueError("display panel-to-FH34 map must be the complete 1..50 -> 50..1 bijection")
+    if not re.fullmatch(r"PIN_(?:[1-9]|[1-4][0-9]|50)", connector_contact):
+        raise ValueError(f"invalid FH34 manufacturer contact: {connector_contact}")
+    connector_position = connector_contact[4:]
+    inverse = {connector: panel for panel, connector in mapping.items()}
+    return inverse[connector_position]
+
+
 def current_override(instance: str, contact: str, sources: dict[str, dict], aliases: dict[str, str]) -> tuple[str | None, str | None]:
     h0 = sources["h0"]
     dual = sources["dual_rp"]
@@ -262,6 +281,11 @@ def current_override(instance: str, contact: str, sources: dict[str, dict], alia
     route_aliases = sources["_h1_route_net_aliases"]
     topology = sources["topology"].get("endpoint_overrides", {})
     endpoint = f"{instance}.{contact}"
+    panel_position = (
+        display_panel_position(display, contact)
+        if instance == "display_connector" and contact.startswith("PIN_")
+        else None
+    )
     if endpoint in topology:
         net = topology[endpoint]
         return (aliases.get(net, net) if net is not None else None), "current_r2_board_local_topology"
@@ -305,8 +329,7 @@ def current_override(instance: str, contact: str, sources: dict[str, dict], alia
         row = next(row for row in boundary["buffer"]["pin_topology"] if row["name"] == contact)
         return aliases.get(row["net"], row["net"]), "current_pack_safety_boundary"
     if instance == "display_connector" and contact.startswith("PIN_"):
-        position = contact[4:]
-        text = display["electrical"]["panel_pin_map"][position]
+        text = display["electrical"]["panel_pin_map"][panel_position]
         if text.startswith("OPEN "):
             return None, "current_display_direct_explicit_nc"
         return aliases.get(text, text), "current_display_direct_map"

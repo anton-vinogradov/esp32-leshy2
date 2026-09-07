@@ -6,13 +6,13 @@
   "source_sha256": {
     "hardware/verification/h3-r2-transition-sequence-contract.json": "3c68bdd74fcb6be83f9a014822db1e1bb88c3180b7c477d78b5a4bcf95f5443b",
     "hardware/verification/h3-r2-verification-plan.json": "54143b22eeddf73fbe05ea5f0996c363e22bf7830c49e13ced6f3dcca8c7d16c",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "6af6d937a9a0adf62e312d2a175dd0598d5a3b14de990f6ba05933726277ea5c",
-    "hardware/verification/generated/H3-R2-method-contract.json": "f5437468dadc2753bd9cc439e0cfbfe5a83ee3f7ece920338c0dc8c2f71cb0e5",
-    "hardware/verification/generated/H3-R2-dc-source-crosscheck.json": "2044d7a8bc8c94445f052f8edc9a0ef8631d0bda6eb71799ac4d9c86f50511fa",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "12019fb538309b2d19051e97409cbe9d88d0e6cb5bf1b2911dcc85fe52cdc6a7",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "13c60bf11df73419f6321039378b68f3d55be34a3a033833d7fb477e047e3d14",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "51a9bc53ab14d7ef4af74325940b3dae08b0f934d1df0499ba0f2efb41b51764",
+    "hardware/verification/generated/H3-R2-method-contract.json": "d1afe9ee9d38c78036b42149680bf9a4b25aa9e09df1f1fbd71f3d3997b2dab9",
+    "hardware/verification/generated/H3-R2-dc-source-crosscheck.json": "57c2f77e31fa06ccd53baeda71e042208042f877294276a54b0774c419f4da3a",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "023e37751cb0fa15e2b71a9cf798f7e078577877465e98af64fb7c470aa80c14",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "f882612f3e2cc2fdc12f4b675cbdff9f8009e915697126847104e706a937f39c",
     "hardware/ecad/generated/H2-R2-interboard-m1.json": "127965ec1e68cbf8c57d028fd067c56a724a3259248bab4ba5c86c8f9307b6fd",
-    "hardware/architecture/devices.json": "2a4f7944f69705a6361a3f71b315041b7eb08d884a4508eb060d0bcf9affb4c7"
+    "hardware/architecture/devices.json": "0abf082483aed8c2eca8c6ddfd43684bd1664266d5f0e06873554df05da5b767"
   },
   "exact_devices": {
     "supervisor": {

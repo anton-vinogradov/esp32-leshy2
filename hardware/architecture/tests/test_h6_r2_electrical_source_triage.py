@@ -1,6 +1,8 @@
 """Bounded source-triage checks: no KiCad launch or production mutation."""
 
 import copy
+import hashlib
+import json
 import unittest
 
 from hardware.verification import h6_r2_electrical_source_triage as triage
@@ -18,6 +20,9 @@ class ElectricalSourceTriageTests(unittest.TestCase):
         self.review, self.audit, self.ledger, self.material = copy.deepcopy(self.documents)
         # Unit fixtures model a matching filesystem. The read-only --check CLI
         # independently computes actual file digests rather than trusting these.
+        # Source regeneration may be in progress; model the seven-map hash
+        # surface here without mutating or claiming freshness of the real audit.
+        self.audit["source_hashes"].update({p: value for p, value in self.review["source_sha256"].items() if p != triage.LEDGER})
         self.hashes = {**self.review["source_sha256"], **self.audit["source_hashes"]}
 
     def check(self):
@@ -27,11 +32,23 @@ class ElectricalSourceTriageTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, pattern):
             self.check()
 
+    def refresh(self):
+        return triage.refresh_observations(self.review, self.audit, self.ledger, self.material, self.hashes)
+
+    def update_fixture_native_content_digest(self, project):
+        content = json.dumps(project["native_erc"], sort_keys=True, ensure_ascii=False, separators=(",", ":"))
+        project["erc_content_sha256"] = hashlib.sha256(content.encode("utf-8")).hexdigest()
+
+    def rf_air_violation(self):
+        project = next(p for p in self.audit["projects"] if p["project"] == "LESHY2-RF-R2")
+        violation = next(v for s in project["native_erc"]["sheets"] for v in s.get("violations", []) if any("Symbol U53 " in i["description"] for i in v["items"]))
+        return project, violation
+
     def test_exact_current_warning_and_conflict_coverage_is_only_triage(self):
         result = self.check()
-        self.assertEqual(21, result["power_findings"])
+        self.assertEqual(22, result["power_findings"])
         self.assertEqual(1, result["explained_conflicts"])
-        self.assertEqual(96, result["source_path_endpoints"])
+        self.assertEqual(102, result["source_path_endpoints"])
         self.assertIs(False, result["gate_closed"])
 
     def test_stale_or_missing_source_digest_is_rejected(self):
@@ -87,7 +104,8 @@ class ElectricalSourceTriageTests(unittest.TestCase):
                 sheet["violations"].pop()
                 break
         project["erc_count_by_type"]["power_pin_not_driven"] -= 1
-        self.assert_rejected("coverage is not exact 21")
+        self.update_fixture_native_content_digest(project)
+        self.assert_rejected("coverage is not exact 22")
 
     def test_source_path_net_and_pad_must_match_exact_endpoint(self):
         node = self.review["findings"][0]["source_path"][0]
@@ -156,6 +174,169 @@ class ElectricalSourceTriageTests(unittest.TestCase):
         for path in ("../outside.json", "/etc/passwd"):
             with self.subTest(path=path), self.assertRaisesRegex(ValueError, "unsafe source"):
                 triage.digest_relative(path)
+
+    def test_all_seven_reviewed_maps_are_required(self):
+        expected = {f"hardware/verification/h6-electrical-pins-{name}.json" for name in ("power", "digital", "logic", "analog", "protection", "interfaces", "passives")}
+        self.assertEqual(expected, triage.MAPS)
+        for path in expected:
+            with self.subTest(path=path):
+                audit = copy.deepcopy(self.audit)
+                del audit["source_hashes"][path]
+                with self.assertRaisesRegex(ValueError, "native audit source hash coverage"):
+                    triage.refresh_observations(self.review, audit, self.ledger, self.material, self.hashes)
+
+    def test_air_bias_path_has_real_tps22919_and_both_choke_ends(self):
+        row = next(r for r in self.review["findings"] if r["net"] == "AIR_LNA_OUT_BIASED")
+        self.assertEqual("rf_bias_choke_feed_model_gap", row["classification"])
+        self.assertEqual(("U53", "3", "RF_OUT_DC_IN"), tuple(row["pins"][0][k] for k in ("reference", "pin", "contact")))
+        expected = {
+            ("U60", "IN", ("1",), "3V3_MAIN"),
+            ("U60", "ON", ("3",), "AIR_RX_EN"),
+            ("U60", "VOUT", ("6",), "3V3_AIR_SWITCHED"),
+            ("L23", "END_1", ("1",), "3V3_AIR_SWITCHED"),
+            ("L23", "END_2", ("2",), "AIR_LNA_OUT_BIASED"),
+            ("U53", "RF_OUT_DC_IN", ("3",), "AIR_LNA_OUT_BIASED"),
+        }
+        self.assertEqual(expected, {(n["reference"], n["contact"], tuple(n["pads"]), n["net"]) for n in row["source_path"]})
+        self.assertTrue(any(e.get("url") == "https://www.minicircuits.com/WebStore/dashboardPdf?model=PGA-103%2B" and "choke" in e["section"] for e in row["evidence"]))
+        source = next(r for r in self.ledger["rows"] if r["project"] == "LESHY2-RF-R2" and r["reference"] == "U60" and r["contact"] == "VOUT")
+        self.assertEqual("ti_tps22919_dckr", source["device_id"])
+
+    def test_refresh_changes_only_hashes_and_reported_pins(self):
+        self.review["source_sha256"][triage.LEDGER] = "0" * 64
+        audio = next(r for r in self.review["findings"] if r["net"] == "AUDIO_GROUND")
+        audio["pins"] = [{"reference": "old-representative", "uuid": "old-observation"}]
+        before = copy.deepcopy(self.review)
+        refreshed = self.refresh()
+        self.assertEqual(before, self.review, "refresh must not mutate its input")
+        self.assertEqual(self.hashes[triage.LEDGER], refreshed["source_sha256"][triage.LEDGER])
+        observed = next(r for r in refreshed["findings"] if r["net"] == "AUDIO_GROUND")["pins"][0]
+        self.assertEqual(("U40", "3", "voice_audio_mux"), tuple(observed[k] for k in ("reference", "pin", "instance")))
+        refreshed["source_sha256"] = before["source_sha256"]
+        for key in ("findings", "conflicts"):
+            for old, new in zip(before[key], refreshed[key]):
+                new["pins"] = old["pins"]
+        self.assertEqual(before, refreshed, "no paths, explanations, obligations, metadata or gate decisions may change")
+
+    def test_refresh_rejects_stale_native_inputs_even_if_triage_was_stale(self):
+        self.review["source_sha256"][triage.LEDGER] = "0" * 64
+        path = next(p for p in self.audit["source_hashes"] if p not in triage.REQUIRED_SOURCES)
+        self.hashes[path] = "0" * 64
+        with self.assertRaisesRegex(ValueError, "native audit stale source hash"):
+            self.refresh()
+
+    def test_refresh_rejects_new_net_without_auto_explanation(self):
+        project, violation = self.rf_air_violation()
+        violation["items"][0]["description"] = "Symbol U60 Pin 1 [IN, Power input, Line]"
+        self.update_fixture_native_content_digest(project)
+        before = copy.deepcopy(self.review)
+        with self.assertRaisesRegex(ValueError, "project/type/net set changed"):
+            self.refresh()
+        self.assertEqual(before, self.review)
+
+    def test_refresh_rejects_removed_reviewed_net(self):
+        project, violation = self.rf_air_violation()
+        sheet = next(s for s in project["native_erc"]["sheets"] if violation in s.get("violations", []))
+        sheet["violations"].remove(violation)
+        project["erc_count_by_type"]["power_pin_not_driven"] -= 1
+        self.update_fixture_native_content_digest(project)
+        with self.assertRaisesRegex(ValueError, "project/type/net set changed"):
+            self.refresh()
+
+    def test_refresh_rejects_changed_source_path_not_just_changed_representative(self):
+        endpoint = next(r for r in self.ledger["rows"] if r["instance"] == "air_lna_bias_choke" and r["contact"] == "END_1")
+        endpoint["net"] = "WRONG_SUPPLY"
+        with self.assertRaisesRegex(ValueError, "source-path pin/net mismatch"):
+            self.refresh()
+
+    def test_all_source_path_nodes_bind_exact_device_and_mpn(self):
+        _, endpoints = triage.indexes(self.ledger, self.material)
+        nodes = [n for row in [*self.review["findings"], *self.review["conflicts"]] for n in row["source_path"]]
+        self.assertEqual(102, len(nodes))
+        for node in nodes:
+            key = tuple(node[k] for k in ("project", "reference", "instance", "contact"))
+            self.assertEqual((endpoints[key]["device_id"], endpoints[key]["mpn"]), (node["device_id"], node["mpn"]))
+
+    def test_refresh_never_populates_or_corrects_missing_path_identity(self):
+        for field in ("device_id", "mpn"):
+            for value in (None, "wrong-exact-part"):
+                with self.subTest(field=field, value=value):
+                    node = self.review["findings"][0]["source_path"][0]
+                    old = node[field]
+                    if value is None:
+                        del node[field]
+                    else:
+                        node[field] = value
+                    before = copy.deepcopy(self.review)
+                    self.assert_rejected("source-path exact device/MPN identity mismatch")
+                    with self.assertRaisesRegex(ValueError, "source-path exact device/MPN identity mismatch"):
+                        self.refresh()
+                    self.assertEqual(before, self.review)
+                    node[field] = old
+
+    def test_refresh_rejects_changed_mpn_with_same_device_contacts_pads_and_nets(self):
+        group = next(g for g in self.material["groups"] if g["device_id"] == "ti_tps22919_dckr")
+        group["mpn"] = "different exact load-switch MPN"
+        # Model an otherwise fresh native audit; old triage hashes may be stale.
+        # Identity must stop a refresh even when net-level observations agree.
+        self.review["source_sha256"][triage.MATERIAL] = "0" * 64
+        before = copy.deepcopy(self.review)
+        with self.assertRaisesRegex(ValueError, "source-path exact device/MPN identity mismatch"):
+            self.refresh()
+        self.assertEqual(before, self.review)
+
+    def test_refresh_rejects_device_swap_even_if_mpn_pads_contacts_and_nets_match(self):
+        original_id = "ti_tps22919_dckr"
+        other_id = "test_same_pad_load_switch"
+        group = copy.deepcopy(next(g for g in self.material["groups"] if g["device_id"] == original_id))
+        group["device_id"] = other_id
+        self.material["groups"].append(group)
+        for row in self.ledger["rows"]:
+            if row["instance"] == "airband_power_switch":
+                self.assertEqual(original_id, row["device_id"])
+                row["device_id"] = other_id
+        self.review["source_sha256"][triage.LEDGER] = "0" * 64
+        before = copy.deepcopy(self.review)
+        with self.assertRaisesRegex(ValueError, "source-path exact device/MPN identity mismatch"):
+            self.refresh()
+        self.assertEqual(before, self.review)
+
+    def test_refresh_rejects_fabricated_native_uuid_report(self):
+        _, violation = self.rf_air_violation()
+        violation["items"][0]["uuid"] = "invented"
+        with self.assertRaisesRegex(ValueError, "observation content changed"):
+            self.refresh()
+
+    def test_refresh_rejects_unknown_or_duplicate_native_pin(self):
+        project, violation = self.rf_air_violation()
+        violation["items"][0]["description"] = "Symbol U53 Pin 999 [UNKNOWN, Power input, Line]"
+        self.update_fixture_native_content_digest(project)
+        with self.assertRaisesRegex(ValueError, "unknown native reported pin"):
+            self.refresh()
+        violation["items"][0]["description"] = "Symbol U60 Pin 2 [GND, Power input, Line]"
+        self.update_fixture_native_content_digest(project)
+        with self.assertRaisesRegex(ValueError, "duplicate native project/type/net"):
+            self.refresh()
+
+    def test_refresh_rejects_new_conflict_and_cannot_clear_the_gate(self):
+        project = next(p for p in self.audit["projects"] if p["project"] == "LESHY2-RF-R2")
+        violation = next(v for s in project["native_erc"]["sheets"] for v in s.get("violations", []) if v["type"] == "pin_to_pin")
+        violation["type"] = "unconnected_pin"
+        del project["erc_count_by_type"]["pin_to_pin"]
+        project["erc_count_by_type"]["unconnected_pin"] = 1
+        self.update_fixture_native_content_digest(project)
+        with self.assertRaisesRegex(ValueError, "project/type/net set changed"):
+            self.refresh()
+        self.audit = copy.deepcopy(self.documents[1])
+        self.audit["source_hashes"].update({p: value for p, value in self.review["source_sha256"].items() if p != triage.LEDGER})
+        self.review["summary"]["whole_electrical_gate_pass"] = True
+        with self.assertRaisesRegex(ValueError, "whole gate pass"):
+            self.refresh()
+
+    def test_refresh_never_invents_missing_reason_or_obligations(self):
+        self.review["findings"][0]["reason"] = ""
+        with self.assertRaisesRegex(ValueError, "missing triage reason"):
+            self.refresh()
 
 
 if __name__ == "__main__":

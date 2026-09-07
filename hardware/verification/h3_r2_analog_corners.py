@@ -51,6 +51,38 @@ def endpoint_on_net(rows: list[dict], endpoint: str, net: str) -> bool:
     return any(row.get("endpoint") == endpoint and row.get("net") == net for row in rows)
 
 
+def panel_endpoint(display_mount: dict, panel_pin: int) -> str:
+    """Resolve physical mating only; expected panel functions stay independent."""
+    mapping = display_mount["electrical"].get("panel_to_connector_pin_map")
+    if mapping != {str(pin): str(51 - pin) for pin in range(1, 51)}:
+        raise ValueError("display requires the verified complete panel-to-FH34 51-n bijection")
+    if type(panel_pin) is not int or panel_pin not in range(1, 51):
+        raise ValueError("invalid physical display panel pin")
+    return f"display_connector.PIN_{mapping[str(panel_pin)]}"
+
+
+def display_topology_checks(native_nets: list[dict], display_mount: dict) -> dict:
+    # These are exact panel-datasheet functions, not functions copied from the
+    # configurable panel_pin_map or H2 generator. Only mating numbers transform.
+    panel = {pin: panel_endpoint(display_mount, pin) for pin in range(1, 51)}
+    return {
+        "panel_vddi_40_41_on_canonical_main": all(endpoint_on_net(native_nets, panel[pin], "3V3_MAIN") for pin in (40, 41)),
+        "panel_vci_42_on_canonical_main": endpoint_on_net(native_nets, panel[42], "3V3_MAIN"),
+        "backlight_anode_is_latch_protected": endpoint_on_net(native_nets, "backlight_efuse.OUT", "LCD_LEDA_PROTECTED") and endpoint_on_net(native_nets, panel[1], "LCD_LEDA_PROTECTED"),
+        "both_panel_cathodes_enter_one_series_resistor": all(endpoint_on_net(native_nets, panel[pin], "LCD_LEDK") for pin in (2, 3)) and endpoint_on_net(native_nets, "backlight_series_resistor.END_1", "LCD_LEDK"),
+        "series_resistor_precedes_pwm_sink": endpoint_on_net(native_nets, "backlight_series_resistor.END_2", "LCD_LEDK_LIMITED") and endpoint_on_net(native_nets, "backlight_mosfet.D", "LCD_LEDK_LIMITED"),
+        "pwm_sink_returns_to_ground": endpoint_on_net(native_nets, "backlight_mosfet.S", "POWER_GROUND"),
+        "backlight_gate_fails_low": endpoint_on_net(native_nets, "backlight_mosfet.G", "LCD_BACKLIGHT_GATE") and endpoint_on_net(native_nets, "backlight_gate_pulldown.END_1", "LCD_BACKLIGHT_GATE"),
+        "production_direct_zif_is_passive_i8080_8": display_mount["electrical"]["selected_mode"] == "ILI9488 8080 8-bit with IM2/IM1/IM0 = 0/1/1" and display_mount["electrical"]["added_active_devices"] == 0,
+        "all_eight_i8080_data_lanes_reach_panel": all(
+            endpoint_on_net(native_nets, panel[32 - lane], f"LCD_DB{lane}")
+            and any(row.get("instance") == "s3" and row.get("net") == f"LCD_DB{lane}" for row in native_nets)
+            for lane in range(8)
+        ),
+        "i8080_write_strobe_reaches_panel": endpoint_on_net(native_nets, panel[36], "LCD_WR_N") and any(row.get("instance") == "s3" and row.get("net") == "LCD_WR_N" for row in native_nets),
+    }
+
+
 def build() -> dict:
     candidate = load(CANDIDATE)
     devices = load(DEVICES)["devices"]
@@ -101,22 +133,7 @@ def build() -> dict:
     if not all_true(exact_part_checks):
         errors.append("one or more H3-R2.3 exact part identities drifted")
 
-    topology_checks = {
-        "panel_vddi_40_41_on_canonical_main": all(endpoint_on_net(native_nets, f"display_connector.PIN_{pin}", "3V3_MAIN") for pin in (40, 41)),
-        "panel_vci_42_on_canonical_main": endpoint_on_net(native_nets, "display_connector.PIN_42", "3V3_MAIN"),
-        "backlight_anode_is_latch_protected": endpoint_on_net(native_nets, "backlight_efuse.OUT", "LCD_LEDA_PROTECTED") and endpoint_on_net(native_nets, "display_connector.PIN_1", "LCD_LEDA_PROTECTED"),
-        "both_panel_cathodes_enter_one_series_resistor": all(endpoint_on_net(native_nets, f"display_connector.PIN_{pin}", "LCD_LEDK") for pin in (2, 3)) and endpoint_on_net(native_nets, "backlight_series_resistor.END_1", "LCD_LEDK"),
-        "series_resistor_precedes_pwm_sink": endpoint_on_net(native_nets, "backlight_series_resistor.END_2", "LCD_LEDK_LIMITED") and endpoint_on_net(native_nets, "backlight_mosfet.D", "LCD_LEDK_LIMITED"),
-        "pwm_sink_returns_to_ground": endpoint_on_net(native_nets, "backlight_mosfet.S", "POWER_GROUND"),
-        "backlight_gate_fails_low": endpoint_on_net(native_nets, "backlight_mosfet.G", "LCD_BACKLIGHT_GATE") and endpoint_on_net(native_nets, "backlight_gate_pulldown.END_1", "LCD_BACKLIGHT_GATE"),
-        "production_direct_zif_is_passive_i8080_8": display_mount["electrical"]["selected_mode"] == "ILI9488 8080 8-bit with IM2/IM1/IM0 = 0/1/1" and display_mount["electrical"]["added_active_devices"] == 0,
-        "all_eight_i8080_data_lanes_reach_panel": all(
-            endpoint_on_net(native_nets, f"display_connector.PIN_{32 - lane}", f"LCD_DB{lane}")
-            and any(row.get("instance") == "s3" and row.get("net") == f"LCD_DB{lane}" for row in native_nets)
-            for lane in range(8)
-        ),
-        "i8080_write_strobe_reaches_panel": endpoint_on_net(native_nets, "display_connector.PIN_36", "LCD_WR_N") and any(row.get("instance") == "s3" and row.get("net") == "LCD_WR_N" for row in native_nets),
-    }
+    topology_checks = display_topology_checks(native_nets, display_mount)
     if not all_true(topology_checks):
         errors.append(
             "display supply/backlight topology drifted: "

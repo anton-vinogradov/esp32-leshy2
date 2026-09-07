@@ -2220,12 +2220,12 @@ def validate_display_mount_design(
         errors.append("display-mount: exact FH34SRJ dual-contact orientation was lost")
     if orientation.get("tail_pin_1_world_side_after_rotation_and_fold") != "board left / world x-min":
         errors.append("display-mount: folded tail pin 1 no longer lands at world x-min")
-    if orientation.get("connector_pin_1_world_side") != "board left / world x-min":
-        errors.append("display-mount: connector footprint pin 1 no longer matches the tail")
+    if orientation.get("connector_pin_1_world_side") != "board right / world x-max":
+        errors.append("display-mount: manufacturer connector pin 1 must mate tail pin 50 at world x-max")
     if orientation.get("tail_pin_50_world_side_after_rotation_and_fold") != "board right / world x-max":
         errors.append("display-mount: folded tail pin 50 no longer lands at world x-max")
-    if orientation.get("connector_pin_50_world_side") != "board right / world x-max":
-        errors.append("display-mount: connector footprint pin 50 no longer matches the tail")
+    if orientation.get("connector_pin_50_world_side") != "board left / world x-min":
+        errors.append("display-mount: manufacturer connector pin 50 must mate tail pin 1 at world x-min")
     if paper_checks.get("pin_order_and_contact_face_checked") is not True:
         errors.append("display-mount: pin-order/contact-face paper check is not closed")
     electrical = design.get("electrical", {})
@@ -2236,6 +2236,9 @@ def validate_display_mount_design(
     }:
         errors.append("display-mount: display and touch must remain exclusively S3-owned")
     panel_map = electrical.get("panel_pin_map", {})
+    expected_mating_map = {str(pin): str(51 - pin) for pin in range(1, 51)}
+    if electrical.get("panel_to_connector_pin_map") != expected_mating_map:
+        errors.append("display-mount: panel-to-FH34 mating map must be the complete 1..50 -> 50..1 bijection")
     if set(panel_map) != {str(pin) for pin in range(1, 51)}:
         errors.append("display-mount: exact 50-contact panel map is incomplete")
     if int(electrical.get("panel_position_count", 0)) != 50:
@@ -4916,7 +4919,7 @@ def render_display_mount(design):
         label(70, 512, "4910 worst-case 0.914 mm: folded-FPC stack ≤0.714 mm and actual clearance ≥0.20 mm.", 9.8, "bold", colour="#92400e"),
         label(70, 544, "What crosses the PCB", 13, "bold", colour="#166534"),
         label(70, 568, "Tail 30.16 ±0.50 mm; measured exit→contact-stop route ≤24.66 mm; relaxed reserve ≥5.00 mm.", 9.8),
-        label(70, 586, "One 180° fold, no twist: panel pin 1 → connector pin 1; panel pin 50 → connector pin 50.", 9.4, "bold", colour="#0f766e"),
+        label(70, 586, "One 180° fold, no twist: panel 1 → FH34 contact 50; panel 50 → FH34 contact 1.", 9.4, "bold", colour="#0f766e"),
         label(70, 612, "Load path", 13, "bold", colour="#166534"),
         label(70, 638, "finger / handling → stiff panel → stock PSA rectangle → UI PCB; never through FPC or ZIF", 9.8),
         label(650, 108, "UI PCB before panel placement · both alignment frames visible", 14, "bold", colour="#7c3aed"),

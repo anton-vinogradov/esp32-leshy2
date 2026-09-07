@@ -4,15 +4,15 @@
   "marker": "H3-R2.1.2",
   "status": "pass",
   "accepted_input": "H3-R2.1.1",
-  "binding_sha256": "cf3f579b39917b24e7d30fc925fa830473535e7e237a6c9598a6dcd892974194",
+  "binding_sha256": "ff92c921517164adcc4337f800b84427e7a2b9e5f41c11744898a37c350e8bdd",
   "source_sha256": {
     "hardware/verification/h3-r2-load-binding-contract.json": "48d2575032bac09bd8ea276e814c16fbb1f76ca6afe0cea0dd36cee2e8c2a384",
-    "hardware/verification/generated/H3-R2-power-state-register.json": "6da8f31aec405cf5f7c769bae5a376ed7abe3091e59954980a3d598f31833ab8",
-    "hardware/verification/generated/H3-R2-method-contract.json": "f5437468dadc2753bd9cc439e0cfbfe5a83ee3f7ece920338c0dc8c2f71cb0e5",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "4285cf46d6174dfb9fff0e891a55fb18e3330df15c85ea0e40a9111ca4e21e0c",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "13c60bf11df73419f6321039378b68f3d55be34a3a033833d7fb477e047e3d14",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "12019fb538309b2d19051e97409cbe9d88d0e6cb5bf1b2911dcc85fe52cdc6a7",
-    "hardware/architecture/devices.json": "2a4f7944f69705a6361a3f71b315041b7eb08d884a4508eb060d0bcf9affb4c7"
+    "hardware/verification/generated/H3-R2-power-state-register.json": "5ca9ce0804135ddc4d8b6c2859944ad191bb1426faadcb8ec6292e781f3b0642",
+    "hardware/verification/generated/H3-R2-method-contract.json": "d1afe9ee9d38c78036b42149680bf9a4b25aa9e09df1f1fbd71f3d3997b2dab9",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "14814114d5546a875d721bebf3876e1b56784d5ff5e3dba824c45c6b6157c2d6",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "f882612f3e2cc2fdc12f4b675cbdff9f8009e915697126847104e706a937f39c",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "023e37751cb0fa15e2b71a9cf798f7e078577877465e98af64fb7c470aa80c14",
+    "hardware/architecture/devices.json": "0abf082483aed8c2eca8c6ddfd43684bd1664266d5f0e06873554df05da5b767"
   },
   "policy": {
     "one_line_per_fitted_power_connected_instance": true,
@@ -9368,9 +9368,9 @@
       "candidate_current_fields": [],
       "source": {
         "document": "TPS383x 150-nA Ultralow Power Supply Voltage Monitor datasheet",
-        "version": "SBVS193D and current exact-part page checked 2026-08-18",
+        "version": "SBVS193D, section 6: DBZ top-view GND=1, RESET=2, VDD=3; visually rechecked 2026-09-07",
         "url": "https://www.ti.com/lit/ds/symlink/tps3839.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-09-07"
       },
       "parameter_owner": "H3-R2.1.3"
     },
@@ -11189,9 +11189,9 @@
       "candidate_current_fields": [],
       "source": {
         "document": "TPS383x 150-nA Ultralow Power Supply Voltage Monitor datasheet",
-        "version": "SBVS193D and current exact-part page checked 2026-08-18",
+        "version": "SBVS193D, section 6: DBZ top-view GND=1, RESET=2, VDD=3; visually rechecked 2026-09-07",
         "url": "https://www.ti.com/lit/ds/symlink/tps3839.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-09-07"
       },
       "parameter_owner": "H3-R2.1.3"
     },

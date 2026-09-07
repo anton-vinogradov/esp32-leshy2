@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "scope": "Bounded RF/analog exact-package review, 2026-09-07. Electrical pin types only; no production changes or whole-circuit sign-off. Numbered physical maps were compared with current devices.json and H2-R2 contact materialization. Analog/RF matching, bias, common-mode range, stability, gain, thermal paths and operating states require separate verification. An open-collector type also represents open-drain in the supported KiCad pin-type vocabulary.",
+  "devices": [
+    {
+      "device_id": "adi_ad8314armz_reel",
+      "mpn": "Analog Devices AD8314ARMZ-REEL",
+      "evidence": [
+        {
+          "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/ad8314.pdf",
+          "section": "Rev. C, Figure 2 RM-8 pin configuration and Table 3; specifications for V_UP/V_DN; Filter Capacitor section. ARMZ is MSOP, not the exposed-pad LFCSP option.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {"type": "input", "reason": "RFIN detector RF input; internally AC coupled, not a logic input."},
+        "2": {"type": "input", "reason": "ENBL enable control; high enables the detector."},
+        "3": {"type": "input", "reason": "VSET analog setpoint input; detector mode feeds it from V_UP."},
+        "5": {"type": "power_in", "reason": "COMM device supply return."},
+        "6": {"type": "output", "reason": "V_UP buffered logarithmic detector voltage output."},
+        "7": {"type": "output", "reason": "V_DN inverted/scaled analog output, not a supply source."},
+        "8": {"type": "power_in", "reason": "VPOS positive supply input."}
+      },
+      "physical_map_review": "Numbered functions 1..8 match the current contact map; RM-8 has no exposed pad.",
+      "unresolved": [
+        "Pin 4 FLTR is the external compensation-capacitor terminal to V_UP. Its function is verified, but a simple input/output electrical direction is not established; it is deliberately omitted from reviewed pins rather than marked passive as a placeholder.",
+        "Detector feedback, filter stability, ADC range, RF loading and disabled-state behavior remain outside this pin-type review."
+      ]
+    },
+    {
+      "device_id": "adi_hmc544aetr",
+      "mpn": "HMC544AETR",
+      "evidence": [
+        {
+          "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/hmc544ae.pdf",
+          "section": "HMC544A/544AE v00.1212, Pin Descriptions page 5, truth/control-voltage tables page 3, package information page 4.",
+          "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.analog.com/en/products/hmc544a.html",
+          "section": "HMC544AETR ordering model, 6-lead SOT-23; linked HMC544AE datasheet.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {"type": "passive", "reason": "RF2 reciprocal switched RF terminal; DC blocking required."},
+        "2": {"type": "power_in", "reason": "GND RF/DC return."},
+        "3": {"type": "passive", "reason": "RF1 reciprocal switched RF terminal; DC blocking required."},
+        "4": {"type": "input", "reason": "B switch control voltage input."},
+        "5": {"type": "passive", "reason": "RFC common reciprocal RF terminal; DC blocking required."},
+        "6": {"type": "input", "reason": "A switch control voltage input."}
+      },
+      "physical_map_review": "All six physical functions match current devices.json. The source URL previously pointed to hmc544.pdf (older non-A device); it is corrected to the exact A/AE primary document hmc544ae.pdf in this checkpoint, without a part or physical pin change.",
+      "unresolved": [
+        "Control-state complementarity, control voltage, RF-port DC isolation and matched transmission-line behavior are not established by passive RF-terminal typing."
+      ]
+    },
+    {
+      "device_id": "adi_lt5560edd_trpbf",
+      "mpn": "LT5560EDD#TRPBF",
+      "evidence": [
+        {
+          "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/5560f.pdf",
+          "section": "5560f, DD package/pin diagram page 2, Pin Functions page 10, equivalent output circuit Figure 9 and low-frequency open-collector IF application pages 24-25.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {"type": "input", "reason": "LO- differential local-oscillator input; internally biased, needs external DC block."},
+        "2": {"type": "input", "reason": "EN mixer enable voltage input; must not float."},
+        "3": {"type": "input", "reason": "IN+ differential signal input of the active mixer."},
+        "4": {"type": "input", "reason": "IN- differential signal input of the active mixer."},
+        "5": {"type": "open_collector", "reason": "OUT- differential open-collector mixer output; external DC bias through its load is required."},
+        "6": {"type": "open_collector", "reason": "OUT+ differential open-collector mixer output; not a push-pull logic or supply output."},
+        "7": {"type": "power_in", "reason": "VCC positive supply input."},
+        "8": {"type": "input", "reason": "LO+ differential local-oscillator input; internally biased, needs external DC block."},
+        "9": {"type": "power_in", "reason": "Exposed DD pad is explicitly GND and must be soldered to PCB."}
+      },
+      "physical_map_review": "All numbered functions including exposed ground pad 9 match current devices.json and materialized pads.",
+      "unresolved": [
+        "Open-collector typing does not prove the analog output load/bias path: both output collectors require the reviewed transformer/inductor or resistor feed, valid common-mode voltage and current limits.",
+        "Mixer input bias return, LO level, matching and frequency conversion remain separate analog checks."
+      ]
+    },
+    {
+      "device_id": "adi_ltc5532_es6_trmpbf",
+      "mpn": "LTC5532ES6#TRMPBF",
+      "evidence": [
+        {
+          "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/5532f.pdf",
+          "section": "5532f, S6 TSOT-23 package diagram page 2 and Pin Functions page 11; first pin number in each S6/DFN pair applies to ES6.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {"type": "input", "reason": "RFIN RF detector input referenced to VCC; external AC coupling required."},
+        "2": {"type": "power_in", "reason": "GND supply return."},
+        "3": {"type": "input", "reason": "VOS analog output-offset adjustment input."},
+        "4": {"type": "input", "reason": "VM inverting input of output buffer amplifier."},
+        "5": {"type": "output", "reason": "VOUT buffered detector output, not a power rail."},
+        "6": {"type": "power_in", "reason": "VCC positive supply input."}
+      },
+      "physical_map_review": "All six ES6 functions match the current map; DFN reversed numbering and its exposed pad do not apply.",
+      "unresolved": [
+        "Gain/offset feedback, output/ADC loading and RF input DC blocking need circuit-level verification."
+      ]
+    },
+    {
+      "device_id": "minicircuits_pga_103_plus",
+      "mpn": "PGA-103+",
+      "evidence": [
+        {
+          "url": "https://www.minicircuits.com/WebStore/dashboardPdf?model=PGA-103%2B",
+          "section": "PGA-103+ Simplified Schematic and Pin Description; recommended application Figure 2a. Manufacturer-indexed content identifies 1 RF-IN, 2/4 GND, 3 RF-OUT and DC-IN; direct PDF download returned HTTP 403 in this review.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {"type": "input", "reason": "RF-IN amplifier input; source is externally DC blocked."},
+        "2": {"type": "power_in", "reason": "Ground; H2 materializes manufacturer GND pins 2 and 4 together as SOT-89-3 pad 2."},
+        "3": {"type": "power_in", "reason": "RF-OUT and DC-IN share this pad. Type records mandatory external DC bias input, not RF-output direction."}
+      },
+      "physical_map_review": "All four documented RF/bias/ground functions match devices.json. H2 explicitly maps both GND_1 (manufacturer 2) and GND_2 (manufacturer 4) to the one contiguous SOT-89-3 ground pad numbered 2, so the reviewed native pin types have only three keys; no invented fourth KiCad pad.",
+      "unresolved": [
+        "Pad 3 has simultaneous analog-output and power-input roles; a single KiCad pin type cannot express both. Verify the DC feed through the bias choke and RF output/DC block separately; this pin must never be treated as a self-powered power_out.",
+        "This pin review is not proof of LNA stability, matching, gain, noise figure, bias current or thermal adequacy."
+      ]
+    },
+    {
+      "device_id": "infineon_bgs13sn8e6327xtsa1",
+      "mpn": "Infineon BGS13SN8E6327XTSA1",
+      "evidence": [
+        {
+          "url": "https://www.infineon.com/dgdl/Infineon-BGS13SN8-DataSheet-v02_04-EN.pdf?fileId=5546d462584d1d4a0158cf52e3ae03a7",
+          "section": "Revision 2.4, 2024-06-24, Table 8 pin configuration, Figure 2 top view and Table 9 control truth table; PG-TSNP-8-1 package.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {"type": "power_in", "reason": "VDD positive switch supply."},
+        "2": {"type": "input", "reason": "V2 control input."},
+        "3": {"type": "input", "reason": "V1 control input."},
+        "4": {"type": "passive", "reason": "RF3 switched RF terminal."},
+        "5": {"type": "passive", "reason": "RF1 switched RF terminal."},
+        "6": {"type": "passive", "reason": "RFin common reciprocal RF terminal, not a fixed digital direction."},
+        "7": {"type": "passive", "reason": "RF2 switched RF terminal."},
+        "8": {"type": "power_in", "reason": "GND supply and RF return."}
+      },
+      "physical_map_review": "All eight numbered functions match current devices.json.",
+      "unresolved": [
+        "Switch control sequencing, supply state, RF power/DC limits and routing/matching remain circuit-level obligations."
+      ]
+    },
+    {
+      "device_id": "ti_lmv331_idbvr",
+      "mpn": "LMV331IDBVR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/lmv331.pdf",
+          "section": "SLCS136V, May 2025, Table 4-1 LMV331 DBV/DCK column and open-collector output feature; exact DBV SOT-23-5.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {"type": "input", "reason": "IN+ non-inverting comparator input."},
+        "2": {"type": "power_in", "reason": "GND negative supply/return."},
+        "3": {"type": "input", "reason": "IN- inverting comparator input."},
+        "4": {"type": "open_collector", "reason": "OUT open-collector comparator output; requires pull-up for a high level."},
+        "5": {"type": "power_in", "reason": "VCC positive supply input."}
+      },
+      "physical_map_review": "All five DBV pin functions match current devices.json.",
+      "unresolved": [
+        "Input common-mode/differential limits, hysteresis, pull-up rail and current must be checked in the actual powered and unpowered circuit."
+      ]
+    },
+    {
+      "device_id": "ti_tlv1821_dckr",
+      "mpn": "TLV1821DCKR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/tlv1811.pdf",
+          "section": "Shared TLV181x/TLV182x SNOSDC8E datasheet, Table 4-1 TLV1821 SC-70 column; Figure 7-1 and section 7.4.2.2 open-drain output. The different TLV1821L package mapping does not apply.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {"type": "open_collector", "reason": "OUT sink-only open-drain output (KiCad open_collector class), not TLV1811 push-pull."},
+        "2": {"type": "power_in", "reason": "V- negative supply/return."},
+        "3": {"type": "input", "reason": "IN+ non-inverting comparator input."},
+        "4": {"type": "input", "reason": "IN- inverting comparator input."},
+        "5": {"type": "power_in", "reason": "V+ positive supply input."}
+      },
+      "physical_map_review": "All five TLV1821 DCK functions match current devices.json; visually cross-checked standard and L-variant pin diagrams.",
+      "unresolved": [
+        "Output pull-up, input range, hysteresis and POR timing require configuration-aware review. The datasheet permits unused open-drain outputs to float or connect to V-, but that is not a general permission for arbitrary output ties."
+      ]
+    },
+    {
+      "device_id": "ti_tlv1824_pwr",
+      "mpn": "TLV1824PWR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/tlv1811.pdf",
+          "section": "Shared TLV181x/TLV182x SNOSDC8E datasheet, Table 4-3 and D/PW/DYY 14-pin drawing (not RTE WQFN); section 7.4.2.2 open-drain output.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {"type": "open_collector", "reason": "OUT2 sink-only open-drain comparator output."},
+        "2": {"type": "open_collector", "reason": "OUT1 sink-only open-drain comparator output."},
+        "3": {"type": "power_in", "reason": "V+ positive supply input."},
+        "4": {"type": "input", "reason": "IN1- inverting input, channel 1."},
+        "5": {"type": "input", "reason": "IN1+ non-inverting input, channel 1."},
+        "6": {"type": "input", "reason": "IN2- inverting input, channel 2."},
+        "7": {"type": "input", "reason": "IN2+ non-inverting input, channel 2."},
+        "8": {"type": "input", "reason": "IN3- inverting input, channel 3."},
+        "9": {"type": "input", "reason": "IN3+ non-inverting input, channel 3."},
+        "10": {"type": "input", "reason": "IN4- inverting input, channel 4."},
+        "11": {"type": "input", "reason": "IN4+ non-inverting input, channel 4."},
+        "12": {"type": "power_in", "reason": "V- negative supply/return."},
+        "13": {"type": "open_collector", "reason": "OUT4 sink-only open-drain comparator output."},
+        "14": {"type": "open_collector", "reason": "OUT3 sink-only open-drain comparator output."}
+      },
+      "physical_map_review": "All fourteen PW functions match current devices.json, visually verified against the 14-pin drawing and table. No exposed pad on the selected PW package.",
+      "unresolved": [
+        "Check pull-ups and each channel's actual thresholds/input polarity and POR state. Wired output combinations require deliberate open-drain logic; this type alone does not validate the resulting logic function."
+      ]
+    },
+    {
+      "device_id": "ti_tlv9061_idbvr",
+      "mpn": "TLV9061IDBVR",
+      "evidence": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/tlv9061.pdf",
+          "section": "SBOS839N, July 2026, Figure 5-1 and Table 5-1 SOT-23 column for five-pin TLV9061, not SC70 or six-pin TLV9061S.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {"type": "output", "reason": "OUT operational-amplifier voltage output, not a power rail."},
+        "2": {"type": "power_in", "reason": "V- negative supply or ground in single-supply operation."},
+        "3": {"type": "input", "reason": "IN+ non-inverting analog input."},
+        "4": {"type": "input", "reason": "IN- inverting analog input."},
+        "5": {"type": "power_in", "reason": "V+ positive supply input."}
+      },
+      "physical_map_review": "All five DBV functions match current devices.json.",
+      "unresolved": [
+        "Feedback sign, gain, bandwidth, capacitive-load stability, common-mode range and output swing are not proven by input/output pin typing."
+      ]
+    },
+    {
+      "device_id": "diodes_pam8302a_aycr",
+      "mpn": "Diodes Incorporated PAM8302AAYCR",
+      "evidence": [
+        {
+          "url": "https://www.diodes.com/datasheet/download/PAM8302A.pdf",
+          "section": "DS41333 Rev. 6-2, Pin Assignments page 1 (U-DFN3030-8 Type E), application/block diagram page 2, shutdown operation and ordering table page 9, package/land drawings pages 10-12.",
+          "checked": "2026-09-07"
+        }
+      ],
+      "pins": {
+        "1": {"type": "input", "reason": "SD active-low shutdown control input."},
+        "2": {"type": "no_connect", "reason": "NC no internal connection."},
+        "3": {"type": "input", "reason": "IN+ positive differential audio input."},
+        "4": {"type": "input", "reason": "IN- negative differential audio input."},
+        "5": {"type": "output", "reason": "VO+ driven BTL/Class-D speaker output; not a supply source or ground."},
+        "6": {"type": "power_in", "reason": "VDD amplifier supply input."},
+        "7": {"type": "power_in", "reason": "GND supply return."},
+        "8": {"type": "output", "reason": "VO- complementary driven BTL/Class-D output; must not be treated as speaker ground."}
+      },
+      "physical_map_review": "All numbered functions 1..8 match current devices.json and were visually checked. Exact AYCR is U-DFN3030-8 Type E, not MSOP/SO8. The central pad is a separate unresolved item.",
+      "unresolved": [
+        "The exact U-DFN3030-8E has a central exposed pad, shown without a pin number or electrical assignment in DS41333. Current RF U86 speaker_amp footprint has an unnumbered 1.60x2.35-mm copper/paste pad; H2 materialization excludes it from electrical contacts. Its permitted electrical connection and thermal implementation need exact manufacturer/package evidence. Do not invent pad9=GND or count this unnumbered pad as electrically verified.",
+        "BTL load connection, shutdown level, supply filtering, output EMI and dissipation require circuit/layout verification."
+      ]
+    }
+  ]
+}
