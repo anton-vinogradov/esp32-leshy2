@@ -4,15 +4,15 @@
   "marker": "H3-R2.1.2",
   "status": "pass",
   "accepted_input": "H3-R2.1.1",
-  "binding_sha256": "fd5fed2c7c8f641d0ba05ef6aa4249cfeded47292e57a64fd1746d2d99606bb0",
+  "binding_sha256": "fe6c97163cf1406c80a7e47e0110326a60dc0c921773dd035165a0139fd1f700",
   "source_sha256": {
     "hardware/verification/h3-r2-load-binding-contract.json": "48d2575032bac09bd8ea276e814c16fbb1f76ca6afe0cea0dd36cee2e8c2a384",
-    "hardware/verification/generated/H3-R2-power-state-register.json": "83e3b111b6af88459ed53ba5176dc21af2e5ff7f549a858cf04394ae24921bff",
-    "hardware/verification/generated/H3-R2-method-contract.json": "b70d2622e403c776c185afbd9e4fb61212593d9795a9adf1a3f89f5e3c1de150",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "5feb5c5e97cb11ce9373fae400d532df661714dea7a5b262bc32b5b7627050f8",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "c6a155915d1b64598fb3d24f708070d39c68c75c8bd6094ed871a9a57f53fd88",
-    "hardware/architecture/devices.json": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76"
+    "hardware/verification/generated/H3-R2-power-state-register.json": "d88c423e0c1260d2b63f85f7ef9b0c588edf9c5e55298efdceb33d8922a7c9db",
+    "hardware/verification/generated/H3-R2-method-contract.json": "1a61e78502fa02a85e50b41315ccd43ef6de3d4ff36170235b934c2a807f720a",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "e10e631b0993404024294b73477ee9ea408c2339528fc48757397c0f3e7f88c6",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e",
+    "hardware/architecture/devices.json": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c"
   },
   "policy": {
     "one_line_per_fitted_power_connected_instance": true,
@@ -23076,8 +23076,8 @@
       "sheet": "UI_20_C5_WIFI_IR_SERVICE",
       "reference": "U23",
       "instance": "ir_carrier",
-      "device_id": "vishay_tsmp95000tt",
-      "mpn": "Vishay TSMP95000TT",
+      "device_id": "vishay_tsmp95000tr",
+      "mpn": "Vishay TSMP95000TR",
       "quantity": 1,
       "rail_bindings": [
         {
@@ -23105,10 +23105,10 @@
         }
       ],
       "source": {
-        "document": "TSMP95000 IR sensor module datasheet",
-        "version": "Rev. 1.0, 20-Oct-2022",
+        "document": "Vishay TSMP95000 ordering, contacts and TR side-view tape",
+        "version": "82907 Rev.1.0, 20-Oct-2022, pages 2/4/6/7",
         "url": "https://www.vishay.com/docs/82907/tsmp95000.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-09-07"
       },
       "parameter_owner": "H3-R2.1.3"
     },

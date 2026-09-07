@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "artifact": "H6-R2 SJ-43504-SMT-TR land corrections and cutout review",
+  "checked_date": "2026-09-07",
+  "scope": "Existing exact MPN; two land Y coordinates and three right-column X coordinates corrected, not a new part acceptance or native PCB release",
+  "production_release_authorized": false,
+  "native_board_updated": false,
+  "status": "partial_library_correction_full_cutout_and_body_integration_open",
+  "source": {
+    "author": "Same Sky",
+    "document": "SJ-43504-SMT-TR Rev.1.06, September 12, 2024",
+    "url": "https://www.sameskydevices.com/product/resource/sj-43504-smt-tr.pdf",
+    "page": 2,
+    "section": "Recommended PCB Layout, Top View; full mechanical page visually reviewed",
+    "sha256": "186eea6980c42e3687261b8e6d8e0c04e8a25f8cd16affba5b516496993dd5b5"
+  },
+  "mpn": "SJ-43504-SMT-TR",
+  "instance": "headphone_jack",
+  "native_reference": "LESHY2-RF-R2:U83",
+  "land_geometry": {
+    "size_mm": [1.70, 1.50],
+    "drawing_y_mm": {"1": 2.75, "2": 9.30, "3": 5.50, "4": 2.75, "5": 11.50, "6": 10.55},
+    "local_origin_behind_drawing_datum_mm": 5.75,
+    "corrected_local_y_mm": {"1": -3.00, "2": 3.55, "3": -0.25, "4": -3.00, "5": 5.75, "6": 4.80},
+    "changed_local_y_mm": {"2": {"before": 2.80, "after": 3.55}, "5": {"before": 4.80, "after": 5.75}},
+    "x_registration": {
+      "datum": "Manufacturer PCB top-view body/plug axis X0, not the opening midpoint",
+      "reference_straight_wall_x_mm": [-3.35, 3.45],
+      "pad_outer_edge_to_straight_wall_mm": 1.75,
+      "derived_wall_to_pad_centre_mm": 0.90,
+      "corrected_column_x_mm": [-4.25, 4.35],
+      "derived_column_pitch_mm": 8.60,
+      "changed_pad_numbers": ["1", "3", "6"],
+      "previous_right_column_x_mm": 4.25,
+      "scope": "Consistent linear dimension transcription independently reviewed twice; does not resolve relief arc centres or the complete notch"
+    },
+    "electrical_numbering_changed": false,
+    "courtyard_scope": "Temporary copper envelope [-5.3,-6.0]..[5.4,6.75] only; not a qualified physical-body envelope"
+  },
+  "errata_to_earlier_review": [
+    "The earlier R0.30 relief transcription was wrong: the drawing marks diameter 1.30, not radius 0.30.",
+    "The 11.50 dimension locates the centre of pad 5, not the cutout bottom. The cutout extends below that centre; no full notch depth is accepted here.",
+    "The 6.80 width labels the board opening, not a complete connector body outline. The old centred F.Fab rectangle cannot prove installation."
+  ],
+  "unresolved": [
+    "Register the complete mid-mount outline from consistent manufacturer data; do not silently resolve the diameter 1.30 and 8.00 outside-span callouts by assuming arc centres on the straight walls or measuring pixels.",
+    "Integrate an outward mouth pose and true board-edge notch, check every copper layer plus opposing PCB/body space, then refresh native footprint and routing evidence.",
+    "Until integration, the native PCB contains the old pad geometry and no headset cutout."
+  ],
+  "manufacturer_cad_lookup": {
+    "url": "https://www.sameskydevices.com/product/resource/pcbfootprint/sj-43504-smt-tr",
+    "result": "Search-indexed manufacturer page reports the requested footprint does not exist; direct retrieval returned HTTP 403. No CAD geometry accepted from this lookup."
+  }
+}

@@ -18,6 +18,42 @@ class UserSilkscreenTests(unittest.TestCase):
         cls.boards = json.loads((ROOT / "hardware/layout/generated/H6-R2-placement-audit.json").read_text())["boards"]
         cls.bindings = json.loads((ROOT / "hardware/layout/generated/H6-R2-kicad-net-bindings.json").read_text())["projects"]
 
+    def test_b3s_axis_is_not_asymmetric_courtyard_centre(self):
+        row = {"footprint": "Leshy2_R2:B3S-1100P", "side": "F.Cu",
+               "footprint_anchor_mm": [10, 20], "courtyard_centre_mm": [999, 999]}
+        # Independent quarter-turn expectations; the .75-mm courtyard offset
+        # must not be reintroduced by a future footprint outline change.
+        for angle, expected in ((0, (10, 19.08)), (90, (9.08, 20)),
+                                (180, (10, 20.92)), (270, (10.92, 20))):
+            row["rotation_deg"] = angle
+            self.assertEqual(expected, SILK.b3s_actuator_axis(row))
+        row.update(side="B.Cu", rotation_deg=90)
+        self.assertEqual((10.92, 20), SILK.b3s_actuator_axis(row))
+        for key in ("footprint", "side", "rotation_deg", "footprint_anchor_mm"):
+            bad = dict(row)
+            del bad[key]
+            with self.assertRaises(KeyError):
+                SILK.b3s_actuator_axis(bad)
+        for key, wrong in (("footprint", "Button_Switch_SMD:SW_SPST_B3S-1000"), ("side", "inner")):
+            bad = dict(row, **{key: wrong})
+            with self.assertRaises(ValueError):
+                SILK.b3s_actuator_axis(bad)
+
+    def test_b3s_labels_follow_actual_plunger_after_rotation(self):
+        for project, instance, anchor, angle, expected in (
+            ("LESHY2-UI-R2", "ui_switch_f1", [5.52, 22.5], 90, [4.6, 29.0]),
+            ("LESHY2-UI-R2", "ui_switch_f5", [74.48, 22.5], 270, [75.4, 29.0]),
+            ("LESHY2-RF-R2", "ptt_switch", [72.1, 67.42], 0, [72.1, 73.0]),
+        ):
+            board = next(b for b in self.boards if b["project"] == project)
+            rows = copy.deepcopy(board["placements"])
+            row = next(r for r in rows if r["instance"] == instance)
+            row.update(footprint_anchor_mm=anchor, rotation_deg=angle,
+                       courtyard_centre_mm=[999, 999], side="F.Cu")
+            actual = next(r for r in SILK.labels(project, rows, self.contract)
+                          if r["instance"] == instance)
+            self.assertEqual(expected, actual["at_mm"])
+
     def test_antenna_labels_follow_identity_not_list_or_dictionary_order(self):
         board = next(b for b in self.boards if b["project"] == "LESHY2-RF-R2")
         contract = copy.deepcopy(self.contract)
@@ -121,7 +157,7 @@ class UserSilkscreenTests(unittest.TestCase):
         self.assertEqual(set(SILK.USB_OWNERS), set(found))
         for instance, rows in found.items():
             self.assertEqual(list(SILK.USB_OWNERS[instance]), [row["text"] for row in rows])
-            self.assertEqual([138.0, 140.0], [row["at_mm"][1] for row in rows])
+            self.assertEqual([138.2, 140.0], [row["at_mm"][1] for row in rows])
         self.assertEqual(1, sum(row["text"] == "POWER + USB" for rows in found.values() for row in rows))
 
     def test_all_ten_indicators_are_labelled_at_actual_positions(self):

@@ -103,7 +103,7 @@ check rejects images that no longer match the PCB files.
 
 - H0–H5 are reviewed on baseline R2, including the H2 native production ECAD; their immutable reports are collected in [one index](docs/stage-results.md).
 - Both native KiCad boards pass the current [exact-placement checks](docs/h6-r2-exact-placement.md).
-- The [native interface review](docs/h6-r2-interface-review.md) reopened connector orientation, mating, required cutouts and silkscreen checks. A collision-free layout is not yet a physically assembleable device.
+- Manufacturer-drawing corrections are being integrated into both PCBs. The [native interface review](docs/h6-r2-interface-review.md) separates applied corrections from remaining assembly gates; clean DRC alone does not prove physical assembly.
 - Routing is in progress. Live copper/connectivity counts, hash-bound DRC results and the electrical-review limitations have one owner: [H6.0.3-R1](docs/h6-r2-current-routing.md).
 - Native ERC currently uses passive symbol pins; zero findings do not prove correct rail sources or compatible outputs. This electrical-semantics gap blocks release; [corrected pin mappings and partial typed-ERC review](docs/h6-r2-electrical-semantics.md) describe the current evidence and remaining work.
 

@@ -44,7 +44,7 @@ class H2R2SymbolFootprintLedgerTests(unittest.TestCase):
         self.assertEqual(6, summary["explicit_non_pcba_group_count"])
         self.assertEqual(245, summary["symbol_identity_count"])
         self.assertEqual(245, summary["footprint_identity_count"])
-        self.assertEqual(1617, summary["logical_contact_count"])
+        self.assertEqual(1616, summary["logical_contact_count"])
         self.assertEqual(0, summary["unresolved_groups"])
 
     def test_contacts_are_hash_bound_to_current_device_evidence(self):
@@ -103,11 +103,12 @@ class H2R2SymbolFootprintLedgerTests(unittest.TestCase):
             if row["footprint_definition"]
             and row["footprint_definition"]["status"] == "current_exact_local_definition_materialized"
         ]
-        self.assertEqual(12, len(materialized))
+        self.assertEqual(13, len(materialized))
         self.assertEqual(
             {
                 "hirose_fh34srj_50s_0_5sh_50",
                 "omron_b3s_1100p",
+                "same_sky_sj_43515ts_smt_tr",
                 "jae_dx07s016ja1r1500",
                 "coilcraft_wbc1_1tlc",
                 "coilcraft_wbc16_1tlc",
@@ -125,7 +126,7 @@ class H2R2SymbolFootprintLedgerTests(unittest.TestCase):
             "Leshy2_R2:FH34SRJ-50S-0.5SH-50",
             {row["footprint"] for row in materialized},
         )
-        self.assertEqual(12, self.ledger["summary"]["new_exact_footprint_geometries_materialized"])
+        self.assertEqual(13, self.ledger["summary"]["new_exact_footprint_geometries_materialized"])
 
     def test_authorization_remains_net_and_kicad_free(self):
         self.assertEqual([], self.ledger["errors"])

@@ -103,6 +103,8 @@ def footprint_for(instance: str, device_key: str) -> str:
         "c5_external_rp_sma": "Leshy2:RFPC-SMA32-FN-175-A",
         "c5_rf_board_connector": "Connector_Coaxial:U.FL_Hirose_U.FL-R-SMT-1_Vertical",
         "c5_rf_coupler": "Leshy2:CP0603Q5425ENTR",
+        # Frozen R1 schematic hint, not current R2 package authority. R2 selects
+        # the corrected TR seating face using its exact-MPN footprint override.
         "ir_demod": "Leshy2:Vishay-Heimdall-SMD-TT",
         "ir_carrier": "Leshy2:Vishay-Heimdall-SMD-TT",
         "ir_return_buffer": "Package_SO:TSSOP-8_3x3mm_P0.65mm",
@@ -155,6 +157,86 @@ def reference_prefix(instance: str, device_key: str) -> str:
     return "U"
 
 
+def ir_footprint_outputs() -> dict[Path, str]:
+    """Manufacturer lands with explicit, distinct TT/TR optical datums.
+
+    The origin is the centre of the solder-land row, NOT the package centre.
+    Heimdall TT and TR are the same component presented on perpendicular
+    seating faces. Changing a CPL XY angle does not turn a TT into a TR.
+    Nominal body offsets centre the manufacturer's reference 1.0-mm TR foot
+    or 1.2-mm TT contact on the proposed 1.8-mm land. These are engineering
+    nominal seating datums, not additional manufacturer position tolerances.
+    See hardware/layout/h6-r2-ir-optical-datum-review.json for limits.
+    """
+    copper = ("F.Cu", "F.Paste", "F.Mask")
+
+    def graphics(footprint: str, items: list[str]) -> str:
+        return footprint[:-2] + "\n".join("\t" + item for item in items) + "\n)\n"
+
+    def line(x1: float, y1: float, x2: float, y2: float) -> str:
+        return (f'(fp_line (start {x1:.3f} {y1:.3f}) (end {x2:.3f} {y2:.3f}) '
+                '(stroke (width 0.10) (type default)) (layer "F.Fab"))')
+
+    lands = [(str(n), -1.905 + (n - 1) * 1.27, 0.0, .80, 1.80, copper, "rect")
+             for n in range(1, 5)]
+    tt = custom_footprint(
+        "Vishay-Heimdall-SMD-TT", lands, 6.80, 3.00, 7.30, 3.80,
+        "Vishay TSMP95000 82907 Rev1.0 pp2/4/7; drawing 6.550-5297.01-4: "
+        "TT TOP VIEW mounting, optical axis +Z (normal to F.Cu); four rectangular "
+        "0.8x1.8 lands at 1.27 pitch, pins1/4 GND,2 VS,3 OUT. "
+        "Nominal 1.2mm contact centred on row y=0: body y=-2.4..0.6, "
+        "lens centres (+/-1.7,-1.2); package height3.2. "
+        "NOT a side-view footprint; XY rotation cannot make its axis horizontal.",
+        body_y=-.90, courtyard_y=-.75,
+    )
+    tt = graphics(tt, [
+        # Crosshairs identify the two optical centres, not an invented lens rim.
+        line(-1.90, -1.20, -1.50, -1.20), line(-1.70, -1.40, -1.70, -1.00),
+        line(1.50, -1.20, 1.90, -1.20), line(1.70, -1.40, 1.70, -1.00),
+        '(fp_text user "OPT +Z" (at 0 -1.2) (layer "F.Fab") (effects (font (size 0.5 0.5) (thickness 0.08))))',
+        line(-3.40, .10, -2.90, .60),  # pin-1 corner indication
+    ])
+    tr = custom_footprint(
+        "Vishay-Heimdall-SMD-TR", lands, 6.80, 3.20, 7.30, 4.10,
+        "Vishay TSOP752 82494 Rev2.4 pp2/7/8; drawing 6.550-5297.01-4: "
+        "TR SIDE VIEW mounting, optical axis +Y parallel to F.Cu; four rectangular "
+        "0.8x1.8 lands at 1.27 pitch, pins1/4 GND,2 VS,3 OUT. "
+        "Nominal reference 1.0mm foot centred on row y=0: rear y=-0.5, "
+        "lens base y=2.0, tip y=2.7; body height3.0, optical centre z=1.8. "
+        "Nominal seating datum, not a separately specified land-to-body tolerance.",
+        body_y=1.10, courtyard_y=.90,
+    )
+    tr = graphics(tr, [
+        line(-1.70, 1.20, -1.70, 2.70), line(1.70, 1.20, 1.70, 2.70),
+        line(-1.70, 2.70, -1.95, 2.35), line(-1.70, 2.70, -1.45, 2.35),
+        line(1.70, 2.70, 1.45, 2.35), line(1.70, 2.70, 1.95, 2.35),
+        line(-3.40, -.50, -2.90, 0),  # pin-1 corner indication
+    ])
+    emitter = custom_footprint(
+        "VSMY14940",
+        [("1", -1.35, 0.0, .90, 1.40, copper, "rect"),
+         ("2", 1.35, 0.0, .90, 1.40, copper, "rect")],
+        3.00, 2.51, 4.10, 3.16,
+        "Vishay VSMY14940 84209 Rev1.6 pp5/6: recommended 0.9x1.4 rectangular "
+        "lands, inner gap1.8, centre pitch2.7, total span3.6. "
+        "Component-side view: pad1 ANODE left, pad2 CATHODE right, optical axis -Y; "
+        "p6 tape anode mark rotated CW from lens-left view. "
+        "Origin at terminal-row centre; 1.10mm base y=-0.55..0.55; "
+        "2.51mm total depth gives lens tip y=-1.96; height1.2.",
+        body_y=-.705, courtyard_y=-.630,
+    )
+    emitter = graphics(emitter, [
+        line(0, -.55, 0, -1.96), line(0, -1.96, -.25, -1.61),
+        line(0, -1.96, .25, -1.61),
+        '(fp_text user "K" (at 1.15 -0.3) (layer "F.Fab") (effects (font (size 0.4 0.4) (thickness 0.08))))',
+    ])
+    return {
+        FOOTPRINT_DIR / "Vishay-Heimdall-SMD-TT.kicad_mod": tt,
+        FOOTPRINT_DIR / "Vishay-Heimdall-SMD-TR.kicad_mod": tr,
+        FOOTPRINT_DIR / "VSMY14940.kicad_mod": emitter,
+    }
+
+
 def footprint_outputs() -> dict[Path, str]:
     copper = ("F.Cu", "F.Paste", "F.Mask")
     copper_no_paste = ("F.Cu", "F.Mask")
@@ -173,23 +255,14 @@ def footprint_outputs() -> dict[Path, str]:
         "ESP32-C5-WROOM-1U", pads, 18.0, 21.2, 19.0, 22.2,
         "Espressif ESP32-C5-WROOM-1U datasheet v1.2 Figure 11-2: 32 numbered carrier pads, 1.27-mm side/top pitch, 31 lands 1.5x0.9 mm and segmented 4.7x4.7-mm thermal pad; ANT1 remains factory-fitted",
     )
-    heimdall = custom_footprint(
-        "Vishay-Heimdall-SMD-TT",
-        [(str(number), -1.905 + (number - 1) * 1.27, 0.0, 0.80, 1.80, copper) for number in range(1, 5)],
-        6.80, 3.20, 7.10, 3.70,
-        "Vishay Heimdall TSOP952/TSMP95000 package drawing: four 0.8x1.8-mm proposed lands on 1.27-mm pitch, TT top-view orientation",
-    )
-    emitter = custom_footprint(
-        "VSMY14940",
-        [("1", -0.90, 0.0, 1.20, 1.00, copper), ("2", 0.90, 0.0, 1.20, 1.00, copper)],
-        3.00, 2.51, 3.30, 2.81,
-        "Vishay VSMY14940 Rev.1.6 page 5: exact two 1.2x1.0-mm recommended lands, 3.0-mm total pad span and side-view polarity",
-    )
     return {
         **common_rf_footprints(),
         FOOTPRINT_DIR / "ESP32-C5-WROOM-1U.kicad_mod": module,
-        FOOTPRINT_DIR / "Vishay-Heimdall-SMD-TT.kicad_mod": heimdall,
-        FOOTPRINT_DIR / "VSMY14940.kicad_mod": emitter,
+        # Do not change the frozen R1 sheet/manifest footprint count. The new
+        # TR definition belongs to current R2 and is checked independently by
+        # ir_footprint_outputs()/test_h6_r2_ir_footprints.py.
+        **{path: source for path, source in ir_footprint_outputs().items()
+           if path.name != "Vishay-Heimdall-SMD-TR.kicad_mod"},
     }
 
 

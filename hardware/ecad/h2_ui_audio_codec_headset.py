@@ -116,24 +116,36 @@ def reference_prefix(instance: str, device_key: str) -> str:
 def footprint_outputs() -> dict[Path, str]:
     copper = ("F.Cu", "F.Paste", "F.Mask")
     # Same Sky drawing page 2, top view: every terminal uses one 1.7 x
-    # 1.5-mm land.  The body reference and pad centres are transcribed in the
-    # same top-view orientation, with the receptacle opening towards -Y.
+    # 1.5-mm land. Origin Y is 5.75 mm behind the drawing's PCB-edge datum;
+    # pin 2 is at 9.30 - 5.75, pin 5 at 11.50 - 5.75, not symmetric with 6.
+    # Drawing/body X0 is retained: straight cutout walls -3.35/+3.45 and
+    # (1.75 - half-land-width .85) give pad columns -4.25/+4.35.
+    # The rectangular Fab/courtyard are NOT a qualified mid-mount cutout/body.
+    # See the separate H6 audio datum review;
+    # do not manufacture this footprint until that integration gate is closed.
     jack = custom_footprint(
         "SJ-43504-SMT-TR",
         [
-            ("1", 4.25, -3.00, 1.70, 1.50, copper, "rect"),
-            ("2", -4.25, 2.80, 1.70, 1.50, copper, "rect"),
-            ("3", 4.25, -0.25, 1.70, 1.50, copper, "rect"),
+            ("1", 4.35, -3.00, 1.70, 1.50, copper, "rect"),
+            ("2", -4.25, 3.55, 1.70, 1.50, copper, "rect"),
+            ("3", 4.35, -0.25, 1.70, 1.50, copper, "rect"),
             ("4", -4.25, -3.00, 1.70, 1.50, copper, "rect"),
-            ("5", -4.25, 4.80, 1.70, 1.50, copper, "rect"),
-            ("6", 4.25, 4.80, 1.70, 1.50, copper, "rect"),
+            ("5", -4.25, 5.75, 1.70, 1.50, copper, "rect"),
+            ("6", 4.35, 4.80, 1.70, 1.50, copper, "rect"),
         ],
         6.80,
         11.50,
         10.60,
         12.00,
-        "Same Sky SJ-43504-SMT-TR Rev.1.06 page 2: exact six 1.7x1.5-mm lands, 6.80x11.50-mm top-view body reference and numbered CTIA/switch contact orientation",
+        "Same Sky SJ-43504-SMT-TR Rev.1.06 page 2: six 1.7x1.5-mm lands with corrected pin-2/pin-5 Y and asymmetric X columns; Fab/courtyard and mid-mount Edge.Cuts remain UNQUALIFIED; not a fabrication-ready footprint",
     )
+    # Keep the corrected pad 5 inside a copper-only clearance envelope. This
+    # does not qualify the connector body, mouth or missing board notch.
+    old_courtyard = '(fp_rect (start -5.300 -6.000) (end 5.300 6.000)'
+    if jack.count(old_courtyard) != 1:
+        raise ValueError("unexpected SJ-43504 courtyard scaffold")
+    jack = jack.replace(old_courtyard,
+                        '(fp_rect (start -5.300 -6.000) (end 5.400 6.750)', 1)
     return {FOOTPRINT_DIR / "SJ-43504-SMT-TR.kicad_mod": jack}
 
 

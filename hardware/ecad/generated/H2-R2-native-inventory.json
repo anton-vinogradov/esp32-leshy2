@@ -22,7 +22,7 @@
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76"
+      "sha256": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c"
     },
     "component_groups": {
       "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
@@ -30,7 +30,7 @@
     },
     "r2_cost_model": {
       "path": "hardware/product-design/h1-r2-cost-review.json",
-      "sha256": "a5cda262354cdc99ea2208912442acc764a924f50d9358016a54ae8639e234fd"
+      "sha256": "0a0560f930224ad94f22ba770086a7e67aa608fc47e7bc604ffc3c2be6bb896b"
     },
     "c5_mux_and_service_vbus": {
       "path": "hardware/architecture/c5-sdio-service-mux-contract.json",
@@ -475,18 +475,18 @@
       "bom_excluded": false
     },
     {
-      "device_id": "ck_js102011scqn",
-      "mpn": "C&K JS102011SCQN",
+      "device_id": "ck_js102011saqn",
+      "mpn": "C&K JS102011SAQN",
       "quantity_per_product": 1,
       "scope": "base_product",
       "role": "power_command_switch",
       "ecad_disposition": "schematic_component_group",
-      "qualification": "verified_exact_low_current_power_command_switch_mechanical_hil_open",
-      "lifecycle": "active_orderable",
+      "qualification": "reviewed_exact_side_actuator_factory_route_native_integration_open",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
       "contact_evidence": true,
-      "jlcpcb_part_number": null,
+      "jlcpcb_part_number": "C221660",
       "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": null,
+      "historical_cost_route_only": "ck_js102011scqn",
       "bom_excluded": false
     },
     {
@@ -2206,18 +2206,18 @@
       "bom_excluded": false
     },
     {
-      "device_id": "same_sky_sj_43504_smt_tr",
-      "mpn": "Same Sky SJ-43504-SMT-TR",
+      "device_id": "same_sky_sj_43515ts_smt_tr",
+      "mpn": "Same Sky SJ-43515TS-SMT-TR",
       "quantity_per_product": 1,
       "scope": "base_product",
       "role": "headphone_jack",
       "ecad_disposition": "schematic_component_group",
-      "qualification": "verified_candidate",
-      "lifecycle": "active_orderable",
+      "qualification": "reviewed_exact_top_mount_factory_route_native_integration_open",
+      "lifecycle": "production_active_explicit_jlcpcb_presale_route",
       "contact_evidence": true,
-      "jlcpcb_part_number": null,
+      "jlcpcb_part_number": "C5353507",
       "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": null,
+      "historical_cost_route_only": "same_sky_sj_43504_smt_tr",
       "bom_excluded": false
     },
     {
@@ -3507,18 +3507,18 @@
       "bom_excluded": false
     },
     {
-      "device_id": "vishay_tsmp95000tt",
-      "mpn": "Vishay TSMP95000TT",
+      "device_id": "vishay_tsmp95000tr",
+      "mpn": "Vishay TSMP95000TR",
       "quantity_per_product": 1,
       "scope": "base_product",
       "role": "ir_carrier",
       "ecad_disposition": "schematic_component_group",
-      "qualification": "verified_exact_carrier_learning_ir_receiver",
-      "lifecycle": "active_stocked_orderable",
+      "qualification": "reviewed_exact_side_view_factory_preorder_route_native_integration_open",
+      "lifecycle": "production_active_explicit_jlcpcb_presale_route",
       "contact_evidence": true,
-      "jlcpcb_part_number": null,
+      "jlcpcb_part_number": "C20593617",
       "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": null,
+      "historical_cost_route_only": "vishay_tsmp95000tt",
       "bom_excluded": false
     },
     {

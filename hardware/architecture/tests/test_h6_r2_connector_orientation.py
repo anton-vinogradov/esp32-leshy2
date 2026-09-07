@@ -16,10 +16,10 @@ GCT_FOOTPRINT = "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Hori
 JAE_FOOTPRINT = "Leshy2_R2:USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk"
 SD_FOOTPRINT = "Connector_Card:microSD_HC_Hirose_DM3AT-SF-PEJM5"
 EXPECTED = {
-    "product_usb_connector": ("LESHY2-RF-R2", "J1", "rear-inner", [63.53, 146.9], JAE_FOOTPRINT),
+    "product_usb_connector": ("LESHY2-RF-R2", "J1", "rear-inner", [16.47, 146.9], JAE_FOOTPRINT),
     "hub_rp_service_usb_connector": ("LESHY2-UI-R2", "J11", "ui-inner", [14.87, 146.325], GCT_FOOTPRINT),
     "c5_service_usb_connector": ("LESHY2-UI-R2", "J9", "ui-inner", [26.1, 146.325], GCT_FOOTPRINT),
-    "rf_rp_service_usb_connector": ("LESHY2-RF-R2", "J4", "rear-inner", [42.53, 146.325], GCT_FOOTPRINT),
+    "rf_rp_service_usb_connector": ("LESHY2-RF-R2", "J4", "rear-inner", [37.47, 146.325], GCT_FOOTPRINT),
     "sd": ("LESHY2-UI-R2", "J5", "ui-inner", [61.005, 141.875], SD_FOOTPRINT),
 }
 SUPPORT = {

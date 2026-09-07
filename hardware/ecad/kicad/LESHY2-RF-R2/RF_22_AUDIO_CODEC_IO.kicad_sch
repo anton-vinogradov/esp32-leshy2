@@ -1009,7 +1009,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Leshy2_R2:same_sky_sj_43504_smt_tr"
+		(symbol "Leshy2_R2:same_sky_sj_43515ts_smt_tr"
 			(pin_names (offset 1.016))
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -1022,20 +1022,20 @@
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Value" "Same Sky SJ-43504-SMT-TR"
+			(property "Value" "Same Sky SJ-43515TS-SMT-TR"
 				(at 0.00 -7.62 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Footprint" "Leshy2:SJ-43504-SMT-TR"
+			(property "Footprint" "Leshy2_R2:SJ-43515TS-SMT-TR"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Datasheet" "https://www.sameskydevices.com/product/resource/sj-43504-smt-tr.pdf"
+			(property "Datasheet" "https://www.sameskydevices.com/product/resource/digikeypdf/sj-4351x-smt.pdf"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1049,14 +1049,14 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Leshy2DeviceID" "same_sky_sj_43504_smt_tr"
+			(property "Leshy2DeviceID" "same_sky_sj_43515ts_smt_tr"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "ManufacturerEvidenceChecked" "2026-08-23"
+			(property "ManufacturerEvidenceChecked" "2026-09-08"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -1070,7 +1070,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(symbol "same_sky_sj_43504_smt_tr_0_1"
+			(symbol "same_sky_sj_43515ts_smt_tr_0_1"
 				(rectangle
 					(start -15.24 5.08)
 					(end 15.24 -5.08)
@@ -1078,7 +1078,7 @@
 					(fill (type background))
 				)
 			)
-			(symbol "same_sky_sj_43504_smt_tr_1_1"
+			(symbol "same_sky_sj_43515ts_smt_tr_1_1"
 				(pin passive line
 					(at -20.32 2.54 0)
 					(length 5.08)
@@ -1108,12 +1108,6 @@
 					(length 5.08)
 					(name "TIP_SWITCH" (effects (font (size 1.27 1.27))))
 					(number "5" (effects (font (size 1.27 1.27))))
-				)
-				(pin passive line
-					(at 20.32 -2.54 180)
-					(length 5.08)
-					(name "RING1_SWITCH" (effects (font (size 1.27 1.27))))
-					(number "6" (effects (font (size 1.27 1.27))))
 				)
 			)
 			(embedded_fonts no)
@@ -12388,7 +12382,7 @@
 		(uuid "b196c3d2-3eaa-57f1-8bb9-559ab9b31a84")
 	)
 	(symbol
-		(lib_id "Leshy2_R2:same_sky_sj_43504_smt_tr")
+		(lib_id "Leshy2_R2:same_sky_sj_43515ts_smt_tr")
 		(at 695.96 372.11 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -12402,13 +12396,13 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Same Sky SJ-43504-SMT-TR"
+		(property "Value" "Same Sky SJ-43515TS-SMT-TR"
 			(at 695.96 379.73 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Leshy2:SJ-43504-SMT-TR"
+		(property "Footprint" "Leshy2_R2:SJ-43515TS-SMT-TR"
 			(at 695.96 372.11 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12422,7 +12416,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "same_sky_sj_43504_smt_tr"
+		(property "Description" "same_sky_sj_43515ts_smt_tr"
 			(at 695.96 372.11 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12450,9 +12444,6 @@
 		)
 		(pin "5"
 			(uuid "03360ef8-2b7f-552a-adb2-34e0e0ffb8f1")
-		)
-		(pin "6"
-			(uuid "d8982790-fb1c-5c8e-9a60-084b6e4619c3")
 		)
 		(instances
 			(project "LESHY2-RF-R2"
@@ -12487,9 +12478,6 @@
 		(at 716.28 372.11 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "8a1d1bf4-2453-5bca-99e1-6989c01dc142")
-	)
-	(no_connect (at 716.28 374.65)
-		(uuid "a6aa2c14-f3c5-5f0a-a7c6-6ec64b146d43")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:ti_tca9534a_pwr")

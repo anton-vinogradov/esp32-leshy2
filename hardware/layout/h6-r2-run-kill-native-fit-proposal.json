@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "id": "L2-H6-R2-RUN-KILL-NATIVE-FIT-001",
+  "status": "scratch_three_ref_fit_reviewed_not_integrated",
+  "checked_at_utc": "2026-09-07T21:26:23Z",
+  "scope": "Only RF SW5 RUN/KILL and SW1/SW2 recovery-button poses; exact selected SA switch and unchanged recovery-button MPNs. No production PCB, placement contract, routes, electrical endpoint roles, or labels were modified in this review.",
+  "authorization": {"purchase": false, "fabrication": false, "manufacturing_ready": false},
+  "coordinate_frame": {
+    "board_outline_mm": [80, 150],
+    "poses": "KiCad native top-view XY; both boards have their outward face on F.Cu and inner face on B.Cu",
+    "rf_native_to_assembly_world": "world_x = 80 - native_x; world_y = native_y",
+    "ui_native_to_assembly_world": "world_x = native_x; world_y = native_y",
+    "angle_equivalence": "KiCad reports 270 degrees as -90 degrees"
+  },
+  "native_sources": [
+    {"path": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb", "sha256": "3dd3862acf37ce7b0879093be5c0dc8c98482455c3c508a68b9f92c5b606d0b5"},
+    {"path": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb", "sha256": "ced019b77a4b1fc4437f9c692f0feeaf38aca149cebfc6d6e8fe3fa70a3f347c"},
+    {"path": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pro", "sha256": "0d6281e49949a3d865033e795659b4ae1ec8e066aab2b2d1f7f5ac8aa824235f"},
+    {"path": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_dru", "sha256": "7cf89d80b417a824503f6f41f954d6f38e65978ce8ca207aab9a30318abd6bb9"},
+    {"path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_50_TX_SAFETY_EVIDENCE.kicad_sch", "sha256": "114dc84499fbc2b60a0cda22bfa3e82fe2c0aa0fd963a5fd5695d9426a58bbf0", "note": "Fresh source sheet already uses exact SA symbol/value/footprint; the production PCB still contains SC at this snapshot."},
+    {"path": "hardware/ecad/generated/H2-R2-native-net-ledger.json", "sha256": "4b53693e78c418e04777a98d9258b3e0d6df40e768a968f5475ef3c57df6e7cb"},
+    {"path": "hardware/ecad/generated/H2-R2-contact-materialization.json", "sha256": "79b6ca32064c23798c9b4aa64ecc0f101a833aa89c57921611439baf61c1f467"},
+    {"path": "hardware/layout/h6-r2-mechanical-stack.json", "sha256": "28e9588f17a7e53730f901d22cc470b0cbd5d2a17a307cec2bac2c309ff88cc7"},
+    {"path": "hardware/architecture/devices.json", "sha256": "24434e52264f00c079fe57f2f0de199cccc77fa385fcdc37cdb2f417f097bcc0"}
+  ],
+  "primary_geometry": {
+    "document": "Littelfuse C&K JS Series, revision VL 01/14/26, printed page 4, exact JS102011SAQN Right Angle Surface Mount drawing",
+    "url": "https://www.littelfuse.com/assetdocs/littelfuse-c-k-slide-js-series-datasheet?assetguid=aba42b08-0d2c-423b-813d-a2faa5a3bb14",
+    "local_evidence": "work/interface-datum-review/ck-js-series.pdf",
+    "sha256": "ddb26ebfb6b0f88321f77bbc8f3ca328b3369e1de92cb3bb4d766251cfa4bae4",
+    "footprint": "Button_Switch_SMD:SW_SPDT_CK_JS102011SAQN",
+    "library_file": "Button_Switch_SMD.pretty/SW_SPDT_CK_JS102011SAQN.kicad_mod",
+    "library_sha256": "95c91aa5cb5fb730cf4db077b512c0fa02725edbe92ccc85350d819e56eabc28",
+    "local_drawing_comparison": {
+      "body_mm": [9.0, 3.6, 3.5],
+      "signal_pad_centres_mm": [[-2.5, -2.75], [0, -2.75], [2.5, -2.75]],
+      "manufacturer_land_size_mm": [1.2, 2.5],
+      "kicad_land_size_mm": [1.25, 2.5],
+      "land_difference": "Standard KiCad adds 0.025 mm per side to the land width and uses roundrect corners. This is an explicit engineering land margin, not identical manufacturer artwork.",
+      "npth_centres_mm": [[-3.4, 0], [3.4, 0]],
+      "npth_diameter_mm": 0.9,
+      "locator_diameter_mm": {"nominal": 0.8, "plus": 0, "minus": 0.1},
+      "locator_projection_nominal_mm": 0.8,
+      "actuator_axis_local": "+Y",
+      "actuator_projection_from_body_mm": 2.0,
+      "maintained_travel_mm": 2.0
+    }
+  },
+  "aggregate_proposed_poses": [
+    {
+      "project": "LESHY2-RF-R2", "reference": "SW5", "instance": "power_command_switch",
+      "before": {"mpn": "C&K JS102011SCQN", "side": "B.Cu", "anchor_mm": [4.949999, 114.1], "rotation_deg": 0},
+      "after": {"mpn": "C&K JS102011SAQN", "side": "B.Cu", "anchor_mm": [78.2, 114.1], "rotation_deg": 270},
+      "courtyard_bbox_mm": {"x": [73.655, 82.495], "y": [109.055, 119.145]},
+      "nominal_body_bbox_mm": {"x": [76.4, 80.0], "y": [109.6, 118.6]},
+      "outward_actuator": "Native +X; nominal body front flush with X=80 board edge and lever projects to X=82. No new routed Edge.Cuts slot is needed for this footprint.",
+      "npth_centres_mm": [[78.2, 110.7], [78.2, 117.5]],
+      "new_electrical_pads": [
+        {"pin": "1", "at_mm": [75.45, 111.6], "contact": "THROW_A", "net": "RUN_LOOP_RAW"},
+        {"pin": "2", "at_mm": [75.45, 114.1], "contact": "COMMON", "net": "POWER_GROUND"},
+        {"pin": "3", "at_mm": [75.45, 116.6], "contact": "THROW_B", "net": "POWER_COMMAND_OFF_N"}
+      ],
+      "minimum_same_face_courtyard_gap_mm": 0.355,
+      "nearest_same_face": {"reference": "R21", "instance": "pack_diag_res1", "courtyard_bbox_mm": {"x": [69.35, 73.3], "y": [105.85, 113.6]}}
+    },
+    {
+      "project": "LESHY2-RF-R2", "reference": "SW2", "instance": "rf_rp_reset_button",
+      "before": {"mpn": "Alps Alpine SKRTLAE010", "side": "B.Cu", "anchor_mm": [78.175, 108.25], "rotation_deg": 270},
+      "after": {"mpn": "Alps Alpine SKRTLAE010", "side": "B.Cu", "anchor_mm": [1.825, 108.25], "rotation_deg": 90},
+      "courtyard_bbox_mm": {"x": [-0.52, 3.92], "y": [105.375, 111.125]},
+      "outward_actuator": "Native -X; nominal nose X=-0.215",
+      "minimum_same_face_courtyard_gap_mm": 1.25, "nearest_same_face_reference": "SW1"
+    },
+    {
+      "project": "LESHY2-RF-R2", "reference": "SW1", "instance": "rf_rp_boot_button",
+      "before": {"mpn": "Alps Alpine SKRTLAE010", "side": "B.Cu", "anchor_mm": [78.175, 115.25], "rotation_deg": 270},
+      "after": {"mpn": "Alps Alpine SKRTLAE010", "side": "B.Cu", "anchor_mm": [1.825, 115.25], "rotation_deg": 90},
+      "courtyard_bbox_mm": {"x": [-0.52, 3.92], "y": [112.375, 118.125]},
+      "outward_actuator": "Native -X; nominal nose X=-0.215",
+      "minimum_same_face_courtyard_gap_mm": 1.25, "nearest_same_face_reference": "SW2"
+    }
+  ],
+  "bounded_clearance_review": {
+    "same_face_requirement_mm": 0.1,
+    "method": "Enumerate all other B.Cu native footprint courtyards for each of the three proposed footprints in the same loaded board; no component exclusions remain in the aggregate result.",
+    "conflicting_references": [],
+    "additional_component_moves_required": [],
+    "rf_opposite_face": {
+      "status": "no_planar_body_or_drill_intersection_in_current_snapshot",
+      "holder_BT1_courtyard_mm": {"x": [23.04, 62.94], "y": [41.95, 128.05]},
+      "sa_hole_to_holder_minimum_x_gap_mm": 14.81,
+      "caveat": "This does not qualify the separately incomplete 1048P holder datum/locator geometry. The SA nominal 0.8-mm locator projection is below the 1.44-mm minimum board thickness; no unspecified locator-length tolerance is invented."
+    },
+    "mounts": {
+      "axes_mm": [[5, 11], [75, 11], [5, 145], [75, 145]],
+      "mechanical_keepout_radius_mm": 4.0,
+      "minimum_courtyard_to_keepout_gap_mm": 21.855,
+      "nearest_pair": "SA SW5 courtyard to lower-right MH4 keepout"
+    },
+    "cross_board": {
+      "minimum_inner_gap_mm": 10.9,
+      "method": "Reflect RF native courtyard X through 80 mm before comparing with UI native B.Cu courtyards; subtract source device heights from the minimum compression-stop gap as a conservative projected-height screening calculation.",
+      "projected_pairs": [
+        {"rf_reference": "SW5", "ui_reference": "SW2", "ui_instance": "s3_reset_button", "height_sum_mm": 6.8, "residual_gap_mm": 4.1},
+        {"rf_reference": "SW5", "ui_reference": "J2", "ui_instance": "s3_dbg_header", "height_sum_mm": 9.06, "residual_gap_mm": 1.84},
+        {"rf_reference": "SW5", "ui_reference": "U2", "ui_instance": "s3_dbg_esd", "height_sum_mm": 4.0, "residual_gap_mm": 6.9},
+        {"rf_reference": "SW1", "ui_reference": "SW19", "ui_instance": "c5_reset_button", "height_sum_mm": 6.6, "residual_gap_mm": 4.3}
+      ],
+      "rf_SW2_projected_overlaps": [],
+      "limitations": "Current device-height screening only, not exact assembled STEP or mated debug-cable/access clearance. Nominal heights are not silently treated as manufacturer worst-case tolerance envelopes."
+    },
+    "enclosure": {
+      "status": "assembled_sidewall_and_actuator_aperture_open",
+      "source": "hardware/layout/h6-r2-mechanical-stack.json/enclosure_local_geometry/edge_capture",
+      "note": "Edge-capture lips overlap the outer F.Cu face by 0.6 mm; the proposed B.Cu bodies are on the inner face, so XY superposition alone is not a collision. Current lip segments at Y=98..105 and 106..113 still require an actual sidewall/aperture and service-access check for this side actuator."
+    }
+  },
+  "electrical_boundary": {
+    "pad_net_parity_with_current_H2": true,
+    "common_pin": "2",
+    "states": [
+      {"shorted_pins": ["1", "2"], "effect": "RUN_LOOP_RAW grounded; maintained RUN request"},
+      {"shorted_pins": ["2", "3"], "effect": "POWER_COMMAND_OFF_N grounded; maintained KILL request"}
+    ],
+    "safety_limit": "The selected non-shorting mechanical switch preserves the current fail-safe command-net topology; this fit review is not a fresh proof of the complete supervisor/state-machine behavior.",
+    "physical_position_label_review": {
+      "status": "primary_position_caption_conflict_requires_resolution_before_final_labels",
+      "evidence": "The exact SA circuit is explicitly shown in position B with pins 1-2 connected. The front mechanical view marks b at left and a at right; applying the native B270 transform suggests RUN towards -Y and KILL towards +Y. The same page heading says the mechanical drawing is shown in position A although the lever is drawn at the left b position.",
+      "provisional_labels": {"negative_y_towards_antenna": "RUN", "positive_y_towards_bottom": "KILL"},
+      "release_requirement": "Independently reconcile the manufacturer's view/position notation, or continuity-check an exact SA sample before treating the physical UP/DOWN label association as proven. Do not swap the fail-safe pad nets to hide this documentation ambiguity."
+    }
+  },
+  "copper_and_native_delta": {
+    "source_footprint_count": 784,
+    "candidate_footprint_count": 784,
+    "exact_integer_unit_geometry_and_net_changed_refs": ["SW1", "SW2", "SW5"],
+    "source_copper_objects": 766,
+    "candidate_copper_objects": 766,
+    "all_serialized_segment_via_arc_expressions_byte_identical": true,
+    "sorted_serialized_copper_sha256": "d948e70b01514b045953a61c6687678801289ec9d888b6e29edbc69995d7f052",
+    "existing_copper_endpoint_attachments_to_original_pads": {"SW1": [], "SW2": [], "SW5": []},
+    "new_copper_added": 0,
+    "copper_removed": 0,
+    "open_routing_limit": "These three components were not routed. Preserving the existing copper does not complete their new routes or validate final return paths."
+  },
+  "scratch_native_drc": {
+    "candidate_filename": "leshy-sa-fit-final/LESHY2-RF-R2.kicad_pcb",
+    "candidate_sha256": "ca1c7faabc1ffafddacbc29d4afb646df48b669012013a4731e44bc6a1736bd5",
+    "report_filename": "leshy-sa-fit-final/drc-final.json",
+    "report_sha256": "8615bfd64730a625839a17f4f293ac24dda81f9f65c9f316bfb7a702919d6fd5",
+    "command": "kicad-cli pcb drc --format json --severity-all --output drc-final.json LESHY2-RF-R2.kicad_pcb",
+    "production_pro_and_dru_copied_unchanged": true,
+    "library_resolution": "Current repository Leshy2 library and installed KiCad standard library; scratch tables only rebase the existing relative repository-library path.",
+    "errors": 0,
+    "warnings": 2,
+    "warning_inventory": [
+      {"type": "lib_footprint_mismatch", "reference": "U83", "footprint": "Leshy2:SJ-43504-SMT-TR", "scope": "Independent audio-library correction already differs from this native snapshot"},
+      {"type": "lib_footprint_mismatch", "reference": "J11", "footprint": "Leshy2:1125R-SMT-4P", "scope": "Independent Grove-library correction already differs from this native snapshot"}
+    ],
+    "unconnected_items": 499,
+    "new_switch_specific_violations": 0,
+    "reference_presentation": "SW5 reference/value hidden in scratch, matching current h6_r2_placement.py placement policy. Keeping the raw standard-library visible reference would add a silk-over-mask warning at R21; no copper or rule was altered to remove it.",
+    "whole_board_ready": false
+  },
+  "integration_requirements": [
+    "Apply all three agreed poses as one transaction; applying SA alone at Y114.1 collides with the old wrong-side SW1/SW2 placements. The fallback Y123.5 is withdrawn.",
+    "Preserve the exact current H2 SA contact mapping, common pin2 and the three named command nets; route these previously unrouted contacts under the existing routing/safety policy.",
+    "Give ck_js102011saqn its own manufacturer-evidenced typed interface pins 1/2/3 as passive switch contacts. The new exact device is not yet present in the reviewed interfaces fragment; do not copy an old unresolved SC record as a pass.",
+    "The current H2 native materialization correctly maps COMMON physical '2 / C' to pad2 and ck_js reference-prefix dispatch remains SW. No generic pin fallback was needed for the scratch pad assignment.",
+    "Regenerate user silkscreen from the accepted native poses. h6_r2_user_silkscreen.py currently has no RUN/KILL labels; g3_clamshell.py still contains explicit old JS102011SCQN captions and old conceptual locations. Resolve the position-caption ambiguity before final directional state labels.",
+    "Repeat the normal native parity, full placement/locality, mechanical-stack, route and DRC checks after the parent integrates all parallel source updates. This scratch DRC does not close unrelated library mismatches, assembled STEP, display/holder geometry or manufacturing gates."
+  ]
+}

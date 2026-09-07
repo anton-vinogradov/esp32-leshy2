@@ -734,14 +734,14 @@
 	)
 	(footprint "Leshy2_R2:B3S-1100P"
 		(layer "F.Cu")
-		(uuid "299d7def-6f5a-5189-824a-7a918c05008f")
-		(at 40 143.07)
-		(descr "OMRON B3S p2 TOP view: 4/3 upper common pair, 2/1 lower common pair, ground 5. 9.5-mm outer land span, 4.5-mm row pitch. Existing land geometry retained within 0.01 mm; manufacturer numbers corrected together with logical maps. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
+		(uuid "5070265b-2626-5693-90cd-924adcce67df")
+		(at 40 143.82)
+		(descr "OMRON B3S p2 With Ground Terminal / TOP view: nominal body X6.0 Y6.6; 3.3-mm actuator at legacy local [0,-0.92]. Exact current R2 pads and courtyard retained; manufacturer numbering4/3 upper,2/1 lower,ground5. Nominal datum correction only, not full assembly qualification. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
 		(property "Reference" "SW3"
 			(at 0 -4 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "d0087768-8183-5cac-b4d5-05554de834a1")
+			(uuid "6cf95352-2a38-53fd-8992-76790fd3ed88")
 			(effects
 				(font
 					(size 1 1)
@@ -753,7 +753,7 @@
 			(at 0 4 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "153f006f-b06a-5d69-aab2-cfbf1de3c329")
+			(uuid "d4e13313-1156-55a3-89a6-b3a261b08fea")
 			(effects
 				(font
 					(size 1 1)
@@ -765,7 +765,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "faad359d-cc8a-51e5-ba86-35bc5c138f5b")
+			(uuid "21be0c00-905a-597d-9a8f-75fdbf8a2d4f")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -776,10 +776,22 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b193268f-f05f-5b8a-8e4d-ebe7e203ba7d")
+			(uuid "a9d12540-b876-5e1c-961e-c0c9030fc092")
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Leshy2ActuatorAxisLocalMm" "0,-0.92"
+			(at 0 -0.92 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "28bd909d-6430-506c-afd8-893392d5a498")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
 				)
 			)
 		)
@@ -787,11 +799,10 @@
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "18a318a0-9fa3-5b70-b576-dbb18209d583")
+			(uuid "d465b78f-a9ba-5775-a89a-717628c88595")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 			)
 		)
@@ -809,66 +820,97 @@
 			)
 			(fill no)
 			(layer "F.CrtYd")
-			(uuid "f965ab91-8d25-5673-9acc-7b6d376cbf90")
+			(uuid "d9f94778-9dab-5b6f-8797-4b5b97b237e4")
+		)
+		(fp_line
+			(start -0.4 -0.92)
+			(end 0.4 -0.92)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "5c838443-12e9-5938-a651-18406e677b21")
+		)
+		(fp_line
+			(start 0 -1.32)
+			(end 0 -0.52)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "8dbca861-d57b-573c-b442-5969d9e60a3f")
 		)
 		(fp_rect
-			(start -3.3 -4.375)
-			(end 3.3 2.525)
+			(start -3 -4.22)
+			(end 3 2.38)
 			(stroke
 				(width 0.1)
 				(type default)
 			)
 			(fill no)
 			(layer "F.Fab")
-			(uuid "78c7796c-4fec-5205-b365-bb70bb87f0f8")
+			(uuid "9426f1ef-6313-548e-9947-fd6fdfc7b4cf")
+		)
+		(fp_circle
+			(center 0 -0.92)
+			(end 1.65 -0.92)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "3b771093-e2b2-5a4f-a04b-8820320c75b7")
 		)
 		(pad "1" smd rect
 			(at 3.98 1.33)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "0c32aee5-deab-5a83-8b74-32a401088833")
+			(uuid "fe54a000-7745-5d1d-a426-af097bba48a7")
 		)
 		(pad "2" smd rect
 			(at -3.98 1.33)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "a69a6012-6b74-574e-ac8c-a3b194c93ab1")
+			(uuid "4bc5633e-e8c2-5920-8fc6-833cdc449d1e")
 		)
 		(pad "3" smd rect
 			(at 3.98 -3.17)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_DPAD_DOWN_N")
-			(uuid "17667f7a-d697-5990-ab15-1cab05cb470e")
+			(uuid "bbfcc9f9-9f15-5e52-8d7d-e6431f7d6689")
 		)
 		(pad "4" smd rect
 			(at -3.98 -3.17)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_DPAD_DOWN_N")
-			(uuid "e7cb9fdd-a9ff-5fe9-915b-47da33be430a")
+			(uuid "4973cf57-cb40-54d2-b0ea-07dd9db1bbca")
 		)
 		(pad "5" smd rect
 			(at 0 3.17)
 			(size 1.3 1.7)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "28b48c76-d3dc-5c8c-9ee9-1398c8307f6d")
+			(uuid "45dc6108-4826-59a4-970c-4388d103c54e")
 		)
 		(embedded_fonts no)
 	)
 	(footprint "Leshy2_R2:B3S-1100P"
 		(layer "F.Cu")
-		(uuid "31b16a41-e282-5081-965a-bacdb59d22c5")
-		(at 4.77 49.5 90)
-		(descr "OMRON B3S p2 TOP view: 4/3 upper common pair, 2/1 lower common pair, ground 5. 9.5-mm outer land span, 4.5-mm row pitch. Existing land geometry retained within 0.01 mm; manufacturer numbers corrected together with logical maps. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
+		(uuid "5d7438d7-f728-5636-b538-4e6f9619b25f")
+		(at 5.52 49.5 90)
+		(descr "OMRON B3S p2 With Ground Terminal / TOP view: nominal body X6.0 Y6.6; 3.3-mm actuator at legacy local [0,-0.92]. Exact current R2 pads and courtyard retained; manufacturer numbering4/3 upper,2/1 lower,ground5. Nominal datum correction only, not full assembly qualification. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
 		(property "Reference" "SW11"
 			(at 0 -4 90)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "eba30689-f4ba-591c-bbbe-7c066f9c061d")
+			(uuid "3a8ddce4-7937-55f9-a945-b5ccf9349977")
 			(effects
 				(font
 					(size 1 1)
@@ -880,7 +922,7 @@
 			(at 0 4 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "62044391-c6f1-582a-837d-8013eb5e3ca4")
+			(uuid "5bc2224c-05d5-5d45-8c83-9ff628dae23a")
 			(effects
 				(font
 					(size 1 1)
@@ -892,7 +934,7 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "9f817674-2632-5ca3-8425-2918caf72e9c")
+			(uuid "b942674e-bac5-5d25-bd96-43c7b7235a80")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -903,10 +945,22 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e761f15e-ea49-529e-adc2-841b6cdbd9bc")
+			(uuid "539a4238-5c82-5a16-8dff-61d2865e4e4d")
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Leshy2ActuatorAxisLocalMm" "0,-0.92"
+			(at 0 -0.92 90)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "78e44c24-b087-51b2-9328-f900ee62a19b")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
 				)
 			)
 		)
@@ -914,11 +968,10 @@
 			(at 0 0 90)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "2f56568f-834e-5a4c-8670-651eef019948")
+			(uuid "358f3f3f-813d-5166-85cd-f7019ea32cd1")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 			)
 		)
@@ -936,66 +989,97 @@
 			)
 			(fill no)
 			(layer "F.CrtYd")
-			(uuid "e98c28e9-e694-53ae-aebb-2ead689e16a3")
+			(uuid "05e1315c-05de-5850-871e-86a5de8ad9fa")
+		)
+		(fp_line
+			(start 0 -1.32)
+			(end 0 -0.52)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "54d8d775-e78c-5d40-8c85-03dd95e24e99")
+		)
+		(fp_line
+			(start -0.4 -0.92)
+			(end 0.4 -0.92)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "a690fdd2-6b8c-5081-a54b-c82abb3b98cc")
 		)
 		(fp_rect
-			(start -3.3 -4.375)
-			(end 3.3 2.525)
+			(start -3 -4.22)
+			(end 3 2.38)
 			(stroke
 				(width 0.1)
 				(type default)
 			)
 			(fill no)
 			(layer "F.Fab")
-			(uuid "ad6ebb2e-2a1c-5b04-9628-57e70578952f")
+			(uuid "b4219368-01f7-5959-9df0-3228f2b740be")
+		)
+		(fp_circle
+			(center 0 -0.92)
+			(end 1.65 -0.92)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "833444d4-6a8f-59e9-bbb2-57d18150e95e")
 		)
 		(pad "1" smd rect
 			(at 3.98 1.33 90)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "65f85f59-3ca9-5a61-b82c-3a0c08cde0ba")
+			(uuid "7a99b822-4a3c-53dd-be55-b98a905422b9")
 		)
 		(pad "2" smd rect
 			(at -3.98 1.33 90)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "55c6bf02-fe7a-57a5-a307-47bae008d764")
+			(uuid "571d25ec-3b6e-5185-9b99-1a116db8499e")
 		)
 		(pad "3" smd rect
 			(at 3.98 -3.17 90)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F3_N")
-			(uuid "2922d9f0-1a56-5b21-806d-0d3533c29d05")
+			(uuid "1c0f8ef0-fa8b-58a1-825d-d8c71e7d7605")
 		)
 		(pad "4" smd rect
 			(at -3.98 -3.17 90)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F3_N")
-			(uuid "fec148b4-95d6-5908-9236-2834d34703f4")
+			(uuid "4e222b77-1511-5fcf-b4a2-f0ddb016af48")
 		)
 		(pad "5" smd rect
 			(at 0 3.17 90)
 			(size 1.3 1.7)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "2e372569-97e9-5d67-bd3e-936b72211eba")
+			(uuid "56d95727-28b4-529c-81c9-dbddf4df9672")
 		)
 		(embedded_fonts no)
 	)
 	(footprint "Leshy2_R2:B3S-1100P"
 		(layer "F.Cu")
-		(uuid "4001e75e-48bb-5ce2-be68-bc72440cb024")
-		(at 4.77 36 90)
-		(descr "OMRON B3S p2 TOP view: 4/3 upper common pair, 2/1 lower common pair, ground 5. 9.5-mm outer land span, 4.5-mm row pitch. Existing land geometry retained within 0.01 mm; manufacturer numbers corrected together with logical maps. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
+		(uuid "f21e66e2-8db6-5833-94e3-64f757bbb86c")
+		(at 5.52 36 90)
+		(descr "OMRON B3S p2 With Ground Terminal / TOP view: nominal body X6.0 Y6.6; 3.3-mm actuator at legacy local [0,-0.92]. Exact current R2 pads and courtyard retained; manufacturer numbering4/3 upper,2/1 lower,ground5. Nominal datum correction only, not full assembly qualification. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
 		(property "Reference" "SW10"
 			(at 0 -4 90)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "14ddd473-053b-5dba-ae0c-c254ac6d0b88")
+			(uuid "adf819d1-2fe2-5341-ab6d-dd49fc7fd9ae")
 			(effects
 				(font
 					(size 1 1)
@@ -1007,7 +1091,7 @@
 			(at 0 4 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "1cc671b0-7644-5340-aefa-ff3341d12576")
+			(uuid "89dbcc2b-f428-59d3-93b4-45b844551e6f")
 			(effects
 				(font
 					(size 1 1)
@@ -1019,7 +1103,7 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "72ee44a0-8d39-544f-9513-7591ef84d52a")
+			(uuid "2f750c3e-3a10-5223-a5a4-5f10ace3db26")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1030,10 +1114,22 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "ba818932-4e80-5e00-bbaa-fd01bf10ba8c")
+			(uuid "0f5fdd4d-9e15-5c4e-aafd-35aabd6ce8f5")
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Leshy2ActuatorAxisLocalMm" "0,-0.92"
+			(at 0 -0.92 90)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "25b94e37-330f-53b5-94cd-99df3351da82")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
 				)
 			)
 		)
@@ -1041,11 +1137,10 @@
 			(at 0 0 90)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "f89b9a7a-2433-5ea3-a425-c7879654d914")
+			(uuid "c20b4e08-cac9-5e32-b08d-7983ec9bcd07")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 			)
 		)
@@ -1063,66 +1158,97 @@
 			)
 			(fill no)
 			(layer "F.CrtYd")
-			(uuid "07414139-561e-5771-a248-60c3ac83a065")
+			(uuid "69d02bfa-8999-5353-b803-a29ac8cad780")
+		)
+		(fp_line
+			(start 0 -1.32)
+			(end 0 -0.52)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "1cf234d4-5c45-57c5-9b09-6bb3ef45c3c0")
+		)
+		(fp_line
+			(start -0.4 -0.92)
+			(end 0.4 -0.92)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "ea13b800-61ed-5551-bc77-31065939b0cf")
 		)
 		(fp_rect
-			(start -3.3 -4.375)
-			(end 3.3 2.525)
+			(start -3 -4.22)
+			(end 3 2.38)
 			(stroke
 				(width 0.1)
 				(type default)
 			)
 			(fill no)
 			(layer "F.Fab")
-			(uuid "4e40360a-39ea-51bd-a3ce-0b1168fbfed2")
+			(uuid "4729297c-5727-5e25-8e44-fbb5837e2ad1")
+		)
+		(fp_circle
+			(center 0 -0.92)
+			(end 1.65 -0.92)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "f9f4f62d-8fd1-5b97-8c84-dd70135ba40b")
 		)
 		(pad "1" smd rect
 			(at 3.98 1.33 90)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "1028afdb-d04a-5811-bbb1-83ef324dd26e")
+			(uuid "1c5c3b96-9024-5876-9824-2e8a2a726952")
 		)
 		(pad "2" smd rect
 			(at -3.98 1.33 90)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "416bed6a-f140-563a-9017-24eed3d2dbe3")
+			(uuid "bc567df9-c4ff-517f-a348-2e1f4c386e44")
 		)
 		(pad "3" smd rect
 			(at 3.98 -3.17 90)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F2_N")
-			(uuid "efa0cf9f-e1ef-5b30-92be-3819afcef4bf")
+			(uuid "5909e823-8519-5837-9e02-ad591a186914")
 		)
 		(pad "4" smd rect
 			(at -3.98 -3.17 90)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F2_N")
-			(uuid "13eb8056-4155-5203-a757-b3a7d47c0d21")
+			(uuid "0cbdb882-ea43-5b2b-8d5c-c3fd4f60208f")
 		)
 		(pad "5" smd rect
 			(at 0 3.17 90)
 			(size 1.3 1.7)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "4fcec41f-8b8e-51f1-bb7c-a03fa8476fc4")
+			(uuid "8947e34b-d9fc-5369-8f51-d7291961efb0")
 		)
 		(embedded_fonts no)
 	)
 	(footprint "Leshy2_R2:B3S-1100P"
 		(layer "F.Cu")
-		(uuid "448814c8-3f43-523f-b726-396c695f9d4f")
-		(at 40 122.07)
-		(descr "OMRON B3S p2 TOP view: 4/3 upper common pair, 2/1 lower common pair, ground 5. 9.5-mm outer land span, 4.5-mm row pitch. Existing land geometry retained within 0.01 mm; manufacturer numbers corrected together with logical maps. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
+		(uuid "d961ac1a-5b1c-5bda-b678-b8fadf96c5ef")
+		(at 40 122.82)
+		(descr "OMRON B3S p2 With Ground Terminal / TOP view: nominal body X6.0 Y6.6; 3.3-mm actuator at legacy local [0,-0.92]. Exact current R2 pads and courtyard retained; manufacturer numbering4/3 upper,2/1 lower,ground5. Nominal datum correction only, not full assembly qualification. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
 		(property "Reference" "SW7"
 			(at 0 -4 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "45ab488b-0542-58e2-b844-9e82bea691eb")
+			(uuid "26be3744-710c-5012-95d2-2d0208d81fdc")
 			(effects
 				(font
 					(size 1 1)
@@ -1134,7 +1260,7 @@
 			(at 0 4 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "6689fe49-2001-5657-980d-fad5771ad624")
+			(uuid "4b940537-631f-5624-baa5-881bda9b1e24")
 			(effects
 				(font
 					(size 1 1)
@@ -1146,7 +1272,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "5b1dcb36-43db-5d1e-a755-8948d6896af1")
+			(uuid "34b2e756-817c-55bc-a160-30ab363dc39c")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1157,10 +1283,22 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "65c069a8-2085-58c5-9106-0b0e37a9f685")
+			(uuid "270a5849-6b43-5116-a18d-c6558f4d082f")
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Leshy2ActuatorAxisLocalMm" "0,-0.92"
+			(at 0 -0.92 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "8ae8d80c-af2c-51c7-a59f-db7b08e1c3c8")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
 				)
 			)
 		)
@@ -1168,11 +1306,10 @@
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "cf1ca454-93cb-5a81-9e78-672750d63acb")
+			(uuid "1921ae4c-2823-5cfa-a45d-791419a4ea95")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 			)
 		)
@@ -1190,66 +1327,97 @@
 			)
 			(fill no)
 			(layer "F.CrtYd")
-			(uuid "c3a36dc6-0b27-564a-b8f9-adba510c6ddb")
+			(uuid "d950efb3-1fd4-59c0-bac2-e15b9e098cc4")
+		)
+		(fp_line
+			(start -0.4 -0.92)
+			(end 0.4 -0.92)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "7a47c3d1-6887-517f-acef-d1efd13f6b87")
+		)
+		(fp_line
+			(start 0 -1.32)
+			(end 0 -0.52)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "48e59631-a471-55b3-8776-02a8e14f54e8")
 		)
 		(fp_rect
-			(start -3.3 -4.375)
-			(end 3.3 2.525)
+			(start -3 -4.22)
+			(end 3 2.38)
 			(stroke
 				(width 0.1)
 				(type default)
 			)
 			(fill no)
 			(layer "F.Fab")
-			(uuid "59419f51-88a0-5688-b7d0-23a3ef1136e8")
+			(uuid "741ed7f1-e1bb-5836-9264-7cd429e76f7a")
+		)
+		(fp_circle
+			(center 0 -0.92)
+			(end 1.65 -0.92)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "221986db-db70-5dfc-a240-ac8e583235f9")
 		)
 		(pad "1" smd rect
 			(at 3.98 1.33)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "4b443ab2-55de-5c3b-975c-3f86b6777f19")
+			(uuid "9de3deed-93ad-5e27-a729-b3cea73947a9")
 		)
 		(pad "2" smd rect
 			(at -3.98 1.33)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "8e5d9f7e-d8f5-55ac-9873-26db349d3d17")
+			(uuid "eb1c53de-6d58-53ed-8bf8-45a7549fa600")
 		)
 		(pad "3" smd rect
 			(at 3.98 -3.17)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_DPAD_UP_N")
-			(uuid "b88daec6-8c6f-5398-b6f4-85b676b9d3b6")
+			(uuid "93f69ef4-d809-593e-ad2b-2c006e809c58")
 		)
 		(pad "4" smd rect
 			(at -3.98 -3.17)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_DPAD_UP_N")
-			(uuid "a03611f6-0847-5fca-adf8-495a1d721b9a")
+			(uuid "8ecbc0bd-00d8-58e0-9970-4c9f8f0c8e8d")
 		)
 		(pad "5" smd rect
 			(at 0 3.17)
 			(size 1.3 1.7)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "2fd015ff-8888-5e94-9321-895507f139fb")
+			(uuid "da409835-76f5-5090-9f8a-fb815b9c7ade")
 		)
 		(embedded_fonts no)
 	)
 	(footprint "Leshy2_R2:B3S-1100P"
 		(layer "F.Cu")
-		(uuid "4519a088-7b96-5743-a21e-a65ff99f1eb8")
-		(at 40 132.57)
-		(descr "OMRON B3S p2 TOP view: 4/3 upper common pair, 2/1 lower common pair, ground 5. 9.5-mm outer land span, 4.5-mm row pitch. Existing land geometry retained within 0.01 mm; manufacturer numbers corrected together with logical maps. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
+		(uuid "47083182-5c3c-51f0-97b6-ca9cf3175660")
+		(at 40 133.32)
+		(descr "OMRON B3S p2 With Ground Terminal / TOP view: nominal body X6.0 Y6.6; 3.3-mm actuator at legacy local [0,-0.92]. Exact current R2 pads and courtyard retained; manufacturer numbering4/3 upper,2/1 lower,ground5. Nominal datum correction only, not full assembly qualification. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
 		(property "Reference" "SW5"
 			(at 0 -4 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "2f4d2dd9-9340-5fd6-9983-1001a92f7256")
+			(uuid "928e17f0-c4c0-5898-91ab-e108bdcf66b6")
 			(effects
 				(font
 					(size 1 1)
@@ -1261,7 +1429,7 @@
 			(at 0 4 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b3ad7f96-cbdf-509d-85f3-117549ae8334")
+			(uuid "4dddd71d-36db-5c1a-82be-f9a519bb932a")
 			(effects
 				(font
 					(size 1 1)
@@ -1273,7 +1441,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "21b75146-44dd-54ee-808b-8558e24489e0")
+			(uuid "9feda381-fc6f-5d23-b1d6-32eafd71e44b")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1284,10 +1452,22 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "94b2c687-57ed-5dec-97af-91f205ed9381")
+			(uuid "846651b7-a20b-5827-8207-5acadde8fb4e")
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Leshy2ActuatorAxisLocalMm" "0,-0.92"
+			(at 0 -0.92 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "e0594d30-56b6-5120-8225-c90b9b2fb63d")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
 				)
 			)
 		)
@@ -1295,11 +1475,10 @@
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "e7aa7915-c4a3-59a4-abb6-951cd8a11ef3")
+			(uuid "f5a85a26-e167-5437-9b17-378f8adaff46")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 			)
 		)
@@ -1317,53 +1496,84 @@
 			)
 			(fill no)
 			(layer "F.CrtYd")
-			(uuid "7239b033-f716-590d-9e98-06e2d8cac18e")
+			(uuid "811bb5d8-0536-5624-b2a3-b4f956cb12a5")
+		)
+		(fp_line
+			(start -0.4 -0.92)
+			(end 0.4 -0.92)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "05dff17d-a363-5acc-82d0-3ba0578b529c")
+		)
+		(fp_line
+			(start 0 -1.32)
+			(end 0 -0.52)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "9cac36d4-bbaa-53d1-9028-6966e38a8cfd")
 		)
 		(fp_rect
-			(start -3.3 -4.375)
-			(end 3.3 2.525)
+			(start -3 -4.22)
+			(end 3 2.38)
 			(stroke
 				(width 0.1)
 				(type default)
 			)
 			(fill no)
 			(layer "F.Fab")
-			(uuid "d5ffd277-b078-5698-8a81-772982ecc3bb")
+			(uuid "ee1e9566-84fd-5a55-a04a-ada566842d1b")
+		)
+		(fp_circle
+			(center 0 -0.92)
+			(end 1.65 -0.92)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "8b867514-1615-57cd-b29f-568f54909f9e")
 		)
 		(pad "1" smd rect
 			(at 3.98 1.33)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "6aaee34f-5886-5fb3-a098-41dbb0406fb0")
+			(uuid "1aab3a5f-1448-5f1d-ab5e-5d2d1a2321c3")
 		)
 		(pad "2" smd rect
 			(at -3.98 1.33)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "069d8332-8758-5e4c-a910-55adcc63e1cb")
+			(uuid "a7ebef71-bf78-581a-86cc-9b4db5608c49")
 		)
 		(pad "3" smd rect
 			(at 3.98 -3.17)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_DPAD_OK_N")
-			(uuid "0c854818-a119-595f-8ea8-13e8bfc3c4a7")
+			(uuid "0b42b4eb-447d-53bd-9836-77f6ee463901")
 		)
 		(pad "4" smd rect
 			(at -3.98 -3.17)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_DPAD_OK_N")
-			(uuid "3f94b3d8-6586-5d44-9439-d789285df42d")
+			(uuid "023be2df-ac87-53f4-8498-1abf1fc332df")
 		)
 		(pad "5" smd rect
 			(at 0 3.17)
 			(size 1.3 1.7)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "f2479d19-215d-5665-85b5-fdd4bf697124")
+			(uuid "f15b7419-2a6d-566b-b127-a782a512c3c0")
 		)
 		(embedded_fonts no)
 	)
@@ -1689,14 +1899,14 @@
 	)
 	(footprint "Leshy2_R2:B3S-1100P"
 		(layer "F.Cu")
-		(uuid "584728f9-084e-5a0d-bed7-25af8ba8eeaf")
-		(at 4.77 22.5 90)
-		(descr "OMRON B3S p2 TOP view: 4/3 upper common pair, 2/1 lower common pair, ground 5. 9.5-mm outer land span, 4.5-mm row pitch. Existing land geometry retained within 0.01 mm; manufacturer numbers corrected together with logical maps. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
+		(uuid "f988a7fe-0439-5a74-91b3-c844396b887c")
+		(at 5.52 22.5 90)
+		(descr "OMRON B3S p2 With Ground Terminal / TOP view: nominal body X6.0 Y6.6; 3.3-mm actuator at legacy local [0,-0.92]. Exact current R2 pads and courtyard retained; manufacturer numbering4/3 upper,2/1 lower,ground5. Nominal datum correction only, not full assembly qualification. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
 		(property "Reference" "SW9"
 			(at 0 -4 90)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "f773f18c-3820-503c-b956-4dc0d68c2fe8")
+			(uuid "c954749b-c001-5531-b63b-003cb25eaaa3")
 			(effects
 				(font
 					(size 1 1)
@@ -1708,7 +1918,7 @@
 			(at 0 4 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "f0206c87-698b-53ce-8cb7-158ad9416dc7")
+			(uuid "a83be47b-4814-5bed-b452-9de38261880a")
 			(effects
 				(font
 					(size 1 1)
@@ -1720,7 +1930,7 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "d80df3f7-71b7-55f8-b300-c06e3873866c")
+			(uuid "a4f91549-caf6-5af5-a12b-ab259e41c8b5")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1731,10 +1941,22 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "1d431e86-a73c-561a-8e00-8b74f79ebe08")
+			(uuid "d9b6765e-fa76-505b-b476-5cc5e9f66139")
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Leshy2ActuatorAxisLocalMm" "0,-0.92"
+			(at 0 -0.92 90)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "71aa88de-ad0b-578c-8fe8-881440606bc8")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
 				)
 			)
 		)
@@ -1742,11 +1964,10 @@
 			(at 0 0 90)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "26abe995-6a56-526a-9c7b-4427704bab97")
+			(uuid "35b33da2-b968-5980-81b7-c9cb6cc584c1")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 			)
 		)
@@ -1764,66 +1985,97 @@
 			)
 			(fill no)
 			(layer "F.CrtYd")
-			(uuid "70f1cbdb-5c13-5d20-b967-040005fec3b6")
+			(uuid "31b8a16c-1360-58de-88b1-5c8c3133235d")
+		)
+		(fp_line
+			(start 0 -1.32)
+			(end 0 -0.52)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "2d3ac32e-5ae7-547a-a064-60f08b858c53")
+		)
+		(fp_line
+			(start -0.4 -0.92)
+			(end 0.4 -0.92)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "d7ed0a8f-052f-5f1d-aaee-e50ebd9bf40f")
 		)
 		(fp_rect
-			(start -3.3 -4.375)
-			(end 3.3 2.525)
+			(start -3 -4.22)
+			(end 3 2.38)
 			(stroke
 				(width 0.1)
 				(type default)
 			)
 			(fill no)
 			(layer "F.Fab")
-			(uuid "593baba6-413a-522d-90a8-cb5047209eb0")
+			(uuid "8a5a0b06-0947-5349-9b92-92085fda7285")
+		)
+		(fp_circle
+			(center 0 -0.92)
+			(end 1.65 -0.92)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "3b618363-9e95-59fb-b808-ce842124dbb9")
 		)
 		(pad "1" smd rect
 			(at 3.98 1.33 90)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "28f1345d-06bd-5e42-9cdb-25a12a0c7940")
+			(uuid "34eed71d-ab95-5e3b-8ef2-af44b2027055")
 		)
 		(pad "2" smd rect
 			(at -3.98 1.33 90)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "eab3149e-f29d-5925-bc5c-07282e930f07")
+			(uuid "2e8b0ef2-b53c-583d-a5c0-3b64a4e66600")
 		)
 		(pad "3" smd rect
 			(at 3.98 -3.17 90)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F1_N")
-			(uuid "d4afc5cd-86a7-53f5-9bdd-2e49e8ab112d")
+			(uuid "e2c65c06-10c2-5668-ae5b-0b991468c2ce")
 		)
 		(pad "4" smd rect
 			(at -3.98 -3.17 90)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F1_N")
-			(uuid "6648dacb-9673-55f7-befc-7d1a1d959893")
+			(uuid "bb74b19e-caf3-5889-93f5-f9ac443f32e4")
 		)
 		(pad "5" smd rect
 			(at 0 3.17 90)
 			(size 1.3 1.7)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "6b9020f9-d8fa-5b59-b80d-bf7d89a214dc")
+			(uuid "5eab21e0-6cf3-54c9-8a2b-bd5ac1f48797")
 		)
 		(embedded_fonts no)
 	)
 	(footprint "Leshy2_R2:B3S-1100P"
 		(layer "F.Cu")
-		(uuid "63cb9b80-4e21-5081-b7de-7822765aa9d2")
-		(at 29.5 132.57)
-		(descr "OMRON B3S p2 TOP view: 4/3 upper common pair, 2/1 lower common pair, ground 5. 9.5-mm outer land span, 4.5-mm row pitch. Existing land geometry retained within 0.01 mm; manufacturer numbers corrected together with logical maps. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
+		(uuid "071888c5-e702-5c4c-8d83-96f8c99fe817")
+		(at 29.5 133.32)
+		(descr "OMRON B3S p2 With Ground Terminal / TOP view: nominal body X6.0 Y6.6; 3.3-mm actuator at legacy local [0,-0.92]. Exact current R2 pads and courtyard retained; manufacturer numbering4/3 upper,2/1 lower,ground5. Nominal datum correction only, not full assembly qualification. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
 		(property "Reference" "SW4"
 			(at 0 -4 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "300f9f28-c848-52f3-a433-9182431abddd")
+			(uuid "b68e509d-f4b9-5f29-83d3-25b12383d627")
 			(effects
 				(font
 					(size 1 1)
@@ -1835,7 +2087,7 @@
 			(at 0 4 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "eb1e6291-70cf-59bb-96b2-e45bb6df867f")
+			(uuid "12ed1cb3-f37f-5be5-a9f1-7afe869d4fd4")
 			(effects
 				(font
 					(size 1 1)
@@ -1847,7 +2099,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "94da6627-9d66-5be0-b47f-5f2702a803fd")
+			(uuid "d00bef49-2bb7-5d13-94e4-7ab4b0df034b")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1858,10 +2110,22 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "77f5366d-6c03-53d3-8369-bfa1ae6b3f5a")
+			(uuid "d229f9d2-e802-54cc-8f59-ecabed64bfb1")
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Leshy2ActuatorAxisLocalMm" "0,-0.92"
+			(at 0 -0.92 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "a46b881f-f011-5659-8e59-63a7a033c2d2")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
 				)
 			)
 		)
@@ -1869,11 +2133,10 @@
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "29898a7b-023a-501a-a865-1085bf366b71")
+			(uuid "9baece74-768e-54e4-a79b-531aa811be06")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 			)
 		)
@@ -1891,53 +2154,84 @@
 			)
 			(fill no)
 			(layer "F.CrtYd")
-			(uuid "a2b9bc2f-6ca3-59c1-bc96-ece31a4e3899")
+			(uuid "6b13a6e1-d16b-5aa6-9f34-91d46b441ec7")
+		)
+		(fp_line
+			(start -0.4 -0.92)
+			(end 0.4 -0.92)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "d6379dcd-b3b6-587f-a44c-21138b22793c")
+		)
+		(fp_line
+			(start 0 -1.32)
+			(end 0 -0.52)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "80989780-e163-5087-8185-e153244dfe87")
 		)
 		(fp_rect
-			(start -3.3 -4.375)
-			(end 3.3 2.525)
+			(start -3 -4.22)
+			(end 3 2.38)
 			(stroke
 				(width 0.1)
 				(type default)
 			)
 			(fill no)
 			(layer "F.Fab")
-			(uuid "feb42b9f-b935-5a8a-9d9c-9ff498b53ef6")
+			(uuid "b1a6853c-af70-5a69-ba36-4a19e4e73967")
+		)
+		(fp_circle
+			(center 0 -0.92)
+			(end 1.65 -0.92)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "a86b9887-1b55-5f00-9849-7753b49268f9")
 		)
 		(pad "1" smd rect
 			(at 3.98 1.33)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "7eeec406-3c3b-5a08-a69f-7358bb09a333")
+			(uuid "3c7eef93-9b01-540f-bc0b-6af342554586")
 		)
 		(pad "2" smd rect
 			(at -3.98 1.33)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "06ed91b8-9f54-581f-b840-b259574157c5")
+			(uuid "6760e10f-1222-5f74-b12e-ff9d0a4e74e7")
 		)
 		(pad "3" smd rect
 			(at 3.98 -3.17)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_DPAD_LEFT_N")
-			(uuid "b89b7610-e9ee-5230-94fd-33e95205da07")
+			(uuid "1e6fdd43-85bb-532b-9b84-789783668bcd")
 		)
 		(pad "4" smd rect
 			(at -3.98 -3.17)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_DPAD_LEFT_N")
-			(uuid "0f3305ff-8976-54d6-9243-743e57bbee36")
+			(uuid "05f8ab2b-8c14-58b9-ab28-5114c80108f5")
 		)
 		(pad "5" smd rect
 			(at 0 3.17)
 			(size 1.3 1.7)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "5e4a7872-2506-587a-99f0-7b020f3c76b9")
+			(uuid "019ef07b-f024-587a-a8f7-b9640633e2f2")
 		)
 		(embedded_fonts no)
 	)
@@ -2282,14 +2576,14 @@
 	)
 	(footprint "Leshy2_R2:B3S-1100P"
 		(layer "F.Cu")
-		(uuid "6cc1389a-8bf2-5eb8-9506-3dced5ede8b0")
-		(at 75.57 36 90)
-		(descr "OMRON B3S p2 TOP view: 4/3 upper common pair, 2/1 lower common pair, ground 5. 9.5-mm outer land span, 4.5-mm row pitch. Existing land geometry retained within 0.01 mm; manufacturer numbers corrected together with logical maps. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
+		(uuid "0c461eb3-e5a5-51ff-9c35-04d332aba91e")
+		(at 74.48 36 -90)
+		(descr "OMRON B3S p2 With Ground Terminal / TOP view: nominal body X6.0 Y6.6; 3.3-mm actuator at legacy local [0,-0.92]. Exact current R2 pads and courtyard retained; manufacturer numbering4/3 upper,2/1 lower,ground5. Nominal datum correction only, not full assembly qualification. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
 		(property "Reference" "SW14"
-			(at 0 -4 90)
+			(at 0 -4 270)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "03826cd4-274d-5f74-abf3-d764556b3870")
+			(uuid "ed0bdcec-4758-5e7e-b95b-aa8fa10ebaa1")
 			(effects
 				(font
 					(size 1 1)
@@ -2298,10 +2592,10 @@
 			)
 		)
 		(property "Value" "OMRON B3S-1100P"
-			(at 0 4 90)
+			(at 0 4 270)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e25a390d-00f9-5f86-b766-377291efbb2c")
+			(uuid "a8f4147a-a5c8-578d-bf40-969cea2d8049")
 			(effects
 				(font
 					(size 1 1)
@@ -2310,10 +2604,10 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 90)
+			(at 0 0 270)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "6880a21d-0b15-51b2-856e-ab7905125c5d")
+			(uuid "96b7eaea-0b98-56dc-a558-d26d09471748")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2321,25 +2615,36 @@
 			)
 		)
 		(property "Description" "omron_b3s_1100p"
-			(at 0 0 90)
+			(at 0 0 270)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b6ea8948-1897-594a-8a2a-03c3b5fa1b7c")
+			(uuid "981600b3-83f4-5531-a2a8-182c39b692bf")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
+		(property "Leshy2ActuatorAxisLocalMm" "0,-0.92"
+			(at 0 -0.92 270)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "d6959e66-dc2a-5fef-b82f-66f97bfa258c")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
 		(property "Leshy2Instance" "ui_switch_f6"
-			(at 0 0 90)
+			(at 0 0 270)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "58e6b54a-75ba-564c-b0dc-7ef412effbf6")
+			(uuid "d8d88f4b-1137-5fb1-abb9-37cea726c874")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 			)
 		)
@@ -2357,53 +2662,84 @@
 			)
 			(fill no)
 			(layer "F.CrtYd")
-			(uuid "d622a52e-2a89-5f22-9693-60de74f1d842")
+			(uuid "84b5628e-f16e-5673-99d1-f6ff2e8fcac4")
+		)
+		(fp_line
+			(start -0.4 -0.92)
+			(end 0.4 -0.92)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "37e0589f-df90-5f5a-8f59-a09aab5aa4d7")
+		)
+		(fp_line
+			(start 0 -1.32)
+			(end 0 -0.52)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "0167b45d-7af6-591a-aef2-7cce23edebd7")
 		)
 		(fp_rect
-			(start -3.3 -4.375)
-			(end 3.3 2.525)
+			(start -3 -4.22)
+			(end 3 2.38)
 			(stroke
 				(width 0.1)
 				(type default)
 			)
 			(fill no)
 			(layer "F.Fab")
-			(uuid "feef911e-aa20-587a-821e-e5ed2def7a2e")
+			(uuid "e87fe2b2-b333-509e-8efa-e23aa900ca2f")
+		)
+		(fp_circle
+			(center 0 -0.92)
+			(end 1.65 -0.92)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "16aef823-f3d2-5403-a3f9-26ea6372c6fc")
 		)
 		(pad "1" smd rect
-			(at 3.98 1.33 90)
+			(at 3.98 1.33 270)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "8f94da5c-177d-522a-bfa8-f49b6c249d89")
+			(uuid "efe4c63f-fcc8-5588-bac7-83259129aa95")
 		)
 		(pad "2" smd rect
-			(at -3.98 1.33 90)
+			(at -3.98 1.33 270)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "f3ddf2fe-c905-5366-9dcd-4a8759a3c847")
+			(uuid "50a92d88-63e2-500f-b114-2af22249c065")
 		)
 		(pad "3" smd rect
-			(at 3.98 -3.17 90)
+			(at 3.98 -3.17 270)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F6_N")
-			(uuid "9f44d035-0984-58cb-8855-147a063f061e")
+			(uuid "9ab96316-d958-5361-b431-17d2b5731ffd")
 		)
 		(pad "4" smd rect
-			(at -3.98 -3.17 90)
+			(at -3.98 -3.17 270)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F6_N")
-			(uuid "6667b8cf-c0c6-58b7-94d1-f347f552c07c")
+			(uuid "cfde4e73-13d7-537e-a82e-a77d9a7e8ea7")
 		)
 		(pad "5" smd rect
-			(at 0 3.17 90)
+			(at 0 3.17 270)
 			(size 1.3 1.7)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "ad39dfe4-e908-5871-8da9-d63b0e39948f")
+			(uuid "471a3c74-d08a-580b-a090-6342de77e531")
 		)
 		(embedded_fonts no)
 	)
@@ -3407,14 +3743,14 @@
 	)
 	(footprint "Leshy2_R2:B3S-1100P"
 		(layer "F.Cu")
-		(uuid "a2ce32ec-c2eb-5bd1-8e5c-46e99ad96a36")
-		(at 50.5 132.57)
-		(descr "OMRON B3S p2 TOP view: 4/3 upper common pair, 2/1 lower common pair, ground 5. 9.5-mm outer land span, 4.5-mm row pitch. Existing land geometry retained within 0.01 mm; manufacturer numbers corrected together with logical maps. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
+		(uuid "bfb88062-4fd1-5d35-82c5-639948d44ffc")
+		(at 50.5 133.32)
+		(descr "OMRON B3S p2 With Ground Terminal / TOP view: nominal body X6.0 Y6.6; 3.3-mm actuator at legacy local [0,-0.92]. Exact current R2 pads and courtyard retained; manufacturer numbering4/3 upper,2/1 lower,ground5. Nominal datum correction only, not full assembly qualification. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
 		(property "Reference" "SW6"
 			(at 0 -4 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "ba0bfb3e-4a9c-5466-b75b-a75dea8c004c")
+			(uuid "bc4dd828-0ad2-563c-b91d-6c1a164cbb05")
 			(effects
 				(font
 					(size 1 1)
@@ -3426,7 +3762,7 @@
 			(at 0 4 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "4bb619ba-1e94-5cd7-abaf-57221de7e216")
+			(uuid "66544c0e-f158-5ba2-af19-65543aaea6dc")
 			(effects
 				(font
 					(size 1 1)
@@ -3438,7 +3774,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "1838b190-658a-57d1-841b-e37bf58d6940")
+			(uuid "0281bced-728a-5967-b0ac-fd9f8efe1c3d")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3449,10 +3785,22 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "32781266-8a61-5da0-9a50-6741e9d4a00c")
+			(uuid "8b716b71-f057-5f14-b7be-ea6635508ab9")
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Leshy2ActuatorAxisLocalMm" "0,-0.92"
+			(at 0 -0.92 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "66c4dfe2-55a3-5dd7-9eb2-2e92e0344fc9")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
 				)
 			)
 		)
@@ -3460,11 +3808,10 @@
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "ee03d690-e88d-5ea4-972d-eef974294bfb")
+			(uuid "46ad862e-b0eb-502f-b9a6-04bf2327eaa3")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 			)
 		)
@@ -3482,53 +3829,84 @@
 			)
 			(fill no)
 			(layer "F.CrtYd")
-			(uuid "35d28a28-1a6f-592d-bc26-272e0cc52874")
+			(uuid "47d2962d-7304-5589-9439-b0a3a126002a")
+		)
+		(fp_line
+			(start -0.4 -0.92)
+			(end 0.4 -0.92)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "41cfbf74-19e5-5a03-82dc-5c890a9fce84")
+		)
+		(fp_line
+			(start 0 -1.32)
+			(end 0 -0.52)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "4be8b538-7a8a-5cbe-a1e7-88df13f51837")
 		)
 		(fp_rect
-			(start -3.3 -4.375)
-			(end 3.3 2.525)
+			(start -3 -4.22)
+			(end 3 2.38)
 			(stroke
 				(width 0.1)
 				(type default)
 			)
 			(fill no)
 			(layer "F.Fab")
-			(uuid "a2f3f814-ef57-5b54-a2ef-78a3e15627e0")
+			(uuid "ce6e49e1-d764-5793-921e-54ba59df1dda")
+		)
+		(fp_circle
+			(center 0 -0.92)
+			(end 1.65 -0.92)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "23cadc27-a802-503d-99d2-14ba08cafcdd")
 		)
 		(pad "1" smd rect
 			(at 3.98 1.33)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "1e8ce658-eb8d-553a-ba27-7e78122ec8f8")
+			(uuid "9eb00284-1130-53b5-b601-3fc686c06d6d")
 		)
 		(pad "2" smd rect
 			(at -3.98 1.33)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "cc20764b-1026-55b7-9103-29ec93c6f3ce")
+			(uuid "f735f7e7-debb-5586-a4c0-7fd5d638808c")
 		)
 		(pad "3" smd rect
 			(at 3.98 -3.17)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_DPAD_RIGHT_N")
-			(uuid "d9db75fa-ab35-57cc-a03c-26858c6cb572")
+			(uuid "e0bd7772-4563-5c43-b205-f608fda0fe4f")
 		)
 		(pad "4" smd rect
 			(at -3.98 -3.17)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_DPAD_RIGHT_N")
-			(uuid "2c8d8876-fb11-5193-9821-fc3e71e954eb")
+			(uuid "bb105731-a9d2-5b6f-9d29-908c12567b74")
 		)
 		(pad "5" smd rect
 			(at 0 3.17)
 			(size 1.3 1.7)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "aeb15049-96c3-5dee-9315-c9acb109429f")
+			(uuid "49bb48ce-6f32-5bed-91b0-e7a23df8c485")
 		)
 		(embedded_fonts no)
 	)
@@ -3642,14 +4020,14 @@
 	)
 	(footprint "Leshy2_R2:B3S-1100P"
 		(layer "F.Cu")
-		(uuid "b7ab99ba-0448-5793-b82b-bfefade5c09b")
-		(at 65.7 132.57)
-		(descr "OMRON B3S p2 TOP view: 4/3 upper common pair, 2/1 lower common pair, ground 5. 9.5-mm outer land span, 4.5-mm row pitch. Existing land geometry retained within 0.01 mm; manufacturer numbers corrected together with logical maps. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
+		(uuid "5b9bc475-1abd-51d3-af96-21875f3213a8")
+		(at 65.7 133.32)
+		(descr "OMRON B3S p2 With Ground Terminal / TOP view: nominal body X6.0 Y6.6; 3.3-mm actuator at legacy local [0,-0.92]. Exact current R2 pads and courtyard retained; manufacturer numbering4/3 upper,2/1 lower,ground5. Nominal datum correction only, not full assembly qualification. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
 		(property "Reference" "SW17"
 			(at 0 -4 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "504c2752-1b14-5b69-9a87-6f01602e91a0")
+			(uuid "02e7fd63-1214-5b57-b800-c5ea23274311")
 			(effects
 				(font
 					(size 1 1)
@@ -3661,7 +4039,7 @@
 			(at 0 4 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "d1dfe757-abbe-5a7f-9d22-c1b1eb6fc51b")
+			(uuid "83e5a3e0-b6f9-5668-bcc0-cc73f873fd37")
 			(effects
 				(font
 					(size 1 1)
@@ -3673,7 +4051,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "a454b83a-293f-52e1-97ac-fd0aae2bc191")
+			(uuid "6d62338e-c5c3-5354-8549-c8cead5c254c")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3684,10 +4062,22 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "6d1226c3-dc1e-591e-ae8b-5ceac56395c5")
+			(uuid "d3f4c990-aaaa-5878-9ccc-b19bd22c32d0")
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Leshy2ActuatorAxisLocalMm" "0,-0.92"
+			(at 0 -0.92 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "9119b344-c35f-5013-9cb2-605dc95af1fc")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
 				)
 			)
 		)
@@ -3695,11 +4085,10 @@
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "08a09e7e-a764-5598-b5b4-0aac9183d8dc")
+			(uuid "223ad413-bcd9-5030-9410-4b3996f3be22")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 			)
 		)
@@ -3717,66 +4106,97 @@
 			)
 			(fill no)
 			(layer "F.CrtYd")
-			(uuid "7e8fce2f-dad0-585d-9151-b8f946938baf")
+			(uuid "5bff8ba6-2582-5635-aed2-67550b68598c")
+		)
+		(fp_line
+			(start -0.4 -0.92)
+			(end 0.4 -0.92)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "286745cd-4b0f-5465-933f-a3ec538aff4a")
+		)
+		(fp_line
+			(start 0 -1.32)
+			(end 0 -0.52)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "863e4648-a49a-5e0d-876d-db04045d05a6")
 		)
 		(fp_rect
-			(start -3.3 -4.375)
-			(end 3.3 2.525)
+			(start -3 -4.22)
+			(end 3 2.38)
 			(stroke
 				(width 0.1)
 				(type default)
 			)
 			(fill no)
 			(layer "F.Fab")
-			(uuid "0cf74b08-78b7-5e62-b0cc-fe0025c6aeb6")
+			(uuid "275aa333-7530-549d-a877-b2f9e6cc87b3")
+		)
+		(fp_circle
+			(center 0 -0.92)
+			(end 1.65 -0.92)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "091d5b90-7e59-5e75-aecc-5dcef88b1e6e")
 		)
 		(pad "1" smd rect
 			(at 3.98 1.33)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "ca8adc25-9713-581e-87ab-590188cd7dae")
+			(uuid "3c27cc9a-99da-5d10-9e9c-95c54c1a6482")
 		)
 		(pad "2" smd rect
 			(at -3.98 1.33)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "4c91aa43-559f-538c-8822-b3c26500ce3b")
+			(uuid "45262a6d-3d7e-5110-a828-10c91bcba8d5")
 		)
 		(pad "3" smd rect
 			(at 3.98 -3.17)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_OPT_N")
-			(uuid "b4e21728-62cd-5732-b1b3-e39b853e8fc5")
+			(uuid "3d093b35-020c-53ad-93e5-fccd81fc278b")
 		)
 		(pad "4" smd rect
 			(at -3.98 -3.17)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_OPT_N")
-			(uuid "c984cc62-e973-52ec-97df-ae6da02cdc45")
+			(uuid "3d9ac315-f13d-50c6-b498-26fd8131c1f4")
 		)
 		(pad "5" smd rect
 			(at 0 3.17)
 			(size 1.3 1.7)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "f5bd951f-b08a-501c-9466-9d78a449f27c")
+			(uuid "dd56b42e-0624-5dd6-90c0-ed01ff2ff296")
 		)
 		(embedded_fonts no)
 	)
 	(footprint "Leshy2_R2:B3S-1100P"
 		(layer "F.Cu")
-		(uuid "bdc80c01-3901-5492-92cf-1c4c066de453")
-		(at 4.77 63 90)
-		(descr "OMRON B3S p2 TOP view: 4/3 upper common pair, 2/1 lower common pair, ground 5. 9.5-mm outer land span, 4.5-mm row pitch. Existing land geometry retained within 0.01 mm; manufacturer numbers corrected together with logical maps. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
+		(uuid "f9e2f097-472a-50cf-8a35-e97c9fe46fad")
+		(at 5.52 63 90)
+		(descr "OMRON B3S p2 With Ground Terminal / TOP view: nominal body X6.0 Y6.6; 3.3-mm actuator at legacy local [0,-0.92]. Exact current R2 pads and courtyard retained; manufacturer numbering4/3 upper,2/1 lower,ground5. Nominal datum correction only, not full assembly qualification. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
 		(property "Reference" "SW12"
 			(at 0 -4 90)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "23094b97-685d-5c1f-a879-563155f03806")
+			(uuid "1a1e23f8-accf-52bb-ac0d-acb12c1ba0d0")
 			(effects
 				(font
 					(size 1 1)
@@ -3788,7 +4208,7 @@
 			(at 0 4 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "527e9136-5586-5431-bb26-81dafd48bc67")
+			(uuid "804e08cc-0d39-5526-9f06-ce356fbc522d")
 			(effects
 				(font
 					(size 1 1)
@@ -3800,7 +4220,7 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "96142aca-d9d3-5390-986f-b6b584ee00c6")
+			(uuid "1c8d8d60-363b-5dad-a77f-be8d00d65b41")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3811,10 +4231,22 @@
 			(at 0 0 90)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "a996ee86-0f34-5ed0-851c-49c0e8b00e34")
+			(uuid "81c62a63-70e5-5c1d-8a7d-cf3ed83af0c8")
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Leshy2ActuatorAxisLocalMm" "0,-0.92"
+			(at 0 -0.92 90)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "22316ea6-aef1-50e2-b4a3-482898c065f1")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
 				)
 			)
 		)
@@ -3822,11 +4254,10 @@
 			(at 0 0 90)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "8db64139-9a2a-5ee6-98d7-dd7b5da14c43")
+			(uuid "e898a8dc-966c-595d-9cca-062c668fed79")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 			)
 		)
@@ -3844,66 +4275,97 @@
 			)
 			(fill no)
 			(layer "F.CrtYd")
-			(uuid "da98fe84-1f58-56ad-85cd-e84d3da0fd92")
+			(uuid "197c029c-b71e-508e-86b1-4423483a0800")
+		)
+		(fp_line
+			(start 0 -1.32)
+			(end 0 -0.52)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "6829c3fa-6502-5b3a-bf34-ab8c5a585279")
+		)
+		(fp_line
+			(start -0.4 -0.92)
+			(end 0.4 -0.92)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "589642e8-0869-560e-b4fa-70350ce079b3")
 		)
 		(fp_rect
-			(start -3.3 -4.375)
-			(end 3.3 2.525)
+			(start -3 -4.22)
+			(end 3 2.38)
 			(stroke
 				(width 0.1)
 				(type default)
 			)
 			(fill no)
 			(layer "F.Fab")
-			(uuid "48a57a44-fa4f-5426-99c3-05e949e17692")
+			(uuid "0cac5e40-7204-5f1d-aa58-58a10921b3d0")
+		)
+		(fp_circle
+			(center 0 -0.92)
+			(end 1.65 -0.92)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "9103ece1-1292-5314-add4-7058bdc7d5e1")
 		)
 		(pad "1" smd rect
 			(at 3.98 1.33 90)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "3c6dea4f-5631-556c-bd06-a8451e2aec6e")
+			(uuid "4ac87a10-244d-5f08-b56a-bf7160d8138e")
 		)
 		(pad "2" smd rect
 			(at -3.98 1.33 90)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "5ef6c731-617f-5b2a-b738-5f5adde6cf4a")
+			(uuid "312b3a79-c3e7-5abb-805c-9a6964af6456")
 		)
 		(pad "3" smd rect
 			(at 3.98 -3.17 90)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F4_N")
-			(uuid "476cc64e-2cc9-579a-9da3-4870f2e62735")
+			(uuid "0690f272-490b-59f7-9559-03d9251156cc")
 		)
 		(pad "4" smd rect
 			(at -3.98 -3.17 90)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F4_N")
-			(uuid "65e25f1c-4b74-512e-a691-0ba06bea68b7")
+			(uuid "a40fae5f-6cbd-5959-9c08-726701bc1e66")
 		)
 		(pad "5" smd rect
 			(at 0 3.17 90)
 			(size 1.3 1.7)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "f8ff7949-142b-59f7-ad91-b35a8cc867a3")
+			(uuid "bee23bc7-6012-564c-baa3-91eadcc01ba1")
 		)
 		(embedded_fonts no)
 	)
 	(footprint "Leshy2_R2:B3S-1100P"
 		(layer "F.Cu")
-		(uuid "c3049212-e9b7-5c76-a41a-b029229ed07c")
-		(at 75.57 63 90)
-		(descr "OMRON B3S p2 TOP view: 4/3 upper common pair, 2/1 lower common pair, ground 5. 9.5-mm outer land span, 4.5-mm row pitch. Existing land geometry retained within 0.01 mm; manufacturer numbers corrected together with logical maps. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
+		(uuid "59cb6f17-4ea6-5124-8d8e-dc42fe7143cc")
+		(at 74.48 63 -90)
+		(descr "OMRON B3S p2 With Ground Terminal / TOP view: nominal body X6.0 Y6.6; 3.3-mm actuator at legacy local [0,-0.92]. Exact current R2 pads and courtyard retained; manufacturer numbering4/3 upper,2/1 lower,ground5. Nominal datum correction only, not full assembly qualification. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
 		(property "Reference" "SW16"
-			(at 0 -4 90)
+			(at 0 -4 270)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "1f975ff8-3573-50cc-9b24-29701fed65be")
+			(uuid "4b01ca1c-5fbe-586b-bf92-a75c4f1c51dc")
 			(effects
 				(font
 					(size 1 1)
@@ -3912,10 +4374,10 @@
 			)
 		)
 		(property "Value" "OMRON B3S-1100P"
-			(at 0 4 90)
+			(at 0 4 270)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "444921f9-632a-590a-a64f-e861d89e09c5")
+			(uuid "15ec1e3b-7d0f-5750-9166-a061f80d3097")
 			(effects
 				(font
 					(size 1 1)
@@ -3924,10 +4386,10 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 90)
+			(at 0 0 270)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "30c0f186-d025-53aa-b6b5-028f133bb307")
+			(uuid "50d79a51-d079-5b34-98cc-81ef337e215f")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3935,25 +4397,36 @@
 			)
 		)
 		(property "Description" "omron_b3s_1100p"
-			(at 0 0 90)
+			(at 0 0 270)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "f89fe0f0-5beb-58d0-8d20-19562b13014f")
+			(uuid "9e955d12-9bcb-5dd2-bfb0-52f4dfb884a6")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
+		(property "Leshy2ActuatorAxisLocalMm" "0,-0.92"
+			(at 0 -0.92 270)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "cf88cecb-4414-561d-83da-7d0bde1a4ef1")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
 		(property "Leshy2Instance" "ui_switch_f8"
-			(at 0 0 90)
+			(at 0 0 270)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "764f4a35-581a-5c3e-9214-6f275854f0af")
+			(uuid "52b05193-28b2-506a-bb6f-8a9151e11955")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 			)
 		)
@@ -3971,53 +4444,84 @@
 			)
 			(fill no)
 			(layer "F.CrtYd")
-			(uuid "c7026582-ae03-52fb-95d1-882e182fa3d1")
+			(uuid "b9413fce-cd77-590a-8580-067de49d9702")
+		)
+		(fp_line
+			(start -0.4 -0.92)
+			(end 0.4 -0.92)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "8ba6a453-b1f9-56ca-97e8-d7e708ae4a43")
+		)
+		(fp_line
+			(start 0 -1.32)
+			(end 0 -0.52)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "b762ca60-57c0-54ba-8d9b-c072e98e83d0")
 		)
 		(fp_rect
-			(start -3.3 -4.375)
-			(end 3.3 2.525)
+			(start -3 -4.22)
+			(end 3 2.38)
 			(stroke
 				(width 0.1)
 				(type default)
 			)
 			(fill no)
 			(layer "F.Fab")
-			(uuid "3f4c4940-8d3d-5844-8744-c8d2c0b1794d")
+			(uuid "9b49b236-6f83-5cab-92b3-678172aba0d9")
+		)
+		(fp_circle
+			(center 0 -0.92)
+			(end 1.65 -0.92)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "63206f25-0810-5301-ae3d-373db0a657a5")
 		)
 		(pad "1" smd rect
-			(at 3.98 1.33 90)
+			(at 3.98 1.33 270)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "00d7d9bb-ed05-5202-bb63-8c373341d85b")
+			(uuid "ec51f452-c2e3-503a-ba60-a2d3ed47b2c4")
 		)
 		(pad "2" smd rect
-			(at -3.98 1.33 90)
+			(at -3.98 1.33 270)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "98405ce4-593f-57ce-a39b-e74e43b8d21e")
+			(uuid "93394d07-71e6-5843-835d-2a635d619116")
 		)
 		(pad "3" smd rect
-			(at 3.98 -3.17 90)
+			(at 3.98 -3.17 270)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F8_N")
-			(uuid "80cbfdb3-c122-5cb7-a00e-785d9ad7063b")
+			(uuid "2ce7a689-0a63-54bb-8c8c-4733acbf006c")
 		)
 		(pad "4" smd rect
-			(at -3.98 -3.17 90)
+			(at -3.98 -3.17 270)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F8_N")
-			(uuid "2ba83f81-8152-51ed-bb08-4b0a9587e2df")
+			(uuid "2a1d1b04-fc1b-5039-869d-35a2df6dfc97")
 		)
 		(pad "5" smd rect
-			(at 0 3.17 90)
+			(at 0 3.17 270)
 			(size 1.3 1.7)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "548bdcb3-3954-557a-9945-7aa607582a0a")
+			(uuid "65744482-4bfe-571a-8185-f0d510ee7679")
 		)
 		(embedded_fonts no)
 	)
@@ -4235,14 +4739,14 @@
 	)
 	(footprint "Leshy2_R2:B3S-1100P"
 		(layer "F.Cu")
-		(uuid "d2adcbc8-f2a2-5478-9892-ce965975f7be")
-		(at 75.57 49.5 90)
-		(descr "OMRON B3S p2 TOP view: 4/3 upper common pair, 2/1 lower common pair, ground 5. 9.5-mm outer land span, 4.5-mm row pitch. Existing land geometry retained within 0.01 mm; manufacturer numbers corrected together with logical maps. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
+		(uuid "0599b1d1-6c34-5740-94d2-baa0c9387bf0")
+		(at 74.48 49.5 -90)
+		(descr "OMRON B3S p2 With Ground Terminal / TOP view: nominal body X6.0 Y6.6; 3.3-mm actuator at legacy local [0,-0.92]. Exact current R2 pads and courtyard retained; manufacturer numbering4/3 upper,2/1 lower,ground5. Nominal datum correction only, not full assembly qualification. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
 		(property "Reference" "SW15"
-			(at 0 -4 90)
+			(at 0 -4 270)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "0aef51ad-6248-5d21-b511-5fddebe5722e")
+			(uuid "62220fdf-b378-50f3-ae89-1958b0d895a4")
 			(effects
 				(font
 					(size 1 1)
@@ -4251,10 +4755,10 @@
 			)
 		)
 		(property "Value" "OMRON B3S-1100P"
-			(at 0 4 90)
+			(at 0 4 270)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "c2119f25-5084-5082-be8d-4719de48890a")
+			(uuid "e14734b5-3250-50d6-87b9-ffe35fe4a3ec")
 			(effects
 				(font
 					(size 1 1)
@@ -4263,10 +4767,10 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 90)
+			(at 0 0 270)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "59e668d9-e29a-586f-a1b0-7abe242048cc")
+			(uuid "426e1258-8644-57c4-a90e-b15222311b32")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4274,25 +4778,36 @@
 			)
 		)
 		(property "Description" "omron_b3s_1100p"
-			(at 0 0 90)
+			(at 0 0 270)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "22de3d08-66f1-5f92-998f-68ce0866daeb")
+			(uuid "d86c89e3-dde2-5371-9319-e1edf296d0be")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
+		(property "Leshy2ActuatorAxisLocalMm" "0,-0.92"
+			(at 0 -0.92 270)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "4a3651f3-a863-5d1d-a5dd-98b2628e5cbb")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
 		(property "Leshy2Instance" "ui_switch_f7"
-			(at 0 0 90)
+			(at 0 0 270)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "41e06131-cead-58c6-b662-41fcd605a067")
+			(uuid "0b916983-1abc-52c6-a8a0-52aab62e5a3d")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 			)
 		)
@@ -4310,66 +4825,97 @@
 			)
 			(fill no)
 			(layer "F.CrtYd")
-			(uuid "e4317850-4ef0-550e-90fe-0abe1ccca88b")
+			(uuid "189ebb0d-bd51-586d-8f41-39a0d277e62f")
+		)
+		(fp_line
+			(start -0.4 -0.92)
+			(end 0.4 -0.92)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "9adbd675-16a3-5077-842c-9ce01b09ef5c")
+		)
+		(fp_line
+			(start 0 -1.32)
+			(end 0 -0.52)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "981712c6-4dc4-5821-9557-3a9985883983")
 		)
 		(fp_rect
-			(start -3.3 -4.375)
-			(end 3.3 2.525)
+			(start -3 -4.22)
+			(end 3 2.38)
 			(stroke
 				(width 0.1)
 				(type default)
 			)
 			(fill no)
 			(layer "F.Fab")
-			(uuid "9a54b491-d75c-52f1-88c4-5138cea74293")
+			(uuid "3468ca57-4237-5a7b-a0a9-e8d830c9f0ff")
+		)
+		(fp_circle
+			(center 0 -0.92)
+			(end 1.65 -0.92)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "cd45e25f-c0ae-5716-aa7c-4d62ae0ef3b9")
 		)
 		(pad "1" smd rect
-			(at 3.98 1.33 90)
+			(at 3.98 1.33 270)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "867b64e8-1ad8-5105-9e2e-ea83641e6b5e")
+			(uuid "f197c803-ffa1-5d32-a0a1-e5251a3ed40d")
 		)
 		(pad "2" smd rect
-			(at -3.98 1.33 90)
+			(at -3.98 1.33 270)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "39420e32-b1f1-53c1-aeac-121f986e56e9")
+			(uuid "ef4eb47c-5330-5f3f-a75b-e94400eb7093")
 		)
 		(pad "3" smd rect
-			(at 3.98 -3.17 90)
+			(at 3.98 -3.17 270)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F7_N")
-			(uuid "f611dced-b8ec-5e9c-974b-459e80262e14")
+			(uuid "ef03d3a4-2dc3-5057-a648-0eb0cc6e6e4d")
 		)
 		(pad "4" smd rect
-			(at -3.98 -3.17 90)
+			(at -3.98 -3.17 270)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F7_N")
-			(uuid "e8e6545a-0f36-5e9a-bff8-653c91a3baff")
+			(uuid "70e9d336-32ba-5992-a9f7-c98cde6c4882")
 		)
 		(pad "5" smd rect
-			(at 0 3.17 90)
+			(at 0 3.17 270)
 			(size 1.3 1.7)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "bad05831-8082-5fd0-b60e-f5634e53ef66")
+			(uuid "69e03c14-50be-57f7-b30f-7297f0a06662")
 		)
 		(embedded_fonts no)
 	)
 	(footprint "Leshy2_R2:B3S-1100P"
 		(layer "F.Cu")
-		(uuid "d7caef48-db9c-5370-9b80-d9b87d15cc00")
-		(at 14.3 132.57)
-		(descr "OMRON B3S p2 TOP view: 4/3 upper common pair, 2/1 lower common pair, ground 5. 9.5-mm outer land span, 4.5-mm row pitch. Existing land geometry retained within 0.01 mm; manufacturer numbers corrected together with logical maps. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
+		(uuid "ebb576e8-d868-5d42-998d-ad12db6a574d")
+		(at 14.3 133.32)
+		(descr "OMRON B3S p2 With Ground Terminal / TOP view: nominal body X6.0 Y6.6; 3.3-mm actuator at legacy local [0,-0.92]. Exact current R2 pads and courtyard retained; manufacturer numbering4/3 upper,2/1 lower,ground5. Nominal datum correction only, not full assembly qualification. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
 		(property "Reference" "SW8"
 			(at 0 -4 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "8f63efea-f41e-5e97-b949-bae342ce9745")
+			(uuid "b02b35ea-096b-5214-a7ef-1c407164d240")
 			(effects
 				(font
 					(size 1 1)
@@ -4381,7 +4927,7 @@
 			(at 0 4 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "ae50fe11-5149-5fdf-b1ca-770a933b6876")
+			(uuid "62bd83b1-724d-5b50-a3e7-fb7c9910a4ec")
 			(effects
 				(font
 					(size 1 1)
@@ -4393,7 +4939,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e6ad7074-e3f2-55dd-a298-e1517ba788cc")
+			(uuid "f0770062-e72b-52ef-8848-4684518fbf88")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4404,10 +4950,22 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "4a7ab233-1cd7-5186-b387-bfe39c7d222e")
+			(uuid "7125e3b3-c2e0-5245-9ff3-4fb2feb2ab7f")
 			(effects
 				(font
 					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Leshy2ActuatorAxisLocalMm" "0,-0.92"
+			(at 0 -0.92 0)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "04fcdac8-c1c1-5923-a45b-e741ba469eca")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
 				)
 			)
 		)
@@ -4415,11 +4973,10 @@
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "3059db13-3890-5629-89a1-f85e0c0101b7")
+			(uuid "c3b975bf-542c-5356-afb0-d4c8baeb9ca5")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 			)
 		)
@@ -4437,53 +4994,84 @@
 			)
 			(fill no)
 			(layer "F.CrtYd")
-			(uuid "f0540851-bdac-5054-92c3-9370e2f24a8d")
+			(uuid "91b1aad8-496f-5b69-94ee-7ebde1655eec")
+		)
+		(fp_line
+			(start -0.4 -0.92)
+			(end 0.4 -0.92)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "9176da43-d91c-5222-b837-96856187a603")
+		)
+		(fp_line
+			(start 0 -1.32)
+			(end 0 -0.52)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "f66b12c5-481b-5a4a-9422-dba7374149a8")
 		)
 		(fp_rect
-			(start -3.3 -4.375)
-			(end 3.3 2.525)
+			(start -3 -4.22)
+			(end 3 2.38)
 			(stroke
 				(width 0.1)
 				(type default)
 			)
 			(fill no)
 			(layer "F.Fab")
-			(uuid "d3c4434c-d685-5df7-a7dc-a41eda04c003")
+			(uuid "2ab91131-1301-5ced-9be6-96f48dc4f10a")
+		)
+		(fp_circle
+			(center 0 -0.92)
+			(end 1.65 -0.92)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "a68f0700-5847-55be-bf28-efd1dc9c5e53")
 		)
 		(pad "1" smd rect
 			(at 3.98 1.33)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "0235697d-ec77-5def-a6d9-3f56389c290e")
+			(uuid "2f02748d-98b2-5a77-aecd-41bd9860009e")
 		)
 		(pad "2" smd rect
 			(at -3.98 1.33)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "54bf4753-c06f-554b-94dd-106b891ae8cb")
+			(uuid "c84dbad7-9338-5c9e-9420-acef0fb3b6f3")
 		)
 		(pad "3" smd rect
 			(at 3.98 -3.17)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_BACK_N")
-			(uuid "a8777def-6163-5d87-b282-c8084c4bf027")
+			(uuid "d2ae0d38-8172-5a8d-8313-8d63c80b7a8c")
 		)
 		(pad "4" smd rect
 			(at -3.98 -3.17)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_BACK_N")
-			(uuid "dca5a798-b7e5-5a29-a1d7-c65019decb4b")
+			(uuid "5308666b-f62c-5fca-8194-6cc104a12050")
 		)
 		(pad "5" smd rect
 			(at 0 3.17)
 			(size 1.3 1.7)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "acdc151d-3c9f-5455-b968-acfe38e25ee6")
+			(uuid "c3a1c006-5900-547f-a746-070faed5cb9c")
 		)
 		(embedded_fonts no)
 	)
@@ -5063,14 +5651,14 @@
 	)
 	(footprint "Leshy2_R2:B3S-1100P"
 		(layer "F.Cu")
-		(uuid "f4af757f-9f92-5d8f-b0af-8aa625017263")
-		(at 75.57 22.5 90)
-		(descr "OMRON B3S p2 TOP view: 4/3 upper common pair, 2/1 lower common pair, ground 5. 9.5-mm outer land span, 4.5-mm row pitch. Existing land geometry retained within 0.01 mm; manufacturer numbers corrected together with logical maps. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
+		(uuid "1275d51c-ccf3-5595-88d9-e9c74c443181")
+		(at 74.48 22.5 -90)
+		(descr "OMRON B3S p2 With Ground Terminal / TOP view: nominal body X6.0 Y6.6; 3.3-mm actuator at legacy local [0,-0.92]. Exact current R2 pads and courtyard retained; manufacturer numbering4/3 upper,2/1 lower,ground5. Nominal datum correction only, not full assembly qualification. https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf")
 		(property "Reference" "SW13"
-			(at 0 -4 90)
+			(at 0 -4 270)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "c141678a-36d3-5bda-a720-91b128045fb6")
+			(uuid "c73cfe32-7947-564c-8e40-f8205774ae23")
 			(effects
 				(font
 					(size 1 1)
@@ -5079,10 +5667,10 @@
 			)
 		)
 		(property "Value" "OMRON B3S-1100P"
-			(at 0 4 90)
+			(at 0 4 270)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "b2a062e3-3fca-505e-af07-60af995bdf13")
+			(uuid "d7fa0a0b-552e-5e7c-bc9b-87b18329669a")
 			(effects
 				(font
 					(size 1 1)
@@ -5091,10 +5679,10 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 90)
+			(at 0 0 270)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e12ad640-4a72-50b3-89a7-3a7729e37e40")
+			(uuid "c76cec2f-779b-560c-80cd-c7c8e3d947bc")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5102,25 +5690,36 @@
 			)
 		)
 		(property "Description" "omron_b3s_1100p"
-			(at 0 0 90)
+			(at 0 0 270)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e3de9c08-7598-51e9-bd78-c9ca60f4526e")
+			(uuid "7fed982b-dcfb-51fa-b3db-107924c68523")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
+		(property "Leshy2ActuatorAxisLocalMm" "0,-0.92"
+			(at 0 -0.92 270)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "c30f7f4e-50b3-5dfc-ac1e-e25c00e218bd")
+			(effects
+				(font
+					(size 0.5 0.5)
+					(thickness 0.08)
+				)
+			)
+		)
 		(property "Leshy2Instance" "ui_switch_f5"
-			(at 0 0 90)
+			(at 0 0 270)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "8f579ef5-7208-5002-a7f1-fd82a725b4db")
+			(uuid "738545b9-5b6f-55aa-8907-91ee345391a5")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 			)
 		)
@@ -5138,53 +5737,84 @@
 			)
 			(fill no)
 			(layer "F.CrtYd")
-			(uuid "dc1e9b9d-d2a5-5a5a-843e-ec58e533a323")
+			(uuid "d4b40f8e-e872-5be5-a172-f4c6572f0597")
+		)
+		(fp_line
+			(start -0.4 -0.92)
+			(end 0.4 -0.92)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "fe8fdb28-2adf-5bf1-aed6-ffbd04fea941")
+		)
+		(fp_line
+			(start 0 -1.32)
+			(end 0 -0.52)
+			(stroke
+				(width 0.08)
+				(type default)
+			)
+			(layer "F.Fab")
+			(uuid "c21e2c84-7634-58f6-94ba-a31faa3195da")
 		)
 		(fp_rect
-			(start -3.3 -4.375)
-			(end 3.3 2.525)
+			(start -3 -4.22)
+			(end 3 2.38)
 			(stroke
 				(width 0.1)
 				(type default)
 			)
 			(fill no)
 			(layer "F.Fab")
-			(uuid "37da7a88-6790-5076-87e0-884908e6433e")
+			(uuid "8b8abfc7-871b-5bb7-934d-0a9494104d2c")
+		)
+		(fp_circle
+			(center 0 -0.92)
+			(end 1.65 -0.92)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(fill no)
+			(layer "F.Fab")
+			(uuid "61423e1c-948a-5012-b7e4-26b5ad3347ec")
 		)
 		(pad "1" smd rect
-			(at 3.98 1.33 90)
+			(at 3.98 1.33 270)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "312abe2f-6431-513e-abde-bd053da1dd1a")
+			(uuid "3492767b-f383-5ade-beb6-de0958a75174")
 		)
 		(pad "2" smd rect
-			(at -3.98 1.33 90)
+			(at -3.98 1.33 270)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "189a392c-7856-550e-8288-e1b99d071196")
+			(uuid "c7a673e6-215f-59a3-a25d-d3f3e5da4245")
 		)
 		(pad "3" smd rect
-			(at 3.98 -3.17 90)
+			(at 3.98 -3.17 270)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F5_N")
-			(uuid "50058532-6111-57f6-abad-0faa36ad6613")
+			(uuid "94b786fb-121b-502b-bd37-99fd09f8c948")
 		)
 		(pad "4" smd rect
-			(at -3.98 -3.17 90)
+			(at -3.98 -3.17 270)
 			(size 1.55 1.3)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_11_STORAGE_CONTROLS_INDICATORS/UI_F5_N")
-			(uuid "b8bfff47-149a-504c-a2bc-126354644bc5")
+			(uuid "921bd5de-c667-547e-968e-79dd71607861")
 		)
 		(pad "5" smd rect
-			(at 0 3.17 90)
+			(at 0 3.17 270)
 			(size 1.3 1.7)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "f8627832-9399-5326-99e7-51209e99e392")
+			(uuid "d9f1b1d4-bb07-5f8a-8cbe-efbabb27079d")
 		)
 		(embedded_fonts no)
 	)
@@ -6964,15 +7594,15 @@
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
-		(uuid "066a3c01-2524-5ba3-8f4e-6477815d9609")
-		(at 2.075 96.365)
+		(uuid "0c4c85bb-1c77-57ad-8cfe-269346496cbe")
+		(at 7.6 93.9 -90)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R128"
-			(at 0 1.17 180)
+			(at 0 1.17 90)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "88e5ce73-fc7d-5141-a619-709977ce386a")
+			(uuid "5f7ee378-a294-5622-88ff-5dbb31cd2fb4")
 			(effects
 				(font
 					(size 1 1)
@@ -6982,10 +7612,10 @@
 			)
 		)
 		(property "Value" "Yageo RC0402FR-0710KL"
-			(at 0 -1.17 180)
+			(at 0 -1.17 90)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "abb50dae-3f5e-5ded-bd83-20b46be510e5")
+			(uuid "e468a041-ac52-5bea-ac31-b1a722bf1d4b")
 			(effects
 				(font
 					(size 1 1)
@@ -6995,10 +7625,10 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "fb554c1b-b134-5f24-bcbb-a76f85afe4e9")
+			(uuid "3d351a53-6d6e-5817-9b17-0ff3a32d5cdc")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7007,10 +7637,10 @@
 			)
 		)
 		(property "Description" "yageo_rc0402fr_0710kl"
-			(at 0 0 180)
+			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "198692f3-be1e-56b2-96fe-23f904be7deb")
+			(uuid "19151beb-9ad8-5ca6-ab21-de94f8076d80")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7019,10 +7649,10 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 180)
+			(at 0 0 90)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "3ef45c81-b4f2-56d3-9b5c-5abf3fc18c61")
+			(uuid "d7302823-9095-5ea9-a8e2-0f0e0782bbb2")
 			(effects
 				(font
 					(size 1 1)
@@ -7032,14 +7662,13 @@
 			)
 		)
 		(property "Leshy2Instance" "ir_tx_gate_pulldown"
-			(at 0 0 180)
+			(at 0 0 90)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "22fb4866-e37d-53b6-aea8-e855c258ae39")
+			(uuid "ec8de668-3a36-5fff-ac7c-7dd359374c00")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 				(justify mirror)
 			)
@@ -7050,16 +7679,6 @@
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
-			(start -0.153641 -0.38)
-			(end 0.153641 -0.38)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "B.SilkS")
-			(uuid "b9fefda1-4cf8-5054-8934-228df7d7ce29")
-		)
-		(fp_line
 			(start -0.153641 0.38)
 			(end 0.153641 0.38)
 			(stroke
@@ -7067,7 +7686,17 @@
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "ffc3edee-1496-55a5-9152-df7d91db0f90")
+			(uuid "805b1121-6b2f-5461-85b4-9d8a5cbb3f01")
+		)
+		(fp_line
+			(start -0.153641 -0.38)
+			(end 0.153641 -0.38)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "81be99c7-00cc-5485-80e2-20c51a8e8ab0")
 		)
 		(fp_rect
 			(start -0.93 0.47)
@@ -7078,7 +7707,7 @@
 			)
 			(fill no)
 			(layer "B.CrtYd")
-			(uuid "3472ad96-2bf3-581f-b3e2-b3557af0a248")
+			(uuid "6348006c-4772-5523-8212-b43839a4225a")
 		)
 		(fp_rect
 			(start -0.525 0.27)
@@ -7089,12 +7718,12 @@
 			)
 			(fill no)
 			(layer "B.Fab")
-			(uuid "c724e9cf-437f-5d5c-a314-10598f3e8239")
+			(uuid "353583d2-a03e-5fe6-8046-f6818f06b9bb")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 180)
+			(at 0 0 90)
 			(layer "B.Fab")
-			(uuid "850fd9ce-fb57-53e0-b276-cc14f99b4135")
+			(uuid "e396eb3f-736f-588d-bdfa-cf4801869878")
 			(effects
 				(font
 					(size 0.26 0.26)
@@ -7104,20 +7733,20 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.51 0)
+			(at -0.51 0 270)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
 			(net "/UI_20_C5_WIFI_IR_SERVICE/IR_TX_GATE")
-			(uuid "dbc66af6-9cc7-5b39-aa5e-ee7fdfc50a10")
+			(uuid "2d2086ea-2d8b-52c1-af11-2916b89d5ce2")
 		)
 		(pad "2" smd roundrect
-			(at 0.51 0)
+			(at 0.51 0 270)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "19fbc1d6-5bc5-5a47-a00c-bdfc747405af")
+			(uuid "711f50b8-3bbf-5cf6-8a2c-f694564df2c1")
 		)
 		(embedded_fonts no)
 		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step"
@@ -12069,15 +12698,15 @@
 	)
 	(footprint "Capacitor_SMD:C_0603_1608Metric"
 		(layer "B.Cu")
-		(uuid "12766a6d-d08b-5984-8a78-a6e7e279ab41")
-		(at 5.125 88.125)
+		(uuid "c26059dd-9fc0-5aa2-9a93-28cf7768dd01")
+		(at 4.7 85.5 90)
 		(descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C29"
-			(at 0 1.43 180)
+			(at 0 1.43 270)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "81ff4461-17f0-52f2-ac7a-c2bc0e0fabfe")
+			(uuid "85891c49-af19-553e-8ade-fecc7343e17e")
 			(effects
 				(font
 					(size 1 1)
@@ -12087,10 +12716,10 @@
 			)
 		)
 		(property "Value" "Murata GRM188Z71A475ME15D"
-			(at 0 -1.43 180)
+			(at 0 -1.43 270)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "3336cdb8-b834-518f-bae8-a4b522398018")
+			(uuid "beb16f07-763b-5a53-b96c-5e4260fe4cf1")
 			(effects
 				(font
 					(size 1 1)
@@ -12100,10 +12729,10 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "ad8a8cf6-8292-5c79-85dd-d2689566f250")
+			(uuid "203de121-5c04-5711-aa19-8ee5170a874e")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12112,10 +12741,10 @@
 			)
 		)
 		(property "Description" "murata_grm188z71a475me15d"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "3ab04bd4-e33e-5ce0-85ff-cccb12288bad")
+			(uuid "4e4fba6c-8577-5cb2-b8f4-afb9c8ff080c")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12124,10 +12753,10 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "73bc6491-4b7b-55a4-801c-2e84faf839f2")
+			(uuid "6a3f9831-949c-51b3-b764-21f70ed02665")
 			(effects
 				(font
 					(size 1 1)
@@ -12137,14 +12766,13 @@
 			)
 		)
 		(property "Leshy2Instance" "ir_carrier_supply_cap"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "6553679a-7c88-5b27-8cb6-7ec1db528319")
+			(uuid "04b38d63-6027-58fa-9ede-acd1737ca91e")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 				(justify mirror)
 			)
@@ -12162,7 +12790,7 @@
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "0be688db-0b9a-53dc-9eb4-758eac664fa5")
+			(uuid "39dde2a7-e5c3-5309-b541-3c8a0fbbe36c")
 		)
 		(fp_line
 			(start -0.14058 0.51)
@@ -12172,7 +12800,7 @@
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "d5e722c4-7d6c-57ee-bd36-67c30ab58aad")
+			(uuid "25d1e64b-1c9a-5740-9bed-800629ab91f9")
 		)
 		(fp_rect
 			(start -1.48 0.73)
@@ -12183,7 +12811,7 @@
 			)
 			(fill no)
 			(layer "B.CrtYd")
-			(uuid "5c8426ab-fc9d-5900-b893-ccb7ad52e091")
+			(uuid "9cb0c507-5750-5ed1-ad3f-25449e43ce01")
 		)
 		(fp_rect
 			(start -0.8 0.4)
@@ -12194,12 +12822,12 @@
 			)
 			(fill no)
 			(layer "B.Fab")
-			(uuid "694de5d9-48d9-501e-90c9-8f7d53d16c2e")
+			(uuid "f990b94f-63d7-50d6-ace4-0f167985bd47")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
-			(uuid "f78d77d3-f320-530e-8a9c-025d1f1d8e26")
+			(uuid "3e436c82-55e7-5b72-b45d-57eeb7253cde")
 			(effects
 				(font
 					(size 0.4 0.4)
@@ -12209,20 +12837,20 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.775 0)
+			(at -0.775 0 90)
 			(size 0.9 0.95)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
 			(net "/UI_20_C5_WIFI_IR_SERVICE/IR_CARRIER_VS")
-			(uuid "5455e06d-81ca-51ef-91ae-4d1baf035531")
+			(uuid "efb16375-226a-5b78-9501-7b93fe088d05")
 		)
 		(pad "2" smd roundrect
-			(at 0.775 0)
+			(at 0.775 0 90)
 			(size 0.9 0.95)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "fbf2c77f-08be-52d1-8f71-937680122bed")
+			(uuid "802a0086-2bcb-5011-ba67-1183a3829847")
 		)
 		(embedded_fonts no)
 		(model "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step"
@@ -12548,15 +13176,15 @@
 	)
 	(footprint "Resistor_SMD:R_1206_3216Metric"
 		(layer "B.Cu")
-		(uuid "153319e0-5fd6-56ee-bb5c-2cd35b7bfccc")
-		(at 12.275 74.925 90)
+		(uuid "603b6f65-cc17-5a3b-b090-b141c67c43f4")
+		(at 5.3 90.6 180)
 		(descr "Resistor SMD 1206 (3216 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R121"
-			(at 0 1.83 270)
+			(at 0 1.83 0)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "064e5365-afba-5f12-9b04-da1177d14136")
+			(uuid "977961d6-ca7c-500c-ae8c-2577c7711cfc")
 			(effects
 				(font
 					(size 1 1)
@@ -12566,10 +13194,10 @@
 			)
 		)
 		(property "Value" "FH RS-06K47R0FT"
-			(at 0 -1.83 270)
+			(at 0 -1.83 0)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "5ee70dc3-c8ff-5c92-94d7-61b88c34c2a8")
+			(uuid "298a60ce-dbc7-522e-8f0a-0cd8b442aa19")
 			(effects
 				(font
 					(size 1 1)
@@ -12579,10 +13207,10 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "84372176-3b18-5372-a393-ac7ccd042095")
+			(uuid "7bd019fe-4976-58a2-9015-39057d356cac")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12591,10 +13219,10 @@
 			)
 		)
 		(property "Description" "fh_rs_06k47r0ft"
-			(at 0 0 270)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "37403db4-4587-566b-93c0-34900f752d95")
+			(uuid "8e80e553-8c2c-560a-84e1-29b28aaf1639")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12603,10 +13231,10 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 270)
+			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "b93b84e3-a5be-564d-b9cc-480b5d34c080")
+			(uuid "19083951-94ec-5b47-9cd7-c52ec3be45ee")
 			(effects
 				(font
 					(size 1 1)
@@ -12616,14 +13244,13 @@
 			)
 		)
 		(property "Leshy2Instance" "ir_emitter_limit"
-			(at 0 0 270)
+			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "e6902c91-d4e5-5613-9878-7e255e12a9ae")
+			(uuid "16585521-6a58-5b79-a567-c15c767028cc")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 				(justify mirror)
 			)
@@ -12634,16 +13261,6 @@
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
-			(start -0.727064 -0.91)
-			(end 0.727064 -0.91)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "B.SilkS")
-			(uuid "924adc7e-4a0d-54b9-aeed-fbbccbd69e7a")
-		)
-		(fp_line
 			(start -0.727064 0.91)
 			(end 0.727064 0.91)
 			(stroke
@@ -12651,7 +13268,17 @@
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "05b2a8d3-89a4-5046-9eac-871fd54782a8")
+			(uuid "c48950ef-54b3-5c84-ac78-4387774962af")
+		)
+		(fp_line
+			(start -0.727064 -0.91)
+			(end 0.727064 -0.91)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "2584f9cb-23a0-54b5-8f97-5c4182903ddf")
 		)
 		(fp_rect
 			(start -2.28 1.13)
@@ -12662,7 +13289,7 @@
 			)
 			(fill no)
 			(layer "B.CrtYd")
-			(uuid "f2d5551f-084c-568e-a2da-2a3380af9a2b")
+			(uuid "310e1b66-1989-5b13-ac7c-dd2a83787b6a")
 		)
 		(fp_rect
 			(start -1.6 0.8)
@@ -12673,12 +13300,12 @@
 			)
 			(fill no)
 			(layer "B.Fab")
-			(uuid "5fe0f12c-5bfa-5872-b578-aea8721f332b")
+			(uuid "cf8f28a8-ebf9-57d8-b9a1-7b99bb89d3fb")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
+			(at 0 0 0)
 			(layer "B.Fab")
-			(uuid "83b1bc8c-855b-5f95-9154-e60a44750ca2")
+			(uuid "6540b51d-774a-5008-97db-0ef1a0d9487c")
 			(effects
 				(font
 					(size 0.8 0.8)
@@ -12688,20 +13315,20 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -1.4625 0 90)
+			(at -1.4625 0 180)
 			(size 1.125 1.75)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.222222)
 			(net "/UI_20_C5_WIFI_IR_SERVICE/3V3_IR_SWITCHED")
-			(uuid "83e79375-90ba-50af-93a4-41b631645032")
+			(uuid "e2c4f06d-a704-5525-9aa7-2b7983b6bbff")
 		)
 		(pad "2" smd roundrect
-			(at 1.4625 0 90)
+			(at 1.4625 0 180)
 			(size 1.125 1.75)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.222222)
 			(net "/UI_20_C5_WIFI_IR_SERVICE/IR_LED_ANODE_LIMITED")
-			(uuid "90a67491-a30d-529d-9666-d505bd115bfb")
+			(uuid "411a38de-bb91-5602-86e2-53767e76af45")
 		)
 		(embedded_fonts no)
 		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_1206_3216Metric.step"
@@ -31745,15 +32372,15 @@
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
-		(uuid "5537a662-c7d3-56e7-aefb-ee0f3fa719c0")
-		(at 10.365 71.574999 90)
+		(uuid "ba396b87-78fa-588e-8009-371e557052d5")
+		(at 4.9 81.2)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R120"
-			(at 0 1.17 270)
+			(at 0 1.17 180)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "e0ae41f8-4e73-5154-9cff-c9e4f391d528")
+			(uuid "59a561d6-8b09-53ed-99b5-867f42d351e4")
 			(effects
 				(font
 					(size 1 1)
@@ -31763,10 +32390,10 @@
 			)
 		)
 		(property "Value" "Yageo RC0402FR-07100RL"
-			(at 0 -1.17 270)
+			(at 0 -1.17 180)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "610052ef-c6de-59d8-9cec-67672df62713")
+			(uuid "5e1aebbc-a360-506d-b4c8-9ef34859ab05")
 			(effects
 				(font
 					(size 1 1)
@@ -31776,10 +32403,10 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "db912fe3-aa7c-57ed-83c0-3ddb1eb4bb75")
+			(uuid "9fd59337-1de2-5de8-bbd6-ff509cc7d301")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -31788,10 +32415,10 @@
 			)
 		)
 		(property "Description" "yageo_rc0402fr_07100rl"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "50a6bc35-49c9-5ce7-8b06-81eec4b5caf6")
+			(uuid "4b1c9646-13c2-5d80-bc6c-275256a06898")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -31800,10 +32427,10 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "adadb1e5-f2e4-5b7e-8d61-af08200b4116")
+			(uuid "af06867d-5473-517f-835b-4549426caa9e")
 			(effects
 				(font
 					(size 1 1)
@@ -31813,14 +32440,13 @@
 			)
 		)
 		(property "Leshy2Instance" "ir_demod_supply_res"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "95d43307-8202-5837-bbde-39619ee05a7b")
+			(uuid "990e13e7-497a-5c4b-a345-ccf8dfef67df")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 				(justify mirror)
 			)
@@ -31838,7 +32464,7 @@
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "c3491b96-13e2-57fc-8d36-5894531422d7")
+			(uuid "b37433ec-5f42-5591-b690-f907a4ee0bc5")
 		)
 		(fp_line
 			(start -0.153641 0.38)
@@ -31848,7 +32474,7 @@
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "a63bc3f7-9b16-5a82-a81f-b15e873b17d4")
+			(uuid "dc9cc1bd-3b5b-590d-bdbb-ef6a5029b088")
 		)
 		(fp_rect
 			(start -0.93 0.47)
@@ -31859,7 +32485,7 @@
 			)
 			(fill no)
 			(layer "B.CrtYd")
-			(uuid "da1041e7-d477-528f-ad87-c1c90a99af3c")
+			(uuid "519b3628-d052-5f4d-aa61-c62744bb83ac")
 		)
 		(fp_rect
 			(start -0.525 0.27)
@@ -31870,12 +32496,12 @@
 			)
 			(fill no)
 			(layer "B.Fab")
-			(uuid "40c3c37e-7614-560f-bcf5-48f5a5b5b357")
+			(uuid "13e361a1-faa9-51ec-92b7-79975cd10e80")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
+			(at 0 0 180)
 			(layer "B.Fab")
-			(uuid "c60db1b3-560d-57f5-b436-68b1a25b571f")
+			(uuid "8fe2d63c-dac4-53d8-97ad-4a33d188a1aa")
 			(effects
 				(font
 					(size 0.26 0.26)
@@ -31885,20 +32511,20 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.51 0 90)
+			(at -0.51 0)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
 			(net "/UI_20_C5_WIFI_IR_SERVICE/3V3_IR_SWITCHED")
-			(uuid "8af02f44-2f6f-5ba8-a117-28a6b590abda")
+			(uuid "20d7cef7-9a85-5928-90ed-092139c5af2d")
 		)
 		(pad "2" smd roundrect
-			(at 0.51 0 90)
+			(at 0.51 0)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
 			(net "/UI_20_C5_WIFI_IR_SERVICE/IR_DEMOD_VS")
-			(uuid "f53285af-f77d-56ea-89a9-f2fbfcd58250")
+			(uuid "7e8d8f35-701b-5c2b-928e-4097d46f090e")
 		)
 		(embedded_fonts no)
 		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step"
@@ -40963,16 +41589,16 @@
 			)
 		)
 	)
-	(footprint "Leshy2:Vishay-Heimdall-SMD-TT"
+	(footprint "Leshy2:Vishay-Heimdall-SMD-TR"
 		(layer "B.Cu")
-		(uuid "71420c5c-a21b-5d89-9a34-c2e9fd71eea6")
-		(at 3.4 76.5)
-		(descr "Vishay Heimdall TSOP952/TSMP95000 package drawing: four 0.8x1.8-mm proposed lands on 1.27-mm pitch, TT top-view orientation")
+		(uuid "78bcf203-96bc-5ca6-848a-9899ae86d906")
+		(at 2.6 78.1 90)
+		(descr "Vishay TSOP752 82494 Rev2.4 pp2/7/8; drawing 6.550-5297.01-4: TR SIDE VIEW mounting, optical axis +Y parallel to F.Cu; four rectangular 0.8x1.8 lands at 1.27 pitch, pins1/4 GND,2 VS,3 OUT. Nominal reference 1.0mm foot centred on row y=0: rear y=-0.5, lens base y=2.0, tip y=2.7; body height3.0, optical centre z=1.8. Nominal seating datum, not a separately specified land-to-body tolerance.")
 		(property "Reference" "U24"
-			(at 0 4 180)
+			(at 0 4 270)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "c36911ba-0c3a-535e-a0c9-db0a01c27822")
+			(uuid "4c9f4678-1f50-5950-ad01-a376549590cd")
 			(effects
 				(font
 					(size 1 1)
@@ -40982,10 +41608,10 @@
 			)
 		)
 		(property "Value" "Vishay TSOP75238TR"
-			(at 0 -4 180)
+			(at 0 -4 270)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "286bf494-e310-580b-84cd-5b599f51594b")
+			(uuid "e66ce307-7eb5-5a20-8b34-dc99f561aac2")
 			(effects
 				(font
 					(size 1 1)
@@ -40995,10 +41621,10 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "4d3d8648-4b97-5592-9f22-289705dbd819")
+			(uuid "629d358d-1981-59c7-85f4-9ca1c8c45140")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -41007,10 +41633,10 @@
 			)
 		)
 		(property "Description" "vishay_tsop75238tr"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "bbc579bf-9f5b-5203-abc9-c53afa2aeb1b")
+			(uuid "c5dcf45b-f4a9-5477-85e3-977576bcab07")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -41019,14 +41645,13 @@
 			)
 		)
 		(property "Leshy2Instance" "ir_demod"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "011aaa28-f2af-508a-8cf3-fb24b4e60556")
+			(uuid "01a88215-cc4a-59f2-9922-db11f343cb9b")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 				(justify mirror)
 			)
@@ -41037,58 +41662,124 @@
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_rect
-			(start -3.55 1.85)
-			(end 3.55 -1.85)
+			(start -3.65 1.15)
+			(end 3.65 -2.95)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(fill no)
 			(layer "B.CrtYd")
-			(uuid "94328deb-66be-59d4-a833-c386c6ce3294")
+			(uuid "214fe1af-ff23-5c17-ab2e-a0e75a6c292d")
+		)
+		(fp_line
+			(start 1.7 -2.7)
+			(end 1.95 -2.35)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "455b61f7-8b96-538e-ae34-d57da871a295")
+		)
+		(fp_line
+			(start 1.7 -2.7)
+			(end 1.45 -2.35)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "ffcb0c4e-f0c9-5f7f-8cda-b7200bede333")
+		)
+		(fp_line
+			(start -1.7 -2.7)
+			(end -1.45 -2.35)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "d3bb7ef8-bcff-59d9-92cd-e069ef744f38")
+		)
+		(fp_line
+			(start -1.7 -2.7)
+			(end -1.95 -2.35)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "18e18598-56c7-5394-86ff-e41c12af02fc")
+		)
+		(fp_line
+			(start 1.7 -1.2)
+			(end 1.7 -2.7)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "f386e848-386d-5685-98aa-e5a0f88a06d8")
+		)
+		(fp_line
+			(start -1.7 -1.2)
+			(end -1.7 -2.7)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "4efbb9a3-23de-53bc-aab8-8b1380bfaf4b")
+		)
+		(fp_line
+			(start -3.4 0.5)
+			(end -2.9 0)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "c6da8645-9e0e-5071-9bd2-0249d94f4487")
 		)
 		(fp_rect
-			(start -3.4 1.6)
-			(end 3.4 -1.6)
+			(start -3.4 0.5)
+			(end 3.4 -2.7)
 			(stroke
 				(width 0.1)
 				(type default)
 			)
 			(fill no)
 			(layer "B.Fab")
-			(uuid "411376ec-17d2-55a0-a2aa-58730645c440")
+			(uuid "8d348283-3dcb-59bb-a120-f53d1d16a9ee")
 		)
-		(pad "1" smd roundrect
-			(at -1.905 0)
+		(pad "1" smd rect
+			(at -1.905 0 90)
 			(size 0.8 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(roundrect_rratio 0.2)
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "c54a4fbd-2cdf-5a5e-983c-13e787c495ce")
+			(uuid "ef864754-b07c-53b9-bf7b-5819f008b565")
 		)
-		(pad "2" smd roundrect
-			(at -0.635 0)
+		(pad "2" smd rect
+			(at -0.635 0 90)
 			(size 0.8 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(roundrect_rratio 0.2)
 			(net "/UI_20_C5_WIFI_IR_SERVICE/IR_DEMOD_VS")
-			(uuid "15ecb210-b14d-51b5-ba63-9d8fd129b8b5")
+			(uuid "672a650a-ace0-5c23-8717-e45de4bceabd")
 		)
-		(pad "3" smd roundrect
-			(at 0.635 0)
+		(pad "3" smd rect
+			(at 0.635 0 90)
 			(size 0.8 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(roundrect_rratio 0.2)
 			(net "/UI_20_C5_WIFI_IR_SERVICE/IR_DEMOD_LOCAL_N")
-			(uuid "2e67dbc5-8989-56bc-834f-b64d33580f82")
+			(uuid "4a8f16c3-dacb-510e-883f-f18353722b65")
 		)
-		(pad "4" smd roundrect
-			(at 1.905 0)
+		(pad "4" smd rect
+			(at 1.905 0 90)
 			(size 0.8 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(roundrect_rratio 0.2)
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "596bfe78-9228-5956-b8d2-ad5fc9694d51")
+			(uuid "fd6afe41-42c5-5f05-aac1-bec45353b089")
 		)
 		(embedded_fonts no)
 	)
@@ -42767,15 +43458,15 @@
 	)
 	(footprint "Package_TO_SOT_SMD:SOT-23"
 		(layer "B.Cu")
-		(uuid "7739a9a6-f4e2-5c72-9568-45b2d2c6e049")
-		(at 2.075 93.845)
+		(uuid "4e3be34d-e277-59e3-b324-cba3a76114a5")
+		(at 5 93.845 180)
 		(descr "SOT, 3 Pin (JEDEC TO-236 Var AB https://www.jedec.org/document_search?search_api_views_fulltext=TO-236)")
 		(tags "SOT TO_SOT_SMD")
 		(property "Reference" "Q5"
-			(at 0 2.4 180)
+			(at 0 2.4 0)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "dee40918-ab8f-5831-b28b-89770852ecd7")
+			(uuid "92a48ac4-824d-52ad-b5a1-70b60a5ce79b")
 			(effects
 				(font
 					(size 1 1)
@@ -42785,10 +43476,10 @@
 			)
 		)
 		(property "Value" "Diodes Incorporated DMN2056U-7"
-			(at 0 -2.4 180)
+			(at 0 -2.4 0)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "6686445d-3eb5-5dd3-9a34-3ff3bb600c85")
+			(uuid "1c5dfa7e-e84c-5a8b-ad05-8a5707388847")
 			(effects
 				(font
 					(size 1 1)
@@ -42798,10 +43489,10 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "b3dbfddc-1ba9-56a0-bc6a-fdd9817d1107")
+			(uuid "0b442f25-66ea-5b01-9c10-a7385bc79a65")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -42810,10 +43501,10 @@
 			)
 		)
 		(property "Description" "diodes_dmn2056u_7"
-			(at 0 0 180)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "4bc2cb36-ec5f-54dc-bc73-5cc7eb95df95")
+			(uuid "c0c2167e-3936-59c6-935c-dbd693a783f8")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -42822,10 +43513,10 @@
 			)
 		)
 		(property "KiLib_Generator" "package/gullwing"
-			(at 0 0 180)
+			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "d6d44a87-e0e0-5f03-a3d7-5c4f837f49fd")
+			(uuid "9d75c3f6-da37-5ca0-b5b1-607ddb9207ab")
 			(effects
 				(font
 					(size 1 1)
@@ -42835,14 +43526,13 @@
 			)
 		)
 		(property "Leshy2Instance" "ir_tx_mosfet"
-			(at 0 0 180)
+			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "5f682d19-f924-5679-8908-d7b584b92272")
+			(uuid "06f68863-9d82-5b74-b82b-fff74b84e28b")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 				(justify mirror)
 			)
@@ -42853,54 +43543,14 @@
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
-			(start -0.76 -1.56)
-			(end -0.76 -1.51)
+			(start 0.76 1.56)
+			(end 0.76 0.56)
 			(stroke
 				(width 0.12)
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "bd9b39eb-91fa-5fd5-aa8a-9a903ec22f57")
-		)
-		(fp_line
-			(start -0.76 -0.39)
-			(end -0.76 0.39)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "B.SilkS")
-			(uuid "ada0b184-aa2d-5e29-972d-5ff4b3f0f7bf")
-		)
-		(fp_line
-			(start -0.76 1.51)
-			(end -0.76 1.56)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "B.SilkS")
-			(uuid "e6e58840-46a6-5946-a47e-263c16ebb40f")
-		)
-		(fp_line
-			(start -0.76 1.56)
-			(end 0.76 1.56)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "B.SilkS")
-			(uuid "550490ef-20bf-5b44-926a-943cb9c593e2")
-		)
-		(fp_line
-			(start 0.76 -1.56)
-			(end -0.76 -1.56)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "B.SilkS")
-			(uuid "34305b32-edc5-5be4-8369-a8428e17bbac")
+			(uuid "968f4c51-cd37-5646-9a54-a61ac684f043")
 		)
 		(fp_line
 			(start 0.76 -0.56)
@@ -42910,17 +43560,57 @@
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "87440e9f-fce6-52df-bd7d-da652a4f4e0f")
+			(uuid "d1433ff4-077a-546b-91be-5ecdb0d2a302")
 		)
 		(fp_line
-			(start 0.76 1.56)
-			(end 0.76 0.56)
+			(start 0.76 -1.56)
+			(end -0.76 -1.56)
 			(stroke
 				(width 0.12)
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "eb5d2b85-094a-5979-a42d-072f38f10402")
+			(uuid "a17592ea-d24d-5197-b591-2ffb09dcf8bd")
+		)
+		(fp_line
+			(start -0.76 1.56)
+			(end 0.76 1.56)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "2c0d1c14-4b28-564e-bae4-37f47d6416ce")
+		)
+		(fp_line
+			(start -0.76 1.51)
+			(end -0.76 1.56)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "8ee623c1-6421-5732-ad0d-7401eecca9ee")
+		)
+		(fp_line
+			(start -0.76 -0.39)
+			(end -0.76 0.39)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "8405df60-e8e1-5623-8b17-7dba5aed1117")
+		)
+		(fp_line
+			(start -0.76 -1.56)
+			(end -0.76 -1.51)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "3a8c2f99-a4b7-508f-8ba3-b7fdf9556d9c")
 		)
 		(fp_poly
 			(pts
@@ -42932,157 +43622,7 @@
 			)
 			(fill yes)
 			(layer "B.SilkS")
-			(uuid "31367f6b-6481-5b7f-b4ff-217854860501")
-		)
-		(fp_line
-			(start -1.93 -1.5)
-			(end -1.93 -0.39)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "B.CrtYd")
-			(uuid "cabb7a91-3dcd-5ba6-80a8-fd8a86aac802")
-		)
-		(fp_line
-			(start -1.93 -0.39)
-			(end -0.9 -0.39)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "B.CrtYd")
-			(uuid "26ada955-fb77-5a65-a96d-14026f6f42f2")
-		)
-		(fp_line
-			(start -1.93 0.39)
-			(end -1.93 1.5)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "B.CrtYd")
-			(uuid "c3eb9db8-934e-57d9-96ed-fd54d02dfc49")
-		)
-		(fp_line
-			(start -1.93 1.5)
-			(end -0.9 1.5)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "B.CrtYd")
-			(uuid "f8cf5ece-d2ae-5ffd-a312-00e996cb6267")
-		)
-		(fp_line
-			(start -0.9 -1.7)
-			(end -0.9 -1.5)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "B.CrtYd")
-			(uuid "9b68b35f-b5d5-5745-9712-660549bb863f")
-		)
-		(fp_line
-			(start -0.9 -1.5)
-			(end -1.93 -1.5)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "B.CrtYd")
-			(uuid "64f7b6b4-2004-5522-863a-3ee54dab5bf1")
-		)
-		(fp_line
-			(start -0.9 -0.39)
-			(end -0.9 0.39)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "B.CrtYd")
-			(uuid "b047d17e-9875-5d08-9ddd-e996f7774346")
-		)
-		(fp_line
-			(start -0.9 0.39)
-			(end -1.93 0.39)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "B.CrtYd")
-			(uuid "62fa47ce-1abc-5d4b-8ee9-4261682f96cd")
-		)
-		(fp_line
-			(start -0.9 1.5)
-			(end -0.9 1.7)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "B.CrtYd")
-			(uuid "0bea3779-4c04-5a2f-9ad1-5f235b82149f")
-		)
-		(fp_line
-			(start -0.9 1.7)
-			(end 0.9 1.7)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "B.CrtYd")
-			(uuid "8de08ee1-c2ec-5124-bfdd-e55ef34241e3")
-		)
-		(fp_line
-			(start 0.9 -1.7)
-			(end -0.9 -1.7)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "B.CrtYd")
-			(uuid "b27a86b0-fac6-553e-b2ad-8c3f24f2c632")
-		)
-		(fp_line
-			(start 0.9 -0.55)
-			(end 0.9 -1.7)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "B.CrtYd")
-			(uuid "b5870cde-aa3a-57e9-b922-b1d3ef9bb90b")
-		)
-		(fp_line
-			(start 0.9 0.55)
-			(end 1.93 0.55)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "B.CrtYd")
-			(uuid "66540440-6900-5d95-94ca-381e296eeb0d")
-		)
-		(fp_line
-			(start 0.9 1.7)
-			(end 0.9 0.55)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "B.CrtYd")
-			(uuid "a213663d-a601-556c-8c74-03d0ca4d5249")
-		)
-		(fp_line
-			(start 1.93 -0.55)
-			(end 0.9 -0.55)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "B.CrtYd")
-			(uuid "5482d60d-31cb-55ac-a7d6-ba8cf5cf49f6")
+			(uuid "677def56-4071-566f-8ad3-79ece1bc5eba")
 		)
 		(fp_line
 			(start 1.93 0.55)
@@ -43092,7 +43632,157 @@
 				(type solid)
 			)
 			(layer "B.CrtYd")
-			(uuid "fe52e859-0bbc-5650-8617-a72997db6fba")
+			(uuid "60dd3adf-c909-5140-97f9-8441d99315ac")
+		)
+		(fp_line
+			(start 1.93 -0.55)
+			(end 0.9 -0.55)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "cad0021e-4ea6-511c-8f85-1141509777ae")
+		)
+		(fp_line
+			(start 0.9 1.7)
+			(end 0.9 0.55)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "fc5ee2fe-bd12-5ad1-a85e-8bd615a3b91d")
+		)
+		(fp_line
+			(start 0.9 0.55)
+			(end 1.93 0.55)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "14f04141-824e-56fd-a90b-491b358dc87a")
+		)
+		(fp_line
+			(start 0.9 -0.55)
+			(end 0.9 -1.7)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "1c882fb4-1a29-5a9c-9637-533f8ef2272c")
+		)
+		(fp_line
+			(start 0.9 -1.7)
+			(end -0.9 -1.7)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "9f5f7f08-ae96-5a87-a37a-daaa31103130")
+		)
+		(fp_line
+			(start -0.9 1.7)
+			(end 0.9 1.7)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "9c76b1fd-72cc-5de7-a7e0-42e883724578")
+		)
+		(fp_line
+			(start -0.9 1.5)
+			(end -0.9 1.7)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "81f50535-6125-56ae-8a8b-7740c87263c2")
+		)
+		(fp_line
+			(start -0.9 0.39)
+			(end -1.93 0.39)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "a5645b64-a6a7-5702-9888-21dba835331d")
+		)
+		(fp_line
+			(start -0.9 -0.39)
+			(end -0.9 0.39)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "879a0a93-18eb-57ef-b4c1-219511c2385e")
+		)
+		(fp_line
+			(start -0.9 -1.5)
+			(end -1.93 -1.5)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "9c2df090-6dc6-5333-8a48-de76ea6e4989")
+		)
+		(fp_line
+			(start -0.9 -1.7)
+			(end -0.9 -1.5)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "649b3a01-d0b1-585e-a07e-af0656f451ee")
+		)
+		(fp_line
+			(start -1.93 1.5)
+			(end -0.9 1.5)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "23551b3b-6925-5276-bb06-7ae7dbdc0c25")
+		)
+		(fp_line
+			(start -1.93 0.39)
+			(end -1.93 1.5)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "1da31c64-f72d-554d-b8a5-f5ffd2018acf")
+		)
+		(fp_line
+			(start -1.93 -0.39)
+			(end -0.9 -0.39)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "23b9ed23-4b52-5aa5-993e-789ced5aeea2")
+		)
+		(fp_line
+			(start -1.93 -1.5)
+			(end -1.93 -0.39)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "B.CrtYd")
+			(uuid "3a2a58fd-0944-53bc-9c67-a720448d53fe")
 		)
 		(fp_poly
 			(pts
@@ -43104,12 +43794,12 @@
 			)
 			(fill no)
 			(layer "B.Fab")
-			(uuid "57cd0bc4-1176-5d88-a364-722e8a8de52f")
+			(uuid "deee97a9-b68a-5102-b3c0-608a61164d61")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
+			(at 0 0 90)
 			(layer "B.Fab")
-			(uuid "58a1af94-af38-5207-be99-21c3ea376e3c")
+			(uuid "b89ac381-80e5-522d-af93-68d56fb562a2")
 			(effects
 				(font
 					(size 0.72 0.72)
@@ -43119,28 +43809,28 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.9375 0.95)
+			(at -0.9375 0.95 180)
 			(size 1.475 0.6)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
 			(net "/UI_20_C5_WIFI_IR_SERVICE/IR_TX_GATE")
-			(uuid "318295c6-ae1f-5e16-9199-7f479b53a28f")
+			(uuid "0fa4a21e-11b1-51f3-ad66-8ed2d4c41893")
 		)
 		(pad "2" smd roundrect
-			(at -0.9375 -0.95)
+			(at -0.9375 -0.95 180)
 			(size 1.475 0.6)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "b1755847-6e84-5ba8-ab98-8b14cf4fc262")
+			(uuid "b9ded183-2903-5b00-bcee-3509b2fad8c6")
 		)
 		(pad "3" smd roundrect
-			(at 0.9375 0)
+			(at 0.9375 0 180)
 			(size 1.475 0.6)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
 			(net "/UI_20_C5_WIFI_IR_SERVICE/IR_LED_CATHODE")
-			(uuid "ed90ad5c-81c0-5e49-9c44-1b6592d694bb")
+			(uuid "be899484-02ae-51f6-af9d-b251c353dde4")
 		)
 		(embedded_fonts no)
 		(model "${KICAD10_3DMODEL_DIR}/Package_TO_SOT_SMD.3dshapes/SOT-23.step"
@@ -44177,14 +44867,14 @@
 	)
 	(footprint "Leshy2:VSMY14940"
 		(layer "B.Cu")
-		(uuid "79cb9769-4d42-5486-b3ab-96cfba15a7ae")
-		(at 1.5 90.255)
-		(descr "Vishay VSMY14940 Rev.1.6 page 5: exact two 1.2x1.0-mm recommended lands, 3.0-mm total pad span and side-view polarity")
+		(uuid "9c115974-b5c4-5232-a620-77b239357a68")
+		(at 1.86 92 -90)
+		(descr "Vishay VSMY14940 84209 Rev1.6 pp5/6: recommended 0.9x1.4 rectangular lands, inner gap1.8, centre pitch2.7, total span3.6. Component-side view: pad1 ANODE left, pad2 CATHODE right, optical axis -Y; p6 tape anode mark rotated CW from lens-left view. Origin at terminal-row centre; 1.10mm base y=-0.55..0.55; 2.51mm total depth gives lens tip y=-1.96; height1.2.")
 		(property "Reference" "D11"
-			(at 0 4 180)
+			(at 0 4 90)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "8c56ceb6-8a32-50f9-b123-be2b2347f8b4")
+			(uuid "77b2618b-dce2-521b-92eb-56751e415b40")
 			(effects
 				(font
 					(size 1 1)
@@ -44194,10 +44884,10 @@
 			)
 		)
 		(property "Value" "Vishay VSMY14940"
-			(at 0 -4 180)
+			(at 0 -4 90)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "22e0e71b-b5db-5d55-acf1-e68fd2ed8fbc")
+			(uuid "f0a436e6-6948-569c-a5d8-3c7b7e24570d")
 			(effects
 				(font
 					(size 1 1)
@@ -44207,10 +44897,10 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "6ecfa141-423e-532c-96c0-0f5f797bfb4d")
+			(uuid "b11520d5-39b5-5c1d-86fb-51324ce00e28")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -44219,10 +44909,10 @@
 			)
 		)
 		(property "Description" "vishay_vsmy14940"
-			(at 0 0 180)
+			(at 0 0 90)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "4a49f24c-e9b5-5ac6-81a6-eb56388875d0")
+			(uuid "323c50fc-5772-5239-bd0d-efe8db0b9475")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -44231,14 +44921,13 @@
 			)
 		)
 		(property "Leshy2Instance" "ir_emitter"
-			(at 0 0 180)
+			(at 0 0 90)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "2eaa4eea-dcfa-5d31-b41e-90c2cf30269c")
+			(uuid "eb8975b3-711b-5a24-8e8c-965d18637232")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 				(justify mirror)
 			)
@@ -44249,42 +44938,82 @@
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_rect
-			(start -1.65 1.405)
-			(end 1.65 -1.405)
+			(start -2.05 2.21)
+			(end 2.05 -0.95)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(fill no)
 			(layer "B.CrtYd")
-			(uuid "8c1d3770-9f87-530a-abbb-59ec0f804ca6")
+			(uuid "a5c1fb17-b31a-56e0-ba53-9efa97887b1f")
+		)
+		(fp_line
+			(start 0 1.96)
+			(end -0.25 1.61)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "4cd30ea9-7b6b-5296-8675-c0ac46f5e19a")
+		)
+		(fp_line
+			(start 0 1.96)
+			(end 0.25 1.61)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "cdf53069-328d-5c1c-a312-2e11cf526d16")
+		)
+		(fp_line
+			(start 0 0.55)
+			(end 0 1.96)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "8c6d6e99-0c0d-5d81-8474-dded346e7701")
 		)
 		(fp_rect
-			(start -1.5 1.255)
-			(end 1.5 -1.255)
+			(start -1.5 1.96)
+			(end 1.5 -0.55)
 			(stroke
 				(width 0.1)
 				(type default)
 			)
 			(fill no)
 			(layer "B.Fab")
-			(uuid "9b16419d-4ac7-5011-8489-d32386a81ad6")
+			(uuid "223640d4-e356-5e53-aa3d-9be638bfc2d6")
 		)
-		(pad "1" smd roundrect
-			(at -0.9 0)
-			(size 1.2 1)
+		(fp_text user "K"
+			(at 1.15 0.3 90)
+			(layer "B.Fab")
+			(uuid "922b9c53-8012-5d53-b0c3-a9ab2c59a260")
+			(effects
+				(font
+					(size 0.4 0.4)
+					(thickness 0.08)
+				)
+				(justify mirror)
+			)
+		)
+		(pad "1" smd rect
+			(at -1.35 0 270)
+			(size 0.9 1.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(roundrect_rratio 0.2)
 			(net "/UI_20_C5_WIFI_IR_SERVICE/IR_LED_ANODE_LIMITED")
-			(uuid "2b9b388f-5e80-506b-a186-2c9b9080f30c")
+			(uuid "77b44530-7207-5c2e-aa12-1e10bad73438")
 		)
-		(pad "2" smd roundrect
-			(at 0.9 0)
-			(size 1.2 1)
+		(pad "2" smd rect
+			(at 1.35 0 270)
+			(size 0.9 1.4)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(roundrect_rratio 0.2)
 			(net "/UI_20_C5_WIFI_IR_SERVICE/IR_LED_CATHODE")
-			(uuid "0e713582-a3f5-574e-aa72-14c6db82a4f3")
+			(uuid "d4be3a43-eea5-5c56-8c62-e264982b1b19")
 		)
 		(embedded_fonts no)
 	)
@@ -53744,15 +54473,15 @@
 	)
 	(footprint "Capacitor_SMD:C_0603_1608Metric"
 		(layer "B.Cu")
-		(uuid "9ec937fd-6c83-5138-9492-bc804d96f538")
-		(at 8.125 71.875)
+		(uuid "23514a27-828c-5ea1-86be-1eb16662ca41")
+		(at 4.7 77.96 90)
 		(descr "Capacitor SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 76, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "capacitor")
 		(property "Reference" "C30"
-			(at 0 1.43 180)
+			(at 0 1.43 270)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "005c08ba-00e7-563d-ab26-15091472bf4d")
+			(uuid "0ac81c7d-a660-5097-ab4d-64914b554953")
 			(effects
 				(font
 					(size 1 1)
@@ -53762,10 +54491,10 @@
 			)
 		)
 		(property "Value" "Murata GRM188Z71A475ME15D"
-			(at 0 -1.43 180)
+			(at 0 -1.43 270)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "f577d27d-c722-59c3-b013-74562f4837c6")
+			(uuid "fd2dc439-18fc-5a74-92fe-35b46f96492f")
 			(effects
 				(font
 					(size 1 1)
@@ -53775,10 +54504,10 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "0c7c873d-e20b-5563-9c25-c941467947ec")
+			(uuid "c590d621-d8dc-55a2-a8e0-64c321eb6fdd")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -53787,10 +54516,10 @@
 			)
 		)
 		(property "Description" "murata_grm188z71a475me15d"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "0f85358b-bfe5-5f02-bab3-0efdb66a3056")
+			(uuid "33359b20-c803-52bf-bfe4-d6e2924ccf61")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -53799,10 +54528,10 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "aefb504f-3994-5af7-be66-6ef07405bacb")
+			(uuid "87a99f15-b2bb-53e6-a713-15af693e56a4")
 			(effects
 				(font
 					(size 1 1)
@@ -53812,14 +54541,13 @@
 			)
 		)
 		(property "Leshy2Instance" "ir_demod_supply_cap"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "8df34608-bceb-51aa-af72-9e41dcf6a90c")
+			(uuid "9aa56f31-4fe8-5082-be4a-bd8665c34985")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 				(justify mirror)
 			)
@@ -53837,7 +54565,7 @@
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "1eaa3655-d6ba-5d95-ae32-4e98c9b05e1f")
+			(uuid "aa7a7c0e-2105-57b8-b839-1d675fbacaae")
 		)
 		(fp_line
 			(start -0.14058 0.51)
@@ -53847,7 +54575,7 @@
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "cd7aa1df-b524-5f4e-87f8-ce985b024dd0")
+			(uuid "4f2a647b-da75-545d-a978-4254cc106277")
 		)
 		(fp_rect
 			(start -1.48 0.73)
@@ -53858,7 +54586,7 @@
 			)
 			(fill no)
 			(layer "B.CrtYd")
-			(uuid "d6d153cb-810f-50a4-b763-1612f8a7fb10")
+			(uuid "2a1693d8-6aa3-5ff4-ab7a-715279ce4acf")
 		)
 		(fp_rect
 			(start -0.8 0.4)
@@ -53869,12 +54597,12 @@
 			)
 			(fill no)
 			(layer "B.Fab")
-			(uuid "51325244-e2db-581f-8179-0513d2234af1")
+			(uuid "ef8d5ec7-1f53-54f6-ab7e-c2b086e98031")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 180)
+			(at 0 0 270)
 			(layer "B.Fab")
-			(uuid "41aa5006-b859-51a4-bd8f-f17e732f84c5")
+			(uuid "53291690-d275-5180-a4d1-eb95ec165fde")
 			(effects
 				(font
 					(size 0.4 0.4)
@@ -53884,20 +54612,20 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.775 0)
+			(at -0.775 0 90)
 			(size 0.9 0.95)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
 			(net "/UI_20_C5_WIFI_IR_SERVICE/IR_DEMOD_VS")
-			(uuid "b0367afb-2a20-5794-a59d-0df33cfac34b")
+			(uuid "2311d99f-75f3-5ec6-afc5-469b7a1c1d3b")
 		)
 		(pad "2" smd roundrect
-			(at 0.775 0)
+			(at 0.775 0 90)
 			(size 0.9 0.95)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "83657752-e7c5-5f89-b427-52debbec4a64")
+			(uuid "37a884af-e3c6-5471-965a-fff2504db6dc")
 		)
 		(embedded_fonts no)
 		(model "${KICAD10_3DMODEL_DIR}/Capacitor_SMD.3dshapes/C_0603_1608Metric.step"
@@ -68356,16 +69084,16 @@
 			)
 		)
 	)
-	(footprint "Leshy2:Vishay-Heimdall-SMD-TT"
+	(footprint "Leshy2:Vishay-Heimdall-SMD-TR"
 		(layer "B.Cu")
-		(uuid "cb30a3c2-ccae-5ff0-8f57-8502d534db62")
-		(at 3.5 83.5 90)
-		(descr "Vishay Heimdall TSOP952/TSMP95000 package drawing: four 0.8x1.8-mm proposed lands on 1.27-mm pitch, TT top-view orientation")
+		(uuid "7c0e0825-bf29-5fa4-acf2-2b7f77ad00b1")
+		(at 2.6 85.6 90)
+		(descr "Vishay TSOP752 82494 Rev2.4 pp2/7/8; drawing 6.550-5297.01-4: TR SIDE VIEW mounting, optical axis +Y parallel to F.Cu; four rectangular 0.8x1.8 lands at 1.27 pitch, pins1/4 GND,2 VS,3 OUT. Nominal reference 1.0mm foot centred on row y=0: rear y=-0.5, lens base y=2.0, tip y=2.7; body height3.0, optical centre z=1.8. Nominal seating datum, not a separately specified land-to-body tolerance.")
 		(property "Reference" "U23"
 			(at 0 4 270)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "f96e9076-c369-5b51-a3e0-d05ced45e5df")
+			(uuid "f2f9db65-b5d0-58d6-8798-da377342632d")
 			(effects
 				(font
 					(size 1 1)
@@ -68374,11 +69102,11 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "Vishay TSMP95000TT"
+		(property "Value" "Vishay TSMP95000TR"
 			(at 0 -4 270)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "e4ef3631-81e3-5e5c-80a7-b64b8e3bcfe1")
+			(uuid "d405fe5d-f408-5260-b982-2f62ca0b5460")
 			(effects
 				(font
 					(size 1 1)
@@ -68391,7 +69119,7 @@
 			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "bb1082a5-9816-5f41-9562-4b485d942b58")
+			(uuid "9b4d7d45-57de-5540-823f-ca8262429dc3")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -68399,11 +69127,11 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "vishay_tsmp95000tt"
+		(property "Description" "vishay_tsmp95000tr"
 			(at 0 0 270)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "276a99f9-af33-503d-88fd-209a4ebbf437")
+			(uuid "9735b808-ee92-513b-b333-b29114d80b04")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -68415,11 +69143,10 @@
 			(at 0 0 270)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "62694d87-f080-57bc-841f-56315f6faf67")
+			(uuid "68d398bd-50ec-513a-95e0-e5bcacc26e1f")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 				(justify mirror)
 			)
@@ -68430,58 +69157,124 @@
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_rect
-			(start -3.55 1.85)
-			(end 3.55 -1.85)
+			(start -3.65 1.15)
+			(end 3.65 -2.95)
 			(stroke
 				(width 0.05)
 				(type default)
 			)
 			(fill no)
 			(layer "B.CrtYd")
-			(uuid "03594bfc-6c46-50b6-9684-d8b43155e6ac")
+			(uuid "b2bf398e-cb04-5055-84ca-ea67bd92d9a6")
+		)
+		(fp_line
+			(start 1.7 -2.7)
+			(end 1.95 -2.35)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "9b3ea542-6968-5d56-945d-4e55d67023ab")
+		)
+		(fp_line
+			(start 1.7 -2.7)
+			(end 1.45 -2.35)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "65282bba-35b7-5ef5-bf00-9f06f680bb03")
+		)
+		(fp_line
+			(start -1.7 -2.7)
+			(end -1.45 -2.35)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "4c4bf096-61c6-52e1-bbeb-f16066e2f054")
+		)
+		(fp_line
+			(start -1.7 -2.7)
+			(end -1.95 -2.35)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "7dce2b36-63f6-5ef1-8c49-a0a3dd9395a3")
+		)
+		(fp_line
+			(start 1.7 -1.2)
+			(end 1.7 -2.7)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "c0b2aae5-3d77-56d7-8596-98a4b916f8f3")
+		)
+		(fp_line
+			(start -1.7 -1.2)
+			(end -1.7 -2.7)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "c69d1678-5114-5772-b972-69ab5807ded7")
+		)
+		(fp_line
+			(start -3.4 0.5)
+			(end -2.9 0)
+			(stroke
+				(width 0.1)
+				(type default)
+			)
+			(layer "B.Fab")
+			(uuid "a37fe4ee-b5a4-52f9-bab2-93e32e2ca212")
 		)
 		(fp_rect
-			(start -3.4 1.6)
-			(end 3.4 -1.6)
+			(start -3.4 0.5)
+			(end 3.4 -2.7)
 			(stroke
 				(width 0.1)
 				(type default)
 			)
 			(fill no)
 			(layer "B.Fab")
-			(uuid "cd6070ff-05e6-5be5-a43f-eb8ec312c9a3")
+			(uuid "caa84228-189d-5e55-8233-ae4fb928f9b3")
 		)
-		(pad "1" smd roundrect
+		(pad "1" smd rect
 			(at -1.905 0 90)
 			(size 0.8 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(roundrect_rratio 0.2)
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "8eaab869-482a-500a-a5f8-0292dead57d9")
+			(uuid "250e4350-379c-5556-8232-b5705f7ba748")
 		)
-		(pad "2" smd roundrect
+		(pad "2" smd rect
 			(at -0.635 0 90)
 			(size 0.8 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(roundrect_rratio 0.2)
 			(net "/UI_20_C5_WIFI_IR_SERVICE/IR_CARRIER_VS")
-			(uuid "26476ee1-7574-561d-abb0-81a5917a6f65")
+			(uuid "650f4d15-1f93-50d5-99b9-2a511bb50deb")
 		)
-		(pad "3" smd roundrect
+		(pad "3" smd rect
 			(at 0.635 0 90)
 			(size 0.8 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(roundrect_rratio 0.2)
 			(net "/UI_20_C5_WIFI_IR_SERVICE/IR_CARRIER_LOCAL_N")
-			(uuid "301d97ed-abe5-5188-9b83-58a336c75d8d")
+			(uuid "3f8a7dcf-f6eb-5c73-b48c-8479cfea9cd7")
 		)
-		(pad "4" smd roundrect
+		(pad "4" smd rect
 			(at 1.905 0 90)
 			(size 0.8 1.8)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(roundrect_rratio 0.2)
 			(net "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND")
-			(uuid "7c06cfb4-f280-5215-93f2-0bf9ebb3bc36")
+			(uuid "6d4bb9d9-968c-5f2d-9810-b866b8716588")
 		)
 		(embedded_fonts no)
 	)
@@ -72924,15 +73717,15 @@
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
-		(uuid "d50b7d8c-8293-512f-93df-2ff58916efef")
-		(at 6.364999 79.574999 90)
+		(uuid "ce46ed5f-1a9b-5060-a8b3-5ce26ba8fa85")
+		(at 4.9 88.15 180)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R117"
-			(at 0 1.17 270)
+			(at 0 1.17 0)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "fc4f2feb-66b7-5490-a436-372e01c92fbe")
+			(uuid "2fa78242-0d02-5bac-a0f4-b7f07837dd0d")
 			(effects
 				(font
 					(size 1 1)
@@ -72942,10 +73735,10 @@
 			)
 		)
 		(property "Value" "Yageo RC0402FR-07100RL"
-			(at 0 -1.17 270)
+			(at 0 -1.17 0)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "6b22b2b3-a3e2-5475-abd0-6020df563f17")
+			(uuid "824056c8-6ea5-5ae1-8cbf-dbfbb05e6cb9")
 			(effects
 				(font
 					(size 1 1)
@@ -72955,10 +73748,10 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 270)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "c19060ad-ada6-5589-b71f-28c936748431")
+			(uuid "2af93ea4-2a6d-5c89-bc89-495219d89cde")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -72967,10 +73760,10 @@
 			)
 		)
 		(property "Description" "yageo_rc0402fr_07100rl"
-			(at 0 0 270)
+			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "d2d8f78f-d262-55f0-b67c-621aa87973d9")
+			(uuid "227662fa-4876-5eff-8ca8-aba3cb1b0d17")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -72979,10 +73772,10 @@
 			)
 		)
 		(property "KiLib_Generator" "SMD_2terminal_chip_molded"
-			(at 0 0 270)
+			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "a4f7c39b-6780-537a-812f-c2fd6c02dc22")
+			(uuid "2e45b321-ed28-57d8-99d6-e8a2111451e2")
 			(effects
 				(font
 					(size 1 1)
@@ -72992,14 +73785,13 @@
 			)
 		)
 		(property "Leshy2Instance" "ir_carrier_supply_res"
-			(at 0 0 270)
+			(at 0 0 0)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "9af496b9-e020-5149-a801-17e3a9a7dd80")
+			(uuid "40e89809-f5aa-5bec-a7f5-4c5f852e4fe3")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 				(justify mirror)
 			)
@@ -73010,16 +73802,6 @@
 		(attr smd)
 		(duplicate_pad_numbers_are_jumpers no)
 		(fp_line
-			(start -0.153641 -0.38)
-			(end 0.153641 -0.38)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "B.SilkS")
-			(uuid "420e5058-afb7-5dd2-b44b-93f1161db788")
-		)
-		(fp_line
 			(start -0.153641 0.38)
 			(end 0.153641 0.38)
 			(stroke
@@ -73027,7 +73809,17 @@
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "16926700-e72e-5320-ad63-78935447541a")
+			(uuid "c523698b-73ce-562d-86d6-12833ddbb64f")
+		)
+		(fp_line
+			(start -0.153641 -0.38)
+			(end 0.153641 -0.38)
+			(stroke
+				(width 0.12)
+				(type solid)
+			)
+			(layer "B.SilkS")
+			(uuid "7b7934e4-6552-5aef-8cd2-a4a0035e6796")
 		)
 		(fp_rect
 			(start -0.93 0.47)
@@ -73038,7 +73830,7 @@
 			)
 			(fill no)
 			(layer "B.CrtYd")
-			(uuid "0673b80f-794b-5b22-80b9-34659d7c6c08")
+			(uuid "bd28f0cf-60b6-570f-8109-1729b38a6c64")
 		)
 		(fp_rect
 			(start -0.525 0.27)
@@ -73049,12 +73841,12 @@
 			)
 			(fill no)
 			(layer "B.Fab")
-			(uuid "2ae00a85-8903-5ecb-bd74-ba431269ab65")
+			(uuid "356cc272-2013-5862-87e7-9125ca5cf56b")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 270)
+			(at 0 0 0)
 			(layer "B.Fab")
-			(uuid "7dd73b3d-4639-5ea8-aa83-e57ffe0e3a9f")
+			(uuid "b928362d-1a60-5902-bea0-6b9d0f8f1f07")
 			(effects
 				(font
 					(size 0.26 0.26)
@@ -73064,20 +73856,20 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.51 0 90)
+			(at -0.51 0 180)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
 			(net "/UI_20_C5_WIFI_IR_SERVICE/3V3_IR_SWITCHED")
-			(uuid "e3d6795b-6dfd-5ac5-824f-f2be4c6ac316")
+			(uuid "7b1e8110-9413-5160-b634-b0b74316e315")
 		)
 		(pad "2" smd roundrect
-			(at 0.51 0 90)
+			(at 0.51 0 180)
 			(size 0.54 0.64)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
 			(net "/UI_20_C5_WIFI_IR_SERVICE/IR_CARRIER_VS")
-			(uuid "20f11fe7-b167-51cf-b009-05729b95d70b")
+			(uuid "ecdeb50b-7e06-58f3-af8d-aa191b56ec6c")
 		)
 		(embedded_fonts no)
 		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step"
@@ -85205,15 +85997,15 @@
 	)
 	(footprint "Resistor_SMD:R_0402_1005Metric"
 		(layer "B.Cu")
-		(uuid "f6038de4-4dec-5d2e-9264-75c34c5ec6a6")
-		(at 3.825 79.115)
+		(uuid "e56b9518-1016-5b32-a67a-d10b945dcd09")
+		(at 4.9 83.1)
 		(descr "Resistor SMD 0402 (1005 Metric), square (rectangular) end terminal, IPC-7351 nominal, (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf)")
 		(tags "resistor")
 		(property "Reference" "R115"
 			(at 0 1.17 180)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "be1692da-767e-5a74-93fc-d5ab58a67424")
+			(uuid "26ac9ee0-4e60-5ff2-a9d9-ba3764a48b9a")
 			(effects
 				(font
 					(size 1 1)
@@ -85226,7 +86018,7 @@
 			(at 0 -1.17 180)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "d54fdc1b-27c8-5c89-93ea-f5908c8219cf")
+			(uuid "42ac6e24-3316-51cb-af03-869b6a2adee8")
 			(effects
 				(font
 					(size 1 1)
@@ -85239,7 +86031,7 @@
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "a1c2462d-185c-5a3b-bbc6-91c2c53297e3")
+			(uuid "16c8e0e6-073f-53af-9ee9-30addde112a6")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -85251,7 +86043,7 @@
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
-			(uuid "61b61327-d2bb-52c4-9acd-099d9575d24d")
+			(uuid "dafb6bfe-d279-536f-a745-aa9d5280caee")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -85263,7 +86055,7 @@
 			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "cdb24621-c901-591c-805b-ead66f99c712")
+			(uuid "4828c2f8-60f6-5ffa-8fa8-cfa227b91445")
 			(effects
 				(font
 					(size 1 1)
@@ -85276,11 +86068,10 @@
 			(at 0 0 180)
 			(layer "B.SilkS")
 			(hide yes)
-			(uuid "3e399ebe-af68-5b63-82d5-dc731edcacab")
+			(uuid "73781670-f5b3-5f21-9e63-515c7be3b503")
 			(effects
 				(font
 					(size 1.27 1.27)
-					(thickness 0.15)
 				)
 				(justify mirror)
 			)
@@ -85298,7 +86089,7 @@
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "9d4b2b5f-8706-583a-a41b-f166fae62cac")
+			(uuid "b113ab75-b167-517b-b9ab-c74ccf837466")
 		)
 		(fp_line
 			(start -0.153641 0.38)
@@ -85308,7 +86099,7 @@
 				(type solid)
 			)
 			(layer "B.SilkS")
-			(uuid "0caf3542-19d6-565e-8a29-b8469529d9b9")
+			(uuid "59a5d96f-839f-57d2-b94e-8171e17894e4")
 		)
 		(fp_rect
 			(start -0.93 0.47)
@@ -85319,7 +86110,7 @@
 			)
 			(fill no)
 			(layer "B.CrtYd")
-			(uuid "e8257387-2086-57e9-9fc7-b3fe9a659ca6")
+			(uuid "77352466-dacf-5678-9fda-b078f4be838b")
 		)
 		(fp_rect
 			(start -0.525 0.27)
@@ -85330,12 +86121,12 @@
 			)
 			(fill no)
 			(layer "B.Fab")
-			(uuid "5f212c27-171a-5738-aa3d-7c706e88a950")
+			(uuid "23b37289-c459-5230-bca1-ff0bf8849e13")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 180)
 			(layer "B.Fab")
-			(uuid "25d307bf-5aed-567f-b545-50ecb60a1a71")
+			(uuid "e082506d-721e-5630-916e-05f4455e662b")
 			(effects
 				(font
 					(size 0.26 0.26)
@@ -85350,7 +86141,7 @@
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
 			(net "/UI_20_C5_WIFI_IR_SERVICE/IR_CARRIER_LOCAL_N")
-			(uuid "3af768d3-61ab-5b3a-986f-4abcb2023b7b")
+			(uuid "b06b0eef-3241-57e2-9270-9ee9b909091a")
 		)
 		(pad "2" smd roundrect
 			(at 0.51 0)
@@ -85358,7 +86149,7 @@
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
 			(net "/UI_20_C5_WIFI_IR_SERVICE/IR_CARRIER_VS")
-			(uuid "887cddcc-a436-58d8-bc11-4e80e93bac82")
+			(uuid "3e7c6c0c-e279-5e3f-a8cf-15d7136a4691")
 		)
 		(embedded_fonts no)
 		(model "${KICAD10_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.step"
@@ -88144,17 +88935,6 @@
 			)
 		)
 	)
-	(gr_text "HUB RP"
-		(at 14.87 138 0)
-		(layer "F.SilkS")
-		(uuid "1c921ab2-52ed-402d-9aa3-ea785cb8c1c6")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
 	(gr_text "DATA USB"
 		(at 14.87 140 0)
 		(layer "F.SilkS")
@@ -88192,17 +88972,6 @@
 		(at 24.2 113.7 0)
 		(layer "F.SilkS")
 		(uuid "b7ed98ce-90e1-4dd0-9aa7-aae12794cf54")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(gr_text "C5"
-		(at 26.1 138 0)
-		(layer "F.SilkS")
-		(uuid "0362adf1-f6b3-41d2-8e2b-be45969f236a")
 		(effects
 			(font
 				(size 1 1)
@@ -88430,32 +89199,10 @@
 			)
 		)
 	)
-	(gr_text "C5"
-		(at 74 116.2 0)
-		(layer "F.SilkS")
-		(uuid "c9f44a3b-0c8a-468b-8715-efb39f774845")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
 	(gr_text "RST"
 		(at 74 118.3 0)
 		(layer "F.SilkS")
 		(uuid "1766e550-0d2f-4407-9ecc-7270c7b8a505")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(gr_text "C5"
-		(at 74 123.2 0)
-		(layer "F.SilkS")
-		(uuid "aca6b078-d74c-4661-9afe-a1d3796da6b2")
 		(effects
 			(font
 				(size 1 1)
@@ -88731,4 +89478,48 @@
 		(uuid "73ef24c8-09c9-491a-9d57-591ff833036a")
 	)
 	(embedded_fonts no)
+	(gr_text "HUB RP"
+		(at 14.87 138.2 0)
+		(layer "F.SilkS")
+		(uuid "7f43493d-ad74-5e61-aa0d-1b1a963cba5b")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(gr_text "C5"
+		(at 26.1 138.2 0)
+		(layer "F.SilkS")
+		(uuid "4844262a-a0ed-5aa9-8121-81c6ef160b80")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(gr_text "C5"
+		(at 74 116.2 0)
+		(layer "F.SilkS")
+		(uuid "f65a705d-ca47-5a51-a19f-b3916815cc97")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(gr_text "C5"
+		(at 74 123.2 0)
+		(layer "F.SilkS")
+		(uuid "f86050e3-59dd-5a8c-b6ae-468328ad4959")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
 )

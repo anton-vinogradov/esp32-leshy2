@@ -6,11 +6,11 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "c196c8114e00b96c9840f0c85533e800c1d50b9cecb6a84ea194e07b04cba43f"
+      "sha256": "74c8a559f245a231bb567ad6f7f069fab053e33fb3940636d2a72a42f7635ed8"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76"
+      "sha256": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c"
     }
   },
   "historical_hint_sources": [
@@ -165,13 +165,13 @@
     "explicit_non_pcba_group_count": 6,
     "symbol_identity_count": 245,
     "footprint_identity_count": 245,
-    "logical_contact_count": 1617,
-    "historical_package_hints_reconciled": 188,
+    "logical_contact_count": 1616,
+    "historical_package_hints_reconciled": 184,
     "historical_package_conflicts_resolved": 5,
-    "explicit_current_footprint_overrides": 57,
-    "standard_kicad_footprint_identities": 205,
-    "reconciled_local_footprint_definitions": 28,
-    "new_exact_footprint_geometries_materialized": 12,
+    "explicit_current_footprint_overrides": 61,
+    "standard_kicad_footprint_identities": 206,
+    "reconciled_local_footprint_definitions": 26,
+    "new_exact_footprint_geometries_materialized": 13,
     "schematic_symbols_or_footprint_files_created": 0,
     "native_schematic_nets_created": 0,
     "unresolved_groups": 0
@@ -1077,17 +1077,16 @@
       "bom_excluded": false
     },
     {
-      "device_id": "ck_js102011scqn",
-      "mpn": "C&K JS102011SCQN",
+      "device_id": "ck_js102011saqn",
+      "mpn": "C&K JS102011SAQN",
       "quantity_per_product": 1,
       "role": "power_command_switch",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
-        "RF_50_TX_SAFETY_EVIDENCE",
-        "UI_50_FRONT_POWER_SAFETY"
+        "RF_50_TX_SAFETY_EVIDENCE"
       ],
       "schematic_value": "spdt_on_on_right_angle_smt_power_command_slide_switch",
-      "symbol_id": "Leshy2_R2:ck_js102011scqn",
+      "symbol_id": "Leshy2_R2:ck_js102011saqn",
       "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
       "logical_contact_count": 3,
       "contact_role_counts": {
@@ -1111,25 +1110,21 @@
       "contact_map_sha256": "b54b1c55fedf27d8d8d6f28401a94956e4dcd54f1fc5b1545423f405648b0035",
       "electrical_contract_sha256": "14cad054efcd46be61d18445270f58f1ed4b2b5b4b0fa425d15626a986bbbab3",
       "manufacturer_evidence": {
-        "document": "Littelfuse C&K JS Series Sub-Miniature Slide Switches datasheet",
+        "document": "Littelfuse C&K JS Series Sub-Miniature Slide Switches, p1 ordering and p4 exact JS102011SAQN mechanical drawing/circuit",
         "version": "VL 01/14/26",
         "url": "https://www.littelfuse.com/assetdocs/littelfuse-c-k-slide-js-series-datasheet?assetguid=aba42b08-0d2c-423b-813d-a2faa5a3bb14",
-        "checked": "2026-08-19"
+        "checked": "2026-09-07"
       },
-      "footprint": "Leshy2:JS102011SCQN",
-      "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",
+      "footprint": "Button_Switch_SMD:SW_SPDT_CK_JS102011SAQN",
+      "footprint_resolution": "explicit_current_override",
       "footprint_definition": {
-        "status": "existing_manufacturer_derived_definition_reconciled",
-        "path": "hardware/ecad/libraries/Leshy2.pretty/JS102011SCQN.kicad_mod",
-        "sha256": "7ca6e59dd072255c4d23bc191ac86a307dc45924318e1c38567b5f5c737b0575"
+        "status": "exact_package_identity_mapped_to_standard_kicad_library",
+        "path": null,
+        "sha256": null
       },
-      "historical_hint_files": [
-        "hardware/ecad/generated/H2-RF50-tx-safety-evidence.json"
-      ],
-      "historical_hint_pin_counts": [
-        3
-      ],
-      "jlcpcb_part_number": null,
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": "C221660",
       "bom_excluded": false
     },
     {
@@ -7950,7 +7945,7 @@
       "footprint_definition": {
         "status": "current_exact_local_definition_materialized",
         "path": "hardware/ecad/libraries/Leshy2_R2.pretty/B3S-1100P.kicad_mod",
-        "sha256": "37b9b1c477a58d9152f7b1cff766be8bf4d27f9e9a1ab43217bf6bd714409a4d"
+        "sha256": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989"
       },
       "historical_hint_files": [
         "hardware/ecad/generated/H2-RF35-rear-controls.json",
@@ -9011,22 +9006,22 @@
       "bom_excluded": false
     },
     {
-      "device_id": "same_sky_sj_43504_smt_tr",
-      "mpn": "Same Sky SJ-43504-SMT-TR",
+      "device_id": "same_sky_sj_43515ts_smt_tr",
+      "mpn": "Same Sky SJ-43515TS-SMT-TR",
       "quantity_per_product": 1,
       "role": "headphone_jack",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "RF_22_AUDIO_CODEC_IO"
       ],
-      "schematic_value": "3_5mm_ctia_trrs_mid_mount_jack_two_internal_switches",
-      "symbol_id": "Leshy2_R2:same_sky_sj_43504_smt_tr",
+      "schematic_value": "3_5mm_ctia_trrs_top_mount_smt_jack_tip_switch",
+      "symbol_id": "Leshy2_R2:same_sky_sj_43515ts_smt_tr",
       "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
-      "logical_contact_count": 6,
+      "logical_contact_count": 5,
       "contact_role_counts": {
         "analog": 3,
         "power": 1,
-        "signal": 2
+        "signal": 1
       },
       "contact_map": {
         "SLEEVE": {
@@ -9048,34 +9043,26 @@
         "TIP_SWITCH": {
           "physical": "5",
           "role": "signal"
-        },
-        "RING1_SWITCH": {
-          "physical": "6",
-          "role": "signal"
         }
       },
-      "contact_map_sha256": "ab754045651e205a5ccc97c7c7acc138f9ae1a88b2bff7db0750eae99799b813",
-      "electrical_contract_sha256": "72e967bc99eb703f55c5612060ce39a00c9ac9411eb3ccc4b15b79ebcbb7181e",
+      "contact_map_sha256": "c1ca381696ace0144f0f4e88e334703e6cb27e474d48835fe6494f4f01a40adc",
+      "electrical_contract_sha256": "dce355e315b16834381e3c6677d6ac0076d58ddbe10b0a59c4eaf0313531bda6",
       "manufacturer_evidence": {
-        "document": "SJ-43504-SMT-TR Audio Jack datasheet",
-        "version": "Rev. 1.06, September 2024",
-        "url": "https://www.sameskydevices.com/product/resource/sj-43504-smt-tr.pdf",
-        "checked": "2026-08-23"
+        "document": "Same Sky SJ-4351X-SMT, page 1 part-number key and page 2 mechanical/PCB top-view drawing and exact TS circuit",
+        "version": "2024-09-12",
+        "url": "https://www.sameskydevices.com/product/resource/digikeypdf/sj-4351x-smt.pdf",
+        "checked": "2026-09-08"
       },
-      "footprint": "Leshy2:SJ-43504-SMT-TR",
-      "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",
+      "footprint": "Leshy2_R2:SJ-43515TS-SMT-TR",
+      "footprint_resolution": "explicit_current_override",
       "footprint_definition": {
-        "status": "existing_manufacturer_derived_definition_reconciled",
-        "path": "hardware/ecad/libraries/Leshy2.pretty/SJ-43504-SMT-TR.kicad_mod",
-        "sha256": "db578dfdc43d6fe1a92f5ec649a19e6330b2dffd3f6e13b2037c249a8d18f5e4"
+        "status": "current_exact_local_definition_materialized",
+        "path": "hardware/ecad/libraries/Leshy2_R2.pretty/SJ-43515TS-SMT-TR.kicad_mod",
+        "sha256": "4d467470d674455d643dedbf72001da0c7af23a521947ea2b9d190bbdad077a0"
       },
-      "historical_hint_files": [
-        "hardware/ecad/generated/H2-UI13-audio-codec-headset.json"
-      ],
-      "historical_hint_pin_counts": [
-        6
-      ],
-      "jlcpcb_part_number": null,
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": "C5353507",
       "bom_excluded": false
     },
     {
@@ -9500,7 +9487,7 @@
       "footprint_definition": {
         "status": "existing_manufacturer_derived_definition_reconciled",
         "path": "hardware/ecad/libraries/Leshy2.pretty/1125R-SMT-4P.kicad_mod",
-        "sha256": "f178ca571b825ea01bc188c66860d2c4834e24dfbbe2e6af56b5859ed29ede2f"
+        "sha256": "129ef50b9d030294bda39f45c75fc7647dd99b5ebdf969cb14a585d4f9ce31db"
       },
       "historical_hint_files": [
         "hardware/ecad/generated/H2-RF34-u214-m5-ext.json"
@@ -15178,16 +15165,16 @@
       "bom_excluded": false
     },
     {
-      "device_id": "vishay_tsmp95000tt",
-      "mpn": "Vishay TSMP95000TT",
+      "device_id": "vishay_tsmp95000tr",
+      "mpn": "Vishay TSMP95000TR",
       "quantity_per_product": 1,
       "role": "ir_carrier",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
         "UI_20_C5_WIFI_IR_SERVICE"
       ],
-      "schematic_value": "heimdall_smd_30_60khz_carrier_output_ir_learning_receiver",
-      "symbol_id": "Leshy2_R2:vishay_tsmp95000tt",
+      "schematic_value": "heimdall_side_view_smd_30_60khz_carrier_output_ir_learning_receiver",
+      "symbol_id": "Leshy2_R2:vishay_tsmp95000tr",
       "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
       "logical_contact_count": 4,
       "contact_role_counts": {
@@ -15213,27 +15200,23 @@
         }
       },
       "contact_map_sha256": "838b475c9dc7847c394763f875f1ee5d3e63e81f830110d4645ae755d1906c18",
-      "electrical_contract_sha256": "b3b32ddb9746e442611f8b7215f04acae51bdbb250070cd8557f54178ef8075e",
+      "electrical_contract_sha256": "d08fbc48c5a35ae179ef6ed6a25d8d76c6841d8ec45b9b4c1020272830b3c3f3",
       "manufacturer_evidence": {
-        "document": "TSMP95000 IR sensor module datasheet",
-        "version": "Rev. 1.0, 20-Oct-2022",
+        "document": "Vishay TSMP95000 ordering, contacts and TR side-view tape",
+        "version": "82907 Rev.1.0, 20-Oct-2022, pages 2/4/6/7",
         "url": "https://www.vishay.com/docs/82907/tsmp95000.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-09-07"
       },
-      "footprint": "Leshy2:Vishay-Heimdall-SMD-TT",
-      "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",
+      "footprint": "Leshy2:Vishay-Heimdall-SMD-TR",
+      "footprint_resolution": "explicit_current_override",
       "footprint_definition": {
         "status": "existing_manufacturer_derived_definition_reconciled",
-        "path": "hardware/ecad/libraries/Leshy2.pretty/Vishay-Heimdall-SMD-TT.kicad_mod",
-        "sha256": "cb55b04ea85db20a99fd52600fc68486ad5c35724df5ce44cae90802bc07abc5"
+        "path": "hardware/ecad/libraries/Leshy2.pretty/Vishay-Heimdall-SMD-TR.kicad_mod",
+        "sha256": "01ea9c7ef12c60e4c79886124425537d15eb3af5fbd1debeb34f53d1edaaded8"
       },
-      "historical_hint_files": [
-        "hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json"
-      ],
-      "historical_hint_pin_counts": [
-        4
-      ],
-      "jlcpcb_part_number": null,
+      "historical_hint_files": [],
+      "historical_hint_pin_counts": [],
+      "jlcpcb_part_number": "C20593617",
       "bom_excluded": false
     },
     {
@@ -15279,12 +15262,12 @@
         "url": "https://www.vishay.com/docs/82494/tsop752.pdf",
         "checked": "2026-08-28"
       },
-      "footprint": "Leshy2:Vishay-Heimdall-SMD-TT",
-      "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",
+      "footprint": "Leshy2:Vishay-Heimdall-SMD-TR",
+      "footprint_resolution": "explicit_current_override",
       "footprint_definition": {
         "status": "existing_manufacturer_derived_definition_reconciled",
-        "path": "hardware/ecad/libraries/Leshy2.pretty/Vishay-Heimdall-SMD-TT.kicad_mod",
-        "sha256": "cb55b04ea85db20a99fd52600fc68486ad5c35724df5ce44cae90802bc07abc5"
+        "path": "hardware/ecad/libraries/Leshy2.pretty/Vishay-Heimdall-SMD-TR.kicad_mod",
+        "sha256": "01ea9c7ef12c60e4c79886124425537d15eb3af5fbd1debeb34f53d1edaaded8"
       },
       "historical_hint_files": [
         "hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json"
@@ -15384,7 +15367,7 @@
       "footprint_definition": {
         "status": "existing_manufacturer_derived_definition_reconciled",
         "path": "hardware/ecad/libraries/Leshy2.pretty/VSMY14940.kicad_mod",
-        "sha256": "d836d39eae1127ea196d643f486561747e508b77e3db3cd076508e337f5d6214"
+        "sha256": "981d8a9e2f51923689c8366addf1fa94a60c270536ed3c7c17e6c39e6046b840"
       },
       "historical_hint_files": [
         "hardware/ecad/generated/H2-UI20-c5-radio-ir-service.json"

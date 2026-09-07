@@ -1,4 +1,5 @@
 import copy
+import hashlib
 import importlib.util
 import json
 import unittest
@@ -41,6 +42,46 @@ class H3R2InputFreezeTest(unittest.TestCase):
         contract["expected"]["canonical_nets"] += 1
         result = MODULE.build(contract)
         self.assertIn("reviewed H2-R2 counts differ from the H3 input-freeze contract", result["errors"])
+
+    def test_exact_ts_jack_nc6_removal_explains_one_pin_delta(self):
+        contract = MODULE.load(MODULE.CONTRACT)
+        review = contract["native_contact_count_change_review"]
+        self.assertEqual(4305, contract["expected"]["physical_pins"])
+        self.assertEqual([4306, 4305], review["physical_pins_before_after"])
+        self.assertEqual([4302, 4301], review["logical_endpoints_before_after"])
+        self.assertEqual([236, 235], review["explicit_nc_before_after"])
+        self.assertEqual((0, 0), (review["removed_connected_endpoints"], review["added_endpoints"]))
+        nets = MODULE.load(MODULE.NETS)
+        self.assertEqual((4301, 4066, 235), tuple(nets["summary"][key] for key in (
+            "endpoint_count", "connected_endpoint_count", "no_connect_endpoint_count")))
+        jack = [row for row in nets["rows"] if row["instance"] == "headphone_jack"]
+        # Primary SJ-4351X-SMT p.2: TS has only terminals1..5, all used.
+        expected = {"1": "HEADSET_MIC_RAW", "2": "HEADPHONE_LEFT_TIP", "3": "HEADPHONE_RIGHT_RING1",
+                    "4": "AUDIO_GROUND", "5": "HEADSET_SWITCH_STATE"}
+        self.assertEqual(5, len(jack))
+        self.assertEqual(expected, {row["physical"]: row["net"] for row in jack})
+        self.assertTrue(all(row["disposition"] == "connected" and row["device_id"] == "same_sky_sj_43515ts_smt_tr" for row in jack))
+        self.assertNotIn("headphone_jack.RING1_SWITCH", {row["endpoint"] for row in nets["rows"]})
+        kicad = MODULE.load(MODULE.KICAD)["summary"]
+        self.assertEqual((4305, 4070, 235), tuple(kicad[key] for key in (
+            "physical_symbol_pin_count", "connected_physical_pin_count", "explicit_no_connect_physical_pin_count")))
+
+    def test_connected_function_tuples_are_identical_to_pre_nc6_removal(self):
+        # Fixed reviewed849a350 baseline, not a digest regenerated from the
+        # current input or a test requiring a mutable Git HEAD.
+        fields = ("endpoint", "project", "sheet", "reference", "contact", "physical", "role", "net", "disposition")
+        rows = sorted(tuple(row.get(key) for key in fields) for row in MODULE.load(MODULE.NETS)["rows"]
+                      if row.get("disposition") == "connected")
+        self.assertEqual(4066, len(rows))
+        payload = json.dumps(rows, separators=(",", ":"), ensure_ascii=False).encode()
+        digest = hashlib.sha256(payload).hexdigest()
+        self.assertEqual("a8bc48ee64e32a8354904d1619552a35a2f669adc5da5a5efa09e5721b8c9e0d", digest)
+        self.assertEqual(digest, MODULE.load(MODULE.CONTRACT)["native_contact_count_change_review"]["connected_tuple_sha256"])
+
+    def test_pre_removal_physical_count_is_rejected(self):
+        contract = copy.deepcopy(MODULE.load(MODULE.CONTRACT))
+        contract["expected"]["physical_pins"] = 4306
+        self.assertIn("reviewed H2-R2 counts differ from the H3 input-freeze contract", MODULE.build(contract)["errors"])
 
     def test_unknown_shared_parameter_dependency_fails_closed(self):
         contract = copy.deepcopy(MODULE.load(MODULE.CONTRACT))

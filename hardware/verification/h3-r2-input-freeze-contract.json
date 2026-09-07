@@ -8,7 +8,7 @@
     "projects": 2,
     "sheets": 22,
     "fitted_symbols": 1208,
-    "physical_pins": 4306,
+    "physical_pins": 4305,
     "canonical_nets": 788,
     "domains": 6,
     "controller_pins": 173,
@@ -16,6 +16,29 @@
     "cross_sheet_nets": 227,
     "m1_contacts": 80,
     "m1_true_nc": 9
+  },
+  "native_contact_count_change_review": {
+    "checked": "2026-09-08",
+    "baseline_commit": "849a35030a0a49c66d65431a27e8d0ca16f4c469",
+    "removed_endpoint": "headphone_jack.RING1_SWITCH",
+    "project": "LESHY2-RF-R2",
+    "reference": "U83",
+    "physical": "6",
+    "former_device_id": "same_sky_sj_43504_smt_tr",
+    "current_device_id": "same_sky_sj_43515ts_smt_tr",
+    "former_disposition": "no_connect",
+    "former_net": null,
+    "logical_endpoints_before_after": [4302, 4301],
+    "physical_pins_before_after": [4306, 4305],
+    "explicit_nc_before_after": [236, 235],
+    "connected_logical_endpoints_unchanged": 4066,
+    "connected_physical_pins_unchanged": 4070,
+    "removed_connected_endpoints": 0,
+    "added_endpoints": 0,
+    "connected_tuple_fields": ["endpoint", "project", "sheet", "reference", "contact", "physical", "role", "net", "disposition"],
+    "connected_tuple_sha256": "a8bc48ee64e32a8354904d1619552a35a2f669adc5da5a5efa09e5721b8c9e0d",
+    "reason_en": "The exact SJ-43515TS has five contacts; the old unused ring-switch terminal 6 is physically absent, not a phantom NC pad. All 4066 connected logical endpoint tuples and all five used jack functions are unchanged. This bookkeeping update is not electrical re-verification or manufacturing authorization.",
+    "reason_ru": "У точного SJ-43515TS пять контактов: прежний неиспользуемый вывод 6 переключателя ring1 физически отсутствует, а не превращается в фиктивную NC-площадку. Все 4066 подключённых логических контактов и все пять используемых функций разъёма сохранены. Это обновление счётчиков, не повторная электрическая проверка и не разрешение производства."
   },
   "workstreams": [
     {

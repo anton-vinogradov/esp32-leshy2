@@ -23,8 +23,8 @@ EXPECTED = {
         "hub_rp_boot_button": ("right", 270.0, 138.0),
     },
     "LESHY2-RF-R2": {
-        "rf_rp_reset_button": ("right", 270.0, 108.25),
-        "rf_rp_boot_button": ("right", 270.0, 115.25),
+        "rf_rp_reset_button": ("left", 90.0, 108.25),
+        "rf_rp_boot_button": ("left", 90.0, 115.25),
     },
 }
 

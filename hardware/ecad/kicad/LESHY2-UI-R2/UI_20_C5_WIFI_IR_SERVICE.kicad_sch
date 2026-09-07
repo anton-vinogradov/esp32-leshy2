@@ -2824,7 +2824,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Leshy2_R2:vishay_tsmp95000tt"
+		(symbol "Leshy2_R2:vishay_tsmp95000tr"
 			(pin_names (offset 1.016))
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -2837,13 +2837,13 @@
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Value" "Vishay TSMP95000TT"
+			(property "Value" "Vishay TSMP95000TR"
 				(at 0.00 -7.62 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Footprint" "Leshy2:Vishay-Heimdall-SMD-TT"
+			(property "Footprint" "Leshy2:Vishay-Heimdall-SMD-TR"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2864,14 +2864,14 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Leshy2DeviceID" "vishay_tsmp95000tt"
+			(property "Leshy2DeviceID" "vishay_tsmp95000tr"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "ManufacturerEvidenceChecked" "2026-08-18"
+			(property "ManufacturerEvidenceChecked" "2026-09-07"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2885,7 +2885,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(symbol "vishay_tsmp95000tt_0_1"
+			(symbol "vishay_tsmp95000tr_0_1"
 				(rectangle
 					(start -15.24 5.08)
 					(end 15.24 -5.08)
@@ -2893,7 +2893,7 @@
 					(fill (type background))
 				)
 			)
-			(symbol "vishay_tsmp95000tt_1_1"
+			(symbol "vishay_tsmp95000tr_1_1"
 				(pin passive line
 					(at -20.32 1.27 0)
 					(length 5.08)
@@ -2940,7 +2940,7 @@
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Footprint" "Leshy2:Vishay-Heimdall-SMD-TT"
+			(property "Footprint" "Leshy2:Vishay-Heimdall-SMD-TR"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -11630,7 +11630,7 @@
 		(uuid "da154e10-acd2-5f3a-9db4-ad82ede0c530")
 	)
 	(symbol
-		(lib_id "Leshy2_R2:vishay_tsmp95000tt")
+		(lib_id "Leshy2_R2:vishay_tsmp95000tr")
 		(at 787.40 300.99 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -11644,13 +11644,13 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Vishay TSMP95000TT"
+		(property "Value" "Vishay TSMP95000TR"
 			(at 787.40 308.61 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Leshy2:Vishay-Heimdall-SMD-TT"
+		(property "Footprint" "Leshy2:Vishay-Heimdall-SMD-TR"
 			(at 787.40 300.99 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11664,7 +11664,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "vishay_tsmp95000tt"
+		(property "Description" "vishay_tsmp95000tr"
 			(at 787.40 300.99 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11740,7 +11740,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Leshy2:Vishay-Heimdall-SMD-TT"
+		(property "Footprint" "Leshy2:Vishay-Heimdall-SMD-TR"
 			(at 970.28 300.99 0)
 			(show_name no)
 			(do_not_autoplace no)

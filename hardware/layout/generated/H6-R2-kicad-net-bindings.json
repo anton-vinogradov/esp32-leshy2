@@ -5,9 +5,9 @@
   "status": "pass",
   "method": "KiCad 10 kicadxml export joined by exact reference/pin to the reviewed H2 native net ledger",
   "source_hashes": {
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "c6a155915d1b64598fb3d24f708070d39c68c75c8bd6094ed871a9a57f53fd88",
-    "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "3c48790e20e37d5f9f7594551cb9d6fe452406939d33d937d834cab9da390a91",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e",
+    "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "0f495dea5bd8c9f3426de84ae282347390ced91f1f64d26f3f1edc73b1722589",
     "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch": "43910ab937fd3f95a140f664d6fbaca72d8dc6e9bf60cf46e5eae24158eddf50",
     "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_sch": "2d20cc84e34a33e8f6339a846a21ef9c2b3c9d2d53aeaad744f87fadc9a82069"
   },
@@ -331,10 +331,10 @@
     "LESHY2-RF-R2": {
       "schematic": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_sch",
       "schematic_sha256": "2d20cc84e34a33e8f6339a846a21ef9c2b3c9d2d53aeaad744f87fadc9a82069",
-      "exported_net_count": 669,
+      "exported_net_count": 668,
       "canonical_physical_net_count": 516,
       "connected_physical_node_count": 2555,
-      "explicit_no_connect_node_count": 153,
+      "explicit_no_connect_node_count": 152,
       "canonical_to_kicad": {
         "3V3_AIR_SWITCHED": "/RF_21_BROADCAST_AIRBAND_RX/3V3_AIR_SWITCHED",
         "3V3_CC_SWITCHED": "/RF_20_CC1101_VOICE_TX/3V3_CC_SWITCHED",

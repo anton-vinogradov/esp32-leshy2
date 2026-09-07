@@ -4,13 +4,13 @@
   "marker": "H3-R2.0.3",
   "status": "pass",
   "accepted_input": "H3-R2.0.2",
-  "input_freeze_sha256": "f80b5a15131510e5a52cf5642b05a6dd56ea808d5628c78223d18470aaa655f0",
-  "parameter_register_sha256": "ba79b4ca6ebea0abc7be746f471da9a0a2cd401e77239fce1a46bd9c99ad774b",
-  "method_contract_sha256": "99bbae429e903618c0f0bb4355761b422725e0388ec7ed040801ad482f41da81",
+  "input_freeze_sha256": "6864e056f49d3b9917b0084ea2661c489a4026c8cea9abc74358dcf1123d7af2",
+  "parameter_register_sha256": "a253f68745320afea37340f61777d2ea13fc990fc19b4778edf5dac616d7ef33",
+  "method_contract_sha256": "3e9f1596f82c052a5d9fe1b128c5142b60fe20d3f44f4704e699e5713f0da34a",
   "source_sha256": {
     "hardware/verification/h3-r2-method-contract.json": "658b4d1e4e64d62c7000b3bd764daac90c019b62bd389ae4cadcc44aa4622eed",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "7abdea8647413e2af3d4a5cdbbbd3d55fb5caf7cec30fcf33c046709cd4fd340",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "5feb5c5e97cb11ce9373fae400d532df661714dea7a5b262bc32b5b7627050f8"
+    "hardware/verification/generated/H3-R2-input-freeze.json": "481c75712687a7c97ab1abe8fbe211ee4bca0e34c33c5704ddd88d16cc033f7e",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "e10e631b0993404024294b73477ee9ea408c2339528fc48757397c0f3e7f88c6"
   },
   "toolchain": {
     "python": ">=3.12,<3.15",
@@ -372,7 +372,7 @@
       "missing_parameter_disposition": "unresolved_fail"
     },
     {
-      "device_id": "ck_js102011scqn",
+      "device_id": "ck_js102011saqn",
       "parameter_class": "digital_interface",
       "owner_workstreams": [
         "H3-R2.6"
@@ -2056,7 +2056,7 @@
       "missing_parameter_disposition": "evaluate_authoritative_corners"
     },
     {
-      "device_id": "same_sky_sj_43504_smt_tr",
+      "device_id": "same_sky_sj_43515ts_smt_tr",
       "parameter_class": "digital_interface",
       "owner_workstreams": [
         "H3-R2.3"
@@ -3374,7 +3374,7 @@
       "missing_parameter_disposition": "evaluate_authoritative_corners"
     },
     {
-      "device_id": "vishay_tsmp95000tt",
+      "device_id": "vishay_tsmp95000tr",
       "parameter_class": "general_component",
       "owner_workstreams": [
         "H3-R2.4"

@@ -6,19 +6,19 @@
   "sources": {
     "contact_materialization": {
       "path": "hardware/ecad/generated/H2-R2-contact-materialization.json",
-      "sha256": "c1b12f4c73bd16c50c9d7d99e98ec35e182702666a666193621d40cc47cc28ce"
+      "sha256": "eb498305bae8ab96174c9cecd7142cec33c514e9d18f40263aa432a3580272aa"
     },
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "674da6b63a67dad9efc211b57854e459243093cd8cc7806fb863f7404034c30c"
+      "sha256": "6dbafc5fb69bbf3ec56cea89439ddc54539f720cfb58cbc8ab87da32600166a8"
     }
   },
   "library": {
     "id": "Leshy2_R2",
     "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-    "sha256": "c7cba29ebef5a52d22ea6db0b2d32c77ff7d914fa73c631061c56f054011c042",
+    "sha256": "3659527fe19171c718aad589d520d8d865d6737db658df9c98df94ff4e0dd908",
     "symbol_count": 245,
-    "pin_count": 1571,
+    "pin_count": 1570,
     "external_interface_metadata_count": 3
   },
   "symbols": [
@@ -1214,11 +1214,11 @@
       "bom_excluded": false
     },
     {
-      "device_id": "ck_js102011scqn",
-      "symbol_id": "Leshy2_R2:ck_js102011scqn",
+      "device_id": "ck_js102011saqn",
+      "symbol_id": "Leshy2_R2:ck_js102011saqn",
       "reference_prefix": "SW",
-      "value": "C&K JS102011SCQN",
-      "footprint": "Leshy2:JS102011SCQN",
+      "value": "C&K JS102011SAQN",
+      "footprint": "Button_Switch_SMD:SW_SPDT_CK_JS102011SAQN",
       "pin_count": 3,
       "no_connect_pin_count": 0,
       "external_interfaces": [],
@@ -10961,12 +10961,12 @@
       "bom_excluded": false
     },
     {
-      "device_id": "same_sky_sj_43504_smt_tr",
-      "symbol_id": "Leshy2_R2:same_sky_sj_43504_smt_tr",
+      "device_id": "same_sky_sj_43515ts_smt_tr",
+      "symbol_id": "Leshy2_R2:same_sky_sj_43515ts_smt_tr",
       "reference_prefix": "U",
-      "value": "Same Sky SJ-43504-SMT-TR",
-      "footprint": "Leshy2:SJ-43504-SMT-TR",
-      "pin_count": 6,
+      "value": "Same Sky SJ-43515TS-SMT-TR",
+      "footprint": "Leshy2_R2:SJ-43515TS-SMT-TR",
+      "pin_count": 5,
       "no_connect_pin_count": 0,
       "external_interfaces": [],
       "pin_map": [
@@ -11019,17 +11019,6 @@
           "name": "TIP_SWITCH",
           "contacts": [
             "TIP_SWITCH"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "6",
-          "name": "RING1_SWITCH",
-          "contacts": [
-            "RING1_SWITCH"
           ],
           "roles": [
             "signal"
@@ -18913,11 +18902,11 @@
       "bom_excluded": false
     },
     {
-      "device_id": "vishay_tsmp95000tt",
-      "symbol_id": "Leshy2_R2:vishay_tsmp95000tt",
+      "device_id": "vishay_tsmp95000tr",
+      "symbol_id": "Leshy2_R2:vishay_tsmp95000tr",
       "reference_prefix": "U",
-      "value": "Vishay TSMP95000TT",
-      "footprint": "Leshy2:Vishay-Heimdall-SMD-TT",
+      "value": "Vishay TSMP95000TR",
+      "footprint": "Leshy2:Vishay-Heimdall-SMD-TR",
       "pin_count": 4,
       "no_connect_pin_count": 0,
       "external_interfaces": [],
@@ -18974,7 +18963,7 @@
       "symbol_id": "Leshy2_R2:vishay_tsop75238tr",
       "reference_prefix": "U",
       "value": "Vishay TSOP75238TR",
-      "footprint": "Leshy2:Vishay-Heimdall-SMD-TT",
+      "footprint": "Leshy2:Vishay-Heimdall-SMD-TR",
       "pin_count": 4,
       "no_connect_pin_count": 0,
       "external_interfaces": [],

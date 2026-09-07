@@ -5,21 +5,21 @@
   "status": "review_required",
   "source_hashes": {
     "hardware/verification/h6_r2_electrical_semantics.py": "ec39f702af3ad2ccd800ad1a0f7e4af80d954b9bf17868756282cd5a44d5bc68",
-    "hardware/ecad/generated/H2-R2-contact-materialization.json": "b1775c9228909f4f3f55d28714faf7831f6c998df5a93828b7378575b1cc7b4f",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "eef222700cf5874f2896bed964a68899a1d2025651d0e41f589fd1755f3493b0",
+    "hardware/ecad/generated/H2-R2-contact-materialization.json": "eb498305bae8ab96174c9cecd7142cec33c514e9d18f40263aa432a3580272aa",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
     "hardware/verification/h6-electrical-pins-power.json": "065011f2fd529cdd053255a20cb4202755dd65231b1ac0f27e2ddb917a065310",
     "hardware/verification/h6-electrical-pins-digital.json": "b061c58cebee24f0b0369b5a26b595e0cda0ecd6d8c3b0f7cb0c7c86d4f9f6b4",
     "hardware/verification/h6-electrical-pins-logic.json": "30a7d8e950ecd8797ad88faef29f2286d087d297d43f0460961509f12560795e",
     "hardware/verification/h6-electrical-pins-analog.json": "df58a02807801f4efa1bb1b9f1153b4cff40d57e4836ed598cba8860adf82ddb",
     "hardware/verification/h6-electrical-pins-protection.json": "f5fb2858de93401873634abf67b8cc120b7b3adfa2f66f04164c1a7168b134f5",
-    "hardware/verification/h6-electrical-pins-interfaces.json": "b69a99f5d43fa3635ea59847a95fbf00409a7a0ce3e205946b7de1d425175491",
+    "hardware/verification/h6-electrical-pins-interfaces.json": "d8a50b4246c78e95e71024e0355dc7ab081600aebd0139751a6797d230c69917",
     "hardware/verification/h6-electrical-pins-passives.json": "3e06305650139090fdfda739160ca45071d6bc068fbe24e74779c8e0f62a8a55",
     "hardware/verification/h6-electrical-pins-peripherals.json": "77e60da1c87dcd429dd78f488fb25913d223d3f2c5e8068b9d54b5b17ede426b",
-    "hardware/ecad/libraries/leshy2_r2.kicad_sym": "7617ce9f3e40cc0a16e6551b664183102a18ce51aa2a38c36e87055b24c961ad",
+    "hardware/ecad/libraries/leshy2_r2.kicad_sym": "3659527fe19171c718aad589d520d8d865d6737db658df9c98df94ff4e0dd908",
     "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch": "43910ab937fd3f95a140f664d6fbaca72d8dc6e9bf60cf46e5eae24158eddf50",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_10_S3_DISPLAY_TOUCH.kicad_sch": "b1649b1fa5f5fef7556dbd3268846828abd7f80b5c28350da6cf1000ddad7a06",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_11_STORAGE_CONTROLS_INDICATORS.kicad_sch": "4a171483c25661211bfd102198ff44a9492dbe93947b4638816d2bf1ebb78396",
-    "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch": "0b1e07f905f709e098a66953894990da7a925de23177947e30ca27b9ad4f8e03",
+    "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch": "2bb00d5504bf091788d1872d4d75677cc0f76e27aca604c6370ed3d840203051",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_30_HUB_RP_CORE_SERVICE.kicad_sch": "278e35c95ecc151f2e15b1d80311a28715603448e639181eeef9aba08f153bc3",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_31_NRF24_X3_TX_EVIDENCE.kicad_sch": "070ac7857d6c10260ea8ae38d3b86f2ee6d8a8001ec370a575fb83ddddc1d4bb",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_40_INTERBOARD_M1.kicad_sch": "424390520ba25ce5ae9c4466c4a54c014fd17a53cb7b58fda7734d31e2e95a17",
@@ -29,17 +29,17 @@
     "hardware/ecad/kicad/LESHY2-UI-R2/sym-lib-table": "44042c7fe8c20f1980c94a8ce204dc596d5c4b1aa10b2c59b78fe28720b44565",
     "hardware/ecad/kicad/LESHY2-UI-R2/fp-lib-table": "eb057c6d938aff935f19f0b3f640069852d9da6cc0cfa1d02de8f6efdf52fcdb",
     "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_sch": "2d20cc84e34a33e8f6339a846a21ef9c2b3c9d2d53aeaad744f87fadc9a82069",
-    "hardware/ecad/kicad/LESHY2-RF-R2/RF_01_USB_PD_CHARGE.kicad_sch": "409320258afdc4336c3e0df4f5de3860abec1ee6b100a2c256cfd5b4656f6cc3",
+    "hardware/ecad/kicad/LESHY2-RF-R2/RF_01_USB_PD_CHARGE.kicad_sch": "d14e17acd7ab4e58b975f5ca176d9165c09571907b0112f68bd11ac0caf0c3b4",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_02_PACK_SAFETY_AON.kicad_sch": "f9cf9450968cdb2fa3ec562f75987b0b47b6043c61ac90164672caee16dc7b55",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_03_MAIN_RAILS_DOMAIN_GATES.kicad_sch": "ba4c5f515a372d136efc4226129b84984f470d179b3d194d48565dafefc96a1d",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_10_RP2354_CORE_SERVICE.kicad_sch": "357fc5053fa4b5969fba19faf7fa703b4825ff1563b7880f4579d8c8a63f85b0",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_20_CC1101_VOICE_TX.kicad_sch": "4cd9c585fa32e5ea66cf1d44efa6bdc6bf6251004fa7a7b66f308a295523256c",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_21_BROADCAST_AIRBAND_RX.kicad_sch": "1ccb3c6c4c03896ce95c8201840405eccec5f67d5cea8ca49e1d873246319295",
-    "hardware/ecad/kicad/LESHY2-RF-R2/RF_22_AUDIO_CODEC_IO.kicad_sch": "55ae508cbc80c5db03392a9208dd033938a9522536fa73966e55893392dafc19",
+    "hardware/ecad/kicad/LESHY2-RF-R2/RF_22_AUDIO_CODEC_IO.kicad_sch": "08b6db5680a941af95a6462d3cbb6bb02d23be7a56d9ba1f160e45ce90a8e45e",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_30_U214_U219_M5_EXT.kicad_sch": "e353a1a095600332751b857915ea7b003a80d4b1d846d6e4d257ab10573d414e",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_31_REAR_CONTROLS.kicad_sch": "cc43f7b6aa1d4b16ec599893f672a4300709a37f6225028a0b4b9d3cac510898",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_40_INTERBOARD_M1.kicad_sch": "f404c6fbf72b5e11dcc9f2b191efb8a7d42898aed792709b78f7453011d63aa6",
-    "hardware/ecad/kicad/LESHY2-RF-R2/RF_50_TX_SAFETY_EVIDENCE.kicad_sch": "67cda2eb3cbf423ae77fae65b4773649f4a5196c54609ff58c8d55b4c560a9bd",
+    "hardware/ecad/kicad/LESHY2-RF-R2/RF_50_TX_SAFETY_EVIDENCE.kicad_sch": "114dc84499fbc2b60a0cda22bfa3e82fe2c0aa0fd963a5fd5695d9426a58bbf0",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch": "991dca61b7971961ce60b0d8b3aeb6466abdb7338085412e40915002c73ec7a3",
     "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pro": "0d6281e49949a3d865033e795659b4ae1ec8e066aab2b2d1f7f5ac8aa824235f",
     "hardware/ecad/kicad/LESHY2-RF-R2/sym-lib-table": "44042c7fe8c20f1980c94a8ce204dc596d5c4b1aa10b2c59b78fe28720b44565",
@@ -47,9 +47,9 @@
   },
   "method": "reviewed exact-part pin types applied only to isolated native KiCad copies; original and typed XML memberships must be identical; native ERC findings retained without suppression",
   "coverage": {
-    "reviewed_devices": 161,
+    "reviewed_devices": 162,
     "device_count": 245,
-    "reviewed_unique_pins": 1333,
+    "reviewed_unique_pins": 1335,
     "unreviewed": [
       {
         "device_id": "abracon_abm8_26mhz_10_d_1_g_t",
@@ -105,14 +105,6 @@
         "pins": [
           "1",
           "2"
-        ]
-      },
-      {
-        "device_id": "ck_js102011scqn",
-        "pins": [
-          "1",
-          "2",
-          "3"
         ]
       },
       {
@@ -695,7 +687,7 @@
         ]
       },
       {
-        "device_id": "vishay_tsmp95000tt",
+        "device_id": "vishay_tsmp95000tr",
         "pins": [
           "1",
           "2",
@@ -992,6 +984,10 @@
       "finding": "Static ERC does not establish conditional switch continuity or powered-off isolation."
     },
     {
+      "device_id": "ck_js102011saqn",
+      "finding": "Manufacturer A/B caption and physical lever direction must be reconciled before directional RUN/KILL silkscreen is accepted; electrical shorted pairs are unambiguous."
+    },
+    {
       "device_id": "jae_dx07s016ja1r1500",
       "finding": "SJ121836/SJ121837 full exact contact drawing was not obtained in this review. A5/A6/A7/A8/B5/B6/B7/B8 and SH are deliberately omitted from verified pins; do not infer their full physical mapping from USB family convention or another manufacturer's receptacle."
     },
@@ -1058,14 +1054,14 @@
       "cached_pin_types_reviewed": 741,
       "native_connectivity_unchanged": true,
       "physical_netlist_nodes": 1598,
-      "native_xml_sha256": "4f4fd6369cdd73c6d97b2ddb73a8daa0ece5bc4f92a5f09646d645430f5abc3a",
-      "typed_xml_sha256": "17f3d821f9cb69d8ec1056841557239ca59d4e0fc8d26e37d5f1cdb632e5d847",
-      "erc_report_sha256": "2f38909734e4c4f71295ee75139e70aeeb32da22c3f4c25e2334dd629619d72a",
-      "erc_content_sha256": "1dfa42f50817e529e4a958402f2709e118cad85102c1bd8f7dcaa4d4053619a2",
+      "native_xml_sha256": "d25ae6e0d31c58f6288f1dcec2ec5ca83f32ee7759ec7c24800b0d72c2768cd7",
+      "typed_xml_sha256": "3b0b06381b074ff2bfbcdd169ab2501f2642ad9f8b9df5e2a4d10797c2196969",
+      "erc_report_sha256": "b86bd1645af21f91f962d33156a910a723464496534e7b5c728d22b24e51c258",
+      "erc_content_sha256": "f7f501f72ff06ef424879ad527b824e780d6e51ad9ac9313df4840a5b25ed578",
       "native_erc": {
         "$schema": "https://schemas.kicad.org/erc.v1.json",
         "coordinate_units": "mm",
-        "date": "2026-09-07T17:55:24",
+        "date": "2026-09-08T01:49:23",
         "ignored_checks": [
           {
             "description": "Global label only appears once in the schematic",
@@ -2041,17 +2037,17 @@
     },
     {
       "project": "LESHY2-RF-R2",
-      "cached_pin_types_reviewed": 1353,
+      "cached_pin_types_reviewed": 1355,
       "native_connectivity_unchanged": true,
-      "physical_netlist_nodes": 2708,
-      "native_xml_sha256": "1fd65dce889f1b0c964db9a2bc7136c5401a10ba932f4a354ef92db39a664aa1",
-      "typed_xml_sha256": "eedb9a3f29e955a314d34f44a664694d8a9fd1b641a814d383c5b6824e1b3327",
-      "erc_report_sha256": "e5a10af0b0007b030b9c6a82cb7d2f4c8199f15e09d5a0752a37fee162c841b2",
-      "erc_content_sha256": "8ef4e21d6980c40e7be3dbc176f0a85299988587acd18abd292fbf630eec3301",
+      "physical_netlist_nodes": 2707,
+      "native_xml_sha256": "bc80e1708b36fa43a706090eb5a25a4537b8229f8ac321dbaa6660ff1a51b01b",
+      "typed_xml_sha256": "2103089beccd710dc31262c39700675386932dea2a337eed215648dbcfbd7eda",
+      "erc_report_sha256": "7692b05ec7425ed55870d0997250266187b11608b148cf4da5d6485dfad62224",
+      "erc_content_sha256": "2db63589dbda5f8eb94fdc2621df969feeb8a391cfcd97e660f8c7168e308bf8",
       "native_erc": {
         "$schema": "https://schemas.kicad.org/erc.v1.json",
         "coordinate_units": "mm",
-        "date": "2026-09-07T17:55:28",
+        "date": "2026-09-08T01:49:29",
         "ignored_checks": [
           {
             "description": "Global label only appears once in the schematic",

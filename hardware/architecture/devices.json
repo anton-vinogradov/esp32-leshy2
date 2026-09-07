@@ -2874,6 +2874,77 @@
         "RING1_SWITCH": {"physical": "6", "role": "signal"}
       }
     },
+    "same_sky_sj_43515ts_smt_tr": {
+      "mpn": "Same Sky SJ-43515TS-SMT-TR",
+      "kind": "3_5mm_ctia_trrs_top_mount_smt_jack_tip_switch",
+      "qualification": "reviewed_exact_top_mount_factory_route_native_integration_open",
+      "lifecycle": "production_active_explicit_jlcpcb_presale_route",
+      "dimensions_mm": [17.0, 6.8, 5.05],
+      "source": {
+        "document": "Same Sky SJ-4351X-SMT, page 1 part-number key and page 2 mechanical/PCB top-view drawing and exact TS circuit",
+        "version": "2024-09-12",
+        "url": "https://www.sameskydevices.com/product/resource/digikeypdf/sj-4351x-smt.pdf",
+        "checked": "2026-09-08"
+      },
+      "orderable_source": {
+        "document": "JLCPCB exact SJ-43515TS-SMT-TR / C5353507, CUI catalog identity reconciled to manufacturer Same Sky rename; SMT Assembly, Economic and Standard, Extended",
+        "url": "https://jlcpcb.com/partdetail/CUIDEVICES-SJ_43515TS_SMTTR/C5353507",
+        "checked": "2026-09-08",
+        "checked_at_utc": "2026-09-07T22:12:36Z"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 1.5903,
+        "price_break": "JLCPCB quantity-100 tier; one-prototype route requires preorder MOQ 4 at USD 2.3781 each, not this planning tier",
+        "source": {"document": "JLCPCB C5353507 exact live server price table", "url": "https://jlcpcb.com/partdetail/CUIDEVICES-SJ_43515TS_SMTTR/C5353507", "checked": "2026-09-08"}
+      },
+      "factory_route": {
+        "jlcpcb_part": "C5353507",
+        "manufacturer": "CUI / Same Sky (official CUI Devices rename, exact MPN unchanged)",
+        "assembly_type": "SMT Assembly", "pcba_type": "Economic and Standard", "library_type": "Extended",
+        "route": "Explicit JLC private-parts preorder route for subsequent Standard PCBA; not immediately allocated assembly stock",
+        "available_preorder_quantity": 104, "overseas_stock_count": 111,
+        "minimum_preorder_quantity": 4, "unit_price_usd_at_moq": 2.3781,
+        "minimum_component_subtotal_usd": 9.5124,
+        "server_loss_number": 1, "server_least_patch_number": 0,
+        "price_tiers_usd": [
+          {"quantity_min": 1, "quantity_max": 9, "unit_price": 2.3781},
+          {"quantity_min": 10, "quantity_max": 29, "unit_price": 2.0305},
+          {"quantity_min": 30, "quantity_max": 99, "unit_price": 1.8128},
+          {"quantity_min": 100, "quantity_max": 499, "unit_price": 1.5903},
+          {"quantity_min": 500, "quantity_max": 999, "unit_price": 1.4896},
+          {"quantity_min": 1000, "quantity_max": null, "unit_price": 1.4457}
+        ],
+        "lead_time_confirmed": false, "order_or_allocation_made": false,
+        "assembly_cost_boundary": "Component subtotal excludes PCBA setup, attrition changes, fixture quote, freight and tax; live supply must be rechecked at freeze and before order",
+        "evidence": "hardware/procurement/h6-sj43515ts-selection-review.json",
+        "checked": "2026-09-08", "checked_at_utc": "2026-09-07T22:12:36Z"
+      },
+      "mechanical_contract": {
+        "mounting": "ordinary right-angle top-mount SMT; two NPTH locators, no under-body PCB cutout",
+        "mating_diameter_mm": 3.5, "mating_plug_length_mm": 14.0,
+        "footprint_datum": "Manufacturer Connector Edge at plug axis, not body/courtyard centre; mouth local X=-1.50, insertion +X",
+        "height_above_seating_plane_mm": 5.05, "plug_axis_height_mm": 2.55,
+        "locator_projection_mm": 0.95, "locator_projection_tolerance_mm": 0.25,
+        "locator_diameter_mm": 1.5, "npth_diameter_mm": 1.9,
+        "integration_gate": "Repeat native DRC/locality after serial integration; final enclosure aperture, exact plug overmould/knob access and assembly tolerances remain open"
+      },
+      "electrical_contract": {
+        "product_wiring_standard": "CTIA/AHJ",
+        "tip": "left headphone", "ring1": "right headphone", "ring2": "audio ground", "sleeve": "headset microphone plus bias",
+        "internal_switch_use": "tip switch provides plug state; no ring1 switch is physically present in TS model",
+        "tip_switch_closed_without_plug_physical_pads": ["2", "5"],
+        "tip_switch_open_with_plug_physical_pads": ["2", "5"],
+        "absent_family_terminal": "6 / RING1_SWITCH is NP for SJ-43515TS, not a phantom NC pad; historical SJ-43504 R1 is retained unchanged"
+      },
+      "programmable": false,
+      "contacts": {
+        "SLEEVE": {"physical": "1", "role": "analog"},
+        "TIP": {"physical": "2", "role": "analog"},
+        "RING1": {"physical": "3", "role": "analog"},
+        "RING2": {"physical": "4", "role": "power"},
+        "TIP_SWITCH": {"physical": "5", "role": "signal"}
+      }
+    },
     "pui_as02404po": {
       "mpn": "PUI Audio AS02404PO",
       "kind": "24x12mm_4ohm_2w_loudspeaker",
@@ -4605,15 +4676,16 @@
     },
     "ck_js102011scqn": {
       "mpn": "C&K JS102011SCQN",
-      "kind": "spdt_on_on_right_angle_smt_power_command_slide_switch",
+      "kind": "spdt_on_on_vertical_smt_top_actuator_power_command_slide_switch",
       "qualification": "verified_exact_low_current_power_command_switch_mechanical_hil_open",
       "lifecycle": "active_orderable",
-      "dimensions_mm": [8.5, 3.5, 3.6],
+      "dimensions_mm": [8.5, 3.5, 5.5],
+      "mechanical_height_basis": "JS Series VL 01/14/26 p5 exact JS102011SCQN: 3.5-mm body above PCB plus 2.0-mm top actuator, nominal total height 5.5 mm; this is not the side-actuated SA variant. Retained for historical SC evidence; R2 selects SA through its explicit replacement record.",
       "source": {
         "document": "Littelfuse C&K JS Series Sub-Miniature Slide Switches datasheet",
         "version": "VL 01/14/26",
         "url": "https://www.littelfuse.com/assetdocs/littelfuse-c-k-slide-js-series-datasheet?assetguid=aba42b08-0d2c-423b-813d-a2faa5a3bb14",
-        "checked": "2026-08-19"
+        "checked": "2026-09-07"
       },
       "orderable_source": {
         "document": "JS102011SCQN authorized-distributor exact order-code page; 535 shown in stock",
@@ -4639,6 +4711,95 @@
         "operating_temperature_c": [-40, 85],
         "travel_mm": 2.0,
         "use": "low-current command input only; never carries cell, SYS, charge or load current"
+      },
+      "programmable": false,
+      "contacts": {
+        "THROW_A": {"physical": "1", "role": "switch_contact"},
+        "COMMON": {"physical": "2 / C", "role": "switch_common"},
+        "THROW_B": {"physical": "3", "role": "switch_contact"}
+      }
+    },
+    "ck_js102011saqn": {
+      "mpn": "C&K JS102011SAQN",
+      "kind": "spdt_on_on_right_angle_smt_power_command_slide_switch",
+      "qualification": "reviewed_exact_side_actuator_factory_route_native_integration_open",
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "dimensions_mm": [9.0, 3.6, 3.5],
+      "source": {
+        "document": "Littelfuse C&K JS Series Sub-Miniature Slide Switches, p1 ordering and p4 exact JS102011SAQN mechanical drawing/circuit",
+        "version": "VL 01/14/26",
+        "url": "https://www.littelfuse.com/assetdocs/littelfuse-c-k-slide-js-series-datasheet?assetguid=aba42b08-0d2c-423b-813d-a2faa5a3bb14",
+        "checked": "2026-09-07"
+      },
+      "orderable_source": {
+        "document": "JLCPCB exact C&K JS102011SAQN / C221660, SMT Assembly, Economic and Standard, Extended; live purchase record stock 1380 / available 1065",
+        "url": "https://jlcpcb.com/partdetail/CK-JS102011SAQN/C221660",
+        "checked": "2026-09-07",
+        "checked_at_utc": "2026-09-07T20:32:07Z"
+      },
+      "cost": {
+        "currency": "USD",
+        "target_quantity": 100,
+        "unit_price_usd": 0.5426,
+        "price_break": "JLCPCB public quantity-100 tier; one-piece stock tier is USD 0.8593, not USD 0.5426",
+        "source": {
+          "document": "JLCPCB C221660 exact-MPN live price table",
+          "url": "https://jlcpcb.com/partdetail/CK-JS102011SAQN/C221660",
+          "checked": "2026-09-07"
+        }
+      },
+      "factory_route": {
+        "jlcpcb_part": "C221660",
+        "manufacturer": "C&K",
+        "assembly_type": "SMT Assembly",
+        "pcba_type": "Economic and Standard",
+        "library_type": "Extended",
+        "route": "Current public JLCPCB stock-purchase route for subsequent Standard PCBA; no allocation or order made",
+        "stock": 1380,
+        "available_order_quantity": 1065,
+        "moq": 1,
+        "moq_basis": "For requested quantity 1 within canPresaleNumber 1065, the live JLC part-detail purchase control defaults absent minPurchaseNum to 1; preMinPurchaseNum 13 applies beyond available stock and is not the in-stock MOQ",
+        "preorder_minimum_beyond_available_stock": 13,
+        "quantity_one_unit_price_usd": 0.8593,
+        "price_tiers_usd": [
+          {"quantity_min": 1, "quantity_max": 9, "unit_price": 0.8593},
+          {"quantity_min": 10, "quantity_max": 29, "unit_price": 0.7002},
+          {"quantity_min": 30, "quantity_max": 99, "unit_price": 0.6206},
+          {"quantity_min": 100, "quantity_max": 499, "unit_price": 0.5426},
+          {"quantity_min": 500, "quantity_max": 999, "unit_price": 0.4955},
+          {"quantity_min": 1000, "quantity_max": null, "unit_price": 0.4711}
+        ],
+        "reel_quantity": 1000,
+        "server_least_patch_number": 2,
+        "server_loss_number": 0,
+        "assembly_cost_boundary": "The public component MOQ is not a final PCBA attrition, setup or purchase-total quote",
+        "evidence": "hardware/procurement/h6-js102011saqn-selection-review.json",
+        "checked": "2026-09-07",
+        "checked_at_utc": "2026-09-07T20:32:07Z"
+      },
+      "electrical_contract": {
+        "contact_form": "SPDT maintained ON-ON, non-shorting",
+        "rating": "0.3 A at 6 VDC or 0.1 A at 30 VDC",
+        "electrical_life_cycles": 5000,
+        "contact_resistance_max_mohm": 70,
+        "operating_temperature_c": [-40, 85],
+        "travel_mm": 2.0,
+        "use": "low-current command input only; never carries cell, SYS, charge or load current"
+      },
+      "mechanical_contract": {
+        "body_envelope_mm": [9.0, 3.6, 3.5],
+        "actuator_orientation": "side-exiting parallel to the PCB plane; standard footprint local +Y faces the actuator",
+        "actuator_projection_from_body_mm": 2.0,
+        "actuator_width_mm": 1.5,
+        "actuator_width_tolerance_mm": 0.05,
+        "locator_diameter_mm": {"minimum": 0.7, "maximum": 0.8},
+        "locator_projection_below_pcb_mm": 0.8,
+        "locator_hole_diameter_mm": 0.9,
+        "locator_hole_pitch_mm": 6.8,
+        "selected_footprint": "Button_Switch_SMD:SW_SPDT_CK_JS102011SAQN",
+        "land_review": "Official p4 centres/pitch/length/holes preserved; standard KiCad lands are 1.25x2.5-mm roundrect R0.25 instead of the drawing's 1.20x2.50-mm rectangles. Extra 0.025-mm width per side and rounded corners are reviewed engineering lands, not manufacturer-identical artwork.",
+        "integration_status": "source_selection_only_native_pose_routing_actuator_access_and_assembled_step_not_yet_qualified",
+        "fabrication_ready": false
       },
       "programmable": false,
       "contacts": {
@@ -5926,6 +6087,60 @@
         "typical_learning_distance_m": 1.8,
         "output": "active-low carrier cycles; the only onboard source allowed to create measured 30-60-kHz carrier provenance",
         "taping": "TT top-view tape, 2200 pieces per reel"
+      },
+      "programmable": false,
+      "contacts": {
+        "GND_1": {"physical": "1", "role": "power"},
+        "VS": {"physical": "2", "role": "power"},
+        "CARRIER_OUT": {"physical": "3", "role": "signal"},
+        "GND_4": {"physical": "4", "role": "power"}
+      }
+    },
+    "vishay_tsmp95000tr": {
+      "mpn": "Vishay TSMP95000TR",
+      "kind": "heimdall_side_view_smd_30_60khz_carrier_output_ir_learning_receiver",
+      "qualification": "reviewed_exact_side_view_factory_preorder_route_native_integration_open",
+      "lifecycle": "production_active_explicit_jlcpcb_presale_route",
+      "dimensions_mm": [6.8, 3.2, 3.0],
+      "source": {
+        "document": "Vishay TSMP95000 ordering, contacts and TR side-view tape",
+        "version": "82907 Rev.1.0, 20-Oct-2022, pages 2/4/6/7",
+        "url": "https://www.vishay.com/docs/82907/tsmp95000.pdf",
+        "checked": "2026-09-07"
+      },
+      "orderable_source": {
+        "document": "Exact C20593617 Standard PCBA SMT pre-order route into JLCPCB parts library; not immediately allocated assembly stock",
+        "url": "https://jlcpcb.com/partdetail/VishayIntertech-TSMP95000TR/C20593617",
+        "checked": "2026-09-07",
+        "jlc_number": "C20593617",
+        "manufacturer": "Vishay Intertech",
+        "assembly_type": "SMT Assembly",
+        "pcba_type": "Economic and Standard",
+        "library_type": "Extended",
+        "minimum_preorder_quantity": 5,
+        "available_preorder_quantity_snapshot": 1756,
+        "unit_price_usd_at_minimum": 2.0321,
+        "minimum_component_subtotal_usd": 10.1605,
+        "evidence": "hardware/procurement/h6-tsmp95000tr-candidate-review.json",
+        "recheck": "Required at architecture freeze and immediately before order; no purchase or reservation performed"
+      },
+      "cost": {
+        "currency": "USD", "target_quantity": 100, "unit_price_usd": 1.2947,
+        "price_break": "JLCPCB quantity-100 tier; the one-prototype pre-order needs at least five at the 1-9 tier",
+        "source": {"document": "Exact C20593617 live JLCPCB price tiers", "url": "https://jlcpcb.com/partdetail/VishayIntertech-TSMP95000TR/C20593617", "checked": "2026-09-07"}
+      },
+      "electrical_contract": {
+        "supply_v": [2.0, 5.5],
+        "carrier_range_khz": [30, 60],
+        "typical_supply_current_ma_at_3v3": 0.35,
+        "typical_learning_distance_m": 1.8,
+        "output": "active-low carrier cycles; the only onboard source allowed to create measured 30-60-kHz carrier provenance",
+        "taping": "TR side-view tape, 2300 pieces per reel"
+      },
+      "mechanical_contract": {
+        "optical_direction": "parallel to mounting PCB in the standard side-view feeder presentation",
+        "native_integration_status": "open; preserve left-edge aiming, verify clear aperture and emitter witness",
+        "moisture_handling": "Use Vishay Heimdall MSL4/72h handling; do not relax to the conflicting JLC MSL1 catalog field"
       },
       "programmable": false,
       "contacts": {

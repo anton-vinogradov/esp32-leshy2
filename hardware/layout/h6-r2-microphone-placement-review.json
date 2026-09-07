@@ -1,0 +1,707 @@
+{
+  "schema_version": 1,
+  "marker": "H6.0.3-R1",
+  "reviewed_at_utc": "2026-09-07T22:28:07Z",
+  "scope": "Read-only exact microphone direction and scratch RF placement review. No production footprint, PCB, MPN, netlist or source placement changes.",
+  "status": "scratch_geometry_checked_acoustic_and_analog_routing_review_required",
+  "production_release_ready": false,
+  "production_pose_changed": false,
+  "evidence": [
+    {
+      "url": "https://www.sameskydevices.com/product/resource/masterpdf/cmej-0413-42-smt-tr.pdf",
+      "document": "CMEJ-0413-42-SMT-TR Rev. 1.04, 09/11/2024",
+      "pages_visually_reviewed": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "sha256": "54a917f280a946ce7fbef0a993c7a64867e383b737a0c7f246ba47a50530cd8b",
+      "checked": "2026-09-08",
+      "scope": "Exact top acoustic openings, terminal polarity, body/land geometry, application bias circuit and assembly handling."
+    }
+  ],
+  "source_basis": {
+    "production_board": {
+      "path": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
+      "sha256": "3dd3862acf37ce7b0879093be5c0dc8c98482455c3c508a68b9f92c5b606d0b5"
+    },
+    "aggregate_scratch": {
+      "path": "work/audio-jack-sourcing/fit-2026-09-08/exterior-y99/LESHY2-RF-R2.kicad_pcb",
+      "sha256": "81c7014cd7a2c8bfaa9bc2761467fef1d463e6c00ce2e396c7126067e2d66d99"
+    },
+    "current_footprint": {
+      "path": "hardware/ecad/libraries/Leshy2.pretty/CMEJ-0413-42-SMT-TR.kicad_mod",
+      "sha256": "039257c90aa952b1e74608cb510cf852cb93eeba0b7dea0b98d0864a2b085817"
+    },
+    "net_ledger": {
+      "path": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+      "sha256": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e"
+    },
+    "placement_contract": {
+      "path": "hardware/layout/h6-r2-placement-contract.json",
+      "sha256": "6c70fe4bed3969a96273eaa41e5dd4ecefbce02fcced046942d820e4ce546c0b"
+    },
+    "assembly_coordinates": {
+      "path": "hardware/product-design/assembly-coordinate-model.json",
+      "sha256": "d8790441e6adf94ec1e53546da6d87666ac93c21e5dfb48d8568d4688dbfc82c"
+    }
+  },
+  "exact_part": {
+    "device_id": "same_sky_cmej_0413_42_smt_tr",
+    "mpn": "Same Sky CMEJ-0413-42-SMT-TR",
+    "unchanged": true,
+    "package": "4 mm diameter top-port analog electret microphone",
+    "body_diameter_mm": {
+      "nominal": 4,
+      "tolerance": 0.2
+    },
+    "body_height_mm": {
+      "nominal": 1.3,
+      "tolerance": 0.2
+    },
+    "acoustic_holes": {
+      "count": 8,
+      "hole_diameter_mm": 0.25,
+      "diameter_tolerance_mm": 0.03,
+      "pitch_circle_diameter_mm": 2,
+      "side": "Top, opposite solder contacts"
+    },
+    "pads": {
+      "1": "Output (+), internally FET-buffered electret signal and external bias node",
+      "2": "Ground (-)"
+    },
+    "footprint_review": "Nominal positive 0.86-mm circle, negative 1.9/2.7-mm annulus and body diameter agree with the single-sided recommended PCB geometry. This review does not qualify stencil segmentation or paste process; the existing open-annulus rounded ends remain the source approximation.",
+    "application_reference": {
+      "rl_ohm": 2200,
+      "coupling_capacitance_uf": 1,
+      "supply_range_v": [
+        1,
+        10
+      ],
+      "current_limit_ma": 0.5,
+      "current_limit_test_conditions": "VDD 2.0 V and RL 2.2 kohm; not extrapolated to a guaranteed current limit at the project's 3.3 V supply."
+    },
+    "handling": [
+      "Do not place the vacuum nozzle over acoustic holes.",
+      "The part is not suitable for wash.",
+      "More than two reflow passes are not recommended; final assembly sequence remains to be checked against this condition."
+    ]
+  },
+  "assembly_direction": {
+    "current_B_face_top_port_world_normal": [
+      0,
+      0,
+      -1
+    ],
+    "candidate_F_face_top_port_world_normal": [
+      0,
+      0,
+      1
+    ],
+    "world_definition": "World Z goes from display/front towards battery/rear. RF F.Cu is exterior and B.Cu faces the interboard gap.",
+    "unknown": "Final enclosure opening/mesh, finger occlusion, acoustic loss and noise coupling are not determined by XY or omnidirectional capsule specification."
+  },
+  "before": {
+    "reference": "MK1",
+    "instance": "microphone",
+    "mpn": "Same Sky CMEJ-0413-42-SMT-TR",
+    "side": "B.Cu",
+    "rotation_deg": 0,
+    "anchor_mm": [
+      28.00125,
+      148
+    ],
+    "courtyard_bbox_mm": {
+      "x": [
+        25.7037,
+        30.2962
+      ],
+      "y": [
+        145.7037,
+        150.2963
+      ]
+    },
+    "pads": [
+      {
+        "number": "1",
+        "net": "/RF_22_AUDIO_CODEC_IO/MIC_RAW",
+        "position_mm": [
+          28.00125,
+          147.11
+        ]
+      },
+      {
+        "number": "1",
+        "net": "/RF_22_AUDIO_CODEC_IO/MIC_RAW",
+        "position_mm": [
+          28.00125,
+          148
+        ]
+      },
+      {
+        "number": "2",
+        "net": "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND",
+        "position_mm": [
+          28.00125,
+          149.15
+        ]
+      }
+    ]
+  },
+  "candidate": {
+    "reference": "MK1",
+    "instance": "microphone",
+    "mpn": "Same Sky CMEJ-0413-42-SMT-TR",
+    "side": "F.Cu",
+    "rotation_deg": 0,
+    "anchor_mm": [
+      47,
+      147.4
+    ],
+    "courtyard_bbox_mm": {
+      "x": [
+        44.7025,
+        49.295
+      ],
+      "y": [
+        145.1037,
+        149.6963
+      ]
+    },
+    "pads": [
+      {
+        "number": "1",
+        "net": "/RF_22_AUDIO_CODEC_IO/MIC_RAW",
+        "position_mm": [
+          47,
+          147.4
+        ]
+      },
+      {
+        "number": "1",
+        "net": "/RF_22_AUDIO_CODEC_IO/MIC_RAW",
+        "position_mm": [
+          47,
+          148.29
+        ]
+      },
+      {
+        "number": "2",
+        "net": "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND",
+        "position_mm": [
+          47,
+          146.25
+        ]
+      }
+    ]
+  },
+  "candidate_world_axis_mm": [
+    33,
+    147.4
+  ],
+  "included_other_scratch_changes": "Pascal audio F99 + bottom16 + three switches; corrected CURRENT R2 PTT anchor from contract; only MK1 side/pose is compared here.",
+  "ptt_anchor_in_scratch": {
+    "reference": "SW4",
+    "side": "F.Cu",
+    "rotation_deg": 0,
+    "anchor_mm": [
+      72.1,
+      67.42
+    ]
+  },
+  "support_moves_required_for_geometry": [],
+  "geometry": {
+    "same_side_courtyard_clearance_check_mm": 0.1,
+    "cross_side_exposed_pad_or_drill_clearance_check_mm": 0.1,
+    "candidate_conflicts": {
+      "same_face_0p1mm": [],
+      "cross_face_pad_or_drill_0p1mm": [],
+      "mount_keepout_0p1mm": [],
+      "new_copper_contacts": [],
+      "different_net_under_conservative_0p2mm": []
+    },
+    "board_outline_mm": [
+      80,
+      150
+    ],
+    "nominal_body_edge_gap_mm": 0.6,
+    "maximum_diameter_body_edge_gap_mm": 0.5,
+    "body_gap_scope": "Circular diameter tolerance only; not a total assembly/placement tolerance or plug-access qualification.",
+    "observed_courtyard_edge_gap_mm": 0.3037,
+    "holder_courtyard_bbox_mm": {
+      "x": [
+        23.04,
+        62.94
+      ],
+      "y": [
+        41.95,
+        128.05
+      ]
+    },
+    "minimum_y_courtyard_separation_from_holder_mm": 17.0537,
+    "holder_scope": "Separation from the current native courtyard; the holder's own exact process/3D qualification remains independent."
+  },
+  "alternatives": [
+    {
+      "id": "F.Cu:47,147.4",
+      "pose": {
+        "reference": "MK1",
+        "instance": "microphone",
+        "mpn": "Same Sky CMEJ-0413-42-SMT-TR",
+        "side": "F.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          47,
+          147.4
+        ],
+        "courtyard_bbox_mm": {
+          "x": [
+            44.7025,
+            49.295
+          ],
+          "y": [
+            145.1037,
+            149.6963
+          ]
+        },
+        "pads": [
+          {
+            "number": "1",
+            "net": "/RF_22_AUDIO_CODEC_IO/MIC_RAW",
+            "position_mm": [
+              47,
+              147.4
+            ]
+          },
+          {
+            "number": "1",
+            "net": "/RF_22_AUDIO_CODEC_IO/MIC_RAW",
+            "position_mm": [
+              47,
+              148.29
+            ]
+          },
+          {
+            "number": "2",
+            "net": "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND",
+            "position_mm": [
+              47,
+              146.25
+            ]
+          }
+        ]
+      },
+      "conflicts": {
+        "same_face_0p1mm": [],
+        "cross_face_pad_or_drill_0p1mm": [],
+        "mount_keepout_0p1mm": [],
+        "new_copper_contacts": [],
+        "different_net_under_conservative_0p2mm": []
+      },
+      "disposition": "Preferred examined candidate: matches rear-view native X47, improves existing raw-net lower bounds and is geometry-clear."
+    },
+    {
+      "id": "F.Cu:33,147.4",
+      "pose": {
+        "reference": "MK1",
+        "instance": "microphone",
+        "mpn": "Same Sky CMEJ-0413-42-SMT-TR",
+        "side": "F.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          33,
+          147.4
+        ],
+        "courtyard_bbox_mm": {
+          "x": [
+            30.7025,
+            35.295
+          ],
+          "y": [
+            145.1037,
+            149.6963
+          ]
+        },
+        "pads": [
+          {
+            "number": "1",
+            "net": "/RF_22_AUDIO_CODEC_IO/MIC_RAW",
+            "position_mm": [
+              33,
+              147.4
+            ]
+          },
+          {
+            "number": "1",
+            "net": "/RF_22_AUDIO_CODEC_IO/MIC_RAW",
+            "position_mm": [
+              33,
+              148.29
+            ]
+          },
+          {
+            "number": "2",
+            "net": "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND",
+            "position_mm": [
+              33,
+              146.25
+            ]
+          }
+        ]
+      },
+      "conflicts": {
+        "same_face_0p1mm": [],
+        "cross_face_pad_or_drill_0p1mm": [
+          [
+            "J4",
+            "SH"
+          ]
+        ],
+        "mount_keepout_0p1mm": [],
+        "new_copper_contacts": [],
+        "different_net_under_conservative_0p2mm": []
+      },
+      "disposition": "Rejected: opposite-side J4 SH through-pad conflicts with microphone courtyard; old front-arrow interpretation is not safe."
+    },
+    {
+      "id": "F.Cu:28.00125,147.4",
+      "pose": {
+        "reference": "MK1",
+        "instance": "microphone",
+        "mpn": "Same Sky CMEJ-0413-42-SMT-TR",
+        "side": "F.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          28.00125,
+          147.4
+        ],
+        "courtyard_bbox_mm": {
+          "x": [
+            25.7037,
+            30.2962
+          ],
+          "y": [
+            145.1037,
+            149.6963
+          ]
+        },
+        "pads": [
+          {
+            "number": "1",
+            "net": "/RF_22_AUDIO_CODEC_IO/MIC_RAW",
+            "position_mm": [
+              28.00125,
+              147.4
+            ]
+          },
+          {
+            "number": "1",
+            "net": "/RF_22_AUDIO_CODEC_IO/MIC_RAW",
+            "position_mm": [
+              28.00125,
+              148.29
+            ]
+          },
+          {
+            "number": "2",
+            "net": "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND",
+            "position_mm": [
+              28.00125,
+              146.25
+            ]
+          }
+        ]
+      },
+      "conflicts": {
+        "same_face_0p1mm": [],
+        "cross_face_pad_or_drill_0p1mm": [],
+        "mount_keepout_0p1mm": [],
+        "new_copper_contacts": [],
+        "different_net_under_conservative_0p2mm": []
+      },
+      "disposition": "Geometry-clear fallback with unchanged X; raw-net direct distances are longer than candidate X47."
+    },
+    {
+      "id": "B.Cu:47,147.4",
+      "pose": {
+        "reference": "MK1",
+        "instance": "microphone",
+        "mpn": "Same Sky CMEJ-0413-42-SMT-TR",
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          47,
+          147.4
+        ],
+        "courtyard_bbox_mm": {
+          "x": [
+            44.7025,
+            49.295
+          ],
+          "y": [
+            145.1037,
+            149.6963
+          ]
+        },
+        "pads": [
+          {
+            "number": "1",
+            "net": "/RF_22_AUDIO_CODEC_IO/MIC_RAW",
+            "position_mm": [
+              47,
+              147.4
+            ]
+          },
+          {
+            "number": "1",
+            "net": "/RF_22_AUDIO_CODEC_IO/MIC_RAW",
+            "position_mm": [
+              47,
+              146.51
+            ]
+          },
+          {
+            "number": "2",
+            "net": "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND",
+            "position_mm": [
+              47,
+              148.55
+            ]
+          }
+        ]
+      },
+      "conflicts": {
+        "same_face_0p1mm": [],
+        "cross_face_pad_or_drill_0p1mm": [],
+        "mount_keepout_0p1mm": [],
+        "new_copper_contacts": [],
+        "different_net_under_conservative_0p2mm": []
+      },
+      "disposition": "Not an acoustic correction: B.Cu top port still faces the interboard gap."
+    }
+  ],
+  "electrical_boundary": {
+    "topology_unchanged": true,
+    "pad_net_multiset_preserved": true,
+    "mic_raw_interboard_crossing": false,
+    "endpoints": [
+      [
+        "MK1.1",
+        "MIC_RAW"
+      ],
+      [
+        "MK1.2",
+        "AUDIO_GROUND"
+      ],
+      [
+        "R205.1",
+        "3V3_MAIN"
+      ],
+      [
+        "R205.2",
+        "MIC_BIAS_FILTERED"
+      ],
+      [
+        "C232.1",
+        "MIC_BIAS_FILTERED"
+      ],
+      [
+        "C232.2",
+        "AUDIO_GROUND"
+      ],
+      [
+        "R206.1",
+        "MIC_BIAS_FILTERED"
+      ],
+      [
+        "R206.2",
+        "MIC_RAW"
+      ],
+      [
+        "U85.1",
+        "MIC_RAW"
+      ],
+      [
+        "U85.3",
+        "HEADSET_MIC_RAW"
+      ],
+      [
+        "U85.4",
+        "MIC_SELECTED_RAW"
+      ],
+      [
+        "C197.1",
+        "MIC_SELECTED_RAW"
+      ],
+      [
+        "C197.2",
+        "CAPTURE_MIC_BIASED"
+      ],
+      [
+        "C231.1",
+        "MIC_SELECTED_RAW"
+      ],
+      [
+        "C231.2",
+        "VOICE_ELECTRET_DEFAULT"
+      ],
+      [
+        "R204.1",
+        "VOICE_ELECTRET_DEFAULT"
+      ],
+      [
+        "R204.2",
+        "AUDIO_VMID_MAIN"
+      ]
+    ],
+    "supply_and_coupling": "3V3_MAIN -> R205 220 ohm -> filtered node with C232 10 uF to AUDIO_GROUND -> R206 2.2 kohm -> MK1 positive. U85 selects internal/headset raw microphone, then separate C197/C231 1 uF AC-coupled paths feed capture and voice; this follows the manufacturer's bias/AC-coupling pattern but is not a gain/noise/start-up qualification.",
+    "candidate_support_distances": [
+      {
+        "reference": "R205",
+        "instance": "microphone_bias_filter_res",
+        "anchor_mm": [
+          59.075,
+          61.115
+        ],
+        "side": "B.Cu",
+        "axis_to_support_anchor_mm": 87.126,
+        "direct_MIC_RAW_pad_gap_mm": -1
+      },
+      {
+        "reference": "R206",
+        "instance": "microphone_bias_res",
+        "anchor_mm": [
+          58.075,
+          100.365
+        ],
+        "side": "B.Cu",
+        "axis_to_support_anchor_mm": 48.321,
+        "direct_MIC_RAW_pad_gap_mm": 48.441
+      },
+      {
+        "reference": "C232",
+        "instance": "microphone_bias_filter_cap",
+        "anchor_mm": [
+          54.125,
+          71.625
+        ],
+        "side": "B.Cu",
+        "axis_to_support_anchor_mm": 76.109,
+        "direct_MIC_RAW_pad_gap_mm": -1
+      },
+      {
+        "reference": "U85",
+        "instance": "headset_mic_selector",
+        "anchor_mm": [
+          78.495,
+          75.095
+        ],
+        "side": "B.Cu",
+        "axis_to_support_anchor_mm": 78.867,
+        "direct_MIC_RAW_pad_gap_mm": 78.364
+      },
+      {
+        "reference": "C197",
+        "instance": "audio_capture_mic_coupling",
+        "anchor_mm": [
+          37.375,
+          82.625
+        ],
+        "side": "B.Cu",
+        "axis_to_support_anchor_mm": 65.486,
+        "direct_MIC_RAW_pad_gap_mm": -1
+      },
+      {
+        "reference": "C231",
+        "instance": "mic_tx_coupling",
+        "anchor_mm": [
+          60.625,
+          62.625
+        ],
+        "side": "B.Cu",
+        "axis_to_support_anchor_mm": 85.863,
+        "direct_MIC_RAW_pad_gap_mm": -1
+      }
+    ],
+    "open_layout_finding": "Current R206-to-MK1 MIC_RAW pad distance is 48.441 mm and U85-to-MK1 is 78.364 mm (straight-line lower bounds, not routed lengths). Existing locality/critical checks contain no microphone-specific sensitive-node constraint. Local bias filtering and raw-signal routing must be reviewed together before claiming audio-layout closure; moving only the capsule does not close that.",
+    "old_generator_comment_not_authority": "hardware/ecad/h2_rf_audio_io_amp.py:4 still describes historical MIC_RAW crossing M1; current H2-R2 endpoint ledger keeps MIC_RAW entirely RF-local."
+  },
+  "checks": {
+    "locality_pairs": 259,
+    "locality_status": "pass",
+    "locality_violations": [],
+    "critical_pairs": 33,
+    "critical_status": "pass",
+    "critical_errors": [],
+    "critical_violations": [],
+    "old_mic_pad_copper_contacts": [],
+    "copper_count": 766,
+    "copper_signature_unchanged": true,
+    "copper_roundtrip_signature_unchanged": true,
+    "all_scratch_object_uuids": 14797,
+    "duplicate_uuids": 0,
+    "drc": {
+      "command": "kicad-cli pcb drc --format json --severity-all --schematic-parity --output candidate-drc.json LESHY2-RF-R2.kicad_pcb",
+      "violations": 0,
+      "unconnected_items": 499,
+      "schematic_parity_findings": 4,
+      "parity_details": [
+        {
+          "reference": "U83",
+          "finding": "Candidate value differs from current schematic value."
+        },
+        {
+          "reference": "U83",
+          "finding": "Audio_Candidate footprint ID differs from current Leshy2_R2 footprint ID."
+        },
+        {
+          "reference": "U83",
+          "finding": "Scratch candidate lacks Leshy2Instance field."
+        },
+        {
+          "reference": "SW5",
+          "finding": "Scratch candidate lacks Leshy2Instance field."
+        }
+      ],
+      "microphone_findings": 0,
+      "whole_drc_parity_pass": false,
+      "exceptions_or_suppressions_added": false,
+      "local_board_locator": "Unpublished scratch leshy2-rf-mic-fit-kt8be95j / LESHY2-RF-R2.kicad_pcb; identity is the recorded SHA256, not a portable repository path",
+      "board_sha256": "76b7622b795df797387e806cff26fc51159182157d6af73e95630e31649dfde4",
+      "local_report_locator": "Unpublished scratch leshy2-rf-mic-fit-kt8be95j / candidate-drc.json",
+      "report_sha256": "f5a5bb3edc5e2c9bdc670b78bfb6faf8b28918ac4491d46292f3219ae69016f1",
+      "project_settings_sha256": "0d6281e49949a3d865033e795659b4ae1ec8e066aab2b2d1f7f5ac8aa824235f",
+      "design_rules_sha256": "7cf89d80b417a824503f6f41f954d6f38e65978ce8ca207aab9a30318abd6bb9",
+      "schematic_basis": "Current production schematics copied into scratch before parity run; two main exact libraries snapshotted. Audio_Candidate remained a separate candidate library."
+    }
+  },
+  "source_corrections_needed_if_accepted": [
+    {
+      "path": "hardware/product-design/g3_clamshell.py",
+      "lines": [
+        268,
+        580,
+        864,
+        2573,
+        2574,
+        2575,
+        2578,
+        4089
+      ],
+      "issue": "H1 simultaneously uses front-arrow world X47, rear-view body native X47/world X33, and mandatory RF-inner/downward acoustic wording. Correct semantic side/direction and label frame rather than moving PCB according to the stale arrow."
+    },
+    {
+      "path": "hardware/layout/h6-r2-placement-contract.json",
+      "issue": "Explicit mechanical-locked MK1 F0 anchor [47,147.4] if root accepts this scoped candidate; no implicit courtyard-centre relocation."
+    }
+  ],
+  "unresolved": [
+    "No enclosure/mesh/gasket or hand-occlusion model is available. Bare-board normal points outward, but external audio attenuation, grip obstruction and any closed-device acoustic path remain unverified.",
+    "USB plug overmould and final fastener/holder 3D access are not proven by 2D courtyard separation.",
+    "Bias/filter and raw-signal selector positions remain scattered; microphone-specific analog locality/noise routing is not yet checked.",
+    "Stencil/process details and no-wash/nozzle/reflow-count handling must be carried into the eventual assembly instructions.",
+    "The candidate has not been integrated into production and does not establish whole-device readiness."
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "checked_date": "2026-09-07",
+  "scope": "Read-only sourcing and isolated geometry candidate; preserve CTIA L/R/GND/MIC and tip-switch plug detection without an under-body mid-mount cutout",
+  "production_mpn_accepted": false,
+  "production_files_or_native_boards_modified": false,
+  "order_or_supplier_message_sent": false,
+  "status": "SJ-43515TS_has_documented_preorder_route_and_candidate_lands_native_fit_pending",
+  "manufacturer_identity": {
+    "primary_name": "Same Sky, formerly CUI Devices",
+    "jlc_catalog_name": "CUI",
+    "primary_rebrand_url": "https://www.sameskydevices.com/news/press-releases/cui-devices-has-a-new-name-say-hello-to-same-sky",
+    "evidence": "Official September 5, 2024 announcement states model numbers, manufacturing sites, BOMs and supply chain remain intact; exact candidate model strings also appear in current Same Sky primary datasheets. Generic JLCPCB Assembly manufacturer clones are excluded."
+  },
+  "sources": {
+    "sj4351x": {
+      "url": "https://www.sameskydevices.com/product/resource/digikeypdf/sj-4351x-smt.pdf",
+      "document_date": "2024-09-12",
+      "section": "Page 2 full mechanical drawing, recommended PCB layout TOP VIEW, switch schematic and pin table; page 1 exact part-number key",
+      "sha256": "b0284d377faf3e8fea7fe46acd0980c7cb952e215da7c5a1258e4070376d45ed",
+      "local_pdf": "work/audio-jack-sourcing/sj-4351x-smt.pdf",
+      "full_page_render": "work/audio-jack-sourcing/sj4351x-2.png"
+    },
+    "sj23595x": {
+      "url": "https://www.sameskydevices.com/product/resource/sj2-3595x-smt.pdf",
+      "document_date": "2024-09-12",
+      "section": "Page 2 full mechanical drawing, recommended PCB layout TOP VIEW and pin table; page 1 surface-mount/reflow feature statement",
+      "sha256": "c766b36181776a304d17b7e59047d7157277dae5977a8982080a5e6a04f21d81",
+      "local_pdf": "work/audio-jack-sourcing/sj2-3595x-smt.pdf",
+      "full_page_render": "work/audio-jack-sourcing/sj23595x-2.png"
+    }
+  },
+  "candidates": [
+    {
+      "mpn": "SJ-43515TS-SMT-TR",
+      "manufacturer": "Same Sky / former CUI Devices",
+      "primary_source": "sj4351x",
+      "jlc_number": "C5353507",
+      "jlc_url": "https://jlcpcb.com/partdetail/CUIDEVICES-SJ_43515TS_SMTTR/C5353507",
+      "jlc_snapshot": "work/audio-jack-sourcing/jlc-sj43515ts.html",
+      "jlc_snapshot_sha256": "64986fea441db144bb6c21467b028159c7eb1c2cd0b86fa2a0ee69991ec27cff",
+      "assembly": "Extended, SMT Assembly, Economic and Standard",
+      "route": "JLC private-parts pre-order; current server record isBuyComponent=1, allowPostFlag=true, noBuyReason=null",
+      "can_presale_number": 104,
+      "overseas_stock_count": 111,
+      "immediately_allocated_assembly_stock_confirmed": false,
+      "minimum_preorder_quantity": 4,
+      "unit_price_usd_at_moq": 2.3781,
+      "minimum_parts_subtotal_usd": 9.5124,
+      "loss_number": 1,
+      "lead_time_confirmed": false,
+      "assessment": "Preferred technical candidate for in-memory fit; ordinary top-mount body, known tip switch, explicit current pre-order supply. Quantity is not reserved and price excludes PCBA/setup/shipping/tax."
+    },
+    {
+      "mpn": "SJ-43516-SMT-TR",
+      "manufacturer": "Same Sky / former CUI Devices",
+      "primary_source": "sj4351x",
+      "jlc_number": "C4992780",
+      "jlc_url": "https://jlcpcb.com/partdetail/CUI-SJ_43516_SMTTR/C4992780",
+      "jlc_snapshot": "work/audio-jack-sourcing/jlc-sj43516.html",
+      "jlc_snapshot_sha256": "f50263c8203a958722106b4ca7831f02c8d5d42da2d4940a7bd1d1fcc7540e6c",
+      "assembly": "Extended, SMT Assembly, Economic and Standard",
+      "can_presale_number": 0,
+      "overseas_stock_count": 0,
+      "minimum_preorder_quantity_catalog_only": 5,
+      "unit_price_usd_catalog_only": 1.8242,
+      "supply_route_qualified": false,
+      "assessment": "Same top-mount geometry plus unused ring switch pin 6; fresh JLC record has no supplied quantity, so catalog price/MOQ and cached LCSC stock do not establish current availability."
+    },
+    {
+      "mpn": "SJ2-35954B-SMT-TR",
+      "manufacturer": "Same Sky / former CUI Devices",
+      "primary_source": "sj23595x",
+      "jlc_number": "C4991725",
+      "jlc_url": "https://jlcpcb.com/partdetail/CUI-SJ2_35954B_SMTTR/C4991725",
+      "jlc_snapshot": "work/audio-jack-sourcing/jlc-sj235954b.html",
+      "jlc_snapshot_sha256": "60309fcd61de610d1612ca956a58f0fae3790ce8f0e1b14deb9add0da1315b9c",
+      "assembly": "Extended, SMT Assembly, Economic and Standard",
+      "can_presale_number": 0,
+      "overseas_stock_count": 0,
+      "minimum_preorder_quantity_catalog_only": 11,
+      "unit_price_usd_catalog_only": 0.8935,
+      "supply_route_qualified": false,
+      "pin_functions": {"1": "sleeve/MIC", "2": "tip/L", "3": "ring1/R", "4": "ring2/GND", "10": "tip switch"},
+      "nominal_body_length_width_height_mm": [14.0, 6.3, 4.0],
+      "assessment": "Compact alternative not selected: primary PCB drawing has an unlabelled 1.2 x 3.78 mm rectangular area at the entry/bushing, so no-cutout installation is NOT accepted without explicit outboard placement of that region. Current JLC supply is also unconfirmed. The catalog 4 mm body height is not a guaranteed full nose envelope."
+    }
+  ],
+  "sj43515ts_candidate_geometry": {
+    "file": "hardware/layout/candidates/SJ-43515TS-SMT-TR-CANDIDATE.kicad_mod",
+    "coordinate_frame": "Manufacturer PCB TOP VIEW. Origin is Connector Edge datum intersecting plug axis. X increases from mouth toward connector rear; Y increases toward pins 1/4/2. This is not the courtyard centre or old U83 anchor.",
+    "mouth_plane_x_mm": -1.5,
+    "insertion_direction": "+X",
+    "plug_mating_shaft_length_mm": 14.0,
+    "nominal_body_envelope_mm": {"x": [0.0, 15.5], "y": [-3.0, 3.8]},
+    "nominal_nose_envelope_mm": {"x": [-1.5, 0.0], "y": [-2.5, 2.5]},
+    "body_envelope_note": "Conservative nominal union from dimensioned views, not an exact stepped body or STEP. A negative-X nose is the entry, not an extra requirement for a PCB notch.",
+    "nominal_total_body_length_mm": 17.0,
+    "body_height_above_land_seating_plane_mm": 5.05,
+    "body_height_max_from_general_tolerance_mm": 5.30,
+    "plug_axis_height_above_land_seating_plane_mm": 2.55,
+    "pads": {
+      "1": {"centre_mm": [0.6, 3.5], "size_mm": [2.0, 3.0], "function": "sleeve, CTIA microphone"},
+      "2": {"centre_mm": [13.0, 3.5], "size_mm": [2.0, 3.0], "function": "tip, left audio"},
+      "3": {"centre_mm": [5.3, -3.5], "size_mm": [2.0, 3.0], "function": "ring1, right audio"},
+      "4": {"centre_mm": [3.5, 3.5], "size_mm": [2.0, 3.0], "function": "ring2, CTIA audio ground"},
+      "5": {"centre_mm": [17.0, -0.8], "size_mm": [3.0, 2.0], "function": "tip-switch contact, closed to pin2 without plug"}
+    },
+    "derived_pad_datums": "The 10.0 mm outer land-row span and 3.0 mm land height give Y=+/-3.5. Pad5 has its 3.0 mm dimension along X; its outer X18.5 gives centre X17.0. Its centre is Y=-0.80. No dimensions are taken from image pixels.",
+    "smt_land_union_mm": {"x": [-0.4, 18.5], "y": [-5.0, 5.0]},
+    "nominal_courtyard_mm": {"x": [-1.75, 18.75], "y": [-5.25, 5.25]},
+    "courtyard_centre_relative_to_anchor_mm": [8.5, 0.0],
+    "npth_centres_mm": [[4.5, 0.0], [11.5, 0.0]],
+    "npth_diameter_mm": 1.90,
+    "locator_diameter_nominal_mm": 1.50,
+    "locator_projection_nominal_mm": 0.95,
+    "locator_projection_max_general_tolerance_mm": 1.20,
+    "current_rf_pcb_thickness_min_mm": 1.44,
+    "minimum_locator_recess_to_opposite_pcb_surface_mm": 0.24,
+    "locator_assessment": "On the present 1.60 +/-0.16 mm finished PCB model, the 0.95 +/-0.25 mm locator does not protrude onto the opposite RF exterior surface. Both NPTHs still require through-board copper/mask and opposite-side component clearance checks.",
+    "mouth_to_first_locator_mm": 6.0,
+    "edge_pose_constraint": "A board edge at the drawing Connector Edge X0 would clip pad1, whose copper reaches X=-0.4. Put the board edge at X<=-0.4 minus the required factory copper-to-edge allowance. Keeping the nose beyond that edge avoids crediting a hidden under-body cutout; exact native pose is not chosen here.",
+    "full_fit_verified": false
+  },
+  "required_before_adoption": [
+    "Parent integrates candidate only in memory: outward mouth at the accepted world-side HEADSET edge, all lands and both NPTHs inside valid PCB clearance, same-face neighborhood, all opposite-face bodies/copper and opposing UI PCB checked.",
+    "Confirm actual enclosure aperture and plug overmould insertion clearance; the nominal 11 mm board gap minus 5.30 mm jack height is not a complete opposing-component fit proof.",
+    "Bind the exact accepted R2 part and physical pads explicitly, if accepted. Remove only current R2 phantom RING1_SWITCH NC pin6; preserve historical R1 sources and the pin5 tip-switch detection circuit.",
+    "Recheck exact JLC manufacturer/route/MOQ/price at acceptance and before order; no candidate here authorizes procurement or closes production release."
+  ]
+}

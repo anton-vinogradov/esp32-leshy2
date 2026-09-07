@@ -80,7 +80,7 @@ def drc_evidence(path: Path, project: str) -> dict:
     provenance = validate_provenance(path, project)
     report = load(path)
     violations = report.get("violations", [])
-    parity = report.get("schematic_parity", [])
+    parity = report["schematic_parity"]
     errors = []
     if report.get("source") != f"{project}.kicad_pcb":
         errors.append("DRC source filename does not match the project")

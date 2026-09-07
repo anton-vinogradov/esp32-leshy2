@@ -6,24 +6,24 @@
   "sources": {
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "674da6b63a67dad9efc211b57854e459243093cd8cc7806fb863f7404034c30c"
+      "sha256": "6dbafc5fb69bbf3ec56cea89439ddc54539f720cfb58cbc8ab87da32600166a8"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76"
+      "sha256": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c"
     }
   },
   "kicad_reference_version": "10.0.5",
   "summary": {
     "board_component_group_count": 245,
-    "source_ledger_logical_contact_count": 1617,
-    "board_logical_contact_count": 1558,
-    "pcb_footprint_contact_count": 1555,
+    "source_ledger_logical_contact_count": 1616,
+    "board_logical_contact_count": 1557,
+    "pcb_footprint_contact_count": 1554,
     "external_on_module_interface_count": 3,
-    "named_footprint_pad_count": 1575,
-    "footprint_pad_occurrence_count": 1627,
+    "named_footprint_pad_count": 1574,
+    "footprint_pad_occurrence_count": 1626,
     "mechanical_only_pad_occurrence_count": 6,
-    "ignored_unnumbered_pad_occurrence_count": 91,
+    "ignored_unnumbered_pad_occurrence_count": 95,
     "new_exact_footprint_files_materialized": 7,
     "native_schematic_nets_created": 0,
     "unresolved_error_count": 0
@@ -1893,16 +1893,16 @@
       "bom_excluded": false
     },
     {
-      "device_id": "ck_js102011scqn",
-      "mpn": "C&K JS102011SCQN",
-      "symbol_id": "Leshy2_R2:ck_js102011scqn",
-      "footprint": "Leshy2:JS102011SCQN",
-      "footprint_source": "hardware/ecad/libraries/Leshy2.pretty/JS102011SCQN.kicad_mod",
-      "footprint_sha256": "7ca6e59dd072255c4d23bc191ac86a307dc45924318e1c38567b5f5c737b0575",
+      "device_id": "ck_js102011saqn",
+      "mpn": "C&K JS102011SAQN",
+      "symbol_id": "Leshy2_R2:ck_js102011saqn",
+      "footprint": "Button_Switch_SMD:SW_SPDT_CK_JS102011SAQN",
+      "footprint_source": "${KICAD10_FOOTPRINT_DIR}/Button_Switch_SMD.pretty/SW_SPDT_CK_JS102011SAQN.kicad_mod",
+      "footprint_sha256": "95c91aa5cb5fb730cf4db077b512c0fa02725edbe92ccc85350d819e56eabc28",
       "logical_contact_count": 3,
       "footprint_named_pad_count": 3,
       "footprint_pad_occurrence_count": 3,
-      "ignored_unnumbered_pad_occurrence_count": 0,
+      "ignored_unnumbered_pad_occurrence_count": 2,
       "pad_inventory": {
         "1": {
           "occurrences": 1,
@@ -13797,7 +13797,7 @@
       "symbol_id": "Leshy2_R2:omron_b3s_1100p",
       "footprint": "Leshy2_R2:B3S-1100P",
       "footprint_source": "hardware/ecad/libraries/Leshy2_R2.pretty/B3S-1100P.kicad_mod",
-      "footprint_sha256": "37b9b1c477a58d9152f7b1cff766be8bf4d27f9e9a1ab43217bf6bd714409a4d",
+      "footprint_sha256": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989",
       "logical_contact_count": 5,
       "footprint_named_pad_count": 5,
       "footprint_pad_occurrence_count": 5,
@@ -16074,16 +16074,16 @@
       "bom_excluded": false
     },
     {
-      "device_id": "same_sky_sj_43504_smt_tr",
-      "mpn": "Same Sky SJ-43504-SMT-TR",
-      "symbol_id": "Leshy2_R2:same_sky_sj_43504_smt_tr",
-      "footprint": "Leshy2:SJ-43504-SMT-TR",
-      "footprint_source": "hardware/ecad/libraries/Leshy2.pretty/SJ-43504-SMT-TR.kicad_mod",
-      "footprint_sha256": "db578dfdc43d6fe1a92f5ec649a19e6330b2dffd3f6e13b2037c249a8d18f5e4",
-      "logical_contact_count": 6,
-      "footprint_named_pad_count": 6,
-      "footprint_pad_occurrence_count": 6,
-      "ignored_unnumbered_pad_occurrence_count": 0,
+      "device_id": "same_sky_sj_43515ts_smt_tr",
+      "mpn": "Same Sky SJ-43515TS-SMT-TR",
+      "symbol_id": "Leshy2_R2:same_sky_sj_43515ts_smt_tr",
+      "footprint": "Leshy2_R2:SJ-43515TS-SMT-TR",
+      "footprint_source": "hardware/ecad/libraries/Leshy2_R2.pretty/SJ-43515TS-SMT-TR.kicad_mod",
+      "footprint_sha256": "4d467470d674455d643dedbf72001da0c7af23a521947ea2b9d190bbdad077a0",
+      "logical_contact_count": 5,
+      "footprint_named_pad_count": 5,
+      "footprint_pad_occurrence_count": 5,
+      "ignored_unnumbered_pad_occurrence_count": 2,
       "pad_inventory": {
         "1": {
           "occurrences": 1,
@@ -16110,12 +16110,6 @@
           ]
         },
         "5": {
-          "occurrences": 1,
-          "types": [
-            "smd"
-          ]
-        },
-        "6": {
           "occurrences": 1,
           "types": [
             "smd"
@@ -16170,16 +16164,6 @@
           "disposition": "pcb_footprint_pad",
           "pads": [
             "5"
-          ],
-          "resolution": "exact_physical_pad_name"
-        },
-        {
-          "contact": "RING1_SWITCH",
-          "role": "signal",
-          "physical": "6",
-          "disposition": "pcb_footprint_pad",
-          "pads": [
-            "6"
           ],
           "resolution": "exact_physical_pad_name"
         }
@@ -16820,7 +16804,7 @@
       "symbol_id": "Leshy2_R2:seeed_1125r_smt_4p",
       "footprint": "Leshy2:1125R-SMT-4P",
       "footprint_source": "hardware/ecad/libraries/Leshy2.pretty/1125R-SMT-4P.kicad_mod",
-      "footprint_sha256": "f178ca571b825ea01bc188c66860d2c4834e24dfbbe2e6af56b5859ed29ede2f",
+      "footprint_sha256": "129ef50b9d030294bda39f45c75fc7647dd99b5ebdf969cb14a585d4f9ce31db",
       "logical_contact_count": 4,
       "footprint_named_pad_count": 4,
       "footprint_pad_occurrence_count": 4,
@@ -27542,12 +27526,12 @@
       "bom_excluded": false
     },
     {
-      "device_id": "vishay_tsmp95000tt",
-      "mpn": "Vishay TSMP95000TT",
-      "symbol_id": "Leshy2_R2:vishay_tsmp95000tt",
-      "footprint": "Leshy2:Vishay-Heimdall-SMD-TT",
-      "footprint_source": "hardware/ecad/libraries/Leshy2.pretty/Vishay-Heimdall-SMD-TT.kicad_mod",
-      "footprint_sha256": "cb55b04ea85db20a99fd52600fc68486ad5c35724df5ce44cae90802bc07abc5",
+      "device_id": "vishay_tsmp95000tr",
+      "mpn": "Vishay TSMP95000TR",
+      "symbol_id": "Leshy2_R2:vishay_tsmp95000tr",
+      "footprint": "Leshy2:Vishay-Heimdall-SMD-TR",
+      "footprint_source": "hardware/ecad/libraries/Leshy2.pretty/Vishay-Heimdall-SMD-TR.kicad_mod",
+      "footprint_sha256": "01ea9c7ef12c60e4c79886124425537d15eb3af5fbd1debeb34f53d1edaaded8",
       "logical_contact_count": 4,
       "footprint_named_pad_count": 4,
       "footprint_pad_occurrence_count": 4,
@@ -27628,9 +27612,9 @@
       "device_id": "vishay_tsop75238tr",
       "mpn": "Vishay TSOP75238TR",
       "symbol_id": "Leshy2_R2:vishay_tsop75238tr",
-      "footprint": "Leshy2:Vishay-Heimdall-SMD-TT",
-      "footprint_source": "hardware/ecad/libraries/Leshy2.pretty/Vishay-Heimdall-SMD-TT.kicad_mod",
-      "footprint_sha256": "cb55b04ea85db20a99fd52600fc68486ad5c35724df5ce44cae90802bc07abc5",
+      "footprint": "Leshy2:Vishay-Heimdall-SMD-TR",
+      "footprint_source": "hardware/ecad/libraries/Leshy2.pretty/Vishay-Heimdall-SMD-TR.kicad_mod",
+      "footprint_sha256": "01ea9c7ef12c60e4c79886124425537d15eb3af5fbd1debeb34f53d1edaaded8",
       "logical_contact_count": 4,
       "footprint_named_pad_count": 4,
       "footprint_pad_occurrence_count": 4,
@@ -27764,7 +27748,7 @@
       "symbol_id": "Leshy2_R2:vishay_vsmy14940",
       "footprint": "Leshy2:VSMY14940",
       "footprint_source": "hardware/ecad/libraries/Leshy2.pretty/VSMY14940.kicad_mod",
-      "footprint_sha256": "d836d39eae1127ea196d643f486561747e508b77e3db3cd076508e337f5d6214",
+      "footprint_sha256": "981d8a9e2f51923689c8366addf1fa94a60c270536ed3c7c17e6c39e6046b840",
       "logical_contact_count": 2,
       "footprint_named_pad_count": 2,
       "footprint_pad_occurrence_count": 2,

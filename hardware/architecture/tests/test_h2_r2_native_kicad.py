@@ -41,7 +41,7 @@ class H2R2NativeKiCadTests(unittest.TestCase):
             stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("2 native projects, 22 sheets, 1208 symbols, 4306 pins", result.stdout)
+        self.assertIn("2 native projects, 22 sheets, 1208 symbols, 4305 pins", result.stdout)
 
     def test_exact_project_sheet_instance_and_pin_totals_close(self):
         self.assertEqual("pass", self.manifest["status"])
@@ -51,9 +51,9 @@ class H2R2NativeKiCadTests(unittest.TestCase):
         self.assertEqual(22, summary["project_graph_sheet_count"])
         self.assertEqual(18, summary["populated_sheet_count"])
         self.assertEqual(1208, summary["fitted_symbol_instance_count"])
-        self.assertEqual(4306, summary["physical_symbol_pin_count"])
+        self.assertEqual(4305, summary["physical_symbol_pin_count"])
         self.assertEqual(4070, summary["connected_physical_pin_count"])
-        self.assertEqual(236, summary["explicit_no_connect_physical_pin_count"])
+        self.assertEqual(235, summary["explicit_no_connect_physical_pin_count"])
         self.assertEqual(5, summary["external_module_interface_annotation_count"])
         self.assertEqual(788, summary["canonical_net_count"])
 
@@ -80,7 +80,7 @@ class H2R2NativeKiCadTests(unittest.TestCase):
                     no_connect += 1
                     self.assertEqual("no_connect", disposition)
                     self.assertIsNone(net)
-        self.assertEqual((4306, 4070, 236), (physical, connected, no_connect))
+        self.assertEqual((4305, 4070, 235), (physical, connected, no_connect))
 
     def test_module_receptacles_are_annotations_not_false_pcb_pins(self):
         external = [

@@ -134,13 +134,12 @@ def footprint_outputs() -> dict[Path, str]:
     switch = custom_footprint(
         "JS102011SCQN",
         [
-            ("1", -2.50, 2.35, 0.80, 3.20, copper),
-            ("2", 0.00, 2.35, 0.80, 3.20, copper),
-            ("3", 2.50, 2.35, 0.80, 3.20, copper),
+            ("1", -2.50, 2.75, 1.00, 2.50, copper, "rect"),
+            ("2", 0.00, -2.75, 1.00, 2.50, copper, "rect"),
+            ("3", 2.50, 2.75, 1.00, 2.50, copper, "rect"),
         ],
-        8.50, 3.50, 9.00, 6.70,
-        "Littelfuse C&K JS Series VL 01/14/26 page 5: exact JS102011SCQN 8.5x3.5-mm vertical-gullwing SPDT body, 2.5-mm contact pitch and three 0.8x3.2-mm recommended lands; pin 2 is common",
-        courtyard_y=1.35,
+        8.50, 3.50, 9.00, 8.50,
+        "Littelfuse C&K JS Series VL 01/14/26 page 5: JS102011SCQN 8.5x3.5-mm vertical-gullwing SPDT body; three 1.0x2.5-mm lands, 8-mm outer span and 3-mm inner gap; common pin 2 opposite pins 1/3; top actuator, NOT side-exiting; native access remains open",
     )
     return {FOOTPRINT_DIR / "JS102011SCQN.kicad_mod": switch}
 
@@ -388,8 +387,8 @@ def structural_check(generated: dict[Path, str], manifest: dict) -> None:
     if manifest["known_deferred_fixture_labels"]:
         raise ValueError("RF50 safety-controller fixture boundary accounting drifted")
     switch = generated[FOOTPRINT_DIR / "JS102011SCQN.kicad_mod"]
-    for number, x in (("1", "-2.500"), ("2", "0.000"), ("3", "2.500")):
-        token = f'(pad "{number}" smd roundrect (at {x} 2.350) (size 0.800 3.200)'
+    for number, x, y in (("1", "-2.500", "2.750"), ("2", "0.000", "-2.750"), ("3", "2.500", "2.750")):
+        token = f'(pad "{number}" smd rect (at {x} {y}) (size 1.000 2.500)'
         if token not in switch:
             raise ValueError("JS102011SCQN exact three-land footprint drifted")
     detector_rows = [row for row in manifest["instances"] if row["instance"].startswith("det_")]

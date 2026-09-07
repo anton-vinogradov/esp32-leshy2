@@ -99,8 +99,8 @@ def build() -> dict:
     expected = {
         "component_groups": 249,
         "component_articles": 1216,
-        "legacy_routes_reused": 209,
-        "new_or_replaced_routes": 40,
+        "legacy_routes_reused": 206,
+        "new_or_replaced_routes": 43,
         "current_global_sourcing_gates": 1,
     }
     actual = {
@@ -123,7 +123,8 @@ def build() -> dict:
         "schema_version": 1,
         "artifact": "H5-R2-current-route-revalidation",
         "marker": "H5-R2.1",
-        "checked_on": "2026-09-02",
+        "checked_on": "2026-09-08",
+        "check_scope": "Current inventory reconciliation and three reviewed interface replacements; this date does not renew every retained stock/price snapshot.",
         "status": "reviewed_with_one_order_time_global_sourcing_gate" if not errors else "fail",
         "inputs": {
             str(path.relative_to(ROOT)): digest(path)
@@ -166,8 +167,8 @@ def render_doc(result: dict, ru: bool) -> str:
 
 ```mermaid
 flowchart LR
-  A["249 текущих групп<br/>1216 изделий"] --> B["209 повторно проверенных<br/>маршрутов H5-R1"]
-  A --> C["40 новых или заменённых<br/>точных маршрутов"]
+  A["249 текущих групп<br/>1216 изделий"] --> B["{s['legacy_routes_reused']} унаследованных<br/>маршрутов H5-R1"]
+  A --> C["{s['new_or_replaced_routes']} новых или заменённых<br/>точных маршрутов"]
   B --> D["H6 · placement / routing"]
   C --> D
   C --> E["1 order-time gate<br/>WBC16-1TLC"]
@@ -177,6 +178,7 @@ flowchart LR
 ## Что изменилось
 
 - Стоимостной отчёт и H5 теперь используют один и тот же native R2 inventory, а не исторический 210-строчный BOM.
+- Пересборка 2026-09-08 включает точные замены [RUN/KILL SA](../hardware/procurement/h6-js102011saqn-selection-review.json), [ИК TR](../hardware/procurement/h6-tsmp95000tr-candidate-review.json) и [аудио SJ43515TS](../hardware/procurement/h6-sj43515ts-selection-review.json). ИК и аудио имеют явный предзаказ, не готовый склад сборки. Эта дата не обновляет автоматически остальные старые снимки наличия и цен.
 - Исправленная известная база электроники: **${s['known_electronics_usd']:.2f}**; известные внешние антенны: **${s['known_external_antennas_usd']:.2f}**; вместе **${s['known_combined_usd']:.2f}** до платы, сборки, корпуса, доставки и ещё {s['unpriced_component_groups']} групп компонентов / {s['unpriced_antenna_groups']} групп антенн без цены.
 - `WBC16-1TLC` остаётся точной схемной деталью, но склад JLCPCB сейчас нулевой. `H3-TC16-161T+` найден как массовый кандидат, однако не войдёт в BOM без проверки pin map, RF-параметров и точного factory route.
 
@@ -192,8 +194,8 @@ H6 может продолжать компоновку с принятым foot
 
 ```mermaid
 flowchart LR
-  A["249 current groups<br/>1216 articles"] --> B["209 revalidated<br/>H5-R1 routes"]
-  A --> C["40 new or replaced<br/>exact routes"]
+  A["249 current groups<br/>1216 articles"] --> B["{s['legacy_routes_reused']} inherited<br/>H5-R1 routes"]
+  A --> C["{s['new_or_replaced_routes']} new or replaced<br/>exact routes"]
   B --> D["H6 · placement / routing"]
   C --> D
   C --> E["1 order-time gate<br/>WBC16-1TLC"]
@@ -203,6 +205,7 @@ flowchart LR
 ## What changed
 
 - The cost report and H5 now consume the same native R2 inventory instead of the historical 210-line BOM.
+- The 2026-09-08 recomposition includes exact [RUN/KILL SA](../hardware/procurement/h6-js102011saqn-selection-review.json), [IR TR](../hardware/procurement/h6-tsmp95000tr-candidate-review.json) and [audio SJ43515TS](../hardware/procurement/h6-sj43515ts-selection-review.json) replacements. IR and audio use explicit preorder, not allocated assembly stock. This date does not renew the other retained availability/price snapshots.
 - Corrected known electronics are **${s['known_electronics_usd']:.2f}**; known external antennas are **${s['known_external_antennas_usd']:.2f}**; combined they are **${s['known_combined_usd']:.2f}** before PCB, assembly, enclosure, delivery and {s['unpriced_component_groups']} unpriced component groups / {s['unpriced_antenna_groups']} unpriced antenna groups.
 - `WBC16-1TLC` remains the exact schematic part but JLCPCB live stock is now zero. `H3-TC16-161T+` is a mass-market candidate, but it does not enter the BOM without pin-map, RF and exact factory-route qualification.
 

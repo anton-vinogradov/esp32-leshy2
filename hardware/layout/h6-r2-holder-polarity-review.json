@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "checked": "2026-09-08",
+  "scope": "Read-only exact Keystone 1048P polarity diagnosis; no source or PCB correction applied",
+  "status": "confirmed_wrong_second_cell_physical_polarity",
+  "production_release_authorized": false,
+  "phase_gate_closed": false,
+  "production_modified": false,
+  "battery_energization_authorized": false,
+  "primary": {
+    "url": "https://file.aichiplink.com/r/datasheets/keystoneelectronics-1048p-datasheets-1060.pdf",
+    "authorship": "Keystone Electronics Corp., exact drawing 1048P, Rev A 10.08.13; manufacturer-authored sheet hosted by a distributor",
+    "section": "Full one-page sheet, component TOP view with moulded positive/negative marks and mounting-pad layout; independently visually checked by two reviewers",
+    "sha256": "6135bff212f9eab9ed8158febcbbd0d18b9479caac384a7f51f2818d1328e26b",
+    "view": "Component top, long axis horizontal, +X right, +Y down; upper row positive at left/negative at right, lower row negative at left/positive at right",
+    "revision_limit": "Rev B has not been visually verified; do not relabel Rev A as Rev B or assume unseen mounting dimensions."
+  },
+  "native": {
+    "path": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
+    "sha256": "cd306f5f39649fd0c24c0a1f79931716f646e9c72959788a9127098d44eca1fe",
+    "project": "LESHY2-RF-R2",
+    "reference": "BT1",
+    "instance": "pack_holder",
+    "footprint": "Leshy2:Keystone-1048P",
+    "side": "F.Cu",
+    "anchor_mm": [42.99, 85.0],
+    "angle_deg": 90,
+    "copper_objects": 766,
+    "pad_rows": [
+      {"pad": "1", "role": "SLOT0_POS", "local_mm": [-41, -9.55], "native_mm": [33.44, 126], "native_net": "/RF_02_PACK_SAFETY_AON/PACK_SLOT0_POSITIVE_RAW", "manufacturer_polarity_here": "positive", "status": "agrees"},
+      {"pad": "2", "role": "SLOT0_NEG", "local_mm": [41, -9.55], "native_mm": [33.44, 44], "native_net": "/RF_02_PACK_SAFETY_AON/BATTERY_STACK_NEGATIVE_CELL_SIDE", "manufacturer_polarity_here": "negative", "status": "agrees"},
+      {"pad": "3", "role": "SLOT1_POS", "local_mm": [-41, 9.55], "native_mm": [52.54, 126], "native_net": "/RF_02_PACK_SAFETY_AON/PACK_SLOT1_POSITIVE_RAW", "manufacturer_polarity_here": "negative", "status": "opposite"},
+      {"pad": "4", "role": "SLOT1_NEG", "local_mm": [41, 9.55], "native_mm": [52.54, 44], "native_net": "/RF_02_PACK_SAFETY_AON/PACK_2S_MIDPOINT", "manufacturer_polarity_here": "positive", "status": "opposite"}
+    ]
+  },
+  "diagnosis": "The custom library places logical positive contacts 1 and 3 at the same longitudinal end. The exact polarized 1048P has opposite cell orientation. Rotating the whole holder cannot repair both rows simultaneously. Correct current-R2 pad positions while retaining logical roles, then verify the complete affected power paths and all copper attachments. The polarity contradiction is independent of unresolved locator/mounting-hole registration.",
+  "source_paths": [
+    "hardware/ecad/h2_rf_pack_safety_aon.py",
+    "hardware/ecad/libraries/Leshy2.pretty/Keystone-1048P.kicad_mod",
+    "hardware/ecad/generated/H2-R2-contact-materialization.json",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json"
+  ],
+  "not_claimed": ["No production fix", "No complete exact mounting-hole registration", "No manufacturing acceptance", "No Rev B inspection", "Clean library parity or DRC does not override this physical polarity finding"]
+}

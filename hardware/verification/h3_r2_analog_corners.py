@@ -44,11 +44,151 @@ def route_exists(routes: set[tuple[str, str, str]], start: str, end: str, net: s
 
 
 def all_true(mapping: dict) -> bool:
-    return all(value is True for value in mapping.values())
+    return isinstance(mapping, dict) and bool(mapping) and all(value is True for value in mapping.values())
 
 
 def endpoint_on_net(rows: list[dict], endpoint: str, net: str) -> bool:
     return any(row.get("endpoint") == endpoint and row.get("net") == net for row in rows)
+
+
+def native_leaf_transfers(candidate: dict, devices: dict, instances: list[dict], rows: list[dict], leaves: dict) -> dict:
+    """Bind two reviewed substitutions, not the whole retained G2F circuit.
+
+    Vishay 82907 Rev.1.0 pp.1-3 gives the same electrical device/pinning for
+    TT and TR; pp.6-7 distinguish tape presentation, not a new gain/supply spec.
+    Same Sky SJ-43504-SMT-TR and SJ-4351X-SMT (2024-09-12), both p.2,
+    show normally closed 2--5 tip switches. TS omits the unused ring switch6.
+    This permits a bounded electrical-model transfer, NOT transfer of optical
+    aiming/range, jack mechanics, acoustic performance, or factory readiness.
+    Expectations below are independent of the configurable native pin map.
+    """
+    specs = {
+        "ir": {
+            "instance": "ir_carrier", "project": "LESHY2-UI-R2", "reference": "U23",
+            "legacy_id": "vishay_tsmp95000tt", "legacy_mpn": "Vishay TSMP95000TT",
+            "current_id": "vishay_tsmp95000tr", "current_mpn": "Vishay TSMP95000TR",
+            "contacts": {"GND_1": ("1", "power", "POWER_GROUND"), "VS": ("2", "power", "IR_CARRIER_VS"),
+                         "CARRIER_OUT": ("3", "signal", "IR_CARRIER_LOCAL_N"), "GND_4": ("4", "power", "POWER_GROUND")},
+            "source_urls": ["https://www.vishay.com/docs/82907/tsmp95000.pdf"],
+            "transfer_scope": "Same TSMP95000 electrical receiver, supply/current and carrier-output model; TT-to-TR tape presentation only.",
+            "not_transferred": ["Optical axis/window/range and emitter-to-witness alignment", "Footprint, assembly process and routed/assembled verification", "Other IR leaf circuitry is retained evidence, not newly verified by this substitution guard"],
+        },
+        "audio": {
+            "instance": "headphone_jack", "project": "LESHY2-RF-R2", "reference": "U83",
+            "legacy_id": "same_sky_sj_43504_smt_tr", "legacy_mpn": "Same Sky SJ-43504-SMT-TR",
+            "current_id": "same_sky_sj_43515ts_smt_tr", "current_mpn": "Same Sky SJ-43515TS-SMT-TR",
+            "contacts": {"SLEEVE": ("1", "analog", "HEADSET_MIC_RAW"), "TIP": ("2", "analog", "HEADPHONE_LEFT_TIP"),
+                         "RING1": ("3", "analog", "HEADPHONE_RIGHT_RING1"), "RING2": ("4", "power", "AUDIO_GROUND"),
+                         "TIP_SWITCH": ("5", "signal", "HEADSET_SWITCH_STATE")},
+            "source_urls": ["https://www.sameskydevices.com/product/resource/sj-43504-smt-tr.pdf",
+                            "https://www.sameskydevices.com/product/resource/digikeypdf/sj-4351x-smt.pdf"],
+            "transfer_scope": "Five used CTIA conductors and normally-closed tip2-to-switch5 detector model; unused ring-switch6 is absent, not a new NC pad.",
+            "not_transferred": ["Mid-mount cutout, ordinary-SMT footprint, locator holes, plug access and retention", "Contact resistance, lifetime, insertion pop and acoustic/accessory performance", "Other audio leaf circuitry is retained evidence, not newly verified by this substitution guard", "slow_io.P02 must remain a high-impedance input; this is not a firmware configuration execution test"],
+        },
+    }
+
+    def one_endpoint(endpoint: str, physical: str, net: str, project: str) -> bool:
+        found = [row for row in rows if row.get("endpoint") == endpoint]
+        return len(found) == 1 and all(found[0].get(key) == value for key, value in {
+            "physical": physical, "net": net, "disposition": "connected", "project": project,
+            "instance": endpoint.split(".", 1)[0], "contact": endpoint.split(".", 1)[1],
+        }.items())
+
+    def support(instance: str, device_id: str, mpn: str, project: str, pins: dict) -> bool:
+        found = [row for row in instances if row.get("instance") == instance]
+        return (candidate.get("instances", {}).get(instance) == device_id
+                and devices.get(device_id, {}).get("mpn") == mpn
+                and len(found) == 1 and found[0].get("device_id") == device_id
+                and found[0].get("mpn") == mpn and found[0].get("project") == project
+                and all(one_endpoint(f"{instance}.{contact}", physical, net, project)
+                        and next(row for row in rows if row.get("endpoint") == f"{instance}.{contact}").get("device_id") == device_id
+                        and next(row for row in rows if row.get("endpoint") == f"{instance}.{contact}").get("reference") == found[0].get("reference")
+                        for contact, (physical, net) in pins.items()))
+
+    def exact_net(net: str, endpoints: set[str], project: str) -> bool:
+        found = [row for row in rows if row.get("net") == net]
+        return (len(found) == len(endpoints) and {row.get("endpoint") for row in found} == endpoints
+                and all(row.get("project") == project and row.get("disposition") == "connected" for row in found))
+
+    result = {}
+    for domain, spec in specs.items():
+        name, project = spec["instance"], spec["project"]
+        old = devices.get(spec["legacy_id"], {})
+        new = devices.get(spec["current_id"], {})
+        found = [row for row in instances if row.get("instance") == name]
+        contacts = {contact: {"physical": physical, "role": role}
+                    for contact, (physical, role, _net) in spec["contacts"].items()}
+        native_contacts = [row for row in rows if row.get("instance") == name or str(row.get("endpoint", "")).startswith(name + ".")]
+        checks = {
+            "retained_leaf_exact_identity": candidate.get("instances", {}).get(name) == spec["legacy_id"]
+                and leaves.get(domain, {}).get("exact_part_checks", {}).get(name) is True
+                and leaves.get(domain, {}).get("checks", {}).get("exact_" + name) is True,
+            "manufacturer_identities": old.get("mpn") == spec["legacy_mpn"] and new.get("mpn") == spec["current_mpn"],
+            "primary_sources": old.get("source", {}).get("url") == spec["source_urls"][0]
+                and new.get("source", {}).get("url") == spec["source_urls"][-1],
+            "unique_current_native_instance": len(found) == 1 and all(found[0].get(key) == value for key, value in {
+                "device_id": spec["current_id"], "mpn": spec["current_mpn"], "project": project, "reference": spec["reference"],
+            }.items()),
+            "exact_manufacturer_contacts": new.get("contacts") == contacts
+                and all(old.get("contacts", {}).get(contact) == value for contact, value in contacts.items()),
+            "complete_current_native_contact_map": len(native_contacts) == len(contacts) and all(
+                one_endpoint(f"{name}.{contact}", physical, net, project)
+                for contact, (physical, _role, net) in spec["contacts"].items()) and all(
+                    row.get("device_id") == spec["current_id"] and row.get("reference") == spec["reference"]
+                    and row.get("instance") == name and row.get("contact") in contacts
+                    and row.get("endpoint") == f"{name}.{row.get('contact')}"
+                    and row.get("role") == contacts[row["contact"]]["role"] for row in native_contacts),
+        }
+        old_ec, new_ec = old.get("electrical_contract", {}), new.get("electrical_contract", {})
+        if domain == "ir":
+            expected = {"supply_v": [2.0, 5.5], "carrier_range_khz": [30, 60], "typical_supply_current_ma_at_3v3": 0.35,
+                        "output": "active-low carrier cycles; the only onboard source allowed to create measured 30-60-kHz carrier provenance"}
+            checks["same_published_electrical_model"] = all(old_ec.get(k) == value and new_ec.get(k) == value for k, value in expected.items())
+            checks["tape_presentation_not_electrical_rating"] = (old_ec.get("taping") == "TT top-view tape, 2200 pieces per reel"
+                                                               and new_ec.get("taping") == "TR side-view tape, 2300 pieces per reel")
+            checks["native_100ohm_supply_and_4k7_pullup"] = (
+                support("ir_carrier_supply_res", "yageo_rc0402fr_07100rl", "Yageo RC0402FR-07100RL", project,
+                        {"END_1": ("1", "3V3_IR_SWITCHED"), "END_2": ("2", "IR_CARRIER_VS")})
+                and support("ir_carrier_pullup", "yageo_rc0402fr_074k7l", "Yageo RC0402FR-074K7L", project,
+                            {"END_1": ("1", "IR_CARRIER_LOCAL_N"), "END_2": ("2", "IR_CARRIER_VS")})
+                and support("ir_carrier_supply_cap", "murata_grm188z71a475me15d", "Murata GRM188Z71A475ME15D", project,
+                            {"END_1": ("1", "IR_CARRIER_VS"), "END_2": ("2", "POWER_GROUND")})
+                and support("ir_return_buffer", "nexperia_74lvc2g126dp_125", "Nexperia 74LVC2G126DP,125", project,
+                            {"2A": ("5", "IR_CARRIER_LOCAL_N")}))
+            checks["no_added_carrier_node_loads"] = (
+                exact_net("IR_CARRIER_LOCAL_N", {"ir_carrier.CARRIER_OUT", "ir_carrier_pullup.END_1", "ir_return_buffer.2A"}, project)
+                and exact_net("IR_CARRIER_VS", {"ir_carrier.VS", "ir_carrier_pullup.END_2", "ir_carrier_supply_cap.END_1", "ir_carrier_supply_res.END_2"}, project))
+        else:
+            expected = {"product_wiring_standard": "CTIA/AHJ", "tip": "left headphone", "ring1": "right headphone",
+                        "ring2": "audio ground", "sleeve": "headset microphone plus bias"}
+            checks["same_five_ctia_conductor_functions"] = all(old_ec.get(k) == value and new_ec.get(k) == value for k, value in expected.items())
+            checks["tip2_switch5_closed_absent_open_inserted"] = (
+                new_ec.get("tip_switch_closed_without_plug_physical_pads") == ["2", "5"]
+                and new_ec.get("tip_switch_open_with_plug_physical_pads") == ["2", "5"])
+            old_six = [route for route in candidate.get("fixed_routes", []) if "headphone_jack.RING1_SWITCH" in (route.get("from"), route.get("to"))]
+            checks["removed_six_was_only_explicit_nc"] = (len(old_six) == 1 and old_six[0].get("to") == "abstract:no-connect"
+                and old_six[0].get("from") == "headphone_jack.RING1_SWITCH" and old.get("contacts", {}).get("RING1_SWITCH") == {"physical": "6", "role": "signal"}
+                and set(old.get("contacts", {})) == set(contacts) | {"RING1_SWITCH"})
+            checks["native_10k_10k_100k_detector"] = (
+                support("headphone_tip_detect_pullup", "yageo_rc0402fr_0710kl", "Yageo RC0402FR-0710KL", project,
+                        {"END_1": ("1", "3V3_MAIN"), "END_2": ("2", "HEADPHONE_LEFT_TIP")})
+                and support("headset_detect_series", "yageo_rc0402fr_0710kl", "Yageo RC0402FR-0710KL", project,
+                            {"END_1": ("1", "HEADSET_SWITCH_STATE"), "END_2": ("2", "HEADSET_ABSENT")})
+                and support("headset_absent_pulldown", "yageo_rc0402fr_07100kl", "Yageo RC0402FR-07100KL", project,
+                            {"END_1": ("1", "HEADSET_ABSENT"), "END_2": ("2", "AUDIO_GROUND")})
+                and support("slow_io", "tca6424argjr", "TCA6424ARGJR", project, {"P02": ("3", "HEADSET_ABSENT")}))
+            checks["no_added_detect_node_loads"] = (
+                exact_net("HEADSET_SWITCH_STATE", {"headphone_jack.TIP_SWITCH", "headset_detect_series.END_1"}, project)
+                and exact_net("HEADSET_ABSENT", {"headset_detect_series.END_2", "headset_absent_pulldown.END_1", "slow_io.P02"}, project)
+                and exact_net("HEADPHONE_LEFT_TIP", {"headphone_jack.TIP", "headphone_tip_detect_pullup.END_2", "headphone_l_series.END_2", "headphone_esd.D1_PLUS"}, project))
+        result[domain] = {
+            "status": "bounded_electrical_equivalence_verified" if all_true(checks) else "review_required",
+            "legacy_device_id": spec["legacy_id"], "current_device_id": spec["current_id"],
+            "checks": checks, "transfer_scope": spec["transfer_scope"], "not_transferred": spec["not_transferred"],
+            "evidence": [{"url": url, "section": "Pinning/ordering/electrical characteristics pp.1-3" if domain == "ir" else "Exact model circuit and terminal table, p.2", "checked": "2026-09-08"} for url in spec["source_urls"]],
+            "fabrication_ready": False,
+        }
+    return result
 
 
 def panel_endpoint(display_mount: dict, panel_pin: int) -> str:
@@ -116,6 +256,13 @@ def build() -> dict:
         }
         if not all_true(leaf_checks[name]):
             errors.append(f"{name} leaf evidence is stale or failing")
+
+    current_native_transfers = native_leaf_transfers(candidate, devices, native_instances, native_nets, leaf_results)
+    for name, transfer in current_native_transfers.items():
+        leaf_checks[name]["current_native_substitution_is_bound"] = transfer["status"] == "bounded_electrical_equivalence_verified"
+        if not leaf_checks[name]["current_native_substitution_is_bound"]:
+            errors.append(f"{name} current-native substitution requires review: " + ", ".join(
+                key for key, passed in transfer["checks"].items() if not passed))
 
     exact_board_parts = {
         "backlight_efuse": "ti_tps2553drvr_1",
@@ -203,7 +350,8 @@ def build() -> dict:
         "marker": "H3-R2.3",
         "status": "pass" if not errors else "fail",
         "sources": {str(path.relative_to(ROOT)): sha256(path) for path in (CANDIDATE, DEVICES, RAILS, PROVENANCE, AUDIO, IR, BATTERY, AIRBAND, NATIVE_NETS, NATIVE_INSTANCES, COST_AUDIT, DISPLAY_MOUNT)},
-        "method": "current R2 topology/identity binding plus transferred exact-part interval corners and a new production-panel backlight calculation",
+        "method": "current R2 display topology/identity binding, retained leaf interval calculations with explicit bounded current-native IR/audio substitution guards, and a production-panel backlight calculation; not whole-board electrical or manufacturing approval",
+        "current_native_transfers": current_native_transfers,
         "exact_part_checks": exact_part_checks,
         "topology_checks": topology_checks,
         "display": {
@@ -230,20 +378,27 @@ def render(result: dict, language: str) -> str:
     ru = language == "ru"
     title = "Аналоговая проверка Leshy2 R2" if ru else "Leshy2 R2 analog verification"
     intro = (
-        "H3‑R2.3 сводит в одну текущую границу дисплей, аудио, IR, аккумуляторы и Airband. Все расчётные проверки пройдены; ниже отдельно названы измерения, которые невозможно честно заменить расчётом."
+        "H3‑R2.3 сводит перечисленные расчёты дисплея, аудио, IR, аккумуляторов и Airband. Перенос старых leaf-расчётов на текущие IR/аудиодетали проверяется отдельно и только в явно указанной электрической границе; это не полная проверка платы или разрешение производства."
         if ru else
-        "H3-R2.3 consolidates the current display, audio, IR, battery and Airband boundary. Every calculable check passes; measurements that cannot honestly be replaced by paper analysis remain explicit below."
+        "H3-R2.3 consolidates the listed display, audio, IR, battery and Airband calculations. Transfer of retained leaf calculations to current IR/audio parts is checked separately within an explicit electrical scope; this is not whole-board verification or manufacturing approval."
     )
     d = result["display"]
     rows = [
-        ("Дисплей / display", "PASS", f"{d['rail_v']['minimum']:.3f}…{d['rail_v']['maximum']:.3f} V; {d['current_at_published_typical_vf_ma']['nominal_rail_ma']:.1f} mA nominal backlight"),
-        ("Аудио / audio", "PASS", f"{result['leaf_evidence']['audio']['review_summary'].get('checks', 0)} checks"),
-        ("IR", "PASS", f"{result['leaf_evidence']['ir']['review_summary'].get('checks', 0)} checks"),
-        ("Аккумуляторы / battery", "PASS", f"{result['leaf_evidence']['battery']['review_summary'].get('checks', 0)} checks"),
-        ("Airband", "PASS", f"1,024 filter corners; {result['airband']['filter_minimum_margin_db']:.3f} dB minimum margin"),
+        ("Дисплей / display", "PASS" if all_true(d["checks"]) and all_true(result["topology_checks"]) and all_true(result["exact_part_checks"]) else "REVIEW REQUIRED", f"{d['rail_v']['minimum']:.3f}…{d['rail_v']['maximum']:.3f} V; {d['current_at_published_typical_vf_ma']['nominal_rail_ma']:.1f} mA nominal backlight"),
+        ("Аудио / audio", "BOUNDED PASS" if all_true(result["leaf_evidence"]["audio"]["checks"]) else "REVIEW REQUIRED", f"{result['leaf_evidence']['audio']['review_summary'].get('checks', 0)} retained leaf checks + current connector transfer guard"),
+        ("IR", "BOUNDED PASS" if all_true(result["leaf_evidence"]["ir"]["checks"]) else "REVIEW REQUIRED", f"{result['leaf_evidence']['ir']['review_summary'].get('checks', 0)} retained leaf checks + current receiver transfer guard"),
+        ("Аккумуляторы / battery", "PASS" if all_true(result["leaf_evidence"]["battery"]["checks"]) else "REVIEW REQUIRED", f"{result['leaf_evidence']['battery']['review_summary'].get('checks', 0)} retained leaf checks"),
+        ("Airband", "PASS" if all_true(result["airband"]["checks"]) else "REVIEW REQUIRED", f"1,024 filter corners; {result['airband']['filter_minimum_margin_db']:.3f} dB minimum margin"),
     ]
     lines = [f"# {title}", "", intro, "", "| Домен | Статус | Результат |" if ru else "| Domain | Status | Result |", "|---|---:|---|"]
     lines += [f"| {name} | {status} | {detail} |" for name, status, detail in rows]
+    lines += ["", "## Граница переноса текущих деталей" if ru else "## Current-part transfer boundary", ""]
+    for name, transfer in result["current_native_transfers"].items():
+        lines += [f"- `{name}`: `{transfer['legacy_device_id']}` → `{transfer['current_device_id']}`; **{transfer['status']}**. {transfer['transfer_scope']}"]
+        lines += ["  " + ("Не переносится: " if ru else "Not transferred: ") + "; ".join(transfer["not_transferred"]) + "."]
+    if result["errors"]:
+        lines += ["", "Требует проверки: " if ru else "Review required: ", ""]
+        lines += [f"- {error}" for error in result["errors"]]
     lines += [
         "",
         "## Подсветка" if ru else "## Backlight",
@@ -257,9 +412,9 @@ def render(result: dict, language: str) -> str:
         "## Что осталось измерить" if ru else "## What remains to measure",
         "",
         (
-            "Только физические свойства: яркость и PWM‑шум реальной панели; шум/поп/температура аудио; дальность и окно IR; калибровка делителей/NTC и безопасное программирование MAX17320; паразитики Airband после разводки и запуск/калибровка кварца. Это задачи H6/H8, а не незакрытые ошибки схемы."
+            "Эта сводка не закрывает остальные проверки H6/H8. В том числе остаются яркость и PWM‑шум реальной панели; шум/поп/температура аудио; дальность и окно IR; калибровка делителей/NTC и безопасное программирование MAX17320; паразитики Airband после разводки и запуск/калибровка кварца. Незакрытая привязка текущей детали выше — отдельная проверка схемы, не физическое измерение."
             if ru else
-            "Only physical properties remain: received-panel luminance and PWM noise; audio noise/pop/temperature; IR range and window; divider/NTC calibration and safe MAX17320 programming; routed Airband parasitics plus crystal startup/calibration. These are H6/H8 measurements, not unresolved schematic faults."
+            "This summary does not close other H6/H8 checks. Remaining measurements include received-panel luminance and PWM noise; audio noise/pop/temperature; IR range and window; divider/NTC calibration and safe MAX17320 programming; routed Airband parasitics plus crystal startup/calibration. A current-part binding marked review-required above is a separate schematic review, not a physical-only measurement."
         ),
         "",
         "Generated by `hardware/verification/h3_r2_analog_corners.py`.",

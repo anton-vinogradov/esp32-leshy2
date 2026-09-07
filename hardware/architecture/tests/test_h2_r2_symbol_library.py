@@ -35,7 +35,7 @@ class H2R2SymbolLibraryTests(unittest.TestCase):
         library = self.manifest["library"]
         self.assertEqual("Leshy2_R2", library["id"])
         self.assertEqual(245, library["symbol_count"])
-        self.assertEqual(1571, library["pin_count"])
+        self.assertEqual(1570, library["pin_count"])
         self.assertEqual(3, library["external_interface_metadata_count"])
         self.assertTrue(self.manifest["authorization"]["controlled_symbol_library"])
         self.assertFalse(self.manifest["authorization"]["native_schematic_nets"])

@@ -46,6 +46,10 @@
     "H2-ADP00": ["ADP_00_DISPLAY_ADAPTER"]
   },
   "footprint_overrides": {
+    "Same Sky SJ-43515TS-SMT-TR": "Leshy2_R2:SJ-43515TS-SMT-TR",
+    "Vishay TSMP95000TR": "Leshy2:Vishay-Heimdall-SMD-TR",
+    "Vishay TSOP75238TR": "Leshy2:Vishay-Heimdall-SMD-TR",
+    "C&K JS102011SAQN": "Button_Switch_SMD:SW_SPDT_CK_JS102011SAQN",
     "JAE DX07S016JA1R1500": "Leshy2_R2:USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk",
     "OMRON B3S-1100P": "Leshy2_R2:B3S-1100P",
     "Texas Instruments TPD2EUSB30ADRTR": "Package_TO_SOT_SMD:Texas_DRT-3",
@@ -117,6 +121,9 @@
     "LESHY2-PCB-TP-1MM-R2": "Leshy2_R2:PCB_TestPoint_Pad_D1.0mm"
   },
   "sheet_affinity_overrides": {
+    "same_sky_sj_43515ts_smt_tr": ["RF_22_AUDIO_CODEC_IO"],
+    "vishay_tsmp95000tr": ["UI_20_C5_WIFI_IR_SERVICE"],
+    "ck_js102011saqn": ["RF_50_TX_SAFETY_EVIDENCE"],
     "adi_ad8314armz_reel": ["UI_31_NRF24_X3_TX_EVIDENCE", "RF_20_CC1101_VOICE_TX"],
     "davies_1227_j": ["UI_11_STORAGE_CONTROLS_INDICATORS"],
     "eastrising_er_tft035ips_6_ctp": ["UI_10_S3_DISPLAY_TOUCH"],

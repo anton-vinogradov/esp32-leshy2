@@ -3,6 +3,23 @@
   "scope": "H6 bounded manufacturer-primary interface review: physical passive contact types only, without contextual power-source promotion, pin-to-pin forwarding edges, mechanical assembly approval or full mating/polarity proof. Keys identify native electrical pad labels; explicit alias/mapping gaps remain fail-closed in unresolved. Mechanical MP pads are excluded rather than invented as electrical pins.",
   "devices": [
     {
+      "device_id": "ck_js102011saqn",
+      "mpn": "C&K JS102011SAQN",
+      "evidence": [
+        {
+          "url": "https://www.littelfuse.com/assetdocs/littelfuse-c-k-slide-js-series-datasheet?assetguid=aba42b08-0d2c-423b-813d-a2faa5a3bb14",
+          "section": "JS Series, VL 01/14/26, page 4: exact SA maintained non-shorting SPDT circuit; pin2 common, throws1/3. This proves passive contact types, not the ambiguous physical A/B direction caption.",
+          "checked": "2026-09-08"
+        }
+      ],
+      "pins": {
+        "1": {"type": "passive", "reason": "SPDT throw1, connected to common2 in one maintained state; not a driven output."},
+        "2": {"type": "passive", "reason": "SPDT common contact; switch carries a command signal, not pack/load current."},
+        "3": {"type": "passive", "reason": "SPDT throw3, connected to common2 in the other maintained state; not a power source."}
+      },
+      "unresolved": ["Manufacturer A/B caption and physical lever direction must be reconciled before directional RUN/KILL silkscreen is accepted; electrical shorted pairs are unambiguous."]
+    },
+    {
       "device_id": "gct_usb4105_gf_a",
       "mpn": "GCT USB4105-GF-A",
       "evidence": [
@@ -1245,39 +1262,35 @@
       "numbering_basis": "Four project-native pad aliases; manufacturer catalog does not number these contacts."
     },
     {
-      "device_id": "same_sky_sj_43504_smt_tr",
-      "mpn": "Same Sky SJ-43504-SMT-TR",
+      "device_id": "same_sky_sj_43515ts_smt_tr",
+      "mpn": "Same Sky SJ-43515TS-SMT-TR",
       "evidence": [
         {
-          "url": "https://www.sameskydevices.com/product/resource/sj-43504-smt-tr.pdf",
-          "section": "Rev 1.06, 09/12/2024, p2: PIN table, schematic, recommended PCB layout (top view)",
-          "checked": "2026-09-07"
+          "url": "https://www.sameskydevices.com/product/resource/digikeypdf/sj-4351x-smt.pdf",
+          "section": "SJ-4351X-SMT, 2024-09-12, p2: exact SJ-43515TS-SMT variant circuit and PIN table; recommended PCB layout TOP VIEW. Terminal6 is NP for TS. Passive typing and switch pair only; not a native placement or audio-performance approval.",
+          "checked": "2026-09-08"
         }
       ],
       "pins": {
         "1": {
           "type": "passive",
-          "reason": "Sleeve conductor."
+          "reason": "Sleeve conductor; CTIA microphone in the current circuit, not a driven power or logic output."
         },
         "2": {
           "type": "passive",
-          "reason": "Tip conductor, normally closed to switch contact 5 without an inserted plug."
+          "reason": "Tip conductor, normally closed to contact5 without a plug; current headphone-left/detect-source node."
         },
         "3": {
           "type": "passive",
-          "reason": "Ring 1 conductor, normally closed to switch contact 6 without an inserted plug."
+          "reason": "Ring1 conductor; TS variant has no separate ring1 switch contact6."
         },
         "4": {
           "type": "passive",
-          "reason": "Ring 2 conductor."
+          "reason": "Ring2 conductor; system wiring connects AUDIO_GROUND, the bare jack does not source power."
         },
         "5": {
           "type": "passive",
-          "reason": "Tip switch contact, opened from tip 2 by plug insertion."
-        },
-        "6": {
-          "type": "passive",
-          "reason": "Ring 1 switch contact, opened from ring 1 contact 3 by plug insertion."
+          "reason": "Mechanical tip-switch contact, closed to tip2 without a plug and opened by insertion; not a powered logic output."
         }
       },
       "unresolved": []

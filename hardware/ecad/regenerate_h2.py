@@ -87,6 +87,10 @@ HISTORICAL_R1_REVIEW_GENERATORS = (
     "hardware/ecad/h2_review_hwfw_consolidated.py",
     "hardware/ecad/h2_acceptance_package.py",
 )
+R2_FOOTPRINT_GENERATORS = (
+    "hardware/ecad/h2_r2_b3s_actuator_datum.py",
+    "hardware/ecad/h2_r2_audio_footprint.py",
+)
 R2_NATIVE_GENERATORS = (
     "hardware/ecad/h2_r2_native_inventory.py",
     "hardware/ecad/h2_r2_symbol_footprint_ledger.py",
@@ -121,8 +125,12 @@ def regenerate(sync_firmware: bool) -> None:
     for generator in ROOT_GENERATORS:
         run(REPO, generator, "--write")
     run(REPO, ARCHITECTURE_GENERATOR, "--write")
+    for generator in R2_FOOTPRINT_GENERATORS:
+        run(REPO, generator, "--write")
     for generator in R2_NATIVE_GENERATORS:
         run(REPO, generator, "--write")
+    # Current cost ranks consume the R2 inventory, not the superseded capture.
+    run(REPO, "hardware/product-design/h1_r2_cost_review.py", "--write")
     if sync_firmware:
         if not FIRMWARE_REPO.is_dir():
             raise FileNotFoundError(f"firmware sibling not found: {FIRMWARE_REPO}")
@@ -143,6 +151,8 @@ def verify(kicad_check: bool, sync_firmware: bool) -> None:
     for generator in IMPLEMENTED_CHILD_GENERATORS:
         run(REPO, generator, "--check")
     run(REPO, SYMBOL_LIBRARY_GENERATOR, "--check")
+    for generator in R2_FOOTPRINT_GENERATORS:
+        run(REPO, generator, "--check")
     for generator in R2_NATIVE_GENERATORS:
         run(REPO, generator, "--check")
     if kicad_check:

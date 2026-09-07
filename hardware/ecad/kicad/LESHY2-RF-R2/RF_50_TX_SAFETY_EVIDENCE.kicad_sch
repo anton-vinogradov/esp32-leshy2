@@ -9,7 +9,7 @@
 		(rev "H2-R2.1.3")
 	)
 	(lib_symbols
-		(symbol "Leshy2_R2:ck_js102011scqn"
+		(symbol "Leshy2_R2:ck_js102011saqn"
 			(pin_names (offset 1.016))
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -22,13 +22,13 @@
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Value" "C&K JS102011SCQN"
+			(property "Value" "C&K JS102011SAQN"
 				(at 0.00 -7.62 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Footprint" "Leshy2:JS102011SCQN"
+			(property "Footprint" "Button_Switch_SMD:SW_SPDT_CK_JS102011SAQN"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -49,14 +49,14 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Leshy2DeviceID" "ck_js102011scqn"
+			(property "Leshy2DeviceID" "ck_js102011saqn"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "ManufacturerEvidenceChecked" "2026-08-19"
+			(property "ManufacturerEvidenceChecked" "2026-09-07"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -70,7 +70,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(symbol "ck_js102011scqn_0_1"
+			(symbol "ck_js102011saqn_0_1"
 				(rectangle
 					(start -15.24 5.08)
 					(end 15.24 -5.08)
@@ -78,7 +78,7 @@
 					(fill (type background))
 				)
 			)
-			(symbol "ck_js102011scqn_1_1"
+			(symbol "ck_js102011saqn_1_1"
 				(pin passive line
 					(at -20.32 1.27 0)
 					(length 5.08)
@@ -8306,7 +8306,7 @@
 		(uuid "d4d9f655-1bb8-5774-b03e-ac177ad2bfb4")
 	)
 	(symbol
-		(lib_id "Leshy2_R2:ck_js102011scqn")
+		(lib_id "Leshy2_R2:ck_js102011saqn")
 		(at 970.28 229.87 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8320,13 +8320,13 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "C&K JS102011SCQN"
+		(property "Value" "C&K JS102011SAQN"
 			(at 970.28 237.49 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Leshy2:JS102011SCQN"
+		(property "Footprint" "Button_Switch_SMD:SW_SPDT_CK_JS102011SAQN"
 			(at 970.28 229.87 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8340,7 +8340,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Description" "ck_js102011scqn"
+		(property "Description" "ck_js102011saqn"
 			(at 970.28 229.87 0)
 			(show_name no)
 			(do_not_autoplace no)

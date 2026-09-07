@@ -27,7 +27,7 @@ class H2R2NetLedgerTests(unittest.TestCase):
             stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("4302 current R2 endpoints reconciled", result.stdout)
+        self.assertIn("4301 current R2 endpoints reconciled", result.stdout)
 
     def test_every_current_instance_contact_occurs_once(self):
         instances = json.loads(INSTANCES.read_text(encoding="utf-8"))["rows"]
@@ -41,7 +41,7 @@ class H2R2NetLedgerTests(unittest.TestCase):
             for contact in definitions[instance["device_id"]]["contact_map"]
         }
         self.assertEqual(expected, set(self.by_endpoint))
-        self.assertEqual(4302, len(expected))
+        self.assertEqual(4301, len(expected))
         self.assertFalse([
             endpoint for endpoint, count in Counter(row["endpoint"] for row in self.rows).items()
             if count != 1
@@ -51,9 +51,9 @@ class H2R2NetLedgerTests(unittest.TestCase):
         summary = self.ledger["summary"]
         self.assertEqual("pass", self.ledger["status"])
         self.assertEqual([], self.ledger["errors"])
-        self.assertEqual(4302, summary["endpoint_count"])
+        self.assertEqual(4301, summary["endpoint_count"])
         self.assertEqual(4066, summary["connected_endpoint_count"])
-        self.assertEqual(236, summary["no_connect_endpoint_count"])
+        self.assertEqual(235, summary["no_connect_endpoint_count"])
         self.assertEqual(0, summary["external_interface_endpoint_count"])
         self.assertEqual(0, summary["unresolved_endpoint_count"])
         self.assertEqual(788, summary["unique_net_count"])
@@ -65,6 +65,17 @@ class H2R2NetLedgerTests(unittest.TestCase):
             self.assertEqual(front["disposition"], rear["disposition"])
             self.assertEqual(front["net"], rear["net"])
             self.assertIn(front["origin"], {"current_h0_m1_map", "current_h0_m1_explicit_nc"})
+
+    def test_ordinary_smt_headset_retains_all_five_connected_roles(self):
+        rows = {row["contact"]: row for row in self.rows if row["instance"] == "headphone_jack"}
+        expected = {"SLEEVE": ("1", "HEADSET_MIC_RAW"), "TIP": ("2", "HEADPHONE_LEFT_TIP"),
+                    "RING1": ("3", "HEADPHONE_RIGHT_RING1"), "RING2": ("4", "AUDIO_GROUND"),
+                    "TIP_SWITCH": ("5", "HEADSET_SWITCH_STATE")}
+        self.assertEqual(set(expected), set(rows))
+        for contact, (pin, net) in expected.items():
+            self.assertEqual((pin, net, "connected", "same_sky_sj_43515ts_smt_tr"),
+                             (rows[contact]["physical"], rows[contact]["net"], rows[contact]["disposition"], rows[contact]["device_id"]))
+        self.assertNotIn("headphone_jack.RING1_SWITCH", self.by_endpoint)
 
     def test_current_s3_and_dual_rp_gpio_maps_are_exact(self):
         h0 = json.loads(H0.read_text(encoding="utf-8"))
@@ -212,7 +223,7 @@ class H2R2NetLedgerTests(unittest.TestCase):
             if name.startswith("historical_"):
                 self.assertFalse(source["authority"])
         historical = [row for row in self.rows if row["origin"].startswith("reconciled_historical")]
-        self.assertEqual(2197, len(historical))
+        self.assertEqual(2196, len(historical))
         self.assertEqual(
             1096,
             self.ledger["summary"]["origin_counts"]["current_abstract_endpoint_canonical"],

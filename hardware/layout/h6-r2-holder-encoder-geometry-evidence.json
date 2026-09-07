@@ -3,8 +3,8 @@
   "checked": "2026-09-07",
   "scope": "Dimensioned primary geometry review; no production binding, PCB, MPN or fabrication authorization changed",
   "fabrication_ready": false,
-  "summary_en": "The existing encoder footprint has the wrong mounting-lug pitch. A dimension fixture and explicitly unqualified slot candidate preserve the evidence; they do not close the mounting gate. The holder has undersized SMT reserves and missing mechanical apertures; the complete registered hole pattern remains unresolved.",
-  "summary_ru": "У текущего footprint энкодера неверный шаг корпусных лапок. Размерный эталон и явно непринятый кандидат прорезей сохраняют доказательства, но не закрывают проверку монтажа. У держателя слишком малы резервы SMT-площадок и отсутствуют механические отверстия; полный привязанный к корпусу рисунок отверстий пока не подтверждён.",
+  "summary_en": "The exact encoder centres are confirmed; a separate JLC process candidate now contains the complete recommended rectangular mounting apertures with declared tolerances, without assuming lug thickness. This proves a bounded insertion envelope, not solder-joint strength or production acceptance. A manufacturer-authored 1048P Rev A drawing supplies the missing locator-to-land-edge dimension and exact-part height; Rev B and the unlabelled longitudinal symmetry registration remain open. No production geometry changed.",
+  "summary_ru": "Точные центры энкодера подтверждены; отдельный технологический кандидат JLC теперь содержит рекомендованные прямоугольные монтажные отверстия с явно заданными допусками, без выдуманной толщины лапок. Это ограниченное доказательство свободной посадки, а не прочности пайки или допуска в производство. В индивидуальном чертеже производителя 1048P Rev A найдены недостающий размер от направляющего отверстия до края площадки и высота точного артикула; Rev B и неразмеренная продольная симметричная привязка пока открыты. Рабочая геометрия не изменена.",
   "devices": [
     {
       "device_id": "alps_ec11e18244au",
@@ -67,9 +67,47 @@
         "why_open_en": "An obround with the rectangle's bounding dimensions does not contain every rectangle corner. The primary drawing does not dimension lug thickness or its corner radii, so tab clearance cannot be proved from width alone. Finished-hole plating and factory tolerance also need an explicit process target.",
         "why_open_ru": "Овал с габаритами прямоугольника не содержит все его углы. В первичном чертеже не заданы толщина лапки и радиусы её углов, поэтому одной ширины недостаточно для доказательства свободной посадки. Также нужен явный технологический допуск готового отверстия после металлизации."
       },
+      "process_candidate": {
+        "path": "hardware/layout/candidates/EC11E18244AU-JLC-OVAL-CANDIDATE.kicad_mod",
+        "accepted_for_production": false,
+        "binding_changed": false,
+        "status": "reference_aperture_inclusion_proved_solder_joint_and_native_integration_open",
+        "primary_process_evidence": {
+          "url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+          "section": "Drilling: finished hole size, position and plated-slot tolerances; rounded slots; PTH annular ring",
+          "checked": "2026-09-07"
+        },
+        "manufacturer_reference_rectangle_max_mm": [1.6, 2.7],
+        "nominal_plated_oval_mm": [2.2, 4.8],
+        "finished_size_tolerance_mm": {"minus": 0.08, "plus": 0.13},
+        "finished_oval_min_mm": [2.12, 4.72],
+        "finished_oval_max_mm": [2.33, 4.93],
+        "factory_hole_position_allowance_each_axis_mm": 0.05,
+        "additional_registration_allowance_each_axis_mm": 0.1,
+        "additional_allowance_basis": "Conservative engineering budget, numerically equal to the drawing's general tolerance; not a measured lug thickness, not an added manufacturer specification, and not proof of an arbitrary component displacement beyond this budget.",
+        "total_relative_centre_allowance_each_axis_mm": 0.15,
+        "worst_rectangle_half_extent_in_hole_frame_mm": [0.95, 1.5],
+        "minimum_oval_radius_mm": 1.06,
+        "minimum_oval_straight_segment_half_length_mm": 1.3,
+        "minimum_corner_radial_margin_mm_rounded_down": 0.0891,
+        "proof": "For a vertical stadium, test x^2 + max(abs(y)-(L-W)/2,0)^2 <= (W/2)^2. At W=2.12,L=4.72 the worst expanded rectangle corner gives 0.95^2+0.20^2=0.9425 < 1.06^2=1.1236. Convexity covers every interior point; monotonic inclusion in W and L covers all finished-size corners. The separate tests also enumerate all size, position and rectangle-corner endpoints.",
+        "plated_slot_length_to_width_rule": "Nominal4.8 >= 2*2.2; even shortest finished4.72 >= 2*widest finished2.33. JLC publishes a minimum2:1 slot length/width ratio.",
+        "mounting_copper_oval_mm": [3.2, 5.8],
+        "conservative_copper_annulus_min_mm_rounded_down": 0.3642,
+        "annulus_basis": "Nominal0.5 radial allowance minus half positive hole-size tolerance0.065 minus sqrt(2)*factory centre allowance0.05. This excludes an additional unbounded fabrication registration error; the candidate is not a fabrication approval.",
+        "signal_holes": {
+          "nominal_mm": 1.05,
+          "required_finished_interval_mm": [1.0, 1.1],
+          "process": "JLC's specifically remarked precision/press-fit circular-hole tolerance +/-0.05 mm, available for0.55..2.0 mm finished holes on multilayer ENIG boards. These encoder leads are NOT declared press-fit; this invokes the published precision-hole process only.",
+          "not_standard_tolerance": "The ordinary +0.13/-0.08 process cannot fit entirely inside the manufacturer's1.0..1.1 mm interval for any nominal target. A nominal1.1 standard hole permits1.02..1.23, so it is not literal compliance with the drawing's upper bound.",
+          "fabrication_note_required": "Identify all five EC11 A/B/C/D/E circular holes as finished1.05 +/-0.05 mm and select multilayer ENIG. This note/process is not yet adopted in the production order contract."
+        },
+        "limits_en": "The enlarged oval intentionally exceeds Alps' recommended rectangular aperture maxima. Set inclusion establishes insertion clearance only, conditional on the exact component fitting the manufacturer's reference pattern. Unknown lug thickness prevents a quantitative solder-gap, fill, pull-out or torque-strength claim. All seven through-hole pads still require proper soldering, native front/back clearance, route and assembly review. This candidate avoids waiting for thickness merely to prove aperture containment; it does not waive the remaining engineering acceptance.",
+        "limits_ru": "Увеличенный овал намеренно выходит за максимальные размеры прямоугольного отверстия Alps. Включение фигур доказывает только запас для вставки при условии, что точный компонент подходит к рекомендованному рисунку производителя. Неизвестная толщина лапки не позволяет количественно подтвердить зазор пайки, заполнение, усилие вырывания или стойкость к моменту. Все семь сквозных площадок требуют пайки и проверки внутренней/наружной стороны, разводки и монтажа. Для доказательства включения отверстия ждать толщину больше не нужно, но оставшаяся инженерная приёмка не отменена."
+      },
       "unresolved": [
-        "Finished plated slot profile versus exact lug thickness/radii; catalog outline alone is insufficient",
-        "Factory finished-hole tolerance around the selected 1.1-mm round-hole target",
+        "Engineering acceptance of the enlarged process-candidate slots: aperture inclusion is proven, but exact lug thickness and solder-joint strength are not",
+        "Adoption of the published multilayer-ENIG precision circular-hole process for the candidate1.05 +/-0.05 mm signal holes",
         "Independent body/terminal 3D verification and installation clearance after eventual production integration"
       ]
     },
@@ -79,7 +117,7 @@
       "project": "LESHY2-RF-R2",
       "instance": "pack_holder",
       "reference": "BT1",
-      "status": "confirmed_incomplete_footprint_registered_pattern_unresolved",
+      "status": "confirmed_incomplete_footprint_locator_edge_dimension_recovered_registration_open",
       "evidence": [
         {
           "url": "https://www.keyelco.com/userAssets/file/K75p29.pdf",
@@ -93,6 +131,16 @@
           "url": "https://www.keyelco.com/product.cfm/product_id/13959",
           "section": "Exact 1048P product and individual drawing link",
           "checked": "2026-09-07"
+        },
+        {
+          "url": "https://file.aichiplink.com/r/datasheets/keystoneelectronics-1048p-datasheets-1060.pdf",
+          "section": "Manufacturer-authored individual drawing1048P, Rev A dated10.08.13, Mounting Pad Layout and exact-part side/end views; distributor-hosted copy, not distributor-created CAD",
+          "checked": "2026-09-07",
+          "pdf_sha256": "6135bff212f9eab9ed8158febcbbd0d18b9479caac384a7f51f2818d1328e26b",
+          "review_local_pdf_filename": "1048p-authored-copy.pdf",
+          "review_local_render_filename": "1048p-authored-copy-landscape.png",
+          "visually_reviewed": true,
+          "revision_limit": "Rev A is not relabelled as the current official Rev B. Title block identifies Keystone Electronics Corp. and exact drawing1048P; PDF metadata title1048P_c Layout1(1), export2020-01-02."
         },
         {
           "url": "https://www.keyelco.com/product-pdf.cfm?p=13959",
@@ -125,6 +173,50 @@
         "holder_body_width_mm": 39.8,
         "interpretation_limit": "Catalog pairs rounded inch and mm dimensions. Recorded values above are printed metric labels, not a new process tolerance or an exact all-hole coordinate table. Pair separations do not locate the complete pattern relative to the footprint body/polarity datum."
       },
+      "individual_drawing_review": {
+        "revision": "A",
+        "dimension_values": "Printed metric labels below are preserved as printed; inch labels are retained for traceability. In particular .323 inch converts to8.2042 mm, not the printed8.22 mm. Do not silently combine rounded labels into a zero-tolerance constraint system.",
+        "small_locator_offset_from_right_smt_outer_edge": {"inch_label": ".323", "metric_label_mm": 8.22, "direction": "left from the right outside edge of the right SMT land to locator axis"},
+        "small_locator_diameter": {"inch_label": ".094", "metric_label_mm": 2.39},
+        "small_locator_y_registration": "On the same horizontal centreline as the lower-left retaining hole,7.95 mm below the lower SMT row axis; this relationship is drawn with shared centreline and dimension .313[7.95], not estimated from pixels.",
+        "upper_retaining_hole_y_registration": "On the upper-right longitudinal axis,7.95 mm above the upper SMT row axis; dimension .313[7.95].",
+        "smt_row_pitch": {"inch_label": ".753", "metric_label_mm": 19.11},
+        "four_smt_land_minimum_size_mm": [7.34, 6.35],
+        "four_smt_land_minimum_size_inch": [0.289, 0.25],
+        "smt_outer_span_minimum_mm": 86.0,
+        "longitudinal_hole_axis_pair_pitch_mm": 55.2,
+        "retaining_hole_diameter_mm": 3.45,
+        "fastener_hole_diameter_mm": 3.17,
+        "retaining_hole_view_positions": ["lower-left", "upper-right"],
+        "fastener_hole_view_positions": ["left middle transverse axis", "right middle transverse axis"],
+        "terminal_polarity_top_view": {"upper_left": "+", "upper_right": "-", "lower_left": "-", "lower_right": "+"},
+        "plastic_body_size_mm": [77.06, 39.78],
+        "body_height_inch": 0.585,
+        "derived_body_height_mm": 14.859,
+        "height_limit": "Exact1048P Rev A side/end outline; do not replace it with K75 family envelope .709[18.0] as if it were a confirmed revision change. Current exact-part model14.86 mm is consistent with Rev A, but the unseen Rev B remains to be compared.",
+        "retaining_post_max_diameter_mm": {"nominal": 3.68, "minus": 0.13, "plus": 0.13},
+        "retaining_post_projection_mm": 3.43,
+        "small_locator_post_diameter_mm": 1.57,
+        "small_locator_post_projection_mm": 1.57,
+        "general_linear_tolerance_mm": 0.25,
+        "general_angular_tolerance_degrees": 1.0,
+        "full_body_registered_hole_coordinate_set": null,
+        "remaining_registration_limit": "The55.20-mm longitudinal hole-axis pair is shown symmetrically inside the holder outline, but no dimension explicitly registers either axis to the body/SMT outer X edge. A centred +/-27.60-mm pair and locator X=43.00-8.22=34.78 mm are a plausible engineering registration, NOT a fully dimensioned manufacturer coordinate set. Do not silently turn this symmetry assumption into exact drilling.",
+        "plausible_centred_registration_not_accepted": {
+          "origin": "Assumed centre of the minimum86.00-mm SMT outer span and midpoint of the two SMT rows; +X right,+Y down in component-top view",
+          "smt_centres_mm": [[-39.33, -9.555], [39.33, -9.555], [-39.33, 9.555], [39.33, 9.555]],
+          "retaining_centres_mm": [[-27.6, 17.505], [27.6, -17.505]],
+          "fastener_centres_mm": [[-27.6, 0], [27.6, 0]],
+          "small_locator_centre_mm": [34.78, 17.505],
+          "drilling_authorized": false
+        },
+        "manufacturing_process_observation": {
+          "url": "https://jlcpcb.com/blog/npth-design-guide",
+          "section": "JLCPCB NPTH Design Guide,2026-07-22: nominal finished diameter, approximately+/-0.08 mm mechanical tolerance",
+          "checked": "2026-09-07",
+          "limit": "The factory article describes typical/approximate capability, not an order-specific guaranteed fit. Retaining posts are visibly split/compliant and their maximum width exceeds the recommended hole; ordinary rigid-pin diameter subtraction must not be used to enlarge away the retention feature."
+        }
+      },
       "existing_footprint_observation": {
         "path": "hardware/ecad/libraries/Leshy2.pretty/Keystone-1048P.kicad_mod",
         "source_generator": "hardware/ecad/h2_rf_pack_safety_aon.py:footprint_outputs",
@@ -136,8 +228,8 @@
       },
       "candidate_created": false,
       "unresolved": [
-        "Small locator hole diameter2.4mm: longitudinal X is not dimensioned in the visually reviewed K75 pad layout",
-        "Complete pattern registration to body and polarity datum, including optional fastener through-path, requires the exact individual drawing or manufacturer CAD",
+        "Current individual drawing Rev B has not been visually retrieved; Rev A locator-to-right-land-edge8.22 mm is now known and must not be reported as wholly unlocated",
+        "The longitudinal55.20-mm hole-axis pair lacks an explicit X offset to the SMT/body edge in the retrieved drawing; centred registration remains an identified engineering assumption rather than a manufacturer dimension",
         "Finished hole tolerances and retaining-post installation method cannot be derived from nominal hole/post diameter subtraction alone",
         "Recheck all opposite-face component clearances and battery NTC nesting after a proven hole/pad pattern is integrated"
       ]

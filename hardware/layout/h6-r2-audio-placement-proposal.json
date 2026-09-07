@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "checked": "2026-09-08",
+  "status": "selected_source_overrides_pending_serial_native_integration",
+  "project": "LESHY2-RF-R2",
+  "production_pcb_modified": false,
+  "coordinate_semantics": "Explicit native board coordinates, not H1 world/display coordinates. centre_mm is courtyard centre, anchor_mm is KiCad footprint origin. Do not mirror these a second time.",
+  "evidence": "hardware/procurement/h6-sj43515ts-selection-review.json",
+  "fit_evidence": "work/audio-jack-sourcing/fit-2026-09-08/exterior-y99/fit.json",
+  "placement_overrides": {
+    "headphone_jack": {"frame": "rear-outer", "anchor_mm": [0.8, 99.0], "rotation_deg": 0, "mechanical_locked": true, "method": "reviewed outward connector mouth datum", "reason": "Ordinary top-mount SJ-43515TS mouth at native X=-0.7; land1 starts X=0.4. Explicit drawing anchor, no mid-mount cutout; exact5contacts and tip-switch2-to-5 retained."},
+    "voice_io_power_input_cap": {"frame": "rear-outer", "centre_mm": [12.0, 106.0], "rotation_deg": 270, "method": "reviewed audio local-support correction", "reason": "Clear selected F99 jack lands while keeping the same input-bypass net pair near U48; measured VCC-pad distance2.23mm, ground3.60mm."},
+    "audio_capture_selector_bypass": {"frame": "rear-inner", "centre_mm": [5.6, 97.1], "rotation_deg": 0, "method": "reviewed audio local-support correction", "reason": "Clear the ordinary SMT jack locator drill while retaining local U68 bypass: VCC pair2.904mm, AUDIO_GROUND2.829mm."},
+    "evidence_or_4": {"frame": "rear-outer", "centre_mm": [10.5, 110.0], "rotation_deg": 90, "method": "reviewed audio local-support correction", "reason": "Move the existing three-pad evidence diode across the same RF PCB to clear the jack locator and the unchanged RF RP service labels. Joint native DRC gives zero violations and a 0.500mm courtyard gap to C144. All three net names retained, no existing track/via attachment; routing is still required."}
+  },
+  "native_pose_crosscheck": [
+    {"instance": "headphone_jack", "reference": "U83", "side": "F.Cu", "rotation_deg": 0, "anchor_mm": [0.8, 99.0], "courtyard_centre_mm": [9.3, 99.0]},
+    {"instance": "voice_io_power_input_cap", "reference": "C144", "side": "F.Cu", "rotation_deg": 270, "anchor_mm": [12.0, 106.0], "courtyard_centre_mm": [12.0, 106.0]},
+    {"instance": "audio_capture_selector_bypass", "reference": "C199", "side": "B.Cu", "rotation_deg": 0, "anchor_mm": [5.6, 97.1], "courtyard_centre_mm": [5.6, 97.1]},
+    {"instance": "evidence_or_4", "reference": "U116", "side": "F.Cu", "rotation_deg": 90, "anchor_mm": [10.5, 110.0], "courtyard_centre_mm": [10.5, 110.0]}
+  ],
+  "joint_silkscreen_correction": {"rejected_prior_U116_anchor_mm": [9.0, 107.0], "reason": "Aggregate RF RP label overlaps diode silk and pad1 solder mask; do not suppress those DRC findings.", "verified_U116_anchor_mm": [10.5, 110.0], "native_drc_violations": 0, "native_schematic_parity_findings": 0, "minimum_C144_courtyard_gap_mm": 0.500},
+  "affected_existing_route_ids": [],
+  "copper_objects_preserved_in_scratch": 766,
+  "scope_limit": "Only audio4 overrides, not the full aggregate candidate. Do not copy an obsolete PTT or overwrite concurrent bottom/IR/service poses. Scratch planar DRC does not close assembled 3D/finger/knob clearance or fabrication readiness."
+}

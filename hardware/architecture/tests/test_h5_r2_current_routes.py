@@ -25,8 +25,8 @@ class H5R2CurrentRoutesTest(unittest.TestCase):
         )
         self.assertEqual(249, self.result["summary"]["component_groups"])
         self.assertEqual(1216, self.result["summary"]["component_articles"])
-        self.assertEqual(209, self.result["summary"]["legacy_routes_reused"])
-        self.assertEqual(40, self.result["summary"]["new_or_replaced_routes"])
+        self.assertEqual(206, self.result["summary"]["legacy_routes_reused"])
+        self.assertEqual(43, self.result["summary"]["new_or_replaced_routes"])
 
     def test_only_wbc16_is_a_current_sourcing_gate(self):
         gates = [
@@ -41,7 +41,7 @@ class H5R2CurrentRoutesTest(unittest.TestCase):
         ru = MODULE.render_doc(self.result, True)
         self.assertIn("249 закупаемых групп / 1216 изделий", ru)
         self.assertIn("WBC16-1TLC", ru)
-        self.assertIn("$449.70", ru)
+        self.assertIn("$450.35", ru)
 
 
 if __name__ == "__main__":

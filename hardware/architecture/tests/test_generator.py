@@ -963,7 +963,12 @@ class ArchitectureValidationTests(unittest.TestCase):
         command_switch = self.database["devices"]["ck_js102011scqn"]
         self.assertEqual("C&K JS102011SCQN", command_switch["mpn"])
         self.assertEqual("active_orderable", command_switch["lifecycle"])
-        self.assertEqual([8.5, 3.5, 3.6], command_switch["dimensions_mm"])
+        # Historical SC, JS Series VL 01/14/26 p5: 3.5-mm body + 2-mm
+        # top actuator. This is not the current R2 side-actuated SA package.
+        self.assertEqual([8.5, 3.5, 5.5], command_switch["dimensions_mm"])
+        self.assertIn("JS102011SCQN", command_switch["mechanical_height_basis"])
+        self.assertIn("3.5-mm body", command_switch["mechanical_height_basis"])
+        self.assertIn("2.0-mm top actuator", command_switch["mechanical_height_basis"])
         self.assertEqual(
             "low-current command input only; never carries cell, SYS, charge or load current",
             command_switch["electrical_contract"]["use"],
@@ -3849,7 +3854,8 @@ class ArchitectureValidationTests(unittest.TestCase):
             self.database["devices"]["omron_b3s_1100p"]["electrical_contract"]["user_interface"],
         )
         run_kill = self.database["devices"]["ck_js102011scqn"]
-        self.assertEqual([8.5, 3.5, 3.6], run_kill["dimensions_mm"])
+        self.assertEqual([8.5, 3.5, 5.5], run_kill["dimensions_mm"])
+        self.assertEqual("VL 01/14/26", run_kill["source"]["version"])
         self.assertIn("low-current command input only", run_kill["electrical_contract"]["use"])
         input_io = self.database["devices"]["ti_tca9539_pwr"]
         self.assertEqual("4", input_io["contacts"]["P00"]["physical"])

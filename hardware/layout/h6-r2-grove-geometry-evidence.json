@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "artifact": "H6-R2 Grove body-datum correction and rejected placement candidate",
+  "checked_at_utc": "2026-09-07T20:17:46Z",
+  "status": "controlled_library_geometry_corrected_native_integration_pending",
+  "mpn": "1125R-SMT-4P",
+  "reference": "LESHY2-RF-R2:J11",
+  "instance": "unit_connector",
+  "scope": "Correct F.Fab body and engineering F.CrtYd only; preserve all six solder-land records, their four electrical numbers, MPN and nets. No native board, schematic or placement change.",
+  "previous_datum_review": "hardware/layout/h6-r2-interface-datum-review.json",
+  "footprint": "hardware/ecad/libraries/Leshy2.pretty/1125R-SMT-4P.kicad_mod",
+  "footprint_sha256": "129ef50b9d030294bda39f45c75fc7647dd99b5ebdf969cb14a585d4f9ce31db",
+  "evidence": [
+    {
+      "url": "https://statics3.seeedstudio.com/fusion/opl/datasheet/320110032.pdf",
+      "author": "Shenzhen NS-Tech Co., Ltd.; published by Seeed Studio",
+      "document": "NS-1125-W00010 Rev.A, 2013-07-25, 1125R-SMT-4P",
+      "section": "Sheet 1, body, section and land pattern; full page visually reviewed",
+      "sha256": "910586c9d386804e0a33d9978fc13f1c342e8f3194139810d24582474ae816f3",
+      "facts": "Body nominally 12.0 by 9.10 mm; mating side opposite the signal solder-tail row. No connector-specific PCB-edge datum is prescribed."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Seeed-Studio/OPL_Kicad_Library/b0035c51eb0348bb3e165fdb2f2765fa3d1d17bd/Seeed%20Fusion%20Component%20Libraries%20for%20KiCad/OPL_Connector.pretty/GROVE-HW4-SMD-2.0-90D.kicad_mod",
+      "author": "Seeed Studio",
+      "commit": "b0035c51eb0348bb3e165fdb2f2765fa3d1d17bd",
+      "sha256": "367ead3546d0d010a6fee155dab4b68b623e032c3611ef1572553f680348742a",
+      "section": "F.Fab body and exact signal/anchor rows",
+      "symbol_mapping": "The same commit's OPL_Connector.lib maps GROVE-CONNECTOR-SMD-90D_4+2P-2.0_ / SKU 320110032 to *HW4-SMD-2.0-90D*.",
+      "symbol_library_sha256": "db04d5625d25fa39bfc2214b84e3bc656392f26b68dcf13dbe2b8174f6829bca"
+    },
+    {
+      "url": "https://www.seeedstudio.com/blog/2022/11/18/seeed-grove-designers-guide-pcb-design-guidelines-and-more/",
+      "author": "Seeed Studio",
+      "section": "Connector identification and PCB Layout Tips",
+      "facts": "SKU 320110032 is 1125R-SMT-4P. General advice keeps the connector on the PCB with at least 0.5 mm copper-to-edge clearance; this is not an exact mating-face datum."
+    }
+  ],
+  "alignment": {
+    "official_body_bounds_mm": {"x": [-6.0, 6.0], "y": [-4.55, 4.55]},
+    "official_signal_row_y_mm": 4.79970,
+    "official_anchor_row_y_mm": -2.69838,
+    "preserved_signal_row_y_mm": -3.815,
+    "preserved_anchor_row_y_mm": 3.685,
+    "transform": "Rotate official CAD 180 degrees, then translate Y into the preserved Leshy2 solder-land frame.",
+    "body_offset_from_signal_rows_mm": 0.98470,
+    "body_offset_from_anchor_rows_mm": 0.98662,
+    "row_alignment_disagreement_mm": 0.00192,
+    "selected_nominal_body_y_offset_mm": 0.985,
+    "corrected_body_bounds_mm": {"x": [-6.0, 6.0], "y": [-3.565, 5.535]},
+    "local_mating_direction": "+Y",
+    "precision_limit": "Row disagreement is CAD rounding, not manufacturing tolerance. Derived micrometre-scale decimals are nominal registration arithmetic only."
+  },
+  "engineering_courtyard": {
+    "bounds_mm": {"x": [-6.45, 6.45], "y": [-5.55, 5.85]},
+    "minimum_nominal_body_and_pad_margin_mm": 0.295,
+    "policy": "At least 0.25 mm beyond nominal body and preserved copper; not copied from an unrelated package and not a manufacturer-mandated courtyard. Body tolerances and plug access remain separate integration checks."
+  },
+  "native_candidate_review": {
+    "baseline_commit": "849a35030a0a49c66d65431a27e8d0ca16f4c469",
+    "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
+    "board_sha256": "3dd3862acf37ce7b0879093be5c0dc8c98482455c3c508a68b9f92c5b606d0b5",
+    "method": "Load native PCB and corrected library into KiCad in memory; add temporary footprint and test same-side courtyard intersections. No SaveBoard or native replacement.",
+    "coordinate_frame": "RF exterior/native XY; not clamshell world XY or mirrored inner-view XY",
+    "side": "B.Cu",
+    "rotation_deg": 180,
+    "anchor_mm": [57.0, 144.30],
+    "point_transform": "native_x = 57 - local_x; native_y = 144.30 + local_y",
+    "nominal_body_bounds_mm": {"x": [51.0, 63.0], "y": [140.735, 149.835]},
+    "nominal_courtyard_bounds_mm": {"x": [50.55, 63.45], "y": [138.75, 150.15]},
+    "observed_kicad_courtyard_bbox_mm": [50.505, 138.705, 63.495, 150.195],
+    "nominal_mouth_y_mm": 149.835,
+    "maximum_copper_y_mm": 149.485,
+    "nominal_copper_to_bottom_edge_mm": 0.515,
+    "same_side_courtyard_intersections": [
+      {"reference": "J1", "mpn": "JAE DX07S016JA1R1500", "observed_kicad_courtyard_bbox_mm": [58.015, 142.525, 69.045, 151.045]},
+      {"reference": "C29", "mpn": "TDK CGA5L1X7R1E475K160AC", "observed_kicad_courtyard_bbox_mm": [50.6, 137.1, 55.29, 139.49]},
+      {"reference": "U2", "mpn": "onsemi CAT24C512WI-GT3", "observed_kicad_courtyard_bbox_mm": [57.505, 133.705, 64.995, 139.195]}
+    ],
+    "status": "rejected_collision",
+    "accepted_for_native_integration": false,
+    "old_anchor_rotated_only_maximum_copper_y_mm": 150.635,
+    "limits": [
+      "The accepted exterior X=57 cannot be applied in isolation while the current USB, C29 and U2 poses remain; reconcile the complete lower interface row first.",
+      "B180 points the mating face toward increasing native Y. Rotating at the old Y=145.45 instead would put solder lands beyond the Y=150 board edge.",
+      "Nominal 0.515-mm copper-edge clearance is not a full tolerance, cable-plug, enclosure, soldering or DRC qualification. The engineering courtyard extending beyond the PCB is not itself a waiver."
+    ]
+  },
+  "native_files_modified": false,
+  "pads_or_mpn_changed": false,
+  "fabrication_ready": false
+}

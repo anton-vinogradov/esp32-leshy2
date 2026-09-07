@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "checked": "2026-09-07",
+  "status": "selected_for_r2_source_native_integration_open",
+  "former_mpn": "Vishay TSMP95000TT",
+  "selection": {
+    "checked": "2026-09-07",
+    "scope": "Source selection within the accepted side-facing IR function; no fabrication or purchase authorization",
+    "root_review": "Manufacturer full ordering/pin-map page2 and TR tape page6 visually checked; exact electrical contacts and carrier function preserved, while orientation matches the agreed assembly",
+    "native_pcb_updated": false,
+    "new_firmware_feature_or_gpio_required": false
+  },
+  "candidate_mpn": "TSMP95000TR",
+  "manufacturer": "Vishay",
+  "purpose": "Preserve the agreed side-facing carrier-learning optical direction with side-view feeder presentation, without manual tipping of the existing TT package",
+  "manufacturer_evidence": {
+    "url": "https://www.vishay.com/docs/82907/tsmp95000.pdf",
+    "document": "82907 Rev.1.0 20-Oct-2022 pp2/4/6/7",
+    "finding": "TSMP95000TR is the exact side-view-taped order code for the same TSMP95000 sensor,2300/reel; TT is top-view-taped2200/reel. Both have1/4GND,2VS,3carrierOUT,2.0–5.5V supply and30–60kHz carrier response. Same MPN family, not the demodulating TSOP function."
+  },
+  "jlcpcb_evidence": {
+    "url": "https://jlcpcb.com/partdetail/VishayIntertech-TSMP95000TR/C20593617",
+    "retrieval": "Fresh official HTTPS page response; visible product fields plus exact C20593617 server-rendered component purchase record, not search-cache stock",
+    "local_snapshot": "work/ir-interface-review/jlc-tsmp95000tr.html",
+    "snapshot_sha256": "0c48f150933cf699882f617354b5dbaa30cdcaaf38defd581adee7e69c96f818",
+    "jlc_number": "C20593617",
+    "manufacturer_display": "Vishay Intertech",
+    "exact_model": "TSMP95000TR",
+    "assembly_type": "SMT Assembly",
+    "pcba_type": "Economic and Standard",
+    "library_type": "Extended",
+    "source_display": "JLCPCB",
+    "route": "Explicit component pre-order into JLCPCB private parts library for subsequent PCBA; not a claim of immediately allocated assembly stock",
+    "server_purchase_fields": {
+      "isBuyComponent": "1",
+      "allowPostFlag": true,
+      "preMinPurchaseNum": 5,
+      "canPresaleNumber": 1756,
+      "overseasStockCount": 1757,
+      "encapsulationNumber": 2300,
+      "lossNumber": 0,
+      "leastPatchNumber": 0,
+      "noBuyReason": null
+    },
+    "minimum_preorder_quantity": 5,
+    "currency": "USD",
+    "price_tiers": [
+      {"quantity_min": 1, "quantity_max": 9, "unit_price": 2.0321},
+      {"quantity_min": 10, "quantity_max": 29, "unit_price": 1.7073},
+      {"quantity_min": 30, "quantity_max": 99, "unit_price": 1.5042},
+      {"quantity_min": 100, "quantity_max": 499, "unit_price": 1.2947},
+      {"quantity_min": 500, "quantity_max": 999, "unit_price": 1.2005},
+      {"quantity_min": 1000, "quantity_max": null, "unit_price": 1.1598}
+    ],
+    "minimum_preorder_component_subtotal_usd": 10.1605,
+    "subtotal_excludes": ["assembly/setup charges", "shipping", "tax", "any final-order attrition or sourcing adjustment"],
+    "lead_time_days": null,
+    "order_or_private_inventory_reservation_performed": false,
+    "data_quality_warning": "JLC displays MSL1 whereas Vishay receiver assembly documentation specifies Heimdall MSL4/72h. Do not use the catalog MSL1 field to relax moisture/reflow handling."
+  },
+  "not_closed_by_this_review": [
+    "Source selection is written into devices.json and the R2 replacement model; native footprint, CPL and PCB integration are not complete.",
+    "CPL rotation and side-view factory preview still need to match the reviewed TR optical datum.",
+    "Pre-order lead time and final available quantity must be checked before architecture freeze/order; public record is not a reservation.",
+    "Actual library/PCB integration, retained copper clearance and final optical aperture remain root integration work."
+  ]
+}

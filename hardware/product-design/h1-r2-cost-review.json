@@ -83,6 +83,34 @@
     "factory_function_test": "optional quote-only insurance; first full power-on and USB bring-up belong to the owner"
   },
   "r2_device_replacements": {
+    "same_sky_sj_43504_smt_tr": {
+      "device_id": "same_sky_sj_43515ts_smt_tr",
+      "mpn": "Same Sky SJ-43515TS-SMT-TR",
+      "unit_price_usd": 1.5903, "line_material_usd": 1.5903,
+      "cost_price_break": "JLCPCB quantity-100 tier; one jack per product, not the one-prototype purchase total",
+      "cost_source": "https://jlcpcb.com/partdetail/CUIDEVICES-SJ_43515TS_SMTTR/C5353507",
+      "cost_checked": "2026-09-08", "cost_checked_at_utc": "2026-09-07T22:12:36Z",
+      "lifecycle": "production_active_explicit_jlcpcb_presale_route",
+      "qualification": "reviewed_exact_top_mount_factory_route_native_integration_open",
+      "reason": "Remove the unresolved mid-mount cutout by selecting an ordinary documented SMT jack. All CTIA L/R/GND/MIC functions and tip-switch plug detection are retained; only the former unused RING1_SWITCH/pad6 is absent. This is a manufacturability correction, not a saving claim; historical R1 is unchanged.",
+      "one_prototype_preorder": {"quantity": 4, "unit_price_usd": 2.3781, "component_subtotal_usd": 9.5124, "excludes": "PCBA setup, attrition changes, fixture, freight and tax; no order or stock allocation made"},
+      "historical_planning_price_comparison": {"old_digikey_quantity_100_usd": 0.9304, "new_jlc_quantity_100_usd": 1.5903, "line_increase_usd": 0.6599, "same_day_same_route_comparison": false},
+      "evidence": "hardware/procurement/h6-sj43515ts-selection-review.json"
+    },
+    "vishay_tsmp95000tt": {
+      "device_id": "vishay_tsmp95000tr",
+      "mpn": "Vishay TSMP95000TR",
+      "unit_price_usd": 1.2947,
+      "line_material_usd": 1.2947,
+      "cost_price_break": "JLCPCB quantity-100 tier; not one-prototype procurement cost",
+      "cost_source": "https://jlcpcb.com/partdetail/VishayIntertech-TSMP95000TR/C20593617",
+      "cost_checked": "2026-09-07",
+      "lifecycle": "production_active_explicit_jlcpcb_presale_route",
+      "qualification": "reviewed_exact_side_view_factory_route_native_integration_open",
+      "reason": "Same TSMP95000 carrier-learning function and contact map, supplied in the required side-view TR orientation instead of top-view TT. No manual tipping from tape or change to user aiming direction; native placement remains to be integrated.",
+      "one_prototype_preorder": {"quantity": 5, "unit_price_usd": 2.0321, "component_subtotal_usd": 10.1605, "excludes": "PCBA setup, attrition, freight and tax; not an order"},
+      "evidence": "hardware/procurement/h6-tsmp95000tr-candidate-review.json"
+    },
     "adi_ad8314acpz_rl7": {
       "device_id": "adi_ad8314armz_reel",
       "mpn": "Analog Devices AD8314ARMZ-REEL",
@@ -94,6 +122,29 @@
       "lifecycle": "production_active_explicit_jlcpcb_presale_route",
       "qualification": "verified_exact_same_die_msop_factory_route",
       "reason": "same AD8314 electrical die and numbered contacts in RM-8; all six full lead envelopes and eight complete detector islands pass H1-R2.36 physical audit"
+    },
+    "ck_js102011scqn": {
+      "device_id": "ck_js102011saqn",
+      "mpn": "C&K JS102011SAQN",
+      "unit_price_usd": 0.5426,
+      "line_material_usd": 0.5426,
+      "cost_price_break": "JLCPCB public quantity-100 tier; one switch per device, not the one-piece purchase price",
+      "cost_source": "https://jlcpcb.com/partdetail/CK-JS102011SAQN/C221660",
+      "cost_checked": "2026-09-07",
+      "cost_checked_at_utc": "2026-09-07T20:32:07Z",
+      "quantity_one_unit_price_usd": 0.8593,
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "qualification": "reviewed_exact_side_actuator_factory_route_native_integration_open",
+      "reason": "SA is the official side-exiting maintained non-shorting SPDT in the same C&K JS family, preserving the agreed RUN/KILL actuation and all three logical contact roles; SC is top-actuated. New footprint and native integration are required; this record authorizes no fabrication or order.",
+      "cost_comparison": {
+        "currency": "USD",
+        "same_day_jlcpcb_quantity_one": {"former_sc": 1.8307, "selected_sa": 0.8593, "component_saving_per_device": 0.9714},
+        "same_day_jlcpcb_quantity_100": {"former_sc": 1.1988, "selected_sa": 0.5426, "component_saving_per_device": 0.6562},
+        "historical_quantity_100_planning": {"former_sc_digikey_2026_08_19": 0.7823, "selected_sa_jlcpcb_2026_09_07": 0.5426, "planning_line_delta": 0.2397},
+        "former_sc_live_source": "https://jlcpcb.com/partdetail/CK-JS102011SCQN/C221661",
+        "boundary": "Do not add unlike price bases or treat these component-only deltas as the final one-prototype PCBA invoice; setup, attrition, freight and taxes are excluded. Native integration remains open."
+      },
+      "evidence": "hardware/procurement/h6-js102011saqn-selection-review.json"
     }
   },
   "r2_additional_groups": [

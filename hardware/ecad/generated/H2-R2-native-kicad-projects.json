@@ -10,19 +10,19 @@
     },
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda"
+      "sha256": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa"
     },
     "nets": {
       "path": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "sha256": "c6a155915d1b64598fb3d24f708070d39c68c75c8bd6094ed871a9a57f53fd88"
+      "sha256": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e"
     },
     "symbols": {
       "path": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-      "sha256": "3c48790e20e37d5f9f7594551cb9d6fe452406939d33d937d834cab9da390a91"
+      "sha256": "0f495dea5bd8c9f3426de84ae282347390ced91f1f64d26f3f1edc73b1722589"
     },
     "symbol_library": {
       "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-      "sha256": "c7cba29ebef5a52d22ea6db0b2d32c77ff7d914fa73c631061c56f054011c042"
+      "sha256": "3659527fe19171c718aad589d520d8d865d6737db658df9c98df94ff4e0dd908"
     }
   },
   "summary": {
@@ -30,9 +30,9 @@
     "project_graph_sheet_count": 22,
     "populated_sheet_count": 18,
     "fitted_symbol_instance_count": 1208,
-    "physical_symbol_pin_count": 4306,
+    "physical_symbol_pin_count": 4305,
     "connected_physical_pin_count": 4070,
-    "explicit_no_connect_physical_pin_count": 236,
+    "explicit_no_connect_physical_pin_count": 235,
     "external_module_interface_annotation_count": 5,
     "canonical_net_count": 788,
     "generated_file_count": 28,
@@ -56,7 +56,7 @@
       "sheet_count": 13,
       "populated_sheet_count": 11,
       "instance_count": 780,
-      "physical_symbol_pin_count": 2708,
+      "physical_symbol_pin_count": 2707,
       "external_module_interface_count": 0,
       "canonical_net_count": 516,
       "cross_sheet_net_count": 127
@@ -263,9 +263,9 @@
       "id": "RF_22_AUDIO_CODEC_IO",
       "role": "rear-local codec, microphone, speaker and CTIA headset routing",
       "instance_count": 118,
-      "physical_symbol_pin_count": 346,
+      "physical_symbol_pin_count": 345,
       "connected_physical_pin_count": 337,
-      "explicit_no_connect_physical_pin_count": 9,
+      "explicit_no_connect_physical_pin_count": 8,
       "hierarchical_interface_count": 22,
       "external_module_interface_count": 0,
       "external_module_interfaces": [],
@@ -367,7 +367,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_22_AUDIO_CODEC_IO.kicad_sch",
-      "sha256": "55ae508cbc80c5db03392a9208dd033938a9522536fa73966e55893392dafc19"
+      "sha256": "08b6db5680a941af95a6462d3cbb6bb02d23be7a56d9ba1f160e45ce90a8e45e"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_30_U214_U219_M5_EXT.kicad_sch",
@@ -383,7 +383,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_50_TX_SAFETY_EVIDENCE.kicad_sch",
-      "sha256": "67cda2eb3cbf423ae77fae65b4773649f4a5196c54609ff58c8d55b4c560a9bd"
+      "sha256": "114dc84499fbc2b60a0cda22bfa3e82fe2c0aa0fd963a5fd5695d9426a58bbf0"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch",
@@ -415,7 +415,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch",
-      "sha256": "0b1e07f905f709e098a66953894990da7a925de23177947e30ca27b9ad4f8e03"
+      "sha256": "2bb00d5504bf091788d1872d4d75677cc0f76e27aca604c6370ed3d840203051"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_30_HUB_RP_CORE_SERVICE.kicad_sch",

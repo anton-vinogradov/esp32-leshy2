@@ -7,6 +7,25 @@ Mechanical validity and connector orientation are checked separately.
 
 from __future__ import annotations
 
+import math
+
+
+def b3s_actuator_axis(row: dict) -> tuple[float, float]:
+    """Omron nominal plunger axis in native PCB XY, never courtyard centre.
+
+    The controlled footprint keeps the original electrical datum. The plunger
+    lies at local (0, -0.92), midway between contact rows -3.17 and +1.33.
+    KiCad flips local Y for a back-side footprint before its XY rotation.
+    """
+    if row["footprint"] != "Leshy2_R2:B3S-1100P":
+        raise ValueError("B3S actuator datum requires the exact controlled footprint")
+    if row["side"] not in {"F.Cu", "B.Cu"}:
+        raise ValueError("B3S actuator datum requires an explicit native copper side")
+    x, y = row["footprint_anchor_mm"]
+    a = math.radians(row["rotation_deg"])
+    local_y = -0.92 if row["side"] == "F.Cu" else 0.92
+    return round(x + math.sin(a) * local_y, 6), round(y + math.cos(a) * local_y, 6)
+
 
 SERVICE_OWNERS = {
     "s3": "S3", "c5": "C5", "hub_rp": "HUB", "rf_rp": "RF RP",
@@ -125,7 +144,9 @@ def labels(project: str, placed_rows: list[dict], contract: dict) -> list[dict]:
             continue
         x = rows[instance]["courtyard_centre_mm"][0]
         # Shared rows above the bottom port bodies and their through-board tabs.
-        add(instance, owner, x, 138.0)
+        # The shared owner row clears B3S ground-pad mask at the HUB port by
+        # >=0.15 mm with native glyph strokes; preserve the common role row.
+        add(instance, owner, x, 138.2)
         add(instance, role, x, 140.0)
 
     if project == "LESHY2-UI-R2":
@@ -134,7 +155,7 @@ def labels(project: str, placed_rows: list[dict], contract: dict) -> list[dict]:
             add(instance, text, x, y + 2.3)
         for n in range(1, 9):
             instance = f"ui_switch_f{n}"
-            x, y = rows[instance]["courtyard_centre_mm"]
+            x, y = b3s_actuator_axis(rows[instance])
             add(instance, f"F{n}", x, y + 6.5)
         for instance, text, dy in (
             ("ui_switch_back", "BACK", -6.15),
@@ -143,18 +164,18 @@ def labels(project: str, placed_rows: list[dict], contract: dict) -> list[dict]:
             ("ui_dpad_right", "RIGHT", -6.15),
             ("ui_dpad_down", "DOWN", 6.0),
         ):
-            x, y = rows[instance]["courtyard_centre_mm"]
+            x, y = b3s_actuator_axis(rows[instance])
             add(instance, text, x, y + dy)
-        x, y = rows["ui_dpad_up"]["courtyard_centre_mm"]
+        x, y = b3s_actuator_axis(rows["ui_dpad_up"])
         add("ui_dpad_up", "UP", x + 7.5, y)
         # The centre gap contains the grounded solder tab of OK. Keep its label
         # in the lower-right opening, outside both OK and DOWN body/mask areas.
-        x, y = rows["ui_dpad_ok"]["courtyard_centre_mm"]
+        x, y = b3s_actuator_axis(rows["ui_dpad_ok"])
         add("ui_dpad_ok", "OK", x + 6.5, y + 5.7)
         add("sd", "microSD", rows["sd"]["courtyard_centre_mm"][0], 140.0)
     else:
         add("unit_connector", "M5 UNIT", rows["unit_connector"]["courtyard_centre_mm"][0], 140.0)
-        x, y = rows["ptt_switch"]["courtyard_centre_mm"]
+        x, y = b3s_actuator_axis(rows["ptt_switch"])
         add("ptt_switch", "PTT", x, y + 6.5)
         x, y = rows["encoder"]["courtyard_centre_mm"]
         add("encoder", "ENC / OK", x, y + 10.0)

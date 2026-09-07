@@ -252,9 +252,9 @@ def build() -> dict:
         errors.append("expected exactly 245 board component groups")
     logical_contact_count = sum(row["logical_contact_count"] for row in rows)
     source_ledger_contact_count = ledger.get("summary", {}).get("logical_contact_count")
-    if logical_contact_count != 1558 or source_ledger_contact_count != 1617:
+    if logical_contact_count != 1557 or source_ledger_contact_count != 1616:
         errors.append(
-            "expected 1558 board contacts inside the reviewed 1617-contact total ledger"
+            "expected 1557 board contacts inside the reviewed 1616-contact total ledger (unused former audio NC6 removed)"
         )
     if mapped_contact_count + external_contact_count != logical_contact_count:
         errors.append("contact disposition accounting does not balance")

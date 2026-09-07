@@ -156,8 +156,8 @@
         "hub_rp_boot_button": {"edge": "right", "centre_y_mm": 138.0}
       },
       "LESHY2-RF-R2": {
-        "rf_rp_reset_button": {"edge": "right", "centre_y_mm": 108.25},
-        "rf_rp_boot_button": {"edge": "right", "centre_y_mm": 115.25}
+        "rf_rp_reset_button": {"edge": "left", "centre_y_mm": 108.25},
+        "rf_rp_boot_button": {"edge": "left", "centre_y_mm": 115.25}
       }
     }
   },
@@ -294,6 +294,317 @@
     }
   },
   "placement_overrides": {
+    "headphone_jack": {
+      "frame": "rear-outer",
+      "anchor_mm": [0.8, 99.0],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed outward connector mouth datum",
+      "reason": "Ordinary top-mount SJ-43515TS board-edge mouth at native X=-0.7; land1 starts X=0.4. Explicit drawing anchor, no mid-mount cutout; all five connected contacts and tip-switch2-to-5 retained.",
+      "evidence": "hardware/layout/h6-r2-audio-placement-proposal.json"
+    },
+    "audio_capture_selector_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [5.6, 97.1],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Clear the ordinary SMT jack locator drill while retaining local U68 bypass: VCC pair2.904mm, AUDIO_GROUND2.829mm.",
+      "evidence": "hardware/layout/h6-r2-audio-placement-proposal.json"
+    },
+    "evidence_or_4": {
+      "frame": "rear-outer",
+      "anchor_mm": [10.5, 110.0],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Move the existing three-pad evidence diode across the same RF PCB to clear the jack locator and retain uniform RF RP service labels without mask/silk overlap. Joint candidate gives 0.500mm courtyard gap to C144. All three net names retained, no existing track/via attachment; routing is still required.",
+      "evidence": "hardware/layout/h6-r2-audio-placement-proposal.json"
+    },
+    "power_command_switch": {
+      "frame": "rear-inner",
+      "anchor_mm": [78.2, 114.1],
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "method": "reviewed outward connector mouth datum",
+      "reason": "Exact C&K SA side actuator at the native right board-edge: body front X80, lever reaches X82, copper stays inboard. Move RF RP Reset/Boot to their accepted opposite edge in the same integration; no supports or existing copper need moving. Physical RUN/KILL directional labels remain gated by the manufacturer's contradictory A/B view caption.",
+      "evidence": "hardware/layout/h6-r2-run-kill-native-fit-proposal.json"
+    },
+    "ir_emitter": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        1.86,
+        92
+      ],
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "method": "reviewed outward connector mouth datum",
+      "reason": "Exact side-view IR board-edge correction; nominal lens tip X=-0.10 mm, copper remains inboard. Local supply/current-limiter placement is separately checked; optical witness coupling and assembled field of view remain open."
+    },
+    "ir_carrier": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        2.6,
+        85.6
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed outward connector mouth datum",
+      "reason": "Exact side-view IR board-edge correction; nominal lens tip X=-0.10 mm, copper remains inboard. Local supply/current-limiter placement is separately checked; optical witness coupling and assembled field of view remain open."
+    },
+    "ir_demod": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        2.6,
+        78.1
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed outward connector mouth datum",
+      "reason": "Exact side-view IR board-edge correction; nominal lens tip X=-0.10 mm, copper remains inboard. Local supply/current-limiter placement is separately checked; optical witness coupling and assembled field of view remain open."
+    },
+    "ir_carrier_supply_cap": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        4.7,
+        85.5
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Exact side-view IR optical-edge correction and local supply/current-limiter placement; verified 0.10 mm same/cross-face gap and unchanged existing copper. Optical witness coupling and assembled field of view remain separate open checks."
+    },
+    "ir_carrier_pullup": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        4.9,
+        83.1
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Exact side-view IR optical-edge correction and local supply/current-limiter placement; verified 0.10 mm same/cross-face gap and unchanged existing copper. Optical witness coupling and assembled field of view remain separate open checks."
+    },
+    "ir_tx_mosfet": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        5,
+        93.845
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Exact side-view IR optical-edge correction and local supply/current-limiter placement; verified 0.10 mm same/cross-face gap and unchanged existing copper. Optical witness coupling and assembled field of view remain separate open checks."
+    },
+    "ir_demod_supply_cap": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        4.7,
+        77.96
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Exact side-view IR optical-edge correction and local supply/current-limiter placement; verified 0.10 mm same/cross-face gap and unchanged existing copper. Optical witness coupling and assembled field of view remain separate open checks."
+    },
+    "ir_demod_supply_res": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        4.9,
+        81.2
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Exact side-view IR optical-edge correction and local supply/current-limiter placement; verified 0.10 mm same/cross-face gap and unchanged existing copper. Optical witness coupling and assembled field of view remain separate open checks."
+    },
+    "ir_carrier_supply_res": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        4.9,
+        88.15
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Exact side-view IR optical-edge correction and local supply/current-limiter placement; verified 0.10 mm same/cross-face gap and unchanged existing copper. Optical witness coupling and assembled field of view remain separate open checks."
+    },
+    "ir_tx_gate_pulldown": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        7.6,
+        93.9
+      ],
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Exact side-view IR optical-edge correction and local supply/current-limiter placement; verified 0.10 mm same/cross-face gap and unchanged existing copper. Optical witness coupling and assembled field of view remain separate open checks."
+    },
+    "ir_emitter_limit": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        5.3,
+        90.6
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Exact side-view IR optical-edge correction and local supply/current-limiter placement; verified 0.10 mm same/cross-face gap and unchanged existing copper. Optical witness coupling and assembled field of view remain separate open checks."
+    },
+    "unit_connector": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        57,
+        144.3
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed outward connector mouth datum",
+      "reason": "Restore the accepted board-edge Grove port in native coordinates (assembly world X = 80 - native X). Corrected body mouth Y149.835 and copper max Y149.485 are inboard; only the assembly courtyard extends beyond Y150. Existing routed copper is preserved."
+    },
+    "rf_rp_service_usb_cc1_rd": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        43.555,
+        146.325
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Follow the 5.06-mm service-port translation; retain relative CC1 termination placement."
+    },
+    "rf_rp_service_usb_cc2_rd": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        31.305,
+        146.325
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Follow the service port; remove its confirmed courtyard collision."
+    },
+    "rf_rp_service_usb_vbus_bleeder": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        43.555,
+        144.075
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Follow the service port and shorten the sense-only VBUS connection."
+    },
+    "pd_config_eeprom": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        61.25,
+        135.85
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Shift upward 0.60 mm to clear the corrected Grove courtyard without moving the PD controller."
+    },
+    "pd_eeprom_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        61.305,
+        132.255
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Follow U2 upward 0.60 mm; keep the existing local bypass gap."
+    },
+    "pd_eeprom_wp_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        64.075,
+        132.265
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Follow U2 upward 0.60 mm; avoid overlap with its shifted courtyard."
+    },
+    "product_usb_protector": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        16.5,
+        139.5
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Place USB2/CC protection beside the translated product USB, not 54-57 mm away."
+    },
+    "product_usb_vbias_cap": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        13.375,
+        139.875
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the VBIAS ESD capacitor local to U5 without colliding with the main inductor."
+    },
+    "product_usb_vpwr_cap": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        19.625,
+        138.125
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the VPWR capacitor local to U5; preserve its PD_LOCAL_3V3 supply net."
+    },
+    "pd_vbus_tvs": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        23.8,
+        141.0
+      ],
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Place VBUS TVS beside J1, in the free pocket below EXT buck output components."
+    },
+    "pd_vbus_cap": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        27.7,
+        142.4
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Follow the local VBUS TVS and free Grove space without moving L3/C62/C63."
+    },
+    "unit_esd": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        55.5,
+        137.55
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Place Grove signal ESD beside its relocated signal row rather than leaving a 33-35-mm exposed segment."
+    },
+    "rf_rp_service_usb_esd": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        37.5,
+        140.4
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Place service USB ESD between J4 and unchanged U26; preserve the switch and C101 positions."
+    },
     "m1_rf_receptacle": {
       "frame": "rear-inner",
       "anchor_mm": [37.5, 122.25],
@@ -320,16 +631,22 @@
     },
     "product_usb_connector": {
       "frame": "rear-inner",
-      "anchor_mm": [63.53, 146.9],
+      "anchor_mm": [
+        16.47,
+        146.9
+      ],
       "rotation_deg": 180,
       "mechanical_locked": true,
       "method": "reviewed outward connector mouth datum",
-      "reason": "Exact JAE DX07S016JA1R1500 mounting-side board-edge datum puts the PCB edge 3.10 mm beyond the footprint anchor and the shell mouth another 0.50 mm outside; B180 faces the bottom edge while keeping every copper land inboard.",
+      "reason": "Restore the accepted RF board-edge port order in native coordinates (assembly world X = 80 - native X), using the manufacturer mouth datum and connector-adjacent protection. Existing routed copper is preserved.",
       "mechanical_datum": {
         "source_url": "https://www.mikrocontroller.net/attachment/650878/SJ121836.pdf",
         "source_section": "JAE-authored SJ121836 Rev.3 sheet 2, recommended mounting pattern viewed from mounting side; DATUM Y through locator holes and 5.05 mm to PCB EDGE",
         "checked": "2026-09-07",
-        "local_mouth_axis": [0, 1],
+        "local_mouth_axis": [
+          0,
+          1
+        ],
         "local_locator_datum_y_mm": -1.95,
         "pcb_edge_offset_from_locator_datum_mm": 5.05,
         "local_pcb_edge_y_mm": 3.1,
@@ -378,16 +695,22 @@
     },
     "rf_rp_service_usb_connector": {
       "frame": "rear-inner",
-      "anchor_mm": [42.53, 146.325],
-      "rotation_deg": 180.0,
+      "anchor_mm": [
+        37.47,
+        146.325
+      ],
+      "rotation_deg": 180,
       "mechanical_locked": true,
       "method": "reviewed outward connector mouth datum",
-      "reason": "board-edge GCT USB4105 entrance faces bottom +Y; exact manufacturer PCB-edge datum local +3.675 mm lands on native y=150, not the courtyard centre",
+      "reason": "Restore the accepted RF board-edge port order in native coordinates (assembly world X = 80 - native X), using the manufacturer mouth datum and connector-adjacent protection. Existing routed copper is preserved.",
       "mechanical_datum": {
         "source_url": "https://gct.co/files/drawings/usb4105.pdf",
         "source_section": "Sheet 1, Recommended PCB Layout, as viewed from component side",
         "checked": "2026-09-07",
-        "local_mouth_axis": [0.0, 1.0],
+        "local_mouth_axis": [
+          0.0,
+          1.0
+        ],
         "local_pcb_edge_y_mm": 3.675,
         "native_pcb_edge_y_mm": 150.0,
         "access_scope": "nominal PCB mouth registration; assembled plug clearance remains a separate check"
@@ -1343,13 +1666,12 @@
     },
     "voice_io_power_input_cap": {
       "frame": "rear-outer",
-      "centre_mm": [
-        12.0,
-        102.3
-      ],
-      "rotation_deg": 90.0,
-      "method": "reviewed H6.0.2 oscillator-locality correction",
-      "reason": "move the displaced voice-domain input capacitor to the clear outer-face site directly opposite its power switch"
+      "anchor_mm": [12.0, 106.0],
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Clear selected F99 jack lands while keeping the same input-bypass net pair near U48; measured VCC-pad distance2.23mm, ground3.60mm.",
+      "evidence": "hardware/layout/h6-r2-audio-placement-proposal.json"
     },
     "receiver_clock": {
       "frame": "rear-inner",
@@ -1471,120 +1793,259 @@
     },
     "ui_switch_f1": {
       "frame": "front-outer",
-      "centre_mm": [
+      "anchor_mm": [
+        5.52,
+        22.5
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "actuator_axis_native_mm": [
         4.6,
         22.5
       ],
-      "rotation_deg": 90.0,
-      "reason": "rotate the exact B3S land pattern clear of the display bed"
+      "method": "reviewed exact B3S actuator-axis placement",
+      "reason": "Use the primary actuator datum [0,-0.92], not the courtyard centre. This fixes the visible axis without changing the accepted display bed or key-row pitch; preserve current user-label XY."
     },
     "ui_switch_f2": {
       "frame": "front-outer",
-      "centre_mm": [
-        4.6,
-        36.0
+      "anchor_mm": [
+        5.52,
+        36
       ],
-      "rotation_deg": 90.0,
-      "reason": "rotate the exact B3S land pattern clear of the display bed"
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "actuator_axis_native_mm": [
+        4.6,
+        36
+      ],
+      "method": "reviewed exact B3S actuator-axis placement",
+      "reason": "Use the primary actuator datum [0,-0.92], not the courtyard centre. This fixes the visible axis without changing the accepted display bed or key-row pitch; preserve current user-label XY."
     },
     "ui_switch_f3": {
       "frame": "front-outer",
-      "centre_mm": [
+      "anchor_mm": [
+        5.52,
+        49.5
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "actuator_axis_native_mm": [
         4.6,
         49.5
       ],
-      "rotation_deg": 90.0,
-      "reason": "rotate the exact B3S land pattern clear of the display bed"
+      "method": "reviewed exact B3S actuator-axis placement",
+      "reason": "Use the primary actuator datum [0,-0.92], not the courtyard centre. This fixes the visible axis without changing the accepted display bed or key-row pitch; preserve current user-label XY."
     },
     "ui_switch_f4": {
       "frame": "front-outer",
-      "centre_mm": [
-        4.6,
-        63.0
+      "anchor_mm": [
+        5.52,
+        63
       ],
-      "rotation_deg": 90.0,
-      "reason": "rotate the exact B3S land pattern clear of the display bed"
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "actuator_axis_native_mm": [
+        4.6,
+        63
+      ],
+      "method": "reviewed exact B3S actuator-axis placement",
+      "reason": "Use the primary actuator datum [0,-0.92], not the courtyard centre. This fixes the visible axis without changing the accepted display bed or key-row pitch; preserve current user-label XY."
     },
     "ui_switch_f5": {
       "frame": "front-outer",
-      "centre_mm": [
+      "anchor_mm": [
+        74.48,
+        22.5
+      ],
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "actuator_axis_native_mm": [
         75.4,
         22.5
       ],
-      "rotation_deg": 90.0,
-      "reason": "rotate the exact B3S land pattern clear of the display bed"
+      "method": "reviewed exact B3S actuator-axis placement",
+      "reason": "Mirror the right key row with F270: the primary actuator datum [0,-0.92] reaches the accepted visible axis while all lands remain inboard; F90 at this axis would put pad5 beyond X80. Preserve current user-label XY."
     },
     "ui_switch_f6": {
       "frame": "front-outer",
-      "centre_mm": [
-        75.4,
-        36.0
+      "anchor_mm": [
+        74.48,
+        36
       ],
-      "rotation_deg": 90.0,
-      "reason": "rotate the exact B3S land pattern clear of the display bed"
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "actuator_axis_native_mm": [
+        75.4,
+        36
+      ],
+      "method": "reviewed exact B3S actuator-axis placement",
+      "reason": "Mirror the right key row with F270: the primary actuator datum [0,-0.92] reaches the accepted visible axis while all lands remain inboard; F90 at this axis would put pad5 beyond X80. Preserve current user-label XY."
     },
     "ui_switch_f7": {
       "frame": "front-outer",
-      "centre_mm": [
+      "anchor_mm": [
+        74.48,
+        49.5
+      ],
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "actuator_axis_native_mm": [
         75.4,
         49.5
       ],
-      "rotation_deg": 90.0,
-      "reason": "rotate the exact B3S land pattern clear of the display bed"
+      "method": "reviewed exact B3S actuator-axis placement",
+      "reason": "Mirror the right key row with F270: the primary actuator datum [0,-0.92] reaches the accepted visible axis while all lands remain inboard; F90 at this axis would put pad5 beyond X80. Preserve current user-label XY."
     },
     "ui_switch_f8": {
       "frame": "front-outer",
-      "centre_mm": [
-        75.4,
-        63.0
+      "anchor_mm": [
+        74.48,
+        63
       ],
-      "rotation_deg": 90.0,
-      "reason": "rotate the exact B3S land pattern clear of the display bed"
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "actuator_axis_native_mm": [
+        75.4,
+        63
+      ],
+      "method": "reviewed exact B3S actuator-axis placement",
+      "reason": "Mirror the right key row with F270: the primary actuator datum [0,-0.92] reaches the accepted visible axis while all lands remain inboard; F90 at this axis would put pad5 beyond X80. Preserve current user-label XY."
     },
     "ui_dpad_left": {
       "frame": "front-outer",
-      "centre_mm": [
+      "anchor_mm": [
+        29.5,
+        133.32
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "actuator_axis_native_mm": [
         29.5,
         132.4
       ],
-      "rotation_deg": 0.0,
-      "reason": "increase exact B3S courtyard pitch"
+      "method": "reviewed exact B3S actuator-axis placement",
+      "reason": "Use the primary actuator datum [0,-0.92], not the courtyard centre. Keep the accepted navigation spacing and visible axis; preserve current user-label XY."
     },
     "ui_dpad_ok": {
       "frame": "front-outer",
-      "centre_mm": [
-        40.0,
+      "anchor_mm": [
+        40,
+        133.32
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "actuator_axis_native_mm": [
+        40,
         132.4
       ],
-      "rotation_deg": 0.0,
-      "reason": "centre datum retained"
+      "method": "reviewed exact B3S actuator-axis placement",
+      "reason": "Use the primary actuator datum [0,-0.92], not the courtyard centre. Keep the accepted navigation spacing and visible axis; preserve current user-label XY."
     },
     "ui_dpad_right": {
       "frame": "front-outer",
-      "centre_mm": [
+      "anchor_mm": [
+        50.5,
+        133.32
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "actuator_axis_native_mm": [
         50.5,
         132.4
       ],
-      "rotation_deg": 0.0,
-      "reason": "increase exact B3S courtyard pitch"
+      "method": "reviewed exact B3S actuator-axis placement",
+      "reason": "Use the primary actuator datum [0,-0.92], not the courtyard centre. Keep the accepted navigation spacing and visible axis; preserve current user-label XY."
     },
     "ui_dpad_up": {
       "frame": "front-outer",
-      "centre_mm": [
-        40.0,
+      "anchor_mm": [
+        40,
+        122.82
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "actuator_axis_native_mm": [
+        40,
         121.9
       ],
-      "rotation_deg": 0.0,
-      "reason": "increase exact B3S courtyard pitch"
+      "method": "reviewed exact B3S actuator-axis placement",
+      "reason": "Use the primary actuator datum [0,-0.92], not the courtyard centre. Keep the accepted navigation spacing and visible axis; preserve current user-label XY."
     },
     "ui_dpad_down": {
       "frame": "front-outer",
-      "centre_mm": [
-        40.0,
+      "anchor_mm": [
+        40,
+        143.82
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "actuator_axis_native_mm": [
+        40,
         142.9
       ],
-      "rotation_deg": 0.0,
-      "reason": "increase exact B3S courtyard pitch"
+      "method": "reviewed exact B3S actuator-axis placement",
+      "reason": "Use the primary actuator datum [0,-0.92], not the courtyard centre. Keep the accepted navigation spacing and visible axis; preserve current user-label XY."
+    },
+    "ui_switch_back": {
+      "frame": "front-outer",
+      "anchor_mm": [
+        14.3,
+        133.32
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "actuator_axis_native_mm": [
+        14.3,
+        132.4
+      ],
+      "method": "reviewed exact B3S actuator-axis placement",
+      "reason": "Use the primary actuator datum [0,-0.92], not the courtyard centre. Preserve the accepted visible axis and current user-label XY; no neighbouring support relocation."
+    },
+    "ui_switch_opt": {
+      "frame": "front-outer",
+      "anchor_mm": [
+        65.7,
+        133.32
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "actuator_axis_native_mm": [
+        65.7,
+        132.4
+      ],
+      "method": "reviewed exact B3S actuator-axis placement",
+      "reason": "Use the primary actuator datum [0,-0.92], not the courtyard centre. Preserve the accepted visible axis and current user-label XY; no neighbouring support relocation."
+    },
+    "ptt_switch": {
+      "frame": "rear-outer",
+      "anchor_mm": [
+        72.1,
+        67.42
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "actuator_axis_native_mm": [
+        72.1,
+        66.5
+      ],
+      "method": "reviewed exact B3S actuator-axis placement",
+      "reason": "Correct the RF exterior reflection and use the primary actuator datum [0,-0.92]. Move the intended X72.5 axis only 0.4 mm inward to avoid the retained CHARGER_SW1 via; do not move or remove charger copper. PTT label follows actuator+[0,6.5].",
+      "retained_copper_clearance": {
+        "net": "CHARGER_SW1",
+        "via_xy_mm": [
+          69.355,
+          68.4
+        ],
+        "via_copper_diameter_mm": 0.4,
+        "via_uuid": "54189740-b405-418b-934d-19a201fed767",
+        "ptt_pad": "2",
+        "nominal_copper_clearance_mm": 0.26,
+        "reviewed_minimum_mm": 0.2,
+        "rejected_anchor_mm": [
+          72.5,
+          67.42
+        ]
+      }
     }
   },
   "post_placement_corrections": {
@@ -2270,6 +2731,128 @@
       "unit_signal_iso_vcca_bypass": 1.5
     },
     "critical_pad_pairs": [
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "USB2_DP_CONNECTOR",
+        "first_instance": "product_usb_connector",
+        "second_instance": "product_usb_protector",
+        "second_pad_number": "1",
+        "maximum_distance_mm": 5.5,
+        "reason": "Reviewed connector-adjacent protection placement guard. Euclidean pad distance is only a routing lower bound: route through protection before the downstream run, preserve USB impedance and short ESD returns, and separately connect every duplicate connector pad."
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "USB2_DM_CONNECTOR",
+        "first_instance": "product_usb_connector",
+        "second_instance": "product_usb_protector",
+        "second_pad_number": "2",
+        "maximum_distance_mm": 5.5,
+        "reason": "Reviewed connector-adjacent protection placement guard. Euclidean pad distance is only a routing lower bound: route through protection before the downstream run, preserve USB impedance and short ESD returns, and separately connect every duplicate connector pad."
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "USB_C_CC1_CONNECTOR",
+        "first_instance": "product_usb_connector",
+        "second_instance": "product_usb_protector",
+        "second_pad_number": "4",
+        "maximum_distance_mm": 7.0,
+        "reason": "Reviewed connector-adjacent protection placement guard. Euclidean pad distance is only a routing lower bound: route through protection before the downstream run, preserve USB impedance and short ESD returns, and separately connect every duplicate connector pad."
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "USB_C_CC2_CONNECTOR",
+        "first_instance": "product_usb_connector",
+        "second_instance": "product_usb_protector",
+        "second_pad_number": "5",
+        "maximum_distance_mm": 7.0,
+        "reason": "Reviewed connector-adjacent protection placement guard. Euclidean pad distance is only a routing lower bound: route through protection before the downstream run, preserve USB impedance and short ESD returns, and separately connect every duplicate connector pad."
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "RF_RP_SERVICE_USB_DP_CONNECTOR",
+        "first_instance": "rf_rp_service_usb_connector",
+        "second_instance": "rf_rp_service_usb_esd",
+        "second_pad_number": "1",
+        "maximum_distance_mm": 3.0,
+        "reason": "Reviewed connector-adjacent protection placement guard. Euclidean pad distance is only a routing lower bound: route through protection before the downstream run, preserve USB impedance and short ESD returns, and separately connect every duplicate connector pad."
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "RF_RP_SERVICE_USB_DM_CONNECTOR",
+        "first_instance": "rf_rp_service_usb_connector",
+        "second_instance": "rf_rp_service_usb_esd",
+        "second_pad_number": "2",
+        "maximum_distance_mm": 3.0,
+        "reason": "Reviewed connector-adjacent protection placement guard. Euclidean pad distance is only a routing lower bound: route through protection before the downstream run, preserve USB impedance and short ESD returns, and separately connect every duplicate connector pad."
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "UNIT_CONNECTOR_SIG0",
+        "first_instance": "unit_connector",
+        "second_instance": "unit_esd",
+        "second_pad_number": "1",
+        "maximum_distance_mm": 6.0,
+        "reason": "Reviewed connector-adjacent protection placement guard. Euclidean pad distance is only a routing lower bound: route through protection before the downstream run, preserve USB impedance and short ESD returns, and separately connect every duplicate connector pad."
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "UNIT_CONNECTOR_SIG1",
+        "first_instance": "unit_connector",
+        "second_instance": "unit_esd",
+        "second_pad_number": "2",
+        "maximum_distance_mm": 6.0,
+        "reason": "Reviewed connector-adjacent protection placement guard. Euclidean pad distance is only a routing lower bound: route through protection before the downstream run, preserve USB impedance and short ESD returns, and separately connect every duplicate connector pad."
+      },
+      {
+        "project": "LESHY2-UI-R2",
+        "canonical_net": "IR_CARRIER_VS",
+        "first_instance": "ir_carrier",
+        "first_pad_number": "2",
+        "second_instance": "ir_carrier_supply_cap",
+        "second_pad_number": "1",
+        "maximum_distance_mm": 3.0,
+        "reason": "Project placement guard for Vishay local RC supply: the actual VS pin must stay close to its bypass. This Euclidean bound is not a routed-length or signal-integrity qualification."
+      },
+      {
+        "project": "LESHY2-UI-R2",
+        "canonical_net": "IR_DEMOD_VS",
+        "first_instance": "ir_demod",
+        "first_pad_number": "2",
+        "second_instance": "ir_demod_supply_cap",
+        "second_pad_number": "1",
+        "maximum_distance_mm": 3.0,
+        "reason": "Project placement guard for Vishay local RC supply; measure VS rather than the closest ground pin. Routing and optical verification remain separate."
+      },
+      {
+        "project": "LESHY2-UI-R2",
+        "canonical_net": "IR_LED_ANODE_LIMITED",
+        "first_instance": "ir_emitter",
+        "first_pad_number": "1",
+        "second_instance": "ir_emitter_limit",
+        "second_pad_number": "2",
+        "maximum_distance_mm": 3.0,
+        "reason": "Keep the edge emitter current limiter local; prevent the former 20-mm direct pad separation from returning during a geometric repack."
+      },
+      {
+        "project": "LESHY2-UI-R2",
+        "canonical_net": "IR_LED_CATHODE",
+        "first_instance": "ir_emitter",
+        "first_pad_number": "2",
+        "second_instance": "ir_tx_mosfet",
+        "second_pad_number": "3",
+        "maximum_distance_mm": 3.0,
+        "reason": "Local pulsed emitter current path: preserve a compact anode/limiter/cathode/MOSFET placement, without claiming the route or return loop is finished."
+      },
+      {
+        "project": "LESHY2-UI-R2",
+        "canonical_net": "IR_TX_GATE",
+        "first_instance": "ir_tx_mosfet",
+        "first_pad_number": "1",
+        "second_instance": "ir_tx_gate_pulldown",
+        "second_pad_number": "1",
+        "maximum_distance_mm": 2.5,
+        "reason": "Keep the hardware-off gate pulldown beside the MOSFET gate; project placement bound, not a substituted electrical safety test."
+      },
       {
         "project": "LESHY2-UI-R2",
         "canonical_net": "3V3_MAIN",

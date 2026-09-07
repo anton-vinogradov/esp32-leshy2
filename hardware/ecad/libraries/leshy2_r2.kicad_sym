@@ -1442,7 +1442,7 @@
 		)
 		(embedded_fonts no)
 	)
-	(symbol "ck_js102011scqn"
+	(symbol "ck_js102011saqn"
 		(pin_names (offset 1.016))
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1455,13 +1455,13 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "C&K JS102011SCQN"
+		(property "Value" "C&K JS102011SAQN"
 			(at 0.00 -7.62 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Leshy2:JS102011SCQN"
+		(property "Footprint" "Button_Switch_SMD:SW_SPDT_CK_JS102011SAQN"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1482,14 +1482,14 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2DeviceID" "ck_js102011scqn"
+		(property "Leshy2DeviceID" "ck_js102011saqn"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "ManufacturerEvidenceChecked" "2026-08-19"
+		(property "ManufacturerEvidenceChecked" "2026-09-07"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1503,7 +1503,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(symbol "ck_js102011scqn_0_1"
+		(symbol "ck_js102011saqn_0_1"
 			(rectangle
 				(start -15.24 5.08)
 				(end 15.24 -5.08)
@@ -1511,7 +1511,7 @@
 				(fill (type background))
 			)
 		)
-		(symbol "ck_js102011scqn_1_1"
+		(symbol "ck_js102011saqn_1_1"
 			(pin passive line
 				(at -20.32 1.27 0)
 				(length 5.08)
@@ -13807,7 +13807,7 @@
 		)
 		(embedded_fonts no)
 	)
-	(symbol "same_sky_sj_43504_smt_tr"
+	(symbol "same_sky_sj_43515ts_smt_tr"
 		(pin_names (offset 1.016))
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -13820,20 +13820,20 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Same Sky SJ-43504-SMT-TR"
+		(property "Value" "Same Sky SJ-43515TS-SMT-TR"
 			(at 0.00 -7.62 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Leshy2:SJ-43504-SMT-TR"
+		(property "Footprint" "Leshy2_R2:SJ-43515TS-SMT-TR"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Datasheet" "https://www.sameskydevices.com/product/resource/sj-43504-smt-tr.pdf"
+		(property "Datasheet" "https://www.sameskydevices.com/product/resource/digikeypdf/sj-4351x-smt.pdf"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13847,14 +13847,14 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2DeviceID" "same_sky_sj_43504_smt_tr"
+		(property "Leshy2DeviceID" "same_sky_sj_43515ts_smt_tr"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "ManufacturerEvidenceChecked" "2026-08-23"
+		(property "ManufacturerEvidenceChecked" "2026-09-08"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13868,7 +13868,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(symbol "same_sky_sj_43504_smt_tr_0_1"
+		(symbol "same_sky_sj_43515ts_smt_tr_0_1"
 			(rectangle
 				(start -15.24 5.08)
 				(end 15.24 -5.08)
@@ -13876,7 +13876,7 @@
 				(fill (type background))
 			)
 		)
-		(symbol "same_sky_sj_43504_smt_tr_1_1"
+		(symbol "same_sky_sj_43515ts_smt_tr_1_1"
 			(pin passive line
 				(at -20.32 2.54 0)
 				(length 5.08)
@@ -13906,12 +13906,6 @@
 				(length 5.08)
 				(name "TIP_SWITCH" (effects (font (size 1.27 1.27))))
 				(number "5" (effects (font (size 1.27 1.27))))
-			)
-			(pin passive line
-				(at 20.32 -2.54 180)
-				(length 5.08)
-				(name "RING1_SWITCH" (effects (font (size 1.27 1.27))))
-				(number "6" (effects (font (size 1.27 1.27))))
 			)
 		)
 		(embedded_fonts no)
@@ -23549,7 +23543,7 @@
 		)
 		(embedded_fonts no)
 	)
-	(symbol "vishay_tsmp95000tt"
+	(symbol "vishay_tsmp95000tr"
 		(pin_names (offset 1.016))
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -23562,13 +23556,13 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Value" "Vishay TSMP95000TT"
+		(property "Value" "Vishay TSMP95000TR"
 			(at 0.00 -7.62 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Leshy2:Vishay-Heimdall-SMD-TT"
+		(property "Footprint" "Leshy2:Vishay-Heimdall-SMD-TR"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -23589,14 +23583,14 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Leshy2DeviceID" "vishay_tsmp95000tt"
+		(property "Leshy2DeviceID" "vishay_tsmp95000tr"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "ManufacturerEvidenceChecked" "2026-08-18"
+		(property "ManufacturerEvidenceChecked" "2026-09-07"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -23610,7 +23604,7 @@
 			(hide yes)
 			(effects (font (size 1.27 1.27)))
 		)
-		(symbol "vishay_tsmp95000tt_0_1"
+		(symbol "vishay_tsmp95000tr_0_1"
 			(rectangle
 				(start -15.24 5.08)
 				(end 15.24 -5.08)
@@ -23618,7 +23612,7 @@
 				(fill (type background))
 			)
 		)
-		(symbol "vishay_tsmp95000tt_1_1"
+		(symbol "vishay_tsmp95000tr_1_1"
 			(pin passive line
 				(at -20.32 1.27 0)
 				(length 5.08)
@@ -23665,7 +23659,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Leshy2:Vishay-Heimdall-SMD-TT"
+		(property "Footprint" "Leshy2:Vishay-Heimdall-SMD-TR"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)

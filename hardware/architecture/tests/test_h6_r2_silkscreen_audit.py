@@ -132,6 +132,41 @@ class NetBindingAuthorityTests(unittest.TestCase):
 
 
 class SilkscreenGeometryTests(unittest.TestCase):
+    def test_close_mask_without_bbox_overlap_is_not_silently_passed(self):
+        row = actual()
+        obstacle = {"kind": "front_pad_mask_bbox", "pad": "SW8.5",
+                    "bbox_mm": {"x": [5, 7], "y": [12.85, 14]}}
+        self.assertFalse(audit.overlaps(row["bbox_mm"], obstacle["bbox_mm"]))
+        candidates, _ = audit.geometry_candidates([row], [obstacle], 80, 150)
+        self.assertEqual(1, len(candidates))  # .05-mm conservative gap needs native refinement.
+
+    def test_exact_mask_measurement_requires_fresh_geometry_and_minimum_gap(self):
+        row = actual()
+        obstacle = {"kind": "front_pad_mask_bbox", "pad": "SW8.5", "bbox_mm": row["bbox_mm"]}
+        proof = {"status": "measured", "method": "native_stroke_shape_to_pad_mask",
+                 "gap_lower_mm": .239819, "gap_upper_mm": .239820,
+                 "inputs_sha256": audit.clearance_witness(row, obstacle)}
+        obstacle["native_text_clearances"] = {row["id"]: proof}
+        candidates, resolved = audit.geometry_candidates([row], [obstacle], 80, 150)
+        self.assertEqual([], candidates)
+        self.assertEqual(1, len(resolved))
+        for field, value in (("status", "unsupported"), ("inputs_sha256", "stale"),
+                             ("method", "bbox"), ("gap_lower_mm", .039819),
+                             ("gap_lower_mm", float("nan")), ("gap_lower_mm", True),
+                             ("gap_upper_mm", .3)):
+            bad = copy.deepcopy(obstacle)
+            bad["native_text_clearances"][row["id"]][field] = value
+            with self.subTest(field=field, value=value):
+                self.assertEqual(1, len(audit.geometry_candidates([row], [bad], 80, 150)[0]))
+        for key, value in (("at_mm", [6.1, 12]), ("size_mm", [1.1, 1.0]),
+                           ("thickness_mm", .16), ("angle_deg", 1), ("text", "OTHER")):
+            bad = dict(row, **{key: value})
+            with self.subTest(stale_text=key):
+                self.assertIsNone(audit.checked_mask_clearance(bad, obstacle))
+        bad = copy.deepcopy(obstacle)
+        bad["bbox_mm"]["x"][1] += .1
+        self.assertIsNone(audit.checked_mask_clearance(row, bad))
+
     def test_courtyard_mask_drill_and_text_overlaps_are_reported(self):
         box = {"x": [5, 7], "y": [11, 13]}
         obstacles = [{"kind": kind, "bbox_mm": box} for kind in
@@ -207,6 +242,102 @@ class SilkscreenGeometryTests(unittest.TestCase):
 
 @unittest.skipUnless(importlib.util.find_spec("pcbnew"), "Native extraction tests require KiCad Python")
 class NativeSilkscreenExtractionTests(unittest.TestCase):
+    def b3s_and_hub_text(self, y=138):
+        import pcbnew
+        board = pcbnew.BOARD()
+        fp = pcbnew.FootprintLoad(str(audit.B3S_LIBRARY.parent), "B3S-1100P")
+        fp.SetFPID(pcbnew.LIB_ID("Leshy2_R2", "B3S-1100P"))
+        fp.SetReference("SW8")
+        board.Add(fp)
+        fp.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(14.3), pcbnew.FromMM(133.32)))
+        text = pcbnew.PCB_TEXT(board)
+        text.SetText("HUB RP")
+        text.SetLayer(pcbnew.F_SilkS)
+        text.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(14.87), pcbnew.FromMM(y)))
+        text.SetTextSize(pcbnew.VECTOR2I(pcbnew.FromMM(1), pcbnew.FromMM(1)))
+        text.SetTextThickness(pcbnew.FromMM(.15))
+        board.Add(text)
+        return board, fp, text
+
+    def test_hub_ground_pad_native_strokes_old_gap_fails_shared_new_row_passes(self):
+        import pcbnew
+        board, fp, text = self.b3s_and_hub_text()
+        pad = next(p for p in fp.Pads() if p.GetNumber() == "5")
+        for y, expected_gap, count in ((138, .039819, 1), (138.2, .239819, 0)):
+            text.SetPosition(pcbnew.VECTOR2I(text.GetPosition().x, pcbnew.FromMM(y)))
+            proof = audit.native_stroke_mask_clearance(text, pad, pcbnew)
+            self.assertEqual("measured", proof["status"])
+            self.assertAlmostEqual(expected_gap, proof["gap_lower_mm"], places=6)
+            snapshot = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
+            candidates, resolved = audit.geometry_candidates(snapshot["texts"], snapshot["obstacles"], 80, 150)
+            self.assertEqual(count, len(candidates))
+            self.assertTrue(any(r["kind"] == "front_courtyard_bbox" and "resolution_reason" in r for r in resolved))
+            if count == 0:
+                mask = next(r for r in resolved if r["kind"] == "front_pad_mask_bbox")
+                self.assertGreaterEqual(mask["native_mask_gap_mm"][0], .15)
+        pad.SetLocalSolderMaskMargin(pcbnew.FromMM(.1))
+        self.assertAlmostEqual(.139819, audit.native_stroke_mask_clearance(text, pad, pcbnew)["gap_lower_mm"], places=6)
+
+    def test_unsupported_mask_shapes_and_negative_expansion_keep_candidate(self):
+        import pcbnew
+        board, fp, text = self.b3s_and_hub_text(138.2)
+        pad = next(p for p in fp.Pads() if p.GetNumber() == "5")
+        pad.SetShape(pcbnew.PAD_SHAPE_TRAPEZOID)
+        self.assertEqual("unsupported", audit.native_stroke_mask_clearance(text, pad, pcbnew)["status"])
+        pad.SetShape(pcbnew.PAD_SHAPE_RECT)
+        pad.SetLocalSolderMaskMargin(pcbnew.FromMM(-.01))
+        self.assertEqual("unsupported", audit.native_stroke_mask_clearance(text, pad, pcbnew)["status"])
+        snapshot = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
+        candidates, _ = audit.geometry_candidates(snapshot["texts"], snapshot["obstacles"], 80, 150)
+        self.assertIn("front_pad_mask_bbox", {r["kind"] for r in candidates})
+
+    def test_b3s_resolution_rejects_stale_library_native_fab_or_snapshot_geometry(self):
+        import pcbnew
+        board, fp, text = self.b3s_and_hub_text(138.2)
+        snapshot = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
+        obstacle = next(o for o in snapshot["obstacles"] if o["kind"] == "front_courtyard_bbox")
+        self.assertIn("reviewed_body", obstacle)
+        bad = copy.deepcopy(obstacle)
+        bad["fab_graphics_bbox_mm"]["y"][1] += .1
+        self.assertIsNone(audit.reviewed_body_clearance(snapshot["texts"][0], bad))
+        with patch.object(audit, "B3S_LIBRARY_SHA256", "0" * 64):
+            stale = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
+            self.assertNotIn("reviewed_body", next(o for o in stale["obstacles"] if o["kind"] == "front_courtyard_bbox"))
+        rect = next(g for g in fp.GraphicalItems() if isinstance(g, pcbnew.PCB_SHAPE)
+                    and g.GetLayer() == pcbnew.F_Fab and g.GetShape() == pcbnew.SHAPE_T_RECT)
+        rect.SetEnd(pcbnew.VECTOR2I(rect.GetEnd().x, rect.GetEnd().y + pcbnew.FromMM(.1)))
+        stale = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
+        self.assertNotIn("reviewed_body", next(o for o in stale["obstacles"] if o["kind"] == "front_courtyard_bbox"))
+        found, _ = audit.geometry_candidates(stale["texts"], stale["obstacles"], 80, 150)
+        self.assertIn("front_courtyard_bbox", {r["kind"] for r in found})
+
+    def test_b3s_labels_use_native_rotation_and_flip_not_contract_pose(self):
+        import pcbnew
+        from h6_r2_user_silkscreen import b3s_actuator_axis
+        board = pcbnew.BOARD()
+        fp = pcbnew.FootprintLoad(str(ROOT / "hardware/ecad/libraries/Leshy2_R2.pretty"), "B3S-1100P")
+        fp.SetFPID(pcbnew.LIB_ID("Leshy2_R2", "B3S-1100P"))
+        fp.SetReference("SW4")
+        board.Add(fp)
+        anchor = pcbnew.VECTOR2I(pcbnew.FromMM(10), pcbnew.FromMM(20))
+        fp.SetPosition(anchor)
+        ledger = [{"project": "LESHY2-RF-R2", "instance": "ptt_switch", "reference": "SW4"}]
+        for flipped in (False, True):
+            if flipped:
+                fp.Flip(anchor, False)
+            for angle in (0, 90, 180, 270):
+                fp.SetOrientationDegrees(angle)
+                row = audit.native_snapshot(board, "LESHY2-RF-R2", ledger, {}, pcbnew)["placements"][0]
+                self.assertEqual("B.Cu" if flipped else "F.Cu", row["side"])
+                self.assertAlmostEqual(angle % 360, row["rotation_deg"] % 360)
+                # Independent native point: midpoint of the two same-X contacts
+                # then translate half the two contact-column separation to X=0.
+                pads = {p.GetNumber(): p.GetPosition() for p in fp.Pads()}
+                actual_axis = tuple(sum(pcbnew.ToMM(getattr(pads[n], axis)) for n in ("1", "2", "3", "4")) / 4
+                                    for axis in ("x", "y"))
+                for actual, expected_axis in zip(b3s_actuator_axis(row), actual_axis):
+                    self.assertAlmostEqual(expected_axis, actual, places=6)
+
     def test_wrong_hierarchy_with_correct_leaf_name_fails_from_real_pad(self):
         import pcbnew
         project = "LESHY2-RF-R2"

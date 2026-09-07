@@ -1,0 +1,874 @@
+{
+  "schema_version": 1,
+  "marker": "H6.0.3-R1",
+  "reviewed_at_utc": "2026-09-07T22:50:51Z",
+  "status": "bounded_scratch_candidate_with_checked_raw_escape_whole_audio_layout_open",
+  "scope": "Scratch-only localization of the internal microphone's bias/filter, U85 selector, local bypass/control pull-up and two coupling/bias pairs. No production PCB, source placement, MPN or topology changes.",
+  "production_release_ready": false,
+  "whole_audio_placement_qualified": false,
+  "source_integration_authorized_by_this_report": false,
+  "sources": [
+    {
+      "path": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
+      "sha256": "49742a9446c8df9e27c01d4b696a61e012874084df986975856738dd50adfefa",
+      "scope": "Production baseline includes all 24 preceding RF interface changes, current audio MPN, corrected PTT and U116 F90 [10.5,110]."
+    },
+    {
+      "path": "hardware/layout/h6-r2-microphone-placement-review.json",
+      "scope": "Previous exact capsule/body/assembly-normal review; its older aggregate snapshot is not the native baseline for this report."
+    },
+    {
+      "url": "https://www.sameskydevices.com/product/resource/masterpdf/cmej-0413-42-smt-tr.pdf",
+      "sha256": "54a917f280a946ce7fbef0a993c7a64867e383b737a0c7f246ba47a50530cd8b",
+      "revision": "1.04",
+      "pages": [
+        2,
+        3,
+        4
+      ],
+      "scope": "Top-port capsule, internally FET-buffered application circuit with external 2.2-kohm load and AC coupling; acoustic/process limits unchanged."
+    },
+    {
+      "url": "https://www.ti.com/lit/ds/symlink/ts5a63157.pdf",
+      "sha256": "5a779cfb3e6dfa47a65dc0703f05ecbd56a6636025a47feb27a1de044d3a1bdb",
+      "revision": "SCDS203B, March 2019",
+      "pages_visually_reviewed": [
+        3,
+        23
+      ],
+      "scope": "DCK pin mapping; 0.1-uF supply bypass close to supply terminals and actively driven or pulled control input. No numerical microphone-trace length limit is stated."
+    }
+  ],
+  "engineering_target": {
+    "manufacturer_mandated_max_trace_length_mm": null,
+    "working_raw_pad_pair_target_mm": 10,
+    "rationale": "A locality/planning target for reducing pickup area and keeping bias and switching points together, not a manufacturer limit or frequency-derived pass/fail threshold. The capsule has an internal FET and a 2.2-kohm load: it is not an unbuffered high-impedance electret element. An 80-mm trace alone is not proof of audio failure over the 100-Hz to 10-kHz capsule band.",
+    "raw_route_requirements_still_open": [
+      "Close AUDIO_GROUND return and a quiet reference plane/path.",
+      "Separation from switching/RF/fast-digital routing when those remaining nets are actually routed.",
+      "No long unused raw-signal stub; retain bias and switching within the intended island."
+    ],
+    "routing_length_distinction": "The capsule's centre land exits via the +Y gap in its ground annulus. Direct 5.203-mm pad distance is not the routed capsule-to-U85 distance; the verified scratch path is 14.527 mm."
+  },
+  "fixed_capsule": {
+    "reference": "MK1",
+    "side": "F.Cu",
+    "rotation_deg": 0,
+    "anchor_mm": [
+      47,
+      147.4
+    ],
+    "changes_mpn_or_pad_nets": false
+  },
+  "support_count": 10,
+  "total_moved_footprint_count_including_capsule": 11,
+  "support_poses": [
+    {
+      "reference": "R206",
+      "instance": "microphone_bias_res",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
+      "footprint_id": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          58.075,
+          100.365
+        ]
+      },
+      "candidate": {
+        "side": "F.Cu",
+        "rotation_deg": 180,
+        "anchor_mm": [
+          50.5,
+          145.8
+        ],
+        "courtyard_bbox_mm": {
+          "x": [
+            49.525,
+            51.475
+          ],
+          "y": [
+            145.285,
+            146.315
+          ]
+        }
+      }
+    },
+    {
+      "reference": "C232",
+      "instance": "microphone_bias_filter_cap",
+      "mpn": "Murata GRM188R60J106ME47D",
+      "footprint_id": "Capacitor_SMD:C_0603_1608Metric",
+      "before": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          54.125,
+          71.625
+        ]
+      },
+      "candidate": {
+        "side": "F.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          53,
+          144.5
+        ],
+        "courtyard_bbox_mm": {
+          "x": [
+            52.225,
+            53.775
+          ],
+          "y": [
+            142.975,
+            146.025
+          ]
+        }
+      }
+    },
+    {
+      "reference": "R205",
+      "instance": "microphone_bias_filter_res",
+      "mpn": "Yageo RC0402FR-07220RL",
+      "footprint_id": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          59.075,
+          61.115
+        ]
+      },
+      "candidate": {
+        "side": "F.Cu",
+        "rotation_deg": 180,
+        "anchor_mm": [
+          55.2,
+          145.275
+        ],
+        "courtyard_bbox_mm": {
+          "x": [
+            54.225,
+            56.175
+          ],
+          "y": [
+            144.76,
+            145.79
+          ]
+        }
+      }
+    },
+    {
+      "reference": "U85",
+      "instance": "headset_mic_selector",
+      "mpn": "Texas Instruments TS5A63157DCKR",
+      "footprint_id": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "before": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          78.495,
+          75.095
+        ]
+      },
+      "candidate": {
+        "side": "F.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          47,
+          141.4
+        ],
+        "courtyard_bbox_mm": {
+          "x": [
+            45.855,
+            48.145
+          ],
+          "y": [
+            139.905,
+            142.895
+          ]
+        }
+      }
+    },
+    {
+      "reference": "C229",
+      "instance": "headset_mic_selector_bypass",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint_id": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          76.604999,
+          75.055
+        ]
+      },
+      "candidate": {
+        "side": "F.Cu",
+        "rotation_deg": -90,
+        "anchor_mm": [
+          48.9,
+          141.4
+        ],
+        "courtyard_bbox_mm": {
+          "x": [
+            48.395,
+            49.405
+          ],
+          "y": [
+            140.445,
+            142.355
+          ]
+        }
+      }
+    },
+    {
+      "reference": "R202",
+      "instance": "headset_mic_select_pullup",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint_id": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          74.324999,
+          48.865
+        ]
+      },
+      "candidate": {
+        "side": "F.Cu",
+        "rotation_deg": -90,
+        "anchor_mm": [
+          45.3,
+          138.8
+        ],
+        "courtyard_bbox_mm": {
+          "x": [
+            44.785,
+            45.815
+          ],
+          "y": [
+            137.825,
+            139.775
+          ]
+        }
+      }
+    },
+    {
+      "reference": "C197",
+      "instance": "audio_capture_mic_coupling",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint_id": "Capacitor_SMD:C_0603_1608Metric",
+      "before": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          37.375,
+          82.625
+        ]
+      },
+      "candidate": {
+        "side": "F.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          51.3,
+          140.3
+        ],
+        "courtyard_bbox_mm": {
+          "x": [
+            49.775,
+            52.825
+          ],
+          "y": [
+            139.525,
+            141.075
+          ]
+        }
+      }
+    },
+    {
+      "reference": "C231",
+      "instance": "mic_tx_coupling",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint_id": "Capacitor_SMD:C_0603_1608Metric",
+      "before": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          60.625,
+          62.625
+        ]
+      },
+      "candidate": {
+        "side": "F.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          51.3,
+          138.3
+        ],
+        "courtyard_bbox_mm": {
+          "x": [
+            49.775,
+            52.825
+          ],
+          "y": [
+            137.525,
+            139.075
+          ]
+        }
+      }
+    },
+    {
+      "reference": "R169",
+      "instance": "audio_capture_mic_bias",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint_id": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          25.365,
+          53.325
+        ]
+      },
+      "candidate": {
+        "side": "F.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          55,
+          142
+        ],
+        "courtyard_bbox_mm": {
+          "x": [
+            54.025,
+            55.975
+          ],
+          "y": [
+            141.485,
+            142.515
+          ]
+        }
+      }
+    },
+    {
+      "reference": "R204",
+      "instance": "mic_tx_bias",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint_id": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "rotation_deg": 90,
+        "anchor_mm": [
+          66.114999,
+          56.575
+        ]
+      },
+      "candidate": {
+        "side": "F.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          54.3,
+          138.3
+        ],
+        "courtyard_bbox_mm": {
+          "x": [
+            53.325,
+            55.275
+          ],
+          "y": [
+            137.785,
+            138.815
+          ]
+        }
+      }
+    }
+  ],
+  "purpose_by_group": [
+    {
+      "references": [
+        "R205",
+        "C232",
+        "R206"
+      ],
+      "purpose": "220-ohm supply isolation and 10-uF shunt filter placed beside the capsule's 2.2-kohm bias load."
+    },
+    {
+      "references": [
+        "U85",
+        "C229",
+        "R202"
+      ],
+      "purpose": "Move the microphone selector with its own 100-nF supply bypass and defined-state input pull-up, rather than leaving these connections as remote stubs."
+    },
+    {
+      "references": [
+        "C197",
+        "R169",
+        "C231",
+        "R204"
+      ],
+      "purpose": "Keep both selected-microphone coupling/bias pairs beside COM; downstream capture/TX selector locations are not silently considered local."
+    }
+  ],
+  "exact_U85_boundary": [
+    {
+      "pin": "1",
+      "function": "NO",
+      "net": "MIC_RAW",
+      "endpoints": [
+        "MK1.1",
+        "R206.2"
+      ],
+      "candidate": "Local"
+    },
+    {
+      "pin": "2",
+      "function": "GND",
+      "net": "AUDIO_GROUND",
+      "candidate": "Local bypass ground endpoint checked; ground routing remains undone."
+    },
+    {
+      "pin": "3",
+      "function": "NC",
+      "net": "HEADSET_MIC_RAW",
+      "endpoints": [
+        "U83.1",
+        "U82.4",
+        "R201.2"
+      ],
+      "candidate": "Not localized: headset jack, ESD and headset bias positions remain separate."
+    },
+    {
+      "pin": "4",
+      "function": "COM",
+      "net": "MIC_SELECTED_RAW",
+      "endpoints": [
+        "C197.1",
+        "C231.1"
+      ],
+      "candidate": "Both coupling inputs local"
+    },
+    {
+      "pin": "5",
+      "function": "VCC",
+      "net": "3V3_MAIN",
+      "endpoints": [
+        "C229.1"
+      ],
+      "candidate": "Local bypass, unchanged supply net"
+    },
+    {
+      "pin": "6",
+      "function": "IN",
+      "net": "HEADSET_INTERNAL_MIC_SEL",
+      "endpoints": [
+        "R202.2",
+        "U84.4"
+      ],
+      "candidate": "Pull-up local; U84 low-rate control route remains long."
+    }
+  ],
+  "compared_variants": [
+    {
+      "id": "bias_only",
+      "support_count": 3,
+      "geometry_violations": 0,
+      "MIC_RAW_max_pad_pair_mm": 78.364,
+      "disposition": "Not sufficient: short bias/filter loop alone leaves U85 remote."
+    },
+    {
+      "id": "core_selector",
+      "support_count": 6,
+      "geometry_violations": 0,
+      "MIC_RAW_max_pad_pair_mm": 5.203,
+      "MIC_SELECTED_RAW_max_pad_pair_mm": 78.887,
+      "disposition": "Local raw input but long COM-to-coupling network; not a complete local microphone group."
+    },
+    {
+      "id": "full_local_island",
+      "support_count": 10,
+      "geometry_violations": 0,
+      "MIC_RAW_max_pad_pair_mm": 5.203,
+      "MIC_SELECTED_RAW_max_pad_pair_mm": 3.658,
+      "disposition": "Examined bounded candidate. It localizes the named raw nodes; it does not qualify the remaining full audio chain."
+    },
+    {
+      "id": "same_xy_back_face_probe",
+      "support_count": 10,
+      "disposition": "Rejected probe, not an exhaustive search of all possible B-face layouts.",
+      "clashes": {
+        "same_courtyard_0p1": [
+          [
+            "C197",
+            "J11"
+          ],
+          [
+            "C231",
+            "J11"
+          ],
+          [
+            "C232",
+            "J11"
+          ],
+          [
+            "J11",
+            "R169"
+          ],
+          [
+            "J11",
+            "R204"
+          ],
+          [
+            "J11",
+            "R205"
+          ],
+          [
+            "J11",
+            "R206"
+          ],
+          [
+            "R202",
+            "U26"
+          ],
+          [
+            "R204",
+            "U101"
+          ]
+        ],
+        "cross_exposed_pad_drill_0p1": [],
+        "mount_radius_4mm_0p1": [],
+        "courtyard_edge_less_0p25": []
+      }
+    }
+  ],
+  "local_pad_metrics_mm": {
+    "U85_VCC_to_C229_1_mm": 1.933,
+    "U85_GND_to_C229_2_mm": 1.933,
+    "C232_1_to_R206_1_mm": 2.058,
+    "C232_1_to_R205_2_mm": 1.69,
+    "U85_IN_to_R202_2_mm": 1.634
+  },
+  "net_distance_comparison": {
+    "MIC_RAW": {
+      "baseline_max_pad_pair_mm": 78.364,
+      "candidate_max_pad_pair_mm": 5.203,
+      "candidate_pairs": [
+        {
+          "a": "MK1",
+          "b": "R206",
+          "pad_distance_mm": 3.391
+        },
+        {
+          "a": "MK1",
+          "b": "U85",
+          "pad_distance_mm": 5.203
+        },
+        {
+          "a": "R206",
+          "b": "U85",
+          "pad_distance_mm": 5.093
+        }
+      ]
+    },
+    "MIC_BIAS_FILTERED": {
+      "baseline_max_pad_pair_mm": 39.302,
+      "candidate_max_pad_pair_mm": 3.717,
+      "candidate_pairs": [
+        {
+          "a": "C232",
+          "b": "R205",
+          "pad_distance_mm": 1.69
+        },
+        {
+          "a": "C232",
+          "b": "R206",
+          "pad_distance_mm": 2.058
+        },
+        {
+          "a": "R205",
+          "b": "R206",
+          "pad_distance_mm": 3.717
+        }
+      ]
+    },
+    "MIC_SELECTED_RAW": {
+      "baseline_max_pad_pair_mm": 41.49,
+      "candidate_max_pad_pair_mm": 3.658,
+      "candidate_pairs": [
+        {
+          "a": "C197",
+          "b": "C231",
+          "pad_distance_mm": 2
+        },
+        {
+          "a": "C197",
+          "b": "U85",
+          "pad_distance_mm": 2.887
+        },
+        {
+          "a": "C231",
+          "b": "U85",
+          "pad_distance_mm": 3.658
+        }
+      ]
+    },
+    "CAPTURE_MIC_BIASED": {
+      "baseline_max_pad_pair_mm": 48.332,
+      "candidate_max_pad_pair_mm": 62.73,
+      "candidate_pairs": [
+        {
+          "a": "C197",
+          "b": "R169",
+          "pad_distance_mm": 2.953
+        },
+        {
+          "a": "C197",
+          "b": "U68",
+          "pad_distance_mm": 59.806
+        },
+        {
+          "a": "R169",
+          "b": "U68",
+          "pad_distance_mm": 62.73
+        }
+      ]
+    },
+    "VOICE_ELECTRET_DEFAULT": {
+      "baseline_max_pad_pair_mm": 15.663,
+      "candidate_max_pad_pair_mm": 88.83,
+      "candidate_pairs": [
+        {
+          "a": "C231",
+          "b": "R204",
+          "pad_distance_mm": 1.715
+        },
+        {
+          "a": "C231",
+          "b": "U72",
+          "pad_distance_mm": 88.83
+        },
+        {
+          "a": "R204",
+          "b": "U72",
+          "pad_distance_mm": 88.445
+        }
+      ]
+    },
+    "HEADSET_MIC_RAW": {
+      "baseline_max_pad_pair_mm": 98.063,
+      "candidate_max_pad_pair_mm": 109.187,
+      "candidate_pairs": [
+        {
+          "a": "R201",
+          "b": "U82",
+          "pad_distance_mm": 19.11
+        },
+        {
+          "a": "R201",
+          "b": "U83",
+          "pad_distance_mm": 83.025
+        },
+        {
+          "a": "R201",
+          "b": "U85",
+          "pad_distance_mm": 90.079
+        },
+        {
+          "a": "U82",
+          "b": "U83",
+          "pad_distance_mm": 98.063
+        },
+        {
+          "a": "U82",
+          "b": "U85",
+          "pad_distance_mm": 109.187
+        },
+        {
+          "a": "U83",
+          "b": "U85",
+          "pad_distance_mm": 60.976
+        }
+      ]
+    },
+    "HEADSET_INTERNAL_MIC_SEL": {
+      "baseline_max_pad_pair_mm": 53.795,
+      "candidate_max_pad_pair_mm": 116.686,
+      "candidate_pairs": [
+        {
+          "a": "R202",
+          "b": "U84",
+          "pad_distance_mm": 115.557
+        },
+        {
+          "a": "R202",
+          "b": "U85",
+          "pad_distance_mm": 1.634
+        },
+        {
+          "a": "U84",
+          "b": "U85",
+          "pad_distance_mm": 116.686
+        }
+      ]
+    }
+  },
+  "geometry_scope": {
+    "tested": {
+      "same_courtyard_0p1": [],
+      "cross_exposed_pad_drill_0p1": [],
+      "mount_radius_4mm_0p1": [],
+      "courtyard_edge_less_0p25": []
+    },
+    "conservative_prism_interpretation": "All moved supports are F.Cu on the rear exterior. Non-overlapping native courtyard rectangles are treated as outward vertical prisms; they do not enter the interboard gap. This is conservative for current courtyard-contained package bodies, but is not an exact enclosure/holder/plug 3D validation.",
+    "support_courtyard_union_mm": {
+      "x": [
+        44.785,
+        56.175
+      ],
+      "y": [
+        137.525,
+        146.315
+      ]
+    },
+    "current_holder_courtyard_y_max_mm": 128.05,
+    "y_gap_to_holder_courtyard_mm": 9.475,
+    "no_np_th_or_opposite_side_exposed_pad_overlap": true,
+    "all_support_courtyards_inset_at_least_mm": 0.25,
+    "rejected_initial_pose": {
+      "reference": "R169",
+      "anchor_mm": [
+        54.3,
+        140.3
+      ],
+      "finding": "Two silk_overlap warnings and one M5 UNIT silk-over-pad warning.",
+      "correction": "Moved only R169 to [55,142]. Existing M5 UNIT label and all native user silkscreen remain unchanged."
+    }
+  },
+  "checks": {
+    "policy": {
+      "locality_pairs": 259,
+      "locality_status": "pass",
+      "locality_violations": [],
+      "critical_pairs": 33,
+      "critical_status": "pass",
+      "critical_errors": [],
+      "critical_violations": []
+    },
+    "policy_limit": "Current policy contains no microphone-specific raw-trace requirement; its passing result does not replace the explicit distances/routing witness or qualify audio noise.",
+    "all_pad_number_net_multisets_preserved": true,
+    "old_pad_copper_contacts": [],
+    "new_pad_copper_contacts": [],
+    "new_different_net_copper_within_conservative_0p2_mm": [],
+    "retained_copper_count": 766,
+    "retained_copper_exact_signature_preserved": true,
+    "placement_candidate_added_copper_count": 0,
+    "native_uuid_count": 14799,
+    "duplicate_uuids": [],
+    "placement_drc": {
+      "violations": 0,
+      "schematic_parity": 0,
+      "reported_unconnected_items": 499,
+      "unconnected_count_scope": "Reported DRC items, not a replacement for the project's total unrouted connection count.",
+      "board_sha256": "83bc3bdba81d353c947ab41c48e22e1d6ecffdfe0f896f6262734e7d1b22f531",
+      "local_board_locator": "Unpublished scratch leshy2-mic-island-ujb8mdp7 / LESHY2-RF-R2.kicad_pcb; identity is the recorded SHA256, not a portable repository path",
+      "local_report_locator": "Unpublished scratch leshy2-mic-island-ujb8mdp7 / drc.json",
+      "report_sha256": "35dc9665c2ad206f7a1d5f6b1a1e46d75ddd3f0f612683060c57cfa177313e97",
+      "flags": [
+        "--format json",
+        "--severity-all",
+        "--schematic-parity"
+      ],
+      "suppressions_added": false
+    }
+  },
+  "raw_routing_witness": {
+    "local_board_locator": "Unpublished scratch leshy2-mic-raw-witness-x06gyl0o / LESHY2-RF-R2.kicad_pcb; identity is the recorded SHA256, not a portable repository path",
+    "board_sha256": "747169f398c7cc8ef38273cb5b5055d43e7a4457eb7286f2ed337782809501c4",
+    "placement_base_sha256": "83bc3bdba81d353c947ab41c48e22e1d6ecffdfe0f896f6262734e7d1b22f531",
+    "net": "MIC_RAW",
+    "layer": "F.Cu",
+    "width_mm": 0.15,
+    "segments": 6,
+    "vias": 0,
+    "path_mm": [
+      [
+        47,
+        147.4
+      ],
+      [
+        47,
+        149.2
+      ],
+      [
+        49.99,
+        149.2
+      ],
+      [
+        49.99,
+        145.8
+      ],
+      [
+        49.99,
+        144.7
+      ],
+      [
+        46.35,
+        143.7
+      ],
+      [
+        46.35,
+        142.2375
+      ]
+    ],
+    "capsule_to_R206_path_mm": 8.19,
+    "capsule_to_U85_path_mm": 14.527364,
+    "retained_copper_count": 766,
+    "retained_copper_unchanged": true,
+    "saved_reloaded_retained_copper_multiset_unchanged": true,
+    "scope": "Six new scratch-only witness segments on MIC_RAW. No production board or full-audio route change.",
+    "exact_terminal_positions_verified": {
+      "MK1_1": [
+        47,
+        147.4
+      ],
+      "R206_2": [
+        49.99,
+        145.8
+      ],
+      "U85_1": [
+        46.35,
+        142.2375
+      ]
+    },
+    "local_report_locator": "Unpublished scratch leshy2-mic-raw-witness-x06gyl0o / drc.json",
+    "report_sha256": "59763512125d1e8cea5efd5c9f4b4cb7791a2108e8e2c0c7caca845fd44e9c94",
+    "drc": {
+      "violations": 0,
+      "schematic_parity": 0,
+      "reported_unconnected_items": 499
+    },
+    "production_route": false,
+    "limits": "MIC_RAW only. Ground return, filtered supply, selected-microphone outputs and the downstream/audio external paths are not routed or EMI-qualified by this witness."
+  },
+  "remaining_boundary": [
+    "CAPTURE_MIC_BIASED runs to unmoved U68; maximum direct pad span grows from 48.332 to the value recorded above (about 63 mm).",
+    "VOICE_ELECTRET_DEFAULT runs to unmoved U72; maximum direct pad span grows from 15.663 to 88.830 mm. Do not describe the whole analog chain as improved or complete solely from the shorter MIC_RAW.",
+    "HEADSET_MIC_RAW includes still-remote U82 ESD and R201 bias; the 109.187-mm maximum span remains an independent placement/routing question. The real headset jack-to-internal-capsule separation means no one U85 location can make both physical inputs simultaneously adjacent.",
+    "Moving U68/U72 would also require their bypass/control and receive/codec input dependencies; that is outside this bounded ten-support scratch, not implicitly approved by it.",
+    "Fitted enclosure/mesh, finger occlusion, final connector plug access, no-wash/nozzle/reflow handling and measured audio noise remain open.",
+    "No generic old placement was accepted as electrically qualified, and no device, function, board size, native source or production copper was changed."
+  ],
+  "reproduction_helpers": [
+    {
+      "unpublished_local_diagnostic_filename": "leshy2-rf-mic-island.py",
+      "sha256": "cb219a2608126eae95dce93a211edf955d6c20ab9fa6813d9d2335b6866ddba4",
+      "scope": "Baseline SHA guard, three scoped F-face variants, rejected B-face probe, pad/copper/UUID preservation and full policy checks; --stage writes only a fresh temporary tree."
+    },
+    {
+      "unpublished_local_diagnostic_filename": "leshy2-rf-mic-raw-witness.py",
+      "sha256": "5fd96c37e8d9ba75114502d452ca1a8c9b8703189b9c4b68184d39d86a845437",
+      "scope": "Adds only six scratch MIC_RAW segments, saves to a fresh temporary tree, removes new segments in memory and verifies the retained copper signature."
+    }
+  ]
+}

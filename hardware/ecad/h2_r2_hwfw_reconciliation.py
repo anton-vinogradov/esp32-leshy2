@@ -166,11 +166,11 @@ def build() -> tuple[dict, dict]:
         "project_count": 2,
         "project_graph_sheet_count": 22,
         "fitted_symbol_instance_count": 1208,
-        "physical_symbol_pin_count": 4306,
+        "physical_symbol_pin_count": 4305,
         # Both RP2354 QSPI_IOVDD pins are supply inputs on 3V3_MAIN;
         # only the internal-flash QSPI signal pins remain no-connect.
         "connected_physical_pin_count": 4070,
-        "explicit_no_connect_physical_pin_count": 236,
+        "explicit_no_connect_physical_pin_count": 235,
         "canonical_net_count": 788,
     }
     for key, value in expected_native_summary.items():

@@ -122,8 +122,12 @@ def reference_prefix(instance: str, device_key: str, on_board: bool) -> str:
 def footprint_outputs() -> dict[Path, str]:
     # The manufacturer drawing fixes 2-mm contact pitch, 1.01-mm signal-land
     # width, 1.50-mm anchors and the 12.0x9.1-mm body.  The complete axes and
-    # land lengths below independently agree with the published OrCAD-derived
-    # and KiCad implementations of this exact MPN.
+    # land lengths below independently agree with published CAD. Seeed's own
+    # OPL footprint (b0035c51) puts the signal row at +4.79970 and the anchors
+    # at -2.69838 relative to its body centre. Rotating that CAD 180 degrees
+    # into our preserved pad frame requires body_y=+0.985, NOT a centred body.
+    # The two row-derived offsets differ by 0.00192 mm due to CAD rounding;
+    # these decimals are not manufacturing-tolerance guarantees.
     pads = [
         ("1", 3.000, -3.815, 1.010, 2.740, ("F.Cu", "F.Paste", "F.Mask"), "rect"),
         ("2", 1.000, -3.815, 1.010, 2.740, ("F.Cu", "F.Paste", "F.Mask"), "rect"),
@@ -137,9 +141,11 @@ def footprint_outputs() -> dict[Path, str]:
         pads,
         12.00,
         9.10,
-        12.80,
-        11.10,
-        "Seeed/NS-Tech NS-1125-W00010 Rev.A exact 1125R-SMT-4P: 12.0x9.1-mm right-angle body, four 2.0-mm-pitch contacts and two anchors; complete land axes cross-checked against two independent published CAD implementations",
+        12.90,
+        11.40,
+        "Seeed/NS-Tech NS-1125-W00010 Rev.A and official Seeed OPL b0035c51: 12.0x9.1-mm body at local Y+0.985, mating mouth at Y+5.535; preserved four 2.0-mm-pitch signal lands and two anchors; engineering courtyard includes nominal body/pads plus at least 0.25 mm, not a manufacturer PCB-edge datum",
+        body_y=0.985,
+        courtyard_y=0.150,
     )
     return {FOOTPRINT_DIR / "1125R-SMT-4P.kicad_mod": grove}
 

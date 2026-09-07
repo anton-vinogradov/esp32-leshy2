@@ -4,15 +4,15 @@
   "marker": "H3-R2.0.2",
   "status": "pass",
   "accepted_input": "H3-R2.0.1",
-  "input_freeze_sha256": "f80b5a15131510e5a52cf5642b05a6dd56ea808d5628c78223d18470aaa655f0",
-  "register_sha256": "ba79b4ca6ebea0abc7be746f471da9a0a2cd401e77239fce1a46bd9c99ad774b",
+  "input_freeze_sha256": "6864e056f49d3b9917b0084ea2661c489a4026c8cea9abc74358dcf1123d7af2",
+  "register_sha256": "a253f68745320afea37340f61777d2ea13fc990fc19b4778edf5dac616d7ef33",
   "source_sha256": {
     "hardware/verification/h3-r2-parameter-provenance-contract.json": "fb26cd78c18234ef1c02ce4ea6af5d4a21b0206229a5034e55c065b08f5d0346",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "7abdea8647413e2af3d4a5cdbbbd3d55fb5caf7cec30fcf33c046709cd4fd340",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "c196c8114e00b96c9840f0c85533e800c1d50b9cecb6a84ea194e07b04cba43f",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
-    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "674da6b63a67dad9efc211b57854e459243093cd8cc7806fb863f7404034c30c",
-    "hardware/architecture/devices.json": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76"
+    "hardware/verification/generated/H3-R2-input-freeze.json": "481c75712687a7c97ab1abe8fbe211ee4bca0e34c33c5704ddd88d16cc033f7e",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "74c8a559f245a231bb567ad6f7f069fab053e33fb3940636d2a72a42f7635ed8",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
+    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "6dbafc5fb69bbf3ec56cea89439ddc54539f720cfb58cbc8ab87da32600166a8",
+    "hardware/architecture/devices.json": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c"
   },
   "policy": {
     "accepted_h2_identity_is_immutable": true,
@@ -834,8 +834,8 @@
       "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
-      "device_id": "ck_js102011scqn",
-      "mpn": "C&K JS102011SCQN",
+      "device_id": "ck_js102011saqn",
+      "mpn": "C&K JS102011SAQN",
       "manufacturer": null,
       "kind": "spdt_on_on_right_angle_smt_power_command_slide_switch",
       "role": "power_command_switch",
@@ -852,20 +852,20 @@
       "references": [
         "SW5"
       ],
-      "lifecycle": "active_orderable",
-      "jlcpcb_part_number": null,
+      "lifecycle": "production_active_factory_stocked_standard_pcba",
+      "jlcpcb_part_number": "C221660",
       "source": {
-        "document": "Littelfuse C&K JS Series Sub-Miniature Slide Switches datasheet",
+        "document": "Littelfuse C&K JS Series Sub-Miniature Slide Switches, p1 ordering and p4 exact JS102011SAQN mechanical drawing/circuit",
         "version": "VL 01/14/26",
         "url": "https://www.littelfuse.com/assetdocs/littelfuse-c-k-slide-js-series-datasheet?assetguid=aba42b08-0d2c-423b-813d-a2faa5a3bb14",
-        "checked": "2026-08-19"
+        "checked": "2026-09-07"
       },
       "source_tier": "manufacturer_primary_accepted_h2",
       "accepted_h2_source_preserved": {
-        "document": "Littelfuse C&K JS Series Sub-Miniature Slide Switches datasheet",
+        "document": "Littelfuse C&K JS Series Sub-Miniature Slide Switches, p1 ordering and p4 exact JS102011SAQN mechanical drawing/circuit",
         "version": "VL 01/14/26",
         "url": "https://www.littelfuse.com/assetdocs/littelfuse-c-k-slide-js-series-datasheet?assetguid=aba42b08-0d2c-423b-813d-a2faa5a3bb14",
-        "checked": "2026-08-19"
+        "checked": "2026-09-07"
       },
       "source_host": "www.littelfuse.com",
       "parameter_class": "digital_interface",
@@ -7527,10 +7527,10 @@
       "symbol_electrical_contract_sha256": "6206b537367bf93e308dcf278673386e2bf8608c3784317c280ad38d25b6c37c"
     },
     {
-      "device_id": "same_sky_sj_43504_smt_tr",
-      "mpn": "Same Sky SJ-43504-SMT-TR",
+      "device_id": "same_sky_sj_43515ts_smt_tr",
+      "mpn": "Same Sky SJ-43515TS-SMT-TR",
       "manufacturer": null,
-      "kind": "3_5mm_ctia_trrs_mid_mount_jack_two_internal_switches",
+      "kind": "3_5mm_ctia_trrs_top_mount_smt_jack_tip_switch",
       "role": "headphone_jack",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
@@ -7545,20 +7545,20 @@
       "references": [
         "U83"
       ],
-      "lifecycle": "active_orderable",
-      "jlcpcb_part_number": null,
+      "lifecycle": "production_active_explicit_jlcpcb_presale_route",
+      "jlcpcb_part_number": "C5353507",
       "source": {
-        "document": "SJ-43504-SMT-TR Audio Jack datasheet",
-        "version": "Rev. 1.06, September 2024",
-        "url": "https://www.sameskydevices.com/product/resource/sj-43504-smt-tr.pdf",
-        "checked": "2026-08-23"
+        "document": "Same Sky SJ-4351X-SMT, page 1 part-number key and page 2 mechanical/PCB top-view drawing and exact TS circuit",
+        "version": "2024-09-12",
+        "url": "https://www.sameskydevices.com/product/resource/digikeypdf/sj-4351x-smt.pdf",
+        "checked": "2026-09-08"
       },
       "source_tier": "manufacturer_primary_accepted_h2",
       "accepted_h2_source_preserved": {
-        "document": "SJ-43504-SMT-TR Audio Jack datasheet",
-        "version": "Rev. 1.06, September 2024",
-        "url": "https://www.sameskydevices.com/product/resource/sj-43504-smt-tr.pdf",
-        "checked": "2026-08-23"
+        "document": "Same Sky SJ-4351X-SMT, page 1 part-number key and page 2 mechanical/PCB top-view drawing and exact TS circuit",
+        "version": "2024-09-12",
+        "url": "https://www.sameskydevices.com/product/resource/digikeypdf/sj-4351x-smt.pdf",
+        "checked": "2026-09-08"
       },
       "source_host": "www.sameskydevices.com",
       "parameter_class": "digital_interface",
@@ -7575,9 +7575,18 @@
         "ring1": "right headphone",
         "ring2": "audio ground",
         "sleeve": "headset microphone plus bias",
-        "internal_switch_use": "tip switch provides plug state; ring1 switch remains no-connect"
+        "internal_switch_use": "tip switch provides plug state; no ring1 switch is physically present in TS model",
+        "tip_switch_closed_without_plug_physical_pads": [
+          "2",
+          "5"
+        ],
+        "tip_switch_open_with_plug_physical_pads": [
+          "2",
+          "5"
+        ],
+        "absent_family_terminal": "6 / RING1_SWITCH is NP for SJ-43515TS, not a phantom NC pad; historical SJ-43504 R1 is retained unchanged"
       },
-      "structured_parameter_count": 6,
+      "structured_parameter_count": 9,
       "parameter_state": "structured_seed_present",
       "model_method_candidate": "datasheet_static_and_timing_model",
       "model_method_state": "candidate_pending_H3-R2.0.3",
@@ -7585,8 +7594,8 @@
         "H3-R2.3"
       ],
       "factory_catalog_parameter_gap": null,
-      "symbol_contact_map_sha256": "ab754045651e205a5ccc97c7c7acc138f9ae1a88b2bff7db0750eae99799b813",
-      "symbol_electrical_contract_sha256": "72e967bc99eb703f55c5612060ce39a00c9ac9411eb3ccc4b15b79ebcbb7181e"
+      "symbol_contact_map_sha256": "c1ca381696ace0144f0f4e88e334703e6cb27e474d48835fe6494f4f01a40adc",
+      "symbol_electrical_contract_sha256": "dce355e315b16834381e3c6677d6ac0076d58ddbe10b0a59c4eaf0313531bda6"
     },
     {
       "device_id": "samsung_cl05a105ka5nqnc",
@@ -12754,10 +12763,10 @@
       "symbol_electrical_contract_sha256": "48d7f5e0117a32bce694c87e60dc9b310cc6f9cfddace53d71e82ec19e8cf675"
     },
     {
-      "device_id": "vishay_tsmp95000tt",
-      "mpn": "Vishay TSMP95000TT",
+      "device_id": "vishay_tsmp95000tr",
+      "mpn": "Vishay TSMP95000TR",
       "manufacturer": null,
-      "kind": "heimdall_smd_30_60khz_carrier_output_ir_learning_receiver",
+      "kind": "heimdall_side_view_smd_30_60khz_carrier_output_ir_learning_receiver",
       "role": "ir_carrier",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
@@ -12772,20 +12781,20 @@
       "references": [
         "U23"
       ],
-      "lifecycle": "active_stocked_orderable",
-      "jlcpcb_part_number": null,
+      "lifecycle": "production_active_explicit_jlcpcb_presale_route",
+      "jlcpcb_part_number": "C20593617",
       "source": {
-        "document": "TSMP95000 IR sensor module datasheet",
-        "version": "Rev. 1.0, 20-Oct-2022",
+        "document": "Vishay TSMP95000 ordering, contacts and TR side-view tape",
+        "version": "82907 Rev.1.0, 20-Oct-2022, pages 2/4/6/7",
         "url": "https://www.vishay.com/docs/82907/tsmp95000.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-09-07"
       },
       "source_tier": "manufacturer_primary_accepted_h2",
       "accepted_h2_source_preserved": {
-        "document": "TSMP95000 IR sensor module datasheet",
-        "version": "Rev. 1.0, 20-Oct-2022",
+        "document": "Vishay TSMP95000 ordering, contacts and TR side-view tape",
+        "version": "82907 Rev.1.0, 20-Oct-2022, pages 2/4/6/7",
         "url": "https://www.vishay.com/docs/82907/tsmp95000.pdf",
-        "checked": "2026-08-18"
+        "checked": "2026-09-07"
       },
       "source_host": "www.vishay.com",
       "parameter_class": "general_component",
@@ -12808,7 +12817,7 @@
         "typical_supply_current_ma_at_3v3": 0.35,
         "typical_learning_distance_m": 1.8,
         "output": "active-low carrier cycles; the only onboard source allowed to create measured 30-60-kHz carrier provenance",
-        "taping": "TT top-view tape, 2200 pieces per reel"
+        "taping": "TR side-view tape, 2300 pieces per reel"
       },
       "structured_parameter_count": 6,
       "parameter_state": "structured_seed_present",
@@ -12819,7 +12828,7 @@
       ],
       "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "838b475c9dc7847c394763f875f1ee5d3e63e81f830110d4645ae755d1906c18",
-      "symbol_electrical_contract_sha256": "b3b32ddb9746e442611f8b7215f04acae51bdbb250070cd8557f54178ef8075e"
+      "symbol_electrical_contract_sha256": "d08fbc48c5a35ae179ef6ed6a25d8d76c6841d8ec45b9b4c1020272830b3c3f3"
     },
     {
       "device_id": "vishay_tsop75238tr",

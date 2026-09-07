@@ -4,17 +4,19 @@
   "status": "pass_scoped",
   "production_release_authorized": false,
   "inputs_sha256": {
-    "hardware/layout/h6-r2-placement-contract.json": "ab9f53ce43da72426dacd377769738a8074c3c0ae5bb0b4d8c1f9a9402a2dc77",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
-    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "eaef6ff99cb5e2f0ea5d8e43aac46443ab6818ae9841c52816460166631b7f44",
-    "hardware/layout/h6_r2_silkscreen_audit.py": "9ff20403b1f066b234be293ced7e69a0b97af94cd5c1fcf7100e1db21ca1524d",
-    "hardware/layout/h6_r2_user_silkscreen.py": "316b2464a4a4b9b14112b05314c2a8eebdb3771611298c0f43fc272eec822368",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "c6a155915d1b64598fb3d24f708070d39c68c75c8bd6094ed871a9a57f53fd88",
-    "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "3c48790e20e37d5f9f7594551cb9d6fe452406939d33d937d834cab9da390a91",
+    "hardware/layout/h6-r2-placement-contract.json": "a987975d861f6e404d42177377c5d9e868755a503b188ad99c815a3eecf178d7",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
+    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "b2655295e86d4988caa693cd926fbe7185a24a5be7f26ebc607ff1a0254762b6",
+    "hardware/layout/h6_r2_silkscreen_audit.py": "78cecb4082bd0e10620efdc6372dd3e7ca23d4bba3c02d0bc2ef6a5d9024dceb",
+    "hardware/layout/h6_r2_user_silkscreen.py": "01b324671dcb67ba9e02381068d8aaf079c869a53a4bc9862472012351bd5544",
+    "hardware/ecad/libraries/Leshy2_R2.pretty/B3S-1100P.kicad_mod": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989",
+    "hardware/layout/h6-r2-b3s-actuator-datum-review.json": "d8de0d5184828d1c6fd98415ccf63e4008e87cfbf7a231412f59bc7fc1dab6c9",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e",
+    "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "0f495dea5bd8c9f3426de84ae282347390ced91f1f64d26f3f1edc73b1722589",
     "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch": "43910ab937fd3f95a140f664d6fbaca72d8dc6e9bf60cf46e5eae24158eddf50",
     "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_sch": "2d20cc84e34a33e8f6339a846a21ef9c2b3c9d2d53aeaad744f87fadc9a82069",
-    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "ced019b77a4b1fc4437f9c692f0feeaf38aca149cebfc6d6e8fe3fa70a3f347c",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "3dd3862acf37ce7b0879093be5c0dc8c98482455c3c508a68b9f92c5b606d0b5"
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "82e0b4ae6cbbad5241984a476c057ea7ecf2d593b382bcc06feceb26a73cbfe1",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "cd306f5f39649fd0c24c0a1f79931716f646e9c72959788a9127098d44eca1fe"
   },
   "boards": [
     {
@@ -46,6 +48,9 @@
             "visible": true,
             "horizontal_justify": 0,
             "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
             "bbox_mm": {
               "x": [
                 33.327381,
@@ -71,6 +76,373 @@
             }
           },
           "exemption_reason": "Correctly positioned assembly marking intentionally hidden after final assembly"
+        }
+      ],
+      "resolved_geometry_findings": [
+        {
+          "kind": "front_courtyard_bbox",
+          "text": {
+            "id": "42478bb1-f427-483c-9cd4-301fd43c3c31",
+            "text": "DOWN",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              40.0,
+              148.9
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                37.755953,
+                42.244048
+              ],
+              "y": [
+                148.05175,
+                149.74825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "front_courtyard_bbox",
+            "reference": "SW3",
+            "bbox_mm": {
+              "x": [
+                34.955,
+                45.045
+              ],
+              "y": [
+                139.155,
+                148.145
+              ]
+            },
+            "fab_graphics_bbox_mm": {
+              "x": [
+                36.95,
+                43.05
+              ],
+              "y": [
+                139.55,
+                146.25
+              ]
+            },
+            "native_geometry_sha256": "75da86536aaa426a197d69ea23c80a06c012251bd825536eaecf4e0a255a4eb1",
+            "reviewed_body": {
+              "primary_url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+              "section": "Full p2 With Ground Terminal, nominal body6.0x6.6 and +/-0.3-mm unspecified tolerance",
+              "library_sha256": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989",
+              "native_geometry_matches_library": true,
+              "inputs_sha256": "011f2ef54273bddf1954da54021b0c0375387eb8cfe1c96f79f91978d208b075"
+            }
+          },
+          "fab_graphics_bbox_overlap": false,
+          "fab_graphics_bbox_gap_mm": 1.8017499999999984,
+          "tolerance_expanded_body_gap_mm": 1.501749999999987,
+          "resolution_reason": "Exact reviewed B3S native/library geometry agrees; text clears the primary body plus dimensional tolerance, not merely the assembly courtyard. Pads and drills remain independently screened."
+        },
+        {
+          "kind": "front_courtyard_bbox",
+          "text": {
+            "id": "2e285997-e510-4ad9-be7c-e2ac43c63e0a",
+            "text": "OK",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              46.5,
+              138.1
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                45.351191,
+                47.64881
+              ],
+              "y": [
+                137.25175,
+                138.94825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "front_courtyard_bbox",
+            "reference": "SW6",
+            "bbox_mm": {
+              "x": [
+                45.455,
+                55.545
+              ],
+              "y": [
+                128.655,
+                137.645
+              ]
+            },
+            "fab_graphics_bbox_mm": {
+              "x": [
+                47.45,
+                53.55
+              ],
+              "y": [
+                129.05,
+                135.75
+              ]
+            },
+            "native_geometry_sha256": "f5504c1f758cba2456e236e35855276391a55f2c79c6d020fb0600783fdc25f1",
+            "reviewed_body": {
+              "primary_url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+              "section": "Full p2 With Ground Terminal, nominal body6.0x6.6 and +/-0.3-mm unspecified tolerance",
+              "library_sha256": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989",
+              "native_geometry_matches_library": true,
+              "inputs_sha256": "b46d43de05f8e994cfc374432b01440b112206e77d2c295bae783880dbbae8dc"
+            }
+          },
+          "fab_graphics_bbox_overlap": false,
+          "fab_graphics_bbox_gap_mm": 1.501749999999987,
+          "tolerance_expanded_body_gap_mm": 1.2017499999999757,
+          "resolution_reason": "Exact reviewed B3S native/library geometry agrees; text clears the primary body plus dimensional tolerance, not merely the assembly courtyard. Pads and drills remain independently screened."
+        },
+        {
+          "kind": "front_courtyard_bbox",
+          "text": {
+            "id": "7f43493d-ad74-5e61-aa0d-1b1a963cba5b",
+            "text": "HUB RP",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              14.87,
+              138.2
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                11.816429,
+                17.923572
+              ],
+              "y": [
+                137.35175,
+                139.04825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "front_courtyard_bbox",
+            "reference": "SW8",
+            "bbox_mm": {
+              "x": [
+                9.255,
+                19.345
+              ],
+              "y": [
+                128.655,
+                137.645
+              ]
+            },
+            "fab_graphics_bbox_mm": {
+              "x": [
+                11.25,
+                17.35
+              ],
+              "y": [
+                129.05,
+                135.75
+              ]
+            },
+            "native_geometry_sha256": "a3aa9479f8b034e60bfd4dd8f33a50dcbeab9453b37cd3f5f8b8d85917810a3f",
+            "reviewed_body": {
+              "primary_url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+              "section": "Full p2 With Ground Terminal, nominal body6.0x6.6 and +/-0.3-mm unspecified tolerance",
+              "library_sha256": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989",
+              "native_geometry_matches_library": true,
+              "inputs_sha256": "035b633f9888fbf89d47630a80f3b4d4bd2d4ee3a00ad91042894a333f445445"
+            }
+          },
+          "fab_graphics_bbox_overlap": false,
+          "fab_graphics_bbox_gap_mm": 1.6017500000000098,
+          "tolerance_expanded_body_gap_mm": 1.3017499999999984,
+          "resolution_reason": "Exact reviewed B3S native/library geometry agrees; text clears the primary body plus dimensional tolerance, not merely the assembly courtyard. Pads and drills remain independently screened."
+        },
+        {
+          "kind": "front_pad_mask_bbox",
+          "text": {
+            "id": "7f43493d-ad74-5e61-aa0d-1b1a963cba5b",
+            "text": "HUB RP",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              14.87,
+              138.2
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                11.816429,
+                17.923572
+              ],
+              "y": [
+                137.35175,
+                139.04825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "front_pad_mask_bbox",
+            "pad": "SW8.5",
+            "native_pad_id": "c3a1c006-5900-547f-a746-070faed5cb9c",
+            "shape": 1,
+            "at_mm": [
+              14.3,
+              136.49
+            ],
+            "size_mm": [
+              1.3,
+              1.7
+            ],
+            "offset_mm": [
+              0.0,
+              0.0
+            ],
+            "rotation_deg": 0.0,
+            "roundrect_radius_mm": 0.325,
+            "mask_expansion_mm": 0.0,
+            "bbox_mm": {
+              "x": [
+                13.65,
+                14.95
+              ],
+              "y": [
+                135.64,
+                137.34
+              ]
+            },
+            "native_text_clearances": {
+              "7f43493d-ad74-5e61-aa0d-1b1a963cba5b": {
+                "status": "measured",
+                "method": "native_stroke_shape_to_pad_mask",
+                "gap_lower_mm": 0.239819,
+                "gap_upper_mm": 0.23982,
+                "inputs_sha256": "2e00684eb296c25c0c257c73a03f4e96493b6ffeac7310e62ed7c563d3e9a08b"
+              }
+            }
+          },
+          "required_mask_gap_mm": 0.15,
+          "native_mask_gap_mm": [
+            0.239819,
+            0.23982
+          ],
+          "resolution_reason": "Actual native text strokes, including pen width, clear the actual pad mask by the required gap"
+        },
+        {
+          "kind": "front_courtyard_bbox",
+          "text": {
+            "id": "4844262a-a0ed-5aa9-8121-81c6ef160b80",
+            "text": "C5",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              26.1,
+              138.2
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                24.99881,
+                27.201191
+              ],
+              "y": [
+                137.35175,
+                139.04825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "front_courtyard_bbox",
+            "reference": "SW4",
+            "bbox_mm": {
+              "x": [
+                24.455,
+                34.545
+              ],
+              "y": [
+                128.655,
+                137.645
+              ]
+            },
+            "fab_graphics_bbox_mm": {
+              "x": [
+                26.45,
+                32.55
+              ],
+              "y": [
+                129.05,
+                135.75
+              ]
+            },
+            "native_geometry_sha256": "97086bae89b37b9f1a9fabff1778acc55e634223abd9638892349dae197943b0",
+            "reviewed_body": {
+              "primary_url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+              "section": "Full p2 With Ground Terminal, nominal body6.0x6.6 and +/-0.3-mm unspecified tolerance",
+              "library_sha256": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989",
+              "native_geometry_matches_library": true,
+              "inputs_sha256": "fc164493037b88927397f6373a87de4cada5db6605e3c19c2dade28abea66751"
+            }
+          },
+          "fab_graphics_bbox_overlap": false,
+          "fab_graphics_bbox_gap_mm": 1.6017500000000098,
+          "tolerance_expanded_body_gap_mm": 1.3017499999999984,
+          "resolution_reason": "Exact reviewed B3S native/library geometry agrees; text clears the primary body plus dimensional tolerance, not merely the assembly courtyard. Pads and drills remain independently screened."
         }
       ],
       "required_bindings": [
@@ -232,7 +604,7 @@
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "c9f44a3b-0c8a-468b-8715-efb39f774845"
+          "actual_id": "f65a705d-ca47-5a51-a19f-b3916815cc97"
         },
         {
           "expected": {
@@ -264,7 +636,7 @@
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "aca6b078-d74c-4661-9afe-a1d3796da6b2"
+          "actual_id": "f86050e3-59dd-5a8c-b6ae-468328ad4959"
         },
         {
           "expected": {
@@ -353,14 +725,14 @@
             "text": "HUB RP",
             "at_mm": [
               14.87,
-              138.0
+              138.2
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "1c921ab2-52ed-402d-9aa3-ea785cb8c1c6"
+          "actual_id": "7f43493d-ad74-5e61-aa0d-1b1a963cba5b"
         },
         {
           "expected": {
@@ -385,14 +757,14 @@
             "text": "C5",
             "at_mm": [
               26.1,
-              138.0
+              138.2
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "0362adf1-f6b3-41d2-8e2b-be45969f236a"
+          "actual_id": "4844262a-a0ed-5aa9-8121-81c6ef160b80"
         },
         {
           "expected": {
@@ -857,6 +1229,9 @@
             "visible": true,
             "horizontal_justify": 0,
             "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
             "bbox_mm": {
               "x": [
                 29.624523,
@@ -905,6 +1280,9 @@
             "visible": true,
             "horizontal_justify": 0,
             "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
             "bbox_mm": {
               "x": [
                 29.624523,
@@ -953,6 +1331,9 @@
             "visible": true,
             "horizontal_justify": 0,
             "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
             "bbox_mm": {
               "x": [
                 29.624523,
@@ -1001,6 +1382,9 @@
             "visible": true,
             "horizontal_justify": 0,
             "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
             "bbox_mm": {
               "x": [
                 29.624523,
@@ -1049,6 +1433,9 @@
             "visible": true,
             "horizontal_justify": 0,
             "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
             "bbox_mm": {
               "x": [
                 29.624523,
@@ -1097,6 +1484,9 @@
             "visible": true,
             "horizontal_justify": 0,
             "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
             "bbox_mm": {
               "x": [
                 29.624523,
@@ -1145,6 +1535,9 @@
             "visible": true,
             "horizontal_justify": 0,
             "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
             "bbox_mm": {
               "x": [
                 27.160713,
@@ -1193,6 +1586,9 @@
             "visible": true,
             "horizontal_justify": 0,
             "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
             "bbox_mm": {
               "x": [
                 27.160713,
@@ -1241,6 +1637,9 @@
             "visible": true,
             "horizontal_justify": 0,
             "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
             "bbox_mm": {
               "x": [
                 27.160713,
@@ -1289,6 +1688,9 @@
             "visible": true,
             "horizontal_justify": 0,
             "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
             "bbox_mm": {
               "x": [
                 27.160713,
@@ -1337,6 +1739,9 @@
             "visible": true,
             "horizontal_justify": 0,
             "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
             "bbox_mm": {
               "x": [
                 22.708332,
@@ -1385,6 +1790,9 @@
             "visible": true,
             "horizontal_justify": 0,
             "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
             "bbox_mm": {
               "x": [
                 22.708332,
@@ -1433,6 +1841,9 @@
             "visible": true,
             "horizontal_justify": 0,
             "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
             "bbox_mm": {
               "x": [
                 48.724524,
@@ -1481,6 +1892,9 @@
             "visible": true,
             "horizontal_justify": 0,
             "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
             "bbox_mm": {
               "x": [
                 48.724524,
@@ -1529,6 +1943,9 @@
             "visible": true,
             "horizontal_justify": 0,
             "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
             "bbox_mm": {
               "x": [
                 30.879049,
@@ -1577,6 +1994,9 @@
             "visible": true,
             "horizontal_justify": 0,
             "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
             "bbox_mm": {
               "x": [
                 30.879049,
@@ -1606,6 +2026,7 @@
           "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
         }
       ],
+      "resolved_geometry_findings": [],
       "required_bindings": [
         {
           "expected": {
@@ -1693,7 +2114,7 @@
             "reference": "SW2",
             "text": "RF RP",
             "at_mm": [
-              74.0,
+              6.0,
               107.2
             ],
             "size_mm": 1.0,
@@ -1701,7 +2122,7 @@
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "fceb9055-01d0-4985-bcd3-e2693ce6294d"
+          "actual_id": "969148b7-cf11-5b89-b237-6db84fae5698"
         },
         {
           "expected": {
@@ -1709,7 +2130,7 @@
             "reference": "SW2",
             "text": "RST",
             "at_mm": [
-              74.0,
+              6.0,
               109.3
             ],
             "size_mm": 1.0,
@@ -1717,7 +2138,7 @@
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "718187c2-daf4-4376-a08f-338b6d9491af"
+          "actual_id": "425e9795-ce67-51f6-9532-e6f4d41b5018"
         },
         {
           "expected": {
@@ -1725,7 +2146,7 @@
             "reference": "SW1",
             "text": "RF RP",
             "at_mm": [
-              74.0,
+              6.0,
               114.2
             ],
             "size_mm": 1.0,
@@ -1733,7 +2154,7 @@
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "289439d2-bb7a-4434-99cd-cc518fc4d187"
+          "actual_id": "a2166c67-2ea3-50b1-9edf-c08138fdff76"
         },
         {
           "expected": {
@@ -1741,7 +2162,7 @@
             "reference": "SW1",
             "text": "BOOT",
             "at_mm": [
-              74.0,
+              6.0,
               116.3
             ],
             "size_mm": 1.0,
@@ -1749,7 +2170,7 @@
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "3d82e90c-fd54-4379-bd03-0c32ba87ea05"
+          "actual_id": "478d8e35-18b5-5c0f-ba1a-cbddb77a6a1b"
         },
         {
           "expected": {
@@ -1757,15 +2178,15 @@
             "reference": "J4",
             "text": "RF RP",
             "at_mm": [
-              42.53,
-              138.0
+              37.47,
+              138.2
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "fac6c6a5-29cd-4a13-a112-a14aea0c06c0"
+          "actual_id": "569fa67a-dcf8-5902-98dc-d389bd21d17a"
         },
         {
           "expected": {
@@ -1773,7 +2194,7 @@
             "reference": "J4",
             "text": "DATA USB",
             "at_mm": [
-              42.53,
+              37.47,
               140.0
             ],
             "size_mm": 1.0,
@@ -1781,7 +2202,7 @@
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "a882324a-91f4-44b9-966b-32a16263981e"
+          "actual_id": "d87f6a18-b285-5c7b-aa95-13860f4974fa"
         },
         {
           "expected": {
@@ -1789,15 +2210,15 @@
             "reference": "J1",
             "text": "S3",
             "at_mm": [
-              63.53,
-              138.0
+              16.47,
+              138.2
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "4d43b3f3-1031-4333-b719-dcc4cfc8ae38"
+          "actual_id": "e02c2c4d-a797-555b-a3d9-e43f7587beab"
         },
         {
           "expected": {
@@ -1805,7 +2226,7 @@
             "reference": "J1",
             "text": "POWER + USB",
             "at_mm": [
-              63.53,
+              16.47,
               140.0
             ],
             "size_mm": 1.0,
@@ -1813,7 +2234,7 @@
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "224de975-85fa-48a4-9b69-e6f627ca5ba6"
+          "actual_id": "67a6dc19-7c10-50be-9e77-3464a6e51fb3"
         },
         {
           "expected": {
@@ -1821,7 +2242,7 @@
             "reference": "J11",
             "text": "M5 UNIT",
             "at_mm": [
-              18.0,
+              57.0,
               140.0
             ],
             "size_mm": 1.0,
@@ -1829,7 +2250,7 @@
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "dd6a3844-9f0a-4e24-83b3-a9238fd3c419"
+          "actual_id": "de5c805a-e270-5cdd-aee1-6b910412cea7"
         },
         {
           "expected": {
@@ -1837,7 +2258,7 @@
             "reference": "SW4",
             "text": "PTT",
             "at_mm": [
-              7.5,
+              72.1,
               73.0
             ],
             "size_mm": 1.0,
@@ -1845,7 +2266,7 @@
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "782bea43-5199-4ee4-975f-8a6365dc449e"
+          "actual_id": "be906801-a3c2-53c1-8ee1-061389f28aa2"
         },
         {
           "expected": {
@@ -1869,7 +2290,9 @@
   "limitations": [
     "Bounding-box candidates require visual inspection and native DRC; they are not proven ink collisions.",
     "Footprint package graphics/reference/value text are outside this free-board user-text audit.",
-    "Native Edge.Cuts envelope must match the contracted board; text is screened against its rounded envelope. Slot geometry, exact ink outlines and mechanical connector readiness are separate.",
+    "Supported default native stroke-font/pad-mask pairs use actual shapes and a0.15-mm gap; unsupported pairs remain conservative candidates. Other geometry uses bounding boxes.",
+    "Only hash-bound primary-reviewed B3S courtyard candidates may resolve against matching native Fab/pad geometry with body tolerance; this is not assembly qualification.",
+    "Native Edge.Cuts envelope must match the contracted board; text is screened against its rounded envelope. Slot geometry and mechanical connector readiness are separate.",
     "1.0 mm font and 0.15 mm stroke are this label contract's minima, not factory qualification."
   ]
 }

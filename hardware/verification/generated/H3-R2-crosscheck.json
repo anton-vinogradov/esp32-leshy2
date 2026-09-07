@@ -5,165 +5,165 @@
   "status": "reviewed",
   "source_sha256": {
     "hardware/verification/h3-r2-verification-plan.json": "54143b22eeddf73fbe05ea5f0996c363e22bf7830c49e13ced6f3dcca8c7d16c",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "7abdea8647413e2af3d4a5cdbbbd3d55fb5caf7cec30fcf33c046709cd4fd340",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "5feb5c5e97cb11ce9373fae400d532df661714dea7a5b262bc32b5b7627050f8",
-    "hardware/verification/generated/H3-R2-method-contract.json": "b70d2622e403c776c185afbd9e4fb61212593d9795a9adf1a3f89f5e3c1de150",
-    "hardware/verification/generated/H3-R2-power-state-register.json": "83e3b111b6af88459ed53ba5176dc21af2e5ff7f549a858cf04394ae24921bff",
-    "hardware/verification/generated/H3-R2-load-binding.json": "74844424eae2eca1c2fc271a37d970f4a069ea0394077be1171b5641737c97e8",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "e784fcebb6d2a0b34d3ed8a2344c8124b83f752631171c5aa572876b606623b2",
-    "hardware/verification/generated/H3-R2-source-margins.json": "5a6e81f47470c1fed221d14b517ad26831b91b56cb79ac5722e49f131716c95a",
-    "hardware/verification/generated/H3-R2-dc-source-crosscheck.json": "6ecb4b0138b71ae35c64aa11e1834b59703d40ab80574d114c0005dc58144fb0",
-    "hardware/verification/generated/H3-R2-transition-sequences.json": "02ddcdc75b848dc7d46a8a1136bc41b89fc2dcb3f1990db876b304b19e3e74ee",
-    "hardware/verification/generated/H3-R2-handover.json": "2a5f4604f8ce95c4cbc88f3f779c5bd16c41fa31fef57c348b58992095e90fd4",
-    "hardware/verification/generated/H3-R2-inrush-watchdog.json": "c9df10ce5a6d005935350e1f97ff4ce1706870afb6549c39cbf564713db6b564",
-    "hardware/verification/generated/H3-R2-transition-result.json": "91b683331c8a3606666be46716b981e003d8691a1443fafd18a763da3f97f48b",
-    "hardware/verification/generated/H3-VRF32-audio.json": "9d8daa3b9b1b41ed18aeaac844548feb10d9c0f8a40ec2ef51519fdd4ce32159",
-    "hardware/verification/generated/H3-VRF33-ir.json": "45fb4ac1c288c4c008b3e0884a6a4c5c70044212ed9c1b6c39e2821d55b93fc2",
-    "hardware/verification/generated/H3-VRF34-battery-analog.json": "0492db8ce87b4cdd2b64e954fd29bac52826ef26e09ec08988dd9bc86c16c708",
-    "hardware/verification/generated/H3-R2-airband-corners.json": "5fc31d8fb1bbe5dd8206600c26004d939af6fc0e5e7f60ad2453a05296dfc2ca",
-    "hardware/verification/generated/H3-R2-analog-corners.json": "91d4a7eb517c913046b2e4774e0f49210aeb39d56b9f6db651db22ca8d974df9",
-    "hardware/verification/generated/H3-R2-digital-interfaces.json": "eb6e01e617fe0471d1d06fb8c13618d4888da3cbf3b359d685905d7e80db9fb2",
-    "hardware/verification/generated/H3-R2-rf-coexistence.json": "0bc6afe92be36455fe0c379a13affd594cff790cd860e19e9001c8cb916a8681",
-    "hardware/verification/generated/H3-R2-thermal-fault.json": "845f5d5ba53aed4eecd49d927750e03f764b6c7e1da42bf8ad4f85dcc61aa41c"
+    "hardware/verification/generated/H3-R2-input-freeze.json": "481c75712687a7c97ab1abe8fbe211ee4bca0e34c33c5704ddd88d16cc033f7e",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "e10e631b0993404024294b73477ee9ea408c2339528fc48757397c0f3e7f88c6",
+    "hardware/verification/generated/H3-R2-method-contract.json": "1a61e78502fa02a85e50b41315ccd43ef6de3d4ff36170235b934c2a807f720a",
+    "hardware/verification/generated/H3-R2-power-state-register.json": "d88c423e0c1260d2b63f85f7ef9b0c588edf9c5e55298efdceb33d8922a7c9db",
+    "hardware/verification/generated/H3-R2-load-binding.json": "c936305329c27617aaedb1d1f7c201f234746cb95f7ef7403565f1fca7f9e609",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "d24c3ba70543355ada7fbeefb80da669c661b9ac5a7d1c05c3ef81359913b97f",
+    "hardware/verification/generated/H3-R2-source-margins.json": "e34a70461de0876ae6db9165ca432d38d1d2425fa5d655446d9207849170912d",
+    "hardware/verification/generated/H3-R2-dc-source-crosscheck.json": "48e66c9e0a3362983676c5289fbb1463f76b5076d1dabb72cdade5e6250f37b5",
+    "hardware/verification/generated/H3-R2-transition-sequences.json": "32d853670d62f50ab5e035222ff46767c158253aecf5ed06db15243708b70b14",
+    "hardware/verification/generated/H3-R2-handover.json": "f468159032821344a4c6f389179eabbf60ffa4da95a49e753156ee8a62bd95c2",
+    "hardware/verification/generated/H3-R2-inrush-watchdog.json": "4608ecdeb341bc34b898dd4d33c235370e18210ae5febd459b63bfc94d41d584",
+    "hardware/verification/generated/H3-R2-transition-result.json": "cbc87c735fa2e091465cf434fed1a374d09724721cf8f486271e646c0353c484",
+    "hardware/verification/generated/H3-VRF32-audio.json": "0f120a5abafb6d3763b78deb2d902df28c797d92cb72073cff251254790513de",
+    "hardware/verification/generated/H3-VRF33-ir.json": "631f47640636a900c353b22628066706bedc93b4bcf31ef1c4ce290f45ac09e5",
+    "hardware/verification/generated/H3-VRF34-battery-analog.json": "12ebdb1eb470db88798e9aa63e8eff274e607b3857e7164eb1644d490922b437",
+    "hardware/verification/generated/H3-R2-airband-corners.json": "5e6c41b0e3a5bb3bee4098e6fabfde727b8281d6441e5875b379f75d99eb1074",
+    "hardware/verification/generated/H3-R2-analog-corners.json": "330cb2634b946b8fc40c0c7b08fd4714a6b8116dbffed396443696b8d5a04947",
+    "hardware/verification/generated/H3-R2-digital-interfaces.json": "ecfc00f5435bb2c1e4e9a1c83a11bcf00848c2d7ccc65a7837b6f21c724da5e4",
+    "hardware/verification/generated/H3-R2-rf-coexistence.json": "1d7d517f8227c7b616efd473c3e5bb7cf48dfdec3c5b032ceae609e21674ac7c",
+    "hardware/verification/generated/H3-R2-thermal-fault.json": "53e9e2385f6310805eba6c2bdd173f91eefff713e70acd1f0b060440dc2c0bde"
   },
   "artifact_results": [
     {
       "workstream": "H3-R2.0/input-freeze",
       "artifact": "hardware/verification/generated/H3-R2-input-freeze.json",
-      "sha256": "7abdea8647413e2af3d4a5cdbbbd3d55fb5caf7cec30fcf33c046709cd4fd340",
+      "sha256": "481c75712687a7c97ab1abe8fbe211ee4bca0e34c33c5704ddd88d16cc033f7e",
       "status": "pass",
       "errors": 0
     },
     {
       "workstream": "H3-R2.0/parameter-provenance",
       "artifact": "hardware/verification/generated/H3-R2-parameter-provenance.json",
-      "sha256": "5feb5c5e97cb11ce9373fae400d532df661714dea7a5b262bc32b5b7627050f8",
+      "sha256": "e10e631b0993404024294b73477ee9ea408c2339528fc48757397c0f3e7f88c6",
       "status": "pass",
       "errors": 0
     },
     {
       "workstream": "H3-R2.0/method-contract",
       "artifact": "hardware/verification/generated/H3-R2-method-contract.json",
-      "sha256": "b70d2622e403c776c185afbd9e4fb61212593d9795a9adf1a3f89f5e3c1de150",
+      "sha256": "1a61e78502fa02a85e50b41315ccd43ef6de3d4ff36170235b934c2a807f720a",
       "status": "pass",
       "errors": 0
     },
     {
       "workstream": "H3-R2.1/power-states",
       "artifact": "hardware/verification/generated/H3-R2-power-state-register.json",
-      "sha256": "83e3b111b6af88459ed53ba5176dc21af2e5ff7f549a858cf04394ae24921bff",
+      "sha256": "d88c423e0c1260d2b63f85f7ef9b0c588edf9c5e55298efdceb33d8922a7c9db",
       "status": "pass",
       "errors": 0
     },
     {
       "workstream": "H3-R2.1/load-binding",
       "artifact": "hardware/verification/generated/H3-R2-load-binding.json",
-      "sha256": "74844424eae2eca1c2fc271a37d970f4a069ea0394077be1171b5641737c97e8",
+      "sha256": "c936305329c27617aaedb1d1f7c201f234746cb95f7ef7403565f1fca7f9e609",
       "status": "pass",
       "errors": 0
     },
     {
       "workstream": "H3-R2.1/rail-margins",
       "artifact": "hardware/verification/generated/H3-R2-rail-margins.json",
-      "sha256": "e784fcebb6d2a0b34d3ed8a2344c8124b83f752631171c5aa572876b606623b2",
+      "sha256": "d24c3ba70543355ada7fbeefb80da669c661b9ac5a7d1c05c3ef81359913b97f",
       "status": "reviewed_all_rail_voltage_current_protection_and_steady_thermal_margins",
       "errors": 0
     },
     {
       "workstream": "H3-R2.1/source-margins",
       "artifact": "hardware/verification/generated/H3-R2-source-margins.json",
-      "sha256": "5a6e81f47470c1fed221d14b517ad26831b91b56cb79ac5722e49f131716c95a",
+      "sha256": "e34a70461de0876ae6db9165ca432d38d1d2425fa5d655446d9207849170912d",
       "status": "pass",
       "errors": 0
     },
     {
       "workstream": "H3-R2.1/result",
       "artifact": "hardware/verification/generated/H3-R2-dc-source-crosscheck.json",
-      "sha256": "6ecb4b0138b71ae35c64aa11e1834b59703d40ab80574d114c0005dc58144fb0",
+      "sha256": "48e66c9e0a3362983676c5289fbb1463f76b5076d1dabb72cdade5e6250f37b5",
       "status": "reviewed_h3_r2_1_worst_case_dc_source_charge_and_power_states",
       "errors": 0
     },
     {
       "workstream": "H3-R2.2/sequences",
       "artifact": "hardware/verification/generated/H3-R2-transition-sequences.json",
-      "sha256": "02ddcdc75b848dc7d46a8a1136bc41b89fc2dcb3f1990db876b304b19e3e74ee",
+      "sha256": "32d853670d62f50ab5e035222ff46767c158253aecf5ed06db15243708b70b14",
       "status": "reviewed_startup_shutdown_reset_and_recovery",
       "errors": 0
     },
     {
       "workstream": "H3-R2.2/handover",
       "artifact": "hardware/verification/generated/H3-R2-handover.json",
-      "sha256": "2a5f4604f8ce95c4cbc88f3f779c5bd16c41fa31fef57c348b58992095e90fd4",
+      "sha256": "f468159032821344a4c6f389179eabbf60ffa4da95a49e753156ee8a62bd95c2",
       "status": "reviewed_usb_pack_handover_dpm_brownout_and_source_loss",
       "errors": 0
     },
     {
       "workstream": "H3-R2.2/inrush-watchdog",
       "artifact": "hardware/verification/generated/H3-R2-inrush-watchdog.json",
-      "sha256": "c9df10ce5a6d005935350e1f97ff4ce1706870afb6549c39cbf564713db6b564",
+      "sha256": "4608ecdeb341bc34b898dd4d33c235370e18210ae5febd459b63bfc94d41d584",
       "status": "reviewed_inrush_load_steps_watchdog_and_retained_fault_display",
       "errors": 0
     },
     {
       "workstream": "H3-R2.2/result",
       "artifact": "hardware/verification/generated/H3-R2-transition-result.json",
-      "sha256": "91b683331c8a3606666be46716b981e003d8691a1443fafd18a763da3f97f48b",
+      "sha256": "cbc87c735fa2e091465cf434fed1a374d09724721cf8f486271e646c0353c484",
       "status": "reviewed_h3_r2_2_power_transitions_complete",
       "errors": 0
     },
     {
       "workstream": "H3-R2.3/audio",
       "artifact": "hardware/verification/generated/H3-VRF32-audio.json",
-      "sha256": "9d8daa3b9b1b41ed18aeaac844548feb10d9c0f8a40ec2ef51519fdd4ce32159",
+      "sha256": "0f120a5abafb6d3763b78deb2d902df28c797d92cb72073cff251254790513de",
       "status": "reviewed_audio_analog_corners_after_four_source_corrections",
       "errors": 0
     },
     {
       "workstream": "H3-R2.3/ir",
       "artifact": "hardware/verification/generated/H3-VRF33-ir.json",
-      "sha256": "45fb4ac1c288c4c008b3e0884a6a4c5c70044212ed9c1b6c39e2821d55b93fc2",
+      "sha256": "631f47640636a900c353b22628066706bedc93b4bcf31ef1c4ce290f45ac09e5",
       "status": "reviewed_ir_corners_after_four_source_corrections",
       "errors": 0
     },
     {
       "workstream": "H3-R2.3/battery",
       "artifact": "hardware/verification/generated/H3-VRF34-battery-analog.json",
-      "sha256": "0492db8ce87b4cdd2b64e954fd29bac52826ef26e09ec08988dd9bc86c16c708",
+      "sha256": "12ebdb1eb470db88798e9aa63e8eff274e607b3857e7164eb1644d490922b437",
       "status": "reviewed_battery_sensing_thermistors_and_analog_fault_thresholds",
       "errors": 0
     },
     {
       "workstream": "H3-R2.3/airband",
       "artifact": "hardware/verification/generated/H3-R2-airband-corners.json",
-      "sha256": "5fc31d8fb1bbe5dd8206600c26004d939af6fc0e5e7f60ad2453a05296dfc2ca",
+      "sha256": "5e6c41b0e3a5bb3bee4098e6fabfde727b8281d6441e5875b379f75d99eb1074",
       "status": "pass",
       "errors": 0
     },
     {
       "workstream": "H3-R2.3/result",
       "artifact": "hardware/verification/generated/H3-R2-analog-corners.json",
-      "sha256": "91d4a7eb517c913046b2e4774e0f49210aeb39d56b9f6db651db22ca8d974df9",
+      "sha256": "330cb2634b946b8fc40c0c7b08fd4714a6b8116dbffed396443696b8d5a04947",
       "status": "pass",
       "errors": 0
     },
     {
       "workstream": "H3-R2.4/result",
       "artifact": "hardware/verification/generated/H3-R2-digital-interfaces.json",
-      "sha256": "eb6e01e617fe0471d1d06fb8c13618d4888da3cbf3b359d685905d7e80db9fb2",
+      "sha256": "ecfc00f5435bb2c1e4e9a1c83a11bcf00848c2d7ccc65a7837b6f21c724da5e4",
       "status": "pass",
       "errors": 0
     },
     {
       "workstream": "H3-R2.5/result",
       "artifact": "hardware/verification/generated/H3-R2-rf-coexistence.json",
-      "sha256": "0bc6afe92be36455fe0c379a13affd594cff790cd860e19e9001c8cb916a8681",
+      "sha256": "1d7d517f8227c7b616efd473c3e5bb7cf48dfdec3c5b032ceae609e21674ac7c",
       "status": "pass",
       "errors": 0
     },
     {
       "workstream": "H3-R2.6/result",
       "artifact": "hardware/verification/generated/H3-R2-thermal-fault.json",
-      "sha256": "845f5d5ba53aed4eecd49d927750e03f764b6c7e1da42bf8ad4f85dcc61aa41c",
+      "sha256": "53e9e2385f6310805eba6c2bdd173f91eefff713e70acd1f0b060440dc2c0bde",
       "status": "pass",
       "errors": 0
     }
@@ -172,8 +172,8 @@
     {
       "recorded_by": "H3-R2.0/input-freeze",
       "source": "hardware/verification/h3-r2-input-freeze-contract.json",
-      "expected": "d11ddcb88289830cdc37e86778158428e50cb3db00d7158fec17a097b33dafba",
-      "actual": "d11ddcb88289830cdc37e86778158428e50cb3db00d7158fec17a097b33dafba",
+      "expected": "e4642115f2ecd59ba232f4e95995349c1ae9b30a81a7605076535c0f90e81fa1",
+      "actual": "e4642115f2ecd59ba232f4e95995349c1ae9b30a81a7605076535c0f90e81fa1",
       "matches": true
     },
     {
@@ -193,50 +193,50 @@
     {
       "recorded_by": "H3-R2.0/input-freeze",
       "source": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "expected": "c196c8114e00b96c9840f0c85533e800c1d50b9cecb6a84ea194e07b04cba43f",
-      "actual": "c196c8114e00b96c9840f0c85533e800c1d50b9cecb6a84ea194e07b04cba43f",
+      "expected": "74c8a559f245a231bb567ad6f7f069fab053e33fb3940636d2a72a42f7635ed8",
+      "actual": "74c8a559f245a231bb567ad6f7f069fab053e33fb3940636d2a72a42f7635ed8",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.0/input-freeze",
       "source": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "expected": "674da6b63a67dad9efc211b57854e459243093cd8cc7806fb863f7404034c30c",
-      "actual": "674da6b63a67dad9efc211b57854e459243093cd8cc7806fb863f7404034c30c",
+      "expected": "6dbafc5fb69bbf3ec56cea89439ddc54539f720cfb58cbc8ab87da32600166a8",
+      "actual": "6dbafc5fb69bbf3ec56cea89439ddc54539f720cfb58cbc8ab87da32600166a8",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.0/input-freeze",
       "source": "hardware/ecad/generated/H2-R2-contact-materialization.json",
-      "expected": "c1b12f4c73bd16c50c9d7d99e98ec35e182702666a666193621d40cc47cc28ce",
-      "actual": "c1b12f4c73bd16c50c9d7d99e98ec35e182702666a666193621d40cc47cc28ce",
+      "expected": "eb498305bae8ab96174c9cecd7142cec33c514e9d18f40263aa432a3580272aa",
+      "actual": "eb498305bae8ab96174c9cecd7142cec33c514e9d18f40263aa432a3580272aa",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.0/input-freeze",
       "source": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "expected": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
-      "actual": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
+      "expected": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
+      "actual": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.0/input-freeze",
       "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "expected": "c6a155915d1b64598fb3d24f708070d39c68c75c8bd6094ed871a9a57f53fd88",
-      "actual": "c6a155915d1b64598fb3d24f708070d39c68c75c8bd6094ed871a9a57f53fd88",
+      "expected": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e",
+      "actual": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.0/input-freeze",
       "source": "hardware/ecad/generated/H2-R2-native-kicad-projects.json",
-      "expected": "7de56071c7ba22c27ea16b16023db6b38c86284b2939132bb48a56ceff98b421",
-      "actual": "7de56071c7ba22c27ea16b16023db6b38c86284b2939132bb48a56ceff98b421",
+      "expected": "7ec32efbb0ac37e42b7ef216e5016977402692f17440e9b0b05cbfae9f629400",
+      "actual": "7ec32efbb0ac37e42b7ef216e5016977402692f17440e9b0b05cbfae9f629400",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.0/input-freeze",
       "source": "hardware/ecad/generated/H2-R2-hwfw-contract.json",
-      "expected": "209674a145cb523aa2a444f37487c4ce164e95a3904938fcc0f0f6a2ee9dcc9b",
-      "actual": "209674a145cb523aa2a444f37487c4ce164e95a3904938fcc0f0f6a2ee9dcc9b",
+      "expected": "b43cb1ff8eb80d897b9dfe14529c610747c82e524c31f4934112c46b33994c1e",
+      "actual": "b43cb1ff8eb80d897b9dfe14529c610747c82e524c31f4934112c46b33994c1e",
       "matches": true
     },
     {
@@ -277,36 +277,36 @@
     {
       "recorded_by": "H3-R2.0/parameter-provenance",
       "source": "hardware/verification/generated/H3-R2-input-freeze.json",
-      "expected": "7abdea8647413e2af3d4a5cdbbbd3d55fb5caf7cec30fcf33c046709cd4fd340",
-      "actual": "7abdea8647413e2af3d4a5cdbbbd3d55fb5caf7cec30fcf33c046709cd4fd340",
+      "expected": "481c75712687a7c97ab1abe8fbe211ee4bca0e34c33c5704ddd88d16cc033f7e",
+      "actual": "481c75712687a7c97ab1abe8fbe211ee4bca0e34c33c5704ddd88d16cc033f7e",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.0/parameter-provenance",
       "source": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "expected": "c196c8114e00b96c9840f0c85533e800c1d50b9cecb6a84ea194e07b04cba43f",
-      "actual": "c196c8114e00b96c9840f0c85533e800c1d50b9cecb6a84ea194e07b04cba43f",
+      "expected": "74c8a559f245a231bb567ad6f7f069fab053e33fb3940636d2a72a42f7635ed8",
+      "actual": "74c8a559f245a231bb567ad6f7f069fab053e33fb3940636d2a72a42f7635ed8",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.0/parameter-provenance",
       "source": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "expected": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
-      "actual": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
+      "expected": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
+      "actual": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.0/parameter-provenance",
       "source": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "expected": "674da6b63a67dad9efc211b57854e459243093cd8cc7806fb863f7404034c30c",
-      "actual": "674da6b63a67dad9efc211b57854e459243093cd8cc7806fb863f7404034c30c",
+      "expected": "6dbafc5fb69bbf3ec56cea89439ddc54539f720cfb58cbc8ab87da32600166a8",
+      "actual": "6dbafc5fb69bbf3ec56cea89439ddc54539f720cfb58cbc8ab87da32600166a8",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.0/parameter-provenance",
       "source": "hardware/architecture/devices.json",
-      "expected": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
-      "actual": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
+      "expected": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
+      "actual": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
       "matches": true
     },
     {
@@ -319,15 +319,15 @@
     {
       "recorded_by": "H3-R2.0/method-contract",
       "source": "hardware/verification/generated/H3-R2-input-freeze.json",
-      "expected": "7abdea8647413e2af3d4a5cdbbbd3d55fb5caf7cec30fcf33c046709cd4fd340",
-      "actual": "7abdea8647413e2af3d4a5cdbbbd3d55fb5caf7cec30fcf33c046709cd4fd340",
+      "expected": "481c75712687a7c97ab1abe8fbe211ee4bca0e34c33c5704ddd88d16cc033f7e",
+      "actual": "481c75712687a7c97ab1abe8fbe211ee4bca0e34c33c5704ddd88d16cc033f7e",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.0/method-contract",
       "source": "hardware/verification/generated/H3-R2-parameter-provenance.json",
-      "expected": "5feb5c5e97cb11ce9373fae400d532df661714dea7a5b262bc32b5b7627050f8",
-      "actual": "5feb5c5e97cb11ce9373fae400d532df661714dea7a5b262bc32b5b7627050f8",
+      "expected": "e10e631b0993404024294b73477ee9ea408c2339528fc48757397c0f3e7f88c6",
+      "actual": "e10e631b0993404024294b73477ee9ea408c2339528fc48757397c0f3e7f88c6",
       "matches": true
     },
     {
@@ -340,15 +340,15 @@
     {
       "recorded_by": "H3-R2.1/power-states",
       "source": "hardware/verification/generated/H3-R2-input-freeze.json",
-      "expected": "7abdea8647413e2af3d4a5cdbbbd3d55fb5caf7cec30fcf33c046709cd4fd340",
-      "actual": "7abdea8647413e2af3d4a5cdbbbd3d55fb5caf7cec30fcf33c046709cd4fd340",
+      "expected": "481c75712687a7c97ab1abe8fbe211ee4bca0e34c33c5704ddd88d16cc033f7e",
+      "actual": "481c75712687a7c97ab1abe8fbe211ee4bca0e34c33c5704ddd88d16cc033f7e",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.1/power-states",
       "source": "hardware/verification/generated/H3-R2-method-contract.json",
-      "expected": "b70d2622e403c776c185afbd9e4fb61212593d9795a9adf1a3f89f5e3c1de150",
-      "actual": "b70d2622e403c776c185afbd9e4fb61212593d9795a9adf1a3f89f5e3c1de150",
+      "expected": "1a61e78502fa02a85e50b41315ccd43ef6de3d4ff36170235b934c2a807f720a",
+      "actual": "1a61e78502fa02a85e50b41315ccd43ef6de3d4ff36170235b934c2a807f720a",
       "matches": true
     },
     {
@@ -361,8 +361,8 @@
     {
       "recorded_by": "H3-R2.1/power-states",
       "source": "hardware/ecad/generated/H2-R2-hwfw-contract.json",
-      "expected": "209674a145cb523aa2a444f37487c4ce164e95a3904938fcc0f0f6a2ee9dcc9b",
-      "actual": "209674a145cb523aa2a444f37487c4ce164e95a3904938fcc0f0f6a2ee9dcc9b",
+      "expected": "b43cb1ff8eb80d897b9dfe14529c610747c82e524c31f4934112c46b33994c1e",
+      "actual": "b43cb1ff8eb80d897b9dfe14529c610747c82e524c31f4934112c46b33994c1e",
       "matches": true
     },
     {
@@ -375,43 +375,43 @@
     {
       "recorded_by": "H3-R2.1/load-binding",
       "source": "hardware/verification/generated/H3-R2-power-state-register.json",
-      "expected": "83e3b111b6af88459ed53ba5176dc21af2e5ff7f549a858cf04394ae24921bff",
-      "actual": "83e3b111b6af88459ed53ba5176dc21af2e5ff7f549a858cf04394ae24921bff",
+      "expected": "d88c423e0c1260d2b63f85f7ef9b0c588edf9c5e55298efdceb33d8922a7c9db",
+      "actual": "d88c423e0c1260d2b63f85f7ef9b0c588edf9c5e55298efdceb33d8922a7c9db",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.1/load-binding",
       "source": "hardware/verification/generated/H3-R2-method-contract.json",
-      "expected": "b70d2622e403c776c185afbd9e4fb61212593d9795a9adf1a3f89f5e3c1de150",
-      "actual": "b70d2622e403c776c185afbd9e4fb61212593d9795a9adf1a3f89f5e3c1de150",
+      "expected": "1a61e78502fa02a85e50b41315ccd43ef6de3d4ff36170235b934c2a807f720a",
+      "actual": "1a61e78502fa02a85e50b41315ccd43ef6de3d4ff36170235b934c2a807f720a",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.1/load-binding",
       "source": "hardware/verification/generated/H3-R2-parameter-provenance.json",
-      "expected": "5feb5c5e97cb11ce9373fae400d532df661714dea7a5b262bc32b5b7627050f8",
-      "actual": "5feb5c5e97cb11ce9373fae400d532df661714dea7a5b262bc32b5b7627050f8",
+      "expected": "e10e631b0993404024294b73477ee9ea408c2339528fc48757397c0f3e7f88c6",
+      "actual": "e10e631b0993404024294b73477ee9ea408c2339528fc48757397c0f3e7f88c6",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.1/load-binding",
       "source": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "expected": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
-      "actual": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
+      "expected": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
+      "actual": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.1/load-binding",
       "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "expected": "c6a155915d1b64598fb3d24f708070d39c68c75c8bd6094ed871a9a57f53fd88",
-      "actual": "c6a155915d1b64598fb3d24f708070d39c68c75c8bd6094ed871a9a57f53fd88",
+      "expected": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e",
+      "actual": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.1/load-binding",
       "source": "hardware/architecture/devices.json",
-      "expected": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
-      "actual": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
+      "expected": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
+      "actual": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
       "matches": true
     },
     {
@@ -424,22 +424,22 @@
     {
       "recorded_by": "H3-R2.1/rail-margins",
       "source": "hardware/verification/generated/H3-R2-load-binding.json",
-      "expected": "74844424eae2eca1c2fc271a37d970f4a069ea0394077be1171b5641737c97e8",
-      "actual": "74844424eae2eca1c2fc271a37d970f4a069ea0394077be1171b5641737c97e8",
+      "expected": "c936305329c27617aaedb1d1f7c201f234746cb95f7ef7403565f1fca7f9e609",
+      "actual": "c936305329c27617aaedb1d1f7c201f234746cb95f7ef7403565f1fca7f9e609",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.1/rail-margins",
       "source": "hardware/verification/generated/H3-R2-power-state-register.json",
-      "expected": "83e3b111b6af88459ed53ba5176dc21af2e5ff7f549a858cf04394ae24921bff",
-      "actual": "83e3b111b6af88459ed53ba5176dc21af2e5ff7f549a858cf04394ae24921bff",
+      "expected": "d88c423e0c1260d2b63f85f7ef9b0c588edf9c5e55298efdceb33d8922a7c9db",
+      "actual": "d88c423e0c1260d2b63f85f7ef9b0c588edf9c5e55298efdceb33d8922a7c9db",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.1/rail-margins",
       "source": "hardware/verification/generated/H3-R2-method-contract.json",
-      "expected": "b70d2622e403c776c185afbd9e4fb61212593d9795a9adf1a3f89f5e3c1de150",
-      "actual": "b70d2622e403c776c185afbd9e4fb61212593d9795a9adf1a3f89f5e3c1de150",
+      "expected": "1a61e78502fa02a85e50b41315ccd43ef6de3d4ff36170235b934c2a807f720a",
+      "actual": "1a61e78502fa02a85e50b41315ccd43ef6de3d4ff36170235b934c2a807f720a",
       "matches": true
     },
     {
@@ -452,64 +452,64 @@
     {
       "recorded_by": "H3-R2.1/source-margins",
       "source": "hardware/verification/generated/H3-R2-power-state-register.json",
-      "expected": "83e3b111b6af88459ed53ba5176dc21af2e5ff7f549a858cf04394ae24921bff",
-      "actual": "83e3b111b6af88459ed53ba5176dc21af2e5ff7f549a858cf04394ae24921bff",
+      "expected": "d88c423e0c1260d2b63f85f7ef9b0c588edf9c5e55298efdceb33d8922a7c9db",
+      "actual": "d88c423e0c1260d2b63f85f7ef9b0c588edf9c5e55298efdceb33d8922a7c9db",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.1/source-margins",
       "source": "hardware/verification/generated/H3-R2-rail-margins.json",
-      "expected": "e784fcebb6d2a0b34d3ed8a2344c8124b83f752631171c5aa572876b606623b2",
-      "actual": "e784fcebb6d2a0b34d3ed8a2344c8124b83f752631171c5aa572876b606623b2",
+      "expected": "d24c3ba70543355ada7fbeefb80da669c661b9ac5a7d1c05c3ef81359913b97f",
+      "actual": "d24c3ba70543355ada7fbeefb80da669c661b9ac5a7d1c05c3ef81359913b97f",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.1/source-margins",
       "source": "hardware/verification/generated/H3-R2-load-binding.json",
-      "expected": "74844424eae2eca1c2fc271a37d970f4a069ea0394077be1171b5641737c97e8",
-      "actual": "74844424eae2eca1c2fc271a37d970f4a069ea0394077be1171b5641737c97e8",
+      "expected": "c936305329c27617aaedb1d1f7c201f234746cb95f7ef7403565f1fca7f9e609",
+      "actual": "c936305329c27617aaedb1d1f7c201f234746cb95f7ef7403565f1fca7f9e609",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.1/source-margins",
       "source": "hardware/verification/generated/H3-R2-method-contract.json",
-      "expected": "b70d2622e403c776c185afbd9e4fb61212593d9795a9adf1a3f89f5e3c1de150",
-      "actual": "b70d2622e403c776c185afbd9e4fb61212593d9795a9adf1a3f89f5e3c1de150",
+      "expected": "1a61e78502fa02a85e50b41315ccd43ef6de3d4ff36170235b934c2a807f720a",
+      "actual": "1a61e78502fa02a85e50b41315ccd43ef6de3d4ff36170235b934c2a807f720a",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.1/result",
       "source": "hardware/verification/generated/H3-R2-method-contract.json",
-      "expected": "b70d2622e403c776c185afbd9e4fb61212593d9795a9adf1a3f89f5e3c1de150",
-      "actual": "b70d2622e403c776c185afbd9e4fb61212593d9795a9adf1a3f89f5e3c1de150",
+      "expected": "1a61e78502fa02a85e50b41315ccd43ef6de3d4ff36170235b934c2a807f720a",
+      "actual": "1a61e78502fa02a85e50b41315ccd43ef6de3d4ff36170235b934c2a807f720a",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.1/result",
       "source": "hardware/verification/generated/H3-R2-power-state-register.json",
-      "expected": "83e3b111b6af88459ed53ba5176dc21af2e5ff7f549a858cf04394ae24921bff",
-      "actual": "83e3b111b6af88459ed53ba5176dc21af2e5ff7f549a858cf04394ae24921bff",
+      "expected": "d88c423e0c1260d2b63f85f7ef9b0c588edf9c5e55298efdceb33d8922a7c9db",
+      "actual": "d88c423e0c1260d2b63f85f7ef9b0c588edf9c5e55298efdceb33d8922a7c9db",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.1/result",
       "source": "hardware/verification/generated/H3-R2-load-binding.json",
-      "expected": "74844424eae2eca1c2fc271a37d970f4a069ea0394077be1171b5641737c97e8",
-      "actual": "74844424eae2eca1c2fc271a37d970f4a069ea0394077be1171b5641737c97e8",
+      "expected": "c936305329c27617aaedb1d1f7c201f234746cb95f7ef7403565f1fca7f9e609",
+      "actual": "c936305329c27617aaedb1d1f7c201f234746cb95f7ef7403565f1fca7f9e609",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.1/result",
       "source": "hardware/verification/generated/H3-R2-rail-margins.json",
-      "expected": "e784fcebb6d2a0b34d3ed8a2344c8124b83f752631171c5aa572876b606623b2",
-      "actual": "e784fcebb6d2a0b34d3ed8a2344c8124b83f752631171c5aa572876b606623b2",
+      "expected": "d24c3ba70543355ada7fbeefb80da669c661b9ac5a7d1c05c3ef81359913b97f",
+      "actual": "d24c3ba70543355ada7fbeefb80da669c661b9ac5a7d1c05c3ef81359913b97f",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.1/result",
       "source": "hardware/verification/generated/H3-R2-source-margins.json",
-      "expected": "5a6e81f47470c1fed221d14b517ad26831b91b56cb79ac5722e49f131716c95a",
-      "actual": "5a6e81f47470c1fed221d14b517ad26831b91b56cb79ac5722e49f131716c95a",
+      "expected": "e34a70461de0876ae6db9165ca432d38d1d2425fa5d655446d9207849170912d",
+      "actual": "e34a70461de0876ae6db9165ca432d38d1d2425fa5d655446d9207849170912d",
       "matches": true
     },
     {
@@ -529,36 +529,36 @@
     {
       "recorded_by": "H3-R2.2/sequences",
       "source": "hardware/verification/generated/H3-R2-input-freeze.json",
-      "expected": "7abdea8647413e2af3d4a5cdbbbd3d55fb5caf7cec30fcf33c046709cd4fd340",
-      "actual": "7abdea8647413e2af3d4a5cdbbbd3d55fb5caf7cec30fcf33c046709cd4fd340",
+      "expected": "481c75712687a7c97ab1abe8fbe211ee4bca0e34c33c5704ddd88d16cc033f7e",
+      "actual": "481c75712687a7c97ab1abe8fbe211ee4bca0e34c33c5704ddd88d16cc033f7e",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.2/sequences",
       "source": "hardware/verification/generated/H3-R2-method-contract.json",
-      "expected": "b70d2622e403c776c185afbd9e4fb61212593d9795a9adf1a3f89f5e3c1de150",
-      "actual": "b70d2622e403c776c185afbd9e4fb61212593d9795a9adf1a3f89f5e3c1de150",
+      "expected": "1a61e78502fa02a85e50b41315ccd43ef6de3d4ff36170235b934c2a807f720a",
+      "actual": "1a61e78502fa02a85e50b41315ccd43ef6de3d4ff36170235b934c2a807f720a",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.2/sequences",
       "source": "hardware/verification/generated/H3-R2-dc-source-crosscheck.json",
-      "expected": "6ecb4b0138b71ae35c64aa11e1834b59703d40ab80574d114c0005dc58144fb0",
-      "actual": "6ecb4b0138b71ae35c64aa11e1834b59703d40ab80574d114c0005dc58144fb0",
+      "expected": "48e66c9e0a3362983676c5289fbb1463f76b5076d1dabb72cdade5e6250f37b5",
+      "actual": "48e66c9e0a3362983676c5289fbb1463f76b5076d1dabb72cdade5e6250f37b5",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.2/sequences",
       "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "expected": "c6a155915d1b64598fb3d24f708070d39c68c75c8bd6094ed871a9a57f53fd88",
-      "actual": "c6a155915d1b64598fb3d24f708070d39c68c75c8bd6094ed871a9a57f53fd88",
+      "expected": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e",
+      "actual": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.2/sequences",
       "source": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "expected": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
-      "actual": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
+      "expected": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
+      "actual": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
       "matches": true
     },
     {
@@ -571,8 +571,8 @@
     {
       "recorded_by": "H3-R2.2/sequences",
       "source": "hardware/architecture/devices.json",
-      "expected": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
-      "actual": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
+      "expected": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
+      "actual": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
       "matches": true
     },
     {
@@ -592,36 +592,36 @@
     {
       "recorded_by": "H3-R2.2/handover",
       "source": "hardware/verification/generated/H3-R2-source-margins.json",
-      "expected": "5a6e81f47470c1fed221d14b517ad26831b91b56cb79ac5722e49f131716c95a",
-      "actual": "5a6e81f47470c1fed221d14b517ad26831b91b56cb79ac5722e49f131716c95a",
+      "expected": "e34a70461de0876ae6db9165ca432d38d1d2425fa5d655446d9207849170912d",
+      "actual": "e34a70461de0876ae6db9165ca432d38d1d2425fa5d655446d9207849170912d",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.2/handover",
       "source": "hardware/verification/generated/H3-R2-transition-sequences.json",
-      "expected": "02ddcdc75b848dc7d46a8a1136bc41b89fc2dcb3f1990db876b304b19e3e74ee",
-      "actual": "02ddcdc75b848dc7d46a8a1136bc41b89fc2dcb3f1990db876b304b19e3e74ee",
+      "expected": "32d853670d62f50ab5e035222ff46767c158253aecf5ed06db15243708b70b14",
+      "actual": "32d853670d62f50ab5e035222ff46767c158253aecf5ed06db15243708b70b14",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.2/handover",
       "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "expected": "c6a155915d1b64598fb3d24f708070d39c68c75c8bd6094ed871a9a57f53fd88",
-      "actual": "c6a155915d1b64598fb3d24f708070d39c68c75c8bd6094ed871a9a57f53fd88",
+      "expected": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e",
+      "actual": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.2/handover",
       "source": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "expected": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
-      "actual": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
+      "expected": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
+      "actual": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.2/handover",
       "source": "hardware/architecture/devices.json",
-      "expected": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
-      "actual": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
+      "expected": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
+      "actual": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
       "matches": true
     },
     {
@@ -641,64 +641,64 @@
     {
       "recorded_by": "H3-R2.2/inrush-watchdog",
       "source": "hardware/verification/generated/H3-R2-rail-margins.json",
-      "expected": "e784fcebb6d2a0b34d3ed8a2344c8124b83f752631171c5aa572876b606623b2",
-      "actual": "e784fcebb6d2a0b34d3ed8a2344c8124b83f752631171c5aa572876b606623b2",
+      "expected": "d24c3ba70543355ada7fbeefb80da669c661b9ac5a7d1c05c3ef81359913b97f",
+      "actual": "d24c3ba70543355ada7fbeefb80da669c661b9ac5a7d1c05c3ef81359913b97f",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.2/inrush-watchdog",
       "source": "hardware/verification/generated/H3-R2-transition-sequences.json",
-      "expected": "02ddcdc75b848dc7d46a8a1136bc41b89fc2dcb3f1990db876b304b19e3e74ee",
-      "actual": "02ddcdc75b848dc7d46a8a1136bc41b89fc2dcb3f1990db876b304b19e3e74ee",
+      "expected": "32d853670d62f50ab5e035222ff46767c158253aecf5ed06db15243708b70b14",
+      "actual": "32d853670d62f50ab5e035222ff46767c158253aecf5ed06db15243708b70b14",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.2/inrush-watchdog",
       "source": "hardware/verification/generated/H3-R2-handover.json",
-      "expected": "2a5f4604f8ce95c4cbc88f3f779c5bd16c41fa31fef57c348b58992095e90fd4",
-      "actual": "2a5f4604f8ce95c4cbc88f3f779c5bd16c41fa31fef57c348b58992095e90fd4",
+      "expected": "f468159032821344a4c6f389179eabbf60ffa4da95a49e753156ee8a62bd95c2",
+      "actual": "f468159032821344a4c6f389179eabbf60ffa4da95a49e753156ee8a62bd95c2",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.2/inrush-watchdog",
       "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "expected": "c6a155915d1b64598fb3d24f708070d39c68c75c8bd6094ed871a9a57f53fd88",
-      "actual": "c6a155915d1b64598fb3d24f708070d39c68c75c8bd6094ed871a9a57f53fd88",
+      "expected": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e",
+      "actual": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.2/inrush-watchdog",
       "source": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "expected": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
-      "actual": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
+      "expected": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
+      "actual": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.2/inrush-watchdog",
       "source": "hardware/architecture/devices.json",
-      "expected": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
-      "actual": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
+      "expected": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
+      "actual": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.2/result",
       "source": "hardware/verification/generated/H3-R2-transition-sequences.json",
-      "expected": "02ddcdc75b848dc7d46a8a1136bc41b89fc2dcb3f1990db876b304b19e3e74ee",
-      "actual": "02ddcdc75b848dc7d46a8a1136bc41b89fc2dcb3f1990db876b304b19e3e74ee",
+      "expected": "32d853670d62f50ab5e035222ff46767c158253aecf5ed06db15243708b70b14",
+      "actual": "32d853670d62f50ab5e035222ff46767c158253aecf5ed06db15243708b70b14",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.2/result",
       "source": "hardware/verification/generated/H3-R2-handover.json",
-      "expected": "2a5f4604f8ce95c4cbc88f3f779c5bd16c41fa31fef57c348b58992095e90fd4",
-      "actual": "2a5f4604f8ce95c4cbc88f3f779c5bd16c41fa31fef57c348b58992095e90fd4",
+      "expected": "f468159032821344a4c6f389179eabbf60ffa4da95a49e753156ee8a62bd95c2",
+      "actual": "f468159032821344a4c6f389179eabbf60ffa4da95a49e753156ee8a62bd95c2",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.2/result",
       "source": "hardware/verification/generated/H3-R2-inrush-watchdog.json",
-      "expected": "c9df10ce5a6d005935350e1f97ff4ce1706870afb6549c39cbf564713db6b564",
-      "actual": "c9df10ce5a6d005935350e1f97ff4ce1706870afb6549c39cbf564713db6b564",
+      "expected": "4608ecdeb341bc34b898dd4d33c235370e18210ae5febd459b63bfc94d41d584",
+      "actual": "4608ecdeb341bc34b898dd4d33c235370e18210ae5febd459b63bfc94d41d584",
       "matches": true
     },
     {
@@ -711,8 +711,8 @@
     {
       "recorded_by": "H3-R2.3/audio",
       "source": "hardware/architecture/devices.json",
-      "expected": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
-      "actual": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
+      "expected": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
+      "actual": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
       "matches": true
     },
     {
@@ -746,8 +746,8 @@
     {
       "recorded_by": "H3-R2.3/ir",
       "source": "hardware/architecture/devices.json",
-      "expected": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
-      "actual": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
+      "expected": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
+      "actual": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
       "matches": true
     },
     {
@@ -781,8 +781,8 @@
     {
       "recorded_by": "H3-R2.3/battery",
       "source": "hardware/architecture/devices.json",
-      "expected": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
-      "actual": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
+      "expected": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
+      "actual": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
       "matches": true
     },
     {
@@ -802,8 +802,8 @@
     {
       "recorded_by": "H3-R2.3/airband",
       "source": "hardware/architecture/devices.json",
-      "expected": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
-      "actual": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
+      "expected": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
+      "actual": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
       "matches": true
     },
     {
@@ -830,71 +830,71 @@
     {
       "recorded_by": "H3-R2.3/result",
       "source": "hardware/architecture/devices.json",
-      "expected": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
-      "actual": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
+      "expected": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
+      "actual": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.3/result",
       "source": "hardware/verification/generated/H3-R2-rail-margins.json",
-      "expected": "e784fcebb6d2a0b34d3ed8a2344c8124b83f752631171c5aa572876b606623b2",
-      "actual": "e784fcebb6d2a0b34d3ed8a2344c8124b83f752631171c5aa572876b606623b2",
+      "expected": "d24c3ba70543355ada7fbeefb80da669c661b9ac5a7d1c05c3ef81359913b97f",
+      "actual": "d24c3ba70543355ada7fbeefb80da669c661b9ac5a7d1c05c3ef81359913b97f",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.3/result",
       "source": "hardware/verification/generated/H3-R2-parameter-provenance.json",
-      "expected": "5feb5c5e97cb11ce9373fae400d532df661714dea7a5b262bc32b5b7627050f8",
-      "actual": "5feb5c5e97cb11ce9373fae400d532df661714dea7a5b262bc32b5b7627050f8",
+      "expected": "e10e631b0993404024294b73477ee9ea408c2339528fc48757397c0f3e7f88c6",
+      "actual": "e10e631b0993404024294b73477ee9ea408c2339528fc48757397c0f3e7f88c6",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.3/result",
       "source": "hardware/verification/generated/H3-VRF32-audio.json",
-      "expected": "9d8daa3b9b1b41ed18aeaac844548feb10d9c0f8a40ec2ef51519fdd4ce32159",
-      "actual": "9d8daa3b9b1b41ed18aeaac844548feb10d9c0f8a40ec2ef51519fdd4ce32159",
+      "expected": "0f120a5abafb6d3763b78deb2d902df28c797d92cb72073cff251254790513de",
+      "actual": "0f120a5abafb6d3763b78deb2d902df28c797d92cb72073cff251254790513de",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.3/result",
       "source": "hardware/verification/generated/H3-VRF33-ir.json",
-      "expected": "45fb4ac1c288c4c008b3e0884a6a4c5c70044212ed9c1b6c39e2821d55b93fc2",
-      "actual": "45fb4ac1c288c4c008b3e0884a6a4c5c70044212ed9c1b6c39e2821d55b93fc2",
+      "expected": "631f47640636a900c353b22628066706bedc93b4bcf31ef1c4ce290f45ac09e5",
+      "actual": "631f47640636a900c353b22628066706bedc93b4bcf31ef1c4ce290f45ac09e5",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.3/result",
       "source": "hardware/verification/generated/H3-VRF34-battery-analog.json",
-      "expected": "0492db8ce87b4cdd2b64e954fd29bac52826ef26e09ec08988dd9bc86c16c708",
-      "actual": "0492db8ce87b4cdd2b64e954fd29bac52826ef26e09ec08988dd9bc86c16c708",
+      "expected": "12ebdb1eb470db88798e9aa63e8eff274e607b3857e7164eb1644d490922b437",
+      "actual": "12ebdb1eb470db88798e9aa63e8eff274e607b3857e7164eb1644d490922b437",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.3/result",
       "source": "hardware/verification/generated/H3-R2-airband-corners.json",
-      "expected": "5fc31d8fb1bbe5dd8206600c26004d939af6fc0e5e7f60ad2453a05296dfc2ca",
-      "actual": "5fc31d8fb1bbe5dd8206600c26004d939af6fc0e5e7f60ad2453a05296dfc2ca",
+      "expected": "5e6c41b0e3a5bb3bee4098e6fabfde727b8281d6441e5875b379f75d99eb1074",
+      "actual": "5e6c41b0e3a5bb3bee4098e6fabfde727b8281d6441e5875b379f75d99eb1074",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.3/result",
       "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "expected": "c6a155915d1b64598fb3d24f708070d39c68c75c8bd6094ed871a9a57f53fd88",
-      "actual": "c6a155915d1b64598fb3d24f708070d39c68c75c8bd6094ed871a9a57f53fd88",
+      "expected": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e",
+      "actual": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.3/result",
       "source": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "expected": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
-      "actual": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
+      "expected": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
+      "actual": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.3/result",
       "source": "hardware/product-design/generated/H1-R2-cost-audit.json",
-      "expected": "516e4079b303ca0e02b0ab7408275167e8163479e02503af2734eacc383d6c0c",
-      "actual": "516e4079b303ca0e02b0ab7408275167e8163479e02503af2734eacc383d6c0c",
+      "expected": "42f359135c5d3365150b880971a7e639fe2e69f9c7c2406da3fbe0ef6b288a46",
+      "actual": "42f359135c5d3365150b880971a7e639fe2e69f9c7c2406da3fbe0ef6b288a46",
       "matches": true
     },
     {
@@ -914,29 +914,29 @@
     {
       "recorded_by": "H3-R2.4/result",
       "source": "hardware/architecture/devices.json",
-      "expected": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
-      "actual": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
+      "expected": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
+      "actual": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.4/result",
       "source": "hardware/verification/generated/H3-R2-rail-margins.json",
-      "expected": "e784fcebb6d2a0b34d3ed8a2344c8124b83f752631171c5aa572876b606623b2",
-      "actual": "e784fcebb6d2a0b34d3ed8a2344c8124b83f752631171c5aa572876b606623b2",
+      "expected": "d24c3ba70543355ada7fbeefb80da669c661b9ac5a7d1c05c3ef81359913b97f",
+      "actual": "d24c3ba70543355ada7fbeefb80da669c661b9ac5a7d1c05c3ef81359913b97f",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.4/result",
       "source": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "expected": "c6a155915d1b64598fb3d24f708070d39c68c75c8bd6094ed871a9a57f53fd88",
-      "actual": "c6a155915d1b64598fb3d24f708070d39c68c75c8bd6094ed871a9a57f53fd88",
+      "expected": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e",
+      "actual": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.4/result",
       "source": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "expected": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
-      "actual": "8f5b6e4d6469f9559ec1725a4f6739cbd622655ee5f01411e7bd2eec25096dda",
+      "expected": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
+      "actual": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
       "matches": true
     },
     {
@@ -956,8 +956,8 @@
     {
       "recorded_by": "H3-R2.5/result",
       "source": "hardware/architecture/devices.json",
-      "expected": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
-      "actual": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
+      "expected": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
+      "actual": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
       "matches": true
     },
     {
@@ -977,29 +977,29 @@
     {
       "recorded_by": "H3-R2.5/result",
       "source": "hardware/verification/generated/H3-R2-power-state-register.json",
-      "expected": "83e3b111b6af88459ed53ba5176dc21af2e5ff7f549a858cf04394ae24921bff",
-      "actual": "83e3b111b6af88459ed53ba5176dc21af2e5ff7f549a858cf04394ae24921bff",
+      "expected": "d88c423e0c1260d2b63f85f7ef9b0c588edf9c5e55298efdceb33d8922a7c9db",
+      "actual": "d88c423e0c1260d2b63f85f7ef9b0c588edf9c5e55298efdceb33d8922a7c9db",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.5/result",
       "source": "hardware/verification/generated/H3-R2-digital-interfaces.json",
-      "expected": "eb6e01e617fe0471d1d06fb8c13618d4888da3cbf3b359d685905d7e80db9fb2",
-      "actual": "eb6e01e617fe0471d1d06fb8c13618d4888da3cbf3b359d685905d7e80db9fb2",
+      "expected": "ecfc00f5435bb2c1e4e9a1c83a11bcf00848c2d7ccc65a7837b6f21c724da5e4",
+      "actual": "ecfc00f5435bb2c1e4e9a1c83a11bcf00848c2d7ccc65a7837b6f21c724da5e4",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.5/result",
       "source": "hardware/verification/generated/H3-R2-analog-corners.json",
-      "expected": "91d4a7eb517c913046b2e4774e0f49210aeb39d56b9f6db651db22ca8d974df9",
-      "actual": "91d4a7eb517c913046b2e4774e0f49210aeb39d56b9f6db651db22ca8d974df9",
+      "expected": "330cb2634b946b8fc40c0c7b08fd4714a6b8116dbffed396443696b8d5a04947",
+      "actual": "330cb2634b946b8fc40c0c7b08fd4714a6b8116dbffed396443696b8d5a04947",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.5/result",
       "source": "hardware/verification/generated/H3-R2-parameter-provenance.json",
-      "expected": "5feb5c5e97cb11ce9373fae400d532df661714dea7a5b262bc32b5b7627050f8",
-      "actual": "5feb5c5e97cb11ce9373fae400d532df661714dea7a5b262bc32b5b7627050f8",
+      "expected": "e10e631b0993404024294b73477ee9ea408c2339528fc48757397c0f3e7f88c6",
+      "actual": "e10e631b0993404024294b73477ee9ea408c2339528fc48757397c0f3e7f88c6",
       "matches": true
     },
     {
@@ -1012,57 +1012,57 @@
     {
       "recorded_by": "H3-R2.6/result",
       "source": "hardware/architecture/devices.json",
-      "expected": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
-      "actual": "8587517ab0bdb78df7c14179340caa9181981eff1a91059ca5db35a69aebea76",
+      "expected": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
+      "actual": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.6/result",
       "source": "hardware/verification/generated/H3-R2-method-contract.json",
-      "expected": "b70d2622e403c776c185afbd9e4fb61212593d9795a9adf1a3f89f5e3c1de150",
-      "actual": "b70d2622e403c776c185afbd9e4fb61212593d9795a9adf1a3f89f5e3c1de150",
+      "expected": "1a61e78502fa02a85e50b41315ccd43ef6de3d4ff36170235b934c2a807f720a",
+      "actual": "1a61e78502fa02a85e50b41315ccd43ef6de3d4ff36170235b934c2a807f720a",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.6/result",
       "source": "hardware/verification/generated/H3-R2-rail-margins.json",
-      "expected": "e784fcebb6d2a0b34d3ed8a2344c8124b83f752631171c5aa572876b606623b2",
-      "actual": "e784fcebb6d2a0b34d3ed8a2344c8124b83f752631171c5aa572876b606623b2",
+      "expected": "d24c3ba70543355ada7fbeefb80da669c661b9ac5a7d1c05c3ef81359913b97f",
+      "actual": "d24c3ba70543355ada7fbeefb80da669c661b9ac5a7d1c05c3ef81359913b97f",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.6/result",
       "source": "hardware/verification/generated/H3-R2-source-margins.json",
-      "expected": "5a6e81f47470c1fed221d14b517ad26831b91b56cb79ac5722e49f131716c95a",
-      "actual": "5a6e81f47470c1fed221d14b517ad26831b91b56cb79ac5722e49f131716c95a",
+      "expected": "e34a70461de0876ae6db9165ca432d38d1d2425fa5d655446d9207849170912d",
+      "actual": "e34a70461de0876ae6db9165ca432d38d1d2425fa5d655446d9207849170912d",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.6/result",
       "source": "hardware/verification/generated/H3-R2-transition-result.json",
-      "expected": "91b683331c8a3606666be46716b981e003d8691a1443fafd18a763da3f97f48b",
-      "actual": "91b683331c8a3606666be46716b981e003d8691a1443fafd18a763da3f97f48b",
+      "expected": "cbc87c735fa2e091465cf434fed1a374d09724721cf8f486271e646c0353c484",
+      "actual": "cbc87c735fa2e091465cf434fed1a374d09724721cf8f486271e646c0353c484",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.6/result",
       "source": "hardware/verification/generated/H3-R2-inrush-watchdog.json",
-      "expected": "c9df10ce5a6d005935350e1f97ff4ce1706870afb6549c39cbf564713db6b564",
-      "actual": "c9df10ce5a6d005935350e1f97ff4ce1706870afb6549c39cbf564713db6b564",
+      "expected": "4608ecdeb341bc34b898dd4d33c235370e18210ae5febd459b63bfc94d41d584",
+      "actual": "4608ecdeb341bc34b898dd4d33c235370e18210ae5febd459b63bfc94d41d584",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.6/result",
       "source": "hardware/verification/generated/H3-VRF34-battery-analog.json",
-      "expected": "0492db8ce87b4cdd2b64e954fd29bac52826ef26e09ec08988dd9bc86c16c708",
-      "actual": "0492db8ce87b4cdd2b64e954fd29bac52826ef26e09ec08988dd9bc86c16c708",
+      "expected": "12ebdb1eb470db88798e9aa63e8eff274e607b3857e7164eb1644d490922b437",
+      "actual": "12ebdb1eb470db88798e9aa63e8eff274e607b3857e7164eb1644d490922b437",
       "matches": true
     },
     {
       "recorded_by": "H3-R2.6/result",
       "source": "hardware/verification/generated/H3-R2-rf-coexistence.json",
-      "expected": "0bc6afe92be36455fe0c379a13affd594cff790cd860e19e9001c8cb916a8681",
-      "actual": "0bc6afe92be36455fe0c379a13affd594cff790cd860e19e9001c8cb916a8681",
+      "expected": "1d7d517f8227c7b616efd473c3e5bb7cf48dfdec3c5b032ceae609e21674ac7c",
+      "actual": "1d7d517f8227c7b616efd473c3e5bb7cf48dfdec3c5b032ceae609e21674ac7c",
       "matches": true
     },
     {

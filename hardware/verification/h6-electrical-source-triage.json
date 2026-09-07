@@ -4,14 +4,14 @@
   "scope": "Bounded triage of 22 power_pin_not_driven findings, one ACDRV pin_to_pin conflict and one low-or-float H/L pin_not_driven finding from the isolated native typed ERC. All 24 native findings remain unsuppressed. Exact reported pins are representatives of their connected nets, not an exhaustive consumer list.",
   "status": "triaged_not_cleared",
   "source_sha256": {
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "c51d4666ffea0be2006d1c85931fadc97feeaaec2d65d6efc342a5974cf4857d",
-    "hardware/ecad/generated/H2-R2-contact-materialization.json": "b1775c9228909f4f3f55d28714faf7831f6c998df5a93828b7378575b1cc7b4f",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e",
+    "hardware/ecad/generated/H2-R2-contact-materialization.json": "eb498305bae8ab96174c9cecd7142cec33c514e9d18f40263aa432a3580272aa",
     "hardware/verification/h6-electrical-pins-power.json": "065011f2fd529cdd053255a20cb4202755dd65231b1ac0f27e2ddb917a065310",
     "hardware/verification/h6-electrical-pins-digital.json": "b061c58cebee24f0b0369b5a26b595e0cda0ecd6d8c3b0f7cb0c7c86d4f9f6b4",
     "hardware/verification/h6-electrical-pins-logic.json": "30a7d8e950ecd8797ad88faef29f2286d087d297d43f0460961509f12560795e",
     "hardware/verification/h6-electrical-pins-analog.json": "df58a02807801f4efa1bb1b9f1153b4cff40d57e4836ed598cba8860adf82ddb",
     "hardware/verification/h6-electrical-pins-protection.json": "f5fb2858de93401873634abf67b8cc120b7b3adfa2f66f04164c1a7168b134f5",
-    "hardware/verification/h6-electrical-pins-interfaces.json": "b69a99f5d43fa3635ea59847a95fbf00409a7a0ce3e205946b7de1d425175491",
+    "hardware/verification/h6-electrical-pins-interfaces.json": "d8a50b4246c78e95e71024e0355dc7ab081600aebd0139751a6797d230c69917",
     "hardware/verification/h6-electrical-pins-passives.json": "3e06305650139090fdfda739160ca45071d6bc068fbe24e74779c8e0f62a8a55",
     "hardware/verification/h6-electrical-pins-peripherals.json": "77e60da1c87dcd429dd78f488fb25913d223d3f2c5e8068b9d54b5b17ede426b"
   },

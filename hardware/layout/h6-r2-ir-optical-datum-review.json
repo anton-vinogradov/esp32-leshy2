@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "checked": "2026-09-07",
+  "scope": "Exact existing IR MPN solder lands, nominal package seating datums and optical direction; library-only correction, not a native-board release",
+  "status": "library_geometry_corrected_native_integration_pending_carrier_orientation_open",
+  "native_pcb_modified_by_this_review": false,
+  "local_evidence_scope": "Diagnostic filenames are local-only, not repository links; primary sources are the manufacturer URLs and retained SHA256 values.",
+  "mpn_changed": false,
+  "production_release_ready": false,
+  "sources": [
+    {
+      "id": "emitter",
+      "url": "https://www.vishay.com/docs/84209/vsmy14940.pdf",
+      "document": "84209, VSMY14940, Rev.1.6 22-Sep-2017",
+      "pages": [5, 6],
+      "local_diagnostic_filename": "vsmy14940.pdf",
+      "sha256": "359c31c84d30efe8df1cef5caf0fa43c14ddb3f52dc8dd3811892d17b5f039eb",
+      "visual_review": "Full p5 package and recommended solder pad; full p6 tape view with anode and cathode marks. In tape component-side view lens points left and anode is below; rotate CW to lens-up footprint and anode becomes left."
+    },
+    {
+      "id": "demod",
+      "url": "https://www.vishay.com/docs/82494/tsop752.pdf",
+      "document": "82494, TSOP752/754, Rev.2.4 27-May-2025; package drawing6.550-5297.01-4 issue4 13-Sep-2011",
+      "pages": [2, 7, 8, 9],
+      "local_diagnostic_filename": "tsop752.pdf",
+      "sha256": "a0021ee1dbf977a77ed9232b11979ab49f22f881022fdafaa3af571c58220d3d",
+      "visual_review": "Full p2 physical numbering; full p7 orthographic package and proposed component-side lands; full p8 TR side-view tape and p9 TT top-view tape."
+    },
+    {
+      "id": "carrier",
+      "url": "https://www.vishay.com/docs/82907/tsmp95000.pdf",
+      "document": "82907, TSMP95000, Rev.1.0 20-Oct-2022; same Heimdall package drawing6.550-5297.01-4",
+      "pages": [2, 4, 6, 7],
+      "local_diagnostic_filename": "tsmp95000.pdf",
+      "sha256": "f455d43521c839407db5a6629cab0ea0527ffc11b20de1070c8d0376fbebf2f7",
+      "visual_review": "Full p2 physical numbering, p4 package, p6 side-view tape and p7 top-view tape visually checked; TT presentation also agrees with demod p9. Pin functions1/4 GND,2 VS,3 carrier OUT remain unchanged."
+    },
+    {
+      "id": "window",
+      "url": "https://www.vishay.com/docs/82755/windowsizeheimdall.pdf",
+      "document": "82755, Heimdall Window Size, Rev.1.0 18-Aug-2016",
+      "pages": [1],
+      "local_pdf": "work/ir-interface-review/windowsizeheimdall.pdf",
+      "sha256": "e509ffc0c27989a217419500afd91582b4308183dfe9b5ee2b53f35f8e8ee21e",
+      "visual_review": "Full p1 Figures1/2: side-view assembly points parallel to PCB; PCB ahead of lens can clip its aperture."
+    }
+  ],
+  "datum_conventions": {
+    "footprint_origin": "centre of the physical solder-land row; this is not the body/courtyard centre",
+    "library_view": "component-side F.Cu view, +Y down, +Z away from F.Cu",
+    "body_offsets": "Nominal engineering seating construction: centre the emitter1.10mm base, TR reference1.0mm foot, or TT1.2mm contact on its symmetric recommended land. The receiver pad diagram does not separately dimension land-centre-to-body registration; these offsets must not be represented as a manufacturer-guaranteed placement tolerance.",
+    "body_outline": "Fab rectangles conservatively bound full nominal package including lens, rather than approximate its curved surface",
+    "court_margin": "0.25mm around the union of nominal body and copper lands; not a manufacturer recommended land or factory tolerance",
+    "b_side_transform": "KiCad Flip(LEFT_RIGHT), followed by SetOrientationDegrees; actual in-memory native transform is exercised by regression test, not a hand-written second mirror"
+  },
+  "devices": [
+    {
+      "instance": "ir_emitter",
+      "native_reference": "D11",
+      "mpn": "Vishay VSMY14940",
+      "footprint": "Leshy2:VSMY14940",
+      "old_defect": "1.2x1.0mm lands at1.8mm pitch mistakenly copied body terminals, and body centred on solder row hid asymmetric lens extension",
+      "pad_numbers": {"1": "ANODE", "2": "CATHODE"},
+      "pad_centres_mm": {"1": [-1.35, 0], "2": [1.35, 0]},
+      "pad_size_mm": [0.9, 1.4],
+      "inner_land_gap_mm": 1.8,
+      "outer_land_span_mm": 3.6,
+      "nominal_body_bbox_mm": {"x": [-1.5, 1.5], "y": [-1.96, 0.55]},
+      "nominal_height_mm": 1.2,
+      "optical_axis_local": [0, -1, 0],
+      "proposed_pose_not_applied": {
+        "side": "B.Cu", "rotation_deg": 270, "footprint_anchor_mm": [1.86, 92.0],
+        "optical_axis_native": [-1, 0, 0], "nominal_lens_tip_x_mm": -0.10,
+        "nearest_copper_x_mm": 1.16,
+        "note": "Y92 is proposed H1 ergonomic position; root must check nearby components, retained copper and optical witness placement before integration. This is anchor, not courtyard centre."
+      }
+    },
+    {
+      "instance": "ir_demod",
+      "native_reference": "U24",
+      "mpn": "Vishay TSOP75238TR",
+      "footprint": "Leshy2:Vishay-Heimdall-SMD-TR",
+      "old_defect": "Shared TT footprint incorrectly labelled TR as top-view and centred the body on its rear solder row; current B0 does not face left",
+      "pad_numbers": {"1": "GND_1", "2": "VS", "3": "OUT", "4": "GND_4"},
+      "pad_centres_mm": {"1": [-1.905, 0], "2": [-0.635, 0], "3": [0.635, 0], "4": [1.905, 0]},
+      "pad_size_mm": [0.8, 1.8],
+      "nominal_body_bbox_mm": {"x": [-3.4, 3.4], "y": [-0.5, 2.7]},
+      "nominal_height_mm": 3.0,
+      "lens_base_local_y_mm": 2.0,
+      "nominal_optical_centres_z_mm": 1.8,
+      "optical_axis_local": [0, 1, 0],
+      "proposed_pose_not_applied": {
+        "side": "B.Cu", "rotation_deg": 90, "footprint_anchor_mm": [2.60, 78.0],
+        "optical_axis_native": [-1, 0, 0], "nominal_lens_tip_x_mm": -0.10,
+        "nearest_copper_x_mm": 1.70,
+        "note": "Y78 is proposed H1 position. Axis/numbering are proved; lens tip datum is nominal seating construction, not an independent tolerance guarantee. Check final optical aperture and board-edge stack."
+      }
+    },
+    {
+      "instance": "ir_carrier",
+      "native_reference": "U23",
+      "mpn": "Vishay TSMP95000TT",
+      "footprint": "Leshy2:Vishay-Heimdall-SMD-TT",
+      "status": "top_view_confirmed_side_facing_requirement_unresolved",
+      "old_defect": "Top-view TT was treated as a side-looking part; XY rotation cannot correct its out-of-plane optical axis",
+      "pad_numbers": {"1": "GND_1", "2": "VS", "3": "CARRIER_OUT", "4": "GND_4"},
+      "pad_centres_mm": {"1": [-1.905, 0], "2": [-0.635, 0], "3": [0.635, 0], "4": [1.905, 0]},
+      "pad_size_mm": [0.8, 1.8],
+      "nominal_body_bbox_mm": {"x": [-3.4, 3.4], "y": [-2.4, 0.6]},
+      "nominal_height_mm": 3.2,
+      "nominal_lens_centres_local_xy_mm": [[-1.7, -1.2], [1.7, -1.2]],
+      "optical_axis_local": [0, 0, 1],
+      "current_native_pose": {"side": "B.Cu", "rotation_deg": 90, "footprint_anchor_mm": [3.5, 83.5]},
+      "current_optical_axis_native": [0, 0, -1],
+      "current_risk": "Looks into the inter-board gap rather than out of the agreed left edge; nearby RF PCB, parts and enclosure may obstruct it. No current unobstructed optical path has been established.",
+      "unchanged_mpn_alternative_not_applied": "F.Cu top-view mounting preserves30-60kHz carrier detection if the remote faces an exposed front-facing lens. It changes user aiming direction from the agreed side-edge IR bank; front panel/display/cover aperture and height must first be checked. Merely rotating it in XY is not this alternative.",
+      "preferred_research_next": "Check exact TSMP95000TR side-view tape as a qualified factory-placeable alternative; no MPN adoption or manual TT out-of-tape reorientation is authorised by this evidence."
+    }
+  ],
+  "integration_notes": [
+    "Current native refs are U23=carrier and U24=demod; do not exchange functions using an earlier swapped verbal reference.",
+    "Root must add exact TSOP75238TR footprint override to the R2 symbol-footprint contract; the frozen historical UI footprint_for/manifest intentionally retain the previous TT hint and count. Current ir_footprint_outputs() independently emits all3 corrected library files.",
+    "No shared H2/H3 ledgers or native files were regenerated by this review; tests validate library generation and in-memory optical rotations only.",
+    "Changing IR optical direction can invalidate the internal emitter witness placement; the witness optomechanics is a separate integration check, not covered here."
+  ]
+}

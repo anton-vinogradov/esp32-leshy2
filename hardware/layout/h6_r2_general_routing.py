@@ -5,7 +5,8 @@ The checked-in PCB files are the routed authority.  This guard regenerates the
 exact unrouted placement in memory, proves that routing did not change it, and
 then verifies that every added track/via belongs only to the classes accepted
 in this slice.  A fresh KiCad CLI DRC report is required when writing the audit;
-later ``--check`` runs bind that evidence to the unchanged board hashes.
+later live ``--check`` runs bind that evidence to the unchanged PCB, schematic
+and controlled-library inputs. The explicitly historical check stays archival.
 """
 
 from __future__ import annotations
@@ -29,6 +30,7 @@ try:
         placement_signature_from_board_bytes,
     )
     from hardware.layout.h6_r2_routing_session import expected_connection_count
+    from hardware.layout.h6_r2_drc import validate_provenance, validate_receipt
 except ModuleNotFoundError:  # direct script execution from the repository root
     from h6_r2_placement import (
         build as build_placement,
@@ -36,6 +38,7 @@ except ModuleNotFoundError:  # direct script execution from the repository root
         placement_signature_from_board_bytes,
     )
     from h6_r2_routing_session import expected_connection_count
+    from h6_r2_drc import validate_provenance, validate_receipt
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -122,8 +125,11 @@ def frozen_state(freeze: dict, project: str) -> dict[str, tuple[int, int, float,
 
 
 def drc_evidence(path: Path, project: str, board_sha256: str) -> tuple[dict, list[str]]:
+    provenance = validate_provenance(path, project)
     report = load(path)
     errors = []
+    if sha256(board_path(project)) != board_sha256:
+        errors.append(f"{project}: DRC board hash differs from the audited input")
     if Path(report.get("source", "")).name != f"{project}.kicad_pcb":
         errors.append(f"{project}: DRC source does not name the audited board")
     if report.get("violations"):
@@ -134,11 +140,13 @@ def drc_evidence(path: Path, project: str, board_sha256: str) -> tuple[dict, lis
         )
     return {
         "tool": "KiCad CLI pcb drc",
+        "report_sha256": sha256(path),
+        "provenance": provenance,
         "kicad_version": report.get("kicad_version"),
         "checked_board_sha256": board_sha256,
-        "violation_count": len(report.get("violations", [])),
-        "schematic_parity_error_count": len(report.get("schematic_parity", [])),
-        "visible_unconnected_item_count": len(report.get("unconnected_items", [])),
+        "violation_count": len(report["violations"]),
+        "schematic_parity_error_count": len(report["schematic_parity"]),
+        "visible_unconnected_item_count": len(report["unconnected_items"]),
         "note": "KiCad JSON caps the visible unconnected-item list; native connectivity below is exact.",
     }, errors
 
@@ -149,6 +157,10 @@ def retained_drc_evidence(existing: dict, project: str, board_sha256: str) -> tu
         return {}, [f"{project}: no retained DRC evidence; rerun --write with both reports"]
     evidence = rows[0]["drc"]
     errors = []
+    try:
+        validate_receipt(evidence.get("provenance"), project, evidence.get("report_sha256"))
+    except ValueError as exc:
+        errors.append(str(exc))
     if evidence.get("checked_board_sha256") != board_sha256:
         errors.append(f"{project}: retained DRC evidence belongs to another board hash")
     if evidence.get("violation_count") != 0:

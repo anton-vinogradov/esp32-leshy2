@@ -1,0 +1,830 @@
+{
+  "schema_version": 1,
+  "artifact": "H6-R2 B3S nominal body and actuator datum candidate",
+  "marker": "H6.0.3-R1",
+  "checked_at_utc": "2026-09-07T21:32:51Z",
+  "status": "current_R2_source_integrated_native_integration_pending",
+  "production_release_authorized": false,
+  "native_boards_modified_by_this_review": false,
+  "scope": "Preserve all five production pad records and the engineering courtyard. The 16-pose table is the immutable initial measured baseline and candidate calculation; current_source_integration records the subsequently approved source corrections. Native integration and fresh whole-board checks remain separate.",
+  "mpn": "OMRON B3S-1100P",
+  "production_footprint": "hardware/ecad/libraries/Leshy2_R2.pretty/B3S-1100P.kicad_mod",
+  "production_footprint_id": "Leshy2_R2:B3S-1100P",
+  "production_footprint_sha256_at_review": "37b9b1c477a58d9152f7b1cff766be8bf4d27f9e9a1ab43217bf6bd714409a4d",
+  "production_source": {
+    "kind": "controlled custom R2 footprint, not KiCad standard",
+    "current_generator": "hardware/ecad/h2_r2_b3s_actuator_datum.py",
+    "binding": "hardware/ecad/h2-r2-symbol-footprint-contract.json",
+    "historical_generator": "hardware/ecad/h2_ui_controls_indicators.py:footprint_outputs",
+    "historical_library": "hardware/ecad/libraries/Leshy2.pretty/B3S-1100P.kicad_mod",
+    "boundary": "The historical generator writes the legacy Leshy2 library, not this R2 footprint; do not regenerate R1 or copy its superseded physical numbering."
+  },
+  "candidate_footprint": "hardware/layout/candidates/B3S-1100P-ACTUATOR-DATUM-CANDIDATE.kicad_mod",
+  "candidate_sha256": "0200740ea05d025ffd45d16afc4f694c84b93f84863a3cedb4bfb95d7c4a26b4",
+  "evidence": {
+    "url": "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf",
+    "document": "OMRON A204-E1-03, 0721(0207)",
+    "section": "Full page 2: With Ground Terminal / PCB Pad (Top View) / Terminal Arrangement (Top View)",
+    "sha256": "c6391ce552636acbb8a266c68a2f27f17a0f14f73bccbb4fae9aeaf36e0c289b",
+    "method": "Full-page visual dimension/numbering review; no pixel-derived dimensions."
+  },
+  "local_datums": {
+    "frame": "Unrotated F-side footprint; +X right, +Y down in manufacturer TOP land view.",
+    "legacy_anchor_mm": [
+      0,
+      0
+    ],
+    "actuator_axis_mm": [
+      0,
+      -0.92
+    ],
+    "actuator_axis_derivation": "Midpoint of symmetric signal rows: (-3.17+1.33)/2=-0.92.",
+    "courtyard_centre_mm": [
+      0,
+      -0.17
+    ],
+    "axis_minus_courtyard_centre_mm": [
+      0,
+      -0.75
+    ],
+    "old_fab_centre_mm": [
+      0,
+      -0.925
+    ],
+    "old_fab_size_mm": [
+      6.6,
+      6.9
+    ],
+    "nominal_body_size_mm": [
+      6,
+      6.6
+    ],
+    "nominal_body_bounds_mm": {
+      "x": [
+        -3,
+        3
+      ],
+      "y": [
+        -4.22,
+        2.38
+      ]
+    },
+    "plunger_diameter_mm": 3.3,
+    "nominal_height_mm": 4.3,
+    "height_tolerance_mm": 0.2,
+    "unspecified_dimension_tolerance_mm": 0.3,
+    "candidate_axis_property": "Leshy2ActuatorAxisLocalMm",
+    "candidate_axis_property_value": "0,-0.92",
+    "placement_rule": "Keep the manufacturing anchor and pads stable. For a chosen visible axis, compute anchor=axis-transform(local actuator offset); never use F.Fab or courtyard centre as the actuator. A rebase to an origin-at-actuator library is deliberately not performed."
+  },
+  "pad_review": {
+    "numbering_top_view": {
+      "upper_common": [
+        "4",
+        "3"
+      ],
+      "lower_common": [
+        "2",
+        "1"
+      ],
+      "ground": "5"
+    },
+    "preserved_pads": {
+      "1": {
+        "at_mm": [
+          3.98,
+          1.33
+        ],
+        "size_mm": [
+          1.55,
+          1.3
+        ]
+      },
+      "2": {
+        "at_mm": [
+          -3.98,
+          1.33
+        ],
+        "size_mm": [
+          1.55,
+          1.3
+        ]
+      },
+      "3": {
+        "at_mm": [
+          3.98,
+          -3.17
+        ],
+        "size_mm": [
+          1.55,
+          1.3
+        ]
+      },
+      "4": {
+        "at_mm": [
+          -3.98,
+          -3.17
+        ],
+        "size_mm": [
+          1.55,
+          1.3
+        ]
+      },
+      "5": {
+        "at_mm": [
+          0,
+          3.17
+        ],
+        "size_mm": [
+          1.3,
+          1.7
+        ]
+      }
+    },
+    "primary_nominal_signal_row_pitch_mm": 4.5,
+    "primary_nominal_land_outer_span_mm": 9.5,
+    "primary_nominal_land_inner_gap_mm": 6.4,
+    "primary_nominal_signal_column_centre_abs_x_mm": 3.975,
+    "preserved_column_rounding_mm": 0.005,
+    "primary_nominal_ground_centre_relative_to_actuator_y_mm": 4.1,
+    "preserved_ground_centre_relative_to_actuator_y_mm": 4.09,
+    "ground_registration_rounding_mm": -0.01,
+    "electrical_pad_records_byte_identical_to_production": true,
+    "numbering_nets_or_mpn_changed": false
+  },
+  "baseline": {
+    "commit": "849a35030a0a49c66d65431a27e8d0ca16f4c469",
+    "boards": [
+      {
+        "path": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
+        "sha256": "ced019b77a4b1fc4437f9c692f0feeaf38aca149cebfc6d6e8fe3fa70a3f347c"
+      },
+      {
+        "path": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
+        "sha256": "3dd3862acf37ce7b0879093be5c0dc8c98482455c3c508a68b9f92c5b606d0b5"
+      }
+    ],
+    "native_measurement": "KiCad-loaded pad1/2/3/4 centre mean, independently compared with the 4.5-mm symmetric primary pattern; no SaveBoard.",
+    "frame": "Each native PCB's exterior XY; RF is not assembly-world XY or a mirrored B-side drawing.",
+    "instance_count": 16,
+    "ui_count": 15,
+    "rf_count": 1
+  },
+  "instances": [
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW9",
+      "instance": "ui_switch_f1",
+      "side": "F.Cu",
+      "rotation_deg": 90,
+      "native_anchor_mm": [
+        4.77,
+        22.5
+      ],
+      "observed_actuator_mm": [
+        3.85,
+        22.5
+      ],
+      "observed_courtyard_centre_mm": [
+        4.6,
+        22.5
+      ],
+      "desired_axis_mm": [
+        4.6,
+        22.5
+      ],
+      "desired_axis_basis": "Existing H6 reviewed placement centre interpreted as a proposed visible-axis intent; not yet approved for relocation.",
+      "same_rotation_anchor_for_desired_axis_mm": [
+        5.52,
+        22.5
+      ],
+      "axis_deviation_from_desired_mm": [
+        -0.75,
+        0
+      ],
+      "relocation_status": "computed_only_not_collision_qualified"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW10",
+      "instance": "ui_switch_f2",
+      "side": "F.Cu",
+      "rotation_deg": 90,
+      "native_anchor_mm": [
+        4.77,
+        36
+      ],
+      "observed_actuator_mm": [
+        3.85,
+        36
+      ],
+      "observed_courtyard_centre_mm": [
+        4.6,
+        36
+      ],
+      "desired_axis_mm": [
+        4.6,
+        36
+      ],
+      "desired_axis_basis": "Existing H6 reviewed placement centre interpreted as a proposed visible-axis intent; not yet approved for relocation.",
+      "same_rotation_anchor_for_desired_axis_mm": [
+        5.52,
+        36
+      ],
+      "axis_deviation_from_desired_mm": [
+        -0.75,
+        0
+      ],
+      "relocation_status": "computed_only_not_collision_qualified"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW11",
+      "instance": "ui_switch_f3",
+      "side": "F.Cu",
+      "rotation_deg": 90,
+      "native_anchor_mm": [
+        4.77,
+        49.5
+      ],
+      "observed_actuator_mm": [
+        3.85,
+        49.5
+      ],
+      "observed_courtyard_centre_mm": [
+        4.6,
+        49.5
+      ],
+      "desired_axis_mm": [
+        4.6,
+        49.5
+      ],
+      "desired_axis_basis": "Existing H6 reviewed placement centre interpreted as a proposed visible-axis intent; not yet approved for relocation.",
+      "same_rotation_anchor_for_desired_axis_mm": [
+        5.52,
+        49.5
+      ],
+      "axis_deviation_from_desired_mm": [
+        -0.75,
+        0
+      ],
+      "relocation_status": "computed_only_not_collision_qualified"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW12",
+      "instance": "ui_switch_f4",
+      "side": "F.Cu",
+      "rotation_deg": 90,
+      "native_anchor_mm": [
+        4.77,
+        63
+      ],
+      "observed_actuator_mm": [
+        3.85,
+        63
+      ],
+      "observed_courtyard_centre_mm": [
+        4.6,
+        63
+      ],
+      "desired_axis_mm": [
+        4.6,
+        63
+      ],
+      "desired_axis_basis": "Existing H6 reviewed placement centre interpreted as a proposed visible-axis intent; not yet approved for relocation.",
+      "same_rotation_anchor_for_desired_axis_mm": [
+        5.52,
+        63
+      ],
+      "axis_deviation_from_desired_mm": [
+        -0.75,
+        0
+      ],
+      "relocation_status": "computed_only_not_collision_qualified"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW13",
+      "instance": "ui_switch_f5",
+      "side": "F.Cu",
+      "rotation_deg": 90,
+      "native_anchor_mm": [
+        75.57,
+        22.5
+      ],
+      "observed_actuator_mm": [
+        74.65,
+        22.5
+      ],
+      "observed_courtyard_centre_mm": [
+        75.4,
+        22.5
+      ],
+      "desired_axis_mm": [
+        75.4,
+        22.5
+      ],
+      "desired_axis_basis": "Existing H6 reviewed placement centre interpreted as a proposed visible-axis intent; not yet approved for relocation.",
+      "same_rotation_anchor_for_desired_axis_mm": [
+        76.32,
+        22.5
+      ],
+      "axis_deviation_from_desired_mm": [
+        -0.75,
+        0
+      ],
+      "relocation_status": "rejected_at_same_rotation_pad5_outside_board",
+      "same_rotation_maximum_copper_x_mm": 80.34,
+      "alternative_geometry_only": {
+        "rotation_deg": 270,
+        "anchor_mm": [
+          74.48,
+          22.5
+        ],
+        "actuator_mm": [
+          75.4,
+          22.5
+        ],
+        "maximum_copper_x_mm": 78.3,
+        "status": "not_accepted_no_collision_or_routing_qualification"
+      }
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW14",
+      "instance": "ui_switch_f6",
+      "side": "F.Cu",
+      "rotation_deg": 90,
+      "native_anchor_mm": [
+        75.57,
+        36
+      ],
+      "observed_actuator_mm": [
+        74.65,
+        36
+      ],
+      "observed_courtyard_centre_mm": [
+        75.4,
+        36
+      ],
+      "desired_axis_mm": [
+        75.4,
+        36
+      ],
+      "desired_axis_basis": "Existing H6 reviewed placement centre interpreted as a proposed visible-axis intent; not yet approved for relocation.",
+      "same_rotation_anchor_for_desired_axis_mm": [
+        76.32,
+        36
+      ],
+      "axis_deviation_from_desired_mm": [
+        -0.75,
+        0
+      ],
+      "relocation_status": "rejected_at_same_rotation_pad5_outside_board",
+      "same_rotation_maximum_copper_x_mm": 80.34,
+      "alternative_geometry_only": {
+        "rotation_deg": 270,
+        "anchor_mm": [
+          74.48,
+          36
+        ],
+        "actuator_mm": [
+          75.4,
+          36
+        ],
+        "maximum_copper_x_mm": 78.3,
+        "status": "not_accepted_no_collision_or_routing_qualification"
+      }
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW15",
+      "instance": "ui_switch_f7",
+      "side": "F.Cu",
+      "rotation_deg": 90,
+      "native_anchor_mm": [
+        75.57,
+        49.5
+      ],
+      "observed_actuator_mm": [
+        74.65,
+        49.5
+      ],
+      "observed_courtyard_centre_mm": [
+        75.4,
+        49.5
+      ],
+      "desired_axis_mm": [
+        75.4,
+        49.5
+      ],
+      "desired_axis_basis": "Existing H6 reviewed placement centre interpreted as a proposed visible-axis intent; not yet approved for relocation.",
+      "same_rotation_anchor_for_desired_axis_mm": [
+        76.32,
+        49.5
+      ],
+      "axis_deviation_from_desired_mm": [
+        -0.75,
+        0
+      ],
+      "relocation_status": "rejected_at_same_rotation_pad5_outside_board",
+      "same_rotation_maximum_copper_x_mm": 80.34,
+      "alternative_geometry_only": {
+        "rotation_deg": 270,
+        "anchor_mm": [
+          74.48,
+          49.5
+        ],
+        "actuator_mm": [
+          75.4,
+          49.5
+        ],
+        "maximum_copper_x_mm": 78.3,
+        "status": "not_accepted_no_collision_or_routing_qualification"
+      }
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW16",
+      "instance": "ui_switch_f8",
+      "side": "F.Cu",
+      "rotation_deg": 90,
+      "native_anchor_mm": [
+        75.57,
+        63
+      ],
+      "observed_actuator_mm": [
+        74.65,
+        63
+      ],
+      "observed_courtyard_centre_mm": [
+        75.4,
+        63
+      ],
+      "desired_axis_mm": [
+        75.4,
+        63
+      ],
+      "desired_axis_basis": "Existing H6 reviewed placement centre interpreted as a proposed visible-axis intent; not yet approved for relocation.",
+      "same_rotation_anchor_for_desired_axis_mm": [
+        76.32,
+        63
+      ],
+      "axis_deviation_from_desired_mm": [
+        -0.75,
+        0
+      ],
+      "relocation_status": "rejected_at_same_rotation_pad5_outside_board",
+      "same_rotation_maximum_copper_x_mm": 80.34,
+      "alternative_geometry_only": {
+        "rotation_deg": 270,
+        "anchor_mm": [
+          74.48,
+          63
+        ],
+        "actuator_mm": [
+          75.4,
+          63
+        ],
+        "maximum_copper_x_mm": 78.3,
+        "status": "not_accepted_no_collision_or_routing_qualification"
+      }
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW3",
+      "instance": "ui_dpad_down",
+      "side": "F.Cu",
+      "rotation_deg": 0,
+      "native_anchor_mm": [
+        40,
+        143.07
+      ],
+      "observed_actuator_mm": [
+        40,
+        142.15
+      ],
+      "observed_courtyard_centre_mm": [
+        40,
+        142.9
+      ],
+      "desired_axis_mm": [
+        40,
+        142.9
+      ],
+      "desired_axis_basis": "Existing H6 reviewed placement centre interpreted as proposed visible-axis intent; not yet approved for relocation.",
+      "same_rotation_anchor_for_desired_axis_mm": [
+        40,
+        143.82
+      ],
+      "axis_deviation_from_desired_mm": [
+        0,
+        -0.75
+      ],
+      "relocation_status": "computed_only_not_collision_qualified"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW4",
+      "instance": "ui_dpad_left",
+      "side": "F.Cu",
+      "rotation_deg": 0,
+      "native_anchor_mm": [
+        29.5,
+        132.57
+      ],
+      "observed_actuator_mm": [
+        29.5,
+        131.65
+      ],
+      "observed_courtyard_centre_mm": [
+        29.5,
+        132.4
+      ],
+      "desired_axis_mm": [
+        29.5,
+        132.4
+      ],
+      "desired_axis_basis": "Existing H6 reviewed placement centre interpreted as proposed visible-axis intent; not yet approved for relocation.",
+      "same_rotation_anchor_for_desired_axis_mm": [
+        29.5,
+        133.32
+      ],
+      "axis_deviation_from_desired_mm": [
+        0,
+        -0.75
+      ],
+      "relocation_status": "computed_only_not_collision_qualified"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW5",
+      "instance": "ui_dpad_ok",
+      "side": "F.Cu",
+      "rotation_deg": 0,
+      "native_anchor_mm": [
+        40,
+        132.57
+      ],
+      "observed_actuator_mm": [
+        40,
+        131.65
+      ],
+      "observed_courtyard_centre_mm": [
+        40,
+        132.4
+      ],
+      "desired_axis_mm": [
+        40,
+        132.4
+      ],
+      "desired_axis_basis": "Existing H6 reviewed placement centre interpreted as proposed visible-axis intent; not yet approved for relocation.",
+      "same_rotation_anchor_for_desired_axis_mm": [
+        40,
+        133.32
+      ],
+      "axis_deviation_from_desired_mm": [
+        0,
+        -0.75
+      ],
+      "relocation_status": "computed_only_not_collision_qualified"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW6",
+      "instance": "ui_dpad_right",
+      "side": "F.Cu",
+      "rotation_deg": 0,
+      "native_anchor_mm": [
+        50.5,
+        132.57
+      ],
+      "observed_actuator_mm": [
+        50.5,
+        131.65
+      ],
+      "observed_courtyard_centre_mm": [
+        50.5,
+        132.4
+      ],
+      "desired_axis_mm": [
+        50.5,
+        132.4
+      ],
+      "desired_axis_basis": "Existing H6 reviewed placement centre interpreted as proposed visible-axis intent; not yet approved for relocation.",
+      "same_rotation_anchor_for_desired_axis_mm": [
+        50.5,
+        133.32
+      ],
+      "axis_deviation_from_desired_mm": [
+        0,
+        -0.75
+      ],
+      "relocation_status": "computed_only_not_collision_qualified"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW7",
+      "instance": "ui_dpad_up",
+      "side": "F.Cu",
+      "rotation_deg": 0,
+      "native_anchor_mm": [
+        40,
+        122.07
+      ],
+      "observed_actuator_mm": [
+        40,
+        121.15
+      ],
+      "observed_courtyard_centre_mm": [
+        40,
+        121.9
+      ],
+      "desired_axis_mm": [
+        40,
+        121.9
+      ],
+      "desired_axis_basis": "Existing H6 reviewed placement centre interpreted as proposed visible-axis intent; not yet approved for relocation.",
+      "same_rotation_anchor_for_desired_axis_mm": [
+        40,
+        122.82
+      ],
+      "axis_deviation_from_desired_mm": [
+        0,
+        -0.75
+      ],
+      "relocation_status": "computed_only_not_collision_qualified"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW8",
+      "instance": "ui_switch_back",
+      "side": "F.Cu",
+      "rotation_deg": 0,
+      "native_anchor_mm": [
+        14.3,
+        132.57
+      ],
+      "observed_actuator_mm": [
+        14.3,
+        131.65
+      ],
+      "observed_courtyard_centre_mm": [
+        14.3,
+        132.4
+      ],
+      "desired_axis_mm": [
+        14.3,
+        132.4
+      ],
+      "desired_axis_basis": "Existing outward BACK/OPT concept and H6 centre coincide; proposed visible-axis intent only.",
+      "same_rotation_anchor_for_desired_axis_mm": [
+        14.3,
+        133.32
+      ],
+      "axis_deviation_from_desired_mm": [
+        0,
+        -0.75
+      ],
+      "relocation_status": "computed_only_not_collision_qualified"
+    },
+    {
+      "board": "LESHY2-UI-R2",
+      "reference": "SW17",
+      "instance": "ui_switch_opt",
+      "side": "F.Cu",
+      "rotation_deg": 0,
+      "native_anchor_mm": [
+        65.7,
+        132.57
+      ],
+      "observed_actuator_mm": [
+        65.7,
+        131.65
+      ],
+      "observed_courtyard_centre_mm": [
+        65.7,
+        132.4
+      ],
+      "desired_axis_mm": [
+        65.7,
+        132.4
+      ],
+      "desired_axis_basis": "Existing outward BACK/OPT concept and H6 centre coincide; proposed visible-axis intent only.",
+      "same_rotation_anchor_for_desired_axis_mm": [
+        65.7,
+        133.32
+      ],
+      "axis_deviation_from_desired_mm": [
+        0,
+        -0.75
+      ],
+      "relocation_status": "computed_only_not_collision_qualified"
+    },
+    {
+      "board": "LESHY2-RF-R2",
+      "reference": "SW4",
+      "instance": "ptt_switch",
+      "side": "F.Cu",
+      "rotation_deg": 0,
+      "native_anchor_mm": [
+        7.5,
+        66.67
+      ],
+      "observed_actuator_mm": [
+        7.5,
+        65.75
+      ],
+      "observed_courtyard_centre_mm": [
+        7.5,
+        66.5
+      ],
+      "desired_axis_mm": [
+        72.5,
+        66.5
+      ],
+      "desired_axis_basis": "Accepted rear-visible PTT axis; native RF exterior X=80-world X, world axis[7.5,66.5]. Root-approved further placement review, not applied by this artifact.",
+      "same_rotation_anchor_for_desired_axis_mm": [
+        72.5,
+        67.42
+      ],
+      "axis_deviation_from_desired_mm": [
+        -65,
+        -0.75
+      ],
+      "relocation_status": "rejected_new_pad_to_retained_copper_conflict",
+      "subsequent_copper_review": {
+        "finding": "At proposed anchor[72.5,67.42], new pad2 POWER_GROUND overlaps retained CHARGER_SW1 via at[69.355,68.4]. Old-pad attachments=0 did not cover this new-position collision.",
+        "via_uuid": "54189740-b405-418b-934d-19a201fed767",
+        "via_copper_diameter_mm": 0.4,
+        "alternative_anchor_mm": [72.1,67.42],
+        "alternative_actuator_mm": [72.1,66.5],
+        "alternative_nominal_pad_to_via_copper_clearance_mm": 0.26,
+        "alternative_status": "scratch_DRC_no_PTT_geometry_finding_root_review_pending",
+        "scratch_DRC_scope": "Current pro/dru and --schematic-parity: no PTT clearance/geometry findings. Three unrelated U83/J11/SW5 library mismatches plus one PTT candidate-ID and three SW5 parity findings remain; no whole-board zero-DRC claim.",
+        "boundary": "Do not apply the rejected original target. The 0.4-mm X correction preserves retained copper and needs its own current-board qualification."
+      }
+    }
+  ],
+  "findings": [
+    "All eight F keys have the same F90 rotation; their actual axis columns are3.85 and74.65, midpoint39.25, not board axis40. The right-side pair is not physically mirrored.",
+    "The seven UI navigation/BACK/OPT axes are0.75 mm above the declared courtyard centres; relative navigation spacing is unchanged. This is datum drift, not justification to undo accepted H6 pitch changes.",
+    "PTT additionally retains the known65-mm RF reflection error; the proposed accepted rear-visible target requires anchor[72.5,67.42].",
+    "devices.json dimensions/mechanical body X6.6,Y6.0 are reversed with respect to the primary unrotated TOP pad frame. Review H1 body orientation separately; changing a drawing must not silently move PCB pads.",
+    "Corrected Fab is nominal, not a replacement for assembly tolerance, touch access, support clearance or electrical routing verification."
+  ],
+  "initial_candidate_not_accepted": [
+    "No UI relocation is authorized by this calculation.",
+    "Right F5-F8 same-rotation relocation is rejected: pad5 exceeds board X80 by0.34 mm; an F270 alternative is only a geometry candidate.",
+    "No production footprint binding, native footprint or copper has been replaced.",
+    "The retained courtyard is an existing engineering margin, not manufacturer-body geometry."
+  ],
+  "current_source_integration": {
+    "status": "approved_source_edits_native_pending",
+    "production_footprint_sha256": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989",
+    "reproduction_check": "python3 hardware/ecad/h2_r2_b3s_actuator_datum.py --check",
+    "generator_write_scope": "Exactly one CURRENT R2 footprint; historical R1 generator/library, symbols, net maps and PCBs are untouched.",
+    "placement_contract": "hardware/layout/h6-r2-placement-contract.json",
+    "changed_native_references": {
+      "LESHY2-UI-R2": ["SW3","SW4","SW5","SW6","SW7","SW8","SW9","SW10","SW11","SW12","SW13","SW14","SW15","SW16","SW17"],
+      "LESHY2-RF-R2": ["SW4"]
+    },
+    "UI_rule": "F1-F4 anchor X5.52/F90, F5-F8 X74.48/F270, lower seven anchors Y+0.75 relative to baseline. All target actuator axes and existing user-label XY preserved; zero support relocations.",
+    "PTT_rule": "F0 anchor[72.1,67.42] gives actuator[72.1,66.5] and nominal0.26-mm gap to retained CHARGER_SW1 via. Original anchor[72.5,67.42] remains rejected.",
+    "all_16_placements_mechanically_locked": true,
+    "electrical_pad_records_or_MPN_changed": false,
+    "native_boards_written_by_this_change": false,
+    "full_layout_or_fabrication_release_claim": false
+  },
+  "independent_run_kill_review": {
+    "document_url": "https://www.littelfuse.com/assetdocs/littelfuse-c-k-slide-js-series-datasheet?assetguid=aba42b08-0d2c-423b-813d-a2faa5a3bb14",
+    "document_sha256": "ddb26ebfb6b0f88321f77bbc8f3ca328b3369e1de92cb3bb4d766251cfa4bae4",
+    "section": "C&K JS Series VL01/14/26, full page4, Right Angle Surface Mount JS102011SAQN",
+    "status": "contact_connectivity_verified_physical_label_direction_not_unambiguous",
+    "established": {
+      "common_pin": "2",
+      "pin1_net": "RUN_LOOP_RAW",
+      "pin2_net": "POWER_GROUND",
+      "pin3_net": "POWER_COMMAND_OFF_N",
+      "run_closed_pins": [
+        "1",
+        "2"
+      ],
+      "kill_closed_pins": [
+        "2",
+        "3"
+      ],
+      "travel_axis": "local X, 2.0-mm detent separation"
+    },
+    "view_evidence": "Front/top views draw the lever left. The front view labels that detent b; the circuit marked B bridges1-2. The section heading instead calls the shown position A.",
+    "derived_expected_orientation": {
+      "pose": "B270 at native RF[78.2,114.1]",
+      "run": "native -Y",
+      "kill": "native +Y",
+      "basis": "Consistent front detent letters and circuit diagram, but contradicted by the section heading."
+    },
+    "direction_verified": false,
+    "followup": "Do not mark RUN/KILL physical polarity fully verified from this contradictory sheet. Resolve with exact manufacturer confirmation or a non-destructive unpowered continuity check before relying on the directional legend."
+  }
+}
