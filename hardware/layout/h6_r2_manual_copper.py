@@ -27,6 +27,130 @@ POLICY_PATH = ROOT / "hardware/layout/generated/H6-R2-routing-policy-audit.json"
 ROUTING_CONTRACT_PATH = ROOT / "hardware/layout/h6-r2-routing-policy.json"
 AUDIT_PATH = ROOT / "hardware/layout/generated/H6-R2-manual-copper-audit.json"
 PROJECTS = ("LESHY2-UI-R2", "LESHY2-RF-R2")
+# A finite reviewed experiment, not permission to replay arbitrary autorouter
+# output. Keep complete net paths: a matching basename in another sheet is not
+# the same electrical endpoint. Adding another net requires a source review.
+REVIEWED_GENERAL_PROPOSALS = frozenset({
+    ("LESHY2-UI-R2", "NRF0_TX_LED_A", "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF0_TX_LED_A"),
+    ("LESHY2-UI-R2", "S3_TX_LED_A", "/UI_11_STORAGE_CONTROLS_INDICATORS/S3_TX_LED_A"),
+})
+REVIEWED_PROPOSAL_MODE = "automatic_helper_allowed_then_manual_review"
+REVIEWED_PROPOSAL_LAYERS = frozenset({"F.Cu", "In2.Cu", "In3.Cu", "B.Cu"})
+# The current DSN recipe in h6_r2_routing_workspace.class_block uses 150 um
+# clearance and Via[0-5]_400:200_um. These are recipe constraints, NOT a claim
+# that the candidate meets clearances: fresh native DRC remains mandatory.
+REVIEWED_PROPOSAL_CLEARANCE_MM = 0.15
+REVIEWED_PROPOSAL_VIA_MM = (0.4, 0.2)
+
+
+def proposal_geometry_sha256(route: dict) -> str:
+    """Bind the hand-review decision to its exact net and explicit geometry."""
+    payload = {key: route[key] for key in (
+        "project", "canonical_net", "kicad_net", "routing_class", "segments", "vias",
+    )}
+    return hashlib.sha256(json.dumps(
+        payload, sort_keys=True, separators=(",", ":"), allow_nan=False,
+    ).encode("utf-8")).hexdigest()
+
+
+def _finite_number(value) -> bool:
+    return type(value) in (int, float) and math.isfinite(value)
+
+
+def _proposal_point(value) -> bool:
+    return isinstance(value, list) and len(value) == 2 and all(_finite_number(v) for v in value)
+
+
+def validate_reviewed_proposal(route: dict, policy: dict, project: str,
+                               routing_contract: dict | None) -> None:
+    """Fail closed before mutating a board; this is not a DRC/promotion gate.
+
+    A reviewer must supply the literal decision AND its geometry hash. The
+    caller separately preserves existing copper/placement, verifies native
+    connectivity and runs fresh DRC before promoting any proposed copper.
+    """
+    label = route.get("id", "<missing route id>")
+
+    def reject(message):
+        raise ValueError(f"{label}: reviewed GENERAL_CONTROL proposal {message}")
+
+    identity = (project, route.get("canonical_net"), route.get("kicad_net"))
+    if route.get("project") != project or identity not in REVIEWED_GENERAL_PROPOSALS:
+        reject("is outside the finite UI LED allow-list")
+    if (route.get("routing_class") != "GENERAL_CONTROL"
+            or any(policy.get(key) != route.get(key)
+                   for key in ("project", "canonical_net", "kicad_net", "routing_class"))
+            or policy.get("route_mode") != REVIEWED_PROPOSAL_MODE):
+        reject("does not have the exact current policy binding/mode")
+    if not isinstance(route.get("id"), str) or not route["id"].strip():
+        reject("needs a non-empty route id")
+    if not isinstance(route.get("reason"), str) or not route["reason"].strip():
+        reject("needs a written review reason")
+    if type(route.get("expected_resolved_connections")) is not int or route["expected_resolved_connections"] != 1:
+        reject("must resolve exactly one connection")
+    if not isinstance(routing_contract, dict):
+        reject("requires the current routing contract")
+    general = routing_contract.get("classes", {}).get("GENERAL_CONTROL", {})
+    helper = routing_contract.get("automatic_helper", {})
+    if (general.get("route_mode") != REVIEWED_PROPOSAL_MODE
+            or type(general.get("nominal_track_width_mm")) not in (int, float)
+            or general["nominal_track_width_mm"] != 0.15
+            or helper.get("allowed_classes") != ["GENERAL_CONTROL"]
+            or sorted(helper.get("routable_layers", [])) != sorted(REVIEWED_PROPOSAL_LAYERS)
+            or sorted(helper.get("reserved_reference_layers", [])) != ["In1.Cu", "In4.Cu"]):
+        reject("requires the reviewed 0.15 mm / four signal-layer policy recipe")
+    review = route.get("reviewed_proposal")
+    if (not isinstance(review, dict)
+            or set(review) != {"decision", "minimum_clearance_mm", "geometry_sha256"}
+            or review.get("decision") != "hand-reviewed proposal"
+            or not _finite_number(review.get("minimum_clearance_mm"))
+            or review["minimum_clearance_mm"] != REVIEWED_PROPOSAL_CLEARANCE_MM):
+        reject("requires an explicit hand-review decision and the 0.15 mm clearance recipe")
+    segments, vias = route.get("segments"), route.get("vias")
+    if (not isinstance(segments, list) or not segments or not isinstance(vias, list)
+            or any(key in route for key in ("path_mm", "layer", "width_mm"))):
+        reject("requires explicit segments and vias without a competing shorthand path")
+    for segment in segments:
+        if (not isinstance(segment, dict)
+                or set(segment) != {"layer", "width_mm", "start_mm", "end_mm"}
+                or segment.get("layer") not in REVIEWED_PROPOSAL_LAYERS
+                or not _finite_number(segment.get("width_mm"))
+                or segment["width_mm"] != general["nominal_track_width_mm"]
+                or not _proposal_point(segment.get("start_mm"))
+                or not _proposal_point(segment.get("end_mm"))):
+            reject("has unsupported segment geometry, width or layer")
+        if math.dist(segment["start_mm"], segment["end_mm"]) < 1e-6:
+            reject("has a zero-length segment")
+    for via in vias:
+        if (not isinstance(via, dict)
+                or not {"at_mm", "diameter_mm", "drill_mm"} <= set(via)
+                or not set(via) <= {"at_mm", "diameter_mm", "drill_mm", "type"}
+                or via.get("type", "through") != "through"
+                or not _proposal_point(via.get("at_mm"))
+                or not _finite_number(via.get("diameter_mm"))
+                or not _finite_number(via.get("drill_mm"))
+                or (via["diameter_mm"], via["drill_mm"]) != REVIEWED_PROPOSAL_VIA_MM):
+            reject("requires through vias with the exact 0.4 / 0.2 mm recipe")
+    if review.get("geometry_sha256") != proposal_geometry_sha256(route):
+        reject("geometry changed since its hand-review decision")
+
+
+def preflight_reviewed_proposals(routes: list[dict], policy_rows: dict,
+                                routing_contract: dict | None,
+                                project: str | None = None) -> None:
+    """Check the complete proposed batch before adding even its first trace."""
+    seen_nets, seen_ids = set(), set()
+    all_ids = [route.get("id") for route in routes]
+    for route in routes:
+        if route.get("routing_class") != "GENERAL_CONTROL" and "reviewed_proposal" not in route:
+            continue
+        scope = project if project is not None else route.get("project")
+        key = (scope, route.get("kicad_net"))
+        validate_reviewed_proposal(route, policy_rows.get(key, {}), scope, routing_contract)
+        if key in seen_nets or route["id"] in seen_ids or all_ids.count(route["id"]) != 1:
+            raise ValueError(f"{route['id']}: duplicate reviewed GENERAL_CONTROL proposal net/id")
+        seen_nets.add(key)
+        seen_ids.add(route["id"])
 
 
 def load(path: Path) -> dict:
@@ -106,7 +230,9 @@ def add_routes(
     policy_rows: dict[tuple[str, str], dict],
     project: str,
     rf_transitions: dict,
+    routing_contract: dict | None = None,
 ) -> list[dict]:
+    preflight_reviewed_proposals(routes, policy_rows, routing_contract, project)
     results = []
     for route in routes:
         net_name = route["kicad_net"]
@@ -115,7 +241,8 @@ def add_routes(
             raise ValueError(f"{route['id']}: net is absent from routing policy")
         if policy["routing_class"] != route["routing_class"]:
             raise ValueError(f"{route['id']}: routing-class mismatch")
-        if policy["route_mode"] not in {"manual_only", "plane_or_local_pour_manual"}:
+        if (route["routing_class"] != "GENERAL_CONTROL"
+                and policy["route_mode"] not in {"manual_only", "plane_or_local_pour_manual"}):
             raise ValueError(
                 f"{route['id']}: reviewed manifest only accepts manual routes and "
                 "explicit local ground joins"
@@ -230,6 +357,8 @@ def add_routes(
                 "reason": route["reason"],
             }
         )
+        if "reviewed_proposal" in route:
+            results[-1]["reviewed_proposal"] = dict(route["reviewed_proposal"])
     return results
 
 
@@ -241,6 +370,9 @@ def build() -> tuple[dict[str, object], dict]:
     policy_rows = {
         (row["project"], row["kicad_net"]): row for row in policy["rows"]
     }
+    # Validate before project filtering: a typo/foreign project must not make a
+    # reviewed route disappear silently from the replay or its audit.
+    preflight_reviewed_proposals(contract["routes"], policy_rows, routing_contract)
     placement_outputs, placement_audit = build_placement()
     board_outputs: dict[Path, bytes] = {}
     route_results = []
@@ -255,7 +387,8 @@ def build() -> tuple[dict[str, object], dict]:
             project_routes = [
                 route for route in contract["routes"] if route["project"] == project
             ]
-            rows = add_routes(board, project_routes, policy_rows, project, rf_transitions)
+            rows = add_routes(board, project_routes, policy_rows, project, rf_transitions,
+                              routing_contract)
             route_results.extend(rows)
             if not pcbnew.SaveBoard(str(staged), board):
                 raise SystemExit(f"{project}: save failed")
@@ -301,6 +434,9 @@ def build() -> tuple[dict[str, object], dict]:
             "local_ground_join_route_count": sum(
                 row["route_mode"] == "plane_or_local_pour_manual"
                 for row in route_results
+            ),
+            "reviewed_general_control_proposal_route_count": sum(
+                "reviewed_proposal" in row for row in route_results
             ),
         },
         "boards": board_rows,

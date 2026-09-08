@@ -5,7 +5,7 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "549f19cc535d513b2a46c09d86d8e46559808b9d51bda20921054c24d05a611d",
+    "contract_sha256": "ceaaffbda756973dd5f0ae5a4d21585c399d5580a8107101978abac4609a036b",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
     "routing_policy_sha256": "af620964fb7a92df3f7790c0eefe6478922b0135da39503182610fcee75c6b92",
     "routing_contract": "hardware/layout/h6-r2-routing-policy.json",
@@ -13,21 +13,22 @@
     "placement_status": "pass"
   },
   "summary": {
-    "route_count": 106,
-    "segment_count": 621,
-    "resolved_connection_count": 188,
-    "via_count": 165,
+    "route_count": 108,
+    "segment_count": 631,
+    "resolved_connection_count": 190,
+    "via_count": 167,
     "manual_only_route_count": 86,
-    "local_ground_join_route_count": 20
+    "local_ground_join_route_count": 20,
+    "reviewed_general_control_proposal_route_count": 2
   },
   "boards": [
     {
       "project": "LESHY2-UI-R2",
       "board": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "route_count": 6,
-      "segment_count": 21,
-      "via_count": 0,
-      "resolved_connection_count": 8,
+      "route_count": 8,
+      "segment_count": 31,
+      "via_count": 2,
+      "resolved_connection_count": 10,
       "copper_signature": [
         [
           "track",
@@ -41,6 +42,146 @@
           [
             32.6625,
             4.95
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF0_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            28.365,
+            105.565
+          ],
+          [
+            38.25,
+            106.3
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF0_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            38.25,
+            106.3
+          ],
+          [
+            40.8,
+            106.2
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF0_TX_LED_A",
+          "F.Cu",
+          0.15,
+          [
+            40.7875,
+            104.9
+          ],
+          [
+            40.8,
+            106.2
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/S3_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            5.8,
+            106.2
+          ],
+          [
+            6.3,
+            106.285
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/S3_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            6.3,
+            106.285
+          ],
+          [
+            13.3,
+            106.285
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/S3_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            13.3,
+            106.285
+          ],
+          [
+            17.25,
+            102.3
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/S3_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            17.25,
+            102.3
+          ],
+          [
+            23.2,
+            102.3
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/S3_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            23.2,
+            102.3
+          ],
+          [
+            24.335,
+            101.115
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/S3_TX_LED_A",
+          "F.Cu",
+          0.15,
+          [
+            5.8,
+            106.2
+          ],
+          [
+            9.1875,
+            106.2
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/S3_TX_LED_A",
+          "F.Cu",
+          0.15,
+          [
+            9.1875,
+            104.9
+          ],
+          [
+            9.1875,
+            106.2
           ]
         ],
         [
@@ -322,6 +463,22 @@
             47.325,
             85.355
           ]
+        ],
+        [
+          "via",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF0_TX_LED_A",
+          40.8,
+          106.2,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/S3_TX_LED_A",
+          5.8,
+          106.2,
+          0.4,
+          0.2
         ]
       ]
     },
@@ -10170,6 +10327,56 @@
       "length_mm": 9.4922,
       "resolved_connections": 2,
       "reason": "The crystal-side XOUT tree joins the rotated Y1 terminal directly and reaches its load capacitor around the grounded resonator pad field without vias."
+    },
+    {
+      "id": "UI-LED-NRF0-ANODE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF0_TX_LED_A",
+      "routing_class": "GENERAL_CONTROL",
+      "route_mode": "automatic_helper_allowed_then_manual_review",
+      "layers": [
+        "B.Cu",
+        "F.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 3,
+      "via_count": 1,
+      "length_mm": 13.7643,
+      "resolved_connections": 1,
+      "reason": "Hand-reviewed 2026-09-08 resistor-to-indicator anode proposal: B.Cu signal path, one explicit through via clear of all F/B component courtyards, then F.Cu LED leadout. Native DRC/parity 0/0 and exact-shape 0.15 mm clearance screening passed; original copper/pads/connectivity remain unchanged. This does not close H6 or authorize fabrication.",
+      "reviewed_proposal": {
+        "decision": "hand-reviewed proposal",
+        "minimum_clearance_mm": 0.15,
+        "geometry_sha256": "b753fd76381ba042bb8a130c9732f7f5cb181b04668a718207d50706e0962d6f"
+      }
+    },
+    {
+      "id": "UI-LED-S3-ANODE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/S3_TX_LED_A",
+      "routing_class": "GENERAL_CONTROL",
+      "route_mode": "automatic_helper_allowed_then_manual_review",
+      "layers": [
+        "B.Cu",
+        "F.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 7,
+      "via_count": 1,
+      "length_mm": 25.3965,
+      "resolved_connections": 1,
+      "reason": "Hand-reviewed 2026-09-08 resistor-to-indicator anode proposal: B.Cu signal path, one explicit through via clear of all F/B component courtyards, then F.Cu LED leadout. Native DRC/parity 0/0 and exact-shape 0.15 mm clearance screening passed; original copper/pads/connectivity remain unchanged. This does not close H6 or authorize fabrication.",
+      "reviewed_proposal": {
+        "decision": "hand-reviewed proposal",
+        "minimum_clearance_mm": 0.15,
+        "geometry_sha256": "7b7f5daddcc330787f59e277582e013ae0da25400b8fa2e1743d4a29bbe51031"
+      }
     },
     {
       "id": "RF-AON-BUCK-SW",

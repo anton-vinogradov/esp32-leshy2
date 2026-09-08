@@ -93,8 +93,8 @@ height are guarded. Generic body models do not close exact assembled Z.
 
 | Check | Result and limit |
 | --- | --- |
-| Copper preservation | UI retains all **21 copper objects byte-for-byte**. RF preserves **747** unchanged objects and replaces **19 with 18** in four explicitly reviewed routes, retaining existing connected pin pairs. The current total is **786 objects: 621 segments and 165 vias** (UI21 + RF765), not 787 unchanged objects. Moved, previously unrouted pins are not thereby connected. |
-| Fresh native DRC | Both promoted SMA/microSD boards report **0 violations and 0 schematic-parity findings** for the hashes below. Each returns **499 unconnected items**, at the report cap; this is neither an exact remaining-airwire count nor completed routing. |
+| Copper preservation | The additive LED follow-up retains all **21 prior UI copper objects byte-for-byte** and adds **10 segments + 2 vias** for two reviewed LED nets; all component poses and 96 existing connected pad pairs remain unchanged. RF retains its SMA-stage result: **747** unchanged objects and **19 replaced with 18** in four explicitly reviewed routes. The current total is **798 objects: 631 segments and 167 vias** (UI33 + RF765). This resolves two further connections, not every previously unrouted interface pin. |
+| Fresh native DRC | Both current boards, including the UI LED follow-up, report **0 violations and 0 schematic-parity findings** for the hashes below. Each returns **499 unconnected items**, at the report cap; this is neither an exact remaining-airwire count nor completed routing. |
 | Production provenance | Fresh schema2 receipts explicitly request `--schematic-parity` and bind PCB/pro/dru, root/child SCH, library tables and repository-controlled libraries. The actual command uses repository-relative board/report paths under the recorded repository-root working directory; copying identical files does not rewrite its evidence. Standard installed libraries remain an explicit environment boundary. A different PCB or changed hashed source invalidates the receipt. |
 | Native/library pad parity | The refreshed audit checks **1216/1216 footprints with zero pad-geometry drift**, bound to both promoted hashes. Agreement with the selected library does not qualify its unresolved holder/encoder geometry. |
 | Safe native integration | The staging guard rejects duplicate raw UUIDs, unexpected pad removals, changed unlisted footprints and changed copper. Changed-footprint UUIDs are regenerated collision-free; schematic paths and untouched objects are preserved. |
@@ -145,18 +145,20 @@ The six internal debug headers are accessed after opening the device.
 
 ## Evidence: current state versus historical findings
 
-The integrated SMA/microSD PCB hashes below match the fresh MAIN DRC receipts.
+The current SMA/microSD and additive LED PCB hashes below match fresh DRC receipts.
 They identify the checked native boards, not manufacturing approval:
 
 | Board | SHA-256 |
 | --- | --- |
-| [UI native PCB](../hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb) | `15e31c85d5cfdb85fd86ffa2830f1c74b55014a227275c2d4d53cc35513bb1c8` |
+| [UI native PCB](../hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb) | `6af963427ffddc791f4d9ff01c8e5de2698b981e1f944416b49c1fd7fc02cbf5` |
 | [RF native PCB](../hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb) | `634b3705ccd156b2b3511b46df430fc36c0a5e4a4d81c0190e2cd10351ae1d1c` |
 
-Fresh MAIN DRC records are `work/spacing-main-review/ui-drc.json` and
-`work/spacing-main-review/rf-drc.json`, with their provenance sidecars. The
-earlier UI stage and RF atomic-review records retain their original pre-DRC
-status; the later hash-bound DRC receipts establish the current result.
+The fresh MAIN DRC records are `work/led-main-review/ui-drc.json`
+and `work/led-main-review/rf-drc.json`, with their provenance sidecars.
+The current-routing audit binds the executed command and exact repository inputs;
+changed boards, rules, schematics or controlled libraries require a new DRC run.
+Earlier stage records retain their original status; the later hash-bound DRC
+receipts establish the scoped result, not manufacturing approval.
 
 - Current owners: [placement contract](../hardware/layout/h6-r2-placement-contract.json), [native instance ledger](../hardware/ecad/generated/H2-R2-native-instance-ledger.json), [assembly coordinates](../hardware/product-design/assembly-coordinate-model.json), [display contract](../hardware/product-design/display-mount.json).
 - Derived audits: [current routing](../hardware/layout/generated/H6-R2-current-routing-audit.json), [pad parity](../hardware/layout/generated/H6-R2-footprint-pad-parity.json), [native user labels](../hardware/layout/generated/H6-R2-user-silkscreen-audit.json). Check their recorded source hashes: a reproducible stale snapshot is not evidence for the two hashes above. The pad-parity and scoped label audits have been rebound to both promoted boards.

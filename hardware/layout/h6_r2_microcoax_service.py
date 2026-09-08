@@ -19,6 +19,8 @@ H1 = ROOT / "hardware/product-design/h1-r2-placement.json"
 H3 = ROOT / "hardware/verification/generated/H3-R2-rf-coexistence.json"
 AUDIT = ROOT / "hardware/layout/generated/H6-R2-microcoax-service-audit.json"
 SVG = ROOT / "docs/images/h6-r2-microcoax-service.svg"
+DOCS = {"en": ROOT / "docs/h6-r2-microcoax-service.md",
+        "ru": ROOT / "docs/h6-r2-microcoax-service.ru.md"}
 
 
 def load(path: Path) -> dict:
@@ -581,6 +583,120 @@ def render(contract: dict, placement: dict, audit: dict) -> str:
     return "\n".join(parts) + "\n"
 
 
+def result_line(audit: dict) -> str:
+    return (f"H6-R2 microcoax service {audit['status']}: {audit['summary']['path_count']} paths; "
+            f"{audit['summary']['retention_saddles']} clear saddles; "
+            f"{audit['summary']['minimum_relaxed_reserve_mm']:.2f} mm minimum reserve")
+
+
+def document_sections(contract: dict, audit: dict, language: str) -> dict[str, str]:
+    """Render numerical claims from the evaluated geometry, not copied goldens.
+
+    Antenna positions come from evaluate's placement-freeze inspection windows.
+    Prose outside the marked sections stays hand-written; --check compares every
+    marked section, including the actual CLI result and the scope warning.
+    """
+    if language not in DOCS:
+        raise ValueError("unsupported microcoax document language")
+    ru = language == "ru"
+    n = lambda value, digits=3: f"{value:.{digits}f}".replace(".", "," if ru else ".")
+    xy = lambda values: "[" + "; ".join(n(v) for v in values) + "]"
+    unit = "мм" if ru else "mm"
+    summary = audit["summary"]
+    rows = {row["path"]: row for row in audit["paths"]}
+    source_rows = {row["path"]: row for row in contract["paths"]}
+    common = contract["common_constraints"]
+    saddle = common["retention_saddle"]
+    enclosure = audit["enclosure_clearance"]
+    s3 = rows["S3-2G4"]
+    support = source_rows["S3-2G4"]["retention_support"]
+    occupied = (support["surface_height_max_mm"] + common["cable_outer_diameter_mm"]
+                + saddle["maximum_finished_height_above_local_cable_mm"])
+    required_display = common["corridor_width_mm"] / 2 + common["minimum_corridor_edge_clearance_mm"]
+    tightest = min(audit["paths"], key=lambda row: row["minimum_mechanical_keepout_clearance_mm"])
+    width = contract["antenna_solder_inspection"]["window_width_mm"]
+    boards = {row["board"] for row in audit["antenna_solder_windows"]}
+    pitches = []
+    for board in boards:
+        centres = sorted(row["centre_x_mm"] for row in audit["antenna_solder_windows"] if row["board"] == board)
+        pitches.extend(right - left for left, right in zip(centres, centres[1:]))
+    pitch = min(pitches)
+    bounds = contract["coordinate_system"]["board_bbox_mm"]
+    size = " × ".join(n(bounds[axis][1] - bounds[axis][0], 0) for axis in ("x", "y"))
+    pending = ", ".join(f"`{path}`" for path in summary["source_window_radius_validation_pending"])
+    status = (
+        f"**Машинный результат: `{audit['status']}` — только номинальная геометрия.** "
+        f"Проверено {summary['path_count']} трактов на плате {size} мм; "
+        f"{summary['nominal_planar_radius_paths']} номинальных кривых проверены относительно проектного радиуса {n(common['formed_bend_radius_target_mm'], 0)} мм. "
+        f"Минимальный свободный запас — {n(summary['minimum_relaxed_reserve_mm'])} мм. "
+        if ru else
+        f"**Machine result: `{audit['status']}` — nominal geometry only.** "
+        f"The audit covers {summary['path_count']} paths on the {size} mm board; "
+        f"{summary['nominal_planar_radius_paths']} nominal curves are checked against the {n(common['formed_bend_radius_target_mm'], 0)}-mm design-radius target. "
+        f"The minimum relaxed reserve is {n(summary['minimum_relaxed_reserve_mm'])} mm. "
+    )
+    status += ((f"Окна {pending} требуют проверки фактических осей и пространственного изгиба в `H6.0.7`. " if ru else
+                f"Source windows {pending} still require actual-axis and three-dimensional forming checks in `H6.0.7`. ")
+               + f"`all_source_positions_planar_radius_verified: {str(summary['all_source_positions_planar_radius_verified']).lower()}`.")
+    table = [
+        "| Тракт | Точный кабель / длина | Коридор, максимум | Запас, минимум | Плоский радиус, минимум |" if ru else
+        "| Path | Exact cable / length | Corridor, max | Reserve, min | Planar radius, min |",
+        "|---|---|---:|---:|---:|",
+    ]
+    for row in audit["paths"]:
+        radius = row["minimum_planar_bend_radius_mm"]
+        radius_text = (n(radius) + " " + unit) if radius is not None else ("не проверен" if ru else "not checked")
+        table.append(f"| `{row['path']}` | `{row['cable_mpn']}`, {n(row['selected_length_mm'], 0)} {unit} | "
+                     f"{n(row['conservative_corridor_length_mm'])} {unit} | {n(row['minimum_relaxed_reserve_mm'])} {unit} | {radius_text} |")
+    landing = " × ".join(n(v, 0) for v in saddle["clear_landing_size_mm"])
+    if ru:
+        geometry = (f"Диаметр кабеля — {n(common['cable_outer_diameter_mm'], 2)} мм; ширина коридора — {n(common['corridor_width_mm'], 2)} мм. "
+                    f"Каждое седло имеет площадку {landing} мм с запасом до courtyard {n(saddle['courtyard_margin_mm'], 2)} мм. "
+                    f"Требуется минимум {n(common['connector_free_length_mm'], 0)} мм вдоль маршрута от каждой оси стыковки до центра седла и "
+                    f"{n(common['minimum_relaxed_length_reserve_mm'], 0)} мм свободного запаса полной длины.\n\n"
+                    f"S3: ось источника {xy(s3['source_reference_mm'])} мм → ось U.FL на плате {xy(s3['board_connector_mm'])} мм; "
+                    f"центр седла {xy(s3['retention_saddle_centre_mm'])} мм. Его консервативная длина включает {n(s3['vertical_transition_length_allowance_mm'])} мм на оба перехода по высоте.")
+        clearance = (f"Минимальное расстояние по оси до исключений дисплея — {n(summary['minimum_display_exclusion_distance_mm'])} мм при требуемом коридоре с зазором {n(required_display, 2)} мм.\n\n"
+                     f"Резерв высоты маршрутной призмы над внутренней стороной UI — {n(enclosure['route_prism_height_above_ui_inner_mm'], 2)} мм; "
+                     f"требуется ещё минимум {n(enclosure['minimum_free_height_above_cable_mm'], 2)} мм свободного пространства над кабелем. "
+                     f"Максимальная высота экрана S3, кабеля и ленты вместе — {n(occupied, 2)} мм. Диаметр цилиндра осмотра разъёма — {n(common['connector_inspection_radius_mm'] * 2, 0)} мм.\n\n"
+                     f"Минимальный 2D-зазор от края полного коридора до зон винтов/упоров — {n(summary['minimum_mechanical_keepout_clearance_mm'])} мм у `{tightest['path']}`; "
+                     f"у `N24-0` — {n(rows['N24-0']['minimum_mechanical_keepout_clearance_mm'])} мм. Это зазоры от сервисного коридора, не от более тонкого кабеля.\n\n"
+                     f"Два антенных банка имеют {summary['antenna_solder_windows']} окон пайки шириной {n(width, 2)} мм. "
+                     f"Минимальный текущий шаг портов по placement freeze — {n(pitch, 3)} мм, зазор между соседними окнами — {n(pitch - width, 3)} мм.")
+    else:
+        geometry = (f"Cable diameter is {n(common['cable_outer_diameter_mm'], 2)} mm; corridor width is {n(common['corridor_width_mm'], 2)} mm. "
+                    f"Each saddle has a {landing} mm landing with a {n(saddle['courtyard_margin_mm'], 2)} mm courtyard margin. "
+                    f"At least {n(common['connector_free_length_mm'], 0)} mm of routed length is required from each mating axis to the saddle centre, plus "
+                    f"{n(common['minimum_relaxed_length_reserve_mm'], 0)} mm of relaxed total-length reserve.\n\n"
+                    f"S3: source axis {xy(s3['source_reference_mm'])} mm → board U.FL axis {xy(s3['board_connector_mm'])} mm; "
+                    f"saddle centre {xy(s3['retention_saddle_centre_mm'])} mm. Its conservative length includes {n(s3['vertical_transition_length_allowance_mm'])} mm for both height transitions.")
+        clearance = (f"The minimum centreline distance to the display exclusions is {n(summary['minimum_display_exclusion_distance_mm'])} mm, against the required {n(required_display, 2)} mm corridor-plus-clearance envelope.\n\n"
+                     f"The route-prism reservation above the UI inner face is {n(enclosure['route_prism_height_above_ui_inner_mm'], 2)} mm; "
+                     f"at least {n(enclosure['minimum_free_height_above_cable_mm'], 2)} mm free height above the cable is also required. "
+                     f"The maximum combined S3 shield, cable and tape height is {n(occupied, 2)} mm. The connector-inspection cylinder diameter is {n(common['connector_inspection_radius_mm'] * 2, 0)} mm.\n\n"
+                     f"The minimum 2D clearance from the full corridor edge to screw/stop keepouts is {n(summary['minimum_mechanical_keepout_clearance_mm'])} mm on `{tightest['path']}`; "
+                     f"`N24-0` clears by {n(rows['N24-0']['minimum_mechanical_keepout_clearance_mm'])} mm. These are service-corridor clearances, not clearances from the thinner cable.\n\n"
+                     f"The two antenna banks have {summary['antenna_solder_windows']} solder-inspection windows of width {n(width, 2)} mm. "
+                     f"The current minimum port pitch from the placement freeze is {n(pitch, 3)} mm, leaving {n(pitch - width, 3)} mm between adjacent windows.")
+    return {"status": status, "results": "\n".join(table) + "\n\n" + geometry,
+            "clearance": clearance, "reproduce": "```text\n" + result_line(audit) + "\n```"}
+
+
+def render_document(text: str, contract: dict, audit: dict, language: str) -> str:
+    for name, content in document_sections(contract, audit, language).items():
+        start = f"<!-- BEGIN GENERATED MICROCOAX {name} -->"
+        end = f"<!-- END GENERATED MICROCOAX {name} -->"
+        if text.count(start) != 1 or text.count(end) != 1:
+            raise ValueError(f"microcoax document requires exactly one {name} block")
+        before, _, tail = text.partition(start)
+        _, found, after = tail.partition(end)
+        if not found:
+            raise ValueError(f"microcoax document has reversed {name} markers")
+        text = before + start + "\n" + content + "\n" + end + after
+    return text
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true", help="fail if committed outputs differ")
@@ -590,26 +706,20 @@ def main() -> int:
     audit = evaluate(contract, placement, load(PLACEMENT_CONTRACT), load(H1), load(H3))
     audit_text = json.dumps(audit, indent=2, ensure_ascii=False) + "\n"
     svg_text = render(contract, placement, audit)
+    outputs = {AUDIT: audit_text, SVG: svg_text}
+    outputs.update({path: render_document(path.read_text(encoding="utf-8"), contract, audit, language)
+                    for language, path in DOCS.items()})
     if args.check:
-        stale = []
-        if not AUDIT.is_file() or AUDIT.read_text(encoding="utf-8") != audit_text:
-            stale.append(str(AUDIT.relative_to(ROOT)))
-        if not SVG.is_file() or SVG.read_text(encoding="utf-8") != svg_text:
-            stale.append(str(SVG.relative_to(ROOT)))
+        stale = [str(path.relative_to(ROOT)) for path, expected in outputs.items()
+                 if not path.is_file() or path.read_text(encoding="utf-8") != expected]
         if stale:
             print("stale outputs: " + ", ".join(stale))
             return 1
     else:
-        AUDIT.parent.mkdir(parents=True, exist_ok=True)
-        SVG.parent.mkdir(parents=True, exist_ok=True)
-        AUDIT.write_text(audit_text, encoding="utf-8")
-        SVG.write_text(svg_text, encoding="utf-8")
-    print(
-        "H6-R2 microcoax service "
-        f"{audit['status']}: {audit['summary']['path_count']} paths; "
-        f"{audit['summary']['retention_saddles']} clear saddles; "
-        f"{audit['summary']['minimum_relaxed_reserve_mm']:.2f} mm minimum reserve"
-    )
+        for path, content in outputs.items():
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(content, encoding="utf-8")
+    print(result_line(audit))
     if audit["errors"]:
         for error in audit["errors"]:
             print("- " + error)

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="3800" viewBox="0 0 96 190" data-board="ui" data-face="inner" data-source-sha256="15e31c85d5cfdb85fd86ffa2830f1c74b55014a227275c2d4d53cc35513bb1c8" data-renderer-sha256="7d037e6fe4bb198ecc38425764949901246f6570fba656c807d12d06fd5a5dae">
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="3800" viewBox="0 0 96 190" data-board="ui" data-face="inner" data-source-sha256="6af963427ffddc791f4d9ff01c8e5de2698b981e1f944416b49c1fd7fc02cbf5" data-renderer-sha256="7d037e6fe4bb198ecc38425764949901246f6570fba656c807d12d06fd5a5dae">
 <title>Leshy2 current components · UI inner</title>
 <rect width="96" height="190" fill="white"/>
 <text x="8" y="5" fill="#17263c" font-family="Arial,DejaVu Sans,sans-serif" font-size="2.6" text-anchor="start">Передняя UI · внутренняя / inner</text>

@@ -2,8 +2,12 @@ import json
 import copy
 import math
 import subprocess
+import tempfile
 import unittest
+from contextlib import redirect_stdout
+from io import StringIO
 from pathlib import Path
+from unittest.mock import patch
 
 from hardware.layout import h6_r2_microcoax_service as service
 
@@ -191,6 +195,90 @@ class H6R2MicrocoaxServiceTests(unittest.TestCase):
             {"LESHY2-UI-R2", "LESHY2-RF-R2"},
             {row["board"] for row in self.audit["antenna_solder_windows"]},
         )
+
+    def test_both_document_tables_equal_current_audit_not_old_spacing(self):
+        for language, path in service.DOCS.items():
+            text = path.read_text(encoding="utf-8")
+            with self.subTest(language=language):
+                self.assertEqual(text, service.render_document(text, self.contract, self.audit, language))
+                unit = "мм" if language == "ru" else "mm"
+                for row in self.audit["paths"]:
+                    cells = next(line for line in text.splitlines() if line.startswith(f"| `{row['path']}` |"))
+                    for key in ("conservative_corridor_length_mm", "minimum_relaxed_reserve_mm", "minimum_planar_bend_radius_mm"):
+                        number = f"{row[key]:.3f}".replace(".", "," if language == "ru" else ".")
+                        self.assertIn(number + " " + unit, cells)
+                for stale in ("11.75", "11,75", "9.257", "9,257", "5.436", "5,436", "13.135", "13,135", "1.879", "1,879"):
+                    self.assertNotIn(stale, text)
+
+    def test_document_updates_derived_reserve_radius_and_axis(self):
+        changed = copy.deepcopy(self.audit)
+        row = next(row for row in changed["paths"] if row["path"] == "S3-2G4")
+        row.update(minimum_relaxed_reserve_mm=5.678, minimum_planar_bend_radius_mm=123.456,
+                   board_connector_mm=[21.123, 4.567])
+        changed["summary"]["minimum_relaxed_reserve_mm"] = 5.678
+        for language in service.DOCS:
+            sections = service.document_sections(self.contract, changed, language)
+            separator = "," if language == "ru" else "."
+            for number in ("5.678", "123.456", "21.123", "4.567"):
+                self.assertIn(number.replace(".", separator), sections["results"])
+            self.assertIn("5.68 mm minimum reserve", sections["reproduce"])
+
+    def test_document_pitch_uses_both_frozen_banks_not_h1_mockup(self):
+        changed = copy.deepcopy(self.audit)
+        window = next(row for row in changed["antenna_solder_windows"]
+                      if row["board"] == "LESHY2-RF-R2" and row["centre_x_mm"] == 25.3)
+        window["centre_x_mm"] = 24.6  # RF minimum becomes 14.0; UI stays 14.7.
+        for language in service.DOCS:
+            section = service.document_sections(self.contract, changed, language)["clearance"]
+            separator = "," if language == "ru" else "."
+            self.assertIn("14.000".replace(".", separator), section)
+            self.assertIn("4.000".replace(".", separator), section)
+
+    def test_document_keeps_radius_and_height_qualification_open(self):
+        for language, path in service.DOCS.items():
+            text = path.read_text(encoding="utf-8")
+            self.assertIn("all_source_positions_planar_radius_verified: false", text)
+            self.assertIn("H6.0.7", text)
+            self.assertIn("STEP", text)
+            self.assertIn("4,58" if language == "ru" else "4.58", text)
+            self.assertIn("4,70" if language == "ru" else "4.70", text)
+        changed = copy.deepcopy(self.audit)
+        changed["status"] = "fail"
+        for language in service.DOCS:
+            sections = service.document_sections(self.contract, changed, language)
+            self.assertIn("`fail`", sections["status"])
+            self.assertIn("microcoax service fail:", sections["reproduce"])
+            self.assertNotIn("`pass`", sections["status"])
+
+    def test_document_markers_fail_closed_and_prose_is_preserved(self):
+        source = service.DOCS["en"].read_text(encoding="utf-8")
+        sentinel = "\nAn independently reviewed assembly note.\n"
+        self.assertTrue(service.render_document(source + sentinel, self.contract, self.audit, "en").endswith(sentinel))
+        start = "<!-- BEGIN GENERATED MICROCOAX results -->"
+        end = "<!-- END GENERATED MICROCOAX results -->"
+        for malformed in (source.replace(start, ""), source + start, source.replace(end, ""),
+                          source.replace(start, "TMP").replace(end, start).replace("TMP", end)):
+            with self.subTest(malformed=malformed[-60:]), self.assertRaises(ValueError):
+                service.render_document(malformed, self.contract, self.audit, "en")
+        with self.assertRaises(ValueError):
+            service.render_document(source, self.contract, self.audit, "unknown")
+
+    def test_cli_check_rejects_stale_document_without_writing_it(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            doc = root / "docs/h6-r2-microcoax-service.md"
+            doc.parent.mkdir()
+            text = service.DOCS["en"].read_text(encoding="utf-8")
+            stale = text.replace("196.607 mm", "13.135 mm")
+            self.assertNotEqual(text, stale)
+            doc.write_text(stale, encoding="utf-8")
+            out = StringIO()
+            with patch.object(service, "ROOT", root), patch.object(service, "DOCS", {"en": doc}), \
+                    patch.object(service, "evaluate", return_value=self.audit), \
+                    patch("sys.argv", [str(SCRIPT), "--check"]), redirect_stdout(out):
+                self.assertEqual(1, service.main())
+            self.assertIn("stale outputs: docs/h6-r2-microcoax-service.md", out.getvalue())
+            self.assertEqual(stale, doc.read_text(encoding="utf-8"))
 
     def test_outputs_are_reproducible_and_preview_is_explanatory(self):
         result = subprocess.run(

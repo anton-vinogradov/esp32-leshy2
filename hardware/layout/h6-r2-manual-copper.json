@@ -2104,6 +2104,50 @@
       ],
       "expected_resolved_connections": 2,
       "reason": "A short reviewed In3 diagonal avoids the SOIC body and crowded left-edge controls; local B.Cu branches then reach the GPO3 crystal terminal and matched load capacitor."
+    },
+    {
+      "id": "UI-LED-NRF0-ANODE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF0_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF0_TX_LED_A",
+      "routing_class": "GENERAL_CONTROL",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [28.365, 105.565], "end_mm": [38.25, 106.3]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [38.25, 106.3], "end_mm": [40.8, 106.2]},
+        {"layer": "F.Cu", "width_mm": 0.15, "start_mm": [40.7875, 104.9], "end_mm": [40.8, 106.2]}
+      ],
+      "vias": [{"at_mm": [40.8, 106.2], "diameter_mm": 0.4, "drill_mm": 0.2, "type": "through"}],
+      "expected_resolved_connections": 1,
+      "reason": "Hand-reviewed 2026-09-08 resistor-to-indicator anode proposal: B.Cu signal path, one explicit through via clear of all F/B component courtyards, then F.Cu LED leadout. Native DRC/parity 0/0 and exact-shape 0.15 mm clearance screening passed; original copper/pads/connectivity remain unchanged. This does not close H6 or authorize fabrication.",
+      "reviewed_proposal": {
+        "decision": "hand-reviewed proposal",
+        "minimum_clearance_mm": 0.15,
+        "geometry_sha256": "b753fd76381ba042bb8a130c9732f7f5cb181b04668a718207d50706e0962d6f"
+      }
+    },
+    {
+      "id": "UI-LED-S3-ANODE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "S3_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/S3_TX_LED_A",
+      "routing_class": "GENERAL_CONTROL",
+      "segments": [
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [6.3, 106.285], "end_mm": [5.8, 106.2]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [13.3, 106.285], "end_mm": [6.3, 106.285]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [17.25, 102.3], "end_mm": [13.3, 106.285]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [23.2, 102.3], "end_mm": [17.25, 102.3]},
+        {"layer": "B.Cu", "width_mm": 0.15, "start_mm": [24.335, 101.115], "end_mm": [23.2, 102.3]},
+        {"layer": "F.Cu", "width_mm": 0.15, "start_mm": [9.1875, 104.9], "end_mm": [9.1875, 106.2]},
+        {"layer": "F.Cu", "width_mm": 0.15, "start_mm": [9.1875, 106.2], "end_mm": [5.8, 106.2]}
+      ],
+      "vias": [{"at_mm": [5.8, 106.2], "diameter_mm": 0.4, "drill_mm": 0.2, "type": "through"}],
+      "expected_resolved_connections": 1,
+      "reason": "Hand-reviewed 2026-09-08 resistor-to-indicator anode proposal: B.Cu signal path, one explicit through via clear of all F/B component courtyards, then F.Cu LED leadout. Native DRC/parity 0/0 and exact-shape 0.15 mm clearance screening passed; original copper/pads/connectivity remain unchanged. This does not close H6 or authorize fabrication.",
+      "reviewed_proposal": {
+        "decision": "hand-reviewed proposal",
+        "minimum_clearance_mm": 0.15,
+        "geometry_sha256": "7b7f5daddcc330787f59e277582e013ae0da25400b8fa2e1743d4a29bbe51031"
+      }
     }
   ],
   "authorization": {
