@@ -53,6 +53,8 @@ H1-to-native correspondence is not fully verified: H1 remains a concept archive,
 
 [Placement corrections and their verification](docs/h6-r2-placement-repair.md) explain the holder, encoder, recessed ports and internal audio assembly. The routing phase is still open.
 
+[Component-unification audit](docs/h6-r2-component-unification.md): a checked four-port GCT candidate awaits exact-part confirmation; MAIN still has one JAE and three GCT receptacles. Other candidates and necessary functional differences are recorded separately.
+
 [Archive: H1 concept four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.39-views-20260907)
 
 [Legend for 223 H1 concept bodies](docs/images/h1-r2-component-legend.svg?rev=h1-r2.39-views-20260907) ·

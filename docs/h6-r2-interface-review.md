@@ -2,6 +2,8 @@
 
 [Русский](h6-r2-interface-review.ru.md)
 
+2026-09-09: [the component-diversity audit](h6-r2-component-unification.md) identifies a checked GCT candidate for all four USB ports, awaiting exact-part confirmation. The existing one-JAE/three-GCT population and native images are unchanged.
+
 **2026-09-08: the [placement repair](h6-r2-placement-repair.md) includes the completed seven-reference microphone correction: RF-inner at the bottom edge, not outside between service controls. Fresh native DRC/parity, placement, labels and 20 intent checks pass; all views are refreshed. H6.0.3-R1 remains open and is not fabrication-ready.**
 
 H1 remains a concept drawing, not a complete parity view of the current PCB.
