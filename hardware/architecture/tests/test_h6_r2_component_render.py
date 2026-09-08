@@ -85,6 +85,29 @@ class ComponentRenderTests(unittest.TestCase):
         self.assertEqual(1208, sum(row["component_count"] for row in self.views.values()))
         self.assertEqual(8, sum(row["mount_count"] for row in self.views.values()))
 
+    def test_approved_single_sentence_is_rendered_on_its_own_outer_face_only(self):
+        expected = {
+            "ui": "USE ONLY IN ACCORDANCE WITH APPLICABLE LAW",
+            "rf": "ИСПОЛЬЗОВАТЬ ТОЛЬКО В СООТВЕТСТВИИ С ЗАКОНОМ",
+        }
+        for (board, face), root in self.roots.items():
+            descriptions = [node.text for node in own_face_elements(root)
+                            if node.tag == SVG + "desc"]
+            for owner, notice in expected.items():
+                self.assertEqual(int(face == "outer" and board == owner),
+                                 descriptions.count(notice), (board, face, owner))
+
+    def test_bilingual_legend_counts_match_the_current_native_inventory(self):
+        english = (ROOT / "docs/h6-r2-component-views.md").read_text()
+        russian = (ROOT / "docs/h6-r2-component-views.ru.md").read_text()
+        for (board, face), (components, mounts) in EXPECTED.items():
+            if face == "outer":
+                self.assertIn(f"Outer F — {components} items + {mounts} mounting footprints", english)
+                self.assertIn(f"Наружная F — {components} позиций + {mounts} крепёжных footprint", russian)
+            else:
+                self.assertIn(f"Inner B — {components} items", english)
+                self.assertIn(f"Внутренняя B — {components} позици", russian)
+
     def test_manifest_references_match_actual_native_side_not_only_totals(self):
         for board_name in ("ui", "rf"):
             path = self.renderer.BOARDS[board_name]

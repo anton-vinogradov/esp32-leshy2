@@ -71,6 +71,13 @@ ANTENNA_INSTANCES_BY_PROJECT = {
     ),
 }
 
+# User-approved single-sentence notice, on the outward face of each PCB.
+# This is a use instruction, not a certification or a liability waiver.
+LEGAL_NOTICE_BY_PROJECT = {
+    "LESHY2-UI-R2": "USE ONLY IN ACCORDANCE WITH APPLICABLE LAW",
+    "LESHY2-RF-R2": "ИСПОЛЬЗОВАТЬ ТОЛЬКО В СООТВЕТСТВИИ С ЗАКОНОМ",
+}
+
 
 def antenna_instances(project: str, contract: dict) -> tuple[str, ...]:
     """Require the complete reviewed bank, independent of placement ordering."""
@@ -129,7 +136,15 @@ def labels(project: str, placed_rows: list[dict], contract: dict) -> list[dict]:
         # Bind to the physical RF port, not the independently ordered H1 silk
         # list. The native extractor supplies the actual footprint anchor.
         x = rows[instance]["footprint_anchor_mm"][0]
-        add(instance, text, x, 15.2, role="antenna")
+        add(instance, text, x, 5.4, role="antenna")
+
+    result.append({
+        "instance": "board_legal_notice", "reference": None,
+        "text": LEGAL_NOTICE_BY_PROJECT[project],
+        "at_mm": [width / 2, 11.5],
+        "size_mm": 1.0, "thickness_mm": 0.15, "layer": "F.Silkscreen",
+        "role": "legal",
+    })
 
     for instance, spec in contract["service_buttons"]["by_project"][project].items():
         row = rows[instance]

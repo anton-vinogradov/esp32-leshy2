@@ -61,14 +61,31 @@ class UserSilkscreenTests(unittest.TestCase):
         contract["antenna_ports"][board["project"]] = dict(reversed(list(ports.items())))
         found = {r["instance"]: r for r in SILK.labels(board["project"], list(reversed(board["placements"])), contract)
                  if r["role"] == "antenna"}
-        self.assertEqual(("UHF TX", [51.75, 15.2]),
+        self.assertEqual(("UHF TX", [51.75, 5.4]),
                          (found["voice_external_sma"]["text"], found["voice_external_sma"]["at_mm"]))
-        self.assertEqual(("VHF TX", [63.5, 15.2]),
+        self.assertEqual(("VHF TX", [63.5, 5.4]),
                          (found["voice_v_external_sma"]["text"], found["voice_v_external_sma"]["at_mm"]))
         rows = copy.deepcopy(board["placements"])
         next(r for r in rows if r["instance"] == "voice_external_sma")["footprint_anchor_mm"][0] = 52.0
         label = next(r for r in SILK.labels(board["project"], rows, contract) if r["instance"] == "voice_external_sma")
-        self.assertEqual([52.0, 15.2], label["at_mm"])
+        self.assertEqual([52.0, 5.4], label["at_mm"])
+
+    def test_approved_notice_is_one_sentence_in_each_outer_face_language(self):
+        expected = {
+            "LESHY2-UI-R2": "USE ONLY IN ACCORDANCE WITH APPLICABLE LAW",
+            "LESHY2-RF-R2": "ИСПОЛЬЗОВАТЬ ТОЛЬКО В СООТВЕТСТВИИ С ЗАКОНОМ",
+        }
+        for board in self.boards:
+            labels = SILK.labels(board["project"], board["placements"], self.contract)
+            legal = [row for row in labels if row["role"] == "legal"]
+            self.assertEqual(1, len(legal))
+            self.assertEqual(expected[board["project"]], legal[0]["text"])
+            self.assertEqual("F.Silkscreen", legal[0]["layer"])
+            self.assertEqual([40.0, 11.5], legal[0]["at_mm"])
+            self.assertIsNone(legal[0]["reference"])
+            for row in labels:
+                if row["role"] == "antenna":
+                    self.assertEqual(5.4, row["at_mm"][1])
 
     def test_all_ten_path_names_agree_with_the_h1_identity_not_position(self):
         placement = json.loads((ROOT / "hardware/product-design/h1-r2-placement.json").read_text())

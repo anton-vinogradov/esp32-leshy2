@@ -160692,43 +160692,10 @@
 		(layer "Edge.Cuts")
 		(uuid "386672a2-79d1-5291-a542-2e395bfc7572")
 	)
-	(gr_text "AIR/FM RX"
-		(at 16.5 15.2 0)
-		(layer "F.SilkS")
-		(uuid "b61f02d0-a182-45f0-a763-d30e01dee838")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(gr_text "AM/LW RX"
-		(at 28.25 15.2 0)
-		(layer "F.SilkS")
-		(uuid "67f1ef76-20d4-47f9-9811-83f5742e5868")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
 	(gr_text "NTC0 PAD"
 		(at 33.439999 89.1 0)
 		(layer "F.SilkS")
 		(uuid "83da7390-8c7b-4da7-a23f-c7c4e9d52017")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(gr_text "SUB-G TX"
-		(at 40 15.2 0)
-		(layer "F.SilkS")
-		(uuid "2eef5c91-3755-4b72-be01-1d79a9c313f1")
 		(effects
 			(font
 				(size 1 1)
@@ -160758,32 +160725,10 @@
 			)
 		)
 	)
-	(gr_text "UHF TX"
-		(at 51.75 15.2 0)
-		(layer "F.SilkS")
-		(uuid "af113f72-2a38-4e43-8962-6dd9303d95f8")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
 	(gr_text "NTC1 PAD"
 		(at 52.54 89.1 0)
 		(layer "F.SilkS")
 		(uuid "c5d34060-e225-4895-aff4-1e9b08ac1bd8")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(gr_text "VHF TX"
-		(at 63.5 15.2 0)
-		(layer "F.SilkS")
-		(uuid "ad1f3c30-1871-4566-adbc-b8c9314fef06")
 		(effects
 			(font
 				(size 1 1)
@@ -167045,6 +166990,72 @@
 		(at 37.47 138.2 0)
 		(layer "F.SilkS")
 		(uuid "569fa67a-dcf8-5902-98dc-d389bd21d17a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(gr_text "AIR/FM RX"
+		(at 16.5 5.4 0)
+		(layer "F.SilkS")
+		(uuid "df1e0591-f2e4-527d-99c5-6289e0e12ce3")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(gr_text "AM/LW RX"
+		(at 28.25 5.4 0)
+		(layer "F.SilkS")
+		(uuid "238caf4c-8449-5060-bda7-9406db925207")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(gr_text "SUB-G TX"
+		(at 40 5.4 0)
+		(layer "F.SilkS")
+		(uuid "4eec517e-ba4e-5a2b-a7ab-b032b259a956")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(gr_text "ИСПОЛЬЗОВАТЬ ТОЛЬКО В СООТВЕТСТВИИ С ЗАКОНОМ"
+		(at 40 11.5 0)
+		(layer "F.SilkS")
+		(uuid "5a9a0ee7-0047-5b74-86ea-715cab1b7fa9")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(gr_text "UHF TX"
+		(at 51.75 5.4 0)
+		(layer "F.SilkS")
+		(uuid "51e66c52-667e-5bf5-acd0-aee6967d7ed8")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(gr_text "VHF TX"
+		(at 63.5 5.4 0)
+		(layer "F.SilkS")
+		(uuid "f58d9bbf-e9f9-5e1c-be57-e6757d04a6c9")
 		(effects
 			(font
 				(size 1 1)

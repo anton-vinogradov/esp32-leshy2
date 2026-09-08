@@ -88946,17 +88946,6 @@
 			)
 		)
 	)
-	(gr_text "nRF1 · 2G4"
-		(at 16.5 15.2 0)
-		(layer "F.SilkS")
-		(uuid "d495314c-ac9f-47f7-984f-10b4d1a4a532")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
 	(gr_text "Wi-Fi/15.4"
 		(at 24.2 107.2 0)
 		(layer "F.SilkS")
@@ -88990,32 +88979,10 @@
 			)
 		)
 	)
-	(gr_text "S3 · 2G4"
-		(at 28.25 15.2 0)
-		(layer "F.SilkS")
-		(uuid "fc8159c8-c0b9-45b0-964c-b9291d2fe7c5")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
 	(gr_text "LEFT"
 		(at 29.5 126.25 0)
 		(layer "F.SilkS")
 		(uuid "cd4a3705-9bf1-4538-a24f-112bea97e718")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(gr_text "nRF2 · 2G4"
-		(at 40 15.2 0)
-		(layer "F.SilkS")
-		(uuid "8a27d344-06eb-48ba-9b96-384abffc00fc")
 		(effects
 			(font
 				(size 1 1)
@@ -89111,17 +89078,6 @@
 			)
 		)
 	)
-	(gr_text "C5 · 2G4/5G"
-		(at 51.75 15.2 0)
-		(layer "F.SilkS")
-		(uuid "255a4e61-6e81-4497-b5ec-b3c9643917e1")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
 	(gr_text "nRF24-2"
 		(at 55.8 107.2 0)
 		(layer "F.SilkS")
@@ -89148,17 +89104,6 @@
 		(at 60.975 140 0)
 		(layer "F.SilkS")
 		(uuid "f3665050-2751-4770-9ff9-940bf1f66934")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(gr_text "nRF3 · 2G4"
-		(at 63.5 15.2 0)
-		(layer "F.SilkS")
-		(uuid "563c6763-10e8-451d-be20-e1553f676206")
 		(effects
 			(font
 				(size 1 1)
@@ -89515,6 +89460,72 @@
 		(at 74 123.2 0)
 		(layer "F.SilkS")
 		(uuid "f86050e3-59dd-5a8c-b6ae-468328ad4959")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(gr_text "nRF1 · 2G4"
+		(at 16.5 5.4 0)
+		(layer "F.SilkS")
+		(uuid "2b6be977-788f-5ce6-97ee-118b88b6a25e")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(gr_text "S3 · 2G4"
+		(at 28.25 5.4 0)
+		(layer "F.SilkS")
+		(uuid "40a11b7e-868f-59ca-b8c8-1e8c1b0b3c87")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(gr_text "nRF2 · 2G4"
+		(at 40 5.4 0)
+		(layer "F.SilkS")
+		(uuid "26b6b897-5113-572c-bf8c-ac3a9e88f56a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(gr_text "USE ONLY IN ACCORDANCE WITH APPLICABLE LAW"
+		(at 40 11.5 0)
+		(layer "F.SilkS")
+		(uuid "1147a454-e56a-5c0c-bc97-e87c3a1d4257")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(gr_text "C5 · 2G4/5G"
+		(at 51.75 5.4 0)
+		(layer "F.SilkS")
+		(uuid "7f9be3ce-d1f2-52e3-9688-3b0015114af3")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(gr_text "nRF3 · 2G4"
+		(at 63.5 5.4 0)
+		(layer "F.SilkS")
+		(uuid "3936fba1-3bfa-5bd5-abe2-35d119694d5a")
 		(effects
 			(font
 				(size 1 1)

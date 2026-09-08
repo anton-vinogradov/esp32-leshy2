@@ -8,23 +8,23 @@
     "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7d1b6c309e398f410a3ec109374388548eddfd4574676cf7d77a9ea5453bab91",
     "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "7ddc98cdda91bab63705e444ad9a155391703b44a68094cd9e9cf845ab31fafa",
     "hardware/layout/h6_r2_silkscreen_audit.py": "78cecb4082bd0e10620efdc6372dd3e7ca23d4bba3c02d0bc2ef6a5d9024dceb",
-    "hardware/layout/h6_r2_user_silkscreen.py": "01b324671dcb67ba9e02381068d8aaf079c869a53a4bc9862472012351bd5544",
+    "hardware/layout/h6_r2_user_silkscreen.py": "efa930e961cb379e99bbae7e7b7a5e659f9620063d6a5c305cbcd2f9a9d72eaf",
     "hardware/ecad/libraries/Leshy2_R2.pretty/B3S-1100P.kicad_mod": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989",
     "hardware/layout/h6-r2-b3s-actuator-datum-review.json": "d8de0d5184828d1c6fd98415ccf63e4008e87cfbf7a231412f59bc7fc1dab6c9",
     "hardware/ecad/generated/H2-R2-native-net-ledger.json": "1cdc59edda649d09c07077bbd17864cfca446a9c431910d603d7d1a4785c9b5b",
     "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "d22659ed7f30aeb12c4e6742a6da71a3244f33f242c9f0a41f82e5b518aafdf9",
     "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch": "43910ab937fd3f95a140f664d6fbaca72d8dc6e9bf60cf46e5eae24158eddf50",
     "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_sch": "2d20cc84e34a33e8f6339a846a21ef9c2b3c9d2d53aeaad744f87fadc9a82069",
-    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "82e0b4ae6cbbad5241984a476c057ea7ecf2d593b382bcc06feceb26a73cbfe1",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "3a31f0144271c1c95fa92a0b8e51eb52fead47249653b36320d5268bf238108d"
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "12bd3f264c49880cfc6354fbfaac939745bc6951e476335e181690ed36fb6979",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "3a7ac2942e7ec23b125a0666dad9233b320689133479cf35c2b8d70e04b82790"
   },
   "boards": [
     {
       "project": "LESHY2-UI-R2",
       "status": "pass_scoped",
-      "required_count": 47,
-      "matched_count": 47,
-      "free_front_text_count": 49,
+      "required_count": 48,
+      "matched_count": 48,
+      "free_front_text_count": 50,
       "errors": [],
       "geometry_candidates": [],
       "documented_geometry_exemptions": [
@@ -453,14 +453,14 @@
             "text": "nRF1 · 2G4",
             "at_mm": [
               16.5,
-              15.2
+              5.4
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "antenna"
           },
-          "actual_id": "d495314c-ac9f-47f7-984f-10b4d1a4a532"
+          "actual_id": "2b6be977-788f-5ce6-97ee-118b88b6a25e"
         },
         {
           "expected": {
@@ -469,14 +469,14 @@
             "text": "S3 · 2G4",
             "at_mm": [
               28.25,
-              15.2
+              5.4
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "antenna"
           },
-          "actual_id": "fc8159c8-c0b9-45b0-964c-b9291d2fe7c5"
+          "actual_id": "40a11b7e-868f-59ca-b8c8-1e8c1b0b3c87"
         },
         {
           "expected": {
@@ -485,14 +485,14 @@
             "text": "nRF2 · 2G4",
             "at_mm": [
               40.0,
-              15.2
+              5.4
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "antenna"
           },
-          "actual_id": "8a27d344-06eb-48ba-9b96-384abffc00fc"
+          "actual_id": "26b6b897-5113-572c-bf8c-ac3a9e88f56a"
         },
         {
           "expected": {
@@ -501,14 +501,14 @@
             "text": "C5 · 2G4/5G",
             "at_mm": [
               51.75,
-              15.2
+              5.4
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "antenna"
           },
-          "actual_id": "255a4e61-6e81-4497-b5ec-b3c9643917e1"
+          "actual_id": "7f9be3ce-d1f2-52e3-9688-3b0015114af3"
         },
         {
           "expected": {
@@ -517,14 +517,30 @@
             "text": "nRF3 · 2G4",
             "at_mm": [
               63.5,
-              15.2
+              5.4
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "antenna"
           },
-          "actual_id": "563c6763-10e8-451d-be20-e1553f676206"
+          "actual_id": "3936fba1-3bfa-5bd5-abe2-35d119694d5a"
+        },
+        {
+          "expected": {
+            "instance": "board_legal_notice",
+            "reference": null,
+            "text": "USE ONLY IN ACCORDANCE WITH APPLICABLE LAW",
+            "at_mm": [
+              40.0,
+              11.5
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "legal"
+          },
+          "actual_id": "1147a454-e56a-5c0c-bc97-e87c3a1d4257"
         },
         {
           "expected": {
@@ -1203,9 +1219,9 @@
     {
       "project": "LESHY2-RF-R2",
       "status": "pass_scoped",
-      "required_count": 16,
-      "matched_count": 16,
-      "free_front_text_count": 21,
+      "required_count": 17,
+      "matched_count": 17,
+      "free_front_text_count": 22,
       "errors": [],
       "geometry_candidates": [],
       "documented_geometry_exemptions": [
@@ -2024,6 +2040,57 @@
             }
           },
           "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "238caf4c-8449-5060-bda7-9406db925207",
+            "text": "AM/LW RX",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              28.25,
+              5.4
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                24.267857,
+                32.232143
+              ],
+              "y": [
+                4.55175,
+                6.24825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "912096da-57fd-480f-909d-af464f913893",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                24.544999999999998,
+                24.745
+              ],
+              "y": [
+                4.4,
+                4.6
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
         }
       ],
       "resolved_geometry_findings": [],
@@ -2035,14 +2102,14 @@
             "text": "AIR/FM RX",
             "at_mm": [
               16.5,
-              15.2
+              5.4
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "antenna"
           },
-          "actual_id": "b61f02d0-a182-45f0-a763-d30e01dee838"
+          "actual_id": "df1e0591-f2e4-527d-99c5-6289e0e12ce3"
         },
         {
           "expected": {
@@ -2051,14 +2118,14 @@
             "text": "AM/LW RX",
             "at_mm": [
               28.25,
-              15.2
+              5.4
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "antenna"
           },
-          "actual_id": "67f1ef76-20d4-47f9-9811-83f5742e5868"
+          "actual_id": "238caf4c-8449-5060-bda7-9406db925207"
         },
         {
           "expected": {
@@ -2067,14 +2134,14 @@
             "text": "SUB-G TX",
             "at_mm": [
               40.0,
-              15.2
+              5.4
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "antenna"
           },
-          "actual_id": "2eef5c91-3755-4b72-be01-1d79a9c313f1"
+          "actual_id": "4eec517e-ba4e-5a2b-a7ab-b032b259a956"
         },
         {
           "expected": {
@@ -2083,14 +2150,14 @@
             "text": "UHF TX",
             "at_mm": [
               51.75,
-              15.2
+              5.4
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "antenna"
           },
-          "actual_id": "af113f72-2a38-4e43-8962-6dd9303d95f8"
+          "actual_id": "51e66c52-667e-5bf5-acd0-aee6967d7ed8"
         },
         {
           "expected": {
@@ -2099,14 +2166,30 @@
             "text": "VHF TX",
             "at_mm": [
               63.5,
-              15.2
+              5.4
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "antenna"
           },
-          "actual_id": "ad1f3c30-1871-4566-adbc-b8c9314fef06"
+          "actual_id": "f58d9bbf-e9f9-5e1c-be57-e6757d04a6c9"
+        },
+        {
+          "expected": {
+            "instance": "board_legal_notice",
+            "reference": null,
+            "text": "ИСПОЛЬЗОВАТЬ ТОЛЬКО В СООТВЕТСТВИИ С ЗАКОНОМ",
+            "at_mm": [
+              40.0,
+              11.5
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "legal"
+          },
+          "actual_id": "5a9a0ee7-0047-5b74-86ea-715cab1b7fa9"
         },
         {
           "expected": {

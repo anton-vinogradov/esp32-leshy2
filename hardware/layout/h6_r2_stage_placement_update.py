@@ -144,6 +144,33 @@ def reviewed_label_forms(text, allowed):
     return result
 
 
+def reviewed_label_changes(before, seed, moves, additions):
+    """Admit named moves and exactly one new outward label per added text.
+
+    Additions are not a rename/removal escape hatch. The final full placement
+    projection still rejects every other board-graphics difference.
+    """
+    for allowance in (moves, additions):
+        if (not isinstance(allowance, list)
+                or not all(isinstance(text, str) and text for text in allowance)
+                or len(allowance) != len(set(allowance))):
+            raise ValueError("silkscreen allowance must be a unique list of exact texts")
+    if set(moves) & set(additions):
+        raise ValueError("silkscreen move and addition allowances must be disjoint")
+    allowed = set(moves) | set(additions)
+    old_labels = reviewed_label_forms(before, allowed)
+    new_labels = reviewed_label_forms(seed, allowed)
+    old_count = Counter(text for text, _ in old_labels)
+    new_count = Counter(text for text, _ in new_labels)
+    for text in moves:
+        if old_count[text] == 0 or old_count[text] != new_count[text]:
+            raise ValueError("label population changed; review additions/removals separately")
+    for text in additions:
+        if old_count[text] != 0 or new_count[text] != 1:
+            raise ValueError("added silkscreen text must be absent before and occur exactly once after")
+    return old_labels, new_labels
+
+
 def pad_nets(fp):
     # Unnumbered copper pads can still be conductive; never silently drop them
     # from electrical preservation. Only genuinely mechanical NPTH are exempt.
@@ -277,14 +304,8 @@ def stage(plan, directory):
         replacement = fresh_object_uuids(new_forms[ref], f"{sha(original)}:footprint:{ref}:{sha(new_forms[ref].encode())}", occupied)
         merged = merged.replace(old_forms[ref], replacement, 1)
     labels = plan.get("allowed_silkscreen_texts", [])
-    if (not isinstance(labels, list) or not all(isinstance(label, str) and label for label in labels)
-            or len(labels) != len(set(labels))):
-        raise ValueError("silkscreen allowance must be a unique list of exact texts")
-    allowed_labels = set(labels)
-    old_labels = reviewed_label_forms(original.decode(), allowed_labels)
-    new_labels = reviewed_label_forms(seed, allowed_labels)
-    if Counter(t for t, _ in old_labels) != Counter(t for t, _ in new_labels):
-        raise ValueError("label population changed; review additions/removals separately")
+    additions = plan.get("allowed_added_silkscreen_texts", [])
+    old_labels, new_labels = reviewed_label_changes(original.decode(), seed, labels, additions)
     for _, form in old_labels:
         merged = merged.replace(form, "", 1)
     if new_labels:
@@ -316,7 +337,8 @@ def stage(plan, directory):
               "project": project, "baseline_board_sha256": sha(original),
               "candidate_sha256": sha(merged.encode()),
               "candidate": str(target), "changed_references": changed,
-              "reviewed_silkscreen_texts": sorted(allowed_labels),
+              "reviewed_silkscreen_texts": sorted(labels),
+              "reviewed_added_silkscreen_texts": sorted(additions),
               "unchanged_reference_count": len(old_fps) - len(changed),
               "copper_objects_preserved": len(copper_signature(old)),
               "copper_forms_preserved_exact": len(preserved),

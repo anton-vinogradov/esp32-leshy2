@@ -140,6 +140,28 @@ class GuardedPlacementUpdateTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "only touch outward"):
             updater.reviewed_label_forms(source.replace('"F.Silkscreen"','"B.Silkscreen"'), {"USB"})
 
+    def test_reviewed_new_label_is_exactly_one_addition_not_a_rename(self):
+        old = '(kicad_pcb (gr_text "USB" (at 1 2) (layer "F.SilkS")))'
+        new = '(kicad_pcb (gr_text "USB" (at 1 3) (layer "F.SilkS")) (gr_text "LAW" (at 2 4) (layer "F.SilkS")))'
+        before, after = updater.reviewed_label_changes(old, new, ["USB"], ["LAW"])
+        self.assertEqual(["USB"], [text for text, _ in before])
+        self.assertEqual(["USB", "LAW"], [text for text, _ in after])
+        for source, seed, moves, additions in (
+            (old, new, ["USB"], ["LAW", "LAW"]),
+            (old, new, ["USB"], "LAW"),
+            (old, new, ["USB"], [None]),
+            (old, new, ["USB"], ["USB"]),
+            (old, new, [], ["USB"]),
+            (old, old, ["USB"], ["LAW"]),
+            (old, new.replace('"USB"', '"RENAMED"'), ["USB"], ["LAW"]),
+            (old, new, ["MISSING"], ["LAW"]),
+            (old, new.replace('"USB"', '"LAW"'), [], ["LAW"]),
+            (old, new.replace('"F.SilkS"', '"B.SilkS"'), ["USB"], ["LAW"]),
+        ):
+            with self.subTest(moves=moves, additions=additions, seed=seed):
+                with self.assertRaises(ValueError):
+                    updater.reviewed_label_changes(source, seed, moves, additions)
+
 
 @unittest.skipIf(pcbnew is None, "KiCad Python required for guarded placement staging")
 class GuardedPlacementStageIntegrationTests(unittest.TestCase):
@@ -213,6 +235,27 @@ class GuardedPlacementStageIntegrationTests(unittest.TestCase):
         self.assertEqual(updater.copper_forms(self.original.decode()), updater.copper_forms(candidate.read_text()))
         updater.require_unique_uuids(candidate.read_text())
         self.assertEqual(result, json.loads((self.directory / "stage-review.json").read_text()))
+
+    def test_new_label_roundtrip_preserves_copper_and_requires_explicit_allowance(self):
+        board = updater.load_board_bytes(self.seed, "seed.kicad_pcb")
+        label = pcbnew.PCB_TEXT(board)
+        label.SetText("APPROVED NOTICE")
+        label.SetLayer(pcbnew.F_SilkS)
+        label.SetPosition(pcbnew.VECTOR2I(10000000, 10000000))
+        board.Add(label)
+        path = self.root / "label-seed.kicad_pcb"
+        pcbnew.SaveBoard(str(path), board)
+        self.seed = path.read_bytes()
+        with patch.object(updater.placement, "build", side_effect=self.build):
+            with self.assertRaisesRegex(ValueError, "does not match generated placement"):
+                updater.stage(self.plan, self.directory)
+            self.assertFalse(self.directory.exists())
+            self.plan["allowed_added_silkscreen_texts"] = ["APPROVED NOTICE"]
+            result = updater.stage(self.plan, self.directory)
+        self.assertEqual(["APPROVED NOTICE"], result["reviewed_added_silkscreen_texts"])
+        candidate = self.directory / self.source.name
+        self.assertEqual(updater.copper_forms(self.original.decode()), updater.copper_forms(candidate.read_text()))
+        self.assertEqual(self.original, self.source.read_bytes())
 
     def test_changed_contract_during_build_is_rejected_before_any_candidate(self):
         def mutate():
