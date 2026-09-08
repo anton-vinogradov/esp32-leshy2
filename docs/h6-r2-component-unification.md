@@ -5,7 +5,7 @@
 2026-09-09. **GCT USB4105-GF-A ×4 is the checked target candidate, awaiting explicit confirmation of the exact part.** MAIN still contains one JAE and three GCT USB-C receptacles. The other component families below were audited, not silently replaced. H6.0.3-R1 remains open and is not fabrication-ready.
 
 <!-- usb-unification-status:start -->
-USB production changes have not been applied. The candidate is four identical GCT receptacles, all B.Cu / 180°, anchor Y146.125 mm and nominal mouth Y149.8 mm (0.2 mm inside the 150 mm PCB). Proposed native X positions preserve UI J9/J11: 14.87/26.1 mm and RF J1/J4: 16.47/37.47 mm. Exact-part confirmation, local placement repair and final native verification remain pending. Current images still show the existing mixed parts; this section is not a fresh DRC or assembly acceptance.
+USB production changes have not been applied. The preferred candidate is four identical GCT receptacles, all B.Cu / 180°, anchor Y146.325 mm and nominal mouth Y150 mm: flush with, not projecting past, the PCB edge. This follows the GCT drawing and the three existing service-port positions. Native X positions remain UI J9/J11: 14.87/26.1 mm and RF J1/J4: nominally 16.47/37.47 mm. A bounded in-memory RF trial needs only J1 replacement and U5 moved 0.15 mm inward; the three existing GCT ports, C31 and C32 stay in place. A 0.2-mm recess was also screened but would unnecessarily require more companion moves. Exact-part confirmation, actual application and final native verification remain pending. Current images still show the existing mixed parts; this section is not a fresh DRC or assembly acceptance.
 <!-- usb-unification-status:end -->
 
 ## What changes, and why
