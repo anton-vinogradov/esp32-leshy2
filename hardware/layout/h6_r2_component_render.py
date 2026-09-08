@@ -28,6 +28,67 @@ WIDTH, HEIGHT = 96, 190
 COLORS = {"#AFAFAF": "#334155", "#585D84": "#334155",  # front/back Fab
           "#F2EDA1": "#2563eb", "#E8B2A7": "#2563eb",  # front/back Silk
           "#D0D2CD": "#17263c", "#000000": "#17263c"}  # Edge.Cuts
+SMA_REFERENCES = {
+    "ui": {"J3": "32", "J7": "32", "J12": "31", "J14": "31", "J16": "31"},
+    "rf": {"J5": "31", "J6": "31", "J7": "31", "J8": "31", "J9": "31"},
+}
+
+
+def sma_solder_lands(board, name):
+    """Read copper lands on their actual face, independent of footprint side.
+
+    SMA bodies are F footprints, but pads 4/5 are on B. Fab-only plotting and
+    clipping opposite-face bodies therefore hid those real soldering sites.
+    These are copper outlines, not paste/mask apertures or a solder/tool volume.
+    """
+    import pcbnew
+    result = {"outer": [], "inner": []}
+    selected = [fp for fp in board.GetFootprints()
+                if "RFPC-SMA" in str(fp.GetFPID().GetLibItemName())]
+    if {fp.GetReference() for fp in selected} != set(SMA_REFERENCES[name]) or len(selected) != 5:
+        raise RuntimeError(f"{name}: unexpected SMA inventory; review solder-land coverage")
+    for fp in sorted(selected, key=lambda item: item.GetReference()):
+        ref = fp.GetReference()
+        expected = f"RFPC-SMA{SMA_REFERENCES[name][ref]}-FN-175-A"
+        if (str(fp.GetFPID().GetLibNickname()) != "Leshy2"
+                or str(fp.GetFPID().GetLibItemName()) != expected or fp.IsFlipped()):
+            raise RuntimeError(f"{name} {ref}: unreviewed SMA footprint/side")
+        pads = list(fp.Pads())
+        if len(pads) != 5 or {pad.GetNumber() for pad in pads} != {"1", "2", "3", "4", "5"}:
+            raise RuntimeError(f"{name} {ref}: expected five distinct SMA solder lands")
+        for pad in sorted(pads, key=lambda item: item.GetNumber()):
+            number = pad.GetNumber()
+            face = "inner" if number in {"4", "5"} else "outer"
+            layer, other = ((pcbnew.B_Cu, pcbnew.F_Cu) if face == "inner"
+                            else (pcbnew.F_Cu, pcbnew.B_Cu))
+            if (pad.GetShape() != pcbnew.PAD_SHAPE_RECT or pad.GetAttribute() != pcbnew.PAD_ATTRIB_SMD
+                    or not pad.IsOnLayer(layer) or pad.IsOnLayer(other)):
+                raise RuntimeError(f"{name} {ref}.{number}: unreviewed SMA pad geometry/layer")
+            size, pos = pad.GetSize(), pad.GetPosition()
+            result[face].append({"reference": ref, "pad": number,
+                                 "side": "B.Cu" if face == "inner" else "F.Cu",
+                                 "centre_mm": [pcbnew.ToMM(pos.x), pcbnew.ToMM(pos.y)],
+                                 "size_mm": [pcbnew.ToMM(size.x), pcbnew.ToMM(size.y)],
+                                 "angle_deg": pad.GetOrientation().AsDegrees(),
+                                 "net": pad.GetNetname()})
+    return result
+
+
+def render_sma_solder_lands(records, face):
+    content = ['<g data-role="native-sma-solder-lands">']
+    for row in records:
+        x, y = row["centre_mm"]
+        w, h = row["size_mm"]
+        label = f'{row["reference"]}.{row["pad"]}'
+        content += [f'<g data-role="sma-solder-land" data-reference="{row["reference"]}" '
+                    f'data-pad="{row["pad"]}" data-side="{row["side"]}">',
+                    f'<title>{html.escape(label + " · " + row["side"] + " · " + row["net"])} · copper land, not solder volume</title>',
+                    f'<rect x="{x-w/2:.6f}" y="{y-h/2:.6f}" width="{w:.6f}" height="{h:.6f}" '
+                    f'transform="rotate({-row["angle_deg"]:.6f} {x:.6f} {y:.6f})" fill="#f3bd53"/>']
+        counter_mirror = " scale(-1 1)" if face == "inner" else ""
+        content += [f'<g data-role="sma-land-label" transform="translate({x:.6f} {y:.6f}){counter_mirror} rotate(-90)">',
+                    text(0, .2, label, .6, "#51350b", "middle"), '</g>', '</g>']
+    return "\n".join(content + ['</g>'])
 
 
 def digest(path):
@@ -109,7 +170,9 @@ def native_inventory(board_path):
                                'fill="none" stroke="#a16207" stroke-width="0.18" stroke-dasharray="1.1 .6"/>')
                 reserve.append(text((x0+x1)/2, y1-1.2, "L32 · NFC reserve / резерв", 1.4, "#854d0e", "middle"))
     card_reference = microsd_reference_model(board) if board_path.stem == "LESHY2-UI-R2" else None
-    return refs, "\n".join(holes), "\n".join(reserve), positions, native_board_shape(board), card_reference
+    name = "ui" if board_path.stem == "LESHY2-UI-R2" else "rf"
+    return (refs, "\n".join(holes), "\n".join(reserve), positions,
+            native_board_shape(board), card_reference, sma_solder_lands(board, name))
 
 
 def microsd_reference_model(board):
@@ -246,7 +309,7 @@ def with_reference_fallbacks(native, face, refs, positions):
     return native, added
 
 
-def panel(name, face, native, opposite, refs, holes, reserve, board_shape, card_reference=None):
+def panel(name, face, native, opposite, refs, holes, reserve, board_shape, card_reference=None, solder_lands=""):
     side = "F" if face == "outer" else "B"
     count = sum(not ref.startswith("MH") for ref in refs)
     face_label = "наружная / outer" if face == "outer" else "внутренняя / inner"
@@ -261,12 +324,13 @@ def panel(name, face, native, opposite, refs, holes, reserve, board_shape, card_
               f'<defs><clipPath id="outside-{name}-{face}"><path clip-rule="evenodd" '
               f'd="M-8 -14H88V158H-8Z {board_shape["outer"]}"/></clipPath></defs>',
               f'<g data-role="opposite-face-protrusions" clip-path="url(#outside-{name}-{face})" opacity="0.65">',
-              opposite, '</g>', native,
+              opposite, '</g>', solder_lands, native,
               '<g data-role="through-board-drills">', holes, '</g>',
               microsd_state_annotation(face, card_reference)]
     if face == "outer" and reserve:
         result.extend(['<g data-role="unrouted-nfc-reserve">', reserve, '</g>'])
     result.extend(['</g>', '</g>'])
+    result.append(text(8, 179, "Золото / gold: площадки пайки SMA / SMA solder lands", 1.35, "#855b15"))
     if face == "inner":
         result.append(text(8, 186, "После переворота / turned over · x′ = 80 − x", 1.5))
     elif name == "ui":
@@ -294,11 +358,13 @@ def write_all():
                 "view_convention": "outer=native; inner=x_view=80-x_native, y unchanged; no extra RF transform",
                 "same_scale": True, "board_size_mm": [80, 150],
                 "layers": {"outer": "F.Fab,F.Silkscreen,Edge.Cuts", "inner": "B.Fab,B.Silkscreen,Edge.Cuts"},
+                "overlays": {"sma_solder_lands": "Actual selected-face copper pads, including B pads of F footprints; not paste/mask or solder volume."},
                 "limitations": ["Current Fab geometry includes known defects; not a 3D qualification.",
                                 "No tracks, ratsnest, cells, display, loose cables or external antennas.",
                                 "Native Edge.Cuts defines the background and outer-outline clip; KiCad polygonization is only a visual fill, not fabrication geometry.",
                                 "Opposite-face drawings are shown only outside the actual outer board contour as context; not a 3D visibility test.",
                                 "Reference designators are drawing annotations, not additional silkscreen.",
+                                "Gold SMA copper lands are shown even when the footprint body belongs to the opposite face. They do not prove solder-tool or rework access.",
                                 "UI J5 DM3AT card reference positions are nominal: locked solid, ejected ochre/dashed. The callout is a drawing annotation, not PCB silkscreen or an installed-card claim.",
                                 "L32 is the actual Dwgs.User reservation, not completed loop copper."],
                 "views": [], "outputs_sha256": {}}
@@ -310,11 +376,12 @@ def write_all():
         for name, face in VIEWS:
             native = exports[name, face]
             opposite = exports[name, "outer" if face == "inner" else "inner"]
-            refs, holes, reserve, positions, board_shape, card_reference = inventories[name]
+            refs, holes, reserve, positions, board_shape, card_reference, solder_lands = inventories[name]
             native, fallback_refs = with_reference_fallbacks(native, face, refs[face], positions)
             if name == "rf" and not reserve:
                 raise RuntimeError("NFC reservation must remain visible on the RF outer plot")
-            content = panel(name, face, native, opposite, refs[face], holes, reserve, board_shape, card_reference)
+            content = panel(name, face, native, opposite, refs[face], holes, reserve, board_shape,
+                            card_reference, render_sma_solder_lands(solder_lands[face], face))
             board_hash = inputs[str(BOARDS[name].relative_to(ROOT))]
             path = output(name, face)
             path.write_text(wrap(content, WIDTH, HEIGHT,
@@ -325,6 +392,7 @@ def write_all():
                                       "component_count": sum(not ref.startswith("MH") for ref in refs[face]),
                                       "mount_count": sum(ref.startswith("MH") for ref in refs[face]),
                                       "fallback_reference_labels": fallback_refs,
+                                      "sma_solder_lands": solder_lands[face],
                                       "svg": str(path.relative_to(ROOT))})
             panels.append(content)
     overview = [text(8, 6, "Leshy2 · Компоненты обеих плат / Both boards", 3.4, "#17263c"),
@@ -333,6 +401,7 @@ def write_all():
     for index, content in enumerate(panels):
         overview.append(f'<g transform="translate({(index%2)*WIDTH} {18+(index//2)*HEIGHT})">{content}</g>')
     overview.append(text(8, 402, "Серый / grey: Fab + references    Синий / blue: actual silkscreen    Охра / ochre: holes / reserve", 1.65))
+    overview.append(text(8, 405, "Золото / gold: 50 площадок пайки SMA / 50 SMA copper lands · не объём припоя / not solder volume", 1.5, "#855b15"))
     overview_path = DEST / "h6-r2-components-overview.svg"
     overview_path.write_text(wrap("\n".join(overview), WIDTH*2, 406,
                                    {"data-renderer-sha256": inputs[str(Path(__file__).relative_to(ROOT))]},

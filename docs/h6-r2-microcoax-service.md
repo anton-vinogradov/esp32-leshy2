@@ -3,7 +3,7 @@
 [Home](../README.md) - [Roadmap](roadmap.md) - [Русский](h6-r2-microcoax-service.ru.md) - [Exact placement](h6-r2-exact-placement.md) - [Mechanical stack](h6-r2-mechanical-stack.md)
 
 <!-- BEGIN GENERATED MICROCOAX status -->
-**Machine result: `pass` — nominal geometry only.** The audit covers 5 paths on the 80 × 150 mm board; 5 nominal curves are checked against the 6-mm design-radius target. The minimum relaxed reserve is 5.441 mm. Source windows `N24-0`, `N24-1`, `N24-2` still require actual-axis and three-dimensional forming checks in `H6.0.7`. `all_source_positions_planar_radius_verified: false`.
+**Machine result: `pass` — nominal geometry only.** The audit covers 5 paths on the 80 × 150 mm board; 5 nominal curves are checked against the 6-mm design-radius target. The minimum relaxed reserve is 5.441 mm. Source windows `N24-0`, `N24-1`, `N24-2` still require actual-axis and three-dimensional forming checks in `H6.0.7`. `all_source_positions_planar_radius_verified: false`. Antenna-window checks cover contract count and pitch only; this audit does not establish solder access. `native_solder_access_verified_by_this_audit: false`.
 <!-- END GENERATED MICROCOAX status -->
 
 This updates `H6.0.1-R1` within current `H6.0.3-R1` routing requalification. Purchase and fabrication remain unauthorized.
@@ -47,7 +47,7 @@ The route-prism reservation above the UI inner face is 4.70 mm; at least 1.00 mm
 
 The minimum 2D clearance from the full corridor edge to screw/stop keepouts is 0.757 mm on `N24-2`; `N24-0` clears by 1.875 mm. These are service-corridor clearances, not clearances from the thinner cable.
 
-The two antenna banks have 10 solder-inspection windows of width 10.00 mm. The current minimum port pitch from the placement freeze is 14.700 mm, leaving 4.700 mm between adjacent windows.
+The contract defines 10 nominal solder-inspection windows of width 10.00 mm for the two antenna banks. The minimum port pitch from the placement contract is 14.700 mm, leaving 4.700 mm between adjacent windows. This checks window count and pitch, not native pads: it does not detect solder-land obstruction by neighbouring bodies, tool access or solder-fillet visibility. See the [separate native screening](../hardware/layout/generated/H6-R2-sma-solder-access-audit.json); its engineering clearances are not factory solder-process qualification.
 <!-- END GENERATED MICROCOAX clearance -->
 
 No enclosure rib, stop, screw, adhesive or loose hardware may enter a corridor or connector inspection cylinder. The audit checks every nominal full-width corridor and tape landing against the screw/head keepouts; tape landings also respect the inner-face solder lands of front-mounted SMA connectors. The assembled STEP repeats the exact opposing-body and enclosure check in `H6.0.7`: this 2D result does not establish assembled clearance. Before enclosure closure, both edge-soldered ground tabs and the centre launch of every SMA/RP-SMA must remain visible through the inspection windows.

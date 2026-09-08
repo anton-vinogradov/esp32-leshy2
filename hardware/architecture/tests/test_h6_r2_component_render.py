@@ -12,7 +12,13 @@ import re
 import unittest
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
+
+try:
+    import pcbnew
+except ImportError:
+    pcbnew = None
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -259,6 +265,74 @@ class ComponentRenderTests(unittest.TestCase):
                           "inner": "B.Fab,B.Silkscreen,Edge.Cuts"}, self.manifest["layers"])
         self.assertEqual("current_native_visualization_not_assembly_approval", self.manifest["status"])
         self.assertIn("not a 3D qualification", " ".join(self.manifest["limitations"]))
+
+    def test_all_fifty_sma_lands_are_on_the_actual_face_not_in_opposite_clip(self):
+        total = 0
+        for (board, face), root in self.roots.items():
+            expected_numbers = {"1", "2", "3"} if face == "outer" else {"4", "5"}
+            expected = {(ref, number) for ref in self.renderer.SMA_REFERENCES[board]
+                        for number in expected_numbers}
+            groups = [node for node in own_face_elements(root)
+                      if node.get("data-role") == "sma-solder-land"]
+            actual = [(node.get("data-reference"), node.get("data-pad")) for node in groups]
+            self.assertEqual(expected, set(actual), (board, face))
+            self.assertEqual(len(expected), len(actual), (board, face))
+            records = {(row["reference"], row["pad"]): row
+                       for row in self.views[board, face]["sma_solder_lands"]}
+            self.assertEqual(expected, set(records))
+            for node in groups:
+                record = records[node.get("data-reference"), node.get("data-pad")]
+                rect = node.find(SVG + "rect")
+                x, y = record["centre_mm"]
+                w, h = record["size_mm"]
+                self.assertEqual([round(x-w/2, 6), round(y-h/2, 6), round(w, 6), round(h, 6)],
+                                 [float(rect.get(key)) for key in ("x", "y", "width", "height")])
+                self.assertEqual(f'rotate({-record["angle_deg"]:.6f} {x:.6f} {y:.6f})', rect.get("transform"))
+                self.assertEqual("#f3bd53", rect.get("fill"))
+                self.assertEqual("F.Cu" if face == "outer" else "B.Cu", node.get("data-side"))
+                label = next(child for child in node if child.get("data-role") == "sma-land-label")
+                self.assertEqual(face == "inner", "scale(-1 1)" in label.get("transform"))
+                self.assertIn("not solder volume", node.find(SVG + "title").text)
+            total += len(groups)
+        self.assertEqual(50, total)
+        self.assertIn("not paste/mask", self.manifest["overlays"]["sma_solder_lands"])
+
+    @unittest.skipUnless(pcbnew is not None, "requires KiCad pcbnew")
+    def test_sma_land_records_match_native_pads_including_opposite_face(self):
+        for name, path in self.renderer.BOARDS.items():
+            before = sha256(path)
+            board = pcbnew.LoadBoard(str(path))
+            result = self.renderer.sma_solder_lands(board, name)
+            for face, records in result.items():
+                self.assertEqual(self.views[name, face]["sma_solder_lands"], records)
+                self.assertEqual(15 if face == "outer" else 10, len(records))
+            self.assertEqual(before, sha256(path))
+
+    @unittest.skipUnless(pcbnew is not None, "requires KiCad pcbnew")
+    def test_sma_missing_back_land_or_changed_layer_never_silently_disappears(self):
+        # Keep native owners alive; fault injection uses Python proxies, not
+        # destructive SWIG Remove()/ownership changes on loaded KiCad objects.
+        board = pcbnew.LoadBoard(str(self.renderer.BOARDS["rf"]))
+        footprints = list(board.GetFootprints())
+        fp = next(fp for fp in footprints if fp.GetReference() == "J8")
+        pads = list(fp.Pads())
+        target = next(pad for pad in pads if pad.GetNumber() == "5")
+        for fault in ("missing", "wrong_layer", "wrong_shape"):
+            with self.subTest(fault=fault):
+                if fault == "missing":
+                    changed_pads = [pad for pad in pads if pad.GetNumber() != "5"]
+                else:
+                    altered = SimpleNamespace(
+                        GetNumber=target.GetNumber, GetAttribute=target.GetAttribute,
+                        GetShape=(lambda: pcbnew.PAD_SHAPE_CIRCLE) if fault == "wrong_shape" else target.GetShape,
+                        IsOnLayer=(lambda layer: layer == pcbnew.F_Cu) if fault == "wrong_layer" else target.IsOnLayer)
+                    changed_pads = [altered if pad.GetNumber() == "5" else pad for pad in pads]
+                altered_fp = SimpleNamespace(GetReference=fp.GetReference, GetFPID=fp.GetFPID,
+                                             IsFlipped=fp.IsFlipped, Pads=lambda: changed_pads)
+                altered_board = SimpleNamespace(GetFootprints=lambda: [
+                    altered_fp if item.GetReference() == "J8" else item for item in footprints])
+                with self.assertRaisesRegex(RuntimeError, "SMA"):
+                    self.renderer.sma_solder_lands(altered_board, "rf")
 
 
 if __name__ == "__main__":

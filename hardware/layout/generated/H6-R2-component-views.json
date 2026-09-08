@@ -3,7 +3,7 @@
   "inputs_sha256": {
     "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "feac6ac462d47d84b011f89c7f0c425e45d7264b9e9764f61757e3b95d0092fe",
     "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "e11215ffe5cc25645aa091872af93540c121e84d83def5dae3f39c03c782fd32",
-    "hardware/layout/h6_r2_component_render.py": "7d037e6fe4bb198ecc38425764949901246f6570fba656c807d12d06fd5a5dae"
+    "hardware/layout/h6_r2_component_render.py": "962be0ff8191483cba48b868748d67cb9f9484f586d730e2a0452c16ab7c6f42"
   },
   "view_convention": "outer=native; inner=x_view=80-x_native, y unchanged; no extra RF transform",
   "same_scale": true,
@@ -15,12 +15,16 @@
     "outer": "F.Fab,F.Silkscreen,Edge.Cuts",
     "inner": "B.Fab,B.Silkscreen,Edge.Cuts"
   },
+  "overlays": {
+    "sma_solder_lands": "Actual selected-face copper pads, including B pads of F footprints; not paste/mask or solder volume."
+  },
   "limitations": [
     "Current Fab geometry includes known defects; not a 3D qualification.",
     "No tracks, ratsnest, cells, display, loose cables or external antennas.",
     "Native Edge.Cuts defines the background and outer-outline clip; KiCad polygonization is only a visual fill, not fabrication geometry.",
     "Opposite-face drawings are shown only outside the actual outer board contour as context; not a 3D visibility test.",
     "Reference designators are drawing annotations, not additional silkscreen.",
+    "Gold SMA copper lands are shown even when the footprint body belongs to the opposite face. They do not prove solder-tool or rework access.",
     "UI J5 DM3AT card reference positions are nominal: locked solid, ejected ochre/dashed. The callout is a drawing annotation, not PCB silkscreen or an installed-card claim.",
     "L32 is the actual Dwgs.User reservation, not completed loop copper."
   ],
@@ -88,6 +92,233 @@
         "SW8",
         "SW9"
       ],
+      "sma_solder_lands": [
+        {
+          "reference": "J12",
+          "pad": "1",
+          "side": "F.Cu",
+          "centre_mm": [
+            10.6,
+            1.65
+          ],
+          "size_mm": [
+            1.87,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF0_EXTERNAL_RF_50R"
+        },
+        {
+          "reference": "J12",
+          "pad": "2",
+          "side": "F.Cu",
+          "centre_mm": [
+            13.15,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+        },
+        {
+          "reference": "J12",
+          "pad": "3",
+          "side": "F.Cu",
+          "centre_mm": [
+            8.05,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+        },
+        {
+          "reference": "J14",
+          "pad": "1",
+          "side": "F.Cu",
+          "centre_mm": [
+            40.0,
+            1.65
+          ],
+          "size_mm": [
+            1.87,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF1_EXTERNAL_RF_50R"
+        },
+        {
+          "reference": "J14",
+          "pad": "2",
+          "side": "F.Cu",
+          "centre_mm": [
+            42.55,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+        },
+        {
+          "reference": "J14",
+          "pad": "3",
+          "side": "F.Cu",
+          "centre_mm": [
+            37.45,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+        },
+        {
+          "reference": "J16",
+          "pad": "1",
+          "side": "F.Cu",
+          "centre_mm": [
+            69.4,
+            1.65
+          ],
+          "size_mm": [
+            1.87,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_EXTERNAL_RF_50R"
+        },
+        {
+          "reference": "J16",
+          "pad": "2",
+          "side": "F.Cu",
+          "centre_mm": [
+            71.95,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+        },
+        {
+          "reference": "J16",
+          "pad": "3",
+          "side": "F.Cu",
+          "centre_mm": [
+            66.85,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+        },
+        {
+          "reference": "J3",
+          "pad": "1",
+          "side": "F.Cu",
+          "centre_mm": [
+            25.3,
+            1.65
+          ],
+          "size_mm": [
+            1.87,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/S3_EXTERNAL_RF_50R"
+        },
+        {
+          "reference": "J3",
+          "pad": "2",
+          "side": "F.Cu",
+          "centre_mm": [
+            27.85,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+        },
+        {
+          "reference": "J3",
+          "pad": "3",
+          "side": "F.Cu",
+          "centre_mm": [
+            22.75,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+        },
+        {
+          "reference": "J7",
+          "pad": "1",
+          "side": "F.Cu",
+          "centre_mm": [
+            54.7,
+            1.65
+          ],
+          "size_mm": [
+            1.87,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_20_C5_WIFI_IR_SERVICE/C5_EXTERNAL_RF_50R"
+        },
+        {
+          "reference": "J7",
+          "pad": "2",
+          "side": "F.Cu",
+          "centre_mm": [
+            57.25,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+        },
+        {
+          "reference": "J7",
+          "pad": "3",
+          "side": "F.Cu",
+          "centre_mm": [
+            52.15,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+        }
+      ],
       "svg": "docs/images/h6-r2-components-ui-outer.svg"
     },
     {
@@ -128,6 +359,233 @@
         "SW3",
         "SW4",
         "U83"
+      ],
+      "sma_solder_lands": [
+        {
+          "reference": "J5",
+          "pad": "1",
+          "side": "F.Cu",
+          "centre_mm": [
+            40.0,
+            1.65
+          ],
+          "size_mm": [
+            1.87,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_20_CC1101_VOICE_TX/CC_EXTERNAL_RF_50R"
+        },
+        {
+          "reference": "J5",
+          "pad": "2",
+          "side": "F.Cu",
+          "centre_mm": [
+            42.55,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        },
+        {
+          "reference": "J5",
+          "pad": "3",
+          "side": "F.Cu",
+          "centre_mm": [
+            37.45,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        },
+        {
+          "reference": "J6",
+          "pad": "1",
+          "side": "F.Cu",
+          "centre_mm": [
+            54.7,
+            1.65
+          ],
+          "size_mm": [
+            1.87,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_20_CC1101_VOICE_TX/VOICE_U_EXTERNAL_RF_50R"
+        },
+        {
+          "reference": "J6",
+          "pad": "2",
+          "side": "F.Cu",
+          "centre_mm": [
+            57.25,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        },
+        {
+          "reference": "J6",
+          "pad": "3",
+          "side": "F.Cu",
+          "centre_mm": [
+            52.15,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        },
+        {
+          "reference": "J7",
+          "pad": "1",
+          "side": "F.Cu",
+          "centre_mm": [
+            69.4,
+            1.65
+          ],
+          "size_mm": [
+            1.87,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_20_CC1101_VOICE_TX/VOICE_V_EXTERNAL_RF_50R"
+        },
+        {
+          "reference": "J7",
+          "pad": "2",
+          "side": "F.Cu",
+          "centre_mm": [
+            71.95,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        },
+        {
+          "reference": "J7",
+          "pad": "3",
+          "side": "F.Cu",
+          "centre_mm": [
+            66.85,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        },
+        {
+          "reference": "J8",
+          "pad": "1",
+          "side": "F.Cu",
+          "centre_mm": [
+            25.3,
+            1.65
+          ],
+          "size_mm": [
+            1.87,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_BOUNDARY_RF"
+        },
+        {
+          "reference": "J8",
+          "pad": "2",
+          "side": "F.Cu",
+          "centre_mm": [
+            27.85,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        },
+        {
+          "reference": "J8",
+          "pad": "3",
+          "side": "F.Cu",
+          "centre_mm": [
+            22.75,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        },
+        {
+          "reference": "J9",
+          "pad": "1",
+          "side": "F.Cu",
+          "centre_mm": [
+            10.6,
+            1.65
+          ],
+          "size_mm": [
+            1.87,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_21_BROADCAST_AIRBAND_RX/RX_FMSW_BOUNDARY_RF"
+        },
+        {
+          "reference": "J9",
+          "pad": "2",
+          "side": "F.Cu",
+          "centre_mm": [
+            13.15,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        },
+        {
+          "reference": "J9",
+          "pad": "3",
+          "side": "F.Cu",
+          "centre_mm": [
+            8.05,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        }
       ],
       "svg": "docs/images/h6-r2-components-rf-outer.svg"
     },
@@ -556,6 +1014,158 @@
         "U44",
         "U5",
         "U51"
+      ],
+      "sma_solder_lands": [
+        {
+          "reference": "J12",
+          "pad": "4",
+          "side": "B.Cu",
+          "centre_mm": [
+            13.15,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+        },
+        {
+          "reference": "J12",
+          "pad": "5",
+          "side": "B.Cu",
+          "centre_mm": [
+            8.05,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+        },
+        {
+          "reference": "J14",
+          "pad": "4",
+          "side": "B.Cu",
+          "centre_mm": [
+            42.55,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+        },
+        {
+          "reference": "J14",
+          "pad": "5",
+          "side": "B.Cu",
+          "centre_mm": [
+            37.45,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+        },
+        {
+          "reference": "J16",
+          "pad": "4",
+          "side": "B.Cu",
+          "centre_mm": [
+            71.95,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+        },
+        {
+          "reference": "J16",
+          "pad": "5",
+          "side": "B.Cu",
+          "centre_mm": [
+            66.85,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+        },
+        {
+          "reference": "J3",
+          "pad": "4",
+          "side": "B.Cu",
+          "centre_mm": [
+            27.85,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+        },
+        {
+          "reference": "J3",
+          "pad": "5",
+          "side": "B.Cu",
+          "centre_mm": [
+            22.75,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+        },
+        {
+          "reference": "J7",
+          "pad": "4",
+          "side": "B.Cu",
+          "centre_mm": [
+            57.25,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+        },
+        {
+          "reference": "J7",
+          "pad": "5",
+          "side": "B.Cu",
+          "centre_mm": [
+            52.15,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+        }
       ],
       "svg": "docs/images/h6-r2-components-ui-inner.svg"
     },
@@ -1358,14 +1968,166 @@
         "U8",
         "U86"
       ],
+      "sma_solder_lands": [
+        {
+          "reference": "J5",
+          "pad": "4",
+          "side": "B.Cu",
+          "centre_mm": [
+            42.55,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        },
+        {
+          "reference": "J5",
+          "pad": "5",
+          "side": "B.Cu",
+          "centre_mm": [
+            37.45,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        },
+        {
+          "reference": "J6",
+          "pad": "4",
+          "side": "B.Cu",
+          "centre_mm": [
+            57.25,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        },
+        {
+          "reference": "J6",
+          "pad": "5",
+          "side": "B.Cu",
+          "centre_mm": [
+            52.15,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        },
+        {
+          "reference": "J7",
+          "pad": "4",
+          "side": "B.Cu",
+          "centre_mm": [
+            71.95,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        },
+        {
+          "reference": "J7",
+          "pad": "5",
+          "side": "B.Cu",
+          "centre_mm": [
+            66.85,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        },
+        {
+          "reference": "J8",
+          "pad": "4",
+          "side": "B.Cu",
+          "centre_mm": [
+            27.85,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        },
+        {
+          "reference": "J8",
+          "pad": "5",
+          "side": "B.Cu",
+          "centre_mm": [
+            22.75,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        },
+        {
+          "reference": "J9",
+          "pad": "4",
+          "side": "B.Cu",
+          "centre_mm": [
+            13.15,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        },
+        {
+          "reference": "J9",
+          "pad": "5",
+          "side": "B.Cu",
+          "centre_mm": [
+            8.05,
+            1.65
+          ],
+          "size_mm": [
+            1.6,
+            3.3
+          ],
+          "angle_deg": 180.0,
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        }
+      ],
       "svg": "docs/images/h6-r2-components-rf-inner.svg"
     }
   ],
   "outputs_sha256": {
-    "docs/images/h6-r2-components-ui-outer.svg": "a1341392f4c56cce17566239a55d19d66cec0519ace93762b9d1bf256c26be68",
-    "docs/images/h6-r2-components-rf-outer.svg": "6505c6ebcdb6183709cf94aaa287d608cecf2d895c333a69a2b8083a83bfda8f",
-    "docs/images/h6-r2-components-ui-inner.svg": "00295e309e03ba44df902aaaf0e63b34057552600781a6194d49eb0577fc6d22",
-    "docs/images/h6-r2-components-rf-inner.svg": "35635d563b007a9349961e20ff70e0e45566f460396bcca8e3fd1881d1a42679",
-    "docs/images/h6-r2-components-overview.svg": "014dae39dc439451934a6660402b43138fff4e50efac72a34f2100d4c4b86464"
+    "docs/images/h6-r2-components-ui-outer.svg": "547f42508b65c1352ebdae5d16f42d931827ba686f11eaef70018827a0718c68",
+    "docs/images/h6-r2-components-rf-outer.svg": "f027a1c1216204bb2e68535f486c7db7fb682cf1a30f5c83b531aeb0bc78b73c",
+    "docs/images/h6-r2-components-ui-inner.svg": "898f08d282981d55a17d03694557df304dac9604990f23a6bfe68aa6d427400f",
+    "docs/images/h6-r2-components-rf-inner.svg": "49eb49594f1409b41a88a79c3bade7443e95276e2400b9dfc05194ae0d3becac",
+    "docs/images/h6-r2-components-overview.svg": "69f6e94be376aaed830fe0ac9cd6dceffec45a84e58e9b4ded3279d2a8f16274"
   }
 }

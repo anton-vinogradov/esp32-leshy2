@@ -196,6 +196,56 @@ class H6R2MicrocoaxServiceTests(unittest.TestCase):
             {row["board"] for row in self.audit["antenna_solder_windows"]},
         )
 
+    def test_antenna_window_pass_does_not_qualify_native_solder_access(self):
+        audit = service.evaluate(self.contract, service.load(service.PLACEMENT),
+                                 service.load(service.PLACEMENT_CONTRACT),
+                                 service.load(service.H1), service.load(service.H3))
+        self.assertEqual("pass", audit["status"])
+        self.assertTrue(audit["summary"]["routing_may_start"])
+        self.assertEqual("nominal microcoax geometry and contract antenna-window count/pitch only",
+                         audit["status_scope"])
+        self.assertEqual({
+            "status": "count_and_pitch_only",
+            "position_basis": "placement_contract.antenna_ports",
+            "native_solder_access_verified_by_this_audit": False,
+        }, audit["antenna_solder_window_scope"])
+        residual = " ".join(audit["residual_physical_evidence"])
+        for obligation in ("solder-land", "component-body", "soldering-tool", "fillet visibility"):
+            self.assertIn(obligation, residual)
+
+    def test_antenna_scope_does_not_weaken_count_or_pitch_gates(self):
+        for defect in ("missing_port", "insufficient_pitch"):
+            placement_contract = service.load(service.PLACEMENT_CONTRACT)
+            ports = placement_contract["antenna_ports"]["LESHY2-RF-R2"]
+            names = sorted(ports, key=lambda name: ports[name][0])
+            if defect == "missing_port":
+                del ports[names[-1]]
+                expected_error = "antenna inspection count is not five"
+            else:
+                ports[names[1]][0] = ports[names[0]][0] + 10.0
+                expected_error = "adjacent antenna inspection windows are too close"
+            audit = service.evaluate(self.contract, service.load(service.PLACEMENT),
+                                     placement_contract, service.load(service.H1), service.load(service.H3))
+            with self.subTest(defect=defect):
+                self.assertEqual("fail", audit["status"])
+                self.assertFalse(audit["summary"]["routing_may_start"])
+                self.assertTrue(any(expected_error in error for error in audit["errors"]))
+                self.assertIs(False, audit["antenna_solder_window_scope"]["native_solder_access_verified_by_this_audit"])
+
+    def test_generated_languages_keep_solder_access_outside_window_pass(self):
+        audit = service.evaluate(self.contract, service.load(service.PLACEMENT),
+                                 service.load(service.PLACEMENT_CONTRACT),
+                                 service.load(service.H1), service.load(service.H3))
+        for language in service.DOCS:
+            sections = service.document_sections(self.contract, audit, language)
+            with self.subTest(language=language):
+                self.assertIn("native_solder_access_verified_by_this_audit: false", sections["status"])
+                self.assertIn("placement contract", sections["clearance"])
+                self.assertNotIn("placement freeze", sections["clearance"])
+                self.assertIn("H6-R2-sma-solder-access-audit.json", sections["clearance"])
+                self.assertIn("не являются подтверждением" if language == "ru" else "are not factory",
+                              sections["clearance"])
+
     def test_both_document_tables_equal_current_audit_not_old_spacing(self):
         for language, path in service.DOCS.items():
             text = path.read_text(encoding="utf-8")
@@ -223,7 +273,7 @@ class H6R2MicrocoaxServiceTests(unittest.TestCase):
                 self.assertIn(number.replace(".", separator), sections["results"])
             self.assertIn("5.68 mm minimum reserve", sections["reproduce"])
 
-    def test_document_pitch_uses_both_frozen_banks_not_h1_mockup(self):
+    def test_document_pitch_uses_both_contract_banks_not_h1_mockup(self):
         changed = copy.deepcopy(self.audit)
         window = next(row for row in changed["antenna_solder_windows"]
                       if row["board"] == "LESHY2-RF-R2" and row["centre_x_mm"] == 25.3)

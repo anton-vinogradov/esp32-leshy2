@@ -435,6 +435,7 @@ def evaluate(contract: dict, placement: dict, placement_contract: dict, h1: dict
         "artifact": "H6-R2 microcoax service audit",
         "marker": contract["marker"],
         "status": "pass" if not errors else "fail",
+        "status_scope": "nominal microcoax geometry and contract antenna-window count/pitch only",
         "source_hashes": {
             str(path.relative_to(ROOT)): sha256(path)
             for path in (CONTRACT, PLACEMENT, PLACEMENT_CONTRACT, H1, H3)
@@ -455,12 +456,18 @@ def evaluate(contract: dict, placement: dict, placement_contract: dict, h1: dict
         },
         "paths": path_results,
         "antenna_solder_windows": windows,
+        "antenna_solder_window_scope": {
+            "status": "count_and_pitch_only",
+            "position_basis": "placement_contract.antenna_ports",
+            "native_solder_access_verified_by_this_audit": False,
+        },
         "enclosure_clearance": constraints["enclosure_clearance"],
         "residual_physical_evidence": [
             "H6.0.7: validate R6 forming and the full corridor envelope for actual Ebyte axes throughout the selected source windows; current circular arcs use window centres",
             "confirm received E01 IPEX axes remain inside the published-corner service windows",
             "dry-fit all five received cable assemblies and confirm the 6-mm formed-radius target without connector preload",
             "recheck exact opposed-body and enclosure clearance from the assembled STEP in H6.0.7",
+            "antenna window count/pitch does not evaluate native solder-land versus component-body clearance, soldering-tool approach or fillet visibility; review the separate H6-R2-sma-solder-access-audit.json screening and physical assembly without treating either as factory solder qualification",
             "measure complete RF feeds during H8 bring-up"
         ],
         "errors": errors,
@@ -592,7 +599,7 @@ def result_line(audit: dict) -> str:
 def document_sections(contract: dict, audit: dict, language: str) -> dict[str, str]:
     """Render numerical claims from the evaluated geometry, not copied goldens.
 
-    Antenna positions come from evaluate's placement-freeze inspection windows.
+    Antenna window positions come from the placement contract, not native pads.
     Prose outside the marked sections stays hand-written; --check compares every
     marked section, including the actual CLI result and the scope warning.
     """
@@ -638,6 +645,10 @@ def document_sections(contract: dict, audit: dict, language: str) -> dict[str, s
     status += ((f"Окна {pending} требуют проверки фактических осей и пространственного изгиба в `H6.0.7`. " if ru else
                 f"Source windows {pending} still require actual-axis and three-dimensional forming checks in `H6.0.7`. ")
                + f"`all_source_positions_planar_radius_verified: {str(summary['all_source_positions_planar_radius_verified']).lower()}`.")
+    access_verified = audit["antenna_solder_window_scope"]["native_solder_access_verified_by_this_audit"]
+    status += (" Для антенных окон проверены только число и шаг из контракта; доступность пайки этим аудитом не установлена. " if ru else
+               " Antenna-window checks cover contract count and pitch only; this audit does not establish solder access. ")
+    status += f"`native_solder_access_verified_by_this_audit: {str(access_verified).lower()}`."
     table = [
         "| Тракт | Точный кабель / длина | Коридор, максимум | Запас, минимум | Плоский радиус, минимум |" if ru else
         "| Path | Exact cable / length | Corridor, max | Reserve, min | Planar radius, min |",
@@ -662,8 +673,10 @@ def document_sections(contract: dict, audit: dict, language: str) -> dict[str, s
                      f"Максимальная высота экрана S3, кабеля и ленты вместе — {n(occupied, 2)} мм. Диаметр цилиндра осмотра разъёма — {n(common['connector_inspection_radius_mm'] * 2, 0)} мм.\n\n"
                      f"Минимальный 2D-зазор от края полного коридора до зон винтов/упоров — {n(summary['minimum_mechanical_keepout_clearance_mm'])} мм у `{tightest['path']}`; "
                      f"у `N24-0` — {n(rows['N24-0']['minimum_mechanical_keepout_clearance_mm'])} мм. Это зазоры от сервисного коридора, не от более тонкого кабеля.\n\n"
-                     f"Два антенных банка имеют {summary['antenna_solder_windows']} окон пайки шириной {n(width, 2)} мм. "
-                     f"Минимальный текущий шаг портов по placement freeze — {n(pitch, 3)} мм, зазор между соседними окнами — {n(pitch - width, 3)} мм.")
+                     f"Контракт задаёт {summary['antenna_solder_windows']} номинальных окон осмотра пайки шириной {n(width, 2)} мм для двух антенных банков. "
+                     f"Минимальный шаг портов по placement contract — {n(pitch, 3)} мм, зазор между соседними окнами — {n(pitch - width, 3)} мм. "
+                     "Это проверка числа и шага окон, не нативных площадок: она не выявляет перекрытие площадок соседними корпусами, доступ инструмента или видимость галтелей припоя. "
+                     "См. [отдельный нативный скрининг](../hardware/layout/generated/H6-R2-sma-solder-access-audit.json); его инженерные зазоры не являются подтверждением заводской технологии пайки.")
     else:
         geometry = (f"Cable diameter is {n(common['cable_outer_diameter_mm'], 2)} mm; corridor width is {n(common['corridor_width_mm'], 2)} mm. "
                     f"Each saddle has a {landing} mm landing with a {n(saddle['courtyard_margin_mm'], 2)} mm courtyard margin. "
@@ -677,8 +690,10 @@ def document_sections(contract: dict, audit: dict, language: str) -> dict[str, s
                      f"The maximum combined S3 shield, cable and tape height is {n(occupied, 2)} mm. The connector-inspection cylinder diameter is {n(common['connector_inspection_radius_mm'] * 2, 0)} mm.\n\n"
                      f"The minimum 2D clearance from the full corridor edge to screw/stop keepouts is {n(summary['minimum_mechanical_keepout_clearance_mm'])} mm on `{tightest['path']}`; "
                      f"`N24-0` clears by {n(rows['N24-0']['minimum_mechanical_keepout_clearance_mm'])} mm. These are service-corridor clearances, not clearances from the thinner cable.\n\n"
-                     f"The two antenna banks have {summary['antenna_solder_windows']} solder-inspection windows of width {n(width, 2)} mm. "
-                     f"The current minimum port pitch from the placement freeze is {n(pitch, 3)} mm, leaving {n(pitch - width, 3)} mm between adjacent windows.")
+                     f"The contract defines {summary['antenna_solder_windows']} nominal solder-inspection windows of width {n(width, 2)} mm for the two antenna banks. "
+                     f"The minimum port pitch from the placement contract is {n(pitch, 3)} mm, leaving {n(pitch - width, 3)} mm between adjacent windows. "
+                     "This checks window count and pitch, not native pads: it does not detect solder-land obstruction by neighbouring bodies, tool access or solder-fillet visibility. "
+                     "See the [separate native screening](../hardware/layout/generated/H6-R2-sma-solder-access-audit.json); its engineering clearances are not factory solder-process qualification.")
     return {"status": status, "results": "\n".join(table) + "\n\n" + geometry,
             "clearance": clearance, "reproduce": "```text\n" + result_line(audit) + "\n```"}
 

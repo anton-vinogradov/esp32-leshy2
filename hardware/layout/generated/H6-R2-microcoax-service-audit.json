@@ -3,6 +3,7 @@
   "artifact": "H6-R2 microcoax service audit",
   "marker": "H6.0.3-R1",
   "status": "pass",
+  "status_scope": "nominal microcoax geometry and contract antenna-window count/pitch only",
   "source_hashes": {
     "hardware/layout/h6-r2-microcoax-service.json": "d2dfb7da1b9ae45d11a3b1bc2a0db859204bd4dc73ba113d79bbf8f372d56011",
     "hardware/layout/generated/H6-R2-placement-audit.json": "cd92ee2740fbcefb526d36dbe6ba0080ad0811d9fc34b55d283bb8c88757a3a5",
@@ -237,6 +238,11 @@
       "centre_x_mm": 69.4
     }
   ],
+  "antenna_solder_window_scope": {
+    "status": "count_and_pitch_only",
+    "position_basis": "placement_contract.antenna_ports",
+    "native_solder_access_verified_by_this_audit": false
+  },
   "enclosure_clearance": {
     "route_prism_height_above_ui_inner_mm": 4.7,
     "minimum_free_height_above_cable_mm": 1.0,
@@ -248,6 +254,7 @@
     "confirm received E01 IPEX axes remain inside the published-corner service windows",
     "dry-fit all five received cable assemblies and confirm the 6-mm formed-radius target without connector preload",
     "recheck exact opposed-body and enclosure clearance from the assembled STEP in H6.0.7",
+    "antenna window count/pitch does not evaluate native solder-land versus component-body clearance, soldering-tool approach or fillet visibility; review the separate H6-R2-sma-solder-access-audit.json screening and physical assembly without treating either as factory solder qualification",
     "measure complete RF feeds during H8 bring-up"
   ],
   "errors": []

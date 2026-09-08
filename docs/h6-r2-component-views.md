@@ -23,6 +23,11 @@ small components without losing detail.
   Antenna labels sit closer to the connectors, with a single lawful-use
   sentence below: English on UI, Russian on RF.
 - Ochre: drilled holes and the dashed L32 NFC reservation. **The loop is not routed yet**.
+- Gold-filled rectangles: **all 50 actual SMA copper solder lands** — three
+  on F and two on B per connector, read directly from the native PCB. Small
+  labels identify connector and pad. They are drawing annotations, not new
+  silkscreen; gold denotes neither deposited solder nor paste/mask openings.
+  B-side lands remain visible even though the SMA footprint body belongs to F.
 - Inner views show the board after turning it around its vertical axis:
   `x′ = 80 − x`, with the antenna edge still at the top. These are individual
   board-face views, not a single assembled-device coordinate system.
@@ -34,10 +39,42 @@ are included. The display, cells, external antennas, loose cables and enclosure
 are not invented: these are PCBs before final assembly. The large UI area is
 the display bonding location; the RF outline is the current holder without cells.
 
-**Known footprint defects remain visible.** In particular, this sheet does not
-fix the missing audio cutout or holder geometry, and does not replace the
+**Open mechanical questions remain open.** In particular, this sheet does not
+qualify holder geometry or solder-tool access, and does not replace the
 [open findings](h6-r2-interface-review.md) with a readiness claim. Fab geometry
 is not a qualified 3D model of every component.
+
+## SMA solder-site checks
+
+The [native pad-and-neighbour report](../hardware/layout/generated/H6-R2-sma-solder-access-audit.json)
+checks both PCBs, keeping pad copper, Fab outlines and neighbouring component
+courtyards separate. Provisionally expanding each land's bounding rectangle
+by **1 mm along each axis** screens for tight areas: this is an engineering
+review filter, not a factory requirement
+or a model of a particular soldering tip. Entering that margin does not mean a
+body collision or short circuit. Tool approach, heating and joint inspection
+still need review; the previous “solder windows” checked only connector count
+and pitch.
+
+<!-- SMA-SOLDER-ACCESS:BEGIN -->
+
+Current result: **50 lands**, 0 contacts/overlaps with foreign copper pads, 0 overlaps with available Fab bounding boxes and 0 courtyard overlaps. The provisional margin flagged **9 lands for review**.
+
+| Board | Land | Nearest courtyard | Gap, mm |
+| --- | --- | --- | ---: |
+| UI · B | J3.5 | J4 | 0.105 |
+| RF · B | J8.5 | D5 | 0.150 |
+| RF · B | J9.5 | C167 | 0.150 |
+| RF · B | J8.4 | D4 | 0.200 |
+| RF · B | J7.5 | C126 | 0.295 |
+| RF · B | J9.4 | C163 | 0.340 |
+| UI · B | J12.5 | J13 | 0.455 |
+| UI · B | J3.4 | R17 | 0.710 |
+| UI · B | J14.5 | U52 | 0.755 |
+
+Table distances are to courtyards, **not physical bodies**; separate copper and Fab measurements are in the report. These are solder-access review items, not a list of shorts. `status: review_required`; `solder_process_qualified: false`.
+
+<!-- SMA-SOLDER-ACCESS:END -->
 
 ## Freshness
 
@@ -58,3 +95,9 @@ publishing a checkpoint; this is not a background watcher of an open editor.
 The dedicated `h6_r2_component_render.py --write/--check` commands remain
 available. Dedicated writes require KiCad's Python (`pcbnew`) and KiCad CLI;
 checks require only ordinary Python.
+
+The SMA clearance report and its marked tables have a separate native command:
+run `python3 hardware/layout/h6_r2_sma_solder_access.py --write` using Python
+with `pcbnew`, then `--check` to recompute and compare. Refresh it after PCB
+changes as well as the images; regression tests reject stale source hashes or
+tables. Neither command changes the PCB.
