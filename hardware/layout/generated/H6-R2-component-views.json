@@ -1,7 +1,7 @@
 {
   "status": "current_native_visualization_not_assembly_approval",
   "inputs_sha256": {
-    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "f49fba8a1fa6c1e7b3170e0e296aa28be57b83851fadeca1c3dfb4a302594fec",
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "feac6ac462d47d84b011f89c7f0c425e45d7264b9e9764f61757e3b95d0092fe",
     "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "e11215ffe5cc25645aa091872af93540c121e84d83def5dae3f39c03c782fd32",
     "hardware/layout/h6_r2_component_render.py": "7d037e6fe4bb198ecc38425764949901246f6570fba656c807d12d06fd5a5dae"
   },
@@ -1362,9 +1362,9 @@
     }
   ],
   "outputs_sha256": {
-    "docs/images/h6-r2-components-ui-outer.svg": "f5d509144c98cb2532fe9561e04612b4c6314af0733ecec46ee07dc03fd2e7af",
+    "docs/images/h6-r2-components-ui-outer.svg": "a1341392f4c56cce17566239a55d19d66cec0519ace93762b9d1bf256c26be68",
     "docs/images/h6-r2-components-rf-outer.svg": "6505c6ebcdb6183709cf94aaa287d608cecf2d895c333a69a2b8083a83bfda8f",
-    "docs/images/h6-r2-components-ui-inner.svg": "d54ac4782def0b3a69e11c340875a10d7780e9ddc7fd08b7d0d37da3b50d5a62",
+    "docs/images/h6-r2-components-ui-inner.svg": "00295e309e03ba44df902aaaf0e63b34057552600781a6194d49eb0577fc6d22",
     "docs/images/h6-r2-components-rf-inner.svg": "35635d563b007a9349961e20ff70e0e45566f460396bcca8e3fd1881d1a42679",
     "docs/images/h6-r2-components-overview.svg": "014dae39dc439451934a6660402b43138fff4e50efac72a34f2100d4c4b86464"
   }

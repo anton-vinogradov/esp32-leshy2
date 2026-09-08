@@ -20,7 +20,7 @@
     "hardware/ecad/generated/H2-R2-native-inventory.json": "e928c8f337a73005ace55331c145db8199340d23fa54a6806fa6c5619fdd8040",
     "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "57f0ed517509911b8b7c3e003cd4c47a35e6a924850cfb3a1f710e66fd9fd512",
     "hardware/ecad/generated/H2-R2-native-net-ledger.json": "a6d6d9defa240766644ff5afef2164aefffeaf920ecdfe0a5fdb39c8db2398d9",
-    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "56c31a225afd92eb4628144b309e0c2adacbb61cc629cab942db14ccf6a10778",
+    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "57056385116edbe4e26ec9c4c93ad942346dea5e199fe8603cd3b7f51943cd7d",
     "hardware/ecad/h2-r2-hwfw-reconciliation-contract.json": "a670e5e735f0c3631c7c9dcd13e8f4edbe7ff83c9b43c10ec2e46b56742aedc3"
   },
   "bsp": {

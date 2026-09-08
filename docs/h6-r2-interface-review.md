@@ -2,7 +2,7 @@
 
 [Русский](h6-r2-interface-review.ru.md)
 
-**2026-09-08: MAIN includes the SMA/microSD spacing correction, the engineering EC11 footprint and nine reviewed LED-anode routes. Fresh DRC on both native boards reports 0 violations / 0 schematic-parity findings. H6 remains open; manufacturing is not authorized.**
+**2026-09-08: MAIN includes the SMA/microSD spacing correction, the engineering EC11 footprint, nine reviewed LED-anode routes and native C5 USB/SDIO pair protection. Fresh DRC on both native boards reports 0 violations / 0 schematic-parity findings. H6 remains open; manufacturing is not authorized.**
 
 The UI IR cluster and 15 front buttons, and the RF bottom ports, service switches,
 PTT and ordinary-SMT headset jack now use the corrected native geometry. This
@@ -145,16 +145,16 @@ The six internal debug headers are accessed after opening the device.
 
 ## Evidence: current state versus historical findings
 
-The current SMA/microSD, encoder and additive LED PCB hashes below match fresh DRC receipts.
+The current SMA/microSD, encoder, LED and C5 native-pair PCB hashes below match fresh DRC receipts.
 They identify the checked native boards, not manufacturing approval:
 
 | Board | SHA-256 |
 | --- | --- |
-| [UI native PCB](../hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb) | `f49fba8a1fa6c1e7b3170e0e296aa28be57b83851fadeca1c3dfb4a302594fec` |
+| [UI native PCB](../hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb) | `feac6ac462d47d84b011f89c7f0c425e45d7264b9e9764f61757e3b95d0092fe` |
 | [RF native PCB](../hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb) | `e11215ffe5cc25645aa091872af93540c121e84d83def5dae3f39c03c782fd32` |
 
-The fresh MAIN DRC records are `work/encoder-main-review/ui-drc.json`
-and `work/encoder-main-review/rf-drc.json`, with their provenance sidecars.
+The fresh MAIN DRC records are `work/c5-alias-review/ui-drc.json`
+and `work/c5-alias-review/rf-drc.json`, with their provenance sidecars.
 The current-routing audit binds the executed command and exact repository inputs;
 changed boards, rules, schematics or controlled libraries require a new DRC run.
 Earlier stage records retain their original status; the later hash-bound DRC

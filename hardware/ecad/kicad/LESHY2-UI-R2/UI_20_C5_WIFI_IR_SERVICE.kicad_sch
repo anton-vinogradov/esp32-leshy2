@@ -10600,12 +10600,12 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "6ed50677-c6ab-542a-a2e0-bd29dc199542")
 	)
-	(label "C5_GPIO13_COMMON"
+	(label "C5_USB_SDIO_COMMON_N"
 		(at 584.20 294.64 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "5817a67e-eb10-57db-9ba3-d758238e656e")
 	)
-	(label "C5_GPIO14_COMMON"
+	(label "C5_USB_SDIO_COMMON_P"
 		(at 584.20 297.18 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "1a3d21a5-4a2d-5181-8ba0-1e32b31ef7e8")
@@ -11589,12 +11589,12 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "0c90c858-845f-59db-b85a-b7696abb9caa")
 	)
-	(label "C5_GPIO14_COMMON"
+	(label "C5_USB_SDIO_COMMON_P"
 		(at 675.64 302.26 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "7f5baaba-7ef4-5d15-9d00-fd617c38893f")
 	)
-	(label "C5_GPIO13_COMMON"
+	(label "C5_USB_SDIO_COMMON_N"
 		(at 675.64 304.80 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "e1aaeede-7bfc-5dd1-b3b4-88db38992124")

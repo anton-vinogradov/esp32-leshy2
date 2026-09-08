@@ -9,7 +9,7 @@
   "battery_energization_authorized": false,
   "source_hashes": {
     "hardware/layout/h6-r2-mechanical-stack.json": "0c9eeafb8a728627d711848df45b674e145da7896aa5d808d853d3c74891147d",
-    "hardware/layout/generated/H6-R2-placement-audit.json": "10cce6fb7342bea9a224da3a6f1d5e6eba169c2c155d37d2025282df4e47b2b3"
+    "hardware/layout/generated/H6-R2-placement-audit.json": "cd92ee2740fbcefb526d36dbe6ba0080ad0811d9fc34b55d283bb8c88757a3a5"
   },
   "stack": {
     "members": [

@@ -1,3 +1,4 @@
+import copy
 import json
 import subprocess
 import tempfile
@@ -6,6 +7,15 @@ from pathlib import Path
 
 from hardware.layout.h6_r2_routing_drc_delta import item_net, violation_fingerprint
 from hardware.layout.h6_r2_kicad_net_bindings import logical_pin_map, pcb_net_name
+from hardware.layout.h6_r2_routing_policy import (
+    C5_SHARED_PROJECT,
+    C5_SHARED_SHEET,
+    C5_SHARED_USB_PAIR,
+    C5_SHARED_USB_STEM,
+    c5_shared_pair_errors,
+    classify,
+    pair_key,
+)
 from hardware.layout.h6_r2_routing_session import (
     MAX_SPECCTRA_ROUNDING_NM,
     expected_connection_count,
@@ -70,7 +80,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
                 self.assertFalse(row["route_mode"].startswith("automatic"), row["canonical_net"])
 
     def test_usb_and_display_groups_are_exact(self):
-        self.assertEqual(12, self.audit["summary"]["usb_pair_count"])
+        self.assertEqual(13, self.audit["summary"]["usb_pair_count"])
         self.assertEqual(4, self.audit["summary"]["external_usb_port_count"])
         self.assertEqual(10, self.audit["summary"]["display_i8080_net_count"])
         self.assertEqual(10, self.audit["summary"]["reviewed_rf_edge_transition_count"])
@@ -117,6 +127,71 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
             "/UI_10_S3_DISPLAY_TOUCH/{slash}UI_10_S3_CORE_MEMORY_BOOT{slash}3V3_MAIN",
             pcb_net_name("/UI_10_S3_DISPLAY_TOUCH//UI_10_S3_CORE_MEMORY_BOOT/3V3_MAIN"),
         )
+
+    def test_shared_c5_usb_sdio_pair_is_explicit_and_manual_only(self):
+        self.assertEqual({
+            "C5_GPIO13_COMMON": ("N", "DAT3", "GPIO13", "13", "D_MINUS", "4"),
+            "C5_GPIO14_COMMON": ("P", "DAT2", "GPIO14", "14", "D_PLUS", "3"),
+        }, C5_SHARED_USB_PAIR)
+        common = self.audit["shared_usb_sdio_pair"]
+        self.assertEqual(C5_SHARED_PROJECT, common["project"])
+        self.assertEqual(C5_SHARED_USB_STEM, common["pair_stem"])
+        self.assertEqual("USB_DIFFERENTIAL", common["routing_class"])
+        self.assertEqual("manual_only", common["route_mode"])
+        rows = {row["canonical_net"]: row for row in self.audit["rows"]
+                if row["project"] == C5_SHARED_PROJECT}
+        for name, (polarity, sdio, *_pins) in C5_SHARED_USB_PAIR.items():
+            self.assertEqual("USB_DIFFERENTIAL", classify(name, set(), set()))
+            self.assertEqual((C5_SHARED_USB_STEM, polarity), pair_key(name))
+            self.assertEqual("USB_DIFFERENTIAL", rows[name]["routing_class"])
+            self.assertEqual("manual_only", rows[name]["route_mode"])
+            self.assertEqual(sdio, common["members"][polarity]["sdio_signal"])
+            self.assertEqual(f"/{C5_SHARED_SHEET}/{C5_SHARED_USB_STEM}_{polarity}",
+                             rows[name]["kicad_net"])
+        # The exception is exact: a similar GPIO name is not a USB alias.
+        self.assertEqual("GENERAL_CONTROL", classify("C5_GPIO12_COMMON", set(), set()))
+        self.assertIsNone(pair_key("C5_GPIO12_COMMON"))
+        self.assertEqual(("C5_SERVICE_USB_DX_CONNECTOR", "N"),
+                         pair_key("C5_SERVICE_USB_DM_CONNECTOR"))
+
+    def test_shared_c5_guard_accepts_only_actual_four_endpoints(self):
+        ledger = json.loads((ROOT / self.contract["inputs"]["net_ledger"]).read_text())
+        bindings = json.loads((ROOT / self.contract["inputs"]["net_bindings"]).read_text())
+        self.assertEqual([], c5_shared_pair_errors(ledger["rows"], bindings["projects"]))
+        originals = [row for row in ledger["rows"] if row["net"] in C5_SHARED_USB_PAIR]
+        self.assertEqual(4, len(originals))
+        for index in range(4):
+            with self.subTest(missing=index):
+                rows = copy.deepcopy(originals)
+                rows.pop(index)
+                self.assertTrue(c5_shared_pair_errors(rows, bindings["projects"]))
+            for field in ("project", "sheet", "reference", "instance", "device_id",
+                          "contact", "physical", "disposition", "endpoint", "net"):
+                with self.subTest(index=index, changed=field):
+                    rows = copy.deepcopy(originals)
+                    rows[index][field] = "wrong"
+                    self.assertTrue(c5_shared_pair_errors(rows, bindings["projects"]))
+        self.assertTrue(c5_shared_pair_errors([], bindings["projects"]))
+        self.assertTrue(c5_shared_pair_errors(originals + [originals[0]], bindings["projects"]))
+        swapped = copy.deepcopy(originals)
+        for row in swapped:
+            row["net"] = ("C5_GPIO14_COMMON" if row["net"] == "C5_GPIO13_COMMON"
+                          else "C5_GPIO13_COMMON")
+        self.assertTrue(c5_shared_pair_errors(swapped, bindings["projects"]))
+
+    def test_shared_c5_guard_rejects_wrong_native_alias_or_board(self):
+        ledger = json.loads((ROOT / self.contract["inputs"]["net_ledger"]).read_text())
+        bindings = json.loads((ROOT / self.contract["inputs"]["net_bindings"]).read_text())
+        for name, (polarity, *_rest) in C5_SHARED_USB_PAIR.items():
+            for native in (name, f"/{C5_SHARED_SHEET}/{C5_SHARED_USB_STEM}_{'P' if polarity == 'N' else 'N'}"):
+                with self.subTest(name=name, wrong_alias=native):
+                    projects = copy.deepcopy(bindings["projects"])
+                    projects[C5_SHARED_PROJECT]["canonical_to_kicad"][name] = native
+                    self.assertTrue(c5_shared_pair_errors(ledger["rows"], projects))
+            projects = copy.deepcopy(bindings["projects"])
+            projects["LESHY2-RF-R2"]["canonical_to_kicad"][name] = "unexpected"
+            self.assertTrue(c5_shared_pair_errors(ledger["rows"], projects))
+        self.assertTrue(c5_shared_pair_errors(ledger["rows"], {}))
 
     def test_stackup_identity_and_core_thickness_are_not_ambiguous(self):
         stack = self.audit["stackup_binding"]
@@ -367,6 +442,22 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
             self.assertIn('(constraint disallow via)', text)
             self.assertNotIn('(constraint disallow track via)', text)
 
+    def test_shared_c5_pair_has_real_usb_width_gap_layer_and_via_rules(self):
+        path = ROOT / f"hardware/ecad/kicad/{C5_SHARED_PROJECT}/{C5_SHARED_PROJECT}.kicad_dru"
+        text = path.read_text()
+        rules = text.split('(rule "')
+        for title, constraints in (
+            ("H6 outer USB 90R", ("(layer outer)", "(constraint track_width", "(constraint diff_pair_gap")),
+            ("H6 controlled-impedance tracks stay on outer layers", ("(layer inner)", "(constraint disallow track)")),
+            ("H6 controlled-impedance vias only on reviewed edge launches", ("A.Type == 'Via'", "(constraint disallow via)")),
+        ):
+            selected = [rule for rule in rules if rule.startswith(title)]
+            self.assertEqual(1, len(selected), title)
+            for polarity in ("N", "P"):
+                self.assertIn(f"A.NetName == '/{C5_SHARED_SHEET}/{C5_SHARED_USB_STEM}_{polarity}'", selected[0])
+            for constraint in constraints:
+                self.assertIn(constraint, selected[0])
+
     def test_session_and_drc_guards_parse_machine_artifacts(self):
         self.assertEqual(
             {"/UI/ONE", "PLAIN_TWO"},
@@ -543,6 +634,8 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
                     project["helper_net_count"] + project["omitted_protected_net_count"],
                 )
                 self.assertEqual(project["class_counts"]["GENERAL_CONTROL"], project["helper_net_count"])
+                for polarity in ("N", "P"):
+                    self.assertNotIn(f"(net /{C5_SHARED_SHEET}/{C5_SHARED_USB_STEM}_{polarity}", dsn)
                 self.assertIn("(layer_rule In1.Cu\n      (active off)", dsn)
                 self.assertIn("(layer_rule In4.Cu\n      (active off)", dsn)
                 self.assertIn("(layer_rule In2.Cu\n      (active on)", dsn)

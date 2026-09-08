@@ -25,6 +25,10 @@ Primary-drawing review found TTM top/bottom-view numbering errors, CP0603 port-o
 
 Hand-reviewed UI `GENERAL_CONTROL` proposals cover 9 nets: `C5_TX_LED_A`, `CC_TX_LED_A`, `EXT_TX_LED_A`, `IR_TX_LED_A`, `NRF0_TX_LED_A`, `NRF1_TX_LED_A`, `NRF2_TX_LED_A`, `S3_TX_LED_A`, `VOICE_TX_LED_A`. Together they contain 61 traces of 0.15 mm and 10 through vias of 0.4/0.2 mm. Their vias are outside bodies on both faces; existing copper and every placement are retained. `FAULT_LED_A` is excluded: it belongs to `SAFETY_CONTROL`. The finite net allowlist, geometry hashes, connectivity and native DRC are checked separately: permission to use a routing helper does not automatically admit its result.
 
+## C5 USB/SDIO: corrected routing policy, open control topology
+
+The shared GPIO13/GPIO14 nets now form the native `C5_USB_SDIO_COMMON_N/P` pair and are excluded from ordinary automatic routing. GPIOs, functions and existing copper are unchanged. A separate [mux-control review](h6-r2-c5-mux-control-review.md) found no SEL driver and no way to disconnect the mux while OWNER=0. The alias correction does not fix this schematic defect; SDIO operation and USB/SDIO transitions remain unverified.
+
 ## Current ERC limitation
 
 The production library still uses `passive` for connectable pins; its zero ERC result does not establish supply availability or compatible outputs. Reviewed types are applied only to isolated schematic copies: original and typed XML reference/pin-to-net membership must remain identical, without topology changes. The current [typed ERC](h6-r2-electrical-semantics.md) retains 24 findings: 22 `power_pin_not_driven`, one ACDRV1/ACDRV2 output conflict and one `pin_not_driven` on SA818S H/L. The [source-path triage](../hardware/verification/h6-electrical-source-triage.json) remains `triaged_not_cleared`: source/configuration explanations do not suppress ERC, add unconditional power sources or qualify rail and startup behavior. The electrical gate remains `review_required`; reviewed types have not been promoted to the production library and manufacturing is not authorized.

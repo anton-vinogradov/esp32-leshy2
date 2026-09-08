@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 from pathlib import Path
@@ -15,11 +16,13 @@ ROOT = Path(__file__).resolve().parents[2]
 INSTANCE_PATH = ROOT / "hardware/ecad/generated/H2-R2-native-instance-ledger.json"
 NET_PATH = ROOT / "hardware/ecad/generated/H2-R2-native-net-ledger.json"
 SYMBOL_PATH = ROOT / "hardware/ecad/generated/H2-R2-controlled-symbol-library.json"
+NATIVE_MANIFEST_PATH = ROOT / "hardware/ecad/generated/H2-R2-native-kicad-projects.json"
 OUTPUT = ROOT / "hardware/layout/generated/H6-R2-kicad-net-bindings.json"
 PROJECTS = {
     "LESHY2-UI-R2": ROOT / "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch",
     "LESHY2-RF-R2": ROOT / "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_sch",
 }
+SHEET_FILE = re.compile(r'\(property\s+"Sheetfile"\s+("(?:\\.|[^"\\])*")')
 
 
 def load(path: Path) -> dict:
@@ -28,6 +31,52 @@ def load(path: Path) -> dict:
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def schematic_inventory(projects: dict[str, Path] | None = None) -> set[Path]:
+    """Include project children and traverse Sheetfile even when files vanish."""
+    projects = PROJECTS if projects is None else projects
+    directories = {path.parent.resolve() for path in projects.values()}
+    pending = {path.resolve() for path in projects.values()}
+    pending.update(path.resolve() for directory in directories
+                   for path in directory.rglob("*.kicad_sch"))
+    seen = set()
+    while pending:
+        path = pending.pop()
+        if not any(path.is_relative_to(directory) for directory in directories):
+            raise ValueError("schematic child path leaves the native project directories")
+        if path in seen:
+            continue
+        if not path.is_file() or path.suffix != ".kicad_sch":
+            raise ValueError(f"missing native schematic child: {path.relative_to(ROOT)}")
+        seen.add(path)
+        for match in SHEET_FILE.finditer(path.read_text(encoding="utf-8")):
+            child = json.loads(match.group(1))
+            if not child or "${" in child or Path(child).is_absolute():
+                raise ValueError("unsupported native schematic child path")
+            pending.add((path.parent / child).resolve())
+    return seen
+
+
+def source_paths(root: Path | None = None) -> tuple[Path, ...]:
+    """Bind child labels as well as roots, rejecting a stale native manifest."""
+    root = ROOT if root is None else root
+    def rooted(path):
+        return root / path.relative_to(ROOT)
+    native = load(rooted(NATIVE_MANIFEST_PATH))
+    rows = [row for row in native["generated_files"]
+            if row["path"].endswith(".kicad_sch")]
+    schematics = {(root / row["path"]).resolve(): row["sha256"] for row in rows}
+    if len(schematics) != len(rows):
+        raise ValueError("duplicate native schematic manifest entry")
+    projects = {project: rooted(path) for project, path in PROJECTS.items()}
+    if native.get("status") != "pass" or set(schematics) != schematic_inventory(projects):
+        raise ValueError("native schematic manifest inventory differs from actual project children")
+    for path, expected in schematics.items():
+        if not path.is_file() or sha256(path) != expected:
+            raise ValueError(f"native schematic manifest drift: {path.relative_to(root)}")
+    return (*(rooted(path) for path in (INSTANCE_PATH, NET_PATH, SYMBOL_PATH, NATIVE_MANIFEST_PATH)),
+            *sorted(schematics))
 
 
 def physical_pins_by_contact(symbol: dict) -> dict[str, tuple[str, ...]]:
@@ -141,7 +190,7 @@ def build(ui_netlist: Path, rf_netlist: Path) -> dict:
         "method": "KiCad 10 kicadxml export joined by exact reference/pin to the reviewed H2 native net ledger",
         "source_hashes": {
             str(path.relative_to(ROOT)): sha256(path)
-            for path in (INSTANCE_PATH, NET_PATH, SYMBOL_PATH, *PROJECTS.values())
+            for path in source_paths()
         },
         "projects": {
             "LESHY2-UI-R2": bind_project("LESHY2-UI-R2", ui_netlist),
@@ -159,6 +208,13 @@ def check() -> list[str]:
     errors = []
     if artifact.get("status") != "pass" or artifact.get("marker") != "H6.0.3-R1":
         errors.append("binding identity/status changed")
+    try:
+        required_sources = {str(path.relative_to(ROOT)) for path in source_paths()}
+    except (KeyError, ValueError, OSError) as exc:
+        errors.append(str(exc))
+    else:
+        if set(artifact.get("source_hashes", {})) != required_sources:
+            errors.append("binding source inventory does not cover the current native schematics")
     for relative, expected in artifact.get("source_hashes", {}).items():
         path = ROOT / relative
         if not path.is_file() or sha256(path) != expected:

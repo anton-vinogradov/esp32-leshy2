@@ -415,7 +415,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch",
-      "sha256": "2bb00d5504bf091788d1872d4d75677cc0f76e27aca604c6370ed3d840203051"
+      "sha256": "001ea9c249b9cd4e5ec5d7357f9a5dff8b89ed8dada33baa2648a9a95c3bf32e"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_30_HUB_RP_CORE_SERVICE.kicad_sch",

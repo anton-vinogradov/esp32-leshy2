@@ -16,6 +16,7 @@ from pathlib import Path
 import tempfile
 
 from h6_r2_user_silkscreen import ANTENNA_INTERFACES, antenna_signal_findings, labels
+from h6_r2_kicad_net_bindings import source_paths as net_binding_source_paths
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -433,13 +434,7 @@ def checked_net_bindings(root=ROOT):
             or artifact.get("artifact") != "H6-R2 exact KiCad hierarchical net bindings"
             or artifact.get("errors") != []):
         raise ValueError("KiCad net-binding authority is not a passing artifact")
-    expected_sources = {
-        "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-        "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-        "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-        "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch",
-        "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_sch",
-    }
+    expected_sources = {str(source.relative_to(root)) for source in net_binding_source_paths(root)}
     sources = artifact.get("source_hashes", {})
     if set(sources) != expected_sources:
         raise ValueError("KiCad net-binding source coverage changed")

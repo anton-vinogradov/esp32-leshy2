@@ -19,7 +19,7 @@
     "symbol_library": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
     "symbol_library_sha256": "9952e5cc931552e3ee8246638689adbab41721f70b703e2561277604f7d83d27",
     "kicad_net_bindings": "hardware/layout/generated/H6-R2-kicad-net-bindings.json",
-    "kicad_net_bindings_sha256": "918beb65ce814eb0f8cb0e6a8ca05450c4af19f910905f38436decacc0948d16"
+    "kicad_net_bindings_sha256": "d372c47199c57ec14317a5adb5e9c1a870cba891a46a66e379493fe08ef776c3"
   },
   "summary": {
     "board_count": 2,
@@ -13570,8 +13570,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "unrouted_seed_sha256": "91ce6c13eceb37a2f5a21968d8539921f7f92acab64836c2e4d1ec57ba4f3950",
-      "placement_signature_sha256": "9ef0d1fb5c2ce7fdaaaa2cfd3190cbfa3f6f28be3f4ce2ef027a53a0fbb40ca9",
+      "unrouted_seed_sha256": "5bdbed9e4894bb0529766b5f04e2c6da3334c200b25a2ccdce2429b865a52802",
+      "placement_signature_sha256": "dabeb564f9136b0875b0ad14618993402fa51c160038648cc1b660bcfd675e76",
       "locality": {
         "status": "pass",
         "pair_count": 52,

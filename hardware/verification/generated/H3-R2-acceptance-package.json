@@ -6,8 +6,8 @@
   "baseline": "R2",
   "status": "review_required",
   "source_sha256": {
-    "hardware/verification/generated/H3-R2-crosscheck.json": "72fb72830a8f0d24cfa8e206a780d9ce11f26c77c08a415714e10ccee923c4dc",
-    "hardware/verification/generated/H3-R2-physical-residuals.json": "d586d13ef5b018386edb03491594de720e7b89f9afde4c3b290cc151b6a8fc65",
+    "hardware/verification/generated/H3-R2-crosscheck.json": "4e46d4c54aeca33946d8d092f91acb53a2572c3c34ccd7042937dddae166fec6",
+    "hardware/verification/generated/H3-R2-physical-residuals.json": "f550a094b00f6dade5c293e5d13c8216b54684e79e9c79ee44784bd8cc8b4987",
     "hardware/verification/h3_r2_crosscheck.py": "76c1a872973ff147cdef8badb7993e42f1d4e6954dab171a0772b204da04fbe5",
     "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
   },
@@ -68,8 +68,8 @@
     "production_release_authorized": false,
     "battery_energization_authorized": false,
     "source_sha256": {
-      "hardware/verification/generated/H3-R2-crosscheck.json": "72fb72830a8f0d24cfa8e206a780d9ce11f26c77c08a415714e10ccee923c4dc",
-      "hardware/verification/generated/H3-R2-physical-residuals.json": "d586d13ef5b018386edb03491594de720e7b89f9afde4c3b290cc151b6a8fc65",
+      "hardware/verification/generated/H3-R2-crosscheck.json": "4e46d4c54aeca33946d8d092f91acb53a2572c3c34ccd7042937dddae166fec6",
+      "hardware/verification/generated/H3-R2-physical-residuals.json": "f550a094b00f6dade5c293e5d13c8216b54684e79e9c79ee44784bd8cc8b4987",
       "hardware/verification/h3_r2_crosscheck.py": "76c1a872973ff147cdef8badb7993e42f1d4e6954dab171a0772b204da04fbe5",
       "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
     }

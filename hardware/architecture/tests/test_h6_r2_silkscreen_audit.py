@@ -101,7 +101,10 @@ class NetBindingAuthorityTests(unittest.TestCase):
     def test_current_authority_is_complete_and_hash_bound(self):
         bindings = audit.checked_net_bindings()
         self.assertEqual({"LESHY2-UI-R2", "LESHY2-RF-R2"}, set(bindings["projects"]))
-        self.assertEqual(5, len(bindings["source_hashes"]))
+        self.assertEqual({str(path.relative_to(ROOT)) for path in audit.net_binding_source_paths(ROOT)},
+                         set(bindings["source_hashes"]))
+        self.assertIn("hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch",
+                      bindings["source_hashes"])
 
     def test_stale_or_incomplete_authority_is_not_used(self):
         original = json.loads(audit.NET_BINDINGS.read_text())
@@ -126,7 +129,11 @@ class NetBindingAuthorityTests(unittest.TestCase):
                 else:
                     first, second = list(mapping)[:2]
                     mapping[second] = mapping[first]
-            with self.subTest(case=case), patch.object(audit.json, "loads", return_value=artifact):
+            original_loads = json.loads
+            source_text = audit.NET_BINDINGS.read_text()
+            def modified_binding_only(text, *args, **kwargs):
+                return artifact if text == source_text else original_loads(text, *args, **kwargs)
+            with self.subTest(case=case), patch.object(audit.json, "loads", side_effect=modified_binding_only):
                 with self.assertRaises(ValueError):
                     audit.checked_net_bindings()
 

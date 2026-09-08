@@ -5,7 +5,7 @@
   "status": "pass",
   "source_hashes": {
     "hardware/layout/h6-r2-routing-policy.json": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
-    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "918beb65ce814eb0f8cb0e6a8ca05450c4af19f910905f38436decacc0948d16",
+    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "d372c47199c57ec14317a5adb5e9c1a870cba891a46a66e379493fe08ef776c3",
     "hardware/ecad/generated/H2-R2-native-net-ledger.json": "a6d6d9defa240766644ff5afef2164aefffeaf920ecdfe0a5fdb39c8db2398d9",
     "hardware/verification/h3-r2-load-binding-contract.json": "48d2575032bac09bd8ea276e814c16fbb1f76ca6afe0cea0dd36cee2e8c2a384",
     "hardware/layout/h6-r2-placement-contract.json": "3ec16a6346197e017c0a3185659a0899d89046f353ddbaa077b3a199ad4789fd"
@@ -72,7 +72,7 @@
     "project_net_count": 822,
     "global_canonical_net_count": 788,
     "routing_class_count": 13,
-    "usb_pair_count": 12,
+    "usb_pair_count": 13,
     "external_usb_port_count": 4,
     "display_i8080_net_count": 10,
     "automatic_helper_class_count": 1,
@@ -86,14 +86,14 @@
     "POWER_BRANCH": 22,
     "SWITCHING_NODE": 15,
     "RF_CONTROLLED": 80,
-    "USB_DIFFERENTIAL": 24,
+    "USB_DIFFERENTIAL": 26,
     "DISPLAY_I8080": 10,
     "OSCILLATOR": 12,
     "CLOCKED_DIGITAL": 142,
     "SAFETY_CONTROL": 111,
     "SERIAL_CONTROL": 74,
     "ANALOG_AUDIO_SENSE": 143,
-    "GENERAL_CONTROL": 164
+    "GENERAL_CONTROL": 162
   },
   "boards": {
     "LESHY2-RF-R2": {
@@ -122,16 +122,35 @@
         "POWER_BRANCH": 6,
         "SWITCHING_NODE": 1,
         "RF_CONTROLLED": 22,
-        "USB_DIFFERENTIAL": 14,
+        "USB_DIFFERENTIAL": 16,
         "DISPLAY_I8080": 10,
         "OSCILLATOR": 3,
         "CLOCKED_DIGITAL": 99,
         "SAFETY_CONTROL": 33,
         "SERIAL_CONTROL": 33,
         "ANALOG_AUDIO_SENSE": 21,
-        "GENERAL_CONTROL": 61
+        "GENERAL_CONTROL": 59
       }
     }
+  },
+  "shared_usb_sdio_pair": {
+    "project": "LESHY2-UI-R2",
+    "pair_stem": "C5_USB_SDIO_COMMON",
+    "members": {
+      "N": {
+        "canonical_net": "C5_GPIO13_COMMON",
+        "sdio_signal": "DAT3",
+        "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_USB_SDIO_COMMON_N"
+      },
+      "P": {
+        "canonical_net": "C5_GPIO14_COMMON",
+        "sdio_signal": "DAT2",
+        "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_USB_SDIO_COMMON_P"
+      }
+    },
+    "routing_class": "USB_DIFFERENTIAL",
+    "route_mode": "manual_only",
+    "scope": "USB coupled-pair geometry applies to these mux commons; USB and single-ended SDIO signal integrity, DAT3/DAT2 skew against the complete SDIO group, mux state and switching sequence remain separate review obligations. This is not an additional external USB port."
   },
   "automatic_helper": {
     "allowed_classes": [
@@ -6509,10 +6528,10 @@
     {
       "project": "LESHY2-UI-R2",
       "canonical_net": "C5_GPIO13_COMMON",
-      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_GPIO13_COMMON",
-      "routing_class": "GENERAL_CONTROL",
-      "route_mode": "automatic_helper_allowed_then_manual_review",
-      "geometry_release": "H6.0.2",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_USB_SDIO_COMMON_N",
+      "routing_class": "USB_DIFFERENTIAL",
+      "route_mode": "manual_only",
+      "geometry_release": "H6.0.4",
       "endpoint_roles": [
         "gpio",
         "signal"
@@ -6521,10 +6540,10 @@
     {
       "project": "LESHY2-UI-R2",
       "canonical_net": "C5_GPIO14_COMMON",
-      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_GPIO14_COMMON",
-      "routing_class": "GENERAL_CONTROL",
-      "route_mode": "automatic_helper_allowed_then_manual_review",
-      "geometry_release": "H6.0.2",
+      "kicad_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_USB_SDIO_COMMON_P",
+      "routing_class": "USB_DIFFERENTIAL",
+      "route_mode": "manual_only",
+      "geometry_release": "H6.0.4",
       "endpoint_roles": [
         "gpio",
         "signal"

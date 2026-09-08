@@ -21,6 +21,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 CONTRACT_PATH = ROOT / "hardware/ecad/h2-r2-native-kicad-contract.json"
 UUID_NAMESPACE = uuid.UUID("55d78bc6-bb67-4c34-aa29-29952908dcf4")
+# These two canonical GPIO identities are the USB/SDIO switch's shared side.
+# Preserve the canonical contract while exposing one native USB routing pair.
+USB_SHARED_NATIVE_ALIASES = {
+    "C5_GPIO13_COMMON": "C5_USB_SDIO_COMMON_N",
+    "C5_GPIO14_COMMON": "C5_USB_SDIO_COMMON_P",
+}
 
 
 def load(path: Path) -> dict:
@@ -49,8 +55,11 @@ def kicad_net_name(canonical: str) -> str:
     The reviewed cross-domain contract keeps the conventional DP/DM spelling.
     KiCad, however, discovers differential pairs only from a common basename
     followed by P/N (or +/-).  Move the polarity marker to the physical label's
-    final suffix without changing the canonical net identity.
+    final suffix without changing the canonical net identity. The exact C5
+    shared-side aliases also retain their SDIO function in the native basename.
     """
+    if canonical in USB_SHARED_NATIVE_ALIASES:
+        return USB_SHARED_NATIVE_ALIASES[canonical]
     match = re.match(r"^(.*(?:USB2|USB))_D([PM])(.*)$", canonical)
     if not match:
         return canonical

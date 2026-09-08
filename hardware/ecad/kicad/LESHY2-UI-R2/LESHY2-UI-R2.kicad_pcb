@@ -14536,7 +14536,7 @@
 			(size 1.5 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_GPIO14_COMMON")
+			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_USB_SDIO_COMMON_P")
 			(uuid "093b6a85-f773-560a-8b9d-b70df6d020e0")
 		)
 		(pad "4" smd roundrect
@@ -14544,7 +14544,7 @@
 			(size 1.5 0.35)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.25)
-			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_GPIO13_COMMON")
+			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_USB_SDIO_COMMON_N")
 			(uuid "25f1ccc5-23a7-55aa-8bf0-acaec639a334")
 		)
 		(pad "5" smd roundrect
@@ -88310,7 +88310,7 @@
 			(size 1.5 0.9)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.2)
-			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_GPIO13_COMMON")
+			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_USB_SDIO_COMMON_N")
 			(uuid "9d2cfa74-7217-5de3-a499-08827dd5a344")
 		)
 		(pad "14" smd roundrect
@@ -88318,7 +88318,7 @@
 			(size 1.5 0.9)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.2)
-			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_GPIO14_COMMON")
+			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_USB_SDIO_COMMON_P")
 			(uuid "f77ba8d8-a137-5c2f-b858-1c285f2c4893")
 		)
 		(pad "15" smd roundrect

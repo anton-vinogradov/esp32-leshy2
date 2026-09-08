@@ -6,9 +6,9 @@
   "phase_complete": false,
   "sources": {
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "8943d5647edd75ed969741fc463106964866e804d463bd69ed6b7183e4562354",
+    "routing_policy_sha256": "a29f96dfcebbe1f45d3e102a9962787e1eabf2f7fa05e6291409936f1223ca84",
     "manual_copper": "hardware/layout/generated/H6-R2-manual-copper-audit.json",
-    "manual_copper_sha256": "18162538de8bbd30db4b52dbb9bba4e2b929e99ee1741f28465b13abe4d163e6"
+    "manual_copper_sha256": "4493fa3b54d623e4ce7fcb4e6a8e7a86d15eb0f95e27ffbc9fc55bd00a269871"
   },
   "summary": {
     "board_count": 2,
@@ -49,7 +49,7 @@
     {
       "project": "LESHY2-UI-R2",
       "board": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "board_sha256": "f49fba8a1fa6c1e7b3170e0e296aa28be57b83851fadeca1c3dfb4a302594fec",
+      "board_sha256": "feac6ac462d47d84b011f89c7f0c425e45d7264b9e9764f61757e3b95d0092fe",
       "board_size_mm": [
         80.05,
         150.05
@@ -93,8 +93,8 @@
           "remaining_connection_count": 23
         },
         "USB_DIFFERENTIAL": {
-          "net_count": 14,
-          "remaining_connection_count": 22
+          "net_count": 16,
+          "remaining_connection_count": 24
         },
         "DISPLAY_I8080": {
           "net_count": 10,
@@ -121,25 +121,25 @@
           "remaining_connection_count": 46
         },
         "GENERAL_CONTROL": {
-          "net_count": 61,
-          "remaining_connection_count": 133
+          "net_count": 59,
+          "remaining_connection_count": 131
         }
       },
       "drc": {
-        "report_sha256": "c253c5c3e15f7e8404780de079d385c118d6c1429d94dcbc6b4062873896ef5b",
+        "report_sha256": "e5f9e77633c1f5d312b66f7ac97d840e41e1c44c6826b526f189e3876c00a60e",
         "provenance": {
           "schema_version": 2,
           "project": "LESHY2-UI-R2",
-          "started_at_utc": "2026-09-08T12:37:19+00:00",
-          "completed_at_utc": "2026-09-08T12:37:21+00:00",
+          "started_at_utc": "2026-09-08T13:07:34+00:00",
+          "completed_at_utc": "2026-09-08T13:07:36+00:00",
           "inputs_sha256": {
-            "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_dru": "ae23b1e0695647d7285e154d5c316004a212c0e49b71cd5349b0c16bc031d616",
-            "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "f49fba8a1fa6c1e7b3170e0e296aa28be57b83851fadeca1c3dfb4a302594fec",
+            "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_dru": "f153eb1131a595ee69f25a39e69b26eedd7b3045f8f6a8b81e86172bd46d3a3e",
+            "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "feac6ac462d47d84b011f89c7f0c425e45d7264b9e9764f61757e3b95d0092fe",
             "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pro": "da3ee7fd223b0d7a7d0f4d443996fdef1edfca396e6b4f42165524c1fc5036c9",
             "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch": "43910ab937fd3f95a140f664d6fbaca72d8dc6e9bf60cf46e5eae24158eddf50",
             "hardware/ecad/kicad/LESHY2-UI-R2/UI_10_S3_DISPLAY_TOUCH.kicad_sch": "b1649b1fa5f5fef7556dbd3268846828abd7f80b5c28350da6cf1000ddad7a06",
             "hardware/ecad/kicad/LESHY2-UI-R2/UI_11_STORAGE_CONTROLS_INDICATORS.kicad_sch": "4a171483c25661211bfd102198ff44a9492dbe93947b4638816d2bf1ebb78396",
-            "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch": "2bb00d5504bf091788d1872d4d75677cc0f76e27aca604c6370ed3d840203051",
+            "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch": "001ea9c249b9cd4e5ec5d7357f9a5dff8b89ed8dada33baa2648a9a95c3bf32e",
             "hardware/ecad/kicad/LESHY2-UI-R2/UI_30_HUB_RP_CORE_SERVICE.kicad_sch": "278e35c95ecc151f2e15b1d80311a28715603448e639181eeef9aba08f153bc3",
             "hardware/ecad/kicad/LESHY2-UI-R2/UI_31_NRF24_X3_TX_EVIDENCE.kicad_sch": "070ac7857d6c10260ea8ae38d3b86f2ee6d8a8001ec370a575fb83ddddc1d4bb",
             "hardware/ecad/kicad/LESHY2-UI-R2/UI_40_INTERBOARD_M1.kicad_sch": "424390520ba25ce5ae9c4466c4a54c014fd17a53cb7b58fda7734d31e2e95a17",
@@ -199,7 +199,7 @@
             "hardware/ecad/libraries/leshy2.kicad_sym": "a0a49f1d2be3f8c1876131e7d43bd385eb6754cd2514a6b7fba414a0e9f97842",
             "hardware/ecad/libraries/leshy2_r2.kicad_sym": "239115b4c3cadee17797b32579669c6b2a653b29959a2febd4a03044557573f2"
           },
-          "report_sha256": "c253c5c3e15f7e8404780de079d385c118d6c1429d94dcbc6b4062873896ef5b",
+          "report_sha256": "e5f9e77633c1f5d312b66f7ac97d840e41e1c44c6826b526f189e3876c00a60e",
           "command": [
             "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
             "pcb",
@@ -209,11 +209,11 @@
             "--severity-all",
             "--schematic-parity",
             "-o",
-            "work/encoder-main-review/.h6-drc-gjjj7_2m/ui-drc.json",
+            "work/c5-alias-review/.h6-drc-2a1i9tin/ui-drc.json",
             "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb"
           ],
           "command_working_directory": "repository_root",
-          "published_report_path": "work/encoder-main-review/ui-drc.json",
+          "published_report_path": "work/c5-alias-review/ui-drc.json",
           "schematic_parity_requested": true,
           "required_report_fields": [
             "violations",
@@ -234,7 +234,7 @@
           "kicad_version": "10.0.5"
         },
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-08T15:37:21",
+        "checked_at": "2026-09-08T16:07:36",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,
@@ -325,12 +325,12 @@
         }
       },
       "drc": {
-        "report_sha256": "722f825b2dc661a7143812abf88d422a548ce4d41fe7fc634bc9c4a149dfa861",
+        "report_sha256": "94deb46b0a9ca1d0c9ce28790031e583822679f0466c93aa062c34ee0920420e",
         "provenance": {
           "schema_version": 2,
           "project": "LESHY2-RF-R2",
-          "started_at_utc": "2026-09-08T12:26:10+00:00",
-          "completed_at_utc": "2026-09-08T12:26:15+00:00",
+          "started_at_utc": "2026-09-08T13:07:36+00:00",
+          "completed_at_utc": "2026-09-08T13:07:41+00:00",
           "inputs_sha256": {
             "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_dru": "7cf89d80b417a824503f6f41f954d6f38e65978ce8ca207aab9a30318abd6bb9",
             "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "e11215ffe5cc25645aa091872af93540c121e84d83def5dae3f39c03c782fd32",
@@ -402,7 +402,7 @@
             "hardware/ecad/libraries/leshy2.kicad_sym": "a0a49f1d2be3f8c1876131e7d43bd385eb6754cd2514a6b7fba414a0e9f97842",
             "hardware/ecad/libraries/leshy2_r2.kicad_sym": "239115b4c3cadee17797b32579669c6b2a653b29959a2febd4a03044557573f2"
           },
-          "report_sha256": "722f825b2dc661a7143812abf88d422a548ce4d41fe7fc634bc9c4a149dfa861",
+          "report_sha256": "94deb46b0a9ca1d0c9ce28790031e583822679f0466c93aa062c34ee0920420e",
           "command": [
             "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
             "pcb",
@@ -412,11 +412,11 @@
             "--severity-all",
             "--schematic-parity",
             "-o",
-            "work/encoder-main-review/.h6-drc-jhlni2z6/rf-drc.json",
+            "work/c5-alias-review/.h6-drc-dr_kpq02/rf-drc.json",
             "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb"
           ],
           "command_working_directory": "repository_root",
-          "published_report_path": "work/encoder-main-review/rf-drc.json",
+          "published_report_path": "work/c5-alias-review/rf-drc.json",
           "schematic_parity_requested": true,
           "required_report_fields": [
             "violations",
@@ -437,7 +437,7 @@
           "kicad_version": "10.0.5"
         },
         "kicad_version": "10.0.5",
-        "checked_at": "2026-09-08T15:26:15",
+        "checked_at": "2026-09-08T16:07:41",
         "violation_count": 0,
         "violation_types": [],
         "schematic_parity_error_count": 0,

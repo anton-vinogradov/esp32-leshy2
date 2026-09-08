@@ -64,6 +64,40 @@ EXTERNAL_USB_PAIR_STEMS = {
     "USB_DX_CONNECTOR",
 }
 
+# The mux commons carry service USB D-/D+ OR SDIO DAT3/DAT2. Their canonical
+# names deliberately retain GPIO ownership, so substring matching misses them.
+# USB geometry is the protective class; SDIO timing still needs group review.
+C5_SHARED_USB_PAIR = {
+    "C5_GPIO13_COMMON": ("N", "DAT3", "GPIO13", "13", "D_MINUS", "4"),
+    "C5_GPIO14_COMMON": ("P", "DAT2", "GPIO14", "14", "D_PLUS", "3"),
+}
+C5_SHARED_USB_STEM = "C5_USB_SDIO_COMMON"
+C5_SHARED_PROJECT = "LESHY2-UI-R2"
+C5_SHARED_SHEET = "UI_20_C5_WIFI_IR_SERVICE"
+
+
+def c5_shared_pair_errors(ledger_rows: list[dict], projects: dict) -> list[str]:
+    """Guard all four exact endpoints and native pair names, not only a count."""
+    errors = []
+    mappings = projects.get(C5_SHARED_PROJECT, {}).get("canonical_to_kicad", {})
+    for name, (polarity, _sdio, gpio, module_pad, mux_contact, mux_pad) in C5_SHARED_USB_PAIR.items():
+        expected = {
+            (C5_SHARED_PROJECT, C5_SHARED_SHEET, "U14", "c5", "esp32_c5_wroom_1u_n8r8", gpio, module_pad, "connected", f"c5.{gpio}"),
+            (C5_SHARED_PROJECT, C5_SHARED_SHEET, "U22", "c5_service_usb_switch", "onsemi_fsusb42_mux", mux_contact, mux_pad, "connected", f"c5_service_usb_switch.{mux_contact}"),
+        }
+        members = [row for row in ledger_rows if row.get("net") == name]
+        keys = ("project", "sheet", "reference", "instance", "device_id", "contact", "physical", "disposition", "endpoint")
+        actual = [tuple(row.get(key) for key in keys) for row in members]
+        if len(actual) != 2 or set(actual) != expected:
+            errors.append(f"{name}: shared USB/SDIO exact endpoint identity changed")
+        native = f"/{C5_SHARED_SHEET}/{C5_SHARED_USB_STEM}_{polarity}"
+        if mappings.get(name) != native:
+            errors.append(f"{name}: native USB common pair name must be {native}")
+        if any(name in data.get("canonical_to_kicad", {}) for project, data in projects.items()
+               if project != C5_SHARED_PROJECT):
+            errors.append(f"{name}: shared USB/SDIO alias appeared on another board")
+    return errors
+
 RF_EXACT = {
     "AIR_LO_AC",
     "AIR_LO_CLK_RAW",
@@ -109,7 +143,8 @@ def is_rf(name: str) -> bool:
 
 
 def is_usb(name: str) -> bool:
-    return "USB_DM" in name or "USB_DP" in name or name.startswith(("USB2_DM", "USB2_DP"))
+    return (name in C5_SHARED_USB_PAIR or "USB_DM" in name or "USB_DP" in name
+            or name.startswith(("USB2_DM", "USB2_DP")))
 
 
 def is_oscillator(name: str) -> bool:
@@ -199,6 +234,8 @@ def classify(name: str, primary_power: set[str], all_rails: set[str]) -> str:
 
 
 def pair_key(name: str) -> tuple[str, str] | None:
+    if name in C5_SHARED_USB_PAIR:
+        return C5_SHARED_USB_STEM, C5_SHARED_USB_PAIR[name][0]
     for negative, positive in (("USB_DM", "USB_DP"), ("USB2_DM", "USB2_DP")):
         if negative in name:
             return name.replace(negative, "USB_DX"), "N"
@@ -223,6 +260,7 @@ def build() -> dict:
 
     if bindings["status"] != "pass" or ledger["status"] != "pass":
         errors.append("one or more exact net sources are not passing")
+    errors.extend(c5_shared_pair_errors(ledger["rows"], bindings["projects"]))
     if contract["stackup_binding"]["official_stackup_id"] != placement["board"]["factory_stack_candidate"]["official_stackup_id"]:
         errors.append("routing and placement stackup identities differ")
     if contract["stackup_binding"]["core_each_mm"] != placement["board"]["factory_stack_candidate"]["core_each_mm"]:
@@ -332,6 +370,16 @@ def build() -> dict:
         },
         "class_counts": {name: total_counts[name] for name in contract["class_order"]},
         "boards": board_counts,
+        "shared_usb_sdio_pair": {
+            "project": C5_SHARED_PROJECT,
+            "pair_stem": C5_SHARED_USB_STEM,
+            "members": {polarity: {"canonical_net": name, "sdio_signal": sdio,
+                                    "kicad_net": bindings["projects"].get(C5_SHARED_PROJECT, {}).get("canonical_to_kicad", {}).get(name)}
+                        for name, (polarity, sdio, *_pins) in C5_SHARED_USB_PAIR.items()},
+            "routing_class": "USB_DIFFERENTIAL",
+            "route_mode": "manual_only",
+            "scope": "USB coupled-pair geometry applies to these mux commons; USB and single-ended SDIO signal integrity, DAT3/DAT2 skew against the complete SDIO group, mux state and switching sequence remain separate review obligations. This is not an additional external USB port.",
+        },
         "automatic_helper": contract["automatic_helper"],
         "rows": rows,
         "authorization": contract["authorization"],
@@ -364,7 +412,8 @@ def doc(audit: dict, bootstrap: dict, *, ru: bool) -> str:
             "- абстрактные RF-, safety-, ESD- и силовые ground-якоря физически сведены в сплошной `POWER_GROUND`; отдельной остаётся только `AUDIO_GROUND`, соединённая с ним явной 0-Ω перемычкой `R172`;\n"
             "- текущий калькулятор JLCPCB задаёт внешнюю RF CPWG 50 Ом как 5,31 mil ширины / 6 mil до боковой меди, а USB 90 Ом — как 5,31 mil ширины / 6 mil между линиями;\n"
             f"- ровно {audit['summary']['reviewed_rf_edge_transition_count']} внешних RF-трактов могут иметь по одному переходу 0,50/0,25 мм между внутренней B.Cu цепью и RF-пятой торцевого SMA на F.Cu; для всех остальных controlled-RF сетей via запрещены;\n"
-            "- канонические `DP/DM` сохранены в контрактах, но физические KiCad-сети заканчиваются на `_P/_N`, поэтому штатный дифференциальный роутер видит все 12 пар;\n"
+            f"- канонические имена сохранены в контрактах, но физические USB-сети KiCad заканчиваются на `_P/_N`, поэтому штатный дифференциальный роутер распознаёт все {audit['summary']['usb_pair_count']} пар;\n"
+            "- общие линии C5 `GPIO13` (USB D− / SDIO DAT3) и `GPIO14` (USB D+ / SDIO DAT2) также относятся к `USB_DIFFERENTIAL/manual_only`: проверяются четыре точных контакта и пара `C5_USB_SDIO_COMMON_N/P`; это не пятый USB-порт. Геометрия USB не заменяет проверку целостности сигналов USB и отдельных линий SDIO, временных параметров всей группы SDIO и последовательности переключения мультиплексора;\n"
             "- результат автотрассировки не принимается без импорта в KiCad, визуального ревью и штатного DRC; полнота соединений проверяется полным native connectivity count, а не ограниченным 499 строками JSON-списком DRC.\n\n"
             "## Одноразовая рабочая область помощника\n\n"
             "`hardware/layout/h6_r2_routing_workspace.py` экспортирует временные DSN без описаний защищённых сетей. "
@@ -428,7 +477,8 @@ def doc(audit: dict, bootstrap: dict, *, ru: bool) -> str:
             "- abstract RF, safety, ESD and power-ground anchors are physically canonicalized onto the solid `POWER_GROUND`; only `AUDIO_GROUND` remains local and joins it through explicit 0-ohm link `R172`;\n"
             "- the current JLCPCB calculator sets outer 50-ohm RF CPWG to 5.31-mil width / 6-mil lateral copper gap and 90-ohm USB to 5.31-mil width / 6-mil pair gap;\n"
             f"- exactly {audit['summary']['reviewed_rf_edge_transition_count']} external RF paths may use one 0.50/0.25-mm transition between the inner-face B.Cu chain and the edge-launch SMA RF land on F.Cu; vias remain forbidden on every other controlled-RF net;\n"
-            "- canonical `DP/DM` identities remain in the contracts, while physical KiCad net names end in `_P/_N`, allowing the native differential router to discover all 12 pairs;\n"
+            f"- canonical names remain in contracts, while physical USB nets end in `_P/_N`, so the native differential router recognizes all {audit['summary']['usb_pair_count']} pairs;\n"
+            "- C5 commons `GPIO13` (USB D− / SDIO DAT3) and `GPIO14` (USB D+ / SDIO DAT2) also use `USB_DIFFERENTIAL/manual_only`: all four exact endpoints and the native `C5_USB_SDIO_COMMON_N/P` pair are checked; this is not a fifth USB port. USB geometry does not replace USB/single-ended SDIO signal-integrity, whole-group SDIO timing or mux-switching-sequence review;\n"
             "- no automatic result is accepted before KiCad import, visual review and native DRC; completeness uses the full native connectivity count rather than the DRC JSON list capped at 499 rows.\n\n"
             "## Disposable helper workspace\n\n"
             "`hardware/layout/h6_r2_routing_workspace.py` exports temporary DSNs without the protected net definitions. "
