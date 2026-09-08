@@ -1,6 +1,8 @@
 """Check the immutable 9 September inventory audit, not replacement approval."""
 
+import ast
 import json
+import re
 from pathlib import Path
 import unittest
 
@@ -65,6 +67,39 @@ class ComponentDiversityAuditTests(unittest.TestCase):
             self.assertIn("SN74LVC1G3157", page)
             self.assertIn("0402WGF1002TCE", page)
             self.assertIn(name, (ROOT / f"README{suffix}.md").read_text())
+
+    def test_current_usb_reference_coordinates_match_intent_and_both_pages(self):
+        expected = {
+            ("UI", "J11"): 14.87, ("UI", "J9"): 26.1,
+            ("RF", "J1"): 16.47, ("RF", "J4"): 37.47,
+        }
+        # Inspect the literal native-intent mapping without importing pcbnew or
+        # treating prose as placement authority. In particular J9/J11 cannot be
+        # exchanged merely because both component counts still equal two.
+        source = ROOT / "hardware/layout/h6_r2_placement_intent.py"
+        tree = ast.parse(source.read_text())
+        loops = [
+            node for node in ast.walk(tree)
+            if isinstance(node, ast.For) and isinstance(node.target, ast.Tuple)
+            and [getattr(item, "id", None) for item in node.target.elts]
+            == ["board", "ref", "x"]
+        ]
+        self.assertEqual(1, len(loops))
+        self.assertIsInstance(loops[0].iter, ast.Tuple)
+        literal = []
+        for row in loops[0].iter.elts:
+            self.assertIsInstance(row, ast.Tuple)
+            self.assertEqual(3, len(row.elts))
+            board, reference, x = row.elts
+            self.assertIsInstance(board, ast.Name)
+            literal.append(((board.id.upper(), ast.literal_eval(reference)), ast.literal_eval(x)))
+        self.assertEqual(4, len(literal))
+        self.assertEqual(expected, dict(literal))
+        for suffix in ("", ".ru"):
+            page = (ROOT / "docs" / f"h6-r2-component-unification{suffix}.md").read_text()
+            pairs = re.findall(r"\b(UI|RF) (J\d+) = (\d+(?:\.\d+)?)", page)
+            self.assertEqual(4, len(pairs))
+            self.assertEqual(expected, {(board, ref): float(x) for board, ref, x in pairs})
 
 
 if __name__ == "__main__":

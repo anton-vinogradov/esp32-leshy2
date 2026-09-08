@@ -21,7 +21,7 @@
     "adi_ad8314armz_reel": ["det_nrf0", "det_nrf1", "det_nrf2", "det_cc", "det_voice", "det_voice_v"],
     "alps_skrtlae010": ["s3_reset_button", "s3_boot_button", "c5_reset_button", "c5_boot_button", "hub_rp_reset_button", "hub_rp_boot_button", "rf_rp_reset_button", "rf_rp_boot_button"],
     "gct_rfpc_sma31_fn_175_a": ["receiver_fmsw_external_sma", "receiver_amlw_external_sma", "nrf0_external_sma", "nrf1_external_sma", "nrf2_external_sma", "cc_external_sma", "voice_external_sma", "voice_v_external_sma"],
-    "gct_usb4105_gf_a": ["c5_service_usb_connector", "hub_rp_service_usb_connector", "rf_rp_service_usb_connector"],
+    "gct_usb4105_gf_a": ["product_usb_connector", "c5_service_usb_connector", "hub_rp_service_usb_connector", "rf_rp_service_usb_connector"],
     "hirose_fh34srj_50s_0_5sh_50": ["display_connector"],
     "onsemi_fsusb42_mux": ["c5_service_usb_switch", "hub_rp_service_usb_switch", "rf_rp_service_usb_switch"],
     "pui_as02404po": ["speaker"],

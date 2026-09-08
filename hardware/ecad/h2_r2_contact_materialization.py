@@ -248,13 +248,13 @@ def build() -> dict:
     stale_contract_ids = sorted(used_overrides - board_ids)
     if stale_contract_ids:
         errors.append(f"contract references non-board device groups: {stale_contract_ids}")
-    if len(board_rows) != 245:
-        errors.append("expected exactly 245 board component groups")
+    if len(board_rows) != 244:
+        errors.append("expected exactly 244 board component groups")
     logical_contact_count = sum(row["logical_contact_count"] for row in rows)
     source_ledger_contact_count = ledger.get("summary", {}).get("logical_contact_count")
-    if logical_contact_count != 1557 or source_ledger_contact_count != 1616:
+    if logical_contact_count != 1540 or source_ledger_contact_count != 1599:
         errors.append(
-            "expected 1557 board contacts inside the reviewed 1616-contact total ledger (unused former audio NC6 removed)"
+            "expected 1540 board contacts inside the reviewed 1599-contact total ledger (USB product/service exact-device groups consolidated)"
         )
     if mapped_contact_count + external_contact_count != logical_contact_count:
         errors.append("contact disposition accounting does not balance")

@@ -17,21 +17,22 @@ class H3R2MethodContractTests(unittest.TestCase):
     def test_complete_method_and_rule_surface(self):
         summary = self.result["summary"]
         self.assertEqual("pass", self.result["status"])
-        self.assertEqual(251, summary["parameter_rows"])
-        self.assertEqual(251, summary["assigned_parameter_rows"])
+        self.assertEqual(250, summary["parameter_rows"])
+        self.assertEqual(250, summary["assigned_parameter_rows"])
         self.assertEqual(9, summary["parameter_classes"])
         self.assertEqual(7, summary["workstreams"])
         self.assertEqual(9, summary["methods"])
         self.assertEqual(12, summary["pass_fail_rules"])
-        # Two WBC pin-5 contacts are inherent NC, not RF extraction obligations.
-        self.assertEqual(174, summary["explicit_unresolved_until_extraction"])
+        # The retired JAE group is gone; the shared GCT group now has a
+        # manufacturer-backed structured seed. Neither is an extraction gap.
+        self.assertEqual(172, summary["explicit_unresolved_until_extraction"])
         self.assertEqual(0, summary["open_method_questions"])
         self.assertEqual(0, summary["errors"])
 
     def test_every_assignment_is_fail_closed_and_owned(self):
         known = {row["id"] for row in self.result["methods"]}
         assignments = self.result["parameter_method_assignments"]
-        self.assertEqual(251, len(assignments))
+        self.assertEqual(250, len(assignments))
         for row in assignments:
             self.assertTrue(row["owner_workstreams"], row["device_id"])
             self.assertTrue(row["method_ids"], row["device_id"])
@@ -55,7 +56,7 @@ class H3R2MethodContractTests(unittest.TestCase):
         for relative in ("docs/verification-methods.md", "docs/verification-methods.ru.md"):
             page = (ROOT / relative).read_text(encoding="utf-8")
             self.assertIn("H3-R2.0.3", page, relative)
-            self.assertIn("251", page, relative)
+            self.assertIn("250", page, relative)
             self.assertNotIn("historical R1", page, relative)
 
 

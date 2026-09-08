@@ -2,24 +2,25 @@
   "schema_version": 1,
   "artifact": "H5-R2-current-route-revalidation",
   "marker": "H5-R2.1",
-  "checked_on": "2026-09-08",
-  "check_scope": "Current inventory reconciliation and three reviewed interface replacements; this date does not renew every retained stock/price snapshot.",
+  "checked_on": "2026-09-09",
+  "check_scope": "Current inventory reconciliation, retained three reviewed interface replacements and user-confirmed four-port GCT USB-C unification. Only the GCT factory record was rechecked on this date; other stock/price snapshots retain their original dates.",
   "status": "reviewed_with_one_order_time_global_sourcing_gate",
   "inputs": {
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "74c8a559f245a231bb567ad6f7f069fab053e33fb3940636d2a72a42f7635ed8",
-    "hardware/architecture/devices.json": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
-    "hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json": "2a4d71b6ebe61b06ff86fa83647e65451a57908c6b030bf00af390f5426f33db",
-    "hardware/product-design/generated/H1-R2-cost-audit.json": "42f359135c5d3365150b880971a7e639fe2e69f9c7c2406da3fbe0ef6b288a46"
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "1e899cfca17f311309d1add013d0feb3f14f1bc2d4679e0c61c5785268fda3db",
+    "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9",
+    "hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json": "6d43cea9c21d44d374ae8ef8243a88e8d0c180e5d74a7602e74671dc16554e31",
+    "hardware/product-design/generated/H1-R2-cost-audit.json": "8619846ee4730f1b6d0f1686c137d1ecfc26f8cf2725369770a64eed589ae312",
+    "hardware/verification/jlcpcb-usb-unification-2026-09-09.json": "b2e6fd0d7df4cfba16dbf2dd758f02af74c063bd1a9dc8cb4b59eff12673adbd"
   },
   "summary": {
-    "component_groups": 249,
+    "component_groups": 248,
     "component_articles": 1216,
-    "legacy_routes_reused": 206,
+    "legacy_routes_reused": 205,
     "new_or_replaced_routes": 43,
     "current_global_sourcing_gates": 1,
     "route_counts": {
-      "validated_h5_r1_J0": 120,
-      "jlcpcb_preorder": 4,
+      "validated_h5_r1_J0": 118,
+      "jlcpcb_preorder": 5,
       "jlcpcb_exact_part": 83,
       "validated_h5_r1_J2": 26,
       "jlcpcb_global_sourcing_required": 1,
@@ -28,9 +29,9 @@
       "owner_supplied_not_factory": 1
     },
     "unmapped_groups": 0,
-    "known_electronics_usd": 312.0383,
+    "known_electronics_usd": 311.3856,
     "known_external_antennas_usd": 138.3166,
-    "known_combined_usd": 450.3549,
+    "known_combined_usd": 449.7022,
     "unpriced_component_groups": 5,
     "unpriced_antenna_groups": 2
   },
@@ -441,15 +442,27 @@
     {
       "device_id": "gct_usb4105_gf_a",
       "mpn": "GCT USB4105-GF-A",
-      "quantity_per_product": 3,
+      "quantity_per_product": 4,
       "scope": "base_product",
-      "route_class": "validated_h5_r1_J0",
-      "jlcpcb_part_number": null,
-      "evidence_url": "https://www.digikey.com/en/products/detail/gct/USB4105-GF-A/11198510",
-      "evidence_checked": "2026-08-19",
+      "route_class": "jlcpcb_preorder",
+      "jlcpcb_part_number": "C3020560",
+      "evidence_url": "https://jlcpcb.com/partdetail/GlobalConnectorTechnology-USB4105_GF_A/C3020560",
+      "evidence_checked": "2026-09-09",
       "legacy_h5_route": "J0",
       "legacy_h5_status": "in_stock",
-      "order_time_recheck": true
+      "order_time_recheck": true,
+      "fresh_factory_snapshot": {
+        "source": "hardware/verification/jlcpcb-usb-unification-2026-09-09.json",
+        "checked_at_utc": "2026-09-08T21:51:23Z",
+        "stock": 1044,
+        "minimum_purchase_quantity": 9,
+        "estimated_unit_price_usd_at_minimum": 1.0656,
+        "estimated_purchase_subtotal_usd": 9.59,
+        "assembly_type": "SMT Assembly",
+        "assembly_difficulty": "High",
+        "route": "Stock-backed pre-order into the JLCPCB private parts library for Standard PCBA; not represented as direct assembly-stock MOQ 1",
+        "is_order_or_reservation": false
+      }
     },
     {
       "device_id": "hirose_dm3at_sf_pejm5",
@@ -527,19 +540,6 @@
       "evidence_checked": "2026-08-18",
       "legacy_h5_route": "J2",
       "legacy_h5_status": "not_matched",
-      "order_time_recheck": true
-    },
-    {
-      "device_id": "jae_dx07s016ja1r1500",
-      "mpn": "JAE DX07S016JA1R1500",
-      "quantity_per_product": 1,
-      "scope": "base_product",
-      "route_class": "validated_h5_r1_J0",
-      "jlcpcb_part_number": null,
-      "evidence_url": "https://products.jae.com/jp/ja/connectors/category/io/dx07-receptacle/dx07s016ja1r1500/",
-      "evidence_checked": "2026-08-18",
-      "legacy_h5_route": "J0",
-      "legacy_h5_status": "in_stock",
       "order_time_recheck": true
     },
     {

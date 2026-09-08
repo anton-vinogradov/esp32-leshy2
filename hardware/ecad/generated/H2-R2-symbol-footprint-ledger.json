@@ -6,11 +6,11 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "e928c8f337a73005ace55331c145db8199340d23fa54a6806fa6c5619fdd8040"
+      "sha256": "1e899cfca17f311309d1add013d0feb3f14f1bc2d4679e0c61c5785268fda3db"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974"
+      "sha256": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9"
     }
   },
   "historical_hint_sources": [
@@ -160,18 +160,18 @@
     }
   ],
   "summary": {
-    "component_group_count": 251,
-    "board_component_group_count": 245,
+    "component_group_count": 250,
+    "board_component_group_count": 244,
     "explicit_non_pcba_group_count": 6,
-    "symbol_identity_count": 245,
-    "footprint_identity_count": 245,
-    "logical_contact_count": 1616,
-    "historical_package_hints_reconciled": 182,
+    "symbol_identity_count": 244,
+    "footprint_identity_count": 244,
+    "logical_contact_count": 1599,
+    "historical_package_hints_reconciled": 181,
     "historical_package_conflicts_resolved": 5,
     "explicit_current_footprint_overrides": 63,
     "standard_kicad_footprint_identities": 205,
     "reconciled_local_footprint_definitions": 25,
-    "new_exact_footprint_geometries_materialized": 13,
+    "new_exact_footprint_geometries_materialized": 12,
     "partial_local_footprint_definitions_mechanics_open": 2,
     "schematic_symbols_or_footprint_files_created": 0,
     "native_schematic_nets_created": 0,
@@ -2674,10 +2674,11 @@
     {
       "device_id": "gct_usb4105_gf_a",
       "mpn": "GCT USB4105-GF-A",
-      "quantity_per_product": 3,
-      "role": "c5_service_usb_connector;rp_service_usb_connector",
+      "quantity_per_product": 4,
+      "role": "product_usb_connector,c5_service_usb_connector,hub_rp_service_usb_connector,rf_rp_service_usb_connector",
       "ecad_disposition": "schematic_component_group",
       "native_sheet_affinity": [
+        "RF_01_USB_PD_CHARGE",
         "RF_10_RP2354_CORE_SERVICE",
         "UI_20_C5_WIFI_IR_SERVICE",
         "UI_30_HUB_RP_CORE_SERVICE"
@@ -2763,15 +2764,15 @@
         }
       },
       "contact_map_sha256": "e9f2aabddec2adf10aa360c1cbe715a67f9e05ba18f508c29cbaa560b81af908",
-      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "electrical_contract_sha256": "a77e96a9862b426eb66b0ab07b25b8530a82230ba1b20f73ecb5c07c39b6810b",
       "manufacturer_evidence": {
         "document": "USB4105 USB Type-C receptacle drawing and product specification",
         "version": "drawing revision B4 dated 2023-12-18; specification revision 2.2",
         "url": "https://gct.co/files/drawings/usb4105.pdf",
-        "checked": "2026-08-19"
+        "checked": "2026-09-09"
       },
       "footprint": "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
-      "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",
+      "footprint_resolution": "explicit_current_override",
       "footprint_definition": {
         "status": "exact_package_identity_mapped_to_standard_kicad_library",
         "path": null,
@@ -2784,7 +2785,7 @@
       "historical_hint_pin_counts": [
         17
       ],
-      "jlcpcb_part_number": null,
+      "jlcpcb_part_number": "C3020560",
       "bom_excluded": false
     },
     {
@@ -3964,118 +3965,6 @@
       ],
       "historical_hint_pin_counts": [
         8
-      ],
-      "jlcpcb_part_number": null,
-      "bom_excluded": false
-    },
-    {
-      "device_id": "jae_dx07s016ja1r1500",
-      "mpn": "JAE DX07S016JA1R1500",
-      "quantity_per_product": 1,
-      "role": "product_usb_connector",
-      "ecad_disposition": "schematic_component_group",
-      "native_sheet_affinity": [
-        "RF_01_USB_PD_CHARGE"
-      ],
-      "schematic_value": "usb_type_c_usb2_16_contact_right_angle_receptacle",
-      "symbol_id": "Leshy2_R2:jae_dx07s016ja1r1500",
-      "symbol_status": "exact_identity_and_contact_map_registered_pending_h2_r2_1_3_materialization",
-      "logical_contact_count": 17,
-      "contact_role_counts": {
-        "power": 8,
-        "shield": 1,
-        "signal": 8
-      },
-      "contact_map": {
-        "A1_GND": {
-          "physical": "A1",
-          "role": "power"
-        },
-        "A4_VBUS": {
-          "physical": "A4",
-          "role": "power"
-        },
-        "A5_CC1": {
-          "physical": "A5",
-          "role": "signal"
-        },
-        "A6_DP": {
-          "physical": "A6",
-          "role": "signal"
-        },
-        "A7_DM": {
-          "physical": "A7",
-          "role": "signal"
-        },
-        "A8_SBU1": {
-          "physical": "A8",
-          "role": "signal"
-        },
-        "A9_VBUS": {
-          "physical": "A9",
-          "role": "power"
-        },
-        "A12_GND": {
-          "physical": "A12",
-          "role": "power"
-        },
-        "B1_GND": {
-          "physical": "B1",
-          "role": "power"
-        },
-        "B4_VBUS": {
-          "physical": "B4",
-          "role": "power"
-        },
-        "B5_CC2": {
-          "physical": "B5",
-          "role": "signal"
-        },
-        "B6_DP": {
-          "physical": "B6",
-          "role": "signal"
-        },
-        "B7_DM": {
-          "physical": "B7",
-          "role": "signal"
-        },
-        "B8_SBU2": {
-          "physical": "B8",
-          "role": "signal"
-        },
-        "B9_VBUS": {
-          "physical": "B9",
-          "role": "power"
-        },
-        "B12_GND": {
-          "physical": "B12",
-          "role": "power"
-        },
-        "SHIELD": {
-          "physical": "four 0.9-mm through-hole shell board locks",
-          "role": "shield"
-        }
-      },
-      "contact_map_sha256": "9690fdadffbb01bfcf06e530f3a8b98c6a86c008efa44023dd2c873773b2ea72",
-      "electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-      "manufacturer_evidence": {
-        "document": "JAE DX07 16-position receptacle product brochure",
-        "version": "MB-0350E, August 2025",
-        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8440/MB-0350E_DX07_16-POS_RECEPTACLE.pdf",
-        "checked": "2026-08-18"
-      },
-      "footprint": "Leshy2_R2:USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk",
-      "footprint_resolution": "explicit_current_override",
-      "footprint_definition": {
-        "status": "current_exact_local_definition_materialized",
-        "path": "hardware/ecad/libraries/Leshy2_R2.pretty/USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk.kicad_mod",
-        "sha256": "98a0ff7cc61bfbbea33bb47eeae879de994bf6b1b2b6d253190f03bf58bc8b98"
-      },
-      "historical_hint_files": [
-        "hardware/ecad/generated/H2-RF01-usb-pd-charge.json"
-      ],
-      "historical_hint_pin_counts": [
-        17
       ],
       "jlcpcb_part_number": null,
       "bom_excluded": false

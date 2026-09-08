@@ -19,7 +19,11 @@ def fixture():
     ui = {"J5": item(61.005, 140.075, "B.Cu", 180)}
     rf = {"BT1": item(40, 85, angle=90), "R33": item(30.45, 85), "R34": item(49.55, 85),
           "SW3": item(8, 80), "SW4": item(72.1, 67.42, actuator=[72.1, 66.5]),
-          "U83": item(.8, 100, "B.Cu"), "J1": item(16.47, 146.2, "B.Cu", 180)}
+          "U83": item(.8, 100, "B.Cu")}
+    for board, ref, x in ((rf, "J1", 16.47), (rf, "J4", 37.47), (ui, "J9", 26.1), (ui, "J11", 14.87)):
+        board[ref] = {**item(x, 146.325, "B.Cu", 180),
+                      "footprint": "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
+                      "value": "GCT USB4105-GF-A"}
     rf["BT1"]["fab_stroke_bounds_mm"] = [20.06, 46.42, 59.94, 123.58]
     rf["MK1"] = {**item(47, 147.4, side="B.Cu"),
                  "footprint": "Leshy2:CMEJ-0413-42-SMT-TR",
@@ -61,6 +65,28 @@ def notch_edges():
 
 
 class PlacementIntentTests(unittest.TestCase):
+    def test_every_usb_identity_pose_and_presence_is_independently_required(self):
+        for project, ref in ((0, "J9"), (0, "J11"), (1, "J1"), (1, "J4")):
+            for mutation in ("missing", "mpn", "footprint", "x", "recess", "side", "rotation"):
+                snapshot = fixture(); ports = snapshot["boards"][INTENT.PROJECTS[project]]
+                if mutation == "missing":
+                    del ports[ref]
+                elif mutation == "mpn":
+                    ports[ref]["value"] = "JAE DX07S016JA1R1500"
+                elif mutation == "footprint":
+                    ports[ref]["footprint"] = "Leshy2_R2:USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk"
+                elif mutation == "x":
+                    ports[ref]["anchor_mm"][0] += 1
+                elif mutation == "recess":
+                    ports[ref]["anchor_mm"][1] -= .2
+                elif mutation == "side":
+                    ports[ref]["side"] = "F.Cu"
+                else:
+                    ports[ref]["rotation_deg"] = 0
+                with self.subTest(project=project, ref=ref, mutation=mutation):
+                    self.assertIn("four exact GCT USB ports inside the sandwich with uniform nominal flush mouths",
+                                  INTENT.evaluate(snapshot)["failed_requirements"])
+
     def test_missing_real_speaker_body_is_not_covered_by_an_electrical_termination(self):
         snapshot = fixture()
         snapshot.pop("assembly_registration")

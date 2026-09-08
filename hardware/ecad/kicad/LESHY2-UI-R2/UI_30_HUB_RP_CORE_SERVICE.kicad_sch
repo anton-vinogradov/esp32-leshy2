@@ -309,7 +309,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Description" "c5_service_usb_connector;rp_service_usb_connector"
+			(property "Description" "product_usb_connector,c5_service_usb_connector,hub_rp_service_usb_connector,rf_rp_service_usb_connector"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -323,7 +323,7 @@
 				(hide yes)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "ManufacturerEvidenceChecked" "2026-08-19"
+			(property "ManufacturerEvidenceChecked" "2026-09-09"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)

@@ -6,12 +6,12 @@
   "sources": {
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "bd0f3d67c7d682ae96fedb3b9a5fb6e64648efbf18134f4b78567a1232717bf7",
+      "sha256": "7e5594bf5130524096b2683040b153409611b92c2df088dd33cb5c30f2f7a597",
       "authority": true
     },
     "definitions": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "6abe80697040f1445075dd4ae7f79c0715c325a2e586d59225e30ac5fa7c16fe",
+      "sha256": "d192652242066d6a9bc74d22d82e4202236ccd0b34fbdc97aff2de2de784bbf5",
       "authority": true
     },
     "h0": {
@@ -56,7 +56,7 @@
     },
     "topology": {
       "path": "hardware/ecad/h2-r2-topology-overrides.json",
-      "sha256": "f34c29f73a1c91ddc8def7d31e6770ddfba442e732e9fd087cb4a77f5a0789e3",
+      "sha256": "ac68c0a78b4f77f1fd0067a9f175ccc8ec5e96967b2fd4a9d7f76de5bbe40e32",
       "authority": true
     },
     "historical_route_contract": {
@@ -98,7 +98,7 @@
     "unresolved_endpoint_count": 0,
     "unique_net_count": 788,
     "origin_counts": {
-      "current_abstract_endpoint_canonical": 1096,
+      "current_abstract_endpoint_canonical": 1095,
       "current_c5_fixed_mux_contract": 6,
       "current_display_direct_explicit_nc": 6,
       "current_display_direct_map": 39,
@@ -112,11 +112,11 @@
       "current_h1_reserved_gpio_explicit_nc": 7,
       "current_pack_safety_boundary": 7,
       "current_pack_safety_decoupling": 8,
-      "current_r2_board_local_topology": 621,
+      "current_r2_board_local_topology": 637,
       "reconciled_historical_controller_allocation_hint": 2,
-      "reconciled_historical_explicit_nc_hint": 135,
+      "reconciled_historical_explicit_nc_hint": 133,
       "reconciled_historical_reserved_or_free_nc_hint": 6,
-      "reconciled_historical_same_endpoint_route_hint": 2051,
+      "reconciled_historical_same_endpoint_route_hint": 2038,
       "reconciled_historical_same_pin_hint": 2
     },
     "errors": 0
@@ -2627,13 +2627,13 @@
       "project": "LESHY2-RF-R2",
       "sheet": "RF_01_USB_PD_CHARGE",
       "reference": "J1",
-      "device_id": "jae_dx07s016ja1r1500",
+      "device_id": "gct_usb4105_gf_a",
       "contact": "A1_GND",
       "physical": "A1",
       "role": "power",
       "disposition": "connected",
       "net": "POWER_GROUND",
-      "origin": "reconciled_historical_same_endpoint_route_hint",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {
@@ -2642,13 +2642,13 @@
       "project": "LESHY2-RF-R2",
       "sheet": "RF_01_USB_PD_CHARGE",
       "reference": "J1",
-      "device_id": "jae_dx07s016ja1r1500",
+      "device_id": "gct_usb4105_gf_a",
       "contact": "A4_VBUS",
       "physical": "A4",
       "role": "power",
       "disposition": "connected",
       "net": "USB_C_VBUS_RAW",
-      "origin": "reconciled_historical_same_endpoint_route_hint",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {
@@ -2657,13 +2657,13 @@
       "project": "LESHY2-RF-R2",
       "sheet": "RF_01_USB_PD_CHARGE",
       "reference": "J1",
-      "device_id": "jae_dx07s016ja1r1500",
+      "device_id": "gct_usb4105_gf_a",
       "contact": "A5_CC1",
       "physical": "A5",
       "role": "signal",
       "disposition": "connected",
       "net": "USB_C_CC1_CONNECTOR",
-      "origin": "reconciled_historical_same_endpoint_route_hint",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {
@@ -2672,13 +2672,13 @@
       "project": "LESHY2-RF-R2",
       "sheet": "RF_01_USB_PD_CHARGE",
       "reference": "J1",
-      "device_id": "jae_dx07s016ja1r1500",
+      "device_id": "gct_usb4105_gf_a",
       "contact": "A6_DP",
       "physical": "A6",
       "role": "signal",
       "disposition": "connected",
       "net": "USB2_DP_CONNECTOR",
-      "origin": "reconciled_historical_same_endpoint_route_hint",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {
@@ -2687,13 +2687,13 @@
       "project": "LESHY2-RF-R2",
       "sheet": "RF_01_USB_PD_CHARGE",
       "reference": "J1",
-      "device_id": "jae_dx07s016ja1r1500",
+      "device_id": "gct_usb4105_gf_a",
       "contact": "A7_DM",
       "physical": "A7",
       "role": "signal",
       "disposition": "connected",
       "net": "USB2_DM_CONNECTOR",
-      "origin": "reconciled_historical_same_endpoint_route_hint",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {
@@ -2702,13 +2702,13 @@
       "project": "LESHY2-RF-R2",
       "sheet": "RF_01_USB_PD_CHARGE",
       "reference": "J1",
-      "device_id": "jae_dx07s016ja1r1500",
+      "device_id": "gct_usb4105_gf_a",
       "contact": "A8_SBU1",
       "physical": "A8",
-      "role": "signal",
+      "role": "no_connect",
       "disposition": "no_connect",
       "net": null,
-      "origin": "reconciled_historical_explicit_nc_hint",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {
@@ -2717,13 +2717,13 @@
       "project": "LESHY2-RF-R2",
       "sheet": "RF_01_USB_PD_CHARGE",
       "reference": "J1",
-      "device_id": "jae_dx07s016ja1r1500",
+      "device_id": "gct_usb4105_gf_a",
       "contact": "A9_VBUS",
       "physical": "A9",
       "role": "power",
       "disposition": "connected",
       "net": "USB_C_VBUS_RAW",
-      "origin": "reconciled_historical_same_endpoint_route_hint",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {
@@ -2732,13 +2732,13 @@
       "project": "LESHY2-RF-R2",
       "sheet": "RF_01_USB_PD_CHARGE",
       "reference": "J1",
-      "device_id": "jae_dx07s016ja1r1500",
+      "device_id": "gct_usb4105_gf_a",
       "contact": "A12_GND",
       "physical": "A12",
       "role": "power",
       "disposition": "connected",
       "net": "POWER_GROUND",
-      "origin": "reconciled_historical_same_endpoint_route_hint",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {
@@ -2747,13 +2747,13 @@
       "project": "LESHY2-RF-R2",
       "sheet": "RF_01_USB_PD_CHARGE",
       "reference": "J1",
-      "device_id": "jae_dx07s016ja1r1500",
+      "device_id": "gct_usb4105_gf_a",
       "contact": "B1_GND",
       "physical": "B1",
       "role": "power",
       "disposition": "connected",
       "net": "POWER_GROUND",
-      "origin": "reconciled_historical_same_endpoint_route_hint",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {
@@ -2762,13 +2762,13 @@
       "project": "LESHY2-RF-R2",
       "sheet": "RF_01_USB_PD_CHARGE",
       "reference": "J1",
-      "device_id": "jae_dx07s016ja1r1500",
+      "device_id": "gct_usb4105_gf_a",
       "contact": "B4_VBUS",
       "physical": "B4",
       "role": "power",
       "disposition": "connected",
       "net": "USB_C_VBUS_RAW",
-      "origin": "reconciled_historical_same_endpoint_route_hint",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {
@@ -2777,13 +2777,13 @@
       "project": "LESHY2-RF-R2",
       "sheet": "RF_01_USB_PD_CHARGE",
       "reference": "J1",
-      "device_id": "jae_dx07s016ja1r1500",
+      "device_id": "gct_usb4105_gf_a",
       "contact": "B5_CC2",
       "physical": "B5",
       "role": "signal",
       "disposition": "connected",
       "net": "USB_C_CC2_CONNECTOR",
-      "origin": "reconciled_historical_same_endpoint_route_hint",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {
@@ -2792,13 +2792,13 @@
       "project": "LESHY2-RF-R2",
       "sheet": "RF_01_USB_PD_CHARGE",
       "reference": "J1",
-      "device_id": "jae_dx07s016ja1r1500",
+      "device_id": "gct_usb4105_gf_a",
       "contact": "B6_DP",
       "physical": "B6",
       "role": "signal",
       "disposition": "connected",
       "net": "USB2_DP_CONNECTOR",
-      "origin": "reconciled_historical_same_endpoint_route_hint",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {
@@ -2807,13 +2807,13 @@
       "project": "LESHY2-RF-R2",
       "sheet": "RF_01_USB_PD_CHARGE",
       "reference": "J1",
-      "device_id": "jae_dx07s016ja1r1500",
+      "device_id": "gct_usb4105_gf_a",
       "contact": "B7_DM",
       "physical": "B7",
       "role": "signal",
       "disposition": "connected",
       "net": "USB2_DM_CONNECTOR",
-      "origin": "reconciled_historical_same_endpoint_route_hint",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {
@@ -2822,13 +2822,13 @@
       "project": "LESHY2-RF-R2",
       "sheet": "RF_01_USB_PD_CHARGE",
       "reference": "J1",
-      "device_id": "jae_dx07s016ja1r1500",
+      "device_id": "gct_usb4105_gf_a",
       "contact": "B8_SBU2",
       "physical": "B8",
-      "role": "signal",
+      "role": "no_connect",
       "disposition": "no_connect",
       "net": null,
-      "origin": "reconciled_historical_explicit_nc_hint",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {
@@ -2837,13 +2837,13 @@
       "project": "LESHY2-RF-R2",
       "sheet": "RF_01_USB_PD_CHARGE",
       "reference": "J1",
-      "device_id": "jae_dx07s016ja1r1500",
+      "device_id": "gct_usb4105_gf_a",
       "contact": "B9_VBUS",
       "physical": "B9",
       "role": "power",
       "disposition": "connected",
       "net": "USB_C_VBUS_RAW",
-      "origin": "reconciled_historical_same_endpoint_route_hint",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {
@@ -2852,13 +2852,13 @@
       "project": "LESHY2-RF-R2",
       "sheet": "RF_01_USB_PD_CHARGE",
       "reference": "J1",
-      "device_id": "jae_dx07s016ja1r1500",
+      "device_id": "gct_usb4105_gf_a",
       "contact": "B12_GND",
       "physical": "B12",
       "role": "power",
       "disposition": "connected",
       "net": "POWER_GROUND",
-      "origin": "current_abstract_endpoint_canonical",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {
@@ -2867,9 +2867,9 @@
       "project": "LESHY2-RF-R2",
       "sheet": "RF_01_USB_PD_CHARGE",
       "reference": "J1",
-      "device_id": "jae_dx07s016ja1r1500",
+      "device_id": "gct_usb4105_gf_a",
       "contact": "SHIELD",
-      "physical": "four 0.9-mm through-hole shell board locks",
+      "physical": "four through-hole shell stakes",
       "role": "shield",
       "disposition": "connected",
       "net": "POWER_GROUND",

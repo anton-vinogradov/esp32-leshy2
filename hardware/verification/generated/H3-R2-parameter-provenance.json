@@ -4,15 +4,15 @@
   "marker": "H3-R2.0.2",
   "status": "pass",
   "accepted_input": "H3-R2.0.1",
-  "input_freeze_sha256": "8eff450d9c1baf22496ee8fdc3b61d178716bcc66b9df8f33077714960be110a",
-  "register_sha256": "0bc0f0e78912cf945725cebf496a0b99e7986aff12f3f40885e3c7755af3ffaf",
+  "input_freeze_sha256": "b84243c43428af769d3adc116b5c01bb2d320d138ffb99c184c3d3b6c3f371da",
+  "register_sha256": "02ab659cb4da5d7ab8ea16798dfa822c9f55958d0d3b26bcd24c1b0ce6339557",
   "source_sha256": {
-    "hardware/verification/h3-r2-parameter-provenance-contract.json": "fb26cd78c18234ef1c02ce4ea6af5d4a21b0206229a5034e55c065b08f5d0346",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "ad3a6c1aaf619f6e2b10a6e87692e36f2201b17ab8df3c819293d46975aac4ed",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "e928c8f337a73005ace55331c145db8199340d23fa54a6806fa6c5619fdd8040",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "bd0f3d67c7d682ae96fedb3b9a5fb6e64648efbf18134f4b78567a1232717bf7",
-    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "6abe80697040f1445075dd4ae7f79c0715c325a2e586d59225e30ac5fa7c16fe",
-    "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974"
+    "hardware/verification/h3-r2-parameter-provenance-contract.json": "63edc42bc89d4128d9c5a8eeaa2fac04d5b8b66993097e15164db9c985dfc14a",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "e2962b13d859261f749b405a7e64f0d9fba51b66557de84cd070735c68410717",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "1e899cfca17f311309d1add013d0feb3f14f1bc2d4679e0c61c5785268fda3db",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7e5594bf5130524096b2683040b153409611b92c2df088dd33cb5c30f2f7a597",
+    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "d192652242066d6a9bc74d22d82e4202236ccd0b34fbdc97aff2de2de784bbf5",
+    "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9"
   },
   "policy": {
     "accepted_h2_identity_is_immutable": true,
@@ -22,20 +22,20 @@
     "no_component_replacement_or_order_is_authorized": true
   },
   "summary": {
-    "component_groups": 251,
-    "board_component_groups": 245,
+    "component_groups": 250,
+    "board_component_groups": 244,
     "explicit_non_pcba_groups": 6,
     "fitted_board_instances": 1208,
     "source_missing": 0,
     "factory_catalog_only_parameter_sources": 0,
-    "groups_with_structured_parameter_seeds": 77,
-    "groups_in_explicit_parameter_extraction_queue": 174,
-    "manufacturer_primary_sources": 251,
-    "model_method_candidates": 251,
-    "owned_component_groups": 251,
+    "groups_with_structured_parameter_seeds": 78,
+    "groups_in_explicit_parameter_extraction_queue": 172,
+    "manufacturer_primary_sources": 250,
+    "model_method_candidates": 250,
+    "owned_component_groups": 250,
     "parameter_classes": {
       "analog_peripheral": 6,
-      "connector_interconnect": 12,
+      "connector_interconnect": 11,
       "digital_interface": 34,
       "electromechanical_or_load": 8,
       "general_component": 39,
@@ -46,7 +46,7 @@
     },
     "structured_by_parameter_class": {
       "analog_peripheral": 3,
-      "connector_interconnect": 6,
+      "connector_interconnect": 7,
       "digital_interface": 19,
       "general_component": 17,
       "passive_corner": 19,
@@ -58,11 +58,11 @@
     "errors": 0
   },
   "manufacturer_source_overrides": {
-    "jae_dx07s016ja1r1500": {
-      "document": "JAE DX07S016JA1R1500 official exact-product page",
-      "url": "https://products.jae.com/jp/ja/connectors/category/io/dx07-receptacle/dx07s016ja1r1500/",
-      "checked": "2026-08-31",
-      "reason": "replace the distributor-hosted brochure mirror with the original manufacturer's exact-product record"
+    "gct_usb4105_gf_a": {
+      "document": "GCT USB4105 official product specification and B4 manufacturer drawing, exact GF-A variant with default 0.95-mm shell stakes",
+      "url": "https://gct.co/connector/usb4105",
+      "checked": "2026-09-09",
+      "reason": "user-approved four-port R2 unification; preserve the protected product power/data role and three circuit-defined data-only service roles"
     },
     "ralec_rtt023r00fth": {
       "document": "RALEC official exact-part search record for RTT023R00FTH and RTT series specification",
@@ -2029,39 +2029,41 @@
       "mpn": "GCT USB4105-GF-A",
       "manufacturer": null,
       "kind": "usb_type_c_usb2_16_contact_top_mount_receptacle",
-      "role": "c5_service_usb_connector;rp_service_usb_connector",
+      "role": "product_usb_connector,c5_service_usb_connector,hub_rp_service_usb_connector,rf_rp_service_usb_connector",
       "scope": "base_product",
       "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 3,
-      "fitted_board_instance_count": 3,
+      "quantity_per_product": 4,
+      "fitted_board_instance_count": 4,
       "projects": [
         "LESHY2-RF-R2",
         "LESHY2-UI-R2"
       ],
       "sheets": [
+        "RF_01_USB_PD_CHARGE",
         "RF_10_RP2354_CORE_SERVICE",
         "UI_20_C5_WIFI_IR_SERVICE",
         "UI_30_HUB_RP_CORE_SERVICE"
       ],
       "references": [
+        "J1",
         "J11",
         "J4",
         "J9"
       ],
-      "lifecycle": "active_orderable",
-      "jlcpcb_part_number": null,
+      "lifecycle": "production_active_explicit_jlcpcb_preorder_route",
+      "jlcpcb_part_number": "C3020560",
       "source": {
-        "document": "USB4105 USB Type-C receptacle drawing and product specification",
-        "version": "drawing revision B4 dated 2023-12-18; specification revision 2.2",
-        "url": "https://gct.co/files/drawings/usb4105.pdf",
-        "checked": "2026-08-19"
+        "document": "GCT USB4105 official product specification and B4 manufacturer drawing, exact GF-A variant with default 0.95-mm shell stakes",
+        "url": "https://gct.co/connector/usb4105",
+        "checked": "2026-09-09",
+        "reason": "user-approved four-port R2 unification; preserve the protected product power/data role and three circuit-defined data-only service roles"
       },
-      "source_tier": "manufacturer_primary_accepted_h2",
+      "source_tier": "manufacturer_primary_h3_override",
       "accepted_h2_source_preserved": {
         "document": "USB4105 USB Type-C receptacle drawing and product specification",
         "version": "drawing revision B4 dated 2023-12-18; specification revision 2.2",
         "url": "https://gct.co/files/drawings/usb4105.pdf",
-        "checked": "2026-08-19"
+        "checked": "2026-09-09"
       },
       "source_host": "gct.co",
       "parameter_class": "connector_interconnect",
@@ -2072,17 +2074,38 @@
         "mating",
         "frequency_or_data_rate"
       ],
-      "structured_parameters": {},
-      "structured_parameter_count": 0,
-      "parameter_state": "explicit_extraction_queue",
+      "structured_parameters": {
+        "mating_contact_count": 16,
+        "smt_solder_position_count": 12,
+        "collective_vbus_current_rating_a": 5.0,
+        "rated_voltage_v": 48.0,
+        "contact_resistance_milliohm": {
+          "initial_max": 40,
+          "after_test_max": 50
+        },
+        "durability_mating_cycles": 20000,
+        "shell_stakes": {
+          "count": 4,
+          "projection_below_pcb_seating_plane_mm": {
+            "nominal": 0.95,
+            "tolerance": 0.15
+          }
+        },
+        "source": "https://gct.co/files/drawings/usb4105.pdf",
+        "review_evidence": "hardware/verification/jlcpcb-usb-unification-2026-09-09.json",
+        "scope": "Exact USB4105-GF-A without optional stake suffix. Collective VBUS rating is not a per-contact rating or a change to the product power/current limit. Existing quantity-100 cost is a separate historical snapshot."
+      },
+      "structured_parameter_count": 10,
+      "parameter_state": "structured_seed_present",
       "model_method_candidate": "datasheet_plus_prelayout_constraint",
       "model_method_state": "candidate_pending_H3-R2.0.3",
       "owner_workstreams": [
+        "H3-R2.1",
         "H3-R2.4"
       ],
       "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "e9f2aabddec2adf10aa360c1cbe715a67f9e05ba18f508c29cbaa560b81af908",
-      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      "symbol_electrical_contract_sha256": "a77e96a9862b426eb66b0ab07b25b8530a82230ba1b20f73ecb5c07c39b6810b"
     },
     {
       "device_id": "hirose_dm3at_sf_pejm5",
@@ -2472,61 +2495,6 @@
       "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "a53ee35f194244d9e1414613e772cabe14cf806e032c37f8adfdf0e61fbbdd44",
       "symbol_electrical_contract_sha256": "bcb201b625f141d3f072f9f190a3caf2e7df8b443e47c643640bee1bf6fdf663"
-    },
-    {
-      "device_id": "jae_dx07s016ja1r1500",
-      "mpn": "JAE DX07S016JA1R1500",
-      "manufacturer": null,
-      "kind": "usb_type_c_usb2_16_contact_right_angle_receptacle",
-      "role": "product_usb_connector",
-      "scope": "base_product",
-      "ecad_disposition": "schematic_component_group",
-      "quantity_per_product": 1,
-      "fitted_board_instance_count": 1,
-      "projects": [
-        "LESHY2-RF-R2"
-      ],
-      "sheets": [
-        "RF_01_USB_PD_CHARGE"
-      ],
-      "references": [
-        "J1"
-      ],
-      "lifecycle": "active",
-      "jlcpcb_part_number": null,
-      "source": {
-        "document": "JAE DX07S016JA1R1500 official exact-product page",
-        "url": "https://products.jae.com/jp/ja/connectors/category/io/dx07-receptacle/dx07s016ja1r1500/",
-        "checked": "2026-08-31",
-        "reason": "replace the distributor-hosted brochure mirror with the original manufacturer's exact-product record"
-      },
-      "source_tier": "manufacturer_primary_h3_override",
-      "accepted_h2_source_preserved": {
-        "document": "JAE DX07 16-position receptacle product brochure",
-        "version": "MB-0350E, August 2025",
-        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8440/MB-0350E_DX07_16-POS_RECEPTACLE.pdf",
-        "checked": "2026-08-18"
-      },
-      "source_host": "products.jae.com",
-      "parameter_class": "connector_interconnect",
-      "required_parameter_groups": [
-        "rating",
-        "contact_loss",
-        "parasitics",
-        "mating",
-        "frequency_or_data_rate"
-      ],
-      "structured_parameters": {},
-      "structured_parameter_count": 0,
-      "parameter_state": "explicit_extraction_queue",
-      "model_method_candidate": "datasheet_plus_prelayout_constraint",
-      "model_method_state": "candidate_pending_H3-R2.0.3",
-      "owner_workstreams": [
-        "H3-R2.1"
-      ],
-      "factory_catalog_parameter_gap": null,
-      "symbol_contact_map_sha256": "9690fdadffbb01bfcf06e530f3a8b98c6a86c008efa44023dd2c873773b2ea72",
-      "symbol_electrical_contract_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
     },
     {
       "device_id": "kemet_c0402c102k5ractu",

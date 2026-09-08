@@ -51,9 +51,9 @@ The current preview below is composed from the actual PCBs: exterior faces share
 
 H1-to-native correspondence is not fully verified: H1 remains a concept archive, not a picture of current positions. [H6 corrections and open interface findings](docs/h6-r2-interface-review.md) describe the current boards.
 
-[Placement corrections and their verification](docs/h6-r2-placement-repair.md) explain the holder, encoder, recessed ports and internal audio assembly. The routing phase is still open.
+[Placement corrections and their verification](docs/h6-r2-placement-repair.md) explain the holder, encoder, port/card access and internal audio assembly. The routing phase is still open.
 
-[Component-unification audit](docs/h6-r2-component-unification.md): a checked four-port GCT candidate awaits exact-part confirmation; MAIN still has one JAE and three GCT receptacles. Other candidates and necessary functional differences are recorded separately.
+[Component unification](docs/h6-r2-component-unification.md): GCT USB4105-GF-A ×4 is installed on the native boards; fresh DRC/parity and preservation checks pass. Other candidates and necessary functional differences remain separate.
 
 [Archive: H1 concept four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.39-views-20260907)
 

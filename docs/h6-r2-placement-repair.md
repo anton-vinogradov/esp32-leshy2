@@ -2,6 +2,8 @@
 
 [Русский](h6-r2-placement-repair.ru.md) · [Interface review](h6-r2-interface-review.md)
 
+2026-09-09: the separate [four-port GCT unification](h6-r2-component-unification.md) is implemented, with fresh native DRC/parity and preservation checks passed. Its [two-reference integration record](../hardware/layout/h6-r2-usb-unification-integration.json) supersedes the earlier JAE mouth datum, not the other placement corrections below.
+
 **2026-09-08. The microphone is restored to the RF-inner bottom edge, with six
 related parts relocated inside. Fresh native DRC/parity, placement, labels and
 20 intent checks pass; views are refreshed. H6.0.3-R1 remains open; this is not
@@ -17,7 +19,7 @@ does not establish that result.
 
 All positions below use native PCB coordinates. For the RF assembly transform,
 `x_assembly = 80 − x_native`; native poses are not mirrored again. The selected
-MPNs, electrical functions, board size and logical pin/net identities are unchanged.
+MPNs were unchanged by these placement-only corrections. The separate USB follow-up replaces RF J1 with GCT; electrical functions, board size and logical pin/net identities are retained.
 
 ## What was decided and corrected
 
@@ -26,7 +28,7 @@ MPNs, electrical functions, board size and logical pin/net identities are unchan
 | Holder / NTC | BT1 **F90 [40,85]**, removing the former +2.99-mm X displacement; R33/R34 **F90 [30.45,85] / [49.55,85]** follow the two nominal cell axes. Fab now distinguishes the real nominal **77.06 × 39.78 mm plastic body** from the dashed **86-mm pad-span reserve**. The already-corrected contact polarity is retained. This does not invent exact SMT lands, locator holes or thermal contact. |
 | Internal power corridor | F2 stays inside at **B270 [53.37,47.87]**, near the centred BT1.3. U51 moves only **1.20 mm left**, U39 **0.20 mm left**, with a bounded group of existing support parts. The original **2-mm fuse-owner locality** is not waived; the actual BT1.3–F2.1 span is **4.2731 mm**, below its 4.5-mm bound. |
 | Encoder / PTT | SW3 becomes **F270 [9.25,81.25]**: left and explicitly **31 mm lower** than its former [71,50.25] shaft. Its ordinary support parts remain inside. PTT SW4 stays on the right. Rotation changes pad coordinates, not E/D or A/B/C identity. The existing engineering footprint is retained, not converted into a manufacturer-approved rounded-slot pattern. |
-| Product USB | RF J1 becomes **B180 [16.47,146.2]**: the shell mouth is Y149.8, **0.2 mm nominally inside** the Y150 edge, replacing the previous 0.5-mm overhang. This 0.70-mm inward move is our placement choice, not a new JAE mounting recommendation. Plug-overmould fit remains open. |
+| Product USB | The preceding JAE repair used B180 [16.47,146.2], mouth Y149.8. The approved [GCT follow-up](h6-r2-component-unification.md) instead uses **B180 [16.47,146.325]** nominally, mouth **Y150 flush**; U5 moves 0.15 mm inward. Fresh native DRC/parity and preservation checks pass. Neither nominal datum qualifies actual plug-overmould fit. |
 | Headset / microphone | U83 **SJ-43515TS-SMT-TR** remains inside at **B0 [0.8,99.9]**. MK1 is **B0 [47,147.4]**, with its maximum body rim **0.5 mm inside** the bottom board edge. Its top port faces the inter-board space, with sound access through the designed open bottom gap; this does not turn the port normal downward or qualify acoustic performance. The former **F180 [8,112]** position between the service controls was an incorrect replacement of the intended inner/bottom placement and is superseded. |
 | Actual supply locality | The UI moves remote bypass/bulk capacitors back toward their real owners: backlight switch, SD supply/card and three nRF modules. The checks name actual power pads, not whichever same-net pad is nearest. RF C259 becomes **B90 [61.275,82.125]** in the slot freed by the coordinated C230 relocation; its distances to U106.27 and .31 are **5.4200 / 7.3550 mm**, each bounded by 7.5 mm. C260/C261 remain separate local 100-nF bypasses. |
 | Speaker representation | The wired **PUI Audio AS02404PO** body is registered on **UI B at [15.7,124]**, maximum **12.2 × 24.2 × 4.8 mm**. RF LS1 remains its electrical wire termination, not a second speaker body. C54 stays B0 and moves only **+0.30 mm Y** to **[14.805,136.905]**; its actual supply span improves to 3.8733 mm. Body registration is not acoustic or attachment qualification. |
@@ -55,7 +57,7 @@ The repair preserves the prior **front-button symmetry**, ten indicators,
 FPC slot, M1 pair and board outline. It does not move other controls to imitate
 the old H1 concept.
 
-## Verification status
+## Verification status — preceding placement/microphone package
 
 - Both corrected boards pass fresh native DRC: **0 rule violations / 0 schematic-parity
   findings**. All **1216 footprints**, including mounts, pass source/library pad
@@ -72,7 +74,7 @@ the old H1 concept.
   3071 remain unrouted**. This follow-up changes no copper. Independent graph checks
   preserve connected pad/net identities on both boards, source pad multisets
   and copper.
-- Repository suite: **1383 tests, OK, 95 environment-dependent skips**. The separate
+- That package's repository suite: **1383 tests, OK, 95 environment-dependent skips**. The separate
   KiCad-native H6 run passes **808 tests, without skips**.
 
 The [current-routing audit](../hardware/layout/generated/H6-R2-current-routing-audit.json)

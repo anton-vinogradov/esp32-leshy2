@@ -1,0 +1,1369 @@
+{
+  "schema_version": 1,
+  "feature_id": "RF-J1-EXACT-GCT-USB-UNIFICATION-001",
+  "project": "LESHY2-RF-R2",
+  "status": "reviewed_exact_mpn_and_flush_geometry",
+  "record_scope": "Source design and finite migration review, not a current native integration receipt. Stage evidence records exact baseline/result board SHA256 separately.",
+  "production_release_authorized": false,
+  "ordering_authorized": false,
+  "before_footprint": "Leshy2_R2:USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk",
+  "after_footprint": "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
+  "changed_references": [
+    "J1",
+    "U5"
+  ],
+  "baseline_board_sha256": "44bea71388631dfd3b7d9c7bfb088569de46d13083fd164bf3562dc8bfde0dde",
+  "factory_evidence": "hardware/verification/jlcpcb-usb-unification-2026-09-09.json",
+  "manufacturer_drawing": "https://gct.co/files/drawings/usb4105.pdf",
+  "source_library_sha256": "3b8d7da3cae5114ec83022a759a78925113bc2eeec100ea447594f6d8687e4b8",
+  "poses": {
+    "J1": {
+      "before": {
+        "side": "B.Cu",
+        "rotation_deg": 180,
+        "anchor_mm": [
+          16.469999,
+          146.2
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "rotation_deg": 180,
+        "anchor_mm": [
+          16.469999,
+          146.325
+        ]
+      }
+    },
+    "U5": {
+      "before": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          16.5,
+          139.5
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "rotation_deg": 0,
+        "anchor_mm": [
+          16.5,
+          139.35
+        ]
+      }
+    }
+  },
+  "geometry_fingerprints": {
+    "before": "e364829bf9de8cd747a3d8f5a04c8ecad5508803f6c2b7b09c86252bd94c5485",
+    "after": "7367cd9c27f1c486eb22a019b596c43be3e8053749de0180398f98b42346d7c6"
+  },
+  "migration_snapshots": {
+    "before": {
+      "reference": "J1",
+      "footprint": "Leshy2_R2:USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk",
+      "value": "JAE DX07S016JA1R1500",
+      "side": "B.Cu",
+      "anchor_nm": [
+        16469999,
+        146200000
+      ],
+      "rotation_deg": 180,
+      "pads": [
+        {
+          "number": "",
+          "net": "",
+          "at_nm": [
+            19469999,
+            144250000
+          ],
+          "size_nm": [
+            600000,
+            600000
+          ],
+          "drill_nm": [
+            600000,
+            600000
+          ],
+          "shape": 0,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 150000,
+          "layers": [
+            "F.Cu",
+            "In1.Cu",
+            "In2.Cu",
+            "In3.Cu",
+            "In4.Cu",
+            "B.Cu",
+            "F.Mask",
+            "B.Mask"
+          ],
+          "kind": "npth"
+        },
+        {
+          "number": "",
+          "net": "",
+          "at_nm": [
+            17869999,
+            147350000
+          ],
+          "size_nm": [
+            1000000,
+            2000000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 250000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "",
+          "net": "",
+          "at_nm": [
+            15069999,
+            147350000
+          ],
+          "size_nm": [
+            1000000,
+            2000000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 250000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "",
+          "net": "",
+          "at_nm": [
+            13469999,
+            144250000
+          ],
+          "size_nm": [
+            850000,
+            600000
+          ],
+          "drill_nm": [
+            850000,
+            600000
+          ],
+          "shape": 2,
+          "drill_shape": 2,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 150000,
+          "layers": [
+            "F.Cu",
+            "In1.Cu",
+            "In2.Cu",
+            "In3.Cu",
+            "In4.Cu",
+            "B.Cu",
+            "F.Mask",
+            "B.Mask"
+          ],
+          "kind": "npth"
+        },
+        {
+          "number": "A1",
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_nm": [
+            19569999,
+            143150000
+          ],
+          "size_nm": [
+            520000,
+            1000000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 130000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "A4",
+          "net": "/RF_01_USB_PD_CHARGE/USB_C_VBUS_RAW",
+          "at_nm": [
+            18819999,
+            143150000
+          ],
+          "size_nm": [
+            520000,
+            1000000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 130000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "A5",
+          "net": "/RF_01_USB_PD_CHARGE/USB_C_CC1_CONNECTOR",
+          "at_nm": [
+            18219999,
+            143150000
+          ],
+          "size_nm": [
+            270000,
+            1000000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 67500,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "A6",
+          "net": "/RF_01_USB_PD_CHARGE/USB2_CONNECTOR_P",
+          "at_nm": [
+            16719999,
+            143150000
+          ],
+          "size_nm": [
+            270000,
+            1000000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 67500,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "A7",
+          "net": "/RF_01_USB_PD_CHARGE/USB2_CONNECTOR_N",
+          "at_nm": [
+            15719999,
+            143150000
+          ],
+          "size_nm": [
+            270000,
+            1000000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 67500,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "A8",
+          "net": "",
+          "at_nm": [
+            14719999,
+            143150000
+          ],
+          "size_nm": [
+            270000,
+            1000000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 67500,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "A9",
+          "net": "/RF_01_USB_PD_CHARGE/USB_C_VBUS_RAW",
+          "at_nm": [
+            14119999,
+            143150000
+          ],
+          "size_nm": [
+            520000,
+            1000000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 130000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "A12",
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_nm": [
+            13369999,
+            143150000
+          ],
+          "size_nm": [
+            520000,
+            1000000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 130000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "B1",
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_nm": [
+            13369999,
+            143150000
+          ],
+          "size_nm": [
+            520000,
+            1000000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 130000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "B4",
+          "net": "/RF_01_USB_PD_CHARGE/USB_C_VBUS_RAW",
+          "at_nm": [
+            14119999,
+            143150000
+          ],
+          "size_nm": [
+            520000,
+            1000000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 130000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "B5",
+          "net": "/RF_01_USB_PD_CHARGE/USB_C_CC2_CONNECTOR",
+          "at_nm": [
+            15219999,
+            143150000
+          ],
+          "size_nm": [
+            270000,
+            1000000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 67500,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "B6",
+          "net": "/RF_01_USB_PD_CHARGE/USB2_CONNECTOR_P",
+          "at_nm": [
+            16219999,
+            143150000
+          ],
+          "size_nm": [
+            270000,
+            1000000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 67500,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "B7",
+          "net": "/RF_01_USB_PD_CHARGE/USB2_CONNECTOR_N",
+          "at_nm": [
+            17219999,
+            143150000
+          ],
+          "size_nm": [
+            270000,
+            1000000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 67500,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "B8",
+          "net": "",
+          "at_nm": [
+            17719999,
+            143150000
+          ],
+          "size_nm": [
+            270000,
+            1000000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 67500,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "B9",
+          "net": "/RF_01_USB_PD_CHARGE/USB_C_VBUS_RAW",
+          "at_nm": [
+            18819999,
+            143150000
+          ],
+          "size_nm": [
+            520000,
+            1000000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 130000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "B12",
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_nm": [
+            19569999,
+            143150000
+          ],
+          "size_nm": [
+            520000,
+            1000000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 130000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "SH",
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_nm": [
+            20789999,
+            147350000
+          ],
+          "size_nm": [
+            1300000,
+            2600000
+          ],
+          "drill_nm": [
+            600000,
+            1900000
+          ],
+          "shape": 2,
+          "drill_shape": 2,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 325000,
+          "layers": [
+            "F.Cu",
+            "In1.Cu",
+            "In2.Cu",
+            "In3.Cu",
+            "In4.Cu",
+            "B.Cu",
+            "F.Mask",
+            "B.Mask"
+          ],
+          "kind": "pth"
+        },
+        {
+          "number": "SH",
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_nm": [
+            20789999,
+            143525000
+          ],
+          "size_nm": [
+            1300000,
+            2300000
+          ],
+          "drill_nm": [
+            600000,
+            1600000
+          ],
+          "shape": 2,
+          "drill_shape": 2,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 325000,
+          "layers": [
+            "F.Cu",
+            "In1.Cu",
+            "In2.Cu",
+            "In3.Cu",
+            "In4.Cu",
+            "B.Cu",
+            "F.Mask",
+            "B.Mask"
+          ],
+          "kind": "pth"
+        },
+        {
+          "number": "SH",
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_nm": [
+            12149999,
+            147350000
+          ],
+          "size_nm": [
+            1300000,
+            2600000
+          ],
+          "drill_nm": [
+            600000,
+            1900000
+          ],
+          "shape": 2,
+          "drill_shape": 2,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 325000,
+          "layers": [
+            "F.Cu",
+            "In1.Cu",
+            "In2.Cu",
+            "In3.Cu",
+            "In4.Cu",
+            "B.Cu",
+            "F.Mask",
+            "B.Mask"
+          ],
+          "kind": "pth"
+        },
+        {
+          "number": "SH",
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_nm": [
+            12149999,
+            143525000
+          ],
+          "size_nm": [
+            1300000,
+            2300000
+          ],
+          "drill_nm": [
+            600000,
+            1600000
+          ],
+          "shape": 2,
+          "drill_shape": 2,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 325000,
+          "layers": [
+            "F.Cu",
+            "In1.Cu",
+            "In2.Cu",
+            "In3.Cu",
+            "In4.Cu",
+            "B.Cu",
+            "F.Mask",
+            "B.Mask"
+          ],
+          "kind": "pth"
+        }
+      ]
+    },
+    "after": {
+      "reference": "J1",
+      "footprint": "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
+      "value": "GCT USB4105-GF-A",
+      "side": "B.Cu",
+      "anchor_nm": [
+        16469999,
+        146325000
+      ],
+      "rotation_deg": 180,
+      "pads": [
+        {
+          "number": "",
+          "net": "",
+          "at_nm": [
+            19359999,
+            143720000
+          ],
+          "size_nm": [
+            650000,
+            650000
+          ],
+          "drill_nm": [
+            650000,
+            650000
+          ],
+          "shape": 0,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 162500,
+          "layers": [
+            "F.Cu",
+            "In1.Cu",
+            "In2.Cu",
+            "In3.Cu",
+            "In4.Cu",
+            "B.Cu",
+            "F.Mask",
+            "B.Mask"
+          ],
+          "kind": "npth"
+        },
+        {
+          "number": "",
+          "net": "",
+          "at_nm": [
+            13579999,
+            143720000
+          ],
+          "size_nm": [
+            650000,
+            650000
+          ],
+          "drill_nm": [
+            650000,
+            650000
+          ],
+          "shape": 0,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 162500,
+          "layers": [
+            "F.Cu",
+            "In1.Cu",
+            "In2.Cu",
+            "In3.Cu",
+            "In4.Cu",
+            "B.Cu",
+            "F.Mask",
+            "B.Mask"
+          ],
+          "kind": "npth"
+        },
+        {
+          "number": "A1",
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_nm": [
+            19669999,
+            142645000
+          ],
+          "size_nm": [
+            600000,
+            1150000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 150000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "A4",
+          "net": "/RF_01_USB_PD_CHARGE/USB_C_VBUS_RAW",
+          "at_nm": [
+            18869999,
+            142645000
+          ],
+          "size_nm": [
+            600000,
+            1150000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 150000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "A5",
+          "net": "/RF_01_USB_PD_CHARGE/USB_C_CC1_CONNECTOR",
+          "at_nm": [
+            17719999,
+            142645000
+          ],
+          "size_nm": [
+            300000,
+            1150000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 75000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "A6",
+          "net": "/RF_01_USB_PD_CHARGE/USB2_CONNECTOR_P",
+          "at_nm": [
+            16719999,
+            142645000
+          ],
+          "size_nm": [
+            300000,
+            1150000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 75000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "A7",
+          "net": "/RF_01_USB_PD_CHARGE/USB2_CONNECTOR_N",
+          "at_nm": [
+            16219999,
+            142645000
+          ],
+          "size_nm": [
+            300000,
+            1150000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 75000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "A8",
+          "net": "",
+          "at_nm": [
+            15219999,
+            142645000
+          ],
+          "size_nm": [
+            300000,
+            1150000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 75000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "A9",
+          "net": "/RF_01_USB_PD_CHARGE/USB_C_VBUS_RAW",
+          "at_nm": [
+            14069999,
+            142645000
+          ],
+          "size_nm": [
+            600000,
+            1150000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 150000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "A12",
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_nm": [
+            13269999,
+            142645000
+          ],
+          "size_nm": [
+            600000,
+            1150000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 150000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "B1",
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_nm": [
+            13269999,
+            142645000
+          ],
+          "size_nm": [
+            600000,
+            1150000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 150000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "B4",
+          "net": "/RF_01_USB_PD_CHARGE/USB_C_VBUS_RAW",
+          "at_nm": [
+            14069999,
+            142645000
+          ],
+          "size_nm": [
+            600000,
+            1150000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 150000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "B5",
+          "net": "/RF_01_USB_PD_CHARGE/USB_C_CC2_CONNECTOR",
+          "at_nm": [
+            14719999,
+            142645000
+          ],
+          "size_nm": [
+            300000,
+            1150000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 75000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "B6",
+          "net": "/RF_01_USB_PD_CHARGE/USB2_CONNECTOR_P",
+          "at_nm": [
+            15719999,
+            142645000
+          ],
+          "size_nm": [
+            300000,
+            1150000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 75000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "B7",
+          "net": "/RF_01_USB_PD_CHARGE/USB2_CONNECTOR_N",
+          "at_nm": [
+            17219999,
+            142645000
+          ],
+          "size_nm": [
+            300000,
+            1150000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 75000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "B8",
+          "net": "",
+          "at_nm": [
+            18219999,
+            142645000
+          ],
+          "size_nm": [
+            300000,
+            1150000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 75000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "B9",
+          "net": "/RF_01_USB_PD_CHARGE/USB_C_VBUS_RAW",
+          "at_nm": [
+            18869999,
+            142645000
+          ],
+          "size_nm": [
+            600000,
+            1150000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 150000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "B12",
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_nm": [
+            19669999,
+            142645000
+          ],
+          "size_nm": [
+            600000,
+            1150000
+          ],
+          "drill_nm": [
+            0,
+            0
+          ],
+          "shape": 4,
+          "drill_shape": 1,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 150000,
+          "layers": [
+            "B.Cu",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "smd"
+        },
+        {
+          "number": "SH",
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_nm": [
+            20789999,
+            143220000
+          ],
+          "size_nm": [
+            1000000,
+            2100000
+          ],
+          "drill_nm": [
+            600000,
+            1700000
+          ],
+          "shape": 2,
+          "drill_shape": 2,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 250000,
+          "layers": [
+            "F.Cu",
+            "In1.Cu",
+            "In2.Cu",
+            "In3.Cu",
+            "In4.Cu",
+            "B.Cu",
+            "F.Mask",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "pth"
+        },
+        {
+          "number": "SH",
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_nm": [
+            20789999,
+            147400000
+          ],
+          "size_nm": [
+            1000000,
+            1800000
+          ],
+          "drill_nm": [
+            600000,
+            1400000
+          ],
+          "shape": 2,
+          "drill_shape": 2,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 250000,
+          "layers": [
+            "F.Cu",
+            "In1.Cu",
+            "In2.Cu",
+            "In3.Cu",
+            "In4.Cu",
+            "B.Cu",
+            "F.Mask",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "pth"
+        },
+        {
+          "number": "SH",
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_nm": [
+            12149999,
+            143220000
+          ],
+          "size_nm": [
+            1000000,
+            2100000
+          ],
+          "drill_nm": [
+            600000,
+            1700000
+          ],
+          "shape": 2,
+          "drill_shape": 2,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 250000,
+          "layers": [
+            "F.Cu",
+            "In1.Cu",
+            "In2.Cu",
+            "In3.Cu",
+            "In4.Cu",
+            "B.Cu",
+            "F.Mask",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "pth"
+        },
+        {
+          "number": "SH",
+          "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_nm": [
+            12149999,
+            147400000
+          ],
+          "size_nm": [
+            1000000,
+            1800000
+          ],
+          "drill_nm": [
+            600000,
+            1400000
+          ],
+          "shape": 2,
+          "drill_shape": 2,
+          "angle_deg": 180,
+          "roundrect_radius_nm": 250000,
+          "layers": [
+            "F.Cu",
+            "In1.Cu",
+            "In2.Cu",
+            "In3.Cu",
+            "In4.Cu",
+            "B.Cu",
+            "F.Mask",
+            "B.Mask",
+            "B.Paste"
+          ],
+          "kind": "pth"
+        }
+      ]
+    }
+  },
+  "screening": {
+    "courtyard_gaps_mm": {
+      "J1_C31": 0.12,
+      "J1_U5": 0.125,
+      "U5_U22": 0.265
+    },
+    "moved_pad_existing_copper_attachments": 0,
+    "named_pad_copper_graph_nodes": 3497,
+    "copper_objects_preserved": 765,
+    "critical_pairs": 46,
+    "locality_pairs": 264,
+    "scope": "Pre-stage in-memory native screening passed; fresh staged DRC/provenance is separate."
+  },
+  "limits": [
+    "Only J1 changes exact footprint; three existing GCT service ports remain at their original X/Y/side/rotation.",
+    "All 17 logical contacts, 20 named native pad occurrences and their full nets remain; the exact two anonymous no-net JAE SMD lands disappear, two locating NPTH remain with GCT geometry.",
+    "0.120/0.125-mm courtyard gaps and nominal flush mouth are not solder-tool, chassis, plug-tolerance or factory qualification.",
+    "Copper/adjacency and complete raw-form preservation must be checked in the finite native stage; no full placement generator write to routed PCB.",
+    "No power-model, service-owner or firmware behavior gate is closed by connector unification."
+  ]
+}

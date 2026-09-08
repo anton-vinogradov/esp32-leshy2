@@ -40,7 +40,6 @@
     "hardware/ecad/libraries/Leshy2_R2.pretty/PRODTech_PSPMAA0605H_7.1x6.6mm.kicad_mod": "7aea07cf1e6f4f161ab7ae76e6251546afbb2c63d2c6c88c9e7d2a1796a1e856",
     "hardware/ecad/libraries/Leshy2_R2.pretty/SJ-43515TS-SMT-TR.kicad_mod": "4d467470d674455d643dedbf72001da0c7af23a521947ea2b9d190bbdad077a0",
     "hardware/ecad/libraries/Leshy2_R2.pretty/Texas_RQF0009A_1.5x2.0mm.kicad_mod": "d24f28e34e0d65508dcd8a4903a4c4f80f8a892ec75c5cab40075ad425baa605",
-    "hardware/ecad/libraries/Leshy2_R2.pretty/USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk.kicad_mod": "98a0ff7cc61bfbbea33bb47eeae879de994bf6b1b2b6d253190f03bf58bc8b98",
     "hardware/ecad/libraries/Leshy2_R2.pretty/WBC1-1TLC.kicad_mod": "b565d7ca421b2d4137a20b294e5f24f48c7ad1470ca138e96e839ed55b824e15",
     "hardware/ecad/libraries/Leshy2_R2.pretty/WBC16-1TLC.kicad_mod": "bda6f8dbda7e5b5d3bbfc98fe6be8312f39440d92b9f80bb1788b0112029feec",
     "kicad-standard/Button_Switch_SMD.pretty/SW_Push_1P1T-MP_NO_Horizontal_Alps_SKRTLAE010.kicad_mod": "6ce3c37c7de226c62e8b9c16caa68fa5c7ed4e681af43c7aedf7bcd71fc0adcc",
@@ -562,7 +561,7 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "board_sha256": "44bea71388631dfd3b7d9c7bfb088569de46d13083fd164bf3562dc8bfde0dde",
+      "board_sha256": "5442331dc15ec87f9c315bf64996a4e0841901d80e8ffc36f2b67b7669aca96b",
       "native_footprint_count": 784,
       "checked_references": [
         "BT1",

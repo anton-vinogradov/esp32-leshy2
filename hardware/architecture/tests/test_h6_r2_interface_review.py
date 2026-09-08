@@ -1,6 +1,6 @@
 """Historical interface evidence and current identities have separate authority.
 
-The Sep-7 observation is immutable. Three exact later selections reconcile its
+The Sep-7 observation is immutable. Four exact later selections reconcile its
 identity coverage to current R2, but do not promote old poses/findings to a fresh
 mechanical pass. Current silkscreen retains its separate live-input hash gate.
 """
@@ -18,6 +18,15 @@ SNAPSHOT_SHA256 = "8dd449e5a8f704b25c193149690991e71c490edee9497f75d8eaa4125bc1b
 # Closed list, not an automatic allowance for every future cost substitution.
 # A new MPN change needs its own explicit transition and evidence review.
 ACCEPTED_TRANSITIONS = {
+    ("LESHY2-RF-R2", "J1"): {
+        "instance": "product_usb_connector",
+        "old_device": "jae_dx07s016ja1r1500", "old_mpn": "JAE DX07S016JA1R1500",
+        "new_device": "gct_usb4105_gf_a", "new_mpn": "GCT USB4105-GF-A",
+        "footprint": "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
+        "evidence": "hardware/verification/jlcpcb-usb-unification-2026-09-09.json",
+        "evidence_format": "gct_usb_unification_2026_09_09",
+        "primary": "https://gct.co/files/drawings/usb4105.pdf",
+    },
     ("LESHY2-RF-R2", "SW5"): {
         "instance": "power_command_switch",
         "old_device": "ck_js102011scqn", "old_mpn": "C&K JS102011SCQN",
@@ -90,12 +99,38 @@ class InterfaceReviewTests(unittest.TestCase):
                 self.assertEqual(transition["new_device"], selected["device_id"])
                 self.assertEqual(transition["new_mpn"], selected["mpn"])
                 self.assertEqual(transition["evidence"], selected["evidence"])
+                self.assertIn(transition["evidence"], evidence)
                 proof = evidence[transition["evidence"]]
-                self.assertEqual(transition["selection_value"], proof[transition["selection_field"]])
-                self.assertEqual(transition["former_value"], proof[transition["former_field"]])
-                self.assertEqual(transition["primary"], proof["manufacturer_evidence"]["url"])
-                self.assertTrue(proof["checked"])
-                self.assertTrue(proof["status"].startswith("selected"))
+                if transition.get("evidence_format") == "gct_usb_unification_2026_09_09":
+                    # One exact later adoption has a different evidence schema;
+                    # this is not a generic bypass for arbitrary future parts.
+                    self.assertEqual(("LESHY2-RF-R2", "J1"), key)
+                    self.assertEqual("gct_usb4105_gf_a", selected["merge_into_existing_group"])
+                    self.assertEqual("2026-09-09", selected["accepted_on"])
+                    self.assertEqual("H6-R2-USB-unification-factory-recheck", proof["artifact"])
+                    self.assertEqual(
+                        "exact_mpn_implemented_scoped_native_verification_not_production_release",
+                        proof["status"],
+                    )
+                    part = proof["part"]
+                    self.assertEqual("USB4105-GF-A", part["mpn"])
+                    self.assertEqual("Global Connector Technology", part["manufacturer"])
+                    self.assertEqual("C3020560", part["jlcpcb_part_number"])
+                    self.assertEqual("SMT Assembly", part["assembly_type"])
+                    self.assertIn("Standard", part["pcba_type"])
+                    self.assertEqual(4, part["current_fitted_quantity_of_this_mpn"])
+                    self.assertEqual(9, part["minimum_purchase_quantity"])
+                    self.assertEqual(transition["primary"], proof["manufacturer_crosscheck"]["drawing_url"])
+                    self.assertEqual("2026-09-09", proof["checked_on_local"])
+                    self.assertTrue(proof["checked_at_utc"])
+                    self.assertEqual("го", proof.get("user_confirmation", {}).get("answer"))
+                    self.assertEqual("2026-09-09", proof["user_confirmation"]["date_local"])
+                else:
+                    self.assertEqual(transition["selection_value"], proof[transition["selection_field"]])
+                    self.assertEqual(transition["former_value"], proof[transition["former_field"]])
+                    self.assertEqual(transition["primary"], proof["manufacturer_evidence"]["url"])
+                    self.assertTrue(proof["checked"])
+                    self.assertTrue(proof["status"].startswith("selected"))
             self.assertIn("verified_scope", r)
             self.assertIn("remaining", r)
         self.assertEqual(set(ACCEPTED_TRANSITIONS), seen_transitions)
@@ -120,16 +155,17 @@ class InterfaceReviewTests(unittest.TestCase):
 
     def test_unknown_transition_and_missing_evidence_do_not_pass(self):
         original = self.identity_inputs()
-        for mutation in ("unknown_mpn", "wrong_accepted_identity", "wrong_selection", "missing_evidence", "wrong_primary", "missing_row", "duplicate_row"):
+        for mutation in ("unknown_mpn", "wrong_accepted_identity", "wrong_selection", "missing_evidence", "wrong_primary", "usb_pending", "usb_wrong_part", "usb_wrong_primary", "usb_missing_confirmation", "usb_missing_evidence", "missing_row", "duplicate_row"):
             with self.subTest(mutation=mutation):
                 review, ledger, devices, replacements, evidence = copy.deepcopy(original)
                 audio = next(r for r in ledger if r["instance"] == "headphone_jack")
                 audio_proof = ACCEPTED_TRANSITIONS[("LESHY2-RF-R2", "U83")]["evidence"]
+                usb_proof = ACCEPTED_TRANSITIONS[("LESHY2-RF-R2", "J1")]["evidence"]
                 if mutation == "unknown_mpn":
                     other = next(r for r in ledger if r["instance"] == "product_usb_connector")
                     # Even a real, registered part is not automatically an
                     # accepted substitute for a different interface instance.
-                    other["device_id"] = "gct_usb4105_gf_a"
+                    other["device_id"] = "seeed_1125r_smt_4p"
                     other["mpn"] = devices[other["device_id"]]["mpn"]
                 elif mutation == "wrong_accepted_identity":
                     audio["device_id"] = "same_sky_sj_43504_smt_tr"
@@ -140,6 +176,16 @@ class InterfaceReviewTests(unittest.TestCase):
                     replacements["same_sky_sj_43504_smt_tr"]["evidence"] = ""
                 elif mutation == "wrong_primary":
                     evidence[audio_proof]["manufacturer_evidence"]["url"] = "https://example.invalid/catalog"
+                elif mutation == "usb_pending":
+                    evidence[usb_proof]["status"] = "candidate_checked_not_applied_pending_exact_mpn_confirmation"
+                elif mutation == "usb_wrong_part":
+                    evidence[usb_proof]["part"]["mpn"] = "USB4105-GF-A-060"
+                elif mutation == "usb_wrong_primary":
+                    evidence[usb_proof]["manufacturer_crosscheck"]["drawing_url"] = "https://example.invalid/catalog"
+                elif mutation == "usb_missing_confirmation":
+                    evidence[usb_proof].pop("user_confirmation")
+                elif mutation == "usb_missing_evidence":
+                    evidence.pop(usb_proof)
                 elif mutation == "missing_row":
                     review["interfaces"].pop()
                 elif mutation == "duplicate_row":

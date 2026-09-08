@@ -1,8 +1,15 @@
 {
   "schema_version": 1,
   "artifact": "H6-R2-USB-unification-factory-recheck",
-  "status": "candidate_checked_not_applied_pending_exact_mpn_confirmation",
-  "checked_at_utc": "2026-09-08T21:24:46Z",
+  "status": "exact_mpn_implemented_scoped_native_verification_not_production_release",
+  "checked_at_utc": "2026-09-08T21:51:23Z",
+  "previous_capture_at_utc": "2026-09-08T21:24:46Z",
+  "user_confirmation": {
+    "date_local": "2026-09-09",
+    "exact_question": "Подтверждаешь именно GCT USB4105-GF-A для всех четырёх портов?",
+    "answer": "го",
+    "approved_scope": "Use USB4105-GF-A for all four USB-C ports, flush with the PCB edge, retaining distinct power/data and data-only circuit roles. No other audited MPN change or purchase is approved."
+  },
   "checked_on_local": "2026-09-09",
   "timezone": "Europe/Moscow",
   "surface": "JLCPCB Assembly Parts Library; fully loaded dynamic exact-part page",
@@ -26,7 +33,8 @@
     "price_quantity": 9,
     "purchase_action_displayed": "Pre-order",
     "route": "Stock-backed pre-order into the JLCPCB private parts library for Standard PCBA; not represented as direct assembly-stock MOQ 1",
-    "current_fitted_quantity_of_this_mpn": 3,
+    "fitted_quantity_before_unification": 3,
+    "current_fitted_quantity_of_this_mpn": 4,
     "proposed_fitted_quantity_per_product": 4,
     "minimum_purchase_surplus_before_factory_attrition": 5,
     "separate_shipping_available": false,

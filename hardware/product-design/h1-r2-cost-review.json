@@ -83,6 +83,15 @@
     "factory_function_test": "optional quote-only insurance; first full power-on and USB bring-up belong to the owner"
   },
   "r2_device_replacements": {
+    "jae_dx07s016ja1r1500": {
+      "device_id": "gct_usb4105_gf_a",
+      "mpn": "GCT USB4105-GF-A",
+      "merge_into_existing_group": "gct_usb4105_gf_a",
+      "reason": "User-approved exact USB4105-GF-A for all four ports: consolidate one powered product connector with three existing data-only service connectors. Preserve every port role, current, contact and net; unify nominal factory-flush mounting geometry.",
+      "evidence": "hardware/verification/jlcpcb-usb-unification-2026-09-09.json",
+      "accepted_on": "2026-09-09",
+      "cost_boundary": "Keep the existing GCT quantity-100 historical cost snapshot. The fresh JLCPCB minimum-9 stock-backed pre-order quote is separate, not a substitute quantity-100 price or an order."
+    },
     "same_sky_sj_43504_smt_tr": {
       "device_id": "same_sky_sj_43515ts_smt_tr",
       "mpn": "Same Sky SJ-43515TS-SMT-TR",

@@ -168,6 +168,22 @@ def trial_line_cost(row: dict, device_quantity: int) -> float | None:
     return cost
 
 
+def trial_capture_quantity(row: dict, device_quantity: int) -> int | None:
+    """Keep the captured demand separate from today's fitted demand.
+
+    Retained BOM-Tool rows may carry a later ``quantity`` alongside the actual
+    ``historical_capture_quantity``. Exact part-page rows use their own quantity
+    for the same five-device normalization as ``trial_line_cost``. A missing
+    price match does not establish a captured purchase quantity.
+    """
+    if row.get("displayed_line_cost_usd") is None:
+        return None
+    quantity = row.get("historical_capture_quantity", row.get("quantity"))
+    if type(quantity) is not int or quantity <= 0:
+        raise ValueError("matched cost capture requires a positive integer quantity")
+    return quantity * device_quantity
+
+
 def build(model: dict, historical_bom: list[dict], bom: list[dict], trial: dict, antennas: dict) -> dict:
     procurement_quantity = model["procurement_target_device_quantity"]
     historical_quantity = model["historical_cost_capture_device_quantity"]
@@ -210,7 +226,9 @@ def build(model: dict, historical_bom: list[dict], bom: list[dict], trial: dict,
                     production_line * procurement_quantity
                     if production_line is not None else None
                 ),
-                "quantity_historical_capture": quantity * historical_quantity,
+                "quantity_historical_capture": trial_capture_quantity(
+                    trial_row, historical_quantity
+                ),
                 "unit_price_quantity_100_usd": (
                     float(source["unit_price_usd"])
                     if source["unit_price_usd"]
@@ -412,8 +430,8 @@ def build(model: dict, historical_bom: list[dict], bom: list[dict], trial: dict,
     errors = []
     if len(historical_bom) != 210:
         errors.append("historical target BOM is no longer 210 lines")
-    if len(rows) != 249:
-        errors.append(f"current R2 purchasable component-group ledger is not 249 lines: {len(rows)}")
+    if len(rows) != 248:
+        errors.append(f"current R2 purchasable component-group ledger is not 248 lines: {len(rows)}")
     if any(
         rows[index]["line_burden_per_device_usd"] is not None
         and rows[index + 1]["line_burden_per_device_usd"] is not None

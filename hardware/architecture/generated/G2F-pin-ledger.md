@@ -46,7 +46,7 @@
 | `fh_rs_06l2r70ft` | `FH RS-06L2R70FT` | `verified_exact_jlcpcb_stocked_backlight_series_resistor` | `active_factory_stocked_standard_pcba` | [FH General Thick Film Chip Fixed Resistor official datasheet I 12.0 current official drawing checked 2026-08-31](https://www.fhcomp.com/uploads/20260810/152605_1-R-%E5%B8%B8%E8%A7%84%E5%8E%9A%E8%86%9C%E7%89%87%E5%BC%8F%E5%9B%BA%E5%AE%9A%E7%94%B5%E9%98%BB%E5%99%A8-I%2012.0.pdf) | same primary source |
 | `gct_rfpc_sma31_fn_175_a` | `GCT RFPC-SMA31-FN-175-A` | `verified_exact_external_standard_sma_body` | `active` | [GCT RFPC-SMA31-FN official product page and A1 product drawing A1 released 2025-04-07](https://gct.co/connector/rfpc-sma31-fn) | same primary source |
 | `gct_rfpc_sma32_fn_175_a` | `GCT RFPC-SMA32-FN-175-A` | `verified_exact_external_reverse_polarity_sma_body` | `active` | [GCT RFPC-SMA32-FN official product page and A1 product drawing A1 dated 2025-02-25, released 2025-04-07](https://gct.co/connector/rfpc-sma32-fn) | same primary source |
-| `gct_usb4105_gf_a` | `GCT USB4105-GF-A` | `verified_exact_service_usb_receptacle` | `active_orderable` | [USB4105 USB Type-C receptacle drawing and product specification drawing revision B4 dated 2023-12-18; specification revision 2.2](https://gct.co/files/drawings/usb4105.pdf) | same primary source |
+| `gct_usb4105_gf_a` | `GCT USB4105-GF-A` | `reviewed_exact_product_and_service_usb_receptacle_factory_preorder_route` | `production_active_explicit_jlcpcb_preorder_route` | [USB4105 USB Type-C receptacle drawing and product specification drawing revision B4 dated 2023-12-18; specification revision 2.2](https://gct.co/files/drawings/usb4105.pdf) | same primary source |
 | `hirose_df40c_2_0_40ds_0_4v_51` | `Hirose DF40C(2.0)-40DS-0.4V(51)` | `verified_exact_jlcpcb_stocked_display_adapter_main_board_receptacle` | `active_factory_stocked_standard_pcba` | [Hirose exact product page, 2D drawing and specification sheet CL0684-4042-5-51; exact 40-position receptacle; packaging suffix changes reel quantity only](https://www.hirose.com/en/product/p/CL0684-4042-5-51) | same primary source |
 | `hirose_df40c_40dp_0_4v_51` | `Hirose DF40C-40DP-0.4V(51)` | `verified_exact_display_adapter_daughter_board_plug` | `active and authorized-distributor-stocked` | [Hirose exact product page, 2D drawing and specification sheet CL0684-4013-7-51; detailed specifications updated 2026-08-05](https://www.hirose.com/en/product/p/CL0684-4013-7-51) | same primary source |
 | `hirose_dm3at_sf_pejm5` | `Hirose DM3AT-SF-PEJM5` | `verified_candidate` | `active` | [DM3 Series microSD Card Connectors catalog 2026-05-01 current catalog and exact product page](https://www.hirose.com/product/p/CL0609-0031-0-00) | same primary source |
@@ -4469,8 +4469,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `ext_buck_hf_input_cap` lifecycle: `active_orderable`.
 - `ext_rilm` uses `Yageo RC0402FR-071K82L` as `verified_h3_dc_margin_correction`, not an accepted production choice.
 - `ext_rilm` lifecycle: `active_orderable`.
-- `c5_service_usb_connector` uses `GCT USB4105-GF-A` as `verified_exact_service_usb_receptacle`, not an accepted production choice.
-- `c5_service_usb_connector` lifecycle: `active_orderable`.
+- `c5_service_usb_connector` uses `GCT USB4105-GF-A` as `reviewed_exact_product_and_service_usb_receptacle_factory_preorder_route`, not an accepted production choice.
+- `c5_service_usb_connector` lifecycle: `production_active_explicit_jlcpcb_preorder_route`.
 - `c5_service_usb_esd` uses `Texas Instruments TPD2EUSB30ADRTR` as `verified_exact_service_usb_esd`, not an accepted production choice.
 - `c5_service_usb_esd` lifecycle: `active_orderable`.
 - `c5_service_usb_switch` uses `onsemi FSUSB42MUX` as `verified_exact_data_only_service_usb_isolator`, not an accepted production choice.
@@ -4483,8 +4483,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `c5_service_usb_cc2_rd` lifecycle: `active_orderable`.
 - `c5_service_usb_vbus_bleeder` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.
 - `c5_service_usb_vbus_bleeder` lifecycle: `active_orderable`.
-- `rp_service_usb_connector` uses `GCT USB4105-GF-A` as `verified_exact_service_usb_receptacle`, not an accepted production choice.
-- `rp_service_usb_connector` lifecycle: `active_orderable`.
+- `rp_service_usb_connector` uses `GCT USB4105-GF-A` as `reviewed_exact_product_and_service_usb_receptacle_factory_preorder_route`, not an accepted production choice.
+- `rp_service_usb_connector` lifecycle: `production_active_explicit_jlcpcb_preorder_route`.
 - `rp_service_usb_esd` uses `Texas Instruments TPD2EUSB30ADRTR` as `verified_exact_service_usb_esd`, not an accepted production choice.
 - `rp_service_usb_esd` lifecycle: `active_orderable`.
 - `rp_service_usb_switch` uses `onsemi FSUSB42MUX` as `verified_exact_data_only_service_usb_isolator`, not an accepted production choice.

@@ -179,7 +179,7 @@ def build_residual_rows(rows: dict[str, dict]) -> tuple[list[dict], list[dict]]:
 
 def phase_table(russian: bool) -> str:
     rows = [
-        ("H3-R2.0", "Inputs, provenance and methods", "2 projects · 22 sheets · 1,208 schematic instances · 788 nets · 251 exact groups · 9 methods"),
+        ("H3-R2.0", "Inputs, provenance and methods", "2 projects · 22 sheets · 1,208 schematic instances · 788 nets · 250 exact groups · 9 methods"),
         ("H3-R2.1", "DC, rails, sources and charge", "2,266 legal states · 224 rail corners · 30.560% minimum reserve · 3.516 A maximum pack current"),
         ("H3-R2.2", "Transitions and faults", "14 ordered scenarios · 7,316 handover cases · 5 starts · 4 load steps · 10 watchdog/fault cases"),
         ("H3-R2.3", "Analog corners", "display, audio, IR, battery and Airband calculations pass; routed Airband tuning remains measured"),
@@ -253,7 +253,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "all_provisional_numerical_error_lists_are_empty": all(row["provisional_numerical_errors"] == 0 for row in artifact_rows),
         "all_recorded_source_hashes_match": bool(hash_checks) and all(row["matches"] for row in hash_checks),
         "input_freeze_covers_the_exact_r2_h2_boundary": rows["H3-R2.0/input-freeze"]["accepted_hardware_input"] == "H2-R2.1.5" and rows["H3-R2.0/input-freeze"]["summary"]["projects"] == 2,
-        "all_251_component_groups_have_provenance": rows["H3-R2.0/parameter-provenance"]["summary"]["owned_component_groups"] == 251,
+        "all_250_component_groups_have_provenance": rows["H3-R2.0/parameter-provenance"]["summary"]["owned_component_groups"] == 250,
         "all_methods_and_rules_are_frozen": rows["H3-R2.0/method-contract"]["summary"]["methods"] == 9 and rows["H3-R2.0/method-contract"]["summary"]["pass_fail_rules"] == 12,
         "dc_source_has_no_failed_state": rows["H3-R2.1/source-margins"]["summary"]["failed_states"] == 0,
         "all_transition_cases_pass": rows["H3-R2.2/handover"]["summary"]["passed_cases"] == 7316 and rows["H3-R2.2/handover"]["summary"]["failed_cases"] == 0,

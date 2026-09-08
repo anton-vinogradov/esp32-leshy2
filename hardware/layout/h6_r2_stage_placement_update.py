@@ -24,6 +24,7 @@ from h6_r2_manual_copper import copper_signature
 import h6_r2_microsd_recess as microsd
 import h6_r2_encoder_fit as encoder
 import h6_r2_speaker_fit as speaker
+import h6_r2_usb_unification as usb
 
 ROOT = Path(__file__).resolve().parents[2]
 UUID_FORM = re.compile(r'(\(uuid\s+)"([^"\\]*)"')
@@ -318,7 +319,8 @@ def input_snapshot(source):
     paths = {source, Path(__file__), *(getattr(placement, name) for name in PLACEMENT_INPUT_ATTRIBUTES)}
     paths.update(ROOT / "hardware/layout" / name for name in (
         "h6_r2_placement.py", "h6_r2_coordinates.py", "h6_r2_user_silkscreen.py",
-        "h6_r2_microsd_recess.py", "h6_r2_encoder_fit.py", encoder.GEOMETRY_NAME))
+        "h6_r2_microsd_recess.py", "h6_r2_encoder_fit.py", encoder.GEOMETRY_NAME,
+        "h6_r2_usb_unification.py", usb.REVIEW_NAME))
     paths.add(ROOT / "hardware/ecad/h2_r2_encoder_footprint.py")
     paths.update((ROOT / "hardware/ecad/libraries").rglob("*.kicad_mod"))
     rows = json.loads(placement.INSTANCE_PATH.read_text())["rows"]
@@ -456,6 +458,22 @@ def stage(plan, directory):
     removals = plan.get("allowed_removed_nc_pads", {})
     if not isinstance(removals, dict) or set(removals) - set(changed):
         raise ValueError("pad-removal allowances must identify changed footprints only")
+    usb_review = None
+    usb_allowance = plan.get("usb_unification_update")
+    if usb_allowance is not None:
+        usb.verify_allowance(usb_allowance, project, ROOT / "hardware/layout" / usb.REVIEW_NAME)
+        if changed != ["J1", "U5"] or sorted(plan["allowed_references"]) != changed or removals:
+            raise ValueError("USB migration must change exactly J1/U5 without any generic pad-removal waiver")
+        usb.require_no_old_copper_attachments(old, changed, pcbnew)
+        usb_review = usb.verify_transition(usb.snapshot(old_fps[usb.REFERENCE], pcbnew),
+                                          usb.snapshot(new_fps[usb.REFERENCE], pcbnew), project)
+        usb_review["companion"] = usb.verify_companion(usb.snapshot(old_fps["U5"], pcbnew),
+                                                       usb.snapshot(new_fps["U5"], pcbnew), project)
+        before_graph, after_graph = usb.named_connectivity(old), usb.named_connectivity(new)
+        if before_graph != after_graph:
+            raise ValueError("USB migration changed named-pad/copper connectivity")
+        usb_review["named_pad_copper_adjacency_nodes_preserved"] = len(before_graph)
+        usb_review["old_copper_attachments_at_changed_references"] = 0
     encoder_review = None
     encoder_allowance = plan.get("encoder_geometry_update")
     if encoder_allowance is not None:
@@ -465,6 +483,8 @@ def stage(plan, directory):
         encoder_review = encoder.verify_transition(encoder.snapshot(old_fps[encoder.REFERENCE], pcbnew),
                                                    encoder.snapshot(new_fps[encoder.REFERENCE], pcbnew))
     for ref in old_fps:
+        if usb_review is not None and ref == usb.REFERENCE:
+            continue
         if encoder_review is not None and ref == encoder.REFERENCE:
             continue
         verify_pad_nets(ref, pad_nets(old_fps[ref]), pad_nets(new_fps[ref]), removals.get(ref, []))
@@ -485,6 +505,7 @@ def stage(plan, directory):
               "reviewed_added_silkscreen_texts": sorted(additions),
               "reviewed_edge_cut_change": plan.get("allowed_edge_cut_change"),
               "reviewed_encoder_geometry_change": encoder_review,
+              "reviewed_usb_unification": usb_review,
               "reviewed_speaker_body_addition": plan.get("allowed_speaker_body_addition"),
               "speaker_body_graphics_added": len(speaker_forms),
               "edge_cut_primitives_removed_added": [len(old_edges), len(new_edges)],

@@ -4,15 +4,15 @@
   "marker": "H3-R2.1.2",
   "status": "pass",
   "accepted_input": "H3-R2.1.1",
-  "binding_sha256": "91152cb9c586a7281116531be69d1a0548b38072e508617c2ad44e2acd9683d6",
+  "binding_sha256": "61c3ce8c6a5b51881d3cf8c733c462d7ab0df6654f9355d60a0e38553d50b18b",
   "source_sha256": {
     "hardware/verification/h3-r2-load-binding-contract.json": "48d2575032bac09bd8ea276e814c16fbb1f76ca6afe0cea0dd36cee2e8c2a384",
-    "hardware/verification/generated/H3-R2-power-state-register.json": "aa872edb1649b8a76bed4c82ee657720fcbbd91a856f876b41de737586388003",
-    "hardware/verification/generated/H3-R2-method-contract.json": "8e90ecb49573464c9d2aeb3447bf5eedc67068df5f2e348c794fe7964a51ec1a",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "09c5cfa42095d117ac3ab874e2e876f07391be2877d95d29a0bd50aaf5bdaf46",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "bd0f3d67c7d682ae96fedb3b9a5fb6e64648efbf18134f4b78567a1232717bf7",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "68eabd0f96aa091b348c9a0f9047dbd39c39666353b8c2d144babb87af7b9462",
-    "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974"
+    "hardware/verification/generated/H3-R2-power-state-register.json": "a377a607a2f7022680c9644ea8b891a17d2d6607575d8fcb68553a4d148d09ae",
+    "hardware/verification/generated/H3-R2-method-contract.json": "c682647e991ecd6d8621935eb56b0fb98864c979c2279728aa18f9ecc8a1457a",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "9b1977348b3ebcaa59185f2f968e4e512d4ee2703cee717b1787318dbcc4e06b",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7e5594bf5130524096b2683040b153409611b92c2df088dd33cb5c30f2f7a597",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "94bd7d64fc1d6c2ea3dde8e55f1390fb31cafc2a213cc99d290ce234d60878e8",
+    "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9"
   },
   "policy": {
     "one_line_per_fitted_power_connected_instance": true,
@@ -826,8 +826,8 @@
       "sheet": "RF_01_USB_PD_CHARGE",
       "reference": "J1",
       "instance": "product_usb_connector",
-      "device_id": "jae_dx07s016ja1r1500",
-      "mpn": "JAE DX07S016JA1R1500",
+      "device_id": "gct_usb4105_gf_a",
+      "mpn": "GCT USB4105-GF-A",
       "quantity": 1,
       "rail_bindings": [
         {
@@ -847,13 +847,18 @@
         "source_path"
       ],
       "disposition": "connector_or_external_boundary",
-      "parameter_state": "explicit_parameter_extraction_required",
-      "candidate_current_fields": [],
+      "parameter_state": "candidate_current_seed_requires_applicability_review",
+      "candidate_current_fields": [
+        {
+          "path": "collective_vbus_current_rating_a",
+          "value": 5.0
+        }
+      ],
       "source": {
-        "document": "JAE DX07S016JA1R1500 official exact-product page",
-        "url": "https://products.jae.com/jp/ja/connectors/category/io/dx07-receptacle/dx07s016ja1r1500/",
-        "checked": "2026-08-31",
-        "reason": "replace the distributor-hosted brochure mirror with the original manufacturer's exact-product record"
+        "document": "GCT USB4105 official product specification and B4 manufacturer drawing, exact GF-A variant with default 0.95-mm shell stakes",
+        "url": "https://gct.co/connector/usb4105",
+        "checked": "2026-09-09",
+        "reason": "user-approved four-port R2 unification; preserve the protected product power/data role and three circuit-defined data-only service roles"
       },
       "parameter_owner": "H3-R2.1.4"
     },
@@ -23768,9 +23773,9 @@
       "VOICE": 23
     },
     "parameter_states": {
-      "candidate_current_seed_requires_applicability_review": 16,
+      "candidate_current_seed_requires_applicability_review": 17,
       "exact_nonload_parameter_extraction_required": 255,
-      "explicit_parameter_extraction_required": 352
+      "explicit_parameter_extraction_required": 351
     },
     "hidden_miscellaneous_allowances": 0,
     "reviewed_power_nets_required": 17,

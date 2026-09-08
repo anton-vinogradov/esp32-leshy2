@@ -5,10 +5,10 @@
   "status": "pass",
   "source_hashes": {
     "hardware/layout/h6-r2-routing-policy.json": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
-    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "343763201ea51cc60907684316d2a4243e9d4c854d1bb51f08599b7d9f1ac71d",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "68eabd0f96aa091b348c9a0f9047dbd39c39666353b8c2d144babb87af7b9462",
+    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "f03919a28b4cc37aa763943f7e0c7b0aabe61ddac48f699d8b9adcec7e422ebc",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "94bd7d64fc1d6c2ea3dde8e55f1390fb31cafc2a213cc99d290ce234d60878e8",
     "hardware/verification/h3-r2-load-binding-contract.json": "48d2575032bac09bd8ea276e814c16fbb1f76ca6afe0cea0dd36cee2e8c2a384",
-    "hardware/layout/h6-r2-placement-contract.json": "08b2e6350f80025986b743808dde33359112113089ebfe16a20076e26922f0d1"
+    "hardware/layout/h6-r2-placement-contract.json": "094865936bf52c5e1fa5dc3e90f2e22b132afb064e7909d1d8ddd2bf9f3cdfe3"
   },
   "stackup_binding": {
     "manufacturer": "JLCPCB",

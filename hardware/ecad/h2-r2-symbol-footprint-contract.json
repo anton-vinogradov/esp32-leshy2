@@ -46,6 +46,7 @@
     "H2-ADP00": ["ADP_00_DISPLAY_ADAPTER"]
   },
   "footprint_overrides": {
+    "GCT USB4105-GF-A": "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
     "Alps Alpine EC11E18244AU": "Leshy2_R2:EC11E18244AU-ENGINEERING-PTH",
     "Keystone Electronics 1048P": "Leshy2_R2:Keystone-1048P-POLARITY-CORRECTED",
     "Same Sky SJ-43515TS-SMT-TR": "Leshy2_R2:SJ-43515TS-SMT-TR",
@@ -123,6 +124,7 @@
     "LESHY2-PCB-TP-1MM-R2": "Leshy2_R2:PCB_TestPoint_Pad_D1.0mm"
   },
   "sheet_affinity_overrides": {
+    "gct_usb4105_gf_a": ["RF_01_USB_PD_CHARGE", "RF_10_RP2354_CORE_SERVICE", "UI_20_C5_WIFI_IR_SERVICE", "UI_30_HUB_RP_CORE_SERVICE"],
     "same_sky_sj_43515ts_smt_tr": ["RF_22_AUDIO_CODEC_IO"],
     "vishay_tsmp95000tr": ["UI_20_C5_WIFI_IR_SERVICE"],
     "ck_js102011saqn": ["RF_50_TX_SAFETY_EVIDENCE"],

@@ -2,7 +2,7 @@
   "status": "current_native_visualization_not_assembly_approval",
   "inputs_sha256": {
     "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "5a29ed7272d412d72b62265bd3940864e4feb23a3f5e5d7ed60f9497620567cb",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "44bea71388631dfd3b7d9c7bfb088569de46d13083fd164bf3562dc8bfde0dde",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "5442331dc15ec87f9c315bf64996a4e0841901d80e8ffc36f2b67b7669aca96b",
     "hardware/layout/h6_r2_component_render.py": "bf67d9d1c825f7f74b49ffcc03031bf1d63f74b221e3edb431fdab8f6ec4d76d"
   },
   "view_convention": "outer=native; inner=x_view=80-x_native, y unchanged; no extra RF transform",
@@ -747,13 +747,13 @@
           "shape": "oval",
           "centre_mm": [
             12.149999,
-            143.525
+            143.22
           ],
           "size_mm": [
-            1.3,
-            2.3
+            1.0,
+            2.1
           ],
-          "radius_mm": 0.65,
+          "radius_mm": 0.5,
           "angle_deg": 180.0,
           "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
           "purpose": "interface_through_pad",
@@ -766,13 +766,13 @@
           "shape": "oval",
           "centre_mm": [
             12.149999,
-            147.35
+            147.4
           ],
           "size_mm": [
-            1.3,
-            2.6
+            1.0,
+            1.8
           ],
-          "radius_mm": 0.65,
+          "radius_mm": 0.5,
           "angle_deg": 180.0,
           "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
           "purpose": "interface_through_pad",
@@ -785,13 +785,13 @@
           "shape": "oval",
           "centre_mm": [
             20.789999,
-            143.525
+            143.22
           ],
           "size_mm": [
-            1.3,
-            2.3
+            1.0,
+            2.1
           ],
-          "radius_mm": 0.65,
+          "radius_mm": 0.5,
           "angle_deg": 180.0,
           "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
           "purpose": "interface_through_pad",
@@ -804,13 +804,13 @@
           "shape": "oval",
           "centre_mm": [
             20.789999,
-            147.35
+            147.4
           ],
           "size_mm": [
-            1.3,
-            2.6
+            1.0,
+            1.8
           ],
-          "radius_mm": 0.65,
+          "radius_mm": 0.5,
           "angle_deg": 180.0,
           "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
           "purpose": "interface_through_pad",
@@ -3030,13 +3030,13 @@
           "shape": "oval",
           "centre_mm": [
             12.149999,
-            143.525
+            143.22
           ],
           "size_mm": [
-            1.3,
-            2.3
+            1.0,
+            2.1
           ],
-          "radius_mm": 0.65,
+          "radius_mm": 0.5,
           "angle_deg": 180.0,
           "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
           "purpose": "interface_through_pad",
@@ -3049,13 +3049,13 @@
           "shape": "oval",
           "centre_mm": [
             12.149999,
-            147.35
+            147.4
           ],
           "size_mm": [
-            1.3,
-            2.6
+            1.0,
+            1.8
           ],
-          "radius_mm": 0.65,
+          "radius_mm": 0.5,
           "angle_deg": 180.0,
           "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
           "purpose": "interface_through_pad",
@@ -3068,13 +3068,13 @@
           "shape": "oval",
           "centre_mm": [
             20.789999,
-            143.525
+            143.22
           ],
           "size_mm": [
-            1.3,
-            2.3
+            1.0,
+            2.1
           ],
-          "radius_mm": 0.65,
+          "radius_mm": 0.5,
           "angle_deg": 180.0,
           "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
           "purpose": "interface_through_pad",
@@ -3087,13 +3087,13 @@
           "shape": "oval",
           "centre_mm": [
             20.789999,
-            147.35
+            147.4
           ],
           "size_mm": [
-            1.3,
-            2.6
+            1.0,
+            1.8
           ],
-          "radius_mm": 0.65,
+          "radius_mm": 0.5,
           "angle_deg": 180.0,
           "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
           "purpose": "interface_through_pad",
@@ -3618,9 +3618,9 @@
   ],
   "outputs_sha256": {
     "docs/images/h6-r2-components-ui-outer.svg": "fae8ddf9d2095e1920b79a767bed825bec96f65d62ec944d10958854eebee395",
-    "docs/images/h6-r2-components-rf-outer.svg": "291e7df773476b62188884d215a1faf745207fdd259b7e092146c22bbfe35da4",
+    "docs/images/h6-r2-components-rf-outer.svg": "b3f49a9fb06feb4bf9cc0a1a157c455b52396331d861d9389484f8a836206515",
     "docs/images/h6-r2-components-ui-inner.svg": "0b0c0f0d5e833d46327e795daafdc4c25389427c3321e8ca3415e3eefa0b5b13",
-    "docs/images/h6-r2-components-rf-inner.svg": "71c73645f6777c582ef7fa5cb0565d7f501a2abf89f5e7c2442f04dd6a7c65c8",
-    "docs/images/h6-r2-components-overview.svg": "6eed391af0c4f0ff36b9173537fe3ce59fe75482ddcba730c38029b051c4b6f5"
+    "docs/images/h6-r2-components-rf-inner.svg": "bea78814b5af922e0a4a8157084fc45a8a7f4c0643e94da8732312be43c1d290",
+    "docs/images/h6-r2-components-overview.svg": "6d4d104f05188b32c43bd307dcc86c45da52a5d670f4727428ef5a91c3867c43"
   }
 }

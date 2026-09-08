@@ -209,7 +209,11 @@ class SJ43515TSSourceTests(unittest.TestCase):
     def test_current_replacement_and_sheet_are_explicit_not_historical_rewrite(self):
         cost = read_json("hardware/product-design/h1-r2-cost-review.json")
         old = [{"device_id": OLD_DEVICE, "mpn": "Same Sky SJ-43504-SMT-TR", "quantity": "1", "scope": "base_product", "placements": "headphone_jack"}]
-        projected = r2_cost_base_rows(old, {"r2_device_replacements": cost["r2_device_replacements"]})
+        # This miniature population contains only audio. Passing the complete
+        # replacement registry would correctly invoke USB's missing-port guard.
+        projected = r2_cost_base_rows(old, {
+            "r2_device_replacements": {OLD_DEVICE: cost["r2_device_replacements"][OLD_DEVICE]},
+        })
         self.assertEqual(1, len(projected))
         self.assertEqual(DEVICE, projected[0]["device_id"])
         self.assertEqual(1, projected[0]["quantity_per_device"])

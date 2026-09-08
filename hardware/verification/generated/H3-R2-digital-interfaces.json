@@ -5,10 +5,10 @@
   "status": "review_required",
   "source_hashes": {
     "hardware/architecture/h0-r2-rebaseline.json": "bab7bf6cb3e80842229704169c8b3297bcdff87ec6bb309aad75814701dd3c2b",
-    "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "8b5aecb94aeb130f55bcec5f19933c394b70d6c7531a50fd1fb212edc615be2d",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "68eabd0f96aa091b348c9a0f9047dbd39c39666353b8c2d144babb87af7b9462",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "bd0f3d67c7d682ae96fedb3b9a5fb6e64648efbf18134f4b78567a1232717bf7",
+    "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "b91979ca9ae803e2b335eff8d17bdaa92cd9e8547661602108122cc69bb57455",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "94bd7d64fc1d6c2ea3dde8e55f1390fb31cafc2a213cc99d290ce234d60878e8",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7e5594bf5130524096b2683040b153409611b92c2df088dd33cb5c30f2f7a597",
     "hardware/product-design/display-mount.json": "71bba240dfa5c3c8cb4f9ac269c4a9874f460981da7c196d072086c0dc3cc343",
     "hardware/verification/h3_r2_digital_interfaces.py": "04c9371ed643f7c48928c0333c055b73dbcd7a2105124f68f353677fe5cf78f0",
     "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
@@ -392,10 +392,10 @@
     "battery_energization_authorized": false,
     "source_sha256": {
       "hardware/architecture/h0-r2-rebaseline.json": "bab7bf6cb3e80842229704169c8b3297bcdff87ec6bb309aad75814701dd3c2b",
-      "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974",
-      "hardware/verification/generated/H3-R2-rail-margins.json": "8b5aecb94aeb130f55bcec5f19933c394b70d6c7531a50fd1fb212edc615be2d",
-      "hardware/ecad/generated/H2-R2-native-net-ledger.json": "68eabd0f96aa091b348c9a0f9047dbd39c39666353b8c2d144babb87af7b9462",
-      "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "bd0f3d67c7d682ae96fedb3b9a5fb6e64648efbf18134f4b78567a1232717bf7",
+      "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9",
+      "hardware/verification/generated/H3-R2-rail-margins.json": "b91979ca9ae803e2b335eff8d17bdaa92cd9e8547661602108122cc69bb57455",
+      "hardware/ecad/generated/H2-R2-native-net-ledger.json": "94bd7d64fc1d6c2ea3dde8e55f1390fb31cafc2a213cc99d290ce234d60878e8",
+      "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7e5594bf5130524096b2683040b153409611b92c2df088dd33cb5c30f2f7a597",
       "hardware/product-design/display-mount.json": "71bba240dfa5c3c8cb4f9ac269c4a9874f460981da7c196d072086c0dc3cc343",
       "hardware/verification/h3_r2_digital_interfaces.py": "04c9371ed643f7c48928c0333c055b73dbcd7a2105124f68f353677fe5cf78f0",
       "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"

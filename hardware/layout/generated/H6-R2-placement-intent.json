@@ -3,11 +3,11 @@
   "status": "pass",
   "scope": "Independent planar product intent from native PCB; not general DRC or assembled-Z qualification",
   "sources": {
-    "hardware/layout/h6_r2_placement_intent.py": "e85a23e6ece3e3e6dfcb1f04cf88d489bee5e895b68fad808edcd19cf229d4d8",
+    "hardware/layout/h6_r2_placement_intent.py": "412c74a3d46c9b5b7724237baf200afbcf47d0916ff156f3f2f0cbbced5eb905",
     "hardware/layout/h6_r2_speaker_fit.py": "9e677eca3c1d320fc19fd25e961d884a1a903ca9f0af1ca3ad95835d20c38d30",
     "hardware/layout/h6-r2-speaker-body.json": "79349b47e281bc89fc57b843987d5458035c59c9fe6459de42a5949ee690f78b",
     "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "5a29ed7272d412d72b62265bd3940864e4feb23a3f5e5d7ed60f9497620567cb",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "44bea71388631dfd3b7d9c7bfb088569de46d13083fd164bf3562dc8bfde0dde"
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "5442331dc15ec87f9c315bf64996a4e0841901d80e8ffc36f2b67b7669aca96b"
   },
   "checks": [
     {
@@ -220,29 +220,102 @@
       "observed": []
     },
     {
-      "requirement": "product USB is inward-facing PCB mount, outward mouth without overhang",
+      "requirement": "four exact GCT USB ports inside the sandwich with uniform nominal flush mouths",
       "pass": true,
-      "observed": {
-        "pose": {
-          "footprint": "Leshy2_R2:USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk",
-          "value": "JAE DX07S016JA1R1500",
-          "side": "B.Cu",
-          "anchor_mm": [
-            16.469999,
-            146.2
-          ],
-          "rotation_deg": 180.0,
-          "fab_stroke_bounds_mm": [
-            11.949999,
-            142.85,
-            20.989999,
-            149.85
-          ],
-          "actuator_mm": null,
-          "pad1_nets": []
+      "observed": [
+        {
+          "reference": "J1",
+          "pose": {
+            "footprint": "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
+            "value": "GCT USB4105-GF-A",
+            "side": "B.Cu",
+            "anchor_mm": [
+              16.469999,
+              146.325
+            ],
+            "rotation_deg": 180.0,
+            "fab_stroke_bounds_mm": [
+              11.949999,
+              142.6,
+              20.989999,
+              150.05
+            ],
+            "actuator_mm": null,
+            "pad1_nets": []
+          },
+          "pass": true,
+          "nominal_mouth_y_mm": 150.0
         },
-        "mouth_y_mm": 149.79999999999998
-      }
+        {
+          "reference": "J4",
+          "pose": {
+            "footprint": "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
+            "value": "GCT USB4105-GF-A",
+            "side": "B.Cu",
+            "anchor_mm": [
+              37.47,
+              146.325
+            ],
+            "rotation_deg": 180.0,
+            "fab_stroke_bounds_mm": [
+              32.95,
+              142.6,
+              41.99,
+              150.05
+            ],
+            "actuator_mm": null,
+            "pad1_nets": []
+          },
+          "pass": true,
+          "nominal_mouth_y_mm": 150.0
+        },
+        {
+          "reference": "J9",
+          "pose": {
+            "footprint": "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
+            "value": "GCT USB4105-GF-A",
+            "side": "B.Cu",
+            "anchor_mm": [
+              26.1,
+              146.325
+            ],
+            "rotation_deg": 180.0,
+            "fab_stroke_bounds_mm": [
+              21.58,
+              142.6,
+              30.62,
+              150.05
+            ],
+            "actuator_mm": null,
+            "pad1_nets": []
+          },
+          "pass": true,
+          "nominal_mouth_y_mm": 150.0
+        },
+        {
+          "reference": "J11",
+          "pose": {
+            "footprint": "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
+            "value": "GCT USB4105-GF-A",
+            "side": "B.Cu",
+            "anchor_mm": [
+              14.87,
+              146.325
+            ],
+            "rotation_deg": 180.0,
+            "fab_stroke_bounds_mm": [
+              10.35,
+              142.6,
+              19.39,
+              150.05
+            ],
+            "actuator_mm": null,
+            "pad1_nets": []
+          },
+          "pass": true,
+          "nominal_mouth_y_mm": 150.0
+        }
+      ]
     },
     {
       "requirement": "actual native microSD notch is open at the reviewed bottom-edge datum",

@@ -29,7 +29,7 @@ class H2R2InstanceLedgerTests(unittest.TestCase):
         self.assertEqual([], self.ledger["errors"])
         summary = self.ledger["summary"]
         self.assertEqual(1208, summary["fitted_board_instance_count"])
-        self.assertEqual(245, summary["component_group_count"])
+        self.assertEqual(244, summary["component_group_count"])
         self.assertEqual(22, summary["project_graph_sheet_count"])
         self.assertEqual(len(summary["sheet_counts"]), summary["populated_sheet_count"])
         self.assertEqual(
@@ -42,6 +42,27 @@ class H2R2InstanceLedgerTests(unittest.TestCase):
         for field in ("instance", "reference"):
             counts = Counter((row["project"], row[field]) for row in self.rows)
             self.assertFalse([key for key, count in counts.items() if count != 1])
+
+    def test_four_usb_ports_share_one_part_without_losing_their_owners(self):
+        # A smaller group count alone could hide a missing or misallocated port.
+        # This is the current R2 population, not the immutable 33908 audit.
+        ports = [row for row in self.rows if row["device_id"] == "gct_usb4105_gf_a"]
+        self.assertEqual(4, len(ports))
+        self.assertEqual(
+            {
+                ("LESHY2-RF-R2", "J1", "product_usb_connector", "RF_01_USB_PD_CHARGE"),
+                ("LESHY2-RF-R2", "J4", "rf_rp_service_usb_connector", "RF_10_RP2354_CORE_SERVICE"),
+                ("LESHY2-UI-R2", "J9", "c5_service_usb_connector", "UI_20_C5_WIFI_IR_SERVICE"),
+                ("LESHY2-UI-R2", "J11", "hub_rp_service_usb_connector", "UI_30_HUB_RP_CORE_SERVICE"),
+            },
+            {(row["project"], row["reference"], row["instance"], row["sheet"]) for row in ports},
+        )
+        self.assertEqual({"GCT USB4105-GF-A"}, {row["mpn"] for row in ports})
+        self.assertEqual(
+            {"Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal"},
+            {row["footprint"] for row in ports},
+        )
+        self.assertNotIn("jae_dx07s016ja1r1500", {row["device_id"] for row in self.rows})
 
     def test_two_rp_domains_and_service_paths_are_independent(self):
         names = {row["instance"]: row for row in self.rows}

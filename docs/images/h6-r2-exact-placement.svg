@@ -744,8 +744,8 @@
 <rect x="1014.29" y="140.99" width="10.43" height="5.51" rx="1.5" fill="#eff6ff" stroke="#1d4ed8" stroke-width="0.65"/>
 <rect x="1090.40" y="819.99" width="19.74" height="39.00" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <rect x="1195.66" y="376.60" width="19.74" height="39.00" rx="1.5" fill="#f0fdf4" stroke="#16a34a" stroke-width="0.65"/>
-<rect x="978.61" y="898.76" width="59.01" height="45.58" rx="1.5" fill="#ecfdf5" stroke="#047857" stroke-width="0.65"/>
-<text x="1008.11" y="924.55" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">J1</text>
+<rect x="979.41" y="897.13" width="57.41" height="48.31" rx="1.5" fill="#ecfdf5" stroke="#047857" stroke-width="0.65"/>
+<text x="1008.11" y="924.29" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">J1</text>
 <rect x="1249.56" y="619.36" width="35.52" height="38.25" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <text x="1267.32" y="641.49" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">J2</text>
 <rect x="1062.31" y="694.26" width="38.25" height="35.52" rx="1.5" fill="#e9eef5" stroke="#64748b" stroke-width="0.65"/>
@@ -1097,7 +1097,7 @@
 <text x="1247.69" y="869.80" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">U2</text>
 <rect x="1270.45" y="848.90" width="26.70" height="37.40" rx="1.5" fill="#fff4d6" stroke="#d97706" stroke-width="0.65"/>
 <rect x="1040.40" y="886.99" width="13.86" height="14.71" rx="1.5" fill="#f0fdf4" stroke="#16a34a" stroke-width="0.65"/>
-<rect x="997.33" y="875.38" width="21.88" height="21.88" rx="1.5" fill="#f0fdf4" stroke="#16a34a" stroke-width="0.65"/>
+<rect x="997.33" y="874.58" width="21.88" height="21.88" rx="1.5" fill="#f0fdf4" stroke="#16a34a" stroke-width="0.65"/>
 <rect x="1188.03" y="726.36" width="34.51" height="19.21" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <text x="1205.29" y="738.96" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">U6</text>
 <rect x="1286.61" y="587.29" width="34.51" height="30.44" rx="1.5" fill="#e9eef5" stroke="#64748b" stroke-width="0.65"/>

@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "checked": "2026-09-09",
+  "scope": "Finite native integration snapshot, not a claim of current full routing or factory qualification.",
+  "status": "native_migration_and_preservation_verified",
+  "production_release_authorized": false,
+  "ordering_authorized": false,
+  "design_review": "hardware/layout/h6-r2-usb-unification.json",
+  "board": {
+    "path": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
+    "baseline_sha256": "44bea71388631dfd3b7d9c7bfb088569de46d13083fd164bf3562dc8bfde0dde",
+    "integrated_sha256": "5442331dc15ec87f9c315bf64996a4e0841901d80e8ffc36f2b67b7669aca96b",
+    "changed_references": [
+      "J1",
+      "U5"
+    ],
+    "unchanged_footprints": 782
+  },
+  "unchanged_ui_sha256": "5a29ed7272d412d72b62265bd3940864e4feb23a3f5e5d7ed60f9497620567cb",
+  "preservation": {
+    "all_unrelated_top_level_forms_byte_identical": true,
+    "all_765_copper_forms_byte_identical": true,
+    "named_pad_and_copper_graph_nodes": 3497,
+    "full_named_pad_copper_adjacency_unchanged": true,
+    "changed_refs_old_copper_attachments": 0,
+    "uuid_uniqueness": "pass",
+    "generated_placement_projection": "pass"
+  },
+  "pad_transition": {
+    "feature_id": "RF-J1-EXACT-GCT-USB-UNIFICATION-001",
+    "reference": "J1",
+    "named_pad_net_occurrences_preserved": 20,
+    "logical_contacts_preserved": 17,
+    "removed_anonymous_no_net_smd_lands": 2,
+    "npth_locators_before_after": [
+      2,
+      2
+    ],
+    "fabrication_ready": false,
+    "companion": {
+      "reference": "U5",
+      "translation_nm": [
+        0,
+        -150000
+      ],
+      "pad_geometry_and_nets_preserved": true
+    }
+  },
+  "four_uniform_ports": [
+    {
+      "project": "LESHY2-RF-R2",
+      "reference": "J1",
+      "side": "B.Cu",
+      "rotation_deg": 180,
+      "anchor_nm": [
+        16469999,
+        146325000
+      ],
+      "nominal_mouth_y_mm": 150
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "reference": "J4",
+      "side": "B.Cu",
+      "rotation_deg": 180,
+      "anchor_nm": [
+        37470000,
+        146325000
+      ],
+      "nominal_mouth_y_mm": 150
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "reference": "J9",
+      "side": "B.Cu",
+      "rotation_deg": 180,
+      "anchor_nm": [
+        26100000,
+        146325000
+      ],
+      "nominal_mouth_y_mm": 150
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "reference": "J11",
+      "side": "B.Cu",
+      "rotation_deg": 180,
+      "anchor_nm": [
+        14870000,
+        146325000
+      ],
+      "nominal_mouth_y_mm": 150
+    }
+  ],
+  "stage_source_sha256": {
+    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "f03919a28b4cc37aa763943f7e0c7b0aabe61ddac48f699d8b9adcec7e422ebc",
+    "hardware/layout/h6-r2-encoder-fit-candidate.json": "867f257cd9ac4f98ddf846bb6bb50de1095383d3c5735ca5bd73d0de6fc699d2",
+    "hardware/layout/h6-r2-placement-contract.json": "094865936bf52c5e1fa5dc3e90f2e22b132afb064e7909d1d8ddd2bf9f3cdfe3",
+    "hardware/layout/h6-r2-placement-freeze.json": "b2f6f4d1f619e2037d21d2a21183d505390cdf46752ec95e54a219bb4b5f8db8",
+    "hardware/layout/h6-r2-speaker-body.json": "79349b47e281bc89fc57b843987d5458035c59c9fe6459de42a5949ee690f78b",
+    "hardware/layout/h6-r2-usb-unification.json": "2a402fc1eda3c167eafa6a572c61ec7cbf29a234fb896d8744f2805613b3d58f",
+    "hardware/layout/h6_r2_coordinates.py": "25803780dcd61ffa29743ffd6e9076641d0155f1b0c307b9eecf8ef873a970f7",
+    "hardware/layout/h6_r2_encoder_fit.py": "24e27a40fee5337798b35d1352295cd92feecd8638628c32c5f14a56d3d0ab40",
+    "hardware/layout/h6_r2_microsd_recess.py": "83efb4e1a0e879c533fbbddd4c111c8d829e833eac80841376b7acb68532e664",
+    "hardware/layout/h6_r2_placement.py": "deda4fdeed3f545e023883a63a54eed1ec9c78d9bb28dc9dffa1f5eff4d36102",
+    "hardware/layout/h6_r2_speaker_fit.py": "9e677eca3c1d320fc19fd25e961d884a1a903ca9f0af1ca3ad95835d20c38d30",
+    "hardware/layout/h6_r2_stage_placement_update.py": "22ce13845c93602f20a5df6f0b36b792666f3b533bad598b5726f93339a46064",
+    "hardware/layout/h6_r2_usb_unification.py": "74db919c52e4aadadbfaef32802a8280a6f6ae823f99654001dda0ade6b9cf1e",
+    "hardware/layout/h6_r2_user_silkscreen.py": "23f79643f3b2c6a7312f80f62137a40b81e98c6a7d97852216cfd39e64aa8da7"
+  },
+  "checks": {
+    "focused_native_tests": "79 pass / 0 skip (76 native migration/placement checks plus 3 exact internal-hole-rule checks)",
+    "fresh_drc_owner": "hardware/layout/generated/H6-R2-current-routing-audit.json",
+    "drc_scope": "Fresh native DRC and schematic parity both pass under the declared scoped rules; routing completion and factory qualification are separate.",
+    "native_drc": {
+      "LESHY2-RF-R2": {
+        "report_sha256": "ea74a183e2e75491d34ff3d984b499ccb958d99f1f83b1b8bac0194da75f7d84",
+        "provenance_sha256": "e9706d1dbfe5ad325bfe6b0b7fbb3c3c078725d1d781e801e7f765a4ba3483e4",
+        "completed_at_utc": "2026-09-08T22:26:45+00:00",
+        "violations": 0,
+        "schematic_parity": 0,
+        "reported_unconnected_items": 499,
+        "unconnected_count_scope": "CLI capped report, not full unresolved-connection count"
+      },
+      "LESHY2-UI-R2": {
+        "report_sha256": "c5826d3cc7b8591c89eafc0fe098cdd460954adaf0ed95160844e93456c73b5a",
+        "provenance_sha256": "e5f1a002f81d8041fdc73e2a0dc908d93acb39aa315e0773d114fc2382b5febf",
+        "completed_at_utc": "2026-09-08T22:21:20+00:00",
+        "violations": 0,
+        "schematic_parity": 0,
+        "reported_unconnected_items": 499,
+        "unconnected_count_scope": "CLI capped report, not full unresolved-connection count"
+      }
+    },
+    "internal_hole_rule": {
+      "project": "LESHY2-RF-R2",
+      "reference": "J1",
+      "minimum_mm": 0.19,
+      "scope": "Exact GCT package NPTH 0.65 mm to SMD A1/B12/A12/B1 POWER_GROUND; not other pads, tracks or footprints; global rules unchanged.",
+      "nominal_manufacturer_pattern_not_factory_DFM_qualification": true
+    }
+  },
+  "remaining": [
+    "Routing and electrical/EMC verification remain open.",
+    "Native nominal flush registration is not assembled plug/case access qualification.",
+    "No factory order, manufacture or energization is authorized by this integration receipt."
+  ],
+  "followup_companion_validation": {
+    "scope": "After stage3, strengthened exact U5 translation guard was independently rerun against the committed baseline and identical promoted artifact; original stage3 input hashes remain historical.",
+    "helper_sha256": "b4f4c8266ebb0dabf60153e274f3749ed5cea613abc64e98723613a6506060c9",
+    "stager_sha256": "9f2be7267d21a19a2a7353a81f9054d50f126f12f533bcc70a9543376ed35f95",
+    "status": "pass"
+  }
+}

@@ -849,12 +849,12 @@
       "frame": "rear-inner",
       "anchor_mm": [
         16.5,
-        139.5
+        139.35
       ],
       "rotation_deg": 0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Place USB2/CC protection beside the translated product USB, not 54-57 mm away."
+      "reason": "Move U5 only 0.15 mm inward to clear the unified GCT product USB courtyard; retain C31/C32 and the existing main-inductor clearance. Preserve exact USB/CC protection and pad-locality checks."
     },
     "product_usb_vbias_cap": {
       "frame": "rear-inner",
@@ -959,29 +959,27 @@
       "frame": "rear-inner",
       "anchor_mm": [
         16.47,
-        146.2
+        146.325
       ],
       "rotation_deg": 180,
       "mechanical_locked": true,
       "method": "reviewed outward connector mouth datum",
-      "reason": "Recess the RF board-edge product USB shell 0.20 mm nominally within the PCB edge, retaining the accepted port order and inner mounting side. The connector moves 0.70 mm inward from the JAE reference mounting position; this is a project-specific placement, not a new manufacturer recommendation. Preserve pin identities and verify adjacent protection, solder access and plug clearance.",
+      "reason": "Use the user-approved exact GCT USB4105-GF-A on all four board-edge ports. Its manufacturer PCB-edge/mouth datum local +3.675 mm is nominally flush at native Y150, matching the three existing service ports; retain native X, inner mounting side, powered-product role and all pad/net identities. Only U5 moves locally by -0.15 mm Y.",
       "mechanical_datum": {
-        "source_url": "https://www.mikrocontroller.net/attachment/650878/SJ121836.pdf",
-        "source_section": "JAE-authored SJ121836 Rev.3 sheet 2, recommended mounting pattern viewed from mounting side; DATUM Y through locator holes and 5.05 mm to PCB EDGE",
-        "checked": "2026-09-07",
+        "source_url": "https://gct.co/files/drawings/usb4105.pdf",
+        "source_section": "Sheet 1, Recommended PCB Layout, as viewed from component side; B4 dated 2023-12-18",
+        "checked": "2026-09-09",
         "local_mouth_axis": [
           0,
           1
         ],
-        "local_locator_datum_y_mm": -1.95,
-        "pcb_edge_offset_from_locator_datum_mm": 5.05,
-        "local_pcb_edge_y_mm": 3.1,
-        "local_shell_mouth_y_mm": 3.6,
+        "local_pcb_edge_y_mm": 3.675,
+        "local_shell_mouth_y_mm": 3.675,
         "native_pcb_edge_y_mm": 150.0,
-        "native_shell_mouth_y_mm": 149.8,
-        "shell_overhang_mm": -0.2,
-        "native_maximum_copper_y_mm": 148.65,
-        "minimum_copper_edge_clearance_mm": 1.35,
+        "native_shell_mouth_y_mm": 150.0,
+        "shell_overhang_mm": 0.0,
+        "native_maximum_copper_y_mm": 148.3,
+        "minimum_copper_edge_clearance_mm": 1.7,
         "scope": "Exact body, land and board-edge orientation; native DRC and assembled plug access are separate checks, not implied by this datum."
       }
     },

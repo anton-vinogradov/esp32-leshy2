@@ -20,6 +20,7 @@ INVENTORY = ROOT / "hardware/ecad/generated/H2-R2-native-inventory.json"
 DEVICES = ROOT / "hardware/architecture/devices.json"
 LEGACY = ROOT / "hardware/verification/generated/H5-EVR06-jlcpcb-outlier-resolution.json"
 COST = ROOT / "hardware/product-design/generated/H1-R2-cost-audit.json"
+USB_RECHECK = ROOT / "hardware/verification/jlcpcb-usb-unification-2026-09-09.json"
 OUTPUT = ROOT / "hardware/verification/generated/H5-R2-current-route-revalidation.json"
 EN = ROOT / "docs/h5-r2-current-route.md"
 RU = ROOT / "docs/h5-r2-current-route.ru.md"
@@ -42,6 +43,7 @@ def build() -> dict:
     devices = load(DEVICES)["devices"]
     legacy = load(LEGACY)
     cost = load(COST)
+    usb_recheck = load(USB_RECHECK)
     legacy_by_id = {row["device_id"]: row for row in legacy["final_routes"]}
     routes = []
     errors = []
@@ -88,6 +90,27 @@ def build() -> dict:
             "legacy_h5_status": (old or {}).get("tool_status"),
             "order_time_recheck": True,
         })
+        if device_id == "gct_usb4105_gf_a":
+            part = usb_recheck["part"]
+            if (part["mpn"] != "USB4105-GF-A"
+                    or part["manufacturer"] != "Global Connector Technology"
+                    or part["jlcpcb_part_number"] != "C3020560"
+                    or group["quantity_per_product"] != 4
+                    or route_class != "jlcpcb_preorder"
+                    or "Standard" not in part["pcba_type"]):
+                errors.append("four-port GCT route disagrees with the exact factory recheck")
+            routes[-1]["fresh_factory_snapshot"] = {
+                "source": str(USB_RECHECK.relative_to(ROOT)),
+                "checked_at_utc": usb_recheck["checked_at_utc"],
+                "stock": part["stock_displayed"],
+                "minimum_purchase_quantity": part["minimum_purchase_quantity"],
+                "estimated_unit_price_usd_at_minimum": part["estimated_unit_price_usd"],
+                "estimated_purchase_subtotal_usd": part["estimated_total_displayed_usd"],
+                "assembly_type": part["assembly_type"],
+                "assembly_difficulty": part["assembly_difficulty"],
+                "route": part["route"],
+                "is_order_or_reservation": False,
+            }
 
     route_counts: dict[str, int] = {}
     for row in routes:
@@ -97,9 +120,9 @@ def build() -> dict:
         if row["route_class"] == "jlcpcb_global_sourcing_required"
     ]
     expected = {
-        "component_groups": 249,
+        "component_groups": 248,
         "component_articles": 1216,
-        "legacy_routes_reused": 206,
+        "legacy_routes_reused": 205,
         "new_or_replaced_routes": 43,
         "current_global_sourcing_gates": 1,
     }
@@ -114,8 +137,8 @@ def build() -> dict:
         errors.append(f"current route counts drifted: expected={expected}; actual={actual}")
     if {row["mpn"] for row in sourcing_gates} != {"WBC16-1TLC"}:
         errors.append("WBC16-1TLC must be the sole current global-sourcing gate")
-    if cost["summary"]["bom_lines"] != 249:
-        errors.append("cost report is not based on the same 249 current groups")
+    if cost["summary"]["bom_lines"] != 248:
+        errors.append("cost report is not based on the same 248 current groups")
     if cost["summary"]["base_fitted_placements"] != 1213:
         errors.append("current base-product article quantity drifted")
 
@@ -123,12 +146,12 @@ def build() -> dict:
         "schema_version": 1,
         "artifact": "H5-R2-current-route-revalidation",
         "marker": "H5-R2.1",
-        "checked_on": "2026-09-08",
-        "check_scope": "Current inventory reconciliation and three reviewed interface replacements; this date does not renew every retained stock/price snapshot.",
+        "checked_on": "2026-09-09",
+        "check_scope": "Current inventory reconciliation, retained three reviewed interface replacements and user-confirmed four-port GCT USB-C unification. Only the GCT factory record was rechecked on this date; other stock/price snapshots retain their original dates.",
         "status": "reviewed_with_one_order_time_global_sourcing_gate" if not errors else "fail",
         "inputs": {
             str(path.relative_to(ROOT)): digest(path)
-            for path in (INVENTORY, DEVICES, LEGACY, COST)
+            for path in (INVENTORY, DEVICES, LEGACY, COST, USB_RECHECK)
         },
         "summary": {
             **actual,
@@ -167,7 +190,7 @@ def render_doc(result: dict, ru: bool) -> str:
 
 ```mermaid
 flowchart LR
-  A["249 текущих групп<br/>1216 изделий"] --> B["{s['legacy_routes_reused']} унаследованных<br/>маршрутов H5-R1"]
+  A["{s['component_groups']} текущих групп<br/>{s['component_articles']} изделий"] --> B["{s['legacy_routes_reused']} унаследованных<br/>маршрутов H5-R1"]
   A --> C["{s['new_or_replaced_routes']} новых или заменённых<br/>точных маршрутов"]
   B --> D["H6 · placement / routing"]
   C --> D
@@ -179,6 +202,7 @@ flowchart LR
 
 - Стоимостной отчёт и H5 теперь используют один и тот же native R2 inventory, а не исторический 210-строчный BOM.
 - Пересборка 2026-09-08 включает точные замены [RUN/KILL SA](../hardware/procurement/h6-js102011saqn-selection-review.json), [ИК TR](../hardware/procurement/h6-tsmp95000tr-candidate-review.json) и [аудио SJ43515TS](../hardware/procurement/h6-sj43515ts-selection-review.json). ИК и аудио имеют явный предзаказ, не готовый склад сборки. Эта дата не обновляет автоматически остальные старые снимки наличия и цен.
+- Унификация 2026-09-09 объединяет четыре USB-C в один GCT USB4105-GF-A: [свежий маршрут C3020560](../hardware/verification/jlcpcb-usb-unification-2026-09-09.json) — предзаказ, минимум 9 штук примерно за $9.59 при четырёх устанавливаемых. Это отдельный текущий закупочный снимок; историческая цена серии при 100 штуках в плановом бюджете не превращается в цену единственного прототипа.
 - Исправленная известная база электроники: **${s['known_electronics_usd']:.2f}**; известные внешние антенны: **${s['known_external_antennas_usd']:.2f}**; вместе **${s['known_combined_usd']:.2f}** до платы, сборки, корпуса, доставки и ещё {s['unpriced_component_groups']} групп компонентов / {s['unpriced_antenna_groups']} групп антенн без цены.
 - `WBC16-1TLC` остаётся точной схемной деталью, но склад JLCPCB сейчас нулевой. `H3-TC16-161T+` найден как массовый кандидат, однако не войдёт в BOM без проверки pin map, RF-параметров и точного factory route.
 
@@ -194,7 +218,7 @@ H6 может продолжать компоновку с принятым foot
 
 ```mermaid
 flowchart LR
-  A["249 current groups<br/>1216 articles"] --> B["{s['legacy_routes_reused']} inherited<br/>H5-R1 routes"]
+  A["{s['component_groups']} current groups<br/>{s['component_articles']} articles"] --> B["{s['legacy_routes_reused']} inherited<br/>H5-R1 routes"]
   A --> C["{s['new_or_replaced_routes']} new or replaced<br/>exact routes"]
   B --> D["H6 · placement / routing"]
   C --> D
@@ -206,6 +230,7 @@ flowchart LR
 
 - The cost report and H5 now consume the same native R2 inventory instead of the historical 210-line BOM.
 - The 2026-09-08 recomposition includes exact [RUN/KILL SA](../hardware/procurement/h6-js102011saqn-selection-review.json), [IR TR](../hardware/procurement/h6-tsmp95000tr-candidate-review.json) and [audio SJ43515TS](../hardware/procurement/h6-sj43515ts-selection-review.json) replacements. IR and audio use explicit preorder, not allocated assembly stock. This date does not renew the other retained availability/price snapshots.
+- The 2026-09-09 unification combines four USB-C ports into one GCT USB4105-GF-A group: the [fresh C3020560 route](../hardware/verification/jlcpcb-usb-unification-2026-09-09.json) is pre-order, minimum 9 pieces for approximately $9.59 while four are fitted. This is a separate current purchase snapshot; the retained historical quantity-100 planning price is not a quote for the single prototype.
 - Corrected known electronics are **${s['known_electronics_usd']:.2f}**; known external antennas are **${s['known_external_antennas_usd']:.2f}**; combined they are **${s['known_combined_usd']:.2f}** before PCB, assembly, enclosure, delivery and {s['unpriced_component_groups']} unpriced component groups / {s['unpriced_antenna_groups']} unpriced antenna groups.
 - `WBC16-1TLC` remains the exact schematic part but JLCPCB live stock is now zero. `H3-TC16-161T+` is a mass-market candidate, but it does not enter the BOM without pin-map, RF and exact factory-route qualification.
 

@@ -232,11 +232,11 @@ def build() -> tuple[str, dict]:
         ]
     )
     symbol_ids = [row["symbol_id"] for row in symbols]
-    if len(symbols) != 245 or len(set(symbol_ids)) != 245:
-        errors.append("expected 245 unique controlled symbols")
+    if len(symbols) != 244 or len(set(symbol_ids)) != 244:
+        errors.append("expected 244 unique controlled symbols")
     pin_count = sum(row["pin_count"] for row in symbols)
-    if pin_count != 1570:
-        errors.append(f"expected 1570 unique electrical-pad pins (unused old audio NC6 removed), got {pin_count}")
+    if pin_count != 1553:
+        errors.append(f"expected 1553 unique electrical-pad pins (USB exact-device groups consolidated), got {pin_count}")
     external_count = sum(len(row["external_interfaces"]) for row in symbols)
     if external_count != 3:
         errors.append(f"expected three on-module external interfaces, got {external_count}")
@@ -299,7 +299,7 @@ def main() -> int:
     if stale:
         print("stale: " + ", ".join(stale))
         return 1
-    print("ok: 245 controlled R2 symbols, 1570 exact pad pins, 3 external-interface metadata entries")
+    print("ok: 244 controlled R2 symbols, 1553 exact pad pins, 3 external-interface metadata entries")
     return 0
 
 

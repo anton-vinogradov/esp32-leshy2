@@ -23,9 +23,9 @@ class H5R2CurrentRoutesTest(unittest.TestCase):
             "reviewed_with_one_order_time_global_sourcing_gate",
             self.result["status"],
         )
-        self.assertEqual(249, self.result["summary"]["component_groups"])
+        self.assertEqual(248, self.result["summary"]["component_groups"])
         self.assertEqual(1216, self.result["summary"]["component_articles"])
-        self.assertEqual(206, self.result["summary"]["legacy_routes_reused"])
+        self.assertEqual(205, self.result["summary"]["legacy_routes_reused"])
         self.assertEqual(43, self.result["summary"]["new_or_replaced_routes"])
 
     def test_only_wbc16_is_a_current_sourcing_gate(self):
@@ -39,9 +39,23 @@ class H5R2CurrentRoutesTest(unittest.TestCase):
 
     def test_docs_expose_real_cost_and_gate(self):
         ru = MODULE.render_doc(self.result, True)
-        self.assertIn("249 закупаемых групп / 1216 изделий", ru)
+        self.assertIn("248 закупаемых групп / 1216 изделий", ru)
         self.assertIn("WBC16-1TLC", ru)
-        self.assertIn("$450.35", ru)
+        self.assertIn("$449.70", ru)
+
+    def test_four_gct_ports_use_the_fresh_preorder_route(self):
+        rows = {row["device_id"]: row for row in self.result["routes"]}
+        self.assertNotIn("jae_dx07s016ja1r1500", rows)
+        gct = rows["gct_usb4105_gf_a"]
+        self.assertEqual(4, gct["quantity_per_product"])
+        self.assertEqual("jlcpcb_preorder", gct["route_class"])
+        self.assertEqual("C3020560", gct["jlcpcb_part_number"])
+        fresh = gct["fresh_factory_snapshot"]
+        self.assertEqual(9, fresh["minimum_purchase_quantity"])
+        self.assertEqual(1044, fresh["stock"])
+        self.assertEqual(9.59, fresh["estimated_purchase_subtotal_usd"])
+        self.assertFalse(fresh["is_order_or_reservation"])
+        self.assertIn(fresh["source"], self.result["inputs"])
 
 
 if __name__ == "__main__":

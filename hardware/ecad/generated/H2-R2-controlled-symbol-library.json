@@ -6,19 +6,19 @@
   "sources": {
     "contact_materialization": {
       "path": "hardware/ecad/generated/H2-R2-contact-materialization.json",
-      "sha256": "752c1033e54d59bd7ed7e8f99cfda51b8bb25d12145d0ed504af1bbc426b82ca"
+      "sha256": "af7e846b868b1102d754532ce7d7ac7830877688bbf60c97a8783d7ec3d7b9b2"
     },
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "6abe80697040f1445075dd4ae7f79c0715c325a2e586d59225e30ac5fa7c16fe"
+      "sha256": "d192652242066d6a9bc74d22d82e4202236ccd0b34fbdc97aff2de2de784bbf5"
     }
   },
   "library": {
     "id": "Leshy2_R2",
     "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-    "sha256": "239115b4c3cadee17797b32579669c6b2a653b29959a2febd4a03044557573f2",
-    "symbol_count": 245,
-    "pin_count": 1570,
+    "sha256": "e7ffcac909b60962789297e333c18646e12f220336e1cc68e99ef4587d2edceb",
+    "symbol_count": 244,
+    "pin_count": 1553,
     "external_interface_metadata_count": 3
   },
   "symbols": [
@@ -5991,206 +5991,6 @@
           ],
           "roles": [
             "power"
-          ],
-          "type": "passive"
-        }
-      ],
-      "bom_excluded": false
-    },
-    {
-      "device_id": "jae_dx07s016ja1r1500",
-      "symbol_id": "Leshy2_R2:jae_dx07s016ja1r1500",
-      "reference_prefix": "J",
-      "value": "JAE DX07S016JA1R1500",
-      "footprint": "Leshy2_R2:USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk",
-      "pin_count": 17,
-      "no_connect_pin_count": 0,
-      "external_interfaces": [],
-      "pin_map": [
-        {
-          "number": "A1",
-          "name": "A1_GND",
-          "contacts": [
-            "A1_GND"
-          ],
-          "roles": [
-            "power"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "A4",
-          "name": "A4_VBUS",
-          "contacts": [
-            "A4_VBUS"
-          ],
-          "roles": [
-            "power"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "A5",
-          "name": "A5_CC1",
-          "contacts": [
-            "A5_CC1"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "A6",
-          "name": "A6_DP",
-          "contacts": [
-            "A6_DP"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "A7",
-          "name": "A7_DM",
-          "contacts": [
-            "A7_DM"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "A8",
-          "name": "A8_SBU1",
-          "contacts": [
-            "A8_SBU1"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "A9",
-          "name": "A9_VBUS",
-          "contacts": [
-            "A9_VBUS"
-          ],
-          "roles": [
-            "power"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "A12",
-          "name": "A12_GND",
-          "contacts": [
-            "A12_GND"
-          ],
-          "roles": [
-            "power"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "B1",
-          "name": "B1_GND",
-          "contacts": [
-            "B1_GND"
-          ],
-          "roles": [
-            "power"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "B4",
-          "name": "B4_VBUS",
-          "contacts": [
-            "B4_VBUS"
-          ],
-          "roles": [
-            "power"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "B5",
-          "name": "B5_CC2",
-          "contacts": [
-            "B5_CC2"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "B6",
-          "name": "B6_DP",
-          "contacts": [
-            "B6_DP"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "B7",
-          "name": "B7_DM",
-          "contacts": [
-            "B7_DM"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "B8",
-          "name": "B8_SBU2",
-          "contacts": [
-            "B8_SBU2"
-          ],
-          "roles": [
-            "signal"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "B9",
-          "name": "B9_VBUS",
-          "contacts": [
-            "B9_VBUS"
-          ],
-          "roles": [
-            "power"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "B12",
-          "name": "B12_GND",
-          "contacts": [
-            "B12_GND"
-          ],
-          "roles": [
-            "power"
-          ],
-          "type": "passive"
-        },
-        {
-          "number": "SH",
-          "name": "SHIELD",
-          "contacts": [
-            "SHIELD"
-          ],
-          "roles": [
-            "shield"
           ],
           "type": "passive"
         }

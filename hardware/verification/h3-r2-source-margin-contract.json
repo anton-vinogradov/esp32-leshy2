@@ -63,7 +63,7 @@
       "onsemi_cat24c512wi_gt3": "usb_support",
       "ti_tvs2200_drvr": "usb_support",
       "ti_tpd4s201_rukr": "usb_support",
-      "jae_dx07s016ja1r1500": "usb_support",
+      "gct_usb4105_gf_a": "usb_support",
       "default": "passive_leakage"
     },
     "PACK_DIRECT": {

@@ -52,7 +52,7 @@ class H2R2NativeInventoryTests(unittest.TestCase):
         )
 
     def test_exact_component_group_and_pack_delta_are_frozen(self):
-        self.assertEqual(251, self.actual["summary"]["component_group_count"])
+        self.assertEqual(250, self.actual["summary"]["component_group_count"])
         self.assertEqual(1218, self.actual["summary"]["component_quantity_per_product"])
         groups = {row["device_id"]: row for row in self.actual["component_groups"]}
         self.assertEqual("TCA9803DGKR", groups["ti_tca9803_dgkr"]["mpn"])
@@ -86,7 +86,7 @@ class H2R2NativeInventoryTests(unittest.TestCase):
             stderr=subprocess.STDOUT,
         )
         self.assertEqual(0, result.returncode, result.stdout)
-        self.assertIn("251 exact component groups", result.stdout)
+        self.assertIn("250 exact component groups", result.stdout)
 
 
 if __name__ == "__main__":

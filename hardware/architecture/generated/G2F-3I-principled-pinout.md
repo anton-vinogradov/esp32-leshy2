@@ -6043,8 +6043,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `ext_buck_hf_input_cap` lifecycle: `active_orderable`.
 - `ext_rilm` uses `Yageo RC0402FR-071K82L` as `verified_h3_dc_margin_correction`, not an accepted production choice.
 - `ext_rilm` lifecycle: `active_orderable`.
-- `c5_service_usb_connector` uses `GCT USB4105-GF-A` as `verified_exact_service_usb_receptacle`, not an accepted production choice.
-- `c5_service_usb_connector` lifecycle: `active_orderable`.
+- `c5_service_usb_connector` uses `GCT USB4105-GF-A` as `reviewed_exact_product_and_service_usb_receptacle_factory_preorder_route`, not an accepted production choice.
+- `c5_service_usb_connector` lifecycle: `production_active_explicit_jlcpcb_preorder_route`.
 - `c5_service_usb_esd` uses `Texas Instruments TPD2EUSB30ADRTR` as `verified_exact_service_usb_esd`, not an accepted production choice.
 - `c5_service_usb_esd` lifecycle: `active_orderable`.
 - `c5_service_usb_switch` uses `onsemi FSUSB42MUX` as `verified_exact_data_only_service_usb_isolator`, not an accepted production choice.
@@ -6057,8 +6057,8 @@ Reserved: `PA1_NRST`. Free: none.
 - `c5_service_usb_cc2_rd` lifecycle: `active_orderable`.
 - `c5_service_usb_vbus_bleeder` uses `Yageo RC0402FR-071ML` as `verified_exact_data_only_service_vbus_bleeder`, not an accepted production choice.
 - `c5_service_usb_vbus_bleeder` lifecycle: `active_orderable`.
-- `rp_service_usb_connector` uses `GCT USB4105-GF-A` as `verified_exact_service_usb_receptacle`, not an accepted production choice.
-- `rp_service_usb_connector` lifecycle: `active_orderable`.
+- `rp_service_usb_connector` uses `GCT USB4105-GF-A` as `reviewed_exact_product_and_service_usb_receptacle_factory_preorder_route`, not an accepted production choice.
+- `rp_service_usb_connector` lifecycle: `production_active_explicit_jlcpcb_preorder_route`.
 - `rp_service_usb_esd` uses `Texas Instruments TPD2EUSB30ADRTR` as `verified_exact_service_usb_esd`, not an accepted production choice.
 - `rp_service_usb_esd` lifecycle: `active_orderable`.
 - `rp_service_usb_switch` uses `onsemi FSUSB42MUX` as `verified_exact_data_only_service_usb_isolator`, not an accepted production choice.

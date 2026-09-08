@@ -22,15 +22,15 @@
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974"
+      "sha256": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9"
     },
     "component_groups": {
       "path": "hardware/architecture/generated/G2F-3I-target-bom.csv",
-      "sha256": "f794ab3d4f4c9e0453b6a73a3e8775da70a3b0b33e41011f633ac619660682c3"
+      "sha256": "c0ae3ef00776342bb42b50c507fb0f6f3dc9222eacf297e24f9ae8b987af2e98"
     },
     "r2_cost_model": {
       "path": "hardware/product-design/h1-r2-cost-review.json",
-      "sha256": "0a0560f930224ad94f22ba770086a7e67aa608fc47e7bc604ffc3c2be6bb896b"
+      "sha256": "2032f3987e075563196250bf6174b1499df39bc9f9c9f9b52d4ba497a6ea8ea4"
     },
     "c5_mux_and_service_vbus": {
       "path": "hardware/architecture/c5-sdio-service-mux-contract.json",
@@ -279,7 +279,7 @@
     "project_count": 2,
     "sheet_count": 22,
     "domain_count": 6,
-    "component_group_count": 251,
+    "component_group_count": 250,
     "component_quantity_per_product": 1218,
     "external_antenna_group_count": 8,
     "external_antenna_count": 12,
@@ -776,16 +776,16 @@
     {
       "device_id": "gct_usb4105_gf_a",
       "mpn": "GCT USB4105-GF-A",
-      "quantity_per_product": 3,
+      "quantity_per_product": 4,
       "scope": "base_product",
-      "role": "c5_service_usb_connector;rp_service_usb_connector",
+      "role": "product_usb_connector,c5_service_usb_connector,hub_rp_service_usb_connector,rf_rp_service_usb_connector",
       "ecad_disposition": "schematic_component_group",
-      "qualification": "verified_exact_service_usb_receptacle",
-      "lifecycle": "active_orderable",
+      "qualification": "reviewed_exact_product_and_service_usb_receptacle_factory_preorder_route",
+      "lifecycle": "production_active_explicit_jlcpcb_preorder_route",
       "contact_evidence": true,
-      "jlcpcb_part_number": null,
+      "jlcpcb_part_number": "C3020560",
       "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": null,
+      "historical_cost_route_only": "jae_dx07s016ja1r1500",
       "bom_excluded": false
     },
     {
@@ -872,21 +872,6 @@
       "ecad_disposition": "schematic_component_group",
       "qualification": "verified_exact_cc_dual_ended_band_switch",
       "lifecycle": "active_orderable",
-      "contact_evidence": true,
-      "jlcpcb_part_number": null,
-      "accepted_identity_source": "hardware/architecture/devices.json",
-      "historical_cost_route_only": null,
-      "bom_excluded": false
-    },
-    {
-      "device_id": "jae_dx07s016ja1r1500",
-      "mpn": "JAE DX07S016JA1R1500",
-      "quantity_per_product": 1,
-      "scope": "base_product",
-      "role": "product_usb_connector",
-      "ecad_disposition": "schematic_component_group",
-      "qualification": "verified_candidate",
-      "lifecycle": "active",
       "contact_evidence": true,
       "jlcpcb_part_number": null,
       "accepted_identity_source": "hardware/architecture/devices.json",

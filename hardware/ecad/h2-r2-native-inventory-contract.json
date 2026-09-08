@@ -66,7 +66,7 @@
     }
   ],
   "component_inventory": {
-  "base_group_count": 221,
+  "base_group_count": 220,
     "base_quantity_per_product": 1120,
     "adjustments": [
       {"device_id": "uniroyal_0402wgf2201tce", "quantity_delta": 2, "sheets": ["RF_02_PACK_SAFETY_AON", "RF_31_REAR_CONTROLS"], "reason": "remove two obsolete Cap-identity pull-ups, then add two MAIN-side Pack/Safety and two rear-local I2C pull-ups"},
@@ -122,7 +122,7 @@
       {"device_id": "leshy2_nfc_pickup_loop_r2", "quantity": 1, "sheet": "RF_30_U214_U219_M5_EXT", "role": "weakly coupled printed NFC evidence loop; PCB copper feature excluded from BOM", "identity_source": "hardware/architecture/h1-r2-u219-cap.json"},
       {"device_id": "leshy2_pcb_testpoint_pad_1mm_r2", "quantity": 1, "sheet": "RF_03_MAIN_RAILS_DOMAIN_GATES", "role": "raw main-converter Power-Good diagnostic copper pad; excluded from BOM", "identity_source": "hardware/ecad/H2-sheet-contract.json"}
     ],
-  "expected_group_count": 251,
+  "expected_group_count": 250,
     "expected_quantity_per_product": 1218,
     "non_pcba_dispositions": {
       "eastrising_er_tft035ips_6_ctp": "owner-final-installed display assembly represented in ECAD by its controlled connector endpoint",

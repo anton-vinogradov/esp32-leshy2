@@ -5,19 +5,19 @@
   "accepted_input": "H3-R2.0.1",
   "status": "reviewed",
   "expected": {
-    "component_groups": 251,
-    "board_component_groups": 245,
+    "component_groups": 250,
+    "board_component_groups": 244,
     "explicit_non_pcba_groups": 6,
     "fitted_board_instances": 1208,
     "source_missing": 0,
     "factory_catalog_only_parameter_sources": 0
   },
   "manufacturer_source_overrides": {
-    "jae_dx07s016ja1r1500": {
-      "document": "JAE DX07S016JA1R1500 official exact-product page",
-      "url": "https://products.jae.com/jp/ja/connectors/category/io/dx07-receptacle/dx07s016ja1r1500/",
-      "checked": "2026-08-31",
-      "reason": "replace the distributor-hosted brochure mirror with the original manufacturer's exact-product record"
+    "gct_usb4105_gf_a": {
+      "document": "GCT USB4105 official product specification and B4 manufacturer drawing, exact GF-A variant with default 0.95-mm shell stakes",
+      "url": "https://gct.co/connector/usb4105",
+      "checked": "2026-09-09",
+      "reason": "user-approved four-port R2 unification; preserve the protected product power/data role and three circuit-defined data-only service roles"
     },
     "ralec_rtt023r00fth": {
       "document": "RALEC official exact-part search record for RTT023R00FTH and RTT series specification",
@@ -51,6 +51,20 @@
     }
   },
   "factory_catalog_only_parameter_sources": {},
+  "explicit_user_approved_h2_identity_amendment": {
+    "checked": "2026-09-09",
+    "baseline_commit": "33908f003f2e622119de197056ed8ef70ddeeb2d",
+    "project": "LESHY2-RF-R2",
+    "reference": "J1",
+    "instance": "product_usb_connector",
+    "old_device_id": "jae_dx07s016ja1r1500",
+    "new_device_id": "gct_usb4105_gf_a",
+    "fitted_usb_quantity_unchanged": 4,
+    "component_groups_before_after": [251, 250],
+    "board_component_groups_before_after": [245, 244],
+    "factory_evidence": "hardware/verification/jlcpcb-usb-unification-2026-09-09.json",
+    "scope": "Only the approved four-port receptacle-family merge; not permission to replace other audited component pairs. Recompute current H3 evidence and retain existing unqualified physical/power boundaries."
+  },
   "non_pcba_workstream_owners": {
     "davies_1227_j": ["H3-R2.4"],
     "eastrising_er_tft035ips_6_ctp": ["H3-R2.3", "H3-R2.4"],

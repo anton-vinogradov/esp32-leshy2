@@ -90,14 +90,21 @@ of the manufacturer PDF drawings resolved the package/view ambiguities;
 independent pad-map and native-connectivity tests now guard these corrections.
 
 The [hash-bound electrical audit](../hardware/verification/generated/H6-R2-electrical-semantics.json)
-now draws on **eight source maps with 1,335 reviewed pin types across 162
-exact-part groups**: digital, logic, power, analog/RF, protection, interfaces,
+now draws on **eight source maps with 1,327 reviewed pin types across 161
+exact-part groups**, within an inventory of 244 current board groups: digital,
+logic, power, analog/RF, protection, interfaces,
 selected passives, SA818S-U/V and the PD EEPROM. This is not a percentage of completed electrical
 verification. Mechanical pads, unreviewed parts and unresolved electrical pins
 remain in the inventory; uncertain types are not counted as verified passive
 pins. A passive RF terminal or connector contact proves neither matching/bias
 nor correct external mating, and an ordinary passive component type does not
 prove its value or operating margins.
+
+The 2026-09-09 [USB unification](h6-r2-component-unification.md) removed the
+retired JAE definition and its eight reviewed pin entries. The existing
+17-pin GCT map is unchanged and covers all four current USB ports; coverage
+of fitted parts and retained pin types was not weakened. The 24 native ERC
+findings, 105 source-path endpoints and `review_required` status are unchanged.
 
 The EC11 encoder review resolves the push-switch terminals as manufacturer
 `D`/`E`; the A/B/C contacts retain their existing nets. This updates the

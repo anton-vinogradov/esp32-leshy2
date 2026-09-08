@@ -223,11 +223,16 @@ class H2R2NetLedgerTests(unittest.TestCase):
             if name.startswith("historical_"):
                 self.assertFalse(source["authority"])
         historical = [row for row in self.rows if row["origin"].startswith("reconciled_historical")]
-        self.assertEqual(2196, len(historical))
+        # The approved GCT migration pins down 15 former historical hints
+        # plus B12 explicitly; no electrical endpoint is removed.
+        self.assertEqual(2181, len(historical))
         self.assertEqual(
-            1096,
+            1095,
             self.ledger["summary"]["origin_counts"]["current_abstract_endpoint_canonical"],
         )
+        product_usb = [row for row in self.rows if row["instance"] == "product_usb_connector"]
+        self.assertEqual(17, len(product_usb))
+        self.assertEqual({"current_r2_board_local_topology"}, {row["origin"] for row in product_usb})
         self.assertTrue(all(row["historical_topology_authority"] is False for row in historical))
         self.assertFalse(self.ledger["authorization"]["kicad_project_creation"])
 

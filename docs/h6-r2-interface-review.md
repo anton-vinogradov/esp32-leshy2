@@ -2,14 +2,14 @@
 
 [Русский](h6-r2-interface-review.ru.md)
 
-2026-09-09: [the component-diversity audit](h6-r2-component-unification.md) identifies a checked GCT candidate for all four USB ports, awaiting exact-part confirmation. The existing one-JAE/three-GCT population and native images are unchanged.
+2026-09-09: [four-port GCT unification](h6-r2-component-unification.md) is implemented in H2 and native PCB, with fresh DRC/parity and preservation checks passed. The [integration receipt](../hardware/layout/h6-r2-usb-unification-integration.json) separates this two-reference RF change from earlier placement history; the exact internal hole-rule limitation remains explicit.
 
 **2026-09-08: the [placement repair](h6-r2-placement-repair.md) includes the completed seven-reference microphone correction: RF-inner at the bottom edge, not outside between service controls. Fresh native DRC/parity, placement, labels and 20 intent checks pass; all views are refreshed. H6.0.3-R1 remains open and is not fabrication-ready.**
 
 H1 remains a concept drawing, not a complete parity view of the current PCB.
 A part being present in an image does not prove the right placement, a functioning
 interface or assembled clearance. The new package corrects those distinctions
-without changing selected MPNs or electrical functions.
+without changing their electrical functions. The separate approved USB follow-up replaces the RF J1 MPN; the earlier placement-only corrections did not.
 
 ## What we want and what was checked
 
@@ -55,7 +55,7 @@ frozen poses must not be mirrored a second time.
 | Both five-SMA banks | Native X centres are **[10.6,25.3,40,54.7,69.4]**: **14.7 mm pitch**, instead of 11.75 mm. With the **9 mm connector bodies**, the nominal adjacent-body gap grows from 2.75 to **5.7 mm**. This provides more room around the connectors; it is not a measurement of antenna-base diameter or proof of finger/tool access with all antennas fitted. Antenna assignments, outward direction and exact MPNs are unchanged. |
 | UI microSD J5 and six support parts | The group moves **−1.8 mm in Y**; J5 becomes B180 **[61.005,140.075]**, card axis X61.43. Shell mouth: **Y148.2**. Card edge when locked: **Y149.8**, nominally **0.2 mm inside the ordinary Y150 board edge**; fully pressed: **Y149.0**; ejected: Y153.8. The separate 0.8 mm push stroke and 4.0 mm ejection travel are retained. All these positions are nominal, not tolerance bounds. |
 | UI card-access notch | An open **10 × 1.2 mm, R0.6** recess occupies X[56.43,66.43], Y[148.8,150]. Its local edge at **Y148.8** leaves the nominal card edge accessible in both locked and fully pressed positions. This is our PCB access choice, **not a Hirose-mandated notch**. The 80 × 150 mm outer envelope, mounting holes and display-FPC slot are unchanged. Actual card/connector tolerances and closed-device finger access remain open. |
-| RF USB J1 | The new repair changes the previous 0.5-mm overhang to a **0.2-mm nominal recess**: B180 **[16.47,146.2]**, shell mouth Y149.8. The 0.70-mm inward move is a project-specific placement, not a revised JAE recommendation or proof of plug-overmould access. |
+| RF USB J1 / four-port family | The approved [USB follow-up](h6-r2-component-unification.md) replaces JAE with **GCT USB4105-GF-A**, B180 **[16.47,146.325]** nominally, mouth Y150 flush with the edge. RF U5 moves 0.15 mm inward; three existing GCT ports stay in place. Fresh native DRC/parity and preservation checks pass. The earlier JAE pose [16.47,146.2] with a 0.2-mm recess is historical, not the new GCT datum; actual plug-overmould fit remains open. |
 
 The larger SMA pitch improves the available connector spacing, but real antenna
 bases, the assembled inter-row Z separation, screw-head access, two-sided solder
@@ -103,7 +103,7 @@ guarded; generic body models do not close actual assembled Z.
 | Combined repair | Both corrected boards pass fresh DRC with 0 rule violations / 0 schematic-parity findings, placement and source/library pad parity. Labels and 20 intent checks pass; current views are refreshed and visually reviewed. The [repair report](h6-r2-placement-repair.md) states the scope; the [current-routing audit](../hardware/layout/generated/H6-R2-current-routing-audit.json) owns live PCB hashes and hash-bound receipts. |
 | Copper / routing | The package retains **857 copper objects: UI92 + RF765**. Holder centring needs one explicitly reviewed via and its two attached segments to move; unaffected copper and connected-pad adjacency are guarded. **3071 connections remain unrouted**; retained copper is not completed routing. |
 | Native integration | Finite reference/graphic/copper allowlists reject unlisted changes, lost pads and duplicate UUIDs. The correction preserves pin/net identity and unrelated footprints; all 1216 footprints pass source/library pad parity. The microphone follow-up changes no copper. |
-| Electrical scope | No selected MPN, signal function, GPIO or logical net is changed by these placements. The encoder's physical pad coordinates change with its real move, but E/D and A/B/C identities do not swap. Existing electrical defects are not repaired by relocating or drawing their parts. |
+| Electrical scope | The preceding placements changed no MPN, signal function, GPIO or logical net. The separate approved USB follow-up changes only the RF J1 connector MPN, retaining the port's electrical role. The encoder's physical pad coordinates change with its real move, but E/D and A/B/C identities do not swap. Existing electrical defects are not repaired by relocating or drawing their parts. |
 | Labels and images | Refreshed label and component-view audits bind the corrected PCB hashes. Fab bodies, assembly reserves and explanatory annotations are not silkscreen, routed copper or fitted cells/cables. These are fresh checks, not reuse of the prior label pass. |
 | DRC scope | DRC means design-rule and schematic-parity checks. The capped unconnected-items list is not the exact remaining-connection count. Installed standard libraries and actual assembled/measured behaviour remain separate boundaries. |
 

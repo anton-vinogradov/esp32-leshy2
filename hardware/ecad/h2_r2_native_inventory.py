@@ -33,7 +33,7 @@ def r2_cost_base_rows(historical_rows: list[dict], model: dict) -> list[dict]:
     The cost report consumes the native inventory, so the native inventory must
     not consume the generated cost report in return.  This projection keeps the
     historical G2F BOM plus the accepted H1 R2 replacements, additions and
-    quantity overrides as the stable, acyclic 221-group base.
+    quantity overrides as the stable, acyclic current-R2 base.
     """
     replacements = model.get("r2_device_replacements", {})
     overrides = model.get("r2_quantity_overrides", {})
@@ -46,7 +46,11 @@ def r2_cost_base_rows(historical_rows: list[dict], model: dict) -> list[dict]:
             row["device_id"] = replacement["device_id"]
             row["mpn"] = replacement["mpn"]
         quantity = int(row["quantity"])
-        if row["device_id"] in overrides:
+        # A reviewed consolidation retains the source quantity. Applying the
+        # target's three-service-port override to the one product port would
+        # count that override twice before a duplicate dictionary key hid it.
+        consolidating = bool(replacement and "merge_into_existing_group" in replacement)
+        if row["device_id"] in overrides and not consolidating:
             quantity = int(overrides[row["device_id"]]["quantity_per_device"])
         rows.append({
             "scope": row["scope"],
@@ -65,6 +69,30 @@ def r2_cost_base_rows(historical_rows: list[dict], model: dict) -> list[dict]:
             "role": addition.get("placements", addition["device_id"]),
             "historical_capture_route": None,
         })
+    merger = replacements.get("jae_dx07s016ja1r1500", {})
+    requested = {key: value["merge_into_existing_group"] for key, value in replacements.items()
+                 if "merge_into_existing_group" in value}
+    if requested:
+        if requested != {"jae_dx07s016ja1r1500": "gct_usb4105_gf_a"} or (
+            merger.get("device_id"), merger.get("mpn")
+        ) != ("gct_usb4105_gf_a", "GCT USB4105-GF-A"):
+            raise ValueError("unreviewed component-group consolidation")
+        candidates = [row for row in rows if row["device_id"] == "gct_usb4105_gf_a"]
+        product = [row for row in candidates if row["historical_capture_route"] == "jae_dx07s016ja1r1500"]
+        service = [row for row in candidates if row["historical_capture_route"] is None]
+        if len(candidates) != 2 or len(product) != 1 or len(service) != 1 or (
+            product[0]["quantity_per_device"], service[0]["quantity_per_device"]
+        ) != (1, 3) or any((row["scope"], row["mpn"]) != (
+            "base_product", "GCT USB4105-GF-A"
+        ) for row in candidates):
+            raise ValueError("USB consolidation requires exactly one product plus three service ports")
+        combined = dict(service[0], quantity_per_device=4,
+                        role="product_usb_connector,c5_service_usb_connector,hub_rp_service_usb_connector,rf_rp_service_usb_connector",
+                        historical_capture_route="jae_dx07s016ja1r1500")
+        rows = [row for row in rows if row["device_id"] != "gct_usb4105_gf_a"] + [combined]
+    identities = [row["device_id"] for row in rows]
+    if len(identities) != len(set(identities)):
+        raise ValueError("duplicate component groups require an explicit reviewed consolidation")
     return rows
 
 

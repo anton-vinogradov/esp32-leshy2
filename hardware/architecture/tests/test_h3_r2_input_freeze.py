@@ -66,15 +66,27 @@ class H3R2InputFreezeTest(unittest.TestCase):
         self.assertEqual((4305, 4070, 235), tuple(kicad[key] for key in (
             "physical_symbol_pin_count", "connected_physical_pin_count", "explicit_no_connect_physical_pin_count")))
 
-    def test_connected_function_tuples_are_identical_to_pre_nc6_removal(self):
+    def test_connected_functions_preserved_after_nc6_removal_and_usb_unification(self):
         # Fixed reviewed849a350 baseline, not a digest regenerated from the
         # current input or a test requiring a mutable Git HEAD.
         fields = ("endpoint", "project", "sheet", "reference", "contact", "physical", "role", "net", "disposition")
-        rows = sorted(tuple(row.get(key) for key in fields) for row in MODULE.load(MODULE.NETS)["rows"]
-                      if row.get("disposition") == "connected")
+        connected = [copy.deepcopy(row) for row in MODULE.load(MODULE.NETS)["rows"]
+                     if row.get("disposition") == "connected"]
+        rows = sorted(tuple(row.get(key) for key in fields) for row in connected)
         self.assertEqual(4066, len(rows))
         payload = json.dumps(rows, separators=(",", ":"), ensure_ascii=False).encode()
-        digest = hashlib.sha256(payload).hexdigest()
+        self.assertEqual("33a9708e0db86040572f2eb85758252f2c8e568299376582b13a4ae6a3ff3571",
+                         hashlib.sha256(payload).hexdigest())
+        # Only the product receptacle's shell-mechanics description changed.
+        # Normalize that one proven metadata delta, never any net or contact,
+        # to keep the original pre-NC6 electrical-function proof meaningful.
+        shell = [row for row in connected if row["endpoint"] == "product_usb_connector.SHIELD"]
+        self.assertEqual(1, len(shell))
+        self.assertEqual("gct_usb4105_gf_a", shell[0]["device_id"])
+        self.assertEqual("four through-hole shell stakes", shell[0]["physical"])
+        shell[0]["physical"] = "four 0.9-mm through-hole shell board locks"
+        normalized = sorted(tuple(row.get(key) for key in fields) for row in connected)
+        digest = hashlib.sha256(json.dumps(normalized, separators=(",", ":"), ensure_ascii=False).encode()).hexdigest()
         self.assertEqual("a8bc48ee64e32a8354904d1619552a35a2f669adc5da5a5efa09e5721b8c9e0d", digest)
         self.assertEqual(digest, MODULE.load(MODULE.CONTRACT)["native_contact_count_change_review"]["connected_tuple_sha256"])
 

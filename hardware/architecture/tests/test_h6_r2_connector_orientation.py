@@ -18,7 +18,7 @@ GCT_FOOTPRINT = "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Hori
 JAE_FOOTPRINT = "Leshy2_R2:USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk"
 SD_FOOTPRINT = "Connector_Card:microSD_HC_Hirose_DM3AT-SF-PEJM5"
 EXPECTED = {
-    "product_usb_connector": ("LESHY2-RF-R2", "J1", "rear-inner", [16.47, 146.2], JAE_FOOTPRINT),
+    "product_usb_connector": ("LESHY2-RF-R2", "J1", "rear-inner", [16.47, 146.325], GCT_FOOTPRINT),
     "hub_rp_service_usb_connector": ("LESHY2-UI-R2", "J11", "ui-inner", [14.87, 146.325], GCT_FOOTPRINT),
     "c5_service_usb_connector": ("LESHY2-UI-R2", "J9", "ui-inner", [26.1, 146.325], GCT_FOOTPRINT),
     "rf_rp_service_usb_connector": ("LESHY2-RF-R2", "J4", "rear-inner", [37.47, 146.325], GCT_FOOTPRINT),
@@ -104,7 +104,8 @@ class ConnectorOrientationTests(unittest.TestCase):
                 self.assertEqual(180, row["rotation_deg"])
                 self.assertTrue(row["mechanical_locked"])
                 self.assertEqual("reviewed outward connector mouth datum", row["method"])
-                self.assertEqual("2026-09-07", row["mechanical_datum"]["checked"])
+                self.assertEqual("2026-09-09" if instance == "product_usb_connector" else "2026-09-07",
+                                 row["mechanical_datum"]["checked"])
                 self.assertIn("https://", row["mechanical_datum"]["source_url"])
 
     def test_wrong_frozen_pose_cannot_win_over_manufacturer_datum(self):
@@ -183,25 +184,25 @@ class ConnectorOrientationTests(unittest.TestCase):
             self.assertAlmostEqual(142.645, tail[1])
             self.assertLess(tail[1], mouth[1])
 
-    def test_exact_jae_reference_datum_is_distinct_from_recessed_board_edge(self):
+    def test_former_jae_definition_is_retained_but_product_uses_exact_flush_gct(self):
         text = self.footprint_text(JAE_FOOTPRINT)
         self.assertRegex(text, r'\(pad "" np_thru_hole circle\s*\(at -3 -1\.95\)')
         self.assertRegex(text, r'\(pad "" np_thru_hole oval\s*\(at 3 -1\.95\)')
         self.assertRegex(text, r'\(start -4\.47 3\.6\)\s*\(end 4\.47 3\.6\)[\s\S]*?\(layer "F\.Fab"\)')
         datum = self.contract["placement_overrides"]["product_usb_connector"]["mechanical_datum"]
-        self.assertAlmostEqual(3.1, datum["local_locator_datum_y_mm"] +
-                               datum["pcb_edge_offset_from_locator_datum_mm"])
+        self.assertEqual("https://gct.co/files/drawings/usb4105.pdf", datum["source_url"])
+        self.assertNotIn("local_locator_datum_y_mm", datum)
         target = self.target("product_usb_connector")
         reference_edge = native_b_point([0, datum["local_pcb_edge_y_mm"]], target["anchor"], 180)[1]
         edge = self.contract["board"]["height_mm"]
         mouth = native_b_point([0, datum["local_shell_mouth_y_mm"]], target["anchor"], 180)[1]
-        self.assertAlmostEqual(0.7, edge - reference_edge)
-        self.assertAlmostEqual(149.8, mouth)
-        self.assertLess(mouth, edge, "USB housing must not overhang the finished board")
+        self.assertAlmostEqual(0.0, edge - reference_edge)
+        self.assertAlmostEqual(150.0, mouth)
+        self.assertLessEqual(mouth, edge, "USB housing must not overhang the finished board")
         self.assertAlmostEqual(datum["shell_overhang_mm"], mouth - edge)
         pads = re.findall(r'\(pad "[^"]*" (?:smd|thru_hole) \w+\s*'
-                          r'\(at [-\d.]+ ([-\d.]+)\)\s*\(size [-\d.]+ ([-\d.]+)\)', text)
-        self.assertEqual(22, len(pads))
+                          r'\(at [-\d.]+ ([-\d.]+)\)\s*\(size [-\d.]+ ([-\d.]+)\)', self.footprint_text(GCT_FOOTPRINT))
+        self.assertEqual(20, len(pads))
         copper_max = max(target["anchor"][1] + float(y) + float(height) / 2 for y, height in pads)
         self.assertAlmostEqual(datum["native_maximum_copper_y_mm"], copper_max)
         self.assertAlmostEqual(datum["minimum_copper_edge_clearance_mm"], edge - copper_max)

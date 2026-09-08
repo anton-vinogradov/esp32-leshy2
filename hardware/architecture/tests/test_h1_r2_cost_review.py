@@ -26,7 +26,7 @@ class H1R2CostReviewTest(unittest.TestCase):
         self.assertIn("TX2400-JW-5", ru)
 
     def test_complete_bom_is_ranked(self):
-        self.assertEqual(len(self.result["rows"]), 249)
+        self.assertEqual(len(self.result["rows"]), 248)
         mpns = [row["mpn"] for row in self.result["rows"]]
         self.assertEqual(len(mpns), len(set(mpns)))
         known = [
@@ -38,7 +38,7 @@ class H1R2CostReviewTest(unittest.TestCase):
 
     def test_cost_boundaries_are_explicit(self):
         summary = self.result["summary"]
-        self.assertEqual(summary["quantity_100_priced_lines"], 240)
+        self.assertEqual(summary["quantity_100_priced_lines"], 239)
         self.assertEqual(summary["remaining_unpriced_base_lines"], 5)
         self.assertGreater(summary["planning_base_plus_post_pcba_usd_per_device"], 270)
         self.assertAlmostEqual(
@@ -67,7 +67,7 @@ class H1R2CostReviewTest(unittest.TestCase):
 
     def test_accepted_all_in_one_target_gap_is_not_hidden(self):
         summary = self.result["summary"]
-        self.assertEqual(summary["base_bom_lines"], 247)
+        self.assertEqual(summary["base_bom_lines"], 246)
         self.assertEqual(summary["base_fitted_placements"], 1213)
         self.assertEqual(summary["community_complete_device_target_usd"], 260)
         self.assertEqual(summary["community_electronics_target_usd"], [189, 216])
@@ -136,17 +136,76 @@ class H1R2CostReviewTest(unittest.TestCase):
         rp = by_id["rp2354b_a4"]
         self.assertEqual(2, rp["quantity_per_device"])
         self.assertEqual(2, rp["quantity_procurement_target"])
-        self.assertEqual(10, rp["quantity_historical_capture"])
+        # The retained exact-part-page row has one RP per five-device basis;
+        # today's two fitted RPs do not rewrite that price snapshot.
+        self.assertEqual(5, rp["quantity_historical_capture"])
         self.assertEqual("C39843328", rp["jlcpcb_part"])
         headers = by_id["samtec_ftsh_105_01_l_dv_k_p_tr"]
         self.assertEqual(6, headers["quantity_per_device"])
-        self.assertEqual(30, headers["quantity_historical_capture"])
+        # The BOM-Tool capture had three headers, not today's six.
+        self.assertEqual(15, headers["quantity_historical_capture"])
         detector = by_id["adi_ad8314armz_reel"]
         self.assertEqual("adi_ad8314armz_reel", detector["source_device_id"])
         self.assertEqual("C652687", detector["jlcpcb_part"])
         self.assertEqual(6, detector["quantity_per_device"])
         self.assertAlmostEqual(11.6388, detector["line_burden_per_device_usd"])
         self.assertIn("MOQ 4", detector["historical_capture_route"])
+
+    def test_usb_consolidation_keeps_four_ports_in_one_cost_row(self):
+        rows = self.result["rows"]
+        usb = [row for row in rows if row["device_id"] == "gct_usb4105_gf_a"]
+        self.assertEqual(1, len(usb))
+        self.assertEqual("GCT USB4105-GF-A", usb[0]["mpn"])
+        self.assertEqual(4, usb[0]["quantity_per_device"])
+        self.assertEqual(4, usb[0]["quantity_procurement_target"])
+        self.assertEqual(40, usb[0]["quantity_ten_devices"])
+        self.assertEqual(10, usb[0]["quantity_historical_capture"])
+        self.assertEqual(8.607, usb[0]["historical_capture_displayed_line_usd"])
+        self.assertNotIn("jae_dx07s016ja1r1500", {row["device_id"] for row in rows})
+        # Fitted demand is four; this does not replace the separately recorded
+        # live MOQ-nine procurement requirement with a quantity-four order.
+
+    def test_historical_quantities_follow_the_retained_snapshot(self):
+        by_id = {row["device_id"]: row for row in self.result["rows"]}
+        # H5-EVR05 retains actual BOM-Tool quantities even when its projected
+        # quantity was later increased: 35/7/4, not 37/8/5 respectively.
+        expected = {
+            "tdk_c1608x7r1c105k080ac": (175, 9.8766),
+            "murata_grm1555c1h121ja01d": (35, 8.9565),
+            "diodes_bat54_7_f": (20, 0.8875),
+            # Existing H1 spot-check display rounding remains unchanged.
+            "omron_b3s_1100p": (80, 74.58),
+        }
+        for device_id, (quantity, price) in expected.items():
+            with self.subTest(device_id=device_id):
+                self.assertEqual(quantity, by_id[device_id]["quantity_historical_capture"])
+                self.assertEqual(price, by_id[device_id]["historical_capture_displayed_line_usd"])
+        self.assertIsNone(by_id["coilcraft_wbc16_1tlc"]["quantity_historical_capture"])
+        self.assertIsNone(by_id["te_1_2118651_0"]["quantity_historical_capture"])
+        # Quantity provenance does not recalculate retained prices or totals.
+        self.assertEqual(1365.0493, self.result["summary"]["historical_capture_displayed_usd"])
+        self.assertEqual(1406.4379, self.result["summary"]["historical_spot_adjusted_displayed_usd"])
+
+    def test_capture_quantity_never_falls_back_to_current_fitted_demand(self):
+        self.assertEqual(10, MODULE.trial_capture_quantity({
+            "quantity": 99, "historical_capture_quantity": 2,
+            "displayed_line_cost_usd": 8.607,
+        }, 5))
+        self.assertEqual(5, MODULE.trial_capture_quantity({
+            "quantity": 1, "displayed_line_cost_usd": 1.5658,
+            "match_provenance": "current_exact_jlcpcb_part_page",
+        }, 5))
+        self.assertIsNone(MODULE.trial_capture_quantity({
+            "quantity": 99, "historical_capture_quantity": 2,
+            "displayed_line_cost_usd": None,
+        }, 5))
+        self.assertIsNone(MODULE.trial_capture_quantity({}, 5))
+        for invalid in (None, 0, -1, 1.5, True):
+            with self.subTest(invalid=invalid), self.assertRaises(ValueError):
+                MODULE.trial_capture_quantity({
+                    "quantity": 99, "historical_capture_quantity": invalid,
+                    "displayed_line_cost_usd": 8.607,
+                }, 5)
 
     def test_external_antennas_are_grouped_by_mpn(self):
         rows = self.result["antenna_rows"]

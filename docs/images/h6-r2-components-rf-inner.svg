@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="3800" viewBox="0 0 96 190" data-board="rf" data-face="inner" data-source-sha256="44bea71388631dfd3b7d9c7bfb088569de46d13083fd164bf3562dc8bfde0dde" data-renderer-sha256="bf67d9d1c825f7f74b49ffcc03031bf1d63f74b221e3edb431fdab8f6ec4d76d">
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="3800" viewBox="0 0 96 190" data-board="rf" data-face="inner" data-source-sha256="5442331dc15ec87f9c315bf64996a4e0841901d80e8ffc36f2b67b7669aca96b" data-renderer-sha256="bf67d9d1c825f7f74b49ffcc03031bf1d63f74b221e3edb431fdab8f6ec4d76d">
 <title>Leshy2 current components · RF inner</title>
 <rect width="96" height="190" fill="white"/>
 <text x="8" y="5" fill="#17263c" font-family="Arial,DejaVu Sans,sans-serif" font-size="2.6" text-anchor="start">Задняя RF / power · внутренняя / inner</text>
@@ -6181,29 +6181,23 @@ L33.1500 142.6700
 <circle cx="69.0750" cy="134.4400" r="0.1000" />
 <circle cx="78.2000" cy="110.7000" r="0.4500" />
 <circle cx="78.2000" cy="117.5000" r="0.4500" />
-<circle cx="19.4700" cy="144.2500" r="0.3000" />
+<circle cx="19.3600" cy="143.7200" r="0.3250" />
+<circle cx="13.5800" cy="143.7200" r="0.3250" />
 </g>
 <g style="fill:none;
 stroke:#17263c; stroke-width:0.6000; stroke-opacity:1;
 stroke-linecap:round; stroke-linejoin:round;">
-<path d="M13.5950 144.2500
-L13.3450 144.2500
+<path d="M20.7900 147.8000
+L20.7900 147.0000
 " />
-</g>
-<g style="fill:none;
-stroke:#17263c; stroke-width:0.6000; stroke-opacity:1;
-stroke-linecap:round; stroke-linejoin:round;">
-<path d="M20.7900 148.0000
-L20.7900 146.7000
+<path d="M20.7900 143.7700
+L20.7900 142.6700
 " />
-<path d="M20.7900 144.0250
-L20.7900 143.0250
+<path d="M12.1500 147.8000
+L12.1500 147.0000
 " />
-<path d="M12.1500 148.0000
-L12.1500 146.7000
-" />
-<path d="M12.1500 144.0250
-L12.1500 143.0250
+<path d="M12.1500 143.7700
+L12.1500 142.6700
 " />
 </g>
 </g>
@@ -6279,21 +6273,21 @@ L12.1500 143.0250
 </g>
 </g>
 </g><g data-role="native-interface-through-lands">
-<g data-role="interface-through-land" data-reference="J1" data-pad="SH" data-index="0" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-180.000000 12.149999 143.525000)">
+<g data-role="interface-through-land" data-reference="J1" data-pad="SH" data-index="0" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-180.000000 12.149999 143.220000)">
 <title>J1.SH · B.Cu · interface_through_pad · native copper, not solder volume</title>
-<rect x="11.499999" y="142.375000" width="1.300000" height="2.300000" rx="0.650000" fill="#f3bd53"/>
+<rect x="11.649999" y="142.170000" width="1.000000" height="2.100000" rx="0.500000" fill="#f3bd53"/>
 </g>
-<g data-role="interface-through-land" data-reference="J1" data-pad="SH" data-index="1" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-180.000000 12.149999 147.350000)">
+<g data-role="interface-through-land" data-reference="J1" data-pad="SH" data-index="1" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-180.000000 12.149999 147.400000)">
 <title>J1.SH · B.Cu · interface_through_pad · native copper, not solder volume</title>
-<rect x="11.499999" y="146.050000" width="1.300000" height="2.600000" rx="0.650000" fill="#f3bd53"/>
+<rect x="11.649999" y="146.500000" width="1.000000" height="1.800000" rx="0.500000" fill="#f3bd53"/>
 </g>
-<g data-role="interface-through-land" data-reference="J1" data-pad="SH" data-index="2" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-180.000000 20.789999 143.525000)">
+<g data-role="interface-through-land" data-reference="J1" data-pad="SH" data-index="2" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-180.000000 20.789999 143.220000)">
 <title>J1.SH · B.Cu · interface_through_pad · native copper, not solder volume</title>
-<rect x="20.139999" y="142.375000" width="1.300000" height="2.300000" rx="0.650000" fill="#f3bd53"/>
+<rect x="20.289999" y="142.170000" width="1.000000" height="2.100000" rx="0.500000" fill="#f3bd53"/>
 </g>
-<g data-role="interface-through-land" data-reference="J1" data-pad="SH" data-index="3" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-180.000000 20.789999 147.350000)">
+<g data-role="interface-through-land" data-reference="J1" data-pad="SH" data-index="3" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-180.000000 20.789999 147.400000)">
 <title>J1.SH · B.Cu · interface_through_pad · native copper, not solder volume</title>
-<rect x="20.139999" y="146.050000" width="1.300000" height="2.600000" rx="0.650000" fill="#f3bd53"/>
+<rect x="20.289999" y="146.500000" width="1.000000" height="1.800000" rx="0.500000" fill="#f3bd53"/>
 </g>
 <g data-role="interface-through-land" data-reference="J4" data-pad="SH" data-index="0" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-180.000000 33.150000 143.220000)">
 <title>J4.SH · B.Cu · interface_through_pad · native copper, not solder volume</title>
@@ -78034,82 +78028,82 @@ L45.2157 14.4686
 <g style="fill:none;
 stroke:#334155; stroke-width:0.1100; stroke-opacity:1;
 stroke-linecap:round; stroke-linejoin:round;">
-<text x="16.5000" y="139.8750"
+<text x="16.5000" y="139.7250"
 transform="scale(-1 1) translate(-33.000000 0)"
 textLength="1.6800" font-size="1.0000" lengthAdjust="spacingAndGlyphs"
 text-anchor="middle" opacity="0" stroke-opacity="0">U5</text>
 <g class="stroked-text"><desc>U5</desc>
-<path d="M17.0714 139.0912
-L17.0714 139.6984
+<path d="M17.0714 138.9412
+L17.0714 139.5484
 " />
-<path d="M17.0714 139.6984
-L17.0357 139.7698
+<path d="M17.0714 139.5484
+L17.0357 139.6198
 " />
-<path d="M17.0357 139.7698
-L17.0000 139.8055
+<path d="M17.0357 139.6198
+L17.0000 139.6555
 " />
-<path d="M17.0000 139.8055
-L16.9286 139.8412
+<path d="M17.0000 139.6555
+L16.9286 139.6912
 " />
-<path d="M16.9286 139.8412
-L16.7857 139.8412
+<path d="M16.9286 139.6912
+L16.7857 139.6912
 " />
-<path d="M16.7857 139.8412
-L16.7143 139.8055
+<path d="M16.7857 139.6912
+L16.7143 139.6555
 " />
-<path d="M16.7143 139.8055
-L16.6786 139.7698
+<path d="M16.7143 139.6555
+L16.6786 139.6198
 " />
-<path d="M16.6786 139.7698
-L16.6429 139.6984
+<path d="M16.6786 139.6198
+L16.6429 139.5484
 " />
-<path d="M16.6429 139.6984
-L16.6429 139.0912
+<path d="M16.6429 139.5484
+L16.6429 138.9412
 " />
-<path d="M15.9286 139.0912
-L16.2857 139.0912
+<path d="M15.9286 138.9412
+L16.2857 138.9412
 " />
-<path d="M16.2857 139.0912
-L16.3214 139.4484
+<path d="M16.2857 138.9412
+L16.3214 139.2984
 " />
-<path d="M16.3214 139.4484
-L16.2857 139.4127
+<path d="M16.3214 139.2984
+L16.2857 139.2627
 " />
-<path d="M16.2857 139.4127
-L16.2143 139.3770
+<path d="M16.2857 139.2627
+L16.2143 139.2270
 " />
-<path d="M16.2143 139.3770
-L16.0357 139.3770
+<path d="M16.2143 139.2270
+L16.0357 139.2270
 " />
-<path d="M16.0357 139.3770
-L15.9643 139.4127
+<path d="M16.0357 139.2270
+L15.9643 139.2627
 " />
-<path d="M15.9643 139.4127
-L15.9286 139.4484
+<path d="M15.9643 139.2627
+L15.9286 139.2984
 " />
-<path d="M15.9286 139.4484
-L15.8929 139.5198
+<path d="M15.9286 139.2984
+L15.8929 139.3698
 " />
-<path d="M15.8929 139.5198
-L15.8929 139.6984
+<path d="M15.8929 139.3698
+L15.8929 139.5484
 " />
-<path d="M15.8929 139.6984
-L15.9286 139.7698
+<path d="M15.8929 139.5484
+L15.9286 139.6198
 " />
-<path d="M15.9286 139.7698
-L15.9643 139.8055
+<path d="M15.9286 139.6198
+L15.9643 139.6555
 " />
-<path d="M15.9643 139.8055
-L16.0357 139.8412
+<path d="M15.9643 139.6555
+L16.0357 139.6912
 " />
-<path d="M16.0357 139.8412
-L16.2143 139.8412
+<path d="M16.0357 139.6912
+L16.2143 139.6912
 " />
-<path d="M16.2143 139.8412
-L16.2857 139.8055
+<path d="M16.2143 139.6912
+L16.2857 139.6555
 " />
-<path d="M16.2857 139.8055
-L16.3214 139.7698
+<path d="M16.2857 139.6555
+L16.3214 139.6198
 " />
 </g></g>
 <g style="fill:none;
@@ -95373,40 +95367,40 @@ L18.3631 83.1707
 <g style="fill:none;
 stroke:#334155; stroke-width:0.1500; stroke-opacity:1;
 stroke-linecap:round; stroke-linejoin:round;">
-<text x="16.4700" y="146.7000"
+<text x="16.4700" y="146.8250"
 transform="scale(-1 1) translate(-32.939998 0)"
 textLength="1.9643" font-size="1.3333" lengthAdjust="spacingAndGlyphs"
 text-anchor="middle" opacity="0" stroke-opacity="0">J1</text>
 <g class="stroked-text"><desc>J1</desc>
-<path d="M16.8033 145.6548
-L16.8033 146.3691
+<path d="M16.8033 145.7798
+L16.8033 146.4941
 " />
-<path d="M16.8033 146.3691
-L16.8510 146.5120
+<path d="M16.8033 146.4941
+L16.8510 146.6370
 " />
-<path d="M16.8510 146.5120
-L16.9462 146.6072
+<path d="M16.8510 146.6370
+L16.9462 146.7322
 " />
-<path d="M16.9462 146.6072
-L17.0890 146.6548
+<path d="M16.9462 146.7322
+L17.0890 146.7798
 " />
-<path d="M17.0890 146.6548
-L17.1843 146.6548
+<path d="M17.0890 146.7798
+L17.1843 146.7798
 " />
-<path d="M15.8033 146.6548
-L16.3748 146.6548
+<path d="M15.8033 146.7798
+L16.3748 146.7798
 " />
-<path d="M16.0890 146.6548
-L16.0890 145.6548
+<path d="M16.0890 146.7798
+L16.0890 145.7798
 " />
-<path d="M16.0890 145.6548
-L16.1843 145.7977
+<path d="M16.0890 145.7798
+L16.1843 145.9227
 " />
-<path d="M16.1843 145.7977
-L16.2795 145.8929
+<path d="M16.1843 145.9227
+L16.2795 146.0179
 " />
-<path d="M16.2795 145.8929
-L16.3748 145.9405
+<path d="M16.2795 146.0179
+L16.3748 146.0655
 " />
 </g></g>
 <g style="fill:none;
@@ -111030,11 +111024,11 @@ Z" />
 <path style="fill:none;
 stroke:#334155; stroke-width:0.1000; stroke-opacity:1;
 stroke-linecap:round; stroke-linejoin:round;fill:none"
-d="M 15.7500,141.0000
-18.0000,141.0000
-18.0000,138.0000
-15.0000,138.0000
-15.0000,140.2500
+d="M 15.7500,140.8500
+18.0000,140.8500
+18.0000,137.8500
+15.0000,137.8500
+15.0000,140.1000
 Z" />
 <path style="fill:none;
 stroke:#334155; stroke-width:0.1000; stroke-opacity:1;
@@ -112197,18 +112191,14 @@ d="M 18.2500,82.9500
 19.2500,83.4500
 18.2500,83.4500
 Z" />
-<path d="M12.0000 142.9000
-L12.0000 149.8000
-" />
-<path d="M20.9400 142.9000
-L12.0000 142.9000
-" />
-<path d="M20.9400 142.9000
-L20.9400 149.8000
-" />
-<path d="M20.9400 149.8000
-L12.0000 149.8000
-" />
+<path style="fill:none;
+stroke:#334155; stroke-width:0.1000; stroke-opacity:1;
+stroke-linecap:round; stroke-linejoin:round;fill:none"
+d="M 12.0000,142.6500
+20.9400,142.6500
+20.9400,150.0000
+12.0000,150.0000
+Z" />
 <path style="fill:none;
 stroke:#334155; stroke-width:0.1000; stroke-opacity:1;
 stroke-linecap:round; stroke-linejoin:round;fill:none"
@@ -118136,41 +118126,41 @@ L45.6628 13.9950
 <path d="M45.4472 14.7150
 L45.6628 14.7150
 " />
-<path d="M14.8900 137.8900
-L14.8900 138.3400
+<path d="M14.8900 137.7400
+L14.8900 138.1900
 " />
-<path d="M14.8900 140.6600
-L14.8900 141.1100
+<path d="M14.8900 140.5100
+L14.8900 140.9600
 " />
-<path d="M14.8900 141.1100
-L15.3400 141.1100
+<path d="M14.8900 140.9600
+L15.3400 140.9600
 " />
-<path d="M15.3400 137.8900
-L14.8900 137.8900
+<path d="M15.3400 137.7400
+L14.8900 137.7400
 " />
-<path d="M17.6600 141.1100
-L18.1100 141.1100
+<path d="M17.6600 140.9600
+L18.1100 140.9600
 " />
-<path d="M18.1100 137.8900
-L17.6600 137.8900
+<path d="M18.1100 137.7400
+L17.6600 137.7400
 " />
-<path d="M18.1100 138.3400
-L18.1100 137.8900
+<path d="M18.1100 138.1900
+L18.1100 137.7400
 " />
-<path d="M18.1100 141.1100
-L18.1100 140.6600
+<path d="M18.1100 140.9600
+L18.1100 140.5100
 " />
 <path style="fill:none;
 stroke:#2563eb; stroke-width:0.1200; stroke-opacity:1;
 stroke-linecap:round; stroke-linejoin:round;fill:none"
-d="M 14.4900,140.3000
-14.1600,140.0600
-14.1600,140.5400
+d="M 14.4900,140.1500
+14.1600,139.9100
+14.1600,140.3900
 Z" />
 <path style="fill:#2563eb; fill-opacity:1.0000; stroke:none;fill-rule:evenodd;"
-d="M 14.4900,140.3000
-14.1600,140.5400
-14.1600,140.0600
+d="M 14.4900,140.1500
+14.1600,140.3900
+14.1600,139.9100
 Z" />
 </g>
 <g style="fill:none;
@@ -119394,17 +119384,11 @@ L18.8578 82.8400
 <path d="M18.6422 83.5600
 L18.8578 83.5600
 " />
-<path d="M11.8900 144.9850
-L11.8900 145.8400
+<path d="M11.8000 146.2250
+L11.8000 144.5250
 " />
-<path d="M11.8900 148.9600
-L11.8900 149.0800
-" />
-<path d="M21.0500 144.9850
-L21.0500 145.8400
-" />
-<path d="M21.0500 148.9600
-L21.0500 149.0800
+<path d="M21.1400 146.2250
+L21.1400 144.5250
 " />
 <path d="M67.6214 55.6850
 L67.9286 55.6850
@@ -120445,29 +120429,23 @@ L33.1500 142.6700
 <circle cx="69.0750" cy="134.4400" r="0.1000" />
 <circle cx="78.2000" cy="110.7000" r="0.4500" />
 <circle cx="78.2000" cy="117.5000" r="0.4500" />
-<circle cx="19.4700" cy="144.2500" r="0.3000" />
+<circle cx="19.3600" cy="143.7200" r="0.3250" />
+<circle cx="13.5800" cy="143.7200" r="0.3250" />
 </g>
 <g style="fill:none;
 stroke:#17263c; stroke-width:0.6000; stroke-opacity:1;
 stroke-linecap:round; stroke-linejoin:round;">
-<path d="M13.5950 144.2500
-L13.3450 144.2500
+<path d="M20.7900 147.8000
+L20.7900 147.0000
 " />
-</g>
-<g style="fill:none;
-stroke:#17263c; stroke-width:0.6000; stroke-opacity:1;
-stroke-linecap:round; stroke-linejoin:round;">
-<path d="M20.7900 148.0000
-L20.7900 146.7000
+<path d="M20.7900 143.7700
+L20.7900 142.6700
 " />
-<path d="M20.7900 144.0250
-L20.7900 143.0250
+<path d="M12.1500 147.8000
+L12.1500 147.0000
 " />
-<path d="M12.1500 148.0000
-L12.1500 146.7000
-" />
-<path d="M12.1500 144.0250
-L12.1500 143.0250
+<path d="M12.1500 143.7700
+L12.1500 142.6700
 " />
 </g><g data-role="reference-label-fallback" data-reference="F1" transform="translate(33.695000 130.745000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">F1</text></g><g data-role="reference-label-fallback" data-reference="F2" transform="translate(53.370000 47.870000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">F2</text></g><g data-role="reference-label-fallback" data-reference="J11" transform="translate(57.000000 144.450000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">J11</text></g><g data-role="reference-label-fallback" data-reference="J13" transform="translate(42.675000 100.169999) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">J13</text></g><g data-role="reference-label-fallback" data-reference="J2" transform="translate(64.920000 93.175000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">J2</text></g><g data-role="reference-label-fallback" data-reference="J3" transform="translate(30.175000 106.920000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">J3</text></g><g data-role="reference-label-fallback" data-reference="LS1" transform="translate(76.395000 63.645000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">LS1</text></g><g data-role="reference-label-fallback" data-reference="MK1" transform="translate(47.000000 147.400000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">MK1</text></g><g data-role="reference-label-fallback" data-reference="TP1" transform="translate(70.647499 52.396300) scale(-1 1)"><text x="0" y="0.1925" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.55" text-anchor="middle">TP1</text></g><g data-role="reference-label-fallback" data-reference="U10" transform="translate(65.745000 87.494999) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">U10</text></g><g data-role="reference-label-fallback" data-reference="U100" transform="translate(24.895000 108.145000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">U100</text></g><g data-role="reference-label-fallback" data-reference="U106" transform="translate(55.345000 82.095000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">U106</text></g><g data-role="reference-label-fallback" data-reference="U13" transform="translate(50.700000 84.500000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">U13</text></g><g data-role="reference-label-fallback" data-reference="U17" transform="translate(34.895000 98.145000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">U17</text></g><g data-role="reference-label-fallback" data-reference="U21" transform="translate(27.395000 112.145000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">U21</text></g><g data-role="reference-label-fallback" data-reference="U29" transform="translate(72.190000 33.315000) scale(-1 1)"><text x="0" y="0.1925" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.55" text-anchor="middle">U29</text></g><g data-role="reference-label-fallback" data-reference="U34" transform="translate(66.224999 43.595000) scale(-1 1)"><text x="0" y="0.1925" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.55" text-anchor="middle">U34</text></g><g data-role="reference-label-fallback" data-reference="U35" transform="translate(75.595000 40.345000) scale(-1 1)"><text x="0" y="0.1925" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.55" text-anchor="middle">U35</text></g><g data-role="reference-label-fallback" data-reference="U39" transform="translate(13.100000 50.300000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">U39</text></g><g data-role="reference-label-fallback" data-reference="U46" transform="translate(36.395000 91.145000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">U46</text></g><g data-role="reference-label-fallback" data-reference="U51" transform="translate(40.050000 53.500000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">U51</text></g><g data-role="reference-label-fallback" data-reference="U56" transform="translate(18.045000 17.880000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">U56</text></g><g data-role="reference-label-fallback" data-reference="U57" transform="translate(24.130000 18.045000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">U57</text></g><g data-role="reference-label-fallback" data-reference="U62" transform="translate(9.395000 21.195000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">U62</text></g><g data-role="reference-label-fallback" data-reference="U8" transform="translate(59.645000 91.145000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">U8</text></g><g data-role="reference-label-fallback" data-reference="U83" transform="translate(8.662500 99.900000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">U83</text></g><g data-role="reference-label-fallback" data-reference="U86" transform="translate(47.000000 90.750000) scale(-1 1)"><text x="0" y="0.26249999999999996" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.75" text-anchor="middle">U86</text></g>
 <g data-role="through-board-drills">
@@ -120538,12 +120516,12 @@ L12.1500 143.0250
 <rect x="68.975000" y="134.340000" width="0.200000" height="0.200000" rx="0.100000" transform="rotate(-90.000000 69.075000 134.440000)" fill="white" stroke="#9a6700" stroke-width="0.08"/>
 <rect x="77.750000" y="110.250000" width="0.900000" height="0.900000" rx="0.450000" transform="rotate(-270.000000 78.200000 110.700000)" fill="white" stroke="#9a6700" stroke-width="0.08"/>
 <rect x="77.750000" y="117.050000" width="0.900000" height="0.900000" rx="0.450000" transform="rotate(-270.000000 78.200000 117.500000)" fill="white" stroke="#9a6700" stroke-width="0.08"/>
-<rect x="19.169999" y="143.950000" width="0.600000" height="0.600000" rx="0.300000" transform="rotate(-180.000000 19.469999 144.250000)" fill="white" stroke="#9a6700" stroke-width="0.08"/>
-<rect x="13.044999" y="143.950000" width="0.850000" height="0.600000" rx="0.300000" transform="rotate(-180.000000 13.469999 144.250000)" fill="white" stroke="#9a6700" stroke-width="0.08"/>
-<rect x="20.489999" y="146.400000" width="0.600000" height="1.900000" rx="0.300000" transform="rotate(-180.000000 20.789999 147.350000)" fill="white" stroke="#9a6700" stroke-width="0.08"/>
-<rect x="20.489999" y="142.725000" width="0.600000" height="1.600000" rx="0.300000" transform="rotate(-180.000000 20.789999 143.525000)" fill="white" stroke="#9a6700" stroke-width="0.08"/>
-<rect x="11.849999" y="146.400000" width="0.600000" height="1.900000" rx="0.300000" transform="rotate(-180.000000 12.149999 147.350000)" fill="white" stroke="#9a6700" stroke-width="0.08"/>
-<rect x="11.849999" y="142.725000" width="0.600000" height="1.600000" rx="0.300000" transform="rotate(-180.000000 12.149999 143.525000)" fill="white" stroke="#9a6700" stroke-width="0.08"/>
+<rect x="19.034999" y="143.395000" width="0.650000" height="0.650000" rx="0.325000" transform="rotate(-180.000000 19.359999 143.720000)" fill="white" stroke="#9a6700" stroke-width="0.08"/>
+<rect x="13.254999" y="143.395000" width="0.650000" height="0.650000" rx="0.325000" transform="rotate(-180.000000 13.579999 143.720000)" fill="white" stroke="#9a6700" stroke-width="0.08"/>
+<rect x="20.489999" y="146.700000" width="0.600000" height="1.400000" rx="0.300000" transform="rotate(-180.000000 20.789999 147.400000)" fill="white" stroke="#9a6700" stroke-width="0.08"/>
+<rect x="20.489999" y="142.370000" width="0.600000" height="1.700000" rx="0.300000" transform="rotate(-180.000000 20.789999 143.220000)" fill="white" stroke="#9a6700" stroke-width="0.08"/>
+<rect x="11.849999" y="146.700000" width="0.600000" height="1.400000" rx="0.300000" transform="rotate(-180.000000 12.149999 147.400000)" fill="white" stroke="#9a6700" stroke-width="0.08"/>
+<rect x="11.849999" y="142.370000" width="0.600000" height="1.700000" rx="0.300000" transform="rotate(-180.000000 12.149999 143.220000)" fill="white" stroke="#9a6700" stroke-width="0.08"/>
 </g>
 
 </g>

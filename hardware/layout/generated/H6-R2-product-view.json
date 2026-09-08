@@ -2,13 +2,13 @@
   "status": "native_planar_preview_not_assembly_qualification",
   "inputs_sha256": {
     "hardware/layout/h6_r2_product_view.py": "760619fffa7f2cb39ccc03dc91ab2aea66879ca2be758e9f668d0d213052d36d",
-    "hardware/layout/generated/H6-R2-component-views.json": "b13510e7fd661f3d3376bb69b4c9fa3e7d5a8c9042ad03067fb3318bbf397a69",
-    "hardware/layout/generated/H6-R2-placement-intent.json": "27245c917042d010e3be3094d030d3101d47ef6301d2bd222de164e4da159a10",
-    "hardware/layout/h6-r2-placement-contract.json": "08b2e6350f80025986b743808dde33359112113089ebfe16a20076e26922f0d1",
+    "hardware/layout/generated/H6-R2-component-views.json": "6fdb1ccecb0f6e0086be44ff10c85bd17bf954900b03c1db762134ae694db752",
+    "hardware/layout/generated/H6-R2-placement-intent.json": "8b50a5c4e812f17e6d6d3dd70df229b615d5fa7cbc8c51b052339bf7f7518e2e",
+    "hardware/layout/h6-r2-placement-contract.json": "094865936bf52c5e1fa5dc3e90f2e22b132afb064e7909d1d8ddd2bf9f3cdfe3",
     "docs/images/h6-r2-components-ui-outer.svg": "fae8ddf9d2095e1920b79a767bed825bec96f65d62ec944d10958854eebee395",
-    "docs/images/h6-r2-components-rf-outer.svg": "291e7df773476b62188884d215a1faf745207fdd259b7e092146c22bbfe35da4"
+    "docs/images/h6-r2-components-rf-outer.svg": "b3f49a9fb06feb4bf9cc0a1a157c455b52396331d861d9389484f8a836206515"
   },
   "output": "docs/images/h6-r2-product-exterior.svg",
-  "output_sha256": "ac87ae41d68e91bafdc0939d43a83c3f46b8f36d12cefb3e67dbcbacbb511dbd",
+  "output_sha256": "c0aa0a32c5887f98b6f2f03f9eaa9f347103cb6d7cab3bbcba8eeba255dd57e1",
   "assembly_overlay": "Only labelled nominal display panel envelope. No invented cells, knob, free-cable or enclosure geometry."
 }

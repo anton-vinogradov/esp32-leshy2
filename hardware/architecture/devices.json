@@ -9744,19 +9744,30 @@
     "gct_usb4105_gf_a": {
       "mpn": "GCT USB4105-GF-A",
       "kind": "usb_type_c_usb2_16_contact_top_mount_receptacle",
-      "qualification": "verified_exact_service_usb_receptacle",
-      "lifecycle": "active_orderable",
+      "qualification": "reviewed_exact_product_and_service_usb_receptacle_factory_preorder_route",
+      "lifecycle": "production_active_explicit_jlcpcb_preorder_route",
       "dimensions_mm": [8.94, 7.35, 3.31],
       "source": {
         "document": "USB4105 USB Type-C receptacle drawing and product specification",
         "version": "drawing revision B4 dated 2023-12-18; specification revision 2.2",
         "url": "https://gct.co/files/drawings/usb4105.pdf",
-        "checked": "2026-08-19"
+        "checked": "2026-09-09"
       },
       "orderable_source": {
-        "document": "USB4105-GF-A active authorized-distributor listing; more than 150,000 shown in stock",
-        "url": "https://www.digikey.com/en/products/detail/gct/USB4105-GF-A/11198510",
-        "checked": "2026-08-19"
+        "document": "JLCPCB Standard PCBA exact GCT USB4105-GF-A C3020560 stock-backed pre-order; not MOQ-1 direct assembly",
+        "url": "https://jlcpcb.com/partdetail/GlobalConnectorTechnology-USB4105_GF_A/C3020560",
+        "checked": "2026-09-09",
+        "evidence": "hardware/verification/jlcpcb-usb-unification-2026-09-09.json",
+        "manufacturer": "Global Connector Technology",
+        "jlcpcb_part_number": "C3020560",
+        "assembly_type": "SMD; SMT Assembly; Economic and Standard; Extended; High difficulty",
+        "factory_route": "stock-backed pre-order into JLCPCB private parts library",
+        "stock_at_check": 1044,
+        "minimum_order_quantity": 9,
+        "estimated_unit_price_usd_at_minimum": 1.0656,
+        "estimated_component_subtotal_usd": 9.59,
+        "checked_at_utc": "2026-09-08T21:51:23Z",
+        "order_or_stock_reservation_made": false
       },
       "cost": {
         "currency": "USD",
@@ -9770,6 +9781,18 @@
         }
       },
       "programmable": false,
+      "electrical_contract": {
+        "mating_contact_count": 16,
+        "smt_solder_position_count": 12,
+        "collective_vbus_current_rating_a": 5.0,
+        "rated_voltage_v": 48.0,
+        "contact_resistance_milliohm": {"initial_max": 40, "after_test_max": 50},
+        "durability_mating_cycles": 20000,
+        "shell_stakes": {"count": 4, "projection_below_pcb_seating_plane_mm": {"nominal": 0.95, "tolerance": 0.15}},
+        "source": "https://gct.co/files/drawings/usb4105.pdf",
+        "review_evidence": "hardware/verification/jlcpcb-usb-unification-2026-09-09.json",
+        "scope": "Exact USB4105-GF-A without optional stake suffix. Collective VBUS rating is not a per-contact rating or a change to the product power/current limit. Existing quantity-100 cost is a separate historical snapshot."
+      },
       "contacts": {
         "A1_GND": {"physical": "A1", "role": "power"},
         "A4_VBUS": {"physical": "A4", "role": "power"},

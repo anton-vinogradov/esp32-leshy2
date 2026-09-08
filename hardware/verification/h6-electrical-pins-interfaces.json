@@ -25,8 +25,8 @@
       "evidence": [
         {
           "url": "https://gct.co/files/drawings/usb4105.pdf",
-          "section": "B4, sheet 1: Pin/Signal table, recommended PCB layout as viewed from component side, shell GND",
-          "checked": "2026-09-07"
+          "section": "B4, sheet 1: Pin/Signal table, recommended PCB layout as viewed from component side, shell GND. Current R2 uses the same exact reviewed 17 contact labels on all four product/service ports (RF J1/J4, UI J9/J11); connector conductors remain passive, with no contextual power-source promotion. Exact adoption and native mapping: hardware/layout/h6-r2-usb-unification.json.",
+          "checked": "2026-09-09"
         }
       ],
       "pins": {
@@ -100,64 +100,6 @@
         }
       },
       "unresolved": []
-    },
-    {
-      "device_id": "jae_dx07s016ja1r1500",
-      "mpn": "JAE DX07S016JA1R1500",
-      "evidence": [
-        {
-          "url": "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/8440/MB-0350E_DX07_16-POS_RECEPTACLE.pdf",
-          "section": "Manufacturer-authored JAE MB-0350-3, Aug 2025, p2 General Specifications: explicit VBUS and GND terminal numbers; p3 exact JA1 part and drawing SJ121836/SJ121837",
-          "checked": "2026-09-07"
-        },
-        {
-          "url": "https://products.jae.com/jp/ja/connectors/category/io/dx07-receptacle/dx07s016ja1r1500/",
-          "section": "Exact manufacturer product identity and drawing number; current rendered page does not expose downloadable drawing",
-          "checked": "2026-09-07"
-        },
-        {
-          "url": "https://www.mikrocontroller.net/attachment/650878/SJ121836.pdf",
-          "section": "JAE-authored SJ121836 Rev 3, 06 March 2024: sheets 1/2 body, mounting and PCB-edge datums reviewed in h6-r2-interface-datum-review.json; SHA-256 c83806896177743b8d6b8b704448a204115206b1b97454c94304e5b43a5e5f85. This mechanical review does not add verified electrical contacts.",
-          "checked": "2026-09-08"
-        }
-      ],
-      "pins": {
-        "A1": {
-          "type": "passive",
-          "reason": "USB ground conductor A1."
-        },
-        "A4": {
-          "type": "passive",
-          "reason": "USB VBUS conductor A4; the connector is not itself a power source."
-        },
-        "A9": {
-          "type": "passive",
-          "reason": "USB VBUS conductor A9."
-        },
-        "A12": {
-          "type": "passive",
-          "reason": "USB ground conductor A12."
-        },
-        "B1": {
-          "type": "passive",
-          "reason": "USB ground conductor B1."
-        },
-        "B4": {
-          "type": "passive",
-          "reason": "USB VBUS conductor B4."
-        },
-        "B9": {
-          "type": "passive",
-          "reason": "USB VBUS conductor B9."
-        },
-        "B12": {
-          "type": "passive",
-          "reason": "USB ground conductor B12."
-        }
-      },
-      "unresolved": [
-        "Exact JAE-authored SJ121836 Rev 3 has since been obtained and mechanically reviewed for body and PCB-edge datums; SJ121837 is the packaging drawing. The remaining electrical contact mapping has not been independently reviewed here: A5/A6/A7/A8/B5/B6/B7/B8 and SH remain omitted from verified pins. Mechanical datum review does not close this electrical gap; do not infer mapping from USB family convention or another manufacturer's receptacle."
-      ]
     },
     {
       "device_id": "hirose_dm3at_sf_pejm5",

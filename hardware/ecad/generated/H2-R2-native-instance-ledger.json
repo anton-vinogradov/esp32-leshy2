@@ -6,12 +6,12 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "e928c8f337a73005ace55331c145db8199340d23fa54a6806fa6c5619fdd8040",
+      "sha256": "1e899cfca17f311309d1add013d0feb3f14f1bc2d4679e0c61c5785268fda3db",
       "authority": true
     },
     "exact_definition_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "6abe80697040f1445075dd4ae7f79c0715c325a2e586d59225e30ac5fa7c16fe",
+      "sha256": "d192652242066d6a9bc74d22d82e4202236ccd0b34fbdc97aff2de2de784bbf5",
       "authority": true
     },
     "physical_source_table": {
@@ -27,7 +27,7 @@
   },
   "summary": {
     "fitted_board_instance_count": 1208,
-    "component_group_count": 245,
+    "component_group_count": 244,
     "project_counts": {
       "LESHY2-RF-R2": 780,
       "LESHY2-UI-R2": 428
@@ -56,11 +56,11 @@
     },
     "allocation_origins": {
       "current_r2_allocation_with_explicit_additions": 561,
-      "exact_current_role_list": 91,
-      "explicit_current_r2_allocation": 112,
+      "exact_current_role_list": 90,
+      "explicit_current_r2_allocation": 113,
       "reconciled_historical_instance_name_hint": 444
     },
-    "former_sheet_hints_reconciled": 715,
+    "former_sheet_hints_reconciled": 714,
     "native_schematic_nets_created": 0,
     "errors": 0
   },
@@ -775,12 +775,12 @@
       "instance": "product_usb_connector",
       "project": "LESHY2-RF-R2",
       "sheet": "RF_01_USB_PD_CHARGE",
-      "device_id": "jae_dx07s016ja1r1500",
-      "mpn": "JAE DX07S016JA1R1500",
-      "symbol_id": "Leshy2_R2:jae_dx07s016ja1r1500",
-      "footprint": "Leshy2_R2:USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk",
+      "device_id": "gct_usb4105_gf_a",
+      "mpn": "GCT USB4105-GF-A",
+      "symbol_id": "Leshy2_R2:gct_usb4105_gf_a",
+      "footprint": "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal",
       "reference_prefix": "J",
-      "allocation_origin": "exact_current_role_list",
+      "allocation_origin": "explicit_current_r2_allocation",
       "historical_topology_authority": false,
       "bom_excluded": false,
       "reference": "J1"

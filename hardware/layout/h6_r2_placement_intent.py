@@ -223,13 +223,22 @@ def evaluate(snapshot):
                          and not ref.startswith("MH"))
     check("no ordinary RF support components moved outside merely to solve packing",
           not unexplained, unexplained)
-    usb = rf["J1"]
-    # This independently transcribes the exact JAE shell-mouth datum. The
-    # manufacturer's reference PCB-edge position is NOT our physical edge.
-    usb_mouth = usb["anchor_mm"][1] + 3.6
-    check("product USB is inward-facing PCB mount, outward mouth without overhang",
-          usb["side"] == "B.Cu" and near(usb["rotation_deg"] % 360, 180)
-          and 0 <= height-usb_mouth <= 0.5, {"pose": usb, "mouth_y_mm": usb_mouth})
+    # Independently require the exact four approved ports, not a mutable count
+    # or the old JAE mouth datum. A missing port must fail rather than disappear.
+    usb_rows = []
+    for board, ref, x in ((rf, "J1", 16.47), (rf, "J4", 37.47),
+                          (ui, "J9", 26.1), (ui, "J11", 14.87)):
+        usb = board.get(ref, {})
+        anchor = usb.get("anchor_mm", [])
+        good = (usb.get("footprint") == "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal"
+                and usb.get("value") == "GCT USB4105-GF-A" and usb.get("side") == "B.Cu"
+                and near(usb.get("rotation_deg", 0) % 360, 180) and len(anchor) == 2
+                and near(anchor[0], x) and near(anchor[1], 146.325)
+                and near(anchor[1] + 3.675, height))
+        usb_rows.append({"reference": ref, "pose": usb, "pass": good,
+                         "nominal_mouth_y_mm": anchor[1]+3.675 if len(anchor) == 2 else None})
+    check("four exact GCT USB ports inside the sandwich with uniform nominal flush mouths",
+          len(usb_rows) == 4 and all(row["pass"] for row in usb_rows), usb_rows)
     sd = ui["J5"]
     notch = checked_native_notch(snapshot.get("bottom_edges", {}).get(PROJECTS[0], []))
     check("actual native microSD notch is open at the reviewed bottom-edge datum",

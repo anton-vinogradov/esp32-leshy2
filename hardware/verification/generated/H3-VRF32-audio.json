@@ -4,7 +4,7 @@
   "status": "reviewed_audio_analog_corners_after_four_source_corrections",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "6df524f1edf8db12ac278e0b5901a598c0ac18262800b09c38dde7b45147ed27",
-    "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974",
+    "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9",
     "hardware/verification/generated/H3-VRF03-method-contract.json": "36ec849677ba5f1ac0721aa700092f73179fa11982434e4c44d73f8e69ba64c8",
     "hardware/verification/generated/H3-VRF31-display.json": "08942efaec2d5651868a6333d312112b52c875bc65913c4c50cf4ac886a700e4",
     "hardware/verification/generated/H3-VRF12-dc-budget.json": "24391885036eed940cccad97e5839721167dfa63e6cbcbbc3359e41e8440b90a"
