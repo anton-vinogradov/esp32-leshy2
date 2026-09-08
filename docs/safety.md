@@ -2,6 +2,10 @@
 
 [Home](../README.md) · [Русский](safety.ru.md) · [Hardware architecture](hardware.md)
 
+This page defines design requirements, not demonstrated prototype behaviour.
+See the [current interface review](h6-r2-interface-review.md) for unclosed
+hardware/firmware dependencies.
+
 ## Three functional levels
 
 | Level | Purpose | Entry conditions |
@@ -30,7 +34,7 @@ privacy requirements or the target owner's consent.
 
 ## RUN/KILL, watchdog and fault reporting
 
-The side `C&K JS102011SCQN` is the only physical `RUN/KILL` control. `KILL`
+The side `C&K JS102011SAQN` is the only physical `RUN/KILL` control. `KILL`
 removes the hardware transmit permit and asks the pack controller to shut the
 device down; `RUN` supplies the only physical re-arm edge. There are no
 separate STOP or RE-ARM buttons. Firmware, reset, USB and the service headers
@@ -64,15 +68,24 @@ LED and retained AON record remain available.
 
 ## Update and recovery
 
+**Open policy conflict:** the present hardware holds C5 and Hub in reset during
+KILL, whereas the update contract below requires all six targets to execute.
+This is not an executable, qualified procedure. The owner decision between a
+separate RUN service stage and hardware-separated RF inhibition is pending;
+no reset bypass or weakened KILL semantics has been accepted.
+
 - The user installs one bundle. Its owner/release-signed manifest binds each
   image to S3, C5, RP2354B, Pack or Safety and fixes the compatible cross-domain
   protocol set.
 - Physical `RUN=KILL`, quiet TX evidence and stable power are required. Every
   inactive image is written and read back before activation. Pack, Safety, C5
   and RP boot pending, then S3 boots last and globally commits only after every
-  target identifies and passes its own checks. The full activation deadline is
-  12 seconds, below RP2350's fixed 16.7-second TBYB watchdog window. A bad
-  signature, reset, timeout or missing confirmation restores the previous set.
+  target identifies and passes its own checks. The
+  [firmware policy](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/config/update_policy.json)
+  has `qualified_budget_ms: null`: the activation budget is unmeasured. It must
+  fit with margin inside the 16.7-second TBYB watchdog window, starting at RF RP
+  pending boot, before acceptance. A bad signature, reset, timeout or missing
+  confirmation must restore the previous set.
 - Each 64-KiB MSPM0 keeps a statically protected 16-KiB boot-manager/BSL region,
   two 22-KiB application slots and 4 KiB of duplicated boot state. MSPM0 update
   additionally requires physical `RUN=KILL`, quiet TX evidence and qualified

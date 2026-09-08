@@ -2999,12 +2999,14 @@ class ProductSiteTests(unittest.TestCase):
         expected = {
             "docs/safety.md": (
                 "one bundle", "owner/release-signed manifest", "RUN=KILL",
-                "12 seconds", "16.7-second TBYB", "MSPM0C1106SDGS20R",
+                "qualified_budget_ms: null", "16.7-second TBYB", "MSPM0C1106SDGS20R",
+                "Open policy conflict", "JS102011SAQN", "not demonstrated prototype behaviour",
                 "16-KiB", "22-KiB", "UART1", "forbidden throughout development",
             ),
             "docs/safety.ru.md": (
                 "один bundle", "owner/release-signed manifest", "RUN=KILL",
-                "12 секундам", "16,7 с", "MSPM0C1106SDGS20R",
+                "qualified_budget_ms: null", "16,7 с", "MSPM0C1106SDGS20R",
+                "Открытое противоречие требований", "JS102011SAQN", "не доказанное поведение прототипа",
                 "16 КиБ", "22 КиБ", "UART1", "запрещены при разработке",
             ),
         }
@@ -3012,6 +3014,9 @@ class ProductSiteTests(unittest.TestCase):
             page = " ".join(self.read(name).split())
             for token in tokens:
                 self.assertIn(token, page, f"{name}: {token}")
+            self.assertNotIn("12 seconds", page)
+            self.assertNotIn("12 секундам", page)
+            self.assertNotIn("JS102011SCQN", page)
 
     def test_layout_is_product_facing(self):
         layout = self.read("docs/images/current-clamshell.svg")
