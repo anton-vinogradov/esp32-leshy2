@@ -4,7 +4,7 @@
 
 **Текущий статус: `review_required`.** Численные и логические проверки ниже сохранены как предварительные. Применимость к установленной ячейке питания проверяется отдельно; открытые аналитические вопросы не заменены физическими испытаниями. Переход фазы, закупка, изготовление и питание от аккумуляторов не разрешены этим результатом.
 
-Открыто: `applicability:rail_inputs`; `applicability:sequence_inputs`; `applicability:handover_inputs`.
+Открыто: `startup current exceeds minimum hardware limit on 3V3_MAIN`; `load-step endpoint does not pass on 3V3_MAIN`; `numerical:existing_checks`; `applicability:rail_inputs`; `applicability:sequence_inputs`; `applicability:handover_inputs`.
 
 [Машинное evidence](../hardware/verification/generated/H3-R2-inrush-watchdog.json).
 

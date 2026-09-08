@@ -4,7 +4,7 @@
 
 **Current status: `review_required`.** Numerical and logical checks below are retained as provisional. Applicability to the fitted power cell is checked separately; open analytical findings are not reclassified as physical tests. This result does not authorize phase advancement, purchasing, fabrication or battery energization.
 
-Open: `applicability:inrush_inputs`; `applicability:sequence_inputs`; `applicability:handover_inputs`.
+Open: `startup current exceeds minimum hardware limit on 3V3_MAIN`; `load-step endpoint does not pass on 3V3_MAIN`; `inrush`; `load_steps`; `numerical:existing_checks`; `applicability:inrush_inputs`; `applicability:sequence_inputs`; `applicability:handover_inputs`.
 
 [Machine evidence](../hardware/verification/generated/H3-R2-transition-result.json).
 
@@ -24,7 +24,7 @@ After reset, the safety controller holds the fault request active. Resumption re
 
 Two earlier corrections are retained: the amber indicator uses latched `FAULT_KILL`, not `FAULT_ASSERT_N`; TPS3435 distinguishes its 500-µs device startup from zero watchdog-window startup delay. A reason screen is planned when MAIN and UI are safe; complete AON loss cannot promise a final record, which later startup handles explicitly.
 
-Numerical failures in the retained aggregate comparison: 0; model automatic restart paths: 0. A zero numerical counter does not resolve open power-applicability findings.
+Numerical failures in the retained aggregate comparison: 4; model automatic restart paths: 0. A zero numerical counter does not resolve open power-applicability findings.
 
 ## Why review remains required
 

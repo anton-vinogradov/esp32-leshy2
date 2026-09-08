@@ -18,6 +18,7 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from h3_r2_current_scope import admits_current
+from h6_power_corner_math import resistor_interval, efuse_current_interval
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -267,15 +268,35 @@ def evaluate(data):
     h3_main = data["h3"]["rails"]["3V3_MAIN"]
     main = data["margins"]["worst_current_by_rail"]["3V3_MAIN"]
     current = float(main["load_ma"]) / 1000
-    # H1's existing conservative gain envelope, kept distinct from a guaranteed
-    # table row.  Arbitrary-R interpolation is NOT a new manufacturer guarantee.
-    model_lower = 5747 / rilm * .90 / (1 + tolerance)
-    model_upper = 5747 / rilm * 1.10 / (1 - tolerance)
+    # Keep the initial-only H1 algebra separate from the fitted resistor's
+    # initial+TCR corner. Neither extends TI's VIN12-V table into a qualified
+    # startup/load envelope. Do not reject a valid TCR correction as stale H3.
+    initial = efuse_current_interval(resistor_interval(str(rilm), str(tolerance),
+                                    "0", "-40", "125", reference_temperature_c="25"))
+    conditioned = efuse_current_interval(resistor_interval(str(rilm), str(tolerance),
+                                        "100", "-40", "125", reference_temperature_c="25"))
+    model_lower, model_upper = float(conditioned.minimum), float(conditioned.maximum)
+    rilm_native = instances["main_efuse_rilm"]
+    rilm_device = devices[rilm_native["device_id"]]
+    fitted_rilm_matches = (rilm_native["reference"] == "R67"
+                          and rilm_native["device_id"] == "uniroyal_0402wgf1651tce"
+                          and rilm_native["mpn"] == rilm_device["mpn"] == "UNI-ROYAL 0402WGF1651TCE"
+                          and rilm == 1650 and tolerance == .01)
+    h3_protection = h3_main.get("conditioned_model", {}).get("protection", {})
+    conditions_match = all(h3_protection.get(key) == value for key, value in {
+        "instance": "main_efuse_rilm", "nominal_ohm": "1650", "initial_tolerance_fraction": "0.01",
+        "tcr_ppm_per_c": "100", "reference_temperature_c": "25", "temperature_c": ["-40", "125"],
+        "equation_constant_a_ohm": "5747", "gain_tolerance_fraction": "0.10",
+        "configured_accuracy_domain_min_a_exclusive": "1.74",
+    }.items())
     check("rilm_matches_accepted_h1", rilm == h1["efuse_threshold_resistor"]["resistance_ohm"],
           "The native fitted resistance must implement the accepted H1 power cell.", rilm)
-    check("h3_current_limit_bound_to_fitted_rilm", abs(h3_main["protection_min_a"] - model_lower) < .001,
-          "The H3 current threshold cannot survive a different fitted RILM.",
-          {"h3_a": h3_main["protection_min_a"], "native_h1_model_lower_a": model_lower})
+    check("h3_current_limit_bound_to_fitted_rilm", fitted_rilm_matches and conditions_match
+          and abs(h3_main["protection_min_a"] - model_lower) < 1e-9,
+          "The H3 scalar must reproduce the fitted 1650-ohm Eq5 initial+100ppm/C TCR corner over -40..125 C relative to25 C. This is a conditioned numerical identity, not application qualification.",
+          {"h3_a": h3_main["protection_min_a"], "fitted_initial_plus_tcr_lower_a": model_lower,
+           "initial_only_lower_a": float(initial.minimum), "fitted_identity_matches": fitted_rilm_matches,
+           "test_conditions_match": conditions_match})
     check("main_pf03_current_reserve", model_lower >= current * 1.25,
           "PF-R2-03 requires 25% reserve, not merely a positive current remainder.",
           {"load_a": current, "model_lower_a": model_lower, "required_a": current * 1.25})
@@ -284,12 +305,12 @@ def evaluate(data):
           "A lower RILM threshold cannot silently replace the accepted H0 step envelope.",
           {"model_lower_a": model_lower, "h0_step_a": floor["step_a_min"]})
     check("main_efuse_high_below_buck_limit", model_upper < 6.0,
-          "The H1 model's upper eFuse threshold must stay below the converter's 6 A continuous-output rating. Its separate 6.1 A minimum valley-current threshold is not a 6.1 A guaranteed DC-output rating or thermal proof.", model_upper)
+          "The fitted initial+TCR model's upper eFuse threshold must stay below the converter's 6 A continuous-output rating. Its separate 6.1 A minimum valley-current threshold is not a 6.1 A guaranteed DC-output rating or thermal proof.", model_upper)
     main_inrush = next(row for row in data["inrush"]["startup_envelopes"] if row["rail"] == "3V3_MAIN")
     combined = float(main_inrush["combined_current_ma"]) / 1000
     check("main_existing_inrush_model_headroom", combined <= model_lower,
           "Even the existing H3 capacitor-only slew model must fit the native RILM envelope; this is not a startup guarantee.",
-          {"combined_current_a": combined, "native_h1_model_lower_a": model_lower, "margin_a": model_lower - combined})
+          {"combined_current_a": combined, "fitted_initial_plus_tcr_lower_a": model_lower, "margin_a": model_lower - combined})
     converter_reviewed, converter_binding = main_converter_model_binding(data)
     check("h3_converter_source_is_installed_part", converter_reviewed,
           "Exact native TPS566231PRQFR identity and primary source are necessary, but only an independently registered model with matching current model/application hashes can qualify this source binding.",
@@ -342,10 +363,13 @@ def evaluate(data):
         "evidence": EVIDENCE, "checks": checks, "findings": failures,
         "current_limit": {
             "fitted_rilm_ohm": rilm, "fitted_tolerance_fraction": tolerance,
-            "h1_model_lower_a": model_lower, "h1_model_upper_a": model_upper,
+            "h1_model_lower_a": float(initial.minimum), "h1_model_upper_a": float(initial.maximum),
+            "fitted_initial_plus_tcr_lower_a": model_lower, "fitted_initial_plus_tcr_upper_a": model_upper,
+            "fitted_initial_plus_tcr_identity_matches": fitted_rilm_matches,
+            "tcr_conditions": {"ppm_per_c": 100, "temperature_c": [-40, 125], "reference_temperature_c": 25},
             "direct_datasheet_row_1650ohm_min_a": 3.2 if rilm == 1650 else None,
             "direct_row_resistor_tolerance_scaled_min_a": 3.2 / (1 + tolerance) if rilm == 1650 else None,
-            "boundary": "H1 gain model and inverse-R extension of a table row are separate evidence; resistor TCR and arbitrary-R guarantees are not silently supplied.",
+            "boundary": "Initial-only, fitted initial+TCR and inverse-R extension of the nominal1650-ohm table row remain separate conditioned diagnostics. Solder/endurance, actual-VIN behavior, startup and layout are not qualified.",
         },
         "dependency_order": ["NVDC_SYS", "AON_RAW_3V3", "AON_SAFE_3V3", "POR_N", "MAIN_RAW_3V3", "3V3_MAIN"],
         "unproven": [
@@ -364,6 +388,8 @@ def build():
     data = {name: json.loads((ROOT / path).read_text(encoding="utf-8")) for name, path in INPUTS.items()}
     result = evaluate(data)
     result["source_sha256"] = {path: hashlib.sha256((ROOT / path).read_bytes()).hexdigest() for path in INPUTS.values()}
+    helper = "hardware/verification/h6_power_corner_math.py"
+    result["source_sha256"][helper] = hashlib.sha256((ROOT / helper).read_bytes()).hexdigest()
     return result
 
 

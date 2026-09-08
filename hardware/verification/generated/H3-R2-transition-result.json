@@ -4,17 +4,17 @@
   "marker": "H3-R2.2.4",
   "status": "review_required",
   "source_sha256": {
-    "hardware/verification/generated/H3-R2-transition-sequences.json": "2671fb9e0b96e7ba755a84d56e4ccdd33c4b1c1f6735786ea60a3dc0ea7dadab",
-    "hardware/verification/generated/H3-R2-handover.json": "b0dd3c5d16a260e6770707daae1022fcc87c624587cf4b1f76c97702b29a8932",
-    "hardware/verification/generated/H3-R2-inrush-watchdog.json": "5eb0f797c0fc387c6dbcc7956fc5fc8bdb667f7c8713e43eed8afa258a83db08",
-    "hardware/verification/h3_r2_inrush_watchdog.py": "5b44520bd00145a5990fc19337b25d7848a9fdc4425ccd9e9887d59d9acddeb6",
-    "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+    "hardware/verification/generated/H3-R2-transition-sequences.json": "ab7c49b83a1fafb8f06c492f30db854ba595f4292f7f8c820a6f9a3c275a6e90",
+    "hardware/verification/generated/H3-R2-handover.json": "7978a072a35e337bbe6573fa1bb876c436117bf1d93bf0efaa4cd66c5d3cfd61",
+    "hardware/verification/generated/H3-R2-inrush-watchdog.json": "85d7adadc1bdbfdfcbe54037ffa5d57aaa05d024a44cbbb2545a11ad25f266ee",
+    "hardware/verification/h3_r2_inrush_watchdog.py": "12ca320af4639b3e0004b3c676d0082abf6db7628b96627605e5082d35ec9598",
+    "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
   },
   "checks": {
     "startup_sequences": true,
     "usb_pack_handover": true,
-    "inrush": true,
-    "load_steps": true,
+    "inrush": false,
+    "load_steps": false,
     "watchdog": true,
     "convergence": true,
     "physical_residuals_owned": true,
@@ -27,7 +27,7 @@
     "load_step_rails": 4,
     "fault_scenarios": 10,
     "maximum_watchdog_detection_ms": 1760,
-    "analytical_failures": 0,
+    "analytical_failures": 4,
     "automatic_restarts": 0
   },
   "corrected_findings": [
@@ -64,6 +64,11 @@
     "action": "verify display, audio, IR, battery and Airband analog corners"
   },
   "errors": [
+    "startup current exceeds minimum hardware limit on 3V3_MAIN",
+    "load-step endpoint does not pass on 3V3_MAIN",
+    "inrush",
+    "load_steps",
+    "numerical:existing_checks",
     "applicability:inrush_inputs",
     "applicability:sequence_inputs",
     "applicability:handover_inputs"
@@ -72,14 +77,15 @@
     "schema_version": 1,
     "artifact": "H3-R2-transition-result",
     "status": "review_required",
-    "numerical_status": "provisional_pass",
-    "numerical_checks_pass": true,
+    "numerical_status": "provisional_fail",
+    "numerical_checks_pass": false,
     "applicability_checks": {
       "inrush_inputs": false,
       "sequence_inputs": false,
       "handover_inputs": false
     },
     "open_findings": [
+      "numerical:existing_checks",
       "applicability:inrush_inputs",
       "applicability:sequence_inputs",
       "applicability:handover_inputs"
@@ -88,16 +94,22 @@
     "production_release_authorized": false,
     "battery_energization_authorized": false,
     "source_sha256": {
-      "hardware/verification/generated/H3-R2-transition-sequences.json": "2671fb9e0b96e7ba755a84d56e4ccdd33c4b1c1f6735786ea60a3dc0ea7dadab",
-      "hardware/verification/generated/H3-R2-handover.json": "b0dd3c5d16a260e6770707daae1022fcc87c624587cf4b1f76c97702b29a8932",
-      "hardware/verification/generated/H3-R2-inrush-watchdog.json": "5eb0f797c0fc387c6dbcc7956fc5fc8bdb667f7c8713e43eed8afa258a83db08",
-      "hardware/verification/h3_r2_inrush_watchdog.py": "5b44520bd00145a5990fc19337b25d7848a9fdc4425ccd9e9887d59d9acddeb6",
-      "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+      "hardware/verification/generated/H3-R2-transition-sequences.json": "ab7c49b83a1fafb8f06c492f30db854ba595f4292f7f8c820a6f9a3c275a6e90",
+      "hardware/verification/generated/H3-R2-handover.json": "7978a072a35e337bbe6573fa1bb876c436117bf1d93bf0efaa4cd66c5d3cfd61",
+      "hardware/verification/generated/H3-R2-inrush-watchdog.json": "85d7adadc1bdbfdfcbe54037ffa5d57aaa05d024a44cbbb2545a11ad25f266ee",
+      "hardware/verification/h3_r2_inrush_watchdog.py": "12ca320af4639b3e0004b3c676d0082abf6db7628b96627605e5082d35ec9598",
+      "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
     }
   },
-  "provisional_numerical_errors": [],
+  "provisional_numerical_errors": [
+    "startup current exceeds minimum hardware limit on 3V3_MAIN",
+    "load-step endpoint does not pass on 3V3_MAIN",
+    "inrush",
+    "load_steps"
+  ],
   "current_analytical_scope_complete": false,
   "open_analytical_findings": [
+    "numerical:existing_checks",
     "applicability:inrush_inputs",
     "applicability:sequence_inputs",
     "applicability:handover_inputs"

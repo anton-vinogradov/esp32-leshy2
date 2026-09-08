@@ -8,7 +8,7 @@ Open: `applicability:crosscheck_inputs`.
 
 [Machine evidence](../hardware/verification/generated/H3-R2-acceptance-package.json).
 
-This publication recomputes 20 evidence artifacts and checks 155 source bindings. Source mismatches: 0. Open aggregate findings: 3. Current applicability is **not** inherited from historical H3 closure.
+This publication recomputes 20 evidence artifacts and checks 157 source bindings. Source mismatches: 0. Open aggregate findings: 4. Current applicability is **not** inherited from historical H3 closure.
 
 ## Current analytical work
 

@@ -8,6 +8,11 @@ from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[3]
 SCRIPT = ROOT / "hardware/verification/h6_r2_power_startup.py"
+CURRENT_OPEN_FINDINGS = {
+    "rilm_matches_accepted_h1", "main_pf03_current_reserve", "main_h0_step_floor",
+    "main_existing_inrush_model_headroom", "h3_converter_source_is_installed_part",
+    "main_pg_assertion_headroom", "aon_ron_test_condition_binding",
+}
 
 
 class H6R2NativePowerStartupTest(unittest.TestCase):
@@ -90,6 +95,42 @@ class H6R2NativePowerStartupTest(unittest.TestCase):
         self.assertGreater(check["observed"]["model_lower_a"], 3.046)
         self.assertFalse(check["pass"])
 
+    def test_current_h3_binds_fitted_tcr_corner_not_initial_only(self):
+        check = self.check("h3_current_limit_bound_to_fitted_rilm")
+        self.assertTrue(check["pass"])
+        observed = check["observed"]
+        self.assertAlmostEqual(3.072960761422677, observed["fitted_initial_plus_tcr_lower_a"], places=10)
+        self.assertAlmostEqual(3.1036903690369, observed["initial_only_lower_a"], places=10)
+        self.data["h3"]["rails"]["3V3_MAIN"]["protection_min_a"] = observed["initial_only_lower_a"]
+        self.assertFalse(self.check("h3_current_limit_bound_to_fitted_rilm")["pass"])
+
+    def test_same_scalar_cannot_inherit_changed_tcr_conditions(self):
+        protection = self.data["h3"]["rails"]["3V3_MAIN"]["conditioned_model"]["protection"]
+        for field, value in (("tcr_ppm_per_c", "25"), ("temperature_c", ["0", "85"]),
+                             ("reference_temperature_c", "20"), ("gain_tolerance_fraction", "0.05")):
+            before = protection[field]
+            with self.subTest(field=field):
+                protection[field] = value
+                self.assertFalse(self.check("h3_current_limit_bound_to_fitted_rilm")["pass"])
+            protection[field] = before
+
+    def test_rilm_replacement_cannot_inherit_fitted_tcr(self):
+        row = next(row for row in self.data["instances"]["rows"] if row["instance"] == "main_efuse_rilm")
+        row["mpn"] = "unreviewed-1650-ohm-replacement"
+        self.assertFalse(self.check("h3_current_limit_bound_to_fitted_rilm")["pass"])
+
+    def test_tcr_correction_does_not_qualify_startup_or_positive_margin(self):
+        result = self.result()
+        current = result["current_limit"]
+        self.assertLess(current["fitted_initial_plus_tcr_lower_a"], current["h1_model_lower_a"])
+        self.assertGreater(current["fitted_initial_plus_tcr_upper_a"], current["h1_model_upper_a"])
+        self.assertTrue(self.check("h3_current_limit_bound_to_fitted_rilm")["pass"])
+        self.assertFalse(self.check("main_existing_inrush_model_headroom")["pass"])
+        self.assertFalse(result["startup_proven"])
+
+    def test_reusable_current_math_is_hash_bound(self):
+        self.assertIn("hardware/verification/h6_power_corner_math.py", self.module.build()["source_sha256"])
+
     def test_main_power_good_includes_pin_leakage(self):
         self.resistor("main_efuse_pg_top", "45_3kohm_1pct_0402_test_resistor")
         self.resistor("main_efuse_pg_bottom", "30kohm_1pct_0402_test_resistor")
@@ -168,10 +209,10 @@ class H6R2NativePowerStartupTest(unittest.TestCase):
         self.addCleanup(self.module.REVIEWED_MAIN_CONVERTER_MODELS.clear)
         self.assertTrue(self.check("h3_converter_source_is_installed_part")["pass"])
 
-    def test_current_converter_has_no_accepted_model_and_keeps_eight_findings(self):
+    def test_current_model_binding_closes_only_one_of_eight_findings(self):
         self.assertEqual({}, self.module.REVIEWED_MAIN_CONVERTER_MODELS)
         result = self.result()
-        self.assertEqual(8, len(result["findings"]))
+        self.assertEqual(CURRENT_OPEN_FINDINGS, set(result["findings"]))
         check = self.check("h3_converter_source_is_installed_part")
         self.assertTrue(check["observed"]["native_identity_matches"])
         self.assertFalse(check["pass"])
@@ -198,7 +239,7 @@ class H6R2NativePowerStartupTest(unittest.TestCase):
     def test_synthetic_registry_binding_does_not_authorize_startup(self):
         self.synthetic_converter_review()
         result = self.result()
-        self.assertEqual(7, len(result["findings"]))
+        self.assertEqual(CURRENT_OPEN_FINDINGS - {"h3_converter_source_is_installed_part"}, set(result["findings"]))
         self.assertFalse(result["startup_proven"])
         self.assertEqual({"fabrication": False, "gate_closed": False}, result["authorization"])
 

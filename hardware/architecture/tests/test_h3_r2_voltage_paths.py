@@ -104,15 +104,15 @@ class VoltageCorrectionTests(unittest.TestCase):
         self.assertEqual(224, len(snapshot["profile_voltage_corners"]))
         main = snapshot["voltage_corners"]["3V3_MAIN"]
         self.assertEqual("3046.000000", main["load_ma"])
-        self.assertEqual("3.158510", main["raw_min_v"])
-        self.assertEqual("3.006210", main["protected_local_min_v"])
-        self.assertEqual("2.956210", main["endpoint_min_v"])
-        self.assertEqual("3.285658", main["endpoint_max_v"])
+        self.assertEqual("3.145013", main["raw_min_v"])
+        self.assertEqual("2.992713", main["protected_local_min_v"])
+        self.assertEqual("2.942713", main["endpoint_min_v"])
+        self.assertEqual("3.299695", main["endpoint_max_v"])
         self.assertEqual("fail", main["numerical_status"])
         self.assertEqual("review_required", main["status"])
         targets = snapshot["declared_target_voltage_corners"]["3V3_MAIN"]
-        self.assertEqual("2.921010", targets["H0_continuous"]["endpoint_min_v"])
-        self.assertEqual("2.896010", targets["H0_step_resistive_snapshot_not_transient_proof"]["endpoint_min_v"])
+        self.assertEqual("2.907513", targets["H0_continuous"]["endpoint_min_v"])
+        self.assertEqual("2.882513", targets["H0_step_resistive_snapshot_not_transient_proof"]["endpoint_min_v"])
         self.assertFalse(snapshot["production_release_authorized"])
 
     def test_declared_target_failure_cannot_hide_behind_passing_operating_profiles(self):

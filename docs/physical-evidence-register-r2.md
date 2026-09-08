@@ -12,7 +12,7 @@ This existing physical registry contains 51 open rows (H5: 2, H6: 8, H8: 42; mul
 
 | ID | Owner | Source | Remaining physical evidence |
 |---|---|---|---|
-| `H3-R2-PHY-001` | `H6` | `H3-R2.1` | H6 must realize converter/eFuse copper and vias at least as good as the modeled published EVM/package boundary |
+| `H3-R2-PHY-001` | `H6` | `H3-R2.1` | H6 must determine actual converter/eFuse loss and copper/via thermal paths; JEDEC/EVM theta values are reference conditions, not an established minimum layout requirement |
 | `H3-R2-PHY-002` | `H8` | `H3-R2.1` | H8 must measure rail endpoints, current and temperature for each named sustained profile and reject any profile outside the generated envelope |
 | `H3-R2-PHY-003` | `H8` | `H3-R2.1` | H8 may raise the 1.00-A sustained external admission only after measured 35-C margin remains at least 20 C |
 | `H3-R2-PHY-004` | `H6` | `H3-R2.1` | H6 routed source/pack resistance extraction |

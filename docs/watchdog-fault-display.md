@@ -4,7 +4,7 @@
 
 **Current status: `review_required`.** Numerical and logical checks below are retained as provisional. Applicability to the fitted power cell is checked separately; open analytical findings are not reclassified as physical tests. This result does not authorize phase advancement, purchasing, fabrication or battery energization.
 
-Open: `applicability:rail_inputs`; `applicability:sequence_inputs`; `applicability:handover_inputs`.
+Open: `startup current exceeds minimum hardware limit on 3V3_MAIN`; `load-step endpoint does not pass on 3V3_MAIN`; `numerical:existing_checks`; `applicability:rail_inputs`; `applicability:sequence_inputs`; `applicability:handover_inputs`.
 
 [Machine evidence](../hardware/verification/generated/H3-R2-inrush-watchdog.json).
 

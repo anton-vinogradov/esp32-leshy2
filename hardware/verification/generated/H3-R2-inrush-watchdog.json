@@ -6,14 +6,14 @@
   "source_sha256": {
     "hardware/verification/h3-r2-inrush-watchdog-contract.json": "0658274da5110cd64dc6e8100501197f8b82a7287ef3195d8af29a12e29b4b90",
     "hardware/verification/h3-r2-verification-plan.json": "54143b22eeddf73fbe05ea5f0996c363e22bf7830c49e13ced6f3dcca8c7d16c",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "06b97ec6e2cf9baf6c6701867543245791f7e99f57b4a49779590d3e13a457fa",
-    "hardware/verification/generated/H3-R2-transition-sequences.json": "2671fb9e0b96e7ba755a84d56e4ccdd33c4b1c1f6735786ea60a3dc0ea7dadab",
-    "hardware/verification/generated/H3-R2-handover.json": "b0dd3c5d16a260e6770707daae1022fcc87c624587cf4b1f76c97702b29a8932",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "123d5f1f5e0a3d4ca3b7eb7b53da2ecf5b2558f129c06a3b0120a6deac92d47e",
+    "hardware/verification/generated/H3-R2-transition-sequences.json": "ab7c49b83a1fafb8f06c492f30db854ba595f4292f7f8c820a6f9a3c275a6e90",
+    "hardware/verification/generated/H3-R2-handover.json": "7978a072a35e337bbe6573fa1bb876c436117bf1d93bf0efaa4cd66c5d3cfd61",
     "hardware/ecad/generated/H2-R2-native-net-ledger.json": "bb0ee548efc0ecfe02299f3757c58cd7a4e7c5a8b50160d8648411ab330ac411",
     "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7ca7596c728f2dc2fe50516b6309438dfaca2fc9c7f6fbef62c18d005cf8616b",
     "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974",
-    "hardware/verification/h3_r2_inrush_watchdog.py": "5b44520bd00145a5990fc19337b25d7848a9fdc4425ccd9e9887d59d9acddeb6",
-    "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+    "hardware/verification/h3_r2_inrush_watchdog.py": "12ca320af4639b3e0004b3c676d0082abf6db7628b96627605e5082d35ec9598",
+    "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
   },
   "datasheet_sources": {
     "tps25961": {
@@ -1203,11 +1203,11 @@
       "worst_load_ma": "3046.000",
       "capacitive_inrush_ma": "71.079",
       "combined_current_ma": "3117.079",
-      "effective_hardware_min_ma": "4000.000",
-      "current_margin_ma": "882.921",
+      "effective_hardware_min_ma": "3072.961",
+      "current_margin_ma": "-44.118",
       "ramp_time_ms": "4.230000",
       "energy_mj": "0.496094",
-      "status": "pass"
+      "status": "fail"
     },
     {
       "rail": "VVOICE_4V",
@@ -1283,9 +1283,9 @@
       "minimum_endpoint_ma": "390.000",
       "maximum_endpoint_ma": "3046.000",
       "maximum_upward_step_ma": "2656.000",
-      "endpoint_current_margin_ma": "954.000",
-      "steady_pf03_status": "pass",
-      "status": "pass"
+      "endpoint_current_margin_ma": "26.961",
+      "steady_pf03_status": "review_required",
+      "status": "fail"
     },
     "VVOICE_4V": {
       "minimum_endpoint_ma": "0.000",
@@ -1317,7 +1317,10 @@
         "dt2_ms": "0.005",
         "ramp_dt2_ms": "1.520000",
         "difference_ms": "0.000000",
-        "same_result": true
+        "current_classification_dt": "pass",
+        "current_classification_dt2": "pass",
+        "same_result": true,
+        "scope": "ramp-time rounding only; static current algebra is independent of dt, not timestep simulation"
       },
       {
         "rail": "3V3_MAIN",
@@ -1326,7 +1329,10 @@
         "dt2_ms": "0.005",
         "ramp_dt2_ms": "4.230000",
         "difference_ms": "0.000000",
-        "same_result": true
+        "current_classification_dt": "fail",
+        "current_classification_dt2": "fail",
+        "same_result": true,
+        "scope": "ramp-time rounding only; static current algebra is independent of dt, not timestep simulation"
       },
       {
         "rail": "VVOICE_4V",
@@ -1335,7 +1341,10 @@
         "dt2_ms": "0.005",
         "ramp_dt2_ms": "5.130000",
         "difference_ms": "0.000000",
-        "same_result": true
+        "current_classification_dt": "pass",
+        "current_classification_dt2": "pass",
+        "same_result": true,
+        "scope": "ramp-time rounding only; static current algebra is independent of dt, not timestep simulation"
       },
       {
         "rail": "5V_U214_PROTECTED",
@@ -1344,7 +1353,10 @@
         "dt2_ms": "0.005",
         "ramp_dt2_ms": "10.575000",
         "difference_ms": "0.005000",
-        "same_result": true
+        "current_classification_dt": "pass",
+        "current_classification_dt2": "pass",
+        "same_result": true,
+        "scope": "ramp-time rounding only; static current algebra is independent of dt, not timestep simulation"
       },
       {
         "rail": "5V_UNIT_PROTECTED",
@@ -1353,7 +1365,10 @@
         "dt2_ms": "0.005",
         "ramp_dt2_ms": "10.575000",
         "difference_ms": "0.005000",
-        "same_result": true
+        "current_classification_dt": "pass",
+        "current_classification_dt2": "pass",
+        "same_result": true,
+        "scope": "ramp-time rounding only; static current algebra is independent of dt, not timestep simulation"
       }
     ]
   },
@@ -1505,15 +1520,15 @@
   "summary": {
     "pcb_capacitor_instances": 132,
     "startup_envelopes": 5,
-    "passed_startup_envelopes": 5,
+    "passed_startup_envelopes": 4,
     "load_step_rails": 4,
-    "passed_load_step_rails": 4,
+    "passed_load_step_rails": 3,
     "fault_scenarios": 10,
     "passed_fault_scenarios": 10,
     "topology_checks": 17,
-    "analytical_failures": 0,
+    "analytical_failures": 2,
     "automatic_restarts": 0,
-    "open_analytical_findings": 3
+    "open_analytical_findings": 4
   },
   "proof_boundary": {
     "provisional_model_scope": "retained current-limit and nominal dV/dt algebra, generated capacitance inventory, load-step endpoints, independent watchdog topology/deadline and fail-closed retained-diagnostic contract; fitted current-limit, maximum slew and supervisor bounds are not qualified",
@@ -1554,6 +1569,9 @@
     }
   ],
   "errors": [
+    "startup current exceeds minimum hardware limit on 3V3_MAIN",
+    "load-step endpoint does not pass on 3V3_MAIN",
+    "numerical:existing_checks",
     "applicability:rail_inputs",
     "applicability:sequence_inputs",
     "applicability:handover_inputs"
@@ -1562,14 +1580,15 @@
     "schema_version": 1,
     "artifact": "H3-R2-inrush-watchdog",
     "status": "review_required",
-    "numerical_status": "provisional_pass",
-    "numerical_checks_pass": true,
+    "numerical_status": "provisional_fail",
+    "numerical_checks_pass": false,
     "applicability_checks": {
       "rail_inputs": false,
       "sequence_inputs": false,
       "handover_inputs": false
     },
     "open_findings": [
+      "numerical:existing_checks",
       "applicability:rail_inputs",
       "applicability:sequence_inputs",
       "applicability:handover_inputs"
@@ -1580,19 +1599,23 @@
     "source_sha256": {
       "hardware/verification/h3-r2-inrush-watchdog-contract.json": "0658274da5110cd64dc6e8100501197f8b82a7287ef3195d8af29a12e29b4b90",
       "hardware/verification/h3-r2-verification-plan.json": "54143b22eeddf73fbe05ea5f0996c363e22bf7830c49e13ced6f3dcca8c7d16c",
-      "hardware/verification/generated/H3-R2-rail-margins.json": "06b97ec6e2cf9baf6c6701867543245791f7e99f57b4a49779590d3e13a457fa",
-      "hardware/verification/generated/H3-R2-transition-sequences.json": "2671fb9e0b96e7ba755a84d56e4ccdd33c4b1c1f6735786ea60a3dc0ea7dadab",
-      "hardware/verification/generated/H3-R2-handover.json": "b0dd3c5d16a260e6770707daae1022fcc87c624587cf4b1f76c97702b29a8932",
+      "hardware/verification/generated/H3-R2-rail-margins.json": "123d5f1f5e0a3d4ca3b7eb7b53da2ecf5b2558f129c06a3b0120a6deac92d47e",
+      "hardware/verification/generated/H3-R2-transition-sequences.json": "ab7c49b83a1fafb8f06c492f30db854ba595f4292f7f8c820a6f9a3c275a6e90",
+      "hardware/verification/generated/H3-R2-handover.json": "7978a072a35e337bbe6573fa1bb876c436117bf1d93bf0efaa4cd66c5d3cfd61",
       "hardware/ecad/generated/H2-R2-native-net-ledger.json": "bb0ee548efc0ecfe02299f3757c58cd7a4e7c5a8b50160d8648411ab330ac411",
       "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7ca7596c728f2dc2fe50516b6309438dfaca2fc9c7f6fbef62c18d005cf8616b",
       "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974",
-      "hardware/verification/h3_r2_inrush_watchdog.py": "5b44520bd00145a5990fc19337b25d7848a9fdc4425ccd9e9887d59d9acddeb6",
-      "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+      "hardware/verification/h3_r2_inrush_watchdog.py": "12ca320af4639b3e0004b3c676d0082abf6db7628b96627605e5082d35ec9598",
+      "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
     }
   },
-  "provisional_numerical_errors": [],
+  "provisional_numerical_errors": [
+    "startup current exceeds minimum hardware limit on 3V3_MAIN",
+    "load-step endpoint does not pass on 3V3_MAIN"
+  ],
   "current_analytical_scope_complete": false,
   "open_analytical_findings": [
+    "numerical:existing_checks",
     "applicability:rail_inputs",
     "applicability:sequence_inputs",
     "applicability:handover_inputs"

@@ -961,12 +961,13 @@ class ProductSiteTests(unittest.TestCase):
                 )
             }
             self.assertEqual(set(range(10)), set(rows), name)
-            # A reviewed historical model cannot silently authorize the fitted
-            # power cell while the native-pin-bound review has open findings.
+            # Correct fitted arithmetic is not application qualification; the
+            # row must name the correction and keep remaining power work open.
+            self.assertIn("`review_required`", rows[3], name)
             self.assertIn(
-                "retained calculations do not yet qualify current power"
+                "before current-power qualification"
                 if name.endswith("roadmap.md")
-                else "сохранённые расчёты пока не подтверждают текущее питание",
+                else "устранить выявленную нехватку тока/напряжения",
                 rows[3], name,
             )
             self.assertIn("h6-r2-electrical-semantics", rows[3], name)

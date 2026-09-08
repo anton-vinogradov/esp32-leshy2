@@ -4,7 +4,7 @@
 
 **Текущий статус: `review_required`.** Численные и логические проверки ниже сохранены как предварительные. Применимость к установленной ячейке питания проверяется отдельно; открытые аналитические вопросы не заменены физическими испытаниями. Переход фазы, закупка, изготовление и питание от аккумуляторов не разрешены этим результатом.
 
-Открыто: `voltage:3V3_MAIN`; `voltage-target:3V3_MAIN:H0_continuous`; `voltage-target:3V3_MAIN:H0_step_resistive_snapshot_not_transient_proof`; `numerical:existing_checks`; `applicability:main_raw_model`; `applicability:main_protection_model`; `applicability:main_thermal_model`; `applicability:aon_ron_model`; `applicability:series_distribution_scope`.
+Открыто: `current:3V3_MAIN`; `voltage:3V3_MAIN`; `thermal:3V3_MAIN`; `voltage-target:3V3_MAIN:H0_continuous`; `voltage-target:3V3_MAIN:H0_step_resistive_snapshot_not_transient_proof`; `numerical:existing_checks`; `applicability:main_raw_model`; `applicability:main_protection_model`; `applicability:main_thermal_model`; `applicability:aon_ron_model`; `applicability:series_distribution_scope`.
 
 [Машинное evidence](../hardware/verification/generated/H3-R2-rail-margins.json).
 
@@ -13,29 +13,42 @@
 | Шина | Худшая электрическая нагрузка | Предварительный минимум модели | Запас | Профиль |
 |---|---:|---:|---:|---|
 | `AON_SAFE_3V3` | 72.100 mA | 0.165 A | 128.849% | `NRF24/3PRX/SUPPORT_IDLE` |
-| `3V3_MAIN` | 3046.000 mA | 4.000 A | 31.320% | `NRF24/3PTX/SUPPORT_WORST` |
+| `3V3_MAIN` | 3046.000 mA | 3.072960761 A | 0.885% | `NRF24/3PTX/SUPPORT_WORST` |
 | `VVOICE_4V` | 750.000 mA | 1.550 A | 106.667% | `VOICE/PTT_TX_MAX/SUPPORT_IDLE` |
 | `5V_EXT_ACTIVE_BRANCH` | 1250.000 mA | 1.632 A | 30.560% | `LORA_CAP/U214_STOCK_RX_GNSS/SUPPORT_IDLE` |
 
-Установленный MAIN-преобразователь: TPS566231PRQFR. Старые параметры TPS564252 сохранены как предварительные, не как доказательство его работы.
+Установленный MAIN-преобразователь — TPS566231PRQFR: номинальная возможность 6 А отделена от порога valley 6,1/7,4/8,9 А. Ток защиты рассчитан по фактическому R67 1650 Ом, отдельно initial-only и initial+TCR; старое значение 4,3399 А не используется. Это условная арифметика, не допуск нагрузки, старта или платы.
 
 ## Напряжение
 
 | Шина | Raw corner | После защиты, до distribution | На нагрузке | Допустимый диапазон нагрузки | Итог |
 |---|---:|---:|---:|---:|---|
 | `AON_SAFE_3V3` | 3.224000…3.376000 V | 3.206696…3.376000 V | 3.181696…3.376000 V | 2.700000…3.600000 V | numerical pass; review_required |
-| `3V3_MAIN` | 3.158510…3.285658 V | 3.006210…3.285658 V | 2.956210…3.285658 V | 3.000000…3.300000 V | numerical fail; review_required |
+| `3V3_MAIN` | 3.145013…3.299695 V | 2.992713…3.299695 V | 2.942713…3.299695 V | 3.000000…3.300000 V | numerical fail; review_required |
 | `VVOICE_4V` | 3.853683…4.149717 V | 3.816183…4.149717 V | 3.756183…4.149717 V | 3.300000…5.500000 V | numerical pass; review_required |
 | `5V_EXT_ACTIVE_BRANCH` | 4.814178…5.190222 V | 4.739178…5.190222 V | 4.619178…5.190222 V | 4.500000…5.500000 V | numerical pass; review_required |
+
+MAIN: VFB 0,591…0,609 В относится к таблице VIN=12 В и Tj −40…125 °C; действующий NVDC 6,0…8,4 В пока не квалифицирован. Divider использует точные 43,7k/10k, 0,1%, 25 ppm/K относительно **20 °C**. 20 мВpp ripple, 50 мОм RON и 50 мВ distribution — отдельные инженерные допущения, не гарантии производителя. Solder/endurance, PG, переходные процессы и hot RON остаются открытыми.
 
 ## Установившийся тепловой режим
 
 | Шина | Длительный ток | Tj преобразователя | Запас до Tj max | Tj eFuse | Итог |
 |---|---:|---:|---:|---:|---|
 | `AON_SAFE_3V3` | 72.100 mA | 37.519 °C | 87.481 °C | 35.092 °C | pass |
-| `3V3_MAIN` | 988.000 mA | 76.571 °C | 48.429 °C | 38.504 °C | pass |
+| `3V3_MAIN` | 988.000 mA | не установлен | не установлен | не установлен | review_required |
 | `VVOICE_4V` | 750.000 mA | 74.176 °C | 50.824 °C | 37.019 °C | pass |
 | `5V_EXT_ACTIVE_BRANCH` | 1000.000 mA | 100.294 °C | 24.706 °C | 39.470 °C | pass |
+
+### MAIN: допустимая мощность потерь, не прогноз Tj
+
+| Ambient | Эталонная плата | θJA | Потери для Tj≤105 °C |
+|---|---|---:|---:|
+| 35 °C | JEDEC_reference_board | 89.6 K/W | 0.781250 W |
+| 35 °C | TI_EVM | 44 K/W | 1.590909 W |
+| 45 °C | JEDEC_reference_board | 89.6 K/W | 0.669643 W |
+| 45 °C | TI_EVM | 44 K/W | 1.363636 W |
+
+Эти четыре независимых условия не описывают тепловое сопротивление нашей PCB. КПД 85% и прежние 74 K/W не используются для MAIN; общий запас Tj не установлен.
 
 `SUPPORT_WORST` остаётся электрическим одновременным углом, а не разрешением на 24–48 часов. Для внешнего 5-В порта сохранён электрический потолок 1,25 А, но до H6/H8 длительная автоматика допускает 1,00 А; выбранные U214/U219/M5-сценарии функций не теряют.
 

@@ -31,7 +31,8 @@ class H3R2CrosscheckTest(unittest.TestCase):
         self.assertGreater(self.crosscheck["summary"]["recorded_source_hashes_checked"], 50)
         self.assertEqual(0, self.crosscheck["summary"]["hash_mismatches"])
         self.assertFalse(self.crosscheck["checks"]["all_provisional_numerical_error_lists_are_empty"])
-        self.assertTrue(all(value for key, value in self.crosscheck["checks"].items() if key != "all_provisional_numerical_error_lists_are_empty"))
+        self.assertEqual({"all_provisional_numerical_error_lists_are_empty", "analog_digital_rf_and_thermal_numerical_checks"},
+                         {key for key, value in self.crosscheck["checks"].items() if not value})
 
     def test_model_rerun_does_not_close_native_electrical_semantics(self):
         limit = self.acceptance["coverage_limit"]

@@ -4,7 +4,7 @@
 
 **Current status: `review_required`.** Numerical and logical checks below are retained as provisional. Applicability to the fitted power cell is checked separately; open analytical findings are not reclassified as physical tests. This result does not authorize phase advancement, purchasing, fabrication or battery energization.
 
-Open: `applicability:rail_inputs`; `applicability:sequence_inputs`; `applicability:handover_inputs`.
+Open: `startup current exceeds minimum hardware limit on 3V3_MAIN`; `load-step endpoint does not pass on 3V3_MAIN`; `numerical:existing_checks`; `applicability:rail_inputs`; `applicability:sequence_inputs`; `applicability:handover_inputs`.
 
 [Machine evidence](../hardware/verification/generated/H3-R2-inrush-watchdog.json).
 
@@ -15,7 +15,7 @@ The generator accounts for **132** fitted capacitors from the current R2 net led
 | Rail | C max, µF | Worst load, mA | Capacitive inrush, mA | Margin to model protection minimum, mA | Numerical comparison |
 |---|---:|---:|---:|---:|---|
 | `AON_SAFE_3V3` | 42.710000 | 72.100 | 92.900 | 0.000 | pass |
-| `3V3_MAIN` | 91.110000 | 3046.000 | 71.079 | 882.921 | pass |
+| `3V3_MAIN` | 91.110000 | 3046.000 | 71.079 | -44.118 | fail |
 | `VVOICE_4V` | 12.000000 | 750.000 | 9.362 | 790.638 | pass |
 | `5V_U214_PROTECTED` | 707.420000 | 1250.000 | 334.478 | 47.522 | pass |
 | `5V_UNIT_PROTECTED` | 707.420000 | 1250.000 | 334.478 | 47.522 | pass |
@@ -24,7 +24,7 @@ The official U214 schematic includes **C12 = 470 µF**. The retained design budg
 
 ## Load step and numerical convergence
 
-The maximum considered `3V3_MAIN` step is **2656.000 mA**. Model comparisons: starts **5 / 5**, load steps **4 / 4**. A 0.010-ms step and half that step produce at most 0.005000 ms timing difference; classification agrees: yes. Numerical convergence does not validate the input limits.
+The maximum considered `3V3_MAIN` step is **2656.000 mA**. Model comparisons: starts **4 / 5**, load steps **3 / 4**. Rounding the analytical time to 0.010 ms and half that interval produces at most 0.005000 ms difference. Current classification is independent of this interval; agreement: yes, including the same MAIN failure. This checks rounding, not a timestep circuit simulation or validity of the input limits.
 
 ## Remaining work
 

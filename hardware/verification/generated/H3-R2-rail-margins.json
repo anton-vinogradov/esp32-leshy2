@@ -8,20 +8,22 @@
     "status": "pass"
   },
   "source_sha256": {
-    "hardware/verification/h3-r2-rail-margin-contract.json": "546cf5081845888a5de4508307ae8bec38f883f4f5086efd347985c2ec347112",
+    "hardware/verification/h3-r2-rail-margin-contract.json": "b02616c8e30f2e8dbcd781dde72a492ed61b5b7ef19960b6c71f18eec0c8eb5f",
     "hardware/verification/generated/H3-R2-load-binding.json": "63175fd054232146d7def375ff52f8161426de2b8b98d344ebd23beac3c01811",
     "hardware/verification/generated/H3-R2-power-state-register.json": "f2b831f444299d71058d25aa17555fcdaa4beab49f1cfa872e39aacac574498c",
     "hardware/verification/generated/H3-R2-method-contract.json": "6aeb96256aba61bf0a90c05675ee4c1c62ac7c3fdf69da596ebdd99a40715014",
     "hardware/architecture/h0-r2-rebaseline.json": "bab7bf6cb3e80842229704169c8b3297bcdff87ec6bb309aad75814701dd3c2b",
     "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7ca7596c728f2dc2fe50516b6309438dfaca2fc9c7f6fbef62c18d005cf8616b",
     "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974",
-    "hardware/verification/h3_r2_rail_margins.py": "8f27a3a5baca9e7ae8e9201f1b9657f983f5071a2acd490108bc2b2c5487207a",
-    "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "bb0ee548efc0ecfe02299f3757c58cd7a4e7c5a8b50160d8648411ab330ac411",
+    "hardware/verification/h6_power_corner_math.py": "b1dd3bc64dc93cd260cf311d933444a78df22474d482852904fb51a1e00ad8b0",
+    "hardware/verification/h3_r2_rail_margins.py": "66cdb6c21f8e8f932890be7c3ef109bf447f8fbf75fccaae0a6864c107c70b1f",
+    "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
   },
   "current_model_findings": {
-    "main_raw_model": "Retained raw bounds name TPS564252, not fitted TPS566231PRQFR; feedback/tolerance/temperature interval remains unqualified",
-    "main_protection_model": "Retained 4.3399-A protection minimum is not bound to fitted R67 1650 ohm",
-    "main_thermal_model": "Retained TPS564252 74-K/W thermal basis does not qualify fitted TPS566231PRQFR/layout",
+    "main_raw_model": "Fitted TPS566231P/FB identity and conditioned VFB/TCR algebra are explicit; actual VIN6..8.4 V, ripple, line/load/dynamic and lifetime applicability remain open",
+    "main_protection_model": "Fitted R67 1650-ohm Eq5 initial/TCR diagnostics fail current admission; H1 intent, primary test-domain, startup/foldback and hot RON remain unqualified",
+    "main_thermal_model": "MAIN 35/45 C and JEDEC89.6/EVM44 K/W loss ceilings are separate reference conditions, not an own-PCB Tj/efficiency prediction",
     "aon_ron_model": "Declared TPS25961 0.240-ohm RON is specified at RILIM 34.48 kohm, not fitted R46 240 kohm",
     "series_distribution_scope": "Protection I*RON and downstream distribution are counted separately; fitted-condition bounds and routed partition remain unqualified"
   },
@@ -30,6 +32,170 @@
     "device_id": "ti_tps566231p_rqfr",
     "mpn": "TPS566231PRQFR",
     "reference": "U20"
+  },
+  "conditioned_main_model": {
+    "status": "review_required",
+    "qualified": false,
+    "observed_components": {
+      "main_buck": {
+        "reference": "U20",
+        "device_id": "ti_tps566231p_rqfr",
+        "mpn": "TPS566231PRQFR"
+      },
+      "main_fb_top": {
+        "reference": "R70",
+        "device_id": "vishay_tnpw040243k7beed",
+        "mpn": "Vishay TNPW040243K7BEED"
+      },
+      "main_fb_bottom": {
+        "reference": "R69",
+        "device_id": "vishay_tnpw040210k0beed",
+        "mpn": "Vishay TNPW040210K0BEED"
+      },
+      "main_efuse": {
+        "reference": "U21",
+        "device_id": "ti_tps25974l_rpwr",
+        "mpn": "Texas Instruments TPS25974LRPWR"
+      },
+      "main_efuse_rilm": {
+        "reference": "R67",
+        "device_id": "uniroyal_0402wgf1651tce",
+        "mpn": "UNI-ROYAL 0402WGF1651TCE"
+      },
+      "main_inductor": {
+        "reference": "U22",
+        "device_id": "prodtech_pspmaa0605h_2r2m_anp",
+        "mpn": "PSPMAA0605H-2R2M-ANP"
+      }
+    },
+    "primary_parameters_with_test_conditions": {
+      "primary": {
+        "url": "https://www.ti.com/lit/gpn/TPS566231",
+        "revision": "SLUSDQ7B",
+        "section": "5.4/5.5 pp5-6; 6.3 p13 current limit; 7.2 p16 feedback and filter application",
+        "checked": "2026-09-08"
+      },
+      "vfb_v": {
+        "minimum": "0.591",
+        "nominal": "0.600",
+        "maximum": "0.609"
+      },
+      "vfb_test_conditions": {
+        "input_voltage_v": "12",
+        "junction_temperature_c": [
+          "-40",
+          "125"
+        ],
+        "actual_input_domain_qualification": false
+      },
+      "converter_current": {
+        "rated_output_a": "6",
+        "valley_limit_a": {
+          "minimum": "6.1",
+          "typical": "7.4",
+          "maximum": "8.9"
+        },
+        "valley_is_not_average_output_current": true
+      }
+    },
+    "actual_operating_conditions": {
+      "input_voltage_v": [
+        6.0,
+        8.4
+      ],
+      "junction_temperature_c": [
+        -40,
+        125
+      ]
+    },
+    "feedback_resistance_ohm": {
+      "top": {
+        "minimum": "43541.702212500",
+        "maximum": "43858.527212500"
+      },
+      "bottom": {
+        "minimum": "9963.776250000",
+        "maximum": "10036.276250000"
+      }
+    },
+    "feedback_scope": {
+      "top_instance": "main_fb_top",
+      "bottom_instance": "main_fb_bottom",
+      "reference_temperature_c": "20",
+      "temperature_c": [
+        "-40",
+        "125"
+      ],
+      "source": "https://www.vishay.com/docs/28758/tnpw_e3.pdf",
+      "revision": "10-Apr-2026",
+      "section": "pp12/14 TCR relative to 20 C",
+      "stress_policy": "No solder/endurance lifetime allowance is included; separate named qualification remains open"
+    },
+    "raw_average_v": {
+      "minimum": "3.1550133219317772366020714106987638966195255934690",
+      "maximum": "3.2896947890276540483333314515166877618312635232049"
+    },
+    "protection_corners": {
+      "initial_only": {
+        "resistance_ohm": {
+          "minimum": "1633.50000000",
+          "maximum": "1666.50000000"
+        },
+        "trip_current_a": {
+          "minimum": "3.1036903690369036903690369036903690369036903690369",
+          "maximum": "3.8700336700336700336700336700336700336700336700337"
+        }
+      },
+      "initial_plus_tcr": {
+        "resistance_ohm": {
+          "minimum": "1617.16500000",
+          "maximum": "1683.16500000"
+        },
+        "trip_current_a": {
+          "minimum": "3.0729607614226769211574622808815535018848419495415",
+          "maximum": "3.9091249192259293269394279495289596299697309798320"
+        }
+      }
+    },
+    "protection_scope": {
+      "instance": "main_efuse_rilm",
+      "nominal_ohm": "1650",
+      "initial_tolerance_fraction": "0.01",
+      "tcr_ppm_per_c": "100",
+      "reference_temperature_c": "25",
+      "temperature_c": [
+        "-40",
+        "125"
+      ],
+      "equation_constant_a_ohm": "5747",
+      "gain_tolerance_fraction": "0.10",
+      "configured_accuracy_domain_min_a_exclusive": "1.74",
+      "source": "https://www.ti.com/lit/ds/symlink/tps2597.pdf",
+      "revision": "SLVSGG5D",
+      "section": "Eq5; 6.5 header VIN12 V and exact 1650-ohm row kept separate",
+      "resistor_source": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+      "resistor_revision": "V10 28-Jul-2025",
+      "stress_policy": "Initial and TCR only, not a solder/endurance lifetime guarantee"
+    },
+    "engineering_budgets_not_guaranteed": {
+      "ripple_pp_v": "0.020",
+      "efuse_ron_ohm": "0.050",
+      "downstream_distribution_drop_v": "0.050",
+      "qualified": false
+    },
+    "thermal_loss_budget_contract": {
+      "junction_design_c": "105",
+      "ambient_c": [
+        "35",
+        "45"
+      ],
+      "reference_theta_ja_k_per_w": {
+        "JEDEC_reference_board": "89.6",
+        "TI_EVM": "44"
+      },
+      "our_pcb_thermal_resistance_qualified": false,
+      "basis": "Allowed chip loss=(105-ambient)/reference theta; no assumed efficiency, loss prediction or our-PCB Tj"
+    }
   },
   "policy": {
     "steady_current_reserve_minimum_percent": 25,
@@ -7990,20 +8156,25 @@
       "pf03_25_percent_boundary_a": "0.132",
       "margin_to_pf03_boundary_ma": "59.900",
       "reserve_percent": "128.849",
+      "numerical_status": "pass",
       "status": "pass"
     },
     "3V3_MAIN": {
       "rail": "3V3_MAIN",
       "load_ma": "3046.000",
       "profile": "NRF24/3PTX/SUPPORT_WORST",
-      "converter_min_a": "4.000",
-      "protection_min_a": "4.340",
-      "effective_hardware_min_a": "4.000",
-      "margin_ma": "954.000",
-      "pf03_25_percent_boundary_a": "3.200",
-      "margin_to_pf03_boundary_ma": "154.000",
-      "reserve_percent": "31.320",
-      "status": "pass"
+      "converter_min_a": "6.000",
+      "protection_min_a": "3.072960761",
+      "effective_hardware_min_a": "3.072960761",
+      "margin_ma": "26.961",
+      "pf03_25_percent_boundary_a": "2.458",
+      "margin_to_pf03_boundary_ma": "-587.631",
+      "reserve_percent": "0.885",
+      "numerical_status": "fail",
+      "status": "review_required",
+      "converter_current_basis": "rated_continuous_output_not_valley_limit_or_qualified_layout_admission",
+      "protection_current_basis": "fitted_1650ohm_Eq5_initial_plus_TCR_conditioned_diagnostic",
+      "model_qualified": false
     },
     "VVOICE_4V": {
       "rail": "VVOICE_4V",
@@ -8016,6 +8187,7 @@
       "pf03_25_percent_boundary_a": "1.240",
       "margin_to_pf03_boundary_ma": "490.000",
       "reserve_percent": "106.667",
+      "numerical_status": "pass",
       "status": "pass"
     },
     "5V_EXT_ACTIVE_BRANCH": {
@@ -8029,6 +8201,7 @@
       "pf03_25_percent_boundary_a": "1.306",
       "margin_to_pf03_boundary_ma": "55.600",
       "reserve_percent": "30.560",
+      "numerical_status": "pass",
       "status": "pass"
     }
   },
@@ -8094,14 +8267,14 @@
       "load_case": "NRF24/3PTX/SUPPORT_WORST",
       "load_ma": "3046.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.006210",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.956210",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.956210",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "2.992713",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.942713",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.942713",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -8127,7 +8300,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -8140,11 +8313,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -8321,14 +8494,14 @@
       "load_case": "NONE/QUIET/SUPPORT_IDLE",
       "load_ma": "390.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.139010",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.089010",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.089010",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.125513",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.075513",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.075513",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -8354,7 +8527,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -8367,11 +8540,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -8546,14 +8719,14 @@
       "load_case": "NONE/QUIET/SUPPORT_WORST",
       "load_ma": "2648.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.026110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.976110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.976110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.012613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.962613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.962613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -8579,7 +8752,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -8592,11 +8765,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -8771,14 +8944,14 @@
       "load_case": "S3_RF/2G4_RX_OR_SCAN/SUPPORT_IDLE",
       "load_ma": "630.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.127010",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.077010",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.077010",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.113513",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.063513",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.063513",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -8804,7 +8977,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -8817,11 +8990,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -8996,14 +9169,14 @@
       "load_case": "S3_RF/2G4_RX_OR_SCAN/SUPPORT_WORST",
       "load_ma": "2648.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.026110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.976110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.976110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.012613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.962613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.962613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -9029,7 +9202,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -9042,11 +9215,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -9221,14 +9394,14 @@
       "load_case": "S3_RF/2G4_TX_MAX/SUPPORT_IDLE",
       "load_ma": "630.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.127010",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.077010",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.077010",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.113513",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.063513",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.063513",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -9254,7 +9427,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -9267,11 +9440,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -9446,14 +9619,14 @@
       "load_case": "S3_RF/2G4_TX_MAX/SUPPORT_WORST",
       "load_ma": "2648.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.026110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.976110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.976110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.012613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.962613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.962613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -9479,7 +9652,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -9492,11 +9665,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -9671,14 +9844,14 @@
       "load_case": "C5_RF/2G4_RX/SUPPORT_IDLE",
       "load_ma": "733.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.121860",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.071860",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.071860",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.108363",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.058363",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.058363",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -9704,7 +9877,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -9717,11 +9890,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -9896,14 +10069,14 @@
       "load_case": "C5_RF/2G4_RX/SUPPORT_WORST",
       "load_ma": "2648.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.026110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.976110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.976110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.012613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.962613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.962613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -9929,7 +10102,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -9942,11 +10115,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -10121,14 +10294,14 @@
       "load_case": "C5_RF/2G4_TX_MAX/SUPPORT_IDLE",
       "load_ma": "733.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.121860",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.071860",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.071860",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.108363",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.058363",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.058363",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -10154,7 +10327,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -10167,11 +10340,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -10346,14 +10519,14 @@
       "load_case": "C5_RF/2G4_TX_MAX/SUPPORT_WORST",
       "load_ma": "2648.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.026110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.976110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.976110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.012613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.962613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.962613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -10379,7 +10552,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -10392,11 +10565,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -10571,14 +10744,14 @@
       "load_case": "C5_RF/5G_RX/SUPPORT_IDLE",
       "load_ma": "733.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.121860",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.071860",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.071860",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.108363",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.058363",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.058363",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -10604,7 +10777,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -10617,11 +10790,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -10796,14 +10969,14 @@
       "load_case": "C5_RF/5G_RX/SUPPORT_WORST",
       "load_ma": "2648.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.026110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.976110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.976110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.012613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.962613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.962613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -10829,7 +11002,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -10842,11 +11015,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -11021,14 +11194,14 @@
       "load_case": "C5_RF/5G_TX_MAX/SUPPORT_IDLE",
       "load_ma": "733.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.121860",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.071860",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.071860",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.108363",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.058363",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.058363",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -11054,7 +11227,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -11067,11 +11240,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -11246,14 +11419,14 @@
       "load_case": "C5_RF/5G_TX_MAX/SUPPORT_WORST",
       "load_ma": "2648.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.026110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.976110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.976110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.012613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.962613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.962613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -11279,7 +11452,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -11292,11 +11465,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -11471,14 +11644,14 @@
       "load_case": "C5_RF/802154_RX/SUPPORT_IDLE",
       "load_ma": "733.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.121860",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.071860",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.071860",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.108363",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.058363",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.058363",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -11504,7 +11677,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -11517,11 +11690,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -11696,14 +11869,14 @@
       "load_case": "C5_RF/802154_RX/SUPPORT_WORST",
       "load_ma": "2648.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.026110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.976110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.976110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.012613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.962613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.962613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -11729,7 +11902,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -11742,11 +11915,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -11921,14 +12094,14 @@
       "load_case": "C5_RF/802154_TX_MAX/SUPPORT_IDLE",
       "load_ma": "733.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.121860",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.071860",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.071860",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.108363",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.058363",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.058363",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -11954,7 +12127,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -11967,11 +12140,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -12146,14 +12319,14 @@
       "load_case": "C5_RF/802154_TX_MAX/SUPPORT_WORST",
       "load_ma": "2648.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.026110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.976110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.976110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.012613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.962613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.962613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -12179,7 +12352,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -12192,11 +12365,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -12371,14 +12544,14 @@
       "load_case": "NRF24/3PRX/SUPPORT_IDLE",
       "load_ma": "688.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.124110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.074110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.074110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.110613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.060613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.060613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -12404,7 +12577,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -12417,11 +12590,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -12596,14 +12769,14 @@
       "load_case": "NRF24/3PRX/SUPPORT_WORST",
       "load_ma": "2746.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.021210",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.971210",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.971210",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.007713",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.957713",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.957713",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -12629,7 +12802,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -12642,11 +12815,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -12821,14 +12994,14 @@
       "load_case": "NRF24/1PTX_2PRX/SUPPORT_IDLE",
       "load_ma": "788.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.119110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.069110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.069110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.105613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.055613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.055613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -12854,7 +13027,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -12867,11 +13040,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -13046,14 +13219,14 @@
       "load_case": "NRF24/1PTX_2PRX/SUPPORT_WORST",
       "load_ma": "2846.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.016210",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.966210",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.966210",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.002713",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.952713",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.952713",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -13079,7 +13252,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -13092,11 +13265,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -13271,14 +13444,14 @@
       "load_case": "NRF24/2PTX_1PRX/SUPPORT_IDLE",
       "load_ma": "888.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.114110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.064110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.064110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.100613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.050613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.050613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -13304,7 +13477,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -13317,11 +13490,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -13496,14 +13669,14 @@
       "load_case": "NRF24/2PTX_1PRX/SUPPORT_WORST",
       "load_ma": "2946.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.011210",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.961210",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.961210",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "2.997713",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.947713",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.947713",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -13529,7 +13702,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -13542,11 +13715,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -13721,14 +13894,14 @@
       "load_case": "NRF24/3PTX/SUPPORT_IDLE",
       "load_ma": "988.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.109110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.059110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.059110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.095613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.045613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.045613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -13754,7 +13927,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -13767,11 +13940,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -13946,14 +14119,14 @@
       "load_case": "NRF24/3PTX/SUPPORT_WORST",
       "load_ma": "3046.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.006210",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.956210",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.956210",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "2.992713",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.942713",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.942713",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -13979,7 +14152,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -13992,11 +14165,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -14171,14 +14344,14 @@
       "load_case": "CC1101/RX/SUPPORT_IDLE",
       "load_ma": "630.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.127010",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.077010",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.077010",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.113513",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.063513",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.063513",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -14204,7 +14377,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -14217,11 +14390,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -14396,14 +14569,14 @@
       "load_case": "CC1101/RX/SUPPORT_WORST",
       "load_ma": "2688.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.024110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.974110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.974110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.010613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.960613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.960613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -14429,7 +14602,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -14442,11 +14615,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -14621,14 +14794,14 @@
       "load_case": "CC1101/TX_MAX/SUPPORT_IDLE",
       "load_ma": "630.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.127010",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.077010",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.077010",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.113513",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.063513",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.063513",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -14654,7 +14827,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -14667,11 +14840,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -14846,14 +15019,14 @@
       "load_case": "CC1101/TX_MAX/SUPPORT_WORST",
       "load_ma": "2688.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.024110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.974110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.974110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.010613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.960613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.960613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -14879,7 +15052,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -14892,11 +15065,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -15071,14 +15244,14 @@
       "load_case": "VOICE/RX/SUPPORT_IDLE",
       "load_ma": "610.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.128010",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.078010",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.078010",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.114513",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.064513",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.064513",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -15104,7 +15277,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -15117,11 +15290,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -15296,14 +15469,14 @@
       "load_case": "VOICE/RX/SUPPORT_WORST",
       "load_ma": "2668.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.025110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.975110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.975110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.011613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.961613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.961613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -15329,7 +15502,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -15342,11 +15515,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -15521,14 +15694,14 @@
       "load_case": "VOICE/PTT_TX_MAX/SUPPORT_IDLE",
       "load_ma": "610.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.128010",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.078010",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.078010",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.114513",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.064513",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.064513",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -15554,7 +15727,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -15567,11 +15740,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -15746,14 +15919,14 @@
       "load_case": "VOICE/PTT_TX_MAX/SUPPORT_WORST",
       "load_ma": "2668.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.025110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.975110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.975110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.011613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.961613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.961613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -15779,7 +15952,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -15792,11 +15965,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -15971,14 +16144,14 @@
       "load_case": "IR/LEARN_OR_RAW_RX/SUPPORT_IDLE",
       "load_ma": "650.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.126010",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.076010",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.076010",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.112513",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.062513",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.062513",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -16004,7 +16177,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -16017,11 +16190,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -16196,14 +16369,14 @@
       "load_case": "IR/LEARN_OR_RAW_RX/SUPPORT_WORST",
       "load_ma": "2708.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.023110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.973110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.973110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.009613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.959613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.959613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -16229,7 +16402,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -16242,11 +16415,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -16421,14 +16594,14 @@
       "load_case": "IR/TX_MAX_DUTY_ENVELOPE/SUPPORT_IDLE",
       "load_ma": "650.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.126010",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.076010",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.076010",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.112513",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.062513",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.062513",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -16454,7 +16627,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -16467,11 +16640,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -16646,14 +16819,14 @@
       "load_case": "IR/TX_MAX_DUTY_ENVELOPE/SUPPORT_WORST",
       "load_ma": "2708.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.023110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.973110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.973110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.009613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.959613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.959613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -16679,7 +16852,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -16692,11 +16865,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -16871,14 +17044,14 @@
       "load_case": "LORA_CAP/U214_STOCK_RX_GNSS/SUPPORT_IDLE",
       "load_ma": "410.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.138010",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.088010",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.088010",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.124513",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.074513",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.074513",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -16904,7 +17077,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -16917,11 +17090,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -17096,14 +17269,14 @@
       "load_case": "LORA_CAP/U214_STOCK_RX_GNSS/SUPPORT_WORST",
       "load_ma": "2668.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.025110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.975110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.975110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.011613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.961613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.961613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -17129,7 +17302,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -17142,11 +17315,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -17321,14 +17494,14 @@
       "load_case": "LORA_CAP/U214_LESHY_RX/SUPPORT_IDLE",
       "load_ma": "410.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.138010",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.088010",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.088010",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.124513",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.074513",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.074513",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -17354,7 +17527,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -17367,11 +17540,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -17546,14 +17719,14 @@
       "load_case": "LORA_CAP/U214_LESHY_RX/SUPPORT_WORST",
       "load_ma": "2668.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.025110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.975110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.975110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.011613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.961613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.961613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -17579,7 +17752,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -17592,11 +17765,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -17771,14 +17944,14 @@
       "load_case": "LORA_CAP/U214_LESHY_TX_MAX/SUPPORT_IDLE",
       "load_ma": "410.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.138010",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.088010",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.088010",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.124513",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.074513",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.074513",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -17804,7 +17977,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -17817,11 +17990,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -17996,14 +18169,14 @@
       "load_case": "LORA_CAP/U214_LESHY_TX_MAX/SUPPORT_WORST",
       "load_ma": "2668.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.025110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.975110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.975110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.011613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.961613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.961613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -18029,7 +18202,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -18042,11 +18215,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -18221,14 +18394,14 @@
       "load_case": "LORA_CAP/U219_CC1101_NFC_RX_ONLY/SUPPORT_IDLE",
       "load_ma": "410.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.138010",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.088010",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.088010",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.124513",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.074513",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.074513",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -18254,7 +18427,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -18267,11 +18440,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -18446,14 +18619,14 @@
       "load_case": "LORA_CAP/U219_CC1101_NFC_RX_ONLY/SUPPORT_WORST",
       "load_ma": "2668.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.025110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.975110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.975110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.011613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.961613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.961613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -18479,7 +18652,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -18492,11 +18665,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -18671,14 +18844,14 @@
       "load_case": "M5_UNIT/QUALIFIED_RX_OR_PASSIVE/SUPPORT_IDLE",
       "load_ma": "410.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.138010",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.088010",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.088010",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.124513",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.074513",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.074513",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -18704,7 +18877,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -18717,11 +18890,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -18896,14 +19069,14 @@
       "load_case": "M5_UNIT/QUALIFIED_RX_OR_PASSIVE/SUPPORT_WORST",
       "load_ma": "2668.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.025110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.975110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.975110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.011613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.961613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.961613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -18929,7 +19102,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -18942,11 +19115,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -19121,14 +19294,14 @@
       "load_case": "M5_UNIT/QUALIFIED_TX_MAX/SUPPORT_IDLE",
       "load_ma": "410.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.138010",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.088010",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.088010",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.124513",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.074513",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.074513",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -19154,7 +19327,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -19167,11 +19340,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -19346,14 +19519,14 @@
       "load_case": "M5_UNIT/QUALIFIED_TX_MAX/SUPPORT_WORST",
       "load_ma": "2668.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.025110",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.975110",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.975110",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.011613",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.961613",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.961613",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -19379,7 +19552,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -19392,11 +19565,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -19571,14 +19744,14 @@
       "load_case": "BROADCAST_RX/FM_SW_RX/SUPPORT_IDLE",
       "load_ma": "625.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.127260",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.077260",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.077260",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.113763",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.063763",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.063763",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -19604,7 +19777,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -19617,11 +19790,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -19796,14 +19969,14 @@
       "load_case": "BROADCAST_RX/FM_SW_RX/SUPPORT_WORST",
       "load_ma": "2683.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.024360",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.974360",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.974360",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.010863",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.960863",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.960863",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -19829,7 +20002,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -19842,11 +20015,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -20021,14 +20194,14 @@
       "load_case": "BROADCAST_RX/AM_LW_RX/SUPPORT_IDLE",
       "load_ma": "625.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.127260",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.077260",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.077260",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.113763",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.063763",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.063763",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -20054,7 +20227,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -20067,11 +20240,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -20246,14 +20419,14 @@
       "load_case": "BROADCAST_RX/AM_LW_RX/SUPPORT_WORST",
       "load_ma": "2683.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.024360",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.974360",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.974360",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.010863",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.960863",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.960863",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -20279,7 +20452,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -20292,11 +20465,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -20471,14 +20644,14 @@
       "load_case": "BROADCAST_RX/AIRBAND_118_137_RX/SUPPORT_IDLE",
       "load_ma": "775.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.119760",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "3.069760",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "3.069760",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.106263",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "3.056263",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "3.056263",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -20504,7 +20677,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -20517,11 +20690,11 @@
       "numerical_status": "pass",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -20696,14 +20869,14 @@
       "load_case": "BROADCAST_RX/AIRBAND_118_137_RX/SUPPORT_WORST",
       "load_ma": "2833.000000",
       "nominal_v": "3.222000",
-      "raw_min_v": "3.158510",
-      "raw_max_v": "3.285658",
-      "protected_local_min_v": "3.016860",
-      "protected_local_max_v": "3.285658",
-      "consumer_endpoint_min_v": "2.966860",
-      "consumer_endpoint_max_v": "3.285658",
-      "endpoint_min_v": "2.966860",
-      "endpoint_max_v": "3.285658",
+      "raw_min_v": "3.145013",
+      "raw_max_v": "3.299695",
+      "protected_local_min_v": "3.003363",
+      "protected_local_max_v": "3.299695",
+      "consumer_endpoint_min_v": "2.953363",
+      "consumer_endpoint_max_v": "3.299695",
+      "endpoint_min_v": "2.953363",
+      "endpoint_max_v": "3.299695",
       "nodes": {
         "raw_net": "MAIN_RAW_3V3",
         "protected_local_net": "3V3_MAIN",
@@ -20729,7 +20902,7 @@
         }
       ],
       "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-      "raw_fraction_of_nominal_percent": "98.029485",
+      "raw_fraction_of_nominal_percent": "97.610593",
       "load_range_v": [
         "3.000000",
         "3.300000"
@@ -20742,11 +20915,11 @@
       "numerical_status": "fail",
       "model_qualified": false,
       "unqualified_reasons": [
-        "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-        "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+        "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+        "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+        "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
         "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-        "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-        "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+        "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
       ],
       "status": "review_required"
     },
@@ -20868,14 +21041,14 @@
         "load_case": "H0_continuous",
         "load_ma": "3750.000000",
         "nominal_v": "3.222000",
-        "raw_min_v": "3.158510",
-        "raw_max_v": "3.285658",
-        "protected_local_min_v": "2.971010",
-        "protected_local_max_v": "3.285658",
-        "consumer_endpoint_min_v": "2.921010",
-        "consumer_endpoint_max_v": "3.285658",
-        "endpoint_min_v": "2.921010",
-        "endpoint_max_v": "3.285658",
+        "raw_min_v": "3.145013",
+        "raw_max_v": "3.299695",
+        "protected_local_min_v": "2.957513",
+        "protected_local_max_v": "3.299695",
+        "consumer_endpoint_min_v": "2.907513",
+        "consumer_endpoint_max_v": "3.299695",
+        "endpoint_min_v": "2.907513",
+        "endpoint_max_v": "3.299695",
         "nodes": {
           "raw_net": "MAIN_RAW_3V3",
           "protected_local_net": "3V3_MAIN",
@@ -20901,7 +21074,7 @@
           }
         ],
         "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-        "raw_fraction_of_nominal_percent": "98.029485",
+        "raw_fraction_of_nominal_percent": "97.610593",
         "load_range_v": [
           "3.000000",
           "3.300000"
@@ -20914,11 +21087,11 @@
         "numerical_status": "fail",
         "model_qualified": false,
         "unqualified_reasons": [
-          "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-          "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+          "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+          "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+          "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
           "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-          "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-          "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+          "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
         ],
         "status": "review_required"
       },
@@ -20927,14 +21100,14 @@
         "load_case": "H0_step_resistive_snapshot_not_transient_proof",
         "load_ma": "4250.000000",
         "nominal_v": "3.222000",
-        "raw_min_v": "3.158510",
-        "raw_max_v": "3.285658",
-        "protected_local_min_v": "2.946010",
-        "protected_local_max_v": "3.285658",
-        "consumer_endpoint_min_v": "2.896010",
-        "consumer_endpoint_max_v": "3.285658",
-        "endpoint_min_v": "2.896010",
-        "endpoint_max_v": "3.285658",
+        "raw_min_v": "3.145013",
+        "raw_max_v": "3.299695",
+        "protected_local_min_v": "2.932513",
+        "protected_local_max_v": "3.299695",
+        "consumer_endpoint_min_v": "2.882513",
+        "consumer_endpoint_max_v": "3.299695",
+        "endpoint_min_v": "2.882513",
+        "endpoint_max_v": "3.299695",
         "nodes": {
           "raw_net": "MAIN_RAW_3V3",
           "protected_local_net": "3V3_MAIN",
@@ -20960,7 +21133,7 @@
           }
         ],
         "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
-        "raw_fraction_of_nominal_percent": "98.029485",
+        "raw_fraction_of_nominal_percent": "97.610593",
         "load_range_v": [
           "3.000000",
           "3.300000"
@@ -20973,11 +21146,11 @@
         "numerical_status": "fail",
         "model_qualified": false,
         "unqualified_reasons": [
-          "The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally",
-          "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm",
+          "TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open",
+          "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance",
+          "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified",
           "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum",
-          "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance",
-          "MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified"
+          "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"
         ],
         "status": "review_required"
       }
@@ -21003,16 +21176,60 @@
       "rail": "3V3_MAIN",
       "sustained_load_ma": "988.000",
       "profile": "NRF24/3PTX/SUPPORT_IDLE",
-      "ambient_c": "35.000",
-      "minimum_efficiency": "0.850",
       "output_w": "3.183",
-      "converter_loss_w": "0.562",
-      "efuse_loss_w": "0.049",
-      "converter_predicted_tj_c": "76.571",
-      "converter_junction_margin_c": "48.429",
-      "efuse_predicted_tj_c": "38.504",
-      "efuse_junction_margin_c": "86.496",
-      "status": "pass"
+      "reference_loss_budgets": [
+        {
+          "ambient_c": "35",
+          "reference_board": "JEDEC_reference_board",
+          "reference_theta_ja_k_per_w": "89.6",
+          "junction_design_c": "105",
+          "allowable_chip_loss_w": "0.781250",
+          "required_efficiency_if_all_loss_assigned_to_chip": "0.802943",
+          "is_efficiency_prediction": false,
+          "our_pcb_qualified": false
+        },
+        {
+          "ambient_c": "35",
+          "reference_board": "TI_EVM",
+          "reference_theta_ja_k_per_w": "44",
+          "junction_design_c": "105",
+          "allowable_chip_loss_w": "1.590909",
+          "required_efficiency_if_all_loss_assigned_to_chip": "0.666773",
+          "is_efficiency_prediction": false,
+          "our_pcb_qualified": false
+        },
+        {
+          "ambient_c": "45",
+          "reference_board": "JEDEC_reference_board",
+          "reference_theta_ja_k_per_w": "89.6",
+          "junction_design_c": "105",
+          "allowable_chip_loss_w": "0.669643",
+          "required_efficiency_if_all_loss_assigned_to_chip": "0.826201",
+          "is_efficiency_prediction": false,
+          "our_pcb_qualified": false
+        },
+        {
+          "ambient_c": "45",
+          "reference_board": "TI_EVM",
+          "reference_theta_ja_k_per_w": "44",
+          "junction_design_c": "105",
+          "allowable_chip_loss_w": "1.363636",
+          "required_efficiency_if_all_loss_assigned_to_chip": "0.700100",
+          "is_efficiency_prediction": false,
+          "our_pcb_qualified": false
+        }
+      ],
+      "minimum_efficiency": null,
+      "converter_loss_w": null,
+      "converter_predicted_tj_c": null,
+      "converter_junction_margin_c": null,
+      "efuse_predicted_tj_c": null,
+      "efuse_junction_margin_c": null,
+      "efuse_conditional_i2r_w": "0.048807",
+      "efuse_loss_basis": "engineering RON allowance only; no qualified device temperature",
+      "numerical_status": "not_evaluated_no_current_layout_or_efficiency_bound",
+      "status": "review_required",
+      "model_qualified": false
     },
     "VVOICE_4V": {
       "rail": "VVOICE_4V",
@@ -21049,7 +21266,7 @@
     {
       "id": "H3-R2.1.3-F01",
       "finding": "The old H3 source/thermal/protection model is not applicable to the current fitted MAIN power cell",
-      "correction": "Preserve old numerical parameters as provisional and explicitly include protection voltage drop; exact model qualification remains open",
+      "correction": "Replace MAIN raw/current arithmetic by exact fitted component/test-condition model; retain reference-board thermal loss budgets instead of predicting MAIN Tj; application qualification remains open",
       "effect": "A positive old current remainder is not proof of current-native PF-R2-03 or consumer voltage",
       "bom_cost_effect": "0; evidence correction only"
     },
@@ -21067,16 +21284,20 @@
     "physical_and_external_lines_owned": 629,
     "deferred_source_pack_lines": 77,
     "hidden_miscellaneous_allowances": 0,
-    "current_failures": 0,
+    "current_failures": 1,
     "voltage_failures": 1,
     "declared_target_voltage_failures": 2,
     "steady_thermal_failures": 0,
-    "minimum_electrical_reserve_percent": "30.560",
-    "minimum_junction_margin_c": "24.706",
+    "steady_thermal_unqualified_rails": [
+      "3V3_MAIN"
+    ],
+    "minimum_electrical_reserve_percent": "0.885",
+    "minimum_junction_margin_c": null,
+    "minimum_junction_margin_scope": "not established because current MAIN has no qualified loss/PCB thermal-resistance model",
     "open_analytical_findings": 6
   },
   "physical_residuals": [
-    "H6 must realize converter/eFuse copper and vias at least as good as the modeled published EVM/package boundary",
+    "H6 must determine actual converter/eFuse loss and copper/via thermal paths; JEDEC/EVM theta values are reference conditions, not an established minimum layout requirement",
     "H8 must measure rail endpoints, current and temperature for each named sustained profile and reject any profile outside the generated envelope",
     "H8 may raise the 1.00-A sustained external admission only after measured 35-C margin remains at least 20 C"
   ],
@@ -21094,7 +21315,9 @@
     "action": "evaluate USB, pack, charge, supplement and source-admission margins"
   },
   "errors": [
+    "current:3V3_MAIN",
     "voltage:3V3_MAIN",
+    "thermal:3V3_MAIN",
     "voltage-target:3V3_MAIN:H0_continuous",
     "voltage-target:3V3_MAIN:H0_step_resistive_snapshot_not_transient_proof",
     "numerical:existing_checks",
@@ -21129,19 +21352,23 @@
     "production_release_authorized": false,
     "battery_energization_authorized": false,
     "source_sha256": {
-      "hardware/verification/h3-r2-rail-margin-contract.json": "546cf5081845888a5de4508307ae8bec38f883f4f5086efd347985c2ec347112",
+      "hardware/verification/h3-r2-rail-margin-contract.json": "b02616c8e30f2e8dbcd781dde72a492ed61b5b7ef19960b6c71f18eec0c8eb5f",
       "hardware/verification/generated/H3-R2-load-binding.json": "63175fd054232146d7def375ff52f8161426de2b8b98d344ebd23beac3c01811",
       "hardware/verification/generated/H3-R2-power-state-register.json": "f2b831f444299d71058d25aa17555fcdaa4beab49f1cfa872e39aacac574498c",
       "hardware/verification/generated/H3-R2-method-contract.json": "6aeb96256aba61bf0a90c05675ee4c1c62ac7c3fdf69da596ebdd99a40715014",
       "hardware/architecture/h0-r2-rebaseline.json": "bab7bf6cb3e80842229704169c8b3297bcdff87ec6bb309aad75814701dd3c2b",
       "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7ca7596c728f2dc2fe50516b6309438dfaca2fc9c7f6fbef62c18d005cf8616b",
       "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974",
-      "hardware/verification/h3_r2_rail_margins.py": "8f27a3a5baca9e7ae8e9201f1b9657f983f5071a2acd490108bc2b2c5487207a",
-      "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+      "hardware/ecad/generated/H2-R2-native-net-ledger.json": "bb0ee548efc0ecfe02299f3757c58cd7a4e7c5a8b50160d8648411ab330ac411",
+      "hardware/verification/h6_power_corner_math.py": "b1dd3bc64dc93cd260cf311d933444a78df22474d482852904fb51a1e00ad8b0",
+      "hardware/verification/h3_r2_rail_margins.py": "66cdb6c21f8e8f932890be7c3ef109bf447f8fbf75fccaae0a6864c107c70b1f",
+      "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
     }
   },
   "provisional_numerical_errors": [
+    "current:3V3_MAIN",
     "voltage:3V3_MAIN",
+    "thermal:3V3_MAIN",
     "voltage-target:3V3_MAIN:H0_continuous",
     "voltage-target:3V3_MAIN:H0_step_resistive_snapshot_not_transient_proof"
   ],

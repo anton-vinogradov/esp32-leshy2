@@ -146,22 +146,27 @@ reports `review_required`. Its integrity tests pass; the power design does not
 thereby pass electrical acceptance. Existing H3 algebraic results are **not yet
 qualified against the current native power cell**:
 
-- RF R67 is 1.65 kΩ, while H3 uses the 1.18-kΩ protection envelope. Scaling
-  the 3.2-A datasheet row inversely for +1% resistor tolerance estimates
-  3.168 A against a 3.046-A modeled peak: about 4% reserve, not 25%. This is
-  a resistor-tolerance-only estimate, not a new TI guarantee across arbitrary
-  R/PVT. It also does not restore H0's 3.75-A continuous / 4.25-A step envelope.
-- H3 cites TPS564252 although RF U20 is TPS566231P. The source guard now
-  requires the exact native part/pins and an independently reviewed numerical
-  model bound to the current power cell; changing a datasheet URL cannot clear
-  this finding. No TPS566231P model is accepted yet.
-- The main Power-Good divider can require 3.171 V to assert, above the modeled
-  minimum protected rail of 3.109 V.
+- RF R67 is 1.65 kΩ, while the H1 design intent still says 1.18 kΩ. H3 now
+  uses the fitted value: the Eq5 initial+TCR lower estimate is 3.073 A against
+  a 3.046-A modeled peak, only 0.885% reserve rather than 25%. Its modeled
+  3.117-A startup exceeds that lower limit. The initial-only calculation and
+  nominal datasheet row remain separate diagnostics; none restores H0's
+  3.75-A continuous / 4.25-A step envelope.
+- H3 now binds its arithmetic to the actual TPS566231PRQFR, feedback divider
+  and published test conditions. The former TPS564252 parameters are removed
+  from the active MAIN calculation. Actual-input-voltage applicability,
+  transients and our PCB's thermal behavior remain unqualified; the independent
+  applicability registry therefore stays empty. See the [current rail model](power-rail-margins.md).
+- The main Power-Good divider can require 3.171 V to assert, above the
+  provisional protected-local minimum of 2.993 V. Downstream distribution
+  further reduces the modeled consumer endpoint to 2.943 V; it is not the PG
+  sensing node.
 - AON eFuse on-resistance was bounded using a different RILIM test condition.
 
 No production resistor is changed. The [stock-checked 1.18-kΩ candidate](../hardware/procurement/main-efuse-rilm-1180ohm-candidate.md)
 is not accepted until the complete current/voltage/thermal envelope, PGTH and
-AON startup margins are reconciled. Dependent H3 evidence must then be rerun.
+AON startup margins are reconciled. The corrected H3 chain has been regenerated;
+any circuit correction will require another complete dependent check.
 These checks do not prove NVDC cold-start, active-load transients, IC slew-rate
 spread or physical thermal performance. Connectivity does not prove startup.
 

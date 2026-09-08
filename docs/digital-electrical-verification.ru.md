@@ -11,7 +11,7 @@
 | Область | Статус | Результат |
 |---|---:|---|
 | i8080-8 | PASS | 20 MHz exact; 15.36 ms full frame; 76.8% of 20-ms budget |
-| Logic levels | provisional PASS | worst boundary `S3 -> ILI9488 direct i8080/reset`: 0.065 V |
+| Logic levels | provisional PASS | worst boundary `S3 -> ILI9488 direct i8080/reset`: 0.044 V |
 | USB / service | PASS | product S3 USB + three independent data-only service paths; C5 D2/D3 mux is reset/ownership interlocked |
 | M1 | PASS | 80/80 pin parity; 9 true NC; USB and Hub-RF groups are ground-bounded |
 | Loading | PASS | point-to-point fast buses; FSUSB42 bandwidth is 18x the 40-MHz SDIO clock |

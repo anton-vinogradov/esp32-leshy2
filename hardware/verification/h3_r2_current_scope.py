@@ -59,6 +59,8 @@ DIRECT_SOURCES = {
         "hardware/architecture/h0-r2-rebaseline.json",
         "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
         "hardware/architecture/devices.json",
+        "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+        "hardware/verification/h6_power_corner_math.py",
     ),
     "H3-R2-source-margins": (
         "hardware/verification/h3-r2-source-margin-contract.json",

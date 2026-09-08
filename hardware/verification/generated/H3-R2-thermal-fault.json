@@ -8,15 +8,15 @@
     "hardware/architecture/candidates/G2F-3I.json": "6df524f1edf8db12ac278e0b5901a598c0ac18262800b09c38dde7b45147ed27",
     "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974",
     "hardware/verification/generated/H3-R2-method-contract.json": "6aeb96256aba61bf0a90c05675ee4c1c62ac7c3fdf69da596ebdd99a40715014",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "06b97ec6e2cf9baf6c6701867543245791f7e99f57b4a49779590d3e13a457fa",
-    "hardware/verification/generated/H3-R2-source-margins.json": "a47b5eae89e57707f93d0df93070bbd6a4fe0105c18b0562709c0abf75549a27",
-    "hardware/verification/generated/H3-R2-transition-result.json": "af2cc88a8b03a675f43396a11b59b22b94b877c4553091524e6279b3f9e65f8f",
-    "hardware/verification/generated/H3-R2-inrush-watchdog.json": "5eb0f797c0fc387c6dbcc7956fc5fc8bdb667f7c8713e43eed8afa258a83db08",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "123d5f1f5e0a3d4ca3b7eb7b53da2ecf5b2558f129c06a3b0120a6deac92d47e",
+    "hardware/verification/generated/H3-R2-source-margins.json": "f791db277f6315f6abeaad8be8038263197184e9540072ea3e736e1802bc9a59",
+    "hardware/verification/generated/H3-R2-transition-result.json": "cbe7196cd6c428aa8d60c31a8308c0314ea1874ac5aa77dfa29035bc0d1b8f6e",
+    "hardware/verification/generated/H3-R2-inrush-watchdog.json": "85d7adadc1bdbfdfcbe54037ffa5d57aaa05d024a44cbbb2545a11ad25f266ee",
     "hardware/verification/generated/H3-VRF34-battery-analog.json": "5886838c6cfc2e7667470ee2bd2037172ca24c26cda8d44d60b8c9a1f938d1cc",
-    "hardware/verification/generated/H3-R2-rf-coexistence.json": "5f99664bcaf10e7092eb35ad09045f8da29233ed7a6755638a29c8917e5a35b6",
+    "hardware/verification/generated/H3-R2-rf-coexistence.json": "e468c7420fdf3264ff90039f32538300587b18bb846ef51844a3458130256b9d",
     "hardware/ecad/generated/H2-REV55-fault-kill.json": "4f96d41cb2cff48b90de6666dd16c9ecfef9d64bcd9564d68fcbc31b12992058",
-    "hardware/verification/h3_r2_thermal_fault.py": "e6e838b8b9133fa0c554a5653c72a058a2afe0f806a997d1265b21fbce8bcff5",
-    "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+    "hardware/verification/h3_r2_thermal_fault.py": "ebfb367f99408f7edafea78758b94db2b47e7eebe41d2c2c28e306120a94155c",
+    "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
   },
   "methods": [
     "M-INT",
@@ -31,8 +31,8 @@
     "single_fault_cases": 30,
     "maximum_watchdog_detection_ms": 1760,
     "physical_residuals": 7,
-    "analytical_findings_open": 4,
-    "open_analytical_findings": 4
+    "analytical_findings_open": 5,
+    "open_analytical_findings": 5
   },
   "thermal": {
     "model": "85%-efficient rail conversion plus 0.25-W named overhead, followed by a second conservative 85% source envelope; externally delivered 5-V power is subtracted, while its conversion loss remains inside",
@@ -987,16 +987,60 @@
         "rail": "3V3_MAIN",
         "sustained_load_ma": "988.000",
         "profile": "NRF24/3PTX/SUPPORT_IDLE",
-        "ambient_c": "35.000",
-        "minimum_efficiency": "0.850",
         "output_w": "3.183",
-        "converter_loss_w": "0.562",
-        "efuse_loss_w": "0.049",
-        "converter_predicted_tj_c": "76.571",
-        "converter_junction_margin_c": "48.429",
-        "efuse_predicted_tj_c": "38.504",
-        "efuse_junction_margin_c": "86.496",
-        "status": "pass"
+        "reference_loss_budgets": [
+          {
+            "ambient_c": "35",
+            "reference_board": "JEDEC_reference_board",
+            "reference_theta_ja_k_per_w": "89.6",
+            "junction_design_c": "105",
+            "allowable_chip_loss_w": "0.781250",
+            "required_efficiency_if_all_loss_assigned_to_chip": "0.802943",
+            "is_efficiency_prediction": false,
+            "our_pcb_qualified": false
+          },
+          {
+            "ambient_c": "35",
+            "reference_board": "TI_EVM",
+            "reference_theta_ja_k_per_w": "44",
+            "junction_design_c": "105",
+            "allowable_chip_loss_w": "1.590909",
+            "required_efficiency_if_all_loss_assigned_to_chip": "0.666773",
+            "is_efficiency_prediction": false,
+            "our_pcb_qualified": false
+          },
+          {
+            "ambient_c": "45",
+            "reference_board": "JEDEC_reference_board",
+            "reference_theta_ja_k_per_w": "89.6",
+            "junction_design_c": "105",
+            "allowable_chip_loss_w": "0.669643",
+            "required_efficiency_if_all_loss_assigned_to_chip": "0.826201",
+            "is_efficiency_prediction": false,
+            "our_pcb_qualified": false
+          },
+          {
+            "ambient_c": "45",
+            "reference_board": "TI_EVM",
+            "reference_theta_ja_k_per_w": "44",
+            "junction_design_c": "105",
+            "allowable_chip_loss_w": "1.363636",
+            "required_efficiency_if_all_loss_assigned_to_chip": "0.700100",
+            "is_efficiency_prediction": false,
+            "our_pcb_qualified": false
+          }
+        ],
+        "minimum_efficiency": null,
+        "converter_loss_w": null,
+        "converter_predicted_tj_c": null,
+        "converter_junction_margin_c": null,
+        "efuse_predicted_tj_c": null,
+        "efuse_junction_margin_c": null,
+        "efuse_conditional_i2r_w": "0.048807",
+        "efuse_loss_basis": "engineering RON allowance only; no qualified device temperature",
+        "numerical_status": "not_evaluated_no_current_layout_or_efficiency_bound",
+        "status": "review_required",
+        "model_qualified": false
       },
       "VVOICE_4V": {
         "rail": "VVOICE_4V",
@@ -1435,13 +1479,13 @@
   },
   "checks": {
     "required_r2_methods_exist": true,
-    "provisional_rail_source_numerical_checks": true,
+    "provisional_rail_source_numerical_checks": false,
     "all_56_r2_profiles_are_thermalized": true,
     "all_28_sustained_profiles_are_thermalized": true,
     "external_sustained_current_is_capped_at_1a": true,
     "support_worst_remains_non_sustained": true,
     "all_thermal_resistance_ceilings_are_positive": true,
-    "rail_junction_margin_exceeds_20c": true,
+    "rail_junction_margin_exceeds_20c": false,
     "maximum_sustained_cell_heat_is_bounded": true,
     "three_independent_board_zones_exist": true,
     "thermal_threshold_order_is_fail_safe": true,
@@ -1461,6 +1505,9 @@
     "all_physical_residuals_are_owned": true
   },
   "errors": [
+    "provisional_rail_source_numerical_checks",
+    "rail_junction_margin_exceeds_20c",
+    "numerical:existing_checks",
     "applicability:rail_inputs",
     "applicability:source_inputs",
     "applicability:transition_inputs",
@@ -1492,8 +1539,8 @@
     "schema_version": 1,
     "artifact": "H3-R2-thermal-fault",
     "status": "review_required",
-    "numerical_status": "provisional_pass",
-    "numerical_checks_pass": true,
+    "numerical_status": "provisional_fail",
+    "numerical_checks_pass": false,
     "applicability_checks": {
       "rail_inputs": false,
       "source_inputs": false,
@@ -1501,6 +1548,7 @@
       "rf_inputs": false
     },
     "open_findings": [
+      "numerical:existing_checks",
       "applicability:rail_inputs",
       "applicability:source_inputs",
       "applicability:transition_inputs",
@@ -1513,20 +1561,24 @@
       "hardware/architecture/candidates/G2F-3I.json": "6df524f1edf8db12ac278e0b5901a598c0ac18262800b09c38dde7b45147ed27",
       "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974",
       "hardware/verification/generated/H3-R2-method-contract.json": "6aeb96256aba61bf0a90c05675ee4c1c62ac7c3fdf69da596ebdd99a40715014",
-      "hardware/verification/generated/H3-R2-rail-margins.json": "06b97ec6e2cf9baf6c6701867543245791f7e99f57b4a49779590d3e13a457fa",
-      "hardware/verification/generated/H3-R2-source-margins.json": "a47b5eae89e57707f93d0df93070bbd6a4fe0105c18b0562709c0abf75549a27",
-      "hardware/verification/generated/H3-R2-transition-result.json": "af2cc88a8b03a675f43396a11b59b22b94b877c4553091524e6279b3f9e65f8f",
-      "hardware/verification/generated/H3-R2-inrush-watchdog.json": "5eb0f797c0fc387c6dbcc7956fc5fc8bdb667f7c8713e43eed8afa258a83db08",
+      "hardware/verification/generated/H3-R2-rail-margins.json": "123d5f1f5e0a3d4ca3b7eb7b53da2ecf5b2558f129c06a3b0120a6deac92d47e",
+      "hardware/verification/generated/H3-R2-source-margins.json": "f791db277f6315f6abeaad8be8038263197184e9540072ea3e736e1802bc9a59",
+      "hardware/verification/generated/H3-R2-transition-result.json": "cbe7196cd6c428aa8d60c31a8308c0314ea1874ac5aa77dfa29035bc0d1b8f6e",
+      "hardware/verification/generated/H3-R2-inrush-watchdog.json": "85d7adadc1bdbfdfcbe54037ffa5d57aaa05d024a44cbbb2545a11ad25f266ee",
       "hardware/verification/generated/H3-VRF34-battery-analog.json": "5886838c6cfc2e7667470ee2bd2037172ca24c26cda8d44d60b8c9a1f938d1cc",
-      "hardware/verification/generated/H3-R2-rf-coexistence.json": "5f99664bcaf10e7092eb35ad09045f8da29233ed7a6755638a29c8917e5a35b6",
+      "hardware/verification/generated/H3-R2-rf-coexistence.json": "e468c7420fdf3264ff90039f32538300587b18bb846ef51844a3458130256b9d",
       "hardware/ecad/generated/H2-REV55-fault-kill.json": "4f96d41cb2cff48b90de6666dd16c9ecfef9d64bcd9564d68fcbc31b12992058",
-      "hardware/verification/h3_r2_thermal_fault.py": "e6e838b8b9133fa0c554a5653c72a058a2afe0f806a997d1265b21fbce8bcff5",
-      "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+      "hardware/verification/h3_r2_thermal_fault.py": "ebfb367f99408f7edafea78758b94db2b47e7eebe41d2c2c28e306120a94155c",
+      "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
     }
   },
-  "provisional_numerical_errors": [],
+  "provisional_numerical_errors": [
+    "provisional_rail_source_numerical_checks",
+    "rail_junction_margin_exceeds_20c"
+  ],
   "current_analytical_scope_complete": false,
   "open_analytical_findings": [
+    "numerical:existing_checks",
     "applicability:rail_inputs",
     "applicability:source_inputs",
     "applicability:transition_inputs",

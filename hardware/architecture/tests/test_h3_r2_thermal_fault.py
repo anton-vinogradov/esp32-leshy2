@@ -22,8 +22,9 @@ class H3R2ThermalFaultTest(unittest.TestCase):
         self.assertEqual("H3-R2.6", self.result["marker"])
         self.assertEqual("review_required", self.result["status"])
         self.assertEqual(25, self.result["summary"]["checks"])
-        self.assertTrue(all(self.result["checks"].values()))
-        self.assertEqual([], self.result["provisional_numerical_errors"])
+        missing = {"provisional_rail_source_numerical_checks", "rail_junction_margin_exceeds_20c"}
+        self.assertEqual(missing, {key for key, value in self.result["checks"].items() if not value})
+        self.assertEqual(missing, set(self.result["provisional_numerical_errors"]))
         self.assertIn("applicability:rail_inputs", self.result["errors"])
 
     def test_thermal_envelope_covers_every_profile(self):

@@ -62,7 +62,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "numeric_and_deferred_partition": numeric.isdisjoint(deferred) and numeric | deferred == all_load_uids,
         "all_77_deferred_lines_are_source_owned": len(deferred) == 77 and set(source_ownership) == deferred,
         "no_hidden_load_or_source_allowance": loads["summary"]["hidden_miscellaneous_allowances"] == 0 == rails["summary"]["hidden_miscellaneous_allowances"] == sources["summary"]["hidden_miscellaneous_allowances"],
-        "rail_current_voltage_thermal_pass": rails["summary"]["current_failures"] == rails["summary"]["voltage_failures"] == rails["summary"]["steady_thermal_failures"] == 0,
+        "rail_current_voltage_thermal_pass": rails["summary"]["current_failures"] == rails["summary"]["voltage_failures"] == rails["summary"]["steady_thermal_failures"] == 0 and not rails["summary"].get("steady_thermal_unqualified_rails", []) and rails["summary"]["minimum_junction_margin_c"] is not None,
         "all_source_states_safe": sources["summary"]["failed_states"] == 0,
         "oversized_usb_only_profiles_are_refused": sources["summary"]["usb_only_profiles_refused"] == 14,
         "method_rules_present": required_rules <= rules,
@@ -121,6 +121,8 @@ def build() -> tuple[dict[Path, str], dict]:
 def render_doc(manifest: dict, russian: bool) -> str:
     c = manifest["coverage"]
     r = manifest["result"]
+    thermal_margin = (("не установлен" if russian else "not established") if r["minimum_junction_margin_c"] is None
+                      else f"{r['minimum_junction_margin_c']} °C")
     if russian:
         title = "# Итог DC, источников и заряда · H3-R2.1"
         nav = "[English](power-dc-source-result.md) · [Главная](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Шины](power-rail-margins.ru.md) · [Источники](power-source-margins.ru.md)"
@@ -128,7 +130,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         coverage_h = "## Покрытие"
         coverage = f"Сверены `{c['legal_states']}` состояния, `{c['operating_profiles']}` рабочих профиля, `{c['rail_profiles']}` rail-corner, `{c['physical_and_external_loads']}` нагрузок и все `{c['source_pack_owners']}` source/pack-строки. Пропусков, дублей и скрытой строки «прочее» нет."
         result_h = "## Предварительный результат модели"
-        result = (f"- Минимальный запас тока шин: `{r['minimum_rail_current_reserve_percent']}%`; температуры кристалла: `{r['minimum_junction_margin_c']} °C`.\n"
+        result = (f"- Минимальный запас тока шин: `{r['minimum_rail_current_reserve_percent']}%`; запас температуры кристалла: `{thermal_margin}`.\n"
                   f"- Максимальный SYS: `{r['maximum_sys_demand_w']} Вт`; pack: `{r['maximum_pack_discharge_a']} А`, длительно `{r['maximum_sustained_pack_discharge_a']} А`.\n"
                   f"- 5 В × 3 А безопасно отказывает `{r['usb_only_profiles_refused']}` тяжёлым USB-only состояниям; заряд снижается раньше нагрузки в `{r['charge_states_derated']}` состояниях.\n"
                   "- В сохранённой модели мощности 9 В × 3 А и 15 В × 2 А допускают все профили; это не доказательство запуска или допустимого напряжения нынешней схемы.")
@@ -142,7 +144,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         coverage_h = "## Coverage"
         coverage = f"The check reconciles `{c['legal_states']}` states, `{c['operating_profiles']}` operating profiles, `{c['rail_profiles']}` rail corners, `{c['physical_and_external_loads']}` loads and all `{c['source_pack_owners']}` source/pack lines. No gap, duplicate or hidden miscellaneous line remains."
         result_h = "## Provisional model result"
-        result = (f"- Minimum rail-current reserve: `{r['minimum_rail_current_reserve_percent']}%`; junction-temperature reserve: `{r['minimum_junction_margin_c']} °C`.\n"
+        result = (f"- Minimum rail-current reserve: `{r['minimum_rail_current_reserve_percent']}%`; junction-temperature reserve: `{thermal_margin}`.\n"
                   f"- Maximum SYS: `{r['maximum_sys_demand_w']} W`; pack: `{r['maximum_pack_discharge_a']} A`, sustained `{r['maximum_sustained_pack_discharge_a']} A`.\n"
                   f"- 5 V × 3 A safely refuses `{r['usb_only_profiles_refused']}` heavy USB-only states; charge yields before load in `{r['charge_states_derated']}` states.\n"
                   "- The retained power-budget model admits every profile at 9 V × 3 A and 15 V × 2 A; this does not prove startup or valid voltage in the current circuit.")

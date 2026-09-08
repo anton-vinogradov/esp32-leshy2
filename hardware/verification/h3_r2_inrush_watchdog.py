@@ -100,6 +100,26 @@ def quantized_ramp(ramp_ms: Decimal, dt_ms: Decimal) -> Decimal:
     return Decimal(math.ceil(float(ramp_ms / dt_ms))) * dt_ms
 
 
+def ramp_rounding_comparison(ramp_ms, dt_ms, dt2_ms, current_within_limit):
+    """Compare rounded analytical ramp times, not a timestep circuit simulation.
+
+    The current inequality is static and does not contain dt. Its repeated
+    classification can therefore be the same FAIL; that is not divergence.
+    """
+    if type(current_within_limit) is not bool:
+        raise ValueError("explicit static current classification is required")
+    r1, r2 = quantized_ramp(ramp_ms, dt_ms), quantized_ramp(ramp_ms, dt2_ms)
+    classification_dt = "pass" if current_within_limit else "fail"
+    classification_dt2 = "pass" if current_within_limit else "fail"
+    return {"dt_ms": q(dt_ms), "ramp_ms": q(r1, "0.000001"),
+            "dt2_ms": q(dt2_ms), "ramp_dt2_ms": q(r2, "0.000001"),
+            "difference_ms": q(abs(r1 - r2), "0.000001"),
+            "current_classification_dt": classification_dt,
+            "current_classification_dt2": classification_dt2,
+            "same_result": classification_dt == classification_dt2,
+            "scope": "ramp-time rounding only; static current algebra is independent of dt, not timestep simulation"}
+
+
 def render_inrush(manifest: dict, russian: bool) -> str:
     s = manifest["summary"]
     u214 = manifest["external_accessory_admission"]
@@ -130,7 +150,7 @@ def render_inrush(manifest: dict, russian: bool) -> str:
 
 ## Скачок нагрузки и численная сходимость
 
-Максимальный рассматриваемый скачок `3V3_MAIN` — **{step} мА**. Сравнения модели: запуск **{s['passed_startup_envelopes']} / {s['startup_envelopes']}**, скачки нагрузки **{s['passed_load_step_rails']} / {s['load_step_rails']}**. Дискретизация {convergence['dt_ms']} мс и вдвое меньше даёт максимальное расхождение времени {convergence['maximum_ramp_time_difference_ms']} мс; совпадение классификации — {'да' if convergence['same_pass_fail'] else 'нет'}. Сходимость вычислений не подтверждает правильность исходных пределов.
+Максимальный рассматриваемый скачок `3V3_MAIN` — **{step} мА**. Сравнения модели: запуск **{s['passed_startup_envelopes']} / {s['startup_envelopes']}**, скачки нагрузки **{s['passed_load_step_rails']} / {s['load_step_rails']}**. Округление аналитического времени с шагом {convergence['dt_ms']} мс и вдвое меньше даёт максимальное расхождение {convergence['maximum_ramp_time_difference_ms']} мс. Классификация тока не зависит от этого шага; совпадение — {'да' if convergence['same_pass_fail'] else 'нет'}, включая одинаковое нарушение MAIN. Это проверка округления, не пошаговая симуляция схемы и не подтверждение исходных пределов.
 
 ## Что ещё требуется
 
@@ -156,7 +176,7 @@ The official U214 schematic includes **C12 = {u214['official_u214_capacitance_uf
 
 ## Load step and numerical convergence
 
-The maximum considered `3V3_MAIN` step is **{step} mA**. Model comparisons: starts **{s['passed_startup_envelopes']} / {s['startup_envelopes']}**, load steps **{s['passed_load_step_rails']} / {s['load_step_rails']}**. A {convergence['dt_ms']}-ms step and half that step produce at most {convergence['maximum_ramp_time_difference_ms']} ms timing difference; classification agrees: {'yes' if convergence['same_pass_fail'] else 'no'}. Numerical convergence does not validate the input limits.
+The maximum considered `3V3_MAIN` step is **{step} mA**. Model comparisons: starts **{s['passed_startup_envelopes']} / {s['startup_envelopes']}**, load steps **{s['passed_load_step_rails']} / {s['load_step_rails']}**. Rounding the analytical time to {convergence['dt_ms']} ms and half that interval produces at most {convergence['maximum_ramp_time_difference_ms']} ms difference. Current classification is independent of this interval; agreement: {'yes' if convergence['same_pass_fail'] else 'no'}, including the same MAIN failure. This checks rounding, not a timestep circuit simulation or validity of the input limits.
 
 ## Remaining work
 
@@ -361,13 +381,7 @@ def build() -> tuple[dict[Path, str], dict, dict]:
         pass_limit = combined <= limit
         if not pass_limit:
             errors.append(f"startup current exceeds minimum hardware limit on {spec['id']}")
-        r1 = quantized_ramp(ramp, dt)
-        r2 = quantized_ramp(ramp, dt2)
-        convergence_rows.append({
-            "rail": spec["id"], "dt_ms": q(dt), "ramp_ms": q(r1, "0.000001"),
-            "dt2_ms": q(dt2), "ramp_dt2_ms": q(r2, "0.000001"),
-            "difference_ms": q(abs(r1 - r2), "0.000001"), "same_result": pass_limit,
-        })
+        convergence_rows.append({"rail": spec["id"], **ramp_rounding_comparison(ramp, dt, dt2, pass_limit)})
         envelopes.append({
             "rail": spec["id"], "output_net": spec["output_net"], "strategy": strategy,
             "pcb_capacitance_upper_uf": q(pcb_cap, "0.000001"),

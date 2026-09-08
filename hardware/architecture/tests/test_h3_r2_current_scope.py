@@ -161,13 +161,18 @@ class CurrentPowerDAGTests(unittest.TestCase):
     def test_corrected_main_numbers_and_targets_are_not_replaced_to_get_pass(self):
         result = self.results["H3-R2-rail-margins"]
         row = result["voltage_corners"]["3V3_MAIN"]
-        self.assertEqual("2.956210", row["endpoint_min_v"])
-        self.assertEqual("3.006210", row["protected_local_min_v"])
-        self.assertEqual("3.285658", row["endpoint_max_v"])
+        self.assertEqual("2.942713", row["endpoint_min_v"])
+        self.assertEqual("2.992713", row["protected_local_min_v"])
+        self.assertEqual("3.299695", row["endpoint_max_v"])
         self.assertEqual("fail", row["numerical_status"])
         self.assertEqual(224, len(result["profile_voltage_corners"]))
         self.assertIn("TPS566231", result["observed_main_converter"]["mpn"])
         self.assertFalse(result["current_power_scope"]["applicability_checks"]["main_raw_model"])
+        self.assertIsNone(result["summary"]["minimum_junction_margin_c"])
+        self.assertFalse(self.results["H3-R2-thermal-fault"]["checks"]["rail_junction_margin_exceeds_20c"])
+        self.assertFalse(self.results["H3-R2-thermal-fault"]["checks"]["provisional_rail_source_numerical_checks"])
+        self.assertEqual("6.000", result["worst_current_by_rail"]["3V3_MAIN"]["converter_min_a"])
+        self.assertEqual("fail", result["worst_current_by_rail"]["3V3_MAIN"]["numerical_status"])
 
     def test_typical_supervisor_limits_cannot_be_guaranteed_bounds(self):
         result = self.results["H3-R2-transition-sequences"]
@@ -188,6 +193,7 @@ class CurrentPowerDAGTests(unittest.TestCase):
                 self.assertNotIn("zero open finding", text)
                 self.assertNotIn("fully reviewed", text)
                 self.assertNotIn("within `None", text)
+                self.assertNotIn("None °C", text)
 
     def test_strict_cli_checks_qualification_only_after_complete_diagnostic_dag(self):
         package = self.results["H3-R2-acceptance-package"]
@@ -203,7 +209,7 @@ class CurrentPowerDAGTests(unittest.TestCase):
     def test_transition_reports_retain_localized_navigation_and_engineering_context(self):
         expected = {
             "power-handover.ru.md": ("Группа сценариев", "Число модельных случаев", "BATFET", "Rp/PD", "Применимость"),
-            "inrush-load-step.ru.md": ("Худшая нагрузка", "Численное сравнение", "C12", "dV/dt", "Сходимость"),
+            "inrush-load-step.ru.md": ("Худшая нагрузка", "Численное сравнение", "C12", "dV/dt", "Округление", "не пошаговая симуляция схемы"),
             "power-transition-result.ru.md": ("Группа модели", "Число рассмотренных случаев", "FAULT_KILL", "KILL→RUN", "применимости"),
         }
         for filename, fragments in expected.items():

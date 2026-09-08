@@ -10,7 +10,7 @@ H3-R2.3 consolidates the listed display, audio, IR, battery and Airband calculat
 
 | Domain | Provisional comparison | Result |
 |---|---:|---|
-| Дисплей / display | PASS | 2.956…3.286 V; 82.2 mA nominal backlight |
+| Дисплей / display | PASS | 2.943…3.300 V; 82.2 mA nominal backlight |
 | Аудио / audio | BOUNDED PASS | 45 retained leaf checks + current connector transfer guard |
 | IR | BOUNDED PASS | 47 retained leaf checks + current receiver transfer guard |
 | Аккумуляторы / battery | PASS | 38 retained leaf checks |
@@ -29,7 +29,7 @@ Review required:
 
 ## Backlight
 
-The uncontrolled `0 ohm` path is gone. Factory-stocked `RS-06L2R70FT` (`C323265`, 2.7 ohm +/-1%, 250 mW) is fitted. At the panel's published typical Vf the calculated range is 0.0 to 106.9 mA and remains below the published 120 mA maximum. Even at the protection latch upper threshold the resistor dissipates 149.3 mW < 250 mW.
+The uncontrolled `0 ohm` path is gone. Factory-stocked `RS-06L2R70FT` (`C323265`, 2.7 ohm +/-1%, 250 mW) is fitted. At the panel's published typical Vf the calculated range is 0.0 to 112.1 mA and remains below the published 120 mA maximum. Even at the protection latch upper threshold the resistor dissipates 149.3 mW < 250 mW.
 
 ## What remains to measure
 

@@ -102,7 +102,7 @@ check rejects images that no longer match the PCB files.
 **Current hardware marker: `H6.0.3-R1`.**
 
 - The historical H0–H5 reviews, including H2 native production ECAD, retain their own baseline scope; their reports are collected in [one index](docs/stage-results.md).
-- **Current H3 is `review_required`.** The [current analytical result](docs/h3-r2-acceptance.md) and [rail-voltage paths](docs/power-rail-margins.md) retain provisional calculations, but do not yet qualify the installed MAIN/AON power circuit or authorize production or battery energization.
+- **Current H3 is `review_required`.** The [current analytical result](docs/h3-r2-acceptance.md) and [rail-voltage paths](docs/power-rail-margins.md) now use the fitted MAIN converter/divider/current-setting resistor. They expose current and voltage shortfalls; MAIN temperature is not established. The MAIN/AON circuit remains unqualified for production or battery energization.
 - Both native KiCad boards pass the current [exact-placement checks](docs/h6-r2-exact-placement.md).
 - Manufacturer-drawing corrections are being integrated into both PCBs. The [native interface review](docs/h6-r2-interface-review.md) separates applied corrections from remaining assembly gates; clean DRC alone does not prove physical assembly.
 - Routing is in progress. Live copper/connectivity counts, hash-bound DRC results and the electrical-review limitations have one owner: [H6.0.3-R1](docs/h6-r2-current-routing.md).

@@ -6,14 +6,14 @@
   "baseline": "R2",
   "status": "review_required",
   "source_sha256": {
-    "hardware/verification/generated/H3-R2-crosscheck.json": "dfaed2e3368927d07e58a250c6523c0551ee283dae71c77e5e2004d1001f7251",
-    "hardware/verification/generated/H3-R2-physical-residuals.json": "fcb201cea4969d72acf917c1f01e45c9667be47dad8f901f7bb1062d5a499948",
+    "hardware/verification/generated/H3-R2-crosscheck.json": "6f730ec7938c82eec8f2d39f1559a5b7708a02729c7518f4a67df06049982b49",
+    "hardware/verification/generated/H3-R2-physical-residuals.json": "2778439c196cfaaf919ff1b8e4449408954e926054d25d2cc6270898982b5cf4",
     "hardware/verification/h3_r2_crosscheck.py": "76c1a872973ff147cdef8badb7993e42f1d4e6954dab171a0772b204da04fbe5",
-    "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+    "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
   },
   "result": {
     "analytical_scope_complete": false,
-    "open_analytical_findings": 3,
+    "open_analytical_findings": 4,
     "physical_residuals": 51,
     "physical_residuals_owned": true,
     "firmware_obligations": 1,
@@ -47,6 +47,7 @@
   },
   "open_findings": [
     "all_provisional_numerical_error_lists_are_empty",
+    "analog_digital_rf_and_thermal_numerical_checks",
     "numerical:existing_checks",
     "applicability:current_power_inputs"
   ],
@@ -67,10 +68,10 @@
     "production_release_authorized": false,
     "battery_energization_authorized": false,
     "source_sha256": {
-      "hardware/verification/generated/H3-R2-crosscheck.json": "dfaed2e3368927d07e58a250c6523c0551ee283dae71c77e5e2004d1001f7251",
-      "hardware/verification/generated/H3-R2-physical-residuals.json": "fcb201cea4969d72acf917c1f01e45c9667be47dad8f901f7bb1062d5a499948",
+      "hardware/verification/generated/H3-R2-crosscheck.json": "6f730ec7938c82eec8f2d39f1559a5b7708a02729c7518f4a67df06049982b49",
+      "hardware/verification/generated/H3-R2-physical-residuals.json": "2778439c196cfaaf919ff1b8e4449408954e926054d25d2cc6270898982b5cf4",
       "hardware/verification/h3_r2_crosscheck.py": "76c1a872973ff147cdef8badb7993e42f1d4e6954dab171a0772b204da04fbe5",
-      "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+      "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
     }
   },
   "provisional_numerical_errors": [],

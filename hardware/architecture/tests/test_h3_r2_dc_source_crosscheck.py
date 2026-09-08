@@ -40,7 +40,8 @@ class H3R2DcSourceCrosscheckTest(unittest.TestCase):
 
     def test_published_result_and_authorization_boundary(self):
         result = self.manifest["result"]
-        self.assertEqual("30.560", result["minimum_rail_current_reserve_percent"])
+        self.assertEqual("0.885", result["minimum_rail_current_reserve_percent"])
+        self.assertIsNone(result["minimum_junction_margin_c"])
         self.assertEqual("3.516", result["maximum_pack_discharge_a"])
         self.assertEqual(14, result["usb_only_profiles_refused"])
         self.assertFalse(any(self.manifest["authorization"].values()))

@@ -214,13 +214,13 @@ def build() -> tuple[dict[Path, str], dict]:
     ]
     checks = {
         "required_r2_methods_exist": {"M-INT", "M-TRANS", "M-STATE", "M-THERMAL"} <= method_ids,
-        "provisional_rail_source_numerical_checks": rails["summary"]["steady_thermal_failures"] == 0 and sources["summary"]["failed_states"] == 0,
+        "provisional_rail_source_numerical_checks": rails["summary"]["steady_thermal_failures"] == 0 and not rails["summary"].get("steady_thermal_unqualified_rails", []) and sources["summary"]["failed_states"] == 0,
         "all_56_r2_profiles_are_thermalized": len(profiles) == rails["summary"]["operating_profiles"] == 56,
         "all_28_sustained_profiles_are_thermalized": len(sustained_profiles) == 28,
         "external_sustained_current_is_capped_at_1a": max(row["external_5v_current_a"] for row in sustained_profiles) <= 1.0,
         "support_worst_remains_non_sustained": absolute["support_profile"] == "SUPPORT_WORST" and rails["policy"]["electrical_worst_is_not_a_sustained_profile"],
         "all_thermal_resistance_ceilings_are_positive": all(row["rtheta_to_65c_at_35c_k_per_w_max"] > 0 and row["rtheta_to_75c_at_35c_k_per_w_max"] > row["rtheta_to_65c_at_35c_k_per_w_max"] for row in profiles),
-        "rail_junction_margin_exceeds_20c": d(rails["summary"]["minimum_junction_margin_c"]) >= d(20),
+        "rail_junction_margin_exceeds_20c": rails["summary"]["minimum_junction_margin_c"] is not None and d(rails["summary"]["minimum_junction_margin_c"]) >= d(20),
         "maximum_sustained_cell_heat_is_bounded": d(sources["summary"]["maximum_sustained_cell_pair_i2r_w"]) <= d("0.200"),
         "three_independent_board_zones_exist": set(battery["board_zone_thermistors"]["channels"]) == {"POWER", "RF_VOICE", "UI"},
         "thermal_threshold_order_is_fail_safe": thresholds["sensor_short_code_at_or_below"] < thresholds["fault_kill_code_at_or_below"] < thresholds["warning_code_at_or_below"] < thresholds["fault_rearm_code_at_or_above"] < thresholds["sensor_open_code_at_or_above"],

@@ -29,18 +29,50 @@
     },
     "3V3_MAIN": {
       "nominal_v": 3.222,
-      "raw_average_min_v": 3.168510,
-      "raw_average_max_v": 3.275658,
+      "raw_average_min_v": 3.155013322,
+      "raw_average_max_v": 3.289694789,
       "ripple_pp_v": 0.020,
       "distribution_drop_v": 0.050,
       "load_min_v": 3.0,
       "load_max_v": 3.3,
-      "converter_min_a": 4.000,
-      "protection_min_a": 4.3399,
+      "converter_min_a": 6.000,
+      "converter_current_basis": "rated_continuous_output_not_valley_limit_or_qualified_layout_admission",
+      "protection_min_a": 3.072960761,
+      "protection_current_basis": "fitted_1650ohm_Eq5_initial_plus_TCR_conditioned_diagnostic",
       "efuse_ron_max_ohm": 0.050,
       "efuse_theta_ja_k_per_w": 71.8,
-      "converter_theta_ja_k_per_w": 74.0,
-      "source": "https://www.ti.com/lit/ds/symlink/tps564252.pdf"
+      "converter_theta_ja_k_per_w": null,
+      "source": "https://www.ti.com/lit/gpn/TPS566231",
+      "converter_operating_conditions": {"input_voltage_v": [6.0, 8.4], "junction_temperature_c": [-40, 125]},
+      "conditioned_model": {
+        "id": "fitted_MAIN_conditioned_diagnostic_v1",
+        "qualified": false,
+        "primary": {"url": "https://www.ti.com/lit/gpn/TPS566231", "revision": "SLUSDQ7B", "section": "5.4/5.5 pp5-6; 6.3 p13 current limit; 7.2 p16 feedback and filter application", "checked": "2026-09-08"},
+        "vfb_v": {"minimum": "0.591", "nominal": "0.600", "maximum": "0.609"},
+        "vfb_test_conditions": {"input_voltage_v": "12", "junction_temperature_c": ["-40", "125"], "actual_input_domain_qualification": false},
+        "feedback_resistors": {
+          "top_instance": "main_fb_top", "bottom_instance": "main_fb_bottom",
+          "reference_temperature_c": "20", "temperature_c": ["-40", "125"],
+          "source": "https://www.vishay.com/docs/28758/tnpw_e3.pdf", "revision": "10-Apr-2026", "section": "pp12/14 TCR relative to 20 C",
+          "stress_policy": "No solder/endurance lifetime allowance is included; separate named qualification remains open"
+        },
+        "converter_current": {"rated_output_a": "6", "valley_limit_a": {"minimum": "6.1", "typical": "7.4", "maximum": "8.9"}, "valley_is_not_average_output_current": true},
+        "protection": {
+          "instance": "main_efuse_rilm", "nominal_ohm": "1650", "initial_tolerance_fraction": "0.01", "tcr_ppm_per_c": "100",
+          "reference_temperature_c": "25", "temperature_c": ["-40", "125"],
+          "equation_constant_a_ohm": "5747", "gain_tolerance_fraction": "0.10", "configured_accuracy_domain_min_a_exclusive": "1.74",
+          "source": "https://www.ti.com/lit/ds/symlink/tps2597.pdf", "revision": "SLVSGG5D", "section": "Eq5; 6.5 header VIN12 V and exact 1650-ohm row kept separate",
+          "resistor_source": "https://www.uni-royal.cn/en/images/userfile/file/1753752986c56505e6d9ab55c7.pdf",
+          "resistor_revision": "V10 28-Jul-2025", "stress_policy": "Initial and TCR only, not a solder/endurance lifetime guarantee"
+        },
+        "engineering_budgets": {"ripple_pp_v": "0.020", "efuse_ron_ohm": "0.050", "downstream_distribution_drop_v": "0.050", "qualified": false},
+        "thermal_loss_budgets": {
+          "junction_design_c": "105", "ambient_c": ["35", "45"],
+          "reference_theta_ja_k_per_w": {"JEDEC_reference_board": "89.6", "TI_EVM": "44"},
+          "our_pcb_thermal_resistance_qualified": false,
+          "basis": "Allowed chip loss=(105-ambient)/reference theta; no assumed efficiency, loss prediction or our-PCB Tj"
+        }
+      }
     },
     "VVOICE_4V": {
       "nominal_v": 4.0,
@@ -87,7 +119,7 @@
       "consumer_location": "MAIN consumers after downstream routing and M1",
       "pg_sense_endpoint": "main_efuse_pg_top.END_1 (R66.1 on 3V3_MAIN before distribution)",
       "distribution_scope": "downstream_excludes_protection", "qualified": false,
-      "unqualified_reasons": ["The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally", "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm", "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum", "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance"]
+      "unqualified_reasons": ["TPS566231P VFB parameters are conditioned on the published VIN12 V table; applicability at actual NVDC6.0..8.4 V and line/load regulation remains open", "Feedback initial/TCR algebra excludes solder/endurance and unbounded dynamic terms; 20 mVpp ripple is an engineering allowance", "Fitted R67 1650-ohm Eq5 initial/TCR intervals remain conditioned diagnostics; H1 still requests another value and current admission/startup are not qualified", "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum", "The 0.050-V downstream distribution allowance and routed path are unqualified; PG threshold/response and thermal applicability remain open"]
     },
     "VVOICE_4V": {
       "raw_net": "VVOICE_RAW_4V", "protected_local_net": "VVOICE_4V",
@@ -164,7 +196,7 @@
   "thermal": {
     "minimum_efficiency": 0.85,
     "sustained_profile": "SUPPORT_IDLE",
-    "main_converter_evm_theta_ja_k_per_w": 74.0,
-    "reason": "SUPPORT_WORST is an electrical anti-hidden-load simultaneous corner, not a 24-to-48-hour operating permission"
+    "minimum_efficiency_scope": "Retained provisional non-MAIN calculations only; never a guaranteed TPS566231P efficiency or current MAIN thermal model",
+    "reason": "SUPPORT_WORST is an electrical anti-hidden-load simultaneous corner, not a 24-to-48-hour operating permission; MAIN uses separate reference-board allowable-loss budgets without predicting its junction temperature"
   }
 }

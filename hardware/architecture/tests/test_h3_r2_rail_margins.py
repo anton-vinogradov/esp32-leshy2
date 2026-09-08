@@ -30,20 +30,25 @@ class H3R2RailMarginTest(unittest.TestCase):
         self.assertEqual(0, summary["hidden_miscellaneous_allowances"])
 
     def test_provisional_algebra_is_not_qualified_current_power(self):
-        self.assertTrue(all(row["status"] == "pass" for row in self.manifest["worst_current_by_rail"].values()))
+        self.assertEqual("fail", self.manifest["worst_current_by_rail"]["3V3_MAIN"]["numerical_status"])
+        self.assertEqual("review_required", self.manifest["worst_current_by_rail"]["3V3_MAIN"]["status"])
+        self.assertTrue(all(row["status"] == "pass" for name, row in self.manifest["worst_current_by_rail"].items() if name != "3V3_MAIN"))
         self.assertTrue(all(row["status"] == "review_required" for row in self.manifest["voltage_corners"].values()))
         self.assertEqual("review_required", self.manifest["status"])
         self.assertEqual("fail", self.manifest["voltage_corners"]["3V3_MAIN"]["numerical_status"])
-        self.assertTrue(all(row["status"] == "pass" for row in self.manifest["steady_thermal_by_rail"].values()))
+        self.assertEqual("review_required", self.manifest["steady_thermal_by_rail"]["3V3_MAIN"]["status"])
+        self.assertIsNone(self.manifest["steady_thermal_by_rail"]["3V3_MAIN"]["converter_predicted_tj_c"])
+        self.assertTrue(all(row["status"] == "pass" for name, row in self.manifest["steady_thermal_by_rail"].items() if name != "3V3_MAIN"))
 
-    def test_old_four_amp_model_is_not_the_fitted_converter(self):
+    def test_fitted_six_amp_rating_is_not_a_qualified_current_admission(self):
         main = self.manifest["worst_current_by_rail"]["3V3_MAIN"]
-        self.assertEqual("4.000", main["converter_min_a"])
+        self.assertEqual("6.000", main["converter_min_a"])
+        self.assertEqual("3.072960761", main["protection_min_a"])
         self.assertIn("TPS566231", self.manifest["observed_main_converter"]["mpn"])
         self.assertFalse(self.manifest["current_power_scope"]["applicability_checks"]["main_raw_model"])
         self.assertEqual("3046.000", main["load_ma"])
         self.assertIn("3PTX", main["profile"])
-        self.assertEqual("154.000", main["margin_to_pf03_boundary_ma"])
+        self.assertEqual("-587.631", main["margin_to_pf03_boundary_ma"])
 
     def test_external_port_separates_electrical_and_sustained_limits(self):
         electrical = self.manifest["worst_current_by_rail"]["5V_EXT_ACTIVE_BRANCH"]

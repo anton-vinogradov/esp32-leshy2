@@ -8,10 +8,10 @@
     "hardware/verification/generated/H3-R2-method-contract.json": "6aeb96256aba61bf0a90c05675ee4c1c62ac7c3fdf69da596ebdd99a40715014",
     "hardware/verification/generated/H3-R2-power-state-register.json": "f2b831f444299d71058d25aa17555fcdaa4beab49f1cfa872e39aacac574498c",
     "hardware/verification/generated/H3-R2-load-binding.json": "63175fd054232146d7def375ff52f8161426de2b8b98d344ebd23beac3c01811",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "06b97ec6e2cf9baf6c6701867543245791f7e99f57b4a49779590d3e13a457fa",
-    "hardware/verification/generated/H3-R2-source-margins.json": "a47b5eae89e57707f93d0df93070bbd6a4fe0105c18b0562709c0abf75549a27",
-    "hardware/verification/h3_r2_dc_source_crosscheck.py": "b88942ec3a22bb07bf267257875cefcc85c41534c64a03495bc8cf369a080efb",
-    "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+    "hardware/verification/generated/H3-R2-rail-margins.json": "123d5f1f5e0a3d4ca3b7eb7b53da2ecf5b2558f129c06a3b0120a6deac92d47e",
+    "hardware/verification/generated/H3-R2-source-margins.json": "f791db277f6315f6abeaad8be8038263197184e9540072ea3e736e1802bc9a59",
+    "hardware/verification/h3_r2_dc_source_crosscheck.py": "ad4cf75366b5b8e0d6f12795813dda5233a04fa244ec3a0a1e97b0f5dd62b909",
+    "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
   },
   "checks": {
     "plan_closes_h3_r2_1": true,
@@ -47,8 +47,8 @@
     ]
   },
   "result": {
-    "minimum_rail_current_reserve_percent": "30.560",
-    "minimum_junction_margin_c": "24.706",
+    "minimum_rail_current_reserve_percent": "0.885",
+    "minimum_junction_margin_c": null,
     "maximum_sys_demand_w": "17.930",
     "maximum_pack_discharge_a": "3.516",
     "maximum_sustained_pack_discharge_a": "1.549",
@@ -60,7 +60,7 @@
     {
       "id": "H3-R2.1.3-F01",
       "finding": "The old H3 source/thermal/protection model is not applicable to the current fitted MAIN power cell",
-      "correction": "Preserve old numerical parameters as provisional and explicitly include protection voltage drop; exact model qualification remains open",
+      "correction": "Replace MAIN raw/current arithmetic by exact fitted component/test-condition model; retain reference-board thermal loss budgets instead of predicting MAIN Tj; application qualification remains open",
       "effect": "A positive old current remainder is not proof of current-native PF-R2-03 or consumer voltage",
       "bom_cost_effect": "0; evidence correction only"
     },
@@ -125,10 +125,10 @@
       "hardware/verification/generated/H3-R2-method-contract.json": "6aeb96256aba61bf0a90c05675ee4c1c62ac7c3fdf69da596ebdd99a40715014",
       "hardware/verification/generated/H3-R2-power-state-register.json": "f2b831f444299d71058d25aa17555fcdaa4beab49f1cfa872e39aacac574498c",
       "hardware/verification/generated/H3-R2-load-binding.json": "63175fd054232146d7def375ff52f8161426de2b8b98d344ebd23beac3c01811",
-      "hardware/verification/generated/H3-R2-rail-margins.json": "06b97ec6e2cf9baf6c6701867543245791f7e99f57b4a49779590d3e13a457fa",
-      "hardware/verification/generated/H3-R2-source-margins.json": "a47b5eae89e57707f93d0df93070bbd6a4fe0105c18b0562709c0abf75549a27",
-      "hardware/verification/h3_r2_dc_source_crosscheck.py": "b88942ec3a22bb07bf267257875cefcc85c41534c64a03495bc8cf369a080efb",
-      "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+      "hardware/verification/generated/H3-R2-rail-margins.json": "123d5f1f5e0a3d4ca3b7eb7b53da2ecf5b2558f129c06a3b0120a6deac92d47e",
+      "hardware/verification/generated/H3-R2-source-margins.json": "f791db277f6315f6abeaad8be8038263197184e9540072ea3e736e1802bc9a59",
+      "hardware/verification/h3_r2_dc_source_crosscheck.py": "ad4cf75366b5b8e0d6f12795813dda5233a04fa244ec3a0a1e97b0f5dd62b909",
+      "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
     }
   },
   "provisional_numerical_errors": [

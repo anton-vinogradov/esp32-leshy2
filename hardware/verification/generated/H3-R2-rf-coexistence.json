@@ -10,11 +10,11 @@
     "hardware/architecture/antenna-kit.json": "7ee1b3ca0f45a81346bd52033594c060a4f2deed4de9191545271ab58a4bc004",
     "hardware/product-design/generated/H1-R2-placement-audit.json": "55b104bc6b398ad874f7c03cda265b7291566d3f0ce25cd7a2803074c4c06a09",
     "hardware/verification/generated/H3-R2-power-state-register.json": "f2b831f444299d71058d25aa17555fcdaa4beab49f1cfa872e39aacac574498c",
-    "hardware/verification/generated/H3-R2-digital-interfaces.json": "0c5fc7e70dc022d63ee24e19a1d52b2b394c94dede46c4bb947cac523489cd8b",
-    "hardware/verification/generated/H3-R2-analog-corners.json": "02e05ba4ca72a8ec88d082dd6acca02eb5f2e57e8557c80831089b353ec280ec",
+    "hardware/verification/generated/H3-R2-digital-interfaces.json": "7e776005f2d8363e55972c64c04b897dc61ff773cfcbb5688e74369d0348c66e",
+    "hardware/verification/generated/H3-R2-analog-corners.json": "e2b0d51ad31bf63e69aeced50bfec8941aec8cdd1a8fb3a6fc825760d6b4424e",
     "hardware/verification/generated/H3-R2-parameter-provenance.json": "a2ff62c79ceab4e29688002747762dcda9f10f12d81eb9e4930737ee34e0d69e",
     "hardware/verification/h3_r2_rf_coexistence.py": "cbba248305b60671a662246b7e730eb3fda0ac6978af5c8efa613ee9faa03a14",
-    "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+    "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
   },
   "summary": {
     "checks": 71,
@@ -516,11 +516,11 @@
       "hardware/architecture/antenna-kit.json": "7ee1b3ca0f45a81346bd52033594c060a4f2deed4de9191545271ab58a4bc004",
       "hardware/product-design/generated/H1-R2-placement-audit.json": "55b104bc6b398ad874f7c03cda265b7291566d3f0ce25cd7a2803074c4c06a09",
       "hardware/verification/generated/H3-R2-power-state-register.json": "f2b831f444299d71058d25aa17555fcdaa4beab49f1cfa872e39aacac574498c",
-      "hardware/verification/generated/H3-R2-digital-interfaces.json": "0c5fc7e70dc022d63ee24e19a1d52b2b394c94dede46c4bb947cac523489cd8b",
-      "hardware/verification/generated/H3-R2-analog-corners.json": "02e05ba4ca72a8ec88d082dd6acca02eb5f2e57e8557c80831089b353ec280ec",
+      "hardware/verification/generated/H3-R2-digital-interfaces.json": "7e776005f2d8363e55972c64c04b897dc61ff773cfcbb5688e74369d0348c66e",
+      "hardware/verification/generated/H3-R2-analog-corners.json": "e2b0d51ad31bf63e69aeced50bfec8941aec8cdd1a8fb3a6fc825760d6b4424e",
       "hardware/verification/generated/H3-R2-parameter-provenance.json": "a2ff62c79ceab4e29688002747762dcda9f10f12d81eb9e4930737ee34e0d69e",
       "hardware/verification/h3_r2_rf_coexistence.py": "cbba248305b60671a662246b7e730eb3fda0ac6978af5c8efa613ee9faa03a14",
-      "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+      "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
     }
   },
   "provisional_numerical_errors": [],

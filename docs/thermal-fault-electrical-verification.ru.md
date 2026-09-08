@@ -4,7 +4,7 @@
 
 **Текущий статус: `review_required`.** Численные и логические проверки ниже сохранены как предварительные. Применимость к установленной ячейке питания проверяется отдельно; открытые аналитические вопросы не заменены физическими испытаниями. Переход фазы, закупка, изготовление и питание от аккумуляторов не разрешены этим результатом.
 
-Открыто: `applicability:rail_inputs`; `applicability:source_inputs`; `applicability:transition_inputs`; `applicability:rf_inputs`.
+Открыто: `provisional_rail_source_numerical_checks`; `rail_junction_margin_exceeds_20c`; `numerical:existing_checks`; `applicability:rail_inputs`; `applicability:source_inputs`; `applicability:transition_inputs`; `applicability:rf_inputs`.
 
 [Машинное evidence](../hardware/verification/generated/H3-R2-thermal-fault.json).
 
