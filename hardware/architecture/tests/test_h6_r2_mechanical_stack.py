@@ -198,7 +198,7 @@ print("80 native same-number pairs and two in-memory negative controls passed; n
     def test_ntc_xy_placement_does_not_prove_physical_thermal_contact(self):
         thermal = self.audit["battery_thermal_contacts"]
         self.assertEqual(
-            [[33.44, 85.0], [52.54, 85.0]],
+            [[30.45, 85.0], [49.55, 85.0]],
             thermal["actual_ntc_centres_mm"],
         )
         self.assertEqual(

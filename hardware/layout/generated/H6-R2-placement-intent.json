@@ -1,0 +1,404 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "scope": "Independent planar product intent from native PCB; not general DRC or assembled-Z qualification",
+  "sources": {
+    "hardware/layout/h6_r2_placement_intent.py": "7f3468ce08589f0833628efd00122c9562b0ef94ad940cb14a886ffb26d9ba8d",
+    "hardware/layout/h6_r2_speaker_fit.py": "9e677eca3c1d320fc19fd25e961d884a1a903ca9f0af1ca3ad95835d20c38d30",
+    "hardware/layout/h6-r2-speaker-body.json": "79349b47e281bc89fc57b843987d5458035c59c9fe6459de42a5949ee690f78b",
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "4de030ef283becd282ef0a590d2e5eb42ba3491f66ffa3e9b59f250ef54d5902",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "1177dbb74d06adfa007199e2076b737185d0266f99b517d531a6a897c87328d6"
+  },
+  "checks": [
+    {
+      "requirement": "speaker body registered on UI inner face, not confused with RF wire termination",
+      "pass": true,
+      "observed": {
+        "status": "pass_scoped_native_registration",
+        "required_count": 5,
+        "observed_count": 5,
+        "assembly_qualified": false,
+        "maximum_bbox_mm": {
+          "x": [
+            9.6,
+            21.8
+          ],
+          "y": [
+            111.9,
+            136.1
+          ]
+        }
+      }
+    },
+    {
+      "requirement": "holder centered on rear PCB, not shifted to clear another part",
+      "pass": true,
+      "observed": {
+        "footprint": "Leshy2_R2:Keystone-1048P-POLARITY-CORRECTED",
+        "side": "F.Cu",
+        "anchor_mm": [
+          40.0,
+          85.0
+        ],
+        "rotation_deg": 90.0,
+        "fab_stroke_bounds_mm": [
+          20.06,
+          46.42,
+          59.94,
+          123.58
+        ],
+        "actuator_mm": null,
+        "pad1_nets": [
+          "/RF_02_PACK_SAFETY_AON/PACK_SLOT0_POSITIVE_RAW"
+        ]
+      }
+    },
+    {
+      "requirement": "holder drawing is the centered real body, not its 86mm land reserve",
+      "pass": true,
+      "observed": [
+        20.06,
+        46.42,
+        59.94,
+        123.58
+      ]
+    },
+    {
+      "requirement": "two outward NTCs follow the centered cell axes",
+      "pass": true,
+      "observed": [
+        [
+          30.45,
+          85.0
+        ],
+        [
+          49.55,
+          85.0
+        ]
+      ]
+    },
+    {
+      "requirement": "encoder on LEFT when looking at the exterior rear, antennas up",
+      "pass": true,
+      "observed": {
+        "footprint": "Leshy2_R2:EC11E18244AU-ENGINEERING-PTH",
+        "side": "F.Cu",
+        "anchor_mm": [
+          9.25,
+          81.25
+        ],
+        "rotation_deg": -90.0,
+        "fab_stroke_bounds_mm": [
+          3.2,
+          75.35,
+          15.3,
+          87.15
+        ],
+        "actuator_mm": null,
+        "pad1_nets": []
+      }
+    },
+    {
+      "requirement": "PTT on RIGHT when looking at the exterior rear, antennas up",
+      "pass": true,
+      "observed": {
+        "footprint": "Leshy2_R2:B3S-1100P",
+        "side": "F.Cu",
+        "anchor_mm": [
+          72.1,
+          67.42
+        ],
+        "rotation_deg": 0.0,
+        "fab_stroke_bounds_mm": [
+          69.05,
+          63.15,
+          75.15,
+          69.85
+        ],
+        "actuator_mm": [
+          72.1,
+          66.5
+        ],
+        "pad1_nets": [
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ]
+      }
+    },
+    {
+      "requirement": "headset jack body BETWEEN PCBs, with mouth toward left rear edge",
+      "pass": true,
+      "observed": {
+        "footprint": "Leshy2_R2:SJ-43515TS-SMT-TR",
+        "side": "B.Cu",
+        "anchor_mm": [
+          0.8,
+          99.9
+        ],
+        "rotation_deg": 0.0,
+        "fab_stroke_bounds_mm": [
+          -2.25,
+          96.05,
+          16.35,
+          102.95
+        ],
+        "actuator_mm": null,
+        "pad1_nets": [
+          "/RF_22_AUDIO_CODEC_IO/HEADSET_MIC_RAW"
+        ]
+      }
+    },
+    {
+      "requirement": "exact top-port microphone present on outward RF face",
+      "pass": true,
+      "observed": {
+        "pose": {
+          "footprint": "Leshy2:CMEJ-0413-42-SMT-TR",
+          "side": "F.Cu",
+          "anchor_mm": [
+            8.0,
+            112.0
+          ],
+          "rotation_deg": 180.0,
+          "fab_stroke_bounds_mm": [
+            5.95,
+            109.95,
+            10.05,
+            114.05
+          ],
+          "actuator_mm": null,
+          "pad1_nets": [
+            "/RF_22_AUDIO_CODEC_IO/MIC_RAW"
+          ]
+        },
+        "port_normal_if_exact_F": "outward from RF F; not enclosure acoustic qualification"
+      }
+    },
+    {
+      "requirement": "no ordinary RF support components moved outside merely to solve packing",
+      "pass": true,
+      "observed": []
+    },
+    {
+      "requirement": "product USB is inward-facing PCB mount, outward mouth without overhang",
+      "pass": true,
+      "observed": {
+        "pose": {
+          "footprint": "Leshy2_R2:USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk",
+          "side": "B.Cu",
+          "anchor_mm": [
+            16.469999,
+            146.2
+          ],
+          "rotation_deg": 180.0,
+          "fab_stroke_bounds_mm": [
+            11.949999,
+            142.85,
+            20.989999,
+            149.85
+          ],
+          "actuator_mm": null,
+          "pad1_nets": []
+        },
+        "mouth_y_mm": 149.79999999999998
+      }
+    },
+    {
+      "requirement": "actual native microSD notch is open at the reviewed bottom-edge datum",
+      "pass": true,
+      "observed": {
+        "pass": true,
+        "axis_x_mm": 61.43,
+        "floor_y_mm": 148.8,
+        "observed_edges": [
+          [
+            "arc",
+            [
+              56.43,
+              149.4
+            ],
+            [
+              56.605736,
+              148.975736
+            ],
+            [
+              57.03,
+              148.8
+            ]
+          ],
+          [
+            "arc",
+            [
+              65.83,
+              148.8
+            ],
+            [
+              66.254264,
+              148.975736
+            ],
+            [
+              66.43,
+              149.4
+            ]
+          ],
+          [
+            "line",
+            [
+              56.43,
+              149.4
+            ],
+            [
+              56.43,
+              150.0
+            ]
+          ],
+          [
+            "line",
+            [
+              56.43,
+              150.0
+            ],
+            [
+              2.0,
+              150.0
+            ]
+          ],
+          [
+            "line",
+            [
+              65.83,
+              148.8
+            ],
+            [
+              57.03,
+              148.8
+            ]
+          ],
+          [
+            "line",
+            [
+              66.43,
+              150.0
+            ],
+            [
+              66.43,
+              149.4
+            ]
+          ],
+          [
+            "line",
+            [
+              78.0,
+              150.0
+            ],
+            [
+              66.43,
+              150.0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "requirement": "microSD locked card recessed; pressed card remains accessible at notch",
+      "pass": true,
+      "observed": {
+        "card_axis_x_mm": 61.43,
+        "notch_axis_x_mm": 61.43,
+        "locked_y_mm": 149.79999999999998,
+        "pushed_y_mm": 149.0,
+        "ejected_y_mm": 153.79999999999998
+      }
+    },
+    {
+      "requirement": "F1/F5 equal physical actuator edge insets",
+      "pass": true,
+      "observed": [
+        [
+          4.6000000000000005,
+          22.5
+        ],
+        [
+          75.4,
+          22.5
+        ]
+      ]
+    },
+    {
+      "requirement": "F2/F6 equal physical actuator edge insets",
+      "pass": true,
+      "observed": [
+        [
+          4.6000000000000005,
+          36.0
+        ],
+        [
+          75.4,
+          36.0
+        ]
+      ]
+    },
+    {
+      "requirement": "F3/F7 equal physical actuator edge insets",
+      "pass": true,
+      "observed": [
+        [
+          4.6000000000000005,
+          49.5
+        ],
+        [
+          75.4,
+          49.5
+        ]
+      ]
+    },
+    {
+      "requirement": "F4/F8 equal physical actuator edge insets",
+      "pass": true,
+      "observed": [
+        [
+          4.6000000000000005,
+          63.0
+        ],
+        [
+          75.4,
+          63.00000000000001
+        ]
+      ]
+    },
+    {
+      "requirement": "LESHY2-UI-R2 five symmetric outward SMA ports at >=14.7mm pitch",
+      "pass": true,
+      "observed": [
+        10.6,
+        25.3,
+        40.0,
+        54.7,
+        69.4
+      ]
+    },
+    {
+      "requirement": "LESHY2-RF-R2 five symmetric outward SMA ports at >=14.7mm pitch",
+      "pass": true,
+      "observed": [
+        10.6,
+        25.3,
+        40.0,
+        54.7,
+        69.4
+      ]
+    },
+    {
+      "requirement": "RF antenna labels match the actual UHF/VHF signal identities",
+      "pass": true,
+      "observed": {
+        "J6": [
+          "/RF_20_CC1101_VOICE_TX/VOICE_U_EXTERNAL_RF_50R"
+        ],
+        "J7": [
+          "/RF_20_CC1101_VOICE_TX/VOICE_V_EXTERNAL_RF_50R"
+        ]
+      }
+    }
+  ],
+  "failed_requirements": []
+}

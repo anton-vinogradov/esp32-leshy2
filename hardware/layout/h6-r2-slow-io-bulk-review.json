@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "status": "source_candidate_requires_joint_native_verification",
+  "scope": "One existing C259 placement and explicit U106 locality; no MPN, net, GPIO, value, pad geometry or routing changes",
+  "source_function": {
+    "path": "hardware/architecture/candidates/G2F-3I.json",
+    "endpoint": "slow_io_bulk_cap.END_1",
+    "statement": "one exact 1-uF local bulk capacitor supports the complete expander"
+  },
+  "component": {"reference": "C259", "instance": "slow_io_bulk_cap", "mpn": "TDK C1608X7R1C105K080AC", "footprint": "Capacitor_SMD:C_0603_1608Metric"},
+  "before": {"side": "B.Cu", "rotation_deg": 0, "anchor_mm": [70.125, 59.875]},
+  "candidate": {"side": "B.Cu", "rotation_deg": 90, "anchor_mm": [61.275, 82.125], "supply_pad_1_mm": [61.275, 82.9], "ground_pad_2_mm": [61.275, 81.35]},
+  "required_joint_dependency": {"reference": "C230", "instance": "headset_microphone_bias_filter_cap", "side": "B.Cu", "rotation_deg": 180, "anchor_mm": [12.0, 93.65], "scope": "separately reviewed internal audio relocation frees its old 0603 slot; C259 is not an alias or replacement for C230"},
+  "owner": {"reference": "U106", "instance": "slow_io", "maximum_courtyard_gap_mm": 2.5},
+  "actual_supply_pairs": [
+    {"canonical_net": "3V3_MAIN", "first": "C259.1", "second": "U106.27", "second_pad_mm": [56.095, 84.495], "before_mm": 27.961392, "candidate_mm": 5.420002, "maximum_mm": 7.5},
+    {"canonical_net": "3V3_MAIN", "first": "C259.1", "second": "U106.31", "second_pad_mm": [54.095, 84.495], "before_mm": 28.963070, "candidate_mm": 7.355027, "maximum_mm": 7.5}
+  ],
+  "unchanged_local_bypasses": ["C260 slow_io_vcci_bypass 100nF", "C261 slow_io_vccp_bypass 100nF"],
+  "not_owner_bypasses": {"C257": "UNIT_READY_DELAY", "C258": "PTT_BUTTON_RAW_N"},
+  "native_geometry_screen": {"same_face_courtyard_clearance_mm": 0.1, "minimum_courtyard_gap_mm": 0.12, "nearest_reference": "R2", "cross_face_pad_conflicts": 0, "old_copper_attachments": 0, "new_foreign_copper_within_0p2_mm": 0, "all_765_existing_copper_objects_unchanged": true},
+  "native_silk_screen": {
+    "status": "pass_scoped_snapshot",
+    "minimum_required_mm": 0.15,
+    "method": "Actual KiCad B.SilkS effective stroked shapes, with copper-shape mask expansions included; both own silk versus all masks and neighbor silk versus own masks",
+    "own_strokes": 2, "neighbor_strokes": 1925, "B_mask_pad_openings": 2717,
+    "minimum_including_own_mask_mm": 0.199999,
+    "minimum_foreign_silk_or_mask_mm": 0.63,
+    "minimum_R2_silk_or_mask_mm": 1.020091,
+    "violations": 0,
+    "negative_fixture": {"C259_anchor_mm": [59.865, 84.325], "detected_violations": 6},
+    "scratch_native_basis_sha256": "21ddb8b37c57e6c606cea4557047b03a3295473527dd33d50872525eae77d1da",
+    "detailed_receipt_sha256": "1686781e84c2df472bed3299ab00907fcacc72e93e7c561dc4c46c1e01b6ced3"
+  },
+  "limits": [
+    "7.5 mm is an explicit finite bulk-placement screen, not a manufacturer bypass prescription or measured transient performance.",
+    "The two local 100-nF bypasses remain separate; neither is removed or substituted by C259.",
+    "Quiet supply/return routing, rated behavior and runtime remain unqualified.",
+    "Snapshot geometry/silk checks do not replace the final joint placement build, parity and native DRC."
+  ],
+  "joint_native_DRC_pass_claimed": false,
+  "manufacturing_or_runtime_qualification_claimed": false
+}

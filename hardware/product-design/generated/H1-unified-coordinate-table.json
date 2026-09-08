@@ -1553,6 +1553,13 @@
         "remaining_to_opposite_pcb_plane_mm": 5.44
       },
       {
+        "instance": "power_command_switch",
+        "frame": "rf-inner",
+        "mpn": "C&K JS102011SCQN",
+        "height_mm": 5.5,
+        "remaining_to_opposite_pcb_plane_mm": 5.5
+      },
+      {
         "instance": "unit_connector",
         "frame": "rf-inner",
         "mpn": "1125R-SMT-4P",
@@ -1572,13 +1579,6 @@
         "mpn": "PUI Audio AS02404PO",
         "height_mm": 4.5,
         "remaining_to_opposite_pcb_plane_mm": 6.5
-      },
-      {
-        "instance": "power_command_switch",
-        "frame": "rf-inner",
-        "mpn": "C&K JS102011SCQN",
-        "height_mm": 3.6,
-        "remaining_to_opposite_pcb_plane_mm": 7.4
       },
       {
         "instance": "c5_service_usb_connector",
@@ -5738,7 +5738,7 @@
           114.5
         ],
         "z": [
-          12.76,
+          10.86,
           16.36
         ]
       },

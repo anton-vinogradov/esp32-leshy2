@@ -11,12 +11,12 @@
     },
     "exact_definition_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "11d04b89bd5e2140cfe76dd69a9a82da2fde66c3f4338853ebbd93ad8e7c9c6d",
+      "sha256": "6abe80697040f1445075dd4ae7f79c0715c325a2e586d59225e30ac5fa7c16fe",
       "authority": true
     },
     "physical_source_table": {
       "path": "hardware/product-design/generated/H1-physical-source-table.json",
-      "sha256": "bb02802f446d05ff6b93f96010a9197785e0645a97f1d73b6231c5130859c823",
+      "sha256": "6f5f258f2ffe737b9928bf609947975c77bbd44c8abbae80d39772a48a64f678",
       "authority": true
     },
     "historical_instance_hints": {

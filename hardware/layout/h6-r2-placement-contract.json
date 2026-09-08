@@ -148,16 +148,40 @@
     },
     "by_project": {
       "LESHY2-UI-R2": {
-        "s3_reset_button": {"edge": "left", "centre_y_mm": 117.25},
-        "s3_boot_button": {"edge": "left", "centre_y_mm": 124.25},
-        "c5_reset_button": {"edge": "right", "centre_y_mm": 117.25},
-        "c5_boot_button": {"edge": "right", "centre_y_mm": 124.25},
-        "hub_rp_reset_button": {"edge": "right", "centre_y_mm": 131.5},
-        "hub_rp_boot_button": {"edge": "right", "centre_y_mm": 138.0}
+        "s3_reset_button": {
+          "edge": "left",
+          "centre_y_mm": 117.25
+        },
+        "s3_boot_button": {
+          "edge": "left",
+          "centre_y_mm": 124.25
+        },
+        "c5_reset_button": {
+          "edge": "right",
+          "centre_y_mm": 117.25
+        },
+        "c5_boot_button": {
+          "edge": "right",
+          "centre_y_mm": 124.25
+        },
+        "hub_rp_reset_button": {
+          "edge": "right",
+          "centre_y_mm": 131.5
+        },
+        "hub_rp_boot_button": {
+          "edge": "right",
+          "centre_y_mm": 138.0
+        }
       },
       "LESHY2-RF-R2": {
-        "rf_rp_reset_button": {"edge": "left", "centre_y_mm": 108.25},
-        "rf_rp_boot_button": {"edge": "left", "centre_y_mm": 115.25}
+        "rf_rp_reset_button": {
+          "edge": "left",
+          "centre_y_mm": 108.25
+        },
+        "rf_rp_boot_button": {
+          "edge": "left",
+          "centre_y_mm": 115.25
+        }
       }
     }
   },
@@ -165,7 +189,16 @@
     "microsd_recess": {
       "id": "UI-MICROSD-RECESS-001",
       "board": "LESHY2-UI-R2",
-      "bbox_mm": {"x": [56.43, 66.43], "y": [148.8, 150.0]},
+      "bbox_mm": {
+        "x": [
+          56.43,
+          66.43
+        ],
+        "y": [
+          148.8,
+          150.0
+        ]
+      },
       "internal_radius_mm": 0.6,
       "card_axis_x_mm": 61.43,
       "shell_mouth_y_mm": 148.2,
@@ -182,7 +215,11 @@
       },
       "decision": "Move only the seven existing SD-group components 1.8 mm toward -Y, keep the physical card axis, and make an open rounded finger recess inside the unchanged 80 x 150 mm PCB envelope.",
       "constraints": "Preserve every existing copper object, all pad/net identities, mounting holes and display FPC slot. The SD courtyard may overhang this finger recess; native land/copper-to-edge checks remain mandatory, without reduced clearance rules.",
-      "remaining": ["Actual card and connector dimensional tolerances", "Enclosure finger access and closed-device STEP/dry fit", "No powered-card or full-routing qualification is implied"]
+      "remaining": [
+        "Actual card and connector dimensional tolerances",
+        "Enclosure finger access and closed-device STEP/dry fit",
+        "No powered-card or full-routing qualification is implied"
+      ]
     },
     "mounting_holes": {
       "diameter_mm": 2.7,
@@ -249,7 +286,7 @@
       "instance": "pack_holder",
       "side": "F.Cu",
       "centre_mm": [
-        42.99,
+        40.0,
         85.0
       ],
       "rotation_deg": 90.0
@@ -316,9 +353,20 @@
     }
   },
   "placement_overrides": {
+    "hub_rp_service_usb_switch_bypass": {
+      "frame": "front-inner",
+      "anchor_mm": [14.805, 136.905],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Move UI C54 only 0.30 mm downward to clear the separately registered AS02404PO body; preserve pad/net identities and existing copper. C54.1 to U31.1 improves from 4.1457 to 3.8733 mm, not a new 3-mm bypass qualification."
+    },
     "air_bpf_p2_c120": {
       "frame": "rear-inner",
-      "anchor_mm": [17.7,4.105],
+      "anchor_mm": [
+        17.7,
+        4.105
+      ],
       "rotation_deg": 0,
       "mechanical_locked": true,
       "method": "reviewed antenna-bank clearance correction",
@@ -326,7 +374,10 @@
     },
     "air_filter_to_lna_dc_block": {
       "frame": "rear-inner",
-      "anchor_mm": [10.49,3.65],
+      "anchor_mm": [
+        10.49,
+        3.65
+      ],
       "rotation_deg": 270,
       "mechanical_locked": true,
       "method": "reviewed antenna-bank clearance correction",
@@ -334,7 +385,10 @@
     },
     "air_lna_rail_bulk": {
       "frame": "rear-inner",
-      "anchor_mm": [5.1,1.95],
+      "anchor_mm": [
+        5.1,
+        1.95
+      ],
       "rotation_deg": 0,
       "mechanical_locked": true,
       "method": "reviewed antenna-bank clearance correction",
@@ -342,7 +396,10 @@
     },
     "air_bpf_s1_c": {
       "frame": "rear-inner",
-      "anchor_mm": [19.27,3.69],
+      "anchor_mm": [
+        19.27,
+        3.69
+      ],
       "rotation_deg": 90,
       "mechanical_locked": true,
       "method": "reviewed antenna-bank clearance correction",
@@ -350,7 +407,10 @@
     },
     "air_bpf_s2_c": {
       "frame": "rear-inner",
-      "anchor_mm": [18.6,2.0],
+      "anchor_mm": [
+        18.6,
+        2.0
+      ],
       "rotation_deg": 0,
       "mechanical_locked": true,
       "method": "reviewed antenna-bank clearance correction",
@@ -358,7 +418,10 @@
     },
     "air_bpf_s3_c": {
       "frame": "rear-inner",
-      "anchor_mm": [10.5,1.3],
+      "anchor_mm": [
+        10.5,
+        1.3
+      ],
       "rotation_deg": 90,
       "mechanical_locked": true,
       "method": "reviewed antenna-bank clearance correction",
@@ -366,7 +429,10 @@
     },
     "air_lna_rail_bypass": {
       "frame": "rear-inner",
-      "anchor_mm": [5.7,3.535],
+      "anchor_mm": [
+        5.7,
+        3.535
+      ],
       "rotation_deg": 90,
       "mechanical_locked": true,
       "method": "reviewed antenna-bank clearance correction",
@@ -374,7 +440,10 @@
     },
     "air_lo_match_c": {
       "frame": "rear-inner",
-      "anchor_mm": [20.4,3.4],
+      "anchor_mm": [
+        20.4,
+        3.4
+      ],
       "rotation_deg": 90,
       "mechanical_locked": true,
       "method": "reviewed antenna-bank clearance correction",
@@ -382,7 +451,10 @@
     },
     "air_mixer_input_match_c": {
       "frame": "rear-inner",
-      "anchor_mm": [20.4,1.3],
+      "anchor_mm": [
+        20.4,
+        1.3
+      ],
       "rotation_deg": 90,
       "mechanical_locked": true,
       "method": "reviewed antenna-bank clearance correction",
@@ -390,7 +462,10 @@
     },
     "receiver_fmi_esd": {
       "frame": "rear-inner",
-      "anchor_mm": [18.6,0.7],
+      "anchor_mm": [
+        18.6,
+        0.7
+      ],
       "rotation_deg": 0,
       "mechanical_locked": true,
       "method": "reviewed antenna-bank clearance correction",
@@ -398,7 +473,10 @@
     },
     "air_selector_to_receiver_dc_block": {
       "frame": "rear-inner",
-      "anchor_mm": [25.3,1.2],
+      "anchor_mm": [
+        25.3,
+        1.2
+      ],
       "rotation_deg": 90,
       "mechanical_locked": true,
       "method": "reviewed antenna-bank clearance correction",
@@ -406,7 +484,10 @@
     },
     "air_lo_dc_block": {
       "frame": "rear-inner",
-      "centre_mm": [25.305,3.305],
+      "centre_mm": [
+        25.305,
+        3.305
+      ],
       "rotation_deg": 90,
       "mechanical_locked": true,
       "method": "reviewed antenna-bank clearance correction",
@@ -414,7 +495,10 @@
     },
     "receiver_ami_coupling_cap": {
       "frame": "rear-inner",
-      "anchor_mm": [30.35,3.15],
+      "anchor_mm": [
+        30.35,
+        3.15
+      ],
       "rotation_deg": 90,
       "mechanical_locked": true,
       "method": "reviewed antenna-bank clearance correction",
@@ -422,7 +506,10 @@
     },
     "receiver_ami_esd": {
       "frame": "rear-inner",
-      "anchor_mm": [31.0,0.9],
+      "anchor_mm": [
+        31.0,
+        0.9
+      ],
       "rotation_deg": 0,
       "mechanical_locked": true,
       "method": "reviewed antenna-bank clearance correction",
@@ -430,7 +517,10 @@
     },
     "cc_return_buffer": {
       "frame": "rear-inner",
-      "centre_mm": [62,3.95],
+      "centre_mm": [
+        62,
+        3.95
+      ],
       "rotation_deg": 90,
       "mechanical_locked": true,
       "method": "reviewed antenna-bank clearance correction",
@@ -438,7 +528,10 @@
     },
     "cc_return_buffer_bypass": {
       "frame": "rear-inner",
-      "anchor_mm": [65.45,5.3],
+      "anchor_mm": [
+        65.45,
+        5.3
+      ],
       "rotation_deg": 270,
       "mechanical_locked": true,
       "method": "reviewed antenna-bank clearance correction",
@@ -446,7 +539,10 @@
     },
     "codec_tx_coupling": {
       "frame": "rear-inner",
-      "centre_mm": [63.125,8.725],
+      "centre_mm": [
+        63.125,
+        8.725
+      ],
       "rotation_deg": 0,
       "mechanical_locked": true,
       "method": "reviewed antenna-bank clearance correction",
@@ -454,7 +550,10 @@
     },
     "headphone_r_coupling1": {
       "frame": "rear-inner",
-      "centre_mm": [59.595,8.975],
+      "centre_mm": [
+        59.595,
+        8.975
+      ],
       "rotation_deg": 0,
       "mechanical_locked": true,
       "method": "reviewed antenna-bank clearance correction",
@@ -462,16 +561,22 @@
     },
     "pack_fuse1": {
       "frame": "rear-inner",
-      "anchor_mm": [56.5, 47.75],
-      "rotation_deg": 0,
+      "anchor_mm": [
+        53.37,
+        47.87
+      ],
+      "rotation_deg": 270,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Follow the corrected BT1.3 positive contact at the opposite cell end. Native raw-pad separation 4.2524 mm and existing holder-pad-to-fuse-courtyard locality 1.9309 mm <= 2 mm. No pre-existing copper attachment is moved; the new protected power path still requires routing. Exact holder mounting geometry remains open.",
+      "reason": "Follow the board-centred BT1.3 positive contact using the freed internal corridor. Preserve the existing 2-mm owner-pad-to-fuse-courtyard rule and <=4.5-mm pad-centre bound. Keep F2 on B.Cu, outside unverified external Cap/holder spaces. The new protected power path still requires routing; no pre-existing copper attachment moves.",
       "evidence": "hardware/layout/h6-r2-holder-polarity-review.json"
     },
     "u214_host_buffer_b": {
       "frame": "rear-inner",
-      "anchor_mm": [71.5, 28.4],
+      "anchor_mm": [
+        71.5,
+        28.4
+      ],
       "rotation_deg": 0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
@@ -480,7 +585,10 @@
     },
     "u214_host_buffer_b_bypass": {
       "frame": "rear-inner",
-      "anchor_mm": [76.6, 30.1],
+      "anchor_mm": [
+        76.6,
+        30.1
+      ],
       "rotation_deg": 0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
@@ -488,35 +596,51 @@
       "evidence": "hardware/layout/h6-r2-holder-polarity-review.json"
     },
     "headphone_jack": {
-      "frame": "rear-outer",
-      "anchor_mm": [0.8, 99.0],
-      "rotation_deg": 0,
-      "mechanical_locked": true,
-      "method": "reviewed outward connector mouth datum",
-      "reason": "Ordinary top-mount SJ-43515TS board-edge mouth at native X=-0.7; land1 starts X=0.4. Explicit drawing anchor, no mid-mount cutout; all five connected contacts and tip-switch2-to-5 retained.",
-      "evidence": "hardware/layout/h6-r2-audio-placement-proposal.json"
-    },
-    "audio_capture_selector_bypass": {
+      "project": "LESHY2-RF-R2",
       "frame": "rear-inner",
-      "anchor_mm": [5.6, 97.1],
+      "direction": "board-edge left mouth at X=-0.7 mm; insertion +X; B-side body inside sandwich, no electrical pad outside PCB",
+      "anchor_mm": [
+        0.8,
+        99.9
+      ],
       "rotation_deg": 0,
       "mechanical_locked": true,
       "method": "reviewed audio local-support correction",
-      "reason": "Clear the ordinary SMT jack locator drill while retaining local U68 bypass: VCC pair2.904mm, AUDIO_GROUND2.829mm.",
-      "evidence": "hardware/layout/h6-r2-audio-placement-proposal.json"
+      "reason": "Reviewed board-edge left mouth X=-0.7 mm and insertion +X; B-side body inside sandwich, copper stays on PCB. Exact device/nets preserved; no audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
-    "evidence_or_4": {
-      "frame": "rear-outer",
-      "anchor_mm": [10.5, 110.0],
+    "audio_capture_selector_bypass": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        9.55,
+        107.0
+      ],
       "rotation_deg": 90,
       "mechanical_locked": true,
       "method": "reviewed audio local-support correction",
-      "reason": "Move the existing three-pad evidence diode across the same RF PCB to clear the jack locator and retain uniform RF RP service labels without mask/silk overlap. Joint candidate gives 0.500mm courtyard gap to C144. All three net names retained, no existing track/via attachment; routing is still required.",
-      "evidence": "hardware/layout/h6-r2-audio-placement-proposal.json"
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "evidence_or_4": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        2.5,
+        131.5
+      ],
+      "rotation_deg": 180.0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
     "power_command_switch": {
       "frame": "rear-inner",
-      "anchor_mm": [78.2, 114.1],
+      "anchor_mm": [
+        78.2,
+        114.1
+      ],
       "rotation_deg": 270,
       "mechanical_locked": true,
       "method": "reviewed outward connector mouth datum",
@@ -800,7 +924,10 @@
     },
     "m1_rf_receptacle": {
       "frame": "rear-inner",
-      "anchor_mm": [37.5, 122.25],
+      "anchor_mm": [
+        37.5,
+        122.25
+      ],
       "rotation_deg": 180.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
@@ -808,7 +935,10 @@
     },
     "unit_bleeder": {
       "frame": "rear-inner",
-      "anchor_mm": [25.25, 127.5],
+      "anchor_mm": [
+        25.25,
+        127.5
+      ],
       "rotation_deg": 0.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 power-locality correction",
@@ -816,7 +946,10 @@
     },
     "unit_output_cap": {
       "frame": "rear-inner",
-      "anchor_mm": [22.3, 128.5],
+      "anchor_mm": [
+        22.3,
+        128.5
+      ],
       "rotation_deg": 90.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 power-locality correction",
@@ -826,12 +959,12 @@
       "frame": "rear-inner",
       "anchor_mm": [
         16.47,
-        146.9
+        146.2
       ],
       "rotation_deg": 180,
       "mechanical_locked": true,
       "method": "reviewed outward connector mouth datum",
-      "reason": "Restore the accepted RF board-edge port order in native coordinates (assembly world X = 80 - native X), using the manufacturer mouth datum and connector-adjacent protection. Existing routed copper is preserved.",
+      "reason": "Recess the RF board-edge product USB shell 0.20 mm nominally within the PCB edge, retaining the accepted port order and inner mounting side. The connector moves 0.70 mm inward from the JAE reference mounting position; this is a project-specific placement, not a new manufacturer recommendation. Preserve pin identities and verify adjacent protection, solder access and plug clearance.",
       "mechanical_datum": {
         "source_url": "https://www.mikrocontroller.net/attachment/650878/SJ121836.pdf",
         "source_section": "JAE-authored SJ121836 Rev.3 sheet 2, recommended mounting pattern viewed from mounting side; DATUM Y through locator holes and 5.05 mm to PCB EDGE",
@@ -845,16 +978,19 @@
         "local_pcb_edge_y_mm": 3.1,
         "local_shell_mouth_y_mm": 3.6,
         "native_pcb_edge_y_mm": 150.0,
-        "native_shell_mouth_y_mm": 150.5,
-        "shell_overhang_mm": 0.5,
-        "native_maximum_copper_y_mm": 149.35,
-        "minimum_copper_edge_clearance_mm": 0.65,
+        "native_shell_mouth_y_mm": 149.8,
+        "shell_overhang_mm": -0.2,
+        "native_maximum_copper_y_mm": 148.65,
+        "minimum_copper_edge_clearance_mm": 1.35,
         "scope": "Exact body, land and board-edge orientation; native DRC and assembled plug access are separate checks, not implied by this datum."
       }
     },
     "hub_rp_service_usb_connector": {
       "frame": "ui-inner",
-      "anchor_mm": [14.87, 146.325],
+      "anchor_mm": [
+        14.87,
+        146.325
+      ],
       "rotation_deg": 180.0,
       "mechanical_locked": true,
       "method": "reviewed outward connector mouth datum",
@@ -863,7 +999,10 @@
         "source_url": "https://gct.co/files/drawings/usb4105.pdf",
         "source_section": "Sheet 1, Recommended PCB Layout, as viewed from component side",
         "checked": "2026-09-07",
-        "local_mouth_axis": [0.0, 1.0],
+        "local_mouth_axis": [
+          0.0,
+          1.0
+        ],
         "local_pcb_edge_y_mm": 3.675,
         "native_pcb_edge_y_mm": 150.0,
         "access_scope": "nominal PCB mouth registration; assembled plug clearance remains a separate check"
@@ -871,7 +1010,10 @@
     },
     "c5_service_usb_connector": {
       "frame": "ui-inner",
-      "anchor_mm": [26.1, 146.325],
+      "anchor_mm": [
+        26.1,
+        146.325
+      ],
       "rotation_deg": 180.0,
       "mechanical_locked": true,
       "method": "reviewed outward connector mouth datum",
@@ -880,7 +1022,10 @@
         "source_url": "https://gct.co/files/drawings/usb4105.pdf",
         "source_section": "Sheet 1, Recommended PCB Layout, as viewed from component side",
         "checked": "2026-09-07",
-        "local_mouth_axis": [0.0, 1.0],
+        "local_mouth_axis": [
+          0.0,
+          1.0
+        ],
         "local_pcb_edge_y_mm": 3.675,
         "native_pcb_edge_y_mm": 150.0,
         "access_scope": "nominal PCB mouth registration; assembled plug clearance remains a separate check"
@@ -911,7 +1056,10 @@
     },
     "sd": {
       "frame": "ui-inner",
-      "anchor_mm": [61.005, 140.075],
+      "anchor_mm": [
+        61.005,
+        140.075
+      ],
       "rotation_deg": 180.0,
       "mechanical_locked": true,
       "method": "reviewed outward connector mouth datum",
@@ -920,7 +1068,10 @@
         "source_url": "https://www.hirose.com/product/en/download_file/key_name/DM3AT-SF-PEJM5/category/Drawing%20(2D)/doc_file_id/44099/?file_category_id=6&item_id=06090031000&is_series=",
         "source_section": "EDC-325165-00-00 sheet 1/6: mounting-side layout, 15.95-mm body, card over-stroke/lock/eject positions",
         "checked": "2026-09-07",
-        "local_mouth_axis": [0.0, 1.0],
+        "local_mouth_axis": [
+          0.0,
+          1.0
+        ],
         "local_shell_mouth_y_mm": 8.125,
         "native_shell_mouth_y_mm": 148.2,
         "placement_policy": "project-selected recessed shell mouth; manufacturer card-travel reference dimensions, not a claimed manufacturer-mandated PCB-edge or notch location",
@@ -943,7 +1094,10 @@
     },
     "sd_esd_a": {
       "frame": "ui-inner",
-      "anchor_mm": [59.645, 128.405],
+      "anchor_mm": [
+        59.645,
+        128.405
+      ],
       "rotation_deg": 90.0,
       "mechanical_locked": true,
       "method": "reviewed outward connector mouth datum",
@@ -951,7 +1105,10 @@
     },
     "sd_esd_b": {
       "frame": "ui-inner",
-      "anchor_mm": [63.145, 128.405],
+      "anchor_mm": [
+        63.145,
+        128.405
+      ],
       "rotation_deg": 90.0,
       "mechanical_locked": true,
       "method": "reviewed outward connector mouth datum",
@@ -959,7 +1116,10 @@
     },
     "sd_card_cmd_pullup": {
       "frame": "ui-inner",
-      "anchor_mm": [56.825, 130.2],
+      "anchor_mm": [
+        56.825,
+        130.2
+      ],
       "rotation_deg": 0.0,
       "mechanical_locked": true,
       "method": "reviewed outward connector mouth datum",
@@ -967,130 +1127,194 @@
     },
     "sd_card_dat1_pullup": {
       "frame": "ui-inner",
-      "anchor_mm": [66.075, 130.2],
+      "anchor_mm": [
+        66.075,
+        130.2
+      ],
       "rotation_deg": 0.0,
       "mechanical_locked": true,
       "method": "reviewed outward connector mouth datum",
       "reason": "Translate the existing SD DAT1 pull-up 1.8 mm toward -Y with its connector; preserve exact resistor, side, rotation and nets. UI-MICROSD-RECESS-001."
     },
     "sd_card_dat2_pullup": {
-      "frame": "ui-inner", "anchor_mm": [62.075, 130.315], "rotation_deg": 0.0,
-      "mechanical_locked": true, "method": "reviewed outward connector mouth datum",
-      "reason": "Translate the existing SD DAT2 pull-up 1.8 mm toward -Y with its connector; preserve exact resistor, side, rotation and nets. UI-MICROSD-RECESS-001."
+      "frame": "ui-inner",
+      "anchor_mm": [
+        61.565,
+        126.065
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the exact existing supply capacitor beside its actual power pin, or relocate the explicitly named unrouted resistor to open that local capacitor site. No net/MPN/copper changes; supply-pad guards are independent of naming heuristics.",
+      "evidence": "hardware/layout/h6-r2-ui-supply-locality.json"
     },
     "sd_card_dat3_pullup": {
-      "frame": "ui-inner", "anchor_mm": [59.825, 130.315], "rotation_deg": 0.0,
-      "mechanical_locked": true, "method": "reviewed outward connector mouth datum",
+      "frame": "ui-inner",
+      "anchor_mm": [
+        59.825,
+        130.315
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed outward connector mouth datum",
       "reason": "Translate the existing SD DAT3 pull-up 1.8 mm toward -Y with its connector; preserve exact resistor, side, rotation and nets. UI-MICROSD-RECESS-001."
     },
     "s3_tx_led": {
       "frame": "front-outer",
-      "centre_mm": [8.4, 104.9],
+      "centre_mm": [
+        8.4,
+        104.9
+      ],
       "rotation_deg": 0.0,
       "method": "reviewed outward user-indicator datum",
       "reason": "restore the visible WI-FI/BLE indicator to the accepted H1 exterior; convert the 1.6x0.8-mm body top-left into its physical centre"
     },
     "c5_tx_led": {
       "frame": "front-outer",
-      "centre_mm": [24.2, 104.9],
+      "centre_mm": [
+        24.2,
+        104.9
+      ],
       "rotation_deg": 0.0,
       "method": "reviewed outward user-indicator datum",
       "reason": "restore the visible WI-FI/15.4 indicator to the accepted H1 exterior, not the inner electronics face"
     },
     "nrf0_tx_led": {
       "frame": "front-outer",
-      "centre_mm": [40.0, 104.9],
+      "centre_mm": [
+        40.0,
+        104.9
+      ],
       "rotation_deg": 0.0,
       "method": "reviewed outward user-indicator datum",
       "reason": "restore the visible nRF24-1 indicator to row1 column3 of the accepted H1 exterior"
     },
     "nrf1_tx_led": {
       "frame": "front-outer",
-      "centre_mm": [55.8, 104.9],
+      "centre_mm": [
+        55.8,
+        104.9
+      ],
       "rotation_deg": 0.0,
       "method": "reviewed outward user-indicator datum",
       "reason": "restore the visible nRF24-2 indicator to row1 column4 of the accepted H1 exterior"
     },
     "nrf2_tx_led": {
       "frame": "front-outer",
-      "centre_mm": [71.6, 104.9],
+      "centre_mm": [
+        71.6,
+        104.9
+      ],
       "rotation_deg": 0.0,
       "method": "reviewed outward user-indicator datum",
       "reason": "restore the visible nRF24-3 indicator to row1 column5 of the accepted H1 exterior"
     },
     "cc_tx_led": {
       "frame": "front-outer",
-      "centre_mm": [8.4, 111.4],
+      "centre_mm": [
+        8.4,
+        111.4
+      ],
       "rotation_deg": 0.0,
       "method": "reviewed outward user-indicator datum",
       "reason": "restore the visible SUB-GHz indicator to row2 column1 of the accepted H1 exterior"
     },
     "voice_tx_led": {
       "frame": "front-outer",
-      "centre_mm": [24.2, 111.4],
+      "centre_mm": [
+        24.2,
+        111.4
+      ],
       "rotation_deg": 0.0,
       "method": "reviewed outward user-indicator datum",
       "reason": "restore the visible V/U TX indicator to row2 column2 of the accepted H1 exterior"
     },
     "ir_tx_led": {
       "frame": "front-outer",
-      "centre_mm": [40.0, 111.4],
+      "centre_mm": [
+        40.0,
+        111.4
+      ],
       "rotation_deg": 0.0,
       "method": "reviewed outward user-indicator datum",
       "reason": "restore the visible IR indicator to row2 column3 of the accepted H1 exterior"
     },
     "ext_tx_led": {
       "frame": "front-outer",
-      "centre_mm": [55.8, 111.4],
+      "centre_mm": [
+        55.8,
+        111.4
+      ],
       "rotation_deg": 0.0,
       "method": "reviewed outward user-indicator datum",
       "reason": "restore the visible LORA/EXT indicator to row2 column4 of the accepted H1 exterior"
     },
     "fault_led": {
       "frame": "front-outer",
-      "centre_mm": [71.6, 111.4],
+      "centre_mm": [
+        71.6,
+        111.4
+      ],
       "rotation_deg": 0.0,
       "method": "reviewed outward user-indicator datum",
       "reason": "restore the independent amber FAULT indicator to row2 column5 of the accepted H1 exterior"
     },
     "hub_rp_qspi_iovdd_bypass": {
       "frame": "ui-inner",
-      "centre_mm": [45.2, 68.25],
+      "centre_mm": [
+        45.2,
+        68.25
+      ],
       "rotation_deg": 90.0,
       "method": "reviewed H6.0.3 power-locality correction",
       "reason": "place the existing flash-supply capacitor at exact RP2354 pad69, not another supply pin"
     },
     "rf_rp_qspi_iovdd_bypass": {
       "frame": "rear-inner",
-      "centre_mm": [54.7, 39.175],
+      "centre_mm": [
+        54.7,
+        39.175
+      ],
       "rotation_deg": 180.0,
       "method": "reviewed H6.0.3 power-locality correction",
       "reason": "restore short QSPI_IOVDD pad69 decoupling using the existing capacitor"
     },
     "rf_rp_vreg_inductor": {
       "frame": "rear-inner",
-      "centre_mm": [54.22, 40.885],
+      "centre_mm": [
+        54.22,
+        40.885
+      ],
       "rotation_deg": 180.0,
       "method": "reviewed H6.0.3 power-locality correction",
       "reason": "make room for pad69 bypass while shortening both the VREG_LX and feedback-side pad distances"
     },
     "u214_esd_b": {
       "frame": "rear-inner",
-      "centre_mm": [54.79, 37.015],
+      "centre_mm": [
+        54.79,
+        37.015
+      ],
       "rotation_deg": 0.0,
       "method": "reviewed H6.0.3 signal-locality correction",
       "reason": "clear the relocated core inductor; all eight signal pad distances and both nearest ground-pad distances improve"
     },
     "det_voice": {
       "frame": "rf-inner",
-      "centre_mm": [3.575, 27.8],
+      "centre_mm": [
+        3.575,
+        27.8
+      ],
       "rotation_deg": 180.0,
       "method": "reviewed H6.0.3 signal-locality correction",
       "reason": "present the VCC pin to the free upper-left bypass pocket instead of the crowded module edge"
     },
     "voice_detector_bypass": {
       "frame": "rf-inner",
-      "centre_mm": [1.095, 24.8],
+      "centre_mm": [
+        1.095,
+        24.8
+      ],
       "rotation_deg": 90.0,
       "method": "reviewed H6.0.3 signal-locality correction",
       "reason": "place the detector bypass beside its actual VCC pin rather than the voice module"
@@ -1119,28 +1343,40 @@
     },
     "cc_switch_a": {
       "frame": "rf-inner",
-      "centre_mm": [66.225, 43.595],
+      "centre_mm": [
+        66.225,
+        43.595
+      ],
       "rotation_deg": 0.0,
       "method": "reviewed H6.0.3 signal-locality correction",
       "reason": "shift the switch 0.88 mm to retain assembly clearance beside the VHF detector bypass"
     },
     "nrf0": {
       "frame": "ui-inner",
-      "centre_mm": [17.05, 49.3],
+      "centre_mm": [
+        17.05,
+        49.3
+      ],
       "rotation_deg": 270.0,
       "method": "reviewed H6.0.3 signal-locality correction",
       "reason": "turn the published IPEX corner toward the antenna bank after applying the B.Cu mirror; preserve the module envelope and accepted 60-mm microcoax"
     },
     "nrf1": {
       "frame": "ui-inner",
-      "centre_mm": [41.85, 49.3],
+      "centre_mm": [
+        41.85,
+        49.3
+      ],
       "rotation_deg": 270.0,
       "method": "reviewed H6.0.3 signal-locality correction",
       "reason": "turn the published IPEX corner toward the antenna bank after applying the B.Cu mirror; preserve the module envelope and accepted 60-mm microcoax"
     },
     "nrf2": {
       "frame": "ui-inner",
-      "centre_mm": [61.65, 51.3],
+      "centre_mm": [
+        61.65,
+        51.3
+      ],
       "rotation_deg": 270.0,
       "method": "reviewed H6.0.3 signal-locality correction",
       "reason": "turn the published IPEX corner toward the antenna bank after applying the B.Cu mirror; preserve the module envelope and accepted 60-mm microcoax"
@@ -1168,7 +1404,10 @@
     },
     "s3_rf_coupler_termination": {
       "frame": "ui-inner",
-      "centre_mm": [30.25, 2.85],
+      "centre_mm": [
+        30.25,
+        2.85
+      ],
       "rotation_deg": 90.0,
       "mechanical_locked": true,
       "method": "reviewed antenna-bank clearance correction",
@@ -1198,7 +1437,10 @@
     },
     "s3_detector_bypass": {
       "frame": "ui-inner",
-      "anchor_mm": [36.605, 5.32],
+      "anchor_mm": [
+        36.605,
+        5.32
+      ],
       "rotation_deg": 90.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 edge-launch-land clearance correction",
@@ -1206,7 +1448,10 @@
     },
     "s3_supply_bypass": {
       "frame": "ui-inner",
-      "anchor_mm": [14.055, 23.555],
+      "anchor_mm": [
+        14.055,
+        23.555
+      ],
       "rotation_deg": 90.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 edge-launch-land clearance correction",
@@ -1214,7 +1459,10 @@
     },
     "s3_detector_ground_res": {
       "frame": "ui-inner",
-      "anchor_mm": [14.065, 18.825],
+      "anchor_mm": [
+        14.065,
+        18.825
+      ],
       "rotation_deg": 90.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 edge-launch-land clearance correction",
@@ -1303,34 +1551,37 @@
     "pack_holder": {
       "frame": "rear-outer",
       "centre_mm": [
-        42.99,
+        40.0,
         85.0
       ],
       "rotation_deg": 90.0,
-      "method": "reviewed H6.0.3 mechanical-clearance correction",
-      "reason": "shift the unconnected SMT holder 3.00 mm toward board +X so BT1 pad 1 clears the J12 locator hole and both native DRC findings disappear without moving the routed interboard connector"
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 holder-axis centering correction",
+      "reason": "Restore the requested board-centred X40 holder axis, retaining the accepted Y85 battery zone and F90 orientation. The corrected J12 B180 locators no longer require the former +3-mm workaround: existing holder copper has 3.00-mm clearance to the closest J12 locator at both poses. This centering does not qualify the provisional lands, absent holes or thermal contact."
     },
     "pack_ntc0": {
       "frame": "rear-outer",
       "centre_mm": [
-        33.44,
+        30.45,
         85.0
       ],
       "rotation_deg": 90.0,
+      "mechanical_locked": true,
       "allowed_same_face_overlap_owner": "pack_holder",
       "method": "reviewed H6.0.3 direct-cell thermal-contact placement",
-      "reason": "centre the first 0603 NTC in the open 1048P channel below cell 0 so a 5x5x3-mm electrically insulating compliant pad directly couples the cell to the sensor"
+      "reason": "Follow the centred holder's nominal cell0 axis with the first 0603 NTC. The planned insulating 5x5x3-mm pad, actual cell-floor registration and compression remain gated by H6-CELL-NTC-HEIGHT-FIT; XY alignment is not verified thermal contact."
     },
     "pack_ntc1": {
       "frame": "rear-outer",
       "centre_mm": [
-        52.54,
+        49.55,
         85.0
       ],
       "rotation_deg": 90.0,
+      "mechanical_locked": true,
       "allowed_same_face_overlap_owner": "pack_holder",
       "method": "reviewed H6.0.3 direct-cell thermal-contact placement",
-      "reason": "centre the second 0603 NTC in the open 1048P channel below cell 1 so a 5x5x3-mm electrically insulating compliant pad directly couples the cell to the sensor"
+      "reason": "Follow the centred holder's nominal cell1 axis with the second 0603 NTC. The planned insulating 5x5x3-mm pad, actual cell-floor registration and compression remain gated by H6-CELL-NTC-HEIGHT-FIT; XY alignment is not verified thermal contact."
     },
     "aon_buck": {
       "frame": "rear-inner",
@@ -1603,7 +1854,10 @@
     },
     "s3_rf_board_connector": {
       "frame": "ui-inner",
-      "anchor_mm": [19.04, 3.48],
+      "anchor_mm": [
+        19.04,
+        3.48
+      ],
       "rotation_deg": 0.0,
       "mechanical_locked": true,
       "method": "reviewed antenna-bank clearance correction",
@@ -1897,23 +2151,28 @@
       "reason": "place the XOUT series resistor in the clear corridor below the RP2354 and Y1 so both segments remain independent and via-free"
     },
     "cc_power_input_cap": {
-      "frame": "rear-outer",
-      "centre_mm": [
-        2.0,
-        76.0
+      "frame": "rear-inner",
+      "anchor_mm": [
+        1.5,
+        73.0
       ],
-      "rotation_deg": 0.0,
-      "method": "reviewed H6.0.2 oscillator-locality correction",
-      "reason": "move the displaced CC input bulk capacitor to the clear outer-face site directly opposite its power switch"
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Return the ordinary input capacitor to B inside the sandwich. Keep2.91mm nominal to U32 input pin1 without a cross-board-side connection; clear encoder body and PTH."
     },
     "voice_io_power_input_cap": {
-      "frame": "rear-outer",
-      "anchor_mm": [12.0, 106.0],
-      "rotation_deg": 270,
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        16.15,
+        92.75
+      ],
+      "rotation_deg": 90,
       "mechanical_locked": true,
       "method": "reviewed audio local-support correction",
-      "reason": "Clear selected F99 jack lands while keeping the same input-bypass net pair near U48; measured VCC-pad distance2.23mm, ground3.60mm.",
-      "evidence": "hardware/layout/h6-r2-audio-placement-proposal.json"
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
     "receiver_clock": {
       "frame": "rear-inner",
@@ -2016,13 +2275,17 @@
       "reason": "exchange the low-rate I2C pull-up site with the more placement-critical crystal load capacitor"
     },
     "headset_mic_selector": {
+      "project": "LESHY2-RF-R2",
       "frame": "rear-inner",
-      "centre_mm": [
-        78.495,
-        75.095
+      "anchor_mm": [
+        7.5,
+        110.25
       ],
-      "rotation_deg": 90.0,
-      "reason": "move the SC-70-6 body 0.25 mm inward so its package marker is not clipped by the routed board edge"
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
     "u214_host_buffer_a": {
       "frame": "rear-inner",
@@ -2192,13 +2455,13 @@
     "encoder": {
       "frame": "rear-outer",
       "anchor_mm": [
-        71,
-        50.25
+        9.25,
+        81.25
       ],
-      "rotation_deg": 0,
+      "rotation_deg": 270,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Keep the current native shaft axis and all five world pad/net pairs. MP pitch is 12.5 mm; the 2.0 x 4.0 mm plated capsule is a conditional engineering fit, not manufacturer-approved production acceptance."
+      "reason": "Return the shaft to the agreed LEFT rear-outer edge, explicitly31mm below the former wrong-sideY50.25. Preserve exact pad/net identities, PTT position and all existing copper; no image mirroring. The7PTH engineering footprint, knob/holder nominal plan gap and final housing/assembly acceptance remain distinct."
     },
     "ui_switch_f1": {
       "frame": "front-outer",
@@ -2455,6 +2718,1276 @@
           67.42
         ]
       }
+    },
+    "voice_v": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        40.05,
+        53.5
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Move the unchanged VHF module 1.20 mm left to provide a B-side F2 corridor after holder centering. Retain RF pin identity and verify all neighbouring circuitry and existing copper; this is not RF routing qualification."
+    },
+    "voice": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        13.1,
+        50.3
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Move the unchanged UHF module only 0.20 mm left, retaining 1.755-mm courtyard-to-board-edge distance, to preserve the full R37 shunt corridor while U51 moves 1.20 mm. No MPN, pin identity or routed copper changes."
+    },
+    "pack_shunt": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        26.575,
+        43.975
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the shunt beside the centred negative cell contact and between the two unchanged radio packages; nominal courtyard gaps to U39 and U51 are both 0.155 mm. Existing 4-mm owner-pad locality remains required."
+    },
+    "rear_i2c_sda_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        25.54,
+        34.365
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Compact the existing left control column to retain 0.1-mm courtyard clearance in the narrow U39/U51 corridor; preserve side, MPN, nets and copper."
+    },
+    "rear_i2c_scl_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        25.54,
+        35.615
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Compact the existing left control column to retain 0.1-mm courtyard clearance in the narrow U39/U51 corridor; preserve side, MPN, nets and copper."
+    },
+    "u219_field_hysteresis": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        25.54,
+        36.865
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Compact the existing left control column after holder centering; retain exact electrical identity and all established locality limits."
+    },
+    "audio_capture_rx_bias": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        25.54,
+        38.115
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Compact the existing left control column after holder centering; retain exact electrical identity and all established locality limits."
+    },
+    "cc_sclk_series": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        25.54,
+        39.365
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Compact the existing left control column after holder centering; retain exact electrical identity and all established locality limits."
+    },
+    "u219_pin10_command_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        27.6,
+        34.365
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Move the existing right control column 0.975 mm left with its local neighbours to clear the relocated VHF module; no electrical changes."
+    },
+    "u214_supervisor_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        27.6,
+        35.615
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Move the existing right control column 0.975 mm left with its local neighbours to clear the relocated VHF module; no electrical changes."
+    },
+    "voice_rx_series": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        27.6,
+        36.865
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Move the existing right control column 0.975 mm left with its local neighbours to clear the relocated VHF module; no electrical changes."
+    },
+    "cc_si_series": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        27.6,
+        38.115
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Move the existing right control column 0.975 mm left with its local neighbours to clear the relocated VHF module; no electrical changes."
+    },
+    "cc_csn_series": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        27.6,
+        39.365
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Move the existing right control column 0.975 mm left with its local neighbours to clear the relocated VHF module; no electrical changes."
+    },
+    "audio_capture_rx_coupling": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        27.73,
+        49.625
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Move the coupling capacitor 1.145 mm left to clear U51 while retaining the same analog net and local group; quiet audio routing remains separately required."
+    },
+    "receiver_power_on_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        25.365,
+        50.075
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Clear relocated C198 using the existing internal control corridor; preserve electrical identity and all copper."
+    },
+    "cc_host_sclk_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        27.6,
+        51.865
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Move the existing right control column 0.975 mm left with its local neighbours to clear the relocated VHF module; no electrical changes."
+    },
+    "receiver_irq_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        26.615,
+        53.475
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Shift only 0.4 mm along Y to preserve courtyard clearance below the relocated CC control resistor; no electrical changes."
+    },
+    "voice_v_ptt_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        25.54,
+        55.365
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the VHF PTT pullup in the compact existing control island, without changing the hardware TX-stop topology."
+    },
+    "cc_host_csn_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        27.6,
+        55.365
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Move the existing right control column 0.975 mm left with its local neighbours to clear the relocated VHF module; no electrical changes."
+    },
+    "voice_uart_rx_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        25.54,
+        56.615
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Turn the existing pulldown into the compact two-column control row above U45, preserving its native pin/net identity."
+    },
+    "voice_control_mux_b_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        27.575,
+        56.595
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Follow U45 by 0.760 mm along Y and retain its existing local bypass gate; no rail or capacitor value changes."
+    },
+    "voice_control_mux_b": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        26.445,
+        60.425
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Move U45 1.20 mm left and 0.85 mm up with C134 to preserve the radio corridor and a short local PTT-pullup connection below it."
+    },
+    "voice_ptt_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        26.575,
+        64.225
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Place the existing UHF PTT pullup immediately below U45 instead of lengthening the control branch around the microphone coupling capacitors. No hardware TX-stop topology change."
+    },
+    "voice_v_mic_coupling": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        27.73,
+        66.625
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Move the coupling capacitor 1.145 mm left to clear U51 while retaining the same analog net and local group; quiet audio routing remains separately required."
+    },
+    "voice_pd_gate": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        27.295,
+        70.675
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Shift the gate only 0.10 mm left for the relocated U51 courtyard; keep its C149 bypass and all electrical roles unchanged."
+    },
+    "voice_v_evidence_hysteresis": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        12.0,
+        105.85
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Clear the encoder mounting PTH and reduce the existing comparator threshold span. This site requires the coordinated inner-audio C257/R258 relocation and R267 B90[13.115,107.46]; do not promote the encoder package alone. Feedback routing remains open."
+    },
+    "evidence_mask": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        7.05,
+        81.55
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the existing IC on B, between the encoder through-board pads; move its real supply bypass with it. No control topology or net identity changes."
+    },
+    "u214_supervisor": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        2.3,
+        87.3
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Clear the left electrical PTH bank with its bypass, CT and sense-bottom resistor retained locally."
+    },
+    "cc_band_buffer": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        13.225,
+        82.9
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Place the low-rate band-control buffer inside the PTH ring without moving any RF module or routed RF path; actual VCC8 bypass distance is checked."
+    },
+    "evidence_cmp_voice": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        13.775,
+        77.9
+      ],
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Clear the encoder while keeping the supply bypass and upper threshold resistor within3mm of the actual pins. Bottom-threshold path6.52mm remains unrouted and explicitly reviewed, not RF/analog closure."
+    },
+    "cc_host_buffer": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        16.25,
+        72.95
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Move0.30mm upward to admit the adjacent comparator; preserve the existing local bypass and RF module courtyards."
+    },
+    "u214_supervisor_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        5.6,
+        87.3
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep AON bypass within3mm of U94 actual supply pin6 on the inner face."
+    },
+    "u214_supervisor_ct": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        5.6,
+        86.1
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Follow U94 with the existing timing capacitor; electrical value and reset behavior do not change."
+    },
+    "evidence_mask_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        10.3,
+        77.025
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Correct the former8.45mm bypass span to the real U111 supply pin24, now1.85mm; clear the mounting PTH."
+    },
+    "evidence_cmp_voice_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        16.2,
+        80.4
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Horizontal between encoder switch PTH: courtyard gap0.2305mm and actual VCC5 pad distance2.9486mm to U109; no clearance waiver."
+    },
+    "cc_band_buffer_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        16.2,
+        81.65
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Horizontal between encoder switch PTH: courtyard gap0.175mm and actual VCC8 pad distance1.7665mm to U30; no clearance waiver."
+    },
+    "voice_hl_driver": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        3.695,
+        90.595
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Move0.20mm down and face supply toward its inner-face bypass; no existing copper attachment or RF-path relocation."
+    },
+    "voice_hl_driver_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        0.9,
+        90.5
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the displaced capacitor on B with1.99mm to U47 supply pin5."
+    },
+    "hub_safe_i2c_aon_100n": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        55.45,
+        113.85
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Move the displaced bypass to its real U6 VCCB8 owner; reduce the existing52.91mm span to1.55mm."
+    },
+    "hub_safe_i2c_aon_1u": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        53.325,
+        113.85
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the parallel bulk bypass on B beside its 100n partner, within3mm of real U6 VCCB8."
+    },
+    "hub_safe_i2c_main_100n": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        51.2,
+        113.85
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Move the displaced bypass to its real U6 VCCA1 owner; reduce the existing50.94mm span to1.55mm."
+    },
+    "hub_safe_i2c_main_1u": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        49.0,
+        113.85
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the parallel bulk bypass on B beside its 100n partner, within3mm of real U6 VCCA1."
+    },
+    "u214_supervisor_sense_bottom": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        5.6,
+        88.5
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Follow U94 sense pin5, reducing the native pad span to2.04mm while clearing the mounting PTH."
+    },
+    "voice_evidence_threshold_top": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        11.865,
+        78.8
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Use the inner gap between U111 and U109, reducing the threshold-pin3 connection to2.96mm."
+    },
+    "voice_evidence_threshold_bottom": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        18.8,
+        82.05
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Clear the encoder push PTH and supply bypasses. Native low-rate threshold span increases4.68→6.52mm; no attached copper, and route/noise review remains open."
+    },
+    "safe_reset_gate_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        10.2,
+        89.65
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Move the displaced pullup toward its Q6 gate, below the mounting PTH; keep reset topology and value unchanged."
+    },
+    "ptt_filter_cap": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        18.75,
+        83.2
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Clear the encoder mounting PTH and move the existing raw-PTT capacitor toward its pullup; no PTT switch-side or electrical change."
+    },
+    "speaker_amp_bulk_cap": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        51.6,
+        90.75
+      ],
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "speaker_amp_input_cap": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        49.8,
+        90.75
+      ],
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "safe_latch_bypass": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        64.855,
+        102.055
+      ],
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "run_loop_pullup": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        13.115,
+        107.46
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "safe_latch": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        62.75,
+        102.0
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "cc_backup_gate_bypass": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        13.645,
+        116.82
+      ],
+      "rotation_deg": 270.0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "voice_io_power_output_cap": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        20.5,
+        94.7
+      ],
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "audio_capture_mic_coupling": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        13.25,
+        111.25
+      ],
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "codec_power_input_cap": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        76.75,
+        78.6
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "codec_power_output_cap": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        76.75,
+        74.4
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "headset_mic_selector_bypass": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        9.55,
+        110.25
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "headset_microphone_bias_filter_cap": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        12.0,
+        93.65
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "mic_tx_coupling": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        11.45,
+        111.25
+      ],
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "microphone_bias_filter_cap": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        7.0,
+        115.4
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "unit_supervisor_bypass": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        22.0,
+        95.25
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "unit_supervisor_ct": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        28.0,
+        97.5
+      ],
+      "rotation_deg": 180.0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "safe_fault_reset_buffer_bypass": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        39.105,
+        129.055
+      ],
+      "rotation_deg": 270.0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "slow_io_fault_sense_iso_bypass": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        36.459999,
+        115.39
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "slow_io_s3_evidence_iso_bypass": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        1.16,
+        121.16
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "ext_evidence_buffer_bypass": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        18.305,
+        121.645
+      ],
+      "rotation_deg": 180.0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "microphone": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-outer",
+      "anchor_mm": [
+        8,
+        112
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "audio_capture_mic_bias": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        13.25,
+        113.85
+      ],
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "headset_mic_bias_res": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        12.0,
+        92.25
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "headset_mic_select_pullup": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        5.7,
+        109.75
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "headset_microphone_bias_filter_res": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        9.3,
+        93.65
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "mic_tx_bias": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        11.45,
+        113.85
+      ],
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "microphone_bias_filter_res": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        9.7,
+        115.4
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "microphone_bias_res": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        7.0,
+        114.0
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "unit_supervisor_sense_bottom": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        21.5,
+        104.25
+      ],
+      "rotation_deg": 180.0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "evidence_mask_p15_pulldown": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        15.25,
+        110.75
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "voice_v_evidence_threshold_bottom": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        20.25,
+        106.0
+      ],
+      "rotation_deg": 180.0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "voice_v_evidence_threshold_top": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        20.25,
+        107.25
+      ],
+      "rotation_deg": 180.0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "ext_evidence_output_pullup": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        14.75,
+        92.75
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "evidence_or_0": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        39.0,
+        114.75
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "evidence_or_1": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        2.75,
+        124.0
+      ],
+      "rotation_deg": 180.0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "evidence_or_3": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        2.75,
+        127.75
+      ],
+      "rotation_deg": 180.0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "safe_fault_reset_buffer": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        37.0,
+        129.0
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "slow_io_fault_sense_iso": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        34.25,
+        115.0
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "slow_io_s3_evidence_iso": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        3.75,
+        119.75
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "ext_evidence_buffer": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        18.25,
+        119.5
+      ],
+      "rotation_deg": 180.0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "cc_backup_gate": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        16.25,
+        116.75
+      ],
+      "rotation_deg": 180.0,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "voice_io_power_switch": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        18.25,
+        92.75
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "audio_capture_selector": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        7.5,
+        107.0
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "codec_power_switch": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        76.75,
+        76.5
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "headphone_esd": {
+      "project": "LESHY2-RF-R2",
+      "frame": "rear-inner",
+      "anchor_mm": [
+        5.0,
+        93.5
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed audio local-support correction",
+      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+    },
+    "backlight_efuse_input_cap": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        43.862,
+        40.42
+      ],
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the exact existing supply capacitor beside its actual power pin, or relocate the explicitly named unrouted resistor to open that local capacitor site. No net/MPN/copper changes; supply-pad guards are independent of naming heuristics.",
+      "evidence": "hardware/layout/h6-r2-ui-supply-locality.json"
+    },
+    "sys_i2c_scl_pullup": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        53.865,
+        40.335
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the exact existing supply capacitor beside its actual power pin, or relocate the explicitly named unrouted resistor to open that local capacitor site. No net/MPN/copper changes; supply-pad guards are independent of naming heuristics.",
+      "evidence": "hardware/layout/h6-r2-ui-supply-locality.json"
+    },
+    "sd_power_input_cap": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        40.77,
+        78.433
+      ],
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the exact existing supply capacitor beside its actual power pin, or relocate the explicitly named unrouted resistor to open that local capacitor site. No net/MPN/copper changes; supply-pad guards are independent of naming heuristics.",
+      "evidence": "hardware/layout/h6-r2-ui-supply-locality.json"
+    },
+    "sd_power_hf_cap": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        62.155,
+        130.35
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the exact existing supply capacitor beside its actual power pin, or relocate the explicitly named unrouted resistor to open that local capacitor site. No net/MPN/copper changes; supply-pad guards are independent of naming heuristics.",
+      "evidence": "hardware/layout/h6-r2-ui-supply-locality.json"
+    },
+    "sd_power_bulk_cap": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        66.78,
+        128.35
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the exact existing supply capacitor beside its actual power pin, or relocate the explicitly named unrouted resistor to open that local capacitor site. No net/MPN/copper changes; supply-pad guards are independent of naming heuristics.",
+      "evidence": "hardware/layout/h6-r2-ui-supply-locality.json"
+    },
+    "nrf0_module_hf_cap": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        5.175,
+        53.745
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the exact existing supply capacitor beside its actual power pin, or relocate the explicitly named unrouted resistor to open that local capacitor site. No net/MPN/copper changes; supply-pad guards are independent of naming heuristics.",
+      "evidence": "hardware/layout/h6-r2-ui-supply-locality.json"
+    },
+    "nrf0_module_bulk_cap": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        4.55,
+        52.245
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the exact existing supply capacitor beside its actual power pin, or relocate the explicitly named unrouted resistor to open that local capacitor site. No net/MPN/copper changes; supply-pad guards are independent of naming heuristics.",
+      "evidence": "hardware/layout/h6-r2-ui-supply-locality.json"
+    },
+    "nrf1_module_hf_cap": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        29.85,
+        50.12
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the exact existing supply capacitor beside its actual power pin, or relocate the explicitly named unrouted resistor to open that local capacitor site. No net/MPN/copper changes; supply-pad guards are independent of naming heuristics.",
+      "evidence": "hardware/layout/h6-r2-ui-supply-locality.json"
+    },
+    "nrf1_module_bulk_cap": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        30.1,
+        47.87
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the exact existing supply capacitor beside its actual power pin, or relocate the explicitly named unrouted resistor to open that local capacitor site. No net/MPN/copper changes; supply-pad guards are independent of naming heuristics.",
+      "evidence": "hardware/layout/h6-r2-ui-supply-locality.json"
+    },
+    "nrf2_module_hf_cap": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        51.15,
+        57.62
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the exact existing supply capacitor beside its actual power pin, or relocate the explicitly named unrouted resistor to open that local capacitor site. No net/MPN/copper changes; supply-pad guards are independent of naming heuristics.",
+      "evidence": "hardware/layout/h6-r2-ui-supply-locality.json"
+    },
+    "nrf2_module_bulk_cap": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        57.275,
+        61.995
+      ],
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the exact existing supply capacitor beside its actual power pin, or relocate the explicitly named unrouted resistor to open that local capacitor site. No net/MPN/copper changes; supply-pad guards are independent of naming heuristics.",
+      "evidence": "hardware/layout/h6-r2-ui-supply-locality.json"
+    },
+    "nrf2_module_ce_pulldown": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        44.815,
+        58.365
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the exact existing supply capacitor beside its actual power pin, or relocate the explicitly named unrouted resistor to open that local capacitor site. No net/MPN/copper changes; supply-pad guards are independent of naming heuristics.",
+      "evidence": "hardware/layout/h6-r2-ui-supply-locality.json"
+    },
+    "c5_sdio_d0_series": {
+      "frame": "ui-inner",
+      "anchor_mm": [
+        44.315,
+        60.115
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the exact existing supply capacitor beside its actual power pin, or relocate the explicitly named unrouted resistor to open that local capacitor site. No net/MPN/copper changes; supply-pad guards are independent of naming heuristics.",
+      "evidence": "hardware/layout/h6-r2-ui-supply-locality.json"
+    },
+    "slow_io_bulk_cap": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        61.275,
+        82.125
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Restore the explicitly local 1-uF bulk to U106, using the old C230 slot vacated by the accepted internal audio relocation. Preserve C259 identity, 3V3_MAIN/POWER_GROUND pads, MPN, side and all existing copper. Both actual U106 supply-pad distances are checked <=7.5 mm; this does not replace its two 100-nF bypasses or qualify routed decoupling/runtime.",
+      "evidence": "hardware/layout/h6-r2-slow-io-bulk-review.json"
     }
   },
   "post_placement_corrections": {
@@ -2489,6 +4022,10 @@
     },
     "released_instances": [],
     "locality_owner_overrides": {
+      "hub_safe_i2c_aon_100n": "hub_safe_i2c_boundary",
+      "hub_safe_i2c_aon_1u": "hub_safe_i2c_boundary",
+      "hub_safe_i2c_main_100n": "hub_safe_i2c_boundary",
+      "hub_safe_i2c_main_1u": "hub_safe_i2c_boundary",
       "air_lna_rail_bypass": "air_lna_bias_choke",
       "air_lna_rail_bulk": "air_lna_rail_bypass",
       "s3_detector_bypass": "det_s3",
@@ -2664,7 +4201,18 @@
       "voice_efuse_ovlo_top": "voice_efuse",
       "voice_efuse_pg_bottom": "voice_efuse",
       "voice_efuse_pg_top": "voice_efuse",
-      "voice_efuse_rilm": "voice_efuse"
+      "voice_efuse_rilm": "voice_efuse",
+      "backlight_efuse_input_cap": "backlight_efuse",
+      "sd_power_input_cap": "sd_power_switch",
+      "sd_power_hf_cap": "sd",
+      "sd_power_bulk_cap": "sd",
+      "nrf0_module_hf_cap": "nrf0",
+      "nrf0_module_bulk_cap": "nrf0",
+      "nrf1_module_hf_cap": "nrf1",
+      "nrf1_module_bulk_cap": "nrf1",
+      "nrf2_module_hf_cap": "nrf2",
+      "nrf2_module_bulk_cap": "nrf2",
+      "slow_io_bulk_cap": "slow_io"
     },
     "locality_order": {
       "aon_efuse_input_cap": 0,
@@ -3137,9 +4685,60 @@
       "voice_efuse_pg_bottom": 5.0,
       "voice_efuse_pg_top": 5.0,
       "voice_efuse_rilm": 2.0,
-      "unit_signal_iso_vcca_bypass": 1.5
+      "unit_signal_iso_vcca_bypass": 1.5,
+      "backlight_efuse_input_cap": 2.0,
+      "sd_power_input_cap": 2.0,
+      "sd_power_hf_cap": 2.0,
+      "sd_power_bulk_cap": 2.0,
+      "nrf0_module_hf_cap": 2.0,
+      "nrf0_module_bulk_cap": 2.0,
+      "nrf1_module_hf_cap": 2.0,
+      "nrf1_module_bulk_cap": 2.0,
+      "nrf2_module_hf_cap": 2.0,
+      "nrf2_module_bulk_cap": 2.0,
+      "slow_io_bulk_cap": 2.5
     },
     "critical_pad_pairs": [
+      {
+        "project": "LESHY2-RF-R2",
+        "first_instance": "hub_safe_i2c_boundary",
+        "first_pad_number": "8",
+        "second_instance": "hub_safe_i2c_aon_100n",
+        "second_pad_number": "1",
+        "canonical_net": "AON_SAFE_3V3",
+        "maximum_distance_mm": 3,
+        "reason": "Reviewed engineering placement screening for the real U6 VCCB bypass;3mm is not a vendor-qualified routing limit."
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "first_instance": "hub_safe_i2c_boundary",
+        "first_pad_number": "8",
+        "second_instance": "hub_safe_i2c_aon_1u",
+        "second_pad_number": "1",
+        "canonical_net": "AON_SAFE_3V3",
+        "maximum_distance_mm": 3,
+        "reason": "Reviewed engineering placement screening for the real U6 VCCB bulk bypass;3mm is not a vendor-qualified routing limit."
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "first_instance": "hub_safe_i2c_boundary",
+        "first_pad_number": "1",
+        "second_instance": "hub_safe_i2c_main_100n",
+        "second_pad_number": "1",
+        "canonical_net": "3V3_MAIN",
+        "maximum_distance_mm": 3,
+        "reason": "Reviewed engineering placement screening for the real U6 VCCA bypass;3mm is not a vendor-qualified routing limit."
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "first_instance": "hub_safe_i2c_boundary",
+        "first_pad_number": "1",
+        "second_instance": "hub_safe_i2c_main_1u",
+        "second_pad_number": "1",
+        "canonical_net": "3V3_MAIN",
+        "maximum_distance_mm": 3,
+        "reason": "Reviewed engineering placement screening for the real U6 VCCA bulk bypass;3mm is not a vendor-qualified routing limit."
+      },
       {
         "project": "LESHY2-RF-R2",
         "canonical_net": "VOICE_V_DETECT_FILTER",
@@ -3603,6 +5202,146 @@
         "second_instance": "codec_i2s_din_iso_bypass",
         "maximum_distance_mm": 1.75,
         "reason": "local I2S isolator high-frequency supply bypass"
+      },
+      {
+        "project": "LESHY2-UI-R2",
+        "canonical_net": "3V3_MAIN",
+        "first_instance": "backlight_efuse",
+        "first_pad_number": "6",
+        "second_instance": "backlight_efuse_input_cap",
+        "second_pad_number": "1",
+        "maximum_distance_mm": 2.0,
+        "reason": "Explicit actual supply-pin locality; module input bulk is distinct from its board-local HF bypass. Placement bound, not a completed low-impedance power-loop proof."
+      },
+      {
+        "project": "LESHY2-UI-R2",
+        "canonical_net": "3V3_MAIN",
+        "first_instance": "sd_power_switch",
+        "first_pad_number": "1",
+        "second_instance": "sd_power_input_cap",
+        "second_pad_number": "1",
+        "maximum_distance_mm": 2.5,
+        "reason": "Explicit actual supply-pin locality; module input bulk is distinct from its board-local HF bypass. Placement bound, not a completed low-impedance power-loop proof."
+      },
+      {
+        "project": "LESHY2-UI-R2",
+        "canonical_net": "SD_CARD_3V3",
+        "first_instance": "sd",
+        "first_pad_number": "4",
+        "second_instance": "sd_power_hf_cap",
+        "second_pad_number": "1",
+        "maximum_distance_mm": 3.0,
+        "reason": "Explicit actual supply-pin locality; module input bulk is distinct from its board-local HF bypass. Placement bound, not a completed low-impedance power-loop proof."
+      },
+      {
+        "project": "LESHY2-UI-R2",
+        "canonical_net": "SD_CARD_3V3",
+        "first_instance": "sd",
+        "first_pad_number": "4",
+        "second_instance": "sd_power_bulk_cap",
+        "second_pad_number": "1",
+        "maximum_distance_mm": 6.5,
+        "reason": "Explicit actual supply-pin locality; module input bulk is distinct from its board-local HF bypass. Placement bound, not a completed low-impedance power-loop proof."
+      },
+      {
+        "project": "LESHY2-UI-R2",
+        "canonical_net": "3V3_NRF_GROUP",
+        "first_instance": "nrf0",
+        "first_pad_number": "1",
+        "second_instance": "nrf0_module_hf_cap",
+        "second_pad_number": "1",
+        "maximum_distance_mm": 3.5,
+        "reason": "Explicit actual supply-pin locality; module input bulk is distinct from its board-local HF bypass. Placement bound, not a completed low-impedance power-loop proof."
+      },
+      {
+        "project": "LESHY2-UI-R2",
+        "canonical_net": "3V3_NRF_GROUP",
+        "first_instance": "nrf0",
+        "first_pad_number": "1",
+        "second_instance": "nrf0_module_bulk_cap",
+        "second_pad_number": "1",
+        "maximum_distance_mm": 4.5,
+        "reason": "Explicit actual supply-pin locality; module input bulk is distinct from its board-local HF bypass. Placement bound, not a completed low-impedance power-loop proof."
+      },
+      {
+        "project": "LESHY2-UI-R2",
+        "canonical_net": "3V3_NRF_GROUP",
+        "first_instance": "nrf1",
+        "first_pad_number": "1",
+        "second_instance": "nrf1_module_hf_cap",
+        "second_pad_number": "1",
+        "maximum_distance_mm": 5.0,
+        "reason": "Explicit actual supply-pin locality; module input bulk is distinct from its board-local HF bypass. Placement bound, not a completed low-impedance power-loop proof."
+      },
+      {
+        "project": "LESHY2-UI-R2",
+        "canonical_net": "3V3_NRF_GROUP",
+        "first_instance": "nrf1",
+        "first_pad_number": "1",
+        "second_instance": "nrf1_module_bulk_cap",
+        "second_pad_number": "1",
+        "maximum_distance_mm": 7.0,
+        "reason": "Explicit actual supply-pin locality; module input bulk is distinct from its board-local HF bypass. Placement bound, not a completed low-impedance power-loop proof."
+      },
+      {
+        "project": "LESHY2-UI-R2",
+        "canonical_net": "3V3_NRF_GROUP",
+        "first_instance": "nrf2",
+        "first_pad_number": "1",
+        "second_instance": "nrf2_module_hf_cap",
+        "second_pad_number": "1",
+        "maximum_distance_mm": 3.0,
+        "reason": "Explicit actual supply-pin locality; module input bulk is distinct from its board-local HF bypass. Placement bound, not a completed low-impedance power-loop proof."
+      },
+      {
+        "project": "LESHY2-UI-R2",
+        "canonical_net": "3V3_NRF_GROUP",
+        "first_instance": "nrf2",
+        "first_pad_number": "1",
+        "second_instance": "nrf2_module_bulk_cap",
+        "second_pad_number": "1",
+        "maximum_distance_mm": 7.5,
+        "reason": "Explicit actual supply-pin locality; module input bulk is distinct from its board-local HF bypass. Placement bound, not a completed low-impedance power-loop proof."
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "3V3_MAIN",
+        "first_instance": "slow_io_bulk_cap",
+        "first_pad_number": "1",
+        "second_instance": "slow_io",
+        "second_pad_number": "27",
+        "maximum_distance_mm": 7.5,
+        "reason": "Finite bulk-locality placement bound to actual VCCP27. Not a substitute for separate local 100-nF bypasses; routed impedance, transient performance and runtime remain unqualified."
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "3V3_MAIN",
+        "first_instance": "slow_io_bulk_cap",
+        "first_pad_number": "1",
+        "second_instance": "slow_io",
+        "second_pad_number": "31",
+        "maximum_distance_mm": 7.5,
+        "reason": "Finite bulk-locality placement bound to actual VCCI31. Check this independently of nearer VCCP27; a shortest-net-pair-only check would miss the far supply endpoint. No decoupling/runtime qualification."
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "AON_SAFE_3V3",
+        "first_instance": "safe_fault_reset_buffer_bypass",
+        "first_pad_number": "1",
+        "second_instance": "safe_fault_reset_buffer",
+        "second_pad_number": "8",
+        "maximum_distance_mm": 3.0,
+        "reason": "Exact reset-buffer VCC pad locality; no routed-loop or safety timing qualification."
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "POWER_GROUND",
+        "first_instance": "safe_fault_reset_buffer_bypass",
+        "first_pad_number": "2",
+        "second_instance": "safe_fault_reset_buffer",
+        "second_pad_number": "4",
+        "maximum_distance_mm": 3.0,
+        "reason": "Exact reset-buffer ground-pad locality; do not replace this with courtyard-only proximity."
       }
     ],
     "hard_locked": [

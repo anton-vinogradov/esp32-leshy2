@@ -1,5 +1,6 @@
 """Mechanical actuation, not portrait/landscape, determines service-button pose."""
 
+import __future__
 import ast
 import copy
 import json
@@ -39,7 +40,9 @@ def pure_functions():
     selected = [node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name in names]
     assert {node.name for node in selected} == names
     namespace = {"math": math}
-    exec(compile(ast.Module(body=selected, type_ignores=[]), str(SCRIPT), "exec"), namespace)
+    # Preserve the source module's postponed annotations when extracting its AST.
+    exec(compile(ast.Module(body=selected, type_ignores=[]), str(SCRIPT), "exec",
+                 flags=__future__.annotations.compiler_flag, dont_inherit=True), namespace)
     return namespace
 
 

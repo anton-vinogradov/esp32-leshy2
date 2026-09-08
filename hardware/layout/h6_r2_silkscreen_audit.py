@@ -34,6 +34,10 @@ B3S_LIBRARY_SHA256 = "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6de
 B3S_REVIEW = ROOT / "hardware/layout/h6-r2-b3s-actuator-datum-review.json"
 B3S_PRIMARY = "https://omronfs.omron.com/en_US/ecb/products/pdf/en-b3s.pdf"
 B3S_BODY_TOLERANCE_MM = 0.3  # Primary p2 unspecified dimensions; conservative per-edge allowance.
+MIC_LIBRARY = ROOT / "hardware/ecad/libraries/Leshy2.pretty/CMEJ-0413-42-SMT-TR.kicad_mod"
+MIC_LIBRARY_SHA256 = "039257c90aa952b1e74608cb510cf852cb93eeba0b7dea0b98d0864a2b085817"
+MIC_PRIMARY = "https://www.sameskydevices.com/product/resource/masterpdf/cmej-0413-42-smt-tr.pdf"
+MIC_MAX_BODY_RADIUS_MM = 2.1  # Rev1.04 p2: body diameter4.0 +/-0.2, not Fab pen width.
 
 
 def geometry_digest(value):
@@ -49,9 +53,9 @@ def clearance_witness(text, obstacle):
     return geometry_digest([text, obstacle_witness(obstacle)])
 
 
-def checked_mask_clearance(text, obstacle):
+def checked_native_clearance(text, obstacle, method):
     proof = obstacle.get("native_text_clearances", {}).get(text["id"], {})
-    if (proof.get("status") != "measured" or proof.get("method") != "native_stroke_shape_to_pad_mask"
+    if (proof.get("status") != "measured" or proof.get("method") != method
             or proof.get("inputs_sha256") != clearance_witness(text, obstacle)):
         return None
     lower, upper = proof.get("gap_lower_mm"), proof.get("gap_upper_mm")
@@ -61,6 +65,19 @@ def checked_mask_clearance(text, obstacle):
             or lower < 0 or not 0 <= upper - lower <= 0.000002):
         return None
     return proof
+
+
+def checked_mask_clearance(text, obstacle):
+    return checked_native_clearance(text, obstacle, "native_stroke_shape_to_pad_mask")
+
+
+def checked_circle_clearance(text, obstacle):
+    body = obstacle.get("reviewed_circle_body", {})
+    if (body.get("library_sha256") != MIC_LIBRARY_SHA256 or body.get("primary_url") != MIC_PRIMARY
+            or body.get("native_geometry_matches_library") is not True
+            or body.get("radius_max_mm") != MIC_MAX_BODY_RADIUS_MM):
+        return None
+    return checked_native_clearance(text, obstacle, "native_stroke_shape_to_maximum_body_circle")
 
 
 def reviewed_body_clearance(text, obstacle):
@@ -151,9 +168,10 @@ def required_label_findings(required, actual):
     return findings, matched
 
 
-def geometry_candidates(texts, obstacles, width, height, radius=0.0, assembly_texts=None):
+def geometry_candidates(texts, obstacles, width, height, radius=0.0, assembly_texts=None, text_pair_clearances=None):
     candidates, exemptions = [], []
     assembly_texts = assembly_texts or {}
+    text_pair_clearances = text_pair_clearances or {}
     visible = [row for row in texts if row["layer"] == "F.Silkscreen" and row["visible"]]
     for row in visible:
         if not within_outline(row["bbox_mm"], width, height, radius):
@@ -162,8 +180,9 @@ def geometry_candidates(texts, obstacles, width, height, radius=0.0, assembly_te
             candidates.append({"kind": "small_free_user_text", "text": row})
         for obstacle in obstacles:
             mask = obstacle["kind"] == "front_pad_mask_bbox"
+            circle = obstacle["kind"] == "front_courtyard_bbox" and "reviewed_circle_body" in obstacle
             if not overlaps(row["bbox_mm"], obstacle["bbox_mm"]) and not (
-                    mask and bbox_gap(row["bbox_mm"], obstacle["bbox_mm"]) <= MIN_MASK_GAP_MM):
+                    (mask or circle) and bbox_gap(row["bbox_mm"], obstacle["bbox_mm"]) <= MIN_MASK_GAP_MM):
                 continue
             detail = {"kind": obstacle["kind"], "text": row, "obstacle": obstacle}
             if obstacle.get("fab_graphics_bbox_mm"):
@@ -190,6 +209,17 @@ def geometry_candidates(texts, obstacles, width, height, radius=0.0, assembly_te
                 else:
                     detail["review_reason"] = "Native stroke-to-mask gap below minimum or unavailable/stale; retain conservative candidate"
                     candidates.append(detail)
+            elif circle:
+                proof = checked_circle_clearance(row, obstacle)
+                detail["required_body_gap_mm"] = MIN_MASK_GAP_MM
+                if proof is not None:
+                    detail["native_maximum_body_gap_mm"] = [proof["gap_lower_mm"], proof["gap_upper_mm"]]
+                if proof is not None and proof["gap_lower_mm"] >= MIN_MASK_GAP_MM:
+                    detail["resolution_reason"] = "Actual native text strokes clear the primary maximum circular body; exact native/library geometry agrees. Pads and drills remain independently screened."
+                    exemptions.append(detail)
+                else:
+                    detail["review_reason"] = "Maximum-body circle clearance below minimum or unavailable/stale; retain courtyard candidate"
+                    candidates.append(detail)
             elif obstacle["kind"] == "front_courtyard_bbox" and reviewed_body_clearance(row, obstacle) is not None:
                 detail["tolerance_expanded_body_gap_mm"] = reviewed_body_clearance(row, obstacle)
                 detail["resolution_reason"] = "Exact reviewed B3S native/library geometry agrees; text clears the primary body plus dimensional tolerance, not merely the assembly courtyard. Pads and drills remain independently screened."
@@ -198,8 +228,17 @@ def geometry_candidates(texts, obstacles, width, height, radius=0.0, assembly_te
                 candidates.append(detail)
     for index, first in enumerate(visible):
         for second in visible[index + 1:]:
-            if overlaps(first["bbox_mm"], second["bbox_mm"]):
-                candidates.append({"kind": "user_text_bbox_overlap", "text": first, "other_text": second})
+            if bbox_gap(first["bbox_mm"], second["bbox_mm"]) <= MIN_MASK_GAP_MM:
+                detail = {"kind": "user_text_bbox_overlap", "text": first, "other_text": second}
+                pair = {"other_text": second, "native_text_clearances": {
+                    first["id"]: text_pair_clearances.get(first["id"] + "|" + second["id"], {})}}
+                proof = checked_native_clearance(first, pair, "native_stroke_shape_to_text_stroke")
+                if proof is not None and proof["gap_lower_mm"] >= MIN_MASK_GAP_MM:
+                    detail["native_text_gap_mm"] = [proof["gap_lower_mm"], proof["gap_upper_mm"]]
+                    detail["resolution_reason"] = "Actual native strokes, including both pen widths, are separated by the required gap"
+                    exemptions.append(detail)
+                else:
+                    candidates.append(detail)
     return candidates, exemptions
 
 
@@ -222,7 +261,7 @@ def audit_snapshot(snapshot, contract, canonical_to_kicad=None):
     candidates, exemptions = geometry_candidates(
         snapshot["texts"], snapshot["obstacles"], contract["board"]["width_mm"],
         contract["board"]["height_mm"], contract["board"]["corner_radius_mm"],
-        assembly_texts,
+        assembly_texts, snapshot.get("native_text_pair_clearances"),
     )
     errors.extend(snapshot.get("extraction_errors", []))
     outline = snapshot.get("native_outline_bbox_mm")
@@ -281,7 +320,7 @@ def native_stroke_mask_clearance(text, pad, pcbnew):
 
 
 def native_footprint_geometry(fp, pcbnew):
-    """Relevant B3S geometry, independent of UUID, reference and net labels."""
+    """Reviewed front-package geometry, independent of UUID/reference/net labels."""
     def point(value):
         # Imported decimal coordinates may differ by one native nm.
         return [round(pcbnew.ToMM(value.x), 5), round(pcbnew.ToMM(value.y), 5)]
@@ -293,6 +332,41 @@ def native_footprint_geometry(fp, pcbnew):
              round(p.GetOrientationDegrees() % 360, 5), list(p.GetLayerSet().Seq()),
              p.GetSolderMaskExpansion(pcbnew.F_Mask)] for p in fp.Pads()]
     return {"graphics": sorted(graphics), "pads": sorted(pads)}
+
+
+def native_stroke_shape_clearance(text, shape, pcbnew, method):
+    """One-nm conservative interval between filled native effective shapes."""
+    try:
+        if text.GetFont() is not None:
+            return {"status": "unsupported", "reason": "Only native default stroke font is refined"}
+        ink = text.GetEffectiveTextShape()
+        if ink is None or shape is None or ink.BBox().GetWidth() <= 0:
+            return {"status": "unsupported", "reason": "Native effective text shape unavailable or empty"}
+        low, high = 0, pcbnew.FromMM(1)
+        if ink.Collide(shape, 0):
+            low = high = 0
+        else:
+            while not ink.Collide(shape, high):
+                high *= 2
+                if high > pcbnew.FromMM(100):
+                    return {"status": "unsupported", "reason": "No bounded native distance found"}
+            while high - low > 1:
+                mid = (low + high) // 2
+                if ink.Collide(shape, mid):
+                    high = mid
+                else:
+                    low = mid
+        return {"status": "measured", "method": method,
+                "gap_lower_mm": pcbnew.ToMM(low), "gap_upper_mm": pcbnew.ToMM(high)}
+    except (AttributeError, TypeError, RuntimeError, ValueError) as exc:
+        return {"status": "unsupported", "reason": type(exc).__name__ + ": " + str(exc)}
+
+
+def native_stroke_circle_clearance(text, centre_mm, radius_mm, pcbnew):
+    """Filled maximum body, not its Fab outline or courtyard approximation."""
+    body = pcbnew.SHAPE_CIRCLE(pcbnew.VECTOR2I(*(pcbnew.FromMM(v) for v in centre_mm)),
+                              pcbnew.FromMM(radius_mm))
+    return native_stroke_shape_clearance(text, body, pcbnew, "native_stroke_shape_to_maximum_body_circle")
 
 
 def native_snapshot(board, project, ledger_rows, contract, pcbnew, root=ROOT):
@@ -307,6 +381,7 @@ def native_snapshot(board, project, ledger_rows, contract, pcbnew, root=ROOT):
     texts, placements, obstacles, errors = [], [], [], []
     mask_objects, text_objects = [], {}
     library_path = root / B3S_LIBRARY.relative_to(ROOT)
+    mic_library_path = root / MIC_LIBRARY.relative_to(ROOT)
     review_path = root / B3S_REVIEW.relative_to(ROOT)
     b3s_reviewed = False
     if library_path.is_file() and review_path.is_file() and sha256(library_path) == B3S_LIBRARY_SHA256:
@@ -341,6 +416,19 @@ def native_snapshot(board, project, ledger_rows, contract, pcbnew, root=ROOT):
                         "primary_url": B3S_PRIMARY, "section": "Full p2 With Ground Terminal, nominal body6.0x6.6 and +/-0.3-mm unspecified tolerance",
                         "library_sha256": B3S_LIBRARY_SHA256, "native_geometry_matches_library": True,
                         "inputs_sha256": geometry_digest(obstacle_witness(obstacle))}
+            if (fpid == "Leshy2:CMEJ-0413-42-SMT-TR"
+                    and fp.GetValue() == "Same Sky CMEJ-0413-42-SMT-TR"
+                    and mic_library_path.is_file() and sha256(mic_library_path) == MIC_LIBRARY_SHA256):
+                reference_fp = pcbnew.FootprintLoad(str(mic_library_path.parent), mic_library_path.stem)
+                reference_fp.SetPosition(fp.GetPosition())
+                reference_fp.SetOrientationDegrees(fp.GetOrientationDegrees())
+                actual_geometry = native_footprint_geometry(fp, pcbnew)
+                if actual_geometry == native_footprint_geometry(reference_fp, pcbnew):
+                    obstacle["native_geometry_sha256"] = geometry_digest(actual_geometry)
+                    obstacle["reviewed_circle_body"] = {
+                        "primary_url": MIC_PRIMARY, "section": "Rev1.04 p2 mechanical drawing, diameter4.0 +/-0.2 mm",
+                        "library_sha256": MIC_LIBRARY_SHA256, "native_geometry_matches_library": True,
+                        "centre_mm": point_mm(fp.GetPosition()), "radius_max_mm": MIC_MAX_BODY_RADIUS_MM}
             obstacles.append(obstacle)
         for graphic in fp.GraphicalItems():
             if graphic.GetLayer() == pcbnew.F_Mask:
@@ -422,7 +510,26 @@ def native_snapshot(board, project, ledger_rows, contract, pcbnew, root=ROOT):
                 proof = native_stroke_mask_clearance(text_objects[row["id"]], pad, pcbnew)
                 proof["inputs_sha256"] = clearance_witness(row, obstacle)
                 obstacle.setdefault("native_text_clearances", {})[row["id"]] = proof
+        for obstacle in obstacles:
+            body = obstacle.get("reviewed_circle_body")
+            if body and bbox_gap(row["bbox_mm"], obstacle["bbox_mm"]) <= MIN_MASK_GAP_MM:
+                proof = native_stroke_circle_clearance(text_objects[row["id"]], body["centre_mm"], body["radius_max_mm"], pcbnew)
+                proof["inputs_sha256"] = clearance_witness(row, obstacle)
+                obstacle.setdefault("native_text_clearances", {})[row["id"]] = proof
+    text_pair_clearances = {}
+    visible = [row for row in texts if row["layer"] == "F.Silkscreen" and row["visible"]]
+    for index, first in enumerate(visible):
+        for second in visible[index + 1:]:
+            if bbox_gap(first["bbox_mm"], second["bbox_mm"]) <= MIN_MASK_GAP_MM:
+                other = text_objects[second["id"]]
+                if other.GetFont() is not None:
+                    continue
+                proof = native_stroke_shape_clearance(text_objects[first["id"]], other.GetEffectiveTextShape(), pcbnew,
+                                                      "native_stroke_shape_to_text_stroke")
+                proof["inputs_sha256"] = clearance_witness(first, {"other_text": second})
+                text_pair_clearances[first["id"] + "|" + second["id"]] = proof
     return {"project": project, "placements": placements, "texts": texts, "obstacles": obstacles,
+            "native_text_pair_clearances": text_pair_clearances,
             "native_outline_bbox_mm": box_mm(board.GetBoardEdgesBoundingBox()), "extraction_errors": errors}
 
 
@@ -461,7 +568,7 @@ def build(root=ROOT):
     binding_hash = sha256(binding_path)
     bindings = checked_net_bindings(root)
     inputs = [contract_path, ledger_path, binding_path, Path(__file__), Path(__file__).with_name("h6_r2_user_silkscreen.py")]
-    inputs += [root / path.relative_to(ROOT) for path in (B3S_LIBRARY, B3S_REVIEW)]
+    inputs += [root / path.relative_to(ROOT) for path in (B3S_LIBRARY, B3S_REVIEW, MIC_LIBRARY)]
     inputs += [root / relative for relative in bindings["source_hashes"]]
     inputs += [root / spec["output"] for spec in contract["boards"].values()]
     hashes = {str(path): sha256(path) for path in inputs}
@@ -483,8 +590,8 @@ def build(root=ROOT):
             "boards": boards,
             "limitations": ["Bounding-box candidates require visual inspection and native DRC; they are not proven ink collisions.",
                             "Footprint package graphics/reference/value text are outside this free-board user-text audit.",
-                            "Supported default native stroke-font/pad-mask pairs use actual shapes and a0.15-mm gap; unsupported pairs remain conservative candidates. Other geometry uses bounding boxes.",
-                            "Only hash-bound primary-reviewed B3S courtyard candidates may resolve against matching native Fab/pad geometry with body tolerance; this is not assembly qualification.",
+                            "Supported default native stroke-font/pad-mask and text/text pairs use actual shapes and a0.15-mm gap; unsupported pairs remain conservative candidates. Other geometry uses bounding boxes.",
+                            "Only hash-bound primary-reviewed B3S and CMEJ-0413-42-SMT-TR courtyard candidates may resolve against matching native/library geometry with maximum body tolerance; circular bodies use filled circles and actual text strokes. This is not assembly qualification.",
                             "Native Edge.Cuts envelope must match the contracted board; text is screened against its rounded envelope. Slot geometry and mechanical connector readiness are separate.",
                             "1.0 mm font and 0.15 mm stroke are this label contract's minima, not factory qualification."]}
 

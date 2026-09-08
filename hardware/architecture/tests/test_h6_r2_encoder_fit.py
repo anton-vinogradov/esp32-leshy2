@@ -180,8 +180,10 @@ class EncoderFitTests(unittest.TestCase):
         c=json.loads((ROOT/'hardware/layout/h6-r2-placement-contract.json').read_text())['placement_overrides']
         self.assertEqual(17,len(d['supports']))
         self.assertEqual({'U90','U38','U89','U134','C288','R143','C152','C240','R104','R285','R213','R221','R111','R112','R209','R180','C153'},set(d['supports']))
-        self.assertEqual([71,50.25],c['encoder']['anchor_mm'])
-        self.assertEqual(0,c['encoder']['rotation_deg'])
+        # The old engineering footprint receipt remains historical; the
+        # subsequent ergonomic correction restores the actual left edge.
+        self.assertEqual([9.25,81.25],c['encoder']['anchor_mm'])
+        self.assertEqual(270,c['encoder']['rotation_deg'])
         self.assertTrue(c['encoder']['mechanical_locked'])
         self.assertNotIn('centre_mm',c['encoder'])
         for ref,row in d['supports'].items():

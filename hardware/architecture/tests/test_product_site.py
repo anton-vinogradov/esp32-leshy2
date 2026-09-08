@@ -154,6 +154,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/h6-r2-current-routing.ru.md",
         "docs/h6-r2-interface-review.md",
         "docs/h6-r2-interface-review.ru.md",
+        "docs/h6-r2-placement-repair.md",
+        "docs/h6-r2-placement-repair.ru.md",
         "docs/h6-r2-c5-mux-control-review.md",
         "docs/h6-r2-c5-mux-control-review.ru.md",
         "docs/h6-r2-encoder-engineering-fit.md",

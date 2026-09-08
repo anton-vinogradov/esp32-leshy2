@@ -1,0 +1,310 @@
+{
+  "schema_version": 1,
+  "feature_id": "UI-ACTUAL-SUPPLY-LOCALITY-001",
+  "scope": "Finite fourteen-reference relocation; no selected MPN, pin, rail, PCB dimension or existing copper change.",
+  "baseline_commit": "e45c5b23bb2f7f7b089b047d5505e555b51b82ab",
+  "baseline_ui_pcb_sha256": "3c0071b28c2c2dec2a4d95fa0047a83d30bd9302a0e5083ea90cc5a0efe99aad",
+  "checked_date": "2026-09-08",
+  "placement_rows": [
+    {
+      "reference": "C7",
+      "owner": "U4",
+      "side": "B.Cu",
+      "anchor_mm": [
+        43.862,
+        40.42
+      ],
+      "rotation_deg": 270,
+      "power_net": "/UI_10_S3_DISPLAY_TOUCH/3V3_MAIN",
+      "power_pad_distance_mm": 1.2579,
+      "old_anchor_mm": [
+        40.105,
+        89.055
+      ],
+      "instance": "backlight_efuse_input_cap",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "old_rotation_deg": 90.0,
+      "owner_instance": "backlight_efuse",
+      "owner_power_pad": "6",
+      "maximum_power_pad_distance_mm": 2.0
+    },
+    {
+      "reference": "R18",
+      "owner": "R18",
+      "side": "B.Cu",
+      "anchor_mm": [
+        53.865,
+        40.335
+      ],
+      "rotation_deg": 0,
+      "power_net": "/UI_10_S3_DISPLAY_TOUCH/3V3_MAIN",
+      "power_pad_distance_mm": 9.5032,
+      "old_anchor_mm": [
+        43.865,
+        40.325
+      ],
+      "instance": "sys_i2c_scl_pullup",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "old_rotation_deg": 90.0
+    },
+    {
+      "reference": "C17",
+      "owner": "U10",
+      "side": "B.Cu",
+      "anchor_mm": [
+        40.77,
+        78.433
+      ],
+      "rotation_deg": 270,
+      "power_net": "/UI_10_S3_DISPLAY_TOUCH/3V3_MAIN",
+      "power_pad_distance_mm": 1.7658,
+      "old_anchor_mm": [
+        42.625,
+        88.875
+      ],
+      "instance": "sd_power_input_cap",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "old_rotation_deg": 0.0,
+      "owner_instance": "sd_power_switch",
+      "owner_power_pad": "1",
+      "maximum_power_pad_distance_mm": 2.5
+    },
+    {
+      "reference": "C16",
+      "owner": "J5",
+      "side": "B.Cu",
+      "anchor_mm": [
+        62.155,
+        130.35
+      ],
+      "rotation_deg": 0,
+      "power_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_CARD_3V3",
+      "power_pad_distance_mm": 2.0052,
+      "old_anchor_mm": [
+        39.555,
+        94.604999
+      ],
+      "instance": "sd_power_hf_cap",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "old_rotation_deg": 0.0,
+      "owner_instance": "sd",
+      "owner_power_pad": "4",
+      "maximum_power_pad_distance_mm": 3.0
+    },
+    {
+      "reference": "C15",
+      "owner": "J5",
+      "side": "B.Cu",
+      "anchor_mm": [
+        66.78,
+        128.35
+      ],
+      "rotation_deg": 0,
+      "power_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_CARD_3V3",
+      "power_pad_distance_mm": 5.8728,
+      "old_anchor_mm": [
+        39.625,
+        92.095
+      ],
+      "instance": "sd_power_bulk_cap",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "old_rotation_deg": 90.0,
+      "owner_instance": "sd",
+      "owner_power_pad": "4",
+      "maximum_power_pad_distance_mm": 6.5
+    },
+    {
+      "reference": "R42",
+      "owner": "R42",
+      "side": "B.Cu",
+      "anchor_mm": [
+        61.565,
+        126.065
+      ],
+      "rotation_deg": 90,
+      "power_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/SD_CARD_3V3",
+      "power_pad_distance_mm": 3.74,
+      "old_anchor_mm": [
+        62.075,
+        130.315
+      ],
+      "instance": "sd_card_dat2_pullup",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "old_rotation_deg": 0.0
+    },
+    {
+      "reference": "C63",
+      "owner": "U35",
+      "side": "B.Cu",
+      "anchor_mm": [
+        5.175,
+        53.745
+      ],
+      "rotation_deg": 180,
+      "power_net": "/UI_31_NRF24_X3_TX_EVIDENCE/3V3_NRF_GROUP",
+      "power_pad_distance_mm": 2.895,
+      "old_anchor_mm": [
+        36.355,
+        61.055
+      ],
+      "instance": "nrf0_module_hf_cap",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "old_rotation_deg": 90.0,
+      "owner_instance": "nrf0",
+      "owner_power_pad": "1",
+      "maximum_power_pad_distance_mm": 3.5
+    },
+    {
+      "reference": "C62",
+      "owner": "U35",
+      "side": "B.Cu",
+      "anchor_mm": [
+        4.55,
+        52.245
+      ],
+      "rotation_deg": 180,
+      "power_net": "/UI_31_NRF24_X3_TX_EVIDENCE/3V3_NRF_GROUP",
+      "power_pad_distance_mm": 3.5568,
+      "old_anchor_mm": [
+        44.625,
+        58.625
+      ],
+      "instance": "nrf0_module_bulk_cap",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "old_rotation_deg": 90.0,
+      "owner_instance": "nrf0",
+      "owner_power_pad": "1",
+      "maximum_power_pad_distance_mm": 4.5
+    },
+    {
+      "reference": "C69",
+      "owner": "U39",
+      "side": "B.Cu",
+      "anchor_mm": [
+        29.85,
+        50.12
+      ],
+      "rotation_deg": 180,
+      "power_net": "/UI_31_NRF24_X3_TX_EVIDENCE/3V3_NRF_GROUP",
+      "power_pad_distance_mm": 4.7182,
+      "old_anchor_mm": [
+        37.305,
+        62.855
+      ],
+      "instance": "nrf1_module_hf_cap",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "old_rotation_deg": 0.0,
+      "owner_instance": "nrf1",
+      "owner_power_pad": "1",
+      "maximum_power_pad_distance_mm": 5.0
+    },
+    {
+      "reference": "C68",
+      "owner": "U39",
+      "side": "B.Cu",
+      "anchor_mm": [
+        30.1,
+        47.87
+      ],
+      "rotation_deg": 90,
+      "power_net": "/UI_31_NRF24_X3_TX_EVIDENCE/3V3_NRF_GROUP",
+      "power_pad_distance_mm": 6.0475,
+      "old_anchor_mm": [
+        42.125,
+        60.375
+      ],
+      "instance": "nrf1_module_bulk_cap",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "old_rotation_deg": 0.0,
+      "owner_instance": "nrf1",
+      "owner_power_pad": "1",
+      "maximum_power_pad_distance_mm": 7.0
+    },
+    {
+      "reference": "C75",
+      "owner": "U43",
+      "side": "B.Cu",
+      "anchor_mm": [
+        51.15,
+        57.62
+      ],
+      "rotation_deg": 180,
+      "power_net": "/UI_31_NRF24_X3_TX_EVIDENCE/3V3_NRF_GROUP",
+      "power_pad_distance_mm": 2.4137,
+      "old_anchor_mm": [
+        34.355,
+        59.805
+      ],
+      "instance": "nrf2_module_hf_cap",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "old_rotation_deg": 90.0,
+      "owner_instance": "nrf2",
+      "owner_power_pad": "1",
+      "maximum_power_pad_distance_mm": 3.0
+    },
+    {
+      "reference": "C74",
+      "owner": "U43",
+      "side": "B.Cu",
+      "anchor_mm": [
+        57.275,
+        61.995
+      ],
+      "rotation_deg": 270,
+      "power_net": "/UI_31_NRF24_X3_TX_EVIDENCE/3V3_NRF_GROUP",
+      "power_pad_distance_mm": 6.855,
+      "old_anchor_mm": [
+        38.875,
+        59.125
+      ],
+      "instance": "nrf2_module_bulk_cap",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "old_rotation_deg": 0.0,
+      "owner_instance": "nrf2",
+      "owner_power_pad": "1",
+      "maximum_power_pad_distance_mm": 7.5
+    },
+    {
+      "reference": "R198",
+      "owner": "R198",
+      "side": "B.Cu",
+      "anchor_mm": [
+        44.815,
+        58.365
+      ],
+      "rotation_deg": 90,
+      "power_net": "/UI_31_NRF24_X3_TX_EVIDENCE/NRF2_CE_MODULE",
+      "power_pad_distance_mm": 5.75,
+      "old_anchor_mm": [
+        51.075,
+        58.865
+      ],
+      "instance": "nrf2_module_ce_pulldown",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "old_rotation_deg": 0.0
+    },
+    {
+      "reference": "R99",
+      "owner": "R99",
+      "side": "B.Cu",
+      "anchor_mm": [
+        44.315,
+        60.115
+      ],
+      "rotation_deg": 180,
+      "power_net": "/UI_20_C5_WIFI_IR_SERVICE/C5_SDIO_D0",
+      "power_pad_distance_mm": 6.2608,
+      "old_anchor_mm": [
+        51.075,
+        57.615
+      ],
+      "instance": "c5_sdio_d0_series",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "old_rotation_deg": 0.0
+    }
+  ],
+  "not_proven": [
+    "Low-impedance routed supply/ground loops remain H6 routing work.",
+    "No RF performance, electrical bring-up or manufacturing release is implied."
+  ]
+}

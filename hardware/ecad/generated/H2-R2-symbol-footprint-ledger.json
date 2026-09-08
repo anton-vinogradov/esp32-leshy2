@@ -4235,7 +4235,7 @@
       "footprint_definition": {
         "status": "current_polarity_only_definition_materialized_mechanics_open",
         "path": "hardware/ecad/libraries/Leshy2_R2.pretty/Keystone-1048P-POLARITY-CORRECTED.kicad_mod",
-        "sha256": "44617b8fd1b4868e5d446c09fd308c172f90a0d15df72705284b9f7e76fd9b26",
+        "sha256": "baa543ac2faf405763deb2113687ec8a6c6faeb45b53461b99bdb78c9a8aa320",
         "mechanics_qualified": false,
         "production_release_authorized": false,
         "limit": "Only physical positions of logical contacts 3/4 are corrected; legacy undersized lands, absent locator holes and approximate body remain unqualified."

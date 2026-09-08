@@ -5,8 +5,8 @@
   "status": "review_required",
   "source_hashes": {
     "hardware/verification/h6_r2_electrical_semantics.py": "ec39f702af3ad2ccd800ad1a0f7e4af80d954b9bf17868756282cd5a44d5bc68",
-    "hardware/ecad/generated/H2-R2-contact-materialization.json": "1ab288224f5ae04d223044cc61e5e8469a7fe609da590a6bd94b0c901cbe7d08",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "57f0ed517509911b8b7c3e003cd4c47a35e6a924850cfb3a1f710e66fd9fd512",
+    "hardware/ecad/generated/H2-R2-contact-materialization.json": "752c1033e54d59bd7ed7e8f99cfda51b8bb25d12145d0ed504af1bbc426b82ca",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "bd0f3d67c7d682ae96fedb3b9a5fb6e64648efbf18134f4b78567a1232717bf7",
     "hardware/verification/h6-electrical-pins-power.json": "065011f2fd529cdd053255a20cb4202755dd65231b1ac0f27e2ddb917a065310",
     "hardware/verification/h6-electrical-pins-digital.json": "b061c58cebee24f0b0369b5a26b595e0cda0ecd6d8c3b0f7cb0c7c86d4f9f6b4",
     "hardware/verification/h6-electrical-pins-logic.json": "30a7d8e950ecd8797ad88faef29f2286d087d297d43f0460961509f12560795e",
@@ -1050,14 +1050,14 @@
       "cached_pin_types_reviewed": 741,
       "native_connectivity_unchanged": true,
       "physical_netlist_nodes": 1598,
-      "native_xml_sha256": "489e5fa32b9faf8f121946615b9dbea75d795c31fea15aba561060402b50c0db",
-      "typed_xml_sha256": "0b08260468debef1faa4b87ae378ca1004491b38e102a29ff871e134ae1a0d7c",
-      "erc_report_sha256": "0d5c991dae9d4c6d6eccdf04f76ecf7d8baf3b07eb6d436f4eee97a7ec83c6a5",
-      "erc_content_sha256": "298f2aab49b67d8ea14d4a19207ccf3b9e2a346172af82cdc48ccf6a4905dc94",
+      "native_xml_sha256": "33610bb6a862f21f8beebdbf47bb208725828dcf4d1a9f54025b7fdac08807bc",
+      "typed_xml_sha256": "a5eac3d3515e4f420393bd92c4fc3085c425dca8dd70304ae13c1fb79b359f42",
+      "erc_report_sha256": "c9a3f1425569ebb111a5b127d687528441b4ed21c9e8dfcc81e45c1c753b8955",
+      "erc_content_sha256": "f69337f8b29c2f92f7999b32b29504a7d841d2df8200c56166ea8b759331a141",
       "native_erc": {
         "$schema": "https://schemas.kicad.org/erc.v1.json",
         "coordinate_units": "mm",
-        "date": "2026-09-08T16:07:45",
+        "date": "2026-09-08T21:41:33",
         "ignored_checks": [
           {
             "description": "Global label only appears once in the schematic",
@@ -2036,14 +2036,14 @@
       "cached_pin_types_reviewed": 1355,
       "native_connectivity_unchanged": true,
       "physical_netlist_nodes": 2707,
-      "native_xml_sha256": "55949f105236af193a7837a4bae353bf71d39badb41bb1b4f8000ad16a07cb39",
-      "typed_xml_sha256": "910eacb8ab1b5340c7326a728315967dd5217331edc7245b89218907b8cebd17",
-      "erc_report_sha256": "43f4ed36780cc01d2915cde985f90a6629bfd413663f70cb08eb8581734c8bb1",
-      "erc_content_sha256": "222eede2d0118cc34b6b9d1b6df365183d1480e62349abd782615a274a316e5f",
+      "native_xml_sha256": "39e51c3ed3197b50db176ccbe51cec33f6af062774e1f887b63279a2ba1bdc01",
+      "typed_xml_sha256": "59816a2173ee13b2c93f7681d3bddbf689f3b13cd9aab5bdabcca1961bd9017c",
+      "erc_report_sha256": "f2d7375cfb6925f3286d71e1ca54f182e82cd0d1f755470de77dbe208dd4e526",
+      "erc_content_sha256": "9ce1d6dc9a3593aea0c803b3f825e92c8aa4545c08dde5579b0d0fb23c4a8929",
       "native_erc": {
         "$schema": "https://schemas.kicad.org/erc.v1.json",
         "coordinate_units": "mm",
-        "date": "2026-09-08T16:07:49",
+        "date": "2026-09-08T21:41:37",
         "ignored_checks": [
           {
             "description": "Global label only appears once in the schematic",

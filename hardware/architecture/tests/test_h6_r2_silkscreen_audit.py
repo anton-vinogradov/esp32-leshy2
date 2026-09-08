@@ -249,6 +249,120 @@ class SilkscreenGeometryTests(unittest.TestCase):
 
 @unittest.skipUnless(importlib.util.find_spec("pcbnew"), "Native extraction tests require KiCad Python")
 class NativeSilkscreenExtractionTests(unittest.TestCase):
+    def microphone_and_owner(self, at=(6, 114.95)):
+        import pcbnew
+        board = pcbnew.BOARD()
+        fp = pcbnew.FootprintLoad(str(audit.MIC_LIBRARY.parent), audit.MIC_LIBRARY.stem)
+        fp.SetFPID(pcbnew.LIB_ID("Leshy2", audit.MIC_LIBRARY.stem))
+        fp.SetReference("MK1")
+        fp.SetValue("Same Sky CMEJ-0413-42-SMT-TR")
+        board.Add(fp)
+        fp.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(8), pcbnew.FromMM(112)))
+        fp.SetOrientationDegrees(180)
+        text = pcbnew.PCB_TEXT(board)
+        text.SetText("RF RP")
+        text.SetLayer(pcbnew.F_SilkS)
+        text.SetPosition(pcbnew.VECTOR2I(*(pcbnew.FromMM(v) for v in at)))
+        text.SetTextSize(pcbnew.VECTOR2I(pcbnew.FromMM(1), pcbnew.FromMM(1)))
+        text.SetTextThickness(pcbnew.FromMM(.15))
+        board.Add(text)
+        return board, fp, text
+
+    def test_primary_maximum_circle_and_actual_strokes_resolve_only_clear_text(self):
+        import pcbnew
+        for at, clear in (((6, 114.95), True), ((6, 109.3), True), ((6, 114.2), False), ((8, 112), False)):
+            board, fp, text = self.microphone_and_owner(at)
+            if at == (6, 109.3):
+                text.SetText("RST")
+            snapshot = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
+            obstacle = next(o for o in snapshot["obstacles"] if o["kind"] == "front_courtyard_bbox")
+            proof = audit.checked_circle_clearance(snapshot["texts"][0], obstacle)
+            self.assertIsNotNone(proof)
+            self.assertEqual(2.1, obstacle["reviewed_circle_body"]["radius_max_mm"])
+            candidates, resolved = audit.geometry_candidates(snapshot["texts"], snapshot["obstacles"], 80, 150)
+            with self.subTest(at=at):
+                if clear:
+                    self.assertGreaterEqual(proof["gap_lower_mm"], .15)
+                    self.assertFalse(any(r["kind"] == "front_courtyard_bbox" for r in candidates))
+                    self.assertTrue(any("native_maximum_body_gap_mm" in r for r in resolved))
+                else:
+                    self.assertEqual(0, proof["gap_lower_mm"])
+                    self.assertIn("front_courtyard_bbox", {r["kind"] for r in candidates})
+        # Required BOOT text remains separate and closer to the same owner axis.
+        board, fp, owner = self.microphone_and_owner()
+        action = pcbnew.PCB_TEXT(board)
+        action.SetText("BOOT")
+        action.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(6), pcbnew.FromMM(116.3)))
+        action.SetTextSize(owner.GetTextSize())
+        action.SetTextThickness(owner.GetTextThickness())
+        self.assertFalse(owner.GetEffectiveTextShape().Collide(action.GetEffectiveTextShape(), pcbnew.FromMM(.199)))
+
+    def test_circle_refinement_is_bound_to_current_geometry_identity_and_primary(self):
+        import pcbnew
+        board, fp, text = self.microphone_and_owner()
+        snapshot = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
+        obstacle = next(o for o in snapshot["obstacles"] if o["kind"] == "front_courtyard_bbox")
+        for key, value in (("radius_max_mm", 2.0), ("centre_mm", [8, 112.1]),
+                           ("primary_url", "unreviewed"), ("native_geometry_matches_library", False)):
+            bad = copy.deepcopy(obstacle)
+            bad["reviewed_circle_body"][key] = value
+            self.assertIsNone(audit.checked_circle_clearance(snapshot["texts"][0], bad))
+        moved_text = copy.deepcopy(snapshot["texts"][0])
+        moved_text["at_mm"][1] -= .1
+        self.assertIsNone(audit.checked_circle_clearance(moved_text, obstacle))
+        fab = next(g for g in fp.GraphicalItems() if g.GetLayer() == pcbnew.F_Fab)
+        fab.SetEnd(pcbnew.VECTOR2I(pcbnew.FromMM(5.9), pcbnew.FromMM(112)))
+        changed = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
+        self.assertNotIn("reviewed_circle_body", next(o for o in changed["obstacles"] if o["kind"] == "front_courtyard_bbox"))
+        self.assertIn("front_courtyard_bbox", {r["kind"] for r in audit.geometry_candidates(changed["texts"], changed["obstacles"], 80, 150)[0]})
+        for identity in ("different MPN", "CMEJ-0413-42-SMT-TR"):
+            board, fp, text = self.microphone_and_owner()
+            fp.SetValue(identity)
+            changed = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
+            self.assertNotIn("reviewed_circle_body", next(o for o in changed["obstacles"] if o["kind"] == "front_courtyard_bbox"))
+
+    def test_circular_body_rotation_translation_and_front_back_are_native(self):
+        import pcbnew
+        for angle in (0, 90, 180, 270):
+            board, fp, text = self.microphone_and_owner()
+            fp.SetOrientationDegrees(angle)
+            fp.Move(pcbnew.VECTOR2I(pcbnew.FromMM(3), pcbnew.FromMM(-2)))
+            snapshot = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
+            obstacle = next(o for o in snapshot["obstacles"] if o["kind"] == "front_courtyard_bbox")
+            self.assertEqual([11, 110], obstacle["reviewed_circle_body"]["centre_mm"])
+            fp.Flip(fp.GetPosition(), False)
+            snapshot = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
+            self.assertFalse(any("reviewed_circle_body" in o for o in snapshot["obstacles"]))
+
+    def test_actual_text_pair_gap_cannot_be_reused_for_changed_text_or_pose(self):
+        import pcbnew
+        board, fp, owner = self.microphone_and_owner()
+        action = pcbnew.PCB_TEXT(board)
+        action.SetText("BOOT")
+        action.SetLayer(pcbnew.F_SilkS)
+        action.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(6), pcbnew.FromMM(116.3)))
+        action.SetTextSize(owner.GetTextSize())
+        action.SetTextThickness(owner.GetTextThickness())
+        board.Add(action)
+        snapshot = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
+        def check(value):
+            return audit.geometry_candidates(value["texts"], [], 80, 150,
+                                             text_pair_clearances=value.get("native_text_pair_clearances"))
+        candidates, resolved = check(snapshot)
+        self.assertEqual([], candidates)
+        self.assertEqual(1, len(resolved))
+        self.assertGreaterEqual(resolved[0]["native_text_gap_mm"][0], .199999)
+        for field, value in (("at_mm", [6, 114.96]), ("text", "WRONG"), ("thickness_mm", .2)):
+            bad = copy.deepcopy(snapshot)
+            bad["texts"][0][field] = value
+            self.assertEqual(1, len(check(bad)[0]))
+        bad = copy.deepcopy(snapshot)
+        bad.pop("native_text_pair_clearances")
+        self.assertEqual(1, len(check(bad)[0]))
+        action.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(6), pcbnew.FromMM(116.1)))
+        negative = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
+        self.assertEqual(1, len(check(negative)[0]))
+
     def b3s_and_hub_text(self, y=138):
         import pcbnew
         board = pcbnew.BOARD()

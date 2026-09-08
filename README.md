@@ -45,11 +45,15 @@ system owner's permission.
 
 ### Physical layout
 
-The H1 mock-up explains the mechanical concept. For visual inspection, open [all four current component faces at the same scale](docs/h6-r2-component-views.md). Component coordinates and cable paths are also available in the [exact-placement](docs/h6-r2-exact-placement.md) and [microcoax](docs/h6-r2-microcoax-service.md) views; the live routing exports follow below.
+The current preview below is composed from the actual PCBs: exterior faces share one scale, without an extra rear-board mirror. Only the installed display panel's envelope is added in blue. This is not an assembled 3D validation. Inspect the inner sides in [all four current component views](docs/h6-r2-component-views.md). Coordinates and cable paths are available in the [exact-placement](docs/h6-r2-exact-placement.md) and [microcoax](docs/h6-r2-microcoax-service.md) views.
 
-H1-to-native correspondence is not fully verified; [open H6 interface findings](docs/h6-r2-interface-review.md) take precedence over the concept mock-up.
+![Current native PCB arrangement with the display-panel envelope](docs/images/h6-r2-product-exterior.svg)
 
-![H1 concept four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.39-views-20260907)
+H1-to-native correspondence is not fully verified: H1 remains a concept archive, not a picture of current positions. [H6 corrections and open interface findings](docs/h6-r2-interface-review.md) describe the current boards.
+
+[Placement corrections and their verification](docs/h6-r2-placement-repair.md) explain the holder, encoder, recessed ports and internal audio assembly. The routing phase is still open.
+
+[Archive: H1 concept four-face Leshy2 mock-up](docs/images/h1-r2-four-faces.svg?rev=h1-r2.39-views-20260907)
 
 [Legend for 223 H1 concept bodies](docs/images/h1-r2-component-legend.svg?rev=h1-r2.39-views-20260907) ·
 [physical-design report](docs/h1-r2-physical-layout.md) ·

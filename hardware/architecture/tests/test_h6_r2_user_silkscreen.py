@@ -161,7 +161,8 @@ class UserSilkscreenTests(unittest.TestCase):
                 self.assertEqual(2, len(found))
                 self.assertEqual({"F.Silkscreen"}, {row["layer"] for row in found})
                 self.assertEqual({6.0 if spec["edge"] == "left" else 74.0}, {row["at_mm"][0] for row in found})
-                self.assertAlmostEqual(2.1, found[1]["at_mm"][1] - found[0]["at_mm"][1])
+                spacing = 1.35 if board["project"] == "LESHY2-RF-R2" and instance == "rf_rp_boot_button" else 2.1
+                self.assertAlmostEqual(spacing, found[1]["at_mm"][1] - found[0]["at_mm"][1])
 
     def test_all_four_usb_paths_have_their_real_role_and_uniform_rows(self):
         found = {}
@@ -176,6 +177,13 @@ class UserSilkscreenTests(unittest.TestCase):
             self.assertEqual(list(SILK.USB_OWNERS[instance]), [row["text"] for row in rows])
             self.assertEqual([138.2, 140.0], [row["at_mm"][1] for row in rows])
         self.assertEqual(1, sum(row["text"] == "POWER + USB" for rows in found.values() for row in rows))
+
+    def test_rf_boot_owner_stays_on_action_axis_below_outward_microphone(self):
+        board = next(b for b in self.boards if b["project"] == "LESHY2-RF-R2")
+        found = [r for r in SILK.labels(board["project"], board["placements"], self.contract)
+                 if r["instance"] == "rf_rp_boot_button"]
+        self.assertEqual([("RF RP", [6.0, 114.95]), ("BOOT", [6.0, 116.3])],
+                         [(r["text"], r["at_mm"]) for r in found])
 
     def test_all_ten_indicators_are_labelled_at_actual_positions(self):
         # Independent accepted interface name: IEEE 802.15.4, not "5.4".

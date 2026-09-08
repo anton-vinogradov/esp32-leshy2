@@ -4,16 +4,17 @@
   "status": "pass_scoped",
   "production_release_authorized": false,
   "inputs_sha256": {
-    "hardware/layout/h6-r2-placement-contract.json": "333d329a07879630f4f2cc3268f6c9cb7258d959aa2b6af2103aa73dc28959a0",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "57f0ed517509911b8b7c3e003cd4c47a35e6a924850cfb3a1f710e66fd9fd512",
-    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "d372c47199c57ec14317a5adb5e9c1a870cba891a46a66e379493fe08ef776c3",
-    "hardware/layout/h6_r2_silkscreen_audit.py": "aafd935256dd6ab5ebe8c143df1d43a4cf358ad6aec2fc025c060badecc25c56",
-    "hardware/layout/h6_r2_user_silkscreen.py": "efa930e961cb379e99bbae7e7b7a5e659f9620063d6a5c305cbcd2f9a9d72eaf",
+    "hardware/layout/h6-r2-placement-contract.json": "e91e46a8e9d777303f14fcc0e882ba0888a3474710597fae1d0a5f14dd4b3957",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "bd0f3d67c7d682ae96fedb3b9a5fb6e64648efbf18134f4b78567a1232717bf7",
+    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "343763201ea51cc60907684316d2a4243e9d4c854d1bb51f08599b7d9f1ac71d",
+    "hardware/layout/h6_r2_silkscreen_audit.py": "7f383aa21a822fc44394e424663f2b7a591f0e5cd1263fc80f8556d10cbafa3b",
+    "hardware/layout/h6_r2_user_silkscreen.py": "7d99d53ca0bba3a827175dbd608d4418ba87e0ca01bfbf53f43676de9e7111df",
     "hardware/ecad/libraries/Leshy2_R2.pretty/B3S-1100P.kicad_mod": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989",
     "hardware/layout/h6-r2-b3s-actuator-datum-review.json": "d8de0d5184828d1c6fd98415ccf63e4008e87cfbf7a231412f59bc7fc1dab6c9",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "a6d6d9defa240766644ff5afef2164aefffeaf920ecdfe0a5fdb39c8db2398d9",
-    "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "9952e5cc931552e3ee8246638689adbab41721f70b703e2561277604f7d83d27",
-    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "57056385116edbe4e26ec9c4c93ad942346dea5e199fe8603cd3b7f51943cd7d",
+    "hardware/ecad/libraries/Leshy2.pretty/CMEJ-0413-42-SMT-TR.kicad_mod": "039257c90aa952b1e74608cb510cf852cb93eeba0b7dea0b98d0864a2b085817",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "68eabd0f96aa091b348c9a0f9047dbd39c39666353b8c2d144babb87af7b9462",
+    "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "53350dd83e9a11072307abaf5a2dec8e072156f06513b11b429cf5f3a15f3637",
+    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "5347ea2c4fc426276dbbe24654da0b5d51829a1ee7dfcdf0f4f5bbbc726bf28d",
     "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_sch": "2d20cc84e34a33e8f6339a846a21ef9c2b3c9d2d53aeaad744f87fadc9a82069",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_01_USB_PD_CHARGE.kicad_sch": "d14e17acd7ab4e58b975f5ca176d9165c09571907b0112f68bd11ac0caf0c3b4",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_02_PACK_SAFETY_AON.kicad_sch": "4adbde05a6bdc50256c23612e5c9ea15f6f2aafaf87591049e25173f6f1566c6",
@@ -36,8 +37,8 @@
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_40_INTERBOARD_M1.kicad_sch": "424390520ba25ce5ae9c4466c4a54c014fd17a53cb7b58fda7734d31e2e95a17",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_50_FRONT_POWER_SAFETY.kicad_sch": "5c1befee1751e1dfb882c1ee86d04ce19312095f527a901bcbae75691ef1b15b",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch": "87b5812e879ba11abca135470a681c9909148ff398d7dc9153d50d258adae3b1",
-    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "3c0071b28c2c2dec2a4d95fa0047a83d30bd9302a0e5083ea90cc5a0efe99aad",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "cb5855cf3d9c534bfdbd5190a86f54f4d800b8c594c717257463fd81033f4e9f"
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "4de030ef283becd282ef0a590d2e5eb42ba3491f66ffa3e9b59f250ef54d5902",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "1177dbb74d06adfa007199e2076b737185d0266f99b517d531a6a897c87328d6"
   },
   "boards": [
     {
@@ -464,6 +465,150 @@
           "fab_graphics_bbox_gap_mm": 1.6017500000000098,
           "tolerance_expanded_body_gap_mm": 1.3017499999999984,
           "resolution_reason": "Exact reviewed B3S native/library geometry agrees; text clears the primary body plus dimensional tolerance, not merely the assembly courtyard. Pads and drills remain independently screened."
+        },
+        {
+          "kind": "user_text_bbox_overlap",
+          "text": {
+            "id": "2b75eedd-260f-442f-b25d-d3dedb21360b",
+            "text": "DATA USB",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              14.87,
+              140.0
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                11.125952,
+                18.614048
+              ],
+              "y": [
+                139.15175,
+                140.84825
+              ]
+            }
+          },
+          "other_text": {
+            "id": "7f43493d-ad74-5e61-aa0d-1b1a963cba5b",
+            "text": "HUB RP",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              14.87,
+              138.2
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                11.816429,
+                17.923572
+              ],
+              "y": [
+                137.35175,
+                139.04825
+              ]
+            }
+          },
+          "native_text_gap_mm": [
+            0.65,
+            0.650001
+          ],
+          "resolution_reason": "Actual native strokes, including both pen widths, are separated by the required gap"
+        },
+        {
+          "kind": "user_text_bbox_overlap",
+          "text": {
+            "id": "d26e6c24-8320-446a-bcbf-d6b69beafb59",
+            "text": "DATA USB",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              26.1,
+              140.0
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                22.355952,
+                29.844048
+              ],
+              "y": [
+                139.15175,
+                140.84825
+              ]
+            }
+          },
+          "other_text": {
+            "id": "4844262a-a0ed-5aa9-8121-81c6ef160b80",
+            "text": "C5",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              26.1,
+              138.2
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                24.99881,
+                27.201191
+              ],
+              "y": [
+                137.35175,
+                139.04825
+              ]
+            }
+          },
+          "native_text_gap_mm": [
+            0.658809,
+            0.65881
+          ],
+          "resolution_reason": "Actual native strokes, including both pen widths, are separated by the required gap"
         }
       ],
       "required_bindings": [
@@ -1249,312 +1394,6 @@
         {
           "kind": "via_drill_bbox",
           "text": {
-            "id": "83da7390-8c7b-4da7-a23f-c7c4e9d52017",
-            "text": "NTC0 PAD",
-            "layer": "F.Silkscreen",
-            "at_mm": [
-              33.439999,
-              89.1
-            ],
-            "size_mm": [
-              1.0,
-              1.0
-            ],
-            "thickness_mm": 0.15,
-            "angle_deg": 0.0,
-            "mirrored": false,
-            "visible": true,
-            "horizontal_justify": 0,
-            "vertical_justify": 0,
-            "default_stroke_font": true,
-            "bold": false,
-            "italic": false,
-            "bbox_mm": {
-              "x": [
-                29.624523,
-                37.255476
-              ],
-              "y": [
-                88.25175,
-                89.94825
-              ]
-            }
-          },
-          "obstacle": {
-            "kind": "via_drill_bbox",
-            "via": "04183973-c590-4198-b03e-e7dc894539b4",
-            "front_tented": true,
-            "bbox_mm": {
-              "x": [
-                33.3,
-                33.5
-              ],
-              "y": [
-                88.22500000000001,
-                88.425
-              ]
-            }
-          },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
-        },
-        {
-          "kind": "via_drill_bbox",
-          "text": {
-            "id": "83da7390-8c7b-4da7-a23f-c7c4e9d52017",
-            "text": "NTC0 PAD",
-            "layer": "F.Silkscreen",
-            "at_mm": [
-              33.439999,
-              89.1
-            ],
-            "size_mm": [
-              1.0,
-              1.0
-            ],
-            "thickness_mm": 0.15,
-            "angle_deg": 0.0,
-            "mirrored": false,
-            "visible": true,
-            "horizontal_justify": 0,
-            "vertical_justify": 0,
-            "default_stroke_font": true,
-            "bold": false,
-            "italic": false,
-            "bbox_mm": {
-              "x": [
-                29.624523,
-                37.255476
-              ],
-              "y": [
-                88.25175,
-                89.94825
-              ]
-            }
-          },
-          "obstacle": {
-            "kind": "via_drill_bbox",
-            "via": "8f7f185a-8825-42bb-819c-6831dd6beb9d",
-            "front_tented": true,
-            "bbox_mm": {
-              "x": [
-                36.05,
-                36.25
-              ],
-              "y": [
-                89.75,
-                89.94999999999999
-              ]
-            }
-          },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
-        },
-        {
-          "kind": "via_drill_bbox",
-          "text": {
-            "id": "83da7390-8c7b-4da7-a23f-c7c4e9d52017",
-            "text": "NTC0 PAD",
-            "layer": "F.Silkscreen",
-            "at_mm": [
-              33.439999,
-              89.1
-            ],
-            "size_mm": [
-              1.0,
-              1.0
-            ],
-            "thickness_mm": 0.15,
-            "angle_deg": 0.0,
-            "mirrored": false,
-            "visible": true,
-            "horizontal_justify": 0,
-            "vertical_justify": 0,
-            "default_stroke_font": true,
-            "bold": false,
-            "italic": false,
-            "bbox_mm": {
-              "x": [
-                29.624523,
-                37.255476
-              ],
-              "y": [
-                88.25175,
-                89.94825
-              ]
-            }
-          },
-          "obstacle": {
-            "kind": "via_drill_bbox",
-            "via": "d166b04d-7425-4fc2-b4af-60d6a02c6fa4",
-            "front_tented": true,
-            "bbox_mm": {
-              "x": [
-                34.265,
-                34.465
-              ],
-              "y": [
-                89.9,
-                90.1
-              ]
-            }
-          },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
-        },
-        {
-          "kind": "via_drill_bbox",
-          "text": {
-            "id": "83da7390-8c7b-4da7-a23f-c7c4e9d52017",
-            "text": "NTC0 PAD",
-            "layer": "F.Silkscreen",
-            "at_mm": [
-              33.439999,
-              89.1
-            ],
-            "size_mm": [
-              1.0,
-              1.0
-            ],
-            "thickness_mm": 0.15,
-            "angle_deg": 0.0,
-            "mirrored": false,
-            "visible": true,
-            "horizontal_justify": 0,
-            "vertical_justify": 0,
-            "default_stroke_font": true,
-            "bold": false,
-            "italic": false,
-            "bbox_mm": {
-              "x": [
-                29.624523,
-                37.255476
-              ],
-              "y": [
-                88.25175,
-                89.94825
-              ]
-            }
-          },
-          "obstacle": {
-            "kind": "via_drill_bbox",
-            "via": "d2e8225f-06ce-4bf9-b2ef-e5e120d7cbd9",
-            "front_tented": true,
-            "bbox_mm": {
-              "x": [
-                32.1,
-                32.300000000000004
-              ],
-              "y": [
-                89.72500000000001,
-                89.925
-              ]
-            }
-          },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
-        },
-        {
-          "kind": "via_drill_bbox",
-          "text": {
-            "id": "83da7390-8c7b-4da7-a23f-c7c4e9d52017",
-            "text": "NTC0 PAD",
-            "layer": "F.Silkscreen",
-            "at_mm": [
-              33.439999,
-              89.1
-            ],
-            "size_mm": [
-              1.0,
-              1.0
-            ],
-            "thickness_mm": 0.15,
-            "angle_deg": 0.0,
-            "mirrored": false,
-            "visible": true,
-            "horizontal_justify": 0,
-            "vertical_justify": 0,
-            "default_stroke_font": true,
-            "bold": false,
-            "italic": false,
-            "bbox_mm": {
-              "x": [
-                29.624523,
-                37.255476
-              ],
-              "y": [
-                88.25175,
-                89.94825
-              ]
-            }
-          },
-          "obstacle": {
-            "kind": "via_drill_bbox",
-            "via": "392da3cb-d5c7-4259-bd4c-1710de1c1385",
-            "front_tented": true,
-            "bbox_mm": {
-              "x": [
-                33.3,
-                33.5
-              ],
-              "y": [
-                89.185,
-                89.38499999999999
-              ]
-            }
-          },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
-        },
-        {
-          "kind": "via_drill_bbox",
-          "text": {
-            "id": "83da7390-8c7b-4da7-a23f-c7c4e9d52017",
-            "text": "NTC0 PAD",
-            "layer": "F.Silkscreen",
-            "at_mm": [
-              33.439999,
-              89.1
-            ],
-            "size_mm": [
-              1.0,
-              1.0
-            ],
-            "thickness_mm": 0.15,
-            "angle_deg": 0.0,
-            "mirrored": false,
-            "visible": true,
-            "horizontal_justify": 0,
-            "vertical_justify": 0,
-            "default_stroke_font": true,
-            "bold": false,
-            "italic": false,
-            "bbox_mm": {
-              "x": [
-                29.624523,
-                37.255476
-              ],
-              "y": [
-                88.25175,
-                89.94825
-              ]
-            }
-          },
-          "obstacle": {
-            "kind": "via_drill_bbox",
-            "via": "6f91fbe3-2f6a-4d8e-aa85-c827f531c613",
-            "front_tented": true,
-            "bbox_mm": {
-              "x": [
-                36.65,
-                36.85
-              ],
-              "y": [
-                89.50500000000001,
-                89.705
-              ]
-            }
-          },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
-        },
-        {
-          "kind": "via_drill_bbox",
-          "text": {
             "id": "d00b9ccc-42ec-4e42-949a-2ef02be77d5c",
             "text": "RF/PWR PCB · R2-EVT1 · REV A",
             "layer": "F.Silkscreen",
@@ -1861,108 +1700,6 @@
         {
           "kind": "via_drill_bbox",
           "text": {
-            "id": "c5d34060-e225-4895-aff4-1e9b08ac1bd8",
-            "text": "NTC1 PAD",
-            "layer": "F.Silkscreen",
-            "at_mm": [
-              52.54,
-              89.1
-            ],
-            "size_mm": [
-              1.0,
-              1.0
-            ],
-            "thickness_mm": 0.15,
-            "angle_deg": 0.0,
-            "mirrored": false,
-            "visible": true,
-            "horizontal_justify": 0,
-            "vertical_justify": 0,
-            "default_stroke_font": true,
-            "bold": false,
-            "italic": false,
-            "bbox_mm": {
-              "x": [
-                48.724524,
-                56.355477
-              ],
-              "y": [
-                88.25175,
-                89.94825
-              ]
-            }
-          },
-          "obstacle": {
-            "kind": "via_drill_bbox",
-            "via": "16ac47fa-4aa7-436a-b34e-2d566d69f14a",
-            "front_tented": true,
-            "bbox_mm": {
-              "x": [
-                49.9,
-                50.1
-              ],
-              "y": [
-                88.10000000000001,
-                88.3
-              ]
-            }
-          },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
-        },
-        {
-          "kind": "via_drill_bbox",
-          "text": {
-            "id": "c5d34060-e225-4895-aff4-1e9b08ac1bd8",
-            "text": "NTC1 PAD",
-            "layer": "F.Silkscreen",
-            "at_mm": [
-              52.54,
-              89.1
-            ],
-            "size_mm": [
-              1.0,
-              1.0
-            ],
-            "thickness_mm": 0.15,
-            "angle_deg": 0.0,
-            "mirrored": false,
-            "visible": true,
-            "horizontal_justify": 0,
-            "vertical_justify": 0,
-            "default_stroke_font": true,
-            "bold": false,
-            "italic": false,
-            "bbox_mm": {
-              "x": [
-                48.724524,
-                56.355477
-              ],
-              "y": [
-                88.25175,
-                89.94825
-              ]
-            }
-          },
-          "obstacle": {
-            "kind": "via_drill_bbox",
-            "via": "aae53468-fb0f-4737-b65d-295ac37bbf58",
-            "front_tented": true,
-            "bbox_mm": {
-              "x": [
-                50.6,
-                50.800000000000004
-              ],
-              "y": [
-                88.10000000000001,
-                88.3
-              ]
-            }
-          },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
-        },
-        {
-          "kind": "via_drill_bbox",
-          "text": {
             "id": "5b3b33d0-b1e4-475d-9f1a-4e54f4cf2866",
             "text": "ESP32-LESHY2",
             "layer": "F.Silkscreen",
@@ -2112,9 +1849,722 @@
             }
           },
           "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "54f4a317-74a1-5022-9bf8-d86607ce850c",
+            "text": "NTC0 PAD",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              30.45,
+              89.1
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                26.634524,
+                34.265477
+              ],
+              "y": [
+                88.25175,
+                89.94825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "04183973-c590-4198-b03e-e7dc894539b4",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                33.3,
+                33.5
+              ],
+              "y": [
+                88.22500000000001,
+                88.425
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "54f4a317-74a1-5022-9bf8-d86607ce850c",
+            "text": "NTC0 PAD",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              30.45,
+              89.1
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                26.634524,
+                34.265477
+              ],
+              "y": [
+                88.25175,
+                89.94825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "d166b04d-7425-4fc2-b4af-60d6a02c6fa4",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                34.265,
+                34.465
+              ],
+              "y": [
+                89.9,
+                90.1
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "54f4a317-74a1-5022-9bf8-d86607ce850c",
+            "text": "NTC0 PAD",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              30.45,
+              89.1
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                26.634524,
+                34.265477
+              ],
+              "y": [
+                88.25175,
+                89.94825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "d2e8225f-06ce-4bf9-b2ef-e5e120d7cbd9",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                32.1,
+                32.300000000000004
+              ],
+              "y": [
+                89.72500000000001,
+                89.925
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "54f4a317-74a1-5022-9bf8-d86607ce850c",
+            "text": "NTC0 PAD",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              30.45,
+              89.1
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                26.634524,
+                34.265477
+              ],
+              "y": [
+                88.25175,
+                89.94825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "392da3cb-d5c7-4259-bd4c-1710de1c1385",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                33.3,
+                33.5
+              ],
+              "y": [
+                89.185,
+                89.38499999999999
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "70239028-566d-506d-adee-f21ecd2010c6",
+            "text": "NTC1 PAD",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              49.55,
+              89.1
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                45.734524,
+                53.365477
+              ],
+              "y": [
+                88.25175,
+                89.94825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "16ac47fa-4aa7-436a-b34e-2d566d69f14a",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                49.9,
+                50.1
+              ],
+              "y": [
+                88.10000000000001,
+                88.3
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "70239028-566d-506d-adee-f21ecd2010c6",
+            "text": "NTC1 PAD",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              49.55,
+              89.1
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                45.734524,
+                53.365477
+              ],
+              "y": [
+                88.25175,
+                89.94825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "aae53468-fb0f-4737-b65d-295ac37bbf58",
+            "front_tented": true,
+            "bbox_mm": {
+              "x": [
+                50.6,
+                50.800000000000004
+              ],
+              "y": [
+                88.10000000000001,
+                88.3
+              ]
+            }
+          },
+          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
         }
       ],
-      "resolved_geometry_findings": [],
+      "resolved_geometry_findings": [
+        {
+          "kind": "front_courtyard_bbox",
+          "text": {
+            "id": "425e9795-ce67-51f6-9532-e6f4d41b5018",
+            "text": "RST",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              6.0,
+              109.3
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                4.517857,
+                7.482143
+              ],
+              "y": [
+                108.45175,
+                110.14825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "front_courtyard_bbox",
+            "reference": "MK1",
+            "bbox_mm": {
+              "x": [
+                5.702493,
+                10.294999
+              ],
+              "y": [
+                109.703748,
+                114.296251
+              ]
+            },
+            "fab_graphics_bbox_mm": {
+              "x": [
+                5.95,
+                10.05
+              ],
+              "y": [
+                109.95,
+                114.05
+              ]
+            },
+            "native_geometry_sha256": "dfde050ad6206fa4e547ef3b77c1a0bf7ef14d187d2e9d9d41d2a01c64f424f4",
+            "reviewed_circle_body": {
+              "primary_url": "https://www.sameskydevices.com/product/resource/masterpdf/cmej-0413-42-smt-tr.pdf",
+              "section": "Rev1.04 p2 mechanical drawing, diameter4.0 +/-0.2 mm",
+              "library_sha256": "039257c90aa952b1e74608cb510cf852cb93eeba0b7dea0b98d0864a2b085817",
+              "native_geometry_matches_library": true,
+              "centre_mm": [
+                8.0,
+                112.0
+              ],
+              "radius_max_mm": 2.1
+            },
+            "native_text_clearances": {
+              "425e9795-ce67-51f6-9532-e6f4d41b5018": {
+                "status": "measured",
+                "method": "native_stroke_shape_to_maximum_body_circle",
+                "gap_lower_mm": 0.292594,
+                "gap_upper_mm": 0.292595,
+                "inputs_sha256": "69641f35875cadd8ea5636a4b2d982984c28932ab48dc78eb7c4a8d752e11b2e"
+              },
+              "a2166c67-2ea3-50b1-9edf-c08138fdff76": {
+                "status": "measured",
+                "method": "native_stroke_shape_to_maximum_body_circle",
+                "gap_lower_mm": 0.230879,
+                "gap_upper_mm": 0.23088,
+                "inputs_sha256": "040f8376a7497b3c94501f0d30eebd89e920a28988062e900490242b598dccf6"
+              }
+            }
+          },
+          "fab_graphics_bbox_overlap": true,
+          "fab_graphics_bbox_gap_mm": 0.0,
+          "required_body_gap_mm": 0.15,
+          "native_maximum_body_gap_mm": [
+            0.292594,
+            0.292595
+          ],
+          "resolution_reason": "Actual native text strokes clear the primary maximum circular body; exact native/library geometry agrees. Pads and drills remain independently screened."
+        },
+        {
+          "kind": "front_courtyard_bbox",
+          "text": {
+            "id": "a2166c67-2ea3-50b1-9edf-c08138fdff76",
+            "text": "RF RP",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              6.0,
+              114.95
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                3.565476,
+                8.434524
+              ],
+              "y": [
+                114.10175,
+                115.79825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "front_courtyard_bbox",
+            "reference": "MK1",
+            "bbox_mm": {
+              "x": [
+                5.702493,
+                10.294999
+              ],
+              "y": [
+                109.703748,
+                114.296251
+              ]
+            },
+            "fab_graphics_bbox_mm": {
+              "x": [
+                5.95,
+                10.05
+              ],
+              "y": [
+                109.95,
+                114.05
+              ]
+            },
+            "native_geometry_sha256": "dfde050ad6206fa4e547ef3b77c1a0bf7ef14d187d2e9d9d41d2a01c64f424f4",
+            "reviewed_circle_body": {
+              "primary_url": "https://www.sameskydevices.com/product/resource/masterpdf/cmej-0413-42-smt-tr.pdf",
+              "section": "Rev1.04 p2 mechanical drawing, diameter4.0 +/-0.2 mm",
+              "library_sha256": "039257c90aa952b1e74608cb510cf852cb93eeba0b7dea0b98d0864a2b085817",
+              "native_geometry_matches_library": true,
+              "centre_mm": [
+                8.0,
+                112.0
+              ],
+              "radius_max_mm": 2.1
+            },
+            "native_text_clearances": {
+              "425e9795-ce67-51f6-9532-e6f4d41b5018": {
+                "status": "measured",
+                "method": "native_stroke_shape_to_maximum_body_circle",
+                "gap_lower_mm": 0.292594,
+                "gap_upper_mm": 0.292595,
+                "inputs_sha256": "69641f35875cadd8ea5636a4b2d982984c28932ab48dc78eb7c4a8d752e11b2e"
+              },
+              "a2166c67-2ea3-50b1-9edf-c08138fdff76": {
+                "status": "measured",
+                "method": "native_stroke_shape_to_maximum_body_circle",
+                "gap_lower_mm": 0.230879,
+                "gap_upper_mm": 0.23088,
+                "inputs_sha256": "040f8376a7497b3c94501f0d30eebd89e920a28988062e900490242b598dccf6"
+              }
+            }
+          },
+          "fab_graphics_bbox_overlap": false,
+          "fab_graphics_bbox_gap_mm": 0.05174999999999841,
+          "required_body_gap_mm": 0.15,
+          "native_maximum_body_gap_mm": [
+            0.230879,
+            0.23088
+          ],
+          "resolution_reason": "Actual native text strokes clear the primary maximum circular body; exact native/library geometry agrees. Pads and drills remain independently screened."
+        },
+        {
+          "kind": "user_text_bbox_overlap",
+          "text": {
+            "id": "478d8e35-18b5-5c0f-ba1a-cbddb77a6a1b",
+            "text": "BOOT",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              6.0,
+              116.3
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                3.946429,
+                8.053572
+              ],
+              "y": [
+                115.45175,
+                117.14825
+              ]
+            }
+          },
+          "other_text": {
+            "id": "a2166c67-2ea3-50b1-9edf-c08138fdff76",
+            "text": "RF RP",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              6.0,
+              114.95
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                3.565476,
+                8.434524
+              ],
+              "y": [
+                114.10175,
+                115.79825
+              ]
+            }
+          },
+          "native_text_gap_mm": [
+            0.2,
+            0.200001
+          ],
+          "resolution_reason": "Actual native strokes, including both pen widths, are separated by the required gap"
+        },
+        {
+          "kind": "user_text_bbox_overlap",
+          "text": {
+            "id": "67a6dc19-7c10-50be-9e77-3464a6e51fb3",
+            "text": "POWER + USB",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              16.469999,
+              140.0
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                10.916428,
+                22.023571
+              ],
+              "y": [
+                139.15175,
+                140.84825
+              ]
+            }
+          },
+          "other_text": {
+            "id": "e02c2c4d-a797-555b-a3d9-e43f7587beab",
+            "text": "S3",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              16.469999,
+              138.2
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                15.392618,
+                17.54738
+              ],
+              "y": [
+                137.35175,
+                139.04825
+              ]
+            }
+          },
+          "native_text_gap_mm": [
+            0.655648,
+            0.655649
+          ],
+          "resolution_reason": "Actual native strokes, including both pen widths, are separated by the required gap"
+        },
+        {
+          "kind": "user_text_bbox_overlap",
+          "text": {
+            "id": "d87f6a18-b285-5c7b-aa95-13860f4974fa",
+            "text": "DATA USB",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              37.47,
+              140.0
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                33.725952,
+                41.214048
+              ],
+              "y": [
+                139.15175,
+                140.84825
+              ]
+            }
+          },
+          "other_text": {
+            "id": "569fa67a-dcf8-5902-98dc-d389bd21d17a",
+            "text": "RF RP",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              37.47,
+              138.2
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                35.035476,
+                39.904524
+              ],
+              "y": [
+                137.35175,
+                139.04825
+              ]
+            }
+          },
+          "native_text_gap_mm": [
+            0.65,
+            0.650001
+          ],
+          "resolution_reason": "Actual native strokes, including both pen widths, are separated by the required gap"
+        }
+      ],
       "required_bindings": [
         {
           "expected": {
@@ -2251,7 +2701,7 @@
             "text": "RF RP",
             "at_mm": [
               6.0,
-              114.2
+              114.95
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
@@ -2378,15 +2828,15 @@
             "reference": "SW3",
             "text": "ENC / OK",
             "at_mm": [
-              71.0,
-              60.5
+              9.0,
+              91.25
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "cf2c9b5c-d403-4450-ad85-cabaae4f9685"
+          "actual_id": "4d9c54f8-df77-5343-9fba-f9efbcd00c60"
         }
       ]
     }
@@ -2394,8 +2844,8 @@
   "limitations": [
     "Bounding-box candidates require visual inspection and native DRC; they are not proven ink collisions.",
     "Footprint package graphics/reference/value text are outside this free-board user-text audit.",
-    "Supported default native stroke-font/pad-mask pairs use actual shapes and a0.15-mm gap; unsupported pairs remain conservative candidates. Other geometry uses bounding boxes.",
-    "Only hash-bound primary-reviewed B3S courtyard candidates may resolve against matching native Fab/pad geometry with body tolerance; this is not assembly qualification.",
+    "Supported default native stroke-font/pad-mask and text/text pairs use actual shapes and a0.15-mm gap; unsupported pairs remain conservative candidates. Other geometry uses bounding boxes.",
+    "Only hash-bound primary-reviewed B3S and CMEJ-0413-42-SMT-TR courtyard candidates may resolve against matching native/library geometry with maximum body tolerance; circular bodies use filled circles and actual text strokes. This is not assembly qualification.",
     "Native Edge.Cuts envelope must match the contracted board; text is screened against its rounded envelope. Slot geometry and mechanical connector readiness are separate.",
     "1.0 mm font and 0.15 mm stroke are this label contract's minima, not factory qualification."
   ]

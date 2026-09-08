@@ -22,6 +22,7 @@ from pathlib import Path
 
 from h6_r2_coordinates import world_bbox_to_native
 from h6_r2_microsd_recess import bottom_edge_primitives
+from h6_r2_speaker_fit import add_speaker_assembly_geometry
 
 try:
     import pcbnew  # type: ignore
@@ -35,6 +36,8 @@ except ModuleNotFoundError as exc:  # pragma: no cover - exercised by the wrappe
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTRACT_PATH = ROOT / "hardware/layout/h6-r2-placement-contract.json"
+SPEAKER_BODY_PATH = ROOT / "hardware/layout/h6-r2-speaker-body.json"
+SPEAKER_HELPER_PATH = ROOT / "hardware/layout/h6_r2_speaker_fit.py"
 FREEZE_PATH = ROOT / "hardware/layout/h6-r2-placement-freeze.json"
 PLACEMENT_PATH = ROOT / "hardware/product-design/h1-r2-placement.json"
 COORDINATE_PATH = ROOT / "hardware/product-design/generated/H1-unified-coordinate-table.json"
@@ -435,6 +438,8 @@ def configure_board(board, contract: dict, project: str) -> None:
 
 def add_mechanical_geometry(board, project: str, contract: dict, grids: dict) -> list[dict]:
     result = []
+    speaker_contract = {"mechanical": {"speaker_body": load(SPEAKER_BODY_PATH)}}
+    add_speaker_assembly_geometry(board, project, speaker_contract, grids, pcbnew)
     holes = contract["mechanical"]["mounting_holes"]
     hole_library = str(KICAD_FOOTPRINT_ROOT / "MountingHole.pretty")
     for index, centre in enumerate(holes["centres_mm"], 1):
@@ -2121,6 +2126,10 @@ def build() -> tuple[dict[Path, bytes], dict]:
         "sources": {
             "contract": str(CONTRACT_PATH.relative_to(ROOT)),
             "contract_sha256": sha256(CONTRACT_PATH),
+            "speaker_body": str(SPEAKER_BODY_PATH.relative_to(ROOT)),
+            "speaker_body_sha256": sha256(SPEAKER_BODY_PATH),
+            "speaker_helper": str(SPEAKER_HELPER_PATH.relative_to(ROOT)),
+            "speaker_helper_sha256": sha256(SPEAKER_HELPER_PATH),
             "placement_freeze": str(FREEZE_PATH.relative_to(ROOT)),
             "placement_freeze_sha256": sha256(FREEZE_PATH),
             "placement": str(PLACEMENT_PATH.relative_to(ROOT)),

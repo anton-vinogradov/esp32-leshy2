@@ -41,9 +41,9 @@ class H6R2PlacementTests(unittest.TestCase):
                 "hard_conflict_count": 0,
                 "placement_failure_count": 0,
                 "net_or_footprint_error_count": 0,
-                "locality_pair_count": 311,
+                "locality_pair_count": 326,
                 "locality_violation_count": 0,
-                "critical_pad_pair_count": 54,
+                "critical_pad_pair_count": 72,
                 "critical_pad_pair_violation_count": 0,
                 "accepted_same_face_overlap_count": 2,
                 "routing_authorized": True,
@@ -56,7 +56,8 @@ class H6R2PlacementTests(unittest.TestCase):
         self.assertEqual(780, boards["LESHY2-RF-R2"]["placed_instance_count"])
 
     def test_local_parts_stay_with_their_physical_owners(self):
-        self.assertEqual(311, self.audit["summary"]["locality_pair_count"])
+        # 311 prior pairs +10 actual UI supply owners +4 U6 bypasses +C259.
+        self.assertEqual(326, self.audit["summary"]["locality_pair_count"])
         self.assertEqual(0, self.audit["summary"]["locality_violation_count"])
         rows = {}
         for board in self.audit["boards"]:
@@ -96,7 +97,27 @@ class H6R2PlacementTests(unittest.TestCase):
             self.assertEqual([], pad_audit["errors"])
             self.assertEqual([], pad_audit["violations"])
             rows.extend(pad_audit["rows"])
-        self.assertEqual(54, len(rows))
+        # 54 prior pairs +10 UI +4 U6 +2 C259 supply pins +U118 rail/ground.
+        self.assertEqual(72, len(rows))
+        observed = {(row["first_instance"], row["first_pad"],
+                     row["second_instance"], row["second_pad"]) for row in rows}
+        added = {
+            ("backlight_efuse", "6", "backlight_efuse_input_cap", "1"),
+            ("sd_power_switch", "1", "sd_power_input_cap", "1"),
+            ("sd", "4", "sd_power_hf_cap", "1"),
+            ("sd", "4", "sd_power_bulk_cap", "1"),
+            ("slow_io_bulk_cap", "1", "slow_io", "27"),
+            ("slow_io_bulk_cap", "1", "slow_io", "31"),
+            ("safe_fault_reset_buffer_bypass", "1", "safe_fault_reset_buffer", "8"),
+            ("safe_fault_reset_buffer_bypass", "2", "safe_fault_reset_buffer", "4"),
+        }
+        added.update((f"nrf{index}", "1", f"nrf{index}_module_{kind}_cap", "1")
+                     for index in range(3) for kind in ("hf", "bulk"))
+        added.update(("hub_safe_i2c_boundary", pad, f"hub_safe_i2c_{rail}_{size}", "1")
+                     for rail, pad in (("aon", "8"), ("main", "1"))
+                     for size in ("100n", "1u"))
+        self.assertEqual(18, len(added))
+        self.assertTrue(added <= observed, sorted(added-observed))
         self.assertEqual(
             switching_nodes,
             switching_nodes & {row["canonical_net"] for row in rows},
@@ -111,9 +132,9 @@ class H6R2PlacementTests(unittest.TestCase):
         for board in self.audit["boards"]:
             rows.update({row["instance"]: row for row in board["locality"]["rows"]})
         expected = {
-            "pack_fuse0": ([33.44, 126.0], 2.0),
-            "pack_fuse1": ([52.54, 44.0], 2.0),
-            "pack_shunt": ([33.44, 44.0], 4.0),
+            "pack_fuse0": ([30.45, 126.0], 2.0),
+            "pack_fuse1": ([49.55, 44.0], 2.0),
+            "pack_shunt": ([30.45, 44.0], 4.0),
         }
         for instance, (anchor, limit) in expected.items():
             self.assertEqual(
@@ -256,24 +277,24 @@ class H6R2PlacementTests(unittest.TestCase):
             self.contract["placement_overrides"]["display_connector"]["centre_mm"],
         )
         encoder = self.contract["placement_overrides"]["encoder"]
-        self.assertEqual([71.0, 50.25], encoder["anchor_mm"])
-        self.assertEqual(0.0, encoder["rotation_deg"])
+        self.assertEqual([9.25, 81.25], encoder["anchor_mm"])
+        self.assertEqual(270.0, encoder["rotation_deg"])
         self.assertTrue(encoder["mechanical_locked"])
 
-    def test_battery_holder_is_shifted_clear_of_the_interboard_locator(self):
+    def test_battery_holder_is_centred_on_requested_board_axis(self):
         self.assertEqual(
-            [42.99, 85.0],
+            [40.0, 85.0],
             self.contract["mechanical"]["rear_battery_holder"]["centre_mm"],
         )
         rf = next(row for row in self.audit["boards"] if row["project"] == "LESHY2-RF-R2")
         holder = next(row for row in rf["placements"] if row["reference"] == "BT1")
-        self.assertEqual([42.99, 85.0], holder["footprint_anchor_mm"])
+        self.assertEqual([40.0, 85.0], holder["footprint_anchor_mm"])
 
     def test_nominal_ntc_axis_alignment_does_not_qualify_holder_contact(self):
         rf = next(row for row in self.audit["boards"] if row["project"] == "LESHY2-RF-R2")
         placements = {row["instance"]: row for row in rf["placements"]}
-        self.assertEqual([33.44, 85.0], placements["pack_ntc0"]["courtyard_centre_mm"])
-        self.assertEqual([52.54, 85.0], placements["pack_ntc1"]["courtyard_centre_mm"])
+        self.assertEqual([30.45, 85.0], placements["pack_ntc0"]["courtyard_centre_mm"])
+        self.assertEqual([49.55, 85.0], placements["pack_ntc1"]["courtyard_centre_mm"])
         self.assertEqual("F.Cu", placements["pack_ntc0"]["side"])
         self.assertEqual("F.Cu", placements["pack_ntc1"]["side"])
         self.assertEqual(
@@ -287,6 +308,8 @@ class H6R2PlacementTests(unittest.TestCase):
             ROOT / "hardware/ecad/libraries/Leshy2_R2.pretty/Keystone-1048P-POLARITY-CORRECTED.kicad_mod"
         ).read_text(encoding="utf-8")
         self.assertIn('(start -43.000 -19.900) (end 43.000 19.900)', holder_footprint)
+        self.assertIn('(start -38.530 -19.890) (end 38.530 19.890)', holder_footprint)
+        self.assertIn('(type dash)) (fill none) (layer "Dwgs.User")', holder_footprint)
         self.assertNotIn('layer "F.CrtYd"', holder_footprint)
         self.assertIn("MECHANICS NOT QUALIFIED", holder_footprint)
         self.assertIn("not a manufacturing-ready land pattern or thermal-contact qualification", holder_footprint)

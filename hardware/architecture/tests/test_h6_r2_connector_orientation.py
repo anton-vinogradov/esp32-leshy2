@@ -18,7 +18,7 @@ GCT_FOOTPRINT = "Connector_USB:USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Hori
 JAE_FOOTPRINT = "Leshy2_R2:USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk"
 SD_FOOTPRINT = "Connector_Card:microSD_HC_Hirose_DM3AT-SF-PEJM5"
 EXPECTED = {
-    "product_usb_connector": ("LESHY2-RF-R2", "J1", "rear-inner", [16.47, 146.9], JAE_FOOTPRINT),
+    "product_usb_connector": ("LESHY2-RF-R2", "J1", "rear-inner", [16.47, 146.2], JAE_FOOTPRINT),
     "hub_rp_service_usb_connector": ("LESHY2-UI-R2", "J11", "ui-inner", [14.87, 146.325], GCT_FOOTPRINT),
     "c5_service_usb_connector": ("LESHY2-UI-R2", "J9", "ui-inner", [26.1, 146.325], GCT_FOOTPRINT),
     "rf_rp_service_usb_connector": ("LESHY2-RF-R2", "J4", "rear-inner", [37.47, 146.325], GCT_FOOTPRINT),
@@ -29,7 +29,8 @@ SUPPORT = {
     "sd_esd_b": ("U7", [63.145, 128.405], 90.0),
     "sd_card_cmd_pullup": ("R39", [56.825, 130.2], 0.0),
     "sd_card_dat1_pullup": ("R41", [66.075, 130.2], 0.0),
-    "sd_card_dat2_pullup": ("R42", [62.075, 130.315], 0.0),
+    # Subsequent explicit supply-locality correction frees the card HF-cap site.
+    "sd_card_dat2_pullup": ("R42", [61.565, 126.065], 90.0),
     "sd_card_dat3_pullup": ("R43", [59.825, 130.315], 0.0),
 }
 
@@ -182,7 +183,7 @@ class ConnectorOrientationTests(unittest.TestCase):
             self.assertAlmostEqual(142.645, tail[1])
             self.assertLess(tail[1], mouth[1])
 
-    def test_exact_jae_locator_datum_overhang_and_copper_edge_clearance(self):
+    def test_exact_jae_reference_datum_is_distinct_from_recessed_board_edge(self):
         text = self.footprint_text(JAE_FOOTPRINT)
         self.assertRegex(text, r'\(pad "" np_thru_hole circle\s*\(at -3 -1\.95\)')
         self.assertRegex(text, r'\(pad "" np_thru_hole oval\s*\(at 3 -1\.95\)')
@@ -191,10 +192,12 @@ class ConnectorOrientationTests(unittest.TestCase):
         self.assertAlmostEqual(3.1, datum["local_locator_datum_y_mm"] +
                                datum["pcb_edge_offset_from_locator_datum_mm"])
         target = self.target("product_usb_connector")
-        edge = native_b_point([0, datum["local_pcb_edge_y_mm"]], target["anchor"], 180)[1]
+        reference_edge = native_b_point([0, datum["local_pcb_edge_y_mm"]], target["anchor"], 180)[1]
+        edge = self.contract["board"]["height_mm"]
         mouth = native_b_point([0, datum["local_shell_mouth_y_mm"]], target["anchor"], 180)[1]
-        self.assertAlmostEqual(self.contract["board"]["height_mm"], edge)
-        self.assertAlmostEqual(150.5, mouth)
+        self.assertAlmostEqual(0.7, edge - reference_edge)
+        self.assertAlmostEqual(149.8, mouth)
+        self.assertLess(mouth, edge, "USB housing must not overhang the finished board")
         self.assertAlmostEqual(datum["shell_overhang_mm"], mouth - edge)
         pads = re.findall(r'\(pad "[^"]*" (?:smd|thru_hole) \w+\s*'
                           r'\(at [-\d.]+ ([-\d.]+)\)\s*\(size [-\d.]+ ([-\d.]+)\)', text)
@@ -235,7 +238,7 @@ class ConnectorOrientationTests(unittest.TestCase):
             self.assertIn("board-edge", target["direction"])
             self.assertTrue(target["mechanical_locked"])
 
-    def test_only_six_reviewed_sd_support_parts_have_explicit_local_corrections(self):
+    def test_six_sd_support_parts_include_the_reviewed_followup_r42_pose(self):
         audit = json.loads((ROOT / "hardware/layout/generated/H6-R2-placement-audit.json").read_text())
         board = next(row for row in audit["boards"] if row["project"] == "LESHY2-UI-R2")
         rows = {row["instance"]: row for row in board["placements"]}

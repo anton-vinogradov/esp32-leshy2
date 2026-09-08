@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "id": "H6-R2-SPEAKER-BODY-001",
+  "status": "reviewed_planar_candidate_not_assembly_qualification",
+  "instance": "speaker",
+  "device_id": "pui_as02404po",
+  "mpn": "PUI Audio AS02404PO",
+  "electrical_termination": {"project": "LESHY2-RF-R2", "reference": "LS1", "connection": "insulated two-wire pair to speaker on UI, actual speaker + mark preserves polarity; wire slack and strain relief required"},
+  "body_registration": {
+    "project": "LESHY2-UI-R2",
+    "side": "B.Cu",
+    "coordinate_frame": "UI native = assembly world; RF native x = 80 - world x",
+    "centre_mm": [15.7, 124.0],
+    "nominal_size_xy_mm": [12.0, 24.0],
+    "maximum_size_xy_mm": [12.2, 24.2],
+    "maximum_bbox_mm": {"x": [9.6, 21.8], "y": [111.9, 136.1]},
+    "rf_native_maximum_bbox_mm": {"x": [58.2, 70.4], "y": [111.9, 136.1]},
+    "diaphragm_direction": "away from UI B into the interboard gap, towards RF B",
+    "maximum_body_thickness_mm": 4.8,
+    "minimum_front_motion_clearance_mm": 0.8
+  },
+  "mounting_bed": {
+    "maximum_total_thickness_mm": 1.12,
+    "material_requirement": "electrically insulating PSA final-assembly bed; no new exact tape MPN adopted",
+    "proposed_patch_size_mm": [7.0, 16.0],
+    "proposed_patch_location": "central fixed rear surface only; keep the entire surrounding frame, unlabelled corner connection regions and diaphragm free",
+    "drawing_basis": "The rear view dimensions the central region 8.15 x 18.45 mm. A smaller central patch is an engineering proposal, not a manufacturer adhesive recommendation or bond/retention qualification.",
+    "no_wraparound": true,
+    "no_covering_terminal_or_vent_relief": true
+  },
+  "z_screen": {
+    "interboard_gap_nominal_mm": 11.0,
+    "interboard_gap_design_lower_mm": 10.9,
+    "opposing_rf_metadata_maximum_height_mm": 3.0,
+    "remaining_after_front_motion_mm": 1.18,
+    "scope": "10.9 - 4.8 - 1.12 - 0.8 - 3.0 = 1.18 mm. Opposing heights are existing device metadata, not a complete toleranced 3D acceptance. The tape thickness is a geometric ceiling, not an adopted MPN."
+  },
+  "required_placement_override": {
+    "hub_rp_service_usb_switch_bypass": {
+      "frame": "front-inner",
+      "anchor_mm": [14.805, 136.905],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Move UI C54 only 0.30 mm downward to clear the separately registered AS02404PO body; preserve pad/net identities and existing copper. C54.1 to U31.1 improves from 4.1457 to 3.8733 mm, not a new 3-mm bypass qualification."
+    }
+  },
+  "acoustic_exit": {
+    "side": "assembly world-left / rear-outer visible-right, retaining the historical SPEAKER edge",
+    "candidate_y_window_mm": [128.0, 134.0],
+    "path": "diaphragm front airspace to the lateral interboard gap; no PCB aperture or grille is claimed to exist",
+    "scope": "Final side opening, baffle/back-volume, wire route, retention and measured audio remain unqualified. No specified SPL/THD is inferred from this fit."
+  },
+  "primary_evidence": {
+    "url": "https://api.puiaudio.com/filename/AS02404PO.pdf",
+    "sha256": "ac1e23bda1f380e03faeeb580f2edf5d07e9dfddb66690fdf4ae16d438849540",
+    "revision": "A, 2024-03-25",
+    "section": "page 4 complete dimensions and diaphragm-moving allowance; page 6 revision/default tolerance",
+    "checked": "2026-09-08"
+  },
+  "fabrication_authorized": false,
+  "assembly_qualified": false,
+  "native_pcb_written_by_this_review": false
+}

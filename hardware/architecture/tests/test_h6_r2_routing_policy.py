@@ -265,13 +265,15 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual(197, audit["summary"]["resolved_connection_count"])
         self.assertEqual(3071, audit["summary"]["current_total_unconnected_count"])
         self.assertEqual(232, audit["summary"]["analog_remaining_connection_count"])
-        self.assertEqual(311, audit["summary"]["placement_locality_pair_count"])
+        self.assertEqual(326, audit["summary"]["placement_locality_pair_count"])
         self.assertEqual(0, audit["summary"]["placement_locality_violation_count"])
+        self.assertEqual(72, audit["summary"]["placement_critical_pad_pair_count"])
+        self.assertEqual(0, audit["summary"]["placement_critical_pad_pair_violation_count"])
         size = audit["board_size_review"]
         self.assertEqual("retain_80x150_mm", size["decision"])
-        # Corrected interfaces and the outward ordinary-SMT audio body change
+        # Corrected interfaces and the restored internal audio/support group change
         # side occupancy without removing fitted parts or expanding the PCB.
-        self.assertEqual(60.229, size["maximum_same_face_courtyard_occupancy_percent"])
+        self.assertEqual(62.064, size["maximum_same_face_courtyard_occupancy_percent"])
         self.assertEqual([85.0, 150.0], size["expansion_candidate_if_triggered_mm"])
         self.assertEqual(5, len(size["requalification_after_any_outline_or_anchor_change"]))
         boards = {row["project"]: row for row in audit["boards"]}

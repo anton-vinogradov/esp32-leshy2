@@ -101,7 +101,7 @@ class HolderPolaritySourceTests(unittest.TestCase):
             with self.subTest(operation=operation), self.assertRaisesRegex(ValueError, "four unique"):
                 checkerboard(bad)
 
-    def test_only_allowed_geometry_delta_is_positions_three_and_four(self):
+    def test_only_allowed_electrical_delta_is_positions_three_and_four(self):
         old = parse(self.legacy)
         new = copy.deepcopy(self.fp)
         old_pads = {p[1]: p for p in children(old, "pad")}
@@ -109,10 +109,15 @@ class HolderPolaritySourceTests(unittest.TestCase):
         self.assertEqual({"3", "4"}, {n for n in old_pads if old_pads[n] != new_pads[n]})
         for number in ("3", "4"):
             children(new_pads[number], "at")[0][1:] = field(old_pads[number], "at")
-        # Names and warnings are metadata. Every other expression, including
-        # generator attribution, old body, text, layers and pad sizes is exact.
+        # Names/warnings and the explicit body-vs-reserve display correction
+        # are metadata/graphics. All electrical geometry remains byte-exact
+        # apart from the already reviewed 3/4 polarity repair.
         new[1] = old[1]
         children(new, "descr")[0][1:] = field(old, "descr")
+        for item in children(new, "fp_rect"):
+            new.remove(item)
+        old_body = children(old, "fp_rect")[0]
+        new.insert(old.index(old_body), copy.deepcopy(old_body))
         self.assertEqual(old, new)
 
     def test_historical_file_and_generator_are_not_silently_rewritten(self):
@@ -169,10 +174,10 @@ class HolderPolarityNativeTests(unittest.TestCase):
         identity = holder.GetFPID()
         self.assertEqual("Leshy2_R2", str(identity.GetLibNickname()))
         self.assertEqual("Keystone-1048P-POLARITY-CORRECTED", str(identity.GetLibItemName()))
-        expected = {"1": ((33.44, 126), "PACK_SLOT0_POSITIVE_RAW"),
-                    "2": ((33.44, 44), "BATTERY_STACK_NEGATIVE_CELL_SIDE"),
-                    "3": ((52.54, 44), "PACK_SLOT1_POSITIVE_RAW"),
-                    "4": ((52.54, 126), "PACK_2S_MIDPOINT")}
+        expected = {"1": ((30.45, 126), "PACK_SLOT0_POSITIVE_RAW"),
+                    "2": ((30.45, 44), "BATTERY_STACK_NEGATIVE_CELL_SIDE"),
+                    "3": ((49.55, 44), "PACK_SLOT1_POSITIVE_RAW"),
+                    "4": ((49.55, 126), "PACK_2S_MIDPOINT")}
         pads = {pad.GetNumber(): pad for pad in holder.Pads()}
         self.assertEqual(set(expected), set(pads))
         point = lambda pad: (round(pcbnew.ToMM(pad.GetPosition().x), 5), round(pcbnew.ToMM(pad.GetPosition().y), 5))
@@ -194,11 +199,15 @@ class HolderPolarityNativeTests(unittest.TestCase):
         import pcbnew
         board = pcbnew.LoadBoard(str(ROOT / "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb"))
         fps = {fp.GetReference(): fp for fp in board.GetFootprints()}
-        for ref, xy in {"F2": (56.5, 47.75), "U91": (71.5, 28.4), "C241": (76.6, 30.1)}.items():
+        for ref, xy in {"U91": (71.5, 28.4), "C241": (76.6, 30.1)}.items():
             fp = fps[ref]
             self.assertTrue(fp.IsFlipped())
             self.assertEqual(0, fp.GetOrientationDegrees())
             self.assertEqual(xy, (round(pcbnew.ToMM(fp.GetPosition().x), 5), round(pcbnew.ToMM(fp.GetPosition().y), 5)))
+        fuse = fps["F2"]
+        self.assertTrue(fuse.IsFlipped())
+        self.assertEqual(270, fuse.GetOrientationDegrees() % 360)
+        self.assertEqual((53.37, 47.87), (round(pcbnew.ToMM(fuse.GetPosition().x), 5), round(pcbnew.ToMM(fuse.GetPosition().y), 5)))
         supply = next(p for p in fps["U91"].Pads() if p.GetNumber() == "14")
         bypass = next(p for p in fps["C241"].Pads() if p.GetNumber() == "1")
         self.assertEqual("/RF_02_PACK_SAFETY_AON/3V3_MAIN", supply.GetNetname())
@@ -207,7 +216,7 @@ class HolderPolarityNativeTests(unittest.TestCase):
         self.assertEqual("/RF_01_USB_PD_CHARGE/POWER_GROUND", ground.GetNetname())
         self.assertLessEqual(pcbnew.ToMM((supply.GetPosition() - bypass.GetPosition()).EuclideanNorm()), 2.0)
 
-    def test_loaded_footprint_preserves_native_pose_and_corrects_second_slot(self):
+    def test_loaded_footprint_preserves_historical_offset_pose_and_checkerboard(self):
         import pcbnew
         board = pcbnew.BOARD()
         fp = pcbnew.FootprintLoad(str(generator.OUTPUT.parent), generator.OUTPUT.stem)

@@ -23,6 +23,7 @@ import h6_r2_placement as placement
 from h6_r2_manual_copper import copper_signature
 import h6_r2_microsd_recess as microsd
 import h6_r2_encoder_fit as encoder
+import h6_r2_speaker_fit as speaker
 
 ROOT = Path(__file__).resolve().parents[2]
 UUID_FORM = re.compile(r'(\(uuid\s+)"([^"\\]*)"')
@@ -30,6 +31,7 @@ STAGE_UUID_NAMESPACE = uuid.UUID("f045ab10-0a1b-4b7a-82d6-013d4e8bc4f2")
 PLACEMENT_INPUT_ATTRIBUTES = (
     "CONTRACT_PATH", "FREEZE_PATH", "PLACEMENT_PATH", "COORDINATE_PATH",
     "INSTANCE_PATH", "NET_PATH", "SYMBOL_PATH", "NET_BINDING_PATH",
+    "SPEAKER_BODY_PATH", "SPEAKER_HELPER_PATH",
 )
 
 
@@ -245,6 +247,49 @@ def pad_nets(fp):
                    if p.GetAttribute() != pcbnew.PAD_ATTRIB_NPTH or p.GetNetname())
 
 
+def reviewed_speaker_graphics(before, seed, allowance, project, allowed_references):
+    """Only the reviewed C54/body step may add exactly five B.Fab objects.
+
+    This is not a general assembly-drawing allowance: complete native B.Fab
+    multisets, geometry, text, layers and input hashes are compared. Removing,
+    replacing or duplicating an existing object is rejected.
+    """
+    if allowance is None:
+        return []
+    expected_allowance = {
+        "feature_id": "H6-R2-SPEAKER-BODY-001",
+        "source_sha256": sha(placement.SPEAKER_BODY_PATH.read_bytes()),
+        "helper_sha256": sha(placement.SPEAKER_HELPER_PATH.read_bytes()),
+    }
+    if (allowance != expected_allowance or project != "LESHY2-UI-R2"
+            or allowed_references != ["C54"]):
+        raise ValueError("invalid finite speaker-body drawing authorization")
+
+    def bfab(text):
+        return [form for head, form in forms(text)
+                if head.startswith("gr_") and re.search(r'\(layer\s+"B\.Fab"\)', form)]
+
+    class Grid:
+        def add(self, *args):
+            pass
+
+    spec = json.loads(placement.SPEAKER_BODY_PATH.read_text())
+    reference = pcbnew.BOARD()
+    speaker.add_speaker_assembly_geometry(reference, project,
+        {"mechanical": {"speaker_body": spec}}, {"B.Cu": Grid()}, pcbnew)
+    expected = bfab(placement.board_bytes("speaker-body-reference", reference).decode())
+    if len(expected) != 5:
+        raise ValueError("speaker helper no longer emits the reviewed five objects")
+    old_forms, new_forms = bfab(before), bfab(seed)
+    old = Counter(canonical(form) for form in old_forms)
+    new = Counter(canonical(form) for form in new_forms)
+    required = Counter(canonical(form) for form in expected)
+    if (len(required) != 5 or any(old[key] for key in required)
+            or old-new or new-old != required):
+        raise ValueError("B.Fab delta is not exactly the reviewed speaker body and label")
+    return [form for form in new_forms if canonical(form) in required]
+
+
 def verify_pad_nets(reference, before, after, allowance):
     if isinstance(allowance, list):
         if not all(isinstance(pin, str) and pin for pin in allowance):
@@ -357,6 +402,8 @@ def stage(plan, directory):
     seed_projection = placement.placement_signature_from_board_bytes(project, outputs[source])
     changed = verify_changed_references(footprints(before_projection.decode()),
                                         footprints(seed_projection.decode()), plan["allowed_references"])
+    if plan.get("allowed_speaker_body_addition") is not None and changed != ["C54"]:
+        raise ValueError("speaker-body stage requires exactly the reviewed C54 relocation")
     if copper_forms(seed):
         raise ValueError("unexpected copper/group in placement seed")
     if re.search(r'\(\s*group(?:\s|\))', original.decode()):
@@ -390,11 +437,20 @@ def stage(plan, directory):
         replacements = [fresh_object_uuids(form, f"{sha(original)}:microsd-edge:{index}:{sha(form.encode())}", occupied)
                         for index, form in enumerate(new_edges)]
         merged = merged.rstrip()[:-1] + "\n" + "\n".join(replacements) + "\n)\n"
+    speaker_forms = reviewed_speaker_graphics(original.decode(), seed,
+        plan.get("allowed_speaker_body_addition"), project, plan["allowed_references"])
+    if speaker_forms:
+        replacements = [fresh_object_uuids(form,
+                        f"{sha(original)}:speaker-body:{index}:{sha(form.encode())}", occupied)
+                        for index, form in enumerate(speaker_forms)]
+        merged = merged.rstrip()[:-1] + "\n" + "\n".join(replacements) + "\n)\n"
     merged = normalize_interform_whitespace(merged)
     require_unique_uuids(merged)
     if copper_forms(merged) != preserved:
         raise ValueError("serialized copper/group changed while replacing footprints")
     new = load_board_bytes(merged.encode(), source.name)
+    if speaker_forms:
+        speaker.check_native_speaker_geometry(new, project, pcbnew)
     old_fps = {fp.GetReference(): fp for fp in old.GetFootprints()}
     new_fps = {fp.GetReference(): fp for fp in new.GetFootprints()}
     removals = plan.get("allowed_removed_nc_pads", {})
@@ -429,6 +485,8 @@ def stage(plan, directory):
               "reviewed_added_silkscreen_texts": sorted(additions),
               "reviewed_edge_cut_change": plan.get("allowed_edge_cut_change"),
               "reviewed_encoder_geometry_change": encoder_review,
+              "reviewed_speaker_body_addition": plan.get("allowed_speaker_body_addition"),
+              "speaker_body_graphics_added": len(speaker_forms),
               "edge_cut_primitives_removed_added": [len(old_edges), len(new_edges)],
               "unchanged_reference_count": len(old_fps) - len(changed),
               "copper_objects_preserved": len(copper_signature(old)),

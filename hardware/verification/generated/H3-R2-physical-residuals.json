@@ -4,7 +4,7 @@
   "marker": "H3-R2.7",
   "status": "review_required",
   "source_sha256": {
-    "hardware/verification/generated/H3-R2-crosscheck.json": "4e46d4c54aeca33946d8d092f91acb53a2572c3c34ccd7042937dddae166fec6",
+    "hardware/verification/generated/H3-R2-crosscheck.json": "031fbc30b42a01a47e89ca800d6486099e3d2ceb6c8ab1457f5958c6a9cb3fa4",
     "hardware/verification/h3_r2_crosscheck.py": "76c1a872973ff147cdef8badb7993e42f1d4e6954dab171a0772b204da04fbe5",
     "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
   },
@@ -991,7 +991,7 @@
     "production_release_authorized": false,
     "battery_energization_authorized": false,
     "source_sha256": {
-      "hardware/verification/generated/H3-R2-crosscheck.json": "4e46d4c54aeca33946d8d092f91acb53a2572c3c34ccd7042937dddae166fec6",
+      "hardware/verification/generated/H3-R2-crosscheck.json": "031fbc30b42a01a47e89ca800d6486099e3d2ceb6c8ab1457f5958c6a9cb3fa4",
       "hardware/verification/h3_r2_crosscheck.py": "76c1a872973ff147cdef8badb7993e42f1d4e6954dab171a0772b204da04fbe5",
       "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
     }

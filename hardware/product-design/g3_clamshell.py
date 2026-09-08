@@ -75,11 +75,12 @@ PACK_HOLDER_H = 86.0
 PACK_CELL_Y = PACK_HOLDER_Y + 10.0
 PACK_HOLDER_BODY_W = 39.78
 PACK_HOLDER_BODY_H = 77.06
-PACK_HOLDER_X_OFFSET = 3.0
-PACK_HOLDER_PAD_X = 20.1 + PACK_HOLDER_X_OFFSET
-PACK_HOLDER_DRAWING_X = 17.6 + PACK_HOLDER_X_OFFSET
-PACK_HOLDER_CENTRE_X = 39.99 + PACK_HOLDER_X_OFFSET
-PACK_HOLDER_BODY_X = (BOARD_W - PACK_HOLDER_BODY_W) / 2 + PACK_HOLDER_X_OFFSET
+PACK_HOLDER_X_OFFSET = 0.0
+PACK_HOLDER_CENTRE_X = BOARD_W / 2
+PACK_HOLDER_PAD_X = PACK_HOLDER_CENTRE_X - 39.8 / 2
+PACK_HOLDER_DRAWING_X = PACK_HOLDER_PAD_X
+PACK_HOLDER_BODY_X = PACK_HOLDER_CENTRE_X - PACK_HOLDER_BODY_W / 2
+PACK_CELL_CENTRES_X = (PACK_HOLDER_CENTRE_X - 9.55, PACK_HOLDER_CENTRE_X + 9.55)
 PACK_HOLDER_BODY_Y = PACK_HOLDER_Y + (PACK_HOLDER_H - PACK_HOLDER_BODY_H) / 2
 
 # Exact GCT RFPC-SMA31/SMA32 1.6-mm edge-launch family. The 10.2-mm
@@ -2664,7 +2665,7 @@ def validate() -> list[str]:
     if overlaps(knob_box, u214_box, U214_CLEARANCE):
         errors.append("rear: exact encoder knob lacks installed-U214 clearance")
     cell_boxes = []
-    for instance, centre_x in (("pack_cell0", 28.0 + PACK_HOLDER_X_OFFSET), ("pack_cell1", 47.0 + PACK_HOLDER_X_OFFSET)):
+    for instance, centre_x in zip(("pack_cell0", "pack_cell1"), PACK_CELL_CENTRES_X):
         cell = Placement(instance, 0.0, 0.0, "protected 18650 cell", 90)
         cell_w, cell_h = placement_size(cell, devices, instances)
         cell_box = (
@@ -3393,7 +3394,7 @@ def render_external(devices, instances):
             'data-layer="mechanical-reference" data-part="enclosure-holder-end-stop"/>'
         )
     out.append(text(sx(rear,PACK_HOLDER_CENTRE_X), sy(rear,126), "1048P body 77.1 · SMT pad span 86.0", 6.1, "bold", "middle", "#166534"))
-    for cell_instance, cell_x in (("pack_cell0", 30.5 + PACK_HOLDER_X_OFFSET), ("pack_cell1", 49.5 + PACK_HOLDER_X_OFFSET)):
+    for cell_instance, cell_x in zip(("pack_cell0", "pack_cell1"), PACK_CELL_CENTRES_X):
         cell = Placement(cell_instance, 0.0, 0.0, "protected 18650 cell", 90)
         cell_w, cell_h = placement_size(cell, devices, instances)
         cell_y = holder.y + (hh - cell_h) / 2
@@ -4280,7 +4281,7 @@ def render_rear_face(devices, instances):
         f'<g id="battery-zone" data-plan-y-mm="{PACK_HOLDER_Y:.1f}..{PACK_HOLDER_Y + PACK_HOLDER_H:.1f}" data-gap-from-u214-mm="{PACK_HOLDER_Y - U214_Y - U214_H:.1f}">',
         r(holder.x, holder.y, holder_w, holder_h, "#dcfce7", "#16a34a", "", 12, ' data-part="battery-holder"'),
     ]
-    for cell_x in (30.5 + PACK_HOLDER_X_OFFSET, 49.5 + PACK_HOLDER_X_OFFSET):
+    for cell_x in PACK_CELL_CENTRES_X:
         out.append(r(cell_x-9.3, PACK_CELL_Y, 18.6, 65.0, "#ecfdf3", "#22c55e", "", 20, ' data-part="18650-cell"'))
         out.append(t(x(cell_x), y(PACK_CELL_Y + 34.0), "18650", 10, "bold", "middle", "#166534"))
     out += [
@@ -4630,8 +4631,8 @@ def render_sandwich(devices, instances):
             parts += [
                 f'<g id="section-battery" data-cut-y-mm="{cut_y:.0f}" data-contains="battery-no-u214">',
                 r(px(holder_x), pz(base_rear_z), holder_w*x_scale, holder_depth*z_scale, "#dcfce7", "#16a34a", rx=12, extra=' data-instance="pack-holder"'),
-                r(px(18.7 + PACK_HOLDER_X_OFFSET), pz(base_rear_z+1.05), 18.6*x_scale, 18.6*z_scale, "#ecfdf3", "#22c55e", rx=16, extra=' data-instance="cell-left"'),
-                r(px(37.7 + PACK_HOLDER_X_OFFSET), pz(base_rear_z+1.05), 18.6*x_scale, 18.6*z_scale, "#ecfdf3", "#22c55e", rx=16, extra=' data-instance="cell-right"'),
+                r(px(PACK_CELL_CENTRES_X[0] - 9.3), pz(base_rear_z+1.05), 18.6*x_scale, 18.6*z_scale, "#ecfdf3", "#22c55e", rx=16, extra=' data-instance="cell-left"'),
+                r(px(PACK_CELL_CENTRES_X[1] - 9.3), pz(base_rear_z+1.05), 18.6*x_scale, 18.6*z_scale, "#ecfdf3", "#22c55e", rx=16, extra=' data-instance="cell-right"'),
                 t(px(PACK_HOLDER_CENTRE_X), pz(base_rear_z+10.8), "Keystone Electronics 1048P + 2× 18650", 9.2, "bold", "middle", "#166534"),
                 t(px(40.0), pz(battery_rear_z)+24, f"No installed Cap appears: its Y={U214_Y:.1f}…{U214_Y + U214_H:.1f}-mm zone does not cross B–B.", 9.3, "bold", "middle", "#9a3412"),
                 *service_motion(px(10.0), pz(base_rear_z)+8, pz(battery_rear_z)-8, "CELLS"),

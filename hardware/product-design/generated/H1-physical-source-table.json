@@ -4900,14 +4900,14 @@
       "envelope_mm": [
         8.5,
         3.5,
-        3.6
+        5.5
       ],
       "qualification": "verified_exact_low_current_power_command_switch_mechanical_hil_open",
       "source": {
         "document": "Littelfuse C&K JS Series Sub-Miniature Slide Switches datasheet",
         "version": "VL 01/14/26",
         "url": "https://www.littelfuse.com/assetdocs/littelfuse-c-k-slide-js-series-datasheet?assetguid=aba42b08-0d2c-423b-813d-a2faa5a3bb14",
-        "checked": "2026-08-19"
+        "checked": "2026-09-07"
       },
       "evidence_gates": [
         {

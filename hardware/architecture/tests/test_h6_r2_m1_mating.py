@@ -11,6 +11,7 @@ the normal H6 placement --check owns propagation into current PCB poses.
 No assembled-body/STEP or manufacture-readiness claim is made here.
 """
 
+import __future__
 import ast
 import json
 import math
@@ -63,7 +64,9 @@ def functions():
     selected = [node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name in names]
     assert {node.name for node in selected} == names
     namespace = {}
-    exec(compile(ast.Module(body=selected, type_ignores=[]), str(SCRIPT), "exec"), namespace)
+    # Preserve the source module's postponed annotations when extracting its AST.
+    exec(compile(ast.Module(body=selected, type_ignores=[]), str(SCRIPT), "exec",
+                 flags=__future__.annotations.compiler_flag, dont_inherit=True), namespace)
     return namespace
 
 

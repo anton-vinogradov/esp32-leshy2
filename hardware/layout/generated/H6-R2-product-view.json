@@ -1,0 +1,14 @@
+{
+  "status": "native_planar_preview_not_assembly_qualification",
+  "inputs_sha256": {
+    "hardware/layout/h6_r2_product_view.py": "afe6de8e76dcdc1d3757adf514eddd874470ca10737303bdda5574891ea441c6",
+    "hardware/layout/generated/H6-R2-component-views.json": "21e0aaa9817a7cdbe920f99752380b6812c660cda52924434f6229a715c507cd",
+    "hardware/layout/generated/H6-R2-placement-intent.json": "3e4236320fb788c342561cb6dbe2ceaaee88544d4ef98ae8659052c62442e5f3",
+    "hardware/layout/h6-r2-placement-contract.json": "e91e46a8e9d777303f14fcc0e882ba0888a3474710597fae1d0a5f14dd4b3957",
+    "docs/images/h6-r2-components-ui-outer.svg": "82e4fffba6123b5327252791ab505cae0f9ef7f793032daa855294d5f96bf858",
+    "docs/images/h6-r2-components-rf-outer.svg": "40a0ebc767866c57b16d934c0272edea52dc51cf5374df9eefb687438dce04d5"
+  },
+  "output": "docs/images/h6-r2-product-exterior.svg",
+  "output_sha256": "e793cdda36e04ae3a9b4a518eab37d4751acff4edc6bbf715b3df0bb5215235d",
+  "assembly_overlay": "Only labelled nominal display panel envelope. No invented cells, knob, free-cable or enclosure geometry."
+}

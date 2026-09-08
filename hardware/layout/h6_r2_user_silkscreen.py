@@ -151,7 +151,11 @@ def labels(project: str, placed_rows: list[dict], contract: dict) -> list[dict]:
         owner, action, _ = instance.rsplit("_", 2)
         x = 6.0 if spec["edge"] == "left" else width - 6.0
         y = row["courtyard_centre_mm"][1]
-        add(instance, SERVICE_OWNERS[owner], x, y - 1.05)
+        # The outward microphone body is next to RF BOOT. Keep this owner
+        # caption on the BOOT axis but below the capsule; native stroke tests
+        # cover both its primary maximum body and the through-board locator.
+        owner_dy = -0.30 if project == "LESHY2-RF-R2" and instance == "rf_rp_boot_button" else -1.05
+        add(instance, SERVICE_OWNERS[owner], x, y + owner_dy)
         add(instance, "RST" if action == "reset" else "BOOT", x, y + 1.05)
 
     for instance, (owner, role) in USB_OWNERS.items():

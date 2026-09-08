@@ -1,0 +1,1939 @@
+{
+  "schema_version": 1,
+  "feature_id": "RF-INNER-HEADSET-LOCAL-MIC-001",
+  "status": "placement_adopted_not_audio_qualified",
+  "base_commit": "e45c5b23bb2f7f7b089b047d5505e555b51b82ab",
+  "project": "LESHY2-RF-R2",
+  "baseline_board_sha256": "cb5855cf3d9c534bfdbd5190a86f54f4d800b8c594c717257463fd81033f4e9f",
+  "baseline_placement_contract_sha256": "333d329a07879630f4f2cc3268f6c9cb7258d959aa2b6af2103aa73dc28959a0",
+  "authority": {
+    "fabrication_ready": false,
+    "whole_audio_qualified": false,
+    "esd_return_qualified": false,
+    "main_promotion_authorized_by_this_report": false
+  },
+  "primary_sources": [
+    {
+      "url": "https://www.sameskydevices.com/product/resource/digikeypdf/sj-4351x-smt.pdf",
+      "section": "2024-09-12 p2 PCB top view, five SJ43515TS contacts, two NPTH, mouth -X, height5.05+/-0.25mm",
+      "checked": "2026-09-08"
+    },
+    {
+      "url": "https://www.sameskydevices.com/product/resource/masterpdf/cmej-0413-42-smt-tr.pdf",
+      "section": "Rev1.04 p2 top acoustic holes opposite pads; p3 FET/load; p4 no wash/no nozzle over openings/at most2reflow cycles recommended",
+      "checked": "2026-09-08"
+    }
+  ],
+  "placement_rows": [
+    {
+      "reference": "C113",
+      "instance": "cc_backup_gate_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          19.605,
+          100.555
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 270.0,
+        "anchor_mm": [
+          13.645,
+          116.82
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ],
+        [
+          "2",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "C144",
+      "instance": "voice_io_power_input_cap",
+      "device_id": "tdk_c1608x7r1c105k080ac",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "before": {
+        "side": "F.Cu",
+        "angle": -90.0,
+        "anchor_mm": [
+          12.0,
+          106.0
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 90,
+        "anchor_mm": [
+          16.15,
+          92.75
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ],
+        [
+          "2",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "C145",
+      "instance": "voice_io_power_output_cap",
+      "device_id": "tdk_c1608x7r1c105k080ac",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 0.0,
+        "anchor_mm": [
+          30.125,
+          77.125
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 270,
+        "anchor_mm": [
+          20.5,
+          94.7
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_IO_3V3"
+        ],
+        [
+          "2",
+          "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "C197",
+      "instance": "audio_capture_mic_coupling",
+      "device_id": "tdk_c1608x7r1c105k080ac",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          37.375,
+          82.625
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 270,
+        "anchor_mm": [
+          13.25,
+          111.25
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_22_AUDIO_CODEC_IO/MIC_SELECTED_RAW"
+        ],
+        [
+          "2",
+          "/RF_22_AUDIO_CODEC_IO/CAPTURE_MIC_BIASED"
+        ]
+      ]
+    },
+    {
+      "reference": "C199",
+      "instance": "audio_capture_selector_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 0.0,
+        "anchor_mm": [
+          5.6,
+          97.1
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 90,
+        "anchor_mm": [
+          9.55,
+          107.0
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ],
+        [
+          "2",
+          "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "C217",
+      "instance": "codec_power_input_cap",
+      "device_id": "tdk_c1608x7r1c105k080ac",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          57.625,
+          77.125
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 180,
+        "anchor_mm": [
+          76.75,
+          78.6
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ],
+        [
+          "2",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "C218",
+      "instance": "codec_power_output_cap",
+      "device_id": "murata_grm188r60j106me47d",
+      "mpn": "Murata GRM188R60J106ME47D",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          55.875,
+          71.625
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 180,
+        "anchor_mm": [
+          76.75,
+          74.4
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_22_AUDIO_CODEC_IO/3V3_CODEC_SWITCHED"
+        ],
+        [
+          "2",
+          "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "C229",
+      "instance": "headset_mic_selector_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          76.604999,
+          75.055
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 90,
+        "anchor_mm": [
+          9.55,
+          110.25
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ],
+        [
+          "2",
+          "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "C230",
+      "instance": "headset_microphone_bias_filter_cap",
+      "device_id": "murata_grm188r60j106me47d",
+      "mpn": "Murata GRM188R60J106ME47D",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          61.375,
+          82.125
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 180,
+        "anchor_mm": [
+          12.0,
+          93.65
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_22_AUDIO_CODEC_IO/HEADSET_MIC_BIAS_FILTERED"
+        ],
+        [
+          "2",
+          "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "C231",
+      "instance": "mic_tx_coupling",
+      "device_id": "tdk_c1608x7r1c105k080ac",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 0.0,
+        "anchor_mm": [
+          60.625,
+          62.625
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 270,
+        "anchor_mm": [
+          11.45,
+          111.25
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_22_AUDIO_CODEC_IO/MIC_SELECTED_RAW"
+        ],
+        [
+          "2",
+          "/RF_22_AUDIO_CODEC_IO/VOICE_ELECTRET_DEFAULT"
+        ]
+      ]
+    },
+    {
+      "reference": "C232",
+      "instance": "microphone_bias_filter_cap",
+      "device_id": "murata_grm188r60j106me47d",
+      "mpn": "Murata GRM188R60J106ME47D",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          54.125,
+          71.625
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 0,
+        "anchor_mm": [
+          7.0,
+          115.4
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_22_AUDIO_CODEC_IO/MIC_BIAS_FILTERED"
+        ],
+        [
+          "2",
+          "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "C233",
+      "instance": "speaker_amp_bulk_cap",
+      "device_id": "murata_grm188r60j106me47d",
+      "mpn": "Murata GRM188R60J106ME47D",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          74.125,
+          75.125
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 270,
+        "anchor_mm": [
+          51.6,
+          90.75
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ],
+        [
+          "2",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "C234",
+      "instance": "speaker_amp_input_cap",
+      "device_id": "tdk_c1608x7r1c105k080ac",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          74.625,
+          71.875
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 270,
+        "anchor_mm": [
+          49.8,
+          90.75
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ],
+        [
+          "2",
+          "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "C256",
+      "instance": "unit_supervisor_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          19.605,
+          98.305
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          22.0,
+          95.25
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ],
+        [
+          "2",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "C257",
+      "instance": "unit_supervisor_ct",
+      "device_id": "murata_grm155r71h103ka88d",
+      "mpn": "Murata GRM155R71H103KA88D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          11.355,
+          105.055
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 180.0,
+        "anchor_mm": [
+          28.0,
+          97.5
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_30_U214_U219_M5_EXT/UNIT_READY_DELAY"
+        ],
+        [
+          "2",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "C270",
+      "instance": "safe_fault_reset_buffer_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          18.855,
+          92.055
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 270.0,
+        "anchor_mm": [
+          39.105,
+          129.055
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ],
+        [
+          "2",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "C272",
+      "instance": "safe_latch_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          52.605,
+          92.055
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 270,
+        "anchor_mm": [
+          64.855,
+          102.055
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ],
+        [
+          "2",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "C285",
+      "instance": "slow_io_fault_sense_iso_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 0.0,
+        "anchor_mm": [
+          20.055,
+          107.354999
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          36.459999,
+          115.39
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ],
+        [
+          "2",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "C286",
+      "instance": "slow_io_s3_evidence_iso_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          13.855,
+          105.055
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          1.16,
+          121.16
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ],
+        [
+          "2",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "C65",
+      "instance": "ext_evidence_buffer_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          14.105,
+          93.305
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 180.0,
+        "anchor_mm": [
+          18.305,
+          121.645
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ],
+        [
+          "2",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "MK1",
+      "instance": "microphone",
+      "device_id": "same_sky_cmej_0413_42_smt_tr",
+      "mpn": "Same Sky CMEJ-0413-42-SMT-TR",
+      "footprint": "Leshy2:CMEJ-0413-42-SMT-TR",
+      "before": {
+        "side": "B.Cu",
+        "angle": 0.0,
+        "anchor_mm": [
+          28.00125,
+          148.0
+        ]
+      },
+      "after": {
+        "side": "F.Cu",
+        "angle": 180,
+        "anchor_mm": [
+          8,
+          112
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_22_AUDIO_CODEC_IO/MIC_RAW"
+        ],
+        [
+          "1",
+          "/RF_22_AUDIO_CODEC_IO/MIC_RAW"
+        ],
+        [
+          "2",
+          "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "R169",
+      "instance": "audio_capture_mic_bias",
+      "device_id": "yageo_rc0402fr_07100kl",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          25.365,
+          53.325
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 270,
+        "anchor_mm": [
+          13.25,
+          113.85
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_22_AUDIO_CODEC_IO/CAPTURE_MIC_BIASED"
+        ],
+        [
+          "2",
+          "/RF_22_AUDIO_CODEC_IO/AUDIO_VMID_MAIN"
+        ]
+      ]
+    },
+    {
+      "reference": "R201",
+      "instance": "headset_mic_bias_res",
+      "device_id": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          69.365,
+          55.325
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 180,
+        "anchor_mm": [
+          12.0,
+          92.25
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_22_AUDIO_CODEC_IO/HEADSET_MIC_BIAS_FILTERED"
+        ],
+        [
+          "2",
+          "/RF_22_AUDIO_CODEC_IO/HEADSET_MIC_RAW"
+        ]
+      ]
+    },
+    {
+      "reference": "R202",
+      "instance": "headset_mic_select_pullup",
+      "device_id": "yageo_rc0402fr_07100kl",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 0.0,
+        "anchor_mm": [
+          74.324999,
+          48.865
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 90,
+        "anchor_mm": [
+          5.7,
+          109.75
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ],
+        [
+          "2",
+          "/RF_22_AUDIO_CODEC_IO/HEADSET_INTERNAL_MIC_SEL"
+        ]
+      ]
+    },
+    {
+      "reference": "R203",
+      "instance": "headset_microphone_bias_filter_res",
+      "device_id": "yageo_rc0402fr_07220rl",
+      "mpn": "Yageo RC0402FR-07220RL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 0.0,
+        "anchor_mm": [
+          66.574999,
+          61.115
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 180,
+        "anchor_mm": [
+          9.3,
+          93.65
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ],
+        [
+          "2",
+          "/RF_22_AUDIO_CODEC_IO/HEADSET_MIC_BIAS_FILTERED"
+        ]
+      ]
+    },
+    {
+      "reference": "R204",
+      "instance": "mic_tx_bias",
+      "device_id": "yageo_rc0402fr_07100kl",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          66.114999,
+          56.575
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 270,
+        "anchor_mm": [
+          11.45,
+          113.85
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_22_AUDIO_CODEC_IO/VOICE_ELECTRET_DEFAULT"
+        ],
+        [
+          "2",
+          "/RF_22_AUDIO_CODEC_IO/AUDIO_VMID_MAIN"
+        ]
+      ]
+    },
+    {
+      "reference": "R205",
+      "instance": "microphone_bias_filter_res",
+      "device_id": "yageo_rc0402fr_07220rl",
+      "mpn": "Yageo RC0402FR-07220RL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 0.0,
+        "anchor_mm": [
+          59.075,
+          61.115
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 180,
+        "anchor_mm": [
+          9.7,
+          115.4
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ],
+        [
+          "2",
+          "/RF_22_AUDIO_CODEC_IO/MIC_BIAS_FILTERED"
+        ]
+      ]
+    },
+    {
+      "reference": "R206",
+      "instance": "microphone_bias_res",
+      "device_id": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 0.0,
+        "anchor_mm": [
+          58.075,
+          100.365
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 0,
+        "anchor_mm": [
+          7.0,
+          114.0
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_22_AUDIO_CODEC_IO/MIC_BIAS_FILTERED"
+        ],
+        [
+          "2",
+          "/RF_22_AUDIO_CODEC_IO/MIC_RAW"
+        ]
+      ]
+    },
+    {
+      "reference": "R242",
+      "instance": "unit_supervisor_sense_bottom",
+      "device_id": "yageo_rc0402fr_07220kl",
+      "mpn": "Yageo RC0402FR-07220KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          14.365,
+          100.074999
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 180.0,
+        "anchor_mm": [
+          21.5,
+          104.25
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_30_U214_U219_M5_EXT/UNIT_5V_SENSE"
+        ],
+        [
+          "2",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "R258",
+      "instance": "evidence_mask_p15_pulldown",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          12.615,
+          105.074999
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          15.25,
+          110.75
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_50_TX_SAFETY_EVIDENCE/C5_SERVICE_OWNED"
+        ],
+        [
+          "2",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "R267",
+      "instance": "run_loop_pullup",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          13.115,
+          107.324999
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 90,
+        "anchor_mm": [
+          13.115,
+          107.46
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ],
+        [
+          "2",
+          "/RF_50_TX_SAFETY_EVIDENCE/RUN_LOOP_RAW"
+        ]
+      ]
+    },
+    {
+      "reference": "R287",
+      "instance": "voice_v_evidence_threshold_bottom",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          10.365,
+          101.824999
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 180.0,
+        "anchor_mm": [
+          20.25,
+          106.0
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_50_TX_SAFETY_EVIDENCE/EV_THRESH_6_VOICE_V"
+        ],
+        [
+          "2",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ]
+      ]
+    },
+    {
+      "reference": "R288",
+      "instance": "voice_v_evidence_threshold_top",
+      "device_id": "yageo_rc0402fr_07100kl",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          9.115,
+          101.824999
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 180.0,
+        "anchor_mm": [
+          20.25,
+          107.25
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ],
+        [
+          "2",
+          "/RF_50_TX_SAFETY_EVIDENCE/EV_THRESH_6_VOICE_V"
+        ]
+      ]
+    },
+    {
+      "reference": "R56",
+      "instance": "ext_evidence_output_pullup",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          18.365,
+          97.824999
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          14.75,
+          92.75
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ],
+        [
+          "2",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EV_N8_LORA_EXT"
+        ]
+      ]
+    },
+    {
+      "reference": "U112",
+      "instance": "evidence_or_0",
+      "device_id": "onsemi_bat54alt1g",
+      "mpn": "BAT54ALT1G",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "before": {
+        "side": "B.Cu",
+        "angle": 0.0,
+        "anchor_mm": [
+          15.55,
+          97.15
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          39.0,
+          114.75
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_50_TX_SAFETY_EVIDENCE/EV_N0_S3"
+        ],
+        [
+          "2",
+          "/RF_50_TX_SAFETY_EVIDENCE/EV_N1_C5"
+        ],
+        [
+          "3",
+          "/RF_50_TX_SAFETY_EVIDENCE/ANY_TX_AON_N"
+        ]
+      ]
+    },
+    {
+      "reference": "U113",
+      "instance": "evidence_or_1",
+      "device_id": "onsemi_bat54alt1g",
+      "mpn": "BAT54ALT1G",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          11.25,
+          94.0
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 180.0,
+        "anchor_mm": [
+          2.75,
+          124.0
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_50_TX_SAFETY_EVIDENCE/EV_N2_NRF0"
+        ],
+        [
+          "2",
+          "/RF_50_TX_SAFETY_EVIDENCE/EV_N3_NRF1"
+        ],
+        [
+          "3",
+          "/RF_50_TX_SAFETY_EVIDENCE/ANY_TX_AON_N"
+        ]
+      ]
+    },
+    {
+      "reference": "U115",
+      "instance": "evidence_or_3",
+      "device_id": "onsemi_bat54alt1g",
+      "mpn": "BAT54ALT1G",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          7.25,
+          94.5
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 180.0,
+        "anchor_mm": [
+          2.75,
+          127.75
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_50_TX_SAFETY_EVIDENCE/EV_N6_VOICE"
+        ],
+        [
+          "2",
+          "/RF_50_TX_SAFETY_EVIDENCE/EV_N7_IR"
+        ],
+        [
+          "3",
+          "/RF_50_TX_SAFETY_EVIDENCE/ANY_TX_AON_N"
+        ]
+      ]
+    },
+    {
+      "reference": "U116",
+      "instance": "evidence_or_4",
+      "device_id": "onsemi_bat54alt1g",
+      "mpn": "BAT54ALT1G",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "before": {
+        "side": "F.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          10.5,
+          110.0
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 180.0,
+        "anchor_mm": [
+          2.5,
+          131.5
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EV_N8_LORA_EXT"
+        ],
+        [
+          "2",
+          "/RF_30_U214_U219_M5_EXT/EV_N9_U219_NFC"
+        ],
+        [
+          "3",
+          "/RF_50_TX_SAFETY_EVIDENCE/ANY_TX_AON_N"
+        ]
+      ]
+    },
+    {
+      "reference": "U118",
+      "instance": "safe_fault_reset_buffer",
+      "device_id": "ti_sn74lvc3g07_dcur",
+      "mpn": "SN74LVC3G07DCUR",
+      "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+      "before": {
+        "side": "B.Cu",
+        "angle": 0.0,
+        "anchor_mm": [
+          20.25,
+          94.75
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 90,
+        "anchor_mm": [
+          37.0,
+          129.0
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/FAULT_ASSERT_N"
+        ],
+        [
+          "2",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/FAULT_ASSERT_N"
+        ],
+        [
+          "3",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/FAULT_ASSERT_N"
+        ],
+        [
+          "4",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ],
+        [
+          "5",
+          "/RF_20_CC1101_VOICE_TX/VOICE_EFUSE_BACKUP_EN_N"
+        ],
+        [
+          "6",
+          "/RF_50_TX_SAFETY_EVIDENCE/POWER_COMMAND_OFF_N"
+        ],
+        [
+          "7",
+          "/RF_10_RP2354_CORE_SERVICE/RF_RP_RESET_N"
+        ],
+        [
+          "8",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ]
+      ]
+    },
+    {
+      "reference": "U120",
+      "instance": "safe_latch",
+      "device_id": "ti_sn74lvc1g74_dcur",
+      "mpn": "SN74LVC1G74DCUR",
+      "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          50.5,
+          92.0
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 90,
+        "anchor_mm": [
+          62.75,
+          102.0
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_50_TX_SAFETY_EVIDENCE/SAFE_REARM_CLK"
+        ],
+        [
+          "2",
+          "/RF_50_TX_SAFETY_EVIDENCE/SAFE_D_HIGH"
+        ],
+        [
+          "3",
+          "/RF_50_TX_SAFETY_EVIDENCE/FAULT_KILL"
+        ],
+        [
+          "4",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ],
+        [
+          "5",
+          "/RF_50_TX_SAFETY_EVIDENCE/RUN_PERMIT"
+        ],
+        [
+          "6",
+          "/RF_50_TX_SAFETY_EVIDENCE/SAFE_CLEAR_N"
+        ],
+        [
+          "7",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ],
+        [
+          "8",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ]
+      ]
+    },
+    {
+      "reference": "U131",
+      "instance": "slow_io_fault_sense_iso",
+      "device_id": "ti_sn74lvc1g07_dckr",
+      "mpn": "SN74LVC1G07DCKR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+      "before": {
+        "side": "B.Cu",
+        "angle": 0.0,
+        "anchor_mm": [
+          20.445,
+          105.145
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          34.25,
+          115.0
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          ""
+        ],
+        [
+          "2",
+          "/RF_50_TX_SAFETY_EVIDENCE/FAULT_KILL"
+        ],
+        [
+          "3",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ],
+        [
+          "4",
+          "/RF_50_TX_SAFETY_EVIDENCE/FAULT_LATCH_SENSE"
+        ],
+        [
+          "5",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ]
+      ]
+    },
+    {
+      "reference": "U132",
+      "instance": "slow_io_s3_evidence_iso",
+      "device_id": "ti_sn74lvc1g07_dckr",
+      "mpn": "SN74LVC1G07DCKR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+      "before": {
+        "side": "B.Cu",
+        "angle": 0.0,
+        "anchor_mm": [
+          16.445,
+          103.645
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 0.0,
+        "anchor_mm": [
+          3.75,
+          119.75
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          ""
+        ],
+        [
+          "2",
+          "/RF_50_TX_SAFETY_EVIDENCE/ANY_TX_AON_N"
+        ],
+        [
+          "3",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ],
+        [
+          "4",
+          "/RF_10_RP2354_CORE_SERVICE/RF_ANY_TX_N"
+        ],
+        [
+          "5",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ]
+      ]
+    },
+    {
+      "reference": "U18",
+      "instance": "ext_evidence_buffer",
+      "device_id": "ti_sn74lvc1g07_dckr",
+      "mpn": "SN74LVC1G07DCKR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          16.25,
+          93.25
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 180.0,
+        "anchor_mm": [
+          18.25,
+          119.5
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          ""
+        ],
+        [
+          "2",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/U214_PIN5_SENSE"
+        ],
+        [
+          "3",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ],
+        [
+          "4",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/EV_N8_LORA_EXT"
+        ],
+        [
+          "5",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ]
+      ]
+    },
+    {
+      "reference": "U28",
+      "instance": "cc_backup_gate",
+      "device_id": "ti_sn74lvc1g08_dckr",
+      "mpn": "SN74LVC1G08DCKR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+      "before": {
+        "side": "B.Cu",
+        "angle": 0.0,
+        "anchor_mm": [
+          17.0,
+          100.625
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 180.0,
+        "anchor_mm": [
+          16.25,
+          116.75
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_20_CC1101_VOICE_TX/CC_PWR_EN_PRIMARY"
+        ],
+        [
+          "2",
+          "/RF_03_MAIN_RAILS_DOMAIN_GATES/FAULT_ASSERT_N"
+        ],
+        [
+          "3",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ],
+        [
+          "4",
+          "/RF_20_CC1101_VOICE_TX/CC_PWR_EN_SAFE"
+        ],
+        [
+          "5",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ]
+      ]
+    },
+    {
+      "reference": "U48",
+      "instance": "voice_io_power_switch",
+      "device_id": "ti_tps22919_dckr",
+      "mpn": "Texas Instruments TPS22919DCKR",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          12.245,
+          102.345
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 90,
+        "anchor_mm": [
+          18.25,
+          92.75
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ],
+        [
+          "2",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ],
+        [
+          "3",
+          "/RF_20_CC1101_VOICE_TX/VOICE_READY"
+        ],
+        [
+          "4",
+          ""
+        ],
+        [
+          "5",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_IO_3V3"
+        ],
+        [
+          "6",
+          "/RF_20_CC1101_VOICE_TX/VVOICE_IO_3V3"
+        ]
+      ]
+    },
+    {
+      "reference": "U68",
+      "instance": "audio_capture_selector",
+      "device_id": "ti_ts5a63157_dckr",
+      "mpn": "Texas Instruments TS5A63157DCKR",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          7.994999,
+          98.345
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 90,
+        "anchor_mm": [
+          7.5,
+          107.0
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_22_AUDIO_CODEC_IO/CAPTURE_MIC_BIASED"
+        ],
+        [
+          "2",
+          "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND"
+        ],
+        [
+          "3",
+          "/RF_22_AUDIO_CODEC_IO/CAPTURE_RX_BIASED"
+        ],
+        [
+          "4",
+          "/RF_22_AUDIO_CODEC_IO/CAPTURE_SELECTED"
+        ],
+        [
+          "5",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ],
+        [
+          "6",
+          "/RF_22_AUDIO_CODEC_IO/AUDIO_CAPTURE_MIC_SEL"
+        ]
+      ]
+    },
+    {
+      "reference": "U80",
+      "instance": "codec_power_switch",
+      "device_id": "ti_tps22919_dckr",
+      "mpn": "Texas Instruments TPS22919DCKR",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          3.995,
+          93.595
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 180,
+        "anchor_mm": [
+          76.75,
+          76.5
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ],
+        [
+          "2",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ],
+        [
+          "3",
+          "/RF_22_AUDIO_CODEC_IO/CODEC_PWR_EN"
+        ],
+        [
+          "4",
+          ""
+        ],
+        [
+          "5",
+          "/RF_22_AUDIO_CODEC_IO/3V3_CODEC_SWITCHED"
+        ],
+        [
+          "6",
+          "/RF_22_AUDIO_CODEC_IO/3V3_CODEC_SWITCHED"
+        ]
+      ]
+    },
+    {
+      "reference": "U82",
+      "instance": "headphone_esd",
+      "device_id": "ti_tpd4e05u06_dqar",
+      "mpn": "Texas Instruments TPD4E05U06DQAR",
+      "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          74.145,
+          35.805
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 90,
+        "anchor_mm": [
+          5.0,
+          93.5
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_22_AUDIO_CODEC_IO/HEADPHONE_LEFT_TIP"
+        ],
+        [
+          "10",
+          ""
+        ],
+        [
+          "2",
+          "/RF_22_AUDIO_CODEC_IO/HEADPHONE_RIGHT_RING1"
+        ],
+        [
+          "3",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ],
+        [
+          "4",
+          "/RF_22_AUDIO_CODEC_IO/HEADSET_MIC_RAW"
+        ],
+        [
+          "5",
+          ""
+        ],
+        [
+          "6",
+          ""
+        ],
+        [
+          "7",
+          ""
+        ],
+        [
+          "8",
+          "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+        ],
+        [
+          "9",
+          ""
+        ]
+      ]
+    },
+    {
+      "reference": "U83",
+      "instance": "headphone_jack",
+      "device_id": "same_sky_sj_43515ts_smt_tr",
+      "mpn": "Same Sky SJ-43515TS-SMT-TR",
+      "footprint": "Leshy2_R2:SJ-43515TS-SMT-TR",
+      "before": {
+        "side": "F.Cu",
+        "angle": 0.0,
+        "anchor_mm": [
+          0.8,
+          99.0
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 0,
+        "anchor_mm": [
+          0.8,
+          99.9
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "",
+          ""
+        ],
+        [
+          "",
+          ""
+        ],
+        [
+          "1",
+          "/RF_22_AUDIO_CODEC_IO/HEADSET_MIC_RAW"
+        ],
+        [
+          "2",
+          "/RF_22_AUDIO_CODEC_IO/HEADPHONE_LEFT_TIP"
+        ],
+        [
+          "3",
+          "/RF_22_AUDIO_CODEC_IO/HEADPHONE_RIGHT_RING1"
+        ],
+        [
+          "4",
+          "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND"
+        ],
+        [
+          "5",
+          "/RF_22_AUDIO_CODEC_IO/HEADSET_SWITCH_STATE"
+        ]
+      ]
+    },
+    {
+      "reference": "U85",
+      "instance": "headset_mic_selector",
+      "device_id": "ti_ts5a63157_dckr",
+      "mpn": "Texas Instruments TS5A63157DCKR",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "before": {
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          78.495,
+          75.095
+        ]
+      },
+      "after": {
+        "side": "B.Cu",
+        "angle": 90,
+        "anchor_mm": [
+          7.5,
+          110.25
+        ]
+      },
+      "pad_net_multiset": [
+        [
+          "1",
+          "/RF_22_AUDIO_CODEC_IO/MIC_RAW"
+        ],
+        [
+          "2",
+          "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND"
+        ],
+        [
+          "3",
+          "/RF_22_AUDIO_CODEC_IO/HEADSET_MIC_RAW"
+        ],
+        [
+          "4",
+          "/RF_22_AUDIO_CODEC_IO/MIC_SELECTED_RAW"
+        ],
+        [
+          "5",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ],
+        [
+          "6",
+          "/RF_22_AUDIO_CODEC_IO/HEADSET_INTERNAL_MIC_SEL"
+        ]
+      ]
+    }
+  ],
+  "constraints": {
+    "all_supports_mounted_inside_B": true,
+    "outward_moving_reference_only": "MK1",
+    "jack_native_insertion_axis": [
+      1,
+      0
+    ],
+    "jack_native_mouth_x_mm": -0.7,
+    "jack_leftmost_signal_copper_x_mm": 0.4,
+    "jack_locator_diameter_mm": 1.9,
+    "jack_locator_count": 2,
+    "board_size_mm": [
+      80,
+      150
+    ],
+    "mounts_edgecuts_mpn_nets_unchanged": true,
+    "preserved_copper_count": 765,
+    "minimum_courtyard_clearance_mm": 0.1,
+    "foreign_copper_screen_mm": 0.2,
+    "no_admission_by_bbox_alone": true
+  },
+  "unresolved": [
+    "Joint exact encoder/holder/USB merge and opposing body heights require independent checks.",
+    "Local AUDIO_GROUND is not a global return; R172 link and POWER_GROUND ESD return need actual routing.",
+    "Long downstream voice/codec branches remain uncompleted low-level paths, not buffered by analog switches.",
+    "Aggressor separation and final enclosure acoustic opening are not qualified by placement.",
+    "Former F-side audio4 and mic15 are superseded proposals, not this source or proof."
+  ]
+}

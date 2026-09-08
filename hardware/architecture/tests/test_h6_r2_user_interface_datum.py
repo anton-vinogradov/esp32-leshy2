@@ -1,5 +1,6 @@
 """Visible indicators must not fall into automatic inner-face electronics packing."""
 
+import __future__
 import ast
 import json
 import unittest
@@ -40,7 +41,9 @@ class UserInterfaceDatumTests(unittest.TestCase):
         selected = [node for node in self.tree.body if isinstance(node, ast.FunctionDef)
                     and node.name in {"service_button_target", "target_for_instance", "target_side"}]
         self.fn = {}
-        exec(compile(ast.Module(body=selected, type_ignores=[]), str(SCRIPT), "exec"), self.fn)
+        # Preserve the source module's postponed annotations when extracting its AST.
+        exec(compile(ast.Module(body=selected, type_ignores=[]), str(SCRIPT), "exec",
+                     flags=__future__.annotations.compiler_flag, dont_inherit=True), self.fn)
 
     def test_exact_ten_user_indicators_are_explicit_outer_face_datums(self):
         ledger = json.loads((ROOT / "hardware/ecad/generated/H2-R2-native-instance-ledger.json").read_text())

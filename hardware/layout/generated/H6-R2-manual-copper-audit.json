@@ -5,9 +5,9 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "e108fdcf25929731d58f51c32e81bdb16fa42216b46cedf4395a3512d3f994c7",
+    "contract_sha256": "87198e589d3736280050827a6eb40e5b75b45bd13b109f41faf2fc7f37e6a2c8",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "afc0568a0d6461d0cb984501953182e24175265cc68f6ffbe2d2ad6b7fd99868",
+    "routing_policy_sha256": "aa6da6d931b27d7da6af579a5259fecc09ab99d206e8045389b71d7fb6cebac1",
     "routing_contract": "hardware/layout/h6-r2-routing-policy.json",
     "routing_contract_sha256": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
     "placement_status": "pass"
@@ -5167,7 +5167,7 @@
           0.15,
           [
             29.4,
-            128.3
+            128.65
           ],
           [
             30.075,
@@ -5391,7 +5391,7 @@
           0.15,
           [
             29.4,
-            128.3
+            128.65
           ],
           [
             32.2,
@@ -10472,7 +10472,7 @@
           "via",
           "/RF_03_MAIN_RAILS_DOMAIN_GATES/5V_EXT_PREPROTECT",
           29.4,
-          128.3,
+          128.65,
           0.4,
           0.2
         ],
@@ -12259,9 +12259,9 @@
       ],
       "segment_count": 5,
       "via_count": 2,
-      "length_mm": 18.044,
+      "length_mm": 18.0947,
       "resolved_connections": 2,
-      "reason": "A narrow Kelvin branch leaves the right output-capacitor junction, bypasses the unrelated fuse on In3, and feeds both parallel top-divider elements without carrying load current."
+      "reason": "A narrow Kelvin branch leaves the right output-capacitor junction, bypasses the unrelated fuse on In3, and feeds both parallel top-divider elements without carrying load current. The via at x29.4 is moved 0.35 mm down with only its two attached segment ends to clear centred BT1.1; widths, drill, net, junction topology and all other copper remain unchanged."
     },
     {
       "id": "RF-VOICE-BUCK-INPUT-BANK",

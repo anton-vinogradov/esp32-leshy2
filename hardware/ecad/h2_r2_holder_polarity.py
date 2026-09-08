@@ -3,8 +3,9 @@
 
 The manufacturer-authored Rev A TOP view has +/-, -/+ cell polarity.
 Logical pads1/2/3/4 retain SLOT0_POS/NEG,SLOT1_POS/NEG. Only the physical
-positions of3 and4 change. Undersized legacy lands, missing locator holes and
-the approximate body reserve are deliberately NOT qualified by this patch.
+positions of3 and4 change. The nominal plastic body is drawn separately from
+the pad-span reserve. Undersized legacy lands and missing locator holes are
+deliberately NOT qualified by either the polarity or body-display correction.
 Never writes historical R1, native PCB/SCH, net roles or approval artifacts.
 """
 
@@ -23,10 +24,15 @@ SOURCE_SHA256 = "6135bff212f9eab9ed8158febcbbd0d18b9479caac384a7f51f2818d1328e26
 SOURCE_SECTION = "Keystone Electronics exact1048P Rev A10.08.13, full one-page component TOP view; manufacturer-authored distributor-hosted copy"
 MECHANICS_QUALIFIED = False
 PRODUCTION_RELEASE_AUTHORIZED = False
+BODY_SIZE_MM = (77.06, 39.78)
+BODY_REGISTRATION_QUALIFIED = False
 DESCRIPTION = (
     "POLARITY ONLY; MECHANICS NOT QUALIFIED. Current R2 clone of the unqualified legacy Keystone1048P footprint. "
     "Manufacturer-authored1048P Rev A TOP view: upper row +/-, lower row -/+; logical1/2/3/4 remain SLOT0_POS/NEG,SLOT1_POS/NEG. "
-    "Only positions3/4 exchanged. Approximate4x6-mm lands, absent locator holes and86x39.8-mm body reserve retained; "
+    "Only electrical positions3/4 exchanged. Nominal77.06x39.78-mm plastic body is F.Fab; "
+    "the86x39.8-mm pad-span reserve is dashed Dwgs.User, NOT the body. Body is nominally centred on the existing "
+    "symmetric contact datum; full body/land/hole registration remains unqualified. "
+    "Approximate4x6-mm lands and absent locator holes retained; "
     "not a manufacturing-ready land pattern or thermal-contact qualification. " + SOURCE_URL
 )
 
@@ -44,6 +50,13 @@ def corrected_text(legacy_text: str) -> str:
         if text.count(old) != 1:
             raise ValueError(f"Expected one exact legacy pad{number}")
         text = text.replace(old, new, 1)
+    reserve = ('\t(fp_rect (start -43.000 -19.900) (end 43.000 19.900) '
+               '(stroke (width 0.10) (type default)) (fill none) (layer "F.Fab"))')
+    body = ('\t(fp_rect (start -38.530 -19.890) (end 38.530 19.890) '
+            '(stroke (width 0.10) (type default)) (fill none) (layer "F.Fab"))')
+    if text.count(reserve) != 1:
+        raise ValueError("Expected one exact legacy holder body reserve")
+    text = text.replace(reserve, body + "\n" + reserve.replace('(type default)', '(type dash)').replace('"F.Fab"', '"Dwgs.User"'), 1)
     return text
 
 

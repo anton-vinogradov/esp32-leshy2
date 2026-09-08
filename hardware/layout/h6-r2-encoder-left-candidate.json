@@ -1,0 +1,1451 @@
+{
+  "schema_version": 1,
+  "feature_id": "RF-ENCODER-LEFT-001",
+  "checked": "2026-09-08",
+  "status": "isolated_source_candidate_requires_joint_audio_integration",
+  "project": "LESHY2-RF-R2",
+  "base_commit": "e45c5b23bb2f7f7b089b047d5505e555b51b82ab",
+  "fabrication_ready": false,
+  "production_written": false,
+  "production_promotion_authorized_by_this_report": false,
+  "baseline_board_sha256": "cb5855cf3d9c534bfdbd5190a86f54f4d800b8c594c717257463fd81033f4e9f",
+  "scope": "Restore the real rear-outer encoder to the agreed left side. The 31mm downward change is explicit; no picture mirroring, PTT move, MPN change, new exterior passives, or radio-module repack.",
+  "placement_rows": [
+    {
+      "reference": "SW3",
+      "instance": "encoder",
+      "before": {
+        "reference": "SW3",
+        "instance": "encoder",
+        "side": "F.Cu",
+        "anchor_mm": [
+          71,
+          50.25
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            63.055,
+            78.945
+          ],
+          "y": [
+            41.955,
+            59.045
+          ]
+        }
+      },
+      "after": {
+        "reference": "SW3",
+        "instance": "encoder",
+        "side": "F.Cu",
+        "anchor_mm": [
+          9.25,
+          81.25
+        ],
+        "rotation_deg": -90,
+        "courtyard_mm": {
+          "x": [
+            0.455,
+            17.545
+          ],
+          "y": [
+            73.305,
+            89.195
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "U111",
+      "instance": "evidence_mask",
+      "before": {
+        "reference": "U111",
+        "instance": "evidence_mask",
+        "side": "B.Cu",
+        "anchor_mm": [
+          7.949999,
+          76.75
+        ],
+        "rotation_deg": 90,
+        "courtyard_mm": {
+          "x": [
+            3.755,
+            12.145
+          ],
+          "y": [
+            72.855,
+            80.645
+          ]
+        }
+      },
+      "after": {
+        "reference": "U111",
+        "instance": "evidence_mask",
+        "side": "B.Cu",
+        "anchor_mm": [
+          7.05,
+          81.55
+        ],
+        "rotation_deg": 90,
+        "courtyard_mm": {
+          "x": [
+            2.855,
+            11.245
+          ],
+          "y": [
+            77.655,
+            85.445
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "U94",
+      "instance": "u214_supervisor",
+      "before": {
+        "reference": "U94",
+        "instance": "u214_supervisor",
+        "side": "B.Cu",
+        "anchor_mm": [
+          2.25,
+          82.75
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            0.155,
+            4.345
+          ],
+          "y": [
+            81.005,
+            84.495
+          ]
+        }
+      },
+      "after": {
+        "reference": "U94",
+        "instance": "u214_supervisor",
+        "side": "B.Cu",
+        "anchor_mm": [
+          2.3,
+          87.3
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            0.205,
+            4.395
+          ],
+          "y": [
+            85.555,
+            89.045
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "U30",
+      "instance": "cc_band_buffer",
+      "before": {
+        "reference": "U30",
+        "instance": "cc_band_buffer",
+        "side": "B.Cu",
+        "anchor_mm": [
+          15.25,
+          84.25
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            12.255,
+            18.245
+          ],
+          "y": [
+            82.405,
+            86.095
+          ]
+        }
+      },
+      "after": {
+        "reference": "U30",
+        "instance": "cc_band_buffer",
+        "side": "B.Cu",
+        "anchor_mm": [
+          13.225,
+          82.9
+        ],
+        "rotation_deg": 90,
+        "courtyard_mm": {
+          "x": [
+            11.38,
+            15.07
+          ],
+          "y": [
+            79.905,
+            85.895
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "U109",
+      "instance": "evidence_cmp_voice",
+      "before": {
+        "reference": "U109",
+        "instance": "evidence_cmp_voice",
+        "side": "B.Cu",
+        "anchor_mm": [
+          13.645,
+          78.195
+        ],
+        "rotation_deg": 90,
+        "courtyard_mm": {
+          "x": [
+            12.35,
+            14.94
+          ],
+          "y": [
+            76.35,
+            80.04
+          ]
+        }
+      },
+      "after": {
+        "reference": "U109",
+        "instance": "evidence_cmp_voice",
+        "side": "B.Cu",
+        "anchor_mm": [
+          13.775,
+          77.9
+        ],
+        "rotation_deg": -90,
+        "courtyard_mm": {
+          "x": [
+            12.48,
+            15.07
+          ],
+          "y": [
+            76.055,
+            79.745
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "U31",
+      "instance": "cc_host_buffer",
+      "before": {
+        "reference": "U31",
+        "instance": "cc_host_buffer",
+        "side": "B.Cu",
+        "anchor_mm": [
+          16.25,
+          73.25
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            12.355,
+            20.145
+          ],
+          "y": [
+            70.455,
+            76.045
+          ]
+        }
+      },
+      "after": {
+        "reference": "U31",
+        "instance": "cc_host_buffer",
+        "side": "B.Cu",
+        "anchor_mm": [
+          16.25,
+          72.95
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            12.355,
+            20.145
+          ],
+          "y": [
+            70.155,
+            75.745
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "C125",
+      "instance": "cc_power_input_cap",
+      "before": {
+        "reference": "C125",
+        "instance": "cc_power_input_cap",
+        "side": "F.Cu",
+        "anchor_mm": [
+          2,
+          76
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            0.475,
+            3.525
+          ],
+          "y": [
+            75.225,
+            76.775
+          ]
+        }
+      },
+      "after": {
+        "reference": "C125",
+        "instance": "cc_power_input_cap",
+        "side": "B.Cu",
+        "anchor_mm": [
+          1.5,
+          73
+        ],
+        "rotation_deg": 90,
+        "courtyard_mm": {
+          "x": [
+            0.725,
+            2.275
+          ],
+          "y": [
+            71.475,
+            74.525
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "C244",
+      "instance": "u214_supervisor_bypass",
+      "before": {
+        "reference": "C244",
+        "instance": "u214_supervisor_bypass",
+        "side": "B.Cu",
+        "anchor_mm": [
+          2.305,
+          85.354999
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            1.35,
+            3.26
+          ],
+          "y": [
+            84.85,
+            85.86
+          ]
+        }
+      },
+      "after": {
+        "reference": "C244",
+        "instance": "u214_supervisor_bypass",
+        "side": "B.Cu",
+        "anchor_mm": [
+          5.6,
+          87.3
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            4.645,
+            6.555
+          ],
+          "y": [
+            86.795,
+            87.805
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "C245",
+      "instance": "u214_supervisor_ct",
+      "before": {
+        "reference": "C245",
+        "instance": "u214_supervisor_ct",
+        "side": "B.Cu",
+        "anchor_mm": [
+          5.105,
+          82.805
+        ],
+        "rotation_deg": 90,
+        "courtyard_mm": {
+          "x": [
+            4.6,
+            5.61
+          ],
+          "y": [
+            81.85,
+            83.76
+          ]
+        }
+      },
+      "after": {
+        "reference": "C245",
+        "instance": "u214_supervisor_ct",
+        "side": "B.Cu",
+        "anchor_mm": [
+          5.6,
+          86.1
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            4.645,
+            6.555
+          ],
+          "y": [
+            85.595,
+            86.605
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "C266",
+      "instance": "evidence_mask_bypass",
+      "before": {
+        "reference": "C266",
+        "instance": "evidence_mask_bypass",
+        "side": "B.Cu",
+        "anchor_mm": [
+          8.055,
+          81.354999
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            7.1,
+            9.01
+          ],
+          "y": [
+            80.85,
+            81.86
+          ]
+        }
+      },
+      "after": {
+        "reference": "C266",
+        "instance": "evidence_mask_bypass",
+        "side": "B.Cu",
+        "anchor_mm": [
+          10.3,
+          77.025
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            9.345,
+            11.255
+          ],
+          "y": [
+            76.52,
+            77.53
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "C264",
+      "instance": "evidence_cmp_voice_bypass",
+      "before": {
+        "reference": "C264",
+        "instance": "evidence_cmp_voice_bypass",
+        "side": "B.Cu",
+        "anchor_mm": [
+          15.855,
+          78.555
+        ],
+        "rotation_deg": 90,
+        "courtyard_mm": {
+          "x": [
+            15.35,
+            16.36
+          ],
+          "y": [
+            77.6,
+            79.51
+          ]
+        }
+      },
+      "after": {
+        "reference": "C264",
+        "instance": "evidence_cmp_voice_bypass",
+        "side": "B.Cu",
+        "anchor_mm": [
+          16.2,
+          80.4
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            15.245,
+            17.155
+          ],
+          "y": [
+            79.895,
+            80.905
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "C114",
+      "instance": "cc_band_buffer_bypass",
+      "before": {
+        "reference": "C114",
+        "instance": "cc_band_buffer_bypass",
+        "side": "B.Cu",
+        "anchor_mm": [
+          15.305,
+          81.604999
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            14.35,
+            16.26
+          ],
+          "y": [
+            81.1,
+            82.11
+          ]
+        }
+      },
+      "after": {
+        "reference": "C114",
+        "instance": "cc_band_buffer_bypass",
+        "side": "B.Cu",
+        "anchor_mm": [
+          16.2,
+          81.65
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            15.245,
+            17.155
+          ],
+          "y": [
+            81.145,
+            82.155
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "U47",
+      "instance": "voice_hl_driver",
+      "before": {
+        "reference": "U47",
+        "instance": "voice_hl_driver",
+        "side": "B.Cu",
+        "anchor_mm": [
+          3.695,
+          90.395
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            1.85,
+            5.54
+          ],
+          "y": [
+            89.1,
+            91.69
+          ]
+        }
+      },
+      "after": {
+        "reference": "U47",
+        "instance": "voice_hl_driver",
+        "side": "B.Cu",
+        "anchor_mm": [
+          3.695,
+          90.595
+        ],
+        "rotation_deg": 180,
+        "courtyard_mm": {
+          "x": [
+            1.85,
+            5.54
+          ],
+          "y": [
+            89.3,
+            91.89
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "C142",
+      "instance": "voice_hl_driver_bypass",
+      "before": {
+        "reference": "C142",
+        "instance": "voice_hl_driver_bypass",
+        "side": "B.Cu",
+        "anchor_mm": [
+          3.805,
+          88.354999
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            2.85,
+            4.76
+          ],
+          "y": [
+            87.85,
+            88.86
+          ]
+        }
+      },
+      "after": {
+        "reference": "C142",
+        "instance": "voice_hl_driver_bypass",
+        "side": "B.Cu",
+        "anchor_mm": [
+          0.9,
+          90.5
+        ],
+        "rotation_deg": 90,
+        "courtyard_mm": {
+          "x": [
+            0.395,
+            1.405
+          ],
+          "y": [
+            89.545,
+            91.455
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "C33",
+      "instance": "hub_safe_i2c_aon_100n",
+      "before": {
+        "reference": "C33",
+        "instance": "hub_safe_i2c_aon_100n",
+        "side": "B.Cu",
+        "anchor_mm": [
+          13.055,
+          81.354999
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            12.1,
+            14.01
+          ],
+          "y": [
+            80.85,
+            81.86
+          ]
+        }
+      },
+      "after": {
+        "reference": "C33",
+        "instance": "hub_safe_i2c_aon_100n",
+        "side": "B.Cu",
+        "anchor_mm": [
+          55.45,
+          113.85
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            54.495,
+            56.405
+          ],
+          "y": [
+            113.345,
+            114.355
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "C34",
+      "instance": "hub_safe_i2c_aon_1u",
+      "before": {
+        "reference": "C34",
+        "instance": "hub_safe_i2c_aon_1u",
+        "side": "B.Cu",
+        "anchor_mm": [
+          11.355,
+          81.805
+        ],
+        "rotation_deg": 90,
+        "courtyard_mm": {
+          "x": [
+            10.85,
+            11.86
+          ],
+          "y": [
+            80.85,
+            82.76
+          ]
+        }
+      },
+      "after": {
+        "reference": "C34",
+        "instance": "hub_safe_i2c_aon_1u",
+        "side": "B.Cu",
+        "anchor_mm": [
+          53.325,
+          113.85
+        ],
+        "rotation_deg": 180,
+        "courtyard_mm": {
+          "x": [
+            52.37,
+            54.28
+          ],
+          "y": [
+            113.345,
+            114.355
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "C35",
+      "instance": "hub_safe_i2c_main_100n",
+      "before": {
+        "reference": "C35",
+        "instance": "hub_safe_i2c_main_100n",
+        "side": "B.Cu",
+        "anchor_mm": [
+          10.105,
+          81.805
+        ],
+        "rotation_deg": 90,
+        "courtyard_mm": {
+          "x": [
+            9.6,
+            10.61
+          ],
+          "y": [
+            80.85,
+            82.76
+          ]
+        }
+      },
+      "after": {
+        "reference": "C35",
+        "instance": "hub_safe_i2c_main_100n",
+        "side": "B.Cu",
+        "anchor_mm": [
+          51.2,
+          113.85
+        ],
+        "rotation_deg": 180,
+        "courtyard_mm": {
+          "x": [
+            50.245,
+            52.155
+          ],
+          "y": [
+            113.345,
+            114.355
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "C36",
+      "instance": "hub_safe_i2c_main_1u",
+      "before": {
+        "reference": "C36",
+        "instance": "hub_safe_i2c_main_1u",
+        "side": "B.Cu",
+        "anchor_mm": [
+          10.805,
+          83.604999
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            9.85,
+            11.76
+          ],
+          "y": [
+            83.1,
+            84.11
+          ]
+        }
+      },
+      "after": {
+        "reference": "C36",
+        "instance": "hub_safe_i2c_main_1u",
+        "side": "B.Cu",
+        "anchor_mm": [
+          49,
+          113.85
+        ],
+        "rotation_deg": 180,
+        "courtyard_mm": {
+          "x": [
+            48.045,
+            49.955
+          ],
+          "y": [
+            113.345,
+            114.355
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "R224",
+      "instance": "u214_supervisor_sense_bottom",
+      "before": {
+        "reference": "R224",
+        "instance": "u214_supervisor_sense_bottom",
+        "side": "B.Cu",
+        "anchor_mm": [
+          2.325,
+          80.115
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            1.35,
+            3.3
+          ],
+          "y": [
+            79.6,
+            80.63
+          ]
+        }
+      },
+      "after": {
+        "reference": "R224",
+        "instance": "u214_supervisor_sense_bottom",
+        "side": "B.Cu",
+        "anchor_mm": [
+          5.6,
+          88.5
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            4.625,
+            6.575
+          ],
+          "y": [
+            87.985,
+            89.015
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "R284",
+      "instance": "voice_evidence_threshold_top",
+      "before": {
+        "reference": "R284",
+        "instance": "voice_evidence_threshold_top",
+        "side": "B.Cu",
+        "anchor_mm": [
+          17.115,
+          78.574999
+        ],
+        "rotation_deg": 90,
+        "courtyard_mm": {
+          "x": [
+            16.6,
+            17.63
+          ],
+          "y": [
+            77.6,
+            79.55
+          ]
+        }
+      },
+      "after": {
+        "reference": "R284",
+        "instance": "voice_evidence_threshold_top",
+        "side": "B.Cu",
+        "anchor_mm": [
+          11.865,
+          78.8
+        ],
+        "rotation_deg": 90,
+        "courtyard_mm": {
+          "x": [
+            11.35,
+            12.38
+          ],
+          "y": [
+            77.825,
+            79.775
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "R283",
+      "instance": "voice_evidence_threshold_bottom",
+      "before": {
+        "reference": "R283",
+        "instance": "voice_evidence_threshold_bottom",
+        "side": "B.Cu",
+        "anchor_mm": [
+          17.575,
+          81.615
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            16.6,
+            18.55
+          ],
+          "y": [
+            81.1,
+            82.13
+          ]
+        }
+      },
+      "after": {
+        "reference": "R283",
+        "instance": "voice_evidence_threshold_bottom",
+        "side": "B.Cu",
+        "anchor_mm": [
+          18.8,
+          82.05
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            17.825,
+            19.775
+          ],
+          "y": [
+            81.535,
+            82.565
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "R271",
+      "instance": "safe_reset_gate_pullup",
+      "before": {
+        "reference": "R271",
+        "instance": "safe_reset_gate_pullup",
+        "side": "B.Cu",
+        "anchor_mm": [
+          16.325,
+          80.365
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            15.35,
+            17.3
+          ],
+          "y": [
+            79.85,
+            80.88
+          ]
+        }
+      },
+      "after": {
+        "reference": "R271",
+        "instance": "safe_reset_gate_pullup",
+        "side": "B.Cu",
+        "anchor_mm": [
+          10.2,
+          89.65
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            9.225,
+            11.175
+          ],
+          "y": [
+            89.135,
+            90.165
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "C258",
+      "instance": "ptt_filter_cap",
+      "before": {
+        "reference": "C258",
+        "instance": "ptt_filter_cap",
+        "side": "B.Cu",
+        "anchor_mm": [
+          11.355,
+          85.305
+        ],
+        "rotation_deg": 90,
+        "courtyard_mm": {
+          "x": [
+            10.85,
+            11.86
+          ],
+          "y": [
+            84.35,
+            86.26
+          ]
+        }
+      },
+      "after": {
+        "reference": "C258",
+        "instance": "ptt_filter_cap",
+        "side": "B.Cu",
+        "anchor_mm": [
+          18.75,
+          83.2
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            17.795,
+            19.705
+          ],
+          "y": [
+            82.695,
+            83.705
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    },
+    {
+      "reference": "R286",
+      "instance": "voice_v_evidence_hysteresis",
+      "before": {
+        "reference": "R286",
+        "instance": "voice_v_evidence_hysteresis",
+        "side": "B.Cu",
+        "anchor_mm": [
+          11.365,
+          89.324999
+        ],
+        "rotation_deg": 90,
+        "courtyard_mm": {
+          "x": [
+            10.85,
+            11.88
+          ],
+          "y": [
+            88.35,
+            90.3
+          ]
+        }
+      },
+      "after": {
+        "reference": "R286",
+        "instance": "voice_v_evidence_hysteresis",
+        "side": "B.Cu",
+        "anchor_mm": [
+          12,
+          105.85
+        ],
+        "rotation_deg": 0,
+        "courtyard_mm": {
+          "x": [
+            11.025,
+            12.975
+          ],
+          "y": [
+            105.335,
+            106.365
+          ]
+        }
+      },
+      "old_native_track_attachments": []
+    }
+  ],
+  "source_inputs": [
+    {
+      "path": "hardware/ecad/h2_r2_encoder_footprint.py",
+      "boundary": "Unchanged exact terminal axes and existing engineering PTH profile; solder/factory/measured mechanical qualification remains open."
+    },
+    {
+      "path": "hardware/architecture/devices.json",
+      "device_id": "davies_1227_j",
+      "boundary": "Existing selected15mm diameter knob; archived exact-part source checked2026-08-19, no new sourcing or adoption."
+    }
+  ],
+  "primary_evidence": [
+    {
+      "url": "https://tech.alpsalpine.com/cms.media/product_catalog_ec_01_ec11e_en_611f078659.pdf",
+      "section": "Existing review: exact EC11E18244AU Drawing No.2, p2 mounting-side axes and p1 exact MPN selection.",
+      "checked": "2026-09-08",
+      "sha256": "08dae9fa97a2a97d9c9954e87455aff6f0cc557be1fb84fcb0f11608937ba241"
+    },
+    {
+      "url": "https://daviesmolding.com/catalog/series/knobs/control/1227-j/",
+      "section": "Existing selected-device contract:15mm diameter,21mm height,6mm D-shaft interference fit. No renewed stock or fit approval.",
+      "checked": "2026-08-19"
+    }
+  ],
+  "pad_pair_review": [
+    {
+      "first": "U32.1",
+      "second": "C125.1",
+      "before_after_mm": [
+        0.6806834506589683,
+        2.9119496063635784
+      ],
+      "nets": [
+        [
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ],
+        [
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ]
+      ]
+    },
+    {
+      "first": "U30.8",
+      "second": "C114.1",
+      "before_after_mm": [
+        4.442412884908493,
+        1.7664653973401236
+      ],
+      "nets": [
+        [
+          "/RF_20_CC1101_VOICE_TX/3V3_CC_SWITCHED",
+          "/RF_20_CC1101_VOICE_TX/3V3_CC_SWITCHED"
+        ],
+        [
+          "/RF_20_CC1101_VOICE_TX/3V3_CC_SWITCHED",
+          "/RF_20_CC1101_VOICE_TX/3V3_CC_SWITCHED"
+        ]
+      ]
+    },
+    {
+      "first": "U109.5",
+      "second": "C264.1",
+      "before_after_mm": [
+        2.4894176025729395,
+        2.948563209429298
+      ],
+      "nets": [
+        [
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ],
+        [
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ]
+      ]
+    },
+    {
+      "first": "U111.24",
+      "second": "C266.1",
+      "before_after_mm": [
+        8.447841938329693,
+        1.8471413724996795
+      ],
+      "nets": [
+        [
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ],
+        [
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ]
+      ]
+    },
+    {
+      "first": "U94.6",
+      "second": "C244.1",
+      "before_after_mm": [
+        2.276055346427454,
+        1.932176557667544
+      ],
+      "nets": [
+        [
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ],
+        [
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ]
+      ]
+    },
+    {
+      "first": "U94.4",
+      "second": "C245.1",
+      "before_after_mm": [
+        2.2704693897958634,
+        1.700972148508023
+      ],
+      "nets": [
+        [
+          "/RF_30_U214_U219_M5_EXT/U214_READY_DELAY",
+          "/RF_30_U214_U219_M5_EXT/U214_READY_DELAY"
+        ],
+        [
+          "/RF_30_U214_U219_M5_EXT/U214_READY_DELAY",
+          "/RF_30_U214_U219_M5_EXT/U214_READY_DELAY"
+        ]
+      ]
+    },
+    {
+      "first": "U94.5",
+      "second": "R224.1",
+      "before_after_mm": [
+        3.0685470910513986,
+        2.0422429458808273
+      ],
+      "nets": [
+        [
+          "/RF_30_U214_U219_M5_EXT/U214_5V_SENSE",
+          "/RF_30_U214_U219_M5_EXT/U214_5V_SENSE"
+        ],
+        [
+          "/RF_30_U214_U219_M5_EXT/U214_5V_SENSE",
+          "/RF_30_U214_U219_M5_EXT/U214_5V_SENSE"
+        ]
+      ]
+    },
+    {
+      "first": "U109.3",
+      "second": "R284.2",
+      "before_after_mm": [
+        4.299686321117042,
+        2.962043213729334
+      ],
+      "nets": [
+        [
+          "/RF_50_TX_SAFETY_EVIDENCE/EV_THRESH_6_VOICE",
+          "/RF_50_TX_SAFETY_EVIDENCE/EV_THRESH_6_VOICE"
+        ],
+        [
+          "/RF_50_TX_SAFETY_EVIDENCE/EV_THRESH_6_VOICE",
+          "/RF_50_TX_SAFETY_EVIDENCE/EV_THRESH_6_VOICE"
+        ]
+      ]
+    },
+    {
+      "first": "U109.3",
+      "second": "R283.1",
+      "before_after_mm": [
+        4.684794552592462,
+        6.519258009927203
+      ],
+      "nets": [
+        [
+          "/RF_50_TX_SAFETY_EVIDENCE/EV_THRESH_6_VOICE",
+          "/RF_50_TX_SAFETY_EVIDENCE/EV_THRESH_6_VOICE"
+        ],
+        [
+          "/RF_50_TX_SAFETY_EVIDENCE/EV_THRESH_6_VOICE",
+          "/RF_50_TX_SAFETY_EVIDENCE/EV_THRESH_6_VOICE"
+        ]
+      ]
+    },
+    {
+      "first": "U47.5",
+      "second": "C142.1",
+      "before_after_mm": [
+        3.0654535357759056,
+        1.9860135951196305
+      ],
+      "nets": [
+        [
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ],
+        [
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ]
+      ]
+    },
+    {
+      "first": "U6.8",
+      "second": "C33.1",
+      "before_after_mm": [
+        52.906749978429026,
+        1.5520812639807233
+      ],
+      "nets": [
+        [
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ],
+        [
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ]
+      ]
+    },
+    {
+      "first": "U6.8",
+      "second": "C34.1",
+      "before_after_mm": [
+        53.370160494887024,
+        2.20350998409356
+      ],
+      "nets": [
+        [
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ],
+        [
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3",
+          "/RF_01_USB_PD_CHARGE/AON_SAFE_3V3"
+        ]
+      ]
+    },
+    {
+      "first": "U6.1",
+      "second": "C35.1",
+      "before_after_mm": [
+        50.94049255013147,
+        1.5520812639807233
+      ],
+      "nets": [
+        [
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ],
+        [
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ]
+      ]
+    },
+    {
+      "first": "U6.1",
+      "second": "C36.1",
+      "before_after_mm": [
+        49.992128768237116,
+        2.2785864587502487
+      ],
+      "nets": [
+        [
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ],
+        [
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN",
+          "/RF_02_PACK_SAFETY_AON/3V3_MAIN"
+        ]
+      ]
+    }
+  ],
+  "native_preliminary_proof": {
+    "copper_objects": 765,
+    "track_to_ref_pad_adjacency_equal": true,
+    "old_attached_copper_on_changed_references": 0,
+    "full_drc_completed_by_this_report": false
+  },
+  "joint_dependencies": {
+    "audio_feature": "RF-INNER-HEADSET-LOCAL-MIC-001",
+    "required_before_encoder_promotion": [
+      "C257 and R258 moved out of the new R286 footprint",
+      "R267 B90[13.115,107.46] with0.120mm courtyard gap to R286",
+      "full joint native stage and DRC; source-only package must not be promoted alone"
+    ],
+    "holder_target": {
+      "anchor_mm": [
+        40,
+        85
+      ],
+      "side": "F.Cu",
+      "rotation_deg": 90
+    },
+    "audio_jack_target": {
+      "reference": "U83",
+      "anchor_mm": [
+        0.8,
+        99.9
+      ],
+      "side": "B.Cu",
+      "rotation_deg": 0
+    },
+    "ptt_preserved": {
+      "reference": "SW4",
+      "anchor_mm": [
+        72.1,
+        67.42
+      ],
+      "side": "F.Cu",
+      "rotation_deg": 0
+    }
+  },
+  "encoder_nominal_plan_review": {
+    "shaft_mm": [
+      9.25,
+      81.25
+    ],
+    "knob_nominal_diameter_mm": 15,
+    "knob_bbox_mm": {
+      "x": [
+        1.75,
+        16.75
+      ],
+      "y": [
+        73.75,
+        88.75
+      ]
+    },
+    "centered_holder_courtyard_mm": {
+      "x": [
+        20.05,
+        59.95
+      ],
+      "y": [
+        41.95,
+        128.05
+      ]
+    },
+    "nominal_knob_to_holder_courtyard_x_gap_mm": 3.3,
+    "finger_and_housing_access_qualified": false
+  },
+  "remaining_limits": [
+    "15mm knob-to-centered-holder courtyard plan gap3.30mm is not a measured body, finger, housing or tolerance qualification. No3D PASS is claimed.",
+    "The unchanged encoder signal-hole and mounting-slot engineering limitations remain open; all7PTH pads, including both empty-net MP lugs, must be soldered.",
+    "R283 threshold path increases4.68→6.52mm and remains unrouted; this is a low-rate comparator threshold net, not acceptance of RF/noise behavior.",
+    "C125 input pad span grows0.68→2.91mm while returning from F to B, eliminating the cross-side placement; no supply-loop routing or power qualification is claimed.",
+    "Four U6 bypasses move from roughly50–53mm to1.55–2.28mm from their actual supply pins. Explicit owner and3mm pad-pair guards are engineering screening, not vendor limits.",
+    "R286 depends on the joint inner-audio repack; its feedback connections remain unrouted.",
+    "All current copper and electrical identities must be rechecked on the combined native candidate before guarded promotion."
+  ]
+}

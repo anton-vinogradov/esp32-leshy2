@@ -25,7 +25,8 @@ EXPECTED = {
     "sd_esd_b": ("U7", [63.145, 128.405], 90),
     "sd_card_cmd_pullup": ("R39", [56.825, 130.2], 0),
     "sd_card_dat1_pullup": ("R41", [66.075, 130.2], 0),
-    "sd_card_dat2_pullup": ("R42", [62.075, 130.315], 0),
+    # Current R42 has a later supply-locality relocation; the card datum is fixed.
+    "sd_card_dat2_pullup": ("R42", [61.565, 126.065], 90),
     "sd_card_dat3_pullup": ("R43", [59.825, 130.315], 0),
 }
 
@@ -47,7 +48,10 @@ class MicroSDRecessGeometryTests(unittest.TestCase):
                 self.assertEqual(angle, row["rotation_deg"])
                 self.assertEqual("ui-inner", row["frame"])
                 self.assertIs(row["mechanical_locked"], True)
-                self.assertIn(recess.FEATURE_ID, row["reason"])
+                if ref == "R42":
+                    self.assertEqual("hardware/layout/h6-r2-ui-supply-locality.json", row["evidence"])
+                else:
+                    self.assertIn(recess.FEATURE_ID, row["reason"])
 
     def test_card_axis_uses_mounting_drawing_not_anchor_centre(self):
         c = contract()

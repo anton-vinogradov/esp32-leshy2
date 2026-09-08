@@ -24,6 +24,12 @@ class VisualRefreshTests(unittest.TestCase):
     def result(self, code=0, output=""):
         return SimpleNamespace(returncode=code, stdout=output)
 
+    def setUp(self):
+        for name in ("placement_intent", "product_view"):
+            stub = patch.object(self.renderer, name, return_value=[])
+            stub.start()
+            self.addCleanup(stub.stop)
+
     def main(self, flag):
         with patch.object(self.renderer.sys, "argv", [str(SCRIPT), flag]), contextlib.redirect_stdout(io.StringIO()) as output:
             code = self.renderer.main()
@@ -124,6 +130,26 @@ class VisualRefreshTests(unittest.TestCase):
         self.assertIn("no pcbnew runtime", output)
         render.assert_not_called()
         component.assert_not_called()
+
+    def test_failed_product_intent_prevents_publishing_any_new_visual(self):
+        r = self.renderer
+        with patch.object(r, "component_python", return_value="/runtime/kicad"), \
+                patch.object(r, "placement_intent", return_value=["encoder wrong side"]), \
+                patch.object(r, "render") as render, patch.object(r, "component_views") as component:
+            code, output = self.main("--write")
+        self.assertEqual(1, code)
+        self.assertIn("encoder wrong side", output)
+        render.assert_not_called()
+        component.assert_not_called()
+
+    def test_stale_product_preview_fails_even_when_technical_images_are_fresh(self):
+        r = self.renderer
+        with patch.object(r, "check", return_value=[]), \
+                patch.object(r, "component_views", return_value=[]), \
+                patch.object(r, "product_view", return_value=["product preview stale"]):
+            code, output = self.main("--check")
+        self.assertEqual(1, code)
+        self.assertIn("product preview stale", output)
 
     def test_component_write_error_is_not_overwritten_by_later_success(self):
         r = self.renderer

@@ -8,9 +8,9 @@ small components without losing detail.
 
 | Front/UI board | Rear/RF board |
 | --- | --- |
-| **Outer F — 30 items + 4 mounting footprints** | **Outer F — 16 items + 4 mounting footprints** |
+| **Outer F — 30 items + 4 mounting footprints** | **Outer F — 13 items + 4 mounting footprints** |
 | [![UI outer](images/h6-r2-components-ui-outer.svg)](images/h6-r2-components-ui-outer.svg) | [![RF outer](images/h6-r2-components-rf-outer.svg)](images/h6-r2-components-rf-outer.svg) |
-| **Inner B — 398 items** | **Inner B — 764 items** |
+| **Inner B — 398 items** | **Inner B — 767 items** |
 | [![UI inner](images/h6-r2-components-ui-inner.svg)](images/h6-r2-components-ui-inner.svg) | [![RF inner](images/h6-r2-components-rf-inner.svg)](images/h6-r2-components-rf-inner.svg) |
 
 [All four views on one sheet](images/h6-r2-components-overview.svg).
@@ -44,6 +44,11 @@ are included. The display, cells, external antennas, loose cables and enclosure
 are not invented: these are PCBs before final assembly. The large UI area is
 the display bonding location; the RF outline is the current holder without cells.
 
+The UI inner drawing also registers the separate speaker body, marked
+`SPEAKER / ASSEMBLY`; it is not another PCB footprint. RF `LS1` is its two-wire
+termination, not the speaker body. See [placement corrections](h6-r2-placement-repair.md)
+for the maximum-body envelope and the limits of the mounting-space check.
+
 **Open mechanical questions remain open.** In particular, this sheet does not
 qualify holder geometry or solder-tool access, and does not replace the
 [open findings](h6-r2-interface-review.md) with a readiness claim. Fab geometry
@@ -74,7 +79,9 @@ Courtyard distances refer to mounting envelopes, **not physical bodies**; separa
 Hashes of both source PCBs, the renderer and all five SVGs are recorded in the
 [visualization snapshot](../hardware/layout/generated/H6-R2-component-views.json).
 Rendering does not change PCB files. The normal routing-image command now
-refreshes both routing exports and these five component SVGs:
+refreshes both routing exports, these five component SVGs and the
+[current exterior preview](images/h6-r2-product-exterior.svg). It also checks
+independent [placement requirements](../hardware/layout/generated/H6-R2-placement-intent.json):
 
 ```sh
 python3 hardware/layout/h6_r2_routing_render.py --write

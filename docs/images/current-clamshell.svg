@@ -187,15 +187,15 @@
 <text data-layer="pcb-silkscreen" x="287.1" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">microSD</text>
 <path d="M253.9 705.0 L253.9 730.9" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 <text data-layer="pcb-silkscreen" x="253.9" y="701.3" font-family="sans-serif" font-size="4.2" font-weight="bold" text-anchor="middle" fill="#1d4ed8">MICROPHONE</text>
-<rect x="550.5" y="305.4" width="147.3" height="318.2" rx="3" fill="none" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="4 3" data-part="1048P-pcb-pad-span" data-dimension-mm="86.00"/>
-<rect x="550.5" y="321.9" width="147.2" height="285.1" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" data-instance="pack_holder" data-mpn="Keystone 1048P" data-mounting="SMT"/>
-<path d="M546.1 318.2 H702.1" stroke="#ea580c" stroke-width="2" data-layer="mechanical-reference" data-part="enclosure-holder-end-stop"/>
-<path d="M546.1 610.8 H702.1" stroke="#ea580c" stroke-width="2" data-layer="mechanical-reference" data-part="enclosure-holder-end-stop"/>
-<text x="624.1" y="616.2" font-family="sans-serif" font-size="6.1" font-weight="bold" text-anchor="middle" fill="#166534">1048P body 77.1 · SMT pad span 86.0</text>
-<rect x="554.4" y="335.6" width="69.2" height="257.9" rx="20" fill="#ecfdf3" stroke="#22c55e" stroke-width="1.5" data-instance="pack_cell0" data-source-envelope="true"/>
-<text x="589.0" y="468.2" font-family="sans-serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#166534">18650</text>
-<rect x="624.7" y="335.6" width="69.2" height="257.9" rx="20" fill="#ecfdf3" stroke="#22c55e" stroke-width="1.5" data-instance="pack_cell1" data-source-envelope="true"/>
-<text x="659.2" y="468.2" font-family="sans-serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#166534">18650</text>
+<rect x="539.4" y="305.4" width="147.3" height="318.2" rx="3" fill="none" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="4 3" data-part="1048P-pcb-pad-span" data-dimension-mm="86.00"/>
+<rect x="539.4" y="321.9" width="147.2" height="285.1" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5" data-instance="pack_holder" data-mpn="Keystone 1048P" data-mounting="SMT"/>
+<path d="M535.0 318.2 H691.0" stroke="#ea580c" stroke-width="2" data-layer="mechanical-reference" data-part="enclosure-holder-end-stop"/>
+<path d="M535.0 610.8 H691.0" stroke="#ea580c" stroke-width="2" data-layer="mechanical-reference" data-part="enclosure-holder-end-stop"/>
+<text x="613.0" y="616.2" font-family="sans-serif" font-size="6.1" font-weight="bold" text-anchor="middle" fill="#166534">1048P body 77.1 · SMT pad span 86.0</text>
+<rect x="543.1" y="335.6" width="69.2" height="257.9" rx="20" fill="#ecfdf3" stroke="#22c55e" stroke-width="1.5" data-instance="pack_cell0" data-source-envelope="true"/>
+<text x="577.7" y="468.2" font-family="sans-serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#166534">18650</text>
+<rect x="613.7" y="335.6" width="69.2" height="257.9" rx="20" fill="#ecfdf3" stroke="#22c55e" stroke-width="1.5" data-instance="pack_cell1" data-source-envelope="true"/>
+<text x="648.3" y="468.2" font-family="sans-serif" font-size="7" font-weight="bold" text-anchor="middle" fill="#166534">18650</text>
 <rect x="721.0" y="385.0" width="24.4" height="22.2" rx="2" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5" data-instance="ptt_switch" data-direct-press="true"/>
 <circle cx="494.6" cy="336.9" r="27.8" fill="#dbe4ee" stroke="#475467" stroke-width="1.5" data-instance="encoder_knob" data-selected-part="true"/>
 <path d="M494.6 312.1 V321.1" stroke="#475467" stroke-width="2" data-part="knob-indicator-line"/>

@@ -30,6 +30,8 @@ KICAD_PYTHON_CANDIDATES = (
     Path("/usr/local/bin/python3"),
 )
 COMPONENT_RENDER_SCRIPT = ROOT / "hardware/layout/h6_r2_component_render.py"
+PRODUCT_RENDER_SCRIPT = ROOT / "hardware/layout/h6_r2_product_view.py"
+INTENT_SCRIPT = ROOT / "hardware/layout/h6_r2_placement_intent.py"
 LAYERS = "F.Cu,B.Cu,F.Silkscreen,B.Silkscreen,Edge.Cuts"
 BOARDS = {
     "ui": ROOT / "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
@@ -161,6 +163,26 @@ def component_views(mode: str, python: str | None = None) -> list[str]:
     return []
 
 
+def product_view(mode: str) -> list[str]:
+    if mode not in {"--write", "--check"}:
+        raise ValueError(f"unsupported product-view mode: {mode}")
+    try:
+        result = subprocess.run([sys.executable, str(PRODUCT_RENDER_SCRIPT), mode],
+                                cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    except OSError as exc:
+        return [f"product view {mode} could not run: {exc}"]
+    return [] if result.returncode == 0 else [f"product view {mode} failed:\n{result.stdout}"]
+
+
+def placement_intent(python: str) -> list[str]:
+    try:
+        result = subprocess.run([python, str(INTENT_SCRIPT), "--write"], cwd=ROOT,
+                                text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    except OSError as exc:
+        return [f"placement intent could not run: {exc}"]
+    return [] if result.returncode == 0 else [f"placement intent failed:\n{result.stdout}"]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     mode = parser.add_mutually_exclusive_group(required=True)
@@ -175,9 +197,18 @@ def main() -> int:
         except RuntimeError as exc:
             print("- " + str(exc))
             return 1
+        errors = placement_intent(python)
+        if errors:
+            print("\n".join(errors))
+            return 1
         for name, board in BOARDS.items():
             render(name, board, OUTPUTS[name])
         errors = component_views("--write", python)
+        if errors:
+            for error in errors:
+                print("- " + error)
+            return 1
+        errors = product_view("--write")
         if errors:
             for error in errors:
                 print("- " + error)
@@ -189,6 +220,7 @@ def main() -> int:
         for error in check(name, board, OUTPUTS[name])
     ]
     errors.extend(component_views("--check"))
+    errors.extend(product_view("--check"))
     if errors:
         for error in errors:
             print("- " + error)
