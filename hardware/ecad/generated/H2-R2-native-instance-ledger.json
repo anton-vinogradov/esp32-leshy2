@@ -11,7 +11,7 @@
     },
     "exact_definition_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "193efb9c92b2ea4178304aa2f91e41c4dc35e4b4187aa1b1087e61dd54a4634b",
+      "sha256": "11d04b89bd5e2140cfe76dd69a9a82da2fde66c3f4338853ebbd93ad8e7c9c6d",
       "authority": true
     },
     "physical_source_table": {
@@ -10078,7 +10078,7 @@
       "device_id": "alps_ec11e18244au",
       "mpn": "Alps Alpine EC11E18244AU",
       "symbol_id": "Leshy2_R2:alps_ec11e18244au",
-      "footprint": "Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm_MountingHoles",
+      "footprint": "Leshy2_R2:EC11E18244AU-ENGINEERING-PTH",
       "reference_prefix": "SW",
       "allocation_origin": "exact_current_role_list",
       "historical_topology_authority": false,

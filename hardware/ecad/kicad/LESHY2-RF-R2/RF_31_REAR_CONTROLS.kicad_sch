@@ -28,7 +28,7 @@
 				(do_not_autoplace no)
 				(effects (font (size 1.27 1.27)))
 			)
-			(property "Footprint" "Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm_MountingHoles"
+			(property "Footprint" "Leshy2_R2:EC11E18244AU-ENGINEERING-PTH"
 				(at 0.00 0.00 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -100,14 +100,14 @@
 				(pin passive line
 					(at 20.32 2.54 180)
 					(length 5.08)
-					(name "SW1" (effects (font (size 1.27 1.27))))
-					(number "S1" (effects (font (size 1.27 1.27))))
+					(name "SW2" (effects (font (size 1.27 1.27))))
+					(number "D" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at 20.32 0.00 180)
 					(length 5.08)
-					(name "SW2" (effects (font (size 1.27 1.27))))
-					(number "S2" (effects (font (size 1.27 1.27))))
+					(name "SW1" (effects (font (size 1.27 1.27))))
+					(number "E" (effects (font (size 1.27 1.27))))
 				)
 			)
 			(embedded_fonts no)
@@ -1737,7 +1737,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm_MountingHoles"
+		(property "Footprint" "Leshy2_R2:EC11E18244AU-ENGINEERING-PTH"
 			(at 878.84 52.07 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1774,11 +1774,11 @@
 		(pin "C"
 			(uuid "1518172a-fe68-514b-8321-19657c59be44")
 		)
-		(pin "S1"
-			(uuid "d1ec2a26-e17f-5cea-b393-43d8d8a417eb")
+		(pin "D"
+			(uuid "a583117b-c652-5b56-a87e-656c9f460679")
 		)
-		(pin "S2"
-			(uuid "ee6a98fc-1b3d-59dd-a4aa-a2dd34ccd313")
+		(pin "E"
+			(uuid "31067be3-90c4-541f-9655-8120e72f1193")
 		)
 		(instances
 			(project "LESHY2-RF-R2"
@@ -1806,16 +1806,16 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "c97b169b-9582-512e-9022-d2f121010011")
 	)
-	(hierarchical_label "UI_ENCODER_PUSH_N"
-		(shape bidirectional)
+	(label "POWER_GROUND"
 		(at 899.16 49.53 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "e7520af6-3a2c-5c76-ae8e-3621f5dfc10b")
+		(uuid "f16c6eec-61ee-5b38-ad86-a26ec19ad242")
 	)
-	(label "POWER_GROUND"
+	(hierarchical_label "UI_ENCODER_PUSH_N"
+		(shape bidirectional)
 		(at 899.16 52.07 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "f76547f5-b228-54ba-a961-512761fc4e60")
+		(uuid "3c122b03-884e-5c03-88a2-21ca2933963d")
 	)
 	(symbol
 		(lib_id "Leshy2_R2:omron_b3s_1100p")

@@ -5,17 +5,17 @@
   "status": "review_required",
   "source_hashes": {
     "hardware/verification/h6_r2_electrical_semantics.py": "ec39f702af3ad2ccd800ad1a0f7e4af80d954b9bf17868756282cd5a44d5bc68",
-    "hardware/ecad/generated/H2-R2-contact-materialization.json": "a388a4479cefc15a760d449e99fae3cb8c9bd1495b0f4cd6d60b5a35348f5872",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7d1b6c309e398f410a3ec109374388548eddfd4574676cf7d77a9ea5453bab91",
+    "hardware/ecad/generated/H2-R2-contact-materialization.json": "1ab288224f5ae04d223044cc61e5e8469a7fe609da590a6bd94b0c901cbe7d08",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "57f0ed517509911b8b7c3e003cd4c47a35e6a924850cfb3a1f710e66fd9fd512",
     "hardware/verification/h6-electrical-pins-power.json": "065011f2fd529cdd053255a20cb4202755dd65231b1ac0f27e2ddb917a065310",
     "hardware/verification/h6-electrical-pins-digital.json": "b061c58cebee24f0b0369b5a26b595e0cda0ecd6d8c3b0f7cb0c7c86d4f9f6b4",
     "hardware/verification/h6-electrical-pins-logic.json": "30a7d8e950ecd8797ad88faef29f2286d087d297d43f0460961509f12560795e",
     "hardware/verification/h6-electrical-pins-analog.json": "df58a02807801f4efa1bb1b9f1153b4cff40d57e4836ed598cba8860adf82ddb",
     "hardware/verification/h6-electrical-pins-protection.json": "f5fb2858de93401873634abf67b8cc120b7b3adfa2f66f04164c1a7168b134f5",
-    "hardware/verification/h6-electrical-pins-interfaces.json": "d8a50b4246c78e95e71024e0355dc7ab081600aebd0139751a6797d230c69917",
+    "hardware/verification/h6-electrical-pins-interfaces.json": "bc598528bd09bbde37e6a1ab3d81e84e88af42e366d3692e073873918e352146",
     "hardware/verification/h6-electrical-pins-passives.json": "3e06305650139090fdfda739160ca45071d6bc068fbe24e74779c8e0f62a8a55",
     "hardware/verification/h6-electrical-pins-peripherals.json": "77e60da1c87dcd429dd78f488fb25913d223d3f2c5e8068b9d54b5b17ede426b",
-    "hardware/ecad/libraries/leshy2_r2.kicad_sym": "779e72147a8106010b4d83f193f13876169b186689633d0da67f5290a912ff28",
+    "hardware/ecad/libraries/leshy2_r2.kicad_sym": "239115b4c3cadee17797b32579669c6b2a653b29959a2febd4a03044557573f2",
     "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch": "43910ab937fd3f95a140f664d6fbaca72d8dc6e9bf60cf46e5eae24158eddf50",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_10_S3_DISPLAY_TOUCH.kicad_sch": "b1649b1fa5f5fef7556dbd3268846828abd7f80b5c28350da6cf1000ddad7a06",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_11_STORAGE_CONTROLS_INDICATORS.kicad_sch": "4a171483c25661211bfd102198ff44a9492dbe93947b4638816d2bf1ebb78396",
@@ -37,7 +37,7 @@
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_21_BROADCAST_AIRBAND_RX.kicad_sch": "1ccb3c6c4c03896ce95c8201840405eccec5f67d5cea8ca49e1d873246319295",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_22_AUDIO_CODEC_IO.kicad_sch": "08b6db5680a941af95a6462d3cbb6bb02d23be7a56d9ba1f160e45ce90a8e45e",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_30_U214_U219_M5_EXT.kicad_sch": "e353a1a095600332751b857915ea7b003a80d4b1d846d6e4d257ab10573d414e",
-    "hardware/ecad/kicad/LESHY2-RF-R2/RF_31_REAR_CONTROLS.kicad_sch": "cc43f7b6aa1d4b16ec599893f672a4300709a37f6225028a0b4b9d3cac510898",
+    "hardware/ecad/kicad/LESHY2-RF-R2/RF_31_REAR_CONTROLS.kicad_sch": "b8b629c8597c8b4425283711c6dcf3cde10b4aade7f0afa1422f83b4d315757b",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_40_INTERBOARD_M1.kicad_sch": "f404c6fbf72b5e11dcc9f2b191efb8a7d42898aed792709b78f7453011d63aa6",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_50_TX_SAFETY_EVIDENCE.kicad_sch": "114dc84499fbc2b60a0cda22bfa3e82fe2c0aa0fd963a5fd5695d9426a58bbf0",
     "hardware/ecad/kicad/LESHY2-RF-R2/RF_60_TESTPOINTS_MANUFACTURING.kicad_sch": "991dca61b7971961ce60b0d8b3aeb6466abdb7338085412e40915002c73ec7a3",
@@ -989,7 +989,7 @@
     },
     {
       "device_id": "jae_dx07s016ja1r1500",
-      "finding": "SJ121836/SJ121837 full exact contact drawing was not obtained in this review. A5/A6/A7/A8/B5/B6/B7/B8 and SH are deliberately omitted from verified pins; do not infer their full physical mapping from USB family convention or another manufacturer's receptacle."
+      "finding": "Exact JAE-authored SJ121836 Rev 3 has since been obtained and mechanically reviewed for body and PCB-edge datums; SJ121837 is the packaging drawing. The remaining electrical contact mapping has not been independently reviewed here: A5/A6/A7/A8/B5/B6/B7/B8 and SH remain omitted from verified pins. Mechanical datum review does not close this electrical gap; do not infer mapping from USB family convention or another manufacturer's receptacle."
     },
     {
       "device_id": "hirose_fx8c_80p_sv1_92",
@@ -1009,11 +1009,7 @@
     },
     {
       "device_id": "keystone_1048p",
-      "finding": "The catalog proves the four physical holder contacts but does not legibly establish the exact polarized 1048P slot-to-pad plus/minus assignment. Do not promote current SLOT0_POS/SLOT1_POS labels to independently verified polarity until the exact 1048P drawing or a sufficiently clear manufacturer photo is checked. Cells and system wiring, not the bare holder, establish supply-source semantics."
-    },
-    {
-      "device_id": "alps_ec11e18244au",
-      "finding": "The switch is a symmetric isolated D/E pair; current H2 D->S1/E->S2 aliases were not accepted as manufacturer-position proof in this pass. Final D/E-to-native-S1/S2 positional review is separate from the verified passive push-switch type."
+      "finding": "Slot polarity is corrected using the already-reviewed exact Rev A drawing, but the current 4x6-mm lands, missing locator holes and complete land/hole/body registration remain unqualified. Rev B was not inspected. Cell-to-NTC height, channel fit and thermal-pad compression remain open; the withdrawn 3.3-mm cell-floor / 20-percent compression assumption is not restored. Raw-positive/fuse, supply/return routing and current capacity still require verification. Cells and system wiring, not the bare holder, establish supply-source semantics; no battery energization or manufacturing release is authorized."
     },
     {
       "device_id": "nicerf_sa818s_u_v18",
@@ -1054,14 +1050,14 @@
       "cached_pin_types_reviewed": 741,
       "native_connectivity_unchanged": true,
       "physical_netlist_nodes": 1598,
-      "native_xml_sha256": "0c39dad66295de2c4047a8555cf7a2c43a249c74edc69fe570b42a7a55d29bb5",
-      "typed_xml_sha256": "0fb008cd1f24f9c407920d94f64b434370be43e4a3b2814f54e5e06057a5f1aa",
-      "erc_report_sha256": "64aedc4d2163de48730f1179962d206f418748adf86c979ffdc24d4ea1d4a8ec",
-      "erc_content_sha256": "11d5c76b8dc62a932ff5626f7ba0e0be3669c6879e91a4b3f7b13af8aeb83d4c",
+      "native_xml_sha256": "cac46430b909e42ad8adc580c06a2cdde698a129f6fe7fabc34ec8ae8644c17c",
+      "typed_xml_sha256": "fd3f318a71325e0dc6f26ab1a20c8aa60189ab1bae40e2f11a21326b55a73cd1",
+      "erc_report_sha256": "2733508906c8928c06f7c0a40cc5f2434212465e857b33d7f6e8f10e6cde43d9",
+      "erc_content_sha256": "646359e68e4606a1cf7f1fcd8e24f25fd83eb25c35270fcf4a6df6279c39b4ff",
       "native_erc": {
         "$schema": "https://schemas.kicad.org/erc.v1.json",
         "coordinate_units": "mm",
-        "date": "2026-09-08T02:50:05",
+        "date": "2026-09-08T15:34:51",
         "ignored_checks": [
           {
             "description": "Global label only appears once in the schematic",
@@ -2040,14 +2036,14 @@
       "cached_pin_types_reviewed": 1355,
       "native_connectivity_unchanged": true,
       "physical_netlist_nodes": 2707,
-      "native_xml_sha256": "a52675d86660f733beacdc3e7e529187e1796c1b27f178ea8c6822d19eb5ddb4",
-      "typed_xml_sha256": "396be28d8b933a30341c1f7af40d7292444ed048d8e5d62b5c378c3096b65e83",
-      "erc_report_sha256": "b5ad6aebbafca764d41337c96573011e02110aebf2b74fd876d9f7d3f384f662",
-      "erc_content_sha256": "3570aa68b0b9f8c32a32b580c63289442e3839b3f95420b54d3e4931ee9b02c9",
+      "native_xml_sha256": "49957899554c8b3f00d2859d0760bebe78577c30d6df99b5ab8cfc6317fbbc35",
+      "typed_xml_sha256": "a8f76d179469bdcc45e4f39de409674932e1a518609a52a0600cee44b5571364",
+      "erc_report_sha256": "667d195f8c4463ee7f4ded0bd8d0bd3ba8d3d1396fd92b0e1d807fcaf5962944",
+      "erc_content_sha256": "ccef8f492182053cdf92927d5455bd33bd238c07b66eb9aab2a71e3b59f9f395",
       "native_erc": {
         "$schema": "https://schemas.kicad.org/erc.v1.json",
         "coordinate_units": "mm",
-        "date": "2026-09-08T02:50:09",
+        "date": "2026-09-08T15:34:55",
         "ignored_checks": [
           {
             "description": "Global label only appears once in the schematic",

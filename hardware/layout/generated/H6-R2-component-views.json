@@ -1,8 +1,8 @@
 {
   "status": "current_native_visualization_not_assembly_approval",
   "inputs_sha256": {
-    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "6af963427ffddc791f4d9ff01c8e5de2698b981e1f944416b49c1fd7fc02cbf5",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "634b3705ccd156b2b3511b46df430fc36c0a5e4a4d81c0190e2cd10351ae1d1c",
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "f49fba8a1fa6c1e7b3170e0e296aa28be57b83851fadeca1c3dfb4a302594fec",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "e11215ffe5cc25645aa091872af93540c121e84d83def5dae3f39c03c782fd32",
     "hardware/layout/h6_r2_component_render.py": "7d037e6fe4bb198ecc38425764949901246f6570fba656c807d12d06fd5a5dae"
   },
   "view_convention": "outer=native; inner=x_view=80-x_native, y unchanged; no extra RF transform",
@@ -125,6 +125,7 @@
         "J8",
         "J9",
         "L32",
+        "SW3",
         "SW4",
         "U83"
       ],
@@ -1361,10 +1362,10 @@
     }
   ],
   "outputs_sha256": {
-    "docs/images/h6-r2-components-ui-outer.svg": "41ca3d9b9264634efc6d4ebc5111fdec4c3f143cb30a1740dfc380bbcf931b40",
-    "docs/images/h6-r2-components-rf-outer.svg": "05ddddc3699b3c738f044d49b0cb781c5b55197580f20e383ff1f8534a6039e0",
-    "docs/images/h6-r2-components-ui-inner.svg": "43ae290698cda1850c43721d995951d9ac0050a49d29b662e8a4914507715bad",
-    "docs/images/h6-r2-components-rf-inner.svg": "519d24293f72e9626aa4625b7af6201f99085501bfc70997ff29d720eda75214",
-    "docs/images/h6-r2-components-overview.svg": "80770966267eeeec2d7eb9c522855f70b31e746ad9c2f622885b10c7fcd40c66"
+    "docs/images/h6-r2-components-ui-outer.svg": "f5d509144c98cb2532fe9561e04612b4c6314af0733ecec46ee07dc03fd2e7af",
+    "docs/images/h6-r2-components-rf-outer.svg": "6505c6ebcdb6183709cf94aaa287d608cecf2d895c333a69a2b8083a83bfda8f",
+    "docs/images/h6-r2-components-ui-inner.svg": "d54ac4782def0b3a69e11c340875a10d7780e9ddc7fd08b7d0d37da3b50d5a62",
+    "docs/images/h6-r2-components-rf-inner.svg": "35635d563b007a9349961e20ff70e0e45566f460396bcca8e3fd1881d1a42679",
+    "docs/images/h6-r2-components-overview.svg": "014dae39dc439451934a6660402b43138fff4e50efac72a34f2100d4c4b86464"
   }
 }

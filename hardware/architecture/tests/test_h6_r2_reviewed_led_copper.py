@@ -13,6 +13,11 @@ import types
 import unittest
 from unittest.mock import Mock, patch
 
+try:
+    import pcbnew as native_pcbnew
+except ImportError:
+    native_pcbnew = None
+
 
 ROOT = Path(__file__).resolve().parents[3]
 SCRIPT = ROOT / "hardware/layout/h6_r2_manual_copper.py"
@@ -28,6 +33,9 @@ with patch.dict(sys.modules, {"pcbnew": types.ModuleType("pcbnew"),
 PROJECT = "LESHY2-UI-R2"
 PREFIX = "/UI_11_STORAGE_CONTROLS_INDICATORS/"
 POLICY = json.loads((ROOT / "hardware/layout/h6-r2-routing-policy.json").read_text())
+EXPECTED_NAMES = {"C5_TX_LED_A", "CC_TX_LED_A", "EXT_TX_LED_A", "IR_TX_LED_A",
+                  "NRF0_TX_LED_A", "NRF1_TX_LED_A", "NRF2_TX_LED_A", "S3_TX_LED_A",
+                  "VOICE_TX_LED_A"}
 
 
 def candidate(canonical="NRF0_TX_LED_A"):
@@ -65,16 +73,15 @@ def validate(route, row=None, policy=None, project=PROJECT):
 
 
 class ReviewedLedProposalTests(unittest.TestCase):
-    def test_independent_finite_scope_is_exactly_two_ui_nets(self):
-        self.assertEqual({
-            (PROJECT, "NRF0_TX_LED_A", PREFIX + "NRF0_TX_LED_A"),
-            (PROJECT, "S3_TX_LED_A", PREFIX + "S3_TX_LED_A"),
-        }, copper.REVIEWED_GENERAL_PROPOSALS)
-        for name in ("NRF0_TX_LED_A", "S3_TX_LED_A"):
+    def test_independent_finite_scope_is_exactly_nine_ui_anode_nets(self):
+        self.assertEqual({(PROJECT, name, PREFIX + name) for name in EXPECTED_NAMES},
+                         copper.REVIEWED_GENERAL_PROPOSALS)
+        for name in EXPECTED_NAMES:
             validate(candidate(name))
 
     def test_no_basename_other_sheet_project_or_other_led_admission(self):
-        cases = [candidate("NRF1_TX_LED_A"), candidate("C5_TX_LED_A"), candidate("FAULT_LED_A")]
+        cases = [candidate(name) for name in ("NRF3_TX_LED_A", "C5_TX_LED_K", "FAULT_LED_A",
+                                              "C5_TX_LED", "3V3_MAIN")]
         renamed = candidate()
         renamed["kicad_net"] = "/OTHER_SHEET/NRF0_TX_LED_A"
         cases.append(renamed)
@@ -287,26 +294,114 @@ class ReviewedLedProposalTests(unittest.TestCase):
 
     def test_existing_manual_only_records_need_no_new_review_fields(self):
         records = json.loads((ROOT / "hardware/layout/h6-r2-manual-copper.json").read_text())["routes"]
-        # Root may append the two proposals concurrently; this check concerns
-        # retained legacy modes only, not a frozen route-count golden.
+        # This check concerns retained legacy modes, not a route-count golden.
         audit = json.loads((ROOT / "hardware/layout/generated/H6-R2-routing-policy-audit.json").read_text())
         bindings = {(row["project"], row["kicad_net"]): row for row in audit["rows"]}
         retained = [row for row in records if row["routing_class"] != "GENERAL_CONTROL"]
         self.assertTrue(retained)
         copper.preflight_reviewed_proposals(retained, bindings, None)
 
-    def test_current_two_reviewed_records_match_finite_scope_and_geometry_hashes(self):
+    def test_current_nine_reviewed_records_match_finite_scope_and_geometry_hashes(self):
         records = json.loads((ROOT / "hardware/layout/h6-r2-manual-copper.json").read_text())["routes"]
         proposals = [row for row in records if row["routing_class"] == "GENERAL_CONTROL"]
-        self.assertEqual(2, len(proposals))
-        self.assertEqual({"NRF0_TX_LED_A", "S3_TX_LED_A"}, {row["canonical_net"] for row in proposals})
+        self.assertEqual(9, len(proposals))
+        self.assertEqual(EXPECTED_NAMES, {row["canonical_net"] for row in proposals})
         audit = json.loads((ROOT / "hardware/layout/generated/H6-R2-routing-policy-audit.json").read_text())
         bindings = {(row["project"], row["kicad_net"]): row for row in audit["rows"]}
         copper.preflight_reviewed_proposals(records, bindings, POLICY)
-        self.assertEqual(10, sum(len(row["segments"]) for row in proposals))
-        self.assertEqual(2, sum(len(row["vias"]) for row in proposals))
-        vias = {row["canonical_net"]: row["vias"][0]["at_mm"] for row in proposals}
-        self.assertEqual({"NRF0_TX_LED_A": [40.8, 106.2], "S3_TX_LED_A": [5.8, 106.2]}, vias)
+        self.assertEqual(61, sum(len(row["segments"]) for row in proposals))
+        self.assertEqual(10, sum(len(row["vias"]) for row in proposals))
+        vias = {row["canonical_net"]: [via["at_mm"] for via in row["vias"]] for row in proposals}
+        self.assertEqual({
+            "NRF0_TX_LED_A": [[40.8, 106.2]], "S3_TX_LED_A": [[5.8, 106.2]],
+            "C5_TX_LED_A": [[25.0, 106.1]], "CC_TX_LED_A": [[9.2, 112.6]],
+            "EXT_TX_LED_A": [[56.0, 112.6]], "IR_TX_LED_A": [[36.8, 113.8]],
+            "NRF1_TX_LED_A": [[28.685, 109.1], [56.6, 106.1]],
+            "NRF2_TX_LED_A": [[72.4, 106.1]], "VOICE_TX_LED_A": [[25.0, 112.6]],
+        }, vias)
+
+    def test_previous_two_reviewed_geometries_are_unchanged(self):
+        records = json.loads((ROOT / "hardware/layout/h6-r2-manual-copper.json").read_text())["routes"]
+        expected = {
+            "UI-LED-NRF0-ANODE": "b753fd76381ba042bb8a130c9732f7f5cb181b04668a718207d50706e0962d6f",
+            "UI-LED-S3-ANODE": "7b7f5daddcc330787f59e277582e013ae0da25400b8fa2e1743d4a29bbe51031",
+        }
+        actual = {row["id"]: copper.proposal_geometry_sha256(row)
+                  for row in records if row["id"] in expected}
+        self.assertEqual(expected, actual)
+
+    def test_fault_is_still_safety_manual_only_and_cannot_be_relabelled(self):
+        audit = json.loads((ROOT / "hardware/layout/generated/H6-R2-routing-policy-audit.json").read_text())
+        rows = [row for row in audit["rows"] if row["project"] == PROJECT
+                and row["kicad_net"] == PREFIX + "FAULT_LED_A"]
+        self.assertEqual(1, len(rows))
+        self.assertEqual("SAFETY_CONTROL", rows[0]["routing_class"])
+        self.assertEqual("manual_only", rows[0]["route_mode"])
+        route = candidate("FAULT_LED_A")  # Forged GENERAL_CONTROL label cannot admit it.
+        with self.assertRaisesRegex(ValueError, "allow-list"):
+            validate(route)
+
+    def test_review_snapshot_binds_exact_seven_routes_without_release_authority(self):
+        review = json.loads((ROOT / "hardware/layout/h6-r2-led-routing-review.json").read_text())
+        expected = {"C5_TX_LED_A": ("R26", "D1", 8), "CC_TX_LED_A": ("R27", "D2", 4),
+                    "EXT_TX_LED_A": ("R31", "D3", 5), "IR_TX_LED_A": ("R33", "D5", 9),
+                    "NRF1_TX_LED_A": ("R36", "D7", 3), "NRF2_TX_LED_A": ("R37", "D8", 14),
+                    "VOICE_TX_LED_A": ("R75", "D10", 8)}
+        self.assertIs(False, review["production_release_authorized"])
+        self.assertIs(True, review["routing_in_progress"])
+        self.assertEqual(7, len(review["routes"]))
+        self.assertEqual(set(expected), {row["canonical_net"] for row in review["routes"]})
+        manifest = {row["id"]: row for row in json.loads(
+            (ROOT / "hardware/layout/h6-r2-manual-copper.json").read_text())["routes"]}
+        for row in review["routes"]:
+            resistor, led, segments = expected[row["canonical_net"]]
+            self.assertEqual([(resistor, "2"), (led, "2")],
+                             [(p["reference"], p["pad"]) for p in row["native_endpoints"]])
+            self.assertEqual(PREFIX + row["canonical_net"], row["kicad_net"])
+            self.assertEqual(segments, row["segment_count"])
+            self.assertEqual([1, 0], row["native_unconnected_before_after"])
+            self.assertEqual(row["geometry_sha256"],
+                             copper.proposal_geometry_sha256(manifest[row["route_id"]]))
+            self.assertGreaterEqual(row["minimum_foreign_copper_gap_lower_bound_mm"], 0.17)
+            self.assertGreaterEqual(row["minimum_via_edge_to_courtyard_mm"], 0.05)
+        self.assertEqual({"old_copper_forms_exact": 33, "all_other_native_forms_exact": 525,
+                          "old_connected_pad_pairs_preserved": 98, "new_copper_objects": 59,
+                          "ui_unconnected_before_after": [1219, 1212]}, review["preservation"])
+        self.assertEqual(0, review["native_drc"]["counts"]["violations"])
+        self.assertEqual(0, review["native_drc"]["counts"]["schematic_parity"])
+        self.assertEqual(review["native_snapshot"]["ui_reviewed_after_sha256"],
+                         review["native_drc"]["pcb_sha256"])
+        self.assertEqual({"foreign_copper_clearance", "via_under_led_body"},
+                         {row["case"] for row in review["negative_geometry_checks"]["cases"]})
+        self.assertTrue(all(row["rejected"] for row in review["negative_geometry_checks"]["cases"]))
+
+    @unittest.skipIf(native_pcbnew is None, "KiCad Python is needed for actual native copper/pad checks")
+    def test_native_nine_anode_nets_have_only_exact_two_pads_and_reviewed_copper(self):
+        board = native_pcbnew.LoadBoard(str(ROOT / f"hardware/ecad/kicad/{PROJECT}/{PROJECT}.kicad_pcb"))
+        endpoints = {"C5_TX_LED_A": ("R26", "D1"), "CC_TX_LED_A": ("R27", "D2"),
+                     "EXT_TX_LED_A": ("R31", "D3"), "IR_TX_LED_A": ("R33", "D5"),
+                     "NRF0_TX_LED_A": ("R35", "D6"), "NRF1_TX_LED_A": ("R36", "D7"),
+                     "NRF2_TX_LED_A": ("R37", "D8"), "S3_TX_LED_A": ("R38", "D9"),
+                     "VOICE_TX_LED_A": ("R75", "D10")}
+        records = json.loads((ROOT / "hardware/layout/h6-r2-manual-copper.json").read_text())["routes"]
+        with patch.object(copper, "pcbnew", native_pcbnew):
+            actual = copper.copper_signature(board)
+            for row in records:
+                if row["canonical_net"] not in endpoints:
+                    continue
+                name = row["kicad_net"]
+                with self.subTest(net=name):
+                    self.assertEqual(sorted((ref, "2") for ref in endpoints[row["canonical_net"]]),
+                                     sorted((fp.GetReference(), pad.GetNumber()) for fp in board.GetFootprints()
+                                            for pad in fp.Pads() if pad.GetNetname() == name))
+                    self.assertEqual(0, copper.remaining_for_net(board, name))
+                    expected = [("track", name, seg["layer"], seg["width_mm"],
+                                 min(tuple(seg["start_mm"]), tuple(seg["end_mm"])),
+                                 max(tuple(seg["start_mm"]), tuple(seg["end_mm"])))
+                                for seg in row["segments"]]
+                    expected += [("via", name, *via["at_mm"], via["diameter_mm"], via["drill_mm"])
+                                 for via in row["vias"]]
+                    self.assertEqual(sorted(expected), [item for item in actual if item[1] == name])
 
 
 if __name__ == "__main__":

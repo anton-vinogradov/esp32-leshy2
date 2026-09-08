@@ -10,19 +10,19 @@
     },
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "7ca7596c728f2dc2fe50516b6309438dfaca2fc9c7f6fbef62c18d005cf8616b"
+      "sha256": "57f0ed517509911b8b7c3e003cd4c47a35e6a924850cfb3a1f710e66fd9fd512"
     },
     "nets": {
       "path": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "sha256": "bb0ee548efc0ecfe02299f3757c58cd7a4e7c5a8b50160d8648411ab330ac411"
+      "sha256": "a6d6d9defa240766644ff5afef2164aefffeaf920ecdfe0a5fdb39c8db2398d9"
     },
     "symbols": {
       "path": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-      "sha256": "4f7bbfa51b19cbcf94473dc5ad5bf193f5e667f44dac8b7f6dc55a75fa242d23"
+      "sha256": "9952e5cc931552e3ee8246638689adbab41721f70b703e2561277604f7d83d27"
     },
     "symbol_library": {
       "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-      "sha256": "779e72147a8106010b4d83f193f13876169b186689633d0da67f5290a912ff28"
+      "sha256": "239115b4c3cadee17797b32579669c6b2a653b29959a2febd4a03044557573f2"
     }
   },
   "summary": {
@@ -375,7 +375,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_31_REAR_CONTROLS.kicad_sch",
-      "sha256": "cc43f7b6aa1d4b16ec599893f672a4300709a37f6225028a0b4b9d3cac510898"
+      "sha256": "b8b629c8597c8b4425283711c6dcf3cde10b4aade7f0afa1422f83b4d315757b"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-RF-R2/RF_40_INTERBOARD_M1.kicad_sch",

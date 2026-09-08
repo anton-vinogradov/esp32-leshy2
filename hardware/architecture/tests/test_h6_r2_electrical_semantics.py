@@ -1,12 +1,44 @@
-"""Unit-level fail-closed checks; no native ERC or production-file mutation."""
+"""Fail-closed fixtures and real cache freshness; no native ERC or file mutation."""
 
 import copy
+import hashlib
+import json
+import subprocess
+import sys
 import unittest
 import xml.etree.ElementTree as ET
 from pathlib import Path
 from unittest.mock import patch
 
 from hardware.verification import h6_r2_electrical_semantics as semantics
+
+
+class ElectricalSemanticsFreshnessTests(unittest.TestCase):
+    def test_public_coverage_counts_follow_current_evidence(self):
+        coverage = json.loads(semantics.OUTPUT.read_text(encoding="utf-8"))["coverage"]
+        pins = coverage["reviewed_unique_pins"]
+        devices = coverage["reviewed_devices"]
+        expected = {
+            "md": f"{pins:,} reviewed pin types across {devices}",
+            "ru.md": f"{pins:,}".replace(",", " ") + f" проверенных типов выводов в {devices}",
+        }
+        for suffix, statement in expected.items():
+            with self.subTest(language=suffix):
+                document = semantics.ROOT / "docs" / f"h6-r2-electrical-semantics.{suffix}"
+                self.assertIn(statement, document.read_text(encoding="utf-8"))
+
+    def test_checked_in_evidence_matches_actual_files_without_native_replay(self):
+        # Unlike fixture tests below, this must use real filesystem hashes.
+        # --check validates saved evidence and never launches KiCad/--write.
+        before = hashlib.sha256(semantics.OUTPUT.read_bytes()).hexdigest()
+        result = subprocess.run(
+            [sys.executable, str(Path(semantics.__file__).resolve()), "--check"],
+            cwd=semantics.ROOT, text=True, stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT, timeout=60,
+        )
+        self.assertEqual(0, result.returncode, result.stdout)
+        self.assertIn("native evidence bound to current inputs", result.stdout)
+        self.assertEqual(before, hashlib.sha256(semantics.OUTPUT.read_bytes()).hexdigest())
 
 
 def review(device="reviewed", mpn="Exact-123"):

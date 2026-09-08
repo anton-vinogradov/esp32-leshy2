@@ -280,6 +280,12 @@ def doc(audit: dict, manual_copper: dict, ru: bool) -> str:
     rf_resolved_count = sum(row["resolved_connections"] for row in controlled_rf)
     rf_via_route_count = sum(row["via_count"] > 0 for row in controlled_rf)
     rf_via_free_route_count = rf_route_count - rf_via_route_count
+    reviewed_leds = [row for row in manual_copper["routes"]
+                     if row["project"] == "LESHY2-UI-R2" and "reviewed_proposal" in row]
+    led_names = ", ".join(f"`{row['canonical_net']}`" for row in
+                          sorted(reviewed_leds, key=lambda row: row["canonical_net"]))
+    led_segment_count = sum(row["segment_count"] for row in reviewed_leds)
+    led_via_count = sum(row["via_count"] for row in reviewed_leds)
     def number(value: int) -> str:
         rendered = f"{value:,}"
         return rendered.replace(",", " ") if ru else rendered
@@ -331,10 +337,11 @@ def doc(audit: dict, manual_copper: dict, ru: bool) -> str:
             "Обе платы имеют нулевой native DRC. "
             f"После осознанного перезапуска осталось {number(summary['current_total_unconnected_count'])} "
             "физических соединений; их состояние приведено в таблице выше.\n\n"
-            "Два UI-маршрута `NRF0_TX_LED_A` и `S3_TX_LED_A` добавлены как проверенные вручную "
-            "предложения `GENERAL_CONTROL`: 10 дорожек по 0,15 мм и два сквозных via 0,4/0,2 мм. "
+            f"Проверенные вручную UI-предложения `GENERAL_CONTROL`: {len(reviewed_leds)} сетей — {led_names}. "
+            f"Всего {led_segment_count} дорожек по 0,15 мм и {led_via_count} сквозных via 0,4/0,2 мм. "
             "Их via находятся вне корпусов на обеих сторонах; исходная медь и все позиции сохранены. "
-            "Конечный список из этих двух сетей, хеши геометрии, связность и native DRC проверяются отдельно: "
+            "`FAULT_LED_A` в этот набор не входит: это цепь `SAFETY_CONTROL`. "
+            "Конечный список сетей, хеши геометрии, связность и native DRC проверяются отдельно: "
             "разрешение вспомогательного маршрутизатора не является автоматическим приёмом результата.\n\n"
             "## Предел текущего ERC\n\n"
             "Рабочая библиотека по-прежнему использует `passive` для подключаемых выводов; "
@@ -412,10 +419,11 @@ def doc(audit: dict, manual_copper: dict, ru: bool) -> str:
             "Both boards have zero native DRC findings. "
             f"The deliberate restart leaves {number(summary['current_total_unconnected_count'])} physical "
             "connections, summarized in the table above.\n\n"
-            "The two UI nets `NRF0_TX_LED_A` and `S3_TX_LED_A` were added as hand-reviewed "
-            "`GENERAL_CONTROL` proposals: ten 0.15 mm traces and two 0.4/0.2 mm through vias. "
+            f"Hand-reviewed UI `GENERAL_CONTROL` proposals cover {len(reviewed_leds)} nets: {led_names}. "
+            f"Together they contain {led_segment_count} traces of 0.15 mm and {led_via_count} through vias of 0.4/0.2 mm. "
             "Their vias are outside bodies on both faces; existing copper and every placement are retained. "
-            "The finite two-net allowlist, geometry hashes, connectivity and native DRC are checked separately: "
+            "`FAULT_LED_A` is excluded: it belongs to `SAFETY_CONTROL`. "
+            "The finite net allowlist, geometry hashes, connectivity and native DRC are checked separately: "
             "permission to use a routing helper does not automatically admit its result.\n\n"
             "## Current ERC limitation\n\n"
             "The production library still uses `passive` for connectable pins; its zero ERC result "

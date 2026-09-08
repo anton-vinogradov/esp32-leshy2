@@ -22,6 +22,7 @@ import pcbnew
 import h6_r2_placement as placement
 from h6_r2_manual_copper import copper_signature
 import h6_r2_microsd_recess as microsd
+import h6_r2_encoder_fit as encoder
 
 ROOT = Path(__file__).resolve().parents[2]
 UUID_FORM = re.compile(r'(\(uuid\s+)"([^"\\]*)"')
@@ -272,7 +273,8 @@ def input_snapshot(source):
     paths = {source, Path(__file__), *(getattr(placement, name) for name in PLACEMENT_INPUT_ATTRIBUTES)}
     paths.update(ROOT / "hardware/layout" / name for name in (
         "h6_r2_placement.py", "h6_r2_coordinates.py", "h6_r2_user_silkscreen.py",
-        "h6_r2_microsd_recess.py"))
+        "h6_r2_microsd_recess.py", "h6_r2_encoder_fit.py", encoder.GEOMETRY_NAME))
+    paths.add(ROOT / "hardware/ecad/h2_r2_encoder_footprint.py")
     paths.update((ROOT / "hardware/ecad/libraries").rglob("*.kicad_mod"))
     rows = json.loads(placement.INSTANCE_PATH.read_text())["rows"]
     for row in rows:
@@ -398,7 +400,17 @@ def stage(plan, directory):
     removals = plan.get("allowed_removed_nc_pads", {})
     if not isinstance(removals, dict) or set(removals) - set(changed):
         raise ValueError("pad-removal allowances must identify changed footprints only")
+    encoder_review = None
+    encoder_allowance = plan.get("encoder_geometry_update")
+    if encoder_allowance is not None:
+        encoder.verify_allowance(encoder_allowance, project, ROOT / "hardware/layout" / encoder.GEOMETRY_NAME)
+        if encoder.REFERENCE not in changed or encoder.REFERENCE in removals:
+            raise ValueError("encoder transition must be a changed footprint without pad-removal waiver")
+        encoder_review = encoder.verify_transition(encoder.snapshot(old_fps[encoder.REFERENCE], pcbnew),
+                                                   encoder.snapshot(new_fps[encoder.REFERENCE], pcbnew))
     for ref in old_fps:
+        if encoder_review is not None and ref == encoder.REFERENCE:
+            continue
         verify_pad_nets(ref, pad_nets(old_fps[ref]), pad_nets(new_fps[ref]), removals.get(ref, []))
     if (copper_signature(old) != copper_signature(new)
             or roundtrip_copper_forms(old) != roundtrip_copper_forms(new)):
@@ -416,6 +428,7 @@ def stage(plan, directory):
               "reviewed_silkscreen_texts": sorted(labels),
               "reviewed_added_silkscreen_texts": sorted(additions),
               "reviewed_edge_cut_change": plan.get("allowed_edge_cut_change"),
+              "reviewed_encoder_geometry_change": encoder_review,
               "edge_cut_primitives_removed_added": [len(old_edges), len(new_edges)],
               "unchanged_reference_count": len(old_fps) - len(changed),
               "copper_objects_preserved": len(copper_signature(old)),

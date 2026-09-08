@@ -6,7 +6,7 @@
   "sources": {
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "193efb9c92b2ea4178304aa2f91e41c4dc35e4b4187aa1b1087e61dd54a4634b"
+      "sha256": "11d04b89bd5e2140cfe76dd69a9a82da2fde66c3f4338853ebbd93ad8e7c9c6d"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
@@ -23,7 +23,7 @@
     "named_footprint_pad_count": 1574,
     "footprint_pad_occurrence_count": 1626,
     "mechanical_only_pad_occurrence_count": 6,
-    "ignored_unnumbered_pad_occurrence_count": 95,
+    "ignored_unnumbered_pad_occurrence_count": 93,
     "new_exact_footprint_files_materialized": 7,
     "native_schematic_nets_created": 0,
     "unresolved_error_count": 0
@@ -1309,13 +1309,13 @@
       "device_id": "alps_ec11e18244au",
       "mpn": "Alps Alpine EC11E18244AU",
       "symbol_id": "Leshy2_R2:alps_ec11e18244au",
-      "footprint": "Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm_MountingHoles",
-      "footprint_source": "${KICAD10_FOOTPRINT_DIR}/Rotary_Encoder.pretty/RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm_MountingHoles.kicad_mod",
-      "footprint_sha256": "7ef3e877b30b0953bf1df3ac16bbce42f2f8b1da283df469a25d4a165b5dcd75",
+      "footprint": "Leshy2_R2:EC11E18244AU-ENGINEERING-PTH",
+      "footprint_source": "hardware/ecad/libraries/Leshy2_R2.pretty/EC11E18244AU-ENGINEERING-PTH.kicad_mod",
+      "footprint_sha256": "b6150e76202059c2922fb2d8d962560438e18f6b92c773a41795f1e2cf2aecc5",
       "logical_contact_count": 5,
       "footprint_named_pad_count": 6,
       "footprint_pad_occurrence_count": 7,
-      "ignored_unnumbered_pad_occurrence_count": 2,
+      "ignored_unnumbered_pad_occurrence_count": 0,
       "pad_inventory": {
         "A": {
           "occurrences": 1,
@@ -1335,20 +1335,20 @@
             "thru_hole"
           ]
         },
+        "D": {
+          "occurrences": 1,
+          "types": [
+            "thru_hole"
+          ]
+        },
+        "E": {
+          "occurrences": 1,
+          "types": [
+            "thru_hole"
+          ]
+        },
         "MP": {
           "occurrences": 2,
-          "types": [
-            "thru_hole"
-          ]
-        },
-        "S1": {
-          "occurrences": 1,
-          "types": [
-            "thru_hole"
-          ]
-        },
-        "S2": {
-          "occurrences": 1,
           "types": [
             "thru_hole"
           ]
@@ -1391,7 +1391,7 @@
           "physical": "D",
           "disposition": "pcb_footprint_pad",
           "pads": [
-            "S1"
+            "E"
           ],
           "resolution": "explicit_contact_to_pad_override"
         },
@@ -1401,7 +1401,7 @@
           "physical": "E",
           "disposition": "pcb_footprint_pad",
           "pads": [
-            "S2"
+            "D"
           ],
           "resolution": "explicit_contact_to_pad_override"
         }

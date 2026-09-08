@@ -32,6 +32,7 @@
     "hardware/ecad/libraries/Leshy2_R2.pretty/B3S-1100P.kicad_mod": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989",
     "hardware/ecad/libraries/Leshy2_R2.pretty/CP0603Q5425ENTR.kicad_mod": "89dfe4ff666211c3de823ac6fc5be7301f1d7e8785b44b700565be3efb25fb17",
     "hardware/ecad/libraries/Leshy2_R2.pretty/DC2337J5010AHF.kicad_mod": "25d0080800dfc7a657b2bae2be50e543896d34ece202f5b65a36816708040270",
+    "hardware/ecad/libraries/Leshy2_R2.pretty/EC11E18244AU-ENGINEERING-PTH.kicad_mod": "b6150e76202059c2922fb2d8d962560438e18f6b92c773a41795f1e2cf2aecc5",
     "hardware/ecad/libraries/Leshy2_R2.pretty/FH34SRJ-50S-0.5SH-50.kicad_mod": "e294307633e4a5a125e949d5e557acb1b0b676b9d0dc7d6bc9312cb90270863c",
     "hardware/ecad/libraries/Leshy2_R2.pretty/Keystone-1048P-POLARITY-CORRECTED.kicad_mod": "44617b8fd1b4868e5d446c09fd308c172f90a0d15df72705284b9f7e76fd9b26",
     "hardware/ecad/libraries/Leshy2_R2.pretty/NFC_Pickup_Loop_R2.kicad_mod": "8b4322ac89011b33d91063610a00220f38192837b72f93cb58c67ce484ae28c1",
@@ -107,8 +108,7 @@
     "kicad-standard/Resistor_SMD.pretty/R_0402_1005Metric.kicad_mod": "e05c7605248c220836f642ed1f526133edf0374acdfd5bb2631e58b4e377acfb",
     "kicad-standard/Resistor_SMD.pretty/R_0603_1608Metric.kicad_mod": "7190ac4a00125b807e54129ef0d87d87f2a658eeb74d025a7028203419b09f23",
     "kicad-standard/Resistor_SMD.pretty/R_1206_3216Metric.kicad_mod": "c7320668dc81bbb954cb4f15e4e7a766c120059343d43551468c8f7ccc8fde37",
-    "kicad-standard/Resistor_SMD.pretty/R_2512_6332Metric.kicad_mod": "abab4bf8eeb3ed03061d8eeb56b542cdac074ce8a0ace0f9b06e933c0b48f297",
-    "kicad-standard/Rotary_Encoder.pretty/RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm_MountingHoles.kicad_mod": "7ef3e877b30b0953bf1df3ac16bbce42f2f8b1da283df469a25d4a165b5dcd75"
+    "kicad-standard/Resistor_SMD.pretty/R_2512_6332Metric.kicad_mod": "abab4bf8eeb3ed03061d8eeb56b542cdac074ce8a0ace0f9b06e933c0b48f297"
   },
   "summary": {
     "native_footprints": 1216,
@@ -121,7 +121,7 @@
     {
       "project": "LESHY2-UI-R2",
       "board": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "board_sha256": "6af963427ffddc791f4d9ff01c8e5de2698b981e1f944416b49c1fd7fc02cbf5",
+      "board_sha256": "f49fba8a1fa6c1e7b3170e0e296aa28be57b83851fadeca1c3dfb4a302594fec",
       "native_footprint_count": 432,
       "checked_references": [
         "C1",
@@ -562,7 +562,7 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "board_sha256": "634b3705ccd156b2b3511b46df430fc36c0a5e4a4d81c0190e2cd10351ae1d1c",
+      "board_sha256": "e11215ffe5cc25645aa091872af93540c121e84d83def5dae3f39c03c782fd32",
       "native_footprint_count": 784,
       "checked_references": [
         "BT1",

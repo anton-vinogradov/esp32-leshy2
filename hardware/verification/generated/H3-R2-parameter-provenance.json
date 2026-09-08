@@ -4,14 +4,14 @@
   "marker": "H3-R2.0.2",
   "status": "pass",
   "accepted_input": "H3-R2.0.1",
-  "input_freeze_sha256": "25d78d4187410691b82e3a6e470faad1f755d7b5d1ae19a00097ddf17ca9aa43",
-  "register_sha256": "721e2551b9d234615634a48fabfa4ad9ecc66b40939f7b92cd2f19f204bf325a",
+  "input_freeze_sha256": "4b78b8d17f671dceed927ab5f02f6378984538171de9df9020576eca9451560e",
+  "register_sha256": "93d1a48b41d311e49c3c63d98117d0ad7447f2cb6d5652b3b629fa7e98e143ca",
   "source_sha256": {
     "hardware/verification/h3-r2-parameter-provenance-contract.json": "fb26cd78c18234ef1c02ce4ea6af5d4a21b0206229a5034e55c065b08f5d0346",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "051b6066997e174a961fd73b0e37165397ae86ef6ee60f20f8e37a119e10edc5",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "0bf84eea5d9617d90696bf35225ec95ecee9ec5376e1a7adb34b39f836eb7397",
     "hardware/ecad/generated/H2-R2-native-inventory.json": "e928c8f337a73005ace55331c145db8199340d23fa54a6806fa6c5619fdd8040",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7ca7596c728f2dc2fe50516b6309438dfaca2fc9c7f6fbef62c18d005cf8616b",
-    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "193efb9c92b2ea4178304aa2f91e41c4dc35e4b4187aa1b1087e61dd54a4634b",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "57f0ed517509911b8b7c3e003cd4c47a35e6a924850cfb3a1f710e66fd9fd512",
+    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "11d04b89bd5e2140cfe76dd69a9a82da2fde66c3f4338853ebbd93ad8e7c9c6d",
     "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974"
   },
   "policy": {

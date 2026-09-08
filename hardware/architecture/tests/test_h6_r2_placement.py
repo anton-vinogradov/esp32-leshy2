@@ -43,7 +43,7 @@ class H6R2PlacementTests(unittest.TestCase):
                 "net_or_footprint_error_count": 0,
                 "locality_pair_count": 311,
                 "locality_violation_count": 0,
-                "critical_pad_pair_count": 49,
+                "critical_pad_pair_count": 54,
                 "critical_pad_pair_violation_count": 0,
                 "accepted_same_face_overlap_count": 2,
                 "routing_authorized": True,
@@ -96,7 +96,7 @@ class H6R2PlacementTests(unittest.TestCase):
             self.assertEqual([], pad_audit["errors"])
             self.assertEqual([], pad_audit["violations"])
             rows.extend(pad_audit["rows"])
-        self.assertEqual(49, len(rows))
+        self.assertEqual(54, len(rows))
         self.assertEqual(
             switching_nodes,
             switching_nodes & {row["canonical_net"] for row in rows},
@@ -255,7 +255,10 @@ class H6R2PlacementTests(unittest.TestCase):
             [40.0, 35.4],
             self.contract["placement_overrides"]["display_connector"]["centre_mm"],
         )
-        self.assertEqual(90.0, self.contract["placement_overrides"]["encoder"]["rotation_deg"])
+        encoder = self.contract["placement_overrides"]["encoder"]
+        self.assertEqual([71.0, 50.25], encoder["anchor_mm"])
+        self.assertEqual(0.0, encoder["rotation_deg"])
+        self.assertTrue(encoder["mechanical_locked"])
 
     def test_battery_holder_is_shifted_clear_of_the_interboard_locator(self):
         self.assertEqual(

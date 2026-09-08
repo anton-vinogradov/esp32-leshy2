@@ -1072,18 +1072,26 @@
       "reason": "place the detector bypass beside its actual VCC pin rather than the voice module"
     },
     "det_voice_v": {
-      "frame": "rf-inner",
-      "centre_mm": [66.0, 46.5],
-      "rotation_deg": 180.0,
+      "frame": "rear-inner",
+      "anchor_mm": [
+        69.2,
+        47.9
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "present the VCC pin to the free upper-left bypass pocket without enlarging the detector envelope"
+      "reason": "Isolated EC11 local-fit candidate: preserve side, MPN, net identity and all existing copper. Keep detector supply, ENBL hold and external filter capacitor local; actual pad-pair limits are checked separately."
     },
     "voice_v_detector_bypass": {
-      "frame": "rf-inner",
-      "centre_mm": [64.325, 43.65],
-      "rotation_deg": 0.0,
+      "frame": "rear-inner",
+      "anchor_mm": [
+        71.675,
+        45.35
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "place the detector bypass beside its actual VCC pin rather than the voice module"
+      "reason": "Isolated EC11 local-fit candidate: preserve side, MPN, net identity and all existing copper. Keep detector supply, ENBL hold and external filter capacitor local; actual pad-pair limits are checked separately."
     },
     "cc_switch_a": {
       "frame": "rf-inner",
@@ -1964,14 +1972,181 @@
       "rotation_deg": 90.0,
       "reason": "move the SC-70-6 body 0.25 mm inward so its package marker is not clipped by the routed board edge"
     },
+    "u214_host_buffer_a": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        61.45,
+        55.6
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Preserve side, MPN, net identity and all existing copper; free the EC11 No.2 through-board terminal envelope. Full geometry, locality and pad-distance checks remain mandatory."
+    },
+    "u214_esd_c": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        67.25,
+        53.75
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Preserve side, MPN, net identity and all existing copper; free the EC11 No.2 through-board terminal envelope. Full geometry, locality and pad-distance checks remain mandatory."
+    },
+    "voice_v_evidence_hold_diode": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        77.545,
+        54.725
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Preserve side, MPN, net identity and all existing copper; free the EC11 No.2 through-board terminal envelope. Full geometry, locality and pad-distance checks remain mandatory."
+    },
+    "voice_v_evidence_hold_cap": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        71.9,
+        47.96
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Isolated EC11 local-fit candidate: preserve side, MPN, net identity and all existing copper. Keep detector supply, ENBL hold and external filter capacitor local; actual pad-pair limits are checked separately."
+    },
+    "voice_v_detector_match": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        69.075,
+        52.21
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Preserve side, MPN, net identity and all existing copper; free the EC11 No.2 through-board terminal envelope. Full geometry, locality and pad-distance checks remain mandatory."
+    },
+    "u214_host_buffer_a_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        61.555,
+        52.165
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Isolated EC11 local-fit candidate: preserve side, MPN, net identity and all existing copper. Keep detector supply, ENBL hold and external filter capacitor local; actual pad-pair limits are checked separately."
+    },
+    "cc_host_so_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        62.715,
+        50.475
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Preserve side, MPN, net identity and all existing copper; free the EC11 No.2 through-board terminal envelope. Full geometry, locality and pad-distance checks remain mandatory."
+    },
+    "voice_v_evidence_hold_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        77.365,
+        46.725
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Preserve side, MPN, net identity and all existing copper; free the EC11 No.2 through-board terminal envelope. Full geometry, locality and pad-distance checks remain mandatory."
+    },
+    "u214_i2c_host_sda_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        76.115,
+        46.725
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Preserve side, MPN, net identity and all existing copper; free the EC11 No.2 through-board terminal envelope. Full geometry, locality and pad-distance checks remain mandatory."
+    },
+    "u214_series_rst": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        71.465,
+        54.275
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Preserve side, MPN, net identity and all existing copper; free the EC11 No.2 through-board terminal envelope. Full geometry, locality and pad-distance checks remain mandatory."
+    },
+    "cc_switch_a_v2_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        58.825,
+        52.165
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Preserve side, MPN, net identity and all existing copper; free the EC11 No.2 through-board terminal envelope. Full geometry, locality and pad-distance checks remain mandatory."
+    },
+    "cc_switch_b_v1_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        66.425,
+        58.365
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Preserve side, MPN, net identity and all existing copper; free the EC11 No.2 through-board terminal envelope. Full geometry, locality and pad-distance checks remain mandatory."
+    },
+    "speaker_input_p_gain": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        67.774999,
+        56.065
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Preserve side, MPN, net identity and all existing copper; free the EC11 No.2 through-board terminal envelope. Full geometry, locality and pad-distance checks remain mandatory."
+    },
+    "codec_adc_n_series": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        71.015,
+        55.875
+      ],
+      "rotation_deg": 180,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Preserve side, MPN, net identity and all existing copper; free the EC11 No.2 through-board terminal envelope. Full geometry, locality and pad-distance checks remain mandatory."
+    },
+    "voice_v_detector_filter": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        66.795,
+        47.9
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Isolated EC11 local-fit candidate: preserve side, MPN, net identity and all existing copper. Keep detector supply, ENBL hold and external filter capacitor local; actual pad-pair limits are checked separately."
+    },
     "encoder": {
       "frame": "rear-outer",
-      "centre_mm": [
-        71.0,
-        50.5
+      "anchor_mm": [
+        71,
+        50.25
       ],
-      "rotation_deg": 90.0,
-      "reason": "rotate the exact EC11E land pattern around the unchanged user axis to retain 0.91 mm holder-courtyard clearance and keep the complete footprint inside the PCB"
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Keep the current native shaft axis and all five world pad/net pairs. MP pitch is 12.5 mm; the 2.0 x 4.0 mm plated capsule is a conditional engineering fit, not manufacturer-approved production acceptance."
     },
     "ui_switch_f1": {
       "frame": "front-outer",
@@ -2913,6 +3088,56 @@
       "unit_signal_iso_vcca_bypass": 1.5
     },
     "critical_pad_pairs": [
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "VOICE_V_DETECT_FILTER",
+        "first_instance": "voice_v_detector_filter",
+        "first_pad_number": "1",
+        "second_instance": "det_voice_v",
+        "second_pad_number": "4",
+        "maximum_distance_mm": 3,
+        "reason": "Keep both external AD8314 filter-capacitor terminals close to actual FLTR4 and V_UP6. Direct pad distance is a routing lower bound, not analog response or safety qualification."
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "VOICE_V_DETECT_V",
+        "first_instance": "voice_v_detector_filter",
+        "first_pad_number": "2",
+        "second_instance": "det_voice_v",
+        "second_pad_number": "6",
+        "maximum_distance_mm": 3,
+        "reason": "Keep both external AD8314 filter-capacitor terminals close to actual FLTR4 and V_UP6. Direct pad distance is a routing lower bound, not analog response or safety qualification."
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "VOICE_V_EVIDENCE_HOLD",
+        "first_instance": "voice_v_evidence_hold_cap",
+        "first_pad_number": "1",
+        "second_instance": "det_voice_v",
+        "second_pad_number": "2",
+        "maximum_distance_mm": 3,
+        "reason": "Reviewed EC11 local-placement bound for detector ENBL RC hold (1 uF, 10 kOhm), not the RF detector output. Direct pad distance is only a routing lower bound; routed coupling, startup and safety qualification remain open."
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "VOICE_V_EVIDENCE_HOLD",
+        "first_instance": "voice_v_evidence_hold_diode",
+        "first_pad_number": "3",
+        "second_instance": "voice_v_evidence_hold_cap",
+        "second_pad_number": "1",
+        "maximum_distance_mm": 8,
+        "reason": "Reviewed EC11 local-placement bound for detector ENBL RC hold (1 uF, 10 kOhm), not the RF detector output. Direct pad distance is only a routing lower bound; routed coupling, startup and safety qualification remain open."
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "canonical_net": "VOICE_V_EVIDENCE_HOLD",
+        "first_instance": "voice_v_evidence_hold_pulldown",
+        "first_pad_number": "1",
+        "second_instance": "det_voice_v",
+        "second_pad_number": "2",
+        "maximum_distance_mm": 10,
+        "reason": "Reviewed EC11 local-placement bound for detector ENBL RC hold (1 uF, 10 kOhm), not the RF detector output. Direct pad distance is only a routing lower bound; routed coupling, startup and safety qualification remain open."
+      },
       {
         "project": "LESHY2-RF-R2",
         "canonical_net": "USB2_DP_CONNECTOR",

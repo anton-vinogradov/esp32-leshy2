@@ -1,0 +1,405 @@
+{
+  "schema_version": 1,
+  "checked": "2026-09-08",
+  "status": "reviewed_additive_seven_led_batch",
+  "scope": "Immutable native geometry review snapshot: seven resistor-to-anode UI nets appended to the previous two reviewed LED routes. Not an autorouter waiver or completion of the UI, electrical safety, assembly fit, or H6.",
+  "production_release_authorized": false,
+  "routing_in_progress": true,
+  "excluded": "FAULT_LED_A remains SAFETY_CONTROL/manual_only. Driver GPIO, cathode, power, RF, clocks, USB, display and safety nets are not authorized by this review.",
+  "native_snapshot": {
+    "ui_before_sha256": "6af963427ffddc791f4d9ff01c8e5de2698b981e1f944416b49c1fd7fc02cbf5",
+    "ui_reviewed_after_sha256": "f49fba8a1fa6c1e7b3170e0e296aa28be57b83851fadeca1c3dfb4a302594fec",
+    "rf_unchanged_at_review_sha256": "634b3705ccd156b2b3511b46df430fc36c0a5e4a4d81c0190e2cd10351ae1d1c"
+  },
+  "review_inputs_sha256": {
+    "hardware/layout/h6-r2-placement-freeze.json": "5ec1b7cd4500849a0441eea8be0903e15e79cdbd066f08c3c37e1f3c92f93394",
+    "hardware/layout/h6-r2-routing-policy.json": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
+    "hardware/layout/h6_r2_manual_copper.py": "a9b526e9462017b66731ad9b0f626a104c2e8d8f051ebfdf285056110ad1a01d",
+    "hardware/layout/h6-r2-manual-copper.json": "355aa3f4755822f75dd483e7cc511abae6b5ca864a517fad999fe1101de1e83d"
+  },
+  "preservation": {
+    "old_copper_forms_exact": 33,
+    "all_other_native_forms_exact": 525,
+    "old_connected_pad_pairs_preserved": 98,
+    "new_copper_objects": 59,
+    "ui_unconnected_before_after": [
+      1219,
+      1212
+    ]
+  },
+  "geometry_screen": {
+    "new_copper_objects": 59,
+    "new_vias": 8,
+    "native_copper_layers": 6,
+    "policy_foreign_copper_minimum_mm": 0.15,
+    "batch_screen_minimum_mm": 0.17,
+    "hole_clearance_mm": 0.25,
+    "edge_clearance_mm": 0.2,
+    "via_courtyard_rule": "Only new vias; via edge at least0.05mm outside every F/B courtyard",
+    "zone_count": 0,
+    "findings": [],
+    "minimum_foreign_copper_gap_lower_bound_mm": 0.180031,
+    "joint_screen": "All seven routes screened together against old and new foreign copper, all six copper layers for through vias, drills and actual Edge.Cuts. Every new via is outside both-face courtyards and below the display/PSA reservation. No filled/tented-under-part assumption.",
+    "limits": "Nominal native geometry, not fabrication tolerance or finished-device validation. Same-net copper overlaps are intentional; native DRC and connectivity checks are separate."
+  },
+  "native_drc": {
+    "project": "LESHY2-UI-R2",
+    "checked_at_utc": "2026-09-08T12:07:43+00:00",
+    "pcb_sha256": "f49fba8a1fa6c1e7b3170e0e296aa28be57b83851fadeca1c3dfb4a302594fec",
+    "kicad_version": "10.0.5",
+    "report_sha256": "17a02355245fa7a785b74f7f4f15ae1929227d8ebbea91359f5865efcd4365fc",
+    "provenance_sha256": "e0ae54d1c0c78f799c502342aba03572ca3bd5f8c86569e33b7cc5109992a9e1",
+    "counts": {
+      "violations": 0,
+      "unconnected_items": 499,
+      "schematic_parity": 0
+    },
+    "unconnected_count_scope": "499 is the capped CLI report list, not total remaining connections. Native UI count is 1212.",
+    "command_options": [
+      "pcb",
+      "drc",
+      "--format",
+      "json",
+      "--severity-all",
+      "--schematic-parity"
+    ],
+    "external_environment": {
+      "standard_libraries": "Installed KiCad standard footprint/symbol libraries are resolved by KiCad and are not content-hashed by this repository receipt.",
+      "global_library_tables_and_variables": "User/global library tables and KiCad path variables remain external environment inputs; project fp-lib-table and sym-lib-table are hashed.",
+      "cli": "The exact executed CLI path and its report kicad_version are recorded; the executable and external libraries are not fingerprinted or claimed reproducible across hosts."
+    }
+  },
+  "negative_geometry_checks": {
+    "status": "pass",
+    "cases": [
+      {
+        "case": "foreign_copper_clearance",
+        "rejected": true,
+        "required_finding": "foreign_copper",
+        "finding_count": 1
+      },
+      {
+        "case": "via_under_led_body",
+        "rejected": true,
+        "required_finding": "via_under_component",
+        "finding_count": 1
+      }
+    ],
+    "fixture_requirements": [
+      "Foreign-copper fixture retains the requested C5 net and F.Cu layer, does not touch the other pad at zero clearance, but collides at 0.15 mm.",
+      "The extra via fixture is deliberately inside the LED courtyard; it is rejected, not interpreted as a filled/tented via."
+    ],
+    "baseline_and_valid_candidate_bytes_unchanged": true
+  },
+  "manual_replay": {
+    "status": "pass_scoped",
+    "retained_route_records_exact": 108,
+    "summary": {
+      "route_count": 115,
+      "segment_count": 682,
+      "resolved_connection_count": 197,
+      "via_count": 175,
+      "manual_only_route_count": 86,
+      "local_ground_join_route_count": 20,
+      "reviewed_general_control_proposal_route_count": 9
+    },
+    "boards": [
+      {
+        "project": "LESHY2-UI-R2",
+        "replayed_copper_signature_equals_candidate": true,
+        "copper_count": 92,
+        "expected_board_sha256": "f49fba8a1fa6c1e7b3170e0e296aa28be57b83851fadeca1c3dfb4a302594fec",
+        "native_unconnected": 1212
+      },
+      {
+        "project": "LESHY2-RF-R2",
+        "replayed_copper_signature_equals_candidate": true,
+        "copper_count": 765,
+        "expected_board_sha256": "634b3705ccd156b2b3511b46df430fc36c0a5e4a4d81c0190e2cd10351ae1d1c",
+        "native_unconnected": 1859
+      }
+    ],
+    "canonical_outputs_written_by_replay": false
+  },
+  "routes": [
+    {
+      "route_id": "UI-LED-C5-ANODE",
+      "canonical_net": "C5_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/C5_TX_LED_A",
+      "native_endpoints": [
+        {
+          "reference": "R26",
+          "pad": "2",
+          "position_mm": [
+            38.865,
+            79.564999
+          ]
+        },
+        {
+          "reference": "D1",
+          "pad": "2",
+          "position_mm": [
+            24.9875,
+            104.9
+          ]
+        }
+      ],
+      "geometry_sha256": "20e9e5c744fc07c454b23e521fa3832fc59ecd9e19cf3c47be0d550111f17e86",
+      "segment_count": 8,
+      "vias_mm": [
+        [
+          25.0,
+          106.1
+        ]
+      ],
+      "minimum_foreign_copper_gap_lower_bound_mm": 0.181198,
+      "minimum_via_edge_to_courtyard_mm": 0.225,
+      "native_unconnected_before_after": [
+        1,
+        0
+      ]
+    },
+    {
+      "route_id": "UI-LED-CC-ANODE",
+      "canonical_net": "CC_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/CC_TX_LED_A",
+      "native_endpoints": [
+        {
+          "reference": "R27",
+          "pad": "2",
+          "position_mm": [
+            43.085,
+            128.864999
+          ]
+        },
+        {
+          "reference": "D2",
+          "pad": "2",
+          "position_mm": [
+            9.1875,
+            111.4
+          ]
+        }
+      ],
+      "geometry_sha256": "e2a55349b066124edb01fc6b8d440672dec74e91274221038563630cacd39e20",
+      "segment_count": 4,
+      "vias_mm": [
+        [
+          9.2,
+          112.6
+        ]
+      ],
+      "minimum_foreign_copper_gap_lower_bound_mm": 0.180718,
+      "minimum_via_edge_to_courtyard_mm": 0.075136,
+      "native_unconnected_before_after": [
+        1,
+        0
+      ]
+    },
+    {
+      "route_id": "UI-LED-EXT-ANODE",
+      "canonical_net": "EXT_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/EXT_TX_LED_A",
+      "native_endpoints": [
+        {
+          "reference": "R31",
+          "pad": "2",
+          "position_mm": [
+            34.835,
+            128.864999
+          ]
+        },
+        {
+          "reference": "D3",
+          "pad": "2",
+          "position_mm": [
+            56.5875,
+            111.4
+          ]
+        }
+      ],
+      "geometry_sha256": "5ef04fe6d463a70cab08b0653efaea4999bda6699474b81d7674f1f7051e8946",
+      "segment_count": 5,
+      "vias_mm": [
+        [
+          56.0,
+          112.6
+        ]
+      ],
+      "minimum_foreign_copper_gap_lower_bound_mm": 0.185421,
+      "minimum_via_edge_to_courtyard_mm": 0.15,
+      "native_unconnected_before_after": [
+        1,
+        0
+      ]
+    },
+    {
+      "route_id": "UI-LED-IR-ANODE",
+      "canonical_net": "IR_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/IR_TX_LED_A",
+      "native_endpoints": [
+        {
+          "reference": "R33",
+          "pad": "2",
+          "position_mm": [
+            41.835,
+            83.365
+          ]
+        },
+        {
+          "reference": "D5",
+          "pad": "2",
+          "position_mm": [
+            40.7875,
+            111.4
+          ]
+        }
+      ],
+      "geometry_sha256": "a47b03f6374a315c8ea7949a520104312987cf0a15607fe749f52a33163f726d",
+      "segment_count": 9,
+      "vias_mm": [
+        [
+          36.8,
+          113.8
+        ]
+      ],
+      "minimum_foreign_copper_gap_lower_bound_mm": 0.180031,
+      "minimum_via_edge_to_courtyard_mm": 0.1,
+      "native_unconnected_before_after": [
+        1,
+        0
+      ]
+    },
+    {
+      "route_id": "UI-LED-NRF1-ANODE",
+      "canonical_net": "NRF1_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF1_TX_LED_A",
+      "native_endpoints": [
+        {
+          "reference": "R36",
+          "pad": "2",
+          "position_mm": [
+            26.585,
+            109.365
+          ]
+        },
+        {
+          "reference": "D7",
+          "pad": "2",
+          "position_mm": [
+            56.5875,
+            104.9
+          ]
+        }
+      ],
+      "geometry_sha256": "5f01b89a70806d4e0e261d7ae1eedc0b59525e5bf48e28105a41dade83d16989",
+      "segment_count": 3,
+      "vias_mm": [
+        [
+          28.685,
+          109.1
+        ],
+        [
+          56.6,
+          106.1
+        ]
+      ],
+      "minimum_foreign_copper_gap_lower_bound_mm": 0.674998,
+      "minimum_via_edge_to_courtyard_mm": 0.225,
+      "native_unconnected_before_after": [
+        1,
+        0
+      ]
+    },
+    {
+      "route_id": "UI-LED-NRF2-ANODE",
+      "canonical_net": "NRF2_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF2_TX_LED_A",
+      "native_endpoints": [
+        {
+          "reference": "R37",
+          "pad": "2",
+          "position_mm": [
+            28.335,
+            102.865
+          ]
+        },
+        {
+          "reference": "D8",
+          "pad": "2",
+          "position_mm": [
+            72.3875,
+            104.9
+          ]
+        }
+      ],
+      "geometry_sha256": "4399443cff06b50b893578b4f2e41ed766f9a68c7beed53e0c8e9a1313366537",
+      "segment_count": 14,
+      "vias_mm": [
+        [
+          72.4,
+          106.1
+        ]
+      ],
+      "minimum_foreign_copper_gap_lower_bound_mm": 0.180466,
+      "minimum_via_edge_to_courtyard_mm": 0.225,
+      "native_unconnected_before_after": [
+        1,
+        0
+      ]
+    },
+    {
+      "route_id": "UI-LED-VOICE-ANODE",
+      "canonical_net": "VOICE_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/VOICE_TX_LED_A",
+      "native_endpoints": [
+        {
+          "reference": "R75",
+          "pad": "2",
+          "position_mm": [
+            46.335,
+            128.864999
+          ]
+        },
+        {
+          "reference": "D10",
+          "pad": "2",
+          "position_mm": [
+            24.9875,
+            111.4
+          ]
+        }
+      ],
+      "geometry_sha256": "ccd4671bb3298f793509c0e869cf7375c83931162b1593c6b4ade7b6775b1490",
+      "segment_count": 8,
+      "vias_mm": [
+        [
+          25.0,
+          112.6
+        ]
+      ],
+      "minimum_foreign_copper_gap_lower_bound_mm": 0.18014,
+      "minimum_via_edge_to_courtyard_mm": 0.225,
+      "native_unconnected_before_after": [
+        1,
+        0
+      ]
+    }
+  ],
+  "local_integration": {
+    "method": "Guarded exact-byte copy of the independently reviewed candidate; no pcbnew serialization or placement regeneration. Prior UI bytes retained in a scratch backup. Main integration and its shared derived publication are a separate parent operation.",
+    "ui_after_sha256": "f49fba8a1fa6c1e7b3170e0e296aa28be57b83851fadeca1c3dfb4a302594fec",
+    "rf_unchanged_sha256": "634b3705ccd156b2b3511b46df430fc36c0a5e4a4d81c0190e2cd10351ae1d1c"
+  },
+  "scratch_evidence_sha256": {
+    "work/led-batch2/seven-led-staged.review.json": "85530d82de63617719f79da00364929fa9c3dc404638c6a237bc45726c490148",
+    "work/led-batch2/seven-led-geometry.json": "a9bb4bf63308ec21b343de77d265069d9183c2ce7b26969652cac5a7252604ec",
+    "work/led-batch2/native-drc-summary.json": "9793fc4dd940078263c67eda0b325a2c3c2c51043e3e1517c075ebfc78f5665f",
+    "work/led-batch2/negative-checks.json": "5f0db7b36322ce23d3755506b247b3b41392e51644ed4c4fa9429509b330ca06",
+    "work/led-batch2/negative_geometry_checks.py": "3ed7b1310a37891192ce9c9b249aaa9e7e766d871cd47f8fb8bca384472ed839",
+    "work/led-batch2/inspect_batch.py": "3f4bbc60072dfc6d2b0a8b742fdc07e04070fe1bccde50fff915eaec7fdefe51",
+    "work/led-batch2/stage_additive.py": "e7476afb8b6eb7562abd8d25ff8d847ee0447f78d9b10cc32f01ed371c355840",
+    "work/led-batch2/final-manifest-replay.json": "74936e4aff560f5f35986437a603f3263e18772cb610f3e1fd9c22ac72c20626",
+    "work/led-batch2/promote_reviewed.py": "e90d0abee5036ab8a54ea29e6b8a39c8246b9e838713432cad431ce82d1d8329"
+  }
+}

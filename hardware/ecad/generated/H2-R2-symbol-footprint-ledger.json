@@ -166,13 +166,13 @@
     "symbol_identity_count": 245,
     "footprint_identity_count": 245,
     "logical_contact_count": 1616,
-    "historical_package_hints_reconciled": 183,
+    "historical_package_hints_reconciled": 182,
     "historical_package_conflicts_resolved": 5,
-    "explicit_current_footprint_overrides": 62,
-    "standard_kicad_footprint_identities": 206,
+    "explicit_current_footprint_overrides": 63,
+    "standard_kicad_footprint_identities": 205,
     "reconciled_local_footprint_definitions": 25,
     "new_exact_footprint_geometries_materialized": 13,
-    "partial_local_footprint_definitions_mechanics_open": 1,
+    "partial_local_footprint_definitions_mechanics_open": 2,
     "schematic_symbols_or_footprint_files_created": 0,
     "native_schematic_nets_created": 0,
     "unresolved_groups": 0
@@ -821,12 +821,15 @@
         "url": "https://tech.alpsalpine.com/cms.media/product_catalog_ec_01_ec11e_en_611f078659.pdf",
         "checked": "2026-08-18"
       },
-      "footprint": "Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm_MountingHoles",
-      "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",
+      "footprint": "Leshy2_R2:EC11E18244AU-ENGINEERING-PTH",
+      "footprint_resolution": "explicit_current_override",
       "footprint_definition": {
-        "status": "exact_package_identity_mapped_to_standard_kicad_library",
-        "path": null,
-        "sha256": null
+        "status": "current_exact_terminal_axes_engineered_pth_profile_mechanics_open",
+        "path": "hardware/ecad/libraries/Leshy2_R2.pretty/EC11E18244AU-ENGINEERING-PTH.kicad_mod",
+        "sha256": "b6150e76202059c2922fb2d8d962560438e18f6b92c773a41795f1e2cf2aecc5",
+        "mechanics_qualified": false,
+        "production_release_authorized": false,
+        "limit": "Alps Drawing No.2 terminal/body axes; declared engineering rounded PTH profile and standard signal-hole tolerances, not manufacturer-approved holes or solder-strength qualification."
       },
       "historical_hint_files": [
         "hardware/ecad/generated/H2-RF35-rear-controls.json"

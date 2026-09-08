@@ -6,17 +6,17 @@
   "sources": {
     "contact_materialization": {
       "path": "hardware/ecad/generated/H2-R2-contact-materialization.json",
-      "sha256": "6a332dde7633bb4e9af3a50a50d7123f6817c3de6edec2ee3b34b5ed297a650a"
+      "sha256": "1ab288224f5ae04d223044cc61e5e8469a7fe609da590a6bd94b0c901cbe7d08"
     },
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "193efb9c92b2ea4178304aa2f91e41c4dc35e4b4187aa1b1087e61dd54a4634b"
+      "sha256": "11d04b89bd5e2140cfe76dd69a9a82da2fde66c3f4338853ebbd93ad8e7c9c6d"
     }
   },
   "library": {
     "id": "Leshy2_R2",
     "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-    "sha256": "779e72147a8106010b4d83f193f13876169b186689633d0da67f5290a912ff28",
+    "sha256": "239115b4c3cadee17797b32579669c6b2a653b29959a2febd4a03044557573f2",
     "symbol_count": 245,
     "pin_count": 1570,
     "external_interface_metadata_count": 3
@@ -835,7 +835,7 @@
       "symbol_id": "Leshy2_R2:alps_ec11e18244au",
       "reference_prefix": "SW",
       "value": "Alps Alpine EC11E18244AU",
-      "footprint": "Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm_MountingHoles",
+      "footprint": "Leshy2_R2:EC11E18244AU-ENGINEERING-PTH",
       "pin_count": 5,
       "no_connect_pin_count": 0,
       "external_interfaces": [],
@@ -874,10 +874,10 @@
           "type": "passive"
         },
         {
-          "number": "S1",
-          "name": "SW1",
+          "number": "D",
+          "name": "SW2",
           "contacts": [
-            "SW1"
+            "SW2"
           ],
           "roles": [
             "push_switch"
@@ -885,10 +885,10 @@
           "type": "passive"
         },
         {
-          "number": "S2",
-          "name": "SW2",
+          "number": "E",
+          "name": "SW1",
           "contacts": [
-            "SW2"
+            "SW1"
           ],
           "roles": [
             "push_switch"

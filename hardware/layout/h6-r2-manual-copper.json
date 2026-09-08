@@ -2148,6 +2148,808 @@
         "minimum_clearance_mm": 0.15,
         "geometry_sha256": "7b7f5daddcc330787f59e277582e013ae0da25400b8fa2e1743d4a29bbe51031"
       }
+    },
+    {
+      "id": "UI-LED-C5-ANODE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/C5_TX_LED_A",
+      "routing_class": "GENERAL_CONTROL",
+      "expected_resolved_connections": 1,
+      "reason": "Reviewed resistor R26.2 to LED D1.2; no driver-side expansion. Seven-net joint review 2026-09-08: native DRC 0 violations / 0 parity; minimum foreign copper gap 0.180031 mm; old copper, poses and connected pad pairs preserved. Partial routing only, not production release.",
+      "segments": [
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            26.7,
+            101.3
+          ],
+          "end_mm": [
+            26.7,
+            104.0
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            26.7,
+            104.0
+          ],
+          "end_mm": [
+            25.0,
+            106.1
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            33.2,
+            94.8
+          ],
+          "end_mm": [
+            26.7,
+            101.3
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            34.3,
+            85.1
+          ],
+          "end_mm": [
+            33.2,
+            94.8
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            38.2,
+            80.4
+          ],
+          "end_mm": [
+            38.2,
+            80.8
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            38.2,
+            80.8
+          ],
+          "end_mm": [
+            34.3,
+            85.1
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            38.865,
+            79.564999
+          ],
+          "end_mm": [
+            38.2,
+            80.4
+          ]
+        },
+        {
+          "layer": "F.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            24.9875,
+            104.9
+          ],
+          "end_mm": [
+            25.0,
+            106.1
+          ]
+        }
+      ],
+      "vias": [
+        {
+          "at_mm": [
+            25.0,
+            106.1
+          ],
+          "diameter_mm": 0.4,
+          "drill_mm": 0.2
+        }
+      ],
+      "reviewed_proposal": {
+        "decision": "hand-reviewed proposal",
+        "minimum_clearance_mm": 0.15,
+        "geometry_sha256": "20e9e5c744fc07c454b23e521fa3832fc59ecd9e19cf3c47be0d550111f17e86"
+      }
+    },
+    {
+      "id": "UI-LED-CC-ANODE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "CC_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/CC_TX_LED_A",
+      "routing_class": "GENERAL_CONTROL",
+      "expected_resolved_connections": 1,
+      "reason": "Reviewed resistor R27.2 to LED D2.2; no driver-side expansion. Seven-net joint review 2026-09-08: native DRC 0 violations / 0 parity; minimum foreign copper gap 0.180031 mm; old copper, poses and connected pad pairs preserved. Partial routing only, not production release.",
+      "segments": [
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            22.5,
+            125.5
+          ],
+          "end_mm": [
+            9.2,
+            112.6
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            40.5,
+            126.5
+          ],
+          "end_mm": [
+            22.5,
+            125.5
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            43.085,
+            128.864999
+          ],
+          "end_mm": [
+            40.5,
+            126.5
+          ]
+        },
+        {
+          "layer": "F.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            9.1875,
+            111.4
+          ],
+          "end_mm": [
+            9.2,
+            112.6
+          ]
+        }
+      ],
+      "vias": [
+        {
+          "at_mm": [
+            9.2,
+            112.6
+          ],
+          "diameter_mm": 0.4,
+          "drill_mm": 0.2
+        }
+      ],
+      "reviewed_proposal": {
+        "decision": "hand-reviewed proposal",
+        "minimum_clearance_mm": 0.15,
+        "geometry_sha256": "e2a55349b066124edb01fc6b8d440672dec74e91274221038563630cacd39e20"
+      }
+    },
+    {
+      "id": "UI-LED-EXT-ANODE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "EXT_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/EXT_TX_LED_A",
+      "routing_class": "GENERAL_CONTROL",
+      "expected_resolved_connections": 1,
+      "reason": "Reviewed resistor R31.2 to LED D3.2; no driver-side expansion. Seven-net joint review 2026-09-08: native DRC 0 violations / 0 parity; minimum foreign copper gap 0.180031 mm; old copper, poses and connected pad pairs preserved. Partial routing only, not production release.",
+      "segments": [
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            34.835,
+            128.864999
+          ],
+          "end_mm": [
+            38.535,
+            130.4
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            38.535,
+            130.4
+          ],
+          "end_mm": [
+            52.135,
+            128.8
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            52.135,
+            128.8
+          ],
+          "end_mm": [
+            55.735,
+            125.199999
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            55.735,
+            125.199999
+          ],
+          "end_mm": [
+            56.0,
+            112.6
+          ]
+        },
+        {
+          "layer": "F.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            56.5875,
+            111.4
+          ],
+          "end_mm": [
+            56.0,
+            112.6
+          ]
+        }
+      ],
+      "vias": [
+        {
+          "at_mm": [
+            56.0,
+            112.6
+          ],
+          "diameter_mm": 0.4,
+          "drill_mm": 0.2
+        }
+      ],
+      "reviewed_proposal": {
+        "decision": "hand-reviewed proposal",
+        "minimum_clearance_mm": 0.15,
+        "geometry_sha256": "5ef04fe6d463a70cab08b0653efaea4999bda6699474b81d7674f1f7051e8946"
+      }
+    },
+    {
+      "id": "UI-LED-IR-ANODE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "IR_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/IR_TX_LED_A",
+      "routing_class": "GENERAL_CONTROL",
+      "expected_resolved_connections": 1,
+      "reason": "Reviewed resistor R33.2 to LED D5.2; no driver-side expansion. Seven-net joint review 2026-09-08: native DRC 0 violations / 0 parity; minimum foreign copper gap 0.180031 mm; old copper, poses and connected pad pairs preserved. Partial routing only, not production release.",
+      "segments": [
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            37.0,
+            112.764999
+          ],
+          "end_mm": [
+            36.8,
+            113.8
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            40.3,
+            95.965
+          ],
+          "end_mm": [
+            40.599999,
+            105.265
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            40.599999,
+            95.565
+          ],
+          "end_mm": [
+            40.3,
+            95.965
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            40.599999,
+            105.265
+          ],
+          "end_mm": [
+            41.3,
+            106.065
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            40.699999,
+            91.965
+          ],
+          "end_mm": [
+            40.599999,
+            95.565
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            40.699999,
+            108.664999
+          ],
+          "end_mm": [
+            37.0,
+            112.764999
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            41.3,
+            106.065
+          ],
+          "end_mm": [
+            40.699999,
+            108.664999
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            41.835,
+            83.365
+          ],
+          "end_mm": [
+            40.699999,
+            91.965
+          ]
+        },
+        {
+          "layer": "F.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            40.7875,
+            111.4
+          ],
+          "end_mm": [
+            36.8,
+            113.8
+          ]
+        }
+      ],
+      "vias": [
+        {
+          "at_mm": [
+            36.8,
+            113.8
+          ],
+          "diameter_mm": 0.4,
+          "drill_mm": 0.2
+        }
+      ],
+      "reviewed_proposal": {
+        "decision": "hand-reviewed proposal",
+        "minimum_clearance_mm": 0.15,
+        "geometry_sha256": "a47b03f6374a315c8ea7949a520104312987cf0a15607fe749f52a33163f726d"
+      }
+    },
+    {
+      "id": "UI-LED-NRF1-ANODE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF1_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF1_TX_LED_A",
+      "routing_class": "GENERAL_CONTROL",
+      "expected_resolved_connections": 1,
+      "reason": "Reviewed resistor R36.2 to LED D7.2; no driver-side expansion. Seven-net joint review 2026-09-08: native DRC 0 violations / 0 parity; minimum foreign copper gap 0.180031 mm; old copper, poses and connected pad pairs preserved. Partial routing only, not production release.",
+      "segments": [
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            26.585,
+            109.365
+          ],
+          "end_mm": [
+            28.685,
+            109.1
+          ]
+        },
+        {
+          "layer": "F.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            56.5875,
+            104.9
+          ],
+          "end_mm": [
+            56.6,
+            106.1
+          ]
+        },
+        {
+          "layer": "In2.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            28.685,
+            109.1
+          ],
+          "end_mm": [
+            56.6,
+            106.1
+          ]
+        }
+      ],
+      "vias": [
+        {
+          "at_mm": [
+            28.685,
+            109.1
+          ],
+          "diameter_mm": 0.4,
+          "drill_mm": 0.2
+        },
+        {
+          "at_mm": [
+            56.6,
+            106.1
+          ],
+          "diameter_mm": 0.4,
+          "drill_mm": 0.2
+        }
+      ],
+      "reviewed_proposal": {
+        "decision": "hand-reviewed proposal",
+        "minimum_clearance_mm": 0.15,
+        "geometry_sha256": "5f01b89a70806d4e0e261d7ae1eedc0b59525e5bf48e28105a41dade83d16989"
+      }
+    },
+    {
+      "id": "UI-LED-NRF2-ANODE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF2_TX_LED_A",
+      "routing_class": "GENERAL_CONTROL",
+      "expected_resolved_connections": 1,
+      "reason": "Reviewed resistor R37.2 to LED D8.2; no driver-side expansion. Seven-net joint review 2026-09-08: native DRC 0 violations / 0 parity; minimum foreign copper gap 0.180031 mm; old copper, poses and connected pad pairs preserved. Partial routing only, not production release.",
+      "segments": [
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            27.735,
+            104.164999
+          ],
+          "end_mm": [
+            27.735,
+            106.865
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            27.735,
+            106.865
+          ],
+          "end_mm": [
+            28.235,
+            107.265
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            28.235,
+            107.265
+          ],
+          "end_mm": [
+            29.635,
+            107.265
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            28.335,
+            102.865
+          ],
+          "end_mm": [
+            27.735,
+            104.164999
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            29.635,
+            107.265
+          ],
+          "end_mm": [
+            30.035,
+            107.664999
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            30.035,
+            107.664999
+          ],
+          "end_mm": [
+            30.035,
+            108.765
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            30.035,
+            108.765
+          ],
+          "end_mm": [
+            37.035,
+            114.664999
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            37.035,
+            114.664999
+          ],
+          "end_mm": [
+            37.935,
+            114.664999
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            37.935,
+            114.664999
+          ],
+          "end_mm": [
+            38.635,
+            113.865
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            38.635,
+            112.664999
+          ],
+          "end_mm": [
+            39.535,
+            111.965
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            38.635,
+            113.865
+          ],
+          "end_mm": [
+            38.635,
+            112.664999
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            39.535,
+            111.965
+          ],
+          "end_mm": [
+            68.035,
+            110.065
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            68.035,
+            110.065
+          ],
+          "end_mm": [
+            72.4,
+            106.1
+          ]
+        },
+        {
+          "layer": "F.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            72.3875,
+            104.9
+          ],
+          "end_mm": [
+            72.4,
+            106.1
+          ]
+        }
+      ],
+      "vias": [
+        {
+          "at_mm": [
+            72.4,
+            106.1
+          ],
+          "diameter_mm": 0.4,
+          "drill_mm": 0.2
+        }
+      ],
+      "reviewed_proposal": {
+        "decision": "hand-reviewed proposal",
+        "minimum_clearance_mm": 0.15,
+        "geometry_sha256": "4399443cff06b50b893578b4f2e41ed766f9a68c7beed53e0c8e9a1313366537"
+      }
+    },
+    {
+      "id": "UI-LED-VOICE-ANODE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "VOICE_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/VOICE_TX_LED_A",
+      "routing_class": "GENERAL_CONTROL",
+      "expected_resolved_connections": 1,
+      "reason": "Reviewed resistor R75.2 to LED D10.2; no driver-side expansion. Seven-net joint review 2026-09-08: native DRC 0 violations / 0 parity; minimum foreign copper gap 0.180031 mm; old copper, poses and connected pad pairs preserved. Partial routing only, not production release.",
+      "segments": [
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            25.3,
+            114.699999
+          ],
+          "end_mm": [
+            25.0,
+            112.6
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            30.6,
+            120.6
+          ],
+          "end_mm": [
+            25.3,
+            114.699999
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            46.335,
+            128.864999
+          ],
+          "end_mm": [
+            54.5,
+            125.899999
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            54.4,
+            123.899999
+          ],
+          "end_mm": [
+            30.6,
+            120.6
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            54.5,
+            125.899999
+          ],
+          "end_mm": [
+            54.7,
+            125.699999
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            54.7,
+            124.199999
+          ],
+          "end_mm": [
+            54.4,
+            123.899999
+          ]
+        },
+        {
+          "layer": "B.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            54.7,
+            125.699999
+          ],
+          "end_mm": [
+            54.7,
+            124.199999
+          ]
+        },
+        {
+          "layer": "F.Cu",
+          "width_mm": 0.15,
+          "start_mm": [
+            24.9875,
+            111.4
+          ],
+          "end_mm": [
+            25.0,
+            112.6
+          ]
+        }
+      ],
+      "vias": [
+        {
+          "at_mm": [
+            25.0,
+            112.6
+          ],
+          "diameter_mm": 0.4,
+          "drill_mm": 0.2
+        }
+      ],
+      "reviewed_proposal": {
+        "decision": "hand-reviewed proposal",
+        "minimum_clearance_mm": 0.15,
+        "geometry_sha256": "ccd4671bb3298f793509c0e869cf7375c83931162b1593c6b4ade7b6775b1490"
+      }
     }
   ],
   "authorization": {

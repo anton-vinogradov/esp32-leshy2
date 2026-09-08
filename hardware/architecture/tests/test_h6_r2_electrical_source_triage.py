@@ -3,9 +3,26 @@
 import copy
 import hashlib
 import json
+import subprocess
+import sys
 import unittest
 
 from hardware.verification import h6_r2_electrical_source_triage as triage
+
+
+class ElectricalSourceTriageFreshnessTests(unittest.TestCase):
+    def test_checked_in_triage_matches_actual_files_without_refresh(self):
+        # No modeled digests: an old H2 source hash must fail the full suite.
+        # The read-only --check path does not invoke KiCad or refresh evidence.
+        before = {p: triage.digest_relative(p) for p in (triage.TRIAGE, triage.AUDIT)}
+        result = subprocess.run(
+            [sys.executable, str(triage.ROOT / "hardware/verification/h6_r2_electrical_source_triage.py"), "--check"],
+            cwd=triage.ROOT, text=True, stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT, timeout=60,
+        )
+        self.assertEqual(0, result.returncode, result.stdout)
+        self.assertIn("production gate remain open", result.stdout)
+        self.assertEqual(before, {p: triage.digest_relative(p) for p in before})
 
 
 class ElectricalSourceTriageTests(unittest.TestCase):

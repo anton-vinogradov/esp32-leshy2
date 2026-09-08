@@ -5,30 +5,30 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "ceaaffbda756973dd5f0ae5a4d21585c399d5580a8107101978abac4609a036b",
+    "contract_sha256": "355aa3f4755822f75dd483e7cc511abae6b5ca864a517fad999fe1101de1e83d",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "af620964fb7a92df3f7790c0eefe6478922b0135da39503182610fcee75c6b92",
+    "routing_policy_sha256": "8943d5647edd75ed969741fc463106964866e804d463bd69ed6b7183e4562354",
     "routing_contract": "hardware/layout/h6-r2-routing-policy.json",
     "routing_contract_sha256": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
     "placement_status": "pass"
   },
   "summary": {
-    "route_count": 108,
-    "segment_count": 631,
-    "resolved_connection_count": 190,
-    "via_count": 167,
+    "route_count": 115,
+    "segment_count": 682,
+    "resolved_connection_count": 197,
+    "via_count": 175,
     "manual_only_route_count": 86,
     "local_ground_join_route_count": 20,
-    "reviewed_general_control_proposal_route_count": 2
+    "reviewed_general_control_proposal_route_count": 9
   },
   "boards": [
     {
       "project": "LESHY2-UI-R2",
       "board": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "route_count": 8,
-      "segment_count": 31,
-      "via_count": 2,
-      "resolved_connection_count": 10,
+      "route_count": 15,
+      "segment_count": 82,
+      "via_count": 10,
+      "resolved_connection_count": 17,
       "copper_signature": [
         [
           "track",
@@ -42,6 +42,370 @@
           [
             32.6625,
             4.95
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/C5_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            25.0,
+            106.1
+          ],
+          [
+            26.7,
+            104.0
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/C5_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            26.7,
+            101.3
+          ],
+          [
+            26.7,
+            104.0
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/C5_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            26.7,
+            101.3
+          ],
+          [
+            33.2,
+            94.8
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/C5_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            33.2,
+            94.8
+          ],
+          [
+            34.3,
+            85.1
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/C5_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            34.3,
+            85.1
+          ],
+          [
+            38.2,
+            80.8
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/C5_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            38.2,
+            80.4
+          ],
+          [
+            38.2,
+            80.8
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/C5_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            38.2,
+            80.4
+          ],
+          [
+            38.865,
+            79.564999
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/C5_TX_LED_A",
+          "F.Cu",
+          0.15,
+          [
+            24.9875,
+            104.9
+          ],
+          [
+            25.0,
+            106.1
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/CC_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            9.2,
+            112.6
+          ],
+          [
+            22.5,
+            125.5
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/CC_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            22.5,
+            125.5
+          ],
+          [
+            40.5,
+            126.5
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/CC_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            40.5,
+            126.5
+          ],
+          [
+            43.085,
+            128.864999
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/CC_TX_LED_A",
+          "F.Cu",
+          0.15,
+          [
+            9.1875,
+            111.4
+          ],
+          [
+            9.2,
+            112.6
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/EXT_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            34.835,
+            128.864999
+          ],
+          [
+            38.535,
+            130.4
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/EXT_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            38.535,
+            130.4
+          ],
+          [
+            52.135,
+            128.8
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/EXT_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            52.135,
+            128.8
+          ],
+          [
+            55.735,
+            125.199999
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/EXT_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            55.735,
+            125.199999
+          ],
+          [
+            56.0,
+            112.6
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/EXT_TX_LED_A",
+          "F.Cu",
+          0.15,
+          [
+            56.0,
+            112.6
+          ],
+          [
+            56.5875,
+            111.4
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/IR_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            36.8,
+            113.8
+          ],
+          [
+            37.0,
+            112.764999
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/IR_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            37.0,
+            112.764999
+          ],
+          [
+            40.699999,
+            108.664999
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/IR_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            40.3,
+            95.965
+          ],
+          [
+            40.599999,
+            95.565
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/IR_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            40.3,
+            95.965
+          ],
+          [
+            40.599999,
+            105.265
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/IR_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            40.599999,
+            95.565
+          ],
+          [
+            40.699999,
+            91.965
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/IR_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            40.599999,
+            105.265
+          ],
+          [
+            41.3,
+            106.065
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/IR_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            40.699999,
+            91.965
+          ],
+          [
+            41.835,
+            83.365
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/IR_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            40.699999,
+            108.664999
+          ],
+          [
+            41.3,
+            106.065
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/IR_TX_LED_A",
+          "F.Cu",
+          0.15,
+          [
+            36.8,
+            113.8
+          ],
+          [
+            40.7875,
+            111.4
           ]
         ],
         [
@@ -84,6 +448,244 @@
           [
             40.8,
             106.2
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF1_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            26.585,
+            109.365
+          ],
+          [
+            28.685,
+            109.1
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF1_TX_LED_A",
+          "F.Cu",
+          0.15,
+          [
+            56.5875,
+            104.9
+          ],
+          [
+            56.6,
+            106.1
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF1_TX_LED_A",
+          "In2.Cu",
+          0.15,
+          [
+            28.685,
+            109.1
+          ],
+          [
+            56.6,
+            106.1
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF2_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            27.735,
+            104.164999
+          ],
+          [
+            27.735,
+            106.865
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF2_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            27.735,
+            104.164999
+          ],
+          [
+            28.335,
+            102.865
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF2_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            27.735,
+            106.865
+          ],
+          [
+            28.235,
+            107.265
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF2_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            28.235,
+            107.265
+          ],
+          [
+            29.635,
+            107.265
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF2_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            29.635,
+            107.265
+          ],
+          [
+            30.035,
+            107.664999
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF2_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            30.035,
+            107.664999
+          ],
+          [
+            30.035,
+            108.765
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF2_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            30.035,
+            108.765
+          ],
+          [
+            37.035,
+            114.664999
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF2_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            37.035,
+            114.664999
+          ],
+          [
+            37.935,
+            114.664999
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF2_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            37.935,
+            114.664999
+          ],
+          [
+            38.635,
+            113.865
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF2_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            38.635,
+            112.664999
+          ],
+          [
+            38.635,
+            113.865
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF2_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            38.635,
+            112.664999
+          ],
+          [
+            39.535,
+            111.965
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF2_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            39.535,
+            111.965
+          ],
+          [
+            68.035,
+            110.065
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF2_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            68.035,
+            110.065
+          ],
+          [
+            72.4,
+            106.1
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF2_TX_LED_A",
+          "F.Cu",
+          0.15,
+          [
+            72.3875,
+            104.9
+          ],
+          [
+            72.4,
+            106.1
           ]
         ],
         [
@@ -182,6 +784,118 @@
           [
             9.1875,
             106.2
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/VOICE_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            25.0,
+            112.6
+          ],
+          [
+            25.3,
+            114.699999
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/VOICE_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            25.3,
+            114.699999
+          ],
+          [
+            30.6,
+            120.6
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/VOICE_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            30.6,
+            120.6
+          ],
+          [
+            54.4,
+            123.899999
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/VOICE_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            46.335,
+            128.864999
+          ],
+          [
+            54.5,
+            125.899999
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/VOICE_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            54.4,
+            123.899999
+          ],
+          [
+            54.7,
+            124.199999
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/VOICE_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            54.5,
+            125.899999
+          ],
+          [
+            54.7,
+            125.699999
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/VOICE_TX_LED_A",
+          "B.Cu",
+          0.15,
+          [
+            54.7,
+            124.199999
+          ],
+          [
+            54.7,
+            125.699999
+          ]
+        ],
+        [
+          "track",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/VOICE_TX_LED_A",
+          "F.Cu",
+          0.15,
+          [
+            24.9875,
+            111.4
+          ],
+          [
+            25.0,
+            112.6
           ]
         ],
         [
@@ -466,6 +1180,38 @@
         ],
         [
           "via",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/C5_TX_LED_A",
+          25.0,
+          106.1,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/CC_TX_LED_A",
+          9.2,
+          112.6,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/EXT_TX_LED_A",
+          56.0,
+          112.6,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/IR_TX_LED_A",
+          36.8,
+          113.8,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
           "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF0_TX_LED_A",
           40.8,
           106.2,
@@ -474,9 +1220,41 @@
         ],
         [
           "via",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF1_TX_LED_A",
+          28.685,
+          109.1,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF1_TX_LED_A",
+          56.6,
+          106.1,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF2_TX_LED_A",
+          72.4,
+          106.1,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
           "/UI_11_STORAGE_CONTROLS_INDICATORS/S3_TX_LED_A",
           5.8,
           106.2,
+          0.4,
+          0.2
+        ],
+        [
+          "via",
+          "/UI_11_STORAGE_CONTROLS_INDICATORS/VOICE_TX_LED_A",
+          25.0,
+          112.6,
           0.4,
           0.2
         ]
@@ -10376,6 +11154,182 @@
         "decision": "hand-reviewed proposal",
         "minimum_clearance_mm": 0.15,
         "geometry_sha256": "7b7f5daddcc330787f59e277582e013ae0da25400b8fa2e1743d4a29bbe51031"
+      }
+    },
+    {
+      "id": "UI-LED-C5-ANODE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "C5_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/C5_TX_LED_A",
+      "routing_class": "GENERAL_CONTROL",
+      "route_mode": "automatic_helper_allowed_then_manual_review",
+      "layers": [
+        "B.Cu",
+        "F.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 8,
+      "via_count": 1,
+      "length_mm": 32.8291,
+      "resolved_connections": 1,
+      "reason": "Reviewed resistor R26.2 to LED D1.2; no driver-side expansion. Seven-net joint review 2026-09-08: native DRC 0 violations / 0 parity; minimum foreign copper gap 0.180031 mm; old copper, poses and connected pad pairs preserved. Partial routing only, not production release.",
+      "reviewed_proposal": {
+        "decision": "hand-reviewed proposal",
+        "minimum_clearance_mm": 0.15,
+        "geometry_sha256": "20e9e5c744fc07c454b23e521fa3832fc59ecd9e19cf3c47be0d550111f17e86"
+      }
+    },
+    {
+      "id": "UI-LED-CC-ANODE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "CC_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/CC_TX_LED_A",
+      "routing_class": "GENERAL_CONTROL",
+      "route_mode": "automatic_helper_allowed_then_manual_review",
+      "layers": [
+        "B.Cu",
+        "F.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 4,
+      "via_count": 1,
+      "length_mm": 41.2598,
+      "resolved_connections": 1,
+      "reason": "Reviewed resistor R27.2 to LED D2.2; no driver-side expansion. Seven-net joint review 2026-09-08: native DRC 0 violations / 0 parity; minimum foreign copper gap 0.180031 mm; old copper, poses and connected pad pairs preserved. Partial routing only, not production release.",
+      "reviewed_proposal": {
+        "decision": "hand-reviewed proposal",
+        "minimum_clearance_mm": 0.15,
+        "geometry_sha256": "e2a55349b066124edb01fc6b8d440672dec74e91274221038563630cacd39e20"
+      }
+    },
+    {
+      "id": "UI-LED-EXT-ANODE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "EXT_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/EXT_TX_LED_A",
+      "routing_class": "GENERAL_CONTROL",
+      "route_mode": "automatic_helper_allowed_then_manual_review",
+      "layers": [
+        "B.Cu",
+        "F.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 5,
+      "via_count": 1,
+      "length_mm": 36.7296,
+      "resolved_connections": 1,
+      "reason": "Reviewed resistor R31.2 to LED D3.2; no driver-side expansion. Seven-net joint review 2026-09-08: native DRC 0 violations / 0 parity; minimum foreign copper gap 0.180031 mm; old copper, poses and connected pad pairs preserved. Partial routing only, not production release.",
+      "reviewed_proposal": {
+        "decision": "hand-reviewed proposal",
+        "minimum_clearance_mm": 0.15,
+        "geometry_sha256": "5ef04fe6d463a70cab08b0653efaea4999bda6699474b81d7674f1f7051e8946"
+      }
+    },
+    {
+      "id": "UI-LED-IR-ANODE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "IR_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/IR_TX_LED_A",
+      "routing_class": "GENERAL_CONTROL",
+      "route_mode": "automatic_helper_allowed_then_manual_review",
+      "layers": [
+        "B.Cu",
+        "F.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 9,
+      "via_count": 1,
+      "length_mm": 37.043,
+      "resolved_connections": 1,
+      "reason": "Reviewed resistor R33.2 to LED D5.2; no driver-side expansion. Seven-net joint review 2026-09-08: native DRC 0 violations / 0 parity; minimum foreign copper gap 0.180031 mm; old copper, poses and connected pad pairs preserved. Partial routing only, not production release.",
+      "reviewed_proposal": {
+        "decision": "hand-reviewed proposal",
+        "minimum_clearance_mm": 0.15,
+        "geometry_sha256": "a47b03f6374a315c8ea7949a520104312987cf0a15607fe749f52a33163f726d"
+      }
+    },
+    {
+      "id": "UI-LED-NRF1-ANODE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF1_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF1_TX_LED_A",
+      "routing_class": "GENERAL_CONTROL",
+      "route_mode": "automatic_helper_allowed_then_manual_review",
+      "layers": [
+        "B.Cu",
+        "F.Cu",
+        "In2.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 3,
+      "via_count": 2,
+      "length_mm": 31.3925,
+      "resolved_connections": 1,
+      "reason": "Reviewed resistor R36.2 to LED D7.2; no driver-side expansion. Seven-net joint review 2026-09-08: native DRC 0 violations / 0 parity; minimum foreign copper gap 0.180031 mm; old copper, poses and connected pad pairs preserved. Partial routing only, not production release.",
+      "reviewed_proposal": {
+        "decision": "hand-reviewed proposal",
+        "minimum_clearance_mm": 0.15,
+        "geometry_sha256": "5f01b89a70806d4e0e261d7ae1eedc0b59525e5bf48e28105a41dade83d16989"
+      }
+    },
+    {
+      "id": "UI-LED-NRF2-ANODE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "NRF2_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF2_TX_LED_A",
+      "routing_class": "GENERAL_CONTROL",
+      "route_mode": "automatic_helper_allowed_then_manual_review",
+      "layers": [
+        "B.Cu",
+        "F.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 14,
+      "via_count": 1,
+      "length_mm": 56.9561,
+      "resolved_connections": 1,
+      "reason": "Reviewed resistor R37.2 to LED D8.2; no driver-side expansion. Seven-net joint review 2026-09-08: native DRC 0 violations / 0 parity; minimum foreign copper gap 0.180031 mm; old copper, poses and connected pad pairs preserved. Partial routing only, not production release.",
+      "reviewed_proposal": {
+        "decision": "hand-reviewed proposal",
+        "minimum_clearance_mm": 0.15,
+        "geometry_sha256": "4399443cff06b50b893578b4f2e41ed766f9a68c7beed53e0c8e9a1313366537"
+      }
+    },
+    {
+      "id": "UI-LED-VOICE-ANODE",
+      "project": "LESHY2-UI-R2",
+      "canonical_net": "VOICE_TX_LED_A",
+      "kicad_net": "/UI_11_STORAGE_CONTROLS_INDICATORS/VOICE_TX_LED_A",
+      "routing_class": "GENERAL_CONTROL",
+      "route_mode": "automatic_helper_allowed_then_manual_review",
+      "layers": [
+        "B.Cu",
+        "F.Cu"
+      ],
+      "widths_mm": [
+        0.15
+      ],
+      "segment_count": 8,
+      "via_count": 1,
+      "length_mm": 46.1738,
+      "resolved_connections": 1,
+      "reason": "Reviewed resistor R75.2 to LED D10.2; no driver-side expansion. Seven-net joint review 2026-09-08: native DRC 0 violations / 0 parity; minimum foreign copper gap 0.180031 mm; old copper, poses and connected pad pairs preserved. Partial routing only, not production release.",
+      "reviewed_proposal": {
+        "decision": "hand-reviewed proposal",
+        "minimum_clearance_mm": 0.15,
+        "geometry_sha256": "ccd4671bb3298f793509c0e869cf7375c83931162b1593c6b4ade7b6775b1490"
       }
     },
     {

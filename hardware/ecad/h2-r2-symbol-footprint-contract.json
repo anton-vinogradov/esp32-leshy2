@@ -46,6 +46,7 @@
     "H2-ADP00": ["ADP_00_DISPLAY_ADAPTER"]
   },
   "footprint_overrides": {
+    "Alps Alpine EC11E18244AU": "Leshy2_R2:EC11E18244AU-ENGINEERING-PTH",
     "Keystone Electronics 1048P": "Leshy2_R2:Keystone-1048P-POLARITY-CORRECTED",
     "Same Sky SJ-43515TS-SMT-TR": "Leshy2_R2:SJ-43515TS-SMT-TR",
     "Vishay TSMP95000TR": "Leshy2:Vishay-Heimdall-SMD-TR",

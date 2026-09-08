@@ -101,6 +101,15 @@ def local_footprint_record(footprint: str) -> dict:
         name = footprint.split(":", 1)[1]
         path = ROOT / "hardware/ecad/libraries/Leshy2_R2.pretty" / f"{name}.kicad_mod"
         if path.is_file():
+            if footprint == "Leshy2_R2:EC11E18244AU-ENGINEERING-PTH":
+                return {
+                    "status": "current_exact_terminal_axes_engineered_pth_profile_mechanics_open",
+                    "path": str(path.relative_to(ROOT)),
+                    "sha256": sha256(path),
+                    "mechanics_qualified": False,
+                    "production_release_authorized": False,
+                    "limit": "Alps Drawing No.2 terminal/body axes; declared engineering rounded PTH profile and standard signal-hole tolerances, not manufacturer-approved holes or solder-strength qualification.",
+                }
             if footprint == "Leshy2_R2:Keystone-1048P-POLARITY-CORRECTED":
                 return {
                     "status": "current_polarity_only_definition_materialized_mechanics_open",
@@ -216,7 +225,7 @@ def build() -> dict:
             except ValueError as exc:
                 errors.append(str(exc))
             if (footprint.startswith("Leshy2_R2:") and footprint_record
-                    and footprint_record["status"] != "current_polarity_only_definition_materialized_mechanics_open"):
+                    and footprint_record["status"] == "current_exact_local_definition_materialized"):
                 new_exact_geometry += 1
 
         affinity = sheet_overrides.get(
@@ -325,7 +334,8 @@ def build() -> dict:
             "partial_local_footprint_definitions_mechanics_open": sum(
                 1 for row in board_rows if row["footprint_definition"]
                 and row["footprint_definition"]["status"]
-                == "current_polarity_only_definition_materialized_mechanics_open"
+                in {"current_polarity_only_definition_materialized_mechanics_open",
+                    "current_exact_terminal_axes_engineered_pth_profile_mechanics_open"}
             ),
             "schematic_symbols_or_footprint_files_created": 0,
             "native_schematic_nets_created": 0,

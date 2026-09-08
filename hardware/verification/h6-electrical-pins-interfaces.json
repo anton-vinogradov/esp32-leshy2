@@ -114,6 +114,11 @@
           "url": "https://products.jae.com/jp/ja/connectors/category/io/dx07-receptacle/dx07s016ja1r1500/",
           "section": "Exact manufacturer product identity and drawing number; current rendered page does not expose downloadable drawing",
           "checked": "2026-09-07"
+        },
+        {
+          "url": "https://www.mikrocontroller.net/attachment/650878/SJ121836.pdf",
+          "section": "JAE-authored SJ121836 Rev 3, 06 March 2024: sheets 1/2 body, mounting and PCB-edge datums reviewed in h6-r2-interface-datum-review.json; SHA-256 c83806896177743b8d6b8b704448a204115206b1b97454c94304e5b43a5e5f85. This mechanical review does not add verified electrical contacts.",
+          "checked": "2026-09-08"
         }
       ],
       "pins": {
@@ -151,7 +156,7 @@
         }
       },
       "unresolved": [
-        "SJ121836/SJ121837 full exact contact drawing was not obtained in this review. A5/A6/A7/A8/B5/B6/B7/B8 and SH are deliberately omitted from verified pins; do not infer their full physical mapping from USB family convention or another manufacturer's receptacle."
+        "Exact JAE-authored SJ121836 Rev 3 has since been obtained and mechanically reviewed for body and PCB-edge datums; SJ121837 is the packaging drawing. The remaining electrical contact mapping has not been independently reviewed here: A5/A6/A7/A8/B5/B6/B7/B8 and SH remain omitted from verified pins. Mechanical datum review does not close this electrical gap; do not infer mapping from USB family convention or another manufacturer's receptacle."
       ]
     },
     {
@@ -1236,6 +1241,11 @@
           "url": "https://www.keyelco.com/userAssets/file/M65p27.pdf",
           "section": "M65 p27: DUAL CELL / SURFACE MOUNT, 1048P polarized variant and four-terminal pad layout",
           "checked": "2026-09-07"
+        },
+        {
+          "url": "https://file.aichiplink.com/r/datasheets/keystoneelectronics-1048p-datasheets-1060.pdf",
+          "section": "Keystone-authored exact 1048P Rev A, 10.08.13, component TOP view: upper row +/-, lower row -/+; SHA-256 6135bff212f9eab9ed8158febcbbd0d18b9479caac384a7f51f2818d1328e26b. Already-reviewed polarity-only integration, not complete lands/holes, Rev B or thermal-contact qualification.",
+          "checked": "2026-09-08"
         }
       ],
       "pins": {
@@ -1249,15 +1259,18 @@
         },
         "3": {
           "type": "passive",
-          "reason": "Native slot-1 end contact at negative-X end; passive cell-holder conductor."
+          "reason": "Current R2 slot-1 positive contact at the footprint-local positive-X end; passive cell-holder conductor."
         },
         "4": {
           "type": "passive",
-          "reason": "Native slot-1 opposite end contact at positive-X end; passive cell-holder conductor."
+          "reason": "Current R2 slot-1 negative contact at the footprint-local negative-X end; passive cell-holder conductor."
         }
       },
       "unresolved": [
-        "The catalog proves the four physical holder contacts but does not legibly establish the exact polarized 1048P slot-to-pad plus/minus assignment. Do not promote current SLOT0_POS/SLOT1_POS labels to independently verified polarity until the exact 1048P drawing or a sufficiently clear manufacturer photo is checked. Cells and system wiring, not the bare holder, establish supply-source semantics."
+        "Slot polarity is corrected using the already-reviewed exact Rev A drawing, but the current 4x6-mm lands, missing locator holes and complete land/hole/body registration remain unqualified. Rev B was not inspected. Cell-to-NTC height, channel fit and thermal-pad compression remain open; the withdrawn 3.3-mm cell-floor / 20-percent compression assumption is not restored. Raw-positive/fuse, supply/return routing and current capacity still require verification. Cells and system wiring, not the bare holder, establish supply-source semantics; no battery energization or manufacturing release is authorized."
+      ],
+      "source_mapping_corrections": [
+        "2026-09-08 polarity-only native integration: RF BT1 uses Leshy2_R2:Keystone-1048P-POLARITY-CORRECTED at [42.99,85] mm, F.Cu/90 degrees. Logical 1/2/3/4 remain SLOT0_POS/NEG and SLOT1_POS/NEG. Native contacts 1=[33.44,126] positive, 2=[33.44,44] negative, 3=[52.54,44] positive, 4=[52.54,126] negative. Only the second cell's physical pad positions were exchanged; this is the recorded integration pose, not a new placement authority. See hardware/layout/h6-r2-holder-polarity-integration.json and test_h6_r2_holder_polarity.py; mechanics, thermal contact and routing remain separate."
       ],
       "numbering_basis": "Four project-native pad aliases; manufacturer catalog does not number these contacts."
     },
@@ -1318,17 +1331,18 @@
           "type": "passive",
           "reason": "Encoder mechanical common contact."
         },
-        "S1": {
+        "E": {
           "type": "passive",
-          "reason": "One contact of the isolated normally-open D/E push switch; native alias S1."
+          "reason": "Manufacturer E contact of the isolated normally-open D/E push switch; current R2 exact-axis footprint preserves the old physical S1 world pad/net pair."
         },
-        "S2": {
+        "D": {
           "type": "passive",
-          "reason": "Other contact of the isolated normally-open D/E push switch; native alias S2."
+          "reason": "Manufacturer D contact of the isolated normally-open D/E push switch; current R2 exact-axis footprint preserves the old physical S2 world pad/net pair."
         }
       },
-      "unresolved": [
-        "The switch is a symmetric isolated D/E pair; current H2 D->S1/E->S2 aliases were not accepted as manufacturer-position proof in this pass. Final D/E-to-native-S1/S2 positional review is separate from the verified passive push-switch type."
+      "unresolved": [],
+      "source_mapping_corrections": [
+        "2026-09-08 exact Alps Drawing No.2/current-native comparison: old S1 maps to manufacturer E, old S2 to D. The engineering footprint preserves all five world pad/net pairs; no quadrature or GPIO function changes. Mechanical/process acceptance remains separate in hardware/layout/h6-r2-encoder-fit-candidate.json."
       ],
       "excluded_mechanical_pads": [
         "MP"

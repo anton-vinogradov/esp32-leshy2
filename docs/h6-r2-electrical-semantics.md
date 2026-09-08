@@ -84,12 +84,13 @@ The [current routing report](h6-r2-current-routing.md) owns that revised count.
 These corrections do not qualify RF launches, return vias, matching or assembly
 stencil parameters.
 
-The final hardware regression run passed all **662 tests**. Visual inspection
+The historical RF-footprint checkpoint passed all **662 tests** in that run, not
+in the later combined interface/routing checkpoint. Visual inspection
 of the manufacturer PDF drawings resolved the package/view ambiguities;
 independent pad-map and native-connectivity tests now guard these corrections.
 
 The [hash-bound electrical audit](../hardware/verification/generated/H6-R2-electrical-semantics.json)
-now draws on **eight source maps with 1,333 reviewed pin types across 161
+now draws on **eight source maps with 1,335 reviewed pin types across 162
 exact-part groups**: digital, logic, power, analog/RF, protection, interfaces,
 selected passives, SA818S-U/V and the PD EEPROM. This is not a percentage of completed electrical
 verification. Mechanical pads, unreviewed parts and unresolved electrical pins
@@ -97,6 +98,12 @@ remain in the inventory; uncertain types are not counted as verified passive
 pins. A passive RF terminal or connector contact proves neither matching/bias
 nor correct external mating, and an ordinary passive component type does not
 prove its value or operating margins.
+
+The EC11 encoder review resolves the push-switch terminals as manufacturer
+`D`/`E`; the A/B/C contacts retain their existing nets. This updates the
+physical mapping, not the coverage count. Its
+[engineering footprint review](h6-r2-encoder-engineering-fit.md) separately
+tracks mechanical tolerances; electrical coverage does not certify assembly fit.
 
 Both expanded native projects retain identical electrical membership between
 original and typed XML exports. Their fresh isolated ERC reports:
@@ -126,8 +133,10 @@ No blanket suppression or unconditional rail-source flag is accepted.
 
 The corrected H2/H3 boundary was synchronized to firmware without changing
 generated BSP code, controller GPIO assignments, display scheduling or
-transport APIs. One new clean twelve-job qualification compiled and linked
-all six targets in debug/release and verified their declared artifacts.
+transport APIs. The retained twelve-job qualification at firmware commit
+`c8e349bab0965927bcb2ea1920c3589a809eccde` compiled and linked all six targets
+in debug/release and verified their declared artifacts. The current encoder
+contract sync does not rerun those target builds or restamp that result.
 [Firmware evidence](https://github.com/anton-vinogradov/esp32-leshy2-firmware/blob/main/config/f2_r2_build_qualification.json)
 owns that build result, not powered hardware, PSRAM operation or complete
 electrical correctness. Historical H4 evidence was not rewritten as a fresh test.

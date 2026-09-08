@@ -186,9 +186,9 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual("H6.0.3-R1", audit["marker"])
         self.assertEqual("pass_progress", audit["status"])
         self.assertFalse(audit["phase_complete"])
-        self.assertEqual(798, audit["summary"]["track_via_item_count"])
-        self.assertEqual(190, audit["summary"]["resolved_connection_count"])
-        self.assertEqual(3078, audit["summary"]["current_total_unconnected_count"])
+        self.assertEqual(857, audit["summary"]["track_via_item_count"])
+        self.assertEqual(197, audit["summary"]["resolved_connection_count"])
+        self.assertEqual(3071, audit["summary"]["current_total_unconnected_count"])
         self.assertEqual(232, audit["summary"]["analog_remaining_connection_count"])
         self.assertEqual(311, audit["summary"]["placement_locality_pair_count"])
         self.assertEqual(0, audit["summary"]["placement_locality_violation_count"])
@@ -214,13 +214,17 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
                     for state in row["classes"].values()
                 ),
             )
-        for document in (
-            ROOT / "docs/h6-r2-current-routing.md",
-            ROOT / "docs/h6-r2-current-routing.ru.md",
+        placement = json.loads((ROOT / "hardware/layout/generated/H6-R2-placement-audit.json").read_text())
+        pad_pair_count = placement["summary"]["critical_pad_pair_count"]
+        self.assertEqual(pad_pair_count, audit["summary"]["placement_critical_pad_pair_count"])
+        for document, count_phrase in (
+            (ROOT / "docs/h6-r2-current-routing.md", f"{pad_pair_count} actual pad-centre pairs"),
+            (ROOT / "docs/h6-r2-current-routing.ru.md", f"набор из {pad_pair_count} точных проверок"),
         ):
             text = document.read_text(encoding="utf-8")
             self.assertIn("images/h6-r2-routing-ui.svg", text)
             self.assertIn("images/h6-r2-routing-rf.svg", text)
+            self.assertIn(count_phrase, text)
 
     def test_live_routing_reports_keep_production_and_typed_erc_scopes_separate(self):
         triage = json.loads((ROOT / "hardware/verification/h6-electrical-source-triage.json").read_text())
@@ -243,19 +247,38 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
                                "../hardware/verification/h6-electrical-source-triage.json"):
                     self.assertIn(phrase, text)
 
+    def test_live_led_summary_uses_current_reviewed_routes_and_excludes_fault(self):
+        audit = json.loads(MANUAL_COPPER_AUDIT.read_text(encoding="utf-8"))
+        routes = [row for row in audit["routes"]
+                  if row["project"] == "LESHY2-UI-R2" and "reviewed_proposal" in row]
+        names = {row["canonical_net"] for row in routes}
+        self.assertNotIn("FAULT_LED_A", names)
+        segments = sum(row["segment_count"] for row in routes)
+        vias = sum(row["via_count"] for row in routes)
+        for filename, required in (
+            ("h6-r2-current-routing.md", (f"cover {len(routes)} nets", f"{segments} traces",
+                                          f"{vias} through vias", "`FAULT_LED_A` is excluded")),
+            ("h6-r2-current-routing.ru.md", (f"{len(routes)} сетей", f"{segments} дорожек",
+                                             f"{vias} сквозных via", "`FAULT_LED_A` в этот набор не входит")),
+        ):
+            page = (ROOT / "docs" / filename).read_text(encoding="utf-8")
+            with self.subTest(filename=filename):
+                for phrase in (*required, *[f"`{name}`" for name in names], "`SAFETY_CONTROL`"):
+                    self.assertIn(phrase, page)
+
     def test_reviewed_manual_power_routes_are_reproducible_and_drc_bound(self):
         contract = json.loads(MANUAL_COPPER_CONTRACT.read_text(encoding="utf-8"))
         audit = json.loads(MANUAL_COPPER_AUDIT.read_text(encoding="utf-8"))
         self.assertEqual("in_progress", contract["status"])
         self.assertEqual("pass", audit["status"])
         self.assertEqual([], audit["errors"])
-        self.assertEqual(108, audit["summary"]["route_count"])
-        self.assertEqual(631, audit["summary"]["segment_count"])
-        self.assertEqual(190, audit["summary"]["resolved_connection_count"])
-        self.assertEqual(167, audit["summary"]["via_count"])
+        self.assertEqual(115, audit["summary"]["route_count"])
+        self.assertEqual(682, audit["summary"]["segment_count"])
+        self.assertEqual(197, audit["summary"]["resolved_connection_count"])
+        self.assertEqual(175, audit["summary"]["via_count"])
         self.assertEqual(86, audit["summary"]["manual_only_route_count"])
         self.assertEqual(20, audit["summary"]["local_ground_join_route_count"])
-        self.assertEqual(2, audit["summary"]["reviewed_general_control_proposal_route_count"])
+        self.assertEqual(9, audit["summary"]["reviewed_general_control_proposal_route_count"])
         self.assertTrue(
             {row["routing_class"] for row in audit["routes"]}
             == {
@@ -284,7 +307,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
                 stderr=subprocess.STDOUT,
             )
             self.assertEqual(0, result.returncode, result.stdout)
-            self.assertIn("108 routes; 631 segments; 190 resolved connections", result.stdout)
+            self.assertIn("115 routes; 682 segments; 197 resolved connections", result.stdout)
 
     def test_corrected_rf_packages_withdraw_only_the_exact_invalidated_routes(self):
         contract = json.loads(MANUAL_COPPER_CONTRACT.read_text(encoding="utf-8"))
@@ -310,9 +333,9 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual(8, sum(len(refs) for refs in rework["affected_references"].values()))
         active = [row["id"] for row in contract["routes"]]
         replayed = [row["id"] for row in audit["routes"]]
-        self.assertEqual(108, len(active))
-        self.assertEqual(108, len(set(active)))
-        self.assertEqual(108, len(replayed))
+        self.assertEqual(115, len(active))
+        self.assertEqual(115, len(set(active)))
+        self.assertEqual(115, len(replayed))
         self.assertEqual(set(active), set(replayed))
         self.assertTrue(expected.isdisjoint(active))
         self.assertTrue(expected.isdisjoint(replayed))
@@ -480,7 +503,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         for script, expected in (
             (PLACEMENT_FREEZE_SCRIPT, "1208 exact anchors"),
             (GENERAL_ROUTING_SCRIPT, "historical routing evidence preserved; current H6.0.3-R1"),
-            (CURRENT_ROUTING_SCRIPT, "798 copper items; 190 resolved; 3078 remain"),
+            (CURRENT_ROUTING_SCRIPT, "857 copper items; 197 resolved; 3071 remain"),
         ):
             result = subprocess.run(
                 [str(KICAD_PYTHON), str(script), "--check"],

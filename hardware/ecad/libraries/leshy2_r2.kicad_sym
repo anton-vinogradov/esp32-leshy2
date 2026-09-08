@@ -989,7 +989,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm_MountingHoles"
+		(property "Footprint" "Leshy2_R2:EC11E18244AU-ENGINEERING-PTH"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1061,14 +1061,14 @@
 			(pin passive line
 				(at 20.32 2.54 180)
 				(length 5.08)
-				(name "SW1" (effects (font (size 1.27 1.27))))
-				(number "S1" (effects (font (size 1.27 1.27))))
+				(name "SW2" (effects (font (size 1.27 1.27))))
+				(number "D" (effects (font (size 1.27 1.27))))
 			)
 			(pin passive line
 				(at 20.32 0.00 180)
 				(length 5.08)
-				(name "SW2" (effects (font (size 1.27 1.27))))
-				(number "S2" (effects (font (size 1.27 1.27))))
+				(name "SW1" (effects (font (size 1.27 1.27))))
+				(number "E" (effects (font (size 1.27 1.27))))
 			)
 		)
 		(embedded_fonts no)

@@ -31,8 +31,8 @@
   },
   "contact_to_pad_overrides": {
     "alps_ec11e18244au": {
-      "SW1": ["S1"],
-      "SW2": ["S2"]
+      "SW1": ["E"],
+      "SW2": ["D"]
     },
     "alps_skrtlae010": {
       "C1": ["1"],

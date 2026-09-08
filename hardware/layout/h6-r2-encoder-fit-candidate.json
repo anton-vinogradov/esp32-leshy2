@@ -1,0 +1,579 @@
+{
+  "schema_version": 1,
+  "feature_id": "RF-EC11-EXACT-AXIS-ENGINEERING-PTH-001",
+  "checked": "2026-09-08",
+  "status": "isolated_candidate_not_production_accepted",
+  "fabrication_ready": false,
+  "project": "LESHY2-RF-R2",
+  "reference": "SW3",
+  "instance": "encoder",
+  "mpn": "Alps Alpine EC11E18244AU",
+  "footprint": "Leshy2_R2:EC11E18244AU-ENGINEERING-PTH",
+  "evidence": [
+    {
+      "url": "https://tech.alpsalpine.com/cms.media/product_catalog_ec_01_ec11e_en_611f078659.pdf",
+      "section": "Update2510 p1 exact MPN selects Drawing No.2; p2 dimensions and mounting-side pattern",
+      "checked": "2026-09-08",
+      "sha256": "08dae9fa97a2a97d9c9954e87455aff6f0cc557be1fb84fcb0f11608937ba241"
+    },
+    {
+      "url": "https://tech.alpsalpine.com/e/products/detail/EC11E18244AU/",
+      "section": "Mounting side, solder all metal lugs; no quantitative enlarged-hole solder-strength qualification",
+      "checked": "2026-09-08"
+    },
+    {
+      "url": "https://jlcpcb.com/capabilities/pcb-capabilities",
+      "section": "Drilling: standard finished +0.13/-0.08mm; position +/-0.05mm; nominal plated-slot length >=2*width; copper annulus",
+      "checked": "2026-09-08"
+    }
+  ],
+  "exact_manufacturer_geometry": {
+    "shaft_origin_mm": [
+      0,
+      0
+    ],
+    "body_mm": [
+      11.7,
+      12
+    ],
+    "signal_centres_mm": {
+      "A": [
+        -2.5,
+        7.5
+      ],
+      "C": [
+        0,
+        7.5
+      ],
+      "B": [
+        2.5,
+        7.5
+      ],
+      "D": [
+        -2.5,
+        -7
+      ],
+      "E": [
+        2.5,
+        -7
+      ]
+    },
+    "mounting_centres_mm": [
+      [
+        -6.25,
+        0
+      ],
+      [
+        6.25,
+        0
+      ]
+    ],
+    "mounting_pitch_mm": {
+      "nominal": 12.5,
+      "tolerance": 0.05
+    },
+    "mounting_aperture_recommended_mm": {
+      "minimum": [
+        1.5,
+        2.6
+      ],
+      "maximum": [
+        1.6,
+        2.7
+      ],
+      "shape": "rectangle; corner radius unspecified"
+    },
+    "signal_hole_recommended_mm": [
+      1,
+      1.1
+    ],
+    "lug_in_plane_length_mm": {
+      "nominal": 2.5,
+      "general_drawing_tolerance": 0.1
+    },
+    "terminal_projection_along_shaft_axis_mm": 3.5,
+    "lug_thickness_mm": null,
+    "undocumented_legacy_npth_removed": 2
+  },
+  "engineering_pth_profile": {
+    "manufacturer_approved_rounded_profile": false,
+    "factory_precision_option_selected": false,
+    "mp_nominal_oval_mm": [
+      2,
+      4
+    ],
+    "mp_finished_min_mm": [
+      1.92,
+      3.92
+    ],
+    "mp_finished_max_mm": [
+      2.13,
+      4.13
+    ],
+    "mp_copper_oval_mm": [
+      2.8,
+      4.8
+    ],
+    "mp_nominal_annulus_mm": 0.4,
+    "mp_conservative_annulus_min_mm_rounded_down": 0.2642,
+    "signal_nominal_drill_mm": 1.1,
+    "signal_finished_interval_mm": [
+      1.02,
+      1.23
+    ],
+    "signal_copper_diameter_mm": 2,
+    "signal_conservative_annulus_min_mm_rounded_down": 0.3142,
+    "annulus_basis": "Nominal radial copper allowance minus half positive hole-size tolerance0.065 minus sqrt(2)*hole-position allowance0.05. No automatic1-mm pad enlargement.",
+    "insertion_assumption": "The exact part inserts in the manufacturer's minimum recommended1.5x2.6 rectangular mounting aperture in its prescribed direction. This conditional envelope bound is NOT a measured terminal thickness or actual corner profile.",
+    "hole_position_allowance_each_axis_mm": 0.05,
+    "lug_pair_pitch_tolerance_mm": 0.05,
+    "lug_pitch_allowance_per_lug_x_mm": 0.025,
+    "combined_relative_centre_allowance_xy_mm": [
+      0.075,
+      0.05
+    ],
+    "pitch_boundary": "The 12.5 +/- 0.05 mm lug pair is assumed symmetric about the nominal shaft axis, contributing +/- 0.025 mm per lug in X in addition to independent +/- 0.05 mm hole-position error. This is an explicit extra allowance, not an assertion that the manufacturer's reference aperture already absorbs pitch tolerance. Unknown lug-to-shaft common-mode registration, actual terminal thickness/profile and assembly seating are not qualified.",
+    "extra_manual_registration_allowance_mm": 0,
+    "evaluated_finished_and_position_corners": 128,
+    "minimum_capsule_corner_q_mm2": 0.803125,
+    "minimum_capsule_radius_squared_mm2": 0.9216,
+    "minimum_capsule_radial_margin_mm_rounded_down": 0.0638,
+    "slot_ratio_boundary": "The nominal design2.0x4.0 meets the published2:1 design rule. Do not add an undocumented2:1 requirement to every independent finished-tolerance corner.",
+    "signal_upper_limit_boundary": "Standard finished1.23 exceeds Alps recommended upper1.1. Lower finished1.02 exceeds the minimum recommended1.0 only for a coaxial reference-aperture comparison. Actual lead cross-section is unknown: this does NOT prove insertion with hole-position errors. No precision process is selected and no solder fill/strength acceptance is inferred.",
+    "signal_position_corner": {
+      "reference_aperture_radius_mm": 0.5,
+      "min_finished_radius_mm": 0.51,
+      "relative_shift_mm": [
+        0.05,
+        0.05
+      ],
+      "reference_radius_needed_mm": 0.5707106781186547,
+      "full_reference_aperture_containment": false,
+      "actual_terminal_nonfit_proven": false
+    }
+  },
+  "native_update_contract": {
+    "before_footprint": "Rotary_Encoder:RotaryEncoder_Alps_EC11E-Switch_Vertical_H20mm_MountingHoles",
+    "before_anchor_mm": [
+      68.5,
+      57.75
+    ],
+    "before_rotation_deg": 90,
+    "after_shaft_anchor_mm": [
+      71,
+      50.25
+    ],
+    "after_rotation_deg": 0,
+    "side": "F.Cu",
+    "physical_pad_rename": {
+      "S1": "E",
+      "S2": "D"
+    },
+    "logical_contact_materialization": {
+      "SW1": "E",
+      "SW2": "D"
+    },
+    "five_world_pad_net_pairs_unchanged": true,
+    "reason": "The legacy S1 was physically E and S2 was D. The two push terminals are commutative; this explicit current-R2 alias preserves the existing world-pad/net pairs and does not swap quadrature A/B or GPIO/API functions.",
+    "unchanged_world_signal_pads": {
+      "A": {
+        "xy_mm": [
+          68.5,
+          57.75
+        ],
+        "net": "/RF_31_REAR_CONTROLS/ENCODER_A"
+      },
+      "C": {
+        "xy_mm": [
+          71,
+          57.75
+        ],
+        "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+      },
+      "B": {
+        "xy_mm": [
+          73.5,
+          57.75
+        ],
+        "net": "/RF_31_REAR_CONTROLS/ENCODER_B"
+      },
+      "D": {
+        "xy_mm": [
+          68.5,
+          43.25
+        ],
+        "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND"
+      },
+      "E": {
+        "xy_mm": [
+          73.5,
+          43.25
+        ],
+        "net": "/RF_31_REAR_CONTROLS/UI_ENCODER_PUSH_N"
+      }
+    }
+  },
+  "local_fit_review": {
+    "status": "native_derived_placement_pass_pending_guarded_stage_and_drc",
+    "baseline_board_sha256": "634b3705ccd156b2b3511b46df430fc36c0a5e4a4d81c0190e2cd10351ae1d1c",
+    "copper_objects_unchanged": 765,
+    "untouched_references_required": [
+      "F2",
+      "U34"
+    ],
+    "support_count": 17,
+    "changed_reference_count_with_encoder": 18,
+    "old_pad_track_attachments": 0,
+    "same_face_courtyard_clearance_mm": 0.1,
+    "opposite_face_model": "Current conservative full PTH copper bounding box against opposite-side courtyards; no extrusion waiver or invented terminal thickness.",
+    "supports": {
+      "U90": {
+        "instance": "u214_host_buffer_a",
+        "before_anchor_mm": [
+          61.45,
+          54.8
+        ],
+        "before_rotation_deg": 0,
+        "after_anchor_mm": [
+          61.45,
+          55.6
+        ],
+        "after_rotation_deg": 0,
+        "side": "B.Cu"
+      },
+      "U38": {
+        "instance": "det_voice_v",
+        "before_anchor_mm": [
+          66,
+          46.5
+        ],
+        "before_rotation_deg": 180,
+        "after_anchor_mm": [
+          69.2,
+          47.9
+        ],
+        "after_rotation_deg": 90,
+        "side": "B.Cu"
+      },
+      "U89": {
+        "instance": "u214_esd_c",
+        "before_anchor_mm": [
+          66.75,
+          53.75
+        ],
+        "before_rotation_deg": 0,
+        "after_anchor_mm": [
+          67.25,
+          53.75
+        ],
+        "after_rotation_deg": 0,
+        "side": "B.Cu"
+      },
+      "U134": {
+        "instance": "voice_v_evidence_hold_diode",
+        "before_anchor_mm": [
+          71.345,
+          46.825
+        ],
+        "before_rotation_deg": 90,
+        "after_anchor_mm": [
+          77.545,
+          54.725
+        ],
+        "after_rotation_deg": 90,
+        "side": "B.Cu"
+      },
+      "C288": {
+        "instance": "voice_v_evidence_hold_cap",
+        "before_anchor_mm": [
+          68.125,
+          49.875
+        ],
+        "before_rotation_deg": 0,
+        "after_anchor_mm": [
+          71.9,
+          47.96
+        ],
+        "after_rotation_deg": 90,
+        "side": "B.Cu"
+      },
+      "R143": {
+        "instance": "voice_v_detector_match",
+        "before_anchor_mm": [
+          67.574999,
+          51.365
+        ],
+        "before_rotation_deg": 0,
+        "after_anchor_mm": [
+          69.075,
+          52.21
+        ],
+        "after_rotation_deg": 90,
+        "side": "B.Cu"
+      },
+      "C152": {
+        "instance": "voice_v_detector_bypass",
+        "before_anchor_mm": [
+          64.325,
+          43.65
+        ],
+        "before_rotation_deg": 0,
+        "after_anchor_mm": [
+          71.675,
+          45.35
+        ],
+        "after_rotation_deg": 90,
+        "side": "B.Cu"
+      },
+      "C240": {
+        "instance": "u214_host_buffer_a_bypass",
+        "before_anchor_mm": [
+          61.555,
+          58.355
+        ],
+        "before_rotation_deg": 0,
+        "after_anchor_mm": [
+          61.555,
+          52.165
+        ],
+        "after_rotation_deg": 0,
+        "side": "B.Cu"
+      },
+      "R104": {
+        "instance": "cc_host_so_pulldown",
+        "before_anchor_mm": [
+          63.115,
+          49.575
+        ],
+        "before_rotation_deg": 90,
+        "after_anchor_mm": [
+          62.715,
+          50.475
+        ],
+        "after_rotation_deg": 90,
+        "side": "B.Cu"
+      },
+      "R285": {
+        "instance": "voice_v_evidence_hold_pulldown",
+        "before_anchor_mm": [
+          77.365,
+          47.325
+        ],
+        "before_rotation_deg": 90,
+        "after_anchor_mm": [
+          77.365,
+          46.725
+        ],
+        "after_rotation_deg": 90,
+        "side": "B.Cu"
+      },
+      "R213": {
+        "instance": "u214_i2c_host_sda_pullup",
+        "before_anchor_mm": [
+          76.115,
+          46.825
+        ],
+        "before_rotation_deg": 90,
+        "after_anchor_mm": [
+          76.115,
+          46.725
+        ],
+        "after_rotation_deg": 90,
+        "side": "B.Cu"
+      },
+      "R221": {
+        "instance": "u214_series_rst",
+        "before_anchor_mm": [
+          75.365,
+          53.075
+        ],
+        "before_rotation_deg": 90,
+        "after_anchor_mm": [
+          71.465,
+          54.275
+        ],
+        "after_rotation_deg": 90,
+        "side": "B.Cu"
+      },
+      "R111": {
+        "instance": "cc_switch_a_v2_pulldown",
+        "before_anchor_mm": [
+          58.825,
+          58.365
+        ],
+        "before_rotation_deg": 0,
+        "after_anchor_mm": [
+          58.825,
+          52.165
+        ],
+        "after_rotation_deg": 0,
+        "side": "B.Cu"
+      },
+      "R112": {
+        "instance": "cc_switch_b_v1_pulldown",
+        "before_anchor_mm": [
+          63.825,
+          58.365
+        ],
+        "before_rotation_deg": 0,
+        "after_anchor_mm": [
+          66.425,
+          58.365
+        ],
+        "after_rotation_deg": 0,
+        "side": "B.Cu"
+      },
+      "R209": {
+        "instance": "speaker_input_p_gain",
+        "before_anchor_mm": [
+          66.074999,
+          58.365
+        ],
+        "before_rotation_deg": 0,
+        "after_anchor_mm": [
+          67.774999,
+          56.065
+        ],
+        "after_rotation_deg": 0,
+        "side": "B.Cu"
+      },
+      "R180": {
+        "instance": "codec_adc_n_series",
+        "before_anchor_mm": [
+          68.615,
+          53.075
+        ],
+        "before_rotation_deg": 90,
+        "after_anchor_mm": [
+          71.015,
+          55.875
+        ],
+        "after_rotation_deg": 180,
+        "side": "B.Cu"
+      },
+      "C153": {
+        "instance": "voice_v_detector_filter",
+        "before_anchor_mm": [
+          75.305,
+          59.605
+        ],
+        "before_rotation_deg": 0,
+        "after_anchor_mm": [
+          66.795,
+          47.9
+        ],
+        "after_rotation_deg": 90,
+        "side": "B.Cu"
+      }
+    },
+    "hold_net_review": {
+      "net": "VOICE_V_EVIDENCE_HOLD",
+      "function": "Detector ENBL RC hold, not RF detector output",
+      "endpoints": [
+        "U134.3 K",
+        "U38.2 ENBL",
+        "C288.1 1uF",
+        "R285.1 10kOhm"
+      ],
+      "diode_input": "U134.1 A = VOICE_DOMAIN_EN_SAFE; U134.2 NC",
+      "pad_distance_mm": {
+        "diode_to_enbl": [
+          3.24526,
+          8.86403
+        ],
+        "diode_to_hold_cap": [
+          5.644482,
+          7.575868
+        ],
+        "hold_cap_to_enbl": [
+          3.777751,
+          2.696782
+        ],
+        "pulldown_to_enbl": [
+          9.400232,
+          8.317458
+        ]
+      },
+      "guard_limits_mm": {
+        "hold_cap_to_enbl": 3,
+        "diode_to_hold_cap": 8,
+        "pulldown_to_enbl": 10
+      },
+      "qualification": "Placement lower bounds only. Coupling, routed length, startup and safety remain open."
+    },
+    "detector_network_review": {
+      "filter_U38_4_to_C153_1_mm": [
+        13.863425,
+        2.170243
+      ],
+      "output_U38_3_to_C153_2_mm": [
+        14.906229,
+        3.323771
+      ],
+      "output_U38_6_to_C153_2_mm": [
+        17.460782,
+        2.644136
+      ],
+      "output_U38_3_to_6_mm": [
+        4.225,
+        4.225
+      ],
+      "nearest_output_to_U110_4_mm": [
+        68.09229,
+        68.760339
+      ],
+      "rf_match_R143_1_to_RFIN_mm": [
+        5.9332,
+        2.922423
+      ],
+      "rf_tap_R144_2_to_RFIN_mm": [
+        14.292887,
+        17.6528
+      ],
+      "limitation": "External C153 filter capacitor is now local to both FLTR and V_UP, with explicit3-mm pad-pair guards. RF tap and analog ADC runs remain unrouted; the candidate does not qualify RF matching, response, interference or safety.",
+      "filter_guard_limits_mm": {
+        "C153_1_to_FLTR4": 3,
+        "C153_2_to_V_UP6": 3
+      }
+    },
+    "quarter_turns_rejected": {
+      "angles_deg": [
+        90,
+        270
+      ],
+      "new_mount_centres_mm": [
+        [
+          71,
+          44
+        ],
+        [
+          71,
+          56.5
+        ]
+      ],
+      "retained_copper_collisions": [
+        "3560dd61-13ad-4b43-baf1-72b0fb2d1b32",
+        "66ee3f1f-5f89-4647-b73a-5604386f6ad5",
+        "bfd67f59-9212-4120-8406-a3cd24bd6fce",
+        "cdd4ad57-2536-4c39-bf27-27ac22d25f8d"
+      ],
+      "other_conflicts": "BT1 same-face courtyard and11 opposite-side courtyards; 90deg edge courtyard clearance0.205<0.25mm."
+    }
+  },
+  "remaining": [
+    "Fresh native DRC, parity, unchanged-footprint and copper guards before any promotion",
+    "Actual part insertion, solder gap/fill and mounting strength on the chosen board process",
+    "Knob and closed-case clearance; this candidate does not move the accepted current native shaft axis",
+    "External detector RF tap must be routed as the intended controlled50-ohm path; Euclidean placement distance is not RF qualification."
+  ],
+  "assembly_requirements": {
+    "both_metal_mounting_lugs_solder_required": true,
+    "empty_MP_nets_do_not_mean_unsoldered": true,
+    "body_seated_flush_and_level": true,
+    "washing_permitted": false,
+    "inward_lead_protrusion_model": "3.5 mm primary terminal projection minus actual finished PCB thickness, with seating/terminal tolerances still to verify in the mechanical stack.",
+    "inward_protrusion_nominal_on_1p6mm_pcb_mm": 1.9,
+    "three_dimensional_clearance_verified": false,
+    "solder_fill_or_torque_qualified": false
+  }
+}
