@@ -151,7 +151,10 @@ qualified against the current native power cell**:
   3.168 A against a 3.046-A modeled peak: about 4% reserve, not 25%. This is
   a resistor-tolerance-only estimate, not a new TI guarantee across arbitrary
   R/PVT. It also does not restore H0's 3.75-A continuous / 4.25-A step envelope.
-- H3 cites TPS564252 although RF U20 is TPS566231P.
+- H3 cites TPS564252 although RF U20 is TPS566231P. The source guard now
+  requires the exact native part/pins and an independently reviewed numerical
+  model bound to the current power cell; changing a datasheet URL cannot clear
+  this finding. No TPS566231P model is accepted yet.
 - The main Power-Good divider can require 3.171 V to assert, above the modeled
   minimum protected rail of 3.109 V.
 - AON eFuse on-resistance was bounded using a different RILIM test condition.

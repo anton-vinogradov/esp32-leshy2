@@ -101,6 +101,129 @@ class H6R2NativePowerStartupTest(unittest.TestCase):
         self.data["h3"]["rails"]["3V3_MAIN"]["source"] = "https://www.ti.com/lit/ds/symlink/tps564252.pdf"
         self.assertFalse(self.check("h3_converter_source_is_installed_part")["pass"])
 
+
+    def synthetic_converter_review(self):
+        # Test-only registry entry to exercise invalidation.  This does not
+        # review the current H3 model or create a production accepted binding.
+        model = self.data["h3"]["rails"]["3V3_MAIN"]
+        model["source"] = self.module.EVIDENCE["main_buck"]["url"]
+        model["converter_operating_conditions"] = {
+            "input_voltage_v": [3.0, 18.0], "junction_temperature_c": [-40, 125],
+        }
+        model["converter_model_review_id"] = "SYNTHETIC_TEST_ONLY"
+        _, observed = self.module.main_converter_model_binding(self.data)
+        self.module.REVIEWED_MAIN_CONVERTER_MODELS["SYNTHETIC_TEST_ONLY"] = copy.deepcopy(observed["current_binding"])
+        self.addCleanup(self.module.REVIEWED_MAIN_CONVERTER_MODELS.clear)
+        self.assertTrue(self.check("h3_converter_source_is_installed_part")["pass"])
+
+    def test_current_converter_has_no_accepted_model_and_keeps_eight_findings(self):
+        self.assertEqual({}, self.module.REVIEWED_MAIN_CONVERTER_MODELS)
+        result = self.result()
+        self.assertEqual(8, len(result["findings"]))
+        check = self.check("h3_converter_source_is_installed_part")
+        self.assertTrue(check["observed"]["native_identity_matches"])
+        self.assertFalse(check["pass"])
+        self.assertFalse(check["observed"]["independently_registered_binding_matches"])
+
+    def test_url_substring_is_not_primary_evidence(self):
+        self.synthetic_converter_review()
+        self.data["h3"]["rails"]["3V3_MAIN"]["source"] = "https://example.invalid/not-reviewed/tps566231.pdf"
+        self.assertFalse(self.check("h3_converter_source_is_installed_part")["pass"])
+
+    def test_exact_ti_url_alone_does_not_review_model(self):
+        self.data["h3"]["rails"]["3V3_MAIN"]["source"] = self.module.EVIDENCE["main_buck"]["url"]
+        self.assertFalse(self.check("h3_converter_source_is_installed_part")["pass"])
+
+    def test_self_declared_review_id_or_binding_is_not_registered_review(self):
+        self.data["h3"]["rails"]["3V3_MAIN"].update({
+            "source": self.module.EVIDENCE["main_buck"]["url"],
+            "converter_model_review_id": "user-says-reviewed",
+            "model_binding": {"pass": True, "mpn": "TPS566231PRQFR"},
+            "converter_operating_conditions": {"input_voltage_v": [3, 18], "junction_temperature_c": [-40, 125]},
+        })
+        self.assertFalse(self.check("h3_converter_source_is_installed_part")["pass"])
+
+    def test_synthetic_registry_binding_does_not_authorize_startup(self):
+        self.synthetic_converter_review()
+        result = self.result()
+        self.assertEqual(7, len(result["findings"]))
+        self.assertFalse(result["startup_proven"])
+        self.assertEqual({"fabrication": False, "gate_closed": False}, result["authorization"])
+
+    def test_same_pads_with_different_native_mpn_cannot_inherit_review(self):
+        self.synthetic_converter_review()
+        native = next(row for row in self.data["instances"]["rows"] if row["instance"] == "main_buck")
+        native["mpn"] = "TPS566231RQFR"
+        check = self.check("h3_converter_source_is_installed_part")
+        self.assertFalse(check["pass"])
+        self.assertFalse(check["observed"]["native_identity_matches"])
+
+    def test_changed_native_device_id_cannot_inherit_review(self):
+        self.synthetic_converter_review()
+        native = next(row for row in self.data["instances"]["rows"] if row["instance"] == "main_buck")
+        native["device_id"] = "synthetic_pin_compatible_part"
+        self.data["devices"]["devices"][native["device_id"]] = copy.deepcopy(
+            self.data["devices"]["devices"]["ti_tps566231p_rqfr"])
+        self.assertFalse(self.check("h3_converter_source_is_installed_part")["pass"])
+
+    def test_register_mpn_must_match_native_exact_variant(self):
+        self.synthetic_converter_review()
+        self.data["devices"]["devices"]["ti_tps566231p_rqfr"]["mpn"] = "TPS566231RQFR"
+        self.assertFalse(self.check("h3_converter_source_is_installed_part")["pass"])
+
+    def test_current_native_pg_contact_must_still_match_registered_application(self):
+        self.synthetic_converter_review()
+        self.row("main_buck.PG")["net"] = "POWER_GROUND"
+        self.assertFalse(self.check("h3_converter_source_is_installed_part")["pass"])
+
+    def test_duplicate_native_converter_cannot_be_silently_selected(self):
+        self.synthetic_converter_review()
+        native = next(row for row in self.data["instances"]["rows"] if row["instance"] == "main_buck")
+        self.data["instances"]["rows"].append(copy.deepcopy(native))
+        self.assertFalse(self.check("h3_converter_source_is_installed_part")["pass"])
+
+    def test_changed_numerical_model_invalidates_registry_hash(self):
+        self.synthetic_converter_review()
+        self.data["h3"]["rails"]["3V3_MAIN"]["raw_average_min_v"] += .001
+        self.assertFalse(self.check("h3_converter_source_is_installed_part")["pass"])
+
+    def test_changed_read_conditions_require_new_independent_review(self):
+        self.synthetic_converter_review()
+        self.data["h3"]["rails"]["3V3_MAIN"]["converter_operating_conditions"]["input_voltage_v"] = [4, 12]
+        check = self.check("h3_converter_source_is_installed_part")
+        self.assertTrue(check["observed"]["declared_operating_domain_is_supported"])
+        self.assertFalse(check["pass"])
+
+    def test_unsupported_missing_or_nonfinite_operating_conditions_fail_closed(self):
+        self.synthetic_converter_review()
+        for conditions in (None, {}, {"input_voltage_v": [2.9, 18], "junction_temperature_c": [-40, 125]},
+                           {"input_voltage_v": [3, 18.1], "junction_temperature_c": [-40, 125]},
+                           {"input_voltage_v": [3, 18], "junction_temperature_c": [-41, 125]},
+                           {"input_voltage_v": [3, 18], "junction_temperature_c": [-40, 126]},
+                           {"input_voltage_v": [12, 3], "junction_temperature_c": [-40, 125]},
+                           {"input_voltage_v": [True, 18], "junction_temperature_c": [-40, 125]},
+                           {"input_voltage_v": [float("nan"), 18], "junction_temperature_c": [-40, 125]}):
+            with self.subTest(conditions=conditions):
+                self.data["h3"]["rails"]["3V3_MAIN"]["converter_operating_conditions"] = conditions
+                check = self.check("h3_converter_source_is_installed_part")
+                self.assertFalse(check["pass"])
+                self.assertFalse(check["observed"]["declared_operating_domain_is_supported"])
+
+    def test_changed_fitted_support_value_invalidates_application_hash(self):
+        self.synthetic_converter_review()
+        self.resistor("main_fb_top", "43_7kohm_1pct_0402_synthetic_different_tolerance")
+        self.assertFalse(self.check("h3_converter_source_is_installed_part")["pass"])
+
+    def test_changed_admitted_load_floor_invalidates_application_hash(self):
+        self.synthetic_converter_review()
+        self.data["h0"]["power_rebaseline"]["h1_required_envelope"]["step_a_min"] += .01
+        self.assertFalse(self.check("h3_converter_source_is_installed_part")["pass"])
+
+    def test_binding_revision_cannot_be_silently_changed(self):
+        self.synthetic_converter_review()
+        self.module.REVIEWED_MAIN_CONVERTER_MODELS["SYNTHETIC_TEST_ONLY"]["primary_revision"] = "unreviewed-later-revision"
+        self.assertFalse(self.check("h3_converter_source_is_installed_part")["pass"])
+
     def test_aon_ron_bound_must_use_fitted_rilim_condition(self):
         self.resistor("aon_efuse_rilim", "240kohm_1pct_0402_test_resistor")
         self.data["h3"]["rails"]["AON_SAFE_3V3"]["efuse_ron_max_ohm"] = .240

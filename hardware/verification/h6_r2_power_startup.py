@@ -111,6 +111,110 @@ def resistance(device):
     return value, float(tolerance[1].replace("_", ".")) / 100
 
 
+# No current H3 MAIN model has yet been reviewed for TPS566231P.  Only a
+# subsequent independent model review may add a binding here.  A declaration
+# inside the model, an MPN or a URL alone is not qualification.
+REVIEWED_MAIN_CONVERTER_MODELS = {}
+
+
+def main_converter_model_binding(data):
+    """Bind one independently reviewed model to its exact current application.
+
+    TI SLUSDQ7B (December 2023), sections 4, 5.3 and 5.5, establishes the
+    TPS566231P PG variant and VIN=3..18 V / TJ=-40..125 C operating domain.
+    A registered binding is deliberately narrower than power/startup approval.
+    Its hashes also invalidate an otherwise correct identity after a numeric
+    model, operating-condition or native MAIN-cell change.
+    """
+    expected_id, pin_table = PINS["main_buck"]
+    expected_mpn = "TPS566231PRQFR"
+    native_rows = [row for row in data["instances"]["rows"] if row["instance"] == "main_buck"]
+    native = native_rows[0] if len(native_rows) == 1 else {}
+    device = data["devices"]["devices"].get(expected_id, {})
+    actual_pins = [row for row in data["nets"]["rows"] if row["instance"] == "main_buck"]
+    pins = {row["contact"]: row for row in actual_pins}
+    identity_ok = (
+        len(native_rows) == 1
+        and native.get("device_id") == expected_id
+        and native.get("mpn") == device.get("mpn") == expected_mpn
+        and native.get("project") == "LESHY2-RF-R2"
+        and native.get("reference") == "U20"
+        and device.get("manufacturer") == "Texas Instruments"
+        and len(actual_pins) == len(pins) == len(pin_table)
+        and set(pins) == set(pin_table)
+    )
+    for contact, (physical, net) in pin_table.items():
+        row = pins.get(contact, {})
+        declared = device.get("contacts", {}).get(contact, {})
+        identity_ok = identity_ok and (
+            row.get("device_id") == expected_id
+            and row.get("project") == native.get("project")
+            and row.get("reference") == native.get("reference")
+            and str(row.get("physical", "")).split()[0:1] == [physical]
+            and str(declared.get("physical", "")).split()[0:1] == [physical]
+            and row.get("net") == net and row.get("disposition") == "connected"
+        )
+
+    model = data["h3"]["rails"]["3V3_MAIN"]
+    conditions = model.get("converter_operating_conditions")
+    limits = {"input_voltage_v": (3, 18), "junction_temperature_c": (-40, 125)}
+    conditions_ok = isinstance(conditions, dict) and set(conditions) == set(limits)
+    if conditions_ok:
+        for name, (minimum, maximum) in limits.items():
+            bounds = conditions[name]
+            conditions_ok = conditions_ok and (
+                isinstance(bounds, list) and len(bounds) == 2
+                and all(type(value) in (int, float) and math.isfinite(value) for value in bounds)
+                and minimum <= bounds[0] <= bounds[1] <= maximum
+            )
+
+    def digest(value):
+        return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":"),
+                                         allow_nan=False).encode("utf-8")).hexdigest()
+
+    # Keep relevant native identities, electrical endpoints, declared component
+    # values and accepted read conditions.  Unrelated holder/connector edits do
+    # not force a MAIN-model re-review; MAIN cell changes do.
+    cell_instances = sorted(
+        (row for row in data["instances"]["rows"] if row["instance"].startswith("main_")),
+        key=lambda row: (row["instance"], row["reference"]),
+    )
+    cell_ids = {row["device_id"] for row in cell_instances}
+    application = {
+        "instances": cell_instances,
+        "nets": sorted((row for row in data["nets"]["rows"] if row["instance"].startswith("main_")),
+                       key=lambda row: row["endpoint"]),
+        "devices": {key: {field: data["devices"]["devices"][key].get(field)
+                         for field in ("mpn", "manufacturer", "kind", "contacts")}
+                    for key in sorted(cell_ids)},
+        "h0_required_envelope": data["h0"]["power_rebaseline"]["h1_required_envelope"],
+        "h1_main_power_cell": data["h1"]["main_power_cell"],
+    }
+    model_values = {key: value for key, value in model.items() if key != "converter_model_review_id"}
+    try:
+        model_hash, application_hash = digest(model_values), digest(application)
+    except (TypeError, ValueError):
+        model_hash = application_hash = None
+    binding = {
+        "device_id": expected_id, "mpn": expected_mpn,
+        "primary_source": EVIDENCE["main_buck"]["url"],
+        "primary_revision": "SLUSDQ7B",
+        "model_sha256": model_hash, "current_application_sha256": application_hash,
+    }
+    review_id = model.get("converter_model_review_id")
+    registered = REVIEWED_MAIN_CONVERTER_MODELS.get(review_id) if isinstance(review_id, str) and review_id else None
+    matched = (identity_ok and conditions_ok and model.get("source") == binding["primary_source"]
+               and model_hash is not None and application_hash is not None and registered == binding)
+    return bool(matched), {
+        "native_identity_matches": bool(identity_ok), "actual_native_mpn": native.get("mpn"),
+        "declared_operating_domain_is_supported": bool(conditions_ok),
+        "review_id": review_id,
+        "independently_registered_binding_matches": registered is not None and registered == binding,
+        "current_binding": binding,
+        "scope": "converter model identity and current applicability only; not rail or startup qualification",
+    }
+
+
 def evaluate(data):
     rows = data["nets"]["rows"]
     endpoints = {row["endpoint"]: row for row in rows}
@@ -182,9 +286,10 @@ def evaluate(data):
     check("main_existing_inrush_model_headroom", combined <= model_lower,
           "Even the existing H3 capacitor-only slew model must fit the native RILM envelope; this is not a startup guarantee.",
           {"combined_current_a": combined, "native_h1_model_lower_a": model_lower, "margin_a": model_lower - combined})
-    actual_mpn = instances["main_buck"]["mpn"]
-    check("h3_converter_source_is_installed_part", "tps566231" in h3_main["source"].lower(),
-          "A conservative current admission does not make the TPS564252 datasheet valid for the fitted TPS566231P.", actual_mpn)
+    converter_reviewed, converter_binding = main_converter_model_binding(data)
+    check("h3_converter_source_is_installed_part", converter_reviewed,
+          "Exact native TPS566231PRQFR identity and primary source are necessary, but only an independently registered model with matching current model/application hashes can qualify this source binding.",
+          converter_binding)
 
     top, top_tol = resistor("main_efuse_pg_top")
     bottom, bottom_tol = resistor("main_efuse_pg_bottom")
