@@ -7,6 +7,10 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from h3_r2_current_scope import apply_scope, admits_current, scope_notice
 
 
 REPO = Path(__file__).resolve().parents[2]
@@ -65,14 +69,12 @@ def build() -> tuple[dict[Path, str], dict]:
         "ordering_stays_blocked": not any(plan["authorization"][key] for key in ("pcb_placement_and_routing", "fabrication", "purchasing")),
     }
     failures = [name for name, passed in checks.items() if not passed]
-    if failures:
-        raise ValueError("H3-R2.1.5 cross-check failures: " + ", ".join(failures))
     manifest = {
         "schema_version": 1,
         "artifact": "H3-R2-dc-source-crosscheck",
         "marker": "H3-R2.1.5",
         "status": "reviewed_h3_r2_1_worst_case_dc_source_charge_and_power_states",
-        "source_sha256": {str(path.relative_to(REPO)): sha256(path) for path in (METHODS, STATES, LOADS, RAILS, SOURCES)},
+        "source_sha256": {str(path.relative_to(REPO)): sha256(path) for path in (PLAN, METHODS, STATES, LOADS, RAILS, SOURCES)},
         "checks": checks,
         "coverage": {
             "legal_states": 2266,
@@ -110,6 +112,9 @@ def build() -> tuple[dict[Path, str], dict]:
         "next": {"marker": "H3-R2.2.1", "action": "verify ordered startup, shutdown, reset and recovery sequencing"},
         "errors": [],
     }
+    manifest["errors"] = failures
+    apply_scope(manifest, __file__, {"rail_inputs": admits_current(rails, "H3-R2-rail-margins"),
+                "source_inputs": admits_current(sources, "H3-R2-source-margins")}, numerical_ok=not failures)
     return {OUTPUT: json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", DOC_EN: render_doc(manifest, False), DOC_RU: render_doc(manifest, True)}, manifest
 
 
@@ -119,31 +124,31 @@ def render_doc(manifest: dict, russian: bool) -> str:
     if russian:
         title = "# Итог DC, источников и заряда · H3-R2.1"
         nav = "[English](power-dc-source-result.md) · [Главная](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Шины](power-rail-margins.ru.md) · [Источники](power-source-margins.ru.md)"
-        intro = "`H3-R2.1.5` завершает cross-check первого workstream H3. Это проведённое ревью H3-R2.1, а не всей фазы H3 и не разрешение на KiCad или заказ."
+        intro = scope_notice(manifest, russian)
         coverage_h = "## Покрытие"
         coverage = f"Сверены `{c['legal_states']}` состояния, `{c['operating_profiles']}` рабочих профиля, `{c['rail_profiles']}` rail-corner, `{c['physical_and_external_loads']}` нагрузок и все `{c['source_pack_owners']}` source/pack-строки. Пропусков, дублей и скрытой строки «прочее» нет."
-        result_h = "## Что доказано"
+        result_h = "## Предварительный результат модели"
         result = (f"- Минимальный запас тока шин: `{r['minimum_rail_current_reserve_percent']}%`; температуры кристалла: `{r['minimum_junction_margin_c']} °C`.\n"
                   f"- Максимальный SYS: `{r['maximum_sys_demand_w']} Вт`; pack: `{r['maximum_pack_discharge_a']} А`, длительно `{r['maximum_sustained_pack_discharge_a']} А`.\n"
                   f"- 5 В × 3 А безопасно отказывает `{r['usb_only_profiles_refused']}` тяжёлым USB-only состояниям; заряд снижается раньше нагрузки в `{r['charge_states_derated']}` состояниях.\n"
-                  "- 9 В × 3 А и 15 В × 2 А запускают любой объявленный профиль.")
+                  "- В сохранённой модели мощности 9 В × 3 А и 15 В × 2 А допускают все профили; это не доказательство запуска или допустимого напряжения нынешней схемы.")
         boundary_h = "## Что дальше"
         boundary = "`H3-R2.2` проверяет динамику: запуск, shutdown, inrush, DPM, brownout, watchdog и USB↔pack handover. Routed parasitics остаются H6, измерения — H8."
-        end = "**H3-R2.1 полностью проведён ревью.** Актуальная точка указана в [роадмапе](roadmap.ru.md). Placement, routing, закупка и печать по-прежнему запрещены.\n\n[Машинный cross-check](../hardware/verification/generated/H3-R2-dc-source-crosscheck.json)."
+        end = ("Текущие численные результаты предварительны; открытые аналитические вопросы остаются." if russian else "Current numerical results are provisional; analytical applicability findings remain open.")
     else:
         title = "# DC, source and charge result · H3-R2.1"
         nav = "[Русский](power-dc-source-result.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Rails](power-rail-margins.md) · [Sources](power-source-margins.md)"
-        intro = "`H3-R2.1.5` completes the first H3 workstream cross-check. H3-R2.1 is reviewed; the whole H3 phase is not, and neither KiCad nor ordering is authorized."
+        intro = scope_notice(manifest, russian)
         coverage_h = "## Coverage"
         coverage = f"The check reconciles `{c['legal_states']}` states, `{c['operating_profiles']}` operating profiles, `{c['rail_profiles']}` rail corners, `{c['physical_and_external_loads']}` loads and all `{c['source_pack_owners']}` source/pack lines. No gap, duplicate or hidden miscellaneous line remains."
-        result_h = "## What is proved"
+        result_h = "## Provisional model result"
         result = (f"- Minimum rail-current reserve: `{r['minimum_rail_current_reserve_percent']}%`; junction-temperature reserve: `{r['minimum_junction_margin_c']} °C`.\n"
                   f"- Maximum SYS: `{r['maximum_sys_demand_w']} W`; pack: `{r['maximum_pack_discharge_a']} A`, sustained `{r['maximum_sustained_pack_discharge_a']} A`.\n"
                   f"- 5 V × 3 A safely refuses `{r['usb_only_profiles_refused']}` heavy USB-only states; charge yields before load in `{r['charge_states_derated']}` states.\n"
-                  "- 9 V × 3 A and 15 V × 2 A run every declared profile.")
+                  "- The retained power-budget model admits every profile at 9 V × 3 A and 15 V × 2 A; this does not prove startup or valid voltage in the current circuit.")
         boundary_h = "## Next boundary"
         boundary = "`H3-R2.2` verifies dynamics: startup, shutdown, inrush, DPM, brownout, watchdog and USB↔pack handover. Routed parasitics remain H6 and measurement remains H8."
-        end = "**H3-R2.1 is fully reviewed.** The [roadmap](roadmap.md) carries the live marker. Placement, routing, purchasing and fabrication remain forbidden.\n\n[Machine cross-check](../hardware/verification/generated/H3-R2-dc-source-crosscheck.json)."
+        end = ("Текущие численные результаты предварительны; открытые аналитические вопросы остаются." if russian else "Current numerical results are provisional; analytical applicability findings remain open.")
     return "\n\n".join((title, nav, intro, coverage_h, coverage, result_h, result, boundary_h, boundary, end)) + "\n"
 
 
@@ -163,7 +168,7 @@ def main() -> int:
     stale = [str(path.relative_to(REPO)) for path, content in outputs.items() if not path.is_file() or path.read_text(encoding="utf-8") != content]
     if stale:
         raise SystemExit("stale H3-R2.1.5 artifacts: " + ", ".join(stale))
-    print(f"ok: H3-R2.1 reviewed; {len(manifest['checks'])} cross-checks")
+    print(f"ok: H3-R2.1 {manifest['status']}; {len(manifest['checks'])} cross-checks")
     return 0
 
 

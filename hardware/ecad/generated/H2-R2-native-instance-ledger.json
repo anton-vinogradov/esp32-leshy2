@@ -6,12 +6,12 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "74c8a559f245a231bb567ad6f7f069fab053e33fb3940636d2a72a42f7635ed8",
+      "sha256": "e928c8f337a73005ace55331c145db8199340d23fa54a6806fa6c5619fdd8040",
       "authority": true
     },
     "exact_definition_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "372dbe16718897bc33477c7f7acbd65a70143f70f7b35d88df6bf73d6fc69c36",
+      "sha256": "193efb9c92b2ea4178304aa2f91e41c4dc35e4b4187aa1b1087e61dd54a4634b",
       "authority": true
     },
     "physical_source_table": {

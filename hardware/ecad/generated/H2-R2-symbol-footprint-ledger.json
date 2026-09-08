@@ -6,11 +6,11 @@
   "sources": {
     "native_inventory": {
       "path": "hardware/ecad/generated/H2-R2-native-inventory.json",
-      "sha256": "74c8a559f245a231bb567ad6f7f069fab053e33fb3940636d2a72a42f7635ed8"
+      "sha256": "e928c8f337a73005ace55331c145db8199340d23fa54a6806fa6c5619fdd8040"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
-      "sha256": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c"
+      "sha256": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974"
     }
   },
   "historical_hint_sources": [
@@ -13781,7 +13781,7 @@
         }
       },
       "contact_map_sha256": "d95177220b74b775b90a8e956f06b58c4b7fc38f5d43447feaadf141c9cdd4ab",
-      "electrical_contract_sha256": "7efd739f0659f3529863e480e151aefa8c8a3e3fa0f48759fc4eb578109ba833",
+      "electrical_contract_sha256": "e5d437b27f8d8b8f11f364c38102e1e969f904fd94bb7a29d7e1947ac8093b70",
       "manufacturer_evidence": {
         "document": "TPS3808 Low-Quiescent-Current Programmable-Delay Supervisory Circuit datasheet",
         "version": "Rev. N, revised August 2026",

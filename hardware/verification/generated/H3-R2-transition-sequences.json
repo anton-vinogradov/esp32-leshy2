@@ -2,17 +2,19 @@
   "schema_version": 1,
   "artifact": "H3-R2-transition-sequences",
   "marker": "H3-R2.2.1",
-  "status": "reviewed_startup_shutdown_reset_and_recovery",
+  "status": "review_required",
   "source_sha256": {
     "hardware/verification/h3-r2-transition-sequence-contract.json": "3c68bdd74fcb6be83f9a014822db1e1bb88c3180b7c477d78b5a4bcf95f5443b",
     "hardware/verification/h3-r2-verification-plan.json": "54143b22eeddf73fbe05ea5f0996c363e22bf7830c49e13ced6f3dcca8c7d16c",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "804afa4f428fb344213e382b0137271d73a03c80ed3bc5e04919c360ab03dad9",
-    "hardware/verification/generated/H3-R2-method-contract.json": "33fc85eb192e102fdda33f646ac0250b85bb08a5e0b4a530c028d92bc92a242a",
-    "hardware/verification/generated/H3-R2-dc-source-crosscheck.json": "02888427ddf310e9d3f506ae2b57e9eabc5d779b984535cf4b260824e75fc993",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "1cdc59edda649d09c07077bbd17864cfca446a9c431910d603d7d1a4785c9b5b",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7d1b6c309e398f410a3ec109374388548eddfd4574676cf7d77a9ea5453bab91",
+    "hardware/verification/generated/H3-R2-input-freeze.json": "051b6066997e174a961fd73b0e37165397ae86ef6ee60f20f8e37a119e10edc5",
+    "hardware/verification/generated/H3-R2-method-contract.json": "6aeb96256aba61bf0a90c05675ee4c1c62ac7c3fdf69da596ebdd99a40715014",
+    "hardware/verification/generated/H3-R2-dc-source-crosscheck.json": "c9c90141b93c48df4047f63322c925f636932cb0e4ca0229cd018c1b0eafd232",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "bb0ee548efc0ecfe02299f3757c58cd7a4e7c5a8b50160d8648411ab330ac411",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7ca7596c728f2dc2fe50516b6309438dfaca2fc9c7f6fbef62c18d005cf8616b",
     "hardware/ecad/generated/H2-R2-interboard-m1.json": "127965ec1e68cbf8c57d028fd067c56a724a3259248bab4ba5c86c8f9307b6fd",
-    "hardware/architecture/devices.json": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c"
+    "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974",
+    "hardware/verification/h3_r2_transition_sequences.py": "6d331f0216f69b2430fa07ce2f5f71570a50f55ac4dbb841872103620779ba0b",
+    "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
   },
   "exact_devices": {
     "supervisor": {
@@ -142,7 +144,7 @@
       "typ": 20,
       "max": 28
     },
-    "supervisor_assertion_max_us": 20,
+    "supervisor_assertion_max_us": null,
     "watchdog_timeout_s": {
       "min": 1.44,
       "typ": 1.6,
@@ -179,6 +181,12 @@
       "qualified_kill_ms": 500,
       "analytical_kill_margin_ms": 15.475,
       "credit": "debounce and one-edge formation only; never the sole anti-auto-start barrier"
+    },
+    "supervisor_assertion_typ_us": 20,
+    "supervisor_hysteresis_percent": {
+      "min": null,
+      "typ": 1.0,
+      "max": 2.5
     }
   },
   "firmware_contract": {
@@ -2110,7 +2118,8 @@
     "topology_endpoints": 51,
     "topology_failures": 0,
     "net_checks": 5,
-    "errors": 0
+    "errors": 0,
+    "open_analytical_findings": 3
   },
   "corrections": [
     {
@@ -2135,15 +2144,64 @@
     "H8 captures POR assertion/release, direct C5/RF-RP reset and S3 fault-display retention at real rail corners."
   ],
   "authorization": {
-    "analytical_verification": true,
-    "firmware_emulation_contract": true,
+    "analytical_verification": false,
+    "firmware_emulation_contract": false,
     "pcb_placement_or_routing": false,
     "purchasing": false,
-    "fabrication": false
+    "fabrication": false,
+    "advance_phase": false,
+    "battery_energization": false,
+    "final_product_claim": false
   },
   "next": {
     "marker": "H3-R2.2.3",
-    "action": "H3-R2.2.2 handover is reviewed; verify inrush, load steps, watchdog kill and retained fault display"
+    "action": "evaluate inrush, load steps, watchdog kill and retained fault display while current power applicability remains explicit"
   },
-  "errors": []
+  "errors": [
+    "applicability:dc_inputs",
+    "applicability:supervisor_assertion_bound",
+    "applicability:supervisor_hysteresis_bound"
+  ],
+  "current_power_scope": {
+    "schema_version": 1,
+    "artifact": "H3-R2-transition-sequences",
+    "status": "review_required",
+    "numerical_status": "provisional_pass",
+    "numerical_checks_pass": true,
+    "applicability_checks": {
+      "dc_inputs": false,
+      "supervisor_assertion_bound": false,
+      "supervisor_hysteresis_bound": false
+    },
+    "open_findings": [
+      "applicability:dc_inputs",
+      "applicability:supervisor_assertion_bound",
+      "applicability:supervisor_hysteresis_bound"
+    ],
+    "current_analytical_scope_complete": false,
+    "production_release_authorized": false,
+    "battery_energization_authorized": false,
+    "source_sha256": {
+      "hardware/verification/h3-r2-transition-sequence-contract.json": "3c68bdd74fcb6be83f9a014822db1e1bb88c3180b7c477d78b5a4bcf95f5443b",
+      "hardware/verification/h3-r2-verification-plan.json": "54143b22eeddf73fbe05ea5f0996c363e22bf7830c49e13ced6f3dcca8c7d16c",
+      "hardware/verification/generated/H3-R2-input-freeze.json": "051b6066997e174a961fd73b0e37165397ae86ef6ee60f20f8e37a119e10edc5",
+      "hardware/verification/generated/H3-R2-method-contract.json": "6aeb96256aba61bf0a90c05675ee4c1c62ac7c3fdf69da596ebdd99a40715014",
+      "hardware/verification/generated/H3-R2-dc-source-crosscheck.json": "c9c90141b93c48df4047f63322c925f636932cb0e4ca0229cd018c1b0eafd232",
+      "hardware/ecad/generated/H2-R2-native-net-ledger.json": "bb0ee548efc0ecfe02299f3757c58cd7a4e7c5a8b50160d8648411ab330ac411",
+      "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7ca7596c728f2dc2fe50516b6309438dfaca2fc9c7f6fbef62c18d005cf8616b",
+      "hardware/ecad/generated/H2-R2-interboard-m1.json": "127965ec1e68cbf8c57d028fd067c56a724a3259248bab4ba5c86c8f9307b6fd",
+      "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974",
+      "hardware/verification/h3_r2_transition_sequences.py": "6d331f0216f69b2430fa07ce2f5f71570a50f55ac4dbb841872103620779ba0b",
+      "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+    }
+  },
+  "provisional_numerical_errors": [],
+  "current_analytical_scope_complete": false,
+  "open_analytical_findings": [
+    "applicability:dc_inputs",
+    "applicability:supervisor_assertion_bound",
+    "applicability:supervisor_hysteresis_bound"
+  ],
+  "production_release_authorized": false,
+  "battery_energization_authorized": false
 }

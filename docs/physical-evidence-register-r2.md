@@ -1,10 +1,14 @@
 # Physical evidence register · H3-R2
 
-[Русский](physical-evidence-register-r2.ru.md) · [H3 report](h3-r2-acceptance.md) · [Roadmap](roadmap.md)
+[Русский](physical-evidence-register-r2.ru.md) · [H3 report](h3-r2-acceptance.md)
 
-H3 leaves `51` physical-only evidence rows: `2` involve H5 received-part evidence, `8` involve H6 routed-design evidence and `42` involve H8 measurements on the one assembled prototype. A row may intentionally have more than one owner when received identity and assembled behavior are distinct gates.
+**Current status: `review_required`.** Numerical and logical checks below are retained as provisional. Applicability to the fitted power cell is checked separately; open analytical findings are not reclassified as physical tests. This result does not authorize phase advancement, purchasing, fabrication or battery energization.
 
-Nothing below is called passed. The registry requires no sacrificial assembled unit, drop test, vibration campaign or arbitrary connector-cycle campaign. Safe electrical faults use current-limited fixtures or emulators; real cells and the one MAX17320 remain inside their declared limits.
+Open: `applicability:crosscheck_inputs`.
+
+[Machine evidence](../hardware/verification/generated/H3-R2-physical-residuals.json).
+
+This existing physical registry contains 51 open rows (H5: 2, H6: 8, H8: 42; multiple owners are possible). These are **not the only remaining findings**: current power-model applicability and numerical failures remain analytical and are listed separately in the H3 result. No row below is passed by regeneration.
 
 | ID | Owner | Source | Remaining physical evidence |
 |---|---|---|---|
@@ -60,6 +64,4 @@ Nothing below is called passed. The registry requires no sacrificial assembled u
 | `H3-R2-PHY-050` | `H8` | `H3-R2.6` | H8: run ordinary non-destructive 24/48-hour qualified-USB soak plus battery-to-protected-cutoff measurement without converting it into an uptime promise |
 | `H3-R2-PHY-051` | `H8` | `H3-R2.6` | H8: interrupt each journal boundary and verify last-valid-slot or explicit AON-loss fallback |
 
-One separate firmware obligation is intentionally not mislabelled as physical evidence: F5/F6 must instantiate and exercise the exact locked i8080 configuration. H4-R2 joins that obligation with the reviewed hardware boundary.
-
-[Machine register](../hardware/verification/generated/H3-R2-physical-residuals.json).
+The registry requires no sacrificial assembled unit or drop/vibration campaign. Safe fault checks require current-limited fixtures; real cells remain within their declared limits. The exact i8080 implementation remains a separate firmware obligation.

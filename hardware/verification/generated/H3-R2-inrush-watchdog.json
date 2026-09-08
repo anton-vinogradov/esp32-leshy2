@@ -2,16 +2,18 @@
   "schema_version": 1,
   "artifact": "H3-R2-inrush-watchdog",
   "marker": "H3-R2.2.3",
-  "status": "reviewed_inrush_load_steps_watchdog_and_retained_fault_display",
+  "status": "review_required",
   "source_sha256": {
     "hardware/verification/h3-r2-inrush-watchdog-contract.json": "0658274da5110cd64dc6e8100501197f8b82a7287ef3195d8af29a12e29b4b90",
     "hardware/verification/h3-r2-verification-plan.json": "54143b22eeddf73fbe05ea5f0996c363e22bf7830c49e13ced6f3dcca8c7d16c",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "95ea4b66f38ca6378e0703bc0377e106c81e67628f4bb3209fab7addf6b7c78a",
-    "hardware/verification/generated/H3-R2-transition-sequences.json": "c7af6cac47972dab436b7399569d44cc9f71f13ecd27679bf987f015454f6a71",
-    "hardware/verification/generated/H3-R2-handover.json": "5f6f1cd789a429a80993f4aa5e65361bf3c133046413ea751e1a7ee65256ae1e",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "1cdc59edda649d09c07077bbd17864cfca446a9c431910d603d7d1a4785c9b5b",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7d1b6c309e398f410a3ec109374388548eddfd4574676cf7d77a9ea5453bab91",
-    "hardware/architecture/devices.json": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c"
+    "hardware/verification/generated/H3-R2-rail-margins.json": "06b97ec6e2cf9baf6c6701867543245791f7e99f57b4a49779590d3e13a457fa",
+    "hardware/verification/generated/H3-R2-transition-sequences.json": "2671fb9e0b96e7ba755a84d56e4ccdd33c4b1c1f6735786ea60a3dc0ea7dadab",
+    "hardware/verification/generated/H3-R2-handover.json": "b0dd3c5d16a260e6770707daae1022fcc87c624587cf4b1f76c97702b29a8932",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "bb0ee548efc0ecfe02299f3757c58cd7a4e7c5a8b50160d8648411ab330ac411",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7ca7596c728f2dc2fe50516b6309438dfaca2fc9c7f6fbef62c18d005cf8616b",
+    "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974",
+    "hardware/verification/h3_r2_inrush_watchdog.py": "5b44520bd00145a5990fc19337b25d7848a9fdc4425ccd9e9887d59d9acddeb6",
+    "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
   },
   "datasheet_sources": {
     "tps25961": {
@@ -1510,10 +1512,11 @@
     "passed_fault_scenarios": 10,
     "topology_checks": 17,
     "analytical_failures": 0,
-    "automatic_restarts": 0
+    "automatic_restarts": 0,
+    "open_analytical_findings": 3
   },
   "proof_boundary": {
-    "proved": "exact current-limit and dV/dt corners, generated capacitance inventory, load-step endpoints, independent watchdog topology/deadline and fail-closed retained-diagnostic contract",
+    "provisional_model_scope": "retained current-limit and nominal dV/dt algebra, generated capacitance inventory, load-step endpoints, independent watchdog topology/deadline and fail-closed retained-diagnostic contract; fitted current-limit, maximum slew and supervisor bounds are not qualified",
     "not_claimed": "routed droop, ringing, converter settling, accessory specimen capacitance or implemented fault-journal power-cut behavior",
     "physical_owner": "H8 after H6 routed-parasitic re-analysis"
   },
@@ -1527,7 +1530,10 @@
   "authorization": {
     "pcb_placement_or_routing": false,
     "purchasing": false,
-    "fabrication": false
+    "fabrication": false,
+    "advance_phase": false,
+    "battery_energization": false,
+    "final_product_claim": false
   },
   "next": {
     "marker": "H3-R2.2.4",
@@ -1547,5 +1553,50 @@
       "functional_effect": "startup timing is no longer overstated"
     }
   ],
-  "errors": []
+  "errors": [
+    "applicability:rail_inputs",
+    "applicability:sequence_inputs",
+    "applicability:handover_inputs"
+  ],
+  "current_power_scope": {
+    "schema_version": 1,
+    "artifact": "H3-R2-inrush-watchdog",
+    "status": "review_required",
+    "numerical_status": "provisional_pass",
+    "numerical_checks_pass": true,
+    "applicability_checks": {
+      "rail_inputs": false,
+      "sequence_inputs": false,
+      "handover_inputs": false
+    },
+    "open_findings": [
+      "applicability:rail_inputs",
+      "applicability:sequence_inputs",
+      "applicability:handover_inputs"
+    ],
+    "current_analytical_scope_complete": false,
+    "production_release_authorized": false,
+    "battery_energization_authorized": false,
+    "source_sha256": {
+      "hardware/verification/h3-r2-inrush-watchdog-contract.json": "0658274da5110cd64dc6e8100501197f8b82a7287ef3195d8af29a12e29b4b90",
+      "hardware/verification/h3-r2-verification-plan.json": "54143b22eeddf73fbe05ea5f0996c363e22bf7830c49e13ced6f3dcca8c7d16c",
+      "hardware/verification/generated/H3-R2-rail-margins.json": "06b97ec6e2cf9baf6c6701867543245791f7e99f57b4a49779590d3e13a457fa",
+      "hardware/verification/generated/H3-R2-transition-sequences.json": "2671fb9e0b96e7ba755a84d56e4ccdd33c4b1c1f6735786ea60a3dc0ea7dadab",
+      "hardware/verification/generated/H3-R2-handover.json": "b0dd3c5d16a260e6770707daae1022fcc87c624587cf4b1f76c97702b29a8932",
+      "hardware/ecad/generated/H2-R2-native-net-ledger.json": "bb0ee548efc0ecfe02299f3757c58cd7a4e7c5a8b50160d8648411ab330ac411",
+      "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7ca7596c728f2dc2fe50516b6309438dfaca2fc9c7f6fbef62c18d005cf8616b",
+      "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974",
+      "hardware/verification/h3_r2_inrush_watchdog.py": "5b44520bd00145a5990fc19337b25d7848a9fdc4425ccd9e9887d59d9acddeb6",
+      "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+    }
+  },
+  "provisional_numerical_errors": [],
+  "current_analytical_scope_complete": false,
+  "open_analytical_findings": [
+    "applicability:rail_inputs",
+    "applicability:sequence_inputs",
+    "applicability:handover_inputs"
+  ],
+  "production_release_authorized": false,
+  "battery_energization_authorized": false
 }

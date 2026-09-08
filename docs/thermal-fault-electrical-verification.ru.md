@@ -2,7 +2,11 @@
 
 [English](thermal-fault-electrical-verification.md) · [Главная](../README.ru.md) · [Роадмап](roadmap.ru.md)
 
-`H3-R2.6` проведён ревью: **25 checks**, `56` thermal-профилей и `30` single-fault сценариев проходят без открытых аналитических findings. Итоги H3-R2.7, H4-R2 и H5-R1 также проведены ревью; текущий маркер — `H6.0.3-R1`.
+**Текущий статус: `review_required`.** Численные и логические проверки ниже сохранены как предварительные. Применимость к установленной ячейке питания проверяется отдельно; открытые аналитические вопросы не заменены физическими испытаниями. Переход фазы, закупка, изготовление и питание от аккумуляторов не разрешены этим результатом.
+
+Открыто: `applicability:rail_inputs`; `applicability:source_inputs`; `applicability:transition_inputs`; `applicability:rf_inputs`.
+
+[Машинное evidence](../hardware/verification/generated/H3-R2-thermal-fault.json).
 
 ## Тепло
 
@@ -26,6 +30,4 @@
 - H8: run ordinary non-destructive 24/48-hour qualified-USB soak plus battery-to-protected-cutoff measurement without converting it into an uptime promise
 - H8: interrupt each journal boundary and verify last-valid-slot or explicit AON-loss fallback
 
-Placement/routing, закупку, печать и итоговые thermal/safety заявления этот результат не разрешает.
-
-[Машинное evidence](../hardware/verification/generated/H3-R2-thermal-fault.json).
+Текущие численные результаты предварительны; открытые аналитические вопросы остаются.

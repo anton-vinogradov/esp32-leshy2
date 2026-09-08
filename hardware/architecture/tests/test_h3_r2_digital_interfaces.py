@@ -23,9 +23,10 @@ class H3R2DigitalInterfacesTest(unittest.TestCase):
         cls.module = load_module()
         cls.result = cls.module.build()
 
-    def test_current_result_passes_and_checked_artifact_matches(self):
-        self.assertEqual("pass", self.result["status"])
-        self.assertEqual([], self.result["errors"])
+    def test_current_result_stays_unqualified_and_checked_artifact_matches(self):
+        self.assertEqual("review_required", self.result["status"])
+        self.assertEqual([], self.result["provisional_numerical_errors"])
+        self.assertIn("applicability:rail_inputs", self.result["errors"])
         self.assertEqual(self.result, json.loads(OUTPUT.read_text(encoding="utf-8")))
 
     def test_every_logic_boundary_has_positive_high_and_low_margin(self):

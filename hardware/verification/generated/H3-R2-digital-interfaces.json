@@ -2,14 +2,16 @@
   "schema_version": 1,
   "artifact": "H3-R2-digital-interfaces",
   "marker": "H3-R2.4",
-  "status": "pass",
+  "status": "review_required",
   "source_hashes": {
     "hardware/architecture/h0-r2-rebaseline.json": "bab7bf6cb3e80842229704169c8b3297bcdff87ec6bb309aad75814701dd3c2b",
-    "hardware/architecture/devices.json": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "95ea4b66f38ca6378e0703bc0377e106c81e67628f4bb3209fab7addf6b7c78a",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "1cdc59edda649d09c07077bbd17864cfca446a9c431910d603d7d1a4785c9b5b",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7d1b6c309e398f410a3ec109374388548eddfd4574676cf7d77a9ea5453bab91",
-    "hardware/product-design/display-mount.json": "71bba240dfa5c3c8cb4f9ac269c4a9874f460981da7c196d072086c0dc3cc343"
+    "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "06b97ec6e2cf9baf6c6701867543245791f7e99f57b4a49779590d3e13a457fa",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "bb0ee548efc0ecfe02299f3757c58cd7a4e7c5a8b50160d8648411ab330ac411",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7ca7596c728f2dc2fe50516b6309438dfaca2fc9c7f6fbef62c18d005cf8616b",
+    "hardware/product-design/display-mount.json": "71bba240dfa5c3c8cb4f9ac269c4a9874f460981da7c196d072086c0dc3cc343",
+    "hardware/verification/h3_r2_digital_interfaces.py": "04c9371ed643f7c48928c0333c055b73dbcd7a2105124f68f353677fe5cf78f0",
+    "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
   },
   "methods": [
     "M-INT",
@@ -62,7 +64,7 @@
     }
   },
   "rail_corner_v": {
-    "minimum": 3.10851,
+    "minimum": 2.95621,
     "maximum": 3.285658
   },
   "logic_level_margins": [
@@ -70,28 +72,28 @@
       "boundary": "S3 -> ILI9488 direct i8080/reset",
       "units": "V",
       "corners": {
-        "voh_min": 2.486808,
+        "voh_min": 2.364968,
         "receiver_vih_min": 2.2999606,
         "vol_max": 0.3285658,
-        "receiver_vil_max": 0.932553
+        "receiver_vil_max": 0.886863
       },
-      "worst_high_margin": 0.1868474,
-      "worst_low_margin": 0.6039872,
-      "minimum_margin": 0.1868474,
+      "worst_high_margin": 0.0650074,
+      "worst_low_margin": 0.5582972,
+      "minimum_margin": 0.0650074,
       "status": "pass"
     },
     {
       "boundary": "S3/C5 -> RP2354 3V3 GPIO",
       "units": "V",
       "corners": {
-        "voh_min": 2.486808,
+        "voh_min": 2.364968,
         "receiver_vih_min": 2.0,
         "vol_max": 0.3285658,
         "receiver_vil_max": 0.8
       },
-      "worst_high_margin": 0.486808,
+      "worst_high_margin": 0.364968,
       "worst_low_margin": 0.4714342,
-      "minimum_margin": 0.4714342,
+      "minimum_margin": 0.364968,
       "status": "pass"
     },
     {
@@ -101,10 +103,10 @@
         "voh_min": 2.62,
         "receiver_vih_min": 2.4642435,
         "vol_max": 0.5,
-        "receiver_vil_max": 0.7771275
+        "receiver_vil_max": 0.7390525
       },
       "worst_high_margin": 0.1557565,
-      "worst_low_margin": 0.2771275,
+      "worst_low_margin": 0.2390525,
       "minimum_margin": 0.1557565,
       "status": "pass"
     },
@@ -115,10 +117,10 @@
         "voh_min": 2.62,
         "receiver_vih_min": 2.4642435,
         "vol_max": 0.5,
-        "receiver_vil_max": 0.7771275
+        "receiver_vil_max": 0.7390525
       },
       "worst_high_margin": 0.1557565,
-      "worst_low_margin": 0.2771275,
+      "worst_low_margin": 0.2390525,
       "minimum_margin": 0.1557565,
       "status": "pass"
     },
@@ -362,10 +364,48 @@
       "item": "instantiate the locked ESP-IDF i80 config at exact 20 MHz, CS=-1, 8-bit bus and rising-edge panel capture; exercise dirty-region and full-frame fixtures without waiting for TE, because panel contact 39 is deliberately open; no TE-synchronized or tear-free claim"
     }
   ],
-  "errors": [],
+  "errors": [
+    "applicability:rail_inputs"
+  ],
   "authorization": {
     "pcb_placement_or_routing": false,
     "purchasing": false,
-    "fabrication": false
-  }
+    "fabrication": false,
+    "advance_phase": false,
+    "battery_energization": false,
+    "final_product_claim": false
+  },
+  "current_power_scope": {
+    "schema_version": 1,
+    "artifact": "H3-R2-digital-interfaces",
+    "status": "review_required",
+    "numerical_status": "provisional_pass",
+    "numerical_checks_pass": true,
+    "applicability_checks": {
+      "rail_inputs": false
+    },
+    "open_findings": [
+      "applicability:rail_inputs"
+    ],
+    "current_analytical_scope_complete": false,
+    "production_release_authorized": false,
+    "battery_energization_authorized": false,
+    "source_sha256": {
+      "hardware/architecture/h0-r2-rebaseline.json": "bab7bf6cb3e80842229704169c8b3297bcdff87ec6bb309aad75814701dd3c2b",
+      "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974",
+      "hardware/verification/generated/H3-R2-rail-margins.json": "06b97ec6e2cf9baf6c6701867543245791f7e99f57b4a49779590d3e13a457fa",
+      "hardware/ecad/generated/H2-R2-native-net-ledger.json": "bb0ee548efc0ecfe02299f3757c58cd7a4e7c5a8b50160d8648411ab330ac411",
+      "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7ca7596c728f2dc2fe50516b6309438dfaca2fc9c7f6fbef62c18d005cf8616b",
+      "hardware/product-design/display-mount.json": "71bba240dfa5c3c8cb4f9ac269c4a9874f460981da7c196d072086c0dc3cc343",
+      "hardware/verification/h3_r2_digital_interfaces.py": "04c9371ed643f7c48928c0333c055b73dbcd7a2105124f68f353677fe5cf78f0",
+      "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+    }
+  },
+  "provisional_numerical_errors": [],
+  "current_analytical_scope_complete": false,
+  "open_analytical_findings": [
+    "applicability:rail_inputs"
+  ],
+  "production_release_authorized": false,
+  "battery_energization_authorized": false
 }

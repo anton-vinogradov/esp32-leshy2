@@ -2,24 +2,32 @@
 
 [Русский](inrush-load-step.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Power-transition result](power-transition-result.md)
 
-The generator collects `132` fitted capacitors directly from the current R2 net ledger, applies each exact MPN tolerance and checks five protected outputs. Main, voice and external 5-V rails use the fastest `dV/dt` corner from the minimum control-capacitance corner. AON is checked as a current-limited start.
+**Current status: `review_required`.** Numerical and logical checks below are retained as provisional. Applicability to the fitted power cell is checked separately; open analytical findings are not reclassified as physical tests. This result does not authorize phase advancement, purchasing, fabrication or battery energization.
 
-| Rail | C max, µF | Worst load, mA | Inrush, mA | Margin to min limit, mA | Result |
-| --- | ---: | ---: | ---: | ---: | --- |
-| `AON_SAFE_3V3` | 42.710000 | 72.100 | 92.900 | 0.000 | ✅ |
-| `3V3_MAIN` | 91.110000 | 3046.000 | 71.079 | 882.921 | ✅ |
-| `VVOICE_4V` | 12.000000 | 750.000 | 9.362 | 790.638 | ✅ |
-| `5V_U214_PROTECTED` | 707.420000 | 1250.000 | 334.478 | 47.522 | ✅ |
-| `5V_UNIT_PROTECTED` | 707.420000 | 1250.000 | 334.478 | 47.522 | ✅ |
+Open: `applicability:rail_inputs`; `applicability:sequence_inputs`; `applicability:handover_inputs`.
 
-The official U214 schematic really does fit `C12 = 470 µF`; it is not hidden. The calculation admits `705 µF`, a `+50%` envelope. The same ceiling applies to an attached M5 Unit; a larger reservoir needs its own calculation first. Both external branches remain below the `1.632 A` minimum limit even with the `1.25 A` worst load.
+[Machine evidence](../hardware/verification/generated/H3-R2-inrush-watchdog.json).
 
-The largest `3V3_MAIN` step is `2656.000 mA`; its endpoint plus startup current retains positive hardware margin. `10 µs` and `5 µs` discretizations preserve identical pass/fail results with no more than `0.005000 ms timing difference.
+The generator accounts for **132** fitted capacitors from the current R2 net ledger and applies the stated capacitance tolerances. Separate calculations for five protected outputs are retained. MAIN, voice and external 5-V paths use nominal slew arithmetic with minimum control capacitance; AON is treated as a current-limited start.
 
-## Honest proof boundary
+## Capacitance, load and provisional headroom
 
-This proves the current envelope and absence of a hardware-limit crossing. Real minimum droop, ringing, closed-loop settling and routed effective MLCC capacitance are named H8 oscilloscope checks, not invented analytical results.
+| Rail | C max, µF | Worst load, mA | Capacitive inrush, mA | Margin to model protection minimum, mA | Numerical comparison |
+|---|---:|---:|---:|---:|---|
+| `AON_SAFE_3V3` | 42.710000 | 72.100 | 92.900 | 0.000 | pass |
+| `3V3_MAIN` | 91.110000 | 3046.000 | 71.079 | 882.921 | pass |
+| `VVOICE_4V` | 12.000000 | 750.000 | 9.362 | 790.638 | pass |
+| `5V_U214_PROTECTED` | 707.420000 | 1250.000 | 334.478 | 47.522 | pass |
+| `5V_UNIT_PROTECTED` | 707.420000 | 1250.000 | 334.478 | 47.522 | pass |
 
-**Status:** `H3-R2.2.3` reviewed; `5/5` starts and `4/4` rail load-step envelopes pass.
+The official U214 schematic includes **C12 = 470 µF**. The retained design budget is **705 µF**, a +50% allowance. The same budget is assigned to an attached M5 Unit; a larger reservoir needs a separate calculation. This is a design allowance, not proof of startup across protection and dynamic-load corners.
 
-[Complete machine result](../hardware/verification/generated/H3-R2-inrush-watchdog.json).
+## Load step and numerical convergence
+
+The maximum considered `3V3_MAIN` step is **2656.000 mA**. Model comparisons: starts **5 / 5**, load steps **4 / 4**. A 0.010-ms step and half that step produce at most 0.005000 ms timing difference; classification agrees: yes. Numerical convergence does not validate the input limits.
+
+## Remaining work
+
+Minimum dV/dt capacitance alone does not establish a guaranteed maximum IC slew rate. MAIN RILM, AON protection resistance at the fitted setting and supervisor bounds are not yet qualified. Positive nominal current headroom therefore does not prove startup.
+
+Actual droop, ringing, closed-loop settling and voltage-dependent effective MLCC capacitance need separate analysis and measurements. These do not replace correction of the open analytical inputs. [Watchdog and retained shutdown reason](watchdog-fault-display.md) are covered separately.

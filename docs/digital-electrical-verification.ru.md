@@ -1,13 +1,17 @@
 # Цифровая проверка Leshy2 R2
 
-`H3‑R2.4` проверяет фактическую native R2‑схему, а не историческую R1‑модель. Все расчётные digital‑границы пройдены; трассировочные и измерительные остатки оставлены H6/H8 явно.
+**Текущий статус: `review_required`.** Численные и логические проверки ниже сохранены как предварительные. Применимость к установленной ячейке питания проверяется отдельно; открытые аналитические вопросы не заменены физическими испытаниями. Переход фазы, закупка, изготовление и питание от аккумуляторов не разрешены этим результатом.
+
+Открыто: `applicability:rail_inputs`.
+
+[Машинное evidence](../hardware/verification/generated/H3-R2-digital-interfaces.json).
 
 ## Итог
 
 | Область | Статус | Результат |
 |---|---:|---|
 | i8080-8 | PASS | 20 MHz exact; 15.36 ms full frame; 76.8% of 20-ms budget |
-| Logic levels | PASS | worst boundary `RP2354 -> S3 3V3 GPIO`: 0.156 V |
+| Logic levels | provisional PASS | worst boundary `S3 -> ILI9488 direct i8080/reset`: 0.065 V |
 | USB / service | PASS | product S3 USB + three independent data-only service paths; C5 D2/D3 mux is reset/ownership interlocked |
 | M1 | PASS | 80/80 pin parity; 9 true NC; USB and Hub-RF groups are ground-bounded |
 | Loading | PASS | point-to-point fast buses; FSUSB42 bandwidth is 18x the 40-MHz SDIO clock |

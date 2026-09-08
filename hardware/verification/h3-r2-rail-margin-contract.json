@@ -75,6 +75,33 @@
       "source": "https://www.ti.com/lit/ds/symlink/tps25947.pdf"
     }
   },
+  "voltage_paths": {
+    "AON_SAFE_3V3": {
+      "raw_net": "AON_RAW_3V3", "protected_local_net": "AON_SAFE_3V3",
+      "consumer_location": "AON consumers after downstream distribution",
+      "distribution_scope": "downstream_excludes_protection", "qualified": false,
+      "unqualified_reasons": ["The declared 0.240-ohm TPS25961 RON condition uses RILIM 34.48 kohm, not fitted R46 240 kohm; the numerical envelope remains provisional", "The previous distribution allowance is now explicitly downstream-only; actual routed resistance remains unverified"]
+    },
+    "3V3_MAIN": {
+      "raw_net": "MAIN_RAW_3V3", "protected_local_net": "3V3_MAIN",
+      "consumer_location": "MAIN consumers after downstream routing and M1",
+      "pg_sense_endpoint": "main_efuse_pg_top.END_1 (R66.1 on 3V3_MAIN before distribution)",
+      "distribution_scope": "downstream_excludes_protection", "qualified": false,
+      "unqualified_reasons": ["The old raw and thermal parameters describe TPS564252, not fitted TPS566231PRQFR; numerical parameters are retained only provisionally", "Protection threshold 4.3399 A is not bound to fitted R67 1650 ohm", "Declared 0.050-ohm eFuse RON is an engineering envelope, not a guaranteed full-temperature maximum", "The previous 0.050-V distribution allowance is now explicitly downstream-only, not an already inclusive eFuse allowance"]
+    },
+    "VVOICE_4V": {
+      "raw_net": "VVOICE_RAW_4V", "protected_local_net": "VVOICE_4V",
+      "consumer_location": "VOICE consumers after downstream distribution",
+      "distribution_scope": "downstream_excludes_protection", "qualified": false,
+      "unqualified_reasons": ["Separate protection and downstream distribution budgets are explicit but not yet qualified against the routed path and fitted-condition RON"]
+    },
+    "5V_EXT_ACTIVE_BRANCH": {
+      "raw_net": "5V_EXT_PREPROTECT", "protected_local_net": "5V_U214_PROTECTED or 5V_UNIT_PROTECTED, mutually exclusive",
+      "consumer_location": "Selected external load after downstream distribution and connector",
+      "distribution_scope": "downstream_excludes_protection", "qualified": false,
+      "unqualified_reasons": ["Separate protection and downstream distribution budgets are explicit but branch-specific path/RON applicability remains unqualified"]
+    }
+  },
   "branch_currents_ma": {
     "aon_common": {
       "steady_worst": 55.0,

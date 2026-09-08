@@ -18,12 +18,13 @@ class H3R2ThermalFaultTest(unittest.TestCase):
     def setUp(self):
         self.outputs, self.result = MODULE.build()
 
-    def test_all_current_r2_checks_pass(self):
+    def test_provisional_r2_checks_do_not_qualify_power_inputs(self):
         self.assertEqual("H3-R2.6", self.result["marker"])
-        self.assertEqual("pass", self.result["status"])
+        self.assertEqual("review_required", self.result["status"])
         self.assertEqual(25, self.result["summary"]["checks"])
         self.assertTrue(all(self.result["checks"].values()))
-        self.assertEqual([], self.result["errors"])
+        self.assertEqual([], self.result["provisional_numerical_errors"])
+        self.assertIn("applicability:rail_inputs", self.result["errors"])
 
     def test_thermal_envelope_covers_every_profile(self):
         thermal = self.result["thermal"]

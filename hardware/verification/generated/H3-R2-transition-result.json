@@ -2,11 +2,13 @@
   "schema_version": 1,
   "artifact": "H3-R2-transition-result",
   "marker": "H3-R2.2.4",
-  "status": "reviewed_h3_r2_2_power_transitions_complete",
+  "status": "review_required",
   "source_sha256": {
-    "hardware/verification/generated/H3-R2-transition-sequences.json": "c7af6cac47972dab436b7399569d44cc9f71f13ecd27679bf987f015454f6a71",
-    "hardware/verification/generated/H3-R2-handover.json": "5f6f1cd789a429a80993f4aa5e65361bf3c133046413ea751e1a7ee65256ae1e",
-    "hardware/verification/generated/H3-R2-inrush-watchdog.json": "9f473a0366baf0f2bd9c90d81dca93699b7a2f4aa903f3f557bfe45ab37f5b55"
+    "hardware/verification/generated/H3-R2-transition-sequences.json": "2671fb9e0b96e7ba755a84d56e4ccdd33c4b1c1f6735786ea60a3dc0ea7dadab",
+    "hardware/verification/generated/H3-R2-handover.json": "b0dd3c5d16a260e6770707daae1022fcc87c624587cf4b1f76c97702b29a8932",
+    "hardware/verification/generated/H3-R2-inrush-watchdog.json": "5eb0f797c0fc387c6dbcc7956fc5fc8bdb667f7c8713e43eed8afa258a83db08",
+    "hardware/verification/h3_r2_inrush_watchdog.py": "5b44520bd00145a5990fc19337b25d7848a9fdc4425ccd9e9887d59d9acddeb6",
+    "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
   },
   "checks": {
     "startup_sequences": true,
@@ -52,11 +54,54 @@
   "authorization": {
     "pcb_placement_or_routing": false,
     "purchasing": false,
-    "fabrication": false
+    "fabrication": false,
+    "advance_phase": false,
+    "battery_energization": false,
+    "final_product_claim": false
   },
   "next": {
     "marker": "H3-R2.3",
     "action": "verify display, audio, IR, battery and Airband analog corners"
   },
-  "errors": []
+  "errors": [
+    "applicability:inrush_inputs",
+    "applicability:sequence_inputs",
+    "applicability:handover_inputs"
+  ],
+  "current_power_scope": {
+    "schema_version": 1,
+    "artifact": "H3-R2-transition-result",
+    "status": "review_required",
+    "numerical_status": "provisional_pass",
+    "numerical_checks_pass": true,
+    "applicability_checks": {
+      "inrush_inputs": false,
+      "sequence_inputs": false,
+      "handover_inputs": false
+    },
+    "open_findings": [
+      "applicability:inrush_inputs",
+      "applicability:sequence_inputs",
+      "applicability:handover_inputs"
+    ],
+    "current_analytical_scope_complete": false,
+    "production_release_authorized": false,
+    "battery_energization_authorized": false,
+    "source_sha256": {
+      "hardware/verification/generated/H3-R2-transition-sequences.json": "2671fb9e0b96e7ba755a84d56e4ccdd33c4b1c1f6735786ea60a3dc0ea7dadab",
+      "hardware/verification/generated/H3-R2-handover.json": "b0dd3c5d16a260e6770707daae1022fcc87c624587cf4b1f76c97702b29a8932",
+      "hardware/verification/generated/H3-R2-inrush-watchdog.json": "5eb0f797c0fc387c6dbcc7956fc5fc8bdb667f7c8713e43eed8afa258a83db08",
+      "hardware/verification/h3_r2_inrush_watchdog.py": "5b44520bd00145a5990fc19337b25d7848a9fdc4425ccd9e9887d59d9acddeb6",
+      "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+    }
+  },
+  "provisional_numerical_errors": [],
+  "current_analytical_scope_complete": false,
+  "open_analytical_findings": [
+    "applicability:inrush_inputs",
+    "applicability:sequence_inputs",
+    "applicability:handover_inputs"
+  ],
+  "production_release_authorized": false,
+  "battery_energization_authorized": false
 }

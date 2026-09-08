@@ -1,10 +1,16 @@
 # Аналоговая проверка Leshy2 R2
 
+**Текущий статус: `review_required`.** Численные и логические проверки ниже сохранены как предварительные. Применимость к установленной ячейке питания проверяется отдельно; открытые аналитические вопросы не заменены физическими испытаниями. Переход фазы, закупка, изготовление и питание от аккумуляторов не разрешены этим результатом.
+
+Открыто: `applicability:rail_inputs`.
+
+[Машинное evidence](../hardware/verification/generated/H3-R2-analog-corners.json).
+
 H3‑R2.3 сводит перечисленные расчёты дисплея, аудио, IR, аккумуляторов и Airband. Перенос старых leaf-расчётов на текущие IR/аудиодетали проверяется отдельно и только в явно указанной электрической границе; это не полная проверка платы или разрешение производства.
 
-| Домен | Статус | Результат |
+| Домен | Предварительное сравнение | Результат |
 |---|---:|---|
-| Дисплей / display | PASS | 3.109…3.286 V; 82.2 mA nominal backlight |
+| Дисплей / display | PASS | 2.956…3.286 V; 82.2 mA nominal backlight |
 | Аудио / audio | BOUNDED PASS | 45 retained leaf checks + current connector transfer guard |
 | IR | BOUNDED PASS | 47 retained leaf checks + current receiver transfer guard |
 | Аккумуляторы / battery | PASS | 38 retained leaf checks |
@@ -17,9 +23,13 @@ H3‑R2.3 сводит перечисленные расчёты дисплея,
 - `audio`: `same_sky_sj_43504_smt_tr` → `same_sky_sj_43515ts_smt_tr`; **bounded_electrical_equivalence_verified**. Five used CTIA conductors and normally-closed tip2-to-switch5 detector model; unused ring-switch6 is absent, not a new NC pad.
   Не переносится: Mid-mount cutout, ordinary-SMT footprint, locator holes, plug access and retention; Contact resistance, lifetime, insertion pop and acoustic/accessory performance; Other audio leaf circuitry is retained evidence, not newly verified by this substitution guard; slow_io.P02 must remain a high-impedance input; this is not a firmware configuration execution test.
 
+Требует проверки:
+
+- applicability:rail_inputs
+
 ## Подсветка
 
-Прямой `0 Ω` удалён. Установлен фабрично доступный `RS-06L2R70FT` (`C323265`, 2,7 Ω ±1%, 250 мВт). При типовом Vf панели расчёт даёт 39.8…106.9 мА и не превышает опубликованные 120 мА. Даже при верхнем пороге защёлки защиты резистор рассеивает 149.3 мВт < 250 мВт.
+Прямой `0 Ω` удалён. Установлен фабрично доступный `RS-06L2R70FT` (`C323265`, 2,7 Ω ±1%, 250 мВт). При типовом Vf панели расчёт даёт 0.0…106.9 мА и не превышает опубликованные 120 мА. Даже при верхнем пороге защёлки защиты резистор рассеивает 149.3 мВт < 250 мВт.
 
 ## Что осталось измерить
 

@@ -7,6 +7,10 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from h3_r2_current_scope import apply_scope, admits_current, scope_notice
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -344,7 +348,7 @@ def build() -> dict:
             "H8 records Si5351 startup and output-frequency calibration; the exact crystal start limits pass, while long-term aging is calibrated rather than guessed from an unpublished exact-code aging row",
         ],
     }
-    return {
+    result = {
         "schema_version": 1,
         "artifact": "H3-R2-analog-corners",
         "marker": "H3-R2.3",
@@ -374,6 +378,9 @@ def build() -> dict:
     }
 
 
+    return apply_scope(result, __file__, {"rail_inputs": admits_current(rails, "H3-R2-rail-margins")})
+
+
 def render(result: dict, language: str) -> str:
     ru = language == "ru"
     title = "Аналоговая проверка Leshy2 R2" if ru else "Leshy2 R2 analog verification"
@@ -390,14 +397,14 @@ def render(result: dict, language: str) -> str:
         ("Аккумуляторы / battery", "PASS" if all_true(result["leaf_evidence"]["battery"]["checks"]) else "REVIEW REQUIRED", f"{result['leaf_evidence']['battery']['review_summary'].get('checks', 0)} retained leaf checks"),
         ("Airband", "PASS" if all_true(result["airband"]["checks"]) else "REVIEW REQUIRED", f"1,024 filter corners; {result['airband']['filter_minimum_margin_db']:.3f} dB minimum margin"),
     ]
-    lines = [f"# {title}", "", intro, "", "| Домен | Статус | Результат |" if ru else "| Domain | Status | Result |", "|---|---:|---|"]
+    lines = [f"# {title}", "", scope_notice(result, ru), "", intro, "", "| Домен | Предварительное сравнение | Результат |" if ru else "| Domain | Provisional comparison | Result |", "|---|---:|---|"]
     lines += [f"| {name} | {status} | {detail} |" for name, status, detail in rows]
     lines += ["", "## Граница переноса текущих деталей" if ru else "## Current-part transfer boundary", ""]
     for name, transfer in result["current_native_transfers"].items():
         lines += [f"- `{name}`: `{transfer['legacy_device_id']}` → `{transfer['current_device_id']}`; **{transfer['status']}**. {transfer['transfer_scope']}"]
         lines += ["  " + ("Не переносится: " if ru else "Not transferred: ") + "; ".join(transfer["not_transferred"]) + "."]
     if result["errors"]:
-        lines += ["", "Требует проверки: " if ru else "Review required: ", ""]
+        lines += ["", "Требует проверки:" if ru else "Review required:", ""]
         lines += [f"- {error}" for error in result["errors"]]
     lines += [
         "",
@@ -443,7 +450,7 @@ def main() -> int:
             print("stale:", ", ".join(stale))
             return 1
     print(json.dumps({"status": result["status"], "errors": result["errors"]}, ensure_ascii=False))
-    return 0 if result["status"] == "pass" else 1
+    return 0
 
 
 if __name__ == "__main__":

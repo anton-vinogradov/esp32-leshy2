@@ -22,7 +22,8 @@ class H3R2HandoverTests(unittest.TestCase):
 
     def test_complete_transition_register_passes(self):
         summary = self.manifest["summary"]
-        self.assertEqual("reviewed_usb_pack_handover_dpm_brownout_and_source_loss", self.manifest["status"])
+        self.assertEqual("review_required", self.manifest["status"])
+        self.assertFalse(self.manifest["current_analytical_scope_complete"])
         self.assertGreater(summary["transition_cases"], 1000)
         self.assertEqual(summary["transition_cases"], summary["passed_cases"])
         self.assertEqual(0, summary["failed_cases"])

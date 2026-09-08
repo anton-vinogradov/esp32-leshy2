@@ -1,10 +1,16 @@
 # Leshy2 R2 analog verification
 
+**Current status: `review_required`.** Numerical and logical checks below are retained as provisional. Applicability to the fitted power cell is checked separately; open analytical findings are not reclassified as physical tests. This result does not authorize phase advancement, purchasing, fabrication or battery energization.
+
+Open: `applicability:rail_inputs`.
+
+[Machine evidence](../hardware/verification/generated/H3-R2-analog-corners.json).
+
 H3-R2.3 consolidates the listed display, audio, IR, battery and Airband calculations. Transfer of retained leaf calculations to current IR/audio parts is checked separately within an explicit electrical scope; this is not whole-board verification or manufacturing approval.
 
-| Domain | Status | Result |
+| Domain | Provisional comparison | Result |
 |---|---:|---|
-| Дисплей / display | PASS | 3.109…3.286 V; 82.2 mA nominal backlight |
+| Дисплей / display | PASS | 2.956…3.286 V; 82.2 mA nominal backlight |
 | Аудио / audio | BOUNDED PASS | 45 retained leaf checks + current connector transfer guard |
 | IR | BOUNDED PASS | 47 retained leaf checks + current receiver transfer guard |
 | Аккумуляторы / battery | PASS | 38 retained leaf checks |
@@ -17,9 +23,13 @@ H3-R2.3 consolidates the listed display, audio, IR, battery and Airband calculat
 - `audio`: `same_sky_sj_43504_smt_tr` → `same_sky_sj_43515ts_smt_tr`; **bounded_electrical_equivalence_verified**. Five used CTIA conductors and normally-closed tip2-to-switch5 detector model; unused ring-switch6 is absent, not a new NC pad.
   Not transferred: Mid-mount cutout, ordinary-SMT footprint, locator holes, plug access and retention; Contact resistance, lifetime, insertion pop and acoustic/accessory performance; Other audio leaf circuitry is retained evidence, not newly verified by this substitution guard; slow_io.P02 must remain a high-impedance input; this is not a firmware configuration execution test.
 
+Review required:
+
+- applicability:rail_inputs
+
 ## Backlight
 
-The uncontrolled `0 ohm` path is gone. Factory-stocked `RS-06L2R70FT` (`C323265`, 2.7 ohm +/-1%, 250 mW) is fitted. At the panel's published typical Vf the calculated range is 39.8 to 106.9 mA and remains below the published 120 mA maximum. Even at the protection latch upper threshold the resistor dissipates 149.3 mW < 250 mW.
+The uncontrolled `0 ohm` path is gone. Factory-stocked `RS-06L2R70FT` (`C323265`, 2.7 ohm +/-1%, 250 mW) is fitted. At the panel's published typical Vf the calculated range is 0.0 to 106.9 mA and remains below the published 120 mA maximum. Even at the protection latch upper threshold the resistor dissipates 149.3 mW < 250 mW.
 
 ## What remains to measure
 

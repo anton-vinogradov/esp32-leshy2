@@ -8,6 +8,10 @@ import hashlib
 import json
 from decimal import Decimal, getcontext
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from h3_r2_current_scope import apply_scope, admits_current, scope_notice
 
 
 getcontext().prec = 50
@@ -305,7 +309,7 @@ def build() -> dict:
         {"owner": "H8", "item": "measure i8080 WR/data edges at the panel, USB eyes/ enumeration, SDIO/SPI far-end setup-hold and sustained qualified payload floors"},
         {"owner": "F5/F6", "item": "instantiate the locked ESP-IDF i80 config at exact 20 MHz, CS=-1, 8-bit bus and rising-edge panel capture; exercise dirty-region and full-frame fixtures without waiting for TE, because panel contact 39 is deliberately open; no TE-synchronized or tear-free claim"},
     ]
-    return {
+    result = {
         "schema_version": 1,
         "artifact": "H3-R2-digital-interfaces",
         "marker": "H3-R2.4",
@@ -327,6 +331,9 @@ def build() -> dict:
     }
 
 
+    return apply_scope(result, __file__, {"rail_inputs": admits_current(rails, "H3-R2-rail-margins")})
+
+
 def render(result: dict, language: str) -> str:
     ru = language == "ru"
     title = "Цифровая проверка Leshy2 R2" if ru else "Leshy2 R2 digital verification"
@@ -334,12 +341,11 @@ def render(result: dict, language: str) -> str:
     worst = min(result["logic_level_margins"], key=lambda row: row["minimum_margin"])
     lines = [
         f"# {title}", "",
-        ("`H3‑R2.4` проверяет фактическую native R2‑схему, а не историческую R1‑модель. Все расчётные digital‑границы пройдены; трассировочные и измерительные остатки оставлены H6/H8 явно."
-         if ru else "`H3-R2.4` verifies the actual native R2 schematic rather than the historical R1 model. Every calculable digital boundary passes; routed and measured residuals remain explicitly assigned to H6/H8."),
+        scope_notice(result, ru),
         "", "## Итог" if ru else "## Result", "",
         "| Область | Статус | Результат |" if ru else "| Area | Status | Result |", "|---|---:|---|",
         f"| i8080-8 | PASS | 20 MHz exact; {d['throughput']['full_frame_wire_ms']:.2f} ms full frame; {d['throughput']['budget_occupancy_pct']:.1f}% of 20-ms budget |",
-        f"| Logic levels | PASS | worst boundary `{worst['boundary']}`: {worst['minimum_margin']:.3f} V |",
+        f"| Logic levels | provisional {'PASS' if all(row['status'] == 'pass' for row in result['logic_level_margins']) else 'FAIL'} | worst boundary `{worst['boundary']}`: {worst['minimum_margin']:.3f} V |",
         f"| USB / service | PASS | product S3 USB + three independent data-only service paths; C5 D2/D3 mux is reset/ownership interlocked |",
         f"| M1 | PASS | 80/80 pin parity; 9 true NC; USB and Hub-RF groups are ground-bounded |",
         f"| Loading | PASS | point-to-point fast buses; FSUSB42 bandwidth is {result['loading']['models']['hub_c5_sdio']['switch_to_bus_clock_ratio']:.0f}x the 40-MHz SDIO clock |",
@@ -376,7 +382,7 @@ def main() -> int:
             print("stale:", ", ".join(stale))
             return 1
     print(json.dumps({"status": result["status"], "errors": result["errors"]}, ensure_ascii=False))
-    return 0 if result["status"] == "pass" else 1
+    return 0
 
 
 if __name__ == "__main__":

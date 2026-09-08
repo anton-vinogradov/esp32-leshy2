@@ -3,6 +3,7 @@ import importlib.util
 import json
 from pathlib import Path
 import unittest
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -96,6 +97,57 @@ class H6R2NativePowerStartupTest(unittest.TestCase):
         check = self.check("main_pg_assertion_headroom")
         self.assertFalse(check["pass"])
         self.assertAlmostEqual(3.170574212121, check["observed"]["required_output_v"])
+
+    def test_pg_samples_protected_local_not_consumer_endpoint(self):
+        row = self.data["margins"]["voltage_corners"]["3V3_MAIN"]
+        row.update(protected_local_min_v="3.20", endpoint_min_v="2.90",
+                   nodes={"protected_local_net": "3V3_MAIN"})
+        with patch.object(self.module, "admits_current", return_value=True):
+            check = self.check("main_pg_assertion_headroom")
+        self.assertTrue(check["pass"])
+        self.assertAlmostEqual(3.20, check["observed"]["admitted_output_min_v"])
+        # PG success never proves the separate 2.90-V consumer endpoint safe.
+        self.assertFalse(self.result()["startup_proven"])
+
+    def test_old_endpoint_cannot_substitute_for_missing_pg_node(self):
+        row = self.data["margins"]["voltage_corners"]["3V3_MAIN"]
+        row.pop("protected_local_min_v", None)
+        row["endpoint_min_v"] = "3.25"
+        with patch.object(self.module, "admits_current", return_value=True):
+            check = self.check("main_pg_assertion_headroom")
+        self.assertFalse(check["pass"])
+        self.assertIsNone(check["observed"]["provisional_protected_local_min_v"])
+
+    def test_pg_cannot_qualify_a_provisional_rail_by_positive_arithmetic(self):
+        row = self.data["margins"]["voltage_corners"]["3V3_MAIN"]
+        row.update(protected_local_min_v="3.25", nodes={"protected_local_net": "3V3_MAIN"})
+        check = self.check("main_pg_assertion_headroom")
+        self.assertTrue(check["observed"]["numerical_headroom_only"])
+        self.assertFalse(check["observed"]["current_rail_envelope_admitted"])
+        self.assertFalse(check["pass"])
+
+    def test_pg_node_must_agree_with_native_sense_path(self):
+        row = self.data["margins"]["voltage_corners"]["3V3_MAIN"]
+        row.update(protected_local_min_v="3.25", nodes={"protected_local_net": "3V3_MAIN"})
+        self.row("main_efuse_pg_top.END_1")["net"] = "MAIN_RAW_3V3"
+        with patch.object(self.module, "admits_current", return_value=True):
+            self.assertFalse(self.check("main_pg_assertion_headroom")["pass"])
+
+    def test_pg_rejects_nonfinite_or_untyped_voltage(self):
+        row = self.data["margins"]["voltage_corners"]["3V3_MAIN"]
+        row["nodes"] = {"protected_local_net": "3V3_MAIN"}
+        for value in (None, True, "nan", "inf", "bad", {}):
+            with self.subTest(value=value):
+                row["protected_local_min_v"] = value
+                with patch.object(self.module, "admits_current", return_value=True):
+                    self.assertFalse(self.check("main_pg_assertion_headroom")["pass"])
+
+    def test_valley_trip_threshold_is_not_continuous_current_rating(self):
+        self.resistor("main_efuse_rilm", "1_06kohm_1pct_0402_test_resistor")
+        check = self.check("main_efuse_high_below_buck_limit")
+        self.assertGreater(check["observed"], 6.0)
+        self.assertLess(check["observed"], 6.1)
+        self.assertFalse(check["pass"])
 
     def test_main_hardware_identity_cannot_use_old_converter_source(self):
         self.data["h3"]["rails"]["3V3_MAIN"]["source"] = "https://www.ti.com/lit/ds/symlink/tps564252.pdf"

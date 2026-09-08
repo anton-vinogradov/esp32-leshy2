@@ -26,11 +26,13 @@ class H3R2TransitionSequenceTests(unittest.TestCase):
         self.assertIn("14 scenarios", result.stdout)
 
     def test_every_transition_and_topology_check_passes(self):
-        self.assertEqual("reviewed_startup_shutdown_reset_and_recovery", self.report["status"])
+        self.assertEqual("review_required", self.report["status"])
         self.assertEqual(14, self.report["summary"]["scenarios"])
         self.assertEqual(14, self.report["summary"]["passed_scenarios"])
         self.assertEqual(0, self.report["summary"]["topology_failures"])
-        self.assertEqual([], self.report["errors"])
+        self.assertEqual([], self.report["provisional_numerical_errors"])
+        self.assertIn("applicability:supervisor_assertion_bound", self.report["errors"])
+        self.assertIn("applicability:supervisor_hysteresis_bound", self.report["errors"])
         self.assertTrue(all(row["status"] == "pass" for row in self.report["scenarios"]))
 
     def test_s3_fault_ui_is_separate_from_hazardous_reset_paths(self):

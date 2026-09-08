@@ -2,13 +2,16 @@
   "schema_version": 1,
   "artifact": "H3-R2-dc-source-crosscheck",
   "marker": "H3-R2.1.5",
-  "status": "reviewed_h3_r2_1_worst_case_dc_source_charge_and_power_states",
+  "status": "review_required",
   "source_sha256": {
-    "hardware/verification/generated/H3-R2-method-contract.json": "33fc85eb192e102fdda33f646ac0250b85bb08a5e0b4a530c028d92bc92a242a",
-    "hardware/verification/generated/H3-R2-power-state-register.json": "ff4b92a1ecbeefe04068f976ccc16a2cc03bb453d699e61c7921a010214d1453",
-    "hardware/verification/generated/H3-R2-load-binding.json": "55491b4c6d77715c1c71a7cfeb44443fd5de3f231385ba186e07b5b6eaf7115c",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "95ea4b66f38ca6378e0703bc0377e106c81e67628f4bb3209fab7addf6b7c78a",
-    "hardware/verification/generated/H3-R2-source-margins.json": "8341df14e8643c0dc884437f901e038be78e789bf7f2cfcd0fd4b5889a5f257b"
+    "hardware/verification/h3-r2-verification-plan.json": "54143b22eeddf73fbe05ea5f0996c363e22bf7830c49e13ced6f3dcca8c7d16c",
+    "hardware/verification/generated/H3-R2-method-contract.json": "6aeb96256aba61bf0a90c05675ee4c1c62ac7c3fdf69da596ebdd99a40715014",
+    "hardware/verification/generated/H3-R2-power-state-register.json": "f2b831f444299d71058d25aa17555fcdaa4beab49f1cfa872e39aacac574498c",
+    "hardware/verification/generated/H3-R2-load-binding.json": "63175fd054232146d7def375ff52f8161426de2b8b98d344ebd23beac3c01811",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "06b97ec6e2cf9baf6c6701867543245791f7e99f57b4a49779590d3e13a457fa",
+    "hardware/verification/generated/H3-R2-source-margins.json": "a47b5eae89e57707f93d0df93070bbd6a4fe0105c18b0562709c0abf75549a27",
+    "hardware/verification/h3_r2_dc_source_crosscheck.py": "b88942ec3a22bb07bf267257875cefcc85c41534c64a03495bc8cf369a080efb",
+    "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
   },
   "checks": {
     "plan_closes_h3_r2_1": true,
@@ -21,7 +24,7 @@
     "numeric_and_deferred_partition": true,
     "all_77_deferred_lines_are_source_owned": true,
     "no_hidden_load_or_source_allowance": true,
-    "rail_current_voltage_thermal_pass": true,
+    "rail_current_voltage_thermal_pass": false,
     "all_source_states_safe": true,
     "oversized_usb_only_profiles_are_refused": true,
     "method_rules_present": true,
@@ -56,9 +59,9 @@
   "corrections": [
     {
       "id": "H3-R2.1.3-F01",
-      "finding": "the historical R1 calculator still described 3V3_MAIN as a 6-A rail although R2 fits TPS564252DRLR",
-      "correction": "R2 uses the exact 4.000-A converter minimum as the limiting hardware capability",
-      "effect": "the worst 3.046-A electrical corner still passes PF-R2-03, but only with 154 mA to the 3.200-A 25%-reserve boundary",
+      "finding": "The old H3 source/thermal/protection model is not applicable to the current fitted MAIN power cell",
+      "correction": "Preserve old numerical parameters as provisional and explicitly include protection voltage drop; exact model qualification remains open",
+      "effect": "A positive old current remainder is not proof of current-native PF-R2-03 or consumer voltage",
       "bom_cost_effect": "0; evidence correction only"
     },
     {
@@ -84,11 +87,59 @@
   "authorization": {
     "pcb_placement_or_routing": false,
     "purchasing": false,
-    "fabrication": false
+    "fabrication": false,
+    "advance_phase": false,
+    "battery_energization": false,
+    "final_product_claim": false
   },
   "next": {
     "marker": "H3-R2.2.1",
     "action": "verify ordered startup, shutdown, reset and recovery sequencing"
   },
-  "errors": []
+  "errors": [
+    "rail_current_voltage_thermal_pass",
+    "numerical:existing_checks",
+    "applicability:rail_inputs",
+    "applicability:source_inputs"
+  ],
+  "current_power_scope": {
+    "schema_version": 1,
+    "artifact": "H3-R2-dc-source-crosscheck",
+    "status": "review_required",
+    "numerical_status": "provisional_fail",
+    "numerical_checks_pass": false,
+    "applicability_checks": {
+      "rail_inputs": false,
+      "source_inputs": false
+    },
+    "open_findings": [
+      "numerical:existing_checks",
+      "applicability:rail_inputs",
+      "applicability:source_inputs"
+    ],
+    "current_analytical_scope_complete": false,
+    "production_release_authorized": false,
+    "battery_energization_authorized": false,
+    "source_sha256": {
+      "hardware/verification/h3-r2-verification-plan.json": "54143b22eeddf73fbe05ea5f0996c363e22bf7830c49e13ced6f3dcca8c7d16c",
+      "hardware/verification/generated/H3-R2-method-contract.json": "6aeb96256aba61bf0a90c05675ee4c1c62ac7c3fdf69da596ebdd99a40715014",
+      "hardware/verification/generated/H3-R2-power-state-register.json": "f2b831f444299d71058d25aa17555fcdaa4beab49f1cfa872e39aacac574498c",
+      "hardware/verification/generated/H3-R2-load-binding.json": "63175fd054232146d7def375ff52f8161426de2b8b98d344ebd23beac3c01811",
+      "hardware/verification/generated/H3-R2-rail-margins.json": "06b97ec6e2cf9baf6c6701867543245791f7e99f57b4a49779590d3e13a457fa",
+      "hardware/verification/generated/H3-R2-source-margins.json": "a47b5eae89e57707f93d0df93070bbd6a4fe0105c18b0562709c0abf75549a27",
+      "hardware/verification/h3_r2_dc_source_crosscheck.py": "b88942ec3a22bb07bf267257875cefcc85c41534c64a03495bc8cf369a080efb",
+      "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+    }
+  },
+  "provisional_numerical_errors": [
+    "rail_current_voltage_thermal_pass"
+  ],
+  "current_analytical_scope_complete": false,
+  "open_analytical_findings": [
+    "numerical:existing_checks",
+    "applicability:rail_inputs",
+    "applicability:source_inputs"
+  ],
+  "production_release_authorized": false,
+  "battery_energization_authorized": false
 }

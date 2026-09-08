@@ -2,7 +2,11 @@
 
 [English](power-transition-sequences.md) · [Главная](../README.ru.md) · [Роадмап](roadmap.ru.md)
 
-Проверка `H3-R2.2.1` завершена: все сценарии запуска и аварийного возврата проходят без автоматического повторного старта. Обычный fault аппаратно выключает опасные домены и напрямую сбрасывает C5/RF RP, но оставляет S3 для понятного сообщения, пока доступно питание UI.
+**Текущий статус: `review_required`.** Численные и логические проверки ниже сохранены как предварительные. Применимость к установленной ячейке питания проверяется отдельно; открытые аналитические вопросы не заменены физическими испытаниями. Переход фазы, закупка, изготовление и питание от аккумуляторов не разрешены этим результатом.
+
+Открыто: `applicability:dc_inputs`; `applicability:supervisor_assertion_bound`; `applicability:supervisor_hysteresis_bound`.
+
+[Машинное evidence](../hardware/verification/generated/H3-R2-transition-sequences.json).
 
 ## Правило запуска
 
@@ -10,7 +14,7 @@ Safety держит `SAFETY_FAULT_REQUEST` активным после сбро�
 
 ## Точные границы
 
-- TPS3808 с открытым CT: `12..28 мс`; аварийное утверждение reset — не более `20 мкс`.
+- TPS3808 с открытым CT: `12..28 мс`; утверждение reset — `20 мкс` типично, гарантированный максимум не задан. Минимум гистерезиса также не задан; эти пределы остаются открытыми, а не принимаются равными типичным.
 - TPS3435: запуск ИС — не более `500 мкс`, задержка запуска watchdog-окна — `0 мс`; timeout `1.44..1.76 с`, WDO low `180..220 мс`; heartbeat — `500 мс`.
 - 100 кОм / 2,2 мкФ: расчётный rise `96.888..283.86 мс`, гарантированный tolerance-only discharge `484.525 мс`; это debounce, не единственный interlock.
 
@@ -45,6 +49,4 @@ Safety держит `SAFETY_FAULT_REQUEST` активным после сбро�
 - H8 measures the populated 100-kohm/2.2-uF RC under DC bias and temperature; startup safety does not depend solely on this number.
 - H8 captures POR assertion/release, direct C5/RF-RP reset and S3 fault-display retention at real rail corners.
 
-**Результат:** `14/14` сценариев и `51` endpoint-проверок проходят. H3-R2.3, [цифровая проверка H3-R2.4](digital-electrical-verification.ru.md), [RF-проверка H3-R2.5](rf-electrical-verification.ru.md), [thermal/fault H3-R2.6](thermal-fault-electrical-verification.ru.md), итоги H3-R2.7, H4-R2 и H5-R1 проведены ревью; **текущий маркер — `H6.0.3-R1`**. H6 placement/routing разрешена; заказ и fabrication всё ещё запрещены.
-
-[Машинный отчёт](../hardware/verification/generated/H3-R2-transition-sequences.json).
+Текущие численные результаты предварительны; открытые аналитические вопросы остаются.

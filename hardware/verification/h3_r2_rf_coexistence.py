@@ -9,6 +9,10 @@ import json
 import math
 from decimal import Decimal, getcontext
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from h3_r2_current_scope import apply_scope, admits_current, scope_notice
 
 
 getcontext().prec = 34
@@ -201,7 +205,7 @@ def build() -> tuple[dict[Path, str], dict]:
 
     checks = {
         "upstream_h1_placement_passes": placement["status"] == "pass",
-        "upstream_h3_inputs_pass": all(item["status"] == "pass" for item in (digital, analog, provenance)),
+        "provenance_input_pass": provenance["status"] == "pass",
         "exactly_ten_named_onboard_paths": path_ids == expected_paths and len(path_ids) == 10,
         "physical_topology_covers_all_paths": topology_path_ids == expected_paths,
         "physical_split_is_exactly_five_plus_five": front_path_ids == expected_front and rear_path_ids == expected_rear,
@@ -238,8 +242,6 @@ def build() -> tuple[dict[Path, str], dict]:
         **route_checks,
     }
     failed = [name for name, passed in checks.items() if not passed]
-    if failed:
-        raise ValueError("H3-R2.5 checks failed: " + ", ".join(failed))
 
     feed_summary = {
         "external_ports": 10,
@@ -306,9 +308,12 @@ def build() -> tuple[dict[Path, str], dict]:
         "next": {"marker": "H3-R2.6", "action": "thermal and duty-envelope verification"},
     }
 
+    result["errors"] = failed
+    apply_scope(result, __file__, {"digital_inputs": admits_current(digital, "H3-R2-digital-interfaces"),
+                "analog_inputs": admits_current(analog, "H3-R2-analog-corners")}, numerical_ok=not failed)
     en = f"""# RF electrical verification · H3-R2.5
 
-`H3-R2.5` is reviewed with **{len(checks)} passing machine checks** and no open analytical finding. [`H3-R2.6`](thermal-fault-electrical-verification.md), the H3-R2.7 phase package, global H4-R2 and global H5-R1 are also reviewed; the current marker is `H6.0.3-R1`.
+{scope_notice(result)}
 
 The ten source-to-port paths are local to the PCB that carries their antenna: `5 + 5`, with no RF crossing M1. S3 and C5 retain exact 30-mm jumpers; the three nRF paths use exact 60-mm jumpers. The conservative generated reach test leaves at least **{microcoax['minimum_conservative_slack_mm']:.3f} mm** and bounds every nRF from the farthest corner of the complete module envelope rather than guessing the IPEX axis. Airband is a receive-only selectable branch behind the existing `RX-FM/SW` port.
 
@@ -316,13 +321,13 @@ Paper component limits are internally consistent: C5 keeps 115-MHz connector mar
 
 Runtime still admits at most one of nine top-level signal groups and preserves all thirteen quiet contracts. The deliberate `SG-N24` internal exception keeps all three radios active in 3PRX, 1PTX+2PRX, 2PTX+1PRX and 3PTX, covering eight radio-identity permutations under both support loads.
 
-This closes the **pre-layout electrical model**, not final RF performance. Seven physical residuals remain explicitly assigned to H5 final-assembly evidence, H6 solved/coupon-correlated routing and H8 VNA/OTA/coexistence qualification.
+The component-limit and policy comparisons above are provisional. Current power applicability remains open alongside the seven existing physical RF residuals; this does not close the pre-layout electrical model or prove final RF performance.
 
 Machine evidence: [`H3-R2-rf-coexistence.json`](../hardware/verification/generated/H3-R2-rf-coexistence.json).
 """
     ru = f"""# Электрическая RF-проверка · H3-R2.5
 
-`H3-R2.5` проведён ревью: **{len(checks)} машинных checks проходят**, открытых аналитических findings нет. [`H3-R2.6`](thermal-fault-electrical-verification.ru.md), пакеты фаз H3-R2.7, H4-R2 и H5-R1 также проведены ревью; текущий маркер — `H6.0.3-R1`.
+{scope_notice(result, True)}
 
 Все десять source-to-port трактов остаются на плате своего антенного разъёма: `5 + 5`, RF через M1 не проходит. S3 и C5 сохраняют точные 30-мм перемычки, три nRF получают точные 60-мм перемычки. Консервативная проверка оставляет не меньше **{microcoax['minimum_conservative_slack_mm']:.3f} мм** и считает каждый nRF до самого дальнего угла полного корпуса модуля, не угадывая ось IPEX. Airband остаётся только приёмной выбираемой ветвью существующего порта `RX-FM/SW`.
 
@@ -330,7 +335,7 @@ Machine evidence: [`H3-R2-rf-coexistence.json`](../hardware/verification/generat
 
 Runtime допускает максимум одну из девяти верхнеуровневых групп и сохраняет все тринадцать quiet contracts. Намеренное внутреннее исключение `SG-N24` держит активными все три радио в режимах 3PRX, 1PTX+2PRX, 2PTX+1PRX и 3PTX: восемь перестановок идентичностей под обеими support-нагрузками.
 
-Так закрывается **pre-layout электрическая модель**, а не заявляются финальные RF-характеристики. Семь физических residuals явно назначены H5 для evidence финальной сборки, H6 для field-solved/coupon-correlated трассировки и H8 для VNA/OTA/coexistence квалификации.
+Сравнения пределов компонентов и политик выше предварительны. Применимость нынешнего питания остаётся открытой наряду с семью физическими RF residuals; это не закрывает pre-layout модель и не доказывает итоговые RF-характеристики.
 
 Машинное evidence: [`H3-R2-rf-coexistence.json`](../hardware/verification/generated/H3-R2-rf-coexistence.json).
 """
@@ -360,7 +365,7 @@ def main() -> int:
         if stale:
             raise SystemExit("stale H3-R2.5 artifacts: " + ", ".join(stale))
     print(
-        f"ok: H3-R2.5 reviewed; {result['summary']['checks']} checks, "
+        f"ok: H3-R2.5 {result['status']}; {result['summary']['checks']} checks, "
         f"{result['summary']['external_ports']} RF ports, next H3-R2.6"
     )
     return 0

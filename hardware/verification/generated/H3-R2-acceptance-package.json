@@ -4,24 +4,25 @@
   "marker": "H3-R2.7",
   "stage": "H3",
   "baseline": "R2",
-  "status": "reviewed",
+  "status": "review_required",
   "source_sha256": {
-    "hardware/verification/generated/H3-R2-crosscheck.json": "96da46209f3a1f8cec313b3eb2208c8c78743620d2bc20697cb56f94e257b814",
-    "hardware/verification/generated/H3-R2-physical-residuals.json": "1ccf10404cd64f78faf6b4a29acdb93184ccfb3bbba919d5b5e776cd9c98e060"
+    "hardware/verification/generated/H3-R2-crosscheck.json": "dfaed2e3368927d07e58a250c6523c0551ee283dae71c77e5e2004d1001f7251",
+    "hardware/verification/generated/H3-R2-physical-residuals.json": "fcb201cea4969d72acf917c1f01e45c9667be47dad8f901f7bb1062d5a499948",
+    "hardware/verification/h3_r2_crosscheck.py": "76c1a872973ff147cdef8badb7993e42f1d4e6954dab171a0772b204da04fbe5",
+    "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
   },
   "result": {
-    "analytical_scope_complete": true,
-    "open_analytical_findings": 0,
+    "analytical_scope_complete": false,
+    "open_analytical_findings": 3,
     "physical_residuals": 51,
     "physical_residuals_owned": true,
     "firmware_obligations": 1,
-    "next_marker": "H4-R2.0.1"
+    "next_marker": "H3-current-power-model-correction"
   },
   "acceptance_meaning": [
-    "the implemented H3 pre-layout analytical models have reproducible current evidence",
-    "all recorded source hashes match and no finding remains open within those model checks",
-    "each physical uncertainty in the H3 register has an H5, H6 or H8 owner and an evidence contract",
-    "firmware implementation work remains explicitly separate and joins at H4-R2"
+    "Current analytical applicability is explicitly separate from retained provisional algebra and topology",
+    "Open current power-model findings remain analytical, in addition to the existing physical evidence registry",
+    "The historical H3 closure is not transferred to the unqualified current power cell"
   ],
   "coverage_limit": {
     "native_physical_pin_electrical_semantics_verified": false,
@@ -36,11 +37,50 @@
     "unattended-runtime claims"
   ],
   "authorization": {
-    "advance_to_h4_r2": true,
+    "advance_to_h4_r2": false,
     "pcb_placement_or_routing": false,
     "purchasing": false,
-    "fabrication": false
+    "fabrication": false,
+    "advance_phase": false,
+    "battery_energization": false,
+    "final_product_claim": false
   },
-  "open_findings": [],
-  "pending_decisions": []
+  "open_findings": [
+    "all_provisional_numerical_error_lists_are_empty",
+    "numerical:existing_checks",
+    "applicability:current_power_inputs"
+  ],
+  "pending_decisions": [],
+  "current_power_scope": {
+    "schema_version": 1,
+    "artifact": "H3-R2-acceptance-package",
+    "status": "review_required",
+    "numerical_status": "provisional_pass",
+    "numerical_checks_pass": true,
+    "applicability_checks": {
+      "crosscheck_inputs": false
+    },
+    "open_findings": [
+      "applicability:crosscheck_inputs"
+    ],
+    "current_analytical_scope_complete": false,
+    "production_release_authorized": false,
+    "battery_energization_authorized": false,
+    "source_sha256": {
+      "hardware/verification/generated/H3-R2-crosscheck.json": "dfaed2e3368927d07e58a250c6523c0551ee283dae71c77e5e2004d1001f7251",
+      "hardware/verification/generated/H3-R2-physical-residuals.json": "fcb201cea4969d72acf917c1f01e45c9667be47dad8f901f7bb1062d5a499948",
+      "hardware/verification/h3_r2_crosscheck.py": "76c1a872973ff147cdef8badb7993e42f1d4e6954dab171a0772b204da04fbe5",
+      "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+    }
+  },
+  "provisional_numerical_errors": [],
+  "errors": [
+    "applicability:crosscheck_inputs"
+  ],
+  "current_analytical_scope_complete": false,
+  "open_analytical_findings": [
+    "applicability:crosscheck_inputs"
+  ],
+  "production_release_authorized": false,
+  "battery_energization_authorized": false
 }

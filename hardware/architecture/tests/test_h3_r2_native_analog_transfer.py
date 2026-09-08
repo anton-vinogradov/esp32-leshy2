@@ -180,7 +180,9 @@ class NativeAnalogTransferTests(unittest.TestCase):
         transfers["audio"]["status"] = "review_required"
         with patch.object(ANALOG, "native_leaf_transfers", return_value=transfers):
             result = ANALOG.build()
-        self.assertEqual(result["status"], "fail")
+        self.assertEqual(result["status"], "review_required")
+        self.assertEqual(result["current_power_scope"]["numerical_status"], "provisional_fail")
+        self.assertFalse(result["current_analytical_scope_complete"])
         self.assertFalse(result["leaf_evidence"]["audio"]["checks"]["current_native_substitution_is_bound"])
         self.assertTrue(any("audio current-native substitution requires review" in error for error in result["errors"]))
         for language in ("en", "ru"):

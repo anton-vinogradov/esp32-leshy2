@@ -66,8 +66,9 @@ class H3R2InrushWatchdogTests(unittest.TestCase):
         self.assertTrue(convergence["same_pass_fail"])
         self.assertLessEqual(Decimal(convergence["maximum_ramp_time_difference_ms"]), Decimal(convergence["dt_ms"]))
 
-    def test_h3_r2_2_crosscheck_closes_without_authorizing_layout(self):
-        self.assertEqual("reviewed_h3_r2_2_power_transitions_complete", self.result["status"])
+    def test_h3_r2_2_crosscheck_retains_provisional_checks_without_closure(self):
+        self.assertEqual("review_required", self.result["status"])
+        self.assertFalse(self.result["current_analytical_scope_complete"])
         self.assertTrue(all(self.result["checks"].values()))
         self.assertEqual(0, self.result["accepted_results"]["analytical_failures"])
         self.assertEqual(0, self.result["accepted_results"]["automatic_restarts"])

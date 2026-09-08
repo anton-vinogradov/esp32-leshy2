@@ -8,6 +8,10 @@ import hashlib
 import json
 import re
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from h3_r2_current_scope import apply_scope, admits_current, scope_notice
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -42,6 +46,14 @@ DOC_RU = ROOT / "docs/h3-r2-acceptance.ru.md"
 RESIDUAL_DOC_EN = ROOT / "docs/physical-evidence-register-r2.md"
 RESIDUAL_DOC_RU = ROOT / "docs/physical-evidence-register-r2.ru.md"
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
+CURRENT_POWER_INPUTS = {
+    "H3-R2.1/rail-margins": "H3-R2-rail-margins", "H3-R2.1/source-margins": "H3-R2-source-margins",
+    "H3-R2.1/result": "H3-R2-dc-source-crosscheck", "H3-R2.2/sequences": "H3-R2-transition-sequences",
+    "H3-R2.2/handover": "H3-R2-handover", "H3-R2.2/inrush-watchdog": "H3-R2-inrush-watchdog",
+    "H3-R2.2/result": "H3-R2-transition-result", "H3-R2.3/result": "H3-R2-analog-corners",
+    "H3-R2.4/result": "H3-R2-digital-interfaces", "H3-R2.5/result": "H3-R2-rf-coexistence",
+    "H3-R2.6/result": "H3-R2-thermal-fault",
+}
 
 
 def load(path: Path) -> dict:
@@ -209,6 +221,7 @@ def build() -> tuple[dict[Path, str], dict]:
             "sha256": sha256(path),
             "status": rows[name]["status"],
             "errors": len(rows[name].get("errors", [])),
+            "provisional_numerical_errors": len(rows[name].get("provisional_numerical_errors", rows[name].get("errors", []))),
         }
         for name, path in INPUTS.items()
     ]
@@ -228,20 +241,23 @@ def build() -> tuple[dict[Path, str], dict]:
     by_stage = {stage: sum(stage in row["closure_stages"] for row in registry) for stage in ("H5", "H6", "H8")}
     by_workstream = {stage: sum(row["source_workstream"] == stage for row in registry) for stage in ("H3-R2.1", "H3-R2.2", "H3-R2.3", "H3-R2.4", "H3-R2.5", "H3-R2.6")}
     workstreams = {row["id"]: row["status"] for row in plan["substeps"]}
-    allowed_statuses = {"pass"} | {row["status"] for row in artifact_rows if row["status"].startswith("reviewed")}
+    allowed_statuses = {"pass", "review_required",
+        "reviewed_audio_analog_corners_after_four_source_corrections",
+        "reviewed_ir_corners_after_four_source_corrections",
+        "reviewed_battery_sensing_thermistors_and_analog_fault_thresholds"}
     checks = {
         "plan_is_reviewed_at_h3_r2_7": plan["status"] == "reviewed" and plan["current_substep"] is None and workstreams["H3-R2.7"] == "reviewed",
         "all_seven_workstreams_are_reviewed": all(workstreams[f"H3-R2.{index}"] == "reviewed" for index in range(1, 8)),
         "all_twenty_current_artifacts_exist": len(artifact_rows) == 20,
-        "all_artifact_statuses_pass_or_reviewed": all(row["status"] in allowed_statuses for row in artifact_rows),
-        "all_artifact_error_lists_are_empty": all(row["errors"] == 0 for row in artifact_rows),
+        "all_artifact_statuses_are_known_diagnostics": all(row["status"] in allowed_statuses for row in artifact_rows),
+        "all_provisional_numerical_error_lists_are_empty": all(row["provisional_numerical_errors"] == 0 for row in artifact_rows),
         "all_recorded_source_hashes_match": bool(hash_checks) and all(row["matches"] for row in hash_checks),
         "input_freeze_covers_the_exact_r2_h2_boundary": rows["H3-R2.0/input-freeze"]["accepted_hardware_input"] == "H2-R2.1.5" and rows["H3-R2.0/input-freeze"]["summary"]["projects"] == 2,
         "all_251_component_groups_have_provenance": rows["H3-R2.0/parameter-provenance"]["summary"]["owned_component_groups"] == 251,
         "all_methods_and_rules_are_frozen": rows["H3-R2.0/method-contract"]["summary"]["methods"] == 9 and rows["H3-R2.0/method-contract"]["summary"]["pass_fail_rules"] == 12,
         "dc_source_has_no_failed_state": rows["H3-R2.1/source-margins"]["summary"]["failed_states"] == 0,
         "all_transition_cases_pass": rows["H3-R2.2/handover"]["summary"]["passed_cases"] == 7316 and rows["H3-R2.2/handover"]["summary"]["failed_cases"] == 0,
-        "analog_digital_rf_and_thermal_results_pass": all(rows[key]["status"] == "pass" for key in ("H3-R2.3/result", "H3-R2.4/result", "H3-R2.5/result", "H3-R2.6/result")),
+        "analog_digital_rf_and_thermal_numerical_checks": all(rows[key].get("current_power_scope", {}).get("numerical_checks_pass") is True for key in ("H3-R2.3/result", "H3-R2.4/result", "H3-R2.5/result", "H3-R2.6/result")),
         "physical_residual_ids_and_text_are_unique": len({row["id"] for row in registry}) == len(registry) == len({row["residual"] for row in registry}),
         "every_physical_residual_is_owned_by_h5_h6_or_h8": all(row["closure_stages"] and set(row["closure_stages"]) <= {"H5", "H6", "H8"} for row in registry),
         "every_physical_residual_has_an_evidence_contract": all(set(row["evidence_contracts"]) == set(row["closure_stages"]) for row in registry),
@@ -249,10 +265,6 @@ def build() -> tuple[dict[Path, str], dict]:
         "no_release_authority_is_created": not any(plan["authorization"][key] for key in ("pcb_placement_and_routing", "fabrication", "purchasing")),
     }
     failed = [name for name, passed in checks.items() if not passed]
-    if failed:
-        mismatches = [f"{row['recorded_by']} -> {row['source']}" for row in hash_checks if not row["matches"]]
-        suffix = f"; hash mismatches: {', '.join(mismatches)}" if mismatches else ""
-        raise ValueError("H3-R2.7 cross-check failed: " + ", ".join(failed) + suffix)
 
     crosscheck = {
         "schema_version": 1,
@@ -267,15 +279,18 @@ def build() -> tuple[dict[Path, str], dict]:
             "recorded_source_hashes_checked": len(hash_checks),
             "hash_mismatches": sum(not row["matches"] for row in hash_checks),
             "checks": len(checks),
-            "failed_checks": 0,
+            "failed_checks": len(failed),
             "open_analytical_findings": 0,
         },
         "checks": checks,
         "firmware_obligations": firmware_obligations,
         "authorization": {"pcb_placement_or_routing": False, "purchasing": False, "fabrication": False, "final_product_claim": False},
-        "next": {"marker": "H4-R2.0.1", "action": "freeze the current mechanics, ECAD, H3 and firmware-R2 join inputs"},
+        "next": {"marker": "H3-current-power-model-correction", "action": "correct and verify current power applicability before phase closure"},
         "errors": [],
     }
+    crosscheck["errors"] = failed
+    apply_scope(crosscheck, __file__, {"current_power_inputs": all(
+        admits_current(rows[key], artifact) for key, artifact in CURRENT_POWER_INPUTS.items())}, numerical_ok=not failed)
     residuals = {
         "schema_version": 1,
         "artifact": "H3-R2-physical-residuals",
@@ -293,6 +308,7 @@ def build() -> tuple[dict[Path, str], dict]:
         "firmware_obligations": firmware_obligations,
         "authorization": {"physical_evidence_complete": False, "fabrication": False, "purchasing": False},
     }
+    apply_scope(residuals, __file__, {"crosscheck_inputs": crosscheck["current_power_scope"]["status"] == "pass"})
     acceptance = {
         "schema_version": 1,
         "artifact": "H3-R2-acceptance-package",
@@ -326,85 +342,82 @@ def build() -> tuple[dict[Path, str], dict]:
         "pending_decisions": [],
     }
 
+    apply_scope(acceptance, __file__, {"crosscheck_inputs": crosscheck["current_power_scope"]["status"] == "pass"})
+    acceptance["result"].update(analytical_scope_complete=acceptance["current_analytical_scope_complete"],
+        open_analytical_findings=len(crosscheck["errors"]), next_marker="H3-current-power-model-correction")
+    acceptance["open_findings"] = list(crosscheck["errors"])
+    acceptance["acceptance_meaning"] = [
+        "Current analytical applicability is explicitly separate from retained provisional algebra and topology",
+        "Open current power-model findings remain analytical, in addition to the existing physical evidence registry",
+        "The historical H3 closure is not transferred to the unqualified current power cell",
+    ]
     residual_en = f"""# Physical evidence register · H3-R2
 
-[Русский](physical-evidence-register-r2.ru.md) · [H3 report](h3-r2-acceptance.md) · [Roadmap](roadmap.md)
+[Русский](physical-evidence-register-r2.ru.md) · [H3 report](h3-r2-acceptance.md)
 
-H3 leaves `{len(registry)}` physical-only evidence rows: `{by_stage['H5']}` involve H5 received-part evidence, `{by_stage['H6']}` involve H6 routed-design evidence and `{by_stage['H8']}` involve H8 measurements on the one assembled prototype. A row may intentionally have more than one owner when received identity and assembled behavior are distinct gates.
+{scope_notice(residuals)}
 
-Nothing below is called passed. The registry requires no sacrificial assembled unit, drop test, vibration campaign or arbitrary connector-cycle campaign. Safe electrical faults use current-limited fixtures or emulators; real cells and the one MAX17320 remain inside their declared limits.
+This existing physical registry contains {len(registry)} open rows (H5: {by_stage['H5']}, H6: {by_stage['H6']}, H8: {by_stage['H8']}; multiple owners are possible). These are **not the only remaining findings**: current power-model applicability and numerical failures remain analytical and are listed separately in the H3 result. No row below is passed by regeneration.
 
 {residual_table(registry, False)}
 
-One separate firmware obligation is intentionally not mislabelled as physical evidence: F5/F6 must instantiate and exercise the exact locked i8080 configuration. H4-R2 joins that obligation with the reviewed hardware boundary.
-
-[Machine register](../hardware/verification/generated/H3-R2-physical-residuals.json).
+The registry requires no sacrificial assembled unit or drop/vibration campaign. Safe fault checks require current-limited fixtures; real cells remain within their declared limits. The exact i8080 implementation remains a separate firmware obligation.
 """
     residual_ru = f"""# Реестр физических evidence · H3-R2
 
-[English](physical-evidence-register-r2.md) · [Отчёт H3](h3-r2-acceptance.ru.md) · [Роадмап](roadmap.ru.md)
+[English](physical-evidence-register-r2.md) · [Отчёт H3](h3-r2-acceptance.ru.md)
 
-После H3 остаётся `{len(registry)}` physical-only строк evidence: `{by_stage['H5']}` затрагивают проверку полученных деталей H5, `{by_stage['H6']}` — evidence разведённой платы H6, `{by_stage['H8']}` — измерения единственного собранного прототипа H8. У строки может быть несколько владельцев, когда identity полученной детали и поведение в сборке являются разными gates.
+{scope_notice(residuals, True)}
 
-Ни один пункт ниже не назван пройденным. Реестр не требует расходуемого собранного устройства, drop-test, vibration campaign или произвольного числа циклов разъёмов. Безопасные электрические faults задаются current-limited fixture или emulator; реальные банки и единственный MAX17320 остаются внутри заявленных пределов.
+В существующем физическом реестре {len(registry)} открытых строк (H5: {by_stage['H5']}, H6: {by_stage['H6']}, H8: {by_stage['H8']}; владельцев может быть несколько). Это **не все оставшиеся вопросы**: применимость нынешней модели питания и численные нарушения остаются аналитическими и перечислены отдельно в итоге H3. Перегенерация не закрывает строки ниже.
 
 {residual_table(registry, True)}
 
-Одно отдельное firmware-обязательство намеренно не названо физическим evidence: F5/F6 должны создать и проверить точную зафиксированную конфигурацию i8080. H4-R2 объединит его с проведённой аппаратной границей.
-
-[Машинный реестр](../hardware/verification/generated/H3-R2-physical-residuals.json).
+Реестр не требует расходуемого собранного образца или испытаний падением/вибрацией. Безопасная проверка faults требует ограничения тока; реальные банки остаются в своих пределах. Точная реализация i8080 — отдельное обязательство прошивки.
 """
-    report_en = f"""# H3-R2 result · virtual electrical verification
+    report_en = f"""# H3-R2 · current electrical diagnostics
 
-[Русский](h3-r2-acceptance.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Physical evidence register](physical-evidence-register-r2.md)
+[Русский](h3-r2-acceptance.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md)
 
-`H3-R2.7` records the result of the implemented H3 analytical scope. All `{len(artifact_rows)}` current evidence artifacts and `{len(hash_checks)}` recorded source hashes cross-check with zero mismatch and zero open finding within those model checks.
+{scope_notice(acceptance)}
 
-The current passive-pin symbol library is a separate coverage limit: these models and zero ERC findings do not prove rail-driver completeness or exclude output conflicts. `H6-NATIVE-ELECTRICAL-SEMANTICS` remains a required production gate; re-running this report does not close it.
+This publication recomputes {len(artifact_rows)} evidence artifacts and checks {len(hash_checks)} source bindings. Source mismatches: {sum(not item['matches'] for item in hash_checks)}. Open aggregate findings: {len(crosscheck['errors'])}. Current applicability is **not** inherited from historical H3 closure.
 
-{phase_table(False)}
+## Current analytical work
 
-## What is complete
+Raw supply, protected local supply and consumer endpoints are separate. The retained MAIN model still uses parameters for a different converter, has unqualified current/protection and thermal limits, and the AON resistance is not bound to the fitted setting. Existing numerical calculations are provisional, not permission to treat these inputs as qualified. The supervisor assertion maximum and minimum hysteresis also remain unspecified.
 
-- The implemented pre-layout analytical checks have reproducible results on the exact H1-R2.39 / H2-R2.1.5 boundary.
-- All legal power states, transitions, analog corners, digital interfaces, permanent RF paths, thermal profiles and single-fault cases pass their frozen paper rules.
-- The current source corrections are reflected in the repeated analytical checks; this is not a complete native electrical-semantics review.
+{chr(10).join("- " + name + ": " + rows[name]['status'] for name in CURRENT_POWER_INPUTS)}
 
-## What remains physical
+## Separate physical and firmware evidence
 
-The [physical evidence register](physical-evidence-register-r2.md) contains `{len(registry)}` still-open rows with explicit H5/H6/H8 owners and pass rules. This is expected: routed impedance/parasitics, received-part identity and measurements on the one assembled prototype cannot be honestly closed on paper. The separate F5/F6 i8080 implementation obligation remains firmware work, not a disguised physical residual.
+The [physical registry](physical-evidence-register-r2.md) retains {len(registry)} open rows with explicit owners. Those rows do not replace the analytical findings above. The F5/F6 i8080 implementation and `H6-NATIVE-ELECTRICAL-SEMANTICS` gate remain separate obligations; this report does not close them.
 
-## Boundary and next stage
+The next work is correction and verification of the current power model. Fresh diagnostics and matching hashes do not advance a phase or authorize hardware operation.
 
-H3 approval does **not** authorize purchasing, PCB placement/routing, fabrication, final RF/thermal performance or unattended-runtime claims. The exact next marker is `H4-R2.0.1`: freeze and join the current mechanics, ECAD, H3 result and firmware-R2 evidence before H5.
-
-[Machine cross-check](../hardware/verification/generated/H3-R2-crosscheck.json) · [Machine acceptance package](../hardware/verification/generated/H3-R2-acceptance-package.json)
+[Machine cross-check](../hardware/verification/generated/H3-R2-crosscheck.json)
 """
-    report_ru = f"""# Итог H3-R2 · виртуальная электрическая проверка
+    report_ru = f"""# H3-R2 · текущая электрическая диагностика
 
-[English](h3-r2-acceptance.md) · [Главная](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Реестр физических evidence](physical-evidence-register-r2.ru.md)
+[English](h3-r2-acceptance.md) · [Главная](../README.ru.md) · [Роадмап](roadmap.ru.md)
 
-`H3-R2.7` фиксирует результат реализованного аналитического охвата H3. Все `{len(artifact_rows)}` актуальных evidence-artifacts и `{len(hash_checks)}` записанных source hashes сведены без единого mismatch и без открытого finding в пределах этих модельных проверок.
+{scope_notice(acceptance, True)}
 
-Текущая библиотека passive-выводов — отдельное ограничение охвата: эти модели и нулевой ERC не доказывают наличие источников у всех шин или отсутствие конфликтующих выходов. `H6-NATIVE-ELECTRICAL-SEMANTICS` остаётся обязательной проверкой до производственного выпуска; повтор этого отчёта её не закрывает.
+Публикация пересчитывает {len(artifact_rows)} evidence-artifacts и проверяет {len(hash_checks)} привязок к источникам. Несовпадений хешей: {sum(not item['matches'] for item in hash_checks)}. Открытых агрегированных findings: {len(crosscheck['errors'])}. Применимость к нынешнему железу **не наследуется** из исторического закрытия H3.
 
-{phase_table(True)}
+## Текущая аналитическая работа
 
-## Что завершено
+Исходное питание, питание после защиты и напряжение на потребителе разделены. Сохранённая MAIN-модель ещё использует параметры другого преобразователя, неподтверждённые токовые/защитные и тепловые пределы; сопротивление AON не привязано к установленной настройке. Существующие расчёты предварительны, а не разрешение считать эти входы подтверждёнными. Максимум времени утверждения reset и минимум гистерезиса supervisor также не заданы.
 
-- Реализованные аналитические проверки до разводки имеют воспроизводимые результаты на точной границе H1-R2.39 / H2-R2.1.5.
-- Все разрешённые состояния питания, переходы, analog corners, цифровые интерфейсы, постоянные RF-тракты, thermal-профили и single-fault cases проходят зафиксированные бумажные правила.
-- Исправления текущих источников отражены в повторённых аналитических проверках; это не полное ревью электрических типов native-выводов.
+{chr(10).join("- " + name + ": " + rows[name]['status'] for name in CURRENT_POWER_INPUTS)}
 
-## Что остаётся физическим
+## Отдельные физические evidence и прошивка
 
-[Реестр физических evidence](physical-evidence-register-r2.ru.md) содержит `{len(registry)}` ещё открытых строк с явными владельцами и pass rules H5/H6/H8. Это нормально: routed impedance/parasitics, identity полученных деталей и измерения единственного собранного прототипа нельзя честно закрыть на бумаге. Отдельное обязательство F5/F6 по реализации i8080 остаётся работой прошивки, а не замаскированным физическим остатком.
+[Физический реестр](physical-evidence-register-r2.ru.md) сохраняет {len(registry)} открытых строк с явными владельцами. Они не заменяют аналитические вопросы выше. Реализация i8080 F5/F6 и проверка `H6-NATIVE-ELECTRICAL-SEMANTICS` остаются отдельными обязательствами; этот отчёт их не закрывает.
 
-## Граница и следующий этап
+Следующая работа — исправление и проверка нынешней модели питания. Свежие диагностика и хеши не означают переход фазы или разрешение включать железо.
 
-Проведённое H3 не разрешает закупку, PCB placement/routing, печать, заявления о конечных RF/thermal характеристиках или автономной работе. Точный следующий маркер — `H4-R2.0.1`: зафиксировать и объединить текущие mechanics, ECAD, итог H3 и firmware-R2 evidence перед H5.
-
-[Машинный cross-check](../hardware/verification/generated/H3-R2-crosscheck.json) · [Машинный пакет приёмки](../hardware/verification/generated/H3-R2-acceptance-package.json)
+[Машинный cross-check](../hardware/verification/generated/H3-R2-crosscheck.json)
 """
     outputs = {
         CROSSCHECK: json.dumps(crosscheck, ensure_ascii=False, indent=2) + "\n",
@@ -433,7 +446,7 @@ def main() -> int:
         stale = [str(path.relative_to(ROOT)) for path, content in outputs.items() if not path.is_file() or path.read_text(encoding="utf-8") != content]
         if stale:
             raise SystemExit("stale H3-R2.7 artifacts: " + ", ".join(stale))
-    print(f"ok: H3-R2 reviewed; {acceptance['result']['physical_residuals']} owned physical residuals, next H4-R2.0.1")
+    print(f"H3-R2 current diagnostic {acceptance['status']}; {acceptance['result']['open_analytical_findings']} open analytical findings; {acceptance['result']['physical_residuals']} physical residuals")
     return 0
 
 

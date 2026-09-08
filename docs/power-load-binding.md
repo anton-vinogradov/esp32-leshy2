@@ -21,6 +21,6 @@
 
 This reviews accounting completeness, not numeric DC margin. For every line without an applicable exact maximum, `H3-R2.1.3` must extract the parameter from its bound manufacturer source or return `unresolved_fail`. RP/codec/pack child rails are explicit and cannot be counted again on top of the owning device total.
 
-**Downstream result:** [`H3-R2.1`](power-dc-source-result.md) is fully reviewed; the [roadmap](roadmap.md) carries the live marker.
+**Downstream result:** [`H3-R2.1`](power-dc-source-result.md) reports current numerical and model-applicability findings separately. Complete load accounting does not qualify the power model or close H3.
 
 [Complete machine line register](../hardware/verification/generated/H3-R2-load-binding.json).

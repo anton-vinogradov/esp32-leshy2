@@ -9,6 +9,10 @@ import json
 from collections import Counter
 from decimal import Decimal
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from h3_r2_current_scope import apply_scope, admits_current, scope_notice
 
 
 REPO = Path(__file__).resolve().parents[2]
@@ -51,72 +55,69 @@ def preferred(rows: list[dict]) -> dict | None:
 def render_doc(manifest: dict, russian: bool) -> str:
     s = manifest["summary"]
     worst = manifest["extrema"]["maximum_supplement"]
+    families = (
+        ("usb_attach_cases", "Подключение USB при здоровом аккумуляторе", "USB attach with a healthy pack"),
+        ("usb_detach_to_pack_cases", "Отключение USB → питание от аккумулятора", "USB detach → pack supply"),
+        ("dpm_cases", "DPM: приоритет системной нагрузки", "DPM: system-load priority"),
+        ("pack_loss_cases", "Извлечение или изоляция аккумулятора при USB", "Pack removal or isolation while on USB"),
+        ("usb_only_source_loss_cases", "Потеря USB без аккумулятора", "USB loss without a pack"),
+        ("brownout_cases", "Падение питания и запрет автоматического перезапуска", "Brownout and anti-rearm"),
+    )
+    table = ("| Группа сценариев | Число модельных случаев |\n|---|---:|\n" if russian else
+             "| Scenario family | Enumerated model cases |\n|---|---:|\n")
+    table += "\n".join(f"| {ru if russian else en} | {s[key]} |" for key, ru, en in families)
     if russian:
         return f"""# USB, аккумулятор и DPM · H3-R2.2.2
 
 [English](power-handover.md) · [Главная](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Последовательность запуска](power-transition-sequences.ru.md)
 
-`H3-R2.2.2` проверен на полном реестре источников и нагрузок R2, а не на одном типовом режиме. Пройдено `{s['transition_cases']}` переходов: подключение/отключение USB, DPM, извлечение аккумулятора, потеря USB без аккумулятора и brownout.
+{scope_notice(manifest, True)}
 
-## Что происходит в устройстве
+Модель перебирает полный реестр источников и нагрузок R2: подключение и отключение USB, динамическое ограничение мощности (DPM), извлечение аккумулятора, потерю USB без аккумулятора и падение питания. Перечень сценариев сохранён; применимость используемых пределов питания проверяется отдельно.
 
-`USB-C` проходит через **TPS25751D**, а USB и защищённый pack сходятся в **BQ25798**. Его выход `SYS` питает устройство. При слабом USB заряд уменьшается до нуля первым; если этого мало, здоровый pack автоматически дополняет питание. При исчезновении USB pack принимает нагрузку через встроенный BATFET. OTG и backup запрещены: аккумулятор не подаёт питание назад в USB.
+## Проектная последовательность
 
-Неопознанные 5 В не считаются источником для RUN: до чтения Rp/PD и защищённой записи профиля разрешены только диагностика AON и отключённый заряд. После записи обязательна проверка чтением.
+USB-C проходит через **TPS25751D**, а USB и защищённый аккумуляторный блок сходятся в **BQ25798**. Выход `SYS` питает устройство. При недостатке мощности USB сначала уменьшается зарядный ток, вплоть до нуля; затем здоровый аккумулятор должен дополнять питание. При исчезновении USB нагрузка переходит на аккумулятор через встроенный BATFET. Это заданная последовательность, не измеренное доказательство непрерывности `SYS`.
 
-## Результат
+OTG и backup запрещены: обратная подача энергии из аккумулятора в USB не разрешается конфигурацией. Неопознанные 5 В не считаются источником для RUN: до чтения Rp/PD и защищённой записи профиля разрешены только диагностика AON и отключённый заряд. После записи обязательно чтение назад с проверкой заданных битов.
 
-| Проверка | Результат |
-| --- | ---: |
-| USB attach при здоровом pack | `{s['usb_attach_cases']}` / `{s['usb_attach_cases']}` |
-| USB detach → pack | `{s['usb_detach_to_pack_cases']}` / `{s['usb_detach_to_pack_cases']}` |
-| DPM и приоритет системной нагрузки | `{s['dpm_cases']}` / `{s['dpm_cases']}` |
-| Извлечение/изоляция pack при USB | `{s['pack_loss_cases']}` / `{s['pack_loss_cases']}` |
-| Потеря USB без pack | `{s['usb_only_source_loss_cases']}` / `{s['usb_only_source_loss_cases']}` |
-| Brownout/anti-rearm | `{s['brownout_cases']}` / `{s['brownout_cases']}` |
+## Предварительные сравнения
 
-Worst-case supplement — `{worst['pack_discharge_a']} А` при лимите `8,000 А`; опасных допусков и автоматических повторных запусков — `0`.
+{table}
 
-## Честная граница
+Сохранённые модельные сравнения: **{s['passed_cases']} / {s['transition_cases']}**, численных нарушений — **{s['failed_cases']}**. Максимальное дополнение от аккумулятора по этой модели — **{worst['pack_discharge_a']} А** против сохранённого лимита 8 А. Опасных допусков в модели — {s['unsafe_admissions']}, автоматических повторных запусков — {s['automatic_restarts']}. Эти числа не подтверждают токовые или тепловые пределы установленной ячейки питания.
 
-Логика, токовые пределы и безопасные исходы доказаны аналитически. Абсолютный провал `SYS`, время переключения BATFET и реальные паразитики зависят от собранной платы: их измеряем осциллографом на первом экземпляре в H8. До этого placement, routing, закупка и печать не разрешены.
+## Границы проверки
 
-[`H3-R2.2.3/.4`](power-transition-result.ru.md) завершили проверку inrush, load steps, watchdog и fault display. [`H3-R2.3`](analog-electrical-verification.ru.md), [`H3-R2.4`](digital-electrical-verification.ru.md), [`H3-R2.5`](rf-electrical-verification.ru.md), [`H3-R2.6`](thermal-fault-electrical-verification.ru.md), итоги H3-R2.7, H4-R2 и H5-R1 проведены ревью; **текущий маркер: `H6.0.3-R1`.**
+Применимость исходной MAIN-модели, ограничения защиты и пределы supervisor остаются аналитическими вопросами. Отдельно остаются реальный провал `SYS`, время перехода BATFET и паразитики разводки: для них нужны анализ готовой разводки и осциллограммы первого экземпляра. Положительная логическая проверка перехода не заменяет эти свидетельства.
 
-[Полный машинный результат](../hardware/verification/generated/H3-R2-handover.json).
+Продолжение цепочки: [пусковые токи и скачки нагрузки](inrush-load-step.ru.md), [watchdog и причина отключения](watchdog-fault-display.ru.md), [общий результат переходов](power-transition-result.ru.md). Свежие отчёты не закрывают текущую квалификацию питания.
 """
     return f"""# USB, pack and DPM · H3-R2.2.2
 
 [Русский](power-handover.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Startup sequencing](power-transition-sequences.md)
 
-`H3-R2.2.2` is verified against the complete R2 source/load register, not one nominal mode. `{s['transition_cases']}` transitions pass: USB attach/detach, DPM, pack removal, USB loss without a pack and brownout.
+{scope_notice(manifest)}
 
-## What the hardware does
+The model enumerates the complete R2 source/load register: USB attach and detach, dynamic power management (DPM), pack removal, USB loss without a pack and brownout. This scenario inventory is retained; applicability of the power limits is checked separately.
 
-USB-C passes through **TPS25751D**, while USB and the protected pack converge in **BQ25798**. Its `SYS` output powers the product. Weak USB reduces charge to zero first; a healthy pack automatically supplements any remaining deficit. When USB disappears, the integrated BATFET transfers the load to the pack. OTG and backup are forbidden, so the pack cannot drive power back into USB.
+## Intended sequence
 
-Unqualified 5 V is not a RUN source: only AON diagnostics and disabled charging are allowed until Rp/PD is read and the protected profile is written. Masked readback is mandatory.
+USB-C passes through **TPS25751D**, while USB and the protected pack converge in **BQ25798**. The `SYS` output powers the product. Insufficient USB power reduces charging first, down to zero; a healthy pack must then supplement the remaining demand. When USB disappears, the integrated BATFET transfers the load to the pack. This is the intended sequence, not measured proof of uninterrupted `SYS`.
 
-## Result
+OTG and backup are forbidden: reverse pack-to-USB power is not enabled by the configuration. Unqualified 5 V is not a RUN source: only AON diagnostics and disabled charging are allowed until Rp/PD is read and the protected profile is written. Masked readback is mandatory after writing.
 
-| Check | Result |
-| --- | ---: |
-| USB attach with a healthy pack | `{s['usb_attach_cases']}` / `{s['usb_attach_cases']}` |
-| USB detach → pack | `{s['usb_detach_to_pack_cases']}` / `{s['usb_detach_to_pack_cases']}` |
-| DPM and system-load priority | `{s['dpm_cases']}` / `{s['dpm_cases']}` |
-| Pack removal/isolation while on USB | `{s['pack_loss_cases']}` / `{s['pack_loss_cases']}` |
-| USB loss without a pack | `{s['usb_only_source_loss_cases']}` / `{s['usb_only_source_loss_cases']}` |
-| Brownout/anti-rearm | `{s['brownout_cases']}` / `{s['brownout_cases']}` |
+## Provisional comparisons
 
-Worst supplement is `{worst['pack_discharge_a']} A` against the `8.000 A` limit; unsafe admissions and automatic restarts are both `0`.
+{table}
 
-## Honest proof boundary
+Retained model comparisons: **{s['passed_cases']} / {s['transition_cases']}**, numerical failures: **{s['failed_cases']}**. Worst pack supplement in this model is **{worst['pack_discharge_a']} A** against the retained 8-A limit. Model unsafe admissions: {s['unsafe_admissions']}; automatic restarts: {s['automatic_restarts']}. These numbers do not qualify the fitted power cell's current or thermal limits.
 
-Logic, current limits and safe outcomes are proved analytically. Absolute `SYS` droop, BATFET transfer time and routed parasitics depend on the assembled board and are oscilloscope checks on the first unit in H8. Placement, routing, purchasing and fabrication remain unauthorized.
+## Verification boundaries
 
-[`H3-R2.2.3/.4`](power-transition-result.md) completed inrush, load-step, watchdog and fault-display review. [`H3-R2.3`](analog-electrical-verification.md), [`H3-R2.4`](digital-electrical-verification.md), [`H3-R2.5`](rf-electrical-verification.md), [`H3-R2.6`](thermal-fault-electrical-verification.md), H3-R2.7, global H4-R2 and global H5-R1 are reviewed; **current marker: `H6.0.3-R1`.**
+Applicability of the MAIN source model, protection limits and supervisor bounds remain analytical questions. Actual `SYS` droop, BATFET transfer time and routed parasitics are separate obligations requiring routed-design analysis and first-prototype waveforms. A positive logical transition check does not replace that evidence.
 
-[Complete machine result](../hardware/verification/generated/H3-R2-handover.json).
+Continue with [inrush and load steps](inrush-load-step.md), [watchdog and shutdown reason](watchdog-fault-display.md), and the [combined transition result](power-transition-result.md). Fresh reports do not close current power qualification.
 """
 
 
@@ -130,10 +131,6 @@ def build() -> tuple[dict[Path, str], dict]:
     devices = load(DEVICES)["devices"]
     errors: list[str] = []
 
-    if source["status"] != "pass" or source["summary"]["failed_states"]:
-        errors.append("reviewed H3-R2.1 source register is not passing")
-    if sequences["status"] != "reviewed_startup_shutdown_reset_and_recovery":
-        errors.append("reviewed H3-R2.2.1 anti-restart contract is missing")
     workstream = next(row for row in plan["substeps"] if row["id"] == "H3-R2.2")
     step = next(row for row in workstream["details"] if row["id"] == "H3-R2.2.2")
     if step["status"] not in {"current", "reviewed"}:
@@ -276,6 +273,10 @@ def build() -> tuple[dict[Path, str], dict]:
         "next": {"marker": "H3-R2.2.3", "action": "verify inrush, load steps, watchdog kill and retained fault display"},
         "errors": errors,
     }
+    apply_scope(manifest, __file__, {
+        "source_inputs": admits_current(source, "H3-R2-source-margins"),
+        "sequence_inputs": admits_current(sequences, "H3-R2-transition-sequences"),
+    }, numerical_ok=not errors and not failures)
     outputs = {
         OUTPUT: json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
         DOC_EN: render_doc(manifest, False),
@@ -291,8 +292,6 @@ def main() -> int:
     mode.add_argument("--check", action="store_true")
     args = parser.parse_args()
     outputs, manifest = build()
-    if manifest["errors"]:
-        raise SystemExit("H3-R2.2.2 failed: " + "; ".join(manifest["errors"][:12]))
     if args.write:
         for path, content in outputs.items():
             path.parent.mkdir(parents=True, exist_ok=True)

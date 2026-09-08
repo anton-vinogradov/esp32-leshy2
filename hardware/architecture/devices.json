@@ -5189,10 +5189,20 @@
       "electrical_contract": {
         "fixed_threshold_nominal_v": 3.07,
         "fixed_threshold_accuracy_percent_full_temperature": 1.5,
-        "fixed_threshold_hysteresis_percent": [1.0, 2.5],
+        "fixed_threshold_hysteresis_percent": {"min": null, "typ": 1.0, "max": 2.5},
         "ct_configuration": "open",
         "reset_delay_ms": {"min": 12, "typ": 20, "max": 28},
-        "sense_to_reset_assertion_max_us": 20,
+        "sense_to_reset_assertion_max_us": null,
+        "sense_to_reset_assertion_us": {
+          "min": null, "typ": 20, "max": null,
+          "conditions": "SENSE high-to-low: VIH=1.05*VIT, VIL=0.95*VIT; R_RESET=100kohm, C_RESET=50pF; typical values at TJ=25C"
+        },
+        "limit_classification_review": {
+          "source_revision": "SBVS050N",
+          "checked": "2026-09-08",
+          "sections": ["6.5, page 6", "6.6, page 7"],
+          "note": "Fixed-version hysteresis 1% is typical, not minimum. SENSE-to-RESET assertion 20us is typical, not a guaranteed maximum. The separate CT-open reset-release delay retains its specified 12..28ms limits."
+        },
         "output": "active-low open-drain RESET; asserted while SENSE is below threshold or MR_N is low",
         "recommended_supply_range_v": [1.7, 6.5],
         "use": "holds the RUN_PERMIT latch asynchronously clear through AON startup and any supervised AON undervoltage"

@@ -2,20 +2,22 @@
   "schema_version": 1,
   "artifact": "H3-R2-analog-corners",
   "marker": "H3-R2.3",
-  "status": "pass",
+  "status": "review_required",
   "sources": {
     "hardware/architecture/candidates/G2F-3I.json": "6df524f1edf8db12ac278e0b5901a598c0ac18262800b09c38dde7b45147ed27",
-    "hardware/architecture/devices.json": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "95ea4b66f38ca6378e0703bc0377e106c81e67628f4bb3209fab7addf6b7c78a",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "909cc9dacb5e527c632f76297abedcebf0ed2a3a8581c146a96c6fdce3122d4a",
-    "hardware/verification/generated/H3-VRF32-audio.json": "0f120a5abafb6d3763b78deb2d902df28c797d92cb72073cff251254790513de",
-    "hardware/verification/generated/H3-VRF33-ir.json": "631f47640636a900c353b22628066706bedc93b4bcf31ef1c4ce290f45ac09e5",
-    "hardware/verification/generated/H3-VRF34-battery-analog.json": "12ebdb1eb470db88798e9aa63e8eff274e607b3857e7164eb1644d490922b437",
-    "hardware/verification/generated/H3-R2-airband-corners.json": "5e6c41b0e3a5bb3bee4098e6fabfde727b8281d6441e5875b379f75d99eb1074",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "1cdc59edda649d09c07077bbd17864cfca446a9c431910d603d7d1a4785c9b5b",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7d1b6c309e398f410a3ec109374388548eddfd4574676cf7d77a9ea5453bab91",
+    "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "06b97ec6e2cf9baf6c6701867543245791f7e99f57b4a49779590d3e13a457fa",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "a2ff62c79ceab4e29688002747762dcda9f10f12d81eb9e4930737ee34e0d69e",
+    "hardware/verification/generated/H3-VRF32-audio.json": "5f829f6ab98afcabc13c1d334b30e200ef012c73e388d773d44777fccbea4a43",
+    "hardware/verification/generated/H3-VRF33-ir.json": "4d0e1f4effd15aa501d99bd17923dbc9fa6e82ea402eaee0bb5dd1eae08a33ae",
+    "hardware/verification/generated/H3-VRF34-battery-analog.json": "5886838c6cfc2e7667470ee2bd2037172ca24c26cda8d44d60b8c9a1f938d1cc",
+    "hardware/verification/generated/H3-R2-airband-corners.json": "d67b3db1cf2c0d09e0a58a1260a98825c913759fba5586995f1cd1df7fbb5d2d",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "bb0ee548efc0ecfe02299f3757c58cd7a4e7c5a8b50160d8648411ab330ac411",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7ca7596c728f2dc2fe50516b6309438dfaca2fc9c7f6fbef62c18d005cf8616b",
     "hardware/product-design/generated/H1-R2-cost-audit.json": "42f359135c5d3365150b880971a7e639fe2e69f9c7c2406da3fbe0ef6b288a46",
-    "hardware/product-design/display-mount.json": "71bba240dfa5c3c8cb4f9ac269c4a9874f460981da7c196d072086c0dc3cc343"
+    "hardware/product-design/display-mount.json": "71bba240dfa5c3c8cb4f9ac269c4a9874f460981da7c196d072086c0dc3cc343",
+    "hardware/verification/h3_r2_analog_corners.py": "c1b249e5244a7dfcecebec9fd45bc84f674ba2abbd71770c2c161830793efe8c",
+    "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
   },
   "method": "current R2 display topology/identity binding, retained leaf interval calculations with explicit bounded current-native IR/audio substitution guards, and a production-panel backlight calculation; not whole-board electrical or manufacturing approval",
   "current_native_transfers": {
@@ -112,7 +114,7 @@
   },
   "display": {
     "rail_v": {
-      "minimum": 3.10851,
+      "minimum": 2.95621,
       "nominal": 3.222,
       "maximum": 3.285658
     },
@@ -125,7 +127,7 @@
       "rated_power_w": 0.25
     },
     "current_at_published_typical_vf_ma": {
-      "minimum_rail_ma": 39.79097909790975,
+      "minimum_rail_ma": 0.0,
       "nominal_rail_ma": 82.22222222222221,
       "maximum_rail_ma": 106.86793864571649
     },
@@ -259,5 +261,53 @@
       "H8 records Si5351 startup and output-frequency calibration; the exact crystal start limits pass, while long-term aging is calibrated rather than guessed from an unpublished exact-code aging row"
     ]
   },
-  "errors": []
+  "errors": [
+    "applicability:rail_inputs"
+  ],
+  "current_power_scope": {
+    "schema_version": 1,
+    "artifact": "H3-R2-analog-corners",
+    "status": "review_required",
+    "numerical_status": "provisional_pass",
+    "numerical_checks_pass": true,
+    "applicability_checks": {
+      "rail_inputs": false
+    },
+    "open_findings": [
+      "applicability:rail_inputs"
+    ],
+    "current_analytical_scope_complete": false,
+    "production_release_authorized": false,
+    "battery_energization_authorized": false,
+    "source_sha256": {
+      "hardware/architecture/candidates/G2F-3I.json": "6df524f1edf8db12ac278e0b5901a598c0ac18262800b09c38dde7b45147ed27",
+      "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974",
+      "hardware/verification/generated/H3-R2-rail-margins.json": "06b97ec6e2cf9baf6c6701867543245791f7e99f57b4a49779590d3e13a457fa",
+      "hardware/verification/generated/H3-R2-parameter-provenance.json": "a2ff62c79ceab4e29688002747762dcda9f10f12d81eb9e4930737ee34e0d69e",
+      "hardware/verification/generated/H3-VRF32-audio.json": "5f829f6ab98afcabc13c1d334b30e200ef012c73e388d773d44777fccbea4a43",
+      "hardware/verification/generated/H3-VRF33-ir.json": "4d0e1f4effd15aa501d99bd17923dbc9fa6e82ea402eaee0bb5dd1eae08a33ae",
+      "hardware/verification/generated/H3-VRF34-battery-analog.json": "5886838c6cfc2e7667470ee2bd2037172ca24c26cda8d44d60b8c9a1f938d1cc",
+      "hardware/verification/generated/H3-R2-airband-corners.json": "d67b3db1cf2c0d09e0a58a1260a98825c913759fba5586995f1cd1df7fbb5d2d",
+      "hardware/ecad/generated/H2-R2-native-net-ledger.json": "bb0ee548efc0ecfe02299f3757c58cd7a4e7c5a8b50160d8648411ab330ac411",
+      "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7ca7596c728f2dc2fe50516b6309438dfaca2fc9c7f6fbef62c18d005cf8616b",
+      "hardware/product-design/generated/H1-R2-cost-audit.json": "42f359135c5d3365150b880971a7e639fe2e69f9c7c2406da3fbe0ef6b288a46",
+      "hardware/product-design/display-mount.json": "71bba240dfa5c3c8cb4f9ac269c4a9874f460981da7c196d072086c0dc3cc343",
+      "hardware/verification/h3_r2_analog_corners.py": "c1b249e5244a7dfcecebec9fd45bc84f674ba2abbd71770c2c161830793efe8c",
+      "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+    }
+  },
+  "provisional_numerical_errors": [],
+  "current_analytical_scope_complete": false,
+  "open_analytical_findings": [
+    "applicability:rail_inputs"
+  ],
+  "production_release_authorized": false,
+  "battery_energization_authorized": false,
+  "authorization": {
+    "advance_phase": false,
+    "fabrication": false,
+    "purchasing": false,
+    "battery_energization": false,
+    "final_product_claim": false
+  }
 }

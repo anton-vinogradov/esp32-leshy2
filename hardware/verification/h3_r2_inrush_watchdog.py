@@ -10,6 +10,10 @@ import math
 import re
 from decimal import Decimal
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from h3_r2_current_scope import apply_scope, admits_current, scope_notice
 
 
 REPO = Path(__file__).resolve().parents[2]
@@ -97,59 +101,68 @@ def quantized_ramp(ramp_ms: Decimal, dt_ms: Decimal) -> Decimal:
 
 
 def render_inrush(manifest: dict, russian: bool) -> str:
+    s = manifest["summary"]
+    u214 = manifest["external_accessory_admission"]
     rows = []
     for row in manifest["startup_envelopes"]:
-        rows.append(
-            f"| `{row['rail']}` | {row['capacitance_upper_uf']} | {row['worst_load_ma']} | "
-            f"{row['capacitive_inrush_ma']} | {row['current_margin_ma']} | ✅ |"
-        )
+        status = ("пройдено" if row["status"] == "pass" else "нарушение") if russian else row["status"]
+        rows.append(f"| `{row['rail']}` | {row['capacitance_upper_uf']} | {row['worst_load_ma']} | "
+                    f"{row['capacitive_inrush_ma']} | {row['current_margin_ma']} | {status} |")
     table = "\n".join(rows)
-    total_caps = manifest["summary"]["pcb_capacitor_instances"]
-    u214 = manifest["external_accessory_admission"]
+    step = manifest["load_steps"]["3V3_MAIN"]["maximum_upward_step_ma"]
+    convergence = manifest["convergence"]
     if russian:
         return f"""# Пусковые токи и скачки нагрузки · H3-R2.2.3
 
 [English](inrush-load-step.md) · [Главная](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Итог переходов питания](power-transition-result.ru.md)
 
-Генератор собрал `{total_caps}` реально установленных конденсаторов прямо из текущего R2 net ledger, применил допуск каждого точного MPN и проверил пять защищённых выходов. Для main, voice и внешних 5 В использована максимально быстрая граница `dV/dt` при минимальной ёмкости управляющего конденсатора. AON проверен как ограниченный током запуск.
+{scope_notice(manifest, True)}
 
-| Шина | C max, мкФ | Worst load, мА | Inrush, мА | Запас до min limit, мА | Итог |
-| --- | ---: | ---: | ---: | ---: | --- |
+Генератор учитывает **{s['pcb_capacitor_instances']}** установленных конденсаторов по текущему R2-реестру соединений и применяет указанные допуски ёмкости. Сохранены отдельные расчёты пяти защищённых выходов. Для MAIN, voice и внешних 5 В используется номинальная модель скорости нарастания с минимальной управляющей ёмкостью; AON рассматривается как ограниченный током запуск.
+
+## Ёмкости, нагрузка и предварительный запас
+
+| Шина | C max, мкФ | Худшая нагрузка, мА | Ёмкостный пусковой ток, мА | Запас до модельного минимума защиты, мА | Численное сравнение |
+|---|---:|---:|---:|---:|---|
 {table}
 
-Официальная схема U214 действительно содержит входной `C12 = 470 мкФ`. Мы не спрятали его: расчёт использует `{u214['admitted_external_capacitance_uf']} мкФ`, то есть запас `+50%`. Та же верхняя граница действует для подключаемого M5 Unit; более ёмкий модуль сначала получает отдельный расчёт. Даже с worst load `1,25 А` обе внешние ветви остаются ниже минимального ограничения `1,632 А`.
+Официальная схема U214 содержит входной **C12 = {u214['official_u214_capacitance_uf']} мкФ**. В сохранённом проектном бюджете предусмотрено **{u214['admitted_external_capacitance_uf']} мкФ** — запас +50%. Такой же бюджет задан подключаемому M5 Unit; большая ёмкость требует отдельного расчёта. Это бюджет проекта, а не подтверждение запуска при всех вариантах защиты и динамической нагрузки.
 
-Самый большой скачок `3V3_MAIN` равен `{manifest['load_steps']['3V3_MAIN']['maximum_upward_step_ma']} мА`; конечная точка и пусковой ток сохраняют положительный аппаратный запас. Дискретизация `10 мкс` и `5 мкс` дала одинаковый pass/fail и расхождение времени не более `{manifest['convergence']['maximum_ramp_time_difference_ms']} мс.
+## Скачок нагрузки и численная сходимость
 
-## Честная граница
+Максимальный рассматриваемый скачок `3V3_MAIN` — **{step} мА**. Сравнения модели: запуск **{s['passed_startup_envelopes']} / {s['startup_envelopes']}**, скачки нагрузки **{s['passed_load_step_rails']} / {s['load_step_rails']}**. Дискретизация {convergence['dt_ms']} мс и вдвое меньше даёт максимальное расхождение времени {convergence['maximum_ramp_time_difference_ms']} мс; совпадение классификации — {'да' if convergence['same_pass_fail'] else 'нет'}. Сходимость вычислений не подтверждает правильность исходных пределов.
 
-Расчёт доказывает токовый envelope и отсутствие пересечения аппаратных лимитов. Реальную минимальную просадку, ringing, closed-loop settling и эффективную MLCC-ёмкость после разводки нельзя честно получить без платы: это именованные осциллограммы H8.
+## Что ещё требуется
 
-**Статус:** `H3-R2.2.3` проверено; `{manifest['summary']['startup_envelopes']}/{manifest['summary']['startup_envelopes']}` запусков и `{manifest['summary']['load_step_rails']}/{manifest['summary']['load_step_rails']}` rail load-step envelopes проходят.
+Минимальная ёмкость dV/dt сама по себе не задаёт гарантированную максимальную скорость нарастания ИС. MAIN RILM, сопротивление защиты AON при установленной настройке и пределы supervisor ещё не квалифицированы. Поэтому положительный номинальный токовый запас не доказывает успешный запуск.
 
-[Полный машинный результат](../hardware/verification/generated/H3-R2-inrush-watchdog.json).
+Реальные просадка, звон, установление петли регулирования и эффективная MLCC-ёмкость с учётом напряжения требуют отдельного анализа и измерений. Они не заменяют исправление открытых аналитических входов. [Watchdog и сохранённая причина отключения](watchdog-fault-display.ru.md) рассмотрены отдельно.
 """
     return f"""# Inrush and load steps · H3-R2.2.3
 
 [Русский](inrush-load-step.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Power-transition result](power-transition-result.md)
 
-The generator collects `{total_caps}` fitted capacitors directly from the current R2 net ledger, applies each exact MPN tolerance and checks five protected outputs. Main, voice and external 5-V rails use the fastest `dV/dt` corner from the minimum control-capacitance corner. AON is checked as a current-limited start.
+{scope_notice(manifest)}
 
-| Rail | C max, µF | Worst load, mA | Inrush, mA | Margin to min limit, mA | Result |
-| --- | ---: | ---: | ---: | ---: | --- |
+The generator accounts for **{s['pcb_capacitor_instances']}** fitted capacitors from the current R2 net ledger and applies the stated capacitance tolerances. Separate calculations for five protected outputs are retained. MAIN, voice and external 5-V paths use nominal slew arithmetic with minimum control capacitance; AON is treated as a current-limited start.
+
+## Capacitance, load and provisional headroom
+
+| Rail | C max, µF | Worst load, mA | Capacitive inrush, mA | Margin to model protection minimum, mA | Numerical comparison |
+|---|---:|---:|---:|---:|---|
 {table}
 
-The official U214 schematic really does fit `C12 = 470 µF`; it is not hidden. The calculation admits `{u214['admitted_external_capacitance_uf']} µF`, a `+50%` envelope. The same ceiling applies to an attached M5 Unit; a larger reservoir needs its own calculation first. Both external branches remain below the `1.632 A` minimum limit even with the `1.25 A` worst load.
+The official U214 schematic includes **C12 = {u214['official_u214_capacitance_uf']} µF**. The retained design budget is **{u214['admitted_external_capacitance_uf']} µF**, a +50% allowance. The same budget is assigned to an attached M5 Unit; a larger reservoir needs a separate calculation. This is a design allowance, not proof of startup across protection and dynamic-load corners.
 
-The largest `3V3_MAIN` step is `{manifest['load_steps']['3V3_MAIN']['maximum_upward_step_ma']} mA`; its endpoint plus startup current retains positive hardware margin. `10 µs` and `5 µs` discretizations preserve identical pass/fail results with no more than `{manifest['convergence']['maximum_ramp_time_difference_ms']} ms timing difference.
+## Load step and numerical convergence
 
-## Honest proof boundary
+The maximum considered `3V3_MAIN` step is **{step} mA**. Model comparisons: starts **{s['passed_startup_envelopes']} / {s['startup_envelopes']}**, load steps **{s['passed_load_step_rails']} / {s['load_step_rails']}**. A {convergence['dt_ms']}-ms step and half that step produce at most {convergence['maximum_ramp_time_difference_ms']} ms timing difference; classification agrees: {'yes' if convergence['same_pass_fail'] else 'no'}. Numerical convergence does not validate the input limits.
 
-This proves the current envelope and absence of a hardware-limit crossing. Real minimum droop, ringing, closed-loop settling and routed effective MLCC capacitance are named H8 oscilloscope checks, not invented analytical results.
+## Remaining work
 
-**Status:** `H3-R2.2.3` reviewed; `{manifest['summary']['startup_envelopes']}/{manifest['summary']['startup_envelopes']}` starts and `{manifest['summary']['load_step_rails']}/{manifest['summary']['load_step_rails']}` rail load-step envelopes pass.
+Minimum dV/dt capacitance alone does not establish a guaranteed maximum IC slew rate. MAIN RILM, AON protection resistance at the fitted setting and supervisor bounds are not yet qualified. Positive nominal current headroom therefore does not prove startup.
 
-[Complete machine result](../hardware/verification/generated/H3-R2-inrush-watchdog.json).
+Actual droop, ringing, closed-loop settling and voltage-dependent effective MLCC capacitance need separate analysis and measurements. These do not replace correction of the open analytical inputs. [Watchdog and retained shutdown reason](watchdog-fault-display.md) are covered separately.
 """
 
 
@@ -160,6 +173,8 @@ def render_watchdog(manifest: dict, russian: bool) -> str:
         return f"""# Watchdog и понятная причина отключения · H3-R2.2.3
 
 [English](watchdog-fault-display.md) · [Главная](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Итог переходов питания](power-transition-result.ru.md)
+
+{scope_notice(manifest, True)}
 
 Независимый **{wd['mpn']}** следит не за S3 напрямую, а за always-on safety-controller. Safety-controller обязан переключать WDI каждые `{wd['service_period_ms']} мс`; минимальное окно watchdog — `{wd['timeout_ms']['min']} мс`, поэтому service занимает только `{wd['deadline_fraction_percent']}%` минимального дедлайна. Если контроллер зависает или WDI застрял, WDO не позже `{wd['timeout_ms']['max']} мс` тянет `FAULT_ASSERT_N` вниз и аппаратно очищает RUN-защёлку. Интервал WDO low `{wd['wdo_low_ms']['min']}–{wd['wdo_low_ms']['max']} мс` — это длительность выхода после срабатывания, а не добавка к времени обнаружения.
 
@@ -173,13 +188,15 @@ S3 контролируется отдельным heartbeat/lease monitor вн�
 
 Причина хранится в двух чередующихся 1-КБ секторах нижней 32-КБ области flash MSPM0. Гарантированный ресурс — не менее `{record['minimum_fault_commits']}` fault-коммитов; незавершённая запись не уничтожает предыдущий CRC-valid slot.
 
-**Статус:** `{manifest['summary']['fault_scenarios']}/{manifest['summary']['fault_scenarios']}` fault-сценариев проходят аналитическую проверку. Firmware получает тот же машинный контракт; физическая fault injection остаётся H8.
+**Статус:** `{manifest['summary']['passed_fault_scenarios']}/{manifest['summary']['fault_scenarios']}` fault-сценариев проходят аналитическую проверку. Firmware получает тот же машинный контракт; физическая fault injection остаётся H8.
 
 [Полный машинный результат](../hardware/verification/generated/H3-R2-inrush-watchdog.json).
 """
     return f"""# Watchdog and clear shutdown reason · H3-R2.2.3
 
 [Русский](watchdog-fault-display.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Power-transition result](power-transition-result.md)
+
+{scope_notice(manifest)}
 
 The independent **{wd['mpn']}** monitors the always-on safety controller, not S3 directly. The safety controller must toggle WDI every `{wd['service_period_ms']} ms`; the minimum watchdog window is `{wd['timeout_ms']['min']} ms`, so service consumes only `{wd['deadline_fraction_percent']}%` of the minimum deadline. If the controller stalls or WDI sticks, WDO pulls `FAULT_ASSERT_N` low within `{wd['timeout_ms']['max']} ms` and clears the RUN latch in hardware. The `{wd['wdo_low_ms']['min']}–{wd['wdo_low_ms']['max']} ms` WDO-low interval is output duration after expiry, not extra detection latency.
 
@@ -193,7 +210,7 @@ S3 is covered by a separate heartbeat/lease monitor in the safety controller: tw
 
 The cause uses two alternating 1-KB sectors in the MSPM0 lower-32-KB flash region. Guaranteed endurance is at least `{record['minimum_fault_commits']}` fault commits; an interrupted write cannot destroy the previous CRC-valid slot.
 
-**Status:** `{manifest['summary']['fault_scenarios']}/{manifest['summary']['fault_scenarios']}` fault scenarios pass analytical review. Firmware imports the same machine contract; physical fault injection remains H8.
+**Status:** `{manifest['summary']['passed_fault_scenarios']}/{manifest['summary']['fault_scenarios']}` fault scenarios pass analytical review. Firmware imports the same machine contract; physical fault injection remains H8.
 
 [Complete machine result](../hardware/verification/generated/H3-R2-inrush-watchdog.json).
 """
@@ -201,50 +218,64 @@ The cause uses two alternating 1-KB sectors in the MSPM0 lower-32-KB flash regio
 
 def render_result(result: dict, russian: bool) -> str:
     a = result["accepted_results"]
+    families = (
+        ("startup_scenarios", "Запуск, сброс и восстановление", "Startup, reset and recovery"),
+        ("handover_cases", "USB, аккумулятор, DPM и падение питания", "USB, pack, DPM and brownout"),
+        ("startup_envelopes", "Запуск защищённых шин", "Protected-rail starts"),
+        ("load_step_rails", "Скачки нагрузки шин", "Rail load steps"),
+        ("fault_scenarios", "Watchdog и индикация причины отключения", "Watchdog and shutdown-reason display"),
+    )
+    table = ("| Группа модели | Число рассмотренных случаев |\n|---|---:|\n" if russian else
+             "| Model group | Enumerated cases |\n|---|---:|\n")
+    table += "\n".join(f"| {ru if russian else en} | {a[key]} |" for key, ru, en in families)
     if russian:
         return f"""# Переходы питания и аварийное отключение · итог H3-R2.2
 
-[English](power-transition-result.md) · [Главная](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Startup](power-transition-sequences.ru.md) · [Handover](power-handover.ru.md) · [Inrush](inrush-load-step.ru.md) · [Watchdog](watchdog-fault-display.ru.md)
+[English](power-transition-result.md) · [Главная](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Запуск](power-transition-sequences.ru.md) · [Смена источника](power-handover.ru.md) · [Пусковые токи](inrush-load-step.ru.md) · [Watchdog](watchdog-fault-display.ru.md)
 
-Вся цепочка H3-R2.2 проверена на текущей R2-архитектуре: физический запуск и KILL → USB/pack/DPM/brownout → eFuse/inrush/load-step → watchdog, аппаратная защёлка и сохранённая причина.
+{scope_notice(result, True)}
 
-| Результат | Проверено |
-| --- | ---: |
-| Startup/reset/recovery | {a['startup_scenarios']} / {a['startup_scenarios']} |
-| USB/pack/DPM/brownout | {a['handover_cases']} / {a['handover_cases']} |
-| Защищённые rail startups | {a['startup_envelopes']} / {a['startup_envelopes']} |
-| Rail load-step envelopes | {a['load_step_rails']} / {a['load_step_rails']} |
-| Watchdog/fault-display | {a['fault_scenarios']} / {a['fault_scenarios']} |
+Цепочка анализа сохранена: физический KILL→RUN и сброс → USB/аккумулятор/DPM/падение питания → защита шин, пусковой ток и скачок нагрузки → watchdog, аппаратная защёлка и сохранённая причина отключения. Таблица перечисляет охват модели, а не количество доказанно работающих режимов нынешнего железа.
 
-Исправлены две найденные ревью ошибки: янтарный индикатор переведён с `FAULT_ASSERT_N` на настоящий latched `FAULT_KILL`; у TPS3435 разделены `500 мкс` запуска ИС и нулевая задержка запуска watchdog-окна. Аналитических failures и путей автоматического re-arm — `0`.
+{table}
 
-Результат не разрешает placement, routing, закупку или печать. H6 повторит расчёты с извлечёнными паразитиками, H8 измерит перечисленные waveform/fault-injection cases.
+## Последовательность и сохранённые исправления
 
-**Следующая точка:** `H3-R2.3` — analog corners дисплея, аудио, IR, аккумулятора и Airband.
+После сброса safety-controller удерживает запрос аварийного отключения. Возобновление требует успешного самотеста, непрерывного физического KILL и следующего фронта KILL→RUN. Возврат USB, программы или сигнала watchdog не разрешает автоматический запуск.
 
-[Машинный пакет](../hardware/verification/generated/H3-R2-transition-result.json).
+Сохранены два ранее внесённых исправления: янтарный индикатор управляется защёлкнутым `FAULT_KILL`, а не `FAULT_ASSERT_N`; у TPS3435 разделены 500 мкс запуска ИС и нулевая задержка запуска watchdog-окна. При безопасных MAIN и UI предусмотрен экран с причиной; при потере AON последняя запись не обещается, что отдельно учитывается при следующем запуске.
+
+Численных нарушений в сохранённом сводном сравнении — {a['analytical_failures']}, путей автоматического перезапуска в модели — {a['automatic_restarts']}. Нулевой численный счётчик не устраняет открытые вопросы применимости питания.
+
+## Почему результат ещё требует проверки
+
+Нужно согласовать модель с установленными MAIN/AON компонентами и их настройками, а также с отсутствующими гарантированными пределами supervisor. Затем повторяются зависимые сравнения. Анализ паразитик готовой разводки и измерения первого образца остаются отдельными этапами, не заменяющими эту работу.
+
+[Общий текущий итог H3](h3-r2-acceptance.ru.md) собирает аналитические вопросы отдельно от физических свидетельств и обязательств прошивки.
 """
     return f"""# Power transitions and fault shutdown · H3-R2.2 result
 
 [Русский](power-transition-result.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Startup](power-transition-sequences.md) · [Handover](power-handover.md) · [Inrush](inrush-load-step.md) · [Watchdog](watchdog-fault-display.md)
 
-The complete H3-R2.2 chain is reviewed against the current R2 architecture: physical startup and KILL → USB/pack/DPM/brownout → eFuse/inrush/load-step → watchdog, hardware latch and retained cause.
+{scope_notice(result)}
 
-| Result | Checked |
-| --- | ---: |
-| Startup/reset/recovery | {a['startup_scenarios']} / {a['startup_scenarios']} |
-| USB/pack/DPM/brownout | {a['handover_cases']} / {a['handover_cases']} |
-| Protected rail starts | {a['startup_envelopes']} / {a['startup_envelopes']} |
-| Rail load-step envelopes | {a['load_step_rails']} / {a['load_step_rails']} |
-| Watchdog/fault display | {a['fault_scenarios']} / {a['fault_scenarios']} |
+The analysis chain is retained: physical KILL-to-RUN and reset → USB/pack/DPM/brownout → protected rails, inrush and load steps → watchdog, hardware latch and retained shutdown reason. The table enumerates model coverage, not proven operating modes of the current hardware.
 
-Review corrected two real errors: the amber indicator now uses the latched `FAULT_KILL` rather than `FAULT_ASSERT_N`, and TPS3435 now distinguishes its `500 µs` device startup from the zero watchdog-window startup delay. Analytical failures and automatic re-arm paths are both `0`.
+{table}
 
-This result does not authorize placement, routing, purchase or fabrication. H6 repeats the calculations with extracted parasitics, while H8 measures the named waveform and fault-injection cases.
+## Sequence and retained corrections
 
-**Next point:** `H3-R2.3` — display, audio, IR, battery and Airband analog corners.
+After reset, the safety controller holds the fault request active. Resumption requires successful self-test, continuous physical KILL and the following KILL-to-RUN edge. Recovery of USB, firmware or watchdog signaling does not authorize automatic restart.
 
-[Machine package](../hardware/verification/generated/H3-R2-transition-result.json).
+Two earlier corrections are retained: the amber indicator uses latched `FAULT_KILL`, not `FAULT_ASSERT_N`; TPS3435 distinguishes its 500-µs device startup from zero watchdog-window startup delay. A reason screen is planned when MAIN and UI are safe; complete AON loss cannot promise a final record, which later startup handles explicitly.
+
+Numerical failures in the retained aggregate comparison: {a['analytical_failures']}; model automatic restart paths: {a['automatic_restarts']}. A zero numerical counter does not resolve open power-applicability findings.
+
+## Why review remains required
+
+The model must be reconciled with fitted MAIN/AON components and settings, including the missing guaranteed supervisor bounds; dependent comparisons must then be repeated. Routed-parasitic analysis and first-prototype measurements remain separate stages, not substitutes for this correction.
+
+The [current H3 result](h3-r2-acceptance.md) separates analytical findings, physical evidence and firmware obligations.
 """
 
 
@@ -259,12 +290,6 @@ def build() -> tuple[dict[Path, str], dict, dict]:
     devices = load(DEVICES)["devices"]
     errors: list[str] = []
 
-    if rails["status"] != "reviewed_all_rail_voltage_current_protection_and_steady_thermal_margins":
-        errors.append("H3-R2.1 rail margins are not passing")
-    if sequences["status"] != "reviewed_startup_shutdown_reset_and_recovery":
-        errors.append("H3-R2.2.1 is not reviewed")
-    if handover["status"] != "reviewed_usb_pack_handover_dpm_brownout_and_source_loss":
-        errors.append("H3-R2.2.2 is not reviewed")
     workstream = next(row for row in plan["substeps"] if row["id"] == "H3-R2.2")
     step = next(row for row in workstream["details"] if row["id"] == "H3-R2.2.3")
     if step["status"] not in {"current", "reviewed"}:
@@ -462,7 +487,7 @@ def build() -> tuple[dict[Path, str], dict, dict]:
             "topology_checks": len(topology_checks), "analytical_failures": len(errors), "automatic_restarts": 0,
         },
         "proof_boundary": {
-            "proved": "exact current-limit and dV/dt corners, generated capacitance inventory, load-step endpoints, independent watchdog topology/deadline and fail-closed retained-diagnostic contract",
+            "provisional_model_scope": "retained current-limit and nominal dV/dt algebra, generated capacitance inventory, load-step endpoints, independent watchdog topology/deadline and fail-closed retained-diagnostic contract; fitted current-limit, maximum slew and supervisor bounds are not qualified",
             "not_claimed": "routed droop, ringing, converter settling, accessory specimen capacitance or implemented fault-journal power-cut behavior",
             "physical_owner": "H8 after H6 routed-parasitic re-analysis",
         },
@@ -476,6 +501,11 @@ def build() -> tuple[dict[Path, str], dict, dict]:
         "errors": errors,
     }
 
+    apply_scope(manifest, __file__, {
+        "rail_inputs": admits_current(rails, "H3-R2-rail-margins"),
+        "sequence_inputs": admits_current(sequences, "H3-R2-transition-sequences"),
+        "handover_inputs": admits_current(handover, "H3-R2-handover"),
+    })
     cross_checks = {
         "startup_sequences": sequences["summary"]["errors"] == 0,
         "usb_pack_handover": handover["summary"]["failed_cases"] == 0,
@@ -506,6 +536,11 @@ def build() -> tuple[dict[Path, str], dict, dict]:
         "errors": errors + cross_errors,
     }
 
+    apply_scope(result, __file__, {
+        "inrush_inputs": manifest["current_power_scope"]["status"] == "pass",
+        "sequence_inputs": admits_current(sequences, "H3-R2-transition-sequences"),
+        "handover_inputs": admits_current(handover, "H3-R2-handover"),
+    })
     outputs = {
         OUTPUT: json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
         CROSSCHECK: json.dumps(result, ensure_ascii=False, indent=2) + "\n",
@@ -523,8 +558,6 @@ def main() -> int:
     mode.add_argument("--check", action="store_true")
     args = parser.parse_args()
     outputs, manifest, result = build()
-    if manifest["errors"] or result["errors"]:
-        raise SystemExit("H3-R2.2.3/4 failed: " + "; ".join((manifest["errors"] + result["errors"])[:16]))
     if args.write:
         for path, content in outputs.items():
             path.parent.mkdir(parents=True, exist_ok=True)

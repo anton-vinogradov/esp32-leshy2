@@ -8,6 +8,10 @@ import hashlib
 import json
 import math
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from h3_r2_current_scope import apply_scope, admits_current, scope_notice
 
 
 REPO = Path(__file__).resolve().parents[2]
@@ -228,8 +232,6 @@ def build() -> tuple[dict[Path, str], dict]:
 
     if freeze.get("status") != "pass" or methods.get("status") != "pass":
         errors.append("reviewed R2 input/method chain is not passing")
-    if not str(dc.get("status", "")).startswith("reviewed_h3_r2_1"):
-        errors.append("H3-R2.1 cross-check is not reviewed")
     current = next(row for row in plan["substeps"] if row["id"] == "H3-R2.2")
     detail = next(row for row in current["details"] if row["id"] == "H3-R2.2.1")
     if detail["status"] not in {"current", "reviewed"}:
@@ -401,9 +403,16 @@ def build() -> tuple[dict[Path, str], dict]:
         ],
         "physical_residuals": contract["physical_residuals"],
         "authorization": contract["authorization"],
-        "next": {"marker": "H3-R2.2.3", "action": "H3-R2.2.2 handover is reviewed; verify inrush, load steps, watchdog kill and retained fault display"},
+        "next": {"marker": "H3-R2.2.3", "action": "evaluate inrush, load steps, watchdog kill and retained fault display while current power applicability remains explicit"},
         "errors": errors,
     }
+    manifest["timing"]["supervisor_assertion_typ_us"] = supervisor.get("sense_to_reset_assertion_us", {}).get("typ")
+    manifest["timing"]["supervisor_hysteresis_percent"] = supervisor.get("fixed_threshold_hysteresis_percent")
+    apply_scope(manifest, __file__, {
+        "dc_inputs": admits_current(dc, "H3-R2-dc-source-crosscheck"),
+        "supervisor_assertion_bound": supervisor.get("sense_to_reset_assertion_max_us") is not None,
+        "supervisor_hysteresis_bound": supervisor.get("fixed_threshold_hysteresis_percent", {}).get("min") is not None,
+    })
     outputs = {
         OUTPUT: json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
         DOC_EN: render_doc(manifest, False),
@@ -419,13 +428,12 @@ def render_doc(manifest: dict, russian: bool) -> str:
     if russian:
         title = "# Запуск, сброс и восстановление · H3-R2.2.1"
         nav = "[English](power-transition-sequences.md) · [Главная](../README.ru.md) · [Роадмап](roadmap.ru.md)"
-        intro = ("Проверка `H3-R2.2.1` завершена: все сценарии запуска и аварийного возврата проходят без автоматического повторного старта. "
-                 "Обычный fault аппаратно выключает опасные домены и напрямую сбрасывает C5/RF RP, но оставляет S3 для понятного сообщения, пока доступно питание UI.")
+        intro = scope_notice(manifest, russian)
         states_h = "## Правило запуска"
         states = ("Safety держит `SAFETY_FAULT_REQUEST` активным после сброса. Сначала self-test, затем физический `KILL` непрерывно 500 мс, "
                   "и только следующий фронт `KILL→RUN` может тактировать аппаратную защёлку `RUN_PERMIT`. USB, software reset и исчезновение причины fault фронт не создают.")
         timing_h = "## Точные границы"
-        timing = (f"- TPS3808 с открытым CT: `{t['supervisor_ct_open_reset_delay_ms']['min']}..{t['supervisor_ct_open_reset_delay_ms']['max']} мс`; аварийное утверждение reset — не более `{t['supervisor_assertion_max_us']} мкс`.\n"
+        timing = (f"- TPS3808 с открытым CT: `{t['supervisor_ct_open_reset_delay_ms']['min']}..{t['supervisor_ct_open_reset_delay_ms']['max']} мс`; утверждение reset — `{t['supervisor_assertion_typ_us']} мкс` типично, гарантированный максимум не задан. Минимум гистерезиса также не задан; эти пределы остаются открытыми, а не принимаются равными типичным.\n"
                   f"- TPS3435: запуск ИС — не более `{t['watchdog_device_startup_time_us_max']} мкс`, задержка запуска watchdog-окна — `{t['watchdog_startup_delay_ms']['max']} мс`; timeout `{t['watchdog_timeout_s']['min']}..{t['watchdog_timeout_s']['max']} с`, WDO low `{t['watchdog_assert_time_ms']['min']}..{t['watchdog_assert_time_ms']['max']} мс`; heartbeat — `{t['watchdog_service_period_ms']} мс`.\n"
                   f"- 100 кОм / 2,2 мкФ: расчётный rise `{t['rearm_rc']['rise_ms']['earliest']}..{t['rearm_rc']['rise_ms']['latest']} мс`, гарантированный tolerance-only discharge `{t['rearm_rc']['guaranteed_fall_below_vt_minus_min_ms']} мс`; это debounce, не единственный interlock.")
         seq_h = "## Проверенные сценарии"
@@ -437,17 +445,16 @@ def render_doc(manifest: dict, russian: bool) -> str:
                  "- Антиавтозапуск теперь опирается на квалифицированный физический KILL, а не на предположение о моменте RC-фронта.")
         residual_h = "## Что остаётся физике"
         residual = "\n".join(f"- {row}" for row in manifest["physical_residuals"])
-        end = f"**Результат:** `{s['passed_scenarios']}/{s['scenarios']}` сценариев и `{s['topology_endpoints']}` endpoint-проверок проходят. H3-R2.3, [цифровая проверка H3-R2.4](digital-electrical-verification.ru.md), [RF-проверка H3-R2.5](rf-electrical-verification.ru.md), [thermal/fault H3-R2.6](thermal-fault-electrical-verification.ru.md), итоги H3-R2.7, H4-R2 и H5-R1 проведены ревью; **текущий маркер — `H6.0.3-R1`**. H6 placement/routing разрешена; заказ и fabrication всё ещё запрещены.\n\n[Машинный отчёт](../hardware/verification/generated/H3-R2-transition-sequences.json)."
+        end = ("Текущие численные результаты предварительны; открытые аналитические вопросы остаются." if russian else "Current numerical results are provisional; analytical applicability findings remain open.")
     else:
         title = "# Startup, reset and recovery · H3-R2.2.1"
         nav = "[Русский](power-transition-sequences.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md)"
-        intro = ("`H3-R2.2.1` verification is complete: every startup and fault-recovery scenario passes without automatic restart. "
-                 "An ordinary fault removes hazardous domains and directly resets C5/RF RP, while S3 can keep a readable cause on screen whenever UI power remains available.")
+        intro = scope_notice(manifest, russian)
         states_h = "## Startup rule"
         states = ("Safety holds `SAFETY_FAULT_REQUEST` active after reset. Self-test must pass, physical `KILL` must remain continuous for 500 ms, "
                   "and only the following `KILL→RUN` edge may clock the hardware `RUN_PERMIT` latch. USB, software reset and fault recovery create no such edge.")
         timing_h = "## Exact bounds"
-        timing = (f"- TPS3808 with CT open: `{t['supervisor_ct_open_reset_delay_ms']['min']}..{t['supervisor_ct_open_reset_delay_ms']['max']} ms`; reset assertion within `{t['supervisor_assertion_max_us']} us`.\n"
+        timing = (f"- TPS3808 with CT open: `{t['supervisor_ct_open_reset_delay_ms']['min']}..{t['supervisor_ct_open_reset_delay_ms']['max']} ms`; reset assertion is `{t['supervisor_assertion_typ_us']} us` typical, with no guaranteed maximum. Minimum hysteresis is also unspecified; these limits remain open rather than adopting typical values.\n"
                   f"- TPS3435: device startup within `{t['watchdog_device_startup_time_us_max']} us`, watchdog-window startup delay `{t['watchdog_startup_delay_ms']['max']} ms`; `{t['watchdog_timeout_s']['min']}..{t['watchdog_timeout_s']['max']} s` timeout, `{t['watchdog_assert_time_ms']['min']}..{t['watchdog_assert_time_ms']['max']} ms` WDO-low interval; heartbeat target `{t['watchdog_service_period_ms']} ms`.\n"
                   f"- 100 kohm / 2.2 uF: analytical rise `{t['rearm_rc']['rise_ms']['earliest']}..{t['rearm_rc']['rise_ms']['latest']} ms`, tolerance-only guaranteed discharge `{t['rearm_rc']['guaranteed_fall_below_vt_minus_min_ms']} ms`; this is debounce, not the sole interlock.")
         seq_h = "## Verified scenarios"
@@ -459,7 +466,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
                  "- Anti-auto-start now depends on qualified physical KILL rather than assumed RC-edge timing.")
         residual_h = "## Physical residuals"
         residual = "\n".join(f"- {row}" for row in manifest["physical_residuals"])
-        end = f"**Result:** `{s['passed_scenarios']}/{s['scenarios']}` scenarios and `{s['topology_endpoints']}` endpoint checks pass. H3-R2.3, [H3-R2.4 digital verification](digital-electrical-verification.md), [H3-R2.5 RF verification](rf-electrical-verification.md), [H3-R2.6 thermal/fault verification](thermal-fault-electrical-verification.md), H3-R2.7, global H4-R2 and global H5-R1 are reviewed; the **current marker is `H6.0.3-R1`**. H6 placement/routing is authorized; ordering and fabrication remain forbidden.\n\n[Machine report](../hardware/verification/generated/H3-R2-transition-sequences.json)."
+        end = ("Текущие численные результаты предварительны; открытые аналитические вопросы остаются." if russian else "Current numerical results are provisional; analytical applicability findings remain open.")
     return "\n\n".join((title, nav, intro, states_h, states, timing_h, timing, seq_h, header + "\n" + body, fixes_h, fixes, residual_h, residual, end)) + "\n"
 
 
@@ -470,8 +477,6 @@ def main() -> int:
     mode.add_argument("--check", action="store_true")
     args = parser.parse_args()
     outputs, manifest = build()
-    if manifest["errors"]:
-        raise SystemExit("H3-R2.2.1 failed: " + "; ".join(manifest["errors"]))
     if args.write:
         for path, content in outputs.items():
             path.parent.mkdir(parents=True, exist_ok=True)
@@ -481,7 +486,7 @@ def main() -> int:
     stale = [str(path.relative_to(REPO)) for path, content in outputs.items() if not path.is_file() or path.read_text(encoding="utf-8") != content]
     if stale:
         raise SystemExit("stale H3-R2.2.1 artifacts: " + ", ".join(stale))
-    print(f"ok: H3-R2.2.1 reviewed; {manifest['summary']['passed_scenarios']} scenarios")
+    print(f"ok: H3-R2.2.1 {manifest['status']}; {manifest['summary']['passed_scenarios']} scenarios")
     return 0
 
 

@@ -4,7 +4,7 @@
   "status": "reviewed_battery_sensing_thermistors_and_analog_fault_thresholds",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "6df524f1edf8db12ac278e0b5901a598c0ac18262800b09c38dde7b45147ed27",
-    "hardware/architecture/devices.json": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
+    "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974",
     "hardware/verification/generated/H3-VRF03-method-contract.json": "36ec849677ba5f1ac0721aa700092f73179fa11982434e4c44d73f8e69ba64c8"
   },
   "provenance": {

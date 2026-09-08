@@ -18,12 +18,13 @@ class H3R2RfCoexistenceTest(unittest.TestCase):
     def setUp(self):
         self.outputs, self.result = MODULE.build()
 
-    def test_review_closes_all_calculable_rf_checks(self):
+    def test_rf_checks_are_provisional_while_power_inputs_are_unqualified(self):
         self.assertEqual("H3-R2.5", self.result["marker"])
-        self.assertEqual("pass", self.result["status"])
+        self.assertEqual("review_required", self.result["status"])
         self.assertGreaterEqual(self.result["summary"]["checks"], 50)
         self.assertTrue(all(self.result["checks"].values()))
-        self.assertEqual([], self.result["errors"])
+        self.assertEqual([], self.result["provisional_numerical_errors"])
+        self.assertIn("applicability:digital_inputs", self.result["errors"])
 
     def test_geometry_and_cable_contract_are_exact(self):
         summary = self.result["summary"]

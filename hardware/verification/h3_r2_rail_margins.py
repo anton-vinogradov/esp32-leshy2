@@ -9,6 +9,10 @@ import json
 from collections import Counter, defaultdict
 from decimal import Decimal, getcontext
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from h3_r2_current_scope import apply_scope, scope_notice
 
 
 getcontext().prec = 34
@@ -18,13 +22,21 @@ CONTRACT = REPO / "hardware/verification/h3-r2-rail-margin-contract.json"
 LOADS = REPO / "hardware/verification/generated/H3-R2-load-binding.json"
 STATES = REPO / "hardware/verification/generated/H3-R2-power-state-register.json"
 METHODS = REPO / "hardware/verification/generated/H3-R2-method-contract.json"
+H0 = REPO / "hardware/architecture/h0-r2-rebaseline.json"
+INSTANCES = REPO / "hardware/ecad/generated/H2-R2-native-instance-ledger.json"
+DEVICES = REPO / "hardware/architecture/devices.json"
 OUTPUT = REPO / "hardware/verification/generated/H3-R2-rail-margins.json"
 DOC_EN = REPO / "docs/power-rail-margins.md"
 DOC_RU = REPO / "docs/power-rail-margins.ru.md"
 
 
-def d(value: object) -> Decimal:
-    return Decimal(str(value))
+def d(value):
+    if isinstance(value, bool):
+        raise ValueError("boolean is not a voltage/current/resistance")
+    result = Decimal(str(value))
+    if not result.is_finite():
+        raise ValueError("nonfinite electrical value")
+    return result
 
 
 def q(value: Decimal, quantum: str = "0.001") -> str:
@@ -163,31 +175,109 @@ def profile_load(contract: dict, profile: dict) -> dict:
     }
 
 
-def rail_voltage_result(name: str, rail: dict) -> dict:
+def q_voltage(value, quantum="0.000001"):
+    return format(value.quantize(Decimal(quantum)), "f")
+
+
+def rail_voltage_result(name, rail, load_ma, *, load_case, voltage_path):
+    """Evaluate a conditional on-state, not eFuse startup/foldback/thermal.
+
+    Distribution is an explicitly separate downstream allowance, applied once.
+    A fixed allowance is conservative even for low load; its current dependence
+    is not invented. The high corner is the light/no-load upper envelope.
+    """
+    if voltage_path.get("distribution_scope") != "downstream_excludes_protection":
+        raise ValueError("distribution/protection partition must be explicit")
+    if not all(isinstance(voltage_path.get(key), str) and voltage_path[key].strip()
+               for key in ("raw_net", "protected_local_net", "consumer_location")):
+        raise ValueError("voltage node identities are required")
+    if type(voltage_path.get("qualified")) is not bool:
+        raise ValueError("explicit model qualification is required")
+    reasons = voltage_path.get("unqualified_reasons")
+    if not isinstance(reasons, list) or any(not isinstance(reason, str) or not reason.strip() for reason in reasons):
+        raise ValueError("explicit model qualification reasons are required")
+    if voltage_path["qualified"] == bool(reasons):
+        raise ValueError("model qualification and reasons disagree")
+    if not isinstance(load_case, str) or not load_case:
+        raise ValueError("load case identity is required")
+
     nominal = d(rail["nominal_v"])
-    ripple = d(rail["ripple_pp_v"])
-    raw_min = d(rail["raw_average_min_v"]) - ripple / d(2)
-    raw_max = d(rail["raw_average_max_v"]) + ripple / d(2)
-    endpoint_min = raw_min - d(rail["distribution_drop_v"])
-    endpoint_max = raw_max
-    raw_fraction = raw_min / nominal
+    average_min, average_max = d(rail["raw_average_min_v"]), d(rail["raw_average_max_v"])
+    ripple, distribution = d(rail["ripple_pp_v"]), d(rail["distribution_drop_v"])
+    current_a, ron = d(load_ma) / Decimal(1000), d(rail["efuse_ron_max_ohm"])
+    if nominal <= 0 or average_min > average_max or min(ripple, distribution, current_a, ron) < 0:
+        raise ValueError("invalid voltage/current/resistance bounds")
+    if d(rail["load_min_v"]) > d(rail["load_max_v"]):
+        raise ValueError("inverted consumer limits")
+    raw_min = average_min - ripple / Decimal(2)
+    raw_max = average_max + ripple / Decimal(2)
+    protection_drop = current_a * ron
+    protected_min = raw_min - protection_drop
+    endpoint_min = protected_min - distribution
+    # Do not conceal a high-voltage violation by subtracting full-load loss.
+    protected_max = endpoint_max = raw_max
     checks = {
-        "raw_retains_95_percent_nominal": raw_fraction >= d("0.95"),
+        "raw_retains_95_percent_nominal": raw_min / nominal >= Decimal("0.95"),
         "endpoint_above_load_minimum": endpoint_min >= d(rail["load_min_v"]),
         "endpoint_below_load_maximum": endpoint_max <= d(rail["load_max_v"]),
     }
+    unresolved = list(reasons)
+    if name == "3V3_MAIN" and rail.get("source") == "https://www.ti.com/lit/ds/symlink/tps564252.pdf":
+        unresolved.append("MAIN raw-source model names TPS564252, but native main_buck is TPS566231PRQFR; raw bounds remain unqualified")
+    numerical_status = "pass" if all(checks.values()) else "fail"
     return {
-        "rail": name,
-        "nominal_v": q(nominal, "0.000001"),
-        "raw_min_v": q(raw_min, "0.000001"),
-        "raw_max_v": q(raw_max, "0.000001"),
-        "endpoint_min_v": q(endpoint_min, "0.000001"),
-        "endpoint_max_v": q(endpoint_max, "0.000001"),
-        "raw_fraction_of_nominal_percent": q(raw_fraction * d(100)),
-        "load_range_v": [q(d(rail["load_min_v"]), "0.000001"), q(d(rail["load_max_v"]), "0.000001")],
-        "checks": checks,
-        "status": "pass" if all(checks.values()) else "fail",
+        "rail": name, "load_case": load_case, "load_ma": q_voltage(current_a * Decimal(1000)),
+        "nominal_v": q_voltage(nominal), "raw_min_v": q_voltage(raw_min), "raw_max_v": q_voltage(raw_max),
+        "protected_local_min_v": q_voltage(protected_min), "protected_local_max_v": q_voltage(protected_max),
+        "consumer_endpoint_min_v": q_voltage(endpoint_min), "consumer_endpoint_max_v": q_voltage(endpoint_max),
+        # Compatibility aliases have the corrected endpoint semantics, not the
+        # old raw-minus-distribution values. Downstream must also check status.
+        "endpoint_min_v": q_voltage(endpoint_min), "endpoint_max_v": q_voltage(endpoint_max),
+        "nodes": {key: voltage_path[key] for key in ("raw_net", "protected_local_net", "consumer_location")},
+        "pg_sense_endpoint": voltage_path.get("pg_sense_endpoint"),
+        "series_path_losses": [
+            {"id": "protection", "from": "raw", "to": "protected_local", "current_a": q_voltage(current_a),
+             "ron_ohm": q_voltage(ron), "maximum_drop_v": q_voltage(protection_drop), "basis": "I_times_declared_RON_conditional_on_state"},
+            {"id": "distribution", "from": "protected_local", "to": "consumer_endpoint",
+             "maximum_drop_v": q_voltage(distribution), "basis": "separate_declared_downstream_allowance"},
+        ],
+        "high_corner": "light_or_no_load_upper_bound_no_maximum_load_drop_subtracted",
+        "raw_fraction_of_nominal_percent": q_voltage(raw_min / nominal * Decimal(100)),
+        "load_range_v": [q_voltage(d(rail["load_min_v"])), q_voltage(d(rail["load_max_v"]))],
+        "checks": checks, "numerical_status": numerical_status,
+        "model_qualified": not unresolved, "unqualified_reasons": unresolved,
+        "status": "review_required" if unresolved else numerical_status,
     }
+
+
+def voltage_load_cases(contract, profiles, voltage_paths, declared_targets_ma):
+    """All electrical profiles plus separately named design targets, not thermal loads."""
+    if not profiles:
+        raise ValueError("at least one electrical profile is required")
+    rails = contract["rails"]
+    if set(voltage_paths) != set(rails) or set(declared_targets_ma) - set(rails):
+        raise ValueError("rail scope mismatch")
+    rows = []
+    by_rail = {name: [] for name in rails}
+    for profile in profiles:
+        ident = "/".join(profile[key] for key in ("signal_group", "group_mode", "support_profile"))
+        for name, rail in rails.items():
+            row = rail_voltage_result(name, rail, profile["loads_ma"][name],
+                                      load_case=ident, voltage_path=voltage_paths[name])
+            rows.append(row)
+            by_rail[name].append((d(profile["loads_ma"][name]), row))
+    # The fixed-rail nonnegative-RON low bound is monotone in current. Select
+    # using original current, not rounded output volts or thermal admission.
+    worst = {name: max(cases, key=lambda case: case[0])[1] for name, cases in by_rail.items()}
+    targets = {name: {label: rail_voltage_result(name, rails[name], load,
+                 load_case=label, voltage_path=voltage_paths[name]) for label, load in cases.items()}
+               for name, cases in declared_targets_ma.items()}
+    all_rows = rows + [row for cases in targets.values() for row in cases.values()]
+    failures = [f"{row['rail']}:{row['load_case']}" for row in all_rows if row["numerical_status"] != "pass"]
+    unresolved = [f"{row['rail']}:{row['load_case']}" for row in all_rows if not row["model_qualified"]]
+    return {"profile_voltage_corners": rows, "voltage_corners": worst, "declared_target_voltage_corners": targets,
+            "voltage_numerical_failures": failures, "voltage_unqualified_cases": unresolved,
+            "status": "review_required" if unresolved else ("fail" if failures else "pass")}
 
 
 def current_result(name: str, rail: dict, load_ma: Decimal, profile: dict) -> dict:
@@ -249,7 +339,7 @@ def render_doc(manifest: dict, russian: bool) -> str:
         current_rows.append(f"| `{name}` | {row['load_ma']} mA | {row['effective_hardware_min_a']} A | {row['reserve_percent']}% | `{row['profile']}` |")
     voltage_rows = []
     for name, row in manifest["voltage_corners"].items():
-        voltage_rows.append(f"| `{name}` | {row['raw_min_v']}…{row['raw_max_v']} V | {row['endpoint_min_v']}…{row['endpoint_max_v']} V | {row['load_range_v'][0]}…{row['load_range_v'][1]} V | {row['status']} |")
+        voltage_rows.append(f"| `{name}` | {row['raw_min_v']}…{row['raw_max_v']} V | {row['protected_local_min_v']}…{row['protected_local_max_v']} V | {row['endpoint_min_v']}…{row['endpoint_max_v']} V | {row['load_range_v'][0]}…{row['load_range_v'][1]} V | numerical {row['numerical_status']}; {row['status']} |")
     thermal_rows = []
     for name, row in manifest["steady_thermal_by_rail"].items():
         thermal_rows.append(f"| `{name}` | {row['sustained_load_ma']} mA | {row['converter_predicted_tj_c']} °C | {row['converter_junction_margin_c']} °C | {row['efuse_predicted_tj_c']} °C | {row['status']} |")
@@ -257,29 +347,29 @@ def render_doc(manifest: dict, russian: bool) -> str:
     if russian:
         title = "# Запасы шин питания · H3-R2.1.3"
         nav = "[English](power-rail-margins.md) · [Главная](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Привязка нагрузок](power-load-binding.ru.md)"
-        intro = f"`H3-R2.1.3` проведён ревью. Все {manifest['summary']['physical_and_external_lines_owned']} физических и внешних строк нагрузки имеют ровно одного владельца тока либо явный перенос source/pack-строки в H3-R2.1.4. Скрытой строки «прочее» нет."
+        intro = scope_notice(manifest, russian)
         h1 = "## Ток и защита"
-        t1 = "| Шина | Худшая электрическая нагрузка | Минимум железа | Запас | Профиль |\n|---|---:|---:|---:|---|\n" + "\n".join(current_rows)
-        p1 = "Ограничивающий элемент 3V3_MAIN — нынешний 4-А `TPS564252DRLR`, а не исторический 6-А преобразователь. Худший угол оставляет 154 мА до границы правила 25%."
+        t1 = "| Шина | Худшая электрическая нагрузка | Предварительный минимум модели | Запас | Профиль |\n|---|---:|---:|---:|---|\n" + "\n".join(current_rows)
+        p1 = ("Установленный MAIN-преобразователь: " if russian else "Fitted MAIN converter: ") + manifest["observed_main_converter"]["mpn"] + (". Старые параметры TPS564252 сохранены как предварительные, не как доказательство его работы." if russian else ". Old TPS564252 parameters are retained provisionally, not as proof of this fitted power cell.")
         h2 = "## Напряжение"
-        t2 = "| Шина | Raw corner | На нагрузке | Допустимый диапазон нагрузки | Итог |\n|---|---:|---:|---:|---|\n" + "\n".join(voltage_rows)
+        t2 = "| Шина | Raw corner | После защиты, до distribution | На нагрузке | Допустимый диапазон нагрузки | Итог |\n|---|---:|---:|---:|---:|---|\n" + "\n".join(voltage_rows)
         h3 = "## Установившийся тепловой режим"
         t3 = "| Шина | Длительный ток | Tj преобразователя | Запас до Tj max | Tj eFuse | Итог |\n|---|---:|---:|---:|---:|---|\n" + "\n".join(thermal_rows)
         p3 = "`SUPPORT_WORST` остаётся электрическим одновременным углом, а не разрешением на 24–48 часов. Для внешнего 5-В порта сохранён электрический потолок 1,25 А, но до H6/H8 длительная автоматика допускает 1,00 А; выбранные U214/U219/M5-сценарии функций не теряют."
-        end = "**Downstream-результат:** [`H3-R2.1`](power-dc-source-result.ru.md) полностью проведён ревью; актуальная точка всегда указана в [роадмапе](roadmap.ru.md).\n\n[Полный машинный результат](../hardware/verification/generated/H3-R2-rail-margins.json)."
+        end = ("Текущие численные результаты предварительны; открытые аналитические вопросы остаются." if russian else "Current numerical results are provisional; analytical applicability findings remain open.")
     else:
         title = "# Power-rail margins · H3-R2.1.3"
         nav = "[Русский](power-rail-margins.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Load binding](power-load-binding.md)"
-        intro = f"`H3-R2.1.3` is reviewed. All {manifest['summary']['physical_and_external_lines_owned']} physical and external load lines have exactly one current owner or an explicit source/pack deferral to H3-R2.1.4. There is no hidden miscellaneous line."
+        intro = scope_notice(manifest, russian)
         h1 = "## Current and protection"
-        t1 = "| Rail | Electrical worst load | Hardware minimum | Reserve | Profile |\n|---|---:|---:|---:|---|\n" + "\n".join(current_rows)
-        p1 = "The limiting 3V3_MAIN element is the current 4-A `TPS564252DRLR`, not the historical 6-A converter. The worst corner retains 154 mA before the 25% rule boundary."
+        t1 = "| Rail | Electrical worst load | Provisional model minimum | Reserve | Profile |\n|---|---:|---:|---:|---|\n" + "\n".join(current_rows)
+        p1 = ("Установленный MAIN-преобразователь: " if russian else "Fitted MAIN converter: ") + manifest["observed_main_converter"]["mpn"] + (". Старые параметры TPS564252 сохранены как предварительные, не как доказательство его работы." if russian else ". Old TPS564252 parameters are retained provisionally, not as proof of this fitted power cell.")
         h2 = "## Voltage"
-        t2 = "| Rail | Raw corner | Load endpoint | Allowed load range | Result |\n|---|---:|---:|---:|---|\n" + "\n".join(voltage_rows)
+        t2 = "| Rail | Raw corner | Protected local before distribution | Load endpoint | Allowed load range | Result |\n|---|---:|---:|---:|---:|---|\n" + "\n".join(voltage_rows)
         h3 = "## Steady thermal envelope"
         t3 = "| Rail | Sustained current | Converter Tj | Margin to Tj max | eFuse Tj | Result |\n|---|---:|---:|---:|---:|---|\n" + "\n".join(thermal_rows)
         p3 = "`SUPPORT_WORST` remains an electrical simultaneous corner, not a 24-to-48-hour permission. The exposed 5-V port keeps its 1.25-A electrical ceiling, while unattended control admits 1.00 A until H6/H8; the selected U214/U219/M5 functions are unaffected."
-        end = "**Downstream result:** [`H3-R2.1`](power-dc-source-result.md) is fully reviewed; the [roadmap](roadmap.md) carries the live marker.\n\n[Complete machine result](../hardware/verification/generated/H3-R2-rail-margins.json)."
+        end = ("Текущие численные результаты предварительны; открытые аналитические вопросы остаются." if russian else "Current numerical results are provisional; analytical applicability findings remain open.")
     return "\n\n".join((title, nav, intro, h1, t1, p1, h2, t2, h3, t3, p3, end)) + "\n"
 
 
@@ -315,7 +405,15 @@ def build() -> tuple[dict[Path, str], dict]:
     profiles = [profile_load(contract, row) for row in states["operating_profiles"]]
     rails = contract["rails"]
     worst_current = {}
-    voltage = {name: rail_voltage_result(name, rail) for name, rail in rails.items()}
+    # H0 design targets are evaluated separately from profile and thermal loads.
+    h0 = json.loads(H0.read_text())["power_rebaseline"]["h1_required_envelope"]
+    declared_targets = {"3V3_MAIN": {
+        "H0_continuous": d(h0["continuous_3v3_main_a_min"]) * d(1000),
+        "H0_step_resistive_snapshot_not_transient_proof": d(h0["step_a_min"]) * d(1000),
+    }}
+    voltage_evaluation = voltage_load_cases(
+        contract, profiles, contract["voltage_paths"], declared_targets)
+    voltage = voltage_evaluation["voltage_corners"]
     for name, rail in rails.items():
         load, profile = max(((d(row["loads_ma"][name]), row) for row in profiles), key=lambda pair: pair[0])
         worst_current[name] = current_result(name, rail, load, profile)
@@ -332,12 +430,16 @@ def build() -> tuple[dict[Path, str], dict]:
     failures = [
         f"current:{name}" for name, row in worst_current.items() if row["status"] != "pass"
     ] + [
-        f"voltage:{name}" for name, row in voltage.items() if row["status"] != "pass"
+        f"voltage:{name}" for name, row in voltage.items() if row["numerical_status"] != "pass"
     ] + [
         f"thermal:{name}" for name, row in thermal.items() if row["status"] != "pass"
     ]
-    if failures:
-        raise ValueError("H3-R2.1.3 margin failures: " + ", ".join(failures))
+    failures.extend(
+        f"voltage-target:{name}:{label}"
+        for name, cases in voltage_evaluation["declared_target_voltage_corners"].items()
+        for label, row in cases.items() if row["numerical_status"] != "pass")
+    native = json.loads(INSTANCES.read_text())["rows"]
+    main_instance = next(row for row in native if row["instance"] == "main_buck")
 
     manifest = {
         "schema_version": 1,
@@ -345,7 +447,15 @@ def build() -> tuple[dict[Path, str], dict]:
         "marker": "H3-R2.1.3",
         "status": "reviewed_all_rail_voltage_current_protection_and_steady_thermal_margins",
         "accepted_input": {"marker": "H3-R2.1.2", "status": loads["status"]},
-        "source_sha256": {str(path.relative_to(REPO)): sha256(path) for path in (CONTRACT, LOADS, STATES, METHODS)},
+        "source_sha256": {str(path.relative_to(REPO)): sha256(path) for path in (CONTRACT, LOADS, STATES, METHODS, H0, INSTANCES, DEVICES)},
+        "current_model_findings": {
+            "main_raw_model": "Retained raw bounds name TPS564252, not fitted TPS566231PRQFR; feedback/tolerance/temperature interval remains unqualified",
+            "main_protection_model": "Retained 4.3399-A protection minimum is not bound to fitted R67 1650 ohm",
+            "main_thermal_model": "Retained TPS564252 74-K/W thermal basis does not qualify fitted TPS566231PRQFR/layout",
+            "aon_ron_model": "Declared TPS25961 0.240-ohm RON is specified at RILIM 34.48 kohm, not fitted R46 240 kohm",
+            "series_distribution_scope": "Protection I*RON and downstream distribution are counted separately; fitted-condition bounds and routed partition remain unqualified",
+        },
+        "observed_main_converter": {key: main_instance[key] for key in ("instance", "device_id", "mpn", "reference")},
         "policy": contract["policy"],
         "branch_contract": contract["branch_currents_ma"],
         "ownership": ownership,
@@ -360,13 +470,15 @@ def build() -> tuple[dict[Path, str], dict]:
         "profiles": profiles,
         "worst_current_by_rail": worst_current,
         "voltage_corners": voltage,
+        "profile_voltage_corners": voltage_evaluation["profile_voltage_corners"],
+        "declared_target_voltage_corners": voltage_evaluation["declared_target_voltage_corners"],
         "steady_thermal_by_rail": thermal,
         "corrections": [
             {
                 "id": "H3-R2.1.3-F01",
-                "finding": "the historical R1 calculator still described 3V3_MAIN as a 6-A rail although R2 fits TPS564252DRLR",
-                "correction": "R2 uses the exact 4.000-A converter minimum as the limiting hardware capability",
-                "effect": "the worst 3.046-A electrical corner still passes PF-R2-03, but only with 154 mA to the 3.200-A 25%-reserve boundary",
+                "finding": "The old H3 source/thermal/protection model is not applicable to the current fitted MAIN power cell",
+                "correction": "Preserve old numerical parameters as provisional and explicitly include protection voltage drop; exact model qualification remains open",
+                "effect": "A positive old current remainder is not proof of current-native PF-R2-03 or consumer voltage",
                 "bom_cost_effect": "0; evidence correction only"
             },
             {
@@ -383,9 +495,10 @@ def build() -> tuple[dict[Path, str], dict]:
             "physical_and_external_lines_owned": len(ownership),
             "deferred_source_pack_lines": owner_counts["deferred_h3_r2_1_4"],
             "hidden_miscellaneous_allowances": 0,
-            "current_failures": 0,
-            "voltage_failures": 0,
-            "steady_thermal_failures": 0,
+            "current_failures": sum(row["status"] != "pass" for row in worst_current.values()),
+            "voltage_failures": sum(row["numerical_status"] != "pass" for row in voltage.values()),
+            "declared_target_voltage_failures": sum(row["numerical_status"] != "pass" for cases in voltage_evaluation["declared_target_voltage_corners"].values() for row in cases.values()),
+            "steady_thermal_failures": sum(row["status"] != "pass" for row in thermal.values()),
             "minimum_electrical_reserve_percent": min(d(row["reserve_percent"]) for row in worst_current.values() if d(row["load_ma"]) > 0).to_eng_string(),
             "minimum_junction_margin_c": min(min(d(row["converter_junction_margin_c"]), d(row["efuse_junction_margin_c"])) for row in thermal.values()).to_eng_string()
         },
@@ -396,8 +509,9 @@ def build() -> tuple[dict[Path, str], dict]:
         ],
         "authorization": {"analytical_verification": True, "placement_routing": False, "purchasing": False, "fabrication": False},
         "next": {"marker": "H3-R2.1.4", "action": "evaluate USB, pack, charge, supplement and source-admission margins"},
-        "errors": []
+        "errors": failures
     }
+    apply_scope(manifest, __file__, {key: False for key in manifest["current_model_findings"]}, numerical_ok=not failures)
     outputs = {
         OUTPUT: json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
         DOC_EN: render_doc(manifest, False),
@@ -422,7 +536,7 @@ def main() -> int:
         stale = [str(path.relative_to(REPO)) for path, content in outputs.items() if not path.is_file() or path.read_text(encoding="utf-8") != content]
         if stale:
             raise SystemExit("stale H3-R2.1.3 artifacts: " + ", ".join(stale))
-        print(f"ok: H3-R2.1.3; {manifest['summary']['rail_profiles_evaluated']} rail profiles, minimum reserve {manifest['summary']['minimum_electrical_reserve_percent']}%")
+        print(f"ok: H3-R2.1.3 {manifest['status']}; {manifest['summary']['rail_profiles_evaluated']} rail profiles, minimum reserve {manifest['summary']['minimum_electrical_reserve_percent']}%")
     return 0
 
 

@@ -4,15 +4,15 @@
   "marker": "H3-R2.0.2",
   "status": "pass",
   "accepted_input": "H3-R2.0.1",
-  "input_freeze_sha256": "a1afd71413b47ce194d33e3185eec0b2592b02aebb846bef1b2875aeda6b15f9",
-  "register_sha256": "14e41bfd828ce8fb82d09d502077065f158a4f24c023a72de74151b63627dff0",
+  "input_freeze_sha256": "25d78d4187410691b82e3a6e470faad1f755d7b5d1ae19a00097ddf17ca9aa43",
+  "register_sha256": "721e2551b9d234615634a48fabfa4ad9ecc66b40939f7b92cd2f19f204bf325a",
   "source_sha256": {
     "hardware/verification/h3-r2-parameter-provenance-contract.json": "fb26cd78c18234ef1c02ce4ea6af5d4a21b0206229a5034e55c065b08f5d0346",
-    "hardware/verification/generated/H3-R2-input-freeze.json": "804afa4f428fb344213e382b0137271d73a03c80ed3bc5e04919c360ab03dad9",
-    "hardware/ecad/generated/H2-R2-native-inventory.json": "74c8a559f245a231bb567ad6f7f069fab053e33fb3940636d2a72a42f7635ed8",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7d1b6c309e398f410a3ec109374388548eddfd4574676cf7d77a9ea5453bab91",
-    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "372dbe16718897bc33477c7f7acbd65a70143f70f7b35d88df6bf73d6fc69c36",
-    "hardware/architecture/devices.json": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c"
+    "hardware/verification/generated/H3-R2-input-freeze.json": "051b6066997e174a961fd73b0e37165397ae86ef6ee60f20f8e37a119e10edc5",
+    "hardware/ecad/generated/H2-R2-native-inventory.json": "e928c8f337a73005ace55331c145db8199340d23fa54a6806fa6c5619fdd8040",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7ca7596c728f2dc2fe50516b6309438dfaca2fc9c7f6fbef62c18d005cf8616b",
+    "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json": "193efb9c92b2ea4178304aa2f91e41c4dc35e4b4187aa1b1087e61dd54a4634b",
+    "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974"
   },
   "policy": {
     "accepted_h2_identity_is_immutable": true,
@@ -11354,17 +11354,33 @@
       "structured_parameters": {
         "fixed_threshold_nominal_v": 3.07,
         "fixed_threshold_accuracy_percent_full_temperature": 1.5,
-        "fixed_threshold_hysteresis_percent": [
-          1.0,
-          2.5
-        ],
+        "fixed_threshold_hysteresis_percent": {
+          "min": null,
+          "typ": 1.0,
+          "max": 2.5
+        },
         "ct_configuration": "open",
         "reset_delay_ms": {
           "min": 12,
           "typ": 20,
           "max": 28
         },
-        "sense_to_reset_assertion_max_us": 20,
+        "sense_to_reset_assertion_max_us": null,
+        "sense_to_reset_assertion_us": {
+          "min": null,
+          "typ": 20,
+          "max": null,
+          "conditions": "SENSE high-to-low: VIH=1.05*VIT, VIL=0.95*VIT; R_RESET=100kohm, C_RESET=50pF; typical values at TJ=25C"
+        },
+        "limit_classification_review": {
+          "source_revision": "SBVS050N",
+          "checked": "2026-09-08",
+          "sections": [
+            "6.5, page 6",
+            "6.6, page 7"
+          ],
+          "note": "Fixed-version hysteresis 1% is typical, not minimum. SENSE-to-RESET assertion 20us is typical, not a guaranteed maximum. The separate CT-open reset-release delay retains its specified 12..28ms limits."
+        },
         "output": "active-low open-drain RESET; asserted while SENSE is below threshold or MR_N is low",
         "recommended_supply_range_v": [
           1.7,
@@ -11372,7 +11388,7 @@
         ],
         "use": "holds the RUN_PERMIT latch asynchronously clear through AON startup and any supervised AON undervoltage"
       },
-      "structured_parameter_count": 9,
+      "structured_parameter_count": 11,
       "parameter_state": "structured_seed_present",
       "model_method_candidate": "datasheet_corner_model",
       "model_method_state": "candidate_pending_H3-R2.0.3",
@@ -11383,7 +11399,7 @@
       ],
       "factory_catalog_parameter_gap": null,
       "symbol_contact_map_sha256": "d95177220b74b775b90a8e956f06b58c4b7fc38f5d43447feaadf141c9cdd4ab",
-      "symbol_electrical_contract_sha256": "7efd739f0659f3529863e480e151aefa8c8a3e3fa0f48759fc4eb578109ba833"
+      "symbol_electrical_contract_sha256": "e5d437b27f8d8b8f11f364c38102e1e969f904fd94bb7a29d7e1947ac8093b70"
     },
     {
       "device_id": "ti_tps3839k33_dbzr",

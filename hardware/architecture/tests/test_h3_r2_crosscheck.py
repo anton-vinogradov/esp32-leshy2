@@ -20,17 +20,18 @@ class H3R2CrosscheckTest(unittest.TestCase):
         self.crosscheck = json.loads(self.outputs[MODULE.CROSSCHECK])
         self.residuals = json.loads(self.outputs[MODULE.RESIDUALS])
 
-    def test_phase_closes_without_an_analytical_finding(self):
-        self.assertEqual("reviewed", self.acceptance["status"])
-        self.assertTrue(self.acceptance["result"]["analytical_scope_complete"])
-        self.assertEqual(0, self.acceptance["result"]["open_analytical_findings"])
-        self.assertEqual("H4-R2.0.1", self.acceptance["result"]["next_marker"])
+    def test_phase_does_not_close_with_unqualified_current_power(self):
+        self.assertEqual("review_required", self.acceptance["status"])
+        self.assertFalse(self.acceptance["result"]["analytical_scope_complete"])
+        self.assertGreater(self.acceptance["result"]["open_analytical_findings"], 0)
+        self.assertEqual("H3-current-power-model-correction", self.acceptance["result"]["next_marker"])
 
     def test_all_current_artifacts_and_recorded_hashes_match(self):
         self.assertEqual(20, self.crosscheck["summary"]["current_artifacts"])
         self.assertGreater(self.crosscheck["summary"]["recorded_source_hashes_checked"], 50)
         self.assertEqual(0, self.crosscheck["summary"]["hash_mismatches"])
-        self.assertTrue(all(self.crosscheck["checks"].values()))
+        self.assertFalse(self.crosscheck["checks"]["all_provisional_numerical_error_lists_are_empty"])
+        self.assertTrue(all(value for key, value in self.crosscheck["checks"].items() if key != "all_provisional_numerical_error_lists_are_empty"))
 
     def test_model_rerun_does_not_close_native_electrical_semantics(self):
         limit = self.acceptance["coverage_limit"]

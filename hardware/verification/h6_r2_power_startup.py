@@ -14,6 +14,10 @@ import json
 import math
 from pathlib import Path
 import re
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from h3_r2_current_scope import admits_current
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -279,8 +283,8 @@ def evaluate(data):
     check("main_h0_step_floor", model_lower >= floor["step_a_min"],
           "A lower RILM threshold cannot silently replace the accepted H0 step envelope.",
           {"model_lower_a": model_lower, "h0_step_a": floor["step_a_min"]})
-    check("main_efuse_high_below_buck_limit", model_upper < 6.1,
-          "The H1 model's upper eFuse threshold must stay below the exact buck's 6.1 A minimum valley limit.", model_upper)
+    check("main_efuse_high_below_buck_limit", model_upper < 6.0,
+          "The H1 model's upper eFuse threshold must stay below the converter's 6 A continuous-output rating. Its separate 6.1 A minimum valley-current threshold is not a 6.1 A guaranteed DC-output rating or thermal proof.", model_upper)
     main_inrush = next(row for row in data["inrush"]["startup_envelopes"] if row["rail"] == "3V3_MAIN")
     combined = float(main_inrush["combined_current_ma"]) / 1000
     check("main_existing_inrush_model_headroom", combined <= model_lower,
@@ -294,10 +298,27 @@ def evaluate(data):
     top, top_tol = resistor("main_efuse_pg_top")
     bottom, bottom_tol = resistor("main_efuse_pg_bottom")
     pg_assert_max = 1.23 * (1 + top * (1 + top_tol) / (bottom * (1 - bottom_tol))) + 1e-6 * top * (1 + top_tol)
-    rail_min = float(data["margins"]["voltage_corners"]["3V3_MAIN"]["endpoint_min_v"])
-    check("main_pg_assertion_headroom", rail_min >= pg_assert_max,
-          "PGTH max 1.23 V, maximum divider ratio and +1 uA input leakage must permit PG on the admitted low rail.",
-          {"admitted_output_min_v": rail_min, "required_output_v": pg_assert_max, "margin_v": rail_min - pg_assert_max})
+    voltage = data["margins"]["voltage_corners"]["3V3_MAIN"]
+    value = voltage.get("protected_local_min_v")
+    # The PG divider samples 3V3_MAIN locally, before downstream distribution.
+    # Never substitute old consumer-endpoint values when the node is absent.
+    try:
+        rail_min = None if isinstance(value, bool) or value is None else float(value)
+    except (TypeError, ValueError):
+        rail_min = None
+    if rail_min is not None and not math.isfinite(rail_min):
+        rail_min = None
+    node_matches = voltage.get("nodes", {}).get("protected_local_net") == "3V3_MAIN"
+    path_matches = endpoints.get("main_efuse_pg_top.END_1", {}).get("net") == "3V3_MAIN"
+    envelope_admitted = admits_current(data["margins"], "H3-R2-rail-margins")
+    numerical_headroom = rail_min is not None and rail_min >= pg_assert_max
+    check("main_pg_assertion_headroom", numerical_headroom and node_matches and path_matches and envelope_admitted,
+          "PGTH max 1.23 V, initial divider tolerances and +1 uA input leakage are compared with the protected-local 3V3_MAIN node, not the consumer endpoint. A provisional/stale rail cannot qualify PG; resistor TCR, drift, falling threshold and fault timing remain separate obligations.",
+          {"admitted_output_min_v": rail_min if envelope_admitted and node_matches and path_matches else None,
+           "provisional_protected_local_min_v": rail_min, "required_output_v": pg_assert_max,
+           "margin_v": None if rail_min is None else rail_min - pg_assert_max,
+           "numerical_headroom_only": numerical_headroom, "sense_node_matches": node_matches and path_matches,
+           "current_rail_envelope_admitted": envelope_admitted})
 
     aon_rilim, _ = resistor("aon_efuse_rilim")
     aon_ron = data["h3"]["rails"]["AON_SAFE_3V3"]["efuse_ron_max_ohm"]
@@ -332,6 +353,7 @@ def evaluate(data):
             "Combined source impedance, soft-start, live low-voltage loads and eFuse thermal behavior.",
             "3300/CdVdt with minimum C covers capacitor tolerance, not a guaranteed maximum slew across IC process, voltage and temperature.",
             "AON eFuse RON and resulting supervisor release headroom need bounds for the fitted RILIM, not a different test condition.",
+            "TPS3808 SENSE-to-RESET assertion is 20 us typical with no published maximum in Rev. N; this cannot bound undervoltage fault-response time. The separate CT-open release delay remains 12..28 ms.",
             "H1 efficiency 89.86% is a required floor for its assumed 44 K/W layout, not a simulated or measured efficiency.",
             "PG high qualifies its threshold only; it cannot by itself prove every consumer's voltage or transient margin.",
         ],

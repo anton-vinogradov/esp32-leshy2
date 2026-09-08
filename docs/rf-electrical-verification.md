@@ -1,6 +1,10 @@
 # RF electrical verification · H3-R2.5
 
-`H3-R2.5` is reviewed with **71 passing machine checks** and no open analytical finding. [`H3-R2.6`](thermal-fault-electrical-verification.md), the H3-R2.7 phase package, global H4-R2 and global H5-R1 are also reviewed; the current marker is `H6.0.3-R1`.
+**Current status: `review_required`.** Numerical and logical checks below are retained as provisional. Applicability to the fitted power cell is checked separately; open analytical findings are not reclassified as physical tests. This result does not authorize phase advancement, purchasing, fabrication or battery energization.
+
+Open: `applicability:digital_inputs`; `applicability:analog_inputs`.
+
+[Machine evidence](../hardware/verification/generated/H3-R2-rf-coexistence.json).
 
 The ten source-to-port paths are local to the PCB that carries their antenna: `5 + 5`, with no RF crossing M1. S3 and C5 retain exact 30-mm jumpers; the three nRF paths use exact 60-mm jumpers. The conservative generated reach test leaves at least **9.388 mm** and bounds every nRF from the farthest corner of the complete module envelope rather than guessing the IPEX axis. Airband is a receive-only selectable branch behind the existing `RX-FM/SW` port.
 
@@ -8,6 +12,6 @@ Paper component limits are internally consistent: C5 keeps 115-MHz connector mar
 
 Runtime still admits at most one of nine top-level signal groups and preserves all thirteen quiet contracts. The deliberate `SG-N24` internal exception keeps all three radios active in 3PRX, 1PTX+2PRX, 2PTX+1PRX and 3PTX, covering eight radio-identity permutations under both support loads.
 
-This closes the **pre-layout electrical model**, not final RF performance. Seven physical residuals remain explicitly assigned to H5 final-assembly evidence, H6 solved/coupon-correlated routing and H8 VNA/OTA/coexistence qualification.
+The component-limit and policy comparisons above are provisional. Current power applicability remains open alongside the seven existing physical RF residuals; this does not close the pre-layout electrical model or prove final RF performance.
 
 Machine evidence: [`H3-R2-rf-coexistence.json`](../hardware/verification/generated/H3-R2-rf-coexistence.json).

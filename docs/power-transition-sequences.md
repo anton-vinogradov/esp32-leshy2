@@ -2,7 +2,11 @@
 
 [Русский](power-transition-sequences.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md)
 
-`H3-R2.2.1` verification is complete: every startup and fault-recovery scenario passes without automatic restart. An ordinary fault removes hazardous domains and directly resets C5/RF RP, while S3 can keep a readable cause on screen whenever UI power remains available.
+**Current status: `review_required`.** Numerical and logical checks below are retained as provisional. Applicability to the fitted power cell is checked separately; open analytical findings are not reclassified as physical tests. This result does not authorize phase advancement, purchasing, fabrication or battery energization.
+
+Open: `applicability:dc_inputs`; `applicability:supervisor_assertion_bound`; `applicability:supervisor_hysteresis_bound`.
+
+[Machine evidence](../hardware/verification/generated/H3-R2-transition-sequences.json).
 
 ## Startup rule
 
@@ -10,7 +14,7 @@ Safety holds `SAFETY_FAULT_REQUEST` active after reset. Self-test must pass, phy
 
 ## Exact bounds
 
-- TPS3808 with CT open: `12..28 ms`; reset assertion within `20 us`.
+- TPS3808 with CT open: `12..28 ms`; reset assertion is `20 us` typical, with no guaranteed maximum. Minimum hysteresis is also unspecified; these limits remain open rather than adopting typical values.
 - TPS3435: device startup within `500 us`, watchdog-window startup delay `0 ms`; `1.44..1.76 s` timeout, `180..220 ms` WDO-low interval; heartbeat target `500 ms`.
 - 100 kohm / 2.2 uF: analytical rise `96.888..283.86 ms`, tolerance-only guaranteed discharge `484.525 ms`; this is debounce, not the sole interlock.
 
@@ -45,6 +49,4 @@ Safety holds `SAFETY_FAULT_REQUEST` active after reset. Self-test must pass, phy
 - H8 measures the populated 100-kohm/2.2-uF RC under DC bias and temperature; startup safety does not depend solely on this number.
 - H8 captures POR assertion/release, direct C5/RF-RP reset and S3 fault-display retention at real rail corners.
 
-**Result:** `14/14` scenarios and `51` endpoint checks pass. H3-R2.3, [H3-R2.4 digital verification](digital-electrical-verification.md), [H3-R2.5 RF verification](rf-electrical-verification.md), [H3-R2.6 thermal/fault verification](thermal-fault-electrical-verification.md), H3-R2.7, global H4-R2 and global H5-R1 are reviewed; the **current marker is `H6.0.3-R1`**. H6 placement/routing is authorized; ordering and fabrication remain forbidden.
-
-[Machine report](../hardware/verification/generated/H3-R2-transition-sequences.json).
+Current numerical results are provisional; analytical applicability findings remain open.

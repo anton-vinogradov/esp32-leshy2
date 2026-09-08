@@ -29,14 +29,18 @@ class H3R2RailMarginTest(unittest.TestCase):
         self.assertEqual(0, summary["unowned_lines"])
         self.assertEqual(0, summary["hidden_miscellaneous_allowances"])
 
-    def test_current_voltage_and_steady_thermal_margins_pass(self):
+    def test_provisional_algebra_is_not_qualified_current_power(self):
         self.assertTrue(all(row["status"] == "pass" for row in self.manifest["worst_current_by_rail"].values()))
-        self.assertTrue(all(row["status"] == "pass" for row in self.manifest["voltage_corners"].values()))
+        self.assertTrue(all(row["status"] == "review_required" for row in self.manifest["voltage_corners"].values()))
+        self.assertEqual("review_required", self.manifest["status"])
+        self.assertEqual("fail", self.manifest["voltage_corners"]["3V3_MAIN"]["numerical_status"])
         self.assertTrue(all(row["status"] == "pass" for row in self.manifest["steady_thermal_by_rail"].values()))
 
-    def test_r2_main_rail_uses_real_four_amp_converter(self):
+    def test_old_four_amp_model_is_not_the_fitted_converter(self):
         main = self.manifest["worst_current_by_rail"]["3V3_MAIN"]
         self.assertEqual("4.000", main["converter_min_a"])
+        self.assertIn("TPS566231", self.manifest["observed_main_converter"]["mpn"])
+        self.assertFalse(self.manifest["current_power_scope"]["applicability_checks"]["main_raw_model"])
         self.assertEqual("3046.000", main["load_ma"])
         self.assertIn("3PTX", main["profile"])
         self.assertEqual("154.000", main["margin_to_pf03_boundary_ma"])

@@ -10,15 +10,15 @@
     },
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "7d1b6c309e398f410a3ec109374388548eddfd4574676cf7d77a9ea5453bab91"
+      "sha256": "7ca7596c728f2dc2fe50516b6309438dfaca2fc9c7f6fbef62c18d005cf8616b"
     },
     "nets": {
       "path": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "sha256": "1cdc59edda649d09c07077bbd17864cfca446a9c431910d603d7d1a4785c9b5b"
+      "sha256": "bb0ee548efc0ecfe02299f3757c58cd7a4e7c5a8b50160d8648411ab330ac411"
     },
     "symbols": {
       "path": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-      "sha256": "d22659ed7f30aeb12c4e6742a6da71a3244f33f242c9f0a41f82e5b518aafdf9"
+      "sha256": "4f7bbfa51b19cbcf94473dc5ad5bf193f5e667f44dac8b7f6dc55a75fa242d23"
     },
     "symbol_library": {
       "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",

@@ -2,17 +2,19 @@
   "schema_version": 1,
   "artifact": "H3-R2-rf-coexistence",
   "marker": "H3-R2.5",
-  "status": "pass",
+  "status": "review_required",
   "reviewed_on": "2026-08-31",
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "6df524f1edf8db12ac278e0b5901a598c0ac18262800b09c38dde7b45147ed27",
-    "hardware/architecture/devices.json": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
+    "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974",
     "hardware/architecture/antenna-kit.json": "7ee1b3ca0f45a81346bd52033594c060a4f2deed4de9191545271ab58a4bc004",
     "hardware/product-design/generated/H1-R2-placement-audit.json": "55b104bc6b398ad874f7c03cda265b7291566d3f0ce25cd7a2803074c4c06a09",
-    "hardware/verification/generated/H3-R2-power-state-register.json": "ff4b92a1ecbeefe04068f976ccc16a2cc03bb453d699e61c7921a010214d1453",
-    "hardware/verification/generated/H3-R2-digital-interfaces.json": "102d6a17f86d7a4a3d007e347ba7682557a5f075095ac2d3af4a35336b9f5388",
-    "hardware/verification/generated/H3-R2-analog-corners.json": "04c7b1a0e7146e5d2bb01f83d88cd9521b223c6422e390999658f9fb684a506a",
-    "hardware/verification/generated/H3-R2-parameter-provenance.json": "909cc9dacb5e527c632f76297abedcebf0ed2a3a8581c146a96c6fdce3122d4a"
+    "hardware/verification/generated/H3-R2-power-state-register.json": "f2b831f444299d71058d25aa17555fcdaa4beab49f1cfa872e39aacac574498c",
+    "hardware/verification/generated/H3-R2-digital-interfaces.json": "0c5fc7e70dc022d63ee24e19a1d52b2b394c94dede46c4bb947cac523489cd8b",
+    "hardware/verification/generated/H3-R2-analog-corners.json": "02e05ba4ca72a8ec88d082dd6acca02eb5f2e57e8557c80831089b353ec280ec",
+    "hardware/verification/generated/H3-R2-parameter-provenance.json": "a2ff62c79ceab4e29688002747762dcda9f10f12d81eb9e4930737ee34e0d69e",
+    "hardware/verification/h3_r2_rf_coexistence.py": "cbba248305b60671a662246b7e730eb3fda0ac6978af5c8efa613ee9faa03a14",
+    "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
   },
   "summary": {
     "checks": 71,
@@ -25,8 +27,9 @@
     "quiet_contracts": 13,
     "nrf_role_modes": 4,
     "nrf_identity_permutations": 8,
-    "analytical_findings_open": 0,
-    "physical_residuals": 7
+    "analytical_findings_open": 2,
+    "physical_residuals": 7,
+    "open_analytical_findings": 2
   },
   "feed_summary": {
     "external_ports": 10,
@@ -392,7 +395,7 @@
   },
   "checks": {
     "upstream_h1_placement_passes": true,
-    "upstream_h3_inputs_pass": true,
+    "provenance_input_pass": true,
     "exactly_ten_named_onboard_paths": true,
     "physical_topology_covers_all_paths": true,
     "physical_split_is_exactly_five_plus_five": true,
@@ -463,7 +466,10 @@
     "route_nrf2_jumper_to_board": true,
     "route_nrf2_coupler_to_sma": true
   },
-  "errors": [],
+  "errors": [
+    "applicability:digital_inputs",
+    "applicability:analog_inputs"
+  ],
   "physical_residuals": [
     "H5/J4-F: inspect exact received cable/receptacle mating, gentle service loop, bend radius, retention and strain routing for all five paths",
     "H6: field-solve and coupon-correlate every ordinary 50-ohm mainline, launch, reference plane, return path and via fence; extract RX-AM/LW capacitance separately",
@@ -474,12 +480,55 @@
     "H8: measure final antenna gain/feed loss and bind regional power, duty, emission, exposure and thermal profiles"
   ],
   "authorization": {
-    "paper_rf_contract_reviewed": true,
+    "paper_rf_contract_reviewed": false,
     "kicad_routing_or_fabrication": false,
-    "final_rf_performance_claim": false
+    "final_rf_performance_claim": false,
+    "advance_phase": false,
+    "fabrication": false,
+    "purchasing": false,
+    "battery_energization": false,
+    "final_product_claim": false
   },
   "next": {
     "marker": "H3-R2.6",
     "action": "thermal and duty-envelope verification"
-  }
+  },
+  "current_power_scope": {
+    "schema_version": 1,
+    "artifact": "H3-R2-rf-coexistence",
+    "status": "review_required",
+    "numerical_status": "provisional_pass",
+    "numerical_checks_pass": true,
+    "applicability_checks": {
+      "digital_inputs": false,
+      "analog_inputs": false
+    },
+    "open_findings": [
+      "applicability:digital_inputs",
+      "applicability:analog_inputs"
+    ],
+    "current_analytical_scope_complete": false,
+    "production_release_authorized": false,
+    "battery_energization_authorized": false,
+    "source_sha256": {
+      "hardware/architecture/candidates/G2F-3I.json": "6df524f1edf8db12ac278e0b5901a598c0ac18262800b09c38dde7b45147ed27",
+      "hardware/architecture/devices.json": "26b43365139d800e3c8e18541136dcf6b0c719075e5d468c3f3e86c852553974",
+      "hardware/architecture/antenna-kit.json": "7ee1b3ca0f45a81346bd52033594c060a4f2deed4de9191545271ab58a4bc004",
+      "hardware/product-design/generated/H1-R2-placement-audit.json": "55b104bc6b398ad874f7c03cda265b7291566d3f0ce25cd7a2803074c4c06a09",
+      "hardware/verification/generated/H3-R2-power-state-register.json": "f2b831f444299d71058d25aa17555fcdaa4beab49f1cfa872e39aacac574498c",
+      "hardware/verification/generated/H3-R2-digital-interfaces.json": "0c5fc7e70dc022d63ee24e19a1d52b2b394c94dede46c4bb947cac523489cd8b",
+      "hardware/verification/generated/H3-R2-analog-corners.json": "02e05ba4ca72a8ec88d082dd6acca02eb5f2e57e8557c80831089b353ec280ec",
+      "hardware/verification/generated/H3-R2-parameter-provenance.json": "a2ff62c79ceab4e29688002747762dcda9f10f12d81eb9e4930737ee34e0d69e",
+      "hardware/verification/h3_r2_rf_coexistence.py": "cbba248305b60671a662246b7e730eb3fda0ac6978af5c8efa613ee9faa03a14",
+      "hardware/verification/h3_r2_current_scope.py": "a49f37d76f9aae63c9a74e206c034c8148fd653ea6fd2ff288ea0ee5351cee8c"
+    }
+  },
+  "provisional_numerical_errors": [],
+  "current_analytical_scope_complete": false,
+  "open_analytical_findings": [
+    "applicability:digital_inputs",
+    "applicability:analog_inputs"
+  ],
+  "production_release_authorized": false,
+  "battery_energization_authorized": false
 }

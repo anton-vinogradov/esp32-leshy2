@@ -2,7 +2,11 @@
 
 [Русский](thermal-fault-electrical-verification.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md)
 
-`H3-R2.6` is reviewed: **25 checks**, `56` thermal profiles and `30` single-fault cases pass with no open analytical finding. H3-R2.7, global H4-R2 and global H5-R1 are also reviewed; the current marker is `H6.0.3-R1`.
+**Current status: `review_required`.** Numerical and logical checks below are retained as provisional. Applicability to the fitted power cell is checked separately; open analytical findings are not reclassified as physical tests. This result does not authorize phase advancement, purchasing, fabrication or battery energization.
+
+Open: `applicability:rail_inputs`; `applicability:source_inputs`; `applicability:transition_inputs`; `applicability:rf_inputs`.
+
+[Machine evidence](../hardware/verification/generated/H3-R2-thermal-fault.json).
 
 ## Thermal envelope
 
@@ -26,6 +30,4 @@ Long operation uses a qualified USB-PD source. `24/48 hours` are non-destructive
 - H8: run ordinary non-destructive 24/48-hour qualified-USB soak plus battery-to-protected-cutoff measurement without converting it into an uptime promise
 - H8: interrupt each journal boundary and verify last-valid-slot or explicit AON-loss fallback
 
-This result does not authorize placement/routing, purchasing, fabrication or final thermal/safety claims.
-
-[Machine evidence](../hardware/verification/generated/H3-R2-thermal-fault.json).
+Current numerical results are provisional; analytical applicability findings remain open.

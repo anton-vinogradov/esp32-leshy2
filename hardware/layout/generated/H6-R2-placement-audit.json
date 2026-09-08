@@ -13,13 +13,13 @@
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
     "coordinate_model_sha256": "705c6c29a485cd59b3eb5d4eaf0a90ad9fa163b304ae1e8eb7916a4a215d46dd",
     "instance_ledger": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-    "instance_ledger_sha256": "7d1b6c309e398f410a3ec109374388548eddfd4574676cf7d77a9ea5453bab91",
+    "instance_ledger_sha256": "7ca7596c728f2dc2fe50516b6309438dfaca2fc9c7f6fbef62c18d005cf8616b",
     "net_ledger": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-    "net_ledger_sha256": "1cdc59edda649d09c07077bbd17864cfca446a9c431910d603d7d1a4785c9b5b",
+    "net_ledger_sha256": "bb0ee548efc0ecfe02299f3757c58cd7a4e7c5a8b50160d8648411ab330ac411",
     "symbol_library": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-    "symbol_library_sha256": "d22659ed7f30aeb12c4e6742a6da71a3244f33f242c9f0a41f82e5b518aafdf9",
+    "symbol_library_sha256": "4f7bbfa51b19cbcf94473dc5ad5bf193f5e667f44dac8b7f6dc55a75fa242d23",
     "kicad_net_bindings": "hardware/layout/generated/H6-R2-kicad-net-bindings.json",
-    "kicad_net_bindings_sha256": "7ddc98cdda91bab63705e444ad9a155391703b44a68094cd9e9cf845ab31fafa"
+    "kicad_net_bindings_sha256": "624a1878fbd544ab20c0d95508768542ab96616a92666b56688bb4d6a99027a8"
   },
   "summary": {
     "board_count": 2,

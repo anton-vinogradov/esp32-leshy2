@@ -2,6 +2,12 @@
 
 [Русский](watchdog-fault-display.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Power-transition result](power-transition-result.md)
 
+**Current status: `review_required`.** Numerical and logical checks below are retained as provisional. Applicability to the fitted power cell is checked separately; open analytical findings are not reclassified as physical tests. This result does not authorize phase advancement, purchasing, fabrication or battery energization.
+
+Open: `applicability:rail_inputs`; `applicability:sequence_inputs`; `applicability:handover_inputs`.
+
+[Machine evidence](../hardware/verification/generated/H3-R2-inrush-watchdog.json).
+
 The independent **Texas Instruments TPS3435CAKAGDDFR** monitors the always-on safety controller, not S3 directly. The safety controller must toggle WDI every `500 ms`; the minimum watchdog window is `1440 ms`, so service consumes only `34.722%` of the minimum deadline. If the controller stalls or WDI sticks, WDO pulls `FAULT_ASSERT_N` low within `1760 ms` and clears the RUN latch in hardware. The `180–220 ms` WDO-low interval is output duration after expiry, not extra detection latency.
 
 S3 is covered by a separate heartbeat/lease monitor in the safety controller: two missed `500 ms` reports request a fault. An S3 stall is therefore covered without pretending that TPS3435 is wired directly to S3, while a stalled monitor is covered by TPS3435. Firmware, WDI or fault-source recovery cannot restart the product; physical KILL→RUN remains mandatory.

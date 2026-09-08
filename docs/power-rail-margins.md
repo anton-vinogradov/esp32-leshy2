@@ -2,27 +2,31 @@
 
 [Русский](power-rail-margins.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Load binding](power-load-binding.md)
 
-`H3-R2.1.3` is reviewed. All 629 physical and external load lines have exactly one current owner or an explicit source/pack deferral to H3-R2.1.4. There is no hidden miscellaneous line.
+**Current status: `review_required`.** Numerical and logical checks below are retained as provisional. Applicability to the fitted power cell is checked separately; open analytical findings are not reclassified as physical tests. This result does not authorize phase advancement, purchasing, fabrication or battery energization.
+
+Open: `voltage:3V3_MAIN`; `voltage-target:3V3_MAIN:H0_continuous`; `voltage-target:3V3_MAIN:H0_step_resistive_snapshot_not_transient_proof`; `numerical:existing_checks`; `applicability:main_raw_model`; `applicability:main_protection_model`; `applicability:main_thermal_model`; `applicability:aon_ron_model`; `applicability:series_distribution_scope`.
+
+[Machine evidence](../hardware/verification/generated/H3-R2-rail-margins.json).
 
 ## Current and protection
 
-| Rail | Electrical worst load | Hardware minimum | Reserve | Profile |
+| Rail | Electrical worst load | Provisional model minimum | Reserve | Profile |
 |---|---:|---:|---:|---|
 | `AON_SAFE_3V3` | 72.100 mA | 0.165 A | 128.849% | `NRF24/3PRX/SUPPORT_IDLE` |
 | `3V3_MAIN` | 3046.000 mA | 4.000 A | 31.320% | `NRF24/3PTX/SUPPORT_WORST` |
 | `VVOICE_4V` | 750.000 mA | 1.550 A | 106.667% | `VOICE/PTT_TX_MAX/SUPPORT_IDLE` |
 | `5V_EXT_ACTIVE_BRANCH` | 1250.000 mA | 1.632 A | 30.560% | `LORA_CAP/U214_STOCK_RX_GNSS/SUPPORT_IDLE` |
 
-The limiting 3V3_MAIN element is the current 4-A `TPS564252DRLR`, not the historical 6-A converter. The worst corner retains 154 mA before the 25% rule boundary.
+Fitted MAIN converter: TPS566231PRQFR. Old TPS564252 parameters are retained provisionally, not as proof of this fitted power cell.
 
 ## Voltage
 
-| Rail | Raw corner | Load endpoint | Allowed load range | Result |
-|---|---:|---:|---:|---|
-| `AON_SAFE_3V3` | 3.224000…3.376000 V | 3.199000…3.376000 V | 2.700000…3.600000 V | pass |
-| `3V3_MAIN` | 3.158510…3.285658 V | 3.108510…3.285658 V | 3.000000…3.300000 V | pass |
-| `VVOICE_4V` | 3.853683…4.149717 V | 3.793683…4.149717 V | 3.300000…5.500000 V | pass |
-| `5V_EXT_ACTIVE_BRANCH` | 4.814178…5.190222 V | 4.694178…5.190222 V | 4.500000…5.500000 V | pass |
+| Rail | Raw corner | Protected local before distribution | Load endpoint | Allowed load range | Result |
+|---|---:|---:|---:|---:|---|
+| `AON_SAFE_3V3` | 3.224000…3.376000 V | 3.206696…3.376000 V | 3.181696…3.376000 V | 2.700000…3.600000 V | numerical pass; review_required |
+| `3V3_MAIN` | 3.158510…3.285658 V | 3.006210…3.285658 V | 2.956210…3.285658 V | 3.000000…3.300000 V | numerical fail; review_required |
+| `VVOICE_4V` | 3.853683…4.149717 V | 3.816183…4.149717 V | 3.756183…4.149717 V | 3.300000…5.500000 V | numerical pass; review_required |
+| `5V_EXT_ACTIVE_BRANCH` | 4.814178…5.190222 V | 4.739178…5.190222 V | 4.619178…5.190222 V | 4.500000…5.500000 V | numerical pass; review_required |
 
 ## Steady thermal envelope
 
@@ -35,6 +39,4 @@ The limiting 3V3_MAIN element is the current 4-A `TPS564252DRLR`, not the histor
 
 `SUPPORT_WORST` remains an electrical simultaneous corner, not a 24-to-48-hour permission. The exposed 5-V port keeps its 1.25-A electrical ceiling, while unattended control admits 1.00 A until H6/H8; the selected U214/U219/M5 functions are unaffected.
 
-**Downstream result:** [`H3-R2.1`](power-dc-source-result.md) is fully reviewed; the [roadmap](roadmap.md) carries the live marker.
-
-[Complete machine result](../hardware/verification/generated/H3-R2-rail-margins.json).
+Current numerical results are provisional; analytical applicability findings remain open.

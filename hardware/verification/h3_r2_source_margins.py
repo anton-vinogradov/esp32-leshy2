@@ -9,6 +9,10 @@ import json
 from collections import Counter, defaultdict
 from decimal import Decimal, getcontext
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from h3_r2_current_scope import apply_scope, admits_current, scope_notice
 
 
 getcontext().prec = 34
@@ -218,37 +222,37 @@ def render_doc(manifest: dict, russian: bool) -> str:
     if russian:
         title = "# Источники, аккумуляторы и заряд · H3-R2.1.4"
         nav = "[English](power-source-margins.md) · [Главная](../README.ru.md) · [Роадмап](roadmap.ru.md) · [Запасы шин](power-rail-margins.ru.md)"
-        intro = f"`H3-R2.1.4` проверяет все {s['states_evaluated']} разрешённых состояния R2. Все {s['deferred_lines_owned']} source/pack-строк имеют явного владельца; скрытой надбавки нет."
+        intro = scope_notice(manifest, russian)
         result_h = "## Результат"
         result = (f"- Максимальный запрос SYS: `{s['maximum_sys_demand_w']} Вт`; сырой запрос источника при 85%: `{s['maximum_source_raw_required_w']} Вт`.\n"
                   f"- Максимальный ток pack при 6,0 В: `{s['maximum_pack_discharge_a']} А`; запас до 8-А допуска PF-R2-03: `{s['pack_reserve_percent_at_worst']}%`.\n"
                   f"- Максимальный 2-А запрос заряда полностью или автоматически снижается по DPM: derated-состояний `{s['charge_states_derated']}`.\n"
                   f"- Отказов проверки: `{s['failed_states']}`; скрытых/unowned строк: `0`.")
-        source_h = "## Что реально может источник"
+        source_h = "## Допуски предварительной модели источника"
         source = (f"5 В × 3 А не объявляется универсальным: {s['usb_only_profiles_refused']} USB-only состояний получают явный отказ на слишком тяжёлом профиле. "
                   "Здоровый pack может дополнить USB. Неизвестный fallback даёт ноль численной мощности до измерения Rp/PD; без pack остаётся только AON. "
-                  "9 В × 3 А и 15 В × 2 А запускают все объявленные профили, а заряд всегда уступает системной нагрузке.")
+                  "В предварительной модели 9 В × 3 А и 15 В × 2 А допускают все профили, а заряд уступает нагрузке; запуск и уровни напряжения нынешней схемы этим не доказаны.")
         limits_h = "## Граница доказательства"
         limits = (f"Электрический одновременный угол даёт pack endpoint `{e['maximum_pack_discharge']['pack_endpoint_v']} В` и расчётные `{e['maximum_pack_discharge']['cell_pair_i2r_w']} Вт` в двух ячейках. "
                   f"Длительный envelope отдельно ограничен SUPPORT_IDLE и 1,00 А внешнего 5-В порта: `{s['maximum_sustained_pack_discharge_a']} А`, `{s['maximum_sustained_cell_pair_i2r_w']} Вт` в ячейках. Пуск, DPM и USB↔pack handover остаются H3-R2.2, routed resistance — H6, измерение — H8.")
-        end = "**Downstream-результат:** [`H3-R2.1`](power-dc-source-result.ru.md) полностью проведён ревью; актуальная точка всегда указана в [роадмапе](roadmap.ru.md).\n\n[Полный машинный результат](../hardware/verification/generated/H3-R2-source-margins.json)."
+        end = ("Текущие численные результаты предварительны; открытые аналитические вопросы остаются." if russian else "Current numerical results are provisional; analytical applicability findings remain open.")
     else:
         title = "# Source, pack and charge margins · H3-R2.1.4"
         nav = "[Русский](power-source-margins.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Rail margins](power-rail-margins.md)"
-        intro = f"`H3-R2.1.4` evaluates all {s['states_evaluated']} legal R2 states. All {s['deferred_lines_owned']} source/pack lines have an explicit owner; there is no hidden allowance."
+        intro = scope_notice(manifest, russian)
         result_h = "## Result"
         result = (f"- Maximum SYS demand: `{s['maximum_sys_demand_w']} W`; raw source request at 85%: `{s['maximum_source_raw_required_w']} W`.\n"
                   f"- Maximum pack current at 6.0 V: `{s['maximum_pack_discharge_a']} A`; reserve to the 8-A PF-R2-03 admission is `{s['pack_reserve_percent_at_worst']}%`.\n"
                   f"- A requested 2-A charge either completes or is automatically DPM-reduced: derated states `{s['charge_states_derated']}`.\n"
                   f"- Failed checks: `{s['failed_states']}`; hidden or unowned lines: `0`.")
-        source_h = "## What each source can actually run"
+        source_h = "## Provisional source-model admissions"
         source = (f"5 V × 3 A is not called universal: {s['usb_only_profiles_refused']} USB-only states explicitly refuse an oversized profile. "
                   "A healthy pack may supplement USB. Unknown fallback contributes zero numeric power until Rp/PD is measured; without a pack it remains AON-only. "
-                  "9 V × 3 A and 15 V × 2 A run every declared profile, and charging always yields to system load.")
+                  "The provisional model admits every profile at 9 V × 3 A and 15 V × 2 A, with charging yielding to load; this does not prove current-circuit startup or voltage levels.")
         limits_h = "## Proof boundary"
         limits = (f"The electrical simultaneous corner gives a `{e['maximum_pack_discharge']['pack_endpoint_v']} V` pack endpoint and `{e['maximum_pack_discharge']['cell_pair_i2r_w']} W` calculated in the two cells. "
                   f"The sustained envelope is separately restricted to SUPPORT_IDLE and 1.00 A on external 5 V: `{s['maximum_sustained_pack_discharge_a']} A`, `{s['maximum_sustained_cell_pair_i2r_w']} W` in the cells. Startup, DPM and USB↔pack handover remain H3-R2.2, routed resistance remains H6 and measurement remains H8.")
-        end = "**Downstream result:** [`H3-R2.1`](power-dc-source-result.md) is fully reviewed; the [roadmap](roadmap.md) carries the live marker.\n\n[Complete machine result](../hardware/verification/generated/H3-R2-source-margins.json)."
+        end = ("Текущие численные результаты предварительны; открытые аналитические вопросы остаются." if russian else "Current numerical results are provisional; analytical applicability findings remain open.")
     return "\n\n".join((title, nav, intro, result_h, result, source_h, source, limits_h, limits, end)) + "\n"
 
 
@@ -258,8 +262,8 @@ def build() -> tuple[dict[Path, str], dict]:
     rails = json.loads(RAILS.read_text(encoding="utf-8"))
     loads = json.loads(LOADS.read_text(encoding="utf-8"))
     methods = json.loads(METHODS.read_text(encoding="utf-8"))
-    if not rails["status"].startswith("reviewed_") or loads["status"] != "pass":
-        raise ValueError("reviewed H3-R2.1.2/.1.3 input required")
+    if loads["status"] != "pass":
+        raise ValueError("reviewed H3-R2.1.2 load structure required")
     if "PF-R2-03" not in {row["id"] for row in methods["pass_fail_rules"]}:
         raise ValueError("PF-R2-03 is missing")
     ownership, owner_uids = deferred_ownership(contract, rails, loads)
@@ -282,9 +286,6 @@ def build() -> tuple[dict[Path, str], dict]:
             )
             sustained_evaluated.append(evaluate_state(contract, state, source, system_demand(contract, state, source, sustained_loads)))
     failures = [row for row in evaluated if row["status"] != "pass"]
-    if failures:
-        details = ", ".join(f"{row['id']}:{row['admission']}:{[key for key, passed in row['checks'].items() if not passed]}" for row in failures[:8])
-        raise ValueError(f"H3-R2.1.4 source failures: {len(failures)} ({details})")
     max_sys = max(evaluated, key=lambda row: d(row["sys_demand_w"]))
     max_raw = max(evaluated, key=lambda row: d(row["source_raw_required_w"]))
     max_pack = max(evaluated, key=lambda row: d(row["pack_discharge_a"]))
@@ -323,8 +324,13 @@ def build() -> tuple[dict[Path, str], dict]:
         ],
         "physical_residuals": ["H3-R2.2 dynamic DPM/handover/inrush", "H6 routed source/pack resistance extraction", "H8 measured efficiency, current and pack temperature"],
         "authorization": {"pcb_placement_or_routing": False, "purchasing": False, "fabrication": False},
-        "next": {"marker": "H3-R2.1.5", "action": "cross-check and publish the reviewed H3-R2.1 result"}, "errors": [],
+        "next": {"marker": "H3-R2.1.5", "action": "cross-check and publish current H3-R2.1 diagnostics"},
+        "errors": ["source-state:" + row["id"] for row in failures],
     }
+    manifest["current_model_findings"] = {"source_model_binding": "Nominal converter/overhead assumptions remain provisional until the fitted MAIN power cell is reconciled"}
+    apply_scope(manifest, __file__, {"rail_inputs": admits_current(rails, "H3-R2-rail-margins"),
+                "source_model_binding": False}, numerical_ok=not failures)
+    manifest["conclusions"] = ["Provisional algebra under the retained source model: " + text for text in manifest["conclusions"]]
     return {OUTPUT: json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", DOC_EN: render_doc(manifest, False), DOC_RU: render_doc(manifest, True)}, manifest
 
 
@@ -344,7 +350,7 @@ def main() -> int:
     stale = [str(path.relative_to(REPO)) for path, content in outputs.items() if not path.is_file() or path.read_text(encoding="utf-8") != content]
     if stale:
         raise SystemExit("stale H3-R2.1.4 artifacts: " + ", ".join(stale))
-    print(f"ok: H3-R2.1.4; {manifest['summary']['states_evaluated']} states, maximum pack {manifest['summary']['maximum_pack_discharge_a']} A")
+    print(f"ok: H3-R2.1.4 {manifest['status']}; {manifest['summary']['states_evaluated']} states, maximum pack {manifest['summary']['maximum_pack_discharge_a']} A")
     return 0
 
 

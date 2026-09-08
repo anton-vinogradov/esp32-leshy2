@@ -8,6 +8,10 @@ import hashlib
 import json
 from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from h3_r2_current_scope import apply_scope, admits_current, scope_notice
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -129,7 +133,7 @@ def render_doc(result: dict, russian: bool) -> str:
     if russian:
         title = "# Thermal, единичные отказы и длительная работа · H3-R2.6"
         nav = "[English](thermal-fault-electrical-verification.md) · [Главная](../README.ru.md) · [Роадмап](roadmap.ru.md)"
-        intro = f"`H3-R2.6` проведён ревью: **{s['checks']} checks**, `{s['thermal_profiles']}` thermal-профилей и `{s['single_fault_cases']}` single-fault сценариев проходят без открытых аналитических findings. Итоги H3-R2.7, H4-R2 и H5-R1 также проведены ревью; текущий маркер — `H6.0.3-R1`."
+        intro = scope_notice(result, russian)
         thermal = ("## Тепло\n\n"
                    f"Для длительной thermal-квалификации допускается только support-нагрузка `SUPPORT_IDLE`; внешний 5-В порт ограничен 1,00 А. Худший непрерывный расчётный профиль — `{sustained['id']}`: консервативно `{sustained['conservative_enclosure_heat_upper_w']:.3f} Вт` внутри корпуса. При 35 °C H6 должен обеспечить не хуже `{sustained['rtheta_to_65c_at_35c_k_per_w_max']:.3f} K/W` до предупреждения 65 °C. Сам этот TX-профиль остаётся ограниченной сессией до H8, а не разрешением на unattended TX. "
                    f"Абсолютный electrical corner `{absolute['id']}` даёт `{absolute['conservative_enclosure_heat_upper_w']:.3f} Вт`, но не разрешён как длительный режим. Три NTC, пороги warning/kill/rearm и charger `TREG=60 °C`, `TSHUT=85 °C` остаются независимыми защитами. Это параметрическая верхняя граница, не обещание температуры готового корпуса.")
@@ -138,11 +142,11 @@ def render_doc(result: dict, russian: bool) -> str:
         unattended = ("## Длительная работа\n\n"
                       "Долгая работа питается от квалифицированного USB-PD. `24/48 часов` — длительность неразрушающего H8 soak и интервал полной проверки, а не обещание автономности. Настройка доступна только локально; по умолчанию 48 часов. Просрочка сначала снимает TX leases, затем останавливает сессию и требует физический re-arm. Watchdog и температурные пределы этой настройкой не меняются.")
         boundary = "## Что осталось физическим\n\n" + "\n".join(f"- {row}" for row in result["physical_residuals"])
-        end = "Placement/routing, закупку, печать и итоговые thermal/safety заявления этот результат не разрешает.\n\n[Машинное evidence](../hardware/verification/generated/H3-R2-thermal-fault.json)."
+        end = ("Текущие численные результаты предварительны; открытые аналитические вопросы остаются." if russian else "Current numerical results are provisional; analytical applicability findings remain open.")
     else:
         title = "# Thermal, single-fault and extended-operation result · H3-R2.6"
         nav = "[Русский](thermal-fault-electrical-verification.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md)"
-        intro = f"`H3-R2.6` is reviewed: **{s['checks']} checks**, `{s['thermal_profiles']}` thermal profiles and `{s['single_fault_cases']}` single-fault cases pass with no open analytical finding. H3-R2.7, global H4-R2 and global H5-R1 are also reviewed; the current marker is `H6.0.3-R1`."
+        intro = scope_notice(result, russian)
         thermal = ("## Thermal envelope\n\n"
                    f"Only the `SUPPORT_IDLE` support load is eligible for sustained thermal qualification and external 5 V is capped at 1.00 A. The worst continuous calculation profile is `{sustained['id']}`: a conservative `{sustained['conservative_enclosure_heat_upper_w']:.3f} W` inside the enclosure. At 35 °C H6 must achieve no worse than `{sustained['rtheta_to_65c_at_35c_k_per_w_max']:.3f} K/W` before the 65 °C warning. That TX case remains a bounded session pending H8, not permission for unattended TX. "
                    f"The absolute electrical corner `{absolute['id']}` reaches `{absolute['conservative_enclosure_heat_upper_w']:.3f} W` but is not a sustained permission. Three NTCs, warning/kill/rearm thresholds and charger `TREG=60 °C`, `TSHUT=85 °C` remain independent protections. This is a parameterized upper bound, not a finished-enclosure temperature claim.")
@@ -151,7 +155,7 @@ def render_doc(result: dict, russian: bool) -> str:
         unattended = ("## Extended operation\n\n"
                       "Long operation uses a qualified USB-PD source. `24/48 hours` are non-destructive H8 soak durations and full-proof intervals, not an autonomy promise. The setting is local-only and defaults to 48 hours. Expiry first revokes TX leases, then stops the session and requires physical re-arm. It cannot change watchdog or temperature limits.")
         boundary = "## Physical-only residuals\n\n" + "\n".join(f"- {row}" for row in result["physical_residuals"])
-        end = "This result does not authorize placement/routing, purchasing, fabrication or final thermal/safety claims.\n\n[Machine evidence](../hardware/verification/generated/H3-R2-thermal-fault.json)."
+        end = ("Текущие численные результаты предварительны; открытые аналитические вопросы остаются." if russian else "Current numerical results are provisional; analytical applicability findings remain open.")
     return "\n\n".join((title, nav, intro, thermal, faults, unattended, boundary, end)) + "\n"
 
 
@@ -210,7 +214,7 @@ def build() -> tuple[dict[Path, str], dict]:
     ]
     checks = {
         "required_r2_methods_exist": {"M-INT", "M-TRANS", "M-STATE", "M-THERMAL"} <= method_ids,
-        "upstream_rail_source_transition_rf_reviews_pass": rails["summary"]["steady_thermal_failures"] == 0 and sources["summary"]["failed_states"] == 0 and transitions["status"].startswith("reviewed_") and rf["status"] == "pass",
+        "provisional_rail_source_numerical_checks": rails["summary"]["steady_thermal_failures"] == 0 and sources["summary"]["failed_states"] == 0,
         "all_56_r2_profiles_are_thermalized": len(profiles) == rails["summary"]["operating_profiles"] == 56,
         "all_28_sustained_profiles_are_thermalized": len(sustained_profiles) == 28,
         "external_sustained_current_is_capped_at_1a": max(row["external_5v_current_a"] for row in sustained_profiles) <= 1.0,
@@ -236,8 +240,6 @@ def build() -> tuple[dict[Path, str], dict]:
         "all_physical_residuals_are_owned": all(row.startswith(("H6:", "H8:")) for row in physical),
     }
     failures = [name for name, passed in checks.items() if not passed]
-    if failures:
-        raise ValueError("H3-R2.6 checks failed: " + ", ".join(failures))
 
     result = {
         "schema_version": 1,
@@ -282,6 +284,13 @@ def build() -> tuple[dict[Path, str], dict]:
         "authorization": {"paper_electrical_contract_reviewed": True, "pcb_placement_or_routing": False, "purchasing": False, "fabrication": False, "final_product_claim": False},
         "next": {"marker": "H3-R2.7", "action": "cross-check every R2 result and publish the bilingual H3 phase report"},
     }
+    result["errors"] = failures
+    apply_scope(result, __file__, {
+        "rail_inputs": admits_current(rails, "H3-R2-rail-margins"),
+        "source_inputs": admits_current(sources, "H3-R2-source-margins"),
+        "transition_inputs": admits_current(transitions, "H3-R2-transition-result"),
+        "rf_inputs": admits_current(rf, "H3-R2-rf-coexistence"),
+    }, numerical_ok=not failures)
     return {
         OUTPUT: json.dumps(result, ensure_ascii=False, indent=2) + "\n",
         DOC_EN: render_doc(result, False),

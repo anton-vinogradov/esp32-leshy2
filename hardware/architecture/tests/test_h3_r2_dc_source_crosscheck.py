@@ -20,11 +20,12 @@ class H3R2DcSourceCrosscheckTest(unittest.TestCase):
             self.assertTrue(path.is_file(), path)
             self.assertEqual(content, path.read_text(encoding="utf-8"), path)
 
-    def test_all_cross_checks_pass(self):
+    def test_corrected_voltage_failure_keeps_dc_review_open(self):
         self.assertEqual(15, len(self.manifest["checks"]))
-        self.assertTrue(all(self.manifest["checks"].values()))
+        self.assertFalse(self.manifest["checks"]["rail_current_voltage_thermal_pass"])
+        self.assertTrue(all(value for key, value in self.manifest["checks"].items() if key != "rail_current_voltage_thermal_pass"))
         self.assertEqual(
-            "reviewed_h3_r2_1_worst_case_dc_source_charge_and_power_states",
+            "review_required",
             self.manifest["status"],
         )
 

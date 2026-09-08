@@ -1,33 +1,35 @@
-# H3-R2 result · virtual electrical verification
+# H3-R2 · current electrical diagnostics
 
-[Русский](h3-r2-acceptance.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md) · [Physical evidence register](physical-evidence-register-r2.md)
+[Русский](h3-r2-acceptance.ru.md) · [Home](../README.md) · [Roadmap](roadmap.md)
 
-`H3-R2.7` records the result of the implemented H3 analytical scope. All `20` current evidence artifacts and `129` recorded source hashes cross-check with zero mismatch and zero open finding within those model checks.
+**Current status: `review_required`.** Numerical and logical checks below are retained as provisional. Applicability to the fitted power cell is checked separately; open analytical findings are not reclassified as physical tests. This result does not authorize phase advancement, purchasing, fabrication or battery energization.
 
-The current passive-pin symbol library is a separate coverage limit: these models and zero ERC findings do not prove rail-driver completeness or exclude output conflicts. `H6-NATIVE-ELECTRICAL-SEMANTICS` remains a required production gate; re-running this report does not close it.
+Open: `applicability:crosscheck_inputs`.
 
-| Workstream | Reviewed scope | Result |
-|---|---|---|
-| `H3-R2.0` | Inputs, provenance and methods | 2 projects · 22 sheets · 1,208 schematic instances · 788 nets · 251 exact groups · 9 methods |
-| `H3-R2.1` | DC, rails, sources and charge | 2,266 legal states · 224 rail corners · 30.560% minimum reserve · 3.516 A maximum pack current |
-| `H3-R2.2` | Transitions and faults | 14 ordered scenarios · 7,316 handover cases · 5 starts · 4 load steps · 10 watchdog/fault cases |
-| `H3-R2.3` | Analog corners | display, audio, IR, battery and Airband calculations pass; routed Airband tuning remains measured |
-| `H3-R2.4` | Digital interfaces | direct i8080-8 at exact 20 MHz · M1 80/80 parity · explicit USB/service ownership |
-| `H3-R2.5` | RF and coexistence | 71 checks · 10 permanent antenna paths · 13 quiet contracts · all 3×nRF24 role/identity mixes |
-| `H3-R2.6` | Thermal and single fault | 56 thermal profiles · 30 single faults · 25 checks · no unattended-runtime claim |
+[Machine evidence](../hardware/verification/generated/H3-R2-acceptance-package.json).
 
-## What is complete
+This publication recomputes 20 evidence artifacts and checks 155 source bindings. Source mismatches: 0. Open aggregate findings: 3. Current applicability is **not** inherited from historical H3 closure.
 
-- The implemented pre-layout analytical checks have reproducible results on the exact H1-R2.39 / H2-R2.1.5 boundary.
-- All legal power states, transitions, analog corners, digital interfaces, permanent RF paths, thermal profiles and single-fault cases pass their frozen paper rules.
-- The current source corrections are reflected in the repeated analytical checks; this is not a complete native electrical-semantics review.
+## Current analytical work
 
-## What remains physical
+Raw supply, protected local supply and consumer endpoints are separate. The retained MAIN model still uses parameters for a different converter, has unqualified current/protection and thermal limits, and the AON resistance is not bound to the fitted setting. Existing numerical calculations are provisional, not permission to treat these inputs as qualified. The supervisor assertion maximum and minimum hysteresis also remain unspecified.
 
-The [physical evidence register](physical-evidence-register-r2.md) contains `51` still-open rows with explicit H5/H6/H8 owners and pass rules. This is expected: routed impedance/parasitics, received-part identity and measurements on the one assembled prototype cannot be honestly closed on paper. The separate F5/F6 i8080 implementation obligation remains firmware work, not a disguised physical residual.
+- H3-R2.1/rail-margins: review_required
+- H3-R2.1/source-margins: review_required
+- H3-R2.1/result: review_required
+- H3-R2.2/sequences: review_required
+- H3-R2.2/handover: review_required
+- H3-R2.2/inrush-watchdog: review_required
+- H3-R2.2/result: review_required
+- H3-R2.3/result: review_required
+- H3-R2.4/result: review_required
+- H3-R2.5/result: review_required
+- H3-R2.6/result: review_required
 
-## Boundary and next stage
+## Separate physical and firmware evidence
 
-H3 approval does **not** authorize purchasing, PCB placement/routing, fabrication, final RF/thermal performance or unattended-runtime claims. The exact next marker is `H4-R2.0.1`: freeze and join the current mechanics, ECAD, H3 result and firmware-R2 evidence before H5.
+The [physical registry](physical-evidence-register-r2.md) retains 51 open rows with explicit owners. Those rows do not replace the analytical findings above. The F5/F6 i8080 implementation and `H6-NATIVE-ELECTRICAL-SEMANTICS` gate remain separate obligations; this report does not close them.
 
-[Machine cross-check](../hardware/verification/generated/H3-R2-crosscheck.json) · [Machine acceptance package](../hardware/verification/generated/H3-R2-acceptance-package.json)
+The next work is correction and verification of the current power model. Fresh diagnostics and matching hashes do not advance a phase or authorize hardware operation.
+
+[Machine cross-check](../hardware/verification/generated/H3-R2-crosscheck.json)
