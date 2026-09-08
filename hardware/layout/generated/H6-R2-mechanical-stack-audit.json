@@ -1,12 +1,15 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "artifact": "H6-R2 mechanical stack audit",
   "marker": "H6.0.3-R1",
-  "status": "pass",
-  "status_scope": "fasteners, enclosure capture and direct cell thermal contacts; connector fit is reported separately",
+  "status": "review_required",
+  "status_scope": "declared fastener/capture tolerances and NTC XY placement only; thermal contact is unverified and connector fit is reported separately",
+  "fastener_and_planar_checks_status": "pass",
+  "production_release_ready": false,
+  "battery_energization_authorized": false,
   "source_hashes": {
-    "hardware/layout/h6-r2-mechanical-stack.json": "28e9588f17a7e53730f901d22cc470b0cbd5d2a17a307cec2bac2c309ff88cc7",
-    "hardware/layout/generated/H6-R2-placement-audit.json": "572e060cf51da31b6913a8804c794835bf96c581b8b6b8da3f637411166b0c02"
+    "hardware/layout/h6-r2-mechanical-stack.json": "0c9eeafb8a728627d711848df45b674e145da7896aa5d808d853d3c74891147d",
+    "hardware/layout/generated/H6-R2-placement-audit.json": "f104cb2cbbb41577fd8f520853f57fba9c6b5592fd8037c1ff4a27dd34de7bce"
   },
   "stack": {
     "members": [
@@ -92,6 +95,7 @@
     "cell_ntc_gap_pad": "TG-A3500-5-5-3.0"
   },
   "battery_thermal_contacts": {
+    "status": "requires_confirmation",
     "holder_instance": "pack_holder",
     "ntc_instances_by_cell": [
       "pack_ntc0",
@@ -120,9 +124,28 @@
     ],
     "contact_beds_contain_ntc_courtyards": true,
     "exact_gap_pad_mpn": "TG-A3500-5-5-3.0",
-    "nominal_gap_pad_compression_percent": 20.0,
+    "nominal_gap_pad_compression_percent": null,
+    "holder_cell_floor_nominal_above_pcb_mm": null,
+    "height_review": {
+      "checked": "2026-09-08",
+      "status": "unverified_cell_floor_and_contact_compression",
+      "primary_url": "https://file.aichiplink.com/r/datasheets/keystoneelectronics-1048p-datasheets-1060.pdf",
+      "primary_sha256": "6135bff212f9eab9ed8158febcbbd0d18b9479caac384a7f51f2818d1328e26b",
+      "primary_revision": "1048P Rev A 10.08.13, full sheet visually reviewed",
+      "withdrawn_claim": "The previous 3.3-mm floor and 20-percent compression are unsupported. The catalogue gives 3.3 mm and the individual Rev A drawing 3.43 mm for retaining-post projection below the PCB, not the cell bottom above it. These are different source values, not a reconciled revision/tolerance range. Maximum NTC height alone is also not a nominal or minimum-height tolerance stack.",
+      "required_evidence": "Registered cell-can surface above the PCB and open-channel dimensions, exact NTC/pad height ranges and a supported compression/force window; verify each cell contacts only insulating material without lifting or rocking.",
+      "gap_pad_fit_status": "selected_3mm_part_retained_for_planning_not_qualified_for_contact"
+    },
+    "release_gate": {
+      "id": "H6-CELL-NTC-HEIGHT-FIT",
+      "status": "open",
+      "blocks_production_release": true,
+      "blocks_battery_energization": true,
+      "routing_may_continue": true
+    },
     "accepted_holder_window_overlaps": 2,
-    "electrically_insulating_contact": true
+    "electrically_insulating_material_required": true,
+    "physical_contact_proved": false
   },
   "connector_fit": {
     "status": "requires_confirmation",

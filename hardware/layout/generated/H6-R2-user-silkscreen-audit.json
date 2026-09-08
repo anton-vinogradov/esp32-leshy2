@@ -4,19 +4,19 @@
   "status": "pass_scoped",
   "production_release_authorized": false,
   "inputs_sha256": {
-    "hardware/layout/h6-r2-placement-contract.json": "a987975d861f6e404d42177377c5d9e868755a503b188ad99c815a3eecf178d7",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
-    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "b2655295e86d4988caa693cd926fbe7185a24a5be7f26ebc607ff1a0254762b6",
+    "hardware/layout/h6-r2-placement-contract.json": "c4199c22d9bb44ffd53762235b32ef0a6d66a0150105aef5689ec777eb50763a",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7d1b6c309e398f410a3ec109374388548eddfd4574676cf7d77a9ea5453bab91",
+    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "7ddc98cdda91bab63705e444ad9a155391703b44a68094cd9e9cf845ab31fafa",
     "hardware/layout/h6_r2_silkscreen_audit.py": "78cecb4082bd0e10620efdc6372dd3e7ca23d4bba3c02d0bc2ef6a5d9024dceb",
     "hardware/layout/h6_r2_user_silkscreen.py": "01b324671dcb67ba9e02381068d8aaf079c869a53a4bc9862472012351bd5544",
     "hardware/ecad/libraries/Leshy2_R2.pretty/B3S-1100P.kicad_mod": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989",
     "hardware/layout/h6-r2-b3s-actuator-datum-review.json": "d8de0d5184828d1c6fd98415ccf63e4008e87cfbf7a231412f59bc7fc1dab6c9",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e",
-    "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "0f495dea5bd8c9f3426de84ae282347390ced91f1f64d26f3f1edc73b1722589",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "1cdc59edda649d09c07077bbd17864cfca446a9c431910d603d7d1a4785c9b5b",
+    "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "d22659ed7f30aeb12c4e6742a6da71a3244f33f242c9f0a41f82e5b518aafdf9",
     "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch": "43910ab937fd3f95a140f664d6fbaca72d8dc6e9bf60cf46e5eae24158eddf50",
     "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_sch": "2d20cc84e34a33e8f6339a846a21ef9c2b3c9d2d53aeaad744f87fadc9a82069",
     "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "82e0b4ae6cbbad5241984a476c057ea7ecf2d593b382bcc06feceb26a73cbfe1",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "cd306f5f39649fd0c24c0a1f79931716f646e9c72959788a9127098d44eca1fe"
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "3a31f0144271c1c95fa92a0b8e51eb52fead47249653b36320d5268bf238108d"
   },
   "boards": [
     {

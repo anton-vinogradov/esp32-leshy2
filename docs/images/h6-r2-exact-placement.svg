@@ -687,7 +687,7 @@
 <rect x="1320.45" y="444.15" width="5.40" height="10.22" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <rect x="1098.42" y="565.86" width="8.29" height="16.32" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <rect x="1244.21" y="449.50" width="10.22" height="5.40" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
-<rect x="1205.42" y="378.61" width="10.22" height="5.40" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
+<rect x="1324.70" y="298.33" width="10.22" height="5.40" rx="1.5" fill="#f0fdf4" stroke="#16a34a" stroke-width="0.65"/>
 <rect x="1208.10" y="454.85" width="10.22" height="5.40" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <rect x="1189.37" y="564.52" width="10.22" height="5.40" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <rect x="927.22" y="593.95" width="10.22" height="5.40" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
@@ -741,8 +741,8 @@
 <rect x="1066.32" y="141.87" width="10.43" height="5.51" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <rect x="1032.88" y="157.92" width="10.43" height="5.51" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <rect x="1090.40" y="819.99" width="19.74" height="39.00" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
-<rect x="1192.05" y="819.98" width="39.00" height="19.74" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
-<text x="1211.55" y="832.86" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">F2</text>
+<rect x="1202.77" y="385.59" width="39.00" height="19.74" rx="1.5" fill="#f0fdf4" stroke="#16a34a" stroke-width="0.65"/>
+<text x="1222.27" y="398.46" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">F2</text>
 <rect x="978.61" y="902.51" width="59.01" height="45.58" rx="1.5" fill="#ecfdf5" stroke="#047857" stroke-width="0.65"/>
 <text x="1008.11" y="928.30" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">J1</text>
 <rect x="1249.56" y="619.36" width="35.52" height="38.25" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
@@ -1200,8 +1200,8 @@
 <rect x="1272.00" y="419.30" width="10.22" height="16.53" rx="1.5" fill="#fff4d6" stroke="#d97706" stroke-width="0.65"/>
 <rect x="1227.92" y="418.23" width="41.68" height="29.91" rx="1.5" fill="#e9eef5" stroke="#64748b" stroke-width="0.65"/>
 <text x="1248.76" y="436.18" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">U90</text>
-<rect x="1202.77" y="385.86" width="41.68" height="29.91" rx="1.5" fill="#fff4d6" stroke="#d97706" stroke-width="0.65"/>
-<text x="1223.61" y="403.81" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">U91</text>
+<rect x="1281.69" y="276.99" width="41.68" height="29.91" rx="1.5" fill="#f0fdf4" stroke="#16a34a" stroke-width="0.65"/>
+<text x="1302.53" y="294.94" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">U91</text>
 <rect x="1203.31" y="418.33" width="19.21" height="34.51" rx="1.5" fill="#fff4d6" stroke="#d97706" stroke-width="0.65"/>
 <rect x="1173.32" y="532.42" width="41.68" height="29.91" rx="1.5" fill="#e7f8ef" stroke="#059669" stroke-width="0.65"/>
 <text x="1194.16" y="550.38" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" fill="#1e293b">U93</text>

@@ -294,6 +294,33 @@
     }
   },
   "placement_overrides": {
+    "pack_fuse1": {
+      "frame": "rear-inner",
+      "anchor_mm": [56.5, 47.75],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Follow the corrected BT1.3 positive contact at the opposite cell end. Native raw-pad separation 4.2524 mm and existing holder-pad-to-fuse-courtyard locality 1.9309 mm <= 2 mm. No pre-existing copper attachment is moved; the new protected power path still requires routing. Exact holder mounting geometry remains open.",
+      "evidence": "hardware/layout/h6-r2-holder-polarity-review.json"
+    },
+    "u214_host_buffer_b": {
+      "frame": "rear-inner",
+      "anchor_mm": [71.5, 28.4],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Clear the relocated F2 with its local bypass moved together. Joint native candidate has no geometry violations, preserves all 766 copper objects and complete pad/track adjacency; minimum neighbouring R166 courtyard gap 0.155 mm. This placement does not qualify the external module pin map.",
+      "evidence": "hardware/layout/h6-r2-holder-polarity-review.json"
+    },
+    "u214_host_buffer_b_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [76.6, 30.1],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Retain local bypass beside relocated U91: C241.1 to U91.14 distance 1.7752 mm, courtyard gap 0.25 mm. Neither old footprint has attached copper; supply and ground routing remain required.",
+      "evidence": "hardware/layout/h6-r2-holder-polarity-review.json"
+    },
     "headphone_jack": {
       "frame": "rear-outer",
       "anchor_mm": [0.8, 99.0],

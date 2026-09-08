@@ -54,6 +54,14 @@ UI USB/microSD, ten exterior indicators and M1 remain in place. microSD UI J5
 is B180 at [61.005,141.875]; its access envelope includes 4.0 mm ejection travel
 and a separate 0.8 mm push stroke, not merely the socket courtyard.
 
+The subsequent [holder-polarity correction](../hardware/layout/h6-r2-holder-polarity-integration.json)
+updates another **four RF references: BT1, F2, U91 and C241**. Cell1 positive
+contact BT1.3 is now at [52.54,44]; its local fuse F2 follows to B0 [56.5,47.75].
+U91 and its bypass C241 move together to clear that position. All 766 RF copper
+objects and complete existing pad/track adjacency remain unchanged. This corrects
+the polarity contradiction, not the unresolved holder land/hole pattern or thermal
+contact. The new positive/fuse and buffer connections still require routing.
+
 The final refinement moves only the four USB owner labels — UI HUB RP/C5 and
 RF S3/RF RP — from y138.0 to **y138.2**; their function labels remain at y140.0.
 Footprints, pads and copper are unchanged. This gives the UI HUB RP ink a
@@ -86,7 +94,8 @@ assembled-mechanics gates. No prototype has been demonstrated to boot by this re
 | Item | Remaining work — not waived by DRC |
 | --- | --- |
 | Cap U214/U219 | Resolve the published mating-face/numbering ambiguity and header-to-housing registration. Logical M5 numbering must not be copied directly onto Samtec's alternating physical rows. No speculative permutation is accepted. The clarification inquiry remains pending. |
-| **Keystone 1048P: polarity and geometry** | **[Critical open correction](../hardware/layout/h6-r2-holder-polarity-review.json):** the manufacturer's two cells face opposite directions; the current footprint maps both positive contacts to the same local end. The SLOT1 polarity/physical-land registration and affected power paths must be verified together before cells may be connected. Exact SMT lands and complete locator/hole registration also remain open; no guessed drilling or battery energization is approved. |
+| **Keystone 1048P: geometry and power routing** | The [same-end-positive defect](../hardware/layout/h6-r2-holder-polarity-review.json) is **[corrected in native R2](../hardware/layout/h6-r2-holder-polarity-integration.json)**, with F2 moved beside the corrected contact and existing 2S/sense nets retained. Exact SMT lands, complete locator/hole registration and the new physical power routes remain open. The polarity-only library definition is explicitly not a manufacturing-ready land pattern; no guessed drilling or battery energization is approved. |
+| **Cell-to-NTC contact** | [Reopened height review](h6-r2-mechanical-stack.md): the previously assumed 3.3-mm cell floor is a retaining-post projection below the PCB. The 20% compression claim is withdrawn; actual cell height, channel fit and pad compression remain unverified. The two NTC XY positions are not proof of thermal contact. |
 | Alps EC11E18244AU encoder | The exact 12.5 mm mounting-lug pitch differs from the bound generic 11.2 mm footprint. A separate dimension/slot-process candidate is not an accepted production footprint or proof of solder-joint strength. |
 | SMA thickness | Reconcile the 1.75 ± 0.10 mm connector slot with finished PCB thickness; the earlier 1.60 ± 0.16 mm envelope permits 0.11 mm interference. Do not assume the prongs can be spread. |
 | Display/FPC/PSA | The native 27 × 1.2 mm slot and ZIF orientation exist, but the real fold, slack, rear-panel flatness, adhesive thickness and assembly tolerance still require closure. |
@@ -123,7 +132,7 @@ This report's integrated PCB snapshot is:
 | Board | SHA-256 |
 | --- | --- |
 | [UI native PCB](../hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb) | `82e0b4ae6cbbad5241984a476c057ea7ecf2d593b382bcc06feceb26a73cbfe1` |
-| [RF native PCB](../hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb) | `cd306f5f39649fd0c24c0a1f79931716f646e9c72959788a9127098d44eca1fe` |
+| [RF native PCB](../hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb) | `3a31f0144271c1c95fa92a0b8e51eb52fead47249653b36320d5268bf238108d` |
 
 - Current owners: [placement contract](../hardware/layout/h6-r2-placement-contract.json), [native instance ledger](../hardware/ecad/generated/H2-R2-native-instance-ledger.json), [assembly coordinates](../hardware/product-design/assembly-coordinate-model.json), [display contract](../hardware/product-design/display-mount.json).
 - Derived audits: [current routing](../hardware/layout/generated/H6-R2-current-routing-audit.json), [pad parity](../hardware/layout/generated/H6-R2-footprint-pad-parity.json), [native user labels](../hardware/layout/generated/H6-R2-user-silkscreen-audit.json). Check their recorded source hashes: a reproducible stale snapshot is not evidence for the two hashes above. Fresh production DRC receipts and the scoped silk audit have been verified against both final hashes.

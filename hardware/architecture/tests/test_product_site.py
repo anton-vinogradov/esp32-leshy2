@@ -726,9 +726,12 @@ class ProductSiteTests(unittest.TestCase):
             plan["mechanical_stack"]["nut"]["mpn"],
         )
         self.assertEqual(
-            "pass",
+            "review_required_thermal_contact_reopened_fastener_checks_pass",
             plan["current_evidence"]["mechanical_stack_and_m1_load_relief"],
         )
+        self.assertIn("H6-CELL-NTC-HEIGHT-FIT", {
+            row["id"] for row in plan["current_evidence"]["reopened_interface_findings"]
+        })
         self.assertTrue(plan["authorization"]["pcb_placement_and_routing"])
         self.assertFalse(plan["authorization"]["purchase"])
         self.assertFalse(plan["authorization"]["fabrication"])

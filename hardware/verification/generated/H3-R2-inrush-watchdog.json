@@ -6,11 +6,11 @@
   "source_sha256": {
     "hardware/verification/h3-r2-inrush-watchdog-contract.json": "0658274da5110cd64dc6e8100501197f8b82a7287ef3195d8af29a12e29b4b90",
     "hardware/verification/h3-r2-verification-plan.json": "54143b22eeddf73fbe05ea5f0996c363e22bf7830c49e13ced6f3dcca8c7d16c",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "d24c3ba70543355ada7fbeefb80da669c661b9ac5a7d1c05c3ef81359913b97f",
-    "hardware/verification/generated/H3-R2-transition-sequences.json": "32d853670d62f50ab5e035222ff46767c158253aecf5ed06db15243708b70b14",
-    "hardware/verification/generated/H3-R2-handover.json": "f468159032821344a4c6f389179eabbf60ffa4da95a49e753156ee8a62bd95c2",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "4cf70a6656f7a386a16f1f1737ffccec83d5f95f900ff20482d7b7ec41b6169e",
-    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "a98dbc18b8ef23b697efa2ebd2f2dbcb7102a01782619f0d0d240af43dff6ffa",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "95ea4b66f38ca6378e0703bc0377e106c81e67628f4bb3209fab7addf6b7c78a",
+    "hardware/verification/generated/H3-R2-transition-sequences.json": "c7af6cac47972dab436b7399569d44cc9f71f13ecd27679bf987f015454f6a71",
+    "hardware/verification/generated/H3-R2-handover.json": "5f6f1cd789a429a80993f4aa5e65361bf3c133046413ea751e1a7ee65256ae1e",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "1cdc59edda649d09c07077bbd17864cfca446a9c431910d603d7d1a4785c9b5b",
+    "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7d1b6c309e398f410a3ec109374388548eddfd4574676cf7d77a9ea5453bab91",
     "hardware/architecture/devices.json": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c"
   },
   "datasheet_sources": {

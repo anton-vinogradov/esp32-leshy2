@@ -239,24 +239,28 @@ def evaluate(contract: dict, placement: dict) -> dict:
     }
     if not expected_overlaps.issubset(accepted):
         errors.append("direct-cell NTCs are not explicitly nested in the holder windows")
-    nominal_compression = 100 * (
-        float(thermal["ntc_maximum_height_mm"])
-        + float(gap_pad["thickness_nominal_mm"])
-        - float(thermal["holder_cell_floor_nominal_above_pcb_mm"])
-    ) / float(gap_pad["thickness_nominal_mm"])
-    if not (
-        float(thermal["nominal_pad_compression_minimum_percent"])
-        <= nominal_compression
-        <= float(thermal["nominal_pad_compression_maximum_percent"])
-    ):
-        errors.append("nominal cell-to-NTC pad compression is outside its design window")
+    # The old 3.3-mm 'floor' was actually a retaining-post projection BELOW
+    # the PCB. Never turn this unsupported number (or NTC maximum height)
+    # into a nominal thermal-contact PASS. No closing path is implemented
+    # until the registered cell surface and all contact tolerances are known.
+    height_review = thermal["height_review"]
+    if thermal["holder_cell_floor_nominal_above_pcb_mm"] is not None:
+        errors.append("unreviewed holder cell-floor height must not restore compression acceptance")
+    thermal_gate = thermal["release_gate"]
+    if (thermal_gate.get("status") != "open"
+            or thermal_gate.get("blocks_production_release") is not True
+            or thermal_gate.get("blocks_battery_energization") is not True):
+        errors.append("unverified thermal contact must block release and battery energization")
 
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "artifact": "H6-R2 mechanical stack audit",
         "marker": contract["marker"],
-        "status": "pass" if not errors else "fail",
-        "status_scope": "fasteners, enclosure capture and direct cell thermal contacts; connector fit is reported separately",
+        "status": "review_required" if not errors else "fail",
+        "status_scope": "declared fastener/capture tolerances and NTC XY placement only; thermal contact is unverified and connector fit is reported separately",
+        "fastener_and_planar_checks_status": "pass" if not errors else "fail",
+        "production_release_ready": False,
+        "battery_energization_authorized": False,
         "source_hashes": {
             str(CONTRACT.relative_to(ROOT)): sha256(CONTRACT),
             str(PLACEMENT.relative_to(ROOT)): sha256(PLACEMENT),
@@ -287,6 +291,7 @@ def evaluate(contract: dict, placement: dict) -> dict:
             key: value["mpn"] for key, value in contract["selected_hardware"].items()
         },
         "battery_thermal_contacts": {
+            "status": "requires_confirmation",
             "holder_instance": thermal["holder_instance"],
             "ntc_instances_by_cell": thermal["ntc_instances_by_cell"],
             "required_side": thermal["required_side"],
@@ -294,9 +299,13 @@ def evaluate(contract: dict, placement: dict) -> dict:
             "actual_ntc_centres_mm": actual_centres,
             "contact_beds_contain_ntc_courtyards": contact_beds_contain_ntcs,
             "exact_gap_pad_mpn": gap_pad["mpn"],
-            "nominal_gap_pad_compression_percent": round(nominal_compression, 1),
+            "nominal_gap_pad_compression_percent": None,
+            "holder_cell_floor_nominal_above_pcb_mm": None,
+            "height_review": height_review,
+            "release_gate": thermal_gate,
             "accepted_holder_window_overlaps": len(expected_overlaps & accepted),
-            "electrically_insulating_contact": True,
+            "electrically_insulating_material_required": True,
+            "physical_contact_proved": False,
         },
         "connector_fit": evaluate_connector_fit(contract),
         "errors": errors,
@@ -337,7 +346,8 @@ def render(contract: dict, audit: dict) -> str:
     for index, (label, thickness, colour) in enumerate(layers, start=1):
         width = thickness * scale
         parts.append(f'<rect x="{x:.1f}" y="{z0-42}" width="{width:.1f}" height="84" fill="{colour}" stroke="#334155" stroke-width="1.5"/>')
-        parts.append(text(x + width / 2, z0 + 6, str(index), 14, "700", "middle"))
+        # Keep the member number above the screw drawn later at z0.
+        parts.append(text(x + width / 2, z0 - 18, str(index), 14, "700", "middle"))
         x += width
     parts.extend([
         f'<line x1="{180-32}" y1="{z0}" x2="{x+70}" y2="{z0}" stroke="#7c3aed" stroke-width="8" stroke-linecap="round"/>',
@@ -375,7 +385,7 @@ def render(contract: dict, audit: dict) -> str:
         text(250, 740, "four edge-lip segments retain each PCB independently", 15),
         text(90, 780, "M1", 15, "700", colour="#dc2626"),
         text(250, 780, "electrical mating and alignment only · never used to pull the boards together", 15),
-        text(70, 835, "DIRECT CELL TEMPERATURE · TWO IDENTICAL CONTACTS", 15, "700", colour="#1d4ed8"),
+        text(70, 835, "CELL TEMPERATURE · CONCEPT ONLY / КОНТАКТ НЕ ПОДТВЕРЖДЁН", 15, "700", colour="#b45309"),
         '<rect x="90" y="957" width="500" height="24" fill="#2563eb" stroke="#1e3a8a" stroke-width="2"/>',
         text(340, 975, "RF PCB · HOLDER SIDE", 12, "700", "middle", "#ffffff"),
         '<rect x="300" y="936" width="48" height="21" rx="3" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>',
@@ -385,16 +395,16 @@ def render(contract: dict, audit: dict) -> str:
         text(324, 922, "× 3 mm", 12, "700", "middle", "#92400e"),
         '<rect x="218" y="840" width="212" height="39" rx="19" fill="#e2e8f0" stroke="#475569" stroke-width="2.5"/>',
         text(324, 866, "18650 CELL", 13, "700", "middle"),
-        text(660, 872, "BT1 open channel", 14, "700", colour="#334155"),
+        text(660, 872, "BT1 channel geometry unverified", 14, "700", colour="#334155"),
         text(660, 902, "one board-fitted 0603 NTC below each cell axis", 14),
         text(660, 932, "TG-A3500-5-5-3.0: insulating, tacky, 3.5 W/mK", 14),
-        text(660, 962, f"nominal compression {audit['battery_thermal_contacts']['nominal_gap_pad_compression_percent']:.1f}% · cells installed last", 14),
+        text(660, 962, "Cell-floor height / compression unknown · do not install cells", 14, colour="#b91c1c"),
         '<rect x="70" y="1020" width="1310" height="164" rx="14" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>',
         text(95, 1054, f"SMA FIT: {fit['status']} · ПРОВЕРКА ПОСАДКИ SMA", 17, "700", colour=fit_colour),
         text(95, 1088, f"slot 1.75 ± 0.10 mm · both PCBs 1.60 ± 0.16 mm · worst clearance {minimum_fit:.2f} mm", 16, "600", colour=fit_colour),
         text(95, 1120, "Negative clearance means possible interference; confirm finished thickness / permitted fit before production release.", 15),
         text(95, 1152, "Допуски допускают натяг: до выпуска подтвердить конечную толщину PCB или допустимую посадку у поставщика.", 15),
-        text(70, 1225, "H6.0.3 routing continues; SMA fit remains a separate production-release gate.", 15, "600", colour="#526076"),
+        text(70, 1225, "H6.0.3 routing continues; SMA fit, holder geometry and thermal contact remain open.", 15, "600", colour="#526076"),
         text(70, 1268, f"fastener / cell-contact audit: {audit['status']} · no fabrication or purchase authorized", 14, "700", colour="#166534" if audit["status"] == "pass" else "#b91c1c"),
         '</svg>',
     ])
@@ -404,6 +414,7 @@ def render(contract: dict, audit: dict) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true", help="fail if committed outputs differ")
+    parser.add_argument("--require-release-ready", action="store_true", help="also fail while any mechanical release gate remains open")
     args = parser.parse_args()
     contract = load(CONTRACT)
     placement = load(PLACEMENT)
@@ -427,12 +438,15 @@ def main() -> int:
     print(
         "H6-R2 mechanical stack "
         f"{audit['status']}: {audit['geometry']['mounting_axis_count']} axes; "
-        f"{audit['battery_thermal_contacts']['accepted_holder_window_overlaps']} direct cell contacts; "
+        f"{audit['battery_thermal_contacts']['accepted_holder_window_overlaps']} NTC XY placements; thermal contact unverified; "
         f"{audit['stack']['thread_available_at_nut_minimum_mm']:.2f} mm minimum nut thread; "
         f"{audit['stack']['minimum_tip_clearance_to_outer_surface_mm']:.2f} mm tip clearance; "
         f"SMA fit {audit['connector_fit']['status']}"
     )
-    return 0 if audit["status"] == "pass" else 1
+    # Reproducing an honest open-gate report is not release acceptance.
+    if audit["errors"]:
+        return 1
+    return 2 if args.require_release_ready and not audit["production_release_ready"] else 0
 
 
 if __name__ == "__main__":

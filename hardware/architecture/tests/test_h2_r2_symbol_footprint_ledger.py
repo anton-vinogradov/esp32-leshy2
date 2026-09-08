@@ -128,6 +128,14 @@ class H2R2SymbolFootprintLedgerTests(unittest.TestCase):
         )
         self.assertEqual(13, self.ledger["summary"]["new_exact_footprint_geometries_materialized"])
 
+    def test_holder_polarity_repair_is_not_counted_as_exact_mechanical_definition(self):
+        holder = next(row for row in self.ledger["groups"] if row["device_id"] == "keystone_1048p")
+        definition = holder["footprint_definition"]
+        self.assertEqual("current_polarity_only_definition_materialized_mechanics_open", definition["status"])
+        self.assertFalse(definition["mechanics_qualified"])
+        self.assertFalse(definition["production_release_authorized"])
+        self.assertEqual(1, self.ledger["summary"]["partial_local_footprint_definitions_mechanics_open"])
+
     def test_authorization_remains_net_and_kicad_free(self):
         self.assertEqual([], self.ledger["errors"])
         self.assertEqual(0, self.ledger["summary"]["schematic_symbols_or_footprint_files_created"])

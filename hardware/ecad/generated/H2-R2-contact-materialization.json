@@ -6,7 +6,7 @@
   "sources": {
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "6dbafc5fb69bbf3ec56cea89439ddc54539f720cfb58cbc8ab87da32600166a8"
+      "sha256": "372dbe16718897bc33477c7f7acbd65a70143f70f7b35d88df6bf73d6fc69c36"
     },
     "device_register": {
       "path": "hardware/architecture/devices.json",
@@ -9230,9 +9230,9 @@
       "device_id": "keystone_1048p",
       "mpn": "Keystone Electronics 1048P",
       "symbol_id": "Leshy2_R2:keystone_1048p",
-      "footprint": "Leshy2:Keystone-1048P",
-      "footprint_source": "hardware/ecad/libraries/Leshy2.pretty/Keystone-1048P.kicad_mod",
-      "footprint_sha256": "dbcec95dcfe56d7d1e1bd2631640c065c30b064adc02f4f9810d4fc38ee02a9e",
+      "footprint": "Leshy2_R2:Keystone-1048P-POLARITY-CORRECTED",
+      "footprint_source": "hardware/ecad/libraries/Leshy2_R2.pretty/Keystone-1048P-POLARITY-CORRECTED.kicad_mod",
+      "footprint_sha256": "44617b8fd1b4868e5d446c09fd308c172f90a0d15df72705284b9f7e76fd9b26",
       "logical_contact_count": 4,
       "footprint_named_pad_count": 4,
       "footprint_pad_occurrence_count": 4,

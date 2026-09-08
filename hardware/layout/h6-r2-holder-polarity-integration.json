@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "checked": "2026-09-08",
+  "scope": "Native integration snapshot: correct the second cell polarity and move its local fuse, preserving existing copper. Not complete holder mechanical qualification.",
+  "status": "polarity_corrected_native_mechanics_and_routing_open",
+  "historical_finding": "hardware/layout/h6-r2-holder-polarity-review.json",
+  "primary_drawing_sha256": "6135bff212f9eab9ed8158febcbbd0d18b9479caac384a7f51f2818d1328e26b",
+  "primary_revision": "Keystone 1048P Rev A 10.08.13, component TOP view; Rev B not inspected",
+  "production_release_authorized": false,
+  "battery_energization_authorized": false,
+  "mechanics_qualified": false,
+  "routing_complete": false,
+  "board": {
+    "path": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
+    "baseline_sha256": "cd306f5f39649fd0c24c0a1f79931716f646e9c72959788a9127098d44eca1fe",
+    "integrated_sha256": "3a31f0144271c1c95fa92a0b8e51eb52fead47249653b36320d5268bf238108d",
+    "changed_references": ["BT1", "C241", "F2", "U91"],
+    "unchanged_footprints": 780,
+    "footprint_count": 784
+  },
+  "holder": {
+    "footprint": "Leshy2_R2:Keystone-1048P-POLARITY-CORRECTED",
+    "library_sha256": "44617b8fd1b4868e5d446c09fd308c172f90a0d15df72705284b9f7e76fd9b26",
+    "side": "F.Cu",
+    "anchor_mm": [42.99, 85.0],
+    "angle_deg": 90,
+    "contacts": [
+      {"pad": "1", "role": "SLOT0_POS", "native_mm": [33.44, 126], "native_net": "/RF_02_PACK_SAFETY_AON/PACK_SLOT0_POSITIVE_RAW", "physical_polarity": "positive"},
+      {"pad": "2", "role": "SLOT0_NEG", "native_mm": [33.44, 44], "native_net": "/RF_02_PACK_SAFETY_AON/BATTERY_STACK_NEGATIVE_CELL_SIDE", "physical_polarity": "negative"},
+      {"pad": "3", "role": "SLOT1_POS", "native_mm": [52.54, 44], "native_net": "/RF_02_PACK_SAFETY_AON/PACK_SLOT1_POSITIVE_RAW", "physical_polarity": "positive"},
+      {"pad": "4", "role": "SLOT1_NEG", "native_mm": [52.54, 126], "native_net": "/RF_02_PACK_SAFETY_AON/PACK_2S_MIDPOINT", "physical_polarity": "negative"}
+    ],
+    "limits": "Polarity-only current-R2 definition. Legacy R1 generator and library remain byte-identical. Existing 4x6 mm lands and absent locator holes are explicitly not a manufacturing-ready land pattern."
+  },
+  "repack": [
+    {"reference": "F2", "side": "B.Cu", "angle_deg": 0, "anchor_mm": [56.5, 47.75], "reason": "follow the corrected positive end of cell1", "raw_positive_pad_distance_mm": 4.2524, "holder_pad_to_fuse_courtyard_gap_mm": 1.9309, "existing_locality_max_mm": 2.0},
+    {"reference": "U91", "side": "B.Cu", "angle_deg": 0, "anchor_mm": [71.5, 28.4], "reason": "clear the relocated fuse with its local bypass kept nearby", "minimum_R166_courtyard_gap_mm": 0.155},
+    {"reference": "C241", "side": "B.Cu", "angle_deg": 0, "anchor_mm": [76.6, 30.1], "reason": "preserve local U91 VCC bypass placement", "supply_pad_distance_mm": 1.7752, "U91_courtyard_gap_mm": 0.25}
+  ],
+  "preservation": {
+    "all_766_copper_objects_byte_identical": true,
+    "all_other_top_level_forms_byte_identical": true,
+    "all_780_unrelated_footprint_forms_byte_identical": true,
+    "native_uuid_uniqueness": "pass",
+    "comparison_identity": "track UUID plus full net name; pads by reference/number/full net and physical occurrence, not regenerated pad UUIDs",
+    "all_track_to_pad_and_pad_to_track_and_pad_to_pad_adjacency_equal": true,
+    "changed_footprint_pad_count": 22,
+    "changed_footprint_pads_with_old_copper_attachments": 0,
+    "connectivity_nodes_before_and_after": 3941,
+    "physical_pads_before_and_after": 2737,
+    "native_unfiltered_unconnected_before_and_after": 1859,
+    "native_count_scope": "Raw RF connectivity count, not the filtered whole-project routing ledger and not CLI's capped 499-item list",
+    "series_and_sense_topology": "Unchanged: cell0 positive through F1 to midpoint and cell1 negative; cell1 positive through F2 to stack positive. R16/R17, R37, U9, R1 and U10 sense/protection nets retain their roles."
+  },
+  "checks": {
+    "staged_native_drc_violations": 0,
+    "staged_schematic_parity_findings": 0,
+    "production_rf_native_drc_violations": 0,
+    "production_rf_schematic_parity_findings": 0,
+    "production_rf_drc_sha256": "a726f057b85840f0e31cc7dd64323c5a39fcf6edad3b7bc46e3aa44afe902521",
+    "production_ui_native_drc_violations": 0,
+    "production_ui_schematic_parity_findings": 0,
+    "production_ui_drc_sha256": "7c453b4f8669ce535f0d6c701ea258bee141bebef9a7057798ef909b50ea2275",
+    "source_and_native_regression_tests": "hardware/architecture/tests/test_h6_r2_holder_polarity.py",
+    "current_derived_drc_owner": "hardware/layout/generated/H6-R2-current-routing-audit.json"
+  },
+  "remaining": [
+    "Route the raw-positive path locally from BT1.3 F.Cu to F2.1 B.Cu, including actual length, via current capacity and voltage drop; placement distance alone is not a routed-path proof.",
+    "Route F2 fused output and relocated buffer supply, return and signal paths. No new copper is included in this snapshot.",
+    "Obtain complete exact 1048P land/hole/body registration and recheck all layers and opposing bodies. Do not assume a family or third-party CAD model is this exact part.",
+    "Close H6-CELL-NTC-HEIGHT-FIT. The withdrawn 3.3 mm floor / 20 percent compression claim is not restored by polarity correction.",
+    "No battery installation, energization, manufacturing release or completed H6 phase is authorized."
+  ]
+}

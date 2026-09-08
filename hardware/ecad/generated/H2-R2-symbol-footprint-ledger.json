@@ -166,12 +166,13 @@
     "symbol_identity_count": 245,
     "footprint_identity_count": 245,
     "logical_contact_count": 1616,
-    "historical_package_hints_reconciled": 184,
+    "historical_package_hints_reconciled": 183,
     "historical_package_conflicts_resolved": 5,
-    "explicit_current_footprint_overrides": 61,
+    "explicit_current_footprint_overrides": 62,
     "standard_kicad_footprint_identities": 206,
-    "reconciled_local_footprint_definitions": 26,
+    "reconciled_local_footprint_definitions": 25,
     "new_exact_footprint_geometries_materialized": 13,
+    "partial_local_footprint_definitions_mechanics_open": 1,
     "schematic_symbols_or_footprint_files_created": 0,
     "native_schematic_nets_created": 0,
     "unresolved_groups": 0
@@ -4226,12 +4227,15 @@
         "url": "https://www.keyelco.com/product.cfm/product_id/13959",
         "checked": "2026-08-18"
       },
-      "footprint": "Leshy2:Keystone-1048P",
-      "footprint_resolution": "reconciled_exact_mpn_historical_package_hint",
+      "footprint": "Leshy2_R2:Keystone-1048P-POLARITY-CORRECTED",
+      "footprint_resolution": "explicit_current_override",
       "footprint_definition": {
-        "status": "existing_manufacturer_derived_definition_reconciled",
-        "path": "hardware/ecad/libraries/Leshy2.pretty/Keystone-1048P.kicad_mod",
-        "sha256": "dbcec95dcfe56d7d1e1bd2631640c065c30b064adc02f4f9810d4fc38ee02a9e"
+        "status": "current_polarity_only_definition_materialized_mechanics_open",
+        "path": "hardware/ecad/libraries/Leshy2_R2.pretty/Keystone-1048P-POLARITY-CORRECTED.kicad_mod",
+        "sha256": "44617b8fd1b4868e5d446c09fd308c172f90a0d15df72705284b9f7e76fd9b26",
+        "mechanics_qualified": false,
+        "production_release_authorized": false,
+        "limit": "Only physical positions of logical contacts 3/4 are corrected; legacy undersized lands, absent locator holes and approximate body remain unqualified."
       },
       "historical_hint_files": [
         "hardware/ecad/generated/H2-RF02-pack-safety-aon.json"

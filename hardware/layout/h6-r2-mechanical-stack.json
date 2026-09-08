@@ -142,7 +142,24 @@
   "battery_thermal_contacts": {
     "holder_instance": "pack_holder",
     "holder_mpn": "Keystone 1048P",
-    "holder_cell_floor_nominal_above_pcb_mm": 3.3,
+    "holder_cell_floor_nominal_above_pcb_mm": null,
+    "height_review": {
+      "checked": "2026-09-08",
+      "status": "unverified_cell_floor_and_contact_compression",
+      "primary_url": "https://file.aichiplink.com/r/datasheets/keystoneelectronics-1048p-datasheets-1060.pdf",
+      "primary_sha256": "6135bff212f9eab9ed8158febcbbd0d18b9479caac384a7f51f2818d1328e26b",
+      "primary_revision": "1048P Rev A 10.08.13, full sheet visually reviewed",
+      "withdrawn_claim": "The previous 3.3-mm floor and 20-percent compression are unsupported. The catalogue gives 3.3 mm and the individual Rev A drawing 3.43 mm for retaining-post projection below the PCB, not the cell bottom above it. These are different source values, not a reconciled revision/tolerance range. Maximum NTC height alone is also not a nominal or minimum-height tolerance stack.",
+      "required_evidence": "Registered cell-can surface above the PCB and open-channel dimensions, exact NTC/pad height ranges and a supported compression/force window; verify each cell contacts only insulating material without lifting or rocking.",
+      "gap_pad_fit_status": "selected_3mm_part_retained_for_planning_not_qualified_for_contact"
+    },
+    "release_gate": {
+      "id": "H6-CELL-NTC-HEIGHT-FIT",
+      "status": "open",
+      "blocks_production_release": true,
+      "blocks_battery_energization": true,
+      "routing_may_continue": true
+    },
     "holder_cell_axis_spacing_mm": 19.1,
     "ntc_instances_by_cell": [
       "pack_ntc0",
@@ -155,7 +172,7 @@
     "nominal_pad_compression_minimum_percent": 10.0,
     "nominal_pad_compression_maximum_percent": 30.0,
     "electrical_boundary": "the silicone pad is the only material touching the cell can; no NTC electrode or PCB copper may contact the cell",
-    "assembly_gate": "before installing cells, dry-fit one exact 5x5x3-mm pad through each open holder channel and reject any holder lot that pinches the pad or prevents light compression without cell rocking"
+    "assembly_gate": "first close the physical holder polarity and H6-CELL-NTC-HEIGHT-FIT design gates; only then dry-fit the qualified insulating pads without adhesive fixation. A receipt dry-fit does not replace the currently missing design evidence."
   },
   "tolerance_stack": {
     "front_bearing_floor_mm": {
@@ -239,13 +256,13 @@
   "assembly": {
     "sequence": [
       "snap four 04M025045HN nuts into the rear-shell hex recesses",
-      "centre one TG-A3500-5-5-3.0 pad on each NTC0/NTC1 silkscreen bed through the open 1048P cell channel",
+      "only after H6-CELL-NTC-HEIGHT-FIT closes, centre one finally qualified insulating pad on each NTC0/NTC1 bed through the verified holder channel; the current 3-mm planning part is not yet qualified",
       "seat the RF PCB on all four rear pilots and capture lips",
       "place all four 007.02.611 stops on the mounting axes",
       "mate M1 in a parallel fixture without using it to pull the boards together",
       "seat the UI PCB on all four front pilots and capture lips",
       "insert four 50M025045P020 screws and tighten in a diagonal pattern until every stop is seated",
-      "install the two cells only after enclosure assembly and confirm both thermal pads compress lightly without lifting or rocking a cell"
+      "do not install or energize cells until holder polarity, exact mounting geometry and H6-CELL-NTC-HEIGHT-FIT are resolved; then confirm qualified thermal pads contact without lifting or rocking a cell"
     ],
     "installation_torque_target_nm": 0.05,
     "installation_torque_do_not_exceed_nm": 0.09,
@@ -256,15 +273,16 @@
   },
   "release_boundaries": {
     "open_before_production_release": [
-      "H6-SMA-FINISHED-THICKNESS-FIT: exact -175 SMA slot and finished PCB thickness ranges overlap by 0.11 mm at their worst corners; supplier-supported fit must be confirmed before H6.0.9 release-candidate acceptance"
+      "H6-SMA-FINISHED-THICKNESS-FIT: exact -175 SMA slot and finished PCB thickness ranges overlap by 0.11 mm at their worst corners; supplier-supported fit must be confirmed before H6.0.9 release-candidate acceptance",
+      "H6-CELL-NTC-HEIGHT-FIT: the cell-floor height and actual insulating-pad compression are unverified; previous 3.3-mm / 20-percent claims are withdrawn",
+      "H6-HOLDER-POLARITY-GEOMETRY: correct SLOT1 physical polarity and qualify the exact lands, mounting holes and affected power paths before installing cells"
     ],
     "locked_here": [
       "20-mm exact screw MPN",
       "exact nylon nut MPN",
       "four local bearing floors and recess dimensions",
       "four pilot shoulders and four capture segments per PCB",
-      "worst-case full-nut engagement and buried screw tip",
-      "one direct 5x5x3-mm insulating thermal contact from each cell to its own board-fitted NTC"
+      "worst-case full-nut engagement and buried screw tip"
     ],
     "still_h6_0_1": [
       "five relaxed microcoax service-loop corridors and clip positions",
@@ -278,7 +296,7 @@
       "measure screw below-head length inside 19.8..20.2 mm",
       "measure received nut height inside 1.8..2.0 mm",
       "measure all four stops and reject outside 10.9..11.1 mm",
-      "confirm both exact 5x5x3-mm thermal pads pass through the holder channels and lightly compress against their own cells",
+      "after the design gate closes, confirm the finally qualified insulating thermal pads pass through the holder channels and contact their own cells with acceptable compression and force",
       "confirm four-board-gap seating and that no screw tip reaches the exterior"
     ]
   }

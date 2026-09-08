@@ -2,9 +2,9 @@
 
 [Home](../README.md) · [Roadmap](roadmap.md) · [Русский](h6-r2-mechanical-stack.ru.md) · [Exact placement](h6-r2-exact-placement.md)
 
-**Status:** ✅ the local screw, stop, enclosure-bearing, independent PCB-capture and direct two-cell thermal-contact geometry is locked and machine-checked. The [five microcoax service loops](h6-r2-microcoax-service.md) close H6.0.1; **H6.0.3 routing is current.** Purchase and fabrication remain unauthorized.
+**Status, 2026-09-08:** the declared screw/stop/capture tolerance checks pass, but physical battery contact is **reopened**. The previous 3.3-mm cell-floor and 20% compression claims are withdrawn. The [five nominal microcoax paths](h6-r2-microcoax-service.md) retain their scoped result; **H6.0.3 routing is current.** Neither purchase, fabrication nor battery energization is authorized.
 
-**Open before production release:** the SMA slot / finished PCB thickness fit requires supplier confirmation. The passing fastener and cell-contact audit does not close this separate condition.
+**Open before production release:** SMA / finished-thickness fit, exact holder mounting geometry and power routing, and `H6-CELL-NTC-HEIGHT-FIT`. A fastener or XY-placement pass does not close any of these conditions.
 
 ![H6 mechanical stack](images/h6-r2-mechanical-stack.svg)
 
@@ -24,9 +24,11 @@ M1 is not used as a clamp, stop or shear pin. The assembly procedure first seats
 
 **What is required.** Each of the two NTCs must measure its own cell rather than air or FR-4 temperature, while neither PCB copper nor a sensor electrode may touch the cell can.
 
-**Decision.** The factory fits the `TDK B57332V5103F360` sensors and `Keystone 1048P` holder in the ordinary PCBA process. Both NTCs now sit on the RF PCB outer face, exactly on their cell axes at `(33.44, 85.00)` and `(52.54, 85.00)` mm, in the middle of the holder's open longitudinal channels. Before fitting the cells, the owner inserts one ready-cut, electrically insulating, naturally tacky [`t-Global TG-A3500-5-5-3.0`](https://www.digikey.com/en/products/detail/t-global-technology/TG-A3500-5-5-3-0/11201393) 5×5×3-mm pad through each channel. No silkscreen lies below the adhesive area; four corner marks and `NTC0 PAD` / `NTC1 PAD` labels identify each bed.
+**Current design.** Factory-fitted `TDK B57332V5103F360` sensors sit on the RF PCB outer face at `(33.44, 85.00)` and `(52.54, 85.00)` mm. Their nominal transverse cell-axis alignment is checked, not the full three-dimensional channel fit. The selected ready-cut insulating `t-Global TG-A3500-5-5-3.0` 5×5×3-mm pads remain planning parts: their thickness has **not** been qualified for this holder. The PCB has clear contact beds with `NTC0 PAD` / `NTC1 PAD` corner marks. No parts have been replaced or ordered by this correction.
 
-**Obtained result.** The [`1048P` drawing](https://www.keyelco.com/userAssets/file/K75p29.pdf) places the cell bottom nominally 3.3 mm above the PCB, while the [exact TDK NTC](https://product.tdk.com/en/search/sensor/ntc/chip-ntc-thermistor/info?part_no=B57332V5103F360) has a 0.9-mm maximum height. The 3.0-mm pad therefore has **20% nominal compression** and transfers cell temperature directly to the sensor. Its material provides 3.5 W/(m·K) conductivity and at least 13 kV/mm dielectric breakdown according to the [manufacturer](https://www.tglobalcorp.com/products-detail/tg-a3500/). The machine audit checks PCB side, both axes, NTC-courtyard containment and exactly two permitted holder-window nestings. Because the drawing does not separately dimension the open-channel width, receipt of the first `1048P` includes a dry pass of the exact 5-mm pad and confirmation of light compression without rocking a cell.
+**Correction and remaining evidence.** The full [manufacturer-authored 1048P Rev A sheet](https://file.aichiplink.com/r/datasheets/keystoneelectronics-1048p-datasheets-1060.pdf) identifies 3.43 mm as retaining-post projection **below** the PCB; the catalogue gives 3.3 mm for that feature. These source values are not a reconciled tolerance range. Neither is the cell bottom above the PCB. The previous 20% calculation therefore had no valid floor datum. A maximum NTC height is also insufficient to prove a nominal or worst-case compression range. The audit now reports both floor height and compression as `null`, with `physical_contact_proved: false`.
+
+Before selecting the final pad thickness, establish the registered cell surface and channel dimensions, NTC/pad height tolerances, and an acceptable contact-force window. Each can must touch only insulating material without lifting or rocking. A later non-destructive dry-fit verifies the received parts; it does not replace this missing design work. The [native holder-polarity correction](../hardware/layout/h6-r2-holder-polarity-integration.json) does not qualify this contact or complete the affected power routing.
 
 ## Worst-case stack
 
@@ -69,9 +71,9 @@ These are owner-installed enclosure parts, not JLCPCB PCBA placements. The exact
 
 Before final assembly, measure the four screws, nuts and stops against the receipt windows in the [source contract](../hardware/layout/h6-r2-mechanical-stack.json). A part outside that window is rejected; the PCB or enclosure is not silently reworked around it.
 
-## H6.0.1 closure
+## Scope of the earlier H6.0.1 result
 
-The [microcoax service result](h6-r2-microcoax-service.md) replaces the old illustrative cable lines with five exact H6 corridors and tape-saddle positions. It proves relaxed cable length, connector inspection access, the display/FPC pocket and 2D mechanical keepout clearance. H6.0.1 is closed; current H6.0.3 continues board routing, while the assembled STEP repeats exact opposing-body clearance in H6.0.7. Bend-radius verification for every possible Ebyte source position also remains open at that step; the current radius checks cover nominal paths.
+The [microcoax service result](h6-r2-microcoax-service.md) covers nominal corridors, relaxed length and 2D keepouts; it does not close the reopened holder/contact findings. Current H6.0.3 continues routing. Assembled opposing-body clearance and all Ebyte source-position envelopes still require verification in H6.0.7.
 
 ## Reproduce
 
@@ -82,5 +84,7 @@ python3 hardware/layout/h6_r2_mechanical_stack.py --check
 Expected result:
 
 ```text
-H6-R2 mechanical stack pass: 4 axes; 2 direct cell contacts; 2.18 mm minimum nut thread; 0.38 mm tip clearance; SMA fit requires_confirmation
+H6-R2 mechanical stack review_required: 4 axes; 2 NTC XY placements; thermal contact unverified; 2.18 mm minimum nut thread; 0.38 mm tip clearance; SMA fit requires_confirmation
 ```
+
+`--check` verifies reproduction of this open report. Add `--require-release-ready` to reject the still-open release gates (exit 2).

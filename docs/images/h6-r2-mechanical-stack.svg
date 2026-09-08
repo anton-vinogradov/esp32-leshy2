@@ -7,15 +7,15 @@
 <text x="420" y="206" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="500" text-anchor="middle" fill="#526076">worst range 16.38…17.62 mm</text>
 <line x1="120" y1="285" x2="760" y2="285" stroke="#cbd5e1" stroke-width="1"/>
 <rect x="180.0" y="243" width="22.4" height="84" fill="#f4d06f" stroke="#334155" stroke-width="1.5"/>
-<text x="191.2" y="291" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">1</text>
+<text x="191.2" y="267" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">1</text>
 <rect x="202.4" y="243" width="25.6" height="84" fill="#2563eb" stroke="#334155" stroke-width="1.5"/>
-<text x="215.20000000000002" y="291" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">2</text>
+<text x="215.20000000000002" y="267" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">2</text>
 <rect x="228.0" y="243" width="176.0" height="84" fill="#dbeafe" stroke="#334155" stroke-width="1.5"/>
-<text x="316.0" y="291" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">3</text>
+<text x="316.0" y="267" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">3</text>
 <rect x="404.0" y="243" width="25.6" height="84" fill="#2563eb" stroke="#334155" stroke-width="1.5"/>
-<text x="416.8" y="291" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">4</text>
+<text x="416.8" y="267" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">4</text>
 <rect x="429.6" y="243" width="22.4" height="84" fill="#f4d06f" stroke="#334155" stroke-width="1.5"/>
-<text x="440.8" y="291" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">5</text>
+<text x="440.8" y="267" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#172033">5</text>
 <line x1="148" y1="285" x2="522.0" y2="285" stroke="#7c3aed" stroke-width="8" stroke-linecap="round"/>
 <circle cx="148" cy="285" r="17" fill="#ede9fe" stroke="#7c3aed" stroke-width="3"/>
 <polygon points="457.0,261 491.0,261 507.0,285 491.0,309 457.0,309 441.0,285" fill="#ede9fe" stroke="#7c3aed" stroke-width="3"/>
@@ -51,7 +51,7 @@
 <text x="250" y="740" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="normal" text-anchor="start" fill="#172033">four edge-lip segments retain each PCB independently</text>
 <text x="90" y="780" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#dc2626">M1</text>
 <text x="250" y="780" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="normal" text-anchor="start" fill="#172033">electrical mating and alignment only · never used to pull the boards together</text>
-<text x="70" y="835" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#1d4ed8">DIRECT CELL TEMPERATURE · TWO IDENTICAL CONTACTS</text>
+<text x="70" y="835" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="700" text-anchor="start" fill="#b45309">CELL TEMPERATURE · CONCEPT ONLY / КОНТАКТ НЕ ПОДТВЕРЖДЁН</text>
 <rect x="90" y="957" width="500" height="24" fill="#2563eb" stroke="#1e3a8a" stroke-width="2"/>
 <text x="340" y="975" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#ffffff">RF PCB · HOLDER SIDE</text>
 <rect x="300" y="936" width="48" height="21" rx="3" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
@@ -61,15 +61,15 @@
 <text x="324" y="922" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="700" text-anchor="middle" fill="#92400e">× 3 mm</text>
 <rect x="218" y="840" width="212" height="39" rx="19" fill="#e2e8f0" stroke="#475569" stroke-width="2.5"/>
 <text x="324" y="866" font-family="Inter,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#172033">18650 CELL</text>
-<text x="660" y="872" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#334155">BT1 open channel</text>
+<text x="660" y="872" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#334155">BT1 channel geometry unverified</text>
 <text x="660" y="902" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#172033">one board-fitted 0603 NTC below each cell axis</text>
 <text x="660" y="932" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#172033">TG-A3500-5-5-3.0: insulating, tacky, 3.5 W/mK</text>
-<text x="660" y="962" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#172033">nominal compression 20.0% · cells installed last</text>
+<text x="660" y="962" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="normal" text-anchor="start" fill="#b91c1c">Cell-floor height / compression unknown · do not install cells</text>
 <rect x="70" y="1020" width="1310" height="164" rx="14" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
 <text x="95" y="1054" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="700" text-anchor="start" fill="#b45309">SMA FIT: requires_confirmation · ПРОВЕРКА ПОСАДКИ SMA</text>
 <text x="95" y="1088" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="600" text-anchor="start" fill="#b45309">slot 1.75 ± 0.10 mm · both PCBs 1.60 ± 0.16 mm · worst clearance -0.11 mm</text>
 <text x="95" y="1120" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="normal" text-anchor="start" fill="#172033">Negative clearance means possible interference; confirm finished thickness / permitted fit before production release.</text>
 <text x="95" y="1152" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="normal" text-anchor="start" fill="#172033">Допуски допускают натяг: до выпуска подтвердить конечную толщину PCB или допустимую посадку у поставщика.</text>
-<text x="70" y="1225" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="600" text-anchor="start" fill="#526076">H6.0.3 routing continues; SMA fit remains a separate production-release gate.</text>
-<text x="70" y="1268" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#166534">fastener / cell-contact audit: pass · no fabrication or purchase authorized</text>
+<text x="70" y="1225" font-family="Inter,Arial,sans-serif" font-size="15" font-weight="600" text-anchor="start" fill="#526076">H6.0.3 routing continues; SMA fit, holder geometry and thermal contact remain open.</text>
+<text x="70" y="1268" font-family="Inter,Arial,sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="#b91c1c">fastener / cell-contact audit: review_required · no fabrication or purchase authorized</text>
 </svg>

@@ -6,7 +6,7 @@
   "current_substep": "H6.0.3-R1",
   "current_evidence": {
     "exact_footprint_placement": "pass",
-    "mechanical_stack_and_m1_load_relief": "pass",
+    "mechanical_stack_and_m1_load_relief": "review_required_thermal_contact_reopened_fastener_checks_pass",
     "microcoax_service_and_inspection": "pass",
     "report": "docs/h6-r2-exact-placement.md",
     "mechanical_report": "docs/h6-r2-mechanical-stack.md",
@@ -32,6 +32,12 @@
     "board_size_evidence": "hardware/layout/generated/H6-R2-current-routing-audit.json",
     "geometry_change_rule": "any board-outline or frozen-anchor change invalidates the dependent H1/H6 geometry, routing, ERC/DRC, electrical re-analysis and firmware-BSP evidence and requires the complete listed requalification before release",
     "reopened_interface_findings": [
+      {
+        "id": "H6-CELL-NTC-HEIGHT-FIT",
+        "status": "open_unverified_cell_floor_and_contact_compression",
+        "evidence": "hardware/layout/generated/H6-R2-mechanical-stack-audit.json",
+        "release_requirement": "establish registered cell surface and channel dimensions, exact NTC/pad tolerance stack and acceptable contact force; retaining-post projection is not cell-floor height, and a 3-mm pad is not yet qualified"
+      },
       {
         "id": "H6-CAP-PHYSICAL-MATING",
         "status": "blocked_on_unambiguous_manufacturer_contact_view_and_header_datum",
@@ -163,6 +169,7 @@
     }
   ],
   "order_time_gates": [
+    "close H6-CELL-NTC-HEIGHT-FIT and exact holder polarity/mounting geometry before installing or energizing cells; reproducing an open mechanical report does not authorize release",
     "close H6-NATIVE-ELECTRICAL-SEMANTICS with exact physical-pin electrical roles, rail-driver/output compatibility checks and fresh same-baseline evidence; zero findings from passive-only native symbols must not authorize release",
     "close H6-SMA-FINISHED-THICKNESS-FIT for both GCT RFPC-SMA31-FN-175-A and RFPC-SMA32-FN-175-A from H6-R2-mechanical-stack-audit.json with written factory thickness acceptance or manufacturer fit evidence; nominal fit alone does not release assembly",
     "recheck every exact production MPN against the live JLCPCB Standard PCBA surface",

@@ -6,17 +6,17 @@
   "sources": {
     "contact_materialization": {
       "path": "hardware/ecad/generated/H2-R2-contact-materialization.json",
-      "sha256": "eb498305bae8ab96174c9cecd7142cec33c514e9d18f40263aa432a3580272aa"
+      "sha256": "a388a4479cefc15a760d449e99fae3cb8c9bd1495b0f4cd6d60b5a35348f5872"
     },
     "exact_ledger": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "6dbafc5fb69bbf3ec56cea89439ddc54539f720cfb58cbc8ab87da32600166a8"
+      "sha256": "372dbe16718897bc33477c7f7acbd65a70143f70f7b35d88df6bf73d6fc69c36"
     }
   },
   "library": {
     "id": "Leshy2_R2",
     "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
-    "sha256": "3659527fe19171c718aad589d520d8d865d6737db658df9c98df94ff4e0dd908",
+    "sha256": "779e72147a8106010b4d83f193f13876169b186689633d0da67f5290a912ff28",
     "symbol_count": 245,
     "pin_count": 1570,
     "external_interface_metadata_count": 3
@@ -6272,7 +6272,7 @@
       "symbol_id": "Leshy2_R2:keystone_1048p",
       "reference_prefix": "BT",
       "value": "Keystone Electronics 1048P",
-      "footprint": "Leshy2:Keystone-1048P",
+      "footprint": "Leshy2_R2:Keystone-1048P-POLARITY-CORRECTED",
       "pin_count": 4,
       "no_connect_pin_count": 0,
       "external_interfaces": [],

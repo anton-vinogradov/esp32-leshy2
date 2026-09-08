@@ -88,6 +88,7 @@ HISTORICAL_R1_REVIEW_GENERATORS = (
     "hardware/ecad/h2_acceptance_package.py",
 )
 R2_FOOTPRINT_GENERATORS = (
+    "hardware/ecad/h2_r2_holder_polarity.py",
     "hardware/ecad/h2_r2_b3s_actuator_datum.py",
     "hardware/ecad/h2_r2_audio_footprint.py",
 )

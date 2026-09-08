@@ -112,7 +112,7 @@ class H6R2PlacementTests(unittest.TestCase):
             rows.update({row["instance"]: row for row in board["locality"]["rows"]})
         expected = {
             "pack_fuse0": ([33.44, 126.0], 2.0),
-            "pack_fuse1": ([52.54, 126.0], 2.0),
+            "pack_fuse1": ([52.54, 44.0], 2.0),
             "pack_shunt": ([33.44, 44.0], 4.0),
         }
         for instance, (anchor, limit) in expected.items():
@@ -262,7 +262,7 @@ class H6R2PlacementTests(unittest.TestCase):
         holder = next(row for row in rf["placements"] if row["reference"] == "BT1")
         self.assertEqual([42.99, 85.0], holder["footprint_anchor_mm"])
 
-    def test_each_pack_ntc_is_directly_below_its_own_cell(self):
+    def test_nominal_ntc_axis_alignment_does_not_qualify_holder_contact(self):
         rf = next(row for row in self.audit["boards"] if row["project"] == "LESHY2-RF-R2")
         placements = {row["instance"]: row for row in rf["placements"]}
         self.assertEqual([33.44, 85.0], placements["pack_ntc0"]["courtyard_centre_mm"])
@@ -277,13 +277,14 @@ class H6R2PlacementTests(unittest.TestCase):
             },
         )
         holder_footprint = (
-            ROOT / "hardware/ecad/libraries/Leshy2.pretty/Keystone-1048P.kicad_mod"
+            ROOT / "hardware/ecad/libraries/Leshy2_R2.pretty/Keystone-1048P-POLARITY-CORRECTED.kicad_mod"
         ).read_text(encoding="utf-8")
         self.assertIn('(start -43.000 -19.900) (end 43.000 19.900)', holder_footprint)
         self.assertNotIn('layer "F.CrtYd"', holder_footprint)
-        self.assertIn("H6 placement audit enforces the complete F.Fab body", holder_footprint)
+        self.assertIn("MECHANICS NOT QUALIFIED", holder_footprint)
+        self.assertIn("not a manufacturing-ready land pattern or thermal-contact qualification", holder_footprint)
         board_text = (ROOT / rf["output"]).read_text(encoding="utf-8")
-        holder_start = board_text.index('(footprint "Leshy2:Keystone-1048P"')
+        holder_start = board_text.index('(footprint "Leshy2_R2:Keystone-1048P-POLARITY-CORRECTED"')
         holder_end = board_text.index("\n\t(footprint ", holder_start + 1)
         self.assertNotIn('layer "F.CrtYd"', board_text[holder_start:holder_end])
         self.assertIn('(gr_text "NTC0 PAD"', board_text)

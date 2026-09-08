@@ -5994,7 +5994,7 @@
 			(do_not_autoplace no)
 			(effects (font (size 1.27 1.27)))
 		)
-		(property "Footprint" "Leshy2:Keystone-1048P"
+		(property "Footprint" "Leshy2_R2:Keystone-1048P-POLARITY-CORRECTED"
 			(at 0.00 0.00 0)
 			(show_name no)
 			(do_not_autoplace no)

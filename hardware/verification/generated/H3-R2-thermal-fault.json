@@ -7,13 +7,13 @@
   "source_hashes": {
     "hardware/architecture/candidates/G2F-3I.json": "6df524f1edf8db12ac278e0b5901a598c0ac18262800b09c38dde7b45147ed27",
     "hardware/architecture/devices.json": "3e5e60a9f6535492d72d384272e7f1c216628a4285accfa195b2a09d03cd727c",
-    "hardware/verification/generated/H3-R2-method-contract.json": "1a61e78502fa02a85e50b41315ccd43ef6de3d4ff36170235b934c2a807f720a",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "d24c3ba70543355ada7fbeefb80da669c661b9ac5a7d1c05c3ef81359913b97f",
-    "hardware/verification/generated/H3-R2-source-margins.json": "e34a70461de0876ae6db9165ca432d38d1d2425fa5d655446d9207849170912d",
-    "hardware/verification/generated/H3-R2-transition-result.json": "cbc87c735fa2e091465cf434fed1a374d09724721cf8f486271e646c0353c484",
-    "hardware/verification/generated/H3-R2-inrush-watchdog.json": "4608ecdeb341bc34b898dd4d33c235370e18210ae5febd459b63bfc94d41d584",
+    "hardware/verification/generated/H3-R2-method-contract.json": "33fc85eb192e102fdda33f646ac0250b85bb08a5e0b4a530c028d92bc92a242a",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "95ea4b66f38ca6378e0703bc0377e106c81e67628f4bb3209fab7addf6b7c78a",
+    "hardware/verification/generated/H3-R2-source-margins.json": "8341df14e8643c0dc884437f901e038be78e789bf7f2cfcd0fd4b5889a5f257b",
+    "hardware/verification/generated/H3-R2-transition-result.json": "20b34a40bbde794ce6c4276ffd499ad60fb7d75254dd7d49ac19ee41bebaf7da",
+    "hardware/verification/generated/H3-R2-inrush-watchdog.json": "9f473a0366baf0f2bd9c90d81dca93699b7a2f4aa903f3f557bfe45ab37f5b55",
     "hardware/verification/generated/H3-VRF34-battery-analog.json": "12ebdb1eb470db88798e9aa63e8eff274e607b3857e7164eb1644d490922b437",
-    "hardware/verification/generated/H3-R2-rf-coexistence.json": "1d7d517f8227c7b616efd473c3e5bb7cf48dfdec3c5b032ceae609e21674ac7c",
+    "hardware/verification/generated/H3-R2-rf-coexistence.json": "605931d58f9bb31db2ca8746bf2f7f2a7375162dd16b3953cd0650261f14438f",
     "hardware/ecad/generated/H2-REV55-fault-kill.json": "4f96d41cb2cff48b90de6666dd16c9ecfef9d64bcd9564d68fcbc31b12992058"
   },
   "methods": [

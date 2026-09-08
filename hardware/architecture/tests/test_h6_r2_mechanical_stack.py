@@ -159,7 +159,9 @@ print("80 native same-number pairs and two in-memory negative controls passed; n
         self.assertIn("80 native same-number pairs", result.stdout)
 
     def test_stack_passes_at_all_declared_tolerance_corners(self):
-        self.assertEqual("pass", self.audit["status"])
+        self.assertEqual("review_required", self.audit["status"])
+        self.assertEqual("pass", self.audit["fastener_and_planar_checks_status"])
+        self.assertFalse(self.audit["production_release_ready"])
         self.assertEqual([], self.audit["errors"])
         self.assertGreaterEqual(
             self.audit["stack"]["thread_available_at_nut_minimum_mm"], 2.0
@@ -193,7 +195,7 @@ print("80 native same-number pairs and two in-memory negative controls passed; n
             0.15,
         )
 
-    def test_each_cell_has_a_direct_insulated_ntc_contact(self):
+    def test_ntc_xy_placement_does_not_prove_physical_thermal_contact(self):
         thermal = self.audit["battery_thermal_contacts"]
         self.assertEqual(
             [[33.44, 85.0], [52.54, 85.0]],
@@ -206,9 +208,41 @@ print("80 native same-number pairs and two in-memory negative controls passed; n
         self.assertEqual("F.Cu", thermal["required_side"])
         self.assertEqual(2, thermal["accepted_holder_window_overlaps"])
         self.assertTrue(thermal["contact_beds_contain_ntc_courtyards"])
-        self.assertTrue(thermal["electrically_insulating_contact"])
-        self.assertGreaterEqual(thermal["nominal_gap_pad_compression_percent"], 10.0)
-        self.assertLessEqual(thermal["nominal_gap_pad_compression_percent"], 30.0)
+        self.assertTrue(thermal["electrically_insulating_material_required"])
+        self.assertFalse(thermal["physical_contact_proved"])
+        self.assertIsNone(thermal["nominal_gap_pad_compression_percent"])
+        self.assertIsNone(thermal["holder_cell_floor_nominal_above_pcb_mm"])
+        self.assertEqual("requires_confirmation", thermal["status"])
+        self.assertEqual("H6-CELL-NTC-HEIGHT-FIT", thermal["release_gate"]["id"])
+        self.assertTrue(thermal["release_gate"]["blocks_production_release"])
+        self.assertTrue(thermal["release_gate"]["blocks_battery_energization"])
+        self.assertFalse(self.audit["battery_energization_authorized"])
+
+    def test_retaining_post_dimension_cannot_reappear_as_cell_floor(self):
+        for value in (3.3, 3.43, 3.0, float("nan"), True):
+            contract = copy.deepcopy(self.contract)
+            contract["battery_thermal_contacts"]["holder_cell_floor_nominal_above_pcb_mm"] = value
+            with self.subTest(value=value):
+                result = evaluate(contract, self.placement)
+                self.assertEqual("fail", result["status"])
+                self.assertIsNone(result["battery_thermal_contacts"]["nominal_gap_pad_compression_percent"])
+                self.assertFalse(result["production_release_ready"])
+
+    def test_unverified_contact_gate_cannot_be_disabled(self):
+        for key, value in (("status", "closed"), ("blocks_production_release", False),
+                           ("blocks_battery_energization", False)):
+            contract = copy.deepcopy(self.contract)
+            contract["battery_thermal_contacts"]["release_gate"][key] = value
+            with self.subTest(key=key):
+                self.assertEqual("fail", evaluate(contract, self.placement)["status"])
+
+    def test_reproducible_open_report_is_not_release_acceptance(self):
+        result = subprocess.run(
+            ["python3", str(SCRIPT), "--check", "--require-release-ready"],
+            cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+        )
+        self.assertEqual(2, result.returncode, result.stdout)
+        self.assertIn("thermal contact unverified", result.stdout)
 
     def test_nominal_sma_fit_does_not_hide_worst_case_interference(self):
         fit = self.audit["connector_fit"]
@@ -266,9 +300,12 @@ print("80 native same-number pairs and two in-memory negative controls passed; n
         self.assertIn("WHAT HOLDS WHAT", text)
         self.assertIn("M1 carries no enclosure load", text)
         self.assertIn("one loose screw does not load M1", text)
-        self.assertIn("DIRECT CELL TEMPERATURE", text)
+        self.assertIn("CELL TEMPERATURE", text)
+        self.assertIn("CONCEPT ONLY", text)
+        self.assertIn("compression unknown", text)
+        self.assertNotIn("nominal compression 20.0%", text)
         self.assertIn("TG-A3500-5-5-3.0", text)
-        self.assertIn("nominal compression 20.0%", text)
+        self.assertIn("do not install cells", text)
         self.assertIn("SMA FIT: requires_confirmation", text)
         self.assertIn("worst clearance -0.11 mm", text)
 

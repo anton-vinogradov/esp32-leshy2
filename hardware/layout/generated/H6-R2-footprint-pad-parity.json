@@ -16,7 +16,6 @@
     "hardware/ecad/libraries/Leshy2.pretty/FTSH-105-01-L-DV-K-P-TR.kicad_mod": "0f490e9dd76f59195e8e5b99fa5a52dde985d338174d90cc93ea9d97cebd7698",
     "hardware/ecad/libraries/Leshy2.pretty/G-NiceRF-SA818S-Official-Package.kicad_mod": "213e742f749bde5c1a87534bb093157b397b92deb2623f84b29c6a3783fc1c44",
     "hardware/ecad/libraries/Leshy2.pretty/Infineon-PG-TSNP-8-1.kicad_mod": "5231f237813c169c70d893feb8c6897389f81a3d2d2f9a78dbd08b48a1e53e3b",
-    "hardware/ecad/libraries/Leshy2.pretty/Keystone-1048P.kicad_mod": "dbcec95dcfe56d7d1e1bd2631640c065c30b064adc02f4f9810d4fc38ee02a9e",
     "hardware/ecad/libraries/Leshy2.pretty/PAM8302AAYCR-UDFN3030-8E.kicad_mod": "96a89de357ef4470bf8a34308374c3f818173a38d4728089d1240609d90dd074",
     "hardware/ecad/libraries/Leshy2.pretty/RFPC-SMA31-FN-175-A.kicad_mod": "cce6681aeb3886e47da800b0533f8363bea432db86b05dfd07773f2452a59a8b",
     "hardware/ecad/libraries/Leshy2.pretty/RFPC-SMA32-FN-175-A.kicad_mod": "239e7f24ba43fe1cac3f6bab19d155ee3aaf7e82475849ca7c4d559341bfed8c",
@@ -34,6 +33,7 @@
     "hardware/ecad/libraries/Leshy2_R2.pretty/CP0603Q5425ENTR.kicad_mod": "89dfe4ff666211c3de823ac6fc5be7301f1d7e8785b44b700565be3efb25fb17",
     "hardware/ecad/libraries/Leshy2_R2.pretty/DC2337J5010AHF.kicad_mod": "25d0080800dfc7a657b2bae2be50e543896d34ece202f5b65a36816708040270",
     "hardware/ecad/libraries/Leshy2_R2.pretty/FH34SRJ-50S-0.5SH-50.kicad_mod": "e294307633e4a5a125e949d5e557acb1b0b676b9d0dc7d6bc9312cb90270863c",
+    "hardware/ecad/libraries/Leshy2_R2.pretty/Keystone-1048P-POLARITY-CORRECTED.kicad_mod": "44617b8fd1b4868e5d446c09fd308c172f90a0d15df72705284b9f7e76fd9b26",
     "hardware/ecad/libraries/Leshy2_R2.pretty/NFC_Pickup_Loop_R2.kicad_mod": "8b4322ac89011b33d91063610a00220f38192837b72f93cb58c67ce484ae28c1",
     "hardware/ecad/libraries/Leshy2_R2.pretty/PCB_TestPoint_Pad_D1.0mm.kicad_mod": "1d542b339d8528bfe6884d51736737822b665a8ba74263b52c12ebfa6e5bb33e",
     "hardware/ecad/libraries/Leshy2_R2.pretty/PRODTech_PSPMAA0605H_7.1x6.6mm.kicad_mod": "7aea07cf1e6f4f161ab7ae76e6251546afbb2c63d2c6c88c9e7d2a1796a1e856",
@@ -562,7 +562,7 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "board_sha256": "cd306f5f39649fd0c24c0a1f79931716f646e9c72959788a9127098d44eca1fe",
+      "board_sha256": "3a31f0144271c1c95fa92a0b8e51eb52fead47249653b36320d5268bf238108d",
       "native_footprint_count": 784,
       "checked_references": [
         "BT1",
