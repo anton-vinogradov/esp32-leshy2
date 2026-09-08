@@ -5,9 +5,9 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "355aa3f4755822f75dd483e7cc511abae6b5ca864a517fad999fe1101de1e83d",
+    "contract_sha256": "e108fdcf25929731d58f51c32e81bdb16fa42216b46cedf4395a3512d3f994c7",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "a29f96dfcebbe1f45d3e102a9962787e1eabf2f7fa05e6291409936f1223ca84",
+    "routing_policy_sha256": "afc0568a0d6461d0cb984501953182e24175265cc68f6ffbe2d2ad6b7fd99868",
     "routing_contract": "hardware/layout/h6-r2-routing-policy.json",
     "routing_contract_sha256": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
     "placement_status": "pass"
@@ -36,11 +36,11 @@
           "B.Cu",
           0.134874,
           [
-            31.08,
+            30.78,
             4.95
           ],
           [
-            32.6625,
+            32.3625,
             4.95
           ]
         ],
@@ -9184,12 +9184,12 @@
           "B.Cu",
           0.134874,
           [
-            8.324999,
-            3.55
+            9.925,
+            0.82
           ],
           [
-            8.324999,
-            4.105
+            9.925,
+            3.17
           ]
         ],
         [
@@ -9198,12 +9198,12 @@
           "B.Cu",
           0.134874,
           [
-            8.324999,
-            3.55
+            9.925,
+            0.82
           ],
           [
-            9.45,
-            3.55
+            10.5,
+            0.82
           ]
         ],
         [
@@ -9212,40 +9212,12 @@
           "B.Cu",
           0.134874,
           [
-            9.45,
-            3.55
+            9.925,
+            3.17
           ],
           [
-            9.8,
-            3.2
-          ]
-        ],
-        [
-          "track",
-          "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_OUT_RF",
-          "B.Cu",
-          0.134874,
-          [
-            9.8,
-            3.2
-          ],
-          [
-            11.535,
-            3.2
-          ]
-        ],
-        [
-          "track",
-          "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_OUT_RF",
-          "B.Cu",
-          0.134874,
-          [
-            11.535,
-            3.2
-          ],
-          [
-            11.535,
-            3.745
+            10.49,
+            3.17
           ]
         ],
         [
@@ -9268,8 +9240,36 @@
           "B.Cu",
           0.134874,
           [
-            10.575,
-            3.745
+            10.5,
+            1.78
+          ],
+          [
+            11.25,
+            2.53
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_S3_LC",
+          "B.Cu",
+          0.134874,
+          [
+            11.25,
+            2.53
+          ],
+          [
+            11.25,
+            4.3375
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_S3_LC",
+          "B.Cu",
+          0.134874,
+          [
+            11.25,
+            4.3375
           ],
           [
             11.995,
@@ -9482,8 +9482,8 @@
             3.8
           ],
           [
-            29.0,
-            3.8
+            30.35,
+            3.63
           ]
         ],
         [
@@ -9492,12 +9492,12 @@
           "B.Cu",
           0.134874,
           [
-            28.4,
-            3.8
+            30.35,
+            3.63
           ],
           [
-            29.7,
-            3.765
+            31.05,
+            3.63
           ]
         ],
         [
@@ -9506,12 +9506,12 @@
           "B.Cu",
           0.134874,
           [
-            29.0,
-            1.205
+            30.515,
+            0.9
           ],
           [
-            29.0,
-            3.8
+            31.05,
+            1.435
           ]
         ],
         [
@@ -9520,12 +9520,12 @@
           "B.Cu",
           0.134874,
           [
-            29.0,
-            1.205
+            31.05,
+            1.435
           ],
           [
-            29.34,
-            0.865
+            31.05,
+            3.63
           ]
         ],
         [
@@ -11047,7 +11047,18 @@
       "via_count": 0,
       "length_mm": 1.5825,
       "resolved_connections": 1,
-      "reason": "Via-free detector input runs from the coupling capacitor's right pad directly into the relocated LTC5532 RF IN pad."
+      "reason": "Translate only this exact detector-input segment 0.30 mm left with C2 and U52 for the UI SMA solder-access candidate; preserve the C2.2-to-U52.1 adjacency, 1.5825-mm length, RF width, B.Cu layer and net. Integer-nm endpoints reproduce the native pads exactly without VECTOR2I_MM float truncation; legacy routes are unchanged.",
+      "coordinate_representation": "integer_nanometres",
+      "path_nm": [
+        [
+          30780000,
+          4950000
+        ],
+        [
+          32362500,
+          4950000
+        ]
+      ]
     },
     {
       "id": "UI-HUB-RP-XIN",
@@ -13087,11 +13098,11 @@
       "widths_mm": [
         0.134874
       ],
-      "segment_count": 1,
+      "segment_count": 3,
       "via_count": 0,
-      "length_mm": 1.9507,
+      "length_mm": 3.9217,
       "resolved_connections": 1,
-      "reason": "Preserve the via-free S3 LC connection to C163.1 after its 0.140-mm +Y shift away from the SMA lands in the expanded antenna bank."
+      "reason": "Reviewed scratch SMA access relief: preserve net and RF width; replace only the obsolete local tails. No RF response, factory solder process or complete routing qualification is implied."
     },
     {
       "id": "RF-AIRBAND-BPF-S3-MID",
@@ -13163,11 +13174,11 @@
       "widths_mm": [
         0.134874
       ],
-      "segment_count": 5,
+      "segment_count": 3,
       "via_count": 0,
-      "length_mm": 4.455,
+      "length_mm": 3.49,
       "resolved_connections": 1,
-      "reason": "Via-free link between C165.1 and relocated C163.2 passes below the new SMA ground toes and above the neighbouring capacitor lands, without crossing the S3 LC feed."
+      "reason": "Reviewed scratch SMA access relief: preserve net and RF width; replace only the obsolete local tails. No RF response, factory solder process or complete routing qualification is implied."
     },
     {
       "id": "RF-RX-AM-LW-BOUNDARY",
@@ -13185,9 +13196,9 @@
       ],
       "segment_count": 6,
       "via_count": 1,
-      "length_mm": 10.2263,
+      "length_mm": 10.859,
       "resolved_connections": 2,
-      "reason": "Exit J8.1 vertically beyond the SMA ground toes before the F.Cu horizontal leg; retain one approved 0.5/0.25-mm through-via, join C182.1, and approach D4.1 through the B.Cu corridor right of the ground land ending at x28.65."
+      "reason": "Reviewed scratch SMA access relief: preserve net and RF width; replace only the obsolete local tails. No RF response, factory solder process or complete routing qualification is implied."
     },
     {
       "id": "RF-RP-XIN",

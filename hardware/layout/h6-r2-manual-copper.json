@@ -1820,9 +1820,9 @@
       "routing_class": "RF_CONTROLLED",
       "layer": "B.Cu",
       "width_mm": 0.134874,
-      "path_mm": [[11.995, 5.0825], [10.575, 3.745]],
+      "path_mm": [[11.995, 5.0825], [11.25, 4.3375], [11.25, 2.53], [10.5, 1.78]],
       "expected_resolved_connections": 1,
-      "reason": "Preserve the via-free S3 LC connection to C163.1 after its 0.140-mm +Y shift away from the SMA lands in the expanded antenna bank."
+      "reason": "Reviewed scratch SMA access relief: preserve net and RF width; replace only the obsolete local tails. No RF response, factory solder process or complete routing qualification is implied."
     },
     {
       "id": "RF-AIRBAND-BPF-S3-MID",
@@ -1868,9 +1868,9 @@
       "routing_class": "RF_CONTROLLED",
       "layer": "B.Cu",
       "width_mm": 0.134874,
-      "path_mm": [[8.325, 4.105], [8.325, 3.55], [9.45, 3.55], [9.8, 3.2], [11.535, 3.2], [11.535, 3.745]],
+      "path_mm": [[10.5, 0.82], [9.925, 0.82], [9.925, 3.17], [10.49, 3.17]],
       "expected_resolved_connections": 1,
-      "reason": "Via-free link between C165.1 and relocated C163.2 passes below the new SMA ground toes and above the neighbouring capacitor lands, without crossing the S3 LC feed."
+      "reason": "Reviewed scratch SMA access relief: preserve net and RF width; replace only the obsolete local tails. No RF response, factory solder process or complete routing qualification is implied."
     },
     {
       "id": "RF-RX-AM-LW-BOUNDARY",
@@ -1881,16 +1881,16 @@
       "segments": [
         {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [25.3, 1.65], "end_mm": [25.3, 3.8]},
         {"layer": "F.Cu", "width_mm": 0.134874, "start_mm": [25.3, 3.8], "end_mm": [28.4, 3.8]},
-        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [28.4, 3.8], "end_mm": [29.7, 3.765]},
-        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [28.4, 3.8], "end_mm": [29.0, 3.8]},
-        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [29.0, 3.8], "end_mm": [29.0, 1.205]},
-        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [29.0, 1.205], "end_mm": [29.34, 0.865]}
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [28.4, 3.8], "end_mm": [30.35, 3.63]},
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [30.35, 3.63], "end_mm": [31.05, 3.63]},
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [31.05, 3.63], "end_mm": [31.05, 1.435]},
+        {"layer": "B.Cu", "width_mm": 0.134874, "start_mm": [31.05, 1.435], "end_mm": [30.515, 0.9]}
       ],
       "vias": [
         {"at_mm": [28.4, 3.8], "diameter_mm": 0.5, "drill_mm": 0.25}
       ],
       "expected_resolved_connections": 2,
-      "reason": "Exit J8.1 vertically beyond the SMA ground toes before the F.Cu horizontal leg; retain one approved 0.5/0.25-mm through-via, join C182.1, and approach D4.1 through the B.Cu corridor right of the ground land ending at x28.65."
+      "reason": "Reviewed scratch SMA access relief: preserve net and RF width; replace only the obsolete local tails. No RF response, factory solder process or complete routing qualification is implied."
     },
     {
       "id": "UI-C5-DETECTOR-SAMPLE",
@@ -1912,9 +1912,9 @@
       "routing_class": "RF_CONTROLLED",
       "layer": "B.Cu",
       "width_mm": 0.134874,
-      "path_mm": [[31.08, 4.95], [32.6625, 4.95]],
+      "path_nm": [[30780000, 4950000], [32362500, 4950000]],
       "expected_resolved_connections": 1,
-      "reason": "Via-free detector input runs from the coupling capacitor's right pad directly into the relocated LTC5532 RF IN pad."
+      "reason": "Translate only this exact detector-input segment 0.30 mm left with C2 and U52 for the UI SMA solder-access candidate; preserve the C2.2-to-U52.1 adjacency, 1.5825-mm length, RF width, B.Cu layer and net. Integer-nm endpoints reproduce the native pads exactly without VECTOR2I_MM float truncation; legacy routes are unchanged."
     },
     {
       "id": "UI-HUB-RP-XIN",

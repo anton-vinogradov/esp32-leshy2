@@ -526,7 +526,10 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
             for row in board["placements"]
             if row["instance"] == "s3_detector_input_cap"
         )
-        self.assertEqual([30.6, 4.95], s3_detector_cap["footprint_anchor_mm"])
+        # Reviewed SMA relief translates C2/U52 and only their existing segment
+        # by -0.30 mm X; the refreshed freeze must retain that exact placement.
+        self.assertEqual([30.3, 4.95], s3_detector_cap["footprint_anchor_mm"])
+        self.assertEqual([30300000, 4950000], s3_detector_cap["footprint_anchor_nm"])
         self.assertEqual(0.0, s3_detector_cap["rotation_deg"])
         reviewed_nrf0 = {
             row["instance"]: row

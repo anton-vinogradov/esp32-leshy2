@@ -244,8 +244,10 @@ class SmaArtifactTests(unittest.TestCase):
         self.assertEqual({"boards": 2, "connectors": 10, "pads": 50, "F": 30, "B": 20}, result["fixed_scope"])
         self.assertEqual((10, 50, 30, 20), tuple(result["summary"][k] for k in
                          ("connector_count", "pad_count", "front_pad_count", "back_pad_count")))
-        self.assertEqual("review_required", result["status"])
-        self.assertEqual(0, result["summary"]["native_foreign_pad_contact_count"])
+        self.assertEqual("no_candidates_in_screened_scope", result["status"])
+        for key in ("native_foreign_pad_contact_count", "fab_bbox_overlap_count",
+                    "courtyard_bbox_overlap_count", "screening_candidate_count", "pads_with_screening_candidates"):
+            self.assertEqual(0, result["summary"][key], key)
         self.assertTrue(all(v is False for v in result["authorization"].values()))
         self.assertEqual(1.0, result["screening"]["per_land_axis_expansion_mm"])
         expected = {str(p.relative_to(ROOT)) for p in audit.source_paths()}

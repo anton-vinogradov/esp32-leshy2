@@ -1,8 +1,8 @@
 {
   "status": "current_native_visualization_not_assembly_approval",
   "inputs_sha256": {
-    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "feac6ac462d47d84b011f89c7f0c425e45d7264b9e9764f61757e3b95d0092fe",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "e11215ffe5cc25645aa091872af93540c121e84d83def5dae3f39c03c782fd32",
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "3c0071b28c2c2dec2a4d95fa0047a83d30bd9302a0e5083ea90cc5a0efe99aad",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "cb5855cf3d9c534bfdbd5190a86f54f4d800b8c594c717257463fd81033f4e9f",
     "hardware/layout/h6_r2_component_render.py": "0a47e3d15f55ea5dba67a9570815e707389fdf656e233f65719a1bd8d98c84ac"
   },
   "view_convention": "outer=native; inner=x_view=80-x_native, y unchanged; no extra RF transform",
@@ -3616,10 +3616,10 @@
     }
   ],
   "outputs_sha256": {
-    "docs/images/h6-r2-components-ui-outer.svg": "0db886eeacd4b15aa0ad6168c90a62009b8368de8c32f47e7aef6d6a84781d02",
-    "docs/images/h6-r2-components-rf-outer.svg": "7fbfc78b4b44f4db8678105c7bbed2ca5d34c331d4fee4df645a1c224e5e6e39",
-    "docs/images/h6-r2-components-ui-inner.svg": "026576ca74d2444448d2ea0b2a75dfa2b582b8a00036197efa79f727950b35aa",
-    "docs/images/h6-r2-components-rf-inner.svg": "0ed022c0beeaa8bcced3ab6e853b87c55cf38a9afe2c3d5723456dbacf8367f6",
-    "docs/images/h6-r2-components-overview.svg": "7c9c11a02a65e152d3c2a3f5597a7e767247286a74561cdbe03dba8004e527a4"
+    "docs/images/h6-r2-components-ui-outer.svg": "b1019054dacf36da5e2767b4bb4e810819bd4bd148e8eb9b5592e8bfdc13a509",
+    "docs/images/h6-r2-components-rf-outer.svg": "83d548b5287505e2a274b9da7dc71e3286fb82cf7d043a6c93e843e2c113bb52",
+    "docs/images/h6-r2-components-ui-inner.svg": "267accb0bea2fe84606788a66c296383ed51cd613540be7b9a8df5fcfa14b08a",
+    "docs/images/h6-r2-components-rf-inner.svg": "24dd40edc56e95c348dbb94bb8cf3c6adf3230594811654ba39efcd7d70d7f5a",
+    "docs/images/h6-r2-components-overview.svg": "7cf236903587db8c83ffd7ee2191cdd700ff96d1205aca0f175c74bfa85000c8"
   }
 }

@@ -2,7 +2,7 @@
 
 [Русский](h6-r2-interface-review.ru.md)
 
-**2026-09-08: MAIN includes the SMA/microSD spacing correction, the engineering EC11 footprint, nine reviewed LED-anode routes and native C5 USB/SDIO pair protection. Fresh DRC on both native boards reports 0 violations / 0 schematic-parity findings. H6 remains open; manufacturing is not authorized.**
+**2026-09-08: MAIN includes 24 local solder-access relocations around SMA, following the SMA/microSD spacing correction, engineering EC11 footprint, nine LED-anode routes and native C5 pair protection. Fresh DRC on both native boards reports 0 violations / 0 schematic-parity findings. H6 remains open; manufacturing is not authorized.**
 
 The UI IR cluster and 15 front buttons, and the RF bottom ports, service switches,
 PTT and ordinary-SMT headset jack now use the corrected native geometry. This
@@ -66,6 +66,21 @@ open: this envelope still permits **0.11 mm interference**.
 
 ## What is now in the native boards
 
+The latest SMA relief moves **10 UI positions and 14 RF positions**, not the
+SMA connectors themselves. UI J4 stays B0 at [19.04,3.48], J13 moves to
+[3.65,3.875], and S3 shifts 0.5 mm left with local support adjustments. Its cable
+retains the existing R7 forming allowance, positive R3 inspection clearance
+and **5.223 mm** nominal calculated reserve. RF neighbours are moved as a
+local group, including the four parts with existing routed connections.
+[All 50 SMA lands](h6-r2-component-views.md#sma-solder-site-checks) now have
+**zero candidates** in the unchanged 1-mm per-axis screen, down from nine
+flagged lands. This does not qualify the soldering process or 3D tool approach.
+
+The RF S3 LC route grows from 1.95 to 3.92 mm; C126 to U33 VCC14 has a
+4.02-mm direct pad span instead of 3.77 mm. These remain explicit RF/local
+power-layout review items, not a claim that clearance alone preserves measured
+RF response. The footprint/net inventory and board envelope are unchanged.
+
 | Integrated slice | Exact scope and remaining boundary |
 | --- | --- |
 | UI IR: 11 references | D11, U23/U24 and eight local support parts have corrected footprints/poses. U23 is **TSMP95000TR**, the side-view taped version; the receiver and emitter axes point toward the left edge. This is source/planar integration, not a measured optical aperture, range or emitter-witness qualification. [Vishay TSMP95000](https://www.vishay.com/docs/82907/tsmp95000.pdf), [TSOP752](https://www.vishay.com/docs/82494/tsop752.pdf), [VSMY14940](https://www.vishay.com/docs/84209/vsmy14940.pdf). |
@@ -103,8 +118,8 @@ height are guarded. Generic body models do not close exact assembled Z.
 
 | Check | Result and limit |
 | --- | --- |
-| Copper preservation | The latest seven-net LED addition retains all **33 prior UI copper objects byte-for-byte** and adds **51 segments + 8 vias**; all component poses and 98 existing connected pad pairs remain unchanged. Together with the earlier two LED nets, nine anode nets are now routed; FAULT is excluded. The encoder/support update retains **all 765 RF copper objects**. The current total is **857 objects: 682 segments and 175 vias** (UI92 + RF765), not completed interface routing. [Seven-net review](../hardware/layout/h6-r2-led-routing-review.json). |
-| Fresh native DRC | Both current boards, including the UI LED follow-up, report **0 violations and 0 schematic-parity findings** for the hashes below. Each returns **499 unconnected items**, at the report cap; this is neither an exact remaining-airwire count nor completed routing. |
+| Copper preservation | SMA relief changes only **four reviewed routes / 11 segments**: the UI C2↔U52 segment and three RF nets. The other **846 copper objects are byte-identical**: UI91 + RF755. Existing connected-pad relationships are preserved, and the RF AM/LW route has no new redundant branch. Total remains **857 objects: 682 segments and 175 vias** (UI92 + RF765). Nine LED-anode nets remain routed; FAULT is excluded. This is not completed interface routing. [Earlier LED review](../hardware/layout/h6-r2-led-routing-review.json). |
+| Fresh native DRC | Both current boards, including the combined SMA relief, report **0 violations and 0 schematic-parity findings** for the hashes below. Each returns **499 unconnected items**, at the report cap; this is neither an exact remaining-airwire count nor completed routing. |
 | Production provenance | Fresh schema2 receipts explicitly request `--schematic-parity` and bind PCB/pro/dru, root/child SCH, library tables and repository-controlled libraries. The actual command uses repository-relative board/report paths under the recorded repository-root working directory; copying identical files does not rewrite its evidence. Standard installed libraries remain an explicit environment boundary. A different PCB or changed hashed source invalidates the receipt. |
 | Native/library pad parity | The refreshed audit checks **1216/1216 footprints with zero pad-geometry drift**, bound to both promoted hashes. Agreement with the selected library does not qualify its unresolved holder/encoder geometry. |
 | Safe native integration | The staging guard rejects duplicate raw UUIDs, unexpected pad removals, changed unlisted footprints and changed copper. Changed-footprint UUIDs are regenerated collision-free; schematic paths and untouched objects are preserved. |
@@ -124,6 +139,7 @@ assembled-mechanics gates. No prototype has been demonstrated to boot by this re
 | **Keystone 1048P: geometry and power routing** | The [same-end-positive defect](../hardware/layout/h6-r2-holder-polarity-review.json) is **[corrected in native R2](../hardware/layout/h6-r2-holder-polarity-integration.json)**, with F2 moved beside the corrected contact and existing 2S/sense nets retained. Exact SMT lands, complete locator/hole registration and the new physical power routes remain open. The polarity-only library definition is explicitly not a manufacturing-ready land pattern; no guessed drilling or battery energization is approved. |
 | **Cell-to-NTC contact** | [Reopened height review](h6-r2-mechanical-stack.md): the previously assumed 3.3-mm cell floor is a retaining-post projection below the PCB. The 20% compression claim is withdrawn; actual cell height, channel fit and pad compression remain unverified. The two NTC XY positions are not proof of thermal contact. |
 | Alps EC11E18244AU encoder | The [reviewed engineering footprint](h6-r2-encoder-engineering-fit.md) now uses the exact nominal 12.5 mm mounting-lug pitch and unchanged native shaft axis. Its rounded PTH profile, physical insertion, solder strength and assembled Z clearance remain open; DRC is not production-fit approval. |
+| Other through-pad solder access | The exposed USB shell, Cap and encoder lands have no foreign pad/body overlap in the planar screen. Close neighbours at the encoder mounting lugs and Cap header still need an actual solder-access and assembly-order check. The 1-mm screen is an engineering aid, not a factory requirement; a marginally larger gap alone does not justify moving whole functional blocks. L32's two exposed endpoints are an unrouted NFC reserve, not leads of a fitted component. |
 | SMA thickness | Reconcile the 1.75 ± 0.10 mm connector slot with finished PCB thickness; the earlier 1.60 ± 0.16 mm envelope permits 0.11 mm interference. Do not assume the prongs can be spread. |
 | SMA antennas and microSD access | The wider 14.7 mm bank and nominal recessed-card geometry do not qualify actual antenna bases, assembled inter-row Z, finger/tool and screw access, cable bends, card/connector tolerances or enclosure access. The PCB notch is a project choice, not a manufacturer requirement. |
 | Display/FPC/PSA | The native 27 × 1.2 mm slot and ZIF orientation exist, but the real fold, slack, rear-panel flatness, adhesive thickness and assembly tolerance still require closure. |
@@ -156,16 +172,16 @@ The six internal debug headers are accessed after opening the device.
 
 ## Evidence: current state versus historical findings
 
-The current SMA/microSD, encoder, LED and C5 native-pair PCB hashes below match fresh DRC receipts.
+The current combined SMA-relief PCB hashes below match fresh DRC receipts.
 They identify the checked native boards, not manufacturing approval:
 
 | Board | SHA-256 |
 | --- | --- |
-| [UI native PCB](../hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb) | `feac6ac462d47d84b011f89c7f0c425e45d7264b9e9764f61757e3b95d0092fe` |
-| [RF native PCB](../hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb) | `e11215ffe5cc25645aa091872af93540c121e84d83def5dae3f39c03c782fd32` |
+| [UI native PCB](../hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb) | `3c0071b28c2c2dec2a4d95fa0047a83d30bd9302a0e5083ea90cc5a0efe99aad` |
+| [RF native PCB](../hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb) | `cb5855cf3d9c534bfdbd5190a86f54f4d800b8c594c717257463fd81033f4e9f` |
 
-The fresh MAIN DRC records are `work/c5-alias-review/ui-drc.json`
-and `work/c5-alias-review/rf-drc.json`, with their provenance sidecars.
+The fresh MAIN DRC records are `work/sma-relief-joint/ui-drc.json`
+and `work/sma-relief-joint/rf-drc.json`, with their provenance sidecars.
 The current-routing audit binds the executed command and exact repository inputs;
 changed boards, rules, schematics or controlled libraries require a new DRC run.
 Earlier stage records retain their original status; the later hash-bound DRC

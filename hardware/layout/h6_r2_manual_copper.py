@@ -48,6 +48,44 @@ REVIEWED_PROPOSAL_LAYERS = frozenset({"F.Cu", "In2.Cu", "In3.Cu", "B.Cu"})
 # that the candidate meets clearances: fresh native DRC remains mandatory.
 REVIEWED_PROPOSAL_CLEARANCE_MM = 0.15
 REVIEWED_PROPOSAL_VIA_MM = (0.4, 0.2)
+# Only this reviewed translated detector route uses exact integer coordinates.
+# Legacy VECTOR2I_MM conversion is intentionally unchanged for all other routes:
+# rounding it globally would alter already-reviewed copper by one nanometre.
+EXACT_NM_ROUTE = {
+    "id": "UI-S3-DETECTOR-SAMPLE",
+    "project": "LESHY2-UI-R2",
+    "canonical_net": "S3_FORWARD_RF_SAMPLE",
+    "kicad_net": "/UI_10_S3_DISPLAY_TOUCH/S3_FORWARD_RF_SAMPLE",
+    "routing_class": "RF_CONTROLLED",
+    "layer": "B.Cu",
+    "width_mm": 0.134874,
+}
+
+
+def preflight_exact_nm_paths(routes: list[dict], project: str | None = None) -> None:
+    """Validate the finite exact-coordinate scope before filtering or mutation."""
+    for route in routes:
+        if "path_nm" not in route and route.get("id") != EXACT_NM_ROUTE["id"]:
+            continue
+        label = route.get("id", "<missing route id>")
+        if (any(route.get(key) != value for key, value in EXACT_NM_ROUTE.items())
+                or (project is not None and project != EXACT_NM_ROUTE["project"])
+                or any(key in route for key in ("path_mm", "segments", "vias"))
+                or not isinstance(route.get("reason"), str) or not route["reason"].strip()
+                or type(route.get("expected_resolved_connections")) is not int
+                or route["expected_resolved_connections"] != 1):
+            raise ValueError(f"{label}: integer-nm path is outside the exact reviewed via-free detector scope")
+        path = route.get("path_nm")
+        if (not isinstance(path, list) or len(path) < 2
+                or any(not isinstance(point, list) or len(point) != 2
+                       or any(type(value) is not int or not -(2**31) <= value < 2**31
+                              for value in point) for point in path)
+                or any(first == second for first, second in zip(path, path[1:]))):
+            raise ValueError(f"{label}: path_nm needs at least two distinct consecutive int32 coordinate pairs")
+        if sum(other.get("id") == route["id"] or (
+                other.get("project"), other.get("kicad_net")) == (
+                    route["project"], route["kicad_net"]) for other in routes) != 1:
+            raise ValueError(f"{label}: duplicate exact integer-nm route id/net")
 
 
 def proposal_geometry_sha256(route: dict) -> str:
@@ -239,6 +277,7 @@ def add_routes(
     rf_transitions: dict,
     routing_contract: dict | None = None,
 ) -> list[dict]:
+    preflight_exact_nm_paths(routes, project)
     preflight_reviewed_proposals(routes, policy_rows, routing_contract, project)
     results = []
     for route in routes:
@@ -257,7 +296,16 @@ def add_routes(
         net = board.FindNet(net_name)
         if net is None:
             raise ValueError(f"{route['id']}: missing board net {net_name}")
-        if "segments" in route:
+        exact_nm = "path_nm" in route
+        if exact_nm:
+            segments = [
+                {"layer": route["layer"], "width_mm": route["width_mm"],
+                 "start_nm": first, "end_nm": second,
+                 "start_mm": [value / 1_000_000 for value in first],
+                 "end_mm": [value / 1_000_000 for value in second]}
+                for first, second in zip(route["path_nm"], route["path_nm"][1:])
+            ]
+        elif "segments" in route:
             segments = route["segments"]
         else:
             path = [tuple(map(float, point)) for point in route["path_mm"]]
@@ -311,15 +359,19 @@ def add_routes(
                 raise ValueError(f"{route['id']}: missing layer {layer_name}")
             start = tuple(map(float, segment["start_mm"]))
             end = tuple(map(float, segment["end_mm"]))
-            if math.dist(start, end) < 1e-6:
+            if not exact_nm and math.dist(start, end) < 1e-6:
                 raise ValueError(f"{route['id']}: zero-length segment")
             width = float(segment["width_mm"])
             track = pcbnew.PCB_TRACK(board)
             track.SetNetCode(net.GetNetCode())
             track.SetLayer(layer)
             track.SetWidth(pcbnew.FromMM(width))
-            track.SetStart(pcbnew.VECTOR2I_MM(*start))
-            track.SetEnd(pcbnew.VECTOR2I_MM(*end))
+            if exact_nm:
+                track.SetStart(pcbnew.VECTOR2I(*segment["start_nm"]))
+                track.SetEnd(pcbnew.VECTOR2I(*segment["end_nm"]))
+            else:
+                track.SetStart(pcbnew.VECTOR2I_MM(*start))
+                track.SetEnd(pcbnew.VECTOR2I_MM(*end))
             board.Add(track)
             lengths.append(math.dist(start, end))
             layers.add(layer_name)
@@ -366,6 +418,9 @@ def add_routes(
         )
         if "reviewed_proposal" in route:
             results[-1]["reviewed_proposal"] = dict(route["reviewed_proposal"])
+        if exact_nm:
+            results[-1]["coordinate_representation"] = "integer_nanometres"
+            results[-1]["path_nm"] = [list(point) for point in route["path_nm"]]
     return results
 
 
@@ -379,6 +434,7 @@ def build() -> tuple[dict[str, object], dict]:
     }
     # Validate before project filtering: a typo/foreign project must not make a
     # reviewed route disappear silently from the replay or its audit.
+    preflight_exact_nm_paths(contract["routes"])
     preflight_reviewed_proposals(contract["routes"], policy_rows, routing_contract)
     placement_outputs, placement_audit = build_placement()
     board_outputs: dict[Path, bytes] = {}

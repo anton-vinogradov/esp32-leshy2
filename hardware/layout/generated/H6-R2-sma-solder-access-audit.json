@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "artifact": "H6-R2-native-SMA-solder-access-screening",
-  "status": "review_required",
+  "status": "no_candidates_in_screened_scope",
   "fixed_scope": {
     "boards": 2,
     "connectors": 10,
@@ -15,9 +15,9 @@
   },
   "source_sha256": {
     "hardware/layout/h6_r2_sma_solder_access.py": "caca4ffabc3d911de551fb429c41f9f8c647199f9a4a31ea3d250dffee39b814",
-    "hardware/layout/h6-r2-placement-contract.json": "3ec16a6346197e017c0a3185659a0899d89046f353ddbaa077b3a199ad4789fd",
-    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "feac6ac462d47d84b011f89c7f0c425e45d7264b9e9764f61757e3b95d0092fe",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "e11215ffe5cc25645aa091872af93540c121e84d83def5dae3f39c03c782fd32",
+    "hardware/layout/h6-r2-placement-contract.json": "333d329a07879630f4f2cc3268f6c9cb7258d959aa2b6af2103aa73dc28959a0",
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "3c0071b28c2c2dec2a4d95fa0047a83d30bd9302a0e5083ea90cc5a0efe99aad",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "cb5855cf3d9c534bfdbd5190a86f54f4d800b8c594c717257463fd81033f4e9f",
     "hardware/ecad/libraries/Leshy2.pretty/RFPC-SMA31-FN-175-A.kicad_mod": "cce6681aeb3886e47da800b0533f8363bea432db86b05dfd07773f2452a59a8b",
     "hardware/ecad/libraries/Leshy2.pretty/RFPC-SMA32-FN-175-A.kicad_mod": "239e7f24ba43fe1cac3f6bab19d155ee3aaf7e82475849ca7c4d559341bfed8c"
   },
@@ -29,14 +29,14 @@
     "native_foreign_pad_contact_count": 0,
     "fab_bbox_overlap_count": 0,
     "courtyard_bbox_overlap_count": 0,
-    "screening_candidate_count": 59,
-    "pads_with_screening_candidates": 9
+    "screening_candidate_count": 0,
+    "pads_with_screening_candidates": 0
   },
   "geometry_error_count": 0,
   "boards": [
     {
       "project": "LESHY2-UI-R2",
-      "native_board_sha256": "feac6ac462d47d84b011f89c7f0c425e45d7264b9e9764f61757e3b95d0092fe",
+      "native_board_sha256": "3c0071b28c2c2dec2a4d95fa0047a83d30bd9302a0e5083ea90cc5a0efe99aad",
       "inventory_counts": {
         "footprints": 432,
         "foreign_pad": 1672,
@@ -519,67 +519,67 @@
               },
               "nearest": {
                 "foreign_pad": {
-                  "id": "pad:B:603c738a-d9fa-5c7d-8043-52d3dc8b49cf",
-                  "native_id": "603c738a-d9fa-5c7d-8043-52d3dc8b49cf",
+                  "id": "pad:B:83aef602-9d78-51a2-9d9c-dd53ba5962ec",
+                  "native_id": "83aef602-9d78-51a2-9d9c-dd53ba5962ec",
                   "kind": "foreign_pad",
-                  "reference": "R147",
-                  "pad": "2",
-                  "mpn": "Yageo RC0402FR-0749R9L",
-                  "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND",
+                  "reference": "J4",
+                  "pad": "1",
+                  "mpn": "Hirose U.FL-R-SMT-1(80)",
+                  "net": "/UI_10_S3_DISPLAY_TOUCH/S3_MODULE_RF_50R",
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      13.74,
-                      14.28
+                      16.99,
+                      18.04
                     ],
                     "y": [
-                      7.18,
-                      7.82
+                      2.98,
+                      3.98
                     ]
                   },
-                  "bbox_gap_mm": 3.88,
+                  "bbox_gap_mm": 3.04,
                   "native_clearance": {
                     "method": "native_effective_copper_shape",
                     "contact_or_overlap": false,
-                    "lower_mm": 3.88,
-                    "upper_mm": 3.880001
+                    "lower_mm": 3.04,
+                    "upper_mm": 3.040001
                   }
                 },
                 "fab_bbox": {
-                  "id": "fab:B:R147",
+                  "id": "fab:B:J4",
                   "kind": "fab_bbox",
-                  "reference": "R147",
-                  "mpn": "Yageo RC0402FR-0749R9L",
+                  "reference": "J4",
+                  "mpn": "Hirose U.FL-R-SMT-1(80)",
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      12.925,
-                      14.075
+                      17.44,
+                      20.39
                     ],
                     "y": [
-                      7.18,
-                      7.82
+                      1.93,
+                      5.03
                     ]
                   },
-                  "bbox_gap_mm": 3.88
+                  "bbox_gap_mm": 3.49
                 },
                 "courtyard_bbox": {
-                  "id": "court:B:U1",
+                  "id": "court:B:J4",
                   "kind": "courtyard_bbox",
-                  "reference": "U1",
-                  "mpn": "ESP32-S3-WROOM-1U-N16R8",
+                  "reference": "J4",
+                  "mpn": "Hirose U.FL-R-SMT-1(80)",
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      15.205,
-                      34.795
+                      16.445,
+                      20.885
                     ],
                     "y": [
-                      6.13,
-                      26.37
+                      0.935,
+                      6.025
                     ]
                   },
-                  "bbox_gap_mm": 3.095791
+                  "bbox_gap_mm": 2.495
                 },
                 "drill_bbox": {
                   "id": "drill:B:827768d9-c9c7-58a3-ba89-3cd26486e0da",
@@ -656,8 +656,8 @@
               },
               "nearest": {
                 "foreign_pad": {
-                  "id": "pad:B:32ce4768-c0f9-58a8-814c-07dacdb5851e",
-                  "native_id": "32ce4768-c0f9-58a8-814c-07dacdb5851e",
+                  "id": "pad:B:bdeb5a2f-f4f2-5b86-afaf-6beb0c6cb6b1",
+                  "native_id": "bdeb5a2f-f4f2-5b86-afaf-6beb0c6cb6b1",
                   "kind": "foreign_pad",
                   "reference": "J13",
                   "pad": "2",
@@ -666,22 +666,21 @@
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      5.2,
-                      6.25
+                      4.6,
+                      5.65
                     ],
                     "y": [
                       2.775,
                       4.975
                     ]
                   },
-                  "bbox_gap_mm": 1.0,
+                  "bbox_gap_mm": 1.6,
                   "native_clearance": {
                     "method": "native_effective_copper_shape",
                     "contact_or_overlap": false,
-                    "lower_mm": 1.0,
-                    "upper_mm": 1.000001
-                  },
-                  "classification": "engineering_screening_candidate"
+                    "lower_mm": 1.6,
+                    "upper_mm": 1.600001
+                  }
                 },
                 "fab_bbox": {
                   "id": "fab:B:J13",
@@ -691,15 +690,15 @@
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      2.7,
-                      5.8
+                      2.1,
+                      5.2
                     ],
                     "y": [
                       2.525,
                       5.475
                     ]
                   },
-                  "bbox_gap_mm": 1.45
+                  "bbox_gap_mm": 2.05
                 },
                 "courtyard_bbox": {
                   "id": "court:B:J13",
@@ -709,16 +708,15 @@
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      1.705,
-                      6.795
+                      1.105,
+                      6.195
                     ],
                     "y": [
                       2.03,
                       6.47
                     ]
                   },
-                  "bbox_gap_mm": 0.455,
-                  "classification": "engineering_screening_candidate"
+                  "bbox_gap_mm": 1.055
                 },
                 "drill_bbox": {
                   "id": "drill:B:827768d9-c9c7-58a3-ba89-3cd26486e0da",
@@ -742,55 +740,7 @@
               "foreign_pad_contact_or_overlap": [],
               "foreign_fab_bbox_overlap": [],
               "foreign_courtyard_bbox_overlap": [],
-              "screening_candidates": [
-                {
-                  "id": "pad:B:32ce4768-c0f9-58a8-814c-07dacdb5851e",
-                  "native_id": "32ce4768-c0f9-58a8-814c-07dacdb5851e",
-                  "kind": "foreign_pad",
-                  "reference": "J13",
-                  "pad": "2",
-                  "mpn": "Hirose U.FL-R-SMT-1(80)",
-                  "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      5.2,
-                      6.25
-                    ],
-                    "y": [
-                      2.775,
-                      4.975
-                    ]
-                  },
-                  "bbox_gap_mm": 1.0,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 1.0,
-                    "upper_mm": 1.000001
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:J13",
-                  "kind": "courtyard_bbox",
-                  "reference": "J13",
-                  "mpn": "Hirose U.FL-R-SMT-1(80)",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      1.705,
-                      6.795
-                    ],
-                    "y": [
-                      2.03,
-                      6.47
-                    ]
-                  },
-                  "bbox_gap_mm": 0.455,
-                  "classification": "engineering_screening_candidate"
-                }
-              ]
+              "screening_candidates": []
             }
           ]
         },
@@ -920,22 +870,22 @@
                   "bbox_gap_mm": 8.87
                 },
                 "drill_bbox": {
-                  "id": "drill:F:7b8c37f7-5510-59d2-9c0c-643925000880",
+                  "id": "drill:F:440b315e-9a75-52cf-9a1d-84a3a4a2474d",
                   "kind": "drill_bbox",
                   "reference": "U1",
                   "pad": "41",
                   "side": "F",
                   "bbox_mm": {
                     "x": [
-                      24.1,
-                      24.3
+                      23.6,
+                      23.8
                     ],
                     "y": [
                       15.665,
                       15.865
                     ]
                   },
-                  "bbox_gap_mm": 12.365171
+                  "bbox_gap_mm": 12.377902
                 }
               },
               "foreign_pad_contact_or_overlap": [],
@@ -1057,22 +1007,22 @@
                   "bbox_gap_mm": 6.455
                 },
                 "drill_bbox": {
-                  "id": "drill:F:7b8c37f7-5510-59d2-9c0c-643925000880",
+                  "id": "drill:F:440b315e-9a75-52cf-9a1d-84a3a4a2474d",
                   "kind": "drill_bbox",
                   "reference": "U1",
                   "pad": "41",
                   "side": "F",
                   "bbox_mm": {
                     "x": [
-                      24.1,
-                      24.3
+                      23.6,
+                      23.8
                     ],
                     "y": [
                       15.665,
                       15.865
                     ]
                   },
-                  "bbox_gap_mm": 12.667112
+                  "bbox_gap_mm": 12.78498
                 }
               },
               "foreign_pad_contact_or_overlap": [],
@@ -1194,15 +1144,15 @@
                   "bbox_gap_mm": 6.455
                 },
                 "drill_bbox": {
-                  "id": "drill:F:54b13601-177a-5b1d-979d-9acd81698bc1",
+                  "id": "drill:F:7c72a119-4096-5ee2-a1c6-7069fce10e80",
                   "kind": "drill_bbox",
                   "reference": "U1",
                   "pad": "41",
                   "side": "F",
                   "bbox_mm": {
                     "x": [
-                      22.7,
-                      22.9
+                      22.2,
+                      22.4
                     ],
                     "y": [
                       15.665,
@@ -1268,32 +1218,31 @@
               },
               "nearest": {
                 "foreign_pad": {
-                  "id": "pad:B:d4f73eb6-81b1-542e-80f1-9382baba8fec",
-                  "native_id": "d4f73eb6-81b1-542e-80f1-9382baba8fec",
+                  "id": "pad:B:a27ff4e0-91ed-5802-8810-ce0135327107",
+                  "native_id": "a27ff4e0-91ed-5802-8810-ce0135327107",
                   "kind": "foreign_pad",
-                  "reference": "R17",
-                  "pad": "2",
-                  "mpn": "Yageo RC0402FR-0749R9L",
-                  "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND",
+                  "reference": "U3",
+                  "pad": "CPL",
+                  "mpn": "KYOCERA AVX CP0603Q5425ENTR",
+                  "net": "/UI_10_S3_DISPLAY_TOUCH/S3_FORWARD_RF_SAMPLE_RAW",
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      29.555,
-                      30.195
+                      27.275,
+                      27.775
                     ],
                     "y": [
-                      2.07,
-                      2.61
+                      4.55,
+                      4.95
                     ]
                   },
-                  "bbox_gap_mm": 0.905,
+                  "bbox_gap_mm": 1.25,
                   "native_clearance": {
                     "method": "native_effective_copper_shape",
                     "contact_or_overlap": false,
-                    "lower_mm": 0.905,
-                    "upper_mm": 0.905001
-                  },
-                  "classification": "engineering_screening_candidate"
+                    "lower_mm": 1.25,
+                    "upper_mm": 1.250001
+                  }
                 },
                 "fab_bbox": {
                   "id": "fab:B:R17",
@@ -1303,210 +1252,17 @@
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      29.555,
-                      30.195
+                      29.93,
+                      30.57
                     ],
                     "y": [
                       2.275,
                       3.425
                     ]
                   },
-                  "bbox_gap_mm": 0.905,
-                  "classification": "engineering_screening_candidate"
+                  "bbox_gap_mm": 1.28
                 },
                 "courtyard_bbox": {
-                  "id": "court:B:R17",
-                  "kind": "courtyard_bbox",
-                  "reference": "R17",
-                  "mpn": "Yageo RC0402FR-0749R9L",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      29.36,
-                      30.39
-                    ],
-                    "y": [
-                      1.875,
-                      3.825
-                    ]
-                  },
-                  "bbox_gap_mm": 0.71,
-                  "classification": "engineering_screening_candidate"
-                },
-                "drill_bbox": {
-                  "id": "drill:B:7b8c37f7-5510-59d2-9c0c-643925000880",
-                  "kind": "drill_bbox",
-                  "reference": "U1",
-                  "pad": "41",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      24.1,
-                      24.3
-                    ],
-                    "y": [
-                      15.665,
-                      15.865
-                    ]
-                  },
-                  "bbox_gap_mm": 12.667112
-                }
-              },
-              "foreign_pad_contact_or_overlap": [],
-              "foreign_fab_bbox_overlap": [],
-              "foreign_courtyard_bbox_overlap": [],
-              "screening_candidates": [
-                {
-                  "id": "pad:B:d4f73eb6-81b1-542e-80f1-9382baba8fec",
-                  "native_id": "d4f73eb6-81b1-542e-80f1-9382baba8fec",
-                  "kind": "foreign_pad",
-                  "reference": "R17",
-                  "pad": "2",
-                  "mpn": "Yageo RC0402FR-0749R9L",
-                  "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      29.555,
-                      30.195
-                    ],
-                    "y": [
-                      2.07,
-                      2.61
-                    ]
-                  },
-                  "bbox_gap_mm": 0.905,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.905,
-                    "upper_mm": 0.905001
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "pad:B:f8096f0b-cb8f-542e-953c-6525fbfbcfd3",
-                  "native_id": "f8096f0b-cb8f-542e-953c-6525fbfbcfd3",
-                  "kind": "foreign_pad",
-                  "reference": "R17",
-                  "pad": "1",
-                  "mpn": "Yageo RC0402FR-0749R9L",
-                  "net": "/UI_10_S3_DISPLAY_TOUCH/S3_COUPLER_TERMINATION",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      29.555,
-                      30.195
-                    ],
-                    "y": [
-                      3.09,
-                      3.63
-                    ]
-                  },
-                  "bbox_gap_mm": 0.905,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.905,
-                    "upper_mm": 0.905001
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "pad:B:a112f1cf-261a-5c29-8f47-6950fdda38b7",
-                  "native_id": "a112f1cf-261a-5c29-8f47-6950fdda38b7",
-                  "kind": "foreign_pad",
-                  "reference": "U3",
-                  "pad": "CPL",
-                  "mpn": "KYOCERA AVX CP0603Q5425ENTR",
-                  "net": "/UI_10_S3_DISPLAY_TOUCH/S3_FORWARD_RF_SAMPLE_RAW",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      27.375,
-                      27.875
-                    ],
-                    "y": [
-                      4.25,
-                      4.65
-                    ]
-                  },
-                  "bbox_gap_mm": 0.95,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.95,
-                    "upper_mm": 0.950001
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "pad:B:e97098e6-6b0b-5318-ab02-effcf7b3a11a",
-                  "native_id": "e97098e6-6b0b-5318-ab02-effcf7b3a11a",
-                  "kind": "foreign_pad",
-                  "reference": "U3",
-                  "pad": "TERM",
-                  "mpn": "KYOCERA AVX CP0603Q5425ENTR",
-                  "net": "/UI_10_S3_DISPLAY_TOUCH/S3_COUPLER_TERMINATION",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      28.625,
-                      29.125
-                    ],
-                    "y": [
-                      4.25,
-                      4.65
-                    ]
-                  },
-                  "bbox_gap_mm": 0.95,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.95,
-                    "upper_mm": 0.950001
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "fab:B:R17",
-                  "kind": "fab_bbox",
-                  "reference": "R17",
-                  "mpn": "Yageo RC0402FR-0749R9L",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      29.555,
-                      30.195
-                    ],
-                    "y": [
-                      2.275,
-                      3.425
-                    ]
-                  },
-                  "bbox_gap_mm": 0.905,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:R17",
-                  "kind": "courtyard_bbox",
-                  "reference": "R17",
-                  "mpn": "Yageo RC0402FR-0749R9L",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      29.36,
-                      30.39
-                    ],
-                    "y": [
-                      1.875,
-                      3.825
-                    ]
-                  },
-                  "bbox_gap_mm": 0.71,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
                   "id": "court:B:U3",
                   "kind": "courtyard_bbox",
                   "reference": "U3",
@@ -1514,18 +1270,39 @@
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      27.18,
-                      29.32
+                      27.08,
+                      29.22
                     ],
                     "y": [
-                      4.055,
-                      5.545
+                      4.355,
+                      5.845
                     ]
                   },
-                  "bbox_gap_mm": 0.755,
-                  "classification": "engineering_screening_candidate"
+                  "bbox_gap_mm": 1.055
+                },
+                "drill_bbox": {
+                  "id": "drill:B:440b315e-9a75-52cf-9a1d-84a3a4a2474d",
+                  "kind": "drill_bbox",
+                  "reference": "U1",
+                  "pad": "41",
+                  "side": "B",
+                  "bbox_mm": {
+                    "x": [
+                      23.6,
+                      23.8
+                    ],
+                    "y": [
+                      15.665,
+                      15.865
+                    ]
+                  },
+                  "bbox_gap_mm": 12.78498
                 }
-              ]
+              },
+              "foreign_pad_contact_or_overlap": [],
+              "foreign_fab_bbox_overlap": [],
+              "foreign_courtyard_bbox_overlap": [],
+              "screening_candidates": []
             },
             {
               "native_id": "357833f4-a34c-535c-b874-74451ac317cb",
@@ -1578,8 +1355,8 @@
               },
               "nearest": {
                 "foreign_pad": {
-                  "id": "pad:B:fe59659d-6bca-5db1-9ae4-7911264e6fa0",
-                  "native_id": "fe59659d-6bca-5db1-9ae4-7911264e6fa0",
+                  "id": "pad:B:6d2a554e-12af-5ee4-ad98-36343b2ef5b4",
+                  "native_id": "6d2a554e-12af-5ee4-ad98-36343b2ef5b4",
                   "kind": "foreign_pad",
                   "reference": "J4",
                   "pad": "2",
@@ -1588,22 +1365,21 @@
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      18.9,
-                      21.1
+                      17.94,
+                      20.14
                     ],
                     "y": [
                       1.48,
                       2.53
                     ]
                   },
-                  "bbox_gap_mm": 0.85,
+                  "bbox_gap_mm": 1.81,
                   "native_clearance": {
                     "method": "native_effective_copper_shape",
                     "contact_or_overlap": false,
-                    "lower_mm": 0.85,
-                    "upper_mm": 0.850001
-                  },
-                  "classification": "engineering_screening_candidate"
+                    "lower_mm": 1.81,
+                    "upper_mm": 1.810001
+                  }
                 },
                 "fab_bbox": {
                   "id": "fab:B:J4",
@@ -1613,16 +1389,15 @@
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      18.4,
-                      21.35
+                      17.44,
+                      20.39
                     ],
                     "y": [
                       1.93,
                       5.03
                     ]
                   },
-                  "bbox_gap_mm": 0.6,
-                  "classification": "engineering_screening_candidate"
+                  "bbox_gap_mm": 1.56
                 },
                 "courtyard_bbox": {
                   "id": "court:B:J4",
@@ -1632,27 +1407,26 @@
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      17.405,
-                      21.845
+                      16.445,
+                      20.885
                     ],
                     "y": [
                       0.935,
                       6.025
                     ]
                   },
-                  "bbox_gap_mm": 0.105,
-                  "classification": "engineering_screening_candidate"
+                  "bbox_gap_mm": 1.065
                 },
                 "drill_bbox": {
-                  "id": "drill:B:54b13601-177a-5b1d-979d-9acd81698bc1",
+                  "id": "drill:B:7c72a119-4096-5ee2-a1c6-7069fce10e80",
                   "kind": "drill_bbox",
                   "reference": "U1",
                   "pad": "41",
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      22.7,
-                      22.9
+                      22.2,
+                      22.4
                     ],
                     "y": [
                       15.665,
@@ -1665,74 +1439,7 @@
               "foreign_pad_contact_or_overlap": [],
               "foreign_fab_bbox_overlap": [],
               "foreign_courtyard_bbox_overlap": [],
-              "screening_candidates": [
-                {
-                  "id": "pad:B:fe59659d-6bca-5db1-9ae4-7911264e6fa0",
-                  "native_id": "fe59659d-6bca-5db1-9ae4-7911264e6fa0",
-                  "kind": "foreign_pad",
-                  "reference": "J4",
-                  "pad": "2",
-                  "mpn": "Hirose U.FL-R-SMT-1(80)",
-                  "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      18.9,
-                      21.1
-                    ],
-                    "y": [
-                      1.48,
-                      2.53
-                    ]
-                  },
-                  "bbox_gap_mm": 0.85,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.85,
-                    "upper_mm": 0.850001
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "fab:B:J4",
-                  "kind": "fab_bbox",
-                  "reference": "J4",
-                  "mpn": "Hirose U.FL-R-SMT-1(80)",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      18.4,
-                      21.35
-                    ],
-                    "y": [
-                      1.93,
-                      5.03
-                    ]
-                  },
-                  "bbox_gap_mm": 0.6,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:J4",
-                  "kind": "courtyard_bbox",
-                  "reference": "J4",
-                  "mpn": "Hirose U.FL-R-SMT-1(80)",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      17.405,
-                      21.845
-                    ],
-                    "y": [
-                      0.935,
-                      6.025
-                    ]
-                  },
-                  "bbox_gap_mm": 0.105,
-                  "classification": "engineering_screening_candidate"
-                }
-              ]
+              "screening_candidates": []
             }
           ]
         },
@@ -1862,22 +1569,22 @@
                   "bbox_gap_mm": 8.87
                 },
                 "drill_bbox": {
-                  "id": "drill:F:e6bcb117-14e1-51d2-9c8d-f52d10164efb",
+                  "id": "drill:F:369800ab-7814-58ba-bf54-b8c617c6dfbd",
                   "kind": "drill_bbox",
                   "reference": "U1",
                   "pad": "41",
                   "side": "F",
                   "bbox_mm": {
                     "x": [
-                      24.8,
-                      25.0
+                      24.3,
+                      24.5
                     ],
                     "y": [
                       16.365,
                       16.565
                     ]
                   },
-                  "bbox_gap_mm": 19.196834
+                  "bbox_gap_mm": 19.56613
                 }
               },
               "foreign_pad_contact_or_overlap": [],
@@ -1999,22 +1706,22 @@
                   "bbox_gap_mm": 6.455
                 },
                 "drill_bbox": {
-                  "id": "drill:F:e6bcb117-14e1-51d2-9c8d-f52d10164efb",
+                  "id": "drill:F:369800ab-7814-58ba-bf54-b8c617c6dfbd",
                   "kind": "drill_bbox",
                   "reference": "U1",
                   "pad": "41",
                   "side": "F",
                   "bbox_mm": {
                     "x": [
-                      24.8,
-                      25.0
+                      24.3,
+                      24.5
                     ],
                     "y": [
                       16.365,
                       16.565
                     ]
                   },
-                  "bbox_gap_mm": 21.242804
+                  "bbox_gap_mm": 21.63924
                 }
               },
               "foreign_pad_contact_or_overlap": [],
@@ -2136,22 +1843,22 @@
                   "bbox_gap_mm": 6.455
                 },
                 "drill_bbox": {
-                  "id": "drill:F:7b8c37f7-5510-59d2-9c0c-643925000880",
+                  "id": "drill:F:440b315e-9a75-52cf-9a1d-84a3a4a2474d",
                   "kind": "drill_bbox",
                   "reference": "U1",
                   "pad": "41",
                   "side": "F",
                   "bbox_mm": {
                     "x": [
-                      24.1,
-                      24.3
+                      23.6,
+                      23.8
                     ],
                     "y": [
                       15.665,
                       15.865
                     ]
                   },
-                  "bbox_gap_mm": 17.476147
+                  "bbox_gap_mm": 17.832995
                 }
               },
               "foreign_pad_contact_or_overlap": [],
@@ -2210,8 +1917,8 @@
               },
               "nearest": {
                 "foreign_pad": {
-                  "id": "pad:B:4507d6b0-3628-5eb5-af62-a25267a0cbb6",
-                  "native_id": "4507d6b0-3628-5eb5-af62-a25267a0cbb6",
+                  "id": "pad:B:2f2d7bd0-2940-50d5-ade0-f293e486ab46",
+                  "native_id": "2f2d7bd0-2940-50d5-ade0-f293e486ab46",
                   "kind": "foreign_pad",
                   "reference": "C1",
                   "pad": "2",
@@ -2224,16 +1931,16 @@
                       36.915
                     ],
                     "y": [
-                      4.295,
-                      4.855
+                      4.56,
+                      5.12
                     ]
                   },
-                  "bbox_gap_mm": 4.936319,
+                  "bbox_gap_mm": 4.996481,
                   "native_clearance": {
                     "method": "native_effective_copper_shape",
                     "contact_or_overlap": false,
-                    "lower_mm": 4.962827,
-                    "upper_mm": 4.962828
+                    "lower_mm": 5.028232,
+                    "upper_mm": 5.028233
                   }
                 },
                 "fab_bbox": {
@@ -2248,11 +1955,11 @@
                       36.905
                     ],
                     "y": [
-                      4.505,
-                      5.605
+                      4.77,
+                      5.87
                     ]
                   },
-                  "bbox_gap_mm": 4.9926
+                  "bbox_gap_mm": 5.063094
                 },
                 "courtyard_bbox": {
                   "id": "court:B:C1",
@@ -2266,29 +1973,29 @@
                       37.11
                     ],
                     "y": [
-                      4.1,
-                      6.01
+                      4.365,
+                      6.275
                     ]
                   },
-                  "bbox_gap_mm": 4.70846
+                  "bbox_gap_mm": 4.760654
                 },
                 "drill_bbox": {
-                  "id": "drill:B:e6bcb117-14e1-51d2-9c8d-f52d10164efb",
+                  "id": "drill:B:369800ab-7814-58ba-bf54-b8c617c6dfbd",
                   "kind": "drill_bbox",
                   "reference": "U1",
                   "pad": "41",
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      24.8,
-                      25.0
+                      24.3,
+                      24.5
                     ],
                     "y": [
                       16.365,
                       16.565
                     ]
                   },
-                  "bbox_gap_mm": 21.242804
+                  "bbox_gap_mm": 21.63924
                 }
               },
               "foreign_pad_contact_or_overlap": [],
@@ -2347,8 +2054,8 @@
               },
               "nearest": {
                 "foreign_pad": {
-                  "id": "pad:B:4507d6b0-3628-5eb5-af62-a25267a0cbb6",
-                  "native_id": "4507d6b0-3628-5eb5-af62-a25267a0cbb6",
+                  "id": "pad:B:2f2d7bd0-2940-50d5-ade0-f293e486ab46",
+                  "native_id": "2f2d7bd0-2940-50d5-ade0-f293e486ab46",
                   "kind": "foreign_pad",
                   "reference": "C1",
                   "pad": "2",
@@ -2361,18 +2068,17 @@
                       36.915
                     ],
                     "y": [
-                      4.295,
-                      4.855
+                      4.56,
+                      5.12
                     ]
                   },
-                  "bbox_gap_mm": 0.995,
+                  "bbox_gap_mm": 1.26,
                   "native_clearance": {
                     "method": "native_effective_copper_shape",
                     "contact_or_overlap": false,
-                    "lower_mm": 0.995,
-                    "upper_mm": 0.995001
-                  },
-                  "classification": "engineering_screening_candidate"
+                    "lower_mm": 1.26,
+                    "upper_mm": 1.260001
+                  }
                 },
                 "fab_bbox": {
                   "id": "fab:B:C1",
@@ -2386,11 +2092,11 @@
                       36.905
                     ],
                     "y": [
-                      4.505,
-                      5.605
+                      4.77,
+                      5.87
                     ]
                   },
-                  "bbox_gap_mm": 1.205
+                  "bbox_gap_mm": 1.47
                 },
                 "courtyard_bbox": {
                   "id": "court:B:U52",
@@ -2400,107 +2106,39 @@
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      31.705,
-                      35.895
+                      31.405,
+                      35.595
                     ],
                     "y": [
                       2.255,
                       5.745
                     ]
                   },
-                  "bbox_gap_mm": 0.755,
-                  "classification": "engineering_screening_candidate"
+                  "bbox_gap_mm": 1.055
                 },
                 "drill_bbox": {
-                  "id": "drill:B:7b8c37f7-5510-59d2-9c0c-643925000880",
+                  "id": "drill:B:440b315e-9a75-52cf-9a1d-84a3a4a2474d",
                   "kind": "drill_bbox",
                   "reference": "U1",
                   "pad": "41",
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      24.1,
-                      24.3
+                      23.6,
+                      23.8
                     ],
                     "y": [
                       15.665,
                       15.865
                     ]
                   },
-                  "bbox_gap_mm": 17.476147
+                  "bbox_gap_mm": 17.832995
                 }
               },
               "foreign_pad_contact_or_overlap": [],
               "foreign_fab_bbox_overlap": [],
               "foreign_courtyard_bbox_overlap": [],
-              "screening_candidates": [
-                {
-                  "id": "pad:B:4507d6b0-3628-5eb5-af62-a25267a0cbb6",
-                  "native_id": "4507d6b0-3628-5eb5-af62-a25267a0cbb6",
-                  "kind": "foreign_pad",
-                  "reference": "C1",
-                  "pad": "2",
-                  "mpn": "Yageo CC0402KRX7R9BB104",
-                  "net": "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      36.295,
-                      36.915
-                    ],
-                    "y": [
-                      4.295,
-                      4.855
-                    ]
-                  },
-                  "bbox_gap_mm": 0.995,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.995,
-                    "upper_mm": 0.995001
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:U52",
-                  "kind": "courtyard_bbox",
-                  "reference": "U52",
-                  "mpn": "LTC5532ES6#TRMPBF",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      31.705,
-                      35.895
-                    ],
-                    "y": [
-                      2.255,
-                      5.745
-                    ]
-                  },
-                  "bbox_gap_mm": 0.755,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:C1",
-                  "kind": "courtyard_bbox",
-                  "reference": "C1",
-                  "mpn": "Yageo CC0402KRX7R9BB104",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      36.1,
-                      37.11
-                    ],
-                    "y": [
-                      4.1,
-                      6.01
-                    ]
-                  },
-                  "bbox_gap_mm": 0.8,
-                  "classification": "engineering_screening_candidate"
-                }
-              ]
+              "screening_candidates": []
             }
           ]
         },
@@ -3911,15 +3549,15 @@
         "native_foreign_pad_contact_count": 0,
         "fab_bbox_overlap_count": 0,
         "courtyard_bbox_overlap_count": 0,
-        "screening_candidate_count": 15,
-        "pads_with_screening_candidates": 4
+        "screening_candidate_count": 0,
+        "pads_with_screening_candidates": 0
       },
       "errors": [],
-      "status": "review_required"
+      "status": "no_candidates_in_screened_scope"
     },
     {
       "project": "LESHY2-RF-R2",
-      "native_board_sha256": "e11215ffe5cc25645aa091872af93540c121e84d83def5dae3f39c03c782fd32",
+      "native_board_sha256": "cb5855cf3d9c534bfdbd5190a86f54f4d800b8c594c717257463fd81033f4e9f",
       "inventory_counts": {
         "footprints": 784,
         "foreign_pad": 2776,
@@ -4402,32 +4040,31 @@
               },
               "nearest": {
                 "foreign_pad": {
-                  "id": "pad:B:7bcda864-28b8-5dc2-8eaa-b26dc01dbcc9",
-                  "native_id": "7bcda864-28b8-5dc2-8eaa-b26dc01dbcc9",
+                  "id": "pad:B:abe8c5df-4dea-58a2-b4f6-9f0d07fc9ce1",
+                  "native_id": "abe8c5df-4dea-58a2-b4f6-9f0d07fc9ce1",
                   "kind": "foreign_pad",
-                  "reference": "C163",
+                  "reference": "L22",
                   "pad": "2",
-                  "mpn": "GJM1555C1H5R8WB01D",
-                  "net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_OUT_RF",
+                  "mpn": "LQW2BAS47NG00L",
+                  "net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_S3_LC",
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      11.255,
-                      11.815
+                      11.395,
+                      12.595
                     ],
                     "y": [
-                      3.435,
-                      4.055
+                      4.645,
+                      5.52
                     ]
                   },
-                  "bbox_gap_mm": 0.55177,
+                  "bbox_gap_mm": 1.345,
                   "native_clearance": {
                     "method": "native_effective_copper_shape",
                     "contact_or_overlap": false,
-                    "lower_mm": 0.588868,
-                    "upper_mm": 0.588869
-                  },
-                  "classification": "engineering_screening_candidate"
+                    "lower_mm": 1.345,
+                    "upper_mm": 1.345001
+                  }
                 },
                 "fab_bbox": {
                   "id": "fab:B:C163",
@@ -4437,35 +4074,33 @@
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      10.505,
-                      11.605
+                      10.2,
+                      10.8
                     ],
                     "y": [
-                      3.445,
-                      4.045
+                      0.75,
+                      1.85
                     ]
                   },
-                  "bbox_gap_mm": 0.75898,
-                  "classification": "engineering_screening_candidate"
+                  "bbox_gap_mm": 1.55
                 },
                 "courtyard_bbox": {
-                  "id": "court:B:C163",
+                  "id": "court:B:L21",
                   "kind": "courtyard_bbox",
-                  "reference": "C163",
-                  "mpn": "GJM1555C1H5R8WB01D",
+                  "reference": "L21",
+                  "mpn": "LQW2BASR22G00L",
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      10.1,
-                      12.01
+                      13.1,
+                      14.89
                     ],
                     "y": [
-                      3.24,
-                      4.25
+                      4.35,
+                      7.94
                     ]
                   },
-                  "bbox_gap_mm": 0.34,
-                  "classification": "engineering_screening_candidate"
+                  "bbox_gap_mm": 1.05
                 },
                 "drill_bbox": {
                   "id": "drill:B:53734efa-908d-5e49-a9a5-13ec3b5318a5",
@@ -4489,168 +4124,7 @@
               "foreign_pad_contact_or_overlap": [],
               "foreign_fab_bbox_overlap": [],
               "foreign_courtyard_bbox_overlap": [],
-              "screening_candidates": [
-                {
-                  "id": "pad:B:7bcda864-28b8-5dc2-8eaa-b26dc01dbcc9",
-                  "native_id": "7bcda864-28b8-5dc2-8eaa-b26dc01dbcc9",
-                  "kind": "foreign_pad",
-                  "reference": "C163",
-                  "pad": "2",
-                  "mpn": "GJM1555C1H5R8WB01D",
-                  "net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_OUT_RF",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      11.255,
-                      11.815
-                    ],
-                    "y": [
-                      3.435,
-                      4.055
-                    ]
-                  },
-                  "bbox_gap_mm": 0.55177,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.588868,
-                    "upper_mm": 0.588869
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "pad:B:0d79b3b1-a64e-5d26-a714-c8f7e89dbcd8",
-                  "native_id": "0d79b3b1-a64e-5d26-a714-c8f7e89dbcd8",
-                  "kind": "foreign_pad",
-                  "reference": "C161",
-                  "pad": "2",
-                  "mpn": "GJM1555C1H5R7WB01D",
-                  "net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_N1",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      10.9,
-                      11.46
-                    ],
-                    "y": [
-                      0.79,
-                      1.41
-                    ]
-                  },
-                  "bbox_gap_mm": 0.89,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.89,
-                    "upper_mm": 0.890001
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "pad:B:14aee54e-fc80-526d-b0ba-da0652055036",
-                  "native_id": "14aee54e-fc80-526d-b0ba-da0652055036",
-                  "kind": "foreign_pad",
-                  "reference": "C162",
-                  "pad": "2",
-                  "mpn": "CC0402BRNPO9BN2R8",
-                  "net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_N2",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      10.9,
-                      11.46
-                    ],
-                    "y": [
-                      2.29,
-                      2.91
-                    ]
-                  },
-                  "bbox_gap_mm": 0.89,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.89,
-                    "upper_mm": 0.890001
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "fab:B:C163",
-                  "kind": "fab_bbox",
-                  "reference": "C163",
-                  "mpn": "GJM1555C1H5R8WB01D",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      10.505,
-                      11.605
-                    ],
-                    "y": [
-                      3.445,
-                      4.045
-                    ]
-                  },
-                  "bbox_gap_mm": 0.75898,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:C163",
-                  "kind": "courtyard_bbox",
-                  "reference": "C163",
-                  "mpn": "GJM1555C1H5R8WB01D",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      10.1,
-                      12.01
-                    ],
-                    "y": [
-                      3.24,
-                      4.25
-                    ]
-                  },
-                  "bbox_gap_mm": 0.34,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:C161",
-                  "kind": "courtyard_bbox",
-                  "reference": "C161",
-                  "mpn": "GJM1555C1H5R7WB01D",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      9.745,
-                      11.655
-                    ],
-                    "y": [
-                      0.595,
-                      1.605
-                    ]
-                  },
-                  "bbox_gap_mm": 0.695,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:C162",
-                  "kind": "courtyard_bbox",
-                  "reference": "C162",
-                  "mpn": "CC0402BRNPO9BN2R8",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      9.745,
-                      11.655
-                    ],
-                    "y": [
-                      2.095,
-                      3.105
-                    ]
-                  },
-                  "bbox_gap_mm": 0.695,
-                  "classification": "engineering_screening_candidate"
-                }
-              ]
+              "screening_candidates": []
             },
             {
               "native_id": "ac9372ed-55c7-5736-84a8-16ce47978d82",
@@ -4703,8 +4177,8 @@
               },
               "nearest": {
                 "foreign_pad": {
-                  "id": "pad:B:361506f3-69fa-5cb6-b211-d7b2f364e54e",
-                  "native_id": "361506f3-69fa-5cb6-b211-d7b2f364e54e",
+                  "id": "pad:B:6ca99447-e741-59af-a573-f337bae7a28a",
+                  "native_id": "6ca99447-e741-59af-a573-f337bae7a28a",
                   "kind": "foreign_pad",
                   "reference": "C167",
                   "pad": "2",
@@ -4713,22 +4187,21 @@
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      6.755,
-                      7.315
+                      5.39,
+                      6.01
                     ],
                     "y": [
-                      3.645,
-                      4.265
+                      2.775,
+                      3.335
                     ]
                   },
-                  "bbox_gap_mm": 0.345,
+                  "bbox_gap_mm": 1.24,
                   "native_clearance": {
                     "method": "native_effective_copper_shape",
                     "contact_or_overlap": false,
-                    "lower_mm": 0.350764,
-                    "upper_mm": 0.350765
-                  },
-                  "classification": "engineering_screening_candidate"
+                    "lower_mm": 1.24,
+                    "upper_mm": 1.240001
+                  }
                 },
                 "fab_bbox": {
                   "id": "fab:B:C167",
@@ -4738,16 +4211,15 @@
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      6.005,
-                      7.105
+                      5.4,
+                      6.0
                     ],
                     "y": [
-                      3.655,
-                      4.255
+                      2.985,
+                      4.085
                     ]
                   },
-                  "bbox_gap_mm": 0.383471,
-                  "classification": "engineering_screening_candidate"
+                  "bbox_gap_mm": 1.25
                 },
                 "courtyard_bbox": {
                   "id": "court:B:C167",
@@ -4757,16 +4229,15 @@
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      5.6,
-                      7.51
+                      5.195,
+                      6.205
                     ],
                     "y": [
-                      3.45,
-                      4.46
+                      2.58,
+                      4.49
                     ]
                   },
-                  "bbox_gap_mm": 0.15,
-                  "classification": "engineering_screening_candidate"
+                  "bbox_gap_mm": 1.045
                 },
                 "drill_bbox": {
                   "id": "drill:B:53734efa-908d-5e49-a9a5-13ec3b5318a5",
@@ -4790,300 +4261,7 @@
               "foreign_pad_contact_or_overlap": [],
               "foreign_fab_bbox_overlap": [],
               "foreign_courtyard_bbox_overlap": [],
-              "screening_candidates": [
-                {
-                  "id": "pad:B:361506f3-69fa-5cb6-b211-d7b2f364e54e",
-                  "native_id": "361506f3-69fa-5cb6-b211-d7b2f364e54e",
-                  "kind": "foreign_pad",
-                  "reference": "C167",
-                  "pad": "2",
-                  "mpn": "Yageo CC0402KRX7R9BB104",
-                  "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      6.755,
-                      7.315
-                    ],
-                    "y": [
-                      3.645,
-                      4.265
-                    ]
-                  },
-                  "bbox_gap_mm": 0.345,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.350764,
-                    "upper_mm": 0.350765
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "pad:B:25a25d00-fc31-553c-a1fb-06d63d6d3d02",
-                  "native_id": "25a25d00-fc31-553c-a1fb-06d63d6d3d02",
-                  "kind": "foreign_pad",
-                  "reference": "C166",
-                  "pad": "2",
-                  "mpn": "Samsung CL05A105KA5NQNC",
-                  "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      6.255,
-                      6.815
-                    ],
-                    "y": [
-                      2.295,
-                      2.915
-                    ]
-                  },
-                  "bbox_gap_mm": 0.435,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.435,
-                    "upper_mm": 0.435001
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "pad:B:0976d36d-891a-56b6-ae47-f165d99dfdce",
-                  "native_id": "0976d36d-891a-56b6-ae47-f165d99dfdce",
-                  "kind": "foreign_pad",
-                  "reference": "C165",
-                  "pad": "1",
-                  "mpn": "Murata GRM1555C1H102JA01D",
-                  "net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_OUT_RF",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      8.045,
-                      8.605
-                    ],
-                    "y": [
-                      3.795,
-                      4.415
-                    ]
-                  },
-                  "bbox_gap_mm": 0.495,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.495,
-                    "upper_mm": 0.495001
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "pad:B:bc9d8646-0a92-53c2-82ac-4a03b102b28e",
-                  "native_id": "bc9d8646-0a92-53c2-82ac-4a03b102b28e",
-                  "kind": "foreign_pad",
-                  "reference": "C165",
-                  "pad": "2",
-                  "mpn": "Murata GRM1555C1H102JA01D",
-                  "net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_LNA_IN_RF",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      9.005,
-                      9.565
-                    ],
-                    "y": [
-                      3.795,
-                      4.415
-                    ]
-                  },
-                  "bbox_gap_mm": 0.5187,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.560178,
-                    "upper_mm": 0.560179
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "pad:B:31ce735d-44aa-508e-aa57-74b0497a3ec3",
-                  "native_id": "31ce735d-44aa-508e-aa57-74b0497a3ec3",
-                  "kind": "foreign_pad",
-                  "reference": "C167",
-                  "pad": "1",
-                  "mpn": "Yageo CC0402KRX7R9BB104",
-                  "net": "/RF_21_BROADCAST_AIRBAND_RX/3V3_AIR_SWITCHED",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      5.795,
-                      6.355
-                    ],
-                    "y": [
-                      3.645,
-                      4.265
-                    ]
-                  },
-                  "bbox_gap_mm": 0.959192,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 1.003,
-                    "upper_mm": 1.003001
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "fab:B:C167",
-                  "kind": "fab_bbox",
-                  "reference": "C167",
-                  "mpn": "Yageo CC0402KRX7R9BB104",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      6.005,
-                      7.105
-                    ],
-                    "y": [
-                      3.655,
-                      4.255
-                    ]
-                  },
-                  "bbox_gap_mm": 0.383471,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "fab:B:C165",
-                  "kind": "fab_bbox",
-                  "reference": "C165",
-                  "mpn": "Murata GRM1555C1H102JA01D",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      8.255,
-                      9.355
-                    ],
-                    "y": [
-                      3.805,
-                      4.405
-                    ]
-                  },
-                  "bbox_gap_mm": 0.505,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "fab:B:C166",
-                  "kind": "fab_bbox",
-                  "reference": "C166",
-                  "mpn": "Samsung CL05A105KA5NQNC",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      5.505,
-                      6.605
-                    ],
-                    "y": [
-                      2.305,
-                      2.905
-                    ]
-                  },
-                  "bbox_gap_mm": 0.645,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:C167",
-                  "kind": "courtyard_bbox",
-                  "reference": "C167",
-                  "mpn": "Yageo CC0402KRX7R9BB104",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      5.6,
-                      7.51
-                    ],
-                    "y": [
-                      3.45,
-                      4.46
-                    ]
-                  },
-                  "bbox_gap_mm": 0.15,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:C166",
-                  "kind": "courtyard_bbox",
-                  "reference": "C166",
-                  "mpn": "Samsung CL05A105KA5NQNC",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      5.1,
-                      7.01
-                    ],
-                    "y": [
-                      2.1,
-                      3.11
-                    ]
-                  },
-                  "bbox_gap_mm": 0.24,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:C165",
-                  "kind": "courtyard_bbox",
-                  "reference": "C165",
-                  "mpn": "Murata GRM1555C1H102JA01D",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      7.85,
-                      9.76
-                    ],
-                    "y": [
-                      3.6,
-                      4.61
-                    ]
-                  },
-                  "bbox_gap_mm": 0.3,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:C161",
-                  "kind": "courtyard_bbox",
-                  "reference": "C161",
-                  "mpn": "GJM1555C1H5R7WB01D",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      9.745,
-                      11.655
-                    ],
-                    "y": [
-                      0.595,
-                      1.605
-                    ]
-                  },
-                  "bbox_gap_mm": 0.895,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:C162",
-                  "kind": "courtyard_bbox",
-                  "reference": "C162",
-                  "mpn": "CC0402BRNPO9BN2R8",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      9.745,
-                      11.655
-                    ],
-                    "y": [
-                      2.095,
-                      3.105
-                    ]
-                  },
-                  "bbox_gap_mm": 0.895,
-                  "classification": "engineering_screening_candidate"
-                }
-              ]
+              "screening_candidates": []
             }
           ]
         },
@@ -5561,70 +4739,67 @@
               },
               "nearest": {
                 "foreign_pad": {
-                  "id": "pad:B:7437eee5-bd47-5e49-b37b-6ee96afc35e2",
-                  "native_id": "7437eee5-bd47-5e49-b37b-6ee96afc35e2",
+                  "id": "pad:B:5f958868-02d6-5bd0-8703-cf6823b23928",
+                  "native_id": "5f958868-02d6-5bd0-8703-cf6823b23928",
                   "kind": "foreign_pad",
-                  "reference": "D4",
+                  "reference": "C164",
                   "pad": "1",
-                  "mpn": "Littelfuse SESD0402X1UN-0020-090",
-                  "net": "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_BOUNDARY_RF",
+                  "mpn": "Murata GRM1555C1H102JA01D",
+                  "net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_DIRECT_RAW_RF",
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      29.045,
-                      29.635
+                      28.295,
+                      28.855
                     ],
                     "y": [
-                      0.545,
-                      1.185
+                      4.545,
+                      5.165
                     ]
                   },
-                  "bbox_gap_mm": 0.395,
+                  "bbox_gap_mm": 1.245,
                   "native_clearance": {
                     "method": "native_effective_copper_shape",
                     "contact_or_overlap": false,
-                    "lower_mm": 0.395,
-                    "upper_mm": 0.395001
-                  },
-                  "classification": "engineering_screening_candidate"
+                    "lower_mm": 1.245,
+                    "upper_mm": 1.245001
+                  }
                 },
                 "fab_bbox": {
-                  "id": "fab:B:D4",
+                  "id": "fab:B:C164",
                   "kind": "fab_bbox",
-                  "reference": "D4",
-                  "mpn": "Littelfuse SESD0402X1UN-0020-090",
+                  "reference": "C164",
+                  "mpn": "Murata GRM1555C1H102JA01D",
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      29.275,
-                      30.375
+                      28.505,
+                      29.605
                     ],
                     "y": [
-                      0.565,
-                      1.165
+                      4.555,
+                      5.155
                     ]
                   },
-                  "bbox_gap_mm": 0.625,
-                  "classification": "engineering_screening_candidate"
+                  "bbox_gap_mm": 1.255
                 },
                 "courtyard_bbox": {
-                  "id": "court:B:D4",
+                  "id": "court:B:C164",
                   "kind": "courtyard_bbox",
-                  "reference": "D4",
-                  "mpn": "Littelfuse SESD0402X1UN-0020-090",
+                  "reference": "C164",
+                  "mpn": "Murata GRM1555C1H102JA01D",
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      28.85,
-                      30.8
+                      28.1,
+                      30.01
                     ],
                     "y": [
-                      0.35,
-                      1.38
+                      4.35,
+                      5.36
                     ]
                   },
-                  "bbox_gap_mm": 0.2,
-                  "classification": "engineering_screening_candidate"
+                  "bbox_gap_mm": 1.05
                 },
                 "drill_bbox": {
                   "id": "drill:B:53734efa-908d-5e49-a9a5-13ec3b5318a5",
@@ -5648,215 +4823,7 @@
               "foreign_pad_contact_or_overlap": [],
               "foreign_fab_bbox_overlap": [],
               "foreign_courtyard_bbox_overlap": [],
-              "screening_candidates": [
-                {
-                  "id": "pad:B:7437eee5-bd47-5e49-b37b-6ee96afc35e2",
-                  "native_id": "7437eee5-bd47-5e49-b37b-6ee96afc35e2",
-                  "kind": "foreign_pad",
-                  "reference": "D4",
-                  "pad": "1",
-                  "mpn": "Littelfuse SESD0402X1UN-0020-090",
-                  "net": "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_BOUNDARY_RF",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      29.045,
-                      29.635
-                    ],
-                    "y": [
-                      0.545,
-                      1.185
-                    ]
-                  },
-                  "bbox_gap_mm": 0.395,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.395,
-                    "upper_mm": 0.395001
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "pad:B:b235864f-5584-5673-97e6-e536756e6cde",
-                  "native_id": "b235864f-5584-5673-97e6-e536756e6cde",
-                  "kind": "foreign_pad",
-                  "reference": "C182",
-                  "pad": "2",
-                  "mpn": "Murata GRM155R71A474KE01D",
-                  "net": "/RF_21_BROADCAST_AIRBAND_RX/RX_AMI_RF",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      29.39,
-                      30.01
-                    ],
-                    "y": [
-                      2.525,
-                      3.085
-                    ]
-                  },
-                  "bbox_gap_mm": 0.74,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.74,
-                    "upper_mm": 0.740001
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "pad:B:6ad25b06-6fd5-58e9-8ee9-005433c0b09a",
-                  "native_id": "6ad25b06-6fd5-58e9-8ee9-005433c0b09a",
-                  "kind": "foreign_pad",
-                  "reference": "C182",
-                  "pad": "1",
-                  "mpn": "Murata GRM155R71A474KE01D",
-                  "net": "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_BOUNDARY_RF",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      29.39,
-                      30.01
-                    ],
-                    "y": [
-                      3.485,
-                      4.045
-                    ]
-                  },
-                  "bbox_gap_mm": 0.762775,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.798096,
-                    "upper_mm": 0.798097
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "pad:B:b56f93e2-7f9c-5a8c-ae94-c016fb307751",
-                  "native_id": "b56f93e2-7f9c-5a8c-ae94-c016fb307751",
-                  "kind": "foreign_pad",
-                  "reference": "C180",
-                  "pad": "2",
-                  "mpn": "Murata GRM1555C1H102JA01D",
-                  "net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_RX_SELECTED_RF",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      25.505,
-                      26.065
-                    ],
-                    "y": [
-                      1.295,
-                      1.915
-                    ]
-                  },
-                  "bbox_gap_mm": 0.985,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.985,
-                    "upper_mm": 0.985001
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "fab:B:D4",
-                  "kind": "fab_bbox",
-                  "reference": "D4",
-                  "mpn": "Littelfuse SESD0402X1UN-0020-090",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      29.275,
-                      30.375
-                    ],
-                    "y": [
-                      0.565,
-                      1.165
-                    ]
-                  },
-                  "bbox_gap_mm": 0.625,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "fab:B:C182",
-                  "kind": "fab_bbox",
-                  "reference": "C182",
-                  "mpn": "Murata GRM155R71A474KE01D",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      29.4,
-                      30.0
-                    ],
-                    "y": [
-                      2.735,
-                      3.835
-                    ]
-                  },
-                  "bbox_gap_mm": 0.75,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:D4",
-                  "kind": "courtyard_bbox",
-                  "reference": "D4",
-                  "mpn": "Littelfuse SESD0402X1UN-0020-090",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      28.85,
-                      30.8
-                    ],
-                    "y": [
-                      0.35,
-                      1.38
-                    ]
-                  },
-                  "bbox_gap_mm": 0.2,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:C182",
-                  "kind": "courtyard_bbox",
-                  "reference": "C182",
-                  "mpn": "Murata GRM155R71A474KE01D",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      29.195,
-                      30.205
-                    ],
-                    "y": [
-                      2.33,
-                      4.24
-                    ]
-                  },
-                  "bbox_gap_mm": 0.545,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:C180",
-                  "kind": "courtyard_bbox",
-                  "reference": "C180",
-                  "mpn": "Murata GRM1555C1H102JA01D",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      24.35,
-                      26.26
-                    ],
-                    "y": [
-                      1.1,
-                      2.11
-                    ]
-                  },
-                  "bbox_gap_mm": 0.79,
-                  "classification": "engineering_screening_candidate"
-                }
-              ]
+              "screening_candidates": []
             },
             {
               "native_id": "b6f7d328-3f2e-5e5d-9ee5-544f835facd4",
@@ -5909,70 +4876,67 @@
               },
               "nearest": {
                 "foreign_pad": {
-                  "id": "pad:B:130f9a9e-5340-52f7-a882-e5aaca1fe6bf",
-                  "native_id": "130f9a9e-5340-52f7-a882-e5aaca1fe6bf",
+                  "id": "pad:B:2c7f891f-eb15-5294-a87a-11b58b2524b4",
+                  "native_id": "2c7f891f-eb15-5294-a87a-11b58b2524b4",
                   "kind": "foreign_pad",
-                  "reference": "D5",
+                  "reference": "C173",
                   "pad": "2",
-                  "mpn": "Littelfuse SESD0402X1UN-0020-090",
-                  "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+                  "mpn": "Murata GJM1555C1H150JB01D",
+                  "net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_MIXER_IN_N",
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      22.265,
-                      22.855
+                      20.09,
+                      20.71
                     ],
                     "y": [
-                      3.645,
-                      4.285
+                      0.54,
+                      1.1
                     ]
                   },
-                  "bbox_gap_mm": 0.345,
+                  "bbox_gap_mm": 1.24,
                   "native_clearance": {
                     "method": "native_effective_copper_shape",
                     "contact_or_overlap": false,
-                    "lower_mm": 0.345,
-                    "upper_mm": 0.345001
-                  },
-                  "classification": "engineering_screening_candidate"
+                    "lower_mm": 1.24,
+                    "upper_mm": 1.240001
+                  }
                 },
                 "fab_bbox": {
-                  "id": "fab:B:D5",
+                  "id": "fab:B:C170",
                   "kind": "fab_bbox",
-                  "reference": "D5",
-                  "mpn": "Littelfuse SESD0402X1UN-0020-090",
+                  "reference": "C170",
+                  "mpn": "GJM1555C1H4R7BB01D",
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      21.525,
-                      22.625
+                      20.1,
+                      20.7
                     ],
                     "y": [
-                      3.665,
-                      4.265
+                      2.85,
+                      3.95
                     ]
                   },
-                  "bbox_gap_mm": 0.365,
-                  "classification": "engineering_screening_candidate"
+                  "bbox_gap_mm": 1.25
                 },
                 "courtyard_bbox": {
-                  "id": "court:B:D5",
+                  "id": "court:B:C170",
                   "kind": "courtyard_bbox",
-                  "reference": "D5",
-                  "mpn": "Littelfuse SESD0402X1UN-0020-090",
+                  "reference": "C170",
+                  "mpn": "GJM1555C1H4R7BB01D",
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      21.1,
-                      23.05
+                      19.895,
+                      20.905
                     ],
                     "y": [
-                      3.45,
-                      4.48
+                      2.445,
+                      4.355
                     ]
                   },
-                  "bbox_gap_mm": 0.15,
-                  "classification": "engineering_screening_candidate"
+                  "bbox_gap_mm": 1.045
                 },
                 "drill_bbox": {
                   "id": "drill:B:53734efa-908d-5e49-a9a5-13ec3b5318a5",
@@ -5996,262 +4960,7 @@
               "foreign_pad_contact_or_overlap": [],
               "foreign_fab_bbox_overlap": [],
               "foreign_courtyard_bbox_overlap": [],
-              "screening_candidates": [
-                {
-                  "id": "pad:B:130f9a9e-5340-52f7-a882-e5aaca1fe6bf",
-                  "native_id": "130f9a9e-5340-52f7-a882-e5aaca1fe6bf",
-                  "kind": "foreign_pad",
-                  "reference": "D5",
-                  "pad": "2",
-                  "mpn": "Littelfuse SESD0402X1UN-0020-090",
-                  "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      22.265,
-                      22.855
-                    ],
-                    "y": [
-                      3.645,
-                      4.285
-                    ]
-                  },
-                  "bbox_gap_mm": 0.345,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.345,
-                    "upper_mm": 0.345001
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "pad:B:e305a39f-3735-5a2f-915e-cea3de363554",
-                  "native_id": "e305a39f-3735-5a2f-915e-cea3de363554",
-                  "kind": "foreign_pad",
-                  "reference": "D5",
-                  "pad": "1",
-                  "mpn": "Littelfuse SESD0402X1UN-0020-090",
-                  "net": "/RF_21_BROADCAST_AIRBAND_RX/RX_FMSW_BOUNDARY_RF",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      21.295,
-                      21.885
-                    ],
-                    "y": [
-                      3.645,
-                      4.285
-                    ]
-                  },
-                  "bbox_gap_mm": 0.35107,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.388888,
-                    "upper_mm": 0.388889
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "pad:B:6ffe54c7-4cfb-5878-aa52-54ffd254289f",
-                  "native_id": "6ffe54c7-4cfb-5878-aa52-54ffd254289f",
-                  "kind": "foreign_pad",
-                  "reference": "C173",
-                  "pad": "2",
-                  "mpn": "Murata GJM1555C1H150JB01D",
-                  "net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_MIXER_IN_N",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      20.955,
-                      21.515
-                    ],
-                    "y": [
-                      1.045,
-                      1.665
-                    ]
-                  },
-                  "bbox_gap_mm": 0.435,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.435,
-                    "upper_mm": 0.435001
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "pad:B:7ba04a7a-7f85-51f7-9029-9748ffb99a9c",
-                  "native_id": "7ba04a7a-7f85-51f7-9029-9748ffb99a9c",
-                  "kind": "foreign_pad",
-                  "reference": "C170",
-                  "pad": "2",
-                  "mpn": "GJM1555C1H4R7BB01D",
-                  "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      20.5,
-                      21.06
-                    ],
-                    "y": [
-                      2.295,
-                      2.915
-                    ]
-                  },
-                  "bbox_gap_mm": 0.89,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.89,
-                    "upper_mm": 0.890001
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "pad:B:f4c47eb6-c403-54ee-a2e0-8858a1cb3167",
-                  "native_id": "f4c47eb6-c403-54ee-a2e0-8858a1cb3167",
-                  "kind": "foreign_pad",
-                  "reference": "C180",
-                  "pad": "1",
-                  "mpn": "Murata GRM1555C1H102JA01D",
-                  "net": "/RF_21_BROADCAST_AIRBAND_RX/AIR_SELECTOR_RFC",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      24.545,
-                      25.105
-                    ],
-                    "y": [
-                      1.295,
-                      1.915
-                    ]
-                  },
-                  "bbox_gap_mm": 0.995,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.995,
-                    "upper_mm": 0.995001
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "fab:B:D5",
-                  "kind": "fab_bbox",
-                  "reference": "D5",
-                  "mpn": "Littelfuse SESD0402X1UN-0020-090",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      21.525,
-                      22.625
-                    ],
-                    "y": [
-                      3.665,
-                      4.265
-                    ]
-                  },
-                  "bbox_gap_mm": 0.365,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "fab:B:C173",
-                  "kind": "fab_bbox",
-                  "reference": "C173",
-                  "mpn": "Murata GJM1555C1H150JB01D",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      20.205,
-                      21.305
-                    ],
-                    "y": [
-                      1.055,
-                      1.655
-                    ]
-                  },
-                  "bbox_gap_mm": 0.645,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:D5",
-                  "kind": "courtyard_bbox",
-                  "reference": "D5",
-                  "mpn": "Littelfuse SESD0402X1UN-0020-090",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      21.1,
-                      23.05
-                    ],
-                    "y": [
-                      3.45,
-                      4.48
-                    ]
-                  },
-                  "bbox_gap_mm": 0.15,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:C173",
-                  "kind": "courtyard_bbox",
-                  "reference": "C173",
-                  "mpn": "Murata GJM1555C1H150JB01D",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      19.8,
-                      21.71
-                    ],
-                    "y": [
-                      0.85,
-                      1.86
-                    ]
-                  },
-                  "bbox_gap_mm": 0.24,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:C170",
-                  "kind": "courtyard_bbox",
-                  "reference": "C170",
-                  "mpn": "GJM1555C1H4R7BB01D",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      19.345,
-                      21.255
-                    ],
-                    "y": [
-                      2.1,
-                      3.11
-                    ]
-                  },
-                  "bbox_gap_mm": 0.695,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:C180",
-                  "kind": "courtyard_bbox",
-                  "reference": "C180",
-                  "mpn": "Murata GRM1555C1H102JA01D",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      24.35,
-                      26.26
-                    ],
-                    "y": [
-                      1.1,
-                      2.11
-                    ]
-                  },
-                  "bbox_gap_mm": 0.8,
-                  "classification": "engineering_screening_candidate"
-                }
-              ]
+              "screening_candidates": []
             }
           ]
         },
@@ -8127,30 +6836,30 @@
               },
               "nearest": {
                 "foreign_pad": {
-                  "id": "pad:B:060e0931-2983-5772-9f90-246ce1fb2896",
-                  "native_id": "060e0931-2983-5772-9f90-246ce1fb2896",
+                  "id": "pad:B:80e1274a-6800-5665-a9ac-e6eb2e33a329",
+                  "native_id": "80e1274a-6800-5665-a9ac-e6eb2e33a329",
                   "kind": "foreign_pad",
                   "reference": "C126",
-                  "pad": "2",
+                  "pad": "1",
                   "mpn": "Yageo CC0402KRX7R9BB104",
-                  "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+                  "net": "/RF_20_CC1101_VOICE_TX/3V3_CC_SWITCHED",
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      66.9,
-                      67.46
+                      65.14,
+                      65.76
                     ],
                     "y": [
-                      3.789999,
-                      4.409999
+                      4.54,
+                      5.1
                     ]
                   },
-                  "bbox_gap_mm": 3.722392,
+                  "bbox_gap_mm": 5.530796,
                   "native_clearance": {
                     "method": "native_effective_copper_shape",
                     "contact_or_overlap": false,
-                    "lower_mm": 3.741468,
-                    "upper_mm": 3.741469
+                    "lower_mm": 5.559587,
+                    "upper_mm": 5.559588
                   }
                 },
                 "fab_bbox": {
@@ -8161,15 +6870,15 @@
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      66.15,
-                      67.25
+                      65.15,
+                      65.75
                     ],
                     "y": [
-                      3.799999,
-                      4.399999
+                      4.75,
+                      5.85
                     ]
                   },
-                  "bbox_gap_mm": 3.931921
+                  "bbox_gap_mm": 5.591288
                 },
                 "courtyard_bbox": {
                   "id": "court:B:C126",
@@ -8179,15 +6888,15 @@
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      65.745,
-                      67.655
+                      64.945,
+                      65.955
                     ],
                     "y": [
-                      3.594999,
-                      4.604999
+                      4.345,
+                      6.255
                     ]
                   },
-                  "bbox_gap_mm": 3.507428
+                  "bbox_gap_mm": 5.299061
                 },
                 "drill_bbox": {
                   "id": "drill:B:d7840ebf-8456-54e2-8a9e-bade9bd82040",
@@ -8264,32 +6973,31 @@
               },
               "nearest": {
                 "foreign_pad": {
-                  "id": "pad:B:060e0931-2983-5772-9f90-246ce1fb2896",
-                  "native_id": "060e0931-2983-5772-9f90-246ce1fb2896",
+                  "id": "pad:B:80e1274a-6800-5665-a9ac-e6eb2e33a329",
+                  "native_id": "80e1274a-6800-5665-a9ac-e6eb2e33a329",
                   "kind": "foreign_pad",
                   "reference": "C126",
-                  "pad": "2",
+                  "pad": "1",
                   "mpn": "Yageo CC0402KRX7R9BB104",
-                  "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+                  "net": "/RF_20_CC1101_VOICE_TX/3V3_CC_SWITCHED",
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      66.9,
-                      67.46
+                      65.14,
+                      65.76
                     ],
                     "y": [
-                      3.789999,
-                      4.409999
+                      4.54,
+                      5.1
                     ]
                   },
-                  "bbox_gap_mm": 0.489999,
+                  "bbox_gap_mm": 1.27346,
                   "native_clearance": {
                     "method": "native_effective_copper_shape",
                     "contact_or_overlap": false,
-                    "lower_mm": 0.489999,
-                    "upper_mm": 0.49
-                  },
-                  "classification": "engineering_screening_candidate"
+                    "lower_mm": 1.305441,
+                    "upper_mm": 1.305442
+                  }
                 },
                 "fab_bbox": {
                   "id": "fab:B:C126",
@@ -8299,16 +7007,15 @@
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      66.15,
-                      67.25
+                      65.15,
+                      65.75
                     ],
                     "y": [
-                      3.799999,
-                      4.399999
+                      4.75,
+                      5.85
                     ]
                   },
-                  "bbox_gap_mm": 0.499999,
-                  "classification": "engineering_screening_candidate"
+                  "bbox_gap_mm": 1.480709
                 },
                 "courtyard_bbox": {
                   "id": "court:B:C126",
@@ -8318,16 +7025,15 @@
                   "side": "B",
                   "bbox_mm": {
                     "x": [
-                      65.745,
-                      67.655
+                      64.945,
+                      65.955
                     ],
                     "y": [
-                      3.594999,
-                      4.604999
+                      4.345,
+                      6.255
                     ]
                   },
-                  "bbox_gap_mm": 0.294999,
-                  "classification": "engineering_screening_candidate"
+                  "bbox_gap_mm": 1.049309
                 },
                 "drill_bbox": {
                   "id": "drill:B:d7840ebf-8456-54e2-8a9e-bade9bd82040",
@@ -8351,102 +7057,7 @@
               "foreign_pad_contact_or_overlap": [],
               "foreign_fab_bbox_overlap": [],
               "foreign_courtyard_bbox_overlap": [],
-              "screening_candidates": [
-                {
-                  "id": "pad:B:060e0931-2983-5772-9f90-246ce1fb2896",
-                  "native_id": "060e0931-2983-5772-9f90-246ce1fb2896",
-                  "kind": "foreign_pad",
-                  "reference": "C126",
-                  "pad": "2",
-                  "mpn": "Yageo CC0402KRX7R9BB104",
-                  "net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      66.9,
-                      67.46
-                    ],
-                    "y": [
-                      3.789999,
-                      4.409999
-                    ]
-                  },
-                  "bbox_gap_mm": 0.489999,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.489999,
-                    "upper_mm": 0.49
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "pad:B:fb350e35-0ef1-5f4e-852e-73b9ca702911",
-                  "native_id": "fb350e35-0ef1-5f4e-852e-73b9ca702911",
-                  "kind": "foreign_pad",
-                  "reference": "C126",
-                  "pad": "1",
-                  "mpn": "Yageo CC0402KRX7R9BB104",
-                  "net": "/RF_20_CC1101_VOICE_TX/3V3_CC_SWITCHED",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      65.94,
-                      66.5
-                    ],
-                    "y": [
-                      3.789999,
-                      4.409999
-                    ]
-                  },
-                  "bbox_gap_mm": 0.489999,
-                  "native_clearance": {
-                    "method": "native_effective_copper_shape",
-                    "contact_or_overlap": false,
-                    "lower_mm": 0.489999,
-                    "upper_mm": 0.49
-                  },
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "fab:B:C126",
-                  "kind": "fab_bbox",
-                  "reference": "C126",
-                  "mpn": "Yageo CC0402KRX7R9BB104",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      66.15,
-                      67.25
-                    ],
-                    "y": [
-                      3.799999,
-                      4.399999
-                    ]
-                  },
-                  "bbox_gap_mm": 0.499999,
-                  "classification": "engineering_screening_candidate"
-                },
-                {
-                  "id": "court:B:C126",
-                  "kind": "courtyard_bbox",
-                  "reference": "C126",
-                  "mpn": "Yageo CC0402KRX7R9BB104",
-                  "side": "B",
-                  "bbox_mm": {
-                    "x": [
-                      65.745,
-                      67.655
-                    ],
-                    "y": [
-                      3.594999,
-                      4.604999
-                    ]
-                  },
-                  "bbox_gap_mm": 0.294999,
-                  "classification": "engineering_screening_candidate"
-                }
-              ]
+              "screening_candidates": []
             }
           ]
         }
@@ -8459,11 +7070,11 @@
         "native_foreign_pad_contact_count": 0,
         "fab_bbox_overlap_count": 0,
         "courtyard_bbox_overlap_count": 0,
-        "screening_candidate_count": 44,
-        "pads_with_screening_candidates": 5
+        "screening_candidate_count": 0,
+        "pads_with_screening_candidates": 0
       },
       "errors": [],
-      "status": "review_required"
+      "status": "no_candidates_in_screened_scope"
     }
   ],
   "limitations": [

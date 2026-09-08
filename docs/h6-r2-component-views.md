@@ -63,21 +63,9 @@ and pitch.
 
 <!-- SMA-SOLDER-ACCESS:BEGIN -->
 
-Current result: **50 lands**, 0 contacts/overlaps with foreign copper pads, 0 overlaps with available Fab bounding boxes and 0 courtyard overlaps. The provisional margin flagged **9 lands for review**.
+Current result: **50 lands**, 0 contacts/overlaps with foreign copper pads, 0 overlaps with available Fab bounding boxes and 0 courtyard overlaps. The provisional margin flagged **0 lands for review**.
 
-| Board | Land | Nearest courtyard | Gap, mm |
-| --- | --- | --- | ---: |
-| UI · B | J3.5 | J4 | 0.105 |
-| RF · B | J8.5 | D5 | 0.150 |
-| RF · B | J9.5 | C167 | 0.150 |
-| RF · B | J8.4 | D4 | 0.200 |
-| RF · B | J7.5 | C126 | 0.295 |
-| RF · B | J9.4 | C163 | 0.340 |
-| UI · B | J12.5 | J13 | 0.455 |
-| UI · B | J3.4 | R17 | 0.710 |
-| UI · B | J14.5 | U52 | 0.755 |
-
-Courtyard distances refer to mounting envelopes, **not physical bodies**; separate copper and Fab measurements are in the report. These are solder-access review items, not a list of shorts. `status: review_required`; `solder_process_qualified: false`.
+Courtyard distances refer to mounting envelopes, **not physical bodies**; separate copper and Fab measurements are in the report. These are solder-access review items, not a list of shorts. `status: no_candidates_in_screened_scope`; `solder_process_qualified: false`.
 
 <!-- SMA-SOLDER-ACCESS:END -->
 

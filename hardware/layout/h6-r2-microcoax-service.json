@@ -134,7 +134,7 @@
       ],
       "board_connector_instance": "nrf0_rf_board_connector",
       "board_connector_mm": [
-        4.25,
+        3.65,
         3.875
       ],
       "cable_mpn": "TE Connectivity 1-2118651-0",
@@ -163,7 +163,7 @@
           3.875
         ],
         [
-          4.25,
+          3.65,
           3.875
         ]
       ],
@@ -182,19 +182,19 @@
         -7.14
       ],
       "source_reference_mm": [
-        31.0,
+        30.5,
         23.615
       ],
       "board_connector_instance": "s3_rf_board_connector",
       "board_connector_mm": [
-        20.0,
+        19.04,
         3.48
       ],
       "cable_mpn": "TE Connectivity 2118651-2",
       "selected_length_mm": 30.0,
-      "corridor_quadratic_control_mm": [24.8, 13.55],
+      "corridor_quadratic_control_mm": [24.3, 13.55],
       "retention_saddle_centre_mm": [
-        25.15,
+        24.535,
         13.54875
       ],
       "retention_support": {
@@ -207,7 +207,7 @@
         "installation_rule": "apply a removable 5 x 3 mm polyimide bridge only to the shield top; keep both connector inspection circles and the shield rim clear; preserve the relaxed bow above the shield edge",
         "validation_boundary": "planar radius and conservative two-end height-transition budget are checked; combined three-dimensional forming and opposing-body clearance remain assembled STEP/dry-fit evidence"
       },
-      "source_exit": "from the actual lower-right module connector, gently across the flat S3 shield toward the B0 board U.FL in the gap between the first two 14.7-mm-pitch SMA ports; retain the 30-mm cable and its conservative two-end Z-transition allowance"
+      "source_exit": "from the actual lower-right connector of the same S3 module shifted 0.50 mm left, gently across its flat shield toward the B0 board U.FL in the gap between the first two 14.7-mm-pitch SMA ports; the solder-access candidate preserves the R3 inspection circle, 30-mm cable, at least 5-mm conservative relaxed reserve and unchanged R7 two-end Z-transition allowance"
     },
     {
       "path": "N24-1",

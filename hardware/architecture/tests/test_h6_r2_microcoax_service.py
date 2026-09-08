@@ -17,6 +17,7 @@ CONTRACT = ROOT / "hardware/layout/h6-r2-microcoax-service.json"
 AUDIT = ROOT / "hardware/layout/generated/H6-R2-microcoax-service-audit.json"
 SCRIPT = ROOT / "hardware/layout/h6_r2_microcoax_service.py"
 SVG = ROOT / "docs/images/h6-r2-microcoax-service.svg"
+KICAD_PYTHON = Path("/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3")
 
 
 class H6R2MicrocoaxServiceTests(unittest.TestCase):
@@ -62,7 +63,7 @@ class H6R2MicrocoaxServiceTests(unittest.TestCase):
 
     def test_s3_source_uses_native_back_side_transform_and_relaxed_shield_curve(self):
         row = next(row for row in self.audit["paths"] if row["path"] == "S3-2G4")
-        self.assertEqual([31.0, 23.615], row["source_reference_mm"])
+        self.assertEqual([30.5, 23.615], row["source_reference_mm"])
         self.assertEqual("module_shield", row["retention_support"])
         self.assertGreaterEqual(row["minimum_planar_bend_radius_mm"], 6.0)
         self.assertGreater(row["vertical_transition_length_allowance_mm"], 1.5)
@@ -84,17 +85,19 @@ class H6R2MicrocoaxServiceTests(unittest.TestCase):
 
     def test_destinations_use_mating_axes_not_asymmetric_courtyard_centres(self):
         rows = {row["path"]: row for row in self.audit["paths"]}
-        self.assertEqual([20.0, 3.48], rows["S3-2G4"]["board_connector_mm"])
+        self.assertEqual([19.04, 3.48], rows["S3-2G4"]["board_connector_mm"])
         self.assertEqual([57.575, 10.55], rows["C5-2G4/5"]["board_connector_mm"])
-        self.assertEqual([4.25, 3.875], rows["N24-0"]["board_connector_mm"])
+        self.assertEqual([3.65, 3.875], rows["N24-0"]["board_connector_mm"])
 
     def test_s3_reposition_retains_exact_cable_and_full_z_allowance(self):
         row = next(row for row in self.contract["paths"] if row["path"] == "S3-2G4")
         self.assertEqual("TE Connectivity 2118651-2", row["cable_mpn"])
         self.assertEqual(30.0, row["selected_length_mm"])
-        self.assertEqual([20.0, 3.48], row["board_connector_mm"])
+        self.assertEqual([19.04, 3.48], row["board_connector_mm"])
+        self.assertEqual([30.5, 23.615], row["source_reference_mm"])
+        self.assertEqual([24.3, 13.55], row["corridor_quadratic_control_mm"])
         points, planar_upper, radius = service.corridor_geometry(row)
-        self.assertEqual([25.15, 13.54875], row["retention_saddle_centre_mm"])
+        self.assertEqual([24.535, 13.54875], row["retention_saddle_centre_mm"])
         for actual, expected in zip(points[64], row["retention_saddle_centre_mm"]):
             self.assertAlmostEqual(actual, expected)
         support = row["retention_support"]
@@ -104,7 +107,7 @@ class H6R2MicrocoaxServiceTests(unittest.TestCase):
         z_allowance = 2 * (14 * angle - 14 * math.sin(angle))
         self.assertAlmostEqual(1.6043046603067346, z_allowance)
         reserve = 30 - planar_upper - z_allowance
-        self.assertAlmostEqual(5.440879462291754, reserve)
+        self.assertAlmostEqual(5.2230022965311385, reserve)
         self.assertGreaterEqual(reserve, 5.0)
         self.assertGreaterEqual(radius, 6.0)
         # The old unreviewed farther-left location cannot be accepted merely
@@ -118,16 +121,82 @@ class H6R2MicrocoaxServiceTests(unittest.TestCase):
         row = next(row for row in self.contract["paths"] if row["path"] == "N24-0")
         self.assertEqual("TE Connectivity 1-2118651-0", row["cable_mpn"])
         self.assertEqual(60.0, row["selected_length_mm"])
-        self.assertEqual([4.25, 3.875], row["board_connector_mm"])
+        self.assertEqual([3.65, 3.875], row["board_connector_mm"])
         self.assertEqual(row["board_connector_mm"], row["corridor_points_mm"][-1])
         self.assertEqual(6.0, row["corridor_fillet_radius_mm"])
         points, length, radius = service.corridor_geometry(row)
         previous = copy.deepcopy(row)
-        previous["corridor_points_mm"][-1] = [5.25, 3.875]
+        previous["corridor_points_mm"][-1] = [4.25, 3.875]
         _, previous_length, previous_radius = service.corridor_geometry(previous)
-        self.assertAlmostEqual(1.0, length - previous_length)
+        self.assertAlmostEqual(0.6, length - previous_length)
         self.assertEqual(previous_radius, radius)
-        self.assertEqual([4.25, 3.875], points[-1])
+        self.assertEqual([3.65, 3.875], points[-1])
+
+    def test_r3_access_fixture_rejects_the_discarded_b270_solution(self):
+        # Conservative native Fab-stroke union, not a manufacturer 3-D solid.
+        # Moving the module left changes X only; its nearest Fab Y stays 6.825.
+        module_fab = {"x": [15.45, 33.55], "y": [6.825, 26.125]}
+        radius = self.contract["common_constraints"]["connector_inspection_radius_mm"]
+        self.assertEqual(3.0, radius)
+        required_gap = 0.345  # Preserve the pre-move J4-to-S3 Fab allowance.
+
+        def retains_access(axis):
+            return service.point_rect_distance(tuple(axis), module_fab) - radius >= required_gap - 1e-9
+
+        accepted = next(row for row in self.contract["paths"] if row["path"] == "S3-2G4")
+        self.assertTrue(retains_access(accepted["board_connector_mm"]))
+        self.assertFalse(retains_access([19.04, 3.50]))  # still clear, but worsened
+        self.assertFalse(retains_access([18.38, 4.17]))  # rejected B270: -0.345 mm
+
+    @unittest.skipUnless(KICAD_PYTHON.is_file(), "KiCad bundled pcbnew Python is unavailable")
+    def test_native_r3_foreign_fab_clearance_does_not_regress(self):
+        # Read-only pcbnew: no SaveBoard, CLI DRC, library changes or inference
+        # from a stale generated placement audit. The bounded Fab/circle check
+        # does not qualify received plugs, extraction tools or assembled STEP.
+        code = r'''
+import math
+from pathlib import Path
+import pcbnew
+from hardware.layout import h6_r2_microcoax_service as service
+from hardware.layout import h6_r2_sma_solder_access as solder
+contract = service.load(service.CONTRACT)
+placement = service.load(service.PLACEMENT_CONTRACT)
+radius = contract["common_constraints"]["connector_inspection_radius_mm"]
+assert radius == 3.0
+mounts = placement["mechanical"]["mounting_holes"]
+assert mounts["head_keepout_radius_mm"] == 4.0
+path = Path("hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb")
+before = path.read_bytes()
+board = pcbnew.LoadBoard(str(path))
+snapshot, _ = solder.native_snapshot(path, "LESHY2-UI-R2", pcbnew)
+fps = {fp.GetReference(): fp for fp in board.GetFootprints()}
+# Independent pre-change native Fab gaps, not values read from today's audit.
+expected = {"N24-0": ("J13", 4.046652), "S3-2G4": ("J4", 0.345),
+            "N24-1": ("J15", 0.397885), "C5-2G4/5": ("J8", 0.325),
+            "N24-2": ("J17", 0.255764)}
+assert len(contract["paths"]) == 5 and {row["path"] for row in contract["paths"]} == set(expected)
+for row in contract["paths"]:
+    ref, minimum = expected[row["path"]]
+    fp = fps[ref]
+    assert fp.IsFlipped() and fp.GetField("Leshy2Instance").GetText() == row["board_connector_instance"]
+    axis = [round(pcbnew.ToMM(fp.GetPosition().x), 6), round(pcbnew.ToMM(fp.GetPosition().y), 6)]
+    assert axis == row["board_connector_mm"], (ref, axis)
+    fab = [o for o in snapshot["obstacles"] if o["kind"] == "fab_bbox" and o["side"] == "B" and o["reference"] != ref]
+    gap = min(service.point_rect_distance(tuple(axis), o["bbox_mm"]) - radius for o in fab)
+    assert gap + 1e-6 >= minimum, (ref, gap, minimum)
+    assert min(math.dist(axis, p) - radius - 4.0 for p in mounts["centres_mm"]) >= 0, ref
+assert fps["J4"].GetOrientationDegrees() == 0.0
+source = fps["U1"]
+assert source.GetValue() == "ESP32-S3-WROOM-1U-N16R8" and source.IsFlipped()
+assert source.GetOrientationDegrees() == 0.0
+assert [round(pcbnew.ToMM(source.GetPosition().x), 6), round(pcbnew.ToMM(source.GetPosition().y), 6)] == [24.5, 16.475]
+assert path.read_bytes() == before
+print("five native R3/Fab gaps preserved; mounting keepouts clear; no native writes")
+'''
+        result = subprocess.run([str(KICAD_PYTHON), "-c", code], cwd=ROOT, text=True,
+                                stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=60)
+        self.assertEqual(0, result.returncode, result.stdout)
+        self.assertIn("five native R3/Fab gaps preserved", result.stdout)
 
     def test_front_side_sma_lands_block_a_back_side_tape_landing(self):
         board = {"placements": [{"instance": "edge_sma", "side": "F.Cu",
@@ -319,7 +388,10 @@ class H6R2MicrocoaxServiceTests(unittest.TestCase):
             doc = root / "docs/h6-r2-microcoax-service.md"
             doc.parent.mkdir()
             text = service.DOCS["en"].read_text(encoding="utf-8")
-            stale = text.replace("196.607 mm", "13.135 mm")
+            s3 = next(row for row in self.audit["paths"] if row["path"] == "S3-2G4")
+            current_radius = f"{s3['minimum_planar_bend_radius_mm']:.3f} mm"
+            self.assertIn(current_radius, text)
+            stale = text.replace(current_radius, "13.135 mm")
             self.assertNotEqual(text, stale)
             doc.write_text(stale, encoding="utf-8")
             out = StringIO()

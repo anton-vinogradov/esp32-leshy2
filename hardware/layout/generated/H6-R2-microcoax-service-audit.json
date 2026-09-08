@@ -5,9 +5,9 @@
   "status": "pass",
   "status_scope": "nominal microcoax geometry and contract antenna-window count/pitch only",
   "source_hashes": {
-    "hardware/layout/h6-r2-microcoax-service.json": "d2dfb7da1b9ae45d11a3b1bc2a0db859204bd4dc73ba113d79bbf8f372d56011",
-    "hardware/layout/generated/H6-R2-placement-audit.json": "cd92ee2740fbcefb526d36dbe6ba0080ad0811d9fc34b55d283bb8c88757a3a5",
-    "hardware/layout/h6-r2-placement-contract.json": "3ec16a6346197e017c0a3185659a0899d89046f353ddbaa077b3a199ad4789fd",
+    "hardware/layout/h6-r2-microcoax-service.json": "e4992bf4980081b3ba1fd27169e7771261099d5f6b68bfb1b1797bc87bfd1302",
+    "hardware/layout/generated/H6-R2-placement-audit.json": "ce63f323be7c9cb1fde76f4d6eb56731bb6c963f841d2eae62f5faf23979f639",
+    "hardware/layout/h6-r2-placement-contract.json": "333d329a07879630f4f2cc3268f6c9cb7258d959aa2b6af2103aa73dc28959a0",
     "hardware/product-design/h1-r2-placement.json": "3cefd845934ca2d17be9f7e5876266deaf885fd0c37b8330a2637c38e6193ffb",
     "hardware/verification/generated/H3-R2-rf-coexistence.json": "2bb9e47c0591fada1eef221dfcab5ddd1fbe118e83bcd507eca78d4a3b750c32"
   },
@@ -17,7 +17,7 @@
     "sixty_mm_paths": 3,
     "retention_saddles": 5,
     "antenna_solder_windows": 10,
-    "minimum_relaxed_reserve_mm": 5.441,
+    "minimum_relaxed_reserve_mm": 5.223,
     "minimum_display_exclusion_distance_mm": 3.843,
     "minimum_mechanical_keepout_clearance_mm": 0.757,
     "nominal_planar_radius_paths": 5,
@@ -38,13 +38,13 @@
         44.55
       ],
       "board_connector_mm": [
-        4.25,
+        3.65,
         3.875
       ],
       "cable_mpn": "TE Connectivity 1-2118651-0",
       "selected_length_mm": 60.0,
-      "conservative_corridor_length_mm": 51.743,
-      "minimum_relaxed_reserve_mm": 8.257,
+      "conservative_corridor_length_mm": 52.343,
+      "minimum_relaxed_reserve_mm": 7.657,
       "minimum_display_exclusion_distance_mm": 5.937,
       "minimum_mechanical_keepout_clearance_mm": 1.875,
       "retention_saddle_centre_mm": [
@@ -59,38 +59,38 @@
       "planar_radius_scope": "nominal source-window centre; all actual source positions pending H6.0.7",
       "retention_mechanical_keepout_clearance_mm": 13.139,
       "source_free_length_mm": 18.423,
-      "board_connector_free_length_mm": 29.848
+      "board_connector_free_length_mm": 30.448
     },
     {
       "path": "S3-2G4",
       "source_basis": "exact module connector axis",
       "source_reference_mm": [
-        31.0,
+        30.5,
         23.615
       ],
       "board_connector_mm": [
-        20.0,
+        19.04,
         3.48
       ],
       "cable_mpn": "TE Connectivity 2118651-2",
       "selected_length_mm": 30.0,
-      "conservative_corridor_length_mm": 24.559,
-      "minimum_relaxed_reserve_mm": 5.441,
+      "conservative_corridor_length_mm": 24.777,
+      "minimum_relaxed_reserve_mm": 5.223,
       "minimum_display_exclusion_distance_mm": 7.885,
-      "minimum_mechanical_keepout_clearance_mm": 11.526,
+      "minimum_mechanical_keepout_clearance_mm": 10.676,
       "retention_saddle_centre_mm": [
-        25.15,
+        24.535,
         13.54875
       ],
       "retention_landing_clear": true,
       "retention_support": "module_shield",
       "vertical_transition_length_allowance_mm": 1.604,
-      "minimum_planar_bend_radius_mm": 196.607,
-      "curve_sampling_error_bound_mm": 2.1e-05,
+      "minimum_planar_bend_radius_mm": 308.971,
+      "curve_sampling_error_bound_mm": 1.4e-05,
       "planar_radius_scope": "fixed source and destination axes",
-      "retention_mechanical_keepout_clearance_mm": 13.418,
-      "source_free_length_mm": 11.644,
-      "board_connector_free_length_mm": 11.311
+      "retention_mechanical_keepout_clearance_mm": 12.804,
+      "source_free_length_mm": 11.701,
+      "board_connector_free_length_mm": 11.471
     },
     {
       "path": "N24-1",

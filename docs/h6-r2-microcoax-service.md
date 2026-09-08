@@ -3,7 +3,7 @@
 [Home](../README.md) - [Roadmap](roadmap.md) - [Русский](h6-r2-microcoax-service.ru.md) - [Exact placement](h6-r2-exact-placement.md) - [Mechanical stack](h6-r2-mechanical-stack.md)
 
 <!-- BEGIN GENERATED MICROCOAX status -->
-**Machine result: `pass` — nominal geometry only.** The audit covers 5 paths on the 80 × 150 mm board; 5 nominal curves are checked against the 6-mm design-radius target. The minimum relaxed reserve is 5.441 mm. Source windows `N24-0`, `N24-1`, `N24-2` still require actual-axis and three-dimensional forming checks in `H6.0.7`. `all_source_positions_planar_radius_verified: false`. Antenna-window checks cover contract count and pitch only; this audit does not establish solder access. `native_solder_access_verified_by_this_audit: false`.
+**Machine result: `pass` — nominal geometry only.** The audit covers 5 paths on the 80 × 150 mm board; 5 nominal curves are checked against the 6-mm design-radius target. The minimum relaxed reserve is 5.223 mm. Source windows `N24-0`, `N24-1`, `N24-2` still require actual-axis and three-dimensional forming checks in `H6.0.7`. `all_source_positions_planar_radius_verified: false`. Antenna-window checks cover contract count and pitch only; this audit does not establish solder access. `native_solder_access_verified_by_this_audit: false`.
 <!-- END GENERATED MICROCOAX status -->
 
 This updates `H6.0.1-R1` within current `H6.0.3-R1` routing requalification. Purchase and fabrication remain unauthorized.
@@ -17,15 +17,15 @@ The complete front radio bank remains local to the UI PCB:
 <!-- BEGIN GENERATED MICROCOAX results -->
 | Path | Exact cable / length | Corridor, max | Reserve, min | Planar radius, min |
 |---|---|---:|---:|---:|
-| `N24-0` | `TE Connectivity 1-2118651-0`, 60 mm | 51.743 mm | 8.257 mm | 6.000 mm |
-| `S3-2G4` | `TE Connectivity 2118651-2`, 30 mm | 24.559 mm | 5.441 mm | 196.607 mm |
+| `N24-0` | `TE Connectivity 1-2118651-0`, 60 mm | 52.343 mm | 7.657 mm | 6.000 mm |
+| `S3-2G4` | `TE Connectivity 2118651-2`, 30 mm | 24.777 mm | 5.223 mm | 308.971 mm |
 | `N24-1` | `TE Connectivity 1-2118651-0`, 60 mm | 45.372 mm | 14.628 mm | 6.000 mm |
 | `C5-2G4/5` | `TE Connectivity 2118651-2`, 30 mm | 13.519 mm | 16.481 mm | 14.650 mm |
 | `N24-2` | `TE Connectivity 1-2118651-0`, 60 mm | 42.474 mm | 17.526 mm | 6.000 mm |
 
 Cable diameter is 1.13 mm; corridor width is 2.50 mm. Each saddle has a 5 × 3 mm landing with a 0.25 mm courtyard margin. At least 5 mm of routed length is required from each mating axis to the saddle centre, plus 5 mm of relaxed total-length reserve.
 
-S3: source axis [31.000; 23.615] mm → board U.FL axis [20.000; 3.480] mm; saddle centre [25.150; 13.549] mm. Its conservative length includes 1.604 mm for both height transitions.
+S3: source axis [30.500; 23.615] mm → board U.FL axis [19.040; 3.480] mm; saddle centre [24.535; 13.549] mm. Its conservative length includes 1.604 mm for both height transitions.
 <!-- END GENERATED MICROCOAX results -->
 
 Every route has one removable polyimide-tape saddle on a machine-checked clear landing. Apply it only after both ends are mated and a visible relaxed bow exists: it retains the route without flattening the cable or loading the connectors. Four saddles sit on PCB solder mask. The S3 saddle sits on the documented flat central portion of the module's metal shield, clear of its rim and connector notch. The planar radius in the table does not prove the combined three-dimensional bends at the shield transitions.
@@ -72,7 +72,7 @@ Expected result:
 
 <!-- BEGIN GENERATED MICROCOAX reproduce -->
 ```text
-H6-R2 microcoax service pass: 5 paths; 5 clear saddles; 5.44 mm minimum reserve
+H6-R2 microcoax service pass: 5 paths; 5 clear saddles; 5.22 mm minimum reserve
 ```
 <!-- END GENERATED MICROCOAX reproduce -->
 
