@@ -4,11 +4,11 @@
   "status": "pass_scoped",
   "production_release_authorized": false,
   "inputs_sha256": {
-    "hardware/layout/h6-r2-placement-contract.json": "e91e46a8e9d777303f14fcc0e882ba0888a3474710597fae1d0a5f14dd4b3957",
+    "hardware/layout/h6-r2-placement-contract.json": "08b2e6350f80025986b743808dde33359112113089ebfe16a20076e26922f0d1",
     "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "bd0f3d67c7d682ae96fedb3b9a5fb6e64648efbf18134f4b78567a1232717bf7",
     "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "343763201ea51cc60907684316d2a4243e9d4c854d1bb51f08599b7d9f1ac71d",
     "hardware/layout/h6_r2_silkscreen_audit.py": "7f383aa21a822fc44394e424663f2b7a591f0e5cd1263fc80f8556d10cbafa3b",
-    "hardware/layout/h6_r2_user_silkscreen.py": "7d99d53ca0bba3a827175dbd608d4418ba87e0ca01bfbf53f43676de9e7111df",
+    "hardware/layout/h6_r2_user_silkscreen.py": "23f79643f3b2c6a7312f80f62137a40b81e98c6a7d97852216cfd39e64aa8da7",
     "hardware/ecad/libraries/Leshy2_R2.pretty/B3S-1100P.kicad_mod": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989",
     "hardware/layout/h6-r2-b3s-actuator-datum-review.json": "d8de0d5184828d1c6fd98415ccf63e4008e87cfbf7a231412f59bc7fc1dab6c9",
     "hardware/ecad/libraries/Leshy2.pretty/CMEJ-0413-42-SMT-TR.kicad_mod": "039257c90aa952b1e74608cb510cf852cb93eeba0b7dea0b98d0864a2b085817",
@@ -37,16 +37,16 @@
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_40_INTERBOARD_M1.kicad_sch": "424390520ba25ce5ae9c4466c4a54c014fd17a53cb7b58fda7734d31e2e95a17",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_50_FRONT_POWER_SAFETY.kicad_sch": "5c1befee1751e1dfb882c1ee86d04ce19312095f527a901bcbae75691ef1b15b",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch": "87b5812e879ba11abca135470a681c9909148ff398d7dc9153d50d258adae3b1",
-    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "4de030ef283becd282ef0a590d2e5eb42ba3491f66ffa3e9b59f250ef54d5902",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "1177dbb74d06adfa007199e2076b737185d0266f99b517d531a6a897c87328d6"
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "5a29ed7272d412d72b62265bd3940864e4feb23a3f5e5d7ed60f9497620567cb",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "44bea71388631dfd3b7d9c7bfb088569de46d13083fd164bf3562dc8bfde0dde"
   },
   "boards": [
     {
       "project": "LESHY2-UI-R2",
       "status": "pass_scoped",
-      "required_count": 48,
-      "matched_count": 48,
-      "free_front_text_count": 50,
+      "required_count": 49,
+      "matched_count": 49,
+      "free_front_text_count": 51,
       "errors": [],
       "geometry_candidates": [],
       "documented_geometry_exemptions": [
@@ -963,6 +963,23 @@
             "role": "user"
           },
           "actual_id": "d26e6c24-8320-446a-bcbf-d6b69beafb59"
+        },
+        {
+          "expected": {
+            "instance": "microphone",
+            "reference": "RF:MK1",
+            "source_project": "LESHY2-RF-R2",
+            "role": "cross_board_acoustic",
+            "text": "MIC",
+            "at_mm": [
+              33.0,
+              148.9
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen"
+          },
+          "actual_id": "badb2394-1745-5465-b716-b3287b42acb6"
         },
         {
           "expected": {
@@ -2159,268 +2176,6 @@
       ],
       "resolved_geometry_findings": [
         {
-          "kind": "front_courtyard_bbox",
-          "text": {
-            "id": "425e9795-ce67-51f6-9532-e6f4d41b5018",
-            "text": "RST",
-            "layer": "F.Silkscreen",
-            "at_mm": [
-              6.0,
-              109.3
-            ],
-            "size_mm": [
-              1.0,
-              1.0
-            ],
-            "thickness_mm": 0.15,
-            "angle_deg": 0.0,
-            "mirrored": false,
-            "visible": true,
-            "horizontal_justify": 0,
-            "vertical_justify": 0,
-            "default_stroke_font": true,
-            "bold": false,
-            "italic": false,
-            "bbox_mm": {
-              "x": [
-                4.517857,
-                7.482143
-              ],
-              "y": [
-                108.45175,
-                110.14825
-              ]
-            }
-          },
-          "obstacle": {
-            "kind": "front_courtyard_bbox",
-            "reference": "MK1",
-            "bbox_mm": {
-              "x": [
-                5.702493,
-                10.294999
-              ],
-              "y": [
-                109.703748,
-                114.296251
-              ]
-            },
-            "fab_graphics_bbox_mm": {
-              "x": [
-                5.95,
-                10.05
-              ],
-              "y": [
-                109.95,
-                114.05
-              ]
-            },
-            "native_geometry_sha256": "dfde050ad6206fa4e547ef3b77c1a0bf7ef14d187d2e9d9d41d2a01c64f424f4",
-            "reviewed_circle_body": {
-              "primary_url": "https://www.sameskydevices.com/product/resource/masterpdf/cmej-0413-42-smt-tr.pdf",
-              "section": "Rev1.04 p2 mechanical drawing, diameter4.0 +/-0.2 mm",
-              "library_sha256": "039257c90aa952b1e74608cb510cf852cb93eeba0b7dea0b98d0864a2b085817",
-              "native_geometry_matches_library": true,
-              "centre_mm": [
-                8.0,
-                112.0
-              ],
-              "radius_max_mm": 2.1
-            },
-            "native_text_clearances": {
-              "425e9795-ce67-51f6-9532-e6f4d41b5018": {
-                "status": "measured",
-                "method": "native_stroke_shape_to_maximum_body_circle",
-                "gap_lower_mm": 0.292594,
-                "gap_upper_mm": 0.292595,
-                "inputs_sha256": "69641f35875cadd8ea5636a4b2d982984c28932ab48dc78eb7c4a8d752e11b2e"
-              },
-              "a2166c67-2ea3-50b1-9edf-c08138fdff76": {
-                "status": "measured",
-                "method": "native_stroke_shape_to_maximum_body_circle",
-                "gap_lower_mm": 0.230879,
-                "gap_upper_mm": 0.23088,
-                "inputs_sha256": "040f8376a7497b3c94501f0d30eebd89e920a28988062e900490242b598dccf6"
-              }
-            }
-          },
-          "fab_graphics_bbox_overlap": true,
-          "fab_graphics_bbox_gap_mm": 0.0,
-          "required_body_gap_mm": 0.15,
-          "native_maximum_body_gap_mm": [
-            0.292594,
-            0.292595
-          ],
-          "resolution_reason": "Actual native text strokes clear the primary maximum circular body; exact native/library geometry agrees. Pads and drills remain independently screened."
-        },
-        {
-          "kind": "front_courtyard_bbox",
-          "text": {
-            "id": "a2166c67-2ea3-50b1-9edf-c08138fdff76",
-            "text": "RF RP",
-            "layer": "F.Silkscreen",
-            "at_mm": [
-              6.0,
-              114.95
-            ],
-            "size_mm": [
-              1.0,
-              1.0
-            ],
-            "thickness_mm": 0.15,
-            "angle_deg": 0.0,
-            "mirrored": false,
-            "visible": true,
-            "horizontal_justify": 0,
-            "vertical_justify": 0,
-            "default_stroke_font": true,
-            "bold": false,
-            "italic": false,
-            "bbox_mm": {
-              "x": [
-                3.565476,
-                8.434524
-              ],
-              "y": [
-                114.10175,
-                115.79825
-              ]
-            }
-          },
-          "obstacle": {
-            "kind": "front_courtyard_bbox",
-            "reference": "MK1",
-            "bbox_mm": {
-              "x": [
-                5.702493,
-                10.294999
-              ],
-              "y": [
-                109.703748,
-                114.296251
-              ]
-            },
-            "fab_graphics_bbox_mm": {
-              "x": [
-                5.95,
-                10.05
-              ],
-              "y": [
-                109.95,
-                114.05
-              ]
-            },
-            "native_geometry_sha256": "dfde050ad6206fa4e547ef3b77c1a0bf7ef14d187d2e9d9d41d2a01c64f424f4",
-            "reviewed_circle_body": {
-              "primary_url": "https://www.sameskydevices.com/product/resource/masterpdf/cmej-0413-42-smt-tr.pdf",
-              "section": "Rev1.04 p2 mechanical drawing, diameter4.0 +/-0.2 mm",
-              "library_sha256": "039257c90aa952b1e74608cb510cf852cb93eeba0b7dea0b98d0864a2b085817",
-              "native_geometry_matches_library": true,
-              "centre_mm": [
-                8.0,
-                112.0
-              ],
-              "radius_max_mm": 2.1
-            },
-            "native_text_clearances": {
-              "425e9795-ce67-51f6-9532-e6f4d41b5018": {
-                "status": "measured",
-                "method": "native_stroke_shape_to_maximum_body_circle",
-                "gap_lower_mm": 0.292594,
-                "gap_upper_mm": 0.292595,
-                "inputs_sha256": "69641f35875cadd8ea5636a4b2d982984c28932ab48dc78eb7c4a8d752e11b2e"
-              },
-              "a2166c67-2ea3-50b1-9edf-c08138fdff76": {
-                "status": "measured",
-                "method": "native_stroke_shape_to_maximum_body_circle",
-                "gap_lower_mm": 0.230879,
-                "gap_upper_mm": 0.23088,
-                "inputs_sha256": "040f8376a7497b3c94501f0d30eebd89e920a28988062e900490242b598dccf6"
-              }
-            }
-          },
-          "fab_graphics_bbox_overlap": false,
-          "fab_graphics_bbox_gap_mm": 0.05174999999999841,
-          "required_body_gap_mm": 0.15,
-          "native_maximum_body_gap_mm": [
-            0.230879,
-            0.23088
-          ],
-          "resolution_reason": "Actual native text strokes clear the primary maximum circular body; exact native/library geometry agrees. Pads and drills remain independently screened."
-        },
-        {
-          "kind": "user_text_bbox_overlap",
-          "text": {
-            "id": "478d8e35-18b5-5c0f-ba1a-cbddb77a6a1b",
-            "text": "BOOT",
-            "layer": "F.Silkscreen",
-            "at_mm": [
-              6.0,
-              116.3
-            ],
-            "size_mm": [
-              1.0,
-              1.0
-            ],
-            "thickness_mm": 0.15,
-            "angle_deg": 0.0,
-            "mirrored": false,
-            "visible": true,
-            "horizontal_justify": 0,
-            "vertical_justify": 0,
-            "default_stroke_font": true,
-            "bold": false,
-            "italic": false,
-            "bbox_mm": {
-              "x": [
-                3.946429,
-                8.053572
-              ],
-              "y": [
-                115.45175,
-                117.14825
-              ]
-            }
-          },
-          "other_text": {
-            "id": "a2166c67-2ea3-50b1-9edf-c08138fdff76",
-            "text": "RF RP",
-            "layer": "F.Silkscreen",
-            "at_mm": [
-              6.0,
-              114.95
-            ],
-            "size_mm": [
-              1.0,
-              1.0
-            ],
-            "thickness_mm": 0.15,
-            "angle_deg": 0.0,
-            "mirrored": false,
-            "visible": true,
-            "horizontal_justify": 0,
-            "vertical_justify": 0,
-            "default_stroke_font": true,
-            "bold": false,
-            "italic": false,
-            "bbox_mm": {
-              "x": [
-                3.565476,
-                8.434524
-              ],
-              "y": [
-                114.10175,
-                115.79825
-              ]
-            }
-          },
-          "native_text_gap_mm": [
-            0.2,
-            0.200001
-          ],
-          "resolution_reason": "Actual native strokes, including both pen widths, are separated by the required gap"
-        },
-        {
           "kind": "user_text_bbox_overlap",
           "text": {
             "id": "67a6dc19-7c10-50be-9e77-3464a6e51fb3",
@@ -2527,7 +2282,7 @@
             }
           },
           "other_text": {
-            "id": "569fa67a-dcf8-5902-98dc-d389bd21d17a",
+            "id": "d7b59c7f-b242-5771-9d71-701407bb9e0c",
             "text": "RF RP",
             "layer": "F.Silkscreen",
             "at_mm": [
@@ -2676,7 +2431,7 @@
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "969148b7-cf11-5b89-b237-6db84fae5698"
+          "actual_id": "b63aaad7-c207-504a-b548-4712d5a8221a"
         },
         {
           "expected": {
@@ -2701,14 +2456,14 @@
             "text": "RF RP",
             "at_mm": [
               6.0,
-              114.95
+              114.2
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "a2166c67-2ea3-50b1-9edf-c08138fdff76"
+          "actual_id": "7fff2056-5cd8-5031-b1a0-601453dff62b"
         },
         {
           "expected": {
@@ -2740,7 +2495,7 @@
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "569fa67a-dcf8-5902-98dc-d389bd21d17a"
+          "actual_id": "d7b59c7f-b242-5771-9d71-701407bb9e0c"
         },
         {
           "expected": {

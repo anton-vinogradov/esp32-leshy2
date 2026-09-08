@@ -15,6 +15,12 @@ class UserSilkscreenTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.contract = json.loads((ROOT / "hardware/layout/h6-r2-placement-contract.json").read_text())
+        # Source-only label tests use the reviewed mic target while native/JSON
+        # integration is performed separately. No fixture writes the contract.
+        cls.contract = copy.deepcopy(cls.contract)
+        cls.contract["placement_overrides"]["microphone"] = {
+            "project": "LESHY2-RF-R2", "frame": "rear-inner",
+            "anchor_mm": [47, 147.4], "rotation_deg": 0, "mechanical_locked": True}
         cls.boards = json.loads((ROOT / "hardware/layout/generated/H6-R2-placement-audit.json").read_text())["boards"]
         cls.bindings = json.loads((ROOT / "hardware/layout/generated/H6-R2-kicad-net-bindings.json").read_text())["projects"]
 
@@ -161,8 +167,7 @@ class UserSilkscreenTests(unittest.TestCase):
                 self.assertEqual(2, len(found))
                 self.assertEqual({"F.Silkscreen"}, {row["layer"] for row in found})
                 self.assertEqual({6.0 if spec["edge"] == "left" else 74.0}, {row["at_mm"][0] for row in found})
-                spacing = 1.35 if board["project"] == "LESHY2-RF-R2" and instance == "rf_rp_boot_button" else 2.1
-                self.assertAlmostEqual(spacing, found[1]["at_mm"][1] - found[0]["at_mm"][1])
+                self.assertAlmostEqual(2.1, found[1]["at_mm"][1] - found[0]["at_mm"][1])
 
     def test_all_four_usb_paths_have_their_real_role_and_uniform_rows(self):
         found = {}
@@ -178,12 +183,45 @@ class UserSilkscreenTests(unittest.TestCase):
             self.assertEqual([138.2, 140.0], [row["at_mm"][1] for row in rows])
         self.assertEqual(1, sum(row["text"] == "POWER + USB" for rows in found.values() for row in rows))
 
-    def test_rf_boot_owner_stays_on_action_axis_below_outward_microphone(self):
+    def test_rf_boot_owner_returns_to_the_uniform_service_caption_row(self):
         board = next(b for b in self.boards if b["project"] == "LESHY2-RF-R2")
         found = [r for r in SILK.labels(board["project"], board["placements"], self.contract)
                  if r["instance"] == "rf_rp_boot_button"]
-        self.assertEqual([("RF RP", [6.0, 114.95]), ("BOOT", [6.0, 116.3])],
+        self.assertEqual([("RF RP", [6.0, 114.2]), ("BOOT", [6.0, 116.3])],
                          [(r["text"], r["at_mm"]) for r in found])
+
+    def test_ui_mic_label_tracks_cross_board_x_without_inventing_a_ui_component(self):
+        board = next(b for b in self.boards if b["project"] == "LESHY2-UI-R2")
+        rows = copy.deepcopy(board["placements"])
+        self.assertNotIn("microphone", {r["instance"] for r in rows})
+        for x, expected_x in ((47, 33), (47.2, 32.8)):
+            contract = copy.deepcopy(self.contract)
+            contract["placement_overrides"]["microphone"]["anchor_mm"][0] = x
+            labels = SILK.labels(board["project"], rows, contract)
+            found = [r for r in labels if r["instance"] == "microphone"]
+            self.assertEqual(1, len(found))
+            self.assertEqual({"instance": "microphone", "reference": "RF:MK1",
+                              "source_project": "LESHY2-RF-R2", "role": "cross_board_acoustic",
+                              "text": "MIC", "at_mm": [expected_x, 148.9], "size_mm": 1.0,
+                              "thickness_mm": .15, "layer": "F.Silkscreen"}, found[0])
+        self.assertEqual(board["placements"], rows)
+        rf = next(b for b in self.boards if b["project"] == "LESHY2-RF-R2")
+        self.assertNotIn("MIC", {r["text"] for r in SILK.labels(rf["project"], rf["placements"], self.contract)})
+
+    def test_cross_board_mic_label_rejects_unreviewed_side_pose_or_frame(self):
+        for key, value in (("project", "LESHY2-UI-R2"), ("frame", "rear-outer"),
+                           ("rotation_deg", 180), ("rotation_deg", True),
+                           ("anchor_mm", [8, 112]), ("anchor_mm", [47, 112]),
+                           ("anchor_mm", [33, 147.4]), ("anchor_mm", [47, float("nan")]),
+                           ("anchor_mm", [47]), ("centre_mm", [47, 147.4])):
+            contract = copy.deepcopy(self.contract)
+            contract["placement_overrides"]["microphone"][key] = value
+            with self.subTest(key=key, value=value), self.assertRaises(ValueError):
+                SILK.microphone_cross_board_label(contract)
+        contract = copy.deepcopy(self.contract)
+        del contract["placement_overrides"]["microphone"]
+        with self.assertRaises(ValueError):
+            SILK.microphone_cross_board_label(contract)
 
     def test_all_ten_indicators_are_labelled_at_actual_positions(self):
         # Independent accepted interface name: IEEE 802.15.4, not "5.4".

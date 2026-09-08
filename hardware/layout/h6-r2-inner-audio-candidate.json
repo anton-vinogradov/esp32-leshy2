@@ -1,7 +1,16 @@
 {
   "schema_version": 1,
   "feature_id": "RF-INNER-HEADSET-LOCAL-MIC-001",
-  "status": "placement_adopted_not_audio_qualified",
+  "status": "placement_partially_superseded_not_audio_qualified",
+  "placement_scope": {
+    "historical_status": "placement_adopted_not_audio_qualified",
+    "historical_fields": ["placement_rows", "constraints"],
+    "historical_placement_rows_sha256": "c78af09eff2278743b42ed5c1d3018b686e4d70c2670ff64d3ba8a36d9bb6330",
+    "superseded_references": ["C229", "C232", "MK1", "R202", "R205", "R206", "U85"],
+    "retained_current_reference_count": 43,
+    "current_replacement_review": "hardware/layout/h6-r2-microphone-bottom-candidate.json",
+    "policy": "The original fifty before/after rows and constraints are retained as historical evidence. Only the forty-three references outside superseded_references remain current placement requirements here. The seven replacement poses and inward top-port acoustic-access intent belong exclusively to current_replacement_review and the current placement/intent checks; this history cannot approve them or restore the former outward microphone. Identity and electrical pad/net multisets remain applicable to all fifty unchanged parts. No audio, routing, acoustic or manufacturing qualification is granted."
+  },
   "base_commit": "e45c5b23bb2f7f7b089b047d5505e555b51b82ab",
   "project": "LESHY2-RF-R2",
   "baseline_board_sha256": "cb5855cf3d9c534bfdbd5190a86f54f4d800b8c594c717257463fd81033f4e9f",

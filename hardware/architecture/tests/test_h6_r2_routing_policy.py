@@ -273,7 +273,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual("retain_80x150_mm", size["decision"])
         # Corrected interfaces and the restored internal audio/support group change
         # side occupancy without removing fitted parts or expanding the PCB.
-        self.assertEqual(62.064, size["maximum_same_face_courtyard_occupancy_percent"])
+        self.assertEqual(62.24, size["maximum_same_face_courtyard_occupancy_percent"])
         self.assertEqual([85.0, 150.0], size["expansion_candidate_if_triggered_mm"])
         self.assertEqual(5, len(size["requalification_after_any_outline_or_anchor_change"]))
         boards = {row["project"]: row for row in audit["boards"]}

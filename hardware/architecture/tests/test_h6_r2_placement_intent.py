@@ -21,7 +21,9 @@ def fixture():
           "SW3": item(8, 80), "SW4": item(72.1, 67.42, actuator=[72.1, 66.5]),
           "U83": item(.8, 100, "B.Cu"), "J1": item(16.47, 146.2, "B.Cu", 180)}
     rf["BT1"]["fab_stroke_bounds_mm"] = [20.06, 46.42, 59.94, 123.58]
-    rf["MK1"] = {**item(8, 112, angle=180), "footprint": "Leshy2:CMEJ-0413-42-SMT-TR"}
+    rf["MK1"] = {**item(47, 147.4, side="B.Cu"),
+                 "footprint": "Leshy2:CMEJ-0413-42-SMT-TR",
+                 "value": "Same Sky CMEJ-0413-42-SMT-TR"}
     for board, refs in ((ui, ("J12", "J3", "J14", "J7", "J16")),
                         (rf, ("J9", "J8", "J5", "J6", "J7"))):
         for x, ref in zip((10.6, 25.3, 40, 54.7, 69.4), refs):
@@ -32,9 +34,17 @@ def fixture():
         ui[f"SW{9+n}"] = item(5.52, y, angle=90, actuator=[4.6, y])
         ui[f"SW{13+n}"] = item(74.48, y, angle=-90, actuator=[75.4, y])
     return {"boards": dict(zip(INTENT.PROJECTS, (ui, rf))),
+            "microphone_labels": {INTENT.PROJECTS[0]: [mic_label()], INTENT.PROJECTS[1]: []},
             "bottom_edges": {INTENT.PROJECTS[0]: notch_edges()},
             "assembly_registration": {INTENT.PROJECTS[0]: {
                 "status": "pass_scoped_native_registration", "required_count": 5, "observed_count": 5}}}
+
+
+def mic_label():
+    return {"text": "MIC", "at_mm": [33, 148.9], "layer": "F.Silkscreen",
+            "size_mm": [1, 1], "thickness_mm": .15, "angle_deg": 0,
+            "visible": True, "mirrored": False, "default_stroke_font": True,
+            "bold": False, "italic": False, "horizontal_justify": 0, "vertical_justify": 0}
 
 
 def notch_edges():
@@ -108,19 +118,100 @@ class PlacementIntentTests(unittest.TestCase):
     def test_ordinary_smt_is_not_permission_for_external_audio(self):
         self.rejected(1, "U83", "side", "F.Cu", "headset jack body BETWEEN")
 
-    def test_top_port_mic_must_exist_with_exact_package_and_outward_face(self):
-        for mutation in ("missing", "inner", "unknown-package"):
+    def test_microphone_requires_original_inner_lower_edge_intent_not_any_outward_pose(self):
+        for mutation in ("missing", "old-F", "old-XY-inner", "F-bottom", "B-upper",
+                         "wrong-X", "unknown-package", "wrong-part", "wrong-angle"):
             snapshot = fixture()
             rf = snapshot["boards"][INTENT.PROJECTS[1]]
             if mutation == "missing":
                 del rf["MK1"]
-            elif mutation == "inner":
-                rf["MK1"]["side"] = "B.Cu"
-            else:
+            elif mutation == "old-F":
+                rf["MK1"].update(side="F.Cu", anchor_mm=[8, 112], rotation_deg=180)
+            elif mutation == "old-XY-inner":
+                rf["MK1"]["anchor_mm"] = [8, 112]
+            elif mutation == "F-bottom":
+                rf["MK1"]["side"] = "F.Cu"
+            elif mutation == "B-upper":
+                rf["MK1"]["anchor_mm"][1] = 112
+            elif mutation == "wrong-X":
+                rf["MK1"]["anchor_mm"][0] = 33
+            elif mutation == "unknown-package":
                 rf["MK1"]["footprint"] = "Other:bottom-port"
+            elif mutation == "wrong-part":
+                rf["MK1"]["value"] = "Another same-size microphone"
+            else:
+                rf["MK1"]["rotation_deg"] = 180
             with self.subTest(mutation=mutation):
-                self.assertIn("exact top-port microphone present on outward RF face",
+                self.assertIn("exact microphone inside RF at the lower-edge acoustic corridor",
                               INTENT.evaluate(snapshot)["failed_requirements"])
+
+    def test_microphone_corridor_and_maximum_body_rim_are_independent_finite_bounds(self):
+        for x in (46.75, 47, 47.25):
+            for y in (147.1, 147.4, 147.6):
+                snapshot = fixture()
+                snapshot["boards"][INTENT.PROJECTS[1]]["MK1"]["anchor_mm"] = [x, y]
+                snapshot["microphone_labels"][INTENT.PROJECTS[0]][0]["at_mm"][0] = 80-x
+                with self.subTest(x=x, y=y):
+                    self.assertEqual("pass", INTENT.evaluate(snapshot)["status"])
+        for at in ([46.749, 147.4], [47.251, 147.4], [47, 147.099], [47, 147.601]):
+            self.rejected(1, "MK1", "anchor_mm", at, "lower-edge acoustic corridor")
+
+    def test_mic_label_is_exactly_one_front_readable_cross_board_annotation(self):
+        expected = "one readable UI front MIC label follows the RF microphone through the assembly transform"
+        for key, value in (("text", "MICROPHONE"), ("at_mm", [47, 148.9]),
+                           ("at_mm", [33, 148.0]), ("layer", "B.Silkscreen"),
+                           ("size_mm", [.9, 1]), ("size_mm", [1, 1.1]),
+                           ("thickness_mm", .12), ("angle_deg", 180),
+                           ("visible", False), ("mirrored", True), ("bold", True),
+                           ("italic", True), ("default_stroke_font", False),
+                           ("horizontal_justify", 1), ("vertical_justify", -1)):
+            snapshot = fixture()
+            snapshot["microphone_labels"][INTENT.PROJECTS[0]][0][key] = value
+            with self.subTest(key=key, value=value):
+                self.assertIn(expected, INTENT.evaluate(snapshot)["failed_requirements"])
+        for mutation in ("missing", "duplicate", "extra-RF", "old-full-word"):
+            snapshot = fixture()
+            labels = snapshot["microphone_labels"][INTENT.PROJECTS[0]]
+            if mutation == "missing": labels.clear()
+            elif mutation == "duplicate": labels.append(copy.deepcopy(labels[0]))
+            elif mutation == "extra-RF": snapshot["microphone_labels"][INTENT.PROJECTS[1]].append(mic_label())
+            else: labels.append({**mic_label(), "text": "MICROPHONE"})
+            with self.subTest(mutation=mutation):
+                self.assertIn(expected, INTENT.evaluate(snapshot)["failed_requirements"])
+
+    def test_mic_label_follows_actual_native_x_not_a_constant_or_source_claim(self):
+        snapshot = fixture()
+        snapshot["boards"][INTENT.PROJECTS[1]]["MK1"]["anchor_mm"][0] = 47.2
+        self.assertEqual("fail", INTENT.evaluate(snapshot)["status"])
+        snapshot["microphone_labels"][INTENT.PROJECTS[0]][0]["at_mm"][0] = 32.8
+        self.assertEqual("pass", INTENT.evaluate(snapshot)["status"])
+
+    def test_native_mic_text_extraction_reads_real_text_presentation_without_writes(self):
+        try:
+            import pcbnew
+        except ImportError:
+            self.skipTest("requires KiCad Python for in-memory native text extraction")
+        board = pcbnew.BOARD()
+        item = pcbnew.PCB_TEXT(board)
+        item.SetText("MIC")
+        item.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(33), pcbnew.FromMM(148.9)))
+        item.SetLayer(pcbnew.F_SilkS)
+        item.SetTextSize(pcbnew.VECTOR2I(pcbnew.FromMM(1), pcbnew.FromMM(1)))
+        item.SetTextThickness(pcbnew.FromMM(.15))
+        item.SetTextAngle(pcbnew.EDA_ANGLE(0, pcbnew.DEGREES_T))
+        item.SetMirrored(False)
+        item.SetHorizJustify(pcbnew.GR_TEXT_H_ALIGN_CENTER)
+        item.SetVertJustify(pcbnew.GR_TEXT_V_ALIGN_CENTER)
+        board.Add(item)
+        self.assertEqual([mic_label()], INTENT.native_microphone_labels(board, pcbnew))
+        item.SetVisible(False)
+        item.SetMirrored(True)
+        item.SetLayer(pcbnew.B_SilkS)
+        actual = INTENT.native_microphone_labels(board, pcbnew)
+        self.assertEqual(1, len(actual))
+        self.assertFalse(actual[0]["visible"])
+        self.assertTrue(actual[0]["mirrored"])
+        self.assertNotEqual("F.Silkscreen", actual[0]["layer"])
 
     def test_jae_reference_overhang_is_not_user_accepted_overhang(self):
         self.rejected(1, "J1", "anchor_mm", [16.47, 146.9], "USB")
@@ -199,7 +290,7 @@ class PlacementIntentTests(unittest.TestCase):
             self.skipTest("report is generated during joint native integration")
         report = json.loads(path.read_text())
         self.assertEqual("pass", report["status"])
-        self.assertGreaterEqual(len(report["checks"]), 19)
+        self.assertGreaterEqual(len(report["checks"]), 20)
         self.assertEqual([], report["failed_requirements"])
 
 

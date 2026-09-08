@@ -2,7 +2,7 @@
 
 [Русский](h6-r2-interface-review.ru.md)
 
-**2026-09-08: the [verified placement-repair package](h6-r2-placement-repair.md) recentres the holder, restores the left encoder and internal headset, recesses product USB and corrects local supplies and speaker representation. Fresh native DRC and schematic parity pass on both final boards. H6.0.3-R1 remains open and is not fabrication-ready.**
+**2026-09-08: the [placement repair](h6-r2-placement-repair.md) includes the completed seven-reference microphone correction: RF-inner at the bottom edge, not outside between service controls. Fresh native DRC/parity, placement, labels and 20 intent checks pass; all views are refreshed. H6.0.3-R1 remains open and is not fabrication-ready.**
 
 H1 remains a concept drawing, not a complete parity view of the current PCB.
 A part being present in an image does not prove the right placement, a functioning
@@ -64,11 +64,12 @@ open: this envelope still permits **0.11 mm interference**.
 
 ## Current placement repair
 
-The [placement-repair report](h6-r2-placement-repair.md) owns the exact current
-poses, finite 15-UI/105-RF change list and combined verification results. It
-replaces the earlier displaced holder, right-hand encoder and exterior audio
-placement. Existing button symmetry, SMA pitch, card recess and display slot
-are retained; the report distinguishes corrected positions from assembly limits.
+The [placement-repair report](h6-r2-placement-repair.md) distinguishes the preceding
+15-UI/105-RF package from the [seven-RF-reference microphone follow-up](../hardware/layout/h6-r2-microphone-bottom-candidate.json). MK1
+returns to **B0 [47,147.4]**; **UI F `MIC` [33,148.9]** marks its bottom access,
+not a separate UI component. RF now has **12 F / 768 B** electrical footprints.
+The centred holder, left/down encoder, internal headset, button symmetry, SMA
+pitch, card recess and display slot are retained. Placement is not acoustic acceptance.
 
 ## Earlier integrations — historical scope
 
@@ -97,11 +98,11 @@ guarded; generic body models do not close actual assembled Z.
 
 | Check | Result and limit |
 | --- | --- |
-| Combined repair | Fresh DRC/schematic parity, source/library pad parity, user labels, current views and both test suites pass on the integrated boards; exact scope and counts are in the [repair report](h6-r2-placement-repair.md). The [current-routing audit](../hardware/layout/generated/H6-R2-current-routing-audit.json) owns live PCB hashes and hash-bound receipts. |
+| Combined repair | Both corrected boards pass fresh DRC with 0 rule violations / 0 schematic-parity findings, placement and source/library pad parity. Labels and 20 intent checks pass; current views are refreshed and visually reviewed. The [repair report](h6-r2-placement-repair.md) states the scope; the [current-routing audit](../hardware/layout/generated/H6-R2-current-routing-audit.json) owns live PCB hashes and hash-bound receipts. |
 | Copper / routing | The package retains **857 copper objects: UI92 + RF765**. Holder centring needs one explicitly reviewed via and its two attached segments to move; unaffected copper and connected-pad adjacency are guarded. **3071 connections remain unrouted**; retained copper is not completed routing. |
-| Native integration | Finite reference/graphic/copper allowlists reject unlisted changes, lost pads and duplicate UUIDs. Pin/net identity, unchanged footprints and exact source/library pad parity have been checked on the combined boards. |
+| Native integration | Finite reference/graphic/copper allowlists reject unlisted changes, lost pads and duplicate UUIDs. The correction preserves pin/net identity and unrelated footprints; all 1216 footprints pass source/library pad parity. The microphone follow-up changes no copper. |
 | Electrical scope | No selected MPN, signal function, GPIO or logical net is changed by these placements. The encoder's physical pad coordinates change with its real move, but E/D and A/B/C identities do not swap. Existing electrical defects are not repaired by relocating or drawing their parts. |
-| Labels and images | Fresh label and component-view audits bind the current PCB hashes. Fab bodies, assembly reserves and explanatory annotations are not silkscreen, routed copper or fitted cells/cables. The prior scoped label pass is not silently reused after relocation. |
+| Labels and images | Refreshed label and component-view audits bind the corrected PCB hashes. Fab bodies, assembly reserves and explanatory annotations are not silkscreen, routed copper or fitted cells/cables. These are fresh checks, not reuse of the prior label pass. |
 | DRC scope | DRC means design-rule and schematic-parity checks. The capped unconnected-items list is not the exact remaining-connection count. Installed standard libraries and actual assembled/measured behaviour remain separate boundaries. |
 
 Current [H3 is `review_required`](h3-r2-acceptance.md): retained calculations are
@@ -121,16 +122,19 @@ assembled-mechanics gates. No prototype has been demonstrated to boot by this re
 | SMA thickness | Reconcile the 1.75 ± 0.10 mm connector slot with finished PCB thickness; the earlier 1.60 ± 0.16 mm envelope permits 0.11 mm interference. Do not assume the prongs can be spread. |
 | SMA antennas and microSD access | The wider 14.7 mm bank and nominal recessed-card geometry do not qualify actual antenna bases, assembled inter-row Z, finger/tool and screw access, cable bends, card/connector tolerances or enclosure access. The PCB notch is a project choice, not a manufacturer requirement. |
 | Display/FPC/PSA | The native 27 × 1.2 mm slot and ZIF orientation exist, but the real fold, slack, rear-panel flatness, adhesive thickness and assembly tolerance still require closure. |
-| Microphone/speaker | The outward MK1 and separate UI speaker body now have explicit placement targets, but quiet audio routing, real acoustic openings, speaker fixation/insulation and wire strain relief remain open. RF LS1 still represents wire termination, not the UI speaker body. |
+| Microphone/speaker | MK1 is inside RF at the bottom edge; its top port faces the inter-board space, with sound access through the designed open bottom gap. Geometry does not qualify acoustic transfer or noise. Audio routing, speaker fixation/insulation and wire strain relief remain open. RF LS1 still represents wire termination, not the separate UI speaker body. |
 | C5 service path | Physical USB and BOOT controls are present, but [the mux selector/enable defect](h6-r2-c5-mux-control-review.md) is open. Separately, U14.15/GPIO28 is still NC while C5_BOOT_N reaches R76/R79, so the drawn BOOT button does not establish the download strap. C5/Hub reset under KILL also needs reconciliation with the firmware update policy before functional acceptance. These are electrical work items, not missing component drawings. |
 | RUN/KILL direction | Resolve the manufacturer's conflicting physical A/B caption before accepting directional markings. The electrical pairs are known; the lever direction is not silently inferred. |
 | Assembled interfaces | Check exact bodies, opposite-face solder/locator protrusion, microcoax bends, inserted plugs, card/finger access and optical apertures together. Planar clearance does not close STEP or received-part checks. |
 
 The earlier [exterior microphone-cluster candidate](../hardware/layout/h6-r2-microphone-island-review.json)
 and its temporary MIC_RAW route are historical, **not the adopted audio layout**.
-The new repair keeps the microphone outside and ordinary support circuitry inside.
-Its placement does not qualify ground return, remote headset branches, noise or
-enclosure acoustics.
+The later **F180 [8,112]** microphone placement was also incorrect and is now
+superseded by **B0 [47,147.4]**, with six supports remaining on B. The selected
+`MIC_RAW` physical pad 1 → U85.1 span of **43.704–44.357 mm** is only a straight-line
+lower bound, not a qualified quiet route. The capsule's internal FET has a
+**2.2-kΩ load**; this is not an unbuffered electret element. Ground return, remote
+headset branches, noise and enclosure acoustics are not qualified by this relocation.
 
 The display slot is x[26.5,53.5], y[31.5,32.7], R0.6. UI J1 at [40,35.4],
 B0, opens toward it. Explicit mating remains panel contact `n` → Hirose `51−n`.
@@ -156,7 +160,7 @@ libraries require new checks; historical records retain their original status.
 
 - Current owners: [placement contract](../hardware/layout/h6-r2-placement-contract.json), [native instance ledger](../hardware/ecad/generated/H2-R2-native-instance-ledger.json), [assembly coordinates](../hardware/product-design/assembly-coordinate-model.json), [display contract](../hardware/product-design/display-mount.json).
 - Derived audits: [current routing](../hardware/layout/generated/H6-R2-current-routing-audit.json), [pad parity](../hardware/layout/generated/H6-R2-footprint-pad-parity.json), [native user labels](../hardware/layout/generated/H6-R2-user-silkscreen-audit.json). Check their recorded source hashes against current native files: a reproducible stale snapshot is not evidence for the repair.
-- Component images: the [view manifest](../hardware/layout/generated/H6-R2-component-views.json) binds both PCB hashes and all five published SVG hashes: four faces plus overview; it must be refreshed with the repair. The actual card notch is shown; the ejected-card position is a dashed explanatory overlay, not silkscreen or part of the PCB outline. Native component views do not qualify assembled bodies or full H1-to-PCB parity.
+- Component images: the refreshed [view manifest](../hardware/layout/generated/H6-R2-component-views.json) binds both corrected PCB hashes and all five published SVG hashes: four faces plus overview. The actual card notch is shown; the ejected-card position is a dashed explanatory overlay, not silkscreen or part of the PCB outline. Native component views do not qualify assembled bodies or full H1-to-PCB parity.
 - Electrical proof: [bounded analog transfer](../hardware/verification/generated/H3-R2-analog-corners.json), [NC6 removal and connected-tuple baseline](../hardware/verification/h3-r2-input-freeze-contract.json), [typed electrical review](../hardware/verification/generated/H6-R2-electrical-semantics.json).
 - Open mechanics: [Cap](../hardware/layout/h6-r2-cap-mating-review.json), [holder/encoder](../hardware/layout/h6-r2-holder-encoder-geometry-evidence.json), [B3S datum](../hardware/layout/h6-r2-b3s-actuator-datum-review.json), [audio placement](../hardware/layout/h6-r2-audio-placement-proposal.json). Source-review/candidate snapshots retain their original status; source-selection tags such as `native_integration_open` describe that original selection snapshot, not the subsequent native status recorded on this page.
 - Historical discovery snapshots: [mechanical review, 2026-09-07 16:21:55 UTC](../hardware/layout/h6-r2-interface-review-findings.json), [74-row inventory, 16:24:49 UTC](../hardware/layout/h6-r2-connector-review-findings.json), [interface datums](../hardware/layout/h6-r2-interface-datum-review.json), [old mid-mount audio corrections](../hardware/layout/h6-r2-audio-datum-review.json). Their old defects must not be presented as current placements, nor their old DRC as fresh acceptance.

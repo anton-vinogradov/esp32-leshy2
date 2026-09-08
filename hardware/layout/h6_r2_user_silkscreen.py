@@ -117,6 +117,24 @@ def antenna_signal_findings(project: str, placed_rows: list[dict], contract: dic
     return errors
 
 
+def microphone_cross_board_label(contract: dict) -> dict:
+    """UI exterior annotation of the RF-inner capsule; never a UI footprint."""
+    target = contract.get("placement_overrides", {}).get("microphone", {})
+    anchor = target.get("anchor_mm")
+    angle = target.get("rotation_deg")
+    numeric = lambda v: type(v) in (int, float) and math.isfinite(v)
+    if (target.get("project") != "LESHY2-RF-R2" or target.get("frame") != "rear-inner"
+            or "centre_mm" in target or not isinstance(anchor, list) or len(anchor) != 2
+            or not all(numeric(v) for v in anchor) or not numeric(angle) or angle % 360 != 0
+            or abs(anchor[0]-47.0) > .25+1e-9
+            or not .3-1e-9 <= contract["board"]["height_mm"]-anchor[1]-2.1 <= .8+1e-9):
+        raise ValueError("MIC label requires the reviewed RF-inner B0 lower-edge capsule target")
+    return {"instance": "microphone", "reference": "RF:MK1",
+            "source_project": "LESHY2-RF-R2", "role": "cross_board_acoustic",
+            "text": "MIC", "at_mm": [round(contract["board"]["width_mm"]-anchor[0], 4), 148.9],
+            "size_mm": 1.0, "thickness_mm": .15, "layer": "F.Silkscreen"}
+
+
 def labels(project: str, placed_rows: list[dict], contract: dict) -> list[dict]:
     rows = {row["instance"]: row for row in placed_rows}
     result = []
@@ -151,11 +169,7 @@ def labels(project: str, placed_rows: list[dict], contract: dict) -> list[dict]:
         owner, action, _ = instance.rsplit("_", 2)
         x = 6.0 if spec["edge"] == "left" else width - 6.0
         y = row["courtyard_centre_mm"][1]
-        # The outward microphone body is next to RF BOOT. Keep this owner
-        # caption on the BOOT axis but below the capsule; native stroke tests
-        # cover both its primary maximum body and the through-board locator.
-        owner_dy = -0.30 if project == "LESHY2-RF-R2" and instance == "rf_rp_boot_button" else -1.05
-        add(instance, SERVICE_OWNERS[owner], x, y + owner_dy)
+        add(instance, SERVICE_OWNERS[owner], x, y - 1.05)
         add(instance, "RST" if action == "reset" else "BOOT", x, y + 1.05)
 
     for instance, (owner, role) in USB_OWNERS.items():
@@ -169,6 +183,7 @@ def labels(project: str, placed_rows: list[dict], contract: dict) -> list[dict]:
         add(instance, role, x, 140.0)
 
     if project == "LESHY2-UI-R2":
+        result.append(microphone_cross_board_label(contract))
         for instance, text in INDICATORS.items():
             x, y = rows[instance]["courtyard_centre_mm"]
             add(instance, text, x, y + 2.3)

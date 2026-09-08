@@ -3,11 +3,11 @@
   "status": "pass",
   "scope": "Independent planar product intent from native PCB; not general DRC or assembled-Z qualification",
   "sources": {
-    "hardware/layout/h6_r2_placement_intent.py": "7f3468ce08589f0833628efd00122c9562b0ef94ad940cb14a886ffb26d9ba8d",
+    "hardware/layout/h6_r2_placement_intent.py": "e85a23e6ece3e3e6dfcb1f04cf88d489bee5e895b68fad808edcd19cf229d4d8",
     "hardware/layout/h6_r2_speaker_fit.py": "9e677eca3c1d320fc19fd25e961d884a1a903ca9f0af1ca3ad95835d20c38d30",
     "hardware/layout/h6-r2-speaker-body.json": "79349b47e281bc89fc57b843987d5458035c59c9fe6459de42a5949ee690f78b",
-    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "4de030ef283becd282ef0a590d2e5eb42ba3491f66ffa3e9b59f250ef54d5902",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "1177dbb74d06adfa007199e2076b737185d0266f99b517d531a6a897c87328d6"
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "5a29ed7272d412d72b62265bd3940864e4feb23a3f5e5d7ed60f9497620567cb",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "44bea71388631dfd3b7d9c7bfb088569de46d13083fd164bf3562dc8bfde0dde"
   },
   "checks": [
     {
@@ -35,6 +35,7 @@
       "pass": true,
       "observed": {
         "footprint": "Leshy2_R2:Keystone-1048P-POLARITY-CORRECTED",
+        "value": "Keystone Electronics 1048P",
         "side": "F.Cu",
         "anchor_mm": [
           40.0,
@@ -82,6 +83,7 @@
       "pass": true,
       "observed": {
         "footprint": "Leshy2_R2:EC11E18244AU-ENGINEERING-PTH",
+        "value": "Alps Alpine EC11E18244AU",
         "side": "F.Cu",
         "anchor_mm": [
           9.25,
@@ -103,6 +105,7 @@
       "pass": true,
       "observed": {
         "footprint": "Leshy2_R2:B3S-1100P",
+        "value": "OMRON B3S-1100P",
         "side": "F.Cu",
         "anchor_mm": [
           72.1,
@@ -129,6 +132,7 @@
       "pass": true,
       "observed": {
         "footprint": "Leshy2_R2:SJ-43515TS-SMT-TR",
+        "value": "Same Sky SJ-43515TS-SMT-TR",
         "side": "B.Cu",
         "anchor_mm": [
           0.8,
@@ -148,29 +152,66 @@
       }
     },
     {
-      "requirement": "exact top-port microphone present on outward RF face",
+      "requirement": "exact microphone inside RF at the lower-edge acoustic corridor",
       "pass": true,
       "observed": {
         "pose": {
           "footprint": "Leshy2:CMEJ-0413-42-SMT-TR",
-          "side": "F.Cu",
+          "value": "Same Sky CMEJ-0413-42-SMT-TR",
+          "side": "B.Cu",
           "anchor_mm": [
-            8.0,
-            112.0
+            47.0,
+            147.4
           ],
-          "rotation_deg": 180.0,
+          "rotation_deg": 0.0,
           "fab_stroke_bounds_mm": [
-            5.95,
-            109.95,
-            10.05,
-            114.05
+            44.95,
+            145.35,
+            49.05,
+            149.45
           ],
           "actuator_mm": null,
           "pad1_nets": [
             "/RF_22_AUDIO_CODEC_IO/MIC_RAW"
           ]
         },
-        "port_normal_if_exact_F": "outward from RF F; not enclosure acoustic qualification"
+        "maximum_body_diameter_mm": 4.2,
+        "maximum_body_rim_to_bottom_mm": 0.4999999999999942,
+        "scope": "RF-inner top port and lower-edge corridor; actual bottom acoustic path remains unqualified"
+      }
+    },
+    {
+      "requirement": "one readable UI front MIC label follows the RF microphone through the assembly transform",
+      "pass": true,
+      "observed": {
+        "ui_labels": [
+          {
+            "text": "MIC",
+            "at_mm": [
+              33.0,
+              148.9
+            ],
+            "layer": "F.Silkscreen",
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "visible": true,
+            "mirrored": false,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "horizontal_justify": 0,
+            "vertical_justify": 0
+          }
+        ],
+        "rf_labels": [],
+        "expected_ui_x_mm": 33.0,
+        "reference": "RF:MK1",
+        "role": "cross_board_acoustic",
+        "meaning": "MIC abbreviates the RF microphone at bottom enclosure access; it does not claim a downward capsule-port normal"
       }
     },
     {
@@ -184,6 +225,7 @@
       "observed": {
         "pose": {
           "footprint": "Leshy2_R2:USB_C_Receptacle_JAE_DX07S016JA1R1500_EdgeSilk",
+          "value": "JAE DX07S016JA1R1500",
           "side": "B.Cu",
           "anchor_mm": [
             16.469999,

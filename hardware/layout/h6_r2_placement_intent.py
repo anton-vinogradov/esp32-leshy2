@@ -73,9 +73,30 @@ def checked_native_notch(edges):
             "observed_edges": edges}
 
 
+def native_microphone_labels(board, pcbnew):
+    """Read actual board text, including hidden/wrong-face/duplicate labels."""
+    result = []
+    point = lambda p: [round(pcbnew.ToMM(p.x), 6), round(pcbnew.ToMM(p.y), 6)]
+    for item in board.GetDrawings():
+        if not isinstance(item, pcbnew.PCB_TEXT) or item.GetText() not in {"MIC", "MICROPHONE"}:
+            continue
+        result.append({"text": item.GetText(), "at_mm": point(item.GetPosition()),
+                       "layer": "F.Silkscreen" if item.GetLayer() == pcbnew.F_SilkS else board.GetLayerName(item.GetLayer()),
+                       "size_mm": point(item.GetTextSize()),
+                       "thickness_mm": pcbnew.ToMM(item.GetTextThickness()),
+                       "angle_deg": item.GetTextAngleDegrees(),
+                       "visible": item.IsVisible(), "mirrored": item.IsMirrored(),
+                       "default_stroke_font": item.GetFont() is None,
+                       "bold": item.IsBold(), "italic": item.IsItalic(),
+                       "horizontal_justify": int(item.GetHorizJustify()),
+                       "vertical_justify": int(item.GetVertJustify())})
+    return result
+
+
 def native_snapshot(root=ROOT):
     import pcbnew
-    result = {"boards": {}, "sources": {}, "assembly_registration": {}, "bottom_edges": {}}
+    result = {"boards": {}, "sources": {}, "assembly_registration": {}, "bottom_edges": {},
+              "microphone_labels": {}}
     script = Path(__file__).resolve()
     result["sources"][str(script.relative_to(root))] = hashlib.sha256(script.read_bytes()).hexdigest()
     helper = root / "hardware/layout/h6_r2_speaker_fit.py"
@@ -90,6 +111,7 @@ def native_snapshot(root=ROOT):
         path = root / f"hardware/ecad/kicad/{project}/{project}.kicad_pcb"
         result["sources"][str(path.relative_to(root))] = hashlib.sha256(path.read_bytes()).hexdigest()
         board = pcbnew.LoadBoard(str(path))
+        result["microphone_labels"][project] = native_microphone_labels(board, pcbnew)
         if project == PROJECTS[0]:
             result["bottom_edges"][project] = native_bottom_edges(board, pcbnew)
         result["assembly_registration"][project] = speaker.check_native_speaker_geometry(
@@ -113,6 +135,7 @@ def native_snapshot(root=ROOT):
                          sum(pcbnew.ToMM(p.GetPosition().y) for p in contacts)/4]
                         if len(contacts) == 4 and "B3S-1100P" in str(fp.GetFPID().GetLibItemName()) else None)
             rows[reference] = {"footprint": str(fp.GetFPID().GetLibNickname()) + ":" + str(fp.GetFPID().GetLibItemName()),
+                               "value": fp.GetValue(),
                                "side": "B.Cu" if fp.IsFlipped() else "F.Cu",
                                "anchor_mm": point(fp.GetPosition()),
                                "rotation_deg": fp.GetOrientationDegrees(),
@@ -163,15 +186,38 @@ def evaluate(snapshot):
           jack["side"] == "B.Cu" and near(jack["rotation_deg"] % 360, 0)
           and 0 < jack["anchor_mm"][0] < 2, jack)
     mic = rf.get("MK1")
-    # Exact CMEJ top acoustic openings are opposite its SMT pads (primary p2).
-    # F mounting points them away from the RF exterior, not into the sandwich.
-    # XY rotation does not change this normal; enclosure acoustics stay open.
-    check("exact top-port microphone present on outward RF face",
+    # Original intent is an internal RF capsule at the bottom enclosure exit,
+    # not a new rear-normal acoustic port. Primary maximum diameter is 4.2 mm.
+    # This finite XY/side screen does not prove the remaining acoustic channel.
+    mic_rim_gap = height-mic["anchor_mm"][1]-2.1 if mic is not None else None
+    check("exact microphone inside RF at the lower-edge acoustic corridor",
           mic is not None and mic.get("footprint") == "Leshy2:CMEJ-0413-42-SMT-TR"
-          and mic.get("side") == "F.Cu"
-          and 0 < mic["anchor_mm"][0] < width and 0 < mic["anchor_mm"][1] < height,
-          {"pose": mic, "port_normal_if_exact_F": "outward from RF F; not enclosure acoustic qualification"})
-    exterior_functions = {"BT1", "R33", "R34", "SW3", "SW4", "J5", "J6", "J7", "J8", "J9", "J10", "L32", "MK1"}
+          and mic.get("value") == "Same Sky CMEJ-0413-42-SMT-TR"
+          and mic.get("side") == "B.Cu" and near(mic["rotation_deg"] % 360, 0)
+          and abs(mic["anchor_mm"][0]-47.0) <= .25+1e-9
+          and .3-1e-9 <= mic_rim_gap <= .8+1e-9,
+          {"pose": mic, "maximum_body_diameter_mm": 4.2,
+           "maximum_body_rim_to_bottom_mm": mic_rim_gap,
+           "scope": "RF-inner top port and lower-edge corridor; actual bottom acoustic path remains unqualified"})
+    mic_labels = snapshot.get("microphone_labels", {})
+    ui_mic_labels = mic_labels.get(PROJECTS[0], [])
+    label = ui_mic_labels[0] if len(ui_mic_labels) == 1 else None
+    check("one readable UI front MIC label follows the RF microphone through the assembly transform",
+          mic is not None and label is not None and not mic_labels.get(PROJECTS[1], [])
+          and label.get("text") == "MIC" and label.get("layer") == "F.Silkscreen"
+          and near(label["at_mm"][0], width-mic["anchor_mm"][0])
+          and near(label["at_mm"][1], 148.9)
+          and len(label["size_mm"]) == 2 and all(near(v, 1.0) for v in label["size_mm"])
+          and near(label["thickness_mm"], .15) and near(label["angle_deg"] % 360, 0)
+          and label.get("visible") is True and label.get("mirrored") is False
+          and label.get("default_stroke_font") is True
+          and label.get("bold") is False and label.get("italic") is False
+          and label.get("horizontal_justify") == label.get("vertical_justify") == 0,
+          {"ui_labels": ui_mic_labels, "rf_labels": mic_labels.get(PROJECTS[1], []),
+           "expected_ui_x_mm": width-mic["anchor_mm"][0] if mic is not None else None,
+           "reference": "RF:MK1", "role": "cross_board_acoustic",
+           "meaning": "MIC abbreviates the RF microphone at bottom enclosure access; it does not claim a downward capsule-port normal"})
+    exterior_functions = {"BT1", "R33", "R34", "SW3", "SW4", "J5", "J6", "J7", "J8", "J9", "J10", "L32"}
     unexplained = sorted(ref for ref, row in rf.items()
                          if row["side"] == "F.Cu" and ref not in exterior_functions
                          and not ref.startswith("MH"))

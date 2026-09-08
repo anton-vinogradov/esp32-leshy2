@@ -2278,14 +2278,14 @@
       "project": "LESHY2-RF-R2",
       "frame": "rear-inner",
       "anchor_mm": [
-        7.5,
-        110.25
+        16.5,
+        113.75
       ],
-      "rotation_deg": 90,
+      "rotation_deg": 90.0,
       "mechanical_locked": true,
       "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
-      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+      "reason": "Restore the microphone to the original RF-inner bottom zone; keep its 2.2-kohm load/filter local and use the bounded existing-space selector fit. Internal-FET capsule, no additional active audio buffer; quiet routing remains unqualified.",
+      "evidence": "hardware/layout/h6-r2-microphone-bottom-candidate.json"
     },
     "u214_host_buffer_a": {
       "frame": "rear-inner",
@@ -3370,14 +3370,14 @@
       "project": "LESHY2-RF-R2",
       "frame": "rear-inner",
       "anchor_mm": [
-        9.55,
-        110.25
+        18.55,
+        113.75
       ],
-      "rotation_deg": 90,
+      "rotation_deg": 90.0,
       "mechanical_locked": true,
       "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
-      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+      "reason": "Restore the microphone to the original RF-inner bottom zone; keep its 2.2-kohm load/filter local and use the bounded existing-space selector fit. Internal-FET capsule, no additional active audio buffer; quiet routing remains unqualified.",
+      "evidence": "hardware/layout/h6-r2-microphone-bottom-candidate.json"
     },
     "headset_microphone_bias_filter_cap": {
       "project": "LESHY2-RF-R2",
@@ -3409,14 +3409,14 @@
       "project": "LESHY2-RF-R2",
       "frame": "rear-inner",
       "anchor_mm": [
-        7.0,
-        115.4
+        49.25,
+        143.3
       ],
-      "rotation_deg": 0,
+      "rotation_deg": 90,
       "mechanical_locked": true,
       "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
-      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+      "reason": "Restore the microphone to the original RF-inner bottom zone; keep its 2.2-kohm load/filter local and use the bounded existing-space selector fit. Internal-FET capsule, no additional active audio buffer; quiet routing remains unqualified.",
+      "evidence": "hardware/layout/h6-r2-microphone-bottom-candidate.json"
     },
     "unit_supervisor_bypass": {
       "project": "LESHY2-RF-R2",
@@ -3498,16 +3498,16 @@
     },
     "microphone": {
       "project": "LESHY2-RF-R2",
-      "frame": "rear-outer",
+      "frame": "rear-inner",
       "anchor_mm": [
-        8,
-        112
+        47,
+        147.4
       ],
-      "rotation_deg": 180,
+      "rotation_deg": 0,
       "mechanical_locked": true,
       "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
-      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+      "reason": "Restore the microphone to the original RF-inner bottom zone; keep its 2.2-kohm load/filter local and use the bounded existing-space selector fit. Internal-FET capsule, no additional active audio buffer; quiet routing remains unqualified.",
+      "evidence": "hardware/layout/h6-r2-microphone-bottom-candidate.json"
     },
     "audio_capture_mic_bias": {
       "project": "LESHY2-RF-R2",
@@ -3539,14 +3539,14 @@
       "project": "LESHY2-RF-R2",
       "frame": "rear-inner",
       "anchor_mm": [
-        5.7,
-        109.75
+        14.7,
+        113.25
       ],
-      "rotation_deg": 90,
+      "rotation_deg": 90.0,
       "mechanical_locked": true,
       "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
-      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+      "reason": "Restore the microphone to the original RF-inner bottom zone; keep its 2.2-kohm load/filter local and use the bounded existing-space selector fit. Internal-FET capsule, no additional active audio buffer; quiet routing remains unqualified.",
+      "evidence": "hardware/layout/h6-r2-microphone-bottom-candidate.json"
     },
     "headset_microphone_bias_filter_res": {
       "project": "LESHY2-RF-R2",
@@ -3578,27 +3578,27 @@
       "project": "LESHY2-RF-R2",
       "frame": "rear-inner",
       "anchor_mm": [
-        9.7,
-        115.4
+        49.25,
+        140.65
       ],
-      "rotation_deg": 180,
+      "rotation_deg": 270,
       "mechanical_locked": true,
       "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
-      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+      "reason": "Restore the microphone to the original RF-inner bottom zone; keep its 2.2-kohm load/filter local and use the bounded existing-space selector fit. Internal-FET capsule, no additional active audio buffer; quiet routing remains unqualified.",
+      "evidence": "hardware/layout/h6-r2-microphone-bottom-candidate.json"
     },
     "microphone_bias_res": {
       "project": "LESHY2-RF-R2",
       "frame": "rear-inner",
       "anchor_mm": [
-        7.0,
-        114.0
+        47,
+        144
       ],
-      "rotation_deg": 0,
+      "rotation_deg": 180,
       "mechanical_locked": true,
       "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
-      "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
+      "reason": "Restore the microphone to the original RF-inner bottom zone; keep its 2.2-kohm load/filter local and use the bounded existing-space selector fit. Internal-FET capsule, no additional active audio buffer; quiet routing remains unqualified.",
+      "evidence": "hardware/layout/h6-r2-microphone-bottom-candidate.json"
     },
     "unit_supervisor_sense_bottom": {
       "project": "LESHY2-RF-R2",

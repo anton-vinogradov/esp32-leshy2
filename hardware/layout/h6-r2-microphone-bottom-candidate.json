@@ -1,0 +1,583 @@
+{
+  "schema_version": 1,
+  "feature_id": "RF-INNER-BOTTOM-MICROPHONE-001",
+  "status": "reviewed_placement_candidate_not_audio_qualified",
+  "base_commit": "66996ba954eb667ddb5e370cef45dba095a8b9e9",
+  "project": "LESHY2-RF-R2",
+  "baseline_board_sha256": "1177dbb74d06adfa007199e2076b737185d0266f99b517d531a6a897c87328d6",
+  "authority": {
+    "production_written": false,
+    "audio_qualified": false,
+    "fabrication_ready": false
+  },
+  "placement_rows": [
+    {
+      "reference": "MK1",
+      "instance": "microphone",
+      "device_id": "same_sky_cmej_0413_42_smt_tr",
+      "mpn": "Same Sky CMEJ-0413-42-SMT-TR",
+      "footprint": "Leshy2:CMEJ-0413-42-SMT-TR",
+      "before": {
+        "reference": "MK1",
+        "instance": "microphone",
+        "side": "F.Cu",
+        "angle": 180.0,
+        "anchor_mm": [
+          8.0,
+          112.0
+        ],
+        "courtyard": {
+          "x": [
+            5.7025,
+            10.295
+          ],
+          "y": [
+            109.7037,
+            114.2963
+          ]
+        },
+        "fp": "Leshy2:CMEJ-0413-42-SMT-TR",
+        "value": "Same Sky CMEJ-0413-42-SMT-TR"
+      },
+      "after": {
+        "reference": "MK1",
+        "instance": "microphone",
+        "side": "B.Cu",
+        "angle": 0.0,
+        "anchor_mm": [
+          47.0,
+          147.4
+        ],
+        "courtyard": {
+          "x": [
+            44.705,
+            49.2975
+          ],
+          "y": [
+            145.1037,
+            149.6963
+          ]
+        },
+        "fp": "Leshy2:CMEJ-0413-42-SMT-TR",
+        "value": "Same Sky CMEJ-0413-42-SMT-TR"
+      }
+    },
+    {
+      "reference": "R206",
+      "instance": "microphone_bias_res",
+      "device_id": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "reference": "R206",
+        "instance": "microphone_bias_res",
+        "side": "B.Cu",
+        "angle": 0.0,
+        "anchor_mm": [
+          7.0,
+          114.0
+        ],
+        "courtyard": {
+          "x": [
+            6.025,
+            7.975
+          ],
+          "y": [
+            113.485,
+            114.515
+          ]
+        },
+        "fp": "Resistor_SMD:R_0402_1005Metric",
+        "value": "UNI-ROYAL 0402WGF2201TCE"
+      },
+      "after": {
+        "reference": "R206",
+        "instance": "microphone_bias_res",
+        "side": "B.Cu",
+        "angle": 180.0,
+        "anchor_mm": [
+          47.0,
+          144.0
+        ],
+        "courtyard": {
+          "x": [
+            46.025,
+            47.975
+          ],
+          "y": [
+            143.485,
+            144.515
+          ]
+        },
+        "fp": "Resistor_SMD:R_0402_1005Metric",
+        "value": "UNI-ROYAL 0402WGF2201TCE"
+      }
+    },
+    {
+      "reference": "C232",
+      "instance": "microphone_bias_filter_cap",
+      "device_id": "murata_grm188r60j106me47d",
+      "mpn": "Murata GRM188R60J106ME47D",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "before": {
+        "reference": "C232",
+        "instance": "microphone_bias_filter_cap",
+        "side": "B.Cu",
+        "angle": 0.0,
+        "anchor_mm": [
+          7.0,
+          115.4
+        ],
+        "courtyard": {
+          "x": [
+            5.475,
+            8.525
+          ],
+          "y": [
+            114.625,
+            116.175
+          ]
+        },
+        "fp": "Capacitor_SMD:C_0603_1608Metric",
+        "value": "Murata GRM188R60J106ME47D"
+      },
+      "after": {
+        "reference": "C232",
+        "instance": "microphone_bias_filter_cap",
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          49.25,
+          143.3
+        ],
+        "courtyard": {
+          "x": [
+            48.475,
+            50.025
+          ],
+          "y": [
+            141.775,
+            144.825
+          ]
+        },
+        "fp": "Capacitor_SMD:C_0603_1608Metric",
+        "value": "Murata GRM188R60J106ME47D"
+      }
+    },
+    {
+      "reference": "R205",
+      "instance": "microphone_bias_filter_res",
+      "device_id": "yageo_rc0402fr_07220rl",
+      "mpn": "Yageo RC0402FR-07220RL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "reference": "R205",
+        "instance": "microphone_bias_filter_res",
+        "side": "B.Cu",
+        "angle": 180.0,
+        "anchor_mm": [
+          9.7,
+          115.4
+        ],
+        "courtyard": {
+          "x": [
+            8.725,
+            10.675
+          ],
+          "y": [
+            114.885,
+            115.915
+          ]
+        },
+        "fp": "Resistor_SMD:R_0402_1005Metric",
+        "value": "Yageo RC0402FR-07220RL"
+      },
+      "after": {
+        "reference": "R205",
+        "instance": "microphone_bias_filter_res",
+        "side": "B.Cu",
+        "angle": -90.0,
+        "anchor_mm": [
+          49.25,
+          140.65
+        ],
+        "courtyard": {
+          "x": [
+            48.735,
+            49.765
+          ],
+          "y": [
+            139.675,
+            141.625
+          ]
+        },
+        "fp": "Resistor_SMD:R_0402_1005Metric",
+        "value": "Yageo RC0402FR-07220RL"
+      }
+    },
+    {
+      "reference": "U85",
+      "instance": "headset_mic_selector",
+      "device_id": "ti_ts5a63157_dckr",
+      "mpn": "Texas Instruments TS5A63157DCKR",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "before": {
+        "reference": "U85",
+        "instance": "headset_mic_selector",
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          7.5,
+          110.25
+        ],
+        "courtyard": {
+          "x": [
+            6.355,
+            8.645
+          ],
+          "y": [
+            108.755,
+            111.745
+          ]
+        },
+        "fp": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+        "value": "Texas Instruments TS5A63157DCKR"
+      },
+      "after": {
+        "reference": "U85",
+        "instance": "headset_mic_selector",
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          16.5,
+          113.75
+        ],
+        "courtyard": {
+          "x": [
+            15.355,
+            17.645
+          ],
+          "y": [
+            112.255,
+            115.245
+          ]
+        },
+        "fp": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+        "value": "Texas Instruments TS5A63157DCKR"
+      }
+    },
+    {
+      "reference": "C229",
+      "instance": "headset_mic_selector_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "reference": "C229",
+        "instance": "headset_mic_selector_bypass",
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          9.55,
+          110.25
+        ],
+        "courtyard": {
+          "x": [
+            9.045,
+            10.055
+          ],
+          "y": [
+            109.295,
+            111.205
+          ]
+        },
+        "fp": "Capacitor_SMD:C_0402_1005Metric",
+        "value": "Yageo CC0402KRX7R9BB104"
+      },
+      "after": {
+        "reference": "C229",
+        "instance": "headset_mic_selector_bypass",
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          18.55,
+          113.75
+        ],
+        "courtyard": {
+          "x": [
+            18.045,
+            19.055
+          ],
+          "y": [
+            112.795,
+            114.705
+          ]
+        },
+        "fp": "Capacitor_SMD:C_0402_1005Metric",
+        "value": "Yageo CC0402KRX7R9BB104"
+      }
+    },
+    {
+      "reference": "R202",
+      "instance": "headset_mic_select_pullup",
+      "device_id": "yageo_rc0402fr_07100kl",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "reference": "R202",
+        "instance": "headset_mic_select_pullup",
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          5.7,
+          109.75
+        ],
+        "courtyard": {
+          "x": [
+            5.185,
+            6.215
+          ],
+          "y": [
+            108.775,
+            110.725
+          ]
+        },
+        "fp": "Resistor_SMD:R_0402_1005Metric",
+        "value": "Yageo RC0402FR-07100KL"
+      },
+      "after": {
+        "reference": "R202",
+        "instance": "headset_mic_select_pullup",
+        "side": "B.Cu",
+        "angle": 90.0,
+        "anchor_mm": [
+          14.7,
+          113.25
+        ],
+        "courtyard": {
+          "x": [
+            14.185,
+            15.215
+          ],
+          "y": [
+            112.275,
+            114.225
+          ]
+        },
+        "fp": "Resistor_SMD:R_0402_1005Metric",
+        "value": "Yageo RC0402FR-07100KL"
+      }
+    }
+  ],
+  "source_datum": {
+    "native_anchor_mm": [
+      47,
+      147.4
+    ],
+    "world_anchor_mm": [
+      33,
+      147.4
+    ],
+    "frame": "rear-inner",
+    "capsule_port_direction": "toward the 11-mm interboard gap / opposing UI, not toward either in-plane +/-Y direction (+Y is the bottom edge)",
+    "internal_fet_and_load": "CMEJ-0413-42-SMT-TR internal-FET electret; existing R206 2.2-kohm load; no additional active buffer"
+  },
+  "native_locality": {
+    "locality_pairs": 264,
+    "locality_status": "pass",
+    "locality_violations": [],
+    "critical_pairs": 46,
+    "critical_status": "pass",
+    "critical_errors": [],
+    "critical_violations": []
+  },
+  "existing_copper": {
+    "count": 765,
+    "old_moved_pad_contacts": [],
+    "new_moved_pad_contacts": [],
+    "foreign_copper_0p2mm_screen": []
+  },
+  "selected_analogue_spans": {
+    "MIC_RAW": {
+      "max_pair_distance_mm": 43.704,
+      "pairs": [
+        {
+          "a": "MK1",
+          "b": "R206",
+          "pad_distance_mm": 2.561
+        },
+        {
+          "a": "MK1",
+          "b": "U85",
+          "pad_distance_mm": 43.704
+        },
+        {
+          "a": "R206",
+          "b": "U85",
+          "pad_distance_mm": 41.544
+        }
+      ]
+    },
+    "MIC_BIAS_FILTERED": {
+      "max_pair_distance_mm": 3.331,
+      "pairs": [
+        {
+          "a": "C232",
+          "b": "R205",
+          "pad_distance_mm": 2.915
+        },
+        {
+          "a": "C232",
+          "b": "R206",
+          "pad_distance_mm": 1.742
+        },
+        {
+          "a": "R205",
+          "b": "R206",
+          "pad_distance_mm": 3.331
+        }
+      ]
+    },
+    "MIC_SELECTED_RAW": {
+      "max_pair_distance_mm": 5.03,
+      "pairs": [
+        {
+          "a": "C197",
+          "b": "C231",
+          "pad_distance_mm": 1.8
+        },
+        {
+          "a": "C197",
+          "b": "U85",
+          "pad_distance_mm": 3.564
+        },
+        {
+          "a": "C231",
+          "b": "U85",
+          "pad_distance_mm": 5.03
+        }
+      ]
+    },
+    "CAPTURE_MIC_BIASED": {
+      "max_pair_distance_mm": 7.502,
+      "pairs": [
+        {
+          "a": "C197",
+          "b": "R169",
+          "pad_distance_mm": 1.315
+        },
+        {
+          "a": "C197",
+          "b": "U68",
+          "pad_distance_mm": 6.599
+        },
+        {
+          "a": "R169",
+          "b": "U68",
+          "pad_distance_mm": 7.502
+        }
+      ]
+    },
+    "VOICE_ELECTRET_DEFAULT": {
+      "max_pair_distance_mm": 86.834,
+      "pairs": [
+        {
+          "a": "C231",
+          "b": "R204",
+          "pad_distance_mm": 1.315
+        },
+        {
+          "a": "C231",
+          "b": "U72",
+          "pad_distance_mm": 85.91
+        },
+        {
+          "a": "R204",
+          "b": "U72",
+          "pad_distance_mm": 86.834
+        }
+      ]
+    },
+    "HEADSET_MIC_RAW": {
+      "max_pair_distance_mm": 23.61,
+      "pairs": [
+        {
+          "a": "R201",
+          "b": "U82",
+          "pad_distance_mm": 7.179
+        },
+        {
+          "a": "R201",
+          "b": "U83",
+          "pad_distance_mm": 10.91
+        },
+        {
+          "a": "R201",
+          "b": "U85",
+          "pad_distance_mm": 22.759
+        },
+        {
+          "a": "U82",
+          "b": "U83",
+          "pad_distance_mm": 3.992
+        },
+        {
+          "a": "U82",
+          "b": "U85",
+          "pad_distance_mm": 23.61
+        },
+        {
+          "a": "U83",
+          "b": "U85",
+          "pad_distance_mm": 23.229
+        }
+      ]
+    },
+    "HEADSET_INTERNAL_MIC_SEL": {
+      "max_pair_distance_mm": 98.551,
+      "pairs": [
+        {
+          "a": "R202",
+          "b": "U84",
+          "pad_distance_mm": 98.551
+        },
+        {
+          "a": "R202",
+          "b": "U85",
+          "pad_distance_mm": 2.456
+        },
+        {
+          "a": "U84",
+          "b": "U85",
+          "pad_distance_mm": 97.64
+        }
+      ]
+    }
+  },
+  "bounds": {
+    "search_step_mm": 0.25,
+    "selector_anchor_x_mm": [
+      16,
+      47
+    ],
+    "selector_anchor_y_mm": [
+      112,
+      143
+    ],
+    "other_moved_neighbours": 0,
+    "strategic_ports_changed": [
+      "MK1"
+    ],
+    "couplings_retained": [
+      "C197",
+      "C231"
+    ],
+    "C233_is_speaker_bulk_not_microphone_coupling": true
+  },
+  "limits": [
+    "Straight actual-pad distances are not routed lengths or measured noise/SNR.",
+    "MIC_RAW and headset/selected branches still require quiet analog routing and review.",
+    "The geometric choice does not qualify acoustic response, assembly or the enclosure bottom opening.",
+    "Other ports, native pin/net identities and existing copper are unchanged."
+  ]
+}

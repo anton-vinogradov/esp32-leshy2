@@ -165,7 +165,7 @@ class InterfaceReviewTests(unittest.TestCase):
         self.assertEqual("pass_scoped", audit["status"])
         self.assertFalse(audit["production_release_authorized"])
         # 63 interface labels plus one approved use notice on each outer face.
-        self.assertEqual(65, sum(row["required_count"] for row in audit["boards"]))
+        self.assertEqual(66, sum(row["required_count"] for row in audit["boards"]))
         for path, digest in audit["inputs_sha256"].items():
             self.assertFalse(Path(path).is_absolute())
             self.assertEqual(digest, hashlib.sha256((ROOT / path).read_bytes()).hexdigest(), path)

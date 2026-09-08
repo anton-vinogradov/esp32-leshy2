@@ -1,4 +1,10 @@
-"""Finite inward-audio candidate boundary; does not qualify the audio circuit."""
+"""Historical fifty-part review and forty-three retained current requirements.
+
+The seven bottom-microphone replacement poses belong to their separate review,
+not this historical fixture. Neither fixture qualifies the audio circuit.
+"""
+import copy
+import hashlib
 import json
 import math
 import sys
@@ -11,13 +17,24 @@ PATH=ROOT/'hardware/layout/h6-r2-inner-audio-candidate.json'
 # restore one displaced component or an old outward support.
 REFS=frozenset('C113 C144 C145 C197 C199 C217 C218 C229 C230 C231 C232 C233 C234 C256 C257 C270 C272 C285 C286 C65 MK1 R169 R201 R202 R203 R204 R205 R206 R242 R258 R267 R287 R288 R56 U112 U113 U115 U116 U118 U120 U131 U132 U18 U28 U48 U68 U80 U82 U83 U85'.split())
 EXPECTED_NATIVE_SHA='cb5855cf3d9c534bfdbd5190a86f54f4d800b8c594c717257463fd81033f4e9f'
+SUPERSEDED_REFS=frozenset('MK1 R206 C232 R205 U85 C229 R202'.split())
+HISTORICAL_ROWS_SHA='c78af09eff2278743b42ed5c1d3018b686e4d70c2670ff64d3ba8a36d9bb6330'
+REPLACEMENT_REVIEW='hardware/layout/h6-r2-microphone-bottom-candidate.json'
 
 def validate(review,contract,ledger):
     rows=review['placement_rows']
     assert len(rows)==len(REFS)==50
     assert {r['reference'] for r in rows}==REFS
     assert review['baseline_board_sha256']==EXPECTED_NATIVE_SHA
-    assert review['status']=='placement_adopted_not_audio_qualified'
+    assert review['status']=='placement_partially_superseded_not_audio_qualified'
+    scope=review['placement_scope']
+    assert scope['historical_status']=='placement_adopted_not_audio_qualified'
+    assert scope['historical_fields']==['placement_rows','constraints']
+    assert scope['superseded_references']==sorted(SUPERSEDED_REFS)
+    assert scope['retained_current_reference_count']==len(REFS-SUPERSEDED_REFS)==43
+    assert scope['current_replacement_review']==REPLACEMENT_REVIEW
+    assert scope['historical_placement_rows_sha256']==HISTORICAL_ROWS_SHA
+    assert hashlib.sha256(json.dumps(rows,sort_keys=True,separators=(',',':')).encode()).hexdigest()==HISTORICAL_ROWS_SHA
     assert review['authority'] and all(v is False for v in review['authority'].values())
     assert review['unresolved']
     index={r['reference']:r for r in ledger if r['project']=='LESHY2-RF-R2'}
@@ -27,7 +44,10 @@ def validate(review,contract,ledger):
         assert row['mpn']==index[row['reference']]['mpn']
         assert row['footprint']==index[row['reference']]['footprint']
         side='F.Cu' if row['reference']=='MK1' else 'B.Cu'
+        # This is the preserved historical side, not today's MK1 requirement.
         assert row['after']['side']==side
+        if row['reference'] in SUPERSEDED_REFS:
+            continue
         target=contract['placement_overrides'][row['instance']]
         assert target['frame']==('rear-outer' if side=='F.Cu' else 'rear-inner')
         assert target['anchor_mm']==row['after']['anchor_mm']
@@ -59,7 +79,7 @@ class InnerAudioCandidateTests(unittest.TestCase):
         self.contract=json.loads((ROOT/'hardware/layout/h6-r2-placement-contract.json').read_text())
         self.ledger=json.loads((ROOT/'hardware/ecad/generated/H2-R2-native-instance-ledger.json').read_text())['rows']
     def check(self):validate(self.review,self.contract,self.ledger)
-    def test_exact_current_candidate(self):self.check()
+    def test_historical_scope_and_exact_current_retained_43(self):self.check()
     def test_baseline_is_explicit_not_current_board_authority(self):
         self.assertEqual(EXPECTED_NATIVE_SHA,self.review['baseline_board_sha256'])
         self.assertFalse(self.review['authority']['main_promotion_authorized_by_this_report'])
@@ -72,9 +92,47 @@ class InnerAudioCandidateTests(unittest.TestCase):
     def test_outward_passive_rejected(self):
         row=next(r for r in self.review['placement_rows'] if r['reference']=='C144');row['after']['side']='F.Cu'
         with self.assertRaises(AssertionError):self.check()
-    def test_inward_acoustic_port_rejected(self):
+    def test_historical_mk1_side_mutation_rejected_not_current_inward_pose(self):
         row=next(r for r in self.review['placement_rows'] if r['reference']=='MK1');row['after']['side']='B.Cu'
         with self.assertRaises(AssertionError):self.check()
+    def test_seven_replacement_contract_poses_do_not_rewrite_history(self):
+        historical=copy.deepcopy(self.review['placement_rows'])
+        current={
+            'MK1':(0,[47,147.4]),'R206':(180,[47,144]),'C232':(90,[49.25,143.3]),
+            'R205':(270,[49.25,140.65]),'U85':(90,[16.5,113.75]),
+            'C229':(90,[18.55,113.75]),'R202':(90,[14.7,113.25])}
+        for row in self.review['placement_rows']:
+            if row['reference'] in current:
+                angle,at=current[row['reference']]
+                target=self.contract['placement_overrides'][row['instance']]
+                target.update(frame='rear-inner',anchor_mm=at,rotation_deg=angle)
+        self.check()
+        self.assertEqual(historical,self.review['placement_rows'])
+        # Passing this historical validator does not qualify those new poses:
+        # the separate current review and placement/intent admission must do so.
+        self.assertFalse(self.review['authority']['main_promotion_authorized_by_this_report'])
+    def test_superseded_scope_cannot_expand_or_shrink_to_hide_retained_drift(self):
+        for mutation in ('remove','add','duplicate','count','owner'):
+            review=copy.deepcopy(self.review)
+            scope=review['placement_scope']
+            if mutation=='remove':scope['superseded_references'].pop()
+            elif mutation=='add':scope['superseded_references'].append('U83')
+            elif mutation=='duplicate':scope['superseded_references'].append('MK1')
+            elif mutation=='count':scope['retained_current_reference_count']=42
+            else:scope['current_replacement_review']='unreviewed.json'
+            with self.subTest(mutation=mutation),self.assertRaises(AssertionError):
+                validate(review,self.contract,self.ledger)
+    def test_retained_reference_still_requires_current_contract_pose(self):
+        self.contract['placement_overrides']['headphone_jack']['anchor_mm']=[.8,98]
+        with self.assertRaises(AssertionError):self.check()
+    def test_before_after_and_all_pad_nets_remain_immutable_history(self):
+        for field in ('before','after','pad_net_multiset'):
+            review=copy.deepcopy(self.review)
+            row=next(r for r in review['placement_rows'] if r['reference']=='U85')
+            if field=='pad_net_multiset':row[field][0][1]='another_net'
+            else:row[field]['anchor_mm'][0]+=.1
+            with self.subTest(field=field),self.assertRaises(AssertionError):
+                validate(review,self.contract,self.ledger)
     def test_identity_swap_rejected(self):
         self.review['placement_rows'][0]['device_id']='different_same_package'
         with self.assertRaises(AssertionError):self.check()
@@ -112,12 +170,17 @@ class NativeInnerAudioLocalityTests(unittest.TestCase):
         cls.board=pcbnew.LoadBoard(str(ROOT/'hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb'))
         cls.fps={f.GetReference():f for f in cls.board.GetFootprints()}
         cls.review=json.loads(PATH.read_text())
-        for row in cls.review['placement_rows']:
-            f=cls.fps[row['reference']];target=row['after']
-            if f.IsFlipped()!=(target['side']=='B.Cu'):
-                f.Flip(pcbnew.VECTOR2I(0,0),False)
-            f.SetOrientationDegrees(target['angle'])
-            f.SetPosition(pcbnew.VECTOR2I(*(pcbnew.FromMM(v) for v in target['anchor_mm'])))
+        # Never reapply historical poses over the actual current native board.
+        # Current seven-part microphone geometry is tested by its own review.
+
+    def test_all_fifty_native_pad_net_multisets_keep_exact_electrical_identity(self):
+        for row in self.review['placement_rows']:
+            fp=self.fps[row['reference']]
+            with self.subTest(reference=row['reference']):
+                self.assertEqual(row['mpn'],fp.GetValue())
+                self.assertEqual(row['footprint'],fp.GetFPIDAsString())
+                self.assertEqual(sorted(row['pad_net_multiset']),
+                                 sorted([p.GetNumber(),p.GetNetname()] for p in fp.Pads()))
 
     def pair(self,a,ap,b,bp,net,limit):
         aa=[p for p in self.fps[a].Pads() if p.GetNumber()==ap]

@@ -22,7 +22,7 @@ class ProductViewTests(unittest.TestCase):
         intent = {"schema_version": 1, "status": "pass", "failed_requirements": [],
                   "sources": dict.fromkeys(VIEW.EXPECTED_INTENT_SOURCES, "a"*64),
                   "checks": [{"requirement": f"independent requirement {n}", "pass": True}
-                             for n in range(19)]}
+                             for n in range(20)]}
         return views, intent
 
     def test_failed_intent_cannot_publish_a_corrected_mockup(self):

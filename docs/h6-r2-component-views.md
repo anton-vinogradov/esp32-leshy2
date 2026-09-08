@@ -6,11 +6,14 @@ Direct views of the current KiCad PCBs, **at the same scale**, without tracks
 or unrouted connection lines. Click a view to open the full SVG and zoom into
 small components without losing detail.
 
+The microphone correction below is included in these refreshed, hash-bound
+views, with fresh native intent/label checks and visual review.
+
 | Front/UI board | Rear/RF board |
 | --- | --- |
-| **Outer F — 30 items + 4 mounting footprints** | **Outer F — 13 items + 4 mounting footprints** |
+| **Outer F — 30 items + 4 mounting footprints** | **Outer F — 12 items + 4 mounting footprints** |
 | [![UI outer](images/h6-r2-components-ui-outer.svg)](images/h6-r2-components-ui-outer.svg) | [![RF outer](images/h6-r2-components-rf-outer.svg)](images/h6-r2-components-rf-outer.svg) |
-| **Inner B — 398 items** | **Inner B — 767 items** |
+| **Inner B — 398 items** | **Inner B — 768 items** |
 | [![UI inner](images/h6-r2-components-ui-inner.svg)](images/h6-r2-components-ui-inner.svg) | [![RF inner](images/h6-r2-components-rf-inner.svg)](images/h6-r2-components-rf-inner.svg) |
 
 [All four views on one sheet](images/h6-r2-components-overview.svg).
@@ -48,6 +51,14 @@ The UI inner drawing also registers the separate speaker body, marked
 `SPEAKER / ASSEMBLY`; it is not another PCB footprint. RF `LS1` is its two-wire
 termination, not the speaker body. See [placement corrections](h6-r2-placement-repair.md)
 for the maximum-body envelope and the limits of the mounting-space check.
+
+MK1 belongs on **RF inner B0 [47,147.4]**, not on the outer view; the former
+**F180 [8,112]** placement was incorrect and is superseded. **UI F `MIC`
+[33,148.9]** identifies bottom access to that RF microphone, not a UI footprint.
+The top port faces the inter-board space, with sound access through the designed
+open bottom gap, not a downward port normal. The [seven-reference follow-up](../hardware/layout/h6-r2-microphone-bottom-candidate.json)
+changes no MPN, net or copper. The capsule has an internal FET with a 2.2-kΩ load;
+noise performance, actual routing and acoustic transfer remain unqualified.
 
 **Open mechanical questions remain open.** In particular, this sheet does not
 qualify holder geometry or solder-tool access, and does not replace the

@@ -27,7 +27,7 @@ EXPECTED_INTENT_SOURCES = set(BOARD_PATHS.values()) | {
     "hardware/layout/h6_r2_placement_intent.py",
     "hardware/layout/h6_r2_speaker_fit.py",
     "hardware/layout/h6-r2-speaker-body.json"}
-MINIMUM_INTENT_CHECKS = 19
+MINIMUM_INTENT_CHECKS = 20
 
 
 def sha(path):

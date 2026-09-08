@@ -25,7 +25,7 @@ ROOT = Path(__file__).resolve().parents[3]
 SCRIPT = ROOT / "hardware/layout/h6_r2_component_render.py"
 MANIFEST = ROOT / "hardware/layout/generated/H6-R2-component-views.json"
 EXPECTED = {("ui", "outer"): (30, 4), ("ui", "inner"): (398, 0),
-            ("rf", "outer"): (13, 4), ("rf", "inner"): (767, 0)}
+            ("rf", "outer"): (12, 4), ("rf", "inner"): (768, 0)}
 SVG = "{http://www.w3.org/2000/svg}"
 
 

@@ -1,8 +1,8 @@
 {
   "status": "current_native_visualization_not_assembly_approval",
   "inputs_sha256": {
-    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "4de030ef283becd282ef0a590d2e5eb42ba3491f66ffa3e9b59f250ef54d5902",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "1177dbb74d06adfa007199e2076b737185d0266f99b517d531a6a897c87328d6",
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "5a29ed7272d412d72b62265bd3940864e4feb23a3f5e5d7ed60f9497620567cb",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "44bea71388631dfd3b7d9c7bfb088569de46d13083fd164bf3562dc8bfde0dde",
     "hardware/layout/h6_r2_component_render.py": "bf67d9d1c825f7f74b49ffcc03031bf1d63f74b221e3edb431fdab8f6ec4d76d"
   },
   "view_convention": "outer=native; inner=x_view=80-x_native, y unchanged; no extra RF transform",
@@ -494,13 +494,12 @@
         "MH2",
         "MH3",
         "MH4",
-        "MK1",
         "R33",
         "R34",
         "SW3",
         "SW4"
       ],
-      "component_count": 13,
+      "component_count": 12,
       "mount_count": 4,
       "fallback_reference_labels": [
         "BT1",
@@ -510,7 +509,6 @@
         "J8",
         "J9",
         "L32",
-        "MK1",
         "SW3",
         "SW4"
       ],
@@ -2406,6 +2404,7 @@
         "L8",
         "L9",
         "LS1",
+        "MK1",
         "Q1",
         "Q2",
         "Q3",
@@ -2840,7 +2839,7 @@
         "Y2",
         "Y3"
       ],
-      "component_count": 767,
+      "component_count": 768,
       "mount_count": 0,
       "fallback_reference_labels": [
         "F1",
@@ -2850,6 +2849,7 @@
         "J2",
         "J3",
         "LS1",
+        "MK1",
         "TP1",
         "U10",
         "U100",
@@ -3617,10 +3617,10 @@
     }
   ],
   "outputs_sha256": {
-    "docs/images/h6-r2-components-ui-outer.svg": "82e4fffba6123b5327252791ab505cae0f9ef7f793032daa855294d5f96bf858",
-    "docs/images/h6-r2-components-rf-outer.svg": "40a0ebc767866c57b16d934c0272edea52dc51cf5374df9eefb687438dce04d5",
-    "docs/images/h6-r2-components-ui-inner.svg": "94bc2178e9373a33f409684928b4cb7efa860534bd89be002af6c605a302d75d",
-    "docs/images/h6-r2-components-rf-inner.svg": "ed620bbdf7d79862b892a28f4eae19bd4ece9b28743fcd471c8cd69fcd3135df",
-    "docs/images/h6-r2-components-overview.svg": "fddea96afe2c6227011ca414a938c8cf2a921abbde3f1f07b1cf7e2062cb81c1"
+    "docs/images/h6-r2-components-ui-outer.svg": "fae8ddf9d2095e1920b79a767bed825bec96f65d62ec944d10958854eebee395",
+    "docs/images/h6-r2-components-rf-outer.svg": "291e7df773476b62188884d215a1faf745207fdd259b7e092146c22bbfe35da4",
+    "docs/images/h6-r2-components-ui-inner.svg": "0b0c0f0d5e833d46327e795daafdc4c25389427c3321e8ca3415e3eefa0b5b13",
+    "docs/images/h6-r2-components-rf-inner.svg": "71c73645f6777c582ef7fa5cb0565d7f501a2abf89f5e7c2442f04dd6a7c65c8",
+    "docs/images/h6-r2-components-overview.svg": "6eed391af0c4f0ff36b9173537fe3ce59fe75482ddcba730c38029b051c4b6f5"
   }
 }

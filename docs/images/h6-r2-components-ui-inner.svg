@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="3800" viewBox="0 0 96 190" data-board="ui" data-face="inner" data-source-sha256="4de030ef283becd282ef0a590d2e5eb42ba3491f66ffa3e9b59f250ef54d5902" data-renderer-sha256="bf67d9d1c825f7f74b49ffcc03031bf1d63f74b221e3edb431fdab8f6ec4d76d">
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="3800" viewBox="0 0 96 190" data-board="ui" data-face="inner" data-source-sha256="5a29ed7272d412d72b62265bd3940864e4feb23a3f5e5d7ed60f9497620567cb" data-renderer-sha256="bf67d9d1c825f7f74b49ffcc03031bf1d63f74b221e3edb431fdab8f6ec4d76d">
 <title>Leshy2 current components · UI inner</title>
 <rect width="96" height="190" fill="white"/>
 <text x="8" y="5" fill="#17263c" font-family="Arial,DejaVu Sans,sans-serif" font-size="2.6" text-anchor="start">Передняя UI · внутренняя / inner</text>
@@ -8540,6 +8540,70 @@ L73.0905 5.5215
 " />
 <path d="M73.0905 5.5215
 L73.7095 5.5215
+" />
+</g><text x="33.0000" y="149.4000"
+textLength="2.8690" font-size="1.3333" lengthAdjust="spacingAndGlyphs"
+text-anchor="middle" opacity="0" stroke-opacity="0">MIC</text>
+<g class="stroked-text"><desc>MIC</desc>
+<path d="M31.9286 149.3548
+L31.9286 148.3548
+" />
+<path d="M31.9286 148.3548
+L32.2619 149.0691
+" />
+<path d="M32.2619 149.0691
+L32.5952 148.3548
+" />
+<path d="M32.5952 148.3548
+L32.5952 149.3548
+" />
+<path d="M33.0714 149.3548
+L33.0714 148.3548
+" />
+<path d="M34.1190 149.2596
+L34.0714 149.3072
+" />
+<path d="M34.0714 149.3072
+L33.9286 149.3548
+" />
+<path d="M33.9286 149.3548
+L33.8333 149.3548
+" />
+<path d="M33.8333 149.3548
+L33.6905 149.3072
+" />
+<path d="M33.6905 149.3072
+L33.5952 149.2120
+" />
+<path d="M33.5952 149.2120
+L33.5476 149.1167
+" />
+<path d="M33.5476 149.1167
+L33.5000 148.9262
+" />
+<path d="M33.5000 148.9262
+L33.5000 148.7834
+" />
+<path d="M33.5000 148.7834
+L33.5476 148.5929
+" />
+<path d="M33.5476 148.5929
+L33.5952 148.4977
+" />
+<path d="M33.5952 148.4977
+L33.6905 148.4024
+" />
+<path d="M33.6905 148.4024
+L33.8333 148.3548
+" />
+<path d="M33.8333 148.3548
+L33.9286 148.3548
+" />
+<path d="M33.9286 148.3548
+L34.0714 148.4024
+" />
+<path d="M34.0714 148.4024
+L34.1190 148.4501
 " />
 </g></g>
 <g style="fill:none;

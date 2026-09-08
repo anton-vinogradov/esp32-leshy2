@@ -90180,4 +90180,15 @@
 			(justify mirror)
 		)
 	)
+	(gr_text "MIC"
+		(at 33 148.9 0)
+		(layer "F.SilkS")
+		(uuid "badb2394-1745-5465-b716-b3287b42acb6")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
 )

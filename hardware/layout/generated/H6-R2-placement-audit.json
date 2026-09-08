@@ -5,13 +5,13 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "e91e46a8e9d777303f14fcc0e882ba0888a3474710597fae1d0a5f14dd4b3957",
+    "contract_sha256": "08b2e6350f80025986b743808dde33359112113089ebfe16a20076e26922f0d1",
     "speaker_body": "hardware/layout/h6-r2-speaker-body.json",
     "speaker_body_sha256": "79349b47e281bc89fc57b843987d5458035c59c9fe6459de42a5949ee690f78b",
     "speaker_helper": "hardware/layout/h6_r2_speaker_fit.py",
     "speaker_helper_sha256": "9e677eca3c1d320fc19fd25e961d884a1a903ca9f0af1ca3ad95835d20c38d30",
     "placement_freeze": "hardware/layout/h6-r2-placement-freeze.json",
-    "placement_freeze_sha256": "1e0729cd10874b2fb12a11591b0410e07b3a6b31dd1b8627f677fc940f16647f",
+    "placement_freeze_sha256": "b2f6f4d1f619e2037d21d2a21183d505390cdf46752ec95e54a219bb4b5f8db8",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "3cefd845934ca2d17be9f7e5876266deaf885fd0c37b8330a2637c38e6193ffb",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -13708,8 +13708,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "unrouted_seed_sha256": "18f0883fffd186ab811983898a800b8f5df6cb203a779b283a2b29f655d8f603",
-      "placement_signature_sha256": "2f2b6b1ae8e492d76bee48790a3ebc5cc8556acedbe66d0f5d167ac8592e8320",
+      "unrouted_seed_sha256": "a2d242ec83c067402e809c4c895525ed74bc6d67942ccf9762752b7168d9a36d",
+      "placement_signature_sha256": "b110fdb76cf80fc926ec4d9e5b8702fafb383864a9c6360807ab1d79fa2d0296",
       "locality": {
         "status": "pass",
         "pair_count": 62,
@@ -14283,8 +14283,8 @@
       "schematic_instance_count": 780,
       "placed_instance_count": 780,
       "side_counts": {
-        "B.Cu": 767,
-        "F.Cu": 13
+        "B.Cu": 768,
+        "F.Cu": 12
       },
       "method_counts": {
         "connectivity/sheet automatic seed": 527,
@@ -21979,22 +21979,22 @@
           "method": "reviewed audio local-support correction",
           "courtyard_bbox_mm": {
             "x": [
-              9.045,
-              10.055000000000001
+              18.045,
+              19.055
             ],
             "y": [
-              109.295,
-              111.205
+              112.795,
+              114.705
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            9.55,
-            110.25
+            18.55,
+            113.75
           ],
           "footprint_anchor_mm": [
-            9.55,
-            110.25
+            18.55,
+            113.75
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -22066,24 +22066,24 @@
           "method": "reviewed audio local-support correction",
           "courtyard_bbox_mm": {
             "x": [
-              5.475,
-              8.525
+              48.475,
+              50.025
             ],
             "y": [
-              114.625,
-              116.17500000000001
+              141.775,
+              144.82500000000002
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            7.0,
-            115.4
+            49.25,
+            143.3
           ],
           "footprint_anchor_mm": [
-            7.0,
-            115.4
+            49.25,
+            143.3
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -25833,29 +25833,29 @@
           "instance": "microphone",
           "reference": "MK1",
           "sheet": "RF_22_AUDIO_CODEC_IO",
-          "side": "F.Cu",
+          "side": "B.Cu",
           "footprint": "Leshy2:CMEJ-0413-42-SMT-TR",
           "method": "reviewed audio local-support correction",
           "courtyard_bbox_mm": {
             "x": [
-              5.705,
-              10.2975
+              44.7025,
+              49.295
             ],
             "y": [
-              109.7037,
-              114.2963
+              145.1037,
+              149.6963
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            8.0012,
-            112.0
+            46.9988,
+            147.4
           ],
           "footprint_anchor_mm": [
-            8.0,
-            112.0
+            47.0,
+            147.4
           ],
-          "rotation_deg": 180.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -31986,22 +31986,22 @@
           "method": "reviewed audio local-support correction",
           "courtyard_bbox_mm": {
             "x": [
-              5.1850000000000005,
-              6.215
+              14.184999999999999,
+              15.215
             ],
             "y": [
-              108.775,
-              110.725
+              112.275,
+              114.225
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            5.7,
-            109.75
+            14.7,
+            113.25
           ],
           "footprint_anchor_mm": [
-            5.7,
-            109.75
+            14.7,
+            113.25
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -32073,24 +32073,24 @@
           "method": "reviewed audio local-support correction",
           "courtyard_bbox_mm": {
             "x": [
-              8.725,
-              10.674999999999999
+              48.735,
+              49.765
             ],
             "y": [
-              114.885,
-              115.915
+              139.675,
+              141.625
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            9.7,
-            115.4
+            49.25,
+            140.65
           ],
           "footprint_anchor_mm": [
-            9.7,
-            115.4
+            49.25,
+            140.65
           ],
-          "rotation_deg": 180.0,
+          "rotation_deg": -90.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -32102,24 +32102,24 @@
           "method": "reviewed audio local-support correction",
           "courtyard_bbox_mm": {
             "x": [
-              6.025,
-              7.975
+              46.025,
+              47.975
             ],
             "y": [
-              113.485,
-              114.515
+              143.485,
+              144.515
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            7.0,
-            114.0
+            47.0,
+            144.0
           ],
           "footprint_anchor_mm": [
-            7.0,
-            114.0
+            47.0,
+            144.0
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 180.0,
           "moved_from_seed_mm": 0.0
         },
         {
@@ -37387,22 +37387,22 @@
           "method": "reviewed audio local-support correction",
           "courtyard_bbox_mm": {
             "x": [
-              6.355,
-              8.645
+              15.355,
+              17.645
             ],
             "y": [
-              108.755,
-              111.745
+              112.255,
+              115.245
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            7.5,
-            110.25
+            16.5,
+            113.75
           ],
           "footprint_anchor_mm": [
-            7.5,
-            110.25
+            16.5,
+            113.75
           ],
           "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0
@@ -38917,8 +38917,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "258c46cf277ae1f7dbb9589be8861de34c3e3e7d4af8b3fb979a7da0e6756b50",
-      "placement_signature_sha256": "e6122cded2b8a2e91e5c2ae67b624a6377dbd790dc8278340bc51f2420079dbc",
+      "unrouted_seed_sha256": "f48d1aacb768aefe1878c11b806dc68200340c45fd51d0463a21cad12fa38fee",
+      "placement_signature_sha256": "92e2d7d10bb8057a1373e3aebfcd9a49b653665e67325ac3c203e96d6d0a9e0e",
       "locality": {
         "status": "pass",
         "pair_count": 264,
