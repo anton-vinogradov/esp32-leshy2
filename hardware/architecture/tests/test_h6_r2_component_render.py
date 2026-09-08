@@ -241,7 +241,11 @@ class ComponentRenderTests(unittest.TestCase):
                 clip = next(node for node in root.iter() if node.get("id") == clip_id)
                 path = clip.find(SVG + "path")
                 self.assertEqual("evenodd", path.get("clip-rule"))
-                self.assertEqual("M-8 -14H88V158H-8Z M0 0V150H80V0Z", path.get("d"))
+                self.assertTrue(path.get("d").startswith("M-8 -14H88V158H-8Z M"))
+                self.assertNotEqual("M-8 -14H88V158H-8Z M0 0V150H80V0Z", path.get("d"))
+                material = next(node for node in root.iter() if node.get("data-role") == "native-board-material")
+                self.assertEqual("evenodd", material.get("fill-rule"))
+                self.assertTrue(material.get("d").startswith(path.get("d").removeprefix("M-8 -14H88V158H-8Z ")))
 
     def test_drills_are_shown_on_both_faces_and_layer_scope_has_no_routing(self):
         for board in ("ui", "rf"):

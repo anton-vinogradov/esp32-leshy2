@@ -61,9 +61,9 @@ class UserSilkscreenTests(unittest.TestCase):
         contract["antenna_ports"][board["project"]] = dict(reversed(list(ports.items())))
         found = {r["instance"]: r for r in SILK.labels(board["project"], list(reversed(board["placements"])), contract)
                  if r["role"] == "antenna"}
-        self.assertEqual(("UHF TX", [51.75, 5.4]),
+        self.assertEqual(("UHF TX", [54.7, 5.4]),
                          (found["voice_external_sma"]["text"], found["voice_external_sma"]["at_mm"]))
-        self.assertEqual(("VHF TX", [63.5, 5.4]),
+        self.assertEqual(("VHF TX", [69.4, 5.4]),
                          (found["voice_v_external_sma"]["text"], found["voice_v_external_sma"]["at_mm"]))
         rows = copy.deepcopy(board["placements"])
         next(r for r in rows if r["instance"] == "voice_external_sma")["footprint_anchor_mm"][0] = 52.0

@@ -134,7 +134,7 @@
       ],
       "board_connector_instance": "nrf0_rf_board_connector",
       "board_connector_mm": [
-        5.25,
+        4.25,
         3.875
       ],
       "cable_mpn": "TE Connectivity 1-2118651-0",
@@ -163,7 +163,7 @@
           3.875
         ],
         [
-          5.25,
+          4.25,
           3.875
         ]
       ],
@@ -187,15 +187,15 @@
       ],
       "board_connector_instance": "s3_rf_board_connector",
       "board_connector_mm": [
-        22.0,
+        20.0,
         3.48
       ],
       "cable_mpn": "TE Connectivity 2118651-2",
       "selected_length_mm": 30.0,
-      "corridor_quadratic_control_mm": [23.0, 19.0],
+      "corridor_quadratic_control_mm": [24.8, 13.55],
       "retention_saddle_centre_mm": [
-        24.75,
-        16.27375
+        25.15,
+        13.54875
       ],
       "retention_support": {
         "kind": "module_shield",
@@ -207,7 +207,7 @@
         "installation_rule": "apply a removable 5 x 3 mm polyimide bridge only to the shield top; keep both connector inspection circles and the shield rim clear; preserve the relaxed bow above the shield edge",
         "validation_boundary": "planar radius and conservative two-end height-transition budget are checked; combined three-dimensional forming and opposing-body clearance remain assembled STEP/dry-fit evidence"
       },
-      "source_exit": "from the actual lower-right module connector, gently across the flat S3 shield toward the upper board U.FL"
+      "source_exit": "from the actual lower-right module connector, gently across the flat S3 shield toward the B0 board U.FL in the gap between the first two 14.7-mm-pitch SMA ports; retain the 30-mm cable and its conservative two-end Z-transition allowance"
     },
     {
       "path": "N24-1",

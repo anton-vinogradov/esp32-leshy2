@@ -80,9 +80,50 @@ class H6R2MicrocoaxServiceTests(unittest.TestCase):
 
     def test_destinations_use_mating_axes_not_asymmetric_courtyard_centres(self):
         rows = {row["path"]: row for row in self.audit["paths"]}
-        self.assertEqual([22.0, 3.48], rows["S3-2G4"]["board_connector_mm"])
+        self.assertEqual([20.0, 3.48], rows["S3-2G4"]["board_connector_mm"])
         self.assertEqual([57.575, 10.55], rows["C5-2G4/5"]["board_connector_mm"])
-        self.assertEqual([5.25, 3.875], rows["N24-0"]["board_connector_mm"])
+        self.assertEqual([4.25, 3.875], rows["N24-0"]["board_connector_mm"])
+
+    def test_s3_reposition_retains_exact_cable_and_full_z_allowance(self):
+        row = next(row for row in self.contract["paths"] if row["path"] == "S3-2G4")
+        self.assertEqual("TE Connectivity 2118651-2", row["cable_mpn"])
+        self.assertEqual(30.0, row["selected_length_mm"])
+        self.assertEqual([20.0, 3.48], row["board_connector_mm"])
+        points, planar_upper, radius = service.corridor_geometry(row)
+        self.assertEqual([25.15, 13.54875], row["retention_saddle_centre_mm"])
+        for actual, expected in zip(points[64], row["retention_saddle_centre_mm"]):
+            self.assertAlmostEqual(actual, expected)
+        support = row["retention_support"]
+        self.assertEqual(3.35, support["surface_height_max_mm"])
+        self.assertEqual(7.0, support["vertical_transition_radius_mm"])
+        angle = math.acos(1 - 3.35 / 14)
+        z_allowance = 2 * (14 * angle - 14 * math.sin(angle))
+        self.assertAlmostEqual(1.6043046603067346, z_allowance)
+        reserve = 30 - planar_upper - z_allowance
+        self.assertAlmostEqual(5.440879462291754, reserve)
+        self.assertGreaterEqual(reserve, 5.0)
+        self.assertGreaterEqual(radius, 6.0)
+        # The old unreviewed farther-left location cannot be accepted merely
+        # because its straight chord is shorter than the nominal cable.
+        wrong = copy.deepcopy(row)
+        wrong["board_connector_mm"] = [17.2, 3.48]
+        _, wrong_length, _ = service.corridor_geometry(wrong)
+        self.assertLess(30 - wrong_length - z_allowance, 5.0)
+
+    def test_n24_left_endpoint_extends_existing_fillet_not_cable_length(self):
+        row = next(row for row in self.contract["paths"] if row["path"] == "N24-0")
+        self.assertEqual("TE Connectivity 1-2118651-0", row["cable_mpn"])
+        self.assertEqual(60.0, row["selected_length_mm"])
+        self.assertEqual([4.25, 3.875], row["board_connector_mm"])
+        self.assertEqual(row["board_connector_mm"], row["corridor_points_mm"][-1])
+        self.assertEqual(6.0, row["corridor_fillet_radius_mm"])
+        points, length, radius = service.corridor_geometry(row)
+        previous = copy.deepcopy(row)
+        previous["corridor_points_mm"][-1] = [5.25, 3.875]
+        _, previous_length, previous_radius = service.corridor_geometry(previous)
+        self.assertAlmostEqual(1.0, length - previous_length)
+        self.assertEqual(previous_radius, radius)
+        self.assertEqual([4.25, 3.875], points[-1])
 
     def test_front_side_sma_lands_block_a_back_side_tape_landing(self):
         board = {"placements": [{"instance": "edge_sma", "side": "F.Cu",

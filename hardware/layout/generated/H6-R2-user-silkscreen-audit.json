@@ -4,7 +4,7 @@
   "status": "pass_scoped",
   "production_release_authorized": false,
   "inputs_sha256": {
-    "hardware/layout/h6-r2-placement-contract.json": "c4199c22d9bb44ffd53762235b32ef0a6d66a0150105aef5689ec777eb50763a",
+    "hardware/layout/h6-r2-placement-contract.json": "e07936a737686729fd81c89529132f5ed754d04ee7aebee32d8bdf7707f2a536",
     "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7ca7596c728f2dc2fe50516b6309438dfaca2fc9c7f6fbef62c18d005cf8616b",
     "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "624a1878fbd544ab20c0d95508768542ab96616a92666b56688bb4d6a99027a8",
     "hardware/layout/h6_r2_silkscreen_audit.py": "78cecb4082bd0e10620efdc6372dd3e7ca23d4bba3c02d0bc2ef6a5d9024dceb",
@@ -15,8 +15,8 @@
     "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "4f7bbfa51b19cbcf94473dc5ad5bf193f5e667f44dac8b7f6dc55a75fa242d23",
     "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch": "43910ab937fd3f95a140f664d6fbaca72d8dc6e9bf60cf46e5eae24158eddf50",
     "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_sch": "2d20cc84e34a33e8f6339a846a21ef9c2b3c9d2d53aeaad744f87fadc9a82069",
-    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "12bd3f264c49880cfc6354fbfaac939745bc6951e476335e181690ed36fb6979",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "3a7ac2942e7ec23b125a0666dad9233b320689133479cf35c2b8d70e04b82790"
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "15e31c85d5cfdb85fd86ffa2830f1c74b55014a227275c2d4d53cc35513bb1c8",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "634b3705ccd156b2b3511b46df430fc36c0a5e4a4d81c0190e2cd10351ae1d1c"
   },
   "boards": [
     {
@@ -452,7 +452,7 @@
             "reference": "J12",
             "text": "nRF1 · 2G4",
             "at_mm": [
-              16.5,
+              10.6,
               5.4
             ],
             "size_mm": 1.0,
@@ -460,7 +460,7 @@
             "layer": "F.Silkscreen",
             "role": "antenna"
           },
-          "actual_id": "2b6be977-788f-5ce6-97ee-118b88b6a25e"
+          "actual_id": "8c48f68b-9b59-5458-bc84-a1446034df5e"
         },
         {
           "expected": {
@@ -468,7 +468,7 @@
             "reference": "J3",
             "text": "S3 · 2G4",
             "at_mm": [
-              28.25,
+              25.3,
               5.4
             ],
             "size_mm": 1.0,
@@ -476,7 +476,7 @@
             "layer": "F.Silkscreen",
             "role": "antenna"
           },
-          "actual_id": "40a11b7e-868f-59ca-b8c8-1e8c1b0b3c87"
+          "actual_id": "2763b9a9-c077-5809-b067-3e01723d1485"
         },
         {
           "expected": {
@@ -492,7 +492,7 @@
             "layer": "F.Silkscreen",
             "role": "antenna"
           },
-          "actual_id": "26b6b897-5113-572c-bf8c-ac3a9e88f56a"
+          "actual_id": "0c705185-411f-593e-8038-911a00f0cc85"
         },
         {
           "expected": {
@@ -500,7 +500,7 @@
             "reference": "J7",
             "text": "C5 · 2G4/5G",
             "at_mm": [
-              51.75,
+              54.7,
               5.4
             ],
             "size_mm": 1.0,
@@ -508,7 +508,7 @@
             "layer": "F.Silkscreen",
             "role": "antenna"
           },
-          "actual_id": "7f9be3ce-d1f2-52e3-9688-3b0015114af3"
+          "actual_id": "82fd0c7c-62ed-5de4-bbd6-9684c01454f1"
         },
         {
           "expected": {
@@ -516,7 +516,7 @@
             "reference": "J16",
             "text": "nRF3 · 2G4",
             "at_mm": [
-              63.5,
+              69.4,
               5.4
             ],
             "size_mm": 1.0,
@@ -524,7 +524,7 @@
             "layer": "F.Silkscreen",
             "role": "antenna"
           },
-          "actual_id": "3936fba1-3bfa-5bd5-abe2-35d119694d5a"
+          "actual_id": "bc55c019-fe01-5ca8-a223-7ad65abaf4cd"
         },
         {
           "expected": {
@@ -2044,11 +2044,11 @@
         {
           "kind": "via_drill_bbox",
           "text": {
-            "id": "238caf4c-8449-5060-bda7-9406db925207",
+            "id": "8d925f67-92dc-53c9-98b1-3d0bd349849d",
             "text": "AM/LW RX",
             "layer": "F.Silkscreen",
             "at_mm": [
-              28.25,
+              25.3,
               5.4
             ],
             "size_mm": [
@@ -2066,8 +2066,8 @@
             "italic": false,
             "bbox_mm": {
               "x": [
-                24.267857,
-                32.232143
+                21.317857,
+                29.282143
               ],
               "y": [
                 4.55175,
@@ -2101,7 +2101,7 @@
             "reference": "J9",
             "text": "AIR/FM RX",
             "at_mm": [
-              16.5,
+              10.6,
               5.4
             ],
             "size_mm": 1.0,
@@ -2109,7 +2109,7 @@
             "layer": "F.Silkscreen",
             "role": "antenna"
           },
-          "actual_id": "df1e0591-f2e4-527d-99c5-6289e0e12ce3"
+          "actual_id": "389d0799-9609-5524-9661-3d4945bb29c9"
         },
         {
           "expected": {
@@ -2117,7 +2117,7 @@
             "reference": "J8",
             "text": "AM/LW RX",
             "at_mm": [
-              28.25,
+              25.3,
               5.4
             ],
             "size_mm": 1.0,
@@ -2125,7 +2125,7 @@
             "layer": "F.Silkscreen",
             "role": "antenna"
           },
-          "actual_id": "238caf4c-8449-5060-bda7-9406db925207"
+          "actual_id": "8d925f67-92dc-53c9-98b1-3d0bd349849d"
         },
         {
           "expected": {
@@ -2141,7 +2141,7 @@
             "layer": "F.Silkscreen",
             "role": "antenna"
           },
-          "actual_id": "4eec517e-ba4e-5a2b-a7ab-b032b259a956"
+          "actual_id": "8c0fbe00-048a-5b5e-a040-abcff9916dbe"
         },
         {
           "expected": {
@@ -2149,7 +2149,7 @@
             "reference": "J6",
             "text": "UHF TX",
             "at_mm": [
-              51.75,
+              54.7,
               5.4
             ],
             "size_mm": 1.0,
@@ -2157,7 +2157,7 @@
             "layer": "F.Silkscreen",
             "role": "antenna"
           },
-          "actual_id": "51e66c52-667e-5bf5-acd0-aee6967d7ed8"
+          "actual_id": "414adc62-1904-58f0-9a29-d080908a14f6"
         },
         {
           "expected": {
@@ -2165,7 +2165,7 @@
             "reference": "J7",
             "text": "VHF TX",
             "at_mm": [
-              63.5,
+              69.4,
               5.4
             ],
             "size_mm": 1.0,
@@ -2173,7 +2173,7 @@
             "layer": "F.Silkscreen",
             "role": "antenna"
           },
-          "actual_id": "f58d9bbf-e9f9-5e1c-be57-e6757d04a6c9"
+          "actual_id": "d914b082-2012-5828-af97-c8bb3c9ad603"
         },
         {
           "expected": {

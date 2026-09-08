@@ -205,7 +205,7 @@ class H6R2PlacementTests(unittest.TestCase):
             )
 
     def test_user_critical_datums_are_exact_and_symmetric(self):
-        expected_x = [16.5, 28.25, 40.0, 51.75, 63.5]
+        expected_x = [10.6, 25.3, 40.0, 54.7, 69.4]
         for project in ("LESHY2-UI-R2", "LESHY2-RF-R2"):
             self.assertEqual(
                 expected_x,
@@ -240,7 +240,11 @@ class H6R2PlacementTests(unittest.TestCase):
                             "y": [0.0, 3.3],
                         },
                     ],
-                    row["opposite_face_keepout_bboxes_mm"],
+                    # Compare at KiCad's integer-nanometre resolution, not
+                    # binary-float noise such as 25.3 + 3.35 = 28.650000000000002.
+                    [{axis: [round(value, 6) for value in bounds]
+                      for axis, bounds in box.items()}
+                     for box in row["opposite_face_keepout_bboxes_mm"]],
                     row["instance"],
                 )
         display = self.contract["mechanical"]["display_bed"]

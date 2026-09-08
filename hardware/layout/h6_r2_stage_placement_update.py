@@ -21,6 +21,7 @@ import uuid
 import pcbnew
 import h6_r2_placement as placement
 from h6_r2_manual_copper import copper_signature
+import h6_r2_microsd_recess as microsd
 
 ROOT = Path(__file__).resolve().parents[2]
 UUID_FORM = re.compile(r'(\(uuid\s+)"([^"\\]*)"')
@@ -129,6 +130,71 @@ def copper_forms(text):
             or (head == "zone" and "(keepout" not in form)]
 
 
+def edge_cut_forms(text):
+    return [(head, form) for head, form in forms(text)
+            if re.search(r'\(layer\s+"Edge\.Cuts"\)', form) and head.startswith("gr_")]
+
+
+def edge_cut_key(head, form):
+    """Native geometric identity, including width; no UUID/format dependence."""
+    if head not in {"gr_line", "gr_arc"}:
+        raise ValueError("unsupported Edge.Cuts object in reviewed recess update")
+    result = [head]
+    for field in ("start", "mid", "end") if head == "gr_arc" else ("start", "end"):
+        match = re.search(r'\(' + field + r'\s+([-\d.eE+]+)\s+([-\d.eE+]+)\)', form)
+        if not match:
+            raise ValueError("malformed Edge.Cuts geometry")
+        result.append(tuple(round(float(v) * 1_000_000) for v in match.groups()))
+    widths = re.findall(r'\(width\s+([-\d.eE+]+)\)', form)
+    if len(widths) != 1:
+        raise ValueError("malformed Edge.Cuts width")
+    result.append(round(float(widths[0]) * 1_000_000))
+    return tuple(result)
+
+
+def primitive_edge_keys(primitives):
+    board = pcbnew.BOARD()
+    for primitive in primitives:
+        if primitive[0] == "gr_line":
+            placement.add_segment(board, pcbnew.Edge_Cuts, *primitive[1:], 0.05)
+        else:
+            placement.add_arc(board, pcbnew.Edge_Cuts, *primitive[1:], 0.05)
+    text = placement.board_bytes("reviewed-microsd-edge", board).decode()
+    return Counter(edge_cut_key(head, form) for head, form in edge_cut_forms(text))
+
+
+def reviewed_edge_cut_changes(before, seed, allowance, project, contract):
+    """Only UI-MICROSD-RECESS-001 may replace its one original bottom line.
+
+    The full old/new Edge.Cuts multiset must differ by precisely the reviewed
+    seven primitives. FPC, corner arcs, extra holes, width changes and arbitrary
+    hash-only board edits cannot hide behind this allowance.
+    """
+    old = [(edge_cut_key(h, f), f) for h, f in edge_cut_forms(before)]
+    new = [(edge_cut_key(h, f), f) for h, f in edge_cut_forms(seed)]
+    old_keys, new_keys = Counter(k for k, _ in old), Counter(k for k, _ in new)
+    if allowance is None:
+        if old_keys != new_keys:
+            raise ValueError("unreviewed Edge.Cuts change")
+        return [], []
+    expected_allowance = {
+        "feature_id": microsd.FEATURE_ID,
+        "source_contract_sha256": sha(placement.CONTRACT_PATH.read_bytes()),
+    }
+    if allowance != expected_allowance or project != microsd.PROJECT:
+        raise ValueError("invalid exact microSD Edge.Cuts authorization")
+    if microsd.feature(contract, project) is None:
+        raise ValueError("microSD recess contract missing")
+    expected_old = primitive_edge_keys([("gr_line", (78, 150), (2, 150))])
+    expected_new = primitive_edge_keys(microsd.bottom_edge_primitives(contract, project))
+    if old_keys - new_keys != expected_old or new_keys - old_keys != expected_new:
+        raise ValueError("Edge.Cuts delta is not exactly the reviewed microSD recess")
+    if any(old_keys[k] != 1 for k in expected_old) or any(new_keys[k] != 1 for k in expected_new):
+        raise ValueError("duplicate microSD Edge.Cuts primitive")
+    return ([form for key, form in old if key in expected_old],
+            [form for key, form in new if key in expected_new])
+
+
 def reviewed_label_forms(text, allowed):
     result = []
     for head, form in forms(text):
@@ -205,7 +271,8 @@ def input_snapshot(source):
     """Snapshot the actual generator inputs before, after build and publication."""
     paths = {source, Path(__file__), *(getattr(placement, name) for name in PLACEMENT_INPUT_ATTRIBUTES)}
     paths.update(ROOT / "hardware/layout" / name for name in (
-        "h6_r2_placement.py", "h6_r2_coordinates.py", "h6_r2_user_silkscreen.py"))
+        "h6_r2_placement.py", "h6_r2_coordinates.py", "h6_r2_user_silkscreen.py",
+        "h6_r2_microsd_recess.py"))
     paths.update((ROOT / "hardware/ecad/libraries").rglob("*.kicad_mod"))
     rows = json.loads(placement.INSTANCE_PATH.read_text())["rows"]
     for row in rows:
@@ -312,6 +379,15 @@ def stage(plan, directory):
         replacement_labels = [fresh_object_uuids(form, f"{sha(original)}:label:{index}:{sha(form.encode())}", occupied)
                               for index, (_, form) in enumerate(new_labels)]
         merged = merged.rstrip()[:-1] + "\n" + "\n".join(replacement_labels) + "\n)\n"
+    old_edges, new_edges = reviewed_edge_cut_changes(
+        original.decode(), seed, plan.get("allowed_edge_cut_change"), project,
+        json.loads(placement.CONTRACT_PATH.read_text()))
+    for form in old_edges:
+        merged = merged.replace(form, "", 1)
+    if new_edges:
+        replacements = [fresh_object_uuids(form, f"{sha(original)}:microsd-edge:{index}:{sha(form.encode())}", occupied)
+                        for index, form in enumerate(new_edges)]
+        merged = merged.rstrip()[:-1] + "\n" + "\n".join(replacements) + "\n)\n"
     merged = normalize_interform_whitespace(merged)
     require_unique_uuids(merged)
     if copper_forms(merged) != preserved:
@@ -339,6 +415,8 @@ def stage(plan, directory):
               "candidate": str(target), "changed_references": changed,
               "reviewed_silkscreen_texts": sorted(labels),
               "reviewed_added_silkscreen_texts": sorted(additions),
+              "reviewed_edge_cut_change": plan.get("allowed_edge_cut_change"),
+              "edge_cut_primitives_removed_added": [len(old_edges), len(new_edges)],
               "unchanged_reference_count": len(old_fps) - len(changed),
               "copper_objects_preserved": len(copper_signature(old)),
               "copper_forms_preserved_exact": len(preserved),

@@ -2,7 +2,7 @@
 
 [Русский](h6-r2-interface-review.ru.md)
 
-**2026-09-08: the reviewed interface corrections below are integrated into both native boards. H6 remains open; manufacturing is not authorized.**
+**2026-09-08: the SMA/microSD spacing correction is now integrated in MAIN alongside the earlier interface fixes. Fresh DRC on both native boards reports 0 violations / 0 schematic-parity findings. H6 remains open; manufacturing is not authorized.**
 
 The UI IR cluster and 15 front buttons, and the RF bottom ports, service switches,
 PTT and ordinary-SMT headset jack now use the corrected native geometry. This
@@ -38,6 +38,22 @@ With both antenna edges upward, the RF assembly transform is
 is not a substitute for that physical transform. Explicit native overrides and
 frozen poses must not be mirrored a second time.
 
+## What changed in connector spacing and card access
+
+| Interface | Integrated geometry and exact limit |
+| --- | --- |
+| Both five-SMA banks | Native X centres are **[10.6,25.3,40,54.7,69.4]**: **14.7 mm pitch**, instead of 11.75 mm. With the **9 mm connector bodies**, the nominal adjacent-body gap grows from 2.75 to **5.7 mm**. This provides more room around the connectors; it is not a measurement of antenna-base diameter or proof of finger/tool access with all antennas fitted. Antenna assignments, outward direction and exact MPNs are unchanged. |
+| UI microSD J5 and six support parts | The group moves **−1.8 mm in Y**; J5 becomes B180 **[61.005,140.075]**, card axis X61.43. Shell mouth: **Y148.2**. Card edge when locked: **Y149.8**, nominally **0.2 mm inside the ordinary Y150 board edge**; fully pressed: **Y149.0**; ejected: Y153.8. The separate 0.8 mm push stroke and 4.0 mm ejection travel are retained. All these positions are nominal, not tolerance bounds. |
+| UI card-access notch | An open **10 × 1.2 mm, R0.6** recess occupies X[56.43,66.43], Y[148.8,150]. Its local edge at **Y148.8** leaves the nominal card edge accessible in both locked and fully pressed positions. This is our PCB access choice, **not a Hirose-mandated notch**. The 80 × 150 mm outer envelope, mounting holes and display-FPC slot are unchanged. Actual card/connector tolerances and closed-device finger access remain open. |
+| RF USB J1 | Its **0.5 mm shell protrusion** beyond the ordinary bottom edge is intentional and unchanged. The SMA/card correction does not move J1 or establish plug-overmould clearance. |
+
+The larger SMA pitch improves the available connector spacing, but real antenna
+bases, the assembled inter-row Z separation, screw-head access, two-sided solder
+prongs and microcoax bends must still be checked together. Local U.FL/support
+repositioning is part of this correction; it does not qualify assembled cable fit.
+The separate **1.75 ± 0.10 mm slot versus 1.60 ± 0.16 mm PCB** issue remains
+open: this envelope still permits **0.11 mm interference**.
+
 ## What is now in the native boards
 
 | Integrated slice | Exact scope and remaining boundary |
@@ -49,10 +65,10 @@ frozen poses must not be mirrored a second time.
 | RF PTT: 1 reference | SW4 uses the corrected B3S actuator datum and accepted rear-side position; existing copper remains intact. This is not an enclosure/button-force qualification. |
 | RF audio: 4 references | U83 is **SJ-43515TS-SMT-TR**, F0 **[0.8,99.0]**, with C144/C199/U116 locally repositioned; U116 is **[10.5,110.0]**, F90. This ordinary-SMT jack needs locator holes but **no under-body PCB cutout**. The old SJ-43504 cutout errors are historical findings, not a current blocker. Plug access and retention remain open. [Same Sky exact TS model, p2](https://www.sameskydevices.com/product/resource/digikeypdf/sj-4351x-smt.pdf). |
 
-The RF slices total **24 references**: 16 + 3 + 1 + 4. Earlier corrections to
-UI USB/microSD, ten exterior indicators and M1 remain in place. microSD UI J5
-is B180 at [61.005,141.875]; its access envelope includes 4.0 mm ejection travel
-and a separate 0.8 mm push stroke, not merely the socket courtyard.
+The earlier RF slices total **24 references**: 16 + 3 + 1 + 4. Their integration,
+the ten exterior indicators and M1 remain in place. The new SMA/microSD slice
+above is the subsequent change; its card-access envelope is not merely the socket
+courtyard.
 
 The subsequent [holder-polarity correction](../hardware/layout/h6-r2-holder-polarity-integration.json)
 updates another **four RF references: BT1, F2, U91 and C241**. Cell1 positive
@@ -77,15 +93,16 @@ height are guarded. Generic body models do not close exact assembled Z.
 
 | Check | Result and limit |
 | --- | --- |
-| Copper preservation | All **787 existing copper objects — 622 segments and 165 vias — are preserved**: UI 21, RF 766. This does not mean moved, previously unrouted pins are now connected. |
-| Final staged DRC | Both final staged checks reported **0 violations and 0 schematic-parity findings**. Each still returned **499 unconnected items**, at the report cap; this is neither an exact remaining-airwire count nor completed routing. |
-| Production provenance | Fresh production schema2 receipts for the two hashes below also report **0 violations / 0 schematic-parity findings**. They explicitly request `--schematic-parity` and bind PCB/pro/dru, root/child SCH, library tables and repository-controlled libraries. The actual command uses repository-relative board/report paths under the recorded repository-root working directory; copying identical files does not rewrite its evidence. Standard installed libraries remain an explicit environment boundary. A different PCB or changed hashed source invalidates the receipt. |
-| Native/library pad parity | **1216/1216 footprints checked, zero pad-geometry drift.** Agreement with the selected library does not qualify that library's unresolved holder/encoder geometry. |
+| Copper preservation | UI retains all **21 copper objects byte-for-byte**. RF preserves **747** unchanged objects and replaces **19 with 18** in four explicitly reviewed routes, retaining existing connected pin pairs. The current total is **786 objects: 621 segments and 165 vias** (UI21 + RF765), not 787 unchanged objects. Moved, previously unrouted pins are not thereby connected. |
+| Fresh native DRC | Both promoted SMA/microSD boards report **0 violations and 0 schematic-parity findings** for the hashes below. Each returns **499 unconnected items**, at the report cap; this is neither an exact remaining-airwire count nor completed routing. |
+| Production provenance | Fresh schema2 receipts explicitly request `--schematic-parity` and bind PCB/pro/dru, root/child SCH, library tables and repository-controlled libraries. The actual command uses repository-relative board/report paths under the recorded repository-root working directory; copying identical files does not rewrite its evidence. Standard installed libraries remain an explicit environment boundary. A different PCB or changed hashed source invalidates the receipt. |
+| Native/library pad parity | The refreshed audit checks **1216/1216 footprints with zero pad-geometry drift**, bound to both promoted hashes. Agreement with the selected library does not qualify its unresolved holder/encoder geometry. |
 | Safe native integration | The staging guard rejects duplicate raw UUIDs, unexpected pad removals, changed unlisted footprints and changed copper. Changed-footprint UUIDs are regenerated collision-free; schematic paths and untouched objects are preserved. |
 | Electrical boundary | Only the unused old U83 terminal6 was removed: **4066 connected logical endpoint tuples remain identical**, with 4070 connected physical pins and 235 NC pins. H3 permits only a bounded electrical transfer for TR and the five-contact audio jack, not optical/mechanical or whole-board approval. |
-| Silkscreen | All **63 required labels** match their native bindings, including anchor/angle/side/footprint identity and actuator axis. Both boards now have **zero unresolved geometry candidates**, status `pass_scoped`. The five UI findings were resolved explicitly: four clear the exact B3S body with its dimensional tolerance, and HUB RP's actual strokes clear pad SW8.5's mask by **0.239819–0.239820 mm**, above the 0.15 mm screening requirement. These are geometry proofs, not blanket waivers. RF antenna labels bind to signal nets, not list order; DISPLAY/PSA use corner marks. Closed-device readability remains outside this audit. |
+| Silkscreen | The refreshed audit binds **65 required labels: UI48 + RF17**, with zero unresolved geometry candidates and status `pass_scoped`. Five UI findings are resolved explicitly: four clear the exact B3S body with its dimensional tolerance, and HUB RP's actual strokes clear pad SW8.5's mask by **0.239819–0.239820 mm**, above the 0.15 mm screening requirement. Antenna labels follow their connectors; RF labels bind to signal nets, not list order. DISPLAY/PSA use corner marks. These are geometry proofs, not blanket waivers or closed-device readability qualification. |
 
-The current H3 checks pass within their model boundaries. They do not replace
+Current [H3 is `review_required`](h3-r2-acceptance.md): retained calculations are
+provisional and do not qualify the installed power circuit. They do not replace
 the open native electrical-semantics, power/startup, remaining routing or
 assembled-mechanics gates. No prototype has been demonstrated to boot by this review.
 
@@ -98,6 +115,7 @@ assembled-mechanics gates. No prototype has been demonstrated to boot by this re
 | **Cell-to-NTC contact** | [Reopened height review](h6-r2-mechanical-stack.md): the previously assumed 3.3-mm cell floor is a retaining-post projection below the PCB. The 20% compression claim is withdrawn; actual cell height, channel fit and pad compression remain unverified. The two NTC XY positions are not proof of thermal contact. |
 | Alps EC11E18244AU encoder | The exact 12.5 mm mounting-lug pitch differs from the bound generic 11.2 mm footprint. A separate dimension/slot-process candidate is not an accepted production footprint or proof of solder-joint strength. |
 | SMA thickness | Reconcile the 1.75 ± 0.10 mm connector slot with finished PCB thickness; the earlier 1.60 ± 0.16 mm envelope permits 0.11 mm interference. Do not assume the prongs can be spread. |
+| SMA antennas and microSD access | The wider 14.7 mm bank and nominal recessed-card geometry do not qualify actual antenna bases, assembled inter-row Z, finger/tool and screw access, cable bends, card/connector tolerances or enclosure access. The PCB notch is a project choice, not a manufacturer requirement. |
 | Display/FPC/PSA | The native 27 × 1.2 mm slot and ZIF orientation exist, but the real fold, slack, rear-panel flatness, adhesive thickness and assembly tolerance still require closure. |
 | Microphone/speaker | RF MK1's acoustic path, the real speaker body/mount and lead strain relief remain open. A bounded microphone-cluster candidate exists below but is **not adopted**. LS1 represents wire termination, not the speaker body. |
 | RUN/KILL direction | Resolve the manufacturer's conflicting physical A/B caption before accepting directional markings. The electrical pairs are known; the lever direction is not silently inferred. |
@@ -127,16 +145,22 @@ The six internal debug headers are accessed after opening the device.
 
 ## Evidence: current state versus historical findings
 
-This report's integrated PCB snapshot is:
+The integrated SMA/microSD PCB hashes below match the fresh MAIN DRC receipts.
+They identify the checked native boards, not manufacturing approval:
 
 | Board | SHA-256 |
 | --- | --- |
-| [UI native PCB](../hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb) | `82e0b4ae6cbbad5241984a476c057ea7ecf2d593b382bcc06feceb26a73cbfe1` |
-| [RF native PCB](../hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb) | `3a31f0144271c1c95fa92a0b8e51eb52fead47249653b36320d5268bf238108d` |
+| [UI native PCB](../hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb) | `15e31c85d5cfdb85fd86ffa2830f1c74b55014a227275c2d4d53cc35513bb1c8` |
+| [RF native PCB](../hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb) | `634b3705ccd156b2b3511b46df430fc36c0a5e4a4d81c0190e2cd10351ae1d1c` |
+
+Fresh MAIN DRC records are `work/spacing-main-review/ui-drc.json` and
+`work/spacing-main-review/rf-drc.json`, with their provenance sidecars. The
+earlier UI stage and RF atomic-review records retain their original pre-DRC
+status; the later hash-bound DRC receipts establish the current result.
 
 - Current owners: [placement contract](../hardware/layout/h6-r2-placement-contract.json), [native instance ledger](../hardware/ecad/generated/H2-R2-native-instance-ledger.json), [assembly coordinates](../hardware/product-design/assembly-coordinate-model.json), [display contract](../hardware/product-design/display-mount.json).
-- Derived audits: [current routing](../hardware/layout/generated/H6-R2-current-routing-audit.json), [pad parity](../hardware/layout/generated/H6-R2-footprint-pad-parity.json), [native user labels](../hardware/layout/generated/H6-R2-user-silkscreen-audit.json). Check their recorded source hashes: a reproducible stale snapshot is not evidence for the two hashes above. Fresh production DRC receipts and the scoped silk audit have been verified against both final hashes.
-- Current component images: the [view manifest](../hardware/layout/generated/H6-R2-component-views.json) matches both final PCB hashes and all five published SVG hashes: four faces plus overview. These are native component views, not an assembled-body or H1-to-PCB parity approval.
+- Derived audits: [current routing](../hardware/layout/generated/H6-R2-current-routing-audit.json), [pad parity](../hardware/layout/generated/H6-R2-footprint-pad-parity.json), [native user labels](../hardware/layout/generated/H6-R2-user-silkscreen-audit.json). Check their recorded source hashes: a reproducible stale snapshot is not evidence for the two hashes above. The pad-parity and scoped label audits have been rebound to both promoted boards.
+- Component images: the refreshed [view manifest](../hardware/layout/generated/H6-R2-component-views.json) matches both promoted PCB hashes and all five published SVG hashes: four faces plus overview. The actual card notch is shown; the ejected-card position is a dashed explanatory overlay, not silkscreen or part of the PCB outline. Native component views do not qualify assembled bodies or full H1-to-PCB parity.
 - Electrical proof: [bounded analog transfer](../hardware/verification/generated/H3-R2-analog-corners.json), [NC6 removal and connected-tuple baseline](../hardware/verification/h3-r2-input-freeze-contract.json), [typed electrical review](../hardware/verification/generated/H6-R2-electrical-semantics.json).
 - Open mechanics: [Cap](../hardware/layout/h6-r2-cap-mating-review.json), [holder/encoder](../hardware/layout/h6-r2-holder-encoder-geometry-evidence.json), [B3S datum](../hardware/layout/h6-r2-b3s-actuator-datum-review.json), [audio placement](../hardware/layout/h6-r2-audio-placement-proposal.json). Source-review/candidate snapshots retain their original status; source-selection tags such as `native_integration_open` describe that original selection snapshot, not the subsequent native status recorded on this page.
 - Historical discovery snapshots: [mechanical review, 2026-09-07 16:21:55 UTC](../hardware/layout/h6-r2-interface-review-findings.json), [74-row inventory, 16:24:49 UTC](../hardware/layout/h6-r2-connector-review-findings.json), [interface datums](../hardware/layout/h6-r2-interface-datum-review.json), [old mid-mount audio corrections](../hardware/layout/h6-r2-audio-datum-review.json). Their old defects must not be presented as current placements, nor their old DRC as fresh acceptance.

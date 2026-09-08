@@ -21,6 +21,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from h6_r2_coordinates import world_bbox_to_native
+from h6_r2_microsd_recess import bottom_edge_primitives
 
 try:
     import pcbnew  # type: ignore
@@ -341,14 +342,18 @@ def add_arc(
     board.Add(shape)
 
 
-def add_rounded_outline(board, width: float, height: float, radius: float) -> None:
+def add_rounded_outline(board, width: float, height: float, radius: float, bottom=None) -> None:
     line = 0.05
     k = radius / math.sqrt(2)
     add_segment(board, pcbnew.Edge_Cuts, (radius, 0), (width - radius, 0), line)
     add_arc(board, pcbnew.Edge_Cuts, (width - radius, 0), (width - radius + k, radius - k), (width, radius), line)
     add_segment(board, pcbnew.Edge_Cuts, (width, radius), (width, height - radius), line)
     add_arc(board, pcbnew.Edge_Cuts, (width, height - radius), (width - radius + k, height - radius + k), (width - radius, height), line)
-    add_segment(board, pcbnew.Edge_Cuts, (width - radius, height), (radius, height), line)
+    for primitive in bottom or [("gr_line", (width-radius, height), (radius, height))]:
+        if primitive[0] == "gr_line":
+            add_segment(board, pcbnew.Edge_Cuts, *primitive[1:], line)
+        else:
+            add_arc(board, pcbnew.Edge_Cuts, *primitive[1:], line)
     add_arc(board, pcbnew.Edge_Cuts, (radius, height), (radius - k, height - radius + k), (0, height - radius), line)
     add_segment(board, pcbnew.Edge_Cuts, (0, height - radius), (0, radius), line)
     add_arc(board, pcbnew.Edge_Cuts, (0, radius), (radius - k, radius - k), (radius, 0), line)
@@ -424,6 +429,7 @@ def configure_board(board, contract: dict, project: str) -> None:
         geometry["width_mm"],
         geometry["height_mm"],
         geometry["corner_radius_mm"],
+        bottom_edge_primitives(contract, project),
     )
 
 
@@ -669,6 +675,8 @@ def target_for_instance(
             "frame": "front-outer" if project == "LESHY2-UI-R2" else "rear-outer",
             "anchor": antennas[instance],
             "rotation": 180.0,
+            "mechanical_locked": True,
+            "rotation_locked": True,
             "direction": "board-edge antenna port; connector body faces outward and both solder-land rows remain on the PCB",
         }
     row = frozen.get((project, instance))
@@ -1936,6 +1944,7 @@ def svg_bytes(audit: dict) -> bytes:
         "reviewed H6.0.3 charger-locality correction": ("#fefce8", "#ca8a04"),
         "reviewed H6.0.3 signal-locality correction": ("#f0fdf4", "#16a34a"),
         "reviewed H6.0.3 edge-launch-land clearance correction": ("#eff6ff", "#1d4ed8"),
+        "reviewed antenna-bank clearance correction": ("#eff6ff", "#1d4ed8"),
         "reviewed H6.0.3 native-silkscreen-clearance correction": ("#fdf2f8", "#db2777"),
         "reviewed outward connector mouth datum": ("#ecfdf5", "#047857"),
         "reviewed audio local-support correction": ("#f0fdf4", "#16a34a"),

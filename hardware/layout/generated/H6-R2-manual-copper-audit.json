@@ -5,16 +5,16 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "8def56fb26276747a90d206e9992c6cc485096bb1011477257872391c9d4cfdc",
+    "contract_sha256": "549f19cc535d513b2a46c09d86d8e46559808b9d51bda20921054c24d05a611d",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "981623af1dafa41c6554bd6ed9e9ce05a293ff9e49749b8c3aa3aa62452c0769",
+    "routing_policy_sha256": "af620964fb7a92df3f7790c0eefe6478922b0135da39503182610fcee75c6b92",
     "routing_contract": "hardware/layout/h6-r2-routing-policy.json",
     "routing_contract_sha256": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
     "placement_status": "pass"
   },
   "summary": {
     "route_count": 106,
-    "segment_count": 622,
+    "segment_count": 621,
     "resolved_connection_count": 188,
     "via_count": 165,
     "manual_only_route_count": 86,
@@ -329,7 +329,7 @@
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
       "route_count": 100,
-      "segment_count": 601,
+      "segment_count": 600,
       "via_count": 165,
       "resolved_connection_count": 180,
       "copper_signature": [
@@ -8249,36 +8249,8 @@
           "B.Cu",
           0.134874,
           [
-            7.6,
-            2.98
-          ],
-          [
-            7.6,
-            4.105
-          ]
-        ],
-        [
-          "track",
-          "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_OUT_RF",
-          "B.Cu",
-          0.134874,
-          [
-            7.6,
-            2.98
-          ],
-          [
-            12.2,
-            2.98
-          ]
-        ],
-        [
-          "track",
-          "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_OUT_RF",
-          "B.Cu",
-          0.134874,
-          [
-            7.6,
-            4.105
+            8.324999,
+            3.55
           ],
           [
             8.324999,
@@ -8291,12 +8263,12 @@
           "B.Cu",
           0.134874,
           [
-            11.535,
-            3.605
+            8.324999,
+            3.55
           ],
           [
-            12.2,
-            3.605
+            9.45,
+            3.55
           ]
         ],
         [
@@ -8305,12 +8277,40 @@
           "B.Cu",
           0.134874,
           [
-            12.2,
-            2.98
+            9.45,
+            3.55
           ],
           [
-            12.2,
-            3.605
+            9.8,
+            3.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_OUT_RF",
+          "B.Cu",
+          0.134874,
+          [
+            9.8,
+            3.2
+          ],
+          [
+            11.535,
+            3.2
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/AIR_BPF_OUT_RF",
+          "B.Cu",
+          0.134874,
+          [
+            11.535,
+            3.2
+          ],
+          [
+            11.535,
+            3.745
           ]
         ],
         [
@@ -8334,7 +8334,7 @@
           0.134874,
           [
             10.575,
-            3.605
+            3.745
           ],
           [
             11.995,
@@ -8361,36 +8361,8 @@
           "B.Cu",
           0.134874,
           [
-            23.855,
+            25.305,
             3.785
-          ],
-          [
-            24.3,
-            3.9
-          ]
-        ],
-        [
-          "track",
-          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_PAD",
-          "B.Cu",
-          0.134874,
-          [
-            24.3,
-            3.9
-          ],
-          [
-            25.2,
-            3.9
-          ]
-        ],
-        [
-          "track",
-          "/RF_21_BROADCAST_AIRBAND_RX/AIR_LO_PAD",
-          "B.Cu",
-          0.134874,
-          [
-            25.2,
-            3.9
           ],
           [
             25.65,
@@ -8571,11 +8543,11 @@
           "B.Cu",
           0.134874,
           [
-            27.355,
-            3.785
+            28.4,
+            3.8
           ],
           [
-            28.4,
+            29.0,
             3.8
           ]
         ],
@@ -8585,39 +8557,53 @@
           "B.Cu",
           0.134874,
           [
-            27.84,
+            28.4,
+            3.8
+          ],
+          [
+            29.7,
+            3.765
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_BOUNDARY_RF",
+          "B.Cu",
+          0.134874,
+          [
+            29.0,
+            1.205
+          ],
+          [
+            29.0,
+            3.8
+          ]
+        ],
+        [
+          "track",
+          "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_BOUNDARY_RF",
+          "B.Cu",
+          0.134874,
+          [
+            29.0,
+            1.205
+          ],
+          [
+            29.34,
             0.865
-          ],
-          [
-            27.84,
-            1.5
           ]
         ],
         [
           "track",
           "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_BOUNDARY_RF",
-          "B.Cu",
+          "F.Cu",
           0.134874,
           [
-            27.84,
-            1.5
+            25.3,
+            1.65
           ],
           [
-            28.4,
-            2.0
-          ]
-        ],
-        [
-          "track",
-          "/RF_21_BROADCAST_AIRBAND_RX/RX_AMLW_BOUNDARY_RF",
-          "B.Cu",
-          0.134874,
-          [
-            28.4,
-            2.0
-          ],
-          [
-            28.4,
+            25.3,
             3.8
           ]
         ],
@@ -8627,8 +8613,8 @@
           "F.Cu",
           0.134874,
           [
-            28.25,
-            1.65
+            25.3,
+            3.8
           ],
           [
             28.4,
@@ -11942,9 +11928,9 @@
       ],
       "segment_count": 1,
       "via_count": 0,
-      "length_mm": 2.0492,
+      "length_mm": 1.9507,
       "resolved_connections": 1,
-      "reason": "Short via-free connection from the third Airband BPF series inductor into its exact shunt capacitor."
+      "reason": "Preserve the via-free S3 LC connection to C163.1 after its 0.140-mm +Y shift away from the SMA lands in the expanded antenna bank."
     },
     {
       "id": "RF-AIRBAND-BPF-S3-MID",
@@ -11978,11 +11964,11 @@
       "widths_mm": [
         0.134874
       ],
-      "segment_count": 7,
+      "segment_count": 5,
       "via_count": 0,
-      "length_mm": 7.8771,
+      "length_mm": 6.543,
       "resolved_connections": 2,
-      "reason": "The via-free LO attenuation node clears the crystal escape on its upper side, passes below the AM/LW coupling capacitor and skirts the crystal ground pads before joining both local shunt resistors."
+      "reason": "Follow relocated C169.1 and retain the existing via-free lower/right crystal escape into R149.1 and R147.2; remove the obsolete leftward stub."
     },
     {
       "id": "RF-CC1101-DETECTOR-SAMPLE",
@@ -12018,9 +12004,9 @@
       ],
       "segment_count": 5,
       "via_count": 0,
-      "length_mm": 7.74,
+      "length_mm": 4.455,
       "resolved_connections": 1,
-      "reason": "Short via-free output link from the Airband BPF shunt node into the LNA coupling capacitor."
+      "reason": "Via-free link between C165.1 and relocated C163.2 passes below the new SMA ground toes and above the neighbouring capacitor lands, without crossing the S3 LC feed."
     },
     {
       "id": "RF-RX-AM-LW-BOUNDARY",
@@ -12036,11 +12022,11 @@
       "widths_mm": [
         0.134874
       ],
-      "segment_count": 5,
+      "segment_count": 6,
       "via_count": 1,
-      "length_mm": 6.3861,
+      "length_mm": 10.2263,
       "resolved_connections": 2,
-      "reason": "The receive-only AM/LW boundary uses its single reviewed edge-launch transition, reaches the series coupling capacitor from its outer pad, and branches locally to the dedicated low-capacitance ESD shunt without crossing the adjacent LO network."
+      "reason": "Exit J8.1 vertically beyond the SMA ground toes before the F.Cu horizontal leg; retain one approved 0.5/0.25-mm through-via, join C182.1, and approach D4.1 through the B.Cu corridor right of the ground land ending at x28.65."
     },
     {
       "id": "RF-RP-XIN",

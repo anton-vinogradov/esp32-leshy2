@@ -1,9 +1,9 @@
 {
   "status": "current_native_visualization_not_assembly_approval",
   "inputs_sha256": {
-    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "12bd3f264c49880cfc6354fbfaac939745bc6951e476335e181690ed36fb6979",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "3a7ac2942e7ec23b125a0666dad9233b320689133479cf35c2b8d70e04b82790",
-    "hardware/layout/h6_r2_component_render.py": "3c705605e07fea35a66da7617e6505190784824320a0a8451273e292ee1c7e0b"
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "15e31c85d5cfdb85fd86ffa2830f1c74b55014a227275c2d4d53cc35513bb1c8",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "634b3705ccd156b2b3511b46df430fc36c0a5e4a4d81c0190e2cd10351ae1d1c",
+    "hardware/layout/h6_r2_component_render.py": "7d037e6fe4bb198ecc38425764949901246f6570fba656c807d12d06fd5a5dae"
   },
   "view_convention": "outer=native; inner=x_view=80-x_native, y unchanged; no extra RF transform",
   "same_scale": true,
@@ -18,8 +18,10 @@
   "limitations": [
     "Current Fab geometry includes known defects; not a 3D qualification.",
     "No tracks, ratsnest, cells, display, loose cables or external antennas.",
-    "Opposite-face drawings are shown only outside the board rectangle as context; not a 3D visibility test.",
+    "Native Edge.Cuts defines the background and outer-outline clip; KiCad polygonization is only a visual fill, not fabrication geometry.",
+    "Opposite-face drawings are shown only outside the actual outer board contour as context; not a 3D visibility test.",
     "Reference designators are drawing annotations, not additional silkscreen.",
+    "UI J5 DM3AT card reference positions are nominal: locked solid, ejected ochre/dashed. The callout is a drawing annotation, not PCB silkscreen or an installed-card claim.",
     "L32 is the actual Dwgs.User reservation, not completed loop copper."
   ],
   "views": [
@@ -1359,10 +1361,10 @@
     }
   ],
   "outputs_sha256": {
-    "docs/images/h6-r2-components-ui-outer.svg": "919f9c14749427dcf4371f88c1b3d438e0f74852527a9028499fcb1ee218c552",
-    "docs/images/h6-r2-components-rf-outer.svg": "f777ced211ad0e89733d6be1cc8f69243576f7b30593de981626e2e02b8aada1",
-    "docs/images/h6-r2-components-ui-inner.svg": "caa46214d8aac5327b6968a53652c265e971ca83ea7f3f85500d8443f725be88",
-    "docs/images/h6-r2-components-rf-inner.svg": "c1b6929b3f69e5a77268c8068316efcb5cfc676f0b3dce4f4a7dc9c07b961097",
-    "docs/images/h6-r2-components-overview.svg": "10ff96c6b4ef8b0436f9b842a5e7160df754879cc286e2bb7b85f93155e18726"
+    "docs/images/h6-r2-components-ui-outer.svg": "1b27907fc00f1fc8083cb37da2fee16a74577943bc03cbc70dded2427844040e",
+    "docs/images/h6-r2-components-rf-outer.svg": "05ddddc3699b3c738f044d49b0cb781c5b55197580f20e383ff1f8534a6039e0",
+    "docs/images/h6-r2-components-ui-inner.svg": "72f3b644b3a23a47327ef690a744730eb67348d571eeb25a16f145c8d07ed188",
+    "docs/images/h6-r2-components-rf-inner.svg": "519d24293f72e9626aa4625b7af6201f99085501bfc70997ff29d720eda75214",
+    "docs/images/h6-r2-components-overview.svg": "80770966267eeeec2d7eb9c522855f70b31e746ad9c2f622885b10c7fcd40c66"
   }
 }

@@ -186,7 +186,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual("H6.0.3-R1", audit["marker"])
         self.assertEqual("pass_progress", audit["status"])
         self.assertFalse(audit["phase_complete"])
-        self.assertEqual(787, audit["summary"]["track_via_item_count"])
+        self.assertEqual(786, audit["summary"]["track_via_item_count"])
         self.assertEqual(188, audit["summary"]["resolved_connection_count"])
         self.assertEqual(3080, audit["summary"]["current_total_unconnected_count"])
         self.assertEqual(232, audit["summary"]["analog_remaining_connection_count"])
@@ -229,7 +229,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertEqual("pass", audit["status"])
         self.assertEqual([], audit["errors"])
         self.assertEqual(106, audit["summary"]["route_count"])
-        self.assertEqual(622, audit["summary"]["segment_count"])
+        self.assertEqual(621, audit["summary"]["segment_count"])
         self.assertEqual(188, audit["summary"]["resolved_connection_count"])
         self.assertEqual(165, audit["summary"]["via_count"])
         self.assertEqual(86, audit["summary"]["manual_only_route_count"])
@@ -261,7 +261,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
                 stderr=subprocess.STDOUT,
             )
             self.assertEqual(0, result.returncode, result.stdout)
-            self.assertIn("106 routes; 622 segments; 188 resolved connections", result.stdout)
+            self.assertIn("106 routes; 621 segments; 188 resolved connections", result.stdout)
 
     def test_corrected_rf_packages_withdraw_only_the_exact_invalidated_routes(self):
         contract = json.loads(MANUAL_COPPER_CONTRACT.read_text(encoding="utf-8"))
@@ -457,7 +457,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         for script, expected in (
             (PLACEMENT_FREEZE_SCRIPT, "1208 exact anchors"),
             (GENERAL_ROUTING_SCRIPT, "historical routing evidence preserved; current H6.0.3-R1"),
-            (CURRENT_ROUTING_SCRIPT, "787 copper items; 188 resolved; 3080 remain"),
+            (CURRENT_ROUTING_SCRIPT, "786 copper items; 188 resolved; 3080 remain"),
         ):
             result = subprocess.run(
                 [str(KICAD_PYTHON), str(script), "--check"],

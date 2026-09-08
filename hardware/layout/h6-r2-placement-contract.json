@@ -162,6 +162,28 @@
     }
   },
   "mechanical": {
+    "microsd_recess": {
+      "id": "UI-MICROSD-RECESS-001",
+      "board": "LESHY2-UI-R2",
+      "bbox_mm": {"x": [56.43, 66.43], "y": [148.8, 150.0]},
+      "internal_radius_mm": 0.6,
+      "card_axis_x_mm": 61.43,
+      "shell_mouth_y_mm": 148.2,
+      "card_locked_y_mm": 149.8,
+      "card_overstroke_y_mm": 149.0,
+      "card_ejected_y_mm": 153.8,
+      "positions_are_nominal_not_tolerance_bounds": true,
+      "manufacturer_mandates_pcb_notch": false,
+      "source": {
+        "url": "https://www.hirose.com/product/en/download_file/key_name/DM3AT-SF-PEJM5/category/Drawing%20(2D)/doc_file_id/44099/?file_category_id=6&item_id=06090031000&is_series=",
+        "document": "EDC-325165-00-00, revision 4, 2024-09-02",
+        "sections": "Sheet 1 reference card positions and mounting-side CL; sheet 3 0.8-mm overstroke / 4-mm ejection; sheet 4 enclosure finger indent, not a PCB-cut instruction",
+        "checked": "2026-09-08"
+      },
+      "decision": "Move only the seven existing SD-group components 1.8 mm toward -Y, keep the physical card axis, and make an open rounded finger recess inside the unchanged 80 x 150 mm PCB envelope.",
+      "constraints": "Preserve every existing copper object, all pad/net identities, mounting holes and display FPC slot. The SD courtyard may overhang this finger recess; native land/copper-to-edge checks remain mandatory, without reduced clearance rules.",
+      "remaining": ["Actual card and connector dimensional tolerances", "Enclosure finger access and closed-device STEP/dry fit", "No powered-card or full-routing qualification is implied"]
+    },
     "mounting_holes": {
       "diameter_mm": 2.7,
       "head_keepout_radius_mm": 4.0,
@@ -250,11 +272,11 @@
   "antenna_ports": {
     "LESHY2-UI-R2": {
       "nrf0_external_sma": [
-        16.5,
+        10.6,
         0.0
       ],
       "s3_external_rp_sma": [
-        28.25,
+        25.3,
         0.0
       ],
       "nrf1_external_sma": [
@@ -262,21 +284,21 @@
         0.0
       ],
       "c5_external_rp_sma": [
-        51.75,
+        54.7,
         0.0
       ],
       "nrf2_external_sma": [
-        63.5,
+        69.4,
         0.0
       ]
     },
     "LESHY2-RF-R2": {
       "receiver_fmsw_external_sma": [
-        16.5,
+        10.6,
         0.0
       ],
       "receiver_amlw_external_sma": [
-        28.25,
+        25.3,
         0.0
       ],
       "cc_external_sma": [
@@ -284,16 +306,136 @@
         0.0
       ],
       "voice_external_sma": [
-        51.75,
+        54.7,
         0.0
       ],
       "voice_v_external_sma": [
-        63.5,
+        69.4,
         0.0
       ]
     }
   },
   "placement_overrides": {
+    "air_bpf_s1_c": {
+      "frame": "rear-inner",
+      "centre_mm": [10.7,1.1],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed antenna-bank clearance correction",
+      "reason": "Candidate local repack for the 14.7-mm antenna pitch; preserve the exact part and all nets. Native clearance, pad-locality and routed connectivity must pass before adoption."
+    },
+    "air_bpf_s2_c": {
+      "frame": "rear-inner",
+      "centre_mm": [10.7,2.6],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed antenna-bank clearance correction",
+      "reason": "Candidate local repack for the 14.7-mm antenna pitch; preserve the exact part and all nets. Native clearance, pad-locality and routed connectivity must pass before adoption."
+    },
+    "air_bpf_s3_c": {
+      "frame": "rear-inner",
+      "centre_mm": [11.055,3.745],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed antenna-bank clearance correction",
+      "reason": "Candidate local repack for the 14.7-mm antenna pitch; preserve the exact part and all nets. Native clearance, pad-locality and routed connectivity must pass before adoption."
+    },
+    "air_lna_rail_bypass": {
+      "frame": "rear-inner",
+      "centre_mm": [6.555,3.955],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed antenna-bank clearance correction",
+      "reason": "Candidate local repack for the 14.7-mm antenna pitch; preserve the exact part and all nets. Native clearance, pad-locality and routed connectivity must pass before adoption."
+    },
+    "air_lo_match_c": {
+      "frame": "rear-inner",
+      "centre_mm": [20.3,2.605],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed antenna-bank clearance correction",
+      "reason": "Candidate local repack for the 14.7-mm antenna pitch; preserve the exact part and all nets. Native clearance, pad-locality and routed connectivity must pass before adoption."
+    },
+    "air_mixer_input_match_c": {
+      "frame": "rear-inner",
+      "centre_mm": [20.755,1.355],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed antenna-bank clearance correction",
+      "reason": "Candidate local repack for the 14.7-mm antenna pitch; preserve the exact part and all nets. Native clearance, pad-locality and routed connectivity must pass before adoption."
+    },
+    "receiver_fmi_esd": {
+      "frame": "rear-inner",
+      "centre_mm": [22.075,3.965],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed antenna-bank clearance correction",
+      "reason": "Candidate local repack for the 14.7-mm antenna pitch; preserve the exact part and all nets. Native clearance, pad-locality and routed connectivity must pass before adoption."
+    },
+    "air_selector_to_receiver_dc_block": {
+      "frame": "rear-inner",
+      "centre_mm": [25.305,1.605],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed antenna-bank clearance correction",
+      "reason": "Candidate local repack for the 14.7-mm antenna pitch; preserve the exact part and all nets. Native clearance, pad-locality and routed connectivity must pass before adoption."
+    },
+    "air_lo_dc_block": {
+      "frame": "rear-inner",
+      "centre_mm": [25.305,3.305],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed antenna-bank clearance correction",
+      "reason": "Candidate local repack for the 14.7-mm antenna pitch; preserve the exact part and all nets. Native clearance, pad-locality and routed connectivity must pass before adoption."
+    },
+    "receiver_ami_coupling_cap": {
+      "frame": "rear-inner",
+      "centre_mm": [29.7,3.285],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed antenna-bank clearance correction",
+      "reason": "Candidate local repack for the 14.7-mm antenna pitch; preserve the exact part and all nets. Native clearance, pad-locality and routed connectivity must pass before adoption."
+    },
+    "receiver_ami_esd": {
+      "frame": "rear-inner",
+      "centre_mm": [29.825,0.865],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed antenna-bank clearance correction",
+      "reason": "Candidate local repack for the 14.7-mm antenna pitch; preserve the exact part and all nets. Native clearance, pad-locality and routed connectivity must pass before adoption."
+    },
+    "cc_return_buffer": {
+      "frame": "rear-inner",
+      "centre_mm": [62,3.95],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed antenna-bank clearance correction",
+      "reason": "Candidate local repack for the 14.7-mm antenna pitch; preserve the exact part and all nets. Native clearance, pad-locality and routed connectivity must pass before adoption."
+    },
+    "cc_return_buffer_bypass": {
+      "frame": "rear-inner",
+      "centre_mm": [66.7,4.1],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed antenna-bank clearance correction",
+      "reason": "Candidate local repack for the 14.7-mm antenna pitch; preserve the exact part and all nets. Native clearance, pad-locality and routed connectivity must pass before adoption."
+    },
+    "codec_tx_coupling": {
+      "frame": "rear-inner",
+      "centre_mm": [63.125,8.725],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed antenna-bank clearance correction",
+      "reason": "Candidate local repack for the 14.7-mm antenna pitch; preserve the exact part and all nets. Native clearance, pad-locality and routed connectivity must pass before adoption."
+    },
+    "headphone_r_coupling1": {
+      "frame": "rear-inner",
+      "centre_mm": [59.595,8.975],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed antenna-bank clearance correction",
+      "reason": "Candidate local repack for the 14.7-mm antenna pitch; preserve the exact part and all nets. Native clearance, pad-locality and routed connectivity must pass before adoption."
+    },
     "pack_fuse1": {
       "frame": "rear-inner",
       "anchor_mm": [56.5, 47.75],
@@ -745,61 +887,77 @@
     },
     "sd": {
       "frame": "ui-inner",
-      "anchor_mm": [61.005, 141.875],
+      "anchor_mm": [61.005, 140.075],
       "rotation_deg": 180.0,
       "mechanical_locked": true,
       "method": "reviewed outward connector mouth datum",
-      "reason": "board-edge DM3AT card entrance faces bottom +Y; register the actual local +8.125-mm shell mouth flush with native y=150 and preserve the complete push/eject access envelope",
+      "reason": "board-edge DM3AT faces bottom +Y; recess the existing seven-part SD island 1.8 mm without changing nets or the card axis. UI-MICROSD-RECESS-001 preserves nominal push/eject finger access.",
       "mechanical_datum": {
         "source_url": "https://www.hirose.com/product/en/download_file/key_name/DM3AT-SF-PEJM5/category/Drawing%20(2D)/doc_file_id/44099/?file_category_id=6&item_id=06090031000&is_series=",
         "source_section": "EDC-325165-00-00 sheet 1/6: mounting-side layout, 15.95-mm body, card over-stroke/lock/eject positions",
         "checked": "2026-09-07",
         "local_mouth_axis": [0.0, 1.0],
         "local_shell_mouth_y_mm": 8.125,
-        "native_shell_mouth_y_mm": 150.0,
-        "placement_policy": "project-selected flush shell mouth; manufacturer card-travel dimensions, not a claimed manufacturer-mandated PCB-edge location",
+        "native_shell_mouth_y_mm": 148.2,
+        "placement_policy": "project-selected recessed shell mouth; manufacturer card-travel reference dimensions, not a claimed manufacturer-mandated PCB-edge or notch location",
         "body_length_mm": 15.95,
         "card_over_stroke_length_mm": 16.75,
         "card_locked_length_mm": 17.55,
         "card_ejected_length_mm": 21.55,
         "card_push_stroke_from_lock_mm": 0.8,
         "card_ejection_travel_from_lock_mm": 4.0,
-        "card_locked_protrusion_mm": 1.6,
-        "card_ejected_protrusion_mm": 5.6,
+        "card_locked_beyond_shell_mm": 1.6,
+        "card_overstroke_beyond_shell_mm": 0.8,
+        "card_ejected_beyond_shell_mm": 5.6,
+        "card_locked_beyond_pcb_edge_mm": -0.2,
+        "card_overstroke_beyond_pcb_edge_mm": -1.0,
+        "card_ejected_beyond_pcb_edge_mm": 3.8,
+        "card_positions_are_nominal_not_tolerance_bounds": true,
+        "distance_sign_convention": "Positive is beyond native PCB bottom y=150 or beyond the shell mouth y=148.2; negative PCB-relative distance is recessed inside the board envelope.",
         "access_scope": "reserve the full 4-mm lock-to-eject travel and 0.8-mm inward push stroke; finger/card access and enclosure opening remain separate assembled checks"
       }
     },
     "sd_esd_a": {
       "frame": "ui-inner",
-      "anchor_mm": [59.645, 130.205],
+      "anchor_mm": [59.645, 128.405],
       "rotation_deg": 90.0,
       "mechanical_locked": true,
       "method": "reviewed outward connector mouth datum",
-      "reason": "move only the SD-local CLK/CMD/DAT3/DAT0 ESD array 3.6 mm upward to clear the outward-facing card body; retain side, rotation, part and nets with protected pins facing the card signal row"
+      "reason": "Translate the existing SD-local ESD array another 1.8 mm toward -Y with its connector; preserve side, rotation, exact part, pad nets and relative protected-pin distances. UI-MICROSD-RECESS-001."
     },
     "sd_esd_b": {
       "frame": "ui-inner",
-      "anchor_mm": [63.145, 130.205],
+      "anchor_mm": [63.145, 128.405],
       "rotation_deg": 90.0,
       "mechanical_locked": true,
       "method": "reviewed outward connector mouth datum",
-      "reason": "move only the SD-local second ESD array 3.6 mm upward beside the card signal bank; keep existing DAT1/DAT2/supply/detect mapping and facing direction, without changing unrelated frozen parts"
+      "reason": "Translate the existing second SD ESD array another 1.8 mm toward -Y with its connector; retain DAT1/DAT2/supply/detect mapping and all unrelated frozen placements. UI-MICROSD-RECESS-001."
     },
     "sd_card_cmd_pullup": {
       "frame": "ui-inner",
-      "anchor_mm": [56.825, 132.0],
+      "anchor_mm": [56.825, 130.2],
       "rotation_deg": 0.0,
       "mechanical_locked": true,
       "method": "reviewed outward connector mouth datum",
-      "reason": "move only the existing SD CMD pull-up 2.365 mm upward, outside the corrected card body and beside its signal bank; preserve exact resistor, side and nets"
+      "reason": "Translate the existing SD CMD pull-up 1.8 mm toward -Y with its connector; preserve exact resistor, side, rotation and nets. UI-MICROSD-RECESS-001."
     },
     "sd_card_dat1_pullup": {
       "frame": "ui-inner",
-      "anchor_mm": [66.075, 132.0],
+      "anchor_mm": [66.075, 130.2],
       "rotation_deg": 0.0,
       "mechanical_locked": true,
       "method": "reviewed outward connector mouth datum",
-      "reason": "move only the existing SD DAT1 pull-up 2.365 mm upward, outside the corrected card body and adjacent to DAT1; preserve exact resistor, side and nets"
+      "reason": "Translate the existing SD DAT1 pull-up 1.8 mm toward -Y with its connector; preserve exact resistor, side, rotation and nets. UI-MICROSD-RECESS-001."
+    },
+    "sd_card_dat2_pullup": {
+      "frame": "ui-inner", "anchor_mm": [62.075, 130.315], "rotation_deg": 0.0,
+      "mechanical_locked": true, "method": "reviewed outward connector mouth datum",
+      "reason": "Translate the existing SD DAT2 pull-up 1.8 mm toward -Y with its connector; preserve exact resistor, side, rotation and nets. UI-MICROSD-RECESS-001."
+    },
+    "sd_card_dat3_pullup": {
+      "frame": "ui-inner", "anchor_mm": [59.825, 130.315], "rotation_deg": 0.0,
+      "mechanical_locked": true, "method": "reviewed outward connector mouth datum",
+      "reason": "Translate the existing SD DAT3 pull-up 1.8 mm toward -Y with its connector; preserve exact resistor, side, rotation and nets. UI-MICROSD-RECESS-001."
     },
     "s3_tx_led": {
       "frame": "front-outer",
@@ -977,13 +1135,11 @@
     },
     "s3_rf_coupler_termination": {
       "frame": "ui-inner",
-      "centre_mm": [
-        28.8,
-        3.0
-      ],
-      "rotation_deg": 0.0,
-      "method": "reviewed H6.0.3 edge-launch-land clearance correction",
-      "reason": "keep the coupler isolated-port termination inside the central no-ground-land gap and directly above the coupler termination pad"
+      "centre_mm": [29.875, 2.85],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed antenna-bank clearance correction",
+      "reason": "Clear the widened S3 antenna launch ground land while retaining the local coupler isolated-port termination; exact resistor and nets unchanged."
     },
     "s3_detector_input_cap": {
       "frame": "ui-inner",
@@ -1378,21 +1534,20 @@
     "nrf0_rf_board_connector": {
       "frame": "ui-inner",
       "centre_mm": [
-        5.25,
+        4.25,
         4.25
       ],
       "rotation_deg": 90.0,
-      "reason": "freeze the verified N24-0 microcoax endpoint and its top-left inspection volume"
+      "mechanical_locked": true,
+      "reason": "Move the N24-0 endpoint 1 mm left to clear the widened outer SMA bank; preserve the cable service loop and screw keepout."
     },
     "s3_rf_board_connector": {
       "frame": "ui-inner",
-      "centre_mm": [
-        22.375,
-        3.48
-      ],
-      "rotation_deg": 180.0,
-      "method": "reviewed H6.0.3 edge-launch-land clearance correction",
-      "reason": "place the S3 U.FL in the real gap between the nRF0 and S3 SMA ground lands, with its RF pad facing the local coupler and its courtyard clear of the S3 module"
+      "anchor_mm": [20.0, 3.48],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed antenna-bank clearance correction",
+      "reason": "Rotate and shift the S3 U.FL into the gap between the widened SMA ground lands without moving its detector bypass; retain at least 5 mm cable reserve with the reviewed shield saddle."
     },
     "nrf1_rf_board_connector": {
       "frame": "ui-inner",

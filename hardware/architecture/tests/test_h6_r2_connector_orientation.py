@@ -1,5 +1,7 @@
 """Bottom-edge connector mouths are fixed physical datums, not bounding boxes."""
 
+from __future__ import annotations
+
 import ast
 import json
 import math
@@ -20,13 +22,15 @@ EXPECTED = {
     "hub_rp_service_usb_connector": ("LESHY2-UI-R2", "J11", "ui-inner", [14.87, 146.325], GCT_FOOTPRINT),
     "c5_service_usb_connector": ("LESHY2-UI-R2", "J9", "ui-inner", [26.1, 146.325], GCT_FOOTPRINT),
     "rf_rp_service_usb_connector": ("LESHY2-RF-R2", "J4", "rear-inner", [37.47, 146.325], GCT_FOOTPRINT),
-    "sd": ("LESHY2-UI-R2", "J5", "ui-inner", [61.005, 141.875], SD_FOOTPRINT),
+    "sd": ("LESHY2-UI-R2", "J5", "ui-inner", [61.005, 140.075], SD_FOOTPRINT),
 }
 SUPPORT = {
-    "sd_esd_a": ("U6", [59.645, 130.205], 90.0),
-    "sd_esd_b": ("U7", [63.145, 130.205], 90.0),
-    "sd_card_cmd_pullup": ("R39", [56.825, 132.0], 0.0),
-    "sd_card_dat1_pullup": ("R41", [66.075, 132.0], 0.0),
+    "sd_esd_a": ("U6", [59.645, 128.405], 90.0),
+    "sd_esd_b": ("U7", [63.145, 128.405], 90.0),
+    "sd_card_cmd_pullup": ("R39", [56.825, 130.2], 0.0),
+    "sd_card_dat1_pullup": ("R41", [66.075, 130.2], 0.0),
+    "sd_card_dat2_pullup": ("R42", [62.075, 130.315], 0.0),
+    "sd_card_dat3_pullup": ("R43", [59.825, 130.315], 0.0),
 }
 
 
@@ -208,9 +212,9 @@ class ConnectorOrientationTests(unittest.TestCase):
         target = self.target("sd")
         datum = self.contract["placement_overrides"]["sd"]["mechanical_datum"]
         mouth = native_b_point([0, datum["local_shell_mouth_y_mm"]], target["anchor"], 180)
-        self.assertAlmostEqual(150, mouth[1])
-        self.assertAlmostEqual(134.15, native_b_point([0, -7.725], target["anchor"], 180)[1])
-        self.assertIn("project-selected flush", datum["placement_policy"])
+        self.assertAlmostEqual(148.2, mouth[1])
+        self.assertAlmostEqual(132.35, native_b_point([0, -7.725], target["anchor"], 180)[1])
+        self.assertIn("project-selected recessed", datum["placement_policy"])
 
     def test_card_ejection_and_inward_push_are_not_confused(self):
         datum = self.contract["placement_overrides"]["sd"]["mechanical_datum"]
@@ -220,8 +224,8 @@ class ConnectorOrientationTests(unittest.TestCase):
         self.assertAlmostEqual(0.8, datum["card_push_stroke_from_lock_mm"])
         self.assertAlmostEqual(1.6, datum["card_locked_length_mm"] - datum["body_length_mm"])
         self.assertAlmostEqual(5.6, datum["card_ejected_length_mm"] - datum["body_length_mm"])
-        self.assertAlmostEqual(151.6, datum["native_shell_mouth_y_mm"] + datum["card_locked_protrusion_mm"])
-        self.assertAlmostEqual(155.6, datum["native_shell_mouth_y_mm"] + datum["card_ejected_protrusion_mm"])
+        self.assertAlmostEqual(149.8, datum["native_shell_mouth_y_mm"] + datum["card_locked_beyond_shell_mm"])
+        self.assertAlmostEqual(153.8, datum["native_shell_mouth_y_mm"] + datum["card_ejected_beyond_shell_mm"])
         self.assertIn("finger/card access", datum["access_scope"])
 
     def test_actual_edge_exception_is_explicit_not_a_packing_escape(self):
@@ -231,7 +235,7 @@ class ConnectorOrientationTests(unittest.TestCase):
             self.assertIn("board-edge", target["direction"])
             self.assertTrue(target["mechanical_locked"])
 
-    def test_only_four_reviewed_sd_support_parts_have_explicit_local_corrections(self):
+    def test_only_six_reviewed_sd_support_parts_have_explicit_local_corrections(self):
         audit = json.loads((ROOT / "hardware/layout/generated/H6-R2-placement-audit.json").read_text())
         board = next(row for row in audit["boards"] if row["project"] == "LESHY2-UI-R2")
         rows = {row["instance"]: row for row in board["placements"]}
@@ -256,7 +260,7 @@ class ConnectorOrientationTests(unittest.TestCase):
         rows = {row["instance"]: row for row in board["placements"]}
         # Actual KiCad B180 courtyard including its stroke. Card motion is
         # outside this box and covered separately, not silently omitted.
-        candidates = {"sd": {"x": [53.08, 68.87], "y": [133.01, 150.8]}}
+        candidates = {"sd": {"x": [53.08, 68.87], "y": [131.21, 149.0]}}
         for instance, (_, anchor, _) in SUPPORT.items():
             row = rows[instance]
             delta = [a - b for a, b in zip(anchor, row["footprint_anchor_mm"])]
