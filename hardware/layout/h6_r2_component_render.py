@@ -32,6 +32,69 @@ SMA_REFERENCES = {
     "ui": {"J3": "32", "J7": "32", "J12": "31", "J14": "31", "J16": "31"},
     "rf": {"J5": "31", "J6": "31", "J7": "31", "J8": "31", "J9": "31"},
 }
+THROUGH_INTERFACE_REFERENCES = {
+    "ui": {"J9": 4, "J11": 4},
+    "rf": {"J1": 4, "J4": 4, "J10": 14, "SW3": 7, "L32": 2},
+}
+
+
+def interface_through_lands(board, name):
+    """Show the copper around real interface holes, not only their drills.
+
+    Thermal-via fields are deliberately outside this finite interface scope.
+    L32's two endpoints belong to an unrouted loop reservation, not lead tails.
+    """
+    import pcbnew
+    result = {"outer": [], "inner": []}
+    footprints = list(board.GetFootprints())
+    names = {pcbnew.PAD_SHAPE_RECT: "rect", pcbnew.PAD_SHAPE_CIRCLE: "circle",
+             pcbnew.PAD_SHAPE_OVAL: "oval", pcbnew.PAD_SHAPE_ROUNDRECT: "roundrect"}
+    for ref, expected_count in THROUGH_INTERFACE_REFERENCES[name].items():
+        matches = [fp for fp in footprints if fp.GetReference() == ref]
+        if len(matches) != 1:
+            raise RuntimeError(f"{name} {ref}: missing/duplicate through-interface footprint")
+        fp = matches[0]
+        pads = sorted((pad for pad in fp.Pads() if pad.GetAttribute() == pcbnew.PAD_ATTRIB_PTH),
+                      key=lambda pad: (pad.GetNumber(), pad.GetPosition().x, pad.GetPosition().y))
+        if len(pads) != expected_count:
+            raise RuntimeError(f"{name} {ref}: changed through-interface pad inventory")
+        for index, pad in enumerate(pads):
+            if (pad.GetShape() not in names or pad.GetOffset().x or pad.GetOffset().y
+                    or not pad.IsOnLayer(pcbnew.F_Cu) or not pad.IsOnLayer(pcbnew.B_Cu)):
+                raise RuntimeError(f"{name} {ref}: unsupported through-interface pad geometry")
+            pos, size = pad.GetPosition(), pad.GetSize()
+            w, h = pcbnew.ToMM(size.x), pcbnew.ToMM(size.y)
+            shape = names[pad.GetShape()]
+            radius = (min(w, h)/2 if shape == "oval" else
+                      min(w, h)*pad.GetRoundRectRadiusRatio() if shape == "roundrect" else 0)
+            common = {"reference": ref, "pad": pad.GetNumber(), "index": index,
+                      "shape": shape, "centre_mm": [pcbnew.ToMM(pos.x), pcbnew.ToMM(pos.y)],
+                      "size_mm": [w, h], "radius_mm": round(radius, 6),
+                      "angle_deg": pad.GetOrientation().AsDegrees(), "net": pad.GetNetname(),
+                      "purpose": "unrouted_nfc_loop_endpoint" if ref == "L32" else "interface_through_pad"}
+            for face, side in (("outer", "F.Cu"), ("inner", "B.Cu")):
+                result[face].append({**common, "side": side})
+    return result
+
+
+def render_interface_through_lands(records):
+    content = ['<g data-role="native-interface-through-lands">']
+    for row in records:
+        x, y = row["centre_mm"]
+        w, h = row["size_mm"]
+        content += [f'<g data-role="interface-through-land" data-reference="{row["reference"]}" '
+                    f'data-pad="{row["pad"]}" data-index="{row["index"]}" data-side="{row["side"]}" '
+                    f'data-purpose="{row["purpose"]}" transform="rotate({-row["angle_deg"]:.6f} {x:.6f} {y:.6f})">',
+                    f'<title>{html.escape(row["reference"] + "." + row["pad"] + " · " + row["side"] + " · " + row["purpose"])} · native copper, not solder volume</title>']
+        if row["shape"] == "circle":
+            if w != h:
+                raise RuntimeError("native circular interface pad is not circular")
+            content.append(f'<circle cx="{x:.6f}" cy="{y:.6f}" r="{w/2:.6f}" fill="#f3bd53"/>')
+        else:
+            content.append(f'<rect x="{x-w/2:.6f}" y="{y-h/2:.6f}" width="{w:.6f}" height="{h:.6f}" '
+                           f'rx="{row["radius_mm"]:.6f}" fill="#f3bd53"/>')
+        content.append('</g>')
+    return "\n".join(content + ['</g>'])
 
 
 def sma_solder_lands(board, name):
@@ -172,7 +235,8 @@ def native_inventory(board_path):
     card_reference = microsd_reference_model(board) if board_path.stem == "LESHY2-UI-R2" else None
     name = "ui" if board_path.stem == "LESHY2-UI-R2" else "rf"
     return (refs, "\n".join(holes), "\n".join(reserve), positions,
-            native_board_shape(board), card_reference, sma_solder_lands(board, name))
+            native_board_shape(board), card_reference, sma_solder_lands(board, name),
+            interface_through_lands(board, name))
 
 
 def microsd_reference_model(board):
@@ -330,7 +394,7 @@ def panel(name, face, native, opposite, refs, holes, reserve, board_shape, card_
     if face == "outer" and reserve:
         result.extend(['<g data-role="unrouted-nfc-reserve">', reserve, '</g>'])
     result.extend(['</g>', '</g>'])
-    result.append(text(8, 179, "Золото / gold: площадки пайки SMA / SMA solder lands", 1.35, "#855b15"))
+    result.append(text(8, 179, "Золото / gold: медные площадки интерфейсов / interface copper lands", 1.25, "#855b15"))
     if face == "inner":
         result.append(text(8, 186, "После переворота / turned over · x′ = 80 − x", 1.5))
     elif name == "ui":
@@ -358,13 +422,15 @@ def write_all():
                 "view_convention": "outer=native; inner=x_view=80-x_native, y unchanged; no extra RF transform",
                 "same_scale": True, "board_size_mm": [80, 150],
                 "layers": {"outer": "F.Fab,F.Silkscreen,Edge.Cuts", "inner": "B.Fab,B.Silkscreen,Edge.Cuts"},
-                "overlays": {"sma_solder_lands": "Actual selected-face copper pads, including B pads of F footprints; not paste/mask or solder volume."},
+                "overlays": {"sma_solder_lands": "Actual selected-face copper pads, including B pads of F footprints; not paste/mask or solder volume.",
+                             "interface_through_lands": "USB shell, Cap and encoder PTH copper on both faces; L32 endpoints are an unrouted reservation. Thermal-via copper is outside this finite scope."},
                 "limitations": ["Current Fab geometry includes known defects; not a 3D qualification.",
                                 "No tracks, ratsnest, cells, display, loose cables or external antennas.",
                                 "Native Edge.Cuts defines the background and outer-outline clip; KiCad polygonization is only a visual fill, not fabrication geometry.",
                                 "Opposite-face drawings are shown only outside the actual outer board contour as context; not a 3D visibility test.",
                                 "Reference designators are drawing annotations, not additional silkscreen.",
                                 "Gold SMA copper lands are shown even when the footprint body belongs to the opposite face. They do not prove solder-tool or rework access.",
+                                "Gold interface through-pad copper is drawn beneath the actual drill openings. Repeated SH/MP numbers are distinct physical pads; L32 endpoints are not component leads.",
                                 "UI J5 DM3AT card reference positions are nominal: locked solid, ejected ochre/dashed. The callout is a drawing annotation, not PCB silkscreen or an installed-card claim.",
                                 "L32 is the actual Dwgs.User reservation, not completed loop copper."],
                 "views": [], "outputs_sha256": {}}
@@ -376,12 +442,13 @@ def write_all():
         for name, face in VIEWS:
             native = exports[name, face]
             opposite = exports[name, "outer" if face == "inner" else "inner"]
-            refs, holes, reserve, positions, board_shape, card_reference, solder_lands = inventories[name]
+            refs, holes, reserve, positions, board_shape, card_reference, solder_lands, through_lands = inventories[name]
             native, fallback_refs = with_reference_fallbacks(native, face, refs[face], positions)
             if name == "rf" and not reserve:
                 raise RuntimeError("NFC reservation must remain visible on the RF outer plot")
             content = panel(name, face, native, opposite, refs[face], holes, reserve, board_shape,
-                            card_reference, render_sma_solder_lands(solder_lands[face], face))
+                            card_reference, render_sma_solder_lands(solder_lands[face], face)
+                            + render_interface_through_lands(through_lands[face]))
             board_hash = inputs[str(BOARDS[name].relative_to(ROOT))]
             path = output(name, face)
             path.write_text(wrap(content, WIDTH, HEIGHT,
@@ -393,6 +460,7 @@ def write_all():
                                       "mount_count": sum(ref.startswith("MH") for ref in refs[face]),
                                       "fallback_reference_labels": fallback_refs,
                                       "sma_solder_lands": solder_lands[face],
+                                      "interface_through_lands": through_lands[face],
                                       "svg": str(path.relative_to(ROOT))})
             panels.append(content)
     overview = [text(8, 6, "Leshy2 · Компоненты обеих плат / Both boards", 3.4, "#17263c"),
@@ -401,7 +469,7 @@ def write_all():
     for index, content in enumerate(panels):
         overview.append(f'<g transform="translate({(index%2)*WIDTH} {18+(index//2)*HEIGHT})">{content}</g>')
     overview.append(text(8, 402, "Серый / grey: Fab + references    Синий / blue: actual silkscreen    Охра / ochre: holes / reserve", 1.65))
-    overview.append(text(8, 405, "Золото / gold: 50 площадок пайки SMA / 50 SMA copper lands · не объём припоя / not solder volume", 1.5, "#855b15"))
+    overview.append(text(8, 405, "Золото / gold: SMA + сквозные площадки интерфейсов / interface through-pads · не объём припоя / not solder volume", 1.35, "#855b15"))
     overview_path = DEST / "h6-r2-components-overview.svg"
     overview_path.write_text(wrap("\n".join(overview), WIDTH*2, 406,
                                    {"data-renderer-sha256": inputs[str(Path(__file__).relative_to(ROOT))]},

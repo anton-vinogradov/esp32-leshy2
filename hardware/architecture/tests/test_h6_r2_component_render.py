@@ -128,6 +128,17 @@ class ComponentRenderTests(unittest.TestCase):
                 with self.subTest(board=board_name, face=face):
                     self.assertEqual(native[face], set(self.views[board_name, face]["references"]))
 
+    def test_all_current_electronic_instances_are_represented_not_only_interfaces(self):
+        ledger = json.loads((ROOT / "hardware/ecad/generated/H2-R2-native-instance-ledger.json").read_text())["rows"]
+        expected = {(row["project"], row["reference"]) for row in ledger}
+        self.assertEqual(1208, len(ledger))
+        self.assertEqual(len(ledger), len(expected), "duplicate instance must not hide a missing strategic part")
+        shown = [(f"LESHY2-{board.upper()}-R2", ref)
+                 for (board, face), view in self.views.items()
+                 for ref in view["references"] if not ref.startswith("MH")]
+        self.assertEqual(len(shown), len(set(shown)), "one component body cannot belong to both faces")
+        self.assertEqual(expected, set(shown))
+
     def test_hashes_cover_both_pcbs_renderer_and_all_five_images(self):
         input_paths = {str(path.relative_to(ROOT)) for path in self.renderer.BOARDS.values()} | {
             str(SCRIPT.relative_to(ROOT))}
@@ -296,6 +307,85 @@ class ComponentRenderTests(unittest.TestCase):
             total += len(groups)
         self.assertEqual(50, total)
         self.assertIn("not paste/mask", self.manifest["overlays"]["sma_solder_lands"])
+
+    def test_through_interface_copper_is_visible_on_both_faces_not_only_holes(self):
+        for board, face in self.roots:
+            records = self.views[board, face]["interface_through_lands"]
+            groups = [node for node in own_face_elements(self.roots[board, face])
+                      if node.get("data-role") == "interface-through-land"]
+            expected_count = 8 if board == "ui" else 31
+            self.assertEqual(expected_count, len(records))
+            self.assertEqual(expected_count, len(groups))
+            keys = {(row["reference"], row["pad"], str(row["index"])) for row in records}
+            self.assertEqual(expected_count, len(keys), "SH and MP duplicates must remain separate physical lands")
+            self.assertEqual(keys, {(node.get("data-reference"), node.get("data-pad"), node.get("data-index"))
+                                    for node in groups})
+            for node, row in zip(groups, records):
+                self.assertEqual("F.Cu" if face == "outer" else "B.Cu", node.get("data-side"))
+                shape = node.find(SVG + ("circle" if row["shape"] == "circle" else "rect"))
+                self.assertIsNotNone(shape)
+                self.assertEqual("#f3bd53", shape.get("fill"))
+                x, y = row["centre_mm"]
+                w, h = row["size_mm"]
+                self.assertEqual(f'rotate({-row["angle_deg"]:.6f} {x:.6f} {y:.6f})', node.get("transform"))
+                if row["shape"] == "circle":
+                    self.assertEqual(w, h)
+                    self.assertEqual([round(x, 6), round(y, 6), round(w/2, 6)],
+                                     [float(shape.get(k)) for k in ("cx", "cy", "r")])
+                else:
+                    self.assertEqual([round(x-w/2, 6), round(y-h/2, 6), round(w, 6), round(h, 6), row["radius_mm"]],
+                                     [float(shape.get(k)) for k in ("x", "y", "width", "height", "rx")])
+                self.assertIn("not solder volume", node.find(SVG + "title").text)
+                self.assertEqual("unrouted_nfc_loop_endpoint" if row["reference"] == "L32"
+                                 else "interface_through_pad", node.get("data-purpose"))
+            self.assertFalse({row["reference"] for row in records} & {"U1", "U3"}, "thermal vias are not interface leads")
+        for board in ("ui", "rf"):
+            both = [[{k: v for k, v in row.items() if k != "side"}
+                     for row in self.views[board, face]["interface_through_lands"]]
+                    for face in ("outer", "inner")]
+            self.assertEqual(*both)
+
+    @unittest.skipUnless(pcbnew is not None, "requires KiCad pcbnew")
+    def test_through_interface_manifest_matches_native_geometry_and_refuses_missing_pads(self):
+        owners = {name: pcbnew.LoadBoard(str(path)) for name, path in self.renderer.BOARDS.items()}
+        for name, board in owners.items():
+            records = self.renderer.interface_through_lands(board, name)
+            for face in ("outer", "inner"):
+                self.assertEqual(self.views[name, face]["interface_through_lands"], records[face])
+            fps = list(board.GetFootprints())
+            absent_ref = next(iter(self.renderer.THROUGH_INTERFACE_REFERENCES[name]))
+            missing = SimpleNamespace(GetFootprints=lambda: [fp for fp in fps if fp.GetReference() != absent_ref])
+            with self.assertRaisesRegex(RuntimeError, "missing/duplicate through-interface"):
+                self.renderer.interface_through_lands(missing, name)
+
+    @unittest.skipUnless(pcbnew is not None, "requires KiCad pcbnew")
+    def test_all_74_strategic_interfaces_keep_current_native_pose_and_visible_side(self):
+        # Old identities enumerate the review scope, never the old poses.
+        historical = json.loads((ROOT / "hardware/layout/h6-r2-connector-review-findings.json").read_text())["interfaces"]
+        current = json.loads((ROOT / "hardware/layout/generated/H6-R2-placement-audit.json").read_text())["boards"]
+        poses = {(board["project"], row["reference"]): row
+                 for board in current for row in board["placements"]}
+        self.assertEqual(74, len(historical))
+        keys = {(row["board"], row["reference"]) for row in historical}
+        self.assertEqual(74, len(keys))
+        owners = {name: pcbnew.LoadBoard(str(path)) for name, path in self.renderer.BOARDS.items()}
+        for name, board in owners.items():
+            project = f"LESHY2-{name.upper()}-R2"
+            fps = list(board.GetFootprints())
+            for key in sorted(k for k in keys if k[0] == project):
+                with self.subTest(interface=key):
+                    matched = [fp for fp in fps if fp.GetReference() == key[1]]
+                    self.assertEqual(1, len(matched))
+                    fp, expected = matched[0], poses[key]
+                    face = "inner" if fp.IsFlipped() else "outer"
+                    self.assertEqual("B.Cu" if fp.IsFlipped() else "F.Cu", expected["side"])
+                    self.assertIn(key[1], self.views[name, face]["references"])
+                    self.assertNotIn(key[1], self.views[name, "outer" if face == "inner" else "inner"]["references"])
+                    for actual, target in zip((pcbnew.ToMM(fp.GetPosition().x), pcbnew.ToMM(fp.GetPosition().y)),
+                                              expected["footprint_anchor_mm"]):
+                        self.assertLessEqual(abs(actual-target), 0.0001, "placement report is rounded to four decimals")
+                    self.assertAlmostEqual(0, (fp.GetOrientationDegrees()-expected["rotation_deg"]+180) % 360-180, places=6)
+                    self.assertEqual(expected["footprint"], str(fp.GetFPID().GetLibNickname())+":"+str(fp.GetFPID().GetLibItemName()))
 
     @unittest.skipUnless(pcbnew is not None, "requires KiCad pcbnew")
     def test_sma_land_records_match_native_pads_including_opposite_face(self):

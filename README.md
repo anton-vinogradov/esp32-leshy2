@@ -80,7 +80,7 @@ All four views use the same scale. Outer faces are above; inner faces below
 are viewed after turning each board over, with the antenna edge still at the top.
 Grey shows component outlines/references; blue is actual silkscreen.
 Known footprint defects remain visible — these views do not certify assembly.
-[Full-size views and legend](docs/h6-r2-component-views.md). Gold shows all 50 SMA solder lands, including the underside tabs.
+[Full-size views and legend](docs/h6-r2-component-views.md). Gold shows all 50 SMA lands and the two-sided copper lands of USB, Cap and encoder interfaces; NFC endpoints are distinguished in the legend.
 
 <table>
   <tr><th width="50%">Front / UI</th><th width="50%">Rear / RF-power</th></tr>

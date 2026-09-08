@@ -22,6 +22,16 @@ interfaces: 74 records** on two 80 × 150 mm boards. This is an inventory, not
 74 completed functional or dimensional verifications. The headset is **RF U83**;
 the remaining records include buttons, BT1, encoder, indicators, IR and acoustics.
 
+The repeated current-native check finds **74/74 present exactly once**, on the
+side and at the pose recorded by the current placement audit. The component
+views also cover the complete **1208-position instance ledger**, including the
+processors, radios and power/safety parts, plus eight mounting footprints.
+New regressions guard both scopes. The old H1 picture is not used as a placement
+authority. [Four-face views](h6-r2-component-views.md) now expose the reverse-side
+USB, Cap and encoder copper lands as well as SMA lands; drilled holes alone
+were an incomplete depiction. Display, cells, loose coax and speaker bodies
+still require their separate assembly representations and clearance checks.
+
 | Connector group | UI references | RF references | Count |
 | --- | --- | --- | ---: |
 | Antenna SMA | J3, J7, J12, J14, J16 | J5–J9 | 10 |
@@ -118,6 +128,7 @@ assembled-mechanics gates. No prototype has been demonstrated to boot by this re
 | SMA antennas and microSD access | The wider 14.7 mm bank and nominal recessed-card geometry do not qualify actual antenna bases, assembled inter-row Z, finger/tool and screw access, cable bends, card/connector tolerances or enclosure access. The PCB notch is a project choice, not a manufacturer requirement. |
 | Display/FPC/PSA | The native 27 × 1.2 mm slot and ZIF orientation exist, but the real fold, slack, rear-panel flatness, adhesive thickness and assembly tolerance still require closure. |
 | Microphone/speaker | RF MK1's acoustic path, the real speaker body/mount and lead strain relief remain open. A bounded microphone-cluster candidate exists below but is **not adopted**. LS1 represents wire termination, not the speaker body. |
+| C5 service path | Physical USB and BOOT controls are present, but [the mux selector/enable defect](h6-r2-c5-mux-control-review.md) is open. Separately, U14.15/GPIO28 is still NC while C5_BOOT_N reaches R76/R79, so the drawn BOOT button does not establish the download strap. C5/Hub reset under KILL also needs reconciliation with the firmware update policy before functional acceptance. These are electrical work items, not missing component drawings. |
 | RUN/KILL direction | Resolve the manufacturer's conflicting physical A/B caption before accepting directional markings. The electrical pairs are known; the lever direction is not silently inferred. |
 | Assembled interfaces | Check exact bodies, opposite-face solder/locator protrusion, microcoax bends, inserted plugs, card/finger access and optical apertures together. Planar clearance does not close STEP or received-part checks. |
 

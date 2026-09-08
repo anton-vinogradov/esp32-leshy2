@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="3800" viewBox="0 0 96 190" data-board="rf" data-face="inner" data-source-sha256="e11215ffe5cc25645aa091872af93540c121e84d83def5dae3f39c03c782fd32" data-renderer-sha256="962be0ff8191483cba48b868748d67cb9f9484f586d730e2a0452c16ab7c6f42">
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="3800" viewBox="0 0 96 190" data-board="rf" data-face="inner" data-source-sha256="e11215ffe5cc25645aa091872af93540c121e84d83def5dae3f39c03c782fd32" data-renderer-sha256="0a47e3d15f55ea5dba67a9570815e707389fdf656e233f65719a1bd8d98c84ac">
 <title>Leshy2 current components · RF inner</title>
 <rect width="96" height="190" fill="white"/>
 <text x="8" y="5" fill="#17263c" font-family="Arial,DejaVu Sans,sans-serif" font-size="2.6" text-anchor="start">Задняя RF / power · внутренняя / inner</text>
@@ -6875,6 +6875,131 @@ L12.1500 143.7250
 <g data-role="sma-land-label" transform="translate(8.050000 1.650000) scale(-1 1) rotate(-90)">
 <text x="0" y="0.2" fill="#51350b" font-family="Arial,DejaVu Sans,sans-serif" font-size="0.6" text-anchor="middle">J9.5</text>
 </g>
+</g>
+</g><g data-role="native-interface-through-lands">
+<g data-role="interface-through-land" data-reference="J1" data-pad="SH" data-index="0" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-180.000000 12.149999 144.225000)">
+<title>J1.SH · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<rect x="11.499999" y="143.075000" width="1.300000" height="2.300000" rx="0.650000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J1" data-pad="SH" data-index="1" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-180.000000 12.149999 148.050000)">
+<title>J1.SH · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<rect x="11.499999" y="146.750000" width="1.300000" height="2.600000" rx="0.650000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J1" data-pad="SH" data-index="2" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-180.000000 20.789999 144.225000)">
+<title>J1.SH · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<rect x="20.139999" y="143.075000" width="1.300000" height="2.300000" rx="0.650000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J1" data-pad="SH" data-index="3" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-180.000000 20.789999 148.050000)">
+<title>J1.SH · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<rect x="20.139999" y="146.750000" width="1.300000" height="2.600000" rx="0.650000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J4" data-pad="SH" data-index="0" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-180.000000 33.150000 143.220000)">
+<title>J4.SH · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<rect x="32.650000" y="142.170000" width="1.000000" height="2.100000" rx="0.500000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J4" data-pad="SH" data-index="1" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-180.000000 33.150000 147.400000)">
+<title>J4.SH · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<rect x="32.650000" y="146.500000" width="1.000000" height="1.800000" rx="0.500000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J4" data-pad="SH" data-index="2" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-180.000000 41.790000 143.220000)">
+<title>J4.SH · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<rect x="41.290000" y="142.170000" width="1.000000" height="2.100000" rx="0.500000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J4" data-pad="SH" data-index="3" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-180.000000 41.790000 147.400000)">
+<title>J4.SH · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<rect x="41.290000" y="146.500000" width="1.000000" height="1.800000" rx="0.500000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J10" data-pad="1" data-index="0" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 32.375000 25.210000)">
+<title>J10.1 · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<rect x="31.720000" y="24.555000" width="1.310000" height="1.310000" rx="0.250000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J10" data-pad="10" data-index="1" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 42.535000 32.830000)">
+<title>J10.10 · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<circle cx="42.535000" cy="32.830000" r="0.655000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J10" data-pad="11" data-index="2" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 45.075000 25.210000)">
+<title>J10.11 · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<circle cx="45.075000" cy="25.210000" r="0.655000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J10" data-pad="12" data-index="3" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 45.075000 32.830000)">
+<title>J10.12 · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<circle cx="45.075000" cy="32.830000" r="0.655000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J10" data-pad="13" data-index="4" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 47.615000 25.210000)">
+<title>J10.13 · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<circle cx="47.615000" cy="25.210000" r="0.655000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J10" data-pad="14" data-index="5" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 47.615000 32.830000)">
+<title>J10.14 · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<circle cx="47.615000" cy="32.830000" r="0.655000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J10" data-pad="2" data-index="6" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 32.375000 32.830000)">
+<title>J10.2 · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<circle cx="32.375000" cy="32.830000" r="0.655000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J10" data-pad="3" data-index="7" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 34.915000 25.210000)">
+<title>J10.3 · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<circle cx="34.915000" cy="25.210000" r="0.655000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J10" data-pad="4" data-index="8" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 34.915000 32.830000)">
+<title>J10.4 · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<circle cx="34.915000" cy="32.830000" r="0.655000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J10" data-pad="5" data-index="9" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 37.455000 25.210000)">
+<title>J10.5 · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<circle cx="37.455000" cy="25.210000" r="0.655000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J10" data-pad="6" data-index="10" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 37.455000 32.830000)">
+<title>J10.6 · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<circle cx="37.455000" cy="32.830000" r="0.655000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J10" data-pad="7" data-index="11" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 39.995000 25.210000)">
+<title>J10.7 · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<circle cx="39.995000" cy="25.210000" r="0.655000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J10" data-pad="8" data-index="12" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 39.995000 32.830000)">
+<title>J10.8 · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<circle cx="39.995000" cy="32.830000" r="0.655000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="J10" data-pad="9" data-index="13" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 42.535000 25.210000)">
+<title>J10.9 · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<circle cx="42.535000" cy="25.210000" r="0.655000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="SW3" data-pad="A" data-index="0" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 68.500000 57.750000)">
+<title>SW3.A · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<circle cx="68.500000" cy="57.750000" r="1.000000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="SW3" data-pad="B" data-index="1" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 73.500000 57.750000)">
+<title>SW3.B · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<circle cx="73.500000" cy="57.750000" r="1.000000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="SW3" data-pad="C" data-index="2" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 71.000000 57.750000)">
+<title>SW3.C · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<circle cx="71.000000" cy="57.750000" r="1.000000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="SW3" data-pad="D" data-index="3" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 68.500000 43.250000)">
+<title>SW3.D · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<circle cx="68.500000" cy="43.250000" r="1.000000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="SW3" data-pad="E" data-index="4" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 73.500000 43.250000)">
+<title>SW3.E · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<circle cx="73.500000" cy="43.250000" r="1.000000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="SW3" data-pad="MP" data-index="5" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 64.750000 50.250000)">
+<title>SW3.MP · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<rect x="63.350000" y="47.850000" width="2.800000" height="4.800000" rx="1.400000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="SW3" data-pad="MP" data-index="6" data-side="B.Cu" data-purpose="interface_through_pad" transform="rotate(-0.000000 77.250000 50.250000)">
+<title>SW3.MP · B.Cu · interface_through_pad · native copper, not solder volume</title>
+<rect x="75.850000" y="47.850000" width="2.800000" height="4.800000" rx="1.400000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="L32" data-pad="1" data-index="0" data-side="B.Cu" data-purpose="unrouted_nfc_loop_endpoint" transform="rotate(-0.000000 53.250000 23.500000)">
+<title>L32.1 · B.Cu · unrouted_nfc_loop_endpoint · native copper, not solder volume</title>
+<circle cx="53.250000" cy="23.500000" r="0.325000" fill="#f3bd53"/>
+</g>
+<g data-role="interface-through-land" data-reference="L32" data-pad="2" data-index="1" data-side="B.Cu" data-purpose="unrouted_nfc_loop_endpoint" transform="rotate(-0.000000 54.050000 23.500000)">
+<title>L32.2 · B.Cu · unrouted_nfc_loop_endpoint · native copper, not solder volume</title>
+<circle cx="54.050000" cy="23.500000" r="0.325000" fill="#f3bd53"/>
 </g>
 </g>
 
@@ -120413,7 +120538,7 @@ L12.1500 143.7250
 
 </g>
 </g>
-<text x="8" y="179" fill="#855b15" font-family="Arial,DejaVu Sans,sans-serif" font-size="1.35" text-anchor="start">Золото / gold: площадки пайки SMA / SMA solder lands</text>
+<text x="8" y="179" fill="#855b15" font-family="Arial,DejaVu Sans,sans-serif" font-size="1.25" text-anchor="start">Золото / gold: медные площадки интерфейсов / interface copper lands</text>
 <text x="8" y="186" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="1.5" text-anchor="start">После переворота / turned over · x′ = 80 − x</text>
 <path d="M79 183 h10 M79 182 v2 M89 182 v2" fill="none" stroke="#334155" stroke-width=".15"/>
 <text x="84" y="186" fill="#334155" font-family="Arial,DejaVu Sans,sans-serif" font-size="1.3" text-anchor="middle">10 mm</text>

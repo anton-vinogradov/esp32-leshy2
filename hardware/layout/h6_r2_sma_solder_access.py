@@ -346,10 +346,7 @@ def document_section(result, language):
               f"{s['fab_bbox_overlap_count']} overlaps with available Fab bounding boxes and "
               f"{s['courtyard_bbox_overlap_count']} courtyard overlaps. "
               f"The provisional margin flagged **{s['pads_with_screening_candidates']} lands for review**.")
-    lines = [BEGIN, "", prefix, "",
-             "| Плата | Площадка | Ближайшая монтажная зона | Зазор, мм |" if ru else
-             "| Board | Land | Nearest courtyard | Gap, mm |",
-             "| --- | --- | --- | ---: |"]
+    lines = [BEGIN, "", prefix]
     rows = []
     for board in result["boards"]:
         name = board["project"].removeprefix("LESHY2-").removesuffix("-R2")
@@ -361,14 +358,17 @@ def document_section(result, language):
                 gap = nearest["bbox_gap_mm"] if nearest else math.inf
                 rows.append((gap, name, f"{connector['reference']}.{pad['number']}",
                              pad["side"], nearest["reference"] if nearest else "—"))
+    if rows:
+        lines += ["", "| Плата | Площадка | Ближайшая монтажная зона | Зазор, мм |" if ru else
+                  "| Board | Land | Nearest courtyard | Gap, mm |", "| --- | --- | --- | ---: |"]
     for gap, name, land, side, neighbour in sorted(rows):
         number = f"{gap:.3f}" if math.isfinite(gap) else "—"
         if ru: number = number.replace(".", ",")
         lines.append(f"| {name} · {side} | {land} | {neighbour} | {number} |")
-    lines += ["", ("В таблице расстояние до монтажной зоны, **не до физического корпуса**; "
+    lines += ["", ("Расстояния до монтажной зоны — **не до физического корпуса**; "
                     "полные отдельные измерения меди и Fab находятся в отчёте. "
                     "Это список для проверки доступа к пайке, не список коротких замыканий. " if ru else
-                    "Table distances are to courtyards, **not physical bodies**; separate copper and Fab measurements "
+                    "Courtyard distances refer to mounting envelopes, **not physical bodies**; separate copper and Fab measurements "
                     "are in the report. These are solder-access review items, not a list of shorts. ")
               + f"`status: {result['status']}`; `solder_process_qualified: false`.", "", END]
     return "\n".join(lines)

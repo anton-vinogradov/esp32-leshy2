@@ -214,6 +214,20 @@ class SmaArtifactTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "marker pair"):
                 audit.refreshed_document(malformed, section)
 
+    def test_zero_candidates_has_no_empty_table_and_still_no_assembly_approval(self):
+        result = json.loads((ROOT / audit.OUTPUT).read_text())
+        result["summary"]["pads_with_screening_candidates"] = 0
+        result["status"] = "no_candidates_in_screened_scope"
+        for board in result["boards"]:
+            for connector in board["connectors"]:
+                for pad in connector["pads"]:
+                    pad["screening_candidates"] = []
+        for language in audit.DOCS:
+            section = audit.document_section(result, language)
+            self.assertNotIn("| ---", section)
+            self.assertIn("no_candidates_in_screened_scope", section)
+            self.assertIn("solder_process_qualified: false", section)
+
     @unittest.skipUnless(pcbnew is not None, "KiCad Python required for native reproducibility regression")
     def test_native_recalculation_equals_artifact_and_preserves_board_bytes(self):
         boards = [ROOT / f"hardware/ecad/kicad/{project}/{project}.kicad_pcb"

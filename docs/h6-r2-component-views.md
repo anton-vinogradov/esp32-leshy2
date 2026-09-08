@@ -23,11 +23,16 @@ small components without losing detail.
   Antenna labels sit closer to the connectors, with a single lawful-use
   sentence below: English on UI, Russian on RF.
 - Ochre: drilled holes and the dashed L32 NFC reservation. **The loop is not routed yet**.
-- Gold-filled rectangles: **all 50 actual SMA copper solder lands** — three
+- Gold fill: **all 50 actual SMA copper solder lands** — three
   on F and two on B per connector, read directly from the native PCB. Small
   labels identify connector and pad. They are drawing annotations, not new
   silkscreen; gold denotes neither deposited solder nor paste/mask openings.
   B-side lands remain visible even though the SMA footprint body belongs to F.
+  The same colour also shows **37 physical through-hole interface lands**
+  (16 USB shell, 14 Cap, 7 encoder) on both faces, plus the **two L32 NFC
+  endpoints**, which are not component leads or a routed antenna. Real drill
+  openings remain visible inside these lands. Thermal-via fields are outside
+  this finite interface overlay; the colour does not certify a solder joint.
 - Inner views show the board after turning it around its vertical axis:
   `x′ = 80 − x`, with the antenna edge still at the top. These are individual
   board-face views, not a single assembled-device coordinate system.
@@ -72,7 +77,7 @@ Current result: **50 lands**, 0 contacts/overlaps with foreign copper pads, 0 ov
 | UI · B | J3.4 | R17 | 0.710 |
 | UI · B | J14.5 | U52 | 0.755 |
 
-Table distances are to courtyards, **not physical bodies**; separate copper and Fab measurements are in the report. These are solder-access review items, not a list of shorts. `status: review_required`; `solder_process_qualified: false`.
+Courtyard distances refer to mounting envelopes, **not physical bodies**; separate copper and Fab measurements are in the report. These are solder-access review items, not a list of shorts. `status: review_required`; `solder_process_qualified: false`.
 
 <!-- SMA-SOLDER-ACCESS:END -->
 
