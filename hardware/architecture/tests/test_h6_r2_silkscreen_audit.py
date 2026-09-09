@@ -380,6 +380,87 @@ class SilkscreenGeometryTests(unittest.TestCase):
 
 @unittest.skipUnless(importlib.util.find_spec("pcbnew"), "Native extraction tests require KiCad Python")
 class NativeSilkscreenExtractionTests(unittest.TestCase):
+    def test_rf_branding_native_three_lines_match_exact_generator_presentation(self):
+        import pcbnew
+        import h6_r2_placement as placement
+        project = "LESHY2-RF-R2"
+        expected = [
+            ("ESP32-LESHY2", (40., 131.3), 1.55, .23),
+            ("RF/PWR PCB · R2-EVT1 · REV A", (40., 133.8), 1., .15),
+            ("github.com/anton-vinogradov/esp32-leshy2", (40., 136.3), 1., .15),
+        ]
+        generated = []
+        # Capture the producer arguments without creating another BOARD and
+        # disturbing KiCad's global context of a subsequently loaded native.
+        with patch.object(placement, "add_text", side_effect=lambda *args: generated.append(args[1:])):
+            placement.add_user_silkscreen(None, project, {}, {"board": {"width_mm": 80.}})
+        self.assertEqual([(text, at, pcbnew.F_SilkS, size, stroke)
+                          for text, at, size, stroke in expected], generated)
+        path = ROOT / f"hardware/ecad/kicad/{project}/{project}.kicad_pcb"
+        before = path.read_bytes()
+        board = pcbnew.LoadBoard(str(path))
+        for name, at, size, stroke in expected:
+            matches = [t for t in board.GetDrawings()
+                       if isinstance(t, pcbnew.PCB_TEXT) and t.GetText() == name]
+            self.assertEqual(1, len(matches), name)
+            text = matches[0]
+            self.assertEqual(pcbnew.F_SilkS, text.GetLayer())
+            self.assertEqual(at, tuple(pcbnew.ToMM(v) for v in
+                                      (text.GetPosition().x, text.GetPosition().y)))
+            self.assertEqual((size, size), tuple(pcbnew.ToMM(v) for v in
+                                               (text.GetTextSize().x, text.GetTextSize().y)))
+            self.assertAlmostEqual(stroke, pcbnew.ToMM(text.GetTextThickness()), places=6)
+            self.assertEqual(0, text.GetTextAngleDegrees() % 360)
+            self.assertTrue(text.IsVisible())
+            self.assertFalse(text.IsMirrored())
+            self.assertFalse(text.IsBold())
+            self.assertFalse(text.IsItalic())
+            self.assertIsNone(text.GetFont())
+            self.assertEqual((0, 0), (int(text.GetHorizJustify()), int(text.GetVertJustify())))
+        self.assertEqual(before, path.read_bytes())
+
+    def test_rf_branding_separates_cell_polarity_without_crowding_fixed_usb_owner(self):
+        import pcbnew
+        project = "LESHY2-RF-R2"
+        path = ROOT / f"hardware/ecad/kicad/{project}/{project}.kicad_pcb"
+        before = path.read_bytes()
+        board = pcbnew.LoadBoard(str(path))
+        def select(name, at):
+            matches = [t for t in board.GetDrawings()
+                       if isinstance(t, pcbnew.PCB_TEXT) and t.GetText() == name
+                       and t.GetLayer() == pcbnew.F_SilkS
+                       and tuple(pcbnew.ToMM(v) for v in
+                                 (t.GetPosition().x, t.GetPosition().y)) == at]
+            self.assertEqual(1, len(matches), (name, at))
+            text = matches[0]
+            self.assertTrue(text.IsVisible())
+            self.assertFalse(text.IsMirrored())
+            self.assertFalse(text.IsBold())
+            self.assertFalse(text.IsItalic())
+            self.assertIsNone(text.GetFont())
+            self.assertEqual(0, text.GetTextAngleDegrees() % 360)
+            self.assertEqual((0, 0), (int(text.GetHorizJustify()), int(text.GetVertJustify())))
+            return text
+        title = select("ESP32-LESHY2", (40., 131.3))
+        polarity = [select("CELL0 +", (30.45, 128.82)), select("CELL1 -", (49.55, 128.82))]
+        url = select("github.com/anton-vinogradov/esp32-leshy2", (40., 136.3))
+        usb = select("RF RP", (37.47, 138.2))
+        for text in [*polarity, url, usb]:
+            self.assertEqual((1., 1.), (pcbnew.ToMM(text.GetTextSize().x), pcbnew.ToMM(text.GetTextSize().y)))
+            self.assertAlmostEqual(.15, pcbnew.ToMM(text.GetTextThickness()), places=6)
+        def gap(first, second):
+            proof = audit.native_stroke_shape_clearance(
+                first, second.GetEffectiveTextShape(), pcbnew, "native_stroke_shape_to_text_stroke")
+            self.assertEqual("measured", proof["status"])
+            return proof["gap_lower_mm"]
+        # This finite .9-mm visual separation is not a new fabrication rule;
+        # ordinary silk/mask .15-mm guards still apply independently.
+        self.assertTrue(all(gap(text, title) >= .9 for text in polarity))
+        self.assertGreaterEqual(gap(url, usb), .15)
+        title.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(40), pcbnew.FromMM(130.5)))
+        self.assertTrue(all(.15 <= gap(text, title) < .9 for text in polarity))
+        self.assertEqual(before, path.read_bytes())
+
     def test_body_without_courtyard_still_obstructs_same_side_text(self):
         import pcbnew
         board = pcbnew.BOARD()

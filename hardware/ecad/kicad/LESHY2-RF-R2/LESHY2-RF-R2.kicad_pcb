@@ -160142,7 +160142,7 @@
 		(uuid "386672a2-79d1-5291-a542-2e395bfc7572")
 	)
 	(gr_text "RF/PWR PCB · R2-EVT1 · REV A"
-		(at 40 133 0)
+		(at 40 133.8 0)
 		(layer "F.SilkS")
 		(uuid "d00b9ccc-42ec-4e42-949a-2ef02be77d5c")
 		(effects
@@ -160153,7 +160153,7 @@
 		)
 	)
 	(gr_text "github.com/anton-vinogradov/esp32-leshy2"
-		(at 40 135.5 0)
+		(at 40 136.3 0)
 		(layer "F.SilkS")
 		(uuid "255cefd1-0fb7-497b-b9f5-399c239d6322")
 		(effects
@@ -160164,7 +160164,7 @@
 		)
 	)
 	(gr_text "ESP32-LESHY2"
-		(at 40 130.5 0)
+		(at 40 131.3 0)
 		(layer "F.SilkS")
 		(uuid "5b3b33d0-b1e4-475d-9f1a-4e54f4cf2866")
 		(effects

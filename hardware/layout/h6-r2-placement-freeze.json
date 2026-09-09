@@ -43747,8 +43747,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "7a6edfde91258733100b58a41d1c140471df0cf4f2bfdac532b769bfb0d22a35",
-      "placement_signature_sha256": "32c822393960cb84338670c2a9286ea49352e76a5e128f5c30379c48b19105db",
+      "unrouted_seed_sha256": "976349c9a2ce5c81c02c904caebfd609012a688773ddd410efdb14b33a085986",
+      "placement_signature_sha256": "550810c6e8707b4f4d5c8d706935b0dbd8b4405e3c85a4283b992379c9406aa7",
       "locality": {
         "status": "pass",
         "pair_count": 264,

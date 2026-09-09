@@ -561,7 +561,7 @@
     {
       "project": "LESHY2-RF-R2",
       "board": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "board_sha256": "a0853d63d1ec4d74e5afd2ade5b554246008342372e9de94eaf0721241dfc4fa",
+      "board_sha256": "5d79ceab06d8ca16c87114b67e0217b462f4c044b559bc1160bdc07a8dca0795",
       "native_footprint_count": 784,
       "checked_references": [
         "BT1",

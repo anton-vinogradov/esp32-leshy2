@@ -11,7 +11,7 @@
     "speaker_helper": "hardware/layout/h6_r2_speaker_fit.py",
     "speaker_helper_sha256": "9e677eca3c1d320fc19fd25e961d884a1a903ca9f0af1ca3ad95835d20c38d30",
     "placement_freeze": "hardware/layout/h6-r2-placement-freeze.json",
-    "placement_freeze_sha256": "9a39d283d1e8948ee40892d5294d6305a4ae5d8b7d0970fc920c5e4942d1cef7",
+    "placement_freeze_sha256": "5d84f8eb1f73deddf2bc2fc7a4f3e776a55788da8475fe747ce7f86fe8a83ac4",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "3cefd845934ca2d17be9f7e5876266deaf885fd0c37b8330a2637c38e6193ffb",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -38917,8 +38917,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "7a6edfde91258733100b58a41d1c140471df0cf4f2bfdac532b769bfb0d22a35",
-      "placement_signature_sha256": "32c822393960cb84338670c2a9286ea49352e76a5e128f5c30379c48b19105db",
+      "unrouted_seed_sha256": "976349c9a2ce5c81c02c904caebfd609012a688773ddd410efdb14b33a085986",
+      "placement_signature_sha256": "550810c6e8707b4f4d5c8d706935b0dbd8b4405e3c85a4283b992379c9406aa7",
       "locality": {
         "status": "pass",
         "pair_count": 264,

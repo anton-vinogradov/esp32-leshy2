@@ -44,7 +44,7 @@
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_50_FRONT_POWER_SAFETY.kicad_sch": "5c1befee1751e1dfb882c1ee86d04ce19312095f527a901bcbae75691ef1b15b",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch": "87b5812e879ba11abca135470a681c9909148ff398d7dc9153d50d258adae3b1",
     "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "b93eee66471cc46dd165b108c52442aa3a3ada8446248141b22ba5ca1bf03143",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "a0853d63d1ec4d74e5afd2ade5b554246008342372e9de94eaf0721241dfc4fa"
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "5d79ceab06d8ca16c87114b67e0217b462f4c044b559bc1160bdc07a8dca0795"
   },
   "boards": [
     {
@@ -1667,7 +1667,7 @@
             "layer": "F.Silkscreen",
             "at_mm": [
               40.0,
-              133.0
+              133.8
             ],
             "size_mm": [
               1.0,
@@ -1688,8 +1688,8 @@
                 52.839287
               ],
               "y": [
-                132.15175,
-                133.84825
+                132.95175,
+                134.64825
               ]
             }
           },
@@ -1719,7 +1719,7 @@
             "layer": "F.Silkscreen",
             "at_mm": [
               40.0,
-              133.0
+              133.8
             ],
             "size_mm": [
               1.0,
@@ -1740,8 +1740,8 @@
                 52.839287
               ],
               "y": [
-                132.15175,
-                133.84825
+                132.95175,
+                134.64825
               ]
             }
           },
@@ -1771,7 +1771,7 @@
             "layer": "F.Silkscreen",
             "at_mm": [
               40.0,
-              133.0
+              133.8
             ],
             "size_mm": [
               1.0,
@@ -1792,8 +1792,8 @@
                 52.839287
               ],
               "y": [
-                132.15175,
-                133.84825
+                132.95175,
+                134.64825
               ]
             }
           },
@@ -1823,7 +1823,7 @@
             "layer": "F.Silkscreen",
             "at_mm": [
               40.0,
-              133.0
+              133.8
             ],
             "size_mm": [
               1.0,
@@ -1844,8 +1844,8 @@
                 52.839287
               ],
               "y": [
-                132.15175,
-                133.84825
+                132.95175,
+                134.64825
               ]
             }
           },
@@ -1875,7 +1875,7 @@
             "layer": "F.Silkscreen",
             "at_mm": [
               40.0,
-              135.5
+              136.3
             ],
             "size_mm": [
               1.0,
@@ -1896,60 +1896,8 @@
                 57.291668
               ],
               "y": [
-                134.65175,
-                136.34825
-              ]
-            }
-          },
-          "obstacle": {
-            "kind": "via_drill_bbox",
-            "via": "9be695e1-37ef-425e-b4f8-f317f9bfa530",
-            "silk_layer": "F.Silkscreen",
-            "tented": true,
-            "bbox_mm": {
-              "x": [
-                35.6,
-                35.800000000000004
-              ],
-              "y": [
-                134.9,
-                135.1
-              ]
-            }
-          },
-          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
-        },
-        {
-          "kind": "via_drill_bbox",
-          "text": {
-            "id": "255cefd1-0fb7-497b-b9f5-399c239d6322",
-            "text": "github.com/anton-vinogradov/esp32-leshy2",
-            "layer": "F.Silkscreen",
-            "at_mm": [
-              40.0,
-              135.5
-            ],
-            "size_mm": [
-              1.0,
-              1.0
-            ],
-            "thickness_mm": 0.15,
-            "angle_deg": 0.0,
-            "mirrored": false,
-            "visible": true,
-            "horizontal_justify": 0,
-            "vertical_justify": 0,
-            "default_stroke_font": true,
-            "bold": false,
-            "italic": false,
-            "bbox_mm": {
-              "x": [
-                22.708332,
-                57.291668
-              ],
-              "y": [
-                134.65175,
-                136.34825
+                135.45175,
+                137.14825
               ]
             }
           },
@@ -1979,7 +1927,7 @@
             "layer": "F.Silkscreen",
             "at_mm": [
               40.0,
-              130.5
+              131.3
             ],
             "size_mm": [
               1.55,
@@ -2000,8 +1948,8 @@
                 49.120952
               ],
               "y": [
-                129.1896,
-                131.8104
+                129.9896,
+                132.6104
               ]
             }
           },
@@ -2018,58 +1966,6 @@
               "y": [
                 130.70000000000002,
                 130.9
-              ]
-            }
-          },
-          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
-        },
-        {
-          "kind": "via_drill_bbox",
-          "text": {
-            "id": "5b3b33d0-b1e4-475d-9f1a-4e54f4cf2866",
-            "text": "ESP32-LESHY2",
-            "layer": "F.Silkscreen",
-            "at_mm": [
-              40.0,
-              130.5
-            ],
-            "size_mm": [
-              1.55,
-              1.55
-            ],
-            "thickness_mm": 0.23,
-            "angle_deg": 0.0,
-            "mirrored": false,
-            "visible": true,
-            "horizontal_justify": 0,
-            "vertical_justify": 0,
-            "default_stroke_font": true,
-            "bold": false,
-            "italic": false,
-            "bbox_mm": {
-              "x": [
-                30.879049,
-                49.120952
-              ],
-              "y": [
-                129.1896,
-                131.8104
-              ]
-            }
-          },
-          "obstacle": {
-            "kind": "via_drill_bbox",
-            "via": "14f075f2-f2cb-4eba-9cd0-c1f6be679b16",
-            "silk_layer": "F.Silkscreen",
-            "tented": true,
-            "bbox_mm": {
-              "x": [
-                31.5,
-                31.700000000000003
-              ],
-              "y": [
-                129.76500000000001,
-                129.965
               ]
             }
           },
@@ -3028,150 +2924,6 @@
             0.19982
           ],
           "resolution_reason": "Actual native text strokes, including pen width, clear the actual pad mask by the required gap"
-        },
-        {
-          "kind": "user_text_bbox_overlap",
-          "text": {
-            "id": "5b3b33d0-b1e4-475d-9f1a-4e54f4cf2866",
-            "text": "ESP32-LESHY2",
-            "layer": "F.Silkscreen",
-            "at_mm": [
-              40.0,
-              130.5
-            ],
-            "size_mm": [
-              1.55,
-              1.55
-            ],
-            "thickness_mm": 0.23,
-            "angle_deg": 0.0,
-            "mirrored": false,
-            "visible": true,
-            "horizontal_justify": 0,
-            "vertical_justify": 0,
-            "default_stroke_font": true,
-            "bold": false,
-            "italic": false,
-            "bbox_mm": {
-              "x": [
-                30.879049,
-                49.120952
-              ],
-              "y": [
-                129.1896,
-                131.8104
-              ]
-            }
-          },
-          "other_text": {
-            "id": "cde4a25f-116c-5e9d-9dd1-0481e02b8cce",
-            "text": "CELL0 +",
-            "layer": "F.Silkscreen",
-            "at_mm": [
-              30.45,
-              128.82
-            ],
-            "size_mm": [
-              1.0,
-              1.0
-            ],
-            "thickness_mm": 0.15,
-            "angle_deg": 0.0,
-            "mirrored": false,
-            "visible": true,
-            "horizontal_justify": 0,
-            "vertical_justify": 0,
-            "default_stroke_font": true,
-            "bold": false,
-            "italic": false,
-            "bbox_mm": {
-              "x": [
-                27.086905,
-                33.813096
-              ],
-              "y": [
-                127.97175,
-                129.66825
-              ]
-            }
-          },
-          "native_text_gap_mm": [
-            0.19028,
-            0.190281
-          ],
-          "resolution_reason": "Actual native strokes, including both pen widths, are separated by the required gap"
-        },
-        {
-          "kind": "user_text_bbox_overlap",
-          "text": {
-            "id": "5b3b33d0-b1e4-475d-9f1a-4e54f4cf2866",
-            "text": "ESP32-LESHY2",
-            "layer": "F.Silkscreen",
-            "at_mm": [
-              40.0,
-              130.5
-            ],
-            "size_mm": [
-              1.55,
-              1.55
-            ],
-            "thickness_mm": 0.23,
-            "angle_deg": 0.0,
-            "mirrored": false,
-            "visible": true,
-            "horizontal_justify": 0,
-            "vertical_justify": 0,
-            "default_stroke_font": true,
-            "bold": false,
-            "italic": false,
-            "bbox_mm": {
-              "x": [
-                30.879049,
-                49.120952
-              ],
-              "y": [
-                129.1896,
-                131.8104
-              ]
-            }
-          },
-          "other_text": {
-            "id": "7ced609f-b381-50dc-ad85-06a526eab29c",
-            "text": "CELL1 -",
-            "layer": "F.Silkscreen",
-            "at_mm": [
-              49.55,
-              128.82
-            ],
-            "size_mm": [
-              1.0,
-              1.0
-            ],
-            "thickness_mm": 0.15,
-            "angle_deg": 0.0,
-            "mirrored": false,
-            "visible": true,
-            "horizontal_justify": 0,
-            "vertical_justify": 0,
-            "default_stroke_font": true,
-            "bold": false,
-            "italic": false,
-            "bbox_mm": {
-              "x": [
-                46.186905,
-                52.913096
-              ],
-              "y": [
-                127.97175,
-                129.66825
-              ]
-            }
-          },
-          "native_text_gap_mm": [
-            0.19028,
-            0.190281
-          ],
-          "resolution_reason": "Actual native strokes, including both pen widths, are separated by the required gap"
         },
         {
           "kind": "user_text_bbox_overlap",

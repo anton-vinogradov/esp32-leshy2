@@ -496,9 +496,11 @@ def add_user_silkscreen(board, project: str, placement: dict, contract: dict) ->
         add_text(board, "Леший · UI · R2-EVT1 · REV A", (centre_x, 116.0), pcbnew.F_SilkS, 1.00, 0.15)
     else:
         centre_x = contract["board"]["width_mm"] / 2
-        add_text(board, "ESP32-LESHY2", (centre_x, 130.5), pcbnew.F_SilkS, 1.55, 0.23)
-        add_text(board, "RF/PWR PCB · R2-EVT1 · REV A", (centre_x, 133.0), pcbnew.F_SilkS, 1.00, 0.15)
-        add_text(board, "github.com/anton-vinogradov/esp32-leshy2", (centre_x, 135.5), pcbnew.F_SilkS, 1.00, 0.15)
+        # Separate the branding block from the cell-polarity row above it;
+        # keep that row aligned with the holder and leave USB labels fixed.
+        add_text(board, "ESP32-LESHY2", (centre_x, 131.3), pcbnew.F_SilkS, 1.55, 0.23)
+        add_text(board, "RF/PWR PCB · R2-EVT1 · REV A", (centre_x, 133.8), pcbnew.F_SilkS, 1.00, 0.15)
+        add_text(board, "github.com/anton-vinogradov/esp32-leshy2", (centre_x, 136.3), pcbnew.F_SilkS, 1.00, 0.15)
     # Antenna labels are added with the other interface labels after placement,
     # keyed by instance and verified against the native signal-pad net.
 
