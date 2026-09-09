@@ -394,7 +394,11 @@ def panel(name, face, native, opposite, refs, holes, reserve, board_shape, card_
     if face == "outer" and reserve:
         result.extend(['<g data-role="unrouted-nfc-reserve">', reserve, '</g>'])
     result.extend(['</g>', '</g>'])
-    result.append(text(8, 179, "Золото / gold: медные площадки интерфейсов / interface copper lands", 1.25, "#855b15"))
+    # Shared footer band, below the UI ejected-card callout on either face.
+    # Keep native geometry, font size, page scale and the existing footer fixed.
+    result.append('<g data-role="interface-copper-legend" data-not-silkscreen="true">'
+                  + text(8, 183.5, "Золото / gold: медные площадки интерфейсов / interface copper lands", 1.25, "#855b15")
+                  + '</g>')
     if face == "inner":
         result.append(text(8, 186, "После переворота / turned over · x′ = 80 − x", 1.5))
     elif name == "ui":

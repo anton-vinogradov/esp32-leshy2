@@ -1,0 +1,1137 @@
+{
+  "schema_version": 1,
+  "scope": "Additional user/service/assembly free PCB_TEXT interface labels; native XY coordinates. Finite associated resistor-clearance moves are owned by the separate placement contract and relocation review.",
+  "status": "reviewed_local_interface_label_positions",
+  "production_release_authorized": false,
+  "baseline_native_sha256": {
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "5a29ed7272d412d72b62265bd3940864e4feb23a3f5e5d7ed60f9497620567cb",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "5442331dc15ec87f9c315bf64996a4e0841901d80e8ffc36f2b67b7669aca96b"
+  },
+  "baseline_hash_scope": "Immutable design-search inputs, not the post-silkscreen board hashes. Current owner_pose is validated independently when loading these labels.",
+  "geometry_screen": {
+    "font_mm": 1,
+    "stroke_mm": 0.15,
+    "minimum_clearance_mm": 0.15,
+    "method": "Read-only pcbnew default stroke shapes versus actual same-side mask/printed silk/edge shapes; conservative full bbox separation from same-side courtyards or Fab envelope where no courtyard, all drills, UI display and separately registered speaker body; pairwise new text checks. UI FPC slot and microSD notch remain subject to the independent current native audit.",
+    "not_claimed": [
+      "manufacturing qualification",
+      "solder access qualification",
+      "electrical performance qualification",
+      "routing completion"
+    ]
+  },
+  "polarity_evidence": {
+    "battery_primary_review": "hardware/layout/h6-r2-holder-polarity-review.json",
+    "battery_accepted_integration": "hardware/layout/h6-r2-holder-polarity-integration.json",
+    "primary_drawing_sha256": "6135bff212f9eab9ed8158febcbbd0d18b9479caac384a7f51f2818d1328e26b",
+    "battery_legend": "Full CELL0 and CELL1 slot identities are printed at both ends. Opposite polarity follows the reviewed RevA top view, rotated to current F90.",
+    "battery_native_contacts": [
+      {
+        "pad": "1",
+        "native_net": "/RF_02_PACK_SAFETY_AON/PACK_SLOT0_POSITIVE_RAW",
+        "at_mm": [
+          30.45,
+          126
+        ]
+      },
+      {
+        "pad": "2",
+        "native_net": "/RF_02_PACK_SAFETY_AON/BATTERY_STACK_NEGATIVE_CELL_SIDE",
+        "at_mm": [
+          30.45,
+          44
+        ]
+      },
+      {
+        "pad": "3",
+        "native_net": "/RF_02_PACK_SAFETY_AON/PACK_SLOT1_POSITIVE_RAW",
+        "at_mm": [
+          49.55,
+          44
+        ]
+      },
+      {
+        "pad": "4",
+        "native_net": "/RF_02_PACK_SAFETY_AON/PACK_2S_MIDPOINT",
+        "at_mm": [
+          49.55,
+          126
+        ]
+      }
+    ],
+    "speaker_native_contacts": [
+      {
+        "pad": "+",
+        "native_net": "/RF_22_AUDIO_CODEC_IO/SPEAKER_BTL_P",
+        "at_mm": [
+          76.395,
+          65.395
+        ]
+      },
+      {
+        "pad": "-",
+        "native_net": "/RF_22_AUDIO_CODEC_IO/SPEAKER_BTL_N",
+        "at_mm": [
+          76.395,
+          61.895
+        ]
+      }
+    ],
+    "speaker_minus_is_ground": false,
+    "speaker_description": "SPK + and SPK - identify the two differential BTL outputs, not a ground terminal."
+  },
+  "labels": [
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ir_demod",
+      "reference": "U24",
+      "text": "IR RX",
+      "at_mm": [
+        4.5,
+        78.1
+      ],
+      "layer": "F.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "user",
+      "mirrored": false,
+      "owner_pose": {
+        "anchor_mm": [
+          2.6,
+          78.1
+        ],
+        "side": "B.Cu",
+        "rotation_deg": 90
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            2.279762,
+            6.720238
+          ],
+          "y": [
+            77.25175,
+            78.94825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ir_carrier",
+      "reference": "U23",
+      "text": "IR LRN",
+      "at_mm": [
+        4.5,
+        85.6
+      ],
+      "layer": "F.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "user",
+      "mirrored": false,
+      "owner_pose": {
+        "anchor_mm": [
+          2.6,
+          85.6
+        ],
+        "side": "B.Cu",
+        "rotation_deg": 90
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            1.827381,
+            7.172619
+          ],
+          "y": [
+            84.75175,
+            86.44825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ir_emitter",
+      "reference": "D11",
+      "text": "IR TX",
+      "at_mm": [
+        4.5,
+        92
+      ],
+      "layer": "F.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "user",
+      "mirrored": false,
+      "owner_pose": {
+        "anchor_mm": [
+          1.86,
+          92
+        ],
+        "side": "B.Cu",
+        "rotation_deg": 270
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            2.39881,
+            6.601191
+          ],
+          "y": [
+            91.15175,
+            92.84825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "headphone_jack",
+      "reference": "U83",
+      "text": "HEADSET",
+      "at_mm": [
+        5,
+        97.9
+      ],
+      "layer": "F.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "user",
+      "mirrored": false,
+      "owner_pose": {
+        "anchor_mm": [
+          0.8,
+          99.9
+        ],
+        "side": "B.Cu",
+        "rotation_deg": 0
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            1.660714,
+            8.339286
+          ],
+          "y": [
+            97.05175,
+            98.74825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "power_command_switch",
+      "reference": "SW5",
+      "text": "POWER",
+      "at_mm": [
+        75,
+        114.1
+      ],
+      "layer": "F.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "user",
+      "mirrored": false,
+      "owner_pose": {
+        "anchor_mm": [
+          78.2,
+          114.1
+        ],
+        "side": "B.Cu",
+        "rotation_deg": 270
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            72.327381,
+            77.672619
+          ],
+          "y": [
+            113.25175,
+            114.94825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "u214_connector",
+      "reference": "J10",
+      "text": "CAP",
+      "at_mm": [
+        40,
+        36
+      ],
+      "layer": "F.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "user",
+      "mirrored": false,
+      "owner_pose": {
+        "anchor_mm": [
+          32.375,
+          25.21
+        ],
+        "side": "F.Cu",
+        "rotation_deg": 0
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            38.446429,
+            41.553572
+          ],
+          "y": [
+            35.15175,
+            36.84825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "u219_nfc_pickup_loop",
+      "reference": "L32",
+      "text": "NFC",
+      "at_mm": [
+        55,
+        29
+      ],
+      "layer": "F.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "user",
+      "mirrored": false,
+      "owner_pose": {
+        "anchor_mm": [
+          40,
+          29
+        ],
+        "side": "F.Cu",
+        "rotation_deg": 0
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            53.422619,
+            56.577381
+          ],
+          "y": [
+            28.15175,
+            29.84825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "pack_holder",
+      "reference": "BT1",
+      "text": "CELL0 -",
+      "at_mm": [
+        30.45,
+        41.2
+      ],
+      "layer": "F.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "user",
+      "mirrored": false,
+      "owner_pose": {
+        "anchor_mm": [
+          40,
+          85
+        ],
+        "side": "F.Cu",
+        "rotation_deg": 90
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            27.086905,
+            33.813096
+          ],
+          "y": [
+            40.35175,
+            42.04825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "pack_holder",
+      "reference": "BT1",
+      "text": "CELL1 +",
+      "at_mm": [
+        49.55,
+        41.2
+      ],
+      "layer": "F.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "user",
+      "mirrored": false,
+      "owner_pose": {
+        "anchor_mm": [
+          40,
+          85
+        ],
+        "side": "F.Cu",
+        "rotation_deg": 90
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            46.186905,
+            52.913096
+          ],
+          "y": [
+            40.35175,
+            42.04825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "pack_holder",
+      "reference": "BT1",
+      "text": "CELL0 +",
+      "at_mm": [
+        30.45,
+        128.82
+      ],
+      "layer": "F.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "user",
+      "mirrored": false,
+      "owner_pose": {
+        "anchor_mm": [
+          40,
+          85
+        ],
+        "side": "F.Cu",
+        "rotation_deg": 90
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            27.086905,
+            33.813096
+          ],
+          "y": [
+            127.97175,
+            129.66825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "pack_holder",
+      "reference": "BT1",
+      "text": "CELL1 -",
+      "at_mm": [
+        49.55,
+        128.82
+      ],
+      "layer": "F.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "user",
+      "mirrored": false,
+      "owner_pose": {
+        "anchor_mm": [
+          40,
+          85
+        ],
+        "side": "F.Cu",
+        "rotation_deg": 90
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            46.186905,
+            52.913096
+          ],
+          "y": [
+            127.97175,
+            129.66825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "s3_dbg_header",
+      "reference": "J2",
+      "text": "S3 DBG",
+      "at_mm": [
+        3.075,
+        109.6
+      ],
+      "layer": "B.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "service",
+      "mirrored": true,
+      "owner_pose": {
+        "anchor_mm": [
+          9.825,
+          106.92
+        ],
+        "side": "B.Cu",
+        "rotation_deg": 90
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            0.116667,
+            6.033334
+          ],
+          "y": [
+            108.75175,
+            110.44825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "c5_dbg_header",
+      "reference": "J6",
+      "text": "C5 DBG",
+      "at_mm": [
+        25.075,
+        111.35
+      ],
+      "layer": "B.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "service",
+      "mirrored": true,
+      "owner_pose": {
+        "anchor_mm": [
+          20.325,
+          106.92
+        ],
+        "side": "B.Cu",
+        "rotation_deg": 90
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            22.092857,
+            28.057143
+          ],
+          "y": [
+            110.50175,
+            112.19825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "hub_rp_dbg_header",
+      "reference": "J10",
+      "text": "HUB DBG",
+      "at_mm": [
+        35.275,
+        140.35
+      ],
+      "layer": "B.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "service",
+      "mirrored": true,
+      "owner_pose": {
+        "anchor_mm": [
+          30.525,
+          135.92
+        ],
+        "side": "B.Cu",
+        "rotation_deg": 90
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            31.721429,
+            38.828572
+          ],
+          "y": [
+            139.50175,
+            141.19825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "pack_dbg_header",
+      "reference": "J2",
+      "text": "PACK",
+      "at_mm": [
+        60.42,
+        99.425
+      ],
+      "layer": "B.Silkscreen",
+      "size_mm": 1.0,
+      "thickness_mm": 0.15,
+      "angle_deg": 90,
+      "role": "service",
+      "mirrored": true,
+      "owner_pose": {
+        "side": "B.Cu",
+        "anchor_mm": [
+          64.92,
+          93.175
+        ],
+        "rotation_deg": 0.0
+      },
+      "placement_review": {
+        "screen_status": "clear",
+        "owner_association": "reviewed adjacent header; no intervening foreign Fab body",
+        "owner_courtyard_gap_mm": 0.704437,
+        "relocation_review": "hardware/layout/h6-r2-interface-label-relocation-review.json"
+      }
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "rf_rp_dbg_header",
+      "reference": "J3",
+      "text": "RF",
+      "at_mm": [
+        35.05,
+        108.42
+      ],
+      "layer": "B.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "service",
+      "mirrored": true,
+      "owner_pose": {
+        "side": "B.Cu",
+        "anchor_mm": [
+          30.175,
+          106.92
+        ],
+        "rotation_deg": 90
+      },
+      "placement_review": {
+        "screen_status": "clear",
+        "owner_association": "reviewed adjacent header; no intervening foreign Fab body",
+        "owner_courtyard_gap_mm": 0.246429,
+        "relocation_review": "hardware/layout/h6-r2-interface-label-relocation-review.json"
+      }
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "safety_dbg_header",
+      "reference": "J13",
+      "text": "SAFE",
+      "at_mm": [
+        44.925,
+        105.169999
+      ],
+      "layer": "B.Silkscreen",
+      "size_mm": 1.0,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "service",
+      "mirrored": true,
+      "owner_pose": {
+        "side": "B.Cu",
+        "anchor_mm": [
+          42.675,
+          100.169999
+        ],
+        "rotation_deg": 90.0
+      },
+      "placement_review": {
+        "screen_status": "clear",
+        "owner_association": "reviewed adjacent header; no intervening foreign Fab body",
+        "owner_courtyard_gap_mm": 0.83175,
+        "relocation_review": "hardware/layout/h6-r2-interface-label-relocation-review.json"
+      }
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "s3_rf_board_connector",
+      "reference": "J4",
+      "text": "S3 ANT",
+      "at_mm": [
+        24.04,
+        5
+      ],
+      "layer": "B.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "assembly",
+      "mirrored": true,
+      "owner_pose": {
+        "anchor_mm": [
+          19.04,
+          3.48
+        ],
+        "side": "B.Cu",
+        "rotation_deg": 0
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            21.248333,
+            26.831667
+          ],
+          "y": [
+            4.15175,
+            5.84825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "c5_rf_board_connector",
+      "reference": "J8",
+      "text": "C5 ANT",
+      "at_mm": [
+        57.575,
+        14.25
+      ],
+      "layer": "B.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "assembly",
+      "mirrored": true,
+      "owner_pose": {
+        "anchor_mm": [
+          57.575,
+          10.55
+        ],
+        "side": "B.Cu",
+        "rotation_deg": 0
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            54.759524,
+            60.390477
+          ],
+          "y": [
+            13.40175,
+            15.09825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "nrf0_rf_board_connector",
+      "reference": "J13",
+      "text": "nRF1 ANT",
+      "at_mm": [
+        5,
+        7.65
+      ],
+      "layer": "B.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "assembly",
+      "mirrored": true,
+      "owner_pose": {
+        "anchor_mm": [
+          3.65,
+          3.875
+        ],
+        "side": "B.Cu",
+        "rotation_deg": 90
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            1.303571,
+            8.696429
+          ],
+          "y": [
+            6.80175,
+            8.49825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "nrf1_rf_board_connector",
+      "reference": "J15",
+      "text": "nRF2 ANT",
+      "at_mm": [
+        49.125,
+        15.25
+      ],
+      "layer": "B.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "assembly",
+      "mirrored": true,
+      "owner_pose": {
+        "anchor_mm": [
+          46.875,
+          11.5
+        ],
+        "side": "B.Cu",
+        "rotation_deg": 0
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            45.428571,
+            52.821429
+          ],
+          "y": [
+            14.40175,
+            16.09825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "nrf2_rf_board_connector",
+      "reference": "J17",
+      "text": "nRF3 ANT",
+      "at_mm": [
+        68,
+        6.55
+      ],
+      "layer": "B.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "assembly",
+      "mirrored": true,
+      "owner_pose": {
+        "anchor_mm": [
+          68,
+          9.625
+        ],
+        "side": "B.Cu",
+        "rotation_deg": 90
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            64.303571,
+            71.696429
+          ],
+          "y": [
+            5.70175,
+            7.39825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "m1_ui_plug",
+      "reference": "J18",
+      "text": "M1 UI",
+      "at_mm": [
+        43.5,
+        127.35
+      ],
+      "layer": "B.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "assembly",
+      "mirrored": true,
+      "owner_pose": {
+        "anchor_mm": [
+          42.5,
+          122.25
+        ],
+        "side": "B.Cu",
+        "rotation_deg": 0
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            41.184524,
+            45.815476
+          ],
+          "y": [
+            126.50175,
+            128.19825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "m1_rf_receptacle",
+      "reference": "J12",
+      "text": "M1 RF",
+      "at_mm": [
+        42.25,
+        127.65
+      ],
+      "layer": "B.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "assembly",
+      "mirrored": true,
+      "owner_pose": {
+        "anchor_mm": [
+          37.5,
+          122.25
+        ],
+        "side": "B.Cu",
+        "rotation_deg": 180
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            39.767857,
+            44.732143
+          ],
+          "y": [
+            126.80175,
+            128.49825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "display_connector",
+      "reference": "J1",
+      "text": "DISPLAY",
+      "at_mm": [
+        31.5,
+        40.9
+      ],
+      "layer": "B.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 90,
+      "role": "assembly",
+      "mirrored": true,
+      "owner_pose": {
+        "anchor_mm": [
+          40,
+          35.4
+        ],
+        "side": "B.Cu",
+        "rotation_deg": 0
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            30.65175,
+            32.34825
+          ],
+          "y": [
+            37.798809,
+            44.00119
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "speaker",
+      "reference": "LS1",
+      "text": "SPK +",
+      "at_mm": [
+        79,
+        69.895
+      ],
+      "layer": "B.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 90,
+      "role": "assembly",
+      "mirrored": true,
+      "owner_pose": {
+        "anchor_mm": [
+          76.395,
+          63.645
+        ],
+        "side": "B.Cu",
+        "rotation_deg": 90
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            78.15175,
+            79.84825
+          ],
+          "y": [
+            67.293809,
+            72.49619
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "speaker",
+      "reference": "LS1",
+      "text": "SPK -",
+      "at_mm": [
+        72,
+        57.895
+      ],
+      "layer": "B.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "assembly",
+      "mirrored": true,
+      "owner_pose": {
+        "anchor_mm": [
+          76.395,
+          63.645
+        ],
+        "side": "B.Cu",
+        "rotation_deg": 90
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            69.39881,
+            74.601191
+          ],
+          "y": [
+            57.04675,
+            58.74325
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "microphone",
+      "reference": "MK1",
+      "text": "MIC",
+      "at_mm": [
+        46.75,
+        142.35
+      ],
+      "layer": "B.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "assembly",
+      "mirrored": true,
+      "owner_pose": {
+        "anchor_mm": [
+          47,
+          147.4
+        ],
+        "side": "B.Cu",
+        "rotation_deg": 0
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            45.315477,
+            48.184524
+          ],
+          "y": [
+            141.50175,
+            143.19825
+          ]
+        },
+        "screen_status": "clear"
+      }
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "main_raw_pg_testpoint",
+      "reference": "TP1",
+      "text": "MAIN\nPG",
+      "at_mm": [
+        76.8975,
+        50.85
+      ],
+      "layer": "B.Silkscreen",
+      "size_mm": 1,
+      "thickness_mm": 0.15,
+      "angle_deg": 0,
+      "role": "service",
+      "mirrored": true,
+      "owner_pose": {
+        "anchor_mm": [
+          70.647499,
+          52.3963
+        ],
+        "side": "B.Cu",
+        "rotation_deg": 0
+      },
+      "placement_review": {
+        "bbox_mm": {
+          "x": [
+            75.010596,
+            78.784405
+          ],
+          "y": [
+            49.196778,
+            52.503222
+          ]
+        },
+        "screen_status": "clear"
+      }
+    }
+  ]
+}

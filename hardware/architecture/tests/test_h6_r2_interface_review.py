@@ -210,8 +210,23 @@ class InterfaceReviewTests(unittest.TestCase):
         audit = load("hardware/layout/generated/H6-R2-user-silkscreen-audit.json")
         self.assertEqual("pass_scoped", audit["status"])
         self.assertFalse(audit["production_release_authorized"])
-        # 63 interface labels plus one approved use notice on each outer face.
-        self.assertEqual(66, sum(row["required_count"] for row in audit["boards"]))
+        # Baseline 66 + 29 new labels + 3 existing assembly captions now emitted
+        # by the common audited generator. This 98-text total is not the
+        # independent 95-label / 76-interface coverage inventory below.
+        self.assertEqual(2, len(audit["boards"]))
+        self.assertEqual({"LESHY2-UI-R2": 63, "LESHY2-RF-R2": 35},
+                         {row["project"]: row["required_count"] for row in audit["boards"]})
+        self.assertEqual(98, sum(row["required_count"] for row in audit["boards"]))
+        coverage = audit["interface_coverage"]
+        self.assertEqual("pass_scoped_native", coverage["status"])
+        self.assertTrue(coverage["native_checked"])
+        self.assertEqual(76, coverage["required_interface_count"])
+        self.assertEqual(76, coverage["matched_interface_count"])
+        self.assertEqual(95, coverage["required_label_count"])
+        self.assertEqual(95, coverage["matched_label_count"])
+        self.assertEqual(95, coverage["native_matched_label_count"])
+        self.assertFalse(coverage["errors"])
+        self.assertFalse(coverage["production_release_authorized"])
         for path, digest in audit["inputs_sha256"].items():
             self.assertFalse(Path(path).is_absolute())
             self.assertEqual(digest, hashlib.sha256((ROOT / path).read_bytes()).hexdigest(), path)

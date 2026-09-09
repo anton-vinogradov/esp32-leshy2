@@ -25,6 +25,7 @@ import h6_r2_microsd_recess as microsd
 import h6_r2_encoder_fit as encoder
 import h6_r2_speaker_fit as speaker
 import h6_r2_usb_unification as usb
+import h6_r2_user_silkscreen as silkscreen
 
 ROOT = Path(__file__).resolve().parents[2]
 UUID_FORM = re.compile(r'(\(uuid\s+)"([^"\\]*)"')
@@ -248,6 +249,84 @@ def pad_nets(fp):
                    if p.GetAttribute() != pcbnew.PAD_ATTRIB_NPTH or p.GetNetname())
 
 
+def require_unrouted_references(board, references):
+    """A caption-clearance move may not detach any existing routed pad.
+
+    Named connectivity alone misses anonymous/no-net copper. Check physical
+    pad/track intersections on each copper layer too. Filled copper zones need
+    a separate zone-aware move review; this finite helper does not waive them.
+    """
+    if (not isinstance(references, list)
+            or not all(isinstance(ref, str) and ref for ref in references)
+            or len(set(references)) != len(references)):
+        raise ValueError("unrouted-only references must be unique exact names")
+    if any(not zone.GetIsRuleArea() for zone in board.Zones()):
+        raise ValueError("unrouted-only moves require a separate copper-zone review")
+    fps = {fp.GetReference(): fp for fp in board.GetFootprints()}
+    if set(references) - set(fps):
+        raise ValueError("unknown unrouted-only reference")
+    board.BuildConnectivity()
+    connectivity = board.GetConnectivity()
+    copper = list(board.GetTracks())
+    for ref in references:
+        for pad in fps[ref].Pads():
+            if any(isinstance(item, pcbnew.PCB_TRACK) for item in connectivity.GetConnectedItems(pad)):
+                raise ValueError(f"caption-clearance move would detach existing copper at {ref}.{pad.GetNumber()}")
+            for layer in pcbnew.LSET.AllCuMask().Seq():
+                if not pad.IsOnLayer(layer):
+                    continue
+                shape = pad.GetEffectiveShape(layer)
+                if any(item.IsOnLayer(layer) and shape.Collide(item.GetEffectiveShape(), 0)
+                       for item in copper):
+                    raise ValueError(f"caption-clearance pad touches existing copper at {ref}.{pad.GetNumber()}")
+
+
+def reviewed_interface_label_additions(before, seed, allowance, project):
+    """Add only the finite reviewed F/B interface captions; never replace text.
+
+    The source hash binds the complete placement specification, including owner,
+    face, pose, font and polarity. The final native placement projection also
+    checks those properties. Legacy outward-label migration stays F-only.
+    """
+    if allowance is None:
+        return []
+    spec_bytes = silkscreen.INTERFACE_LABEL_PLACEMENTS.read_bytes()
+    if allowance != {"feature_id": "H6-R2-INTERFACE-SILK-001", "source_sha256": sha(spec_bytes)}:
+        raise ValueError("invalid finite interface-label authorization")
+    spec = json.loads(spec_bytes)
+    if spec.get("schema_version") != 1 or project not in {"LESHY2-UI-R2", "LESHY2-RF-R2"}:
+        raise ValueError("invalid interface-label specification")
+    rows = [row for row in spec["labels"] if row["project"] == project]
+    required = [(row["text"], row["layer"]) for row in rows]
+    if (not required or len(required) != len(set(required))
+            or any(not text or layer not in {"F.Silkscreen", "B.Silkscreen"}
+                   for text, layer in required)):
+        raise ValueError("invalid interface-label population")
+
+    def selected(text):
+        result = []
+        for head, form in forms(text):
+            if head != "gr_text":
+                continue
+            match = re.match(r'\(gr_text\s+("(?:\\.|[^"\\])*")', form)
+            layer = re.search(r'\(layer\s+"([^"]+)"\)', form)
+            if not match or not layer:
+                raise ValueError("malformed board text in interface-label stage")
+            value = json.loads(match.group(1))
+            native_layer = {"F.SilkS": "F.Silkscreen", "B.SilkS": "B.Silkscreen"}.get(layer.group(1), layer.group(1))
+            if (value, native_layer) in required:
+                result.append(((value, native_layer), form))
+        return result
+
+    old, new = selected(before), selected(seed)
+    # Only exact text/face pairs are new. An identically named existing caption
+    # on the opposite face stays untouched, not migrated. The full projection
+    # rejects any unspliced extra caption on another face.
+    if old or Counter(identity for identity, _ in new) != Counter(required):
+        raise ValueError("interface captions must be absent before and appear once on their exact reviewed faces")
+    return new
+
+
 def reviewed_speaker_graphics(before, seed, allowance, project, allowed_references):
     """Only the reviewed C54/body step may add exactly five B.Fab objects.
 
@@ -320,7 +399,8 @@ def input_snapshot(source):
     paths.update(ROOT / "hardware/layout" / name for name in (
         "h6_r2_placement.py", "h6_r2_coordinates.py", "h6_r2_user_silkscreen.py",
         "h6_r2_microsd_recess.py", "h6_r2_encoder_fit.py", encoder.GEOMETRY_NAME,
-        "h6_r2_usb_unification.py", usb.REVIEW_NAME))
+        "h6_r2_usb_unification.py", usb.REVIEW_NAME,
+        silkscreen.INTERFACE_LABEL_PLACEMENTS.name))
     paths.add(ROOT / "hardware/ecad/h2_r2_encoder_footprint.py")
     paths.update((ROOT / "hardware/ecad/libraries").rglob("*.kicad_mod"))
     rows = json.loads(placement.INSTANCE_PATH.read_text())["rows"]
@@ -404,6 +484,13 @@ def stage(plan, directory):
     seed_projection = placement.placement_signature_from_board_bytes(project, outputs[source])
     changed = verify_changed_references(footprints(before_projection.decode()),
                                         footprints(seed_projection.decode()), plan["allowed_references"])
+    unrouted_refs = plan.get("unrouted_only_references")
+    before_adjacency = None
+    if unrouted_refs is not None:
+        require_unrouted_references(old, unrouted_refs)
+        if sorted(unrouted_refs) != changed:
+            raise ValueError("unrouted-only scope must equal exactly the changed references")
+        before_adjacency = usb.named_connectivity(old)
     if plan.get("allowed_speaker_body_addition") is not None and changed != ["C54"]:
         raise ValueError("speaker-body stage requires exactly the reviewed C54 relocation")
     if copper_forms(seed):
@@ -430,6 +517,15 @@ def stage(plan, directory):
         replacement_labels = [fresh_object_uuids(form, f"{sha(original)}:label:{index}:{sha(form.encode())}", occupied)
                               for index, (_, form) in enumerate(new_labels)]
         merged = merged.rstrip()[:-1] + "\n" + "\n".join(replacement_labels) + "\n)\n"
+    interface_labels = reviewed_interface_label_additions(original.decode(), seed,
+        plan.get("allowed_interface_label_addition"), project)
+    if set(labels + additions) & {identity[0] for identity, _ in interface_labels}:
+        raise ValueError("legacy and interface-label allowances must be disjoint")
+    if interface_labels:
+        replacements = [fresh_object_uuids(form,
+                        f"{sha(original)}:interface-label:{index}:{sha(form.encode())}", occupied)
+                        for index, (_, form) in enumerate(interface_labels)]
+        merged = merged.rstrip()[:-1] + "\n" + "\n".join(replacements) + "\n)\n"
     old_edges, new_edges = reviewed_edge_cut_changes(
         original.decode(), seed, plan.get("allowed_edge_cut_change"), project,
         json.loads(placement.CONTRACT_PATH.read_text()))
@@ -491,6 +587,10 @@ def stage(plan, directory):
     if (copper_signature(old) != copper_signature(new)
             or roundtrip_copper_forms(old) != roundtrip_copper_forms(new)):
         raise ValueError("copper/net geometry changed while staging")
+    if before_adjacency is not None:
+        require_unrouted_references(new, unrouted_refs)
+        if usb.named_connectivity(new) != before_adjacency:
+            raise ValueError("caption-clearance move changed named-pad/copper adjacency")
     if placement.placement_signature_bytes(project, new) != seed_projection:
         raise ValueError("staged board does not match generated placement")
     if source.read_bytes() != original:
@@ -503,6 +603,9 @@ def stage(plan, directory):
               "candidate": str(target), "changed_references": changed,
               "reviewed_silkscreen_texts": sorted(labels),
               "reviewed_added_silkscreen_texts": sorted(additions),
+              "reviewed_added_interface_labels": [dict(text=identity[0], layer=identity[1])
+                                                    for identity, _ in interface_labels],
+              "reviewed_interface_label_addition": plan.get("allowed_interface_label_addition"),
               "reviewed_edge_cut_change": plan.get("allowed_edge_cut_change"),
               "reviewed_encoder_geometry_change": encoder_review,
               "reviewed_usb_unification": usb_review,
@@ -510,6 +613,8 @@ def stage(plan, directory):
               "speaker_body_graphics_added": len(speaker_forms),
               "edge_cut_primitives_removed_added": [len(old_edges), len(new_edges)],
               "unchanged_reference_count": len(old_fps) - len(changed),
+              "unrouted_only_references": unrouted_refs,
+              "named_pad_copper_adjacency_preserved": len(before_adjacency) if before_adjacency is not None else None,
               "copper_objects_preserved": len(copper_signature(old)),
               "copper_forms_preserved_exact": len(preserved),
               "native_uuid_uniqueness": "pass",

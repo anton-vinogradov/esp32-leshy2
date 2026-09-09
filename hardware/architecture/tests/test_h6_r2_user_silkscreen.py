@@ -45,6 +45,42 @@ class UserSilkscreenTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 SILK.b3s_actuator_axis(bad)
 
+    def test_additional_labels_guard_owner_face_pose_font_and_population(self):
+        owner = {"instance": "debug", "reference": "J2", "side": "B.Cu",
+                 "rotation_deg": 90, "footprint_anchor_mm": [10, 20]}
+        label = {"project": "LESHY2-UI-R2", "instance": "debug", "reference": "J2",
+                 "text": "S3 DBG", "layer": "B.Silkscreen", "role": "service",
+                 "at_mm": [10, 25], "size_mm": 1., "thickness_mm": .15, "angle_deg": 90,
+                 "owner_pose": {"anchor_mm": [10, 20], "side": "B.Cu", "rotation_deg": 90}}
+        spec = {"schema_version": 1, "labels": [label]}
+        actual = SILK.additional_interface_labels("LESHY2-UI-R2", [owner], spec)
+        self.assertEqual(1, len(actual))
+        self.assertEqual(90, actual[0]["angle_deg"])
+        self.assertEqual("B.Silkscreen", actual[0]["layer"])
+        for changes in ({"reference": "J3"}, {"side": "F.Cu"}, {"rotation_deg": 270},
+                        {"footprint_anchor_mm": [10.01, 20]}):
+            with self.subTest(changes=changes), self.assertRaisesRegex(ValueError, "owner pose changed"):
+                SILK.additional_interface_labels("LESHY2-UI-R2", [dict(owner, **changes)], spec)
+        for changes in ({"size_mm": .9}, {"thickness_mm": .14}, {"mirrored": False},
+                        {"at_mm": [float("nan"), 25]}, {"layer": "B.Fab"}, {"role": "hidden"}):
+            with self.subTest(changes=changes), self.assertRaisesRegex(ValueError, "invalid readable"):
+                SILK.additional_interface_labels("LESHY2-UI-R2", [owner],
+                    {"schema_version": 1, "labels": [dict(label, **changes)]})
+        with self.assertRaisesRegex(ValueError, "duplicate"):
+            SILK.additional_interface_labels("LESHY2-UI-R2", [owner],
+                {"schema_version": 1, "labels": [label, label]})
+        with self.assertRaises(KeyError):
+            SILK.additional_interface_labels("LESHY2-UI-R2", [], spec)
+        for field, value in (("anchor_mm", [float("nan"), 20]), ("rotation_deg", float("nan")),
+                             ("anchor_mm", [10]), ("rotation_deg", True)):
+            broken = copy.deepcopy(spec)
+            broken["labels"][0]["owner_pose"][field] = value
+            with self.subTest(field=field, value=value), self.assertRaisesRegex(ValueError, "invalid finite"):
+                SILK.additional_interface_labels("LESHY2-UI-R2", [owner], broken)
+        for field, value in (("footprint_anchor_mm", [10, float("inf")]), ("rotation_deg", float("nan"))):
+            with self.subTest(field=field, value=value), self.assertRaisesRegex(ValueError, "invalid finite"):
+                SILK.additional_interface_labels("LESHY2-UI-R2", [dict(owner, **{field: value})], spec)
+
     def test_b3s_labels_follow_actual_plunger_after_rotation(self):
         for project, instance, anchor, angle, expected in (
             ("LESHY2-UI-R2", "ui_switch_f1", [5.52, 22.5], 90, [4.6, 29.0]),
@@ -206,7 +242,10 @@ class UserSilkscreenTests(unittest.TestCase):
                               "thickness_mm": .15, "layer": "F.Silkscreen"}, found[0])
         self.assertEqual(board["placements"], rows)
         rf = next(b for b in self.boards if b["project"] == "LESHY2-RF-R2")
-        self.assertNotIn("MIC", {r["text"] for r in SILK.labels(rf["project"], rf["placements"], self.contract)})
+        local = [r for r in SILK.labels(rf["project"], rf["placements"], self.contract) if r["text"] == "MIC"]
+        self.assertEqual(1, len(local))
+        self.assertEqual(("MK1", "B.Silkscreen", "assembly"),
+                         (local[0]["reference"], local[0]["layer"], local[0]["role"]))
 
     def test_cross_board_mic_label_rejects_unreviewed_side_pose_or_frame(self):
         for key, value in (("project", "LESHY2-UI-R2"), ("frame", "rear-outer"),

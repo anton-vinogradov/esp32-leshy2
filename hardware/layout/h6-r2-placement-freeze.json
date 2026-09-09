@@ -5,7 +5,7 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "094865936bf52c5e1fa5dc3e90f2e22b132afb064e7909d1d8ddd2bf9f3cdfe3",
+    "contract_sha256": "caedfdf37c1546feb18969396706e1f922c02f09cadf667027ff9f7874b839a9",
     "speaker_body": "hardware/layout/h6-r2-speaker-body.json",
     "speaker_body_sha256": "79349b47e281bc89fc57b843987d5458035c59c9fe6459de42a5949ee690f78b",
     "speaker_helper": "hardware/layout/h6_r2_speaker_fit.py",
@@ -15418,8 +15418,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "unrouted_seed_sha256": "a2d242ec83c067402e809c4c895525ed74bc6d67942ccf9762752b7168d9a36d",
-      "placement_signature_sha256": "b110fdb76cf80fc926ec4d9e5b8702fafb383864a9c6360807ab1d79fa2d0296",
+      "unrouted_seed_sha256": "8955ce11ec43b5038aa1c676720a4146340472f77a6b18615bf11c8e2c330a45",
+      "placement_signature_sha256": "3734db21b6a8e60920e6cbe5c2295d12e7fdc7509ffa4b62f42a4f5ec5a7afef",
       "locality": {
         "status": "pass",
         "pair_count": 62,
@@ -15997,7 +15997,7 @@
         "F.Cu": 12
       },
       "method_counts": {
-        "connectivity/sheet automatic seed": 527,
+        "connectivity/sheet automatic seed": 519,
         "exact H1 seed": 15,
         "hard H1 datum": 7,
         "nearest exact-footprint correction": 19,
@@ -16006,7 +16006,7 @@
         "reviewed H6.0.3 charger-locality correction": 6,
         "reviewed H6.0.3 direct-cell thermal-contact placement": 2,
         "reviewed H6.0.3 holder-axis centering correction": 1,
-        "reviewed H6.0.3 native-silkscreen-clearance correction": 1,
+        "reviewed H6.0.3 native-silkscreen-clearance correction": 9,
         "reviewed H6.0.3 power-locality correction": 21,
         "reviewed H6.0.3 signal-locality correction": 90,
         "reviewed antenna-bank clearance correction": 18,
@@ -31863,30 +31863,30 @@
           "sheet": "RF_10_RP2354_CORE_SERVICE",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 native-silkscreen-clearance correction",
           "courtyard_bbox_mm": {
             "x": [
-              34.1,
-              35.13
+              38.765,
+              40.715
             ],
             "y": [
-              106.34999900000001,
-              108.299999
+              106.809999,
+              107.839999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            34.615,
+            39.74,
             107.325
           ],
           "footprint_anchor_mm": [
-            34.615,
+            39.74,
             107.325
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            34615000,
+            39740000,
             107324999
           ]
         },
@@ -31962,31 +31962,31 @@
           "sheet": "RF_10_RP2354_CORE_SERVICE",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 native-silkscreen-clearance correction",
           "courtyard_bbox_mm": {
             "x": [
-              34.1,
-              36.050000000000004
+              35.685,
+              36.715
             ],
             "y": [
-              108.6,
-              109.63
+              112.265,
+              114.21499999999999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            35.075,
-            109.115
+            36.2,
+            113.24
           ],
           "footprint_anchor_mm": [
-            35.075,
-            109.115
+            36.2,
+            113.24
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": -90.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            35075000,
-            109115000
+            36200000,
+            113240000
           ]
         },
         {
@@ -33715,31 +33715,31 @@
           "sheet": "RF_20_CC1101_VOICE_TX",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 native-silkscreen-clearance correction",
           "courtyard_bbox_mm": {
             "x": [
-              43.1,
-              45.050000000000004
+              37.935,
+              38.965
             ],
             "y": [
-              103.85,
-              104.88
+              102.015,
+              103.96499999999999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            44.075,
-            104.365
+            38.45,
+            102.99
           ],
           "footprint_anchor_mm": [
-            44.075,
-            104.365
+            38.45,
+            102.99
           ],
-          "rotation_deg": 0.0,
+          "rotation_deg": 90.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            44075000,
-            104365000
+            38450000,
+            102990000
           ]
         },
         {
@@ -35563,31 +35563,31 @@
           "sheet": "RF_22_AUDIO_CODEC_IO",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 native-silkscreen-clearance correction",
           "courtyard_bbox_mm": {
             "x": [
-              59.6,
-              60.63
+              57.39,
+              59.34
             ],
             "y": [
-              97.34999900000001,
-              99.299999
+              99.809999,
+              100.839999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            60.115,
-            98.325
+            58.365,
+            100.325
           ],
           "footprint_anchor_mm": [
-            60.115,
-            98.325
+            58.365,
+            100.325
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            60115000,
-            98324999
+            58365000,
+            100324999
           ]
         },
         {
@@ -37081,31 +37081,31 @@
           "sheet": "RF_30_U214_U219_M5_EXT",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 native-silkscreen-clearance correction",
           "courtyard_bbox_mm": {
             "x": [
-              43.1,
-              45.050000000000004
+              43.6,
+              45.550000000000004
             ],
             "y": [
-              105.1,
-              106.13
+              110.1,
+              111.13
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            44.075,
-            105.615
+            44.575,
+            110.615
           ],
           "footprint_anchor_mm": [
-            44.075,
-            105.615
+            44.575,
+            110.615
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            44075000,
-            105615000
+            44575000,
+            110615000
           ]
         },
         {
@@ -37147,30 +37147,30 @@
           "sheet": "RF_30_U214_U219_M5_EXT",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 native-silkscreen-clearance correction",
           "courtyard_bbox_mm": {
             "x": [
-              45.35,
-              46.38
+              47.015,
+              48.965
             ],
             "y": [
-              103.84999900000001,
-              105.799999
+              104.309999,
+              105.339999
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            45.865,
+            47.99,
             104.825
           ],
           "footprint_anchor_mm": [
-            45.865,
+            47.99,
             104.825
           ],
-          "rotation_deg": 90.0,
+          "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            45865000,
+            47990000,
             104824999
           ]
         },
@@ -37180,31 +37180,31 @@
           "sheet": "RF_30_U214_U219_M5_EXT",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 native-silkscreen-clearance correction",
           "courtyard_bbox_mm": {
             "x": [
-              46.6,
-              48.550000000000004
+              49.85,
+              51.800000000000004
             ],
             "y": [
-              104.35,
-              105.38
+              107.35,
+              108.38
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
-            47.575,
-            104.865
+            50.825,
+            107.865
           ],
           "footprint_anchor_mm": [
-            47.575,
-            104.865
+            50.825,
+            107.865
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
-            47575000,
-            104865000
+            50825000,
+            107865000
           ]
         },
         {
@@ -37411,31 +37411,31 @@
           "sheet": "RF_31_REAR_CONTROLS",
           "side": "B.Cu",
           "footprint": "Resistor_SMD:R_0402_1005Metric",
-          "method": "connectivity/sheet automatic seed",
+          "method": "reviewed H6.0.3 native-silkscreen-clearance correction",
           "courtyard_bbox_mm": {
             "x": [
               59.35,
               61.300000000000004
             ],
             "y": [
-              99.6,
-              100.63
+              101.725,
+              102.755
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             60.325,
-            100.115
+            102.24
           ],
           "footprint_anchor_mm": [
             60.325,
-            100.115
+            102.24
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             60325000,
-            100115000
+            102240000
           ]
         },
         {
@@ -43747,8 +43747,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
-      "unrouted_seed_sha256": "33743075ab0e0dbdb52a53cfe2cb52bae9f3fd968a9452c0aacf12393f6ac95e",
-      "placement_signature_sha256": "83f90f0e8efac28028a295f8d1617906f7b67dbd4998847bcf7ee8139cfbc6ac",
+      "unrouted_seed_sha256": "7a6edfde91258733100b58a41d1c140471df0cf4f2bfdac532b769bfb0d22a35",
+      "placement_signature_sha256": "32c822393960cb84338670c2a9286ea49352e76a5e128f5c30379c48b19105db",
       "locality": {
         "status": "pass",
         "pair_count": 264,

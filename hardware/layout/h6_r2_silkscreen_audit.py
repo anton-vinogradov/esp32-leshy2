@@ -29,6 +29,8 @@ DIMENSION_TOLERANCE_MM = 0.001
 MIN_FONT_MM = 1.0
 MIN_STROKE_MM = 0.15
 MIN_MASK_GAP_MM = 0.15
+SILK_LAYERS = {"F.Silkscreen", "B.Silkscreen"}
+SPEAKER_BODY = ROOT / "hardware/layout/h6-r2-speaker-body.json"
 B3S_LIBRARY = ROOT / "hardware/ecad/libraries/Leshy2_R2.pretty/B3S-1100P.kicad_mod"
 B3S_LIBRARY_SHA256 = "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989"
 B3S_REVIEW = ROOT / "hardware/layout/h6-r2-b3s-actuator-datum-review.json"
@@ -123,6 +125,45 @@ def within_outline(box, width, height, radius=0.0):
     return True
 
 
+def obstacle_on_layer(obstacle, layer):
+    """Explicit native side; legacy front fixtures stay front-only."""
+    if "silk_layer" in obstacle:
+        return obstacle["silk_layer"] == layer
+    kind = obstacle["kind"]
+    if kind.startswith("front_") or kind in {"display_panel_bbox", "mask_graphic_bbox"}:
+        return layer == "F.Silkscreen"
+    if kind.startswith("back_"):
+        return layer == "B.Silkscreen"
+    if kind == "via_drill_bbox" and "front_tented" in obstacle:
+        return layer == "F.Silkscreen"
+    return True  # Through-drill fixtures apply to both exposed board faces.
+
+
+def cutout_obstacles(project, contract):
+    """Conservative through-cut reservations, including the required ink gap.
+
+    The separate native placement/outline check binds these source cutouts to
+    Edge.Cuts. Rounded ends are not reclaimed as printable area here.
+    """
+    result = []
+    for name in ("display_slot", "microsd_recess"):
+        spec = contract.get("mechanical", {}).get(name)
+        if spec is None or spec.get("board") != project:
+            continue
+        box = spec["bbox_mm"]
+        if any(len(box[axis]) != 2 or
+               any(type(v) not in (int, float) or not math.isfinite(v) for v in box[axis]) or
+               box[axis][0] >= box[axis][1] for axis in ("x", "y")):
+            raise ValueError("Invalid through-cut reservation: " + name)
+        result.append({"kind": "through_cutout_bbox", "feature": name,
+                       "required_ink_gap_mm": MIN_MASK_GAP_MM,
+                       "source_bbox_mm": box,
+                       "bbox_mm": {axis: [box[axis][0] - MIN_MASK_GAP_MM,
+                                          box[axis][1] + MIN_MASK_GAP_MM]
+                                   for axis in ("x", "y")}})
+    return result
+
+
 def required_label_findings(required, actual):
     """A wrong layer/pose/text is an error, not a missing-label suppression."""
     findings, matched = [], []
@@ -131,7 +172,8 @@ def required_label_findings(required, actual):
         def distance(row):
             return math.dist(expected["at_mm"], row["at_mm"])
         at_pose = [n for n, row in enumerate(actual) if distance(row) <= POSITION_TOLERANCE_MM]
-        exact = [n for n in at_pose if actual[n]["text"] == expected["text"]]
+        exact = [n for n in at_pose if actual[n]["text"] == expected["text"]
+                 and actual[n]["layer"] == expected["layer"]]
         if len(exact) > 1:
             findings.append({"kind": "duplicate_required_label", "expected": expected,
                              "actual_ids": [actual[n]["id"] for n in exact]})
@@ -156,9 +198,13 @@ def required_label_findings(required, actual):
         if (abs(row["thickness_mm"] - expected["thickness_mm"]) > DIMENSION_TOLERANCE_MM or
                 row["thickness_mm"] < MIN_STROKE_MM - DIMENSION_TOLERANCE_MM):
             differences.append("thickness_mm")
-        if abs((row["angle_deg"] + 180) % 360 - 180) > 0.01:
+        angle, expected_angle = row["angle_deg"], expected.get("angle_deg", 0)
+        if (any(type(v) not in (int, float) or not math.isfinite(v) for v in (angle, expected_angle))
+                or abs((angle - expected_angle + 180) % 360 - 180) > 0.01):
             differences.append("angle_deg")
-        if row["mirrored"] or not row["visible"]:
+        if expected["layer"] not in SILK_LAYERS:
+            differences.append("unsupported_required_layer")
+        if row["mirrored"] != (expected["layer"] == "B.Silkscreen") or not row["visible"]:
             differences.append("mirror_or_visibility")
         if row["horizontal_justify"] != 0 or row["vertical_justify"] != 0:
             differences.append("justification")
@@ -172,17 +218,22 @@ def geometry_candidates(texts, obstacles, width, height, radius=0.0, assembly_te
     candidates, exemptions = [], []
     assembly_texts = assembly_texts or {}
     text_pair_clearances = text_pair_clearances or {}
-    visible = [row for row in texts if row["layer"] == "F.Silkscreen" and row["visible"]]
+    visible = [row for row in texts if row["layer"] in SILK_LAYERS and row["visible"]]
     for row in visible:
         if not within_outline(row["bbox_mm"], width, height, radius):
             candidates.append({"kind": "outer_outline_bbox", "text": row})
         if min(row["size_mm"]) < MIN_FONT_MM - DIMENSION_TOLERANCE_MM or row["thickness_mm"] < MIN_STROKE_MM - DIMENSION_TOLERANCE_MM:
             candidates.append({"kind": "small_free_user_text", "text": row})
         for obstacle in obstacles:
-            mask = obstacle["kind"] == "front_pad_mask_bbox"
-            circle = obstacle["kind"] == "front_courtyard_bbox" and "reviewed_circle_body" in obstacle
+            if not obstacle_on_layer(obstacle, row["layer"]):
+                continue
+            mask = obstacle["kind"] in {"front_pad_mask_bbox", "back_pad_mask_bbox"}
+            courtyard = obstacle["kind"] in {"front_courtyard_bbox", "back_courtyard_bbox"}
+            circle = courtyard and "reviewed_circle_body" in obstacle
+            printed = obstacle["kind"] == "printed_silk_bbox"
+            via_mask = obstacle["kind"] in {"front_via_mask_bbox", "back_via_mask_bbox"}
             if not overlaps(row["bbox_mm"], obstacle["bbox_mm"]) and not (
-                    (mask or circle) and bbox_gap(row["bbox_mm"], obstacle["bbox_mm"]) <= MIN_MASK_GAP_MM):
+                    (mask or circle or printed or via_mask) and bbox_gap(row["bbox_mm"], obstacle["bbox_mm"]) <= MIN_MASK_GAP_MM):
                 continue
             detail = {"kind": obstacle["kind"], "text": row, "obstacle": obstacle}
             if obstacle.get("fab_graphics_bbox_mm"):
@@ -191,12 +242,17 @@ def geometry_candidates(texts, obstacles, width, height, radius=0.0, assembly_te
             # Assembly visibility exceptions do not excuse solder-mask/drill or
             # outline crossings. Expose every exemption rather than erasing it.
             assembly_pose = assembly_texts.get(row["text"])
-            if (assembly_pose is not None and math.dist(row["at_mm"], assembly_pose) <= POSITION_TOLERANCE_MM
-                    and obstacle["kind"] in {"front_courtyard_bbox", "display_panel_bbox"}):
+            holder_ntc_assembly = (obstacle["kind"] == "front_fab_body_bbox"
+                                   and obstacle.get("reference") == "BT1"
+                                   and row["text"] in {"NTC0 PAD", "NTC1 PAD"})
+            if (row["layer"] == "F.Silkscreen" and assembly_pose is not None
+                    and math.dist(row["at_mm"], assembly_pose) <= POSITION_TOLERANCE_MM
+                    and (obstacle["kind"] in {"front_courtyard_bbox", "display_panel_bbox"}
+                         or holder_ntc_assembly)):
                 detail["exemption_reason"] = "Correctly positioned assembly marking intentionally hidden after final assembly"
                 exemptions.append(detail)
-            elif obstacle["kind"] == "via_drill_bbox" and obstacle.get("front_tented"):
-                detail["exemption_reason"] = "Native front tenting covers this via; it is not a front solder-mask opening"
+            elif obstacle["kind"] == "via_drill_bbox" and obstacle.get("tented", obstacle.get("front_tented", False)):
+                detail["exemption_reason"] = "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
                 exemptions.append(detail)
             elif mask:
                 proof = checked_mask_clearance(row, obstacle)
@@ -220,14 +276,25 @@ def geometry_candidates(texts, obstacles, width, height, radius=0.0, assembly_te
                 else:
                     detail["review_reason"] = "Maximum-body circle clearance below minimum or unavailable/stale; retain courtyard candidate"
                     candidates.append(detail)
-            elif obstacle["kind"] == "front_courtyard_bbox" and reviewed_body_clearance(row, obstacle) is not None:
+            elif courtyard and reviewed_body_clearance(row, obstacle) is not None:
                 detail["tolerance_expanded_body_gap_mm"] = reviewed_body_clearance(row, obstacle)
                 detail["resolution_reason"] = "Exact reviewed B3S native/library geometry agrees; text clears the primary body plus dimensional tolerance, not merely the assembly courtyard. Pads and drills remain independently screened."
                 exemptions.append(detail)
+            elif printed or via_mask:
+                method = "native_stroke_shape_to_printed_silk" if printed else "native_stroke_shape_to_via_mask"
+                proof = checked_native_clearance(row, obstacle, method)
+                if proof is not None and proof["gap_lower_mm"] >= MIN_MASK_GAP_MM:
+                    detail["native_gap_mm"] = [proof["gap_lower_mm"], proof["gap_upper_mm"]]
+                    detail["resolution_reason"] = "Actual native shapes on the same side clear by the required gap; empty glyph/outline space is not printed ink"
+                    exemptions.append(detail)
+                else:
+                    candidates.append(detail)
             else:
                 candidates.append(detail)
     for index, first in enumerate(visible):
         for second in visible[index + 1:]:
+            if first["layer"] != second["layer"]:
+                continue
             if bbox_gap(first["bbox_mm"], second["bbox_mm"]) <= MIN_MASK_GAP_MM:
                 detail = {"kind": "user_text_bbox_overlap", "text": first, "other_text": second}
                 pair = {"other_text": second, "native_text_clearances": {
@@ -248,7 +315,7 @@ def audit_snapshot(snapshot, contract, canonical_to_kicad=None):
                                      canonical_to_kicad or {})
     try:
         required = labels(project, snapshot["placements"], contract)
-    except (KeyError, ValueError) as exc:
+    except (KeyError, ValueError, OSError) as exc:
         errors.append({"kind": "required_label_binding_unavailable", "detail": str(exc)})
         required = []
     label_errors, matched = required_label_findings(required, snapshot["texts"])
@@ -275,6 +342,7 @@ def audit_snapshot(snapshot, contract, canonical_to_kicad=None):
         "project": project, "status": "fail" if errors else "review_required" if candidates else "pass_scoped",
         "required_count": len(required), "matched_count": len(matched),
         "free_front_text_count": sum(row["layer"] == "F.Silkscreen" and row["visible"] for row in snapshot["texts"]),
+        "free_back_text_count": sum(row["layer"] == "B.Silkscreen" and row["visible"] for row in snapshot["texts"]),
         "errors": errors, "geometry_candidates": candidates,
         "documented_geometry_exemptions": [row for row in exemptions if "exemption_reason" in row],
         "resolved_geometry_findings": [row for row in exemptions if "resolution_reason" in row],
@@ -292,11 +360,15 @@ def native_stroke_mask_clearance(text, pad, pcbnew):
     supported = {pcbnew.PAD_SHAPE_RECT, pcbnew.PAD_SHAPE_CIRCLE,
                  pcbnew.PAD_SHAPE_OVAL, pcbnew.PAD_SHAPE_ROUNDRECT}
     try:
-        expansion = pad.GetSolderMaskExpansion(pcbnew.F_Mask)
+        if text.GetLayer() not in {pcbnew.F_SilkS, pcbnew.B_SilkS}:
+            return {"status": "unsupported", "reason": "Text is not on a native silk layer"}
+        copper_layer, mask_layer = ((pcbnew.F_Cu, pcbnew.F_Mask) if text.GetLayer() == pcbnew.F_SilkS
+                                     else (pcbnew.B_Cu, pcbnew.B_Mask))
+        expansion = pad.GetSolderMaskExpansion(mask_layer)
         if (text.GetFont() is not None or pad.GetShape() not in supported or expansion < 0
-                or not pad.IsOnLayer(pcbnew.F_Cu)):
-            return {"status": "unsupported", "reason": "Only native default stroke font and convex front pad shapes with nonnegative mask expansion are refined"}
-        ink, copper = text.GetEffectiveTextShape(), pad.GetEffectiveShape(pcbnew.F_Cu)
+                or not pad.IsOnLayer(copper_layer) or not pad.IsOnLayer(mask_layer)):
+            return {"status": "unsupported", "reason": "Only native default stroke font and convex same-side pad shapes with nonnegative mask expansion are refined"}
+        ink, copper = text.GetEffectiveTextShape(), pad.GetEffectiveShape(copper_layer)
         if ink is None or copper is None or ink.BBox().GetWidth() <= 0:
             return {"status": "unsupported", "reason": "Native effective shape unavailable or empty"}
         low, high = 0, pcbnew.FromMM(1)
@@ -320,39 +392,41 @@ def native_stroke_mask_clearance(text, pad, pcbnew):
 
 
 def native_footprint_geometry(fp, pcbnew):
-    """Reviewed front-package geometry, independent of UUID/reference/net labels."""
+    """Reviewed same-side package geometry, independent of UUID/ref/net labels."""
     def point(value):
         # Imported decimal coordinates may differ by one native nm.
         return [round(pcbnew.ToMM(value.x), 5), round(pcbnew.ToMM(value.y), 5)]
+    fab, court, mask = ((pcbnew.F_Fab, pcbnew.F_CrtYd, pcbnew.F_Mask) if fp.GetLayer() == pcbnew.F_Cu
+                         else (pcbnew.B_Fab, pcbnew.B_CrtYd, pcbnew.B_Mask))
     graphics = [[int(g.GetShape()), int(g.GetLayer()), point(g.GetStart()), point(g.GetEnd()),
                  round(pcbnew.ToMM(g.GetWidth()), 5)] for g in fp.GraphicalItems()
-                if isinstance(g, pcbnew.PCB_SHAPE) and g.GetLayer() in {pcbnew.F_Fab, pcbnew.F_CrtYd}]
+                if isinstance(g, pcbnew.PCB_SHAPE) and g.GetLayer() in {fab, court}]
     pads = [[p.GetNumber(), point(p.GetPosition()), point(p.GetSize()), point(p.GetOffset()),
              point(p.GetDrillSize()), int(p.GetShape()), int(p.GetAttribute()),
              round(p.GetOrientationDegrees() % 360, 5), list(p.GetLayerSet().Seq()),
-             p.GetSolderMaskExpansion(pcbnew.F_Mask)] for p in fp.Pads()]
+             p.GetSolderMaskExpansion(mask)] for p in fp.Pads()]
     return {"graphics": sorted(graphics), "pads": sorted(pads)}
 
 
-def native_stroke_shape_clearance(text, shape, pcbnew, method):
+def native_stroke_shape_clearance(text, shape, pcbnew, method, expansion=0):
     """One-nm conservative interval between filled native effective shapes."""
     try:
-        if text.GetFont() is not None:
-            return {"status": "unsupported", "reason": "Only native default stroke font is refined"}
+        if text.GetFont() is not None or expansion < 0:
+            return {"status": "unsupported", "reason": "Only native default stroke font and nonnegative expansion are refined"}
         ink = text.GetEffectiveTextShape()
         if ink is None or shape is None or ink.BBox().GetWidth() <= 0:
             return {"status": "unsupported", "reason": "Native effective text shape unavailable or empty"}
         low, high = 0, pcbnew.FromMM(1)
-        if ink.Collide(shape, 0):
+        if ink.Collide(shape, expansion):
             low = high = 0
         else:
-            while not ink.Collide(shape, high):
+            while not ink.Collide(shape, high + expansion):
                 high *= 2
                 if high > pcbnew.FromMM(100):
                     return {"status": "unsupported", "reason": "No bounded native distance found"}
             while high - low > 1:
                 mid = (low + high) // 2
-                if ink.Collide(shape, mid):
+                if ink.Collide(shape, mid + expansion):
                     high = mid
                 else:
                     low = mid
@@ -369,6 +443,20 @@ def native_stroke_circle_clearance(text, centre_mm, radius_mm, pcbnew):
     return native_stroke_shape_clearance(text, body, pcbnew, "native_stroke_shape_to_maximum_body_circle")
 
 
+def native_stroke_via_mask_clearance(text, via, pcbnew):
+    """Actual exposed via annulus on the text side, never the other side's tent."""
+    copper, mask = ((pcbnew.F_Cu, pcbnew.F_Mask) if text.GetLayer() == pcbnew.F_SilkS
+                    else (pcbnew.B_Cu, pcbnew.B_Mask))
+    try:
+        if not via.IsOnLayer(copper) or via.IsTented(copper):
+            return {"status": "unsupported", "reason": "No exposed via on this text side"}
+        return native_stroke_shape_clearance(
+            text, via.GetEffectiveShape(copper), pcbnew, "native_stroke_shape_to_via_mask",
+            via.GetSolderMaskExpansion())
+    except (AttributeError, TypeError, RuntimeError, ValueError) as exc:
+        return {"status": "unsupported", "reason": type(exc).__name__ + ": " + str(exc)}
+
+
 def native_snapshot(board, project, ledger_rows, contract, pcbnew, root=ROOT):
     """Extract actual pad, drill, footprint and free-text geometry without mutation."""
     def box_mm(box):
@@ -379,7 +467,40 @@ def native_snapshot(board, project, ledger_rows, contract, pcbnew, root=ROOT):
     def expanded(box, amount):
         return {axis: [box[axis][0] - amount, box[axis][1] + amount] for axis in ("x", "y")}
     texts, placements, obstacles, errors = [], [], [], []
-    mask_objects, text_objects = [], {}
+    mask_objects, text_objects, printed_objects, via_objects = [], {}, [], []
+    sides = ((pcbnew.F_Cu, pcbnew.F_Mask, "F.Silkscreen", "front"),
+             (pcbnew.B_Cu, pcbnew.B_Mask, "B.Silkscreen", "back"))
+
+    def add_printed_graphic(graphic, reference=None):
+        if graphic.GetLayer() not in {pcbnew.F_SilkS, pcbnew.B_SilkS}:
+            return
+        if hasattr(graphic, "GetText") and not graphic.IsVisible():
+            return  # Hidden native refs/values are not ink.
+        obstacle = {"kind": "printed_silk_bbox", "native_id": graphic.m_Uuid.AsString(),
+                    "reference": reference, "silk_layer": board.GetLayerName(graphic.GetLayer()),
+                    "bbox_mm": box_mm(graphic.GetBoundingBox())}
+        if hasattr(graphic, "GetText"):
+            obstacle.update(text=graphic.GetText(), at_mm=point_mm(graphic.GetPosition()),
+                            size_mm=point_mm(graphic.GetTextSize()),
+                            thickness_mm=pcbnew.ToMM(graphic.GetTextThickness()),
+                            angle_deg=graphic.GetTextAngleDegrees(), mirrored=graphic.IsMirrored(),
+                            default_stroke_font=graphic.GetFont() is None)
+        elif isinstance(graphic, pcbnew.PCB_SHAPE):
+            obstacle.update(shape=int(graphic.GetShape()), start_mm=point_mm(graphic.GetStart()),
+                            end_mm=point_mm(graphic.GetEnd()), width_mm=pcbnew.ToMM(graphic.GetWidth()))
+        obstacles.append(obstacle)
+        printed_objects.append((obstacle, graphic))
+
+    def align_reference(reference_fp, native_fp):
+        # Flip needs board context, but this reference is NOT registered with
+        # board.Add(). Creating a second BOARD after LoadBoard invalidates some
+        # KiCad 9 Python outline/settings state; borrowing the parent avoids
+        # that lifetime trap without adding/removing any inspected object.
+        reference_fp.SetParent(board)
+        reference_fp.SetPosition(native_fp.GetPosition())
+        if native_fp.GetLayer() == pcbnew.B_Cu:
+            reference_fp.Flip(native_fp.GetPosition(), False)
+        reference_fp.SetOrientationDegrees(native_fp.GetOrientationDegrees())
     library_path = root / B3S_LIBRARY.relative_to(ROOT)
     mic_library_path = root / MIC_LIBRARY.relative_to(ROOT)
     review_path = root / B3S_REVIEW.relative_to(ROOT)
@@ -395,19 +516,23 @@ def native_snapshot(board, project, ledger_rows, contract, pcbnew, root=ROOT):
         if reference in by_reference:
             errors.append({"kind": "duplicate_native_reference", "reference": reference})
         by_reference[reference] = fp
-        layer = pcbnew.F_CrtYd if fp.GetLayer() == pcbnew.F_Cu else pcbnew.B_CrtYd
+        front = fp.GetLayer() == pcbnew.F_Cu
+        layer = pcbnew.F_CrtYd if front else pcbnew.B_CrtYd
+        silk_layer, prefix = ("F.Silkscreen", "front") if front else ("B.Silkscreen", "back")
         courtyard = fp.GetCourtyard(layer).BBox()
-        if fp.GetLayer() == pcbnew.F_Cu and courtyard.GetWidth() > 0 and courtyard.GetHeight() > 0:
-            obstacle = {"kind": "front_courtyard_bbox", "reference": reference, "bbox_mm": box_mm(courtyard)}
-            fab = [box_mm(g.GetBoundingBox()) for g in fp.GraphicalItems()
-                   if isinstance(g, pcbnew.PCB_SHAPE) and g.GetLayer() == pcbnew.F_Fab]
-            if fab:
-                obstacle["fab_graphics_bbox_mm"] = {axis: [min(b[axis][0] for b in fab), max(b[axis][1] for b in fab)] for axis in ("x", "y")}
+        fab = [box_mm(g.GetBoundingBox()) for g in fp.GraphicalItems()
+               if isinstance(g, pcbnew.PCB_SHAPE) and g.GetLayer() == (pcbnew.F_Fab if front else pcbnew.B_Fab)]
+        fab_bbox = ({axis: [min(b[axis][0] for b in fab), max(b[axis][1] for b in fab)] for axis in ("x", "y")}
+                    if fab else None)
+        if courtyard.GetWidth() > 0 and courtyard.GetHeight() > 0:
+            obstacle = {"kind": prefix + "_courtyard_bbox", "silk_layer": silk_layer,
+                        "reference": reference, "bbox_mm": box_mm(courtyard)}
+            if fab_bbox:
+                obstacle["fab_graphics_bbox_mm"] = fab_bbox
             fpid = str(fp.GetFPID().GetLibNickname()) + ":" + str(fp.GetFPID().GetLibItemName())
             if b3s_reviewed and fpid == "Leshy2_R2:B3S-1100P":
                 reference_fp = pcbnew.FootprintLoad(str(library_path.parent), library_path.stem)
-                reference_fp.SetPosition(fp.GetPosition())
-                reference_fp.SetOrientationDegrees(fp.GetOrientationDegrees())
+                align_reference(reference_fp, fp)
                 actual_geometry = native_footprint_geometry(fp, pcbnew)
                 expected_geometry = native_footprint_geometry(reference_fp, pcbnew)
                 obstacle["native_geometry_sha256"] = geometry_digest(actual_geometry)
@@ -420,8 +545,7 @@ def native_snapshot(board, project, ledger_rows, contract, pcbnew, root=ROOT):
                     and fp.GetValue() == "Same Sky CMEJ-0413-42-SMT-TR"
                     and mic_library_path.is_file() and sha256(mic_library_path) == MIC_LIBRARY_SHA256):
                 reference_fp = pcbnew.FootprintLoad(str(mic_library_path.parent), mic_library_path.stem)
-                reference_fp.SetPosition(fp.GetPosition())
-                reference_fp.SetOrientationDegrees(fp.GetOrientationDegrees())
+                align_reference(reference_fp, fp)
                 actual_geometry = native_footprint_geometry(fp, pcbnew)
                 if actual_geometry == native_footprint_geometry(reference_fp, pcbnew):
                     obstacle["native_geometry_sha256"] = geometry_digest(actual_geometry)
@@ -430,22 +554,39 @@ def native_snapshot(board, project, ledger_rows, contract, pcbnew, root=ROOT):
                         "library_sha256": MIC_LIBRARY_SHA256, "native_geometry_matches_library": True,
                         "centre_mm": point_mm(fp.GetPosition()), "radius_max_mm": MIC_MAX_BODY_RADIUS_MM}
             obstacles.append(obstacle)
+        elif fab_bbox:
+            # Absence of a courtyard must not erase a present physical body
+            # (current BT1 is one such footprint). This is a conservative Fab
+            # envelope, not a newly manufacturer-qualified body drawing.
+            obstacles.append({"kind": prefix + "_fab_body_bbox", "silk_layer": silk_layer,
+                              "reference": reference, "bbox_mm": fab_bbox,
+                              "reason": "No native courtyard; conservative same-side Fab graphics envelope"})
         for graphic in fp.GraphicalItems():
-            if graphic.GetLayer() == pcbnew.F_Mask:
-                obstacles.append({"kind": "mask_graphic_bbox", "reference": reference, "bbox_mm": box_mm(graphic.GetBoundingBox())})
+            if graphic.GetLayer() in {pcbnew.F_Mask, pcbnew.B_Mask}:
+                obstacles.append({"kind": "mask_graphic_bbox", "reference": reference,
+                                  "silk_layer": "F.Silkscreen" if graphic.GetLayer() == pcbnew.F_Mask else "B.Silkscreen",
+                                  "bbox_mm": box_mm(graphic.GetBoundingBox())})
+        printed_ids = set()
+        for graphic in [fp.Reference(), fp.Value(), *fp.GraphicalItems()]:
+            identity = graphic.m_Uuid.AsString()
+            if identity not in printed_ids:
+                add_printed_graphic(graphic, reference)
+                printed_ids.add(identity)
         for pad in fp.Pads():
             name = reference + "." + pad.GetNumber()
-            if pad.IsOnLayer(pcbnew.F_Mask):
-                obstacle = {"kind": "front_pad_mask_bbox", "pad": name,
+            for copper_layer, mask_layer, silk_layer, prefix in sides:
+                if not pad.IsOnLayer(mask_layer):
+                    continue
+                obstacle = {"kind": prefix + "_pad_mask_bbox", "silk_layer": silk_layer, "pad": name,
                             "native_pad_id": pad.m_Uuid.AsString(),
                             "shape": int(pad.GetShape()), "at_mm": point_mm(pad.GetPosition()),
                             "size_mm": point_mm(pad.GetSize()), "offset_mm": point_mm(pad.GetOffset()),
                             "rotation_deg": pad.GetOrientationDegrees(),
                             "roundrect_radius_mm": pcbnew.ToMM(pad.GetRoundRectCornerRadius()),
-                            "mask_expansion_mm": pcbnew.ToMM(pad.GetSolderMaskExpansion(pcbnew.F_Mask)),
+                            "mask_expansion_mm": pcbnew.ToMM(pad.GetSolderMaskExpansion(mask_layer)),
                             # Negative expansion is deliberately unsupported by
                             # refinement; its fallback must not shrink the box.
-                            "bbox_mm": expanded(box_mm(pad.GetBoundingBox()), max(0.0, pcbnew.ToMM(pad.GetSolderMaskExpansion(pcbnew.F_Mask))))}
+                            "bbox_mm": expanded(box_mm(pad.GetBoundingBox()), max(0.0, pcbnew.ToMM(pad.GetSolderMaskExpansion(mask_layer))))}
                 obstacles.append(obstacle)
                 mask_objects.append((obstacle, pad))
             drill = pad.GetDrillSize()
@@ -487,40 +628,73 @@ def native_snapshot(board, project, ledger_rows, contract, pcbnew, root=ROOT):
                           "default_stroke_font": graphic.GetFont() is None,
                           "bold": graphic.IsBold(), "italic": graphic.IsItalic(),
                           "bbox_mm": box_mm(graphic.GetBoundingBox())})
-        elif graphic.GetLayer() == pcbnew.F_Mask:
-            obstacles.append({"kind": "mask_graphic_bbox", "bbox_mm": box_mm(graphic.GetBoundingBox())})
+        elif graphic.GetLayer() in {pcbnew.F_Mask, pcbnew.B_Mask}:
+            obstacles.append({"kind": "mask_graphic_bbox",
+                              "silk_layer": "F.Silkscreen" if graphic.GetLayer() == pcbnew.F_Mask else "B.Silkscreen",
+                              "bbox_mm": box_mm(graphic.GetBoundingBox())})
+        else:
+            add_printed_graphic(graphic)
     for item in board.GetTracks():
         if not isinstance(item, pcbnew.PCB_VIA):
             continue
         x, y = point_mm(item.GetPosition())
         r = pcbnew.ToMM(item.GetDrillValue()) / 2
-        if item.IsOnLayer(pcbnew.F_Cu):
+        for copper_layer, mask_layer, silk_layer, prefix in sides:
+            if not item.IsOnLayer(copper_layer):
+                continue
             obstacles.append({"kind": "via_drill_bbox", "via": item.m_Uuid.AsString(),
-                              "front_tented": item.IsTented(pcbnew.F_Cu), "bbox_mm": {"x": [x-r, x+r], "y": [y-r, y+r]}})
-        if not item.IsTented(pcbnew.F_Cu) and item.IsOnLayer(pcbnew.F_Cu):
-            obstacles.append({"kind": "front_via_mask_bbox", "via": item.m_Uuid.AsString(),
-                              "bbox_mm": expanded(box_mm(item.GetBoundingBox()), pcbnew.ToMM(item.GetSolderMaskExpansion(pcbnew.F_Mask)))})
+                              "silk_layer": silk_layer, "tented": item.IsTented(copper_layer),
+                              "bbox_mm": {"x": [x-r, x+r], "y": [y-r, y+r]}})
+            if not item.IsTented(copper_layer):
+                obstacle = {"kind": prefix + "_via_mask_bbox", "via": item.m_Uuid.AsString(),
+                            "silk_layer": silk_layer,
+                            "mask_expansion_mm": pcbnew.ToMM(item.GetSolderMaskExpansion()),
+                            "bbox_mm": expanded(box_mm(item.GetBoundingBox()), max(0.0, pcbnew.ToMM(item.GetSolderMaskExpansion())))}
+                obstacles.append(obstacle)
+                via_objects.append((obstacle, item))
     if project == "LESHY2-UI-R2":
-        obstacles.append({"kind": "display_panel_bbox", "bbox_mm": contract["mechanical"]["display_bed"]["panel_bbox_mm"]})
+        obstacles.append({"kind": "display_panel_bbox", "silk_layer": "F.Silkscreen",
+                          "bbox_mm": contract["mechanical"]["display_bed"]["panel_bbox_mm"]})
+    obstacles.extend(cutout_obstacles(project, contract))
     for row in texts:
-        if row["layer"] != "F.Silkscreen" or not row["visible"]:
+        if row["layer"] not in SILK_LAYERS or not row["visible"]:
             continue
         for obstacle, pad in mask_objects:
-            if bbox_gap(row["bbox_mm"], obstacle["bbox_mm"]) <= MIN_MASK_GAP_MM:
+            if obstacle_on_layer(obstacle, row["layer"]) and bbox_gap(row["bbox_mm"], obstacle["bbox_mm"]) <= MIN_MASK_GAP_MM:
                 proof = native_stroke_mask_clearance(text_objects[row["id"]], pad, pcbnew)
                 proof["inputs_sha256"] = clearance_witness(row, obstacle)
                 obstacle.setdefault("native_text_clearances", {})[row["id"]] = proof
         for obstacle in obstacles:
             body = obstacle.get("reviewed_circle_body")
-            if body and bbox_gap(row["bbox_mm"], obstacle["bbox_mm"]) <= MIN_MASK_GAP_MM:
+            if body and obstacle_on_layer(obstacle, row["layer"]) and bbox_gap(row["bbox_mm"], obstacle["bbox_mm"]) <= MIN_MASK_GAP_MM:
                 proof = native_stroke_circle_clearance(text_objects[row["id"]], body["centre_mm"], body["radius_max_mm"], pcbnew)
                 proof["inputs_sha256"] = clearance_witness(row, obstacle)
                 obstacle.setdefault("native_text_clearances", {})[row["id"]] = proof
+        for obstacle, graphic in printed_objects:
+            if not obstacle_on_layer(obstacle, row["layer"]) or bbox_gap(row["bbox_mm"], obstacle["bbox_mm"]) > MIN_MASK_GAP_MM:
+                continue
+            try:
+                if hasattr(graphic, "GetText"):
+                    if graphic.GetFont() is not None:
+                        continue
+                    shape = graphic.GetEffectiveTextShape()
+                else:
+                    shape = graphic.GetEffectiveShape()
+                proof = native_stroke_shape_clearance(text_objects[row["id"]], shape, pcbnew, "native_stroke_shape_to_printed_silk")
+                proof["inputs_sha256"] = clearance_witness(row, obstacle)
+                obstacle.setdefault("native_text_clearances", {})[row["id"]] = proof
+            except (AttributeError, TypeError, RuntimeError, ValueError):
+                pass  # Unsupported shape remains a conservative candidate.
+        for obstacle, via in via_objects:
+            if obstacle_on_layer(obstacle, row["layer"]) and bbox_gap(row["bbox_mm"], obstacle["bbox_mm"]) <= MIN_MASK_GAP_MM:
+                proof = native_stroke_via_mask_clearance(text_objects[row["id"]], via, pcbnew)
+                proof["inputs_sha256"] = clearance_witness(row, obstacle)
+                obstacle.setdefault("native_text_clearances", {})[row["id"]] = proof
     text_pair_clearances = {}
-    visible = [row for row in texts if row["layer"] == "F.Silkscreen" and row["visible"]]
+    visible = [row for row in texts if row["layer"] in SILK_LAYERS and row["visible"]]
     for index, first in enumerate(visible):
         for second in visible[index + 1:]:
-            if bbox_gap(first["bbox_mm"], second["bbox_mm"]) <= MIN_MASK_GAP_MM:
+            if first["layer"] == second["layer"] and bbox_gap(first["bbox_mm"], second["bbox_mm"]) <= MIN_MASK_GAP_MM:
                 other = text_objects[second["id"]]
                 if other.GetFont() is not None:
                     continue
@@ -528,9 +702,24 @@ def native_snapshot(board, project, ledger_rows, contract, pcbnew, root=ROOT):
                                                       "native_stroke_shape_to_text_stroke")
                 proof["inputs_sha256"] = clearance_witness(first, {"other_text": second})
                 text_pair_clearances[first["id"] + "|" + second["id"]] = proof
+    outline_bbox = box_mm(board.GetBoardEdgesBoundingBox())
+    # The speaker verifier constructs a temporary BOARD. In KiCad Python this
+    # changes global settings context used by a loaded board's outline query.
+    # All ordinary native reads above must finish first; the verified speaker
+    # reservation needs no further native refinement or reads after this call.
+    speaker_spec = contract.get("mechanical", {}).get("speaker_body")
+    if speaker_spec is not None:
+        from h6_r2_speaker_fit import check_native_speaker_geometry
+        try:
+            speaker = check_native_speaker_geometry(board, project, pcbnew, speaker_spec)
+            if speaker["status"] == "pass_scoped_native_registration":
+                obstacles.append({"kind": "speaker_body_bbox", "reference": "speaker_assembly_body",
+                                  "silk_layer": "B.Silkscreen", "bbox_mm": speaker["maximum_bbox_mm"]})
+        except ValueError as exc:
+            errors.append({"kind": "speaker_body_registration_mismatch", "detail": str(exc)})
     return {"project": project, "placements": placements, "texts": texts, "obstacles": obstacles,
             "native_text_pair_clearances": text_pair_clearances,
-            "native_outline_bbox_mm": box_mm(board.GetBoardEdgesBoundingBox()), "extraction_errors": errors}
+            "native_outline_bbox_mm": outline_bbox, "extraction_errors": errors}
 
 
 def checked_net_bindings(root=ROOT):
@@ -560,15 +749,25 @@ def checked_net_bindings(root=ROOT):
 
 def build(root=ROOT):
     import pcbnew
+    from h6_r2_interface_label_coverage import check_coverage, load_contract, CONTRACT_PATH as COVERAGE_PATH
     contract_path = root / CONTRACT.relative_to(ROOT)
     ledger_path = root / LEDGER.relative_to(ROOT)
     contract = json.loads(contract_path.read_text())
+    speaker_path = root / SPEAKER_BODY.relative_to(ROOT)
+    contract["mechanical"]["speaker_body"] = json.loads(speaker_path.read_text())
     ledger = json.loads(ledger_path.read_text())["rows"]
+    devices_path = root / "hardware/architecture/devices.json"
+    devices = json.loads(devices_path.read_text())["devices"]
+    coverage_contract = load_contract(root)
     binding_path = root / NET_BINDINGS.relative_to(ROOT)
     binding_hash = sha256(binding_path)
     bindings = checked_net_bindings(root)
     inputs = [contract_path, ledger_path, binding_path, Path(__file__), Path(__file__).with_name("h6_r2_user_silkscreen.py")]
     inputs += [root / path.relative_to(ROOT) for path in (B3S_LIBRARY, B3S_REVIEW, MIC_LIBRARY)]
+    inputs += [speaker_path, Path(__file__).with_name("h6_r2_speaker_fit.py")]
+    inputs += [devices_path, root / COVERAGE_PATH,
+               Path(__file__).with_name("h6_r2_interface_label_coverage.py"),
+               Path(__file__).with_name("h6-r2-interface-label-placements.json")]
     inputs += [root / relative for relative in bindings["source_hashes"]]
     inputs += [root / spec["output"] for spec in contract["boards"].values()]
     hashes = {str(path): sha256(path) for path in inputs}
@@ -576,23 +775,32 @@ def build(root=ROOT):
         raise ValueError("KiCad net bindings changed during validation; rerun on a stable checkpoint")
     if any(hashes[str(root / relative)] != digest for relative, digest in bindings["source_hashes"].items()):
         raise ValueError("KiCad net-binding source changed during validation; rerun on a stable checkpoint")
-    boards = []
+    boards, snapshots, labels_by_project = [], {}, {}
     for project, spec in contract["boards"].items():
         native = pcbnew.LoadBoard(str(root / spec["output"]))
         snapshot = native_snapshot(native, project, ledger, contract, pcbnew, root)
+        snapshots[project] = snapshot
+        try:
+            labels_by_project[project] = labels(project, snapshot["placements"], contract)
+        except (KeyError, ValueError, OSError):
+            labels_by_project[project] = []  # audit_snapshot records the binding failure.
         boards.append(audit_snapshot(snapshot, contract, bindings["projects"][project]["canonical_to_kicad"]))
+    coverage = check_coverage(ledger, devices, labels_by_project,
+                              native_snapshots=snapshots, contract=coverage_contract)
     if any(sha256(Path(path)) != digest for path, digest in hashes.items()):
         raise ValueError("Native board or audit input changed during read-only inspection; rerun on a stable checkpoint")
-    return {"schema_version": 1, "scope": "native free-board user text; required interface bindings plus conservative geometry screening",
-            "status": "fail" if any(b["status"] == "fail" for b in boards) else "review_required" if any(b["status"] == "review_required" for b in boards) else "pass_scoped",
+    return {"schema_version": 1, "scope": "native F/B free-board user text; required interface bindings and same-side mask/body/printed-silk screening",
+            "status": "fail" if coverage["errors"] or any(b["status"] == "fail" for b in boards) else "review_required" if any(b["status"] == "review_required" for b in boards) else "pass_scoped",
             "production_release_authorized": False,
             "inputs_sha256": {str(Path(path).relative_to(root)): digest for path, digest in hashes.items()},
             "boards": boards,
+            "interface_coverage": coverage,
             "limitations": ["Bounding-box candidates require visual inspection and native DRC; they are not proven ink collisions.",
-                            "Footprint package graphics/reference/value text are outside this free-board user-text audit.",
-                            "Supported default native stroke-font/pad-mask and text/text pairs use actual shapes and a0.15-mm gap; unsupported pairs remain conservative candidates. Other geometry uses bounding boxes.",
+                            "Visible footprint graphics/reference/value text are same-side ink obstacles, not automatically functional interface labels; hidden fields are not printed. This does not separately qualify package graphics against their own pads.",
+                            "Supported default native stroke-font/pad-mask, exposed-via-mask, printed-silk and text/text pairs use actual shapes and a0.15-mm gap; unsupported pairs remain conservative candidates. Other geometry uses bounding boxes.",
                             "Only hash-bound primary-reviewed B3S and CMEJ-0413-42-SMT-TR courtyard candidates may resolve against matching native/library geometry with maximum body tolerance; circular bodies use filled circles and actual text strokes. This is not assembly qualification.",
-                            "Native Edge.Cuts envelope must match the contracted board; text is screened against its rounded envelope. Slot geometry and mechanical connector readiness are separate.",
+                            "Native Edge.Cuts envelope must match the contracted board. Display-slot and microSD-recess source rectangles plus0.15-mm ink gap exclude text on both faces; native cutout correspondence is independently checked by placement projection. Connector/mechanical readiness remains separate.",
+                            "The separately registered UI B-side speaker maximum body is a physical obstacle, not a printed Fab label. F/B text never collides with ink or SMD bodies solely on the opposite face; through drills remain obstacles on both faces.",
                             "1.0 mm font and 0.15 mm stroke are this label contract's minima, not factory qualification."]}
 
 

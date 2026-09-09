@@ -236,6 +236,75 @@ class GuardedPlacementStageIntegrationTests(unittest.TestCase):
         updater.require_unique_uuids(candidate.read_text())
         self.assertEqual(result, json.loads((self.directory / "stage-review.json").read_text()))
 
+    def relocate_original_track(self, start, end, anonymous=False):
+        board = pcbnew.LoadBoard(str(self.source))
+        track = next(iter(board.GetTracks()))
+        track.SetStart(pcbnew.VECTOR2I(*start))
+        track.SetEnd(pcbnew.VECTOR2I(*end))
+        if anonymous:
+            track.SetNetCode(0)
+        pcbnew.SaveBoard(str(self.source), board)
+        self.original = self.source.read_bytes()
+        self.plan["baseline_board_sha256"] = updater.sha(self.original)
+
+    def test_unrouted_move_keeps_full_named_pad_copper_graph(self):
+        self.relocate_original_track((20000000, 0), (21000000, 0))
+        self.plan["unrouted_only_references"] = ["R1"]
+        with patch.object(updater.placement, "build", side_effect=self.build):
+            result = updater.stage(self.plan, self.directory)
+        self.assertEqual(["R1"], result["unrouted_only_references"])
+        self.assertEqual(2, result["named_pad_copper_adjacency_preserved"])
+        self.assertEqual(self.original, self.source.read_bytes())
+
+    def test_unrouted_move_rejects_named_or_anonymous_attached_copper(self):
+        for anonymous in (False, True):
+            with self.subTest(anonymous=anonymous):
+                self.relocate_original_track((0, 0), (1000000, 0), anonymous)
+                self.plan["unrouted_only_references"] = ["R1"]
+                with patch.object(updater.placement, "build", side_effect=self.build):
+                    with self.assertRaisesRegex(ValueError, "copper"):
+                        updater.stage(self.plan, self.directory)
+                self.assertFalse(self.directory.exists())
+
+    def test_unrouted_move_rejects_landing_on_existing_copper(self):
+        self.relocate_original_track((2000000, 3000000), (3000000, 3000000), True)
+        self.plan["unrouted_only_references"] = ["R1"]
+        with patch.object(updater.placement, "build", side_effect=self.build):
+            with self.assertRaisesRegex(ValueError, "copper"):
+                updater.stage(self.plan, self.directory)
+        self.assertFalse(self.directory.exists())
+
+    def test_unrouted_scope_is_exact_and_validated_before_sorting(self):
+        self.relocate_original_track((20000000, 0), (21000000, 0))
+        for scope in ([], ["R2"], ["R1", "R1"], "R1", [None], [{}], ["R1", 3]):
+            with self.subTest(scope=scope):
+                self.plan["unrouted_only_references"] = scope
+                with patch.object(updater.placement, "build", side_effect=self.build):
+                    with self.assertRaises(ValueError):
+                        updater.stage(self.plan, self.directory)
+                self.assertFalse(self.directory.exists())
+
+    def test_unrouted_guard_does_not_waive_copper_zones(self):
+        board = pcbnew.LoadBoard(str(self.source))
+        zone = pcbnew.ZONE(board)
+        zone.SetLayer(pcbnew.F_Cu)
+        board.Add(zone)
+        with self.assertRaisesRegex(ValueError, "copper-zone review"):
+            updater.require_unrouted_references(board, ["R1"])
+
+    def test_unrouted_guard_checks_copper_layers_beyond_current_six_layer_stack(self):
+        board = pcbnew.LoadBoard(str(self.source))
+        board.SetCopperLayerCount(8)
+        pad = next(iter(next(iter(board.GetFootprints())).Pads()))
+        layers = pcbnew.LSET()
+        layers.AddLayer(pcbnew.In5_Cu)
+        pad.SetLayerSet(layers)
+        track = next(iter(board.GetTracks()))
+        track.SetLayer(pcbnew.In5_Cu)
+        track.SetNetCode(0)
+        with self.assertRaisesRegex(ValueError, "copper"):
+            updater.require_unrouted_references(board, ["R1"])
+
     def test_new_label_roundtrip_preserves_copper_and_requires_explicit_allowance(self):
         board = updater.load_board_bytes(self.seed, "seed.kicad_pcb")
         label = pcbnew.PCB_TEXT(board)
@@ -256,6 +325,58 @@ class GuardedPlacementStageIntegrationTests(unittest.TestCase):
         candidate = self.directory / self.source.name
         self.assertEqual(updater.copper_forms(self.original.decode()), updater.copper_forms(candidate.read_text()))
         self.assertEqual(self.original, self.source.read_bytes())
+
+    def test_finite_backside_interface_addition_preserves_copper_and_footprints(self):
+        board = updater.load_board_bytes(self.original, "seed.kicad_pcb")
+        for track in list(board.GetTracks()):
+            board.Remove(track)
+        label = pcbnew.PCB_TEXT(board)
+        label.SetText("S3 DBG")
+        label.SetLayer(pcbnew.B_SilkS)
+        label.SetMirrored(True)
+        label.SetPosition(pcbnew.VECTOR2I(10000000, 10000000))
+        board.Add(label)
+        path = self.root / "interface-seed.kicad_pcb"
+        pcbnew.SaveBoard(str(path), board)
+        self.seed = path.read_bytes()
+        spec = self.root / "interface-spec.json"
+        spec.write_text(json.dumps({"schema_version": 1, "labels": [
+            {"project": self.project, "text": "S3 DBG", "layer": "B.Silkscreen"}]}))
+        self.plan["allowed_references"] = []
+        self.plan["allowed_interface_label_addition"] = {
+            "feature_id": "H6-R2-INTERFACE-SILK-001", "source_sha256": updater.sha(spec.read_bytes())}
+        with patch.object(updater.placement, "build", side_effect=self.build), patch.object(updater.silkscreen, "INTERFACE_LABEL_PLACEMENTS", spec):
+            result = updater.stage(self.plan, self.directory)
+        candidate = (self.directory / self.source.name).read_text()
+        self.assertEqual([], result["changed_references"])
+        self.assertEqual([{"text": "S3 DBG", "layer": "B.Silkscreen"}], result["reviewed_added_interface_labels"])
+        self.assertEqual(updater.footprint_forms(self.original.decode()), updater.footprint_forms(candidate))
+        self.assertEqual(updater.copper_forms(self.original.decode()), updater.copper_forms(candidate))
+        self.assertEqual(self.original, self.source.read_bytes())
+
+    def test_interface_additions_reject_existing_wrong_side_duplicate_missing_and_stale_spec(self):
+        spec = self.root / "interface-spec.json"
+        spec.write_text(json.dumps({"schema_version": 1, "labels": [
+            {"project": self.project, "text": "S3 DBG", "layer": "B.Silkscreen"}]}))
+        allowance = {"feature_id": "H6-R2-INTERFACE-SILK-001", "source_sha256": updater.sha(spec.read_bytes())}
+        form = '(gr_text "S3 DBG" (layer "B.SilkS"))'
+        board = '(kicad_pcb ' + form + ')'
+        with patch.object(updater.silkscreen, "INTERFACE_LABEL_PLACEMENTS", spec):
+            self.assertEqual([(("S3 DBG", "B.Silkscreen"), form)],
+                updater.reviewed_interface_label_additions('(kicad_pcb)', board, allowance, self.project))
+            front = form.replace('B.SilkS', 'F.SilkS')
+            self.assertEqual([(("S3 DBG", "B.Silkscreen"), form)],
+                updater.reviewed_interface_label_additions('(kicad_pcb ' + front + ')',
+                    '(kicad_pcb ' + front + form + ')', allowance, self.project))
+            for old, seed, permission in (
+                (board, board, allowance),
+                ('(kicad_pcb)', board.replace('B.SilkS', 'F.SilkS'), allowance),
+                ('(kicad_pcb)', '(kicad_pcb ' + form + form + ')', allowance),
+                ('(kicad_pcb)', '(kicad_pcb)', allowance),
+                ('(kicad_pcb)', board, dict(allowance, source_sha256="stale")),
+            ):
+                with self.subTest(old=old, seed=seed, permission=permission), self.assertRaises(ValueError):
+                    updater.reviewed_interface_label_additions(old, seed, permission, self.project)
 
     def test_changed_contract_during_build_is_rejected_before_any_candidate(self):
         def mutate():

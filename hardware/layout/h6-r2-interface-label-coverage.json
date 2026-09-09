@@ -1,0 +1,1366 @@
+{
+  "schema_version": 1,
+  "marker": "H6.0.3-R1",
+  "scope": "Finite independent semantic interface coverage. Coordinates are intentionally absent; actual placement and physical text clearance have separate authority.",
+  "reviewed_baseline_commit": "e11ea749",
+  "expected_interface_counts": {
+    "LESHY2-UI-R2": 52,
+    "LESHY2-RF-R2": 24
+  },
+  "inventory_basis": [
+    "Current ledger physical reference classes and current catalog interface kinds, not generated label inventory.",
+    "Current adopted identities of the historical 74 interfaces, plus independently identified L32 NFC and TP1 service probe. No old pose or finding is promoted to current acceptance."
+  ],
+  "interfaces": [
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "pack_holder",
+      "reference": "BT1",
+      "device_id": "keystone_1048p",
+      "device_kind": "dual_18650_smt_polarized_open_holder",
+      "component_side": "F.Cu",
+      "role": "cell_power_interface",
+      "labels": [
+        {
+          "text": "CELL0 -",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "CELL1 +",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "CELL0 +",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "CELL1 -",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Four cell-end labels retain reviewed Rev A checkerboard polarity with full CELL0/CELL1 names at both ends. Physical pad-to-label correspondence needs the separate polarity guard."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "product_usb_connector",
+      "reference": "J1",
+      "device_id": "gct_usb4105_gf_a",
+      "device_kind": "usb_type_c_usb2_16_contact_top_mount_receptacle",
+      "component_side": "B.Cu",
+      "role": "external_usb",
+      "labels": [
+        {
+          "text": "S3",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "POWER + USB",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "u214_connector",
+      "reference": "J10",
+      "device_id": "samtec_hle_107_02_g_dv_pe_lc",
+      "device_kind": "14_contact_2x7_2_54mm_vertical_pass_through_socket_with_locking_clips",
+      "component_side": "F.Cu",
+      "role": "cap_expansion",
+      "labels": [
+        {
+          "text": "CAP",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "unit_connector",
+      "reference": "J11",
+      "device_id": "seeed_1125r_smt_4p",
+      "device_kind": "m5_hy2_0_4p_grove_2mm_right_angle_smt_receptacle",
+      "component_side": "B.Cu",
+      "role": "external_expansion",
+      "labels": [
+        {
+          "text": "M5 UNIT",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "m1_rf_receptacle",
+      "reference": "J12",
+      "device_id": "hirose_fx8c_80s_sv5_92",
+      "device_kind": "80_contact_0_6mm_11mm_stack_mezzanine_receptacle",
+      "component_side": "B.Cu",
+      "role": "interboard_mating",
+      "labels": [
+        {
+          "text": "M1 RF",
+          "layer": "B.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "safety_dbg_header",
+      "reference": "J13",
+      "device_id": "samtec_ftsh_105_01_l_dv_k_p_tr",
+      "device_kind": "keyed_pick_and_place_2x5_1_27mm_smt_debug_header",
+      "component_side": "B.Cu",
+      "role": "service_debug",
+      "labels": [
+        {
+          "text": "SAFE",
+          "layer": "B.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "pack_dbg_header",
+      "reference": "J2",
+      "device_id": "samtec_ftsh_105_01_l_dv_k_p_tr",
+      "device_kind": "keyed_pick_and_place_2x5_1_27mm_smt_debug_header",
+      "component_side": "B.Cu",
+      "role": "service_debug",
+      "labels": [
+        {
+          "text": "PACK",
+          "layer": "B.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "rf_rp_dbg_header",
+      "reference": "J3",
+      "device_id": "samtec_ftsh_105_01_l_dv_k_p_tr",
+      "device_kind": "keyed_pick_and_place_2x5_1_27mm_smt_debug_header",
+      "component_side": "B.Cu",
+      "role": "service_debug",
+      "labels": [
+        {
+          "text": "RF",
+          "layer": "B.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "rf_rp_service_usb_connector",
+      "reference": "J4",
+      "device_id": "gct_usb4105_gf_a",
+      "device_kind": "usb_type_c_usb2_16_contact_top_mount_receptacle",
+      "component_side": "B.Cu",
+      "role": "external_usb",
+      "labels": [
+        {
+          "text": "RF RP",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "DATA USB",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "cc_external_sma",
+      "reference": "J5",
+      "device_id": "gct_rfpc_sma31_fn_175_a",
+      "device_kind": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+      "component_side": "F.Cu",
+      "role": "external_antenna",
+      "labels": [
+        {
+          "text": "SUB-G TX",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "voice_external_sma",
+      "reference": "J6",
+      "device_id": "gct_rfpc_sma31_fn_175_a",
+      "device_kind": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+      "component_side": "F.Cu",
+      "role": "external_antenna",
+      "labels": [
+        {
+          "text": "UHF TX",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "voice_v_external_sma",
+      "reference": "J7",
+      "device_id": "gct_rfpc_sma31_fn_175_a",
+      "device_kind": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+      "component_side": "F.Cu",
+      "role": "external_antenna",
+      "labels": [
+        {
+          "text": "VHF TX",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "receiver_amlw_external_sma",
+      "reference": "J8",
+      "device_id": "gct_rfpc_sma31_fn_175_a",
+      "device_kind": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+      "component_side": "F.Cu",
+      "role": "external_antenna",
+      "labels": [
+        {
+          "text": "AM/LW RX",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "receiver_fmsw_external_sma",
+      "reference": "J9",
+      "device_id": "gct_rfpc_sma31_fn_175_a",
+      "device_kind": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+      "component_side": "F.Cu",
+      "role": "external_antenna",
+      "labels": [
+        {
+          "text": "AIR/FM RX",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "u219_nfc_pickup_loop",
+      "reference": "L32",
+      "device_id": "leshy2_nfc_pickup_loop_r2",
+      "device_kind": "weakly_coupled_13_56mhz_printed_pickup_loop",
+      "component_side": "F.Cu",
+      "role": "nfc_reservation",
+      "labels": [
+        {
+          "text": "NFC",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "NFC identifies the unfinished pickup reservation, not completed routed copper."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "speaker",
+      "reference": "LS1",
+      "device_id": "pui_as02404po",
+      "device_kind": "24x12mm_4ohm_2w_loudspeaker",
+      "component_side": "B.Cu",
+      "role": "wired_audio_output",
+      "labels": [
+        {
+          "text": "SPK +",
+          "layer": "B.Silkscreen"
+        },
+        {
+          "text": "SPK -",
+          "layer": "B.Silkscreen"
+        }
+      ],
+      "rationale": "LS1 is the RF wired termination of the separate UI-mounted speaker body. Both signs identify differential BTL outputs, neither is ground. UI body assembly annotation remains Fab."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "microphone",
+      "reference": "MK1",
+      "device_id": "same_sky_cmej_0413_42_smt_tr",
+      "device_kind": "top_port_analog_electret_microphone",
+      "component_side": "B.Cu",
+      "role": "acoustic_input",
+      "labels": [
+        {
+          "text": "MIC",
+          "layer": "F.Silkscreen",
+          "project": "LESHY2-UI-R2",
+          "reference": "RF:MK1",
+          "source_project": "LESHY2-RF-R2"
+        },
+        {
+          "text": "MIC",
+          "layer": "B.Silkscreen",
+          "optional": true
+        }
+      ],
+      "rationale": "Required UI outward MIC annotation belongs to RF-inner MK1 across the assembly frame. Local RF B MIC is optional if no space; it does not replace the outward annotation."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "rf_rp_boot_button",
+      "reference": "SW1",
+      "device_id": "alps_skrtlae010",
+      "device_kind": "spst_no_side_actuated_smt_tact_switch",
+      "component_side": "B.Cu",
+      "role": "service_control",
+      "labels": [
+        {
+          "text": "RF RP",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "BOOT",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "rf_rp_reset_button",
+      "reference": "SW2",
+      "device_id": "alps_skrtlae010",
+      "device_kind": "spst_no_side_actuated_smt_tact_switch",
+      "component_side": "B.Cu",
+      "role": "service_control",
+      "labels": [
+        {
+          "text": "RF RP",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "RST",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "encoder",
+      "reference": "SW3",
+      "device_id": "alps_ec11e18244au",
+      "device_kind": "through_hole_incremental_encoder_with_push",
+      "component_side": "F.Cu",
+      "role": "user_control",
+      "labels": [
+        {
+          "text": "ENC / OK",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "ptt_switch",
+      "reference": "SW4",
+      "device_id": "omron_b3s_1100p",
+      "device_kind": "spst_no_direct_press_grounded_sealed_smt_tact_switch",
+      "component_side": "F.Cu",
+      "role": "user_control",
+      "labels": [
+        {
+          "text": "PTT",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "power_command_switch",
+      "reference": "SW5",
+      "device_id": "ck_js102011saqn",
+      "device_kind": "spdt_on_on_right_angle_smt_power_command_slide_switch",
+      "component_side": "B.Cu",
+      "role": "power_command",
+      "labels": [
+        {
+          "text": "POWER",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "POWER identifies the control without claiming unproved RUN/KILL actuator directions."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "main_raw_pg_testpoint",
+      "reference": "TP1",
+      "device_id": "leshy2_pcb_testpoint_pad_1mm_r2",
+      "device_kind": "exposed_1mm_smd_copper_testpoint",
+      "component_side": "B.Cu",
+      "role": "service_probe",
+      "labels": [
+        {
+          "text": "MAIN\nPG",
+          "layer": "B.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "headphone_jack",
+      "reference": "U83",
+      "device_id": "same_sky_sj_43515ts_smt_tr",
+      "device_kind": "3_5mm_ctia_trrs_top_mount_smt_jack_tip_switch",
+      "component_side": "B.Cu",
+      "role": "headset_socket",
+      "labels": [
+        {
+          "text": "HEADSET",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "c5_tx_led",
+      "reference": "D1",
+      "device_id": "liteon_ltst_c190krkt",
+      "device_kind": "0603_red_status_led",
+      "component_side": "F.Cu",
+      "role": "user_indicator",
+      "labels": [
+        {
+          "text": "Wi-Fi/15.4",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "voice_tx_led",
+      "reference": "D10",
+      "device_id": "liteon_ltst_c190krkt",
+      "device_kind": "0603_red_status_led",
+      "component_side": "F.Cu",
+      "role": "user_indicator",
+      "labels": [
+        {
+          "text": "V/U TX",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ir_emitter",
+      "reference": "D11",
+      "device_id": "vishay_vsmy14940",
+      "device_kind": "940nm_side_view_smd_ir_emitter",
+      "component_side": "B.Cu",
+      "role": "optical_port",
+      "labels": [
+        {
+          "text": "IR TX",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "cc_tx_led",
+      "reference": "D2",
+      "device_id": "liteon_ltst_c190krkt",
+      "device_kind": "0603_red_status_led",
+      "component_side": "F.Cu",
+      "role": "user_indicator",
+      "labels": [
+        {
+          "text": "SUB-GHz",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ext_tx_led",
+      "reference": "D3",
+      "device_id": "liteon_ltst_c190krkt",
+      "device_kind": "0603_red_status_led",
+      "component_side": "F.Cu",
+      "role": "user_indicator",
+      "labels": [
+        {
+          "text": "LORA/EXT",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "fault_led",
+      "reference": "D4",
+      "device_id": "liteon_ltst_c190kfkt",
+      "device_kind": "0603_orange_status_led",
+      "component_side": "F.Cu",
+      "role": "user_indicator",
+      "labels": [
+        {
+          "text": "FAULT",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ir_tx_led",
+      "reference": "D5",
+      "device_id": "liteon_ltst_c190krkt",
+      "device_kind": "0603_red_status_led",
+      "component_side": "F.Cu",
+      "role": "user_indicator",
+      "labels": [
+        {
+          "text": "IR",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "nrf0_tx_led",
+      "reference": "D6",
+      "device_id": "liteon_ltst_c190krkt",
+      "device_kind": "0603_red_status_led",
+      "component_side": "F.Cu",
+      "role": "user_indicator",
+      "labels": [
+        {
+          "text": "nRF24-1",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "nrf1_tx_led",
+      "reference": "D7",
+      "device_id": "liteon_ltst_c190krkt",
+      "device_kind": "0603_red_status_led",
+      "component_side": "F.Cu",
+      "role": "user_indicator",
+      "labels": [
+        {
+          "text": "nRF24-2",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "nrf2_tx_led",
+      "reference": "D8",
+      "device_id": "liteon_ltst_c190krkt",
+      "device_kind": "0603_red_status_led",
+      "component_side": "F.Cu",
+      "role": "user_indicator",
+      "labels": [
+        {
+          "text": "nRF24-3",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "s3_tx_led",
+      "reference": "D9",
+      "device_id": "liteon_ltst_c190krkt",
+      "device_kind": "0603_red_status_led",
+      "component_side": "F.Cu",
+      "role": "user_indicator",
+      "labels": [
+        {
+          "text": "Wi-Fi/BLE",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "display_connector",
+      "reference": "J1",
+      "device_id": "hirose_fh34srj_50s_0_5sh_50",
+      "device_kind": "50_position_0_5mm_dual_contact_zif_fpc_receptacle",
+      "component_side": "B.Cu",
+      "role": "display_touch_fpc",
+      "labels": [
+        {
+          "text": "DISPLAY",
+          "layer": "B.Silkscreen"
+        },
+        {
+          "text": "DISPLAY · FPC ↑",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Locally identify the B-side display/touch ZIF. The existing F-side frame/FPC assembly label is intentionally hidden by the fitted display."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "hub_rp_dbg_header",
+      "reference": "J10",
+      "device_id": "samtec_ftsh_105_01_l_dv_k_p_tr",
+      "device_kind": "keyed_pick_and_place_2x5_1_27mm_smt_debug_header",
+      "component_side": "B.Cu",
+      "role": "service_debug",
+      "labels": [
+        {
+          "text": "HUB DBG",
+          "layer": "B.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "hub_rp_service_usb_connector",
+      "reference": "J11",
+      "device_id": "gct_usb4105_gf_a",
+      "device_kind": "usb_type_c_usb2_16_contact_top_mount_receptacle",
+      "component_side": "B.Cu",
+      "role": "external_usb",
+      "labels": [
+        {
+          "text": "HUB RP",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "DATA USB",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "nrf0_external_sma",
+      "reference": "J12",
+      "device_id": "gct_rfpc_sma31_fn_175_a",
+      "device_kind": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+      "component_side": "F.Cu",
+      "role": "external_antenna",
+      "labels": [
+        {
+          "text": "nRF1 · 2G4",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "nrf0_rf_board_connector",
+      "reference": "J13",
+      "device_id": "hirose_ufl_r_smt_1_10",
+      "device_kind": "first_generation_ufl_6ghz_board_receptacle",
+      "component_side": "B.Cu",
+      "role": "internal_coax",
+      "labels": [
+        {
+          "text": "nRF1 ANT",
+          "layer": "B.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "nrf1_external_sma",
+      "reference": "J14",
+      "device_id": "gct_rfpc_sma31_fn_175_a",
+      "device_kind": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+      "component_side": "F.Cu",
+      "role": "external_antenna",
+      "labels": [
+        {
+          "text": "nRF2 · 2G4",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "nrf1_rf_board_connector",
+      "reference": "J15",
+      "device_id": "hirose_ufl_r_smt_1_10",
+      "device_kind": "first_generation_ufl_6ghz_board_receptacle",
+      "component_side": "B.Cu",
+      "role": "internal_coax",
+      "labels": [
+        {
+          "text": "nRF2 ANT",
+          "layer": "B.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "nrf2_external_sma",
+      "reference": "J16",
+      "device_id": "gct_rfpc_sma31_fn_175_a",
+      "device_kind": "6ghz_ip67_standard_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+      "component_side": "F.Cu",
+      "role": "external_antenna",
+      "labels": [
+        {
+          "text": "nRF3 · 2G4",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "nrf2_rf_board_connector",
+      "reference": "J17",
+      "device_id": "hirose_ufl_r_smt_1_10",
+      "device_kind": "first_generation_ufl_6ghz_board_receptacle",
+      "component_side": "B.Cu",
+      "role": "internal_coax",
+      "labels": [
+        {
+          "text": "nRF3 ANT",
+          "layer": "B.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "m1_ui_plug",
+      "reference": "J18",
+      "device_id": "hirose_fx8c_80p_sv1_92",
+      "device_kind": "80_contact_0_6mm_11mm_stack_mezzanine_plug",
+      "component_side": "B.Cu",
+      "role": "interboard_mating",
+      "labels": [
+        {
+          "text": "M1 UI",
+          "layer": "B.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "s3_dbg_header",
+      "reference": "J2",
+      "device_id": "samtec_ftsh_105_01_l_dv_k_p_tr",
+      "device_kind": "keyed_pick_and_place_2x5_1_27mm_smt_debug_header",
+      "component_side": "B.Cu",
+      "role": "service_debug",
+      "labels": [
+        {
+          "text": "S3 DBG",
+          "layer": "B.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "s3_external_rp_sma",
+      "reference": "J3",
+      "device_id": "gct_rfpc_sma32_fn_175_a",
+      "device_kind": "6ghz_ip67_reverse_polarity_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+      "component_side": "F.Cu",
+      "role": "external_antenna",
+      "labels": [
+        {
+          "text": "S3 · 2G4",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "s3_rf_board_connector",
+      "reference": "J4",
+      "device_id": "hirose_ufl_r_smt_1_10",
+      "device_kind": "first_generation_ufl_6ghz_board_receptacle",
+      "component_side": "B.Cu",
+      "role": "internal_coax",
+      "labels": [
+        {
+          "text": "S3 ANT",
+          "layer": "B.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "sd",
+      "reference": "J5",
+      "device_id": "hirose_dm3at_sf_pejm5",
+      "device_kind": "microsd_socket",
+      "component_side": "B.Cu",
+      "role": "removable_storage",
+      "labels": [
+        {
+          "text": "microSD",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "c5_dbg_header",
+      "reference": "J6",
+      "device_id": "samtec_ftsh_105_01_l_dv_k_p_tr",
+      "device_kind": "keyed_pick_and_place_2x5_1_27mm_smt_debug_header",
+      "component_side": "B.Cu",
+      "role": "service_debug",
+      "labels": [
+        {
+          "text": "C5 DBG",
+          "layer": "B.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "c5_external_rp_sma",
+      "reference": "J7",
+      "device_id": "gct_rfpc_sma32_fn_175_a",
+      "device_kind": "6ghz_ip67_reverse_polarity_sma_edge_launch_bulkhead_jack_1_6mm_pcb",
+      "component_side": "F.Cu",
+      "role": "external_antenna",
+      "labels": [
+        {
+          "text": "C5 · 2G4/5G",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "c5_rf_board_connector",
+      "reference": "J8",
+      "device_id": "hirose_ufl_r_smt_1_10",
+      "device_kind": "first_generation_ufl_6ghz_board_receptacle",
+      "component_side": "B.Cu",
+      "role": "internal_coax",
+      "labels": [
+        {
+          "text": "C5 ANT",
+          "layer": "B.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "c5_service_usb_connector",
+      "reference": "J9",
+      "device_id": "gct_usb4105_gf_a",
+      "device_kind": "usb_type_c_usb2_16_contact_top_mount_receptacle",
+      "component_side": "B.Cu",
+      "role": "external_usb",
+      "labels": [
+        {
+          "text": "C5",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "DATA USB",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "s3_boot_button",
+      "reference": "SW1",
+      "device_id": "alps_skrtlae010",
+      "device_kind": "spst_no_side_actuated_smt_tact_switch",
+      "component_side": "B.Cu",
+      "role": "service_control",
+      "labels": [
+        {
+          "text": "S3",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "BOOT",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ui_switch_f2",
+      "reference": "SW10",
+      "device_id": "omron_b3s_1100p",
+      "device_kind": "spst_no_direct_press_grounded_sealed_smt_tact_switch",
+      "component_side": "F.Cu",
+      "role": "user_control",
+      "labels": [
+        {
+          "text": "F2",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ui_switch_f3",
+      "reference": "SW11",
+      "device_id": "omron_b3s_1100p",
+      "device_kind": "spst_no_direct_press_grounded_sealed_smt_tact_switch",
+      "component_side": "F.Cu",
+      "role": "user_control",
+      "labels": [
+        {
+          "text": "F3",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ui_switch_f4",
+      "reference": "SW12",
+      "device_id": "omron_b3s_1100p",
+      "device_kind": "spst_no_direct_press_grounded_sealed_smt_tact_switch",
+      "component_side": "F.Cu",
+      "role": "user_control",
+      "labels": [
+        {
+          "text": "F4",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ui_switch_f5",
+      "reference": "SW13",
+      "device_id": "omron_b3s_1100p",
+      "device_kind": "spst_no_direct_press_grounded_sealed_smt_tact_switch",
+      "component_side": "F.Cu",
+      "role": "user_control",
+      "labels": [
+        {
+          "text": "F5",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ui_switch_f6",
+      "reference": "SW14",
+      "device_id": "omron_b3s_1100p",
+      "device_kind": "spst_no_direct_press_grounded_sealed_smt_tact_switch",
+      "component_side": "F.Cu",
+      "role": "user_control",
+      "labels": [
+        {
+          "text": "F6",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ui_switch_f7",
+      "reference": "SW15",
+      "device_id": "omron_b3s_1100p",
+      "device_kind": "spst_no_direct_press_grounded_sealed_smt_tact_switch",
+      "component_side": "F.Cu",
+      "role": "user_control",
+      "labels": [
+        {
+          "text": "F7",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ui_switch_f8",
+      "reference": "SW16",
+      "device_id": "omron_b3s_1100p",
+      "device_kind": "spst_no_direct_press_grounded_sealed_smt_tact_switch",
+      "component_side": "F.Cu",
+      "role": "user_control",
+      "labels": [
+        {
+          "text": "F8",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ui_switch_opt",
+      "reference": "SW17",
+      "device_id": "omron_b3s_1100p",
+      "device_kind": "spst_no_direct_press_grounded_sealed_smt_tact_switch",
+      "component_side": "F.Cu",
+      "role": "user_control",
+      "labels": [
+        {
+          "text": "OPT",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "c5_boot_button",
+      "reference": "SW18",
+      "device_id": "alps_skrtlae010",
+      "device_kind": "spst_no_side_actuated_smt_tact_switch",
+      "component_side": "B.Cu",
+      "role": "service_control",
+      "labels": [
+        {
+          "text": "C5",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "BOOT",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "c5_reset_button",
+      "reference": "SW19",
+      "device_id": "alps_skrtlae010",
+      "device_kind": "spst_no_side_actuated_smt_tact_switch",
+      "component_side": "B.Cu",
+      "role": "service_control",
+      "labels": [
+        {
+          "text": "C5",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "RST",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "s3_reset_button",
+      "reference": "SW2",
+      "device_id": "alps_skrtlae010",
+      "device_kind": "spst_no_side_actuated_smt_tact_switch",
+      "component_side": "B.Cu",
+      "role": "service_control",
+      "labels": [
+        {
+          "text": "S3",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "RST",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "hub_rp_boot_button",
+      "reference": "SW20",
+      "device_id": "alps_skrtlae010",
+      "device_kind": "spst_no_side_actuated_smt_tact_switch",
+      "component_side": "B.Cu",
+      "role": "service_control",
+      "labels": [
+        {
+          "text": "HUB",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "BOOT",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "hub_rp_reset_button",
+      "reference": "SW21",
+      "device_id": "alps_skrtlae010",
+      "device_kind": "spst_no_side_actuated_smt_tact_switch",
+      "component_side": "B.Cu",
+      "role": "service_control",
+      "labels": [
+        {
+          "text": "HUB",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "RST",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ui_dpad_down",
+      "reference": "SW3",
+      "device_id": "omron_b3s_1100p",
+      "device_kind": "spst_no_direct_press_grounded_sealed_smt_tact_switch",
+      "component_side": "F.Cu",
+      "role": "user_control",
+      "labels": [
+        {
+          "text": "DOWN",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ui_dpad_left",
+      "reference": "SW4",
+      "device_id": "omron_b3s_1100p",
+      "device_kind": "spst_no_direct_press_grounded_sealed_smt_tact_switch",
+      "component_side": "F.Cu",
+      "role": "user_control",
+      "labels": [
+        {
+          "text": "LEFT",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ui_dpad_ok",
+      "reference": "SW5",
+      "device_id": "omron_b3s_1100p",
+      "device_kind": "spst_no_direct_press_grounded_sealed_smt_tact_switch",
+      "component_side": "F.Cu",
+      "role": "user_control",
+      "labels": [
+        {
+          "text": "OK",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ui_dpad_right",
+      "reference": "SW6",
+      "device_id": "omron_b3s_1100p",
+      "device_kind": "spst_no_direct_press_grounded_sealed_smt_tact_switch",
+      "component_side": "F.Cu",
+      "role": "user_control",
+      "labels": [
+        {
+          "text": "RIGHT",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ui_dpad_up",
+      "reference": "SW7",
+      "device_id": "omron_b3s_1100p",
+      "device_kind": "spst_no_direct_press_grounded_sealed_smt_tact_switch",
+      "component_side": "F.Cu",
+      "role": "user_control",
+      "labels": [
+        {
+          "text": "UP",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ui_switch_back",
+      "reference": "SW8",
+      "device_id": "omron_b3s_1100p",
+      "device_kind": "spst_no_direct_press_grounded_sealed_smt_tact_switch",
+      "component_side": "F.Cu",
+      "role": "user_control",
+      "labels": [
+        {
+          "text": "BACK",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ui_switch_f1",
+      "reference": "SW9",
+      "device_id": "omron_b3s_1100p",
+      "device_kind": "spst_no_direct_press_grounded_sealed_smt_tact_switch",
+      "component_side": "F.Cu",
+      "role": "user_control",
+      "labels": [
+        {
+          "text": "F1",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ir_carrier",
+      "reference": "U23",
+      "device_id": "vishay_tsmp95000tr",
+      "device_kind": "heimdall_side_view_smd_30_60khz_carrier_output_ir_learning_receiver",
+      "component_side": "B.Cu",
+      "role": "optical_port",
+      "labels": [
+        {
+          "text": "IR LRN",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    },
+    {
+      "project": "LESHY2-UI-R2",
+      "instance": "ir_demod",
+      "reference": "U24",
+      "device_id": "vishay_tsop75238tr",
+      "device_kind": "heimdall_smd_38khz_agc2_demodulating_ir_receiver",
+      "component_side": "B.Cu",
+      "role": "optical_port",
+      "labels": [
+        {
+          "text": "IR RX",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Required owner/function identity on the accessible user or assembly side. No electrical or mechanical qualification is implied."
+    }
+  ],
+  "assembly_contexts": [
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "pack_ntc0",
+      "reference": "R33",
+      "device_id": "tdk_b57332v5103f360",
+      "device_kind": "10k_1pct_b3380_0603_automotive_ntc",
+      "component_side": "F.Cu",
+      "role": "cell_sensor_assembly",
+      "labels": [
+        {
+          "text": "NTC0 PAD",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Existing cell-pad assembly annotation, not a requirement on internal thermistors."
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "instance": "pack_ntc1",
+      "reference": "R34",
+      "device_id": "tdk_b57332v5103f360",
+      "device_kind": "10k_1pct_b3380_0603_automotive_ntc",
+      "component_side": "F.Cu",
+      "role": "cell_sensor_assembly",
+      "labels": [
+        {
+          "text": "NTC1 PAD",
+          "layer": "F.Silkscreen"
+        }
+      ],
+      "rationale": "Existing cell-pad assembly annotation, not a requirement on internal thermistors."
+    }
+  ],
+  "exclusions": [
+    {
+      "scope": "Other resistors, capacitors, IC pins and internal thermistors",
+      "reason": "Not user/assembly/service interfaces; no requirement to label every passive or IC pin."
+    },
+    {
+      "scope": "Standalone labels on MCU/radio package bodies",
+      "reason": "Cable, debug and antenna owners are labelled at their actual interfaces. A package body is not an additional mating interface."
+    },
+    {
+      "scope": "Unfitted external antennas, coax cables, cells, display/touch panel and speaker body",
+      "reason": "Not extra ledger footprints. Their board-side SMA/U.FL/BT1/ZIF/LS1 interfaces remain mandatory; MIC has explicit cross-board ownership."
+    },
+    {
+      "scope": "Board legal notice and branding",
+      "reason": "Non-interface annotations retain separate checks; they are not extra interface labels."
+    }
+  ],
+  "limits": [
+    "A label-coverage pass does not qualify text/pad clearance, closed-device visibility, reset/boot functionality, safety, audio, RF or manufacturing.",
+    "Only real visible free PCB_TEXT on F/B.Silkscreen can satisfy native coverage. Fab shapes, hidden references and SVG fallbacks cannot.",
+    "BT1 checkerboard positions and LS1 BTL pin-net identity need independent native polarity guards."
+  ],
+  "production_release_authorized": false
+}

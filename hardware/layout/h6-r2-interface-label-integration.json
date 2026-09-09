@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "checked": "2026-09-09",
+  "marker": "H6.0.3-R1",
+  "status": "finite_native_migration_and_preservation_verified",
+  "baseline_commit": "e11ea74961ad570019659c3cedc2dce8f8d19453",
+  "production_release_authorized": false,
+  "relocation_review": {
+    "path": "hardware/layout/h6-r2-interface-label-relocation-review.json",
+    "sha256": "bcfe45b99af46643f582737562c9c08b81007389583f6f84c233fa4429c8ecd3"
+  },
+  "label_specification_sha256": "830fb13f9e0c7ce711e937df2d9709e20e657b9a668348b2a348b0901c2f790d",
+  "boards": [
+    {
+      "project": "LESHY2-UI-R2",
+      "path": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
+      "baseline_sha256": "5a29ed7272d412d72b62265bd3940864e4feb23a3f5e5d7ed60f9497620567cb",
+      "integrated_sha256": "b93eee66471cc46dd165b108c52442aa3a3ada8446248141b22ba5ca1bf03143",
+      "changed_references": [],
+      "unchanged_footprint_forms": 432,
+      "added_native_interface_labels": [
+        {
+          "text": "IR RX",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "IR LRN",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "IR TX",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "S3 DBG",
+          "layer": "B.Silkscreen"
+        },
+        {
+          "text": "nRF1 ANT",
+          "layer": "B.Silkscreen"
+        },
+        {
+          "text": "S3 ANT",
+          "layer": "B.Silkscreen"
+        },
+        {
+          "text": "C5 DBG",
+          "layer": "B.Silkscreen"
+        },
+        {
+          "text": "HUB DBG",
+          "layer": "B.Silkscreen"
+        },
+        {
+          "text": "M1 UI",
+          "layer": "B.Silkscreen"
+        },
+        {
+          "text": "nRF2 ANT",
+          "layer": "B.Silkscreen"
+        },
+        {
+          "text": "C5 ANT",
+          "layer": "B.Silkscreen"
+        },
+        {
+          "text": "nRF3 ANT",
+          "layer": "B.Silkscreen"
+        },
+        {
+          "text": "DISPLAY",
+          "layer": "B.Silkscreen"
+        }
+      ],
+      "all_other_top_level_forms_byte_identical": true,
+      "copper_forms_byte_identical": 92,
+      "full_named_pad_copper_adjacency_unchanged": true,
+      "named_graph_node_count": 1744,
+      "moved_pad_old_and_new_copper_contacts": 0,
+      "native_uuid_uniqueness": "pass"
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "path": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
+      "baseline_sha256": "5442331dc15ec87f9c315bf64996a4e0841901d80e8ffc36f2b67b7669aca96b",
+      "integrated_sha256": "a0853d63d1ec4d74e5afd2ade5b554246008342372e9de94eaf0721241dfc4fa",
+      "changed_references": [
+        "R136",
+        "R192",
+        "R238",
+        "R240",
+        "R241",
+        "R248",
+        "R80",
+        "R83"
+      ],
+      "unchanged_footprint_forms": 776,
+      "added_native_interface_labels": [
+        {
+          "text": "HEADSET",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "CELL0 -",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "CELL0 +",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "CAP",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "CELL1 +",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "CELL1 -",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "NFC",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "POWER",
+          "layer": "F.Silkscreen"
+        },
+        {
+          "text": "RF",
+          "layer": "B.Silkscreen"
+        },
+        {
+          "text": "M1 RF",
+          "layer": "B.Silkscreen"
+        },
+        {
+          "text": "SAFE",
+          "layer": "B.Silkscreen"
+        },
+        {
+          "text": "MIC",
+          "layer": "B.Silkscreen"
+        },
+        {
+          "text": "SPK -",
+          "layer": "B.Silkscreen"
+        },
+        {
+          "text": "MAIN\nPG",
+          "layer": "B.Silkscreen"
+        },
+        {
+          "text": "PACK",
+          "layer": "B.Silkscreen"
+        },
+        {
+          "text": "SPK +",
+          "layer": "B.Silkscreen"
+        }
+      ],
+      "all_other_top_level_forms_byte_identical": true,
+      "copper_forms_byte_identical": 765,
+      "full_named_pad_copper_adjacency_unchanged": true,
+      "named_graph_node_count": 3497,
+      "moved_pad_old_and_new_copper_contacts": 0,
+      "native_uuid_uniqueness": "pass"
+    }
+  ],
+  "current_checks": {
+    "silkscreen": "hardware/layout/generated/H6-R2-user-silkscreen-audit.json",
+    "native_drc_and_connectivity": "hardware/layout/generated/H6-R2-current-routing-audit.json"
+  },
+  "limits": [
+    "Immutable migration evidence, not a substitute for live source-hashed checks.",
+    "Static control-pad distance increases are explicit placement tradeoffs, not routed timing/performance qualification.",
+    "No change to MPNs, net topology, connector poses or Edge.Cuts. Routing and factory release remain open."
+  ]
+}

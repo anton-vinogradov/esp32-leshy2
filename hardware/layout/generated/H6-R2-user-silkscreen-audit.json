@@ -1,17 +1,23 @@
 {
   "schema_version": 1,
-  "scope": "native free-board user text; required interface bindings plus conservative geometry screening",
+  "scope": "native F/B free-board user text; required interface bindings and same-side mask/body/printed-silk screening",
   "status": "pass_scoped",
   "production_release_authorized": false,
   "inputs_sha256": {
-    "hardware/layout/h6-r2-placement-contract.json": "094865936bf52c5e1fa5dc3e90f2e22b132afb064e7909d1d8ddd2bf9f3cdfe3",
+    "hardware/layout/h6-r2-placement-contract.json": "caedfdf37c1546feb18969396706e1f922c02f09cadf667027ff9f7874b839a9",
     "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7e5594bf5130524096b2683040b153409611b92c2df088dd33cb5c30f2f7a597",
     "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "f03919a28b4cc37aa763943f7e0c7b0aabe61ddac48f699d8b9adcec7e422ebc",
-    "hardware/layout/h6_r2_silkscreen_audit.py": "7f383aa21a822fc44394e424663f2b7a591f0e5cd1263fc80f8556d10cbafa3b",
-    "hardware/layout/h6_r2_user_silkscreen.py": "23f79643f3b2c6a7312f80f62137a40b81e98c6a7d97852216cfd39e64aa8da7",
+    "hardware/layout/h6_r2_silkscreen_audit.py": "22d05026b5c16cae0e4fb49a567e7790ee704ad7d897d335bcb15cceb6d1775b",
+    "hardware/layout/h6_r2_user_silkscreen.py": "27099c4b553aeb11e0331ae26e628bcf5de5c6b4926df087943f2cb2a9f5776d",
     "hardware/ecad/libraries/Leshy2_R2.pretty/B3S-1100P.kicad_mod": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989",
     "hardware/layout/h6-r2-b3s-actuator-datum-review.json": "d8de0d5184828d1c6fd98415ccf63e4008e87cfbf7a231412f59bc7fc1dab6c9",
     "hardware/ecad/libraries/Leshy2.pretty/CMEJ-0413-42-SMT-TR.kicad_mod": "039257c90aa952b1e74608cb510cf852cb93eeba0b7dea0b98d0864a2b085817",
+    "hardware/layout/h6-r2-speaker-body.json": "79349b47e281bc89fc57b843987d5458035c59c9fe6459de42a5949ee690f78b",
+    "hardware/layout/h6_r2_speaker_fit.py": "9e677eca3c1d320fc19fd25e961d884a1a903ca9f0af1ca3ad95835d20c38d30",
+    "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9",
+    "hardware/layout/h6-r2-interface-label-coverage.json": "b1e81350319986f4686e1c1b61adf0e5ebb39b4d2acf6dd7de9dd5db997decd0",
+    "hardware/layout/h6_r2_interface_label_coverage.py": "0939271fb543a390e3d35799104e522540fe35fd064aadd57b67cab033c235c3",
+    "hardware/layout/h6-r2-interface-label-placements.json": "830fb13f9e0c7ce711e937df2d9709e20e657b9a668348b2a348b0901c2f790d",
     "hardware/ecad/generated/H2-R2-native-net-ledger.json": "94bd7d64fc1d6c2ea3dde8e55f1390fb31cafc2a213cc99d290ce234d60878e8",
     "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "1b3d9f2700937109daba2fd77b8633d709325094dbd19f48a17e0d7c9f60b224",
     "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "6ca4d66414111e95d84d669e8c3adac57b44df5bd739451cb9578704c1e6cf3a",
@@ -37,16 +43,17 @@
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_40_INTERBOARD_M1.kicad_sch": "424390520ba25ce5ae9c4466c4a54c014fd17a53cb7b58fda7734d31e2e95a17",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_50_FRONT_POWER_SAFETY.kicad_sch": "5c1befee1751e1dfb882c1ee86d04ce19312095f527a901bcbae75691ef1b15b",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch": "87b5812e879ba11abca135470a681c9909148ff398d7dc9153d50d258adae3b1",
-    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "5a29ed7272d412d72b62265bd3940864e4feb23a3f5e5d7ed60f9497620567cb",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "5442331dc15ec87f9c315bf64996a4e0841901d80e8ffc36f2b67b7669aca96b"
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "b93eee66471cc46dd165b108c52442aa3a3ada8446248141b22ba5ca1bf03143",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "a0853d63d1ec4d74e5afd2ade5b554246008342372e9de94eaf0721241dfc4fa"
   },
   "boards": [
     {
       "project": "LESHY2-UI-R2",
       "status": "pass_scoped",
-      "required_count": 49,
-      "matched_count": 49,
-      "free_front_text_count": 51,
+      "required_count": 63,
+      "matched_count": 63,
+      "free_front_text_count": 54,
+      "free_back_text_count": 10,
       "errors": [],
       "geometry_candidates": [],
       "documented_geometry_exemptions": [
@@ -86,6 +93,7 @@
           },
           "obstacle": {
             "kind": "display_panel_bbox",
+            "silk_layer": "F.Silkscreen",
             "bbox_mm": {
               "x": [
                 11.73,
@@ -137,6 +145,7 @@
           },
           "obstacle": {
             "kind": "front_courtyard_bbox",
+            "silk_layer": "F.Silkscreen",
             "reference": "SW3",
             "bbox_mm": {
               "x": [
@@ -164,7 +173,7 @@
               "section": "Full p2 With Ground Terminal, nominal body6.0x6.6 and +/-0.3-mm unspecified tolerance",
               "library_sha256": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989",
               "native_geometry_matches_library": true,
-              "inputs_sha256": "011f2ef54273bddf1954da54021b0c0375387eb8cfe1c96f79f91978d208b075"
+              "inputs_sha256": "5c936db17529d7e200dbd0d33e9755ec488fedb2d72b8bfefb361b1118cd3972"
             }
           },
           "fab_graphics_bbox_overlap": false,
@@ -208,6 +217,7 @@
           },
           "obstacle": {
             "kind": "front_courtyard_bbox",
+            "silk_layer": "F.Silkscreen",
             "reference": "SW6",
             "bbox_mm": {
               "x": [
@@ -235,7 +245,7 @@
               "section": "Full p2 With Ground Terminal, nominal body6.0x6.6 and +/-0.3-mm unspecified tolerance",
               "library_sha256": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989",
               "native_geometry_matches_library": true,
-              "inputs_sha256": "b46d43de05f8e994cfc374432b01440b112206e77d2c295bae783880dbbae8dc"
+              "inputs_sha256": "e1d56d85b3d7914edca07d29eeb3fe7876f50556a5da7150ae4d93e0cbecf2df"
             }
           },
           "fab_graphics_bbox_overlap": false,
@@ -279,6 +289,7 @@
           },
           "obstacle": {
             "kind": "front_courtyard_bbox",
+            "silk_layer": "F.Silkscreen",
             "reference": "SW8",
             "bbox_mm": {
               "x": [
@@ -306,7 +317,7 @@
               "section": "Full p2 With Ground Terminal, nominal body6.0x6.6 and +/-0.3-mm unspecified tolerance",
               "library_sha256": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989",
               "native_geometry_matches_library": true,
-              "inputs_sha256": "035b633f9888fbf89d47630a80f3b4d4bd2d4ee3a00ad91042894a333f445445"
+              "inputs_sha256": "847c0c9b48646ce5f566cc40ba665b710fb196d675680947036f0f1913c1f70f"
             }
           },
           "fab_graphics_bbox_overlap": false,
@@ -350,6 +361,7 @@
           },
           "obstacle": {
             "kind": "front_pad_mask_bbox",
+            "silk_layer": "F.Silkscreen",
             "pad": "SW8.5",
             "native_pad_id": "c3a1c006-5900-547f-a746-070faed5cb9c",
             "shape": 1,
@@ -384,7 +396,7 @@
                 "method": "native_stroke_shape_to_pad_mask",
                 "gap_lower_mm": 0.239819,
                 "gap_upper_mm": 0.23982,
-                "inputs_sha256": "2e00684eb296c25c0c257c73a03f4e96493b6ffeac7310e62ed7c563d3e9a08b"
+                "inputs_sha256": "1da43b169d6697d6c965d313d99a6b991e80839c1035d4e08d9403f7f164e19c"
               }
             }
           },
@@ -431,6 +443,7 @@
           },
           "obstacle": {
             "kind": "front_courtyard_bbox",
+            "silk_layer": "F.Silkscreen",
             "reference": "SW4",
             "bbox_mm": {
               "x": [
@@ -458,7 +471,7 @@
               "section": "Full p2 With Ground Terminal, nominal body6.0x6.6 and +/-0.3-mm unspecified tolerance",
               "library_sha256": "95a5411908cb206f5f541cbd40a33a641902bad132892084c85267d6decef989",
               "native_geometry_matches_library": true,
-              "inputs_sha256": "fc164493037b88927397f6373a87de4cada5db6605e3c19c2dade28abea66751"
+              "inputs_sha256": "dd695c3a026f7ad163b99894d2a4ed81e06d91c111543667cfc01fb3c06c9773"
             }
           },
           "fab_graphics_bbox_overlap": false,
@@ -966,6 +979,22 @@
         },
         {
           "expected": {
+            "instance": "display_connector",
+            "reference": "J1",
+            "text": "DISPLAY · FPC ↑",
+            "at_mm": [
+              40.0,
+              21.0
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "assembly"
+          },
+          "actual_id": "3a39b00d-5869-4b35-ae70-ab2509332ead"
+        },
+        {
+          "expected": {
             "instance": "microphone",
             "reference": "RF:MK1",
             "source_project": "LESHY2-RF-R2",
@@ -1396,15 +1425,237 @@
             "role": "user"
           },
           "actual_id": "f3665050-2751-4770-9ff9-940bf1f66934"
+        },
+        {
+          "expected": {
+            "instance": "ir_demod",
+            "reference": "U24",
+            "text": "IR RX",
+            "at_mm": [
+              4.5,
+              78.1
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user",
+            "angle_deg": 0
+          },
+          "actual_id": "dc1365ad-7ddc-524c-8dd3-93cdde83ffd7"
+        },
+        {
+          "expected": {
+            "instance": "ir_carrier",
+            "reference": "U23",
+            "text": "IR LRN",
+            "at_mm": [
+              4.5,
+              85.6
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user",
+            "angle_deg": 0
+          },
+          "actual_id": "b81e28de-a42c-5f36-bb5b-2e187e4bd60e"
+        },
+        {
+          "expected": {
+            "instance": "ir_emitter",
+            "reference": "D11",
+            "text": "IR TX",
+            "at_mm": [
+              4.5,
+              92
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user",
+            "angle_deg": 0
+          },
+          "actual_id": "68d7a2b4-551b-52f3-bccc-d1e40e7d7a71"
+        },
+        {
+          "expected": {
+            "instance": "s3_dbg_header",
+            "reference": "J2",
+            "text": "S3 DBG",
+            "at_mm": [
+              3.075,
+              109.6
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "B.Silkscreen",
+            "role": "service",
+            "angle_deg": 0
+          },
+          "actual_id": "519a6de1-f793-5802-ab96-8869ef437134"
+        },
+        {
+          "expected": {
+            "instance": "c5_dbg_header",
+            "reference": "J6",
+            "text": "C5 DBG",
+            "at_mm": [
+              25.075,
+              111.35
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "B.Silkscreen",
+            "role": "service",
+            "angle_deg": 0
+          },
+          "actual_id": "97b715ce-2d09-52f5-af15-f4f58411c4cd"
+        },
+        {
+          "expected": {
+            "instance": "hub_rp_dbg_header",
+            "reference": "J10",
+            "text": "HUB DBG",
+            "at_mm": [
+              35.275,
+              140.35
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "B.Silkscreen",
+            "role": "service",
+            "angle_deg": 0
+          },
+          "actual_id": "8201f58a-e503-5744-aa10-1d14d5f19bd1"
+        },
+        {
+          "expected": {
+            "instance": "s3_rf_board_connector",
+            "reference": "J4",
+            "text": "S3 ANT",
+            "at_mm": [
+              24.04,
+              5
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "B.Silkscreen",
+            "role": "assembly",
+            "angle_deg": 0
+          },
+          "actual_id": "9cd094d5-d400-5290-86c5-6f4bd21b49f2"
+        },
+        {
+          "expected": {
+            "instance": "c5_rf_board_connector",
+            "reference": "J8",
+            "text": "C5 ANT",
+            "at_mm": [
+              57.575,
+              14.25
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "B.Silkscreen",
+            "role": "assembly",
+            "angle_deg": 0
+          },
+          "actual_id": "2c1f704f-e335-5436-8856-5dc120fa3b8a"
+        },
+        {
+          "expected": {
+            "instance": "nrf0_rf_board_connector",
+            "reference": "J13",
+            "text": "nRF1 ANT",
+            "at_mm": [
+              5,
+              7.65
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "B.Silkscreen",
+            "role": "assembly",
+            "angle_deg": 0
+          },
+          "actual_id": "8cdf620e-41a0-587e-b2e5-843eab29db2f"
+        },
+        {
+          "expected": {
+            "instance": "nrf1_rf_board_connector",
+            "reference": "J15",
+            "text": "nRF2 ANT",
+            "at_mm": [
+              49.125,
+              15.25
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "B.Silkscreen",
+            "role": "assembly",
+            "angle_deg": 0
+          },
+          "actual_id": "f22290e6-cb91-5c24-af42-a377d7949ad1"
+        },
+        {
+          "expected": {
+            "instance": "nrf2_rf_board_connector",
+            "reference": "J17",
+            "text": "nRF3 ANT",
+            "at_mm": [
+              68,
+              6.55
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "B.Silkscreen",
+            "role": "assembly",
+            "angle_deg": 0
+          },
+          "actual_id": "8c9a2636-c637-5015-992c-3ffedcda781f"
+        },
+        {
+          "expected": {
+            "instance": "m1_ui_plug",
+            "reference": "J18",
+            "text": "M1 UI",
+            "at_mm": [
+              43.5,
+              127.35
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "B.Silkscreen",
+            "role": "assembly",
+            "angle_deg": 0
+          },
+          "actual_id": "5a971320-11ad-5bda-9535-898c3dd81539"
+        },
+        {
+          "expected": {
+            "instance": "display_connector",
+            "reference": "J1",
+            "text": "DISPLAY",
+            "at_mm": [
+              31.5,
+              40.9
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "B.Silkscreen",
+            "role": "assembly",
+            "angle_deg": 90
+          },
+          "actual_id": "2aa852fb-1630-5ee9-9ae3-0212111015b1"
         }
       ]
     },
     {
       "project": "LESHY2-RF-R2",
       "status": "pass_scoped",
-      "required_count": 17,
-      "matched_count": 17,
-      "free_front_text_count": 22,
+      "required_count": 35,
+      "matched_count": 35,
+      "free_front_text_count": 30,
+      "free_back_text_count": 8,
       "errors": [],
       "geometry_candidates": [],
       "documented_geometry_exemptions": [
@@ -1445,7 +1696,8 @@
           "obstacle": {
             "kind": "via_drill_bbox",
             "via": "1be549ea-a7f7-4c59-8f12-fc46507446a1",
-            "front_tented": true,
+            "silk_layer": "F.Silkscreen",
+            "tented": true,
             "bbox_mm": {
               "x": [
                 30.075,
@@ -1457,7 +1709,7 @@
               ]
             }
           },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
         },
         {
           "kind": "via_drill_bbox",
@@ -1496,7 +1748,8 @@
           "obstacle": {
             "kind": "via_drill_bbox",
             "via": "6c08aaa1-d5f7-4150-961d-0c6cb5307632",
-            "front_tented": true,
+            "silk_layer": "F.Silkscreen",
+            "tented": true,
             "bbox_mm": {
               "x": [
                 30.675,
@@ -1508,7 +1761,7 @@
               ]
             }
           },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
         },
         {
           "kind": "via_drill_bbox",
@@ -1547,7 +1800,8 @@
           "obstacle": {
             "kind": "via_drill_bbox",
             "via": "5c1e152f-2d8a-4a8c-b59e-1a1a7edfb907",
-            "front_tented": true,
+            "silk_layer": "F.Silkscreen",
+            "tented": true,
             "bbox_mm": {
               "x": [
                 28.099999999999998,
@@ -1559,7 +1813,7 @@
               ]
             }
           },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
         },
         {
           "kind": "via_drill_bbox",
@@ -1598,7 +1852,8 @@
           "obstacle": {
             "kind": "via_drill_bbox",
             "via": "5ef8f8e1-7fc4-4f3c-895f-f34a3a50fdc1",
-            "front_tented": true,
+            "silk_layer": "F.Silkscreen",
+            "tented": true,
             "bbox_mm": {
               "x": [
                 31.599999999999998,
@@ -1610,7 +1865,7 @@
               ]
             }
           },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
         },
         {
           "kind": "via_drill_bbox",
@@ -1649,7 +1904,8 @@
           "obstacle": {
             "kind": "via_drill_bbox",
             "via": "9be695e1-37ef-425e-b4f8-f317f9bfa530",
-            "front_tented": true,
+            "silk_layer": "F.Silkscreen",
+            "tented": true,
             "bbox_mm": {
               "x": [
                 35.6,
@@ -1661,7 +1917,7 @@
               ]
             }
           },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
         },
         {
           "kind": "via_drill_bbox",
@@ -1700,7 +1956,8 @@
           "obstacle": {
             "kind": "via_drill_bbox",
             "via": "f34bf9de-2e89-4c63-93dd-e995cad7c2cc",
-            "front_tented": true,
+            "silk_layer": "F.Silkscreen",
+            "tented": true,
             "bbox_mm": {
               "x": [
                 35.6,
@@ -1712,7 +1969,7 @@
               ]
             }
           },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
         },
         {
           "kind": "via_drill_bbox",
@@ -1751,7 +2008,8 @@
           "obstacle": {
             "kind": "via_drill_bbox",
             "via": "5d70333d-ee99-404d-a28e-9c29ad1756bd",
-            "front_tented": true,
+            "silk_layer": "F.Silkscreen",
+            "tented": true,
             "bbox_mm": {
               "x": [
                 30.7,
@@ -1763,7 +2021,7 @@
               ]
             }
           },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
         },
         {
           "kind": "via_drill_bbox",
@@ -1802,7 +2060,8 @@
           "obstacle": {
             "kind": "via_drill_bbox",
             "via": "14f075f2-f2cb-4eba-9cd0-c1f6be679b16",
-            "front_tented": true,
+            "silk_layer": "F.Silkscreen",
+            "tented": true,
             "bbox_mm": {
               "x": [
                 31.5,
@@ -1814,7 +2073,7 @@
               ]
             }
           },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
         },
         {
           "kind": "via_drill_bbox",
@@ -1853,7 +2112,8 @@
           "obstacle": {
             "kind": "via_drill_bbox",
             "via": "912096da-57fd-480f-909d-af464f913893",
-            "front_tented": true,
+            "silk_layer": "F.Silkscreen",
+            "tented": true,
             "bbox_mm": {
               "x": [
                 24.544999999999998,
@@ -1865,7 +2125,59 @@
               ]
             }
           },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
+        },
+        {
+          "kind": "front_fab_body_bbox",
+          "text": {
+            "id": "54f4a317-74a1-5022-9bf8-d86607ce850c",
+            "text": "NTC0 PAD",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              30.45,
+              89.1
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                26.634524,
+                34.265477
+              ],
+              "y": [
+                88.25175,
+                89.94825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "front_fab_body_bbox",
+            "silk_layer": "F.Silkscreen",
+            "reference": "BT1",
+            "bbox_mm": {
+              "x": [
+                20.06,
+                59.94
+              ],
+              "y": [
+                46.42,
+                123.58
+              ]
+            },
+            "reason": "No native courtyard; conservative same-side Fab graphics envelope"
+          },
+          "exemption_reason": "Correctly positioned assembly marking intentionally hidden after final assembly"
         },
         {
           "kind": "via_drill_bbox",
@@ -1904,7 +2216,8 @@
           "obstacle": {
             "kind": "via_drill_bbox",
             "via": "04183973-c590-4198-b03e-e7dc894539b4",
-            "front_tented": true,
+            "silk_layer": "F.Silkscreen",
+            "tented": true,
             "bbox_mm": {
               "x": [
                 33.3,
@@ -1916,7 +2229,7 @@
               ]
             }
           },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
         },
         {
           "kind": "via_drill_bbox",
@@ -1955,7 +2268,8 @@
           "obstacle": {
             "kind": "via_drill_bbox",
             "via": "d166b04d-7425-4fc2-b4af-60d6a02c6fa4",
-            "front_tented": true,
+            "silk_layer": "F.Silkscreen",
+            "tented": true,
             "bbox_mm": {
               "x": [
                 34.265,
@@ -1967,7 +2281,7 @@
               ]
             }
           },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
         },
         {
           "kind": "via_drill_bbox",
@@ -2006,7 +2320,8 @@
           "obstacle": {
             "kind": "via_drill_bbox",
             "via": "d2e8225f-06ce-4bf9-b2ef-e5e120d7cbd9",
-            "front_tented": true,
+            "silk_layer": "F.Silkscreen",
+            "tented": true,
             "bbox_mm": {
               "x": [
                 32.1,
@@ -2018,7 +2333,7 @@
               ]
             }
           },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
         },
         {
           "kind": "via_drill_bbox",
@@ -2057,7 +2372,8 @@
           "obstacle": {
             "kind": "via_drill_bbox",
             "via": "392da3cb-d5c7-4259-bd4c-1710de1c1385",
-            "front_tented": true,
+            "silk_layer": "F.Silkscreen",
+            "tented": true,
             "bbox_mm": {
               "x": [
                 33.3,
@@ -2069,7 +2385,59 @@
               ]
             }
           },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
+        },
+        {
+          "kind": "front_fab_body_bbox",
+          "text": {
+            "id": "70239028-566d-506d-adee-f21ecd2010c6",
+            "text": "NTC1 PAD",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              49.55,
+              89.1
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                45.734524,
+                53.365477
+              ],
+              "y": [
+                88.25175,
+                89.94825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "front_fab_body_bbox",
+            "silk_layer": "F.Silkscreen",
+            "reference": "BT1",
+            "bbox_mm": {
+              "x": [
+                20.06,
+                59.94
+              ],
+              "y": [
+                46.42,
+                123.58
+              ]
+            },
+            "reason": "No native courtyard; conservative same-side Fab graphics envelope"
+          },
+          "exemption_reason": "Correctly positioned assembly marking intentionally hidden after final assembly"
         },
         {
           "kind": "via_drill_bbox",
@@ -2108,7 +2476,8 @@
           "obstacle": {
             "kind": "via_drill_bbox",
             "via": "16ac47fa-4aa7-436a-b34e-2d566d69f14a",
-            "front_tented": true,
+            "silk_layer": "F.Silkscreen",
+            "tented": true,
             "bbox_mm": {
               "x": [
                 49.9,
@@ -2120,7 +2489,7 @@
               ]
             }
           },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
         },
         {
           "kind": "via_drill_bbox",
@@ -2159,7 +2528,8 @@
           "obstacle": {
             "kind": "via_drill_bbox",
             "via": "aae53468-fb0f-4737-b65d-295ac37bbf58",
-            "front_tented": true,
+            "silk_layer": "F.Silkscreen",
+            "tented": true,
             "bbox_mm": {
               "x": [
                 50.6,
@@ -2171,10 +2541,638 @@
               ]
             }
           },
-          "exemption_reason": "Native front tenting covers this via; it is not a front solder-mask opening"
+          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "cde4a25f-116c-5e9d-9dd1-0481e02b8cce",
+            "text": "CELL0 +",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              30.45,
+              128.82
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                27.086905,
+                33.813096
+              ],
+              "y": [
+                127.97175,
+                129.66825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "6150d8bc-aacd-40ba-81c5-c5e129adbc69",
+            "silk_layer": "F.Silkscreen",
+            "tented": true,
+            "bbox_mm": {
+              "x": [
+                28.975,
+                29.225
+              ],
+              "y": [
+                129.275,
+                129.525
+              ]
+            }
+          },
+          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "cde4a25f-116c-5e9d-9dd1-0481e02b8cce",
+            "text": "CELL0 +",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              30.45,
+              128.82
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                27.086905,
+                33.813096
+              ],
+              "y": [
+                127.97175,
+                129.66825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "6e7d7844-8867-48b3-ae71-9e50635884a8",
+            "silk_layer": "F.Silkscreen",
+            "tented": true,
+            "bbox_mm": {
+              "x": [
+                28.475,
+                28.725
+              ],
+              "y": [
+                129.275,
+                129.525
+              ]
+            }
+          },
+          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "cde4a25f-116c-5e9d-9dd1-0481e02b8cce",
+            "text": "CELL0 +",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              30.45,
+              128.82
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                27.086905,
+                33.813096
+              ],
+              "y": [
+                127.97175,
+                129.66825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "ddca7721-b136-45ab-9b73-e2e33c2ed0f2",
+            "silk_layer": "F.Silkscreen",
+            "tented": true,
+            "bbox_mm": {
+              "x": [
+                29.299999999999997,
+                29.5
+              ],
+              "y": [
+                128.55,
+                128.75
+              ]
+            }
+          },
+          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
         }
       ],
       "resolved_geometry_findings": [
+        {
+          "kind": "front_pad_mask_bbox",
+          "text": {
+            "id": "1a44aaab-bb6b-5660-9337-f61b0e1c718f",
+            "text": "CELL0 -",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              30.45,
+              41.2
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                27.086905,
+                33.813096
+              ],
+              "y": [
+                40.35175,
+                42.04825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "front_pad_mask_bbox",
+            "silk_layer": "F.Silkscreen",
+            "pad": "BT1.2",
+            "native_pad_id": "1d91decd-c234-5596-934c-f8c87d108f96",
+            "shape": 1,
+            "at_mm": [
+              30.45,
+              44.0
+            ],
+            "size_mm": [
+              4.0,
+              6.0
+            ],
+            "offset_mm": [
+              0.0,
+              0.0
+            ],
+            "rotation_deg": 90.0,
+            "roundrect_radius_mm": 1.0,
+            "mask_expansion_mm": 0.0,
+            "bbox_mm": {
+              "x": [
+                27.45,
+                33.45
+              ],
+              "y": [
+                42.0,
+                46.0
+              ]
+            },
+            "native_text_clearances": {
+              "1a44aaab-bb6b-5660-9337-f61b0e1c718f": {
+                "status": "measured",
+                "method": "native_stroke_shape_to_pad_mask",
+                "gap_lower_mm": 0.270181,
+                "gap_upper_mm": 0.270182,
+                "inputs_sha256": "6a1664f101153e6be0380e5e8f692431087bc9e23b71b19de1b6e05b6e55b7aa"
+              }
+            }
+          },
+          "required_mask_gap_mm": 0.15,
+          "native_mask_gap_mm": [
+            0.270181,
+            0.270182
+          ],
+          "resolution_reason": "Actual native text strokes, including pen width, clear the actual pad mask by the required gap"
+        },
+        {
+          "kind": "front_pad_mask_bbox",
+          "text": {
+            "id": "cde4a25f-116c-5e9d-9dd1-0481e02b8cce",
+            "text": "CELL0 +",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              30.45,
+              128.82
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                27.086905,
+                33.813096
+              ],
+              "y": [
+                127.97175,
+                129.66825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "front_pad_mask_bbox",
+            "silk_layer": "F.Silkscreen",
+            "pad": "BT1.1",
+            "native_pad_id": "3c980a83-a762-5b51-ab38-c2443f61651c",
+            "shape": 1,
+            "at_mm": [
+              30.45,
+              126.0
+            ],
+            "size_mm": [
+              4.0,
+              6.0
+            ],
+            "offset_mm": [
+              0.0,
+              0.0
+            ],
+            "rotation_deg": 90.0,
+            "roundrect_radius_mm": 1.0,
+            "mask_expansion_mm": 0.0,
+            "bbox_mm": {
+              "x": [
+                27.45,
+                33.45
+              ],
+              "y": [
+                124.0,
+                128.0
+              ]
+            },
+            "native_text_clearances": {
+              "cde4a25f-116c-5e9d-9dd1-0481e02b8cce": {
+                "status": "measured",
+                "method": "native_stroke_shape_to_pad_mask",
+                "gap_lower_mm": 0.199819,
+                "gap_upper_mm": 0.19982,
+                "inputs_sha256": "a327692d8b2ecd1b527e7e86792b8df4ad5279155a3dc6597221b0aae4f97ae9"
+              }
+            }
+          },
+          "required_mask_gap_mm": 0.15,
+          "native_mask_gap_mm": [
+            0.199819,
+            0.19982
+          ],
+          "resolution_reason": "Actual native text strokes, including pen width, clear the actual pad mask by the required gap"
+        },
+        {
+          "kind": "front_pad_mask_bbox",
+          "text": {
+            "id": "9708b50b-53f7-5c06-8ec4-c6402d612b81",
+            "text": "CELL1 +",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              49.55,
+              41.2
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                46.186905,
+                52.913096
+              ],
+              "y": [
+                40.35175,
+                42.04825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "front_pad_mask_bbox",
+            "silk_layer": "F.Silkscreen",
+            "pad": "BT1.3",
+            "native_pad_id": "b5e188c6-a027-5f04-9adc-f60eab325063",
+            "shape": 1,
+            "at_mm": [
+              49.55,
+              44.0
+            ],
+            "size_mm": [
+              4.0,
+              6.0
+            ],
+            "offset_mm": [
+              0.0,
+              0.0
+            ],
+            "rotation_deg": 90.0,
+            "roundrect_radius_mm": 1.0,
+            "mask_expansion_mm": 0.0,
+            "bbox_mm": {
+              "x": [
+                46.55,
+                52.55
+              ],
+              "y": [
+                42.0,
+                46.0
+              ]
+            },
+            "native_text_clearances": {
+              "9708b50b-53f7-5c06-8ec4-c6402d612b81": {
+                "status": "measured",
+                "method": "native_stroke_shape_to_pad_mask",
+                "gap_lower_mm": 0.270181,
+                "gap_upper_mm": 0.270182,
+                "inputs_sha256": "cb6022a042e585d2d4dc21839614976127167c03992cd655e7c3abdd06d295f2"
+              }
+            }
+          },
+          "required_mask_gap_mm": 0.15,
+          "native_mask_gap_mm": [
+            0.270181,
+            0.270182
+          ],
+          "resolution_reason": "Actual native text strokes, including pen width, clear the actual pad mask by the required gap"
+        },
+        {
+          "kind": "front_pad_mask_bbox",
+          "text": {
+            "id": "7ced609f-b381-50dc-ad85-06a526eab29c",
+            "text": "CELL1 -",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              49.55,
+              128.82
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                46.186905,
+                52.913096
+              ],
+              "y": [
+                127.97175,
+                129.66825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "front_pad_mask_bbox",
+            "silk_layer": "F.Silkscreen",
+            "pad": "BT1.4",
+            "native_pad_id": "ac278f0b-fe63-5028-9e36-8693e1aa5a9a",
+            "shape": 1,
+            "at_mm": [
+              49.55,
+              126.0
+            ],
+            "size_mm": [
+              4.0,
+              6.0
+            ],
+            "offset_mm": [
+              0.0,
+              0.0
+            ],
+            "rotation_deg": 90.0,
+            "roundrect_radius_mm": 1.0,
+            "mask_expansion_mm": 0.0,
+            "bbox_mm": {
+              "x": [
+                46.55,
+                52.55
+              ],
+              "y": [
+                124.0,
+                128.0
+              ]
+            },
+            "native_text_clearances": {
+              "7ced609f-b381-50dc-ad85-06a526eab29c": {
+                "status": "measured",
+                "method": "native_stroke_shape_to_pad_mask",
+                "gap_lower_mm": 0.199819,
+                "gap_upper_mm": 0.19982,
+                "inputs_sha256": "5e6c3d6d500851202258bfdbadb2253b64a7eba8e3a1704b5a5e9dd5155a9655"
+              }
+            }
+          },
+          "required_mask_gap_mm": 0.15,
+          "native_mask_gap_mm": [
+            0.199819,
+            0.19982
+          ],
+          "resolution_reason": "Actual native text strokes, including pen width, clear the actual pad mask by the required gap"
+        },
+        {
+          "kind": "user_text_bbox_overlap",
+          "text": {
+            "id": "5b3b33d0-b1e4-475d-9f1a-4e54f4cf2866",
+            "text": "ESP32-LESHY2",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              40.0,
+              130.5
+            ],
+            "size_mm": [
+              1.55,
+              1.55
+            ],
+            "thickness_mm": 0.23,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                30.879049,
+                49.120952
+              ],
+              "y": [
+                129.1896,
+                131.8104
+              ]
+            }
+          },
+          "other_text": {
+            "id": "cde4a25f-116c-5e9d-9dd1-0481e02b8cce",
+            "text": "CELL0 +",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              30.45,
+              128.82
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                27.086905,
+                33.813096
+              ],
+              "y": [
+                127.97175,
+                129.66825
+              ]
+            }
+          },
+          "native_text_gap_mm": [
+            0.19028,
+            0.190281
+          ],
+          "resolution_reason": "Actual native strokes, including both pen widths, are separated by the required gap"
+        },
+        {
+          "kind": "user_text_bbox_overlap",
+          "text": {
+            "id": "5b3b33d0-b1e4-475d-9f1a-4e54f4cf2866",
+            "text": "ESP32-LESHY2",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              40.0,
+              130.5
+            ],
+            "size_mm": [
+              1.55,
+              1.55
+            ],
+            "thickness_mm": 0.23,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                30.879049,
+                49.120952
+              ],
+              "y": [
+                129.1896,
+                131.8104
+              ]
+            }
+          },
+          "other_text": {
+            "id": "7ced609f-b381-50dc-ad85-06a526eab29c",
+            "text": "CELL1 -",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              49.55,
+              128.82
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                46.186905,
+                52.913096
+              ],
+              "y": [
+                127.97175,
+                129.66825
+              ]
+            }
+          },
+          "native_text_gap_mm": [
+            0.19028,
+            0.190281
+          ],
+          "resolution_reason": "Actual native strokes, including both pen widths, are separated by the required gap"
+        },
         {
           "kind": "user_text_bbox_overlap",
           "text": {
@@ -2547,6 +3545,38 @@
         },
         {
           "expected": {
+            "instance": "pack_ntc0",
+            "reference": "R33",
+            "text": "NTC0 PAD",
+            "at_mm": [
+              30.45,
+              89.1
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "assembly"
+          },
+          "actual_id": "54f4a317-74a1-5022-9bf8-d86607ce850c"
+        },
+        {
+          "expected": {
+            "instance": "pack_ntc1",
+            "reference": "R34",
+            "text": "NTC1 PAD",
+            "at_mm": [
+              49.55,
+              89.1
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "assembly"
+          },
+          "actual_id": "70239028-566d-506d-adee-f21ecd2010c6"
+        },
+        {
+          "expected": {
             "instance": "unit_connector",
             "reference": "J11",
             "text": "M5 UNIT",
@@ -2592,16 +3622,300 @@
             "role": "user"
           },
           "actual_id": "4d9c54f8-df77-5343-9fba-f9efbcd00c60"
+        },
+        {
+          "expected": {
+            "instance": "headphone_jack",
+            "reference": "U83",
+            "text": "HEADSET",
+            "at_mm": [
+              5,
+              97.9
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user",
+            "angle_deg": 0
+          },
+          "actual_id": "c121ac1c-f798-5b6d-977c-d66007633585"
+        },
+        {
+          "expected": {
+            "instance": "power_command_switch",
+            "reference": "SW5",
+            "text": "POWER",
+            "at_mm": [
+              75,
+              114.1
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user",
+            "angle_deg": 0
+          },
+          "actual_id": "599225f5-5d0e-54a0-aa2d-439c5d8535f7"
+        },
+        {
+          "expected": {
+            "instance": "u214_connector",
+            "reference": "J10",
+            "text": "CAP",
+            "at_mm": [
+              40,
+              36
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user",
+            "angle_deg": 0
+          },
+          "actual_id": "5845d194-7532-5805-b576-5f42f5a116e2"
+        },
+        {
+          "expected": {
+            "instance": "u219_nfc_pickup_loop",
+            "reference": "L32",
+            "text": "NFC",
+            "at_mm": [
+              55,
+              29
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user",
+            "angle_deg": 0
+          },
+          "actual_id": "e9ed2c37-dc6c-5008-8870-cb6aa7bb9548"
+        },
+        {
+          "expected": {
+            "instance": "pack_holder",
+            "reference": "BT1",
+            "text": "CELL0 -",
+            "at_mm": [
+              30.45,
+              41.2
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user",
+            "angle_deg": 0
+          },
+          "actual_id": "1a44aaab-bb6b-5660-9337-f61b0e1c718f"
+        },
+        {
+          "expected": {
+            "instance": "pack_holder",
+            "reference": "BT1",
+            "text": "CELL1 +",
+            "at_mm": [
+              49.55,
+              41.2
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user",
+            "angle_deg": 0
+          },
+          "actual_id": "9708b50b-53f7-5c06-8ec4-c6402d612b81"
+        },
+        {
+          "expected": {
+            "instance": "pack_holder",
+            "reference": "BT1",
+            "text": "CELL0 +",
+            "at_mm": [
+              30.45,
+              128.82
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user",
+            "angle_deg": 0
+          },
+          "actual_id": "cde4a25f-116c-5e9d-9dd1-0481e02b8cce"
+        },
+        {
+          "expected": {
+            "instance": "pack_holder",
+            "reference": "BT1",
+            "text": "CELL1 -",
+            "at_mm": [
+              49.55,
+              128.82
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "F.Silkscreen",
+            "role": "user",
+            "angle_deg": 0
+          },
+          "actual_id": "7ced609f-b381-50dc-ad85-06a526eab29c"
+        },
+        {
+          "expected": {
+            "instance": "pack_dbg_header",
+            "reference": "J2",
+            "text": "PACK",
+            "at_mm": [
+              60.42,
+              99.425
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "B.Silkscreen",
+            "role": "service",
+            "angle_deg": 90
+          },
+          "actual_id": "acd89764-feb6-529f-a94a-8d3bb899cf9e"
+        },
+        {
+          "expected": {
+            "instance": "rf_rp_dbg_header",
+            "reference": "J3",
+            "text": "RF",
+            "at_mm": [
+              35.05,
+              108.42
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "B.Silkscreen",
+            "role": "service",
+            "angle_deg": 0
+          },
+          "actual_id": "16bf4a35-8b95-508f-9fe4-562dd330ebe3"
+        },
+        {
+          "expected": {
+            "instance": "safety_dbg_header",
+            "reference": "J13",
+            "text": "SAFE",
+            "at_mm": [
+              44.925,
+              105.169999
+            ],
+            "size_mm": 1.0,
+            "thickness_mm": 0.15,
+            "layer": "B.Silkscreen",
+            "role": "service",
+            "angle_deg": 0
+          },
+          "actual_id": "b306effb-6633-505f-a2c5-f6f3a1c8ba70"
+        },
+        {
+          "expected": {
+            "instance": "m1_rf_receptacle",
+            "reference": "J12",
+            "text": "M1 RF",
+            "at_mm": [
+              42.25,
+              127.65
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "B.Silkscreen",
+            "role": "assembly",
+            "angle_deg": 0
+          },
+          "actual_id": "9749a94d-fd2c-59db-91a9-a161e35130aa"
+        },
+        {
+          "expected": {
+            "instance": "speaker",
+            "reference": "LS1",
+            "text": "SPK +",
+            "at_mm": [
+              79,
+              69.895
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "B.Silkscreen",
+            "role": "assembly",
+            "angle_deg": 90
+          },
+          "actual_id": "f1adb620-1460-5e03-abe0-a6e00ce6bda0"
+        },
+        {
+          "expected": {
+            "instance": "speaker",
+            "reference": "LS1",
+            "text": "SPK -",
+            "at_mm": [
+              72,
+              57.895
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "B.Silkscreen",
+            "role": "assembly",
+            "angle_deg": 0
+          },
+          "actual_id": "9bf2d0dd-5518-5a9a-ab64-314c39d695d8"
+        },
+        {
+          "expected": {
+            "instance": "microphone",
+            "reference": "MK1",
+            "text": "MIC",
+            "at_mm": [
+              46.75,
+              142.35
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "B.Silkscreen",
+            "role": "assembly",
+            "angle_deg": 0
+          },
+          "actual_id": "87507d37-6945-5e6b-b0aa-be381feb174c"
+        },
+        {
+          "expected": {
+            "instance": "main_raw_pg_testpoint",
+            "reference": "TP1",
+            "text": "MAIN\nPG",
+            "at_mm": [
+              76.8975,
+              50.85
+            ],
+            "size_mm": 1,
+            "thickness_mm": 0.15,
+            "layer": "B.Silkscreen",
+            "role": "service",
+            "angle_deg": 0
+          },
+          "actual_id": "86d775f6-d8a0-5501-96fd-93af57dc9eb4"
         }
       ]
     }
   ],
+  "interface_coverage": {
+    "status": "pass_scoped_native",
+    "native_checked": true,
+    "required_interface_count": 76,
+    "matched_interface_count": 76,
+    "required_label_count": 95,
+    "matched_label_count": 95,
+    "native_matched_label_count": 95,
+    "errors": [],
+    "production_release_authorized": false
+  },
   "limitations": [
     "Bounding-box candidates require visual inspection and native DRC; they are not proven ink collisions.",
-    "Footprint package graphics/reference/value text are outside this free-board user-text audit.",
-    "Supported default native stroke-font/pad-mask and text/text pairs use actual shapes and a0.15-mm gap; unsupported pairs remain conservative candidates. Other geometry uses bounding boxes.",
+    "Visible footprint graphics/reference/value text are same-side ink obstacles, not automatically functional interface labels; hidden fields are not printed. This does not separately qualify package graphics against their own pads.",
+    "Supported default native stroke-font/pad-mask, exposed-via-mask, printed-silk and text/text pairs use actual shapes and a0.15-mm gap; unsupported pairs remain conservative candidates. Other geometry uses bounding boxes.",
     "Only hash-bound primary-reviewed B3S and CMEJ-0413-42-SMT-TR courtyard candidates may resolve against matching native/library geometry with maximum body tolerance; circular bodies use filled circles and actual text strokes. This is not assembly qualification.",
-    "Native Edge.Cuts envelope must match the contracted board; text is screened against its rounded envelope. Slot geometry and mechanical connector readiness are separate.",
+    "Native Edge.Cuts envelope must match the contracted board. Display-slot and microSD-recess source rectangles plus0.15-mm ink gap exclude text on both faces; native cutout correspondence is independently checked by placement projection. Connector/mechanical readiness remains separate.",
+    "The separately registered UI B-side speaker maximum body is a physical obstacle, not a printed Fab label. F/B text never collides with ink or SMD bodies solely on the opposite face; through drills remain obstacles on both faces.",
     "1.0 mm font and 0.15 mm stroke are this label contract's minima, not factory qualification."
   ]
 }

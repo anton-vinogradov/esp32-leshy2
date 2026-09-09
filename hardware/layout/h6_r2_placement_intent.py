@@ -11,6 +11,7 @@ import argparse
 import hashlib
 import importlib.util
 import json
+import math
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -81,7 +82,9 @@ def native_microphone_labels(board, pcbnew):
         if not isinstance(item, pcbnew.PCB_TEXT) or item.GetText() not in {"MIC", "MICROPHONE"}:
             continue
         result.append({"text": item.GetText(), "at_mm": point(item.GetPosition()),
-                       "layer": "F.Silkscreen" if item.GetLayer() == pcbnew.F_SilkS else board.GetLayerName(item.GetLayer()),
+                       "layer": ("F.Silkscreen" if item.GetLayer() == pcbnew.F_SilkS else
+                                 "B.Silkscreen" if item.GetLayer() == pcbnew.B_SilkS else
+                                 board.GetLayerName(item.GetLayer())),
                        "size_mm": point(item.GetTextSize()),
                        "thickness_mm": pcbnew.ToMM(item.GetTextThickness()),
                        "angle_deg": item.GetTextAngleDegrees(),
@@ -91,6 +94,32 @@ def native_microphone_labels(board, pcbnew):
                        "horizontal_justify": int(item.GetHorizJustify()),
                        "vertical_justify": int(item.GetVertJustify())})
     return result
+
+
+def exact_microphone_label(row, layer, at_mm, mirrored, tolerance=.002):
+    """Finite native MIC presentation; malformed fields fail without defaults."""
+    def near(value, expected):
+        return (isinstance(value, (int, float)) and not isinstance(value, bool)
+                and math.isfinite(value) and abs(value-expected) <= tolerance)
+
+    def pair(value, expected):
+        return (isinstance(value, (list, tuple)) and len(value) == 2
+                and all(near(v, e) for v, e in zip(value, expected)))
+
+    if not isinstance(row, dict):
+        return False
+    angle = row.get("angle_deg")
+    return (row.get("text") == "MIC" and row.get("layer") == layer
+            and pair(row.get("at_mm"), at_mm) and pair(row.get("size_mm"), [1., 1.])
+            and near(row.get("thickness_mm"), .15)
+            and isinstance(angle, (int, float)) and not isinstance(angle, bool)
+            and math.isfinite(angle) and near(angle % 360, 0)
+            and row.get("visible") is True and row.get("mirrored") is mirrored
+            and row.get("default_stroke_font") is True
+            and row.get("bold") is False and row.get("italic") is False
+            and type(row.get("horizontal_justify")) is int
+            and type(row.get("vertical_justify")) is int
+            and row.get("horizontal_justify") == row.get("vertical_justify") == 0)
 
 
 def native_snapshot(root=ROOT):
@@ -203,20 +232,34 @@ def evaluate(snapshot):
     ui_mic_labels = mic_labels.get(PROJECTS[0], [])
     label = ui_mic_labels[0] if len(ui_mic_labels) == 1 else None
     check("one readable UI front MIC label follows the RF microphone through the assembly transform",
-          mic is not None and label is not None and not mic_labels.get(PROJECTS[1], [])
-          and label.get("text") == "MIC" and label.get("layer") == "F.Silkscreen"
-          and near(label["at_mm"][0], width-mic["anchor_mm"][0])
-          and near(label["at_mm"][1], 148.9)
-          and len(label["size_mm"]) == 2 and all(near(v, 1.0) for v in label["size_mm"])
-          and near(label["thickness_mm"], .15) and near(label["angle_deg"] % 360, 0)
-          and label.get("visible") is True and label.get("mirrored") is False
-          and label.get("default_stroke_font") is True
-          and label.get("bold") is False and label.get("italic") is False
-          and label.get("horizontal_justify") == label.get("vertical_justify") == 0,
+          mic is not None and exact_microphone_label(
+              label, "F.Silkscreen", [width-mic["anchor_mm"][0], 148.9], False, tol),
           {"ui_labels": ui_mic_labels, "rf_labels": mic_labels.get(PROJECTS[1], []),
            "expected_ui_x_mm": width-mic["anchor_mm"][0] if mic is not None else None,
            "reference": "RF:MK1", "role": "cross_board_acoustic",
            "meaning": "MIC abbreviates the RF microphone at bottom enclosure access; it does not claim a downward capsule-port normal"})
+    rf_mic_labels = mic_labels.get(PROJECTS[1], [])
+    # The optional inside assembly caption is not a second exterior port.
+    # Independently bind its single accepted native pose and actual MK1 owner;
+    # a changed label contract cannot bless a shifted/mirrored/wrong-face label.
+    rf_owner_matches = (mic is not None
+                        and mic.get("footprint") == "Leshy2:CMEJ-0413-42-SMT-TR"
+                        and mic.get("value") == "Same Sky CMEJ-0413-42-SMT-TR"
+                        and mic.get("side") == "B.Cu"
+                        and near(mic["rotation_deg"] % 360, 0)
+                        and len(mic["anchor_mm"]) == 2
+                        and all(near(v, e) for v, e in zip(mic["anchor_mm"], [47., 147.4])))
+    rf_label_matches = (isinstance(rf_mic_labels, list)
+                        and (not rf_mic_labels or (len(rf_mic_labels) == 1
+                             and rf_owner_matches and exact_microphone_label(
+                                 rf_mic_labels[0], "B.Silkscreen", [46.75, 142.35], True, tol))))
+    check("RF MIC is absent or the single exact inner assembly caption of actual MK1",
+          rf_label_matches,
+          {"rf_labels": rf_mic_labels, "actual_owner": mic,
+           "expected_owner": {"reference": "MK1", "side": "B.Cu",
+                              "anchor_mm": [47., 147.4], "rotation_deg": 0},
+           "expected_label": {"text": "MIC", "layer": "B.Silkscreen", "at_mm": [46.75, 142.35]},
+           "role": "optional_inner_assembly", "replaces_required_UI_front_label": False})
     exterior_functions = {"BT1", "R33", "R34", "SW3", "SW4", "J5", "J6", "J7", "J8", "J9", "J10", "L32"}
     unexplained = sorted(ref for ref, row in rf.items()
                          if row["side"] == "F.Cu" and ref not in exterior_functions

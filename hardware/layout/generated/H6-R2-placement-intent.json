@@ -3,11 +3,11 @@
   "status": "pass",
   "scope": "Independent planar product intent from native PCB; not general DRC or assembled-Z qualification",
   "sources": {
-    "hardware/layout/h6_r2_placement_intent.py": "412c74a3d46c9b5b7724237baf200afbcf47d0916ff156f3f2f0cbbced5eb905",
+    "hardware/layout/h6_r2_placement_intent.py": "f072b8b19f48ec88cfa79541da7635fedfa46c5daae7cd0ec95376311cdf4acc",
     "hardware/layout/h6_r2_speaker_fit.py": "9e677eca3c1d320fc19fd25e961d884a1a903ca9f0af1ca3ad95835d20c38d30",
     "hardware/layout/h6-r2-speaker-body.json": "79349b47e281bc89fc57b843987d5458035c59c9fe6459de42a5949ee690f78b",
-    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "5a29ed7272d412d72b62265bd3940864e4feb23a3f5e5d7ed60f9497620567cb",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "5442331dc15ec87f9c315bf64996a4e0841901d80e8ffc36f2b67b7669aca96b"
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "b93eee66471cc46dd165b108c52442aa3a3ada8446248141b22ba5ca1bf03143",
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "a0853d63d1ec4d74e5afd2ade5b554246008342372e9de94eaf0721241dfc4fa"
   },
   "checks": [
     {
@@ -207,11 +207,101 @@
             "vertical_justify": 0
           }
         ],
-        "rf_labels": [],
+        "rf_labels": [
+          {
+            "text": "MIC",
+            "at_mm": [
+              46.75,
+              142.35
+            ],
+            "layer": "B.Silkscreen",
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "visible": true,
+            "mirrored": true,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "horizontal_justify": 0,
+            "vertical_justify": 0
+          }
+        ],
         "expected_ui_x_mm": 33.0,
         "reference": "RF:MK1",
         "role": "cross_board_acoustic",
         "meaning": "MIC abbreviates the RF microphone at bottom enclosure access; it does not claim a downward capsule-port normal"
+      }
+    },
+    {
+      "requirement": "RF MIC is absent or the single exact inner assembly caption of actual MK1",
+      "pass": true,
+      "observed": {
+        "rf_labels": [
+          {
+            "text": "MIC",
+            "at_mm": [
+              46.75,
+              142.35
+            ],
+            "layer": "B.Silkscreen",
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "visible": true,
+            "mirrored": true,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "horizontal_justify": 0,
+            "vertical_justify": 0
+          }
+        ],
+        "actual_owner": {
+          "footprint": "Leshy2:CMEJ-0413-42-SMT-TR",
+          "value": "Same Sky CMEJ-0413-42-SMT-TR",
+          "side": "B.Cu",
+          "anchor_mm": [
+            47.0,
+            147.4
+          ],
+          "rotation_deg": 0.0,
+          "fab_stroke_bounds_mm": [
+            44.95,
+            145.35,
+            49.05,
+            149.45
+          ],
+          "actuator_mm": null,
+          "pad1_nets": [
+            "/RF_22_AUDIO_CODEC_IO/MIC_RAW"
+          ]
+        },
+        "expected_owner": {
+          "reference": "MK1",
+          "side": "B.Cu",
+          "anchor_mm": [
+            47.0,
+            147.4
+          ],
+          "rotation_deg": 0
+        },
+        "expected_label": {
+          "text": "MIC",
+          "layer": "B.Silkscreen",
+          "at_mm": [
+            46.75,
+            142.35
+          ]
+        },
+        "role": "optional_inner_assembly",
+        "replaces_required_UI_front_label": false
       }
     },
     {

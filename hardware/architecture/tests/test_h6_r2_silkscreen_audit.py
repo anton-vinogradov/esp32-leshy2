@@ -5,6 +5,8 @@ import copy
 import json
 from pathlib import Path
 import sys
+import tempfile
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
@@ -28,6 +30,45 @@ def actual(text="BOOT", at=(6, 12), identity="text-1"):
 
 
 class SilkscreenContractTests(unittest.TestCase):
+    def test_independent_coverage_failure_prevents_overall_pass(self):
+        import h6_r2_interface_label_coverage as coverage
+        projects = ("LESHY2-UI-R2", "LESHY2-RF-R2")
+        bindings = {"source_hashes": {}, "projects": {
+            project: {"canonical_to_kicad": {}} for project in projects}}
+        with patch.dict(sys.modules, {"pcbnew": SimpleNamespace(LoadBoard=lambda path: object())}), \
+                patch.object(audit, "sha256", return_value="f" * 64), \
+                patch.object(audit, "checked_net_bindings", return_value=bindings), \
+                patch.object(audit, "native_snapshot", side_effect=lambda board, project, *args:
+                             {"project": project, "placements": [], "texts": []}), \
+                patch.object(audit, "labels", return_value=[]), \
+                patch.object(audit, "audit_snapshot", return_value={"status": "pass_scoped"}), \
+                patch.object(coverage, "check_coverage", wraps=coverage.check_coverage) as check:
+            result = audit.build()
+        self.assertEqual("fail", result["status"])
+        self.assertTrue(result["interface_coverage"]["errors"])
+        args, kwargs = check.call_args
+        self.assertEqual(1208, len(args[0]))  # Full electrical inventory, not producer labels.
+        self.assertEqual(set(projects), set(kwargs["native_snapshots"]))
+        self.assertIn("hardware/layout/h6-r2-interface-label-coverage.json", result["inputs_sha256"])
+        self.assertIn("hardware/layout/h6-r2-interface-label-placements.json", result["inputs_sha256"])
+
+    def test_ui_cutouts_exclude_both_faces_and_no_assembly_exception(self):
+        contract = json.loads(audit.CONTRACT.read_text())
+        obstacles = audit.cutout_obstacles("LESHY2-UI-R2", contract)
+        self.assertEqual({"display_slot", "microsd_recess"}, {o["feature"] for o in obstacles})
+        self.assertEqual([], audit.cutout_obstacles("LESHY2-RF-R2", contract))
+        for obstacle in obstacles:
+            for axis in ("x", "y"):
+                self.assertAlmostEqual(obstacle["source_bbox_mm"][axis][0] - .15, obstacle["bbox_mm"][axis][0])
+                self.assertAlmostEqual(obstacle["source_bbox_mm"][axis][1] + .15, obstacle["bbox_mm"][axis][1])
+            center = tuple(sum(obstacle["source_bbox_mm"][axis]) / 2 for axis in ("x", "y"))
+            for layer in ("F.Silkscreen", "B.Silkscreen"):
+                row = dict(actual(at=center), layer=layer, mirrored=layer.startswith("B."))
+                found, exemptions = audit.geometry_candidates([row], [obstacle], 80, 150,
+                                                               assembly_texts={row["text"]: row["at_mm"]})
+                self.assertIn("through_cutout_bbox", {r["kind"] for r in found})
+                self.assertEqual([], exemptions)
+
     def test_correct_native_properties_match(self):
         errors, matches = audit.required_label_findings([expected()], [actual()])
         self.assertEqual([], errors)
@@ -61,6 +102,26 @@ class SilkscreenContractTests(unittest.TestCase):
         self.assertEqual(["left", "right"], [row["actual_id"] for row in matches])
         errors, _ = audit.required_label_findings(required, native[:1])
         self.assertTrue(errors)  # One BOOT cannot satisfy two banks.
+
+    def test_back_text_requires_readable_mirroring_and_explicit_angle(self):
+        required = dict(expected(), layer="B.Silkscreen", angle_deg=90)
+        native = dict(actual(), layer="B.Silkscreen", mirrored=True, angle_deg=-270)
+        self.assertEqual([], audit.required_label_findings([required], [native])[0])
+        for key, value, field in (("mirrored", False, "mirror_or_visibility"),
+                                  ("visible", False, "mirror_or_visibility"),
+                                  ("angle_deg", 0, "angle_deg"),
+                                  ("angle_deg", float("nan"), "angle_deg"),
+                                  ("angle_deg", True, "angle_deg")):
+            with self.subTest(key=key, value=value):
+                errors, _ = audit.required_label_findings([required], [dict(native, **{key: value})])
+                self.assertIn(field, errors[0]["fields"])
+
+    def test_same_xy_text_on_opposite_sides_is_not_a_duplicate_or_reused_label(self):
+        req = [expected(), dict(expected(), layer="B.Silkscreen")]
+        observed = [dict(actual(identity="back"), layer="B.Silkscreen", mirrored=True), actual()]
+        errors, matched = audit.required_label_findings(req, observed)
+        self.assertEqual([], errors)
+        self.assertEqual(["text-1", "back"], [x["actual_id"] for x in matched])
 
     def test_geometry_is_candidate_review_not_false_scoped_pass(self):
         snapshot = {"project": "LESHY2-UI-R2", "placements": [], "texts": [actual()],
@@ -139,6 +200,25 @@ class NetBindingAuthorityTests(unittest.TestCase):
 
 
 class SilkscreenGeometryTests(unittest.TestCase):
+    def test_existing_ntc_assembly_exception_is_exactly_bt1_front_body(self):
+        obstacle = {"kind": "front_fab_body_bbox", "reference": "BT1",
+                    "silk_layer": "F.Silkscreen", "bbox_mm": {"x": [0, 20], "y": [0, 20]}}
+        row = actual("NTC0 PAD")
+        assembly = {"NTC0 PAD": row["at_mm"], "OTHER": row["at_mm"]}
+        self.assertEqual([], audit.geometry_candidates([row], [obstacle], 80, 150, assembly_texts=assembly)[0])
+        mutations = [
+            (dict(row, at_mm=[6, 12.1]), obstacle),
+            (dict(row, text="OTHER"), obstacle),
+            (row, dict(obstacle, reference="OTHER")),
+            (dict(row, layer="B.Silkscreen", mirrored=True),
+             dict(obstacle, kind="back_fab_body_bbox", silk_layer="B.Silkscreen")),
+        ]
+        for text, body in mutations:
+            with self.subTest(text=text, body=body):
+                candidates, exemptions = audit.geometry_candidates([text], [body], 80, 150, assembly_texts=assembly)
+                self.assertEqual(1, len(candidates))
+                self.assertEqual([], exemptions)
+
     def test_close_mask_without_bbox_overlap_is_not_silently_passed(self):
         row = actual()
         obstacle = {"kind": "front_pad_mask_bbox", "pad": "SW8.5",
@@ -226,11 +306,62 @@ class SilkscreenGeometryTests(unittest.TestCase):
         candidates, _ = audit.geometry_candidates([row], [obstacle], 80, 150)
         self.assertTrue(candidates[0]["fab_graphics_bbox_overlap"])
 
-    def test_hidden_or_back_free_text_does_not_create_front_geometry_candidates(self):
+    def test_hidden_text_is_not_ink_and_back_text_has_no_front_obstacles(self):
         hidden, back = actual(), actual(identity="back")
         hidden["visible"], back["layer"] = False, "B.Silkscreen"
-        candidates, _ = audit.geometry_candidates([hidden, back], [], 80, 150)
+        candidates, _ = audit.geometry_candidates([hidden, back], [
+            {"kind": "front_courtyard_bbox", "bbox_mm": back["bbox_mm"]}], 80, 150)
         self.assertEqual([], candidates)
+
+    def test_both_sides_have_independent_courtyard_mask_and_text_checks(self):
+        front = actual()
+        back = dict(actual(identity="back"), layer="B.Silkscreen", mirrored=True)
+        box = front["bbox_mm"]
+        obstacles = [{"kind": prefix + kind, "silk_layer": layer, "bbox_mm": box}
+                     for prefix, layer in (("front", "F.Silkscreen"), ("back", "B.Silkscreen"))
+                     for kind in ("_courtyard_bbox", "_pad_mask_bbox")]
+        candidates, _ = audit.geometry_candidates([front, back], obstacles, 80, 150)
+        self.assertEqual(4, len(candidates))
+        self.assertFalse(any(c["kind"] == "user_text_bbox_overlap" for c in candidates))
+        for c in candidates:
+            self.assertEqual(c["text"]["layer"], c["obstacle"]["silk_layer"])
+        candidates, _ = audit.geometry_candidates([back, dict(back, id="other")], [], 80, 150)
+        self.assertEqual(["user_text_bbox_overlap"], [c["kind"] for c in candidates])
+
+    def test_through_drills_affect_both_faces_and_tenting_is_side_specific(self):
+        front = actual()
+        back = dict(actual(identity="back"), layer="B.Silkscreen", mirrored=True)
+        box = front["bbox_mm"]
+        candidates, _ = audit.geometry_candidates([front, back], [{"kind": "drill_bbox", "bbox_mm": box}], 80, 150)
+        self.assertEqual(2, len(candidates))
+        obstacles = [{"kind": "via_drill_bbox", "silk_layer": layer, "tented": tented, "bbox_mm": box}
+                     for layer, tented in (("F.Silkscreen", True), ("B.Silkscreen", False))]
+        candidates, exempt = audit.geometry_candidates([front, back], obstacles, 80, 150)
+        self.assertEqual(1, len(candidates))
+        self.assertEqual("B.Silkscreen", candidates[0]["text"]["layer"])
+        self.assertEqual("F.Silkscreen", exempt[0]["text"]["layer"])
+
+    def test_back_text_cannot_reuse_front_assembly_exception(self):
+        row = dict(actual("NTC0 PAD"), layer="B.Silkscreen", mirrored=True)
+        candidates, exempt = audit.geometry_candidates([row], [
+            {"kind": "back_courtyard_bbox", "silk_layer": "B.Silkscreen", "bbox_mm": row["bbox_mm"]}],
+            80, 150, assembly_texts={"NTC0 PAD": [6, 12]})
+        self.assertEqual(1, len(candidates))
+        self.assertEqual([], exempt)
+
+    def test_printed_outline_empty_space_requires_fresh_exact_stroke_proof(self):
+        row = dict(actual(), layer="B.Silkscreen", mirrored=True)
+        obstacle = {"kind": "printed_silk_bbox", "silk_layer": "B.Silkscreen", "bbox_mm": row["bbox_mm"]}
+        proof = {"status": "measured", "method": "native_stroke_shape_to_printed_silk",
+                 "gap_lower_mm": .2, "gap_upper_mm": .200001,
+                 "inputs_sha256": audit.clearance_witness(row, obstacle)}
+        obstacle["native_text_clearances"] = {row["id"]: proof}
+        self.assertEqual([], audit.geometry_candidates([row], [obstacle], 80, 150)[0])
+        for bad in (dict(row, mirrored=False), dict(row, angle_deg=90)):
+            self.assertEqual(1, len(audit.geometry_candidates([bad], [obstacle], 80, 150)[0]))
+        proof["gap_lower_mm"] = .14
+        proof["gap_upper_mm"] = .140001
+        self.assertEqual(1, len(audit.geometry_candidates([row], [obstacle], 80, 150)[0]))
 
     def test_full_text_box_not_anchor_must_fit_rounded_board(self):
         self.assertTrue(audit.within_outline({"x": [3, 5], "y": [3, 5]}, 80, 150, 2))
@@ -249,6 +380,64 @@ class SilkscreenGeometryTests(unittest.TestCase):
 
 @unittest.skipUnless(importlib.util.find_spec("pcbnew"), "Native extraction tests require KiCad Python")
 class NativeSilkscreenExtractionTests(unittest.TestCase):
+    def test_body_without_courtyard_still_obstructs_same_side_text(self):
+        import pcbnew
+        board = pcbnew.BOARD()
+        fp = pcbnew.FOOTPRINT(board)
+        fp.SetReference("BODY")
+        board.Add(fp)
+        graphic = pcbnew.PCB_SHAPE(fp)
+        graphic.SetShape(pcbnew.SHAPE_T_RECT)
+        graphic.SetLayer(pcbnew.B_Fab)
+        graphic.SetStart(pcbnew.VECTOR2I(pcbnew.FromMM(4), pcbnew.FromMM(10)))
+        graphic.SetEnd(pcbnew.VECTOR2I(pcbnew.FromMM(8), pcbnew.FromMM(14)))
+        graphic.SetWidth(pcbnew.FromMM(.1))
+        fp.SetLayer(pcbnew.B_Cu)
+        fp.Add(graphic)
+        for layer in (pcbnew.F_SilkS, pcbnew.B_SilkS):
+            text = pcbnew.PCB_TEXT(board)
+            text.SetText("BODY")
+            text.SetLayer(layer)
+            text.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(6), pcbnew.FromMM(12)))
+            text.SetTextSize(pcbnew.VECTOR2I(pcbnew.FromMM(1), pcbnew.FromMM(1)))
+            text.SetTextThickness(pcbnew.FromMM(.15))
+            board.Add(text)
+        snapshot = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
+        bodies = [o for o in snapshot["obstacles"] if o["kind"] == "back_fab_body_bbox"]
+        self.assertEqual(1, len(bodies))
+        found, _ = audit.geometry_candidates(snapshot["texts"], bodies, 80, 150)
+        self.assertEqual(["B.Silkscreen"], [r["text"]["layer"] for r in found])
+
+    def test_loaded_board_all_serialized_objects_unchanged_before_speaker_reference(self):
+        import pcbnew
+        import h6_r2_speaker_fit as speaker_fit
+        contract = json.loads(audit.CONTRACT.read_text())
+        contract["mechanical"]["speaker_body"] = json.loads(audit.SPEAKER_BODY.read_text())
+        ledger = json.loads(audit.LEDGER.read_text())["rows"]
+        project = "LESHY2-UI-R2"
+        source = ROOT / contract["boards"][project]["output"]
+        source_bytes = source.read_bytes()
+        board = pcbnew.LoadBoard(str(source))
+        with tempfile.TemporaryDirectory(prefix="leshy2-silk-readonly-test-") as temporary:
+            # Save only disposable copies to compare every serialized object,
+            # not a selection of poses or a footprint count. UUIDs retained.
+            output = Path(temporary) / "snapshot.kicad_pcb"
+            self.assertTrue(pcbnew.SaveBoard(str(output), board))
+            before = output.read_bytes()
+            checked = []
+            original = speaker_fit.check_native_speaker_geometry
+            def check_at_last_native_read(native, *args, **kwargs):
+                self.assertTrue(pcbnew.SaveBoard(str(output), native))
+                self.assertEqual(before, output.read_bytes())
+                checked.append(True)
+                return original(native, *args, **kwargs)
+            with patch.object(speaker_fit, "check_native_speaker_geometry", side_effect=check_at_last_native_read):
+                snapshot = audit.native_snapshot(board, project, ledger, contract, pcbnew)
+        self.assertEqual([True], checked)
+        self.assertEqual([], snapshot["extraction_errors"])
+        self.assertEqual(source_bytes, source.read_bytes())
+        self.assertTrue(any(o.get("reviewed_body") for o in snapshot["obstacles"]))
+
     def microphone_and_owner(self, at=(6, 114.95)):
         import pcbnew
         board = pcbnew.BOARD()
@@ -332,7 +521,157 @@ class NativeSilkscreenExtractionTests(unittest.TestCase):
             self.assertEqual([11, 110], obstacle["reviewed_circle_body"]["centre_mm"])
             fp.Flip(fp.GetPosition(), False)
             snapshot = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
-            self.assertFalse(any("reviewed_circle_body" in o for o in snapshot["obstacles"]))
+            back = next(o for o in snapshot["obstacles"] if "reviewed_circle_body" in o)
+            self.assertEqual("back_courtyard_bbox", back["kind"])
+            self.assertEqual("B.Silkscreen", back["silk_layer"])
+            self.assertEqual([11, 110], back["reviewed_circle_body"]["centre_mm"])
+            # Existing front text cannot see the now back-mounted microphone.
+            self.assertFalse(any(c["kind"] == "back_courtyard_bbox" for c in
+                                 audit.geometry_candidates(snapshot["texts"], snapshot["obstacles"], 80, 150)[0]))
+
+    def test_back_microphone_circle_and_pad_are_refined_on_actual_side(self):
+        import pcbnew
+        board, fp, text = self.microphone_and_owner((8, 112))
+        fp.Flip(fp.GetPosition(), False)
+        text.SetLayer(pcbnew.B_SilkS)
+        text.SetMirrored(True)
+        snapshot = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
+        body = next(o for o in snapshot["obstacles"] if o["kind"] == "back_courtyard_bbox")
+        self.assertEqual(2.1, body["reviewed_circle_body"]["radius_max_mm"])
+        self.assertEqual(0, audit.checked_circle_clearance(snapshot["texts"][0], body)["gap_lower_mm"])
+        self.assertIn("back_courtyard_bbox", {c["kind"] for c in audit.geometry_candidates(snapshot["texts"], snapshot["obstacles"], 80, 150)[0]})
+        pad = next(iter(fp.Pads()))
+        text.SetPosition(pad.GetPosition())
+        self.assertLess(audit.native_stroke_mask_clearance(text, pad, pcbnew)["gap_lower_mm"], .15)
+        text.SetLayer(pcbnew.F_SilkS)
+        text.SetMirrored(False)
+        self.assertEqual("unsupported", audit.native_stroke_mask_clearance(text, pad, pcbnew)["status"])
+
+    def test_native_printed_package_ink_not_its_bbox_or_hidden_reference(self):
+        import pcbnew
+        board = pcbnew.BOARD()
+        fp = pcbnew.FOOTPRINT(board)
+        board.Add(fp)
+        fp.SetReference("J1")
+        fp.Reference().SetLayer(pcbnew.B_SilkS)
+        fp.Reference().SetVisible(False)
+        fp.Value().SetVisible(False)
+        graphic = pcbnew.PCB_SHAPE(fp)
+        graphic.SetShape(pcbnew.SHAPE_T_RECT)
+        graphic.SetStart(pcbnew.VECTOR2I(pcbnew.FromMM(10), pcbnew.FromMM(10)))
+        graphic.SetEnd(pcbnew.VECTOR2I(pcbnew.FromMM(30), pcbnew.FromMM(30)))
+        graphic.SetWidth(pcbnew.FromMM(.15))
+        graphic.SetLayer(pcbnew.B_SilkS)
+        fp.Add(graphic)
+        text = pcbnew.PCB_TEXT(board)
+        text.SetText("DBG")
+        text.SetLayer(pcbnew.B_SilkS)
+        text.SetMirrored(True)
+        text.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(20), pcbnew.FromMM(20)))
+        text.SetTextSize(pcbnew.VECTOR2I(pcbnew.FromMM(1), pcbnew.FromMM(1)))
+        text.SetTextThickness(pcbnew.FromMM(.15))
+        board.Add(text)
+        snapshot = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
+        printed = [o for o in snapshot["obstacles"] if o["kind"] == "printed_silk_bbox"]
+        self.assertEqual(1, len(printed))
+        candidates, resolved = audit.geometry_candidates(snapshot["texts"], printed, 80, 150)
+        self.assertEqual([], candidates)  # The rectangle is an outline, not a filled body.
+        self.assertEqual(1, len(resolved))
+        text.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(10), pcbnew.FromMM(20)))
+        snapshot = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
+        self.assertIn("printed_silk_bbox", {c["kind"] for c in audit.geometry_candidates(snapshot["texts"], snapshot["obstacles"], 80, 150)[0]})
+        fp.Reference().SetPosition(text.GetPosition())
+        fp.Reference().SetVisible(True)
+        fp.Reference().SetMirrored(True)
+        snapshot = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
+        self.assertEqual(2, sum(o["kind"] == "printed_silk_bbox" for o in snapshot["obstacles"]))
+
+    def test_native_via_front_tent_does_not_hide_open_back_mask(self):
+        import pcbnew
+        board = pcbnew.BOARD()
+        via = pcbnew.PCB_VIA(board)
+        via.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(20), pcbnew.FromMM(20)))
+        via.SetWidth(pcbnew.FromMM(.6))
+        via.SetDrill(pcbnew.FromMM(.3))
+        via.SetLayerPair(pcbnew.F_Cu, pcbnew.B_Cu)
+        via.SetFrontTentingMode(pcbnew.TENTING_MODE_TENTED)
+        via.SetBackTentingMode(pcbnew.TENTING_MODE_NOT_TENTED)
+        board.Add(via)
+        for layer in (pcbnew.F_SilkS, pcbnew.B_SilkS):
+            text = pcbnew.PCB_TEXT(board)
+            text.SetText("TEST")
+            text.SetLayer(layer)
+            text.SetMirrored(layer == pcbnew.B_SilkS)
+            text.SetPosition(via.GetPosition())
+            text.SetTextSize(pcbnew.VECTOR2I(pcbnew.FromMM(1), pcbnew.FromMM(1)))
+            text.SetTextThickness(pcbnew.FromMM(.15))
+            board.Add(text)
+        snapshot = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
+        self.assertFalse(any(o["kind"] == "front_via_mask_bbox" for o in snapshot["obstacles"]))
+        self.assertTrue(any(o["kind"] == "back_via_mask_bbox" for o in snapshot["obstacles"]))
+        candidates, exempt = audit.geometry_candidates(snapshot["texts"], snapshot["obstacles"], 80, 150)
+        self.assertTrue(candidates)
+        self.assertTrue(all(c["text"]["layer"] == "B.Silkscreen" for c in candidates))
+        self.assertTrue(any(c["kind"] == "via_drill_bbox" and c["text"]["layer"] == "F.Silkscreen" for c in exempt))
+
+    def test_native_npth_drill_is_an_obstacle_on_both_faces(self):
+        import pcbnew
+        board = pcbnew.BOARD()
+        fp = pcbnew.FootprintLoad(
+            "/Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints/MountingHole.pretty",
+            "MountingHole_2.7mm_M2.5")
+        board.Add(fp)
+        fp.SetReference("H1")
+        fp.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(20), pcbnew.FromMM(20)))
+        fp.Reference().SetVisible(False)
+        fp.Value().SetVisible(False)
+        for layer in (pcbnew.F_SilkS, pcbnew.B_SilkS):
+            text = pcbnew.PCB_TEXT(board)
+            text.SetText("HOLE")
+            text.SetLayer(layer)
+            text.SetMirrored(layer == pcbnew.B_SilkS)
+            text.SetPosition(fp.GetPosition())
+            text.SetTextSize(pcbnew.VECTOR2I(pcbnew.FromMM(1), pcbnew.FromMM(1)))
+            text.SetTextThickness(pcbnew.FromMM(.15))
+            board.Add(text)
+        snapshot = audit.native_snapshot(board, "LESHY2-RF-R2", [], {}, pcbnew)
+        drills = [o for o in snapshot["obstacles"] if o["kind"] == "drill_bbox"]
+        self.assertEqual(1, len(drills))
+        candidates, _ = audit.geometry_candidates(snapshot["texts"], drills, 80, 150)
+        self.assertEqual({"F.Silkscreen", "B.Silkscreen"}, {c["text"]["layer"] for c in candidates})
+
+    def test_separate_speaker_body_is_back_physical_obstacle_not_fab_ink(self):
+        import pcbnew
+        from h6_r2_speaker_fit import add_speaker_assembly_geometry
+        board = pcbnew.BOARD()
+        spec = json.loads(audit.SPEAKER_BODY.read_text())
+        contract = {"mechanical": {"speaker_body": spec,
+                                  "display_bed": {"panel_bbox_mm": {"x": [0, 1], "y": [0, 1]}}}}
+        class Grid:
+            def add(self, *args):
+                pass
+        add_speaker_assembly_geometry(board, "LESHY2-UI-R2", contract, {"B.Cu": Grid()}, pcbnew)
+        for layer in (pcbnew.F_SilkS, pcbnew.B_SilkS):
+            text = pcbnew.PCB_TEXT(board)
+            text.SetText("SPK")
+            text.SetLayer(layer)
+            text.SetMirrored(layer == pcbnew.B_SilkS)
+            text.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(15.7), pcbnew.FromMM(124)))
+            text.SetTextSize(pcbnew.VECTOR2I(pcbnew.FromMM(1), pcbnew.FromMM(1)))
+            text.SetTextThickness(pcbnew.FromMM(.15))
+            board.Add(text)
+        snapshot = audit.native_snapshot(board, "LESHY2-UI-R2", [], contract, pcbnew)
+        self.assertEqual([], snapshot["extraction_errors"])
+        body = next(o for o in snapshot["obstacles"] if o["kind"] == "speaker_body_bbox")
+        self.assertEqual(spec["body_registration"]["maximum_bbox_mm"], body["bbox_mm"])
+        candidates, _ = audit.geometry_candidates(snapshot["texts"], [body], 80, 150)
+        self.assertEqual(1, len(candidates))
+        self.assertEqual("B.Silkscreen", candidates[0]["text"]["layer"])
+        # Altered/missing native registration must not silently omit the body.
+        line = next(g for g in board.GetDrawings() if isinstance(g, pcbnew.PCB_SHAPE))
+        line.Move(pcbnew.VECTOR2I(pcbnew.FromMM(.1), 0))
+        snapshot = audit.native_snapshot(board, "LESHY2-UI-R2", [], contract, pcbnew)
+        self.assertEqual("speaker_body_registration_mismatch", snapshot["extraction_errors"][0]["kind"])
 
     def test_actual_text_pair_gap_cannot_be_reused_for_changed_text_or_pose(self):
         import pcbnew

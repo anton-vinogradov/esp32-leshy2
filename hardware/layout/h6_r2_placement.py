@@ -399,7 +399,7 @@ def add_text(
     layer: int,
     size: float,
     thickness: float = 0.15,
-) -> None:
+):
     item = pcbnew.PCB_TEXT(board)
     item.SetText(value)
     item.SetPosition(point(*at))
@@ -408,6 +408,7 @@ def add_text(
     item.SetTextThickness(mm(thickness))
     item.SetHorizJustify(pcbnew.GR_TEXT_H_ALIGN_CENTER)
     board.Add(item)
+    return item
 
 
 def configure_board(board, contract: dict, project: str) -> None:
@@ -492,7 +493,6 @@ def add_user_silkscreen(board, project: str, placement: dict, contract: dict) ->
         centre_x = contract["board"]["width_mm"] / 2
         # Assembly-only marking inside the display alignment frame. The free
         # exterior strip below the panel belongs to the ten visible indicators.
-        add_text(board, "DISPLAY · FPC ↑", (centre_x, 21.0), pcbnew.F_SilkS, 1.00, 0.15)
         add_text(board, "Леший · UI · R2-EVT1 · REV A", (centre_x, 116.0), pcbnew.F_SilkS, 1.00, 0.15)
     else:
         centre_x = contract["board"]["width_mm"] / 2
@@ -517,7 +517,6 @@ def add_battery_ntc_silkscreen(board, project: str, placed_rows: list[dict]) -> 
             y = cy + sy * half
             add_segment(board, pcbnew.F_SilkS, (x, y), (x - sx * arm, y), 0.15)
             add_segment(board, pcbnew.F_SilkS, (x, y), (x, y - sy * arm), 0.15)
-        add_text(board, f"NTC{index} PAD", (cx, cy + 4.1), pcbnew.F_SilkS, 1.00, 0.15)
 
 
 def build_target_index(contract: dict, placement: dict, coordinate: dict) -> dict[str, dict]:

@@ -51,6 +51,11 @@ def mic_label():
             "bold": False, "italic": False, "horizontal_justify": 0, "vertical_justify": 0}
 
 
+def inner_mic_label():
+    return {**mic_label(), "at_mm": [46.75, 142.35],
+            "layer": "B.Silkscreen", "mirrored": True}
+
+
 def notch_edges():
     # Accepted open route, independently listed; no placement generator import.
     return [
@@ -195,15 +200,68 @@ class PlacementIntentTests(unittest.TestCase):
             snapshot["microphone_labels"][INTENT.PROJECTS[0]][0][key] = value
             with self.subTest(key=key, value=value):
                 self.assertIn(expected, INTENT.evaluate(snapshot)["failed_requirements"])
-        for mutation in ("missing", "duplicate", "extra-RF", "old-full-word"):
+        for mutation in ("missing", "duplicate", "old-full-word"):
             snapshot = fixture()
             labels = snapshot["microphone_labels"][INTENT.PROJECTS[0]]
             if mutation == "missing": labels.clear()
             elif mutation == "duplicate": labels.append(copy.deepcopy(labels[0]))
-            elif mutation == "extra-RF": snapshot["microphone_labels"][INTENT.PROJECTS[1]].append(mic_label())
             else: labels.append({**mic_label(), "text": "MICROPHONE"})
             with self.subTest(mutation=mutation):
                 self.assertIn(expected, INTENT.evaluate(snapshot)["failed_requirements"])
+
+    def test_optional_exact_inner_mic_caption_does_not_replace_required_ui_label(self):
+        snapshot = fixture()
+        rf_labels = snapshot["microphone_labels"][INTENT.PROJECTS[1]]
+        self.assertEqual("pass", INTENT.evaluate(snapshot)["status"])
+        rf_labels.append(inner_mic_label())
+        self.assertEqual("pass", INTENT.evaluate(snapshot)["status"])
+        snapshot["microphone_labels"][INTENT.PROJECTS[0]].clear()
+        self.assertIn("one readable UI front MIC label follows the RF microphone through the assembly transform",
+                      INTENT.evaluate(snapshot)["failed_requirements"])
+
+    def test_inner_mic_caption_rejects_wrong_face_duplicate_pose_and_presentation(self):
+        expected = "RF MIC is absent or the single exact inner assembly caption of actual MK1"
+        for key, value in (("text", "MICROPHONE"), ("at_mm", [47, 142.35]),
+                           ("at_mm", [46.75, 142.5]), ("at_mm", []),
+                           ("at_mm", [float("nan"), 142.35]), ("layer", "F.Silkscreen"),
+                           ("layer", "B.Fab"), ("size_mm", [.9, 1]),
+                           ("size_mm", [1, 1.1]), ("size_mm", None),
+                           ("thickness_mm", .12), ("angle_deg", 90), ("angle_deg", None),
+                           ("visible", False), ("mirrored", False), ("bold", True),
+                           ("italic", True), ("default_stroke_font", False),
+                           ("horizontal_justify", 1), ("vertical_justify", -1),
+                           ("horizontal_justify", False), ("vertical_justify", None)):
+            snapshot = fixture()
+            snapshot["microphone_labels"][INTENT.PROJECTS[1]] = [{**inner_mic_label(), key: value}]
+            with self.subTest(key=key, value=value):
+                self.assertIn(expected, INTENT.evaluate(snapshot)["failed_requirements"])
+        for value in ([inner_mic_label(), inner_mic_label()],
+                      [inner_mic_label(), mic_label()], [mic_label()], [None]):
+            snapshot = fixture()
+            snapshot["microphone_labels"][INTENT.PROJECTS[1]] = value
+            with self.subTest(labels=value):
+                self.assertIn(expected, INTENT.evaluate(snapshot)["failed_requirements"])
+        for key in inner_mic_label():
+            snapshot = fixture()
+            row = inner_mic_label(); del row[key]
+            snapshot["microphone_labels"][INTENT.PROJECTS[1]] = [row]
+            with self.subTest(missing=key):
+                self.assertIn(expected, INTENT.evaluate(snapshot)["failed_requirements"])
+
+    def test_inner_mic_caption_binds_exact_actual_owner_not_just_permitted_corridor(self):
+        expected = "RF MIC is absent or the single exact inner assembly caption of actual MK1"
+        for key, value in (("anchor_mm", [47.2, 147.4]), ("anchor_mm", [47, 147.5]),
+                           ("rotation_deg", 180), ("side", "F.Cu"),
+                           ("footprint", "Other:mic"), ("value", "Another microphone")):
+            snapshot = fixture()
+            snapshot["microphone_labels"][INTENT.PROJECTS[1]] = [inner_mic_label()]
+            snapshot["boards"][INTENT.PROJECTS[1]]["MK1"][key] = value
+            with self.subTest(key=key, value=value):
+                self.assertIn(expected, INTENT.evaluate(snapshot)["failed_requirements"])
+        snapshot = fixture()
+        snapshot["microphone_labels"][INTENT.PROJECTS[1]] = [inner_mic_label()]
+        del snapshot["boards"][INTENT.PROJECTS[1]]["MK1"]
+        self.assertIn(expected, INTENT.evaluate(snapshot)["failed_requirements"])
 
     def test_mic_label_follows_actual_native_x_not_a_constant_or_source_claim(self):
         snapshot = fixture()
@@ -237,7 +295,10 @@ class PlacementIntentTests(unittest.TestCase):
         self.assertEqual(1, len(actual))
         self.assertFalse(actual[0]["visible"])
         self.assertTrue(actual[0]["mirrored"])
-        self.assertNotEqual("F.Silkscreen", actual[0]["layer"])
+        self.assertEqual("B.Silkscreen", actual[0]["layer"])
+        item.SetVisible(True)
+        item.SetPosition(pcbnew.VECTOR2I(pcbnew.FromMM(46.75), pcbnew.FromMM(142.35)))
+        self.assertEqual([inner_mic_label()], INTENT.native_microphone_labels(board, pcbnew))
 
     def test_jae_reference_overhang_is_not_user_accepted_overhang(self):
         self.rejected(1, "J1", "anchor_mm", [16.47, 146.9], "USB")

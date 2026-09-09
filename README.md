@@ -88,6 +88,8 @@ Grey shows component outlines/references; blue is actual silkscreen.
 Known footprint defects remain visible — these views do not certify assembly.
 [Full-size views and legend](docs/h6-r2-component-views.md). Gold shows all 50 SMA lands and the two-sided copper lands of USB, Cap and encoder interfaces; NFC endpoints are distinguished in the legend.
 
+[Interface labels and coverage](docs/h6-r2-interface-silkscreen.md) distinguish user, service and assembly silkscreen from grey drawing references.
+
 <table>
   <tr><th width="50%">Front / UI</th><th width="50%">Rear / RF-power</th></tr>
   <tr>

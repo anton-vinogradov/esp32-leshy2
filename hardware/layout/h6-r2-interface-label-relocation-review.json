@@ -1,0 +1,1087 @@
+{
+  "schema_version": 1,
+  "id": "H6-R2-interface-label-relocation-review",
+  "marker": "H6.0.3-R1",
+  "review_date": "2026-09-09",
+  "status": "approved_finite_static_control_placement_compromises",
+  "scope": "Eight existing RF resistors move locally to permit unambiguous debug-owner silkscreen. No connector, MPN, function, net, copper or outline changes are authorized by this review.",
+  "baseline_commit": "e11ea74961ad570019659c3cedc2dce8f8d19453",
+  "sources": {
+    "native_rf": {
+      "path": "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb",
+      "sha256": "5442331dc15ec87f9c315bf64996a4e0841901d80e8ffc36f2b67b7669aca96b",
+      "meaning": "immutable pre-relocation baseline, not the post-integration native hash"
+    },
+    "native_ui": {
+      "path": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
+      "sha256": "5a29ed7272d412d72b62265bd3940864e4feb23a3f5e5d7ed60f9497620567cb",
+      "meaning": "pre-label baseline; no UI footprint relocation in this record"
+    },
+    "instance_ledger": {
+      "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
+      "sha256": "7e5594bf5130524096b2683040b153409611b92c2df088dd33cb5c30f2f7a597"
+    },
+    "net_ledger": {
+      "path": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
+      "sha256": "94bd7d64fc1d6c2ea3dde8e55f1390fb31cafc2a213cc99d290ce234d60878e8"
+    },
+    "devices": {
+      "path": "hardware/architecture/devices.json",
+      "sha256": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9"
+    },
+    "placement_contract": {
+      "path": "hardware/layout/h6-r2-placement-contract.json",
+      "sha256": "094865936bf52c5e1fa5dc3e90f2e22b132afb064e7909d1d8ddd2bf9f3cdfe3",
+      "meaning": "reviewed pre-relocation constraints; this hash is historical after applying the finite overrides"
+    },
+    "manual_copper": {
+      "path": "hardware/layout/h6-r2-manual-copper.json",
+      "sha256": "87198e589d3736280050827a6eb40e5b75b45bd13b109f41faf2fc7f37e6a2c8"
+    }
+  },
+  "coordinate_system": "KiCad native XY in millimetres, not mirrored viewing coordinates; all eight resistors stay on B.Cu.",
+  "moves": [
+    {
+      "project": "LESHY2-RF-R2",
+      "reference": "R136",
+      "instance": "voice_pg_pullup",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "function": "10k VOICE_4V_PG_N pullup; digital U46.PG/Q5 qualifier node, not VOICE_4V_SENSE analog divider.",
+      "old_pose": {
+        "side": "B.Cu",
+        "anchor_mm": [
+          44.075,
+          104.365
+        ],
+        "angle_deg": 0
+      },
+      "new_pose": {
+        "side": "B.Cu",
+        "anchor_mm": [
+          38.45,
+          102.99
+        ],
+        "angle_deg": 90
+      },
+      "old_native_pads": [
+        {
+          "pad": "1",
+          "native_net": "/RF_02_PACK_SAFETY_AON/3V3_MAIN",
+          "at_mm": [
+            43.565,
+            104.365
+          ]
+        },
+        {
+          "pad": "2",
+          "native_net": "/RF_20_CC1101_VOICE_TX/VOICE_4V_PG_N",
+          "at_mm": [
+            44.585,
+            104.365
+          ]
+        }
+      ],
+      "new_native_pads": [
+        {
+          "pad": "1",
+          "native_net": "/RF_02_PACK_SAFETY_AON/3V3_MAIN",
+          "at_mm": [
+            38.45,
+            103.5
+          ]
+        },
+        {
+          "pad": "2",
+          "native_net": "/RF_20_CC1101_VOICE_TX/VOICE_4V_PG_N",
+          "at_mm": [
+            38.45,
+            102.48
+          ]
+        }
+      ],
+      "pad_net_identity_preserved": true
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "reference": "R192",
+      "instance": "headset_absent_pulldown",
+      "device_id": "yageo_rc0402fr_07100kl",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "function": "100k HEADSET_ABSENT digital-sense pulldown to AUDIO_GROUND; signal endpoints R200.2/U106.3.",
+      "old_pose": {
+        "side": "B.Cu",
+        "anchor_mm": [
+          60.115,
+          98.324999
+        ],
+        "angle_deg": 90
+      },
+      "new_pose": {
+        "side": "B.Cu",
+        "anchor_mm": [
+          58.365,
+          100.324999
+        ],
+        "angle_deg": 0
+      },
+      "old_native_pads": [
+        {
+          "pad": "1",
+          "native_net": "/RF_22_AUDIO_CODEC_IO/HEADSET_ABSENT",
+          "at_mm": [
+            60.115,
+            98.834999
+          ]
+        },
+        {
+          "pad": "2",
+          "native_net": "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND",
+          "at_mm": [
+            60.115,
+            97.814999
+          ]
+        }
+      ],
+      "new_native_pads": [
+        {
+          "pad": "1",
+          "native_net": "/RF_22_AUDIO_CODEC_IO/HEADSET_ABSENT",
+          "at_mm": [
+            57.855,
+            100.324999
+          ]
+        },
+        {
+          "pad": "2",
+          "native_net": "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND",
+          "at_mm": [
+            58.875,
+            100.324999
+          ]
+        }
+      ],
+      "pad_net_identity_preserved": true
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "reference": "R238",
+      "instance": "unit_req_pulldown",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "function": "10k UNIT_5V_REQ default pulldown to POWER_GROUND; U15/U19/U106 digital request net.",
+      "old_pose": {
+        "side": "B.Cu",
+        "anchor_mm": [
+          44.075,
+          105.615
+        ],
+        "angle_deg": 0
+      },
+      "new_pose": {
+        "side": "B.Cu",
+        "anchor_mm": [
+          44.575,
+          110.615
+        ],
+        "angle_deg": 0
+      },
+      "old_native_pads": [
+        {
+          "pad": "1",
+          "native_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/UNIT_5V_REQ",
+          "at_mm": [
+            43.565,
+            105.615
+          ]
+        },
+        {
+          "pad": "2",
+          "native_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_mm": [
+            44.585,
+            105.615
+          ]
+        }
+      ],
+      "new_native_pads": [
+        {
+          "pad": "1",
+          "native_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/UNIT_5V_REQ",
+          "at_mm": [
+            44.065,
+            110.615
+          ]
+        },
+        {
+          "pad": "2",
+          "native_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_mm": [
+            45.085,
+            110.615
+          ]
+        }
+      ],
+      "pad_net_identity_preserved": true
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "reference": "R240",
+      "instance": "unit_signal_iso_oe_pulldown",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "function": "10k UNIT_READY OE default pulldown to POWER_GROUND; not a series reset or analog element.",
+      "old_pose": {
+        "side": "B.Cu",
+        "anchor_mm": [
+          45.865,
+          104.824999
+        ],
+        "angle_deg": 90
+      },
+      "new_pose": {
+        "side": "B.Cu",
+        "anchor_mm": [
+          47.99,
+          104.824999
+        ],
+        "angle_deg": 0
+      },
+      "old_native_pads": [
+        {
+          "pad": "1",
+          "native_net": "/RF_30_U214_U219_M5_EXT/UNIT_READY",
+          "at_mm": [
+            45.865,
+            105.334999
+          ]
+        },
+        {
+          "pad": "2",
+          "native_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_mm": [
+            45.865,
+            104.314999
+          ]
+        }
+      ],
+      "new_native_pads": [
+        {
+          "pad": "1",
+          "native_net": "/RF_30_U214_U219_M5_EXT/UNIT_READY",
+          "at_mm": [
+            47.48,
+            104.824999
+          ]
+        },
+        {
+          "pad": "2",
+          "native_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_mm": [
+            48.5,
+            104.824999
+          ]
+        }
+      ],
+      "pad_net_identity_preserved": true
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "reference": "R241",
+      "instance": "unit_supervisor_pullup",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "function": "10k UNIT_READY pullup to 3V3_MAIN; U103 reset-output/U102.OE/U106 digital status net.",
+      "old_pose": {
+        "side": "B.Cu",
+        "anchor_mm": [
+          47.575,
+          104.865
+        ],
+        "angle_deg": 0
+      },
+      "new_pose": {
+        "side": "B.Cu",
+        "anchor_mm": [
+          50.825,
+          107.865
+        ],
+        "angle_deg": 0
+      },
+      "old_native_pads": [
+        {
+          "pad": "1",
+          "native_net": "/RF_02_PACK_SAFETY_AON/3V3_MAIN",
+          "at_mm": [
+            47.065,
+            104.865
+          ]
+        },
+        {
+          "pad": "2",
+          "native_net": "/RF_30_U214_U219_M5_EXT/UNIT_READY",
+          "at_mm": [
+            48.085,
+            104.865
+          ]
+        }
+      ],
+      "new_native_pads": [
+        {
+          "pad": "1",
+          "native_net": "/RF_02_PACK_SAFETY_AON/3V3_MAIN",
+          "at_mm": [
+            50.315,
+            107.865
+          ]
+        },
+        {
+          "pad": "2",
+          "native_net": "/RF_30_U214_U219_M5_EXT/UNIT_READY",
+          "at_mm": [
+            51.335,
+            107.865
+          ]
+        }
+      ],
+      "pad_net_identity_preserved": true
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "reference": "R248",
+      "instance": "slow_io_reset_pullup",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "function": "10k SLOW_IO_RESET_N pullup to 3V3_MAIN; only U106.28 and this resistor on the reset net, no added RC leg.",
+      "old_pose": {
+        "side": "B.Cu",
+        "anchor_mm": [
+          60.325,
+          100.115
+        ],
+        "angle_deg": 0
+      },
+      "new_pose": {
+        "side": "B.Cu",
+        "anchor_mm": [
+          60.325,
+          102.24
+        ],
+        "angle_deg": 0
+      },
+      "old_native_pads": [
+        {
+          "pad": "1",
+          "native_net": "/RF_02_PACK_SAFETY_AON/3V3_MAIN",
+          "at_mm": [
+            59.815,
+            100.115
+          ]
+        },
+        {
+          "pad": "2",
+          "native_net": "/RF_31_REAR_CONTROLS/SLOW_IO_RESET_N",
+          "at_mm": [
+            60.835,
+            100.115
+          ]
+        }
+      ],
+      "new_native_pads": [
+        {
+          "pad": "1",
+          "native_net": "/RF_02_PACK_SAFETY_AON/3V3_MAIN",
+          "at_mm": [
+            59.815,
+            102.24
+          ]
+        },
+        {
+          "pad": "2",
+          "native_net": "/RF_31_REAR_CONTROLS/SLOW_IO_RESET_N",
+          "at_mm": [
+            60.835,
+            102.24
+          ]
+        }
+      ],
+      "pad_net_identity_preserved": true
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "reference": "R80",
+      "instance": "rf_rp_dbg_id0_strap",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "function": "10k static RF debugger ID0 strap to POWER_GROUND; not USB data or reset.",
+      "old_pose": {
+        "side": "B.Cu",
+        "anchor_mm": [
+          34.615,
+          107.324999
+        ],
+        "angle_deg": 90
+      },
+      "new_pose": {
+        "side": "B.Cu",
+        "anchor_mm": [
+          39.74,
+          107.324999
+        ],
+        "angle_deg": 0
+      },
+      "old_native_pads": [
+        {
+          "pad": "1",
+          "native_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_DBG_ID0",
+          "at_mm": [
+            34.615,
+            107.834999
+          ]
+        },
+        {
+          "pad": "2",
+          "native_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_mm": [
+            34.615,
+            106.814999
+          ]
+        }
+      ],
+      "new_native_pads": [
+        {
+          "pad": "1",
+          "native_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_DBG_ID0",
+          "at_mm": [
+            39.23,
+            107.324999
+          ]
+        },
+        {
+          "pad": "2",
+          "native_net": "/RF_01_USB_PD_CHARGE/POWER_GROUND",
+          "at_mm": [
+            40.25,
+            107.324999
+          ]
+        }
+      ],
+      "pad_net_identity_preserved": true
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "reference": "R83",
+      "instance": "rf_rp_dbg_vtref_series",
+      "device_id": "yageo_rc0402fr_071kl",
+      "mpn": "Yageo RC0402FR-071KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "function": "1k debugger VTREF-sense series resistor to 3V3_MAIN; not USB data or reset-series.",
+      "old_pose": {
+        "side": "B.Cu",
+        "anchor_mm": [
+          35.075,
+          109.115
+        ],
+        "angle_deg": 0
+      },
+      "new_pose": {
+        "side": "B.Cu",
+        "anchor_mm": [
+          36.2,
+          113.24
+        ],
+        "angle_deg": 270
+      },
+      "old_native_pads": [
+        {
+          "pad": "1",
+          "native_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_DBG_VTREF_SENSE",
+          "at_mm": [
+            34.565,
+            109.115
+          ]
+        },
+        {
+          "pad": "2",
+          "native_net": "/RF_02_PACK_SAFETY_AON/3V3_MAIN",
+          "at_mm": [
+            35.585,
+            109.115
+          ]
+        }
+      ],
+      "new_native_pads": [
+        {
+          "pad": "1",
+          "native_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_DBG_VTREF_SENSE",
+          "at_mm": [
+            36.2,
+            112.73
+          ]
+        },
+        {
+          "pad": "2",
+          "native_net": "/RF_02_PACK_SAFETY_AON/3V3_MAIN",
+          "at_mm": [
+            36.2,
+            113.75
+          ]
+        }
+      ],
+      "pad_net_identity_preserved": true
+    }
+  ],
+  "label_targets": [
+    {
+      "project": "LESHY2-RF-R2",
+      "reference": "J2",
+      "instance": "pack_dbg_header",
+      "text": "PACK",
+      "layer": "B.Silkscreen",
+      "at_mm": [
+        60.42,
+        99.425
+      ],
+      "angle_deg": 90
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "reference": "J3",
+      "instance": "rf_rp_dbg_header",
+      "text": "RF",
+      "layer": "B.Silkscreen",
+      "at_mm": [
+        35.05,
+        108.42
+      ],
+      "angle_deg": 0
+    },
+    {
+      "project": "LESHY2-RF-R2",
+      "reference": "J13",
+      "instance": "safety_dbg_header",
+      "text": "SAFE",
+      "layer": "B.Silkscreen",
+      "at_mm": [
+        44.925,
+        105.169999
+      ],
+      "angle_deg": 0
+    }
+  ],
+  "measurement": {
+    "method": "Load pre-relocation native PCB; apply only the eight listed poses in memory; resolve each physical pad number uniquely, require equal native net names, then calculate hypot(x1-x2,y1-y2) from actual transformed pad centres.",
+    "meaning": "Straight-line pad-centre distance is only a lower bound for a future route, not an existing track length or electrical-performance metric.",
+    "scope": "46 named pad pairs checked, 17 affected; existing analog/supply/timing paths and all existing explicit locality/critical rules remain unchanged for this eight-resistor set.",
+    "root_acceptance": "The listed exact poses and every affected distance delta were accepted as finite ordinary static-control placement tradeoffs. Increases remain visible and are not relabelled as electrical no-worse.",
+    "proof_type": "In-memory geometric/electrical-identity evidence; native application, preservation, ink DRC and rendered association have separate integration receipts.",
+    "retained_finite_checker_sha256": "db9e869c571cc8c09a0bc2816f7dfd158e9194af2371938a2eb114cd6c402122",
+    "retained_combined_input_sha256": "f211793efabd762357d35f25be0f6a083d8a1616f83c5fe25b7a275e52e05603",
+    "retained_combined_proof_sha256": "b9cf08d87bf4b4b052c89a420e0618d9266054768a2d7c09ecbb2269d4975e42"
+  },
+  "affected_named_pad_distances": [
+    {
+      "first": "R80.1",
+      "second": "J3.8",
+      "canonical_net": "RF_RP_DBG_ID0",
+      "native_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_DBG_ID0",
+      "old_first_mm": [
+        34.615,
+        107.834999
+      ],
+      "old_second_mm": [
+        32.21,
+        105.65
+      ],
+      "new_first_mm": [
+        39.23,
+        107.324999
+      ],
+      "new_second_mm": [
+        32.21,
+        105.65
+      ],
+      "old_pad_centre_distance_mm": 3.2493454156185,
+      "new_pad_centre_distance_mm": 7.217064614509208,
+      "delta_mm": 3.9677191988907077,
+      "non_regression": false,
+      "disposition": "explicitly_accepted_static_control_placement_tradeoff_not_performance_qualification"
+    },
+    {
+      "first": "R248.2",
+      "second": "U106.28",
+      "canonical_net": "SLOW_IO_RESET_N",
+      "native_net": "/RF_31_REAR_CONTROLS/SLOW_IO_RESET_N",
+      "old_first_mm": [
+        60.835,
+        100.115
+      ],
+      "old_second_mm": [
+        55.595,
+        84.495
+      ],
+      "new_first_mm": [
+        60.835,
+        102.24
+      ],
+      "new_second_mm": [
+        55.595,
+        84.495
+      ],
+      "old_pad_centre_distance_mm": 16.475496957603426,
+      "new_pad_centre_distance_mm": 18.50250320902552,
+      "delta_mm": 2.027006251422094,
+      "non_regression": false,
+      "disposition": "explicitly_accepted_static_control_placement_tradeoff_not_performance_qualification"
+    },
+    {
+      "first": "R192.1",
+      "second": "U106.3",
+      "canonical_net": "HEADSET_ABSENT",
+      "native_net": "/RF_22_AUDIO_CODEC_IO/HEADSET_ABSENT",
+      "old_first_mm": [
+        60.115,
+        98.834999
+      ],
+      "old_second_mm": [
+        52.945,
+        82.845
+      ],
+      "new_first_mm": [
+        57.855,
+        100.324999
+      ],
+      "new_second_mm": [
+        52.945,
+        82.845
+      ],
+      "old_pad_centre_distance_mm": 17.52395412057453,
+      "new_pad_centre_distance_mm": 18.15649925068159,
+      "delta_mm": 0.6325451301070615,
+      "non_regression": false,
+      "disposition": "explicitly_accepted_static_control_placement_tradeoff_not_performance_qualification"
+    },
+    {
+      "first": "R241.2",
+      "second": "U102.6",
+      "canonical_net": "UNIT_READY",
+      "native_net": "/RF_30_U214_U219_M5_EXT/UNIT_READY",
+      "old_first_mm": [
+        48.085,
+        104.865
+      ],
+      "old_second_mm": [
+        54.575,
+        99.145
+      ],
+      "new_first_mm": [
+        51.335,
+        107.865
+      ],
+      "new_second_mm": [
+        54.575,
+        99.145
+      ],
+      "old_pad_centre_distance_mm": 8.650924806053975,
+      "new_pad_centre_distance_mm": 9.3024727895329,
+      "delta_mm": 0.651547983478924,
+      "non_regression": false,
+      "disposition": "explicitly_accepted_static_control_placement_tradeoff_not_performance_qualification"
+    },
+    {
+      "first": "R241.2",
+      "second": "U103.1",
+      "canonical_net": "UNIT_READY",
+      "native_net": "/RF_30_U214_U219_M5_EXT/UNIT_READY",
+      "old_first_mm": [
+        48.085,
+        104.865
+      ],
+      "old_second_mm": [
+        23.295,
+        99.5825
+      ],
+      "new_first_mm": [
+        51.335,
+        107.865
+      ],
+      "new_second_mm": [
+        23.295,
+        99.5825
+      ],
+      "old_pad_centre_distance_mm": 25.34657582889649,
+      "new_pad_centre_distance_mm": 29.237671012753395,
+      "delta_mm": 3.891095183856905,
+      "non_regression": false,
+      "disposition": "explicitly_accepted_static_control_placement_tradeoff_not_performance_qualification"
+    },
+    {
+      "first": "R83.1",
+      "second": "J3.1",
+      "canonical_net": "RF_RP_DBG_VTREF_SENSE",
+      "native_net": "/RF_10_RP2354_CORE_SERVICE/RF_RP_DBG_VTREF_SENSE",
+      "old_first_mm": [
+        34.565,
+        109.115
+      ],
+      "old_second_mm": [
+        28.14,
+        109.46
+      ],
+      "new_first_mm": [
+        36.2,
+        112.73
+      ],
+      "new_second_mm": [
+        28.14,
+        109.46
+      ],
+      "old_pad_centre_distance_mm": 6.434255978743772,
+      "new_pad_centre_distance_mm": 8.698074499565989,
+      "delta_mm": 2.263818520822217,
+      "non_regression": false,
+      "disposition": "explicitly_accepted_static_control_placement_tradeoff_not_performance_qualification"
+    },
+    {
+      "first": "R136.2",
+      "second": "Q5.2",
+      "canonical_net": "VOICE_4V_PG_N",
+      "native_net": "/RF_20_CC1101_VOICE_TX/VOICE_4V_PG_N",
+      "old_first_mm": [
+        44.585,
+        104.365
+      ],
+      "old_second_mm": [
+        47.6375,
+        98.895
+      ],
+      "new_first_mm": [
+        38.45,
+        102.48
+      ],
+      "new_second_mm": [
+        47.6375,
+        98.895
+      ],
+      "old_pad_centre_distance_mm": 6.264076647838849,
+      "new_pad_centre_distance_mm": 9.862169195973067,
+      "delta_mm": 3.5980925481342174,
+      "non_regression": false,
+      "disposition": "explicitly_accepted_static_control_placement_tradeoff_not_performance_qualification"
+    },
+    {
+      "first": "R136.2",
+      "second": "U46.3",
+      "canonical_net": "VOICE_4V_PG_N",
+      "native_net": "/RF_20_CC1101_VOICE_TX/VOICE_4V_PG_N",
+      "old_first_mm": [
+        44.585,
+        104.365
+      ],
+      "old_second_mm": [
+        36.17,
+        92.045
+      ],
+      "new_first_mm": [
+        38.45,
+        102.48
+      ],
+      "new_second_mm": [
+        36.17,
+        92.045
+      ],
+      "old_pad_centre_distance_mm": 14.91960539022396,
+      "new_pad_centre_distance_mm": 10.68118088040831,
+      "delta_mm": -4.238424509815651,
+      "non_regression": true,
+      "disposition": "explicitly_accepted_static_control_placement_tradeoff_not_performance_qualification"
+    },
+    {
+      "first": "R238.1",
+      "second": "U15.5",
+      "canonical_net": "UNIT_5V_REQ",
+      "native_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/UNIT_5V_REQ",
+      "old_first_mm": [
+        43.565,
+        105.615
+      ],
+      "old_second_mm": [
+        24.895,
+        98.025
+      ],
+      "new_first_mm": [
+        44.065,
+        110.615
+      ],
+      "new_second_mm": [
+        24.895,
+        98.025
+      ],
+      "old_pad_centre_distance_mm": 20.153833382262537,
+      "new_pad_centre_distance_mm": 22.934624479158135,
+      "delta_mm": 2.780791096895598,
+      "non_regression": false,
+      "disposition": "explicitly_accepted_static_control_placement_tradeoff_not_performance_qualification"
+    },
+    {
+      "first": "R238.1",
+      "second": "U19.1",
+      "canonical_net": "UNIT_5V_REQ",
+      "native_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/UNIT_5V_REQ",
+      "old_first_mm": [
+        43.565,
+        105.615
+      ],
+      "old_second_mm": [
+        25.445,
+        96.045
+      ],
+      "new_first_mm": [
+        44.065,
+        110.615
+      ],
+      "new_second_mm": [
+        25.445,
+        96.045
+      ],
+      "old_pad_centre_distance_mm": 20.491932558936448,
+      "new_pad_centre_distance_mm": 23.64295455310101,
+      "delta_mm": 3.1510219941645623,
+      "non_regression": false,
+      "disposition": "explicitly_accepted_static_control_placement_tradeoff_not_performance_qualification"
+    },
+    {
+      "first": "R238.1",
+      "second": "U106.6",
+      "canonical_net": "UNIT_5V_REQ",
+      "native_net": "/RF_03_MAIN_RAILS_DOMAIN_GATES/UNIT_5V_REQ",
+      "old_first_mm": [
+        43.565,
+        105.615
+      ],
+      "old_second_mm": [
+        52.945,
+        81.345
+      ],
+      "new_first_mm": [
+        44.065,
+        110.615
+      ],
+      "new_second_mm": [
+        52.945,
+        81.345
+      ],
+      "old_pad_centre_distance_mm": 26.01955610689775,
+      "new_pad_centre_distance_mm": 30.587371577172167,
+      "delta_mm": 4.567815470274418,
+      "non_regression": false,
+      "disposition": "explicitly_accepted_static_control_placement_tradeoff_not_performance_qualification"
+    },
+    {
+      "first": "R240.1",
+      "second": "U102.6",
+      "canonical_net": "UNIT_READY",
+      "native_net": "/RF_30_U214_U219_M5_EXT/UNIT_READY",
+      "old_first_mm": [
+        45.865,
+        105.334999
+      ],
+      "old_second_mm": [
+        54.575,
+        99.145
+      ],
+      "new_first_mm": [
+        47.48,
+        104.824999
+      ],
+      "new_second_mm": [
+        54.575,
+        99.145
+      ],
+      "old_pad_centre_distance_mm": 10.685512978795217,
+      "new_pad_centre_distance_mm": 9.088531984869789,
+      "delta_mm": -1.5969809939254276,
+      "non_regression": true,
+      "disposition": "explicitly_accepted_static_control_placement_tradeoff_not_performance_qualification"
+    },
+    {
+      "first": "R240.1",
+      "second": "U103.1",
+      "canonical_net": "UNIT_READY",
+      "native_net": "/RF_30_U214_U219_M5_EXT/UNIT_READY",
+      "old_first_mm": [
+        45.865,
+        105.334999
+      ],
+      "old_second_mm": [
+        23.295,
+        99.5825
+      ],
+      "new_first_mm": [
+        47.48,
+        104.824999
+      ],
+      "new_second_mm": [
+        23.295,
+        99.5825
+      ],
+      "old_pad_centre_distance_mm": 23.291546637031235,
+      "new_pad_centre_distance_mm": 24.746676964089556,
+      "delta_mm": 1.4551303270583205,
+      "non_regression": false,
+      "disposition": "explicitly_accepted_static_control_placement_tradeoff_not_performance_qualification"
+    },
+    {
+      "first": "R240.1",
+      "second": "U106.23",
+      "canonical_net": "UNIT_READY",
+      "native_net": "/RF_30_U214_U219_M5_EXT/UNIT_READY",
+      "old_first_mm": [
+        45.865,
+        105.334999
+      ],
+      "old_second_mm": [
+        57.745,
+        83.345
+      ],
+      "new_first_mm": [
+        47.48,
+        104.824999
+      ],
+      "new_second_mm": [
+        57.745,
+        83.345
+      ],
+      "old_pad_centre_distance_mm": 24.993888373360413,
+      "new_pad_centre_distance_mm": 23.80673396415395,
+      "delta_mm": -1.1871544092064639,
+      "non_regression": true,
+      "disposition": "explicitly_accepted_static_control_placement_tradeoff_not_performance_qualification"
+    },
+    {
+      "first": "R240.1",
+      "second": "R241.2",
+      "canonical_net": "UNIT_READY",
+      "native_net": "/RF_30_U214_U219_M5_EXT/UNIT_READY",
+      "old_first_mm": [
+        45.865,
+        105.334999
+      ],
+      "old_second_mm": [
+        48.085,
+        104.865
+      ],
+      "new_first_mm": [
+        47.48,
+        104.824999
+      ],
+      "new_second_mm": [
+        51.335,
+        107.865
+      ],
+      "old_pad_centre_distance_mm": 2.26920670279307,
+      "new_pad_centre_distance_mm": 4.909443051915458,
+      "delta_mm": 2.640236349122388,
+      "non_regression": false,
+      "disposition": "explicitly_accepted_static_control_placement_tradeoff_not_performance_qualification"
+    },
+    {
+      "first": "R192.1",
+      "second": "R200.2",
+      "canonical_net": "HEADSET_ABSENT",
+      "native_net": "/RF_22_AUDIO_CODEC_IO/HEADSET_ABSENT",
+      "old_first_mm": [
+        60.115,
+        98.834999
+      ],
+      "old_second_mm": [
+        62.615,
+        60.065
+      ],
+      "new_first_mm": [
+        57.855,
+        100.324999
+      ],
+      "new_second_mm": [
+        62.615,
+        60.065
+      ],
+      "old_pad_centre_distance_mm": 38.850518947113194,
+      "new_pad_centre_distance_mm": 40.54041341032429,
+      "delta_mm": 1.6898944632110968,
+      "non_regression": false,
+      "disposition": "explicitly_accepted_static_control_placement_tradeoff_not_performance_qualification"
+    },
+    {
+      "first": "R241.2",
+      "second": "U106.23",
+      "canonical_net": "UNIT_READY",
+      "native_net": "/RF_30_U214_U219_M5_EXT/UNIT_READY",
+      "old_first_mm": [
+        48.085,
+        104.865
+      ],
+      "old_second_mm": [
+        57.745,
+        83.345
+      ],
+      "new_first_mm": [
+        51.335,
+        107.865
+      ],
+      "new_second_mm": [
+        57.745,
+        83.345
+      ],
+      "old_pad_centre_distance_mm": 23.58868372758429,
+      "new_pad_centre_distance_mm": 25.344003235479587,
+      "delta_mm": 1.7553195078952974,
+      "non_regression": false,
+      "disposition": "explicitly_accepted_static_control_placement_tradeoff_not_performance_qualification"
+    }
+  ],
+  "preservation_screen": {
+    "moved_reference_count": 8,
+    "affected_named_pad_pair_count": 17,
+    "unchanged_other_checked_pair_count": 29,
+    "rf_native_pad_records": 2830,
+    "native_pad_net_multiset_preserved": true,
+    "rf_copper_object_count": 765,
+    "old_moved_pad_copper_contact_count": 0,
+    "new_moved_pad_copper_contact_count": 0,
+    "contact_method": "Exact effective pad copper shapes versus every current track/via on shared copper layers, at zero contact clearance; this is not the full fabrication clearance check.",
+    "native_written_by_electrical_review": false
+  },
+  "untouched_sensitive_groups": [
+    "MAX17320 BATTS/CELL1 sense, input supply and charge-pump island",
+    "U127 safety-controller bulk/bypass placement",
+    "VOICE_4V_SENSE supervisor divider",
+    "SAFE_REARM_DELAY RC and buffer bypass",
+    "CODEC_CAPTURE_VMID audio bias network",
+    "All routed eFuse/current-sense/power-stage components and routes"
+  ],
+  "remaining_limits": [
+    "Actual routed lengths, digital edge/noise margins, timing/performance and safety behavior are not qualified by these pad-centre measurements.",
+    "Existing long control branches and previously identified bulk/sense/audio-locality weaknesses are not closed by this caption-placement change.",
+    "Native stage must preserve all unrelated footprints, complete named-pad/net and copper adjacency, outline and pre-existing text; new pads and silk still require all applicable clearances.",
+    "Final ink association/DRC/current native hashes belong to integration audits, not this immutable pre-application record.",
+    "H6 remains open; this is not fabrication, solder-process or complete-device qualification."
+  ],
+  "authorization": {
+    "limited_eight_ref_pose_application_approved": true,
+    "connector_moves": false,
+    "mpn_changes": false,
+    "net_or_function_changes": false,
+    "copper_changes": false,
+    "outline_changes": false,
+    "electrical_performance_qualified": false,
+    "production_release_authorized": false
+  }
+}

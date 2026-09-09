@@ -6,8 +6,8 @@
   "status_scope": "nominal microcoax geometry and contract antenna-window count/pitch only",
   "source_hashes": {
     "hardware/layout/h6-r2-microcoax-service.json": "e4992bf4980081b3ba1fd27169e7771261099d5f6b68bfb1b1797bc87bfd1302",
-    "hardware/layout/generated/H6-R2-placement-audit.json": "e0043533ffa86d7786cc4bd1d272557f921ae4a16459f93b4bebc0c25ea3713c",
-    "hardware/layout/h6-r2-placement-contract.json": "094865936bf52c5e1fa5dc3e90f2e22b132afb064e7909d1d8ddd2bf9f3cdfe3",
+    "hardware/layout/generated/H6-R2-placement-audit.json": "f57aad1fadcc0eb651c783f4e3a7c2ffb78f16b3950b53378660ae4c9645bbe7",
+    "hardware/layout/h6-r2-placement-contract.json": "caedfdf37c1546feb18969396706e1f922c02f09cadf667027ff9f7874b839a9",
     "hardware/product-design/h1-r2-placement.json": "3cefd845934ca2d17be9f7e5876266deaf885fd0c37b8330a2637c38e6193ffb",
     "hardware/verification/generated/H3-R2-rf-coexistence.json": "923a4930bbbfc438cf104674ff88fdff5aa6f18c46c8bff1a886ec5c8ff15242"
   },

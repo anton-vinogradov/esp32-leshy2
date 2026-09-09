@@ -18,6 +18,9 @@ views, with fresh native intent/label checks and visual review.
 
 [All four views on one sheet](images/h6-r2-components-overview.svg).
 
+[Interface-label meanings and coverage](h6-r2-interface-silkscreen.md): user,
+service and assembly labels are checked separately from Fab/reference graphics.
+
 ## How to read
 
 - Grey: current Fab body outlines and component references. References added

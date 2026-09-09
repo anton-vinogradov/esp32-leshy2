@@ -235,6 +235,45 @@ class ComponentRenderTests(unittest.TestCase):
         self.assertEqual({"translate(0 18)", "translate(96 18)",
                           "translate(0 208)", "translate(96 208)"}, slots)
 
+    def test_panel_copper_legend_is_below_card_annotation_without_moving_geometry_or_footer(self):
+        shape = {"material": "M0 0H80V150H0Z", "outer": "M0 0H80V150H0Z"}
+        card = {"anchor_mm": [61.005, 140.075]}
+        legend_poses = set()
+        for board, face in self.renderer.VIEWS:
+            with self.subTest(board=board, face=face):
+                content = self.renderer.panel(
+                    board, face, '<g data-test="unaltered-native"/>', "", [], "", "", shape,
+                    card if board == "ui" else None)
+                root = ET.fromstring("<svg>" + content + "</svg>")
+                legends = [node for node in root if node.get("data-role") == "interface-copper-legend"]
+                self.assertEqual(1, len(legends))
+                self.assertEqual("true", legends[0].get("data-not-silkscreen"))
+                legend = legends[0].find("text")
+                legend_poses.add((legend.get("x"), legend.get("y"), legend.get("font-size")))
+                self.assertEqual("#855b15", legend.get("fill"))
+                self.assertIn("interface copper lands", legend.text)
+                self.assertEqual(1, sum(node.get("data-test") == "unaltered-native" for node in root.iter()))
+                self.assertEqual(1, sum(node.get("transform") == "translate(8 25)" for node in root.iter()))
+                self.assertEqual(int(face == "inner"), sum(
+                    node.get("transform") == "translate(80 0) scale(-1 1)" for node in root.iter()))
+                self.assertTrue(any(node.get("d") == "M79 183 h10 M79 182 v2 M89 182 v2"
+                                    for node in root.iter()))
+                footer = [node for node in root if node.tag == "text" and node.get("y") == "186"]
+                self.assertEqual(2, len(footer))  # Existing caption and 10 mm scale label.
+                # Conservative font-size envelopes, not a font-specific glyph or
+                # mechanical clearance claim: allow 0.3 em below each baseline.
+                legend_top = float(legend.get("y")) - float(legend.get("font-size"))
+                legend_bottom = float(legend.get("y")) + .3 * float(legend.get("font-size"))
+                self.assertGreaterEqual(186 - 1.5 - legend_bottom, .5)
+                if board == "ui":
+                    annotation = next(node for node in root.iter()
+                                      if node.get("data-role") == "microsd-state-annotation")
+                    caption = annotation.find("g")
+                    caption_y = float(re.match(r"translate\([^ ]+ ([^)]+)\)", caption.get("transform"))[1]) + 25
+                    caption_size = float(caption.find("text").get("font-size"))
+                    self.assertGreaterEqual(legend_top - (caption_y + .3 * caption_size), .5)
+        self.assertEqual({("8", "183.5", "1.25")}, legend_poses)
+
     def test_nfc_reservation_keeps_actual_datum_and_is_not_claimed_as_routed_copper(self):
         for key, root in self.roots.items():
             groups = [node for node in root.iter() if node.get("data-role") == "unrouted-nfc-reserve"]

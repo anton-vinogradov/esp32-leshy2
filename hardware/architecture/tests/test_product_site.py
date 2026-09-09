@@ -154,6 +154,8 @@ class ProductSiteTests(unittest.TestCase):
         "docs/h6-r2-current-routing.ru.md",
         "docs/h6-r2-interface-review.md",
         "docs/h6-r2-interface-review.ru.md",
+        "docs/h6-r2-interface-silkscreen.md",
+        "docs/h6-r2-interface-silkscreen.ru.md",
         "docs/h6-r2-component-unification.md",
         "docs/h6-r2-component-unification.ru.md",
         "docs/h6-r2-placement-repair.md",
@@ -355,6 +357,11 @@ class ProductSiteTests(unittest.TestCase):
         self.assertIn("частичное ревью; выпуск заблокирован", self.read("docs/h6-r2-electrical-semantics.ru.md"))
 
     def test_public_site_contains_only_product_pages(self):
+        self.assertEqual(len(self.PUBLIC_PAGES), len(set(self.PUBLIC_PAGES)))
+        english = {name for name in self.PUBLIC_PAGES if not name.endswith(".ru.md")}
+        russian = {name.removesuffix(".ru.md") + ".md"
+                   for name in self.PUBLIC_PAGES if name.endswith(".ru.md")}
+        self.assertEqual(english, russian, "Every public product page needs its EN/RU counterpart")
         docs_markdown = {
             str(path.relative_to(REPO_ROOT))
             for path in REPO_ROOT.glob("docs/**/*.md")

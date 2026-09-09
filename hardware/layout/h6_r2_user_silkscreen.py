@@ -1,13 +1,58 @@
 """User labels bound to actual H6 interface positions, not H1 drawing pixels.
 
-The inner faces keep assembly/package graphics but do not acquire duplicated
-user labels. All coordinates returned here are in each native PCB's XY frame.
+The inner faces carry assembly/service labels, not duplicated exterior labels.
+All coordinates returned here are in each native PCB's XY frame.
 Mechanical validity and connector orientation are checked separately.
 """
 
 from __future__ import annotations
 
 import math
+import json
+from pathlib import Path
+
+INTERFACE_LABEL_PLACEMENTS = Path(__file__).with_name("h6-r2-interface-label-placements.json")
+
+
+def additional_interface_labels(project, placed_rows, specification=None):
+    """Exact reviewed positions, guarded against silently moving their owners."""
+    spec = specification if specification is not None else json.loads(INTERFACE_LABEL_PLACEMENTS.read_text())
+    if spec.get("schema_version") != 1 or not isinstance(spec.get("labels"), list):
+        raise ValueError("unsupported interface-label placement contract")
+    owners = {row["instance"]: row for row in placed_rows}
+    result, identities = [], set()
+    for row in spec["labels"]:
+        if row["project"] != project:
+            continue
+        owner = owners[row["instance"]]
+        pose = row["owner_pose"]
+        if (any(not isinstance(point, (list, tuple)) or len(point) != 2
+                for point in (owner["footprint_anchor_mm"], pose["anchor_mm"]))
+                or any(type(v) not in (int, float) or not math.isfinite(v)
+                       for v in [*owner["footprint_anchor_mm"], *pose["anchor_mm"],
+                                 owner["rotation_deg"], pose["rotation_deg"]])):
+            raise ValueError(f"invalid finite interface-label owner pose: {project}:{row['instance']}")
+        if (owner["reference"] != row["reference"] or owner["side"] != pose["side"]
+                or abs((owner["rotation_deg"]-pose["rotation_deg"]+180) % 360-180) > .001
+                or math.dist(owner["footprint_anchor_mm"], pose["anchor_mm"]) > .001):
+            raise ValueError(f"interface-label owner pose changed: {project}:{row['instance']}")
+        if (row["layer"] not in {"F.Silkscreen", "B.Silkscreen"}
+                or row.get("role") not in {"user", "assembly", "service"}
+                or not isinstance(row["text"], str) or not row["text"]
+                or not isinstance(row["at_mm"], list) or len(row["at_mm"]) != 2
+                or any(type(v) not in (int, float) or not math.isfinite(v)
+                       for v in [*row["at_mm"], row["size_mm"], row["thickness_mm"], row.get("angle_deg", 0)])
+                or row["size_mm"] < 1.0 or row["thickness_mm"] < .15
+                or row.get("mirrored", row["layer"] == "B.Silkscreen") != (row["layer"] == "B.Silkscreen")):
+            raise ValueError(f"invalid readable interface label: {project}:{row['instance']}")
+        identity = (row["text"], row["layer"])
+        if identity in identities:
+            raise ValueError(f"duplicate additional interface label: {identity}")
+        identities.add(identity)
+        result.append({key: row[key] for key in (
+            "instance", "reference", "text", "at_mm", "size_mm", "thickness_mm", "layer", "role")})
+        result[-1]["angle_deg"] = row.get("angle_deg", 0)
+    return result
 
 
 def b3s_actuator_axis(row: dict) -> tuple[float, float]:
@@ -183,6 +228,7 @@ def labels(project: str, placed_rows: list[dict], contract: dict) -> list[dict]:
         add(instance, role, x, 140.0)
 
     if project == "LESHY2-UI-R2":
+        add("display_connector", "DISPLAY · FPC ↑", width / 2, 21.0, role="assembly")
         result.append(microphone_cross_board_label(contract))
         for instance, text in INDICATORS.items():
             x, y = rows[instance]["courtyard_centre_mm"]
@@ -208,15 +254,22 @@ def labels(project: str, placed_rows: list[dict], contract: dict) -> list[dict]:
         add("ui_dpad_ok", "OK", x + 6.5, y + 5.7)
         add("sd", "microSD", rows["sd"]["courtyard_centre_mm"][0], 140.0)
     else:
+        for index, instance in enumerate(("pack_ntc0", "pack_ntc1")):
+            x, y = rows[instance]["courtyard_centre_mm"]
+            add(instance, f"NTC{index} PAD", x, y + 4.1, role="assembly")
         add("unit_connector", "M5 UNIT", rows["unit_connector"]["courtyard_centre_mm"][0], 140.0)
         x, y = b3s_actuator_axis(rows["ptt_switch"])
         add("ptt_switch", "PTT", x, y + 6.5)
         x, y = rows["encoder"]["courtyard_centre_mm"]
         add("encoder", "ENC / OK", x, y + 10.0)
+    result.extend(additional_interface_labels(project, placed_rows))
     return result
 
 
 def add_to_board(board, project, placed_rows, contract, add_text, pcbnew):
     for row in labels(project, placed_rows, contract):
-        add_text(board, row["text"], tuple(row["at_mm"]), pcbnew.F_SilkS,
-                 row["size_mm"], row["thickness_mm"])
+        layer = pcbnew.F_SilkS if row["layer"] == "F.Silkscreen" else pcbnew.B_SilkS
+        item = add_text(board, row["text"], tuple(row["at_mm"]), layer,
+                        row["size_mm"], row["thickness_mm"])
+        item.SetMirrored(layer == pcbnew.B_SilkS)
+        item.SetTextAngle(pcbnew.EDA_ANGLE(row.get("angle_deg", 0), pcbnew.DEGREES_T))

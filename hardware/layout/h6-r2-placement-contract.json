@@ -355,7 +355,10 @@
   "placement_overrides": {
     "hub_rp_service_usb_switch_bypass": {
       "frame": "front-inner",
-      "anchor_mm": [14.805, 136.905],
+      "anchor_mm": [
+        14.805,
+        136.905
+      ],
       "rotation_deg": 0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
@@ -3986,6 +3989,102 @@
       "method": "reviewed H6.0.3 signal-locality correction",
       "reason": "Restore the explicitly local 1-uF bulk to U106, using the old C230 slot vacated by the accepted internal audio relocation. Preserve C259 identity, 3V3_MAIN/POWER_GROUND pads, MPN, side and all existing copper. Both actual U106 supply-pad distances are checked <=7.5 mm; this does not replace its two 100-nF bypasses or qualify routed decoupling/runtime.",
       "evidence": "hardware/layout/h6-r2-slow-io-bulk-review.json"
+    },
+    "voice_pg_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        38.45,
+        102.99
+      ],
+      "rotation_deg": 90,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 native-silkscreen-clearance correction",
+      "reason": "Finite local resistor move for unambiguous debug-header silkscreen. Preserve exact part, pad nets, all copper and every other placement. Accepted static pad-distance tradeoffs are recorded separately; not a routed timing or electrical-performance qualification.",
+      "evidence": "hardware/layout/h6-r2-interface-label-relocation-review.json"
+    },
+    "headset_absent_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        58.365,
+        100.324999
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 native-silkscreen-clearance correction",
+      "reason": "Finite local resistor move for unambiguous debug-header silkscreen. Preserve exact part, pad nets, all copper and every other placement. Accepted static pad-distance tradeoffs are recorded separately; not a routed timing or electrical-performance qualification.",
+      "evidence": "hardware/layout/h6-r2-interface-label-relocation-review.json"
+    },
+    "unit_req_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        44.575,
+        110.615
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 native-silkscreen-clearance correction",
+      "reason": "Finite local resistor move for unambiguous debug-header silkscreen. Preserve exact part, pad nets, all copper and every other placement. Accepted static pad-distance tradeoffs are recorded separately; not a routed timing or electrical-performance qualification.",
+      "evidence": "hardware/layout/h6-r2-interface-label-relocation-review.json"
+    },
+    "unit_signal_iso_oe_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        47.99,
+        104.824999
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 native-silkscreen-clearance correction",
+      "reason": "Finite local resistor move for unambiguous debug-header silkscreen. Preserve exact part, pad nets, all copper and every other placement. Accepted static pad-distance tradeoffs are recorded separately; not a routed timing or electrical-performance qualification.",
+      "evidence": "hardware/layout/h6-r2-interface-label-relocation-review.json"
+    },
+    "unit_supervisor_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        50.825,
+        107.865
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 native-silkscreen-clearance correction",
+      "reason": "Finite local resistor move for unambiguous debug-header silkscreen. Preserve exact part, pad nets, all copper and every other placement. Accepted static pad-distance tradeoffs are recorded separately; not a routed timing or electrical-performance qualification.",
+      "evidence": "hardware/layout/h6-r2-interface-label-relocation-review.json"
+    },
+    "slow_io_reset_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        60.325,
+        102.24
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 native-silkscreen-clearance correction",
+      "reason": "Finite local resistor move for unambiguous debug-header silkscreen. Preserve exact part, pad nets, all copper and every other placement. Accepted static pad-distance tradeoffs are recorded separately; not a routed timing or electrical-performance qualification.",
+      "evidence": "hardware/layout/h6-r2-interface-label-relocation-review.json"
+    },
+    "rf_rp_dbg_id0_strap": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        39.74,
+        107.324999
+      ],
+      "rotation_deg": 0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 native-silkscreen-clearance correction",
+      "reason": "Finite local resistor move for unambiguous debug-header silkscreen. Preserve exact part, pad nets, all copper and every other placement. Accepted static pad-distance tradeoffs are recorded separately; not a routed timing or electrical-performance qualification.",
+      "evidence": "hardware/layout/h6-r2-interface-label-relocation-review.json"
+    },
+    "rf_rp_dbg_vtref_series": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        36.2,
+        113.24
+      ],
+      "rotation_deg": 270,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 native-silkscreen-clearance correction",
+      "reason": "Finite local resistor move for unambiguous debug-header silkscreen. Preserve exact part, pad nets, all copper and every other placement. Accepted static pad-distance tradeoffs are recorded separately; not a routed timing or electrical-performance qualification.",
+      "evidence": "hardware/layout/h6-r2-interface-label-relocation-review.json"
     }
   },
   "post_placement_corrections": {
