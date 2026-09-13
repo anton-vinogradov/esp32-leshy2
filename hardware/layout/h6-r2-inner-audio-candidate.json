@@ -6,10 +6,13 @@
     "historical_status": "placement_adopted_not_audio_qualified",
     "historical_fields": ["placement_rows", "constraints"],
     "historical_placement_rows_sha256": "c78af09eff2278743b42ed5c1d3018b686e4d70c2670ff64d3ba8a36d9bb6330",
-    "superseded_references": ["C229", "C232", "MK1", "R202", "R205", "R206", "U85"],
-    "retained_current_reference_count": 43,
-    "current_replacement_review": "hardware/layout/h6-r2-microphone-bottom-candidate.json",
-    "policy": "The original fifty before/after rows and constraints are retained as historical evidence. Only the forty-three references outside superseded_references remain current placement requirements here. The seven replacement poses and inward top-port acoustic-access intent belong exclusively to current_replacement_review and the current placement/intent checks; this history cannot approve them or restore the former outward microphone. Identity and electrical pad/net multisets remain applicable to all fifty unchanged parts. No audio, routing, acoustic or manufacturing qualification is granted."
+    "superseded_references": ["C144", "C145", "C199", "C229", "C230", "C232", "C256", "C257", "MK1", "R201", "R202", "R203", "R205", "R206", "R242", "R267", "R287", "R288", "R56", "U48", "U68", "U82", "U83", "U85"],
+    "retained_current_reference_count": 26,
+    "current_replacement_reviews": {
+      "hardware/layout/h6-r2-microphone-bottom-candidate.json": ["C229", "C232", "MK1", "R202", "R205", "R206", "U85"],
+      "hardware/layout/h6-r2-encoder-under-cap-review.json": ["C144", "C145", "C199", "C230", "C256", "C257", "R201", "R203", "R242", "R267", "R287", "R288", "R56", "U48", "U68", "U82", "U83"]
+    },
+    "policy": "The original fifty before/after rows and constraints remain immutable historical evidence. Only the twenty-six references outside superseded_references retain their recorded current poses here. The separate seven-part bottom-microphone review still owns those seven replacement poses and the inward top-port acoustic-access intent; the encoder-under-Cap review owns the other seventeen superseded references. C197 and R169 are not superseded. Each replacement must pass its own current placement/intent checks; this history cannot approve it or restore the former outward microphone. Identity and electrical pad/net multisets remain applicable to all fifty unchanged parts. No audio, routing, acoustic or manufacturing qualification is granted."
   },
   "base_commit": "e45c5b23bb2f7f7b089b047d5505e555b51b82ab",
   "project": "LESHY2-RF-R2",

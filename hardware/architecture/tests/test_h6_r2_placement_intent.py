@@ -18,7 +18,7 @@ def fixture():
                 "actuator_mm": actuator, "pad1_nets": []}
     ui = {"J5": item(61.005, 140.075, "B.Cu", 180)}
     rf = {"BT1": item(40, 85, angle=90), "R33": item(30.45, 85), "R34": item(49.55, 85),
-          "SW3": item(8, 80), "SW4": item(72.1, 67.42, actuator=[72.1, 66.5]),
+          "SW3": item(9.25, 54, angle=270), "SW4": item(72.1, 67.42, actuator=[72.1, 66.5]),
           "U83": item(.8, 100, "B.Cu")}
     for board, ref, x in ((rf, "J1", 16.47), (rf, "J4", 37.47), (ui, "J9", 26.1), (ui, "J11", 14.87)):
         board[ref] = {**item(x, 146.325, "B.Cu", 180),
@@ -137,11 +137,16 @@ class PlacementIntentTests(unittest.TestCase):
     def test_wrong_encoder_side_not_fixed_by_mirroring_svg(self):
         self.rejected(1, "SW3", "anchor_mm", [71, 50.25], "encoder on LEFT")
 
-    def test_encoder_height_is_not_a_frozen_accidental_coordinate(self):
-        for y in (50.25, 75, 85):
+    def test_encoder_is_directly_below_cap_not_a_frozen_accidental_height(self):
+        for y in (53.75, 54, 56):
             snapshot = fixture()
             snapshot["boards"][INTENT.PROJECTS[1]]["SW3"]["anchor_mm"][1] = y
             self.assertEqual("pass", INTENT.evaluate(snapshot)["status"])
+        for y in (40, 50.25, 75, 81.25, 85):
+            self.rejected(1, "SW3", "anchor_mm", [9.25, y], "directly below Cap")
+
+    def test_encoder_knob_must_keep_nominal_holder_gap(self):
+        self.rejected(1, "SW3", "anchor_mm", [13, 54], "directly below Cap")
 
     def test_ptt_should_not_be_mirrored_with_encoder(self):
         self.rejected(1, "SW4", "actuator_mm", [7.9, 66.5], "PTT on RIGHT")

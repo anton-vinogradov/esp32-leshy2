@@ -277,7 +277,7 @@ class H6R2PlacementTests(unittest.TestCase):
             self.contract["placement_overrides"]["display_connector"]["centre_mm"],
         )
         encoder = self.contract["placement_overrides"]["encoder"]
-        self.assertEqual([9.25, 81.25], encoder["anchor_mm"])
+        self.assertEqual([9.25, 54], encoder["anchor_mm"])
         self.assertEqual(270.0, encoder["rotation_deg"])
         self.assertTrue(encoder["mechanical_locked"])
 

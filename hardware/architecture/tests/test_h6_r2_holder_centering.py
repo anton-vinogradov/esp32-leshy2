@@ -91,12 +91,13 @@ class HolderCenteringSourceTests(unittest.TestCase):
         self.assertEqual(module.PACK_HOLDER_PAD_X, module.PACK_HOLDER_DRAWING_X)
         self.assertEqual((30.45, 49.55), module.PACK_CELL_CENTRES_X)
 
-    def test_internal_fuse_and_small_radio_shifts_preserve_strict_locality(self):
+    def test_retained_holder_power_datums_preserve_strict_locality(self):
         rows = self.contract["placement_overrides"]
         expected = {"pack_fuse1": ([53.37, 47.87], 270),
                     "voice_v": ([40.05, 53.5], 90),
-                    "voice": ([13.1, 50.3], 90),
                     "pack_shunt": ([26.575, 43.975], 90)}
+        # U39 is no longer part of the holder-centering move. Its independent
+        # under-Cap review and native placement tests own its current pose.
         for instance, (anchor, rotation) in expected.items():
             row = rows[instance]
             self.assertEqual("rear-inner", row["frame"])

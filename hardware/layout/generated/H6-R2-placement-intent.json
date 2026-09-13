@@ -3,11 +3,11 @@
   "status": "pass",
   "scope": "Independent planar product intent from native PCB; not general DRC or assembled-Z qualification",
   "sources": {
-    "hardware/layout/h6_r2_placement_intent.py": "f072b8b19f48ec88cfa79541da7635fedfa46c5daae7cd0ec95376311cdf4acc",
+    "hardware/layout/h6_r2_placement_intent.py": "dfd323a2a72754c592b70a93e847eec93aa12c88415374a3dc4f9d19d28c7ffb",
     "hardware/layout/h6_r2_speaker_fit.py": "9e677eca3c1d320fc19fd25e961d884a1a903ca9f0af1ca3ad95835d20c38d30",
     "hardware/layout/h6-r2-speaker-body.json": "79349b47e281bc89fc57b843987d5458035c59c9fe6459de42a5949ee690f78b",
     "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "b93eee66471cc46dd165b108c52442aa3a3ada8446248141b22ba5ca1bf03143",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "5d79ceab06d8ca16c87114b67e0217b462f4c044b559bc1160bdc07a8dca0795"
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "81f8809ec75a5bfea43668a94ba64ac486fca8d33edda4fd36a68b0ef5ba6c76"
   },
   "checks": [
     {
@@ -87,17 +87,26 @@
         "side": "F.Cu",
         "anchor_mm": [
           9.25,
-          81.25
+          54.0
         ],
         "rotation_deg": -90.0,
         "fab_stroke_bounds_mm": [
           3.2,
-          75.35,
+          48.1,
           15.3,
-          87.15
+          59.9
         ],
         "actuator_mm": null,
         "pad1_nets": []
+      }
+    },
+    {
+      "requirement": "encoder nominal 15mm knob directly below Cap with >=5mm plan gap",
+      "pass": true,
+      "observed": {
+        "knob_to_cap_mm": 5.479999999999997,
+        "knob_to_holder_mm": 3.3000000000000007,
+        "assembled_access_qualified": false
       }
     },
     {
@@ -136,14 +145,14 @@
         "side": "B.Cu",
         "anchor_mm": [
           0.8,
-          99.9
+          39.0
         ],
         "rotation_deg": 0.0,
         "fab_stroke_bounds_mm": [
           -2.25,
-          96.05,
+          35.15,
           16.35,
-          102.95
+          42.05
         ],
         "actuator_mm": null,
         "pad1_nets": [

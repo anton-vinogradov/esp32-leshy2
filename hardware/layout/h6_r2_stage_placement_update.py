@@ -242,6 +242,39 @@ def reviewed_label_changes(before, seed, moves, additions):
     return old_labels, new_labels
 
 
+def reviewed_inner_label_changes(before, seed, moves):
+    """Admit only named, population-preserving inner silkscreen moves.
+
+    This separate permission does not broaden the legacy outward-label guard
+    and cannot authorize additions, removals, or text on any other layer.
+    """
+    if (not isinstance(moves, list)
+            or not all(isinstance(text, str) and text for text in moves)
+            or len(moves) != len(set(moves))):
+        raise ValueError("inner silkscreen allowance must be a unique list of exact texts")
+    allowed = set(moves)
+
+    def labels(text):
+        result = []
+        for head, form in forms(text):
+            if head != "gr_text":
+                continue
+            match = re.match(r'\(gr_text\s+("(?:\\.|[^"\\])*")', form)
+            if match and json.loads(match.group(1)) in allowed:
+                if not re.search(r'\(layer\s+"B\.(?:SilkS|Silkscreen)"\)', form):
+                    raise ValueError("inner label migration may only touch B.Silkscreen")
+                result.append((json.loads(match.group(1)), form))
+        return result
+
+    old_labels, new_labels = labels(before), labels(seed)
+    old_count = Counter(text for text, _ in old_labels)
+    new_count = Counter(text for text, _ in new_labels)
+    for text in moves:
+        if old_count[text] == 0 or old_count[text] != new_count[text]:
+            raise ValueError("inner label population changed; additions/removals are not allowed")
+    return old_labels, new_labels
+
+
 def pad_nets(fp):
     # Unnumbered copper pads can still be conductive; never silently drop them
     # from electrical preservation. Only genuinely mechanical NPTH are exempt.
@@ -511,6 +544,12 @@ def stage(plan, directory):
     labels = plan.get("allowed_silkscreen_texts", [])
     additions = plan.get("allowed_added_silkscreen_texts", [])
     old_labels, new_labels = reviewed_label_changes(original.decode(), seed, labels, additions)
+    inner_labels = plan.get("allowed_inner_silkscreen_texts", [])
+    old_inner_labels, new_inner_labels = reviewed_inner_label_changes(original.decode(), seed, inner_labels)
+    if set(labels + additions) & set(inner_labels):
+        raise ValueError("outward and inner silkscreen allowances must be disjoint")
+    old_labels += old_inner_labels
+    new_labels += new_inner_labels
     for _, form in old_labels:
         merged = merged.replace(form, "", 1)
     if new_labels:
@@ -519,8 +558,8 @@ def stage(plan, directory):
         merged = merged.rstrip()[:-1] + "\n" + "\n".join(replacement_labels) + "\n)\n"
     interface_labels = reviewed_interface_label_additions(original.decode(), seed,
         plan.get("allowed_interface_label_addition"), project)
-    if set(labels + additions) & {identity[0] for identity, _ in interface_labels}:
-        raise ValueError("legacy and interface-label allowances must be disjoint")
+    if set(labels + additions + inner_labels) & {identity[0] for identity, _ in interface_labels}:
+        raise ValueError("silkscreen move/addition and interface-label allowances must be disjoint")
     if interface_labels:
         replacements = [fresh_object_uuids(form,
                         f"{sha(original)}:interface-label:{index}:{sha(form.encode())}", occupied)
@@ -603,6 +642,7 @@ def stage(plan, directory):
               "candidate": str(target), "changed_references": changed,
               "reviewed_silkscreen_texts": sorted(labels),
               "reviewed_added_silkscreen_texts": sorted(additions),
+              "reviewed_inner_silkscreen_texts": sorted(inner_labels),
               "reviewed_added_interface_labels": [dict(text=identity[0], layer=identity[1])
                                                     for identity, _ in interface_labels],
               "reviewed_interface_label_addition": plan.get("allowed_interface_label_addition"),

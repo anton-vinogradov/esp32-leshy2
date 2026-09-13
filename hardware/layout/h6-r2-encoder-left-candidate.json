@@ -2,7 +2,16 @@
   "schema_version": 1,
   "feature_id": "RF-ENCODER-LEFT-001",
   "checked": "2026-09-08",
-  "status": "isolated_source_candidate_requires_joint_audio_integration",
+  "status": "placement_partially_superseded_not_mechanics_qualified",
+  "placement_scope": {
+    "historical_status": "isolated_source_candidate_requires_joint_audio_integration",
+    "historical_fields": ["placement_rows", "source_inputs", "pad_pair_review", "native_preliminary_proof", "joint_dependencies", "encoder_nominal_plan_review"],
+    "historical_placement_rows_sha256": "8895c9796dfb23fd4a7c1f033c9d948c0fb1e854e229215276a49580557c944a",
+    "superseded_references": ["C114", "C125", "C142", "C244", "C245", "C258", "C264", "C266", "R224", "R271", "R283", "R284", "R286", "SW3", "U109", "U111", "U30", "U31", "U47", "U94"],
+    "retained_current_reference_count": 4,
+    "current_replacement_review": "hardware/layout/h6-r2-encoder-under-cap-review.json",
+    "policy": "The original twenty-four before/after rows, source hashes, preliminary proofs and nominal ergonomic measurements remain historical evidence, not current placement authority. Only C33, C34, C35 and C36 retain their recorded current poses here. The twenty superseded references belong to current_replacement_review and the actual current placement/intent checks. The underlying electrical identity, real U6 supply ownership and engineering-footprint limits are not superseded. No routing, acoustic, mechanical, manufacturing or production qualification is granted."
+  },
   "project": "LESHY2-RF-R2",
   "base_commit": "e45c5b23bb2f7f7b089b047d5505e555b51b82ab",
   "fabrication_ready": false,

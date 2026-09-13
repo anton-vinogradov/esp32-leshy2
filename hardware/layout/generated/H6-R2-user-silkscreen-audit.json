@@ -4,7 +4,7 @@
   "status": "pass_scoped",
   "production_release_authorized": false,
   "inputs_sha256": {
-    "hardware/layout/h6-r2-placement-contract.json": "caedfdf37c1546feb18969396706e1f922c02f09cadf667027ff9f7874b839a9",
+    "hardware/layout/h6-r2-placement-contract.json": "61fd67b529685579d6bb454f080695c1291b5bd31c6fa440fc3e46845e6784f0",
     "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7e5594bf5130524096b2683040b153409611b92c2df088dd33cb5c30f2f7a597",
     "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "f03919a28b4cc37aa763943f7e0c7b0aabe61ddac48f699d8b9adcec7e422ebc",
     "hardware/layout/h6_r2_silkscreen_audit.py": "22d05026b5c16cae0e4fb49a567e7790ee704ad7d897d335bcb15cceb6d1775b",
@@ -17,7 +17,7 @@
     "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9",
     "hardware/layout/h6-r2-interface-label-coverage.json": "b1e81350319986f4686e1c1b61adf0e5ebb39b4d2acf6dd7de9dd5db997decd0",
     "hardware/layout/h6_r2_interface_label_coverage.py": "0939271fb543a390e3d35799104e522540fe35fd064aadd57b67cab033c235c3",
-    "hardware/layout/h6-r2-interface-label-placements.json": "830fb13f9e0c7ce711e937df2d9709e20e657b9a668348b2a348b0901c2f790d",
+    "hardware/layout/h6-r2-interface-label-placements.json": "c5f8988656e256f07d6bb21044a013ab1e50b304054084abc69a4e77e203c3ce",
     "hardware/ecad/generated/H2-R2-native-net-ledger.json": "94bd7d64fc1d6c2ea3dde8e55f1390fb31cafc2a213cc99d290ce234d60878e8",
     "hardware/ecad/generated/H2-R2-controlled-symbol-library.json": "1b3d9f2700937109daba2fd77b8633d709325094dbd19f48a17e0d7c9f60b224",
     "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "6ca4d66414111e95d84d669e8c3adac57b44df5bd739451cb9578704c1e6cf3a",
@@ -44,7 +44,7 @@
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_50_FRONT_POWER_SAFETY.kicad_sch": "5c1befee1751e1dfb882c1ee86d04ce19312095f527a901bcbae75691ef1b15b",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch": "87b5812e879ba11abca135470a681c9909148ff398d7dc9153d50d258adae3b1",
     "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "b93eee66471cc46dd165b108c52442aa3a3ada8446248141b22ba5ca1bf03143",
-    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "5d79ceab06d8ca16c87114b67e0217b462f4c044b559bc1160bdc07a8dca0795"
+    "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "81f8809ec75a5bfea43668a94ba64ac486fca8d33edda4fd36a68b0ef5ba6c76"
   },
   "boards": [
     {
@@ -3366,14 +3366,14 @@
             "text": "ENC / OK",
             "at_mm": [
               9.0,
-              91.25
+              64.0
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "4d9c54f8-df77-5343-9fba-f9efbcd00c60"
+          "actual_id": "656d4e6c-7846-59c0-b2f9-306b70d2be5f"
         },
         {
           "expected": {
@@ -3381,8 +3381,8 @@
             "reference": "U83",
             "text": "HEADSET",
             "at_mm": [
-              5,
-              97.9
+              9.25,
+              43.5
             ],
             "size_mm": 1,
             "thickness_mm": 0.15,
@@ -3390,7 +3390,7 @@
             "role": "user",
             "angle_deg": 0
           },
-          "actual_id": "c121ac1c-f798-5b6d-977c-d66007633585"
+          "actual_id": "f3730cdf-be02-513d-8d5a-362ab6f6ba35"
         },
         {
           "expected": {
@@ -3534,16 +3534,16 @@
             "reference": "J3",
             "text": "RF",
             "at_mm": [
-              35.05,
-              108.42
+              35.2,
+              108.615
             ],
             "size_mm": 1,
             "thickness_mm": 0.15,
             "layer": "B.Silkscreen",
             "role": "service",
-            "angle_deg": 0
+            "angle_deg": 90
           },
-          "actual_id": "16bf4a35-8b95-508f-9fe4-562dd330ebe3"
+          "actual_id": "d57ae927-5fc0-5613-a592-0bfc0e057ddf"
         },
         {
           "expected": {

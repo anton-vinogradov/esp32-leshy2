@@ -198,8 +198,8 @@
       "reference": "U83",
       "text": "HEADSET",
       "at_mm": [
-        5,
-        97.9
+        9.25,
+        43.5
       ],
       "layer": "F.Silkscreen",
       "size_mm": 1,
@@ -210,7 +210,7 @@
       "owner_pose": {
         "anchor_mm": [
           0.8,
-          99.9
+          39.0
         ],
         "side": "B.Cu",
         "rotation_deg": 0
@@ -218,15 +218,16 @@
       "placement_review": {
         "bbox_mm": {
           "x": [
-            1.660714,
-            8.339286
+            5.910714,
+            12.589286
           ],
           "y": [
-            97.05175,
-            98.74825
+            42.65175,
+            44.34825
           ]
         },
-        "screen_status": "clear"
+        "screen_status": "clear",
+        "relocation_review": "hardware/layout/h6-r2-encoder-under-cap-review.json"
       }
     },
     {
@@ -635,19 +636,19 @@
       "reference": "J3",
       "text": "RF",
       "at_mm": [
-        35.05,
-        108.42
+        35.2,
+        108.615
       ],
       "layer": "B.Silkscreen",
       "size_mm": 1,
       "thickness_mm": 0.15,
-      "angle_deg": 0,
+      "angle_deg": 90,
       "role": "service",
       "mirrored": true,
       "owner_pose": {
         "side": "B.Cu",
         "anchor_mm": [
-          30.175,
+          30.425,
           106.92
         ],
         "rotation_deg": 90
@@ -655,8 +656,8 @@
       "placement_review": {
         "screen_status": "clear",
         "owner_association": "reviewed adjacent header; no intervening foreign Fab body",
-        "owner_courtyard_gap_mm": 0.246429,
-        "relocation_review": "hardware/layout/h6-r2-interface-label-relocation-review.json"
+        "owner_courtyard_gap_mm": 0.35175,
+        "relocation_review": "hardware/layout/h6-r2-encoder-under-cap-review.json"
       }
     },
     {

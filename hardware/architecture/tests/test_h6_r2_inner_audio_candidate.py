@@ -1,7 +1,7 @@
-"""Historical fifty-part review and forty-three retained current requirements.
+"""Historical fifty-part review and twenty-six retained current requirements.
 
-The seven bottom-microphone replacement poses belong to their separate review,
-not this historical fixture. Neither fixture qualifies the audio circuit.
+The seven bottom-microphone and seventeen under-Cap replacement poses have
+separate exact owners. None of these placement fixtures qualifies the audio.
 """
 import copy
 import hashlib
@@ -17,11 +17,17 @@ PATH=ROOT/'hardware/layout/h6-r2-inner-audio-candidate.json'
 # restore one displaced component or an old outward support.
 REFS=frozenset('C113 C144 C145 C197 C199 C217 C218 C229 C230 C231 C232 C233 C234 C256 C257 C270 C272 C285 C286 C65 MK1 R169 R201 R202 R203 R204 R205 R206 R242 R258 R267 R287 R288 R56 U112 U113 U115 U116 U118 U120 U131 U132 U18 U28 U48 U68 U80 U82 U83 U85'.split())
 EXPECTED_NATIVE_SHA='cb5855cf3d9c534bfdbd5190a86f54f4d800b8c594c717257463fd81033f4e9f'
-SUPERSEDED_REFS=frozenset('MK1 R206 C232 R205 U85 C229 R202'.split())
+MICROPHONE_SUPERSEDED_REFS=frozenset('MK1 R206 C232 R205 U85 C229 R202'.split())
+ENCODER_SUPERSEDED_REFS=frozenset('C144 C145 C199 C230 C256 C257 R201 R203 R242 R267 R287 R288 R56 U48 U68 U82 U83'.split())
+SUPERSEDED_REFS=MICROPHONE_SUPERSEDED_REFS | ENCODER_SUPERSEDED_REFS
 HISTORICAL_ROWS_SHA='c78af09eff2278743b42ed5c1d3018b686e4d70c2670ff64d3ba8a36d9bb6330'
-REPLACEMENT_REVIEW='hardware/layout/h6-r2-microphone-bottom-candidate.json'
+MICROPHONE_REVIEW='hardware/layout/h6-r2-microphone-bottom-candidate.json'
+ENCODER_REVIEW='hardware/layout/h6-r2-encoder-under-cap-review.json'
+REPLACEMENT_REVIEWS={MICROPHONE_REVIEW:sorted(MICROPHONE_SUPERSEDED_REFS),
+                     ENCODER_REVIEW:sorted(ENCODER_SUPERSEDED_REFS)}
+ENCODER_REPLACEMENT_REFS=frozenset('C114 C122 C125 C130 C131 C132 C136 C142 C144 C145 C149 C195 C199 C230 C244 C245 C250 C251 C252 C253 C256 C257 C258 C264 C265 C266 C268 C271 C276 C282 C58 C69 J3 Q6 R105 R115 R116 R117 R118 R119 R120 R121 R134 R138 R140 R171 R185 R201 R203 R224 R225 R230 R236 R237 R239 R242 R243 R244 R249 R251 R255 R256 R260 R261 R264 R267 R271 R279 R281 R282 R283 R284 R286 R287 R288 R49 R54 R56 R68 SW3 U100 U103 U109 U110 U111 U114 U119 U123 U126 U128 U15 U19 U30 U31 U32 U39 U40 U41 U42 U47 U48 U49 U68 U82 U83 U94'.split())
 
-def validate(review,contract,ledger):
+def validate(review,contract,ledger,replacement):
     rows=review['placement_rows']
     assert len(rows)==len(REFS)==50
     assert {r['reference'] for r in rows}==REFS
@@ -31,12 +37,20 @@ def validate(review,contract,ledger):
     assert scope['historical_status']=='placement_adopted_not_audio_qualified'
     assert scope['historical_fields']==['placement_rows','constraints']
     assert scope['superseded_references']==sorted(SUPERSEDED_REFS)
-    assert scope['retained_current_reference_count']==len(REFS-SUPERSEDED_REFS)==43
-    assert scope['current_replacement_review']==REPLACEMENT_REVIEW
+    assert scope['retained_current_reference_count']==len(REFS-SUPERSEDED_REFS)==26
+    assert scope['current_replacement_reviews']==REPLACEMENT_REVIEWS
+    assert MICROPHONE_SUPERSEDED_REFS.isdisjoint(ENCODER_SUPERSEDED_REFS)
+    assert 'current_replacement_review' not in scope
     assert scope['historical_placement_rows_sha256']==HISTORICAL_ROWS_SHA
     assert hashlib.sha256(json.dumps(rows,sort_keys=True,separators=(',',':')).encode()).hexdigest()==HISTORICAL_ROWS_SHA
     assert review['authority'] and all(v is False for v in review['authority'].values())
     assert review['unresolved']
+    assert isinstance(replacement,dict), 'current under-Cap replacement review is missing'
+    new_rows=replacement['placement_rows']
+    assert len(new_rows)==len(ENCODER_REPLACEMENT_REFS)==106
+    assert {row['reference'] for row in new_rows}==ENCODER_REPLACEMENT_REFS
+    new={row['reference']:row for row in new_rows}
+    assert REFS & new.keys()==ENCODER_SUPERSEDED_REFS
     index={r['reference']:r for r in ledger if r['project']=='LESHY2-RF-R2'}
     for row in rows:
         assert row['device_id']==index[row['reference']]['device_id']
@@ -46,12 +60,20 @@ def validate(review,contract,ledger):
         side='F.Cu' if row['reference']=='MK1' else 'B.Cu'
         # This is the preserved historical side, not today's MK1 requirement.
         assert row['after']['side']==side
-        if row['reference'] in SUPERSEDED_REFS:
+        if row['reference'] in MICROPHONE_SUPERSEDED_REFS:
             continue
+        expected=row['after']
+        angle=expected['angle']
+        if row['reference'] in ENCODER_SUPERSEDED_REFS:
+            replacement_row=new[row['reference']]
+            assert replacement_row['instance']==row['instance']
+            expected=replacement_row['after']
+            angle=expected['rotation_deg']
+            assert expected['side']=='B.Cu'
         target=contract['placement_overrides'][row['instance']]
         assert target['frame']==('rear-outer' if side=='F.Cu' else 'rear-inner')
-        assert target['anchor_mm']==row['after']['anchor_mm']
-        assert target['rotation_deg']==row['after']['angle']
+        assert target['anchor_mm']==expected['anchor_mm']
+        assert target['rotation_deg'] % 360==angle % 360
         assert target['mechanical_locked'] is True
         assert 'centre_mm' not in target
     byref={r['reference']:r for r in rows}
@@ -78,8 +100,10 @@ class InnerAudioCandidateTests(unittest.TestCase):
         self.review=json.loads(PATH.read_text())
         self.contract=json.loads((ROOT/'hardware/layout/h6-r2-placement-contract.json').read_text())
         self.ledger=json.loads((ROOT/'hardware/ecad/generated/H2-R2-native-instance-ledger.json').read_text())['rows']
-    def check(self):validate(self.review,self.contract,self.ledger)
-    def test_historical_scope_and_exact_current_retained_43(self):self.check()
+        path=ROOT/ENCODER_REVIEW
+        self.replacement=json.loads(path.read_text()) if path.exists() else None
+    def check(self):validate(self.review,self.contract,self.ledger,self.replacement)
+    def test_historical_scope_and_exact_current_retained_26(self):self.check()
     def test_baseline_is_explicit_not_current_board_authority(self):
         self.assertEqual(EXPECTED_NATIVE_SHA,self.review['baseline_board_sha256'])
         self.assertFalse(self.review['authority']['main_promotion_authorized_by_this_report'])
@@ -112,19 +136,38 @@ class InnerAudioCandidateTests(unittest.TestCase):
         # the separate current review and placement/intent admission must do so.
         self.assertFalse(self.review['authority']['main_promotion_authorized_by_this_report'])
     def test_superseded_scope_cannot_expand_or_shrink_to_hide_retained_drift(self):
-        for mutation in ('remove','add','duplicate','count','owner'):
+        self.check()
+        for mutation in ('remove','add','duplicate','count','owner','shared_owner'):
             review=copy.deepcopy(self.review)
             scope=review['placement_scope']
             if mutation=='remove':scope['superseded_references'].pop()
-            elif mutation=='add':scope['superseded_references'].append('U83')
+            elif mutation=='add':scope['superseded_references'].append('C197')
             elif mutation=='duplicate':scope['superseded_references'].append('MK1')
-            elif mutation=='count':scope['retained_current_reference_count']=42
-            else:scope['current_replacement_review']='unreviewed.json'
+            elif mutation=='count':scope['retained_current_reference_count']=25
+            elif mutation=='owner':scope['current_replacement_reviews']['unreviewed.json']=scope['current_replacement_reviews'].pop(ENCODER_REVIEW)
+            else:scope['current_replacement_reviews'][ENCODER_REVIEW].append('MK1')
             with self.subTest(mutation=mutation),self.assertRaises(AssertionError):
-                validate(review,self.contract,self.ledger)
+                validate(review,self.contract,self.ledger,self.replacement)
     def test_retained_reference_still_requires_current_contract_pose(self):
-        self.contract['placement_overrides']['headphone_jack']['anchor_mm']=[.8,98]
+        self.check()
+        self.contract['placement_overrides']['audio_capture_mic_coupling']['anchor_mm']=[13.35,111.25]
         with self.assertRaises(AssertionError):self.check()
+    def test_encoder_replacement_needs_exact_unique_inventory_and_current_pose(self):
+        self.check()
+        for mutation in ('missing','duplicate','extra','wrong_ref','wrong_instance','side','pose','angle'):
+            replacement=copy.deepcopy(self.replacement)
+            rows=replacement['placement_rows']
+            row=next(r for r in rows if r['reference']=='U83')
+            if mutation=='missing':rows.remove(row)
+            elif mutation=='duplicate':rows.append(copy.deepcopy(row))
+            elif mutation=='extra':rows.append({**copy.deepcopy(row),'reference':'R169'})
+            elif mutation=='wrong_ref':row['reference']='C197'
+            elif mutation=='wrong_instance':row['instance']='headset_mic_selector'
+            elif mutation=='side':row['after']['side']='F.Cu'
+            elif mutation=='pose':row['after']['anchor_mm']=[.8,99.9]
+            else:row['after']['rotation_deg']=180
+            with self.subTest(mutation=mutation),self.assertRaises(AssertionError):
+                validate(self.review,self.contract,self.ledger,replacement)
     def test_before_after_and_all_pad_nets_remain_immutable_history(self):
         for field in ('before','after','pad_net_multiset'):
             review=copy.deepcopy(self.review)
@@ -132,7 +175,7 @@ class InnerAudioCandidateTests(unittest.TestCase):
             if field=='pad_net_multiset':row[field][0][1]='another_net'
             else:row[field]['anchor_mm'][0]+=.1
             with self.subTest(field=field),self.assertRaises(AssertionError):
-                validate(review,self.contract,self.ledger)
+                validate(review,self.contract,self.ledger,self.replacement)
     def test_identity_swap_rejected(self):
         self.review['placement_rows'][0]['device_id']='different_same_package'
         with self.assertRaises(AssertionError):self.check()

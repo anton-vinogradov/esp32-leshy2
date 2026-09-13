@@ -604,25 +604,25 @@
       "direction": "board-edge left mouth at X=-0.7 mm; insertion +X; B-side body inside sandwich, no electrical pad outside PCB",
       "anchor_mm": [
         0.8,
-        99.9
+        39.0
       ],
-      "rotation_deg": 0,
+      "rotation_deg": 0.0,
       "mechanical_locked": true,
-      "method": "reviewed audio local-support correction",
-      "reason": "Reviewed board-edge left mouth X=-0.7 mm and insertion +X; B-side body inside sandwich, copper stays on PCB. Exact device/nets preserved; no audio qualification.",
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "Preserve the board-edge left mouth X=-0.7 mm, inward B-side body and all electrical pads on the PCB. User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate.",
       "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
     "audio_capture_selector_bypass": {
       "project": "LESHY2-RF-R2",
       "frame": "rear-inner",
       "anchor_mm": [
-        9.55,
-        107.0
+        8.5,
+        109.4
       ],
-      "rotation_deg": 90,
+      "rotation_deg": 0.0,
       "mechanical_locked": true,
-      "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate.",
       "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
     "evidence_or_4": {
@@ -950,13 +950,13 @@
     "unit_output_cap": {
       "frame": "rear-inner",
       "anchor_mm": [
-        22.3,
-        128.5
+        20.4,
+        116.2
       ],
       "rotation_deg": 90.0,
       "mechanical_locked": true,
-      "method": "reviewed H6.0.3 power-locality correction",
-      "reason": "Move C253 locally below the corrected M1 courtyard, retaining orientation, exact part and protected UNIT output decoupling nets."
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "product_usb_connector": {
       "frame": "rear-inner",
@@ -2154,25 +2154,25 @@
     "cc_power_input_cap": {
       "frame": "rear-inner",
       "anchor_mm": [
-        1.5,
-        73.0
+        1.513333,
+        69.560001
       ],
-      "rotation_deg": 90,
+      "rotation_deg": 90.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Return the ordinary input capacitor to B inside the sandwich. Keep2.91mm nominal to U32 input pin1 without a cross-board-side connection; clear encoder body and PTH."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "voice_io_power_input_cap": {
       "project": "LESHY2-RF-R2",
       "frame": "rear-inner",
       "anchor_mm": [
-        16.15,
-        92.75
+        7.349999,
+        114.85
       ],
-      "rotation_deg": 90,
+      "rotation_deg": 90.0,
       "mechanical_locked": true,
-      "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate.",
       "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
     "receiver_clock": {
@@ -2457,12 +2457,12 @@
       "frame": "rear-outer",
       "anchor_mm": [
         9.25,
-        81.25
+        54.0
       ],
-      "rotation_deg": 270,
+      "rotation_deg": 270.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Return the shaft to the agreed LEFT rear-outer edge, explicitly31mm below the former wrong-sideY50.25. Preserve exact pad/net identities, PTT position and all existing copper; no image mirroring. The7PTH engineering footprint, knob/holder nominal plan gap and final housing/assembly acceptance remain distinct."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "ui_switch_f1": {
       "frame": "front-outer",
@@ -2734,13 +2734,13 @@
     "voice": {
       "frame": "rear-inner",
       "anchor_mm": [
-        13.1,
-        50.3
+        15.4,
+        89.0
       ],
-      "rotation_deg": 90,
+      "rotation_deg": 90.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Move the unchanged UHF module only 0.20 mm left, retaining 1.755-mm courtyard-to-board-edge distance, to preserve the full R37 shunt corridor while U51 moves 1.20 mm. No MPN, pin identity or routed copper changes."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "pack_shunt": {
       "frame": "rear-inner",
@@ -2987,156 +2987,156 @@
     "voice_pd_gate": {
       "frame": "rear-inner",
       "anchor_mm": [
-        27.295,
-        70.675
+        22.47,
+        35.56
       ],
-      "rotation_deg": 90,
+      "rotation_deg": 90.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Shift the gate only 0.10 mm left for the relocated U51 courtyard; keep its C149 bypass and all electrical roles unchanged."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "voice_v_evidence_hysteresis": {
       "frame": "rear-inner",
       "anchor_mm": [
-        12.0,
-        105.85
+        37.0,
+        132.08
       ],
-      "rotation_deg": 0,
+      "rotation_deg": 0.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Clear the encoder mounting PTH and reduce the existing comparator threshold span. This site requires the coordinated inner-audio C257/R258 relocation and R267 B90[13.115,107.46]; do not promote the encoder package alone. Feedback routing remains open."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "evidence_mask": {
       "frame": "rear-inner",
       "anchor_mm": [
-        7.05,
-        81.55
+        7.2175,
+        54.36875
       ],
-      "rotation_deg": 90,
+      "rotation_deg": 90.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Keep the existing IC on B, between the encoder through-board pads; move its real supply bypass with it. No control topology or net identity changes."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "u214_supervisor": {
       "frame": "rear-inner",
       "anchor_mm": [
-        2.3,
-        87.3
+        4.657,
+        137.545
       ],
-      "rotation_deg": 0,
+      "rotation_deg": 0.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Clear the left electrical PTH bank with its bypass, CT and sense-bottom resistor retained locally."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "cc_band_buffer": {
       "frame": "rear-inner",
       "anchor_mm": [
-        13.225,
-        82.9
+        29.0125,
+        81.125
       ],
-      "rotation_deg": 90,
+      "rotation_deg": 90.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Place the low-rate band-control buffer inside the PTH ring without moving any RF module or routed RF path; actual VCC8 bypass distance is checked."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "evidence_cmp_voice": {
       "frame": "rear-inner",
       "anchor_mm": [
-        13.775,
-        77.9
+        73.329,
+        22.005
       ],
-      "rotation_deg": 270,
+      "rotation_deg": 270.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Clear the encoder while keeping the supply bypass and upper threshold resistor within3mm of the actual pins. Bottom-threshold path6.52mm remains unrouted and explicitly reviewed, not RF/analog closure."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "cc_host_buffer": {
       "frame": "rear-inner",
       "anchor_mm": [
-        16.25,
-        72.95
+        18.4725,
+        47.5475
       ],
-      "rotation_deg": 0,
+      "rotation_deg": 0.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Move0.30mm upward to admit the adjacent comparator; preserve the existing local bypass and RF module courtyards."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "u214_supervisor_bypass": {
       "frame": "rear-inner",
       "anchor_mm": [
-        5.6,
-        87.3
+        7.957,
+        137.545
       ],
-      "rotation_deg": 0,
+      "rotation_deg": 0.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Keep AON bypass within3mm of U94 actual supply pin6 on the inner face."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "u214_supervisor_ct": {
       "frame": "rear-inner",
       "anchor_mm": [
-        5.6,
-        86.1
+        7.957,
+        136.345
       ],
-      "rotation_deg": 0,
+      "rotation_deg": 0.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Follow U94 with the existing timing capacitor; electrical value and reset behavior do not change."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "evidence_mask_bypass": {
       "frame": "rear-inner",
       "anchor_mm": [
-        10.3,
-        77.025
+        10.4675,
+        49.84375
       ],
-      "rotation_deg": 0,
+      "rotation_deg": 0.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Correct the former8.45mm bypass span to the real U111 supply pin24, now1.85mm; clear the mounting PTH."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "evidence_cmp_voice_bypass": {
       "frame": "rear-inner",
       "anchor_mm": [
-        16.2,
-        80.4
+        75.754,
+        24.505
       ],
-      "rotation_deg": 0,
+      "rotation_deg": 0.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Horizontal between encoder switch PTH: courtyard gap0.2305mm and actual VCC5 pad distance2.9486mm to U109; no clearance waiver."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "cc_band_buffer_bypass": {
       "frame": "rear-inner",
       "anchor_mm": [
-        16.2,
-        81.65
+        31.9875,
+        79.875
       ],
-      "rotation_deg": 0,
+      "rotation_deg": 0.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Horizontal between encoder switch PTH: courtyard gap0.175mm and actual VCC8 pad distance1.7665mm to U30; no clearance waiver."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "voice_hl_driver": {
       "frame": "rear-inner",
       "anchor_mm": [
-        3.695,
-        90.595
+        30.3975,
+        85.5475
       ],
-      "rotation_deg": 180,
+      "rotation_deg": 180.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Move0.20mm down and face supply toward its inner-face bypass; no existing copper attachment or RF-path relocation."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "voice_hl_driver_bypass": {
       "frame": "rear-inner",
       "anchor_mm": [
-        0.9,
-        90.5
+        27.6025,
+        85.4525
       ],
-      "rotation_deg": 90,
+      "rotation_deg": 90.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Keep the displaced capacitor on B with1.99mm to U47 supply pin5."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "hub_safe_i2c_aon_100n": {
       "frame": "rear-inner",
@@ -3185,57 +3185,57 @@
     "u214_supervisor_sense_bottom": {
       "frame": "rear-inner",
       "anchor_mm": [
-        5.6,
-        88.5
+        7.957,
+        138.745
       ],
-      "rotation_deg": 0,
+      "rotation_deg": 0.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Follow U94 sense pin5, reducing the native pad span to2.04mm while clearing the mounting PTH."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "voice_evidence_threshold_top": {
       "frame": "rear-inner",
       "anchor_mm": [
-        11.865,
-        78.8
+        71.394,
+        22.905
       ],
-      "rotation_deg": 90,
+      "rotation_deg": 90.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Use the inner gap between U111 and U109, reducing the threshold-pin3 connection to2.96mm."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "voice_evidence_threshold_bottom": {
       "frame": "rear-inner",
       "anchor_mm": [
-        18.8,
-        82.05
+        78.354,
+        26.155
       ],
-      "rotation_deg": 0,
+      "rotation_deg": 0.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Clear the encoder push PTH and supply bypasses. Native low-rate threshold span increases4.68→6.52mm; no attached copper, and route/noise review remains open."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "safe_reset_gate_pullup": {
       "frame": "rear-inner",
       "anchor_mm": [
-        10.2,
-        89.65
+        5.35,
+        59.325
       ],
-      "rotation_deg": 0,
+      "rotation_deg": 0.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Move the displaced pullup toward its Q6 gate, below the mounting PTH; keep reset topology and value unchanged."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "ptt_filter_cap": {
       "frame": "rear-inner",
       "anchor_mm": [
-        18.75,
-        83.2
+        18.5875,
+        55.9175
       ],
-      "rotation_deg": 0,
+      "rotation_deg": 0.0,
       "mechanical_locked": true,
       "method": "reviewed H6.0.3 signal-locality correction",
-      "reason": "Clear the encoder mounting PTH and move the existing raw-PTT capacitor toward its pullup; no PTT switch-side or electrical change."
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     },
     "speaker_amp_bulk_cap": {
       "project": "LESHY2-RF-R2",
@@ -3280,13 +3280,13 @@
       "project": "LESHY2-RF-R2",
       "frame": "rear-inner",
       "anchor_mm": [
-        13.115,
-        107.46
+        74.535,
+        103.461667
       ],
-      "rotation_deg": 90,
+      "rotation_deg": 90.0,
       "mechanical_locked": true,
-      "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate.",
       "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
     "safe_latch": {
@@ -3319,13 +3319,13 @@
       "project": "LESHY2-RF-R2",
       "frame": "rear-inner",
       "anchor_mm": [
-        20.5,
-        94.7
+        11.7,
+        116.8
       ],
-      "rotation_deg": 270,
+      "rotation_deg": 270.0,
       "mechanical_locked": true,
-      "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate.",
       "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
     "audio_capture_mic_coupling": {
@@ -3385,12 +3385,12 @@
       "frame": "rear-inner",
       "anchor_mm": [
         12.0,
-        93.65
+        32.75
       ],
-      "rotation_deg": 180,
+      "rotation_deg": 180.0,
       "mechanical_locked": true,
-      "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate.",
       "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
     "mic_tx_coupling": {
@@ -3423,26 +3423,26 @@
       "project": "LESHY2-RF-R2",
       "frame": "rear-inner",
       "anchor_mm": [
-        22.0,
-        95.25
+        55.108,
+        116.296
       ],
       "rotation_deg": 90.0,
       "mechanical_locked": true,
-      "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate.",
       "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
     "unit_supervisor_ct": {
       "project": "LESHY2-RF-R2",
       "frame": "rear-inner",
       "anchor_mm": [
-        28.0,
-        97.5
+        61.108,
+        118.546
       ],
       "rotation_deg": 180.0,
       "mechanical_locked": true,
-      "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate.",
       "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
     "safe_fault_reset_buffer_bypass": {
@@ -3528,12 +3528,12 @@
       "frame": "rear-inner",
       "anchor_mm": [
         12.0,
-        92.25
+        31.35
       ],
-      "rotation_deg": 180,
+      "rotation_deg": 180.0,
       "mechanical_locked": true,
-      "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate.",
       "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
     "headset_mic_select_pullup": {
@@ -3554,12 +3554,12 @@
       "frame": "rear-inner",
       "anchor_mm": [
         9.3,
-        93.65
+        32.75
       ],
-      "rotation_deg": 180,
+      "rotation_deg": 180.0,
       "mechanical_locked": true,
-      "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate.",
       "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
     "mic_tx_bias": {
@@ -3605,13 +3605,13 @@
       "project": "LESHY2-RF-R2",
       "frame": "rear-inner",
       "anchor_mm": [
-        21.5,
-        104.25
+        54.608,
+        125.296
       ],
       "rotation_deg": 180.0,
       "mechanical_locked": true,
-      "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate.",
       "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
     "evidence_mask_p15_pulldown": {
@@ -3631,39 +3631,39 @@
       "project": "LESHY2-RF-R2",
       "frame": "rear-inner",
       "anchor_mm": [
-        20.25,
-        106.0
+        45.25,
+        132.23
       ],
       "rotation_deg": 180.0,
       "mechanical_locked": true,
-      "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate.",
       "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
     "voice_v_evidence_threshold_top": {
       "project": "LESHY2-RF-R2",
       "frame": "rear-inner",
       "anchor_mm": [
-        20.25,
-        107.25
+        45.25,
+        133.48
       ],
       "rotation_deg": 180.0,
       "mechanical_locked": true,
-      "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate.",
       "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
     "ext_evidence_output_pullup": {
       "project": "LESHY2-RF-R2",
       "frame": "rear-inner",
       "anchor_mm": [
-        14.75,
-        92.75
+        14.5,
+        58.0
       ],
       "rotation_deg": 90.0,
       "mechanical_locked": true,
-      "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate.",
       "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
     "evidence_or_0": {
@@ -3774,26 +3774,26 @@
       "project": "LESHY2-RF-R2",
       "frame": "rear-inner",
       "anchor_mm": [
-        18.25,
-        92.75
+        9.45,
+        114.85
       ],
-      "rotation_deg": 90,
+      "rotation_deg": 90.0,
       "mechanical_locked": true,
-      "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate.",
       "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
     "audio_capture_selector": {
       "project": "LESHY2-RF-R2",
       "frame": "rear-inner",
       "anchor_mm": [
-        7.5,
-        107.0
+        8.5,
+        111.55
       ],
-      "rotation_deg": 90,
+      "rotation_deg": 90.0,
       "mechanical_locked": true,
-      "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate.",
       "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
     "codec_power_switch": {
@@ -3814,12 +3814,12 @@
       "frame": "rear-inner",
       "anchor_mm": [
         5.0,
-        93.5
+        32.6
       ],
-      "rotation_deg": 90,
+      "rotation_deg": 90.0,
       "mechanical_locked": true,
-      "method": "reviewed audio local-support correction",
-      "reason": "Isolated inward headset / outward acoustic-port candidate; exact unchanged device and net identity; not audio qualification.",
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate.",
       "evidence": "hardware/layout/h6-r2-inner-audio-candidate.json"
     },
     "backlight_efuse_input_cap": {
@@ -4085,6 +4085,732 @@
       "method": "reviewed H6.0.3 native-silkscreen-clearance correction",
       "reason": "Finite local resistor move for unambiguous debug-header silkscreen. Preserve exact part, pad nets, all copper and every other placement. Accepted static pad-distance tradeoffs are recorded separately; not a routed timing or electrical-performance qualification.",
       "evidence": "hardware/layout/h6-r2-interface-label-relocation-review.json"
+    },
+    "voice_detector_filter": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        3.575,
+        30.25
+      ],
+      "rotation_deg": 180.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "rf_rp_dbg_header": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        30.425,
+        106.92
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "audio_capture_input_coupling": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        6,
+        111
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "unit_efuse": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        23.3,
+        116.575
+      ],
+      "rotation_deg": 180.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "unit_dvdt_cap": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        25.3,
+        116.4
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "unit_input_cap": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        29.49,
+        116.82
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "unit_itimer_cap": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        20.71,
+        113.55
+      ],
+      "rotation_deg": 180.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "unit_ovlo_bottom": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        23.4,
+        114.625
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "unit_ovlo_top": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        27.1,
+        116.075
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "unit_rilm": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        22.875,
+        112.1
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "evidence_mask_scl_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        21.7825,
+        56.893749
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "evidence_mask_sda_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        20.5325,
+        56.893749
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "voice_band_p6_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        13.9295,
+        65.9925
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "voice_band_p2_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        13.1795,
+        62.9925
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "voice_band_p4_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        17.8895,
+        66.782501
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "voice_band_p1_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        15.6395,
+        65.532501
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "slow_io_s3_evidence_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        11.9295,
+        62.9925
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "voice_band_io_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        17.8695,
+        65.5225
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "voice_band_p7_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        23.6795,
+        60.7425
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "voice_band_io": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        17.8145,
+        61.917501
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "voice_band_p3_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        22.4295,
+        60.7425
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "voice_band_p5_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        15.6395,
+        66.782501
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "cc_host_buffer_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        18.5275,
+        51.4525
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "safe_gate_b": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        5.4725,
+        64.7975
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "safe_gate_b_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        5.5275,
+        61.2025
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "voice_audio_mux_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        3.5275,
+        45.177499
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "voice_audio_mux": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        3.4725,
+        47.8225
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "unit_supervisor": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        55.453,
+        119.491
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "unit_supervisor_sense_top": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        53.723,
+        135.370999
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "u214_supervisor_sense_top": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        21.472,
+        129.819999
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "ext_request_or_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        55.25,
+        123.48
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "ext_any_req_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        57.26,
+        114.499999
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "ext_request_or": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        58.49,
+        123.52
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "voice_band_inverter": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        21.9475,
+        52.4725
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "voice_band_inverter_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        25.0525,
+        52.5275
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "evidence_cmp_voice_v": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        47.195,
+        128.375
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "evidence_cmp_voice_v_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        50.305,
+        128.834999
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "voice_evidence_hysteresis": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        78.669,
+        29.429999
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "voice_pd_gate_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        20.53,
+        34.44
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "ext_branch_gate_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        15.605,
+        54.44
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "ext_branch_gate": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        13.395,
+        54.56
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "evidence_or_2": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        22.0,
+        42.5
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "cc_power_switch": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        1.858333,
+        72.555
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "cc_power_on_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        11.628333,
+        67.885
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "safety_fault_request_iso": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        21.07,
+        66.395
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "safety_fault_request_iso_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        18.93,
+        68.605
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "safe_reset_buffer": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        18.6975,
+        31.9725
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "safe_reset_buffer_bypass": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        21.3025,
+        32.0275
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "safety_control_esd": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        78.065,
+        102.306667
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "run_loop_filter": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        75.475,
+        105.106666
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "safe_reset_sink_b": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        2.65,
+        60.675
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "ptt_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        21.4125,
+        55.0825
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "u219_field_output_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        7.5,
+        32.5
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "evidence_mask_p13_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        12.5,
+        65.5
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "any_tx_aon_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        13.5,
+        51.5
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "voice_evidence_output_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        12.5,
+        50.0
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "voice_supervisor_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        23.5,
+        48.0
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "codec_power_on_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        23.5,
+        45.0
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "cc_evidence_hysteresis": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        28.0,
+        99.5
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "evidence_mask_p12_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        11.0,
+        65.5
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "fault_assert_sense_series": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        18.5,
+        53.0
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "main_en_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        23.0,
+        64.0
+      ],
+      "rotation_deg": 0.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "voice_hl_req_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        20.5,
+        39.5
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "voice_supervisor_sense_top": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        28.0,
+        97.5
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "audio_capture_sel_pulldown": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        13.5,
+        46.0
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
+    },
+    "ext_evidence_input_pullup": {
+      "frame": "rear-inner",
+      "anchor_mm": [
+        18.0,
+        57.5
+      ],
+      "rotation_deg": 90.0,
+      "mechanical_locked": true,
+      "method": "reviewed H6.0.3 signal-locality correction",
+      "reason": "User-approved encoder under Cap and coordinated UHF/headset relocation; retain exact devices, pad identities, internal local-group geometry and existing copper. Native staging/DRC and final assembly qualification remain separate."
     }
   },
   "post_placement_corrections": {

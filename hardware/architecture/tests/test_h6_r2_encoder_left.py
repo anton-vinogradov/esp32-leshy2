@@ -1,7 +1,8 @@
-"""Left-side ergonomic datum and real bypass owners, without PCB writes.
+"""Historical left-side review, current under-Cap shaft and real bypass owners.
 
-The joint native stage/DRC remains separate: R286's new site requires the
-coordinated inner-audio repack. A nominal plan gap is not finger/3D approval.
+Historical rows cannot pin superseded parts to their earlier positions. Their
+exact replacement scope and current source/native checks are independent;
+neither nominal plan gaps nor these tests qualify finger/3D/routing access.
 """
 import ast
 import copy
@@ -16,6 +17,8 @@ ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / "hardware/layout"))
 CONTRACT = ROOT / "hardware/layout/h6-r2-placement-contract.json"
 REVIEW = ROOT / "hardware/layout/h6-r2-encoder-left-candidate.json"
+REPLACEMENT_REVIEW = "hardware/layout/h6-r2-encoder-under-cap-review.json"
+HISTORICAL_ROWS_SHA = "8895c9796dfb23fd4a7c1f033c9d948c0fb1e854e229215276a49580557c944a"
 PROJECT = "LESHY2-RF-R2"
 PCB = ROOT / f"hardware/ecad/kicad/{PROJECT}/{PROJECT}.kicad_pcb"
 EXPECTED_REFS = {
@@ -23,6 +26,10 @@ EXPECTED_REFS = {
     "C245", "C266", "C264", "C114", "U47", "C142", "C33", "C34",
     "C35", "C36", "R224", "R284", "R283", "R271", "C258", "R286",
 }
+SUPERSEDED_REFS = frozenset("C114 C125 C142 C244 C245 C258 C264 C266 R224 R271 R283 R284 R286 SW3 U109 U111 U30 U31 U47 U94".split())
+# The finite user-approved candidate inventory, not all current overrides and
+# not a set inferred from whichever rows happen to remain in the new review.
+REPLACEMENT_REFS = frozenset("C114 C122 C125 C130 C131 C132 C136 C142 C144 C145 C149 C195 C199 C230 C244 C245 C250 C251 C252 C253 C256 C257 C258 C264 C265 C266 C268 C271 C276 C282 C58 C69 J3 Q6 R105 R115 R116 R117 R118 R119 R120 R121 R134 R138 R140 R171 R185 R201 R203 R224 R225 R230 R236 R237 R239 R242 R243 R244 R249 R251 R255 R256 R260 R261 R264 R267 R271 R279 R281 R282 R283 R284 R286 R287 R288 R49 R54 R56 R68 SW3 U100 U103 U109 U110 U111 U114 U119 U123 U126 U128 U15 U19 U30 U31 U32 U39 U40 U41 U42 U47 U48 U49 U68 U82 U83 U94".split())
 U6_CAPS = {
     "hub_safe_i2c_aon_100n": ("C33", "8", "AON_SAFE_3V3"),
     "hub_safe_i2c_aon_1u": ("C34", "8", "AON_SAFE_3V3"),
@@ -36,28 +43,91 @@ except ImportError:
     pcbnew = None
 
 
+def validate_scope(review, contract, replacement):
+    rows = review["placement_rows"]
+    assert len(rows) == len(EXPECTED_REFS) == 24
+    assert {row["reference"] for row in rows} == EXPECTED_REFS
+    assert hashlib.sha256(json.dumps(rows, sort_keys=True, separators=(",", ":")).encode()).hexdigest() == HISTORICAL_ROWS_SHA
+    assert review["status"] == "placement_partially_superseded_not_mechanics_qualified"
+    scope = review["placement_scope"]
+    assert scope["historical_status"] == "isolated_source_candidate_requires_joint_audio_integration"
+    assert scope["historical_fields"] == ["placement_rows", "source_inputs", "pad_pair_review", "native_preliminary_proof", "joint_dependencies", "encoder_nominal_plan_review"]
+    assert scope["historical_placement_rows_sha256"] == HISTORICAL_ROWS_SHA
+    assert scope["superseded_references"] == sorted(SUPERSEDED_REFS)
+    assert scope["retained_current_reference_count"] == len(EXPECTED_REFS - SUPERSEDED_REFS) == 4
+    assert scope["current_replacement_review"] == REPLACEMENT_REVIEW
+    assert isinstance(replacement, dict), "current under-Cap replacement review is missing"
+    new_rows = replacement["placement_rows"]
+    assert len(new_rows) == len(REPLACEMENT_REFS) == 106
+    assert {row["reference"] for row in new_rows} == REPLACEMENT_REFS
+    new = {row["reference"]: row for row in new_rows}
+    assert EXPECTED_REFS & new.keys() == SUPERSEDED_REFS
+    for row in rows:
+        ref, instance = row["reference"], row["instance"]
+        expected = row["after"]
+        if ref in SUPERSEDED_REFS:
+            assert new[ref]["instance"] == instance
+            expected = new[ref]["after"]
+        got = contract["placement_overrides"][instance]
+        assert expected["side"] == ("F.Cu" if ref == "SW3" else "B.Cu")
+        assert got["frame"] == ("rear-outer" if ref == "SW3" else "rear-inner")
+        assert expected["anchor_mm"] == got["anchor_mm"], ref
+        assert expected["rotation_deg"] % 360 == got["rotation_deg"] % 360, ref
+        assert got["mechanical_locked"] is True
+        assert "centre_mm" not in got
+
+
 class EncoderLeftSourceTests(unittest.TestCase):
     def setUp(self):
         self.contract = json.loads(CONTRACT.read_text())
         self.review = json.loads(REVIEW.read_text())
+        path = ROOT / REPLACEMENT_REVIEW
+        self.replacement = json.loads(path.read_text()) if path.exists() else None
 
     def test_finite_scope_uses_real_left_native_datum_and_keeps_supports_inner(self):
-        rows = self.review["placement_rows"]
-        self.assertEqual(EXPECTED_REFS, {r["reference"] for r in rows})
-        self.assertEqual(len(EXPECTED_REFS), len(rows))
+        validate_scope(self.review, self.contract, self.replacement)
         overrides = self.contract["placement_overrides"]
-        for row in rows:
-            got = overrides[row["instance"]]
-            expected = row["after"]
-            self.assertEqual(expected["anchor_mm"], got["anchor_mm"], row["reference"])
-            self.assertEqual(expected["rotation_deg"] % 360, got["rotation_deg"] % 360)
-            self.assertTrue(got["mechanical_locked"])
-            self.assertNotIn("centre_mm", got)
-            self.assertEqual("rear-outer" if row["reference"] == "SW3" else "rear-inner", got["frame"])
         encoder = overrides["encoder"]
-        self.assertEqual([9.25, 81.25], encoder["anchor_mm"])
+        self.assertEqual([9.25, 54], encoder["anchor_mm"])
         self.assertEqual(270, encoder["rotation_deg"])
         self.assertEqual([], self.contract["placement_policy"]["released_instances"])
+
+    def test_historical_rows_and_exact_supersession_cannot_be_weakened(self):
+        validate_scope(self.review, self.contract, self.replacement)
+        for mutation in ("row", "remove", "add", "duplicate", "count", "owner"):
+            review = copy.deepcopy(self.review)
+            scope = review["placement_scope"]
+            if mutation == "row": review["placement_rows"][0]["after"]["anchor_mm"][1] = 54
+            elif mutation == "remove": scope["superseded_references"].pop()
+            elif mutation == "add": scope["superseded_references"].append("C33")
+            elif mutation == "duplicate": scope["superseded_references"].append("SW3")
+            elif mutation == "count": scope["retained_current_reference_count"] = 3
+            else: scope["current_replacement_review"] = "unreviewed.json"
+            with self.subTest(mutation=mutation), self.assertRaises(AssertionError):
+                validate_scope(review, self.contract, self.replacement)
+
+    def test_new_review_requires_exact_unique_inventory_and_matching_current_poses(self):
+        validate_scope(self.review, self.contract, self.replacement)
+        for mutation in ("missing", "duplicate", "extra", "wrong_ref", "wrong_instance", "side", "pose", "angle"):
+            replacement = copy.deepcopy(self.replacement)
+            rows = replacement["placement_rows"]
+            row = next(r for r in rows if r["reference"] == "SW3")
+            if mutation == "missing": rows.remove(row)
+            elif mutation == "duplicate": rows.append(copy.deepcopy(row))
+            elif mutation == "extra": rows.append({**copy.deepcopy(row), "reference": "C197"})
+            elif mutation == "wrong_ref": row["reference"] = "C197"
+            elif mutation == "wrong_instance": row["instance"] = "ptt_switch"
+            elif mutation == "side": row["after"]["side"] = "B.Cu"
+            elif mutation == "pose": row["after"]["anchor_mm"][1] = 81.25
+            else: row["after"]["rotation_deg"] = 0
+            with self.subTest(mutation=mutation), self.assertRaises(AssertionError):
+                validate_scope(self.review, self.contract, replacement)
+
+    def test_retained_u6_cap_pose_cannot_drift_behind_supersession(self):
+        validate_scope(self.review, self.contract, self.replacement)
+        self.contract["placement_overrides"]["hub_safe_i2c_aon_100n"]["anchor_mm"][0] += 1
+        with self.assertRaises(AssertionError):
+            validate_scope(self.review, self.contract, self.replacement)
 
     def test_ptt_and_encoder_footprint_are_not_replaced_or_mirrored(self):
         ptt = self.contract["placement_overrides"]["ptt_switch"]
@@ -114,14 +184,8 @@ class EncoderLeftNativeTests(unittest.TestCase):
         audit = json.loads((ROOT / "hardware/layout/generated/H6-R2-placement-audit.json").read_text())
         self.rows = {r["instance"]: r for b in audit["boards"] if b["project"] == PROJECT for r in b["placements"]}
         self.before_nets = {ref: sorted((p.GetNumber(), p.GetNetname()) for p in f.Pads()) for ref, f in self.fps.items()}
-        for row in self.review["placement_rows"]:
-            fp = self.fps[row["reference"]]
-            o = self.contract["placement_overrides"][row["instance"]]
-            want_flipped = o["frame"] == "rear-inner"
-            if fp.IsFlipped() != want_flipped:
-                fp.Flip(fp.GetPosition(), False)
-            fp.SetOrientationDegrees(o["rotation_deg"])
-            fp.SetPosition(pcbnew.VECTOR2I(*(round(v * 1_000_000) for v in o["anchor_mm"])))
+        # Inspect actual current native geometry; do not manufacture a PASS by
+        # replaying source poses (or the historical24 rows) over a stale board.
         self.bindings = json.loads((ROOT / "hardware/layout/generated/H6-R2-kicad-net-bindings.json").read_text())["projects"][PROJECT]["canonical_to_kicad"]
 
     def tearDown(self):
@@ -140,10 +204,10 @@ class EncoderLeftNativeTests(unittest.TestCase):
         self.assertFalse(fp.IsFlipped())
         self.assertEqual("EC11E18244AU-ENGINEERING-PTH", str(fp.GetFPID().GetLibItemName()))
         # Independent transformation of the primary mounting-side terminal axes.
-        expected = {("A", 1_750_000, 78_750_000), ("B", 1_750_000, 83_750_000),
-                    ("C", 1_750_000, 81_250_000), ("D", 16_250_000, 78_750_000),
-                    ("E", 16_250_000, 83_750_000), ("MP", 9_250_000, 75_000_000),
-                    ("MP", 9_250_000, 87_500_000)}
+        expected = {("A", 1_750_000, 51_500_000), ("B", 1_750_000, 56_500_000),
+                    ("C", 1_750_000, 54_000_000), ("D", 16_250_000, 51_500_000),
+                    ("E", 16_250_000, 56_500_000), ("MP", 9_250_000, 47_750_000),
+                    ("MP", 9_250_000, 60_250_000)}
         self.assertEqual(expected, {(p.GetNumber(), p.GetPosition().x, p.GetPosition().y) for p in fp.Pads()})
         self.assertEqual(7, len(list(fp.Pads())))
         for pad in fp.Pads():
@@ -172,6 +236,10 @@ class EncoderLeftNativeTests(unittest.TestCase):
         self.assertAlmostEqual(.175, result["rows"][0]["courtyard_gap_mm"])
         # Rejected first scratch proposal: electrically near VCC8, but1.525mm
         # from the owner courtyard exceeds the independent1.0mm policy.
+        # Reconstruct that historical two-part fixture explicitly; the current
+        # U30 may have moved rigidly with C114 in the under-Cap correction.
+        self.fps["U30"].SetOrientationDegrees(90)
+        self.fps["U30"].SetPosition(pcbnew.VECTOR2I(13_225_000, 82_900_000))
         self.fps["C114"].SetOrientationDegrees(270)
         self.fps["C114"].SetPosition(pcbnew.VECTOR2I(17_100_000, 81_250_000))
         rejected = local_result()

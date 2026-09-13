@@ -33,8 +33,10 @@ PARTS = {
 EXPECTED_OVERRIDES = {
     "m1_rf_receptacle": ([37.5, 122.25], 180.0),
     "unit_bleeder": ([25.25, 127.5], 0.0),
-    "unit_output_cap": ([22.3, 128.5], 90.0),
 }
+# C253 now belongs to the compact U100 cell. Its actual pin locality is tested
+# by test_h6_r2_encoder_under_cap; M1 clearance is still checked below. Do not
+# duplicate an obsolete capacitor pose in this connector-mating fixture.
 EXPECTED_NETS = {str(n): None for n in range(1, 81)}
 for n in list(range(1, 17)) + list(range(65, 77)):
     EXPECTED_NETS[str(n)] = "POWER_GROUND" if n % 2 else "3V3_MAIN"
@@ -121,7 +123,7 @@ class M1MatingTests(unittest.TestCase):
             self.skipTest("KiCad standard footprint library not installed")
         return pads(path.read_text(), self.fn["_balanced_form_end"])
 
-    def test_exact_three_overrides_are_locked_and_use_native_anchors(self):
+    def test_retained_mating_overrides_are_locked_and_use_native_anchors(self):
         for instance, (anchor, rotation) in EXPECTED_OVERRIDES.items():
             with self.subTest(instance=instance):
                 row = self.contract["placement_overrides"][instance]

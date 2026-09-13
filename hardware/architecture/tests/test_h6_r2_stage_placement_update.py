@@ -162,6 +162,43 @@ class GuardedPlacementUpdateTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     updater.reviewed_label_changes(source, seed, moves, additions)
 
+    def test_inner_label_moves_are_exact_back_silkscreen_only(self):
+        form = '(gr_text "RF" (at 1 2) (layer "B.Silkscreen"))'
+        moved = form.replace('(at 1 2)', '(at 1.25 2)')
+        unlisted = '(gr_text "HEADSET" (layer "B.Silkscreen"))'
+        for layer in ("B.Silkscreen", "B.SilkS"):
+            old_form = form.replace("B.Silkscreen", layer)
+            new_form = moved.replace("B.Silkscreen", layer)
+            self.assertEqual(([("RF", old_form)], [("RF", new_form)]),
+                updater.reviewed_inner_label_changes('(kicad_pcb ' + old_form + unlisted + ')',
+                    '(kicad_pcb ' + new_form + unlisted + ')', ["RF"]))
+        for layer in ("F.SilkS", "F.Silkscreen", "B.Cu", "B.Fab", "Dwgs.User"):
+            wrong = '(kicad_pcb ' + form.replace("B.Silkscreen", layer) + ')'
+            valid = '(kicad_pcb ' + form + ')'
+            for before, after in ((wrong, valid), (valid, wrong)):
+                with self.subTest(layer=layer, before=before):
+                    with self.assertRaisesRegex(ValueError, "only touch B.Silkscreen"):
+                        updater.reviewed_inner_label_changes(before, after, ["RF"])
+
+    def test_inner_label_allowance_preserves_existing_population(self):
+        form = '(gr_text "RF" (at 1 2) (layer "B.SilkS"))'
+        old = '(kicad_pcb ' + form + ')'
+        moved = old.replace('(at 1 2)', '(at 1.25 2)')
+        doubled = '(kicad_pcb ' + form + form + ')'
+        before, after = updater.reviewed_inner_label_changes(doubled, doubled, ["RF"])
+        self.assertEqual(2, len(before))
+        self.assertEqual(2, len(after))
+        for source, seed, allowance in (
+            (old, moved, "RF"), (old, moved, None), (old, moved, [""]),
+            (old, moved, [None]), (old, moved, ["RF", "RF"]),
+            (old, moved, ["MISSING"]), ('(kicad_pcb)', moved, ["RF"]),
+            (old, '(kicad_pcb)', ["RF"]), (old, doubled, ["RF"]),
+            (doubled, old, ["RF"]), (old, moved.replace('"RF"', '"RENAMED"'), ["RF"]),
+        ):
+            with self.subTest(source=source, seed=seed, allowance=allowance):
+                with self.assertRaises(ValueError):
+                    updater.reviewed_inner_label_changes(source, seed, allowance)
+
 
 @unittest.skipIf(pcbnew is None, "KiCad Python required for guarded placement staging")
 class GuardedPlacementStageIntegrationTests(unittest.TestCase):
@@ -325,6 +362,58 @@ class GuardedPlacementStageIntegrationTests(unittest.TestCase):
         candidate = self.directory / self.source.name
         self.assertEqual(updater.copper_forms(self.original.decode()), updater.copper_forms(candidate.read_text()))
         self.assertEqual(self.original, self.source.read_bytes())
+
+    def test_inner_label_move_roundtrip_requires_separate_exact_allowance(self):
+        seed_path = self.root / "inner-label-seed.kicad_pcb"
+        for path, data in ((self.source, self.original), (seed_path, self.seed)):
+            board = updater.load_board_bytes(data, "labels.kicad_pcb")
+            for text, x in (("RF", 10000000), ("HEADSET", 20000000)):
+                label = pcbnew.PCB_TEXT(board)
+                label.SetText(text)
+                label.SetLayer(pcbnew.B_SilkS)
+                label.SetMirrored(True)
+                label.SetPosition(pcbnew.VECTOR2I(
+                    x + (250000 if path == seed_path and text == "RF" else 0), 10000000))
+                board.Add(label)
+            pcbnew.SaveBoard(str(path), board)
+        self.original = self.source.read_bytes()
+        self.seed = seed_path.read_bytes()
+        self.plan["baseline_board_sha256"] = updater.sha(self.original)
+        with patch.object(updater.placement, "build", side_effect=self.build):
+            with self.assertRaisesRegex(ValueError, "does not match generated placement"):
+                updater.stage(self.plan, self.directory)
+            self.assertFalse(self.directory.exists())
+            self.plan["allowed_silkscreen_texts"] = ["RF"]
+            with self.assertRaisesRegex(ValueError, "only touch outward"):
+                updater.stage(self.plan, self.directory)
+            self.assertFalse(self.directory.exists())
+            del self.plan["allowed_silkscreen_texts"]
+            self.plan["allowed_inner_silkscreen_texts"] = ["RF"]
+
+            reviewed_seed = self.seed
+            board = updater.load_board_bytes(self.seed, "unreviewed-label.kicad_pcb")
+            for item in board.GetDrawings():
+                if isinstance(item, pcbnew.PCB_TEXT) and item.GetText() == "HEADSET":
+                    item.SetPosition(pcbnew.VECTOR2I(21000000, 10000000))
+            pcbnew.SaveBoard(str(seed_path), board)
+            self.seed = seed_path.read_bytes()
+            with self.assertRaisesRegex(ValueError, "does not match generated placement"):
+                updater.stage(self.plan, self.directory)
+            self.assertFalse(self.directory.exists())
+            self.seed = reviewed_seed
+            result = updater.stage(self.plan, self.directory)
+        self.assertEqual(["RF"], result["reviewed_inner_silkscreen_texts"])
+        self.assertEqual([], result["reviewed_silkscreen_texts"])
+        candidate = self.directory / self.source.name
+        self.assertEqual(updater.copper_forms(self.original.decode()), updater.copper_forms(candidate.read_text()))
+        board = pcbnew.LoadBoard(str(candidate))
+        labels = {item.GetText(): item for item in board.GetDrawings() if isinstance(item, pcbnew.PCB_TEXT)}
+        self.assertEqual(10250000, labels["RF"].GetPosition().x)
+        self.assertEqual(pcbnew.B_SilkS, labels["RF"].GetLayer())
+        self.assertTrue(labels["RF"].IsMirrored())
+        self.assertEqual(20000000, labels["HEADSET"].GetPosition().x)
+        self.assertEqual(self.original, self.source.read_bytes())
+        self.assertEqual(result, json.loads((self.directory / "stage-review.json").read_text()))
 
     def test_finite_backside_interface_addition_preserves_copper_and_footprints(self):
         board = updater.load_board_bytes(self.original, "seed.kicad_pcb")

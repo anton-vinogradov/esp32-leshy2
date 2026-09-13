@@ -181,8 +181,9 @@ class EncoderFitTests(unittest.TestCase):
         self.assertEqual(17,len(d['supports']))
         self.assertEqual({'U90','U38','U89','U134','C288','R143','C152','C240','R104','R285','R213','R221','R111','R112','R209','R180','C153'},set(d['supports']))
         # The old engineering footprint receipt remains historical; the
-        # subsequent ergonomic correction restores the actual left edge.
-        self.assertEqual([9.25,81.25],c['encoder']['anchor_mm'])
+        # subsequent user-requested correction places that same left-side
+        # shaft directly below Cap; it does not requalify the old footprint.
+        self.assertEqual([9.25,54],c['encoder']['anchor_mm'])
         self.assertEqual(270,c['encoder']['rotation_deg'])
         self.assertTrue(c['encoder']['mechanical_locked'])
         self.assertNotIn('centre_mm',c['encoder'])

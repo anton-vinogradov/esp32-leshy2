@@ -1,0 +1,3711 @@
+{
+  "schema_version": 1,
+  "status": "placement_adopted_not_release_qualified",
+  "project": "LESHY2-RF-R2",
+  "marker": "H6.0.3-R1",
+  "date": "2026-09-13",
+  "request": "Move the same encoder upward, directly below Cap; user approved moving the headset jack and the required internal repack.",
+  "baseline_board_sha256": "5d79ceab06d8ca16c87114b67e0217b462f4c044b559bc1160bdc07a8dca0795",
+  "baseline_contract_sha256": "caedfdf37c1546feb18969396706e1f922c02f09cadf667027ff9f7874b839a9",
+  "authority": {
+    "fabrication_ready": false,
+    "assembly_qualified": false,
+    "audio_qualified": false,
+    "rf_qualified": false
+  },
+  "integration_snapshot": {
+    "rf_board_sha256": "81f8809ec75a5bfea43668a94ba64ac486fca8d33edda4fd36a68b0ef5ba6c76",
+    "ui_board_sha256_unchanged": "b93eee66471cc46dd165b108c52442aa3a3ada8446248141b22ba5ca1bf03143",
+    "changed_unrouted_references": 106,
+    "rf_copper_objects_preserved_byte_for_byte": 765,
+    "named_pad_copper_adjacency_nodes_preserved": 3497,
+    "native_drc_violations": 0,
+    "schematic_parity_findings": 0,
+    "native_rf_required_labels_matched": 35,
+    "native_rf_label_collision_candidates": 0,
+    "meaning": "Finite placement integration only; live board hashes and routing status are owned by H6-R2-current-routing-audit.json."
+  },
+  "placement_rows": [
+    {
+      "reference": "C114",
+      "instance": "cc_band_buffer_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          16.2,
+          81.65
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          31.9875,
+          79.875
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "987b586a4599bab826fc5f313436dba0c902e949c658a7164117059146e48e3d"
+    },
+    {
+      "reference": "C122",
+      "instance": "cc_host_buffer_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          16.305,
+          76.854999
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          18.5275,
+          51.4525
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "987b586a4599bab826fc5f313436dba0c902e949c658a7164117059146e48e3d"
+    },
+    {
+      "reference": "C125",
+      "instance": "cc_power_input_cap",
+      "device_id": "tdk_c1608x7r1c105k080ac",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "before": {
+        "anchor_mm": [
+          1.5,
+          73.0
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          1.513333,
+          69.560001
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "8d0dfdcf45fe6f5b6cbf4c020c76a758ec622beff2b6ed46c3bae03c64c500cc"
+    },
+    {
+      "reference": "C130",
+      "instance": "voice_audio_mux_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          29.805,
+          78.604999
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          3.5275,
+          45.177499
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "ebdebc768c196979a83056e68a6418a3d4e3713ac505dd1b529e954694ec7975"
+    },
+    {
+      "reference": "C131",
+      "instance": "voice_band_inverter_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          31.855,
+          85.305
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          25.0525,
+          52.5275
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "38c6e9b136ece8cc8aa003ba7cc71fe8ee518ed4c9401a1c6eef5c4ac4ce2ba1"
+    },
+    {
+      "reference": "C132",
+      "instance": "voice_band_io_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          24.305,
+          79.854999
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          17.8695,
+          65.5225
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "8d0dfdcf45fe6f5b6cbf4c020c76a758ec622beff2b6ed46c3bae03c64c500cc",
+      "native_after_anchor_mm": [
+        17.8695,
+        65.522499
+      ]
+    },
+    {
+      "reference": "C136",
+      "instance": "voice_detector_filter",
+      "device_id": "murata_grm1555c1h121ja01d",
+      "mpn": "Murata GRM1555C1H121JA01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          1.105,
+          42.305
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          3.575,
+          30.25
+        ],
+        "rotation_deg": 180.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "8e2c39d62b31c8ce5593d5b39de2b51d520c308e8ad100493bdd4fe5c417a711"
+    },
+    {
+      "reference": "C142",
+      "instance": "voice_hl_driver_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          0.9,
+          90.5
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          27.6025,
+          85.4525
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "8d0dfdcf45fe6f5b6cbf4c020c76a758ec622beff2b6ed46c3bae03c64c500cc"
+    },
+    {
+      "reference": "C144",
+      "instance": "voice_io_power_input_cap",
+      "device_id": "tdk_c1608x7r1c105k080ac",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "before": {
+        "anchor_mm": [
+          16.149999,
+          92.75
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          7.349999,
+          114.85
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "8d0dfdcf45fe6f5b6cbf4c020c76a758ec622beff2b6ed46c3bae03c64c500cc"
+    },
+    {
+      "reference": "C145",
+      "instance": "voice_io_power_output_cap",
+      "device_id": "tdk_c1608x7r1c105k080ac",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "before": {
+        "anchor_mm": [
+          20.5,
+          94.7
+        ],
+        "rotation_deg": 270.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          11.7,
+          116.8
+        ],
+        "rotation_deg": 270.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "ebdebc768c196979a83056e68a6418a3d4e3713ac505dd1b529e954694ec7975"
+    },
+    {
+      "reference": "C149",
+      "instance": "voice_pd_gate_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          25.355,
+          69.555
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          20.53,
+          34.44
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "38c6e9b136ece8cc8aa003ba7cc71fe8ee518ed4c9401a1c6eef5c4ac4ce2ba1"
+    },
+    {
+      "reference": "C195",
+      "instance": "audio_capture_input_coupling",
+      "device_id": "tdk_c1608x7r1c105k080ac",
+      "mpn": "TDK C1608X7R1C105K080AC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "before": {
+        "anchor_mm": [
+          18.625,
+          89.375
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          6,
+          111
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "09a7641d41cab1e56a13ca6adf87a096cd4c817da505202b916e5f134bc630b4"
+    },
+    {
+      "reference": "C199",
+      "instance": "audio_capture_selector_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          9.55,
+          107.0
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          8.5,
+          109.4
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "b34677a5e3339a5add974c932a09e2a6593540e8082fe3ebf7f9071a0f86bfc9"
+    },
+    {
+      "reference": "C230",
+      "instance": "headset_microphone_bias_filter_cap",
+      "device_id": "murata_grm188r60j106me47d",
+      "mpn": "Murata GRM188R60J106ME47D",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "before": {
+        "anchor_mm": [
+          12.0,
+          93.65
+        ],
+        "rotation_deg": 180.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          12.0,
+          32.75
+        ],
+        "rotation_deg": 180.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "e6d956deee556d7c19efc92f66a973423d6c49785969691f3b2783bbaaca5093"
+    },
+    {
+      "reference": "C244",
+      "instance": "u214_supervisor_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          5.6,
+          87.3
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          7.957,
+          137.545
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "38c6e9b136ece8cc8aa003ba7cc71fe8ee518ed4c9401a1c6eef5c4ac4ce2ba1"
+    },
+    {
+      "reference": "C245",
+      "instance": "u214_supervisor_ct",
+      "device_id": "murata_grm155r71h103ka88d",
+      "mpn": "Murata GRM155R71H103KA88D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          5.6,
+          86.1
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          7.957,
+          136.345
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "80e66fd65a24ac5460c51c6d7db3e5f840a34660a08a724614b36822a2e1c470"
+    },
+    {
+      "reference": "C250",
+      "instance": "unit_dvdt_cap",
+      "device_id": "murata_grm155r71h472ka01d",
+      "mpn": "Murata GRM155R71H472KA01D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          23.555,
+          114.104999
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          25.3,
+          116.4
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "e97971f2866ab9794d5c2aa7911040ab5576e7357b0caea0ef0d1968d7b9c17e"
+    },
+    {
+      "reference": "C251",
+      "instance": "unit_input_cap",
+      "device_id": "murata_grm21br71e225ke11l",
+      "mpn": "Murata GRM21BR71E225KE11L",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "before": {
+        "anchor_mm": [
+          29.595,
+          116.875
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          29.49,
+          116.82
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "6afac8bdd69515d2672c3726639092254fb7b2e99bda5110777ac7d67a94b73e"
+    },
+    {
+      "reference": "C252",
+      "instance": "unit_itimer_cap",
+      "device_id": "murata_grm188r71e224ka88d",
+      "mpn": "Murata GRM188R71E224KA88D",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "before": {
+        "anchor_mm": [
+          22.625,
+          109.625
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          20.71,
+          113.55
+        ],
+        "rotation_deg": 180.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "8c19e5edc1bbde1738352a463e0b9113dce46d2759e8c51310b4e098678a2e87"
+    },
+    {
+      "reference": "C253",
+      "instance": "unit_output_cap",
+      "device_id": "murata_grm21br71e225ke11l",
+      "mpn": "Murata GRM21BR71E225KE11L",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "before": {
+        "anchor_mm": [
+          22.3,
+          128.5
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          20.4,
+          116.2
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "db28cc8c31ec3ffc411cfed28b69dde55f683c2321392637eacdc16aab4cb09f"
+    },
+    {
+      "reference": "C256",
+      "instance": "unit_supervisor_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          22.0,
+          95.25
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          55.108,
+          116.296
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "38c6e9b136ece8cc8aa003ba7cc71fe8ee518ed4c9401a1c6eef5c4ac4ce2ba1"
+    },
+    {
+      "reference": "C257",
+      "instance": "unit_supervisor_ct",
+      "device_id": "murata_grm155r71h103ka88d",
+      "mpn": "Murata GRM155R71H103KA88D",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          28.0,
+          97.5
+        ],
+        "rotation_deg": 180.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          61.108,
+          118.546
+        ],
+        "rotation_deg": 180.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "6cd41018a1c557931d36eb091d5997c3e77feda24c9178a29a810f8f2886b5a7"
+    },
+    {
+      "reference": "C258",
+      "instance": "ptt_filter_cap",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          18.75,
+          83.2
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          18.5875,
+          55.9175
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "393be4a07e3ba448c92c85f0cc9f14b8ee82e3c6fe4c2f9c210e593e4d7199db"
+    },
+    {
+      "reference": "C264",
+      "instance": "evidence_cmp_voice_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          16.2,
+          80.4
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          75.754,
+          24.505
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "38c6e9b136ece8cc8aa003ba7cc71fe8ee518ed4c9401a1c6eef5c4ac4ce2ba1"
+    },
+    {
+      "reference": "C265",
+      "instance": "evidence_cmp_voice_v_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          25.305,
+          102.604999
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          50.305,
+          128.834999
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "38c6e9b136ece8cc8aa003ba7cc71fe8ee518ed4c9401a1c6eef5c4ac4ce2ba1"
+    },
+    {
+      "reference": "C266",
+      "instance": "evidence_mask_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          10.3,
+          77.025
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          10.4675,
+          49.84375
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "38c6e9b136ece8cc8aa003ba7cc71fe8ee518ed4c9401a1c6eef5c4ac4ce2ba1"
+    },
+    {
+      "reference": "C268",
+      "instance": "run_loop_filter",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          14.055,
+          109.104999
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          75.475,
+          105.106666
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "1cd3eeb86f526e7b0f53083e2943886d188865c8077066f88804bfa2a3a40cc4"
+    },
+    {
+      "reference": "C271",
+      "instance": "safe_gate_b_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          23.555,
+          86.604999
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          5.5275,
+          61.2025
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "38c6e9b136ece8cc8aa003ba7cc71fe8ee518ed4c9401a1c6eef5c4ac4ce2ba1"
+    },
+    {
+      "reference": "C276",
+      "instance": "safe_reset_buffer_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          24.855,
+          71.805
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          21.3025,
+          32.0275
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "38c6e9b136ece8cc8aa003ba7cc71fe8ee518ed4c9401a1c6eef5c4ac4ce2ba1"
+    },
+    {
+      "reference": "C282",
+      "instance": "safety_fault_request_iso_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          22.305,
+          107.354999
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          18.93,
+          68.605
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "38c6e9b136ece8cc8aa003ba7cc71fe8ee518ed4c9401a1c6eef5c4ac4ce2ba1"
+    },
+    {
+      "reference": "C58",
+      "instance": "ext_branch_gate_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          27.855,
+          99.305
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          15.605,
+          54.44
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "38c6e9b136ece8cc8aa003ba7cc71fe8ee518ed4c9401a1c6eef5c4ac4ce2ba1"
+    },
+    {
+      "reference": "C69",
+      "instance": "ext_request_or_bypass",
+      "device_id": "yageo_cc0402krx7r9bb104",
+      "mpn": "Yageo CC0402KRX7R9BB104",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          23.355,
+          95.055
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          55.25,
+          123.48
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "38c6e9b136ece8cc8aa003ba7cc71fe8ee518ed4c9401a1c6eef5c4ac4ce2ba1"
+    },
+    {
+      "reference": "J3",
+      "instance": "rf_rp_dbg_header",
+      "device_id": "samtec_ftsh_105_01_l_dv_k_p_tr",
+      "mpn": "Samtec FTSH-105-01-L-DV-K-P-TR",
+      "footprint": "Leshy2:FTSH-105-01-L-DV-K-P-TR",
+      "before": {
+        "anchor_mm": [
+          30.175,
+          106.92
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          30.425,
+          106.92
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "5db96d64cbe4b4e273d784c112b8752fd4e47bbbf80ff96b9c7f30c72d46b641"
+    },
+    {
+      "reference": "Q6",
+      "instance": "safe_reset_sink_b",
+      "device_id": "diodes_2n7002dw_7_f",
+      "mpn": "Diodes Incorporated 2N7002DW-7-F",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "before": {
+        "anchor_mm": [
+          7.5,
+          91.0
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          2.65,
+          60.675
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "cf9455a6744ce26f57c1de990032b8909e318bc2f09f4e1e652cdeb2e4948e99"
+    },
+    {
+      "reference": "R105",
+      "instance": "cc_power_on_pulldown",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          11.615,
+          71.324999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          11.628333,
+          67.885
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "0e1c6c7763f10df7e0a1d597bed7ad0451bfd214dc0005fe6b4cfbbfe1fe7e3c"
+    },
+    {
+      "reference": "R115",
+      "instance": "voice_band_p1_pulldown",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          22.075,
+          79.865
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          15.6395,
+          65.532501
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "d85e545076244d2ebe59e69c204677be10da5222a609d0eddf2ab09b7c76a3de"
+    },
+    {
+      "reference": "R116",
+      "instance": "voice_band_p2_pulldown",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          19.615,
+          77.324999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          13.1795,
+          62.9925
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "c302f06978aa99bb1c00875d629cef082bd40151bf3176f96c7fb31430431162"
+    },
+    {
+      "reference": "R117",
+      "instance": "voice_band_p3_pulldown",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          28.865,
+          75.074999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          22.4295,
+          60.7425
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "472de37209d4b207c32b9176cec9fd9683b093160c0775de95b224e5dfda38b2"
+    },
+    {
+      "reference": "R118",
+      "instance": "voice_band_p4_pulldown",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          24.325,
+          81.115
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          17.8895,
+          66.782501
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "c08499deda4c6c754217e29416a8d273d525faafde9d4ff88e63c972e7b4f9b4"
+    },
+    {
+      "reference": "R119",
+      "instance": "voice_band_p5_pulldown",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          22.075,
+          81.115
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          15.6395,
+          66.782501
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "49873d9d87e6adef278511df40004a1f7f9e1012bace872b4d2c2d0a39a34d25"
+    },
+    {
+      "reference": "R120",
+      "instance": "voice_band_p6_pulldown",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          20.365,
+          80.324999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          13.9295,
+          65.9925
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "13d1697fcc75aca7e2464635529ccb35794aa4bcdf917e401937b38baeab9ea3"
+    },
+    {
+      "reference": "R121",
+      "instance": "voice_band_p7_pulldown",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          30.115,
+          75.074999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          23.6795,
+          60.7425
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "35badada3b97827e0f71cda12a800d30996b5666f2b7e99a7e54f40df47b12b8"
+    },
+    {
+      "reference": "R134",
+      "instance": "voice_hl_req_pulldown",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          25.615,
+          83.824999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          20.5,
+          39.5
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "03f3d4d33d4fdf09344a9eee197d1c186079c0110e9eaca538fc144e12faf918"
+    },
+    {
+      "reference": "R138",
+      "instance": "voice_supervisor_pullup",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          21.325,
+          86.615
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          23.5,
+          48.0
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "08437a931b6ccd90ac47544283813018c4287f3f9b68bee297c2fe87d1997ca7"
+    },
+    {
+      "reference": "R140",
+      "instance": "voice_supervisor_sense_top",
+      "device_id": "yageo_rc0402fr_0747kl",
+      "mpn": "Yageo RC0402FR-0747KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          24.115,
+          84.824999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          28.0,
+          97.5
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "329edbaa0f1ffab9ad34f1fc8b493abcf28c6dd4637a3f3c132ea6e4508cfe0d"
+    },
+    {
+      "reference": "R171",
+      "instance": "audio_capture_sel_pulldown",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          22.865,
+          84.824999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          13.5,
+          46.0
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "010c4ede3f5e1a661594ae2e75358d0f807793acab277bce0c286808dc9c4dda"
+    },
+    {
+      "reference": "R185",
+      "instance": "codec_power_on_pulldown",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          23.825,
+          83.115
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          23.5,
+          45.0
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "b1bac759e60f39d54015823ec833001f0df78e609768b4872764ffdc4b36efe8"
+    },
+    {
+      "reference": "R201",
+      "instance": "headset_mic_bias_res",
+      "device_id": "uniroyal_0402wgf2201tce",
+      "mpn": "UNI-ROYAL 0402WGF2201TCE",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          12.0,
+          92.25
+        ],
+        "rotation_deg": 180.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          12.0,
+          31.35
+        ],
+        "rotation_deg": 180.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "3f22c3264511c6c87060b1a4562eb013ba49094788531383eb744b3bc5bcdcc6"
+    },
+    {
+      "reference": "R203",
+      "instance": "headset_microphone_bias_filter_res",
+      "device_id": "yageo_rc0402fr_07220rl",
+      "mpn": "Yageo RC0402FR-07220RL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          9.3,
+          93.65
+        ],
+        "rotation_deg": 180.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          9.3,
+          32.75
+        ],
+        "rotation_deg": 180.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "207e0e0dcbad6861bf62bbae3cb32647dc8ea4affe6e8e3d2e687104cde0a10f"
+    },
+    {
+      "reference": "R224",
+      "instance": "u214_supervisor_sense_bottom",
+      "device_id": "yageo_rc0402fr_07220kl",
+      "mpn": "Yageo RC0402FR-07220KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          5.6,
+          88.5
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          7.957,
+          138.745
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "6527e4f1aea775ab83536bab52bb60839e43ddd10d9ac37d7291a032eade3575"
+    },
+    {
+      "reference": "R225",
+      "instance": "u214_supervisor_sense_top",
+      "device_id": "yageo_rc0402fr_07110kl",
+      "mpn": "Yageo RC0402FR-07110KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          19.115,
+          79.574999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          21.472,
+          129.819999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "6df8e748214b56f3187d40e5ed8d9946df10ab7fa12390fe66cd564a180c5a00"
+    },
+    {
+      "reference": "R230",
+      "instance": "u219_field_output_pullup",
+      "device_id": "uniroyal_0402wgf1002tce",
+      "mpn": "0402WGF1002TCE",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          10.365,
+          71.324999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          7.5,
+          32.5
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "038573208a5497a3f2c8dac0e1445577099aa4250243316933fb2770a6b4a1b9"
+    },
+    {
+      "reference": "R236",
+      "instance": "unit_ovlo_bottom",
+      "device_id": "yageo_rc0402fr_0747kl",
+      "mpn": "Yageo RC0402FR-0747KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          21.115,
+          110.324999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          23.4,
+          114.625
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "e9887fafa21bd2f52c821325cc25611f7cd133b62db59deadeaa519dc5d2c8ad"
+    },
+    {
+      "reference": "R237",
+      "instance": "unit_ovlo_top",
+      "device_id": "yageo_rc0402fr_07169kl",
+      "mpn": "Yageo RC0402FR-07169KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          27.115,
+          116.074999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          27.1,
+          116.075
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "b507fb593d82b1df5d9e3109299c6dcabe2517f64cd914f83ee8fa90cdeb8a25"
+    },
+    {
+      "reference": "R239",
+      "instance": "unit_rilm",
+      "device_id": "yageo_rc0402fr_071k82l",
+      "mpn": "Yageo RC0402FR-071K82L",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          22.865,
+          112.324999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          22.875,
+          112.1
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "24f04293741c65e6143bbcaf461bed425ade0e10ddf925fd972d72e04ef8357c"
+    },
+    {
+      "reference": "R242",
+      "instance": "unit_supervisor_sense_bottom",
+      "device_id": "yageo_rc0402fr_07220kl",
+      "mpn": "Yageo RC0402FR-07220KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          21.5,
+          104.25
+        ],
+        "rotation_deg": 180.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          54.608,
+          125.296
+        ],
+        "rotation_deg": 180.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "9650a58038af3cd7e491c86be3171611c2f7cfb926169919f8509d0ea1cb670d"
+    },
+    {
+      "reference": "R243",
+      "instance": "unit_supervisor_sense_top",
+      "device_id": "yageo_rc0402fr_07110kl",
+      "mpn": "Yageo RC0402FR-07110KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          20.615,
+          114.324999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          53.723,
+          135.370999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "ecedcb966bb54d31c968a4c84416ccaa4dfb3435fc466437265c154748061878"
+    },
+    {
+      "reference": "R244",
+      "instance": "ptt_pullup",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          21.575,
+          82.365
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          21.4125,
+          55.0825
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "73e10c0d3dfcb9f01b25184ba87254050fe2843db65b6737554c7dd6a21e2c7c"
+    },
+    {
+      "reference": "R249",
+      "instance": "any_tx_aon_pullup",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          13.575,
+          91.115
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          13.5,
+          51.5
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "812b3b8f3207aea32fb8d53996221836842216e84723d7fc9bbe1c4acb9e634b"
+    },
+    {
+      "reference": "R251",
+      "instance": "cc_evidence_hysteresis",
+      "device_id": "yageo_rc0402fr_071ml",
+      "mpn": "Yageo RC0402FR-071ML",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          17.825,
+          108.115
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          28.0,
+          99.5
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "69737d1ed98dd59b7a28a099f0b0f8d1c0ff812393d32fc55e5ff781affc2e38"
+    },
+    {
+      "reference": "R255",
+      "instance": "evidence_mask_p12_pulldown",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          16.114999,
+          108.574999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          11.0,
+          65.5
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "6badef042871231c152792891ef503d0bced3a244c597f12305b28aa766aa53a"
+    },
+    {
+      "reference": "R256",
+      "instance": "evidence_mask_p13_pulldown",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          14.365,
+          107.324999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          12.5,
+          65.5
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "dfe42fb96bad1245f89b2064136983a795ed0c2786f30dc3178cc0ebd40d4975"
+    },
+    {
+      "reference": "R260",
+      "instance": "evidence_mask_scl_pullup",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          21.615,
+          84.074999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          21.7825,
+          56.893749
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "dd68f7f9271119f614e47fe8b8781462008a0bdbca0b9748457daf0c354ebb85"
+    },
+    {
+      "reference": "R261",
+      "instance": "evidence_mask_sda_pullup",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          20.365,
+          84.074999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          20.5325,
+          56.893749
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "664dd3aeabb4644737a04ff99d1f1d37bf7ca5e56d60669a7555573b94e21ac1"
+    },
+    {
+      "reference": "R264",
+      "instance": "fault_assert_sense_series",
+      "device_id": "yageo_rc0402fr_07100kl",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          18.325,
+          87.115
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          18.5,
+          53.0
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "c225bf4b1faa5991aa9f3c0e2d389bdd3d34338c80f13e24821222eba5719715"
+    },
+    {
+      "reference": "R267",
+      "instance": "run_loop_pullup",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          13.115,
+          107.46
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          74.535,
+          103.461667
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "559555bc5c22292f7cf608c8d5820829edcc2efa5fb49a821eda09584830177d"
+    },
+    {
+      "reference": "R271",
+      "instance": "safe_reset_gate_pullup",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          10.2,
+          89.65
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          5.35,
+          59.325
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "83d738d465d3e2d05abe0485f095ce4c3f36c996c834d9c6192a7476f5efd565"
+    },
+    {
+      "reference": "R279",
+      "instance": "slow_io_s3_evidence_pullup",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          18.365,
+          77.324999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          11.9295,
+          62.9925
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "2adca50c28a7fa0d5c6ce8ca4aa2de9ff1eb664392c404eaac5161dbb1bac615"
+    },
+    {
+      "reference": "R281",
+      "instance": "voice_evidence_hysteresis",
+      "device_id": "yageo_rc0402fr_071ml",
+      "mpn": "Yageo RC0402FR-071ML",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          19.115,
+          85.324999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          78.669,
+          29.429999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "c63e3a4b8f3c050610d5aa1e6b00b5117bea089994ee264a35a1f1c2ea432796"
+    },
+    {
+      "reference": "R282",
+      "instance": "voice_evidence_output_pullup",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          11.325,
+          91.115
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          12.5,
+          50.0
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "5e501e0a1fc0b24c337c1e7435718b7e8ac37fc8d02e0291be4227299fb5526b"
+    },
+    {
+      "reference": "R283",
+      "instance": "voice_evidence_threshold_bottom",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          18.8,
+          82.05
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          78.354,
+          26.155
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "917352b60fb0f3875413c235988ed20111083de02e60d46946d94d503ca74f64"
+    },
+    {
+      "reference": "R284",
+      "instance": "voice_evidence_threshold_top",
+      "device_id": "yageo_rc0402fr_07100kl",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          11.865,
+          78.8
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          71.394,
+          22.905
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "a881232f9d234db45a33dda97a658ad8510e9ad2ebb4b709e33dd9dc53df44de"
+    },
+    {
+      "reference": "R286",
+      "instance": "voice_v_evidence_hysteresis",
+      "device_id": "yageo_rc0402fr_071ml",
+      "mpn": "Yageo RC0402FR-071ML",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          12.0,
+          105.85
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          37.0,
+          132.08
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "132e8e1f32f8bd584bb88b61d500a54440f872de831a820627ed64ac2f1b0295"
+    },
+    {
+      "reference": "R287",
+      "instance": "voice_v_evidence_threshold_bottom",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          20.25,
+          106.0
+        ],
+        "rotation_deg": 180.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          45.25,
+          132.23
+        ],
+        "rotation_deg": 180.0,
+        "side": "B.Cu"
+      },
+      "native_after_anchor_mm": [
+        45.25,
+        132.229999
+      ],
+      "pad_number_net_multiset_sha256": "6e73aed5a2177a5cd98d3536f651ca62c53e168112d2654c315cc06b0d98bbbd"
+    },
+    {
+      "reference": "R288",
+      "instance": "voice_v_evidence_threshold_top",
+      "device_id": "yageo_rc0402fr_07100kl",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          20.25,
+          107.25
+        ],
+        "rotation_deg": 180.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          45.25,
+          133.48
+        ],
+        "rotation_deg": 180.0,
+        "side": "B.Cu"
+      },
+      "native_after_anchor_mm": [
+        45.25,
+        133.479999
+      ],
+      "pad_number_net_multiset_sha256": "f6d4bf7dfb3b77caa8c7a8597f86b9ac42327ded470a2b5ca15aba7dab99edf7"
+    },
+    {
+      "reference": "R49",
+      "instance": "ext_any_req_pulldown",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          25.365,
+          86.074999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          57.26,
+          114.499999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "4afaf94307d2c23fbc7ffe31ea80fab81bb20df94866e2c9bb33f3c2ba965508"
+    },
+    {
+      "reference": "R54",
+      "instance": "ext_evidence_input_pullup",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          17.115,
+          90.074999
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          18.0,
+          57.5
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "d3244fdc5dcf55d44f0e93bd1c5b24e6b82ab2279ad5aa10db5b9f479cfaf631"
+    },
+    {
+      "reference": "R56",
+      "instance": "ext_evidence_output_pullup",
+      "device_id": "yageo_rc0402fr_0710kl",
+      "mpn": "Yageo RC0402FR-0710KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          14.75,
+          92.75
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          14.5,
+          58.0
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "48ad9fd88ccc23b44b62a618cd29828d5499cabe796c18a832f7e3a63e7887a8"
+    },
+    {
+      "reference": "R68",
+      "instance": "main_en_pulldown",
+      "device_id": "yageo_rc0402fr_07100kl",
+      "mpn": "Yageo RC0402FR-07100KL",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "before": {
+        "anchor_mm": [
+          20.575,
+          108.615
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          23.0,
+          64.0
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "d1145554f30984ebd4ca6366f8816acfb99f433ac9a7b3cc12620612f71f90a3"
+    },
+    {
+      "reference": "SW3",
+      "instance": "encoder",
+      "device_id": "alps_ec11e18244au",
+      "mpn": "Alps Alpine EC11E18244AU",
+      "footprint": "Leshy2_R2:EC11E18244AU-ENGINEERING-PTH",
+      "before": {
+        "anchor_mm": [
+          9.25,
+          81.25
+        ],
+        "rotation_deg": 270.0,
+        "side": "F.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          9.25,
+          54.0
+        ],
+        "rotation_deg": 270.0,
+        "side": "F.Cu"
+      },
+      "pad_number_net_multiset_sha256": "b25fc55e01d3a0ff891a99b38cfb7cb4c6b14075557cb8a999467b64f2d8423d"
+    },
+    {
+      "reference": "U100",
+      "instance": "unit_efuse",
+      "device_id": "ti_tps259470l_rpwr",
+      "mpn": "Texas Instruments TPS259470LRPWR",
+      "footprint": "Leshy2:TI-RPW0010A-VQFN-HR-10",
+      "before": {
+        "anchor_mm": [
+          24.895,
+          108.145
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          23.3,
+          116.575
+        ],
+        "rotation_deg": 180.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "9fcb10b9f9698da1900778d0f3133a178d295a43445362fc70e2c8924956e9a1"
+    },
+    {
+      "reference": "U103",
+      "instance": "unit_supervisor",
+      "device_id": "ti_tps3808g33_dbvr",
+      "mpn": "TPS3808G33DBVR",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "before": {
+        "anchor_mm": [
+          22.345,
+          98.445
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          55.453,
+          119.491
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "6e423ab0f674fed47648ddf60a65fbe7e0e0a7c508fd22e8da00e6f8f0403cbd"
+    },
+    {
+      "reference": "U109",
+      "instance": "evidence_cmp_voice",
+      "device_id": "ti_tlv1821_dckr",
+      "mpn": "TLV1821DCKR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+      "before": {
+        "anchor_mm": [
+          13.775,
+          77.9
+        ],
+        "rotation_deg": 270.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          73.329,
+          22.005
+        ],
+        "rotation_deg": 270.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "c667c44dc077c7d2964f5983aa67b93141721d296420ff411d3f41bb992450f0"
+    },
+    {
+      "reference": "U110",
+      "instance": "evidence_cmp_voice_v",
+      "device_id": "ti_tlv1821_dckr",
+      "mpn": "TLV1821DCKR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+      "before": {
+        "anchor_mm": [
+          22.195,
+          102.145
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          47.195,
+          128.375
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "de50bc977b5d9aac3971e21e7cd3536ffa1338db16c8a10fc6a94ed2f3f83de2"
+    },
+    {
+      "reference": "U111",
+      "instance": "evidence_mask",
+      "device_id": "ti_tca9535_pwr",
+      "mpn": "TCA9535PWR",
+      "footprint": "Package_SO:TSSOP-24_4.4x7.8mm_P0.65mm",
+      "before": {
+        "anchor_mm": [
+          7.05,
+          81.55
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          7.2175,
+          54.36875
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "04f3cfacff9bf8be763ce241df8c36a1e80a504a75530fb050326f96286adf6f"
+    },
+    {
+      "reference": "U114",
+      "instance": "evidence_or_2",
+      "device_id": "onsemi_bat54alt1g",
+      "mpn": "BAT54ALT1G",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "before": {
+        "anchor_mm": [
+          14.25,
+          88.25
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          22.0,
+          42.5
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "302c17971f743c5b264771a8973f5245a3ad953d79486cbc9f442c1df55ce822"
+    },
+    {
+      "reference": "U119",
+      "instance": "safe_gate_b",
+      "device_id": "ti_sn74lvc08a_pwr",
+      "mpn": "SN74LVC08APWR",
+      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+      "before": {
+        "anchor_mm": [
+          23.5,
+          90.2
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          5.4725,
+          64.7975
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "cad47194a92905caeaae4ee20280291956821255b609f41d03c583080589ee14"
+    },
+    {
+      "reference": "U123",
+      "instance": "safe_reset_buffer",
+      "device_id": "ti_sn74lvc1g06_dckr",
+      "mpn": "Texas Instruments SN74LVC1G06DCKR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+      "before": {
+        "anchor_mm": [
+          22.25,
+          71.75
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          18.6975,
+          31.9725
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "1af6e2f917f8f9095c85b91d4420f6f175c935b5dbc0d67582ef6a669650b807"
+    },
+    {
+      "reference": "U126",
+      "instance": "safety_control_esd",
+      "device_id": "ti_tpd4e05u06_dqar",
+      "mpn": "Texas Instruments TPD4E05U06DQAR",
+      "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
+      "before": {
+        "anchor_mm": [
+          16.645,
+          106.305
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          78.065,
+          102.306667
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "a6ffc4a5b236437aec919904fb500594bff20a2356b627f61ae4452b53b056fc"
+    },
+    {
+      "reference": "U128",
+      "instance": "safety_fault_request_iso",
+      "device_id": "ti_sn74lvc1g07_dckr",
+      "mpn": "SN74LVC1G07DCKR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+      "before": {
+        "anchor_mm": [
+          24.445,
+          105.145
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          21.07,
+          66.395
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "652b10c66b7f6fc16258e542df6a83876fae71eff6a89510718eac39fbe2c830",
+      "native_after_anchor_mm": [
+        21.07,
+        66.394999
+      ]
+    },
+    {
+      "reference": "U15",
+      "instance": "ext_branch_gate",
+      "device_id": "ti_sn74lvc2g08_dcur",
+      "mpn": "Texas Instruments SN74LVC2G08DCUR",
+      "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+      "before": {
+        "anchor_mm": [
+          25.645,
+          99.425
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          13.395,
+          54.56
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "2740a67a1da61724c91d457ed07d7a6045d8addfbf018438a5579ea027cc7f60"
+    },
+    {
+      "reference": "U19",
+      "instance": "ext_request_or",
+      "device_id": "nexperia_74lvc1g32gv_125",
+      "mpn": "74LVC1G32GV,125",
+      "footprint": "Package_TO_SOT_SMD:SC-74A-5_1.55x2.9mm_P0.95mm",
+      "before": {
+        "anchor_mm": [
+          26.595,
+          95.095
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          58.49,
+          123.52
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "d083fcb427f7480c2b28ca43a043d270e931724bb0425b01d8e79f9f14b93a40"
+    },
+    {
+      "reference": "U30",
+      "instance": "cc_band_buffer",
+      "device_id": "nexperia_74lvc2g126dp_125",
+      "mpn": "Nexperia 74LVC2G126DP,125",
+      "footprint": "Package_SO:TSSOP-8_3x3mm_P0.65mm",
+      "before": {
+        "anchor_mm": [
+          13.225,
+          82.9
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          29.0125,
+          81.125
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "e4d06b93faa8350a6193baa5631a10d610c4ab818081703ca5b5d0c6e56535fc"
+    },
+    {
+      "reference": "U31",
+      "instance": "cc_host_buffer",
+      "device_id": "nexperia_74lvc126apw_118",
+      "mpn": "Nexperia 74LVC126APW,118",
+      "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+      "before": {
+        "anchor_mm": [
+          16.25,
+          72.95
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          18.4725,
+          47.5475
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "b15b68450af011851f7057885ebbd5c7ca81fc0bc1dc31d420605380b2b80f64"
+    },
+    {
+      "reference": "U32",
+      "instance": "cc_power_switch",
+      "device_id": "ti_tps22919_dckr",
+      "mpn": "Texas Instruments TPS22919DCKR",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "before": {
+        "anchor_mm": [
+          1.845,
+          75.994999
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          1.858333,
+          72.555
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "36da27240719da512bf9cf1075e28282c3c58b6cf9db3c20b22c16de7d1edcf7"
+    },
+    {
+      "reference": "U39",
+      "instance": "voice",
+      "device_id": "nicerf_sa818s_u_v18",
+      "mpn": "G-NiceRF SA818S-U",
+      "footprint": "Leshy2:G-NiceRF-SA818S-Official-Package",
+      "before": {
+        "anchor_mm": [
+          13.1,
+          50.3
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          15.4,
+          89.0
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "3c3752341bb42898a6cdf52c5940c6fba73920505ad47110cc4ea8b12c6de924"
+    },
+    {
+      "reference": "U40",
+      "instance": "voice_audio_mux",
+      "device_id": "ti_tmux1136_dgsr",
+      "mpn": "Texas Instruments TMUX1136DGSR",
+      "footprint": "Package_SO:TSSOP-10_3x3mm_P0.5mm",
+      "before": {
+        "anchor_mm": [
+          29.75,
+          81.25
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          3.4725,
+          47.8225
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "a697175f2c30705570492e3e7eb26a837c5c2381d275c40ace6948be412158eb"
+    },
+    {
+      "reference": "U41",
+      "instance": "voice_band_inverter",
+      "device_id": "nexperia_74lvc2g14gv_125",
+      "mpn": "74LVC2G14GV,125",
+      "footprint": "Package_TO_SOT_SMD:SC-74-6_1.55x2.9mm_P0.95mm",
+      "before": {
+        "anchor_mm": [
+          28.75,
+          85.25
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          21.9475,
+          52.4725
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "3c0bf821576e44bee0e68d2c2a04d89cefcb9a92f27bb93c892a940fcbe33f5f"
+    },
+    {
+      "reference": "U42",
+      "instance": "voice_band_io",
+      "device_id": "ti_tca9534a_pwr",
+      "mpn": "TCA9534APWR",
+      "footprint": "Package_SO:TSSOP-16_4.4x5mm_P0.65mm",
+      "before": {
+        "anchor_mm": [
+          24.25,
+          76.25
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          17.8145,
+          61.917501
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "61e1e8313e1186927176c58711e03842fd33be95fb1694682945f26c2410d440"
+    },
+    {
+      "reference": "U47",
+      "instance": "voice_hl_driver",
+      "device_id": "ti_sn74lvc1g07_dckr",
+      "mpn": "SN74LVC1G07DCKR",
+      "footprint": "Package_TO_SOT_SMD:Texas_R-PDSO-G5_DCK-5",
+      "before": {
+        "anchor_mm": [
+          3.695,
+          90.595
+        ],
+        "rotation_deg": 180.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          30.3975,
+          85.5475
+        ],
+        "rotation_deg": 180.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "548f197482fadd292ade1939b6c229fdf411cc57e2dafb0b56a6337bf0af6317"
+    },
+    {
+      "reference": "U48",
+      "instance": "voice_io_power_switch",
+      "device_id": "ti_tps22919_dckr",
+      "mpn": "Texas Instruments TPS22919DCKR",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "before": {
+        "anchor_mm": [
+          18.25,
+          92.75
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          9.45,
+          114.85
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "d2ea1918844035e7705b494cfea12710f676bc6f4d007d9b7d79a9cd32a2f1bc"
+    },
+    {
+      "reference": "U49",
+      "instance": "voice_pd_gate",
+      "device_id": "ti_sn74lvc2g08_dcur",
+      "mpn": "Texas Instruments SN74LVC2G08DCUR",
+      "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+      "before": {
+        "anchor_mm": [
+          27.295,
+          70.675
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          22.47,
+          35.56
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "8c20401258a0e90977b13f1becf2aeb1270f57cbcdff5f575432edd021b3e5c3"
+    },
+    {
+      "reference": "U68",
+      "instance": "audio_capture_selector",
+      "device_id": "ti_ts5a63157_dckr",
+      "mpn": "Texas Instruments TS5A63157DCKR",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "before": {
+        "anchor_mm": [
+          7.5,
+          107.0
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          8.5,
+          111.55
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "f394b26cdec36e9daa1732e84c0b5b7606dbbe6a0da54f589449d6b685a44b25"
+    },
+    {
+      "reference": "U82",
+      "instance": "headphone_esd",
+      "device_id": "ti_tpd4e05u06_dqar",
+      "mpn": "Texas Instruments TPD4E05U06DQAR",
+      "footprint": "Package_SON:USON-10_2.5x1.0mm_P0.5mm",
+      "before": {
+        "anchor_mm": [
+          5.0,
+          93.5
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          5.0,
+          32.6
+        ],
+        "rotation_deg": 90.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "7f303b17e7216fe8aa85699cebb55f4cd1e6f9096d5d1f3a796f6808d45be4cd"
+    },
+    {
+      "reference": "U83",
+      "instance": "headphone_jack",
+      "device_id": "same_sky_sj_43515ts_smt_tr",
+      "mpn": "Same Sky SJ-43515TS-SMT-TR",
+      "footprint": "Leshy2_R2:SJ-43515TS-SMT-TR",
+      "before": {
+        "anchor_mm": [
+          0.8,
+          99.9
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          0.8,
+          39.0
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "7f35397d79d7011a95f011e89da9a7899ebd08c3c493154e499bce4dec30fe5c"
+    },
+    {
+      "reference": "U94",
+      "instance": "u214_supervisor",
+      "device_id": "ti_tps3808g33_dbvr",
+      "mpn": "TPS3808G33DBVR",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "before": {
+        "anchor_mm": [
+          2.3,
+          87.3
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "after": {
+        "anchor_mm": [
+          4.657,
+          137.545
+        ],
+        "rotation_deg": 0.0,
+        "side": "B.Cu"
+      },
+      "pad_number_net_multiset_sha256": "6f225b7b59905e455873a65dac40cc3afe8d014d2d6e5100ef8d6e14c4145c09"
+    }
+  ],
+  "unchanged_reserved_cell_references": [
+    "C197",
+    "R169",
+    "R235"
+  ],
+  "strategic_poses": {
+    "SW3": {
+      "anchor_mm": [
+        9.25,
+        54.0
+      ],
+      "rotation_deg": 270.0,
+      "side": "F.Cu"
+    },
+    "U39": {
+      "anchor_mm": [
+        15.4,
+        89.0
+      ],
+      "rotation_deg": 90.0,
+      "side": "B.Cu"
+    },
+    "U83": {
+      "anchor_mm": [
+        0.8,
+        39.0
+      ],
+      "rotation_deg": 0.0,
+      "side": "B.Cu"
+    },
+    "J3": {
+      "anchor_mm": [
+        30.425,
+        106.92
+      ],
+      "rotation_deg": 90.0,
+      "side": "B.Cu"
+    },
+    "BT1": {
+      "anchor_mm": [
+        40.0,
+        85.0
+      ],
+      "rotation_deg": 90.0,
+      "side": "F.Cu"
+    },
+    "SW4": {
+      "anchor_mm": [
+        72.1,
+        67.42
+      ],
+      "rotation_deg": 0.0,
+      "side": "F.Cu"
+    },
+    "MK1": {
+      "anchor_mm": [
+        47.0,
+        147.4
+      ],
+      "rotation_deg": 0.0,
+      "side": "B.Cu"
+    },
+    "U85": {
+      "anchor_mm": [
+        16.5,
+        113.75
+      ],
+      "rotation_deg": 90.0,
+      "side": "B.Cu"
+    },
+    "U51": {
+      "anchor_mm": [
+        40.05,
+        53.5
+      ],
+      "rotation_deg": 90.0,
+      "side": "B.Cu"
+    }
+  },
+  "nominal_plan_gaps_mm": {
+    "15mm_knob_to_cap": 5.48,
+    "15mm_knob_to_holder": 3.3
+  },
+  "rigid_translations": [
+    {
+      "references": [
+        "C266",
+        "R260",
+        "R261",
+        "U111"
+      ],
+      "delta_mm": [
+        0.16750000000000043,
+        -27.181249500000007
+      ]
+    },
+    {
+      "references": [
+        "C132",
+        "R115",
+        "R116",
+        "R117",
+        "R118",
+        "R119",
+        "R120",
+        "R121",
+        "R279",
+        "U42"
+      ],
+      "delta_mm": [
+        -6.4354999999999976,
+        -14.332499400000003
+      ]
+    },
+    {
+      "references": [
+        "C122",
+        "U31"
+      ],
+      "delta_mm": [
+        2.2225,
+        -25.402499500000005
+      ]
+    },
+    {
+      "references": [
+        "C271",
+        "U119"
+      ],
+      "delta_mm": [
+        -18.0275,
+        -25.402499500000005
+      ]
+    },
+    {
+      "references": [
+        "C130",
+        "U40"
+      ],
+      "delta_mm": [
+        -26.2775,
+        -33.42749950000001
+      ]
+    },
+    {
+      "references": [
+        "C114",
+        "U30"
+      ],
+      "delta_mm": [
+        15.787500000000001,
+        -1.7750000000000057
+      ]
+    },
+    {
+      "references": [
+        "C256",
+        "C257",
+        "R242",
+        "R243",
+        "U103"
+      ],
+      "delta_mm": [
+        33.108000000000004,
+        21.04600020000001
+      ]
+    },
+    {
+      "references": [
+        "C244",
+        "C245",
+        "R224",
+        "R225",
+        "U94"
+      ],
+      "delta_mm": [
+        2.3569999999999993,
+        50.24500019999999
+      ]
+    },
+    {
+      "references": [
+        "C69",
+        "R49",
+        "U19"
+      ],
+      "delta_mm": [
+        31.895,
+        28.42500033333333
+      ]
+    },
+    {
+      "references": [
+        "C131",
+        "U41"
+      ],
+      "delta_mm": [
+        -6.802500000000002,
+        -32.7775
+      ]
+    },
+    {
+      "references": [
+        "C265",
+        "R286",
+        "R287",
+        "R288",
+        "U110"
+      ],
+      "delta_mm": [
+        25.0,
+        26.230000199999992
+      ]
+    },
+    {
+      "references": [
+        "C264",
+        "R281",
+        "R283",
+        "R284",
+        "U109"
+      ],
+      "delta_mm": [
+        59.554,
+        -55.89499980000001
+      ]
+    },
+    {
+      "references": [
+        "C144",
+        "C145",
+        "U48"
+      ],
+      "delta_mm": [
+        -8.799999666666668,
+        22.10000000000001
+      ]
+    },
+    {
+      "references": [
+        "C149",
+        "U49"
+      ],
+      "delta_mm": [
+        -4.825000000000003,
+        -35.11500000000001
+      ]
+    },
+    {
+      "references": [
+        "C58",
+        "U15"
+      ],
+      "delta_mm": [
+        -12.25,
+        -44.86500000000001
+      ]
+    },
+    {
+      "references": [
+        "U114"
+      ],
+      "delta_mm": [
+        7.75,
+        -45.75
+      ]
+    },
+    {
+      "references": [
+        "C125",
+        "R105",
+        "U32"
+      ],
+      "delta_mm": [
+        0.013333333333332753,
+        -3.4399993333333327
+      ]
+    },
+    {
+      "references": [
+        "C282",
+        "U128"
+      ],
+      "delta_mm": [
+        -3.375,
+        -38.7499995
+      ]
+    },
+    {
+      "references": [
+        "C276",
+        "U123"
+      ],
+      "delta_mm": [
+        -3.552500000000002,
+        -39.7775
+      ]
+    },
+    {
+      "references": [
+        "C142",
+        "U47"
+      ],
+      "delta_mm": [
+        26.7025,
+        -5.047499999999999
+      ]
+    },
+    {
+      "references": [
+        "C268",
+        "R267",
+        "U126"
+      ],
+      "delta_mm": [
+        61.42,
+        -3.998333
+      ]
+    },
+    {
+      "references": [
+        "Q6",
+        "R271"
+      ],
+      "delta_mm": [
+        -4.85,
+        -30.325000000000003
+      ]
+    },
+    {
+      "references": [
+        "C258",
+        "R244"
+      ],
+      "delta_mm": [
+        -0.16250000000000142,
+        -27.2825
+      ]
+    },
+    {
+      "references": [
+        "R230"
+      ],
+      "delta_mm": [
+        -2.865,
+        -38.824999000000005
+      ]
+    },
+    {
+      "references": [
+        "R256"
+      ],
+      "delta_mm": [
+        -1.8650000000000002,
+        -41.824999000000005
+      ]
+    },
+    {
+      "references": [
+        "R249"
+      ],
+      "delta_mm": [
+        -0.07499999999999929,
+        -39.614999999999995
+      ]
+    },
+    {
+      "references": [
+        "R282"
+      ],
+      "delta_mm": [
+        1.1750000000000007,
+        -41.114999999999995
+      ]
+    },
+    {
+      "references": [
+        "R138"
+      ],
+      "delta_mm": [
+        2.1750000000000007,
+        -38.614999999999995
+      ]
+    },
+    {
+      "references": [
+        "R185"
+      ],
+      "delta_mm": [
+        -0.3249999999999993,
+        -38.114999999999995
+      ]
+    },
+    {
+      "references": [
+        "R251"
+      ],
+      "delta_mm": [
+        10.175,
+        -8.614999999999995
+      ]
+    },
+    {
+      "references": [
+        "R255"
+      ],
+      "delta_mm": [
+        -5.114999000000001,
+        -43.074999000000005
+      ]
+    },
+    {
+      "references": [
+        "R264"
+      ],
+      "delta_mm": [
+        0.1750000000000007,
+        -34.114999999999995
+      ]
+    },
+    {
+      "references": [
+        "R68"
+      ],
+      "delta_mm": [
+        2.4250000000000007,
+        -44.614999999999995
+      ]
+    },
+    {
+      "references": [
+        "R134"
+      ],
+      "delta_mm": [
+        -5.114999999999998,
+        -44.324999000000005
+      ]
+    },
+    {
+      "references": [
+        "R140"
+      ],
+      "delta_mm": [
+        3.8850000000000016,
+        12.675000999999995
+      ]
+    },
+    {
+      "references": [
+        "R171"
+      ],
+      "delta_mm": [
+        -9.364999999999998,
+        -38.824999000000005
+      ]
+    },
+    {
+      "references": [
+        "R54"
+      ],
+      "delta_mm": [
+        0.8850000000000016,
+        -32.574999000000005
+      ]
+    },
+    {
+      "references": [
+        "R56"
+      ],
+      "delta_mm": [
+        -0.25,
+        -34.75
+      ]
+    }
+  ],
+  "pre_translation_adjustments_mm": {
+    "R284": [
+      -0.025,
+      0
+    ]
+  },
+  "compact_cells": {
+    "audio": {
+      "U68": {
+        "anchor_mm": [
+          8.5,
+          111.55
+        ],
+        "rotation_deg": 90
+      },
+      "C199": {
+        "anchor_mm": [
+          8.5,
+          109.4
+        ],
+        "rotation_deg": 0
+      },
+      "C195": {
+        "anchor_mm": [
+          6,
+          111
+        ],
+        "rotation_deg": 90
+      },
+      "C197": {
+        "anchor_mm": [
+          13.25,
+          111.25
+        ],
+        "rotation_deg": 270
+      },
+      "R169": {
+        "anchor_mm": [
+          13.25,
+          113.85
+        ],
+        "rotation_deg": 270
+      }
+    },
+    "external_unit_efuse": {
+      "U100": {
+        "anchor_mm": [
+          23.3,
+          116.575
+        ],
+        "rotation_deg": 180
+      },
+      "C250": {
+        "anchor_mm": [
+          25.3,
+          116.4
+        ],
+        "rotation_deg": 90
+      },
+      "C251": {
+        "anchor_mm": [
+          29.49,
+          116.82
+        ],
+        "rotation_deg": 0
+      },
+      "C252": {
+        "anchor_mm": [
+          20.71,
+          113.55
+        ],
+        "rotation_deg": 180
+      },
+      "C253": {
+        "anchor_mm": [
+          20.4,
+          116.2
+        ],
+        "rotation_deg": 90
+      },
+      "R235": {
+        "anchor_mm": [
+          25.25,
+          127.5
+        ],
+        "rotation_deg": 0
+      },
+      "R236": {
+        "anchor_mm": [
+          23.4,
+          114.625
+        ],
+        "rotation_deg": 0
+      },
+      "R237": {
+        "anchor_mm": [
+          27.1,
+          116.075
+        ],
+        "rotation_deg": 90
+      },
+      "R239": {
+        "anchor_mm": [
+          22.875,
+          112.1
+        ],
+        "rotation_deg": 90
+      }
+    }
+  },
+  "actual_pad_centre_distances_not_route_lengths": [
+    {
+      "first": [
+        "U68",
+        "1"
+      ],
+      "second": [
+        "C197",
+        "2"
+      ],
+      "net": "/RF_22_AUDIO_CODEC_IO/CAPTURE_MIC_BIASED",
+      "purpose": "MIC bias node",
+      "before_mm": 6.598875,
+      "after_mm": 4.115994,
+      "delta_mm": -2.482881
+    },
+    {
+      "first": [
+        "U68",
+        "1"
+      ],
+      "second": [
+        "R169",
+        "1"
+      ],
+      "net": "/RF_22_AUDIO_CODEC_IO/CAPTURE_MIC_BIASED",
+      "purpose": "MIC bias node",
+      "before_mm": 7.5025,
+      "after_mm": 4.209187,
+      "delta_mm": -3.293313
+    },
+    {
+      "first": [
+        "C197",
+        "2"
+      ],
+      "second": [
+        "R169",
+        "1"
+      ],
+      "net": "/RF_22_AUDIO_CODEC_IO/CAPTURE_MIC_BIASED",
+      "purpose": "MIC bias node",
+      "before_mm": 1.315,
+      "after_mm": 1.315,
+      "delta_mm": 0.0
+    },
+    {
+      "first": [
+        "U85",
+        "4"
+      ],
+      "second": [
+        "C197",
+        "1"
+      ],
+      "net": "/RF_22_AUDIO_CODEC_IO/MIC_SELECTED_RAW",
+      "purpose": "selected raw microphone",
+      "before_mm": 3.563903,
+      "after_mm": 3.563903,
+      "delta_mm": 0.0
+    },
+    {
+      "first": [
+        "C231",
+        "1"
+      ],
+      "second": [
+        "C197",
+        "1"
+      ],
+      "net": "/RF_22_AUDIO_CODEC_IO/MIC_SELECTED_RAW",
+      "purpose": "selected raw microphone other branch",
+      "before_mm": 1.8,
+      "after_mm": 1.8,
+      "delta_mm": 0.0
+    },
+    {
+      "first": [
+        "U68",
+        "4"
+      ],
+      "second": [
+        "C195",
+        "1"
+      ],
+      "net": "/RF_22_AUDIO_CODEC_IO/CAPTURE_SELECTED",
+      "purpose": "selected capture before AC coupling",
+      "before_mm": 19.875884,
+      "after_mm": 2.133403,
+      "delta_mm": -17.742481
+    },
+    {
+      "first": [
+        "U68",
+        "5"
+      ],
+      "second": [
+        "C199",
+        "1"
+      ],
+      "net": "/RF_02_PACK_SAFETY_AON/3V3_MAIN",
+      "purpose": "selector supply bypass",
+      "before_mm": 2.436864,
+      "after_mm": 1.397518,
+      "delta_mm": -1.039346
+    },
+    {
+      "first": [
+        "U68",
+        "2"
+      ],
+      "second": [
+        "C199",
+        "2"
+      ],
+      "net": "/RF_20_CC1101_VOICE_TX/AUDIO_GROUND",
+      "purpose": "selector ground return",
+      "before_mm": 2.436864,
+      "after_mm": 3.025815,
+      "delta_mm": 0.588951
+    },
+    {
+      "first": [
+        "U68",
+        "3"
+      ],
+      "second": [
+        "C198",
+        "2"
+      ],
+      "net": "/RF_22_AUDIO_CODEC_IO/CAPTURE_RX_BIASED",
+      "purpose": "existing remote RX-biased branch",
+      "before_mm": 62.573953,
+      "after_mm": 66.574983,
+      "delta_mm": 4.00103
+    },
+    {
+      "first": [
+        "U68",
+        "3"
+      ],
+      "second": [
+        "R170",
+        "1"
+      ],
+      "net": "/RF_22_AUDIO_CODEC_IO/CAPTURE_RX_BIASED",
+      "purpose": "existing remote RX-biased branch",
+      "before_mm": 72.053726,
+      "after_mm": 76.233566,
+      "delta_mm": 4.17984
+    },
+    {
+      "first": [
+        "C195",
+        "2"
+      ],
+      "second": [
+        "U67",
+        "3"
+      ],
+      "net": "/RF_22_AUDIO_CODEC_IO/CODEC_CAPTURE_VMID",
+      "purpose": "remote CODEC_CAPTURE_VMID input",
+      "before_mm": 55.961295,
+      "after_mm": 71.367778,
+      "delta_mm": 15.406483
+    },
+    {
+      "first": [
+        "C195",
+        "2"
+      ],
+      "second": [
+        "C196",
+        "1"
+      ],
+      "net": "/RF_22_AUDIO_CODEC_IO/CODEC_CAPTURE_VMID",
+      "purpose": "remote CODEC_CAPTURE_VMID bias cap",
+      "before_mm": 27.484564,
+      "after_mm": 45.90787,
+      "delta_mm": 18.423306
+    },
+    {
+      "first": [
+        "C195",
+        "2"
+      ],
+      "second": [
+        "R167",
+        "1"
+      ],
+      "net": "/RF_22_AUDIO_CODEC_IO/CODEC_CAPTURE_VMID",
+      "purpose": "remote CODEC_CAPTURE_VMID bias resistor",
+      "before_mm": 33.635566,
+      "after_mm": 44.022367,
+      "delta_mm": 10.386801
+    },
+    {
+      "first": [
+        "C195",
+        "2"
+      ],
+      "second": [
+        "R168",
+        "2"
+      ],
+      "net": "/RF_22_AUDIO_CODEC_IO/CODEC_CAPTURE_VMID",
+      "purpose": "remote CODEC_CAPTURE_VMID bias resistor",
+      "before_mm": 33.288652,
+      "after_mm": 42.847921,
+      "delta_mm": 9.559269
+    },
+    {
+      "first": [
+        "U68",
+        "6"
+      ],
+      "second": [
+        "U106",
+        "1"
+      ],
+      "net": "/RF_22_AUDIO_CODEC_IO/AUDIO_CAPTURE_MIC_SEL",
+      "purpose": "selector digital control",
+      "before_mm": 50.046607,
+      "after_mm": 51.379613,
+      "delta_mm": 1.333006
+    },
+    {
+      "first": [
+        "U68",
+        "6"
+      ],
+      "second": [
+        "R171",
+        "1"
+      ],
+      "net": "/RF_22_AUDIO_CODEC_IO/AUDIO_CAPTURE_MIC_SEL",
+      "purpose": "selector digital control bias",
+      "before_mm": 25.501295,
+      "after_mm": 64.349697,
+      "delta_mm": 38.848402
+    },
+    {
+      "first": [
+        "R169",
+        "2"
+      ],
+      "second": [
+        "R204",
+        "2"
+      ],
+      "net": "/RF_22_AUDIO_CODEC_IO/AUDIO_VMID_MAIN",
+      "purpose": "shared AUDIO_VMID_MAIN local branch",
+      "before_mm": 1.8,
+      "after_mm": 1.8,
+      "delta_mm": 0.0
+    },
+    {
+      "first": [
+        "U100",
+        "7"
+      ],
+      "second": [
+        "C250",
+        "1"
+      ],
+      "net": "UNIT_EFUSE_DVDT",
+      "purpose": "external-unit eFuse local signal/supply",
+      "before_mm": 7.176427,
+      "after_mm": 2.761096,
+      "delta_mm": -4.415331
+    },
+    {
+      "first": [
+        "U100",
+        "5"
+      ],
+      "second": [
+        "C251",
+        "1"
+      ],
+      "net": "5V_EXT_PREPROTECT",
+      "purpose": "external-unit eFuse local signal/supply",
+      "before_mm": 9.602755,
+      "after_mm": 4.996011,
+      "delta_mm": -4.606744
+    },
+    {
+      "first": [
+        "U100",
+        "10"
+      ],
+      "second": [
+        "C252",
+        "1"
+      ],
+      "net": "UNIT_EFUSE_ITIMER",
+      "purpose": "external-unit eFuse local signal/supply",
+      "before_mm": 3.351873,
+      "after_mm": 2.522642,
+      "delta_mm": -0.829231
+    },
+    {
+      "first": [
+        "U100",
+        "6"
+      ],
+      "second": [
+        "C253",
+        "1"
+      ],
+      "net": "5V_UNIT_PROTECTED",
+      "purpose": "external-unit eFuse local signal/supply",
+      "before_mm": 21.494117,
+      "after_mm": 2.711665,
+      "delta_mm": -18.782452
+    },
+    {
+      "first": [
+        "U100",
+        "6"
+      ],
+      "second": [
+        "R235",
+        "1"
+      ],
+      "net": "5V_UNIT_PROTECTED",
+      "purpose": "external-unit eFuse local signal/supply",
+      "before_mm": 19.368387,
+      "after_mm": 11.011187,
+      "delta_mm": -8.3572
+    },
+    {
+      "first": [
+        "U100",
+        "2"
+      ],
+      "second": [
+        "R236",
+        "1"
+      ],
+      "net": "UNIT_EFUSE_OVLO_SENSE",
+      "purpose": "external-unit eFuse local signal/supply",
+      "before_mm": 3.79086,
+      "after_mm": 2.166039,
+      "delta_mm": -1.624821
+    },
+    {
+      "first": [
+        "U100",
+        "5"
+      ],
+      "second": [
+        "R237",
+        "1"
+      ],
+      "net": "5V_EXT_PREPROTECT",
+      "purpose": "external-unit eFuse local signal/supply",
+      "before_mm": 8.794003,
+      "after_mm": 3.550014,
+      "delta_mm": -5.243989
+    },
+    {
+      "first": [
+        "U100",
+        "2"
+      ],
+      "second": [
+        "R237",
+        "2"
+      ],
+      "net": "UNIT_EFUSE_OVLO_SENSE",
+      "purpose": "external-unit eFuse local signal/supply",
+      "before_mm": 7.842347,
+      "after_mm": 3.004368,
+      "delta_mm": -4.837979
+    },
+    {
+      "first": [
+        "U100",
+        "9"
+      ],
+      "second": [
+        "R239",
+        "1"
+      ],
+      "net": "UNIT_EFUSE_ILM_SET",
+      "purpose": "external-unit eFuse local signal/supply",
+      "before_mm": 5.340516,
+      "after_mm": 3.770043,
+      "delta_mm": -1.570473
+    },
+    {
+      "first": [
+        "U100",
+        "8"
+      ],
+      "second": [
+        "C250",
+        "2"
+      ],
+      "net": "POWER_GROUND",
+      "purpose": "eFuse return pad lower bound, not a routed loop",
+      "before_mm": 6.430538,
+      "after_mm": 3.030578,
+      "delta_mm": -3.39996
+    },
+    {
+      "first": [
+        "U100",
+        "8"
+      ],
+      "second": [
+        "C251",
+        "2"
+      ],
+      "net": "POWER_GROUND",
+      "purpose": "eFuse return pad lower bound, not a routed loop",
+      "before_mm": 10.136791,
+      "after_mm": 8.040025,
+      "delta_mm": -2.096766
+    },
+    {
+      "first": [
+        "U100",
+        "8"
+      ],
+      "second": [
+        "C252",
+        "2"
+      ],
+      "net": "POWER_GROUND",
+      "purpose": "eFuse return pad lower bound, not a routed loop",
+      "before_mm": 3.303604,
+      "after_mm": 4.079059,
+      "delta_mm": 0.775455
+    },
+    {
+      "first": [
+        "U100",
+        "8"
+      ],
+      "second": [
+        "C253",
+        "2"
+      ],
+      "net": "POWER_GROUND",
+      "purpose": "eFuse return pad lower bound, not a routed loop",
+      "before_mm": 19.938704,
+      "after_mm": 2.530316,
+      "delta_mm": -17.408388
+    },
+    {
+      "first": [
+        "U83",
+        "1"
+      ],
+      "second": [
+        "U85",
+        "3"
+      ],
+      "net": "HEADSET_MIC_RAW",
+      "purpose": "long headset raw-microphone route: qualification remains open",
+      "before_mm": 23.229026,
+      "after_mm": 80.396736,
+      "delta_mm": 57.16771
+    },
+    {
+      "first": [
+        "C136",
+        "1"
+      ],
+      "second": [
+        "U37",
+        "4"
+      ],
+      "net": "VOICE_DETECT_FILTER",
+      "purpose": "UHF detector filter",
+      "before_mm": 14.7404,
+      "after_mm": 2.200155,
+      "delta_mm": -12.540245
+    },
+    {
+      "first": [
+        "C136",
+        "2"
+      ],
+      "second": [
+        "U37",
+        "6"
+      ],
+      "net": "VOICE_DETECT_V",
+      "purpose": "UHF detector filter return",
+      "before_mm": 13.704664,
+      "after_mm": 2.679679,
+      "delta_mm": -11.024985
+    }
+  ],
+  "preservation_required": {
+    "original_copper_objects": 765,
+    "original_ui_board_unchanged": true,
+    "all_pad_net_identities": true,
+    "all_exact_mpns": true
+  },
+  "limits": [
+    "Placement only: existing 857 copper objects across both boards and all electrical identities must remain unchanged. No unrouted net is called working.",
+    "The 15mm knob envelope and Cap/holder gaps are nominal plan geometry, not finger access, tolerances, encoder solder strength or 3D assembly qualification.",
+    "Headset raw-microphone and remote capture/bias paths become longer. Deliberate low-noise audio routing and complete return-path review remain open; local-cell improvements do not qualify the audio circuit.",
+    "The relocated UHF module still needs its final RF feed, return plane, power delivery and inter-module coupling review. This placement does not approve RF performance.",
+    "U100 timing/input capacitor return geometry is explicitly measured, including regressions; supply-pin distances alone do not qualify return loops.",
+    "Existing engineering footprints, Cap mating map, power limits, routing and factory/assembly checks remain open. No phase completion or fabrication release is implied."
+  ],
+  "printed_label_clearance_correction": {
+    "references": [
+      "C268",
+      "R267",
+      "U126"
+    ],
+    "translation_mm": [
+      5.525,
+      44.625
+    ],
+    "reason": "Preserve the fixed SPK - label and all existing copper; move the complete U126 local cell, not the label.",
+    "native_silk_edge_gap_mm": 0.185
+  },
+  "service_label_correction": {
+    "text": "RF",
+    "layer": "B.Silkscreen",
+    "at_mm": [
+      35.2,
+      108.615
+    ],
+    "angle_deg": 90,
+    "font_mm": 1,
+    "stroke_mm": 0.15,
+    "reason": "Readable narrow corridor beside J3; no font reduction or component movement for the label."
+  }
+}

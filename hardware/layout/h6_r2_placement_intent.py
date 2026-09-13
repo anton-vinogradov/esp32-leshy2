@@ -208,6 +208,16 @@ def evaluate(snapshot):
           and near(ntcs[1][0]-ntcs[0][0], 19.1), ntcs)
     check("encoder on LEFT when looking at the exterior rear, antennas up",
           encoder["side"] == "F.Cu" and 0 < encoder["anchor_mm"][0] < width/4, encoder)
+    # Owner's 2026-09-13 request: move the existing encoder directly below Cap.
+    # This independent nominal envelope must not follow an accidental frozen Y.
+    # A 15-mm knob is a design envelope, not a qualified part/body tolerance.
+    knob_to_cap = encoder["anchor_mm"][1] - 7.5 - 41.02
+    knob_to_holder = 20.05 - encoder["anchor_mm"][0] - 7.5
+    check("encoder nominal 15mm knob directly below Cap with >=5mm plan gap",
+          encoder["side"] == "F.Cu" and 5 <= knob_to_cap <= 8
+          and knob_to_holder >= 3,
+          {"knob_to_cap_mm": knob_to_cap, "knob_to_holder_mm": knob_to_holder,
+           "assembled_access_qualified": False})
     check("PTT on RIGHT when looking at the exterior rear, antennas up",
           ptt["side"] == "F.Cu" and ptt["actuator_mm"] is not None
           and ptt["actuator_mm"][0] > width*3/4, ptt)

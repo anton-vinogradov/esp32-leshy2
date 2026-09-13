@@ -252,7 +252,7 @@ class H1R2InventoryReconciliationTest(unittest.TestCase):
             model["retired_seed_instances"] = retired
             self.assertTrue(any(expected in error for error in MODULE.audit(model, self.base)["errors"]))
 
-    def test_two_asymmetric_native_bodies_match_their_rf_world_replacements(self):
+    def test_two_asymmetric_body_profiles_preserve_archived_rf_world_transform(self):
         review = MODULE.load(REPO / "hardware/product-design/h1-r2-native-body-review.json")
         snapshot = review["source_snapshot"]
         self.assertRegex(snapshot["commit"], r"^[0-9a-f]{40}$")
@@ -277,9 +277,13 @@ class H1R2InventoryReconciliationTest(unittest.TestCase):
                 self.assertIn(f'(footprint "{body["footprint"]}"', native)
                 self.assertEqual("B.Cu", re.search(r'\(layer "([^"]+)"\)', native)[1])
                 at = re.search(r'\(at ([-\d.]+) ([-\d.]+)(?: ([-\d.]+))?\)', native)
-                anchor = list(map(float, at.group(1, 2)))
+                # H1 records a historical translation, not today's placement.
+                # Reuse the actual local B.Fab profile at its recorded datum:
+                # a legal H6 translation must not require rewriting H1 history.
+                self.assertIsNotNone(at)
+                anchor = body["native_anchor_mm"]
                 self.assertEqual(expected[ref][0], anchor)
-                self.assertEqual(0, float(at[3] or 0))
+                self.assertEqual(0, body["native_rotation_deg"])
                 points = []
                 for match in re.finditer(r'\(fp_(rect|poly)\b', native):
                     shape = native[match.start():form_end(native, match.start())]
