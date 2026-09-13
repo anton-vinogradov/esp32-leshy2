@@ -32,11 +32,15 @@ class ProductViewTests(unittest.TestCase):
             VIEW.validate_evidence(views, intent)
 
     def test_complete_evidence_rehashes_every_required_source_and_output(self):
+        views, intent = self.evidence()
         with patch.object(VIEW, "sha", return_value="a"*64) as digest:
-            VIEW.validate_evidence(*self.evidence())
-        self.assertEqual(13, digest.call_count)  # 3 component inputs +5 SVG +5 intent inputs
+            VIEW.validate_evidence(views, intent)
+        expected = [ROOT / name for inventory in (views["inputs_sha256"], views["outputs_sha256"], intent["sources"])
+                    for name in inventory]
+        self.assertCountEqual(expected, [call.args[0] for call in digest.call_args_list])
         checked = {str(call.args[0].relative_to(ROOT)) for call in digest.call_args_list}
         self.assertTrue(set(VIEW.BOARD_PATHS.values()) <= checked)
+        self.assertIn("hardware/layout/h6-r2-placement-contract.json", checked)
 
     def test_empty_truncated_or_extra_hash_inventory_fails_before_any_path_read(self):
         for section in ("inputs_sha256", "outputs_sha256", "sources"):

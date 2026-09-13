@@ -4,7 +4,7 @@
   "status": "pass_scoped",
   "production_release_authorized": false,
   "inputs_sha256": {
-    "hardware/layout/h6-r2-placement-contract.json": "61fd67b529685579d6bb454f080695c1291b5bd31c6fa440fc3e46845e6784f0",
+    "hardware/layout/h6-r2-placement-contract.json": "19047e606884af05283938a50b11a66eae073f496ef6c457e3b7ad9abba64959",
     "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7e5594bf5130524096b2683040b153409611b92c2df088dd33cb5c30f2f7a597",
     "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "f03919a28b4cc37aa763943f7e0c7b0aabe61ddac48f699d8b9adcec7e422ebc",
     "hardware/layout/h6_r2_silkscreen_audit.py": "22d05026b5c16cae0e4fb49a567e7790ee704ad7d897d335bcb15cceb6d1775b",
@@ -43,7 +43,7 @@
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_40_INTERBOARD_M1.kicad_sch": "424390520ba25ce5ae9c4466c4a54c014fd17a53cb7b58fda7734d31e2e95a17",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_50_FRONT_POWER_SAFETY.kicad_sch": "5c1befee1751e1dfb882c1ee86d04ce19312095f527a901bcbae75691ef1b15b",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_60_TESTPOINTS_MANUFACTURING.kicad_sch": "87b5812e879ba11abca135470a681c9909148ff398d7dc9153d50d258adae3b1",
-    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "b93eee66471cc46dd165b108c52442aa3a3ada8446248141b22ba5ca1bf03143",
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "3b039e56313ed0f8b74fe62cf1ae34eb90fcad8a502be78d960dbb9b34fba077",
     "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "81f8809ec75a5bfea43668a94ba64ac486fca8d33edda4fd36a68b0ef5ba6c76"
   },
   "boards": [
@@ -106,6 +106,58 @@
             }
           },
           "exemption_reason": "Correctly positioned assembly marking intentionally hidden after final assembly"
+        },
+        {
+          "kind": "via_drill_bbox",
+          "text": {
+            "id": "460aa858-f7ad-5a50-99b9-ee03b9d5763c",
+            "text": "Wi-Fi/15.4",
+            "layer": "F.Silkscreen",
+            "at_mm": [
+              24.2,
+              108.2
+            ],
+            "size_mm": [
+              1.0,
+              1.0
+            ],
+            "thickness_mm": 0.15,
+            "angle_deg": 0.0,
+            "mirrored": false,
+            "visible": true,
+            "horizontal_justify": 0,
+            "vertical_justify": 0,
+            "default_stroke_font": true,
+            "bold": false,
+            "italic": false,
+            "bbox_mm": {
+              "x": [
+                19.789287,
+                28.610714
+              ],
+              "y": [
+                107.35175,
+                109.04825
+              ]
+            }
+          },
+          "obstacle": {
+            "kind": "via_drill_bbox",
+            "via": "c98915e4-e552-5062-b411-b560a2bfeb72",
+            "silk_layer": "F.Silkscreen",
+            "tented": true,
+            "bbox_mm": {
+              "x": [
+                28.584999999999997,
+                28.785
+              ],
+              "y": [
+                109.0,
+                109.19999999999999
+              ]
+            }
+          },
+          "exemption_reason": "Native tenting on this text side covers this via; it is not a solder-mask opening on this side"
         }
       ],
       "resolved_geometry_findings": [
@@ -1017,14 +1069,14 @@
             "text": "Wi-Fi/BLE",
             "at_mm": [
               8.4,
-              107.2
+              108.2
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "30646453-192f-4463-9aab-2dd731ecab9c"
+          "actual_id": "f5e202aa-8345-56de-aae4-91f2a40fcc4a"
         },
         {
           "expected": {
@@ -1033,14 +1085,14 @@
             "text": "Wi-Fi/15.4",
             "at_mm": [
               24.2,
-              107.2
+              108.2
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "61803554-2ae6-40b5-953d-ed68c87ea2f4"
+          "actual_id": "460aa858-f7ad-5a50-99b9-ee03b9d5763c"
         },
         {
           "expected": {
@@ -1049,14 +1101,14 @@
             "text": "nRF24-1",
             "at_mm": [
               40.0,
-              107.2
+              108.2
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "47a87503-aadc-4d34-bb6b-a91777521232"
+          "actual_id": "2a3017fe-0034-5e52-8a2d-4af58db7e2d1"
         },
         {
           "expected": {
@@ -1065,14 +1117,14 @@
             "text": "nRF24-2",
             "at_mm": [
               55.8,
-              107.2
+              108.2
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "07e54c68-19f5-490c-b7a8-c9d38095714b"
+          "actual_id": "0dff8cb0-aa99-51f6-b409-dbb618a4eddc"
         },
         {
           "expected": {
@@ -1081,14 +1133,14 @@
             "text": "nRF24-3",
             "at_mm": [
               71.6,
-              107.2
+              108.2
             ],
             "size_mm": 1.0,
             "thickness_mm": 0.15,
             "layer": "F.Silkscreen",
             "role": "user"
           },
-          "actual_id": "b5850245-da00-4381-a631-cef20f933f18"
+          "actual_id": "4c1f573e-dd36-52ec-bfcb-8952a46b0a6f"
         },
         {
           "expected": {

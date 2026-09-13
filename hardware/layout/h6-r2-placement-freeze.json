@@ -5,7 +5,7 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-placement-contract.json",
-    "contract_sha256": "61fd67b529685579d6bb454f080695c1291b5bd31c6fa440fc3e46845e6784f0",
+    "contract_sha256": "19047e606884af05283938a50b11a66eae073f496ef6c457e3b7ad9abba64959",
     "speaker_body": "hardware/layout/h6-r2-speaker-body.json",
     "speaker_body_sha256": "79349b47e281bc89fc57b843987d5458035c59c9fe6459de42a5949ee690f78b",
     "speaker_helper": "hardware/layout/h6_r2_speaker_fit.py",
@@ -3607,24 +3607,24 @@
               25.724999999999998
             ],
             "y": [
-              104.125,
-              105.67500000000001
+              105.125,
+              106.67500000000001
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             24.2,
-            104.9
+            105.9
           ],
           "footprint_anchor_mm": [
             24.2,
-            104.9
+            105.9
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             24200000,
-            104900000
+            105900000
           ]
         },
         {
@@ -3772,24 +3772,24 @@
               41.525
             ],
             "y": [
-              104.125,
-              105.67500000000001
+              105.125,
+              106.67500000000001
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             40.0,
-            104.9
+            105.9
           ],
           "footprint_anchor_mm": [
             40.0,
-            104.9
+            105.9
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             40000000,
-            104900000
+            105900000
           ]
         },
         {
@@ -3805,24 +3805,24 @@
               57.324999999999996
             ],
             "y": [
-              104.125,
-              105.67500000000001
+              105.125,
+              106.67500000000001
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             55.8,
-            104.9
+            105.9
           ],
           "footprint_anchor_mm": [
             55.8,
-            104.9
+            105.9
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             55800000,
-            104900000
+            105900000
           ]
         },
         {
@@ -3838,24 +3838,24 @@
               73.125
             ],
             "y": [
-              104.125,
-              105.67500000000001
+              105.125,
+              106.67500000000001
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             71.6,
-            104.9
+            105.9
           ],
           "footprint_anchor_mm": [
             71.6,
-            104.9
+            105.9
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             71600000,
-            104900000
+            105900000
           ]
         },
         {
@@ -3871,24 +3871,24 @@
               9.925
             ],
             "y": [
-              104.125,
-              105.67500000000001
+              105.125,
+              106.67500000000001
             ]
           },
           "opposite_face_keepout_bboxes_mm": [],
           "courtyard_centre_mm": [
             8.4,
-            104.9
+            105.9
           ],
           "footprint_anchor_mm": [
             8.4,
-            104.9
+            105.9
           ],
           "rotation_deg": 0.0,
           "moved_from_seed_mm": 0.0,
           "footprint_anchor_nm": [
             8400000,
-            104900000
+            105900000
           ]
         },
         {
@@ -15418,8 +15418,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "unrouted_seed_sha256": "8955ce11ec43b5038aa1c676720a4146340472f77a6b18615bf11c8e2c330a45",
-      "placement_signature_sha256": "3734db21b6a8e60920e6cbe5c2295d12e7fdc7509ffa4b62f42a4f5ec5a7afef",
+      "unrouted_seed_sha256": "d7149272cfcaeda012f62719a50fdfe072635e6148852b35a44d0eb6ffa182df",
+      "placement_signature_sha256": "1a59b8847f3bacde6ff21504e221d83aa60b896605ac41fe82700b37bb5b5703",
       "locality": {
         "status": "pass",
         "pair_count": 62,

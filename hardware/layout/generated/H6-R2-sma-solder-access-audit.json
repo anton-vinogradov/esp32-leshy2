@@ -15,8 +15,8 @@
   },
   "source_sha256": {
     "hardware/layout/h6_r2_sma_solder_access.py": "caca4ffabc3d911de551fb429c41f9f8c647199f9a4a31ea3d250dffee39b814",
-    "hardware/layout/h6-r2-placement-contract.json": "61fd67b529685579d6bb454f080695c1291b5bd31c6fa440fc3e46845e6784f0",
-    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "b93eee66471cc46dd165b108c52442aa3a3ada8446248141b22ba5ca1bf03143",
+    "hardware/layout/h6-r2-placement-contract.json": "19047e606884af05283938a50b11a66eae073f496ef6c457e3b7ad9abba64959",
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "3b039e56313ed0f8b74fe62cf1ae34eb90fcad8a502be78d960dbb9b34fba077",
     "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "81f8809ec75a5bfea43668a94ba64ac486fca8d33edda4fd36a68b0ef5ba6c76",
     "hardware/ecad/libraries/Leshy2.pretty/RFPC-SMA31-FN-175-A.kicad_mod": "cce6681aeb3886e47da800b0533f8363bea432db86b05dfd07773f2452a59a8b",
     "hardware/ecad/libraries/Leshy2.pretty/RFPC-SMA32-FN-175-A.kicad_mod": "239e7f24ba43fe1cac3f6bab19d155ee3aaf7e82475849ca7c4d559341bfed8c"
@@ -36,7 +36,7 @@
   "boards": [
     {
       "project": "LESHY2-UI-R2",
-      "native_board_sha256": "b93eee66471cc46dd165b108c52442aa3a3ada8446248141b22ba5ca1bf03143",
+      "native_board_sha256": "3b039e56313ed0f8b74fe62cf1ae34eb90fcad8a502be78d960dbb9b34fba077",
       "inventory_counts": {
         "footprints": 432,
         "foreign_pad": 1672,

@@ -5,9 +5,9 @@
   "status": "pass",
   "sources": {
     "contract": "hardware/layout/h6-r2-manual-copper.json",
-    "contract_sha256": "87198e589d3736280050827a6eb40e5b75b45bd13b109f41faf2fc7f37e6a2c8",
+    "contract_sha256": "9dec0bf735af1994bff6c1330f99e3870f8362246bb5192ca71acc3a26c0e8a4",
     "routing_policy": "hardware/layout/generated/H6-R2-routing-policy-audit.json",
-    "routing_policy_sha256": "f83137cb2fb117f6376f91f3990adb73062d1c012e63d7ae1fc84ff3e6ed281e",
+    "routing_policy_sha256": "2077e8f1dbbc83a94c16d0b33301141ea4070cc655d5f4305c820ae9f9eeffcd",
     "routing_contract": "hardware/layout/h6-r2-routing-policy.json",
     "routing_contract_sha256": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
     "placement_status": "pass"
@@ -51,7 +51,7 @@
           0.15,
           [
             25.0,
-            106.1
+            107.1
           ],
           [
             26.7,
@@ -149,11 +149,11 @@
           0.15,
           [
             24.9875,
-            104.9
+            105.9
           ],
           [
             25.0,
-            106.1
+            107.1
           ]
         ],
         [
@@ -432,8 +432,8 @@
             106.3
           ],
           [
-            40.8,
-            106.2
+            40.3,
+            107.2
           ]
         ],
         [
@@ -442,12 +442,12 @@
           "F.Cu",
           0.15,
           [
-            40.7875,
-            104.9
+            40.3,
+            107.2
           ],
           [
-            40.8,
-            106.2
+            40.7875,
+            105.9
           ]
         ],
         [
@@ -471,11 +471,11 @@
           0.15,
           [
             56.5875,
-            104.9
+            105.9
           ],
           [
             56.6,
-            106.1
+            107.1
           ]
         ],
         [
@@ -489,7 +489,7 @@
           ],
           [
             56.6,
-            106.1
+            107.1
           ]
         ],
         [
@@ -671,7 +671,7 @@
           ],
           [
             72.4,
-            106.1
+            107.1
           ]
         ],
         [
@@ -681,11 +681,11 @@
           0.15,
           [
             72.3875,
-            104.9
+            105.9
           ],
           [
             72.4,
-            106.1
+            107.1
           ]
         ],
         [
@@ -695,7 +695,7 @@
           0.15,
           [
             5.8,
-            106.2
+            107.2
           ],
           [
             6.3,
@@ -765,11 +765,11 @@
           0.15,
           [
             5.8,
-            106.2
+            107.2
           ],
           [
             9.1875,
-            106.2
+            107.2
           ]
         ],
         [
@@ -779,11 +779,11 @@
           0.15,
           [
             9.1875,
-            104.9
+            105.9
           ],
           [
             9.1875,
-            106.2
+            107.2
           ]
         ],
         [
@@ -1182,7 +1182,7 @@
           "via",
           "/UI_11_STORAGE_CONTROLS_INDICATORS/C5_TX_LED_A",
           25.0,
-          106.1,
+          107.1,
           0.4,
           0.2
         ],
@@ -1213,8 +1213,8 @@
         [
           "via",
           "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF0_TX_LED_A",
-          40.8,
-          106.2,
+          40.3,
+          107.2,
           0.4,
           0.2
         ],
@@ -1230,7 +1230,7 @@
           "via",
           "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF1_TX_LED_A",
           56.6,
-          106.1,
+          107.1,
           0.4,
           0.2
         ],
@@ -1238,7 +1238,7 @@
           "via",
           "/UI_11_STORAGE_CONTROLS_INDICATORS/NRF2_TX_LED_A",
           72.4,
-          106.1,
+          107.1,
           0.4,
           0.2
         ],
@@ -1246,7 +1246,7 @@
           "via",
           "/UI_11_STORAGE_CONTROLS_INDICATORS/S3_TX_LED_A",
           5.8,
-          106.2,
+          107.2,
           0.4,
           0.2
         ],
@@ -11133,13 +11133,13 @@
       ],
       "segment_count": 3,
       "via_count": 1,
-      "length_mm": 13.7643,
+      "length_mm": 13.5395,
       "resolved_connections": 1,
-      "reason": "Hand-reviewed 2026-09-08 resistor-to-indicator anode proposal: B.Cu signal path, one explicit through via clear of all F/B component courtyards, then F.Cu LED leadout. Native DRC/parity 0/0 and exact-shape 0.15 mm clearance screening passed; original copper/pads/connectivity remain unchanged. This does not close H6 or authorize fabrication.",
+      "reason": "Upper LED row display-clearance update, 2026-09-14: same named endpoints; only five LED leadouts and their adjacent vias move. NRF0 via also moves 0.5 mm left to clear IR copper. See h6-r2-led-display-clearance.json. No driver, fault or other net scope expansion; partial routing only.",
       "reviewed_proposal": {
         "decision": "hand-reviewed proposal",
         "minimum_clearance_mm": 0.15,
-        "geometry_sha256": "b753fd76381ba042bb8a130c9732f7f5cb181b04668a718207d50706e0962d6f"
+        "geometry_sha256": "69daea9999642945c9a0a62f0541c2cb83db8d8b780e127c7fdde5506be34de4"
       }
     },
     {
@@ -11158,13 +11158,13 @@
       ],
       "segment_count": 7,
       "via_count": 1,
-      "length_mm": 25.3965,
+      "length_mm": 25.932,
       "resolved_connections": 1,
-      "reason": "Hand-reviewed 2026-09-08 resistor-to-indicator anode proposal: B.Cu signal path, one explicit through via clear of all F/B component courtyards, then F.Cu LED leadout. Native DRC/parity 0/0 and exact-shape 0.15 mm clearance screening passed; original copper/pads/connectivity remain unchanged. This does not close H6 or authorize fabrication.",
+      "reason": "Upper LED row display-clearance update, 2026-09-14: same named endpoints; only five LED leadouts and their adjacent vias move. NRF0 via also moves 0.5 mm left to clear IR copper. See h6-r2-led-display-clearance.json. No driver, fault or other net scope expansion; partial routing only.",
       "reviewed_proposal": {
         "decision": "hand-reviewed proposal",
         "minimum_clearance_mm": 0.15,
-        "geometry_sha256": "7b7f5daddcc330787f59e277582e013ae0da25400b8fa2e1743d4a29bbe51031"
+        "geometry_sha256": "c21bbb2c2bd02cfa1fdee9bc17d7c31886ac72f2e8237735ed42281d4f437994"
       }
     },
     {
@@ -11183,13 +11183,13 @@
       ],
       "segment_count": 8,
       "via_count": 1,
-      "length_mm": 32.8291,
+      "length_mm": 33.6628,
       "resolved_connections": 1,
-      "reason": "Reviewed resistor R26.2 to LED D1.2; no driver-side expansion. Seven-net joint review 2026-09-08: native DRC 0 violations / 0 parity; minimum foreign copper gap 0.180031 mm; old copper, poses and connected pad pairs preserved. Partial routing only, not production release.",
+      "reason": "Upper LED row display-clearance update, 2026-09-14: same named endpoints; only five LED leadouts and their adjacent vias move. NRF0 via also moves 0.5 mm left to clear IR copper. See h6-r2-led-display-clearance.json. No driver, fault or other net scope expansion; partial routing only.",
       "reviewed_proposal": {
         "decision": "hand-reviewed proposal",
         "minimum_clearance_mm": 0.15,
-        "geometry_sha256": "20e9e5c744fc07c454b23e521fa3832fc59ecd9e19cf3c47be0d550111f17e86"
+        "geometry_sha256": "9ffca3ba251085ab9d87ae036b83f58f4318ae838c397e1b3049a14bb679cfa7"
       }
     },
     {
@@ -11284,13 +11284,13 @@
       ],
       "segment_count": 3,
       "via_count": 2,
-      "length_mm": 31.3925,
+      "length_mm": 31.3033,
       "resolved_connections": 1,
-      "reason": "Reviewed resistor R36.2 to LED D7.2; no driver-side expansion. Seven-net joint review 2026-09-08: native DRC 0 violations / 0 parity; minimum foreign copper gap 0.180031 mm; old copper, poses and connected pad pairs preserved. Partial routing only, not production release.",
+      "reason": "Upper LED row display-clearance update, 2026-09-14: same named endpoints; only five LED leadouts and their adjacent vias move. NRF0 via also moves 0.5 mm left to clear IR copper. See h6-r2-led-display-clearance.json. No driver, fault or other net scope expansion; partial routing only.",
       "reviewed_proposal": {
         "decision": "hand-reviewed proposal",
         "minimum_clearance_mm": 0.15,
-        "geometry_sha256": "5f01b89a70806d4e0e261d7ae1eedc0b59525e5bf48e28105a41dade83d16989"
+        "geometry_sha256": "2d7dccbe01cb7ef2a489dc1151fd994fb549da4cd595f36389ea59a34ee412ee"
       }
     },
     {
@@ -11309,13 +11309,13 @@
       ],
       "segment_count": 14,
       "via_count": 1,
-      "length_mm": 56.9561,
+      "length_mm": 56.3359,
       "resolved_connections": 1,
-      "reason": "Reviewed resistor R37.2 to LED D8.2; no driver-side expansion. Seven-net joint review 2026-09-08: native DRC 0 violations / 0 parity; minimum foreign copper gap 0.180031 mm; old copper, poses and connected pad pairs preserved. Partial routing only, not production release.",
+      "reason": "Upper LED row display-clearance update, 2026-09-14: same named endpoints; only five LED leadouts and their adjacent vias move. NRF0 via also moves 0.5 mm left to clear IR copper. See h6-r2-led-display-clearance.json. No driver, fault or other net scope expansion; partial routing only.",
       "reviewed_proposal": {
         "decision": "hand-reviewed proposal",
         "minimum_clearance_mm": 0.15,
-        "geometry_sha256": "4399443cff06b50b893578b4f2e41ed766f9a68c7beed53e0c8e9a1313366537"
+        "geometry_sha256": "4c5a3ddc53c0e75dbfb99f0155b694d00ee3597510f5dc41219388a0150cffc8"
       }
     },
     {

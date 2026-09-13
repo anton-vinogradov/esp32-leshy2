@@ -120,7 +120,7 @@
     {
       "project": "LESHY2-UI-R2",
       "board": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "board_sha256": "b93eee66471cc46dd165b108c52442aa3a3ada8446248141b22ba5ca1bf03143",
+      "board_sha256": "3b039e56313ed0f8b74fe62cf1ae34eb90fcad8a502be78d960dbb9b34fba077",
       "native_footprint_count": 432,
       "checked_references": [
         "C1",

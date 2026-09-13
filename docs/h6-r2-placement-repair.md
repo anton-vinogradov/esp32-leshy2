@@ -2,6 +2,12 @@
 
 [Русский](h6-r2-placement-repair.ru.md) · [Interface review](h6-r2-interface-review.md)
 
+2026-09-14: the upper LED row and its labels move **1 mm down**, increasing the
+nominal display-to-LED-body gap **0.54 → 1.54 mm**. The lower row, panel and FPC
+stay put. Use the existing DISPLAY silk for alignment, not LEDs as physical stops.
+The [finite leadout review](../hardware/layout/h6-r2-led-display-clearance.json)
+records the five local anode updates; final assembly tolerances still need dry fit.
+
 2026-09-09: the separate [four-port GCT unification](h6-r2-component-unification.md) is implemented, with fresh native DRC/parity and preservation checks passed. Its [two-reference integration record](../hardware/layout/h6-r2-usb-unification-integration.json) supersedes the earlier JAE mouth datum, not the other placement corrections below.
 
 **2026-09-13. The same left-side encoder moves upward, directly below Cap:

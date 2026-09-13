@@ -17,6 +17,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 DEST = ROOT / "hardware/layout/generated/H6-R2-placement-intent.json"
 PROJECTS = ("LESHY2-UI-R2", "LESHY2-RF-R2")
+PLACEMENT_CONTRACT = "hardware/layout/h6-r2-placement-contract.json"
+LED_ROWS = (("D9", "D1", "D6", "D7", "D8"), ("D2", "D10", "D5", "D3", "D4"))
+LED_COLUMNS_MM = (8.4, 24.2, 40.0, 55.8, 71.6)
+
+
+def finite_vector(value, length):
+    return (isinstance(value, (list, tuple)) and len(value) == length
+            and all(type(v) in (int, float) and math.isfinite(v) for v in value))
 
 
 def native_bottom_edges(board, pcbnew):
@@ -130,8 +138,11 @@ def native_snapshot(root=ROOT):
     result["sources"][str(script.relative_to(root))] = hashlib.sha256(script.read_bytes()).hexdigest()
     helper = root / "hardware/layout/h6_r2_speaker_fit.py"
     speaker_json = root / "hardware/layout/h6-r2-speaker-body.json"
-    for path in (helper, speaker_json):
+    contract_json = root / PLACEMENT_CONTRACT
+    for path in (helper, speaker_json, contract_json):
         result["sources"][str(path.relative_to(root))] = hashlib.sha256(path.read_bytes()).hexdigest()
+    # The unfitted panel is a controlled nominal envelope, not a PCB footprint.
+    result["display_panel_bbox_mm"] = json.loads(contract_json.read_text())["mechanical"]["display_bed"]["panel_bbox_mm"]
     spec = importlib.util.spec_from_file_location("intent_speaker", helper)
     speaker = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(speaker)
@@ -189,6 +200,46 @@ def evaluate(snapshot):
           assembly)
     width, height, tol = 80.0, 150.0, 0.002
     near = lambda a, b: abs(a-b) <= tol
+    leds = [[ui.get(ref, {}) for ref in refs] for refs in LED_ROWS]
+    aligned = all(
+        finite_vector(row.get("anchor_mm"), 2)
+        and row.get("side") == "F.Cu"
+        and finite_vector([row.get("rotation_deg")], 1)
+        and near(row["rotation_deg"] % 360, 0)
+        and near(row["anchor_mm"][0], x)
+        for group in leds for row, x in zip(group, LED_COLUMNS_MM))
+    if aligned:
+        upper_y, lower_y = (group[0]["anchor_mm"][1] for group in leds)
+        aligned = (all(near(row["anchor_mm"][1], group[0]["anchor_mm"][1])
+                       for group in leds for row in group)
+                   and upper_y < lower_y and near(lower_y, 111.4))
+    check("ten front indicator LEDs retain aligned rows and fixed function columns",
+          aligned, {ref: ui.get(ref) for refs in LED_ROWS for ref in refs})
+    panel = snapshot.get("display_panel_bbox_mm")
+    # Independent accepted panel datum; changing a frozen LED Y or shrinking
+    # the panel source cannot waive clearance. No exact upper-row Y is required.
+    panel_valid = (isinstance(panel, dict) and set(panel) == {"x", "y"}
+                   and finite_vector(panel["x"], 2) and finite_vector(panel["y"], 2)
+                   and all(near(v, expected) for v, expected in
+                           zip([*panel["x"], *panel["y"]], [11.73, 68.27, 19., 103.96])))
+    bodies = {ref: ui.get(ref, {}).get("fab_stroke_bounds_mm")
+              for refs in LED_ROWS for ref in refs}
+    bodies_valid = all(finite_vector(body, 4) and body[0] < body[2] and body[1] < body[3]
+                       for body in bodies.values())
+    overlapping, gaps = [], {}
+    if panel_valid and bodies_valid:
+        overlapping = [ref for ref in LED_ROWS[0]
+                       if bodies[ref][0] < panel["x"][1] and bodies[ref][2] > panel["x"][0]]
+        gaps = {ref: round(bodies[ref][1] - panel["y"][1], 6) for ref in overlapping}
+    check("three middle upper LEDs clear nominal display panel by >=1.4mm; not panel stops",
+          panel_valid and bodies_valid and overlapping == ["D1", "D6", "D7"]
+          and all(gap >= 1.4 for gap in gaps.values())
+          and max(bodies[ref][3] for ref in LED_ROWS[0]) < min(bodies[ref][1] for ref in LED_ROWS[1]),
+          {"panel_source": PLACEMENT_CONTRACT + "#/mechanical/display_bed/panel_bbox_mm",
+           "nominal_panel_bbox_mm": panel, "native_fab_stroke_bounds_mm": bodies,
+           "overlapping_upper_refs": overlapping, "nominal_clearances_mm": gaps,
+           "minimum_nominal_clearance_mm": 1.4,
+           "leds_are_panel_stops": False, "assembly_tolerances_qualified": False})
     holder, encoder, ptt, jack = (rf[r] for r in ("BT1", "SW3", "SW4", "U83"))
     check("holder centered on rear PCB, not shifted to clear another part",
           holder["side"] == "F.Cu" and near(holder["anchor_mm"][0], width/2)

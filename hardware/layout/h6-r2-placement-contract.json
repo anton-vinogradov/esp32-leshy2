@@ -1164,51 +1164,51 @@
       "frame": "front-outer",
       "centre_mm": [
         8.4,
-        104.9
+        105.9
       ],
       "rotation_deg": 0.0,
       "method": "reviewed outward user-indicator datum",
-      "reason": "restore the visible WI-FI/BLE indicator to the accepted H1 exterior; convert the 1.6x0.8-mm body top-left into its physical centre"
+      "reason": "Keep the upper indicator row aligned while increasing display assembly clearance; LEDs are visual indicators, not mechanical panel stops."
     },
     "c5_tx_led": {
       "frame": "front-outer",
       "centre_mm": [
         24.2,
-        104.9
+        105.9
       ],
       "rotation_deg": 0.0,
       "method": "reviewed outward user-indicator datum",
-      "reason": "restore the visible WI-FI/15.4 indicator to the accepted H1 exterior, not the inner electronics face"
+      "reason": "Move the upper row 1 mm toward the lower indicators, leaving 1.54 mm nominal LED-body to panel clearance; preserve X, face, rotation and nets."
     },
     "nrf0_tx_led": {
       "frame": "front-outer",
       "centre_mm": [
         40.0,
-        104.9
+        105.9
       ],
       "rotation_deg": 0.0,
       "method": "reviewed outward user-indicator datum",
-      "reason": "restore the visible nRF24-1 indicator to row1 column3 of the accepted H1 exterior"
+      "reason": "Same upper-row display-clearance move; retain row1 column3 and the display/FPC/PSA geometry."
     },
     "nrf1_tx_led": {
       "frame": "front-outer",
       "centre_mm": [
         55.8,
-        104.9
+        105.9
       ],
       "rotation_deg": 0.0,
       "method": "reviewed outward user-indicator datum",
-      "reason": "restore the visible nRF24-2 indicator to row1 column4 of the accepted H1 exterior"
+      "reason": "Same upper-row display-clearance move; retain row1 column4 and the display/FPC/PSA geometry."
     },
     "nrf2_tx_led": {
       "frame": "front-outer",
       "centre_mm": [
         71.6,
-        104.9
+        105.9
       ],
       "rotation_deg": 0.0,
       "method": "reviewed outward user-indicator datum",
-      "reason": "restore the visible nRF24-3 indicator to row1 column5 of the accepted H1 exterior"
+      "reason": "Keep the upper indicator row aligned while increasing display assembly clearance; LEDs are visual indicators, not mechanical panel stops."
     },
     "cc_tx_led": {
       "frame": "front-outer",

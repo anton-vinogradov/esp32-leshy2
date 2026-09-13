@@ -72,7 +72,83 @@ def validate(route, row=None, policy=None, project=PROJECT):
                                      project, POLICY if policy is None else policy)
 
 
+def pre_display_clearance_geometry(route):
+    """Reconstruct only the finite 2026-09-14 leadout delta for old receipts.
+
+    Archived 2026-09-08 geometry remains checked, not overwritten with MAIN.
+    Current copper is still checked against the native board below.
+    """
+    previous = copy.deepcopy(route)
+    moves = {
+        "NRF0_TX_LED_A": {(40.7875, 105.9): (40.7875, 104.9), (40.3, 107.2): (40.8, 106.2)},
+        "S3_TX_LED_A": {(9.1875, 105.9): (9.1875, 104.9), (9.1875, 107.2): (9.1875, 106.2),
+                        (5.8, 107.2): (5.8, 106.2)},
+        "C5_TX_LED_A": {(24.9875, 105.9): (24.9875, 104.9), (25., 107.1): (25., 106.1)},
+        "NRF1_TX_LED_A": {(56.5875, 105.9): (56.5875, 104.9), (56.6, 107.1): (56.6, 106.1)},
+        "NRF2_TX_LED_A": {(72.3875, 105.9): (72.3875, 104.9), (72.4, 107.1): (72.4, 106.1)},
+    }.get(route["canonical_net"], {})
+    for segment in previous["segments"]:
+        for field in ("start_mm", "end_mm"):
+            point = tuple(segment[field])
+            if point in moves:
+                segment[field] = list(moves[point])
+    for via in previous.get("vias", []):
+        point = tuple(via["at_mm"])
+        if point in moves:
+            via["at_mm"] = list(moves[point])
+    return previous
+
+
+def native_upper_led_copper_findings(board):
+    """Check changed pads AND their copper, including stationary crossing tracks."""
+    findings = set()
+    layers = (native_pcbnew.F_Cu, native_pcbnew.In1_Cu, native_pcbnew.In2_Cu,
+              native_pcbnew.In3_Cu, native_pcbnew.In4_Cu, native_pcbnew.B_Cu)
+    nets = {PREFIX + name for name in ("S3_TX_LED_A", "C5_TX_LED_A", "NRF0_TX_LED_A",
+                                     "NRF1_TX_LED_A", "NRF2_TX_LED_A")}
+    tracks = list(board.GetTracks())
+    pads = [p for fp in board.GetFootprints() for p in fp.Pads()]
+    for item in tracks:
+        if item.GetNetname() not in nets:
+            continue
+        for pad in pads:
+            if item.GetNetname() == pad.GetNetname():
+                continue
+            for layer in layers:
+                if (item.IsOnLayer(layer) and pad.IsOnLayer(layer)
+                        and item.GetEffectiveShape().Collide(pad.GetEffectiveShape(layer), 150000)):
+                    findings.add(("pad", pad.GetParentFootprint().GetReference(), pad.GetNumber()))
+        for other in tracks:
+            if (other.GetNetname() != item.GetNetname()
+                    and any(item.IsOnLayer(layer) and other.IsOnLayer(layer) for layer in layers)
+                    and item.GetEffectiveShape().Collide(other.GetEffectiveShape(), 150000)):
+                findings.add(("copper", item.GetNetname(), other.GetNetname()))
+    return findings
+
+
 class ReviewedLedProposalTests(unittest.TestCase):
+    @unittest.skipIf(native_pcbnew is None, "KiCad Python needed for real copper shapes")
+    def test_upper_led_local_geometry_and_both_failed_trial_regressions(self):
+        path = ROOT / f"hardware/ecad/kicad/{PROJECT}/{PROJECT}.kicad_pcb"
+        board = native_pcbnew.LoadBoard(str(path))
+        self.assertFalse(native_upper_led_copper_findings(board))
+        # An unchanged horizontal anode track becomes unsafe when its LED moves.
+        horizontal = next(i for i in board.GetTracks()
+                          if i.GetNetname() == PREFIX + "S3_TX_LED_A"
+                          and not isinstance(i, native_pcbnew.PCB_VIA)
+                          and i.GetLayer() == native_pcbnew.F_Cu
+                          and i.GetStart().x != i.GetEnd().x)
+        for get, put in ((horizontal.GetStart, horizontal.SetStart), (horizontal.GetEnd, horizontal.SetEnd)):
+            p = get()
+            put(native_pcbnew.VECTOR2I(p.x, 106200000))
+        self.assertIn(("pad", "D9", "1"), native_upper_led_copper_findings(board))
+        board = native_pcbnew.LoadBoard(str(path))
+        via = next(i for i in board.GetTracks() if isinstance(i, native_pcbnew.PCB_VIA)
+                   and i.GetNetname() == PREFIX + "NRF0_TX_LED_A")
+        via.SetPosition(native_pcbnew.VECTOR2I(40800000, 107200000))
+        self.assertIn(("copper", PREFIX + "NRF0_TX_LED_A", PREFIX + "IR_TX_LED_A"),
+                      native_upper_led_copper_findings(board))
+
     def test_independent_finite_scope_is_exactly_nine_ui_anode_nets(self):
         self.assertEqual({(PROJECT, name, PREFIX + name) for name in EXPECTED_NAMES},
                          copper.REVIEWED_GENERAL_PROPOSALS)
@@ -313,22 +389,41 @@ class ReviewedLedProposalTests(unittest.TestCase):
         self.assertEqual(10, sum(len(row["vias"]) for row in proposals))
         vias = {row["canonical_net"]: [via["at_mm"] for via in row["vias"]] for row in proposals}
         self.assertEqual({
-            "NRF0_TX_LED_A": [[40.8, 106.2]], "S3_TX_LED_A": [[5.8, 106.2]],
-            "C5_TX_LED_A": [[25.0, 106.1]], "CC_TX_LED_A": [[9.2, 112.6]],
+            "NRF0_TX_LED_A": [[40.3, 107.2]], "S3_TX_LED_A": [[5.8, 107.2]],
+            "C5_TX_LED_A": [[25.0, 107.1]], "CC_TX_LED_A": [[9.2, 112.6]],
             "EXT_TX_LED_A": [[56.0, 112.6]], "IR_TX_LED_A": [[36.8, 113.8]],
-            "NRF1_TX_LED_A": [[28.685, 109.1], [56.6, 106.1]],
-            "NRF2_TX_LED_A": [[72.4, 106.1]], "VOICE_TX_LED_A": [[25.0, 112.6]],
+            "NRF1_TX_LED_A": [[28.685, 109.1], [56.6, 107.1]],
+            "NRF2_TX_LED_A": [[72.4, 107.1]], "VOICE_TX_LED_A": [[25.0, 112.6]],
         }, vias)
 
-    def test_previous_two_reviewed_geometries_are_unchanged(self):
+    def test_previous_two_reviewed_geometries_only_have_the_finite_leadout_delta(self):
         records = json.loads((ROOT / "hardware/layout/h6-r2-manual-copper.json").read_text())["routes"]
         expected = {
             "UI-LED-NRF0-ANODE": "b753fd76381ba042bb8a130c9732f7f5cb181b04668a718207d50706e0962d6f",
             "UI-LED-S3-ANODE": "7b7f5daddcc330787f59e277582e013ae0da25400b8fa2e1743d4a29bbe51031",
         }
-        actual = {row["id"]: copper.proposal_geometry_sha256(row)
+        actual = {row["id"]: copper.proposal_geometry_sha256(pre_display_clearance_geometry(row))
                   for row in records if row["id"] in expected}
         self.assertEqual(expected, actual)
+
+    def test_display_clearance_review_binds_only_the_five_current_leadouts(self):
+        review = json.loads((ROOT / "hardware/layout/h6-r2-led-display-clearance.json").read_text())
+        self.assertFalse(review["production_release_authorized"])
+        self.assertFalse(review["mounting"]["leds_are_panel_stops"])
+        self.assertFalse(review["nominal_clearance"]["qualified_worst_case_xy_clearance"])
+        self.assertEqual({"D1", "D6", "D7", "D8", "D9"}, {r["reference"] for r in review["routes"]})
+        self.assertEqual(5, len(review["routes"]))
+        current = {r["id"]: r for r in json.loads(
+            (ROOT / "hardware/layout/h6-r2-manual-copper.json").read_text())["routes"]}
+        for row in review["routes"]:
+            route = current[row["route_id"]]
+            self.assertEqual(row["canonical_net"], route["canonical_net"])
+            self.assertEqual(row["after_geometry_sha256"], copper.proposal_geometry_sha256(route))
+            self.assertEqual(row["before_geometry_sha256"],
+                             copper.proposal_geometry_sha256(pre_display_clearance_geometry(route)))
+            self.assertNotEqual(row["before_geometry_sha256"], row["after_geometry_sha256"])
+        self.assertEqual(16, review["local_copper"]["changed_objects"])
+        self.assertEqual(5, review["local_copper"]["moved_vias"])
 
     def test_fault_is_still_safety_manual_only_and_cannot_be_relabelled(self):
         audit = json.loads((ROOT / "hardware/layout/generated/H6-R2-routing-policy-audit.json").read_text())
@@ -361,7 +456,7 @@ class ReviewedLedProposalTests(unittest.TestCase):
             self.assertEqual(segments, row["segment_count"])
             self.assertEqual([1, 0], row["native_unconnected_before_after"])
             self.assertEqual(row["geometry_sha256"],
-                             copper.proposal_geometry_sha256(manifest[row["route_id"]]))
+                             copper.proposal_geometry_sha256(pre_display_clearance_geometry(manifest[row["route_id"]])))
             self.assertGreaterEqual(row["minimum_foreign_copper_gap_lower_bound_mm"], 0.17)
             self.assertGreaterEqual(row["minimum_via_edge_to_courtyard_mm"], 0.05)
         self.assertEqual({"old_copper_forms_exact": 33, "all_other_native_forms_exact": 525,

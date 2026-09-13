@@ -3,10 +3,11 @@
   "status": "pass",
   "scope": "Independent planar product intent from native PCB; not general DRC or assembled-Z qualification",
   "sources": {
-    "hardware/layout/h6_r2_placement_intent.py": "dfd323a2a72754c592b70a93e847eec93aa12c88415374a3dc4f9d19d28c7ffb",
+    "hardware/layout/h6_r2_placement_intent.py": "cdb54309d28a0b345ad994f9454579ab73ddd8d7c4b6967b12644b33e4e3c1d9",
     "hardware/layout/h6_r2_speaker_fit.py": "9e677eca3c1d320fc19fd25e961d884a1a903ca9f0af1ca3ad95835d20c38d30",
     "hardware/layout/h6-r2-speaker-body.json": "79349b47e281bc89fc57b843987d5458035c59c9fe6459de42a5949ee690f78b",
-    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "b93eee66471cc46dd165b108c52442aa3a3ada8446248141b22ba5ca1bf03143",
+    "hardware/layout/h6-r2-placement-contract.json": "19047e606884af05283938a50b11a66eae073f496ef6c457e3b7ad9abba64959",
+    "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb": "3b039e56313ed0f8b74fe62cf1ae34eb90fcad8a502be78d960dbb9b34fba077",
     "hardware/ecad/kicad/LESHY2-RF-R2/LESHY2-RF-R2.kicad_pcb": "81f8809ec75a5bfea43668a94ba64ac486fca8d33edda4fd36a68b0ef5ba6c76"
   },
   "checks": [
@@ -28,6 +29,304 @@
             136.1
           ]
         }
+      }
+    },
+    {
+      "requirement": "ten front indicator LEDs retain aligned rows and fixed function columns",
+      "pass": true,
+      "observed": {
+        "D9": {
+          "footprint": "LED_SMD:LED_0603_1608Metric",
+          "value": "LTST-C190KRKT",
+          "side": "F.Cu",
+          "anchor_mm": [
+            8.4,
+            105.9
+          ],
+          "rotation_deg": 0.0,
+          "fab_stroke_bounds_mm": [
+            7.55,
+            105.45,
+            9.25,
+            106.35
+          ],
+          "actuator_mm": null,
+          "pad1_nets": [
+            "/UI_50_FRONT_POWER_SAFETY/EV_N0_S3"
+          ]
+        },
+        "D1": {
+          "footprint": "LED_SMD:LED_0603_1608Metric",
+          "value": "LTST-C190KRKT",
+          "side": "F.Cu",
+          "anchor_mm": [
+            24.2,
+            105.9
+          ],
+          "rotation_deg": 0.0,
+          "fab_stroke_bounds_mm": [
+            23.35,
+            105.45,
+            25.05,
+            106.35
+          ],
+          "actuator_mm": null,
+          "pad1_nets": [
+            "/UI_20_C5_WIFI_IR_SERVICE/EV_N1_C5"
+          ]
+        },
+        "D6": {
+          "footprint": "LED_SMD:LED_0603_1608Metric",
+          "value": "LTST-C190KRKT",
+          "side": "F.Cu",
+          "anchor_mm": [
+            40.0,
+            105.9
+          ],
+          "rotation_deg": 0.0,
+          "fab_stroke_bounds_mm": [
+            39.15,
+            105.45,
+            40.85,
+            106.35
+          ],
+          "actuator_mm": null,
+          "pad1_nets": [
+            "/UI_50_FRONT_POWER_SAFETY/EV_N2_NRF0"
+          ]
+        },
+        "D7": {
+          "footprint": "LED_SMD:LED_0603_1608Metric",
+          "value": "LTST-C190KRKT",
+          "side": "F.Cu",
+          "anchor_mm": [
+            55.8,
+            105.9
+          ],
+          "rotation_deg": 0.0,
+          "fab_stroke_bounds_mm": [
+            54.95,
+            105.45,
+            56.65,
+            106.35
+          ],
+          "actuator_mm": null,
+          "pad1_nets": [
+            "/UI_50_FRONT_POWER_SAFETY/EV_N3_NRF1"
+          ]
+        },
+        "D8": {
+          "footprint": "LED_SMD:LED_0603_1608Metric",
+          "value": "LTST-C190KRKT",
+          "side": "F.Cu",
+          "anchor_mm": [
+            71.6,
+            105.9
+          ],
+          "rotation_deg": 0.0,
+          "fab_stroke_bounds_mm": [
+            70.75,
+            105.45,
+            72.45,
+            106.35
+          ],
+          "actuator_mm": null,
+          "pad1_nets": [
+            "/UI_50_FRONT_POWER_SAFETY/EV_N4_NRF2"
+          ]
+        },
+        "D2": {
+          "footprint": "LED_SMD:LED_0603_1608Metric",
+          "value": "LTST-C190KRKT",
+          "side": "F.Cu",
+          "anchor_mm": [
+            8.4,
+            111.4
+          ],
+          "rotation_deg": 0.0,
+          "fab_stroke_bounds_mm": [
+            7.55,
+            110.95,
+            9.25,
+            111.85
+          ],
+          "actuator_mm": null,
+          "pad1_nets": [
+            "/UI_11_STORAGE_CONTROLS_INDICATORS/EV_N5_CC"
+          ]
+        },
+        "D10": {
+          "footprint": "LED_SMD:LED_0603_1608Metric",
+          "value": "LTST-C190KRKT",
+          "side": "F.Cu",
+          "anchor_mm": [
+            24.2,
+            111.4
+          ],
+          "rotation_deg": 0.0,
+          "fab_stroke_bounds_mm": [
+            23.35,
+            110.95,
+            25.05,
+            111.85
+          ],
+          "actuator_mm": null,
+          "pad1_nets": [
+            "/UI_11_STORAGE_CONTROLS_INDICATORS/EV_N6_VOICE"
+          ]
+        },
+        "D5": {
+          "footprint": "LED_SMD:LED_0603_1608Metric",
+          "value": "LTST-C190KRKT",
+          "side": "F.Cu",
+          "anchor_mm": [
+            40.0,
+            111.4
+          ],
+          "rotation_deg": 0.0,
+          "fab_stroke_bounds_mm": [
+            39.15,
+            110.95,
+            40.85,
+            111.85
+          ],
+          "actuator_mm": null,
+          "pad1_nets": [
+            "/UI_20_C5_WIFI_IR_SERVICE/EV_N7_IR"
+          ]
+        },
+        "D3": {
+          "footprint": "LED_SMD:LED_0603_1608Metric",
+          "value": "LTST-C190KRKT",
+          "side": "F.Cu",
+          "anchor_mm": [
+            55.8,
+            111.4
+          ],
+          "rotation_deg": 0.0,
+          "fab_stroke_bounds_mm": [
+            54.95,
+            110.95,
+            56.65,
+            111.85
+          ],
+          "actuator_mm": null,
+          "pad1_nets": [
+            "/UI_11_STORAGE_CONTROLS_INDICATORS/EV_N8_LORA_EXT"
+          ]
+        },
+        "D4": {
+          "footprint": "LED_SMD:LED_0603_1608Metric",
+          "value": "LTST-C190KFKT",
+          "side": "F.Cu",
+          "anchor_mm": [
+            71.6,
+            111.4
+          ],
+          "rotation_deg": 0.0,
+          "fab_stroke_bounds_mm": [
+            70.75,
+            110.95,
+            72.45,
+            111.85
+          ],
+          "actuator_mm": null,
+          "pad1_nets": [
+            "/UI_10_S3_DISPLAY_TOUCH/POWER_GROUND"
+          ]
+        }
+      }
+    },
+    {
+      "requirement": "three middle upper LEDs clear nominal display panel by >=1.4mm; not panel stops",
+      "pass": true,
+      "observed": {
+        "panel_source": "hardware/layout/h6-r2-placement-contract.json#/mechanical/display_bed/panel_bbox_mm",
+        "nominal_panel_bbox_mm": {
+          "x": [
+            11.73,
+            68.27
+          ],
+          "y": [
+            19.0,
+            103.96
+          ]
+        },
+        "native_fab_stroke_bounds_mm": {
+          "D9": [
+            7.55,
+            105.45,
+            9.25,
+            106.35
+          ],
+          "D1": [
+            23.35,
+            105.45,
+            25.05,
+            106.35
+          ],
+          "D6": [
+            39.15,
+            105.45,
+            40.85,
+            106.35
+          ],
+          "D7": [
+            54.95,
+            105.45,
+            56.65,
+            106.35
+          ],
+          "D8": [
+            70.75,
+            105.45,
+            72.45,
+            106.35
+          ],
+          "D2": [
+            7.55,
+            110.95,
+            9.25,
+            111.85
+          ],
+          "D10": [
+            23.35,
+            110.95,
+            25.05,
+            111.85
+          ],
+          "D5": [
+            39.15,
+            110.95,
+            40.85,
+            111.85
+          ],
+          "D3": [
+            54.95,
+            110.95,
+            56.65,
+            111.85
+          ],
+          "D4": [
+            70.75,
+            110.95,
+            72.45,
+            111.85
+          ]
+        },
+        "overlapping_upper_refs": [
+          "D1",
+          "D6",
+          "D7"
+        ],
+        "nominal_clearances_mm": {
+          "D1": 1.49,
+          "D6": 1.49,
+          "D7": 1.49
+        },
+        "minimum_nominal_clearance_mm": 1.4,
+        "leds_are_panel_stops": false,
+        "assembly_tolerances_qualified": false
       }
     },
     {

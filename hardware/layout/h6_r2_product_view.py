@@ -25,6 +25,7 @@ EXPECTED_VIEW_OUTPUTS = {f"docs/images/h6-r2-components-{name}-{face}.svg"
                              "docs/images/h6-r2-components-overview.svg"}
 EXPECTED_INTENT_SOURCES = set(BOARD_PATHS.values()) | {
     "hardware/layout/h6_r2_placement_intent.py",
+    "hardware/layout/h6-r2-placement-contract.json",
     "hardware/layout/h6_r2_speaker_fit.py",
     "hardware/layout/h6-r2-speaker-body.json"}
 MINIMUM_INTENT_CHECKS = 20

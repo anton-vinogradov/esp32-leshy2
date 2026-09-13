@@ -37,7 +37,13 @@ def fixture():
     for n, y in enumerate((22.5, 36, 49.5, 63)):
         ui[f"SW{9+n}"] = item(5.52, y, angle=90, actuator=[4.6, y])
         ui[f"SW{13+n}"] = item(74.48, y, angle=-90, actuator=[75.4, y])
+    # Fixed function columns are independent of the producer's row inventory.
+    for refs, y in ((("D9", "D1", "D6", "D7", "D8"), 105.9),
+                    (("D2", "D10", "D5", "D3", "D4"), 111.4)):
+        for ref, x in zip(refs, (8.4, 24.2, 40., 55.8, 71.6)):
+            ui[ref] = {**item(x, y), "fab_stroke_bounds_mm": [x-.85, y-.45, x+.85, y+.45]}
     return {"boards": dict(zip(INTENT.PROJECTS, (ui, rf))),
+            "display_panel_bbox_mm": {"x": [11.73, 68.27], "y": [19., 103.96]},
             "microphone_labels": {INTENT.PROJECTS[0]: [mic_label()], INTENT.PROJECTS[1]: []},
             "bottom_edges": {INTENT.PROJECTS[0]: notch_edges()},
             "assembly_registration": {INTENT.PROJECTS[0]: {
@@ -70,6 +76,85 @@ def notch_edges():
 
 
 class PlacementIntentTests(unittest.TestCase):
+    def set_upper_led_y(self, snapshot, y):
+        for ref in ("D9", "D1", "D6", "D7", "D8"):
+            row = snapshot["boards"][INTENT.PROJECTS[0]][ref]
+            row["anchor_mm"][1] = y
+            row["fab_stroke_bounds_mm"][1::2] = [y-.45, y+.45]
+
+    def test_led_gap_is_a_nominal_body_clearance_not_an_exact_upper_y(self):
+        for y in (105.81, 105.9, 106.4):
+            snapshot = fixture()
+            self.set_upper_led_y(snapshot, y)
+            with self.subTest(y=y):
+                result = INTENT.evaluate(snapshot)
+                self.assertEqual("pass", result["status"])
+                observed = next(c["observed"] for c in result["checks"] if "not panel stops" in c["requirement"])
+                self.assertEqual(["D1", "D6", "D7"], observed["overlapping_upper_refs"])
+                self.assertEqual({ref: round(y-.45-103.96, 6) for ref in ("D1", "D6", "D7")},
+                                 observed["nominal_clearances_mm"])
+                self.assertIs(False, observed["leds_are_panel_stops"])
+                self.assertIs(False, observed["assembly_tolerances_qualified"])
+
+    def test_old_led_row_and_subminimum_gap_fail_even_when_rows_align(self):
+        for y in (104.9, 105.80):
+            snapshot = fixture()
+            self.set_upper_led_y(snapshot, y)
+            result = INTENT.evaluate(snapshot)
+            self.assertTrue(any("not panel stops" in name for name in result["failed_requirements"]))
+            self.assertFalse(any("fixed function columns" in name for name in result["failed_requirements"]))
+
+    def test_led_clearance_uses_actual_fab_not_good_anchor_or_old_drawing(self):
+        snapshot = fixture()
+        snapshot["boards"][INTENT.PROJECTS[0]]["D6"]["fab_stroke_bounds_mm"][1] = 105.3
+        self.assertTrue(any("not panel stops" in name for name in INTENT.evaluate(snapshot)["failed_requirements"]))
+
+    def test_led_missing_wrong_face_angle_column_or_row_fails(self):
+        for change in ("missing", "side", "angle", "column", "upper_row", "lower_row"):
+            snapshot = fixture()
+            ui = snapshot["boards"][INTENT.PROJECTS[0]]
+            if change == "missing":
+                del ui["D1"]
+            elif change == "side":
+                ui["D1"]["side"] = "B.Cu"
+            elif change == "angle":
+                ui["D1"]["rotation_deg"] = 180
+            elif change == "column":
+                ui["D1"], ui["D6"] = ui["D6"], ui["D1"]
+            elif change == "upper_row":
+                ui["D1"]["anchor_mm"][1] += .1
+            else:
+                for ref in ("D2", "D10", "D5", "D3", "D4"):
+                    ui[ref]["anchor_mm"][1] += .1
+            with self.subTest(change=change):
+                self.assertTrue(any("fixed function columns" in name
+                                    for name in INTENT.evaluate(snapshot)["failed_requirements"]))
+
+    def test_led_fab_inventory_and_display_overlap_cannot_be_missing_or_nonfinite(self):
+        for body in (None, [], [0, float("nan"), 1, 2], [0, 1, 1, float("inf")],
+                     [0, True, 1, 2], [39.15, 106.35, 40.85, 105.45]):
+            snapshot = fixture()
+            snapshot["boards"][INTENT.PROJECTS[0]]["D6"]["fab_stroke_bounds_mm"] = body
+            with self.subTest(body=body):
+                self.assertTrue(any("not panel stops" in name for name in INTENT.evaluate(snapshot)["failed_requirements"]))
+        snapshot = fixture()
+        snapshot["boards"][INTENT.PROJECTS[0]]["D9"]["fab_stroke_bounds_mm"][2] = 12
+        self.assertTrue(any("not panel stops" in name for name in INTENT.evaluate(snapshot)["failed_requirements"]))
+
+    def test_panel_source_cannot_shrink_or_disappear_to_waive_led_gap(self):
+        for panel in (None, {"x": [11.73, 68.27], "y": [19., 102.96]},
+                      {"x": [11.73, 68.27], "y": [19., float("nan")]}):
+            snapshot = fixture()
+            self.set_upper_led_y(snapshot, 104.9)
+            snapshot["display_panel_bbox_mm"] = panel
+            with self.subTest(panel=panel):
+                self.assertTrue(any("not panel stops" in name for name in INTENT.evaluate(snapshot)["failed_requirements"]))
+
+    def test_upper_and_lower_led_bodies_cannot_touch_despite_ordered_rows(self):
+        snapshot = fixture()
+        self.set_upper_led_y(snapshot, 110.5)
+        self.assertTrue(any("not panel stops" in name for name in INTENT.evaluate(snapshot)["failed_requirements"]))
+
     def test_every_usb_identity_pose_and_presence_is_independently_required(self):
         for project, ref in ((0, "J9"), (0, "J11"), (1, "J1"), (1, "J4")):
             for mutation in ("missing", "mpn", "footprint", "x", "recess", "side", "rotation"):

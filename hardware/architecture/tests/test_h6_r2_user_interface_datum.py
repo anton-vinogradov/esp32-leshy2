@@ -9,6 +9,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 SCRIPT = ROOT / "hardware/layout/h6_r2_placement.py"
+# Immutable H1 body-centre conversion fixture. Live H6 upper-row Y is governed
+# by the independent panel-clearance/row checks, not this historical drawing.
 EXPECTED = {
     "s3_tx_led": (8.4, 104.9), "c5_tx_led": (24.2, 104.9),
     "nrf0_tx_led": (40.0, 104.9), "nrf1_tx_led": (55.8, 104.9),
@@ -55,11 +57,12 @@ class UserInterfaceDatumTests(unittest.TestCase):
                 self.assertEqual("LESHY2-UI-R2", leds[instance]["project"])
                 override = self.contract["placement_overrides"][instance]
                 self.assertEqual("front-outer", override["frame"])
-                self.assertEqual(list(centre), override["centre_mm"])
+                self.assertEqual(centre[0], override["centre_mm"][0])
+                self.assertEqual(2, len(override["centre_mm"]))
                 self.assertEqual(0, override["rotation_deg"])
                 self.assertEqual("reviewed outward user-indicator datum", override["method"])
 
-    def test_centre_conversion_preserves_accepted_h1_outward_body_positions(self):
+    def test_centre_conversion_preserves_historical_h1_body_datums(self):
         accepted = json.loads((ROOT / "hardware/product-design/generated/H1-external-face-acceptance.json").read_text())["front"]
         rows = accepted["tx_indicators"] + accepted["status_indicators"]
         self.assertEqual(set(EXPECTED), {row["instance"] for row in rows})
@@ -67,7 +70,7 @@ class UserInterfaceDatumTests(unittest.TestCase):
             # H1 draws body rectangles from top-left; native LED_0603 anchor
             # and courtyard are centred. No R2 LED transform occurs in the renderer.
             x, y = row["position_mm"]
-            actual = self.contract["placement_overrides"][row["instance"]]["centre_mm"]
+            actual = EXPECTED[row["instance"]]
             self.assertAlmostEqual(x + 0.8, actual[0])
             self.assertAlmostEqual(y + 0.4, actual[1])
 
@@ -81,7 +84,7 @@ class UserInterfaceDatumTests(unittest.TestCase):
                 "LESHY2-UI-R2", instance, "D_TEST", self.contract, {}, frozen
             )
             self.assertEqual("F.Cu", self.fn["target_side"](target))
-            self.assertEqual(list(centre), target["centre"])
+            self.assertEqual(self.contract["placement_overrides"][instance]["centre_mm"], target["centre"])
             self.assertEqual(0, target["rotation"])
             self.assertNotIn("frozen", target)
 
@@ -112,7 +115,8 @@ class UserInterfaceDatumTests(unittest.TestCase):
             else:
                 obstacles.extend((row["instance"] + ":opposite", box)
                                  for box in row["opposite_face_keepout_bboxes_mm"])
-        for instance, (x, y) in EXPECTED.items():
+        for instance in EXPECTED:
+            x, y = self.contract["placement_overrides"][instance]["centre_mm"]
             # Exact LED_0603_1608Metric native courtyard including line stroke.
             courtyard = {"x": [x - 1.525, x + 1.525], "y": [y - 0.775, y + 0.775]}
             for owner, box in obstacles:

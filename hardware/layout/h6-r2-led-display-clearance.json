@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "checked": "2026-09-14",
+  "status": "nominal_placement_and_local_copper_review",
+  "production_release_authorized": false,
+  "scope": "Only five upper-row UI LEDs and their labels move 1 mm down; local anode leadouts updated. Lower row, panel, FPC, PSA, board outline, other footprints, all pin/net/MPN identities and RF board are unchanged.",
+  "baseline_ui_sha256": "b93eee66471cc46dd165b108c52442aa3a3ada8446248141b22ba5ca1bf03143",
+  "reviewed_ui_sha256": "3b039e56313ed0f8b74fe62cf1ae34eb90fcad8a502be78d960dbb9b34fba077",
+  "unchanged_rf_sha256": "81f8809ec75a5bfea43668a94ba64ac486fca8d33edda4fd36a68b0ef5ba6c76",
+  "upper_row": {
+    "references_left_to_right": [
+      "D9",
+      "D1",
+      "D6",
+      "D7",
+      "D8"
+    ],
+    "x_mm": [
+      8.4,
+      24.2,
+      40,
+      55.8,
+      71.6
+    ],
+    "y_before_mm": 104.9,
+    "y_after_mm": 105.9,
+    "side": "F.Cu",
+    "rotation_deg": 0
+  },
+  "lower_row": {
+    "references_left_to_right": [
+      "D2",
+      "D10",
+      "D5",
+      "D3",
+      "D4"
+    ],
+    "unchanged_y_mm": 111.4
+  },
+  "nominal_clearance": {
+    "panel_bottom_y_mm": 103.96,
+    "led_body_y_size_mm": 0.8,
+    "before_mm": 0.54,
+    "after_mm": 1.54,
+    "native_fab_stroke_after_mm": 1.49,
+    "minimum_native_fab_gap_mm": 1.4,
+    "qualified_worst_case_xy_clearance": false
+  },
+  "mounting": {
+    "leds_are_panel_stops": false,
+    "alignment": "Existing DISPLAY silkscreen datum; dry fit with liner retained before bonding.",
+    "led_body_height_mm": 0.8,
+    "psa_nominal_height_mm": 1.016,
+    "reason": "Nominal LED height is below the PSA-supported panel underside; solder and PSA compression tolerances do not create a dependable positive stop. No extra hardware or changed BOM."
+  },
+  "local_copper": {
+    "changed_objects": 16,
+    "changed_segments": 11,
+    "moved_vias": 5,
+    "ui_total_objects": 92,
+    "rf_objects_unchanged": 765,
+    "foreign_pad_and_copper_clearance_mm": 0.15,
+    "via_edge_to_courtyard_mm": 0.05,
+    "named_connectivity_preserved": true,
+    "findings": [],
+    "nrf0_via_x_shift_mm": -0.5,
+    "reason": "Shift NRF0 via left to clear IR copper; shift S3 horizontal F leadout to avoid the moved cathode. No safety-net scope expansion."
+  },
+  "sources": {
+    "led": "https://optoelectronics.liteon.com/upload/download/DS-22-99-0151/LTST-C190KRKT.PDF",
+    "psa": "hardware/product-design/display-mount.json",
+    "panel": "hardware/layout/h6-r2-placement-contract.json#/mechanical/display_bed/panel_bbox_mm"
+  },
+  "historical_receipts": "2026-09-08 LED reviews remain immutable. Before hashes below reconstruct exactly by reversing this finite local delta; after hashes bind current route records.",
+  "routes": [
+    {
+      "reference": "D6",
+      "route_id": "UI-LED-NRF0-ANODE",
+      "canonical_net": "NRF0_TX_LED_A",
+      "before_geometry_sha256": "b753fd76381ba042bb8a130c9732f7f5cb181b04668a718207d50706e0962d6f",
+      "after_geometry_sha256": "69daea9999642945c9a0a62f0541c2cb83db8d8b780e127c7fdde5506be34de4"
+    },
+    {
+      "reference": "D9",
+      "route_id": "UI-LED-S3-ANODE",
+      "canonical_net": "S3_TX_LED_A",
+      "before_geometry_sha256": "7b7f5daddcc330787f59e277582e013ae0da25400b8fa2e1743d4a29bbe51031",
+      "after_geometry_sha256": "c21bbb2c2bd02cfa1fdee9bc17d7c31886ac72f2e8237735ed42281d4f437994"
+    },
+    {
+      "reference": "D1",
+      "route_id": "UI-LED-C5-ANODE",
+      "canonical_net": "C5_TX_LED_A",
+      "before_geometry_sha256": "20e9e5c744fc07c454b23e521fa3832fc59ecd9e19cf3c47be0d550111f17e86",
+      "after_geometry_sha256": "9ffca3ba251085ab9d87ae036b83f58f4318ae838c397e1b3049a14bb679cfa7"
+    },
+    {
+      "reference": "D7",
+      "route_id": "UI-LED-NRF1-ANODE",
+      "canonical_net": "NRF1_TX_LED_A",
+      "before_geometry_sha256": "5f01b89a70806d4e0e261d7ae1eedc0b59525e5bf48e28105a41dade83d16989",
+      "after_geometry_sha256": "2d7dccbe01cb7ef2a489dc1151fd994fb549da4cd595f36389ea59a34ee412ee"
+    },
+    {
+      "reference": "D8",
+      "route_id": "UI-LED-NRF2-ANODE",
+      "canonical_net": "NRF2_TX_LED_A",
+      "before_geometry_sha256": "4399443cff06b50b893578b4f2e41ed766f9a68c7beed53e0c8e9a1313366537",
+      "after_geometry_sha256": "4c5a3ddc53c0e75dbfb99f0155b694d00ee3597510f5dc41219388a0150cffc8"
+    }
+  ]
+}
