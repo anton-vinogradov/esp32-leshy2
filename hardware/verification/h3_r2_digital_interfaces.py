@@ -46,6 +46,13 @@ SOURCES = {
         "voh_min_fraction": "0.8",
         "vol_max_fraction": "0.1",
     },
+    "esp32_c5_boot": {
+        "document": "ESP32-C5-WROOM-1/1U Datasheet v1.3, section3 and tables4-2/4-3",
+        "url": "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf",
+        "checked": "2026-09-14",
+        "joint_download_boot_0_straps": {"GPIO27": 1, "GPIO28": 0},
+        "hold_after_en_release_ms_min": 3,
+    },
     "rp2350_dc": {
         "document": "RP2350 Datasheet, section 14.9.4, table 1436",
         "url": "https://datasheets.raspberrypi.com/rp2350/rp2350-datasheet.pdf",
@@ -97,6 +104,58 @@ def instance_net(rows: list[dict], instance: str, net: str) -> bool:
 
 def all_true(mapping: dict) -> bool:
     return all(value is True for value in mapping.values())
+
+
+def c5_boot_topology_checks(rows: list[dict], instances: list[dict], devices: dict) -> dict:
+    """Finite native BOOT chain, not USB-mux, KILL or sampled-level proof.
+
+    The module's physical pins15/18 are GPIO28/GPIO27, respectively. A BOOT
+    label on resistors alone is insufficient. SW18 physical terminals1/3 are
+    internally common (two PCB lands numbered1); terminal2 closes to ground.
+    """
+    project = "LESHY2-UI-R2"
+    parts = {
+        "c5": ("U14", "esp32_c5_wroom_1u_n8r8", "ESP32-C5-WROOM-1U-N8R8", "soldered_module"),
+        "c5_boot_pullup": ("R76", "yageo_rc0402fr_0710kl", "Yageo RC0402FR-0710KL", "10kohm_1pct_"),
+        "c5_dbg_boot_series": ("R79", "yageo_rc0402fr_071kl", "Yageo RC0402FR-071KL", "1kohm_1pct_"),
+        "c5_gpio27_pullup": ("R90", "yageo_rc0402fr_0710kl", "Yageo RC0402FR-0710KL", "10kohm_1pct_"),
+        "c5_boot_button": ("SW18", "alps_skrtlae010", "Alps Alpine SKRTLAE010", "spst_no_side_actuated_smt_tact_switch"),
+    }
+    pins = {
+        "c5.GPIO28": ("15", "C5_BOOT_N"),
+        "c5.GPIO27": ("18", "C5_GPIO27_FIXED_HIGH"),
+        "c5_boot_pullup.END_1": ("1", "3V3_MAIN"),
+        "c5_boot_pullup.END_2": ("2", "C5_BOOT_N"),
+        "c5_dbg_boot_series.END_1": ("1", "C5_DBG_BOOT_CONNECTOR_N"),
+        "c5_dbg_boot_series.END_2": ("2", "C5_BOOT_N"),
+        "c5_gpio27_pullup.END_1": ("1", "3V3_MAIN"),
+        "c5_gpio27_pullup.END_2": ("2", "C5_GPIO27_FIXED_HIGH"),
+        "c5_boot_button.C1": ("1", "C5_DBG_BOOT_CONNECTOR_N"),
+        "c5_boot_button.C2": ("3", "C5_DBG_BOOT_CONNECTOR_N"),
+        "c5_boot_button.NO": ("2", "POWER_GROUND"),
+    }
+    checks = {}
+    for instance, (ref, device_id, mpn, kind) in parts.items():
+        actual = [row for row in instances if row.get("instance") == instance]
+        device = devices.get(device_id, {})
+        checks["identity:" + instance] = (
+            len(actual) == 1 and actual[0].get("project") == project
+            and actual[0].get("reference") == ref and actual[0].get("device_id") == device_id
+            and actual[0].get("mpn") == device.get("mpn") == mpn
+            and actual[0].get("bom_excluded") is False
+            and isinstance(device.get("kind"), str) and device["kind"].startswith(kind))
+    for name, (physical, net) in pins.items():
+        instance, contact = name.split(".")
+        ref, device_id, _, _ = parts[instance]
+        actual = [row for row in rows if row.get("endpoint") == name]
+        checks["pin:" + name] = (
+            len(actual) == 1 and actual[0].get("project") == project
+            and actual[0].get("reference") == ref and actual[0].get("instance") == instance
+            and actual[0].get("contact") == contact and actual[0].get("device_id") == device_id
+            and actual[0].get("physical") == physical and actual[0].get("net") == net
+            and actual[0].get("disposition") == "connected"
+            and devices.get(device_id, {}).get("contacts", {}).get(contact, {}).get("physical") == physical)
+    return checks
 
 
 def panel_endpoint(display_mount: dict, panel_pin: int) -> str:
@@ -252,6 +311,10 @@ def build() -> dict:
     if not all_true(usb_topology):
         errors.append("USB/service ownership topology failed")
 
+    c5_boot = c5_boot_topology_checks(rows, instances, devices)
+    if not all_true(c5_boot):
+        errors.append("C5 BOOT native chain failed: " + ", ".join(name for name, passed in c5_boot.items() if not passed))
+
     m1_ui = {int(row["contact"][1:]): row.get("net") for row in rows if row["instance"] == "m1_ui_plug"}
     m1_rf = {int(row["contact"][1:]): row.get("net") for row in rows if row["instance"] == "m1_rf_receptacle"}
     m1_part = devices[by_instance["m1_ui_plug"]["device_id"]]["electrical_contract"]
@@ -322,6 +385,17 @@ def build() -> dict:
         "display_topology": display_topology,
         "display_timing": display_timing,
         "usb_and_service_ownership": usb_topology,
+        "c5_boot_strap": {
+            "checks": c5_boot,
+            "topology_status": "pass" if all_true(c5_boot) else "fail",
+            "joint_download_boot_0_straps": SOURCES["esp32_c5_boot"]["joint_download_boot_0_straps"],
+            "hold_after_en_release_ms_min": SOURCES["esp32_c5_boot"]["hold_after_en_release_ms_min"],
+            "scope": "Native endpoint/component topology only; press BOOT through EN release and the required strap hold interval. Actual sampled levels, contact bounce and timing remain unqualified.",
+            "sampled_levels_and_timing_qualified": False,
+            "usb_mux_sel_oe_qualified": False,
+            "kill_recovery_policy_qualified": False,
+            "end_to_end_download_qualified": False,
+        },
         "m1": {"checks": m1_checks, "true_nc_contacts": [pin for pin, net in m1_ui.items() if net is None], "contact_rating": m1_part},
         "transport_timing": transport_rows,
         "loading": {"models": loading, "checks": loading_checks},
@@ -339,6 +413,15 @@ def render(result: dict, language: str) -> str:
     title = "Цифровая проверка Leshy2 R2" if ru else "Leshy2 R2 digital verification"
     d = result["display_timing"]
     worst = min(result["logic_level_margins"], key=lambda row: row["minimum_margin"])
+    boot = result["c5_boot_strap"]
+    boot_ok = boot["topology_status"] == "pass" and bool(boot["checks"]) and all_true(boot["checks"])
+    boot_failed = ", ".join(name for name, passed in boot["checks"].items() if passed is not True) or "topology_status/check inventory"
+    boot_row = (
+        ("| C5 BOOT | топология проверена | GPIO28/U14.15 → C5_BOOT_N, R76/R79/SW18; GPIO27 подтянут вверх. Медь и удержание strap 3 мс после EN ещё требуют проверки |"
+         if ru else "| C5 BOOT | topology checked | GPIO28/U14.15 → C5_BOOT_N, R76/R79/SW18; GPIO27 pulled high. Copper and 3-ms strap hold after EN remain unqualified |")
+        if boot_ok else
+        (f"| C5 BOOT | FAIL | Ошибка топологии: {boot_failed}. Цепь BOOT не подтверждена; разводка и поведение загрузки не квалифицированы |"
+         if ru else f"| C5 BOOT | FAIL | Topology failed: {boot_failed}. BOOT chain is not confirmed; routing and boot behavior remain unqualified |"))
     lines = [
         f"# {title}", "",
         scope_notice(result, ru),
@@ -346,7 +429,9 @@ def render(result: dict, language: str) -> str:
         "| Область | Статус | Результат |" if ru else "| Area | Status | Result |", "|---|---:|---|",
         f"| i8080-8 | PASS | 20 MHz exact; {d['throughput']['full_frame_wire_ms']:.2f} ms full frame; {d['throughput']['budget_occupancy_pct']:.1f}% of 20-ms budget |",
         f"| Logic levels | provisional {'PASS' if all(row['status'] == 'pass' for row in result['logic_level_margins']) else 'FAIL'} | worst boundary `{worst['boundary']}`: {worst['minimum_margin']:.3f} V |",
-        f"| USB / service | PASS | product S3 USB + three independent data-only service paths; C5 D2/D3 mux is reset/ownership interlocked |",
+        ("| USB / сервис | review_required | Проверено наличие ветвей данных; управление SEL/OE C5 и восстановление при KILL не квалифицированы |"
+         if ru else "| USB / service | review_required | Data-branch presence checked; C5 SEL/OE control and recovery under KILL are not qualified |"),
+        boot_row,
         f"| M1 | PASS | 80/80 pin parity; 9 true NC; USB and Hub-RF groups are ground-bounded |",
         f"| Loading | PASS | point-to-point fast buses; FSUSB42 bandwidth is {result['loading']['models']['hub_c5_sdio']['switch_to_bus_clock_ratio']:.0f}x the 40-MHz SDIO clock |",
         "", "## Почему 20 МГц" if ru else "## Why 20 MHz", "",

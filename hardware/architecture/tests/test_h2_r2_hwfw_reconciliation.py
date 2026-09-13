@@ -51,8 +51,8 @@ class H2R2HardwareFirmwareReconciliationTests(unittest.TestCase):
 
     def test_cross_sheet_counts_match_native_projects(self):
         summary = self.export["r2_reconciliation"]["native_kicad"]["summary"]
-        self.assertEqual(4070, summary["connected_physical_pin_count"])
-        self.assertEqual(235, summary["explicit_no_connect_physical_pin_count"])
+        self.assertEqual(4071, summary["connected_physical_pin_count"])
+        self.assertEqual(234, summary["explicit_no_connect_physical_pin_count"])
         self.assertEqual(
             {
                 "LESHY2-UI-R2": 100,

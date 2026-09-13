@@ -14,7 +14,7 @@
     },
     "nets": {
       "path": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "sha256": "94bd7d64fc1d6c2ea3dde8e55f1390fb31cafc2a213cc99d290ce234d60878e8"
+      "sha256": "eddbf9f53b513cf3d991a79c75f976bdcffa5c09542fa1670bf4f782fbdc80d5"
     },
     "symbols": {
       "path": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
@@ -31,8 +31,8 @@
     "populated_sheet_count": 18,
     "fitted_symbol_instance_count": 1208,
     "physical_symbol_pin_count": 4305,
-    "connected_physical_pin_count": 4070,
-    "explicit_no_connect_physical_pin_count": 235,
+    "connected_physical_pin_count": 4071,
+    "explicit_no_connect_physical_pin_count": 234,
     "external_module_interface_annotation_count": 5,
     "canonical_net_count": 788,
     "generated_file_count": 28,
@@ -98,8 +98,8 @@
       "role": "C5 native 2.4/5-GHz, IR, exact SDIO/service mux and independent recovery",
       "instance_count": 96,
       "physical_symbol_pin_count": 317,
-      "connected_physical_pin_count": 297,
-      "explicit_no_connect_physical_pin_count": 20,
+      "connected_physical_pin_count": 298,
+      "explicit_no_connect_physical_pin_count": 19,
       "hierarchical_interface_count": 25,
       "external_module_interface_count": 1,
       "external_module_interfaces": [
@@ -415,7 +415,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch",
-      "sha256": "2d256ee0532f71cb6467eec20019ac71e6bdf90c26b0128258be6c8a674ede64"
+      "sha256": "5b2de4da43a3599782b62cea2979bef537ae28923d3dc571e36908ce977e547b"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_30_HUB_RP_CORE_SERVICE.kicad_sch",

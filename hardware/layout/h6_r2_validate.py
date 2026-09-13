@@ -28,11 +28,24 @@ def commands(refresh: bool, directory: Path, tests: bool, python: str = sys.exec
         return [python, "hardware/layout/" + script + ".py", *args]
     result = []
     if refresh:
+        # Schematic endpoint edits invalidate the canonical/native name map.
+        # Export before placement consumes it; no PCB update-from-schematic.
+        cli = shutil.which("kicad-cli")
+        if cli is None:
+            bundled = Path("/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli")
+            cli = str(bundled) if bundled.is_file() else "kicad-cli"
+        for project, name in zip(PROJECTS, ("ui-netlist.xml", "rf-netlist.xml")):
+            result.append([cli, "sch", "export", "netlist", "--format", "kicadxml",
+                           "-o", str(directory/name), f"hardware/ecad/kicad/{project}/{project}.kicad_sch"])
+        result.append(command("h6_r2_kicad_net_bindings", "--write",
+                              "--ui-netlist", str(directory/"ui-netlist.xml"),
+                              "--rf-netlist", str(directory/"rf-netlist.xml")))
         result += [command("h6_r2_placement", "--refresh-derived"),
                    command("h6_r2_placement_freeze", "--write"),
                    command("h6_r2_placement", "--refresh-derived")]
     else:
-        result += [command("h6_r2_placement", "--check"),
+        result += [command("h6_r2_kicad_net_bindings", "--check"),
+                   command("h6_r2_placement", "--check"),
                    command("h6_r2_placement_freeze", "--check")]
     result += [command("h6_r2_routing_policy", mode),
                command("h6_r2_manual_copper", "--refresh-derived" if refresh else "--check"),

@@ -5,8 +5,8 @@
   "status": "pass",
   "source_hashes": {
     "hardware/layout/h6-r2-routing-policy.json": "095f5b90c9491767bcca5200bd345cbf11f64ebd85f23f6893b5d6d594514c10",
-    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "f03919a28b4cc37aa763943f7e0c7b0aabe61ddac48f699d8b9adcec7e422ebc",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "94bd7d64fc1d6c2ea3dde8e55f1390fb31cafc2a213cc99d290ce234d60878e8",
+    "hardware/layout/generated/H6-R2-kicad-net-bindings.json": "2d7dfd4c75d86af1ea8ade7a71a25fd4c609f0ecb372aa8402c54d6cb8b5c710",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "eddbf9f53b513cf3d991a79c75f976bdcffa5c09542fa1670bf4f782fbdc80d5",
     "hardware/verification/h3-r2-load-binding-contract.json": "48d2575032bac09bd8ea276e814c16fbb1f76ca6afe0cea0dd36cee2e8c2a384",
     "hardware/layout/h6-r2-placement-contract.json": "19047e606884af05283938a50b11a66eae073f496ef6c457e3b7ad9abba64959"
   },
@@ -6359,6 +6359,7 @@
       "route_mode": "automatic_helper_allowed_then_manual_review",
       "geometry_release": "H6.0.2",
       "endpoint_roles": [
+        "gpio",
         "power",
         "signal"
       ]

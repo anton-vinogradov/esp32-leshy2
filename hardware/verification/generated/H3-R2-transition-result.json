@@ -4,9 +4,9 @@
   "marker": "H3-R2.2.4",
   "status": "review_required",
   "source_sha256": {
-    "hardware/verification/generated/H3-R2-transition-sequences.json": "8eb5ed63aec17605229bc48731ec3b3d067b5fdc1a28dfea3e2567af55699056",
-    "hardware/verification/generated/H3-R2-handover.json": "8dd6be938f0cd5f96c35c69f349ed00806f241b5ef7532324107129d9c4c161d",
-    "hardware/verification/generated/H3-R2-inrush-watchdog.json": "92a190eacc18673a380b39916e2f9d70e140fd0df897ce56d50d08e5827fc63c",
+    "hardware/verification/generated/H3-R2-transition-sequences.json": "2e520c6a4693ae7914c79c551b83b94e246e40def7c45bf7918cefa35f815dd6",
+    "hardware/verification/generated/H3-R2-handover.json": "5dac59ae0deed0dee8b82876048b44f6cc94142fa9fa053b7da9e429524d175f",
+    "hardware/verification/generated/H3-R2-inrush-watchdog.json": "7a7a874805146822d5a5ba11ca91c6f2f382c77942b1efeda613d1a8772a36a9",
     "hardware/verification/h3_r2_inrush_watchdog.py": "12ca320af4639b3e0004b3c676d0082abf6db7628b96627605e5082d35ec9598",
     "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
   },
@@ -94,9 +94,9 @@
     "production_release_authorized": false,
     "battery_energization_authorized": false,
     "source_sha256": {
-      "hardware/verification/generated/H3-R2-transition-sequences.json": "8eb5ed63aec17605229bc48731ec3b3d067b5fdc1a28dfea3e2567af55699056",
-      "hardware/verification/generated/H3-R2-handover.json": "8dd6be938f0cd5f96c35c69f349ed00806f241b5ef7532324107129d9c4c161d",
-      "hardware/verification/generated/H3-R2-inrush-watchdog.json": "92a190eacc18673a380b39916e2f9d70e140fd0df897ce56d50d08e5827fc63c",
+      "hardware/verification/generated/H3-R2-transition-sequences.json": "2e520c6a4693ae7914c79c551b83b94e246e40def7c45bf7918cefa35f815dd6",
+      "hardware/verification/generated/H3-R2-handover.json": "5dac59ae0deed0dee8b82876048b44f6cc94142fa9fa053b7da9e429524d175f",
+      "hardware/verification/generated/H3-R2-inrush-watchdog.json": "7a7a874805146822d5a5ba11ca91c6f2f382c77942b1efeda613d1a8772a36a9",
       "hardware/verification/h3_r2_inrush_watchdog.py": "12ca320af4639b3e0004b3c676d0082abf6db7628b96627605e5082d35ec9598",
       "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
     }

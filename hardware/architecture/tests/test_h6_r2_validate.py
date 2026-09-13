@@ -35,6 +35,18 @@ class ValidationWorkflowTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError,"changed a native PCB"):
                 workflow.run_one(["fake","check.py"],Path(directory)/"log",{"RF":"old"})
 
+    def test_net_bindings_are_refreshed_before_placement_after_schematic_edits(self):
+        steps=workflow.commands(True,Path("work/example"),False,python="native-python")
+        for command,project in zip(steps[:2],workflow.PROJECTS):
+            self.assertEqual(["sch","export","netlist","--format","kicadxml"],command[1:6])
+            self.assertTrue(command[-1].endswith(f"/{project}/{project}.kicad_sch"))
+        self.assertEqual("hardware/layout/h6_r2_kicad_net_bindings.py",steps[2][1])
+        self.assertEqual("hardware/layout/h6_r2_placement.py",steps[3][1])
+        self.assertIn("work/example/ui-netlist.xml",steps[2])
+        self.assertIn("work/example/rf-netlist.xml",steps[2])
+        checked=workflow.commands(False,Path("work/example"),False,python="native-python")
+        self.assertEqual(["native-python","hardware/layout/h6_r2_kicad_net_bindings.py","--check"],checked[0])
+
     def test_failed_subprocess_stops_without_rollback(self):
         with tempfile.TemporaryDirectory() as directory, patch.object(workflow,"board_hashes",return_value={"RF":"old"}), patch.object(workflow.subprocess,"run") as run:
             run.return_value.returncode=2

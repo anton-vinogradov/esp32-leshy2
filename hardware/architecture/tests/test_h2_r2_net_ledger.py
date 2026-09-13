@@ -52,8 +52,8 @@ class H2R2NetLedgerTests(unittest.TestCase):
         self.assertEqual("pass", self.ledger["status"])
         self.assertEqual([], self.ledger["errors"])
         self.assertEqual(4301, summary["endpoint_count"])
-        self.assertEqual(4066, summary["connected_endpoint_count"])
-        self.assertEqual(235, summary["no_connect_endpoint_count"])
+        self.assertEqual(4067, summary["connected_endpoint_count"])
+        self.assertEqual(234, summary["no_connect_endpoint_count"])
         self.assertEqual(0, summary["external_interface_endpoint_count"])
         self.assertEqual(0, summary["unresolved_endpoint_count"])
         self.assertEqual(788, summary["unique_net_count"])
@@ -224,8 +224,10 @@ class H2R2NetLedgerTests(unittest.TestCase):
                 self.assertFalse(source["authority"])
         historical = [row for row in self.rows if row["origin"].startswith("reconciled_historical")]
         # The approved GCT migration pins down 15 former historical hints
-        # plus B12 explicitly; no electrical endpoint is removed.
-        self.assertEqual(2181, len(historical))
+        # plus B12 explicitly; C5 GPIO28 now has its own BOOT override instead
+        # of a historical NC hint. No electrical endpoint is removed.
+        self.assertEqual(2180, len(historical))
+        self.assertEqual("current_r2_board_local_topology", self.by_endpoint["c5.GPIO28"]["origin"])
         self.assertEqual(
             1095,
             self.ledger["summary"]["origin_counts"]["current_abstract_endpoint_canonical"],

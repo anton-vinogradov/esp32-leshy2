@@ -2,10 +2,10 @@
   "status": "native_planar_preview_not_assembly_qualification",
   "inputs_sha256": {
     "hardware/layout/h6_r2_product_view.py": "a3cad7ee779855544c49a466a511769ec7603a1eaf4d7513027fff769c50c8e7",
-    "hardware/layout/generated/H6-R2-component-views.json": "976cd319f94e7d86bfbe75407dd609e16cea730f892d0cbd8410a4c45d02a165",
-    "hardware/layout/generated/H6-R2-placement-intent.json": "61bee089d3824734734ca57af5aa16b99f63a8c36970bd77ec1287f882180db9",
+    "hardware/layout/generated/H6-R2-component-views.json": "e2ed81726accefb10ee650cfa530c283ced412af0178a9c2c6209ce40dbb8074",
+    "hardware/layout/generated/H6-R2-placement-intent.json": "f25cff717a99484a8ae53ba3150a50b5da8142aed17caf004e4a415003c03628",
     "hardware/layout/h6-r2-placement-contract.json": "19047e606884af05283938a50b11a66eae073f496ef6c457e3b7ad9abba64959",
-    "docs/images/h6-r2-components-ui-outer.svg": "3f633423c3ee885f939cd91c05f6784531e9e56e3c9f8d181c232721939da221",
+    "docs/images/h6-r2-components-ui-outer.svg": "328fecce47de4b51269823b9ed31322c3d759d295e9980982dbed1563481a34b",
     "docs/images/h6-r2-components-rf-outer.svg": "b893a9b5ff74ad8f233e51958af6fc41d68fe5bebf22249d8e317b773ff3ad13"
   },
   "output": "docs/images/h6-r2-product-exterior.svg",

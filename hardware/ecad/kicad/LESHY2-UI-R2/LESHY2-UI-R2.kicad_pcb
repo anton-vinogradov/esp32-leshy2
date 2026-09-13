@@ -88300,6 +88300,7 @@
 			(size 1.5 0.9)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(roundrect_rratio 0.2)
+			(net "/UI_20_C5_WIFI_IR_SERVICE/C5_BOOT_N")
 			(uuid "d9741bd5-370d-503f-9bd4-cdea75033f77")
 		)
 		(pad "16" smd roundrect

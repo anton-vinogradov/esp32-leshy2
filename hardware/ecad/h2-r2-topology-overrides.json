@@ -103,6 +103,7 @@
     "c5.GPIO23": "EV_N1_C5",
     "c5.GPIO24": "EV_N7_IR",
     "c5.GPIO27": "C5_GPIO27_FIXED_HIGH",
+    "c5.GPIO28": "C5_BOOT_N",
     "c5_evidence_main_pullup.END_1": "C5_MUX_SEL_REQUEST",
     "c5_evidence_main_pullup.END_2": "SAFETY_GROUND",
     "ir_evidence_main_pullup.END_1": "AON_SERVICE_RELEASE_REQ",

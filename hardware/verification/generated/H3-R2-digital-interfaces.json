@@ -6,11 +6,11 @@
   "source_hashes": {
     "hardware/architecture/h0-r2-rebaseline.json": "bab7bf6cb3e80842229704169c8b3297bcdff87ec6bb309aad75814701dd3c2b",
     "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "ccc0f755c38d6fb152eeff8ac3c6220ba2c5bac0c0213d0ea0ab5a815980e50d",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "94bd7d64fc1d6c2ea3dde8e55f1390fb31cafc2a213cc99d290ce234d60878e8",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "0ec215575fa19bb06014fa2b3bdf3854bafc71b60702551413d331a8edb2af56",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "eddbf9f53b513cf3d991a79c75f976bdcffa5c09542fa1670bf4f782fbdc80d5",
     "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7e5594bf5130524096b2683040b153409611b92c2df088dd33cb5c30f2f7a597",
     "hardware/product-design/display-mount.json": "71bba240dfa5c3c8cb4f9ac269c4a9874f460981da7c196d072086c0dc3cc343",
-    "hardware/verification/h3_r2_digital_interfaces.py": "04c9371ed643f7c48928c0333c055b73dbcd7a2105124f68f353677fe5cf78f0",
+    "hardware/verification/h3_r2_digital_interfaces.py": "901f06e7d8a5f84d346cf6cd95c4940aea4ea718c50eda4d5b7cb8ceb4921162",
     "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
   },
   "methods": [
@@ -35,6 +35,16 @@
       "vil_max_fraction": "0.25",
       "voh_min_fraction": "0.8",
       "vol_max_fraction": "0.1"
+    },
+    "esp32_c5_boot": {
+      "document": "ESP32-C5-WROOM-1/1U Datasheet v1.3, section3 and tables4-2/4-3",
+      "url": "https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf",
+      "checked": "2026-09-14",
+      "joint_download_boot_0_straps": {
+        "GPIO27": 1,
+        "GPIO28": 0
+      },
+      "hold_after_en_release_ms_min": 3
     },
     "rp2350_dc": {
       "document": "RP2350 Datasheet, section 14.9.4, table 1436",
@@ -212,6 +222,37 @@
     "service_ownership_latch_resets_both_compute_domains": true,
     "service_switch_bandwidth_covers_usb_full_speed": true,
     "power_off_leakage_has_over_2x_reserve": true
+  },
+  "c5_boot_strap": {
+    "checks": {
+      "identity:c5": true,
+      "identity:c5_boot_pullup": true,
+      "identity:c5_dbg_boot_series": true,
+      "identity:c5_gpio27_pullup": true,
+      "identity:c5_boot_button": true,
+      "pin:c5.GPIO28": true,
+      "pin:c5.GPIO27": true,
+      "pin:c5_boot_pullup.END_1": true,
+      "pin:c5_boot_pullup.END_2": true,
+      "pin:c5_dbg_boot_series.END_1": true,
+      "pin:c5_dbg_boot_series.END_2": true,
+      "pin:c5_gpio27_pullup.END_1": true,
+      "pin:c5_gpio27_pullup.END_2": true,
+      "pin:c5_boot_button.C1": true,
+      "pin:c5_boot_button.C2": true,
+      "pin:c5_boot_button.NO": true
+    },
+    "topology_status": "pass",
+    "joint_download_boot_0_straps": {
+      "GPIO27": 1,
+      "GPIO28": 0
+    },
+    "hold_after_en_release_ms_min": 3,
+    "scope": "Native endpoint/component topology only; press BOOT through EN release and the required strap hold interval. Actual sampled levels, contact bounce and timing remain unqualified.",
+    "sampled_levels_and_timing_qualified": false,
+    "usb_mux_sel_oe_qualified": false,
+    "kill_recovery_policy_qualified": false,
+    "end_to_end_download_qualified": false
   },
   "m1": {
     "checks": {
@@ -393,11 +434,11 @@
     "source_sha256": {
       "hardware/architecture/h0-r2-rebaseline.json": "bab7bf6cb3e80842229704169c8b3297bcdff87ec6bb309aad75814701dd3c2b",
       "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9",
-      "hardware/verification/generated/H3-R2-rail-margins.json": "ccc0f755c38d6fb152eeff8ac3c6220ba2c5bac0c0213d0ea0ab5a815980e50d",
-      "hardware/ecad/generated/H2-R2-native-net-ledger.json": "94bd7d64fc1d6c2ea3dde8e55f1390fb31cafc2a213cc99d290ce234d60878e8",
+      "hardware/verification/generated/H3-R2-rail-margins.json": "0ec215575fa19bb06014fa2b3bdf3854bafc71b60702551413d331a8edb2af56",
+      "hardware/ecad/generated/H2-R2-native-net-ledger.json": "eddbf9f53b513cf3d991a79c75f976bdcffa5c09542fa1670bf4f782fbdc80d5",
       "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7e5594bf5130524096b2683040b153409611b92c2df088dd33cb5c30f2f7a597",
       "hardware/product-design/display-mount.json": "71bba240dfa5c3c8cb4f9ac269c4a9874f460981da7c196d072086c0dc3cc343",
-      "hardware/verification/h3_r2_digital_interfaces.py": "04c9371ed643f7c48928c0333c055b73dbcd7a2105124f68f353677fe5cf78f0",
+      "hardware/verification/h3_r2_digital_interfaces.py": "901f06e7d8a5f84d346cf6cd95c4940aea4ea718c50eda4d5b7cb8ceb4921162",
       "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
     }
   },

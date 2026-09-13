@@ -12,7 +12,8 @@ Open: `applicability:rail_inputs`.
 |---|---:|---|
 | i8080-8 | PASS | 20 MHz exact; 15.36 ms full frame; 76.8% of 20-ms budget |
 | Logic levels | provisional PASS | worst boundary `S3 -> ILI9488 direct i8080/reset`: 0.044 V |
-| USB / service | PASS | product S3 USB + three independent data-only service paths; C5 D2/D3 mux is reset/ownership interlocked |
+| USB / service | review_required | Data-branch presence checked; C5 SEL/OE control and recovery under KILL are not qualified |
+| C5 BOOT | topology checked | GPIO28/U14.15 → C5_BOOT_N, R76/R79/SW18; GPIO27 pulled high. Copper and 3-ms strap hold after EN remain unqualified |
 | M1 | PASS | 80/80 pin parity; 9 true NC; USB and Hub-RF groups are ground-bounded |
 | Loading | PASS | point-to-point fast buses; FSUSB42 bandwidth is 18x the 40-MHz SDIO clock |
 

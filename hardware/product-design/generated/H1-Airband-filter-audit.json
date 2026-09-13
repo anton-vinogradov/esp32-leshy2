@@ -14,7 +14,7 @@
       "hardware/product-design/h1-airband-filter.json": "e98d4790ba5507f1c19405e0dec65941527b4baa85014d5c7b24c6bad4d5d549",
       "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9",
       "hardware/ecad/h2-r2-instance-ledger-contract.json": "cfd616d60c538a3160e65535d6793ff25240dbdeb43b4d3d685af95f83f1ce02",
-      "hardware/ecad/h2-r2-topology-overrides.json": "ac68c0a78b4f77f1fd0067a9f175ccc8ec5e96967b2fd4a9d7f76de5bbe40e32"
+      "hardware/ecad/h2-r2-topology-overrides.json": "bf9234aece1b87c3f3e5b7072ef99a9f28a1d5add092645a81c3aa35a63bd1a5"
     },
     "method": {
       "corner_count": 1024,

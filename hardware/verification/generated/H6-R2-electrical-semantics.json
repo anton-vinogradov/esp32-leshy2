@@ -19,7 +19,7 @@
     "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_sch": "43910ab937fd3f95a140f664d6fbaca72d8dc6e9bf60cf46e5eae24158eddf50",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_10_S3_DISPLAY_TOUCH.kicad_sch": "b1649b1fa5f5fef7556dbd3268846828abd7f80b5c28350da6cf1000ddad7a06",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_11_STORAGE_CONTROLS_INDICATORS.kicad_sch": "4a171483c25661211bfd102198ff44a9492dbe93947b4638816d2bf1ebb78396",
-    "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch": "2d256ee0532f71cb6467eec20019ac71e6bdf90c26b0128258be6c8a674ede64",
+    "hardware/ecad/kicad/LESHY2-UI-R2/UI_20_C5_WIFI_IR_SERVICE.kicad_sch": "5b2de4da43a3599782b62cea2979bef537ae28923d3dc571e36908ce977e547b",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_30_HUB_RP_CORE_SERVICE.kicad_sch": "f8721bca6c5b35067af4eaa15a5fcc06ff434da7ed699fefdfe59644eea140c0",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_31_NRF24_X3_TX_EVIDENCE.kicad_sch": "070ac7857d6c10260ea8ae38d3b86f2ee6d8a8001ec370a575fb83ddddc1d4bb",
     "hardware/ecad/kicad/LESHY2-UI-R2/UI_40_INTERBOARD_M1.kicad_sch": "424390520ba25ce5ae9c4466c4a54c014fd17a53cb7b58fda7734d31e2e95a17",
@@ -1032,14 +1032,14 @@
       "cached_pin_types_reviewed": 741,
       "native_connectivity_unchanged": true,
       "physical_netlist_nodes": 1598,
-      "native_xml_sha256": "7ccac47855b668f895cc09d60d3fec973d624f2e7fd87aca84b5c7b0cff80135",
-      "typed_xml_sha256": "29d567a19e159114fec03d7b9f26a83b96f3fa7fb1359fab3ab50369bd7cc25e",
-      "erc_report_sha256": "3902205c2ebd395529ebd63afd3403c469b94e0195f705244e5fc015e05bceba",
-      "erc_content_sha256": "5db8f91f3d76feebe4996d1a29e8400b2e251d2b128e7b6156d419c98b5015d0",
+      "native_xml_sha256": "47d5cedf8b3464a0291b7e6fff5bf7be6668434c73fd7993a595bde172183c98",
+      "typed_xml_sha256": "1e25a44dc23eda7c3f35f6c75e85592259b119864cbfdc4f9acdb4648f98ca37",
+      "erc_report_sha256": "e112917b269f8c7d8a7a579eeb4d5e0e12f008317b3c7e58db9cfebb1efe7ed8",
+      "erc_content_sha256": "1010f1401b30848b4425baf222ce6109d4745d429f2d90fcf998bf6371bf60fd",
       "native_erc": {
         "$schema": "https://schemas.kicad.org/erc.v1.json",
         "coordinate_units": "mm",
-        "date": "2026-09-09T01:38:52",
+        "date": "2026-09-14T01:42:37",
         "ignored_checks": [
           {
             "description": "Global label only appears once in the schematic",
@@ -2018,14 +2018,14 @@
       "cached_pin_types_reviewed": 1364,
       "native_connectivity_unchanged": true,
       "physical_netlist_nodes": 2707,
-      "native_xml_sha256": "c801fdc631755ece00c4b91154559e3ad784521297bc22f63ff3712c1d813285",
-      "typed_xml_sha256": "e9dba8ef1d29c928f5253ed7c5a78bc57956bd54f1fa54b65559af2167cd184c",
-      "erc_report_sha256": "6d6f9bad028e688b68651fb6cb4d7b6f2c6b114bc12fe9e8e5fbe79b5c94b58f",
-      "erc_content_sha256": "0a1c47e0b215d02e17ce70469c2b1eed3c1eff874b1845463ccb5690c5f0e767",
+      "native_xml_sha256": "76ff177fc14ef2a504d6d66684adc8bfe2838ca8c8016314f350efc52106bae2",
+      "typed_xml_sha256": "14691a4730cddaa0d15bc8e43ee2f87bfce8ace76f7a920e7c71e4f27d24dc24",
+      "erc_report_sha256": "16bdbf841b1a2ad3a8bdbcd79888754067621ee807a952a9cc2bc5f7813af462",
+      "erc_content_sha256": "69acff3d906a9bfba4decbe1f1f27501e8090c78cf02751d414da909724eea0d",
       "native_erc": {
         "$schema": "https://schemas.kicad.org/erc.v1.json",
         "coordinate_units": "mm",
-        "date": "2026-09-09T01:38:57",
+        "date": "2026-09-14T01:42:42",
         "ignored_checks": [
           {
             "description": "Global label only appears once in the schematic",

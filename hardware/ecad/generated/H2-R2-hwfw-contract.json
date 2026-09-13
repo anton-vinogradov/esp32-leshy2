@@ -19,8 +19,8 @@
     "hardware/product-design/h1-r2-placement.json": "3cefd845934ca2d17be9f7e5876266deaf885fd0c37b8330a2637c38e6193ffb",
     "hardware/ecad/generated/H2-R2-native-inventory.json": "1e899cfca17f311309d1add013d0feb3f14f1bc2d4679e0c61c5785268fda3db",
     "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7e5594bf5130524096b2683040b153409611b92c2df088dd33cb5c30f2f7a597",
-    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "94bd7d64fc1d6c2ea3dde8e55f1390fb31cafc2a213cc99d290ce234d60878e8",
-    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "6ca4d66414111e95d84d669e8c3adac57b44df5bd739451cb9578704c1e6cf3a",
+    "hardware/ecad/generated/H2-R2-native-net-ledger.json": "eddbf9f53b513cf3d991a79c75f976bdcffa5c09542fa1670bf4f782fbdc80d5",
+    "hardware/ecad/generated/H2-R2-native-kicad-projects.json": "20400555f2c6595f7b7bde96e7e6de90d09136f6888a2fed221fc36a8dcb82f9",
     "hardware/ecad/h2-r2-hwfw-reconciliation-contract.json": "a670e5e735f0c3631c7c9dcd13e8f4edbe7ff83c9b43c10ec2e46b56742aedc3"
   },
   "bsp": {
@@ -6705,8 +6705,8 @@
         "populated_sheet_count": 18,
         "fitted_symbol_instance_count": 1208,
         "physical_symbol_pin_count": 4305,
-        "connected_physical_pin_count": 4070,
-        "explicit_no_connect_physical_pin_count": 235,
+        "connected_physical_pin_count": 4071,
+        "explicit_no_connect_physical_pin_count": 234,
         "external_module_interface_annotation_count": 5,
         "canonical_net_count": 788,
         "generated_file_count": 28,

@@ -11,7 +11,7 @@
     "speaker_helper": "hardware/layout/h6_r2_speaker_fit.py",
     "speaker_helper_sha256": "9e677eca3c1d320fc19fd25e961d884a1a903ca9f0af1ca3ad95835d20c38d30",
     "placement_freeze": "hardware/layout/h6-r2-placement-freeze.json",
-    "placement_freeze_sha256": "1380aeb2e51c59d77f6b9b94d5b98ad1840fd1b02b185fd1a44e76494b876ccd",
+    "placement_freeze_sha256": "f44408d1da71ffa392348e8a44712d0ef20e96b4ed8b55406a823e9c3eeff36d",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "3cefd845934ca2d17be9f7e5876266deaf885fd0c37b8330a2637c38e6193ffb",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
@@ -19,11 +19,11 @@
     "instance_ledger": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
     "instance_ledger_sha256": "7e5594bf5130524096b2683040b153409611b92c2df088dd33cb5c30f2f7a597",
     "net_ledger": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-    "net_ledger_sha256": "94bd7d64fc1d6c2ea3dde8e55f1390fb31cafc2a213cc99d290ce234d60878e8",
+    "net_ledger_sha256": "eddbf9f53b513cf3d991a79c75f976bdcffa5c09542fa1670bf4f782fbdc80d5",
     "symbol_library": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
     "symbol_library_sha256": "1b3d9f2700937109daba2fd77b8633d709325094dbd19f48a17e0d7c9f60b224",
     "kicad_net_bindings": "hardware/layout/generated/H6-R2-kicad-net-bindings.json",
-    "kicad_net_bindings_sha256": "f03919a28b4cc37aa763943f7e0c7b0aabe61ddac48f699d8b9adcec7e422ebc"
+    "kicad_net_bindings_sha256": "2d7dfd4c75d86af1ea8ade7a71a25fd4c609f0ecb372aa8402c54d6cb8b5c710"
   },
   "summary": {
     "board_count": 2,
@@ -13708,8 +13708,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "unrouted_seed_sha256": "d7149272cfcaeda012f62719a50fdfe072635e6148852b35a44d0eb6ffa182df",
-      "placement_signature_sha256": "1a59b8847f3bacde6ff21504e221d83aa60b896605ac41fe82700b37bb5b5703",
+      "unrouted_seed_sha256": "746615a09d5b37f25d7d8bb4b0eba9848213f4c6c6368573c1e932b1ef0ceb33",
+      "placement_signature_sha256": "33b310b1a85aa63cc143664298a29f8b56707153265d8816f21aa5eb8c8769e8",
       "locality": {
         "status": "pass",
         "pair_count": 62,

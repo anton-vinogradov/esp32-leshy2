@@ -10610,8 +10610,10 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "1a3d21a5-4a2d-5181-8ba0-1e32b31ef7e8")
 	)
-	(no_connect (at 584.20 299.72)
-		(uuid "bd794828-9293-569f-b294-42b6fbd394aa")
+	(label "C5_BOOT_N"
+		(at 584.20 299.72 0)
+		(effects (font (size 1.27 1.27)))
+		(uuid "7cadd27d-bd7b-50da-815c-bc2334c4d2c7")
 	)
 	(no_connect (at 584.20 302.26)
 		(uuid "f76fbd01-be3d-5403-bbc4-131d37169b40")

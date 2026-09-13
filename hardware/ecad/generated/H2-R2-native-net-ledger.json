@@ -56,7 +56,7 @@
     },
     "topology": {
       "path": "hardware/ecad/h2-r2-topology-overrides.json",
-      "sha256": "ac68c0a78b4f77f1fd0067a9f175ccc8ec5e96967b2fd4a9d7f76de5bbe40e32",
+      "sha256": "bf9234aece1b87c3f3e5b7072ef99a9f28a1d5add092645a81c3aa35a63bd1a5",
       "authority": true
     },
     "historical_route_contract": {
@@ -92,8 +92,8 @@
   },
   "summary": {
     "endpoint_count": 4301,
-    "connected_endpoint_count": 4066,
-    "no_connect_endpoint_count": 235,
+    "connected_endpoint_count": 4067,
+    "no_connect_endpoint_count": 234,
     "external_interface_endpoint_count": 0,
     "unresolved_endpoint_count": 0,
     "unique_net_count": 788,
@@ -112,10 +112,10 @@
       "current_h1_reserved_gpio_explicit_nc": 7,
       "current_pack_safety_boundary": 7,
       "current_pack_safety_decoupling": 8,
-      "current_r2_board_local_topology": 637,
+      "current_r2_board_local_topology": 638,
       "reconciled_historical_controller_allocation_hint": 2,
       "reconciled_historical_explicit_nc_hint": 133,
-      "reconciled_historical_reserved_or_free_nc_hint": 6,
+      "reconciled_historical_reserved_or_free_nc_hint": 5,
       "reconciled_historical_same_endpoint_route_hint": 2038,
       "reconciled_historical_same_pin_hint": 2
     },
@@ -48726,9 +48726,9 @@
       "contact": "GPIO28",
       "physical": "15",
       "role": "gpio",
-      "disposition": "no_connect",
-      "net": null,
-      "origin": "reconciled_historical_reserved_or_free_nc_hint",
+      "disposition": "connected",
+      "net": "C5_BOOT_N",
+      "origin": "current_r2_board_local_topology",
       "historical_topology_authority": false
     },
     {

@@ -263,7 +263,8 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         self.assertFalse(audit["phase_complete"])
         self.assertEqual(857, audit["summary"]["track_via_item_count"])
         self.assertEqual(197, audit["summary"]["resolved_connection_count"])
-        self.assertEqual(3071, audit["summary"]["current_total_unconnected_count"])
+        # Restored C5 GPIO28 net membership adds one not-yet-routed connection.
+        self.assertEqual(3072, audit["summary"]["current_total_unconnected_count"])
         self.assertEqual(232, audit["summary"]["analog_remaining_connection_count"])
         self.assertEqual(326, audit["summary"]["placement_locality_pair_count"])
         self.assertEqual(0, audit["summary"]["placement_locality_violation_count"])
@@ -599,7 +600,7 @@ class H6R2RoutingPolicyTests(unittest.TestCase):
         for script, expected in (
             (PLACEMENT_FREEZE_SCRIPT, "1208 exact anchors"),
             (GENERAL_ROUTING_SCRIPT, "historical routing evidence preserved; current H6.0.3-R1"),
-            (CURRENT_ROUTING_SCRIPT, "857 copper items; 197 resolved; 3071 remain"),
+            (CURRENT_ROUTING_SCRIPT, "857 copper items; 197 resolved; 3072 remain"),
         ):
             result = subprocess.run(
                 [str(KICAD_PYTHON), str(script), "--check"],

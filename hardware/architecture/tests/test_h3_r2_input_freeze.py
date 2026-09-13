@@ -52,7 +52,9 @@ class H3R2InputFreezeTest(unittest.TestCase):
         self.assertEqual([236, 235], review["explicit_nc_before_after"])
         self.assertEqual((0, 0), (review["removed_connected_endpoints"], review["added_endpoints"]))
         nets = MODULE.load(MODULE.NETS)
-        self.assertEqual((4301, 4066, 235), tuple(nets["summary"][key] for key in (
+        # The later C5 GPIO28 correction connects one existing NC endpoint.
+        # The historical jack-removal review above remains unchanged.
+        self.assertEqual((4301, 4067, 234), tuple(nets["summary"][key] for key in (
             "endpoint_count", "connected_endpoint_count", "no_connect_endpoint_count")))
         jack = [row for row in nets["rows"] if row["instance"] == "headphone_jack"]
         # Primary SJ-4351X-SMT p.2: TS has only terminals1..5, all used.
@@ -63,7 +65,7 @@ class H3R2InputFreezeTest(unittest.TestCase):
         self.assertTrue(all(row["disposition"] == "connected" and row["device_id"] == "same_sky_sj_43515ts_smt_tr" for row in jack))
         self.assertNotIn("headphone_jack.RING1_SWITCH", {row["endpoint"] for row in nets["rows"]})
         kicad = MODULE.load(MODULE.KICAD)["summary"]
-        self.assertEqual((4305, 4070, 235), tuple(kicad[key] for key in (
+        self.assertEqual((4305, 4071, 234), tuple(kicad[key] for key in (
             "physical_symbol_pin_count", "connected_physical_pin_count", "explicit_no_connect_physical_pin_count")))
 
     def test_connected_functions_preserved_after_nc6_removal_and_usb_unification(self):
@@ -72,6 +74,14 @@ class H3R2InputFreezeTest(unittest.TestCase):
         fields = ("endpoint", "project", "sheet", "reference", "contact", "physical", "role", "net", "disposition")
         connected = [copy.deepcopy(row) for row in MODULE.load(MODULE.NETS)["rows"]
                      if row.get("disposition") == "connected"]
+        self.assertEqual(4067, len(connected))
+        boot = [row for row in connected if row["endpoint"] == "c5.GPIO28"]
+        self.assertEqual(1, len(boot))
+        self.assertEqual(("LESHY2-UI-R2", "U14", "15", "C5_BOOT_N"),
+                         tuple(boot[0][key] for key in ("project", "reference", "physical", "net")))
+        # Check the reviewed pre-correction function set with its original
+        # digest; do not recalculate a golden hash from today's entire input.
+        connected.remove(boot[0])
         rows = sorted(tuple(row.get(key) for key in fields) for row in connected)
         self.assertEqual(4066, len(rows))
         payload = json.dumps(rows, separators=(",", ":"), ensure_ascii=False).encode()

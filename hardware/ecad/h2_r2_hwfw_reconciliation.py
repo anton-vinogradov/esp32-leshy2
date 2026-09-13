@@ -169,8 +169,9 @@ def build() -> tuple[dict, dict]:
         "physical_symbol_pin_count": 4305,
         # Both RP2354 QSPI_IOVDD pins are supply inputs on 3V3_MAIN;
         # only the internal-flash QSPI signal pins remain no-connect.
-        "connected_physical_pin_count": 4070,
-        "explicit_no_connect_physical_pin_count": 235,
+        # C5 GPIO28/U14.15 is the physical BOOT input, not a reserved NC.
+        "connected_physical_pin_count": 4071,
+        "explicit_no_connect_physical_pin_count": 234,
         "canonical_net_count": 788,
     }
     for key, value in expected_native_summary.items():
