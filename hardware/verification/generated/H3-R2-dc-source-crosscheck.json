@@ -8,8 +8,8 @@
     "hardware/verification/generated/H3-R2-method-contract.json": "c682647e991ecd6d8621935eb56b0fb98864c979c2279728aa18f9ecc8a1457a",
     "hardware/verification/generated/H3-R2-power-state-register.json": "a377a607a2f7022680c9644ea8b891a17d2d6607575d8fcb68553a4d148d09ae",
     "hardware/verification/generated/H3-R2-load-binding.json": "2b1c71d54cb7a307ec388390d5899bebd3a84e97bff6f2cc9944d6003605aed3",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "b91979ca9ae803e2b335eff8d17bdaa92cd9e8547661602108122cc69bb57455",
-    "hardware/verification/generated/H3-R2-source-margins.json": "cc1bcb15bd0dc125c8e55008ac922764ce7f36176901652ac0e218b5e82e0ed2",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "ccc0f755c38d6fb152eeff8ac3c6220ba2c5bac0c0213d0ea0ab5a815980e50d",
+    "hardware/verification/generated/H3-R2-source-margins.json": "0059f657bc7fce8bc70fe5bd5c7d6eca06cf8e653d85d9af6ee679029baa150c",
     "hardware/verification/h3_r2_dc_source_crosscheck.py": "ad4cf75366b5b8e0d6f12795813dda5233a04fa244ec3a0a1e97b0f5dd62b909",
     "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
   },
@@ -125,8 +125,8 @@
       "hardware/verification/generated/H3-R2-method-contract.json": "c682647e991ecd6d8621935eb56b0fb98864c979c2279728aa18f9ecc8a1457a",
       "hardware/verification/generated/H3-R2-power-state-register.json": "a377a607a2f7022680c9644ea8b891a17d2d6607575d8fcb68553a4d148d09ae",
       "hardware/verification/generated/H3-R2-load-binding.json": "2b1c71d54cb7a307ec388390d5899bebd3a84e97bff6f2cc9944d6003605aed3",
-      "hardware/verification/generated/H3-R2-rail-margins.json": "b91979ca9ae803e2b335eff8d17bdaa92cd9e8547661602108122cc69bb57455",
-      "hardware/verification/generated/H3-R2-source-margins.json": "cc1bcb15bd0dc125c8e55008ac922764ce7f36176901652ac0e218b5e82e0ed2",
+      "hardware/verification/generated/H3-R2-rail-margins.json": "ccc0f755c38d6fb152eeff8ac3c6220ba2c5bac0c0213d0ea0ab5a815980e50d",
+      "hardware/verification/generated/H3-R2-source-margins.json": "0059f657bc7fce8bc70fe5bd5c7d6eca06cf8e653d85d9af6ee679029baa150c",
       "hardware/verification/h3_r2_dc_source_crosscheck.py": "ad4cf75366b5b8e0d6f12795813dda5233a04fa244ec3a0a1e97b0f5dd62b909",
       "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
     }

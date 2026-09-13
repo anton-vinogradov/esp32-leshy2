@@ -10,8 +10,8 @@
     "hardware/architecture/antenna-kit.json": "7ee1b3ca0f45a81346bd52033594c060a4f2deed4de9191545271ab58a4bc004",
     "hardware/product-design/generated/H1-R2-placement-audit.json": "55b104bc6b398ad874f7c03cda265b7291566d3f0ce25cd7a2803074c4c06a09",
     "hardware/verification/generated/H3-R2-power-state-register.json": "a377a607a2f7022680c9644ea8b891a17d2d6607575d8fcb68553a4d148d09ae",
-    "hardware/verification/generated/H3-R2-digital-interfaces.json": "466f4917da513e95e57db1c93507b7ff37bd06f98047f22a4bbd66be220f06ef",
-    "hardware/verification/generated/H3-R2-analog-corners.json": "f964f22da59bb75777bfa0e0b5eabd4c15d63cc5d48ec66b78beb4ae7c3eaac7",
+    "hardware/verification/generated/H3-R2-digital-interfaces.json": "6d534fbca2be07c77a1a717dbf634d4e57bc2c82549f85e313018583e62450d4",
+    "hardware/verification/generated/H3-R2-analog-corners.json": "be4ad2763c3599567fa8326f50f418a57553dfdc16e585b10c3d3b305e010da3",
     "hardware/verification/generated/H3-R2-parameter-provenance.json": "9b1977348b3ebcaa59185f2f968e4e512d4ee2703cee717b1787318dbcc4e06b",
     "hardware/verification/h3_r2_rf_coexistence.py": "cbba248305b60671a662246b7e730eb3fda0ac6978af5c8efa613ee9faa03a14",
     "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
@@ -516,8 +516,8 @@
       "hardware/architecture/antenna-kit.json": "7ee1b3ca0f45a81346bd52033594c060a4f2deed4de9191545271ab58a4bc004",
       "hardware/product-design/generated/H1-R2-placement-audit.json": "55b104bc6b398ad874f7c03cda265b7291566d3f0ce25cd7a2803074c4c06a09",
       "hardware/verification/generated/H3-R2-power-state-register.json": "a377a607a2f7022680c9644ea8b891a17d2d6607575d8fcb68553a4d148d09ae",
-      "hardware/verification/generated/H3-R2-digital-interfaces.json": "466f4917da513e95e57db1c93507b7ff37bd06f98047f22a4bbd66be220f06ef",
-      "hardware/verification/generated/H3-R2-analog-corners.json": "f964f22da59bb75777bfa0e0b5eabd4c15d63cc5d48ec66b78beb4ae7c3eaac7",
+      "hardware/verification/generated/H3-R2-digital-interfaces.json": "6d534fbca2be07c77a1a717dbf634d4e57bc2c82549f85e313018583e62450d4",
+      "hardware/verification/generated/H3-R2-analog-corners.json": "be4ad2763c3599567fa8326f50f418a57553dfdc16e585b10c3d3b305e010da3",
       "hardware/verification/generated/H3-R2-parameter-provenance.json": "9b1977348b3ebcaa59185f2f968e4e512d4ee2703cee717b1787318dbcc4e06b",
       "hardware/verification/h3_r2_rf_coexistence.py": "cbba248305b60671a662246b7e730eb3fda0ac6978af5c8efa613ee9faa03a14",
       "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"

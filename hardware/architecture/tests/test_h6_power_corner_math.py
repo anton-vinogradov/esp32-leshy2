@@ -26,6 +26,49 @@ class H6PowerCornerMathTest(unittest.TestCase):
         self.assertLessEqual(outer.minimum, inner.minimum)
         self.assertGreaterEqual(outer.maximum, inner.maximum)
 
+    def test_ideal_pg_window_detects_impossibility_with_independent_fraction_math(self):
+        result = math.ideal_power_good_window("1.071", "1.23", "3.05", "3.3")
+        low = Fraction(3050, 1071)
+        high = Fraction(330, 123)
+        with localcontext() as context:
+            context.prec = 60
+            self.assertDecimalNear(result.minimum_gain, D(low.numerator) / D(low.denominator))
+            self.assertDecimalNear(result.maximum_gain, D(high.numerator) / D(high.denominator))
+        self.assertFalse(result.has_solution)
+        self.assertDecimalNear(result.lowest_worst_case_rising_v,
+                               "3.5028011204481792717086834733893557422969187675070")
+
+    def test_ideal_pg_window_can_fit_and_includes_exact_touching_boundary(self):
+        self.assertTrue(math.ideal_power_good_window("1", "1.1", "3", "3.6").has_solution)
+        result = math.ideal_power_good_window("1", "1.1", "3", "3.3")
+        self.assertTrue(result.has_solution)
+        self.assertEqual(result.minimum_gain, result.maximum_gain)
+        self.assertEqual(D("3.3"), result.lowest_worst_case_rising_v)
+
+    def test_ideal_pg_divider_cannot_have_gain_below_one(self):
+        result = math.ideal_power_good_window("1", "1.1", ".5", ".9")
+        self.assertEqual(D(1), result.minimum_gain)
+        self.assertFalse(result.has_solution)
+
+    def test_ideal_pg_window_uses_own_decimal_context(self):
+        expected = math.ideal_power_good_window("1.071", "1.23", "3.05", "3.3")
+        with localcontext() as context:
+            context.prec = 5
+            context.rounding = ROUND_FLOOR
+            self.assertEqual(expected, math.ideal_power_good_window("1.071", "1.23", "3.05", "3.3"))
+            self.assertEqual(5, context.prec)
+            self.assertEqual(ROUND_FLOOR, context.rounding)
+
+    def test_ideal_pg_window_rejects_bad_domains(self):
+        for bad in (0, -1, True, .1, "NaN", "Infinity", None):
+            for index in range(4):
+                args = ["1", "1.1", "3", "3.3"]
+                args[index] = bad
+                with self.subTest(index=index, bad=bad), self.assertRaises(ValueError):
+                    math.ideal_power_good_window(*args)
+        with self.assertRaisesRegex(ValueError, "rising maximum"):
+            math.ideal_power_good_window("1.2", "1.1", "3", "3.3")
+
     def test_interval_accepts_exact_point_and_signed_bounds(self):
         self.assertEqual(I("1.25", D("1.25")), I(D("1.25"), D("1.25")))
         self.assertEqual(I(-1, 2).minimum, D(-1))

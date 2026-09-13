@@ -16,7 +16,7 @@
     "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7e5594bf5130524096b2683040b153409611b92c2df088dd33cb5c30f2f7a597",
     "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9",
     "hardware/ecad/generated/H2-R2-native-net-ledger.json": "94bd7d64fc1d6c2ea3dde8e55f1390fb31cafc2a213cc99d290ce234d60878e8",
-    "hardware/verification/h6_power_corner_math.py": "b1dd3bc64dc93cd260cf311d933444a78df22474d482852904fb51a1e00ad8b0",
+    "hardware/verification/h6_power_corner_math.py": "5f48acfb73f8cdc80cb5657a4b2b0415e86ff6956d27ea422a94d2019da13e72",
     "hardware/verification/h3_r2_rail_margins.py": "66cdb6c21f8e8f932890be7c3ef109bf447f8fbf75fccaae0a6864c107c70b1f",
     "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
   },
@@ -21360,7 +21360,7 @@
       "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7e5594bf5130524096b2683040b153409611b92c2df088dd33cb5c30f2f7a597",
       "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9",
       "hardware/ecad/generated/H2-R2-native-net-ledger.json": "94bd7d64fc1d6c2ea3dde8e55f1390fb31cafc2a213cc99d290ce234d60878e8",
-      "hardware/verification/h6_power_corner_math.py": "b1dd3bc64dc93cd260cf311d933444a78df22474d482852904fb51a1e00ad8b0",
+      "hardware/verification/h6_power_corner_math.py": "5f48acfb73f8cdc80cb5657a4b2b0415e86ff6956d27ea422a94d2019da13e72",
       "hardware/verification/h3_r2_rail_margins.py": "66cdb6c21f8e8f932890be7c3ef109bf447f8fbf75fccaae0a6864c107c70b1f",
       "hardware/verification/h3_r2_current_scope.py": "f364009cfeba92614a8a49f9e625d1a661cb00d7a58d69df2fa545b0c3c0a8ed"
     }

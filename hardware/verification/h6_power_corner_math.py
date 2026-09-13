@@ -224,6 +224,50 @@ do not subtract them as if their extreme corners described the same part.
     )
 
 
+@dataclass(frozen=True)
+class IdealPowerGoodWindow:
+    """Required ideal divider gains; an inverted range is deliberately valid."""
+
+    minimum_gain: Decimal
+    maximum_gain: Decimal
+    lowest_worst_case_rising_v: Decimal
+
+    @property
+    def has_solution(self) -> bool:
+        return self.minimum_gain <= self.maximum_gain
+
+
+def ideal_power_good_window(
+    falling_reference_min_v: Scalar,
+    rising_reference_max_v: Scalar,
+    required_local_falling_min_v: Scalar,
+    available_local_rising_max_v: Scalar,
+) -> IdealPowerGoodWindow:
+    """Necessary static feasibility of *any* fixed resistive PG divider.
+
+For Vrail=k*Vref, k=1+Rtop/Rbottom >=1. Every device must deassert before
+the local rail falls below its floor and must assert by the available rail:
+k >= floor/Vfall_min and k <= ceiling/Vrise_max. Different threshold
+extrema need not occur on the same device: one fixed divider must cover both.
+
+This optimistic screen assumes exact resistors and zero leakage/response
+time. A negative result excludes a resistor-only solution under the supplied
+reference bounds; a positive result is NOT circuit qualification. The caller
+owns the sense location, consumer/distribution bounds and device applicability.
+"""
+    falling = _positive(falling_reference_min_v, "falling reference minimum")
+    rising = _positive(rising_reference_max_v, "rising reference maximum")
+    floor = _positive(required_local_falling_min_v, "local falling floor")
+    ceiling = _positive(available_local_rising_max_v, "local rising ceiling")
+    if rising < falling:
+        raise ValueError("rising maximum cannot be below falling minimum")
+    with localcontext() as context:
+        context.prec = PRECISION
+        context.rounding = ROUND_HALF_EVEN
+        minimum = max(ONE, floor / falling)
+        return IdealPowerGoodWindow(minimum, ceiling / rising, minimum * rising)
+
+
 def rail_series_drop_interval(
     source_v: Interval,
     load_current_a: Interval,

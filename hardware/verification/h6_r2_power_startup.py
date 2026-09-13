@@ -9,6 +9,7 @@ It reports unresolved findings instead of converting connectivity into a pass.
 from __future__ import annotations
 
 import argparse
+from decimal import Decimal
 import hashlib
 import json
 import math
@@ -18,7 +19,7 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from h3_r2_current_scope import admits_current
-from h6_power_corner_math import resistor_interval, efuse_current_interval
+from h6_power_corner_math import resistor_interval, efuse_current_interval, ideal_power_good_window
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -340,6 +341,30 @@ def evaluate(data):
            "margin_v": None if rail_min is None else rail_min - pg_assert_max,
            "numerical_headroom_only": numerical_headroom, "sense_node_matches": node_matches and path_matches,
            "current_rail_envelope_admitted": envelope_admitted})
+
+    # Necessary, deliberately optimistic screen of a resistor-only repair.
+    # 3.05 V is derived from the current 3.0-V consumer floor + downstream
+    # budget, not a previously accepted absolute PG setpoint. Use the allowed
+    # consumer ceiling, even higher than the loaded local rail, to avoid
+    # claiming a topology limitation merely because today's source is weak.
+    consumer_min = Decimal(str(h3_main["load_min_v"]))
+    consumer_max = Decimal(str(h3_main["load_max_v"]))
+    downstream = Decimal(str(h3_main["distribution_drop_v"]))
+    if downstream < 0:
+        raise ValueError("downstream voltage drop cannot be negative")
+    window = ideal_power_good_window("1.071", "1.23", consumer_min + downstream, consumer_max)
+    check("main_pg_resistor_only_window_feasible", window.has_solution,
+          "Necessary static screen under TPS2597 section6.5 threshold bounds: an ideal fixed divider must both assert below the allowed rail ceiling and deassert above the consumer floor plus downstream drop. Exact resistors, zero leakage and zero response time are optimistic. This derived whole-MAIN undervoltage boundary is not an existing accepted PG setpoint; PG currently reaches the safety MCU, not the latch directly. A feasible ideal window would not qualify the circuit or extend VIN12-V table conditions.",
+          {"consumer_min_v": str(consumer_min), "consumer_max_v": str(consumer_max),
+           "downstream_budget_v": str(downstream),
+           "derived_local_falling_floor_v": str(consumer_min + downstream),
+           "optimistic_local_rising_ceiling_v": str(consumer_max),
+           "reference_falling_min_v": "1.071", "reference_rising_max_v": "1.23",
+           "minimum_ideal_gain": str(window.minimum_gain),
+           "maximum_ideal_gain": str(window.maximum_gain),
+           "lowest_worst_case_rising_v": str(window.lowest_worst_case_rising_v),
+           "ideal_resistor_only_solution_exists": window.has_solution,
+           "scope": "conditioned necessary feasibility only; no voltage, timing or startup qualification"})
 
     aon_rilim, _ = resistor("aon_efuse_rilim")
     aon_ron = data["h3"]["rails"]["AON_SAFE_3V3"]["efuse_ron_max_ohm"]

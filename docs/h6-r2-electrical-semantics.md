@@ -177,6 +177,18 @@ qualified against the current native power cell**:
   provisional protected-local minimum of 2.993 V. Downstream distribution
   further reduces the modeled consumer endpoint to 2.943 V; it is not the PG
   sensing node.
+- The 2026-09-14 check excludes a PG-resistor-only repair under the current
+  model bounds. To monitor the 3.0-V consumer floor with a separate 50-mV
+  distribution allowance, even an ideal divider requires a worst-case rising
+  threshold of at least **3.503 V**, above the display's 3.3-V operating ceiling.
+  It uses the 1.071/1.230-V PGTH bounds from
+  [TI, §6.5](https://www.ti.com/lit/ds/symlink/tps2597.pdf), without resistor
+  spread, leakage or delay. This is a necessary static condition, not a new
+  guarantee at our VIN or a previously accepted PG setpoint. PG reaches the
+  safety controller; the current circuit provides neither direct latch clearing
+  from PG nor an independent whole-MAIN monitor. Voltage losses, current
+  protection and undervoltage monitoring need a joint correction; lowering PG
+  alone does not restore consumer voltage.
 - AON eFuse on-resistance was bounded using a different RILIM test condition.
 
 No production resistor is changed. The [stock-checked 1.18-kΩ candidate](../hardware/procurement/main-efuse-rilm-1180ohm-candidate.md)

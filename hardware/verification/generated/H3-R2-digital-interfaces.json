@@ -6,7 +6,7 @@
   "source_hashes": {
     "hardware/architecture/h0-r2-rebaseline.json": "bab7bf6cb3e80842229704169c8b3297bcdff87ec6bb309aad75814701dd3c2b",
     "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9",
-    "hardware/verification/generated/H3-R2-rail-margins.json": "b91979ca9ae803e2b335eff8d17bdaa92cd9e8547661602108122cc69bb57455",
+    "hardware/verification/generated/H3-R2-rail-margins.json": "ccc0f755c38d6fb152eeff8ac3c6220ba2c5bac0c0213d0ea0ab5a815980e50d",
     "hardware/ecad/generated/H2-R2-native-net-ledger.json": "94bd7d64fc1d6c2ea3dde8e55f1390fb31cafc2a213cc99d290ce234d60878e8",
     "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7e5594bf5130524096b2683040b153409611b92c2df088dd33cb5c30f2f7a597",
     "hardware/product-design/display-mount.json": "71bba240dfa5c3c8cb4f9ac269c4a9874f460981da7c196d072086c0dc3cc343",
@@ -393,7 +393,7 @@
     "source_sha256": {
       "hardware/architecture/h0-r2-rebaseline.json": "bab7bf6cb3e80842229704169c8b3297bcdff87ec6bb309aad75814701dd3c2b",
       "hardware/architecture/devices.json": "60faca70697d475d5414641d74cc1f13ea232561c5d3f1bcfdee74bf9f1bbdc9",
-      "hardware/verification/generated/H3-R2-rail-margins.json": "b91979ca9ae803e2b335eff8d17bdaa92cd9e8547661602108122cc69bb57455",
+      "hardware/verification/generated/H3-R2-rail-margins.json": "ccc0f755c38d6fb152eeff8ac3c6220ba2c5bac0c0213d0ea0ab5a815980e50d",
       "hardware/ecad/generated/H2-R2-native-net-ledger.json": "94bd7d64fc1d6c2ea3dde8e55f1390fb31cafc2a213cc99d290ce234d60878e8",
       "hardware/ecad/generated/H2-R2-native-instance-ledger.json": "7e5594bf5130524096b2683040b153409611b92c2df088dd33cb5c30f2f7a597",
       "hardware/product-design/display-mount.json": "71bba240dfa5c3c8cb4f9ac269c4a9874f460981da7c196d072086c0dc3cc343",

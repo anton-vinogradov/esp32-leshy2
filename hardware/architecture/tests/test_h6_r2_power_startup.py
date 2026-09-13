@@ -12,6 +12,7 @@ CURRENT_OPEN_FINDINGS = {
     "rilm_matches_accepted_h1", "main_pf03_current_reserve", "main_h0_step_floor",
     "main_existing_inrush_model_headroom", "h3_converter_source_is_installed_part",
     "main_pg_assertion_headroom", "aon_ron_test_condition_binding",
+    "main_pg_resistor_only_window_feasible",
 }
 
 
@@ -139,6 +140,43 @@ class H6R2NativePowerStartupTest(unittest.TestCase):
         self.assertFalse(check["pass"])
         self.assertAlmostEqual(3.170574212121, check["observed"]["required_output_v"])
 
+    def test_no_ideal_pg_divider_covers_current_consumer_window(self):
+        check = self.check("main_pg_resistor_only_window_feasible")
+        self.assertFalse(check["pass"])
+        observed = check["observed"]
+        self.assertEqual("3.05", observed["derived_local_falling_floor_v"])
+        self.assertEqual("3.3", observed["optimistic_local_rising_ceiling_v"])
+        self.assertAlmostEqual(3.502801120448179,
+                               float(observed["lowest_worst_case_rising_v"]), places=12)
+        self.assertGreater(float(observed["minimum_ideal_gain"]),
+                           float(observed["maximum_ideal_gain"]))
+
+    def test_pg_resistor_or_current_limit_changes_cannot_hide_window_defect(self):
+        before = self.check("main_pg_resistor_only_window_feasible")
+        self.resistor("main_efuse_pg_top", "40_2kohm_1pct_0402_test_resistor")
+        self.resistor("main_efuse_rilm", "1_15kohm_1pct_0402_test_resistor")
+        self.assertEqual(before, self.check("main_pg_resistor_only_window_feasible"))
+
+    def test_pg_window_is_impossible_even_without_downstream_drop(self):
+        self.data["h3"]["rails"]["3V3_MAIN"]["distribution_drop_v"] = 0
+        check = self.check("main_pg_resistor_only_window_feasible")
+        self.assertFalse(check["pass"])
+        self.assertGreater(float(check["observed"]["lowest_worst_case_rising_v"]), 3.44)
+
+    def test_pg_optimistic_window_pass_is_not_startup_or_release_admission(self):
+        # Synthetic wide consumer window, not a permitted display rail edit.
+        self.data["h3"]["rails"]["3V3_MAIN"]["load_max_v"] = 4
+        result = self.result()
+        self.assertNotIn("main_pg_resistor_only_window_feasible", result["findings"])
+        self.assertEqual("review_required", result["status"])
+        self.assertFalse(result["startup_proven"])
+        self.assertEqual({"fabrication": False, "gate_closed": False}, result["authorization"])
+
+    def test_pg_window_rejects_negative_downstream_drop(self):
+        self.data["h3"]["rails"]["3V3_MAIN"]["distribution_drop_v"] = -.01
+        with self.assertRaisesRegex(ValueError, "downstream voltage drop"):
+            self.result()
+
     def test_pg_samples_protected_local_not_consumer_endpoint(self):
         row = self.data["margins"]["voltage_corners"]["3V3_MAIN"]
         row.update(protected_local_min_v="3.20", endpoint_min_v="2.90",
@@ -209,7 +247,7 @@ class H6R2NativePowerStartupTest(unittest.TestCase):
         self.addCleanup(self.module.REVIEWED_MAIN_CONVERTER_MODELS.clear)
         self.assertTrue(self.check("h3_converter_source_is_installed_part")["pass"])
 
-    def test_current_model_binding_closes_only_one_of_eight_findings(self):
+    def test_current_model_binding_does_not_close_other_findings(self):
         self.assertEqual({}, self.module.REVIEWED_MAIN_CONVERTER_MODELS)
         result = self.result()
         self.assertEqual(CURRENT_OPEN_FINDINGS, set(result["findings"]))
