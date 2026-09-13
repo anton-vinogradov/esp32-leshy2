@@ -68,7 +68,7 @@ class H3R2InputFreezeTest(unittest.TestCase):
         self.assertEqual((4305, 4071, 234), tuple(kicad[key] for key in (
             "physical_symbol_pin_count", "connected_physical_pin_count", "explicit_no_connect_physical_pin_count")))
 
-    def test_connected_functions_preserved_after_nc6_removal_and_usb_unification(self):
+    def test_connected_functions_preserved_outside_reviewed_interface_corrections(self):
         # Fixed reviewed849a350 baseline, not a digest regenerated from the
         # current input or a test requiring a mutable Git HEAD.
         fields = ("endpoint", "project", "sheet", "reference", "contact", "physical", "role", "net", "disposition")
@@ -82,6 +82,23 @@ class H3R2InputFreezeTest(unittest.TestCase):
         # Check the reviewed pre-correction function set with its original
         # digest; do not recalculate a golden hash from today's entire input.
         connected.remove(boot[0])
+        # The later S3 ROM-UART correction exchanges only these four net
+        # assignments, without changing the module, physical pads or counts.
+        # Assert today's exact mapping before restoring the historical tuple
+        # for this preservation proof. Dedicated-path tests cover the new nets.
+        s3_swap = {
+            7: ("7", "S3_HUB_D2", "S3_UART_SERVICE_TX"),
+            8: ("12", "S3_HUB_D3", "S3_UART_SERVICE_RX"),
+            43: ("37", "S3_UART_SERVICE_TX", "S3_HUB_D2"),
+            44: ("36", "S3_UART_SERVICE_RX", "S3_HUB_D3"),
+        }
+        for gpio, (physical, current_net, historical_net) in s3_swap.items():
+            matches = [row for row in connected if row["endpoint"] == f"s3.GPIO{gpio}"]
+            self.assertEqual(1, len(matches))
+            row = matches[0]
+            self.assertEqual(("LESHY2-UI-R2", "U1", "esp32_s3_wroom_1u_n16r8", physical, current_net),
+                             tuple(row[key] for key in ("project", "reference", "device_id", "physical", "net")))
+            row["net"] = historical_net
         rows = sorted(tuple(row.get(key) for key in fields) for row in connected)
         self.assertEqual(4066, len(rows))
         payload = json.dumps(rows, separators=(",", ":"), ensure_ascii=False).encode()

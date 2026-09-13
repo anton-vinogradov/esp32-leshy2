@@ -16,8 +16,8 @@ Front S3/C5/rear-RP fan-out, three independent nRF24 buses, microSD, Pack/Safety
 |---:|---|---|---|---|---|
 | `0` | `S3_HUB_D0` | `io` | `PIO1_SM0_S3_QUAD` | S3 GPIO21 | input/high-Z; external pull-down |
 | `1` | `S3_HUB_D1` | `io` | `PIO1_SM0_S3_QUAD` | S3 GPIO14 | input/high-Z; external pull-down |
-| `2` | `S3_HUB_D2` | `io` | `PIO1_SM0_S3_QUAD` | S3 GPIO43 through ROM-UART isolation | input/high-Z; Hub-side external pull-down; isolation open |
-| `3` | `S3_HUB_D3` | `io` | `PIO1_SM0_S3_QUAD` | S3 GPIO44 through ROM-UART isolation | input/high-Z; Hub-side external pull-down; isolation open |
+| `2` | `S3_HUB_D2` | `io` | `PIO1_SM0_S3_QUAD` | S3 GPIO7 through GPIO matrix | input/high-Z required; no clocks until application and idle/ready handshake; reset asymmetry requires re-handshake |
+| `3` | `S3_HUB_D3` | `io` | `PIO1_SM0_S3_QUAD` | S3 GPIO8 through GPIO matrix | input/high-Z required; no clocks until application and idle/ready handshake; reset asymmetry requires re-handshake |
 | `4` | `S3_HUB_SCK` | `in` | `PIO1_SM0_S3_QUAD` | S3 GPIO48 | input; external pull-down |
 | `5` | `UI_HUB_ALERT_N` | `od` | `GPIO_IRQ` | S3 GPIO3 wired-OR | released/high-Z; external pull-up |
 | `6` | `HUB_AON_ALERT_N` | `in` | `GPIO_IRQ` | M1.59 <- wired-open-drain PD/Pack mailbox alert | input; AON-local 10-kohm pull-up |
@@ -144,11 +144,15 @@ Rear CC1101, voice, FM/AM/SW/LW/Airband RX, audio, M5 Unit and exactly one signe
 | `HUB_RF_MOSI` | `26` | `14` | `24` | hub_rp |
 | `HUB_RF_MISO` | `27` | `15` | `27` | rf_rp |
 
-## S3 ROM-UART isolation
+## Dedicated S3 ROM-UART routing
 
-Both lines cross an Ioff-capable bidirectional isolation boundary whose OE is held disabled by a physical pull throughout S3 reset, strap sampling, ROM download and UART0 recovery.
+UART0 TX/RX use dedicated S3 GPIO43/44 through the existing service-header series paths. Hub D2/D3 instead use S3 GPIO7/8 through the GPIO matrix; no shared ROM-UART net or additional ROM-UART isolator is required or claimed.
 
-S3 firmware may enable the two data channels only after normal application boot, Hub RUN release and a successful idle/ready handshake; entering ROM download, either-controller reset or fault shutdown opens the boundary again.
+Hub data pins must remain input/high-Z and no link clocks may start until normal application boot and a successful idle/ready handshake. Either-controller reset, ROM entry or fault shutdown invalidates that handshake. GPIO7/8 power-up glitches must not be interpreted as link traffic; reset-asymmetric startup and re-handshake still require implementation and measurement.
+
+The pin allocation separates UART0 recovery from Hub application traffic; it does not establish fixture operation, completed physical routing, reset/power availability or recovery under KILL.
+
+ROM UART recovery on the fixture, GPIO-matrix 40 MHz link timing and power-up/reset-asymmetry behavior remain unqualified; no fabrication or full recovery acceptance follows from this topology check.
 
 ## Executable checks for later stages
 

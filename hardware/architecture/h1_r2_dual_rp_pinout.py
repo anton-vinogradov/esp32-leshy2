@@ -64,6 +64,63 @@ def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def validate_s3_rom_uart_routing(source: dict[str, Any], h0: dict[str, Any]) -> list[str]:
+    """Join dedicated ROM UART pins to H0; do not infer timing from pin allocation."""
+    errors: list[str] = []
+    expected = {
+        7: ("S3_HUB_D2", "SPI3", "io"),
+        8: ("S3_HUB_D3", "SPI3", "io"),
+        43: ("S3_UART_SERVICE_TX", "UART0_TX", "out"),
+        44: ("S3_UART_SERVICE_RX", "UART0_RX", "in"),
+    }
+    rows = h0.get("s3", {}).get("pin_map", [])
+    for gpio, assignment in expected.items():
+        matches = [row for row in rows if row.get("gpio") == gpio]
+        net_matches = [row for row in rows if row.get("net") == assignment[0]]
+        if (len(matches) != 1 or len(net_matches) != 1
+                or type(matches[0].get("gpio")) is not int
+                or tuple(matches[0].get(key) for key in ("net", "peripheral", "direction")) != assignment):
+            errors.append(f"S3 GPIO{gpio}: dedicated ROM-UART/Hub H0 assignment changed or duplicated")
+    for hub_gpio, s3_gpio in ((2, 7), (3, 8)):
+        matches = [row for row in source.get("hub_rp", {}).get("pin_map", [])
+                   if row.get("gpio") == hub_gpio]
+        if len(matches) != 1 or tuple(matches[0].get(key) for key in (
+            "net", "direction", "controller", "endpoint"
+        )) != (expected[s3_gpio][0], "io", "PIO1_SM0_S3_QUAD", f"S3 GPIO{s3_gpio} through GPIO matrix"):
+            errors.append(f"Hub GPIO{hub_gpio}: dedicated S3 GPIO{s3_gpio} data endpoint changed")
+        elif not all(token in matches[0].get("reset", "") for token in (
+            "input/high-Z", "no clocks until application", "idle/ready handshake", "reset asymmetry"
+        )):
+            errors.append(f"Hub GPIO{hub_gpio}: startup/reset handshake requirements missing")
+    routing = source.get("s3_rom_uart_routing")
+    if not isinstance(routing, dict):
+        return errors + ["S3 dedicated ROM-UART routing metadata missing"]
+    if "s3_rom_uart_isolation" in source:
+        errors.append("S3 dedicated ROM-UART routing must not retain the superseded isolator contract")
+    for key, value in (
+        ("mode", "dedicated_gpio"), ("uart0_gpio", {"tx": 43, "rx": 44}),
+        ("hub_data_gpio", {"S3_HUB_D2": 7, "S3_HUB_D3": 8}),
+    ):
+        if routing.get(key) != value:
+            errors.append(f"S3 dedicated ROM-UART routing metadata changed: {key}")
+    for key in ("uart0_shared_with_hub", "requires_rom_uart_isolator"):
+        if routing.get(key) is not False:
+            errors.append(f"S3 dedicated ROM-UART routing requires {key}=false")
+    for group, keys, expected_value in (
+        ("requirements", {"hub_high_z_until_application_ready", "no_clocks_before_idle_handshake",
+                          "reset_asymmetry_requires_rehandshake", "gpio7_gpio8_powerup_glitches_must_be_rejected"}, True),
+        ("qualification", {"rom_uart_fixture", "hub_40mhz_timing", "powerup_reset_asymmetry"}, False),
+    ):
+        values = routing.get(group)
+        if (not isinstance(values, dict) or set(values) != keys
+                or any(values[key] is not expected_value for key in keys)):
+            errors.append(f"S3 dedicated ROM-UART {group} must retain exact unqualified startup boundary")
+    for key in ("requirement", "enable_sequence", "service_result", "verification_gate"):
+        if not isinstance(routing.get(key), str) or not routing[key].strip():
+            errors.append(f"S3 dedicated ROM-UART routing lacks {key} explanation")
+    return errors
+
+
 def validate(source: dict[str, Any], h0: dict[str, Any], c5_mux: dict[str, Any],
              u219: dict[str, Any], devices: dict[str, Any] | None = None,
              pack_safety_i2c: dict[str, Any] | None = None) -> list[str]:
@@ -261,16 +318,7 @@ def validate(source: dict[str, Any], h0: dict[str, Any], c5_mux: dict[str, Any],
                 or not row.get("controller", "").startswith("UART1_OR_GPIO"):
             errors.append(f"rf_rp GPIO{gpio}: fixed UART1/profile mux/direction changed")
 
-    isolation = source.get("s3_rom_uart_isolation", {})
-    if isolation.get("affected_s3_gpio") != [43, 44]:
-        errors.append("S3 ROM UART isolation must cover GPIO43/44")
-    isolation_text = " ".join(str(value) for value in isolation.values())
-    for token in ("Ioff", "OE", "ROM", "high-Z"):
-        if token not in isolation_text:
-            errors.append(f"S3 ROM UART isolation lacks {token} contract")
-    for gpio, net in ((2, "S3_HUB_D2"), (3, "S3_HUB_D3")):
-        if hub_by_gpio[gpio]["net"] != net or "isolation" not in hub_by_gpio[gpio]["endpoint"]:
-            errors.append(f"Hub GPIO{gpio} must terminate through S3 ROM-UART isolation")
+    errors.extend(validate_s3_rom_uart_routing(source, h0))
 
     c5_rows = {row["net"]: row for row in source["hub_rp"]["pin_map"] if row["net"].startswith("C5_SDIO_")}
     expected_c5_endpoints = {
@@ -419,7 +467,7 @@ def build(source: dict[str, Any] | None = None, h0: dict[str, Any] | None = None
         "hub_rp": source["hub_rp"],
         "rf_rp": source["rf_rp"],
         "m1_binding": source["m1_binding"],
-        "s3_rom_uart_isolation": source["s3_rom_uart_isolation"],
+        "s3_rom_uart_routing": source.get("s3_rom_uart_routing"),
         "execution_gates": source["execution_gates"],
         "errors": errors,
     }
@@ -440,7 +488,7 @@ def render_public(source: dict[str, Any], candidate: dict[str, Any], russian: bo
         cols = "| GPIO | Сеть | Направление | Контроллер | Физический endpoint | Reset / pull |"
         resource = "Ресурсы"
         m1_heading = "Связь Hub RP ↔ RF RP через M1"
-        iso_heading = "Изоляция ROM-UART S3"
+        uart_heading = "Выделенные линии ROM-UART S3"
         gates_heading = "Исполняемые проверки следующих этапов"
         nm_heading = "Точный pin-map dual NMOS"
     else:
@@ -457,7 +505,7 @@ def render_public(source: dict[str, Any], candidate: dict[str, Any], russian: bo
         cols = "| GPIO | Net | Direction | Controller | Physical endpoint | Reset / pull |"
         resource = "Resources"
         m1_heading = "Hub RP ↔ RF RP through M1"
-        iso_heading = "S3 ROM-UART isolation"
+        uart_heading = "Dedicated S3 ROM-UART routing"
         gates_heading = "Executable checks for later stages"
         nm_heading = "Exact dual-NMOS pin map"
 
@@ -504,9 +552,10 @@ def render_public(source: dict[str, Any], candidate: dict[str, Any], russian: bo
             f"| `{row['net']}` | `{row['contact']}` | `{row['hub_gpio']}` | "
             f"`{row['rf_gpio']}` | {row['driver']} |"
         )
-    isolation = source["s3_rom_uart_isolation"]
+    routing = source["s3_rom_uart_routing"]
     lines.extend([
-        "", f"## {iso_heading}", "", isolation["requirement"], "", isolation["enable_sequence"],
+        "", f"## {uart_heading}", "", routing["requirement"], "", routing["enable_sequence"],
+        "", routing["service_result"], "", routing["verification_gate"],
         "", f"## {gates_heading}", "",
     ])
     lines.extend(f"- {gate}" for gate in source["execution_gates"])

@@ -11,19 +11,19 @@
     "speaker_helper": "hardware/layout/h6_r2_speaker_fit.py",
     "speaker_helper_sha256": "9e677eca3c1d320fc19fd25e961d884a1a903ca9f0af1ca3ad95835d20c38d30",
     "placement_freeze": "hardware/layout/h6-r2-placement-freeze.json",
-    "placement_freeze_sha256": "f44408d1da71ffa392348e8a44712d0ef20e96b4ed8b55406a823e9c3eeff36d",
+    "placement_freeze_sha256": "cd4a4e972d92884dd06820eda87d30a06755fd4e7e637464bc4cb9e39e075fdb",
     "placement": "hardware/product-design/h1-r2-placement.json",
     "placement_sha256": "3cefd845934ca2d17be9f7e5876266deaf885fd0c37b8330a2637c38e6193ffb",
     "coordinate_model": "hardware/product-design/generated/H1-unified-coordinate-table.json",
     "coordinate_model_sha256": "fb42a76cacf90e084f0a8fdf8d03abb026694deefffc29b0587e93397de6172c",
     "instance_ledger": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-    "instance_ledger_sha256": "7e5594bf5130524096b2683040b153409611b92c2df088dd33cb5c30f2f7a597",
+    "instance_ledger_sha256": "dfd2101cd84ab4290b69a38576bf40002e673817527dab27185747d1affca569",
     "net_ledger": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-    "net_ledger_sha256": "eddbf9f53b513cf3d991a79c75f976bdcffa5c09542fa1670bf4f782fbdc80d5",
+    "net_ledger_sha256": "eb9976d1662695f0a013b421d582ed6b88faf2d4eca253f0db4ea5f686481840",
     "symbol_library": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-    "symbol_library_sha256": "1b3d9f2700937109daba2fd77b8633d709325094dbd19f48a17e0d7c9f60b224",
+    "symbol_library_sha256": "fc14457685eca2a89b5baf01ca118c034b3b7a18aae8fb83fabe20824f1e342b",
     "kicad_net_bindings": "hardware/layout/generated/H6-R2-kicad-net-bindings.json",
-    "kicad_net_bindings_sha256": "2d7dfd4c75d86af1ea8ade7a71a25fd4c609f0ecb372aa8402c54d6cb8b5c710"
+    "kicad_net_bindings_sha256": "840535c7341bb681780c28a8f11f79ea6bd7fc9aff68077e1371b68003997c90"
   },
   "summary": {
     "board_count": 2,
@@ -13708,8 +13708,8 @@
         }
       ],
       "output": "hardware/ecad/kicad/LESHY2-UI-R2/LESHY2-UI-R2.kicad_pcb",
-      "unrouted_seed_sha256": "746615a09d5b37f25d7d8bb4b0eba9848213f4c6c6368573c1e932b1ef0ceb33",
-      "placement_signature_sha256": "33b310b1a85aa63cc143664298a29f8b56707153265d8816f21aa5eb8c8769e8",
+      "unrouted_seed_sha256": "ba2ae36a688b4ae9d9a5bd2a52db5b697ed9183fb362f6a09dc90a5ad1fbf889",
+      "placement_signature_sha256": "d83fecd1c248deba08c66580b0a64686487126d77d9b625df727605fefff6e51",
       "locality": {
         "status": "pass",
         "pair_count": 62,

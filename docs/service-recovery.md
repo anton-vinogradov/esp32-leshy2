@@ -10,7 +10,7 @@ These are native connection paths, not proof that power, reset and boot sequenci
 
 | Target | Direct path | Current limitation / fallback | Location |
 |---|---|---|---|
-| ESP32-S3 | product USB RF J1 through M1 to native USB, manual BOOT/RESET | **UART fallback open:** UI J2 reaches GPIO7/8, not ROM UART0 GPIO43/44; the latter currently carry Hub D2/D3 without the required isolation | UI + RF |
+| ESP32-S3 | product USB RF J1 through M1 to native USB; UI J2 through R4/R5 to dedicated ROM UART0 GPIO43/44; manual BOOT/RESET | UART pad/net assignment corrected; Hub D2/D3 moved to GPIO7/8. Copper routing, power/reset/BOOT timing and interrupted-flash recovery remain unqualified | UI + RF |
 | ESP32-C5 | UI J9 service USB through FSUSB42; UI J6 UART0 GPIO11/12; manual BOOT/RESET | GPIO28 net membership corrected; copper/strap timing, USB SEL/OE and reset-under-KILL remain open. UART avoids the data mux, not the reset sinks | UI |
 | RF RP2354B | RF J4 service USB/BOOTSEL; RF J3 SWD/RUN | MAIN and release of both hardware reset paths are required; KILL still holds RUN low | RF |
 | Hub RP2354B | UI J11 service USB/BOOTSEL; UI J10 SWD/RUN | MAIN and reset release are required; KILL and C5 service ownership can hold Hub in reset | UI |
@@ -19,6 +19,10 @@ These are native connection paths, not proof that power, reset and boot sequenci
 | TPS25751D + configuration EEPROM | SYS_I2C target pads plus direct local SDA/SCL/WP pads | pre-programmed loose EEPROM or current-limited raw-VBUS fixture | LESHY2-RF |
 | MAX17320 pack gauge | internal protected local I2C and fault/hold observation | image checksum and override readback before energized cell installation | LESHY2-RF |
 | SA818S-U and SA818S-V voice modules | permanent hardware-selected UART plus independent UHF/VHF PD controls | rail cycle, selection readback and replaceable serial module; neither part requires an undocumented firmware-update contact | LESHY2-RF |
+
+The S3 correction changes four module pad/net assignments, not component placement or existing copper: J2.5 → R4 → U1.37 (GPIO43, target TX), J2.6 → R5 → U1.36 (GPIO44, target RX); Hub D2/D3 instead terminate at U1.7/U1.12 (GPIO7/8). Connect fixture RX to target TX and fixture TX to target RX. The former unimplemented ROM-UART isolator requirement is superseded by dedicated pins. The firmware BSP pin descriptors change accordingly; this is not a runtime qualification. [Exact topology guards](../hardware/ecad/h2_r2_s3_rom_uart.py) check both the ledger and native pad endpoints.
+
+GPIO7/8 use the GPIO matrix. Keep the Hub high-impedance and the bus clock inactive until application startup and the idle handshake; test independent resets and asymmetric power-up. Espressif lists a **60 µs typical**, not maximum, power-up low glitch on these pins. GPIO-matrix support does not qualify the assembled 40 MHz link. [S3 hardware guidelines](https://docs.espressif.com/projects/esp-hardware-design-guidelines/en/latest/esp32s3/schematic-checklist.html), [SPI GPIO routing](https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-reference/peripherals/spi_master.html).
 
 ## Recovery, updates and debugging are different workflows
 

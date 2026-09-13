@@ -5332,10 +5332,11 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "a9f34233-94a7-538c-a61d-3f434ec4b538")
 	)
-	(label "S3_UART_SERVICE_TX"
+	(hierarchical_label "S3_HUB_D2"
+		(shape bidirectional)
 		(at 1041.40 134.62 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "c52b22aa-cc6a-5430-8f4a-f82ad53b4fbc")
+		(uuid "db5b37e8-2930-5a0a-aabc-6b350ba6ec0f")
 	)
 	(no_connect (at 1041.40 137.16)
 		(uuid "4f265e80-ff1d-5334-b2dc-2a9a6f592fd5")
@@ -5353,10 +5354,11 @@
 		(effects (font (size 1.27 1.27)))
 		(uuid "7a4b75cb-8f5b-5951-8465-d05b167bb3ee")
 	)
-	(label "S3_UART_SERVICE_RX"
+	(hierarchical_label "S3_HUB_D3"
+		(shape bidirectional)
 		(at 1041.40 147.32 0)
 		(effects (font (size 1.27 1.27)))
-		(uuid "2d01e598-4af5-57ee-9c32-c02cf809e0da")
+		(uuid "bcd95a0e-6884-59ea-b133-a6da98394fa9")
 	)
 	(label "S3_USB_LOCAL_N"
 		(at 1041.40 149.86 0)
@@ -5464,17 +5466,15 @@
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "fbcf81fd-d208-5f50-9da8-effb664b1f95")
 	)
-	(hierarchical_label "S3_HUB_D3"
-		(shape bidirectional)
+	(label "S3_UART_SERVICE_RX"
 		(at 1082.04 154.94 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "39769d7d-df2a-5564-b030-b87bf57fe280")
+		(uuid "69d071f2-b3be-53fa-a25f-534b0bc3c976")
 	)
-	(hierarchical_label "S3_HUB_D2"
-		(shape bidirectional)
+	(label "S3_UART_SERVICE_TX"
 		(at 1082.04 157.48 180)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "218307cb-de08-5555-b4ce-518c188890d2")
+		(uuid "a5f734b6-abcd-5a6d-8ac2-a3f3551c27bb")
 	)
 	(label "SYS_UI_I2C_SCL"
 		(at 1082.04 160.02 180)

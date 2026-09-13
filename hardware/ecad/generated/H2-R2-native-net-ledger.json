@@ -6,22 +6,22 @@
   "sources": {
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "7e5594bf5130524096b2683040b153409611b92c2df088dd33cb5c30f2f7a597",
+      "sha256": "dfd2101cd84ab4290b69a38576bf40002e673817527dab27185747d1affca569",
       "authority": true
     },
     "definitions": {
       "path": "hardware/ecad/generated/H2-R2-symbol-footprint-ledger.json",
-      "sha256": "d192652242066d6a9bc74d22d82e4202236ccd0b34fbdc97aff2de2de784bbf5",
+      "sha256": "cef0ca72463b045189ff7d5619b80d8a2b1f81d676be8711a044d3620cdd124e",
       "authority": true
     },
     "h0": {
       "path": "hardware/architecture/h0-r2-rebaseline.json",
-      "sha256": "bab7bf6cb3e80842229704169c8b3297bcdff87ec6bb309aad75814701dd3c2b",
+      "sha256": "800ae7c3ad05e717eea11f4a1b547f52db4495681181c6234c37481c01719fbd",
       "authority": true
     },
     "dual_rp": {
       "path": "hardware/architecture/h1-r2-dual-rp-pinout.json",
-      "sha256": "28289ca9dcaf2c3af2b133c3fc09223a2737d764f5a9b6e075150d9aef15229a",
+      "sha256": "a146ebd096894794ec123031c7e35bfe4cb509db98d120409065bdd30c084e15",
       "authority": true
     },
     "c5_mux": {
@@ -41632,7 +41632,7 @@
       "physical": "7",
       "role": "gpio",
       "disposition": "connected",
-      "net": "S3_UART_SERVICE_TX",
+      "net": "S3_HUB_D2",
       "origin": "current_h0_s3_pin_map",
       "historical_topology_authority": false
     },
@@ -41707,7 +41707,7 @@
       "physical": "12",
       "role": "gpio",
       "disposition": "connected",
-      "net": "S3_UART_SERVICE_RX",
+      "net": "S3_HUB_D3",
       "origin": "current_h0_s3_pin_map",
       "historical_topology_authority": false
     },
@@ -42067,7 +42067,7 @@
       "physical": "36",
       "role": "gpio",
       "disposition": "connected",
-      "net": "S3_HUB_D3",
+      "net": "S3_UART_SERVICE_RX",
       "origin": "current_h0_s3_pin_map",
       "historical_topology_authority": false
     },
@@ -42082,7 +42082,7 @@
       "physical": "37",
       "role": "gpio",
       "disposition": "connected",
-      "net": "S3_HUB_D2",
+      "net": "S3_UART_SERVICE_TX",
       "origin": "current_h0_s3_pin_map",
       "historical_topology_authority": false
     },

@@ -78,15 +78,109 @@ class H1R2DualRPPinoutTest(unittest.TestCase):
             rf["dma_budget"]["used_channels"], rf["dma_budget"]["reserve_channels"],
         ))
 
-    def test_s3_rom_uart_isolation_is_fail_closed(self):
-        isolation = self.source["s3_rom_uart_isolation"]
-        self.assertEqual([43, 44], isolation["affected_s3_gpio"])
-        combined = " ".join(str(value) for value in isolation.values())
-        for token in ("Ioff", "OE", "ROM", "high-Z"):
-            self.assertIn(token, combined)
+    def test_s3_rom_uart_has_dedicated_pins_without_qualification_claim(self):
+        self.assertEqual([], MODULE.validate_s3_rom_uart_routing(self.source, self.h0))
+        self.assertNotIn("s3_rom_uart_isolation", self.source)
+        routing = self.source["s3_rom_uart_routing"]
+        self.assertEqual({"tx": 43, "rx": 44}, routing["uart0_gpio"])
+        self.assertEqual({"S3_HUB_D2": 7, "S3_HUB_D3": 8}, routing["hub_data_gpio"])
+        self.assertTrue(all(value is False for value in routing["qualification"].values()))
+        s3 = {row["gpio"]: row for row in self.h0["s3"]["pin_map"]}
+        for gpio, expected in {
+            7: ("S3_HUB_D2", "SPI3", "io"), 8: ("S3_HUB_D3", "SPI3", "io"),
+            43: ("S3_UART_SERVICE_TX", "UART0_TX", "out"),
+            44: ("S3_UART_SERVICE_RX", "UART0_RX", "in"),
+        }.items():
+            self.assertEqual(expected, tuple(s3[gpio][key] for key in ("net", "peripheral", "direction")))
         hub = {row["gpio"]: row for row in self.source["hub_rp"]["pin_map"]}
-        self.assertIn("isolation", hub[2]["endpoint"])
-        self.assertIn("isolation", hub[3]["endpoint"])
+        self.assertEqual("S3 GPIO7 through GPIO matrix", hub[2]["endpoint"])
+        self.assertEqual("S3 GPIO8 through GPIO matrix", hub[3]["endpoint"])
+        candidate = MODULE.load(MODULE.G2F)
+        for russian in (False, True):
+            page = MODULE.render_public(self.source, candidate, russian)
+            self.assertIn(routing["verification_gate"], page)
+            self.assertIn(routing["service_result"], page)
+            self.assertNotIn("through ROM-UART isolation", page)
+
+    def test_s3_rom_uart_rejects_old_map_or_wrong_peripheral_direction(self):
+        old = copy.deepcopy(self.h0)
+        rows = {row["gpio"]: row for row in old["s3"]["pin_map"]}
+        for first, second in ((7, 43), (8, 44)):
+            for key in ("net", "peripheral", "direction"):
+                rows[first][key], rows[second][key] = rows[second][key], rows[first][key]
+        self.assertTrue(MODULE.validate_s3_rom_uart_routing(self.source, old))
+        for gpio in (7, 8, 43, 44):
+            for key, wrong in (("gpio", 99), ("net", "WRONG"),
+                               ("peripheral", "UART1"), ("direction", "reserve")):
+                with self.subTest(gpio=gpio, key=key):
+                    broken = copy.deepcopy(self.h0)
+                    next(row for row in broken["s3"]["pin_map"] if row["gpio"] == gpio)[key] = wrong
+                    self.assertTrue(MODULE.validate_s3_rom_uart_routing(self.source, broken))
+
+    def test_s3_rom_uart_rejects_duplicate_absent_and_aliased_h0_rows(self):
+        for gpio in (7, 8, 43, 44):
+            for mutation in ("duplicate", "absent", "aliased_net"):
+                with self.subTest(gpio=gpio, mutation=mutation):
+                    broken = copy.deepcopy(self.h0)
+                    rows = broken["s3"]["pin_map"]
+                    row = next(row for row in rows if row["gpio"] == gpio)
+                    if mutation == "duplicate":
+                        rows.append(copy.deepcopy(row))
+                    elif mutation == "absent":
+                        rows.remove(row)
+                    else:
+                        rows.append(dict(row, gpio=99))
+                    self.assertTrue(MODULE.validate_s3_rom_uart_routing(self.source, broken))
+
+    def test_s3_rom_uart_rejects_mismatched_hub_pair_or_lost_startup_guards(self):
+        for gpio in (2, 3):
+            for key, value in (("net", "S3_HUB_D3" if gpio == 2 else "S3_HUB_D2"),
+                               ("endpoint", "S3 GPIO43 through ROM-UART isolation"),
+                               ("controller", "GPIO"), ("direction", "out"),
+                               ("reset", "input/high-Z")):
+                with self.subTest(gpio=gpio, key=key):
+                    broken = copy.deepcopy(self.source)
+                    broken["hub_rp"]["pin_map"][gpio][key] = value
+                    self.assertTrue(MODULE.validate_s3_rom_uart_routing(broken, self.h0))
+            for duplicate in (False, True):
+                broken = copy.deepcopy(self.source)
+                rows = broken["hub_rp"]["pin_map"]
+                row = next(row for row in rows if row["gpio"] == gpio)
+                rows.append(copy.deepcopy(row)) if duplicate else rows.remove(row)
+                self.assertTrue(MODULE.validate_s3_rom_uart_routing(broken, self.h0))
+
+    def test_s3_rom_uart_rejects_missing_or_false_topology_metadata(self):
+        routing = self.source["s3_rom_uart_routing"]
+        for key in routing:
+            with self.subTest(missing=key):
+                broken = copy.deepcopy(self.source)
+                del broken["s3_rom_uart_routing"][key]
+                self.assertTrue(MODULE.validate_s3_rom_uart_routing(broken, self.h0))
+        for key, wrong in (("mode", "shared_gpio"), ("uart0_gpio", {"tx": 7, "rx": 8}),
+                           ("hub_data_gpio", {"S3_HUB_D2": 43, "S3_HUB_D3": 44}),
+                           ("uart0_shared_with_hub", True), ("requires_rom_uart_isolator", True),
+                           ("uart0_shared_with_hub", 0)):
+            with self.subTest(key=key, wrong=wrong):
+                broken = copy.deepcopy(self.source)
+                broken["s3_rom_uart_routing"][key] = wrong
+                self.assertTrue(MODULE.validate_s3_rom_uart_routing(broken, self.h0))
+        for group, wrong in (("requirements", False), ("qualification", True)):
+            for key in routing[group]:
+                broken = copy.deepcopy(self.source)
+                broken["s3_rom_uart_routing"][group][key] = wrong
+                self.assertTrue(MODULE.validate_s3_rom_uart_routing(broken, self.h0))
+        broken = copy.deepcopy(self.source)
+        del broken["s3_rom_uart_routing"]
+        self.assertTrue(MODULE.validate_s3_rom_uart_routing(broken, self.h0))
+        broken = copy.deepcopy(self.source)
+        broken["s3_rom_uart_isolation"] = {}
+        self.assertTrue(MODULE.validate_s3_rom_uart_routing(broken, self.h0))
+
+    def test_full_validator_applies_s3_rom_uart_cross_join(self):
+        broken = copy.deepcopy(self.h0)
+        next(row for row in broken["s3"]["pin_map"] if row["gpio"] == 43)["peripheral"] = "UART1_TX"
+        errors = MODULE.validate(self.source, broken, MODULE.load(MODULE.C5_MUX), MODULE.load(MODULE.U219))
+        self.assertTrue(any("dedicated ROM-UART/Hub H0 assignment" in error for error in errors))
 
     def test_rear_cap_pins_are_exact_one_u214_u219_profile(self):
         rf = {row["gpio"]: row for row in self.source["rf_rp"]["pin_map"]}
@@ -192,7 +286,8 @@ class H1R2DualRPPinoutTest(unittest.TestCase):
         self.assertEqual(MODULE.render_public(self.source, candidate, True), MODULE.DOC_RU.read_text(encoding="utf-8"))
         self.assertIn("FSUSB42MUX/C11355", MODULE.DOC_EN.read_text(encoding="utf-8"))
         self.assertIn("TCA9803DGKR/C2687966", MODULE.DOC_EN.read_text(encoding="utf-8"))
-        self.assertIn("S3 GPIO43 through ROM-UART isolation", MODULE.DOC_EN.read_text(encoding="utf-8"))
+        self.assertIn("S3 GPIO7 through GPIO matrix", MODULE.DOC_EN.read_text(encoding="utf-8"))
+        self.assertIn("Dedicated S3 ROM-UART routing", MODULE.DOC_EN.read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

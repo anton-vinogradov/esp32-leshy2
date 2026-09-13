@@ -5,9 +5,9 @@
   "status": "pass_exact_dual_rp_working_authority",
   "authority": {
     "source": "hardware/architecture/h1-r2-dual-rp-pinout.json",
-    "source_sha256": "28289ca9dcaf2c3af2b133c3fc09223a2737d764f5a9b6e075150d9aef15229a",
+    "source_sha256": "a146ebd096894794ec123031c7e35bfe4cb509db98d120409065bdd30c084e15",
     "functional_source": "hardware/architecture/h0-r2-rebaseline.json",
-    "functional_source_sha256": "bab7bf6cb3e80842229704169c8b3297bcdff87ec6bb309aad75814701dd3c2b",
+    "functional_source_sha256": "800ae7c3ad05e717eea11f4a1b547f52db4495681181c6234c37481c01719fbd",
     "c5_mux_source": "hardware/architecture/c5-sdio-service-mux-contract.json",
     "c5_mux_source_sha256": "4bd88ffed2e8ac0b5f6e8856d6ebc21e7cc29aa38045d4a10e068b870e51c7f3",
     "pack_safety_i2c_source": "hardware/architecture/pack-safety-i2c-boundary-contract.json",
@@ -71,16 +71,16 @@
         "net": "S3_HUB_D2",
         "direction": "io",
         "controller": "PIO1_SM0_S3_QUAD",
-        "endpoint": "S3 GPIO43 through ROM-UART isolation",
-        "reset": "input/high-Z; Hub-side external pull-down; isolation open"
+        "endpoint": "S3 GPIO7 through GPIO matrix",
+        "reset": "input/high-Z required; no clocks until application and idle/ready handshake; reset asymmetry requires re-handshake"
       },
       {
         "gpio": 3,
         "net": "S3_HUB_D3",
         "direction": "io",
         "controller": "PIO1_SM0_S3_QUAD",
-        "endpoint": "S3 GPIO44 through ROM-UART isolation",
-        "reset": "input/high-Z; Hub-side external pull-down; isolation open"
+        "endpoint": "S3 GPIO8 through GPIO matrix",
+        "reset": "input/high-Z required; no clocks until application and idle/ready handshake; reset asymmetry requires re-handshake"
       },
       {
         "gpio": 4,
@@ -1052,19 +1052,33 @@
       "driver": "rf_rp"
     }
   ],
-  "s3_rom_uart_isolation": {
-    "affected_s3_gpio": [
-      43,
-      44
-    ],
-    "affected_nets": [
-      "S3_HUB_D2",
-      "S3_HUB_D3"
-    ],
-    "requirement": "Both lines cross an Ioff-capable bidirectional isolation boundary whose OE is held disabled by a physical pull throughout S3 reset, strap sampling, ROM download and UART0 recovery.",
-    "enable_sequence": "S3 firmware may enable the two data channels only after normal application boot, Hub RUN release and a successful idle/ready handshake; entering ROM download, either-controller reset or fault shutdown opens the boundary again.",
-    "service_result": "S3 GPIO43/44 remain usable as default ROM UART0 TX/RX without Hub contention; Hub GPIO2/3 stay high-Z and pulled low while isolated.",
-    "h2_gate": "The new R2 schematic must instantiate the exact isolator/OE pull and prove powered-off Ioff; this working GPIO authority does not authorize KiCad by itself."
+  "s3_rom_uart_routing": {
+    "mode": "dedicated_gpio",
+    "uart0_gpio": {
+      "tx": 43,
+      "rx": 44
+    },
+    "hub_data_gpio": {
+      "S3_HUB_D2": 7,
+      "S3_HUB_D3": 8
+    },
+    "uart0_shared_with_hub": false,
+    "requires_rom_uart_isolator": false,
+    "requirements": {
+      "hub_high_z_until_application_ready": true,
+      "no_clocks_before_idle_handshake": true,
+      "reset_asymmetry_requires_rehandshake": true,
+      "gpio7_gpio8_powerup_glitches_must_be_rejected": true
+    },
+    "qualification": {
+      "rom_uart_fixture": false,
+      "hub_40mhz_timing": false,
+      "powerup_reset_asymmetry": false
+    },
+    "requirement": "UART0 TX/RX use dedicated S3 GPIO43/44 through the existing service-header series paths. Hub D2/D3 instead use S3 GPIO7/8 through the GPIO matrix; no shared ROM-UART net or additional ROM-UART isolator is required or claimed.",
+    "enable_sequence": "Hub data pins must remain input/high-Z and no link clocks may start until normal application boot and a successful idle/ready handshake. Either-controller reset, ROM entry or fault shutdown invalidates that handshake. GPIO7/8 power-up glitches must not be interpreted as link traffic; reset-asymmetric startup and re-handshake still require implementation and measurement.",
+    "service_result": "The pin allocation separates UART0 recovery from Hub application traffic; it does not establish fixture operation, completed physical routing, reset/power availability or recovery under KILL.",
+    "verification_gate": "ROM UART recovery on the fixture, GPIO-matrix 40 MHz link timing and power-up/reset-asymmetry behavior remain unqualified; no fabrication or full recovery acceptance follows from this topology check."
   },
   "execution_gates": [
     "PIO instruction fit and Hub/RF 14/12-channel DMA allocation must compile in the six-domain firmware build matrix; exact channel IDs, DREQ routing and peak simultaneous profile remain executable proof gates.",

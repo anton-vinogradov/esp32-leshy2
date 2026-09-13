@@ -16383,7 +16383,7 @@
 			(at -8.75 0.79)
 			(size 1.5 0.9)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "/UI_10_S3_DISPLAY_TOUCH/S3_UART_SERVICE_TX")
+			(net "/UI_10_S3_DISPLAY_TOUCH/S3_HUB_D2")
 			(uuid "2e4c0b65-3197-518a-9505-4bf9b23d7d5b")
 		)
 		(pad "8" smd rect
@@ -16416,7 +16416,7 @@
 			(at -8.75 -5.56)
 			(size 1.5 0.9)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "/UI_10_S3_DISPLAY_TOUCH/S3_UART_SERVICE_RX")
+			(net "/UI_10_S3_DISPLAY_TOUCH/S3_HUB_D3")
 			(uuid "f16383d3-2a00-5c87-8c7d-a0247aa9eda0")
 		)
 		(pad "13" smd rect
@@ -16577,14 +16577,14 @@
 			(at 8.75 3.33)
 			(size 1.5 0.9)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "/UI_10_S3_DISPLAY_TOUCH/S3_HUB_D3")
+			(net "/UI_10_S3_DISPLAY_TOUCH/S3_UART_SERVICE_RX")
 			(uuid "f3c2e296-44ca-5048-97a2-247f5b7524d6")
 		)
 		(pad "37" smd rect
 			(at 8.75 4.6)
 			(size 1.5 0.9)
 			(layers "B.Cu" "B.Mask" "B.Paste")
-			(net "/UI_10_S3_DISPLAY_TOUCH/S3_HUB_D2")
+			(net "/UI_10_S3_DISPLAY_TOUCH/S3_UART_SERVICE_TX")
 			(uuid "09350563-ed66-549d-baf2-628bdd3180e7")
 		)
 		(pad "38" smd rect

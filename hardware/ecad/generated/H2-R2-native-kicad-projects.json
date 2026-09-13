@@ -10,15 +10,15 @@
     },
     "instances": {
       "path": "hardware/ecad/generated/H2-R2-native-instance-ledger.json",
-      "sha256": "7e5594bf5130524096b2683040b153409611b92c2df088dd33cb5c30f2f7a597"
+      "sha256": "dfd2101cd84ab4290b69a38576bf40002e673817527dab27185747d1affca569"
     },
     "nets": {
       "path": "hardware/ecad/generated/H2-R2-native-net-ledger.json",
-      "sha256": "eddbf9f53b513cf3d991a79c75f976bdcffa5c09542fa1670bf4f782fbdc80d5"
+      "sha256": "eb9976d1662695f0a013b421d582ed6b88faf2d4eca253f0db4ea5f686481840"
     },
     "symbols": {
       "path": "hardware/ecad/generated/H2-R2-controlled-symbol-library.json",
-      "sha256": "1b3d9f2700937109daba2fd77b8633d709325094dbd19f48a17e0d7c9f60b224"
+      "sha256": "fc14457685eca2a89b5baf01ca118c034b3b7a18aae8fb83fabe20824f1e342b"
     },
     "symbol_library": {
       "path": "hardware/ecad/libraries/leshy2_r2.kicad_sym",
@@ -407,7 +407,7 @@
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_10_S3_DISPLAY_TOUCH.kicad_sch",
-      "sha256": "b1649b1fa5f5fef7556dbd3268846828abd7f80b5c28350da6cf1000ddad7a06"
+      "sha256": "56f39324ed2fec025abd01749c598d44e8346b187be7948afc516c3d20a92dde"
     },
     {
       "path": "hardware/ecad/kicad/LESHY2-UI-R2/UI_11_STORAGE_CONTROLS_INDICATORS.kicad_sch",

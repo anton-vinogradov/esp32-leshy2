@@ -35,6 +35,21 @@ class H0R2ArchitectureTest(unittest.TestCase):
         self.assertIn("PCNT", ui["encoder"])
         self.assertIn("RF RP", ui["ptt_exception"])
 
+    def test_service_uart_uses_rom_pins_without_sharing_the_hub_bus(self):
+        pins = {row["gpio"]: row for row in self.data["s3"]["pin_map"]}
+        expected = {
+            7: ("S3_HUB_D2", "SPI3", "io"),
+            8: ("S3_HUB_D3", "SPI3", "io"),
+            43: ("S3_UART_SERVICE_TX", "UART0_TX", "out"),
+            44: ("S3_UART_SERVICE_RX", "UART0_RX", "in"),
+        }
+        for gpio, row in expected.items():
+            self.assertEqual(row, tuple(pins[gpio][key] for key in ("net", "peripheral", "direction")))
+        for gpio in (7, 8):
+            self.assertIn("high-Z", pins[gpio]["gate"])
+            self.assertIn("idle handshake", pins[gpio]["gate"])
+            self.assertIn("glitch requires measurement", pins[gpio]["gate"])
+
     def test_display_is_direct_i8080_and_clock_is_legal(self):
         display = self.data["display_contract"]
         self.assertEqual(20_000_000, display["selected_clock_hz"])

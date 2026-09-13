@@ -88,17 +88,17 @@
         },
         {
           "gpio": 7,
-          "net": "S3_UART_SERVICE_TX",
-          "peripheral": "UART1_TX",
-          "direction": "out",
-          "gate": "DBG10 series path; idle high only after strap sampling"
+          "net": "S3_HUB_D2",
+          "peripheral": "SPI3",
+          "direction": "io",
+          "gate": "GPIO matrix; Hub remains high-Z and no bus clocks are permitted before application startup and the idle handshake; power-up low glitch requires measurement"
         },
         {
           "gpio": 8,
-          "net": "S3_UART_SERVICE_RX",
-          "peripheral": "UART1_RX",
-          "direction": "in",
-          "gate": "DBG10 series path with fixture-side protection"
+          "net": "S3_HUB_D3",
+          "peripheral": "SPI3",
+          "direction": "io",
+          "gate": "GPIO matrix; Hub remains high-Z and no bus clocks are permitted before application startup and the idle handshake; power-up low glitch requires measurement"
         },
         {
           "gpio": 9,
@@ -216,15 +216,17 @@
         },
         {
           "gpio": 43,
-          "net": "S3_HUB_D2",
-          "peripheral": "SPI3",
-          "direction": "io"
+          "net": "S3_UART_SERVICE_TX",
+          "peripheral": "UART0_TX",
+          "direction": "out",
+          "gate": "dedicated ROM UART0 TX to DBG10 through existing R4; no Hub endpoint; power/reset/BOOT recovery qualification remains open"
         },
         {
           "gpio": 44,
-          "net": "S3_HUB_D3",
-          "peripheral": "SPI3",
-          "direction": "io"
+          "net": "S3_UART_SERVICE_RX",
+          "peripheral": "UART0_RX",
+          "direction": "in",
+          "gate": "dedicated ROM UART0 RX from DBG10 through existing R5; fixture must not back-power the target; power/reset/BOOT recovery qualification remains open"
         },
         {
           "gpio": 45,
@@ -837,16 +839,16 @@
           "net": "S3_HUB_D2",
           "direction": "io",
           "controller": "PIO1_SM0_S3_QUAD",
-          "endpoint": "S3 GPIO43 through ROM-UART isolation",
-          "reset": "input/high-Z; Hub-side external pull-down; isolation open"
+          "endpoint": "S3 GPIO7 through GPIO matrix",
+          "reset": "input/high-Z required; no clocks until application and idle/ready handshake; reset asymmetry requires re-handshake"
         },
         {
           "gpio": 3,
           "net": "S3_HUB_D3",
           "direction": "io",
           "controller": "PIO1_SM0_S3_QUAD",
-          "endpoint": "S3 GPIO44 through ROM-UART isolation",
-          "reset": "input/high-Z; Hub-side external pull-down; isolation open"
+          "endpoint": "S3 GPIO8 through GPIO matrix",
+          "reset": "input/high-Z required; no clocks until application and idle/ready handshake; reset asymmetry requires re-handshake"
         },
         {
           "gpio": 4,

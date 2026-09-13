@@ -42,8 +42,8 @@ Front RP budget: **46 used / 2 free**. Rear RP budget: **43 used / 5 free**. SI5
 | `4` | `LCD_DB0` | `LCD_CAM_TX` | `out` |
 | `5` | `LCD_RST_N` | `GPIO` | `out` |
 | `6` | `TOUCH_RST_N` | `GPIO` | `out` |
-| `7` | `S3_UART_SERVICE_TX` | `UART1_TX` | `out` |
-| `8` | `S3_UART_SERVICE_RX` | `UART1_RX` | `in` |
+| `7` | `S3_HUB_D2` | `SPI3` | `io` |
+| `8` | `S3_HUB_D3` | `SPI3` | `io` |
 | `9` | `LCD_DB1` | `LCD_CAM_TX` | `out` |
 | `10` | `S3_RESERVE_10` | `GPIO` | `reserve` |
 | `11` | `S3_RESERVE_11` | `GPIO` | `reserve` |
@@ -62,8 +62,8 @@ Front RP budget: **46 used / 2 free**. Rear RP budget: **43 used / 5 free**. SI5
 | `40` | `LCD_DB4` | `LCD_CAM_TX` | `out` |
 | `41` | `LCD_DB5` | `LCD_CAM_TX` | `out` |
 | `42` | `LCD_DB6` | `LCD_CAM_TX` | `out` |
-| `43` | `S3_HUB_D2` | `SPI3` | `io` |
-| `44` | `S3_HUB_D3` | `SPI3` | `io` |
+| `43` | `S3_UART_SERVICE_TX` | `UART0_TX` | `out` |
+| `44` | `S3_UART_SERVICE_RX` | `UART0_RX` | `in` |
 | `45` | `LCD_DC` | `LCD_CAM_TX` | `out` |
 | `46` | `LCD_DB7` | `LCD_CAM_TX` | `out` |
 | `47` | `ENCODER_B` | `PCNT0` | `in` |
